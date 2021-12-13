@@ -147,6 +147,7 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
     m_ui->treeWidget->header()->setSectionsMovable(false);
@@ -192,7 +193,6 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
 
     loadPluginsInfo();
 
-    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->settingButton, SIGNAL(clicked()), SLOT(pluginButtonClicked()));
     connect(m_ui->treeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(pluginItemChanged(QTreeWidgetItem*,int)));
 }

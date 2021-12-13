@@ -14,6 +14,7 @@ MusicLrcArtPhotoUploadWidget::MusicLrcArtPhotoUploadWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_ui->artSearchEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
     m_ui->uploadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
@@ -36,7 +37,6 @@ MusicLrcArtPhotoUploadWidget::MusicLrcArtPhotoUploadWidget(QWidget *parent)
     m_ui->closeButton->hide();
     m_ui->stateLabel->hide();
 
-    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->selectButton, SIGNAL(clicked()), SLOT(selectButtonClicked()));
     connect(m_ui->closeButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->uploadButton, SIGNAL(clicked()), SLOT(uploadButtonClicked()));

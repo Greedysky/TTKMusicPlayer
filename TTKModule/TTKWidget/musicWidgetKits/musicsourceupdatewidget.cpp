@@ -103,6 +103,7 @@ MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_ui->upgradeButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     m_ui->upgradeButton->setEnabled(false);
@@ -110,7 +111,6 @@ MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
     m_ui->upgradeButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->upgradeButton, SIGNAL(clicked()), SLOT(upgradeButtonClicked()));
     connect(m_ui->cancelButton, SIGNAL(clicked()), SLOT(close()));
 }

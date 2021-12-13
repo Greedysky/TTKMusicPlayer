@@ -78,7 +78,7 @@ void MusicAbstractSongsListTableWidget::setDeleteItemAll()
 
     if(rowCount() == 0 && state)
     {
-        MusicApplication::instance()->musicPlayIndex(-1);
+        MusicApplication::instance()->musicPlayIndex(DEFAULT_NORMAL_LEVEL);
     }
 }
 

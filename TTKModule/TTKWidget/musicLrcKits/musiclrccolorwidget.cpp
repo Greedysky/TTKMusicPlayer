@@ -12,6 +12,7 @@ MusicLrcColorWidget::MusicLrcColorWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_ui->listWidget->setFrameShape(QFrame::NoFrame);
     m_ui->listWidget->setSpacing(1);
@@ -35,7 +36,6 @@ MusicLrcColorWidget::MusicLrcColorWidget(QWidget *parent)
 #endif
 
     connect(m_ui->cancelButton, SIGNAL(clicked()), SLOT(close()));
-    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
     connect(m_ui->deleteButton, SIGNAL(clicked()), SLOT(deleteButtonClicked()));
     connect(m_ui->modifyButton, SIGNAL(clicked()), SLOT(modifyButtonClicked()));

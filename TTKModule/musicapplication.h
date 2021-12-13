@@ -190,6 +190,10 @@ public Q_SLOTS:
      */
     void musicImportSongsByDir();
     /*!
+     * Import music songs by url.
+     */
+    void musicImportSongsByUrl();
+    /*!
      * Import music songs by item list.
      */
     void musicImportSongsItemList();

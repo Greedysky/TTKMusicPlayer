@@ -161,7 +161,7 @@ QLabel{background:transparent;}</string>
      <string notr="true">font-size:22px;font-weight:bold;</string>
     </property>
     <property name="text">
-     <string>XXXXXXXXXXXXXXXXXXX</string>
+     <string>-</string>
     </property>
    </widget>
    <widget class="MusicDownloadTableWidget" name="viewArea">

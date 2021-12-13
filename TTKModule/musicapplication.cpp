@@ -20,6 +20,7 @@
 #include "musictinyuiobject.h"
 #include "musicdispatchmanager.h"
 #include "musictkplconfigmanager.h"
+#include "musicinputdialog.h"
 #include "ttkversion.h"
 
 #include <QMimeData>
@@ -494,6 +495,7 @@ void MusicApplication::musicImportSongs()
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
     menu.addAction(tr("Open Files"), this, SLOT(musicImportSongsByFiles()));
     menu.addAction(tr("Open Dir"), this, SLOT(musicImportSongsByDir()));
+    menu.addAction(tr("Open Url"), this, SLOT(musicImportSongsByUrl()));
     menu.addSeparator();
     menu.addAction(tr("Files Drag Drop"))->setEnabled(false);
 
@@ -527,6 +529,23 @@ void MusicApplication::musicImportSongsByDir()
         }
     }
     musicImportSongsPath(files);
+}
+
+void MusicApplication::musicImportSongsByUrl()
+{
+    MusicInputDialog dialog;
+    if(!dialog.exec())
+    {
+        return;
+    }
+
+    const QString &path = dialog.text();
+    if(path.isEmpty())
+    {
+        return;
+    }
+
+    m_musicSongTreeWidget->importMusicSongsByUrl(QStringList() << path);
 }
 
 void MusicApplication::musicImportSongsItemList()
@@ -730,6 +749,7 @@ void MusicApplication::musicCreateRightMenu()
     menu.addMenu(&addNewFiles);
     addNewFiles.addAction(tr("Open Files"), this, SLOT(musicImportSongsByFiles()));
     addNewFiles.addAction(tr("Open Dir"), this, SLOT(musicImportSongsByDir()));
+    addNewFiles.addAction(tr("Open Url"), this, SLOT(musicImportSongsByUrl()));
     MusicUtils::Widget::adjustMenuPosition(&addNewFiles);
 
     QMenu playbackMode(tr("Playback Mode"), &menu);

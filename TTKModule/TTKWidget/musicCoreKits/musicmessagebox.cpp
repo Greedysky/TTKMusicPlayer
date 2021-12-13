@@ -1,7 +1,6 @@
 #include "musicmessagebox.h"
 #include "ui_musicmessagebox.h"
 
-#include <QPainter>
 #include <QButtonGroup>
 
 MusicMessageBox::MusicMessageBox(QWidget *parent)

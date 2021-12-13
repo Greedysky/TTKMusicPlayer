@@ -19,6 +19,7 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_type = Null;
 
@@ -40,7 +41,6 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
 #endif
 
     connect(m_ui->textEdit, SIGNAL(textChanged()), SLOT(textAreaChanged()));
-    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->cancelButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->shareButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
 }

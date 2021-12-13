@@ -17,7 +17,6 @@
 #include <qmath.h>
 #include <QAction>
 #include <QTimer>
-#include <QPainter>
 #include <QMouseEvent>
 
 #define SEARCH_ITEM_DEFINED(index, names)                                                   \

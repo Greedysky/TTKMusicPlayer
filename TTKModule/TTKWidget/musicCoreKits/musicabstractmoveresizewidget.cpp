@@ -1,6 +1,5 @@
 #include "musicabstractmoveresizewidget.h"
 
-#include <QPainter>
 #include <QMouseEvent>
 #include <QApplication>
 

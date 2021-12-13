@@ -106,7 +106,7 @@ void MusicPlayedListPopWidget::remove(int index)
 
     m_playedListWidget->adjustPlayWidgetRow();
     m_playedListWidget->removeRow(index);
-    m_playedListWidget->setPlayRowIndex(-1);
+    m_playedListWidget->setPlayRowIndex(DEFAULT_NORMAL_LEVEL);
 
     m_playlist->removeMedia(index);
     m_songList.removeAt(index);
@@ -127,7 +127,7 @@ void MusicPlayedListPopWidget::remove(int toolIndex, const QString &path)
             m_playedListWidget->removeRow(index);
         }
     } while(index != -1);
-    m_playedListWidget->setPlayRowIndex(-1);
+    m_playedListWidget->setPlayRowIndex(DEFAULT_NORMAL_LEVEL);
 
     updateSongsFileName();
 }
@@ -405,9 +405,9 @@ void MusicPlayedListPopWidget::setPlaylistCount(int count)
 
 void MusicPlayedListPopWidget::setPlaylistEmpty()
 {
-    m_playedListWidget->setPlayRowIndex(-1);
+    m_playedListWidget->setPlayRowIndex(DEFAULT_NORMAL_LEVEL);
     m_songList.clear();
     setPlaylistCount(0);
 
-    MusicApplication::instance()->musicPlayIndex(-1);
+    MusicApplication::instance()->musicPlayIndex(DEFAULT_NORMAL_LEVEL);
 }

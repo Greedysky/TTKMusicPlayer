@@ -57,4 +57,5 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musiccolordialog.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicsongitemselecteddialog.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicpluginwidget.ui
+    ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicinputdialog.ui
 )

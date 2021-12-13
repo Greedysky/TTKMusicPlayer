@@ -44,19 +44,25 @@ public:
     /*!
      * Add music datas into container.
      */
-    bool addMusicItemList(const MusicSongItems &names);
+    bool addMusicItemList(const MusicSongItems &items);
     /*!
      * Append music datas into container.
      */
-    void appendMusicItemList(const MusicSongItems &names);
+    void appendMusicItemList(const MusicSongItems &items);
     /*!
      * Query music datas from container.
      */
     inline const MusicSongItems& musicItemList() const { return m_songItems; }
+
     /*!
      * Input imported music datas into container.
      */
     void importMusicSongsByPath(const QStringList &files);
+    /*!
+     * Input imported music urls into container.
+     */
+    void importMusicSongsByUrl(const QStringList &files);
+
     /*!
      * Get music songs file name by index.
      */
@@ -122,14 +128,6 @@ public Q_SLOTS:
      */
     void changRowItemName(int index, const QString &name);
     /*!
-     * Add new music file or files to list.
-     */
-    void musicAddNewFiles(int index);
-    /*!
-     * Add new music dir to list.
-     */
-    void musicAddNewDir(int index);
-    /*!
      * Swap the item index by drag adn drop.
      */
     void swapDragItemIndex(int before, int after);
@@ -144,11 +142,11 @@ public Q_SLOTS:
     /*!
      * Import music songs by files.
      */
-    void musicImportSongsByFiles();
+    void musicImportSongsByFiles(int index = DEFAULT_LOW_LEVEL);
     /*!
      * Import music songs by dir.
      */
-    void musicImportSongsByDir();
+    void musicImportSongsByDir(int index = DEFAULT_LOW_LEVEL);
     /*!
      * Open music songs check test tools.
      */
@@ -251,9 +249,9 @@ protected:
      */
     void closeSearchWidget();
     /*!
-     * Close searched text widget needed.
+     * Close searched text widget in need.
      */
-    void closeSearchWidgetNeeded();
+    void closeSearchWidgetInNeed();
     /*!
      * Check current name exist.
      */

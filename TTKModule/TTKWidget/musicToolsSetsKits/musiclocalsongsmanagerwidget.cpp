@@ -92,7 +92,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
 
     m_runTypeChanged = false;
     addDrivesList();
-    m_ui->filterComboBox->setCurrentIndex(-1);
+    m_ui->filterComboBox->setCurrentIndex(DEFAULT_NORMAL_LEVEL);
 
     m_thread = new MusicLocalSongsManagerThread(this);
     connect(m_thread, SIGNAL(setSongNamePath(QFileInfoList)), SLOT(setSongNamePath(QFileInfoList)));
