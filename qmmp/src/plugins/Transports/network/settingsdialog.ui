@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>HTTP Plugin Settings</string>
+   <string>Network Plugin Settings</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <property name="leftMargin">
