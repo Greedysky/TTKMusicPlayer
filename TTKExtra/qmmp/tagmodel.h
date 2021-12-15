@@ -21,9 +21,7 @@
 #ifndef TAGMODEL_H
 #define TAGMODEL_H
 
-#include <QString>
 #include <QList>
-#include <QFlags>
 #include "qmmp.h"
 
 /*! @brief The StateHandler class provides is the base interface class of tag editor.

@@ -21,8 +21,6 @@
 #ifndef STATEHANDLER_H
 #define STATEHANDLER_H
 
-#include <QObject>
-#include <QMap>
 #include <QHash>
 #include <QMutex>
 #include "abstractengine.h"

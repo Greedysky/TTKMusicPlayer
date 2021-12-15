@@ -21,8 +21,6 @@
 #ifndef INPUTSOURCE_H
 #define INPUTSOURCE_H
 
-#include <QObject>
-#include <QString>
 #include <QStringList>
 #include <QIODevice>
 #include <QMap>

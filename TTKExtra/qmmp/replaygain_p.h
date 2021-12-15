@@ -21,7 +21,6 @@
 #ifndef REPLAYGAIN_H
 #define REPLAYGAIN_H
 
-#include <QtGlobal>
 #include <QMap>
 #include "effect.h"
 #include "qmmpsettings.h"
@@ -36,8 +35,7 @@ public:
     ReplayGain();
     ~ReplayGain();
 
-    void updateSettings(QmmpSettings::ReplayGainMode mode, double preamp,
-                        double default_gain, bool clip);
+    void updateSettings(QmmpSettings::ReplayGainMode mode, double preamp, double default_gain, bool clip);
     void setReplayGainInfo(const QMap<Qmmp::ReplayGainKey, double> &info);
     virtual void applyEffect(Buffer *b) override;
 

@@ -21,8 +21,6 @@
 #ifndef DECODERFACTORY_H
 #define DECODERFACTORY_H
 
-#include <QObject>
-#include <QString>
 #include <QIODevice>
 #include <QStringList>
 #include "qmmp_export.h"

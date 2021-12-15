@@ -22,8 +22,6 @@
 #define CUEPARSER_H
 
 #include <QByteArray>
-#include <QString>
-#include <QList>
 #include <QStringList>
 #include <QTextCodec>
 #include <QFileInfo>

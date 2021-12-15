@@ -22,7 +22,6 @@
 #define DECODER_H
 
 #include <QStringList>
-#include <QList>
 #include <QMap>
 #include <QIODevice>
 #include "qmmp.h"
