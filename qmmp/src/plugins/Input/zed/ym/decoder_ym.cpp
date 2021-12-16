@@ -28,7 +28,7 @@ bool DecoderYm::initialize()
     }
 
     ymMusicInfo_t info;
-    if(m_music->load(Qmmp::generatePrintable(m_path)))
+    if(m_music->load(QmmpPrintable(m_path)))
     {
         m_music->getMusicInfo(&info);
         m_music->setLoopMode(YMFALSE);
@@ -44,7 +44,7 @@ bool DecoderYm::initialize()
             delete m_music;
         }
         m_music = nullptr;
-        qWarning("DecoderYm: failed to open: %s", Qmmp::generatePrintable(m_path));
+        qWarning("DecoderYm: failed to open: %s", QmmpPrintable(m_path));
         return false;
     }
 

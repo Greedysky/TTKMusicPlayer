@@ -27,7 +27,7 @@ bool NetworkInputSource::isReady() const
 
 bool NetworkInputSource::isWaiting() const
 {
-    return (!m_reader->bytesAvailable() && m_reader->isOpen());
+    return !m_reader->bytesAvailable() && m_reader->isOpen();
 }
 
 QString NetworkInputSource::contentType() const

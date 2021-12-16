@@ -33,7 +33,7 @@ bool OrganyaHelper::initialize()
     const qint64 size = file.size();
     file.close();
 
-    m_info->input = org_decoder_create(Qmmp::generatePrintable(m_path), 1);
+    m_info->input = org_decoder_create(QmmpPrintable(m_path), 1);
     if(!m_info->input)
     {
         qWarning("OrganyaHelper: org_decoder_create error");

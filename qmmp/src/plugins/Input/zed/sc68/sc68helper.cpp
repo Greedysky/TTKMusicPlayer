@@ -84,7 +84,7 @@ bool SC68Helper::initialize()
         return false;
     }
 
-    int res = sc68_load_uri(m_info->input, Qmmp::generatePrintable("file://" + path));
+    int res = sc68_load_uri(m_info->input, QmmpPrintable("file://" + path));
     if(res)
     {
         qWarning("SC68Helper: sc68_load_uri error");

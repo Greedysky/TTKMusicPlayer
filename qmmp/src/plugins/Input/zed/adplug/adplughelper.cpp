@@ -7,7 +7,7 @@ AdplugHelper::AdplugHelper(const QString &path)
     : m_path(path)
 {
     m_opl = new CEmuopl(rate(), true, false);
-    m_player = CAdPlug::factory(Qmmp::generatePrintable(path), m_opl);
+    m_player = CAdPlug::factory(QmmpPrintable(path), m_opl);
 }
 
 AdplugHelper::~AdplugHelper()

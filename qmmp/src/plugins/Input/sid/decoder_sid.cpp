@@ -35,7 +35,7 @@ bool DecoderSID::initialize()
     path.remove(RegularWrapper("#\\d+$"));
     int track = m_url.section("#", -1).toInt();
 
-    m_tune.load(Qmmp::generatePrintable(path));
+    m_tune.load(QmmpPrintable(path));
     if(!m_tune.getInfo())
     {
         qWarning("DecoderSID: unable to load tune, error: %s", m_tune.statusString());

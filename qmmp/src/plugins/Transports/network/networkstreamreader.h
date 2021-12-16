@@ -31,6 +31,7 @@ struct StreamData
 {
     QByteArray buffer;
     size_t buffer_fill = 0;
+    size_t buffer_size = 0;
     QString content_type;
     bool aborted = false;
 };
@@ -70,6 +71,7 @@ signals:
 private slots:
     void replyError(QNetworkReply::NetworkError status);
     void handleReadyRead();
+    void handleFinished();
 
 protected:
     virtual qint64 readData(char*, qint64) override;
@@ -80,6 +82,7 @@ private:
     qint64 readBuffer(char* data, qint64 maxlen);
 
     QString m_url;
+    QString m_path;
     QMutex m_mutex;
     StreamData m_stream;
     bool m_ready = false;

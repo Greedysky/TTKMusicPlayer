@@ -52,12 +52,12 @@ QStringList Qmmp::findPlugins(const QString &prefix)
     return paths;
 }
 
-const char *Qmmp::generatePrintable(const QString &text)
+QByteArray Qmmp::generatePrintable(const QString &text)
 {
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0) && defined Q_OS_WIN
     QTextCodec *codec = QTextCodec::codecForName("GB18030");
-    return codec->fromUnicode(text).constData();
+    return codec->fromUnicode(text);
 #else
-    return qPrintable(text);
+    return text.toLocal8Bit();
 #endif
 }
