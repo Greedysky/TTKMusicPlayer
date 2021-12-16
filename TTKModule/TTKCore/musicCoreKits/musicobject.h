@@ -98,7 +98,6 @@
 #define LRC_DIR                 TTK_STRCAT("Lyric", TTK_SEPARATOR)
 #define MUSIC_DIR               TTK_STRCAT("Music", TTK_SEPARATOR)
 #define MOVIE_DIR               TTK_STRCAT("Movie", TTK_SEPARATOR)
-#define UPDATE_DIR              TTK_STRCAT("Update", TTK_SEPARATOR)
 //
 #define LANGUAGE_DIR            TTK_STRCAT("GLanguage", TTK_SEPARATOR)
 #define PLUGINS_DIR             TTK_STRCAT("GPlugins", TTK_SEPARATOR)
@@ -141,7 +140,6 @@
 #define LRC_DIR_FULL            DOWNLOAD_DIR_FULL + LRC_DIR
 #define MUSIC_DIR_FULL          DOWNLOAD_DIR_FULL + MUSIC_DIR
 #define MOVIE_DIR_FULL          DOWNLOAD_DIR_FULL + MOVIE_DIR
-#define UPDATE_DIR_FULL         DOWNLOAD_DIR_FULL + UPDATE_DIR
 //
 #define CACHE_DIR_FULL          APPCACHE_DIR_FULL + CACHE_DIR
 #define ART_DIR_FULL            APPCACHE_DIR_FULL + ART_DIR
