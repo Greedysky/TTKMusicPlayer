@@ -81,7 +81,7 @@ void MusicAbstractDownloadTableWidget::setDeleteItemAt()
     }
     //just fix table widget size hint
     setFixedHeight(totalHeight());
-    Q_EMIT updateItemTitle(m_parentToolIndex);
+    Q_EMIT updateItemTitle(m_toolIndex);
 }
 
 void MusicAbstractDownloadTableWidget::itemCellClicked(int row, int column)
@@ -128,7 +128,7 @@ void MusicAbstractDownloadTableWidget::createDownloadItem(const QString &name, q
     m_musicSongs->append(record);
 
     createItem(rowCount() - 1, record);
-    Q_EMIT updateItemTitle(m_parentToolIndex);
+    Q_EMIT updateItemTitle(m_toolIndex);
 }
 
 void MusicAbstractDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -143,14 +143,14 @@ void MusicAbstractDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event
 
     createMoreMenu(&menu);
 
-    const bool empty = !m_musicSongs->isEmpty();
-    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
-    menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    const bool status = !m_musicSongs->isEmpty();
+    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));
     menu.addSeparator();
 
-    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
-    menu.addAction(tr("Delete All"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
+    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(status);
+    menu.addAction(tr("Delete All"), this, SLOT(setDeleteItemAll()))->setEnabled(status);
 
     menu.exec(QCursor::pos());
 }

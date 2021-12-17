@@ -12,7 +12,7 @@ MusicAbstractSongsListTableWidget::MusicAbstractSongsListTableWidget(QWidget *pa
     : MusicSmoothMovingTableWidget(parent)
 {
     m_playRowIndex = -1;
-    m_parentToolIndex = -1;
+    m_toolIndex = -1;
     m_musicSongs = nullptr;
     m_hasParentToolIndex = true;
 }
@@ -48,9 +48,9 @@ int MusicAbstractSongsListTableWidget::totalHeight() const
     return height;
 }
 
-void MusicAbstractSongsListTableWidget::setParentToolIndex(int index)
+void MusicAbstractSongsListTableWidget::setToolIndex(int index)
 {
-    m_parentToolIndex = index;
+    m_toolIndex = index;
 }
 
 void MusicAbstractSongsListTableWidget::musicPlayClicked()

@@ -33,9 +33,9 @@ namespace MusicUtils
          */
         TTK_MODULE_EXPORT QString pluginPath(const QString &module, const QString &format);
         /*!
-         * Update mid config file transfer.
+         * Update qmmp config file transfer.
          */
-        TTK_MODULE_EXPORT void updateMidConfigFile();
+        TTK_MODULE_EXPORT void updateQmmpConfigFile();
 
         /*!
          * Enable visual module control.

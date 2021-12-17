@@ -86,9 +86,9 @@ void MusicLocalSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     createMoreMenu(&menu);
 
-    const bool empty = !m_musicSongs->isEmpty();
-    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
-    menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    const bool status = !m_musicSongs->isEmpty();
+    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));
     menu.addSeparator();
 

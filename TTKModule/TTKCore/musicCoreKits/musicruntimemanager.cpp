@@ -80,7 +80,7 @@ void MusicRunTimeManager::run() const
 #if !TTK_QT_VERSION_CHECK(5,0,0)
     MusicUtils::Codec::setLocalCodec();
 #endif
-    MusicUtils::QMMP::updateMidConfigFile();
+    MusicUtils::QMMP::updateQmmpConfigFile();
 
 #ifdef Q_OS_UNIX
     QFont font;

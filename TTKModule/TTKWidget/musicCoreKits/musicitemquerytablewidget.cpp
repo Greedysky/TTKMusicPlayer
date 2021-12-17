@@ -333,11 +333,15 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const MusicObject::MusicSongInf
 
     if(!attrs.isEmpty())
     {
-        MusicSearchedItem result;
-        result.m_songName = downloadInfo.m_singerName + " - " + downloadInfo.m_songName;
-        result.m_singerName = attrs.first().m_url;
-        result.m_duration = downloadInfo.m_duration;
-        result.m_type = play ? "true" : "false";
+        const MusicObject::MusicSongAttribute &attr = attrs.first();
+        MusicResultsItem result;
+        result.m_name = downloadInfo.m_singerName + " - " + downloadInfo.m_songName;
+        result.m_updateTime = downloadInfo.m_duration;
+        result.m_id = downloadInfo.m_songId;
+        result.m_nickName = attr.m_url;
+        result.m_description = attr.m_format;
+        result.m_playCount = attr.m_size;
+        result.m_tags = play ? "true" : "false";
         Q_EMIT musicSongToPlaylistChanged(result);
     }
 

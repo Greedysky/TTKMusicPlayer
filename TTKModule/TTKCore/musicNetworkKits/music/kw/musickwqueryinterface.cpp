@@ -226,7 +226,7 @@ void MusicKWQueryInterface::readFromMusicSongPicture(MusicObject::MusicSongInfor
             value = value["data"].toMap();
             value = value["songinfo"].toMap();
             info->m_smallPicUrl = value["pic"].toString();
-            if(!info->m_smallPicUrl.contains(TTK_HTTP) && !info->m_smallPicUrl.contains(TTK_NULL_STR))
+            if(!info->m_smallPicUrl.contains(HTTP_PREFIX) && !info->m_smallPicUrl.contains(TTK_NULL_STR))
             {
                 info->m_smallPicUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info->m_smallPicUrl;
             }

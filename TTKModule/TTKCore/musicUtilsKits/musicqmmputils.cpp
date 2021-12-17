@@ -19,12 +19,16 @@ QString MusicUtils::QMMP::pluginPath(const QString &module, const QString &forma
     return path;
 }
 
-void MusicUtils::QMMP::updateMidConfigFile()
+void MusicUtils::QMMP::updateQmmpConfigFile()
 {
     const QString &confPath = MAKE_CONFIG_DIR_FULL + QString("wildmidi.cfg");
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Midi");
     settings.setValue("conf_path", confPath);
+    settings.endGroup();
+
+    settings.beginGroup("Network");
+    settings.setValue("buffer_path", CACHE_DIR_FULL);
     settings.endGroup();
 
     QFile file(confPath);

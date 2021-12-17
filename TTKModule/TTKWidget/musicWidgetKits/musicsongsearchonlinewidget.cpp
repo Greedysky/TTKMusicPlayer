@@ -333,12 +333,16 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
     std::sort(attrs.begin(), attrs.end()); //to find out the min bitrate
 
     if(!attrs.isEmpty())
-    {      
-        MusicSearchedItem result;
-        result.m_songName = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
-        result.m_singerName = attrs.first().m_url;
-        result.m_duration = musicSongInfo.m_duration;
-        result.m_type = play ? "true" : "false";
+    {
+        const MusicObject::MusicSongAttribute &attr = attrs.first();
+        MusicResultsItem result;
+        result.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
+        result.m_updateTime = musicSongInfo.m_duration;
+        result.m_id = musicSongInfo.m_songId;
+        result.m_nickName = attr.m_url;
+        result.m_description = attr.m_format;
+        result.m_playCount = attr.m_size;
+        result.m_tags = play ? "true" : "false";
         Q_EMIT musicSongToPlaylistChanged(result);
     }
 }

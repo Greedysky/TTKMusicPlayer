@@ -47,6 +47,10 @@
 #  define qUtf8Printable(s) QString(s).toUtf8().constData()
 #endif
 
+#ifndef QmmpPrintable
+#  define QmmpPrintable(s) Qmmp::generatePrintable(s).constData()
+#endif
+
 #define CSTR_TO_QSTR(codec, str, utf) codec->toUnicode(str.toCString(utf)).trimmed()
 
 #ifndef TTK_AS_CONST
@@ -184,7 +188,7 @@ public:
      * Returns the decoded text by intput text.
      * @param input text.
      */
-    static const char *generatePrintable(const QString &text);
+    static QByteArray generatePrintable(const QString &text);
 };
 
 #endif

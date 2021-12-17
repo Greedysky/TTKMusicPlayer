@@ -66,7 +66,7 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                 const QString &albumName = value["name"].toString();
                 info.m_nickName = value["albumid"].toString();
                 info.m_coverUrl = value["pic"].toString();
-                if(!info.m_coverUrl.contains(TTK_HTTP) && !info.m_coverUrl.contains(TTK_NULL_STR))
+                if(!info.m_coverUrl.contains(HTTP_PREFIX) && !info.m_coverUrl.contains(TTK_NULL_STR))
                 {
                     info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info.m_coverUrl;
                 }
@@ -169,7 +169,7 @@ void MusicKWQueryAlbumRequest::singleDownLoadFinished()
                     MusicResultsItem info;
                     info.m_id = value["albumid"].toString();
                     info.m_coverUrl = value["pic"].toString();
-                    if(!info.m_coverUrl.contains(TTK_HTTP) && !info.m_coverUrl.contains(TTK_NULL_STR))
+                    if(!info.m_coverUrl.contains(HTTP_PREFIX) && !info.m_coverUrl.contains(TTK_NULL_STR))
                     {
                         info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info.m_coverUrl;
                     }

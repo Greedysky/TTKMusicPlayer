@@ -61,7 +61,7 @@ Q_SIGNALS:
     /*!
      * Add current network music to download to local.
      */
-    void musicSongToPlaylistChanged(const MusicSearchedItem &songItem);
+    void musicSongToPlaylistChanged(const MusicResultsItem &songItem);
     /*!
      * Restart search query by name.
      */

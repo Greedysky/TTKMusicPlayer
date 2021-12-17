@@ -192,7 +192,6 @@ QStringList MusicSongsSummariziedWidget::musicSongsFileName(int index) const
 QStringList MusicSongsSummariziedWidget::musicSongsFilePath(int index) const
 {
     QStringList list;
-
     if(index < 0 || index >= m_songItems.count())
     {
         return list;
@@ -676,10 +675,13 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
     }
 }
 
-void MusicSongsSummariziedWidget::addNetMusicSongToPlaylist(const MusicSearchedItem &songItem)
+void MusicSongsSummariziedWidget::addNetMusicSongToPlaylist(const MusicResultsItem &songItem)
 {
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
-    const MusicSong &song = MusicSong(songItem.m_singerName, songItem.m_duration, songItem.m_songName);
+    MusicSong song(songItem.m_nickName + "#" + QString::number(MusicTime::timestamp()) + songItem.m_id, songItem.m_updateTime, songItem.m_name);
+    song.setMusicType(songItem.m_description);
+    song.setMusicSizeStr(songItem.m_playCount);
+
     int index = item->m_songs.indexOf(song);
     if(index == -1)
     {
@@ -689,7 +691,7 @@ void MusicSongsSummariziedWidget::addNetMusicSongToPlaylist(const MusicSearchedI
         index = item->m_songs.count() - 1;
     }
 
-    if(songItem.m_type == "true")
+    if(songItem.m_tags == "true")
     {
         ///when download finished just play it at once
         setCurrentIndex(MUSIC_NETWORK_LIST);
@@ -1037,7 +1039,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
 
     addItem(object, item->m_itemName);
     setMusicSongSort(object, &item->m_sort);
-    object->setParentToolIndex(foundMappingIndex(item->m_itemIndex));
+    object->setToolIndex(foundMappingIndex(item->m_itemIndex));
 
     connect(object, SIGNAL(isCurrentIndex(bool&)), SLOT(isCurrentIndex(bool&)));
     connect(object, SIGNAL(isSearchResultEmpty(bool&)), SLOT(isSearchResultEmpty(bool&)));
@@ -1098,7 +1100,7 @@ void MusicSongsSummariziedWidget::resetToolIndex()
     for(const MusicSongItem &item : qAsConst(m_songItems))
     {
         const int mappedIndex = foundMappingIndex(item.m_itemIndex);
-        item.m_itemObject->setParentToolIndex(mappedIndex);
+        item.m_itemObject->setToolIndex(mappedIndex);
         if(item.m_itemIndex != mappedIndex)
         {
             pairs << MakePlayedItem(item.m_itemIndex, mappedIndex);

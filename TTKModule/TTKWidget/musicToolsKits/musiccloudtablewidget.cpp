@@ -196,17 +196,17 @@ void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
-    const bool empty = !m_musicSongs->isEmpty();
-    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
-    menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    const bool status = !m_musicSongs->isEmpty();
+    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
     menu.addSeparator();
 
-    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
-    menu.addAction(tr("Delete All"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
+    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(status);
+    menu.addAction(tr("Delete All"), this, SLOT(setDeleteItemAll()))->setEnabled(status);
     menu.addSeparator();
 
-    menu.addAction(tr("Reupload"), this, SLOT(reuploadFile()))->setEnabled(empty);
-    menu.addAction(tr("Reupload All"), this, SLOT(reuploadFiles()))->setEnabled(empty);
+    menu.addAction(tr("Reupload"), this, SLOT(reuploadFile()))->setEnabled(status);
+    menu.addAction(tr("Reupload All"), this, SLOT(reuploadFiles()))->setEnabled(status);
     menu.addSeparator();
     menu.exec(QCursor::pos());
 }

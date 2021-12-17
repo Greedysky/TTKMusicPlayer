@@ -99,9 +99,6 @@ protected:
 
 };
 
-#define TTK_HTTP    "http://"
-#define TTK_HTTPS   "https://"
-
 #define TTK_NETWORK_QUERY_CHECK(VALUE)   if(m_interrupt || m_stateCode != MusicObject::NetworkQuery) return VALUE
 
 namespace MusicObject

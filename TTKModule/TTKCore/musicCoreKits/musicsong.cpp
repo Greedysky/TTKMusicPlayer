@@ -27,8 +27,8 @@ MusicSong::MusicSong(const QString &musicPath, const QString &playTime, const QS
 {
     m_musicPath = musicPath;
     m_musicPath.replace("\\", TTK_SEPARATOR);
-    const QFileInfo info(m_musicPath);
 
+    const QFileInfo info(m_musicPath);
     m_musicName = musicName;
     if(m_musicName.isEmpty())
     {

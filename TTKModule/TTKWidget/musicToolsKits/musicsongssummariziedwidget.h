@@ -175,7 +175,7 @@ public Q_SLOTS:
     /*!
      * Add current network music to download to local.
      */
-    void addNetMusicSongToPlaylist(const MusicSearchedItem &songItem);
+    void addNetMusicSongToPlaylist(const MusicResultsItem &songItem);
     /*!
      * Add current selected song to play list.
      */

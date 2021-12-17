@@ -171,6 +171,8 @@
 #define LEFT_SIDE_WIDTH_MIN     320
 #define CONCISE_WIDTH_MIN       322
 
+#define HTTP_PREFIX    "http://"
+#define HTTPS_PREFIX   "https://"
 
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>

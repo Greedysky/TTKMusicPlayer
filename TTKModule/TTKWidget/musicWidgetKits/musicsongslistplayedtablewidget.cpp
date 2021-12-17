@@ -310,13 +310,13 @@ void MusicSongsListPlayedTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     createMoreMenu(&menu);
 
-    const bool empty = true;
-    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
-    menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    const bool status = m_toolIndex != MUSIC_NETWORK_LIST;
+    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));
     menu.addSeparator();
 
-    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
+    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()));
     menu.addSeparator();
 
     menu.exec(QCursor::pos());

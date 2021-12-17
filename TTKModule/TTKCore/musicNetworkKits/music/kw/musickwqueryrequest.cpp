@@ -25,7 +25,7 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
             attr.m_bitrate = MB_128;
             attr.m_format = MP3_FILE_PREFIX;
             attr.m_size = TTK_DEFAULT_STR;
-            attr.m_url = QString("%1%2/resource/%3").arg(TTK_HTTP).arg(mp3Url).arg(v);
+            attr.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX).arg(mp3Url).arg(v);
             info->m_songAttrs.append(attr);
         }
 

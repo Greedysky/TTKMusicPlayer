@@ -43,7 +43,7 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     m_dragStartIndex = -1;
     m_leftButtonPressed = false;
     m_mouseMoved = false;
-    m_parentToolIndex = index;
+    m_toolIndex = index;
     m_renameLineEditDelegate = nullptr;
     m_musicSort = nullptr;
 
@@ -275,7 +275,7 @@ void MusicSongsListTableWidget::adjustPlayWidgetRow()
 
 bool MusicSongsListTableWidget::createUploadFileModule()
 {
-    if(m_musicSongs->isEmpty() && MusicObject::playlistRowValid(m_parentToolIndex))
+    if(m_musicSongs->isEmpty() && MusicObject::playlistRowValid(m_toolIndex))
     {
         setFixedSize(LEFT_SIDE_WIDTH_MIN, 100);
         if(m_openFileWidget == nullptr && m_parentClass)
@@ -594,7 +594,7 @@ void MusicSongsListTableWidget::musicAddToPlayLater()
         return;
     }
 
-    MusicPlayedListPopWidget::instance()->insert(m_parentToolIndex, (*m_musicSongs)[row]);
+    MusicPlayedListPopWidget::instance()->insert(m_toolIndex, (*m_musicSongs)[row]);
 }
 
 void MusicSongsListTableWidget::musicAddToPlayedList()
@@ -605,7 +605,7 @@ void MusicSongsListTableWidget::musicAddToPlayedList()
         return;
     }
 
-    MusicPlayedListPopWidget::instance()->append(m_parentToolIndex, (*m_musicSongs)[row]);
+    MusicPlayedListPopWidget::instance()->append(m_toolIndex, (*m_musicSongs)[row]);
 }
 
 void MusicSongsListTableWidget::setItemRenameFinished(const QString &name)
@@ -640,7 +640,7 @@ void MusicSongsListTableWidget::musicListSongSortBy(QAction *action)
         {
             m_musicSort->m_order = Qt::AscendingOrder;
         }
-        Q_EMIT musicListSongSortBy(m_parentToolIndex);
+        Q_EMIT musicListSongSortBy(m_toolIndex);
     }
 }
 
@@ -739,17 +739,18 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addMenu(&toolMenu);
     MusicUtils::Widget::adjustMenuPosition(&toolMenu);
 
-    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()));
-    menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()));
+    bool status = m_toolIndex != MUSIC_NETWORK_LIST;
+    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));
     menu.addSeparator();
 
-    bool empty;
-    Q_EMIT isSearchResultEmpty(empty);
-    menu.addAction(tr("Rename"), this, SLOT(setChangSongName()))->setEnabled(empty);
-    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
-    menu.addAction(tr("Delete With File"), this, SLOT(setDeleteItemWithFile()))->setEnabled(empty);
-    menu.addAction(tr("Delete All"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
+    status = false;
+    Q_EMIT isSearchResultEmpty(status);
+    menu.addAction(tr("Rename"), this, SLOT(setChangSongName()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(status);
+    menu.addAction(tr("Delete With File"), this, SLOT(setDeleteItemWithFile()))->setEnabled(status);
+    menu.addAction(tr("Delete All"), this, SLOT(setDeleteItemAll()))->setEnabled(status);
     menu.addSeparator();
 
     createContextMenu(menu);
