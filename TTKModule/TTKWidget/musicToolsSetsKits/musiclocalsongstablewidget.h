@@ -106,7 +106,7 @@ public Q_SLOTS:
     /*!
      * Table widget list double cell click.
      */
-    void itemCellDoubleClicked(int row, int column);
+    void itemDoubleClicked(int row, int column);
 
 };
 

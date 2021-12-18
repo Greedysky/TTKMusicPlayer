@@ -111,7 +111,7 @@ MusicLocalSongsInfoTableWidget::MusicLocalSongsInfoTableWidget(QWidget *parent)
     headerview->resizeSection(1, 447);
     headerview->resizeSection(2, 120);
 
-    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemCellDoubleClicked(int,int)));
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
 
 void MusicLocalSongsInfoTableWidget::clear()
@@ -163,7 +163,7 @@ void MusicLocalSongsInfoTableWidget::itemCellClicked(int row, int column)
     Q_UNUSED(column);
 }
 
-void MusicLocalSongsInfoTableWidget::itemCellDoubleClicked(int row, int column)
+void MusicLocalSongsInfoTableWidget::itemDoubleClicked(int row, int column)
 {
     Q_UNUSED(column);
     QTableWidgetItem *it = item(row, 2);

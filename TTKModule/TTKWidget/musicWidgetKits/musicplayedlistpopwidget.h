@@ -144,9 +144,13 @@ public Q_SLOTS:
      */
     void setDeleteItemAll();
     /*!
+     * List cell item double clicked.
+     */
+    void itemDoubleClicked();
+    /*!
      * List cell double clicked.
      */
-    void cellDoubleClicked(int row, int column);
+    void itemDoubleClicked(int row, int column);
 
 protected:
     /*!

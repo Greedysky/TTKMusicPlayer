@@ -55,7 +55,7 @@ public Q_SLOTS:
     /*!
      * Table widget item cell double click.
      */
-    void itemCellDoubleClicked(int row, int column);
+    void itemDoubleClicked(int row, int column);
     /*!
      * Add radio list into list widget.
      */

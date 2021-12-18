@@ -34,7 +34,7 @@ MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
     MusicUtils::Widget::setTransparent(this, 0);
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
-    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemCellDoubleClicked(int,int)));
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
 }
 
@@ -87,11 +87,11 @@ void MusicWebFMRadioWidget::itemCellClicked(int row, int column)
 
     if(column == 3)
     {
-        itemCellDoubleClicked(row, DEFAULT_NORMAL_LEVEL);
+        itemDoubleClicked(row, DEFAULT_NORMAL_LEVEL);
     }
 }
 
-void MusicWebFMRadioWidget::itemCellDoubleClicked(int row, int column)
+void MusicWebFMRadioWidget::itemDoubleClicked(int row, int column)
 {
     Q_UNUSED(column);
 
@@ -159,7 +159,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
     if(m_outerIndex != -1)
     {
         selectRow(m_outerIndex);
-        itemCellDoubleClicked(m_outerIndex, DEFAULT_NORMAL_LEVEL);
+        itemDoubleClicked(m_outerIndex, DEFAULT_NORMAL_LEVEL);
     }
 }
 
@@ -191,7 +191,7 @@ void MusicWebFMRadioWidget::musicPlayClicked()
     const int row = currentRow();
     if(row >= 0)
     {
-        itemCellDoubleClicked(row, DEFAULT_NORMAL_LEVEL);
+        itemDoubleClicked(row, DEFAULT_NORMAL_LEVEL);
     }
 }
 

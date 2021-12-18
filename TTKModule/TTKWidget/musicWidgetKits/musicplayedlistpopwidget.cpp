@@ -7,6 +7,7 @@
 #include "musicplaylist.h"
 #include "musicwidgetheaders.h"
 
+#include <QTimer>
 #include <QPainter>
 
 #define MAX_SIZE    3
@@ -273,11 +274,24 @@ void MusicPlayedListPopWidget::setDeleteItemAll()
     setPlaylistEmpty();
 }
 
-void MusicPlayedListPopWidget::cellDoubleClicked(int row, int)
+void MusicPlayedListPopWidget::itemDoubleClicked()
 {
+    const int row = m_playedListWidget->currentRow();
+    if(row < 0)
+    {
+        return;
+    }
+
     m_playlist->removeQueueList();
     m_playedListWidget->clearPlayQueueState();
     MusicApplication::instance()->musicPlayedIndex(row);
+}
+
+void MusicPlayedListPopWidget::itemDoubleClicked(int row, int column)
+{
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+    QTimer::singleShot(10 * MT_MS, this, SLOT(itemDoubleClicked()));
 }
 
 void MusicPlayedListPopWidget::initWidget()
@@ -315,7 +329,7 @@ void MusicPlayedListPopWidget::initWidget()
     m_playedListWidget = new MusicSongsListPlayedTableWidget(this);
     m_playedListWidget->setSongsFileName(&m_songList);
     connect(m_playedListWidget, SIGNAL(deleteItemAt(TTKIntList)), SLOT(setDeleteItemAt(TTKIntList)));
-    connect(m_playedListWidget, SIGNAL(cellDoubleClicked(int,int)), SLOT(cellDoubleClicked(int,int)));
+    connect(m_playedListWidget, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
     QWidget *playedListContainer = new QWidget(m_scrollArea);
     QVBoxLayout *playedListLayout = new QVBoxLayout(playedListContainer);
