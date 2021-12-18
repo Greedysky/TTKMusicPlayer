@@ -94,7 +94,6 @@ void MusicAbstractDownloadTableWidget::itemCellDoubleClicked(int row, int column
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
-
     musicPlay();
 }
 

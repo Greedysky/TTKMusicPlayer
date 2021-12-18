@@ -121,11 +121,12 @@ QString MusicApplication::currentFileName() const
         return QString();
     }
 
+    const MusicPlayItem &item = m_musicPlaylist->currentItem();
     const MusicSongItems items(m_musicSongTreeWidget->musicItemList());
     if(0 <= m_currentMusicSongTreeIndex && m_currentMusicSongTreeIndex < items.count())
     {
         const MusicSongs &songs = items[m_currentMusicSongTreeIndex].m_songs;
-        const int index = m_musicSongTreeWidget->mapSongIndexByFilePath(m_currentMusicSongTreeIndex, m_musicPlaylist->currentMediaPath());
+        const int index = m_musicSongTreeWidget->mapSongIndexByFilePath(m_currentMusicSongTreeIndex, item.m_path);
         return (index != -1) ? songs[index].musicName() : QString();
     }
     return QString();
@@ -138,11 +139,12 @@ QString MusicApplication::currentFilePath() const
         return QString();
     }
 
+    const MusicPlayItem &item = m_musicPlaylist->currentItem();
     const MusicSongItems items(m_musicSongTreeWidget->musicItemList());
     if(0 <= m_currentMusicSongTreeIndex && m_currentMusicSongTreeIndex < items.count())
     {
         const MusicSongs &songs = items[m_currentMusicSongTreeIndex].m_songs;
-        const int index = m_musicSongTreeWidget->mapSongIndexByFilePath(m_currentMusicSongTreeIndex, m_musicPlaylist->currentMediaPath());
+        const int index = m_musicSongTreeWidget->mapSongIndexByFilePath(m_currentMusicSongTreeIndex, item.m_path);
         return (index != -1) ? songs[index].musicPath() : QString();
     }
     return QString();

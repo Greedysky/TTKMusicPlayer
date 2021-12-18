@@ -342,6 +342,10 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const MusicObject::MusicSongInf
         result.m_description = attr.m_format;
         result.m_playCount = attr.m_size;
         result.m_tags = play ? "true" : "false";
+        if(m_networkRequest)
+        {
+            result.m_id = m_networkRequest->queryServer() + result.m_id;
+        }
         Q_EMIT musicSongToPlaylistChanged(result);
     }
 

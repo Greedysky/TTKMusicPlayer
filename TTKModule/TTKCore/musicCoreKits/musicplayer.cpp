@@ -131,14 +131,15 @@ void MusicPlayer::play()
     m_state = MusicObject::PlayingState;
     const Qmmp::State state = m_music->state(); ///Get the current state of play
 
-    if(m_currentMedia == m_playlist->currentMediaPath() && state == Qmmp::Paused)
+    const QString &mediaPath = m_playlist->currentMediaPath();
+    if(m_currentMedia == mediaPath && state == Qmmp::Paused)
     {
         m_music->pause(); ///When the pause time for recovery
         m_timer.start(MT_S2MS);
         return;
     }
 
-    m_currentMedia = m_playlist->currentMediaPath();
+    m_currentMedia = mediaPath;
     ///The current playback path
     if(!m_music->play(m_currentMedia))
     {

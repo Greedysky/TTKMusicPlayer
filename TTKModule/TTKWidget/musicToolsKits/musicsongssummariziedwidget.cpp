@@ -678,7 +678,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
 void MusicSongsSummariziedWidget::addNetMusicSongToPlaylist(const MusicResultsItem &songItem)
 {
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
-    MusicSong song(songItem.m_nickName + "#" + QString::number(MusicTime::timestamp()) + songItem.m_id, songItem.m_updateTime, songItem.m_name);
+    MusicSong song(songItem.m_nickName + "#" + songItem.m_id + "." + songItem.m_description, songItem.m_updateTime, songItem.m_name);
     song.setMusicType(songItem.m_description);
     song.setMusicSizeStr(songItem.m_playCount);
 
@@ -826,7 +826,7 @@ void MusicSongsSummariziedWidget::setMusicPlayCount(int index)
 
 void MusicSongsSummariziedWidget::setRecentMusicSongs(int index)
 {
-    if(index < 0 || m_playToolIndex < 0 || m_playToolIndex == MUSIC_RECENT_LIST)
+    if(index < 0 || m_playToolIndex < 0 || m_playToolIndex == MUSIC_NETWORK_LIST || m_playToolIndex == MUSIC_RECENT_LIST)
     {
         return;
     }

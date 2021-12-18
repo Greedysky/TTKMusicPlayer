@@ -52,7 +52,20 @@ MusicPlayItem MusicPlaylist::currentItem() const
 
 QString MusicPlaylist::currentMediaPath() const
 {
-    return currentItem().m_path;
+    const MusicPlayItem &item = currentItem();
+    if(item.m_toolIndex == MUSIC_NETWORK_LIST && /*Replace network url path to local path*/
+      (item.m_path.startsWith(HTTP_PREFIX) || item.m_path.startsWith(HTTPS_PREFIX)))
+    {
+        const QString &id = item.m_path.section("#", -1);
+        if(id == item.m_path)
+        {
+            return item.m_path;
+        }
+
+        const QString &cachePath = CACHE_DIR_FULL + id;
+        return QFile::exists(cachePath) ? cachePath : item.m_path;
+    }
+    return item.m_path;
 }
 
 MusicPlayItems *MusicPlaylist::mediaList()
