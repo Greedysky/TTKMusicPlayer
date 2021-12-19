@@ -130,6 +130,7 @@ void MusicQQQueryArtistRequest::downLoadFinished()
                         const QVariantMap &name = var.toMap();
                         musicInfo.m_singerName = MusicUtils::String::charactersReplaced(name["name"].toString());
                         musicInfo.m_artistId = name["mid"].toString();
+                        break; //just find first singer
                     }
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
                     musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["interval"].toInt() * 1000);

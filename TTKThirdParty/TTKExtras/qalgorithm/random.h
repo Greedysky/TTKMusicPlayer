@@ -21,9 +21,6 @@
 
 #include "ttkglobaldefine.h"
 
-/*! @brief The class of the random wrapper.
- * @author Greedysky <greedysky@163.com>
- */
 namespace QAlgorithm
 {
     /*!

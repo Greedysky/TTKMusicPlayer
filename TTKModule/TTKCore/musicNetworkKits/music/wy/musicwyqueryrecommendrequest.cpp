@@ -75,6 +75,7 @@ void MusicWYQueryRecommendRequest::downLoadFinished()
                         const QVariantMap &artistMap = artistValue.toMap();
                         musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
                         musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistMap["name"].toString());
+                        break; //just find first singer
                     }
 
                     musicInfo.m_year = QString();

@@ -81,6 +81,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
 
                         const QVariantMap &artistMap = artistValue.toMap();
                         musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
+                        break; //just find first singer
                     }
 
                     musicInfo.m_year = QString();
