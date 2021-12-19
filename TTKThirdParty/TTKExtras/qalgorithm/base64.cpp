@@ -1,13 +1,15 @@
 #include "base64.h"
 
-const TTKString base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+namespace QAlgorithm
+{
+static const TTKString base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-bool isBase64(unsigned char c)
+static bool isBase64(unsigned char c)
 {
     return (isalnum(c) || (c == '+') || (c == '/'));
 }
 
-TTKString Base64::base64Encode(const unsigned char *bytes, unsigned int length)
+TTKString base64Encode(const unsigned char *bytes, unsigned int length)
 {
     TTKString ret;
     int i = 0, j = 0;
@@ -57,7 +59,7 @@ TTKString Base64::base64Encode(const unsigned char *bytes, unsigned int length)
     return ret;
 }
 
-TTKString Base64::base64Decode(const TTKString &bytes)
+TTKString base64Decode(const TTKString &bytes)
 {
     int length = bytes.size();
     int i = 0, j = 0, in = 0;
@@ -109,4 +111,5 @@ TTKString Base64::base64Decode(const TTKString &bytes)
     }
 
     return ret;
+}
 }

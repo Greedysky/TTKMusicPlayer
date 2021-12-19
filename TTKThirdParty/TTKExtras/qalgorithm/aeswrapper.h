@@ -21,17 +21,14 @@
 
 #include "ttkglobaldefine.h"
 
+namespace QAlgorithm
+{
 /*! @brief The class of the aes wrapper.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT QAesWrapper
+class TTK_MODULE_EXPORT Aes
 {
 public:
-    /*!
-     * Object contsructor.
-     */
-    QAesWrapper();
-
     /*!
      * Encrypt des ECB by input.
      */
@@ -51,5 +48,6 @@ public:
     QByteArray decryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv);
 
 };
+}
 
 #endif // QAESWRAPPER_H

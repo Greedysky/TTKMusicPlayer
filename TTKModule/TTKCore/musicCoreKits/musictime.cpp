@@ -95,12 +95,12 @@ qint64 MusicTime::timestamp(bool ms)
 
 void MusicTime::initRandom()
 {
-    QRandom::initRandom();
+    QAlgorithm::initRandom();
 }
 
 int MusicTime::random(int value)
 {
-    return QRandom::random(value);
+    return QAlgorithm::random(value);
 }
 
 qint64 MusicTime::labelJustified2MsecTime(const QString &time)

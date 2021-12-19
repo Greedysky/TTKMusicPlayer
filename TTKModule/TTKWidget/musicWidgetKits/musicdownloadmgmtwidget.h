@@ -22,7 +22,7 @@
 #include "musicabstractmovewidget.h"
 #include "musicabstractqueryrequest.h"
 
-namespace Ui{
+namespace Ui {
 class MusicDownloadResetWidget;
 }
 

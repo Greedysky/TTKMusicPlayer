@@ -11,7 +11,8 @@
 #include <QFont>
 #include <QApplication>
 
-namespace File {
+namespace MusicObject
+{
 static quint64 directorySize(const QString &dirName)
 {
     quint64 size = 0;
@@ -95,14 +96,14 @@ void MusicRunTimeManager::run() const
     xml.readConfig();
     xml.readSysConfigData();
 
-    File::checkCacheSize();
+    MusicObject::checkCacheSize();
     G_NETWORK_PTR->setBlockNetWork(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());
 }
 
 QString MusicRunTimeManager::translator() const
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt();
-    return File::languageName(index);
+    return MusicObject::languageName(index);
 }
 
 bool MusicRunTimeManager::configVersionCheck() const

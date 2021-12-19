@@ -22,10 +22,8 @@
 #include <QImage>
 #include "ttkprivate.h"
 
-/*! @brief The class of the image wrapper.
- * @author Greedysky <greedysky@163.com>
- */
-namespace QImageWrapper {
+namespace QAlgorithm
+{
 class SharpeImagePrivate;
 
 /*! @brief The class of the sharpe image.

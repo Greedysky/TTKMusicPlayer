@@ -1,6 +1,6 @@
 #include "musictransitionanimationlabel.h"
 #include "musictime.h"
-#include "qalgorithm/qimagewrapper.h"
+#include "qalgorithm/imagewrapper.h"
 
 #include <QPainter>
 #include <QPropertyAnimation>
@@ -84,7 +84,7 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
         case CubeEffect:
         {
             delete m_cubeWave;
-            m_cubeWave = new QImageWrapper::CubeWave;
+            m_cubeWave = new QAlgorithm::CubeWave;
             m_cubeWave->input(rect());
             m_animation->setDuration(500);
             break;
@@ -92,7 +92,7 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
         case WaterEffect:
         {
             delete m_waterWave;
-            m_waterWave = new QImageWrapper::WaterWave(m_currentPixmap.toImage(), height() / 6);
+            m_waterWave = new QAlgorithm::WaterWave(m_currentPixmap.toImage(), height() / 6);
             m_waterWave->input(rect());
             m_animation->setDuration(1000);
             break;

@@ -104,7 +104,7 @@ public:
     /*!
      * Clear current medias.
      */
-    bool clear();
+    void clear();
     /*!
      * Find item by index and content.
      */

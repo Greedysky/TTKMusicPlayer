@@ -1,10 +1,11 @@
-#include "qimagewrapper.h"
+#include "imagewrapper.h"
 #include "random.h"
 
 #include <qmath.h>
 #include <QPainter>
 
-namespace QImageWrapper {
+namespace QAlgorithm
+{
 /*! @brief The class of the sharpe image private.
  * @author Greedysky <greedysky@163.com>
  */
@@ -196,7 +197,7 @@ CubeWavePrivate::CubeWavePrivate()
     m_row = 0;
     m_column = 0;
 
-    QRandom::initRandom();
+    QAlgorithm::initRandom();
 }
 
 void CubeWavePrivate::init(int width, int height)
@@ -235,7 +236,7 @@ void CubeWave::input(const QRect &region)
     d->init(region.width(), region.height());
     for(int index = 0; index < d->count(); ++index)
     {
-        d->m_data.push_back(QRandom::random(100));
+        d->m_data.push_back(QAlgorithm::random(100));
     }
 }
 

@@ -32,7 +32,7 @@ TTKString MusicCryptographicHash::xxteaEncrypt(const TTKString &data, const TTKS
 
     xxtea_uint s[1];
     uchar *encrypt = xxteaEncrypt(dataCopy, strlen((const char *)dataCopy), keyCopy, strlen((const char *)keyCopy), s);
-    const TTKString &encode = Base64::base64Encode(encrypt, s[0]);
+    const TTKString &encode = QAlgorithm::base64Encode(encrypt, s[0]);
     free(encrypt);
 
     return encode;
@@ -40,7 +40,7 @@ TTKString MusicCryptographicHash::xxteaEncrypt(const TTKString &data, const TTKS
 
 TTKString MusicCryptographicHash::xxteaDecrypt(const TTKString &data, const TTKString &key)
 {
-    const TTKString &decode = Base64::base64Decode(data);
+    const TTKString &decode = QAlgorithm::base64Decode(data);
     if(decode.empty())
     {
         return TTKString("");

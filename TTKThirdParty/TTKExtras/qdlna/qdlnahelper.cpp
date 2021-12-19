@@ -5,7 +5,8 @@
 #include <QTcpSocket>
 #include <QStringList>
 
-namespace QHelperDlna {
+namespace QHelperDlna
+{
 QString MakeRequest(const QString &methord, const QString &url, int length, const QString &soapAction, const QString &ip, const QString &port)
 {
     //Make a request that is sent out to the DLNA server on the LAN using TCP

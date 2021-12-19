@@ -21,23 +21,25 @@
 
 #include "ttkprivate.h"
 
-class QDesWrapperPrivate;
+namespace QAlgorithm
+{
+class DesPrivate;
 
 /*! @brief The class of the des wrapper.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT QDesWrapper
+class TTK_MODULE_EXPORT Des
 {
 public:
     enum Mode
     {
-        ENCRYPT = 0,
-        DECRYPT = 1
+        Encrypt = 0,
+        Decrypt = 1
     };
     /*!
      * Object contsructor.
      */
-    QDesWrapper();
+    Des();
 
     /*!
      * Encrypt des by input.
@@ -49,8 +51,9 @@ public:
     QByteArray decrypt(const QByteArray &in, const QByteArray &key);
 
 private:
-    TTK_DECLARE_PRIVATE(QDesWrapper)
+    TTK_DECLARE_PRIVATE(Des)
 
 };
+}
 
 #endif // QDESWRAPPER_H

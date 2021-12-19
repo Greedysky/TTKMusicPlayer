@@ -7,7 +7,7 @@
 #include "musicimageutils.h"
 #include "musicextractwrapper.h"
 #include "musicbackgroundconfigmanager.h"
-#include "qalgorithm/qimagewrapper.h"
+#include "qalgorithm/imagewrapper.h"
 
 #include <qmath.h>
 #include <QPainter>
@@ -470,7 +470,7 @@ void MusicLrcPosterItemWidget::drawTheme10(QPainter *painter)
     const int gHeight = pix.height() * 3 / 4;
     const QRect &gaussRect = QRect((pix.width() - gWidth) / 2, (pix.height() - gHeight) / 2, gWidth, gHeight);
 
-    QImageWrapper::GaussBlur blur;
+    QAlgorithm::GaussBlur blur;
     blur.input(gaussRect);
 
     const QRect &drawRect = QRect((pix.width() - gWidth) / 2, (pix.height() - gHeight) / 2 + fixedOffset, gWidth, gHeight);

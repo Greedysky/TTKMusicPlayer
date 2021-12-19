@@ -83,10 +83,9 @@ bool MusicPlaylist::isEmpty() const
     return m_mediaList.isEmpty();
 }
 
-bool MusicPlaylist::clear()
+void MusicPlaylist::clear()
 {
     m_mediaList.clear();
-    return isEmpty();
 }
 
 int MusicPlaylist::find(int toolIndex, const QString &content, int from)

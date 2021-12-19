@@ -1,7 +1,7 @@
 #include "musickwqueryinterface.h"
 #include "musicabstractnetwork.h"
 
-#include "qalgorithm/qdeswrapper.h"
+#include "qalgorithm/deswrapper.h"
 
 void MusicKWInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
@@ -17,7 +17,7 @@ void MusicKWQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
         return;
     }
 
-    QDesWrapper des;
+    QAlgorithm::Des des;
     const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_DATA_URL, false).arg(info->m_songId).arg(suffix).arg(format).toUtf8(),
                                               MusicUtils::Algorithm::mdII(_SIGN, ALG_UNIMP_KEY, false).toUtf8());
     QNetworkRequest request;

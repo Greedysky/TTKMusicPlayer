@@ -25,9 +25,9 @@ SOURCES += \
     $$PWD/cbc128.cpp \
     $$PWD/base64.cpp \
     $$PWD/random.cpp \
-    $$PWD/qaeswrapper.cpp \
-    $$PWD/qdeswrapper.cpp \
-    $$PWD/qimagewrapper.cpp
+    $$PWD/aeswrapper.cpp \
+    $$PWD/deswrapper.cpp \
+    $$PWD/imagewrapper.cpp
     
 HEADERS += \
     $$PWD/aes.h \
@@ -35,6 +35,6 @@ HEADERS += \
     $$PWD/cbc128.h \
     $$PWD/base64.h \
     $$PWD/random.h \
-    $$PWD/qaeswrapper.h \
-    $$PWD/qdeswrapper.h \
-    $$PWD/qimagewrapper.h
+    $$PWD/aeswrapper.h \
+    $$PWD/deswrapper.h \
+    $$PWD/imagewrapper.h

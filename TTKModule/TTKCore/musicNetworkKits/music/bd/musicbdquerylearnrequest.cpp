@@ -2,7 +2,7 @@
 #include "musicbdqueryinterface.h"
 #include "musicurlutils.h"
 
-#include "qalgorithm/qaeswrapper.h"
+#include "qalgorithm/aeswrapper.h"
 
 MusicBDQueryLearnRequest::MusicBDQueryLearnRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
@@ -97,7 +97,7 @@ void MusicBDQueryLearnRequest::downLoadFinished()
 void MusicBDQueryLearnRequest::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info)
 {
     const QString &key = MusicUtils::Algorithm::mdII(BD_LEARN_DATA_URL, false).arg(info->m_songId).arg(MusicTime::timestamp());
-    QString eKey = QString(QAesWrapper().encryptCBC(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
+    QString eKey = QString(QAlgorithm::Aes().encryptCBC(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
     MusicUtils::Url::urlEncode(eKey);
 
     QNetworkRequest request;

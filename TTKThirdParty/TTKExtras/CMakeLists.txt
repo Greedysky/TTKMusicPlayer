@@ -106,9 +106,9 @@ set(MUSIC_HEADERS
     qalgorithm/base64.h
     qalgorithm/cbc128.h
     qalgorithm/random.h
-    qalgorithm/qdeswrapper.h
-    qalgorithm/qaeswrapper.h
-    qalgorithm/qimagewrapper.h
+    qalgorithm/deswrapper.h
+    qalgorithm/aeswrapper.h
+    qalgorithm/imagewrapper.h
     qdlna/qdlnaclient.h
     qdlna/qdlnafinder.h
     qdlna/qdlnahelper.h
@@ -161,9 +161,9 @@ set(MUSIC_SOURCES
     qalgorithm/base64.cpp
     qalgorithm/cbc128.cpp
     qalgorithm/random.cpp
-    qalgorithm/qdeswrapper.cpp
-    qalgorithm/qaeswrapper.cpp
-    qalgorithm/qimagewrapper.cpp
+    qalgorithm/deswrapper.cpp
+    qalgorithm/aeswrapper.cpp
+    qalgorithm/imagewrapper.cpp
     qdlna/qdlnaclient.cpp
     qdlna/qdlnafinder.cpp
     qdlna/qdlnahelper.cpp

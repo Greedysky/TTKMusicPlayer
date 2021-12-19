@@ -1,4 +1,4 @@
-#include "qdeswrapper.h"
+#include "deswrapper.h"
 #include "base64.h"
 
 #ifdef Q_CC_GNU
@@ -6,6 +6,8 @@
     #pragma GCC diagnostic ignored "-Wchar-subscripts"
 #endif
 
+namespace QAlgorithm
+{
 qint64 ARRAYMASK[] = {
     0x0000000000000001l, 0x0000000000000002l, 0x0000000000000004l, 0x0000000000000008l,
     0x0000000000000010l, 0x0000000000000020l, 0x0000000000000040l, 0x0000000000000080l,
@@ -173,18 +175,18 @@ qint64 ARRAYLSMASK[] = {
 /*! @brief The class of the des wrapper private.
  * @author Greedysky <greedysky@163.com>
  */
-class QDesWrapperPrivate : public TTKPrivate<QDesWrapper>
+class DesPrivate : public TTKPrivate<Des>
 {
 public:
     qint64 bitTransform(int *array, int len, qint64 source);
-    void DESSubKeys(qint64 key, qint64* K, QDesWrapper::Mode mode);
-    qint64 DES64(qint64 *subkeys, qint64 data);
-    char* encrypt(char *src, int srcLength, char *key);
+    void desSubKeys(qint64 key, qint64* K, Des::Mode mode);
+    qint64 des64(qint64 *subkeys, qint64 data);
+    char* encrypt(char *src, int length, char *key);
 
-    QDesWrapper::Mode m_mode;
+    Des::Mode m_mode;
 };
 
-qint64 QDesWrapperPrivate::bitTransform(int *array, int len, qint64 source)
+qint64 DesPrivate::bitTransform(int *array, int len, qint64 source)
 {
     qint64 dest = 0;
     const qint64 bts = source;
@@ -199,7 +201,7 @@ qint64 QDesWrapperPrivate::bitTransform(int *array, int len, qint64 source)
     return dest;
 }
 
-void QDesWrapperPrivate::DESSubKeys(qint64 key, qint64* K, QDesWrapper::Mode mode)
+void DesPrivate::desSubKeys(qint64 key, qint64* K, Des::Mode mode)
 {
     qint64 temp = bitTransform(ARRAYPC_1, 56, key);
     for(int j = 0; j < 16; j++)
@@ -209,7 +211,7 @@ void QDesWrapperPrivate::DESSubKeys(qint64 key, qint64* K, QDesWrapper::Mode mod
         K[j] = bitTransform(ARRAYPC_2, 64, temp);
     }
 
-    if(mode == QDesWrapper::DECRYPT)
+    if(mode == Des::Decrypt)
     {
         qint64 t;
         for(int j = 0; j < 8; j++)
@@ -221,7 +223,7 @@ void QDesWrapperPrivate::DESSubKeys(qint64 key, qint64* K, QDesWrapper::Mode mod
     }
 }
 
-qint64 QDesWrapperPrivate::DES64(qint64 *subkeys, qint64 data)
+qint64 DesPrivate::des64(qint64 *subkeys, qint64 data)
 {
     qint64 out = bitTransform(ARRAYIP, 64, data);
     qint64 l = 0, r = 0;
@@ -270,7 +272,7 @@ qint64 QDesWrapperPrivate::DES64(qint64 *subkeys, qint64 data)
     return out;
 }
 
-char* QDesWrapperPrivate::encrypt(char *src, int srcLength, char *key)
+char* DesPrivate::encrypt(char *src, int length, char *key)
 {
     qint64 keyl = 0;
     for(int i = 0; i < 8; i++)
@@ -279,14 +281,14 @@ char* QDesWrapperPrivate::encrypt(char *src, int srcLength, char *key)
         keyl |= temp;
     }
 
-    const int num = srcLength / 8;
+    const int num = length / 8;
 
     qint64* subKey = new qint64[16];
     for(int i = 0; i < 16; i++)
     {
         subKey[i] = 0;
     }
-    DESSubKeys(keyl, subKey, m_mode);
+    desSubKeys(keyl, subKey, m_mode);
 
     qint64* pSrc = (qint64*) malloc(num * sizeof(qint64));
     for(int i = 0; i < num; i++)
@@ -301,14 +303,14 @@ char* QDesWrapperPrivate::encrypt(char *src, int srcLength, char *key)
     qint64* pEncyrpt = (qint64*) malloc((((num + 1) * 8 + 1) / 8) * sizeof(qint64));
     for(int i = 0; i < num; i++)
     {
-        pEncyrpt[i] = DES64(subKey, pSrc[i]);
+        pEncyrpt[i] = des64(subKey, pSrc[i]);
     }
 
-    const int len = srcLength;
+    const int len = length;
     const int tailNum = len % 8;
-    char* szTail = (char*) malloc(srcLength - num * 8);
+    char* szTail = (char*) malloc(length - num * 8);
 
-    memcpy(szTail, src + num * 8, srcLength - num * 8);
+    memcpy(szTail, src + num * 8, length - num * 8);
 
     qint64 tail64 = 0;
     for(int i = 0; i < tailNum; i++)
@@ -316,7 +318,7 @@ char* QDesWrapperPrivate::encrypt(char *src, int srcLength, char *key)
         tail64 = tail64 | (qint64(szTail[i])) << (i * 8);
     }
 
-    pEncyrpt[num] = DES64(subKey, tail64);
+    pEncyrpt[num] = des64(subKey, tail64);
     char* result = (char*) malloc((num + 1) * 8);
 
     int temp = 0;
@@ -339,32 +341,33 @@ char* QDesWrapperPrivate::encrypt(char *src, int srcLength, char *key)
 
 
 
-QDesWrapper::QDesWrapper()
+Des::Des()
 {
-    TTK_INIT_PRIVATE(QDesWrapper);
+    TTK_INIT_PRIVATE(Des);
 }
 
-QByteArray QDesWrapper::encrypt(const QByteArray &in, const QByteArray &key)
+QByteArray Des::encrypt(const QByteArray &in, const QByteArray &key)
 {
-    TTK_D(QDesWrapper);
-    d->m_mode = ENCRYPT;
+    TTK_D(Des);
+    d->m_mode = Encrypt;
     char *encData = d->encrypt((char *)in.data(), in.length(), (char *)key.data());
-    const TTKString &str = Base64::base64Encode((unsigned char *)encData, (in.length() / 8 + 1) * 8);
+    const TTKString &str = QAlgorithm::base64Encode((unsigned char *)encData, (in.length() / 8 + 1) * 8);
 
     delete encData;
 
     return QByteArray(str.data(), str.length());
 }
 
-QByteArray QDesWrapper::decrypt(const QByteArray &in, const QByteArray &key)
+QByteArray Des::decrypt(const QByteArray &in, const QByteArray &key)
 {
-    TTK_D(QDesWrapper);
-    d->m_mode = DECRYPT;
-    const TTKString &str = Base64::base64Decode(TTKString(in.data(), in.length()));
+    TTK_D(Des);
+    d->m_mode = Decrypt;
+    const TTKString &str = QAlgorithm::base64Decode(TTKString(in.data(), in.length()));
     char *encData = d->encrypt((char *)str.data(), str.length(), (char *)key.data());
 
     QByteArray value(encData);
     delete encData;
 
     return value;
+}
 }

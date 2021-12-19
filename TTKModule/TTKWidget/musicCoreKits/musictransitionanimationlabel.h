@@ -23,7 +23,8 @@
 #include "musicglobaldefine.h"
 
 class QPropertyAnimation;
-namespace QImageWrapper {
+namespace QAlgorithm
+{
 class SharpeImage;
 }
 
@@ -100,8 +101,8 @@ protected:
     QPixmap m_currentPixmap, m_previousPixmap;
     QPropertyAnimation *m_animation;
 
-    QImageWrapper::SharpeImage *m_cubeWave;
-    QImageWrapper::SharpeImage *m_waterWave;
+    QAlgorithm::SharpeImage *m_cubeWave;
+    QAlgorithm::SharpeImage *m_waterWave;
 
 };
 
