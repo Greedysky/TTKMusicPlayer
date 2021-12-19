@@ -104,17 +104,23 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 
     if(all)
     {
-        if(maxBr == MB_1000 || maxBr == MB_320)
+        if(maxBr == MB_1000)
         {
             readFromMusicSongAttribute(info, MB_128);
             readFromMusicSongAttribute(info, MB_192);
             readFromMusicSongAttribute(info, MB_320);
             readFromMusicSongAttribute(info, MB_1000);
         }
+        else if(maxBr == MB_320)
+        {
+            readFromMusicSongAttribute(info, MB_128);
+            readFromMusicSongAttribute(info, MB_192);
+            readFromMusicSongAttribute(info, MB_320);
+        }
         else if(maxBr == MB_192)
         {
-            readFromMusicSongAttribute(info, MB_192);
             readFromMusicSongAttribute(info, MB_128);
+            readFromMusicSongAttribute(info, MB_192);
         }
         else
         {
@@ -215,17 +221,23 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
 
     if(all)
     {
-        if(maxBr == MB_1000 || maxBr == MB_320)
+        if(maxBr == MB_1000)
         {
             readFromMusicSongAttribute(info, MB_128);
             readFromMusicSongAttribute(info, MB_192);
             readFromMusicSongAttribute(info, MB_320);
             readFromMusicSongAttribute(info, MB_1000);
         }
+        else if(maxBr == MB_320)
+        {
+            readFromMusicSongAttribute(info, MB_128);
+            readFromMusicSongAttribute(info, MB_192);
+            readFromMusicSongAttribute(info, MB_320);
+        }
         else if(maxBr == MB_192)
         {
-            readFromMusicSongAttribute(info, MB_192);
             readFromMusicSongAttribute(info, MB_128);
+            readFromMusicSongAttribute(info, MB_192);
         }
         else
         {
