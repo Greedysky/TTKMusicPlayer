@@ -222,6 +222,7 @@ qint64 NetworkStreamReader::readBuffer(char* data, qint64 maxlen)
         const int len = qMin<qint64>(m_stream.buffer_size, maxlen);
         if(m_stream.buffer_fill >= m_stream.buffer_size)
         {
+            m_stream.buffer_fill = 0;
             return 0;
         }
 
