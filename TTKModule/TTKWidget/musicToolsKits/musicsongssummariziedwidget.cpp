@@ -161,12 +161,14 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QStringList &files
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
     for(const QString &path : qAsConst(files))
     {
-        if(item->m_songs.contains(MusicSong(path)))
+        const QByteArray &md5 = MusicUtils::Algorithm::md5(path.toUtf8());
+        const MusicSong song(path + "#" + md5 + "." + MusicUtils::String::stringSplitToken(path));
+        if(item->m_songs.contains(song))
         {
             continue;
         }
 
-        item->m_songs << MusicObject::generateMusicSongList(path);
+        item->m_songs << song;
     }
 
     item->m_itemObject->updateSongsFileName(item->m_songs);
@@ -678,7 +680,8 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
 void MusicSongsSummariziedWidget::addNetMusicSongToPlaylist(const MusicResultsItem &songItem)
 {
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
-    MusicSong song(songItem.m_nickName + "#" + songItem.m_id + "." + songItem.m_description, songItem.m_updateTime, songItem.m_name);
+    const QByteArray &md5 = MusicUtils::Algorithm::md5(songItem.m_id.toUtf8());
+    MusicSong song(songItem.m_nickName + "#" + md5 + "." + songItem.m_description, songItem.m_updateTime, songItem.m_name);
     song.setMusicType(songItem.m_description);
     song.setMusicSizeStr(songItem.m_playCount);
 

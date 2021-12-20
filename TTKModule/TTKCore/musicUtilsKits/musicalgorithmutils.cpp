@@ -5,7 +5,7 @@
 
 QByteArray MusicUtils::Algorithm::md5(const QByteArray &data)
 {
-    return QCryptographicHash::hash(data, QCryptographicHash::Md5);
+    return QCryptographicHash::hash(data, QCryptographicHash::Md5).toHex().toLower();
 }
 
 QByteArray MusicUtils::Algorithm::sha1(const QByteArray &data)
