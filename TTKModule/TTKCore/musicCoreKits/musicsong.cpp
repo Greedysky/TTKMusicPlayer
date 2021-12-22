@@ -7,13 +7,18 @@
 #include "musicsettingmanager.h"
 
 MusicSong::MusicSong()
-    : m_musicName(),
-      m_musicPath()
+    : m_sortType(SortByFileName),
+      m_musicSize(0),
+      m_musicAddTime(-1),
+      m_musicSizeStr(TTK_DEFAULT_STR),
+      m_musicAddTimeStr(TTK_DEFAULT_STR),
+      m_musicPlayCount(0),
+      m_musicName(TTK_DEFAULT_STR),
+      m_musicPath(TTK_DEFAULT_STR),
+      m_musicType(TTK_DEFAULT_STR),
+      m_musicPlayTime(TTK_DEFAULT_STR)
 {
-    m_sortType = SortByFileName;
-    m_musicSize = 0;
-    m_musicAddTime = -1;
-    m_musicPlayCount = 0;
+
 }
 
 MusicSong::MusicSong(const QString &musicPath)

@@ -469,6 +469,11 @@ procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
       begin
         DeleteFile(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'));
       end;
+      if MsgBox('您是否要删除用户配置信息？', mbConfirmation, MB_YESNO) = IDYES then
+      begin
+        DelTree(ExpandConstant('{app}'), True, True, True);
+        DelTree(ExpandConstant(GetEnv('APPDATA') + '\ttkmp'), True, True, True);
+      end;
     end;
   end;
   
