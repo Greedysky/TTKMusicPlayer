@@ -158,9 +158,16 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
 
 void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QStringList &files)
 {
+    bool update = false;
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
+
     for(const QString &path : qAsConst(files))
     {
+        if(!path.startsWith(HTTP_PREFIX) && !path.startsWith(HTTPS_PREFIX))
+        {
+            continue;
+        }
+
         const QByteArray &md5 = MusicUtils::Algorithm::md5(path.toUtf8());
         const MusicSong song(path + "#" + md5 + "." + MusicUtils::String::stringSplitToken(path));
         if(item->m_songs.contains(song))
@@ -168,11 +175,15 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QStringList &files
             continue;
         }
 
+        update = true;
         item->m_songs << song;
     }
 
-    item->m_itemObject->updateSongsFileName(item->m_songs);
-    setItemTitle(item);
+    if(update)
+    {
+        item->m_itemObject->updateSongsFileName(item->m_songs);
+        setItemTitle(item);
+    }
 }
 
 QStringList MusicSongsSummariziedWidget::musicSongsFileName(int index) const

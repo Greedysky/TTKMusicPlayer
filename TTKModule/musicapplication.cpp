@@ -536,6 +536,7 @@ void MusicApplication::musicImportSongsByDir()
 void MusicApplication::musicImportSongsByUrl()
 {
     MusicInputDialog dialog;
+    dialog.setPlaceholderText(tr("Please enter the local or network playback address"));
     if(!dialog.exec())
     {
         return;

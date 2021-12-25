@@ -40,6 +40,11 @@ public:
     ~MusicInputDialog();
 
     /*!
+     * Set placeholder text.
+     */
+    void setPlaceholderText(const QString &text);
+
+    /*!
      * Get the text that the user input.
      */
     QString text() const;

@@ -28,6 +28,11 @@ MusicInputDialog::~MusicInputDialog()
     delete m_ui;
 }
 
+void MusicInputDialog::setPlaceholderText(const QString &text)
+{
+    m_ui->edit->setPlaceholderText(text);
+}
+
 QString MusicInputDialog::text() const
 {
     return m_ui->edit->text();
