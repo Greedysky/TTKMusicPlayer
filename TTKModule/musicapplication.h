@@ -313,10 +313,6 @@ protected:
     virtual bool eventFilter(QObject *object, QEvent *event) override;
 
     /*!
-     * Import music datas into container.
-     */
-    void musicImportSongsPath(const QStringList &files);
-    /*!
      * Set music current play index.
      */
     void setMusicPlayIndex();

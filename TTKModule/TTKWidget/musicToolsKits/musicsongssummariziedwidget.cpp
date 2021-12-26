@@ -11,6 +11,8 @@
 #include "musiclrcdownloadbatchwidget.h"
 #include "musicapplication.h"
 #include "musictoastlabel.h"
+#include "musicfileutils.h"
+#include "musicformats.h"
 
 #define  ITEM_MIN_COUNT             4
 #define  ITEM_MAX_COUNT             10
@@ -127,6 +129,11 @@ void MusicSongsSummariziedWidget::appendMusicItemList(const MusicSongItems &item
 
 void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &files)
 {
+    if(files.isEmpty())
+    {
+        return;
+    }
+
     closeSearchWidgetInNeed();
 
     MusicProgressWidget progress;
@@ -156,33 +163,55 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
     MusicToastLabel::popup(tr("Import music songs done!"));
 }
 
-void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QStringList &files)
+void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
 {
-    bool update = false;
-    MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
-
-    for(const QString &path : qAsConst(files))
+    if(path.isEmpty())
     {
-        if(!path.startsWith(HTTP_PREFIX) && !path.startsWith(HTTPS_PREFIX))
-        {
-            continue;
-        }
-
-        const QByteArray &md5 = MusicUtils::Algorithm::md5(path.toUtf8());
-        const MusicSong song(path + "#" + md5 + "." + MusicUtils::String::stringSplitToken(path));
-        if(item->m_songs.contains(song))
-        {
-            continue;
-        }
-
-        update = true;
-        item->m_songs << song;
+        return;
     }
 
-    if(update)
+    QFileInfo file(path);
+    if(file.isDir())
     {
+        QStringList files;
+        for(const QFileInfo &info : MusicUtils::File::fileListByDir(path, true))
+        {
+            if(MusicFormats::supportMusicFormats().contains(info.suffix().toLower()))
+            {
+               files << info.absoluteFilePath();
+            }
+        }
+
+        importMusicSongsByPath(files);
+    }
+    else if(path.startsWith(HTTP_PREFIX) || path.startsWith(HTTPS_PREFIX))
+    {
+        closeSearchWidgetInNeed();
+
+        MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
+        const QString &prefix = MusicUtils::String::stringSplitToken(path, TTK_SEPARATOR, "?");
+        const QByteArray &md5 = MusicUtils::Algorithm::md5(path.toUtf8());
+        const MusicSong song(path + "#" + md5 + "." + MusicUtils::String::stringSplitToken(path),
+                             TTK_DEFAULT_STR,
+                             MusicUtils::String::stringPrefix(prefix));
+        if(item->m_songs.contains(song))
+        {
+            return;
+        }
+
+        item->m_songs << song;
         item->m_itemObject->updateSongsFileName(item->m_songs);
         setItemTitle(item);
+    }
+    else
+    {
+        QStringList files;
+        if(MusicFormats::supportMusicFormats().contains(file.suffix().toLower()))
+        {
+           files << file.absoluteFilePath();
+        }
+
+        importMusicSongsByPath(files);
     }
 }
 

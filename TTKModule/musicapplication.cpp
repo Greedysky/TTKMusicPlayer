@@ -179,22 +179,16 @@ void MusicApplication::radioExecuteOutside(const QString &path)
 
 void MusicApplication::musicImportSongsPathOutside(const QStringList &files, bool play)
 {
-    musicImportSongsPath(files);
-
-    if(play)
-    {
-        musicPlayIndex(m_musicPlaylist->mediaCount() - 1, 0);
-    }
-}
-
-void MusicApplication::musicImportSongsPath(const QStringList &files)
-{
     if(files.isEmpty())
     {
         return;
     }
 
     m_musicSongTreeWidget->importMusicSongsByPath(files);
+    if(play)
+    {
+        musicPlayIndex(m_musicPlaylist->mediaCount() - 1, 0);
+    }
 }
 
 QString MusicApplication::musicDownloadContains(bool &contains) const
@@ -508,10 +502,7 @@ void MusicApplication::musicImportSongs()
 void MusicApplication::musicImportSongsByFiles()
 {
     const QStringList &files = MusicUtils::File::openFilesDialog(this, MusicFormats::supportMusicInputFormats());
-    if(!files.isEmpty())
-    {
-        musicImportSongsPath(files);
-    }
+    m_musicSongTreeWidget->importMusicSongsByPath(files);
 }
 
 void MusicApplication::musicImportSongsByDir()
@@ -522,15 +513,7 @@ void MusicApplication::musicImportSongsByDir()
         return;
     }
 
-    QStringList files;
-    for(const QFileInfo &info : MusicUtils::File::fileListByDir(path, true))
-    {
-        if(MusicFormats::supportMusicFormats().contains(info.suffix().toLower()))
-        {
-           files << info.absoluteFilePath();
-        }
-    }
-    musicImportSongsPath(files);
+    m_musicSongTreeWidget->importMusicSongsByUrl(path);
 }
 
 void MusicApplication::musicImportSongsByUrl()
@@ -548,7 +531,7 @@ void MusicApplication::musicImportSongsByUrl()
         return;
     }
 
-    m_musicSongTreeWidget->importMusicSongsByUrl(QStringList() << path);
+    m_musicSongTreeWidget->importMusicSongsByUrl(path);
 }
 
 void MusicApplication::musicImportSongsItemList()
@@ -1024,7 +1007,7 @@ void MusicApplication::dropEvent(QDropEvent *event)
         files << url.toLocalFile();
     }
 
-    musicImportSongsPath(files);
+    m_musicSongTreeWidget->importMusicSongsByPath(files);
 }
 
 void MusicApplication::contextMenuEvent(QContextMenuEvent *event)

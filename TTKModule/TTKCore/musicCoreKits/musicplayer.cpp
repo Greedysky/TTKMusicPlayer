@@ -147,6 +147,7 @@ void MusicPlayer::play()
         return;
     }
 
+    m_duration = 0;
     m_durationTimes = 0;
     m_timer.start(MT_S2MS);
 
