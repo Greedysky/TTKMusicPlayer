@@ -5,7 +5,7 @@
 #include "musicvolumepopwidget.h"
 #include "musicvideoqualitypopwidget.h"
 #include "musicvideobarragestylepopwidget.h"
-#include "musiclocalsongsearchedit.h"
+#include "musicsearchedit.h"
 
 MusicVideoControlWidget::MusicVideoControlWidget(QWidget *parent)
     : QWidget(parent)
@@ -74,7 +74,7 @@ MusicVideoControlWidget::~MusicVideoControlWidget()
     delete m_pushBarrage;
     delete m_barrageSend;
     delete m_menuBarrage;
-    delete m_lineEditBarrage;
+    delete m_searchEdit;
 }
 
 void MusicVideoControlWidget::setValue(qint64 position) const
@@ -116,7 +116,7 @@ void MusicVideoControlWidget::pushBarrageClicked()
     m_pushBarrage->setStyleSheet(m_pushBarrageOn ? MusicUIObject::MQSSVideoBtnBarrageOn : MusicUIObject::MQSSVideoBtnBarrageOff);
     m_barrageSend->setEnabled(m_pushBarrageOn);
     m_menuBarrage->setEnabled(m_pushBarrageOn);
-    m_lineEditBarrage->setEnabled(m_pushBarrageOn);
+    m_searchEdit->setEnabled(m_pushBarrageOn);
 
     Q_EMIT pushBarrageChanged(m_pushBarrageOn);
     m_pushBarrageOn = !m_pushBarrageOn;
@@ -124,13 +124,13 @@ void MusicVideoControlWidget::pushBarrageClicked()
 
 void MusicVideoControlWidget::sendBarrageClicked()
 {
-    if(m_lineEditBarrage->text() == tr("Just one barrage!"))
+    if(m_searchEdit->text() == tr("Just one barrage!"))
     {
         return;
     }
 
     MusicBarrageRecord record;
-    record.m_value = m_lineEditBarrage->text();
+    record.m_value = m_searchEdit->text();
     record.m_size = m_menuBarrage->barrageSize();
     record.m_color = m_menuBarrage->barrageColor().name();
     Q_EMIT addBarrageChanged(record);
@@ -152,12 +152,11 @@ QWidget *MusicVideoControlWidget::createVideoBarrageWidget()
     pairWidgetLayout->setContentsMargins(0, 0, 0, 0);
     pairWidgetLayout->setSpacing(0);
 
-    m_lineEditBarrage = new MusicLocalSongSearchEdit(pairWidget);
-    m_lineEditBarrage->setFixedHeight(24);
-    m_lineEditBarrage->setPlaceholderText(tr("Just one barrage!"));
-
-    m_lineEditBarrage->setStyleSheet(MusicUIObject::MQSSLineEditStyle06);
-    connect(m_lineEditBarrage, SIGNAL(enterFinished(QString)), SLOT(sendBarrageClicked()));
+    m_searchEdit = new MusicSearchEdit(pairWidget);
+    m_searchEdit->setFixedHeight(24);
+    m_searchEdit->setPlaceholderText(tr("Just one barrage!"));
+    m_searchEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle06);
+    connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(sendBarrageClicked()));
 
     m_barrageSend = new QPushButton(pairWidget);
     m_barrageSend->setStyleSheet(MusicUIObject::MQSSVideoBtnBarrageSend);
@@ -165,7 +164,7 @@ QWidget *MusicVideoControlWidget::createVideoBarrageWidget()
     m_barrageSend->setFixedSize(50, 24);
     connect(m_barrageSend, SIGNAL(clicked()), SLOT(sendBarrageClicked()));
 
-    pairWidgetLayout->addWidget(m_lineEditBarrage);
+    pairWidgetLayout->addWidget(m_searchEdit);
     pairWidgetLayout->addWidget(m_barrageSend);
     pairWidget->setLayout(pairWidgetLayout);
 

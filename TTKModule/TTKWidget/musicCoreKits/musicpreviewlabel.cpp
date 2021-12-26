@@ -1,8 +1,6 @@
 #include "musicpreviewlabel.h"
 #include "musicwidgetutils.h"
 
-#include <QPainter>
-
 MusicColorPreviewLabel::MusicColorPreviewLabel(QWidget *parent)
     : MusicClickedLabel(parent)
 {

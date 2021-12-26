@@ -1,7 +1,7 @@
 #include "musicsoundkmicrosearchwidget.h"
 #include "musickwquerymovierequest.h"
 #include "musicbdquerylearnrequest.h"
-#include "musiclocalsongsearchedit.h"
+#include "musicsearchedit.h"
 #include "musicgiflabelwidget.h"
 #include "musictoastlabel.h"
 #include "musicitemdelegate.h"
@@ -206,7 +206,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     searchLayout->setContentsMargins(5, 0, 0, 0);
     searchWidget->setLayout(searchLayout);
 
-    m_searchEdit = new MusicLocalSongSearchEdit(this);
+    m_searchEdit = new MusicSearchEdit(this);
     m_searchEdit->setFixedHeight(25);
     m_searchEdit->setStyleSheet(MusicUIObject::MQSSBorderStyle04);
     QPushButton *searchButton = new QPushButton(searchWidget);

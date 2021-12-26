@@ -12,8 +12,6 @@
 
 #include <QEvent>
 #include <QTimer>
-#include <QPainter>
-#include <QBoxLayout>
 
 #define OS_ITEM_SIZE        QSize(165, 110)
 #define OS_COUNT            10

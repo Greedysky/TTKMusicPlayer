@@ -1,5 +1,5 @@
-#ifndef MUSICLOCALSONGSEARCHEDIT_H
-#define MUSICLOCALSONGSEARCHEDIT_H
+#ifndef MUSICSEARCHEDIT_H
+#define MUSICSEARCHEDIT_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -22,18 +22,18 @@
 #include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
 
-/*! @brief The class of the local search line edit widget.
+/*! @brief The class of the search line edit widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLocalSongSearchEdit : public QLineEdit
+class TTK_MODULE_EXPORT MusicSearchEdit : public QLineEdit
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalSongSearchEdit)
+    TTK_DECLARE_MODULE(MusicSearchEdit)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongSearchEdit(QWidget *parent = nullptr);
+    explicit MusicSearchEdit(QWidget *parent = nullptr);
 
 Q_SIGNALS:
     /*!
@@ -51,4 +51,4 @@ protected:
 
 };
 
-#endif // MUSICLOCALSONGSEARCHEDIT_H
+#endif // MUSICSEARCHEDIT_H

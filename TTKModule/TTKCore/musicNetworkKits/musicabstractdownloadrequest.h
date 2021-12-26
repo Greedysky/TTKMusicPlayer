@@ -23,7 +23,7 @@
 #include <QTimer>
 #include "musicabstractnetwork.h"
 
-/*! @brief The class of abstract downloading data.
+/*! @brief The class of abstract download data.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicAbstractDownLoadRequest : public MusicAbstractNetwork

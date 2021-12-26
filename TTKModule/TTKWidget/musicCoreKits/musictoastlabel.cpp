@@ -3,7 +3,6 @@
 #include "musicapplication.h"
 #include "musicsettingmanager.h"
 
-#include <QPainter>
 #include <QPropertyAnimation>
 
 MusicToastLabel::MusicToastLabel(QWidget *parent)

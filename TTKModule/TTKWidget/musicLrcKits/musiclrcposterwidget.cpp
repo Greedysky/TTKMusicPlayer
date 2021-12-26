@@ -10,7 +10,6 @@
 #include "qalgorithm/imagewrapper.h"
 
 #include <qmath.h>
-#include <QPainter>
 
 #define ITEM_SCROLL_WIDTH   8
 #define ITEM_BORDER         3

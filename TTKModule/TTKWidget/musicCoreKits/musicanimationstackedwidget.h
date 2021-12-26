@@ -19,7 +19,6 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QPainter>
 #include <QStackedWidget>
 #include <QPropertyAnimation>
 #include "musicglobaldefine.h"

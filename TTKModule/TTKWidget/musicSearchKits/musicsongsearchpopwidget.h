@@ -1,5 +1,5 @@
-#ifndef MUSICLOCALSONGSEARCHPOPTABLEWIDGET_H
-#define MUSICLOCALSONGSEARCHPOPTABLEWIDGET_H
+#ifndef MUSICSONGSEARCHPOPTABLEWIDGET_H
+#define MUSICSONGSEARCHPOPTABLEWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -26,16 +26,16 @@ class QPushButton;
 /*! @brief The class of the search popup table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLocalSongSearchPopTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicSongSearchPopTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalSongSearchPopTableWidget)
+    TTK_DECLARE_MODULE(MusicSongSearchPopTableWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongSearchPopTableWidget(QWidget *parent = nullptr);
-    ~MusicLocalSongSearchPopTableWidget();
+    explicit MusicSongSearchPopTableWidget(QWidget *parent = nullptr);
+    ~MusicSongSearchPopTableWidget();
 
     /*!
      * Clear All Items.
@@ -64,16 +64,16 @@ public Q_SLOTS:
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLocalSongSearchPopWidget : public QWidget
+class TTK_MODULE_EXPORT MusicSongSearchPopWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalSongSearchPopWidget)
+    TTK_DECLARE_MODULE(MusicSongSearchPopWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongSearchPopWidget(QWidget *parent = nullptr);
-    ~MusicLocalSongSearchPopWidget();
+    explicit MusicSongSearchPopWidget(QWidget *parent = nullptr);
+    ~MusicSongSearchPopWidget();
 
     /*!
      * Create popup search history table items.
@@ -108,8 +108,8 @@ protected:
     QString utcTimeToLocal(const QString &time) const;
 
     QPushButton *m_clearButton;
-    MusicLocalSongSearchPopTableWidget *m_popTableWidget;
+    MusicSongSearchPopTableWidget *m_popTableWidget;
 
 };
 
-#endif // MUSICLOCALSONGSEARCHPOPTABLEWIDGET_H
+#endif // MUSICSONGSEARCHPOPTABLEWIDGET_H

@@ -8,8 +8,6 @@
 #include "musictopareawidget.h"
 #include "musicwidgetutils.h"
 
-#include <QPainter>
-
 MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent)
     : MusicFunctionToolBoxTopWidget(index, text, parent)
 {
@@ -56,13 +54,13 @@ void MusicSongsToolBoxTopWidget::changRowItemName()
     if(!m_renameLine)
     {
         m_renameLine = new MusicSongsToolItemRenamedWidget(title(), this);
-        connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(setChangItemName(QString)));
+        connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(changItemName(QString)));
         m_renameLine->setGeometry(m_labelIcon->width(), 3, RENAME_WIDTH, height() - 6);
     }
     m_renameLine->show();
 }
 
-void MusicSongsToolBoxTopWidget::setChangItemName(const QString &name)
+void MusicSongsToolBoxTopWidget::changItemName(const QString &name)
 {
     setTitle(name + m_suffixString);
     Q_EMIT changRowItemName(m_index, name);

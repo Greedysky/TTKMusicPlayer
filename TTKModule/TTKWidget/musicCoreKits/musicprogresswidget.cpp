@@ -5,8 +5,6 @@
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
 
-#include <QPainter>
-
 MusicProgressWidget::MusicProgressWidget(QWidget *parent)
     : QProgressDialog(parent)
 {

@@ -2,8 +2,6 @@
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicwidgetheaders.h"
 
-#include <QPainter>
-
 MusicRadioButtonDelegate::MusicRadioButtonDelegate(QObject *parent)
     : QItemDelegate(parent)
 {

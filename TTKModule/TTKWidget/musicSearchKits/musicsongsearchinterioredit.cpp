@@ -1,11 +1,11 @@
-#include "musiclocalsongsearchinterioredit.h"
-#include "musiclocalsongsearchpopwidget.h"
+#include "musicsongsearchinterioredit.h"
+#include "musicsongsearchpopwidget.h"
 #include "musicsongsuggestrequest.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdiscoverlistrequest.h"
 
-MusicLocalSongSearchInteriorEdit::MusicLocalSongSearchInteriorEdit(QWidget *parent)
-    : MusicLocalSongSearchEdit(parent)
+MusicSongSearchInteriorEdit::MusicSongSearchInteriorEdit(QWidget *parent)
+    : MusicSearchEdit(parent)
 {
     m_popWidget = nullptr;
     m_suggestRequest = nullptr;
@@ -16,23 +16,23 @@ MusicLocalSongSearchInteriorEdit::MusicLocalSongSearchInteriorEdit(QWidget *pare
     m_discoverRequest->startToSearch();
 }
 
-MusicLocalSongSearchInteriorEdit::~MusicLocalSongSearchInteriorEdit()
+MusicSongSearchInteriorEdit::~MusicSongSearchInteriorEdit()
 {
     delete m_discoverRequest;
     delete m_suggestRequest;
 }
 
-void MusicLocalSongSearchInteriorEdit::initWidget(QWidget *parent)
+void MusicSongSearchInteriorEdit::initWidget(QWidget *parent)
 {
     setFocus(Qt::MouseFocusReason);
     setFocusPolicy(Qt::ClickFocus);
 
-    m_popWidget = new MusicLocalSongSearchPopWidget(parent);
+    m_popWidget = new MusicSongSearchPopWidget(parent);
     connect(m_popWidget, SIGNAL(setText(QString)), SLOT(setText(QString)));
     m_popWidget->hide();
 }
 
-void MusicLocalSongSearchInteriorEdit::closePopWidget()
+void MusicSongSearchInteriorEdit::closePopWidget()
 {
     if(m_popWidget && m_popWidget->isVisible())
     {
@@ -40,7 +40,7 @@ void MusicLocalSongSearchInteriorEdit::closePopWidget()
     }
 }
 
-void MusicLocalSongSearchInteriorEdit::textChanged(const QString &text)
+void MusicSongSearchInteriorEdit::textChanged(const QString &text)
 {
     delete m_suggestRequest;
     m_suggestRequest = G_DOWNLOAD_QUERY_PTR->makeSuggestRequest(this);
@@ -50,7 +50,7 @@ void MusicLocalSongSearchInteriorEdit::textChanged(const QString &text)
     popWidgetChanged(text);
 }
 
-void MusicLocalSongSearchInteriorEdit::suggestDataChanged()
+void MusicSongSearchInteriorEdit::suggestDataChanged()
 {
     QStringList names;
     for(const MusicResultsItem &item : m_suggestRequest->getSearchedItems())
@@ -74,12 +74,12 @@ void MusicLocalSongSearchInteriorEdit::suggestDataChanged()
     }
 }
 
-void MusicLocalSongSearchInteriorEdit::searchToplistInfoFinished(const QString &bytes)
+void MusicSongSearchInteriorEdit::searchToplistInfoFinished(const QString &bytes)
 {
     setPlaceholderText(bytes);
 }
 
-void MusicLocalSongSearchInteriorEdit::popWidgetChanged(const QString &text)
+void MusicSongSearchInteriorEdit::popWidgetChanged(const QString &text)
 {
     if(text.trimmed().isEmpty())
     {
@@ -93,17 +93,17 @@ void MusicLocalSongSearchInteriorEdit::popWidgetChanged(const QString &text)
     }
 }
 
-void MusicLocalSongSearchInteriorEdit::focusInEvent(QFocusEvent *event)
+void MusicSongSearchInteriorEdit::focusInEvent(QFocusEvent *event)
 {
-    MusicLocalSongSearchEdit::focusInEvent(event);
+    MusicSearchEdit::focusInEvent(event);
     if(m_popWidget && !m_popWidget->isVisible())
     {
         popWidgetChanged(text());
     }
 }
 
-void MusicLocalSongSearchInteriorEdit::leaveEvent(QEvent *event)
+void MusicSongSearchInteriorEdit::leaveEvent(QEvent *event)
 {
-    MusicLocalSongSearchEdit::leaveEvent(event);
+    MusicSearchEdit::leaveEvent(event);
     clearFocus();
 }

@@ -3,7 +3,6 @@
 #include "musictoastlabel.h"
 #include "musicwidgetutils.h"
 
-#include <QPainter>
 #include <QMouseEvent>
 
 #define ITEM_COUNT      4

@@ -1,45 +1,45 @@
-#include "musiclocalsongsearchedit.h"
+#include "musicsearchedit.h"
 #include "musicwidgetutils.h"
 
 #include <QKeyEvent>
 
-MusicLocalSongSearchEdit::MusicLocalSongSearchEdit(QWidget *parent)
+MusicSearchEdit::MusicSearchEdit(QWidget *parent)
     : QLineEdit(parent)
 {
     setStyleSheet(MusicUIObject::MQSSLineEditStyle03);
     setPlaceholderText(tr("Please input search words!"));
 }
 
-void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *event)
+void MusicSearchEdit::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
 
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
-    QAction *shearM = menu.addAction(tr("Shear"), this, SLOT(cut()));
-    QAction *copyM = menu.addAction(tr("Copy"), this, SLOT(copy()));
+    QAction *shearAction = menu.addAction(tr("Shear"), this, SLOT(cut()));
+    QAction *copyAction = menu.addAction(tr("Copy"), this, SLOT(copy()));
     menu.addAction(tr("Paste"), this, SLOT(paste()));
-    QAction *deleteM = menu.addAction(tr("Delete"), this, SLOT(clear()));
+    QAction *deleteAction = menu.addAction(tr("Delete"), this, SLOT(clear()));
     menu.addSeparator();
-    QAction *selectM = menu.addAction(tr("Select All"), this, SLOT(selectAll()));
+    QAction *selectAction = menu.addAction(tr("Select All"), this, SLOT(selectAll()));
 
     const bool state = hasSelectedText();
-    shearM->setEnabled(state);
-    copyM->setEnabled(state);
-    deleteM->setEnabled(state);
-    selectM->setEnabled(!text().trimmed().isEmpty());
+    shearAction->setEnabled(state);
+    copyAction->setEnabled(state);
+    deleteAction->setEnabled(state);
+    selectAction->setEnabled(!text().trimmed().isEmpty());
 
     MusicUtils::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 
-void MusicLocalSongSearchEdit::keyPressEvent(QKeyEvent *event)
+void MusicSearchEdit::keyPressEvent(QKeyEvent *event)
 {
     QLineEdit::keyPressEvent(event);
 }
 
-void MusicLocalSongSearchEdit::keyReleaseEvent(QKeyEvent *event)
+void MusicSearchEdit::keyReleaseEvent(QKeyEvent *event)
 {
     QLineEdit::keyReleaseEvent(event);
     switch(event->key())

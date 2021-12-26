@@ -6,7 +6,6 @@
 
 #include <qmath.h>
 #include <QTimer>
-#include <QPainter>
 
 #define PHOTO_WIDTH              110
 #define PHOTO_HEIGHT             65

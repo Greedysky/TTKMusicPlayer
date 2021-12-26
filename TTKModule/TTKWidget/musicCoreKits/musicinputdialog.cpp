@@ -14,7 +14,7 @@ MusicInputDialog::MusicInputDialog(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->edit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->input->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
     m_ui->button->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 #ifdef Q_OS_UNIX
     m_ui->button->setFocusPolicy(Qt::NoFocus);
@@ -28,14 +28,14 @@ MusicInputDialog::~MusicInputDialog()
     delete m_ui;
 }
 
-void MusicInputDialog::setPlaceholderText(const QString &text)
-{
-    m_ui->edit->setPlaceholderText(text);
-}
-
 QString MusicInputDialog::text() const
 {
-    return m_ui->edit->text();
+    return m_ui->input->editor()->text();
+}
+
+void MusicInputDialog::setPlaceholderText(const QString &text)
+{
+    m_ui->input->editor()->setPlaceholderText(text);
 }
 
 int MusicInputDialog::exec()

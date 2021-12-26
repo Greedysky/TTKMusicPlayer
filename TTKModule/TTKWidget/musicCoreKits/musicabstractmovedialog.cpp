@@ -1,7 +1,6 @@
 #include "musicabstractmovedialog.h"
 #include "musicbackgroundmanager.h"
 
-#include <QPainter>
 #include <QMouseEvent>
 
 MusicAbstractMoveDialog::MusicAbstractMoveDialog(QWidget *parent)

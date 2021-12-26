@@ -1,10 +1,8 @@
-#include "musiclocalsongsearchpopwidget.h"
-#include "musiclocalsongsearchrecordconfigmanager.h"
+#include "musicsongsearchpopwidget.h"
+#include "musicsongsearchrecordconfigmanager.h"
 #include "musicwidgetheaders.h"
 
-#include <QPainter>
-
-MusicLocalSongSearchPopTableWidget::MusicLocalSongSearchPopTableWidget(QWidget *parent)
+MusicSongSearchPopTableWidget::MusicSongSearchPopTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
     setColumnCount(2);
@@ -14,18 +12,18 @@ MusicLocalSongSearchPopTableWidget::MusicLocalSongSearchPopTableWidget(QWidget *
     MusicUtils::Widget::setTransparent(this, 255);
 }
 
-MusicLocalSongSearchPopTableWidget::~MusicLocalSongSearchPopTableWidget()
+MusicSongSearchPopTableWidget::~MusicSongSearchPopTableWidget()
 {
     clearAllItems();
 }
 
-void MusicLocalSongSearchPopTableWidget::clearAllItems()
+void MusicSongSearchPopTableWidget::clearAllItems()
 {
     MusicAbstractTableWidget::clear();
     setColumnCount(2);
 }
 
-void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString &name, const QString &time)
+void MusicSongSearchPopTableWidget::createItems(int index, const QString &name, const QString &time)
 {
     setRowHeight(index, ITEM_ROW_HEIGHT_M);
 
@@ -50,7 +48,7 @@ void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString &n
     setItem(index, 1, item);
 }
 
-void MusicLocalSongSearchPopTableWidget::itemCellClicked(int row, int)
+void MusicSongSearchPopTableWidget::itemCellClicked(int row, int)
 {
     Q_EMIT setText(item(row, 0)->toolTip().trimmed());
 
@@ -60,7 +58,7 @@ void MusicLocalSongSearchPopTableWidget::itemCellClicked(int row, int)
 }
 
 
-MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
+MusicSongSearchPopWidget::MusicSongSearchPopWidget(QWidget *parent)
     : QWidget(parent)
 {
     move(405, 45);
@@ -69,7 +67,7 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     layout->setContentsMargins(1, 1, 1, 1);
     layout->setSpacing(0);
 
-    m_popTableWidget = new MusicLocalSongSearchPopTableWidget(this);
+    m_popTableWidget = new MusicSongSearchPopTableWidget(this);
     m_popTableWidget->setFixedWidth(285);
     m_clearButton = new QPushButton("   " + tr("Clear History"), this);
     m_clearButton->setCursor(Qt::PointingHandCursor);
@@ -93,18 +91,18 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     connect(m_popTableWidget, SIGNAL(setText(QString)), SIGNAL(setText(QString)));
 }
 
-MusicLocalSongSearchPopWidget::~MusicLocalSongSearchPopWidget()
+MusicSongSearchPopWidget::~MusicSongSearchPopWidget()
 {
     delete m_popTableWidget;
     delete m_clearButton;
 }
 
-void MusicLocalSongSearchPopWidget::createItems()
+void MusicSongSearchPopWidget::createItems()
 {
     m_clearButton->show();
     m_popTableWidget->clearAllItems();
 
-    MusicLocalSongSearchRecordConfigManager search(this);
+    MusicSongSearchRecordConfigManager search(this);
     if(!search.readConfig())
     {
         return;
@@ -123,7 +121,7 @@ void MusicLocalSongSearchPopWidget::createItems()
     }
 }
 
-void MusicLocalSongSearchPopWidget::createSuggestItems(const QStringList &names)
+void MusicSongSearchPopWidget::createSuggestItems(const QStringList &names)
 {
     m_clearButton->hide();
     m_popTableWidget->clearAllItems();
@@ -138,15 +136,15 @@ void MusicLocalSongSearchPopWidget::createSuggestItems(const QStringList &names)
     }
 }
 
-QString MusicLocalSongSearchPopWidget::utcTimeToLocal(const QString &time) const
+QString MusicSongSearchPopWidget::utcTimeToLocal(const QString &time) const
 {
     const qint64 t = (MusicTime::timestamp() - time.toLongLong()) / MT_S2MS;
     return MusicTime::normalTime2Label(t);
 }
 
-void MusicLocalSongSearchPopWidget::clearButtonClicked()
+void MusicSongSearchPopWidget::clearButtonClicked()
 {
-    MusicLocalSongSearchRecordConfigManager search(this);
+    MusicSongSearchRecordConfigManager search(this);
     if(!search.readConfig())
     {
         return;
@@ -155,7 +153,7 @@ void MusicLocalSongSearchPopWidget::clearButtonClicked()
     close();
 }
 
-void MusicLocalSongSearchPopWidget::paintEvent(QPaintEvent *event)
+void MusicSongSearchPopWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
 
@@ -164,7 +162,7 @@ void MusicLocalSongSearchPopWidget::paintEvent(QPaintEvent *event)
     painter.drawRect(QRect(0, 0, width() - 1, height() - 1));
 }
 
-void MusicLocalSongSearchPopWidget::leaveEvent(QEvent *event)
+void MusicSongSearchPopWidget::leaveEvent(QEvent *event)
 {
     QWidget::leaveEvent(event);
     lower();

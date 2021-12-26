@@ -2,7 +2,6 @@
 #include "musicrightareawidget.h"
 #include "musicwidgetutils.h"
 
-#include <QPainter>
 #include <QMouseEvent>
 
 MusicSplitItemClickedLabel::MusicSplitItemClickedLabel(QWidget *parent)

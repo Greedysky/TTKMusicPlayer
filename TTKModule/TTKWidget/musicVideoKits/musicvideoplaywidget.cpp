@@ -1,6 +1,6 @@
 #include "musicvideoplaywidget.h"
 #include "musicvideoview.h"
-#include "musiclocalsongsearchedit.h"
+#include "musicsearchedit.h"
 #include "musicvideofloatwidget.h"
 #include "musicsongsharingwidget.h"
 #include "musicfunctionuiobject.h"
@@ -44,7 +44,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     searchLayout->setContentsMargins(0, 0, 0, 0);
     searchLayout->setSpacing(0);
 
-    m_searchEdit = new MusicLocalSongSearchEdit(searchWidget);
+    m_searchEdit = new MusicSearchEdit(searchWidget);
     m_searchEdit->setStyleSheet(MusicUIObject::MQSSColorStyle09);
     m_searchEdit->setFixedHeight(25);
     m_searchButton = new QPushButton(searchWidget);

@@ -9,7 +9,6 @@ MusicVolumePopWidget::MusicVolumePopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
     initWidget();
-
     m_menuShown = false;
 
     disconnect(this, SIGNAL(clicked()), this, SLOT(popupMenu()));
@@ -69,11 +68,11 @@ void MusicVolumePopWidget::enterEvent(QEvent *event)
     {
         m_menuShown = true;
         popupMenu();
-        QTimer::singleShot(500 * MT_MS, this, SLOT(timeToResetFlag()));
+        QTimer::singleShot(500 * MT_MS, this, SLOT(timeToReset()));
     }
 }
 
-void MusicVolumePopWidget::timeToResetFlag()
+void MusicVolumePopWidget::timeToReset()
 {
     m_menuShown = false;
 }

@@ -89,7 +89,7 @@ public Q_SLOTS:
     /*!
      * Rename item artist label is finised.
      */
-    void setChangItemName(const QString &name);
+    void changItemName(const QString &name);
     /*!
      * Reset current music love icon state.
      */

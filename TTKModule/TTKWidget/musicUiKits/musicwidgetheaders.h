@@ -36,6 +36,7 @@
 #include <QStackedWidget>
 #include <QProgressBar>
 #include <QRadioButton>
+#include <QPainter>
 
 #include "musicuiobject.h"
 

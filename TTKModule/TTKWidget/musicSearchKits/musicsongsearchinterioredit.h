@@ -1,5 +1,5 @@
-#ifndef MUSICLOCALSONGSEARCHINTERIOREDIT_H
-#define MUSICLOCALSONGSEARCHINTERIOREDIT_H
+#ifndef MUSICSONGSEARCHINTERIOREDIT_H
+#define MUSICSONGSEARCHINTERIOREDIT_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,25 +19,25 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musiclocalsongsearchedit.h"
+#include "musicsearchedit.h"
 
 class MusicDiscoverListRequest;
-class MusicLocalSongSearchPopWidget;
+class MusicSongSearchPopWidget;
 class MusicSongSuggestRequest;
 
 /*! @brief The class of the net search interior edit widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLocalSongSearchInteriorEdit : public MusicLocalSongSearchEdit
+class TTK_MODULE_EXPORT MusicSongSearchInteriorEdit : public MusicSearchEdit
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalSongSearchInteriorEdit)
+    TTK_DECLARE_MODULE(MusicSongSearchInteriorEdit)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongSearchInteriorEdit(QWidget *parent = nullptr);
-    ~MusicLocalSongSearchInteriorEdit();
+    explicit MusicSongSearchInteriorEdit(QWidget *parent = nullptr);
+    ~MusicSongSearchInteriorEdit();
 
     /*!
      * Create all widget in layout.
@@ -74,10 +74,10 @@ protected:
     virtual void focusInEvent(QFocusEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
 
-    MusicLocalSongSearchPopWidget *m_popWidget;
+    MusicSongSearchPopWidget *m_popWidget;
     MusicDiscoverListRequest *m_discoverRequest;
     MusicSongSuggestRequest *m_suggestRequest;
 
 };
 
-#endif // MUSICLOCALSONGSEARCHINTERIOREDIT_H
+#endif // MUSICSONGSEARCHINTERIOREDIT_H

@@ -29,7 +29,7 @@ class QStackedWidget;
 class QParallelAnimationGroup;
 class MusicVideoView;
 class MusicVideoFloatWidget;
-class MusicLocalSongSearchEdit;
+class MusicSearchEdit;
 
 /*! @brief The class of the video play widget.
  * @author Greedysky <greedysky@163.com>
@@ -168,7 +168,7 @@ protected:
     MusicVideoItem m_videoItem;
     MusicVideoView *m_videoView;
     MusicVideoSearchTableWidget *m_videoTable;
-    MusicLocalSongSearchEdit *m_searchEdit;
+    MusicSearchEdit *m_searchEdit;
     MusicVideoFloatWidget *m_videoFloatWidget;
 
 };

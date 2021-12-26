@@ -21,7 +21,7 @@
 
 #include "musicabstractdownloadrequest.h"
 
-/*! @brief The class of downloading the type of qq txt.
+/*! @brief The class of download the type of qq txt.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicQQDownLoadTextRequest : public MusicAbstractDownLoadRequest

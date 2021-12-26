@@ -28,7 +28,7 @@ class MusicVolumePopWidget;
 class MusicMovingLabelSlider;
 class MusicVideoQualityPopWidget;
 class MusicVideoBarrageStylePopWidget;
-class MusicLocalSongSearchEdit;
+class MusicSearchEdit;
 
 /*! @brief The class of the video controller.
  * @author Greedysky <greedysky@163.com>
@@ -113,7 +113,7 @@ protected:
     bool m_pushBarrageOn;
     QPushButton *m_pushBarrage, *m_barrageSend;
     MusicVideoBarrageStylePopWidget *m_menuBarrage;
-    MusicLocalSongSearchEdit *m_lineEditBarrage;
+    MusicSearchEdit *m_searchEdit;
 
 };
 

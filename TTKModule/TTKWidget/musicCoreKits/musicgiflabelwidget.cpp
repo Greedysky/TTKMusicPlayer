@@ -2,7 +2,6 @@
 #include "musicwidgetheaders.h"
 
 #include <QTimer>
-#include <QPainter>
 
 #define GIF_BALLON_WHITE        35
 #define GIF_CICLE_BLUE          58

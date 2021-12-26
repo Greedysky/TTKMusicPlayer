@@ -25,7 +25,7 @@
 class QTableWidgetItem;
 class MusicSongsListWidget;
 class MusicSongsListFunctionWidget;
-class MusicLocalSongSearchDialog;
+class MusicSongSearchDialog;
 
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
@@ -297,7 +297,7 @@ protected:
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
     TTKIntListMap m_searchResultCache;
     MusicSongsListFunctionWidget *m_listFunctionWidget;
-    MusicLocalSongSearchDialog *m_songSearchWidget;
+    MusicSongSearchDialog *m_songSearchWidget;
 
 };
 

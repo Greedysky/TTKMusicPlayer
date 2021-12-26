@@ -1,7 +1,6 @@
 #include "musicfunctiontoolboxwidget.h"
 #include "musicwidgetutils.h"
 
-#include <QPainter>
 #include <QScrollArea>
 #include <QMouseEvent>
 #include <QDrag>

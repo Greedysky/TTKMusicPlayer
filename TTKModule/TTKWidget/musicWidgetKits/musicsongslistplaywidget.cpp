@@ -179,7 +179,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
 void MusicSongsListPlayWidget::setItemRename()
 {
     m_renameLine = new MusicSongsToolItemRenamedWidget(m_songNameLabel->toolTip(), this);
-    connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(setChangItemName(QString)));
+    connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(changItemName(QString)));
     m_renameLine->setGeometry(85, 5, 200, 25);
     m_renameLine->show();
 }
@@ -190,7 +190,7 @@ void MusicSongsListPlayWidget::deleteRenameItem()
     m_renameLine = nullptr;
 }
 
-void MusicSongsListPlayWidget::setChangItemName(const QString &name)
+void MusicSongsListPlayWidget::changItemName(const QString &name)
 {
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 198));
     m_songNameLabel->setToolTip(name);

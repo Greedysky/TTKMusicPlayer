@@ -1,5 +1,5 @@
-#ifndef MUSICADVANCEDSEARCHEDWIDGET_H
-#define MUSICADVANCEDSEARCHEDWIDGET_H
+#ifndef MUSICSONGSEARCHEDIT_H
+#define MUSICSONGSEARCHEDIT_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,45 +19,35 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QTabWidget>
-#include "musicglobaldefine.h"
+#include "musicsearchedit.h"
 
-class MusicSongSearchEdit;
-
-/*! @brief The class of the advance search widget.
+/*! @brief The class of the search line edit widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicAdvancedSearchedWidget : public QWidget
+class TTK_MODULE_EXPORT MusicSongSearchEdit : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAdvancedSearchedWidget)
+    TTK_DECLARE_MODULE(MusicSongSearchEdit)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAdvancedSearchedWidget(QWidget *parent = nullptr);
-    ~MusicAdvancedSearchedWidget();
+    explicit MusicSongSearchEdit(QWidget *parent = nullptr);
+    ~MusicSongSearchEdit();
 
-private Q_SLOTS:
     /*!
-     * Search button clicked.
+     * Get the line eidtor.
      */
-    void searchButtonClicked();
+    inline MusicSearchEdit* editor() const { return m_searchEdit; }
 
-protected:
+private:
     /*!
-     * Update placeholder text.
+     * Override the widget event.
      */
-    void updateServerPlaceholderText();
-    /*!
-     * Get search key.
-     */
-    QString searchedKeyWork(int type, const QString &url);
+    virtual void paintEvent(QPaintEvent *event) override;
 
-    QTabWidget *m_tabWidget;
-    MusicSongSearchEdit *m_songEdit, *m_artistEdit;
-    MusicSongSearchEdit *m_albumEdit, *m_playlistEdit, *m_movieEdit;
+    MusicSearchEdit *m_searchEdit;
 
 };
 
-#endif // MUSICADVANCEDSEARCHEDWIDGET_H
+#endif // MUSICSONGSEARCHEDIT_H

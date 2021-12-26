@@ -20,9 +20,9 @@
  ***************************************************************************/
 
 class QMenu;
-class QPainter;
 class QComboBox;
 
+#include <QPainter>
 #include "musicuiobject.h"
 #include "musicglobaldefine.h"
 

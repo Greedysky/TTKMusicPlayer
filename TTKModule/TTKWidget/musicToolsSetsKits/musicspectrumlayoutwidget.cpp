@@ -3,7 +3,6 @@
 #include "musicimageutils.h"
 #include "musicclickedgroup.h"
 
-#include <QPainter>
 #include <QScrollArea>
 
 MusicSpectrumLayoutItem::MusicSpectrumLayoutItem(QWidget *parent)

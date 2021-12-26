@@ -1,12 +1,12 @@
-#include "musiclocalsongsearchrecordconfigmanager.h"
+#include "musicsongsearchrecordconfigmanager.h"
 
-MusicLocalSongSearchRecordConfigManager::MusicLocalSongSearchRecordConfigManager(QObject *parent)
+MusicSongSearchRecordConfigManager::MusicSongSearchRecordConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
 {
 
 }
 
-void MusicLocalSongSearchRecordConfigManager::readSearchData(MusicSearchRecords &records)
+void MusicSongSearchRecordConfigManager::readSearchData(MusicSearchRecords &records)
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName("value");
     for(int i=0; i<nodeList.count(); ++i)
@@ -18,7 +18,7 @@ void MusicLocalSongSearchRecordConfigManager::readSearchData(MusicSearchRecords 
     }
 }
 
-void MusicLocalSongSearchRecordConfigManager::writeSearchData(const MusicSearchRecords &records)
+void MusicSongSearchRecordConfigManager::writeSearchData(const MusicSearchRecords &records)
 {
     if(!writeConfig(SEARCH_PATH_FULL))
     {

@@ -2,8 +2,6 @@
 #include "musicbackgroundmanager.h"
 #include "musicwidgetheaders.h"
 
-#include <QPainter>
-
 MusicAbstractMoveWidget::MusicAbstractMoveWidget(QWidget *parent)
     : MusicAbstractMoveWidget(true, parent)
 {

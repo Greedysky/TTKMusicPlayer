@@ -1,7 +1,7 @@
 ﻿#include "musicsongssummariziedwidget.h"
 #include "musicsongslistfunctionwidget.h"
 #include "musicsongslisttablewidget.h"
-#include "musiclocalsongsearchdialog.h"
+#include "musicsongsearchdialog.h"
 #include "musicsettingmanager.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
@@ -963,7 +963,7 @@ void MusicSongsSummariziedWidget::showSearchWidget()
 {
     if(m_songSearchWidget == nullptr)
     {
-        m_songSearchWidget = new MusicLocalSongSearchDialog(this);
+        m_songSearchWidget = new MusicSongSearchDialog(this);
         resizeWindow();
     }
 

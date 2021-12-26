@@ -19,14 +19,16 @@
 INCLUDEPATH += $$PWD
 
 HEADERS  += \
-    $$PWD/musiclocalsongsearchedit.h \
-    $$PWD/musiclocalsongsearchinterioredit.h \
-    $$PWD/musiclocalsongsearchpopwidget.h \
-    $$PWD/musiclocalsongsearchdialog.h
+    $$PWD/musicsearchedit.h \
+    $$PWD/musicsongsearchedit.h \
+    $$PWD/musicsongsearchinterioredit.h \
+    $$PWD/musicsongsearchpopwidget.h \
+    $$PWD/musicsongsearchdialog.h
 
 
 SOURCES += \
-    $$PWD/musiclocalsongsearchedit.cpp \
-    $$PWD/musiclocalsongsearchinterioredit.cpp \
-    $$PWD/musiclocalsongsearchpopwidget.cpp \
-    $$PWD/musiclocalsongsearchdialog.cpp
+    $$PWD/musicsearchedit.cpp \
+    $$PWD/musicsongsearchedit.cpp \
+    $$PWD/musicsongsearchinterioredit.cpp \
+    $$PWD/musicsongsearchpopwidget.cpp \
+    $$PWD/musicsongsearchdialog.cpp

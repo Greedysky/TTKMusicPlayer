@@ -1,5 +1,5 @@
-#ifndef MUSICLOCALSONGSEARCHDIALOG_H
-#define MUSICLOCALSONGSEARCHDIALOG_H
+#ifndef MUSICSONGSEARCHDIALOG_H
+#define MUSICSONGSEARCHDIALOG_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -22,21 +22,21 @@
 #include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
 
-class MusicLocalSongSearchEdit;
+class MusicSongSearchEdit;
 
-/*! @brief The class of the local song search widget.
+/*! @brief The class of the song search widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLocalSongSearchDialog : public QDialog
+class TTK_MODULE_EXPORT MusicSongSearchDialog : public QDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalSongSearchDialog)
+    TTK_DECLARE_MODULE(MusicSongSearchDialog)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongSearchDialog(QWidget *parent = nullptr);
-    ~MusicLocalSongSearchDialog();
+    explicit MusicSongSearchDialog(QWidget *parent = nullptr);
+    ~MusicSongSearchDialog();
 
     /*!
      * Get the search text that the user searched.
@@ -46,6 +46,7 @@ public:
      * Clear the search text.
      */
     void clear() const;
+
     /*!
      * Set line edit input focus.
      */
@@ -58,8 +59,8 @@ public Q_SLOTS:
     bool close();
 
 private:
-    MusicLocalSongSearchEdit *m_searchLine;
+    MusicSongSearchEdit *m_searchLine;
 
 };
 
-#endif // MUSICLOCALSONGSEARCHDIALOG_H
+#endif // MUSICSONGSEARCHDIALOG_H

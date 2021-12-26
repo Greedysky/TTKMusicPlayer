@@ -1,7 +1,6 @@
 #include "musiccolordialog.h"
 #include "ui_musiccolordialog.h"
 
-#include <QPainter>
 #include <QToolTip>
 #include <QMouseEvent>
 #include <QPainterPath>

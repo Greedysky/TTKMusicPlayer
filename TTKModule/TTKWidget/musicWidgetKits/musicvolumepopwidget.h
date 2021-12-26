@@ -54,9 +54,9 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Timer ot reset show slider flag.
+     * Timer ot reset show slider.
      */
-    void timeToResetFlag();
+    void timeToReset();
 
 protected:
     /*!

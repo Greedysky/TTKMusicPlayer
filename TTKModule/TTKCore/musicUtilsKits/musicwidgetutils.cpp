@@ -4,7 +4,6 @@
 #include "ttkdesktopwrapper.h"
 
 #include <QBitmap>
-#include <QPainter>
 #include <QScrollArea>
 #include <QStyledItemDelegate>
 

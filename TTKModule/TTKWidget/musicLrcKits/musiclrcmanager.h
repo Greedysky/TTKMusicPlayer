@@ -21,7 +21,6 @@
 
 #include <QTimer>
 #include <QAction>
-#include <QPainter>
 #include <QMouseEvent>
 #include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"

@@ -1,0 +1,58 @@
+#include "musicsongsearchdialog.h"
+#include "musicsongsearchedit.h"
+#include "musictinyuiobject.h"
+
+MusicSongSearchDialog::MusicSongSearchDialog(QWidget *parent)
+    : QDialog(parent)
+{
+    setWindowFlags(Qt::FramelessWindowHint);
+    resize(LEFT_SIDE_WIDTH_MIN, 35);
+
+    QPalette pal(palette());
+    pal.setColor(QPalette::Background, QColor(255, 255, 225));
+    setAutoFillBackground(true);
+    setPalette(pal);
+
+    QHBoxLayout *layout = new QHBoxLayout(this);
+    layout->setContentsMargins(10, 4, 10, 4);
+
+    m_searchLine = new MusicSongSearchEdit(this);
+    QToolButton *closeButton = new QToolButton(this);
+    closeButton->setFixedSize(16, 16);
+    closeButton->setCursor(QCursor(Qt::PointingHandCursor));
+    closeButton->setStyleSheet(MusicUIObject::MQSSTinyBtnClose);
+
+    layout->addWidget(m_searchLine);
+    layout->addWidget(closeButton);
+    setLayout(layout);
+
+    connect(closeButton, SIGNAL(clicked()), SLOT(close()));
+    connect(m_searchLine->editor(), SIGNAL(cursorPositionChanged(int,int)), parent, SLOT(musicSearchResultChanged(int,int)));
+}
+
+MusicSongSearchDialog::~MusicSongSearchDialog()
+{
+    delete m_searchLine;
+}
+
+bool MusicSongSearchDialog::close()
+{
+    clear();
+    return QDialog::close();
+}
+
+QString MusicSongSearchDialog::text() const
+{
+    return m_searchLine->editor()->text();
+}
+
+void MusicSongSearchDialog::clear() const
+{
+    m_searchLine->editor()->clear();
+}
+
+void MusicSongSearchDialog::setVisible(bool visible)
+{
+    QDialog::setVisible(visible);
+    m_searchLine->editor()->setFocus();
+}

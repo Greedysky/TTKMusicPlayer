@@ -1,7 +1,6 @@
 #include "musiclayoutanimationwidget.h"
 #include "musicwidgetheaders.h"
 
-#include <QPainter>
 #include <QPropertyAnimation>
 
 MusicLayoutAnimationWidget::MusicLayoutAnimationWidget(QWidget *parent)

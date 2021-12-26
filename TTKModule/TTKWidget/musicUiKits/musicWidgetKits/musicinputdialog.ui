@@ -74,7 +74,7 @@
     <string notr="true">QWidget{color:#666666;background:white;}
 QLabel{background:transparent;}</string>
    </property>
-   <widget class="QLineEdit" name="edit">
+   <widget class="MusicSongSearchEdit" name="input" native="true">
     <property name="geometry">
      <rect>
       <x>65</x>
@@ -82,9 +82,6 @@ QLabel{background:transparent;}</string>
       <width>455</width>
       <height>30</height>
      </rect>
-    </property>
-    <property name="readOnly">
-     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="button">
@@ -118,6 +115,13 @@ QLabel{background:transparent;}</string>
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicSongSearchEdit</class>
+   <extends>QWidget</extends>
+   <header>musicsongsearchedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

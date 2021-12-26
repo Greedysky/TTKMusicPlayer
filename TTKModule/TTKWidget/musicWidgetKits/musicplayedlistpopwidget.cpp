@@ -8,7 +8,6 @@
 #include "musicwidgetheaders.h"
 
 #include <QTimer>
-#include <QPainter>
 
 #define MAX_SIZE    3
 

@@ -22,7 +22,6 @@
 #include "musicbackgroundmanager.h"
 #include "musicwidgetheaders.h"
 
-#include <QPainter>
 #include <QClipboard>
 #include <QApplication>
 #include <QActionGroup>

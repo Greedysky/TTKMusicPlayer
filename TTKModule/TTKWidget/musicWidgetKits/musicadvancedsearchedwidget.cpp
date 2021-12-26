@@ -1,10 +1,11 @@
 #include "musicadvancedsearchedwidget.h"
 #include "musicabstractqueryrequest.h"
-#include "musiclocalsongsearchedit.h"
+#include "musicsongsearchedit.h"
 #include "musicsettingmanager.h"
 #include "musicrightareawidget.h"
 #include "musicsongsharingwidget.h"
 #include "musictoastlabel.h"
+#include "musicwidgetheaders.h"
 
 MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     : QWidget(parent)
@@ -31,10 +32,12 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     QVBoxLayout *songWidgetLayout = new QVBoxLayout(songWidget);
     QLabel *songLabel = new QLabel(tr("Input song id or url link"), songWidget);
     songLabel->setStyleSheet(MusicUIObject::MQSSFontStyle05);
+    m_songEdit = new MusicSongSearchEdit(songWidget);
+    m_songEdit->setFixedHeight(33);
     songWidgetLayout->setSpacing(10);
     songWidgetLayout->addStretch(1);
     songWidgetLayout->addWidget(songLabel);
-    songWidgetLayout->addWidget(createSearchPairWidget(&m_songEdit));
+    songWidgetLayout->addWidget(m_songEdit);
     songWidgetLayout->addStretch(1);
     songWidget->setLayout(songWidgetLayout);
     m_tabWidget->addTab(songWidget, tr("Song"));
@@ -43,10 +46,12 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     QVBoxLayout *artistWidgetLayout = new QVBoxLayout(artistWidget);
     QLabel *artistLabel = new QLabel(tr("Input artist id or url link"), artistWidget);
     artistLabel->setStyleSheet(MusicUIObject::MQSSFontStyle05);
+    m_artistEdit = new MusicSongSearchEdit(songWidget);
+    m_artistEdit->setFixedHeight(33);
     artistWidgetLayout->setSpacing(10);
     artistWidgetLayout->addStretch(1);
     artistWidgetLayout->addWidget(artistLabel);
-    artistWidgetLayout->addWidget(createSearchPairWidget(&m_artistEdit));
+    artistWidgetLayout->addWidget(m_artistEdit);
     artistWidgetLayout->addStretch(1);
     artistWidget->setLayout(artistWidgetLayout);
     m_tabWidget->addTab(artistWidget, tr("Artist"));
@@ -55,10 +60,12 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     QVBoxLayout *albumWidgetLayout = new QVBoxLayout(albumWidget);
     QLabel *albumLabel = new QLabel(tr("Input album id or url link"), albumWidget);
     albumLabel->setStyleSheet(MusicUIObject::MQSSFontStyle05);
+    m_albumEdit = new MusicSongSearchEdit(songWidget);
+    m_albumEdit->setFixedHeight(33);
     albumWidgetLayout->setSpacing(10);
     albumWidgetLayout->addStretch(1);
     albumWidgetLayout->addWidget(albumLabel);
-    albumWidgetLayout->addWidget(createSearchPairWidget(&m_albumEdit));
+    albumWidgetLayout->addWidget(m_albumEdit);
     albumWidgetLayout->addStretch(1);
     albumWidget->setLayout(albumWidgetLayout);
     m_tabWidget->addTab(albumWidget, tr("Album"));
@@ -67,10 +74,12 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     QVBoxLayout *playlistWidgetLayout = new QVBoxLayout(playlistWidget);
     QLabel *playlistLabel = new QLabel(tr("Input playlist id or url link"), playlistWidget);
     playlistLabel->setStyleSheet(MusicUIObject::MQSSFontStyle05);
+    m_playlistEdit = new MusicSongSearchEdit(songWidget);
+    m_playlistEdit->setFixedHeight(33);
     playlistWidgetLayout->setSpacing(10);
     playlistWidgetLayout->addStretch(1);
     playlistWidgetLayout->addWidget(playlistLabel);
-    playlistWidgetLayout->addWidget(createSearchPairWidget(&m_playlistEdit));
+    playlistWidgetLayout->addWidget(m_playlistEdit);
     playlistWidgetLayout->addStretch(1);
     playlistWidget->setLayout(playlistWidgetLayout);
     m_tabWidget->addTab(playlistWidget, tr("Playlist"));
@@ -79,10 +88,12 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     QVBoxLayout *movieWidgetLayout = new QVBoxLayout(movieWidget);
     QLabel *movieLabel = new QLabel(tr("Input movie id or url link"), movieWidget);
     movieLabel->setStyleSheet(MusicUIObject::MQSSFontStyle05);
+    m_movieEdit = new MusicSongSearchEdit(songWidget);
+    m_movieEdit->setFixedHeight(33);
     movieWidgetLayout->setSpacing(10);
     movieWidgetLayout->addStretch(1);
     movieWidgetLayout->addWidget(movieLabel);
-    movieWidgetLayout->addWidget(createSearchPairWidget(&m_movieEdit));
+    movieWidgetLayout->addWidget(m_movieEdit);
     movieWidgetLayout->addStretch(1);
     movieWidget->setLayout(movieWidgetLayout);
     m_tabWidget->addTab(movieWidget, tr("Movie"));
@@ -121,35 +132,35 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
     {
         case 0:
         {
-            QString key = !m_songEdit->text().isEmpty() ? m_songEdit->text() : m_songEdit->placeholderText();
+            QString key = !m_songEdit->editor()->text().isEmpty() ? m_songEdit->editor()->text() : m_songEdit->editor()->placeholderText();
                     key = searchedKeyWork(0, key);
             MusicRightAreaWidget::instance()->musicSingleSearchedFound(key);
             break;
         }
         case 1:
         {
-            QString key = !m_artistEdit->text().isEmpty() ? m_artistEdit->text() : m_artistEdit->placeholderText();
+            QString key = !m_artistEdit->editor()->text().isEmpty() ? m_artistEdit->editor()->text() : m_artistEdit->editor()->placeholderText();
                     key = searchedKeyWork(1, key);
             MusicRightAreaWidget::instance()->musicArtistFound(QString(), key);
             break;
         }
         case 2:
         {
-            QString key = !m_albumEdit->text().isEmpty() ? m_albumEdit->text() : m_albumEdit->placeholderText();
+            QString key = !m_albumEdit->editor()->text().isEmpty() ? m_albumEdit->editor()->text() : m_albumEdit->editor()->placeholderText();
                     key = searchedKeyWork(2, key);
             MusicRightAreaWidget::instance()->musicAlbumFound(QString(), key);
             break;
         }
         case 3:
         {
-            QString key = !m_playlistEdit->text().isEmpty() ? m_playlistEdit->text() : m_playlistEdit->placeholderText();
+            QString key = !m_playlistEdit->editor()->text().isEmpty() ? m_playlistEdit->editor()->text() : m_playlistEdit->editor()->placeholderText();
                     key = searchedKeyWork(3, key);
             MusicRightAreaWidget::instance()->musicPlaylistFound(key);
             break;
         }
         case 4:
         {
-            QString key = !m_movieEdit->text().isEmpty() ? m_movieEdit->text() : m_movieEdit->placeholderText();
+            QString key = !m_movieEdit->editor()->text().isEmpty() ? m_movieEdit->editor()->text() : m_movieEdit->editor()->placeholderText();
                     key = searchedKeyWork(4, key);
             MusicRightAreaWidget::instance()->musicVideoButtonSearched(QString(), key);
             break;
@@ -158,62 +169,44 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
     }
 }
 
-QWidget *MusicAdvancedSearchedWidget::createSearchPairWidget(MusicLocalSongSearchEdit **input)
-{
-    QWidget *searchPair = new QWidget(this);
-    searchPair->setFixedHeight(33);
-    searchPair->setStyleSheet(MusicUIObject::MQSSBorderStyle02);
-    QHBoxLayout *searchPairLayout = new QHBoxLayout(searchPair);
-    searchPairLayout->setContentsMargins(5, 2, 5, 0);
-    QLabel *showIcon = new QLabel(searchPair);
-    showIcon->setFixedSize(16, 16);
-    showIcon->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01 + "border-image: url(:/tiny/btn_search_main_hover);");
-    *input = new MusicLocalSongSearchEdit(searchPair);
-    searchPairLayout->addWidget(showIcon);
-    searchPairLayout->addWidget(*input);
-    searchPair->setLayout(searchPairLayout);
-
-    return searchPair;
-}
-
 void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
 {
     switch(TTKStatic_cast(DownloadQueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
     {
         case WYQueryServer:
         {
-            m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_UNIMP_KEY, false).arg("28830412"));
-            m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AR_SHARE, ALG_UNIMP_KEY, false).arg("964486"));
-            m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AL_SHARE, ALG_UNIMP_KEY, false).arg("2901140"));
-            m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_PL_SHARE, ALG_UNIMP_KEY, false).arg("988604820"));
-            m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_UNIMP_KEY, false).arg("5343487"));
+            m_songEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_UNIMP_KEY, false).arg("28830412"));
+            m_artistEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AR_SHARE, ALG_UNIMP_KEY, false).arg("964486"));
+            m_albumEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AL_SHARE, ALG_UNIMP_KEY, false).arg("2901140"));
+            m_playlistEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_PL_SHARE, ALG_UNIMP_KEY, false).arg("988604820"));
+            m_movieEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_UNIMP_KEY, false).arg("5343487"));
             break;
         }
         case QQQueryServer:
         {
-            m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_SG_SHARE, ALG_UNIMP_KEY, false).arg("004TXEXY2G2c7C"));
-            m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AR_SHARE, ALG_UNIMP_KEY, false).arg("0029gk1t3wpGWU"));
-            m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AL_SHARE, ALG_UNIMP_KEY, false).arg("003fk65m1ZaCG2"));
-            m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_PL_SHARE, ALG_UNIMP_KEY, false).arg("889413740"));
-            m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_MV_SHARE, ALG_UNIMP_KEY, false).arg("o0032ayz7c2"));
+            m_songEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_SG_SHARE, ALG_UNIMP_KEY, false).arg("004TXEXY2G2c7C"));
+            m_artistEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AR_SHARE, ALG_UNIMP_KEY, false).arg("0029gk1t3wpGWU"));
+            m_albumEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AL_SHARE, ALG_UNIMP_KEY, false).arg("003fk65m1ZaCG2"));
+            m_playlistEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_PL_SHARE, ALG_UNIMP_KEY, false).arg("889413740"));
+            m_movieEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_MV_SHARE, ALG_UNIMP_KEY, false).arg("o0032ayz7c2"));
             break;
         }
         case KWQueryServer:
         {
-            m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_SG_SHARE, ALG_UNIMP_KEY, false).arg("23983067"));
-            m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AR_SHARE, ALG_UNIMP_KEY, false).arg("373"));
-            m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AL_SHARE, ALG_UNIMP_KEY, false).arg("2698608"));
-            m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_PL_SHARE, ALG_UNIMP_KEY, false).arg("236350390"));
-            m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_MV_SHARE, ALG_UNIMP_KEY, false).arg("9812716"));
+            m_songEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_SG_SHARE, ALG_UNIMP_KEY, false).arg("23983067"));
+            m_artistEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AR_SHARE, ALG_UNIMP_KEY, false).arg("373"));
+            m_albumEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AL_SHARE, ALG_UNIMP_KEY, false).arg("2698608"));
+            m_playlistEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_PL_SHARE, ALG_UNIMP_KEY, false).arg("236350390"));
+            m_movieEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_MV_SHARE, ALG_UNIMP_KEY, false).arg("9812716"));
             break;
         }
         case KGQueryServer:
         {
-            m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_SG_SHARE, ALG_UNIMP_KEY, false).arg("b2bc0eb8553b0eb70b66b950fc3ad287"));
-            m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AR_SHARE, ALG_UNIMP_KEY, false).arg("832532"));
-            m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AL_SHARE, ALG_UNIMP_KEY, false).arg("41169925"));
-            m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_PL_SHARE, ALG_UNIMP_KEY, false).arg("155318"));
-            m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_MV_SHARE, ALG_UNIMP_KEY, false).arg("630600"));
+            m_songEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_SG_SHARE, ALG_UNIMP_KEY, false).arg("b2bc0eb8553b0eb70b66b950fc3ad287"));
+            m_artistEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AR_SHARE, ALG_UNIMP_KEY, false).arg("832532"));
+            m_albumEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AL_SHARE, ALG_UNIMP_KEY, false).arg("41169925"));
+            m_playlistEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_PL_SHARE, ALG_UNIMP_KEY, false).arg("155318"));
+            m_movieEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_MV_SHARE, ALG_UNIMP_KEY, false).arg("630600"));
             break;
         }
         default: break;

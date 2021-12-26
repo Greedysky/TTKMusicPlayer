@@ -1,5 +1,5 @@
 #include "musicsongsearchonlinewidget.h"
-#include "musiclocalsongsearchrecordconfigmanager.h"
+#include "musicsongsearchrecordconfigmanager.h"
 #include "musicdownloadimagerequest.h"
 #include "musicdownloadwidget.h"
 #include "musicitemdelegate.h"
@@ -49,7 +49,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     }
     //
     MusicSearchRecords records;
-    MusicLocalSongSearchRecordConfigManager search(this);
+    MusicSongSearchRecordConfigManager search(this);
     if(!search.readConfig())
     {
         return;

@@ -97,7 +97,7 @@ public Q_SLOTS:
     /*!
      * Rename item artist label is finised.
      */
-    void setChangItemName(const QString &name);
+    void changItemName(const QString &name);
     /*!
      * Add new music file or files to list.
      */

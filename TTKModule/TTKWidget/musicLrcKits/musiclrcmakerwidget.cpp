@@ -12,7 +12,6 @@
 #include "musicsettingmanager.h"
 #include "musicstringutils.h"
 
-#include <QPainter>
 #include <QTextBlock>
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>

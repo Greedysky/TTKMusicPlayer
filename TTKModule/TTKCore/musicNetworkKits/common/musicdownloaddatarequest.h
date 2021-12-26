@@ -21,7 +21,7 @@
 
 #include "musicabstractdownloadrequest.h"
 
-/*! @brief The class of downloading the type of data.
+/*! @brief The class of download the type of data.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDownloadDataRequest : public MusicAbstractDownLoadRequest

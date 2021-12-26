@@ -4,9 +4,8 @@
 #include "musicimageutils.h"
 #include "musicwidgetheaders.h"
 
-#include "qmath.h"
+#include <qmath.h>
 
-#include <QPainter>
 #include <QButtonGroup>
 #include <QPropertyAnimation>
 

@@ -1,5 +1,5 @@
-#ifndef MUSICLOCALSONGSEARCHRECORDCONFIGMANAGER_H
-#define MUSICLOCALSONGSEARCHRECORDCONFIGMANAGER_H
+#ifndef MUSICSONGSEARCHRECORDCONFIGMANAGER_H
+#define MUSICSONGSEARCHRECORDCONFIGMANAGER_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -21,7 +21,7 @@
 
 #include "musicabstractxml.h"
 
-/*! @brief The class of the local searched record item.
+/*! @brief The class of the searched record item.
  * @author Greedysky <greedysky@163.com>
  */
 typedef struct TTK_MODULE_EXPORT MusicSearchRecord
@@ -34,15 +34,15 @@ TTK_DECLARE_LIST(MusicSearchRecord)
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLocalSongSearchRecordConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicSongSearchRecordConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalSongSearchRecordConfigManager)
+    TTK_DECLARE_MODULE(MusicSongSearchRecordConfigManager)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongSearchRecordConfigManager(QObject *parent = nullptr);
+    explicit MusicSongSearchRecordConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read history search datas from xml file by given name.
@@ -60,4 +60,4 @@ public:
 
 };
 
-#endif // MUSICLOCALSONGSEARCHRECORDCONFIGMANAGER_H
+#endif // MUSICSONGSEARCHRECORDCONFIGMANAGER_H
