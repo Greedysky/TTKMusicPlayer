@@ -22,7 +22,7 @@
 #include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
 
-class MusicSongSearchEdit;
+class MusicItemSearchEdit;
 
 /*! @brief The class of the song search widget.
  * @author Greedysky <greedysky@163.com>
@@ -59,7 +59,7 @@ public Q_SLOTS:
     bool close();
 
 private:
-    MusicSongSearchEdit *m_searchLine;
+    MusicItemSearchEdit *m_searchLine;
 
 };
 

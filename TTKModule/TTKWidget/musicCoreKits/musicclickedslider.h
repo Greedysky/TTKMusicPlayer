@@ -39,7 +39,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Click the label emit.
+     * Click the item emit.
      */
     void clicked();
 

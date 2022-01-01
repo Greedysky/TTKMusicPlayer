@@ -1,7 +1,7 @@
 #include "musicsoundkmicrosearchwidget.h"
 #include "musickwquerymovierequest.h"
 #include "musicbdquerylearnrequest.h"
-#include "musicsearchedit.h"
+#include "musicitemsearchedit.h"
 #include "musicgiflabelwidget.h"
 #include "musictoastlabel.h"
 #include "musicitemdelegate.h"
@@ -203,17 +203,11 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     searchWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle15);
     searchWidget->setFixedHeight(35);
     QHBoxLayout *searchLayout = new QHBoxLayout(searchWidget);
-    searchLayout->setContentsMargins(5, 0, 0, 0);
+    searchLayout->setContentsMargins(5, 0, 5, 0);
     searchWidget->setLayout(searchLayout);
 
-    m_searchEdit = new MusicSearchEdit(this);
+    m_searchEdit = new MusicItemQueryEdit(searchWidget);
     m_searchEdit->setFixedHeight(25);
-    m_searchEdit->setStyleSheet(MusicUIObject::MQSSBorderStyle04);
-    QPushButton *searchButton = new QPushButton(searchWidget);
-    searchButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
-    searchButton->setIcon(QIcon(":/tiny/btn_search_main_hover"));
-    searchButton->setCursor(QCursor(Qt::PointingHandCursor));
-    searchButton->setIconSize(QSize(25, 25));
     QRadioButton *mvButton = new QRadioButton(tr("Movie"), searchWidget);
     mvButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
     QRadioButton *songButton = new QRadioButton(tr("Song"), searchWidget);
@@ -227,17 +221,14 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
 #else
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(setQueryMovieFlag(int)));
 #endif
-
-    searchLayout->addWidget(mvButton);
-    searchLayout->addWidget(songButton);
-    searchLayout->addWidget(m_searchEdit);
-    searchLayout->addWidget(searchButton);
+    searchLayout->addWidget(mvButton, 1);
+    searchLayout->addWidget(songButton, 1);
+    searchLayout->addStretch(1);
+    searchLayout->addWidget(m_searchEdit, 10);
 #ifdef Q_OS_UNIX
     mvButton->setFocusPolicy(Qt::NoFocus);
     songButton->setFocusPolicy(Qt::NoFocus);
-    searchButton->setFocusPolicy(Qt::NoFocus);
 #endif
-
     m_searchTableWidget = new MusicSoundKMicroSearchTableWidget(this);
 
     layout->addWidget(topWidget);
@@ -248,8 +239,8 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     m_queryMovieMode = true;
     mvButton->setChecked(true);
 
-    connect(searchButton, SIGNAL(clicked()), SLOT(startToSearch()));
-    connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(startToSearch()));
+    connect(m_searchEdit, SIGNAL(clicked()), SLOT(startToSearch()));
+    connect(m_searchEdit->editor(), SIGNAL(enterFinished(QString)), SLOT(startToSearch()));
     connect(m_searchTableWidget, SIGNAL(restartSearchQuery(QString)), SLOT(setCurrentSongName(QString)));
 }
 
@@ -266,14 +257,14 @@ void MusicSoundKMicroSearchWidget::connectTo(QObject *obj)
 
 void MusicSoundKMicroSearchWidget::startSeachKMicro(const QString &name)
 {
-    m_searchEdit->setText(name);
+    m_searchEdit->editor()->setText(name);
     startToSearch();
 }
 
 void MusicSoundKMicroSearchWidget::startToSearch()
 {
     m_searchTableWidget->setQueryMovieFlag(m_queryMovieMode);
-    m_searchTableWidget->startSearchQuery(m_searchEdit->text());
+    m_searchTableWidget->startSearchQuery(m_searchEdit->editor()->text());
 }
 void MusicSoundKMicroSearchWidget::setQueryMovieFlag(int flag)
 {

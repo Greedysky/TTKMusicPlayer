@@ -93,7 +93,7 @@ protected:
 };
 
 
-class MusicSearchEdit;
+class MusicItemQueryEdit;
 
 /*! @brief The class of the sound kmicro search widget.
  * @author Greedysky <greedysky@163.com>
@@ -134,7 +134,7 @@ public Q_SLOTS:
 
 protected:
     bool m_queryMovieMode;
-    MusicSearchEdit *m_searchEdit;
+    MusicItemQueryEdit *m_searchEdit;
     MusicSoundKMicroSearchTableWidget *m_searchTableWidget;
 
 };

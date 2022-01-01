@@ -1,6 +1,6 @@
 #include "musicvideoplaywidget.h"
 #include "musicvideoview.h"
-#include "musicsearchedit.h"
+#include "musicitemsearchedit.h"
 #include "musicvideofloatwidget.h"
 #include "musicsongsharingwidget.h"
 #include "musicfunctionuiobject.h"
@@ -37,27 +37,12 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_textLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     m_textLabel->setStyleSheet(MusicUIObject::MQSSColorStyle01);
 
-    QWidget *searchWidget = new QWidget(m_topWidget);
-    searchWidget->setFixedHeight(25);
-    searchWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle11);
-    QHBoxLayout *searchLayout = new QHBoxLayout(searchWidget);
-    searchLayout->setContentsMargins(0, 0, 0, 0);
-    searchLayout->setSpacing(0);
-
-    m_searchEdit = new MusicSearchEdit(searchWidget);
-    m_searchEdit->setStyleSheet(MusicUIObject::MQSSColorStyle09);
+    m_searchEdit = new MusicItemQueryEdit(m_topWidget);
     m_searchEdit->setFixedHeight(25);
-    m_searchButton = new QPushButton(searchWidget);
-    m_searchButton->setIcon(QIcon(":/tiny/btn_search_main_hover"));
-    m_searchButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_searchButton->setIconSize(QSize(25, 25));
-    searchLayout->addWidget(m_searchEdit);
-    searchLayout->addWidget(m_searchButton);
-    searchWidget->setLayout(searchLayout);
 
     topLayout->addWidget(m_textLabel);
     topLayout->addStretch();
-    topLayout->addWidget(searchWidget);
+    topLayout->addWidget(m_searchEdit);
 
     m_closeButton = new QPushButton(this);
     m_closeButton->setToolTip(tr("Close"));
@@ -69,7 +54,6 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_topWidget->setLayout(topLayout);
 
 #ifdef Q_OS_UNIX
-    m_searchButton->setFocusPolicy(Qt::NoFocus);
     m_closeButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
@@ -85,7 +69,6 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     setLayout(layout);
 
     m_searchEdit->hide();
-    m_searchButton->hide();
     m_backButton = nullptr;
     m_topWidget->raise();
 
@@ -105,10 +88,10 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_leaverAnimation->addAnimation(topAnimation);
     m_leaverAnimation->addAnimation(ctrlAnimation);
 
-    connect(m_searchButton, SIGNAL(clicked(bool)), SLOT(searchButtonClicked()));
     connect(m_videoTable, SIGNAL(mediaUrlPathChanged(MusicVideoItem)), SLOT(mediaUrlPathChanged(MusicVideoItem)));
     connect(m_videoTable, SIGNAL(restartSearchQuery(QString)), SLOT(videoResearchButtonSearched(QString)));
-    connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(videoResearchButtonSearched(QString)));
+    connect(m_searchEdit, SIGNAL(clicked(bool)), SLOT(searchButtonClicked()));
+    connect(m_searchEdit->editor(), SIGNAL(enterFinished(QString)), SLOT(videoResearchButtonSearched(QString)));
 
     connect(m_videoFloatWidget, SIGNAL(searchButtonClicked()), SLOT(switchToSearchTable()));
     connect(m_videoFloatWidget, SIGNAL(popupButtonClicked()), SLOT(popupButtonClicked()));
@@ -131,7 +114,6 @@ MusicVideoPlayWidget::~MusicVideoPlayWidget()
     delete m_textLabel;
     delete m_searchEdit;
     delete m_backButton;
-    delete m_searchButton;
     delete m_videoView;
     delete m_stackedWidget;
 }
@@ -220,7 +202,7 @@ void MusicVideoPlayWidget::resizeWindow(int width, int height)
 
 QString MusicVideoPlayWidget::searchText() const
 {
-    return m_searchEdit->text().trimmed();
+    return m_searchEdit->editor()->text().trimmed();
 }
 
 void MusicVideoPlayWidget::switchToSearchTable()
@@ -237,7 +219,6 @@ void MusicVideoPlayWidget::switchToSearchTable()
 
     m_textLabel->clear();
     m_searchEdit->show();
-    m_searchButton->show();
     m_stackedWidget->setCurrentIndex(VIDEO_WINDOW_INDEX_1);
 }
 
@@ -248,7 +229,6 @@ void MusicVideoPlayWidget::switchToPlayView()
 
     setTitleText(m_videoItem.m_name);
     m_searchEdit->hide();
-    m_searchButton->hide();
     m_stackedWidget->setCurrentIndex(VIDEO_WINDOW_INDEX_0);
 }
 
@@ -260,7 +240,7 @@ void MusicVideoPlayWidget::searchButtonClicked()
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
 {
     switchToSearchTable();
-    m_searchEdit->setText(name);
+    m_searchEdit->editor()->setText(name);
     m_videoTable->startSearchQuery(name);
 }
 
