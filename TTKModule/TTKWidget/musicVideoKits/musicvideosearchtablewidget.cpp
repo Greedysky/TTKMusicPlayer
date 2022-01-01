@@ -157,9 +157,9 @@ void MusicVideoSearchTableWidget::createSearchedItem(const MusicSearchedItem &so
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
 #if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setBackground(m_defaultBkColor);
+    item->setBackground(m_backgroundColor);
 #else
-    item->setBackgroundColor(m_defaultBkColor);
+    item->setBackgroundColor(m_backgroundColor);
 #endif
     setItem(count, 0, item);
 

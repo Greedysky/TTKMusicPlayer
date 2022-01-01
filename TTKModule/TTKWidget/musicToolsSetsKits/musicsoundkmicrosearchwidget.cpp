@@ -22,7 +22,7 @@ MusicSoundKMicroSearchTableWidget::MusicSoundKMicroSearchTableWidget(QWidget *pa
 
     m_queryMovieMode = true;
     viewport()->setStyleSheet(MusicUIObject::MQSSBackgroundStyle02);
-    m_defaultBkColor = Qt::black;
+    m_backgroundColor = Qt::black;
 }
 
 MusicSoundKMicroSearchTableWidget::~MusicSoundKMicroSearchTableWidget()
@@ -90,9 +90,9 @@ void MusicSoundKMicroSearchTableWidget::createSearchedItem(const MusicSearchedIt
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
 #if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setBackground(m_defaultBkColor);
+    item->setBackground(m_backgroundColor);
 #else
-    item->setBackgroundColor(m_defaultBkColor);
+    item->setBackgroundColor(m_backgroundColor);
 #endif
     setItem(count, 0, item);
 
@@ -138,9 +138,9 @@ void MusicSoundKMicroSearchTableWidget::itemCellEntered(int row, int column)
     if(it)
     {
 #if TTK_QT_VERSION_CHECK(5,13,0)
-        it->setBackground(m_defaultBkColor);
+        it->setBackground(m_backgroundColor);
 #else
-        it->setBackgroundColor(m_defaultBkColor);
+        it->setBackgroundColor(m_backgroundColor);
 #endif
     }
 }

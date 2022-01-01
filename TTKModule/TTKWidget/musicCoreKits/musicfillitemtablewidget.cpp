@@ -32,18 +32,20 @@ TTKIntList MusicFillItemTableWidget::selectedItems() const
 
 void MusicFillItemTableWidget::itemCellClicked(int row, int column)
 {
+    QTableWidgetItem *it = nullptr;
     if(column == 0)
     {
-        QTableWidgetItem *it = item(row, 0);
+        it = item(row, 0);
         const Qt::CheckState status = TTKStatic_cast(Qt::CheckState, it->data(MUSIC_CHECK_ROLE).toInt());
         it->setData(MUSIC_CHECK_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
     }
     else
     {
-        if(m_previousClickRow != -1)
+        if(m_previousClickRow != -1 && (it = item(m_previousClickRow, 0)))
         {
-            item(m_previousClickRow, 0)->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
+            it->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
         }
+
         m_previousClickRow = row;
         item(row, 0)->setData(MUSIC_CHECK_ROLE, Qt::Checked);
     }

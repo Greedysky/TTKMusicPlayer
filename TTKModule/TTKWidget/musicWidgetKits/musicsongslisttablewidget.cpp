@@ -299,7 +299,6 @@ bool MusicSongsListTableWidget::createUploadFileModule()
 
 void MusicSongsListTableWidget::itemCellEntered(int row, int column)
 {
-    ///clear previous table item state
     QTableWidgetItem *it = item(m_previousColorRow, 0);
     if(it)
     {

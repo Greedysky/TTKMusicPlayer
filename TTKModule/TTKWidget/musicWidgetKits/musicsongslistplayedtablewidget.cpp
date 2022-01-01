@@ -205,7 +205,6 @@ void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
 
 void MusicSongsListPlayedTableWidget::itemCellEntered(int row, int column)
 {
-    ///clear previous table item state
     QTableWidgetItem *it = item(m_previousColorRow, 2);
     if(it)
     {
