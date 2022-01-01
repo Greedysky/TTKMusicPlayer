@@ -1,5 +1,5 @@
 #include "musicsongsearchdialog.h"
-#include "musicsongsearchedit.h"
+#include "musicitemsearchedit.h"
 #include "musictinyuiobject.h"
 
 MusicSongSearchDialog::MusicSongSearchDialog(QWidget *parent)
@@ -16,7 +16,7 @@ MusicSongSearchDialog::MusicSongSearchDialog(QWidget *parent)
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(10, 4, 10, 4);
 
-    m_searchLine = new MusicSongSearchEdit(this);
+    m_searchLine = new MusicItemSearchEdit(this);
     QToolButton *closeButton = new QToolButton(this);
     closeButton->setFixedSize(16, 16);
     closeButton->setCursor(QCursor(Qt::PointingHandCursor));

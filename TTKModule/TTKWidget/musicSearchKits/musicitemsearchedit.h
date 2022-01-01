@@ -1,5 +1,5 @@
-#ifndef MUSICSONGSEARCHEDIT_H
-#define MUSICSONGSEARCHEDIT_H
+#ifndef MUSICITEMSEARCHEDIT_H
+#define MUSICITEMSEARCHEDIT_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -24,16 +24,16 @@
 /*! @brief The class of the search line edit widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongSearchEdit : public QWidget
+class TTK_MODULE_EXPORT MusicItemSearchEdit : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongSearchEdit)
+    TTK_DECLARE_MODULE(MusicItemSearchEdit)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongSearchEdit(QWidget *parent = nullptr);
-    ~MusicSongSearchEdit();
+    explicit MusicItemSearchEdit(QWidget *parent = nullptr);
+    ~MusicItemSearchEdit();
 
     /*!
      * Get the line eidtor.
@@ -50,4 +50,40 @@ private:
 
 };
 
-#endif // MUSICSONGSEARCHEDIT_H
+
+/*! @brief The class of the query line edit widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicItemQueryEdit : public QWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicItemQueryEdit)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicItemQueryEdit(QWidget *parent = nullptr);
+    ~MusicItemQueryEdit();
+
+    /*!
+     * Get the line eidtor.
+     */
+    inline MusicSearchEdit* editor() const { return m_searchEdit; }
+
+Q_SIGNALS:
+    /*!
+     * Click the item emit.
+     */
+    void clicked();
+
+private:
+    /*!
+     * Override the widget event.
+     */
+    virtual void paintEvent(QPaintEvent *event) override;
+
+    MusicSearchEdit *m_searchEdit;
+
+};
+
+#endif // MUSICITEMSEARCHEDIT_H

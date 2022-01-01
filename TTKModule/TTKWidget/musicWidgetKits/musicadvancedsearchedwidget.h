@@ -22,7 +22,7 @@
 #include <QTabWidget>
 #include "musicglobaldefine.h"
 
-class MusicSongSearchEdit;
+class MusicItemSearchEdit;
 
 /*! @brief The class of the advance search widget.
  * @author Greedysky <greedysky@163.com>
@@ -55,8 +55,8 @@ protected:
     QString searchedKeyWork(int type, const QString &url);
 
     QTabWidget *m_tabWidget;
-    MusicSongSearchEdit *m_songEdit, *m_artistEdit;
-    MusicSongSearchEdit *m_albumEdit, *m_playlistEdit, *m_movieEdit;
+    MusicItemSearchEdit *m_songEdit, *m_artistEdit;
+    MusicItemSearchEdit *m_albumEdit, *m_playlistEdit, *m_movieEdit;
 
 };
 

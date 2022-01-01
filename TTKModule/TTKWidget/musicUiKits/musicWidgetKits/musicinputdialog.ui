@@ -74,7 +74,7 @@
     <string notr="true">QWidget{color:#666666;background:white;}
 QLabel{background:transparent;}</string>
    </property>
-   <widget class="MusicSongSearchEdit" name="input" native="true">
+   <widget class="MusicItemSearchEdit" name="input" native="true">
     <property name="geometry">
      <rect>
       <x>65</x>
@@ -117,9 +117,9 @@ QLabel{background:transparent;}</string>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicSongSearchEdit</class>
+   <class>MusicItemSearchEdit</class>
    <extends>QWidget</extends>
-   <header>musicsongsearchedit.h</header>
+   <header>musicitemsearchedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
