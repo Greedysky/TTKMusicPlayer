@@ -5,25 +5,21 @@ The TTKMusicplayer plugin for run
 
 * __
 * |__AppData
-  * |__avatar
   * |__theme
-  * |music.tkpl
-  * |musicbarrage.ttk
-  * |musicconfig.xml
-  * |musichistory.ttk
-  * |musicuser.dll
-  * |musicuser.ttk
-  * |musicdown.ttk
-  * |musiccloud.ttk
+  * |playlist.tkpl
+  * |config.xml
+  * |search.ttk
+  * |download.ttk
+  * |cdownload.ttk
+  * |cupload.ttk
 * |__Downloads
-  * |__MLrc
+  * |__Lyric
   * |__Movie
   * |__MUpdate
-  * |__Music
 * |__当前版本号
-  * |__MLanguage
-  * |__MTheme
-  * |__MPlugins
+  * |__GLanguage
+  * |__GTheme
+  * |__GPlugins
   * |__plugins
 
 ## Plugin module
@@ -36,16 +32,21 @@ The TTKMusicplayer plugin for run
 ### Effect
  * bs2b
  * crossfade
+ * crystalizer
+ * echo
  * ladspa
  * mono
  * monotostereo
  * soxr
  * srconverter
  * stereo
+ * voiceremoval
 ### Light
  * lightenvelope
  * lightreplaygain
  * lightspectrum
+### Transports
+ * network
 ### Visual
  * floridancient
  * floridautism
