@@ -147,7 +147,7 @@ public Q_SLOTS:
     /*!
      * Set current equalizer effect.
      */
-    void setEqEffect(const TTKIntList &hz);
+    void setEqualizerEffect(const TTKIntList &hz);
     /*!
      * Set enable to set current equalizer effect.
      */

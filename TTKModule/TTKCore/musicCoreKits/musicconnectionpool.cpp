@@ -52,7 +52,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     }
     else if(from == MusicEqualizerDialog::className() && to == MusicPlayer::className())
     {
-        QObject::connect(first, SIGNAL(setEqEffect(TTKIntList)), second, SLOT(setEqEffect(TTKIntList)));
+        QObject::connect(first, SIGNAL(setEqualizerEffect(TTKIntList)), second, SLOT(setEqualizerEffect(TTKIntList)));
         QObject::connect(first, SIGNAL(setEnabledEffect(bool)), second, SLOT(setEnabledEffect(bool)));
     }
     else if(from == MusicEqualizerDialog::className() && to == MusicSoundEffectsWidget::className())

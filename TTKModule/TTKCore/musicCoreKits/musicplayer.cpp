@@ -176,7 +176,7 @@ void MusicPlayer::stop()
     }
 }
 
-void MusicPlayer::setEqEffect(const TTKIntList &hz)
+void MusicPlayer::setEqualizerEffect(const TTKIntList &hz)
 {
     if(hz.count() != 11)
     {
@@ -197,7 +197,7 @@ void MusicPlayer::setEnabledEffect(bool enable)
 {
     if(!enable)
     {
-        setEqEffect({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
+        setEqualizerEffect({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
     }
 }
 
@@ -210,9 +210,9 @@ void MusicPlayer::setEqInformation()
         const QStringList &eqValue = G_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(",");
         if(eqValue.count() == 11)
         {
-            setEqEffect({eqValue[0].toInt(), eqValue[1].toInt(), eqValue[2].toInt(), eqValue[3].toInt(),
-                         eqValue[4].toInt(), eqValue[5].toInt(), eqValue[6].toInt(), eqValue[7].toInt(),
-                         eqValue[8].toInt(), eqValue[9].toInt(), eqValue[10].toInt()});
+            setEqualizerEffect({eqValue[0].toInt(), eqValue[1].toInt(), eqValue[2].toInt(), eqValue[3].toInt(),
+                                eqValue[4].toInt(), eqValue[5].toInt(), eqValue[6].toInt(), eqValue[7].toInt(),
+                                eqValue[8].toInt(), eqValue[9].toInt(), eqValue[10].toInt()});
         }
     }
     else
@@ -280,10 +280,10 @@ void MusicPlayer::setMusicEnhancedCase()
 {
     switch(m_musicEnhanced)
     {
-        case EnhancedOff: setEqEffect({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}); break;
-        case EnhancedVocal: setEqEffect({0, 0, 4, 1, -5, -1, 2, -2, -4, -4, 0}); break;
-        case EnhancedNICAM: setEqEffect({6, -12, -12, -9, -6, -3, -12, -9, -6, -3, -12}); break;
-        case EnhancedSubwoofer: setEqEffect({6, 6, -10, -10, 0, 0, -3, -5, -7, -9, -11}); break;
+        case EnhancedOff: setEqualizerEffect({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}); break;
+        case EnhancedVocal: setEqualizerEffect({0, 0, 4, 1, -5, -1, 2, -2, -4, -4, 0}); break;
+        case EnhancedNICAM: setEqualizerEffect({6, -12, -12, -9, -6, -3, -12, -9, -6, -3, -12}); break;
+        case EnhancedSubwoofer: setEqualizerEffect({6, 6, -10, -10, 0, 0, -3, -5, -7, -9, -11}); break;
         default: break;
     }
 }

@@ -45,7 +45,7 @@ Q_SIGNALS:
     /*!
      * Current equlizer parameters changed emit.
      */
-    void setEqEffect(const TTKIntList &effect);
+    void setEqualizerEffect(const TTKIntList &effect);
     /*!
      * Set equlizer enable state changed emit.
      */
@@ -55,19 +55,19 @@ public Q_SLOTS:
     /*!
      * Set equlizer enable.
      */
-    void setEqEnable();
+    void setEnable();
     /*!
      * Reset equlizer parameters.
      */
-    void resetEq();
+    void reset();
     /*!
      * Current equlizer parameters has changed by changed index.
      */
-    void verticalSliderChanged(int index);
+    void sliderValueChanged();
     /*!
      * Equlizer presets index changed by change index.
      */
-    void eqChoiceIndexChanged(int index);
+    void equlizerTypeChanged(int index);
     /*!
      * Override exec function.
      */
@@ -100,8 +100,7 @@ protected:
     void parameterSubmit();
 
     Ui::MusicEqualizerDialog *m_ui;
-    bool m_eable;
-    bool m_eqChoiceSelected;
+    bool m_enable;
     TTKIntList m_equalizeValue;
 
 };
