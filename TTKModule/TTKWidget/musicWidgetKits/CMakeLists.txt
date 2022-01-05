@@ -5,7 +5,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musicbackgroundskindialog.h
     ${MUSIC_WIDGET_DIR}/musicsystemtraymenu.h
     ${MUSIC_WIDGET_DIR}/musicequalizerdialog.h
-    ${MUSIC_WIDGET_DIR}/musicwindowextras.h
+    ${MUSIC_WIDGET_DIR}/musicplatformextras.h
     ${MUSIC_WIDGET_DIR}/musicsongslistiteminfowidget.h
     ${MUSIC_WIDGET_DIR}/musicsongsearchonlinewidget.h
     ${MUSIC_WIDGET_DIR}/musicsongstoolitemrenamedwidget.h
@@ -57,7 +57,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musicbackgroundskindialog.cpp
     ${MUSIC_WIDGET_DIR}/musicsystemtraymenu.cpp
     ${MUSIC_WIDGET_DIR}/musicequalizerdialog.cpp
-    ${MUSIC_WIDGET_DIR}/musicwindowextras.cpp
+    ${MUSIC_WIDGET_DIR}/musicplatformextras.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistiteminfowidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongsearchonlinewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongstoolitemrenamedwidget.cpp

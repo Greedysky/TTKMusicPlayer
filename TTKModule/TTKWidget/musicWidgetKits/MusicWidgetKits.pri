@@ -23,7 +23,7 @@ HEADERS  += \
     $$PWD/musicbackgroundskindialog.h \
     $$PWD/musicsystemtraymenu.h \
     $$PWD/musicequalizerdialog.h \
-    $$PWD/musicwindowextras.h \
+    $$PWD/musicplatformextras.h \
     $$PWD/musicsongslistiteminfowidget.h \
     $$PWD/musicsongsearchonlinewidget.h \
     $$PWD/musicsongstoolitemrenamedwidget.h \
@@ -75,7 +75,7 @@ SOURCES += \
     $$PWD/musicbackgroundskindialog.cpp \
     $$PWD/musicsystemtraymenu.cpp \
     $$PWD/musicequalizerdialog.cpp \
-    $$PWD/musicwindowextras.cpp \
+    $$PWD/musicplatformextras.cpp \
     $$PWD/musicsongslistiteminfowidget.cpp \
     $$PWD/musicsongsearchonlinewidget.cpp \
     $$PWD/musicsongstoolitemrenamedwidget.cpp \

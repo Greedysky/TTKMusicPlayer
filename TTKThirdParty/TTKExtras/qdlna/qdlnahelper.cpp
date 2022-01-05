@@ -1,6 +1,5 @@
 #include "qdlnahelper.h"
 
-#include <QObject>
 #include <QSysInfo>
 #include <QTcpSocket>
 #include <QStringList>

@@ -1,5 +1,5 @@
-#ifndef MUSICWINDOWEXTRAS_H
-#define MUSICWINDOWEXTRAS_H
+#ifndef MUSICPLATFORMEXTRAS_H
+#define MUSICPLATFORMEXTRAS_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,30 +19,23 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QObject>
 #include "musicglobaldefine.h"
 
-#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
-class MusicApplication;
-class QWinTaskbarButton;
-class QWinTaskbarProgress;
-class QWinThumbnailToolBar;
-class QWinThumbnailToolButton;
-#endif
+class MusicAbstractPlatformExtras;
 
-/*! @brief The class of the windows extras.
+/*! @brief The class of the platform extras.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWindowExtras : public QObject
+class TTK_MODULE_EXPORT MusicPlatformExtras : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWindowExtras)
+    TTK_DECLARE_MODULE(MusicPlatformExtras)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWindowExtras(QObject *parent = nullptr);
-    ~MusicWindowExtras();
+    explicit MusicPlatformExtras(QObject *parent = nullptr);
+    ~MusicPlatformExtras();
 
     /*!
      * Set current play state button.
@@ -58,20 +51,9 @@ public:
     inline bool isDisableBlurBehindWindow() const { return m_disableBlurBehindWindow; }
 
 protected:
-#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
-    /*!
-     * Create thumbnail toolBar.
-     */
-    void createThumbnailToolBar();
-
-    MusicApplication *m_parentClass;
-    QWinThumbnailToolBar *m_thumbnailToolBar;
-    QWinThumbnailToolButton *m_playToolButton;
-    QWinThumbnailToolButton *m_forwardToolButton;
-    QWinThumbnailToolButton *m_backwardToolButton;
-#endif
     bool m_disableBlurBehindWindow;
+    MusicAbstractPlatformExtras *m_platformExtras;
 
 };
 
-#endif // MUSICWINDOWEXTRAS_H
+#endif // MUSICPLATFORMEXTRAS_H

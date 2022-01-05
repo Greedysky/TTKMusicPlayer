@@ -2,7 +2,7 @@
 #include "ui_musicapplication.h"
 #include "musicapplication.h"
 #include "musicsystemtraymenu.h"
-#include "musicwindowextras.h"
+#include "musicplatformextras.h"
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicrightareawidget.h"
@@ -19,16 +19,16 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
 
     createSystemTrayIcon();
 
-    m_musicWindowExtras = new MusicWindowExtras(parent);
-    m_musicRippleObject = new MusicRippleSpecturmModule(this);
+    m_platformExtras = new MusicPlatformExtras(this);
+    m_rippleModule = new MusicRippleSpecturmModule(this);
 }
 
 MusicBottomAreaWidget::~MusicBottomAreaWidget()
 {
     delete m_systemTrayMenu;
     delete m_systemTray;
-    delete m_musicWindowExtras;
-    delete m_musicRippleObject;
+    delete m_platformExtras;
+    delete m_rippleModule;
 }
 
 MusicBottomAreaWidget *MusicBottomAreaWidget::instance()
@@ -40,7 +40,7 @@ void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
 
-    m_musicRippleObject->init(ui->backgroundLayout, ui->bottomWidget);
+    m_rippleModule->init(ui->backgroundLayout, ui->bottomWidget);
 
     ui->resizeLabelWidget->setPixmap(QPixmap(":/tiny/lb_resize_normal"));
     ui->showCurrentSong->setEffectOnResize(true);
@@ -87,7 +87,7 @@ void MusicBottomAreaWidget::setDestopLrcVisible(bool status) const
 void MusicBottomAreaWidget::setCurrentPlayStatus(bool status) const
 {
     m_systemTrayMenu->setCurrentPlayStatus(status);
-    m_musicWindowExtras->setCurrentPlayStatus(status);
+    m_platformExtras->setCurrentPlayStatus(status);
 }
 
 void MusicBottomAreaWidget::setVolumeValue(int value) const
@@ -108,7 +108,7 @@ void MusicBottomAreaWidget::showMessage(const QString &title, const QString &tex
 
 void MusicBottomAreaWidget::setWindowConcise()
 {
-    const bool con = m_musicWindowExtras->isDisableBlurBehindWindow();
+    const bool con = m_platformExtras->isDisableBlurBehindWindow();
     G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, con);
 
     m_ui->topRightWidget->setVisible(!con);
@@ -184,8 +184,7 @@ void MusicBottomAreaWidget::setWindowConcise()
 
         m_ui->bottomCenterWidgetLayout->addWidget(m_ui->musicTimeWidget, 3, 0, 1, 6);
     }
-
-    m_musicWindowExtras->disableBlurBehindWindow(!con);
+    m_platformExtras->disableBlurBehindWindow(!con);
 }
 
 void MusicBottomAreaWidget::resizeWindow()
@@ -205,11 +204,11 @@ void MusicBottomAreaWidget::applySettingParameter()
     if(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool())
     {
         config = G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool();
-        m_musicRippleObject->update(!config);
+        m_rippleModule->update(!config);
     }
     else
     {
-        m_musicRippleObject->update(false);
+        m_rippleModule->update(false);
     }
 }
 
@@ -231,7 +230,7 @@ void MusicBottomAreaWidget::lrcWidgetShowFullScreen()
     }
 
     m_lrcWidgetShowFullScreen = !m_lrcWidgetShowFullScreen;
-    m_musicRippleObject->setVisible(m_lrcWidgetShowFullScreen);
+    m_rippleModule->setVisible(m_lrcWidgetShowFullScreen);
 
     m_ui->topWidget->setVisible(m_lrcWidgetShowFullScreen);
     m_ui->bottomWidget->setVisible(m_lrcWidgetShowFullScreen);

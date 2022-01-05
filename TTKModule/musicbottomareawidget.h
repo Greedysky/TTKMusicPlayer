@@ -24,7 +24,7 @@
 #include "musicglobaldefine.h"
 
 class MusicSystemTrayMenu;
-class MusicWindowExtras;
+class MusicPlatformExtras;
 class MusicRippleSpecturmModule;
 
 namespace Ui {
@@ -133,8 +133,8 @@ protected:
     bool m_lrcWidgetShowFullScreen;
     QSystemTrayIcon *m_systemTray;
     MusicSystemTrayMenu *m_systemTrayMenu;
-    MusicWindowExtras *m_musicWindowExtras;
-    MusicRippleSpecturmModule *m_musicRippleObject;
+    MusicPlatformExtras *m_platformExtras;
+    MusicRippleSpecturmModule *m_rippleModule;
 
     static MusicBottomAreaWidget *m_instance;
 

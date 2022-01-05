@@ -21,7 +21,6 @@
 
 #include <QObject>
 
-//
 #define MT_MS           1
 
 #define MT_S            1
