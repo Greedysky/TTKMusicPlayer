@@ -37,7 +37,7 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractItemQueryWidget(QWidget *parent = nullptr);
-    virtual ~MusicAbstractItemQueryWidget();
+    ~MusicAbstractItemQueryWidget();
 
     /*!
      * Set current name to search founds.

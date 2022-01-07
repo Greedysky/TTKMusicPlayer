@@ -187,7 +187,7 @@ void MusicApplication::musicImportSongsPathOutside(const QStringList &files, boo
     m_musicSongTreeWidget->importMusicSongsByPath(files);
     if(play)
     {
-        musicPlayIndex(m_musicPlaylist->mediaCount() - 1, 0);
+        musicPlayIndex(m_musicPlaylist->count() - 1, 0);
     }
 }
 
@@ -599,7 +599,7 @@ void MusicApplication::musicPlayIndex(int row)
 void MusicApplication::musicPlayIndex(int row, int)
 {
     m_musicPlayer->stop();
-    if(m_currentMusicSongTreeIndex != m_musicSongTreeWidget->currentIndex() || m_musicPlaylist->mediaCount() == 0)
+    if(m_currentMusicSongTreeIndex != m_musicSongTreeWidget->currentIndex() || m_musicPlaylist->count() == 0)
     {
         setMusicPlayIndex();
         const MusicSongItems items(m_musicSongTreeWidget->musicItemList());
@@ -879,7 +879,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
             oldIndex -= index.count();
         }
 
-        if(oldIndex == m_musicPlaylist->mediaCount()) ///Play index error correction
+        if(oldIndex == m_musicPlaylist->count()) ///Play index error correction
         {
             --oldIndex;
         }
@@ -937,7 +937,7 @@ void MusicApplication::updateCurrentTime(qint64 pos)
 
 void MusicApplication::setPlaySongChanged(int index)
 {
-    if(m_musicPlaylist->isEmpty() || index <0 || index >= m_musicPlaylist->mediaCount())
+    if(m_musicPlaylist->isEmpty() || index <0 || index >= m_musicPlaylist->count())
     {
         return;
     }
@@ -1069,7 +1069,7 @@ void MusicApplication::setMusicPlayIndex()
 {
     m_currentMusicSongTreeIndex = m_musicSongTreeWidget->currentIndex();
     m_musicPlaylist->clear();
-    m_musicPlaylist->addMedia(m_currentMusicSongTreeIndex, m_musicSongTreeWidget->musicSongsFilePath(m_currentMusicSongTreeIndex));
+    m_musicPlaylist->add(m_currentMusicSongTreeIndex, m_musicSongTreeWidget->musicSongsFilePath(m_currentMusicSongTreeIndex));
     m_musicSongTreeWidget->setCurrentMusicSongTreeIndex(m_currentMusicSongTreeIndex);
 }
 
@@ -1157,7 +1157,7 @@ void MusicApplication::readSystemConfigFromFile()
     const QStringList &lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
     //add new music file to playlist
     value = lastPlayIndex[1].toInt();
-    m_musicPlaylist->addMedia(value, m_musicSongTreeWidget->musicSongsFilePath(value));
+    m_musicPlaylist->add(value, m_musicSongTreeWidget->musicSongsFilePath(value));
     if(DEFAULT_NORMAL_LEVEL < value && value < songs.count())
     {
         m_ui->musicPlayedList->append(songs[value].m_songs);

@@ -73,7 +73,12 @@ MusicPlayItems *MusicPlaylist::mediaList()
     return &m_mediaList;
 }
 
-int MusicPlaylist::mediaCount() const
+MusicPlayItems *MusicPlaylist::queueList()
+{
+    return &m_queueList;
+}
+
+int MusicPlaylist::count() const
 {
     return m_mediaList.count();
 }
@@ -86,6 +91,7 @@ bool MusicPlaylist::isEmpty() const
 void MusicPlaylist::clear()
 {
     m_mediaList.clear();
+    removeQueue();
 }
 
 int MusicPlaylist::find(int toolIndex, const QString &content, int from)
@@ -93,42 +99,39 @@ int MusicPlaylist::find(int toolIndex, const QString &content, int from)
     return m_mediaList.indexOf(MusicPlayItem(toolIndex, content), from);
 }
 
-void MusicPlaylist::addMedia(int toolIndex, const QString &content)
+void MusicPlaylist::add(int toolIndex, const QString &content)
 {
-    m_mediaList.clear();
-    m_queueMediaList.clear();
+    clear();
     m_mediaList << MusicPlayItem(toolIndex, content);
 }
 
-void MusicPlaylist::addMedia(int toolIndex, const QStringList &items)
+void MusicPlaylist::add(int toolIndex, const QStringList &items)
 {
-    m_mediaList.clear();
-    m_queueMediaList.clear();
+    clear();
     for(const QString &path : qAsConst(items))
     {
         m_mediaList << MusicPlayItem(toolIndex, path);
     }
 }
 
-void MusicPlaylist::addMedia(const MusicPlayItem &item)
+void MusicPlaylist::add(const MusicPlayItem &item)
 {
-    m_mediaList.clear();
-    m_queueMediaList.clear();
+    clear();
     m_mediaList << item;
 }
 
-void MusicPlaylist::addMedia(const MusicPlayItems &items)
+void MusicPlaylist::add(const MusicPlayItems &items)
 {
-    m_queueMediaList.clear();
+    clear();
     m_mediaList = items;
 }
 
-void MusicPlaylist::appendMedia(int toolIndex, const QString &content)
+void MusicPlaylist::append(int toolIndex, const QString &content)
 {
     m_mediaList << MusicPlayItem(toolIndex, content);
 }
 
-void MusicPlaylist::appendMedia(int toolIndex, const QStringList &items)
+void MusicPlaylist::append(int toolIndex, const QStringList &items)
 {
     for(const QString &path : qAsConst(items))
     {
@@ -136,17 +139,30 @@ void MusicPlaylist::appendMedia(int toolIndex, const QStringList &items)
     }
 }
 
-void MusicPlaylist::appendMedia(const MusicPlayItem &item)
+void MusicPlaylist::append(const MusicPlayItem &item)
 {
     m_mediaList << item;
 }
 
-void MusicPlaylist::appendMedia(const MusicPlayItems &items)
+void MusicPlaylist::append(const MusicPlayItems &items)
 {
     m_mediaList << items;
 }
 
-bool MusicPlaylist::removeMedia(int pos)
+void MusicPlaylist::appendQueue(int toolIndex, const QString &content)
+{
+    if(m_currentIndex == -1)
+    {
+        return;
+    }
+
+    const int index = m_currentIndex + 1;
+    (index != m_mediaList.count()) ? m_mediaList.insert(index, MusicPlayItem(toolIndex, content))
+                                   : m_mediaList.append(MusicPlayItem(toolIndex, content));
+    m_queueList << MusicPlayItem(index + m_queueList.count(), content);
+}
+
+bool MusicPlaylist::remove(int pos)
 {
     if(pos < 0 || pos >= m_mediaList.count())
     {
@@ -154,41 +170,25 @@ bool MusicPlaylist::removeMedia(int pos)
     }
 
     m_mediaList.removeAt(pos);
-    removeQueueList();
+    removeQueue();
     return true;
 }
 
-int MusicPlaylist::removeMedia(int toolIndex, const QString &content)
+int MusicPlaylist::remove(int toolIndex, const QString &content)
 {
     const int index = find(toolIndex, content);
     if(index != -1)
     {
         m_mediaList.removeAt(index);
-        removeQueueList();
+        removeQueue();
     }
 
     return index;
 }
 
-MusicPlayItems *MusicPlaylist::queueMediaList()
+void MusicPlaylist::removeQueue()
 {
-    return &m_queueMediaList;
-}
-
-void MusicPlaylist::insertQueueMedia(int toolIndex, const QString &content)
-{
-    if(m_currentIndex != -1)
-    {
-        const int index = m_currentIndex + 1;
-        (index != m_mediaList.count()) ? m_mediaList.insert(index, MusicPlayItem(toolIndex, content))
-                                       : m_mediaList.append(MusicPlayItem(toolIndex, content));
-        m_queueMediaList << MusicPlayItem(index + m_queueMediaList.count(), content);
-    }
-}
-
-void MusicPlaylist::removeQueueList()
-{
-    m_queueMediaList.clear();
+    m_queueList.clear();
 }
 
 void MusicPlaylist::setCurrentIndex(int index)
@@ -228,9 +228,9 @@ void MusicPlaylist::setCurrentIndex(int index)
         m_currentIndex = index;
     }
 
-    if(!m_queueMediaList.isEmpty())
+    if(!m_queueList.isEmpty())
     {
-        const MusicPlayItem &item = m_queueMediaList.takeFirst();
+        const MusicPlayItem &item = m_queueList.takeFirst();
         m_currentIndex = item.m_toolIndex;
         if(m_currentIndex < 0 || m_currentIndex >= m_mediaList.count())
         {

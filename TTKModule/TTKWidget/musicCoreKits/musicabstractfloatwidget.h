@@ -36,7 +36,7 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractFloatWidget(QWidget *parent = nullptr);
-    virtual ~MusicAbstractFloatWidget();
+    ~MusicAbstractFloatWidget();
 
     /*!
      * Set block animation state or not.

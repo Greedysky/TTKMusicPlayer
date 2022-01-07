@@ -38,7 +38,7 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractMoveWidget(bool transparent, QWidget *parent = nullptr);
-    virtual ~MusicAbstractMoveWidget();
+    ~MusicAbstractMoveWidget();
 
     /*!
      * Set or not draw window bound shadow.
@@ -87,7 +87,7 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractMoveSingleWidget(bool transparent, QWidget *parent = nullptr);
-    virtual ~MusicAbstractMoveSingleWidget();
+    ~MusicAbstractMoveSingleWidget();
 
 protected:
     QWidget *m_container;

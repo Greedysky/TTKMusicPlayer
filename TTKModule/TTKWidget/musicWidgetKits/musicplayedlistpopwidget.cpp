@@ -64,7 +64,6 @@ MusicPlayedListPopWidget *MusicPlayedListPopWidget::instance()
 
 void MusicPlayedListPopWidget::setPlaylist(MusicPlaylist *playlist)
 {
-    delete m_playlist;
     m_playlist = playlist;
 }
 
@@ -108,7 +107,7 @@ void MusicPlayedListPopWidget::remove(int index)
     m_playedListWidget->removeRow(index);
     m_playedListWidget->setPlayRowIndex(DEFAULT_NORMAL_LEVEL);
 
-    m_playlist->removeMedia(index);
+    m_playlist->remove(index);
     m_songList.removeAt(index);
 
     updateSongsFileName();
@@ -120,7 +119,7 @@ void MusicPlayedListPopWidget::remove(int toolIndex, const QString &path)
     m_playedListWidget->adjustPlayWidgetRow();
     do
     {
-        index = m_playlist->removeMedia(toolIndex, path);
+        index = m_playlist->remove(toolIndex, path);
         if(index != -1)
         {
             m_songList.removeAt(index);
@@ -139,7 +138,7 @@ void MusicPlayedListPopWidget::remove(int toolIndex, const MusicSong &song)
 
 void MusicPlayedListPopWidget::append(int toolIndex, const MusicSong &song)
 {
-    m_playlist->appendMedia(toolIndex, song.musicPath());
+    m_playlist->append(toolIndex, song.musicPath());
     m_songList << song;
     updateSongsFileName();
 }
@@ -164,7 +163,7 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
     }
 
     (index != m_songList.count()) ? m_songList.insert(index, song) : m_songList.append(song);
-    m_playlist->insertQueueMedia(toolIndex, song.musicPath());
+    m_playlist->appendQueue(toolIndex, song.musicPath());
 
     const int row = m_playedListWidget->playRowIndex();
     m_playedListWidget->clearAllItems();
@@ -173,7 +172,7 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
     m_playedListWidget->setPlayRowIndex(row);
     m_playedListWidget->selectPlayedRow();
 
-    for(const MusicPlayItem &item : qAsConst(*m_playlist->queueMediaList()))
+    for(const MusicPlayItem &item : qAsConst(*m_playlist->queueList()))
     {
         m_playedListWidget->setPlayQueueState(item.m_toolIndex);
     }
@@ -219,7 +218,7 @@ void MusicPlayedListPopWidget::setDeleteItemAt(const TTKIntList &index)
         {
             contains = true;
         }
-        m_playlist->removeMedia(row);
+        m_playlist->remove(row);
     }
 
     if(contains)
@@ -281,7 +280,7 @@ void MusicPlayedListPopWidget::itemDoubleClicked()
         return;
     }
 
-    m_playlist->removeQueueList();
+    m_playlist->removeQueue();
     m_playedListWidget->clearPlayQueueState();
     MusicApplication::instance()->musicPlayedIndex(row);
 }

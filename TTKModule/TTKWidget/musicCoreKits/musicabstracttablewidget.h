@@ -42,7 +42,7 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractTableWidget(QWidget *parent = nullptr);
-    virtual ~MusicAbstractTableWidget();
+    ~MusicAbstractTableWidget();
 
     /*!
      * Clear current items.

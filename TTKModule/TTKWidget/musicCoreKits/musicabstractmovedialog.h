@@ -38,7 +38,7 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractMoveDialog(bool transparent, QWidget *parent = nullptr);
-    virtual ~MusicAbstractMoveDialog();
+    ~MusicAbstractMoveDialog();
 
     /*!
      * Set or not draw window bound shadow.

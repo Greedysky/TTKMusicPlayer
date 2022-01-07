@@ -41,7 +41,6 @@ MusicObject::PlayState MusicPlayer::state() const
 
 void MusicPlayer::setPlaylist(MusicPlaylist *playlist)
 {
-    delete m_playlist;
     m_playlist = playlist;
 }
 
@@ -68,7 +67,7 @@ void MusicPlayer::setPosition(qint64 position)
 void MusicPlayer::playNext()
 {
     int index = m_playlist->currentIndex();
-    m_playlist->setCurrentIndex((++index >= m_playlist->mediaCount()) ? 0 : index);
+    m_playlist->setCurrentIndex((++index >= m_playlist->count()) ? 0 : index);
 }
 
 void MusicPlayer::playPrevious()

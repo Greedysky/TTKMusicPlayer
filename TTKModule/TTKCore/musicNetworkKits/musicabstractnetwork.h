@@ -43,7 +43,7 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractNetwork(QObject *parent = nullptr);
-    virtual ~MusicAbstractNetwork();
+    ~MusicAbstractNetwork();
 
     /*!
      * Release the network object.

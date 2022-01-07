@@ -106,7 +106,7 @@ bool MusicConsoleModule::init(const QCoreApplication &app)
         else
         {
             TTK_LOGGER_INFO("Add play url path: " << url);
-            m_musicPlaylist->addMedia(0, url);
+            m_musicPlaylist->add(0, url);
             m_musicPlaylist->setCurrentIndex(0);
         }
     }
@@ -123,7 +123,7 @@ bool MusicConsoleModule::init(const QCoreApplication &app)
             for(const QFileInfo &file : MusicUtils::File::fileListByDir(url, MusicFormats::supportMusicInputFilterFormats(), true))
             {
                 TTK_LOGGER_INFO("Add play url path: " << file.absoluteFilePath());
-                m_musicPlaylist->appendMedia(0, file.absoluteFilePath());
+                m_musicPlaylist->append(0, file.absoluteFilePath());
             }
 
             if(!m_musicPlaylist->isEmpty())
@@ -162,7 +162,7 @@ bool MusicConsoleModule::init(const QCoreApplication &app)
                 for(const MusicSong &song : qAsConst(item.m_songs))
                 {
                     TTK_LOGGER_INFO("Add play url path: " << song.musicPath());
-                    m_musicPlaylist->appendMedia(0, song.musicPath());
+                    m_musicPlaylist->append(0, song.musicPath());
                 }
             }
 
@@ -178,7 +178,7 @@ bool MusicConsoleModule::init(const QCoreApplication &app)
         return false;
     }
 
-    TTK_LOGGER_INFO("\nMusic Files count: " << m_musicPlaylist->mediaCount() << "\n");
+    TTK_LOGGER_INFO("\nMusic Files count: " << m_musicPlaylist->count() << "\n");
 
     m_musicPlayer->play();
     m_musicPlayer->setVolume(m_volume);

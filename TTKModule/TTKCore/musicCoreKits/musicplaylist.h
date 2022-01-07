@@ -94,9 +94,14 @@ public:
      */
     MusicPlayItems *mediaList();
     /*!
+     * Get queue music media path.
+     */
+    MusicPlayItems *queueList();
+
+    /*!
      * Get current medias count.
      */
-    int mediaCount() const;
+    int count() const;
     /*!
      * Check current medias is empty.
      */
@@ -113,58 +118,53 @@ public:
     /*!
      * Add music media, not append remember.
      */
-    void addMedia(int toolIndex, const QString &content);
+    void add(int toolIndex, const QString &content);
     /*!
      * Add music media list, not append remember.
      */
-    void addMedia(int toolIndex, const QStringList &items);
+    void add(int toolIndex, const QStringList &items);
     /*!
      * Add music media list, not append remember.
      */
-    void addMedia(const MusicPlayItem &item);
+    void add(const MusicPlayItem &item);
     /*!
      * Add music media list, not append remember.
      */
-    void addMedia(const MusicPlayItems &items);
+    void add(const MusicPlayItems &items);
 
     /*!
      * Append music medias.
      */
-    void appendMedia(int toolIndex, const QString &content);
+    void append(int toolIndex, const QString &content);
     /*!
      * Append music medias.
      */
-    void appendMedia(int toolIndex, const QStringList &items);
+    void append(int toolIndex, const QStringList &items);
     /*!
      * Append music media.
      */
-    void appendMedia(const MusicPlayItem &item);
+    void append(const MusicPlayItem &item);
     /*!
      * Append music medias.
      */
-    void appendMedia(const MusicPlayItems &items);
+    void append(const MusicPlayItems &items);
+    /*!
+     * Append music media by index and content.
+     */
+    void appendQueue(int toolIndex, const QString &content);
 
     /*!
      * Remove music media from current medias by index pos.
      */
-    bool removeMedia(int pos);
+    bool remove(int pos);
     /*!
      * Remove music media from current medias by index pos.
      */
-    int removeMedia(int toolIndex, const QString &content);
-
+    int remove(int toolIndex, const QString &content);
     /*!
-     * Get queue music media path.
+     * Remove music all queue media.
      */
-    MusicPlayItems *queueMediaList();
-    /*!
-     * Insert music media by index and content.
-     */
-    void insertQueueMedia(int toolIndex, const QString &content);
-    /*!
-     * Remove music all media.
-     */
-    void removeQueueList();
+    void removeQueue();
 
 Q_SIGNALS:
     /*!
@@ -189,7 +189,7 @@ public Q_SLOTS:
 protected:
     int m_currentIndex;
     MusicPlayItems m_mediaList;
-    MusicPlayItems m_queueMediaList;
+    MusicPlayItems m_queueList;
     MusicObject::PlayMode m_playbackMode;
 
 };
