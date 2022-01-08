@@ -43,7 +43,7 @@ public:
         m_backwardToolButton = nullptr;
         m_thumbnailToolBar = nullptr;
 
-        disableBlurBehindWindow(QtWin::isCompositionEnabled());
+        action();
         createThumbnailToolBar();
 #endif
     }
@@ -61,7 +61,7 @@ public:
     /*!
      * Set current status.
      */
-    virtual void setStatus(bool status) override
+    virtual void setStatus(bool status) override final
     {
 #if TTK_QT_VERSION_CHECK(5,2,0)
         const QStyle::StandardPixmap pix = status ? QStyle::SP_MediaPause : QStyle::SP_MediaPlay;
@@ -74,7 +74,7 @@ public:
     /*!
      * Set current action.
      */
-    virtual void action() override
+    virtual void action() override final
     {
 #if TTK_QT_VERSION_CHECK(5,2,0)
         QtWin::enableBlurBehindWindow(MusicApplication::instance());
@@ -90,7 +90,7 @@ private:
     void createThumbnailToolBar()
     {
         MusicApplication *parent = MusicApplication::instance();
-        m_thumbnailToolBar = new QWinThumbnailToolBar(this);
+        m_thumbnailToolBar = new QWinThumbnailToolBar(parent);
         m_thumbnailToolBar->setWindow(parent->windowHandle());
 
         m_playToolButton = new QWinThumbnailToolButton(m_thumbnailToolBar);
@@ -137,7 +137,7 @@ public:
     /*!
      * Set current status.
      */
-    virtual void setStatus(bool status) override
+    virtual void setStatus(bool status) override final
     {
         Q_UNUSED(status);
     }
@@ -145,7 +145,7 @@ public:
     /*!
      * Set current action.
      */
-    virtual void action() override
+    virtual void action() override final
     {
 
     }
@@ -168,7 +168,7 @@ public:
     /*!
      * Set current status.
      */
-    virtual void setStatus(bool status) override
+    virtual void setStatus(bool status) override final
     {
         Q_UNUSED(status);
     }
@@ -176,7 +176,7 @@ public:
     /*!
      * Set current action.
      */
-    virtual void action() override
+    virtual void action() override final
     {
 
     }
