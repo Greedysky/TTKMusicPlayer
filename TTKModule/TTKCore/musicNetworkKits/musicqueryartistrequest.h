@@ -37,7 +37,7 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    virtual void startToSearch(QueryType type, const QString &artist) override;
+    virtual void startToSearch(QueryType type, const QString &artist) override final;
     /*!
      * Start to Search data from name and type.
      */

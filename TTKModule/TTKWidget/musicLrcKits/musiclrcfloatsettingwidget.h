@@ -39,7 +39,7 @@ public:
     /*!
      * Resize window bound by given width and height.
      */
-    virtual void resizeWindow(int width, int height) override;
+    virtual void resizeWindow(int width, int height) override final;
 
 Q_SIGNALS:
     /*!
@@ -73,8 +73,8 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void enterEvent(QEvent *) override {}
-    virtual void leaveEvent(QEvent *event) override;
+    virtual void enterEvent(QEvent *) override final {}
+    virtual void leaveEvent(QEvent *event) override final;
     /*!
      * Create pushButton by given index.
      */

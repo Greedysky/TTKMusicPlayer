@@ -71,7 +71,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override final;
 
     MusicGifLabelWidget *m_label;
     MusicMovingLabelSlider *m_slider;

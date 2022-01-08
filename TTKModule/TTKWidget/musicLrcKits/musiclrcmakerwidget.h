@@ -79,7 +79,7 @@ private:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
     QObject *m_parentClass;
     bool m_leftDirection, m_painetLineDone;
@@ -184,8 +184,8 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void keyPressEvent(QKeyEvent *event) override;
-    virtual void keyReleaseEvent(QKeyEvent *event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override final;
+    virtual void keyReleaseEvent(QKeyEvent *event) override final;
     /*!
      * Create current line.
      */

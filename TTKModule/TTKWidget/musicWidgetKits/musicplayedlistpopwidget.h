@@ -48,7 +48,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
 };
 
@@ -134,7 +134,7 @@ public Q_SLOTS:
     /*!
      * To popup menu.
      */
-    virtual void popupMenu() override;
+    virtual void popupMenu() override final;
     /*!
      * Delete items from indexs.
      */

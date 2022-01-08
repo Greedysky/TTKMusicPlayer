@@ -131,11 +131,11 @@ protected:
     /*!
      * Check the item is enable or not.
      */
-    virtual bool isItemEnabled() const override;
+    virtual bool isItemEnabled() const override final;
     /*!
      * Override the widget event.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
     
     MusicSongSort *m_musicSort;
     MusicSongsToolItemRenamedWidget *m_renameLine;
@@ -161,7 +161,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
     QTimer *m_updateTimer;
 
@@ -249,7 +249,7 @@ protected:
     /*!
      * Create item.
      */
-    virtual MusicFunctionToolBoxWidgetItem* createItem(QWidget *item, const QString &text) override;
+    virtual MusicFunctionToolBoxWidgetItem* createItem(QWidget *item, const QString &text) override final;
 
 };
 

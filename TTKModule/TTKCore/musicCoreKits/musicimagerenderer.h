@@ -51,7 +51,7 @@ protected:
     /*!
      * Thread run now.
      */
-    virtual void run() override;
+    virtual void run() override final;
 
 private:
     QSize m_size;

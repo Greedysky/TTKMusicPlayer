@@ -44,12 +44,12 @@ public:
     /*!
      * Resize window bound by widget resize called.
      */
-    virtual void resizeWindow() override;
+    virtual void resizeWindow() override final;
 
     /*!
      * Set current id to search founds.
      */
-    virtual void setSongNameById(const QString &id) override;
+    virtual void setSongNameById(const QString &id) override final;
 
     /*!
      * Set music playlist item.

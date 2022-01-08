@@ -38,7 +38,7 @@ public:
     /*!
      * Read all config from file and insert items.
      */
-    virtual void updateSongsFileName(const MusicSongs &songs) override;
+    virtual void updateSongsFileName(const MusicSongs &songs) override final;
 
 Q_SIGNALS:
     /*!
@@ -58,11 +58,11 @@ public Q_SLOTS:
     /*!
      * Delete item from list at current row.
      */
-    virtual void setDeleteItemAt() override;
+    virtual void setDeleteItemAt() override final;
     /*!
      * Table widget item cell click.
      */
-    virtual void itemCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override final;
     /*!
      * Table widget item cell double click.
      */

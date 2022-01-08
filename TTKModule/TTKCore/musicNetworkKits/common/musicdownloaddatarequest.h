@@ -70,11 +70,11 @@ public Q_SLOTS:
     /*!
      * Get download received and total data.
      */
-    virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal) override;
+    virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal) override final;
     /*!
      * Updata download speed due the user mod the net speed limited.
      */
-    virtual void updateDownloadSpeed() override;
+    virtual void updateDownloadSpeed() override final;
     /*!
      * Download received data ready.
      */

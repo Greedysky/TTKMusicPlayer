@@ -37,13 +37,13 @@ public:
     /*!
      * Start to Search data from name.
      */
-    virtual void startToSearch(const QString &text) override;
+    virtual void startToSearch(const QString &text) override final;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downLoadFinished() override final;
 
 };
 

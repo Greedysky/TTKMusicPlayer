@@ -42,7 +42,7 @@ public:
     /*!
      * Start to download data.
      */
-    virtual void startToDownload() override;
+    virtual void startToDownload() override final;
 
 Q_SIGNALS:
     /*!
@@ -54,7 +54,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downLoadFinished() override final;
     /*!
      * Send download byte data from net.
      */

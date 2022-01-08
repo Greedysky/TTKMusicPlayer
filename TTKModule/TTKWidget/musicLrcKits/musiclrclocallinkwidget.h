@@ -58,7 +58,7 @@ public Q_SLOTS:
     /*!
      * Table widget item cell click.
      */
-    virtual void itemCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override final;
 
 };
 

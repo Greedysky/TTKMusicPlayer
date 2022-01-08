@@ -54,10 +54,10 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void mouseMoveEvent(QMouseEvent *event) override;
-    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *event) override final;
+    virtual void mouseMoveEvent(QMouseEvent *event) override final;
+    virtual void mouseDoubleClickEvent(QMouseEvent *event) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
     QTimer *m_clickedTimer;
     bool m_leftPressed;
@@ -170,7 +170,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
     MusicViewWidget *m_videoWidget;
     MusicCoreMPlayer *m_mediaPlayer;

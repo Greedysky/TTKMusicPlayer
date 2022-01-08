@@ -46,7 +46,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *event) override final;
 
 };
 

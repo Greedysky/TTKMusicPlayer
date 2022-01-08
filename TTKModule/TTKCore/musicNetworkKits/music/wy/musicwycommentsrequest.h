@@ -38,17 +38,17 @@ public:
     /*!
      * Start to Search data from name.
      */
-    virtual void startToSearch(const QString &name) override;
+    virtual void startToSearch(const QString &name) override final;
     /*!
      * Start to search data from name and type bt page.
      */
-    virtual void startToPage(int offset) override;
+    virtual void startToPage(int offset) override final;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downLoadFinished() override final;
 
 };
 
@@ -69,17 +69,17 @@ public:
     /*!
      * Start to Search data from name.
      */
-    virtual void startToSearch(const QString &name) override;
+    virtual void startToSearch(const QString &name) override final;
     /*!
      * Start to search data from name and type bt page.
      */
-    virtual void startToPage(int offset) override;
+    virtual void startToPage(int offset) override final;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downLoadFinished() override final;
 
 };
 

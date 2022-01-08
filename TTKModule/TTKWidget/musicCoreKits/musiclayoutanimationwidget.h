@@ -101,13 +101,13 @@ public:
     /*!
      * Start to anmiation.
      */
-    virtual void start() override;
+    virtual void start() override final;
 
 protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
 };
 
@@ -128,13 +128,13 @@ public:
     /*!
      * Start to anmiation.
      */
-    virtual void start() override;
+    virtual void start() override final;
 
 protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
 };
 

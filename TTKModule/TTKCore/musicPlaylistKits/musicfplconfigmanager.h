@@ -36,11 +36,11 @@ public:
     /*!
      * Read datas from config file.
      */
-    virtual bool readPlaylistData(MusicSongItems &items) override;
+    virtual bool readPlaylistData(MusicSongItems &items) override final;
     /*!
      * Write datas into config file.
      */
-    virtual bool writePlaylistData(const MusicSongItems &items, const QString &path) override;
+    virtual bool writePlaylistData(const MusicSongItems &items, const QString &path) override final;
 
 };
 

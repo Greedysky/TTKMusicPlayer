@@ -85,7 +85,7 @@ public Q_SLOTS:
     /*!
      * To popup menu.
      */
-    virtual void popupMenu() override;
+    virtual void popupMenu() override final;
 
 protected:
     /*!

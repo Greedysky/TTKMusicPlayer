@@ -42,7 +42,7 @@ public:
     /*!
      * Start search query by text.
      */
-    virtual void startSearchQuery(const QString &text) override;
+    virtual void startSearchQuery(const QString &text) override final;
     /*!
      * Data download to local file.
      */
@@ -65,7 +65,7 @@ public Q_SLOTS:
     /*!
      * Table widget item cell enter.
      */
-    virtual void itemCellEntered(int row, int column) override;
+    virtual void itemCellEntered(int row, int column) override final;
     /*!
      * Subclass should implement this function.
      */
@@ -73,7 +73,7 @@ public Q_SLOTS:
     /*!
      * Clear All Items.
      */
-    virtual void clearAllItems() override;
+    virtual void clearAllItems() override final;
     /*!
      * Create searched items.
      */
@@ -91,7 +91,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override final;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     /*!

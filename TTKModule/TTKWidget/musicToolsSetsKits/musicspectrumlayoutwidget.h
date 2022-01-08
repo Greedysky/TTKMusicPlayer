@@ -54,7 +54,7 @@ private:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
     bool m_isSelected;
 };
@@ -84,7 +84,7 @@ public Q_SLOTS:
     /*!
      * To popup menu.
      */
-    virtual void popupMenu() override;
+    virtual void popupMenu() override final;
     /*!
      * Label selected state changed.
      */
@@ -132,7 +132,7 @@ protected:
     /*!
      * Spectrum types list.
      */
-    virtual QStringList spectrumTypeList() const override;
+    virtual QStringList spectrumTypeList() const override final;
 
 };
 
@@ -154,7 +154,7 @@ protected:
     /*!
      * Spectrum types list.
      */
-    virtual QStringList spectrumTypeList() const override;
+    virtual QStringList spectrumTypeList() const override final;
 
 };
 
@@ -176,7 +176,7 @@ protected:
     /*!
      * Spectrum types list.
      */
-    virtual QStringList spectrumTypeList() const override;
+    virtual QStringList spectrumTypeList() const override final;
 
 };
 
@@ -198,7 +198,7 @@ protected:
     /*!
      * Spectrum types list.
      */
-    virtual QStringList spectrumTypeList() const override;
+    virtual QStringList spectrumTypeList() const override final;
 
 };
 
@@ -220,7 +220,7 @@ protected:
     /*!
      * Spectrum types list.
      */
-    virtual QStringList spectrumTypeList() const override;
+    virtual QStringList spectrumTypeList() const override final;
 
 };
 

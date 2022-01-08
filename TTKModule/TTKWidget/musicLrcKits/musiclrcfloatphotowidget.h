@@ -85,11 +85,11 @@ protected:
      * Override the widget event.
      */
 #if TTK_QT_VERSION_CHECK(6,0,0)
-    virtual void enterEvent(QEnterEvent *event) override;
+    virtual void enterEvent(QEnterEvent *event) override final;
 #else
-    virtual void enterEvent(QEvent *event) override;
+    virtual void enterEvent(QEvent *event) override final;
 #endif
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
     int m_index;
     QString m_pixPath;
@@ -115,7 +115,7 @@ public:
     /*!
      * Resize window bound by given width and height.
      */
-    virtual void resizeWindow(int width, int height) override;
+    virtual void resizeWindow(int width, int height) override final;
 
 public Q_SLOTS:
     /*!
@@ -163,9 +163,9 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
-    virtual void enterEvent(QEvent *) override {}
-    virtual void leaveEvent(QEvent *) override {}
+    virtual void paintEvent(QPaintEvent *event) override final;
+    virtual void enterEvent(QEvent *) override final {}
+    virtual void leaveEvent(QEvent *) override final {}
     /*!
      * Show all artist pics in displaying.
      */

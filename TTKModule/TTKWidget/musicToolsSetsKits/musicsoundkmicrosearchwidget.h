@@ -39,11 +39,11 @@ public:
     /*!
      * Start search query by text.
      */
-    virtual void startSearchQuery(const QString &text) override;
+    virtual void startSearchQuery(const QString &text) override final;
     /*!
      * Data download to local file.
      */
-    virtual void musicDownloadLocal(int row) override;
+    virtual void musicDownloadLocal(int row) override final;
 
     /*!
      * Set query Movie flag.
@@ -60,23 +60,23 @@ public Q_SLOTS:
     /*!
      * Clear All Items.
      */
-    virtual void clearAllItems() override;
+    virtual void clearAllItems() override final;
     /*!
      * Create searched items.
      */
-    virtual void createSearchedItem(const MusicSearchedItem &songItem) override;
+    virtual void createSearchedItem(const MusicSearchedItem &songItem) override final;
     /*!
      * Item has double clicked.
      */
-    virtual void itemDoubleClicked(int row, int column) override;
+    virtual void itemDoubleClicked(int row, int column) override final;
     /*!
      * Table widget item cell enter.
      */
-    virtual void itemCellEntered(int row, int column) override;
+    virtual void itemCellEntered(int row, int column) override final;
     /*!
      * Table widget item cell click.
      */
-    virtual void itemCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override final;
 
 protected:
     /*!
@@ -86,7 +86,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
     bool m_queryMovieMode;
 

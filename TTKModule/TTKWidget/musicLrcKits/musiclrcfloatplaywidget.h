@@ -40,7 +40,7 @@ public:
     /*!
      * Resize window bound by given width and height.
      */
-    virtual void resizeWindow(int width, int height) override;
+    virtual void resizeWindow(int width, int height) override final;
 
 public Q_SLOTS:
     /*!
@@ -53,13 +53,10 @@ protected:
      * Override the widget event.
      */
 #if TTK_QT_VERSION_CHECK(6,0,0)
-    virtual void enterEvent(QEnterEvent *event) override;
+    virtual void enterEvent(QEnterEvent *event) override final;
 #else
-    virtual void enterEvent(QEvent *event) override;
+    virtual void enterEvent(QEvent *event) override final;
 #endif
-    virtual void mousePressEvent(QMouseEvent *) override {}
-    virtual void mouseMoveEvent(QMouseEvent *) override {}
-    virtual void mouseReleaseEvent(QMouseEvent *) override {}
     /*!
      * Set current play state icon.
      */

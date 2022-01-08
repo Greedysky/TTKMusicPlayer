@@ -48,7 +48,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
     int m_backgroundAlpha;
 
@@ -77,7 +77,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
     bool m_transparent;
 
@@ -153,13 +153,13 @@ public Q_SLOTS:
     /*!
      * Switch to selected item style.
      */
-    virtual void switchToSelectedItemStyle(int index) override;
+    virtual void switchToSelectedItemStyle(int index) override final;
 
 protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
 };
 
@@ -190,13 +190,13 @@ public Q_SLOTS:
     /*!
      * Switch to selected item style.
      */
-    virtual void switchToSelectedItemStyle(int index) override;
+    virtual void switchToSelectedItemStyle(int index) override final;
 
 protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
 };
 
@@ -218,13 +218,13 @@ public Q_SLOTS:
     /*!
      * Switch to selected item style.
      */
-    virtual void switchToSelectedItemStyle(int index) override;
+    virtual void switchToSelectedItemStyle(int index) override final;
 
 protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
 };
 

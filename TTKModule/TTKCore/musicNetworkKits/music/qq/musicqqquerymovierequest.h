@@ -38,22 +38,22 @@ public:
     /*!
      * Start to search data from name and type.
      */
-    virtual void startToSearch(QueryType type, const QString &text) override;
+    virtual void startToSearch(QueryType type, const QString &text) override final;
     /*!
      * Start to search data from name and type bt page.
      */
-    virtual void startToPage(int offset) override;
+    virtual void startToPage(int offset) override final;
 
     /*!
      * Start to search data by given id.
      */
-    virtual void startToSingleSearch(const QString &text) override;
+    virtual void startToSingleSearch(const QString &text) override final;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downLoadFinished() override final;
     /*!
      * Download page data from net finished.
      */

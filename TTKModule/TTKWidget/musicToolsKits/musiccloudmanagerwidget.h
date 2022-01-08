@@ -76,7 +76,7 @@ public Q_SLOTS:
     /*!
      * Table widget item cell click.
      */
-    virtual void itemCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override final;
     /*!
      * Send recieved data from net.
      */
@@ -145,7 +145,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
     /*!
      * Upload files to server.
      */
@@ -228,7 +228,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override final;
 
 protected:
     QLabel *m_sizeValueLabel;

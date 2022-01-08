@@ -61,7 +61,7 @@ protected Q_SLOTS:
     /*!
      * Receive data from server finshed.
      */
-    virtual void receiveDataFromServer() override;
+    virtual void receiveDataFromServer() override final;
     /*!
      * Show download progress.
      */

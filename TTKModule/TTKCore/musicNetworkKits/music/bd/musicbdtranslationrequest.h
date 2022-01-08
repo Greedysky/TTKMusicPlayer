@@ -58,7 +58,7 @@ public:
     /*!
      * Start to translation data.
      */
-    virtual void startToDownload(const QString &data) override;
+    virtual void startToDownload(const QString &data) override final;
     /*!
      * Start to translation data.
      */
@@ -68,7 +68,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downLoadFinished() override final;
 
 protected:
     /*!

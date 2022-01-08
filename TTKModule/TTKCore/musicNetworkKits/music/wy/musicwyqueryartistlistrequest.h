@@ -38,17 +38,17 @@ public:
     /*!
      * Start to search data from name and type bt page.
      */
-    virtual void startToPage(int offset) override;
+    virtual void startToPage(int offset) override final;
     /*!
      * Start to Search data.
      */
-    virtual void startToSearch(const QString &artistlist) override;
+    virtual void startToSearch(const QString &artistlist) override final;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downLoadFinished() override final;
 
 };
 

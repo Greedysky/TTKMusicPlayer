@@ -88,7 +88,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
     /*!
      * Draw theme.
      */
@@ -194,7 +194,7 @@ public Q_SLOTS:
     /*!
      * Table widget item cell click.
      */
-    virtual void itemCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override final;
 
 };
 

@@ -37,7 +37,7 @@ public:
     /*!
      * Init widget.
      */
-    virtual void initWidget(bool isPain) override;
+    virtual void initWidget(bool isPain) override final;
 
 };
 

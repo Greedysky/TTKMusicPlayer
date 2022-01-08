@@ -64,7 +64,7 @@ public:
     /*!
      * Render data.
      */
-    virtual QPixmap render(const QPixmap &pixmap, int value) override;
+    virtual QPixmap render(const QPixmap &pixmap, int value) override final;
 
 };
 
@@ -80,11 +80,11 @@ public:
     /*!
      * Init item data.
      */
-    virtual void input(const QRect &region) override;
+    virtual void input(const QRect &region) override final;
     /*!
      * Render data.
      */
-    virtual QPixmap render(const QPixmap &pixmap, int value) override;
+    virtual QPixmap render(const QPixmap &pixmap, int value) override final;
 
 };
 
@@ -100,11 +100,11 @@ public:
     /*!
      * Init item data.
      */
-    virtual void input(const QRect &region) override;
+    virtual void input(const QRect &region) override final;
     /*!
      * Render data.
      */
-    virtual QPixmap render(const QPixmap &pixmap, int value) override;
+    virtual QPixmap render(const QPixmap &pixmap, int value) override final;
 
 };
 }

@@ -38,7 +38,7 @@ public:
     /*!
      * Set network query input.
      */
-    virtual void setQueryInput(MusicAbstractQueryRequest *query) override;
+    virtual void setQueryInput(MusicAbstractQueryRequest *query) override final;
     /*!
      * Set connect class.
      */

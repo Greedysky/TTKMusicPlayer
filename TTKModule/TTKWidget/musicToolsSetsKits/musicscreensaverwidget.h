@@ -71,9 +71,9 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void leaveEvent(QEvent *event) override;
-    virtual void focusOutEvent(QFocusEvent *event) override;
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override final;
+    virtual void focusOutEvent(QFocusEvent *event) override final;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
     int m_index;
     QString m_path;
@@ -112,9 +112,9 @@ protected:
      * Override the widget event.
      */
 #if TTK_QT_VERSION_CHECK(6,0,0)
-    virtual void enterEvent(QEnterEvent *event) override;
+    virtual void enterEvent(QEnterEvent *event) override final;
 #else
-    virtual void enterEvent(QEvent *event) override;
+    virtual void enterEvent(QEvent *event) override final;
 #endif
 
     MusicScreenSaverHoverItem *m_hoverItem;
@@ -150,7 +150,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override final;
 
     QGridLayout *m_gridLayout;
     QList<MusicScreenSaverListItem*> m_items;
@@ -252,7 +252,7 @@ private:
     /*!
      * Override the widget event.
      */
-    virtual bool eventFilter(QObject *watched, QEvent *event) override;
+    virtual bool eventFilter(QObject *watched, QEvent *event) override final;
 
 private:
     bool m_state;

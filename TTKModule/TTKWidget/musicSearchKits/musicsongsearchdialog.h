@@ -50,7 +50,7 @@ public:
     /*!
      * Set line edit input focus.
      */
-    virtual void setVisible(bool visible) override;
+    virtual void setVisible(bool visible) override final;
 
 public Q_SLOTS:
     /*!

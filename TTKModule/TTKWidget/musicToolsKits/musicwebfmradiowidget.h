@@ -47,11 +47,11 @@ public Q_SLOTS:
     /*!
      * Table widget item cell enter.
      */
-    virtual void itemCellEntered(int row, int column) override;
+    virtual void itemCellEntered(int row, int column) override final;
     /*!
      * Table widget item cell click.
      */
-    virtual void itemCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override final;
     /*!
      * Table widget item cell double click.
      */
@@ -77,7 +77,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
     int m_outerIndex;
     MusicWebFMRadioPlayWidget *m_musicRadio;

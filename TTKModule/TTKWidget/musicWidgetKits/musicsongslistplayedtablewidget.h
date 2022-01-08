@@ -40,11 +40,11 @@ public:
     /*!
      * Update songs file names in table.
      */
-    virtual void updateSongsFileName(const MusicSongs &songs) override;
+    virtual void updateSongsFileName(const MusicSongs &songs) override final;
     /*!
      * Select the current play row by given index.
      */
-    virtual void selectRow(int index) override;
+    virtual void selectRow(int index) override final;
 
     /*!
      * Clear play queue state.
@@ -78,21 +78,21 @@ public Q_SLOTS:
     /*!
      * Table widget item cell enter.
      */
-    virtual void itemCellEntered(int row, int column) override;
+    virtual void itemCellEntered(int row, int column) override final;
     /*!
      * Table widget item cell click.
      */
-    virtual void itemCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override final;
     /*!
      * Delete item from list at current row.
      */
-    virtual void setDeleteItemAt() override;
+    virtual void setDeleteItemAt() override final;
 
 protected:
     /*!
      * Override the widget event.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
     MusicSongsListPlayedWidget *m_musicSongsPlayWidget;
 

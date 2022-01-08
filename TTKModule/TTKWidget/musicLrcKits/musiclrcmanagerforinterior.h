@@ -53,7 +53,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
     int m_gradientFontSize;
     int m_gradientTransparent;

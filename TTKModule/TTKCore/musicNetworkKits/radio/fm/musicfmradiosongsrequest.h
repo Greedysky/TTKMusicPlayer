@@ -37,7 +37,7 @@ public:
     /*!
      * Start to download data.
      */
-    virtual void startToDownload(const QString &id) override;
+    virtual void startToDownload(const QString &id) override final;
     /*!
      * Get music song information.
      */
@@ -47,7 +47,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downLoadFinished() override final;
 
 protected:
     QString m_cachedID;

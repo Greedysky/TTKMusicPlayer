@@ -54,7 +54,7 @@ protected:
     /*!
      * Create item.
      */
-    virtual MusicFunctionToolBoxWidgetItem* createItem(QWidget *item, const QString &text);
+    virtual MusicFunctionToolBoxWidgetItem* createItem(QWidget *item, const QString &text) override final;
 
     MusicSongItems m_songItems;
 

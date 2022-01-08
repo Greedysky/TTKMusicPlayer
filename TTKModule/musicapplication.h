@@ -295,22 +295,22 @@ public Q_SLOTS:
     void currentPlaylist(QStringList &list);
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
-    virtual void closeEvent(QCloseEvent *event) override;
-    virtual void dragEnterEvent(QDragEnterEvent *event) override;
-    virtual void dragMoveEvent(QDragMoveEvent *event) override;
-    virtual void dropEvent(QDropEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override final;
+    virtual void closeEvent(QCloseEvent *event) override final;
+    virtual void dragEnterEvent(QDragEnterEvent *event) override final;
+    virtual void dragMoveEvent(QDragMoveEvent *event) override final;
+    virtual void dropEvent(QDropEvent *event) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 #if TTK_QT_VERSION_CHECK(6,0,0)
-    virtual void enterEvent(QEnterEvent *event) override;
+    virtual void enterEvent(QEnterEvent *event) override final;
 #else
-    virtual void enterEvent(QEvent *event) override;
+    virtual void enterEvent(QEvent *event) override final;
 #endif
-    virtual void leaveEvent(QEvent *event) override;
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void mouseReleaseEvent(QMouseEvent *event) override;
-    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
-    virtual bool eventFilter(QObject *object, QEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override final;
+    virtual void mousePressEvent(QMouseEvent *event) override final;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override final;
+    virtual void mouseDoubleClickEvent(QMouseEvent *event) override final;
+    virtual bool eventFilter(QObject *object, QEvent *event) override final;
 
     /*!
      * Set music current play index.

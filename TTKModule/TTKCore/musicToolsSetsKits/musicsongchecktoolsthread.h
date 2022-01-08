@@ -63,7 +63,7 @@ protected:
     /*!
      * Thread run now.
      */
-    virtual void run() override;
+    virtual void run() override final;
 
 protected:
     MusicSongs *m_songItems;
@@ -112,7 +112,7 @@ Q_SIGNALS:
     void finished(const MusicSongCheckToolsDuplicates &items);
 
 protected:
-    virtual void run() override;
+    virtual void run() override final;
     /*!
      * Thread run now.
      */
@@ -155,7 +155,7 @@ protected:
     /*!
      * Thread run now.
      */
-    virtual void run() override;
+    virtual void run() override final;
 
 protected:
     MusicSongs *m_songItems;

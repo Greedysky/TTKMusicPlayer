@@ -61,11 +61,11 @@ public:
     /*!
      * Override size hint.
      */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override final;
     /*!
      * Override paint.
      */
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
 
 protected:
     bool m_treeMode;
@@ -104,11 +104,11 @@ public:
     /*!
      * Override size hint.
      */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override final;
     /*!
      * Override paint.
      */
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
 
 Q_SIGNALS:
     /*!
@@ -151,11 +151,11 @@ public:
     /*!
      * Override size hint.
      */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override final;
     /*!
      * Override paint.
      */
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
 
 private:
     bool m_treeMode;
@@ -194,11 +194,11 @@ public:
     /*!
      * Override size hint.
      */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override final;
     /*!
      * Override paint.
      */
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
 
 protected:
     bool m_treeMode;
@@ -233,11 +233,11 @@ public:
     /*!
      * Override size hint.
      */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override final;
     /*!
      * Override paint.
      */
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
 
 protected:
     bool m_treeMode;
@@ -262,7 +262,7 @@ public:
     /*!
      * Override createEditor.
      */
-    virtual QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    virtual QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
 
 };
 

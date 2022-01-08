@@ -38,25 +38,25 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    virtual void startToSearch(QueryType type, const QString &playlist) override;
+    virtual void startToSearch(QueryType type, const QString &playlist) override final;
     /*!
      * Start to search data from name and type bt page.
      */
-    virtual void startToPage(int offset) override;
+    virtual void startToPage(int offset) override final;
     /*!
      * Start to Search data.
      */
-    virtual void startToSearch(const QString &playlist) override;
+    virtual void startToSearch(const QString &playlist) override final;
     /*!
      * Query playlist info.
      */
-    virtual void queryPlaylistInfo(MusicResultsItem &item) override;
+    virtual void queryPlaylistInfo(MusicResultsItem &item) override final;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downLoadFinished() override final;
     /*!
      * Download details data from net finished.
      */

@@ -98,13 +98,13 @@ public:
     /*!
      * Output remote skin.
      */
-    virtual void outputRemoteSkin(MusicBackgroundImage &image, const QString &data) override;
+    virtual void outputRemoteSkin(MusicBackgroundImage &image, const QString &data) override final;
 
 public Q_SLOTS:
     /*!
      * Send download data from net.
      */
-    virtual void downLoadFinished(const MusicSkinRemoteGroups &bytes) override;
+    virtual void downLoadFinished(const MusicSkinRemoteGroups &bytes) override final;
 
 };
 
@@ -136,7 +136,7 @@ public:
     /*!
      * Output remote skin.
      */
-    virtual void outputRemoteSkin(MusicBackgroundImage &image, const QString &data) override;
+    virtual void outputRemoteSkin(MusicBackgroundImage &image, const QString &data) override final;
 
 public Q_SLOTS:
     /*!
@@ -146,7 +146,7 @@ public Q_SLOTS:
     /*!
      * Send download data from net.
      */
-    virtual void downLoadFinished(const MusicSkinRemoteGroups &bytes) override;
+    virtual void downLoadFinished(const MusicSkinRemoteGroups &bytes) override final;
 
 protected:
     QWidget *m_functionsWidget;

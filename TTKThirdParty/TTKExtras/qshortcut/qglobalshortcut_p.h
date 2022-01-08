@@ -52,7 +52,7 @@ public:
     static QAbstractEventDispatcher::EventFilter prevEventFilter;
     static bool eventFilter(void* message);
 #else
-    virtual bool nativeEventFilter(const QByteArray &type, void *message, long *result) override;
+    virtual bool nativeEventFilter(const QByteArray &type, void *message, long *result) override final;
 #endif
 
 private:

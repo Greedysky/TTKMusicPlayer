@@ -37,13 +37,13 @@ public:
     /*!
      * Init widget.
      */
-    virtual void initWidget(bool isPain) override;
+    virtual void initWidget(bool isPain) override final;
 
 protected:
     /*!
      * Override the widget event.
      */
-    virtual void wheelEvent(QWheelEvent *event) override;
+    virtual void wheelEvent(QWheelEvent *event) override final;
 
 };
 

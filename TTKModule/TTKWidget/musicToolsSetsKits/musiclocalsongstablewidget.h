@@ -56,11 +56,11 @@ public Q_SLOTS:
     /*!
      * Table widget item cell click.
      */
-    virtual void itemCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override final;
     /*!
      * Override the widget event.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
 protected:
     QFileInfoList m_fileNames;
@@ -102,7 +102,7 @@ public Q_SLOTS:
     /*!
      * Table widget item cell click.
      */
-    virtual void itemCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override final;
     /*!
      * Table widget list double cell click.
      */

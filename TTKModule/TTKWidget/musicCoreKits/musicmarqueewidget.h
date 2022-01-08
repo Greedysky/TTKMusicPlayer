@@ -56,11 +56,11 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
-    virtual void showEvent(QShowEvent *event) override;
-    virtual void hideEvent(QHideEvent *event) override;
-    virtual void timerEvent(QTimerEvent *event) override;
-    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
+    virtual void showEvent(QShowEvent *event) override final;
+    virtual void hideEvent(QHideEvent *event) override final;
+    virtual void timerEvent(QTimerEvent *event) override final;
+    virtual void resizeEvent(QResizeEvent *event) override final;
 
 private:
     QString m_text;

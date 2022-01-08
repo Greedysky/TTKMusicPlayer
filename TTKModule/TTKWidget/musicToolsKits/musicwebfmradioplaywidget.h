@@ -103,7 +103,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void closeEvent(QCloseEvent *event) override;
+    virtual void closeEvent(QCloseEvent *event) override final;
     /*!
      * Create core module.
      */

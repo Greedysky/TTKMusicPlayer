@@ -78,13 +78,13 @@ public Q_SLOTS:
     /*!
      * Table widget item cell click.
      */
-    virtual void itemCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override final;
 
 protected:
     /*!
      * Override the widget event.
      */
-    virtual void leaveEvent(QEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override final;
 
     int m_listIndex;
 };

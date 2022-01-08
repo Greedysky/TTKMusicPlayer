@@ -60,7 +60,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void focusOutEvent(QFocusEvent *event) override;
+    virtual void focusOutEvent(QFocusEvent *event) override final;
 
     bool m_focusBlock;
 

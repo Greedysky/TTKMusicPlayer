@@ -47,7 +47,7 @@ protected Q_SLOTS:
     /*!
      * Receive data from server.
      */
-    virtual void receiveDataFromServer() override;
+    virtual void receiveDataFromServer() override final;
 
 };
 

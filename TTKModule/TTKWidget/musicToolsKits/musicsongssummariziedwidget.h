@@ -283,8 +283,8 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void resizeEvent(QResizeEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
     int m_playToolIndex;
     int m_searchResultLevel;

@@ -42,15 +42,15 @@ public:
     /*!
      * Start timer clock to draw lrc.
      */
-    virtual void startDrawLrc() override;
+    virtual void startDrawLrc() override final;
     /*!
      * Stop timer clock to draw lrc.
      */
-    virtual void stopDrawLrc() override;
+    virtual void stopDrawLrc() override final;
     /*!
      * Set setting parameter.
      */
-    virtual void applySettingParameter() override;
+    virtual void applySettingParameter() override final;
 
     /*!
      * Set lrc analysis model.

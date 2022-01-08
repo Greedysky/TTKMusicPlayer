@@ -42,7 +42,7 @@ public:
     /*!
      * Resize window bound by given width and height.
      */
-    virtual void resizeWindow(int width, int height) override;
+    virtual void resizeWindow(int width, int height) override final;
 
 public Q_SLOTS:
     /*!

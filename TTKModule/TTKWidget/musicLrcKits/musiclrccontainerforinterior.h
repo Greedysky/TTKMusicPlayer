@@ -45,15 +45,15 @@ public:
     /*!
      * Start timer clock to draw lrc.
      */
-    virtual void startDrawLrc() override;
+    virtual void startDrawLrc() override final;
     /*!
      * Stop timer clock to draw lrc.
      */
-    virtual void stopDrawLrc() override;
+    virtual void stopDrawLrc() override final;
     /*!
      * Set setting parameter.
      */
-    virtual void applySettingParameter() override;
+    virtual void applySettingParameter() override final;
 
     /*!
      * Update current lrc by given time.
@@ -193,13 +193,13 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void mouseMoveEvent(QMouseEvent *event) override;
-    virtual void mouseReleaseEvent(QMouseEvent *event) override;
-    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
-    virtual void paintEvent(QPaintEvent *event) override;
-    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
+    virtual void mousePressEvent(QMouseEvent *event) override final;
+    virtual void mouseMoveEvent(QMouseEvent *event) override final;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override final;
+    virtual void mouseDoubleClickEvent(QMouseEvent *event) override final;
+    virtual void paintEvent(QPaintEvent *event) override final;
+    virtual void resizeEvent(QResizeEvent *event) override final;
     /*!
      * Create color menu.
      */

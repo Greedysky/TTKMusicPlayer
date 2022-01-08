@@ -48,7 +48,7 @@ public:
     /*!
      * Start to download data.
      */
-    virtual void startToDownload(const QString &id) override;
+    virtual void startToDownload(const QString &id) override final;
     /*!
      * Get music channel.
      */
@@ -58,7 +58,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downLoadFinished() override final;
 
 protected:
     MusicFMRadioChannelDatas m_channels;

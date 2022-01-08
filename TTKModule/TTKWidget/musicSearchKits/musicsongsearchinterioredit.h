@@ -71,8 +71,8 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void focusInEvent(QFocusEvent *event) override;
-    virtual void leaveEvent(QEvent *event) override;
+    virtual void focusInEvent(QFocusEvent *event) override final;
+    virtual void leaveEvent(QEvent *event) override final;
 
     MusicSongSearchPopWidget *m_popWidget;
     MusicDiscoverListRequest *m_discoverRequest;

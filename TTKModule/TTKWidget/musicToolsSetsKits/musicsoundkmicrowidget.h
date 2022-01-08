@@ -111,9 +111,9 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void closeEvent(QCloseEvent *event) override;
-    virtual void paintEvent(QPaintEvent *event) override;
-    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void closeEvent(QCloseEvent *event) override final;
+    virtual void paintEvent(QPaintEvent *event) override final;
+    virtual void mouseMoveEvent(QMouseEvent *event) override final;
     /*!
      * Multi media changed.
      */

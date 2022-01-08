@@ -40,7 +40,7 @@ public:
     /*!
      * Set current song text.
      */
-    virtual void setLabelText(const QString &value) override;
+    virtual void setLabelText(const QString &value) override final;
 
 private Q_SLOTS:
     /*!
@@ -60,7 +60,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
     QPushButton *m_lrcButton, *m_wallPaperButton, *m_listButton;
     QPushButton *m_windowStateButton;

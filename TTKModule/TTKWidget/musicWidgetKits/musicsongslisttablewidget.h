@@ -45,11 +45,11 @@ public:
     /*!
      * Update songs file names in table.
      */
-    virtual void updateSongsFileName(const MusicSongs &songs) override;
+    virtual void updateSongsFileName(const MusicSongs &songs) override final;
     /*!
      * Select the current play row.
      */
-    virtual void selectRow(int index) override;
+    virtual void selectRow(int index) override final;
 
     /*!
      * Clear All Items.
@@ -111,15 +111,15 @@ public Q_SLOTS:
     /*!
      * Table widget item cell enter.
      */
-    virtual void itemCellEntered(int row, int column) override;
+    virtual void itemCellEntered(int row, int column) override final;
     /*!
      * Table widget item cell click.
      */
-    virtual void itemCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override final;
     /*!
      * Delete item from list at current row.
      */
-    virtual void setDeleteItemAt() override;
+    virtual void setDeleteItemAt() override final;
     /*!
      * Delete item or items from list with file.
      */
@@ -169,12 +169,12 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void mouseMoveEvent(QMouseEvent *event) override;
-    virtual void mouseReleaseEvent(QMouseEvent *event) override;
-    virtual void leaveEvent(QEvent *event) override;
-    virtual void wheelEvent(QWheelEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *event) override final;
+    virtual void mouseMoveEvent(QMouseEvent *event) override final;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override final;
+    virtual void leaveEvent(QEvent *event) override final;
+    virtual void wheelEvent(QWheelEvent *event) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
     /*!
      * Close rename item.
      */

@@ -37,11 +37,11 @@ public:
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload() override;
+    virtual void startToDownload() override final;
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload(const QString &id) override;
+    virtual void startToDownload(const QString &id) override final;
 
 Q_SIGNALS:
     /*!
@@ -53,7 +53,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished(const QByteArray &bytes) override;
+    virtual void downLoadFinished(const QByteArray &bytes) override final;
     /*!
      * Download item data from net finished.
      */

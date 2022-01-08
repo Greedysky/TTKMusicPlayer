@@ -69,11 +69,11 @@ protected:
      * Override the widget event.
      */
 #if TTK_QT_VERSION_CHECK(6,0,0)
-    virtual void enterEvent(QEnterEvent *event) override;
+    virtual void enterEvent(QEnterEvent *event) override final;
 #else
-    virtual void enterEvent(QEvent *event) override;
+    virtual void enterEvent(QEvent *event) override final;
 #endif
-    virtual void leaveEvent(QEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override final;
 
     MusicResultsItem m_itemData;
     QPushButton *m_playButton;
@@ -100,16 +100,16 @@ public:
     /*!
      * Set current name to search founds.
      */
-    virtual void setSongName(const QString &name) override;
+    virtual void setSongName(const QString &name) override final;
     /*!
      * Set current id to search founds.
      */
-    virtual void setSongNameById(const QString &id) override;
+    virtual void setSongNameById(const QString &id) override final;
 
     /*!
      * Resize window bound by widget resize called.
      */
-    virtual void resizeWindow() override;
+    virtual void resizeWindow() override final;
 
 public Q_SLOTS:
     /*!

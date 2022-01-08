@@ -47,15 +47,15 @@ public:
     /*!
      * Start timer clock to draw lrc.
      */
-    virtual void startDrawLrc() override;
+    virtual void startDrawLrc() override final;
     /*!
      * Stop timer clock to draw lrc.
      */
-    virtual void stopDrawLrc() override;
+    virtual void stopDrawLrc() override final;
     /*!
      * Set setting parameter.
      */
-    virtual void applySettingParameter() override;
+    virtual void applySettingParameter() override final;
 
     /*!
      * Init current lrc when the first show.
@@ -132,16 +132,16 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void mouseMoveEvent(QMouseEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *event) override final;
+    virtual void mouseMoveEvent(QMouseEvent *event) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 #if TTK_QT_VERSION_CHECK(6,0,0)
-    virtual void enterEvent(QEnterEvent *event) override;
+    virtual void enterEvent(QEnterEvent *event) override final;
 #else
-    virtual void enterEvent(QEvent *event) override;
+    virtual void enterEvent(QEvent *event) override final;
 #endif
-    virtual void leaveEvent(QEvent *event) override;
-    virtual void closeEvent(QCloseEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override final;
+    virtual void closeEvent(QCloseEvent *event) override final;
 
     bool m_verticalWindow, m_singleLineType;
     bool m_windowLocked, m_reverse;
@@ -171,19 +171,19 @@ public:
     /*!
      * Init current lrc when the first show.
      */
-    virtual void initCurrentLrc() const override;
+    virtual void initCurrentLrc() const override final;
 
 public Q_SLOTS:
     /*!
      * Set single line type changed.
      */
-    virtual void setSingleLineTypeChanged() override;
+    virtual void setSingleLineTypeChanged() override final;
 
 protected:
     /*!
      * Resize lrc size area by change size.
      */
-    virtual void resizeLrcSizeArea() override;
+    virtual void resizeLrcSizeArea() override final;
 
 };
 
@@ -204,19 +204,19 @@ public:
     /*!
      * Init current lrc when the first show.
      */
-    virtual void initCurrentLrc() const override;
+    virtual void initCurrentLrc() const override final;
 
 public Q_SLOTS:
     /*!
      * Set single line type changed.
      */
-    virtual void setSingleLineTypeChanged() override;
+    virtual void setSingleLineTypeChanged() override final;
 
 protected:
     /*!
      * Resize lrc size area by change size.
      */
-    virtual void resizeLrcSizeArea() override;
+    virtual void resizeLrcSizeArea() override final;
 
 };
 

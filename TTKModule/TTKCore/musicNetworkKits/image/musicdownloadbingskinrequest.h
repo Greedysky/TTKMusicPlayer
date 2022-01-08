@@ -37,13 +37,13 @@ public:
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload() override;
+    virtual void startToDownload() override final;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished(const QByteArray &bytes) override;
+    virtual void downLoadFinished(const QByteArray &bytes) override final;
 
 };
 

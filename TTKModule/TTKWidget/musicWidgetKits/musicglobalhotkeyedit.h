@@ -44,7 +44,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override final;
 
 };
 

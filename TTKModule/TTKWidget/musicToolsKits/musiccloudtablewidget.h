@@ -40,7 +40,7 @@ protected:
     /*!
      * Create item by index and name and size and time.
      */
-    virtual void createItem(int index, const MusicSong &record) override;
+    virtual void createItem(int index, const MusicSong &record) override final;
 
 };
 
@@ -83,11 +83,11 @@ protected:
     /*!
      * Create item by index and name and size and time.
      */
-    virtual void createItem(int index, const MusicSong &record) override;
+    virtual void createItem(int index, const MusicSong &record) override final;
     /*!
      * Override the widget event.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
 };
 

@@ -37,7 +37,7 @@ public:
     /*!
      * Start to download artist picture from net.
      */
-    virtual void startToDownload() override;
+    virtual void startToDownload() override final;
 
 public Q_SLOTS:
     /*!

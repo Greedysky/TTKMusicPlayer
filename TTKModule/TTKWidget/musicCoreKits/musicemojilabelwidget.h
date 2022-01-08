@@ -58,7 +58,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void leaveEvent(QEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override final;
 
     int m_currentPage;
     QList<QLabel*> m_labelItems;

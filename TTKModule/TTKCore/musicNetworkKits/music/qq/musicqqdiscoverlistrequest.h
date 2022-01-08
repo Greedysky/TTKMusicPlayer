@@ -37,13 +37,13 @@ public:
     /*!
      * Start to Search data from toplist.
      */
-    virtual void startToSearch() override;
+    virtual void startToSearch() override final;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    virtual void downLoadFinished() override final;
 
 };
 

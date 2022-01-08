@@ -38,17 +38,17 @@ public:
     /*!
      * Set network query input.
      */
-    virtual void setQueryInput(MusicAbstractQueryRequest *query) override;
+    virtual void setQueryInput(MusicAbstractQueryRequest *query) override final;
     /*!
      * Data download to local file.
      */
-    virtual void musicDownloadLocal(int row) override;
+    virtual void musicDownloadLocal(int row) override final;
 
 public Q_SLOTS:
     /*!
      * Subclass should implement this function.
      */
-    virtual void itemCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override final;
     /*!
      * Menu action type changed.
      */
@@ -58,7 +58,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
 };
 
@@ -79,16 +79,16 @@ public:
     /*!
      * Set current name to search founds.
      */
-    virtual void setSongName(const QString &name) override;
+    virtual void setSongName(const QString &name) override final;
     /*!
      * Set current id to search founds.
      */
-    virtual void setSongNameById(const QString &id) override;
+    virtual void setSongNameById(const QString &id) override final;
 
     /*!
      * Resize window bound by widget resize called.
      */
-    virtual void resizeWindow() override;
+    virtual void resizeWindow() override final;
 
 Q_SIGNALS:
     /*!

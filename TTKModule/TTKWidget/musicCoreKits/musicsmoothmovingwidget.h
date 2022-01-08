@@ -101,7 +101,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void wheelEvent(QWheelEvent *event) override;
+    virtual void wheelEvent(QWheelEvent *event) override final;
 
     bool m_initialized;
     int m_previousValue, m_deltaValue;

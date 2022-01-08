@@ -41,7 +41,7 @@ public:
     /*!
      * Set network query input.
      */
-    virtual void setQueryInput(MusicAbstractQueryRequest *query) override;
+    virtual void setQueryInput(MusicAbstractQueryRequest *query) override final;
 
 };
 
@@ -63,16 +63,16 @@ public:
     /*!
      * Set current name to search founds.
      */
-    virtual void setSongName(const QString &name) override;
+    virtual void setSongName(const QString &name) override final;
     /*!
      * Set current id to search founds.
      */
-    virtual void setSongNameById(const QString &id) override;
+    virtual void setSongNameById(const QString &id) override final;
 
     /*!
      * Resize window bound by widget resize called.
      */
-    virtual void resizeWindow() override;
+    virtual void resizeWindow() override final;
 
 public Q_SLOTS:
     /*!

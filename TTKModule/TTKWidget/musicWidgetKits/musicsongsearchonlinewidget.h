@@ -47,7 +47,7 @@ public:
     /*!
      * Start search query by text.
      */
-    virtual void startSearchQuery(const QString &text) override;
+    virtual void startSearchQuery(const QString &text) override final;
     /*!
      * Start search query by given id.
      */
@@ -55,7 +55,7 @@ public:
     /*!
      * Data download to local file.
      */
-    virtual void musicDownloadLocal(int row) override;
+    virtual void musicDownloadLocal(int row) override final;
 
     /*!
      * Set search data quality.
@@ -71,27 +71,27 @@ public Q_SLOTS:
     /*!
      * Table widget item cell enter.
      */
-    virtual void itemCellEntered(int row, int column) override;
+    virtual void itemCellEntered(int row, int column) override final;
     /*!
      * Table widget item cell click.
      */
-    virtual void itemCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override final;
     /*!
      * Clear All Items.
      */
-    virtual void clearAllItems() override;
+    virtual void clearAllItems() override final;
     /*!
      * Create searched items.
      */
-    virtual void createSearchedItem(const MusicSearchedItem &songItem) override;
+    virtual void createSearchedItem(const MusicSearchedItem &songItem) override final;
     /*!
      * Item has double clicked.
      */
-    virtual void itemDoubleClicked(int row, int column) override;
+    virtual void itemDoubleClicked(int row, int column) override final;
     /*!
      * Left context menu action group click by action.
      */
-    virtual void actionGroupClick(QAction *action) override;
+    virtual void actionGroupClick(QAction *action) override final;
     /*!
      * Open music song download widget.
      */
@@ -101,8 +101,8 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void resizeEvent(QResizeEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
     /*!
      * Add search music to play list by index.
      */
@@ -155,7 +155,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override final;
     /*!
      * Create tool widget.
      */

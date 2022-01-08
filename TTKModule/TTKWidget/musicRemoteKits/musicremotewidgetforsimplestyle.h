@@ -40,7 +40,7 @@ public:
     /*!
      * Set current song text.
      */
-    virtual void setLabelText(const QString &value) override;
+    virtual void setLabelText(const QString &value) override final;
 
 protected:
     MusicMarqueeWidget *m_songNameLabel;

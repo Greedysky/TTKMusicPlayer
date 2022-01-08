@@ -83,12 +83,12 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void dragLeaveEvent(QDragLeaveEvent *event) override;
-    virtual void dragMoveEvent(QDragMoveEvent *event) override;
-    virtual void dragEnterEvent(QDragEnterEvent *event) override;
-    virtual void dropEvent(QDropEvent *event) override;
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void dragLeaveEvent(QDragLeaveEvent *event) override final;
+    virtual void dragMoveEvent(QDragMoveEvent *event) override final;
+    virtual void dragEnterEvent(QDragEnterEvent *event) override final;
+    virtual void dropEvent(QDropEvent *event) override final;
+    virtual void mousePressEvent(QMouseEvent *event) override final;
+    virtual void mouseMoveEvent(QMouseEvent *event) override final;
     virtual void paintEvent(QPaintEvent *event) override;
 
     int m_index;
@@ -155,7 +155,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *event) override final;
 
     QVBoxLayout *m_layout;
     QWidget* m_item;
@@ -266,7 +266,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *event) override final;
     /*!
      * Found mapped index in container.
      */
