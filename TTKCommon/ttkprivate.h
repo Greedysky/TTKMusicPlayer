@@ -48,16 +48,30 @@ template <typename PUB>
 class TTK_MODULE_EXPORT TTKPrivate
 {
 public:
-    TTKPrivate() { ttk_q_ptr = nullptr; }
-    virtual ~TTKPrivate() { }
+    TTKPrivate()
+        : m_qptr(nullptr)
+    {
 
-    inline void setPublic(PUB* pub) { ttk_q_ptr = pub; }
+    }
+
+    virtual ~TTKPrivate()
+    {
+
+    }
+
+    inline void setPublic(PUB* pub)
+    {
+        m_qptr = pub;
+    }
 
 protected:
-    inline PUB *ttk_q() const { return ttk_q_ptr; }
+    inline PUB *ttk_q() const
+    {
+        return m_qptr;
+    }
 
 private:
-    PUB* ttk_q_ptr;
+    PUB* m_qptr;
 
 };
 
@@ -69,18 +83,42 @@ class TTK_MODULE_EXPORT TTKPrivateInterface
 {
     friend class TTKPrivate<PUB>;
 public:
-    TTKPrivateInterface(PVT* pvt) : pvt_ptr(pvt) { }
-    TTKPrivateInterface() : pvt_ptr(nullptr) { }
-    ~TTKPrivateInterface() { delete pvt_ptr; }
+    TTKPrivateInterface()
+        : m_dptr(nullptr)
+    {
 
-    inline void setPrivate(PVT* pvt) { delete pvt_ptr; pvt_ptr = pvt; }
-    inline void setPublic(PUB* pub) { pvt_ptr->setPublic(pub); }
-    inline PVT *operator()() const { return static_cast<PVT*>(pvt_ptr); }
+    }
+
+    TTKPrivateInterface(PVT* pvt)
+        : m_dptr(pvt)
+    {
+
+    }
+
+    ~TTKPrivateInterface()
+    {
+        delete m_dptr;
+    }
+
+    inline void setPrivate(PVT* pvt)
+    {
+        delete m_dptr;
+        m_dptr = pvt;
+    }
+
+    inline void setPublic(PUB* pub)
+    {
+        m_dptr->setPublic(pub);
+    }
+
+    inline PVT *operator()() const
+    {
+        return static_cast<PVT*>(m_dptr);
+    }
 
 private:
-    TTKPrivateInterface(const TTKPrivateInterface&) { }
-    TTKPrivateInterface& operator=(const TTKPrivateInterface&) { }
-    TTKPrivate<PUB>* pvt_ptr;
+    TTKPrivate<PUB>* m_dptr;
+    Q_DISABLE_COPY(TTKPrivateInterface)
 
 };
 
