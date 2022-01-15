@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCE="$1/A_extras"
+SOURCE="$1/_extras"
 OUTPUT="$2"
 
 #make output dir

@@ -1,16 +1,16 @@
 <RCC>
     <qresource prefix="/data">
-        <file alias="playlist.tkpl">../TTKResource/A_extras/playlist.tkpl</file>
-        <file alias="config.xml">../TTKResource/A_extras/config.xml</file>
-        <file alias="download.ttk">../TTKResource/A_extras/download.ttk</file>
-        <file alias="cdownload.ttk">../TTKResource/A_extras/cdownload.ttk</file>
-        <file alias="cupload.ttk">../TTKResource/A_extras/cupload.ttk</file>
-        <file alias="search.ttk">../TTKResource/A_extras/search.ttk</file>
-        <file alias="TTKRoutine.sh">../TTKResource/A_extras/TTKRoutine.sh</file>
-        <file alias="TTKRoutineCopy.sh">../TTKResource/A_extras/TTKRoutineCopy.sh</file>
-        <file alias="TTKConsole.sh">../TTKResource/A_extras/TTKConsole.sh</file>
-        <file alias="TTKService.sh">../TTKResource/A_extras/TTKService.sh</file>
-        <file alias="TTKInit.sh">../TTKResource/A_extras/TTKInit.sh</file>
-        <file alias="TTKMusicPlayer.sh">../TTKResource/A_extras/TTKMusicPlayer.sh</file>
+        <file alias="playlist.tkpl">../TTKResource/_extras/playlist.tkpl</file>
+        <file alias="config.xml">../TTKResource/_extras/config.xml</file>
+        <file alias="download.ttk">../TTKResource/_extras/download.ttk</file>
+        <file alias="cdownload.ttk">../TTKResource/_extras/cdownload.ttk</file>
+        <file alias="cupload.ttk">../TTKResource/_extras/cupload.ttk</file>
+        <file alias="search.ttk">../TTKResource/_extras/search.ttk</file>
+        <file alias="TTKRoutine.sh">../TTKResource/_extras/TTKRoutine.sh</file>
+        <file alias="TTKRoutineCopy.sh">../TTKResource/_extras/TTKRoutineCopy.sh</file>
+        <file alias="TTKConsole.sh">../TTKResource/_extras/TTKConsole.sh</file>
+        <file alias="TTKService.sh">../TTKResource/_extras/TTKService.sh</file>
+        <file alias="TTKInit.sh">../TTKResource/_extras/TTKInit.sh</file>
+        <file alias="TTKMusicPlayer.sh">../TTKResource/_extras/TTKMusicPlayer.sh</file>
     </qresource>
 </RCC>

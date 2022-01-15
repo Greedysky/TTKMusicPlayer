@@ -150,16 +150,16 @@ bool MusicVideoPlayWidget::isPopupMode() const
 
 void MusicVideoPlayWidget::resizeWindow()
 {
-    const int w = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    const int h = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int height = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
 
     if(!isFullScreen())
     {
 #ifdef Q_OS_UNIX
         const bool v = isPopupMode();
-        resizeWindow(v ? (width() - 680) : (w - WINDOW_WIDTH_MIN), v ? (height() - 508) : (h - WINDOW_HEIGHT_MIN));
+        resizeWindow(v ? (width() - 680) : (width - WINDOW_WIDTH_MIN), v ? (height() - 508) : (height - WINDOW_HEIGHT_MIN));
 #else
-        resizeWindow(w - WINDOW_WIDTH_MIN, h - WINDOW_HEIGHT_MIN);
+        resizeWindow(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
 #endif
     }
 }

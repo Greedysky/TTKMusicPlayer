@@ -12,15 +12,15 @@ MusicMarqueeWidget::MusicMarqueeWidget(QWidget *parent)
 
 void MusicMarqueeWidget::setText(const QString &newText)
 {
-    int w = 0;
+    int width = 0;
     if(m_effectOnResize)
     {
-        w = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-        w = (w - WINDOW_WIDTH_MIN)/10;
+        width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        width = (width - WINDOW_WIDTH_MIN) / 10;
     }
 
     int length = MusicUtils::Widget::fontTextWidth(font(), newText);
-        length = (length >= width()) ? (45 + w) : (25 + w);
+        length = (length >= this->width()) ? (45 + width) : (25 + width);
     m_text = newText.leftJustified(length, ' ');
 
     update();
