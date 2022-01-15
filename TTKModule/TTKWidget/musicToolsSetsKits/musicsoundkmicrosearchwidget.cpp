@@ -104,7 +104,6 @@ void MusicSoundKMicroSearchTableWidget::createSearchedItem(const MusicSearchedIt
 #else
     item->setTextColor(QColor(100, 100, 100));
 #endif
-    item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;

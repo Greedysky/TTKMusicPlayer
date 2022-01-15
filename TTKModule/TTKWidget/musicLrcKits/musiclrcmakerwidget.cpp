@@ -587,7 +587,7 @@ void MusicLrcMakerWidget::createFirstWidget()
 
 void MusicLrcMakerWidget::createSecondWidget()
 {
-    m_lineItem = new  MusicLrcMakerWidgetItem(m_ui->makeTextEdit, this);
+    m_lineItem = new MusicLrcMakerWidgetItem(m_ui->makeTextEdit, this);
     m_lineItem->show();
 
     m_ui->makeTextEdit->setReadOnly(true);

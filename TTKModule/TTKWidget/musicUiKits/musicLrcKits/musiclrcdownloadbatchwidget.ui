@@ -169,9 +169,9 @@ font-weight:bold;</string>
    <widget class="QLabel" name="label_song">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>75</x>
       <y>147</y>
-      <width>41</width>
+      <width>60</width>
       <height>20</height>
      </rect>
     </property>
@@ -217,9 +217,9 @@ font-weight:bold;</string>
    <widget class="QLabel" name="label_art">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>225</x>
       <y>147</y>
-      <width>41</width>
+      <width>60</width>
       <height>20</height>
      </rect>
     </property>
@@ -249,7 +249,7 @@ font-weight:bold;</string>
    <widget class="QLabel" name="label_path">
     <property name="geometry">
      <rect>
-      <x>385</x>
+      <x>325</x>
       <y>147</y>
       <width>60</width>
       <height>20</height>

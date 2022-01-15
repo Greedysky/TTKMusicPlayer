@@ -644,11 +644,12 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     labelWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle03);
     QHBoxLayout *labelWidgetLayout = new QHBoxLayout(labelWidget);
     functionWidgetLayout->setContentsMargins(10, 20, 10, 10);
+
     QLabel *label1 = new QLabel(tr("Song"), this);
     label1->setAlignment(Qt::AlignCenter);
     label1->setStyleSheet(MusicUIObject::MQSSFontStyle01);
     labelWidgetLayout->addWidget(label1, 100);
-    m_resizeLabels << label1;
+    m_resizeWidgets << label1;
 
     QLabel *label2 = new QLabel(tr("FileSize"), this);
     label2->setAlignment(Qt::AlignCenter);
@@ -683,10 +684,10 @@ MusicCloudManagerWidget::~MusicCloudManagerWidget()
 void MusicCloudManagerWidget::resizeWindow()
 {
     m_managerTableWidget->resizeWindow();
-    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    if(!m_resizeLabels.isEmpty())
+    if(!m_resizeWidgets.isEmpty())
     {
-        m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN) + 540);
+        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        m_resizeWidgets[0]->setFixedWidth((width - WINDOW_WIDTH_MIN) + 540);
     }
 }
 

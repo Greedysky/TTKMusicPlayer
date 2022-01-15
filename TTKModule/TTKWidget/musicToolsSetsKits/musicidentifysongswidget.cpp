@@ -256,7 +256,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     else
     {
         m_mediaPlayer = new MusicCoreMPlayer(this);
-        m_analysis = new  MusicLrcAnalysis(this);
+        m_analysis = new MusicLrcAnalysis(this);
         m_analysis->setLineMax(11);
         connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     }

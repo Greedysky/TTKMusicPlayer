@@ -233,7 +233,7 @@ protected:
 protected:
     QLabel *m_sizeValueLabel;
     QProgressBar *m_sizeValueBar;
-    QList<QWidget*> m_resizeLabels;
+    QList<QWidget*> m_resizeWidgets;
     MusicCloudManagerTableWidget *m_managerTableWidget;
 
 };

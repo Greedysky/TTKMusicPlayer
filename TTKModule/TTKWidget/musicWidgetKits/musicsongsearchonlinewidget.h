@@ -167,7 +167,7 @@ protected:
 
     QLabel *m_textLabel;
     QPushButton *m_playButton;
-    QList<QWidget*> m_resizeLabels;
+    QList<QWidget*> m_resizeWidgets;
     MusicSongSearchTableWidget *m_searchTableWidget;
 
 };

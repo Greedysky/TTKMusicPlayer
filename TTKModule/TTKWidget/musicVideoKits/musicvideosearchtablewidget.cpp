@@ -171,7 +171,6 @@ void MusicVideoSearchTableWidget::createSearchedItem(const MusicSearchedItem &so
 #else
     item->setTextColor(QColor(100, 100, 100));
 #endif
-    item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
@@ -182,7 +181,6 @@ void MusicVideoSearchTableWidget::createSearchedItem(const MusicSearchedItem &so
 #else
     item->setTextColor(QColor(100, 100, 100));
 #endif
-    item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_duration);
@@ -191,7 +189,6 @@ void MusicVideoSearchTableWidget::createSearchedItem(const MusicSearchedItem &so
 #else
     item->setTextColor(QColor(100, 100, 100));
 #endif
-    item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;

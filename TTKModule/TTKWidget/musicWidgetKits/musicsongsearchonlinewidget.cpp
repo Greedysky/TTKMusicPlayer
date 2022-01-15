@@ -124,9 +124,9 @@ void MusicSongSearchTableWidget::resizeWindow()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)/3.0 + 273);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)/3.0 + 105);
-    headerview->resizeSection(3, (width - WINDOW_WIDTH_MIN)/3.0 + 105);
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) / 3.0 + 273);
+    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN) / 3.0 + 105);
+    headerview->resizeSection(3, (width - WINDOW_WIDTH_MIN) / 3.0 + 105);
 
     for(int i=0; i<rowCount(); ++i)
     {
@@ -189,7 +189,6 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicSearchedItem &son
 #else
     item->setTextColor(QColor(100, 100, 100));
 #endif
-    item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
@@ -200,7 +199,6 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicSearchedItem &son
 #else
     item->setTextColor(QColor(100, 100, 100));
 #endif
-    item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem;
@@ -211,7 +209,6 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicSearchedItem &son
 #else
     item->setTextColor(QColor(100, 100, 100));
 #endif
-    item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem(songItem.m_duration);
@@ -220,7 +217,6 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicSearchedItem &son
 #else
     item->setTextColor(QColor(100, 100, 100));
 #endif
-    item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
@@ -367,7 +363,7 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
     toolWidget->setAutoFillBackground(true);
     toolWidget->setPalette(pal);
 
-    m_searchTableWidget = new  MusicSongSearchTableWidget(this);
+    m_searchTableWidget = new MusicSongSearchTableWidget(this);
     boxLayout->addWidget(toolWidget);
     boxLayout->addWidget(m_searchTableWidget);
     setLayout(boxLayout);
@@ -378,7 +374,6 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
 
 MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
 {
-    qDeleteAll(m_resizeLabels);
     delete m_playButton;
     delete m_textLabel;
     delete m_searchTableWidget;
@@ -387,10 +382,11 @@ MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
 void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name, bool all)
 {
     setResizeLabelText(name);
-    if(m_resizeLabels.count() == 5)
+    if(!m_resizeWidgets.isEmpty())
     {
-        TTKStatic_cast(QCheckBox*, m_resizeLabels[4])->setChecked(false);
+        TTKStatic_cast(QCheckBox*, m_resizeWidgets[0])->setChecked(false);
     }
+
     m_searchTableWidget->setQueryAllRecords(all);
     m_searchTableWidget->startSearchQuery(name);
 }
@@ -398,10 +394,11 @@ void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name, bool all
 void MusicSongSearchOnlineWidget::startSearchSingleQuery(const QString &name)
 {
     setResizeLabelText(name);
-    if(m_resizeLabels.count() == 5)
+    if(!m_resizeWidgets.isEmpty())
     {
-        TTKStatic_cast(QCheckBox*, m_resizeLabels[4])->setChecked(false);
+        TTKStatic_cast(QCheckBox*, m_resizeWidgets[0])->setChecked(false);
     }
+
     m_searchTableWidget->setQueryAllRecords(true);
     m_searchTableWidget->startSearchSingleQuery(name);
 }
@@ -522,17 +519,19 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     funcWidget->setLayout(funcLayout);
     wLayout->addWidget(funcWidget);
 
+    QHeaderView *headerview = m_searchTableWidget->horizontalHeader();
     //
     QWidget *labelWidget = new QWidget(widget);
     QHBoxLayout *labelLayout = new QHBoxLayout(labelWidget);
     labelLayout->setContentsMargins(7, 0, 10, 0);
-    labelLayout->setSpacing(10);
+    labelLayout->setSpacing(0);
     labelWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle03);
 
     QCheckBox *labelCheckBox = new QCheckBox(this);
     labelCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     connect(labelCheckBox, SIGNAL(clicked(bool)), m_searchTableWidget, SLOT(setSelectedAllItems(bool)));
-    labelLayout->addWidget(labelCheckBox, 3);
+    labelLayout->addWidget(labelCheckBox, headerview->sectionSize(0));
+    m_resizeWidgets << labelCheckBox;
 
 #ifdef Q_OS_UNIX
     m_playButton->setFocusPolicy(Qt::NoFocus);
@@ -542,30 +541,24 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 #endif
 
     QLabel *label1 = new QLabel(tr("Song"), this);
-    label1->setAlignment(Qt::AlignCenter);
     label1->setStyleSheet(MusicUIObject::MQSSFontStyle01);
-    labelLayout->addWidget(label1, 1);
-    m_resizeLabels << label1;
+    labelLayout->addWidget(label1, headerview->sectionSize(1));
+    m_resizeWidgets << label1;
 
     QLabel *label2 = new QLabel(tr("Artist"), this);
-    label2->setAlignment(Qt::AlignCenter);
     label2->setStyleSheet(MusicUIObject::MQSSFontStyle01);
-    labelLayout->addWidget(label2, 1);
-    m_resizeLabels << label2;
+    labelLayout->addWidget(label2, headerview->sectionSize(2));
+    m_resizeWidgets << label2;
 
     QLabel *label3 = new QLabel(tr("Album"), this);
-    label3->setAlignment(Qt::AlignCenter);
     label3->setStyleSheet(MusicUIObject::MQSSFontStyle01);
-    labelLayout->addWidget(label3, 3);
-    m_resizeLabels << label3;
+    labelLayout->addWidget(label3, headerview->sectionSize(3));
+    m_resizeWidgets << label3;
 
     QLabel *label4 = new QLabel(tr("Operator"), this);
-    label4->setAlignment(Qt::AlignCenter);
     label4->setStyleSheet(MusicUIObject::MQSSFontStyle01);
-    labelLayout->addWidget(label4, 4);
-    m_resizeLabels << label4;
-
-    m_resizeLabels << labelCheckBox;
+    labelLayout->addWidget(label4, headerview->sectionSize(4) + headerview->sectionSize(5) + headerview->sectionSize(6) * 3);
+    m_resizeWidgets << label3;
 
     labelWidget->setLayout(labelLayout);
     wLayout->addWidget(labelWidget);
@@ -574,12 +567,11 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
 {
     int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    if(m_resizeLabels.count() == 5)
+    if(!m_resizeWidgets.isEmpty())
     {
-        m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 270);
-        m_resizeLabels[1]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 255);
-        m_resizeLabels[2]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 90);
-        m_resizeLabels[3]->setFixedWidth((width - WINDOW_WIDTH_MIN) * 0 + 150);
+        m_resizeWidgets[1]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 273);
+        m_resizeWidgets[2]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 105);
+        m_resizeWidgets[3]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 105);
     }
 
     width = width - WINDOW_WIDTH_MIN + 240;
