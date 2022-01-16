@@ -107,7 +107,7 @@ void MusicSoundKMicroSearchTableWidget::createSearchedItem(const MusicSearchedIt
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(randToGetStrength()));
+    item->setIcon(QIcon(randSimulation()));
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem;

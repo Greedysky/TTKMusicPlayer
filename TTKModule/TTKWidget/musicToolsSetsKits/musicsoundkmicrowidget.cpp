@@ -123,7 +123,7 @@ void MusicSoundKMicroWidget::volumeChanged(int volume)
 void MusicSoundKMicroWidget::positionChanged(qint64 position)
 {
     m_ui->timeSlider->setValue(position * MT_S2MS);
-    m_ui->timeLabel->setText(QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position * MT_S2MS)).arg(MusicTime::msecTime2LabelJustified(m_ui->timeSlider->maximum())));
+    m_ui->timeLabel->setText(QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position * MT_S2MS), MusicTime::msecTime2LabelJustified(m_ui->timeSlider->maximum())));
 
     if(!m_queryMovieMode && !m_analysis->isEmpty())
     {
@@ -145,7 +145,7 @@ void MusicSoundKMicroWidget::durationChanged(qint64 duration)
 {
     m_ui->loadingLabel->run(false);
     m_ui->timeSlider->setRange(0, duration * MT_S2MS);
-    m_ui->timeLabel->setText(QString("%1/%2").arg(MUSIC_TIME_INIT).arg(MusicTime::msecTime2LabelJustified(duration * MT_S2MS)));
+    m_ui->timeLabel->setText(QString("%1/%2").arg(MUSIC_TIME_INIT, MusicTime::msecTime2LabelJustified(duration * MT_S2MS)));
 
     multiMediaChanged();
 }

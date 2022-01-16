@@ -382,7 +382,7 @@ void MusicScreenSaverWidget::initialize()
     for(int i=0; i<OS_COUNT; i++)
     {
         const QString &url = QSyncUtils::makeDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(i);
-        const QString &path = QString("%1%2/%3/").arg(CACHE_DIR_FULL).arg(OS_SCREEN_DIR).arg(i);
+        const QString &path = QString("%1%2/%3/").arg(CACHE_DIR_FULL, OS_SCREEN_DIR).arg(i);
         QDir().mkpath(path);
 
         MusicDownloadQueueData wallData;
@@ -487,7 +487,7 @@ void MusicScreenSaverBackgroundWidget::backgroundTimeout()
     if(!intVector.isEmpty())
     {
         const int index = intVector[MusicTime::random(intVector.count())];
-        const QString &prefix = QString("%1%2/%3/").arg(CACHE_DIR_FULL).arg(OS_SCREEN_DIR).arg(index);
+        const QString &prefix = QString("%1%2/%3/").arg(CACHE_DIR_FULL, OS_SCREEN_DIR).arg(index);
         QPixmap background(prefix + OS_WALLPAPER_NAME);
         const QPixmap bar(prefix + OS_WALLBAR_NAME);
         MusicUtils::Image::fusionPixmap(background, bar, QPoint(100, 900));

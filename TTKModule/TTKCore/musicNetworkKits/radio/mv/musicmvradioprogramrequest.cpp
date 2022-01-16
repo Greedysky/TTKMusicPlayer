@@ -117,7 +117,7 @@ void MusicMVRadioProgramRequest::readFromMusicMVAttribute(MusicObject::MusicSong
     const QByteArray &encodedData = MusicUtils::Algorithm::md5(QString("%1kugoumvcloud").arg(info->m_songId).toUtf8());
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_MOVIE_INFO_URL, false).arg(QString(encodedData)).arg(info->m_songId));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_MOVIE_INFO_URL, false).arg(encodedData.constData(), info->m_songId));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);

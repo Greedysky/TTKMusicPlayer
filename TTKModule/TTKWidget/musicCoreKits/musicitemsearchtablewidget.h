@@ -76,9 +76,9 @@ protected:
      */
     virtual void resizeEvent(QResizeEvent *event) override;
     /*!
-     * Get current random video hotter(simulate).
+     * Get current random simulation.
      */
-    QString randToGetStrength() const;
+    QString randSimulation() const;
 
     MusicGifLabelWidget *m_loadingLabel;
     QActionGroup *m_actionGroup;

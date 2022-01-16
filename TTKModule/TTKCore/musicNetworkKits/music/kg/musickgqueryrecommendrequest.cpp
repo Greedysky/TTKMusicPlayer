@@ -8,7 +8,7 @@ MusicKGQueryRecommendRequest::MusicKGQueryRecommendRequest(QObject *parent)
 
 void MusicKGQueryRecommendRequest::startToSearch(const QString &id)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(id));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), id));
 
     deleteAll();
 

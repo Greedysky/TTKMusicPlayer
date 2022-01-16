@@ -65,8 +65,7 @@ bool MusicM3UConfigManager::writePlaylistData(const MusicSongItems &items, const
     for(const MusicSong &song : qAsConst(item.m_songs))
     {
         data.append(QString("#EXTINF:%1,%2 - %3").arg(MusicTime::labelJustified2MsecTime(song.musicPlayTime()) / MT_S2MS)
-                                                 .arg(song.musicArtistFront())
-                                                 .arg(song.musicArtistBack()));
+                                                 .arg(song.musicArtistFront(), song.musicArtistBack()));
         data.append(song.musicPath());
     }
 

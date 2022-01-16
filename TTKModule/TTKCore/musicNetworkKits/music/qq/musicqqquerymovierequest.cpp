@@ -9,7 +9,7 @@ MusicQQQueryMovieRequest::MusicQQQueryMovieRequest(QObject *parent)
 
 void MusicQQQueryMovieRequest::startToSearch(QueryType type, const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), text));
 
     deleteAll();
     m_queryText = text.trimmed();
@@ -51,7 +51,7 @@ void MusicQQQueryMovieRequest::startToPage(int offset)
 
 void MusicQQQueryMovieRequest::startToSingleSearch(const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), text));
 
     deleteAll();
     m_queryText = text.trimmed();
@@ -281,7 +281,7 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
                 if(!key.isEmpty())
                 {
                     const QString &fn = QString("%1.p%2.1.mp4").arg(info->m_songId).arg(bitrate - 10000);
-                    attr.m_url = QString("%1%2?vkey=%3").arg(urlPrefix).arg(fn).arg(key);
+                    attr.m_url = QString("%1%2?vkey=%3").arg(urlPrefix, fn, key);
                     info->m_songAttrs.append(attr);
                 }
             }
@@ -299,7 +299,7 @@ QString MusicQQQueryMovieRequest::generateMovieKey(int id, const QString &videoI
     const QString &fn = QString("%1.p%2.1.mp4").arg(videoId).arg(id - 10000);
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(QQ_MOVIE_KEY_URL, false).arg(id).arg(videoId).arg(fn));
+    request.setUrl(MusicUtils::Algorithm::mdII(QQ_MOVIE_KEY_URL, false).arg(id).arg(videoId, fn));
     MusicQQInterface::makeRequestRawHeader(&request);
 
     QByteArray bytes = MusicObject::syncNetworkQueryForGet(&request);

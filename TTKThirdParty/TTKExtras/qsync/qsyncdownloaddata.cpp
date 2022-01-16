@@ -90,7 +90,7 @@ QString QSyncDownloadData::downloadUrl(const QString &bucket, const QString &fil
     headers.insert("Host", host);
 
     const QString &signature = QSyncUtils::authorizationCode(QSyncConf::KEY, method, headers, resource);
-    return QString("http://%1/%2?OSSAccessKeyId=%3&Expires=%4&Signature=%5").arg(host).arg(encodeKey).arg(QSyncConf::NAME).arg(deadline).arg(signature);
+    return QString("http://%1/%2?OSSAccessKeyId=%3&Expires=%4&Signature=%5").arg(host, encodeKey, QSyncConf::NAME).arg(deadline).arg(signature);
 }
 
 void QSyncDownloadData::receiveDataFromServer()

@@ -9,7 +9,7 @@ MusicWYQueryMovieRequest::MusicWYQueryMovieRequest(QObject *parent)
 
 void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), text));
 
     deleteAll();
     m_queryText = text.trimmed();
@@ -53,7 +53,7 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
 
 void MusicWYQueryMovieRequest::startToSingleSearch(const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), text));
 
     deleteAll();
     m_queryText = text.trimmed();

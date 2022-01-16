@@ -42,7 +42,7 @@ void MusicKWQueryPlaylistRequest::startToPage(int offset)
 
 void MusicKWQueryPlaylistRequest::startToSearch(const QString &playlist)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(playlist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), playlist));
 
     deleteAll();
 
@@ -61,7 +61,7 @@ void MusicKWQueryPlaylistRequest::startToSearch(const QString &playlist)
 
 void MusicKWQueryPlaylistRequest::queryPlaylistInfo(MusicResultsItem &item)
 {
-    TTK_LOGGER_INFO(QString("%1 queryPlaylistInfo %2").arg(className()).arg(item.m_id));
+    TTK_LOGGER_INFO(QString("%1 queryPlaylistInfo %2").arg(className(), item.m_id));
 
     MusicPageQueryRequest::downLoadFinished();
 
@@ -234,7 +234,7 @@ void MusicKWQueryPlaylistRequest::queryMorePlaylistDetailsFinished()
 
 void MusicKWQueryPlaylistRequest::morePlaylistDetails(const QString &pid)
 {
-    TTK_LOGGER_INFO(QString("%1 morePlaylistDetails %2").arg(className()).arg(pid));
+    TTK_LOGGER_INFO(QString("%1 morePlaylistDetails %2").arg(className(), pid));
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_PLAYLIST_INFO_URL, false).arg(pid));

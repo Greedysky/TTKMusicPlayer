@@ -11,7 +11,7 @@ MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
 
 void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), text));
 
     deleteAll();
     m_queryText = text.trimmed();
@@ -53,7 +53,7 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
 
 void MusicKWQueryMovieRequest::startToSingleSearch(const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), text));
 
     deleteAll();
     m_queryText = text.trimmed();
@@ -229,7 +229,7 @@ void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
     }
 
     QAlgorithm::Des des;
-    const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_MOVIE_ATTR_URL, false).arg(info->m_songId).arg(format).toUtf8(),
+    const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_MOVIE_ATTR_URL, false).arg(info->m_songId, format).toUtf8(),
                                               MusicUtils::Algorithm::mdII(_SIGN, ALG_UNIMP_KEY, false).toUtf8());
 
     QNetworkRequest request;

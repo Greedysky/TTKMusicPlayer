@@ -9,7 +9,7 @@ MusicKGQueryRequest::MusicKGQueryRequest(QObject *parent)
 
 void MusicKGQueryRequest::startToSearch(QueryType type, const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), text));
 
     m_currentType = type;
     m_queryText = text.trimmed();
@@ -41,7 +41,7 @@ void MusicKGQueryRequest::startToPage(int offset)
 
 void MusicKGQueryRequest::startToSingleSearch(const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), text));
 
     deleteAll();
 
@@ -157,7 +157,7 @@ void MusicKGQueryRequest::singleDownLoadFinished()
                 musicInfo.m_artistId = QString::number(value["singerid"].toULongLong());
                 musicInfo.m_smallPicUrl = value["imgurl"].toString().replace("{size}", "480");
                 musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
-                                                        .arg(musicInfo.m_songName).arg(musicInfo.m_songId)
+                                                        .arg(musicInfo.m_songName, musicInfo.m_songId)
                                                         .arg(value["duration"].toInt() * 1000);
                 const QVariantList &albumArray = value["album"].toList();
                 for(const QVariant &var : qAsConst(albumArray))

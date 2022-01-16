@@ -122,7 +122,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultsItem &it
         for(int i=-1; i<27; ++i)
         {
             MusicClickedLabel *l = new MusicClickedLabel(QString(TTKStatic_cast(char, i + 65)), containNumberWidget);
-            l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(MusicUIObject::MQSSColorStyle08).arg(MusicUIObject::MQSSColorStyle11));
+            l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(MusicUIObject::MQSSColorStyle08, MusicUIObject::MQSSColorStyle11));
 
             if(i == -1)
             {
@@ -222,6 +222,6 @@ void MusicArtistListQueryWidget::numberButtonClicked(int index)
     }
     m_categoryChanged = true;
 
-    const QString &v = QString("%1%2%3").arg(m_categoryId).arg(TTK_SPLITER).arg(index);
+    const QString &v = QString("%1%2%3").arg(m_categoryId, TTK_SPLITER).arg(index);
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, v);
 }

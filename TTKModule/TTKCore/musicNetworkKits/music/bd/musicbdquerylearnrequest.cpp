@@ -12,7 +12,7 @@ MusicBDQueryLearnRequest::MusicBDQueryLearnRequest(QObject *parent)
 
 void MusicBDQueryLearnRequest::startToSearch(QueryType type, const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), text));
 
     Q_UNUSED(type);
     deleteAll();
@@ -101,7 +101,7 @@ void MusicBDQueryLearnRequest::readFromMusicSongAttribute(MusicObject::MusicSong
     MusicUtils::Url::urlEncode(eKey);
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(BD_LEARN_INFO_URL, false).arg(key).arg(eKey));
+    request.setUrl(MusicUtils::Algorithm::mdII(BD_LEARN_INFO_URL, false).arg(key, eKey));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 

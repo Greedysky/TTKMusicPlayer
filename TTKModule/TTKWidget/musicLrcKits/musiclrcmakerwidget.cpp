@@ -186,7 +186,7 @@ MusicLrcMakerWidget::~MusicLrcMakerWidget()
 void MusicLrcMakerWidget::setCurrentSongName(const QString &name)
 {
     m_plainText.clear();
-    m_analysis->setCurrentFilePath(QString("%1%2%3").arg(MusicUtils::String::lrcPrefix()).arg(name).arg(LRC_FILE));
+    m_analysis->setCurrentFilePath(QString("%1%2%3").arg(MusicUtils::String::lrcPrefix(), name, LRC_FILE));
     m_ui->songNameEdit->setText(MusicUtils::String::songName(name));
     m_ui->artNameEdit->setText(MusicUtils::String::artistName(name));
 }
@@ -205,8 +205,8 @@ void MusicLrcMakerWidget::positionChanged(qint64 position)
     m_ui->timeSlider_S->blockSignals(false);
     m_ui->timeSlider_T->blockSignals(false);
 
-    const QString &t = QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position))
-                                       .arg(MusicTime::msecTime2LabelJustified(m_ui->timeSlider_F->maximum()));
+    const QString &t = QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position),
+                                            MusicTime::msecTime2LabelJustified(m_ui->timeSlider_F->maximum()));
     m_ui->labelTime_F->setText(t);
     m_ui->labelTime_S->setText(t);
     m_ui->labelTime_T->setText(t);
@@ -710,7 +710,7 @@ void MusicLrcMakerWidget::setControlEnabled(bool enable) const
 QString MusicLrcMakerWidget::translateTimeString(qint64 time)
 {
     const MusicTime t(time, MusicTime::All_Msec);
-    return QString("[%1.%2]").arg(t.toString("mm:ss")).arg(QString::number(t.millionSecond()).rightJustified(3, '0'));
+    return QString("[%1.%2]").arg(t.toString("mm:ss"), QString::number(t.millionSecond()).rightJustified(3, '0'));
 }
 
 void MusicLrcMakerWidget::resetToOriginPlayMode()

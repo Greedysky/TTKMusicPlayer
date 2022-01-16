@@ -9,7 +9,7 @@ MusicKGSongCommentsRequest::MusicKGSongCommentsRequest(QObject *parent)
 
 void MusicKGSongCommentsRequest::startToSearch(const QString &name)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(name));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), name));
 
     MusicSemaphoreLoop loop;
     MusicKGQueryRequest *d = new MusicKGQueryRequest(this);
@@ -75,13 +75,13 @@ void MusicKGSongCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem comment;
-                    comment.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());
-                    comment.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(), MUSIC_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
-                    comment.m_description = value["content"].toString();
-                    comment.m_nickName = value["user_name"].toString();
-                    comment.m_coverUrl = value["user_pic"].toString();
-                    Q_EMIT createSearchedItem(comment);
+                    MusicResultsItem item;
+                    item.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());
+                    item.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(), MUSIC_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
+                    item.m_description = value["content"].toString();
+                    item.m_nickName = value["user_name"].toString();
+                    item.m_coverUrl = value["user_pic"].toString();
+                    Q_EMIT createSearchedItem(item);
                 }
             }
         }
@@ -101,7 +101,7 @@ MusicKGPlaylistCommentsRequest::MusicKGPlaylistCommentsRequest(QObject *parent)
 
 void MusicKGPlaylistCommentsRequest::startToSearch(const QString &name)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(name));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), name));
 
     m_rawData["sid"] = name;
     startToPage(0);
@@ -155,13 +155,13 @@ void MusicKGPlaylistCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem comment;
-                    comment.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());
-                    comment.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(), MUSIC_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
-                    comment.m_description = value["content"].toString();
-                    comment.m_nickName = value["user_name"].toString();
-                    comment.m_coverUrl = value["user_pic"].toString();
-                    Q_EMIT createSearchedItem(comment);
+                    MusicResultsItem item;
+                    item.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());
+                    item.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(), MUSIC_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
+                    item.m_description = value["content"].toString();
+                    item.m_nickName = value["user_name"].toString();
+                    item.m_coverUrl = value["user_pic"].toString();
+                    Q_EMIT createSearchedItem(item);
                 }
             }
         }

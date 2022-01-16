@@ -20,7 +20,7 @@ void MusicWYQueryToplistRequest::startToSearch(QueryType type, const QString &to
 
 void MusicWYQueryToplistRequest::startToSearch(const QString &toplist)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(toplist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), toplist));
 
     deleteAll();
 

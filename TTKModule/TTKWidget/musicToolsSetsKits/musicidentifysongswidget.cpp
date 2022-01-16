@@ -276,7 +276,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     infoFuncWidgetLayout->setContentsMargins(0, 0, 0, 0);
 
     QLabel *textLabel = new QLabel(widget);
-    textLabel->setText(QString("%1 - %2").arg(songIdentify.m_singerName).arg(songIdentify.m_songName));
+    textLabel->setText(QString("%1 - %2").arg(songIdentify.m_singerName, songIdentify.m_songName));
     textLabel->setAlignment(Qt::AlignCenter);
     //
     MusicSemaphoreLoop loop;

@@ -192,7 +192,7 @@ void MusicVideoSearchTableWidget::createSearchedItem(const MusicSearchedItem &so
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(randToGetStrength()));
+    item->setIcon(QIcon(randSimulation()));
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;

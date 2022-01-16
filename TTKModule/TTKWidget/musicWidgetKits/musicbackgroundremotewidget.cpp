@@ -67,7 +67,7 @@ void MusicBackgroundRemoteWidget::startToDownload(const QString &prefix)
         return;
     }
 
-    const QString &path = QString("%1%2").arg(CACHE_DIR_FULL).arg(m_groups[m_currentIndex].m_group);
+    const QString &path = QString("%1%2").arg(CACHE_DIR_FULL, m_groups[m_currentIndex].m_group);
     QDir().mkpath(path);
 
     MusicDownloadQueueDatas datas;

@@ -9,7 +9,7 @@ MusicKGArtistSimilarRequest::MusicKGArtistSimilarRequest(QObject *parent)
 
 void MusicKGArtistSimilarRequest::startToSearch(const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), text));
 
     deleteAll();
 

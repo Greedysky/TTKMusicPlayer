@@ -57,7 +57,7 @@ void MusicKWDiscoverListRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    m_toplistInfo = QString("%1 - %2").arg(value["artist"].toString()).arg(value["name"].toString());
+                    m_toplistInfo = QString("%1 - %2").arg(value["artist"].toString(), value["name"].toString());
                     break;
                 }
             }

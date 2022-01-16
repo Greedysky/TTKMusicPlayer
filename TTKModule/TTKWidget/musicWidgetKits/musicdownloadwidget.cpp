@@ -73,6 +73,7 @@ void MusicDownloadTableWidget::createItem(const MusicObject::MusicSongAttribute 
     const int index = rowCount();
     setRowCount(index + 1);
     setRowHeight(index, ITEM_ROW_HEIGHT_S);
+
     QTableWidgetItem *it = new QTableWidgetItem;
     MusicDownloadTableItemRole role(attr.m_bitrate, attr.m_format, attr.m_size);
     it->setData(TABLE_ITEM_ROLE, QVariant::fromValue<MusicDownloadTableItemRole>(role));
@@ -190,7 +191,7 @@ void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &i
     m_querySingleInfo = true;
 
     initWidget();
-    m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName).arg(info.m_songName), Qt::ElideRight, 200));
+    m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName, info.m_songName), Qt::ElideRight, 200));
 
     createAllItems(info.m_songAttrs);
 }
@@ -376,7 +377,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
 
             QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
             const QString &downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MUSIC_DIR_FULL : m_ui->downloadPathEdit->text();
-            QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
+            QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, musicAttr.m_format);
             //
             MusicSongs records;
             MusicDownloadRecordConfigManager down(MusicObject::RecordNormalDownload, this);
@@ -407,7 +408,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
                         musicSong.chop(3);
                     }
                     musicSong += QString("(%1)").arg(i);
-                    downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
+                    downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, musicAttr.m_format);
                 }
             }
             //
@@ -455,7 +456,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
             QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
             const QString &downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MOVIE_DIR_FULL : m_ui->downloadPathEdit->text();
             //
-            QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
+            QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, musicAttr.m_format);
             if(QFile::exists(downloadName))
             {
                 for(int i=1; i<99; ++i)
@@ -469,7 +470,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
                         musicSong.chop(3);
                     }
                     musicSong += QString("(%1)").arg(i);
-                    downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
+                    downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, musicAttr.m_format);
                 }
             }
             //

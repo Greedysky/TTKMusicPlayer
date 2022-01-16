@@ -185,7 +185,7 @@ void MusicQQQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
 QString MusicQQQueryInterface::generateMusicPath(const QString &file, const QString &mid)
 {
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(QQ_SONG_KEY_URL, false).arg(file).arg(mid));
+    request.setUrl(MusicUtils::Algorithm::mdII(QQ_SONG_KEY_URL, false).arg(file, mid));
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
     MusicQQInterface::makeRequestRawHeader(&request);
 

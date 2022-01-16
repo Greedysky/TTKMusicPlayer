@@ -118,7 +118,7 @@ public:
 
 private:
     TTKPrivate<PUB>* m_dptr;
-    Q_DISABLE_COPY(TTKPrivateInterface)
+    TTK_DISABLE_COPY(TTKPrivateInterface)
 
 };
 

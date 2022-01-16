@@ -43,7 +43,7 @@ void MusicWYQueryPlaylistRequest::startToPage(int offset)
 
 void MusicWYQueryPlaylistRequest::startToSearch(const QString &playlist)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(playlist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), playlist));
 
     deleteAll();
 
@@ -63,7 +63,7 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &playlist)
 
 void MusicWYQueryPlaylistRequest::queryPlaylistInfo(MusicResultsItem &item)
 {
-    TTK_LOGGER_INFO(QString("%1 queryPlaylistInfo %2").arg(className()).arg(item.m_id));
+    TTK_LOGGER_INFO(QString("%1 queryPlaylistInfo %2").arg(className(), item.m_id));
 
     MusicPageQueryRequest::downLoadFinished();
 

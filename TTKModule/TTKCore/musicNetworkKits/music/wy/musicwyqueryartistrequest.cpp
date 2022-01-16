@@ -8,7 +8,7 @@ MusicWYQueryArtistRequest::MusicWYQueryArtistRequest(QObject *parent)
 
 void MusicWYQueryArtistRequest::startToSearch(const QString &artist)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(artist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), artist));
 
     deleteAll();
     m_queryText = artist;

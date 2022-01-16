@@ -18,10 +18,10 @@ void MusicKWQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
     }
 
     QAlgorithm::Des des;
-    const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_DATA_URL, false).arg(info->m_songId).arg(suffix).arg(format).toUtf8(),
+    const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_DATA_URL, false).arg(info->m_songId, suffix, format).toUtf8(),
                                               MusicUtils::Algorithm::mdII(_SIGN, ALG_UNIMP_KEY, false).toUtf8());
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter)));
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_MOVIE_URL, false).arg(parameter.constData()));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);

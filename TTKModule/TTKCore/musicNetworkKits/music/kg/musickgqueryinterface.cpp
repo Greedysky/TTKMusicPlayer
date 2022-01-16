@@ -18,7 +18,7 @@ void MusicKGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     const QByteArray &encodedData = MusicUtils::Algorithm::md5(QString("%1kgcloudv2").arg(hash).toUtf8());
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_SONG_DETAIL_URL, false).arg(hash).arg(QString(encodedData)));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_SONG_DETAIL_URL, false).arg(hash, encodedData.constData()));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
@@ -106,9 +106,8 @@ void MusicKGQueryInterface::readFromMusicSongLrcAndPicture(MusicObject::MusicSon
             value = value["data"].toMap();
             info->m_artistId = QString::number(value["singerid"].toULongLong());
             info->m_smallPicUrl = value["imgurl"].toString().replace("{size}", "480");
-            info->m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
-                                                    .arg(value["songname"].toString()).arg(info->m_songId)
-                                                    .arg(value["duration"].toInt() * 1000);
+            info->m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(value["songname"].toString(), info->m_songId)
+                                                                                .arg(value["duration"].toInt() * 1000);
         }
     }
 }

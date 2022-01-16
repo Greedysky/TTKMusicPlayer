@@ -12,16 +12,16 @@ QString MusicUtils::QMMP::pluginPath(const QString &module, const QString &forma
 {
     QString path = MusicObject::applicationPath();
 #ifdef Q_OS_WIN
-    path = path + QString("plugins/%1/%2.dll").arg(module).arg(format);
+    path = path + QString("plugins/%1/%2.dll").arg(module, format);
 #elif defined Q_OS_UNIX
-    path = path + QString("plugins/%1/lib%2.so").arg(module).arg(format);
+    path = path + QString("plugins/%1/lib%2.so").arg(module, format);
 #endif
     return path;
 }
 
 void MusicUtils::QMMP::updateQmmpConfigFile()
 {
-    const QString &confPath = MAKE_CONFIG_DIR_FULL + QString("wildmidi.cfg");
+    const QString &confPath = MAKE_CONFIG_DIR_FULL + "wildmidi.cfg";
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Midi");
     settings.setValue("conf_path", confPath);

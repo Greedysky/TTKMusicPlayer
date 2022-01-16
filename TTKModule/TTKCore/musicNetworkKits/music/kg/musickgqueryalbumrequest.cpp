@@ -8,7 +8,7 @@ MusicKGQueryAlbumRequest::MusicKGQueryAlbumRequest(QObject *parent)
 
 void MusicKGQueryAlbumRequest::startToSearch(const QString &album)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(album));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), album));
 
     deleteAll();
     m_queryText = album;
@@ -28,7 +28,7 @@ void MusicKGQueryAlbumRequest::startToSearch(const QString &album)
 
 void MusicKGQueryAlbumRequest::startToSingleSearch(const QString &artist)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className()).arg(artist));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), artist));
 
     deleteAll();
 

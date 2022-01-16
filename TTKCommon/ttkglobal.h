@@ -136,15 +136,21 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 # endif
 #endif
 
-//
-#define TTK_DECLARE_MODULE(Class)        \
-public:                                  \
-    inline static QString className()    \
-    {                                    \
-        return #Class;                   \
+// disable copy
+#define TTK_DISABLE_COPY(Class) \
+private: \
+    Class(const Class &) TTK_DELETE; \
+    Class &operator=(const Class &) TTK_DELETE;
+
+// make class name
+#define TTK_DECLARE_MODULE(Class) \
+public: \
+    inline static QString className() \
+    { \
+        return #Class; \
     }
 
-//
+// marco str cat
 #ifndef _MSC_VER
 // gcc version less than 3.4.0
 #  if __GNUC__ <= 3 && __GNUC_MINOR__ <= 4

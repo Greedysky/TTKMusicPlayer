@@ -158,6 +158,7 @@ void MusicTransformWidget::transformFinish()
             m_ui->listWidget->addItem(MusicUtils::Widget::elidedText(font(), path, Qt::ElideLeft, LINE_WIDTH));
             m_ui->listWidget->setToolTip(path);
         }
+
         if(!processTransform((m_currentType == Music) ? MAKE_TRANSFORM_FULL : MAKE_KRC2LRC_FULL))
         {
             return;
@@ -200,19 +201,19 @@ bool MusicTransformWidget::processTransform(const QString &para)
             m_ui->msCombo->setCurrentIndex(1);
         }
 
-        TTK_LOGGER_INFO(QString("%1%2%3%4").arg(m_ui->formatCombo->currentText()).arg(m_ui->kbpsCombo->currentText())
-                                           .arg(m_ui->hzCombo->currentText()).arg(m_ui->msCombo->currentIndex() + 1));
+        TTK_LOGGER_INFO(QString("%1%2%3%4").arg(m_ui->formatCombo->currentText(), m_ui->kbpsCombo->currentText(), m_ui->hzCombo->currentText())
+                                           .arg(m_ui->msCombo->currentIndex() + 1));
 
         m_process->start(para, QStringList() << "-i" << in << "-y"
                                 << "-ab" << m_ui->kbpsCombo->currentText() + "k"
                                 << "-ar" << m_ui->hzCombo->currentText()
                                 << "-ac" << QString::number(m_ui->msCombo->currentIndex() + 1)
-                                << QString("%1/%2-Transed.%3").arg(out).arg(transformSongName()).arg(m_ui->formatCombo->currentText().toLower()));
+                                << QString("%1/%2-Transed.%3").arg(out, transformSongName(), m_ui->formatCombo->currentText().toLower()));
     }
     else
     {
-        TTK_LOGGER_INFO(QString("%1%2%3").arg(para).arg(in).arg(out));
-        m_process->start(para, QStringList() << in << QString("%1/%2%3").arg(out).arg(transformSongName()).arg(LRC_FILE));
+        TTK_LOGGER_INFO(QString("%1%2%3").arg(para, in, out));
+        m_process->start(para, QStringList() << in << QString("%1/%2%3").arg(out, transformSongName(), LRC_FILE));
     }
 
     return true;

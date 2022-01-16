@@ -356,10 +356,9 @@ void MusicConsoleModule::print(qint64 position, qint64 duration) const
 {
     const MusicPlayItem &item = m_musicPlaylist->currentItem();
     TTK_LOGGER_INFO(QString("Music Name: %1, Time:[%2/%3], Volume:%4, PlaybackMode:%5, Enhance:%6"))
-                .arg(item.m_path)
-                .arg(MusicTime::msecTime2LabelJustified(position))
-                .arg(MusicTime::msecTime2LabelJustified(duration))
+                .arg(item.m_path,
+                     MusicTime::msecTime2LabelJustified(position),
+                     MusicTime::msecTime2LabelJustified(duration))
                 .arg(m_musicPlayer->volume())
-                .arg(m_playbackMode)
-                .arg(m_enhanced);
+                .arg(m_playbackMode, m_enhanced);
 }

@@ -182,7 +182,7 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("Search '%1'").arg(info.m_singerName))->setData(3);
     menu.addAction(tr("Search '%1'").arg(info.m_songName))->setData(4);
     menu.addAction(tr("Search '%1'").arg(info.m_albumName))->setData(5);
-    menu.addAction(tr("Search '%1 - %2'").arg(info.m_singerName).arg(info.m_songName))->setData(6);
+    menu.addAction(tr("Search '%1 - %2'").arg(info.m_singerName, info.m_songName))->setData(6);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(menuActionChanged(QAction*)));
 
     menu.exec(QCursor::pos());

@@ -191,7 +191,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
     const QByteArray data(fileIn.readAll());
     fileIn.close();
 
-    QFile fileOut(QString("%1%2%3").arg(MusicUtils::String::lrcPrefix()).arg(m_currentName).arg(LRC_FILE));
+    QFile fileOut(QString("%1%2%3").arg(MusicUtils::String::lrcPrefix(), m_currentName, LRC_FILE));
     if(!fileOut.open(QIODevice::WriteOnly))
     {
         TTK_LOGGER_ERROR("Lrc Output File Error");

@@ -225,15 +225,15 @@ void MusicSongSharingWidget::downLoadFinished(const QString &playUrl, const QStr
     QString url;
     if(m_ui->qqButton->isChecked())
     {
-        url = QString(MusicUtils::Algorithm::mdII(QQ_SHARE, ALG_UNIMP_KEY, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl).arg(m_ui->sharedName->text()).arg(tr("TTKMusicPlayer"));
+        url = QString(MusicUtils::Algorithm::mdII(QQ_SHARE, ALG_UNIMP_KEY, false)).arg(playUrl, m_ui->textEdit->toPlainText(), imageUrl, m_ui->sharedName->text(), tr("TTKMusicPlayer"));
     }
     else if(m_ui->qqspaceButton->isChecked())
     {
-        url = QString(MusicUtils::Algorithm::mdII(QQ_SPACE_SHARE, ALG_UNIMP_KEY, false)).arg(playUrl).arg(tr("TTKMusicPlayer")).arg(imageUrl).arg(m_ui->textEdit->toPlainText());
+        url = QString(MusicUtils::Algorithm::mdII(QQ_SPACE_SHARE, ALG_UNIMP_KEY, false)).arg(playUrl, tr("TTKMusicPlayer"), imageUrl, m_ui->textEdit->toPlainText());
     }
     else if(m_ui->sinaButton->isChecked())
     {
-        url = QString(MusicUtils::Algorithm::mdII(SINA_SHARE, ALG_UNIMP_KEY, false)).arg(playUrl).arg(imageUrl).arg(m_ui->textEdit->toPlainText());
+        url = QString(MusicUtils::Algorithm::mdII(SINA_SHARE, ALG_UNIMP_KEY, false)).arg(playUrl, imageUrl, m_ui->textEdit->toPlainText());
     }
     else if(m_ui->weixingButton->isChecked())
     {

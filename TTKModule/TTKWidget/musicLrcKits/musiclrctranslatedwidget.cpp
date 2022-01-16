@@ -43,7 +43,7 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, m_plainText, false);
 
     m_plainText->setObjectName("contentsWidget");
-    m_plainText->setStyleSheet(QString("#contentsWidget{%1%2%3}").arg(MusicUIObject::MQSSBackgroundStyle01).arg(MusicUIObject::MQSSColorStyle06).arg(MusicUIObject::MQSSFontStyle03));
+    m_plainText->setStyleSheet(QString("#contentsWidget{%1%2%3}").arg(MusicUIObject::MQSSBackgroundStyle01, MusicUIObject::MQSSColorStyle06, MusicUIObject::MQSSFontStyle03));
 
     QWidget *view = scrollArea->viewport();
     view->setObjectName("viewport");

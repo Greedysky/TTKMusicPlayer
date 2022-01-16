@@ -43,7 +43,7 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
 
 void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &category)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(category));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), category));
 
     deleteAll();
 
@@ -63,7 +63,7 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &category)
 
 void MusicDJRadioProgramCategoryRequest::queryProgramInfo(MusicResultsItem &item)
 {
-    TTK_LOGGER_INFO(QString("%1 queryProgramInfo %2").arg(className()).arg(item.m_id));
+    TTK_LOGGER_INFO(QString("%1 queryProgramInfo %2").arg(className(), item.m_id));
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,

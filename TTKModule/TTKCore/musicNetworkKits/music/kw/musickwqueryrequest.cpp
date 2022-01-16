@@ -25,7 +25,7 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
             attr.m_bitrate = MB_128;
             attr.m_format = MP3_FILE_PREFIX;
             attr.m_size = TTK_DEFAULT_STR;
-            attr.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX).arg(mp3Url).arg(v);
+            attr.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
             info->m_songAttrs.append(attr);
         }
 
@@ -36,7 +36,7 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
             attr.m_bitrate = MB_96;
             attr.m_format = WMA_FILE_PREFIX;
             attr.m_size = TTK_DEFAULT_STR;
-            attr.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX).arg(mp3Url).arg(v);
+            attr.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
             info->m_songAttrs.append(attr);
         }
     }
@@ -51,7 +51,7 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
             attr.m_bitrate = MB_32;
             attr.m_format = AAC_FILE_PREFIX;
             attr.m_size = TTK_DEFAULT_STR;
-            attr.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX).arg(aacUrl).arg(v);
+            attr.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, aacUrl, v);
             info->m_songAttrs.append(attr);
         }
     }
@@ -68,7 +68,7 @@ MusicKWQueryRequest::MusicKWQueryRequest(QObject *parent)
 
 void MusicKWQueryRequest::startToSearch(QueryType type, const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), text));
 
     m_currentType = type;
     m_queryText = text.trimmed();
@@ -100,7 +100,7 @@ void MusicKWQueryRequest::startToPage(int offset)
 
 void MusicKWQueryRequest::startToSingleSearch(const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), text));
 
     deleteAll();
 

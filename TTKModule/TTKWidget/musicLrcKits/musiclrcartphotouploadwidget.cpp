@@ -98,7 +98,7 @@ void MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
         }
     }
 
-    const QString &fileName = QString("%1%2%3").arg(BACKGROUND_DIR_FULL).arg(name).arg(count);
+    const QString &fileName = QString("%1%2%3").arg(BACKGROUND_DIR_FULL, name).arg(count);
     m_ui->imageLabel->saveImagePath(fileName + JPG_FILE);
     QFile::rename(fileName + JPG_FILE, fileName + SKN_FILE);
     close();

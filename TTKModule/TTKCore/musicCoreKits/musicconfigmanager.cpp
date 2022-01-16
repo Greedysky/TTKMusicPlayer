@@ -246,7 +246,7 @@ void MusicConfigManager::writeSysConfigData()
     writeDomElement(musicSettingDom, "configVersion", MusicXmlAttribute("value", TTKCONFIG_VERSION_STR));
     writeDomElement(musicSettingDom, "playMode", MusicXmlAttribute("value", playMode));
     writeDomElement(musicSettingDom, "playVolume", MusicXmlAttribute("value", volume));
-    writeDomElement(musicSettingDom, "lastPlayIndex", MusicXmlAttribute("value", QString("%1,%2,%3").arg(lastPlayIndex[0]).arg(lastPlayIndex[1]).arg(lastPlayIndex[2])));
+    writeDomElement(musicSettingDom, "lastPlayIndex", MusicXmlAttribute("value", QString("%1,%2,%3").arg(lastPlayIndex[0], lastPlayIndex[1], lastPlayIndex[2])));
     //
     writeDomElement(plusSettingDom, "geometry", MusicXmlAttribute("value", QString("%1,%2,%3,%4").arg(widgetPosition.x()).arg(widgetPosition.y()).arg(widgetSize.width()).arg(widgetSize.height())));
     writeDomElement(plusSettingDom, "language", MusicXmlAttribute("value", languageIndex));

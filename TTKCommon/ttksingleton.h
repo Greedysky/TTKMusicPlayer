@@ -44,7 +44,7 @@ private:
 
     static QMutex m_mutex;
     static QScopedPointer<T> m_instance;
-    Q_DISABLE_COPY(TTKSingleton)
+    TTK_DISABLE_COPY(TTKSingleton)
 
 };
 

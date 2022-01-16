@@ -97,16 +97,16 @@ bool MusicBackgroundSkinDialog::themeValidCheck(QString &name, QString &path)
 {
     if(!QFile::exists(path))
     {
-        QString orPath = QString("%1%2%3").arg(THEME_DIR_FULL).arg(name).arg(TTS_FILE);
+        QString orPath = QString("%1%2%3").arg(THEME_DIR_FULL, name, TTS_FILE);
         if(QFile::exists(orPath))
         {
-            QFile::copy(orPath, QString("%1%2%3").arg(USER_THEME_DIR_FULL).arg(name).arg(TTS_FILE));
+            QFile::copy(orPath, QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TTS_FILE));
         }
         else
         {
             name = "theme-1";
-            orPath = QString("%1%2%3").arg(THEME_DIR_FULL).arg(name).arg(TTS_FILE);
-            QFile::copy(orPath, QString("%1%2%3").arg(USER_THEME_DIR_FULL).arg(name).arg(TTS_FILE));
+            orPath = QString("%1%2%3").arg(THEME_DIR_FULL, name, TTS_FILE);
+            QFile::copy(orPath, QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TTS_FILE));
         }
         return false;
     }
@@ -121,7 +121,7 @@ QString MusicBackgroundSkinDialog::cpoyArtistFileToLocal(const QString &path)
 
 void MusicBackgroundSkinDialog::updateArtistFileTheme(const QString &theme)
 {
-    const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL).arg(theme).arg(TTS_FILE);
+    const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL, theme, TTS_FILE);
     m_stackBackgroundList->createItem(theme, des, true);
     m_stackBackgroundList->updateLastedItem();
 }
@@ -238,8 +238,8 @@ void MusicBackgroundSkinDialog::classicalListWidgetItemClicked(int type, const Q
     {
         if(!m_stackBackgroundList->contains(name))
         {
-            const QString &path = QString("%1%2%3").arg(USER_THEME_DIR_FULL).arg(name).arg(TTS_FILE);
-            QFile::copy(QString("%1%2%3").arg(THEME_DIR_FULL).arg(name).arg(TTS_FILE), path);
+            const QString &path = QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TTS_FILE);
+            QFile::copy(QString("%1%2%3").arg(THEME_DIR_FULL, name, TTS_FILE), path);
             m_stackBackgroundList->createItem(name, path, true);
         }
         listWidgetItemClicked(m_stackBackgroundList, name);
@@ -319,7 +319,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundRemoteWidge
     {
         const int index = cpoyFileToLocalIndex();
         const QString &theme = QString("theme-%1").arg(index + 1);
-        const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL).arg(theme).arg(TTS_FILE);
+        const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL, theme, TTS_FILE);
         MusicExtractWrapper::inputSkin(&image, des);
 
         m_stackBackgroundList->createItem(theme, des, true);

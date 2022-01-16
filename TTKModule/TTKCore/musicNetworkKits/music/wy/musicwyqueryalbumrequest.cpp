@@ -10,7 +10,7 @@ MusicWYQueryAlbumRequest::MusicWYQueryAlbumRequest(QObject *parent)
 
 void MusicWYQueryAlbumRequest::startToSearch(const QString &album)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(album));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), album));
 
     deleteAll();
     m_queryText = album;
@@ -31,7 +31,7 @@ void MusicWYQueryAlbumRequest::startToSearch(const QString &album)
 
 void MusicWYQueryAlbumRequest::startToSingleSearch(const QString &album)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className()).arg(album));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), album));
 
     deleteAll();
 

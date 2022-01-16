@@ -69,7 +69,7 @@ void MusicFMRadioSongsRequest::downLoadFinished()
                 m_songInfo.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
                 m_songInfo.m_smallPicUrl = value["picture"].toString();
                 m_songInfo.m_albumName = MusicUtils::String::charactersReplaced(value["albumtitle"].toString());
-                m_songInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(FM_LRC_URL, false).arg(value["sid"].toString()).arg(value["ssid"].toString());
+                m_songInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(FM_LRC_URL, false).arg(value["sid"].toString(), value["ssid"].toString());
 
                 if(!m_songInfo.m_songAttrs.isEmpty())
                 {

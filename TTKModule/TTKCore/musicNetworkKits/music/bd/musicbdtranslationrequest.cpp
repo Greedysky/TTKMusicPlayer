@@ -19,7 +19,7 @@ void MusicBDTranslationRequest::startToDownload(TranslationType from, Translatio
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(BD_TRANSLATION_URL, false).arg(mapTypeFromEnumToString(from)).arg(data).arg(mapTypeFromEnumToString(to)));
+    request.setUrl(MusicUtils::Algorithm::mdII(BD_TRANSLATION_URL, false).arg(mapTypeFromEnumToString(from), data, mapTypeFromEnumToString(to)));
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager.get(request);

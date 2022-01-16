@@ -9,7 +9,7 @@ MusicKGQueryMovieRequest::MusicKGQueryMovieRequest(QObject *parent)
 
 void MusicKGQueryMovieRequest::startToSearch(QueryType type, const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), text));
 
     deleteAll();
     m_queryText = text.trimmed();
@@ -51,7 +51,7 @@ void MusicKGQueryMovieRequest::startToPage(int offset)
 
 void MusicKGQueryMovieRequest::startToSingleSearch(const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), text));
 
     deleteAll();
     m_queryText = text.trimmed();
@@ -200,7 +200,7 @@ void MusicKGQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
     const QByteArray &encodedData = MusicUtils::Algorithm::md5(QString("%1kugoumvcloud").arg(info->m_songId).toUtf8());
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_MOVIE_INFO_URL, false).arg(QString(encodedData)).arg(info->m_songId));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_MOVIE_INFO_URL, false).arg(encodedData, info->m_songId));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);

@@ -93,7 +93,7 @@ void MusicQQDownloadImageRequest::downLoadUrlFinished()
         {
             if(m_counter < 5)
             {
-                MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL).arg(m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::DownloadBigBackground, this);
+                MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::DownloadBigBackground, this);
                 connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
                 download->startToDownload();
             }
@@ -110,7 +110,7 @@ void MusicQQDownloadImageRequest::downLoadUrlFinished()
 
 void MusicQQDownloadImageRequest::downLoadUrl(const QString &id)
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadUrl %2").arg(className()).arg(id));
+    TTK_LOGGER_INFO(QString("%1 downLoadUrl %2").arg(className(), id));
 
     deleteAll();
 

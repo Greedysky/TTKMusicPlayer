@@ -220,7 +220,7 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicSearchedItem &son
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(randToGetStrength()));
+    item->setIcon(QIcon(randSimulation()));
     setItem(count, 5, item);
 
                       item = new QTableWidgetItem;
