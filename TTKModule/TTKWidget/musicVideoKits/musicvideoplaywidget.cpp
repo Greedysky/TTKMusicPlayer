@@ -157,7 +157,7 @@ void MusicVideoPlayWidget::resizeWindow()
     {
 #ifdef Q_OS_UNIX
         const bool v = isPopupMode();
-        resizeWindow(v ? (width() - 680) : (width - WINDOW_WIDTH_MIN), v ? (height() - 508) : (height - WINDOW_HEIGHT_MIN));
+        resizeWindow(v ? (this->width() - 680) : (width - WINDOW_WIDTH_MIN), v ? (this->height() - 508) : (height - WINDOW_HEIGHT_MIN));
 #else
         resizeWindow(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
 #endif
