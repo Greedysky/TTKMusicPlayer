@@ -12,7 +12,7 @@ void MusicKWDownLoadTextRequest::startToDownload()
     {
         if(m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
         {
-            m_speedTimer.start(MT_S2MS);
+            m_speedTimer.start();
 
             QNetworkRequest request;
             request.setUrl(m_url);

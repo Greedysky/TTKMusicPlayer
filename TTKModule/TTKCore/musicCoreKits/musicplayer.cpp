@@ -20,6 +20,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
 
     setEnabledEffect(false);
 
+    m_timer.setInterval(MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(update()));
     G_CONNECTION_PTR->setValue(className(), this);
 }
@@ -134,7 +135,8 @@ void MusicPlayer::play()
     if(m_currentMedia == mediaPath && state == Qmmp::Paused)
     {
         m_music->pause(); ///When the pause time for recovery
-        m_timer.start(MT_S2MS);
+        m_timer.start();
+        update();
         return;
     }
 
@@ -146,9 +148,8 @@ void MusicPlayer::play()
         return;
     }
 
-    m_duration = 0;
     m_durationTimes = 0;
-    m_timer.start(MT_S2MS);
+    m_timer.start();
 
     queryCurrentDuration();
     ///Every second Q_EMITs a signal change information
@@ -264,14 +265,15 @@ void MusicPlayer::update()
 
 void MusicPlayer::queryCurrentDuration()
 {
-    const qint64 dur = duration();
-    if((dur == 0 || m_duration == dur) && m_durationTimes++ < 10)
+    const qint64 d = duration();
+    if((d == 0 || m_duration == d) && m_durationTimes++ < 10)
     {
         QTimer::singleShot(50 * MT_MS, this, SLOT(queryCurrentDuration()));
     }
     else
     {
-        Q_EMIT durationChanged(m_duration = dur);
+        Q_EMIT durationChanged(m_duration = d);
+        Q_EMIT positionChanged(position());
     }
 }
 

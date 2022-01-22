@@ -22,7 +22,6 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     m_noCover = false;
     m_currentPlayIndex = index;
-    m_totalTimeLabel = QString(TTK_SEPARATOR) + MUSIC_TIME_INIT;
 
     QPushButton *addButton = new QPushButton(this);
     addButton->setGeometry(2, 25, 16, 16);
@@ -116,11 +115,7 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
 
 void MusicSongsListPlayWidget::updateTimeLabel(const QString &current, const QString &total)
 {
-    if(m_totalTimeLabel.contains(MUSIC_TIME_INIT))
-    {
-        m_totalTimeLabel = total;
-    }
-    m_timeLabel->setText(current + m_totalTimeLabel);
+    m_timeLabel->setText(current + total);
 }
 
 void MusicSongsListPlayWidget::updateCurrentArtist()
@@ -147,13 +142,14 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
     if(state)
     {
         time = meta.lengthString();
-        m_totalTimeLabel = TTK_SEPARATOR + time;
     }
     else
     {
+        time = MUSIC_TIME_INIT;
         m_noCover = true;
     }
-    m_timeLabel->setText(MUSIC_TIME_INIT + m_totalTimeLabel);
+
+    m_timeLabel->setText(TTK_STRCAT(MUSIC_TIME_INIT, TTK_SEPARATOR) + time);
 
     if(state && G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())
     {

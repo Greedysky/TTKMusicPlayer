@@ -119,7 +119,6 @@ protected:
 
     bool m_noCover;
     int m_currentPlayIndex;
-    QString m_totalTimeLabel;
     QLabel *m_artistPictureLabel, *m_timeLabel;
     MusicSplitItemClickedLabel *m_songNameLabel;
     QPushButton *m_loveButton, *m_deleteButton,* m_showMVButton;
