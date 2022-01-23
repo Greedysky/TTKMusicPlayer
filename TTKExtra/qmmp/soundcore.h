@@ -215,7 +215,7 @@ signals:
     /*!
      * This signal is emitted when the state of the SoundCore has changed.
      */
-    void stateChanged (Qmmp::State newState);
+    void stateChanged(Qmmp::State newState);
     /*!
      * Emitted when playback has finished.
      */
