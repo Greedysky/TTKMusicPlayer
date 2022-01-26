@@ -1,10 +1,5 @@
 #include "openmpthelper.h"
 
-#define INTERP_NONE     1
-#define INTERP_LINEAR   2
-#define INTERP_CUBIC    4
-#define INTERP_WINDOWED 8
-
 OpenMPTHelper::OpenMPTHelper(QIODevice *input)
     : m_input(input)
 {
@@ -143,9 +138,9 @@ qint64 OpenMPTHelper::read(unsigned char *data, qint64 maxSize)
     return n * channels() * sizeof(float);
 }
 
-void OpenMPTHelper::seek(qint64 pos)
+void OpenMPTHelper::seek(qint64 time)
 {
-    openmpt_module_set_position_seconds(m_mod, pos / 1000.0);
+    openmpt_module_set_position_seconds(m_mod, time / 1000.0);
 }
 
 int OpenMPTHelper::bitrate() const

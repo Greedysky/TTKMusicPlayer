@@ -24,7 +24,8 @@
 #include <qmmp/qmmp.h>
 
 class Player;
-typedef struct {
+typedef struct
+{
     Player *input;
     int bitrate;
 } decode_info;

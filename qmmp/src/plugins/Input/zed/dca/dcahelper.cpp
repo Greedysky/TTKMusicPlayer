@@ -68,7 +68,8 @@ int channel_remap[][7] = {
     {1,2,5,3,4,6,7} // FL|FR|LFE|FLC|FRC|RL|RR
 };
 
-typedef struct {
+typedef struct
+{
     uint16_t wFormatTag;
     uint16_t nChannels;
     uint32_t nSamplesPerSec;

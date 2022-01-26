@@ -46,7 +46,8 @@ extern "C" {
 # endif
 #endif
 
-typedef struct {
+typedef struct
+{
     kiss_fft_scalar r;
     kiss_fft_scalar i;
 }kiss_fft_cpx;

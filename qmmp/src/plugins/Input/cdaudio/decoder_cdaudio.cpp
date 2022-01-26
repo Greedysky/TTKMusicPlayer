@@ -422,7 +422,7 @@ bool DecoderCDAudio::initialize()
     addMetaData(tracks[track_at].info.metaData()); //send metadata
     setProperty(Qmmp::FORMAT_NAME, "CDDA");
     setProperty(Qmmp::BITRATE, m_bitrate);
-    qDebug("DecoderCDAudio: initialize succes");
+    qDebug("DecoderCDAudio: initialize success");
     return true;
 }
 
@@ -470,8 +470,8 @@ qint64 DecoderCDAudio::read(unsigned char *data, qint64 maxSize)
     return 0;
 }
 
-void DecoderCDAudio::seek(qint64 pos)
+void DecoderCDAudio::seek(qint64 time)
 {
-    m_current_sector = m_first_sector + pos * 75 / 1000;
+    m_current_sector = m_first_sector + time * 75 / 1000;
     m_buffer_at = 0;
 }

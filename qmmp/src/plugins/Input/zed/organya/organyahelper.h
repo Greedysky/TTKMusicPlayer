@@ -26,7 +26,8 @@
 #include <QFile>
 #include <qmmp/qmmp.h>
 
-typedef struct {
+typedef struct
+{
     org_decoder_t *input;
     int bitrate;
 } organya_info;

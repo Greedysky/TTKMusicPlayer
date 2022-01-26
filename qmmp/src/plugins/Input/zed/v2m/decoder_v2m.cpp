@@ -29,7 +29,7 @@ bool DecoderV2M::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_FLOAT);
-    qDebug("DecoderV2M: initialize succes");
+    qDebug("DecoderV2M: initialize success");
     return true;
 }
 
@@ -48,7 +48,7 @@ qint64 DecoderV2M::read(unsigned char *data, qint64 maxSize)
     return m_helper->read(data, maxSize);
 }
 
-void DecoderV2M::seek(qint64 pos)
+void DecoderV2M::seek(qint64 time)
 {
-    m_helper->seek(pos);
+    m_helper->seek(time);
 }

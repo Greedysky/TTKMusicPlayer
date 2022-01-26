@@ -1,4 +1,3 @@
-#include <stdint.h>
 #include "wildmidihelper.h"
 #include "decoder_wildmidi.h"
 
@@ -27,6 +26,7 @@ bool DecoderWildMidi::initialize()
         qWarning("DecoderWildMidi: initialization failed");
         return false;
     }
+
     WildMidiHelper::instance()->readSettings();
     midi_ptr = WildMidi_Open(QmmpPrintable(m_path));
 
@@ -37,13 +37,12 @@ bool DecoderWildMidi::initialize()
     }
     WildMidiHelper::instance()->addPtr(midi_ptr);
 
-
     m_sampleRate = WildMidiHelper::instance()->sampleRate();
     _WM_Info *wm_info = WildMidi_GetInfo(midi_ptr);
     m_totalTime = (qint64)wm_info->approx_total_samples * 1000 / WildMidiHelper::instance()->sampleRate();
 
     configure(m_sampleRate, 2, Qmmp::PCM_S16LE);
-    qDebug("DecoderWildMidi: initialize succes");
+    qDebug("DecoderWildMidi: initialize success");
     return true;
 }
 
@@ -52,9 +51,9 @@ qint64 DecoderWildMidi::totalTime() const
     return m_totalTime;
 }
 
-void DecoderWildMidi::seek(qint64 pos)
+void DecoderWildMidi::seek(qint64 time)
 {
-    ulong sample = (ulong)m_sampleRate * pos / 1000;
+    ulong sample = (ulong)m_sampleRate * time / 1000;
     WildMidi_FastSeek(midi_ptr, &sample);
 }
 

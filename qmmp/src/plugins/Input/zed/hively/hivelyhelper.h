@@ -23,7 +23,8 @@
 #include <QFile>
 #include <qmmp/qmmp.h>
 
-typedef struct {
+typedef struct
+{
     struct hvl_tune *input;
     int bitrate;
 } decode_info;

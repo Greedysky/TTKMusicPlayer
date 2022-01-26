@@ -53,7 +53,7 @@ public:
     inline int channels() const { return 1; }
 
     inline qint64 length() const { return m_player->songlength(); }
-    inline void seek(qint64 pos) const { m_player->seek(pos); }
+    inline void seek(qint64 time) const { m_player->seek(time); }
 
     Frame read();
 

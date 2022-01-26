@@ -22,7 +22,8 @@
 #include <QFile>
 #include <libv2m/v2mplayer.h>
 
-typedef struct {
+typedef struct
+{
     uint8_t *tune;
     int bitrate;
     V2MPlayer *input;

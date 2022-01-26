@@ -65,7 +65,7 @@ bool DecoderGme::initialize()
 
     gme_free_info(track_info);
     configure(44100, 2, Qmmp::PCM_S16LE);
-    qDebug("DecoderGme: initialize succes");
+    qDebug("DecoderGme: initialize success");
     return true;
 }
 
@@ -74,9 +74,9 @@ qint64 DecoderGme::totalTime() const
     return m_totalTime;
 }
 
-void DecoderGme::seek(qint64 pos)
+void DecoderGme::seek(qint64 time)
 {
-    gme_seek(m_emu, pos);
+    gme_seek(m_emu, time);
 }
 
 int DecoderGme::bitrate() const

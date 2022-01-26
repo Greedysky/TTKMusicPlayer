@@ -124,7 +124,7 @@ bool DecoderWavPack::initialize()
 
     m_totalBytes = 0;
     m_frame_size = audioParameters().frameSize();
-    qDebug("DecoderWavPack: initialize succes");
+    qDebug("DecoderWavPack: initialize success");
     return true;
 }
 

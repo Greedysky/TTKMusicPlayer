@@ -115,17 +115,17 @@ bool OptimFROGHelper::initialize()
     return true;
 }
 
-void OptimFROGHelper::seek(qint64 pos)
+void OptimFROGHelper::seek(qint64 time)
 {
 #if defined Q_OS_WIN && defined __GNUC__
     if(((OFROG_seekable)GetSymbolAddress("OptimFROG_seekable"))(m_decoder))
     {
-        ((OFROG_seekTime)GetSymbolAddress("OptimFROG_seekTime"))(m_decoder, pos);
+        ((OFROG_seekTime)GetSymbolAddress("OptimFROG_seekTime"))(m_decoder, time);
     }
 #else
     if(OptimFROG_seekable(m_decoder))
     {
-        OptimFROG_seekTime(m_decoder, pos);
+        OptimFROG_seekTime(m_decoder, time);
     }
 #endif
 }

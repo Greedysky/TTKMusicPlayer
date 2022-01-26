@@ -56,7 +56,7 @@ public:
     virtual void close() override;
     virtual bool isSequential() const override;
     virtual bool open(OpenMode mode) override;
-    virtual bool seek(qint64 pos) override;
+    virtual bool seek(qint64 time) override;
 
     /**
      *  helper functions

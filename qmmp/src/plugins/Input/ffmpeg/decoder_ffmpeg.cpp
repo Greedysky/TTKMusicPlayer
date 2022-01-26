@@ -263,7 +263,7 @@ bool DecoderFFmpeg::initialize()
     if(m_codecContext->bit_rate)
         m_bitrate = m_codecContext->bit_rate / 1000;
 
-    qDebug("DecoderFFmpeg: initialize succes");
+    qDebug("DecoderFFmpeg: initialize success");
     return true;
 }
 
@@ -318,9 +318,9 @@ qint64 DecoderFFmpeg::read(unsigned char *data, qint64 maxSize)
     return len;
 }
 
-void DecoderFFmpeg::seek(qint64 pos)
+void DecoderFFmpeg::seek(qint64 time)
 {
-    int64_t timestamp = int64_t(pos) * AV_TIME_BASE / 1000;
+    int64_t timestamp = int64_t(time) * AV_TIME_BASE / 1000;
     if(m_formatContext->start_time != (qint64)AV_NOPTS_VALUE)
         timestamp += m_formatContext->start_time;
     m_seekTime = timestamp;

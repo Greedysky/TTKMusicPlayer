@@ -17,7 +17,6 @@ DecoderProperties DecoderOpenMPTFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("OpenMPT Plugin");
-    properties.description = tr("OpenMPT Module Files");
     properties.shortName = "openmpt";
     properties.filters << "*.669";
     properties.filters << "*.ams" << "*.amf";
@@ -34,6 +33,7 @@ DecoderProperties DecoderOpenMPTFactory::properties() const
     properties.filters << "*.ult" << "*.umx";
     properties.filters << "*.wow";
     properties.filters << "*.xm" << "*.xpk";
+    properties.description = "OpenMPT Module Files";
     properties.hasSettings = true;
     return properties;
 }

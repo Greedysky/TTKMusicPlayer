@@ -94,10 +94,10 @@ void OutputWriter::finish()
     m_finish = true;
 }
 
-void OutputWriter::seek(qint64 pos, bool reset)
+void OutputWriter::seek(qint64 time, bool reset)
 {
     m_mutex.lock();
-    m_totalWritten = pos * m_bytesPerMillisecond;
+    m_totalWritten = time * m_bytesPerMillisecond;
     m_currentMilliseconds = -1;
     m_skip = isRunning() && reset;
     m_mutex.unlock();

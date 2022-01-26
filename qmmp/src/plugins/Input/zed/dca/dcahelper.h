@@ -32,7 +32,8 @@ extern "C" {
 // one block may be up to 22K samples, which is 88Kb for stereo
 #define HEADER_SIZE 14
 
-typedef struct {
+typedef struct
+{
     FILE *file;
     int offset;
     dca_state_t *state;

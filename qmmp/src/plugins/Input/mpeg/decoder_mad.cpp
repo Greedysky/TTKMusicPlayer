@@ -80,7 +80,7 @@ bool DecoderMAD::initialize()
 
     configure(m_freq, map, Qmmp::PCM_FLOAT);
     m_inited = true;
-    qDebug("DecoderMAD: initialize succes");
+    qDebug("DecoderMAD: initialize success");
     return true;
 }
 
@@ -420,11 +420,11 @@ qint64 DecoderMAD::read(unsigned char *data, qint64 maxSize)
     return l;
 }
 
-void DecoderMAD::seek(qint64 pos)
+void DecoderMAD::seek(qint64 time)
 {
     if(m_totalTime > 0)
     {
-        qint64 seek_pos = qint64(pos * input()->size() / m_totalTime);
+        qint64 seek_pos = qint64(time * input()->size() / m_totalTime);
         input()->seek(seek_pos);
         mad_frame_mute(&m_frame);
         mad_synth_mute(&m_synth);

@@ -106,7 +106,7 @@ bool DecoderOpus::initialize()
 
     setProperty(Qmmp::FORMAT_NAME, "Ogg Opus");
     configure(48000, chmap, Qmmp::PCM_FLOAT); //opus codec supports 48 kHz only
-    qDebug("DecoderOpus: initialize succes");
+    qDebug("DecoderOpus: initialize success");
     return true;
 }
 

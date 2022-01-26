@@ -26,7 +26,8 @@ extern "C" {
 #include <QFile>
 #include <qmmp/qmmp.h>
 
-typedef struct {
+typedef struct
+{
     void *input;
     int bitrate;
 } decode_info;

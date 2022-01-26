@@ -24,7 +24,8 @@ extern "C" {
 }
 #include <qmmp/trackinfo.h>
 
-typedef struct {
+typedef struct
+{
     sc68_t *input;
     int track;
     int loop;

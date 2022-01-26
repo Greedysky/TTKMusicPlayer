@@ -71,9 +71,9 @@ bool NetworkStreamReader::open(OpenMode mode)
     return false;
 }
 
-bool NetworkStreamReader::seek(qint64 pos)
+bool NetworkStreamReader::seek(qint64 time)
 {
-    Q_UNUSED(pos);
+    Q_UNUSED(time);
     return false;
 }
 

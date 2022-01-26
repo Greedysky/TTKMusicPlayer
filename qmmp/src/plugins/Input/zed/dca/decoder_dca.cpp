@@ -29,7 +29,7 @@ bool DecoderDCA::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_S16LE);
-    qDebug("DecoderDCA: initialize succes");
+    qDebug("DecoderDCA: initialize success");
     return true;
 }
 
@@ -48,7 +48,7 @@ qint64 DecoderDCA::read(unsigned char *data, qint64 maxSize)
     return m_helper->read(data, maxSize);
 }
 
-void DecoderDCA::seek(qint64 pos)
+void DecoderDCA::seek(qint64 time)
 {
-    m_helper->seek(pos);
+    m_helper->seek(time);
 }

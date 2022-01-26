@@ -103,7 +103,7 @@ bool DecoderAAC::initialize()
 
     setProperty(Qmmp::FORMAT_NAME, "AAC");
     configure(freq, chan, Qmmp::PCM_S16LE);
-    qDebug("DecoderAAC: initialize succes");
+    qDebug("DecoderAAC: initialize success");
     return true;
 }
 
@@ -169,9 +169,9 @@ int DecoderAAC::bitrate() const
     return m_bitrate;
 }
 
-void DecoderAAC::seek(qint64 pos)
+void DecoderAAC::seek(qint64 time)
 {
-    input()->seek(pos * input()->size() / m_totalTime);
+    input()->seek(time * input()->size() / m_totalTime);
     NeAACDecPostSeekReset(data()->handle, 0);
     m_input_at = 0;
 }

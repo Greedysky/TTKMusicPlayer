@@ -29,7 +29,7 @@ bool DecoderXSF::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_S16LE);
-    qDebug("DecoderXSF: initialize succes");
+    qDebug("DecoderXSF: initialize success");
     return true;
 }
 
@@ -48,7 +48,7 @@ qint64 DecoderXSF::read(unsigned char *data, qint64 maxSize)
     return m_helper->read(data, maxSize);
 }
 
-void DecoderXSF::seek(qint64 pos)
+void DecoderXSF::seek(qint64 time)
 {
-    m_helper->seek(pos);
+    m_helper->seek(time);
 }

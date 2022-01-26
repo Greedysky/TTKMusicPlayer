@@ -97,10 +97,10 @@ void SoundCore::pause()
         m_engine->pause();
 }
 
-void SoundCore::seek(qint64 pos)
+void SoundCore::seek(qint64 time)
 {
     if(m_engine)
-        m_engine->seek(pos);
+        m_engine->seek(time);
 }
 
 const QString SoundCore::path() const

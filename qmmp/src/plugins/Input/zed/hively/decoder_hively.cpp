@@ -29,7 +29,7 @@ bool DecoderHively::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_S16LE);
-    qDebug("DecoderHively: initialize succes");
+    qDebug("DecoderHively: initialize success");
     return true;
 }
 
@@ -48,7 +48,7 @@ qint64 DecoderHively::read(unsigned char *data, qint64 maxSize)
     return m_helper->read(data, maxSize);
 }
 
-void DecoderHively::seek(qint64 pos)
+void DecoderHively::seek(qint64 time)
 {
-    m_helper->seek(pos);
+    m_helper->seek(time);
 }

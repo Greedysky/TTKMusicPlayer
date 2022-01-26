@@ -95,7 +95,7 @@ bool DecoderMPC::initialize()
     setReplayGainInfo(rg_info);
 
     m_totalTime = mpc_streaminfo_get_length(&data()->info) * 1000;
-    qDebug("DecoderMPC: initialize succes");
+    qDebug("DecoderMPC: initialize success");
     return true;
 }
 
@@ -135,7 +135,7 @@ qint64 DecoderMPC::read(unsigned char *data, qint64 maxSize)
     return m_len * sizeof(float);
 }
 
-void DecoderMPC::seek(qint64 pos)
+void DecoderMPC::seek(qint64 time)
 {
-    mpc_demux_seek_second(data()->demuxer, (double)pos / 1000);
+    mpc_demux_seek_second(data()->demuxer, (double)time / 1000);
 }

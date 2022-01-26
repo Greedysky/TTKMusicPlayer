@@ -334,8 +334,8 @@ typedef int LADSPA_PortRangeHintDescriptor;
 #define LADSPA_IS_HINT_DEFAULT_440(x)     (((x) & LADSPA_HINT_DEFAULT_MASK)   \
                                             == LADSPA_HINT_DEFAULT_440)
 
-typedef struct _LADSPA_PortRangeHint {
-
+typedef struct _LADSPA_PortRangeHint
+{
   /* Hints about the port. */
   LADSPA_PortRangeHintDescriptor HintDescriptor;
 
@@ -370,8 +370,8 @@ typedef void * LADSPA_Handle;
    number of functions to examine the type, instantiate it, link it to
    buffers and workspaces and to run it. */
 
-typedef struct _LADSPA_Descriptor { 
-
+typedef struct _LADSPA_Descriptor
+{
   /* This numeric identifier indicates the plugin type
      uniquely. Plugin programmers may reserve ranges of IDs from a
      central body to avoid clashes. Hosts may assume that IDs are

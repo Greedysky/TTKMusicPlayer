@@ -25,7 +25,8 @@
 
 class FileReader;
 
-typedef struct {
+typedef struct
+{
     FileReader *input;
     int bitrate;
     bool meta;

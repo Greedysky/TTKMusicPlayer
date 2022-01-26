@@ -40,7 +40,7 @@ public:
     inline int bitrate() const { return m_info.bitrate; }
     inline int version() const { return m_info.version; }
 
-    void seek(qint64 pos);
+    void seek(qint64 time);
     qint64 length() const;
     qint64 read(unsigned char *data, qint64 maxSize);
 

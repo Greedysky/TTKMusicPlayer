@@ -114,7 +114,7 @@ bool DecoderVorbis::initialize()
 
     configure(freq, chmap, Qmmp::PCM_FLOAT);
     m_inited = true;
-    qDebug("DecoderVorbis: initialize succes");
+    qDebug("DecoderVorbis: initialize success");
     return true;
 }
 

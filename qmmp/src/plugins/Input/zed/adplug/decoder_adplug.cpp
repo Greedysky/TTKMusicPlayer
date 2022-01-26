@@ -23,7 +23,7 @@ bool DecoderAdplug::initialize()
     m_divisor = (m_helper->rate() * m_helper->channels() * (m_helper->depth() / 8)) / 1000.0;
 
     configure(m_helper->rate(), m_helper->channels(), Qmmp::PCM_S16LE);
-    qDebug("DecoderAdplug: initialize succes");
+    qDebug("DecoderAdplug: initialize success");
     return true;
 }
 
@@ -68,10 +68,10 @@ qint64 DecoderAdplug::read(unsigned char *data, qint64 maxSize)
     return copied;
 }
 
-void DecoderAdplug::seek(qint64 pos)
+void DecoderAdplug::seek(qint64 time)
 {
-    m_helper->seek(pos);
-    m_time = pos;
+    m_helper->seek(time);
+    m_time = time;
 }
 
 qint64 DecoderAdplug::copy(unsigned char *data, qint64 maxSize)

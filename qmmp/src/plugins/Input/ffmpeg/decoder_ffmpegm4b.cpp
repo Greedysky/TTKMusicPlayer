@@ -128,10 +128,10 @@ qint64 DecoderFFmpegM4b::totalTime() const
     return m_decoder ? m_duration : 0;
 }
 
-void DecoderFFmpegM4b::seek(qint64 pos)
+void DecoderFFmpegM4b::seek(qint64 time)
 {
-    m_decoder->seek(m_offset + pos);
-    m_written = audioParameters().sampleRate() * audioParameters().channels() * audioParameters().sampleSize() * pos / 1000;
+    m_decoder->seek(m_offset + time);
+    m_written = audioParameters().sampleRate() * audioParameters().channels() * audioParameters().sampleSize() * time / 1000;
 }
 
 qint64 DecoderFFmpegM4b::read(unsigned char *data, qint64 maxSize)

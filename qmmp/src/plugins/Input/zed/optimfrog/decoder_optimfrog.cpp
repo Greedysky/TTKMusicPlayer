@@ -39,7 +39,7 @@ bool DecoderOptimFROG::initialize()
     }
 
     configure(m_helper->rate(), m_helper->channels(), format);
-    qDebug("DecoderOptimFROG: initialize succes");
+    qDebug("DecoderOptimFROG: initialize success");
     return true;
 }
 
@@ -58,7 +58,7 @@ qint64 DecoderOptimFROG::read(unsigned char *data, qint64 maxSize)
     return m_helper->read(data, maxSize);
 }
 
-void DecoderOptimFROG::seek(qint64 pos)
+void DecoderOptimFROG::seek(qint64 time)
 {
-    m_helper->seek(pos);
+    m_helper->seek(time);
 }

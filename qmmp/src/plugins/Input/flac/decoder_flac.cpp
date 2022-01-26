@@ -429,7 +429,7 @@ bool DecoderFLAC::initialize()
 
     m_totalBytes = 0;
     m_sz = audioParameters().frameSize();
-    qDebug("DecoderFLAC: initialize succes");
+    qDebug("DecoderFLAC: initialize success");
     return true;
 }
 

@@ -88,11 +88,11 @@ qint64 DecoderCUE::totalTime() const
     return m_decoder ? m_length : 0;
 }
 
-void DecoderCUE::seek(qint64 pos)
+void DecoderCUE::seek(qint64 time)
 {
-     m_decoder->seek(m_offset + pos);
+     m_decoder->seek(m_offset + time);
      m_totalBytes = audioParameters().sampleRate() *
-                    audioParameters().frameSize() * pos / 1000;
+                    audioParameters().frameSize() * time / 1000;
 }
 
 qint64 DecoderCUE::read(unsigned char *data, qint64 maxSize)

@@ -95,7 +95,7 @@ bool DecoderSndFile::initialize()
 
     configure(m_freq, chan, Qmmp::PCM_S16LE);
     qDebug("DecoderSndFile: detected format: %08X", snd_info.format);
-    qDebug("DecoderSndFile: initialize succes");
+    qDebug("DecoderSndFile: initialize success");
     return true;
 }
 
@@ -124,7 +124,7 @@ qint64 DecoderSndFile::read(unsigned char *data, qint64 maxSize)
     return sizeof(short)* sf_read_short(m_sndfile, (short *)data, maxSize / sizeof(short));
 }
 
-void DecoderSndFile::seek(qint64 pos)
+void DecoderSndFile::seek(qint64 time)
 {
-    sf_seek(m_sndfile, m_freq * pos / 1000, SEEK_SET);
+    sf_seek(m_sndfile, m_freq * time / 1000, SEEK_SET);
 }

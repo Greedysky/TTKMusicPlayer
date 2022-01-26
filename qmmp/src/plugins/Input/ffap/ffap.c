@@ -136,7 +136,8 @@ static const uint8_t ape_filter_fracbits[5][APE_FILTER_LEVELS] = {
 
 
 /** Filters applied to the decoded data */
-typedef struct APEFilter {
+typedef struct APEFilter
+{
     int16_t *coeffs;        ///< actual coefficients used in filtering
     int16_t *adaptcoeffs;   ///< adaptive filter coefficients used for correcting of actual filter coefficients
     int16_t *historybuffer; ///< filter memory
@@ -145,12 +146,14 @@ typedef struct APEFilter {
     int avg;
 } APEFilter;
 
-typedef struct APERice {
+typedef struct APERice
+{
     uint32_t k;
     uint32_t ksum;
 } APERice;
 
-typedef struct APERangecoder {
+typedef struct APERangecoder
+{
     uint32_t low;           ///< low end of interval
     uint32_t range;         ///< length of interval
     uint32_t help;          ///< bytes_to_follow resp. intermediate value
@@ -158,7 +161,8 @@ typedef struct APERangecoder {
 } APERangecoder;
 
 /** Filter histories */
-typedef struct APEPredictor {
+typedef struct APEPredictor
+{
     int32_t *buf;
 
     int32_t lastA[2];
@@ -186,7 +190,8 @@ typedef struct APEPredictor {
 
 #define APE_EXTRADATA_SIZE 6
 
-typedef struct {
+typedef struct
+{
     int64_t pos;
     int nblocks;
     int size;
@@ -194,7 +199,8 @@ typedef struct {
 } APEFrame;
 
 /** Decoder context */
-typedef struct APEContext {
+typedef struct APEContext
+{
     /* Derived fields */
     uint32_t junklength;
     uint32_t firstframe;

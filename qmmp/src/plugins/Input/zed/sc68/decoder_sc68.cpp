@@ -29,7 +29,7 @@ bool DecoderSC68::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_S16LE);
-    qDebug("DecoderSC68: initialize succes");
+    qDebug("DecoderSC68: initialize success");
     return true;
 }
 
@@ -48,7 +48,7 @@ qint64 DecoderSC68::read(unsigned char *data, qint64 maxSize)
     return m_helper->read(data, maxSize);
 }
 
-void DecoderSC68::seek(qint64 pos)
+void DecoderSC68::seek(qint64 time)
 {
-    m_helper->seek(pos);
+    m_helper->seek(time);
 }

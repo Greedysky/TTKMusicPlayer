@@ -95,7 +95,7 @@ qint64 DecoderYm::read(unsigned char *data, qint64 maxSize)
     return 0;
 }
 
-void DecoderYm::seek(qint64 pos)
+void DecoderYm::seek(qint64 time)
 {
-    m_music->setMusicTime((ymu32)pos);
+    m_music->setMusicTime((ymu32)time);
 }

@@ -2,7 +2,7 @@
 #include <QAbstractButton>
 #include <qmmp/qmmp.h>
 #include "settingsdialog.h"
-#include "openmpthelper.h"
+#include "decoder_openmpt.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -35,6 +35,11 @@ void SettingsDialog::accept()
     settings.setValue("stereo_separation", m_ui.stereo_separation->value());
     settings.setValue("use_file_name", m_ui.use_filename->isChecked());
     settings.endGroup();
+
+    if(DecoderOpenMPT::instance())
+    {
+        DecoderOpenMPT::instance()->readSettings();
+    }
     QDialog::accept();
 }
 
@@ -42,7 +47,7 @@ void SettingsDialog::restoreDefaults()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("OpenMPT");
-    setInterpolator(settings.value("interpolator", 8).toInt());
+    setInterpolator(settings.value("interpolator", INTERP_WINDOWED).toInt());
     m_ui.stereo_separation->setSliderPosition(settings.value("stereo_separation", 70).toInt());
     m_ui.use_filename->setChecked(settings.value("use_file_name", 0).toBool());
     settings.endGroup();

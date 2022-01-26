@@ -27,7 +27,8 @@ extern "C" {
 #include <QFile>
 #include <qmmp/qmmp.h>
 
-typedef struct {
+typedef struct
+{
     t_mdxmini input;
     bool mdx_mode;
     int pos;

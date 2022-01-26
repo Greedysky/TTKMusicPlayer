@@ -54,6 +54,10 @@ contains(CONFIG, V2M_PLUGIN){
     SUBDIRS += v2m
 }
 
+contains(CONFIG, XMP_PLUGIN){
+    SUBDIRS += xmp
+}
+
 contains(CONFIG, XSF_PLUGIN){
     SUBDIRS += xsf
 }

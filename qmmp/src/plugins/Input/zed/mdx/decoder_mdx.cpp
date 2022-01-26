@@ -29,7 +29,7 @@ bool DecoderMdx::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_S16LE);
-    qDebug("DecoderMdx: initialize succes");
+    qDebug("DecoderMdx: initialize success");
     return true;
 }
 
@@ -48,7 +48,7 @@ qint64 DecoderMdx::read(unsigned char *data, qint64 maxSize)
     return m_helper->read(data, maxSize);
 }
 
-void DecoderMdx::seek(qint64 pos)
+void DecoderMdx::seek(qint64 time)
 {
-    m_helper->seek(pos);
+    m_helper->seek(time);
 }

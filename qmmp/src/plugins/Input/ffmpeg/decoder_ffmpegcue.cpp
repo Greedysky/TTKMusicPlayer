@@ -104,12 +104,12 @@ qint64 DecoderFFmpegCue::totalTime() const
     return m_decoder ? m_duration : 0;
 }
 
-void DecoderFFmpegCue::seek(qint64 pos)
+void DecoderFFmpegCue::seek(qint64 time)
 {
-    m_decoder->seek(m_offset + pos);
+    m_decoder->seek(m_offset + time);
     m_written = audioParameters().sampleRate() *
             audioParameters().channels() *
-            audioParameters().sampleSize() * pos / 1000;
+            audioParameters().sampleSize() * time / 1000;
 }
 
 qint64 DecoderFFmpegCue::read(unsigned char *data, qint64 maxSize)

@@ -33,6 +33,10 @@ public:
     DecoderOpenMPT(QIODevice *input);
     virtual ~DecoderOpenMPT();
 
+    static DecoderOpenMPT *instance();
+
+    void readSettings();
+
     // Standard Decoder API
     virtual bool initialize() override;
     virtual qint64 totalTime() const override;
@@ -43,6 +47,7 @@ public:
 private:
     OpenMPTHelper *m_helper = nullptr;
 
+    static DecoderOpenMPT *m_instance;
 };
 
 #endif

@@ -27,6 +27,11 @@
 #include <libopenmpt/libopenmpt.h>
 #include <libopenmpt/libopenmpt_stream_callbacks_file.h>
 
+#define INTERP_NONE     1
+#define INTERP_LINEAR   2
+#define INTERP_CUBIC    4
+#define INTERP_WINDOWED 8
+
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
@@ -45,7 +50,7 @@ public:
     void setStereoSeparation(int separation);
 
     qint64 read(unsigned char *data, qint64 maxSize);
-    void seek(qint64 pos);
+    void seek(qint64 time);
 
     int bitrate() const;
     inline int rate() const { return 44100; }

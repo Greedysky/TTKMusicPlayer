@@ -29,7 +29,7 @@ bool DecoderFC14::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_S16LE);
-    qDebug("DecoderFC14: initialize succes");
+    qDebug("DecoderFC14: initialize success");
     return true;
 }
 
@@ -48,7 +48,7 @@ qint64 DecoderFC14::read(unsigned char *data, qint64 maxSize)
     return m_helper->read(data, maxSize);
 }
 
-void DecoderFC14::seek(qint64 pos)
+void DecoderFC14::seek(qint64 time)
 {
-    m_helper->seek(pos);
+    m_helper->seek(time);
 }

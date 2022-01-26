@@ -23,7 +23,8 @@
 #include <QFile>
 #include <qmmp/qmmp.h>
 
-typedef struct {
+typedef struct
+{
     int type;
     void *input;
     size_t file_size;

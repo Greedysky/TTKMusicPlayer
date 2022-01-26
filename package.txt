@@ -15,7 +15,7 @@ libogg-1.3.5	https://xiph.org/downloads
 libopenmpt-0.3.33		https://lib.openmpt.org/libopenmpt
 libprojectm-2.2.1		https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.1		http://libsndfile.github.io/libsamplerate/download.html
-libsidplayfp-2.3.0.patch	https://sourceforge.net/projects/sidplay-residfp
+libsidplayfp-2.3.0.patch	https://github.com/libsidplayfp/libsidplayfp
 libsndfile-1.0.31		https://github.com/libsndfile/libsndfile
 libvorbis-1.3.7	https://xiph.org/downloads
 mp3gain-1_5_2	http://mp3gain.sourceforge.net/download.php
@@ -28,4 +28,5 @@ speex-1.2.0	https://gitlab.xiph.org/xiph/speex
 taglib-1.12	https://github.com/taglib/taglib
 wavpack-5.4.0	https://www.wavpack.com/downloads.html
 wildmidi-wildmidi-0.4.4.patch	https://github.com/Mindwerks/wildmidi
+libxmp-4.5.0	https://github.com/libxmp/libxmp
 zed-1.1.1

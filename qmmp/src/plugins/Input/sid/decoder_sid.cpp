@@ -118,7 +118,7 @@ bool DecoderSID::initialize()
 
     configure(cfg.frequency, 2, Qmmp::PCM_S16LE);
     m_length_in_bytes = audioParameters().sampleRate() * audioParameters().frameSize() * m_length;
-    qDebug("DecoderSID: initialize succes");
+    qDebug("DecoderSID: initialize success");
     return true;
 }
 
@@ -127,9 +127,9 @@ qint64 DecoderSID::totalTime() const
     return m_length;
 }
 
-void DecoderSID::seek(qint64 pos)
+void DecoderSID::seek(qint64 time)
 {
-    Q_UNUSED(pos);
+    Q_UNUSED(time);
 }
 
 int DecoderSID::bitrate() const

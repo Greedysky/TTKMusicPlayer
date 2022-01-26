@@ -29,7 +29,7 @@ bool DecoderBp::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_U8);
-    qDebug("DecoderBp: initialize succes");
+    qDebug("DecoderBp: initialize success");
     return true;
 }
 
@@ -48,7 +48,7 @@ qint64 DecoderBp::read(unsigned char *data, qint64 maxSize)
     return m_helper->read(data, maxSize);
 }
 
-void DecoderBp::seek(qint64 pos)
+void DecoderBp::seek(qint64 time)
 {
-    m_helper->seek(pos);
+    m_helper->seek(time);
 }
