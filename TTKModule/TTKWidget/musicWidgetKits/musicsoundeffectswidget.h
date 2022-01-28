@@ -99,7 +99,7 @@ Q_SIGNALS:
     /*!
      * Read equalizer effect from config file.
      */
-    void setEqInformation();
+    void setEqualizerConfig();
 
 public Q_SLOTS:
     /*!

@@ -61,7 +61,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     }
     else if(from == MusicSoundEffectsWidget::className() && to == MusicPlayer::className())
     {
-        QObject::connect(first, SIGNAL(setEqInformation()), second, SLOT(setEqInformation()));
+        QObject::connect(first, SIGNAL(setEqualizerConfig()), second, SLOT(setEqualizerConfig()));
     }
     else if((from == MusicSongSearchTableWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicItemQueryTableWidget::className() && to == MusicSongsSummariziedWidget::className()))

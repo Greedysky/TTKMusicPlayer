@@ -111,7 +111,15 @@ void MusicPlayer::setMusicEnhanced(Enhanced type)
     {
         m_music->setBalance(0);
         m_music->setVolume(m_volumeMusic3D, m_volumeMusic3D);
-        setMusicEnhancedCase();
+
+        switch(m_musicEnhanced)
+        {
+            case EnhancedOff: setEqualizerEffect({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}); break;
+            case EnhancedVocal: setEqualizerEffect({0, 0, 4, 1, -5, -1, 2, -2, -4, -4, 0}); break;
+            case EnhancedNICAM: setEqualizerEffect({6, -12, -12, -9, -6, -3, -12, -9, -6, -3, -12}); break;
+            case EnhancedSubwoofer: setEqualizerEffect({6, 6, -10, -10, 0, 0, -3, -5, -7, -9, -11}); break;
+            default: break;
+        }
     }
 }
 
@@ -148,11 +156,10 @@ void MusicPlayer::play()
         return;
     }
 
-    m_durationTimes = 0;
     m_timer.start();
 
+    m_durationTimes = 0;
     queryCurrentDuration();
-    ///Every second Q_EMITs a signal change information
     Q_EMIT positionChanged(0);
 }
 
@@ -201,7 +208,7 @@ void MusicPlayer::setEnabledEffect(bool enable)
     }
 }
 
-void MusicPlayer::setEqInformation()
+void MusicPlayer::setEqualizerConfig()
 {
     ///Read the equalizer parameters from a configuration file
     if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
@@ -219,12 +226,6 @@ void MusicPlayer::setEqInformation()
     {
         setEnabledEffect(false);
     }
-}
-
-void MusicPlayer::removeCurrentMedia()
-{
-    m_timer.stop();
-    m_music->stop();
 }
 
 void MusicPlayer::update()
@@ -274,17 +275,5 @@ void MusicPlayer::queryCurrentDuration()
     {
         Q_EMIT durationChanged(m_duration = d);
         Q_EMIT positionChanged(position());
-    }
-}
-
-void MusicPlayer::setMusicEnhancedCase()
-{
-    switch(m_musicEnhanced)
-    {
-        case EnhancedOff: setEqualizerEffect({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}); break;
-        case EnhancedVocal: setEqualizerEffect({0, 0, 4, 1, -5, -1, 2, -2, -4, -4, 0}); break;
-        case EnhancedNICAM: setEqualizerEffect({6, -12, -12, -9, -6, -3, -12, -9, -6, -3, -12}); break;
-        case EnhancedSubwoofer: setEqualizerEffect({6, 6, -10, -10, 0, 0, -3, -5, -7, -9, -11}); break;
-        default: break;
     }
 }

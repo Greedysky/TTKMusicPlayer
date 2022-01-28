@@ -1119,7 +1119,7 @@ void MusicApplication::readSystemConfigFromFile()
     m_applicationObject->musicEffectChanged();
     if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt() == 1)
     {
-        m_musicPlayer->setEqInformation();
+        m_musicPlayer->setEqualizerConfig();
     }
 
     //music hotkey

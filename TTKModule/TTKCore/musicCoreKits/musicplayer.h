@@ -155,11 +155,7 @@ public Q_SLOTS:
     /*!
      * Read equalizer effect from config file.
      */
-    void setEqInformation();
-    /*!
-     * Remove current music media data.
-     */
-    void removeCurrentMedia();
+    void setEqualizerConfig();
 
 private Q_SLOTS:
     /*!
@@ -172,11 +168,6 @@ private Q_SLOTS:
     void queryCurrentDuration();
 
 protected:
-    /*!
-     * Set current music enhanced effect option.
-     */
-    void setMusicEnhancedCase();
-
     MusicPlaylist *m_playlist;
     MusicObject::PlayState m_state;
     SoundCore *m_music;

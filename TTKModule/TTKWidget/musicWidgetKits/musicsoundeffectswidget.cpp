@@ -187,8 +187,7 @@ void MusicSoundEffectsWidget::equalizerButtonChanged()
     equalizerButtonChanged(state);
 
     G_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, state);
-
-    Q_EMIT setEqInformation();
+    Q_EMIT setEqualizerConfig();
 }
 
 void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
