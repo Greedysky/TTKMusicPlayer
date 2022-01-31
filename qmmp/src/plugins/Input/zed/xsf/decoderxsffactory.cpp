@@ -1,6 +1,6 @@
+#include "decoderxsffactory.h"
 #include "xsfhelper.h"
 #include "decoder_xsf.h"
-#include "decoderxsffactory.h"
 
 bool DecoderXSFFactory::canDecode(QIODevice *) const
 {
@@ -60,7 +60,7 @@ QList<TrackInfo*> DecoderXSFFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::BITRATE, helper.bitrate());
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
-        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
         info->setValue(Qmmp::FORMAT_NAME, "XSF");
         info->setDuration(helper.totalTime());
     }

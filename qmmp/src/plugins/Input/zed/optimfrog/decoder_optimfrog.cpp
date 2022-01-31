@@ -1,4 +1,5 @@
 #include "decoder_optimfrog.h"
+#include "optimfroghelper.h"
 
 DecoderOptimFROG::DecoderOptimFROG(QIODevice *input)
     : Decoder(input)
@@ -38,14 +39,14 @@ bool DecoderOptimFROG::initialize()
             return false;
     }
 
-    configure(m_helper->rate(), m_helper->channels(), format);
+    configure(m_helper->sampleRate(), m_helper->channels(), format);
     qDebug("DecoderOptimFROG: initialize success");
     return true;
 }
 
 qint64 DecoderOptimFROG::totalTime() const
 {
-    return m_helper->length();
+    return m_helper->totalTime();
 }
 
 int DecoderOptimFROG::bitrate() const

@@ -1,11 +1,7 @@
-#include <taglib/apefile.h>
-#include <taglib/apetag.h>
-#include <taglib/tfilestream.h>
-#include <qmmp/cueparser.h>
-#include "ffapmetadatamodel.h"
 #include "decoderffapfactory.h"
 #include "decoder_ffap.h"
 #include "decoder_ffapcue.h"
+#include "ffapmetadatamodel.h"
 
 bool DecoderFFapFactory::canDecode(QIODevice *input) const
 {

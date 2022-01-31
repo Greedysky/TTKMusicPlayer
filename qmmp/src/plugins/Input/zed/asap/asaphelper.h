@@ -26,14 +26,6 @@ extern "C" {
 #include <QFile>
 #include <qmmp/qmmp.h>
 
-typedef struct
-{
-    ASAP *input;
-    int length;
-    int bitrate;
-    int channels;
-} decode_info;
-
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -44,22 +36,25 @@ public:
     ~AsapHelper();
 
     void deinit();
-
     bool initialize();
-    qint64 totalTime() const;
-    void seek(qint64 time);
 
-    int bitrate() const;
-    int sampleRate() const;
-    int channels() const;
-    int bitsPerSample() const;
+    inline void seek(qint64 time) { ASAP_Seek(m_input, time); }
+    inline qint64 totalTime() const { return m_length; }
+
+    inline int bitrate() const { return m_bitrate; }
+    inline int sampleRate() const { return ASAP_SAMPLE_RATE; }
+    inline int channels() const { return m_channels; }
+    inline int depth() const { return 16; }
 
     qint64 read(unsigned char *data, qint64 maxSize);
-    const QMap<Qmmp::MetaData, QString> &readMetaData() const;
+    inline const QMap<Qmmp::MetaData, QString> &readMetaData() const { return m_metaData; }
 
 private:
     QString m_path;
-    decode_info *m_info = nullptr;
+    ASAP *m_input = nullptr;
+    int m_length = 0;
+    int m_bitrate = 0;
+    int m_channels = 0;
     QMap<Qmmp::MetaData, QString> m_metaData;
 
 };

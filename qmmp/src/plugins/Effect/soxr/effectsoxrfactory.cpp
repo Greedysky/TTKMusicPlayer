@@ -1,6 +1,6 @@
-#include "settingsdialog.h"
-#include "soxresampler.h"
 #include "effectsoxrfactory.h"
+#include "soxresampler.h"
+#include "settingsdialog.h"
 
 const EffectProperties EffectSoXRFactory::properties() const
 {

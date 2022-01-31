@@ -1,5 +1,5 @@
-#include "fc14helper.h"
 #include "decoder_fc14.h"
+#include "fc14helper.h"
 
 DecoderFC14::DecoderFC14(const QString &path)
     : Decoder()

@@ -1,7 +1,8 @@
+#include "settingsdialog.h"
+#include "stereoplugin.h"
+
 #include <QSettings>
 #include <QAbstractButton>
-#include "stereoplugin.h"
-#include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

@@ -1,7 +1,6 @@
-#include <QIODevice>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
 #include "decoder_opus.h"
+
+#include <qmmp/output.h>
 
 // ic functions for libopusfile
 static int opusread(void *src, unsigned char *buf,int size)

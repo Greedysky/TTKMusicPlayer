@@ -1,13 +1,9 @@
-#include <QSettings>
-#include <QByteArray>
-#include <QDir>
-#include <QFileInfo>
-#include <QSettings>
-#include <math.h>
-#include <dlfcn.h>
-#include <algorithm>
-#include <qmmp/audioparameters.h>
 #include "ladspahost.h"
+
+#include <QSettings>
+#include <QDir>
+#include <dlfcn.h>
+#include <qmmp/audioparameters.h>
 
 #ifndef PATH_MAX
 #define PATH_MAX 4096

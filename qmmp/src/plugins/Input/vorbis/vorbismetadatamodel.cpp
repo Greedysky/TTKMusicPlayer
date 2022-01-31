@@ -1,12 +1,6 @@
-#include <QBuffer>
-
-#include <taglib/tag.h>
-#include <taglib/fileref.h>
-#include <taglib/vorbisfile.h>
-#include <taglib/xiphcomment.h>
-#include <taglib/tmap.h>
-#include <taglib/flacpicture.h>
 #include "vorbismetadatamodel.h"
+
+#include <QBuffer>
 
 VorbisMetaDataModel::VorbisMetaDataModel(const QString &path, bool readOnly)
     : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable),
@@ -115,7 +109,7 @@ QString VorbisCommentModel::value(Qmmp::MetaData key) const
     if(!m_model->m_tag || m_model->m_tag->isEmpty())
         return QString();
 
-    TagLib::Ogg::XiphComment *tag  = m_model->m_tag;
+    TagLib::Ogg::XiphComment *tag = m_model->m_tag;
     switch((int) key)
     {
     case Qmmp::TITLE:

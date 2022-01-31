@@ -21,7 +21,6 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
-#include <bs2b/bs2b.h>
 #include "ui_settingsdialog.h"
 
 /**

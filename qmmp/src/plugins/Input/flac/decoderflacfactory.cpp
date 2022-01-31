@@ -1,15 +1,9 @@
-#include <taglib/tag.h>
-#include <taglib/fileref.h>
-#include <taglib/flacfile.h>
-#include <taglib/oggflacfile.h>
-#include <taglib/xiphcomment.h>
-#include <taglib/tmap.h>
-#include <taglib/tfilestream.h>
-#include <taglib/id3v2framefactory.h>
-#include <qmmp/cueparser.h>
+#include "decoderflacfactory.h"
 #include "decoder_flac.h"
 #include "flacmetadatamodel.h"
-#include "decoderflacfactory.h"
+
+#include <taglib/id3v2framefactory.h>
+#include <qmmp/cueparser.h>
 
 bool DecoderFLACFactory::canDecode(QIODevice *input) const
 {

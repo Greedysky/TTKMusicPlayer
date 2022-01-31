@@ -1,5 +1,5 @@
-#include "v2mhelper.h"
 #include "decoder_v2m.h"
+#include "v2mhelper.h"
 
 DecoderV2M::DecoderV2M(const QString &path)
     : Decoder()

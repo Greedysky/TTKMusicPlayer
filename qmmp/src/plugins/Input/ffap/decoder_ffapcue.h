@@ -21,11 +21,14 @@
 #ifndef DECODER_FFAPCUE_H
 #define DECODER_FFAPCUE_H
 
+#include <taglib/apetag.h>
+#include <taglib/apefile.h>
+#include <taglib/tfilestream.h>
 #include <qmmp/decoder.h>
+#include <qmmp/cueparser.h>
 
 class Output;
 class QIDevice;
-class CueParser;
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>

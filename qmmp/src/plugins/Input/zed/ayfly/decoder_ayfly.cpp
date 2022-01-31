@@ -1,5 +1,5 @@
-#include "ayflyhelper.h"
 #include "decoder_ayfly.h"
+#include "ayflyhelper.h"
 
 DecoderAyfly::DecoderAyfly(const QString &path)
     : Decoder()

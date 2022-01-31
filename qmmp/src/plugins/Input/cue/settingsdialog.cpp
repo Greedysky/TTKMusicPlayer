@@ -1,12 +1,11 @@
-#include <QSettings>
-#include <QTextCodec>
-#include <QAbstractButton>
-#include <qmmp/qmmp.h>
-#include <qmmp/regularwrapper.h>
+#include "settingsdialog.h"
 #ifdef WITH_ENCA
 #  include <enca.h>
 #endif
-#include "settingsdialog.h"
+#include <QSettings>
+#include <QTextCodec>
+#include <qmmp/qmmp.h>
+#include <qmmp/regularwrapper.h>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

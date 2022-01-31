@@ -1,7 +1,7 @@
-#include <sidplayfp/SidDatabase.h>
+#include "sidhelper.h"
+
 #include <QFileInfo>
 #include <QSettings>
-#include "sidhelper.h"
 
 SIDHelper::SIDHelper(SidDatabase *db)
     : m_db(db)
@@ -73,6 +73,7 @@ QList<TrackInfo*> SIDHelper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::BITRATE, 8);
             info->setValue(Qmmp::SAMPLERATE, sample_rate);
             info->setValue(Qmmp::CHANNELS, 2);
+            info->setValue(Qmmp::BITS_PER_SAMPLE, 16);
             info->setValue(Qmmp::FORMAT_NAME, "SID");
 
             int length = m_db->length(md5, i) * 1000;

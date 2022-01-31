@@ -20,8 +20,12 @@
 #define PSFMETADATAMODEL_H
 
 #include <qmmp/metadatamodel.h>
-#include "psfhelper.h"
 
+class PSFHelper;
+
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class PSFMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(PSFMetaDataModel)
@@ -38,6 +42,9 @@ private:
 
 };
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class PSFFileTagModel : public TagModel
 {
 public:

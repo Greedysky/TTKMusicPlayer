@@ -1,7 +1,8 @@
-#include <QFile>
-#include "aacfile.h"
-#include "decoder_aac.h"
 #include "decoderaacfactory.h"
+#include "decoder_aac.h"
+#include "aacfile.h"
+
+#include <QFile>
 
 bool DecoderAACFactory::canDecode(QIODevice *input) const
 {
@@ -43,7 +44,6 @@ QList<TrackInfo*> DecoderAACFactory::createPlayList(const QString &path, TrackIn
     }
 
     AACFile aac_file(&file, parts & TrackInfo::MetaData);
-
     if(!aac_file.isValid())
     {
         delete info;
@@ -59,6 +59,8 @@ QList<TrackInfo*> DecoderAACFactory::createPlayList(const QString &path, TrackIn
     {
         info->setValue(Qmmp::BITRATE, aac_file.bitrate());
         info->setValue(Qmmp::SAMPLERATE, aac_file.sampleRate());
+        info->setValue(Qmmp::CHANNELS, 2);
+        info->setValue(Qmmp::BITS_PER_SAMPLE, 16);
         info->setValue(Qmmp::FORMAT_NAME, "AAC");
         info->setDuration(aac_file.duration());
     }

@@ -50,14 +50,14 @@ bool DecoderOpenMPT::initialize()
 
     readSettings();
 
-    configure(m_helper->rate(), m_helper->channels(), Qmmp::PCM_FLOAT);
+    configure(m_helper->sampleRate(), m_helper->channels(), Qmmp::PCM_FLOAT);
     qDebug("DecoderOpenMPT: initialize success");
     return true;
 }
 
 qint64 DecoderOpenMPT::totalTime() const
 {
-    return m_helper->length();
+    return m_helper->totalTime();
 }
 
 int DecoderOpenMPT::bitrate() const

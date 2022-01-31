@@ -22,8 +22,8 @@
 #define FFMPEGMETADATAMODEL_H
 
 #include <qmmp/metadatamodel.h>
-#include <taglib/apefile.h>
 #include <taglib/apetag.h>
+#include <taglib/apefile.h>
 #include <taglib/tfilestream.h>
 
 class FFmpegMetaDataModel : public MetaDataModel

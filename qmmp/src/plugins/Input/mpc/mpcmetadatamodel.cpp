@@ -1,8 +1,8 @@
-#include <QTextCodec>
-#include <taglib/tag.h>
-#include <taglib/id3v1tag.h>
-#include <taglib/apetag.h>
 #include "mpcmetadatamodel.h"
+
+#include <QTextCodec>
+#include <taglib/apetag.h>
+#include <taglib/id3v1tag.h>
 
 MPCMetaDataModel::MPCMetaDataModel(const QString &path, bool readOnly)
     : MetaDataModel(readOnly)

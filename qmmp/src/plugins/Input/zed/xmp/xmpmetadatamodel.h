@@ -20,7 +20,7 @@
 #define XMPMETADATAMODEL_H
 
 #include <qmmp/metadatamodel.h>
-#include <libxmp/xmp.h>
+#include <xmp.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>

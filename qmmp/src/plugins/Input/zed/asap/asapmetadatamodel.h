@@ -20,8 +20,12 @@
 #define ASAPMETADATAMODEL_H
 
 #include <qmmp/metadatamodel.h>
-#include "asaphelper.h"
 
+class AsapHelper;
+
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class AsapMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(AsapMetaDataModel)
@@ -37,6 +41,10 @@ private:
 
 };
 
+
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class AsapFileTagModel : public TagModel
 {
 public:

@@ -1,6 +1,7 @@
-#include <QApplication>
-#include "ladspahost.h"
 #include "ladspahelper.h"
+#include "ladspahost.h"
+
+#include <QApplication>
 
 LADSPAHelper::LADSPAHelper()
     : Effect()

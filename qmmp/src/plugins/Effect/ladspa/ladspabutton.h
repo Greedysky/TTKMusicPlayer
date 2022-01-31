@@ -21,8 +21,8 @@
 #ifndef LADSPABUTTON_H
 #define LADSPABUTTON_H
 
-#include <QCheckBox>
 #include "ladspa.h"
+#include <QCheckBox>
 
 class LADSPAHost;
 

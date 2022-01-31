@@ -32,19 +32,21 @@ public:
     explicit OptimFROGHelper(QIODevice *input);
     ~OptimFROGHelper();
 
+    void deinit();
     bool initialize();
 
-    inline int rate() const { return m_info.samplerate; }
+    void seek(qint64 time);
+    qint64 totalTime() const;
+
+    inline int bitrate() const { return m_info.bitrate; }
+    inline int sampleRate() const { return m_info.samplerate; }
     inline int channels() const { return m_info.channels; }
     inline int depth() const { return m_info.bitspersample; }
-    inline int bitrate() const { return m_info.bitrate; }
     inline int version() const { return m_info.version; }
 
-    void seek(qint64 time);
-    qint64 length() const;
     qint64 read(unsigned char *data, qint64 maxSize);
 
-    inline double compression() const { return 1000.0 * bitrate() / rate() / channels() / depth(); }
+    inline double compression() const { return 1000.0 * bitrate() / sampleRate() / channels() / depth(); }
 
     inline bool hasTags() const { return !m_tags.isEmpty(); }
     inline QString tag(const char* tag) { return m_tags[tag]; }

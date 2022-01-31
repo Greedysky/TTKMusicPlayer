@@ -1,5 +1,5 @@
-#include "xsfhelper.h"
 #include "decoder_xsf.h"
+#include "xsfhelper.h"
 
 DecoderXSF::DecoderXSF(const QString &path)
     : Decoder()

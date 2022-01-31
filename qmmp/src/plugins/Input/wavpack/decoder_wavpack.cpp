@@ -1,8 +1,7 @@
-#include <qmmp/cueparser.h>
-#include <qmmp/buffer.h>
 #include "decoder_wavpack.h"
 
-// Decoder class
+#include <qmmp/cueparser.h>
+#include <qmmp/buffer.h>
 
 DecoderWavPack::DecoderWavPack(const QString &path)
     : Decoder(),

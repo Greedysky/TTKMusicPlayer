@@ -20,10 +20,6 @@
 #ifndef CUEFILE_H
 #define CUEFILE_H
 
-#include <QMap>
-#include <QStringList>
-#include <qmmp/qmmp.h>
-#include <qmmp/trackinfo.h>
 #include <qmmp/cueparser.h>
 
 /**

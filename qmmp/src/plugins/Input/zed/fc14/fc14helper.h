@@ -19,18 +19,12 @@
 #ifndef FC14HELPER_H
 #define FC14HELPER_H
 
-extern "C" {
-#include <libfc14/fc14audiodecoder.h>
-}
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
-
-typedef struct
-{
-    void *input;
-    int bitrate;
-} decode_info;
+extern "C" {
+#include <libfc14/fc14audiodecoder.h>
+}
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -42,22 +36,23 @@ public:
     ~FC14Helper();
 
     void deinit();
-
     bool initialize();
-    qint64 totalTime() const;
-    void seek(qint64 time);
 
-    int bitrate() const;
-    int sampleRate() const;
-    int channels() const;
-    int bitsPerSample() const;
+    inline void seek(qint64 time) { fc14dec_seek(m_input, time); }
+    inline qint64 totalTime() const { return fc14dec_duration(m_input); }
+
+    inline int bitrate() const { return m_bitrate; }
+    inline int sampleRate() const { return 44100; }
+    inline int channels() const { return 2; }
+    inline int depth() const { return 16; }
 
     qint64 read(unsigned char *data, qint64 maxSize);
     QMap<Qmmp::MetaData, QString> readMetaData() const;
 
 private:
     QString m_path;
-    decode_info *m_info = nullptr;
+    void *m_input = nullptr;
+    int m_bitrate = 0;
 
 };
 

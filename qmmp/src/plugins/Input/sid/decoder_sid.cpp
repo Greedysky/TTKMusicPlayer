@@ -1,15 +1,15 @@
-#include <QSettings>
-#include <QFileInfo>
 #include <sidplayfp/sidplayfp.h>
 #include <sidplayfp/SidTune.h>
 #include <sidplayfp/sidbuilder.h>
-#include <sidplayfp/SidConfig.h>
 #include <sidplayfp/builders/residfp.h>
 #include <sidplayfp/builders/resid.h>
 #include <sidplayfp/SidInfo.h>
 #include <sidplayfp/SidTuneInfo.h>
 #include <sidplayfp/SidDatabase.h>
 #include "decoder_sid.h"
+
+#include <QSettings>
+#include <QFileInfo>
 
 DecoderSID::DecoderSID(SidDatabase *db, const QString &url)
     : Decoder(),

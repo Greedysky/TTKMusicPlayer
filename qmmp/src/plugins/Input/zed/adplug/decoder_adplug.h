@@ -19,9 +19,13 @@
 #ifndef DECODER_ADPLUG_H
 #define DECODER_ADPLUG_H
 
-#include "adplughelper.h"
 #include <qmmp/decoder.h>
 
+class AdplugHelper;
+
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class DecoderAdplug : public Decoder
 {
 public:
@@ -41,7 +45,6 @@ private:
     unsigned char *m_bufptr = nullptr;
     qint64 m_buf_filled = 0;
     unsigned long m_time = 0;
-    unsigned long m_length = 0;
     double m_divisor = 0.0;
 
 };

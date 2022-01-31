@@ -4,10 +4,12 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
 
 HEADERS += decoderymfactory.h \
-           decoder_ym.h
+           decoder_ym.h \
+           ymhelper.h
 
 SOURCES += decoderymfactory.cpp \
-           decoder_ym.cpp
+           decoder_ym.cpp \
+           ymhelper.cpp
 
 INCLUDEPATH += $$EXTRA_PREFIX/libym/include
 

@@ -1,9 +1,5 @@
-#include <taglib/apefile.h>
-#include <taglib/apetag.h>
-#include <taglib/tfilestream.h>
-#include <qmmp/cueparser.h>
-#include "decoder_ffap.h"
 #include "decoder_ffapcue.h"
+#include "decoder_ffap.h"
 
 DecoderFFapCUE::DecoderFFapCUE(const QString &url)
     : Decoder(),

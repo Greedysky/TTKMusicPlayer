@@ -1,13 +1,12 @@
-#include <QSettings>
-#include <QAbstractButton>
+#include "settingsdialog.h"
+#include "ladspaslider.h"
+#include "ladspabutton.h"
+#include "ladspahost.h"
+
 #include <QStandardItemModel>
 #include <QFormLayout>
 #include <QLabel>
 #include <qmmp/qmmp.h>
-#include "ladspaslider.h"
-#include "ladspabutton.h"
-#include "ladspahost.h"
-#include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

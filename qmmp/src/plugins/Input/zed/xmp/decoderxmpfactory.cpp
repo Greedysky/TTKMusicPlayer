@@ -1,7 +1,9 @@
+#include "decoderxmpfactory.h"
 #include "decoder_xmp.h"
 #include "xmpmetadatamodel.h"
-#include "decoderxmpfactory.h"
 #include "settingsdialog.h"
+
+#include <QFileInfo>
 
 bool DecoderXmpFactory::canDecode(QIODevice *) const
 {
@@ -17,7 +19,7 @@ DecoderProperties DecoderXmpFactory::properties() const
     properties.filters << "*.dsym";
     properties.filters << "*.emod";
     properties.filters << "*.fnk";
-    properties.filters << "*.gdm" << "*.gtk";
+    properties.filters << "*.gtk";
     properties.filters << "*.ims";
     properties.filters << "*.liq";
     properties.filters << "*.mfp" << "*.mgt";
@@ -53,9 +55,15 @@ QList<TrackInfo *> DecoderXmpFactory::createPlayList(const QString &path, TrackI
 
         xmp_module_info mi;
         xmp_get_module_info(ctx, &mi);
+
         info->setValue(Qmmp::TITLE, mi.mod->name);
+        info->setValue(Qmmp::BITRATE, QFileInfo(path).size() * 8.0 / mi.seq_data[0].duration + 1.0f);
+        info->setValue(Qmmp::SAMPLERATE, 44100);
+        info->setValue(Qmmp::CHANNELS, 2);
+        info->setValue(Qmmp::BITS_PER_SAMPLE, 16);
         info->setValue(Qmmp::FORMAT_NAME, mi.mod->type);
         info->setDuration(mi.seq_data[0].duration);
+
         xmp_release_module(ctx);
         xmp_free_context(ctx);
     }

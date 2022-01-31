@@ -1,6 +1,6 @@
+#include "decoderbpfactory.h"
 #include "bphelper.h"
 #include "decoder_bp.h"
-#include "decoderbpfactory.h"
 
 bool DecoderBpFactory::canDecode(QIODevice *) const
 {
@@ -46,7 +46,7 @@ QList<TrackInfo*> DecoderBpFactory::createPlayList(const QString &path, TrackInf
         info->setValue(Qmmp::BITRATE, helper.bitrate());
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
-        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
         info->setValue(Qmmp::FORMAT_NAME, "BP");
         info->setDuration(helper.totalTime());
     }

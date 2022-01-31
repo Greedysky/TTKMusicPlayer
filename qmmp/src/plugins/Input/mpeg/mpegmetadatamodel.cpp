@@ -1,20 +1,13 @@
-#include <QTextCodec>
-#include <QSettings>
-#include <QByteArray>
+#include "mpegmetadatamodel.h"
+
 #include <QBuffer>
-#include <taglib/tag.h>
-#include <taglib/fileref.h>
+#include <QSettings>
+#include <QTextCodec>
+#include <taglib/apetag.h>
 #include <taglib/id3v1tag.h>
 #include <taglib/id3v2tag.h>
-#include <taglib/apetag.h>
-#include <taglib/tfile.h>
-#include <taglib/mpegfile.h>
-#include <taglib/mpegheader.h>
-#include <taglib/mpegproperties.h>
 #include <taglib/textidentificationframe.h>
 #include <taglib/attachedpictureframe.h>
-#include <taglib/id3v2framefactory.h>
-#include "mpegmetadatamodel.h"
 
 MPEGMetaDataModel::MPEGMetaDataModel(const QString &path, bool readOnly)
     : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)

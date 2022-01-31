@@ -1,10 +1,4 @@
-#include <QIODevice>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
-#include <math.h>
 #include "decoder_mpc.h"
-
-// mpc callbacks
 
 static mpc_int32_t mpc_callback_read(mpc_reader *reader, void *buffer, mpc_int32_t size)
 {

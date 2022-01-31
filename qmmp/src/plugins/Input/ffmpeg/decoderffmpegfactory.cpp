@@ -1,19 +1,17 @@
-#include <QSettings>
-#include <qmmp/cueparser.h>
-
+#include "decoderffmpegfactory.h"
+#include "ffmpegmetadatamodel.h"
+#include "settingsdialog.h"
+#include "decoder_ffmpeg.h"
+#include "decoder_ffmpegcue.h"
+#include "decoder_ffmpegm4b.h"
 extern "C" {
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
 #include <libavutil/dict.h>
 #include <libavutil/avutil.h>
 }
-
-#include "ffmpegmetadatamodel.h"
-#include "settingsdialog.h"
-#include "decoder_ffmpeg.h"
-#include "decoder_ffmpegcue.h"
-#include "decoder_ffmpegm4b.h"
-#include "decoderffmpegfactory.h"
+#include <QSettings>
+#include <qmmp/cueparser.h>
 
 DecoderFFmpegFactory::DecoderFFmpegFactory()
 {

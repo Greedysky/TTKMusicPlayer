@@ -8,6 +8,11 @@ OpenMPTHelper::OpenMPTHelper(QIODevice *input)
 
 OpenMPTHelper::~OpenMPTHelper()
 {
+    deinit();
+}
+
+void OpenMPTHelper::deinit()
+{
     if(m_mod)
     {
         openmpt_module_destroy(m_mod);
@@ -134,16 +139,6 @@ void OpenMPTHelper::setStereoSeparation(int separation)
 qint64 OpenMPTHelper::read(unsigned char *data, qint64 maxSize)
 {
     maxSize /= sizeof(float) * channels();
-    const std::size_t n = openmpt_module_read_interleaved_float_stereo(m_mod, rate(), maxSize, reinterpret_cast<float *>(data));
+    const std::size_t n = openmpt_module_read_interleaved_float_stereo(m_mod, sampleRate(), maxSize, reinterpret_cast<float *>(data));
     return n * channels() * sizeof(float);
-}
-
-void OpenMPTHelper::seek(qint64 time)
-{
-    openmpt_module_set_position_seconds(m_mod, time / 1000.0);
-}
-
-int OpenMPTHelper::bitrate() const
-{
-    return m_input->size() * 8.0 / length() + 1.0f;
 }

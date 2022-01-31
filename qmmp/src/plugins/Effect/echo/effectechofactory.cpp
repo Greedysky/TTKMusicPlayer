@@ -1,6 +1,6 @@
 #include "effectechofactory.h"
-#include "settingsdialog.h"
 #include "echoplugin.h"
+#include "settingsdialog.h"
 
 const EffectProperties EffectEchoFactory::properties() const
 {

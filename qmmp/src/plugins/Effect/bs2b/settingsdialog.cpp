@@ -1,8 +1,8 @@
-#include <QSettings>
-#include <QAbstractButton>
-#include <bs2b/bs2b.h>
 #include "bs2bplugin.h"
 #include "settingsdialog.h"
+
+#include <QSettings>
+#include <bs2b/bs2b.h>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

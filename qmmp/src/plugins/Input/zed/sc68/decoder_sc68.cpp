@@ -1,5 +1,5 @@
-#include "sc68helper.h"
 #include "decoder_sc68.h"
+#include "sc68helper.h"
 
 DecoderSC68::DecoderSC68(const QString &path)
     : Decoder()

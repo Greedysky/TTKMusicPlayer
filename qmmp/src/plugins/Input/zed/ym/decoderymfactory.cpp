@@ -1,7 +1,6 @@
 #include "decoderymfactory.h"
 #include "decoder_ym.h"
-
-#include <QFileInfo>
+#include "ymhelper.h"
 
 bool DecoderYmFactory::canDecode(QIODevice *) const
 {
@@ -35,37 +34,31 @@ QList<TrackInfo*> DecoderYmFactory::createPlayList(const QString &path, TrackInf
         return QList<TrackInfo*>() << info;
     }
 
-    CYmMusic *music = new CYmMusic;
-    if(!music->load(QmmpPrintable(path)))
+    YMHelper helper(path);
+    if(!helper.initialize())
     {
         delete info;
         return QList<TrackInfo*>();
     }
 
-    ymMusicInfo_t musicInfo;
-    music->getMusicInfo(&musicInfo);
-
     if(parts & TrackInfo::MetaData)
     {
-        char* title = strdup(musicInfo.pSongName);
-        char* composer = strdup(musicInfo.pSongAuthor);
-        char* comment = strdup(musicInfo.pSongComment);
-
-        info->setValue(Qmmp::TITLE, QString::fromUtf8(title).trimmed());
-        info->setValue(Qmmp::COMPOSER, QString::fromUtf8(composer).trimmed());
-        info->setValue(Qmmp::COMMENT, QString::fromUtf8(comment).trimmed());
+        const QMap<Qmmp::MetaData, QString> metaData(helper.readMetaData());
+        for(auto itr = metaData.begin(); itr != metaData.end(); ++itr)
+        {
+            info->setValue(itr.key(), itr.value());
+        }
     }
 
     if(parts & TrackInfo::Properties)
     {
-        info->setValue(Qmmp::BITRATE, (QFileInfo(path).size() * 8.0) / musicInfo.musicTimeInMs + 1.0f);
-        info->setValue(Qmmp::SAMPLERATE, 44100);
-        info->setValue(Qmmp::CHANNELS, 2);
+        info->setValue(Qmmp::BITRATE, helper.bitrate());
+        info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
+        info->setValue(Qmmp::CHANNELS, helper.channels());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
         info->setValue(Qmmp::FORMAT_NAME, "YM");
-        info->setDuration(musicInfo.musicTimeInMs);
+        info->setDuration(helper.totalTime());
     }
-
-    delete music;
     return QList<TrackInfo*>() << info;
 }
 

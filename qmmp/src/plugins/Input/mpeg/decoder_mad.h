@@ -26,7 +26,6 @@
 
 #include <mad.h>
 #include <qmmp/decoder.h>
-#include "decodermpegfactory.h"
 
 class DecoderMAD : public Decoder
 {

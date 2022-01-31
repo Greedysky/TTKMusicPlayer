@@ -1,9 +1,6 @@
-#include <taglib/tag.h>
-#include <taglib/fileref.h>
-#include <taglib/opusfile.h>
+#include "decoderopusfactory.h"
 #include "decoder_opus.h"
 #include "opusmetadatamodel.h"
-#include "decoderopusfactory.h"
 
 bool DecoderOpusFactory::canDecode(QIODevice *input) const
 {

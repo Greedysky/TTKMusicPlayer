@@ -1,4 +1,5 @@
 #include "psfmetadatamodel.h"
+#include "psfhelper.h"
 
 PSFMetaDataModel::PSFMetaDataModel(const QString &path)
     : MetaDataModel(true)

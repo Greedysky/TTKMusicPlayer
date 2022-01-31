@@ -23,18 +23,6 @@
 #include <QFile>
 #include <qmmp/qmmp.h>
 
-typedef struct
-{
-    int type;
-    void *input;
-    size_t file_size;
-    char buffer[735 * 4]; // psf2 decoder only works with 735 samples buffer
-    int remaining;
-    int length;
-    int current_sample;
-    int samples_to_skip;
-} decode_info;
-
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -45,22 +33,29 @@ public:
     virtual ~PSFHelper();
 
     void deinit();
-
     bool initialize();
-    qint64 totalTime() const;
-    void seek(qint64 time);
 
-    int bitrate() const;
-    int sampleRate() const;
-    int channels() const;
-    int bitsPerSample() const;
+    void seek(qint64 time);
+    inline qint64 totalTime() const { return m_length * 1000; }
+
+    inline int bitrate() const { return m_file_size * 8.0 / totalTime() + 1.0f; }
+    inline int sampleRate() const { return 44100; }
+    inline int channels() const { return 2; }
+    inline int depth() const { return 16; }
 
     qint64 read(unsigned char *data, qint64 maxSize);
     QMap<Qmmp::MetaData, QString> readMetaData() const;
 
 private:
     QString m_path;
-    decode_info *m_info = nullptr;
+    int m_type = 0;
+    void *m_input = nullptr;
+    size_t m_file_size = 0;
+    char m_buffer[735 * 4] = {0}; // psf2 decoder only works with 735 samples buffer
+    int m_remaining = 0;
+    int m_length = 0;
+    int m_current_sample = 0;
+    int m_samples_to_skip = 0;
 
 };
 

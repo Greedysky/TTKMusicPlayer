@@ -1,5 +1,4 @@
 #include <QSettings>
-#include <QAbstractButton>
 #include <qmmp/qmmp.h>
 #include <initguid.h>
 #include <audioclient.h>

@@ -1,10 +1,10 @@
-#include <QSettings>
 #include <sidplayfp/SidTune.h>
-#include <sidplayfp/SidTuneInfo.h>
+#include "decodersidfactory.h"
 #include "decoder_sid.h"
 #include "sidhelper.h"
-#include "decodersidfactory.h"
 #include "settingsdialog.h"
+
+#include <QSettings>
 
 DecoderSIDFactory::DecoderSIDFactory()
 {

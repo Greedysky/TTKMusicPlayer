@@ -1,6 +1,6 @@
+#include "decoderwildmidifactory.h"
 #include "wildmidihelper.h"
 #include "decoder_wildmidi.h"
-#include "decoderwildmidifactory.h"
 #include "settingsdialog.h"
 
 DecoderWildMidiFactory::DecoderWildMidiFactory()
@@ -54,6 +54,7 @@ QList<TrackInfo*> DecoderWildMidiFactory::createPlayList(const QString &path, Tr
         {
             WildMidiHelper::instance()->addPtr(midi_ptr);
             _WM_Info *wm_info = WildMidi_GetInfo(midi_ptr);
+
             info->setValue(Qmmp::SAMPLERATE, helper->sampleRate());
             info->setValue(Qmmp::BITRATE, helper->bitrate());
             info->setValue(Qmmp::CHANNELS, helper->channels());

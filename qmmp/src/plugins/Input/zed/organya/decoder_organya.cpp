@@ -1,5 +1,5 @@
-#include "organyahelper.h"
 #include "decoder_organya.h"
+#include "organyahelper.h"
 
 DecoderOrganya::DecoderOrganya(const QString &path)
     : Decoder()

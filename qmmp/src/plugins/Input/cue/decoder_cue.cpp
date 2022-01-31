@@ -1,9 +1,7 @@
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
-#include <qmmp/decoderfactory.h>
-#include <qmmp/soundcore.h>
-#include "cuefile.h"
 #include "decoder_cue.h"
+#include "cuefile.h"
+
+#include <qmmp/decoderfactory.h>
 
 DecoderCUE::DecoderCUE(const QString &url)
     : Decoder(),

@@ -1,7 +1,7 @@
+#include "decodercuefactory.h"
 #include "decoder_cue.h"
 #include "cuemetadatamodel.h"
 #include "cuefile.h"
-#include "decodercuefactory.h"
 #include "settingsdialog.h"
 
 bool DecoderCUEFactory::canDecode(QIODevice *) const

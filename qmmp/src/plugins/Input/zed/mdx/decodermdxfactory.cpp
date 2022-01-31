@@ -1,6 +1,6 @@
+#include "decodermdxfactory.h"
 #include "mdxhelper.h"
 #include "decoder_mdx.h"
-#include "decodermdxfactory.h"
 
 bool DecoderMdxFactory::canDecode(QIODevice *) const
 {
@@ -55,7 +55,7 @@ QList<TrackInfo*> DecoderMdxFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::BITRATE, helper.bitrate());
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
-        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
         info->setValue(Qmmp::FORMAT_NAME, "MDX");
         info->setDuration(helper.totalTime());
     }

@@ -21,9 +21,9 @@
 #ifndef MPEGMETADATAMODEL_H
 #define MPEGMETADATAMODEL_H
 
-#include <qmmp/metadatamodel.h>
 #include <taglib/mpegfile.h>
 #include <taglib/tfilestream.h>
+#include <qmmp/metadatamodel.h>
 
 class QTextCodec;
 

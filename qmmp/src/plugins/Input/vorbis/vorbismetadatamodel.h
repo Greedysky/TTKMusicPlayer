@@ -23,7 +23,6 @@
 
 #include <qmmp/metadatamodel.h>
 #include <taglib/vorbisfile.h>
-#include <taglib/xiphcomment.h>
 #include <taglib/tfilestream.h>
 
 class VorbisCommentModel;

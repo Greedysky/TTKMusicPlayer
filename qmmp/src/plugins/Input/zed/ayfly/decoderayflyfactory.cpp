@@ -1,6 +1,6 @@
+#include "decoderayflyfactory.h"
 #include "ayflyhelper.h"
 #include "decoder_ayfly.h"
-#include "decoderayflyfactory.h"
 
 bool DecoderAyflyFactory::canDecode(QIODevice *) const
 {
@@ -59,7 +59,7 @@ QList<TrackInfo*> DecoderAyflyFactory::createPlayList(const QString &path, Track
         info->setValue(Qmmp::BITRATE, helper.bitrate());
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
-        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
         info->setValue(Qmmp::FORMAT_NAME, "AyFly");
         info->setDuration(helper.totalTime());
     }

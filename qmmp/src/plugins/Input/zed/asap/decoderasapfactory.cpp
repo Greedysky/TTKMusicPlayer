@@ -1,6 +1,6 @@
+#include "decoderasapfactory.h"
 #include "asaphelper.h"
 #include "decoder_asap.h"
-#include "decoderasapfactory.h"
 #include "asapmetadatamodel.h"
 
 bool DecoderAsapFactory::canDecode(QIODevice *) const
@@ -59,7 +59,7 @@ QList<TrackInfo*> DecoderAsapFactory::createPlayList(const QString &path, TrackI
         info->setValue(Qmmp::BITRATE, helper.bitrate());
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
-        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
         info->setValue(Qmmp::FORMAT_NAME, "Asap");
         info->setDuration(helper.totalTime());
     }

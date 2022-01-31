@@ -1,7 +1,8 @@
+#include "settingsdialog.h"
+#include "echoplugin.h"
+
 #include <QSettings>
 #include <QAbstractButton>
-#include "echoplugin.h"
-#include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

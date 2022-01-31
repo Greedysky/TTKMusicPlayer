@@ -1,5 +1,5 @@
-#include "bphelper.h"
 #include "decoder_bp.h"
+#include "bphelper.h"
 
 DecoderBp::DecoderBp(const QString &path)
     : Decoder()

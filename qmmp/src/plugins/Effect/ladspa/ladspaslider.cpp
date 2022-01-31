@@ -1,7 +1,8 @@
+#include "ladspaslider.h"
+
 #include <QDoubleSpinBox>
 #include <QSlider>
 #include <QHBoxLayout>
-#include "ladspaslider.h"
 
 LADSPASlider::LADSPASlider(double min, double max, double step,
                            LADSPA_Data *value, QWidget *parent)

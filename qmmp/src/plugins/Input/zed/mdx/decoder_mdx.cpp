@@ -1,5 +1,5 @@
-#include "mdxhelper.h"
 #include "decoder_mdx.h"
+#include "mdxhelper.h"
 
 DecoderMdx::DecoderMdx(const QString &path)
     : Decoder()

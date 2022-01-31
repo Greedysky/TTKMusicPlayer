@@ -1,8 +1,7 @@
-#include <QSettings>
-#include <QAbstractButton>
-#include <qmmp/qmmp.h>
 #include "settingsdialog.h"
 #include "decoder_openmpt.h"
+
+#include <QSettings>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

@@ -1,6 +1,7 @@
-#include <qmmp/cueparser.h>
-#include "decoder_ffmpeg.h"
 #include "decoder_ffmpegcue.h"
+#include "decoder_ffmpeg.h"
+
+#include <qmmp/cueparser.h>
 
 DecoderFFmpegCue::DecoderFFmpegCue(const QString &url)
     : Decoder(),

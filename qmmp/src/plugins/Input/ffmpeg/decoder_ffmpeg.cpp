@@ -1,10 +1,10 @@
-#include <QVariant>
-#include "replaygainreader.h"
 #include "decoder_ffmpeg.h"
+#include "replaygainreader.h"
 extern "C" {
 #include <libavutil/channel_layout.h>
 #include <libavutil/frame.h>
 }
+#include <QVariant>
 
 // callbacks
 static int ffmpeg_read(void *data, uint8_t *buf, int size)

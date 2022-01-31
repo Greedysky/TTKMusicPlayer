@@ -1,7 +1,8 @@
+#include "crossfadeplugin.h"
+
 #include <QSettings>
 #include <qmmp/statehandler.h>
 #include <qmmp/soundcore.h>
-#include "crossfadeplugin.h"
 
 CrossfadePlugin::CrossfadePlugin()
     : Effect(),

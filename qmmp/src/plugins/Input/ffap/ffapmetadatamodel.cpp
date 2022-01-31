@@ -1,9 +1,9 @@
-#include <QTextCodec>
-#include <taglib/tag.h>
-#include <taglib/id3v1tag.h>
-#include <taglib/apetag.h>
-#include <qmmp/metadatamanager.h>
 #include "ffapmetadatamodel.h"
+
+#include <QTextCodec>
+#include <taglib/apetag.h>
+#include <taglib/id3v1tag.h>
+#include <qmmp/metadatamanager.h>
 
 FFapMetaDataModel::FFapMetaDataModel(const QString &path, bool readOnly)
     : MetaDataModel(true)

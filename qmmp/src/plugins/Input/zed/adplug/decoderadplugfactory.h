@@ -21,6 +21,9 @@
 
 #include <qmmp/decoderfactory.h>
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class DecoderAdplugFactory : public QObject, DecoderFactory
 {
     Q_OBJECT

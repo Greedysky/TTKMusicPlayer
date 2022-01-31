@@ -1,4 +1,5 @@
 #include "echoplugin.h"
+
 #include <QSettings>
 
 #define CH_SIGN(x, y) ((x < 0) ^ (y < 0) ? -x : x)

@@ -23,11 +23,8 @@
 
 #include <QMap>
 
-#include <taglib/tag.h>
-#include <taglib/fileref.h>
 #include <taglib/id3v1tag.h>
 #include <taglib/id3v2tag.h>
-#include <taglib/id3v2header.h>
 
 #include <qmmp/qmmp.h>
 

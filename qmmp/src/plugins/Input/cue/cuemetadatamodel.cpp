@@ -1,11 +1,10 @@
-#include <QSettings>
-#include <QTextCodec>
-#include <qmmp/metadatamanager.h>
+#include "cuemetadatamodel.h"
+#include "cuefile.h"
 #ifdef WITH_ENCA
 #  include <enca.h>
 #endif
-#include "cuefile.h"
-#include "cuemetadatamodel.h"
+#include <QSettings>
+#include <qmmp/metadatamanager.h>
 
 CUEMetaDataModel::CUEMetaDataModel(bool readOnly, const QString &url)
     : MetaDataModel(readOnly, IsCueEditable)

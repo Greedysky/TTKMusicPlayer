@@ -4,7 +4,6 @@
 #include <taglib/mpegfile.h>
 #include <taglib/apetag.h>
 #include <taglib/flacfile.h>
-#include <taglib/xiphcomment.h>
 #include <taglib/oggflacfile.h>
 #include <taglib/vorbisfile.h>
 #include <taglib/wavpackfile.h>

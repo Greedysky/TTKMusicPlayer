@@ -422,11 +422,6 @@ bool DCAHelper::initialize()
     return true;
 }
 
-qint64 DCAHelper::totalTime() const
-{
-    return m_info->length;
-}
-
 void DCAHelper::seek(qint64 time)
 {
     int sample = time * sampleRate() / 1000;
@@ -441,29 +436,9 @@ void DCAHelper::seek(qint64 time)
     m_info->current_sample = sample;
 }
 
-int DCAHelper::bitrate() const
-{
-    return m_info->bitrate / 1000;
-}
-
-int DCAHelper::sampleRate() const
-{
-    return m_info->sample_rate;
-}
-
-int DCAHelper::channels() const
-{
-    return m_info->channels;
-}
-
-int DCAHelper::bitsPerSample() const
-{
-    return m_info->bits_per_sample;
-}
-
 qint64 DCAHelper::read(unsigned char *data, qint64 maxSize)
 {
-    const int sampleSize = channels() * bitsPerSample() / 8;
+    const int sampleSize = channels() * depth() / 8;
     if(m_info->end_sample >= 0)
     {
         if(m_info->current_sample + maxSize / sampleSize > m_info->end_sample)

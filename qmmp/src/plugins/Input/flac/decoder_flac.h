@@ -21,9 +21,8 @@
 #ifndef DECODER_FLAC_H
 #define DECODER_FLAC_H
 
-#include <qmmp/decoder.h>
-
 #include <FLAC/all.h>
+#include <qmmp/decoder.h>
 
 #define MAX_SUPPORTED_CHANNELS 2
 #define SAMPLES_PER_WRITE 512

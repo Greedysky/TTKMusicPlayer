@@ -1,11 +1,9 @@
 #include "bphelper.h"
 
-#include <libbp/player.h>
-
 BpHelper::BpHelper(const QString &path)
     : m_path(path)
 {
-    m_info = (decode_info*)calloc(sizeof(decode_info), 1);
+
 }
 
 BpHelper::~BpHelper()
@@ -15,13 +13,9 @@ BpHelper::~BpHelper()
 
 void BpHelper::deinit()
 {
-    if(m_info)
+    if(m_input)
     {
-        if(m_info->input)
-        {
-            delete m_info->input;
-        }
-        free(m_info);
+        delete m_input;
     }
 }
 
@@ -37,52 +31,23 @@ bool BpHelper::initialize()
     const qint64 size = file.size();
     const QByteArray module = file.readAll();
 
-    m_info->input = new Player((BYTE*)module.constData(), size);
-    if(!m_info->input->Load())
+    m_input = new Player((BYTE*)module.constData(), size);
+    if(!m_input->Load())
     {
         qWarning("BpHelper: Load error");
         return false;
     }
 
-    m_info->bitrate = size * 8.0 / totalTime() + 1.0f;
+    m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
-}
-
-qint64 BpHelper::totalTime() const
-{
-    return m_info->input->GetLength();
-}
-
-void BpHelper::seek(qint64 time)
-{
-    return m_info->input->Seek(time);
-}
-
-int BpHelper::bitrate() const
-{
-    return m_info->bitrate;
-}
-
-int BpHelper::sampleRate() const
-{
-    return 44100;
-}
-
-int BpHelper::channels() const
-{
-    return 2;
-}
-
-int BpHelper::bitsPerSample() const
-{
-    return 8;
 }
 
 qint64 BpHelper::read(unsigned char *data, qint64)
 {
-    if(!m_info->input->Run())
+    if(!m_input->Run())
     {
         return 0;
     }
-    return m_info->input->Render(data);
+
+    return m_input->Render(data);
 }

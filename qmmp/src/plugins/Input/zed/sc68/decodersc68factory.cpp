@@ -1,6 +1,6 @@
+#include "decodersc68factory.h"
 #include "sc68helper.h"
 #include "decoder_sc68.h"
-#include "decodersc68factory.h"
 
 bool DecoderSC68Factory::canDecode(QIODevice *) const
 {

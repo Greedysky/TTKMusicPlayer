@@ -1,19 +1,17 @@
-#include <QSettings>
+#include "decoder_cdaudio.h"
+
 #include <QDir>
-#include <cdio/cdio.h>
+#include <QSettings>
 #include <cdio/paranoia/cdda.h>
 #include <cdio/audio.h>
 #include <cdio/cd_types.h>
 #include <cdio/logging.h>
 #include <cddb/cddb.h>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
 #include <qmmp/qmmpsettings.h>
 
 #define CDDA_SECTORS 4
 #define CDDA_BUFFER_SIZE (CDDA_SECTORS*CDIO_CD_FRAMESIZE_RAW)
 
-#include "decoder_cdaudio.h"
 
 QList<CDATrack> DecoderCDAudio::m_track_cache;
 

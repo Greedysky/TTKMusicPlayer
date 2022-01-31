@@ -1,5 +1,6 @@
-#include <QSettings>
 #include "gmehelper.h"
+
+#include <QSettings>
 
 GmeHelper::GmeHelper()
 {

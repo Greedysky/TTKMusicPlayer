@@ -20,8 +20,12 @@
 #define DECODER_OPTIMFROG_H
 
 #include <qmmp/decoder.h>
-#include "optimfroghelper.h"
 
+class OptimFROGHelper;
+
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class DecoderOptimFROG : public Decoder
 {
   public:

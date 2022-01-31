@@ -1,4 +1,5 @@
 #include "asapmetadatamodel.h"
+#include "asaphelper.h"
 
 AsapMetaDataModel::AsapMetaDataModel(const QString &path)
     : MetaDataModel(true)

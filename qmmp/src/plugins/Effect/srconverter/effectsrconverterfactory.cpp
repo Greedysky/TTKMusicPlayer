@@ -1,6 +1,6 @@
+#include "effectsrconverterfactory.h"
 #include "settingsdialog.h"
 #include "srconverter.h"
-#include "effectsrconverterfactory.h"
 
 const EffectProperties EffectSRConverterFactory::properties() const
 {

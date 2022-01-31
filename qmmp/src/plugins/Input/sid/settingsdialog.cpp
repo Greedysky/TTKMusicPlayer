@@ -1,8 +1,8 @@
+#include "settingsdialog.h"
+
 #include <QSettings>
-#include <QAbstractButton>
 #include <qmmp/qmmp.h>
 #include <sidplayfp/SidConfig.h>
-#include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(SidDatabase *db, QWidget *parent)
     : QDialog(parent)

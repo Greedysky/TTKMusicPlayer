@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
 #include "decoder_ffap.h"
 
 //callbacks

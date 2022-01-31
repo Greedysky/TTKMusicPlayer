@@ -1,9 +1,9 @@
+#include "settingsdialog.h"
+
 #include <QSettings>
 #include <QTextCodec>
-#include <QAbstractButton>
 #include <qmmp/qmmp.h>
 #include <qmmp/regularwrapper.h>
-#include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

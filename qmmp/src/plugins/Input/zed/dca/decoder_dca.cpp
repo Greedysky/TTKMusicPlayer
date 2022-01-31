@@ -1,5 +1,5 @@
-#include "dcahelper.h"
 #include "decoder_dca.h"
+#include "dcahelper.h"
 
 DecoderDCA::DecoderDCA(const QString &path)
     : Decoder()

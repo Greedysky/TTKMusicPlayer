@@ -1,10 +1,6 @@
-#include <taglib/tag.h>
-#include <taglib/fileref.h>
-#include <taglib/vorbisfile.h>
-#include <taglib/tfilestream.h>
+#include "decodervorbisfactory.h"
 #include "decoder_vorbis.h"
 #include "vorbismetadatamodel.h"
-#include "decodervorbisfactory.h"
 
 bool DecoderVorbisFactory::canDecode(QIODevice *input) const
 {

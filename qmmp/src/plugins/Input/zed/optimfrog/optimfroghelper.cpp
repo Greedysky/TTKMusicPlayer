@@ -21,6 +21,11 @@ OptimFROGHelper::OptimFROGHelper(QIODevice *input)
 
 OptimFROGHelper::~OptimFROGHelper()
 {
+    deinit();
+}
+
+void OptimFROGHelper::deinit()
+{
     if(!m_decoder)
     {
         return;
@@ -130,7 +135,7 @@ void OptimFROGHelper::seek(qint64 time)
 #endif
 }
 
-qint64 OptimFROGHelper::length() const
+qint64 OptimFROGHelper::totalTime() const
 {
 #if defined Q_OS_WIN && defined __GNUC__
     return (static_cast<QIODevice*>(m_input)->size() * 8.0) / m_info.bitrate;

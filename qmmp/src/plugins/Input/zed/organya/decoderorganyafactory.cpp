@@ -1,6 +1,6 @@
+#include "decoderorganyafactory.h"
 #include "organyahelper.h"
 #include "decoder_organya.h"
-#include "decoderorganyafactory.h"
 
 bool DecoderOrganyaFactory::canDecode(QIODevice *) const
 {
@@ -46,7 +46,7 @@ QList<TrackInfo*> DecoderOrganyaFactory::createPlayList(const QString &path, Tra
         info->setValue(Qmmp::BITRATE, helper.bitrate());
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
-        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
         info->setValue(Qmmp::FORMAT_NAME, "Organya");
         info->setDuration(helper.totalTime());
     }

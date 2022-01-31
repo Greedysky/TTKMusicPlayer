@@ -1,5 +1,5 @@
-#include "wildmidihelper.h"
 #include "decoder_wildmidi.h"
+#include "wildmidihelper.h"
 
 DecoderWildMidi::DecoderWildMidi(const QString &path)
     : Decoder(),

@@ -1,24 +1,15 @@
-#include <QSettings>
-#include <QTextCodec>
-#include <taglib/tag.h>
-#include <taglib/fileref.h>
-#include <taglib/id3v1tag.h>
-#include <taglib/id3v2tag.h>
-#include <taglib/apetag.h>
-#include <taglib/tfile.h>
-#include <taglib/mpegfile.h>
-#include <taglib/tfilestream.h>
-#include <taglib/id3v2tag.h>
-#include <taglib/id3v2header.h>
-#include <taglib/textidentificationframe.h>
-#include <taglib/id3v2framefactory.h>
-#include "tagextractor.h"
+#include "decodermpegfactory.h"
 #include "mpegmetadatamodel.h"
+#include "tagextractor.h"
+#include "settingsdialog.h"
 #ifdef WITH_MAD
 #  include "decoder_mad.h"
 #endif
-#include "decodermpegfactory.h"
-#include "settingsdialog.h"
+
+#include <QSettings>
+#include <QTextCodec>
+#include <taglib/apetag.h>
+#include <taglib/textidentificationframe.h>
 
 bool DecoderMPEGFactory::canDecode(QIODevice *input) const
 {

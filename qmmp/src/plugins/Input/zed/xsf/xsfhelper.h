@@ -22,15 +22,9 @@
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
+#include "xsfreader.h"
 
-class FileReader;
-
-typedef struct
-{
-    FileReader *input;
-    int bitrate;
-    bool meta;
-} decode_info;
+#define SAMPLE_BUF_SIZE     1024
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -41,24 +35,27 @@ public:
     explicit XSFHelper(const QString &path);
     ~XSFHelper();
 
-    void deinit();
     void metaOnly(bool meta);
 
+    void deinit();
     bool initialize();
-    qint64 totalTime() const;
-    void seek(qint64 time);
 
-    int bitrate() const;
-    int sampleRate() const;
-    int channels() const;
-    int bitsPerSample() const;
+    inline void seek(qint64 time) { m_input->seek(time); }
+    inline qint64 totalTime() const { return m_input->length(); }
 
-    qint64 read(unsigned char *data, qint64 maxSize);
+    inline int bitrate() const { return m_bitrate; }
+    inline int sampleRate() const { return 44100; }
+    inline int channels() const { return 2; }
+    inline int depth() const { return 16; }
+
+    inline qint64 read(unsigned char *data, qint64 maxSize) { return m_input->read((short*)data, SAMPLE_BUF_SIZE) * 4; }
     QMap<Qmmp::MetaData, QString> readMetaData() const;
 
 private:
     QString m_path;
-    decode_info *m_info = nullptr;
+    FileReader *m_input = nullptr;
+    int m_bitrate = 0;
+    bool m_meta = false;
 
 };
 

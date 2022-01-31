@@ -1,7 +1,8 @@
+#include "settingsdialog.h"
+#include "crystalizerplugin.h"
+
 #include <QSettings>
 #include <QAbstractButton>
-#include "crystalizerplugin.h"
-#include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

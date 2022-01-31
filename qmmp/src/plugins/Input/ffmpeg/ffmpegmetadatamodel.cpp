@@ -1,8 +1,8 @@
+#include "ffmpegmetadatamodel.h"
 extern "C" {
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
 }
-#include "ffmpegmetadatamodel.h"
 #include <qmmp/metadatamanager.h>
 
 FFmpegMetaDataModel::FFmpegMetaDataModel(const QString &path, bool readOnly)

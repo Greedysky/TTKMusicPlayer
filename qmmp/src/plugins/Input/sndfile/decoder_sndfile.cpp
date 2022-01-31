@@ -1,8 +1,4 @@
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
 #include "decoder_sndfile.h"
-
-// Callbacks
 
 sf_count_t sndfile_sf_vio_get_filelen(void *data)
 {
@@ -88,7 +84,7 @@ bool DecoderSndFile::initialize()
     m_freq = snd_info.samplerate;
     int chan = snd_info.channels;
     m_totalTime = snd_info.frames * 1000 / m_freq;
-    m_bitrate =  input()->size() * 8.0 / m_totalTime + 1.0f;
+    m_bitrate = input()->size() * 8.0 / m_totalTime + 1.0f;
 
     if((snd_info.format & SF_FORMAT_SUBMASK) == SF_FORMAT_FLOAT)
         sf_command(m_sndfile, SFC_SET_SCALE_FLOAT_INT_READ, nullptr, SF_TRUE);

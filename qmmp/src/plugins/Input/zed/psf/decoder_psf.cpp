@@ -1,5 +1,5 @@
-#include "psfhelper.h"
 #include "decoder_psf.h"
+#include "psfhelper.h"
 
 DecoderPSF::DecoderPSF(const QString &path)
     : Decoder()

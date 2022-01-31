@@ -7,7 +7,7 @@ extern "C" {
 PSFHelper::PSFHelper(const QString &path)
     : m_path(path)
 {
-    m_info = (decode_info*)calloc(sizeof(decode_info), 1);
+
 }
 
 PSFHelper::~PSFHelper()
@@ -17,13 +17,9 @@ PSFHelper::~PSFHelper()
 
 void PSFHelper::deinit()
 {
-    if(m_info) 
+    if(m_input && m_type >= 0)
     {
-        if(m_info->input && m_info->type >= 0)
-        {
-            ao_stop(m_info->type, m_info->input);
-        }
-        free(m_info);
+        ao_stop(m_type, m_input);
     }
 }
 
@@ -36,18 +32,18 @@ bool PSFHelper::initialize()
         return false;
     }
 
-    m_info->file_size = file.size();
+    m_file_size = file.size();
     const QByteArray module = file.readAll();
 
-    m_info->type = ao_identify((char *)module.constData());
-    if(m_info->type < 0)
+    m_type = ao_identify((char *)module.constData());
+    if(m_type < 0)
     {
         qWarning("PSFHelper: ao_identify error");
         return false;
     }
 
-    m_info->input = ao_start(m_info->type, QmmpPrintable(m_path), (uint8 *)module.constData(), m_info->file_size);
-    if(!m_info->input)
+    m_input = ao_start(m_type, QmmpPrintable(m_path), (uint8 *)module.constData(), m_file_size);
+    if(!m_input)
     {
         qWarning("PSFHelper: ao_start error");
         return false;
@@ -56,12 +52,12 @@ bool PSFHelper::initialize()
     ao_display_info info;
     memset(&info, 0, sizeof(info));
     bool have_info = false;
-    if(ao_get_info(m_info->type, m_info->input, &info) == AO_SUCCESS)
+    if(ao_get_info(m_type, m_input, &info) == AO_SUCCESS)
     {
        have_info = true;
     }
 
-    m_info->length = 120;
+    m_length = 120;
     if(!have_info)
     {
         qDebug("PSFHelper: ao has no display info");
@@ -76,11 +72,11 @@ bool PSFHelper::initialize()
             float sec;
             if(sscanf(info.info[i], "%d:%f", &min, &sec) == 2)
             {
-                m_info->length = min * 60 + sec;
+                m_length = min * 60 + sec;
             }
             else if(sscanf(info.info[i], "%f", &sec) == 1)
             {
-                m_info->length = sec;
+                m_length = sec;
             }
             break;
         }
@@ -88,50 +84,25 @@ bool PSFHelper::initialize()
     return true;
 }
 
-qint64 PSFHelper::totalTime() const
-{
-    return m_info->length * 1000;
-}
-
 void PSFHelper::seek(qint64 time)
 {
     const int sample = time * sampleRate() / 1000;
-    if(sample > m_info->current_sample)
+    if(sample > m_current_sample)
     {
-        m_info->samples_to_skip = sample - m_info->current_sample;
+        m_samples_to_skip = sample - m_current_sample;
     }
     else
     {
-        ao_command(m_info->type, m_info->input, COMMAND_RESTART, 0);
-        m_info->samples_to_skip = sample;
+        ao_command(m_type, m_input, COMMAND_RESTART, 0);
+        m_samples_to_skip = sample;
     }
 
-    m_info->current_sample = sample;
-}
-
-int PSFHelper::bitrate() const
-{
-    return m_info->file_size * 8.0 / totalTime() + 1.0f;
-}
-
-int PSFHelper::sampleRate() const
-{
-    return 44100;
-}
-
-int PSFHelper::channels() const
-{
-    return 2;
-}
-
-int PSFHelper::bitsPerSample() const
-{
-    return 16;
+    m_current_sample = sample;
 }
 
 qint64 PSFHelper::read(unsigned char *data, qint64 maxSize)
 {
-    if(m_info->current_sample >= m_info->length * sampleRate())
+    if(m_current_sample >= m_length * sampleRate())
     {
         return 0;
     }
@@ -139,47 +110,47 @@ qint64 PSFHelper::read(unsigned char *data, qint64 maxSize)
     const int initSize = maxSize;
     while(maxSize > 0)
     {
-        if(m_info->remaining > 0)
+        if(m_remaining > 0)
         {
-            if(m_info->samples_to_skip > 0)
+            if(m_samples_to_skip > 0)
             {
-                int n = std::min<int>(m_info->samples_to_skip, m_info->remaining);
-                if(m_info->remaining > n)
+                int n = std::min<int>(m_samples_to_skip, m_remaining);
+                if(m_remaining > n)
                 {
-                    memmove(m_info->buffer, m_info->buffer + n * 4, (m_info->remaining - n) * 4);
+                    memmove(m_buffer, m_buffer + n * 4, (m_remaining - n) * 4);
                 }
-                m_info->remaining -= n;
-                m_info->samples_to_skip -= n;
+                m_remaining -= n;
+                m_samples_to_skip -= n;
                 continue;
             }
 
             int n = maxSize / 4;
-            n = std::min<int>(m_info->remaining, n);
-            memcpy(data, m_info->buffer, n * 4);
-            if(m_info->remaining > n)
+            n = std::min<int>(m_remaining, n);
+            memcpy(data, m_buffer, n * 4);
+            if(m_remaining > n)
             {
-                memmove(m_info->buffer, m_info->buffer + n * 4, (m_info->remaining - n) * 4);
+                memmove(m_buffer, m_buffer + n * 4, (m_remaining - n) * 4);
             }
-            m_info->remaining -= n;
+            m_remaining -= n;
             data += n * 4;
             maxSize -= n * 4;
         }
 
-        if(!m_info->remaining)
+        if(!m_remaining)
         {
-            ao_decode(m_info->type, m_info->input, (int16_t *)m_info->buffer, 735);
-            m_info->remaining = 735;
+            ao_decode(m_type, m_input, (int16_t *)m_buffer, 735);
+            m_remaining = 735;
         }
     }
 
-    m_info->current_sample += (initSize - maxSize) / (channels() * bitsPerSample() / 8);
+    m_current_sample += (initSize - maxSize) / (channels() * depth() / 8);
     return initSize - maxSize;
 }
 
 QMap<Qmmp::MetaData, QString> PSFHelper::readMetaData() const
 {
     QMap<Qmmp::MetaData, QString> metaData;
-    if(m_info->type < 0 || !m_info->input)
+    if(m_type < 0 || !m_input)
     {
         return metaData;
     }
@@ -187,7 +158,7 @@ QMap<Qmmp::MetaData, QString> PSFHelper::readMetaData() const
     ao_display_info info;
     memset(&info, 0, sizeof(info));
     bool have_info = false;
-    if(ao_get_info(m_info->type, m_info->input, &info) == AO_SUCCESS)
+    if(ao_get_info(m_type, m_input, &info) == AO_SUCCESS)
     {
        have_info = true;
     }

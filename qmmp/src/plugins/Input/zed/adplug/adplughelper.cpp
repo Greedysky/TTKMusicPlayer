@@ -1,19 +1,17 @@
 #include "adplughelper.h"
 
-#include <QFileInfo>
 #include <qmmp/qmmp.h>
 
 AdplugHelper::AdplugHelper(const QString &path)
     : m_path(path)
 {
-    m_opl = new CEmuopl(rate(), true, false);
+    m_opl = new CEmuopl(sampleRate(), true, false);
     m_player = CAdPlug::factory(QmmpPrintable(path), m_opl);
 }
 
 AdplugHelper::~AdplugHelper()
 {
-    delete m_opl;
-    delete m_player;
+    deinit();
 }
 
 AdplugHelper::Frame AdplugHelper::read()
@@ -27,7 +25,7 @@ AdplugHelper::Frame AdplugHelper::read()
         {
             return Frame(0, nullptr);
         }
-        m_remaining = rate() / m_player->getrefresh();
+        m_remaining = sampleRate() / m_player->getrefresh();
     }
 
     if(m_remaining > bufsiz)
@@ -44,14 +42,10 @@ AdplugHelper::Frame AdplugHelper::read()
     return Frame(to_write * 2, reinterpret_cast<unsigned char *>(m_buf));
 }
 
-bool AdplugHelper::initialize()
+void AdplugHelper::deinit()
 {
-    return m_player;
-}
-
-int AdplugHelper::bitrate() const
-{
-    return QFileInfo(m_path).size() * 8.0 / length() + 1.0f;
+    delete m_opl;
+    delete m_player;
 }
 
 QStringList AdplugHelper::instruments() const

@@ -1,8 +1,5 @@
 #include <QBuffer>
-#include <taglib/flacpicture.h>
-#include <taglib/tag.h>
 #include <taglib/fileref.h>
-#include <taglib/tmap.h>
 #include "opusmetadatamodel.h"
 
 OpusMetaDataModel::OpusMetaDataModel(const QString &path, bool readOnly)

@@ -1,6 +1,6 @@
+#include "decoderv2mfactory.h"
 #include "v2mhelper.h"
 #include "decoder_v2m.h"
-#include "decoderv2mfactory.h"
 
 bool DecoderV2MFactory::canDecode(QIODevice *) const
 {
@@ -46,7 +46,7 @@ QList<TrackInfo*> DecoderV2MFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::BITRATE, helper.bitrate());
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
-        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
         info->setValue(Qmmp::FORMAT_NAME, "V2M");
         info->setDuration(helper.totalTime());
     }

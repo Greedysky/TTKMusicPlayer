@@ -1,9 +1,6 @@
-#include <taglib/id3v2header.h>
-#include <taglib/tbytevector.h>
-#include <math.h>
-#include <stdio.h>
-#include "tagextractor.h"
 #include "decoder_mad.h"
+#include "tagextractor.h"
+#include <qmmp/decoderfactory.h>
 
 #define XING_MAGIC (('X' << 24) | ('i' << 16) | ('n' << 8) | 'g')
 #define XING_MAGIC2 (('I' << 24) | ('n' << 16) | ('f' << 8) | 'o')

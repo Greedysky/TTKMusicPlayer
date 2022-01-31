@@ -1,4 +1,5 @@
 #include "decoder_adplug.h"
+#include "adplughelper.h"
 
 DecoderAdplug::DecoderAdplug(const QString &path)
     : Decoder()
@@ -19,17 +20,16 @@ bool DecoderAdplug::initialize()
         return false;
     }
 
-    m_length = m_helper->length();
-    m_divisor = (m_helper->rate() * m_helper->channels() * (m_helper->depth() / 8)) / 1000.0;
+    m_divisor = (m_helper->sampleRate() * m_helper->channels() * (m_helper->depth() / 8)) / 1000.0;
 
-    configure(m_helper->rate(), m_helper->channels(), Qmmp::PCM_S16LE);
+    configure(m_helper->sampleRate(), m_helper->channels(), Qmmp::PCM_S16LE);
     qDebug("DecoderAdplug: initialize success");
     return true;
 }
 
 qint64 DecoderAdplug::totalTime() const
 {
-    return m_helper->length();
+    return m_helper->totalTime();
 }
 
 int DecoderAdplug::bitrate() const
@@ -46,7 +46,7 @@ qint64 DecoderAdplug::read(unsigned char *data, qint64 maxSize)
     /* Some songs loop endlessly.  If we pass the length threshold (Adplug
     * caps the reported length at 10 minutes), then report EOF.
     */
-    if(m_time > m_length)
+    if(m_time > m_helper->totalTime())
     {
         return 0;
     }

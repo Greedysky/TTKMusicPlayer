@@ -1,11 +1,11 @@
-#include <QDirIterator>
-#include <QSettings>
-#include <qmmp/decoder.h>
-#include <qmmp/metadatamanager.h>
+#include "cuefile.h"
 #ifdef WITH_ENCA
 #  include <enca.h>
 #endif
-#include "cuefile.h"
+#include <qmmp/decoder.h>
+#include <qmmp/metadatamanager.h>
+#include <QSettings>
+#include <QDirIterator>
 
 CueFile::CueFile(const QString &path)
     : CueParser()
@@ -136,7 +136,7 @@ QStringList CueFile::splitLine(const QString &line)
 }
 
 QString CueFile::getDirtyPath(const QString &cue_path, const QString &path)
-{    
+{
     if((QFile::exists(path) && Decoder::findByFilePath(path)))
         return path;
 

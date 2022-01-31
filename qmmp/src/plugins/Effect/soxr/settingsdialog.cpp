@@ -1,8 +1,9 @@
+#include "settingsdialog.h"
+
 #include <QSettings>
 #include <QAbstractButton>
 #include <qmmp/qmmp.h>
 #include <soxr.h>
-#include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

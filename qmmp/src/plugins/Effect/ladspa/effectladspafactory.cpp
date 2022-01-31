@@ -1,6 +1,6 @@
+#include "effectladspafactory.h"
 #include "settingsdialog.h"
 #include "ladspahelper.h"
-#include "effectladspafactory.h"
 
 const EffectProperties EffectLADSPAFactory::properties() const
 {

@@ -1,7 +1,8 @@
-#include <qmmp/cueparser.h>
+#include "decoderwavpackfactory.h"
 #include "wavpackmetadatamodel.h"
 #include "decoder_wavpack.h"
-#include "decoderwavpackfactory.h"
+
+#include <qmmp/cueparser.h>
 
 bool DecoderWavPackFactory::canDecode(QIODevice *input) const
 {

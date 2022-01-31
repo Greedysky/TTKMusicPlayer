@@ -369,7 +369,7 @@ void OutputWriter::updateEqSettings()
     if(m_settings->eqSettings().isEnabled())
     {
         double preamp = m_settings->eqSettings().preamp();
-        int bands =  m_settings->eqSettings().bands();
+        int bands = m_settings->eqSettings().bands();
 
         eq_init_iir(m_frequency, bands);
         eq_set_option(EQ_TWO_PASSES, m_settings->eqSettings().twoPasses());
@@ -381,7 +381,7 @@ void OutputWriter::updateEqSettings()
 
             for(int i = 0; i < bands; ++i)
             {
-                double value =  m_settings->eqSettings().gain(i);
+                double value = m_settings->eqSettings().gain(i);
                 eq_set_gain(i, ch, 0.03 * value + 0.000999999 * value * value);
             }
         }

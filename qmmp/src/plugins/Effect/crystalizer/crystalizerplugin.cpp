@@ -1,4 +1,5 @@
 #include "crystalizerplugin.h"
+
 #include <QSettings>
 
 CrystalizerPlugin *CrystalizerPlugin::m_instance = nullptr;

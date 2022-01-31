@@ -16,31 +16,42 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef DECODER_FC14_H
-#define DECODER_FC14_H
+#ifndef YMHELPER_H
+#define YMHELPER_H
 
-#include <qmmp/decoder.h>
-
-class FC14Helper;
+#include <QMap>
+#include <QFileInfo>
+#include <qmmp/qmmp.h>
+#include <libym/ym_music.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class DecoderFC14 : public Decoder
+class YMHelper
 {
 public:
-    explicit DecoderFC14(const QString &path);
-    virtual ~DecoderFC14();
+    explicit YMHelper(const QString &path);
+    ~YMHelper();
 
-    // Standard Decoder API
-    virtual bool initialize() override;
-    virtual qint64 totalTime() const override;
-    virtual int bitrate() const override;
-    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
-    virtual void seek(qint64 time) override;
+    void deinit();
+    bool initialize();
+
+    inline void seek(qint64 time) { m_music->setMusicTime((ymu32)time); }
+    inline qint64 totalTime() const { return m_length; }
+
+    inline int bitrate() const { return QFileInfo(m_path).size() * 8.0 / totalTime() + 1.0f; }
+    inline int sampleRate() const { return 44100; }
+    inline int channels() const { return 2; }
+    inline int depth() const { return 32; }
+
+    qint64 read(unsigned char *data, qint64 maxSize);
+    QMap<Qmmp::MetaData, QString> readMetaData() const;
 
 private:
-    FC14Helper *m_helper = nullptr;
+    QString m_path;
+    CYmMusic *m_music = nullptr;
+    int m_bitrate = 0;
+    int m_length = 0;
 
 };
 

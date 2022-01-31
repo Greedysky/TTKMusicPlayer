@@ -113,7 +113,7 @@ __inline__ int eq_iir(float *d, int samples, int nch)
          * The multiplication by 2.0 was 'moved' into the coefficients to save
          * CPU cycles here */
         /* Apply the gain  */
-        out[channel] +=  data_history[channel][band].y[i]*gain[channel][band]; // * 2.0;
+        out[channel] += data_history[channel][band].y[i]*gain[channel][band]; // * 2.0;
       } /* For each band */
 
       if(eq_options & EQ_TWO_PASSES)
@@ -139,7 +139,7 @@ __inline__ int eq_iir(float *d, int samples, int nch)
              - iir_cf[band].beta * data_history2[channel][band].y[k]
             );
           /* Apply the gain */
-          out[channel] +=  data_history2[channel][band].y[i]*gain[channel][band];
+          out[channel] += data_history2[channel][band].y[i]*gain[channel][band];
         } /* For each band */
       }
 

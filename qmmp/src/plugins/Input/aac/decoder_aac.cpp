@@ -1,8 +1,7 @@
-#include <QIODevice>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
 #include "decoder_aac.h"
 #include "aacfile.h"
+
+#include <QVariant>
 
 #define AAC_BUFFER_SIZE 4096
 

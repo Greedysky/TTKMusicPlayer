@@ -1,6 +1,6 @@
+#include "decodergmefactory.h"
 #include "gmehelper.h"
 #include "decoder_gme.h"
-#include "decodergmefactory.h"
 #include "settingsdialog.h"
 
 bool DecoderGmeFactory::canDecode(QIODevice *) const

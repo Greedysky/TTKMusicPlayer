@@ -1,9 +1,7 @@
-#include <QIODevice>
-#include <QBuffer>
-#include <taglib/id3v2tag.h>
-#include <neaacdec.h>
-
 #include "aacfile.h"
+
+#include <QBuffer>
+#include <neaacdec.h>
 
 #define MAX_CHANNELS 6
 #define AAC_BUFFER_SIZE 4096

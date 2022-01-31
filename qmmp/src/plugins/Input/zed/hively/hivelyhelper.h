@@ -22,12 +22,9 @@
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
-
-typedef struct
-{
-    struct hvl_tune *input;
-    int bitrate;
-} decode_info;
+extern "C" {
+#include <libhively/hvl_replay.h>
+}
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -39,22 +36,23 @@ public:
     ~HivelyHelper();
 
     void deinit();
-
     bool initialize();
-    qint64 totalTime() const;
-    void seek(qint64 time);
 
-    int bitrate() const;
-    int sampleRate() const;
-    int channels() const;
-    int bitsPerSample() const;
+    inline void seek(qint64 time) { hvl_Seek(m_input, time); }
+    inline qint64 totalTime() const { return hvl_GetPlayTime(m_input); }
+
+    inline int bitrate() const { return m_bitrate; }
+    inline int sampleRate() const { return 44100; }
+    inline int channels() const { return 2; }
+    inline int depth() const { return 16; }
 
     qint64 read(unsigned char *data, qint64 maxSize);
-    const QMap<Qmmp::MetaData, QString> &readMetaData() const;
+    inline const QMap<Qmmp::MetaData, QString> &readMetaData() const { return m_metaData; }
 
 private:
     QString m_path;
-    decode_info *m_info = nullptr;
+    struct hvl_tune *m_input = nullptr;
+    int m_bitrate = 0;
     QMap<Qmmp::MetaData, QString> m_metaData;
 
 };

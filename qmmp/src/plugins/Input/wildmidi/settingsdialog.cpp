@@ -1,8 +1,8 @@
-#include <QSettings>
-#include <QAbstractButton>
-#include <qmmp/qmmp.h>
-#include "wildmidihelper.h"
 #include "settingsdialog.h"
+#include "wildmidihelper.h"
+
+#include <QSettings>
+#include <qmmp/qmmp.h>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)

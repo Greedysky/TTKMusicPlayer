@@ -1,5 +1,5 @@
-#include "hivelyhelper.h"
 #include "decoder_hively.h"
+#include "hivelyhelper.h"
 
 DecoderHively::DecoderHively(const QString &path)
     : Decoder()

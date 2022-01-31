@@ -1,11 +1,8 @@
-#include <taglib/tag.h>
-#include <taglib/fileref.h>
-#include <taglib/mpcfile.h>
-#include <taglib/apetag.h>
-#include <taglib/tfilestream.h>
+#include "decodermpcfactory.h"
 #include "mpcmetadatamodel.h"
 #include "decoder_mpc.h"
-#include "decodermpcfactory.h"
+
+#include <taglib/apetag.h>
 
 bool DecoderMPCFactory::canDecode(QIODevice *input) const
 {

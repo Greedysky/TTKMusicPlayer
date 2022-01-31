@@ -1,7 +1,6 @@
-#include <bs2b/bs2bversion.h>
 #include "effectbs2bfactory.h"
-#include "settingsdialog.h"
 #include "bs2bplugin.h"
+#include "settingsdialog.h"
 
 const EffectProperties EffectBs2bFactory::properties() const
 {

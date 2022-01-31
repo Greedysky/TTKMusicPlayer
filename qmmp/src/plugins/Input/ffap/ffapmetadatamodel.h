@@ -21,10 +21,9 @@
 #ifndef FFAPMETADATAMODEL_H
 #define FFAPMETADATAMODEL_H
 
-#include <qmmp/metadatamodel.h>
-#include <taglib/tag.h>
 #include <taglib/apefile.h>
 #include <taglib/tfilestream.h>
+#include <qmmp/metadatamodel.h>
 
 class QTextCodec;
 

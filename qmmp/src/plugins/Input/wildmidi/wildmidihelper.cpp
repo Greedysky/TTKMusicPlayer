@@ -1,10 +1,10 @@
-#include <QSettings>
-#include <QFile>
+#include "wildmidihelper.h"
 extern "C" {
 #include <wildmidi_lib.h>
 }
+#include <QFile>
+#include <QSettings>
 #include <qmmp/qmmp.h>
-#include "wildmidihelper.h"
 
 WildMidiHelper *WildMidiHelper::m_instance = nullptr;
 

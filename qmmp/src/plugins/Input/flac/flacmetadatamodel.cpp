@@ -1,12 +1,8 @@
-#include <QPixmap>
-#include <QBuffer>
-#include <taglib/tag.h>
-#include <taglib/fileref.h>
-#include <taglib/tmap.h>
-#include <taglib/id3v2framefactory.h>
-#include <taglib/flacpicture.h>
 #include <qmmp/metadatamanager.h>
 #include "flacmetadatamodel.h"
+
+#include <QBuffer>
+#include <taglib/id3v2framefactory.h>
 
 FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
     : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable),

@@ -21,10 +21,9 @@
 #ifndef MPCMETADATAMODEL_H
 #define MPCMETADATAMODEL_H
 
-#include <qmmp/metadatamodel.h>
-#include <taglib/tag.h>
 #include <taglib/mpcfile.h>
 #include <taglib/tfilestream.h>
+#include <qmmp/metadatamodel.h>
 
 class QTextCodec;
 

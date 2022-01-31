@@ -1,7 +1,8 @@
+#include "decoder_ffmpegm4b.h"
+#include "decoder_ffmpeg.h"
+
 #include <qmmp/cueparser.h>
 #include <qmmp/decoderfactory.h>
-#include "decoder_ffmpeg.h"
-#include "decoder_ffmpegm4b.h"
 
 DecoderFFmpegM4b::DecoderFFmpegM4b(DecoderFactory *factory, const QString &url)
     : Decoder(),

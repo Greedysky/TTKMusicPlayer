@@ -1,14 +1,12 @@
-#include <taglib/tag.h>
+#include "decoder_flac.h"
+
 #include <taglib/fileref.h>
 #include <taglib/flacfile.h>
 #include <taglib/xiphcomment.h>
-#include <taglib/tmap.h>
 #include <taglib/id3v2header.h>
 #include <taglib/tfilestream.h>
 #include <taglib/id3v2framefactory.h>
-#include <FLAC/all.h>
 #include <qmmp/cueparser.h>
-#include "decoder_flac.h"
 
 #define BITRATE_CALC_TIME_MS 2000
 

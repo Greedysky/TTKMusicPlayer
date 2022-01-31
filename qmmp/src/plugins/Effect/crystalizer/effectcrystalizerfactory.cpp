@@ -1,6 +1,6 @@
 #include "effectcrystalizerfactory.h"
-#include "settingsdialog.h"
 #include "crystalizerplugin.h"
+#include "settingsdialog.h"
 
 const EffectProperties EffectCrystalizerFactory::properties() const
 {

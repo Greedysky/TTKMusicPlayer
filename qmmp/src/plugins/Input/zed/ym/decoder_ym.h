@@ -20,8 +20,12 @@
 #define DECODER_YM_H
 
 #include <qmmp/decoder.h>
-#include <libym/ym_music.h>
 
+class YMHelper;
+
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class DecoderYm : public Decoder
 {
 public:
@@ -36,13 +40,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    void deinit();
-
-    QString m_path;
-    CYmMusic *m_music = nullptr;
-    int m_bitrate = 0;
-    quint32 m_freq = 0;
-    qint64 m_totalTime = 0;
+    YMHelper *m_helper = nullptr;
 
 };
 

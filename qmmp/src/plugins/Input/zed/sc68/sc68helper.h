@@ -19,21 +19,10 @@
 #ifndef SC68HELPER_H
 #define SC68HELPER_H
 
+#include <qmmp/trackinfo.h>
 extern "C" {
 #include <libsc68/sc68/sc68.h>
 }
-#include <qmmp/trackinfo.h>
-
-typedef struct
-{
-    sc68_t *input;
-    int track;
-    int loop;
-    int bitrate;
-    int length;
-    int current_sample;
-    int total_samples;
-} decode_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -45,15 +34,15 @@ public:
     ~SC68Helper();
 
     void deinit();
-
     bool initialize();
-    qint64 totalTime() const;
-    void seek(qint64 time);
 
-    int bitrate() const;
-    int sampleRate() const;
-    int channels() const;
-    int bitsPerSample() const;
+    void seek(qint64 time);
+    inline qint64 totalTime() const { return m_length; }
+
+    inline int bitrate() const { return m_bitrate; }
+    inline int sampleRate() const { return 44100; }
+    inline int channels() const { return 2; }
+    inline int depth() const { return 16; }
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
@@ -62,7 +51,13 @@ public:
 
 private:
     QString m_path;
-    decode_info *m_info = nullptr;
+    sc68_t *m_input = nullptr;
+    int m_track = 0;
+    int m_loop = 0;
+    int m_bitrate = 0;
+    int m_length = 0;
+    int m_current_sample = 0;
+    int m_total_samples = 0;
 
 };
 

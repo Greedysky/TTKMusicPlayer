@@ -22,6 +22,9 @@
 #include <cstddef>
 #include <exception>
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class InputStream
 {
   public:

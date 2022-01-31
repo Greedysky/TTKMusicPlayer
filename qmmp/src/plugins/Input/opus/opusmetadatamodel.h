@@ -22,7 +22,6 @@
 #define OPUSMETADATAMODEL_H
 
 #include <taglib/opusfile.h>
-#include <taglib/xiphcomment.h>
 #include <taglib/tfilestream.h>
 #include <qmmp/metadatamodel.h>
 

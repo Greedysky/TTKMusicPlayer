@@ -1,6 +1,6 @@
 #include "effectstereofactory.h"
-#include "settingsdialog.h"
 #include "stereoplugin.h"
+#include "settingsdialog.h"
 
 const EffectProperties EffectStereoFactory::properties() const
 {

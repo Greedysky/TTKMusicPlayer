@@ -1,7 +1,7 @@
-#include <QSettings>
-#include <cdio/version.h>
-#include "decoder_cdaudio.h"
 #include "decodercdaudiofactory.h"
+#include "decoder_cdaudio.h"
+
+#include <QSettings>
 
 DecoderCDAudioFactory::DecoderCDAudioFactory()
 {

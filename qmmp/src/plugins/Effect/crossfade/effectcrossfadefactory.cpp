@@ -1,6 +1,6 @@
 #include "effectcrossfadefactory.h"
-#include "settingsdialog.h"
 #include "crossfadeplugin.h"
+#include "settingsdialog.h"
 
 const EffectProperties EffectCrossfadeFactory::properties() const
 {

@@ -1,6 +1,6 @@
-#include <QMap>
-#include <qmmp/metadatamanager.h>
 #include "wavpackmetadatamodel.h"
+
+#include <qmmp/metadatamanager.h>
 
 WavPackMetaDataModel::WavPackMetaDataModel(const QString &path, bool readOnly)
     : MetaDataModel(readOnly, MetaDataModel::IsCueEditable),

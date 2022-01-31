@@ -1,10 +1,8 @@
 #include "qmmp.h"
 
-#include <QCoreApplication>
 #include <QDir>
-#include <QFile>
-#include <QByteArray>
 #include <QTextCodec>
+#include <QCoreApplication>
 
 QString Qmmp::configFile()
 {

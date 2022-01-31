@@ -1,6 +1,6 @@
+#include "decoderhivelyfactory.h"
 #include "hivelyhelper.h"
 #include "decoder_hively.h"
-#include "decoderhivelyfactory.h"
 
 bool DecoderHivelyFactory::canDecode(QIODevice *) const
 {
@@ -55,7 +55,7 @@ QList<TrackInfo*> DecoderHivelyFactory::createPlayList(const QString &path, Trac
         info->setValue(Qmmp::BITRATE, helper.bitrate());
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
-        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
         info->setValue(Qmmp::FORMAT_NAME, "Hively");
         info->setDuration(helper.totalTime());
     }

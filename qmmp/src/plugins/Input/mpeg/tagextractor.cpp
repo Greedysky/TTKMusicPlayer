@@ -1,11 +1,8 @@
-#include <QIODevice>
-#include <QSettings>
-#include <QByteArray>
-#include <QBuffer>
-#include <QTextCodec>
-#include <QSettings>
-
 #include "tagextractor.h"
+
+#include <QBuffer>
+#include <QSettings>
+#include <QTextCodec>
 
 TagExtractor::TagExtractor(QIODevice *d)
     : m_input(d)

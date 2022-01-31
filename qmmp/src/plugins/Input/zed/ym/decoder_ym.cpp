@@ -1,101 +1,54 @@
 #include "decoder_ym.h"
-
-#include <QFileInfo>
+#include "ymhelper.h"
 
 DecoderYm::DecoderYm(const QString &path)
-    : Decoder(),
-      m_path(path)
+    : Decoder()
 {
-
+    m_helper = new YMHelper(path);
 }
 
 DecoderYm::~DecoderYm()
 {
-    deinit();
+    delete m_helper;
 }
 
 bool DecoderYm::initialize()
 {
-    m_totalTime = 0;
-    m_freq = 0;
-    m_bitrate = 0;
-
-    m_music = new CYmMusic;
-    if(!m_music)
+    if(!m_helper->initialize())
     {
-        qWarning("DecoderYm: failed to create CYmMusic");
+        qWarning("DecoderYm: initialize failed");
         return false;
     }
 
-    ymMusicInfo_t info;
-    if(m_music->load(QmmpPrintable(m_path)))
+    const int rate = m_helper->sampleRate();
+    const int channels = m_helper->channels();
+    if(rate == 0 || channels == 0)
     {
-        m_music->getMusicInfo(&info);
-        m_music->setLoopMode(YMFALSE);
-
-        m_totalTime = info.musicTimeInMs;
-        m_freq = 44100;
-        m_bitrate = (QFileInfo(m_path).size() * 8.0) / m_totalTime + 1.0f;
-    }
-    else
-    {
-        if(m_music)
-        {
-            delete m_music;
-        }
-        m_music = nullptr;
-        qWarning("DecoderYm: failed to open: %s", QmmpPrintable(m_path));
+        qWarning("DecoderYm: rate or channel invalid");
         return false;
     }
 
-    configure(m_freq, 2, Qmmp::PCM_S16LE);
-    qDebug("DecoderYm: detected format: \"%s\"", info.pSongType);
+    configure(rate, channels, Qmmp::PCM_S16LE);
     qDebug("DecoderYm: initialize success");
     return true;
 }
 
-void DecoderYm::deinit()
-{
-    m_totalTime = 0;
-    m_bitrate = 0;
-    m_freq = 0;
-    if(m_music)
-    {
-        delete m_music;
-    }
-    m_music = nullptr;
-}
-
 qint64 DecoderYm::totalTime() const
 {
-    return m_totalTime;
+    return m_helper->totalTime();
 }
 
 int DecoderYm::bitrate() const
 {
-    return m_bitrate ? m_bitrate : 0;
+    return m_helper->bitrate();
 }
 
 qint64 DecoderYm::read(unsigned char *data, qint64 maxSize)
 {
-    qint64 stereoSize, i;
-    ymsample *psample = (ymsample *)data;
-    stereoSize = maxSize / (2 * sizeof(ymsample));
-    
-    if(m_music->update(psample, stereoSize))
-    {
-        // recopy mono YM sound to 2 channels
-        for(i=stereoSize-1; i>=0; i--)
-        {
-            psample[(i * 2)    ] = psample[i];
-            psample[(i * 2) + 1] = psample[i];
-        }
-        return maxSize;
-    }
-    return 0;
+    return m_helper->read(data, maxSize);
 }
 
 void DecoderYm::seek(qint64 time)
 {
-    m_music->setMusicTime((ymu32)time);
+    m_helper->seek(time);
 }

@@ -1,5 +1,4 @@
 #include <QSettings>
-#include <QAbstractButton>
 #include <qmmp/qmmp.h>
 extern "C" {
 #include <alsa/asoundlib.h>

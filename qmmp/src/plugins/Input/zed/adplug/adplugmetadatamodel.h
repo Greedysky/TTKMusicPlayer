@@ -23,6 +23,9 @@
 
 class AdplugHelper;
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class AdplugMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(AdplugMetaDataModel)

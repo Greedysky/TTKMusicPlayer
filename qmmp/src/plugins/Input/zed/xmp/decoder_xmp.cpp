@@ -1,4 +1,5 @@
 #include "decoder_xmp.h"
+
 #include <QSettings>
 
 DecoderXmp *DecoderXmp::m_instance = nullptr;

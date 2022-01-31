@@ -20,7 +20,7 @@
 #define DECODER_XMP_H
 
 #include <qmmp/decoder.h>
-#include <libxmp/xmp.h>
+#include <xmp.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>

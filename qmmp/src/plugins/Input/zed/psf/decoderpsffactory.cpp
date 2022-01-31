@@ -1,6 +1,6 @@
+#include "decoderpsffactory.h"
 #include "psfhelper.h"
 #include "decoder_psf.h"
-#include "decoderpsffactory.h"
 #include "psfmetadatamodel.h"
 
 bool DecoderPSFFactory::canDecode(QIODevice *) const
@@ -60,7 +60,7 @@ QList<TrackInfo*> DecoderPSFFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::BITRATE, helper.bitrate());
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
-        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
         info->setValue(Qmmp::FORMAT_NAME, "PSF");
         info->setDuration(helper.totalTime());
     }

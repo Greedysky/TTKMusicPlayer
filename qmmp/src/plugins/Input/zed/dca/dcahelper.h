@@ -20,7 +20,6 @@
 #define DCAHELPER_H
 
 #include <QObject>
-
 extern "C" {
 #include <libdca/dca.h>
 #include <libdca/gettimeofday.h>
@@ -70,15 +69,15 @@ public:
     ~DCAHelper();
 
     void deinit();
-
     bool initialize();
-    qint64 totalTime() const;
-    void seek(qint64 time);
 
-    int bitrate() const;
-    int sampleRate() const;
-    int channels() const;
-    int bitsPerSample() const;
+    void seek(qint64 time);
+    inline qint64 totalTime() const { return m_info->length; }
+
+    inline int bitrate() const { return m_info->bitrate / 1000; }
+    inline int sampleRate() const { return m_info->sample_rate; }
+    inline int channels() const { return m_info->channels; }
+    inline int depth() const { return m_info->bits_per_sample; }
 
     qint64 read(unsigned char *data, qint64 maxSize);
 

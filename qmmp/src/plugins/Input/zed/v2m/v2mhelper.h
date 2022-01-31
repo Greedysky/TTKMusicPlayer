@@ -22,13 +22,6 @@
 #include <QFile>
 #include <libv2m/v2mplayer.h>
 
-typedef struct
-{
-    uint8_t *tune;
-    int bitrate;
-    V2MPlayer *input;
-} decode_info;
-
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -39,21 +32,23 @@ public:
     ~V2MHelper();
 
     void deinit();
-
     bool initialize();
-    qint64 totalTime() const;
-    void seek(qint64 time);
 
-    int bitrate() const;
-    int sampleRate() const;
-    int channels() const;
-    int bitsPerSample() const;
+    inline void seek(qint64 time) { m_input->Play(time); }
+    inline qint64 totalTime() const { return m_input->Length() * 1000; }
+
+    inline int bitrate() const { return m_bitrate; }
+    inline int sampleRate() const { return 44100; }
+    inline int channels() const { return 2; }
+    inline int depth() const { return 32; }
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
 private:
     QString m_path;
-    decode_info *m_info = nullptr;
+    uint8_t *m_tune = nullptr;
+    int m_bitrate = 0;
+    V2MPlayer *m_input = nullptr;
 
 };
 

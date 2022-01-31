@@ -1,5 +1,5 @@
-#include "asaphelper.h"
 #include "decoder_asap.h"
+#include "asaphelper.h"
 
 DecoderAsap::DecoderAsap(const QString &path)
     : Decoder()
