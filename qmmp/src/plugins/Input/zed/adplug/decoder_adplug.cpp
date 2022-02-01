@@ -20,6 +20,7 @@ bool DecoderAdplug::initialize()
         return false;
     }
 
+    m_length = m_helper->totalTime();
     m_divisor = (m_helper->sampleRate() * m_helper->channels() * (m_helper->depth() / 8)) / 1000.0;
 
     configure(m_helper->sampleRate(), m_helper->channels(), Qmmp::PCM_S16LE);
@@ -46,7 +47,7 @@ qint64 DecoderAdplug::read(unsigned char *data, qint64 maxSize)
     /* Some songs loop endlessly.  If we pass the length threshold (Adplug
     * caps the reported length at 10 minutes), then report EOF.
     */
-    if(m_time > m_helper->totalTime())
+    if(m_time > m_length)
     {
         return 0;
     }

@@ -46,7 +46,7 @@ public:
     inline int channels() const { return 2; }
     inline int depth() const { return 16; }
 
-    inline qint64 read(unsigned char *data, qint64 maxSize) { ay_rendersongbuffer(m_input, data, maxSize); }
+    inline qint64 read(unsigned char *data, qint64 maxSize) { return ay_rendersongbuffer(m_input, data, maxSize); }
     inline const QMap<Qmmp::MetaData, QString> &readMetaData() const { return m_metaData; }
 
 private:
