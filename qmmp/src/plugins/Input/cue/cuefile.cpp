@@ -108,6 +108,7 @@ QStringList CueFile::splitLine(const QString &line)
     QString buf = line.trimmed();
     if(buf.isEmpty())
         return list;
+
     while(!buf.isEmpty())
     {
         if(buf.startsWith('"'))

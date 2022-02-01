@@ -40,8 +40,9 @@ QList<TrackInfo*> DecoderCUEFactory::createPlayList(const QString &path, TrackIn
     else
     {
         if(ignoredPaths)
+        {
             ignoredPaths->append(cueFile.dataFilePaths());
-
+        }
         return cueFile.createPlayList();
     }
 }

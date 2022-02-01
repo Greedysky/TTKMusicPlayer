@@ -28,7 +28,6 @@ Decoder *DecoderFC14Factory::create(const QString &path, QIODevice *input)
 QList<TrackInfo*> DecoderFC14Factory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
-
     if(parts == TrackInfo::Parts())
     {
         return QList<TrackInfo*>() << info;
@@ -59,7 +58,6 @@ QList<TrackInfo*> DecoderFC14Factory::createPlayList(const QString &path, TrackI
         info->setValue(Qmmp::FORMAT_NAME, "FC14");
         info->setDuration(helper.totalTime());
     }
-
     return QList<TrackInfo*>() << info;
 }
 

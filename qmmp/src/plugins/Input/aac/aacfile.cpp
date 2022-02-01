@@ -53,7 +53,6 @@ AACFile::AACFile(QIODevice *input, bool metaData, bool adts)
     }
 
     int adts_offset = 0;
-
     while(adts_offset < buf_at - 6)
     {
         //try to determnate header type;
@@ -148,7 +147,6 @@ void AACFile::parseADTS()
     qint64 pos = m_input->pos();
 
     m_input->seek(0);
-
     buf_at = m_input->read((char *)buf, FAAD_MIN_STREAMSIZE*MAX_CHANNELS);
 
     for(int i = 0; i < buf_at - 1; i++)
@@ -173,7 +171,7 @@ void AACFile::parseADTS()
                 break;
 
             if(frames == 0)
-                m_samplerate = adts_sample_rates[(buf[2]&0x3c)>>2];
+                m_samplerate = adts_sample_rates[(buf[2] & 0x3c)>>2];
 
             frame_length = ((((unsigned int)buf[3] & 0x3)) << 11)
                            | (((unsigned int)buf[4]) << 3) | (buf[5] >> 5);
@@ -214,7 +212,9 @@ void AACFile::parseID3v2(const QByteArray &data)
 {
     ID3v2Tag taglib_tag(data);
     if(taglib_tag.isEmpty())
+    {
         return;
+    }
 
     TagLib::String album = taglib_tag.album();
     TagLib::String artist = taglib_tag.artist();

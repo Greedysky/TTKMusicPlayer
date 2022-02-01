@@ -13,9 +13,7 @@ OpusMetaDataModel::OpusMetaDataModel(const QString &path, bool readOnly)
 
 OpusMetaDataModel::~OpusMetaDataModel()
 {
-    while(!m_tags.isEmpty())
-        delete m_tags.takeFirst();
-
+    qDeleteAll(m_tags);
     delete m_file;
     delete m_stream;
 }

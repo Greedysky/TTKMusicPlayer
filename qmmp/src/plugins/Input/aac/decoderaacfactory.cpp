@@ -30,7 +30,6 @@ Decoder *DecoderAACFactory::create(const QString &path, QIODevice *input)
 QList<TrackInfo*> DecoderAACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
-
     if(parts == TrackInfo::Parts())
     {
         return QList<TrackInfo*>() << info;
@@ -64,7 +63,6 @@ QList<TrackInfo*> DecoderAACFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::FORMAT_NAME, "AAC");
         info->setDuration(aac_file.duration());
     }
-
     return QList<TrackInfo*>() << info;
 }
 

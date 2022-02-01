@@ -86,6 +86,5 @@ QMap<Qmmp::MetaData, QString> YMHelper::readMetaData() const
     metaData.insert(Qmmp::TITLE, QString::fromUtf8(title).trimmed());
     metaData.insert(Qmmp::COMPOSER, QString::fromUtf8(composer).trimmed());
     metaData.insert(Qmmp::COMMENT, QString::fromUtf8(comment).trimmed());
-
     return metaData;
 }

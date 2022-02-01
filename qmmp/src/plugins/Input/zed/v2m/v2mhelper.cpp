@@ -72,7 +72,6 @@ bool V2MHelper::initialize()
 
     m_bitrate = size * 8.0 / totalTime() + 1.0f;
     m_input->Play();
-
     return true;
 }
 
@@ -87,6 +86,5 @@ qint64 V2MHelper::read(unsigned char *data, qint64 maxSize)
     const int samples = maxSize / sampleSize;
 
     m_input->Render((float*)data, samples);
-
     return maxSize;
 }

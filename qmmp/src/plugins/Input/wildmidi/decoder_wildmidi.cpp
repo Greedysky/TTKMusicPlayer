@@ -35,8 +35,8 @@ bool DecoderWildMidi::initialize()
         qWarning("DecoderWildMidi: unable to open file");
         return false;
     }
-    WildMidiHelper::instance()->addPtr(midi_ptr);
 
+    WildMidiHelper::instance()->addPtr(midi_ptr);
     m_sampleRate = WildMidiHelper::instance()->sampleRate();
     _WM_Info *wm_info = WildMidi_GetInfo(midi_ptr);
     m_totalTime = (qint64)wm_info->approx_total_samples * 1000 / WildMidiHelper::instance()->sampleRate();

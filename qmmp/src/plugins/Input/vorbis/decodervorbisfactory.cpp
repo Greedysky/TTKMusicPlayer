@@ -32,7 +32,6 @@ Decoder *DecoderVorbisFactory::create(const QString &path, QIODevice *input)
 QList<TrackInfo*> DecoderVorbisFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
-
     if(parts == TrackInfo::Parts())
     {
         return QList<TrackInfo*>() << info;
@@ -85,7 +84,6 @@ QList<TrackInfo*> DecoderVorbisFactory::createPlayList(const QString &path, Trac
         if(items.contains("REPLAYGAIN_ALBUM_PEAK"))
             info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK, TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].front()));
     }
-
     return QList<TrackInfo*>() << info;
 }
 

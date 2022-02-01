@@ -43,7 +43,6 @@ bool OrganyaHelper::initialize()
     m_bitrate = size * 8.0 / totalTime() + 1.0f;
 
     seek(0);
-
     return true;
 }
 

@@ -17,7 +17,7 @@ AdplugHelper::~AdplugHelper()
 AdplugHelper::Frame AdplugHelper::read()
 {
     size_t to_write;
-    size_t bufsiz = sizeof(m_buf) / sizeof(*m_buf);
+    const size_t bufsiz = sizeof(m_buf) / sizeof(*m_buf);
 
     if(m_remaining == 0)
     {

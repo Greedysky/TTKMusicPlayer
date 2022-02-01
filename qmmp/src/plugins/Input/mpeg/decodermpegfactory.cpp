@@ -100,7 +100,6 @@ Decoder *DecoderMPEGFactory::create(const QString &path, QIODevice *input)
 QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
-
     if(parts == TrackInfo::Parts())
     {
         return QList<TrackInfo*>() << info;
@@ -256,6 +255,7 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
                     info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK, TStringToQString(frame->fieldList()[1]));
             }
         }
+
         if(info->replayGainInfo().isEmpty() && fileRef.APETag() && !fileRef.APETag()->isEmpty())
         {
             TagLib::APE::Tag *tag = fileRef.APETag();
@@ -270,7 +270,6 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
                 info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK,TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].values()[0]));
         }
     }
-
     return QList<TrackInfo*>() << info;
 }
 

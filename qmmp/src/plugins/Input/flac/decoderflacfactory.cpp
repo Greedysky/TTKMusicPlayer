@@ -49,11 +49,12 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
     else
     {
         if(ignoredFiles)
+        {
             ignoredFiles->push_back(path);
+        }
     }
 
     TrackInfo *info = new TrackInfo(filePath);
-
     if(parts == TrackInfo::Parts())
     {
         return QList<TrackInfo*>() << info;

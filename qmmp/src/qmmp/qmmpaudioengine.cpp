@@ -568,12 +568,12 @@ void QmmpAudioEngine::attachMetaData(Decoder *decoder, DecoderFactory *factory, 
     if(fileInfo.isFile() || factory->properties().protocols.contains(scheme))
     {
         QStringList ignoredPaths;
-        QList<TrackInfo*> list = factory->createPlayList(path, TrackInfo::AllParts, &ignoredPaths);
-        if(!list.isEmpty())
+        QList<TrackInfo*> playlist = factory->createPlayList(path, TrackInfo::AllParts, &ignoredPaths);
+        if(!playlist.isEmpty())
         {
-            TrackInfo *info = list.takeFirst();
-            qDeleteAll(list);
-            list.clear();
+            TrackInfo *info = playlist.takeFirst();
+            qDeleteAll(playlist);
+            playlist.clear();
             decoder->addMetaData(info->metaData());
             if(info->parts() & TrackInfo::ReplayGainInfo)
                 decoder->setReplayGainInfo(info->replayGainInfo());

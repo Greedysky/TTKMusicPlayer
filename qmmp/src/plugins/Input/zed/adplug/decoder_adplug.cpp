@@ -81,6 +81,5 @@ qint64 DecoderAdplug::copy(unsigned char *data, qint64 maxSize)
 
     m_bufptr += copied;
     m_buf_filled -= copied;
-
     return copied;
 }

@@ -154,7 +154,6 @@ qint64 DecoderAAC::read(unsigned char *data, qint64 maxSize)
         m_sample_buf_at += size;
         m_sample_buf_size -= size;
     }
-
     return size;
 }
 

@@ -32,7 +32,6 @@ Decoder *DecoderAsapFactory::create(const QString &path, QIODevice *input)
 QList<TrackInfo*> DecoderAsapFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
-
     if(parts == TrackInfo::Parts())
     {
         return QList<TrackInfo*>() << info;
@@ -63,7 +62,6 @@ QList<TrackInfo*> DecoderAsapFactory::createPlayList(const QString &path, TrackI
         info->setValue(Qmmp::FORMAT_NAME, "Asap");
         info->setDuration(helper.totalTime());
     }
-
     return QList<TrackInfo*>() << info;
 }
 

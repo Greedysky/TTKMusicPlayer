@@ -41,11 +41,13 @@ SidTune *SIDHelper::load(const QString &url)
 
 QList<TrackInfo*> SIDHelper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo*> list;
+    QList<TrackInfo*> playlist;
     if(!m_tune || !m_tune->getInfo())
-        return list;
-    int count = m_tune->getInfo()->songs();
+    {
+        return playlist;
+    }
 
+    const int count = m_tune->getInfo()->songs();
     char md5[SidTune::MD5_LENGTH+1];
     m_tune->createMD5(md5);
 
@@ -85,7 +87,7 @@ QList<TrackInfo*> SIDHelper::createPlayList(TrackInfo::Parts parts)
         }
 
         info->setPath("sid://" + m_path + QString("#%1").arg(i));
-        list << info;
+        playlist << info;
     }
-    return list;
+    return playlist;
 }

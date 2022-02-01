@@ -44,18 +44,18 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
     else
     {
         if(ignoredFiles)
+        {
             ignoredFiles->push_back(path);
+        }
     }
 
     TrackInfo *info = new TrackInfo(filePath);
-
     if(parts == TrackInfo::Parts())
     {
         return QList<TrackInfo*>() << info;
     }
 
     char err[80] = { 0 };
-
 #if defined(Q_OS_WIN) && defined(OPEN_FILE_UTF8)
     WavpackContext *ctx = WavpackOpenFileInput(qUtf8Printable(filePath), err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
 #else

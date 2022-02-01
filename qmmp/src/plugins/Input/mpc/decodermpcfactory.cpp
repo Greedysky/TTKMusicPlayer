@@ -35,7 +35,6 @@ Decoder *DecoderMPCFactory::create(const QString &path, QIODevice *input)
 QList<TrackInfo*> DecoderMPCFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
-
     if(parts == TrackInfo::Parts())
     {
         return QList<TrackInfo*>() << info;
@@ -54,6 +53,7 @@ QList<TrackInfo*> DecoderMPCFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::TITLE, TStringToQString(tag->title()));
         info->setValue(Qmmp::YEAR, tag->year());
         info->setValue(Qmmp::TRACK, tag->track());
+
         TagLib::APE::Item fld;
         if(!(fld = tag->itemListMap()["ALBUM ARTIST"]).isEmpty())
             info->setValue(Qmmp::ALBUMARTIST, TStringToQString(fld.toString()));
@@ -71,7 +71,6 @@ QList<TrackInfo*> DecoderMPCFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::FORMAT_NAME, QString("Musepack SV%1").arg(ap->mpcVersion()));
         info->setDuration(ap->lengthInMilliseconds());
     }
-
     return QList<TrackInfo*>() << info;
 }
 

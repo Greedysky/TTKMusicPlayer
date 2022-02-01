@@ -36,19 +36,21 @@ Decoder *DecoderCDAudioFactory::create(const QString &url, QIODevice *input)
 
 QList<TrackInfo*> DecoderCDAudioFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList<TrackInfo*> list;
-
+    QList<TrackInfo*> playlist;
     if(path.contains("#"))
-        return list;
+    {
+        return playlist;
+    }
 
     QString device_path = path;
     device_path.remove("cdda://");
+
     const QList<CDATrack> tracks = DecoderCDAudio::generateTrackList(device_path, parts);
     for(const CDATrack &t : qAsConst(tracks))
     {
-        list << new TrackInfo(t.info);
+        playlist << new TrackInfo(t.info);
     }
-    return list;
+    return playlist;
 }
 
 MetaDataModel* DecoderCDAudioFactory::createMetaDataModel(const QString &path, bool readOnly)

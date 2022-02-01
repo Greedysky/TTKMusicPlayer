@@ -29,7 +29,7 @@ MetaDataManager::~MetaDataManager()
 
 QList<TrackInfo*> MetaDataManager::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) const
 {
-    QList<TrackInfo*> list;
+    QList<TrackInfo*> playlist;
     DecoderFactory *fact = nullptr;
     EngineFactory *efact = nullptr;
     QStringList dummyList;
@@ -39,7 +39,7 @@ QList<TrackInfo*> MetaDataManager::createPlayList(const QString &path, TrackInfo
     if(!path.contains("://")) //local file
     {
         if(!QFile::exists(path))
-            return list;
+            return playlist;
 
         if(!(fact = Decoder::findByFilePath(path, m_settings->determineFileTypeByContent())))
             efact = AbstractEngine::findByFilePath(path);
@@ -49,7 +49,7 @@ QList<TrackInfo*> MetaDataManager::createPlayList(const QString &path, TrackInfo
         QString scheme = path.section("://",0,0);
         if(InputSource::findByUrl(path))
         {
-            list << new TrackInfo(path);
+            playlist << new TrackInfo(path);
         }
         else
         {
@@ -65,18 +65,18 @@ QList<TrackInfo*> MetaDataManager::createPlayList(const QString &path, TrackInfo
     }
 
     if(fact)
-        list = fact->createPlayList(path, parts, ignoredPaths);
+        playlist = fact->createPlayList(path, parts, ignoredPaths);
     else if(efact)
-        list = efact->createPlayList(path, parts, ignoredPaths);
+        playlist = efact->createPlayList(path, parts, ignoredPaths);
 
-    for(TrackInfo *info : qAsConst(list))
+    for(TrackInfo *info : qAsConst(playlist))
     {
         if(info->value(Qmmp::DECODER).isEmpty() && (fact || efact))
             info->setValue(Qmmp::DECODER, fact ? fact->properties().shortName : efact->properties().shortName);
         if(info->value(Qmmp::FILE_SIZE).isEmpty() && !path.contains("://"))
             info->setValue(Qmmp::FILE_SIZE, QFileInfo(path).size());
     }
-    return list;
+    return playlist;
 }
 
 MetaDataModel* MetaDataManager::createMetaDataModel(const QString &path, bool readOnly) const

@@ -109,23 +109,24 @@ void CueParser::loadData(const QByteArray &data, QTextCodec *codec)
 
 QList<TrackInfo*> CueParser::createPlayList(int track) const
 {
-    QList<TrackInfo*> out;
+    QList<TrackInfo*> playlist;
     if(track <= 0)
     {
         for(const CUETrack *track : m_tracks)
-            out << new TrackInfo(track->info);
+        {
+            playlist << new TrackInfo(track->info);
+        }
     }
     else if(track > m_tracks.count())
     {
         qWarning("CueParser: invalid track number: %d", track);
-        return out;
+        return playlist;
     }
     else
     {
-        out << new TrackInfo(m_tracks.at(track - 1)->info);
+        playlist << new TrackInfo(m_tracks.at(track - 1)->info);
     }
-
-    return out;
+    return playlist;
 }
 
 const QStringList &CueParser::files() const

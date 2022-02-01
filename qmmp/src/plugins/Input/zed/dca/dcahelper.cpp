@@ -418,7 +418,6 @@ bool DCAHelper::initialize()
 
     m_info->start_sample = 0;
     m_info->end_sample = total - 1;
-
     return true;
 }
 
@@ -516,6 +515,5 @@ qint64 DCAHelper::read(unsigned char *data, qint64 maxSize)
     }
 
     m_info->current_sample += (initSize - maxSize) / sampleSize;
-
     return initSize - maxSize;
 }

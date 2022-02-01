@@ -34,22 +34,25 @@ QList<TrackInfo*> DecoderSC68Factory::createPlayList(const QString &path, TrackI
         filePath.remove(RegularWrapper("#\\d+$"));
 
         const int track = path.section("#", -1).toInt();
-        QList<TrackInfo*> list = createPlayList(filePath, parts, ignoredFiles);
-        if(list.isEmpty() || track <= 0 || track > list.count())
+        QList<TrackInfo*> playlist = createPlayList(filePath, parts, ignoredFiles);
+        if(playlist.isEmpty() || track <= 0 || track > playlist.count())
         {
-            qDeleteAll(list);
-            list.clear();
-            return list;
+            qDeleteAll(playlist);
+            playlist.clear();
+            return playlist;
         }
 
-        TrackInfo *info = list.takeAt(track - 1);
-        qDeleteAll(list);
-        return QList<TrackInfo*>() << info;
+        TrackInfo *info = playlist.takeAt(track - 1);
+        qDeleteAll(playlist);
+        playlist.clear();
+        return playlist << info;
     }
     else
     {
         if(ignoredFiles)
+        {
             ignoredFiles->push_back(path);
+        }
     }
 
     SC68Helper helper(path);

@@ -182,16 +182,18 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
     else
     {
         if(ignoredFiles)
+        {
             ignoredFiles->push_back(path);
+        }
     }
 
     TrackInfo *info = new TrackInfo(filePath);
-
     if(parts == TrackInfo::Parts())
+    {
         return QList<TrackInfo*>() << info;
+    }
 
     AVFormatContext *in = nullptr;
-
 #ifdef Q_OS_WIN
     if(avformat_open_input(&in, qUtf8Printable(filePath), nullptr, nullptr) < 0)
 #else
@@ -292,10 +294,10 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
 
         if(in->nb_chapters > 1 && filePath.endsWith(".m4b", Qt::CaseInsensitive))
         {
-            QList<TrackInfo*> tracks = createPlayListFromChapters(in, info, trackNumber);
+            QList<TrackInfo*> playlist = createPlayListFromChapters(in, info, trackNumber);
             avformat_close_input(&in);
             delete info;
-            return tracks;
+            return playlist;
         }
         else if(trackNumber > 0 && path.startsWith("m4b://")) //invalid chapter
         {
@@ -311,7 +313,7 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
 
 QList<TrackInfo*> DecoderFFmpegFactory::createPlayListFromChapters(AVFormatContext *in, TrackInfo *extraInfo, int trackNumber)
 {
-    QList<TrackInfo*> tracks;
+    QList<TrackInfo*> playlist;
     for(unsigned int i = 0; i < in->nb_chapters; ++i)
     {
         if((trackNumber > 0) && (int(i + 1) != trackNumber))
@@ -328,10 +330,10 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayListFromChapters(AVFormatConte
         if(title)
             info->setValue(Qmmp::TITLE, QString::fromUtf8(title->value).trimmed());
 
-        tracks << info;
+        playlist << info;
     }
 
-    return tracks;
+    return playlist;
 }
 
 MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bool readOnly)

@@ -65,11 +65,13 @@ Music_Emu *GmeHelper::load(const QString &url, int sample_rate)
 
 QList<TrackInfo*> GmeHelper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo*> list;
+    QList<TrackInfo*> playlist;
     if(!m_emu)
-        return list;
+    {
+        return playlist;
+    }
 
-    int count = gme_track_count(m_emu);
+    const int count = gme_track_count(m_emu);
     gme_info_t *track_info;
 
     for(int i = 1; i <= count; ++i)
@@ -108,9 +110,9 @@ QList<TrackInfo*> GmeHelper::createPlayList(TrackInfo::Parts parts)
         info->setPath("gme://" + m_path + QString("#%1").arg(i));
         info->setDuration(track_info->length);
         gme_free_info(track_info);
-        list << info;
+        playlist << info;
     }
-    return list;
+    return playlist;
 }
 
 int GmeHelper::fadeLength()

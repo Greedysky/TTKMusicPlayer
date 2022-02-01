@@ -73,8 +73,8 @@ bool HivelyHelper::initialize()
             subsongs += " ";
         }
     }
-    m_metaData.insert(Qmmp::TRACK/*"SubSongs"*/, subsongs);
 
+    m_metaData.insert(Qmmp::TRACK/*"SubSongs"*/, subsongs);
     return true;
 }
 
@@ -87,7 +87,5 @@ qint64 HivelyHelper::read(unsigned char *data, qint64)
 
     int8* ptr = (int8*)data;
     hvl_DecodeFrame(m_input, ptr, ptr + 2, 4);
-
-    const int sample = (m_input->ht_Frequency / 50 / m_input->ht_SpeedMultiplier) * 4;
-    return sample;
+    return (m_input->ht_Frequency / 50 / m_input->ht_SpeedMultiplier) * 4;
 }

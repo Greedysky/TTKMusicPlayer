@@ -51,33 +51,35 @@ QList<TrackInfo*> DecoderSIDFactory::createPlayList(const QString &path, TrackIn
     SIDHelper helper(&m_db);
     helper.load(path);
 
-    QList<TrackInfo*> list = helper.createPlayList(parts);
-    if(list.isEmpty())
+    QList<TrackInfo*> playlist = helper.createPlayList(parts);
+    if(playlist.isEmpty())
     {
-        return list;
+        return playlist;
     }
 
     if(path.contains("://")) //is it url?
     {
         const int track = path.section("#", -1).toInt();
-        if(track > list.count() || track < 1)
+        if(track > playlist.count() || track < 1)
         {
-            qDeleteAll(list);
-            list.clear();
-            return list;
+            qDeleteAll(playlist);
+            playlist.clear();
+            return playlist;
         }
 
-        TrackInfo *info = list.takeAt(track - 1);
-        qDeleteAll(list);
-        return QList<TrackInfo*>() << info;
+        TrackInfo *info = playlist.takeAt(track - 1);
+        qDeleteAll(playlist);
+        playlist.clear();
+        return playlist << info;
     }
     else
     {
         if(ignoredFiles)
+        {
             ignoredFiles->push_back(path);
+        }
     }
-
-    return list;
+    return playlist;
 }
 
 MetaDataModel* DecoderSIDFactory::createMetaDataModel(const QString &path, bool readOnly)

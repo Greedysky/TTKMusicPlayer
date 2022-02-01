@@ -55,11 +55,7 @@ bool FC14Helper::initialize()
 qint64 FC14Helper::read(unsigned char *data, qint64 maxSize)
 {
     fc14dec_buffer_fill(m_input, data, maxSize);
-    if(fc14dec_song_end(m_input))
-    {
-        return 0;
-    }
-    return maxSize;
+    return fc14dec_song_end(m_input) ? 0 : maxSize;
 }
 
 QMap<Qmmp::MetaData, QString> FC14Helper::readMetaData() const

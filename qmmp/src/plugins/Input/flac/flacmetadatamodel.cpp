@@ -41,8 +41,7 @@ FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
 
 FLACMetaDataModel::~FLACMetaDataModel()
 {
-    while(!m_tags.isEmpty())
-        delete m_tags.takeFirst();
+    qDeleteAll(m_tags);
     if(m_file)
     {
         delete m_file;

@@ -15,8 +15,7 @@ MPCMetaDataModel::MPCMetaDataModel(const QString &path, bool readOnly)
 
 MPCMetaDataModel::~MPCMetaDataModel()
 {
-    while(!m_tags.isEmpty())
-        delete m_tags.takeFirst();
+    qDeleteAll(m_tags);
     delete m_file;
     delete m_stream;
 }

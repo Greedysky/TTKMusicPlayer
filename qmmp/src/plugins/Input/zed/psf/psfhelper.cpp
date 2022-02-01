@@ -203,6 +203,5 @@ QMap<Qmmp::MetaData, QString> PSFHelper::readMetaData() const
             metaData.insert(Qmmp::COMMENT, info.info[i]);
         }
     }
-
     return metaData;
 }

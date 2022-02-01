@@ -64,7 +64,7 @@ void SC68Helper::deinit()
 bool SC68Helper::initialize()
 {
     const int track = m_path.section("#", -1).toInt();
-    QString path = cleanPath();
+    const QString &path = cleanPath();
 
     QFile file(path);
     if(!file.open(QFile::ReadOnly))
@@ -173,16 +173,16 @@ qint64 SC68Helper::read(unsigned char *data, qint64 maxSize)
 
 QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo*> list;
+    QList<TrackInfo*> playlist;
     if(!m_input)
     {
-        return list;
+        return playlist;
     }
 
     sc68_music_info_t info;
     if(sc68_music_info(m_input, &info, 0, 0) < 0)
     {
-        return list;
+        return playlist;
     }
 
     for(int i = 1; i <= info.tracks; i++)
@@ -212,9 +212,9 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
 
         info->setPath("sc68://" + cleanPath() + QString("#%1").arg(i));
         info->setDuration(ti.trk.time_ms > 0 ? ti.trk.time_ms : (2 * 60));
-        list << info;
+        playlist << info;
     }
-    return list;
+    return playlist;
 }
 
 QString SC68Helper::cleanPath() const

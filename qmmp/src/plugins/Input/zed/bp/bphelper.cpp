@@ -44,10 +44,5 @@ bool BpHelper::initialize()
 
 qint64 BpHelper::read(unsigned char *data, qint64)
 {
-    if(!m_input->Run())
-    {
-        return 0;
-    }
-
-    return m_input->Render(data);
+    return m_input->Run() ? m_input->Render(data) : 0;
 }

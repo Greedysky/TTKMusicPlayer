@@ -39,7 +39,6 @@ QList<MetaDataItem> XmpMetaDataModel::extraProperties() const
     ep << MetaDataItem(tr("Initial speed"), mi.mod->spd);
     ep << MetaDataItem(tr("Initial BPM"), mi.mod->bpm);
     ep << MetaDataItem(tr("Module length in patterns"), mi.mod->len);
-
     return ep;
 }
 

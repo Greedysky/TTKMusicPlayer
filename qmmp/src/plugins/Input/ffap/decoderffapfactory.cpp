@@ -44,11 +44,12 @@ QList<TrackInfo*> DecoderFFapFactory::createPlayList(const QString &path, TrackI
     else
     {
         if(ignoredFiles)
+        {
             ignoredFiles->push_back(path);
+        }
     }
 
     TrackInfo *info = new TrackInfo(filePath);
-
     if(parts == TrackInfo::Parts())
     {
         return QList<TrackInfo*>() << info;
@@ -108,7 +109,6 @@ QList<TrackInfo*> DecoderFFapFactory::createPlayList(const QString &path, TrackI
         if(!(fld = tag->itemListMap()["COMPOSER"]).isEmpty())
             info->setValue(Qmmp::COMPOSER, TStringToQString(fld.toString()));
     }
-
     return QList<TrackInfo*>() << info;
 }
 

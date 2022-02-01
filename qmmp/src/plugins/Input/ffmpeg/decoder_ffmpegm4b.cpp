@@ -70,20 +70,20 @@ bool DecoderFFmpegM4b::initialize()
         return false;
     }
 
-    QList<TrackInfo*> tracks = m_factory->createPlayList(filePath, TrackInfo::AllParts, nullptr);
-    if(tracks.isEmpty() || tracks.count() != int(in->nb_chapters))
+    QList<TrackInfo*> playlist = m_factory->createPlayList(filePath, TrackInfo::AllParts, nullptr);
+    if(playlist.isEmpty() || playlist.count() != int(in->nb_chapters))
     {
-        qDeleteAll(tracks);
+        qDeleteAll(playlist);
         avformat_close_input(&in);
         qWarning("DecoderFFmpegM4b: unable to find tracks");
         return false;
     }
 
-    for(int i = 0; i < tracks.count(); ++i)
+    for(int i = 0; i < playlist.count(); ++i)
     {
         AVChapter *chapter = in->chapters[i];
         ChapterInfo chapterInfo = {
-            .info = tracks[i],
+            .info = playlist[i],
             .offset = chapter->start * chapter->time_base.num * 1000 / chapter->time_base.den,
             .duration = (chapter->end - chapter->start) * chapter->time_base.num * 1000 / chapter->time_base.den,
             .url = QString("m4b://%1#%2").arg(filePath).arg(i + 1)
@@ -92,7 +92,7 @@ bool DecoderFFmpegM4b::initialize()
         m_chapters << chapterInfo;
     }
 
-    tracks.clear();
+    playlist.clear();
     avformat_close_input(&in);
 
     m_input = new QFile(filePath);
@@ -107,7 +107,7 @@ bool DecoderFFmpegM4b::initialize()
     m_decoder = new DecoderFFmpeg(filePath, m_input);
     if(!m_decoder->initialize())
     {
-        qDeleteAll(tracks);
+        qDeleteAll(playlist);
         qWarning("DecoderFFapCUE: invalid audio file");
         return false;
     }

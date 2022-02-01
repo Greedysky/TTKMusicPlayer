@@ -109,7 +109,6 @@ Decoder *DecoderSndFileFactory::create(const QString &path, QIODevice *input)
 QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
-
     if(parts == TrackInfo::Parts())
     {
         return QList<TrackInfo*>() << info;
@@ -174,6 +173,7 @@ QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, Tra
             info->setValue(Qmmp::BITS_PER_SAMPLE, 64);
             break;
         }
+
         SF_FORMAT_INFO format_info;
         memset(&format_info, 0, sizeof(format_info));
         format_info.format = (snd_info.format & SF_FORMAT_TYPEMASK);

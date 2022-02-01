@@ -34,8 +34,10 @@ bool DecoderCUE::initialize()
         qWarning("DecoderCUE: invalid cue file");
         return false;
     }
+
     m_track = m_path.section("#", -1).toInt();
     m_path = m_cueFile->dataFilePath(m_track);
+
     if(!QFile::exists(m_path))
     {
         qWarning("DecoderCUE: file \"%s\" doesn't exist", qPrintable(m_path));
@@ -74,7 +76,6 @@ bool DecoderCUE::initialize()
     length_in_bytes = audioParameters().sampleRate() *
                       audioParameters().frameSize() * m_length / 1000;
     m_totalBytes = 0;
-
     m_sz = audioParameters().frameSize();
 
     addMetaData(m_cueFile->info(m_track)->metaData());
