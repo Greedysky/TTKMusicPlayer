@@ -29,7 +29,7 @@
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
 struct QMMP_EXPORT VolumeSettings
-{    
+{
     int left = 0;  /*!< Volume of the left channel. It should be \b 0..100. */
     int right = 0; /*!< Volume of the left channel It should be \b 0..100. */
 

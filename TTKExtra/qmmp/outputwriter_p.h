@@ -71,7 +71,7 @@ public:
      * If \b reset is \b true, this function also clears internal output buffers for faster seeking;
      * otherwise does nothing with buffers.
      */
-    void seek(qint64 pos, bool reset = false);
+    void seek(qint64 time, bool reset = false);
     /*!
      * Returns Recycler pointer.
      */

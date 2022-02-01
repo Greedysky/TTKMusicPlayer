@@ -177,7 +177,7 @@ public slots:
     /*!
      *  This function sets the current play position to \p pos in milliseconds.
      */
-    void seek(qint64 pos);
+    void seek(qint64 time);
     /*!
      *  This function returns file path or stream url.
      */
