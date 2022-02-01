@@ -23,5 +23,8 @@ unix{
 }
 
 win32{
+    contains(CONFIG, USE_STATIC_LIBRARY){
+        DEFINES += BUILDING_STATIC
+    }
     LIBS += -L$$EXTRA_PREFIX/libxmp/lib -lxmp
 }
