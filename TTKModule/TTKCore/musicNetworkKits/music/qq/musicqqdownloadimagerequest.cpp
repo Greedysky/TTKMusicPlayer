@@ -35,7 +35,6 @@ void MusicQQDownloadImageRequest::downLoadDataFinished()
     TTK_LOGGER_INFO(QString("%1 downLoadDataFinished").arg(className()));
 
     MusicAbstractNetwork::downLoadFinished();
-
     QString songId;
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {

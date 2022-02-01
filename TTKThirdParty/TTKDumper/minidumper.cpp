@@ -3,7 +3,7 @@
 #include "musicotherdefine.h"
 #include "miniprocess.h"
 
-void cleanAppicationCache()
+static void cleanAppicationCache()
 {
     QFile::remove(MUSIC_COLOR_FILE);
     QFile::remove(MUSIC_IMAGE_FILE);
@@ -24,19 +24,22 @@ void cleanAppicationCache()
 
 LPCWSTR MiniDumper::m_appName;
 LPWSTR MiniDumper::m_appVersion;
-LPWSTR MiniDumper::m_appBuildNumber;
 LPWSTR MiniDumper::m_dumpFilePath;
 
 #define MAX_DUMP_FILE_NUMBER 9999
 
-MiniDumper::MiniDumper(LPCWSTR name, LPCWSTR version, LPCWSTR number)
+MiniDumper::MiniDumper(LPCWSTR name, LPCWSTR version)
 {
     m_appName = name ? wcsdup(name) : wcsdup(L"TTK");
     m_appVersion = version ? wcsdup(version) : wcsdup(L"1.0.0.0");
-    m_appBuildNumber = number ? wcsdup(number) : wcsdup(L"0000");
     m_dumpFilePath = nullptr;
 
     ::SetUnhandledExceptionFilter(TopLevelFilter);
+}
+
+MiniDumper::~MiniDumper()
+{
+    cleanAppicationCache();
 }
 
 LONG MiniDumper::TopLevelFilter(EXCEPTION_POINTERS *info)
@@ -110,8 +113,6 @@ LONG MiniDumper::TopLevelFilter(EXCEPTION_POINTERS *info)
                     wcscat(dumpPath, m_appName);
                     wcscat(dumpPath, L"_");
                     wcscat(dumpPath, m_appVersion);
-                    wcscat(dumpPath, L"_");
-                    wcscat(dumpPath, m_appBuildNumber);
                     wcscat(dumpPath, fileNumber);
                     wcscat(dumpPath, L".dmp");
 
@@ -154,22 +155,40 @@ LONG MiniDumper::TopLevelFilter(EXCEPTION_POINTERS *info)
             }
         }
     }
-
     return retval;
 }
 
 #elif defined Q_OS_UNIX
 #include <signal.h>
+#include <execinfo.h>
+#include <unistd.h>
+#include <fcntl.h>
 
-void errorHandler(int type)
+static QString GlobalAppName;
+
+static void errorHandler(int id)
 {
-    TTK_LOGGER_INFO("Error Type " << type);
+    TTK_LOGGER_INFO("App error occurred, error code " << id);
     cleanAppicationCache();
+    
+    char stamp[50];
+    sprintf(stamp, "%ld", time(nullptr));
+    const std::string& file_name = GlobalAppName.toStdString() + "." + stamp + ".dmp";
+    
+    const int size = 512;
+    void*     array[size];
+    const int fd = open(file_name.c_str(), O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH);
+    backtrace_symbols_fd(array, backtrace(array, size), fd);
+    close(fd);
+
+    raise(id);
     exit(0);
 }
 
-MiniDumper::MiniDumper()
+MiniDumper::MiniDumper(const QString &name, const QString &version)
 {
+    GlobalAppName = name + '_' + version;
+
     signal(SIGPIPE, errorHandler);
     signal(SIGSEGV, errorHandler);
     signal(SIGFPE, errorHandler);

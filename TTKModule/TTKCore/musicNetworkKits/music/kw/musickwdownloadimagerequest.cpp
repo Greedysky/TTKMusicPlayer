@@ -12,6 +12,8 @@ MusicKWDownloadImageRequest::MusicKWDownloadImageRequest(const QString &name, co
 
 void MusicKWDownloadImageRequest::startToDownload()
 {
+    TTK_LOGGER_INFO(QString("%1 startToDownload").arg(className()));
+
     deleteAll();
 
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
@@ -22,6 +24,8 @@ void MusicKWDownloadImageRequest::startToDownload()
 
 void MusicKWDownloadImageRequest::downLoadFinished(const QByteArray &bytes)
 {
+    TTK_LOGGER_INFO(QString("%1 downLoadDataFinished").arg(className()));
+
     MusicAbstractNetwork::downLoadFinished();
     if(bytes != "NO_PIC")
     {

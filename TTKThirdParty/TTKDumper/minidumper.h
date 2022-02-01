@@ -20,13 +20,14 @@ typedef BOOL (WINAPI *MINIDUMPWRITEDUMP)(HANDLE hProcess, DWORD dwPid, HANDLE hF
 class TTK_MODULE_EXPORT MiniDumper
 {
 public:
-    MiniDumper(LPCWSTR name, LPCWSTR version, LPCWSTR number = nullptr);
+    MiniDumper(LPCWSTR name, LPCWSTR version);
+    ~MiniDumper();
 
 private:
     static LPCWSTR m_appName;
     static LPWSTR m_appVersion;
-    static LPWSTR m_appBuildNumber;
     static LPWSTR m_dumpFilePath;
+
     static LONG WINAPI TopLevelFilter(EXCEPTION_POINTERS *info);
 
 };
@@ -38,7 +39,7 @@ private:
 class TTK_MODULE_EXPORT MiniDumper
 {
 public:
-    MiniDumper();
+    MiniDumper(const QString &name, const QString &version);
     ~MiniDumper();
 
 };
