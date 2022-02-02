@@ -30,14 +30,13 @@ class StateHandler;
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-
 class CrossfadePlugin : public Effect
 {
 public:
     CrossfadePlugin();
     virtual ~CrossfadePlugin();
 
-    virtual void applyEffect(Buffer *b) override;
+    virtual void applyEffect(Buffer *b) override final;
 
 private:
     enum State

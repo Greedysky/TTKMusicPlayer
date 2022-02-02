@@ -35,17 +35,17 @@ public:
     virtual ~OuterBlurWave();
 
 public slots:
-    virtual void start() override;
-    virtual void stop() override;
+    virtual void start() override final;
+    virtual void stop() override final;
 
 private slots:
     void readSettings();
 
 private:
-    virtual void paintEvent(QPaintEvent *e) override;
-    virtual void resizeEvent(QResizeEvent *e) override;
+    virtual void paintEvent(QPaintEvent *e) override final;
+    virtual void resizeEvent(QResizeEvent *e) override final;
 
-    virtual void process(float *left, float *right) override;
+    virtual void process(float *left, float *right) override final;
     void draw(QPainter *p);
 
     QPointF viewToItemPoint(const QPoint &pt);

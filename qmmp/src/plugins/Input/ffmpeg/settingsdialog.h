@@ -33,7 +33,7 @@ public:
     SettingsDialog(QWidget *parent = nullptr);
 
 public slots:
-    virtual void accept() override;
+    virtual void accept() override final;
 
 private:
     Ui::SettingsDialog m_ui;

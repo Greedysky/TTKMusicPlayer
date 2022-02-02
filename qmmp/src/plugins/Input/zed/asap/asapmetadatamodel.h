@@ -33,14 +33,13 @@ public:
     explicit AsapMetaDataModel(const QString &path);
     virtual ~AsapMetaDataModel();
 
-    virtual QList<TagModel*> tags() const override;
+    virtual QList<TagModel*> tags() const override final;
 
 private:
     QList<TagModel*> m_tags;
     AsapHelper *m_helper = nullptr;
 
 };
-
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -51,10 +50,10 @@ public:
     explicit AsapFileTagModel(AsapHelper* asap);
     virtual ~AsapFileTagModel();
 
-    virtual QString name() const override;
-    virtual QList<Qmmp::MetaData> keys() const override;
-    virtual QString value(Qmmp::MetaData key) const override;
-    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
+    virtual QString name() const override final;
+    virtual QList<Qmmp::MetaData> keys() const override final;
+    virtual QString value(Qmmp::MetaData key) const override final;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override final;
 
 private:
     AsapHelper *m_helper = nullptr;

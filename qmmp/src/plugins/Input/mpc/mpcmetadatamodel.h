@@ -27,13 +27,16 @@
 
 class QTextCodec;
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class MPCMetaDataModel : public MetaDataModel
 {
 public:
     MPCMetaDataModel(const QString &path, bool readOnly);
     virtual ~MPCMetaDataModel();
 
-    virtual QList<TagModel*> tags() const override;
+    virtual QList<TagModel*> tags() const override final;
 
 private:
     QList<TagModel*> m_tags;
@@ -42,20 +45,23 @@ private:
 
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class MPCFileTagModel : public TagModel
 {
 public:
     MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::TagTypes type);
     virtual ~MPCFileTagModel();
 
-    virtual QString name() const override;
-    virtual QList<Qmmp::MetaData> keys() const override;
-    virtual QString value(Qmmp::MetaData key) const override;
-    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
-    virtual bool exists() const override;
-    virtual void create() override;
-    virtual void remove() override;
-    virtual void save() override;
+    virtual QString name() const override final;
+    virtual QList<Qmmp::MetaData> keys() const override final;
+    virtual QString value(Qmmp::MetaData key) const override final;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override final;
+    virtual bool exists() const override final;
+    virtual void create() override final;
+    virtual void remove() override final;
+    virtual void save() override final;
 
 private:
     QTextCodec *m_codec;

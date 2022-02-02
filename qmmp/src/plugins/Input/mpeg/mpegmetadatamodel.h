@@ -27,6 +27,9 @@
 
 class QTextCodec;
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class MPEGMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(MPEGMetaDataModel)
@@ -34,11 +37,11 @@ public:
     MPEGMetaDataModel(const QString &path, bool readOnly);
     virtual ~MPEGMetaDataModel();
 
-    virtual QList<MetaDataItem> extraProperties() const override;
-    virtual QList<TagModel*> tags() const override;
-    virtual QPixmap cover() const override;
-    virtual void setCover(const QPixmap &pix) override;
-    virtual void removeCover() override;
+    virtual QList<MetaDataItem> extraProperties() const override final;
+    virtual QList<TagModel*> tags() const override final;
+    virtual QPixmap cover() const override final;
+    virtual void setCover(const QPixmap &pix) override final;
+    virtual void removeCover() override final;
 
 private:
     QList<TagModel*> m_tags;
@@ -47,20 +50,23 @@ private:
 
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class MpegFileTagModel : public TagModel
 {
 public:
     MpegFileTagModel(TagLib::MPEG::File *file, TagLib::MPEG::File::TagTypes type);
     virtual ~MpegFileTagModel();
 
-    virtual QString name() const override;
-    virtual QList<Qmmp::MetaData> keys() const override;
-    virtual QString value(Qmmp::MetaData key) const override;
-    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
-    virtual bool exists() const override;
-    virtual void create() override;
-    virtual void remove() override;
-    virtual void save() override;
+    virtual QString name() const override final;
+    virtual QList<Qmmp::MetaData> keys() const override final;
+    virtual QString value(Qmmp::MetaData key) const override final;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override final;
+    virtual bool exists() const override final;
+    virtual void create() override final;
+    virtual void remove() override final;
+    virtual void save() override final;
 
 private:
     QTextCodec *m_codec;

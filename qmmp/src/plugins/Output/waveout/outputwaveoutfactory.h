@@ -23,16 +23,19 @@
 
 #include <qmmp/outputfactory.h>
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class OutputWaveOutFactory : public QObject, OutputFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.OutputFactoryInterface.1.0")
     Q_INTERFACES(OutputFactory)
 public:
-    virtual OutputProperties properties() const override;
-    virtual Output *create() override;
-    virtual Volume *createVolume() override;
-    virtual void showSettings(QWidget *parent) override;
+    virtual OutputProperties properties() const override final;
+    virtual Output *create() override final;
+    virtual Volume *createVolume() override final;
+    virtual void showSettings(QWidget *parent) override final;
 
 };
 

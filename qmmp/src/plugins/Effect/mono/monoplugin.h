@@ -33,7 +33,7 @@ public:
     MonoPlugin();
     virtual ~MonoPlugin();
 
-    virtual void applyEffect(Buffer *b) override;
+    virtual void applyEffect(Buffer *b) override final;
 
 private:
     double m_average = 0;

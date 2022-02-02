@@ -33,8 +33,8 @@ public:
     explicit PSFMetaDataModel(const QString &path);
     virtual ~PSFMetaDataModel();
 
-    virtual QList<TagModel*> tags() const override;
-    virtual QList<MetaDataItem> extraProperties() const override;
+    virtual QList<TagModel*> tags() const override final;
+    virtual QList<MetaDataItem> extraProperties() const override final;
 
 private:
     QList<TagModel*> m_tags;
@@ -51,10 +51,10 @@ public:
     explicit PSFFileTagModel(PSFHelper* psf);
     virtual ~PSFFileTagModel();
 
-    virtual QString name() const override;
-    virtual QList<Qmmp::MetaData> keys() const override;
-    virtual QString value(Qmmp::MetaData key) const override;
-    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
+    virtual QString name() const override final;
+    virtual QList<Qmmp::MetaData> keys() const override final;
+    virtual QString value(Qmmp::MetaData key) const override final;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override final;
 
 private:
     PSFHelper *m_helper = nullptr;

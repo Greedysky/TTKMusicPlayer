@@ -38,10 +38,10 @@ private slots:
     void changeGridState(bool state);
 
 private:
-    virtual void paintEvent(QPaintEvent *e) override;
-    virtual void contextMenuEvent(QContextMenuEvent *e) override;
+    virtual void paintEvent(QPaintEvent *e) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
-    virtual void process(float *left, float *right) override;
+    virtual void process(float *left, float *right) override final;
     void draw(QPainter *p);
 
     QList<QColor> m_colors;

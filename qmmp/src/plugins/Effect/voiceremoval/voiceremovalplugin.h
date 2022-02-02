@@ -30,7 +30,7 @@ public:
     VoiceRemovalPlugin();
     virtual ~VoiceRemovalPlugin();
 
-    virtual void applyEffect(Buffer *b) override;
+    virtual void applyEffect(Buffer *b) override final;
 
 };
 

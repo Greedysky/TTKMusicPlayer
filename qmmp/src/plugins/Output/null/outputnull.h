@@ -32,12 +32,12 @@ public:
     OutputNull();
     ~OutputNull();
 
-    virtual bool initialize(quint32, ChannelMap map, Qmmp::AudioFormat format) override;
+    virtual bool initialize(quint32, ChannelMap map, Qmmp::AudioFormat format) override final;
 
-    virtual qint64 latency() override;
-    virtual qint64 writeAudio(unsigned char *data, qint64 maxSize) override;
-    virtual void drain() override;
-    virtual void reset() override;
+    virtual qint64 latency() override final;
+    virtual qint64 writeAudio(unsigned char *data, qint64 maxSize) override final;
+    virtual void drain() override final;
+    virtual void reset() override final;
 
 private:
     qint64 m_bytes_per_second = 0;

@@ -27,7 +27,7 @@ extern "C" {
 #include "ui_settingsdialog.h"
 
 /**
-	@author Ilya Kotov <forkotov02@ya.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
 class SettingsDialog : public QDialog
 {
@@ -36,7 +36,7 @@ public:
     explicit SettingsDialog(QWidget *parent = nullptr);
 
 public slots:
-    virtual void accept() override;
+    virtual void accept() override final;
 
 private slots:
     void setText(int);

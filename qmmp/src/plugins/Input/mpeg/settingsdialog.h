@@ -35,7 +35,7 @@ public:
     enum TagType {ID3v1 = 0, ID3v2, APE, Disabled};
 
 public slots:
-    virtual void accept() override;
+    virtual void accept() override final;
 
 private:
     void findCodecs();

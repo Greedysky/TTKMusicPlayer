@@ -27,20 +27,23 @@
 #include <taglib/tfilestream.h>
 #include <qmmp/metadatamodel.h>
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class FLACMetaDataModel : public MetaDataModel
 {
 public:
     FLACMetaDataModel(const QString &path, bool readOnly);
     virtual ~FLACMetaDataModel();
 
-    virtual QList<TagModel*> tags() const override;
-    virtual QPixmap cover() const override;
-    virtual QString coverPath() const override;
-    virtual void setCover(const QPixmap &pix) override;
-    virtual void removeCover() override;
-    virtual QString cue() const override;
-    virtual void setCue(const QString &content) override;
-    virtual void removeCue() override;
+    virtual QList<TagModel*> tags() const override final;
+    virtual QPixmap cover() const override final;
+    virtual QString coverPath() const override final;
+    virtual void setCover(const QPixmap &pix) override final;
+    virtual void removeCover() override final;
+    virtual QString cue() const override final;
+    virtual void setCue(const QString &content) override final;
+    virtual void removeCue() override final;
 
 private:
     QString m_path;
@@ -51,16 +54,19 @@ private:
 
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class VorbisCommentModel : public TagModel
 {
 public:
     VorbisCommentModel(TagLib::Ogg::XiphComment *tag, TagLib::File *file);
     virtual ~VorbisCommentModel();
 
-    virtual QString name() const override;
-    virtual QString value(Qmmp::MetaData key) const override;
-    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
-    virtual void save() override;
+    virtual QString name() const override final;
+    virtual QString value(Qmmp::MetaData key) const override final;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override final;
+    virtual void save() override final;
 
 private:
     TagLib::File *m_file;

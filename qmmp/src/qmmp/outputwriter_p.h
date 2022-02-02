@@ -94,7 +94,8 @@ public:
     void updateEqSettings();
 
 private:
-    virtual void run() override; //thread run function
+    virtual void run() override final; //thread run function
+
     void status();
     void dispatch(qint64 elapsed, int bitrate);
     void dispatch(const Qmmp::State &state);

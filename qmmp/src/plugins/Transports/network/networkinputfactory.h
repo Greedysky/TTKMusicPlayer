@@ -30,9 +30,9 @@ class NetworkInputFactory : public QObject, InputSourceFactory
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.InputSourceFactoryInterface.1.0")
     Q_INTERFACES(InputSourceFactory)
 public:
-    virtual InputSourceProperties properties() const override;
-    virtual InputSource *create(const QString &url, QObject *parent = nullptr) override;
-    virtual void showSettings(QWidget *parent) override;
+    virtual InputSourceProperties properties() const override final;
+    virtual InputSource *create(const QString &url, QObject *parent = nullptr) override final;
+    virtual void showSettings(QWidget *parent) override final;
 
 };
 

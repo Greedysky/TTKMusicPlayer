@@ -11,9 +11,9 @@ class FFTPlanImpl : public FFTPlan
 {
 public:
     FFTPlanImpl(int nbits);
-    ~FFTPlanImpl() override;
+    ~FFTPlanImpl();
 
-    void execute() override;
+    virtual void execute() override final;
 
 private:
     struct RDFTContext *m_cx;

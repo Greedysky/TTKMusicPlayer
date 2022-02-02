@@ -25,6 +25,9 @@
 #include <qmmp/decoder.h>
 #include <qmmp/trackinfo.h>
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class CDATrack
 {
 public:
@@ -38,6 +41,9 @@ public:
     lsn_t last_sector = 0;
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class DecoderCDAudio : public Decoder
 {
 public:
@@ -49,11 +55,11 @@ public:
     static void clearTrackCache();
 
      // Standard Decoder API
-    virtual bool initialize() override;
-    virtual qint64 totalTime() const override;
-    virtual int bitrate() const override;
-    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
-    virtual void seek(qint64 time) override;
+    virtual bool initialize() override final;
+    virtual qint64 totalTime() const override final;
+    virtual int bitrate() const override final;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
+    virtual void seek(qint64 time) override final;
 
 private:
     //helper functions

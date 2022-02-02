@@ -32,11 +32,11 @@ Q_OBJECT
 public:
     explicit NetworkInputSource(const QString &path, QObject *parent = nullptr);
 
-    virtual QIODevice *ioDevice() const override;
-    virtual bool initialize() override;
-    virtual bool isReady() const override;
-    virtual bool isWaiting() const override;
-    virtual QString contentType() const override;
+    virtual QIODevice *ioDevice() const override final;
+    virtual bool initialize() override final;
+    virtual bool isReady() const override final;
+    virtual bool isWaiting() const override final;
+    virtual QString contentType() const override final;
 
 private:
     NetworkStreamReader *m_reader = nullptr;

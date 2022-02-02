@@ -48,7 +48,7 @@ signals:
     void dataChanged();
 
 private:
-    virtual void run() override;
+    virtual void run() override final;
 
     bool m_user_stop = false;
     Decoder *m_decoder = nullptr;
@@ -69,9 +69,9 @@ public:
     explicit LightEnvelope(QWidget *parent = nullptr);
     ~LightEnvelope();
 
-    virtual void open(const QString &path) override;
-    virtual void start() override;
-    virtual void stop() override;
+    virtual void open(const QString &path) override final;
+    virtual void start() override final;
+    virtual void stop() override final;
 
 private slots:
     void readSettings();
@@ -82,8 +82,8 @@ private slots:
     void positionChanged(qint64 elapsed);
 
 private:
-    virtual void paintEvent(QPaintEvent *e) override;
-    virtual void contextMenuEvent(QContextMenuEvent *e) override;
+    virtual void paintEvent(QPaintEvent *e) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     void drawWaveform();
 

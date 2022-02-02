@@ -55,7 +55,7 @@ signals:
     void finished(const QString &url);
 
 private:
-    void run() override;
+    virtual void run() override final;
     void deinit();
 
     InputSource *m_source = nullptr;

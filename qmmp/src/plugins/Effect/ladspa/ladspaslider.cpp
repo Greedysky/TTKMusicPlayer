@@ -4,8 +4,7 @@
 #include <QSlider>
 #include <QHBoxLayout>
 
-LADSPASlider::LADSPASlider(double min, double max, double step,
-                           LADSPA_Data *value, QWidget *parent)
+LADSPASlider::LADSPASlider(double min, double max, double step, LADSPA_Data *value, QWidget *parent)
     : QWidget(parent),
       m_min(min),
       m_max(max),

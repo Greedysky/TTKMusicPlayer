@@ -52,11 +52,12 @@ public:
     explicit QmmpAudioEngine(QObject *parent);
     virtual ~QmmpAudioEngine();
 
-    virtual bool play() override;
-    virtual bool enqueue(InputSource *source) override;
-    virtual void seek(qint64 time) override;
-    virtual void stop() override;
-    virtual void pause() override;
+    virtual bool play() override final;
+    virtual bool enqueue(InputSource *source) override final;
+    virtual void seek(qint64 time) override final;
+    virtual void stop() override final;
+    virtual void pause() override final;
+
     void addEffect(EffectFactory *factory);
     void removeEffect(EffectFactory *factory);
 
@@ -69,7 +70,7 @@ private slots:
     void updateEqSettings();
 
 private:
-    virtual void run() override;
+    virtual void run() override final;
     void reset();
     void clearDecoders();
     void flush(bool = false);

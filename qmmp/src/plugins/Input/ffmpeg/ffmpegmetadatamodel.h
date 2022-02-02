@@ -26,18 +26,21 @@
 #include <taglib/apefile.h>
 #include <taglib/tfilestream.h>
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class FFmpegMetaDataModel : public MetaDataModel
 {
 public:
     explicit FFmpegMetaDataModel(const QString &path, bool readOnly);
     virtual ~FFmpegMetaDataModel();
 
-    virtual QList<TagModel*> tags() const override;
-    virtual QPixmap cover() const override;
-    virtual QString coverPath() const override;
-    virtual QString cue() const override;
-    virtual void setCue(const QString &content) override;
-    virtual void removeCue() override;
+    virtual QList<TagModel*> tags() const override final;
+    virtual QPixmap cover() const override final;
+    virtual QString coverPath() const override final;
+    virtual QString cue() const override final;
+    virtual void setCue(const QString &content) override final;
+    virtual void removeCue() override final;
 
 private:
     QPixmap m_pixmap;
@@ -49,20 +52,23 @@ private:
 
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class ApeTagModel : public TagModel
 {
 public:
     explicit ApeTagModel(TagLib::APE::File *file);
     virtual ~ApeTagModel();
 
-    virtual QString name() const override;
-    virtual QList<Qmmp::MetaData> keys() const override;
-    virtual QString value(Qmmp::MetaData key) const override;
-    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
-    virtual bool exists() const override;
-    virtual void create() override;
-    virtual void remove() override;
-    virtual void save() override;
+    virtual QString name() const override final;
+    virtual QList<Qmmp::MetaData> keys() const override final;
+    virtual QString value(Qmmp::MetaData key) const override final;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override final;
+    virtual bool exists() const override final;
+    virtual void create() override final;
+    virtual void remove() override final;
+    virtual void save() override final;
 
 private:
     TagLib::APE::File *m_file;

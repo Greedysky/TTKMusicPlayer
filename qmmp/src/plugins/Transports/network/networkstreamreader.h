@@ -36,7 +36,6 @@ struct StreamData
     bool aborted = false;
 };
 
-
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -50,13 +49,13 @@ public:
     /**
      *  QIODevice API
      */
-    virtual bool atEnd() const override;
-    virtual qint64 bytesAvailable() const override;
-    virtual qint64 bytesToWrite() const override;
-    virtual void close() override;
-    virtual bool isSequential() const override;
-    virtual bool open(OpenMode mode) override;
-    virtual bool seek(qint64 time) override;
+    virtual bool atEnd() const override final;
+    virtual qint64 bytesAvailable() const override final;
+    virtual qint64 bytesToWrite() const override final;
+    virtual void close() override final;
+    virtual bool isSequential() const override final;
+    virtual bool open(OpenMode mode) override final;
+    virtual bool seek(qint64 time) override final;
 
     /**
      *  helper functions
@@ -74,8 +73,8 @@ private slots:
     void handleFinished();
 
 protected:
-    virtual qint64 readData(char*, qint64) override;
-    virtual qint64 writeData(const char*, qint64) override;
+    virtual qint64 readData(char*, qint64) override final;
+    virtual qint64 writeData(const char*, qint64) override final;
 
 private:
     void abort();

@@ -34,8 +34,7 @@ class LADSPASlider : public QWidget
 {
     Q_OBJECT
 public:
-    LADSPASlider(double min, double max, double step,
-                 LADSPA_Data *value, QWidget *parent = nullptr);
+    LADSPASlider(double min, double max, double step, LADSPA_Data *value, QWidget *parent = nullptr);
 
 private slots:
     void setValue(double);

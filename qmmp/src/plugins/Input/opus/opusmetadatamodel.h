@@ -25,6 +25,9 @@
 #include <taglib/tfilestream.h>
 #include <qmmp/metadatamodel.h>
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class OpusMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(OpusMetaDataModel)
@@ -32,11 +35,11 @@ public:
     OpusMetaDataModel(const QString &path, bool readOnly);
     virtual ~OpusMetaDataModel();
 
-    virtual QList<MetaDataItem> extraProperties() const override;
-    virtual QList<TagModel*> tags() const override;
-    virtual QPixmap cover() const override;
-    virtual void setCover(const QPixmap &pix) override;
-    virtual void removeCover() override;
+    virtual QList<MetaDataItem> extraProperties() const override final;
+    virtual QList<TagModel*> tags() const override final;
+    virtual QPixmap cover() const override final;
+    virtual void setCover(const QPixmap &pix) override final;
+    virtual void removeCover() override final;
 
 private:
     QString m_path;
@@ -46,16 +49,19 @@ private:
 
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class VorbisCommentModel : public TagModel
 {
 public:
     explicit VorbisCommentModel(TagLib::Ogg::Opus::File *file);
     virtual ~VorbisCommentModel();
 
-    virtual QString name() const override;
-    virtual QString value(Qmmp::MetaData key) const override;
-    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
-    virtual void save() override;
+    virtual QString name() const override final;
+    virtual QString value(Qmmp::MetaData key) const override final;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override final;
+    virtual void save() override final;
 
 private:
     TagLib::Ogg::Opus::File *m_file;

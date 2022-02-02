@@ -34,9 +34,9 @@ class QMMP_EXPORT FileInputSource : public InputSource
 public:
     explicit FileInputSource(const QString &path, QObject *parent = nullptr);
 
-    virtual QIODevice *ioDevice() const override;
-    virtual bool initialize() override;
-    virtual bool isReady() const override;
+    virtual QIODevice *ioDevice() const override final;
+    virtual bool initialize() override final;
+    virtual bool isReady() const override final;
 
 private:
     QFile *m_file = nullptr;

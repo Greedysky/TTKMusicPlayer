@@ -24,6 +24,9 @@
 #include <QMutex>
 #include <QObject>
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class WildMidiHelper : public QObject
 {
     Q_OBJECT

@@ -33,7 +33,7 @@ public:
     StereoPlugin();
     virtual ~StereoPlugin();
 
-    virtual void applyEffect(Buffer *b) override;
+    virtual void applyEffect(Buffer *b) override final;
 
     void setIntensity(double level);
     static StereoPlugin* instance();

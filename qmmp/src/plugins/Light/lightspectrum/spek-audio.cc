@@ -20,9 +20,10 @@ public:
         int audio_stream, const std::string& codec_name, int bit_rate, int sample_rate,
         int bits_per_sample, int streams, int channels, double duration
     );
-    ~AudioFileImpl() override;
-    void start(int channel, int samples) override;
-    int read() override;
+    ~AudioFileImpl();
+
+    virtual void start(int channel, int samples) override final;
+    virtual int read() override final;
 
     AudioError get_error() const override { return m_error; }
     std::string get_codec_name() const override { return m_codec_name; }

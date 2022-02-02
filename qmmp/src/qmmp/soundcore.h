@@ -255,7 +255,7 @@ private slots:
     void startNextEngine();
 
 private:
-    virtual bool event(QEvent *e) override;
+    virtual bool event(QEvent *e) override final;
 
     enum NextEngineState
     {

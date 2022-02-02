@@ -21,13 +21,16 @@
 
 #include <qmmp/metadatamodel.h>
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class OptimFROGMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(OptimFROGMetaDataModel)
 public:
     explicit OptimFROGMetaDataModel(const QString &path);
 
-    virtual QList<MetaDataItem> extraProperties() const override;
+    virtual QList<MetaDataItem> extraProperties() const override final;
 
 private:
     QString m_path;

@@ -27,6 +27,9 @@
 
 class VorbisCommentModel;
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class VorbisMetaDataModel : public MetaDataModel
 {
 public:
@@ -35,10 +38,10 @@ public:
 
     friend class VorbisCommentModel;
 
-    virtual QList<TagModel*> tags() const override;
-    virtual QPixmap cover() const override;
-    virtual void setCover(const QPixmap &pix) override;
-    virtual void removeCover() override;
+    virtual QList<TagModel*> tags() const override final;
+    virtual QPixmap cover() const override final;
+    virtual void setCover(const QPixmap &pix) override final;
+    virtual void removeCover() override final;
 
 private:
     QString m_path;
@@ -49,16 +52,19 @@ private:
 
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class VorbisCommentModel : public TagModel
 {
 public:
     explicit VorbisCommentModel(VorbisMetaDataModel *model);
     virtual ~VorbisCommentModel();
 
-    virtual QString name() const override;
-    virtual QString value(Qmmp::MetaData key) const override;
-    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
-    virtual void save() override;
+    virtual QString name() const override final;
+    virtual QString value(Qmmp::MetaData key) const override final;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override final;
+    virtual void save() override final;
 
 private:
     VorbisMetaDataModel *m_model;

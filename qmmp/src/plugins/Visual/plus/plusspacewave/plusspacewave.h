@@ -32,10 +32,10 @@ public:
     virtual ~PlusSpaceWave();
 
 private:
-    virtual void paintEvent(QPaintEvent *e) override;
-    virtual void contextMenuEvent(QContextMenuEvent *e) override;
+    virtual void paintEvent(QPaintEvent *e) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
-    virtual void process(float *left, float *right) override;
+    virtual void process(float *left, float *right) override final;
     void draw(QPainter *p);
 
     int *m_intern_ray_data = nullptr, *m_x_scale = nullptr;

@@ -66,9 +66,9 @@ private slots:
     void writeButtonClicked();
 
 private:
-    virtual void open(const QString &path) override;
-    virtual void start() override;
-    virtual void stop() override;
+    virtual void open(const QString &path) override final;
+    virtual void start() override final;
+    virtual void stop() override final;
 
     ReplayGainner *findScannerByUrl(const QString &url);
     QString albumName(const QString &url);

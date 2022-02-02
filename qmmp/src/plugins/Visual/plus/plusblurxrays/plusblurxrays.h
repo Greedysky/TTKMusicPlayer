@@ -37,10 +37,10 @@ private slots:
     void changeColor();
 
 private:
-    virtual void paintEvent(QPaintEvent *e) override;
-    virtual void contextMenuEvent(QContextMenuEvent *e) override;
+    virtual void paintEvent(QPaintEvent *e) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
-    virtual void process(float *left, float *right) override;
+    virtual void process(float *left, float *right) override final;
     void blur();
     void drawLine(int x, int y1, int y2);
     void draw(QPainter *p);

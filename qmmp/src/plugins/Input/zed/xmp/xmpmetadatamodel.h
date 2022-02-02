@@ -32,8 +32,8 @@ public:
     explicit XmpMetaDataModel(const QString &path);
     virtual ~XmpMetaDataModel();
 
-    virtual QList<MetaDataItem> extraProperties() const override;
-    virtual QList<MetaDataItem> descriptions() const override;
+    virtual QList<MetaDataItem> extraProperties() const override final;
+    virtual QList<MetaDataItem> descriptions() const override final;
 
 private:
     xmp_context m_ctx;

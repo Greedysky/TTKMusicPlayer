@@ -25,6 +25,9 @@
 
 struct AVFormatContext;
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class DecoderFFmpegFactory : public QObject, DecoderFactory
 {
     Q_OBJECT
@@ -33,12 +36,12 @@ class DecoderFFmpegFactory : public QObject, DecoderFactory
 public:
     DecoderFFmpegFactory();
 
-    virtual bool canDecode(QIODevice *input) const override;
-    virtual DecoderProperties properties() const override;
-    virtual Decoder *create(const QString &path, QIODevice *input) override;
-    virtual QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) override;
-    virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override;
-    virtual void showSettings(QWidget *parent) override;
+    virtual bool canDecode(QIODevice *input) const override final;
+    virtual DecoderProperties properties() const override final;
+    virtual Decoder *create(const QString &path, QIODevice *input) override final;
+    virtual QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) override final;
+    virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override final;
+    virtual void showSettings(QWidget *parent) override final;
 
 private:
     QList<TrackInfo*> createPlayListFromChapters(AVFormatContext *in, TrackInfo *info, int trackNumber);

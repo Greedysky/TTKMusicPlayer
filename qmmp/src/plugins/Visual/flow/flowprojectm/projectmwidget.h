@@ -45,9 +45,9 @@ public:
     projectM *projectMInstance();
 
 protected:
-    virtual void initializeGL() override;
-    virtual void resizeGL(int width, int height) override;
-    virtual void paintGL() override;
+    virtual void initializeGL() override final;
+    virtual void resizeGL(int width, int height) override final;
+    virtual void paintGL() override final;
 
 public slots:
     void nextPreset();

@@ -32,8 +32,8 @@ class OpenMPTMetaDataModel : public MetaDataModel
 public:
     OpenMPTMetaDataModel(const QString &path);
 
-    virtual QList<MetaDataItem> extraProperties() const override;
-    virtual QList<MetaDataItem> descriptions() const override;
+    virtual QList<MetaDataItem> extraProperties() const override final;
+    virtual QList<MetaDataItem> descriptions() const override final;
 
 private:
     void fillInExtraProperties(OpenMPTHelper *helper);

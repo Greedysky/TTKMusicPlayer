@@ -30,8 +30,8 @@ class VisualFlowMountainFactory : public QObject, public VisualFactory
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
     Q_INTERFACES(VisualFactory)
 public:
-    virtual VisualProperties properties() const override;
-    virtual Visual *create(QWidget *parent) override;
+    virtual VisualProperties properties() const override final;
+    virtual Visual *create(QWidget *parent) override final;
 
 };
 

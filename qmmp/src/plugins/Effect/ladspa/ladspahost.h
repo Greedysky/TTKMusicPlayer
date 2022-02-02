@@ -44,6 +44,9 @@ public:
 
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class LADSPAControl
 {
 public:
@@ -64,6 +67,9 @@ public:
 
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class LADSPAEffect
 {
 public:
@@ -74,7 +80,9 @@ public:
 
 };
 
-
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class LADSPAHost : public QObject
 {
     Q_OBJECT

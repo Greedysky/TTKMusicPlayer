@@ -61,7 +61,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override final;
 
 protected:
     QPixmap m_pixmap;
@@ -119,12 +119,12 @@ protected:
     /*!
      * Process current patch visual data by state.
      */
-    virtual void processPatch(bool state) override;
+    virtual void processPatch(bool state) override final;
 
-    virtual void hideEvent(QHideEvent *event) override;
-    virtual void showEvent(QShowEvent *event) override;
+    virtual void hideEvent(QHideEvent *event) override final;
+    virtual void showEvent(QShowEvent *event) override final;
     virtual void paintEvent(QPaintEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
 protected:
     QImage m_image;

@@ -33,8 +33,8 @@ public:
     explicit SettingsDialog(QWidget *parent = nullptr);
 
 public slots:
-    virtual void accept() override;
-    virtual void reject() override;
+    virtual void accept() override final;
+    virtual void reject() override final;
 
 private slots:
     void on_intensitySlider_valueChanged(int value);

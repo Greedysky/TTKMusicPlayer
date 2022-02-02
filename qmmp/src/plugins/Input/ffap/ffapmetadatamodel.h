@@ -37,9 +37,9 @@ public:
     FFapMetaDataModel(const QString &path, bool readOnly);
     virtual ~FFapMetaDataModel();
 
-    virtual QList<MetaDataItem> extraProperties() const override;
-    virtual QList<TagModel*> tags() const override;
-    virtual QString coverPath() const override;
+    virtual QList<MetaDataItem> extraProperties() const override final;
+    virtual QList<TagModel*> tags() const override final;
+    virtual QString coverPath() const override final;
 
 private:
     QString m_path;
@@ -49,20 +49,23 @@ private:
 
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class FFapFileTagModel : public TagModel
 {
 public:
     FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::TagTypes type);
     virtual ~FFapFileTagModel();
 
-    virtual QString name() const override;
-    virtual QList<Qmmp::MetaData> keys() const override;
-    virtual QString value(Qmmp::MetaData key) const override;
-    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
-    virtual bool exists() const override;
-    virtual void create() override;
-    virtual void remove() override;
-    virtual void save() override;
+    virtual QString name() const override final;
+    virtual QList<Qmmp::MetaData> keys() const override final;
+    virtual QString value(Qmmp::MetaData key) const override final;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override final;
+    virtual bool exists() const override final;
+    virtual void create() override final;
+    virtual void remove() override final;
+    virtual void save() override final;
 
 private:
     QTextCodec *m_codec;

@@ -26,6 +26,9 @@
 #  include <qt_windows.h>
 #endif
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class OptimFROGHelper
 {
 public:

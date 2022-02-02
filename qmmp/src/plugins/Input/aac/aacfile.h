@@ -59,6 +59,9 @@ private:
 
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class ID3v2Tag : public TagLib::ID3v2::Tag
 {
 public:

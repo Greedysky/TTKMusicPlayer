@@ -31,20 +31,23 @@ extern "C" {
 #include <qmmp/output.h>
 #include <qmmp/volume.h>
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class OutputALSA : public Output
 {
 public:
     OutputALSA();
     ~OutputALSA();
 
-    virtual bool initialize(quint32, ChannelMap map, Qmmp::AudioFormat format) override;
+    virtual bool initialize(quint32, ChannelMap map, Qmmp::AudioFormat format) override final;
 
-    virtual qint64 latency() override;
-    virtual qint64 writeAudio(unsigned char *data, qint64 maxSize) override;
-    virtual void drain() override;
-    virtual void reset() override;
-    virtual void suspend() override;
-    virtual void resume() override;
+    virtual qint64 latency() override final;
+    virtual qint64 writeAudio(unsigned char *data, qint64 maxSize) override final;
+    virtual void drain() override final;
+    virtual void reset() override final;
+    virtual void suspend() override final;
+    virtual void resume() override final;
 
 private:
     // helper functions
@@ -67,6 +70,9 @@ private:
 
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class VolumeALSA : public Volume
 {
     Q_OBJECT
@@ -74,9 +80,9 @@ public:
     VolumeALSA();
     virtual ~VolumeALSA();
 
-    virtual void setVolume(const VolumeSettings &vol) override;
-    virtual VolumeSettings volume() const override;
-    virtual VolumeFlags flags() const override;
+    virtual void setVolume(const VolumeSettings &vol) override final;
+    virtual VolumeSettings volume() const override final;
+    virtual VolumeFlags flags() const override final;
 
 private:
     //alsa mixer

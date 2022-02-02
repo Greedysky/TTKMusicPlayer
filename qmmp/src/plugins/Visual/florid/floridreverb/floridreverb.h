@@ -32,9 +32,9 @@ public:
     virtual ~FloridReverb();
 
 private:
-    virtual void paintEvent(QPaintEvent *e) override;
+    virtual void paintEvent(QPaintEvent *e) override final;
 
-    virtual void process(float *left, float *right) override;
+    virtual void process(float *left, float *right) override final;
     void draw(QPainter *p);
 
     double m_analyzer_falloff = 1.2;

@@ -26,6 +26,9 @@ extern "C" {
 }
 #include <qmmp/metadatamodel.h>
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class WavPackMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(WavPackMetaDataModel)
@@ -33,12 +36,12 @@ public:
     WavPackMetaDataModel(const QString &path, bool readOnly);
     virtual ~WavPackMetaDataModel();
 
-    virtual QList<MetaDataItem> extraProperties() const override;
-    virtual QList<TagModel*> tags() const override;
-    virtual QString coverPath() const override;
-    virtual QString cue() const override;
-    virtual void setCue(const QString &content) override;
-    virtual void removeCue() override;
+    virtual QList<MetaDataItem> extraProperties() const override final;
+    virtual QList<TagModel*> tags() const override final;
+    virtual QString coverPath() const override final;
+    virtual QString cue() const override final;
+    virtual void setCue(const QString &content) override final;
+    virtual void removeCue() override final;
 
 private:
     WavpackContext *m_ctx;
@@ -47,16 +50,19 @@ private:
 
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class WavPackFileTagModel : public TagModel
 {
 public:
     explicit WavPackFileTagModel(WavpackContext *ctx);
     virtual ~WavPackFileTagModel();
 
-    virtual QString name() const override;
-    virtual QString value(Qmmp::MetaData key) const override;
-    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
-    virtual void save() override;
+    virtual QString name() const override final;
+    virtual QString value(Qmmp::MetaData key) const override final;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override final;
+    virtual void save() override final;
 
 private:
      WavpackContext *m_ctx;

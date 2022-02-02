@@ -32,8 +32,8 @@ class AdplugMetaDataModel : public MetaDataModel
 public:
     explicit AdplugMetaDataModel(const QString &path);
 
-    virtual QList<MetaDataItem> extraProperties() const override;
-    virtual QList<MetaDataItem> descriptions() const override;
+    virtual QList<MetaDataItem> extraProperties() const override final;
+    virtual QList<MetaDataItem> descriptions() const override final;
 
 private:
     void fillEextraProperties(AdplugHelper *helper);

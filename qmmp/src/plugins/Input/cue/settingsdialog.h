@@ -33,7 +33,7 @@ public:
     explicit SettingsDialog(QWidget *parent = nullptr);
 
 public slots:
-    virtual void accept() override;
+    virtual void accept() override final;
 
 private:
     void findCodecs();

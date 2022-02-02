@@ -23,6 +23,9 @@
 
 #include "ui_settingsdialog.h"
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class SettingsDialog : public QDialog
 {
     Q_OBJECT
@@ -30,7 +33,7 @@ public:
     explicit SettingsDialog(QWidget *parent = nullptr);
 
 public slots:
-    virtual void accept() override;
+    virtual void accept() override final;
 
 private:
     void enumDevices();

@@ -32,8 +32,8 @@ public:
     explicit ChannelConverter(ChannelMap out_map);
     ~ChannelConverter();
 
-    virtual void configure(quint32 srate, ChannelMap in_map) override;
-    virtual void applyEffect(Buffer *b) override;
+    virtual void configure(quint32 srate, ChannelMap in_map) override final;
+    virtual void applyEffect(Buffer *b) override final;
 
 private:
     bool m_disabled = true;

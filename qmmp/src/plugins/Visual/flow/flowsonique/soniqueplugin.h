@@ -34,9 +34,9 @@ public:
     virtual ~SoniquePlugin();
 
 private:
-    virtual void contextMenuEvent(QContextMenuEvent *) override;
+    virtual void contextMenuEvent(QContextMenuEvent *) override final;
 
-    virtual void process(float *left, float *right) override;
+    virtual void process(float *left, float *right) override final;
 
     SoniqueWidget *m_soniqueWidget;
 

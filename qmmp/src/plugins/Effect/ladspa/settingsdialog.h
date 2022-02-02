@@ -35,7 +35,7 @@ public:
     explicit SettingsDialog(QWidget *parent = nullptr);
 
 public slots:
-    virtual void accept() override;
+    virtual void accept() override final;
 
 private slots:
     void on_loadButton_clicked();

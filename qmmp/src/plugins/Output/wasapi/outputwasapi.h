@@ -39,14 +39,14 @@ public:
     OutputWASAPI();
     ~OutputWASAPI();
 
-    virtual bool initialize(quint32, ChannelMap map,  Qmmp::AudioFormat format) override;
+    virtual bool initialize(quint32, ChannelMap map,  Qmmp::AudioFormat format) override final;
 
-    virtual qint64 latency() override;
-    virtual qint64 writeAudio(unsigned char *data, qint64 size) override;
-    virtual void drain() override;
-    virtual void suspend() override;
-    virtual void resume() override;
-    virtual void reset() override;
+    virtual qint64 latency() override final;
+    virtual qint64 writeAudio(unsigned char *data, qint64 size) override final;
+    virtual void drain() override final;
+    virtual void suspend() override final;
+    virtual void resume() override final;
+    virtual void reset() override final;
 
     //volume control
     ISimpleAudioVolume *simpleAudioVolume();
@@ -88,8 +88,8 @@ public:
     VolumeWASAPI();
     ~VolumeWASAPI();
 
-    virtual void setVolume(const VolumeSettings &vol) override;
-    virtual VolumeSettings volume() const override;
+    virtual void setVolume(const VolumeSettings &vol) override final;
+    virtual VolumeSettings volume() const override final;
     void restore();
 
 private:

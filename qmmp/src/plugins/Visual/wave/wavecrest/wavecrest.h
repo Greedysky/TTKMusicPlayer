@@ -32,9 +32,9 @@ public:
     virtual ~WaveCrest();
 
 private:
-    virtual void paintEvent(QPaintEvent *e) override;
+    virtual void paintEvent(QPaintEvent *e) override final;
 
-    virtual void process(float *left, float *right) override;
+    virtual void process(float *left, float *right) override final;
     void draw(QPainter *p);
 
     QImage m_backgroundImage;

@@ -40,9 +40,9 @@ public:
     explicit LightSpectrum(QWidget *parent = nullptr);
     virtual ~LightSpectrum();
 
-    virtual void open(const QString &path) override;
-    virtual void start() override;
-    virtual void stop() override;
+    virtual void open(const QString &path) override final;
+    virtual void start() override final;
+    virtual void stop() override final;
 
     inline QImage *getPaintImage() { return &m_image; }
     inline int getURange() const { return m_urange; }
@@ -54,9 +54,9 @@ private slots:
     void mediaUrlChanged();
 
 private:
-    virtual void paintEvent(QPaintEvent *e) override;
-    virtual void resizeEvent(QResizeEvent *e) override;
-    virtual void contextMenuEvent(QContextMenuEvent *e) override;
+    virtual void paintEvent(QPaintEvent *e) override final;
+    virtual void resizeEvent(QResizeEvent *e) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     void paint(QPainter *dc);
     void create_palette();

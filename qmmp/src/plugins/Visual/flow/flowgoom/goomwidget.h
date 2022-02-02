@@ -44,13 +44,13 @@ private slots:
     void writeSettings();
 
 private:
-    virtual void hideEvent(QHideEvent *e) override;
-    virtual void showEvent(QShowEvent *e) override;
-    virtual void paintEvent(QPaintEvent *e) override;
-    virtual void mousePressEvent(QMouseEvent *e) override;
-    virtual void contextMenuEvent(QContextMenuEvent *e) override;
+    virtual void hideEvent(QHideEvent *e) override final;
+    virtual void showEvent(QShowEvent *e) override final;
+    virtual void paintEvent(QPaintEvent *e) override final;
+    virtual void mousePressEvent(QMouseEvent *e) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
-    virtual void process(float *left, float *right) override;
+    virtual void process(float *left, float *right) override final;
 
     void clearImage();
     void createMenu();

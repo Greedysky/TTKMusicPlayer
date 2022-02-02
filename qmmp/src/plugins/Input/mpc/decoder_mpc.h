@@ -31,6 +31,9 @@ struct mpc_data
     mpc_streaminfo info;
 };
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class DecoderMPC : public Decoder
 {
 public:
@@ -43,11 +46,11 @@ public:
     }
 
     // Standard Decoder API
-    virtual bool initialize() override;
-    virtual qint64 totalTime() const override;
-    virtual int bitrate() const override;
-    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
-    virtual void seek(qint64 time) override;
+    virtual bool initialize() override final;
+    virtual qint64 totalTime() const override final;
+    virtual int bitrate() const override final;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
+    virtual void seek(qint64 time) override final;
 
 private:
     struct mpc_data *m_data = nullptr;

@@ -36,8 +36,8 @@ public:
     virtual ~NormalAnalyzer();
 
 public slots:
-    virtual void start() override;
-    virtual void stop() override;
+    virtual void start() override final;
+    virtual void stop() override final;
 
 private slots:
     void starTimeout();
@@ -48,12 +48,12 @@ private slots:
     void changeStarColor();
 
 private:
-    virtual void hideEvent(QHideEvent *e) override;
-    virtual void showEvent(QShowEvent *e) override;
-    virtual void paintEvent(QPaintEvent *e) override;
-    virtual void mousePressEvent(QMouseEvent *e) override;
+    virtual void hideEvent(QHideEvent *e) override final;
+    virtual void showEvent(QShowEvent *e) override final;
+    virtual void paintEvent(QPaintEvent *e) override final;
+    virtual void mousePressEvent(QMouseEvent *e) override final;
 
-    virtual void process(float *left, float *right) override;
+    virtual void process(float *left, float *right) override final;
     void draw(QPainter *p);
 
     void createMenu();

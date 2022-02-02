@@ -49,9 +49,9 @@ public:
     void addBuffer(float *left);
 
 protected:
-    virtual void initializeGL() override;
-    virtual void resizeGL(int width, int height) override;
-    virtual void paintGL() override;
+    virtual void initializeGL() override final;
+    virtual void resizeGL(int width, int height) override final;
+    virtual void paintGL() override final;
 
     void makeLogGraph(const float * freq, float * graph);
     void drawRectangle(float x1, float y1, float z1, float x2, float y2, float z2, float r, float g, float b);

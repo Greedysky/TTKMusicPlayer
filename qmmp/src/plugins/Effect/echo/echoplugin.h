@@ -31,8 +31,8 @@ public:
     EchoPlugin();
     virtual ~EchoPlugin();
 
-    virtual void applyEffect(Buffer *b) override;
-    virtual void configure(quint32 freq, ChannelMap map) override;
+    virtual void applyEffect(Buffer *b) override final;
+    virtual void configure(quint32 freq, ChannelMap map) override final;
 
     void setDelay(int delay);
     void setFeedback(int feedback);
