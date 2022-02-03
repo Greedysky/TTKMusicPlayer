@@ -32,9 +32,9 @@ class QMMP_EXPORT EmptyInputSource : public InputSource
 public:
     explicit EmptyInputSource(const QString &path, QObject *parent = nullptr);
 
-    virtual QIODevice *ioDevice() const override;
-    virtual bool initialize() override;
-    virtual bool isReady() const override;
+    virtual QIODevice *ioDevice() const override final;
+    virtual bool initialize() override final;
+    virtual bool isReady() const override final;
 
 private:
     bool m_ok = false;
