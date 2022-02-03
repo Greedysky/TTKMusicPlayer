@@ -14,6 +14,22 @@
 #include <fcntl.h>
 #endif
 
+static void cleanAppicationCache()
+{
+    QFile::remove(MUSIC_COLOR_FILE);
+    QFile::remove(MUSIC_IMAGE_FILE);
+    QFile::remove(MUSIC_RECORD_FILE);
+    QFile::remove(MUSIC_RECORD_DATA_FILE);
+
+    ///clean thirdparty process
+    QStringList process;
+    process << MAKE_TRANSFORM_PREFIX
+           << MAKE_KRC2LRC_PREFIX
+           << MAKE_PLAYER_PREFIX
+           << MAKE_GAIN_PREFIX;
+    killProcessByName(process);
+}
+
 class TTKDumperPrivate : public TTKPrivate<TTKDumper>
 {
 public:
@@ -170,7 +186,7 @@ void TTKDumperPrivate::errorHandler(int id)
 
     char stamp[50];
     sprintf(stamp, "%ld", time(nullptr));
-    const std::string& file_name = (name + '_' + version).toStdString() + "." + stamp + ".dmp";
+    const std::string& file_name = (m_name + '_' + m_version).toStdString() + "." + stamp + ".dmp";
 
     const int size = 512;
     void*     array[size];
@@ -193,18 +209,7 @@ void TTKDumperPrivate::init()
 
 TTKDumperPrivate::~TTKDumperPrivate()
 {
-    QFile::remove(MUSIC_COLOR_FILE);
-    QFile::remove(MUSIC_IMAGE_FILE);
-    QFile::remove(MUSIC_RECORD_FILE);
-    QFile::remove(MUSIC_RECORD_DATA_FILE);
-
-    ///clean thirdparty process
-    QStringList process;
-    process << MAKE_TRANSFORM_PREFIX
-           << MAKE_KRC2LRC_PREFIX
-           << MAKE_PLAYER_PREFIX
-           << MAKE_GAIN_PREFIX;
-    killProcessByName(process);
+    cleanAppicationCache();
 }
 
 
