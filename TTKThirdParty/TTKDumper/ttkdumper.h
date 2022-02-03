@@ -19,9 +19,9 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkglobaldefine.h"
+#include "ttkprivate.h"
 
-class MiniDumper;
+class TTKDumperPrivate;
 
 /*! @brief The class of the ttk dumper.
  * @author Greedysky <greedysky@163.com>
@@ -33,7 +33,6 @@ public:
      * Object contsructor.
      */
     TTKDumper();
-    ~TTKDumper();
 
     /*!
      * Run.
@@ -41,7 +40,7 @@ public:
     void run();
 
 protected:
-    MiniDumper *m_dump;
+    TTK_DECLARE_PRIVATE(TTKDumper)
 
 };
 

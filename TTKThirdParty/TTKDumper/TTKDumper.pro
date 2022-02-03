@@ -39,12 +39,10 @@ win32:msvc{
 
 SOURCES += \
     $$PWD/miniprocess.cpp \
-    $$PWD/minidumper.cpp \
     $$PWD/ttkdumper.cpp
     
 HEADERS += \
     $$PWD/miniprocess.h \
-    $$PWD/minidumper.h \
     $$PWD/ttkdumper.h \
     $$PWD/ttklogger.h
 

@@ -12,15 +12,13 @@ add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
 set(MUSIC_HEADERS
-    minidumper.h
-    miniprocess.h
     ttkdumper.h
+    miniprocess.h
     ttklogger.h
   )
 
 set(MUSIC_SOURCES
     ttkdumper.cpp
-    minidumper.cpp
     miniprocess.cpp
   )
   
