@@ -25,11 +25,11 @@ BEGIN
     BEGIN
         BLOCK "080404b0"
             BEGIN
-                VALUE "CompanyName", "Greedysky studio, Ltd."
+                VALUE "CompanyName", "Greedysky Studio, Ltd."
                 VALUE "FileDescription", "控制台"
                 VALUE "FileVersion", "1.0.0.0"
                 VALUE "InternalName", "控制台.exe"
-                VALUE "LegalCopyright", "Copyright By Greedysky studio(C)2022"
+                VALUE "LegalCopyright", "Copyright By Greedysky Studio(C)2022"
                 VALUE "OriginalFilename", "控制台.exe"
                 VALUE "ProductName", "控制台"
                 VALUE "ProductVersion", "1.0.0.0"
