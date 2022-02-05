@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/musicdesktopwallpaperthread.h \
     $$PWD/musictimerautomodule.h \
     $$PWD/musiclocalsongsmanagerthread.h \
@@ -26,7 +26,6 @@ HEADERS  += \
     $$PWD/musicnetworktestthread.h \
     $$PWD/musicsongchecktoolsthread.h \
     $$PWD/musicsongchecktoolsunit.h
-
 
 SOURCES += \
     $$PWD/musicdesktopwallpaperthread.cpp \

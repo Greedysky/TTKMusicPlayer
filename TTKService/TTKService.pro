@@ -31,7 +31,6 @@ INCLUDEPATH += \
     $$PWD/../TTKRun \
     $$PWD/../TTKConfig
 
-SOURCES += \
-    musicservicemain.cpp
+SOURCES += $$PWD/musicservicemain.cpp
 
-win32:RC_FILE = TTKService.rc
+win32:RC_FILE = $$PWD/TTKService.rc

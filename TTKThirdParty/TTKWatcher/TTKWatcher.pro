@@ -16,7 +16,7 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT       += core
+QT += core
 
 TEMPLATE = lib
 DEFINES += TTK_LIBRARY
@@ -46,17 +46,20 @@ win32{
 win32:msvc{
     CONFIG += c++11
 }else{
-    QMAKE_CXXFLAGS += -std=c++11
+    equals(QT_MAJOR_VERSION, 6){ #Qt6
+        QMAKE_CXXFLAGS += -std=c++17
+    }else{
+        QMAKE_CXXFLAGS += -std=c++11
+    }
 }
 
-SOURCES += \
-    $$PWD/qdevicewatcher.cpp
-    
 HEADERS += \
     $$PWD/qdevicewatcher_p.h \
     $$PWD/qdevicewatcher.h
 
+SOURCES += $$PWD/qdevicewatcher.cpp
+
 #load extra define
 include($$PWD/../TTKExtrasDefine.pri)
 
-win32:RC_FILE = TTKWatcher.rc
+win32:RC_FILE = $$PWD/TTKWatcher.rc

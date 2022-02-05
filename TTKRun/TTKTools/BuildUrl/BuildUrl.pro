@@ -16,18 +16,22 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-include($$PWD/../../../TTKVersion.pri)
-
-QT       += core gui
+QT += core gui
 equals(QT_MAJOR_VERSION, 5){
-QT       += widgets
+    QT += widgets
 }
 
 win32:msvc{
     CONFIG += c++11
 }else{
-    QMAKE_CXXFLAGS += -std=c++11
+    equals(QT_MAJOR_VERSION, 6){ #Qt6
+        QMAKE_CXXFLAGS += -std=c++17
+    }else{
+        QMAKE_CXXFLAGS += -std=c++11
+    }
 }
+
+include($$PWD/../../../TTKVersion.pri)
 
 TARGET = BuildUrl
 
@@ -44,12 +48,10 @@ INCLUDEPATH += \
 LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKCore
 unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
 
+HEADERS += $$PWD/toolsurl.h
+
 SOURCES += \
-    mainurl.cpp\
-    toolsurl.cpp
+    $$PWD/mainurl.cpp\
+    $$PWD/toolsurl.cpp
 
-HEADERS  += \
-    toolsurl.h
-
-FORMS   += \
-    toolsurl.ui
+FORMS += $$PWD/toolsurl.ui

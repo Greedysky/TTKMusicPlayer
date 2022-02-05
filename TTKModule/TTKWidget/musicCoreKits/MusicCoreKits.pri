@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/musicabstracttablewidget.h \
     $$PWD/musicabstractmovedialog.h \
     $$PWD/musicabstractmovewidget.h \
@@ -63,7 +63,6 @@ HEADERS  += \
     $$PWD/musictimesliderwidget.h \
     $$PWD/musicpagequerywidget.h \
     $$PWD/musicinputdialog.h
-
 
 SOURCES += \
     $$PWD/musicabstracttablewidget.cpp \

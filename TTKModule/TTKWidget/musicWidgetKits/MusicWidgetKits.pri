@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/musicsettingwidget.h \
     $$PWD/musicbackgroundskindialog.h \
     $$PWD/musicsystemtraymenu.h \
@@ -68,7 +68,6 @@ HEADERS  += \
     $$PWD/musicartistlistquerycategorypopwidget.h \
     $$PWD/musicripplespecturmmodule.h \
     $$PWD/musicpluginwidget.h
-
 
 SOURCES += \
     $$PWD/musicsettingwidget.cpp \

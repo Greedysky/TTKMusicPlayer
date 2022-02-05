@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/musicobject.h \
     $$PWD/musicformats.h \
     $$PWD/musicnumberdefine.h \
@@ -48,7 +48,6 @@ HEADERS  += \
     $$PWD/musicconfigmanager.h \
     $$PWD/musicsinglemanager.h \
     $$PWD/musicimagerenderer.h
-
 
 SOURCES += \
     $$PWD/musicformats.cpp \

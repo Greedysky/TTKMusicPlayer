@@ -16,7 +16,7 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT       += network xml
+QT += network xml
 
 INCLUDEPATH += $$PWD
 
@@ -34,4 +34,3 @@ SOURCES += \
     $$PWD/qdlnafinder.cpp \
     $$PWD/qdlnaclient.cpp \
     $$PWD/qdlnaxml.cpp
-

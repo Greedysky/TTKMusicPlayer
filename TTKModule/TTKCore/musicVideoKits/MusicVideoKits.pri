@@ -18,10 +18,8 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/musicbarragerecord.h \
     $$PWD/musicbarragewidget.h
 
-
-SOURCES += \
-    $$PWD/musicbarragewidget.cpp
+SOURCES += $$PWD/musicbarragewidget.cpp

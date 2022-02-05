@@ -243,7 +243,7 @@ void MusicConfigManager::writeSysConfigData()
     QDomElement timeSettingDom = writeDomNode(musicPlayerDom, "timeSetting");
     QDomElement downloadSettingDom = writeDomNode(musicPlayerDom, "downloadSetting");
 
-    writeDomElement(musicSettingDom, "configVersion", MusicXmlAttribute("value", TTKCONFIG_VERSION_STR));
+    writeDomElement(musicSettingDom, "configVersion", MusicXmlAttribute("value", TTK_CONFIG_VERSION_STR));
     writeDomElement(musicSettingDom, "playMode", MusicXmlAttribute("value", playMode));
     writeDomElement(musicSettingDom, "playVolume", MusicXmlAttribute("value", volume));
     writeDomElement(musicSettingDom, "lastPlayIndex", MusicXmlAttribute("value", QString("%1,%2,%3").arg(lastPlayIndex[0], lastPlayIndex[1], lastPlayIndex[2])));

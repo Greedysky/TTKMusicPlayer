@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/musicmobiledeviceswidget.h \
     $$PWD/musictimerwidget.h \
     $$PWD/musiclocalsongsmanagerwidget.h \
@@ -38,7 +38,6 @@ HEADERS  += \
     $$PWD/musicspectrumlayoutwidget.h \
     $$PWD/musicsongdlnatransferwidget.h \
     $$PWD/musicscreensaverwidget.h
-
 
 SOURCES += \
     $$PWD/musicmobiledeviceswidget.cpp \

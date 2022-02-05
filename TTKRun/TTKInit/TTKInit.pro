@@ -16,7 +16,7 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT       += core
+QT += core
 
 include($$PWD/../../TTKVersion.pri)
 
@@ -28,7 +28,11 @@ TEMPLATE = app
 win32:msvc{
     CONFIG += c++11
 }else{
-    QMAKE_CXXFLAGS += -std=c++11
+    equals(QT_MAJOR_VERSION, 6){ #Qt6
+        QMAKE_CXXFLAGS += -std=c++17
+    }else{
+        QMAKE_CXXFLAGS += -std=c++11
+    }
 }
 
 LIBS += -L$$DESTDIR -lTTKConfig
@@ -40,7 +44,6 @@ INCLUDEPATH += \
     $$PWD/../../TTKThirdParty/TTKDumper \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits
 
-SOURCES += \
-    musicinitmain.cpp
+SOURCES += $$PWD/musicinitmain.cpp
 
-win32:RC_FILE = TTKInit.rc
+win32:RC_FILE = $$PWD/TTKInit.rc

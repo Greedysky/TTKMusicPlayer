@@ -79,7 +79,7 @@ void MusicSourceUpdateNotifyWidget::downLoadFinished(const QVariant &bytes)
     const QVariantMap &value = bytes.toMap();
     const QString &versionStr = value["version"].toString();
 
-    if(MusicUtils::Core::appVersionCheck(TTKMUSIC_VERSION_STR, versionStr))
+    if(MusicUtils::Core::appVersionCheck(TTK_VERSION_STR, versionStr))
     {
         show();
         m_textLabel->setText(tr("New version found") + "\r\n" + versionStr);
@@ -138,7 +138,7 @@ void MusicSourceUpdateWidget::downLoadFinished(const QVariant &bytes)
     const QString &version = value["version"].toString();
 
     QString text;
-    if(MusicUtils::Core::appVersionCheck(TTKMUSIC_VERSION_STR, version))
+    if(MusicUtils::Core::appVersionCheck(TTK_VERSION_STR, version))
     {
         text.append("v" + version);
         text.append("\r\n");

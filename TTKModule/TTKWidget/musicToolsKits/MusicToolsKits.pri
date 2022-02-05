@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/musicsongstoolboxwidget.h \
     $$PWD/musicsongssummariziedwidget.h \
     $$PWD/musictoolsetswidget.h \
@@ -41,7 +41,6 @@ HEADERS  += \
     $$PWD/musiccloudfileinformationwidget.h \
     $$PWD/musiccloudtoolboxwidget.h \
     $$PWD/musiccloudtablewidget.h
-
 
 SOURCES += \
     $$PWD/musicsongstoolboxwidget.cpp \

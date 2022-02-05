@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/musicuiobject.h \
     $$PWD/musiccontextuiobject.h \
     $$PWD/musicdesktoplrcuiobject.h \
@@ -35,8 +35,7 @@ HEADERS  += \
     $$PWD/musicvideouiobject.h \
     $$PWD/musicwidgetheaders.h
 
-
-FORMS    += \
+FORMS += \
     $$PWD/musicApplication/musicapplication.ui \
     $$PWD/musicLrcKits/musiclrcartphotouploadwidget.ui \
     $$PWD/musicLrcKits/musiclrcmakerwidget.ui \

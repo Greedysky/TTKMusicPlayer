@@ -18,11 +18,10 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/musiclrcdefines.h \
     $$PWD/musiclrcanalysis.h \
     $$PWD/musiclrcfromkrc.h
-
 
 SOURCES += \
     $$PWD/musiclrcdefines.cpp \

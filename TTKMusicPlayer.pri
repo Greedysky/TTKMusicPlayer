@@ -16,17 +16,19 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT       += core gui xml
+QT += core gui xml
 
 equals(QT_MAJOR_VERSION, 4){
-QT       += network
-CONFIG   += gcc
+    QT += network
+    CONFIG += gcc
 }
+
 equals(QT_MAJOR_VERSION, 5){
-QT       += widgets multimedia
+    QT += widgets multimedia
 }
 
 include($$PWD/TTKVersion.pri)
+
 DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
 
 ##openssl lib check
@@ -42,42 +44,43 @@ unix:!mac{
 
 win32{
     LIBS += -lIphlpapi -lVersion -lole32 -luuid
-    equals(QT_MAJOR_VERSION, 5){
-        greaterThan(QT_MINOR_VERSION, 1):QT  += winextras
-        msvc{
-            LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip -luser32
-            CONFIG += c++11
-            !contains(QMAKE_TARGET.arch, x86_64){
-                 #support on windows XP
-                 QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
-                 QMAKE_LFLAGS_CONSOLE = /SUBSYSTEM:CONSOLE,5.01
-            }
-        }
-
-        gcc{
-            QMAKE_CXXFLAGS += -std=c++11 -Wunused-function -Wunused-result -Wswitch
-            LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
+    greaterThan(QT_MINOR_VERSION, 1):QT += winextras
+    msvc{
+        LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip -luser32
+        CONFIG += c++11
+        !contains(QMAKE_TARGET.arch, x86_64){
+             #support on windows XP
+             QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
+             QMAKE_LFLAGS_CONSOLE = /SUBSYSTEM:CONSOLE,5.01
         }
     }
 
-    equals(QT_MAJOR_VERSION, 4){
-        QT  += multimedia
-        gcc{
-            QMAKE_CXXFLAGS += -std=c++11 -Wunused-function -Wunused-result -Wswitch
-            LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
+    gcc{
+        equals(QT_MAJOR_VERSION, 6){ #Qt6
+            QMAKE_CXXFLAGS += -std=c++17
+        }else{
+            QMAKE_CXXFLAGS += -std=c++11
         }
+        QMAKE_CXXFLAGS += -Wunused-function -Wunused-result -Wswitch
+        LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
     }
+
+    equals(QT_MAJOR_VERSION, 4):QT += multimedia
 }
 
 unix:!mac{
     equals(QT_MAJOR_VERSION, 4){
-        QMAKE_CXXFLAGS += -I/usr/include/QtMultimediaKit \
-                          -I/usr/include/QtMobility
+        QMAKE_CXXFLAGS += -I/usr/include/QtMultimediaKit -I/usr/include/QtMobility
         LIBS += -lQtMultimediaKit
     }
 
     QT += dbus
-    QMAKE_CXXFLAGS += -std=c++11 -Wunused-function -Wunused-result -Wswitch
+    equals(QT_MAJOR_VERSION, 6){ #Qt6
+        QMAKE_CXXFLAGS += -std=c++17
+    }else{
+        QMAKE_CXXFLAGS += -std=c++11
+    }
+    QMAKE_CXXFLAGS += -Wunused-function -Wunused-result -Wswitch
     LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
 }
 

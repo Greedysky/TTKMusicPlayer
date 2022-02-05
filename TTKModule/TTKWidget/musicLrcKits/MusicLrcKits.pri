@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/musiclrcmanager.h \
     $$PWD/musiclrcmanagerfordesktop.h \
     $$PWD/musiclrcmanagerforinterior.h \
@@ -40,7 +40,6 @@ HEADERS  += \
     $$PWD/musiclrctranslatedwidget.h \
     $$PWD/musiclrcposterwidget.h \
     $$PWD/musiclrcdownloadbatchwidget.h
-
 
 SOURCES += \
     $$PWD/musiclrcmanager.cpp \

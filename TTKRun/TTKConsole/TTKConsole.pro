@@ -16,14 +16,13 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT       += core
+QT += core
 include($$PWD/../../TTKVersion.pri)
 
 TEMPLATE = app
 DEFINES += TTK_LIBRARY
 
 CONFIG += console
-
 
 DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 TARGET = TTKConsole
@@ -34,7 +33,11 @@ unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper 
 win32:msvc{
     CONFIG += c++11
 }else{
-    QMAKE_CXXFLAGS += -std=c++11
+    equals(QT_MAJOR_VERSION, 6){ #Qt6
+        QMAKE_CXXFLAGS += -std=c++17
+    }else{
+        QMAKE_CXXFLAGS += -std=c++11
+    }
 }
 
 INCLUDEPATH += \
@@ -45,11 +48,10 @@ INCLUDEPATH += \
     $$PWD/../../TTKModule/TTKCore/musicPlaylistKits \
     $$PWD/../../TTKModule/TTKCore/musicUtilsKits
 
+HEADERS += $$PWD/musicconsolemodule.h
+
 SOURCES += \
-    musicconsolemain.cpp \
-    musicconsolemodule.cpp
+    $$PWD/musicconsolemain.cpp \
+    $$PWD/musicconsolemodule.cpp
 
-HEADERS += \
-    musicconsolemodule.h
-
-win32:RC_FILE = TTKConsole.rc
+win32:RC_FILE = $$PWD/TTKConsole.rc

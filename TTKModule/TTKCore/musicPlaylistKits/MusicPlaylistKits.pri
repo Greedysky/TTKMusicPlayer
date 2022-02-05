@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/musicplaylistinterface.h \
     $$PWD/musicdbplconfigmanager.h \
     $$PWD/musicfplconfigmanager.h \
@@ -30,7 +30,6 @@ HEADERS  += \
     $$PWD/musicxspfconfigmanager.h \
     $$PWD/musiccsvconfigmanager.h \
     $$PWD/musictxtconfigmanager.h
-
 
 SOURCES += \
     $$PWD/musicasxconfigmanager.cpp \

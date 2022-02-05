@@ -16,9 +16,10 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT       += core
+QT += core
 
 include($$PWD/../TTKVersion.pri)
+
 CONFIG += plugin lib
 
 DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
@@ -30,7 +31,11 @@ DEFINES += TTK_LIBRARY
 win32:msvc{
     CONFIG += c++11
 }else{
-    QMAKE_CXXFLAGS += -std=c++11
+    equals(QT_MAJOR_VERSION, 6){ #Qt6
+        QMAKE_CXXFLAGS += -std=c++17
+    }else{
+        QMAKE_CXXFLAGS += -std=c++11
+    }
 }
 
 INCLUDEPATH += \
@@ -38,14 +43,12 @@ INCLUDEPATH += \
     $$PWD/../TTKThirdParty/TTKDumper \
     $$PWD/../TTKModule/TTKCore/musicCoreKits
 
-SOURCES += \
-    musicconfigobject.cpp
-
 HEADERS += \
-    musicconfigdefine.h \
-    musicconfigobject.h
+    $$PWD/musicconfigdefine.h \
+    $$PWD/musicconfigobject.h
 
-RESOURCES += \
-    $$PWD/../TTKUi/MusicApp.qrc
+SOURCES += $$PWD/musicconfigobject.cpp
 
-win32:RC_FILE = TTKConfig.rc
+RESOURCES += $$PWD/../TTKUi/MusicApp.qrc
+
+win32:RC_FILE = $$PWD/TTKConfig.rc

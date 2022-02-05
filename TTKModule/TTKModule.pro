@@ -30,28 +30,26 @@ win32{
 unix:!mac:QMMP_DEPANDS = $$DESTDIR/libTTKqmmp.so
 !exists($$QMMP_DEPANDS): error("Could not find ttk qmmp library, please download and put it to output dir")
 
-
 TARGET = TTKCore
 
 INCLUDEPATH += \
     $$PWD \
     $$PWD/../TTKExtra
 
+HEADERS += \
+    $$PWD/musicapplication.h \
+    $$PWD/musicapplicationmodule.h \
+    $$PWD/musicleftareawidget.h \
+    $$PWD/musictopareawidget.h \
+    $$PWD/musicrightareawidget.h \
+    $$PWD/musicbottomareawidget.h
+
 SOURCES += \
-    musicapplication.cpp \
-    musicapplicationmodule.cpp \
-    musicleftareawidget.cpp \
-    musictopareawidget.cpp \
-    musicrightareawidget.cpp \
-    musicbottomareawidget.cpp
+    $$PWD/musicapplication.cpp \
+    $$PWD/musicapplicationmodule.cpp \
+    $$PWD/musicleftareawidget.cpp \
+    $$PWD/musictopareawidget.cpp \
+    $$PWD/musicrightareawidget.cpp \
+    $$PWD/musicbottomareawidget.cpp
 
-
-HEADERS  += \
-    musicapplication.h \
-    musicapplicationmodule.h \
-    musicleftareawidget.h \
-    musictopareawidget.h \
-    musicrightareawidget.h \
-    musicbottomareawidget.h
-
-win32:RC_FILE = TTKCore.rc
+win32:RC_FILE = $$PWD/TTKCore.rc

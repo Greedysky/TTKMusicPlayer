@@ -32,12 +32,13 @@ DEFINES += \
 INCLUDEPATH += $$PWD/../
 
 win32{
-    HEADERS  += $$PWD/iowin32.h
+    HEADERS += $$PWD/iowin32.h
     SOURCES += $$PWD/iowin32.c
 }
+
 LIBS += -L$$DESTDIR -lzlib
 
-HEADERS  += \
+HEADERS += \
     $$PWD/zip.h \
     $$PWD/unzip.h \
     $$PWD/mztools.h \
@@ -50,4 +51,4 @@ SOURCES += \
     $$PWD/mztools.c \
     $$PWD/ioapi.c
     
-win32:RC_FILE = ttkzip.rc
+win32:RC_FILE = $$PWD/ttkzip.rc

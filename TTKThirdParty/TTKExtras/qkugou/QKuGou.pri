@@ -24,8 +24,7 @@ equals(QT_MAJOR_VERSION, 4){
     win32{
         CONFIG += qaxcontainer
         Browser = 1
-    }
-    else{
+    }else{
         QT += webkit webkitwidgets
         Browser = 2
     }
@@ -63,7 +62,7 @@ equals(Browser, 3): message("Found Qt web component, build in KuGou module by Qt
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/qkugouurl.h \
     $$PWD/qkugouwindow.h \
     $$PWD/qkugouuiobject.h

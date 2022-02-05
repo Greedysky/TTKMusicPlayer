@@ -18,13 +18,13 @@
 
 unix:!mac{
     equals(QT_MAJOR_VERSION, 5){
-        QT  += x11extras
+        QT += x11extras
     }
 }
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/qglobalshortcut.h \
     $$PWD/qglobalshortcut_p.h
 
@@ -35,5 +35,4 @@ win32{
 unix:SOURCES += $$PWD/qglobalshortcut_x11.cpp
 mac:SOURCES += $$PWD/qglobalshortcut_mac.cpp
 
-SOURCES += \
-    $$PWD/qglobalshortcut.cpp
+SOURCES += $$PWD/qglobalshortcut.cpp

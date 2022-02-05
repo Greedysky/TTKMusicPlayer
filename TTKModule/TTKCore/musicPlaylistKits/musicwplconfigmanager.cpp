@@ -41,7 +41,7 @@ bool MusicWPLConfigManager::writePlaylistData(const MusicSongItems &items, const
     QDomElement bodySettingDom = writeDomNode(musicPlayerDom, "body");
 
     writeDomElementMutil(headSettingDom, "meta", {MusicXmlAttribute("name", "Generator"),
-                         MusicXmlAttribute("content", QString("%1 %2").arg(APP_NAME, TTKMUSIC_VERSION_STR))});
+                         MusicXmlAttribute("content", QString("%1 %2").arg(APP_NAME, TTK_VERSION_STR))});
     for(int i=0; i<items.count(); ++i)
     {
         const MusicSongItem &item = items[i];

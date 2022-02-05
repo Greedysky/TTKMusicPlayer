@@ -18,13 +18,12 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/musicsearchedit.h \
     $$PWD/musicitemsearchedit.h \
     $$PWD/musicsongsearchinterioredit.h \
     $$PWD/musicsongsearchpopwidget.h \
     $$PWD/musicsongsearchdialog.h
-
 
 SOURCES += \
     $$PWD/musicsearchedit.cpp \

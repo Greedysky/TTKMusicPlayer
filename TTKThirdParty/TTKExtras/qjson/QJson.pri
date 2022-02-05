@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/parser.h \
     $$PWD/parserrunnable.h \
     $$PWD/qobjecthelper.h \

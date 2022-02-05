@@ -141,17 +141,17 @@
  ***************************************************************************/
 
 //update time 2022.01.02
-#define TTKMUSIC_VERSION_STR    "2.15.7.0"
-#define TTKMUSIC_VER_TIME_STR   "(2022/01/02)"
+#define TTK_VERSION_STR    "2.15.7.0"
+#define TTK_VER_TIME_STR   "(2022/01/02)"
 
-#define TTKMUSIC_MAJOR_VERSION 2
-#define TTKMUSIC_MIDLE_VERSION 15
-#define TTKMUSIC_MINOR_VERSION 7
-#define TTKMUSIC_PATCH_VERSION 0
+#define TTK_MAJOR_VERSION 2
+#define TTK_MIDLE_VERSION 15
+#define TTK_MINOR_VERSION 7
+#define TTK_PATCH_VERSION 0
 
-#define TTKMUSIC_VERSION 0x02F70
+#define TTK_VERSION 0x02F70
 
-#define TTKCONFIG_VERSION_STR    "1.0.1"
+#define TTK_CONFIG_VERSION_STR	"1.0.1"
 
 #define TTK_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
 

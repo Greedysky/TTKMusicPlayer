@@ -18,9 +18,6 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
-    $$PWD/musicsongsearchrecordconfigmanager.h
+HEADERS += $$PWD/musicsongsearchrecordconfigmanager.h
 
-
-SOURCES += \
-    $$PWD/musicsongsearchrecordconfigmanager.cpp
+SOURCES += $$PWD/musicsongsearchrecordconfigmanager.cpp

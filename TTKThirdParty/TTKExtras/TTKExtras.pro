@@ -16,10 +16,11 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += core gui
+greaterThan(QT_MAJOR_VERSION, 4):QT += widgets
 
 include($$PWD/../../TTKVersion.pri)
+
 CONFIG += plugin lib
 
 DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
@@ -32,7 +33,11 @@ win32:msvc{
     LIBS += -luser32
     CONFIG += c++11
 }else{
-    QMAKE_CXXFLAGS += -std=c++11
+    equals(QT_MAJOR_VERSION, 6){ #Qt6
+        QMAKE_CXXFLAGS += -std=c++17
+    }else{
+        QMAKE_CXXFLAGS += -std=c++11
+    }
 }
 
 LIBS += -L$$DESTDIR -lTTKUi
@@ -49,4 +54,4 @@ include($$PWD/qkugou/QKuGou.pri)
 include($$PWD/qrencode/QRencode.pri)
 include($$PWD/qshortcut/QShortCut.pri)
 
-win32:RC_FILE = TTKExtras.rc
+win32:RC_FILE = $$PWD/TTKExtras.rc

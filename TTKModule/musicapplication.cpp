@@ -806,7 +806,7 @@ void MusicApplication::musicCreateRightMenu()
     QMenu information(tr("About"), &menu);
     menu.addMenu(&information)->setIcon(QIcon(":/contextMenu/btn_about"));
     information.addAction(QIcon(":/contextMenu/btn_bug_reoprt"), tr("Bug Report"), m_applicationObject, SLOT(musicBugReportView()));
-    information.addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + QString(TTKMUSIC_VERSION_STR) + QString(TTKMUSIC_VER_TIME_STR), m_applicationObject, SLOT(musicAboutUs()));
+    information.addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + QString(TTK_VERSION_STR) + QString(TTK_VER_TIME_STR), m_applicationObject, SLOT(musicAboutUs()));
 
     menu.addSeparator();
     menu.addAction(QIcon(":/contextMenu/btn_quit"), tr("Quit"), this, SLOT(quitWindowClose()));

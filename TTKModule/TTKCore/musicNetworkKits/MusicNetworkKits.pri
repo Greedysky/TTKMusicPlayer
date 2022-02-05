@@ -16,19 +16,20 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-INCLUDEPATH += $$PWD \
-               $$PWD/common \
-               $$PWD/image \
-               $$PWD/music/wy \
-               $$PWD/music/kg \
-               $$PWD/music/kw \
-               $$PWD/music/bd \
-               $$PWD/music/qq \
-               $$PWD/radio/fm \
-               $$PWD/radio/dj \
-               $$PWD/radio/mv
+INCLUDEPATH += \
+    $$PWD \
+    $$PWD/common \
+    $$PWD/image \
+    $$PWD/music/wy \
+    $$PWD/music/kg \
+    $$PWD/music/kw \
+    $$PWD/music/bd \
+    $$PWD/music/qq \
+    $$PWD/radio/fm \
+    $$PWD/radio/dj \
+    $$PWD/radio/mv
 
-HEADERS  += \
+HEADERS += \
     $$PWD/common/musicnetworkthread.h \
     $$PWD/common/musicnetworkproxy.h \
     $$PWD/common/musicnetworkoperator.h \
@@ -138,7 +139,6 @@ HEADERS  += \
     $$PWD/musictranslationrequest.h \
     $$PWD/musiccommentsrequest.h \
     $$PWD/musicdiscoverlistrequest.h
-
 
 SOURCES += \
     $$PWD/common/musicnetworkthread.cpp \

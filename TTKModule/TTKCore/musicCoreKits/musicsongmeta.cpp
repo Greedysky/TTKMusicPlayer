@@ -179,7 +179,7 @@ void MusicSongMeta::setGenre(const QString &genre)
 
 void MusicSongMeta::setCover(const QPixmap &pix)
 {
-#if TTKMUSIC_VERSION >= TTK_VERSION_CHECK(2,5,3,0)
+#if TTK_VERSION >= TTK_VERSION_CHECK(2,5,3,0)
     QPixmap p(pix);
     if(p.width() > 500 || p.height() > 500)
     {
@@ -187,7 +187,7 @@ void MusicSongMeta::setCover(const QPixmap &pix)
     }
     songMeta()->m_cover = p;
 #else
-    Q_UNUSED(data);
+    Q_UNUSED(pix);
 #endif
 }
 
@@ -198,7 +198,7 @@ void MusicSongMeta::setCover(const QByteArray &data)
         TTK_LOGGER_ERROR("Input byte data is empty");
         return;
     }
-#if TTKMUSIC_VERSION >= TTK_VERSION_CHECK(2,5,3,0)
+#if TTK_VERSION >= TTK_VERSION_CHECK(2,5,3,0)
     QPixmap pix;
     pix.loadFromData(data);
     setCover(pix);
@@ -209,7 +209,7 @@ void MusicSongMeta::setCover(const QByteArray &data)
 
 QPixmap MusicSongMeta::cover()
 {
-#if TTKMUSIC_VERSION >= TTK_VERSION_CHECK(2,5,3,0)
+#if TTK_VERSION >= TTK_VERSION_CHECK(2,5,3,0)
     return songMeta()->m_cover;
 #else
     return QPixmap();

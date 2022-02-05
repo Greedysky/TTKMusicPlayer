@@ -167,7 +167,7 @@ LONG TTKDumperPrivate::errorHandler(EXCEPTION_POINTERS *info)
                     ::CloseHandle(file);
 
                     WCHAR outMessage[MAX_WARNING_MESSAGE_PATH];
-                    swprintf(outMessage, sizeof(outMessage), outMessage, m_name, dumpPath);
+                    swprintf(outMessage, sizeof(outMessage), outMessage, m_name.toStdWString().c_str(), dumpPath);
                 }
                 else
                 {
@@ -219,7 +219,7 @@ TTKDumper::TTKDumper()
     TTK_INIT_PRIVATE(TTKDumper);
     TTK_D(TTKDumper);
     d->m_name = "TTK";
-    d->m_version = TTKMUSIC_VERSION_STR;
+    d->m_version = TTK_VERSION_STR;
 }
 
 void TTKDumper::run()

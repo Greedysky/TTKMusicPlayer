@@ -17,7 +17,8 @@
 # ***************************************************************************
 
 INCLUDEPATH += $$PWD
-HEADERS  += \
+
+HEADERS += \
     $$PWD/ttkglobal.h \
     $$PWD/ttkglobaldefine.h \
     $$PWD/ttkprivate.h \
@@ -25,5 +26,4 @@ HEADERS  += \
     $$PWD/ttkversion.h \
     $$PWD/ttkdesktopwrapper.h
 
-SOURCES  += \
-    $$PWD/ttkdesktopwrapper.cpp
+SOURCES += $$PWD/ttkdesktopwrapper.cpp

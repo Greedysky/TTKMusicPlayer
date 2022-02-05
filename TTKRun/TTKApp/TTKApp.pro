@@ -16,8 +16,8 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT       += core gui network
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += core gui network
+greaterThan(QT_MAJOR_VERSION, 4):QT += widgets
 
 include($$PWD/../../TTKVersion.pri)
 
@@ -29,20 +29,23 @@ DEFINES += TTK_LIBRARY
 win32:msvc{
     CONFIG += c++11
 }else{
-    QMAKE_CXXFLAGS += -std=c++11
+    equals(QT_MAJOR_VERSION, 6){ #Qt6
+        QMAKE_CXXFLAGS += -std=c++17
+    }else{
+        QMAKE_CXXFLAGS += -std=c++11
+    }
 }
 
 win32{
     DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
     LIBS += -L$$DESTDIR -lTTKConfig
-}
-else{
+}else{
     DESTDIR = $$OUT_PWD/../../bin
     DEFINES += CONFIG_OUT_BUILD
-    SOURCES += $$PWD/../../TTKConfig/musicconfigobject.cpp
     HEADERS += \
         $$PWD/../../TTKConfig/musicconfigobject.h \
         $$PWD/../../TTKConfig/musicconfigdefine.h
+    SOURCES += $$PWD/../../TTKConfig/musicconfigobject.cpp
 }
 
 INCLUDEPATH += \
@@ -52,18 +55,17 @@ INCLUDEPATH += \
     $$PWD/../../TTKThirdParty/TTKDumper \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits
 
-SOURCES += \
-    ttkrunmain.cpp \
-    ttklocalpeer.cpp \
-    ttkrunapplication.cpp \
-    ttkrunobject.cpp
-
 HEADERS += \
-    ttkrunobject.h \
-    ttklocalpeer.h \
-    ttkrunapplication.h \
+    $$PWD/ttkrunobject.h \
+    $$PWD/ttklocalpeer.h \
+    $$PWD/ttkrunapplication.h \
 
-RESOURCES += \
-    $$PWD/../../TTKUi/MusicApp.qrc
+SOURCES += \
+    $$PWD/ttkrunmain.cpp \
+    $$PWD/ttklocalpeer.cpp \
+    $$PWD/ttkrunapplication.cpp \
+    $$PWD/ttkrunobject.cpp
 
-win32:RC_FILE = TTKApp.rc
+RESOURCES += $$PWD/../../TTKUi/MusicApp.qrc
+
+win32:RC_FILE = $$PWD/TTKApp.rc

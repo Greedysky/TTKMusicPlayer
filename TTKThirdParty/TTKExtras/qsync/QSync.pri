@@ -16,11 +16,11 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT       += network
+QT += network
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/qsyncconf.h \
     $$PWD/qsyncdataitem.h \
     $$PWD/qsyncutils.h \

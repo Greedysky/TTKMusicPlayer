@@ -16,7 +16,7 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT       += core
+QT += core
 
 TEMPLATE = lib
 DEFINES += TTK_LIBRARY
@@ -34,19 +34,23 @@ win32:LIBS += -lpsapi
 win32:msvc{
     CONFIG += c++11
 }else{
-    QMAKE_CXXFLAGS += -std=c++11
+    equals(QT_MAJOR_VERSION, 6){ #Qt6
+        QMAKE_CXXFLAGS += -std=c++17
+    }else{
+        QMAKE_CXXFLAGS += -std=c++11
+    }
 }
 
-SOURCES += \
-    $$PWD/miniprocess.cpp \
-    $$PWD/ttkdumper.cpp
-    
 HEADERS += \
     $$PWD/miniprocess.h \
     $$PWD/ttkdumper.h \
     $$PWD/ttklogger.h
 
+SOURCES += \
+    $$PWD/miniprocess.cpp \
+    $$PWD/ttkdumper.cpp
+
 #load extra define
 include($$PWD/../TTKExtrasDefine.pri)
 
-win32:RC_FILE = TTKDumper.rc
+win32:RC_FILE = $$PWD/TTKDumper.rc

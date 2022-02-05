@@ -108,5 +108,5 @@ QString MusicRunTimeManager::translator() const
 
 bool MusicRunTimeManager::configVersionCheck() const
 {
-    return G_SETTING_PTR->value(MusicSettingManager::ConfigVersion).toString() == TTKCONFIG_VERSION_STR;
+    return G_SETTING_PTR->value(MusicSettingManager::ConfigVersion).toString() == TTK_CONFIG_VERSION_STR;
 }

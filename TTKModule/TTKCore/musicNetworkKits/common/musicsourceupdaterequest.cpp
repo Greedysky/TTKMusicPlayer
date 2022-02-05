@@ -38,7 +38,7 @@ bool MusicSourceUpdateRequest::isLastedVersion() const
     }
     else
     {
-        return TTKMUSIC_VERSION_STR == v;
+        return TTK_VERSION_STR == v;
     }
 }
 

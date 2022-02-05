@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-HEADERS  += \
+HEADERS += \
     $$PWD/musicremotewidget.h \
     $$PWD/musicremotewidgetforsquare.h \
     $$PWD/musicremotewidgetforrectangle.h \
@@ -26,7 +26,6 @@ HEADERS  += \
     $$PWD/musicremotewidgetforcomplexstyle.h \
     $$PWD/musicremotewidgetforstrip.h \
     $$PWD/musicremotewidgetforripple.h
-
 
 SOURCES += \
     $$PWD/musicremotewidget.cpp \
