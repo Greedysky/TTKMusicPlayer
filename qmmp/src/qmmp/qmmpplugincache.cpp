@@ -29,15 +29,20 @@ QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
         {
             m_shortName = values.at(0);
             m_priority = values.at(1).toInt();
-            m_protocols = values.at(2).split(";");
-            m_filters = values.at(3).split(";");
-            m_contentTypes = values.at(4).split(";");
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+            m_protocols = values.at(2).split(";", Qt::SkipEmptyParts);
+            m_filters = values.at(3).split(";", Qt::SkipEmptyParts);
+            m_contentTypes = values.at(4).split(";", Qt::SkipEmptyParts);
+#else
+            m_protocols = values.at(2).split(";", QString::SkipEmptyParts);
+            m_filters = values.at(3).split(";", QString::SkipEmptyParts);
+            m_contentTypes = values.at(4).split(";", QString::SkipEmptyParts);
+#endif
             update = (info.lastModified().toString(Qt::ISODate) != values.at(5));
         }
     }
     else
         update = true;
-
 
     if(update)
     {
