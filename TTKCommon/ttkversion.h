@@ -54,6 +54,8 @@
  *
  *  AdLib Sound File(*.a2m *.adl *.adlib *.amd *.as3m *.bam *.cmf *.d00 *.dfm *.dmo *.dro *.dtm *.hsc *.imf *.jbm *.laa *.lds *.m *.mad *.mkj *.msc *.mtk *.rad *.raw *.sa2 *.sat *.sng *.sqx *.xad *.xms *.xsm)
  *
+ *  XMP File(*.abk *.dsym *.emod *.fnk *.gtk *.ims *.liq *.mfp *.mgt *.rtm *.tcb)
+ *
  *  Another Slight Atari File(*.sap *.cm3 *.cmc *.cmr *.cms *.dmc *.dlt *.mpd *.mpt *.rmt *.tm2 *.tm8 *.tmc)
  *
  *  DTS Coherent Acoustics File(*.dts *.cpt)
@@ -68,13 +70,13 @@
  *
  *  Speex Audio File(*.spx)
  *
- *  V2 Module Audio File(*.v2m)
+ *  V2 Player File(*.v2m)
  *
  *  AY/YM Audio File(*.vtx *.asc *.sqt *psg *.stc *.stp *.pt1 *.pt2 *.pt3 *.ay *.emul)
  *
  *  ST-Sound File(*.ym)
  *
- *  HVL Module Player File(*.ahx *.hvl)
+ *  Hively Audio File(*.ahx *.hvl)
  *
  *  BP SoundMon Audio File(*.bp *.bp3)
  *
