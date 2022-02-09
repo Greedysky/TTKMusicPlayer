@@ -40,13 +40,16 @@ bool MusicXSPFConfigManager::writePlaylistData(const MusicSongItems &items, cons
     //
     createProcessingInstruction();
     //
-    QDomElement musicPlayerDom = createRoot("playlist");
+    QDomElement musicPlayerDom = createRoot("playlist", MusicXmlAttributes()
+                                            << MusicXmlAttribute("version", "1")
+                                            << MusicXmlAttribute("xmlns", "http://xspf.org/ns/0/"));
     writeDomText(musicPlayerDom, "creator", APP_NAME);
     for(int i=0; i<items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
         QDomElement trackListDom = writeDomElementMutil(musicPlayerDom, "trackList", MusicXmlAttributes()
-                                                       << MusicXmlAttribute("name", item.m_itemName) << MusicXmlAttribute("index", i)
+                                                       << MusicXmlAttribute("name", item.m_itemName)
+                                                       << MusicXmlAttribute("index", i)
                                                        << MusicXmlAttribute("count", item.m_songs.count())
                                                        << MusicXmlAttribute("sortIndex", item.m_sort.m_type)
                                                        << MusicXmlAttribute("sortType", item.m_sort.m_order));

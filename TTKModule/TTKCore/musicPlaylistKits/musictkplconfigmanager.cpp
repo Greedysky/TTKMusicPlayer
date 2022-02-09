@@ -41,9 +41,11 @@ bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, cons
     {
         const MusicSongItem &item = items[i];
         QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", MusicXmlAttributes()
-                              << MusicXmlAttribute("name", item.m_itemName) << MusicXmlAttribute("index", i)
-                              << MusicXmlAttribute("count", item.m_songs.count()) << MusicXmlAttribute("sortIndex", item.m_sort.m_type)
-                              << MusicXmlAttribute("sortType", item.m_sort.m_order));
+                                                   << MusicXmlAttribute("name", item.m_itemName)
+                                                   << MusicXmlAttribute("index", i)
+                                                   << MusicXmlAttribute("count", item.m_songs.count())
+                                                   << MusicXmlAttribute("sortIndex", item.m_sort.m_type)
+                                                   << MusicXmlAttribute("sortType", item.m_sort.m_order));
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
             writeDomElementMutilText(pathDom, "value", MusicXmlAttributes()
