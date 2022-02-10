@@ -15,7 +15,7 @@ The TTKMusicplayer plugin for run
 * |__Downloads
   * |__Lyric
   * |__Movie
-  * |__MUpdate
+  * |__Music
 * |__当前版本号
   * |__GLanguage
   * |__GTheme
@@ -105,4 +105,5 @@ The TTKMusicplayer plugin for run
  * sc68
  * v2m
  * xsf
+ * xmp
  * ym
