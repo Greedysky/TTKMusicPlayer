@@ -1,4 +1,4 @@
-#include "musicfileutils.h"
+﻿#include "musicfileutils.h"
 #include "musicwidgetheaders.h"
 
 #include <QDirIterator>
@@ -97,5 +97,32 @@ QStringList MusicUtils::File::openFilesDialog(QWidget *obj, const QString &filte
 
 QString MusicUtils::File::saveFileDialog(QWidget *obj, const QString &filter)
 {
-    return QFileDialog::getSaveFileName(obj,  QObject::tr("Choose a filename to save under"), QDir::currentPath(), filter);
+    const QString &title = QObject::tr("Choose a filename to save under");
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+    return QFileDialog::getSaveFileName(obj, title, QDir::currentPath(), filter);
+#else
+    QFileDialog dialog(obj, title, QDir::currentPath(), filter);
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    if(obj)
+    {
+        dialog.setWindowModality(Qt::WindowModal);
+    }
+
+    if(dialog.exec() != QDialog::Accepted)
+    {
+        return QString();
+    }
+
+    const QString &selectFilter = dialog.selectedNameFilter();
+    const QStringList &filters = filter.split(";;");
+    if(!filters.isEmpty())
+    {
+        QRegExp regex("(?:^\\*\\.(?!.*\\()|\\(\\*\\.)(\\w+)");
+        if(regex.indexIn(selectFilter) != -1)
+        {
+            dialog.setDefaultSuffix(regex.cap(1));
+        }
+    }
+    return dialog.selectedFiles().first();
+#endif
 }
