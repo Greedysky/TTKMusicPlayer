@@ -98,7 +98,7 @@ QStringList MusicUtils::File::openFilesDialog(QWidget *obj, const QString &filte
 QString MusicUtils::File::saveFileDialog(QWidget *obj, const QString &filter)
 {
     const QString &title = QObject::tr("Choose a filename to save under");
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined Q_OS_WIN || defined Q_OS_MAC
     return QFileDialog::getSaveFileName(obj, title, QDir::currentPath(), filter);
 #else
     QFileDialog dialog(obj, title, QDir::currentPath(), filter);

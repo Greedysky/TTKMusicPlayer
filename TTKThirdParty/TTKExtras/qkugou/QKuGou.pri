@@ -20,7 +20,7 @@
 Browser = 0
 
 equals(QT_MAJOR_VERSION, 4){
-    DEFINES += MUSIC_WEBKIT
+    DEFINES += TTK_WEBKIT
     win32{
         CONFIG += qaxcontainer
         Browser = 1
@@ -32,14 +32,14 @@ equals(QT_MAJOR_VERSION, 4){
 equals(QT_MAJOR_VERSION, 5){
     win32{
         QT += axcontainer
-        DEFINES += MUSIC_WEBKIT
+        DEFINES += TTK_WEBKIT
         Browser = 1
     }
 
     unix:!mac{
         exists($$[QT_INSTALL_LIBS]/libQt5WebKit.so){
             QT += webkit webkitwidgets
-            DEFINES += MUSIC_WEBKIT
+            DEFINES += TTK_WEBKIT
             Browser = 2
         }
 
@@ -47,8 +47,8 @@ equals(QT_MAJOR_VERSION, 5){
         greaterThan(QT_MINOR_VERSION, 5){
             exists($$[QT_INSTALL_LIBS]/libQt5WebEngine.so){
                 QT += webenginewidgets
-                DEFINES -= MUSIC_WEBKIT
-                DEFINES += MUSIC_WEBENGINE
+                DEFINES -= TTK_WEBKIT
+                DEFINES += TTK_WEBENGINE
                 Browser = 3
             }
         }

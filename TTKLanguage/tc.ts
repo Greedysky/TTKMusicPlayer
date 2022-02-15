@@ -8256,6 +8256,62 @@ too high may cause clipping!</source>
         <source>Buffer size:</source>
         <translation>緩存大小:</translation>
     </message>
+    <message>
+        <source>XMP Plugin Settings</source>
+        <translation>XMP插件設置</translation>
+    </message>
+    <message>
+        <source> Amplification factor:</source>
+        <translation>擴音比率：</translation>
+    </message>
+    <message>
+        <source>Stereo mixing:</source>
+        <translation>立體聲混合：</translation>
+    </message>
+    <message>
+        <source> Interpolation type:</source>
+        <translation>插音類型：</translation>
+    </message>
+    <message>
+        <source>Lowpass filter effect</source>
+        <translation>低音通過過濾效果</translation>
+    </message>
+    <message>
+        <source>Use vblank timing</source>
+        <translation>使用vblank時間管理</translation>
+    </message>
+    <message>
+        <source>Emulate Protracker 2.x FX9 bug</source>
+        <translation>模擬Protracker 2.x FX9問題</translation>
+    </message>
+    <message>
+        <source>Sample rate:</source>
+        <translation>取樣率：</translation>
+    </message>
+    <message>
+        <source>22050 Hz</source>
+        <translation>22050 Hz</translation>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <translation>44100赫茲</translation>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <translation>48000赫茲</translation>
+    </message>
+    <message>
+        <source>Nearest neighbor</source>
+        <translation>最近的鄰居</translation>
+    </message>
+    <message>
+        <source>Linear</source>
+        <translation>線性</translation>
+    </message>
+    <message>
+        <source>Cubic spline</source>
+        <translation>三次樣條</translation>
+    </message>
 </context>
 <context>
     <name>SoniquePlugin</name>

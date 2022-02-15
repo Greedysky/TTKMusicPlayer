@@ -4,7 +4,7 @@
 #ifdef Q_OS_WIN
 #  include <ActiveQt/QAxWidget>
 #else
-#  ifdef MUSIC_WEBKIT
+#  ifdef TTK_WEBKIT
 #    if TTK_QT_VERSION_CHECK(5,0,0)
 #      include <QtWebKitWidgets/QWebView>
 #      include <QtWebKitWidgets/QWebFrame>
@@ -12,7 +12,7 @@
 #      include <QtWebKit/QWebView>
 #      include <QtWebKit/QWebFrame>
 #    endif
-#  elif defined MUSIC_WEBENGINE
+#  elif defined TTK_WEBENGINE
 #    include <QtWebEngineWidgets/QWebEngineView>
 #    include <QtWebEngineWidgets/QWebEngineSettings>
 #  endif
@@ -58,13 +58,13 @@ QKugouWindow::QKugouWindow(KuGouType type, QWidget *parent)
     TTK_INIT_PRIVATE(QKugouWindow);
 
 #ifdef Q_OS_UNIX
-#  ifdef MUSIC_WEBKIT
+#  ifdef TTK_WEBKIT
     QWebSettings *settings = QWebSettings::globalSettings();
     settings->setAttribute(QWebSettings::PluginsEnabled, true);
     settings->setAttribute(QWebSettings::JavascriptEnabled, true);
     settings->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
     settings->setAttribute(QWebSettings::JavascriptCanOpenWindows, true);
-#  elif defined MUSIC_WEBENGINE
+#  elif defined TTK_WEBENGINE
     QWebEngineSettings *settings = QWebEngineSettings::defaultSettings();
     settings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
     settings->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
@@ -93,13 +93,13 @@ void QKugouWindow::setUrl(const QString &url)
         w->dynamicCall("Navigate(const QString&)", url);
     }
 #else
-#  ifdef MUSIC_WEBKIT
+#  ifdef TTK_WEBKIT
     QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
     }
-#  elif defined MUSIC_WEBENGINE
+#  elif defined TTK_WEBENGINE
     QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
     if(w)
     {
@@ -116,13 +116,13 @@ void QKugouWindow::goBack()
 {
 #ifdef Q_OS_UNIX
     TTK_D(QKugouWindow);
-#  ifdef MUSIC_WEBKIT
+#  ifdef TTK_WEBKIT
     QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
     if(w)
     {
         w->back();
     }
-#  elif defined MUSIC_WEBENGINE
+#  elif defined TTK_WEBENGINE
     QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
     if(w)
     {
@@ -197,12 +197,12 @@ void QKugouWindow::createWebViewer()
     view->setProperty("Silent", true);
     d->m_webView = view;
 #else
-#  ifdef MUSIC_WEBKIT
+#  ifdef TTK_WEBKIT
     QWebView *view = new QWebView(this);
     view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
     view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     d->m_webView = view;
-#  elif defined MUSIC_WEBENGINE
+#  elif defined TTK_WEBENGINE
     QWebEngineView *view = new QWebEngineView(this);
     d->m_webView = view;
 #  endif
@@ -215,7 +215,7 @@ void QKugouWindow::createKugouSongWidget()
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-#if defined MUSIC_WEBKIT || defined MUSIC_WEBENGINE
+#if defined TTK_WEBKIT || defined TTK_WEBENGINE
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
     d->m_topWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01 + MusicUIObject::MQSSWidgetStyle01);
@@ -276,7 +276,7 @@ void QKugouWindow::createKugouRadioWidget()
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-#if defined MUSIC_WEBKIT || defined MUSIC_WEBENGINE
+#if defined TTK_WEBKIT || defined TTK_WEBENGINE
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
     d->m_topWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01 + MusicUIObject::MQSSWidgetStyle01);
@@ -332,13 +332,13 @@ void QKugouWindow::createKugouListWidget()
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-#if defined MUSIC_WEBKIT || defined MUSIC_WEBENGINE
+#if defined TTK_WEBKIT || defined TTK_WEBENGINE
     createWebViewer();
     layout->addWidget(d->m_webView);
 #  ifdef Q_OS_WIN
     TTKObject_cast(QAxWidget*, d->m_webView)->dynamicCall("Navigate(const QString&)", QKugouUrl::makeListUrl());
 #  else
-#    ifdef MUSIC_WEBENGINE
+#    ifdef TTK_WEBENGINE
     TTKObject_cast(QWebEngineView*, d->m_webView)->setUrl(QKugouUrl::makeListUrl());
 #    else
     TTKObject_cast(QWebView*, d->m_webView)->setUrl(QKugouUrl::makeListUrl());
@@ -360,7 +360,7 @@ void QKugouWindow::createKugouMovieWidget()
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-#if defined MUSIC_WEBKIT || defined MUSIC_WEBENGINE
+#if defined TTK_WEBKIT || defined TTK_WEBENGINE
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
     d->m_topWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01 + MusicUIObject::MQSSWidgetStyle01);
@@ -416,7 +416,7 @@ void QKugouWindow::createKugouSingleWidget()
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-#if defined MUSIC_WEBKIT || defined MUSIC_WEBENGINE
+#if defined TTK_WEBKIT || defined TTK_WEBENGINE
     createWebViewer();
     layout->addWidget(d->m_webView);
     setUrl(QKugouUrl::makeKuiSheUrl());
