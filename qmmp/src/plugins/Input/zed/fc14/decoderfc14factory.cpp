@@ -10,7 +10,7 @@ bool DecoderFC14Factory::canDecode(QIODevice *) const
 DecoderProperties DecoderFC14Factory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "FC14 Plugin";
+    properties.name = tr("FC14 Plugin");
     properties.shortName = "fc14";
     properties.filters << "*.fc" << "*.fc13" << "*.fc14" << "*.smod";
     properties.description = "Future Composer Audio File";

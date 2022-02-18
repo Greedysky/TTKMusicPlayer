@@ -122,7 +122,7 @@ DecoderProperties DecoderFFmpegFactory::properties() const
     }
 
     DecoderProperties properties;
-    properties.name = "FFmpeg Plugin";
+    properties.name = tr("FFmpeg Plugin");
     properties.shortName = "ffmpeg";
     properties.filters = filters;
     properties.description = "FFmpeg Formats File";

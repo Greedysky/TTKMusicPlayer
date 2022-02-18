@@ -13,7 +13,7 @@ bool DecoderWavPackFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderWavPackFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "WavPack Plugin";
+    properties.name = tr("WavPack Plugin");
     properties.shortName = "wavpack";
     properties.filters << "*.wv";
     properties.description = "WavPack File";

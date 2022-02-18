@@ -11,7 +11,7 @@ bool DecoderAsapFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderAsapFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "Asap Plugin";
+    properties.name = tr("Asap Plugin");
     properties.shortName = "asap";
     properties.filters << "*.cm3" << "*.cmc" << "*.cmr" << "*.cms";
     properties.filters << "*.dlt" << "*.dmc";

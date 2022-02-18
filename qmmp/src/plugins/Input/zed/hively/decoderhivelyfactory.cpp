@@ -10,7 +10,7 @@ bool DecoderHivelyFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderHivelyFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "Hively Plugin";
+    properties.name = tr("Hively Plugin");
     properties.shortName = "hively";
     properties.filters << "*.ahx" << "*.hvl";
     properties.description = "HVL Module File";

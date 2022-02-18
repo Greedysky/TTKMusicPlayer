@@ -13,7 +13,7 @@ bool DecoderXmpFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderXmpFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "XMP Plugin";
+    properties.name = tr("XMP Plugin");
     properties.shortName = "xmp";
     properties.filters << "*.abk";
     properties.filters << "*.dsym";

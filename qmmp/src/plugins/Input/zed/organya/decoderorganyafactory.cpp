@@ -10,7 +10,7 @@ bool DecoderOrganyaFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderOrganyaFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "Organya Plugin";
+    properties.name = tr("Organya Plugin");
     properties.shortName = "organya";
     properties.filters << "*.org";
     properties.description = "Cave Story's org Audio File";

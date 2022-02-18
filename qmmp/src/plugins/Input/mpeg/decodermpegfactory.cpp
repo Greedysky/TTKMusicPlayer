@@ -80,7 +80,7 @@ bool DecoderMPEGFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderMPEGFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "MPEG Plugin";
+    properties.name = tr("MPEG Plugin");
     properties.shortName = "mpeg";
     properties.filters << "*.mp1" << "*.mp2" << "*.mp3";
     properties.description = "MPEG Audio File";

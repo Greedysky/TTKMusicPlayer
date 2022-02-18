@@ -10,7 +10,7 @@ bool DecoderMdxFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderMdxFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "MDX Plugin";
+    properties.name = tr("MDX Plugin");
     properties.shortName = "mdx";
     properties.filters << "*.mdx" << "*.m";
     properties.description = "MDX Chiptunes Audio File";

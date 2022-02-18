@@ -10,7 +10,7 @@ bool DecoderXSFFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderXSFFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "XSF Plugin";
+    properties.name = tr("XSF Plugin");
     properties.shortName = "xsf";
     properties.filters << "*.2sf" << "*.mini2sf";
     properties.filters << "*.gsf" << "*.minigsf";

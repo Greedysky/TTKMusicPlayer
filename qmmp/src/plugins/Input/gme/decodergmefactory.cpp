@@ -11,7 +11,7 @@ bool DecoderGmeFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderGmeFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "GME Plugin";
+    properties.name = tr("GME Plugin");
     properties.shortName = "gme";
     properties.filters << "*.ay" << "*.gbs" << "*.gym" << "*.hes" << "*.kss" << "*.nsf" << "*.nsfe";
     properties.filters << "*.sap" << "*.spc" << "*.vgm" << "*.vgz";

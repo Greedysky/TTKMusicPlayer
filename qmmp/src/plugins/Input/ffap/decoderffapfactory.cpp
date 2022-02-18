@@ -12,7 +12,7 @@ bool DecoderFFapFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderFFapFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "FFap Plugin";
+    properties.name = tr("FFap Plugin");
     properties.shortName = "ffap";
     properties.filters << "*.ape";
     properties.description = "Monkey's Audio File";

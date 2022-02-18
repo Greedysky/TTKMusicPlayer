@@ -48,7 +48,7 @@ bool DecoderAdplugFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderAdplugFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "AdPlug Plugin";
+    properties.name = tr("AdPlug Plugin");
     properties.shortName = "adplug";
     properties.filters << "*.a2m" << "*.adl" << "*.adlib" << "*.amd" << "*.as3m";
     properties.filters << "*.bam";

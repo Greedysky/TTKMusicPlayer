@@ -11,7 +11,7 @@ bool DecoderPSFFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderPSFFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "PSF Plugin";
+    properties.name = tr("PSF Plugin");
     properties.shortName = "psf";
     properties.filters << "*.psf" << "*.minipsf";
     properties.filters << "*.ssf" << "*.minissf";

@@ -10,7 +10,7 @@ bool DecoderV2MFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderV2MFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "V2M Plugin";
+    properties.name = tr("V2M Plugin");
     properties.shortName = "v2m";
     properties.filters << "*.v2m";
     properties.description = "V2 Module Player File";

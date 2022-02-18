@@ -13,7 +13,7 @@ bool DecoderAACFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderAACFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "AAC Plugin";
+    properties.name = tr("AAC Plugin");
     properties.shortName = "aac";
     properties.filters << "*.aac";
     properties.description = "MPEG-2(4) AAC Audio File";

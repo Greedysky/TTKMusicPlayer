@@ -10,7 +10,7 @@ bool DecoderBpFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderBpFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "BP Plugin";
+    properties.name = tr("BP Plugin");
     properties.shortName = "bp";
     properties.filters << "*.bp" << "*.bp3";
     properties.description = "BP SoundMon Audio File";

@@ -12,7 +12,7 @@ bool DecoderOptimFROGFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderOptimFROGFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "OptimFROG Plugin";
+    properties.name = tr("OptimFROG Plugin");
     properties.shortName = "optimfrog";
     properties.filters << "*.ofr" << "*.ofs";
     properties.description = "OptimFROG Lossless Audio File";

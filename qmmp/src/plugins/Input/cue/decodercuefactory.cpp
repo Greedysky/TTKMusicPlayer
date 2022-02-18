@@ -12,7 +12,7 @@ bool DecoderCUEFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderCUEFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "CUE Plugin";
+    properties.name = tr("CUE Plugin");
     properties.shortName = "cue";
     properties.filters << "*.cue";
     properties.description = "Cuesheet File";

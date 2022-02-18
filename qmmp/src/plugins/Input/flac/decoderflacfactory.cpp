@@ -20,7 +20,7 @@ bool DecoderFLACFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderFLACFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "FLAC Plugin";
+    properties.name = tr("FLAC Plugin");
     properties.shortName = "flac";
     properties.filters << "*.flac" << "*.oga";
     properties.description = "Free Lossless Audio Codec File";

@@ -23,7 +23,7 @@ bool DecoderWildMidiFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderWildMidiFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "WildMidi Plugin";
+    properties.name = tr("WildMidi Plugin");
     properties.shortName = "wildmidi";
     properties.filters << "*.mid";
 #if defined(LIBWILDMIDI_VERSION) && (LIBWILDMIDI_VERSION >= 0x000400)

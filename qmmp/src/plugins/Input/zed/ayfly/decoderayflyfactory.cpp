@@ -10,7 +10,7 @@ bool DecoderAyflyFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderAyflyFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "AyFly Plugin";
+    properties.name = tr("AyFly Plugin");
     properties.shortName = "alfly";
     properties.filters << "*.vtx" << "*.asc" << "*.sqt" << "*psg";
     properties.filters << "*.stc" << "*.stp";

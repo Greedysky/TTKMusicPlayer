@@ -20,7 +20,7 @@ bool DecoderCDAudioFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderCDAudioFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "CD Audio Plugin";
+    properties.name = tr("CD Audio Plugin");
     properties.shortName = "cdaudio";
     properties.description = "Compact Disc Input and Control File";
     properties.protocols << "cdda";

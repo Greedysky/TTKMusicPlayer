@@ -19,7 +19,7 @@ bool DecoderMPCFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderMPCFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "Musepack Plugin";
+    properties.name = tr("Musepack Plugin");
     properties.shortName = "mpc";
     properties.filters << "*.mpc";
     properties.description = "Musepack File";

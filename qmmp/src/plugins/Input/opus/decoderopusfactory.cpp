@@ -14,7 +14,7 @@ bool DecoderOpusFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderOpusFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "Opus Plugin";
+    properties.name = tr("Opus Plugin");
     properties.shortName = "opus";
     properties.filters << "*.opus";
     properties.description = "Ogg Opus File";

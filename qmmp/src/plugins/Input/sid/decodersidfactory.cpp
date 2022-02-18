@@ -30,7 +30,7 @@ bool DecoderSIDFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderSIDFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "SID Plugin";
+    properties.name = tr("SID Plugin");
     properties.shortName = "sid";
     properties.filters << "*.sid" << "*.mus" << "*.str" << "*.prg" << "*.P00" << "*.c64";
     properties.description = "SID File";
