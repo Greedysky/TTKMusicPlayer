@@ -70,7 +70,7 @@ typedef struct TTK_MODULE_EXPORT MusicResultsItem
         m_tags = TTK_DEFAULT_STR;
     }
 
-    bool isEmpty() const
+    inline bool isEmpty() const
     {
         return m_name == TTK_DEFAULT_STR || m_nickName == TTK_DEFAULT_STR || m_coverUrl == TTK_DEFAULT_STR || m_description == TTK_DEFAULT_STR || m_tags == TTK_DEFAULT_STR;
     }

@@ -21,6 +21,17 @@
 
 #include "musicglobaldefine.h"
 
+/*! @brief The class of the xml attribute.
+ * @author Greedysky <greedysky@163.com>
+ */
+typedef struct TTK_MODULE_EXPORT MusicEffectProperty
+{
+    QString m_type;
+    QString m_name;
+    bool m_setting;
+}MusicEffectProperty;
+TTK_DECLARE_LIST(MusicEffectProperty)
+
 /*! @brief The namespace of the utils qmmp.
  * @author Greedysky <greedysky@163.com>
  */
@@ -38,10 +49,6 @@ namespace MusicUtils
         TTK_MODULE_EXPORT void updateQmmpConfigFile();
 
         /*!
-         * Enable visual module control.
-         */
-        TTK_MODULE_EXPORT void enabledVisualPlugin(const QString &name, bool enable);
-        /*!
          * Enable effect module control.
          */
         TTK_MODULE_EXPORT void enabledEffectPlugin(bool enable);
@@ -49,20 +56,19 @@ namespace MusicUtils
          * Enable effect module control.
          */
         TTK_MODULE_EXPORT void enabledEffectPlugin(const QString &name, bool enable);
-
         /*!
          * Check effect is valid.
          */
-        TTK_MODULE_EXPORT QStringList effectPlugins();
-        /*!
-         * Check effect has setting.
-         */
-        TTK_MODULE_EXPORT bool effectHasSetting(const QString &name);
+        TTK_MODULE_EXPORT MusicEffectPropertys effectPlugins();
         /*!
          * Show effect setting control.
          */
         TTK_MODULE_EXPORT void showEffectSetting(const QString &name, QWidget *parent);
 
+        /*!
+         * Enable visual module control.
+         */
+        TTK_MODULE_EXPORT void enabledVisualPlugin(const QString &name, bool enable);
         /*!
          * Update ripple spectrum config file transfer.
          */

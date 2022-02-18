@@ -35,7 +35,6 @@ typedef struct TTK_MODULE_EXPORT MusicVideoItem
     QString m_server;
 }MusicVideoItem;
 
-
 /*! @brief The class of the video search table widget.
  * @author Greedysky <greedysky@163.com>
  */

@@ -40,12 +40,12 @@ typedef struct TTK_MODULE_EXPORT MusicPlayItem
         m_path = path;
     }
 
-    bool isValid() const
+    inline bool isValid() const
     {
         return m_toolIndex != -1 && !m_path.isEmpty();
     }
 
-    bool operator== (const MusicPlayItem &other) const
+    inline bool operator== (const MusicPlayItem &other) const
     {
         return m_toolIndex == other.m_toolIndex && m_path == other.m_path;
     }

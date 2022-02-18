@@ -38,11 +38,10 @@ typedef struct TTK_MODULE_EXPORT MusicSkinRemoteItem
         m_index = 0;
     }
 
-    bool isValid() const
+    inline bool isValid() const
     {
         return !m_name.isEmpty();
     }
-
 }MusicSkinRemoteItem;
 TTK_DECLARE_LIST(MusicSkinRemoteItem)
 
@@ -56,11 +55,10 @@ typedef struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
     QString m_id;
     MusicSkinRemoteItems m_items;
 
-    bool isValid() const
+    inline bool isValid() const
     {
         return !(m_group.isEmpty() && m_id.isEmpty() && m_items.isEmpty());
     }
-
 }MusicSkinRemoteGroup;
 TTK_DECLARE_LIST(MusicSkinRemoteGroup)
 

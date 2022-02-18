@@ -36,11 +36,10 @@ typedef struct TTK_MODULE_EXPORT MusicSkinConfigItem
         m_useCount = 8888;
     }
 
-    bool isValid() const
+    inline bool isValid() const
     {
         return !(m_name.isEmpty() && m_useCount == 0);
     }
-
 }MusicSkinConfigItem;
 TTK_DECLARE_LIST(MusicSkinConfigItem)
 
@@ -53,11 +52,10 @@ typedef struct TTK_MODULE_EXPORT MusicBackgroundImage
     QPixmap m_pix;
     MusicSkinConfigItem m_item;
 
-    bool isValid() const
+    inline bool isValid() const
     {
         return !m_pix.isNull() && m_item.isValid();
     }
-
 }MusicBackgroundImage;
 TTK_DECLARE_LIST(MusicBackgroundImage)
 

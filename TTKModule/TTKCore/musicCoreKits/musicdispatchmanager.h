@@ -32,6 +32,7 @@ typedef struct TTK_MODULE_EXPORT MusicDispatchItem
     int m_type;
     int m_times;
     TTKVariantList m_args;
+
     MusicDispatchItem()
     {
         m_times = 0;
@@ -47,7 +48,6 @@ typedef struct TTK_MODULE_EXPORT MusicDispatchItem
     {
         return m_times <= 5;
     }
-
 }MusicDispatchItem;
 
 

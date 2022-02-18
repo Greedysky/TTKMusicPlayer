@@ -50,12 +50,12 @@ typedef struct TTK_MODULE_EXPORT MusicDownLoadPairData
         m_type = type;
     }
 
-    bool operator< (const MusicDownLoadPairData &other) const
+    inline bool operator< (const MusicDownLoadPairData &other) const
     {
         return m_timestamp < other.m_timestamp;
     }
 
-    bool operator== (const MusicDownLoadPairData &other) const
+    inline bool operator== (const MusicDownLoadPairData &other) const
     {
         return m_timestamp == other.m_timestamp;
     }

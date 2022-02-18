@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include "musicqmmputils.h"
 #include "musicabstractmovedialog.h"
 
 namespace Ui {
@@ -36,13 +37,13 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSoundEffectsItemWidget(const QString &name, QWidget *parent = nullptr);
+    explicit MusicSoundEffectsItemWidget(const MusicEffectProperty &plugin, QWidget *parent = nullptr);
     ~MusicSoundEffectsItemWidget();
 
     /*!
-     * Get plugin module name.
+     * Get plugin module type.
      */
-    inline QString name() const { return m_type; }
+    inline QString type() const { return m_plugin.m_type; }
     /*!
      * Set plugin enable or not.
      */
@@ -68,10 +69,10 @@ public Q_SLOTS:
     void soundEffectValueChanged();
 
 protected:
-    QString m_type;
     bool m_enable;
     QLabel *m_textLabel;
     QPushButton *m_settingButton, *m_openButton;
+    MusicEffectProperty m_plugin;
 
 };
 

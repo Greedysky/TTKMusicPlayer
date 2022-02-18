@@ -4,19 +4,18 @@
 #include "musicconnectionpool.h"
 #include "musicplayer.h"
 #include "musicwidgetheaders.h"
-#include "musicqmmputils.h"
 
-MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const QString &name, QWidget *parent)
+MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const MusicEffectProperty &plugin, QWidget *parent)
     : QWidget(parent)
 {
-    m_type = name;
+    m_plugin = plugin;
     m_enable = false;
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(1, 1, 1, 1);
     layout->setSpacing(0);
 
-    m_textLabel = new QLabel(" " + m_type, this);
+    m_textLabel = new QLabel(" " + plugin.m_name, this);
     m_textLabel->setObjectName("Background");
     m_textLabel->setStyleSheet(QString("#Background{%1}").arg(MusicUIObject::MQSSBackgroundStyle08) +
                                MusicUIObject::MQSSSpinBoxStyle01 +
@@ -98,16 +97,16 @@ void MusicSoundEffectsItemWidget::setPluginEnabled()
     {
         m_enable = true;
         m_openButton->setIcon(QIcon(":/tiny/btn_effect_off"));
-        soundEffectChanged(m_type, true);
+        soundEffectChanged(m_plugin.m_type, true);
 
-        m_settingButton->setEnabled(MusicUtils::QMMP::effectHasSetting(m_type));
+        m_settingButton->setEnabled(m_plugin.m_setting);
         m_openButton->setToolTip(tr("Off"));
     }
     else
     {
         m_enable = false;
         m_openButton->setIcon(QIcon(":/tiny/btn_effect_on"));
-        soundEffectChanged(m_type, false);
+        soundEffectChanged(m_plugin.m_type, false);
         m_settingButton->setEnabled(false);
         m_openButton->setToolTip(tr("On"));
     }
@@ -115,7 +114,7 @@ void MusicSoundEffectsItemWidget::setPluginEnabled()
 
 void MusicSoundEffectsItemWidget::soundEffectValueChanged()
 {
-    MusicUtils::QMMP::showEffectSetting(m_type, m_textLabel);
+    MusicUtils::QMMP::showEffectSetting(m_plugin.m_type, m_textLabel);
 }
 
 
@@ -224,13 +223,13 @@ void MusicSoundEffectsWidget::readSoundEffect()
 #else
     const QStringList &effects = value.split(";", QString::SkipEmptyParts);
 #endif
-    for(const QString &plugin : MusicUtils::QMMP::effectPlugins())
+    for(const MusicEffectProperty &plugin : MusicUtils::QMMP::effectPlugins())
     {
         MusicSoundEffectsItemWidget *item = new MusicSoundEffectsItemWidget(plugin, this);
         m_items.push_back(item);
         layout->addWidget(item);
 
-        if(effects.contains(plugin))
+        if(effects.contains(plugin.m_type))
         {
             item->setPluginEnabled(true);
         }
@@ -244,7 +243,7 @@ void MusicSoundEffectsWidget::writeSoundEffect()
     {
         if(item->pluginEnabled())
         {
-            value.append(item->name() + ";");
+            value.append(item->type() + ";");
         }
     }
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedEffectValue, value);

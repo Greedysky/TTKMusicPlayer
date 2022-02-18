@@ -30,10 +30,8 @@
 typedef struct TTK_MODULE_EXPORT QSyncConf
 {
     static QString HOST;
-
     static QString NAME;
     static QByteArray KEY;
-
     static QString VERSION;
 }QSyncConf;
 

@@ -47,18 +47,6 @@ void MusicUtils::QMMP::updateQmmpConfigFile()
     file.close();
 }
 
-void MusicUtils::QMMP::enabledVisualPlugin(const QString &name, bool enable)
-{
-    for(VisualFactory *v : Visual::factories())
-    {
-        if(v->properties().shortName == name)
-        {
-            Visual::setEnabled(v, enable);
-            break;
-        }
-    }
-}
-
 void MusicUtils::QMMP::enabledEffectPlugin(bool enable)
 {
     for(EffectFactory *factory : Effect::factories())
@@ -79,29 +67,24 @@ void MusicUtils::QMMP::enabledEffectPlugin(const QString &name, bool enable)
     }
 }
 
-QStringList MusicUtils::QMMP::effectPlugins()
+MusicEffectPropertys MusicUtils::QMMP::effectPlugins()
 {
-    QStringList value;
+    MusicEffectPropertys properties;
     for(EffectFactory *factory : Effect::factories())
     {
-        value << factory->properties().shortName;
-    }
 #ifdef Q_OS_WIN
-    value.removeOne("ladspa");
-#endif
-    return value;
-}
-
-bool MusicUtils::QMMP::effectHasSetting(const QString &name)
-{
-    for(EffectFactory *factory : Effect::factories())
-    {
-        if(factory->properties().shortName == name)
+        if(factory->properties().shortName == "ladspa")
         {
-            return factory->properties().hasSettings;
+            continue;
         }
+#endif
+        MusicEffectProperty property;
+        property.m_type = factory->properties().shortName;
+        property.m_name = factory->properties().name;
+        property.m_setting = factory->properties().hasSettings;
+        properties << property;
     }
-    return false;
+    return properties;
 }
 
 void MusicUtils::QMMP::showEffectSetting(const QString &name, QWidget *parent)
@@ -111,6 +94,18 @@ void MusicUtils::QMMP::showEffectSetting(const QString &name, QWidget *parent)
         if(factory->properties().shortName == name)
         {
             factory->showSettings(parent);
+            break;
+        }
+    }
+}
+
+void MusicUtils::QMMP::enabledVisualPlugin(const QString &name, bool enable)
+{
+    for(VisualFactory *v : Visual::factories())
+    {
+        if(v->properties().shortName == name)
+        {
+            Visual::setEnabled(v, enable);
             break;
         }
     }
