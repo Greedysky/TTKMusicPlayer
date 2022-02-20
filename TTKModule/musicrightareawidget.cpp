@@ -912,6 +912,7 @@ void MusicRightAreaWidget::createkWindow(int type)
     {
         widget = new QKugouWindow(TTKStatic_cast(QKugouWindow::KuGouType, type), this);
         connect(m_ui->musicBackButton, SIGNAL(clicked()), widget, SLOT(goBack()));
+        connect(m_ui->musicRefreshButton, SIGNAL(clicked()), widget, SLOT(refresh()));
     }
 
     m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);

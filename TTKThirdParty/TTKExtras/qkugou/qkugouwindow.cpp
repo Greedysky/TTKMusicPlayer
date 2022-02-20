@@ -18,6 +18,7 @@
 #  endif
 #endif
 
+#include <QTimer>
 #include <QLabel>
 #include <QBoxLayout>
 #include <QPushButton>
@@ -114,8 +115,10 @@ void QKugouWindow::setUrl(const QString &url)
 
 void QKugouWindow::goBack()
 {
-#ifdef Q_OS_UNIX
     TTK_D(QKugouWindow);
+#ifdef Q_OS_WIN
+    QTimer::singleShot(1, TTKObject_cast(QAxWidget*, d->m_webView), SLOT(GoBack()));
+#else
 #  ifdef TTK_WEBKIT
     QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
     if(w)
@@ -128,6 +131,32 @@ void QKugouWindow::goBack()
     {
         w->back();
     }
+#  else
+    Q_UNUSED(d);
+#  endif
+#endif
+}
+
+void QKugouWindow::refresh()
+{
+    TTK_D(QKugouWindow);
+#ifdef Q_OS_WIN
+    QTimer::singleShot(1, TTKObject_cast(QAxWidget*, d->m_webView), SLOT(Refresh()));
+#else
+#  ifdef TTK_WEBKIT
+    QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
+    if(w)
+    {
+        w->reload();
+    }
+#  elif defined TTK_WEBENGINE
+    QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
+    if(w)
+    {
+        w->reload();
+    }
+#  else
+    Q_UNUSED(d);
 #  endif
 #endif
 }

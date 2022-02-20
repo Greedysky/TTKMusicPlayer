@@ -56,6 +56,12 @@ public Q_SLOTS:
      */
     void goBack();
     /*!
+     * Set web index refresh.
+     */
+    void refresh();
+
+private Q_SLOTS:
+    /*!
      * Kugou song index changed.
      */
     void kugouSongIndexChanged(int index);
