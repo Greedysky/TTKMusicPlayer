@@ -1,6 +1,7 @@
 #include "musicpluginwidget.h"
 #include "ui_musicpluginwidget.h"
 #include "musicitemdelegate.h"
+#include "musicpluginproperty.h"
 
 #include <qmmp/decoderfactory.h>
 #include <qmmp/effectfactory.h>
@@ -24,36 +25,56 @@ public:
     MusicPluginItem(QTreeWidgetItem *parent, DecoderFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, DECODER)
     {
-        initialize(Decoder::isEnabled(factory), true, factory->properties().name, factory->properties().hasSettings, path);
+        MusicPluginProperty property;
+        property.m_name = factory->properties().name;
+        property.m_setting = factory->properties().hasSettings;
+        property.m_description = factory->properties().description;
+        property.m_type = path;
+        initialize(Decoder::isEnabled(factory), true, property);
         m_factory = factory;
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, EffectFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, EFFECT)
     {
-
-        initialize(Effect::isEnabled(factory), false, factory->properties().name, factory->properties().hasSettings, path);
+        MusicPluginProperty property;
+        property.m_name = factory->properties().name;
+        property.m_setting = factory->properties().hasSettings;
+        property.m_type = path;
+        initialize(Effect::isEnabled(factory), false, property);
         m_factory = factory;
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, VisualFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, VISUAL)
     {
-        initialize(Visual::isEnabled(factory), false, factory->properties().name, factory->properties().hasSettings, path);
+        MusicPluginProperty property;
+        property.m_name = factory->properties().name;
+        property.m_setting = factory->properties().hasSettings;
+        property.m_type = path;
+        initialize(Visual::isEnabled(factory), false, property);
         m_factory = factory;
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, InputSourceFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, TRANSPORTS)
     {
-        initialize(InputSource::isEnabled(factory), true, factory->properties().name, factory->properties().hasSettings, path);
+        MusicPluginProperty property;
+        property.m_name = factory->properties().name;
+        property.m_setting = factory->properties().hasSettings;
+        property.m_type = path;
+        initialize(InputSource::isEnabled(factory), true, property);
         m_factory = factory;
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, OutputFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, OUTPUT)
     {
-        initialize(Output::currentFactory() == factory, true, factory->properties().name, factory->properties().hasSettings, path);
+        MusicPluginProperty property;
+        property.m_name = factory->properties().name;
+        property.m_setting = factory->properties().hasSettings;
+        property.m_type = path;
+        initialize(Output::currentFactory() == factory, true, property);
         m_factory = factory;
     }
 
@@ -112,14 +133,20 @@ public:
         }
     }
 
-    void initialize(bool state, bool enable, const QString &name, bool setting, const QString &path)
+    void initialize(bool state, bool enable, const MusicPluginProperty &property)
     {
         setData(0, MUSIC_CHECK_ROLE, state ? Qt::Checked : Qt::Unchecked);
         setData(0, MUSIC_ENABLE_ROLE, enable);
-        setData(1, MUSIC_TEXT_ROLE, name);
-        setData(2, MUSIC_TEXT_ROLE, path.section('/', -1));
+        setData(1, MUSIC_TEXT_ROLE, property.m_name);
+        setData(2, MUSIC_TEXT_ROLE, property.m_type.section('/', -1));
 
-        if(setting)
+        if(!property.m_description.isEmpty())
+        {
+            setToolTip(1, property.m_description);
+            setToolTip(2, property.m_description);
+        }
+
+        if(property.m_setting)
         {
             setIcon(3, QIcon(":/contextMenu/btn_setting"));
         }

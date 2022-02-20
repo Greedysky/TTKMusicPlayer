@@ -21,6 +21,7 @@ INCLUDEPATH += $$PWD
 HEADERS += \
     $$PWD/musicobject.h \
     $$PWD/musicformats.h \
+    $$PWD/musicpluginproperty.h \
     $$PWD/musicnumberdefine.h \
     $$PWD/musicglobaldefine.h \
     $$PWD/musicotherdefine.h \

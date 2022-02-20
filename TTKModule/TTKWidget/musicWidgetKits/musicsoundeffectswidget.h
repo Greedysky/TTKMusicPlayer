@@ -37,13 +37,13 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSoundEffectsItemWidget(const MusicEffectProperty &plugin, QWidget *parent = nullptr);
+    explicit MusicSoundEffectsItemWidget(const MusicPluginProperty &property, QWidget *parent = nullptr);
     ~MusicSoundEffectsItemWidget();
 
     /*!
      * Get plugin module type.
      */
-    inline QString type() const { return m_plugin.m_type; }
+    inline QString type() const { return m_property.m_type; }
     /*!
      * Set plugin enable or not.
      */
@@ -72,7 +72,7 @@ protected:
     bool m_enable;
     QLabel *m_textLabel;
     QPushButton *m_settingButton, *m_openButton;
-    MusicEffectProperty m_plugin;
+    MusicPluginProperty m_property;
 
 };
 

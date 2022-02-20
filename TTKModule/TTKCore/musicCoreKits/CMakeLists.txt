@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8.11)
 set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
     ${MUSIC_CORE_DIR}/musicobject.h
     ${MUSIC_CORE_DIR}/musicformats.h
+    ${MUSIC_CORE_DIR}/musicpluginproperty.h
     ${MUSIC_CORE_DIR}/musicglobaldefine.h
     ${MUSIC_CORE_DIR}/musichotkeymanager.h
     ${MUSIC_CORE_DIR}/musictime.h

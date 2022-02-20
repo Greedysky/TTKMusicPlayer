@@ -20,17 +20,7 @@
  ***************************************************************************/
 
 #include "musicglobaldefine.h"
-
-/*! @brief The class of the xml attribute.
- * @author Greedysky <greedysky@163.com>
- */
-typedef struct TTK_MODULE_EXPORT MusicEffectProperty
-{
-    QString m_type;
-    QString m_name;
-    bool m_setting;
-}MusicEffectProperty;
-TTK_DECLARE_LIST(MusicEffectProperty)
+#include "musicpluginproperty.h"
 
 /*! @brief The namespace of the utils qmmp.
  * @author Greedysky <greedysky@163.com>
@@ -59,7 +49,7 @@ namespace MusicUtils
         /*!
          * Check effect is valid.
          */
-        TTK_MODULE_EXPORT MusicEffectPropertys effectPlugins();
+        TTK_MODULE_EXPORT MusicPluginPropertys effectPlugins();
         /*!
          * Show effect setting control.
          */
