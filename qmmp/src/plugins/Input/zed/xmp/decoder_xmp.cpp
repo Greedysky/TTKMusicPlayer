@@ -13,10 +13,7 @@ DecoderXmp::DecoderXmp(const QString &path)
 
 DecoderXmp::~DecoderXmp()
 {
-    if(m_instance == this)
-    {
-        m_instance = nullptr;
-    }
+    m_instance = nullptr;
     deinit();
 }
 

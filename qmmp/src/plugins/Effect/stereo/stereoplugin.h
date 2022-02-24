@@ -40,8 +40,7 @@ public:
 
 private:
     QMutex m_mutex;
-    double m_avg = 0, m_ldiff = 0, m_rdiff = 0;
-    double m_offset = 0, m_intensity = 2.0;
+    double m_intensity = 2.0;
     static StereoPlugin *m_instance;
 
 };

@@ -41,8 +41,8 @@ public:
     static Bs2bPlugin* instance();
 
 private:
-    t_bs2bdp m_bs2b_handler;
     QMutex m_mutex;
+    t_bs2bdp m_bs2b_handler;
     static Bs2bPlugin *m_instance;
 
 };

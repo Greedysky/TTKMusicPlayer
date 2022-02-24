@@ -16,34 +16,42 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef CRYSTALIZERPLUGIN_H
-#define CRYSTALIZERPLUGIN_H
+#ifndef MIXERPLUGIN_H
+#define MIXERPLUGIN_H
 
 #include <QMutex>
 #include <qmmp/effect.h>
 
-#define DEFAULT_INTENSITY 10
-
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class CrystalizerPlugin : public Effect
+class MixerPlugin : public Effect
 {
 public:
-    CrystalizerPlugin();
-    virtual ~CrystalizerPlugin();
+    enum MixerType
+    {
+        Null,
+        MonoToStereo,
+        StereoToMono
+    };
+
+public:
+    MixerPlugin();
+    virtual ~MixerPlugin();
 
     virtual void applyEffect(Buffer *b) override final;
     virtual void configure(quint32 freq, ChannelMap map) override final;
 
-    void setIntensity(int intensity);
-    static CrystalizerPlugin* instance();
+    void setType(MixerType type);
+    static MixerPlugin* instance();
 
 private:
     QMutex m_mutex;
-    int m_intensity = 0;
+    MixerType m_type = Null;
+    bool m_enabled = false;
+    size_t m_size = 0;
     float *m_buffer = nullptr;
-    static CrystalizerPlugin *m_instance;
+    static MixerPlugin *m_instance;
 
 };
 

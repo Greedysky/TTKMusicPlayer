@@ -1,6 +1,6 @@
 #include "bs2bplugin.h"
+
 #include <QSettings>
-#include <math.h>
 
 Bs2bPlugin *Bs2bPlugin::m_instance = nullptr;
 
@@ -27,7 +27,7 @@ void Bs2bPlugin::applyEffect(Buffer *b)
     }
 
     m_mutex.lock();
-    bs2b_cross_feed_f(m_bs2b_handler, b->data, b->samples/2);
+    bs2b_cross_feed_f(m_bs2b_handler, b->data, b->samples / 2);
     m_mutex.unlock();
 }
 

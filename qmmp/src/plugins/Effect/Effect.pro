@@ -1,7 +1,11 @@
 include($$PWD/../plugins.pri)
 
 TEMPLATE = subdirs
-SUBDIRS += crossfade mono monotostereo stereo
+SUBDIRS += crossfade mixer stereo
+
+contains(CONFIG, BITCRUSHER_PLUGIN){
+    SUBDIRS += bitcrusher
+}
 
 contains(CONFIG, CRYSTALIZER_PLUGIN){
     SUBDIRS += crystalizer

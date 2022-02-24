@@ -27,16 +27,17 @@ void StereoPlugin::applyEffect(Buffer *b)
 
     m_mutex.lock();
     float *data = b->data;
+    double average = 0, ldiff = 0, rdiff = 0, offset = 0;
     for(size_t i = 0; i < b->samples; i += 2)
     {
-        m_avg = (data[i] + data[i + 1]) / 2;
-        m_ldiff = data[i] - m_avg;
-        m_rdiff = data[i + 1] - m_avg;
+        average = (data[i] + data[i + 1]) / 2;
+        ldiff = data[i] - average;
+        rdiff = data[i + 1] - average;
 
-        m_offset = m_avg + m_ldiff * m_intensity;
-        data[i] = qBound(-1.0, m_offset, 1.0);
-        m_offset = m_avg + m_rdiff * m_intensity;
-        data[i + 1] = qBound(-1.0, m_offset, 1.0);
+        offset = average + ldiff * m_intensity;
+        data[i] = qBound(-1.0, offset, 1.0);
+        offset = average + rdiff * m_intensity;
+        data[i + 1] = qBound(-1.0, offset, 1.0);
     }
     m_mutex.unlock();
 }

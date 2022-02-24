@@ -16,34 +16,35 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef CRYSTALIZERPLUGIN_H
-#define CRYSTALIZERPLUGIN_H
+#ifndef BITCRUSHERPLUGIN_H
+#define BITCRUSHERPLUGIN_H
 
 #include <QMutex>
 #include <qmmp/effect.h>
 
-#define DEFAULT_INTENSITY 10
-
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class CrystalizerPlugin : public Effect
+class BitcrusherPlugin : public Effect
 {
 public:
-    CrystalizerPlugin();
-    virtual ~CrystalizerPlugin();
+    BitcrusherPlugin();
+    virtual ~BitcrusherPlugin();
 
     virtual void applyEffect(Buffer *b) override final;
     virtual void configure(quint32 freq, ChannelMap map) override final;
 
-    void setIntensity(int intensity);
-    static CrystalizerPlugin* instance();
+    void setDepth(double depth);
+    void setDownsample(double downsample);
+    static BitcrusherPlugin* instance();
 
 private:
     QMutex m_mutex;
-    int m_intensity = 0;
+    double m_depth = 0.0f;
+    double m_downsample = 0.0f;
+    double m_accumulator = 0.0f;
     float *m_buffer = nullptr;
-    static CrystalizerPlugin *m_instance;
+    static BitcrusherPlugin *m_instance;
 
 };
 

@@ -16,34 +16,25 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef CRYSTALIZERPLUGIN_H
-#define CRYSTALIZERPLUGIN_H
+#ifndef SETTINGSDIALOG_H
+#define SETTINGSDIALOG_H
 
-#include <QMutex>
-#include <qmmp/effect.h>
-
-#define DEFAULT_INTENSITY 10
+#include "ui_settingsdialog.h"
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class CrystalizerPlugin : public Effect
+class SettingsDialog : public QDialog
 {
+    Q_OBJECT
 public:
-    CrystalizerPlugin();
-    virtual ~CrystalizerPlugin();
+    explicit SettingsDialog(QWidget *parent = nullptr);
 
-    virtual void applyEffect(Buffer *b) override final;
-    virtual void configure(quint32 freq, ChannelMap map) override final;
-
-    void setIntensity(int intensity);
-    static CrystalizerPlugin* instance();
+public slots:
+    virtual void accept() override final;
 
 private:
-    QMutex m_mutex;
-    int m_intensity = 0;
-    float *m_buffer = nullptr;
-    static CrystalizerPlugin *m_instance;
+    Ui::SettingsDialog m_ui;
 
 };
 

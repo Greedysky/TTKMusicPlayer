@@ -16,7 +16,6 @@ EchoPlugin::EchoPlugin()
     : Effect()
 {
     m_instance = this;
-
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_delay = settings.value("Echo/delay", 500).toUInt();
     m_feedback = settings.value("Echo/feedback", 50).toUInt();
@@ -70,6 +69,7 @@ void EchoPlugin::configure(quint32 freq, ChannelMap map)
         {
             delete[] m_buffer;
         }
+
         m_size = rescale(1000, 1000, sampleRate()) * channels();
         m_buffer = new float[m_size]{0};
     }

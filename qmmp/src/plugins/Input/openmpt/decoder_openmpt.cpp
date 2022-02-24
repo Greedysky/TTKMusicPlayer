@@ -12,10 +12,7 @@ DecoderOpenMPT::DecoderOpenMPT(QIODevice *input)
 
 DecoderOpenMPT::~DecoderOpenMPT()
 {
-    if(m_instance == this)
-    {
-        m_instance = nullptr;
-    }
+    m_instance = nullptr;
     delete m_helper;
 }
 

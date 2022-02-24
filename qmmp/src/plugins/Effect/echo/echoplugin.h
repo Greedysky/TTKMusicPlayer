@@ -40,13 +40,13 @@ public:
     static EchoPlugin* instance();
 
 private:
+    QMutex m_mutex;
     int m_offset = 0;
     int m_delay = 0;
     int m_feedback = 0;
     int m_volume = 0;
-    QMutex m_mutex;
-    float *m_buffer = nullptr;
     int m_size = 0;
+    float *m_buffer = nullptr;
     static EchoPlugin *m_instance;
 
 };

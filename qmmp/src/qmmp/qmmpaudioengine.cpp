@@ -146,11 +146,11 @@ void QmmpAudioEngine::addEffect(EffectFactory *factory)
     {
         if(effect->factory() == factory)
         {
-            qWarning("QmmpAudioEngine: effect %s already exists",
-                     qPrintable(factory->properties().shortName));
+            qWarning("QmmpAudioEngine: effect %s already exists", qPrintable(factory->properties().shortName));
             return;
         }
     }
+
     if(m_output && m_output->isRunning())
     {
         Effect *effect = Effect::create(factory);
@@ -165,7 +165,7 @@ void QmmpAudioEngine::addEffect(EffectFactory *factory)
         }
         else
         {
-            qDebug("QmmpAudioEngine: restart is required");
+            qDebug("QmmpAudioEngine: restart is required %s", qPrintable(factory->properties().shortName));
             delete effect;
         }
     }
