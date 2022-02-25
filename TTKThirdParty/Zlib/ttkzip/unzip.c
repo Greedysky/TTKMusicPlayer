@@ -18,7 +18,7 @@
   compatibility with older software. The following is from the original crypt.c.
   Code woven in by Terry Thorsen 1/2003.
 
-  Copyright (c) 1990-2000 Info-ZIP.  All rights reserved.
+  Copyright (C) 1990-2000 Info-ZIP.  All rights reserved.
 
   See the accompanying file LICENSE, version 2000-Apr-09 or later
   (the contents of which are also included in zip.h) for terms of use.

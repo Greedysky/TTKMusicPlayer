@@ -29,7 +29,7 @@ BEGIN
                 VALUE "FileDescription", "初始化"
                 VALUE "FileVersion", "1.0.0.0"
                 VALUE "InternalName", "初始化.exe"
-                VALUE "LegalCopyright", "Copyright By Greedysky Studio(C)2022"
+                VALUE "LegalCopyright", "Copyright (C) 2022 Greedysky Studio"
                 VALUE "OriginalFilename", "初始化.exe"
                 VALUE "ProductName", "初始化"
                 VALUE "ProductVersion", "1.0.0.0"

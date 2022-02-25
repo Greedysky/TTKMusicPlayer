@@ -4,7 +4,7 @@
 #define MyAppNameEN "TTKMusicPlayer"
 #define MyAppVersion "2.15.7.0"
 #define MyAppPublisher "Greedysky Studio"
-#define MyAppCopyright "Copyright (c) 2015 - 2022 Greedysky Studio"
+#define MyAppCopyright "Copyright (C) 2015 - 2022 Greedysky Studio"
 #define MyAppURL "http://download.csdn.net/album/detail/3094"
 #define MyAppExeName MyAppNameEN + ".exe"
 
@@ -38,8 +38,9 @@ Uninstallable=yes
 UninstallDisplayName={#MyAppNameZh}
 UninstallDisplayIcon={app}\{#ResourcesIcon}
 DefaultGroupName={#MyAppNameZh}
-Versioninfodescription={#MyAppNameZh} 安装程序
-versioninfocopyright={#MyAppCopyright}
+VersionInfoDescription={#MyAppNameZh} 安装程序
+VersionInfoCopyright={#MyAppCopyright}
+VersionInfoVersion={#MyAppVersion}
 VersionInfoProductName={#MyAppNameZh}
 DisableReadyPage=yes
 DisableProgramGroupPage=yes

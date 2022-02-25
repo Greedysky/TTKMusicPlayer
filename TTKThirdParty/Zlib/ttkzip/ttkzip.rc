@@ -26,7 +26,7 @@ BEGIN
                 VALUE "CompanyName", "Greedysky Studio, Ltd."
                 VALUE "FileDescription", "TTKZip"
                 VALUE "FileVersion", "1.0.0.0"
-                VALUE "LegalCopyright", "Copyright By Greedysky Studio(C)2022"
+                VALUE "LegalCopyright", "Copyright (C) 2022 Greedysky Studio"
                 VALUE "ProductName", "TTKZip"
                 VALUE "ProductVersion", "1.0.0.0"
             END
