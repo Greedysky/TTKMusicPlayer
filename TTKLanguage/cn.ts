@@ -41,6 +41,13 @@
     </message>
 </context>
 <context>
+    <name>EffectBitcrusherFactory</name>
+    <message>
+        <source>Bitcrusher Plugin</source>
+        <translation>失真效果插件(bitcrusher)</translation>
+    </message>
+</context>
+<context>
     <name>EffectBs2bFactory</name>
     <message>
         <source>BS2B Plugin</source>
@@ -76,17 +83,10 @@
     </message>
 </context>
 <context>
-    <name>EffectMonoFactory</name>
+    <name>EffectMixerFactory</name>
     <message>
-        <source>Extra Mono Plugin</source>
-        <translation>转换单声道插件(stereo to mono)</translation>
-    </message>
-</context>
-<context>
-    <name>EffectMonoToStereoFactory</name>
-    <message>
-        <source>Mono to Stereo Converter Plugin</source>
-        <translation>转换立体声插件(mono to stereo)</translation>
+        <source>Channel Mixer Plugin</source>
+        <translation>通道混合器插件(channel mixer)</translation>
     </message>
 </context>
 <context>
@@ -7571,52 +7571,52 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
 <context>
     <name>QKugouWindow</name>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="227"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="256"/>
         <source> SongRecommend </source>
         <translation> 推荐 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="230"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="259"/>
         <source> SongRank </source>
         <translation> 排行榜 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="233"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="262"/>
         <source> SongSinger </source>
         <translation> 歌手 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="236"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="265"/>
         <source> SongCategory </source>
         <translation> 分类 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="288"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="317"/>
         <source> RadioPublic </source>
         <translation> 公共电台 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="291"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="320"/>
         <source> RadioHigh </source>
         <translation> 高潮电台 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="294"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="323"/>
         <source> RadioFx </source>
         <translation> 真人电台 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="372"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="401"/>
         <source> MVRadio </source>
         <translation> MV电台 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="375"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="404"/>
         <source> MVRecommend </source>
         <translation> MV推荐 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="378"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="407"/>
         <source> MVFanxing </source>
         <translation> 繁星MV </translation>
     </message>
@@ -8377,6 +8377,38 @@ too high may cause clipping!</source>
     <message>
         <source>Cubic spline</source>
         <translation>三次样条</translation>
+    </message>
+    <message>
+        <source>Bitcrusher Plugin Settings</source>
+        <translation>失真效果插件設置</translation>
+    </message>
+    <message>
+        <source>Depth:</source>
+        <translation>深度:</translation>
+    </message>
+    <message>
+        <source>Downsample:</source>
+        <translation>采样率:</translation>
+    </message>
+    <message>
+        <source>Channel Mixer Plugin Settings</source>
+        <translation>通道混合器插件設置</translation>
+    </message>
+    <message>
+        <source>Mixer Type:</source>
+        <translation>混合类型:</translation>
+    </message>
+    <message>
+        <source>NullMix</source>
+        <translation>暂无</translation>
+    </message>
+    <message>
+        <source>MonoToStereo</source>
+        <translation>单通道转双通道</translation>
+    </message>
+    <message>
+        <source>StereoToMono</source>
+        <translation>双通道转单通道</translation>
     </message>
 </context>
 <context>
