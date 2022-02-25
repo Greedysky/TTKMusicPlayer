@@ -1,6 +1,6 @@
 ;******************************************************************************
 ;* MMX optimized DSP utils
-;* Copyright (c) 2008 Loren Merritt
+;* Copyright (C) 2008 Loren Merritt
 ;*
 ;* This file is part of FFmpeg.
 ;*

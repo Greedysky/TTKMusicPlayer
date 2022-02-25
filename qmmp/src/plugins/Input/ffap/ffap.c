@@ -1,6 +1,6 @@
 /*
     Copyright (C) 2009-2011 Alexey Yakovenko <waker@users.sourceforge.net>
-    based on apedec from FFMpeg Copyright (c) 2007 Benjamin Zores <ben@geexbox.org>
+    based on apedec from FFMpeg Copyright (C) 2007 Benjamin Zores <ben@geexbox.org>
     based upon libdemac from Dave Chapman.
 
     This program is free software; you can redistribute it and/or

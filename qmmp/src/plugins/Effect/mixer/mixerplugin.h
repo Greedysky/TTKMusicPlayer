@@ -32,7 +32,11 @@ public:
     {
         Null,
         MonoToStereo,
-        StereoToMono
+        StereoToMono,
+        StereoToQuadro,
+        QuadroToStereo,
+        Quadro5ToStereo,
+        SurroundToStereo
     };
 
 public:

@@ -68,13 +68,113 @@ void MixerPlugin::applyEffect(Buffer *b)
                 break;
             }
 
-            float average = 0.0f;
             float* data = b->data;
             for(size_t i = 0; i < b->samples; i += 2)
             {
-                average = (data[i] + data[i + 1]) / 2;
-                average = qBound(-1.0f, average, 1.0f);
-                data[i] = data[i + 1] = average;
+                const float frontLeft = data[i];
+                const float frontRight = data[i + 1];
+                data[i] = data[i + 1] = (frontLeft + frontRight) / 2;
+            }
+            break;
+        }
+        case StereoToQuadro:
+        {
+            if(!m_enabled)
+            {
+                break;
+            }
+
+            if(m_size < b->samples)
+            {
+                if(m_buffer)
+                {
+                    delete[] m_buffer;
+                }
+		
+                m_size = b->samples;
+                m_buffer = new float[b->samples];
+            }
+
+            memcpy(m_buffer, b->data, b->samples * sizeof(float));
+            b->samples *= 4;
+
+            if(b->samples > b->size)
+            {
+                delete[] b->data;
+                b->size = b->samples;
+                b->data = new float[b->size];
+            }
+
+            for(size_t i = 0; i < b->samples; i += 4)
+            {
+                const size_t index = i >> 1;
+                const float frontLeft = m_buffer[index];
+                const float frontRight = m_buffer[index + 1];
+                b->data[i] = b->data[i + 2] = frontLeft;
+                b->data[i + 1] = b->data[i + 3] = frontRight;
+            }
+            break;
+        }
+        case QuadroToStereo:
+        {
+            if(channels() != 4)
+            {
+                break;
+            }
+
+            float* data = b->data;
+            for(size_t i = 0; i < b->samples; i += 4)
+            {
+                const float frontLeft = data[i];
+                const float frontRight = data[i + 1];
+                const float backLeft = data[i + 2];
+                const float backRight = data[i + 3];
+                data[i] = data[i + 2] = frontLeft + backLeft * 0.7;
+                data[i + 1] = data[i + 3] = frontRight + backRight * 0.7;
+            }
+            break;
+        }
+        case Quadro5ToStereo:
+        {
+            if(channels() != 5)
+            {
+                break;
+            }
+
+            float* data = b->data;
+            for(size_t i = 0; i < b->samples; i += 5)
+            {
+                const float frontLeft = data[i];
+                const float frontRight = data[i + 1];
+                const float center = data[i + 2];
+                const float rearLeft = data[i + 3];
+                const float rearRight = data[i + 4];
+                data[i] = data[i + 3] = frontLeft + center * 0.5 + rearLeft * 0.5;
+                data[i + 1] = data[i + 4] = frontRight + center * 0.5 + rearRight * 0.5;
+                data[i + 2] = center * 0.5;
+            }
+            break;
+        }
+        case SurroundToStereo:
+        {
+            if(channels() != 6)
+            {
+                break;
+            }
+
+            float* data = b->data;
+            for(size_t i = 0; i < b->samples; i += 6)
+            {
+                const float frontLeft = data[i];
+                const float frontRight = data[i + 1];
+                const float center = data[i + 2];
+                const float lfe = data[i + 3];
+                const float rearLeft = data[i + 4];
+                const float rearRight = data[i + 5];
+                data[i] = data[i + 4] = frontLeft + center * 0.5 + lfe * 0.5 + rearLeft * 0.5;
+                data[i + 1] = data[i + 5] = frontRight + center * 0.5 + lfe * 0.5 + rearRight * 0.5;
+                data[i + 2] = center * 0.5;
+                data[i + 3] = lfe * 0.5;
             }
             break;
         }
@@ -91,6 +191,12 @@ void MixerPlugin::configure(quint32 freq, ChannelMap map)
         {
             m_enabled = (map.count() == 1);
             Effect::configure(freq, m_enabled ? ChannelMap(2) : map);
+            break;
+        }
+        case StereoToQuadro:
+        {
+            m_enabled = (map.count() == 2);
+            Effect::configure(freq, m_enabled ? ChannelMap(4) : map);
             break;
         }
         default: 
