@@ -111,7 +111,7 @@
     </message>
 </context>
 <context>
-    <name>EffectVoiceRemovalFactory</name>
+    <name>EffectMufflerFactory</name>
     <message>
         <source>Voice Removal Plugin</source>
         <translation>消聲插件(voice removal)</translation>
