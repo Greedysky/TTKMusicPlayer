@@ -67,7 +67,7 @@ void ChannelConverter::applyEffect(Buffer *b)
     float *in = m_tmp_buf;
     float *out = b->data;
 
-    for(unsigned long i = 0; i < b->samples / in_channels; ++i)
+    for(size_t i = 0; i < b->samples / in_channels; ++i)
     {
         for(int j = 0; j < out_channels; ++j)
             out[j] = m_reorder_array[j] < 0 ? 0 : in[m_reorder_array[j]];

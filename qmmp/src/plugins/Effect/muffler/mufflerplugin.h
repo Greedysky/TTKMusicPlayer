@@ -16,23 +16,21 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef EFFECTVOICEREMOVALFACTORY_H
-#define EFFECTVOICEREMOVALFACTORY_H
+#ifndef MUFFLERPLUGIN_H
+#define MUFFLERPLUGIN_H
 
-#include <qmmp/effectfactory.h>
+#include <qmmp/effect.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class EffectVoiceRemovalFactory : public QObject, public EffectFactory
+class MufflerPlugin : public Effect
 {
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.EffectFactoryInterface.1.0")
-    Q_INTERFACES(EffectFactory)
 public:
-    virtual const EffectProperties properties() const override final;
-    virtual Effect *create() override final;
-    virtual void showSettings(QWidget *parent) override final;
+    MufflerPlugin();
+    virtual ~MufflerPlugin();
+
+    virtual void applyEffect(Buffer *b) override final;
 
 };
 

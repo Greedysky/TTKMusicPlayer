@@ -1,17 +1,17 @@
-#include "voiceremovalplugin.h"
+#include "mufflerplugin.h"
 
-VoiceRemovalPlugin::VoiceRemovalPlugin()
+MufflerPlugin::MufflerPlugin()
     : Effect()
 {
 
 }
 
-VoiceRemovalPlugin::~VoiceRemovalPlugin()
+MufflerPlugin::~MufflerPlugin()
 {
 
 }
 
-void VoiceRemovalPlugin::applyEffect(Buffer *b)
+void MufflerPlugin::applyEffect(Buffer *b)
 {
     if(channels() != 2)
     {

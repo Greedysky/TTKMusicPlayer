@@ -15,8 +15,8 @@ contains(CONFIG, ECHO_PLUGIN){
     SUBDIRS += echo
 }
 
-contains(CONFIG, VOICEREMOVAL_PLUGIN){
-    SUBDIRS += voiceremoval
+contains(CONFIG, MUFFLER_PLUGIN){
+    SUBDIRS += muffler
 }
 
 contains(CONFIG, BS2B_PLUGIN){
