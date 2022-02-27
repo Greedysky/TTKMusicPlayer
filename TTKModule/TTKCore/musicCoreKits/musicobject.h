@@ -25,9 +25,9 @@
 #include "ttkglobal.h"
 
 //
-#define CFG_FILE_PREFIX         "ttk"
-#define TEX_FILE_PREFIX         "tex"
-#define TTS_FILE_PREFIX         "ttks"
+#define TKF_FILE_PREFIX         "tkf"
+#define TKX_FILE_PREFIX         "tkx"
+#define TKM_FILE_PREFIX         "tkm"
 //
 #define SKN_FILE_PREFIX         "skn"
 #define JPG_FILE_PREFIX         "jpg"
@@ -60,9 +60,9 @@
 #define ZIP_FILE_PREFIX         "zip"
 
 
-#define TTS_FILE                TTK_STRCAT(TTK_DOT, TTS_FILE_PREFIX)
-#define CFG_FILE                TTK_STRCAT(TTK_DOT, CFG_FILE_PREFIX)
-#define TEX_FILE                TTK_STRCAT(TTK_DOT, TEX_FILE_PREFIX)
+#define TKF_FILE                TTK_STRCAT(TTK_DOT, TKF_FILE_PREFIX)
+#define TKX_FILE                TTK_STRCAT(TTK_DOT, TKX_FILE_PREFIX)
+#define TKM_FILE                TTK_STRCAT(TTK_DOT, TKM_FILE_PREFIX)
 //
 #define SKN_FILE                TTK_STRCAT(TTK_DOT, SKN_FILE_PREFIX)
 #define JPG_FILE                TTK_STRCAT(TTK_DOT, JPG_FILE_PREFIX)
@@ -111,10 +111,10 @@
 #define USER_THEME_DIR          TTK_STRCAT("theme", TTK_SEPARATOR)
 
 
-#define MAKE_TRANSFORM_PREFIX   TTK_STRCAT("avconv", TEX_FILE)
-#define MAKE_KRC2LRC_PREFIX     TTK_STRCAT("avk2l", TEX_FILE)
-#define MAKE_PLAYER_PREFIX      TTK_STRCAT("avplayer", TEX_FILE)
-#define MAKE_GAIN_PREFIX        TTK_STRCAT("avgain", TEX_FILE)
+#define MAKE_TRANSFORM_PREFIX   TTK_STRCAT("avconv", TKX_FILE)
+#define MAKE_KRC2LRC_PREFIX     TTK_STRCAT("avk2l", TKX_FILE)
+#define MAKE_PLAYER_PREFIX      TTK_STRCAT("avplayer", TKX_FILE)
+#define MAKE_GAIN_PREFIX        TTK_STRCAT("avgain", TKX_FILE)
 
 
 #define MAKE_CONFIG_DIR         TTK_STRCAT(PLUGINS_DIR, CONFIG_DIR)
@@ -126,10 +126,10 @@
 
 #define COFIG_PATH              "config.xml"
 #define PLAYLIST_PATH           "playlist.tkpl"
-#define NORMAL_DOWN_PATH        "download.ttk"
-#define CLOUD_DOWN_PATH         "cdownload.ttk"
-#define CLOUD_UP_PATH           "cupload.ttk"
-#define SEARCH_PATH             "search.ttk"
+#define NORMAL_DOWN_PATH        "download.tkf"
+#define CLOUD_DOWN_PATH         "cdownload.tkf"
+#define CLOUD_UP_PATH           "cupload.tkf"
+#define SEARCH_PATH             "search.tkf"
 
 
 #define MAIN_DIR_FULL           MusicObject::applicationPath() + TTK_PDIR

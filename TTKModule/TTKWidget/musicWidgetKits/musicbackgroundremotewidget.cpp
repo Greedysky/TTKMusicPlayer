@@ -104,7 +104,7 @@ void MusicBackgroundDailyWidget::initialize()
     else
     {
         m_backgroundList->clearAllItems();
-        startToDownload(TTS_FILE);
+        startToDownload(TKM_FILE);
     }
 }
 
@@ -130,7 +130,7 @@ void MusicBackgroundDailyWidget::outputRemoteSkin(MusicBackgroundImage &image, c
 void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroups &bytes)
 {
     MusicBackgroundRemoteWidget::downLoadFinished(bytes);
-    startToDownload(TTS_FILE);
+    startToDownload(TKM_FILE);
 }
 
 
@@ -248,7 +248,7 @@ void MusicBackgroundOnlineWidget::currentTypeChanged(int index)
     }
 
     m_currentIndex = index;
-    startToDownload(TTS_FILE);
+    startToDownload(TKM_FILE);
 }
 
 void MusicBackgroundOnlineWidget::downLoadFinished(const MusicSkinRemoteGroups &bytes)

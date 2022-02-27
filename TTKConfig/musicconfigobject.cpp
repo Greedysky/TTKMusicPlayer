@@ -25,10 +25,10 @@ void MusicConfigObject::initialize() const
 
     copyFileOverwrite(":/data/config.xml", TTK_COFIG_PATH_FULL);
     copyFileOverwrite(":/data/playlist.tkpl", TTK_PLAYLIST_PATH_FULL);
-    copyFileOverwrite(":/data/download.ttk", TTK_NORMAL_DOWN_PATH_FULL);
-    copyFileOverwrite(":/data/cdownload.ttk", TTK_CLOUD_DOWN_PATH_FULL);
-    copyFileOverwrite(":/data/cupload.ttk", TTK_CLOUD_UP_PATH_FULL);
-    copyFileOverwrite(":/data/search.ttk", TTK_SEARCH_PATH_FULL);
+    copyFileOverwrite(":/data/download.tkf", TTK_NORMAL_DOWN_PATH_FULL);
+    copyFileOverwrite(":/data/cdownload.tkf", TTK_CLOUD_DOWN_PATH_FULL);
+    copyFileOverwrite(":/data/cupload.tkf", TTK_CLOUD_UP_PATH_FULL);
+    copyFileOverwrite(":/data/search.tkf", TTK_SEARCH_PATH_FULL);
 }
 
 void MusicConfigObject::reset() const
@@ -66,10 +66,10 @@ void MusicConfigObject::checkFileNeededExist() const
 {
     copyFile(":/data/config.xml", TTK_COFIG_PATH_FULL);
     copyFile(":/data/playlist.tkpl", TTK_PLAYLIST_PATH_FULL);
-    copyFile(":/data/download.ttk", TTK_NORMAL_DOWN_PATH_FULL);
-    copyFile(":/data/cdownload.ttk", TTK_CLOUD_DOWN_PATH_FULL);
-    copyFile(":/data/cupload.ttk", TTK_CLOUD_UP_PATH_FULL);
-    copyFile(":/data/search.ttk", TTK_SEARCH_PATH_FULL);
+    copyFile(":/data/download.tkf", TTK_NORMAL_DOWN_PATH_FULL);
+    copyFile(":/data/cdownload.tkf", TTK_CLOUD_DOWN_PATH_FULL);
+    copyFile(":/data/cupload.tkf", TTK_CLOUD_UP_PATH_FULL);
+    copyFile(":/data/search.tkf", TTK_SEARCH_PATH_FULL);
 
 #ifdef Q_OS_UNIX
     copyLinuxShellFile(":/data/TTKRoutine.sh", TTK_ROUTINE_FULL);

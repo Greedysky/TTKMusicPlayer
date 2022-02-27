@@ -2,10 +2,10 @@
     <qresource prefix="/data">
         <file alias="playlist.tkpl">../TTKResource/_extras/playlist.tkpl</file>
         <file alias="config.xml">../TTKResource/_extras/config.xml</file>
-        <file alias="download.ttk">../TTKResource/_extras/download.ttk</file>
-        <file alias="cdownload.ttk">../TTKResource/_extras/cdownload.ttk</file>
-        <file alias="cupload.ttk">../TTKResource/_extras/cupload.ttk</file>
-        <file alias="search.ttk">../TTKResource/_extras/search.ttk</file>
+        <file alias="download.tkf">../TTKResource/_extras/download.tkf</file>
+        <file alias="cdownload.tkf">../TTKResource/_extras/cdownload.tkf</file>
+        <file alias="cupload.tkf">../TTKResource/_extras/cupload.tkf</file>
+        <file alias="search.tkf">../TTKResource/_extras/search.tkf</file>
         <file alias="TTKRoutine.sh">../TTKResource/_extras/TTKRoutine.sh</file>
         <file alias="TTKRoutineCopy.sh">../TTKResource/_extras/TTKRoutineCopy.sh</file>
         <file alias="TTKConsole.sh">../TTKResource/_extras/TTKConsole.sh</file>

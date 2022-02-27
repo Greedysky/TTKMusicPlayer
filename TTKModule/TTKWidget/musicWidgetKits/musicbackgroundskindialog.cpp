@@ -85,7 +85,7 @@ MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
 
 QPixmap MusicBackgroundSkinDialog::setBackgroundUrl(QString &name)
 {
-    QString path = USER_THEME_DIR_FULL + name + TTS_FILE;
+    QString path = USER_THEME_DIR_FULL + name + TKM_FILE;
     MusicBackgroundSkinDialog::themeValidCheck(name, path);
     G_BACKGROUND_PTR->setBackgroundUrl(path);
 
@@ -97,16 +97,16 @@ bool MusicBackgroundSkinDialog::themeValidCheck(QString &name, QString &path)
 {
     if(!QFile::exists(path))
     {
-        QString orPath = QString("%1%2%3").arg(THEME_DIR_FULL, name, TTS_FILE);
+        QString orPath = QString("%1%2%3").arg(THEME_DIR_FULL, name, TKM_FILE);
         if(QFile::exists(orPath))
         {
-            QFile::copy(orPath, QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TTS_FILE));
+            QFile::copy(orPath, QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TKM_FILE));
         }
         else
         {
             name = "theme-1";
-            orPath = QString("%1%2%3").arg(THEME_DIR_FULL, name, TTS_FILE);
-            QFile::copy(orPath, QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TTS_FILE));
+            orPath = QString("%1%2%3").arg(THEME_DIR_FULL, name, TKM_FILE);
+            QFile::copy(orPath, QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TKM_FILE));
         }
         return false;
     }
@@ -121,7 +121,7 @@ QString MusicBackgroundSkinDialog::cpoyArtistFileToLocal(const QString &path)
 
 void MusicBackgroundSkinDialog::updateArtistFileTheme(const QString &theme)
 {
-    const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL, theme, TTS_FILE);
+    const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL, theme, TKM_FILE);
     m_stackBackgroundList->createItem(theme, des, true);
     m_stackBackgroundList->updateLastedItem();
 }
@@ -177,19 +177,19 @@ void MusicBackgroundSkinDialog::showPaletteDialog(const QString &path)
 
 void MusicBackgroundSkinDialog::showCustomSkinDialog()
 {
-    const QString &path = MusicUtils::File::openFileDialog(this, "Images (*.png *.bmp *.jpg);;TTKS Files(*.ttks)");
+    const QString &path = MusicUtils::File::openFileDialog(this, "Images (*.png *.bmp *.jpg);;TKM Files(*.tkm)");
     if(path.isEmpty())
     {
         return;
     }
 
-    if(QFileInfo(path).suffix().toLower() == TTS_FILE_PREFIX)
+    if(QFileInfo(path).suffix().toLower() == TKM_FILE_PREFIX)
     {
         const int index = cpoyFileToLocalIndex();
         if(index != -1)
         {
             m_stackThemeIndex = index;
-            QString des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(index + 1).arg(TTS_FILE);
+            QString des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(index + 1).arg(TKM_FILE);
             QFile::copy(path, des);
             m_stackBackgroundList->createItem(QString("theme-%1").arg(index + 1), des, true);
         }
@@ -238,8 +238,8 @@ void MusicBackgroundSkinDialog::classicalListWidgetItemClicked(int type, const Q
     {
         if(!m_stackBackgroundList->contains(name))
         {
-            const QString &path = QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TTS_FILE);
-            QFile::copy(QString("%1%2%3").arg(THEME_DIR_FULL, name, TTS_FILE), path);
+            const QString &path = QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TKM_FILE);
+            QFile::copy(QString("%1%2%3").arg(THEME_DIR_FULL, name, TKM_FILE), path);
             m_stackBackgroundList->createItem(name, path, true);
         }
         listWidgetItemClicked(m_stackBackgroundList, name);
@@ -299,7 +299,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundListWidget 
     item->setCurrentItemName(name);
 
     QString s(name);
-    QString path = USER_THEME_DIR_FULL + s + TTS_FILE;
+    QString path = USER_THEME_DIR_FULL + s + TKM_FILE;
     MusicBackgroundSkinDialog::themeValidCheck(s, path);
     G_BACKGROUND_PTR->setBackgroundUrl(path);
     Q_EMIT G_BACKGROUND_PTR->backgroundHasChanged();
@@ -319,7 +319,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundRemoteWidge
     {
         const int index = cpoyFileToLocalIndex();
         const QString &theme = QString("theme-%1").arg(index + 1);
-        const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL, theme, TTS_FILE);
+        const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL, theme, TKM_FILE);
         MusicExtractWrapper::inputSkin(&image, des);
 
         m_stackBackgroundList->createItem(theme, des, true);
@@ -355,7 +355,7 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem(MusicBackgroundListWidget
 
     for(const int index : qAsConst(data))
     {
-        const QFileInfo info(QString("%1theme-%2%3").arg(dir).arg(index).arg(TTS_FILE));
+        const QFileInfo info(QString("%1theme-%2%3").arg(dir).arg(index).arg(TKM_FILE));
         item->createItem(info.baseName(), info.filePath(), state);
     }
 }
@@ -366,7 +366,7 @@ void MusicBackgroundSkinDialog::cpoyFileFromLocal(const QString &path)
     if(index != -1)
     {
         m_stackThemeIndex = index;
-        const QString &des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(m_stackThemeIndex + 1).arg(TTS_FILE);
+        const QString &des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(m_stackThemeIndex + 1).arg(TKM_FILE);
         m_stackBackgroundList->createItem(QString("theme-%1").arg(m_stackThemeIndex + 1), des, true);
     }
 }
@@ -400,7 +400,7 @@ int MusicBackgroundSkinDialog::cpoyFileToLocal(const QString &path)
 {
     const int index = cpoyFileToLocalIndex();
 
-    const QString &des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(index + 1).arg(TTS_FILE);
+    const QString &des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(index + 1).arg(TKM_FILE);
     MusicBackgroundImage image;
     image.m_pix = QPixmap(path);
     return MusicExtractWrapper::inputSkin(&image, des) ? index : -1;
