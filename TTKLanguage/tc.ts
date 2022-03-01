@@ -114,7 +114,14 @@
     <name>EffectMufflerFactory</name>
     <message>
         <source>Voice Removal Plugin</source>
-        <translation>消聲插件(voice removal)</translation>
+        <translation>人聲移除插件(voice removal)</translation>
+    </message>
+</context>
+<context>
+    <name>EffectSilenceFactory</name>
+    <message>
+        <source>Silence Removal Plugin</source>
+        <translation>靜音移除插件(silence removal)</translation>
     </message>
 </context>
 <context>
@@ -8413,6 +8420,14 @@ too high may cause clipping!</source>
     <message>
         <source>StereoToMono</source>
         <translation>雙通道轉單通道</translation>
+    </message>
+    <message>
+        <source>Silence Removal Plugin Settings</source>
+        <translation>通道混合器插件設置</translation>
+    </message>
+    <message>
+        <source>Threshold (db):</source>
+        <translation>阈值 (分貝):</translation>
     </message>
 </context>
 <context>
