@@ -1,4 +1,4 @@
-#include "effecmufflerfactory.h"
+#include "effectmufflerfactory.h"
 #include "mufflerplugin.h"
 
 const EffectProperties EffectMufflerFactory::properties() const

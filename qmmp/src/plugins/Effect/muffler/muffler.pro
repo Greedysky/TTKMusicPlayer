@@ -4,10 +4,10 @@ DESTDIR = $$PLUGINS_PREFIX/Effect
 TARGET = $${TARGET}
 
 HEADERS += mufflerplugin.h \
-           effecmufflerfactory.h
+           effectmufflerfactory.h
 
 SOURCES += mufflerplugin.cpp \
-           effecmufflerfactory.cpp
+           effectmufflerfactory.cpp
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so

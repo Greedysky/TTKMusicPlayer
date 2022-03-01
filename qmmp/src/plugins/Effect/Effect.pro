@@ -19,6 +19,10 @@ contains(CONFIG, MUFFLER_PLUGIN){
     SUBDIRS += muffler
 }
 
+contains(CONFIG, SILENCE_PLUGIN){
+    SUBDIRS += silence
+}
+
 contains(CONFIG, BS2B_PLUGIN){
     SUBDIRS += bs2b
 }

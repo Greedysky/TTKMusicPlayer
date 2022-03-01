@@ -16,15 +16,15 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef EFFECMUFFLERFACTORY_H
-#define EFFECMUFFLERFACTORY_H
+#ifndef EFFECTSILENCEFACTORY_H
+#define EFFECTSILENCEFACTORY_H
 
 #include <qmmp/effectfactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class EffectMufflerFactory : public QObject, public EffectFactory
+class EffectSilenceFactory : public QObject, public EffectFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.EffectFactoryInterface.1.0")
