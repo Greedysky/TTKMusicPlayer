@@ -90,10 +90,24 @@
     </message>
 </context>
 <context>
+    <name>EffectMufflerFactory</name>
+    <message>
+        <source>Voice Removal Plugin</source>
+        <translation>人声移除插件(voice removal)</translation>
+    </message>
+</context>
+<context>
     <name>EffectSRConverterFactory</name>
     <message>
         <source>SRC Plugin</source>
         <translation>取样率转换插件(sample rate converter)</translation>
+    </message>
+</context>
+<context>
+    <name>EffectSilenceFactory</name>
+    <message>
+        <source>Silence Removal Plugin</source>
+        <translation>静音移除插件(silence removal)</translation>
     </message>
 </context>
 <context>
@@ -108,20 +122,6 @@
     <message>
         <source>Extra Stereo Plugin</source>
         <translation>立体声扩展插件(stereo)</translation>
-    </message>
-</context>
-<context>
-    <name>EffectMufflerFactory</name>
-    <message>
-        <source>Voice Removal Plugin</source>
-        <translation>人声移除插件(voice removal)</translation>
-    </message>
-</context>
-<context>
-    <name>EffectSilenceFactory</name>
-    <message>
-        <source>Silence Removal Plugin</source>
-        <translation>静音移除插件(silence removal)</translation>
     </message>
 </context>
 <context>
