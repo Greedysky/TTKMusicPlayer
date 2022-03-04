@@ -46,11 +46,11 @@ contains(CONFIG, SC68_PLUGIN){
     SUBDIRS += sc68
 }
 
-contains(CONFIG, BP_PLUGIN){
+contains(CONFIG, SOUNDMON_PLUGIN){
     SUBDIRS += soundmon
 }
 
-contains(CONFIG, YM_PLUGIN){
+contains(CONFIG, STSOUND_PLUGIN){
     SUBDIRS += stsound
 }
 
