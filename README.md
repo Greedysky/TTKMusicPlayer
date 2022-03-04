@@ -30,17 +30,18 @@ The TTKMusicplayer plugin for run
  * wasapi
  * waveout
 ### Effect
+ * bitcrusher
  * bs2b
  * crossfade
  * crystalizer
  * echo
  * ladspa
- * mono
- * monotostereo
+ * mixer
+ * muffler
+ * silence
  * soxr
  * srconverter
  * stereo
- * voiceremoval
 ### Light
  * lightenvelope
  * lightreplaygain
@@ -104,6 +105,6 @@ The TTKMusicplayer plugin for run
  * psf
  * sc68
  * v2m
- * xsf
  * xmp
+ * xsf
  * ym

@@ -30,11 +30,11 @@ extern "C" {
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class MdxHelper
+class MDXHelper
 {
 public:
-    explicit MdxHelper(const QString &path);
-    ~MdxHelper();
+    explicit MDXHelper(const QString &path);
+    ~MDXHelper();
 
     void deinit();
     bool initialize();

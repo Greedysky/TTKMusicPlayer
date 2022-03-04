@@ -3,12 +3,12 @@
 #include "decoder_gme.h"
 #include "settingsdialog.h"
 
-bool DecoderGmeFactory::canDecode(QIODevice *) const
+bool DecoderGMEFactory::canDecode(QIODevice *) const
 {
     return false;
 }
 
-DecoderProperties DecoderGmeFactory::properties() const
+DecoderProperties DecoderGMEFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("GME Plugin");
@@ -22,13 +22,13 @@ DecoderProperties DecoderGmeFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderGmeFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderGMEFactory::create(const QString &path, QIODevice *input)
 {
     Q_UNUSED(input);
-    return new DecoderGme(path);
+    return new DecoderGME(path);
 }
 
-QList<TrackInfo*> DecoderGmeFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
+QList<TrackInfo*> DecoderGMEFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
 {
     if(path.contains("://")) //is it one track?
     {
@@ -58,24 +58,24 @@ QList<TrackInfo*> DecoderGmeFactory::createPlayList(const QString &path, TrackIn
         }
     }
 
-    GmeHelper helper;
+    GMEHelper helper;
     Music_Emu *emu = helper.load(path);
     if(!emu)
     {
-        qWarning("DecoderGmeFactory: unable to open file");
+        qWarning("DecoderGMEFactory: unable to open file");
         return QList<TrackInfo*>();
     }
     return helper.createPlayList(parts);
 }
 
-MetaDataModel* DecoderGmeFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderGMEFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);
     return nullptr;
 }
 
-void DecoderGmeFactory::showSettings(QWidget *parent)
+void DecoderGMEFactory::showSettings(QWidget *parent)
 {
     SettingsDialog *s = new SettingsDialog(parent);
     s->show();
@@ -83,5 +83,5 @@ void DecoderGmeFactory::showSettings(QWidget *parent)
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #include <QtPlugin>
-Q_EXPORT_PLUGIN2(gme, DecoderGmeFactory)
+Q_EXPORT_PLUGIN2(gme, DecoderGMEFactory)
 #endif

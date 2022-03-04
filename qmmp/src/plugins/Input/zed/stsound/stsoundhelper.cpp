@@ -1,17 +1,17 @@
-#include "ymhelper.h"
+#include "stsoundhelper.h"
 
-YMHelper::YMHelper(const QString &path)
+StSoundHelper::StSoundHelper(const QString &path)
     : m_path(path)
 {
 
 }
 
-YMHelper::~YMHelper()
+StSoundHelper::~StSoundHelper()
 {
     deinit();
 }
 
-void YMHelper::deinit()
+void StSoundHelper::deinit()
 {
     if(m_music)
     {
@@ -19,12 +19,12 @@ void YMHelper::deinit()
     }
 }
 
-bool YMHelper::initialize()
+bool StSoundHelper::initialize()
 {
     m_music = new CYmMusic;
     if(!m_music)
     {
-        qWarning("YMHelper: failed to create CYmMusic");
+        qWarning("StSoundHelper: failed to create CYmMusic");
         return false;
     }
 
@@ -43,13 +43,13 @@ bool YMHelper::initialize()
         }
 
         m_music = nullptr;
-        qWarning("YMHelper: failed to open: %s", QmmpPrintable(m_path));
+        qWarning("StSoundHelper: failed to open: %s", QmmpPrintable(m_path));
         return false;
     }
     return true;
 }
 
-qint64 YMHelper::read(unsigned char *data, qint64 maxSize)
+qint64 StSoundHelper::read(unsigned char *data, qint64 maxSize)
 {
     qint64 stereoSize, i;
     ymsample *psample = (ymsample *)data;
@@ -68,7 +68,7 @@ qint64 YMHelper::read(unsigned char *data, qint64 maxSize)
     return 0;
 }
 
-QMap<Qmmp::MetaData, QString> YMHelper::readMetaData() const
+QMap<Qmmp::MetaData, QString> StSoundHelper::readMetaData() const
 {
     QMap<Qmmp::MetaData, QString> metaData;
     if(!m_music)

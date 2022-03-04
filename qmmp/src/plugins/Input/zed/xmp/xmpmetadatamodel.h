@@ -25,12 +25,12 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class XmpMetaDataModel : public MetaDataModel
+class XMPMetaDataModel : public MetaDataModel
 {
-    Q_DECLARE_TR_FUNCTIONS(XmpMetaDataModel)
+    Q_DECLARE_TR_FUNCTIONS(XMPMetaDataModel)
 public:
-    explicit XmpMetaDataModel(const QString &path);
-    virtual ~XmpMetaDataModel();
+    explicit XMPMetaDataModel(const QString &path);
+    virtual ~XMPMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override final;
     virtual QList<MetaDataItem> descriptions() const override final;
@@ -41,4 +41,4 @@ private:
 
 };
 
-#endif // XMPMETADATAMODEL_H
+#endif

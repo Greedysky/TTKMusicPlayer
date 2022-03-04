@@ -1,17 +1,17 @@
-#include "decoderbpfactory.h"
-#include "bphelper.h"
-#include "decoder_bp.h"
+#include "decodersoundmonfactory.h"
+#include "soundmonhelper.h"
+#include "decoder_soundmon.h"
 
-bool DecoderBpFactory::canDecode(QIODevice *) const
+bool DecoderSoundMonFactory::canDecode(QIODevice *) const
 {
     return false;
 }
 
-DecoderProperties DecoderBpFactory::properties() const
+DecoderProperties DecoderSoundMonFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("BP Plugin");
-    properties.shortName = "bp";
+    properties.name = tr("BP SoundMon Plugin");
+    properties.shortName = "soundmon";
     properties.filters << "*.bp" << "*.bp3";
     properties.description = "BP SoundMon Audio File";
     properties.protocols << "file";
@@ -19,13 +19,13 @@ DecoderProperties DecoderBpFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderBpFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderSoundMonFactory::create(const QString &path, QIODevice *input)
 {
     Q_UNUSED(input);
-    return new DecoderBp(path);
+    return new DecoderSoundMon(path);
 }
 
-QList<TrackInfo*> DecoderBpFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderSoundMonFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
     if(parts == TrackInfo::Parts())
@@ -33,7 +33,7 @@ QList<TrackInfo*> DecoderBpFactory::createPlayList(const QString &path, TrackInf
         return QList<TrackInfo*>() << info;
     }
 
-    BpHelper helper(path);
+    SoundMonHelper helper(path);
     if(!helper.initialize())
     {
         delete info;
@@ -46,25 +46,25 @@ QList<TrackInfo*> DecoderBpFactory::createPlayList(const QString &path, TrackInf
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
-        info->setValue(Qmmp::FORMAT_NAME, "BP");
+        info->setValue(Qmmp::FORMAT_NAME, "SoundMon");
         info->setDuration(helper.totalTime());
     }
     return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderBpFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderSoundMonFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);
     return nullptr;
 }
 
-void DecoderBpFactory::showSettings(QWidget *parent)
+void DecoderSoundMonFactory::showSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #include <QtPlugin>
-Q_EXPORT_PLUGIN2(bp, DecoderBpFactory)
+Q_EXPORT_PLUGIN2(soundmon, DecoderSoundMonFactory)
 #endif

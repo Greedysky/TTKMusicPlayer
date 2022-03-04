@@ -1,17 +1,17 @@
-#include "bphelper.h"
+#include "soundmonhelper.h"
 
-BpHelper::BpHelper(const QString &path)
+SoundMonHelper::SoundMonHelper(const QString &path)
     : m_path(path)
 {
 
 }
 
-BpHelper::~BpHelper()
+SoundMonHelper::~SoundMonHelper()
 {
     deinit();
 }
 
-void BpHelper::deinit()
+void SoundMonHelper::deinit()
 {
     if(m_input)
     {
@@ -19,12 +19,12 @@ void BpHelper::deinit()
     }
 }
 
-bool BpHelper::initialize()
+bool SoundMonHelper::initialize()
 {
     QFile file(m_path);
     if(!file.open(QFile::ReadOnly))
     {
-        qWarning("BpHelper: open file failed");
+        qWarning("SoundMonHelper: open file failed");
         return false;
     }
 
@@ -34,7 +34,7 @@ bool BpHelper::initialize()
     m_input = new Player((BYTE*)module.constData(), size);
     if(!m_input->Load())
     {
-        qWarning("BpHelper: Load error");
+        qWarning("SoundMonHelper: Load error");
         return false;
     }
 
@@ -42,7 +42,7 @@ bool BpHelper::initialize()
     return true;
 }
 
-qint64 BpHelper::read(unsigned char *data, qint64)
+qint64 SoundMonHelper::read(unsigned char *data, qint64)
 {
     return m_input->Run() ? m_input->Render(data) : 0;
 }

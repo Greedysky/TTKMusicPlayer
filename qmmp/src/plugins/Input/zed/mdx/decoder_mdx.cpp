@@ -1,22 +1,22 @@
 #include "decoder_mdx.h"
 #include "mdxhelper.h"
 
-DecoderMdx::DecoderMdx(const QString &path)
+DecoderMDX::DecoderMDX(const QString &path)
     : Decoder()
 {
-    m_helper = new MdxHelper(path);
+    m_helper = new MDXHelper(path);
 }
 
-DecoderMdx::~DecoderMdx()
+DecoderMDX::~DecoderMDX()
 {
     delete m_helper;
 }
 
-bool DecoderMdx::initialize()
+bool DecoderMDX::initialize()
 {
     if(!m_helper->initialize())
     {
-        qWarning("DecoderMdx: initialize failed");
+        qWarning("DecoderMDX: initialize failed");
         return false;
     }
 
@@ -24,31 +24,31 @@ bool DecoderMdx::initialize()
     const int channels = m_helper->channels();
     if(rate == 0 || channels == 0)
     {
-        qWarning("DecoderMdx: rate or channel invalid");
+        qWarning("DecoderMDX: rate or channel invalid");
         return false;
     }
 
     configure(rate, channels, Qmmp::PCM_S16LE);
-    qDebug("DecoderMdx: initialize success");
+    qDebug("DecoderMDX: initialize success");
     return true;
 }
 
-qint64 DecoderMdx::totalTime() const
+qint64 DecoderMDX::totalTime() const
 {
     return m_helper->totalTime();
 }
 
-int DecoderMdx::bitrate() const
+int DecoderMDX::bitrate() const
 {
     return m_helper->bitrate();
 }
 
-qint64 DecoderMdx::read(unsigned char *data, qint64 maxSize)
+qint64 DecoderMDX::read(unsigned char *data, qint64 maxSize)
 {
     return m_helper->read(data, maxSize);
 }
 
-void DecoderMdx::seek(qint64 time)
+void DecoderMDX::seek(qint64 time)
 {
     m_helper->seek(time);
 }

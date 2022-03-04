@@ -16,15 +16,15 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef DECODERBPFACTORY_H
-#define DECODERBPFACTORY_H
+#ifndef DECODERSOUNDMONFACTORY_H
+#define DECODERSOUNDMONFACTORY_H
 
 #include <qmmp/decoderfactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class DecoderBpFactory : public QObject, DecoderFactory
+class DecoderSoundMonFactory : public QObject, DecoderFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.DecoderFactoryInterface.1.0")

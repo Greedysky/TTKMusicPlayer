@@ -1,17 +1,17 @@
-#include "decoderymfactory.h"
-#include "decoder_ym.h"
-#include "ymhelper.h"
+#include "decoderstsoundfactory.h"
+#include "decoder_stsound.h"
+#include "stsoundhelper.h"
 
-bool DecoderYmFactory::canDecode(QIODevice *) const
+bool DecoderStSoundFactory::canDecode(QIODevice *) const
 {
     return false;
 }
 
-DecoderProperties DecoderYmFactory::properties() const
+DecoderProperties DecoderStSoundFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("YM Plugin");
-    properties.shortName = "ym";
+    properties.name = tr("StSound Plugin");
+    properties.shortName = "stsound";
     properties.filters << "*.ym";
     properties.description = "ST-Sound, ATARI-ST Audio File";
     properties.protocols << "file";
@@ -19,13 +19,13 @@ DecoderProperties DecoderYmFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderYmFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderStSoundFactory::create(const QString &path, QIODevice *input)
 {
     Q_UNUSED(input);
-    return new DecoderYm(path);
+    return new DecoderStSound(path);
 }
 
-QList<TrackInfo*> DecoderYmFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderStSoundFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
     if(parts == TrackInfo::Parts())
@@ -33,7 +33,7 @@ QList<TrackInfo*> DecoderYmFactory::createPlayList(const QString &path, TrackInf
         return QList<TrackInfo*>() << info;
     }
 
-    YMHelper helper(path);
+    StSoundHelper helper(path);
     if(!helper.initialize())
     {
         delete info;
@@ -55,25 +55,25 @@ QList<TrackInfo*> DecoderYmFactory::createPlayList(const QString &path, TrackInf
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
-        info->setValue(Qmmp::FORMAT_NAME, "YM");
+        info->setValue(Qmmp::FORMAT_NAME, "StSound");
         info->setDuration(helper.totalTime());
     }
     return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderYmFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderStSoundFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);
     return nullptr;
 }
 
-void DecoderYmFactory::showSettings(QWidget *parent)
+void DecoderStSoundFactory::showSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #include <QtPlugin>
-Q_EXPORT_PLUGIN2(ym, DecoderYmFactory)
+Q_EXPORT_PLUGIN2(stsound, DecoderStSoundFactory)
 #endif

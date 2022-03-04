@@ -2,12 +2,12 @@
 #include "mdxhelper.h"
 #include "decoder_mdx.h"
 
-bool DecoderMdxFactory::canDecode(QIODevice *) const
+bool DecoderMDXFactory::canDecode(QIODevice *) const
 {
     return false;
 }
 
-DecoderProperties DecoderMdxFactory::properties() const
+DecoderProperties DecoderMDXFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("MDX Plugin");
@@ -19,13 +19,13 @@ DecoderProperties DecoderMdxFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderMdxFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderMDXFactory::create(const QString &path, QIODevice *input)
 {
     Q_UNUSED(input);
-    return new DecoderMdx(path);
+    return new DecoderMDX(path);
 }
 
-QList<TrackInfo*> DecoderMdxFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderMDXFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
     if(parts == TrackInfo::Parts())
@@ -33,7 +33,7 @@ QList<TrackInfo*> DecoderMdxFactory::createPlayList(const QString &path, TrackIn
         return QList<TrackInfo*>() << info;
     }
 
-    MdxHelper helper(path);
+    MDXHelper helper(path);
     if(!helper.initialize())
     {
         delete info;
@@ -61,19 +61,19 @@ QList<TrackInfo*> DecoderMdxFactory::createPlayList(const QString &path, TrackIn
     return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderMdxFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderMDXFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);
     return nullptr;
 }
 
-void DecoderMdxFactory::showSettings(QWidget *parent)
+void DecoderMDXFactory::showSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #include <QtPlugin>
-Q_EXPORT_PLUGIN2(mdx, DecoderMdxFactory)
+Q_EXPORT_PLUGIN2(mdx, DecoderMDXFactory)
 #endif

@@ -16,31 +16,41 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef DECODER_BP_H
-#define DECODER_BP_H
+#ifndef STSOUNDHELPER_H
+#define STSOUNDHELPER_H
 
-#include <qmmp/decoder.h>
-
-class BpHelper;
+#include <QMap>
+#include <QFileInfo>
+#include <qmmp/qmmp.h>
+#include <libstsound/ym_music.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class DecoderBp : public Decoder
+class StSoundHelper
 {
 public:
-    explicit DecoderBp(const QString &path);
-    virtual ~DecoderBp();
+    explicit StSoundHelper(const QString &path);
+    ~StSoundHelper();
 
-    // Standard Decoder API
-    virtual bool initialize() override final;
-    virtual qint64 totalTime() const override final;
-    virtual int bitrate() const override final;
-    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
-    virtual void seek(qint64 time) override final;
+    void deinit();
+    bool initialize();
+
+    inline void seek(qint64 time) { m_music->setMusicTime((ymu32)time); }
+    inline qint64 totalTime() const { return m_length; }
+
+    inline int bitrate() const { return QFileInfo(m_path).size() * 8.0 / totalTime() + 1.0f; }
+    inline int sampleRate() const { return 44100; }
+    inline int channels() const { return 2; }
+    inline int depth() const { return 32; }
+
+    qint64 read(unsigned char *data, qint64 maxSize);
+    QMap<Qmmp::MetaData, QString> readMetaData() const;
 
 private:
-    BpHelper *m_helper = nullptr;
+    QString m_path;
+    CYmMusic *m_music = nullptr;
+    int m_length = 0;
 
 };
 

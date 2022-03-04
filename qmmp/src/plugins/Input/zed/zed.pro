@@ -14,10 +14,6 @@ contains(CONFIG, AYFLY_PLUGIN){
     SUBDIRS += ayfly
 }
 
-contains(CONFIG, BP_PLUGIN){
-    SUBDIRS += bp
-}
-
 contains(CONFIG, DCA_PLUGIN){
     SUBDIRS += dca
 }
@@ -50,6 +46,14 @@ contains(CONFIG, SC68_PLUGIN){
     SUBDIRS += sc68
 }
 
+contains(CONFIG, BP_PLUGIN){
+    SUBDIRS += soundmon
+}
+
+contains(CONFIG, YM_PLUGIN){
+    SUBDIRS += stsound
+}
+
 contains(CONFIG, V2M_PLUGIN){
     SUBDIRS += v2m
 }
@@ -62,6 +66,3 @@ contains(CONFIG, XSF_PLUGIN){
     SUBDIRS += xsf
 }
 
-contains(CONFIG, YM_PLUGIN){
-    SUBDIRS += ym
-}

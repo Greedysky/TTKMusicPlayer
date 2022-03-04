@@ -21,16 +21,16 @@
 
 #include <qmmp/decoder.h>
 
-class MdxHelper;
+class MDXHelper;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class DecoderMdx : public Decoder
+class DecoderMDX : public Decoder
 {
 public:
-    explicit DecoderMdx(const QString &path);
-    virtual ~DecoderMdx();
+    explicit DecoderMDX(const QString &path);
+    virtual ~DecoderMDX();
 
     // Standard Decoder API
     virtual bool initialize() override final;
@@ -40,7 +40,7 @@ public:
     virtual void seek(qint64 time) override final;
 
 private:
-    MdxHelper *m_helper = nullptr;
+    MDXHelper *m_helper = nullptr;
 
 };
 

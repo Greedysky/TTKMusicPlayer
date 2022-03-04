@@ -1,6 +1,6 @@
 #include "xmpmetadatamodel.h"
 
-XmpMetaDataModel::XmpMetaDataModel(const QString &path)
+XMPMetaDataModel::XMPMetaDataModel(const QString &path)
     : MetaDataModel(true),
       m_path(path)
 {
@@ -10,11 +10,11 @@ XmpMetaDataModel::XmpMetaDataModel(const QString &path)
     {
         xmp_free_context(m_ctx);
         m_ctx = nullptr;
-        qWarning("XmpMetaDataModel: unable to load module file, error = %d", err);
+        qWarning("XMPMetaDataModel: unable to load module file, error = %d", err);
     }
 }
 
-XmpMetaDataModel::~XmpMetaDataModel()
+XMPMetaDataModel::~XMPMetaDataModel()
 {
     if(m_ctx)
     {
@@ -23,7 +23,7 @@ XmpMetaDataModel::~XmpMetaDataModel()
     }
 }
 
-QList<MetaDataItem> XmpMetaDataModel::extraProperties() const
+QList<MetaDataItem> XMPMetaDataModel::extraProperties() const
 {
     QList<MetaDataItem> ep;
 
@@ -42,7 +42,7 @@ QList<MetaDataItem> XmpMetaDataModel::extraProperties() const
     return ep;
 }
 
-QList<MetaDataItem> XmpMetaDataModel::descriptions() const
+QList<MetaDataItem> XMPMetaDataModel::descriptions() const
 {
     QList<MetaDataItem> desc;
     QString text;

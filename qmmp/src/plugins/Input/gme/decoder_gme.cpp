@@ -1,19 +1,19 @@
 #include "gmehelper.h"
 #include "decoder_gme.h"
 
-DecoderGme::DecoderGme(const QString &path)
+DecoderGME::DecoderGME(const QString &path)
     : Decoder(),
       m_path(path)
 {
 
 }
 
-DecoderGme::~DecoderGme()
+DecoderGME::~DecoderGME()
 {
 
 }
 
-bool DecoderGme::initialize()
+bool DecoderGME::initialize()
 {
     int track = m_path.section("#", -1).toInt();
     m_emu = m_helper.load(m_path);
@@ -23,7 +23,7 @@ bool DecoderGme::initialize()
     int count = gme_track_count(m_emu);
     if(track > count || track < 0)
     {
-        qWarning("DecoderGme: track number is out of range");
+        qWarning("DecoderGME: track number is out of range");
         gme_delete(m_emu);
         m_emu = nullptr;
         return false;
@@ -65,26 +65,26 @@ bool DecoderGme::initialize()
 
     gme_free_info(track_info);
     configure(44100, 2, Qmmp::PCM_S16LE);
-    qDebug("DecoderGme: initialize success");
+    qDebug("DecoderGME: initialize success");
     return true;
 }
 
-qint64 DecoderGme::totalTime() const
+qint64 DecoderGME::totalTime() const
 {
     return m_totalTime;
 }
 
-void DecoderGme::seek(qint64 time)
+void DecoderGME::seek(qint64 time)
 {
     gme_seek(m_emu, time);
 }
 
-int DecoderGme::bitrate() const
+int DecoderGME::bitrate() const
 {
     return 8;
 }
 
-qint64 DecoderGme::read(unsigned char *data, qint64 maxSize)
+qint64 DecoderGME::read(unsigned char *data, qint64 maxSize)
 {
     if(gme_track_ended(m_emu))
         return 0;

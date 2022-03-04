@@ -16,41 +16,26 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef BPHELPER_H
-#define BPHELPER_H
+#ifndef DECODERSTSOUNDFACTORY_H
+#define DECODERSTSOUNDFACTORY_H
 
-#include <QMap>
-#include <QFile>
-#include <qmmp/qmmp.h>
-#include <libbp/player.h>
+#include <qmmp/decoderfactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class BpHelper
+class DecoderStSoundFactory : public QObject, DecoderFactory
 {
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.DecoderFactoryInterface.1.0")
+    Q_INTERFACES(DecoderFactory)
 public:
-    explicit BpHelper(const QString &path);
-    ~BpHelper();
-
-    void deinit();
-    bool initialize();
-
-    inline void seek(qint64 time) { return m_input->Seek(time); }
-    inline qint64 totalTime() const { return m_input->GetLength(); }
-
-    inline int bitrate() const { return m_bitrate; }
-    inline int sampleRate() const { return SAMPLERATE; }
-    inline int channels() const { return 2; }
-    inline int depth() const { return 8; }
-
-    #undef SAMPLERATE
-    qint64 read(unsigned char *data, qint64 maxSize);
-
-private:
-    QString m_path;
-    Player *m_input = nullptr;
-    int m_bitrate = 0;
+    virtual bool canDecode(QIODevice *input) const override final;
+    virtual DecoderProperties properties() const override final;
+    virtual Decoder *create(const QString &path, QIODevice *input) override final;
+    virtual QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) override final;
+    virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override final;
+    virtual void showSettings(QWidget *parent) override final;
 
 };
 

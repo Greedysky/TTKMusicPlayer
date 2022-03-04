@@ -27,11 +27,11 @@
 /**
    @author Ilya Kotov <forkotov02@ya.ru>
 */
-class GmeHelper
+class GMEHelper
 {
 public:
-    GmeHelper();
-    ~GmeHelper();
+    GMEHelper();
+    ~GMEHelper();
 
     Music_Emu *load(const QString &url, int sample_rate = 44100);
     QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);

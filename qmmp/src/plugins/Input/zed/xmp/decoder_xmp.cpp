@@ -2,27 +2,27 @@
 
 #include <QSettings>
 
-DecoderXmp *DecoderXmp::m_instance = nullptr;
+DecoderXMP *DecoderXMP::m_instance = nullptr;
 
-DecoderXmp::DecoderXmp(const QString &path)
+DecoderXMP::DecoderXMP(const QString &path)
     : Decoder(nullptr),
       m_path(path)
 {
     m_instance = this;
 }
 
-DecoderXmp::~DecoderXmp()
+DecoderXMP::~DecoderXMP()
 {
     m_instance = nullptr;
     deinit();
 }
 
-DecoderXmp *DecoderXmp::instance()
+DecoderXMP *DecoderXMP::instance()
 {
     return m_instance;
 }
 
-void DecoderXmp::readSettings()
+void DecoderXMP::readSettings()
 {
     if(!m_ctx)
     {
@@ -57,14 +57,14 @@ void DecoderXmp::readSettings()
     settings.endGroup();
 }
 
-bool DecoderXmp::initialize()
+bool DecoderXMP::initialize()
 {
     m_ctx = xmp_create_context();
 
     const int err = xmp_load_module(m_ctx, QmmpPrintable(m_path));
     if(err != 0)
     {
-        qWarning("DecoderXmp: unable to load module file, error = %d", err);
+        qWarning("DecoderXMP: unable to load module file, error = %d", err);
         xmp_free_context(m_ctx);
         m_ctx = nullptr;
         return false;
@@ -82,21 +82,21 @@ bool DecoderXmp::initialize()
     readSettings();
 
     configure(m_srate, 2, Qmmp::PCM_S16LE);
-    qDebug("DecoderXmp: initialize success");
+    qDebug("DecoderXMP: initialize success");
     return true;
 }
 
-qint64 DecoderXmp::totalTime() const
+qint64 DecoderXMP::totalTime() const
 {
     return m_totalTime;
 }
 
-int DecoderXmp::bitrate() const
+int DecoderXMP::bitrate() const
 {
     return 8;
 }
 
-qint64 DecoderXmp::read(unsigned char *data, qint64 maxSize)
+qint64 DecoderXMP::read(unsigned char *data, qint64 maxSize)
 {
     const int c = xmp_play_buffer(m_ctx, data, maxSize, 1);
     if(c == 0)
@@ -110,12 +110,12 @@ qint64 DecoderXmp::read(unsigned char *data, qint64 maxSize)
     return -1;
 }
 
-void DecoderXmp::seek(qint64 time)
+void DecoderXMP::seek(qint64 time)
 {
     xmp_seek_time(m_ctx, time);
 }
 
-void DecoderXmp::deinit()
+void DecoderXMP::deinit()
 {
     if(!m_ctx)
     {

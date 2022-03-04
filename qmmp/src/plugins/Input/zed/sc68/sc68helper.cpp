@@ -2,7 +2,7 @@
 
 #include <QFile>
 
-void in_c68_meta_from_music_info(TrackInfo *info, sc68_music_info_t *ti)
+void meta_from_music_info(TrackInfo *info, sc68_music_info_t *ti)
 {
     // add metainfo
     if(!ti->title || !ti->title[0])
@@ -120,7 +120,6 @@ bool SC68Helper::initialize()
     m_bitrate = size * 8.0 / totalTime() + 1.0f;
 
     sc68_play(m_input, m_track, m_loop);
-
     return true;
 }
 
@@ -197,7 +196,7 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
         TrackInfo *info = new TrackInfo();
         if(parts & TrackInfo::MetaData)
         {
-            in_c68_meta_from_music_info(info, &ti);
+            meta_from_music_info(info, &ti);
             info->setValue(Qmmp::TRACK, i);
         }
 

@@ -2,18 +2,18 @@
 
 #define SAMPLE_BUF_SIZE     1024
 
-MdxHelper::MdxHelper(const QString &path)
+MDXHelper::MDXHelper(const QString &path)
     : m_path(path)
 {
 
 }
 
-MdxHelper::~MdxHelper()
+MDXHelper::~MDXHelper()
 {
     deinit();
 }
 
-void MdxHelper::deinit()
+void MDXHelper::deinit()
 {
     if(m_mdx_mode)
     {
@@ -25,12 +25,12 @@ void MdxHelper::deinit()
     }
 }
 
-bool MdxHelper::initialize()
+bool MDXHelper::initialize()
 {
     QFile file(m_path);
     if(!file.open(QFile::ReadOnly))
     {
-        qWarning("MdxHelper: open file failed");
+        qWarning("MDXHelper: open file failed");
         file.close();
         return false;
     }
@@ -54,7 +54,7 @@ bool MdxHelper::initialize()
     {
        if(mdx_open(&m_input, QmmpPrintable(m_path), nullptr) != 0)
        {
-           qWarning("MdxHelper: mdx_open error");
+           qWarning("MDXHelper: mdx_open error");
            return false;
        }
 
@@ -67,7 +67,7 @@ bool MdxHelper::initialize()
     {
         if(pmd_play(QmmpPrintable(m_path), nullptr) != 0)
         {
-            qWarning("MdxHelper: mdx_open error");
+            qWarning("MDXHelper: mdx_open error");
             return false;
         }
         m_length = pmd_length_sec() * 1000;
@@ -83,7 +83,7 @@ bool MdxHelper::initialize()
     return true;
 }
 
-qint64 MdxHelper::read(unsigned char *data, qint64)
+qint64 MDXHelper::read(unsigned char *data, qint64)
 {
     if(m_length > 0 && m_pos >= m_length)
     {

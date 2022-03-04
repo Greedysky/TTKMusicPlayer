@@ -16,31 +16,41 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef DECODER_YM_H
-#define DECODER_YM_H
+#ifndef SOUNDMONHELPER_H
+#define SOUNDMONHELPER_H
 
-#include <qmmp/decoder.h>
-
-class YMHelper;
+#include <QMap>
+#include <QFile>
+#include <qmmp/qmmp.h>
+#include <libsoundmon/player.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class DecoderYm : public Decoder
+class SoundMonHelper
 {
 public:
-    explicit DecoderYm(const QString &path);
-    virtual ~DecoderYm();
+    explicit SoundMonHelper(const QString &path);
+    ~SoundMonHelper();
 
-    // Standard Decoder API
-    virtual bool initialize() override final;
-    virtual qint64 totalTime() const override final;
-    virtual int bitrate() const override final;
-    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
-    virtual void seek(qint64 time) override final;
+    void deinit();
+    bool initialize();
+
+    inline void seek(qint64 time) { return m_input->Seek(time); }
+    inline qint64 totalTime() const { return m_input->GetLength(); }
+
+    inline int bitrate() const { return m_bitrate; }
+    inline int sampleRate() const { return SAMPLERATE; }
+    inline int channels() const { return 2; }
+    inline int depth() const { return 8; }
+
+    #undef SAMPLERATE
+    qint64 read(unsigned char *data, qint64 maxSize);
 
 private:
-    YMHelper *m_helper = nullptr;
+    QString m_path;
+    Player *m_input = nullptr;
+    int m_bitrate = 0;
 
 };
 

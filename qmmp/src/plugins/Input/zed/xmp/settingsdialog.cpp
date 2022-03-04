@@ -73,9 +73,9 @@ void SettingsDialog::writeSettings()
     settings.setValue("fx9bug", m_ui.fx9BugCheckBox->isChecked());
     settings.endGroup();
 
-    if(DecoderXmp::instance())
+    if(DecoderXMP::instance())
     {
-        DecoderXmp::instance()->readSettings();
+        DecoderXMP::instance()->readSettings();
     }
 }
 

@@ -5,12 +5,12 @@
 
 #include <QFileInfo>
 
-bool DecoderXmpFactory::canDecode(QIODevice *) const
+bool DecoderXMPFactory::canDecode(QIODevice *) const
 {
     return false;
 }
 
-DecoderProperties DecoderXmpFactory::properties() const
+DecoderProperties DecoderXMPFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("XMP Plugin");
@@ -32,13 +32,13 @@ DecoderProperties DecoderXmpFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderXmpFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderXMPFactory::create(const QString &path, QIODevice *input)
 {
     Q_UNUSED(input);
-    return new DecoderXmp(path);
+    return new DecoderXMP(path);
 }
 
-QList<TrackInfo *> DecoderXmpFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo *> DecoderXMPFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     QList<TrackInfo*> plyalist;
     TrackInfo *info = new TrackInfo(path);
@@ -47,7 +47,7 @@ QList<TrackInfo *> DecoderXmpFactory::createPlayList(const QString &path, TrackI
         xmp_context ctx = xmp_create_context();
         if(xmp_load_module(ctx, QmmpPrintable(path)) != 0)
         {
-            qWarning("DecoderXmpFactory: unable to load module");
+            qWarning("DecoderXMPFactory: unable to load module");
             xmp_free_context(ctx);
             delete info;
             return plyalist;
@@ -70,13 +70,13 @@ QList<TrackInfo *> DecoderXmpFactory::createPlayList(const QString &path, TrackI
     return plyalist << info;
 }
 
-MetaDataModel* DecoderXmpFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderXMPFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(readOnly);
-    return new XmpMetaDataModel(path);
+    return new XMPMetaDataModel(path);
 }
 
-void DecoderXmpFactory::showSettings(QWidget *parent)
+void DecoderXMPFactory::showSettings(QWidget *parent)
 {
     SettingsDialog *s = new SettingsDialog(parent);
     s->show();
@@ -84,5 +84,5 @@ void DecoderXmpFactory::showSettings(QWidget *parent)
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #include <QtPlugin>
-Q_EXPORT_PLUGIN2(xmp, DecoderXmpFactory)
+Q_EXPORT_PLUGIN2(xmp, DecoderXMPFactory)
 #endif

@@ -2,7 +2,7 @@
 
 #include <QSettings>
 
-GmeHelper::GmeHelper()
+GMEHelper::GMEHelper()
 {
      QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
      m_fade_length = settings.value("GME/fadeout_length", 7000).toInt();
@@ -10,14 +10,14 @@ GmeHelper::GmeHelper()
          m_fade_length = 0;
 }
 
-GmeHelper::~GmeHelper()
+GMEHelper::~GMEHelper()
 {
     if(m_emu)
         gme_delete(m_emu);
     m_emu = nullptr;
 }
 
-Music_Emu *GmeHelper::load(const QString &url, int sample_rate)
+Music_Emu *GMEHelper::load(const QString &url, int sample_rate)
 {
     if(m_emu)
         gme_delete(m_emu);
@@ -34,7 +34,7 @@ Music_Emu *GmeHelper::load(const QString &url, int sample_rate)
     gme_type_t file_type;
     if((err = gme_identify_file(QmmpPrintable(path),&file_type)))
     {
-        qWarning("GmeHelper: %s", err);
+        qWarning("GMEHelper: %s", err);
         return nullptr;
     }
 
@@ -46,13 +46,13 @@ Music_Emu *GmeHelper::load(const QString &url, int sample_rate)
 
     if(!(m_emu = gme_new_emu(file_type, sample_rate)))
     {
-        qWarning("GmeHelper: out of memory");
+        qWarning("GMEHelper: out of memory");
         return nullptr;
     }
 
     if((err = gme_load_file(m_emu, QmmpPrintable(path))))
     {
-        qWarning("GmeHelper: %s", err);
+        qWarning("GMEHelper: %s", err);
         return nullptr;
     }
 
@@ -63,7 +63,7 @@ Music_Emu *GmeHelper::load(const QString &url, int sample_rate)
     return m_emu;
 }
 
-QList<TrackInfo*> GmeHelper::createPlayList(TrackInfo::Parts parts)
+QList<TrackInfo*> GMEHelper::createPlayList(TrackInfo::Parts parts)
 {
     QList<TrackInfo*> playlist;
     if(!m_emu)
@@ -115,7 +115,7 @@ QList<TrackInfo*> GmeHelper::createPlayList(TrackInfo::Parts parts)
     return playlist;
 }
 
-int GmeHelper::fadeLength()
+int GMEHelper::fadeLength()
 {
     return m_fade_length;
 }

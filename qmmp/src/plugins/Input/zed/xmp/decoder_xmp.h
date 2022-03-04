@@ -25,13 +25,13 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class DecoderXmp : public Decoder
+class DecoderXMP : public Decoder
 {
 public:
-    explicit DecoderXmp(const QString &path);
-    virtual ~DecoderXmp();
+    explicit DecoderXMP(const QString &path);
+    virtual ~DecoderXMP();
 
-    static DecoderXmp *instance();
+    static DecoderXMP *instance();
 
     void readSettings();
 
@@ -51,7 +51,7 @@ private:
     QString m_path;
     quint32 m_srate = 44100;
 
-    static DecoderXmp *m_instance;
+    static DecoderXMP *m_instance;
 };
 
-#endif // DECODER_XMP_H
+#endif

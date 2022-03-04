@@ -24,16 +24,16 @@
 #include <gme/gme.h>
 #include <qmmp/decoder.h>
 
-class GmeHelper;
+class GMEHelper;
 
 /**
    @author Ilya Kotov <forkotov02@ya.ru>
 */
-class DecoderGme : public Decoder
+class DecoderGME : public Decoder
 {
 public:
-    explicit DecoderGme(const QString &path);
-    virtual ~DecoderGme();
+    explicit DecoderGME(const QString &path);
+    virtual ~DecoderGME();
 
     // Standard Decoder API
     virtual bool initialize() override final;
@@ -43,7 +43,7 @@ public:
     virtual void seek(qint64 time) override final;
 
 private:
-    GmeHelper m_helper;
+    GMEHelper m_helper;
     Music_Emu *m_emu = nullptr;
     qint64 m_totalTime;
     QString m_path;

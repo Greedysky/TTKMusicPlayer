@@ -16,42 +16,31 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef YMHELPER_H
-#define YMHELPER_H
+#ifndef DECODER_SOUNDMON_H
+#define DECODER_SOUNDMON_H
 
-#include <QMap>
-#include <QFileInfo>
-#include <qmmp/qmmp.h>
-#include <libym/ym_music.h>
+#include <qmmp/decoder.h>
+
+class SoundMonHelper;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class YMHelper
+class DecoderSoundMon : public Decoder
 {
 public:
-    explicit YMHelper(const QString &path);
-    ~YMHelper();
+    explicit DecoderSoundMon(const QString &path);
+    virtual ~DecoderSoundMon();
 
-    void deinit();
-    bool initialize();
-
-    inline void seek(qint64 time) { m_music->setMusicTime((ymu32)time); }
-    inline qint64 totalTime() const { return m_length; }
-
-    inline int bitrate() const { return QFileInfo(m_path).size() * 8.0 / totalTime() + 1.0f; }
-    inline int sampleRate() const { return 44100; }
-    inline int channels() const { return 2; }
-    inline int depth() const { return 32; }
-
-    qint64 read(unsigned char *data, qint64 maxSize);
-    QMap<Qmmp::MetaData, QString> readMetaData() const;
+    // Standard Decoder API
+    virtual bool initialize() override final;
+    virtual qint64 totalTime() const override final;
+    virtual int bitrate() const override final;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
+    virtual void seek(qint64 time) override final;
 
 private:
-    QString m_path;
-    CYmMusic *m_music = nullptr;
-    int m_bitrate = 0;
-    int m_length = 0;
+    SoundMonHelper *m_helper = nullptr;
 
 };
 
