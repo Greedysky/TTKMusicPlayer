@@ -164,6 +164,7 @@ void MusicTopAreaWidget::musicShowSkinChangedWindow()
     {
         m_musicBackgroundWidget = new MusicBackgroundSkinDialog(this);
     }
+
     m_musicBackgroundWidget->setCurrentBackgroundTheme(m_backgroundImagePath, m_backgroundAlpha, m_backgroundListAlpha);
     m_musicBackgroundWidget->exec();
 }
@@ -179,6 +180,7 @@ void MusicTopAreaWidget::musicBackgroundTransparentChanged(int value)
     {
         m_musicBackgroundWidget->setSkinTransToolText(value);
     }
+
     m_backgroundAlpha = value;
     drawWindowBackgroundRectString();
 }
@@ -208,6 +210,7 @@ void MusicTopAreaWidget::musicSetAsArtistBackground()
         {
             m_musicBackgroundWidget->updateArtistFileTheme(path);
         }
+
         musicBackgroundSkinChanged(path);
     }
 }
@@ -220,26 +223,19 @@ void MusicTopAreaWidget::musicBackgroundTransparentChanged()
 void MusicTopAreaWidget::musicBackgroundSkinChanged(const QString &fileName)
 {
     m_backgroundImagePath = fileName;
-    musicBackgroundTransparentChanged();
-}
-
-void MusicTopAreaWidget::musicBackgroundSkinCustumChanged(const QString &fileName)
-{
-    if(!isEnableBackground())
+    if(isEnableBackground())
     {
-        return;
+        musicBackgroundTransparentChanged();
     }
-
-    musicBackgroundSkinChanged(fileName);
 }
 
 void MusicTopAreaWidget::musicBackgroundChanged()
 {
-    const QString &artistPath = G_BACKGROUND_PTR->artistPhotoPath();
-    if(!artistPath.isEmpty())
+    const QString &path = G_BACKGROUND_PTR->artistPhotoPath();
+    if(!path.isEmpty())
     {
         G_BACKGROUND_PTR->indexIncrease();
-        drawWindowBackgroundRectString(artistPath);
+        drawWindowBackgroundRectString(path);
     }
     else
     {
@@ -269,9 +265,7 @@ void MusicTopAreaWidget::musicBackgroundThemeChangedByResize()
 {
     musicBackgroundAnimationChanged(true);
     setBackgroundAnimation(false);
-    ///
     drawWindowBackgroundRectString();
-    ///
     musicBackgroundAnimationChanged(false);
 
     if(!isEnableBackground())
@@ -297,6 +291,7 @@ void MusicTopAreaWidget::musicSquareRemote()
     {
         delete m_musicRemoteWidget;
     }
+
     m_musicRemoteWidget = new MusicRemoteWidgetForSquare;
     createRemoteWidget();
 }
@@ -307,6 +302,7 @@ void MusicTopAreaWidget::musicRectangleRemote()
     {
         delete m_musicRemoteWidget;
     }
+
     m_musicRemoteWidget = new MusicRemoteWidgetForRectangle;
     m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
     createRemoteWidget();
@@ -318,6 +314,7 @@ void MusicTopAreaWidget::musicSimpleStyleRemote()
     {
         delete m_musicRemoteWidget;
     }
+
     m_musicRemoteWidget = new MusicRemoteWidgetForSimpleStyle;
     m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
     createRemoteWidget();
@@ -329,6 +326,7 @@ void MusicTopAreaWidget::musicComplexStyleRemote()
     {
         delete m_musicRemoteWidget;
     }
+
     m_musicRemoteWidget = new MusicRemoteWidgetForComplexStyle;
     m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
     createRemoteWidget();
@@ -343,6 +341,7 @@ void MusicTopAreaWidget::musicWallpaperRemote(bool create)
             m_lastRemoteBeforeWallpaper = m_musicRemoteWidget->mapRemoteTypeIndex();
             delete m_musicRemoteWidget;
         }
+
         m_musicRemoteWidget = new MusicRemoteWidgetForStrip;
         m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
         createRemoteWidget();
@@ -362,6 +361,7 @@ void MusicTopAreaWidget::musicRippleRemote()
     {
         delete m_musicRemoteWidget;
     }
+
     m_musicRemoteWidget = new MusicRemoteWidgetForRipple;
     m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
     createRemoteWidget();
@@ -380,14 +380,14 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(QAction *type)
         return;
     }
 
-    MusicRemoteWidget *tempRemote = m_musicRemoteWidget;
+    MusicRemoteWidget *remote = m_musicRemoteWidget;
     m_musicRemoteWidget = nullptr;
 
     musicRemoteTypeChanged(type->data().toInt());
 
     if(m_musicRemoteWidget)
     {
-        tempRemote->deleteLater();
+        remote->deleteLater();
     }
 }
 

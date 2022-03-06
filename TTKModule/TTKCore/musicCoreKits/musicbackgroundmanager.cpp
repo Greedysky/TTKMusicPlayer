@@ -119,7 +119,7 @@ QString MusicBackgroundManager::backgroundUrl() const
     return m_background;
 }
 
-void MusicBackgroundManager::backgroundHasChanged()
+void MusicBackgroundManager::backgroundUrlChanged()
 {
     Q_EMIT backgroundChanged();
 }

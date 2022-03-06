@@ -131,10 +131,6 @@ public Q_SLOTS:
      */
     void musicBackgroundSkinChanged(const QString &fileName);
     /*!
-     * Current background skin custum changed by new path.
-     */
-    void musicBackgroundSkinCustumChanged(const QString &fileName);
-    /*!
      * Changed current background skin.
      */
     void musicBackgroundChanged();

@@ -112,7 +112,7 @@ public:
     /*!
      * Get artist background picture path.
      */
-    void backgroundHasChanged();
+    void backgroundUrlChanged();
 
 Q_SIGNALS:
     /*!
