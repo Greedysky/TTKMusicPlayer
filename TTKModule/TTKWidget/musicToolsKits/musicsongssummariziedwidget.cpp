@@ -170,15 +170,15 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
         return;
     }
 
-    QFileInfo file(path);
-    if(file.isDir())
+    QFileInfo fin(path);
+    if(fin.isDir())
     {
         QStringList files;
-        for(const QFileInfo &info : MusicUtils::File::fileListByDir(path, true))
+        for(const QFileInfo &fin : MusicUtils::File::fileListByDir(path, true))
         {
-            if(MusicFormats::supportMusicFormats().contains(info.suffix().toLower()))
+            if(MusicFormats::supportMusicFormats().contains(FILE_SUFFIX(fin)))
             {
-               files << info.absoluteFilePath();
+               files << fin.absoluteFilePath();
             }
         }
 
@@ -192,8 +192,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
         const QString &prefix = MusicUtils::String::stringSplitToken(path, TTK_SEPARATOR, "?");
         const QByteArray &md5 = MusicUtils::Algorithm::md5(path.toUtf8());
         const MusicSong song(path + "#" + md5 + "." + MusicUtils::String::stringSplitToken(path),
-                             TTK_DEFAULT_STR,
-                             MusicUtils::String::stringPrefix(prefix));
+                             TTK_DEFAULT_STR, MusicUtils::String::stringPrefix(prefix));
         if(item->m_songs.contains(song))
         {
             return;
@@ -206,9 +205,9 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
     else
     {
         QStringList files;
-        if(MusicFormats::supportMusicFormats().contains(file.suffix().toLower()))
+        if(MusicFormats::supportMusicFormats().contains(FILE_SUFFIX(fin)))
         {
-           files << file.absoluteFilePath();
+           files << fin.absoluteFilePath();
         }
 
         importMusicSongsByPath(files);

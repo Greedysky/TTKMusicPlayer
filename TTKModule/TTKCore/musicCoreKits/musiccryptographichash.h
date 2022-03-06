@@ -28,7 +28,7 @@
 
 #if defined(_MSC_VER)
 typedef unsigned __int32 xxtea_uint;
-#pragma warning(disable:4267)
+#  pragma warning(disable:4267)
 #else
 #  if defined(__FreeBSD__) && __FreeBSD__ < 5
 #    include <inttypes.h>

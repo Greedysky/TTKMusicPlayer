@@ -39,7 +39,7 @@
 #define XML_FILE_PREFIX         "xml"
 #define COM_FILE_PREFIX         "com"
 // playlist ext
-#define LST_FILE_PREFIX         "tkpl"
+#define TPL_FILE_PREFIX         "tkpl"
 #define M3U_FILE_PREFIX         "m3u"
 #define M3U8_FILE_PREFIX        "m3u8"
 #define PLS_FILE_PREFIX         "pls"
@@ -71,7 +71,7 @@
 #define LRC_FILE                TTK_STRCAT(TTK_DOT, LRC_FILE_PREFIX)
 #define KRC_FILE                TTK_STRCAT(TTK_DOT, KRC_FILE_PREFIX)
 #define MP3_FILE                TTK_STRCAT(TTK_DOT, MP3_FILE_PREFIX)
-#define LST_FILE                TTK_STRCAT(TTK_DOT, LST_FILE_PREFIX)
+#define TPL_FILE                TTK_STRCAT(TTK_DOT, TPL_FILE_PREFIX)
 #define EXE_FILE                TTK_STRCAT(TTK_DOT, EXE_FILE_PREFIX)
 #define XML_FILE                TTK_STRCAT(TTK_DOT, XML_FILE_PREFIX)
 #define COM_FILE                TTK_STRCAT(TTK_DOT, COM_FILE_PREFIX)
@@ -124,12 +124,12 @@
 #define MAKE_GAIN               TTK_STRCAT(PLUGINS_DIR, MAKE_GAIN_PREFIX)
 
 
-#define COFIG_PATH              "config.xml"
-#define PLAYLIST_PATH           "playlist.tkpl"
-#define NORMAL_DOWN_PATH        "download.tkf"
-#define CLOUD_DOWN_PATH         "cdownload.tkf"
-#define CLOUD_UP_PATH           "cupload.tkf"
-#define SEARCH_PATH             "search.tkf"
+#define COFIG_PATH              TTK_STRCAT("config", XML_FILE)
+#define PLAYLIST_PATH           TTK_STRCAT("playlist", TPL_FILE)
+#define NORMAL_DOWN_PATH        TTK_STRCAT("download", TKF_FILE)
+#define CLOUD_DOWN_PATH         TTK_STRCAT("cdownload", TKF_FILE)
+#define CLOUD_UP_PATH           TTK_STRCAT("cupload", TKF_FILE)
+#define SEARCH_PATH             TTK_STRCAT("search", TKF_FILE)
 
 
 #define MAIN_DIR_FULL           MusicObject::applicationPath() + TTK_PDIR
@@ -172,8 +172,10 @@
 #define LEFT_SIDE_WIDTH_MIN     320
 #define CONCISE_WIDTH_MIN       322
 
-#define HTTP_PREFIX    "http://"
-#define HTTPS_PREFIX   "https://"
+#define HTTP_PREFIX             "http://"
+#define HTTPS_PREFIX            "https://"
+
+#define FILE_SUFFIX(fin)        fin.suffix().toLower()
 
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>

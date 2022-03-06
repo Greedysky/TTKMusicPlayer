@@ -49,7 +49,7 @@ void MusicAbstractMoveWidget::paintEvent(QPaintEvent *event)
 void MusicAbstractMoveWidget::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
-    if(event->button() == Qt::LeftButton && !m_moveOption)///Press the left key
+    if(event->button() == Qt::LeftButton && !m_moveOption)
     {
         m_leftButtonPress = true;
     }
@@ -63,7 +63,7 @@ void MusicAbstractMoveWidget::mousePressEvent(QMouseEvent *event)
 void MusicAbstractMoveWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);
-    if(!m_leftButtonPress)///Not press the left key
+    if(!m_leftButtonPress)
     {
         event->ignore();
         return;

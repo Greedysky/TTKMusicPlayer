@@ -55,8 +55,8 @@ void MusicSongCheckToolsRenameThread::run()
                 }
 
                 const MusicSongCheckToolsRename &song = m_datas[index];
-                const QFileInfo info(song.m_path);
-                QFile::rename(song.m_path, QString("%1/%2.%3").arg(info.absolutePath(), song.m_recommendName, info.suffix()));
+                const QFileInfo fin(song.m_path);
+                QFile::rename(song.m_path, QString("%1/%2.%3").arg(fin.absolutePath(), song.m_recommendName, FILE_SUFFIX(fin)));
             }
         }
     }

@@ -12,10 +12,10 @@
 
 void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSongItem &item)
 {
-    const QFileInfo info(path);
-    const QString &suffix = info.suffix().toLower();
+    const QFileInfo fin(path);
+    const QString &suffix = FILE_SUFFIX(fin);
 
-    if(suffix == LST_FILE_PREFIX)
+    if(suffix == TPL_FILE_PREFIX)
     {
         writeTKPLConfig(path, item);
     }
@@ -53,10 +53,10 @@ void MusicPlaylistManager::musicSongItems(const QStringList& paths, MusicSongIte
 {
     for(const QString &path : qAsConst(paths))
     {
-        const QFileInfo info(path);
-        const QString & suffix = info.suffix().toLower();
+        const QFileInfo fin(path);
+        const QString & suffix = FILE_SUFFIX(fin);
 
-        if(suffix == LST_FILE_PREFIX)
+        if(suffix == TPL_FILE_PREFIX)
         {
             readTKPLConfig(path, items);
         }

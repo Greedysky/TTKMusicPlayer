@@ -235,7 +235,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
 
     QString check;
     m_ui->filePathEdit->setText((check = fin.filePath()).isEmpty() ? TTK_DEFAULT_STR : check);
-    m_ui->fileFormatEdit->setText((check = fin.suffix()).isEmpty() ? TTK_DEFAULT_STR : check);
+    m_ui->fileFormatEdit->setText((check = FILE_SUFFIX(fin)).isEmpty() ? TTK_DEFAULT_STR : check);
     m_ui->fileSizeEdit->setText((check = MusicUtils::Number::sizeByte2Label(fin.size())).isEmpty() ? TTK_DEFAULT_STR : check);
 
     m_ui->fileAlbumEdit->setText(state ? ((check = meta.album()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);

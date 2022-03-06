@@ -183,7 +183,7 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
         return;
     }
 
-    if(QFileInfo(path).suffix().toLower() == TKM_FILE_PREFIX)
+    if(FILE_SUFFIX(QFileInfo(path)) == TKM_FILE_PREFIX)
     {
         const int index = cpoyFileToLocalIndex();
         if(index != -1)
@@ -348,8 +348,19 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem(MusicBackgroundListWidget
     TTKIntList data;
     for(const QString &path : qAsConst(files))
     {
-        QString fileName = QFileInfo(path).baseName();
-                fileName = fileName.split(TTK_DEFAULT_STR).last();
+        QFileInfo fin(path);
+        if(FILE_SUFFIX(fin) != TKM_FILE_PREFIX)
+        {
+            continue;
+        }
+
+        const QStringList &list = fin.baseName().split(TTK_DEFAULT_STR);
+        if(list.count() < 2)
+        {
+            continue;
+        }
+
+        const QString &fileName = list.last();
         data << fileName.trimmed().toInt();
     }
     std::sort(data.begin(), data.end(), std::less<int>());
@@ -376,10 +387,21 @@ int MusicBackgroundSkinDialog::cpoyFileToLocalIndex()
 {
     const QList<QFileInfo> files(QDir(USER_THEME_DIR_FULL).entryInfoList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name));
     TTKIntList data;
-    for(const QFileInfo &info : qAsConst(files))
+    for(const QFileInfo &path : qAsConst(files))
     {
-        QString fileName = info.baseName();
-                fileName = fileName.split(TTK_DEFAULT_STR).last();
+        QFileInfo fin(path);
+        if(FILE_SUFFIX(fin) != TKM_FILE_PREFIX)
+        {
+            continue;
+        }
+
+        const QStringList &list = fin.baseName().split(TTK_DEFAULT_STR);
+        if(list.count() < 2)
+        {
+            continue;
+        }
+
+        const QString &fileName = list.last();
         data << fileName.trimmed().toInt();
     }
     std::sort(data.begin(), data.end(), std::greater<int>());

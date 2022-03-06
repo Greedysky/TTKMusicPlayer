@@ -22,19 +22,19 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
 {
     clear();
 
-    QStringList allText = QString(data).split("\n");
+    QStringList text = QString(data).split("\n");
     if(data.left(9) == MUSIC_TTKLRCF) //plain txt check
     {
-        allText[0].clear();
-        const int perTime = MusicApplication::instance()->duration() / allText.count();
-        for(const QString &oneLine : qAsConst(allText))
+        text[0].clear();
+        const int perTime = MusicApplication::instance()->duration() / text.count();
+        for(const QString &oneLine : qAsConst(text))
         {
             m_lrcContainer.insert(perTime * m_lrcContainer.count(), oneLine);
         }
     }
     else
     {
-        for(const QString &oneLine : qAsConst(allText))
+        for(const QString &oneLine : qAsConst(text))
         {
             matchLrcLine(oneLine);
         }
@@ -132,9 +132,9 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
         return Failed;
     }
 
-    const QString &allText = QString(krc.decodeString());
+    const QString &text = QString(krc.decodeString());
     //The lyrics by line into the lyrics list
-    for(const QString &oneLine : allText.split(MusicUtils::String::newlines()))
+    for(const QString &oneLine : text.split(MusicUtils::String::newlines()))
     {
         matchLrcLine(oneLine);
     }

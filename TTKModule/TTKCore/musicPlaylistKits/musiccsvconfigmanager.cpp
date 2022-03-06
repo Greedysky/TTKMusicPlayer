@@ -12,7 +12,7 @@ bool MusicCSVConfigManager::readPlaylistData(MusicSongItems &items)
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file.fileName()).baseName();
 
-    QStringList data(QString(m_file.readAll()).split("\n"));
+    const QStringList data(QString(m_file.readAll()).split("\n"));
     if(data.isEmpty())
     {
         return false;

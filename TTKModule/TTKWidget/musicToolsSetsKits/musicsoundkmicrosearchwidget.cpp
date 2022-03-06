@@ -183,7 +183,6 @@ void MusicSoundKMicroSearchTableWidget::contextMenuEvent(QContextMenuEvent *even
 MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     : MusicAbstractMoveSingleWidget(parent)
 {
-    ///Remove the title bar
     setWindowFlags(windowFlags() | Qt::Tool);
     blockMoveOption(true);
 

@@ -218,12 +218,12 @@ void MusicReplayGainWidget::addFilesButtonClicked()
     if(!path.isEmpty())
     {
         setControlEnabled(false);
-        for(const QFileInfo &info : MusicUtils::File::fileListByDir(path, true))
+        for(const QFileInfo &fin : MusicUtils::File::fileListByDir(path, true))
         {
-            if(QString(MP3_FILE_PREFIX).contains(info.suffix().toLower()) && !m_paths.contains(info.absoluteFilePath()))
+            if(FILE_SUFFIX(fin) == MP3_FILE_PREFIX && !m_paths.contains(fin.absoluteFilePath()))
             {
                 m_currentIndex = m_paths.count();
-                m_paths << info.absoluteFilePath();
+                m_paths << fin.absoluteFilePath();
 
                 MusicSemaphoreLoop loop(this);
                 connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));

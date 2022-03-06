@@ -33,16 +33,16 @@ MusicSong::MusicSong(const QString &musicPath, const QString &playTime, const QS
     m_musicPath = musicPath;
     m_musicPath.replace("\\", TTK_SEPARATOR);
 
-    const QFileInfo info(m_musicPath);
+    const QFileInfo fin(m_musicPath);
     m_musicName = musicName;
     if(m_musicName.isEmpty())
     {
-        m_musicName = info.completeBaseName();
+        m_musicName = fin.completeBaseName();
     }
 
-    m_musicSize = info.size();
-    m_musicType = info.suffix();
-    m_musicAddTime = info.lastModified().currentMSecsSinceEpoch();
+    m_musicSize = fin.size();
+    m_musicType = FILE_SUFFIX(fin);
+    m_musicAddTime = fin.lastModified().currentMSecsSinceEpoch();
     m_musicPlayTime = playTime;
     m_musicAddTimeStr = QString::number(m_musicAddTime);
     m_musicSizeStr = MusicUtils::Number::sizeByte2Label(m_musicSize);
@@ -98,7 +98,7 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
 {
     MusicSongs songs;
     const QStringList &support = MusicFormats::supportMusicFormats();
-    const QString &suffix = QFileInfo(path).suffix().toLower();
+    const QString &suffix = FILE_SUFFIX(QFileInfo(path));
 
     if(!support.contains(suffix))
     {
@@ -142,8 +142,8 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
 
             const QFileInfo fin(meta.fileRelatedPath());
             MusicSong song(meta.fileBasePath(), time, name);
-            song.setMusicType(fin.suffix());
             song.setMusicSize(fin.size());
+            song.setMusicType(FILE_SUFFIX(fin));
             songs << song;
         }
 

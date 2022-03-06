@@ -108,11 +108,11 @@ void MusicTransformWidget::initInputPath()
         path = MusicUtils::File::openDirectoryDialog(this);
         if(!path.isEmpty())
         {
-            for(const QFileInfo &var : MusicUtils::File::fileListByDir(path, true))
+            for(const QFileInfo &fin : MusicUtils::File::fileListByDir(path, true))
             {
-                if(!m_path.contains(var.absoluteFilePath()) && supportedFormat.contains(var.suffix()))
+                if(!m_path.contains(fin.absoluteFilePath()) && supportedFormat.contains(FILE_SUFFIX(fin)))
                 {
-                    m_path << var.absoluteFilePath();
+                    m_path << fin.absoluteFilePath();
                     m_ui->listWidget->addItem(MusicUtils::Widget::elidedText(font(), m_path.last(), Qt::ElideLeft, LINE_WIDTH));
                     m_ui->listWidget->setToolTip(m_path.last());
                 }

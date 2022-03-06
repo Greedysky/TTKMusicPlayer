@@ -97,30 +97,30 @@ bool MusicConsoleModule::init(const QCoreApplication &app)
 
     if(parser.isSet(op1))
     {
-        const QString &url = parser.value(op1);
-        if(url.isEmpty())
+        const QString &path = parser.value(op1);
+        if(path.isEmpty())
         {
             TTK_LOGGER_ERROR("Music play url path is empty");
             return false;
         }
         else
         {
-            TTK_LOGGER_INFO("Add play url path: " << url);
-            m_musicPlaylist->add(0, url);
+            TTK_LOGGER_INFO("Add play url path: " << path);
+            m_musicPlaylist->add(0, path);
             m_musicPlaylist->setCurrentIndex(0);
         }
     }
     else if(parser.isSet(op2))
     {
-        const QString &url = parser.value(op2);
-        if(url.isEmpty())
+        const QString &path = parser.value(op2);
+        if(path.isEmpty())
         {
             TTK_LOGGER_ERROR("Music play dir path is empty");
             return false;
         }
         else
         {
-            for(const QFileInfo &file : MusicUtils::File::fileListByDir(url, MusicFormats::supportMusicInputFilterFormats(), true))
+            for(const QFileInfo &file : MusicUtils::File::fileListByDir(path, MusicFormats::supportMusicInputFilterFormats(), true))
             {
                 TTK_LOGGER_INFO("Add play url path: " << file.absoluteFilePath());
                 m_musicPlaylist->append(0, file.absoluteFilePath());
@@ -134,15 +134,15 @@ bool MusicConsoleModule::init(const QCoreApplication &app)
     }
     else if(parser.isSet(op3))
     {
-        const QString &url = parser.value(op3);
-        if(url.isEmpty())
+        const QString &path = parser.value(op3);
+        if(path.isEmpty())
         {
             TTK_LOGGER_ERROR("Music playlist path is empty");
             return false;
         }
         else
         {
-            if(QFileInfo(url).suffix().toLower() != LST_FILE_PREFIX)
+            if(FILE_SUFFIX(QFileInfo(path)) != TPL_FILE_PREFIX)
             {
                 TTK_LOGGER_INFO("Music playlist format not support");
                 return false;
@@ -150,7 +150,7 @@ bool MusicConsoleModule::init(const QCoreApplication &app)
 
             MusicSongItems items;
             MusicTKPLConfigManager manager;
-            if(!manager.readConfig(url))
+            if(!manager.readConfig(path))
             {
                 TTK_LOGGER_ERROR("Music playlist read error");
                 return false;
