@@ -44,7 +44,12 @@ unix:!mac{
 
 win32{
     LIBS += -lIphlpapi -lVersion -lole32 -luuid
-    greaterThan(QT_MINOR_VERSION, 1):QT += winextras
+    greaterThan(QT_MAJOR_VERSION, 4){
+         greaterThan(QT_MINOR_VERSION, 1):QT += winextras
+    }else{
+         QT += multimedia
+    }
+
     msvc{
         LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip -luser32
         CONFIG += c++11
@@ -64,8 +69,6 @@ win32{
         QMAKE_CXXFLAGS += -Wunused-function -Wunused-result -Wswitch
         LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
     }
-
-    equals(QT_MAJOR_VERSION, 4):QT += multimedia
 }
 
 unix:!mac{

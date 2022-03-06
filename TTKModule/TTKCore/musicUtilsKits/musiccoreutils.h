@@ -35,10 +35,6 @@ namespace MusicUtils
         /*!
          * App version check.
          */
-        TTK_MODULE_EXPORT bool appVersionCheck(const QStringList &ol, const QStringList &dl, int depth);
-        /*!
-         * App version check.
-         */
         TTK_MODULE_EXPORT bool appVersionCheck(const QString &o, const QString &d);
 
     }

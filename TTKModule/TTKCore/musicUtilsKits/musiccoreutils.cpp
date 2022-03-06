@@ -5,16 +5,7 @@
 #  include <unistd.h>
 #endif
 
-void MusicUtils::Core::sleep(int ms)
-{
-#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,0,0)
-    QThread::msleep(ms);
-#else
-    usleep(ms * 1000);
-#endif
-}
-
-bool MusicUtils::Core::appVersionCheck(const QStringList &ol, const QStringList &dl, int depth)
+static bool appVersionCheck(const QStringList &ol, const QStringList &dl, int depth)
 {
     if(depth >= ol.count())
     {
@@ -36,6 +27,15 @@ bool MusicUtils::Core::appVersionCheck(const QStringList &ol, const QStringList 
     {
         return false;
     }
+}
+
+void MusicUtils::Core::sleep(int ms)
+{
+#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,0,0)
+    QThread::msleep(ms);
+#else
+    usleep(ms * 1000);
+#endif
 }
 
 bool MusicUtils::Core::appVersionCheck(const QString &o, const QString &d)
