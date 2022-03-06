@@ -95,7 +95,6 @@ The TTKMusicplayer plugin for run
  * adplug
  * asap
  * ayfly
- * bp
  * dca
  * fc14
  * hively
@@ -104,7 +103,8 @@ The TTKMusicplayer plugin for run
  * organya
  * psf
  * sc68
+ * soundmon
+ * stsound
  * v2m
  * xmp
  * xsf
- * ym
