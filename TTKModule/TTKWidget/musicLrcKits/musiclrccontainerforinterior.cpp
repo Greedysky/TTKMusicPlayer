@@ -272,14 +272,14 @@ void MusicLrcContainerForInterior::saveLrcTimeChanged()
 void MusicLrcContainerForInterior::artistBackgroundChanged()
 {
     m_showArtistBackground = !m_showArtistBackground;
-    Q_EMIT artistBackgroundHasChanged();
+    Q_EMIT backgroundChanged();
 }
 
 void MusicLrcContainerForInterior::showArtistBackgroundUploadedWidget()
 {
     MusicLrcArtPhotoUploadWidget(this).exec();
     m_showArtistBackground = true;
-    Q_EMIT artistBackgroundHasChanged();
+    Q_EMIT backgroundChanged();
 }
 
 void MusicLrcContainerForInterior::lrcOpenFileDir() const
@@ -492,7 +492,8 @@ void MusicLrcContainerForInterior::paintEvent(QPaintEvent *event)
     {
         QLinearGradient linearGradient(0, 0, width(), 0);
         linearGradient.setColorAt(0.0, QColor(255, 254, 161));
-        linearGradient.setColorAt(0.5, Qt::transparent);
+        linearGradient.setColorAt(0.3, Qt::transparent);
+        linearGradient.setColorAt(0.7, Qt::transparent);
         linearGradient.setColorAt(1.0, QColor(255, 254, 161));
 
         const int line = (height() - m_functionLabel->height()) / 2;

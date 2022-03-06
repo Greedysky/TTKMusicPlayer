@@ -113,13 +113,13 @@ public:
 
 Q_SIGNALS:
     /*!
+     * The art background state has changed emit.
+     */
+    void backgroundChanged();
+    /*!
      * Update current play time when user adjust the progress.
      */
     void updateCurrentTime(qint64 time);
-    /*!
-     * The art background state has changed emit.
-     */
-    void artistBackgroundHasChanged();
 
 public Q_SLOTS:
     /*!
