@@ -37,7 +37,7 @@ public:
     /*!
      * Read datas from config file.
      */
-    void readSkinRemoteData(MusicSkinRemoteGroups &groups);
+    void readSkinRemoteData(MusicSkinRemoteGroupList &groups);
 
 };
 

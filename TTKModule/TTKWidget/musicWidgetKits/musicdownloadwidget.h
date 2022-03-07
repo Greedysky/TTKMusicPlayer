@@ -34,7 +34,7 @@ class QLabel;
 /*! @brief The class of the music song atrribute.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicDownloadTableItemRole
+struct TTK_MODULE_EXPORT MusicDownloadTableItemRole
 {
     int m_bitrate;
     QString m_format;
@@ -61,7 +61,7 @@ typedef struct TTK_MODULE_EXPORT MusicDownloadTableItemRole
     {
         return m_bitrate == r.m_bitrate && m_format == r.m_format && m_size == r.m_size;
     }
-}MusicDownloadTableItemRole;
+};
 
 /*! @brief The class of the download table item.
  * @author Greedysky <greedysky@163.com>
@@ -214,7 +214,7 @@ protected:
     /*!
      * Create current all items.
      */
-    void createAllItems(const MusicObject::MusicSongAttributes &attrs);
+    void createAllItems(const MusicObject::MusicSongAttributeList &attrs);
     /*!
      * Strat to download music.
      */

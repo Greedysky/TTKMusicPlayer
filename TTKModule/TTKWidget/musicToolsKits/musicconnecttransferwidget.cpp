@@ -79,7 +79,7 @@ void MusicConnectTransferWidget::setDeviceInfoItem(MusicDeviceInfoItem *item)
 
 void MusicConnectTransferWidget::initColumns()
 {
-    MusicSongItems songs;
+    MusicSongItemList songs;
     Q_EMIT queryMusicItemList(songs);
 
     m_ui->playListLayoutWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
@@ -110,7 +110,7 @@ void MusicConnectTransferWidget::initColumns()
     m_ui->songCountLabel->setText(m_songCountLabel.arg(count));
 }
 
-void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
+void MusicConnectTransferWidget::createAllItems(const MusicSongList &songs)
 {
     m_ui->listTableWidget->clear();
     if(m_ui->allSelectedcheckBox->isChecked())
@@ -165,7 +165,7 @@ void MusicConnectTransferWidget::itemSelectedChanged()
 
 void MusicConnectTransferWidget::currentPlaylistSelected(int index)
 {
-    MusicSongItems songs;
+    MusicSongItemList songs;
     Q_EMIT queryMusicItemList(songs);
 
     if(index >= songs.count() || index < 0)
@@ -209,7 +209,7 @@ void MusicConnectTransferWidget::musicSearchResultChanged(int, int index)
     }
     m_searchResultCache.insert(index, result);
 
-    MusicSongs songs;
+    MusicSongList songs;
     for(const int index : qAsConst(result))
     {
         songs.append(m_currentSongs[index]);

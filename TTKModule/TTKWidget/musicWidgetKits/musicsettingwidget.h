@@ -32,7 +32,7 @@ class MusicSettingWidget;
 /*! @brief The class of the function tool item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicFunctionItem
+struct TTK_MODULE_EXPORT MusicFunctionItem
 {
     MusicFunctionItem()
     {
@@ -47,8 +47,8 @@ typedef struct TTK_MODULE_EXPORT MusicFunctionItem
 
     QString m_icon;
     QString m_name;
-}MusicFunctionItem;
-TTK_DECLARE_LIST(MusicFunctionItem)
+};
+TTK_DECLARE_LIST(MusicFunctionItem);
 
 /*! @brief The class of the list table widget.
  * @author Greedysky <greedysky@163.com>
@@ -66,7 +66,7 @@ public:
     /*!
      * Add table list items by index and icons and paths.
      */
-    void addFunctionItems(int index, const MusicFunctionItems &items);
+    void addFunctionItems(int index, const MusicFunctionItemList &items);
 
 Q_SIGNALS:
     /*!

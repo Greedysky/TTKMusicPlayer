@@ -99,7 +99,7 @@ bool MusicDeviceInfoModule::disksProperty(const QString &drive) const
 #endif
 }
 
-MusicDeviceInfoItems MusicDeviceInfoModule::removableDrive()
+MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
 {
     m_items.clear();
 #ifdef Q_OS_WIN

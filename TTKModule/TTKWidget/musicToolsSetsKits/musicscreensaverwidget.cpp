@@ -378,7 +378,7 @@ void MusicScreenSaverWidget::initialize()
     m_downloadQueue = new MusicDownloadQueueRequest(MusicObject::DownloadBigBackground, this);
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
 
-    MusicDownloadQueueDatas datas;
+    MusicDownloadQueueDataList datas;
     for(int i=0; i<OS_COUNT; i++)
     {
         const QString &url = QSyncUtils::makeDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(i);

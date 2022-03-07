@@ -43,7 +43,7 @@ public:
     /*!
      * Create all items.
      */
-    void createAllItems(const MusicSongs &items);
+    void createAllItems(const MusicSongList &items);
 
 public Q_SLOTS:
     /*!
@@ -85,7 +85,7 @@ public Q_SLOTS:
 protected:
     Ui::MusicLrcDownloadBatchWidget *m_ui;
 
-    MusicSongs m_localSongs;
+    MusicSongList m_localSongs;
 
 };
 

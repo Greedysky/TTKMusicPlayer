@@ -26,7 +26,7 @@
 /*! @brief The class of the cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicCloudDataItem
+struct TTK_MODULE_EXPORT MusicCloudDataItem
 {
     enum State
     {
@@ -58,7 +58,6 @@ typedef struct TTK_MODULE_EXPORT MusicCloudDataItem
     {
         return m_dataItem.m_name == other.m_dataItem.m_name;
     }
-}MusicCloudDataItem;
-TTK_DECLARE_LIST(MusicCloudDataItem)
+};
 
 #endif // MUSICCLOUDDATAITEM_H

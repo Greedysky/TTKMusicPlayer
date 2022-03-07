@@ -161,8 +161,8 @@ public: \
 #  define TTK_STRCAT(a, b)      a b
 #endif
 
-#define TTK_DECLARE_LIST(Class)        typedef QList<Class> Class##s;
-#define TTK_DECLARE_FLAG(Flags, Enum)  typedef QFlags<Enum> Flags;
+#define TTK_DECLARE_LIST(Class)        typedef QList<Class> Class##List
+#define TTK_DECLARE_FLAG(Flags, Enum)  typedef QFlags<Enum> Flags
 
 #define TTK_DOT             "."
 #define TTK_DOTDOT          ".."

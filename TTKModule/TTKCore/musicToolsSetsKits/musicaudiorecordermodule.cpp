@@ -5,7 +5,7 @@
 #define WRITE_FILE_ERROR    -3
 #define REWRITE_FILE_ERROR  -4
 
-typedef struct WavHeader
+struct WavHeader
 {
     char riffName[4];
     ulong riffLength;
@@ -20,7 +20,7 @@ typedef struct WavHeader
     ushort bitsPerSample;
     char dataName[4];
     ulong dataLength;
-}WavHeader;
+};
 
 
 MusicAudioRecorderModule::MusicAudioRecorderModule(QObject *parent)

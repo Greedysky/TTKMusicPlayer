@@ -8,7 +8,7 @@ MusicSongCheckToolsRenameThread::MusicSongCheckToolsRenameThread(QObject *parent
     m_operateMode = MusicObject::Check;
 }
 
-void MusicSongCheckToolsRenameThread::setRenameSongs(MusicSongs *songs)
+void MusicSongCheckToolsRenameThread::setRenameSongs(MusicSongList *songs)
 {
     m_songItems = songs;
 }
@@ -27,7 +27,7 @@ void MusicSongCheckToolsRenameThread::run()
             {
                 if(!m_running)
                 {
-                    Q_EMIT finished(MusicSongCheckToolsRenames());
+                    Q_EMIT finished(MusicSongCheckToolsRenameList());
                     return;
                 }
 
@@ -50,7 +50,7 @@ void MusicSongCheckToolsRenameThread::run()
             {
                 if(!m_running)
                 {
-                    Q_EMIT finished(MusicSongCheckToolsRenames());
+                    Q_EMIT finished(MusicSongCheckToolsRenameList());
                     return;
                 }
 
@@ -71,7 +71,7 @@ MusicSongCheckToolsDuplicateThread::MusicSongCheckToolsDuplicateThread(QObject *
     m_songItems = nullptr;
 }
 
-void MusicSongCheckToolsDuplicateThread::setDuplicateSongs(MusicSongs *songs)
+void MusicSongCheckToolsDuplicateThread::setDuplicateSongs(MusicSongList *songs)
 {
     m_songItems = songs;
 }
@@ -90,7 +90,7 @@ void MusicSongCheckToolsDuplicateThread::run()
             {
                 if(!m_run)
                 {
-                    Q_EMIT finished(MusicSongCheckToolsDuplicates());
+                    Q_EMIT finished(MusicSongCheckToolsDuplicateList());
                     return;
                 }
 
@@ -108,7 +108,7 @@ void MusicSongCheckToolsDuplicateThread::run()
             {
                 if(!m_run)
                 {
-                    Q_EMIT finished(MusicSongCheckToolsDuplicates());
+                    Q_EMIT finished(MusicSongCheckToolsDuplicateList());
                     return;
                 }
 
@@ -128,7 +128,7 @@ MusicSongCheckToolsQualityThread::MusicSongCheckToolsQualityThread(QObject *pare
     m_songItems = nullptr;
 }
 
-void MusicSongCheckToolsQualityThread::setQualitySongs(MusicSongs *songs)
+void MusicSongCheckToolsQualityThread::setQualitySongs(MusicSongList *songs)
 {
     m_songItems = songs;
 }
@@ -137,7 +137,7 @@ void MusicSongCheckToolsQualityThread::run()
 {
     MusicAbstractThread::run();
 
-    MusicSongCheckToolsQualitys items;
+    MusicSongCheckToolsQualityList items;
     if(m_songItems && !m_songItems->isEmpty())
     {
         MusicSongMeta meta;
@@ -145,7 +145,7 @@ void MusicSongCheckToolsQualityThread::run()
         {
             if(!m_running)
             {
-                Q_EMIT finished(MusicSongCheckToolsQualitys());
+                Q_EMIT finished(MusicSongCheckToolsQualityList());
                 return;
             }
 

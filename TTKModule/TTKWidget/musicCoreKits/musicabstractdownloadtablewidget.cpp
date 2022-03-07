@@ -27,7 +27,7 @@ MusicAbstractDownloadTableWidget::~MusicAbstractDownloadTableWidget()
     delete m_delegate;
 }
 
-void MusicAbstractDownloadTableWidget::updateSongsFileName(const MusicSongs &songs)
+void MusicAbstractDownloadTableWidget::updateSongsFileName(const MusicSongList &songs)
 {
     Q_UNUSED(songs);
     MusicDownloadRecordConfigManager xml(m_type, this);

@@ -38,7 +38,7 @@ public:
     /*!
      * Read all config from file and insert items.
      */
-    virtual void updateSongsFileName(const MusicSongs &songs) override final;
+    virtual void updateSongsFileName(const MusicSongList &songs) override final;
 
 Q_SIGNALS:
     /*!

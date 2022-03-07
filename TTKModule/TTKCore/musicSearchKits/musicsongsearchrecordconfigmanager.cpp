@@ -6,7 +6,7 @@ MusicSongSearchRecordConfigManager::MusicSongSearchRecordConfigManager(QObject *
 
 }
 
-void MusicSongSearchRecordConfigManager::readSearchData(MusicSearchRecords &records)
+void MusicSongSearchRecordConfigManager::readSearchData(MusicSearchRecordList &records)
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName("value");
     for(int i=0; i<nodeList.count(); ++i)
@@ -18,7 +18,7 @@ void MusicSongSearchRecordConfigManager::readSearchData(MusicSearchRecords &reco
     }
 }
 
-void MusicSongSearchRecordConfigManager::writeSearchData(const MusicSearchRecords &records)
+void MusicSongSearchRecordConfigManager::writeSearchData(const MusicSearchRecordList &records)
 {
     if(!writeConfig(SEARCH_PATH_FULL))
     {

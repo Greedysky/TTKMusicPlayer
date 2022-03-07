@@ -10,7 +10,7 @@ MusicDBPLConfigManager::MusicDBPLConfigManager()
 
 }
 
-bool MusicDBPLConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicDBPLConfigManager::readPlaylistData(MusicSongItemList &items)
 {
     QFileInfo info(m_file.fileName());
     MusicSongItem item;
@@ -127,7 +127,7 @@ bool MusicDBPLConfigManager::readPlaylistData(MusicSongItems &items)
     return true;
 }
 
-bool MusicDBPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicDBPLConfigManager::writePlaylistData(const MusicSongItemList &items, const QString &path)
 {
     Q_UNUSED(items);
     Q_UNUSED(path);

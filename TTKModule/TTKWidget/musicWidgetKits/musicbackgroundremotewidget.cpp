@@ -55,7 +55,7 @@ void MusicBackgroundRemoteWidget::downLoadFinished(const QString &bytes)
     m_backgroundList->updateItem(image, bytes);
 }
 
-void MusicBackgroundRemoteWidget::downLoadFinished(const MusicSkinRemoteGroups &bytes)
+void MusicBackgroundRemoteWidget::downLoadFinished(const MusicSkinRemoteGroupList &bytes)
 {
     m_groups = bytes;
 }
@@ -70,7 +70,7 @@ void MusicBackgroundRemoteWidget::startToDownload(const QString &prefix)
     const QString &path = QString("%1%2").arg(CACHE_DIR_FULL, m_groups[m_currentIndex].m_group);
     QDir().mkpath(path);
 
-    MusicDownloadQueueDatas datas;
+    MusicDownloadQueueDataList datas;
     for(const MusicSkinRemoteItem &item : qAsConst(m_groups[m_currentIndex].m_items))
     {
         m_backgroundList->createItem(":/image/lb_none_image", false);
@@ -98,7 +98,7 @@ void MusicBackgroundDailyWidget::initialize()
     if(!m_downloadRequest)
     {
         m_downloadRequest = new MusicDownloadBingSkinRequest(this);
-        connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadFinished(MusicSkinRemoteGroups)));
+        connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroupList)), SLOT(downLoadFinished(MusicSkinRemoteGroupList)));
         m_downloadRequest->startToDownload();
     }
     else
@@ -127,7 +127,7 @@ void MusicBackgroundDailyWidget::outputRemoteSkin(MusicBackgroundImage &image, c
     }
 }
 
-void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroups &bytes)
+void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroupList &bytes)
 {
     MusicBackgroundRemoteWidget::downLoadFinished(bytes);
     startToDownload(TKM_FILE);
@@ -157,7 +157,7 @@ void MusicBackgroundOnlineWidget::initialize()
     if(!m_downloadRequest)
     {
         m_downloadRequest = new MusicDownloadThunderSkinRequest(this);
-        connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadFinished(MusicSkinRemoteGroups)));
+        connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroupList)), SLOT(downLoadFinished(MusicSkinRemoteGroupList)));
         m_downloadRequest->startToDownload();
     }
     else
@@ -224,7 +224,7 @@ void MusicBackgroundOnlineWidget::outputRemoteSkin(MusicBackgroundImage &image, 
     }
 
     const int index = QFileInfo(data).baseName().toInt();
-    MusicSkinRemoteItems *items = &m_groups[m_currentIndex].m_items;
+    MusicSkinRemoteItemList *items = &m_groups[m_currentIndex].m_items;
     if(index >= 0 || index < items->count())
     {
         MusicSkinRemoteItem *item = &(*items)[index];
@@ -251,7 +251,7 @@ void MusicBackgroundOnlineWidget::currentTypeChanged(int index)
     startToDownload(TKM_FILE);
 }
 
-void MusicBackgroundOnlineWidget::downLoadFinished(const MusicSkinRemoteGroups &bytes)
+void MusicBackgroundOnlineWidget::downLoadFinished(const MusicSkinRemoteGroupList &bytes)
 {
     MusicBackgroundRemoteWidget::downLoadFinished(bytes);
     m_typeBox->blockSignals(true);

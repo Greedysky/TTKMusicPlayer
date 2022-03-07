@@ -40,11 +40,11 @@ public:
     /*!
      * Set songs file names.
      */
-    virtual void setSongsFileName(MusicSongs *songs);
+    virtual void setSongsFileName(MusicSongList *songs);
     /*!
      * Update songs file names in table.
      */
-    virtual void updateSongsFileName(const MusicSongs &songs);
+    virtual void updateSongsFileName(const MusicSongList &songs);
     /*!
      * Select the current play row by given index.
      */
@@ -154,7 +154,7 @@ protected:
     QString songName(int index) const;
 
     int m_playRowIndex, m_toolIndex;
-    MusicSongs *m_musicSongs;
+    MusicSongList *m_musicSongs;
     bool m_hasParentToolIndex;
 
 };

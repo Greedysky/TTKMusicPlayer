@@ -35,13 +35,13 @@ public:
     /*!
      * Read music playlist data from file.
      */
-    void musicSongItems(const QStringList &paths, MusicSongItems &items);
+    void musicSongItems(const QStringList &paths, MusicSongItemList &items);
 
 protected:
     /*!
      * Read ttk music playlist data from file.
      */
-    bool readTKPLConfig(const QString &path, MusicSongItems &items);
+    bool readTKPLConfig(const QString &path, MusicSongItemList &items);
     /*!
      * Write ttk music playlist data to file.
      */
@@ -50,7 +50,7 @@ protected:
     /*!
      * Read m3u music playlist data from file.
      */
-    bool readM3UConfig(const QString &path, MusicSongItems &items);
+    bool readM3UConfig(const QString &path, MusicSongItemList &items);
     /*!
      * Write m3u music playlist data to file.
      */
@@ -59,7 +59,7 @@ protected:
     /*!
      * Read pls music playlist data from file.
      */
-    bool readPLSConfig(const QString &path, MusicSongItems &items);
+    bool readPLSConfig(const QString &path, MusicSongItemList &items);
     /*!
      * Write pls music playlist data to file.
      */
@@ -68,7 +68,7 @@ protected:
     /*!
      * Read wpl music playlist data from file.
      */
-    bool readWPLConfig(const QString &path, MusicSongItems &items);
+    bool readWPLConfig(const QString &path, MusicSongItemList &items);
     /*!
      * Write wpl music playlist data to file.
      */
@@ -77,7 +77,7 @@ protected:
     /*!
      * Read xspf music playlist data from file.
      */
-    bool readXSPFConfig(const QString &path, MusicSongItems &items);
+    bool readXSPFConfig(const QString &path, MusicSongItemList &items);
     /*!
      * Write xspf music playlist data to file.
      */
@@ -86,7 +86,7 @@ protected:
     /*!
      * Read asx music playlist data from file.
      */
-    bool readASXConfig(const QString &path, MusicSongItems &items);
+    bool readASXConfig(const QString &path, MusicSongItemList &items);
     /*!
      * Write asx music playlist data to file.
      */
@@ -95,17 +95,17 @@ protected:
     /*!
      * Read foobar2k music playlist data from file.
      */
-    bool readFPLConfig(const QString &path, MusicSongItems &items);
+    bool readFPLConfig(const QString &path, MusicSongItemList &items);
 
     /*!
      * Read deadbeef music playlist data from file.
      */
-    bool readDBPLConfig(const QString &path, MusicSongItems &items);
+    bool readDBPLConfig(const QString &path, MusicSongItemList &items);
 
     /*!
      * Read csv music playlist data from file.
      */
-    bool readCSVConfig(const QString &path, MusicSongItems &items);
+    bool readCSVConfig(const QString &path, MusicSongItemList &items);
     /*!
      * Write csv music playlist data to file.
      */
@@ -114,7 +114,7 @@ protected:
     /*!
      * Read txt music playlist data from file.
      */
-    bool readTXTConfig(const QString &path, MusicSongItems &items);
+    bool readTXTConfig(const QString &path, MusicSongItemList &items);
     /*!
      * Write txt music playlist data to file.
      */

@@ -426,7 +426,7 @@ void MusicArtistQueryWidget::resizeWindow()
 
 void MusicArtistQueryWidget::queryAllFinished()
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
+    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_artist_found"));
@@ -459,7 +459,7 @@ void MusicArtistQueryWidget::queryArtistFinished()
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(d->musicSongInfos());
+    const MusicObject::MusicSongInformationList musicSongInfos(d->musicSongInfoList());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_artist_found"));

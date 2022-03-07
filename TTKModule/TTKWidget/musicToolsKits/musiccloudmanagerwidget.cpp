@@ -55,7 +55,7 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
     m_syncUploadData = new QSyncUploadData(m_manager, this);
     m_syncDownloadData = new QSyncDownloadData(m_manager, this);
 
-    connect(m_syncListData, SIGNAL(receiveFinshed(QSyncDataItems)), SLOT(receiveDataFinshed(QSyncDataItems)));
+    connect(m_syncListData, SIGNAL(receiveFinshed(QSyncDataItemList)), SLOT(receiveDataFinshed(QSyncDataItemList)));
     connect(m_syncDeleteData, SIGNAL(deleteFileFinished(bool)), SLOT(deleteFileFinished(bool)));
     connect(m_syncUploadData, SIGNAL(uploadFileFinished(QString)), SLOT(uploadFileFinished(QString)));
 }
@@ -133,7 +133,7 @@ void MusicCloudManagerTableWidget::downLoadFinished(const QByteArray &bytes)
     Q_EMIT finished();
 }
 
-void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItems &items)
+void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItemList &items)
 {
     clear();
     m_totalFileSzie = 0;

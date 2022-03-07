@@ -27,7 +27,7 @@ class QTimer;
 /*! @brief The class of the functions dispatch item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicDispatchItem
+struct TTK_MODULE_EXPORT MusicDispatchItem
 {
     int m_type;
     int m_times;
@@ -48,7 +48,7 @@ typedef struct TTK_MODULE_EXPORT MusicDispatchItem
     {
         return m_times <= 5;
     }
-}MusicDispatchItem;
+};
 
 
 /*! @brief The class of the functions dispatch manager.

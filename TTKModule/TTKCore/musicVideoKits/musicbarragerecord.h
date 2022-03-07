@@ -24,12 +24,12 @@
 /*! @brief The class of the barrage record item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicBarrageRecord
+struct TTK_MODULE_EXPORT MusicBarrageRecord
 {
     int m_size;
     QString m_color;
     QString m_value;
-}MusicBarrageRecord;
-TTK_DECLARE_LIST(MusicBarrageRecord)
+};
+TTK_DECLARE_LIST(MusicBarrageRecord);
 
 #endif // MUSICBARRAGERECORD_H

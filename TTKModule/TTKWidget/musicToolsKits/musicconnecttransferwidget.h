@@ -52,7 +52,7 @@ Q_SIGNALS:
     /*!
      * Query music datas from container.
      */
-    void queryMusicItemList(MusicSongItems &songs);
+    void queryMusicItemList(MusicSongItemList &songs);
 
 public Q_SLOTS:
     /*!
@@ -88,7 +88,7 @@ protected:
     /*!
      * Create all items.
      */
-    void createAllItems(const MusicSongs &songs);
+    void createAllItems(const MusicSongList &songs);
     /*!
      * Get selected files.
      */
@@ -97,7 +97,7 @@ protected:
 
     Ui::MusicConnectTransferWidget *m_ui;
     int m_currentIndex;
-    MusicSongs m_currentSongs;
+    MusicSongList m_currentSongs;
     QButtonGroup *m_buttonGroup;
     TTKIntListMap m_searchResultCache;
     MusicDeviceInfoItem *m_currentDeviceItem;

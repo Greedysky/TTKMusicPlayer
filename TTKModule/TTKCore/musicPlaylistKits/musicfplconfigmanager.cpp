@@ -4,7 +4,7 @@
 #  pragma GCC diagnostic ignored "-Wunused-result"
 #endif
 
-typedef struct FPLTrackChunk
+struct FPLTrackChunk
 {
     uint unk1;		// not sure??
     uint file_ofz;	// filename string offset
@@ -22,7 +22,7 @@ typedef struct FPLTrackChunk
     uint  key_primary;  // number of primary info keys
     uint  key_second;   // number of secondary info key combos
     uint  key_sec_offset; // index of secondary key start
-}FPLTrackChunk;
+};
 
 
 MusicFPLConfigManager::MusicFPLConfigManager()
@@ -32,7 +32,7 @@ MusicFPLConfigManager::MusicFPLConfigManager()
 
 }
 
-bool MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicFPLConfigManager::readPlaylistData(MusicSongItemList &items)
 {
     QFileInfo info(m_file.fileName());
     MusicSongItem item;
@@ -88,7 +88,7 @@ bool MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
     return true;
 }
 
-bool MusicFPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicFPLConfigManager::writePlaylistData(const MusicSongItemList &items, const QString &path)
 {
     Q_UNUSED(items);
     Q_UNUSED(path);

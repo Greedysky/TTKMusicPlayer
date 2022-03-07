@@ -63,7 +63,7 @@ MusicPlaylistFoundCategoryPopWidget::MusicPlaylistFoundCategoryPopWidget(QWidget
 
 void MusicPlaylistFoundCategoryPopWidget::setCategory(const QString &server, QObject *obj)
 {
-    MusicResultsCategorys categorys;
+    MusicResultsCategoryList categorys;
     MusicCategoryConfigManager manager;
     manager.readConfig(MusicCategoryConfigManager::Playlist);
     manager.readCategoryData(categorys, server);

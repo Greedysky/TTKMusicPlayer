@@ -28,7 +28,7 @@ bool MusicLrcLocalLinkTableWidget::contains(const QString &string)
     return false;
 }
 
-void MusicLrcLocalLinkTableWidget::createAllItems(const MusicLocalDataItems &items)
+void MusicLrcLocalLinkTableWidget::createAllItems(const MusicLocalDataItemList &items)
 {
     const int count = rowCount();
     setRowCount(count + items.count());
@@ -122,7 +122,7 @@ void MusicLrcLocalLinkWidget::searchInLocalLrc()
     m_ui->fuzzyButton->isChecked();
     const QStringList &list = QDir(MusicUtils::String::lrcPrefix()).entryList(QDir::Files |  QDir::Hidden | QDir::NoDotAndDotDot);
 
-    MusicLocalDataItems items;
+    MusicLocalDataItemList items;
     for(const QString &var : list)
     {
         if(var.contains(title, m_ui->fuzzyButton->isChecked() ? Qt::CaseInsensitive : Qt::CaseSensitive))

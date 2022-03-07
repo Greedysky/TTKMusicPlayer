@@ -25,12 +25,12 @@
 /*! @brief The class of the local data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicLocalDataItem
+struct TTK_MODULE_EXPORT MusicLocalDataItem
 {
     QString m_name;
     QString m_path;
-}MusicLocalDataItem;
-TTK_DECLARE_LIST(MusicLocalDataItem)
+};
+TTK_DECLARE_LIST(MusicLocalDataItem);
 
 /*! @brief The class of the local lrc link table widget.
  * @author Greedysky <greedysky@163.com>
@@ -52,7 +52,7 @@ public:
     /*!
      * Create all items.
      */
-    void createAllItems(const MusicLocalDataItems &items);
+    void createAllItems(const MusicLocalDataItemList &items);
 
 public Q_SLOTS:
     /*!

@@ -26,7 +26,7 @@ void MusicDownloadBirdSkinRequest::startToDownload(const QString &id)
 
 void MusicDownloadBirdSkinRequest::downLoadFinished(const QByteArray &bytes)
 {
-    MusicSkinRemoteGroups groups;
+    MusicSkinRemoteGroupList groups;
 
     QJson::Parser json;
     bool ok;

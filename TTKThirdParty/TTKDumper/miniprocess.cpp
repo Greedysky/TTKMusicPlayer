@@ -100,11 +100,11 @@ void killProcessByName(const QStringList &processes)
 #elif defined Q_OS_UNIX
 #include <QProcess>
 
-typedef struct PIDInfo
+struct PIDInfo
 {
     int m_pid;
     QString m_path;
-}PIDInfo;
+};
 
 static QList<PIDInfo> processList()
 {

@@ -66,11 +66,11 @@ public:
     /*!
      * Read datas from config file.
      */
-    virtual bool readPlaylistData(MusicSongItems &items) = 0;
+    virtual bool readPlaylistData(MusicSongItemList &items) = 0;
     /*!
      * Write datas into config file.
      */
-    virtual bool writePlaylistData(const MusicSongItems &items, const QString &path) = 0;
+    virtual bool writePlaylistData(const MusicSongItemList &items, const QString &path) = 0;
 
 };
 

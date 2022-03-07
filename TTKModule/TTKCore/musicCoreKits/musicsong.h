@@ -164,13 +164,13 @@ protected:
     QString m_musicName, m_musicPath, m_musicType, m_musicPlayTime;
 
 };
-TTK_DECLARE_LIST(MusicSong)
+TTK_DECLARE_LIST(MusicSong);
 
 
 /*! @brief The class of the music song sort tag.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicSongSort
+struct TTK_MODULE_EXPORT MusicSongSort
 {
     int m_type;
     Qt::SortOrder m_order;
@@ -180,7 +180,7 @@ typedef struct TTK_MODULE_EXPORT MusicSongSort
         m_type = -1;
         m_order = Qt::AscendingOrder;
     }
-}MusicSongSort;
+};
 
 
 class MusicAbstractSongsListTableWidget;
@@ -188,12 +188,12 @@ class MusicAbstractSongsListTableWidget;
 /*! @brief The class of the music song item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicSongItem
+struct TTK_MODULE_EXPORT MusicSongItem
 {
     int m_itemIndex;
     QString m_itemName;
     MusicSongSort m_sort;
-    MusicSongs m_songs;
+    MusicSongList m_songs;
     MusicAbstractSongsListTableWidget *m_itemObject;
 
     MusicSongItem()
@@ -206,8 +206,8 @@ typedef struct TTK_MODULE_EXPORT MusicSongItem
     {
         return m_itemIndex < other.m_itemIndex;
     }
-}MusicSongItem;
-TTK_DECLARE_LIST(MusicSongItem)
+};
+TTK_DECLARE_LIST(MusicSongItem);
 
 
 namespace MusicObject
@@ -215,7 +215,7 @@ namespace MusicObject
     /*!
      * Generate music song plyalist.
      */
-    TTK_MODULE_EXPORT MusicSongs generateMusicSongList(const QString &path);
+    TTK_MODULE_EXPORT MusicSongList generateMusicSongList(const QString &path);
 
     /*!
      * Check current song plyalist row is valid or not.

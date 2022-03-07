@@ -6,7 +6,7 @@ MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(MusicObject::
     m_type = type;
 }
 
-void MusicDownloadRecordConfigManager::readDownloadData(MusicSongs &records)
+void MusicDownloadRecordConfigManager::readDownloadData(MusicSongList &records)
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName("value");
     for(int i=0; i<nodeList.count(); ++i)
@@ -20,7 +20,7 @@ void MusicDownloadRecordConfigManager::readDownloadData(MusicSongs &records)
     }
 }
 
-void MusicDownloadRecordConfigManager::writeDownloadData(const MusicSongs &records)
+void MusicDownloadRecordConfigManager::writeDownloadData(const MusicSongList &records)
 {
     if(!writeConfig(mappingFilePathFromEnum()))
     {

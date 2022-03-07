@@ -148,7 +148,7 @@ bool MusicConsoleModule::init(const QCoreApplication &app)
                 return false;
             }
 
-            MusicSongItems items;
+            MusicSongItemList items;
             MusicTKPLConfigManager manager;
             if(!manager.readConfig(path))
             {

@@ -149,7 +149,7 @@ public:
     /*!
      * Set current name to search and download musics.
      */
-    void setSongName(const MusicObject::MusicSongInformations &infos, MusicAbstractQueryRequest::QueryType type);
+    void setSongName(const MusicObject::MusicSongInformationList &infos, MusicAbstractQueryRequest::QueryType type);
 
 public Q_SLOTS:
     /*!

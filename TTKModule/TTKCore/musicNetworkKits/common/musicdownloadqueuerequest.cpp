@@ -18,7 +18,7 @@ MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueDat
     MusicObject::setSslConfiguration(m_request);
 }
 
-MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueDatas &datas, MusicObject::DownloadType  type, QObject *parent)
+MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueDataList &datas, MusicObject::DownloadType  type, QObject *parent)
     : MusicDownloadQueueRequest(MusicDownloadQueueData(), type, parent)
 {
     addImageQueue(datas);
@@ -62,7 +62,7 @@ void MusicDownloadQueueRequest::clear()
     m_imageQueue.clear();
 }
 
-void MusicDownloadQueueRequest::addImageQueue(const MusicDownloadQueueDatas &datas)
+void MusicDownloadQueueRequest::addImageQueue(const MusicDownloadQueueDataList &datas)
 {
     m_imageQueue = datas;
 }

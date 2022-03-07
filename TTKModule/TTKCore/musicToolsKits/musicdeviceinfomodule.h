@@ -25,14 +25,14 @@
 /*! @brief The class of the system device info item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicDeviceInfoItem
+struct TTK_MODULE_EXPORT MusicDeviceInfoItem
 {
     QString m_name;
     QString m_path;
     int m_availableBytes;
     int m_totalBytes;
-}MusicDeviceInfoItem;
-TTK_DECLARE_LIST(MusicDeviceInfoItem)
+};
+TTK_DECLARE_LIST(MusicDeviceInfoItem);
 
 
 /*! @brief The class of the system device info.
@@ -56,7 +56,7 @@ public:
     /*!
      * Get removable drive name.
      */
-    MusicDeviceInfoItems removableDrive();
+    MusicDeviceInfoItemList removableDrive();
 
 #ifdef Q_OS_UNIX
 private Q_SLOTS:
@@ -69,7 +69,7 @@ private:
     QProcess* m_dfProcess;
 #endif
 private:
-    MusicDeviceInfoItems m_items;
+    MusicDeviceInfoItemList m_items;
 
 };
 

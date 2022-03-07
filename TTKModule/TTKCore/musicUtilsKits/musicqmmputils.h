@@ -49,7 +49,7 @@ namespace MusicUtils
         /*!
          * Check effect is valid.
          */
-        TTK_MODULE_EXPORT MusicPluginPropertys effectPlugins();
+        TTK_MODULE_EXPORT MusicPluginPropertyList effectPlugins();
         /*!
          * Show effect setting control.
          */

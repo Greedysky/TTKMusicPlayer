@@ -114,7 +114,7 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
     menu.addSeparator();
 
     const int row = currentRow();
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
+    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;

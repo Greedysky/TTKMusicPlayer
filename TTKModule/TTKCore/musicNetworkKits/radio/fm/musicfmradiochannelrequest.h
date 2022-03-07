@@ -24,13 +24,13 @@
 /*! @brief The class of the fm radio channel info item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicFMRadioChannelData
+struct TTK_MODULE_EXPORT MusicFMRadioChannelData
 {
     QString m_id;
     QString m_name;
     QString m_coverUrl;
-}MusicFMRadioChannelData;
-TTK_DECLARE_LIST(MusicFMRadioChannelData)
+};
+TTK_DECLARE_LIST(MusicFMRadioChannelData);
 
 /*! @brief The class of fm radio request of song channel.
  * @author Greedysky <greedysky@163.com>
@@ -52,7 +52,7 @@ public:
     /*!
      * Get music channel.
      */
-    inline const MusicFMRadioChannelDatas& musicChannel() const { return m_channels; }
+    inline const MusicFMRadioChannelDataList& musicChannel() const { return m_channels; }
 
 public Q_SLOTS:
     /*!
@@ -61,7 +61,7 @@ public Q_SLOTS:
     virtual void downLoadFinished() override final;
 
 protected:
-    MusicFMRadioChannelDatas m_channels;
+    MusicFMRadioChannelDataList m_channels;
 
 };
 

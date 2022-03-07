@@ -24,13 +24,13 @@
 /*! @brief The class of the plugin property.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicPluginProperty
+struct TTK_MODULE_EXPORT MusicPluginProperty
 {
     QString m_type;
     QString m_name;
     QString m_description;
     bool m_setting;
-}MusicPluginProperty;
-TTK_DECLARE_LIST(MusicPluginProperty)
+};
+TTK_DECLARE_LIST(MusicPluginProperty);
 
 #endif // MUSICPLUGINPROPERTY_H

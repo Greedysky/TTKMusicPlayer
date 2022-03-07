@@ -185,7 +185,7 @@ class QScrollArea;
 /*! @brief The class of the tool box widget item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicToolBoxWidgetItem
+struct TTK_MODULE_EXPORT MusicToolBoxWidgetItem
 {
     int m_itemIndex;
     MusicFunctionToolBoxWidgetItem* m_widgetItem;
@@ -195,8 +195,8 @@ typedef struct TTK_MODULE_EXPORT MusicToolBoxWidgetItem
         m_itemIndex = -1;
         m_widgetItem = nullptr;
     }
-}MusicToolBoxWidgetItem;
-TTK_DECLARE_LIST(MusicToolBoxWidgetItem)
+};
+TTK_DECLARE_LIST(MusicToolBoxWidgetItem);
 
 
 /*! @brief The class of the function tool box widget.
@@ -277,7 +277,7 @@ protected:
     QVBoxLayout *m_layout;
     QScrollArea *m_scrollArea;
     QWidget *m_contentsWidget;
-    MusicToolBoxWidgetItems m_itemList;
+    MusicToolBoxWidgetItemList m_itemList;
 
 };
 

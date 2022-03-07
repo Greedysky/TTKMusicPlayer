@@ -47,7 +47,7 @@ Q_SIGNALS:
     /*!
      * Query music datas from container.
      */
-    void queryMusicItemList(MusicSongItems &songs);
+    void queryMusicItemList(MusicSongItemList &songs);
 
 public Q_SLOTS:
     /*!
@@ -88,7 +88,7 @@ private:
 
     bool m_isPlaying;
     int m_currentPlayIndex;
-    MusicSongs *m_musicSongs;
+    MusicSongList *m_musicSongs;
     QDlnaFinder *m_dlnaFinder;
     QDlnaFileServer *m_dlnaFileServer;
 

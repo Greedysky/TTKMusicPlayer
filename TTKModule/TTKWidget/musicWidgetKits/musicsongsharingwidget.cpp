@@ -107,7 +107,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
 
             if(!d->isEmpty())
             {
-                const MusicObject::MusicSongInformation info(d->musicSongInfos().first());
+                const MusicObject::MusicSongInformation info(d->musicSongInfoList().first());
                 QString server = d->queryServer();
                 if(server == QUERY_WY_INTERFACE)
                     server = MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_UNIMP_KEY, false).arg(info.m_songId);

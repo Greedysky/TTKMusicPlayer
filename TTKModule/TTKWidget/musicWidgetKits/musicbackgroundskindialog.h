@@ -56,11 +56,11 @@ public:
      * Copy art file to local themes dir path.
      */
     static QString cpoyArtistFileToLocal(const QString &path);
+
     /*!
      * Update artist file theme.
      */
     void updateArtistFileTheme(const QString &theme);
-
     /*!
      * Select current item by name\alpha\listAlpha when the widget show.
      */
@@ -148,6 +148,11 @@ protected:
      * Copy custom file to local themes dir path.
      */
     void cpoyFileFromLocal(const QString &path);
+
+    /*!
+     * Find all theme in local directory.
+     */
+    static void findThemeListByDir(const QString &dir, TTKIntList &data);
     /*!
      * Copy custom file index.
      */

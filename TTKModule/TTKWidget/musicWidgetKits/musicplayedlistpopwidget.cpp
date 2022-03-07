@@ -81,7 +81,7 @@ void MusicPlayedListPopWidget::clear()
 
 void MusicPlayedListPopWidget::resetToolIndex(const PlayedItemList &indexs)
 {
-    MusicPlayItems *items = m_playlist->mediaList();
+    MusicPlayItemList *items = m_playlist->mediaList();
     for(int s=0; s<items->count(); ++s)
     {
         for(int i=0; i<indexs.count(); ++i)
@@ -143,7 +143,7 @@ void MusicPlayedListPopWidget::append(int toolIndex, const MusicSong &song)
     updateSongsFileName();
 }
 
-void MusicPlayedListPopWidget::append(const MusicSongs &song)
+void MusicPlayedListPopWidget::append(const MusicSongList &song)
 {
     clear();
     m_songList = song;

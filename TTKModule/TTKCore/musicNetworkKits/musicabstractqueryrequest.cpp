@@ -86,7 +86,7 @@ bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttribute 
     return true;
 }
 
-bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttributes *attrs)
+bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttributeList *attrs)
 {
     for(int i=0; i<attrs->count(); ++i)
     {

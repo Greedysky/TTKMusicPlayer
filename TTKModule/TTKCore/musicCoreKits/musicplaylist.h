@@ -24,7 +24,7 @@
 /*! @brief The class of the music play item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicPlayItem
+struct TTK_MODULE_EXPORT MusicPlayItem
 {
     int m_toolIndex;
     QString m_path;
@@ -49,8 +49,8 @@ typedef struct TTK_MODULE_EXPORT MusicPlayItem
     {
         return m_toolIndex == other.m_toolIndex && m_path == other.m_path;
     }
-}MusicPlayItem;
-TTK_DECLARE_LIST(MusicPlayItem)
+};
+TTK_DECLARE_LIST(MusicPlayItem);
 
 
 /*! @brief The class of the music play list.
@@ -92,11 +92,11 @@ public:
     /*!
      * Get all music media path.
      */
-    MusicPlayItems *mediaList();
+    MusicPlayItemList *mediaList();
     /*!
      * Get queue music media path.
      */
-    MusicPlayItems *queueList();
+    MusicPlayItemList *queueList();
 
     /*!
      * Get current medias count.
@@ -130,7 +130,7 @@ public:
     /*!
      * Add music media list, not append remember.
      */
-    void add(const MusicPlayItems &items);
+    void add(const MusicPlayItemList &items);
 
     /*!
      * Append music medias.
@@ -147,7 +147,7 @@ public:
     /*!
      * Append music medias.
      */
-    void append(const MusicPlayItems &items);
+    void append(const MusicPlayItemList &items);
     /*!
      * Append music media by index and content.
      */
@@ -188,8 +188,8 @@ public Q_SLOTS:
 
 protected:
     int m_currentIndex;
-    MusicPlayItems m_mediaList;
-    MusicPlayItems m_queueList;
+    MusicPlayItemList m_mediaList;
+    MusicPlayItemList m_queueList;
     MusicObject::PlayMode m_playbackMode;
 
 };

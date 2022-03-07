@@ -197,9 +197,9 @@ protected:
      */
     ConfigType typeStringToEnum(const QString &stype) const
     {
-        int index = staticMetaObject.indexOfEnumerator("ConfigType");
+        const int index = staticMetaObject.indexOfEnumerator("ConfigType");
         QMetaEnum metaEnum = staticMetaObject.enumerator(index);
-        int key = metaEnum.keyToValue(stype.toStdString().c_str());
+        const int key = metaEnum.keyToValue(stype.toStdString().c_str());
         return TTKStatic_cast(ConfigType, key);
     }
 

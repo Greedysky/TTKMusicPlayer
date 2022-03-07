@@ -8,7 +8,7 @@ MusicWPLConfigManager::MusicWPLConfigManager()
 
 }
 
-bool MusicWPLConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicWPLConfigManager::readPlaylistData(MusicSongItemList &items)
 {
     MusicXmlNodeHelper nodeHelper(m_document->documentElement());
     nodeHelper.load();
@@ -25,7 +25,7 @@ bool MusicWPLConfigManager::readPlaylistData(MusicSongItems &items)
     return true;
 }
 
-bool MusicWPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicWPLConfigManager::writePlaylistData(const MusicSongItemList &items, const QString &path)
 {
     if(items.isEmpty() || !writeConfig(path))
     {
@@ -57,11 +57,11 @@ bool MusicWPLConfigManager::writePlaylistData(const MusicSongItems &items, const
     return true;
 }
 
-MusicSongs MusicWPLConfigManager::readMusicFilePath(const QDomNode &node) const
+MusicSongList MusicWPLConfigManager::readMusicFilePath(const QDomNode &node) const
 {
     const QDomNodeList &nodeList = node.childNodes();
 
-    MusicSongs songs;
+    MusicSongList songs;
     for(int i=0; i<nodeList.count(); i++)
     {
         const QDomElement &element = nodeList.at(i).toElement();

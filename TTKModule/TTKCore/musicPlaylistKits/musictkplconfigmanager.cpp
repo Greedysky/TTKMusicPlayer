@@ -7,7 +7,7 @@ MusicTKPLConfigManager::MusicTKPLConfigManager()
 
 }
 
-bool MusicTKPLConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicTKPLConfigManager::readPlaylistData(MusicSongItemList &items)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName("musicList");
     for(int i=0; i<nodes.count(); ++i)
@@ -28,7 +28,7 @@ bool MusicTKPLConfigManager::readPlaylistData(MusicSongItems &items)
     return true;
 }
 
-bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItemList &items, const QString &path)
 {
     if(items.isEmpty() || !writeConfig(path))
     {
@@ -40,7 +40,7 @@ bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, cons
     for(int i=0; i<items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-        QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", MusicXmlAttributes()
+        QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", MusicXmlAttributeList()
                                                    << MusicXmlAttribute("name", item.m_itemName)
                                                    << MusicXmlAttribute("index", i)
                                                    << MusicXmlAttribute("count", item.m_songs.count())
@@ -48,7 +48,7 @@ bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, cons
                                                    << MusicXmlAttribute("sortType", item.m_sort.m_order));
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
-            writeDomElementMutilText(pathDom, "value", MusicXmlAttributes()
+            writeDomElementMutilText(pathDom, "value", MusicXmlAttributeList()
                                      << MusicXmlAttribute("name", song.musicName())
                                      << MusicXmlAttribute("playCount", song.musicPlayCount())
                                      << MusicXmlAttribute("time", song.musicPlayTime()), song.musicPath());
@@ -60,11 +60,11 @@ bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, cons
     return true;
 }
 
-MusicSongs MusicTKPLConfigManager::readMusicFilePath(const QDomNode &node) const
+MusicSongList MusicTKPLConfigManager::readMusicFilePath(const QDomNode &node) const
 {
     const QDomNodeList &nodeList = node.childNodes();
 
-    MusicSongs songs;
+    MusicSongList songs;
     for(int i=0; i<nodeList.count(); i++)
     {
         const QDomElement &element = nodeList.at(i).toElement();

@@ -19,7 +19,7 @@ void MusicDownloadBingSkinRequest::startToDownload()
 
 void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)
 {
-    MusicSkinRemoteGroups groups;
+    MusicSkinRemoteGroupList groups;
 
     QJson::Parser json;
     bool ok;

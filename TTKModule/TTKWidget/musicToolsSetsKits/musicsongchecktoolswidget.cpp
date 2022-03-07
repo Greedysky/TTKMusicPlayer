@@ -8,9 +8,9 @@ MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicSongCheckToolsWidget)
 {
-    Q_UNUSED(qRegisterMetaType<MusicSongCheckToolsRenames>("MusicSongCheckToolsRenames"));
-    Q_UNUSED(qRegisterMetaType<MusicSongCheckToolsDuplicates>("MusicSongCheckToolsDuplicates"));
-    Q_UNUSED(qRegisterMetaType<MusicSongCheckToolsQualitys>("MusicSongCheckToolsQualitys"));
+    Q_UNUSED(qRegisterMetaType<MusicSongCheckToolsRenameList>("MusicSongCheckToolsRenameList"));
+    Q_UNUSED(qRegisterMetaType<MusicSongCheckToolsDuplicateList>("MusicSongCheckToolsDuplicateList"));
+    Q_UNUSED(qRegisterMetaType<MusicSongCheckToolsQualityList>("MusicSongCheckToolsQualityList"));
 
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -88,7 +88,7 @@ void MusicSongCheckToolsWidget::renameReCheckButtonClicked()
     m_renameCore->start();
 }
 
-void MusicSongCheckToolsWidget::renameCheckFinished(const MusicSongCheckToolsRenames &items)
+void MusicSongCheckToolsWidget::renameCheckFinished(const MusicSongCheckToolsRenameList &items)
 {
     if(m_renameCore->mode() == MusicObject::Check || items.isEmpty())
     {
@@ -148,7 +148,7 @@ void MusicSongCheckToolsWidget::qualityReCheckButtonClicked()
     m_qualityCore->start();
 }
 
-void MusicSongCheckToolsWidget::qualityCheckFinished(const MusicSongCheckToolsQualitys &items)
+void MusicSongCheckToolsWidget::qualityCheckFinished(const MusicSongCheckToolsQualityList &items)
 {
     m_ui->qualityLoadingLabel->stop();
     m_ui->qualityLoadingLabel->hide();
@@ -208,7 +208,7 @@ void MusicSongCheckToolsWidget::duplicateReCheckButtonClicked()
     m_duplicateCore->start();
 }
 
-void MusicSongCheckToolsWidget::duplicateCheckFinished(const MusicSongCheckToolsDuplicates &items)
+void MusicSongCheckToolsWidget::duplicateCheckFinished(const MusicSongCheckToolsDuplicateList &items)
 {
     if(m_duplicateCore->mode() == MusicObject::Check || items.isEmpty())
     {
@@ -255,7 +255,7 @@ void MusicSongCheckToolsWidget::initRenameWidget()
     m_ui->renameReCheckButton->hide();
 
     m_renameCore = new MusicSongCheckToolsRenameThread(this);
-    connect(m_renameCore, SIGNAL(finished(MusicSongCheckToolsRenames)), SLOT(renameCheckFinished(MusicSongCheckToolsRenames)));
+    connect(m_renameCore, SIGNAL(finished(MusicSongCheckToolsRenameList)), SLOT(renameCheckFinished(MusicSongCheckToolsRenameList)));
 }
 
 void MusicSongCheckToolsWidget::initQualityWidget()
@@ -275,7 +275,7 @@ void MusicSongCheckToolsWidget::initQualityWidget()
     m_ui->qualityReCheckButton->hide();
 
     m_qualityCore = new MusicSongCheckToolsQualityThread(this);
-    connect(m_qualityCore, SIGNAL(finished(MusicSongCheckToolsQualitys)), SLOT(qualityCheckFinished(MusicSongCheckToolsQualitys)));
+    connect(m_qualityCore, SIGNAL(finished(MusicSongCheckToolsQualityList)), SLOT(qualityCheckFinished(MusicSongCheckToolsQualityList)));
 }
 
 void MusicSongCheckToolsWidget::initDuplicateWidget()
@@ -299,7 +299,7 @@ void MusicSongCheckToolsWidget::initDuplicateWidget()
     m_ui->duplicateReCheckButton->hide();
 
     m_duplicateCore = new MusicSongCheckToolsDuplicateThread(this);
-    connect(m_duplicateCore, SIGNAL(finished(MusicSongCheckToolsDuplicates)), SLOT(duplicateCheckFinished(MusicSongCheckToolsDuplicates)));
+    connect(m_duplicateCore, SIGNAL(finished(MusicSongCheckToolsDuplicateList)), SLOT(duplicateCheckFinished(MusicSongCheckToolsDuplicateList)));
 }
 
 void MusicSongCheckToolsWidget::switchToSelectedItemStyle(int index)

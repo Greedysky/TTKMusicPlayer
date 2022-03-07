@@ -208,7 +208,7 @@ void MusicAbstractItemQueryWidget::setSongCountText()
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(d->musicSongInfos());
+    const MusicObject::MusicSongInformationList musicSongInfos(d->musicSongInfoList());
     if(m_songButton)
     {
         m_songButton->setText(tr("SongItems") + QString("(%1)").arg(musicSongInfos.count()));

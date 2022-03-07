@@ -25,7 +25,7 @@
 /*! @brief The class of the download manager pair.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicDownLoadPairData
+struct TTK_MODULE_EXPORT MusicDownLoadPairData
 {
     qint64 m_timestamp;
     QObject *m_object;
@@ -59,7 +59,7 @@ typedef struct TTK_MODULE_EXPORT MusicDownLoadPairData
     {
         return m_timestamp == other.m_timestamp;
     }
-}MusicDownLoadPairData;
+};
 
 /*! @brief The class of produce the download manager.
  * @author Greedysky <greedysky@163.com>

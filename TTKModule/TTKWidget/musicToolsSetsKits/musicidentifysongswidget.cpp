@@ -287,7 +287,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
 
     if(!d->isEmpty())
     {
-        for(const MusicObject::MusicSongInformation &info : d->musicSongInfos())
+        for(const MusicObject::MusicSongInformation &info : d->musicSongInfoList())
         {
             if(info.m_singerName.toLower().trimmed().contains(songIdentify.m_singerName.toLower().trimmed(), Qt::CaseInsensitive) &&
                info.m_songName.toLower().trimmed().contains(songIdentify.m_songName.toLower().trimmed(), Qt::CaseInsensitive))

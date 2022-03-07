@@ -84,7 +84,7 @@ public Q_SLOTS:
     /*!
      * Receive data from sync finshed.
      */
-    void receiveDataFinshed(const QSyncDataItems &items);
+    void receiveDataFinshed(const QSyncDataItemList &items);
     /*!
      * Upload data to sync finshed.
      */

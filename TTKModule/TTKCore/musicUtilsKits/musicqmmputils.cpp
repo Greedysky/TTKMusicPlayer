@@ -67,9 +67,9 @@ void MusicUtils::QMMP::enabledEffectPlugin(const QString &name, bool enable)
     }
 }
 
-MusicPluginPropertys MusicUtils::QMMP::effectPlugins()
+MusicPluginPropertyList MusicUtils::QMMP::effectPlugins()
 {
-    MusicPluginPropertys properties;
+    MusicPluginPropertyList properties;
     for(EffectFactory *factory : Effect::factories())
     {
 #ifdef Q_OS_WIN

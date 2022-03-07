@@ -21,7 +21,7 @@ bool MusicCategoryConfigManager::readConfig(Type type)
     return MusicAbstractXml::readConfig(v);
 }
 
-void MusicCategoryConfigManager::readCategoryData(MusicResultsCategorys &records, const QString &key)
+void MusicCategoryConfigManager::readCategoryData(MusicResultsCategoryList &records, const QString &key)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName(key);
     for(int i=0; i<nodes.count(); ++i)

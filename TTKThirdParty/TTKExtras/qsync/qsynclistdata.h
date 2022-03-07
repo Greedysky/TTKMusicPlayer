@@ -41,7 +41,7 @@ Q_SIGNALS:
     /*!
      * Receive data finshed.
      */
-    void receiveFinshed(const QSyncDataItems &items);
+    void receiveFinshed(const QSyncDataItemList &items);
 
 protected Q_SLOTS:
     /*!

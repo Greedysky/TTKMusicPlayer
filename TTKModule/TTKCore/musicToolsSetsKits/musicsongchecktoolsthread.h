@@ -51,13 +51,13 @@ public:
     /*!
      * Set find file path by given path.
      */
-    void setRenameSongs(MusicSongs *songs);
+    void setRenameSongs(MusicSongList *songs);
 
 Q_SIGNALS:
     /*!
      * Rename check finished.
      */
-    void finished(const MusicSongCheckToolsRenames &items);
+    void finished(const MusicSongCheckToolsRenameList &items);
 
 protected:
     /*!
@@ -66,9 +66,9 @@ protected:
     virtual void run() override final;
 
 protected:
-    MusicSongs *m_songItems;
+    MusicSongList *m_songItems;
     TTKIntList m_itemIDs;
-    MusicSongCheckToolsRenames m_datas;
+    MusicSongCheckToolsRenameList m_datas;
     MusicObject::MusicSongCheckToolsMode m_operateMode;
 
 };
@@ -103,13 +103,13 @@ public:
     /*!
      * Set find file path by given path.
      */
-    void setDuplicateSongs(MusicSongs *songs);
+    void setDuplicateSongs(MusicSongList *songs);
 
 Q_SIGNALS:
     /*!
      * Duplicate check finished.
      */
-    void finished(const MusicSongCheckToolsDuplicates &items);
+    void finished(const MusicSongCheckToolsDuplicateList &items);
 
 protected:
     virtual void run() override final;
@@ -119,9 +119,9 @@ protected:
 
 protected:
     bool m_run;
-    MusicSongs *m_songItems;
+    MusicSongList *m_songItems;
     TTKIntList m_itemIDs;
-    MusicSongCheckToolsDuplicates m_datas;
+    MusicSongCheckToolsDuplicateList m_datas;
     MusicObject::MusicSongCheckToolsMode m_operateMode;
 
 };
@@ -143,13 +143,13 @@ public:
     /*!
      * Set find file path by given path.
      */
-    void setQualitySongs(MusicSongs *songs);
+    void setQualitySongs(MusicSongList *songs);
 
 Q_SIGNALS:
     /*!
      * Quality check finished.
      */
-    void finished(const MusicSongCheckToolsQualitys &items);
+    void finished(const MusicSongCheckToolsQualityList &items);
 
 protected:
     /*!
@@ -158,7 +158,7 @@ protected:
     virtual void run() override final;
 
 protected:
-    MusicSongs *m_songItems;
+    MusicSongList *m_songItems;
 
 };
 

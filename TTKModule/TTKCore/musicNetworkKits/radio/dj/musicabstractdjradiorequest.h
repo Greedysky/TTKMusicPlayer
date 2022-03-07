@@ -50,7 +50,7 @@ public:
     /*!
      * Get suggest list items.
      */
-    inline const MusicResultsItems& searchedItems() const { return m_items; }
+    inline const MusicResultsItemList& searchedItems() const { return m_items; }
 
 Q_SIGNALS:
     /*!
@@ -59,7 +59,7 @@ Q_SIGNALS:
     void createProgramItem(const MusicResultsItem &item);
 
 protected:
-    MusicResultsItems m_items;
+    MusicResultsItemList m_items;
 
 };
 

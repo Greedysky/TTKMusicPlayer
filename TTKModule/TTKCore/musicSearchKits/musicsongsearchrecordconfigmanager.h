@@ -24,12 +24,12 @@
 /*! @brief The class of the searched record item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicSearchRecord
+struct TTK_MODULE_EXPORT MusicSearchRecord
 {
     QString m_name;
     QString m_timestamp;
-}MusicSearchRecord;
-TTK_DECLARE_LIST(MusicSearchRecord)
+};
+TTK_DECLARE_LIST(MusicSearchRecord);
 
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>
@@ -52,11 +52,11 @@ public:
     /*!
      * Read datas from config file.
      */
-    void readSearchData(MusicSearchRecords &records);
+    void readSearchData(MusicSearchRecordList &records);
     /*!
      * Write datas into config file.
      */
-    void writeSearchData(const MusicSearchRecords &records);
+    void writeSearchData(const MusicSearchRecordList &records);
 
 };
 

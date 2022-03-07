@@ -31,7 +31,7 @@ class MusicSpectrumWidget;
 /*! @brief The class of the music spectrum object.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicSpectrum
+struct TTK_MODULE_EXPORT MusicSpectrum
 {
     enum SpectrumType
     {
@@ -46,8 +46,8 @@ typedef struct TTK_MODULE_EXPORT MusicSpectrum
     QString m_module;
     QWidget *m_object;
     SpectrumType m_type;
-}MusicSpectrum;
-TTK_DECLARE_LIST(MusicSpectrum)
+};
+TTK_DECLARE_LIST(MusicSpectrum);
 
 /*! @brief The class of the music spectrum widget all.
  * @author Greedysky <greedysky@163.com>
@@ -142,7 +142,7 @@ protected:
     QLayout *m_spectrumLayout;
     QString m_lastFlowName;
     QString m_lastFloridName;
-    MusicSpectrums m_types;
+    MusicSpectrumList m_types;
     Ui::MusicSpectrumWidget *m_ui;
 
 };

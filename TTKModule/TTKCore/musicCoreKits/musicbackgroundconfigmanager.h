@@ -25,7 +25,7 @@
 /*! @brief The class of the skin config item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicSkinConfigItem
+struct TTK_MODULE_EXPORT MusicSkinConfigItem
 {
     QString m_name;
     int m_useCount;
@@ -40,14 +40,13 @@ typedef struct TTK_MODULE_EXPORT MusicSkinConfigItem
     {
         return !(m_name.isEmpty() && m_useCount == 0);
     }
-}MusicSkinConfigItem;
-TTK_DECLARE_LIST(MusicSkinConfigItem)
+};
 
 
 /*! @brief The class of the skin backgroud image.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicBackgroundImage
+struct TTK_MODULE_EXPORT MusicBackgroundImage
 {
     QPixmap m_pix;
     MusicSkinConfigItem m_item;
@@ -56,8 +55,7 @@ typedef struct TTK_MODULE_EXPORT MusicBackgroundImage
     {
         return !m_pix.isNull() && m_item.isValid();
     }
-}MusicBackgroundImage;
-TTK_DECLARE_LIST(MusicBackgroundImage)
+};
 
 
 /*! @brief The class of the skin XML Config Manager.

@@ -61,14 +61,14 @@ protected:
 /*! @brief The class of the label previewed.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicPreviewLabelItem
+struct TTK_MODULE_EXPORT MusicPreviewLabelItem
 {
     QString m_family;
     int m_size;
     int m_type;
     QList<QColor> m_frontground;
     QList<QColor> m_background;
-}MusicPreviewLabelItem;
+};
 
 /*! @brief The class of the lrc setting preview label.
  * @author Greedysky <greedysky@163.com>

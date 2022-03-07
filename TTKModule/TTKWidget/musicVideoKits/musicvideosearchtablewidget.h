@@ -27,13 +27,13 @@ Q_DECLARE_METATYPE(MusicObject::MusicSongInformation)
 /*! @brief The class of the video item play data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicVideoItem
+struct TTK_MODULE_EXPORT MusicVideoItem
 {
     QString m_name;
     QString m_url;
     QString m_id;
     QString m_server;
-}MusicVideoItem;
+};
 
 /*! @brief The class of the video search table widget.
  * @author Greedysky <greedysky@163.com>
@@ -101,7 +101,7 @@ public Q_SLOTS:
     /*!
      * Get music media information data.
      */
-    void musicMediaInfo(MusicObject::MusicSongAttributes &data);
+    void musicMediaInfo(MusicObject::MusicSongAttributeList &data);
     /*!
      * Download current mv by controller.
      */

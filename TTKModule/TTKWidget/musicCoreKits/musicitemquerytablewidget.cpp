@@ -57,7 +57,7 @@ void MusicItemQueryTableWidget::startSearchQuery(const QString &text)
 
 void MusicItemQueryTableWidget::musicDownloadLocal(int row)
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
+    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
@@ -70,7 +70,7 @@ void MusicItemQueryTableWidget::musicDownloadLocal(int row)
 
 void MusicItemQueryTableWidget::downloadDataFrom(bool play)
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
+    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
     const TTKIntList &list = selectedItems();
     if(list.isEmpty())
     {
@@ -89,7 +89,7 @@ void MusicItemQueryTableWidget::downloadDataFrom(bool play)
 
 void MusicItemQueryTableWidget::downloadBatchData(bool music)
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
+    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
     const TTKIntList &list = selectedItems();
     if(list.isEmpty())
     {
@@ -97,7 +97,7 @@ void MusicItemQueryTableWidget::downloadBatchData(bool music)
         return;
     }
 
-    MusicObject::MusicSongInformations items;
+    MusicObject::MusicSongInformationList items;
     for(int index : list)
     {
         if(index < 0 || index >= musicSongInfos.count())
@@ -132,7 +132,7 @@ void MusicItemQueryTableWidget::resizeWindow()
 void MusicItemQueryTableWidget::menuActionChanged(QAction *action)
 {
     const int row = currentRow();
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
+    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
@@ -166,7 +166,7 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     const int row = currentRow();
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
+    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
@@ -312,7 +312,7 @@ void MusicItemQueryTableWidget::addSearchMusicToPlaylist(int row, bool play)
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
+    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
     if(row >= musicSongInfos.count())
     {
         return;
@@ -328,7 +328,7 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const MusicObject::MusicSongInf
         return false;
     }
 
-    MusicObject::MusicSongAttributes attrs(downloadInfo.m_songAttrs);
+    MusicObject::MusicSongAttributeList attrs(downloadInfo.m_songAttrs);
     std::sort(attrs.begin(), attrs.end()); //to find out the min bitrate
 
     if(!attrs.isEmpty())

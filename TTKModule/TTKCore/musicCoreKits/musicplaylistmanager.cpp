@@ -49,7 +49,7 @@ void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSong
     }
 }
 
-void MusicPlaylistManager::musicSongItems(const QStringList& paths, MusicSongItems &items)
+void MusicPlaylistManager::musicSongItems(const QStringList& paths, MusicSongItemList &items)
 {
     for(const QString &path : qAsConst(paths))
     {
@@ -99,7 +99,7 @@ void MusicPlaylistManager::musicSongItems(const QStringList& paths, MusicSongIte
     }
 }
 
-bool MusicPlaylistManager::readTKPLConfig(const QString &path, MusicSongItems &items)
+bool MusicPlaylistManager::readTKPLConfig(const QString &path, MusicSongItemList &items)
 {
     MusicTKPLConfigManager manager;
     if(manager.readConfig(path))
@@ -115,7 +115,7 @@ bool MusicPlaylistManager::writeTKPLConfig(const QString &path, const MusicSongI
     return manager.writePlaylistData({item}, path);
 }
 
-bool MusicPlaylistManager::readM3UConfig(const QString &path, MusicSongItems &items)
+bool MusicPlaylistManager::readM3UConfig(const QString &path, MusicSongItemList &items)
 {
     MusicM3UConfigManager manager;
     if(manager.readConfig(path))
@@ -131,7 +131,7 @@ bool MusicPlaylistManager::writeM3UConfig(const QString &path, const MusicSongIt
     return manager.writePlaylistData({item}, path);
 }
 
-bool MusicPlaylistManager::readPLSConfig(const QString &path, MusicSongItems &items)
+bool MusicPlaylistManager::readPLSConfig(const QString &path, MusicSongItemList &items)
 {
     MusicPLSConfigManager manager;
     if(manager.readConfig(path))
@@ -147,7 +147,7 @@ bool MusicPlaylistManager::writePLSConfig(const QString &path, const MusicSongIt
     return manager.writePlaylistData({item}, path);
 }
 
-bool MusicPlaylistManager::readWPLConfig(const QString &path, MusicSongItems &items)
+bool MusicPlaylistManager::readWPLConfig(const QString &path, MusicSongItemList &items)
 {
     MusicWPLConfigManager manager;
     if(manager.readConfig(path))
@@ -163,7 +163,7 @@ bool MusicPlaylistManager::writeWPLConfig(const QString &path, const MusicSongIt
     return manager.writePlaylistData({item}, path);
 }
 
-bool MusicPlaylistManager::readXSPFConfig(const QString &path, MusicSongItems &items)
+bool MusicPlaylistManager::readXSPFConfig(const QString &path, MusicSongItemList &items)
 {
     MusicXSPFConfigManager manager;
     if(manager.readConfig(path))
@@ -179,7 +179,7 @@ bool MusicPlaylistManager::writeXSPFConfig(const QString &path, const MusicSongI
     return manager.writePlaylistData({item}, path);
 }
 
-bool MusicPlaylistManager::readASXConfig(const QString &path, MusicSongItems &items)
+bool MusicPlaylistManager::readASXConfig(const QString &path, MusicSongItemList &items)
 {
     MusicASXConfigManager manager;
     if(manager.readConfig(path))
@@ -195,7 +195,7 @@ bool MusicPlaylistManager::writeASXConfig(const QString &path, const MusicSongIt
     return manager.writePlaylistData({item}, path);
 }
 
-bool MusicPlaylistManager::readFPLConfig(const QString &path, MusicSongItems &items)
+bool MusicPlaylistManager::readFPLConfig(const QString &path, MusicSongItemList &items)
 {
     MusicFPLConfigManager manager;
     if(manager.readConfig(path))
@@ -205,7 +205,7 @@ bool MusicPlaylistManager::readFPLConfig(const QString &path, MusicSongItems &it
     return false;
 }
 
-bool MusicPlaylistManager::readDBPLConfig(const QString &path, MusicSongItems &items)
+bool MusicPlaylistManager::readDBPLConfig(const QString &path, MusicSongItemList &items)
 {
     MusicDBPLConfigManager manager;
     if(manager.readConfig(path))
@@ -215,7 +215,7 @@ bool MusicPlaylistManager::readDBPLConfig(const QString &path, MusicSongItems &i
     return false;
 }
 
-bool MusicPlaylistManager::readCSVConfig(const QString &path, MusicSongItems &items)
+bool MusicPlaylistManager::readCSVConfig(const QString &path, MusicSongItemList &items)
 {
     MusicCSVConfigManager manager;
     if(manager.readConfig(path))
@@ -231,7 +231,7 @@ bool MusicPlaylistManager::writeCSVConfig(const QString &path, const MusicSongIt
     return manager.writePlaylistData({item}, path);
 }
 
-bool MusicPlaylistManager::readTXTConfig(const QString &path, MusicSongItems &items)
+bool MusicPlaylistManager::readTXTConfig(const QString &path, MusicSongItemList &items)
 {
     MusicTXTConfigManager manager;
     if(manager.readConfig(path))

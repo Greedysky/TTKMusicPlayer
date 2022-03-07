@@ -26,7 +26,7 @@
 /*! @brief The class of the time check object.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicTimeData
+struct TTK_MODULE_EXPORT MusicTimeData
 {
     int m_index;
     int m_hour;
@@ -40,8 +40,8 @@ typedef struct TTK_MODULE_EXPORT MusicTimeData
         m_minute = -1;
         m_state = false;
     }
-}MusicTimeData;
-TTK_DECLARE_LIST(MusicTimeData)
+};
+TTK_DECLARE_LIST(MusicTimeData);
 
 
 /*! @brief The class of the time auto run.
@@ -76,7 +76,7 @@ protected:
     void setShutdown();
 
     QTimer m_timer;
-    MusicTimeDatas m_timeDatas;
+    MusicTimeDataList m_timeDatas;
 
 };
 

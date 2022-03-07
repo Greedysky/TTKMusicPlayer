@@ -38,7 +38,7 @@ public:
     /*!
      * Create all items.
      */
-    void createAllItems(MusicSongItems *items);
+    void createAllItems(MusicSongItemList *items);
     /*!
      * Get selected items.
      */
@@ -74,7 +74,7 @@ public:
     /*!
      * Create all items.
      */
-    void createAllItems(MusicSongItems *items);
+    void createAllItems(MusicSongItemList *items);
 
 Q_SIGNALS:
     /*!
@@ -117,13 +117,13 @@ public:
     /*!
      * Get selected song items.
      */
-    MusicSongs selectedSongItems();
+    MusicSongList selectedSongItems();
 
 Q_SIGNALS:
     /*!
      * Query music datas from container.
      */
-    void queryMusicItemList(MusicSongItems &songs);
+    void queryMusicItemList(MusicSongItemList &songs);
     /*!
      * Confirm changed.
      */

@@ -90,7 +90,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
 
     connect(m_videoTable, SIGNAL(mediaUrlPathChanged(MusicVideoItem)), SLOT(mediaUrlPathChanged(MusicVideoItem)));
     connect(m_videoTable, SIGNAL(restartSearchQuery(QString)), SLOT(videoResearchButtonSearched(QString)));
-    connect(m_searchEdit, SIGNAL(clicked(bool)), SLOT(searchButtonClicked()));
+    connect(m_searchEdit, SIGNAL(clicked()), SLOT(searchButtonClicked()));
     connect(m_searchEdit->editor(), SIGNAL(enterFinished(QString)), SLOT(videoResearchButtonSearched(QString)));
 
     connect(m_videoFloatWidget, SIGNAL(searchButtonClicked()), SLOT(switchToSearchTable()));
@@ -248,7 +248,7 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
 {
     m_videoTable->startSearchSingleQuery(data);
     const MusicObject::MusicSongInformation info(data.value<MusicObject::MusicSongInformation>());
-    const MusicObject::MusicSongAttributes &attrs = info.m_songAttrs;
+    const MusicObject::MusicSongAttributeList &attrs = info.m_songAttrs;
     if(!attrs.isEmpty())
     {
         const MusicObject::MusicSongAttribute &attr = attrs.first();

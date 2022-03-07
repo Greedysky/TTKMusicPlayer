@@ -40,7 +40,7 @@ public:
     /*!
      * Update songs file names in table.
      */
-    virtual void updateSongsFileName(const MusicSongs &songs) override final;
+    virtual void updateSongsFileName(const MusicSongList &songs) override final;
     /*!
      * Select the current play row by given index.
      */

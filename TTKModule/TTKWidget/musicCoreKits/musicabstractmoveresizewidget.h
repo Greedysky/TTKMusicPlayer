@@ -25,14 +25,14 @@
 /*! @brief The class of the moving resize struct.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MoveResizeData
+struct TTK_MODULE_EXPORT MoveResizeData
 {
     bool m_mouseLeftPress;
     bool m_isPressBorder;
     QPoint m_mousePos;
     QPoint m_windowPos;
     QSize m_pressedSize;
-}MoveResizeData;
+};
 
 /*! @brief The class of the moving resize widget base.
  * @author Greedysky <greedysky@163.com>

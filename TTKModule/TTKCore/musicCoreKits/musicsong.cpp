@@ -94,9 +94,9 @@ bool MusicSong::operator> (const MusicSong &other) const
 }
 
 
-MusicSongs MusicObject::generateMusicSongList(const QString &path)
+MusicSongList MusicObject::generateMusicSongList(const QString &path)
 {
-    MusicSongs songs;
+    MusicSongList songs;
     const QStringList &support = MusicFormats::supportMusicFormats();
     const QString &suffix = FILE_SUFFIX(QFileInfo(path));
 

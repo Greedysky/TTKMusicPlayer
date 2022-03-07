@@ -925,6 +925,7 @@ void MusicLrcContainerForInterior::resizeWidth(int w, int h)
     {
         m_commentsWidget->setGeometry(0, height() / 5, width(), height() * 4 / 5);
     }
+
     if(m_translatedWidget)
     {
         m_translatedWidget->setGeometry(0, height() / 5, width(), height() * 4 / 5);

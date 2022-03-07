@@ -110,7 +110,7 @@ public:
     /*!
      * Append music to data list.
      */
-    void append(const MusicSongs &song);
+    void append(const MusicSongList &song);
 
     /*!
      * Insert music after played music index.
@@ -176,7 +176,7 @@ protected:
 
     QList<QLabel*> m_labels;
     MusicPlaylist *m_playlist;
-    MusicSongs m_songList;
+    MusicSongList m_songList;
     QScrollArea *m_scrollArea;
     MusicSongsListPlayedTableWidget *m_playedListWidget;
 

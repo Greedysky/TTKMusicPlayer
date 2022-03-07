@@ -80,7 +80,7 @@ void MusicVideoQualityPopWidget::initWidget()
 
 QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)
 {
-    MusicObject::MusicSongAttributes data;
+    MusicObject::MusicSongAttributeList data;
     Q_EMIT queryMusicMediaInfo(data);
 
     for(const MusicObject::MusicSongAttribute &attr : qAsConst(data))
@@ -95,7 +95,7 @@ QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)
 
 int MusicVideoQualityPopWidget::findMVBitrateByUrl(const QString &url)
 {
-    MusicObject::MusicSongAttributes data;
+    MusicObject::MusicSongAttributeList data;
     Q_EMIT queryMusicMediaInfo(data);
 
     for(const MusicObject::MusicSongAttribute &attr : qAsConst(data))
@@ -111,7 +111,7 @@ int MusicVideoQualityPopWidget::findMVBitrateByUrl(const QString &url)
 
 bool MusicVideoQualityPopWidget::findExistByBitrate(int bitrate)
 {
-    MusicObject::MusicSongAttributes data;
+    MusicObject::MusicSongAttributeList data;
     Q_EMIT queryMusicMediaInfo(data);
 
     for(const MusicObject::MusicSongAttribute &attr : qAsConst(data))

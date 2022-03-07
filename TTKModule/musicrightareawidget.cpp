@@ -56,7 +56,6 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
 MusicRightAreaWidget::~MusicRightAreaWidget()
 {
     delete m_settingWidget;
-    delete m_lrcAnalysis;
     delete m_downloadStatusObject;
     delete m_musicLrcForDesktop;
     delete m_musicLrcForWallpaper;

@@ -46,7 +46,7 @@ void QSyncListData::listDataOperator(const QString &bucket)
 
 void QSyncListData::receiveDataFromServer()
 {
-    QSyncDataItems items;
+    QSyncDataItemList items;
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply && reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 200)
     {

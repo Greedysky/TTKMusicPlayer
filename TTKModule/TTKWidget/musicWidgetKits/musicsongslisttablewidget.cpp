@@ -76,7 +76,7 @@ MusicSongsListTableWidget::~MusicSongsListTableWidget()
     delete m_renameLineEditDelegate;
 }
 
-void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
+void MusicSongsListTableWidget::updateSongsFileName(const MusicSongList &songs)
 {
     if(createUploadFileModule())
     {
@@ -181,7 +181,7 @@ void MusicSongsListTableWidget::clearAllItems()
     setColumnCount(6);
 }
 
-void MusicSongsListTableWidget::updateSearchFileName(MusicSongs *songs, const TTKIntList &result)
+void MusicSongsListTableWidget::updateSearchFileName(MusicSongList *songs, const TTKIntList &result)
 {
     m_searchedSongs.clear();
     if(songs->count() == result.count())
@@ -792,7 +792,7 @@ void MusicSongsListTableWidget::startToDrag()
     Q_EMIT isSearchResultEmpty(empty);
     if(empty && m_dragStartIndex > -1 && m_leftButtonPressed && m_mouseMoved)
     {
-        MusicSongs songs;
+        MusicSongList songs;
         const int start = m_dragStartIndex;
         const int end = currentRow();
         int index = m_playRowIndex;

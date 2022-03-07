@@ -85,7 +85,7 @@ void MusicDownloadStatusModule::currentLrcDataDownload()
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(d->musicSongInfos());
+    const MusicObject::MusicSongInformationList musicSongInfos(d->musicSongInfoList());
     if(!musicSongInfos.isEmpty())
     {
         const QString &fileName = d->queryText();

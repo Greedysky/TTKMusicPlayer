@@ -74,7 +74,7 @@ protected:
      */
     virtual MusicFunctionToolBoxWidgetItem* createItem(QWidget *item, const QString &text) override final;
 
-    MusicSongItems m_songItems;
+    MusicSongItemList m_songItems;
     MusicDownloadRecordTableWidget *m_downloadTable;
 
 };

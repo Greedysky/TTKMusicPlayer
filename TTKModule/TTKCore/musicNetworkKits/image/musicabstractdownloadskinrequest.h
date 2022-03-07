@@ -24,7 +24,7 @@
 /*! @brief The class of the remote skin item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicSkinRemoteItem
+struct TTK_MODULE_EXPORT MusicSkinRemoteItem
 {
     QString m_name;
     QString m_url;
@@ -42,25 +42,25 @@ typedef struct TTK_MODULE_EXPORT MusicSkinRemoteItem
     {
         return !m_name.isEmpty();
     }
-}MusicSkinRemoteItem;
-TTK_DECLARE_LIST(MusicSkinRemoteItem)
+};
+TTK_DECLARE_LIST(MusicSkinRemoteItem);
 
 
 /*! @brief The class of the remote skin item group.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
+struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
 {
     QString m_group;
     QString m_id;
-    MusicSkinRemoteItems m_items;
+    MusicSkinRemoteItemList m_items;
 
     inline bool isValid() const
     {
         return !(m_group.isEmpty() && m_id.isEmpty() && m_items.isEmpty());
     }
-}MusicSkinRemoteGroup;
-TTK_DECLARE_LIST(MusicSkinRemoteGroup)
+};
+TTK_DECLARE_LIST(MusicSkinRemoteGroup);
 
 
 /*! @brief The class of download skin remote background.
@@ -89,7 +89,7 @@ Q_SIGNALS:
     /*!
      * Send download data from net.
      */
-    void downLoadDataChanged(const MusicSkinRemoteGroups &bytes);
+    void downLoadDataChanged(const MusicSkinRemoteGroupList &bytes);
 
 public Q_SLOTS:
     /*!

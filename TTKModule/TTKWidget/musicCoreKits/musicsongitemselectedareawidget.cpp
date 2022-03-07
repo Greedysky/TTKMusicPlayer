@@ -24,7 +24,7 @@ MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *pare
 #endif
 }
 
-void MusicSongItemSelectedTableWidget::createAllItems(MusicSongItems *items)
+void MusicSongItemSelectedTableWidget::createAllItems(MusicSongItemList *items)
 {
     if(items->count() >= 4)
     {
@@ -114,7 +114,7 @@ MusicSongItemSelectedDialog::~MusicSongItemSelectedDialog()
     delete m_ui;
 }
 
-void MusicSongItemSelectedDialog::createAllItems(MusicSongItems *items)
+void MusicSongItemSelectedDialog::createAllItems(MusicSongItemList *items)
 {
     m_ui->itemTableWidget->createAllItems(items);
 }
@@ -170,12 +170,12 @@ MusicSongItemSelectedAreaWidget::~MusicSongItemSelectedAreaWidget()
     delete m_modifiedItemButton;
 }
 
-MusicSongs MusicSongItemSelectedAreaWidget::selectedSongItems()
+MusicSongList MusicSongItemSelectedAreaWidget::selectedSongItems()
 {
-    MusicSongItems songs;
+    MusicSongItemList songs;
     Q_EMIT queryMusicItemList(songs);
 
-    MusicSongs selectedSongs;
+    MusicSongList selectedSongs;
     for(const MusicSongItem &item : qAsConst(songs))
     {
         if(m_selected)
@@ -198,7 +198,7 @@ MusicSongs MusicSongItemSelectedAreaWidget::selectedSongItems()
 
 void MusicSongItemSelectedAreaWidget::modifiedItemButtonClicked()
 {
-    MusicSongItems songs;
+    MusicSongItemList songs;
     Q_EMIT queryMusicItemList(songs);
 
     m_selected = true;

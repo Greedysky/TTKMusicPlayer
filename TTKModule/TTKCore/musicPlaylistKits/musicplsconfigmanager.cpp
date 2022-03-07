@@ -7,7 +7,7 @@ MusicPLSConfigManager::MusicPLSConfigManager()
 
 }
 
-bool MusicPLSConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicPLSConfigManager::readPlaylistData(MusicSongItemList &items)
 {
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file.fileName()).baseName();
@@ -69,7 +69,7 @@ bool MusicPLSConfigManager::readPlaylistData(MusicSongItems &items)
     return true;
 }
 
-bool MusicPLSConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicPLSConfigManager::writePlaylistData(const MusicSongItemList &items, const QString &path)
 {
     if(items.isEmpty())
     {

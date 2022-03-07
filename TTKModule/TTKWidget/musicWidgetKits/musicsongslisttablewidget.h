@@ -45,7 +45,7 @@ public:
     /*!
      * Update songs file names in table.
      */
-    virtual void updateSongsFileName(const MusicSongs &songs) override final;
+    virtual void updateSongsFileName(const MusicSongList &songs) override final;
     /*!
      * Select the current play row.
      */
@@ -58,7 +58,7 @@ public:
     /*!
      * Set current search result indexs.
      */
-    void updateSearchFileName(MusicSongs *songs, const TTKIntList &result);
+    void updateSearchFileName(MusicSongList *songs, const TTKIntList &result);
 
     /*!
      * Set music sort.
@@ -93,7 +93,7 @@ Q_SIGNALS:
     /*!
      * Swap the current play index when user drag and drop.
      */
-    void queryMusicIndexSwaped(int before, int after, int play, MusicSongs &songs);
+    void queryMusicIndexSwaped(int before, int after, int play, MusicSongList &songs);
     /*!
      * Add or remove music list song to lovest list by row.
      */
@@ -200,7 +200,7 @@ protected:
 
     bool m_leftButtonPressed;
     bool m_renameActived, m_deleteItemWithFile;
-    MusicSongs m_searchedSongs;
+    MusicSongList m_searchedSongs;
     QTableWidgetItem *m_renameItem;
     MusicRenameLineEditDelegate *m_renameLineEditDelegate;
     MusicSongSort *m_musicSort;

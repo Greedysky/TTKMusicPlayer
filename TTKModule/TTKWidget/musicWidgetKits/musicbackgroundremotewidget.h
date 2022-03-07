@@ -59,7 +59,7 @@ public Q_SLOTS:
     /*!
      * Send download data from net.
      */
-    virtual void downLoadFinished(const MusicSkinRemoteGroups &bytes);
+    virtual void downLoadFinished(const MusicSkinRemoteGroupList &bytes);
 
 protected:
     /*!
@@ -68,7 +68,7 @@ protected:
     void startToDownload(const QString &suffix);
 
     int m_currentIndex;
-    MusicSkinRemoteGroups m_groups;
+    MusicSkinRemoteGroupList m_groups;
     MusicBackgroundListWidget *m_backgroundList;
     MusicDownloadQueueRequest *m_downloadQueue;
     MusicAbstractDownloadSkinRequest *m_downloadRequest;
@@ -104,7 +104,7 @@ public Q_SLOTS:
     /*!
      * Send download data from net.
      */
-    virtual void downLoadFinished(const MusicSkinRemoteGroups &bytes) override final;
+    virtual void downLoadFinished(const MusicSkinRemoteGroupList &bytes) override final;
 
 };
 
@@ -146,7 +146,7 @@ public Q_SLOTS:
     /*!
      * Send download data from net.
      */
-    virtual void downLoadFinished(const MusicSkinRemoteGroups &bytes) override final;
+    virtual void downLoadFinished(const MusicSkinRemoteGroupList &bytes) override final;
 
 protected:
     QWidget *m_functionsWidget;

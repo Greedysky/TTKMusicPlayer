@@ -48,7 +48,7 @@ void MusicDownloadBatchTableItem::createItem(const MusicObject::MusicSongInforma
     m_queryType = type;
     m_songInfo = info;
 
-    MusicObject::MusicSongAttributes attrs(info.m_songAttrs);
+    MusicObject::MusicSongAttributeList attrs(info.m_songAttrs);
     std::sort(attrs.begin(), attrs.end()); //to find out the min bitrate
 
     for(const MusicObject::MusicSongAttribute &attr : qAsConst(attrs))
@@ -184,7 +184,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
     QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, attr.m_format);
 
-    MusicSongs records;
+    MusicSongList records;
     MusicDownloadRecordConfigManager down(MusicObject::RecordNormalDownload, this);
     if(!down.readConfig())
     {
@@ -381,7 +381,7 @@ MusicDownloadBatchWidget::~MusicDownloadBatchWidget()
     delete m_ui;
 }
 
-void MusicDownloadBatchWidget::setSongName(const MusicObject::MusicSongInformations &infos, MusicAbstractQueryRequest::QueryType type)
+void MusicDownloadBatchWidget::setSongName(const MusicObject::MusicSongInformationList &infos, MusicAbstractQueryRequest::QueryType type)
 {
     for(const MusicObject::MusicSongInformation &info : qAsConst(infos))
     {

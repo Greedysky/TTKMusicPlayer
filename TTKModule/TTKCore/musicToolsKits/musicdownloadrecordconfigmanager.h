@@ -52,11 +52,11 @@ public:
     /*!
      * Read datas from config file.
      */
-    void readDownloadData(MusicSongs &records);
+    void readDownloadData(MusicSongList &records);
     /*!
      * Write datas into config file.
      */
-    void writeDownloadData(const MusicSongs &records);
+    void writeDownloadData(const MusicSongList &records);
 
 protected:
     /*!

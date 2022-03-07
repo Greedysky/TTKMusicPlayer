@@ -24,12 +24,12 @@
 /*! @brief The class of the song identify data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicSongIdentifyData
+struct TTK_MODULE_EXPORT MusicSongIdentifyData
 {
     QString m_singerName;
     QString m_songName;
-}MusicSongIdentifyData;
-TTK_DECLARE_LIST(MusicSongIdentifyData)
+};
+TTK_DECLARE_LIST(MusicSongIdentifyData);
 
 /*! @brief The class of the song identify query request.
  * @author Greedysky <greedysky@163.com>
@@ -55,7 +55,7 @@ public:
     /*!
      * Get identify songs.
      */
-    inline const MusicSongIdentifyDatas& identifySongs() const { return m_songIdentifys; }
+    inline const MusicSongIdentifyDataList& identifySongs() const { return m_songIdentifys; }
 
 Q_SIGNALS:
     /*!
@@ -74,7 +74,7 @@ public Q_SLOTS:
     void downLoadFinished(const QByteArray &bytes);
 
 protected:
-    MusicSongIdentifyDatas m_songIdentifys;
+    MusicSongIdentifyDataList m_songIdentifys;
     QString m_accessKey, m_accessSecret;
 
 };

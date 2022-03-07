@@ -21,7 +21,7 @@ MusicLrcDownloadBatchTableWidget::MusicLrcDownloadBatchTableWidget(QWidget *pare
     headerview->resizeSection(4, 60);
 }
 
-void MusicLrcDownloadBatchTableWidget::createAllItems(const MusicSongs &items)
+void MusicLrcDownloadBatchTableWidget::createAllItems(const MusicSongList &items)
 {
     setRowCount(items.count());
     QHeaderView *headerview = horizontalHeader();
@@ -163,7 +163,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
 
         if(!d->isEmpty())
         {
-            const MusicObject::MusicSongInformation info(d->musicSongInfos().first());
+            const MusicObject::MusicSongInformation info(d->musicSongInfoList().first());
             MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, MusicObject::DownloadLrc, this);
             d->startToDownload();
             loop.exec();

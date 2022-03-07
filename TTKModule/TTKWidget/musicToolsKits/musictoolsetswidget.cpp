@@ -47,7 +47,7 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
 
 void MusicToolSetsWidget::addListWidgetItem()
 {
-    typedef struct ToolItem
+    struct ToolItem
     {
         QString m_icon;
         QString m_name;
@@ -58,10 +58,10 @@ void MusicToolSetsWidget::addListWidgetItem()
             m_icon = icon;
             m_name = name;
         }
-    }ToolItem;
+    };
     TTK_DECLARE_LIST(ToolItem);
 
-    ToolItems pairs;
+    ToolItemList pairs;
     pairs << ToolItem(":/tools/lb_localmanager", tr("Loacl"))
           << ToolItem(":/tools/lb_bell", tr("Bell"))
           << ToolItem(":/tools/lb_timer", tr("Timing"))

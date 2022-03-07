@@ -33,7 +33,7 @@ namespace MusicObject
 /*! @brief The class of the song check tools rename.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicSongCheckToolsRename
+struct TTK_MODULE_EXPORT MusicSongCheckToolsRename
 {
     QString m_locaName;
     QString m_recommendName;
@@ -45,14 +45,14 @@ typedef struct TTK_MODULE_EXPORT MusicSongCheckToolsRename
         m_recommendName = recommendName;
         m_path = path;
     }
-}MusicSongCheckToolsRename;
-TTK_DECLARE_LIST(MusicSongCheckToolsRename)
+};
+TTK_DECLARE_LIST(MusicSongCheckToolsRename);
 
 
 /*! @brief The class of the song check tools duplicate.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicSongCheckToolsDuplicate
+struct TTK_MODULE_EXPORT MusicSongCheckToolsDuplicate
 {
     MusicSong m_song;
     QString m_bitrate;
@@ -62,14 +62,14 @@ typedef struct TTK_MODULE_EXPORT MusicSongCheckToolsDuplicate
         m_song = song;
         m_bitrate = bitrate;
     }
-}MusicSongCheckToolsDuplicate;
-TTK_DECLARE_LIST(MusicSongCheckToolsDuplicate)
+};
+TTK_DECLARE_LIST(MusicSongCheckToolsDuplicate);
 
 
 /*! @brief The class of the song check tools quality.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicSongCheckToolsQuality
+struct TTK_MODULE_EXPORT MusicSongCheckToolsQuality
 {
     MusicSong m_song;
     QString m_bitrate;
@@ -79,7 +79,7 @@ typedef struct TTK_MODULE_EXPORT MusicSongCheckToolsQuality
         m_song = song;
         m_bitrate = bitrate;
     }
-}MusicSongCheckToolsQuality;
-TTK_DECLARE_LIST(MusicSongCheckToolsQuality)
+};
+TTK_DECLARE_LIST(MusicSongCheckToolsQuality);
 
 #endif // MUSICSONGCHECKTOOLSUNIT_H

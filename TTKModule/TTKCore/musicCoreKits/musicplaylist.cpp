@@ -68,12 +68,12 @@ QString MusicPlaylist::currentMediaPath() const
     return item.m_path;
 }
 
-MusicPlayItems *MusicPlaylist::mediaList()
+MusicPlayItemList *MusicPlaylist::mediaList()
 {
     return &m_mediaList;
 }
 
-MusicPlayItems *MusicPlaylist::queueList()
+MusicPlayItemList *MusicPlaylist::queueList()
 {
     return &m_queueList;
 }
@@ -120,7 +120,7 @@ void MusicPlaylist::add(const MusicPlayItem &item)
     m_mediaList << item;
 }
 
-void MusicPlaylist::add(const MusicPlayItems &items)
+void MusicPlaylist::add(const MusicPlayItemList &items)
 {
     clear();
     m_mediaList = items;
@@ -144,7 +144,7 @@ void MusicPlaylist::append(const MusicPlayItem &item)
     m_mediaList << item;
 }
 
-void MusicPlaylist::append(const MusicPlayItems &items)
+void MusicPlaylist::append(const MusicPlayItemList &items)
 {
     m_mediaList << items;
 }

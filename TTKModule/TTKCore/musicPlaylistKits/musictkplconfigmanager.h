@@ -43,17 +43,17 @@ public:
     /*!
      * Read datas from config file.
      */
-    virtual bool readPlaylistData(MusicSongItems &items) override final;
+    virtual bool readPlaylistData(MusicSongItemList &items) override final;
     /*!
      * Write datas into config file.
      */
-    virtual bool writePlaylistData(const MusicSongItems &items, const QString &path) override final;
+    virtual bool writePlaylistData(const MusicSongItemList &items, const QString &path) override final;
 
 protected:
     /*!
      * Read Music File Path.
      */
-    MusicSongs readMusicFilePath(const QDomNode &node) const;
+    MusicSongList readMusicFilePath(const QDomNode &node) const;
 
 };
 

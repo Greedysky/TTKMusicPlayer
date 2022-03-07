@@ -62,7 +62,7 @@ MusicToplistQueryCategoryPopWidget::MusicToplistQueryCategoryPopWidget(QWidget *
 
 void MusicToplistQueryCategoryPopWidget::setCategory(const QString &server, QObject *obj)
 {
-    MusicResultsCategorys categorys;
+    MusicResultsCategoryList categorys;
     MusicCategoryConfigManager manager;
     manager.readConfig(MusicCategoryConfigManager::Toplist);
     manager.readCategoryData(categorys, server);

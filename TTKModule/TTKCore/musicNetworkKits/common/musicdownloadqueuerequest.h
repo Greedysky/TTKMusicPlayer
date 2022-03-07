@@ -24,12 +24,12 @@
 /*! @brief The class of the download queue data.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicDownloadQueueData
+struct TTK_MODULE_EXPORT MusicDownloadQueueData
 {
     QString m_url;        ///*download url*/
     QString m_savePath;   ///*save local path*/
-}MusicDownloadQueueData;
-TTK_DECLARE_LIST(MusicDownloadQueueData)
+};
+TTK_DECLARE_LIST(MusicDownloadQueueData);
 
 
 /*! @brief The class of download data from queue request.
@@ -52,13 +52,13 @@ public:
     /*!
      * Object contsructor.
      */
-    MusicDownloadQueueRequest(const MusicDownloadQueueDatas &datas, MusicObject::DownloadType  type, QObject *parent = nullptr);
+    MusicDownloadQueueRequest(const MusicDownloadQueueDataList &datas, MusicObject::DownloadType  type, QObject *parent = nullptr);
     ~MusicDownloadQueueRequest();
 
     /*!
      * Add image download url and save path to download queue.
      */
-    void addImageQueue(const MusicDownloadQueueDatas &datas);
+    void addImageQueue(const MusicDownloadQueueDataList &datas);
     /*!
      * Start to download data.
      */

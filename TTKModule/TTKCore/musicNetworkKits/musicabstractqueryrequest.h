@@ -25,7 +25,7 @@
 /*! @brief The class of the searched data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicSearchedItem
+struct TTK_MODULE_EXPORT MusicSearchedItem
 {
     QString m_songName;
     QString m_singerName;
@@ -41,13 +41,12 @@ typedef struct TTK_MODULE_EXPORT MusicSearchedItem
         m_duration = TTK_DEFAULT_STR;
         m_type = TTK_DEFAULT_STR;
     }
-}MusicSearchedItem;
-TTK_DECLARE_LIST(MusicSearchedItem)
+};
 
 /*! @brief The class of the search song results data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicResultsItem
+struct TTK_MODULE_EXPORT MusicResultsItem
 {
     QString m_id;
     QString m_name;
@@ -74,8 +73,8 @@ typedef struct TTK_MODULE_EXPORT MusicResultsItem
     {
         return m_name == TTK_DEFAULT_STR || m_nickName == TTK_DEFAULT_STR || m_coverUrl == TTK_DEFAULT_STR || m_description == TTK_DEFAULT_STR || m_tags == TTK_DEFAULT_STR;
     }
-}MusicResultsItem;
-TTK_DECLARE_LIST(MusicResultsItem)
+};
+TTK_DECLARE_LIST(MusicResultsItem);
 
 #define QUERY_WY_INTERFACE      "WangYi"
 #define QUERY_QQ_INTERFACE      "QQ"
@@ -167,11 +166,11 @@ public:
     /*!
      * Set the current song container.
      */
-    inline void setMusicSongInfos(const MusicObject::MusicSongInformations &infos) { m_musicSongInfos = infos; }
+    inline void setMusicSongInfoList(const MusicObject::MusicSongInformationList &infos) { m_musicSongInfos = infos; }
     /*!
      * Get the current song container.
      */
-    inline const MusicObject::MusicSongInformations& musicSongInfos() const { return m_musicSongInfos; }
+    inline const MusicObject::MusicSongInformationList& musicSongInfoList() const { return m_musicSongInfos; }
     /*!
      * Check the current song container is empty.
      */
@@ -211,9 +210,9 @@ protected:
     /*!
      * Find download file size.
      */
-    bool findUrlFileSize(MusicObject::MusicSongAttributes *attrs);
+    bool findUrlFileSize(MusicObject::MusicSongAttributeList *attrs);
 
-    MusicObject::MusicSongInformations m_musicSongInfos;
+    MusicObject::MusicSongInformationList m_musicSongInfos;
     QString m_queryText, m_queryQuality;
     QString m_queryServer;
     QueryType m_currentType;

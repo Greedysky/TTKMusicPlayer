@@ -108,7 +108,7 @@ void MusicSongSearchPopWidget::createItems()
         return;
     }
 
-    MusicSearchRecords records;
+    MusicSearchRecordList records;
     search.readSearchData(records);
 
     const int count = records.count();
@@ -149,7 +149,7 @@ void MusicSongSearchPopWidget::clearButtonClicked()
     {
         return;
     }
-    search.writeSearchData(MusicSearchRecords());
+    search.writeSearchData(MusicSearchRecordList());
     close();
 }
 

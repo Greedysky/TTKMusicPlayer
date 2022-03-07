@@ -348,7 +348,7 @@ void MusicReplayGainWidget::applyOutput()
 
 void MusicReplayGainWidget::confirmDataChanged()
 {
-    const MusicSongs songs(m_ui->selectedAreaWidget->selectedSongItems());
+    const MusicSongList songs(m_ui->selectedAreaWidget->selectedSongItems());
     for(const MusicSong &song : qAsConst(songs))
     {
         if(m_replayGainWidget)

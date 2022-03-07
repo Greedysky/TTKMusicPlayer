@@ -129,7 +129,7 @@ protected:
     QWidget *m_parentClass;
     QList<QLabel*> m_labels;
     QList<MusicBarrageAnimation*> m_animations;
-    MusicBarrageRecords m_barrageRecords;
+    MusicBarrageRecordList m_barrageRecords;
 
 };
 

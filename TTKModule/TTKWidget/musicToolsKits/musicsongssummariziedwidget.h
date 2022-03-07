@@ -44,15 +44,15 @@ public:
     /*!
      * Add music datas into container.
      */
-    bool addMusicItemList(const MusicSongItems &items);
+    bool addMusicItemList(const MusicSongItemList &items);
     /*!
      * Append music datas into container.
      */
-    void appendMusicItemList(const MusicSongItems &items);
+    void appendMusicItemList(const MusicSongItemList &items);
     /*!
      * Query music datas from container.
      */
-    inline const MusicSongItems& musicItemList() const { return m_songItems; }
+    inline const MusicSongItemList& musicItemList() const { return m_songItems; }
 
     /*!
      * Input imported music datas into container.
@@ -187,7 +187,7 @@ public Q_SLOTS:
     /*!
      * Swap the current play index when user drag and drop.
      */
-    void setMusicIndexSwaped(int before, int after, int play, MusicSongs &songs);
+    void setMusicIndexSwaped(int before, int after, int play, MusicSongList &songs);
     /*!
      * Check is current play stack widget.
      */
@@ -207,7 +207,7 @@ public Q_SLOTS:
     /*!
      * Query music datas from container.
      */
-    void musicItemList(MusicSongItems &songs);
+    void musicItemList(MusicSongItemList &songs);
     /*!
      * Update current artist when it download finished.
      */
@@ -293,7 +293,7 @@ protected:
     int m_selectDeleteIndex;
     bool m_toolDeleteChanged;
 
-    MusicSongItems m_songItems;
+    MusicSongItemList m_songItems;
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
     TTKIntListMap m_searchResultCache;
     MusicSongsListFunctionWidget *m_listFunctionWidget;

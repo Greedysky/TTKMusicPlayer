@@ -20,7 +20,7 @@ MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
 
-    m_musicSongs = new MusicSongs;
+    m_musicSongs = new MusicSongList;
 }
 
 MusicLocalSongsTableWidget::~MusicLocalSongsTableWidget()

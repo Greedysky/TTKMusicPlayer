@@ -65,7 +65,7 @@ void MusicWebDJRadioProgramTableWidget::itemCellEntered(int row, int column)
 void MusicWebDJRadioProgramTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
-    MusicResultsItems items(m_programThread->searchedItems());
+    MusicResultsItemList items(m_programThread->searchedItems());
     if(row < 0 || row >= items.count())
     {
         return;

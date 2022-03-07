@@ -42,7 +42,7 @@ MusicFunctionTableWidget::MusicFunctionTableWidget(QWidget *parent)
     m_listIndex = 0;
 }
 
-void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionItems &items)
+void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionItemList &items)
 {
     m_listIndex = index;
     for(int i=0; i<items.count(); ++i)
@@ -95,7 +95,7 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    MusicFunctionItems items;
+    MusicFunctionItemList items;
     items << MusicFunctionItem(":/contextMenu/btn_setting", tr("Normal"))
           << MusicFunctionItem(":/contextMenu/btn_keyboard", tr("Hotkey"))
           << MusicFunctionItem(":/contextMenu/btn_download", tr("Dwonload"))

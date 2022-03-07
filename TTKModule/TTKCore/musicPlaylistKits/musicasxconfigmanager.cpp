@@ -7,7 +7,7 @@ MusicASXConfigManager::MusicASXConfigManager()
 
 }
 
-bool MusicASXConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicASXConfigManager::readPlaylistData(MusicSongItemList &items)
 {
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
@@ -49,7 +49,7 @@ bool MusicASXConfigManager::readPlaylistData(MusicSongItems &items)
     return true;
 }
 
-bool MusicASXConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicASXConfigManager::writePlaylistData(const MusicSongItemList &items, const QString &path)
 {
     if(items.isEmpty() || !writeConfig(path))
     {

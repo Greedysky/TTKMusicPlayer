@@ -185,7 +185,7 @@ namespace MusicObject
     /*! @brief The class of the music song atrribute.
      * @author Greedysky <greedysky@163.com>
      */
-    typedef struct MusicSongAttribute
+    struct MusicSongAttribute
     {
         int m_bitrate;
         QString m_format;
@@ -206,16 +206,16 @@ namespace MusicObject
         {
             return m_bitrate == other.m_bitrate || m_url == other.m_url;
         }
-    }MusicSongAttribute;
-    TTK_DECLARE_LIST(MusicSongAttribute)
+    };
+    TTK_DECLARE_LIST(MusicSongAttribute);
 
 
     /*! @brief The class of the music song information.
      * @author Greedysky <greedysky@163.com>
      */
-    typedef struct MusicSongInformation
+    struct MusicSongInformation
     {
-        MusicSongAttributes m_songAttrs;
+        MusicSongAttributeList m_songAttrs;
         QString m_songId;
         QString m_albumId;
         QString m_artistId;
@@ -228,8 +228,8 @@ namespace MusicObject
         QString m_year;
         QString m_discNumber;
         QString m_trackNumber;
-    }MusicSongInformation;
-    TTK_DECLARE_LIST(MusicSongInformation)
+    };
+    TTK_DECLARE_LIST(MusicSongInformation);
 
 
     enum PlayState

@@ -24,7 +24,7 @@
 /*! @brief The class of the results category item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicResultsCategoryItem
+struct TTK_MODULE_EXPORT MusicResultsCategoryItem
 {
     QString m_key;
     QString m_value;
@@ -39,19 +39,19 @@ typedef struct TTK_MODULE_EXPORT MusicResultsCategoryItem
         m_key = key;
         m_value = value;
     }
-}MusicResultsCategoryItem;
-TTK_DECLARE_LIST(MusicResultsCategoryItem)
+};
+TTK_DECLARE_LIST(MusicResultsCategoryItem);
 
 
 /*! @brief The class of the results category core.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicResultsCategory
+struct TTK_MODULE_EXPORT MusicResultsCategory
 {
     QString m_category;
-    MusicResultsCategoryItems m_items;
-}MusicResultsCategory;
-TTK_DECLARE_LIST(MusicResultsCategory)
+    MusicResultsCategoryItemList m_items;
+};
+TTK_DECLARE_LIST(MusicResultsCategory);
 
 
 /*! @brief The class of the category Config Manager.
@@ -82,7 +82,7 @@ public:
     /*!
      * Read datas from config file.
      */
-    void readCategoryData(MusicResultsCategorys &records, const QString &key);
+    void readCategoryData(MusicResultsCategoryList &records, const QString &key);
 
 };
 

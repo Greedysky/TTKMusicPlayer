@@ -24,7 +24,7 @@
 /*! @brief The class of the sync data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT QSyncDataItem
+struct TTK_MODULE_EXPORT QSyncDataItem
 {
     QString m_name;
     QString m_hash;
@@ -45,7 +45,7 @@ typedef struct TTK_MODULE_EXPORT QSyncDataItem
         m_putTime.clear();
         m_size = 0;
     }
-}QSyncDataItem;
-TTK_DECLARE_LIST(QSyncDataItem)
+};
+TTK_DECLARE_LIST(QSyncDataItem);
 
 #endif

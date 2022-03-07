@@ -28,7 +28,7 @@
 /*! @brief The class of the xml attribute.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct TTK_MODULE_EXPORT MusicXmlAttribute
+struct TTK_MODULE_EXPORT MusicXmlAttribute
 {
     QString m_key;
     QVariant m_value;
@@ -38,8 +38,8 @@ typedef struct TTK_MODULE_EXPORT MusicXmlAttribute
         m_key = key;
         m_value = value;
     }
-}MusicXmlAttribute;
-TTK_DECLARE_LIST(MusicXmlAttribute)
+};
+TTK_DECLARE_LIST(MusicXmlAttribute);
 
 /*! @brief The class of the xml node hepler.
  * @author Greedysky <greedysky@163.com>
@@ -148,7 +148,7 @@ public:
     /*!
      * Create xml node nodes by node atrrs.
      */
-    QDomElement createRoot(const QString &node, const MusicXmlAttributes &attrs);
+    QDomElement createRoot(const QString &node, const MusicXmlAttributeList &attrs);
     /*!
      * Append xml element nodes by node name.
      */
@@ -160,7 +160,7 @@ public:
     /*!
      * Append xml elements nodes by node name\ keys name and values.
      */
-    QDomElement writeDomElementMutil(QDomElement &element, const QString &node, const MusicXmlAttributes &attrs);
+    QDomElement writeDomElementMutil(QDomElement &element, const QString &node, const MusicXmlAttributeList &attrs);
     /*!
      * Append xml element nodes by node name\ key name \ value and attribute's text.
      */
@@ -168,7 +168,7 @@ public:
     /*!
      * Append xml elements nodes by node name\ keys name \ values and attribute's text.
      */
-    QDomElement writeDomElementMutilText(QDomElement &element, const QString &node, const MusicXmlAttributes &attrs, const QString &text);
+    QDomElement writeDomElementMutilText(QDomElement &element, const QString &node, const MusicXmlAttributeList &attrs, const QString &text);
     /*!
      * Append xml element nodes by node name and attribute's text.
      */

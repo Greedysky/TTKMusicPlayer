@@ -224,7 +224,7 @@ void MusicDownloadWidget::downLoadFinished()
 
 MusicObject::MusicSongInformation MusicDownloadWidget::matchMusicSongInformation()
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
+    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
     if(!musicSongInfos.isEmpty())
     {
         const QString &fileName = m_networkRequest->queryText();
@@ -246,9 +246,9 @@ MusicObject::MusicSongInformation MusicDownloadWidget::matchMusicSongInformation
     return MusicObject::MusicSongInformation();
 }
 
-void MusicDownloadWidget::createAllItems(const MusicObject::MusicSongAttributes &attrs)
+void MusicDownloadWidget::createAllItems(const MusicObject::MusicSongAttributeList &attrs)
 {
-    MusicObject::MusicSongAttributes attributes = attrs;
+    MusicObject::MusicSongAttributeList attributes = attrs;
     std::sort(attributes.begin(), attributes.end()); //to find out the min bitrate
 
     for(const MusicObject::MusicSongAttribute &attr : qAsConst(attrs))
@@ -365,7 +365,7 @@ void MusicDownloadWidget::startToDownloadMusic()
 void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInformation &musicSongInfo)
 {
     const MusicDownloadTableItemRole &role = m_ui->viewArea->currentItemRole();
-    const MusicObject::MusicSongAttributes &musicAttrs = musicSongInfo.m_songAttrs;
+    const MusicObject::MusicSongAttributeList &musicAttrs = musicSongInfo.m_songAttrs;
     for(const MusicObject::MusicSongAttribute &musicAttr : qAsConst(musicAttrs))
     {
         if(role.isEqual(MusicDownloadTableItemRole(musicAttr.m_bitrate, musicAttr.m_format, musicAttr.m_size)))
@@ -379,7 +379,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             const QString &downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MUSIC_DIR_FULL : m_ui->downloadPathEdit->text();
             QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, musicAttr.m_format);
             //
-            MusicSongs records;
+            MusicSongList records;
             MusicDownloadRecordConfigManager down(MusicObject::RecordNormalDownload, this);
             if(!down.readConfig())
             {
@@ -443,7 +443,7 @@ void MusicDownloadWidget::startToDownloadMovie()
 void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInformation &musicSongInfo)
 {
     const MusicDownloadTableItemRole &role = m_ui->viewArea->currentItemRole();
-    const MusicObject::MusicSongAttributes &musicAttrs = musicSongInfo.m_songAttrs;
+    const MusicObject::MusicSongAttributeList &musicAttrs = musicSongInfo.m_songAttrs;
     for(const MusicObject::MusicSongAttribute &musicAttr : qAsConst(musicAttrs))
     {
         if(role.isEqual(MusicDownloadTableItemRole(musicAttr.m_bitrate, musicAttr.m_format, musicAttr.m_size)))

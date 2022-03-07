@@ -60,7 +60,7 @@ public Q_SLOTS:
     /*!
      * Rename check finished.
      */
-    void renameCheckFinished(const MusicSongCheckToolsRenames &items);
+    void renameCheckFinished(const MusicSongCheckToolsRenameList &items);
     /*!
      * Quality button clicked.
      */
@@ -76,7 +76,7 @@ public Q_SLOTS:
     /*!
      * Quality check finished.
      */
-    void qualityCheckFinished(const MusicSongCheckToolsQualitys &items);
+    void qualityCheckFinished(const MusicSongCheckToolsQualityList &items);
     /*!
      * Duplicate button clicked.
      */
@@ -92,7 +92,7 @@ public Q_SLOTS:
     /*!
      * Duplicate check finished.
      */
-    void duplicateCheckFinished(const MusicSongCheckToolsDuplicates &items);
+    void duplicateCheckFinished(const MusicSongCheckToolsDuplicateList &items);
     /*!
      * Override show function.
      */
@@ -118,7 +118,7 @@ protected:
 
     Ui::MusicSongCheckToolsWidget *m_ui;
 
-    MusicSongs m_localSongs;
+    MusicSongList m_localSongs;
     MusicSongCheckToolsRenameThread *m_renameCore;
     MusicSongCheckToolsDuplicateThread *m_duplicateCore;
     MusicSongCheckToolsQualityThread *m_qualityCore;

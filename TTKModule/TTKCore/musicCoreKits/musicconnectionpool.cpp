@@ -74,13 +74,13 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     }
     else if(from == MusicVideoQualityPopWidget::className() && to == MusicVideoSearchTableWidget::className())
     {
-        QObject::connect(first, SIGNAL(queryMusicMediaInfo(MusicObject::MusicSongAttributes&)), second, SLOT(musicMediaInfo(MusicObject::MusicSongAttributes&)));
+        QObject::connect(first, SIGNAL(queryMusicMediaInfo(MusicObject::MusicSongAttributeList&)), second, SLOT(musicMediaInfo(MusicObject::MusicSongAttributeList&)));
     }
     else if((from == MusicConnectTransferWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicSongItemSelectedAreaWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicSongDlnaTransferWidget::className() && to == MusicSongsSummariziedWidget::className()))
     {
-        QObject::connect(first, SIGNAL(queryMusicItemList(MusicSongItems&)), second, SLOT(musicItemList(MusicSongItems&)));
+        QObject::connect(first, SIGNAL(queryMusicItemList(MusicSongItemList&)), second, SLOT(musicItemList(MusicSongItemList&)));
     }
     else if((from == MusicCloudManagerTableWidget::className() && to == MusicCloudUploadTableWidget::className()))
     {
