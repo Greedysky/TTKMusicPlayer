@@ -24,11 +24,11 @@
 /*! @brief The class of the color star point core.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct StarPoint
+struct StarPoint
 {
     QPoint m_pt = QPoint(0, 0);
     int m_alpha = 255;
-}StarPoint;
+};
 
 
 namespace Ui {
