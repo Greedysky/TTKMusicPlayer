@@ -85,7 +85,9 @@ void MusicAbstractMoveResizeWidget::mousePressEvent(QMouseEvent *event)
 void MusicAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);
+#ifndef Q_OS_UNIX
     !m_struct.m_isPressBorder ? sizeDirection() : moveDirection();
+#endif
 
     if(m_struct.m_mouseLeftPress)
     {

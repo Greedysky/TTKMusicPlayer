@@ -385,9 +385,9 @@ void MusicBackgroundSkinDialog::cpoyFileFromLocal(const QString &path)
 
 int MusicBackgroundSkinDialog::cpoyFileToLocalIndex()
 {
-    const QList<QFileInfo> files(QDir(USER_THEME_DIR_FULL).entryInfoList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name));
+    const QStringList files(QDir(USER_THEME_DIR_FULL).entryList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name));
     TTKIntList data;
-    for(const QFileInfo &path : qAsConst(files))
+    for(const QString &path : qAsConst(files))
     {
         QFileInfo fin(path);
         if(FILE_SUFFIX(fin) != TKM_FILE_PREFIX)
