@@ -152,7 +152,7 @@ protected:
     /*!
      * Find all theme in local directory.
      */
-    static void findThemeListByDir(const QString &dir, TTKIntList &data);
+    static void findThemeListByPath(const QString &dir, TTKIntList &data);
     /*!
      * Copy custom file index.
      */

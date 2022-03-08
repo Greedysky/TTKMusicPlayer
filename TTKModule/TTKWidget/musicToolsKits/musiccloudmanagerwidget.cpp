@@ -293,7 +293,7 @@ void MusicCloudManagerTableWidget::uploadFileDirToServer()
         delete m_openFileWidget;
         m_openFileWidget = nullptr;
 
-        for(const QFileInfo &info : MusicUtils::File::fileListByDir(path, MusicFormats::supportMusicInputFilterFormats(), true))
+        for(const QFileInfo &info : MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats(), true))
         {
             MusicCloudDataItem item;
             item.m_id = QString::number(MusicTime::timestamp());

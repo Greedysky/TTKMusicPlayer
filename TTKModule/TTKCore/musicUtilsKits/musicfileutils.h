@@ -31,11 +31,11 @@ namespace MusicUtils
         /*!
          * Get all files in given dir.
          */
-        TTK_MODULE_EXPORT QFileInfoList fileListByDir(const QString &dpath, bool recursively);
+        TTK_MODULE_EXPORT QFileInfoList fileListByPath(const QString &dpath, bool recursively);
         /*!
          * Get all files in given dir.
          */
-        TTK_MODULE_EXPORT QFileInfoList fileListByDir(const QString &dpath, const QStringList &filter, bool recursively);
+        TTK_MODULE_EXPORT QFileInfoList fileListByPath(const QString &dpath, const QStringList &filter, bool recursively);
         /*!
          * Dir remove recursively.
          */

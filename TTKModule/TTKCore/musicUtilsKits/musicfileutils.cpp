@@ -3,12 +3,12 @@
 
 #include <QDirIterator>
 
-QFileInfoList MusicUtils::File::fileListByDir(const QString &dpath, bool recursively)
+QFileInfoList MusicUtils::File::fileListByPath(const QString &dpath, bool recursively)
 {
-    return fileListByDir(dpath, QStringList(), recursively);
+    return fileListByPath(dpath, QStringList(), recursively);
 }
 
-QFileInfoList MusicUtils::File::fileListByDir(const QString &dpath, const QStringList &filter, bool recursively)
+QFileInfoList MusicUtils::File::fileListByPath(const QString &dpath, const QStringList &filter, bool recursively)
 {
     QDir dir(dpath);
     if(!dir.exists())
@@ -22,7 +22,7 @@ QFileInfoList MusicUtils::File::fileListByDir(const QString &dpath, const QStrin
         const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
         for(const QFileInfo &fileInfo : qAsConst(folderList))
         {
-            fileList.append(fileListByDir(fileInfo.absoluteFilePath(), filter, recursively));
+            fileList.append(fileListByPath(fileInfo.absoluteFilePath(), filter, recursively));
         }
     }
 
