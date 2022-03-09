@@ -3,11 +3,6 @@
 
 #include <QDirIterator>
 
-QFileInfoList MusicUtils::File::fileListByPath(const QString &dpath, bool recursively)
-{
-    return fileListByPath(dpath, QStringList(), recursively);
-}
-
 QFileInfoList MusicUtils::File::fileListByPath(const QString &dpath, const QStringList &filter, bool recursively)
 {
     QDir dir(dpath);

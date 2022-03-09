@@ -218,7 +218,7 @@ void MusicReplayGainWidget::addFilesButtonClicked()
     if(!path.isEmpty())
     {
         setControlEnabled(false);
-        for(const QFileInfo &fin : MusicUtils::File::fileListByPath(path, true))
+        for(const QFileInfo &fin : MusicUtils::File::fileListByPath(path))
         {
             if(FILE_SUFFIX(fin) == MP3_FILE_PREFIX && !m_paths.contains(fin.absoluteFilePath()))
             {

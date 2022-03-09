@@ -27,7 +27,7 @@ void MusicLocalSongsManagerThread::run()
     {
         if(m_running)
         {
-            list << MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats(), true);
+            list << MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats());
         }
     }
     ///The name and path search ended when sending the corresponding
