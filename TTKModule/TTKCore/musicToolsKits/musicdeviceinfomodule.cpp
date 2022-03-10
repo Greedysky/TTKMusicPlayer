@@ -32,7 +32,7 @@ bool MusicDeviceInfoModule::disksProperty(const QString &drive) const
     query.QueryType = PropertyStandardQuery;
 
     QString name = drive;
-    name = "\\\\.\\" + name.left(name.size() - 1);
+    name = "\\\\.\\" + name.left(name.length() - 1);
 
     HANDLE hDevice = CreateFileW(
         name.toStdWString().c_str(),
@@ -104,9 +104,9 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
     m_items.clear();
 #ifdef Q_OS_WIN
     const QFileInfoList &drives = QDir::drives();
-    for(const QFileInfo &drive : qAsConst(drives))
+    for(const QFileInfo &fin : qAsConst(drives))
     {
-        const QString &path = drive.absoluteDir().absolutePath();
+        const QString &path = fin.absoluteDir().absolutePath();
         const int type = GetDriveTypeW(path.toStdWString().c_str());
         if(type == DRIVE_REMOVABLE)
         {

@@ -93,7 +93,7 @@ void MusicDownloadStatusModule::currentLrcDataDownload()
         const QString &artistName = MusicUtils::String::artistName(fileName);
         const QString &songName = MusicUtils::String::songName(fileName);
 
-        MusicObject::MusicSongInformation musicSongInfo = musicSongInfos.first();
+        MusicObject::MusicSongInformation musicSongInfo = musicSongInfos.front();
         for(const MusicObject::MusicSongInformation &var : qAsConst(musicSongInfos))
         {
             if(var.m_singerName.contains(artistName, Qt::CaseInsensitive) && var.m_songName.contains(songName, Qt::CaseInsensitive))
@@ -106,7 +106,7 @@ void MusicDownloadStatusModule::currentLrcDataDownload()
         ///download lrc
         G_DOWNLOAD_QUERY_PTR->makeLrcRequest(musicSongInfo.m_lrcUrl, MusicUtils::String::lrcPrefix() + fileName + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
         ///download art picture
-        G_DOWNLOAD_QUERY_PTR->makeSmallPictureRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->makeSmallPictureRequest(musicSongInfo.m_coverUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
         ///download big picture
         G_DOWNLOAD_QUERY_PTR->makeBigPictureRequest(count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this)->startToDownload();
     }

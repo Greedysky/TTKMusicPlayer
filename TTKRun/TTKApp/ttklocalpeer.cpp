@@ -8,6 +8,10 @@
 #include <QLocalSocket>
 #include <QDir>
 
+#if TTK_QT_VERSION_CHECK(5,0,0)
+#  include <QRegularExpression>
+#endif
+
 #if defined(Q_OS_WIN)
 #  include <QLibrary>
 #  include <qt_windows.h>
@@ -73,11 +77,19 @@ TTKLocalPeer::TTKLocalPeer(QObject *parent, const QString &appId)
 #endif
         prefix = d->m_id.section(QLatin1Char('/'), -1);
     }
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    prefix.remove(QRegularExpression("[^a-zA-Z]"));
+#else
     prefix.remove(QRegExp("[^a-zA-Z]"));
+#endif
     prefix.truncate(6);
 
     const QByteArray &idc = d->m_id.toUtf8();
-    const quint16 idNum = qChecksum(idc.constData(), idc.size());
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    quint16 idNum = qChecksum(QByteArrayView(idc.constData(), idc.length()));
+#else
+    quint16 idNum = qChecksum(idc.constData(), idc.length());
+#endif
     d->m_socketName = QLatin1String("qtsingleapp-") + prefix + QLatin1Char('-') + QString::number(idNum, 16);
 
 #if defined(Q_OS_WIN)
@@ -167,7 +179,7 @@ bool TTKLocalPeer::sendMessage(const QString &message, int timeout) const
 
     const QByteArray uMsg(message.toUtf8());
     QDataStream ds(&socket);
-    ds.writeBytes(uMsg.constData(), uMsg.size());
+    ds.writeBytes(uMsg.constData(), uMsg.length());
 
     bool res = socket.waitForBytesWritten(timeout);
     if(res)

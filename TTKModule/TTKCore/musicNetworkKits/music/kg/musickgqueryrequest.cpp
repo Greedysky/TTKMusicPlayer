@@ -106,10 +106,10 @@ void MusicKGQueryRequest::downLoadFinished()
                     if(!m_querySimplify)
                     {
                         TTK_NETWORK_QUERY_CHECK();
-                        readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, m_queryAllRecords);
+                        readFromMusicSongProperty(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                         TTK_NETWORK_QUERY_CHECK();
 
-                        if(musicInfo.m_songAttrs.isEmpty())
+                        if(musicInfo.m_songProps.isEmpty())
                         {
                             continue;
                         }
@@ -155,7 +155,7 @@ void MusicKGQueryRequest::singleDownLoadFinished()
                 musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
                 musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
                 musicInfo.m_artistId = QString::number(value["singerid"].toULongLong());
-                musicInfo.m_smallPicUrl = value["imgurl"].toString().replace("{size}", "480");
+                musicInfo.m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
                 musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
                                                         .arg(musicInfo.m_songName, musicInfo.m_songId)
                                                         .arg(value["duration"].toInt() * 1000);
@@ -177,10 +177,10 @@ void MusicKGQueryRequest::singleDownLoadFinished()
                 musicInfo.m_trackNumber = "0";
 
                 TTK_NETWORK_QUERY_CHECK();
-                readFromMusicSongAttribute(&musicInfo, value["extra"].toMap(), m_queryQuality, true);
+                readFromMusicSongProperty(&musicInfo, value["extra"].toMap(), m_queryQuality, true);
                 TTK_NETWORK_QUERY_CHECK();
 
-                if(!musicInfo.m_songAttrs.isEmpty())
+                if(!musicInfo.m_songProps.isEmpty())
                 {
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;

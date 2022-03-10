@@ -20,15 +20,15 @@ static quint64 directorySize(const QString &dirName)
     {
         QDir dir(dirName);
         const QFileInfoList &fileList = dir.entryInfoList(QDir::Files | QDir::Dirs |  QDir::Hidden | QDir::NoSymLinks | QDir::NoDotAndDotDot);
-        for(const QFileInfo &fileInfo : qAsConst(fileList))
+        for(const QFileInfo &fin : qAsConst(fileList))
         {
-            if(fileInfo.isDir())
+            if(fin.isDir())
             {
-                size += directorySize(fileInfo.absoluteFilePath());
+                size += directorySize(fin.absoluteFilePath());
             }
             else
             {
-                size += fileInfo.size();
+                size += fin.size();
             }
         }
     }
@@ -49,10 +49,10 @@ static void checkCacheSize()
     if(size > cacheSize)
     {
         const QFileInfoList &fileList = QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-        for(const QFileInfo &fileInfo : qAsConst(fileList))
+        for(const QFileInfo &fin : qAsConst(fileList))
         {
-            size -= fileInfo.size();
-            QFile::remove(fileInfo.absoluteFilePath());
+            size -= fin.size();
+            QFile::remove(fin.absoluteFilePath());
             if(size <= cacheSize)
             {
                 break;

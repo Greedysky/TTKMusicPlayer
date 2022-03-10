@@ -101,7 +101,7 @@ public Q_SLOTS:
     /*!
      * Get music media information data.
      */
-    void musicMediaInfo(MusicObject::MusicSongAttributeList &data);
+    void musicMediaInfo(MusicObject::MusicSongPropertyList &props);
     /*!
      * Download current mv by controller.
      */

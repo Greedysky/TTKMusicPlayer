@@ -70,13 +70,13 @@ QString makeSocketGetReply(const QString &ip, const QString &port, const QString
 QString removeHttpHeader(const QString &data)
 {
     const QStringList& data_list = data.split("\r\n\r\n");
-    return (data_list.size() >= 2) ? data_list[1] : QString();
+    return (data_list.count() >= 2) ? data_list[1] : QString();
 }
 
 int GetResponseCode(const QString &data)
 {
     const QStringList& data_list = data.split(" ");
-    if(data_list.size() >= 2)
+    if(data_list.count() >= 2)
     {
         bool ok = false;
         const int code = data_list[1].toInt(&ok);

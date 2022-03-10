@@ -80,10 +80,10 @@ void MusicMVRadioProgramRequest::downLoadFinished()
 
                             musicInfo.m_songId = value["mvhash"].toString();
                             TTK_NETWORK_QUERY_CHECK();
-                            readFromMusicMVAttribute(&musicInfo);
+                            readFromMusicMVProperty(&musicInfo);
                             TTK_NETWORK_QUERY_CHECK();
 
-                            if(musicInfo.m_songAttrs.isEmpty())
+                            if(musicInfo.m_songProps.isEmpty())
                             {
                                 continue;
                             }
@@ -107,7 +107,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicMVRadioProgramRequest::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info)
+void MusicMVRadioProgramRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info)
 {
     if(info->m_songId.isEmpty())
     {
@@ -138,43 +138,43 @@ void MusicMVRadioProgramRequest::readFromMusicMVAttribute(MusicObject::MusicSong
             QVariantMap mv = value["sd"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVAttribute(info, mv);
+                readFromMusicMVProperty(info, mv);
             }
             mv = value["hd"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVAttribute(info, mv);
+                readFromMusicMVProperty(info, mv);
             }
             mv = value["sq"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVAttribute(info, mv);
+                readFromMusicMVProperty(info, mv);
             }
             mv = value["rq"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVAttribute(info, mv);
+                readFromMusicMVProperty(info, mv);
             }
         }
     }
 }
 
-void MusicMVRadioProgramRequest::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key)
+void MusicMVRadioProgramRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key)
 {
-    MusicObject::MusicSongAttribute attr;
-    attr.m_url = key["downurl"].toString();
-    attr.m_size = MusicUtils::Number::sizeByte2Label(key["filesize"].toInt());
-    attr.m_format = MusicUtils::String::stringSplitToken(attr.m_url);
+    MusicObject::MusicSongProperty prop;
+    prop.m_url = key["downurl"].toString();
+    prop.m_size = MusicUtils::Number::sizeByte2Label(key["filesize"].toInt());
+    prop.m_format = MusicUtils::String::stringSplitToken(prop.m_url);
 
     const int bitrate = key["bitrate"].toInt() / 1000;
     if(bitrate <= 375)
-        attr.m_bitrate = MB_250;
+        prop.m_bitrate = MB_250;
     else if(bitrate > 375 && bitrate <= 625)
-        attr.m_bitrate = MB_500;
+        prop.m_bitrate = MB_500;
     else if(bitrate > 625 && bitrate <= 875)
-        attr.m_bitrate = MB_750;
+        prop.m_bitrate = MB_750;
     else if(bitrate > 875)
-        attr.m_bitrate = MB_1000;
+        prop.m_bitrate = MB_1000;
 
-    info->m_songAttrs.append(attr);
+    info->m_songProps.append(prop);
 }

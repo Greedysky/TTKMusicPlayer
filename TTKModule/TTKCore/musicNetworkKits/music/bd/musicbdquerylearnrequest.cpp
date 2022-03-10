@@ -69,12 +69,12 @@ void MusicBDQueryLearnRequest::downLoadFinished()
                     musicInfo.m_trackNumber = value["album_no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicLrcAttribute(&musicInfo);
+                    readFromMusicLrcProperty(&musicInfo);
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttribute(&musicInfo);
+                    readFromMusicSongProperty(&musicInfo);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songAttrs.isEmpty())
+                    if(musicInfo.m_songProps.isEmpty())
                     {
                         continue;
                     }
@@ -94,7 +94,7 @@ void MusicBDQueryLearnRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicBDQueryLearnRequest::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info)
+void MusicBDQueryLearnRequest::readFromMusicSongProperty(MusicObject::MusicSongInformation *info)
 {
     const QString &key = MusicUtils::Algorithm::mdII(BD_LEARN_DATA_URL, false).arg(info->m_songId).arg(MusicTime::timestamp());
     QString eKey = QString(QAlgorithm::Aes().encryptCBC(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
@@ -120,19 +120,19 @@ void MusicBDQueryLearnRequest::readFromMusicSongAttribute(MusicObject::MusicSong
         if(value["error_code"].toInt() == 22000 && value.contains("result"))
         {
             value = value["result"].toMap();
-            MusicObject::MusicSongAttribute attr;
-            attr.m_bitrate = MB_128;
-            attr.m_url = value["merge_link"].toString();
-            attr.m_format = MP3_FILE_PREFIX;
+            MusicObject::MusicSongProperty prop;
+            prop.m_bitrate = MB_128;
+            prop.m_url = value["merge_link"].toString();
+            prop.m_format = MP3_FILE_PREFIX;
             //
-            if(!findUrlFileSize(&attr)) return;
+            if(!findUrlFileSize(&prop)) return;
             //
-            info->m_songAttrs.append(attr);
+            info->m_songProps.append(prop);
         }
     }
 }
 
-void MusicBDQueryLearnRequest::readFromMusicLrcAttribute(MusicObject::MusicSongInformation *info)
+void MusicBDQueryLearnRequest::readFromMusicLrcProperty(MusicObject::MusicSongInformation *info)
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(BD_SONG_PATH_URL, false).arg(info->m_songId));

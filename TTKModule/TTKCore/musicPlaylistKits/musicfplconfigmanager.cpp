@@ -34,9 +34,9 @@ MusicFPLConfigManager::MusicFPLConfigManager()
 
 bool MusicFPLConfigManager::readPlaylistData(MusicSongItemList &items)
 {
-    QFileInfo info(m_file.fileName());
+    const QFileInfo fin(m_file.fileName());
     MusicSongItem item;
-    item.m_itemName = info.baseName();
+    item.m_itemName = fin.baseName();
 
     // read 16-byte signature
     char magic[16] = {0};
@@ -74,7 +74,7 @@ bool MusicFPLConfigManager::readPlaylistData(MusicSongItemList &items)
 
         QString path = dataPrime + chunkRunner.file_ofz;
         path.remove("file://");
-        path = info.absolutePath() + TTK_SEPARATOR + path;
+        path = fin.absolutePath() + TTK_SEPARATOR + path;
         item.m_songs << MusicSong(path, MusicTime::msecTime2LabelJustified(duration * MT_S2MS));
     }
 

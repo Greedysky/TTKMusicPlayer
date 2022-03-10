@@ -41,7 +41,7 @@ void MusicKWDownloadImageRequest::downLoadFinished(const QByteArray &bytes)
                 dataMap = var.toMap();
                 if(m_counter < 5 && !dataMap.isEmpty())
                 {
-                    const QString &url = dataMap.values().first().toString();
+                    const QString &url = dataMap.values().front().toString();
                     MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::DownloadBigBackground, this);
                     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
                     download->startToDownload();

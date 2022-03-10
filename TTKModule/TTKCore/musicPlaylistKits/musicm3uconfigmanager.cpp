@@ -59,7 +59,7 @@ bool MusicM3UConfigManager::writePlaylistData(const MusicSongItemList &items, co
         return false;
     }
 
-    const MusicSongItem &item = items.first();
+    const MusicSongItem &item = items.front();
     QStringList data;
     data << QString("#EXTM3U");
     for(const MusicSong &song : qAsConst(item.m_songs))

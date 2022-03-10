@@ -71,14 +71,14 @@ void MusicDownloadQueueRequest::startOrderImageQueue()
 {
     if(!m_imageQueue.isEmpty())
     {
-        if(QFile::exists(m_imageQueue.first().m_savePath))
+        if(QFile::exists(m_imageQueue.front().m_savePath))
         {
             Q_EMIT downLoadDataChanged(m_imageQueue.takeFirst().m_savePath);
             startOrderImageQueue();
         }
         else if(G_NETWORK_PTR->isOnline())
         {
-            startDownload(m_imageQueue.first().m_url);
+            startDownload(m_imageQueue.front().m_url);
         }
     }
 }
@@ -87,7 +87,7 @@ void MusicDownloadQueueRequest::startDownload(const QString &url)
 {
     m_isDownload = true;
     delete m_file;
-    m_file = new QFile(m_imageQueue.first().m_savePath, this);
+    m_file = new QFile(m_imageQueue.front().m_savePath, this);
     if(!m_file->open(QFile::WriteOnly))
     {
         m_file->close();

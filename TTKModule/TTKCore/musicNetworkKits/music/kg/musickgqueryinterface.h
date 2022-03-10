@@ -77,11 +77,11 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &hash);
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &hash);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all);
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all);
 
     /*!
      * Read tags(lrc\smallpic) from query results.

@@ -221,20 +221,20 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
     }
 
     const MusicObject::MusicSongInformation &musicSongInfo = m_networkRequest->musicSongInfoList()[row];
-    const MusicObject::MusicSongAttributeList &attrs = musicSongInfo.m_songAttrs;
-    if(!attrs.isEmpty())
+    const MusicObject::MusicSongPropertyList &props = musicSongInfo.m_songProps;
+    if(!props.isEmpty())
     {
-        const MusicObject::MusicSongAttribute &attr = attrs.first();
+        const MusicObject::MusicSongProperty &prop = props.front();
         MusicVideoItem data;
         data.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
-        data.m_url = attr.m_url;
+        data.m_url = prop.m_url;
         data.m_id = musicSongInfo.m_songId;
         data.m_server = m_networkRequest->queryServer();
         Q_EMIT mediaUrlPathChanged(data);
     }
 }
 
-void MusicVideoSearchTableWidget::musicMediaInfo(MusicObject::MusicSongAttributeList &data)
+void MusicVideoSearchTableWidget::musicMediaInfo(MusicObject::MusicSongPropertyList &props)
 {
     if(!m_networkRequest)
     {
@@ -243,7 +243,7 @@ void MusicVideoSearchTableWidget::musicMediaInfo(MusicObject::MusicSongAttribute
 
     const int row = !m_singleRadioMode ? m_previousClickRow : 0;
     const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
-    data = (!musicSongInfos.isEmpty() && row != -1) ? musicSongInfos[row].m_songAttrs : MusicObject::MusicSongAttributeList();
+    props = (!musicSongInfos.isEmpty() && row != -1) ? musicSongInfos[row].m_songProps : MusicObject::MusicSongPropertyList();
 }
 
 void MusicVideoSearchTableWidget::downloadLocalFromControl()

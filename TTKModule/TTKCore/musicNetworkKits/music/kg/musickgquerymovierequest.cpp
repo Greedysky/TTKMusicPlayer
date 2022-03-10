@@ -93,10 +93,10 @@ void MusicKGQueryMovieRequest::downLoadFinished()
 
                     musicInfo.m_songId = value["mvhash"].toString();
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicMVAttribute(&musicInfo, false);
+                    readFromMusicMVProperty(&musicInfo, false);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songAttrs.isEmpty())
+                    if(musicInfo.m_songProps.isEmpty())
                     {
                         continue;
                     }
@@ -172,10 +172,10 @@ void MusicKGQueryMovieRequest::singleDownLoadFinished()
     TTK_NETWORK_QUERY_CHECK();
     readFromMusicMVInfo(&musicInfo);
     TTK_NETWORK_QUERY_CHECK();
-    readFromMusicMVAttribute(&musicInfo, true);
+    readFromMusicMVProperty(&musicInfo, true);
     TTK_NETWORK_QUERY_CHECK();
 
-    if(!musicInfo.m_songAttrs.isEmpty())
+    if(!musicInfo.m_songProps.isEmpty())
     {
         MusicSearchedItem item;
         item.m_songName = musicInfo.m_songName;
@@ -190,7 +190,33 @@ void MusicKGQueryMovieRequest::singleDownLoadFinished()
     deleteAll();
 }
 
-void MusicKGQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, bool more)
+void MusicKGQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInformation *info)
+{
+    if(info->m_songId.isEmpty())
+    {
+        return;
+    }
+
+    QNetworkRequest request;
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_MOVIE_URL, false).arg(info->m_songId));
+    MusicKGInterface::makeRequestRawHeader(&request);
+
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
+    {
+        return;
+    }
+
+    const QString text(bytes);
+    QRegExp regx("mv_hash = \"([^\"]+)");
+
+    if(text.indexOf(regx) != -1)
+    {
+        info->m_songId = regx.cap(1);
+    }
+}
+
+void MusicKGQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, bool more)
 {
     if(info->m_songId.isEmpty())
     {
@@ -227,73 +253,47 @@ void MusicKGQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
             QVariantMap mv = value["sd"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVAttribute(info, mv);
+                readFromMusicMVProperty(info, mv);
             }
             mv = value["hd"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVAttribute(info, mv);
+                readFromMusicMVProperty(info, mv);
             }
             mv = value["sq"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVAttribute(info, mv);
+                readFromMusicMVProperty(info, mv);
             }
             mv = value["rq"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVAttribute(info, mv);
+                readFromMusicMVProperty(info, mv);
             }
         }
     }
 }
 
-void MusicKGQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInformation *info)
+void MusicKGQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key)
 {
-    if(info->m_songId.isEmpty())
-    {
-        return;
-    }
-
-    QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_MOVIE_URL, false).arg(info->m_songId));
-    MusicKGInterface::makeRequestRawHeader(&request);
-
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
-    if(bytes.isEmpty())
-    {
-        return;
-    }
-
-    const QString text(bytes);
-    QRegExp regx("mv_hash = \"([^\"]+)");
-
-    if(text.indexOf(regx) != -1)
-    {
-        info->m_songId = regx.cap(1);
-    }
-}
-
-void MusicKGQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key)
-{
-    MusicObject::MusicSongAttribute attr;
-    attr.m_url = key["downurl"].toString();
-    attr.m_size = MusicUtils::Number::sizeByte2Label(key["filesize"].toInt());
-    attr.m_format = MusicUtils::String::stringSplitToken(attr.m_url);
+    MusicObject::MusicSongProperty prop;
+    prop.m_url = key["downurl"].toString();
+    prop.m_size = MusicUtils::Number::sizeByte2Label(key["filesize"].toInt());
+    prop.m_format = MusicUtils::String::stringSplitToken(prop.m_url);
 
     const int bitrate = key["bitrate"].toInt() / 1000;
     if(bitrate <= 375)
-        attr.m_bitrate = MB_250;
+        prop.m_bitrate = MB_250;
     else if(bitrate > 375 && bitrate <= 625)
-        attr.m_bitrate = MB_500;
+        prop.m_bitrate = MB_500;
     else if(bitrate > 625 && bitrate <= 875)
-        attr.m_bitrate = MB_750;
+        prop.m_bitrate = MB_750;
     else if(bitrate > 875)
-        attr.m_bitrate = MB_1000;
+        prop.m_bitrate = MB_1000;
 
     if(info->m_duration.isEmpty())
     {
         info->m_duration = MusicTime::msecTime2LabelJustified(key["timelength"].toInt());
     }
-    info->m_songAttrs.append(attr);
+    info->m_songProps.append(prop);
 }

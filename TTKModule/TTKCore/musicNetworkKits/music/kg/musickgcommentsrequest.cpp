@@ -22,7 +22,7 @@ void MusicKGSongCommentsRequest::startToSearch(const QString &name)
     m_rawData["sid"].clear();
     if(!d->isEmpty())
     {
-        m_rawData["sid"] = d->musicSongInfoList().first().m_songId;
+        m_rawData["sid"] = d->musicSongInfoList().front().m_songId;
         startToPage(0);
     }
 }

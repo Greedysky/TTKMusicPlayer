@@ -256,7 +256,7 @@ bool MusicExtractWrapper::inputSkin(MusicBackgroundImage *image, const QString &
 
     zipOpenNewFileInZip(zFile, qPrintable(nPrefix + SKN_FILE), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
     QByteArray data = MusicUtils::Image::generatePixmapData(image->m_pix);
-    zipWriteInFileInZip(zFile, data.constData(), data.size());
+    zipWriteInFileInZip(zFile, data.constData(), data.length());
     zipCloseFileInZip(zFile);
 
     MusicSkinConfigManager manager;
@@ -264,7 +264,7 @@ bool MusicExtractWrapper::inputSkin(MusicBackgroundImage *image, const QString &
     data = manager.toByteArray();
 
     zipOpenNewFileInZip(zFile, qPrintable(nPrefix + XML_FILE), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
-    zipWriteInFileInZip(zFile, data.constData(), data.size());
+    zipWriteInFileInZip(zFile, data.constData(), data.length());
     zipCloseFileInZip(zFile);
     QFile::remove(MUSIC_IMAGE_FILE);
 
@@ -351,7 +351,7 @@ bool MusicExtractWrapper::inputData(const QByteArray &data, const QString &outpu
     memset(&fileInfo, 0, sizeof(fileInfo));
 
     zipOpenNewFileInZip(zFile, qPrintable(nPrefix), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
-    zipWriteInFileInZip(zFile, data.constData(), data.size());
+    zipWriteInFileInZip(zFile, data.constData(), data.length());
     zipCloseFileInZip(zFile);
 
     zipClose(zFile, nullptr);

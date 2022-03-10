@@ -100,7 +100,7 @@ void MusicQQQueryAlbumRequest::downLoadFinished()
                     musicInfo.m_songId = value["songmid"].toString();
                     musicInfo.m_albumId = value["albummid"].toString();
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                    musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
+                    musicInfo.m_coverUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
                     musicInfo.m_albumName = MusicUtils::String::charactersReplaced(value["albumname"].toString());
 
                     musicInfo.m_year = QString();
@@ -108,10 +108,10 @@ void MusicQQQueryAlbumRequest::downLoadFinished()
                     musicInfo.m_trackNumber = value["belongCD"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, m_queryAllRecords);
+                    readFromMusicSongProperty(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songAttrs.isEmpty())
+                    if(musicInfo.m_songProps.isEmpty())
                     {
                         continue;
                     }
@@ -122,7 +122,7 @@ void MusicQQQueryAlbumRequest::downLoadFinished()
                         info.m_name = musicInfo.m_singerName;
                         info.m_id = musicInfo.m_albumId;
                         info.m_description = musicInfo.m_albumName + info.m_description;
-                        info.m_coverUrl = musicInfo.m_smallPicUrl;
+                        info.m_coverUrl = musicInfo.m_coverUrl;
                         Q_EMIT createAlbumInfoItem(info);
                     }
                     //

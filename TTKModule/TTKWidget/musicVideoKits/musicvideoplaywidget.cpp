@@ -248,13 +248,13 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
 {
     m_videoTable->startSearchSingleQuery(data);
     const MusicObject::MusicSongInformation info(data.value<MusicObject::MusicSongInformation>());
-    const MusicObject::MusicSongAttributeList &attrs = info.m_songAttrs;
-    if(!attrs.isEmpty())
+    const MusicObject::MusicSongPropertyList &props = info.m_songProps;
+    if(!props.isEmpty())
     {
-        const MusicObject::MusicSongAttribute &attr = attrs.first();
+        const MusicObject::MusicSongProperty &prop = props.front();
         MusicVideoItem data;
         data.m_name = info.m_singerName + " - " + info.m_songName;
-        data.m_url = attr.m_url;
+        data.m_url = prop.m_url;
         data.m_id = info.m_songId;
         data.m_server = MUSIC_MOVIE_RADIO;
         mediaUrlPathChanged(data);

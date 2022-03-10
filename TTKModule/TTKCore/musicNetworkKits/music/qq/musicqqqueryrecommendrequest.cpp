@@ -77,17 +77,17 @@ void MusicQQQueryRecommendRequest::downLoadFinished()
                     musicInfo.m_albumId = albumMap["mid"].toString();
                     musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumMap["name"].toString());
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                    musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
+                    musicInfo.m_coverUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
 
                     musicInfo.m_year = value["time_public"].toString();
                     musicInfo.m_discNumber = value["index_cd"].toString();
                     musicInfo.m_trackNumber = value["index_album"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttributeNew(&musicInfo, value["file"].toMap());
+                    readFromMusicSongPropertyNew(&musicInfo, value["file"].toMap());
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songAttrs.isEmpty())
+                    if(musicInfo.m_songProps.isEmpty())
                     {
                         continue;
                     }

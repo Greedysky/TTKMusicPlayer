@@ -61,14 +61,14 @@ void TTKRunObject::run(int argc, char **argv) const
 
 void TTKRunObject::finished(int code)
 {
-     if(code == 0)
-     {
-         TTK_LOGGER_INFO("Application exit success");
-     }
-     else
-     {
-         TTK_LOGGER_INFO("Application run error, please run TTKService instead");
-     }
+    if(code == 0)
+    {
+        TTK_LOGGER_INFO("Application exit success");
+    }
+    else
+    {
+        TTK_LOGGER_INFO("Application run error, please run TTKService instead");
+    }
 
-     qApp->quit();
+    qApp->quit();
 }

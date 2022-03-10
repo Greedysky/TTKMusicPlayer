@@ -81,10 +81,10 @@ void MusicKGQueryArtistRequest::downLoadFinished()
 
                     readFromMusicSongLrcAndPicture(&musicInfo);
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, m_queryAllRecords);
+                    readFromMusicSongProperty(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songAttrs.isEmpty())
+                    if(musicInfo.m_songProps.isEmpty())
                     {
                         continue;
                     }
@@ -99,7 +99,7 @@ void MusicKGQueryArtistRequest::downLoadFinished()
 
                         info.m_id = m_queryText;
                         info.m_name = musicInfo.m_singerName;
-                        info.m_coverUrl = musicInfo.m_smallPicUrl;
+                        info.m_coverUrl = musicInfo.m_coverUrl;
                         Q_EMIT createArtistInfoItem(info);
                     }
                     //

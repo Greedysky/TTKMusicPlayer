@@ -350,8 +350,8 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem(MusicBackgroundListWidget
 
     for(const int index : qAsConst(data))
     {
-        const QFileInfo info(QString("%1theme-%2%3").arg(dir).arg(index).arg(TKM_FILE));
-        item->createItem(info.baseName(), info.filePath(), state);
+        const QFileInfo fin(QString("%1theme-%2%3").arg(dir).arg(index).arg(TKM_FILE));
+        item->createItem(fin.baseName(), fin.filePath(), state);
     }
 }
 
@@ -373,7 +373,7 @@ void MusicBackgroundSkinDialog::findThemeListByPath(const QString &dir, TTKIntLi
 
     for(const QString &path : qAsConst(files))
     {
-        QFileInfo fin(path);
+        const QFileInfo fin(path);
         if(FILE_SUFFIX(fin) != TKM_FILE_PREFIX)
         {
             continue;
@@ -385,7 +385,7 @@ void MusicBackgroundSkinDialog::findThemeListByPath(const QString &dir, TTKIntLi
             continue;
         }
 
-        const QString &fileName = list.last();
+        const QString &fileName = list.back();
         data << fileName.trimmed().toInt();
     }
 }
@@ -399,7 +399,7 @@ int MusicBackgroundSkinDialog::cpoyFileToLocalIndex()
     int index = CURRENT_ITEMS_COUNT;
     if(!data.isEmpty())
     {
-        index = data.first();
+        index = data.front();
         if(index < CURRENT_ITEMS_COUNT)
         {
             index = CURRENT_ITEMS_COUNT;

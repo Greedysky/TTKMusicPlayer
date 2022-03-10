@@ -65,17 +65,17 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Read mv tags(size\bitrate\url) from query results.
-     */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, bool more);
-    /*!
      * Read mv infos from query results.
      */
     void readFromMusicMVInfo(MusicObject::MusicSongInformation *info);
     /*!
-     * Read mv info attribute from query results.
+     * Read mv tags(size\bitrate\url) from query results.
      */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key);
+    void readFromMusicMVProperty(MusicObject::MusicSongInformation *info, bool more);
+    /*!
+     * Read mv info property from query results.
+     */
+    void readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key);
 
 };
 

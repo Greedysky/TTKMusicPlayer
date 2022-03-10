@@ -61,7 +61,7 @@ TTKString base64Encode(const unsigned char *bytes, unsigned int length)
 
 TTKString base64Decode(const TTKString &bytes)
 {
-    int length = bytes.size();
+    int length = bytes.length();
     int i = 0, j = 0, in = 0;
     unsigned char char_array_4[4], char_array_3[3];
     TTKString ret;

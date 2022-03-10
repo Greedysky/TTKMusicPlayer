@@ -164,9 +164,9 @@ public:
      */
     void setSongMetaIndex(int index);
     /*!
-     * Get music song meta size.
+     * Get music song meta count.
      */
-    int songMetaSize() const;
+    int songMetaCount() const;
 
 protected:
     /*!

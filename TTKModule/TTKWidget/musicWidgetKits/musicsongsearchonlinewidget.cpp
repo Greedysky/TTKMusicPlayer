@@ -302,7 +302,7 @@ void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
     if(!m_actionGroup->actions().isEmpty())
     {
         const QString &albumName = (currentRow() != -1 && rowCount() > 0) ? item(currentRow(), 3)->toolTip() : QString();
-        QAction *lastAction = m_actionGroup->actions().last();
+        QAction *lastAction = m_actionGroup->actions().back();
         QAction *action = m_actionGroup->addAction(tr("Search '%1'").arg(albumName));
         action->setData(6);
         menu.insertAction(lastAction, action);
@@ -325,19 +325,19 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
 
     const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
     const MusicObject::MusicSongInformation &musicSongInfo = musicSongInfos[row];
-    MusicObject::MusicSongAttributeList attrs(musicSongInfo.m_songAttrs);
-    std::sort(attrs.begin(), attrs.end()); //to find out the min bitrate
+    MusicObject::MusicSongPropertyList props(musicSongInfo.m_songProps);
+    std::sort(props.begin(), props.end()); //to find out the min bitrate
 
-    if(!attrs.isEmpty())
+    if(!props.isEmpty())
     {
-        const MusicObject::MusicSongAttribute &attr = attrs.first();
+        const MusicObject::MusicSongProperty &prop = props.front();
         MusicResultsItem result;
         result.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
         result.m_updateTime = musicSongInfo.m_duration;
         result.m_id = musicSongInfo.m_songId;
-        result.m_nickName = attr.m_url;
-        result.m_description = attr.m_format;
-        result.m_playCount = attr.m_size;
+        result.m_nickName = prop.m_url;
+        result.m_description = prop.m_format;
+        result.m_playCount = prop.m_size;
         result.m_tags = play ? "true" : "false";
         if(m_networkRequest)
         {

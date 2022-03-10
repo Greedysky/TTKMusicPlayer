@@ -90,9 +90,9 @@ void MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
         return;
     }
 
-    for(const QFileInfo &f : dir.entryInfoList())
+    for(const QFileInfo &fin : dir.entryInfoList())
     {
-        if(f.fileName().contains(name))
+        if(fin.fileName().contains(name))
         {
             ++count;
         }

@@ -115,14 +115,14 @@ void QHttpConnectionPrivate::parseRequest()
     while(m_socket->bytesAvailable())
     {
         QByteArray arr = m_socket->readAll();
-        http_parser_execute(m_parser, m_parserSettings, arr.constData(), arr.size());
+        http_parser_execute(m_parser, m_parserSettings, arr.constData(), arr.length());
     }
 }
 
 void QHttpConnectionPrivate::write(const QByteArray &data)
 {
     m_socket->write(data);
-    m_transmitLen += data.size();
+    m_transmitLen += data.length();
 }
 
 
@@ -268,7 +268,7 @@ int QHttpConnectionPrivate::HeadersComplete(http_parser *parser)
     /** get parsed url **/
     struct http_parser_url urlInfo;
     int r = http_parser_parse_url(theConnection->m_currentUrl.constData(),
-                                  theConnection->m_currentUrl.size(),
+                                  theConnection->m_currentUrl.length(),
                                   parser->method == HTTP_CONNECT, &urlInfo);
     Q_ASSERT(r == 0);
     Q_UNUSED(r);

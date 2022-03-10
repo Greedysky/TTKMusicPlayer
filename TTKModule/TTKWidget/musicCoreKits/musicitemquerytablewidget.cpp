@@ -328,19 +328,19 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const MusicObject::MusicSongInf
         return false;
     }
 
-    MusicObject::MusicSongAttributeList attrs(downloadInfo.m_songAttrs);
-    std::sort(attrs.begin(), attrs.end()); //to find out the min bitrate
+    MusicObject::MusicSongPropertyList props(downloadInfo.m_songProps);
+    std::sort(props.begin(), props.end()); //to find out the min bitrate
 
-    if(!attrs.isEmpty())
+    if(!props.isEmpty())
     {
-        const MusicObject::MusicSongAttribute &attr = attrs.first();
+        const MusicObject::MusicSongProperty &prop = props.front();
         MusicResultsItem result;
         result.m_name = downloadInfo.m_singerName + " - " + downloadInfo.m_songName;
         result.m_updateTime = downloadInfo.m_duration;
         result.m_id = downloadInfo.m_songId;
-        result.m_nickName = attr.m_url;
-        result.m_description = attr.m_format;
-        result.m_playCount = attr.m_size;
+        result.m_nickName = prop.m_url;
+        result.m_description = prop.m_format;
+        result.m_playCount = prop.m_size;
         result.m_tags = play ? "true" : "false";
         if(m_networkRequest)
         {

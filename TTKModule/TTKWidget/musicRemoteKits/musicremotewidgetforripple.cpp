@@ -82,9 +82,9 @@ void MusicRemoteWidgetForRipple::createVisualWidget()
     MusicUtils::QMMP::enabledVisualPlugin(m_mode ? "outerripples" : "outerrayswave", true);
 
     const QList<Visual*> *vs = Visual::visuals();
-    if(!vs->isEmpty() && vs->last())
+    if(!vs->isEmpty() && vs->back())
     {
-        m_visual = vs->last();
+        m_visual = vs->back();
         m_visualLayout->insertWidget(0, m_visual);
     }
 }

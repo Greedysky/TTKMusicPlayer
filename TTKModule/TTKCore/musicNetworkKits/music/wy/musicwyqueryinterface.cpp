@@ -29,7 +29,7 @@ QByteArray MusicWYQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, co
     return "params=" + parameter + "&encSecKey=" + WY_SECKRY_STRING.toUtf8();
 }
 
-void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, int bitrate)
+void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, int bitrate)
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate * 1000).arg(info->m_songId));
@@ -55,29 +55,29 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
                 return;
             }
 
-            MusicObject::MusicSongAttribute attr;
-            attr.m_url = value["url"].toString();
-            attr.m_bitrate = bitrate;
+            MusicObject::MusicSongProperty prop;
+            prop.m_url = value["url"].toString();
+            prop.m_bitrate = bitrate;
 
-            if(attr.m_url.isEmpty())
+            if(prop.m_url.isEmpty())
             {
-                readFromMusicSongAttributeNew(info, bitrate);
+                readFromMusicSongPropertyNew(info, bitrate);
                 return;
             }
 
-            if(info->m_songAttrs.contains(attr))
+            if(info->m_songProps.contains(prop))
             {
                 return;
             }
 
-            attr.m_size = MusicUtils::Number::sizeByte2Label(value["size"].toInt());
-            attr.m_format = value["type"].toString();
-            info->m_songAttrs.append(attr);
+            prop.m_size = MusicUtils::Number::sizeByte2Label(value["size"].toInt());
+            prop.m_format = value["type"].toString();
+            info->m_songProps.append(prop);
         }
     }
 }
 
-void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
+void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
 {
     int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
@@ -106,49 +106,49 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     {
         if(maxBr == MB_1000)
         {
-            readFromMusicSongAttribute(info, MB_128);
-            readFromMusicSongAttribute(info, MB_192);
-            readFromMusicSongAttribute(info, MB_320);
-            readFromMusicSongAttribute(info, MB_1000);
+            readFromMusicSongProperty(info, MB_128);
+            readFromMusicSongProperty(info, MB_192);
+            readFromMusicSongProperty(info, MB_320);
+            readFromMusicSongProperty(info, MB_1000);
         }
         else if(maxBr == MB_320)
         {
-            readFromMusicSongAttribute(info, MB_128);
-            readFromMusicSongAttribute(info, MB_192);
-            readFromMusicSongAttribute(info, MB_320);
+            readFromMusicSongProperty(info, MB_128);
+            readFromMusicSongProperty(info, MB_192);
+            readFromMusicSongProperty(info, MB_320);
         }
         else if(maxBr == MB_192)
         {
-            readFromMusicSongAttribute(info, MB_128);
-            readFromMusicSongAttribute(info, MB_192);
+            readFromMusicSongProperty(info, MB_128);
+            readFromMusicSongProperty(info, MB_192);
         }
         else
         {
-            readFromMusicSongAttribute(info, MB_128);
+            readFromMusicSongProperty(info, MB_128);
         }
     }
     else
     {
         if(quality == QObject::tr("SD") && maxBr >= MB_128)
         {
-            readFromMusicSongAttribute(info, MB_128);
+            readFromMusicSongProperty(info, MB_128);
         }
         else if(quality == QObject::tr("HQ") && maxBr >= MB_192)
         {
-            readFromMusicSongAttribute(info, MB_192);
+            readFromMusicSongProperty(info, MB_192);
         }
         else if(quality == QObject::tr("SQ") && maxBr >= MB_320)
         {
-            readFromMusicSongAttribute(info, MB_320);
+            readFromMusicSongProperty(info, MB_320);
         }
         else if(quality == QObject::tr("CD") && maxBr >= MB_1000)
         {
-            readFromMusicSongAttribute(info, MB_1000);
+            readFromMusicSongProperty(info, MB_1000);
         }
     }
 }
 
-void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, int bitrate)
+void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, int bitrate)
 {
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
@@ -178,23 +178,23 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
                 }
 
                 value = var.toMap();
-                MusicObject::MusicSongAttribute attr;
-                attr.m_url = value["url"].toString();
-                attr.m_bitrate = bitrate;
-                if(attr.m_url.isEmpty() || info->m_songAttrs.contains(attr))
+                MusicObject::MusicSongProperty prop;
+                prop.m_url = value["url"].toString();
+                prop.m_bitrate = bitrate;
+                if(prop.m_url.isEmpty() || info->m_songProps.contains(prop))
                 {
                     break;
                 }
 
-                attr.m_size = MusicUtils::Number::sizeByte2Label(value["size"].toInt());
-                attr.m_format = value["type"].toString();
-                info->m_songAttrs.append(attr);
+                prop.m_size = MusicUtils::Number::sizeByte2Label(value["size"].toInt());
+                prop.m_format = value["type"].toString();
+                info->m_songProps.append(prop);
             }
         }
     }
 }
 
-void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
+void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
 {
     int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
@@ -223,44 +223,44 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
     {
         if(maxBr == MB_1000)
         {
-            readFromMusicSongAttribute(info, MB_128);
-            readFromMusicSongAttribute(info, MB_192);
-            readFromMusicSongAttribute(info, MB_320);
-            readFromMusicSongAttribute(info, MB_1000);
+            readFromMusicSongProperty(info, MB_128);
+            readFromMusicSongProperty(info, MB_192);
+            readFromMusicSongProperty(info, MB_320);
+            readFromMusicSongProperty(info, MB_1000);
         }
         else if(maxBr == MB_320)
         {
-            readFromMusicSongAttribute(info, MB_128);
-            readFromMusicSongAttribute(info, MB_192);
-            readFromMusicSongAttribute(info, MB_320);
+            readFromMusicSongProperty(info, MB_128);
+            readFromMusicSongProperty(info, MB_192);
+            readFromMusicSongProperty(info, MB_320);
         }
         else if(maxBr == MB_192)
         {
-            readFromMusicSongAttribute(info, MB_128);
-            readFromMusicSongAttribute(info, MB_192);
+            readFromMusicSongProperty(info, MB_128);
+            readFromMusicSongProperty(info, MB_192);
         }
         else
         {
-            readFromMusicSongAttribute(info, MB_128);
+            readFromMusicSongProperty(info, MB_128);
         }
     }
     else
     {
         if(quality == QObject::tr("SD") && maxBr >= MB_128)
         {
-            readFromMusicSongAttribute(info, MB_128);
+            readFromMusicSongProperty(info, MB_128);
         }
         else if(quality == QObject::tr("HQ") && maxBr >= MB_192)
         {
-            readFromMusicSongAttribute(info, MB_192);
+            readFromMusicSongProperty(info, MB_192);
         }
         else if(quality == QObject::tr("SQ") && maxBr >= MB_320)
         {
-            readFromMusicSongAttribute(info, MB_320);
+            readFromMusicSongProperty(info, MB_320);
         }
         else if(quality == QObject::tr("CD") && maxBr >= MB_1000)
         {
-            readFromMusicSongAttribute(info, MB_1000);
+            readFromMusicSongProperty(info, MB_1000);
         }
     }
 }

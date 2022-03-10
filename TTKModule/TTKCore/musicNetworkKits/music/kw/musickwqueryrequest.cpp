@@ -21,23 +21,23 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
         QString v = readXmlTextByTagName("mp3path");
         if(!v.isEmpty())
         {
-            MusicObject::MusicSongAttribute attr;
-            attr.m_bitrate = MB_128;
-            attr.m_format = MP3_FILE_PREFIX;
-            attr.m_size = TTK_DEFAULT_STR;
-            attr.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
-            info->m_songAttrs.append(attr);
+            MusicObject::MusicSongProperty prop;
+            prop.m_bitrate = MB_128;
+            prop.m_format = MP3_FILE_PREFIX;
+            prop.m_size = TTK_DEFAULT_STR;
+            prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
+            info->m_songProps.append(prop);
         }
 
         v = readXmlTextByTagName("path");
         if(!v.isEmpty())
         {
-            MusicObject::MusicSongAttribute attr;
-            attr.m_bitrate = MB_96;
-            attr.m_format = WMA_FILE_PREFIX;
-            attr.m_size = TTK_DEFAULT_STR;
-            attr.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
-            info->m_songAttrs.append(attr);
+            MusicObject::MusicSongProperty prop;
+            prop.m_bitrate = MB_96;
+            prop.m_format = WMA_FILE_PREFIX;
+            prop.m_size = TTK_DEFAULT_STR;
+            prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
+            info->m_songProps.append(prop);
         }
     }
 
@@ -47,12 +47,12 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
         const QString &v = readXmlTextByTagName("aacpath");
         if(!v.isEmpty())
         {
-            MusicObject::MusicSongAttribute attr;
-            attr.m_bitrate = MB_32;
-            attr.m_format = AAC_FILE_PREFIX;
-            attr.m_size = TTK_DEFAULT_STR;
-            attr.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, aacUrl, v);
-            info->m_songAttrs.append(attr);
+            MusicObject::MusicSongProperty prop;
+            prop.m_bitrate = MB_32;
+            prop.m_format = AAC_FILE_PREFIX;
+            prop.m_size = TTK_DEFAULT_STR;
+            prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, aacUrl, v);
+            info->m_songProps.append(prop);
         }
     }
 }
@@ -164,15 +164,15 @@ void MusicKWQueryRequest::downLoadFinished()
                         TTK_NETWORK_QUERY_CHECK();
                         musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                         musicInfo.m_albumName = MusicUtils::String::charactersReplaced(value["ALBUM"].toString());
-                        readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
+                        readFromMusicSongProperty(&musicInfo, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
                         TTK_NETWORK_QUERY_CHECK();
 
-                        if(musicInfo.m_songAttrs.isEmpty())
+                        if(musicInfo.m_songProps.isEmpty())
                         {
                             continue;
                         }
                         //
-                        if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
+                        if(!findUrlFileSize(&musicInfo.m_songProps)) return;
                         //
                         MusicSearchedItem item;
                         item.m_songName = musicInfo.m_songName;
@@ -219,9 +219,9 @@ void MusicKWQueryRequest::singleDownLoadFinished()
             TTK_NETWORK_QUERY_CHECK();
             musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
             //
-            if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
+            if(!findUrlFileSize(&musicInfo.m_songProps)) return;
             //
-            if(!musicInfo.m_songAttrs.isEmpty())
+            if(!musicInfo.m_songProps.isEmpty())
             {
                 MusicSearchedItem item;
                 item.m_songName = musicInfo.m_songName;

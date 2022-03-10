@@ -50,7 +50,7 @@ void MusicPlayBackModePopWidget::initWidget()
 {
     setTranslucentBackground();
     m_containWidget->setFixedSize(140, 160);
-    m_menu->removeAction(m_menu->actions().first());
+    m_menu->removeAction(m_menu->actions().front());
     m_menu->addAction(QIcon(":/functions/btn_once_hover"), tr("Play Once"), MusicApplication::instance(), SLOT(musicPlayOnce()));
     m_menu->addAction(QIcon(":/functions/btn_oneLoop_hover"), tr("Single Cycle"), MusicApplication::instance(), SLOT(musicPlayOneLoop()));
     m_menu->addAction(QIcon(":/functions/btn_order_hover"), tr("Order Play"), MusicApplication::instance(), SLOT(musicPlayOrder()));

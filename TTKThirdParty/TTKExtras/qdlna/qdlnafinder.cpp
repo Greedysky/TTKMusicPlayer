@@ -86,7 +86,7 @@ void QDlnaFinder::find()
 QDlnaClient* QDlnaFinder::client(int index) const
 {
     TTK_D(QDlnaFinder);
-    if(index < 0 || index >= d->m_clients.size())
+    if(index < 0 || index >= d->m_clients.count())
     {
         return nullptr;
     }
@@ -118,7 +118,7 @@ void QDlnaFinder::handleReadyRead()
     {
         QByteArray datagram;
         datagram.resize(d->m_udpSock->pendingDatagramSize());
-        d->m_udpSock->readDatagram(datagram.data(), datagram.size());
+        d->m_udpSock->readDatagram(datagram.data(), datagram.length());
 
         QDlnaClient *client = new QDlnaClient(QString::fromUtf8(datagram.data()));
         if(client->server() == DEFAULT_ROUTER_IP || d->findClient(client->server()))

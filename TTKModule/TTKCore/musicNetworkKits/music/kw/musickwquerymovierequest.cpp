@@ -94,10 +94,10 @@ void MusicKWQueryMovieRequest::downLoadFinished()
 
                     musicInfo.m_songId = value["MUSICRID"].toString().remove("MUSIC_");
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicMVAttribute(&musicInfo, value["FORMATS"].toString());
+                    readFromMusicMVProperty(&musicInfo, value["FORMATS"].toString());
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songAttrs.isEmpty())
+                    if(musicInfo.m_songProps.isEmpty())
                     {
                       continue;
                     }
@@ -175,10 +175,10 @@ void MusicKWQueryMovieRequest::singleDownLoadFinished()
     TTK_NETWORK_QUERY_CHECK();
     readFromMusicMVInfo(&musicInfo);
     TTK_NETWORK_QUERY_CHECK();
-    readFromMusicMVAttribute(&musicInfo, QString("MP4UL|MP4L|MP4HV|MP4"));
+    readFromMusicMVProperty(&musicInfo, QString("MP4UL|MP4L|MP4HV|MP4"));
     TTK_NETWORK_QUERY_CHECK();
 
-    if(!musicInfo.m_songAttrs.isEmpty())
+    if(!musicInfo.m_songProps.isEmpty())
     {
         MusicSearchedItem item;
         item.m_songName = musicInfo.m_songName;
@@ -193,7 +193,7 @@ void MusicKWQueryMovieRequest::singleDownLoadFinished()
     deleteAll();
 }
 
-void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &format)
+void MusicKWQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QString &format)
 {
     if(info->m_songId.isEmpty())
     {
@@ -204,24 +204,24 @@ void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
     {
         if(v.contains("MP4L"))
         {
-            readFromMusicMVAttribute(info, "MP4L", MB_250);
+            readFromMusicMVProperty(info, "MP4L", MB_250);
         }
         else if(v.contains("MP4HV"))
         {
-            readFromMusicMVAttribute(info, "MP4HV", MB_750);
+            readFromMusicMVProperty(info, "MP4HV", MB_750);
         }
         else if(v.contains("MP4UL"))
         {
-            readFromMusicMVAttribute(info, "MP4UL", MB_1000);
+            readFromMusicMVProperty(info, "MP4UL", MB_1000);
         }
         else if(v.contains("MP4"))
         {
-            readFromMusicMVAttribute(info, "MP4", MB_500);
+            readFromMusicMVProperty(info, "MP4", MB_500);
         }
     }
 }
 
-void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &format, int bitrate)
+void MusicKWQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QString &format, int bitrate)
 {
     if(info->m_songId.isEmpty())
     {
@@ -249,18 +249,18 @@ void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
 
         if(text.indexOf(regx) != -1)
         {
-            MusicObject::MusicSongAttribute attr;
-            attr.m_url = regx.cap(1);
-            attr.m_bitrate = bitrate;
-            attr.m_format = "mp4";
-            if(attr.m_url.isEmpty() || info->m_songAttrs.contains(attr))
+            MusicObject::MusicSongProperty prop;
+            prop.m_url = regx.cap(1);
+            prop.m_bitrate = bitrate;
+            prop.m_format = "mp4";
+            if(prop.m_url.isEmpty() || info->m_songProps.contains(prop))
             {
                 return;
             }
             //
-            if(!findUrlFileSize(&attr)) return;
+            if(!findUrlFileSize(&prop)) return;
             //
-            info->m_songAttrs.append(attr);
+            info->m_songProps.append(prop);
         }
     }
 }

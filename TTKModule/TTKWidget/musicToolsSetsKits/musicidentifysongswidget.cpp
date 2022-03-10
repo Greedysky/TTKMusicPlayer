@@ -134,9 +134,9 @@ void MusicIdentifySongsWidget::musicSongPlay()
         return;
     }
 
-    if(!m_currentSong.m_songAttrs.isEmpty())
+    if(!m_currentSong.m_songProps.isEmpty())
     {
-        m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, m_currentSong.m_songAttrs.first().m_url);
+        m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, m_currentSong.m_songProps.front().m_url);
     }
 }
 
@@ -260,7 +260,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         m_analysis->setLineMax(11);
         connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     }
-    const MusicSongIdentifyData songIdentify(m_detectedThread->identifySongs().first());
+    const MusicSongIdentifyData songIdentify(m_detectedThread->identifySongs().front());
 
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle05);
@@ -305,7 +305,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         const QString &name = ART_DIR_FULL + m_currentSong.m_singerName + SKN_FILE;
         if(!QFile::exists(name))
         {
-            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(m_currentSong.m_smallPicUrl, name, MusicObject::DownloadSmallBackground, this);
+            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(m_currentSong.m_coverUrl, name, MusicObject::DownloadSmallBackground, this);
             connect(download, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             download->startToDownload();
             loop.exec();
@@ -370,9 +370,9 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         }
         m_analysis->readFromLrcFile(name);
 
-        if(!m_currentSong.m_songAttrs.isEmpty())
+        if(!m_currentSong.m_songProps.isEmpty())
         {
-            m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, m_currentSong.m_songAttrs.first().m_url);
+            m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, m_currentSong.m_songProps.front().m_url);
         }
     }
 

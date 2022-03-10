@@ -227,7 +227,7 @@ void MusicReplayGainWidget::addFilesButtonClicked()
 
                 MusicSemaphoreLoop loop(this);
                 connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
-                m_process->start(MAKE_GAIN_FULL, QStringList() << m_paths.last());
+                m_process->start(MAKE_GAIN_FULL, QStringList() << m_paths.back());
                 loop.exec();
             }
         }

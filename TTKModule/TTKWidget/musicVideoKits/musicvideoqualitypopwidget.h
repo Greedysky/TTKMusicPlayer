@@ -48,7 +48,7 @@ Q_SIGNALS:
     /*!
      * Query music media information data.
      */
-    void queryMusicMediaInfo(MusicObject::MusicSongAttributeList &data);
+    void queryMusicMediaInfo(MusicObject::MusicSongPropertyList &props);
     /*!
      * Set current media url by selected quality.
      */

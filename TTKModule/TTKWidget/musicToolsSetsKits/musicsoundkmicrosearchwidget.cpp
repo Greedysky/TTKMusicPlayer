@@ -163,9 +163,9 @@ void MusicSoundKMicroSearchTableWidget::dataDownloadPlay(int row)
     }
 
     const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
-    for(const MusicObject::MusicSongAttribute &attr : qAsConst(musicSongInfos[row].m_songAttrs))
+    for(const MusicObject::MusicSongProperty &prop : qAsConst(musicSongInfos[row].m_songProps))
     {
-        Q_EMIT mediaUrlChanged(m_queryMovieMode, attr.m_url, m_queryMovieMode ? QString() : musicSongInfos[row].m_lrcUrl);
+        Q_EMIT mediaUrlChanged(m_queryMovieMode, prop.m_url, m_queryMovieMode ? QString() : musicSongInfos[row].m_lrcUrl);
     }
 }
 

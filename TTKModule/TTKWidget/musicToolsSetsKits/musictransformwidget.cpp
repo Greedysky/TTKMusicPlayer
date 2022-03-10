@@ -113,8 +113,8 @@ void MusicTransformWidget::initInputPath()
                 if(!m_path.contains(fin.absoluteFilePath()) && supportedFormat.contains(FILE_SUFFIX(fin)))
                 {
                     m_path << fin.absoluteFilePath();
-                    m_ui->listWidget->addItem(MusicUtils::Widget::elidedText(font(), m_path.last(), Qt::ElideLeft, LINE_WIDTH));
-                    m_ui->listWidget->setToolTip(m_path.last());
+                    m_ui->listWidget->addItem(MusicUtils::Widget::elidedText(font(), m_path.back(), Qt::ElideLeft, LINE_WIDTH));
+                    m_ui->listWidget->setToolTip(m_path.back());
                 }
             }
         }

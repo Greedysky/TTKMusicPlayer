@@ -65,7 +65,7 @@ QString QSyncUtils::authorizationCode(const QString &key, const QString &method,
     QString canonicalized_headers = "";
     TTKStringMap origin_headers = formatHeader(headers);
 
-    if(origin_headers.size() > 0)
+    if(origin_headers.count() > 0)
     {
         TTKStringMapterator it(origin_headers);
         while(it.hasNext())

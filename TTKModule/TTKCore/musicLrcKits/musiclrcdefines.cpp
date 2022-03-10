@@ -28,7 +28,7 @@ int MusicLrcDefines::findInteriorPreSize(int index) const
 {
     if(index == -1 || index == 0)
     {
-        return m_interiorLrcSize.first().toInt();
+        return m_interiorLrcSize.front().toInt();
     }
 
     return m_interiorLrcSize[index - 1].toInt();
@@ -38,7 +38,7 @@ int MusicLrcDefines::findInteriorNextSize(int index) const
 {
     if(index == -1 || index == m_interiorLrcSize.count() - 1)
     {
-        return m_interiorLrcSize.last().toInt();
+        return m_interiorLrcSize.back().toInt();
     }
 
     return m_interiorLrcSize[index + 1].toInt();
@@ -46,12 +46,12 @@ int MusicLrcDefines::findInteriorNextSize(int index) const
 
 int MusicLrcDefines::findInteriorFirstSize() const
 {
-    return m_interiorLrcSize.first().toInt();
+    return m_interiorLrcSize.front().toInt();
 }
 
 int MusicLrcDefines::findInteriorLastSize() const
 {
-    return m_interiorLrcSize.last().toInt();
+    return m_interiorLrcSize.back().toInt();
 }
 
 int MusicLrcDefines::findDesktopLrcIndex(int size) const
@@ -63,7 +63,7 @@ int MusicLrcDefines::findDesktopPreSize(int index) const
 {
     if(index == -1 || index == 0)
     {
-        return m_desktopLrcSize.first().toInt();
+        return m_desktopLrcSize.front().toInt();
     }
 
     return m_desktopLrcSize[index - 1].toInt();
@@ -73,7 +73,7 @@ int MusicLrcDefines::findDesktopNextSize(int index) const
 {
     if(index == -1 || index == m_desktopLrcSize.count() - 1)
     {
-        return m_desktopLrcSize.last().toInt();
+        return m_desktopLrcSize.back().toInt();
     }
 
     return m_desktopLrcSize[index + 1].toInt();
@@ -81,10 +81,10 @@ int MusicLrcDefines::findDesktopNextSize(int index) const
 
 int MusicLrcDefines::findDesktopFirstSize() const
 {
-    return m_desktopLrcSize.first().toInt();
+    return m_desktopLrcSize.front().toInt();
 }
 
 int MusicLrcDefines::findDesktopLastSize() const
 {
-    return m_desktopLrcSize.last().toInt();
+    return m_desktopLrcSize.back().toInt();
 }

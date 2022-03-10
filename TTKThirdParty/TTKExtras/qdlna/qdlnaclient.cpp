@@ -64,11 +64,11 @@ void QDlnaClientPrivate::initData(const QString &data)
             data_list = str.remove("location: http://").split(":");
         }
 
-        if(data_list.size() >= 2)
+        if(data_list.count() >= 2)
         {
             m_serverIP = data_list[0];
             const QStringList& info_list = data_list[1].split(TTK_SEPARATOR);
-            if(info_list.size() >= 2)
+            if(info_list.count() >= 2)
             {
                 m_serverPort = info_list[0];
                 m_smp = info_list[1];
@@ -241,10 +241,10 @@ int QDlnaClient::totalSeconds(const QString &value)
 {
     //Convert the time left for the track to play back to seconds
     const QStringList& data_list = value.split(TTK_DOT);
-    if(data_list.size() >= 2)
+    if(data_list.count() >= 2)
     {
         const QStringList& info_list = data_list[1].split(":");
-        if(info_list.size() >= 2)
+        if(info_list.count() >= 2)
         {
             const int mins = info_list[0].toInt();
             const int secs = info_list[1].toInt();

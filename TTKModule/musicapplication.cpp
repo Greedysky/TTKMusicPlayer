@@ -859,7 +859,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
         bool contains = false; ///the play one is delete list
         int oldIndex = m_musicPlaylist->currentIndex();
         ///check if delete one that the play one
-        if(index.count() == 1 && index.first() == oldIndex)
+        if(index.count() == 1 && index.front() == oldIndex)
         {
             contains = true;
         }

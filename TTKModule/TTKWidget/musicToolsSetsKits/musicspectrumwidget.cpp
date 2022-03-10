@@ -220,7 +220,7 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::SpectrumType spect
         {
             MusicSpectrum type;
             type.m_module = name;
-            type.m_object = vs->last();
+            type.m_object = vs->back();
             type.m_type = spectrum;
             layout->addWidget(type.m_object);
             m_types << type;
@@ -288,7 +288,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::SpectrumType spectru
         *module = name;
         MusicSpectrum type;
         type.m_module = name;
-        type.m_object = vs->last();
+        type.m_object = vs->back();
         type.m_type = spectrum;
         layout->addWidget(type.m_object);
         m_types << type;

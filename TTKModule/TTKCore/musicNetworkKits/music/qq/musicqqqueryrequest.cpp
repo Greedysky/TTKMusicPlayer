@@ -114,14 +114,14 @@ void MusicQQQueryRequest::downLoadFinished()
                     if(!m_querySimplify)
                     {
                         musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                        musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
+                        musicInfo.m_coverUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
                         musicInfo.m_albumName = MusicUtils::String::charactersReplaced(value["albumname"].toString());
 
                         TTK_NETWORK_QUERY_CHECK();
-                        readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, m_queryAllRecords);
+                        readFromMusicSongProperty(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                         TTK_NETWORK_QUERY_CHECK();
 
-                        if(musicInfo.m_songAttrs.isEmpty())
+                        if(musicInfo.m_songProps.isEmpty())
                         {
                             continue;
                         }
@@ -195,17 +195,17 @@ void MusicQQQueryRequest::singleDownLoadFinished()
                     musicInfo.m_albumId = albumMap["mid"].toString();
 
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                    musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
+                    musicInfo.m_coverUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
 
                     musicInfo.m_year = value["time_public"].toString();
                     musicInfo.m_discNumber = value["cdIdx"].toString();
                     musicInfo.m_trackNumber = value["belongCD"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttributeNew(&musicInfo, value["file"].toMap());
+                    readFromMusicSongPropertyNew(&musicInfo, value["file"].toMap());
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(!musicInfo.m_songAttrs.isEmpty())
+                    if(!musicInfo.m_songProps.isEmpty())
                     {
                         MusicSearchedItem item;
                         item.m_songName = musicInfo.m_songName;

@@ -182,56 +182,6 @@
  */
 namespace MusicObject
 {
-    /*! @brief The class of the music song atrribute.
-     * @author Greedysky <greedysky@163.com>
-     */
-    struct MusicSongAttribute
-    {
-        int m_bitrate;
-        QString m_format;
-        QString m_url;
-        QString m_size;
-
-        MusicSongAttribute()
-        {
-            m_bitrate = -1;
-        }
-
-        inline bool operator< (const MusicSongAttribute &other) const
-        {
-            return m_bitrate < other.m_bitrate;
-        }
-
-        inline bool operator== (const MusicSongAttribute &other) const
-        {
-            return m_bitrate == other.m_bitrate || m_url == other.m_url;
-        }
-    };
-    TTK_DECLARE_LIST(MusicSongAttribute);
-
-
-    /*! @brief The class of the music song information.
-     * @author Greedysky <greedysky@163.com>
-     */
-    struct MusicSongInformation
-    {
-        MusicSongAttributeList m_songAttrs;
-        QString m_songId;
-        QString m_albumId;
-        QString m_artistId;
-        QString m_lrcUrl;
-        QString m_smallPicUrl;
-        QString m_singerName;
-        QString m_albumName;
-        QString m_songName;
-        QString m_duration;
-        QString m_year;
-        QString m_discNumber;
-        QString m_trackNumber;
-    };
-    TTK_DECLARE_LIST(MusicSongInformation);
-
-
     enum PlayState
     {
         StoppedState,           /*!< stop state*/
@@ -258,6 +208,77 @@ namespace MusicObject
         FixedPitch = 0x00020,   /*!< font fixedPitch*/
         Kerningt =   0x00040    /*!< font kerningt*/
     };
+
+
+    /*! @brief The class of the music song property.
+     * @author Greedysky <greedysky@163.com>
+     */
+    struct MusicSongProperty
+    {
+        int m_bitrate;
+        QString m_format;
+        QString m_url;
+        QString m_size;
+
+        MusicSongProperty()
+        {
+            m_bitrate = -1;
+        }
+
+        inline bool operator< (const MusicSongProperty &other) const
+        {
+            return m_bitrate < other.m_bitrate;
+        }
+
+        inline bool operator== (const MusicSongProperty &other) const
+        {
+            return m_bitrate == other.m_bitrate || m_url == other.m_url;
+        }
+    };
+    TTK_DECLARE_LIST(MusicSongProperty);
+
+
+    /*! @brief The class of the music artist property.
+     * @author Greedysky <greedysky@163.com>
+     */
+    struct MusicArtistProperty
+    {
+        QString m_artistId;
+        QString m_artistName;
+    };
+    TTK_DECLARE_LIST(MusicArtistProperty);
+
+
+    /*! @brief The class of the music song information.
+     * @author Greedysky <greedysky@163.com>
+     */
+    struct MusicSongInformation
+    {
+        QString m_artistId;
+        QString m_singerName;
+        QString m_songId;
+        QString m_songName;
+        QString m_albumId;
+        QString m_albumName;
+        QString m_lrcUrl;
+        QString m_coverUrl;
+        QString m_duration;
+        QString m_year;
+        QString m_discNumber;
+        QString m_trackNumber;
+        MusicSongPropertyList m_songProps;
+        MusicArtistPropertyList m_artistProps;
+
+        /*!
+         * Get first artist property.
+         */
+        MusicArtistProperty artist() const;
+        /*!
+         * Get artist name.
+         */
+        QString artistName() const;
+    };
+    TTK_DECLARE_LIST(MusicSongInformation);
 
 
     /*!

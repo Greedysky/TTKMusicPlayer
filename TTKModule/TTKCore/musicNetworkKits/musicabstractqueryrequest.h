@@ -206,11 +206,11 @@ protected:
     /*!
      * Find download file size.
      */
-    bool findUrlFileSize(MusicObject::MusicSongAttribute *attr);
+    bool findUrlFileSize(MusicObject::MusicSongProperty *prop);
     /*!
      * Find download file size.
      */
-    bool findUrlFileSize(MusicObject::MusicSongAttributeList *attrs);
+    bool findUrlFileSize(MusicObject::MusicSongPropertyList *props);
 
     MusicObject::MusicSongInformationList m_musicSongInfos;
     QString m_queryText, m_queryQuality;

@@ -99,10 +99,10 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongLrcAndPicture(&musicInfo);
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, m_queryAllRecords);
+                    readFromMusicSongProperty(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songAttrs.isEmpty())
+                    if(musicInfo.m_songProps.isEmpty())
                     {
                         continue;
                     }
@@ -112,7 +112,7 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
                         albumFound = true;
                         info.m_id = musicInfo.m_albumId;
                         info.m_name = musicInfo.m_singerName;
-                        info.m_coverUrl = musicInfo.m_smallPicUrl;
+                        info.m_coverUrl = musicInfo.m_coverUrl;
                         Q_EMIT createAlbumInfoItem(info);
                     }
                     //
@@ -165,7 +165,7 @@ void MusicKGQueryAlbumRequest::singleDownLoadFinished()
                     info.m_id = value["albumid"].toString();
                     info.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
                     info.m_name = value["albumname"].toString();
-                    info.m_updateTime = MusicUtils::String::stringSplit(value["publishtime"].toString().replace(TTK_DEFAULT_STR, TTK_DOT), " ").first();
+                    info.m_updateTime = MusicUtils::String::stringSplit(value["publishtime"].toString().replace(TTK_DEFAULT_STR, TTK_DOT), " ").front();
                     Q_EMIT createAlbumInfoItem(info);
                 }
             }

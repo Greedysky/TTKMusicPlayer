@@ -4,8 +4,8 @@ TTKLockedFile::TTKLockedFile()
     : QFile()
 {
 #ifdef Q_OS_WIN
-    wmutex = 0;
-    rmutex = 0;
+    m_wmutex = 0;
+    m_rmutex = 0;
 #endif
     m_lock_mode = NoLock;
 }
@@ -14,8 +14,8 @@ TTKLockedFile::TTKLockedFile(const QString &name)
     : QFile(name)
 {
 #ifdef Q_OS_WIN
-    wmutex = 0;
-    rmutex = 0;
+    m_wmutex = 0;
+    m_rmutex = 0;
 #endif
     m_lock_mode = NoLock;
 }

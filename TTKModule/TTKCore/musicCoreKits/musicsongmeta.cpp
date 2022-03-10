@@ -294,7 +294,7 @@ MusicSongMeta& MusicSongMeta::operator= (MusicSongMeta &&other)
 
 void MusicSongMeta::setSongMetaIndex(int index)
 {
-    if(index < 0 || index >= m_songMetas.size())
+    if(index < 0 || index >= songMetaCount())
     {
         return;
     }
@@ -302,9 +302,9 @@ void MusicSongMeta::setSongMetaIndex(int index)
     m_offset = index;
 }
 
-int MusicSongMeta::songMetaSize() const
+int MusicSongMeta::songMetaCount() const
 {
-    return m_songMetas.size();
+    return m_songMetas.count();
 }
 
 void MusicSongMeta::clearSongMeta()
@@ -354,7 +354,7 @@ bool MusicSongMeta::readInformation()
         {
             MusicMeta *meta = new MusicMeta;
             meta->m_fileUrl = info->path();
-            meta->m_metaData[TagWrapper::TAG_URL] = files.isEmpty() ? meta->m_fileUrl : files.first();
+            meta->m_metaData[TagWrapper::TAG_URL] = files.isEmpty() ? meta->m_fileUrl : files.front();
 
             meta->m_metaData[TagWrapper::TAG_SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
             meta->m_metaData[TagWrapper::TAG_BITRATE] = info->value(Qmmp::BITRATE);
@@ -411,7 +411,7 @@ bool MusicSongMeta::saveInformation()
             const QList<TagModel* > &tags = model->tags();
             if(!tags.isEmpty())
             {
-                TagModel *tagModel = tags.first();
+                TagModel *tagModel = tags.front();
                 if(tags.count() == 3)
                 {
                     tagModel = tags[1]; //id3v2 mode tag

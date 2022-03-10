@@ -47,7 +47,7 @@ bool MusicTXTConfigManager::writePlaylistData(const MusicSongItemList &items, co
         return false;
     }
 
-    const MusicSongItem &item = items.first();
+    const MusicSongItem &item = items.front();
     QStringList data;
     for(int i=0; i<item.m_songs.count(); ++i)
     {

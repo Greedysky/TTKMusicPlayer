@@ -33,7 +33,7 @@ void MusicMoreFunctionsPopWidget::initWidget()
 {
     setTranslucentBackground();
     m_containWidget->setFixedSize(140, 285);
-    m_menu->removeAction(m_menu->actions().first());
+    m_menu->removeAction(m_menu->actions().front());
 
     QActionGroup *group = new QActionGroup(this);
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_message_hover"), tr("Message")))->setData(0);

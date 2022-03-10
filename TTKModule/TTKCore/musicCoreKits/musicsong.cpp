@@ -126,7 +126,7 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
             return songs;
         }
 
-        const int size = meta.songMetaSize();
+        const int size = meta.songMetaCount();
         for(int i=0; i<size; ++i)
         {
             meta.setSongMetaIndex(i);
@@ -159,6 +159,7 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
     {
         name = meta.artist() + " - " + meta.title();
     }
+
     songs << MusicSong(path, time, name);
     return songs;
 }
@@ -166,4 +167,24 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
 bool MusicObject::playlistRowValid(int index)
 {
     return index != MUSIC_LOVEST_LIST && index != MUSIC_NETWORK_LIST && index != MUSIC_RECENT_LIST;
+}
+
+MusicObject::MusicArtistProperty MusicObject::MusicSongInformation::artist() const
+{
+    return m_artistProps.isEmpty() ? MusicArtistProperty() : m_artistProps.front();
+}
+
+QString MusicObject::MusicSongInformation::artistName() const
+{
+    QString name;
+    if(!m_artistProps.isEmpty())
+    {
+        name = m_artistProps.front().m_artistName;
+    }
+    
+    for(int i=1; i<m_artistProps.count(); ++i)
+    {
+        name += "/" + m_artistProps[i].m_artistName;
+    }
+    return name;
 }

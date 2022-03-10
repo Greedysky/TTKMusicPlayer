@@ -36,9 +36,9 @@ void MusicRippleSpecturmModule::show()
     MusicUtils::QMMP::enabledVisualPlugin("outerblurwave", true);
 
     const QList<Visual*> *vs = Visual::visuals();
-    if(!vs->isEmpty() && vs->last())
+    if(!vs->isEmpty() && vs->back())
     {
-        m_visualWidget = vs->last();
+        m_visualWidget = vs->back();
         m_visualWidget->setFixedHeight(65);
         m_visualWidget->setMinimumWidth(CONCISE_WIDTH_MIN);
 

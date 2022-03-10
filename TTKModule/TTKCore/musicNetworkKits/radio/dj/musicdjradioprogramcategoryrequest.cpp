@@ -173,7 +173,7 @@ void MusicDJRadioProgramCategoryRequest::queryDetailsFinished()
                     musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
 
                     const QVariantMap &radioObject = value["radio"].toMap();
-                    musicInfo.m_smallPicUrl = radioObject["picUrl"].toString();
+                    musicInfo.m_coverUrl = radioObject["picUrl"].toString();
                     musicInfo.m_artistId = QString::number(radioObject["id"].toInt());
                     musicInfo.m_singerName = MusicUtils::String::charactersReplaced(radioObject["name"].toString());
 
@@ -181,7 +181,7 @@ void MusicDJRadioProgramCategoryRequest::queryDetailsFinished()
                     musicInfo.m_songId = QString::number(mainSongObject["id"].toInt());
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttribute(&musicInfo, mainSongObject, m_queryQuality, true);
+                    readFromMusicSongProperty(&musicInfo, mainSongObject, m_queryQuality, true);
                     TTK_NETWORK_QUERY_CHECK();
                     //
                     if(!categoryFound)
@@ -190,13 +190,13 @@ void MusicDJRadioProgramCategoryRequest::queryDetailsFinished()
                         MusicResultsItem info;
                         info.m_name = musicInfo.m_songName;
                         info.m_nickName = musicInfo.m_singerName;
-                        info.m_coverUrl = musicInfo.m_smallPicUrl;
+                        info.m_coverUrl = musicInfo.m_coverUrl;
                         info.m_playCount = QString::number(radioObject["subCount"].toInt());
                         info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["createTime"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
                         Q_EMIT createCategoryInfoItem(info);
                     }
                     //
-                    if(musicInfo.m_songAttrs.isEmpty())
+                    if(musicInfo.m_songProps.isEmpty())
                     {
                         continue;
                     }

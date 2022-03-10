@@ -64,9 +64,9 @@ TTKIntList MusicAbstractTableWidget::multiSelectedIndex() const
         rows.insert(index.row());
     }
 
-    TTKIntList rowsList = rows.values();
-    std::sort(rowsList.begin(), rowsList.end());
-    return rowsList;
+    TTKIntList indexs = rows.values();
+    std::sort(indexs.begin(), indexs.end());
+    return indexs;
 }
 
 void MusicAbstractTableWidget::itemCellEntered(int row, int column)

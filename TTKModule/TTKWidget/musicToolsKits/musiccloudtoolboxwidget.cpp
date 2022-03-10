@@ -20,7 +20,7 @@ MusicCloudToolBoxWidget::~MusicCloudToolBoxWidget()
 {
     while(!m_songItems.isEmpty())
     {
-        delete m_songItems.last().m_itemObject;
+        delete m_songItems.back().m_itemObject;
         m_songItems.pop_back();
     }
 }
@@ -38,7 +38,7 @@ void MusicCloudToolBoxWidget::updateItemTitle(int index)
 
 void MusicCloudToolBoxWidget::createWidgetItem(MusicAbstractDownloadTableWidget *w, const QString &text, int index)
 {
-    MusicSongItem *item = &m_songItems.last();
+    MusicSongItem *item = &m_songItems.back();
     item->m_itemName = text;
     item->m_itemIndex = index;
     item->m_itemObject = w;

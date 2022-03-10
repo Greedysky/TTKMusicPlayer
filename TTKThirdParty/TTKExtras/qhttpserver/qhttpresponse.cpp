@@ -249,7 +249,7 @@ void QHttpResponse::end(const QByteArray &data)
         return;
     }
 
-    if(data.size() > 0)
+    if(data.length() > 0)
     {
         write(data);
     }

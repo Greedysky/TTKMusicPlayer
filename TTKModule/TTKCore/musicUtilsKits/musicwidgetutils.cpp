@@ -76,7 +76,7 @@ void MusicUtils::Widget::adjustMenuPosition(QMenu *menu)
     const QList<QAction*> actions(menu->actions());
     if(!actions.empty())
     {
-        QAction* action(actions.first());
+        QAction* action(actions.front());
         if(action->icon().isNull())
         {
             action->setIcon(QIcon(":/contextMenu/btn_transparent"));

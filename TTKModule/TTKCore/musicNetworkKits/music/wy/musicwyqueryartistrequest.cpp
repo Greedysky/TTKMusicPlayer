@@ -62,7 +62,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
                     musicInfo.m_singerName = singerName;
-                    musicInfo.m_smallPicUrl = smallPicUrl;
+                    musicInfo.m_coverUrl = smallPicUrl;
                     musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["dt"].toInt());
                     musicInfo.m_songId = QString::number(value["id"].toInt());
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(musicInfo.m_songId);
@@ -89,10 +89,10 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                     musicInfo.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttributeNew(&musicInfo, value, m_queryQuality, m_queryAllRecords);
+                    readFromMusicSongPropertyNew(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songAttrs.isEmpty())
+                    if(musicInfo.m_songProps.isEmpty())
                     {
                         continue;
                     }
@@ -107,7 +107,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                         info.m_id = m_queryText;
                         info.m_name = musicInfo.m_singerName;
                         info.m_nickName = artistObject["trans"].toString();
-                        info.m_coverUrl = musicInfo.m_smallPicUrl;
+                        info.m_coverUrl = musicInfo.m_coverUrl;
                         Q_EMIT createArtistInfoItem(info);
                     }
                     //

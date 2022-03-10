@@ -11,7 +11,7 @@ void MusicQQInterface::makeRequestRawHeader(QNetworkRequest *request)
 }
 
 
-void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
+void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
 {
     const QString &mid = key["songmid"].toString();
     if(key["size128"].toULongLong() != 0 && bitrate == MB_128)
@@ -22,12 +22,12 @@ void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
             return;
         }
 
-        MusicObject::MusicSongAttribute attr;
-        attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::sizeByte2Label(key["size128"].toULongLong());
-        attr.m_format = MP3_FILE_PREFIX;
-        attr.m_bitrate = bitrate;
-        info->m_songAttrs.append(attr);
+        MusicObject::MusicSongProperty prop;
+        prop.m_url = musicUrl;
+        prop.m_size = MusicUtils::Number::sizeByte2Label(key["size128"].toULongLong());
+        prop.m_format = MP3_FILE_PREFIX;
+        prop.m_bitrate = bitrate;
+        info->m_songProps.append(prop);
     }
     else if(key["size320"].toULongLong() != 0 && bitrate == MB_320)
     {
@@ -37,12 +37,12 @@ void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
             return;
         }
 
-        MusicObject::MusicSongAttribute attr;
-        attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::sizeByte2Label(key["size320"].toULongLong());
-        attr.m_format = MP3_FILE_PREFIX;
-        attr.m_bitrate = bitrate;
-        info->m_songAttrs.append(attr);
+        MusicObject::MusicSongProperty prop;
+        prop.m_url = musicUrl;
+        prop.m_size = MusicUtils::Number::sizeByte2Label(key["size320"].toULongLong());
+        prop.m_format = MP3_FILE_PREFIX;
+        prop.m_bitrate = bitrate;
+        info->m_songProps.append(prop);
     }
     else if(key["sizeape"].toULongLong() != 0 && bitrate == MB_750)
     {
@@ -52,12 +52,12 @@ void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
             return;
         }
 
-        MusicObject::MusicSongAttribute attr;
-        attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::sizeByte2Label(key["sizeape"].toULongLong());
-        attr.m_format = APE_FILE_PREFIX;
-        attr.m_bitrate = bitrate;
-        info->m_songAttrs.append(attr);
+        MusicObject::MusicSongProperty prop;
+        prop.m_url = musicUrl;
+        prop.m_size = MusicUtils::Number::sizeByte2Label(key["sizeape"].toULongLong());
+        prop.m_format = APE_FILE_PREFIX;
+        prop.m_bitrate = bitrate;
+        info->m_songProps.append(prop);
     }
     else if(key["sizeflac"].toULongLong() != 0 && bitrate == MB_1000)
     {
@@ -67,48 +67,48 @@ void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
             return;
         }
 
-        MusicObject::MusicSongAttribute attr;
-        attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::sizeByte2Label(key["sizeflac"].toULongLong());
-        attr.m_format = FLAC_FILE_PREFIX;
-        attr.m_bitrate = bitrate;
-        info->m_songAttrs.append(attr);
+        MusicObject::MusicSongProperty prop;
+        prop.m_url = musicUrl;
+        prop.m_size = MusicUtils::Number::sizeByte2Label(key["sizeflac"].toULongLong());
+        prop.m_format = FLAC_FILE_PREFIX;
+        prop.m_bitrate = bitrate;
+        info->m_songProps.append(prop);
     }
 }
 
-void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
+void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
 {
     if(all)
     {
-        readFromMusicSongAttribute(info, key, MB_128);
-        readFromMusicSongAttribute(info, key, MB_192);
-        readFromMusicSongAttribute(info, key, MB_320);
-        readFromMusicSongAttribute(info, key, MB_750);
-        readFromMusicSongAttribute(info, key, MB_1000);
+        readFromMusicSongProperty(info, key, MB_128);
+        readFromMusicSongProperty(info, key, MB_192);
+        readFromMusicSongProperty(info, key, MB_320);
+        readFromMusicSongProperty(info, key, MB_750);
+        readFromMusicSongProperty(info, key, MB_1000);
     }
     else
     {
         if(quality == QObject::tr("SD"))
         {
-            readFromMusicSongAttribute(info, key, MB_128);
+            readFromMusicSongProperty(info, key, MB_128);
         }
         else if(quality == QObject::tr("HQ"))
         {
-            readFromMusicSongAttribute(info, key, MB_192);
+            readFromMusicSongProperty(info, key, MB_192);
         }
         else if(quality == QObject::tr("SQ"))
         {
-            readFromMusicSongAttribute(info, key, MB_320);
+            readFromMusicSongProperty(info, key, MB_320);
         }
         else if(quality == QObject::tr("CD"))
         {
-            readFromMusicSongAttribute(info, key, MB_750);
-            readFromMusicSongAttribute(info, key, MB_1000);
+            readFromMusicSongProperty(info, key, MB_750);
+            readFromMusicSongProperty(info, key, MB_1000);
         }
     }
 }
 
-void MusicQQQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
+void MusicQQQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
 {
     const QString &mid = key["media_mid"].toString();
     if(key["size_128mp3"].toULongLong() != 0 && bitrate == MB_128)
@@ -119,12 +119,12 @@ void MusicQQQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
             return;
         }
 
-        MusicObject::MusicSongAttribute attr;
-        attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::sizeByte2Label(key["size_128mp3"].toULongLong());
-        attr.m_format = MP3_FILE_PREFIX;
-        attr.m_bitrate = bitrate;
-        info->m_songAttrs.append(attr);
+        MusicObject::MusicSongProperty prop;
+        prop.m_url = musicUrl;
+        prop.m_size = MusicUtils::Number::sizeByte2Label(key["size_128mp3"].toULongLong());
+        prop.m_format = MP3_FILE_PREFIX;
+        prop.m_bitrate = bitrate;
+        info->m_songProps.append(prop);
     }
     else if(key["size_320mp3"].toULongLong() != 0 && bitrate == MB_320)
     {
@@ -134,12 +134,12 @@ void MusicQQQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
             return;
         }
 
-        MusicObject::MusicSongAttribute attr;
-        attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::sizeByte2Label(key["size_320mp3"].toULongLong());
-        attr.m_format = MP3_FILE_PREFIX;
-        attr.m_bitrate = bitrate;
-        info->m_songAttrs.append(attr);
+        MusicObject::MusicSongProperty prop;
+        prop.m_url = musicUrl;
+        prop.m_size = MusicUtils::Number::sizeByte2Label(key["size_320mp3"].toULongLong());
+        prop.m_format = MP3_FILE_PREFIX;
+        prop.m_bitrate = bitrate;
+        info->m_songProps.append(prop);
     }
     else if(key["size_ape"].toULongLong() != 0 && bitrate == MB_750)
     {
@@ -149,12 +149,12 @@ void MusicQQQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
             return;
         }
 
-        MusicObject::MusicSongAttribute attr;
-        attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::sizeByte2Label(key["size_ape"].toULongLong());
-        attr.m_format = APE_FILE_PREFIX;
-        attr.m_bitrate = bitrate;
-        info->m_songAttrs.append(attr);
+        MusicObject::MusicSongProperty prop;
+        prop.m_url = musicUrl;
+        prop.m_size = MusicUtils::Number::sizeByte2Label(key["size_ape"].toULongLong());
+        prop.m_format = APE_FILE_PREFIX;
+        prop.m_bitrate = bitrate;
+        info->m_songProps.append(prop);
     }
     else if(key["size_flac"].toULongLong() != 0 && bitrate == MB_1000)
     {
@@ -164,22 +164,22 @@ void MusicQQQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
             return;
         }
 
-        MusicObject::MusicSongAttribute attr;
-        attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::sizeByte2Label(key["size_flac"].toULongLong());
-        attr.m_format = FLAC_FILE_PREFIX;
-        attr.m_bitrate = bitrate;
-        info->m_songAttrs.append(attr);
+        MusicObject::MusicSongProperty prop;
+        prop.m_url = musicUrl;
+        prop.m_size = MusicUtils::Number::sizeByte2Label(key["size_flac"].toULongLong());
+        prop.m_format = FLAC_FILE_PREFIX;
+        prop.m_bitrate = bitrate;
+        info->m_songProps.append(prop);
     }
 }
 
-void MusicQQQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key)
+void MusicQQQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key)
 {
-    readFromMusicSongAttributeNew(info, key, MB_128);
-    readFromMusicSongAttributeNew(info, key, MB_192);
-    readFromMusicSongAttributeNew(info, key, MB_320);
-    readFromMusicSongAttributeNew(info, key, MB_750);
-    readFromMusicSongAttributeNew(info, key, MB_1000);
+    readFromMusicSongPropertyNew(info, key, MB_128);
+    readFromMusicSongPropertyNew(info, key, MB_192);
+    readFromMusicSongPropertyNew(info, key, MB_320);
+    readFromMusicSongPropertyNew(info, key, MB_750);
+    readFromMusicSongPropertyNew(info, key, MB_1000);
 }
 
 QString MusicQQQueryInterface::generateMusicPath(const QString &file, const QString &mid)
@@ -213,7 +213,7 @@ QString MusicQQQueryInterface::generateMusicPath(const QString &file, const QStr
                 if(req.contains("sip"))
                 {
                     const QVariantList &sip = req["sip"].toList();
-                    if(sip.size() > 0)
+                    if(sip.count() > 0)
                     {
                         url_prefix = sip[0].toString();
                     }

@@ -72,15 +72,15 @@ void MusicKWQueryArtistRequest::downLoadFinished()
                     readFromMusicSongPicture(&musicInfo);
                     TTK_NETWORK_QUERY_CHECK();
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                    readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
+                    readFromMusicSongProperty(&musicInfo, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songAttrs.isEmpty())
+                    if(musicInfo.m_songProps.isEmpty())
                     {
                         continue;
                     }
                     //
-                    if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
+                    if(!findUrlFileSize(&musicInfo.m_songProps)) return;
                     //
                     if(!artistFound)
                     {
@@ -91,7 +91,7 @@ void MusicKWQueryArtistRequest::downLoadFinished()
                         TTK_NETWORK_QUERY_CHECK();
                         info.m_id = musicInfo.m_artistId;
                         info.m_name = musicInfo.m_singerName;
-                        info.m_coverUrl = musicInfo.m_smallPicUrl;
+                        info.m_coverUrl = musicInfo.m_coverUrl;
                         Q_EMIT createArtistInfoItem(info);
                     }
                     //

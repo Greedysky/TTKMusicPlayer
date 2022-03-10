@@ -92,7 +92,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(musicInfo.m_songId);
 
                     const QVariantMap &albumObject = value["al"].toMap();
-                    musicInfo.m_smallPicUrl = albumObject["picUrl"].toString();
+                    musicInfo.m_coverUrl = albumObject["picUrl"].toString();
                     musicInfo.m_albumId = QString::number(albumObject["id"].toInt());
                     musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumObject["name"].toString());
 
@@ -115,10 +115,10 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                     musicInfo.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttributeNew(&musicInfo, value, m_queryQuality, m_queryAllRecords);
+                    readFromMusicSongPropertyNew(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songAttrs.isEmpty())
+                    if(musicInfo.m_songProps.isEmpty())
                     {
                         continue;
                     }

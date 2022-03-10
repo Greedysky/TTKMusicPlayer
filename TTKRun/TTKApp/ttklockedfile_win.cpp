@@ -8,12 +8,11 @@
 
 Qt::HANDLE TTKLockedFile::getMutexHandle(int idx, bool doCreate)
 {
-    if (mutexname.isEmpty()) {
-        QFileInfo fi(*this);
-        mutexname = QString::fromLatin1(MUTEX_PREFIX)
-                    + fi.absoluteFilePath().toLower();
+    if (m_mutexname.isEmpty()) {
+        const QFileInfo fin(*this);
+        m_mutexname = QString::fromLatin1(MUTEX_PREFIX) + fin.absoluteFilePath().toLower();
     }
-    QString mname(mutexname);
+    QString mname(m_mutexname);
     if (idx >= 0)
         mname += QString::number(idx);
 
@@ -53,8 +52,6 @@ bool TTKLockedFile::waitMutex(Qt::HANDLE mutex, bool doBlock)
     return false;
 }
 
-
-
 bool TTKLockedFile::lock(LockMode mode, bool block)
 {
     if (!isOpen()) {
@@ -71,49 +68,48 @@ bool TTKLockedFile::lock(LockMode mode, bool block)
     if (m_lock_mode != NoLock)
         unlock();
 
-    if (!wmutex && !(wmutex = getMutexHandle(-1, true)))
+    if (!m_wmutex && !(m_wmutex = getMutexHandle(-1, true)))
         return false;
 
-    if (!waitMutex(wmutex, block))
+    if (!waitMutex(m_wmutex, block))
         return false;
 
     if (mode == ReadLock) {
         int idx = 0;
         for (; idx < MAX_READERS; idx++) {
-            rmutex = getMutexHandle(idx, false);
-            if (!rmutex || waitMutex(rmutex, false))
+            m_rmutex = getMutexHandle(idx, false);
+            if (!m_rmutex || waitMutex(m_rmutex, false))
                 break;
-            CloseHandle(rmutex);
+            CloseHandle(m_rmutex);
         }
         bool ok = true;
         if (idx >= MAX_READERS) {
             qWarning("TTKLockedFile::lock(): too many readers");
-            rmutex = 0;
+            m_rmutex = 0;
             ok = false;
         }
-        else if (!rmutex) {
-            rmutex = getMutexHandle(idx, true);
-            if (!rmutex || !waitMutex(rmutex, false))
+        else if (!m_rmutex) {
+            m_rmutex = getMutexHandle(idx, true);
+            if (!m_rmutex || !waitMutex(m_rmutex, false))
                 ok = false;
         }
-        if (!ok && rmutex) {
-            CloseHandle(rmutex);
-            rmutex = 0;
+        if (!ok && m_rmutex) {
+            CloseHandle(m_rmutex);
+            m_rmutex = 0;
         }
-        ReleaseMutex(wmutex);
+        ReleaseMutex(m_wmutex);
         if (!ok)
             return false;
     }
     else {
-        Q_ASSERT(rmutexes.isEmpty());
+        Q_ASSERT(m_rmutexes.isEmpty());
         for (int i = 0; i < MAX_READERS; i++) {
             Qt::HANDLE mutex = getMutexHandle(i, false);
             if (mutex)
-                rmutexes.append(mutex);
+                m_rmutexes.append(mutex);
         }
-        if (rmutexes.size()) {
-            DWORD res = WaitForMultipleObjects(rmutexes.size(), rmutexes.constData(),
-                                               TRUE, block ? INFINITE : 0);
+        if (!m_rmutexes.isEmpty()) {
+            DWORD res = WaitForMultipleObjects(m_rmutexes.count(), m_rmutexes.constData(), TRUE, block ? INFINITE : 0);
             if (res != WAIT_OBJECT_0 && res != WAIT_ABANDONED) {
                 if (res != WAIT_TIMEOUT)
                     qErrnoWarning("TTKLockedFile::lock(): WaitForMultipleObjects failed");
@@ -139,17 +135,17 @@ bool TTKLockedFile::unlock()
         return true;
 
     if (m_lock_mode == ReadLock) {
-        ReleaseMutex(rmutex);
-        CloseHandle(rmutex);
-        rmutex = 0;
+        ReleaseMutex(m_rmutex);
+        CloseHandle(m_rmutex);
+        m_rmutex = 0;
     }
     else {
-        foreach(Qt::HANDLE mutex, rmutexes) {
+        foreach(Qt::HANDLE mutex, m_rmutexes) {
             ReleaseMutex(mutex);
             CloseHandle(mutex);
         }
-        rmutexes.clear();
-        ReleaseMutex(wmutex);
+        m_rmutexes.clear();
+        ReleaseMutex(m_wmutex);
     }
 
     m_lock_mode = TTKLockedFile::NoLock;
@@ -160,6 +156,6 @@ TTKLockedFile::~TTKLockedFile()
 {
     if (isOpen())
         unlock();
-    if (wmutex)
-        CloseHandle(wmutex);
+    if (m_wmutex)
+        CloseHandle(m_wmutex);
 }

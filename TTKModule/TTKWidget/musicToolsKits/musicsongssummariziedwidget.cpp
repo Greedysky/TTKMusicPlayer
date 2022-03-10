@@ -120,7 +120,7 @@ void MusicSongsSummariziedWidget::appendMusicItemList(const MusicSongItemList &i
     for(int i=0; i<items.count(); ++i)
     {
         m_songItems << items[i];
-        MusicSongItem *item = &m_songItems.last();
+        MusicSongItem *item = &m_songItems.back();
         item->m_itemIndex = ++m_itemIndexRaise;
         checkCurrentNameExist(item->m_itemName);
         createWidgetItem(item);
@@ -170,7 +170,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
         return;
     }
 
-    QFileInfo fin(path);
+    const QFileInfo fin(path);
     if(fin.isDir())
     {
         QStringList files;
@@ -377,7 +377,7 @@ void MusicSongsSummariziedWidget::deleteRowItem(int index)
     if(m_playToolIndex == id)
     {
         setCurrentIndex(MUSIC_NORMAL_LIST);
-        m_itemList.first().m_widgetItem->setItemExpand(false);
+        m_itemList.front().m_widgetItem->setItemExpand(false);
         MusicApplication::instance()->musicPlayIndex(DEFAULT_NORMAL_LEVEL);
     }
     else if(m_playToolIndex > id)
@@ -404,7 +404,7 @@ void MusicSongsSummariziedWidget::deleteRowItems()
     if(m_playToolIndex != MUSIC_NORMAL_LIST && MusicObject::playlistRowValid(m_playToolIndex))
     {
         setCurrentIndex(MUSIC_NORMAL_LIST);
-        m_itemList.first().m_widgetItem->setItemExpand(false);
+        m_itemList.front().m_widgetItem->setItemExpand(false);
         MusicApplication::instance()->musicPlayIndex(DEFAULT_NORMAL_LEVEL);
     }
 
@@ -753,7 +753,7 @@ void MusicSongsSummariziedWidget::addSongToPlaylist(const QStringList &items)
 
     const MusicSongItem *item = &m_songItems[MUSIC_NORMAL_LIST];
     const MusicSongList *musicSongs = &item->m_songs;
-    const MusicSong &song = MusicSong(items.last());
+    const MusicSong &song = MusicSong(items.back());
 
     int index = musicSongs->count() - 1;
     if(musicSongs->contains(song))
@@ -1067,7 +1067,7 @@ void MusicSongsSummariziedWidget::addNewRowItem(const QString &name)
     MusicSongItem item;
     item.m_itemName = name;
     m_songItems << item;
-    createWidgetItem(&m_songItems.last());
+    createWidgetItem(&m_songItems.back());
 }
 
 void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
@@ -1092,7 +1092,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     connect(object, SIGNAL(musicListSongSortBy(int)), SLOT(musicListSongSortBy(int)));
 
     ///connect to items
-    setInputModule(m_itemList.last().m_widgetItem);
+    setInputModule(m_itemList.back().m_widgetItem);
 
     object->setSongsFileName(&item->m_songs);
     setTitle(object, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));

@@ -299,7 +299,7 @@ void MusicBackgroundListWidget::updateLastedItem()
 {
     if(!m_items.isEmpty())
     {
-        itemHasClicked(m_items.last());
+        itemHasClicked(m_items.back());
     }
 }
 

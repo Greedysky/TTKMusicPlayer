@@ -92,7 +92,7 @@ void MusicDispatchManager::activeFunctions()
         {
             if(item->m_args.count() == 1)
             {
-                state = QFile::remove(item->m_args.first().toString());
+                state = QFile::remove(item->m_args.front().toString());
             }
             break;
         }

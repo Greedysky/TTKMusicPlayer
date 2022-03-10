@@ -58,10 +58,10 @@ namespace TTKLockedPrivate {
         
     private:
     #ifdef Q_OS_WIN
-        Qt::HANDLE wmutex;
-        Qt::HANDLE rmutex;
-        QVector<Qt::HANDLE> rmutexes;
-        QString mutexname;
+        Qt::HANDLE m_wmutex;
+        Qt::HANDLE m_rmutex;
+        QVector<Qt::HANDLE> m_rmutexes;
+        QString m_mutexname;
 
         Qt::HANDLE getMutexHandle(int idx, bool doCreate);
         bool waitMutex(Qt::HANDLE mutex, bool doBlock);

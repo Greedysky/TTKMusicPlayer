@@ -68,20 +68,20 @@ void MusicDownloadTableWidget::clearAllItems()
     setColumnCount(1);
 }
 
-void MusicDownloadTableWidget::createItem(const MusicObject::MusicSongAttribute &attr, const QString &type, const QString &icon)
+void MusicDownloadTableWidget::createItem(const MusicObject::MusicSongProperty &prop, const QString &type, const QString &icon)
 {
     const int index = rowCount();
     setRowCount(index + 1);
     setRowHeight(index, ITEM_ROW_HEIGHT_S);
 
     QTableWidgetItem *it = new QTableWidgetItem;
-    MusicDownloadTableItemRole role(attr.m_bitrate, attr.m_format, attr.m_size);
+    MusicDownloadTableItemRole role(prop.m_bitrate, prop.m_format, prop.m_size);
     it->setData(TABLE_ITEM_ROLE, QVariant::fromValue<MusicDownloadTableItemRole>(role));
     setItem(index, 0,  it);
 
     MusicDownloadTableItem *item = new MusicDownloadTableItem(this);
     item->setIcon(icon);
-    item->setInformation(QString("%1/%2KBPS/%3").arg(attr.m_size).arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
+    item->setInformation(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
     item->setText(type);
     m_items << item;
 
@@ -193,7 +193,7 @@ void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &i
     initWidget();
     m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName, info.m_songName), Qt::ElideRight, 200));
 
-    createAllItems(info.m_songAttrs);
+    createAllItems(info.m_songProps);
 }
 
 void MusicDownloadWidget::show()
@@ -213,7 +213,7 @@ void MusicDownloadWidget::downLoadFinished()
     const MusicObject::MusicSongInformation musicSongInfo(matchMusicSongInformation());
     if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
-        createAllItems(musicSongInfo.m_songAttrs);
+        createAllItems(musicSongInfo.m_songProps);
     }
     else
     {
@@ -240,38 +240,38 @@ MusicObject::MusicSongInformation MusicDownloadWidget::matchMusicSongInformation
                 break;
             }
         }
-        std::sort(musicSongInfo.m_songAttrs.begin(), musicSongInfo.m_songAttrs.end()); //to find out the min bitrate
+        std::sort(musicSongInfo.m_songProps.begin(), musicSongInfo.m_songProps.end()); //to find out the min bitrate
         return musicSongInfo;
     }
     return MusicObject::MusicSongInformation();
 }
 
-void MusicDownloadWidget::createAllItems(const MusicObject::MusicSongAttributeList &attrs)
+void MusicDownloadWidget::createAllItems(const MusicObject::MusicSongPropertyList &props)
 {
-    MusicObject::MusicSongAttributeList attributes = attrs;
-    std::sort(attributes.begin(), attributes.end()); //to find out the min bitrate
+    MusicObject::MusicSongPropertyList propertys = props;
+    std::sort(propertys.begin(), propertys.end()); //to find out the min bitrate
 
-    for(const MusicObject::MusicSongAttribute &attr : qAsConst(attrs))
+    for(const MusicObject::MusicSongProperty &prop : qAsConst(propertys))
     {
-        if((attr.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-           (attr.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::MovieQuery))       ///sd
+        if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
+           (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::MovieQuery))       ///sd
         {
-            m_ui->viewArea->createItem(attr, tr("SD"), QString(":/quality/lb_sd_quality"));
+            m_ui->viewArea->createItem(prop, tr("SD"), QString(":/quality/lb_sd_quality"));
         }
-        else if((attr.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-                (attr.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::MovieQuery))  ///hd
+        else if((prop.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
+                (prop.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::MovieQuery))  ///hd
         {
-            m_ui->viewArea->createItem(attr, tr("HQ"), QString(":/quality/lb_hd_quality"));
+            m_ui->viewArea->createItem(prop, tr("HQ"), QString(":/quality/lb_hd_quality"));
         }
-        else if((attr.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-                (attr.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::MovieQuery))  ///sq
+        else if((prop.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
+                (prop.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::MovieQuery))  ///sq
         {
-            m_ui->viewArea->createItem(attr, tr("SQ"), QString(":/quality/lb_sq_quality"));
+            m_ui->viewArea->createItem(prop, tr("SQ"), QString(":/quality/lb_sq_quality"));
         }
-        else if((attr.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-                (attr.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::MovieQuery)) ///cd
+        else if((prop.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
+                (prop.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::MovieQuery)) ///cd
         {
-            m_ui->viewArea->createItem(attr, tr("CD"), QString(":/quality/lb_cd_quality"));
+            m_ui->viewArea->createItem(prop, tr("CD"), QString(":/quality/lb_cd_quality"));
         }
         else
         {
@@ -365,10 +365,10 @@ void MusicDownloadWidget::startToDownloadMusic()
 void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInformation &musicSongInfo)
 {
     const MusicDownloadTableItemRole &role = m_ui->viewArea->currentItemRole();
-    const MusicObject::MusicSongAttributeList &musicAttrs = musicSongInfo.m_songAttrs;
-    for(const MusicObject::MusicSongAttribute &musicAttr : qAsConst(musicAttrs))
+    const MusicObject::MusicSongPropertyList &props = musicSongInfo.m_songProps;
+    for(const MusicObject::MusicSongProperty &prop : qAsConst(props))
     {
-        if(role.isEqual(MusicDownloadTableItemRole(musicAttr.m_bitrate, musicAttr.m_format, musicAttr.m_size)))
+        if(role.isEqual(MusicDownloadTableItemRole(prop.m_bitrate, prop.m_format, prop.m_size)))
         {
             if(!G_NETWORK_PTR->isOnline())
             {
@@ -377,7 +377,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
 
             QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
             const QString &downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MUSIC_DIR_FULL : m_ui->downloadPathEdit->text();
-            QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, musicAttr.m_format);
+            QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
             //
             MusicSongList records;
             MusicDownloadRecordConfigManager down(MusicObject::RecordNormalDownload, this);
@@ -390,7 +390,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             MusicSong record;
             record.setMusicName(musicSong);
             record.setMusicPath(QFileInfo(downloadName).absoluteFilePath());
-            record.setMusicSizeStr(musicAttr.m_size);
+            record.setMusicSizeStr(prop.m_size);
             record.setMusicAddTimeStr("-1");
             records << record;
             down.writeDownloadData(records);
@@ -408,16 +408,16 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
                         musicSong.chop(3);
                     }
                     musicSong += QString("(%1)").arg(i);
-                    downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, musicAttr.m_format);
+                    downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
                 }
             }
             //
-            MusicDownloadTagDataRequest *downSong = new MusicDownloadTagDataRequest(musicAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
+            MusicDownloadTagDataRequest *downSong = new MusicDownloadTagDataRequest(prop.m_url, downloadName, MusicObject::DownloadMusic, this);
             downSong->setRecordType(MusicObject::RecordNormalDownload);
             connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
 
             MusicSongMeta meta;
-            meta.setComment(musicSongInfo.m_smallPicUrl);
+            meta.setComment(musicSongInfo.m_coverUrl);
             meta.setTitle(musicSongInfo.m_songName);
             meta.setArtist(musicSongInfo.m_singerName);
             meta.setAlbum(musicSongInfo.m_albumName);
@@ -443,10 +443,10 @@ void MusicDownloadWidget::startToDownloadMovie()
 void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInformation &musicSongInfo)
 {
     const MusicDownloadTableItemRole &role = m_ui->viewArea->currentItemRole();
-    const MusicObject::MusicSongAttributeList &musicAttrs = musicSongInfo.m_songAttrs;
-    for(const MusicObject::MusicSongAttribute &musicAttr : qAsConst(musicAttrs))
+    const MusicObject::MusicSongPropertyList &props = musicSongInfo.m_songProps;
+    for(const MusicObject::MusicSongProperty &prop : qAsConst(props))
     {
-        if(role.isEqual(MusicDownloadTableItemRole(musicAttr.m_bitrate, musicAttr.m_format, musicAttr.m_size)))
+        if(role.isEqual(MusicDownloadTableItemRole(prop.m_bitrate, prop.m_format, prop.m_size)))
         {
             if(!G_NETWORK_PTR->isOnline())
             {
@@ -456,7 +456,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
             QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
             const QString &downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MOVIE_DIR_FULL : m_ui->downloadPathEdit->text();
             //
-            QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, musicAttr.m_format);
+            QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
             if(QFile::exists(downloadName))
             {
                 for(int i=1; i<99; ++i)
@@ -470,11 +470,11 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
                         musicSong.chop(3);
                     }
                     musicSong += QString("(%1)").arg(i);
-                    downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, musicAttr.m_format);
+                    downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
                 }
             }
             //
-            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(musicAttr.m_url, downloadName, MusicObject::DownloadVideo, this);
+            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(prop.m_url, downloadName, MusicObject::DownloadVideo, this);
             connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
             download->startToDownload();
         }

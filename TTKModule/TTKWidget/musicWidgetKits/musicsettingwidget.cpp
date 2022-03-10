@@ -146,7 +146,7 @@ void MusicSettingWidget::initControllerParameter()
 {
     //
     m_ui->autoPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::AutoPlayMode).toBool());
-    m_ui->backPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList().first().toInt());
+    m_ui->backPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList().front().toInt());
     if(!G_SETTING_PTR->value(MusicSettingManager::CloseEventMode).toBool())
     {
         m_ui->minimumRadioBox->setChecked(true);

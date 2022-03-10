@@ -92,9 +92,9 @@ void MusicDesktopWallpaperThread::timeout()
     {
         if(m_random) ///random mode
         {
-            m_currentImageIndex = MusicTime::random(m_path.size());
+            m_currentImageIndex = MusicTime::random(m_path.count());
         }
-        else if(++m_currentImageIndex >= m_path.size())
+        else if(++m_currentImageIndex >= m_path.count())
         {
             m_currentImageIndex = 0;
         }

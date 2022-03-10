@@ -15,9 +15,9 @@ QFileInfoList MusicUtils::File::fileListByPath(const QString &dpath, const QStri
     if(recursively)
     {
         const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-        for(const QFileInfo &fileInfo : qAsConst(folderList))
+        for(const QFileInfo &fin : qAsConst(folderList))
         {
-            fileList.append(fileListByPath(fileInfo.absoluteFilePath(), filter, recursively));
+            fileList.append(fileListByPath(fin.absoluteFilePath(), filter, recursively));
         }
     }
 
@@ -39,11 +39,11 @@ bool MusicUtils::File::removeRecursively(const QString &dir, bool self)
     while(di.hasNext())
     {
         di.next();
-        const QFileInfo &fi = di.fileInfo();
+        const QFileInfo &fin = di.fileInfo();
         const QString &filePath = di.filePath();
 
         bool ok;
-        if(fi.isDir() && !fi.isSymLink())
+        if(fin.isDir() && !fin.isSymLink())
         {
             ok = MusicUtils::File::removeRecursively(filePath); // recursive
         }
@@ -118,6 +118,6 @@ QString MusicUtils::File::saveFileDialog(QWidget *obj, const QString &filter)
             dialog.setDefaultSuffix(regex.cap(1));
         }
     }
-    return dialog.selectedFiles().first();
+    return dialog.selectedFiles().front();
 #endif
 }

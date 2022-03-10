@@ -74,27 +74,25 @@ void MusicAbstractQueryRequest::downLoadFinished()
     MusicPageQueryRequest::downLoadFinished();
 }
 
-bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttribute *attr)
+bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongProperty *prop)
 {
     TTK_NETWORK_QUERY_CHECK(false);
-    if(attr->m_size.isEmpty() || attr->m_size == TTK_DEFAULT_STR)
+    if(prop->m_size.isEmpty() || prop->m_size == TTK_DEFAULT_STR)
     {
-        attr->m_size = MusicUtils::Number::sizeByte2Label(urlFileSize(attr->m_url));
+        prop->m_size = MusicUtils::Number::sizeByte2Label(urlFileSize(prop->m_url));
     }
     TTK_NETWORK_QUERY_CHECK(false);
-
     return true;
 }
 
-bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttributeList *attrs)
+bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongPropertyList *props)
 {
-    for(int i=0; i<attrs->count(); ++i)
+    for(int i=0; i<props->count(); ++i)
     {
-        if(!findUrlFileSize(&(*attrs)[i]))
+        if(!findUrlFileSize(&(*props)[i]))
         {
             return false;
         }
     }
-
     return true;
 }

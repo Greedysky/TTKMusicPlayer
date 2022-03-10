@@ -145,7 +145,7 @@ void MusicWebFMRadioPlayWidget::radioResourceDownload()
         info = m_songThread->musicSongInfo();
     }
 
-    if(info.m_songAttrs.isEmpty())
+    if(info.m_songProps.isEmpty())
     {
         return;
     }
@@ -187,7 +187,7 @@ void MusicWebFMRadioPlayWidget::startToPlay()
         info = m_songThread->musicSongInfo();
     }
 
-    if(info.m_songAttrs.isEmpty())
+    if(info.m_songProps.isEmpty())
     {
         return;
     }
@@ -197,7 +197,7 @@ void MusicWebFMRadioPlayWidget::startToPlay()
         createCoreModule();
     }
 
-    m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songAttrs.first().m_url);
+    m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songProps.front().m_url);
     m_mediaPlayer->play();
 
     /// fix current play volume temporary
@@ -220,7 +220,7 @@ void MusicWebFMRadioPlayWidget::startToPlay()
     name = ART_DIR_FULL + info.m_singerName + SKN_FILE;
     if(!QFile::exists(name))
     {
-        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(info.m_smallPicUrl, name, MusicObject::DownloadSmallBackground, this);
+        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(info.m_coverUrl, name, MusicObject::DownloadSmallBackground, this);
         connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
         download->startToDownload();
     }
@@ -238,7 +238,7 @@ void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
         info = m_songThread->musicSongInfo();
     }
 
-    if(info.m_songAttrs.isEmpty())
+    if(info.m_songProps.isEmpty())
     {
         return;
     }
@@ -256,7 +256,7 @@ void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
         info = m_songThread->musicSongInfo();
     }
 
-    if(info.m_songAttrs.isEmpty())
+    if(info.m_songProps.isEmpty())
     {
         return;
     }

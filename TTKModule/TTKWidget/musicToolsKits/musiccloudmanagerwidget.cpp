@@ -293,15 +293,15 @@ void MusicCloudManagerTableWidget::uploadFileDirToServer()
         delete m_openFileWidget;
         m_openFileWidget = nullptr;
 
-        for(const QFileInfo &info : MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats()))
+        for(const QFileInfo &fin : MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats()))
         {
             MusicCloudDataItem item;
             item.m_id = QString::number(MusicTime::timestamp());
             item.m_path = path;
             item.m_state = MusicCloudDataItem::Waited;
-            item.m_dataItem.m_name = info.fileName().trimmed();
-            item.m_dataItem.m_putTime = info.lastModified().toString(MUSIC_YEAR_TIME_FORMAT);
-            item.m_dataItem.m_size = info.size();
+            item.m_dataItem.m_name = fin.fileName().trimmed();
+            item.m_dataItem.m_putTime = fin.lastModified().toString(MUSIC_YEAR_TIME_FORMAT);
+            item.m_dataItem.m_size = fin.size();
 
             createItem(item);
         }
@@ -405,13 +405,13 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
     for(const QString &path : qAsConst(paths))
     {
         MusicCloudDataItem item;
-        const QFileInfo info(path);
+        const QFileInfo fin(path);
         item.m_id = QString::number(MusicTime::timestamp());
         item.m_path = path;
         item.m_state = MusicCloudDataItem::Waited;
-        item.m_dataItem.m_name = info.fileName().trimmed();
-        item.m_dataItem.m_putTime = info.lastModified().toString(MUSIC_YEAR_TIME_FORMAT);
-        item.m_dataItem.m_size = info.size();
+        item.m_dataItem.m_name = fin.fileName().trimmed();
+        item.m_dataItem.m_putTime = fin.lastModified().toString(MUSIC_YEAR_TIME_FORMAT);
+        item.m_dataItem.m_size = fin.size();
 
         MusicUtils::Core::sleep(MT_MS);
 

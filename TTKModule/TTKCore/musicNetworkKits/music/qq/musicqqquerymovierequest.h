@@ -67,7 +67,7 @@ protected:
     /*!
      * Read mv tags(size\bitrate\url) from query results.
      */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, bool more);
+    void readFromMusicMVProperty(MusicObject::MusicSongInformation *info, bool more);
     /*!
      * Get movie key.
      */

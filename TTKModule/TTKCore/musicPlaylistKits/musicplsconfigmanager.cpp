@@ -46,7 +46,7 @@ bool MusicPLSConfigManager::readPlaylistData(MusicSongItemList &items)
         {
             if((number = lengthRegExp.cap(1).toInt()) > 0)
             {
-                item.m_songs.last().setMusicPlayTime(MusicTime::msecTime2LabelJustified(lengthRegExp.cap(2).toInt() * 1000));
+                item.m_songs.back().setMusicPlayTime(MusicTime::msecTime2LabelJustified(lengthRegExp.cap(2).toInt() * 1000));
             }
             else
             {
@@ -76,7 +76,7 @@ bool MusicPLSConfigManager::writePlaylistData(const MusicSongItemList &items, co
         return false;
     }
 
-    const MusicSongItem &item = items.first();
+    const MusicSongItem &item = items.front();
     QStringList data;
     data << QString("[playlist]");
 

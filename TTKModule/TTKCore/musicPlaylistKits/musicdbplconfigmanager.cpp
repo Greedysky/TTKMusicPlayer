@@ -12,9 +12,9 @@ MusicDBPLConfigManager::MusicDBPLConfigManager()
 
 bool MusicDBPLConfigManager::readPlaylistData(MusicSongItemList &items)
 {
-    QFileInfo info(m_file.fileName());
+    const QFileInfo fin(m_file.fileName());
     MusicSongItem item;
-    item.m_itemName = info.baseName();
+    item.m_itemName = fin.baseName();
 
     // read 4-byte signature
     char magic[5] = {0};

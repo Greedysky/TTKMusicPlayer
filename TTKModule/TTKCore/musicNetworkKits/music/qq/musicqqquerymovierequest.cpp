@@ -105,10 +105,10 @@ void MusicQQQueryMovieRequest::downLoadFinished()
 
                     musicInfo.m_songId = value["vid"].toString();
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicMVAttribute(&musicInfo, false);
+                    readFromMusicMVProperty(&musicInfo, false);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songAttrs.isEmpty())
+                    if(musicInfo.m_songProps.isEmpty())
                     {
                         continue;
                     }
@@ -181,10 +181,10 @@ void MusicQQQueryMovieRequest::singleDownLoadFinished()
     MusicObject::MusicSongInformation musicInfo;
     musicInfo.m_songId = m_queryText;
     TTK_NETWORK_QUERY_CHECK();
-    readFromMusicMVAttribute(&musicInfo, true);
+    readFromMusicMVProperty(&musicInfo, true);
     TTK_NETWORK_QUERY_CHECK();
 
-    if(!musicInfo.m_songAttrs.isEmpty())
+    if(!musicInfo.m_songProps.isEmpty())
     {
         MusicSearchedItem item;
         item.m_songName = musicInfo.m_songName;
@@ -199,7 +199,7 @@ void MusicQQQueryMovieRequest::singleDownLoadFinished()
     deleteAll();
 }
 
-void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, bool more)
+void MusicQQQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, bool more)
 {
     if(info->m_songId.isEmpty())
     {
@@ -232,7 +232,7 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
             QVariantList viList = vlValue["vi"].toList();
             if(!viList.isEmpty())
             {
-                vlValue = viList.first().toMap();
+                vlValue = viList.front().toMap();
 
                 if(more)
                 {
@@ -243,7 +243,7 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
 
                 vlValue = vlValue["ul"].toMap();
                 viList = vlValue["ui"].toList();
-                vlValue = viList.first().toMap();
+                vlValue = viList.front().toMap();
                 urlPrefix = vlValue["url"].toString();
             }
 
@@ -259,19 +259,19 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
                 flValue = var.toMap();
                 TTK_NETWORK_QUERY_CHECK();
 
-                MusicObject::MusicSongAttribute attr;
-                attr.m_size = MusicUtils::Number::sizeByte2Label(flValue["fs"].toInt());
-                attr.m_format = "mp4";
+                MusicObject::MusicSongProperty prop;
+                prop.m_size = MusicUtils::Number::sizeByte2Label(flValue["fs"].toInt());
+                prop.m_format = "mp4";
 
                 int bitrate = flValue["br"].toInt() * 10;
                 if(bitrate <= 375)
-                    attr.m_bitrate = MB_250;
+                    prop.m_bitrate = MB_250;
                 else if(bitrate > 375 && bitrate <= 625)
-                    attr.m_bitrate = MB_500;
+                    prop.m_bitrate = MB_500;
                 else if(bitrate > 625 && bitrate <= 875)
-                    attr.m_bitrate = MB_750;
+                    prop.m_bitrate = MB_750;
                 else if(bitrate > 875)
-                    attr.m_bitrate = MB_1000;
+                    prop.m_bitrate = MB_1000;
 
                 bitrate = flValue["id"].toULongLong();
                 TTK_NETWORK_QUERY_CHECK();
@@ -281,8 +281,8 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
                 if(!key.isEmpty())
                 {
                     const QString &fn = QString("%1.p%2.1.mp4").arg(info->m_songId).arg(bitrate - 10000);
-                    attr.m_url = QString("%1%2?vkey=%3").arg(urlPrefix, fn, key);
-                    info->m_songAttrs.append(attr);
+                    prop.m_url = QString("%1%2?vkey=%3").arg(urlPrefix, fn, key);
+                    info->m_songProps.append(prop);
                 }
             }
         }

@@ -117,7 +117,7 @@ public:
     /*!
      * Create current item by given bitrate\type\icon.
      */
-    void createItem(const MusicObject::MusicSongAttribute &attr, const QString &type, const QString &icon);
+    void createItem(const MusicObject::MusicSongProperty &prop, const QString &type, const QString &icon);
     /*!
      * Get current bitrate from item.
      */
@@ -214,7 +214,7 @@ protected:
     /*!
      * Create current all items.
      */
-    void createAllItems(const MusicObject::MusicSongAttributeList &attrs);
+    void createAllItems(const MusicObject::MusicSongPropertyList &props);
     /*!
      * Strat to download music.
      */

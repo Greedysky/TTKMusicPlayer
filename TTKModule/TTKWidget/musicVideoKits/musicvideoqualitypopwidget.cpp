@@ -69,7 +69,7 @@ void MusicVideoQualityPopWidget::initWidget()
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(movieQualityChoiced(QAction*)));
 
     m_containWidget->setFixedSize(140, 125);
-    m_menu->removeAction(m_menu->actions().first());
+    m_menu->removeAction(m_menu->actions().front());
     m_actionGroup->addAction(m_menu->addAction(tr("ST")))->setData(0);
     m_actionGroup->addAction(m_menu->addAction(tr("SD")))->setData(1);
     m_actionGroup->addAction(m_menu->addAction(tr("HD")))->setData(2);
@@ -80,14 +80,14 @@ void MusicVideoQualityPopWidget::initWidget()
 
 QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)
 {
-    MusicObject::MusicSongAttributeList data;
-    Q_EMIT queryMusicMediaInfo(data);
+    MusicObject::MusicSongPropertyList props;
+    Q_EMIT queryMusicMediaInfo(props);
 
-    for(const MusicObject::MusicSongAttribute &attr : qAsConst(data))
+    for(const MusicObject::MusicSongProperty &prop : qAsConst(props))
     {
-        if(attr.m_bitrate == bitrate)
+        if(prop.m_bitrate == bitrate)
         {
-            return attr.m_url;
+            return prop.m_url;
         }
     }
     return QString();
@@ -95,15 +95,15 @@ QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)
 
 int MusicVideoQualityPopWidget::findMVBitrateByUrl(const QString &url)
 {
-    MusicObject::MusicSongAttributeList data;
-    Q_EMIT queryMusicMediaInfo(data);
+    MusicObject::MusicSongPropertyList props;
+    Q_EMIT queryMusicMediaInfo(props);
 
-    for(const MusicObject::MusicSongAttribute &attr : qAsConst(data))
+    for(const MusicObject::MusicSongProperty &prop : qAsConst(props))
     {
-        const QString &aurl = attr.m_url;
+        const QString &aurl = prop.m_url;
         if(aurl == url)
         {
-            return attr.m_bitrate;
+            return prop.m_bitrate;
         }
     }
     return 0;
@@ -111,12 +111,12 @@ int MusicVideoQualityPopWidget::findMVBitrateByUrl(const QString &url)
 
 bool MusicVideoQualityPopWidget::findExistByBitrate(int bitrate)
 {
-    MusicObject::MusicSongAttributeList data;
-    Q_EMIT queryMusicMediaInfo(data);
+    MusicObject::MusicSongPropertyList props;
+    Q_EMIT queryMusicMediaInfo(props);
 
-    for(const MusicObject::MusicSongAttribute &attr : qAsConst(data))
+    for(const MusicObject::MusicSongProperty &prop : qAsConst(props))
     {
-        if(attr.m_bitrate == bitrate)
+        if(prop.m_bitrate == bitrate)
         {
             return true;
         }

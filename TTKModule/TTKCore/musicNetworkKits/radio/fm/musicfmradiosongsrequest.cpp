@@ -53,25 +53,25 @@ void MusicFMRadioSongsRequest::downLoadFinished()
                     continue;
                 }
 
-                MusicObject::MusicSongAttribute attr;
-                attr.m_url = value["url"].toString();
-                attr.m_bitrate = value["kbps"].toInt();
-                attr.m_format = value["file_ext"].toString();
+                MusicObject::MusicSongProperty prop;
+                prop.m_url = value["url"].toString();
+                prop.m_bitrate = value["kbps"].toInt();
+                prop.m_format = value["file_ext"].toString();
 
                 const QVariantMap &formats = value["available_formats"].toMap();
-                if(formats.contains(QString::number(attr.m_bitrate)))
+                if(formats.contains(QString::number(prop.m_bitrate)))
                 {
-                    attr.m_size = MusicUtils::Number::sizeByte2Label(formats[QString::number(attr.m_bitrate)].toInt() * 1000);
+                    prop.m_size = MusicUtils::Number::sizeByte2Label(formats[QString::number(prop.m_bitrate)].toInt() * 1000);
                 }
 
-                m_songInfo.m_songAttrs << attr;
+                m_songInfo.m_songProps << prop;
                 m_songInfo.m_songName = MusicUtils::String::charactersReplaced(value["title"].toString());
                 m_songInfo.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
-                m_songInfo.m_smallPicUrl = value["picture"].toString();
+                m_songInfo.m_coverUrl = value["picture"].toString();
                 m_songInfo.m_albumName = MusicUtils::String::charactersReplaced(value["albumtitle"].toString());
                 m_songInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(FM_LRC_URL, false).arg(value["sid"].toString(), value["ssid"].toString());
 
-                if(!m_songInfo.m_songAttrs.isEmpty())
+                if(!m_songInfo.m_songProps.isEmpty())
                 {
                     break;
                 }

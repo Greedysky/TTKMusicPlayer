@@ -214,25 +214,25 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
             for(const QString &key : value.keys())
             {
                 const int bitrate = key.toInt();
-                MusicObject::MusicSongAttribute attr;
+                MusicObject::MusicSongProperty prop;
                 if(bitrate <= 375)
-                    attr.m_bitrate = MB_250;
+                    prop.m_bitrate = MB_250;
                 else if(bitrate > 375 && bitrate <= 625)
-                    attr.m_bitrate = MB_500;
+                    prop.m_bitrate = MB_500;
                 else if(bitrate > 625 && bitrate <= 875)
-                    attr.m_bitrate = MB_750;
+                    prop.m_bitrate = MB_750;
                 else if(bitrate > 875)
-                    attr.m_bitrate = MB_1000;
+                    prop.m_bitrate = MB_1000;
 
-                attr.m_url = value[key].toString();
-                attr.m_format = MusicUtils::String::stringSplitToken(attr.m_url);
+                prop.m_url = value[key].toString();
+                prop.m_format = MusicUtils::String::stringSplitToken(prop.m_url);
                 //
-                if(!findUrlFileSize(&attr)) return;
+                if(!findUrlFileSize(&prop)) return;
                 //
-                musicInfo.m_songAttrs.append(attr);
+                musicInfo.m_songProps.append(prop);
             }
 
-            if(musicInfo.m_songAttrs.isEmpty())
+            if(musicInfo.m_songProps.isEmpty())
             {
                 return;
             }
@@ -290,31 +290,31 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
                 TTK_NETWORK_QUERY_CHECK();
 
                 const int bitrate = value["resolution"].toInt();
-                MusicObject::MusicSongAttribute attr;
-                queryVideoUrlPath(attr.m_url, id, bitrate);
+                MusicObject::MusicSongProperty prop;
+                queryVideoUrlPath(prop.m_url, id, bitrate);
                 TTK_NETWORK_QUERY_CHECK();
 
-                if(attr.m_url.isEmpty())
+                if(prop.m_url.isEmpty())
                 {
                     continue;
                 }
 
                 if(bitrate <= 375)
-                    attr.m_bitrate = MB_250;
+                    prop.m_bitrate = MB_250;
                 else if(bitrate > 375 && bitrate <= 625)
-                    attr.m_bitrate = MB_500;
+                    prop.m_bitrate = MB_500;
                 else if(bitrate > 625 && bitrate <= 875)
-                    attr.m_bitrate = MB_750;
+                    prop.m_bitrate = MB_750;
                 else if(bitrate > 875)
-                    attr.m_bitrate = MB_1000;
+                    prop.m_bitrate = MB_1000;
 
-                attr.m_size = MusicUtils::Number::sizeByte2Label(value["size"].toInt());
-                attr.m_format = MusicUtils::String::stringSplitToken(attr.m_url);
+                prop.m_size = MusicUtils::Number::sizeByte2Label(value["size"].toInt());
+                prop.m_format = MusicUtils::String::stringSplitToken(prop.m_url);
                 //
-                musicInfo.m_songAttrs.append(attr);
+                musicInfo.m_songProps.append(prop);
             }
 
-            if(musicInfo.m_songAttrs.isEmpty())
+            if(musicInfo.m_songProps.isEmpty())
             {
                 return;
             }

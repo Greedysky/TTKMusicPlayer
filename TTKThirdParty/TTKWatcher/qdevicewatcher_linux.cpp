@@ -108,7 +108,7 @@ void QDeviceWatcherPrivate::run()
 		//recv(d->netlink_socket, &buf, sizeof(buf), 0);
         data.resize(UEVENT_BUFFER_SIZE * 2);
 		data.fill(0);
-		size_t len = recv(netlink_socket, data.data(), data.size(), 0);
+		size_t len = recv(netlink_socket, data.data(), data.length(), 0);
                 qDebug("read fro socket %d bytes", len);
 		data.resize(len);
 		data = data.replace(0, '\n').trimmed();

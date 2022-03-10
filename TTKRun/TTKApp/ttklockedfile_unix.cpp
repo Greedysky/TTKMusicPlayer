@@ -39,7 +39,6 @@ bool TTKLockedFile::lock(LockMode mode, bool block)
     return true;
 }
 
-
 bool TTKLockedFile::unlock()
 {
     if (!isOpen()) {
@@ -71,4 +70,3 @@ TTKLockedFile::~TTKLockedFile()
     if (isOpen())
         unlock();
 }
-

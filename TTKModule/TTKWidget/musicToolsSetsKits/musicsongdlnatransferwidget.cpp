@@ -140,17 +140,17 @@ void MusicSongDlnaTransferWidget::musicPlay()
 
     m_musicSongs = &songs[0].m_songs;
     ++m_currentPlayIndex;
-    if(m_currentPlayIndex < 0 || m_currentPlayIndex >= m_musicSongs->size())
+    if(m_currentPlayIndex < 0 || m_currentPlayIndex >= m_musicSongs->count())
     {
         m_currentPlayIndex = 0;
     }
 
     const MusicSong &song = (*m_musicSongs)[m_currentPlayIndex];
-    QFileInfo info(song.musicPath());
+    const QFileInfo fin(song.musicPath());
 
     QDlnaClient *client = m_dlnaFinder->client(index);
-    m_dlnaFileServer->setPrefixPath(info.path());
-    client->tryToPlayFile(m_dlnaFileServer->localAddress(client->server()) + info.fileName());
+    m_dlnaFileServer->setPrefixPath(fin.path());
+    client->tryToPlayFile(m_dlnaFileServer->localAddress(client->server()) + fin.fileName());
 }
 
 void MusicSongDlnaTransferWidget::musicPrevious()

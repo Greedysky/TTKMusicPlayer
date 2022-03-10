@@ -79,25 +79,25 @@ class TTK_MODULE_EXPORT MusicKWQueryInterface
 {
 public:
     /*!
-     * Read mv info attribute from query results.
+     * Read high info property from query results.
      */
-    void readFromMusicLLAttribute(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate);
+    void readFromMusicHighProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate);
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate);
+    void readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &format, const QString &quality, bool all);
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &format, const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantList &format, const QString &quality, bool all);
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantList &format, const QString &quality, bool all);
 
     /*!
      * Read tags(lrc\smallpic) from query results.
