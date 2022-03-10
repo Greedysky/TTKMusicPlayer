@@ -83,7 +83,7 @@ void SettingsDialog::findCodecs()
         }
         else if(iso8859RegExp.hasMatch(sortKey))
         {
-            if(iso8859RegExp.value(1).size() == 1)
+            if(iso8859RegExp.value(1).length() == 1)
                 rank = 3;
             else
                 rank = 4;

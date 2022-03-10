@@ -563,9 +563,9 @@ void QmmpAudioEngine::attachMetaData(Decoder *decoder, DecoderFactory *factory, 
 {
     QString path = source->path();
     QString scheme = path.section("://",0,0);
-    QFileInfo fileInfo(path);
+    const QFileInfo fin(path);
 
-    if(fileInfo.isFile() || factory->properties().protocols.contains(scheme))
+    if(fin.isFile() || factory->properties().protocols.contains(scheme))
     {
         QStringList ignoredPaths;
         QList<TrackInfo*> playlist = factory->createPlayList(path, TrackInfo::AllParts, &ignoredPaths);
@@ -579,8 +579,8 @@ void QmmpAudioEngine::attachMetaData(Decoder *decoder, DecoderFactory *factory, 
                 decoder->setReplayGainInfo(info->replayGainInfo());
             info->updateValues(decoder->properties());
             info->setValue(Qmmp::DECODER, factory->properties().shortName);
-            if(fileInfo.isFile() && info->value(Qmmp::FILE_SIZE).isEmpty())
-                info->setValue(Qmmp::FILE_SIZE, fileInfo.size());
+            if(fin.isFile() && info->value(Qmmp::FILE_SIZE).isEmpty())
+                info->setValue(Qmmp::FILE_SIZE, fin.size());
             decoder->setProperties(info->properties());
             delete info;
         }
@@ -654,8 +654,8 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
     if(m_ap.channelMap() != m_ap.channelMap().remaped())
     {
         m_effects << new ChannelConverter(m_ap.channelMap().remaped());
-        m_effects.last()->configure(m_ap.sampleRate(), m_ap.channelMap());
-        m_ap = m_effects.last()->audioParameters();
+        m_effects.back()->configure(m_ap.sampleRate(), m_ap.channelMap());
+        m_ap = m_effects.back()->audioParameters();
     }
 
     for(EffectFactory *factory : Effect::enabledFactories())

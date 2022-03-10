@@ -84,7 +84,7 @@ QString WavPackMetaDataModel::cue() const
 void WavPackMetaDataModel::setCue(const QString &content)
 {
     const QByteArray &data = content.toUtf8();
-    WavpackAppendTagItem(m_ctx, "cuesheet", data.data(), data.size());
+    WavpackAppendTagItem(m_ctx, "cuesheet", data.data(), data.length());
     WavpackWriteTag(m_ctx);
 }
 
@@ -153,39 +153,39 @@ QString WavPackFileTagModel::value(Qmmp::MetaData key) const
 
 void WavPackFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
 {
-    int size = value.toUtf8().size();
+    int length = value.toUtf8().length();
     char *v = value.toUtf8().data();
     switch((int) key)
     {
     case Qmmp::TITLE:
-        WavpackAppendTagItem(m_ctx, "Title", v, size);
+        WavpackAppendTagItem(m_ctx, "Title", v, length);
         break;
     case Qmmp::ARTIST:
-        WavpackAppendTagItem(m_ctx, "Artist", v, size);
+        WavpackAppendTagItem(m_ctx, "Artist", v, length);
         break;
     case Qmmp::ALBUM:
-        WavpackAppendTagItem(m_ctx, "Album", v, size);
+        WavpackAppendTagItem(m_ctx, "Album", v, length);
         break;
     case Qmmp::ALBUMARTIST:
-        WavpackAppendTagItem(m_ctx, "Album Artist", v, size);
+        WavpackAppendTagItem(m_ctx, "Album Artist", v, length);
         break;
     case Qmmp::COMMENT:
-        WavpackAppendTagItem(m_ctx, "Comment", v, size);
+        WavpackAppendTagItem(m_ctx, "Comment", v, length);
         break;
     case Qmmp::YEAR:
-        WavpackAppendTagItem(m_ctx, "Year", v, size);
+        WavpackAppendTagItem(m_ctx, "Year", v, length);
         break;
     case Qmmp::TRACK:
-        WavpackAppendTagItem(m_ctx, "Track", v, size);
+        WavpackAppendTagItem(m_ctx, "Track", v, length);
         break;
     case Qmmp::DISCNUMBER:
-        WavpackAppendTagItem(m_ctx, "Disc", v, size);
+        WavpackAppendTagItem(m_ctx, "Disc", v, length);
         break;
     case Qmmp::GENRE:
-        WavpackAppendTagItem(m_ctx, "Genre", v, size);
+        WavpackAppendTagItem(m_ctx, "Genre", v, length);
         break;
     case Qmmp::COMPOSER:
-        WavpackAppendTagItem(m_ctx, "Composer", v, size);
+        WavpackAppendTagItem(m_ctx, "Composer", v, length);
     }
 }
 

@@ -89,6 +89,6 @@ void ID3v2Tag::read()
     if(!to_read ||  2048 < m_offset + TagLib::ID3v2::Header::size())
         return;
     QByteArray array = m_buf->read(to_read);
-    TagLib::ByteVector v(array.data(), array.size());
+    TagLib::ByteVector v(array.data(), array.length());
     parse(v);
 }

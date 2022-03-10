@@ -184,7 +184,7 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
             t.info.setValue(Qmmp::TITLE, QString("CDA Track %1").arg(i, 2, 10, QChar('0')));
         tracks  << t;
     }
-    qDebug("DecoderCDAudio: found %d audio tracks", tracks.size());
+    qDebug("DecoderCDAudio: found %d audio tracks", tracks.count());
 
     use_cddb = use_cddb && settings.value("cdaudio/use_cddb", false).toBool();
     if(use_cddb)
@@ -295,8 +295,8 @@ void DecoderCDAudio::saveToCache(const QList<CDATrack> &tracks,  uint disc_id)
     QString path = dir.absolutePath() + QString("/%1").arg(disc_id, 0, 16);
     QSettings settings(path, QSettings::IniFormat);
     settings.clear();
-    settings.setValue("count", tracks.size());
-    for(int i = 0; i < tracks.size(); ++i)
+    settings.setValue("count", tracks.count());
+    for(int i = 0; i < tracks.count(); ++i)
     {
         CDATrack track = tracks[i];
         QMap<Qmmp::MetaData, QString> meta = track.info.metaData();
@@ -358,7 +358,7 @@ bool DecoderCDAudio::initialize()
     }
     //find track by number
     int track_at = -1;
-    for(int i = 0; i < tracks.size(); ++i)
+    for(int i = 0; i < tracks.count(); ++i)
         if(tracks[i].info.value(Qmmp::TRACK).toInt() == track)
         {
             track_at = i;

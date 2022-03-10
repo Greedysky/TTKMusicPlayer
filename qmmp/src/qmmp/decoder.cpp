@@ -206,7 +206,7 @@ DecoderFactory *Decoder::findByFilePath(const QString &path, bool useContent)
     if(filtered.isEmpty())
         return nullptr;
 
-    if(filtered.size() == 1)
+    if(filtered.count() == 1)
         return filtered.at(0);
 
     //more than one factories with same filters
@@ -225,7 +225,7 @@ DecoderFactory *Decoder::findByFilePath(const QString &path, bool useContent)
     }
 
     if(!filtered.isEmpty() && !useContent) //fallback
-        return filtered.first();
+        return filtered.front();
 
     return nullptr;
 }

@@ -235,6 +235,6 @@ int SettingsDialog::getMixer(snd_mixer_t **mixer, QString card)
 
 void SettingsDialog::showMixerDevices(int d)
 {
-    if(0<=d && d<m_cards.size())
+    if(0<=d && d<m_cards.count())
         getMixerDevices(m_cards.at(d));
 }

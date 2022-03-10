@@ -36,7 +36,7 @@ void CueParser::loadData(const QByteArray &data, QTextCodec *codec)
     {
         QString line = textStream.readLine().trimmed();
         QStringList words = splitLine(line);
-        if(words.size() < 2)
+        if(words.count() < 2)
             continue;
 
         if(words[0] == "FILE")
@@ -49,14 +49,14 @@ void CueParser::loadData(const QByteArray &data, QTextCodec *codec)
             if(m_tracks.isEmpty())
                 artist = words[1];
             else
-                m_tracks.last()->info.setValue(Qmmp::ARTIST, words[1]);
+                m_tracks.back()->info.setValue(Qmmp::ARTIST, words[1]);
         }
         else if(words[0] == "TITLE")
         {
             if(m_tracks.isEmpty())
                 album = words[1];
             else
-                m_tracks.last()->info.setValue(Qmmp::TITLE, words[1]);
+                m_tracks.back()->info.setValue(Qmmp::TITLE, words[1]);
         }
         else if(words[0] == "TRACK")
         {
@@ -72,19 +72,19 @@ void CueParser::loadData(const QByteArray &data, QTextCodec *codec)
             info.setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK, album_peak);
 
             m_tracks << new CUETrack;
-            m_tracks.last()->info = info;
-            m_tracks.last()->offset = 0;
+            m_tracks.back()->info = info;
+            m_tracks.back()->offset = 0;
         }
         else if(words[0] == "INDEX" && words[1] == "01")
         {
             if(m_tracks.isEmpty())
                 continue;
-            m_tracks.last()->offset = getLength(words[2]);
-            m_tracks.last()->file = file;
+            m_tracks.back()->offset = getLength(words[2]);
+            m_tracks.back()->file = file;
         }
         else if(words[0] == "REM")
         {
-            if(words.size() < 3)
+            if(words.count() < 3)
                 continue;
             if(words[1] == "GENRE")
                 genre = words[2];
@@ -97,9 +97,9 @@ void CueParser::loadData(const QByteArray &data, QTextCodec *codec)
             else if(words[1] == "REPLAYGAIN_ALBUM_PEAK")
                 album_peak = words[2].toDouble();
             else if(words[1] == "REPLAYGAIN_TRACK_GAIN" && !m_tracks.isEmpty())
-                m_tracks.last()->info.setValue(Qmmp::REPLAYGAIN_TRACK_GAIN, words[2].toDouble());
+                m_tracks.back()->info.setValue(Qmmp::REPLAYGAIN_TRACK_GAIN, words[2].toDouble());
             else if(words[1] == "REPLAYGAIN_TRACK_PEAK" && !m_tracks.isEmpty())
-                m_tracks.last()->info.setValue(Qmmp::REPLAYGAIN_TRACK_PEAK, words[2].toDouble());
+                m_tracks.back()->info.setValue(Qmmp::REPLAYGAIN_TRACK_PEAK, words[2].toDouble());
         }
     }
 
@@ -290,7 +290,7 @@ QStringList CueParser::splitLine(const QString &line)
         {
             int end = buf.indexOf(' ', 0);
             if(end < 0)
-                end = buf.size();
+                end = buf.length();
             list << buf.mid (0, end);
             buf.remove (0, end);
         }
@@ -302,9 +302,9 @@ QStringList CueParser::splitLine(const QString &line)
 qint64 CueParser::getLength(const QString &str)
 {
     QStringList list = str.split(":");
-    if(list.size() == 2)
+    if(list.count() == 2)
         return (qint64)list.at(0).toInt()*60000 + list.at(1).toInt()*1000;
-    else if(list.size() == 3)
+    else if(list.count() == 3)
         return (qint64)list.at(0).toInt()*60000 + list.at(1).toInt()*1000 + list.at(2).toInt()*1000/75;
     return 0;
 }

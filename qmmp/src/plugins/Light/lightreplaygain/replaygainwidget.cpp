@@ -283,7 +283,7 @@ QString ReplayGainWidget::albumName(const QString &url)
         return QString();
     }
 
-    const QString &album = playlist.first()->value(Qmmp::ALBUM);
+    const QString &album = playlist.front()->value(Qmmp::ALBUM);
     qDeleteAll(playlist);
     return album;
 }

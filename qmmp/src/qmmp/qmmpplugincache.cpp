@@ -12,8 +12,8 @@
 QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
 {
     bool update = false;
-    QFileInfo info(file);
-    m_path = info.QFileInfo::canonicalFilePath();
+    const QFileInfo fin(file);
+    m_path = fin.canonicalFilePath();
 
     settings->beginGroup("PluginCache");
     QString key = m_path;
@@ -38,7 +38,7 @@ QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
             m_filters = values.at(3).split(";", QString::SkipEmptyParts);
             m_contentTypes = values.at(4).split(";", QString::SkipEmptyParts);
 #endif
-            update = (info.lastModified().toString(Qt::ISODate) != values.at(5));
+            update = (fin.lastModified().toString(Qt::ISODate) != values.at(5));
         }
     }
     else
@@ -91,10 +91,9 @@ QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
             values << m_protocols.join(";");
             values << m_filters.join(";");
             values << m_contentTypes.join(";");
-            values << info.lastModified().toString(Qt::ISODate);
+            values << fin.lastModified().toString(Qt::ISODate);
             settings->setValue(m_path, values);
-            qDebug("QmmpPluginCache: added cache item \"%s=%s\"",
-                   qPrintable(info.fileName()), qPrintable(values.join(",")));
+            qDebug("QmmpPluginCache: added cache item \"%s=%s\"", qPrintable(fin.fileName()), qPrintable(values.join(",")));
         }
     }
     settings->endGroup();

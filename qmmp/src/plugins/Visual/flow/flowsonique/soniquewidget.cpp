@@ -68,7 +68,7 @@ static void customZoomAndBlur(unsigned int *v, unsigned int *vt, int xs, int ys)
     }
 }
 
-static QFileInfoList fileListByDir(const QString &dpath, const QStringList &filter)
+static QFileInfoList fileListByPath(const QString &dpath, const QStringList &filter)
 {
     QDir dir(dpath);
     if(!dir.exists())
@@ -78,9 +78,9 @@ static QFileInfoList fileListByDir(const QString &dpath, const QStringList &filt
 
     QFileInfoList fileList = dir.entryInfoList(filter, QDir::Files | QDir::Hidden);
     const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-    for(const QFileInfo &file : folderList)
+    for(const QFileInfo &fin : folderList)
     {
-        fileList.append(fileListByDir(file.absoluteFilePath(), filter));
+        fileList.append(fileListByPath(fin.absoluteFilePath(), filter));
     }
 
     return fileList;
@@ -248,10 +248,10 @@ void SoniqueWidget::randomPreset()
 void SoniqueWidget::initialize()
 {
     const QString &dir = Qmmp::pluginPath() + "/../GPlugins/config/sonique";
-    const QFileInfoList folderList(fileListByDir(dir, QStringList() << "*.svp"));
-    for(const QFileInfo &info : folderList)
+    const QFileInfoList folderList(fileListByPath(dir, QStringList() << "*.svp"));
+    for(const QFileInfo &fin : folderList)
     {
-        m_presetList << info.absoluteFilePath();
+        m_presetList << fin.absoluteFilePath();
     }
 
     randomPreset();
@@ -306,10 +306,10 @@ void SoniqueWidget::generatePreset()
     m_sonique = module();
 
     const QString &dir = QFileInfo(m_presetList[m_currentIndex]).absolutePath();
-    const QFileInfoList iniList(fileListByDir(dir, QStringList() << "*.ini"));
+    const QFileInfoList iniList(fileListByPath(dir, QStringList() << "*.ini"));
     if(!iniList.isEmpty())
     {
-        char *init_path = iniList.first().absoluteFilePath().toLocal8Bit().data();
+        char *init_path = iniList.front().absoluteFilePath().toLocal8Bit().data();
         m_sonique->OpenSettings(init_path);
         qDebug("[SoniqueWidget] ini url is %s", init_path);
     }

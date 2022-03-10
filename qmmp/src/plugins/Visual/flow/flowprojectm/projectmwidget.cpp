@@ -75,9 +75,9 @@ void ProjectMWidget::initializeGL()
         list.push_back(3);
         list.push_back(3);
 
-        for(const QFileInfo &info : l)
+        for(const QFileInfo &fin : l)
         {
-            m_projectM->addPresetURL(info.absoluteFilePath().toStdString(), info.fileName().toStdString(), list);
+            m_projectM->addPresetURL(fin.absoluteFilePath().toStdString(), fin.fileName().toStdString(), list);
         }
 
         randomPreset();

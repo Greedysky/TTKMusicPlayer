@@ -240,12 +240,12 @@ ID3v2Tag::ID3v2Tag(const QByteArray &array)
 
 void ID3v2Tag::read()
 {
-    if(TagLib::ID3v2::Header::size() > (uint)m_buf.size())
+    if(TagLib::ID3v2::Header::size() > (uint)m_buf.length())
         return;
 
     header()->setData(TagLib::ByteVector(m_buf.constData(), TagLib::ID3v2::Header::size()));
 
-    if(header()->tagSize() > (uint)m_buf.size())
+    if(header()->tagSize() > (uint)m_buf.length())
         return;
 
     TagLib::ByteVector v(m_buf.constData() + header()->size(), header()->tagSize());

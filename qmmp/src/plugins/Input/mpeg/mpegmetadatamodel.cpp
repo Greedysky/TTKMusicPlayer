@@ -76,8 +76,7 @@ QPixmap MPEGMetaDataModel::cover() const
         if(frame && frame->type() == TagLib::ID3v2::AttachedPictureFrame::FrontCover)
         {
             QPixmap cover;
-            cover.loadFromData((const uchar *)frame->picture().data(),
-                                     frame->picture().size());
+            cover.loadFromData((const uchar *)frame->picture().data(), frame->picture().size());
             return cover;
         }
     }
@@ -88,8 +87,7 @@ QPixmap MPEGMetaDataModel::cover() const
         if(frame)
         {
             QPixmap cover;
-            cover.loadFromData((const uchar *)frame->picture().data(),
-                                     frame->picture().size());
+            cover.loadFromData((const uchar *)frame->picture().data(), frame->picture().size());
             return cover;
         }
     }
@@ -109,7 +107,7 @@ void MPEGMetaDataModel::setCover(const QPixmap &pix)
     pix.save(&buffer, "JPEG");
     frame->setMimeType("image/jpeg");
     frame->setDescription("TTK");
-    frame->setPicture(TagLib::ByteVector(data.constData(), data.size()));
+    frame->setPicture(TagLib::ByteVector(data.constData(), data.length()));
     tag->addFrame(frame);
 #if ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION <= 11))
     m_file->save(TagLib::MPEG::File::ID3v2, true, 3);

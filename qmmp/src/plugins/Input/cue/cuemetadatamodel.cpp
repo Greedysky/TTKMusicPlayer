@@ -65,7 +65,7 @@ QString CUEMetaDataModel::cue() const
         if(analyser)
         {
             enca_set_threshold(analyser, 1.38);
-            EncaEncoding encoding = enca_analyse(analyser, (uchar *)data.constData(), data.size());
+            EncaEncoding encoding = enca_analyse(analyser, (uchar *)data.constData(), data.length());
             if(encoding.charset != ENCA_CS_UNKNOWN)
             {
                 m_codec = QTextCodec::codecForName(enca_charset_name(encoding.charset,ENCA_NAME_STYLE_ENCA));

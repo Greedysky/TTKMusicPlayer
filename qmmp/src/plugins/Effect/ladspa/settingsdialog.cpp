@@ -33,7 +33,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     QList<LADSPAPlugin*> plugin_list = LADSPAHost::instance()->plugins();
 
-    for(int i = 0; i < plugin_list.size(); ++i)
+    for(int i = 0; i < plugin_list.count(); ++i)
     {
         m_model->insertRow(i);
         m_model->setData(m_model->index(i, 0), (uint) plugin_list[i]->unique_id);

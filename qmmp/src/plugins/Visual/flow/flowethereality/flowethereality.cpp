@@ -30,7 +30,7 @@ FlowEthereality::~FlowEthereality()
 void FlowEthereality::resizeEvent(QResizeEvent *)
 {
     const int perWidth = width() / 50;
-    for(int i = 0; i < m_etherealitys.size(); i++)
+    for(int i = 0; i < m_etherealitys.count(); i++)
     {
         Ethereality *ethereality = m_etherealitys[i];
         ethereality->resize(perWidth, height());

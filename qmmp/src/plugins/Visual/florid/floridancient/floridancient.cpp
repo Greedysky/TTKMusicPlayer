@@ -118,7 +118,7 @@ FloridAncient::~FloridAncient()
 void FloridAncient::start()
 {
     Florid::start();
-    for(int i=0; i<m_labels.size(); ++i)
+    for(int i=0; i<m_labels.count(); ++i)
     {
         m_labels[i]->start();
     }
@@ -148,7 +148,7 @@ void FloridAncient::resizeEvent(QResizeEvent *e)
 
 void FloridAncient::process(float *left, float *)
 {
-    for(int i=0; i<m_labels.size(); ++i)
+    for(int i=0; i<m_labels.count(); ++i)
     {
         m_labels[i]->setColor(m_averageColor);
     }

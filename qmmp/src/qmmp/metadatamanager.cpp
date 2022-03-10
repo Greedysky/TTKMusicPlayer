@@ -173,7 +173,7 @@ bool MetaDataManager::supports(const QString &fileName) const
 QPixmap MetaDataManager::getCover(const QString &url) const
 {
     QMutexLocker locker(&m_mutex);
-    for(int i = 0; i < m_cover_cache.size(); ++i)
+    for(int i = 0; i < m_cover_cache.count(); ++i)
     {
         if(m_cover_cache[i]->url == url)
             return m_cover_cache[i]->coverPixmap;
@@ -181,16 +181,16 @@ QPixmap MetaDataManager::getCover(const QString &url) const
 
     m_cover_cache << createCoverCacheItem(url);
 
-    while(m_cover_cache.size() > COVER_CACHE_SIZE)
+    while(m_cover_cache.count() > COVER_CACHE_SIZE)
         delete m_cover_cache.takeFirst();
 
-    return m_cover_cache.last()->coverPixmap;
+    return m_cover_cache.back()->coverPixmap;
 }
 
 QString MetaDataManager::getCoverPath(const QString &url) const
 {
     QMutexLocker locker(&m_mutex);
-    for(int i = 0; i < m_cover_cache.size(); ++i)
+    for(int i = 0; i < m_cover_cache.count(); ++i)
     {
         if(m_cover_cache[i]->url == url)
             return m_cover_cache[i]->coverPath;
@@ -198,10 +198,10 @@ QString MetaDataManager::getCoverPath(const QString &url) const
 
     m_cover_cache << createCoverCacheItem(url);
 
-    while(m_cover_cache.size() > COVER_CACHE_SIZE)
+    while(m_cover_cache.count() > COVER_CACHE_SIZE)
         delete m_cover_cache.takeFirst();
 
-    return m_cover_cache.last()->coverPath;
+    return m_cover_cache.back()->coverPath;
 }
 
 QString MetaDataManager::findCoverFile(const QString &fileName) const
@@ -214,7 +214,7 @@ QString MetaDataManager::findCoverFile(const QString &fileName) const
         return QString();
     }
 
-    QFileInfoList l = findCoverFiles(QFileInfo(fileName).absoluteDir(), m_settings->coverSearchDepth());
+    const QFileInfoList &l = findCoverFiles(QFileInfo(fileName).absoluteDir(), m_settings->coverSearchDepth());
     return l.isEmpty() ? QString() : l.at(0).filePath();
 }
 
@@ -225,13 +225,13 @@ QFileInfoList MetaDataManager::findCoverFiles(QDir dir, int depth) const
     QFileInfoList file_list = dir.entryInfoList(m_settings->coverNameFilters());
 
     const auto fileListCopy = file_list; //avoid container modification
-    for(const QFileInfo &i : qAsConst(fileListCopy))
+    for(const QFileInfo &fin : qAsConst(fileListCopy))
     {
-        if(QDir::match(m_settings->coverNameFilters(false), i.fileName()))
-            file_list.removeAll(i);
+        if(QDir::match(m_settings->coverNameFilters(false), fin.fileName()))
+            file_list.removeAll(fin);
 
-        if(QImageReader::imageFormat(i.filePath()).isEmpty()) //remove unsupported image formats
-            file_list.removeAll(i.fileName());
+        if(QImageReader::imageFormat(fin.filePath()).isEmpty()) //remove unsupported image formats
+            file_list.removeAll(fin.fileName());
     }
     if(!depth || !file_list.isEmpty())
         return file_list;
@@ -239,9 +239,9 @@ QFileInfoList MetaDataManager::findCoverFiles(QDir dir, int depth) const
     dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
     dir.setSorting(QDir::Name);
     const QFileInfoList dir_info_list = dir.entryInfoList();
-    for(const QFileInfo &i : qAsConst(dir_info_list))
+    for(const QFileInfo &fin : qAsConst(dir_info_list))
     {
-        file_list << findCoverFiles(QDir(i.absoluteFilePath()), depth);
+        file_list << findCoverFiles(QDir(fin.absoluteFilePath()), depth);
     }
     return file_list;
 }

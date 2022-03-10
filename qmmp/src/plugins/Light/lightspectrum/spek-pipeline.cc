@@ -220,7 +220,7 @@ std::string spek_pipeline_desc(const struct spek_pipeline *pipeline)
         default:
             assert(false);
         }
-        if(window_function_name.size()) {
+        if(window_function_name.length()) {
             items.push_back("F:" + window_function_name);
         }
     }

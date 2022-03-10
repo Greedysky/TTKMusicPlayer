@@ -176,7 +176,7 @@ void LightEnvelopeScanner::run()
                         rms[ch] = 0;
                     }
 
-                    if(m_data.size() / 3 / channels % (NUMBER_OF_VALUES / 64) == 0)
+                    if(m_data.count() / 3 / channels % (NUMBER_OF_VALUES / 64) == 0)
                         emit dataChanged();
                     m_mutex.unlock();
                     counter = 0;
@@ -355,7 +355,7 @@ void LightEnvelope::drawWaveform()
     painter.setPen(Qt::white);
     painter.setBrush(Qt::white);
 
-    for(int i = 0; i < m_data.size() - m_channels * 3; i+=3)
+    for(int i = 0; i < m_data.count() - m_channels * 3; i+=3)
     {
         const int ch = (i / 3) % m_channels;
         const float x1 = step * (i / m_channels / 3);
@@ -402,7 +402,7 @@ void LightEnvelope::drawWaveform()
     painter.setPen(QColor("#DDDDDD"));
     painter.setBrush(QColor("#DDDDDD"));
 
-    for(int i = 0; i < m_data.size() - m_channels * 3; i+=3)
+    for(int i = 0; i < m_data.count() - m_channels * 3; i+=3)
     {
         const int ch = (i / 3) % m_channels;
         const float x1 = step * (i / m_channels / 3);

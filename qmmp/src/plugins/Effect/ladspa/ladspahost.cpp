@@ -125,9 +125,9 @@ void LADSPAHost::findModules(const QString &path)
     dir.setSorting(QDir::Name);
     const QFileInfoList files = dir.entryInfoList((QStringList() << "*.so"));
 
-    for(const QFileInfo &file : qAsConst(files))
+    for(const QFileInfo &fin : qAsConst(files))
     {
-        void *library = dlopen(qPrintable(file.absoluteFilePath()), RTLD_LAZY);
+        void *library = dlopen(qPrintable(fin.absoluteFilePath()), RTLD_LAZY);
         if(!library)
             continue;
 

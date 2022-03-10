@@ -38,7 +38,7 @@ CueFile::CueFile(const QString &path)
         if(analyser)
         {
             enca_set_threshold(analyser, 1.38);
-            EncaEncoding encoding = enca_analyse(analyser, (uchar *)data.constData(), data.size());
+            EncaEncoding encoding = enca_analyse(analyser, (uchar *)data.constData(), data.length());
             if(encoding.charset != ENCA_CS_UNKNOWN)
             {
                 codec = QTextCodec::codecForName(enca_charset_name(encoding.charset, ENCA_NAME_STYLE_ENCA));
@@ -64,8 +64,8 @@ CueFile::CueFile(const QString &path)
         QList<TrackInfo*> pl = MetaDataManager::instance()->createPlayList(dataFilePath, TrackInfo::Properties);
         if(!pl.isEmpty())
         {
-            setProperties(dataFileName, pl.first()->properties());
-            setDuration(dataFileName, pl.first()->duration());
+            setProperties(dataFileName, pl.front()->properties());
+            setDuration(dataFileName, pl.front()->duration());
             qDeleteAll(pl);
             pl.clear();
         }
@@ -127,7 +127,7 @@ QStringList CueFile::splitLine(const QString &line)
         {
             int end = buf.indexOf(' ', 0);
             if(end < 0)
-                end = buf.size();
+                end = buf.length();
             list << buf.mid(0, end);
             buf.remove(0, end);
         }
@@ -159,7 +159,7 @@ QString CueFile::getDirtyPath(const QString &cue_path, const QString &path)
     if(candidates.isEmpty())
         return path;
     else if(candidates.count() == 1)
-        return candidates.first();
+        return candidates.front();
 
     int dot = cue_path.lastIndexOf('.');
     if(dot != -1)
