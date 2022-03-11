@@ -42,6 +42,12 @@ public:
      */
     int exec(ProcessEventsFlags flags = AllEvents);
 
+public Q_SLOTS:
+    /*!
+     * Event loop quit.
+     */
+    void quit();
+
 protected:
     QTimer m_timer;
 

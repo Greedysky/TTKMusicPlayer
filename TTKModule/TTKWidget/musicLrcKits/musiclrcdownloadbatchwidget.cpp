@@ -165,6 +165,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         {
             const MusicObject::MusicSongInformation info(d->musicSongInfoList().front());
             MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, MusicObject::DownloadLrc, this);
+            connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startToDownload();
             loop.exec();
 #if TTK_QT_VERSION_CHECK(5,13,0)

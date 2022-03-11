@@ -63,7 +63,6 @@ qint64 MusicAbstractQueryRequest::urlFileSize(const QString &url)
     }
 
     reply->deleteLater();
-
     return size;
 }
 

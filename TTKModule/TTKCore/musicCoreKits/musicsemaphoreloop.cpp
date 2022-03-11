@@ -9,8 +9,13 @@ MusicSemaphoreLoop::MusicSemaphoreLoop(QObject *parent)
 
 MusicSemaphoreLoop::~MusicSemaphoreLoop()
 {
-    m_timer.stop();
     quit();
+}
+
+void MusicSemaphoreLoop::quit()
+{
+    m_timer.stop();
+    return QEventLoop::quit();
 }
 
 int MusicSemaphoreLoop::exec(ProcessEventsFlags flags)

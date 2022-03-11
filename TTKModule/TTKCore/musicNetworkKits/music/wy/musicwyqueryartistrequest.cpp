@@ -45,7 +45,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                 bool artistFound = false;
                 //
                 const QVariantMap &artistObject = value["artist"].toMap();
-                const QString &smallPicUrl = artistObject["picUrl"].toString();
+                const QString &coverUrl = artistObject["picUrl"].toString();
                 const QString &singerName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
 
                 const QVariantList &datas = value["hotSongs"].toList();
@@ -62,7 +62,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
                     musicInfo.m_singerName = singerName;
-                    musicInfo.m_coverUrl = smallPicUrl;
+                    musicInfo.m_coverUrl = coverUrl;
                     musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["dt"].toInt());
                     musicInfo.m_songId = QString::number(value["id"].toInt());
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(musicInfo.m_songId);

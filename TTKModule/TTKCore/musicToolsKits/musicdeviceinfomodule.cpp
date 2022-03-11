@@ -222,7 +222,6 @@ void MusicDeviceInfoModule::handleReadyRead()
                 item.m_availableBytes = use.toDouble();
                 item.m_totalBytes = all.toDouble();
                 item.m_availableBytes = item.m_availableBytes >= item.m_totalBytes ? item.m_totalBytes : item.m_totalBytes - item.m_availableBytes;
-
                 m_items << item;
             }
         }
