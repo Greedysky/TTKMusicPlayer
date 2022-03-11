@@ -168,23 +168,3 @@ bool MusicObject::playlistRowValid(int index)
 {
     return index != MUSIC_LOVEST_LIST && index != MUSIC_NETWORK_LIST && index != MUSIC_RECENT_LIST;
 }
-
-MusicObject::MusicArtistProperty MusicObject::MusicSongInformation::artist() const
-{
-    return m_artistProps.isEmpty() ? MusicArtistProperty() : m_artistProps.front();
-}
-
-QString MusicObject::MusicSongInformation::artistName() const
-{
-    QString name;
-    if(!m_artistProps.isEmpty())
-    {
-        name = m_artistProps.front().m_artistName;
-    }
-    
-    for(int i=1; i<m_artistProps.count(); ++i)
-    {
-        name += "/" + m_artistProps[i].m_artistName;
-    }
-    return name;
-}

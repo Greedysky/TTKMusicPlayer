@@ -267,16 +267,6 @@ namespace MusicObject
         QString m_discNumber;
         QString m_trackNumber;
         MusicSongPropertyList m_songProps;
-        MusicArtistPropertyList m_artistProps;
-
-        /*!
-         * Get first artist property.
-         */
-        MusicArtistProperty artist() const;
-        /*!
-         * Get artist name.
-         */
-        QString artistName() const;
     };
     TTK_DECLARE_LIST(MusicSongInformation);
 
