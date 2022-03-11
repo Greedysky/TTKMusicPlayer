@@ -28,6 +28,7 @@ void MusicNetworkThread::start()
 {
     TTK_LOGGER_INFO("Load NetworkThread");
     m_timer.start(NETWORK_DETECT_INTERVAL);
+    networkStateChanged();
 }
 
 void MusicNetworkThread::setBlockNetWork(int block)
