@@ -5,13 +5,13 @@
 #include "miniprocess.h"
 
 #ifdef Q_OS_WIN
-#include <qt_windows.h>
-#include "dbghelp.h"
+#  include <qt_windows.h>
+#  include "dbghelp.h"
 #elif defined Q_OS_UNIX
-#include <signal.h>
-#include <execinfo.h>
-#include <unistd.h>
-#include <fcntl.h>
+#  include <signal.h>
+#  include <execinfo.h>
+#  include <unistd.h>
+#  include <fcntl.h>
 #endif
 
 static void cleanAppicationCache()
@@ -77,7 +77,7 @@ LONG TTKDumperPrivate::errorHandler(EXCEPTION_POINTERS *info)
     // firstly see if dbghelp.dll is around and has the function we need
     // look next to the EXE first, as the one in System32 might be old
     // (e.g. Windows 2000)
-    HMODULE hDll = nullptr;
+    HMODULE instance = nullptr;
     WCHAR dbgHelpPath[_MAX_PATH];
 
     if(GetModuleFileNameW(nullptr, dbgHelpPath, _MAX_PATH))
@@ -86,19 +86,24 @@ LONG TTKDumperPrivate::errorHandler(EXCEPTION_POINTERS *info)
         if(slash)
         {
             wcscpy(slash + 1, L"DBGHELP.DLL");
-            hDll = ::LoadLibraryW(dbgHelpPath);
+            instance = LoadLibraryW(dbgHelpPath);
         }
     }
 
-    if(hDll == nullptr)
+    if(instance == nullptr)
     {
         // load any version we can
-        hDll = ::LoadLibraryW(L"DBGHELP.DLL");
+        instance = LoadLibraryW(L"DBGHELP.DLL");
     }
 
-    if(hDll)
+    if(instance)
     {
-        MINIDUMPWRITEDUMP dump = (MINIDUMPWRITEDUMP)::GetProcAddress(hDll, "MiniDumpWriteDump");
+        FARPROC farproc = GetProcAddress(instance, "MiniDumpWriteDump");
+#if TTK_QT_VERSION_CHECK(5,15,0)
+        MINIDUMPWRITEDUMP dump = (MINIDUMPWRITEDUMP)(void*)farproc;
+#else
+        MINIDUMPWRITEDUMP dump = (MINIDUMPWRITEDUMP)farproc;
+#endif
         if(dump)
         {
             WCHAR dumpPath[_MAX_PATH];

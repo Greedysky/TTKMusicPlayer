@@ -138,7 +138,12 @@ MusicPlatformManager::SystemType MusicPlatformManager::systemName() const
     typedef void(__stdcall*NTPROC)(DWORD*, DWORD*, DWORD*);
     HINSTANCE instance = LoadLibraryW(L"ntdll.dll");
     DWORD major, minor, buildNumber;
-    NTPROC proc = (NTPROC)GetProcAddress(instance, "RtlGetNtVersionNumbers");
+    FARPROC farproc = GetProcAddress(instance, "MiniDumpWriteDump");
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    NTPROC proc = (NTPROC)(void*)farproc;
+#else
+    NTPROC proc = (NTPROC)farproc;
+#endif
     proc(&major, &minor, &buildNumber);
 
     if(major == 6 && minor == 3)	//win 8.1
