@@ -48,7 +48,7 @@ void QSyncDownloadData::downloadDataOperator(const QString &time, const QString 
     QNetworkRequest request;
     request.setUrl("http://" + host + url);
 
-    TTKStringMapterator it(headers);
+    TTKStringMapIter it(headers);
     while(it.hasNext())
     {
         it.next();

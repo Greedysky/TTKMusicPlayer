@@ -55,7 +55,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
         m_lrcContainer.insert(0, QString());
     }
 
-    TTKIntStringMapIterator it(m_lrcContainer);
+    TTKIntStringMapIter it(m_lrcContainer);
     while(it.hasNext())
     {
         it.next();
@@ -90,7 +90,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
         m_lrcContainer.insert(0, QString());
     }
 
-    TTKIntStringMapIterator it(m_lrcContainer);
+    TTKIntStringMapIter it(m_lrcContainer);
     while(it.hasNext())
     {
         it.next();
@@ -155,7 +155,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
        m_lrcContainer.insert(0, QString());
     }
 
-    TTKIntStringMapIterator it(m_lrcContainer);
+    TTKIntStringMapIter it(m_lrcContainer);
     while(it.hasNext())
     {
         it.next();
@@ -375,7 +375,7 @@ qint64 MusicLrcAnalysis::setSongSpeedChanged(qint64 time)
 
 void MusicLrcAnalysis::revertLrcTime(qint64 pos)
 {
-    TTKIntStringMapIterator it(m_lrcContainer);
+    TTKIntStringMapIter it(m_lrcContainer);
     TTKIntStringMap copy;
     while(it.hasNext())
     {
@@ -387,7 +387,7 @@ void MusicLrcAnalysis::revertLrcTime(qint64 pos)
 
 void MusicLrcAnalysis::saveLrcData()
 {
-    TTKIntStringMapIterator it(m_lrcContainer);
+    TTKIntStringMapIter it(m_lrcContainer);
     QString data;
     data.append(QString("[by: %1]\n[offset:0]\n").arg(APP_NAME));
     while(it.hasNext())
@@ -494,7 +494,7 @@ qint64 MusicLrcAnalysis::findTime(int index) const
 {
     if(index + m_lineMax < m_currentShowLrcContainer.count())
     {
-        TTKIntStringMapIterator it(m_lrcContainer);
+        TTKIntStringMapIter it(m_lrcContainer);
         for(int i=0; i<index + 1; ++i)
         {
             if(it.hasNext())

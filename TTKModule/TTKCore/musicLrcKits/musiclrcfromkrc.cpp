@@ -1,19 +1,17 @@
 #include "musiclrcfromkrc.h"
 
-#ifdef Q_CC_GNU
-#  pragma GCC diagnostic ignored "-Wwrite-strings"
-#  pragma GCC diagnostic ignored "-Wsign-compare"
-#endif
-
 #include <QFile>
 #include <sys/stat.h>
 
 #include "zlib/zconf.h"
 #include "zlib/zlib.h"
 
-const wchar_t key[] = { L'@', L'G', L'a', L'w', L'^', L'2',
-                        L't', L'G', L'Q', L'6', L'1', L'-',
-                        L'Î', L'Ò', L'n', L'i'};
+static const wchar_t key[] = {
+    L'@', L'G', L'a', L'w', L'^', L'2',
+    L't', L'G', L'Q', L'6', L'1', L'-',
+    L'Î', L'Ò', L'n', L'i'
+};
+
 
 MusicLrcFromKrc::MusicLrcFromKrc()
 {
@@ -45,7 +43,7 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
     }
 
     uchar *src = new uchar[st.st_size];
-    if(fread(src, sizeof(uchar), st.st_size, fp) != st.st_size)
+    if(fread(src, sizeof(uchar), st.st_size, fp) != (size_t)st.st_size)
     {
         TTK_LOGGER_ERROR("Fread file error");
         delete[] src;

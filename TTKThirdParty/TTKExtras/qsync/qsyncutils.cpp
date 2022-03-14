@@ -37,7 +37,7 @@ static const QString self_define_header_prefix = "x-oss-";
 static TTKStringMap formatHeader(const TTKStringMap &headers)
 {
     TTKStringMap value;
-    TTKStringMapterator it(headers);
+    TTKStringMapIter it(headers);
     it.toFront();
 
     while(it.hasNext())
@@ -67,7 +67,7 @@ QString QSyncUtils::authorizationCode(const QString &key, const QString &method,
 
     if(origin_headers.count() > 0)
     {
-        TTKStringMapterator it(origin_headers);
+        TTKStringMapIter it(origin_headers);
         while(it.hasNext())
         {
             it.next();

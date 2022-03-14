@@ -1,9 +1,5 @@
 #include "musicfplconfigmanager.h"
 
-#ifdef Q_CC_GNU
-#  pragma GCC diagnostic ignored "-Wunused-result"
-#endif
-
 struct FPLTrackChunk
 {
     uint unk1;		// not sure??

@@ -24,10 +24,6 @@
 #include "qdevicewatcher.h"
 #include "qsync/qsyncconf.h"
 
-#ifdef Q_CC_GNU
-#  pragma GCC diagnostic ignored "-Wunused-variable"
-#endif
-
 #define MARGIN_SIDE     5
 #define MARGIN_SIDE_BY  1
 #define SYNC_HOST_URL   "VDVnYUdYMW9xNnVWSnd6L0J6NHI2MFZ5d0R3R2NiRVF4VW5WckpNcUhnUT0="

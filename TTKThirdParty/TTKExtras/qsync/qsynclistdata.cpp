@@ -28,7 +28,7 @@ void QSyncListData::listDataOperator(const QString &bucket)
     QNetworkRequest request;
     request.setUrl("http://" + host + url);
 
-    TTKStringMapterator it(headers);
+    TTKStringMapIter it(headers);
     while(it.hasNext())
     {
         it.next();

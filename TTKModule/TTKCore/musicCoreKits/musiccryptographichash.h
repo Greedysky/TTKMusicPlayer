@@ -19,12 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QString>
 #include "musicglobaldefine.h"
-
-#ifdef Q_CC_GNU
-#  pragma GCC diagnostic ignored "-Wparentheses"
-#endif
 
 #if defined(_MSC_VER)
 typedef unsigned __int32 xxtea_uint;

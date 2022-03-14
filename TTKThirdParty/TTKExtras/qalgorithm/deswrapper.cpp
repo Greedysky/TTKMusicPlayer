@@ -1,14 +1,9 @@
 #include "deswrapper.h"
 #include "base64.h"
 
-#ifdef Q_CC_GNU
-    #pragma GCC diagnostic ignored "-Wnarrowing"
-    #pragma GCC diagnostic ignored "-Wchar-subscripts"
-#endif
-
 namespace QAlgorithm
 {
-qint64 ARRAYMASK[] = {
+static const quint64 ARRAYMASK[] = {
     0x0000000000000001l, 0x0000000000000002l, 0x0000000000000004l, 0x0000000000000008l,
     0x0000000000000010l, 0x0000000000000020l, 0x0000000000000040l, 0x0000000000000080l,
     0x0000000000000100l, 0x0000000000000200l, 0x0000000000000400l, 0x0000000000000800l,
@@ -27,7 +22,7 @@ qint64 ARRAYMASK[] = {
     0x1000000000000000l, 0x2000000000000000l, 0x4000000000000000l, 0x8000000000000000l
 };
 
-int ARRAYIP[] = {
+static const int ARRAYIP[] = {
     57, 49, 41, 33, 25, 17,  9, 1,
     59, 51, 43, 35, 27, 19, 11, 3,
     61, 53, 45, 37, 29, 21, 13, 5,
@@ -38,7 +33,7 @@ int ARRAYIP[] = {
     62, 54, 46, 38, 30, 22, 14, 6
 };
 
-int ARRAYE[] = {
+static const int ARRAYE[] = {
     31, 0,   1,  2,  3,  4, -1, -1,
     3,  4,   5,  6,  7,  8, -1, -1,
     7,  8,   9, 10, 11, 12, -1, -1,
@@ -49,7 +44,7 @@ int ARRAYE[] = {
     27, 28, 29, 30, 31, 30, -1, -1
 };
 
-char MATRIXNSBOX[8][64] = {
+static const char MATRIXNSBOX[8][64] = {
     { 14,  4,  3, 15,  2, 13, 5,  3,
       13, 14,  6,  9, 11,  2, 0,  5,
        4,  1, 10, 12, 15,  6, 9, 10,
@@ -124,14 +119,14 @@ char MATRIXNSBOX[8][64] = {
     }
 };
 
-int ARRAYP[] = {
+static const int ARRAYP[] = {
     15,  6, 19, 20, 28, 11, 27, 16,
      0, 14, 22, 25,  4, 17, 30,  9,
      1,  7, 23, 13, 31, 26,  2,  8,
     18, 12, 29,  5, 21, 10,  3, 24
 };
 
-int ARRAYIP_1[] = {
+static const int ARRAYIP_1[] = {
     39, 7, 47, 15, 55, 23, 63, 31,
     38, 6, 46, 14, 54, 22, 62, 30,
     37, 5, 45, 13, 53, 21, 61, 29,
@@ -142,7 +137,7 @@ int ARRAYIP_1[] = {
     32, 0, 40,  8, 48, 16, 56, 24
 };
 
-int ARRAYPC_1[] = {
+static const int ARRAYPC_1[] = {
     56, 48, 40, 32, 24, 16,  8,  0,
     57, 49, 41, 33, 25, 17,  9,  1,
     58, 50, 42, 34, 26, 18, 10,  2,
@@ -152,7 +147,7 @@ int ARRAYPC_1[] = {
     28, 20, 12,  4, 27, 19, 11,  3
 };
 
-int ARRAYPC_2[] = {
+static const int ARRAYPC_2[] = {
     13, 16, 10, 23,  0,  4, -1, -1,
      2, 27, 14,  5, 20,  9, -1, -1,
     22, 18, 11,  3, 25,  7, -1, -1,
@@ -163,12 +158,12 @@ int ARRAYPC_2[] = {
     45, 41, 49, 35, 28, 31, -1, -1
 };
 
-int ARRAYLS[] = {
+static const int ARRAYLS[] = {
     1, 1, 2, 2, 2, 2, 2, 2,
     1, 2, 2, 2, 2, 2, 2, 1
 };
 
-qint64 ARRAYLSMASK[] = {
+static const quint64 ARRAYLSMASK[] = {
     0x0000000000000000l, 0x0000000000100001l, 0x0000000000300003l
 };
 
@@ -178,18 +173,18 @@ qint64 ARRAYLSMASK[] = {
 class DesPrivate : public TTKPrivate<Des>
 {
 public:
-    qint64 bitTransform(int *array, int len, qint64 source);
-    void desSubKeys(qint64 key, qint64* K, Des::Mode mode);
-    qint64 des64(qint64 *subkeys, qint64 data);
+    quint64 bitTransform(const int *array, int len, quint64 source);
+    void desSubKeys(quint64 key, quint64* K, Des::Mode mode);
+    quint64 des64(quint64 *subkeys, quint64 data);
     char* encrypt(char *src, int length, char *key);
 
     Des::Mode m_mode;
 };
 
-qint64 DesPrivate::bitTransform(int *array, int len, qint64 source)
+quint64 DesPrivate::bitTransform(const int *array, int len, quint64 source)
 {
-    qint64 dest = 0;
-    const qint64 bts = source;
+    quint64 dest = 0;
+    const quint64 bts = source;
 
     for(int bti = 0; bti < len; bti++)
     {
@@ -201,19 +196,19 @@ qint64 DesPrivate::bitTransform(int *array, int len, qint64 source)
     return dest;
 }
 
-void DesPrivate::desSubKeys(qint64 key, qint64* K, Des::Mode mode)
+void DesPrivate::desSubKeys(quint64 key, quint64* K, Des::Mode mode)
 {
-    qint64 temp = bitTransform(ARRAYPC_1, 56, key);
+    quint64 temp = bitTransform(ARRAYPC_1, 56, key);
     for(int j = 0; j < 16; j++)
     {
-        const qint64 source = temp;
+        const quint64 source = temp;
         temp = ((source & ARRAYLSMASK[ARRAYLS[j]]) << (28 - ARRAYLS[j])) | ((source & ~ARRAYLSMASK[ARRAYLS[j]]) >> ARRAYLS[j]);
         K[j] = bitTransform(ARRAYPC_2, 64, temp);
     }
 
     if(mode == Des::Decrypt)
     {
-        qint64 t;
+        quint64 t;
         for(int j = 0; j < 8; j++)
         {
             t = K[j];
@@ -223,16 +218,16 @@ void DesPrivate::desSubKeys(qint64 key, qint64* K, Des::Mode mode)
     }
 }
 
-qint64 DesPrivate::des64(qint64 *subkeys, qint64 data)
+quint64 DesPrivate::des64(quint64 *subkeys, quint64 data)
 {
-    qint64 out = bitTransform(ARRAYIP, 64, data);
-    qint64 l = 0, r = 0;
+    quint64 out = bitTransform(ARRAYIP, 64, data);
+    quint64 l = 0, r = 0;
     int sOut = 0;
 
-    char* pR = new char[8];
+    uchar* pR = new uchar[8];
     int* pSource = new int[2];
-    pSource[0] = (int) (out & qint64(0x00000000ffffffffl));
-    pSource[1] = (int) ((out & qint64(0xffffffff00000000l)) >> 32);
+    pSource[0] = (int) (out & quint64(0x00000000ffffffffl));
+    pSource[1] = (int) ((out & quint64(0xffffffff00000000l)) >> 32);
 
     for(int i = 0; i < 16; i++)
     {
@@ -242,7 +237,7 @@ qint64 DesPrivate::des64(qint64 *subkeys, qint64 data)
 
         for(int k = 0; k < 8; ++k)
         {
-            pR[k] = (char) (0xff & (r >> (k * 8)));
+            pR[k] = (uchar) (0xff & (r >> (k * 8)));
         }
 
         sOut = 0;
@@ -263,7 +258,7 @@ qint64 DesPrivate::des64(qint64 *subkeys, qint64 data)
     pSource[0] = pSource[1];
     pSource[1] = t;
 
-    out = ((qint64) pSource[1] << 32 & qint64(0xffffffff00000000l)) | (qint64) (qint64(0x00000000ffffffffl) & pSource[0]);
+    out = ((quint64) pSource[1] << 32 & quint64(0xffffffff00000000l)) | (quint64) (quint64(0x00000000ffffffffl) & pSource[0]);
     out = bitTransform(ARRAYIP_1, 64, out);
 
     delete[] pR;
@@ -274,33 +269,33 @@ qint64 DesPrivate::des64(qint64 *subkeys, qint64 data)
 
 char* DesPrivate::encrypt(char *src, int length, char *key)
 {
-    qint64 keyl = 0;
+    quint64 keyl = 0;
     for(int i = 0; i < 8; i++)
     {
-        const qint64 temp = (qint64) key[i] << (i * 8);
+        const quint64 temp = (quint64) key[i] << (i * 8);
         keyl |= temp;
     }
 
     const int num = length / 8;
 
-    qint64* subKey = new qint64[16];
+    quint64* subKey = new quint64[16];
     for(int i = 0; i < 16; i++)
     {
         subKey[i] = 0;
     }
     desSubKeys(keyl, subKey, m_mode);
 
-    qint64* pSrc = (qint64*) malloc(num * sizeof(qint64));
+    quint64* pSrc = (quint64*) malloc(num * sizeof(quint64));
     for(int i = 0; i < num; i++)
     {
         pSrc[i] = 0;
         for(int j = 0; j < 8; j++)
         {
-            pSrc[i] |= (qint64) src[i * 8 + j] << (j * 8);
+            pSrc[i] |= (quint64) src[i * 8 + j] << (j * 8);
         }
     }
 
-    qint64* pEncyrpt = (qint64*) malloc((((num + 1) * 8 + 1) / 8) * sizeof(qint64));
+    quint64* pEncyrpt = (quint64*) malloc((((num + 1) * 8 + 1) / 8) * sizeof(quint64));
     for(int i = 0; i < num; i++)
     {
         pEncyrpt[i] = des64(subKey, pSrc[i]);
@@ -312,10 +307,10 @@ char* DesPrivate::encrypt(char *src, int length, char *key)
 
     memcpy(szTail, src + num * 8, length - num * 8);
 
-    qint64 tail64 = 0;
+    quint64 tail64 = 0;
     for(int i = 0; i < tailNum; i++)
     {
-        tail64 = tail64 | (qint64(szTail[i])) << (i * 8);
+        tail64 = tail64 | (quint64(szTail[i])) << (i * 8);
     }
 
     pEncyrpt[num] = des64(subKey, tail64);

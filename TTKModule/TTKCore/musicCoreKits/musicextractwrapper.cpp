@@ -8,9 +8,6 @@
 #include <QFile>
 
 #define WIN_NAME_MAX_LENGTH     256
-#ifdef Q_CC_GNU
-#  pragma GCC diagnostic ignored "-Wsign-compare"
-#endif
 
 bool MusicExtractWrapper::outputThunderSkin(QPixmap &image, const QString &input)
 {
@@ -28,7 +25,7 @@ bool MusicExtractWrapper::outputThunderSkin(QPixmap &image, const QString &input
         return false;
     }
 
-    for(int i=0; i<gInfo.number_entry; ++i)
+    for(ZPOS64_T i=0; i<gInfo.number_entry; ++i)
     {
         char file[WIN_NAME_MAX_LENGTH] = {0};
         char ext[WIN_NAME_MAX_LENGTH] = {0};
@@ -105,7 +102,7 @@ bool MusicExtractWrapper::outputBinary(const QString &input, const QString &outp
         return false;
     }
 
-    for(int i=0; i<gInfo.number_entry; ++i)
+    for(ZPOS64_T i=0; i<gInfo.number_entry; ++i)
     {
         char file[WIN_NAME_MAX_LENGTH] = {0};
         char ext[WIN_NAME_MAX_LENGTH] = {0};
@@ -171,7 +168,7 @@ bool MusicExtractWrapper::outputSkin(MusicBackgroundImage *image, const QString 
         return false;
     }
 
-    for(int i=0; i<gInfo.number_entry; ++i)
+    for(ZPOS64_T i=0; i<gInfo.number_entry; ++i)
     {
         char file[WIN_NAME_MAX_LENGTH] = {0};
         char ext[WIN_NAME_MAX_LENGTH] = {0};
@@ -289,7 +286,7 @@ bool MusicExtractWrapper::outputData(QByteArray &data, const QString &input)
         return false;
     }
 
-    for(int i=0; i<gInfo.number_entry; ++i)
+    for(ZPOS64_T i=0; i<gInfo.number_entry; ++i)
     {
         char file[WIN_NAME_MAX_LENGTH] = {0};
         char ext[WIN_NAME_MAX_LENGTH] = {0};

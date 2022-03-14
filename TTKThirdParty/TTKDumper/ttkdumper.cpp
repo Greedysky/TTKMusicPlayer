@@ -98,12 +98,7 @@ LONG TTKDumperPrivate::errorHandler(EXCEPTION_POINTERS *info)
 
     if(instance)
     {
-        FARPROC farproc = GetProcAddress(instance, "MiniDumpWriteDump");
-#if TTK_QT_VERSION_CHECK(5,15,0)
-        MINIDUMPWRITEDUMP dump = (MINIDUMPWRITEDUMP)(void*)farproc;
-#else
-        MINIDUMPWRITEDUMP dump = (MINIDUMPWRITEDUMP)farproc;
-#endif
+        MINIDUMPWRITEDUMP dump = TTKVoid_cast(MINIDUMPWRITEDUMP)GetProcAddress(instance, "MiniDumpWriteDump");
         if(dump)
         {
             WCHAR dumpPath[_MAX_PATH];

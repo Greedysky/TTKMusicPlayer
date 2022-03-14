@@ -25,7 +25,7 @@ void QSyncDeleteData::deleteDataOperator(const QString &bucket, const QString &f
     QNetworkRequest request;
     request.setUrl("http://" + host + url);
 
-    TTKStringMapterator it(headers);
+    TTKStringMapIter it(headers);
     while(it.hasNext())
     {
         it.next();

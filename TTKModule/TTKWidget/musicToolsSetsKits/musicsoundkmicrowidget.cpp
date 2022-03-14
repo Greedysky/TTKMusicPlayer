@@ -15,10 +15,6 @@
 #include "musicaudiorecordermodule.h"
 #include "musicfileutils.h"
 
-#ifdef Q_CC_GNU
-#  pragma GCC diagnostic ignored "-Wparentheses"
-#endif
-
 MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     : MusicAbstractMoveWidget(false, parent),
     m_ui(new Ui::MusicSoundKMicroWidget)
