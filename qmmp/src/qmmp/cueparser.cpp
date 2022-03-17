@@ -34,8 +34,8 @@ void CueParser::loadData(const QByteArray &data, QTextCodec *codec)
 
     while(!textStream.atEnd())
     {
-        QString line = textStream.readLine().trimmed();
-        QStringList words = splitLine(line);
+        const QString &line = textStream.readLine().trimmed();
+        const QStringList &words = splitLine(line);
         if(words.count() < 2)
             continue;
 
@@ -301,7 +301,7 @@ QStringList CueParser::splitLine(const QString &line)
 
 qint64 CueParser::getLength(const QString &str)
 {
-    QStringList list = str.split(":");
+    const QStringList &list = str.split(":");
     if(list.count() == 2)
         return (qint64)list.at(0).toInt()*60000 + list.at(1).toInt()*1000;
     else if(list.count() == 3)

@@ -22,7 +22,7 @@ QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
 #endif
     if(settings->allKeys().contains(key))
     {
-        QStringList values = settings->value(m_path).toStringList();
+        const QStringList &values = settings->value(m_path).toStringList();
         if(values.count() != 6)
             update = true;
         else

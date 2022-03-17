@@ -26,7 +26,7 @@
 
 #define QMMP_VERSION_MAJOR 1
 #define QMMP_VERSION_MINOR 5
-#define QMMP_VERSION_PATCH 2
+#define QMMP_VERSION_PATCH 3
 
 #define QMMP_VERSION_INT (QMMP_VERSION_MAJOR<<16 | QMMP_VERSION_MINOR<<8 | QMMP_VERSION_PATCH)
 
@@ -179,6 +179,10 @@ public:
      * Returns the location of the installed Qmmp plugins.
      */
     static QString pluginPath();
+    /*!
+     * Returns the location of the installed ttk plugins.
+     */
+    static QString ttkPluginPath();
     /*!
      * Returns a list of found Qmmp plugins (full paths).
      * @param prefix Plugin type or directory name (examples: Inpunt, Transport, Output).

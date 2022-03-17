@@ -2,7 +2,7 @@
 
 #include <QProcess>
 
-#define EXECUTE_PATH    (Qmmp::pluginPath() + "/../GPlugins/archive.tkx")
+#define EXECUTE_PATH    (Qmmp::ttkPluginPath() + "/archive.tkx")
 
 QStringList ArchiveReader::archiveFilters()
 {

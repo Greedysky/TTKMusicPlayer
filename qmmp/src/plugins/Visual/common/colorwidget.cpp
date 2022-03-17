@@ -71,7 +71,7 @@ QColor ColorWidget::readSingleColorConfig(const QString &value)
         return Qt::white;
     }
 
-    QStringList var = value.split(',');
+    const QStringList &var = value.split(',');
     if(var.count() != 3)
     {
         return QColor();

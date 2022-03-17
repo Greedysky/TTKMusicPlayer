@@ -24,7 +24,7 @@ DecoderFFmpegFactory::DecoderFFmpegFactory()
 
 bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
 {
-    QStringList filters = properties().filters;
+    const QStringList &filters = properties().filters;
 
     AVProbeData pd;
     memset(&pd, 0, sizeof(pd));
@@ -39,7 +39,7 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
     if(!fmt)
         return false;
 
-    QStringList formats = QString::fromLatin1(fmt->name).split(",");
+    const QStringList &formats = QString::fromLatin1(fmt->name).split(",");
 
     if(filters.contains("*.wma") && formats.contains("asf"))
         return true;

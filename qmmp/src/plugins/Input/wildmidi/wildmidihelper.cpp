@@ -79,7 +79,7 @@ void WildMidiHelper::readSettings()
 
 QString WildMidiHelper::configFile() const
 {
-    const QString &path = Qmmp::pluginPath() + "/../GPlugins/config/wildmidi.cfg";
+    const QString &path = Qmmp::ttkPluginPath() + "/config/wildmidi.cfg";
     return QFile::exists(path) ? path : QString();
 }
 

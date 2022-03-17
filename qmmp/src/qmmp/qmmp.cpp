@@ -29,7 +29,7 @@ QString Qmmp::strVersion()
 
 QString Qmmp::pluginPath()
 {
-    QByteArray path = qgetenv("QMMP_PLUGINS");
+    const QByteArray &path = qgetenv("QMMP_PLUGINS");
     if(!path.isEmpty())
     {
         return path;
@@ -37,6 +37,11 @@ QString Qmmp::pluginPath()
 		
     QDir dir(qApp->applicationDirPath() + "/plugins");
     return dir.canonicalPath();
+}
+
+QString Qmmp::ttkPluginPath()
+{
+    return Qmmp::pluginPath() + "/../GPlugins";
 }
 
 QStringList Qmmp::findPlugins(const QString &prefix)

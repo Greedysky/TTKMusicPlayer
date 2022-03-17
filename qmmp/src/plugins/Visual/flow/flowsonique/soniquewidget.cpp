@@ -247,7 +247,7 @@ void SoniqueWidget::randomPreset()
 
 void SoniqueWidget::initialize()
 {
-    const QString &dir = Qmmp::pluginPath() + "/../GPlugins/config/sonique";
+    const QString &dir = Qmmp::ttkPluginPath() + "/config/sonique";
     const QFileInfoList folderList(fileListByPath(dir, QStringList() << "*.svp"));
     for(const QFileInfo &fin : folderList)
     {

@@ -101,7 +101,7 @@ void LADSPAHost::loadModules()
     if(!m_modules.isEmpty())
         return;
 
-    QString ladspa_path = qgetenv("LADSPA_PATH");
+    const QString &ladspa_path = qgetenv("LADSPA_PATH");
     QStringList directories;
 
     if(ladspa_path.isEmpty())
@@ -123,7 +123,7 @@ void LADSPAHost::findModules(const QString &path)
     QDir dir(path);
     dir.setFilter(QDir::Files | QDir::Hidden);
     dir.setSorting(QDir::Name);
-    const QFileInfoList files = dir.entryInfoList((QStringList() << "*.so"));
+    const QFileInfoList &files = dir.entryInfoList((QStringList() << "*.so"));
 
     for(const QFileInfo &fin : qAsConst(files))
     {
