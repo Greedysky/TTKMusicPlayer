@@ -4,9 +4,9 @@
 #include <qmmp/cueparser.h>
 #include <qmmp/decoderfactory.h>
 
-DecoderFFmpegM4b::DecoderFFmpegM4b(DecoderFactory *factory, const QString &url)
+DecoderFFmpegM4b::DecoderFFmpegM4b(DecoderFactory *factory, const QString &path)
     : Decoder(),
-    m_url(url),
+    m_path(path),
     m_factory(factory)
 {
 
@@ -33,15 +33,15 @@ DecoderFFmpegM4b::~DecoderFFmpegM4b()
 
 bool DecoderFFmpegM4b::initialize()
 {
-    QString filePath = m_url;
-    if(!m_url.startsWith("m4b://"))
+    QString filePath = m_path;
+    if(!m_path.startsWith("m4b://"))
     {
-        qWarning("DecoderFFmpegM4b: invalid url.");
+        qWarning("DecoderFFmpegM4b: invalid path.");
         return false;
     }
     filePath.remove("m4b://");
     filePath.remove(RegularWrapper("#\\d+$"));
-    m_track = m_url.section("#", -1).toInt();
+    m_track = m_path.section("#", -1).toInt();
 
     AVFormatContext *in = nullptr;
 #ifdef Q_OS_WIN

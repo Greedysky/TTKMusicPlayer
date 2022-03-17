@@ -6,17 +6,17 @@
 #include <QSettings>
 #include <qmmp/metadatamanager.h>
 
-CUEMetaDataModel::CUEMetaDataModel(bool readOnly, const QString &url)
+CUEMetaDataModel::CUEMetaDataModel(bool readOnly, const QString &path)
     : MetaDataModel(readOnly, IsCueEditable)
 {
-    CueFile file(url);
+    CueFile file(path);
     if(file.isEmpty())
     {
         qWarning("CUEMetaDataModel: invalid cue file");
         return;
     }
 
-    const int track = url.section("#", -1).toInt();
+    const int track = path.section("#", -1).toInt();
     m_dataFilePath = file.dataFilePath(track);
     m_cueFilePath = file.cueFilePath();
 }

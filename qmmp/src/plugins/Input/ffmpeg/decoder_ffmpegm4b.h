@@ -32,7 +32,7 @@ class QIDevice;
 class DecoderFFmpegM4b : public Decoder
 {
 public:
-    explicit DecoderFFmpegM4b(DecoderFactory *factory, const QString &url);
+    explicit DecoderFFmpegM4b(DecoderFactory *factory, const QString &path);
     virtual ~DecoderFFmpegM4b();
 
     // Standard Decoder API
@@ -52,7 +52,7 @@ private:
     qint64 m_offset = 0;
     qint64 m_trackSize = 0;
     qint64 m_written = 0;
-    QString m_url;
+    QString m_path;
     qint64 m_bufSize = 0;
     qint64 m_frameSize = 0; //sample size
     QIODevice *m_input = nullptr;

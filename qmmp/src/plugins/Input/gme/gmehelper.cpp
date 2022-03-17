@@ -17,22 +17,22 @@ GMEHelper::~GMEHelper()
     m_emu = nullptr;
 }
 
-Music_Emu *GMEHelper::load(const QString &url, int sample_rate)
+Music_Emu *GMEHelper::load(const QString &path, int sample_rate)
 {
     if(m_emu)
         gme_delete(m_emu);
     m_emu = nullptr;
 
-    QString path = url;
-    if(url.contains("://"))
+    QString filePath = path;
+    if(path.contains("://"))
     {
-        path.remove("gme://");
-        path.remove(RegularWrapper("#\\d+$"));
+        filePath.remove("gme://");
+        filePath.remove(RegularWrapper("#\\d+$"));
     }
 
     const char *err = nullptr;
     gme_type_t file_type;
-    if((err = gme_identify_file(QmmpPrintable(path),&file_type)))
+    if((err = gme_identify_file(QmmpPrintable(filePath), &file_type)))
     {
         qWarning("GMEHelper: %s", err);
         return nullptr;

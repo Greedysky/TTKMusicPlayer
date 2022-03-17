@@ -48,9 +48,9 @@ static void cddb_log_handler(cddb_log_level_t level, const char *message)
 }
 
 
-DecoderCDAudio::DecoderCDAudio(const QString &url)
+DecoderCDAudio::DecoderCDAudio(const QString &path)
     : Decoder(),
-      m_url(url),
+      m_path(path),
       m_buffer(new char[CDDA_BUFFER_SIZE])
 {
 
@@ -67,7 +67,7 @@ DecoderCDAudio::~DecoderCDAudio()
     delete[] m_buffer;
 }
 
-QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackInfo::Parts parts)
+QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &path, TrackInfo::Parts parts)
 {
     //read settings
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
@@ -77,7 +77,7 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
     QList<CDATrack> tracks;
     cdio_log_set_handler(log_handler); //setup cdio log handler
     CdIo_t *cdio = nullptr;
-    QString device_path = device;
+    QString device_path = path;
     if(device_path.isEmpty() || device_path == "/")
         device_path = settings.value("cdaudio/device").toString();
     if(device_path.isEmpty() || device_path == "/")
@@ -343,9 +343,9 @@ bool DecoderCDAudio::initialize()
 {
     m_bitrate = 0;
     m_totalTime = 0;
-    //extract track from url
-    int track = m_url.section("#", -1).toInt();
-    QString device_path = m_url;
+    //extract track from path
+    int track = m_path.section("#", -1).toInt();
+    QString device_path = m_path;
     device_path.remove("cdda://");
     device_path.remove(RegularWrapper("#\\d+$"));
 
@@ -374,7 +374,7 @@ bool DecoderCDAudio::initialize()
     {
         QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
         device_path = settings.value("CDAudio/device").toString();
-        m_url = QString("cdda://%1#%2").arg(device_path).arg(track);
+        m_path = QString("cdda://%1#%2").arg(device_path).arg(track);
     }
 
     if(device_path.isEmpty() || device_path == "/")

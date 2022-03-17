@@ -33,7 +33,7 @@ class SidTune;
 class DecoderSID : public Decoder
 {
 public:
-    DecoderSID(SidDatabase *db, const QString &url);
+    DecoderSID(SidDatabase *db, const QString &path);
     virtual ~DecoderSID();
 
     // Standard Decoder API
@@ -44,7 +44,7 @@ public:
     virtual void seek(qint64 time) override final;
 
 private:
-    QString m_url;
+    QString m_path;
     sidplayfp *m_player;
     SidDatabase *m_db;
     int m_length = 0;

@@ -36,7 +36,7 @@ class QIDevice;
 class DecoderFFapCUE : public Decoder
 {
 public:
-    explicit DecoderFFapCUE(const QString &url);
+    explicit DecoderFFapCUE(const QString &path);
     virtual ~DecoderFFapCUE();
 
     // Standard Decoder API
@@ -56,7 +56,7 @@ private:
     qint64 m_offset = 0;
     qint64 m_trackSize = 0;
     qint64 m_written = 0;
-    QString m_url;
+    QString m_path;
     int m_track = 0;
     qint64 m_buf_size = 0;
     qint64 m_frameSize = 0;

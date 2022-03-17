@@ -3,9 +3,9 @@
 
 #include <qmmp/cueparser.h>
 
-DecoderFFmpegCue::DecoderFFmpegCue(const QString &url)
+DecoderFFmpegCue::DecoderFFmpegCue(const QString &path)
     : Decoder(),
-      m_url(url)
+      m_path(path)
 {
 
 }
@@ -28,15 +28,15 @@ DecoderFFmpegCue::~DecoderFFmpegCue()
 
 bool DecoderFFmpegCue::initialize()
 {
-    QString filePath = m_url;
-    if(!m_url.startsWith("ffmpeg://"))
+    QString filePath = m_path;
+    if(!m_path.startsWith("ffmpeg://"))
     {
-        qWarning("DecoderFFmpegCue: invalid url.");
+        qWarning("DecoderFFmpegCue: invalid path.");
         return false;
     }
     filePath.remove("ffmpeg://");
     filePath.remove(RegularWrapper("#\\d+$"));
-    m_track = m_url.section("#", -1).toInt();
+    m_track = m_path.section("#", -1).toInt();
 
     AVFormatContext *in = nullptr;
 #ifdef Q_OS_WIN

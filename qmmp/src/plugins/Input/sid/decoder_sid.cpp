@@ -11,9 +11,9 @@
 #include <QSettings>
 #include <QFileInfo>
 
-DecoderSID::DecoderSID(SidDatabase *db, const QString &url)
+DecoderSID::DecoderSID(SidDatabase *db, const QString &path)
     : Decoder(),
-      m_url(url),
+      m_path(path),
       m_player(new sidplayfp()),
       m_db(db),
       m_tune(nullptr)
@@ -30,10 +30,10 @@ bool DecoderSID::initialize()
 {
     m_length_in_bytes = 0;
     m_read_bytes = 0;
-    QString path = m_url;
+    QString path = m_path;
     path.remove("sid://");
     path.remove(RegularWrapper("#\\d+$"));
-    int track = m_url.section("#", -1).toInt();
+    int track = m_path.section("#", -1).toInt();
 
     m_tune.load(QmmpPrintable(path));
     if(!m_tune.getInfo())

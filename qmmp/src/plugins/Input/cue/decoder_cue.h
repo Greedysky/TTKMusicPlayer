@@ -33,7 +33,7 @@ class CueFile;
 class DecoderCUE : public Decoder
 {
 public:
-    explicit DecoderCUE(const QString &url);
+    explicit DecoderCUE(const QString &path);
     virtual ~DecoderCUE();
 
     // Standard Decoder API

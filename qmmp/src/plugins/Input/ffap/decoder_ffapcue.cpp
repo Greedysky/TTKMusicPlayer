@@ -1,9 +1,9 @@
 #include "decoder_ffapcue.h"
 #include "decoder_ffap.h"
 
-DecoderFFapCUE::DecoderFFapCUE(const QString &url)
+DecoderFFapCUE::DecoderFFapCUE(const QString &path)
     : Decoder(),
-      m_url(url)
+      m_path(path)
 {
 
 }
@@ -26,15 +26,15 @@ DecoderFFapCUE::~DecoderFFapCUE()
 
 bool DecoderFFapCUE::initialize()
 {
-    QString filePath = m_url;
-    if(!m_url.startsWith("ape://") || filePath.endsWith(".ape"))
+    QString filePath = m_path;
+    if(!m_path.startsWith("ape://") || filePath.endsWith(".ape"))
     {
-        qWarning("DecoderFFapCUE: invalid url.");
+        qWarning("DecoderFFapCUE: invalid path.");
         return false;
     }
     filePath.remove("ape://");
     filePath.remove(RegularWrapper("#\\d+$"));
-    m_track = m_url.section("#", -1).toInt();
+    m_track = m_path.section("#", -1).toInt();
 
     TagLib::FileStream stream(QStringToFileName(filePath), true);
     TagLib::APE::File file(&stream);

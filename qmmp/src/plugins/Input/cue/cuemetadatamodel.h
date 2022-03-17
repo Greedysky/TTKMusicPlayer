@@ -31,7 +31,7 @@ class CueFile;
 class CUEMetaDataModel : public MetaDataModel
 {
 public:
-    explicit CUEMetaDataModel(bool readOnly, const QString &url);
+    explicit CUEMetaDataModel(bool readOnly, const QString &path);
     virtual ~CUEMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override final;

@@ -47,10 +47,10 @@ public:
 class DecoderCDAudio : public Decoder
 {
 public:
-    explicit DecoderCDAudio(const QString &url);
+    explicit DecoderCDAudio(const QString &path);
     virtual ~DecoderCDAudio();
 
-    static QList<CDATrack> generateTrackList(const QString &device, TrackInfo::Parts parts = TrackInfo::AllParts);
+    static QList<CDATrack> generateTrackList(const QString &path, TrackInfo::Parts parts = TrackInfo::AllParts);
     static qint64 calculateTrackLength(lsn_t startlsn, lsn_t endlsn);
     static void clearTrackCache();
 
@@ -71,7 +71,7 @@ private:
     lsn_t m_current_sector = -1;
     CdIo_t *m_cdio = nullptr;
     //other variables
-    QString m_url;
+    QString m_path;
     int m_bitrate = 0;
     qint64 m_totalTime = 0;
     char *m_buffer;

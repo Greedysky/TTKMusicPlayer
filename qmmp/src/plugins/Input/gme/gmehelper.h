@@ -33,7 +33,7 @@ public:
     GMEHelper();
     ~GMEHelper();
 
-    Music_Emu *load(const QString &url, int sample_rate = 44100);
+    Music_Emu *load(const QString &path, int sample_rate = 44100);
     QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
     int fadeLength();
 

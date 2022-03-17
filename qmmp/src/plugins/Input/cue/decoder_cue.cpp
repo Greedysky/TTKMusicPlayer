@@ -3,9 +3,9 @@
 
 #include <qmmp/decoderfactory.h>
 
-DecoderCUE::DecoderCUE(const QString &url)
+DecoderCUE::DecoderCUE(const QString &path)
     : Decoder(),
-      m_path(url)
+      m_path(path)
 {
 
 }

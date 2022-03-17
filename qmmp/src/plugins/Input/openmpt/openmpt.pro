@@ -7,12 +7,14 @@ HEADERS += decoderopenmptfactory.h \
            decoder_openmpt.h \
            openmptmetadatamodel.h \
            openmpthelper.h \
+           archivereader.h \
            settingsdialog.h
 
 SOURCES += decoderopenmptfactory.cpp \
            decoder_openmpt.cpp \
            openmptmetadatamodel.cpp \
            openmpthelper.cpp \
+           archivereader.cpp \
            settingsdialog.cpp
 
 FORMS   += settingsdialog.ui

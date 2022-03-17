@@ -16,7 +16,7 @@ SIDHelper::~SIDHelper()
     m_tune = nullptr;
 }
 
-SidTune *SIDHelper::load(const QString &url)
+SidTune *SIDHelper::load(const QString &path)
 {
     if(m_tune)
     {
@@ -24,18 +24,18 @@ SidTune *SIDHelper::load(const QString &url)
         m_tune = nullptr;
     }
 
-    QString path = url;
+    QString filePath = path;
     int track = 1;
-    if(url.contains("://"))
+    if(path.contains("://"))
     {
-        path.remove("sid://");
-        path.remove(RegularWrapper("#\\d+$"));
-        track = url.section("#", -1).toInt();
+        filePath.remove("sid://");
+        filePath.remove(RegularWrapper("#\\d+$"));
+        track = path.section("#", -1).toInt();
     }
 
-    m_tune = new SidTune(QmmpPrintable(path));
+    m_tune = new SidTune(QmmpPrintable(filePath));
     m_tune->selectSong(track - 1);
-    m_path = path;
+    m_path = filePath;
     return m_tune;
 }
 

@@ -28,10 +28,10 @@ DecoderProperties DecoderCDAudioFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderCDAudioFactory::create(const QString &url, QIODevice *input)
+Decoder *DecoderCDAudioFactory::create(const QString &path, QIODevice *input)
 {
     Q_UNUSED(input);
-    return new DecoderCDAudio(url);
+    return new DecoderCDAudio(path);
 }
 
 QList<TrackInfo*> DecoderCDAudioFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)

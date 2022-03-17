@@ -12,7 +12,7 @@
 #define MUSIC_WVPACK_FILE           "wvpack"
 #define MUSIC_SC68_FILE             "sc68"
 
-bool Format::songTrackValid(const QString &file)
+bool Format::songTrackValid(const QString &url)
 {
     QStringList list;
     list << MUSIC_CUE_FILE "://";
@@ -27,7 +27,7 @@ bool Format::songTrackValid(const QString &file)
 
     for(const QString &path : qAsConst(list))
     {
-        if(file.startsWith(path))
+        if(url.startsWith(path))
         {
             return true;
         }
@@ -35,7 +35,7 @@ bool Format::songTrackValid(const QString &file)
     return false;
 }
 
-bool Format::songTrackTpyeContains(const QString &file)
+bool Format::songTrackTpyeContains(const QString &url)
 {
     QStringList list;
     list << MUSIC_CUE_FILE;
@@ -48,7 +48,7 @@ bool Format::songTrackTpyeContains(const QString &file)
     list << MUSIC_WVPACK_FILE;
     list << MUSIC_SC68_FILE;
 
-    return list.contains(file);
+    return list.contains(url);
 }
 
 QStringList Format::supportMusicFormats()

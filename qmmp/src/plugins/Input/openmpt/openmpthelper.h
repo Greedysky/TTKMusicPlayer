@@ -58,8 +58,8 @@ public:
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
-    inline const QString title() const { return m_title; }
-    inline const QString comment() const { return m_comment; }
+    inline QString title() const { return m_title; }
+    inline QString comment() const { return m_comment; }
 
     inline int patternCount() const { return m_patternCount; }
     inline int channelCount() const { return m_channelCount; }
