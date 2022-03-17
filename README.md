@@ -40,7 +40,7 @@ You Can See Here: **<u>https://greedysky.github.io/ttkdocs</u>**
 
 Download
 ---
-OSChina: **<u>http://git.oschina.net/greedysky/Musicplayer</u>**
+OSChina URL: **<u>http://git.oschina.net/greedysky/Musicplayer</u>**
 
 Qmmp Source Player URL: **<u>https://qmmp.ylsoftware.com</u>**
 
@@ -112,6 +112,7 @@ TTKMusicPlayer can meet your most demands
  * Music song spectrum(projectm, goom, sonique, florid, wavebar) and test supported.
  * Music replay gain scan and write supported.
  * Music screen saver supported.
+ * MPRIS D-Bus interface specification supported.
  
 
 Screenshots

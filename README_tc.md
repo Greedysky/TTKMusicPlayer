@@ -32,7 +32,7 @@
 
 許可證
 ---
-TTKMusicPlayer是基於[license GPL v3](https://github.com/Greedysky/TTKMusicplayer/blob/master/LICENSE)條款授權的免費軟件。如果您使用TTKMusicPlayer或者它的動態庫，則務必添加相關許可證到項目中。
+TTKMusicPlayer是基於[Licence GPL v3](https://github.com/Greedysky/TTKMusicplayer/blob/master/LICENSE)條款授權的免費軟件。如果您使用TTKMusicPlayer或者它的動態庫，則務必添加相關許可證到項目中。
 
 API 文檔
 ---
@@ -40,7 +40,7 @@ API 文檔
 
 下載
 ---
-OSChina: **<u>http://git.oschina.net/greedysky/Musicplayer</u>**
+OSChina鏡像下載地址: **<u>http://git.oschina.net/greedysky/Musicplayer</u>**
 
 Qmmp原版下載地址: **<u>https://qmmp.ylsoftware.com</u>**
 
@@ -112,7 +112,7 @@ TTKMusicPlayer的壹些特性
  * 音樂歌曲譜（projectm，goom，sonique，florid，wavebar）支持。
  * 支持音樂重放掃描和寫入。
  * 支持音樂屏幕保護程序。
- 
+ * 支持MPRIS總線接口規範。
 
 快照
 ----
