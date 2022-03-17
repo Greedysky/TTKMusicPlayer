@@ -1,4 +1,5 @@
 #include "openmpthelper.h"
+#include "archivereader.h"
 
 OpenMPTHelper::OpenMPTHelper(QIODevice *input)
     : m_input(input)
@@ -21,7 +22,20 @@ void OpenMPTHelper::deinit()
 
 bool OpenMPTHelper::initialize()
 {
-    m_mod = openmpt_module_create2(callbacks, m_input, openmpt_log_func_silent, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
+    {
+        QFile *file = static_cast<QFile*>(m_input);
+        const QString &path = file ? file->fileName() : QString();
+        if(ArchiveReader::isSupported(path))
+        {
+            const QByteArray &data = ArchiveReader::unpack(path);
+            m_mod = openmpt_module_create_from_memory2(data.constData(), data.length(), openmpt_log_func_silent, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
+        }
+        else
+        {
+            m_mod = openmpt_module_create2(callbacks, m_input, openmpt_log_func_silent, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
+        }
+    }
+
     if(!m_mod)
     {
         return false;

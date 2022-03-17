@@ -20,12 +20,7 @@
 #define XSFREADER_H
 
 #include <QString>
-
-#include <libxsf/file2sf.h>
-#include <libxsf/filegsf.h>
-#include <libxsf/fileusf.h>
-#include <libxsf/filencsf.h>
-#include <libxsf/filesnsf.h>
+#include <libxsf/psflib/psfcore.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>

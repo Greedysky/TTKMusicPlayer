@@ -2,6 +2,7 @@
 #include "decoder_openmpt.h"
 #include "openmptmetadatamodel.h"
 #include "openmpthelper.h"
+#include "archivereader.h"
 #include "settingsdialog.h"
 
 #include <QFile>
@@ -33,6 +34,7 @@ DecoderProperties DecoderOpenMPTFactory::properties() const
     properties.filters << "*.ult" << "*.umx";
     properties.filters << "*.wow";
     properties.filters << "*.xm" << "*.xpk";
+    properties.filters << ArchiveReader::archiveFilters();
     properties.description = "OpenMPT Module Files";
     properties.hasSettings = true;
     return properties;

@@ -1,11 +1,20 @@
 #include "archivereader.h"
 
-#include <QFile>
 #include <QProcess>
 
 #define EXECUTE_PATH    (Qmmp::pluginPath() + "/../GPlugins/archive.tkx")
 
-bool ArchiveReader::isSupported(const QString &path) const
+QStringList ArchiveReader::archiveFilters()
+{
+    QStringList path;
+    path << "*.mdr" << "*.s3r" << "*.xmr" << "*.itr";
+    path << "*.mdz" << "*.s3z" << "*.xmz" << "*.itz";
+    path << "*.mdgz" << "*.s3gz" << "*.xmgz" << "*.itgz";
+    path << "*.mdbz" << "*.s3bz" << "*.xmbz" << "*.itbz";
+    return path;
+}
+
+bool ArchiveReader::isSupported(const QString &path)
 {
     if(!QFile::exists(EXECUTE_PATH))
     {
@@ -13,25 +22,21 @@ bool ArchiveReader::isSupported(const QString &path) const
     }
 
     const QString &lPath = path.toLower();
-    return lPath.endsWith(".mdz") ||
-           lPath.endsWith(".s3z") ||
-           lPath.endsWith(".xmz") ||
-           lPath.endsWith(".itz") ||
-           lPath.endsWith(".mdgz") ||
-           lPath.endsWith(".s3gz") ||
-           lPath.endsWith(".xmgz") ||
-           lPath.endsWith(".itgz") ||
-           lPath.endsWith(".mdbz") ||
-           lPath.endsWith(".s3bz") ||
-           lPath.endsWith(".xmbz") ||
-           lPath.endsWith(".itbz");
+    for(const QString &suffix : archiveFilters())
+    {
+        if(lPath.endsWith(suffix.mid(1, suffix.length())))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
-QByteArray ArchiveReader::unpack(const QString &path) const
+QByteArray ArchiveReader::unpack(const QString &path)
 {
     QProcess process;
     QStringList args;
-    args << "e" << path.toLower();
+    args << "-so" << "e" << path.toLower();
     process.start(EXECUTE_PATH, args);
     process.waitForFinished();
     return process.readAllStandardOutput();

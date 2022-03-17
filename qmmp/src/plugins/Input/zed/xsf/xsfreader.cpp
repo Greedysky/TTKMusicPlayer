@@ -1,5 +1,11 @@
 #include "xsfreader.h"
 
+#include <libxsf/file2sf.h>
+#include <libxsf/filegsf.h>
+#include <libxsf/fileusf.h>
+#include <libxsf/filencsf.h>
+#include <libxsf/filesnsf.h>
+
 FileReader *XSFReader::makeReader(const QString &path)
 {
     const QString &suffix = path.toLower();

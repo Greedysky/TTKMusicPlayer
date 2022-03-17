@@ -19,18 +19,18 @@
 #ifndef ARCHIVEREADER_H
 #define ARCHIVEREADER_H
 
+#include <QFile>
 #include <qmmp/qmmp.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class ArchiveReader
+namespace ArchiveReader
 {
-public:
-    bool isSupported(const QString &path) const;
-    QByteArray unpack(const QString &path) const;
-
-};
+    QStringList archiveFilters();
+    bool isSupported(const QString &path);
+    QByteArray unpack(const QString &path);
+}
 
 #endif
 
