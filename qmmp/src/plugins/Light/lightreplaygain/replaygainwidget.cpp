@@ -215,7 +215,7 @@ void ReplayGainWidget::open(const QString &track)
         return;
     }
 
-    QString ext = track.section(".", -1).toLower();
+    const QString &ext = track.section(".", -1).toLower();
     if((ext == "mp3") || //mpeg 1 layer 3
             ext == "flac" || //native flac
             ext == "oga" || //ogg flac
@@ -406,8 +406,7 @@ void ReplayGainWidget::writeButtonClicked()
 
     for(ReplayGainInfoItem *item : qAsConst(m_replayGainItemList))
     {
-        QString ext = item->url.section(".", -1).toLower();
-
+        const QString &ext = item->url.section(".", -1).toLower();
         if(ext == "mp3") //mpeg 1 layer 3
         {
             TagLib::MPEG::File file(qPrintable(item->url));

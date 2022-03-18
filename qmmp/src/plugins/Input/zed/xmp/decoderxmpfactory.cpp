@@ -26,7 +26,6 @@ DecoderProperties DecoderXMPFactory::properties() const
     properties.filters << "*.rtm";
     properties.filters << "*.tcb";
     properties.description = "XMP Module File";
-    properties.protocols << "file";
     properties.hasSettings = true;
     properties.noInput = true;
     return properties;
@@ -38,10 +37,11 @@ Decoder *DecoderXMPFactory::create(const QString &path, QIODevice *input)
     return new DecoderXMP(path);
 }
 
-QList<TrackInfo *> DecoderXMPFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderXMPFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     QList<TrackInfo*> plyalist;
     TrackInfo *info = new TrackInfo(path);
+
     if(parts & (TrackInfo::MetaData | TrackInfo::Properties))
     {
         xmp_context ctx = xmp_create_context();

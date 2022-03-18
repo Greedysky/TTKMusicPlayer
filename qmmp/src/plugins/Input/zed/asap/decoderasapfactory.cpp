@@ -20,7 +20,6 @@ DecoderProperties DecoderAsapFactory::properties() const
     properties.filters << "*.sap";
     properties.filters << "*.tm2" << "*.tm8" << "*.tmc";
     properties.description = "Another Slight Atari Player File";
-    properties.protocols << "file";
     properties.noInput = true;
     return properties;
 }

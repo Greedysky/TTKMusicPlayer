@@ -1,6 +1,7 @@
 #include "archivereader.h"
 
 #include <QProcess>
+#include <qmmp/qmmp.h>
 
 #define EXECUTE_PATH    (Qmmp::ttkPluginPath() + "/archive.tkx")
 
@@ -21,10 +22,10 @@ bool ArchiveReader::isSupported(const QString &path)
         return false;
     }
 
-    const QString &lPath = path.toLower();
+    const QString &filePath = path.toLower();
     for(const QString &suffix : archiveFilters())
     {
-        if(lPath.endsWith(suffix.mid(1, suffix.length())))
+        if(filePath.endsWith(suffix.mid(1, suffix.length())))
         {
             return true;
         }
@@ -36,7 +37,7 @@ QByteArray ArchiveReader::unpack(const QString &path)
 {
     QProcess process;
     QStringList args;
-    args << "-so" << "e" << path.toLower();
+    args << "-so" << "e" << path;
     process.start(EXECUTE_PATH, args);
     process.waitForFinished();
     return process.readAllStandardOutput();

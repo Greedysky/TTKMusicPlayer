@@ -17,11 +17,6 @@ TagWrapper::TagWrapper(const QString &file)
 
 }
 
-TagWrapper::~TagWrapper()
-{
-
-}
-
 bool TagWrapper::readFile()
 {
     return readFile(m_path);
@@ -45,24 +40,24 @@ bool TagWrapper::readFile(const QString &path)
     if(tagFile.tag())
     {
         TagLib::Tag *tag = tagFile.tag();
-        m_parameters[TAG_TITLE] = TStringToQString(tag->title());
-        m_parameters[TAG_ARTIST] = TStringToQString(tag->artist());
-        m_parameters[TAG_ALBUM] = TStringToQString(tag->album());
-        m_parameters[TAG_YEAR] = QString::number(tag->year());
-        m_parameters[TAG_COMMENT] =TStringToQString(tag->comment());
-        m_parameters[TAG_TRACK] = QString::number(tag->track());
-        m_parameters[TAG_GENRE] = TStringToQString(tag->genre());
+        m_parameters[TITLE] = TStringToQString(tag->title());
+        m_parameters[ARTIST] = TStringToQString(tag->artist());
+        m_parameters[ALBUM] = TStringToQString(tag->album());
+        m_parameters[YEAR] = QString::number(tag->year());
+        m_parameters[COMMENT] =TStringToQString(tag->comment());
+        m_parameters[TRACK] = QString::number(tag->track());
+        m_parameters[GENRE] = TStringToQString(tag->genre());
 
         TagLib::PropertyMap properties = tagFile.file()->properties();
         for(TagLib::PropertyMap::ConstIterator i = properties.begin(); i != properties.end(); ++i)
         {
             if(i->first == "ENCODER")
             {
-                m_parameters[TAG_MODE] = TStringToQString((*i->second.begin()));
+                m_parameters[MODE] = TStringToQString((*i->second.begin()));
             }
             if(i->first == "COMPATIBLE_BRANDS")
             {
-                m_parameters[TAG_FORMAT] = TStringToQString((*i->second.begin()));
+                m_parameters[FORMAT] = TStringToQString((*i->second.begin()));
             }
         }
     }
@@ -72,10 +67,10 @@ bool TagWrapper::readFile(const QString &path)
         TagLib::AudioProperties *properties = tagFile.audioProperties();
         if(properties)
         {
-            m_parameters[TAG_BITRATE] = QString("%1 kbps").arg(properties->bitrate());
-            m_parameters[TAG_SAMPLERATE] = QString("%1 Hz").arg(properties->sampleRate());
-            m_parameters[TAG_CHANNEL] = QString::number(properties->channels());
-            m_parameters[TAG_LENGTH] = QString::number(properties->lengthInMilliseconds());
+            m_parameters[BITRATE] = QString("%1 kbps").arg(properties->bitrate());
+            m_parameters[SAMPLERATE] = QString("%1 Hz").arg(properties->sampleRate());
+            m_parameters[CHANNEL] = QString::number(properties->channels());
+            m_parameters[LENGTH] = QString::number(properties->lengthInMilliseconds());
         }
     }
 
@@ -103,25 +98,25 @@ bool TagWrapper::writeMusicTag(Type tag, const QString &value, int id3v2Version)
 
     switch(tag)
     {
-        case TAG_TITLE:
+        case TITLE:
             tags->setTitle(QStringToTString(value));
             break;
-        case TAG_ARTIST:
+        case ARTIST:
             tags->setArtist(QStringToTString(value));
             break;
-        case TAG_ALBUM:
+        case ALBUM:
             tags->setAlbum(QStringToTString(value));
             break;
-        case TAG_YEAR:
+        case YEAR:
             tags->setYear(value.toInt());
             break;
-        case TAG_COMMENT:
+        case COMMENT:
             tags->setComment(QStringToTString(value));
             break;
-        case TAG_TRACK:
+        case TRACK:
             tags->setTrack(value.toInt());
             break;
-        case TAG_GENRE:
+        case GENRE:
             tags->setGenre(QStringToTString(value));
             break;
         default: break;

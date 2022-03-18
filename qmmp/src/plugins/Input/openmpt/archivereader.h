@@ -20,7 +20,6 @@
 #define ARCHIVEREADER_H
 
 #include <QFile>
-#include <qmmp/qmmp.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>

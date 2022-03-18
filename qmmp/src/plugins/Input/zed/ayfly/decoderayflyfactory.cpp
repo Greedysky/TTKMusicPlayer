@@ -18,7 +18,6 @@ DecoderProperties DecoderAyflyFactory::properties() const
     properties.filters << "*.ay";
     properties.filters << "*.emul";
     properties.description = "AY/YM Audio File";
-    properties.protocols << "file";
     properties.noInput = true;
     return properties;
 }

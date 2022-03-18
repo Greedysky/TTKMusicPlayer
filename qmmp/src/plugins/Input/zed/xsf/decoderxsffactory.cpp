@@ -18,7 +18,6 @@ DecoderProperties DecoderXSFFactory::properties() const
     properties.filters << "*.ncsf" << "*.minincsf";
     properties.filters << "*.snsf" << "*.minisnsf";
     properties.description = "Overload Audio File";
-    properties.protocols << "file";
     properties.noInput = true;
     return properties;
 }

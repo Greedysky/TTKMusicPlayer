@@ -39,7 +39,7 @@ QList<TrackInfo*> DecoderAACFactory::createPlayList(const QString &path, TrackIn
     if(!file.open(QIODevice::ReadOnly))
     {
         delete info;
-        return QList<TrackInfo*>() << info;
+        return QList<TrackInfo*>();
     }
 
     AACFile aac_file(&file, parts & TrackInfo::MetaData);
