@@ -235,7 +235,7 @@ bool MusicExtractWrapper::inputSkin(MusicBackgroundImage *image, const QString &
     }
 
     const QString &nPrefix = QFileInfo(output).baseName();
-    int level = 5;
+    const int level = 5;
 
     zip_fileinfo fileInfo;
     memset(&fileInfo, 0, sizeof(fileInfo));
