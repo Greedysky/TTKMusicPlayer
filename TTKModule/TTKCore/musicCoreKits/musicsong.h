@@ -126,6 +126,10 @@ public:
      * Get music play count.
      */
     inline int musicPlayCount() const { return m_musicPlayCount; }
+    /*!
+     * Set music sort type.
+     */
+    inline void setMusicSort(const Sort s) { m_sortType = s; }
 
     /*!
      * Operator == function.
