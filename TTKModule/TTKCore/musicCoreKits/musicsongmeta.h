@@ -40,7 +40,7 @@ public:
     /*!
      * Read music file to anaylsis.
      */
-    bool read(const QString &file);
+    bool read(const QString &url);
     /*!
      * Save music tags to music file.
      */

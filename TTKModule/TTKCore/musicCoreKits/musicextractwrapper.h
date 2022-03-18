@@ -38,14 +38,6 @@ public:
     /*!
      * Transfer file to normal data.
      */
-    static bool outputBinary(const QString &input);
-    /*!
-     * Transfer file to normal data.
-     */
-    static bool outputBinary(const QString &input, const QString &output);
-    /*!
-     * Transfer file to normal data.
-     */
     static bool outputBinary(const QString &input, const QString &output, QStringList &path);
 
     /*!

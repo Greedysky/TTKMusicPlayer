@@ -31,11 +31,11 @@ MusicSongMeta::~MusicSongMeta()
     clearSongMeta();
 }
 
-bool MusicSongMeta::read(const QString &file)
+bool MusicSongMeta::read(const QString &url)
 {
     bool track = false;
-    QString path(file);
-    if(MusicFormats::songTrackValid(file))
+    QString path(url);
+    if(MusicFormats::songTrackValid(url))
     {
         path = path.section("://", -1);
         if(path.contains("#"))
@@ -55,7 +55,7 @@ bool MusicSongMeta::read(const QString &file)
     const bool status = readInformation();
     if(status && track)
     {
-        setSongMetaIndex(file.section("#", -1).toInt() - 1);
+        setSongMetaIndex(url.section("#", -1).toInt() - 1);
     }
 
     return status;

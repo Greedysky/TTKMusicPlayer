@@ -111,17 +111,9 @@ public:
      */
     inline QString musicPlayTime() const { return m_musicPlayTime; }
     /*!
-     * Set music add time.
-     */
-    inline void setMusicAddTime(const qint64 t) { m_musicAddTime = t; }
-    /*!
-     * Get music add time.
-     */
-    inline qint64 musicAddTime() const { return m_musicAddTime; }
-    /*!
      * Set music size.
      */
-    inline void setMusicSize(const qint64 s) { m_musicSize = s; }
+     void setMusicSize(const qint64 s);
     /*!
      * Get music size.
      */
@@ -134,14 +126,6 @@ public:
      * Get music play count.
      */
     inline int musicPlayCount() const { return m_musicPlayCount; }
-    /*!
-     * Set music sort type.
-     */
-    inline void setMusicSort(const Sort s) { m_sortType = s; }
-    /*!
-     * Get music sort type.
-     */
-    inline Sort musicSort() const { return m_sortType; }
 
     /*!
      * Operator == function.

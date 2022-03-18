@@ -49,7 +49,7 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &song
         MusicSongMeta meta;
         if(meta.read(song.musicPath()))
         {
-            QPixmap pix = meta.cover();
+            const QPixmap &pix = meta.cover();
             if(!pix.isNull())
             {
                 m_ui->artPicture->setPixmap(pix.scaled(60, 60));

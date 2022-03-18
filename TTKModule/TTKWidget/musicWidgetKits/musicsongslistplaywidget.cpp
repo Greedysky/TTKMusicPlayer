@@ -153,7 +153,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
 
     if(state && G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())
     {
-        QPixmap pix = meta.cover();
+        const QPixmap &pix = meta.cover();
         if(pix.isNull())
         {
             m_noCover = true;

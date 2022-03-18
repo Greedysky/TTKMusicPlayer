@@ -40,12 +40,11 @@ MusicSong::MusicSong(const QString &musicPath, const QString &playTime, const QS
         m_musicName = fin.completeBaseName();
     }
 
-    m_musicSize = fin.size();
+    setMusicSize(fin.size());
     m_musicType = FILE_SUFFIX(fin);
     m_musicAddTime = fin.lastModified().currentMSecsSinceEpoch();
     m_musicPlayTime = playTime;
     m_musicAddTimeStr = QString::number(m_musicAddTime);
-    m_musicSizeStr = MusicUtils::Number::sizeByte2Label(m_musicSize);
 }
 
 QString MusicSong::musicArtistFront() const
@@ -56,6 +55,12 @@ QString MusicSong::musicArtistFront() const
 QString MusicSong::musicArtistBack() const
 {
     return MusicUtils::String::songName(m_musicName);
+}
+
+void MusicSong::setMusicSize(const qint64 s)
+{
+    m_musicSize = s;
+    m_musicSizeStr = MusicUtils::Number::sizeByte2Label(s);
 }
 
 bool MusicSong::operator== (const MusicSong &other) const
@@ -105,20 +110,7 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
         return songs;
     }
 
-    if(suffix == ZIP_FILE_PREFIX)
-    {
-        QStringList outputs;
-        if(!MusicExtractWrapper::outputBinary(path, G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString(), outputs))
-        {
-            TTK_LOGGER_ERROR("Extract zip input error");
-        }
-
-        for(const QString &path : qAsConst(outputs))
-        {
-            songs << generateMusicSongList(path);
-        }
-    }
-    else if(MusicFormats::songTrackTpyeContains(suffix))
+    if(MusicFormats::songTrackTpyeContains(suffix))
     {
         MusicSongMeta meta;
         if(!meta.read(path))

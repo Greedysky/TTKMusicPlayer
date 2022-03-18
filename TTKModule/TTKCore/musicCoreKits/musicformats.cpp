@@ -2,41 +2,34 @@
 
 #include <qmmp/format.h>
 
-bool MusicFormats::songTrackValid(const QString &file)
+bool MusicFormats::songTrackValid(const QString &url)
 {
-    return Format::songTrackValid(file);
+    return Format::songTrackValid(url);
 }
 
-bool MusicFormats::songTrackTpyeContains(const QString &file)
+bool MusicFormats::songTrackTpyeContains(const QString &url)
 {
-    return Format::songTrackTpyeContains(file);
+    return Format::songTrackTpyeContains(url);
 }
 
 QStringList MusicFormats::supportMusicFormats()
 {
-    QStringList formats(Format::supportMusicFormats());
-    formats << "zip";
-    return formats;
+    return Format::supportMusicFormats();
 }
 
 TTKStringListMap MusicFormats::supportMusicMapFormats()
 {
-    TTKStringListMap formats(Format::supportMusicMapFormats());
-    formats.insert("zip", {"zip"});
-    return formats;
+    return Format::supportMusicMapFormats();
 }
 
 QStringList MusicFormats::supportMusicInputFilterFormats()
 {
-    QStringList formats(Format::supportMusicInputFilterFormats());
-    formats << "*.zip";
-    return formats;
+    return Format::supportMusicInputFilterFormats();
 }
 
 QString MusicFormats::supportMusicInputFormats()
 {
-    QStringList formats(Format::supportMusicInputFormats());
-    formats << "Zip File(*.zip)";
+    const QStringList formats(Format::supportMusicInputFormats());
     return formats.join(";;");
 }
 

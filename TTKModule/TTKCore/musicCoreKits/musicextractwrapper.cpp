@@ -71,17 +71,6 @@ bool MusicExtractWrapper::outputThunderSkin(QPixmap &image, const QString &input
     return true;
 }
 
-bool MusicExtractWrapper::outputBinary(const QString &input)
-{
-    return outputBinary(input, QFileInfo(input).absolutePath() + TTK_SEPARATOR + QFileInfo(input).baseName() + TTK_SEPARATOR);
-}
-
-bool MusicExtractWrapper::outputBinary(const QString &input, const QString &output)
-{
-    QStringList path;
-    return outputBinary(input, output, path);
-}
-
 bool MusicExtractWrapper::outputBinary(const QString &input, const QString &output, QStringList &path)
 {
     const unzFile &zFile = unzOpen64(qPrintable(input));
