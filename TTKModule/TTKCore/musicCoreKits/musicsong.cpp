@@ -122,18 +122,17 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
         for(int i=0; i<size; ++i)
         {
             meta.setSongMetaIndex(i);
-            const QString &time = meta.lengthString();
-            const QString &title = meta.title();
-            const QString &artist = meta.artist();
 
             QString name;
-            if(G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool() && !title.isEmpty() && !artist.isEmpty())
+            if(G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool())
             {
-                name = artist + " - " + title;
+                const QString &title = meta.title();
+                const QString &artist = meta.artist();
+                name = (artist.isEmpty() || title.isEmpty()) ? artist + title : artist + " - " + title;
             }
 
             const QFileInfo fin(meta.fileRelatedPath());
-            MusicSong song(meta.fileBasePath(), time, name);
+            MusicSong song(meta.fileBasePath(), meta.lengthString(), name);
             song.setMusicSize(fin.size());
             song.setMusicType(FILE_SUFFIX(fin));
             songs << song;
@@ -144,15 +143,20 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
 
     MusicSongMeta meta;
     const bool state = meta.read(path);
-    const QString &time = state ? meta.lengthString() : TTK_DEFAULT_STR;
-
-    QString name;
-    if(state && G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool() && !meta.title().isEmpty() && !meta.artist().isEmpty())
+    if(!state)
     {
-        name = meta.artist() + " - " + meta.title();
+        return songs;
     }
 
-    songs << MusicSong(path, time, name);
+    QString name;
+    if(G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool())
+    {
+        const QString &title = meta.title();
+        const QString &artist = meta.artist();
+        name = (artist.isEmpty() || title.isEmpty()) ? artist + title : artist + " - " + title;
+    }
+
+    songs << MusicSong(path, meta.lengthString(), name);
     return songs;
 }
 
