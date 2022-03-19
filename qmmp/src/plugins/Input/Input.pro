@@ -50,3 +50,7 @@ contains(CONFIG, SID_PLUGIN){
 contains(CONFIG, CDAUDIO_PLUGIN){
     SUBDIRS += cdaudio
 }
+
+contains(CONFIG, XMP_PLUGIN){
+    SUBDIRS += xmp
+}
