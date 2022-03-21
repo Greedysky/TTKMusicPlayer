@@ -110,14 +110,14 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
         return songs;
     }
 
+    MusicSongMeta meta;
+    if(!meta.read(path))
+    {
+        return songs;
+    }
+
     if(MusicFormats::songTrackTpyeContains(suffix))
     {
-        MusicSongMeta meta;
-        if(!meta.read(path))
-        {
-            return songs;
-        }
-
         const int size = meta.songMetaCount();
         for(int i=0; i<size; ++i)
         {
@@ -137,26 +137,19 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
             song.setMusicType(FILE_SUFFIX(fin));
             songs << song;
         }
-
-        return songs;
     }
-
-    MusicSongMeta meta;
-    const bool state = meta.read(path);
-    if(!state)
+    else
     {
-        return songs;
-    }
+        QString name;
+        if(G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool())
+        {
+            const QString &title = meta.title();
+            const QString &artist = meta.artist();
+            name = (artist.isEmpty() || title.isEmpty()) ? artist + title : artist + " - " + title;
+        }
 
-    QString name;
-    if(G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool())
-    {
-        const QString &title = meta.title();
-        const QString &artist = meta.artist();
-        name = (artist.isEmpty() || title.isEmpty()) ? artist + title : artist + " - " + title;
+        songs << MusicSong(path, meta.lengthString(), name);
     }
-
-    songs << MusicSong(path, meta.lengthString(), name);
     return songs;
 }
 
