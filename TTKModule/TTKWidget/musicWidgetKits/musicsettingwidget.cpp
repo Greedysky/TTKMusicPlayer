@@ -331,9 +331,11 @@ void MusicSettingWidget::downloadCacheClean()
         return;
     }
 
-    MusicUtils::File::removeRecursively(CACHE_DIR_FULL, false);
-    MusicUtils::File::removeRecursively(ART_DIR_FULL, false);
-    MusicUtils::File::removeRecursively(BACKGROUND_DIR_FULL, false);
+    MusicUtils::File::removeRecursively(APPCACHE_DIR_FULL);
+    QDir dir;
+    dir.mkpath(ART_DIR_FULL);
+    dir.mkpath(CACHE_DIR_FULL);
+    dir.mkpath(BACKGROUND_DIR_FULL);
 
     MusicToastLabel::popup(tr("Cache is cleaned"));
 }

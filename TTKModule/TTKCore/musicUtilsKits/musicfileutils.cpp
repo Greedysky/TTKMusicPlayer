@@ -20,7 +20,6 @@ QFileInfoList MusicUtils::File::fileListByPath(const QString &dpath, const QStri
             fileList.append(fileListByPath(fin.absoluteFilePath(), filter, recursively));
         }
     }
-
     return fileList;
 }
 
@@ -45,7 +44,7 @@ bool MusicUtils::File::removeRecursively(const QString &dir, bool self)
         bool ok;
         if(fin.isDir() && !fin.isSymLink())
         {
-            ok = MusicUtils::File::removeRecursively(filePath); // recursive
+            ok = MusicUtils::File::removeRecursively(filePath, self); // recursive
         }
         else
         {
@@ -71,7 +70,6 @@ bool MusicUtils::File::removeRecursively(const QString &dir, bool self)
     {
         success = dr.rmdir(dr.absolutePath());
     }
-
     return success;
 }
 
