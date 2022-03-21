@@ -29,7 +29,7 @@ Decoder *DecoderWavPackFactory::create(const QString &path, QIODevice *input)
     return new DecoderWavPack(path);
 }
 
-QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
+QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
 {
     int track = -1; //cue track
     QString filePath = path;
@@ -43,9 +43,9 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
     }
     else
     {
-        if(ignoredFiles)
+        if(ignoredPaths)
         {
-            ignoredFiles->push_back(path);
+            ignoredPaths->push_back(path);
         }
     }
 

@@ -28,7 +28,7 @@ Decoder *DecoderGMEFactory::create(const QString &path, QIODevice *input)
     return new DecoderGME(path);
 }
 
-QList<TrackInfo*> DecoderGMEFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
+QList<TrackInfo*> DecoderGMEFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
 {
     if(path.contains("://")) //is it one track?
     {
@@ -37,7 +37,7 @@ QList<TrackInfo*> DecoderGMEFactory::createPlayList(const QString &path, TrackIn
         filePath.remove(RegularWrapper("#\\d+$"));
 
         const int track = path.section("#", -1).toInt();
-        QList<TrackInfo*> playlist = createPlayList(filePath, parts, ignoredFiles);
+        QList<TrackInfo*> playlist = createPlayList(filePath, parts, ignoredPaths);
         if(playlist.isEmpty() || track <= 0 || track > playlist.count())
         {
             qDeleteAll(playlist);
@@ -52,9 +52,9 @@ QList<TrackInfo*> DecoderGMEFactory::createPlayList(const QString &path, TrackIn
     }
     else
     {
-        if(ignoredFiles)
+        if(ignoredPaths)
         {
-            ignoredFiles->push_back(path);
+            ignoredPaths->push_back(path);
         }
     }
 

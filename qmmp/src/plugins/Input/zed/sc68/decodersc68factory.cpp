@@ -25,7 +25,7 @@ Decoder *DecoderSC68Factory::create(const QString &path, QIODevice *input)
     return new DecoderSC68(path);
 }
 
-QList<TrackInfo*> DecoderSC68Factory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
+QList<TrackInfo*> DecoderSC68Factory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
 {
     if(path.contains("://")) //is it one track?
     {
@@ -34,7 +34,7 @@ QList<TrackInfo*> DecoderSC68Factory::createPlayList(const QString &path, TrackI
         filePath.remove(RegularWrapper("#\\d+$"));
 
         const int track = path.section("#", -1).toInt();
-        QList<TrackInfo*> playlist = createPlayList(filePath, parts, ignoredFiles);
+        QList<TrackInfo*> playlist = createPlayList(filePath, parts, ignoredPaths);
         if(playlist.isEmpty() || track <= 0 || track > playlist.count())
         {
             qDeleteAll(playlist);
@@ -49,9 +49,9 @@ QList<TrackInfo*> DecoderSC68Factory::createPlayList(const QString &path, TrackI
     }
     else
     {
-        if(ignoredFiles)
+        if(ignoredPaths)
         {
-            ignoredFiles->push_back(path);
+            ignoredPaths->push_back(path);
         }
     }
 

@@ -47,7 +47,6 @@ bool Format::songTrackTpyeContains(const QString &url)
     list << MUSIC_SID_FILE;
     list << MUSIC_WVPACK_FILE;
     list << MUSIC_SC68_FILE;
-
     return list.contains(url);
 }
 

@@ -6,9 +6,9 @@ contains(CONFIG, ADPLUG_PLUGIN){
     SUBDIRS += adplug
 }
 
-#contains(CONFIG, ARCHIVE_PLUGIN){
-#    SUBDIRS += archive
-#}
+contains(CONFIG, ARCHIVE_PLUGIN){
+    SUBDIRS += archive
+}
 
 contains(CONFIG, ASAP_PLUGIN){
     SUBDIRS += asap

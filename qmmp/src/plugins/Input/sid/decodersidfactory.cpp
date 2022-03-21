@@ -46,7 +46,7 @@ Decoder *DecoderSIDFactory::create(const QString &path, QIODevice *input)
     return new DecoderSID(&m_db, path);
 }
 
-QList<TrackInfo*> DecoderSIDFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
+QList<TrackInfo*> DecoderSIDFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
 {
     SIDHelper helper(&m_db);
     helper.load(path);
@@ -74,9 +74,9 @@ QList<TrackInfo*> DecoderSIDFactory::createPlayList(const QString &path, TrackIn
     }
     else
     {
-        if(ignoredFiles)
+        if(ignoredPaths)
         {
-            ignoredFiles->push_back(path);
+            ignoredPaths->push_back(path);
         }
     }
     return playlist;
