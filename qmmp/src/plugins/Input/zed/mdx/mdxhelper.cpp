@@ -5,7 +5,7 @@
 MDXHelper::MDXHelper(const QString &path)
     : m_path(path)
 {
-
+    memset(&m_input, 0, sizeof(t_mdxmini));
 }
 
 MDXHelper::~MDXHelper()
@@ -15,13 +15,16 @@ MDXHelper::~MDXHelper()
 
 void MDXHelper::deinit()
 {
-    if(m_mdx_mode)
+    if(m_input.self)
     {
-        mdx_close(&m_input);
-    }
-    else
-    {
-        pmd_stop();
+        if(m_mdx_mode)
+        {
+            mdx_close(&m_input);
+        }
+        else
+        {
+            pmd_stop();
+        }
     }
 }
 
