@@ -16,6 +16,7 @@ MusicProgressWidget::MusicProgressWidget(QWidget *parent)
     setCancelButton(nullptr);
     setLabel(nullptr);
     setFixedSize(368, 123);
+    setMinimumDuration(2);
 
     initWidget();
 }

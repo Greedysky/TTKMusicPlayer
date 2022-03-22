@@ -92,7 +92,6 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_ui->centerWidget->installEventFilter(this);
 
     readSystemConfigFromFile();
-
     QTimer::singleShot(MT_MS, m_rightAreaWidget, SLOT(musicLoadSongIndexWidget()));
 }
 

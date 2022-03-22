@@ -137,9 +137,9 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
     closeSearchWidgetInNeed();
 
     MusicProgressWidget progress;
-    progress.show();
     progress.setTitle(tr("Import file mode"));
     progress.setRange(0, files.count());
+    progress.show();
 
     MusicSongItem *item = &m_songItems[m_selectImportIndex];
 
@@ -151,13 +151,12 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
             continue;
         }
 
-        item->m_songs << MusicObject::generateMusicSongList(path);
         progress.setValue(++i);
+        item->m_songs << MusicObject::generateMusicSongList(path);
     }
 
     item->m_itemObject->updateSongsFileName(item->m_songs);
     setItemTitle(item);
-
     setCurrentIndex(m_selectImportIndex);
 
     MusicToastLabel::popup(tr("Import music songs done!"));

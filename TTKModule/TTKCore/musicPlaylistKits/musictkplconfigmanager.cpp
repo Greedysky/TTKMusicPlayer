@@ -68,7 +68,7 @@ MusicSongList MusicTKPLConfigManager::readMusicFilePath(const QDomNode &node) co
     for(int i=0; i<nodeList.count(); i++)
     {
         const QDomElement &element = nodeList.at(i).toElement();
-        MusicSong song(element.text(), element.attribute("time"), element.attribute("name"));
+        MusicSong song(element.text(), element.attribute("time"), element.attribute("name"), true);
         song.setMusicPlayCount(element.attribute("playCount").toInt());
         songs << song;
     }

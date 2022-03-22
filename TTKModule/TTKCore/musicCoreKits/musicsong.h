@@ -46,11 +46,11 @@ public:
     /*!
      * Object contsructor by music path and name.
      */
-    explicit MusicSong(const QString &musicPath);
+    explicit MusicSong(const QString &musicPath, bool track = false);
     /*!
      * Object contsructor by music path and name and playcout and time.
      */
-    MusicSong(const QString &musicPath, const QString &playTime, const QString &musicName = QString());
+    MusicSong(const QString &musicPath, const QString &playTime, const QString &musicName = QString(), bool track = false);
 
     /*!
      * Get music artist name.
@@ -110,10 +110,6 @@ public:
      * Get music time.
      */
     inline QString musicPlayTime() const { return m_musicPlayTime; }
-    /*!
-     * Set music size.
-     */
-     void setMusicSize(const qint64 s);
     /*!
      * Get music size.
      */
@@ -201,10 +197,13 @@ TTK_DECLARE_LIST(MusicSongItem);
 namespace MusicObject
 {
     /*!
+     * Remove track info in path.
+     */
+    TTK_MODULE_EXPORT QString trackRelatedPath(const QString &path);
+    /*!
      * Generate music song plyalist.
      */
     TTK_MODULE_EXPORT MusicSongList generateMusicSongList(const QString &path);
-
     /*!
      * Check current song plyalist row is valid or not.
      */

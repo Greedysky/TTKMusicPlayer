@@ -31,6 +31,10 @@ void MusicUtils::QMMP::updateQmmpConfigFile()
     settings.setValue("buffer_path", CACHE_DIR_FULL);
     settings.endGroup();
 
+    settings.beginGroup("Archive");
+    settings.setValue("unpack_path", ARCHIVE_DIR_DIR_FULL);
+    settings.endGroup();
+
     QFile file(confPath);
     if(file.open(QFile::ReadOnly))
     {

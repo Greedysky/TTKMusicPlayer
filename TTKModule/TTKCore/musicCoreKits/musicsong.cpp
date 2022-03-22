@@ -6,6 +6,8 @@
 #include "musicextractwrapper.h"
 #include "musicsettingmanager.h"
 
+#include <qmmp/regularwrapper.h>
+
 MusicSong::MusicSong()
     : m_sortType(SortByFileName),
       m_musicSize(0),
@@ -21,30 +23,31 @@ MusicSong::MusicSong()
 
 }
 
-MusicSong::MusicSong(const QString &musicPath)
-    : MusicSong(musicPath, QString())
+MusicSong::MusicSong(const QString &musicPath, bool track)
+    : MusicSong(musicPath, QString(), QString(), track)
 {
 
 }
 
-MusicSong::MusicSong(const QString &musicPath, const QString &playTime, const QString &musicName)
+MusicSong::MusicSong(const QString &musicPath, const QString &playTime, const QString &musicName, bool track)
     : MusicSong()
 {
     m_musicPath = musicPath;
     m_musicPath.replace("\\", TTK_SEPARATOR);
 
-    const QFileInfo fin(m_musicPath);
+    const QFileInfo fin(!track ? m_musicPath : MusicObject::trackRelatedPath(m_musicPath));
     m_musicName = musicName;
     if(m_musicName.isEmpty())
     {
         m_musicName = fin.completeBaseName();
     }
 
-    setMusicSize(fin.size());
+    m_musicSize = fin.size();
     m_musicType = FILE_SUFFIX(fin);
     m_musicAddTime = fin.lastModified().currentMSecsSinceEpoch();
     m_musicPlayTime = playTime;
     m_musicAddTimeStr = QString::number(m_musicAddTime);
+    m_musicSizeStr = MusicUtils::Number::sizeByte2Label(m_musicSize);
 }
 
 QString MusicSong::musicArtistFront() const
@@ -55,12 +58,6 @@ QString MusicSong::musicArtistFront() const
 QString MusicSong::musicArtistBack() const
 {
     return MusicUtils::String::songName(m_musicName);
-}
-
-void MusicSong::setMusicSize(const qint64 s)
-{
-    m_musicSize = s;
-    m_musicSizeStr = MusicUtils::Number::sizeByte2Label(s);
 }
 
 bool MusicSong::operator== (const MusicSong &other) const
@@ -98,6 +95,18 @@ bool MusicSong::operator> (const MusicSong &other) const
     return false;
 }
 
+QString MusicObject::trackRelatedPath(const QString &path)
+{
+    if(!MusicFormats::songTrackValid(path))
+    {
+        return path;
+    }
+
+    QString url = path;
+    url = url.section("://", -1);
+    url.remove(RegularWrapper("#\\d+$"));
+    return url;
+}
 
 MusicSongList MusicObject::generateMusicSongList(const QString &path)
 {
@@ -116,30 +125,12 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
         return songs;
     }
 
-    if(MusicFormats::songTrackTpyeContains(suffix))
+    const bool track = MusicFormats::songTrackTpyeContains(suffix);
+    const int size = meta.songMetaCount();
+    for(int i=0; i<size; ++i)
     {
-        const int size = meta.songMetaCount();
-        for(int i=0; i<size; ++i)
-        {
-            meta.setSongMetaIndex(i);
+        meta.setSongMetaIndex(i);
 
-            QString name;
-            if(G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool())
-            {
-                const QString &title = meta.title();
-                const QString &artist = meta.artist();
-                name = (artist.isEmpty() || title.isEmpty()) ? artist + title : artist + " - " + title;
-            }
-
-            const QFileInfo fin(meta.fileRelatedPath());
-            MusicSong song(meta.fileBasePath(), meta.lengthString(), name);
-            song.setMusicSize(fin.size());
-            song.setMusicType(FILE_SUFFIX(fin));
-            songs << song;
-        }
-    }
-    else
-    {
         QString name;
         if(G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool())
         {
@@ -148,7 +139,7 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
             name = (artist.isEmpty() || title.isEmpty()) ? artist + title : artist + " - " + title;
         }
 
-        songs << MusicSong(path, meta.lengthString(), name);
+        songs << MusicSong(meta.fileBasePath(), meta.lengthString(), name, track);
     }
     return songs;
 }

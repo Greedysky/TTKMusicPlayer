@@ -52,13 +52,13 @@ bool MusicSongMeta::read(const QString &url)
     }
 
     m_path = path;
-    const bool status = readInformation();
-    if(status && track)
+    if(!readInformation())
     {
-        setSongMetaIndex(url.section("#", -1).toInt() - 1);
+        return false;
     }
 
-    return status;
+    setSongMetaIndex(track ? url.section("#", -1).toInt() - 1 : 0);
+    return true;
 }
 
 bool MusicSongMeta::save()
@@ -320,6 +320,11 @@ MusicMeta *MusicSongMeta::songMeta()
     {
         m_songMetas << new MusicMeta;
         m_offset = 0;
+    }
+
+    if(m_offset < 0 || m_offset >= songMetaCount())
+    {
+        return nullptr;
     }
 
     return m_songMetas[m_offset];

@@ -1,6 +1,5 @@
 #include "musiccoreutils.h"
 
-#include <QThread>
 #if defined Q_OS_UNIX || defined Q_CC_MINGW
 #  include <unistd.h>
 #endif
@@ -31,11 +30,7 @@ static bool appVersionCheck(const QStringList &ol, const QStringList &dl, int de
 
 void MusicUtils::Core::sleep(int ms)
 {
-#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,0,0)
-    QThread::msleep(ms);
-#else
     usleep(ms * 1000);
-#endif
 }
 
 bool MusicUtils::Core::appVersionCheck(const QString &o, const QString &d)
