@@ -1,9 +1,12 @@
 #include "archivereader.h"
-
+#if defined Q_OS_UNIX || defined Q_CC_MINGW
+#  include <unistd.h>
+#endif
+#include <qmmp/qmmp.h>
 #include <QProcess>
 #include <QSettings>
 #include <QDirIterator>
-#include <qmmp/qmmp.h>
+#include <QApplication>
 
 #define EXECUTE_PATH    (Qmmp::ttkPluginPath() + "/archive.tkx")
 
@@ -87,7 +90,8 @@ QStringList ArchiveReader::list(const QString &path)
     const QString &cache = unpack + path.section("/", -1) + "/";
 
     QStringList files;
-    const QString &list = QString::fromLocal8Bit(process.readAllStandardOutput());
+    const QByteArray &data = process.readAllStandardOutput();
+    const QString &list = QString::fromLocal8Bit(data.constData(), data.length());
     for(const QString& file : list.split('\n'))
     {
         if(file.contains("....A"))
@@ -147,6 +151,10 @@ bool ArchiveReader::unpack(const QString &path)
     QStringList args;
     args << "x" << path << "-o" + cache;
     process.start(EXECUTE_PATH, args);
-    process.waitForFinished();
+    while(process.state() != QProcess::NotRunning)
+    {
+        qApp->processEvents();
+        usleep(10 * 1000);
+    }
     return true;
 }
