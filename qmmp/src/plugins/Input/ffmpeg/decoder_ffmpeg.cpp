@@ -293,13 +293,13 @@ qint64 DecoderFFmpeg::read(unsigned char *data, qint64 maxSize)
     {
         int bps = av_get_bytes_per_sample(m_codecContext->sample_fmt);
 
-        for(int i = 0; i < len / bps; i++)
+        for(int i = 0; i < len / bps; ++i)
         {
             memcpy(data + i * bps, m_frame->extended_data[i % m_channels] + i / m_channels * bps, bps);
         }
 
         m_output_size -= len;
-        for(int i = 0; i < m_channels; i++)
+        for(int i = 0; i < m_channels; ++i)
         {
             memmove(m_frame->extended_data[i],
                     m_frame->extended_data[i] + len / m_channels, m_output_size / m_channels);
@@ -429,7 +429,7 @@ void DecoderFFmpeg::fillBuffer()
                 {
                     if(av_sample_fmt_is_planar(m_codecContext->sample_fmt) && m_channels > 1)
                     {
-                        for(int i = 0; i < m_channels; i++)
+                        for(int i = 0; i < m_channels; ++i)
                         {
                             memmove(m_frame->extended_data[i],
                                     m_frame->extended_data[i] + len / m_channels, m_output_size / m_channels);

@@ -77,12 +77,12 @@ void PlusSpaceWave::process(float *left, float *)
 
     short dest[256];
     short y;
-    int k, magnitude;
+    int magnitude;
 
     calc_freq(dest, left);
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
-    for(int i = 0; i < m_cols; i++)
+    for(int i = 0; i < m_cols; ++i)
     {
         y = 0;
         magnitude = 0;
@@ -92,7 +92,7 @@ void PlusSpaceWave::process(float *left, float *)
             y = dest[i];
         }
 
-        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
+        for(int k = m_x_scale[i]; k < m_x_scale[i + 1]; ++k)
         {
             y = qMax(dest[k], y);
         }

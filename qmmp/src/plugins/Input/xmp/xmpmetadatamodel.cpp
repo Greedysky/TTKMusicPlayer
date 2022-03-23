@@ -50,7 +50,7 @@ QList<MetaDataItem> XMPMetaDataModel::descriptions() const
     xmp_module_info mi;
     xmp_get_module_info(m_ctx, &mi);
 
-    for(int i = 0; i < mi.mod->smp; i++)
+    for(int i = 0; i < mi.mod->smp; ++i)
     {
         text += QString::fromUtf8(mi.mod->xxs[i].name) + '\n';
     }
@@ -62,7 +62,7 @@ QList<MetaDataItem> XMPMetaDataModel::descriptions() const
     }
     text.clear();
 
-    for(int i = 0; i < mi.mod->ins; i++)
+    for(int i = 0; i < mi.mod->ins; ++i)
     {
         text += QString::fromUtf8(mi.mod->xxi[i].name) + '\n';
     }

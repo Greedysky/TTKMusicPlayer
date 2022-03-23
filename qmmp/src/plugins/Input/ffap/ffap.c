@@ -319,7 +319,7 @@ static void ape_dumpinfo(APEContext * ape_ctx)
     fprintf (stderr, "audiodatalength_high = %d\n", ape_ctx->audiodatalength_high);
     fprintf (stderr, "wavtaillength        = %d\n", ape_ctx->wavtaillength);
     fprintf (stderr, "md5                  = ");
-    for(i = 0; i < 16; i++)
+    for(i = 0; i < 16; ++i)
          fprintf (stderr, "%02x", ape_ctx->md5[i]);
     fprintf (stderr, "\n");
 
@@ -338,7 +338,7 @@ static void ape_dumpinfo(APEContext * ape_ctx)
     if((ape_ctx->seektablelength / sizeof(uint32_t)) != ape_ctx->totalframes) {
         fprintf (stderr, "No seektable\n");
     } else {
-        for(i = 0; i < ape_ctx->seektablelength / sizeof(uint32_t); i++) {
+        for(i = 0; i < ape_ctx->seektablelength / sizeof(uint32_t); ++i) {
             if(i < ape_ctx->totalframes - 1) {
                 fprintf (stderr, "%8d   %d (%d bytes)\n", i, ape_ctx->seektable[i], ape_ctx->seektable[i + 1] - ape_ctx->seektable[i]);
             } else {
@@ -348,7 +348,7 @@ static void ape_dumpinfo(APEContext * ape_ctx)
     }
 
     fprintf (stderr, "\nFrames\n\n");
-    for(i = 0; i < ape_ctx->totalframes; i++)
+    for(i = 0; i < ape_ctx->totalframes; ++i)
         fprintf (stderr, "%8d   %8lld %8d (%d samples)\n", i, ape_ctx->frames[i].pos, ape_ctx->frames[i].size, ape_ctx->frames[i].nblocks);
 
     fprintf (stderr, "\nCalculated information:\n\n");
@@ -528,7 +528,7 @@ ape_read_header (FFap_decoder *decoder)
 
     if(ape->seektablelength > 0) {
         ape->seektable = malloc(ape->seektablelength);
-        for(i = 0; i < ape->seektablelength / sizeof(uint32_t); i++) {
+        for(i = 0; i < ape->seektablelength / sizeof(uint32_t); ++i) {
             if(read_uint32_ (decoder, &ape->seektable[i]) < 0) {
                 return -1;
             }
@@ -538,7 +538,7 @@ ape_read_header (FFap_decoder *decoder)
     ape->frames[0].pos     = ape->firstframe;
     ape->frames[0].nblocks = ape->blocksperframe;
     ape->frames[0].skip    = 0;
-    for(i = 1; i < ape->totalframes; i++) {
+    for(i = 1; i < ape->totalframes; ++i) {
         ape->frames[i].pos      = ape->seektable[i]; //ape->frames[i-1].pos + ape->blocksperframe;
         ape->frames[i].nblocks  = ape->blocksperframe;
         ape->frames[i - 1].size = ape->frames[i].pos - ape->frames[i - 1].pos;
@@ -547,7 +547,7 @@ ape_read_header (FFap_decoder *decoder)
     ape->frames[ape->totalframes - 1].size    = ape->finalframeblocks * 4;
     ape->frames[ape->totalframes - 1].nblocks = ape->finalframeblocks;
 
-    for(i = 0; i < ape->totalframes; i++) {
+    for(i = 0; i < ape->totalframes; ++i) {
         if(ape->frames[i].skip){
             ape->frames[i].pos  -= ape->frames[i].skip;
             ape->frames[i].size += ape->frames[i].skip;
@@ -643,7 +643,7 @@ ape_free_ctx (APEContext *ape_ctx) {
         free(ape_ctx->seektable);
         ape_ctx->seektable = NULL;
     }
-    for(i = 0; i < APE_FILTER_LEVELS; i++) {
+    for(i = 0; i < APE_FILTER_LEVELS; ++i) {
         if(ape_ctx->filterbuf[i]) {
 #if defined(_WIN32) && ! defined(_MSC_VER)
             __mingw_aligned_free(ape_ctx->filterbuf[i]);
@@ -690,7 +690,7 @@ int ffap_init(FFap_decoder *decoder)
     }
 
     decoder->ape_ctx->fset = decoder->ape_ctx->compressiontype / 1000 - 1;
-    for(i = 0; i < APE_FILTER_LEVELS; i++) {
+    for(i = 0; i < APE_FILTER_LEVELS; ++i) {
         if(!ape_filter_orders[decoder->ape_ctx->fset][i])
             break;
         int err = posix_memalign ((void **)&decoder->ape_ctx->filterbuf[i], 16,
@@ -871,7 +871,7 @@ static inline int range_get_symbol(APEContext * ctx,
         return symbol;
     }
     /* figure out the symbol inefficiently; a binary search would be much better */
-    for(symbol = 0; counts[symbol + 1] <= cf; symbol++);
+    for(symbol = 0; counts[symbol + 1] <= cf; ++symbol);
 
     range_decode_update(ctx, counts_diff[symbol], counts[symbol]);
 
@@ -1248,7 +1248,8 @@ static inline int16_t clip_int16(int a)
 static void bswap_buf(uint32_t *dst, const uint32_t *src, int w){
     int i;
 
-    for(i=0; i+8<=w; i+=8){
+    for(i = 0; i + 8 <= w; i += 8)
+    {
         dst[i+0]= bswap_32(src[i+0]);
         dst[i+1]= bswap_32(src[i+1]);
         dst[i+2]= bswap_32(src[i+2]);
@@ -1258,7 +1259,9 @@ static void bswap_buf(uint32_t *dst, const uint32_t *src, int w){
         dst[i+6]= bswap_32(src[i+6]);
         dst[i+7]= bswap_32(src[i+7]);
     }
-    for(;i<w; i++){
+
+    for(; i < w; ++i)
+    {
         dst[i+0]= bswap_32(src[i+0]);
     }
 }
@@ -1332,7 +1335,7 @@ static void ape_apply_filters(APEContext * ctx, int32_t * decoded0,
 {
     int i;
 
-    for(i = 0; i < APE_FILTER_LEVELS; i++) {
+    for(i = 0; i < APE_FILTER_LEVELS; ++i) {
         if(!ape_filter_orders[ctx->fset][i])
             break;
         apply_filter(ctx, ctx->filters[i], decoded0, decoded1, count, ape_filter_orders[ctx->fset][i], ape_filter_fracbits[ctx->fset][i]);
@@ -1345,7 +1348,7 @@ static void init_frame_decoder(APEContext * ctx)
     init_entropy_decoder(ctx);
     init_predictor_decoder(ctx);
 
-    for(i = 0; i < APE_FILTER_LEVELS; i++) {
+    for(i = 0; i < APE_FILTER_LEVELS; ++i) {
         if(!ape_filter_orders[ctx->fset][i])
             break;
         init_filter(ctx->filters[i], ctx->filterbuf[i], ape_filter_orders[ctx->fset][i]);
@@ -1518,7 +1521,7 @@ ape_decode_frame(FFap_decoder *decoder, void *data, int *data_size)
     i = skip;
 
     if(decoder->bps == 32 || decoder->bps == 24) {
-        for(; i < blockstodecode; i++) {
+        for(; i < blockstodecode; ++i) {
             *((int32_t*)samples) = s->decoded0[i];
             samples += 4;
             if(s->channels > 1) {
@@ -1528,7 +1531,7 @@ ape_decode_frame(FFap_decoder *decoder, void *data, int *data_size)
         }
     }
     else if(decoder->bps == 16) {
-        for(; i < blockstodecode; i++) {
+        for(; i < blockstodecode; ++i) {
             *((int16_t*)samples) = (int16_t)s->decoded0[i];
             samples += 2;
             if(s->channels > 1) {
@@ -1538,7 +1541,7 @@ ape_decode_frame(FFap_decoder *decoder, void *data, int *data_size)
         }
     }
     else if(decoder->bps == 8) {
-        for(; i < blockstodecode; i++) {
+        for(; i < blockstodecode; ++i) {
             *samples = (int16_t)s->decoded0[i];
             samples++;
             if(s->channels > 1) {

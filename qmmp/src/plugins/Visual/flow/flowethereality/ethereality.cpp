@@ -42,7 +42,7 @@ void Ethereality::timeout()
     }
 
     m_word.clear();
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 10; ++i)
     {
         const int index = qrand() % m_word_list.count();
         m_word.append(m_word_list.at(index));
@@ -55,7 +55,7 @@ void Ethereality::paintEvent(QPaintEvent *e)
     QWidget::paintEvent(e);
     QPainter painter(this);
 
-    for(int i=0; i<m_word.count(); ++i)
+    for(int i = 0; i < m_word.count(); ++i)
     {
         painter.setPen(QColor(0, 255, 0, 23 * i));
         QFont font("Microsoft YaHei", 10);

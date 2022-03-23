@@ -97,7 +97,7 @@ std::unique_ptr<AudioFile> Audio::open(const std::string& file_name, int stream)
     int audio_stream = -1;
     int streams = 0;
     if(!error) {
-        for(unsigned int i = 0; i < format_context->nb_streams; i++) {
+        for(unsigned int i = 0; i < format_context->nb_streams; ++i) {
             if(format_context->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_AUDIO) {
                 if(stream == streams) {
                     audio_stream = i;

@@ -15,7 +15,7 @@ NormalHistogram::NormalHistogram(QWidget *parent)
     setWindowTitle(tr("Normal Histogram Widget"));
     setMinimumSize(2 * 300 - 30, 105);
 
-    for(int i=0; i<50; ++i)
+    for(int i = 0; i < 50; ++i)
     {
         m_starPoints << new StarPoint();
     }
@@ -184,7 +184,7 @@ void NormalHistogram::process(float *left, float *)
     calc_freq(dest, left);
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
-    for(int i = 0; i < m_cols; i++)
+    for(int i = 0; i < m_cols; ++i)
     {
         y = 0;
         magnitude = 0;
@@ -194,7 +194,7 @@ void NormalHistogram::process(float *left, float *)
             y = dest[i];
         }
 
-        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
+        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; ++k)
         {
             y = qMax(dest[k], y);
         }

@@ -32,7 +32,7 @@ void BitcrusherPlugin::applyEffect(Buffer *b)
     for(size_t i = 0; i < b->samples; )
     {
         m_accumulator += m_downsample;
-        for(int channel = 0; channel < channels(); channel++)
+        for(int channel = 0; channel < channels(); ++channel)
         {
             if(m_accumulator >= 1.0)
             {

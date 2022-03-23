@@ -100,7 +100,7 @@ FloridAncient::FloridAncient(QWidget *parent)
     setWindowTitle(tr("Florid Ancient Widget"));
 
     m_gradientOn = true;
-    for(int i=0; i<ANIMATION_SIZE; ++i)
+    for(int i = 0; i < ANIMATION_SIZE; ++i)
     {
         AncientLabel *label = new AncientLabel(this);
         m_labels << label;
@@ -118,7 +118,7 @@ FloridAncient::~FloridAncient()
 void FloridAncient::start()
 {
     Florid::start();
-    for(int i=0; i<m_labels.count(); ++i)
+    for(int i = 0; i < m_labels.count(); ++i)
     {
         m_labels[i]->start();
     }
@@ -148,7 +148,7 @@ void FloridAncient::resizeEvent(QResizeEvent *e)
 
 void FloridAncient::process(float *left, float *)
 {
-    for(int i=0; i<m_labels.count(); ++i)
+    for(int i = 0; i < m_labels.count(); ++i)
     {
         m_labels[i]->setColor(m_averageColor);
     }
@@ -187,7 +187,7 @@ void FloridAncient::process(float *left, float *)
     calc_freq(dest, left);
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
-    for(int i = 0; i < m_cols; i++)
+    for(int i = 0; i < m_cols; ++i)
     {
         y = 0;
         magnitude = 0;
@@ -197,7 +197,7 @@ void FloridAncient::process(float *left, float *)
             y = dest[i];
         }
 
-        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
+        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; ++k)
         {
             y = qMax(dest[k], y);
         }

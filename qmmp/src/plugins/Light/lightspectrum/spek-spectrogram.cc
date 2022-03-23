@@ -198,7 +198,7 @@ static void pipeline_cb(int bands, int sample, float *values, void *cb_data)
 
     // TODO: check image size, quit if wrong.
     const double range = spek->getURange() - spek->getLRange();
-    for(int y = 0; y < bands; y++) {
+    for(int y = 0; y < bands; ++y) {
         const double value = fmin(spek->getURange(), fmax(spek->getLRange(), values[y]));
         const double level = (value - spek->getLRange()) / range;
         const uint32_t color = VisualPalette::renderPalette(spek->getPalette(), level);
@@ -269,9 +269,9 @@ void LightSpectrum::mediaUrlChanged()
 void LightSpectrum::create_palette()
 {
     m_palette_image = QImage(RULER, bits_to_bands(m_fft_bits), QImage::Format_RGB32);
-    for(int y = 0; y < bits_to_bands(m_fft_bits); y++) {
+    for(int y = 0; y < bits_to_bands(m_fft_bits); ++y) {
         uint32_t color = VisualPalette::renderPalette(m_palette, y / (double)bits_to_bands(m_fft_bits));
-        for(int j =0; j < RULER; ++j) {
+        for(int j = 0; j < RULER; ++j) {
             m_palette_image.setPixel(
                 j,
                 bits_to_bands(m_fft_bits) - y - 1,

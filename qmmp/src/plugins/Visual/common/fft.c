@@ -99,10 +99,10 @@ fft_init(void)
     if(!state)
         return 0;
 
-    for(i = 0; i < FFT_BUFFER_SIZE; i++) {
+    for(i = 0; i < FFT_BUFFER_SIZE; ++i) {
         bitReverse[i] = reverseBits(i);
     }
-    for(i = 0; i < FFT_BUFFER_SIZE / 2; i++) {
+    for(i = 0; i < FFT_BUFFER_SIZE / 2; ++i) {
         float j = 2 * PI * i / FFT_BUFFER_SIZE;
         costable[i] = cos(j);
         sintable[i] = sin(j);
@@ -165,7 +165,7 @@ fft_prepare(const float *input, float *re, float *im)
     float *imagptr = im;
 
     /* Get input, in reverse bit order */
-    for(i = 0; i < FFT_BUFFER_SIZE; i++) {
+    for(i = 0; i < FFT_BUFFER_SIZE; ++i) {
         *realptr++ = input[bitReverse[i]] * 32767.0;
         *imagptr++ = 0;
     }
@@ -208,10 +208,10 @@ fft_output(const float *re, const float *im, float *output)
 
 #ifdef DEBUG
     printf("Recalculated input:\n");
-    for(i = 0; i < FFT_BUFFER_SIZE; i++) {
+    for(i = 0; i < FFT_BUFFER_SIZE; ++i) {
         float val_real = 0;
         float val_imag = 0;
-        for(j = 0; j < FFT_BUFFER_SIZE; j++) {
+        for(j = 0; j < FFT_BUFFER_SIZE; ++j) {
             float fact_real = cos(-2 * j * i * PI / FFT_BUFFER_SIZE);
             float fact_imag = sin(-2 * j * i * PI / FFT_BUFFER_SIZE);
             val_real += fact_real * re[j] - fact_imag * im[j];
@@ -241,12 +241,12 @@ fft_calculate(float *re, float *im)
     factfact = FFT_BUFFER_SIZE / 2;
 
     /* Loop through the divide and conquer steps */
-    for(i = FFT_BUFFER_SIZE_LOG; i != 0; i--) {
+    for(i = FFT_BUFFER_SIZE_LOG; i != 0; --i) {
         /* In this step, we have 2 ^ (i - 1) exchange groups, each with
          * 2 ^ (FFT_BUFFER_SIZE_LOG - i) exchanges
          */
         /* Loop through the exchanges in a group */
-        for(j = 0; j != exchanges; j++) {
+        for(j = 0; j != exchanges; ++j) {
             /* Work out factor for this exchange
              * factor ^ (exchanges) = -1
              * So, real = cos(j * PI / exchanges),
@@ -274,7 +274,7 @@ fft_calculate(float *re, float *im)
                 re[k] += tmp_real;
                 im[k] += tmp_imag;
 #ifdef DEBUG
-                for(k1 = 0; k1 < FFT_BUFFER_SIZE; k1++) {
+                for(k1 = 0; k1 < FFT_BUFFER_SIZE; ++k1) {
                     printf("%5d = %8f + i * %8f\n", k1, real[k1], imag[k1]);
                 }
 #endif
@@ -289,7 +289,7 @@ static int
 reverseBits(unsigned int initial)
 {
     unsigned int reversed = 0, loop;
-    for(loop = 0; loop < FFT_BUFFER_SIZE_LOG; loop++) {
+    for(loop = 0; loop < FFT_BUFFER_SIZE_LOG; ++loop) {
         reversed <<= 1;
         reversed += (initial & 1);
         initial >>= 1;

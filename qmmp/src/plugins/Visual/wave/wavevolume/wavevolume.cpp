@@ -84,7 +84,7 @@ void WaveVolume::process(float *left, float *right)
         yr = dest_r[0];
     }
 
-    for(int k = m_x_scale[0]; k < m_x_scale[1]; k++)
+    for(int k = m_x_scale[0]; k < m_x_scale[1]; ++k)
     {
         yl = qMax(dest_l[k], yl);
         yr = qMax(dest_r[k], yr);

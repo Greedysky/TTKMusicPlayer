@@ -46,7 +46,7 @@ void EchoPlugin::applyEffect(Buffer *b)
     }
 
     float *data = b->data;
-    for(size_t i = 0; i < b->samples; i++)
+    for(size_t i = 0; i < b->samples; ++i)
     {
         float in = data[i];
         float buf = m_buffer[offset];

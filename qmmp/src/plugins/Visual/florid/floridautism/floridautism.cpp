@@ -64,7 +64,7 @@ FloridAutism::FloridAutism(QWidget *parent)
 {
     setWindowTitle(tr("Florid Autism Widget"));
 
-    for(int i=0; i<ANIMATION_SIZE; ++i)
+    for(int i = 0; i < ANIMATION_SIZE; ++i)
     {
         AutismLabel *label = new AutismLabel(this);
         m_labels << label;

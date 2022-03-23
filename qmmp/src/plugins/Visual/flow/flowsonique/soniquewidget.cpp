@@ -23,9 +23,9 @@ static void customZoomAndBlur(unsigned int *v, unsigned int *vt, int xs, int ys)
     //zoom
     const float centerX = xs / 2;
     const float centerY = ys / 2;
-    for(int y=0; y<ys; y++)
+    for(int y = 0; y < ys; ++y)
     {
-        for(int x=0; x<xs; x++)
+        for(int x = 0; x < xs; ++x)
         {
             const int origX = (int)((x - centerX) * zoom + centerX);
             const int origY = (int)((y - centerY) * zoom + centerY);
@@ -35,9 +35,9 @@ static void customZoomAndBlur(unsigned int *v, unsigned int *vt, int xs, int ys)
     //blur and darkness
     const int s = 3;
     const int darkness = 24;
-    for(int y=0; y<ys; y++)
+    for(int y = 0; y < ys; ++y)
     {
-        for(int x=0; x<xs; x++)
+        for(int x = 0; x < xs; ++x)
         {
             if(y == 0 || x == 0 || x == (xs - 1) || y == (ys - 1))
             {
@@ -47,11 +47,11 @@ static void customZoomAndBlur(unsigned int *v, unsigned int *vt, int xs, int ys)
 
             int t[4] = {0};
             vtp = vt + xs * (y - s / 2) + (x - s / 2);
-            for(int i=0; i<s; i++)
+            for(int i = 0; i < s; ++i)
             {
-                for(int j=0; j<s; j++)
+                for(int j = 0; j < s; ++j)
                 {
-                    for(int k=0; k<4; k++)
+                    for(int k = 0; k < 4; ++k)
                     {
                         t[k] += ((unsigned char*)vtp)[k];
                     }
@@ -60,7 +60,7 @@ static void customZoomAndBlur(unsigned int *v, unsigned int *vt, int xs, int ys)
                 vtp += xs - s;
             }
 
-            for(int k=0; k<4; k++)
+            for(int k = 0; k < 4; ++k)
             {
                 ((unsigned char*)(&v[x + xs * y]))[k] = std::max(t[k] / (s * s) - darkness, 0);
             }
@@ -122,7 +122,7 @@ void SoniqueWidget::addBuffer(float *left, float *right)
 
     if(m_sonique->lRequired & VI_WAVEFORM)
     {
-        for(int i=0; i<FFT_SIZE; i++)
+        for(int i = 0; i < FFT_SIZE; ++i)
         {
             m_visData->Waveform[0][i] = left[i] * 64.0;
             m_visData->Waveform[1][i] = right[i] * 64.0;
@@ -131,7 +131,7 @@ void SoniqueWidget::addBuffer(float *left, float *right)
 
     if(m_sonique->lRequired & VI_SPECTRUM)
     {
-        for(int i=0; i<FFT_SIZE; i++)
+        for(int i = 0; i < FFT_SIZE; ++i)
         {
             m_in_freq_data[i].r = left[i];
             m_in_freq_data[i].i = 0;
@@ -140,13 +140,13 @@ void SoniqueWidget::addBuffer(float *left, float *right)
         kiss_fft(m_kiss_cfg, m_in_freq_data, m_out_freq_data);
         m_visData->Spectrum[0][0] = std::min(255, int(m_out_freq_data[0].r * 512));
 
-        for(int j=0; j<SPECTRUM_SIZE; j++)
+        for(int i = 0; i < SPECTRUM_SIZE; ++i)
         {
-            const int value = sqrt(pow((((m_out_freq_data[j].r) / 512) * 2), 2) + pow((((m_out_freq_data[j].i) / 512) * 2), 2)) * 512;
-            m_visData->Spectrum[0][j] = std::min(255, value);
+            const int value = sqrt(pow((((m_out_freq_data[i].r) / 512) * 2), 2) + pow((((m_out_freq_data[i].i) / 512) * 2), 2)) * 512;
+            m_visData->Spectrum[0][i] = std::min(255, value);
         }
 
-        for(int i=0; i<FFT_SIZE; i++)
+        for(int i = 0; i < FFT_SIZE; ++i)
         {
             m_in_freq_data[i].r = right[i];
             m_in_freq_data[i].i = 0;
@@ -155,10 +155,10 @@ void SoniqueWidget::addBuffer(float *left, float *right)
         kiss_fft(m_kiss_cfg, m_in_freq_data, m_out_freq_data);
         m_visData->Spectrum[1][0] = std::min(255, int(m_out_freq_data[0].r * 512));
 
-        for(int j=0; j<SPECTRUM_SIZE; j++)
+        for(int i = 0; i < SPECTRUM_SIZE; ++i)
         {
-            const int value = sqrt(pow((((m_out_freq_data[j].r) / 512) * 2), 2) + pow((((m_out_freq_data[j].i) / 512) * 2), 2)) * 512;
-            m_visData->Spectrum[1][j] = std::min(255, value);
+            const int value = sqrt(pow((((m_out_freq_data[i].r) / 512) * 2), 2) + pow((((m_out_freq_data[i].i) / 512) * 2), 2)) * 512;
+            m_visData->Spectrum[1][i] = std::min(255, value);
         }
     }
 

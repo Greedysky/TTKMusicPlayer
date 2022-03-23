@@ -76,10 +76,10 @@ __inline__ int eq_iir(float *d, int samples, int nch)
    * at the expense of extra CPU cycles
    */
 
-  for(index = 0; index < samples; index+=nch)
+  for(index = 0; index < samples; index += nch)
   {
     /* For each channel */
-    for(channel = 0; channel < nch; channel++)
+    for(channel = 0; channel < nch; ++channel)
     {
       pcm[channel] = data[index+channel];
       /* Preamp gain */
@@ -90,7 +90,7 @@ __inline__ int eq_iir(float *d, int samples, int nch)
 
       out[channel] = 0.;
       /* For each band */
-      for(band = 0; band < band_count; band++)
+      for(band = 0; band < band_count; ++band)
       {
           /* Optimization */
         if(gain[channel][band] > -1.0e-10 && gain[channel][band] < 1.0e-10)
@@ -119,7 +119,7 @@ __inline__ int eq_iir(float *d, int samples, int nch)
       if(eq_options & EQ_TWO_PASSES)
       {
         /* Filter the sample again */
-        for(band = 0; band < band_count; band++)
+        for(band = 0; band < band_count; ++band)
         {
             /* Optimization */
           if(gain[channel][band] > -1.0e-10 && gain[channel][band] < 1.0e-10)

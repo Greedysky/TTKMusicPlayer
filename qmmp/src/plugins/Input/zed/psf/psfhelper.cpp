@@ -64,7 +64,7 @@ bool PSFHelper::initialize()
         return true;
     }
 
-    for(int i = 1; i < 9; i++)
+    for(int i = 1; i < 9; ++i)
     {
         if(!strncasecmp(info.title[i], "Length: ", 8))
         {
@@ -168,7 +168,7 @@ QMap<Qmmp::MetaData, QString> PSFHelper::readMetaData() const
         return metaData;
     }
 
-    for(int i = 1; i < 9; i++)
+    for(int i = 1; i < 9; ++i)
     {
         if(!strncasecmp(info.title[i], "Name: ", 6) || !strncasecmp(info.title[i], "Song: ", 6))
         {

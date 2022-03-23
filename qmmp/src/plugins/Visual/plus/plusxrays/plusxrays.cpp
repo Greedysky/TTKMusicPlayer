@@ -115,13 +115,13 @@ void PlusXRays::draw(QPainter *p)
         p->setPen(QPen(QColor(255, 255, 255, 50), 1));
         int per = width() / 8;
 
-        for(int w=0; w<width(); ++w)
+        for(int w = 0; w < width(); ++w)
         {
             p->drawLine(QPoint(w*per, 0), QPoint(w*per, height()));
         }
 
         per = height() / 8;
-        for(int h=0; h<height(); ++h)
+        for(int h = 0; h < height(); ++h)
         {
             p->drawLine(QPoint(0, h*per), QPoint(width(), h*per));
         }

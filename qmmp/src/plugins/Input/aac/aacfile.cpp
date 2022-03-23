@@ -149,7 +149,7 @@ void AACFile::parseADTS()
     m_input->seek(0);
     buf_at = m_input->read((char *)buf, FAAD_MIN_STREAMSIZE*MAX_CHANNELS);
 
-    for(int i = 0; i < buf_at - 1; i++)
+    for(int i = 0; i < buf_at - 1; ++i)
     {
         if(buf[i] == 0xff && (buf[i+1]&0xf6) == 0xf0)
         {
@@ -160,7 +160,7 @@ void AACFile::parseADTS()
     }
 
     /* Read all frames to ensure correct time and bitrate */
-    for(frames = 0; /* */; frames++)
+    for(frames = 0; /* */; ++frames)
     {
         buf_at += m_input->read((char *)buf + buf_at, FAAD_MIN_STREAMSIZE*MAX_CHANNELS - buf_at);
 

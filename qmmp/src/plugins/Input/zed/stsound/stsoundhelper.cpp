@@ -51,14 +51,13 @@ bool StSoundHelper::initialize()
 
 qint64 StSoundHelper::read(unsigned char *data, qint64 maxSize)
 {
-    qint64 stereoSize, i;
     ymsample *psample = (ymsample *)data;
-    stereoSize = maxSize / (2 * sizeof(ymsample));
+    qint64 stereoSize = maxSize / (2 * sizeof(ymsample));
 
     if(m_music->update(psample, stereoSize))
     {
         // recopy mono YM sound to 2 channels
-        for(i=stereoSize-1; i>=0; i--)
+        for(qint64 i = stereoSize - 1; i >= 0; --i)
         {
             psample[(i * 2)    ] = psample[i];
             psample[(i * 2) + 1] = psample[i];

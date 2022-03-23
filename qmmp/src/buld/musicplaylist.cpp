@@ -116,7 +116,8 @@ bool MusicPlaylist::removeMedia(int start, int end)
     {
         return false;
     }
-    for(int i=0; i<end - start; ++i)
+
+    for(int i = 0; i < end - start; ++i)
     {
         m_mediaList.removeAt(start);
     }

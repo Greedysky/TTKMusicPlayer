@@ -355,7 +355,7 @@ void LightEnvelope::drawWaveform()
     painter.setPen(Qt::white);
     painter.setBrush(Qt::white);
 
-    for(int i = 0; i < m_data.count() - m_channels * 3; i+=3)
+    for(int i = 0; i < m_data.count() - m_channels * 3; i += 3)
     {
         const int ch = (i / 3) % m_channels;
         const float x1 = step * (i / m_channels / 3);
@@ -402,7 +402,7 @@ void LightEnvelope::drawWaveform()
     painter.setPen(QColor("#DDDDDD"));
     painter.setBrush(QColor("#DDDDDD"));
 
-    for(int i = 0; i < m_data.count() - m_channels * 3; i+=3)
+    for(int i = 0; i < m_data.count() - m_channels * 3; i += 3)
     {
         const int ch = (i / 3) % m_channels;
         const float x1 = step * (i / m_channels / 3);

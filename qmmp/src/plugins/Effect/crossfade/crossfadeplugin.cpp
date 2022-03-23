@@ -92,7 +92,7 @@ void CrossfadePlugin::applyEffect(Buffer *b)
 
 void CrossfadePlugin::mix(float *cur_buf, float *prev_buf, uint samples, double volume)
 {
-    for(uint i = 0; i < samples; i++)
+    for(uint i = 0; i < samples; ++i)
     {
         cur_buf[i] = cur_buf[i]*(1.0 - volume) + prev_buf[i]*volume;
         cur_buf[i] = qBound(-1.0f, cur_buf[i], 1.0f);

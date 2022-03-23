@@ -111,7 +111,7 @@ void PlusBlurXRays::process(float *left, float *)
 
 void PlusBlurXRays::blur()
 {
-    for(int y = 0; y < m_rows; y ++)
+    for(int y = 0; y < m_rows; ++y)
     {
         uint32_t * p = m_corner + m_cols * y;
         uint32_t * end = p + m_cols;
@@ -122,7 +122,7 @@ void PlusBlurXRays::blur()
          * off the lowest two bits.  Over a large area, this masking has the net
          * effect of subtracting 1.5 from each value, which by a happy chance
          * is just right for a gradual fade effect. */
-        for(; p < end; p ++)
+        for(; p < end; ++p)
         {
             *p = ((*plast ++ &0xFCFCFC) + (p[-1] & 0xFCFCFC) + (p[1] & 0xFCFCFC) + (*pnext ++ &0xFCFCFC)) >> 2;
         }
@@ -169,7 +169,7 @@ void PlusBlurXRays::draw(QPainter *p)
     int value = m_rows / 2 - m_intern_vis_data[0];
     value = qBound(0, value, m_rows - 1);
 
-    for(int i = 0; i < m_cols; i++)
+    for(int i = 0; i < m_cols; ++i)
     {
         int y = m_rows / 2 - m_intern_vis_data[i];
         y = qBound(0, y, m_rows - 1);

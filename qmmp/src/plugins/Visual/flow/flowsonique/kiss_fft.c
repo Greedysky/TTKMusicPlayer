@@ -184,7 +184,7 @@ static void kf_bfly_generic(kiss_fft_cpx * fout, const size_t fstride, const kis
 
     for( u=0; u<m; ++u ) {
         k=u;
-        for( q1=0 ; q1<p ; ++q1 ) {
+        for( q1=0; q1<p; ++q1 ) {
             scratch[q1] = fout[ k  ];
             C_FIXDIV(scratch[q1],p);
             k += m;

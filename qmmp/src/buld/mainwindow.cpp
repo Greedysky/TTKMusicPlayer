@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->timeSlider, SIGNAL(sliderMoved(int)), SLOT(setSeek(int)));
     connect(m_sound, SIGNAL(positionChanged(qint64)), SLOT(setTimeValue(qint64)));
 
-    for(int i=0; i<11; ++i)
+    for(int i = 0; i < 11; ++i)
     {
         QSlider *slider = new QSlider(this);
         slider->setRange(-20, 20);

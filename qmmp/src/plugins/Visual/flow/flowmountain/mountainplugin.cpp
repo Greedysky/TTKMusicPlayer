@@ -37,7 +37,7 @@ void MountainPlugin::process(float *left, float *)
     calc_freq(dest_l, left);
 
     float buffer[size];
-    for(int i=0; i<size; ++i)
+    for(int i = 0; i < size; ++i)
     {
         buffer[i] = dest_l[i] / ((QMMP_VISUAL_NODE_SIZE << 8) / (8.0 / 2));
     }

@@ -21,9 +21,9 @@ static size_t pack_pcm_signed(FLAC__byte *output,
     uint16_t *data16 = (uint16_t *) output;
     uint32_t *data32 = (uint32_t *) output;
 
-     for(unsigned sample = 0; sample < samples; sample++)
+     for(unsigned sample = 0; sample < samples; ++sample)
      {
-         for(channel = 0; channel < channels; channel++)
+         for(channel = 0; channel < channels; ++channel)
          {
              switch(bps)
              {
@@ -286,7 +286,7 @@ bool DecoderFLAC::initialize()
                 if(tag->contains("DISCNUMBER") && !tag->fieldListMap()["DISCNUMBER"].isEmpty())
                 {
                     TagLib::StringList fld = tag->fieldListMap()["DISCNUMBER"];
-                    for(int i = 1; i <= m_parser->count(); i++)
+                    for(int i = 1; i <= m_parser->count(); ++i)
                     {
                         m_parser->setMetaData(i, Qmmp::DISCNUMBER, TStringToQString(fld.toString()));
                     }

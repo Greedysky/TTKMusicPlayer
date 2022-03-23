@@ -140,12 +140,11 @@ void DecoderVorbis::deinit()
 
 void DecoderVorbis::updateTags()
 {
-    int i;
     vorbis_comment *comments;
-
     QMap<Qmmp::MetaData, QString> metaData;
     comments = ov_comment(&oggfile, -1);
-    for(i = 0; i < comments->comments; i++)
+
+    for(int i = 0; i < comments->comments; ++i)
     {
         if(!strncasecmp(comments->user_comments[i], "title=", strlen("title=")))
             metaData.insert(Qmmp::TITLE, QString::fromUtf8(comments->user_comments[i] + strlen("title=")));

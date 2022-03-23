@@ -51,7 +51,7 @@ void AdplugHelper::deinit()
 QStringList AdplugHelper::instruments() const
 {
     QStringList insts;
-    for(unsigned int i = 0; i < instrumentCount(); i++)
+    for(unsigned int i = 0; i < instrumentCount(); ++i)
     {
         insts << QString::fromStdString(m_player->getinstrument(i));
     }

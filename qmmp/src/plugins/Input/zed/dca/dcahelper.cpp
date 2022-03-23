@@ -190,9 +190,9 @@ int convert_samples(decode_info *state, int)
     n = 256;
     int16_t *dst = state->output_buffer + state->remaining * state->channels;
 
-    for(i = 0; i < n; i++)
+    for(i = 0; i < n; ++i)
     {
-        for(c = 0; c < state->channels; c++)
+        for(c = 0; c < state->channels; ++c)
         {
             *dst++ = convert(*((int32_t*)(samples + 256 * c)));
         }
@@ -233,7 +233,7 @@ int dca_decode_data(decode_info *ddb_state, uint8_t * start, int size, int probe
                 int length = dca_syncinfo(ddb_state->state, ddb_state->buf, &ddb_state->flags, &ddb_state->sample_rate, &ddb_state->bitrate, &ddb_state->frame_length);
                 if(!length)
                 {
-                    for(ddb_state->bufptr = ddb_state->buf; ddb_state->bufptr < ddb_state->buf + HEADER_SIZE-1; ddb_state->bufptr++)
+                    for(ddb_state->bufptr = ddb_state->buf; ddb_state->bufptr < ddb_state->buf + HEADER_SIZE-1; ++ddb_state->bufptr)
                     {
                         ddb_state->bufptr[0] = ddb_state->bufptr[1];
                     }
@@ -265,7 +265,7 @@ int dca_decode_data(decode_info *ddb_state, uint8_t * start, int size, int probe
                     dca_dynrng(ddb_state->state, nullptr, nullptr);
                 }
 
-                for(int i = 0; i < dca_blocks_num(ddb_state->state); i++)
+                for(int i = 0; i < dca_blocks_num(ddb_state->state); ++i)
                 {
                     if(dca_block(ddb_state->state))
                     {
@@ -484,9 +484,9 @@ qint64 DCAHelper::read(unsigned char *data, qint64 maxSize)
 
                 // remap channels
                 char *in = (char *)m_info->output_buffer;
-                for(int s = 0; s < n; s++)
+                for(int s = 0; s < n; ++s)
                 {
-                    for(int i = 0; i < channels(); i++)
+                    for(int i = 0; i < channels(); ++i)
                     {
                         ((int16_t *)data)[i] = ((int16_t*)in)[channel_remap[chmap][i]];
                     }

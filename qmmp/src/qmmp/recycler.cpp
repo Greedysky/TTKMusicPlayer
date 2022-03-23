@@ -10,7 +10,7 @@ Recycler::Recycler()
 
 Recycler::~Recycler()
 {
-    for(unsigned int i = 0; i < m_buffer_count; i++)
+    for(unsigned int i = 0; i < m_buffer_count; ++i)
     {
         delete m_buffers[i];
         m_buffers[i] = nullptr;
@@ -27,7 +27,7 @@ void Recycler::configure(quint32 freq, int chan)
     if(block_samples == m_block_samples && buffer_count == m_buffer_count)
         return;
 
-    for(unsigned int i = 0; i < m_buffer_count; i++)
+    for(unsigned int i = 0; i < m_buffer_count; ++i)
     {
         delete m_buffers[i];
         m_buffers[i] = nullptr;
@@ -47,7 +47,7 @@ void Recycler::configure(quint32 freq, int chan)
 
     m_buffers = new Buffer*[m_buffer_count];
 
-    for(unsigned int i = 0; i < m_buffer_count; i++)
+    for(unsigned int i = 0; i < m_buffer_count; ++i)
     {
         m_buffers[i] = new Buffer(m_block_samples);
     }

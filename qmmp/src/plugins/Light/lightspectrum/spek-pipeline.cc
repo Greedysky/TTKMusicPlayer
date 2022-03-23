@@ -423,14 +423,14 @@ static void * worker_func(void *pp)
 
             if(frames % p->nfft == 0 || ((int_full || int_over) && num_fft == 0)) {
                 prev_head = head;
-                for(int i = 0; i < p->nfft; i++) {
+                for(int i = 0; i < p->nfft; ++i) {
                     float val = p->input[(p->input_size + head - p->nfft + i) % p->input_size];
                     val *= get_window(p->window_function, i, p->coss, p->nfft);
                     p->fft->set_input(i, val);
                 }
                 p->fft->execute();
                 num_fft++;
-                for(int i = 0; i < p->fft->get_output_size(); i++) {
+                for(int i = 0; i < p->fft->get_output_size(); ++i) {
                     p->output[i] += p->fft->get_output(i);
                 }
             }
@@ -443,7 +443,7 @@ static void * worker_func(void *pp)
                     acc_error += p->file->get_error_per_interval();
                 }
 
-                for(int i = 0; i < p->fft->get_output_size(); i++) {
+                for(int i = 0; i < p->fft->get_output_size(); ++i) {
                     p->output[i] /= num_fft;
                 }
 

@@ -34,19 +34,17 @@ void MountainWidget::addBuffer(float *left)
 
 void MountainWidget::initializeGL()
 {
-    for(int i = 0; i <= NUM_BANDS; i ++)
+    for(int i = 0; i <= NUM_BANDS; ++i)
     {
         m_logScale[i] = powf(256,(float) i / NUM_BANDS) - 0.5f;
     }
 
-    for(int y = 0; y < NUM_BANDS; y ++)
+    for(int y = 0; y < NUM_BANDS; ++y)
     {
-        float yf = (float)y / (NUM_BANDS - 1);
-
-        for(int x = 0; x < NUM_BANDS; x ++)
+        const float yf = (float)y / (NUM_BANDS - 1);
+        for(int x = 0; x < NUM_BANDS; ++x)
         {
-            float xf = (float)x / (NUM_BANDS - 1);
-
+            const float xf = (float)x / (NUM_BANDS - 1);
             m_colors[x][y][0] = (1 - xf) *(1 - yf);
             m_colors[x][y][1] = xf;
             m_colors[x][y][2] = yf;
@@ -92,7 +90,7 @@ void MountainWidget::paintGL()
 /* convert linear frequency graph to logarithmic one */
 void MountainWidget::makeLogGraph(const float * freq, float * graph)
 {
-    for(int i = 0; i < NUM_BANDS; i ++)
+    for(int i = 0; i < NUM_BANDS; ++i)
     {
         /* sum up values in freq array between m_logScale[i] and m_logScale[i + 1],
            including fractional parts */
@@ -111,7 +109,7 @@ void MountainWidget::makeLogGraph(const float * freq, float * graph)
                 sum += freq[a - 1] *(a - m_logScale[i]);
             }
 
-            for(; a < b; a ++)
+            for(; a < b; ++a)
             {
                 sum += freq[a];
             }
@@ -186,11 +184,11 @@ void MountainWidget::drawBars()
     glRotatef(m_angle + 180.0f, 0.0f, 1.0f, 0.0f);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-    for(int i = 0; i < NUM_BANDS; i ++)
+    for(int i = 0; i < NUM_BANDS; ++i)
     {
         float z = -1.6f +(NUM_BANDS - i) * BAR_SPACING;
 
-        for(int j = 0; j < NUM_BANDS; j ++)
+        for(int j = 0; j < NUM_BANDS; ++j)
         {
             drawBar(1.6f - BAR_SPACING * j, z, m_bars[(m_pos + i) % NUM_BANDS][j] * 1.6, m_colors[i][j][0], m_colors[i][j][1], m_colors[i][j][2]);
         }

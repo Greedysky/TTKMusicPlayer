@@ -180,7 +180,7 @@ LADSPAEffect *LADSPAHost::createEffect(LADSPAPlugin *plugin)
     LADSPAEffect *effect = new LADSPAEffect;
     effect->plugin = plugin;
 
-    for(unsigned long port = 0; port < plugin->desc->PortCount; port++)
+    for(unsigned long port = 0; port < plugin->desc->PortCount; ++port)
     {
         LADSPA_PortDescriptor d = plugin->desc->PortDescriptors[port];
         if(LADSPA_IS_PORT_CONTROL(d))

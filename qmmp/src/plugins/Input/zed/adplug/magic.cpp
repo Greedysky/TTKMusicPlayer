@@ -113,7 +113,7 @@ private:
 
       bseed = le32(&header[0]);
 
-      for(int i = 0; i < le16(&header[4]) + 1; i++) seed += brand(bseed);
+      for(int i = 0; i < le16(&header[4]) + 1; ++i) seed += brand(bseed);
 
       bseed = seed ^ le32(&header[6]);
 

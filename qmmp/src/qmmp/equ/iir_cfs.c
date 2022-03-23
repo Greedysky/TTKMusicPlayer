@@ -210,9 +210,9 @@ void calc_coeffs()
   double x0;
 
   n = 0;
-  for(; iir_bands[n].cfs; n++) {
+  for(; iir_bands[n].cfs; ++n) {
     double *freqs = (double *)iir_bands[n].cfs;
-    for(i=0; i<iir_bands[n].band_count; i++)
+    for(i = 0; i < iir_bands[n].band_count; ++i)
     {
 
       /* Find -3dB frequencies for the center freq */

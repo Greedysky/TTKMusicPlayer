@@ -13,7 +13,7 @@ FlowEthereality::FlowEthereality(QWidget *parent)
 
     qsrand(QDateTime::currentMSecsSinceEpoch());
 
-    for(int i = 0; i < 50; i++)
+    for(int i = 0; i < 50; ++i)
     {
         Ethereality *ethereality = new Ethereality(this);
         ethereality->resize(20, 200);
@@ -30,7 +30,7 @@ FlowEthereality::~FlowEthereality()
 void FlowEthereality::resizeEvent(QResizeEvent *)
 {
     const int perWidth = width() / 50;
-    for(int i = 0; i < m_etherealitys.count(); i++)
+    for(int i = 0; i < m_etherealitys.count(); ++i)
     {
         Ethereality *ethereality = m_etherealitys[i];
         ethereality->resize(perWidth, height());

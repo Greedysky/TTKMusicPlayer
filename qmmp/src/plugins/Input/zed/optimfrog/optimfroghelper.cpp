@@ -107,7 +107,7 @@ bool OptimFROGHelper::initialize()
 #else
     OptimFROG_getTags(m_decoder, &ofr_tags);
 #endif
-    for(uInt32_t i = 0; i < ofr_tags.keyCount; i++)
+    for(uInt32_t i = 0; i < ofr_tags.keyCount; ++i)
     {
         const QString key(ofr_tags.keys[i]);
         m_tags.insert(key.toLower(), QString(ofr_tags.values[i]));

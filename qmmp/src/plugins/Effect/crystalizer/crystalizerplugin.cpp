@@ -27,7 +27,7 @@ void CrystalizerPlugin::applyEffect(Buffer *b)
     float *data = b->data;
     for(size_t i = 0; i < b->samples; )
     {
-        for(int c = 0; c < channels(); c++, i++)
+        for(int c = 0; c < channels(); ++c, ++i)
         {
             const float v = data[i];
             data[i] = v + (v - m_buffer[c]) * (m_intensity * 1.0f / DEFAULT_INTENSITY);

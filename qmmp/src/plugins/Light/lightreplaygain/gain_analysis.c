@@ -154,7 +154,7 @@ int ResetSampleFrequency (GainHandle_t *handle, long samplefreq)
 {
     int  i = 0;
     // zero out initial values
-    for(i = 0; i < MAX_ORDER; i++)
+    for(i = 0; i < MAX_ORDER; ++i)
     {
         handle->linprebuf[i] = handle->lstepbuf[i] = handle->loutbuf[i] = 0;
         handle->rinprebuf[i] = handle->rstepbuf[i] = handle->routbuf[i] = 0.;
@@ -360,7 +360,7 @@ static Float_t analyzeResult (Uint32_t* Array, size_t len)
     size_t    i;
 
     elems = 0;
-    for(i = 0; i < len; i++)
+    for(i = 0; i < len; ++i)
         elems += Array[i];
     if(elems == 0)
         return GAIN_NOT_ENOUGH_SAMPLES;
@@ -382,13 +382,13 @@ Float_t GetTitleGain(GainHandle_t *handle)
 
     retval = analyzeResult (handle->A, sizeof(handle->A)/sizeof(*handle->A));
 
-    /*for(i = 0; i < (int)(sizeof(handle->A)/sizeof(*handle->A)); i++ )
+    /*for(i = 0; i < (int)(sizeof(handle->A)/sizeof(*handle->A)); ++i)
     {
         handle->B[i] += handle->A[i];
         handle->A[i]  = 0;
     }*/
 
-    for(i = 0; i < MAX_ORDER; i++ )
+    for(i = 0; i < MAX_ORDER; ++i)
     {
         handle->linprebuf[i] = handle->lstepbuf[i] = handle->loutbuf[i] = 0.f;
         handle->rinprebuf[i] = handle->rstepbuf[i] = handle->routbuf[i] = 0.f;
@@ -409,7 +409,7 @@ Float_t GetAlbumGain(GainHandle_t **handle, int count)
 
     for(i = 0; i < count; ++i)
     {
-        for(j = 0; j < sizeof(handle[i]->A)/sizeof(*handle[i]->A); ++j)
+        for(j = 0; j < sizeof(handle[i]->A) / sizeof(*handle[i]->A); ++j)
         {
             B[j] += handle[i]->A[j];
         }

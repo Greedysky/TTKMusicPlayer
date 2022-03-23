@@ -89,12 +89,12 @@ void WaveVoice::process(float *left, float *)
 
     short dest[256];
     short y;
-    int k, magnitude;
+    int magnitude;
 
     calc_freq(dest, left);
     double y_scale = (double) 1.25 * m_cols / log(256);
 
-    for(int i = 0; i < m_rows; i++)
+    for(int i = 0; i < m_rows; ++i)
     {
         y = 0;
         magnitude = 0;
@@ -104,7 +104,7 @@ void WaveVoice::process(float *left, float *)
             y = dest[i];
         }
 
-        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
+        for(int k = m_x_scale[i]; k < m_x_scale[i + 1]; ++k)
         {
             y = qMax(dest[k], y);
         }

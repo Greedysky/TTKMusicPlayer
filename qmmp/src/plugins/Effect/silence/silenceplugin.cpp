@@ -42,7 +42,7 @@ void SilencePlugin::applyEffect(Buffer *b)
     float* last = nullptr;
 
     float* data = b->data;
-    for(size_t i = 0; i < b->samples; i++)
+    for(size_t i = 0; i < b->samples; ++i)
     {
       if(data[i] > threshold || data[i] < -threshold)
       {

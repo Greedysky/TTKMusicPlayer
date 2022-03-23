@@ -184,7 +184,7 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
         return playlist;
     }
 
-    for(int i = 1; i <= info.tracks; i++)
+    for(int i = 1; i <= info.tracks; ++i)
     {
         sc68_music_info_t ti;
         memset(&ti, 0, sizeof(ti));

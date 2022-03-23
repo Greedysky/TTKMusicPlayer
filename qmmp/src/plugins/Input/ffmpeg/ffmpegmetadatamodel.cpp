@@ -36,7 +36,7 @@ FFmpegMetaDataModel::FFmpegMetaDataModel(const QString &path, bool readOnly)
 
         AVCodecParameters *c = nullptr;
 
-        for(uint idx = 0; idx < in->nb_streams; idx++)
+        for(uint idx = 0; idx < in->nb_streams; ++idx)
         {
             c = in->streams[idx]->codecpar;
 

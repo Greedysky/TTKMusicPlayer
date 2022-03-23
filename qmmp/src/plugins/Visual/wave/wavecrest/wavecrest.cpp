@@ -62,7 +62,7 @@ void WaveCrest::process(float *left, float *)
 
     short dest[256];
     short y = 0;
-    int k, magnitude = 0;
+    int magnitude = 0;
 
     calc_freq(dest, left);
     const double y_scale = (double) 1.25 * m_rows / log(256);
@@ -72,7 +72,7 @@ void WaveCrest::process(float *left, float *)
         y = dest[0];
     }
 
-    for(k = m_x_scale[0]; k < m_x_scale[1]; k++)
+    for(int k = m_x_scale[0]; k < m_x_scale[1]; ++k)
     {
         y = qMax(dest[k], y);
     }
@@ -101,9 +101,9 @@ void WaveCrest::draw(QPainter *p)
             m_backgroundImage = m_backgroundImage.copy(1, 0, m_cols, m_rows);
         }
 
-        for(int i=0; i<m_vis_data / 2; ++i)
+        for(int i = 0; i < m_vis_data / 2; ++i)
         {
-            int r = qMin(0x5f + i*3, 0xff);
+            const int r = qMin(0x5f + i*3, 0xff);
             m_backgroundImage.setPixel(m_pixPos, qMax(m_rows / 2 - i, 0), qRgb(r, r, r));
             m_backgroundImage.setPixel(m_pixPos, qMin(m_rows / 2 + i, m_rows), qRgb(r, r, r));
         }

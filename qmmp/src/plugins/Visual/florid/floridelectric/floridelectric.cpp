@@ -153,14 +153,14 @@ void ElectricCircleLabel::paintEvent(QPaintEvent *e)
 
 ElectricLabel::ElectricLabel(QWidget *parent)
 {
-    for(int i=0; i<ANIMATION_SIZE * 5; ++i)
+    for(int i = 0; i < ANIMATION_SIZE * 5; ++i)
     {
         ElectricPointLabel *label = new ElectricPointLabel(parent);
         label->setGeometry(parent->geometry());
         m_pointLabels << label;
     }
 
-    for(int i=0; i<ANIMATION_SIZE; ++i)
+    for(int i = 0; i < ANIMATION_SIZE; ++i)
     {
         ElectricCircleLabel *label = new ElectricCircleLabel(parent);
         label->setGeometry(parent->geometry());

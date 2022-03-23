@@ -16,7 +16,7 @@ NormalLine::NormalLine(QWidget *parent)
     setWindowTitle(tr("Normal Line Widget"));
     setMinimumSize(2 * 300 - 30, 105);
 
-    for(int i=0; i<50; ++i)
+    for(int i = 0; i < 50; ++i)
     {
         m_starPoints << new StarPoint();
     }
@@ -197,7 +197,7 @@ void NormalLine::process(float *left, float *right)
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
-    for(int i = 0; i < m_cols; i++)
+    for(int i = 0; i < m_cols; ++i)
     {
         int j = m_cols * 2 - i - 1; //mirror index
         short yl = 0;
@@ -211,7 +211,7 @@ void NormalLine::process(float *left, float *right)
             yr = dest_r[i];
         }
 
-        for(int k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
+        for(int k = m_x_scale[i]; k < m_x_scale[i + 1]; ++k)
         {
             yl = qMax(dest_l[k], yl);
             yr = qMax(dest_r[k], yr);

@@ -50,12 +50,12 @@ bool OpenMPTHelper::initialize()
     m_sampleCount = openmpt_module_get_num_samples(m_mod);
     m_channelCount = openmpt_module_get_num_channels(m_mod);
 
-    for(int i = 0; i < openmpt_module_get_num_instruments(m_mod); i++)
+    for(int i = 0; i < openmpt_module_get_num_instruments(m_mod); ++i)
     {
         m_instruments.push_back(toString(openmpt_module_get_instrument_name(m_mod, i)));
     }
 
-    for(int i = 0; i < openmpt_module_get_num_samples(m_mod); i++)
+    for(int i = 0; i < openmpt_module_get_num_samples(m_mod); ++i)
     {
         m_samples.push_back(toString(openmpt_module_get_sample_name(m_mod, i)));
     }

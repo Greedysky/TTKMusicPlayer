@@ -45,7 +45,7 @@ void FFTPlanImpl::execute()
     float n2 = n * n;
     set_output(0, 10.0f * log10f(get_input(0) * get_input(0) / n2));
     set_output(n / 2, 10.0f * log10f(get_input(1) * get_input(1) / n2));
-    for(int i = 1; i < n / 2; i++) {
+    for(int i = 1; i < n / 2; ++i) {
         float re = get_input(i * 2);
         float im = get_input(i * 2 + 1);
         set_output(i, 10.0f * log10f((re * re + im * im) / n2));
