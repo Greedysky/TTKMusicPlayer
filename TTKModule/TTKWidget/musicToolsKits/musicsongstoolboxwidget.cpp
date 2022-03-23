@@ -255,7 +255,7 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
 
 void MusicSongsToolBoxWidget::setMusicSongSort(QWidget *item, MusicSongSort *sort)
 {
-    for(int i=0; i<m_itemList.count(); ++i)
+    for(int i = 0; i < m_itemList.count(); ++i)
     {
         MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
         if(it->item() == item)

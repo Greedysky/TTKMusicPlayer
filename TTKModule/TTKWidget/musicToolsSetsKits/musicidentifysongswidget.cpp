@@ -183,7 +183,7 @@ void MusicIdentifySongsWidget::positionChanged(qint64 position)
     if(time < position * MT_S2MS && time != -1)
     {
         QString lrc;
-        for(int i=0; i<m_analysis->lineMax(); ++i)
+        for(int i = 0; i < m_analysis->lineMax(); ++i)
         {
             if(i == m_analysis->lineMiddle())
             {

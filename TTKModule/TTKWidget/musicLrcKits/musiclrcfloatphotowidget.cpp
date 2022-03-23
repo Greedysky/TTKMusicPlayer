@@ -252,7 +252,7 @@ void MusicLrcFloatPhotoWidget::showPhoto() const
     m_next->setEnabled(m_currentIndex != page);
 
     const int indexCheck = m_currentIndex * PHOTO_PERLINE;
-    for(int i=0; i<m_planes.count(); ++i)
+    for(int i = 0; i < m_planes.count(); ++i)
     {
         m_planes[i]->setPhoto((indexCheck + i) < m_artPath.count() ? m_artPath[indexCheck + i] : QString());
         //check show radio button
@@ -280,7 +280,8 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
 
     m_selectNum.clear();
     m_artPath = G_BACKGROUND_PTR->artistPhotoPathList();
-    for(int i=0; i<m_artPath.count(); ++i)
+
+    for(int i = 0; i < m_artPath.count(); ++i)
     {
         m_selectNum << i;
     }
@@ -331,7 +332,7 @@ void MusicLrcFloatPhotoWidget::selectAllStateChanged(bool state)
 {
     if(state)
     {
-        for(int i=0; i<m_artPath.count(); ++i)
+        for(int i = 0; i < m_artPath.count(); ++i)
         {
             m_selectNum << i;
         }
@@ -352,7 +353,7 @@ void MusicLrcFloatPhotoWidget::paintEvent(QPaintEvent *event)
     MusicAbstractFloatWidget::paintEvent(event);
 
     QPainter painter(this);
-    for(int i=0; i<= ceil(width() / PHOTO_BACKGROUNDG_WIDTH); ++i)
+    for(int i = 0; i <= ceil(width() / PHOTO_BACKGROUNDG_WIDTH); ++i)
     {
         painter.drawPixmap(PHOTO_BACKGROUNDG_WIDTH * i, 0, QPixmap(":/lrc/lb_film_bg"));
     }

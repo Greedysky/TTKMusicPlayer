@@ -182,7 +182,7 @@ TTKVariantMap MusicAbstractXml::readXmlAttributesByTagName(const QString &tagNam
 
     const QDomNamedNodeMap &nodes = nodeList.at(0).toElement().attributes();
     TTKVariantMap maps;
-    for(int i=0; i<nodes.count(); ++i)
+    for(int i = 0; i < nodes.count(); ++i)
     {
         const QDomAttr &attr = nodes.item(i).toAttr();
         maps[attr.name()] = attr.value();
@@ -244,7 +244,7 @@ QDomElement MusicAbstractXml::writeDomElementMutil(QDomElement &element, const Q
     }
 
     QDomElement domElement = writeDomElement(element, node, attrs.front());
-    for(int i=1; i<attrs.count(); ++i)
+    for(int i = 1; i < attrs.count(); ++i)
     {
         writeAttribute(domElement, attrs[i]);
     }

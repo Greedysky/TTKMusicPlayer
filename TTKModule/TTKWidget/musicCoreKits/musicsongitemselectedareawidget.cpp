@@ -35,7 +35,7 @@ void MusicSongItemSelectedTableWidget::createAllItems(MusicSongItemList *items)
 
     setRowCount(items->count());
     QHeaderView *headerview = horizontalHeader();
-    for(int i=0; i<items->count(); ++i)
+    for(int i = 0; i < items->count(); ++i)
     {
         const MusicSongItem &song = items->at(i);
         QTableWidgetItem *item = new QTableWidgetItem;
@@ -54,7 +54,7 @@ void MusicSongItemSelectedTableWidget::createAllItems(MusicSongItemList *items)
 TTKIntList MusicSongItemSelectedTableWidget::selectedItems() const
 {
     TTKIntList list;
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         const QTableWidgetItem *it = item(i, 0);
         if(it && it->data(MUSIC_CHECK_ROLE) == Qt::Checked)
@@ -67,7 +67,7 @@ TTKIntList MusicSongItemSelectedTableWidget::selectedItems() const
 
 void MusicSongItemSelectedTableWidget::selectedAllItems(bool check)
 {
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }

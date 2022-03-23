@@ -38,7 +38,7 @@ void MusicLocalSongsTableWidget::clear()
 void MusicLocalSongsTableWidget::addItems(const QFileInfoList &path)
 {
     QHeaderView *headerview = horizontalHeader();
-    for(int i=0; i<path.count(); i++)
+    for(int i = 0; i < path.count(); ++i)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(path[i].fileName());

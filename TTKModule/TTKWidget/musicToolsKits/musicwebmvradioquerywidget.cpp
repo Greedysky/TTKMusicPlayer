@@ -149,13 +149,13 @@ void MusicWebMVRadioQueryWidget::resizeWindow()
 
     if(!m_resizeWidgets.isEmpty() && m_gridLayout)
     {
-        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->removeWidget(m_resizeWidgets[i].m_label);
         }
 
         const int lineNumber = width() / LINE_SPACING_SIZE;
-        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignCenter);
         }

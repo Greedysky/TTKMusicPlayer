@@ -147,7 +147,7 @@ void MusicAlbumQueryWidget::createAlbumInfoItem(const MusicResultsItem &item)
             download->startToDownload(item.m_coverUrl);
         }
 
-        for(int i=0; i<list.count(); ++i)
+        for(int i = 0; i < list.count(); ++i)
         {
             if(list[i].isEmpty())
             {
@@ -267,7 +267,7 @@ void MusicAlbumQueryWidget::createLabels()
     int number = 9;
     numberLabel->setText(QString("%1.%2").arg(number).arg(1));
     topRightLayout->addWidget(numberLabel, 0, 0);
-    for(int i=1; i<=5; ++i)
+    for(int i = 1; i <= 5; ++i)
     {
         QLabel *label = new QLabel(topRightWidget);
         label->setPixmap(QPixmap((ceil(number / 2.0) - i) >= 0 ? ":/tiny/lb_star" : ":/tiny/lb_unstar"));
@@ -276,7 +276,7 @@ void MusicAlbumQueryWidget::createLabels()
 
     QLabel *numberTextLabel = new QLabel(tr("Score:"), topRightWidget);
     topRightLayout->addWidget(numberTextLabel, 1, 0);
-    for(int i=1; i<=5; ++i)
+    for(int i = 1; i <= 5; ++i)
     {
         QLabel *label = new QLabel(topRightWidget);
         label->setFixedSize(26, 22);

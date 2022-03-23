@@ -78,7 +78,7 @@ void MusicItemQueryTableWidget::downloadDataFrom(bool play)
         return;
     }
 
-    for(int i=0; i<list.count(); ++i)
+    for(int i = 0; i < list.count(); ++i)
     {
         if(downloadDataFrom(musicSongInfos[list[i]], play && (i == 0)))
         {
@@ -119,7 +119,7 @@ void MusicItemQueryTableWidget::resizeWindow()
     headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) * 0.5 + 342);
     headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN) * 0.5 + 110);
 
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
         it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
@@ -288,7 +288,7 @@ void MusicItemQueryTableWidget::createFinishedItem()
 {
     setRowCount(rowCount() + 1);
     const int count = rowCount() - 1;
-    for(int i=0; i<columnCount(); ++i)
+    for(int i = 0; i < columnCount(); ++i)
     {
         setItem(count, i, new QTableWidgetItem);
     }

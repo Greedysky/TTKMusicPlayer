@@ -26,7 +26,7 @@ bool MusicPlatformManager::isFileAssociate()
 void MusicPlatformManager::setMusicRegeditAssociateFileIcon()
 {
     const QStringList &types = MusicFormats::supportMusicFormats();
-    for(int i=0; i<types.count(); ++i)
+    for(int i = 0; i < types.count(); ++i)
     {
         const QString &type = types[i];
         if(!currentNodeExist(type))

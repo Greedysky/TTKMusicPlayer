@@ -170,7 +170,7 @@ void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
             m_spectrumLayout->addWidget(widget);
 #else
             MusicSpectrum type;
-            for(int i=0; i<m_types.count(); ++i)
+            for(int i = 0; i < m_types.count(); ++i)
             {
                 if(m_types[i].m_object == widget)
                 {
@@ -369,7 +369,7 @@ int MusicSpectrumWidget::findSpectrumWidget(const QString &name)
         return -1;
     }
 
-    for(int i=0; i<m_types.count(); ++i)
+    for(int i = 0; i < m_types.count(); ++i)
     {
         if(m_types[i].m_module.contains(name))
         {

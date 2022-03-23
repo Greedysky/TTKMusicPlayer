@@ -44,11 +44,11 @@ void MusicHlPalette::paintEvent(QPaintEvent *event)
     const int ntRight = rect().right();
     const int ntBottm = rect().bottom();
     QColor colorStart, colorDatum, colorFinal;
-    for(int it=0; it< ntRight + 1; it++)
+    for(int it = 0; it < ntRight + 1; ++it)
     {
-        colorStart.setHslF(it/double(ntRight), m_dblSaturation, 1);
-        colorDatum.setHslF(it/double(ntRight), m_dblSaturation, 0.5);
-        colorFinal.setHslF(it/double(ntRight), m_dblSaturation, 0);
+        colorStart.setHslF(it / double(ntRight), m_dblSaturation, 1);
+        colorDatum.setHslF(it / double(ntRight), m_dblSaturation, 0.5);
+        colorFinal.setHslF(it / double(ntRight), m_dblSaturation, 0);
 
         QLinearGradient linearGradient;
         linearGradient.setStart(QPointF(it, 0));

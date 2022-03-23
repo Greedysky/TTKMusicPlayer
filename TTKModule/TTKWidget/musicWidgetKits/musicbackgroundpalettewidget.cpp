@@ -137,9 +137,9 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
     //
     QGridLayout *layout = new QGridLayout(m_ui->mutliWidget);
     layout->setContentsMargins(0, 0, 0, 0);
-    for(int i=0; i<COLOR_ROW; ++i)
+    for(int i = 0; i < COLOR_ROW; ++i)
     {
-        for(int j=0; j<COLOR_COL; ++j)
+        for(int j = 0; j < COLOR_COL; ++j)
         {
             MusicBackgroundPalette *label = new MusicBackgroundPalette(this);
             QColor color = colors[i * COLOR_COL + j];

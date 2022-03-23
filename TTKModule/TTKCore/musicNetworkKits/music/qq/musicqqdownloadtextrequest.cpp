@@ -60,7 +60,7 @@ void MusicQQDownLoadTextRequest::downLoadFinished()
             if(value.contains("retcode") && value["retcode"].toInt() == 0)
             {
                 lrcData = value["lyric"].toByteArray();
-                for(int i=0; i<255; ++i)
+                for(int i = 0; i < 255; ++i)
                 {
                     lrcData.replace(QString("&#%1;").arg(i).toUtf8(), QString(QChar(i)).toUtf8());
                 }

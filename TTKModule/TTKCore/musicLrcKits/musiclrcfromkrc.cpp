@@ -60,7 +60,7 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
     }
 
     src += 4;
-    for(int i = 0; i < st.st_size; i++)
+    for(int i = 0; i < st.st_size; ++i)
     {
         src[i] = (uchar)(src[i] ^ key[i % 16]);
     }
@@ -167,7 +167,7 @@ void MusicLrcFromKrc::createLrc(uchar *lrc, int lrclen)
 {
     m_data.clear();
     int top = 0;
-    for(int i = 0; i<lrclen; i++)
+    for(int i = 0; i < lrclen; ++i)
     {
         int len;
         if(top == 0)
@@ -179,9 +179,9 @@ void MusicLrcFromKrc::createLrc(uchar *lrc, int lrclen)
                     break;
                 case '[':
                     len = (strchr((char*)&lrc[i], ']') - (char*)&lrc[i]) + 1;
-                    for(int j = 0; j<len; j++)
+                    for(int j = 0; j < len; ++j)
                     {
-                        if(lrc[i+j] == ':')
+                        if(lrc[i + j] == ':')
                         {
                             if(isfilter((char*)&lrc[i]))
                             {
@@ -194,7 +194,7 @@ void MusicLrcFromKrc::createLrc(uchar *lrc, int lrclen)
                         }
                     }
 
-                    for(int j = 0; j<len; j++)
+                    for(int j = 0; j < len; ++j)
                     {
                         int ms;
                         if(lrc[i + j] == ',')
@@ -204,7 +204,7 @@ void MusicLrcFromKrc::createLrc(uchar *lrc, int lrclen)
                             ms = atoi((char*)&lrc[i + 1]);
                             sprintf(ftime, "[%.2d:%.2d.%.2d]", (ms % MT_H2MS) / MT_M2MS, (ms % MT_M2MS) / MT_S2MS, (ms % MT_M2MS) % 100);
 
-                            for(j = 0; j < 10; j++)
+                            for(j = 0; j < 10; ++j)
                             {
                                 m_data.append(ftime[j]);
                             }

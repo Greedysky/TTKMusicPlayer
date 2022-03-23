@@ -131,7 +131,7 @@ void MusicDownloadBatchTableItem::setCurrentQuality(int index)
     }
 
     index = -1;
-    for(int i=0; i<m_qulity->count(); ++i)
+    for(int i = 0; i < m_qulity->count(); ++i)
     {
         const MusicObject::MusicSongProperty &prop = m_qulity->itemData(i).value<MusicObject::MusicSongProperty>();
         if(prop.m_bitrate == bitrate)
@@ -202,7 +202,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     //
     if(QFile::exists(downloadName))
     {
-        for(int i=1; i<99; ++i)
+        for(int i = 1; i < 99; ++i)
         {
             if(!QFile::exists(downloadName))
             {
@@ -242,7 +242,7 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
     QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
     if(QFile::exists(downloadName))
     {
-        for(int i=1; i<99; ++i)
+        for(int i = 1; i < 99; ++i)
         {
             if(!QFile::exists(downloadName))
             {

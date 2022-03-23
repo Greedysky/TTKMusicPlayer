@@ -54,7 +54,7 @@ bool MusicFPLConfigManager::readPlaylistData(MusicSongItemList &items)
     double duration = 0.0f;
 
     FPLTrackChunk chunkRunner;
-    for(size_t i=0; i<plSize && !m_file.atEnd(); ++i)
+    for(size_t i = 0; i < plSize && !m_file.atEnd(); ++i)
     {
         m_file.read((char*)&chunkRunner, sizeof(FPLTrackChunk));
         // keys_dex sanity check

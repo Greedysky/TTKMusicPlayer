@@ -106,10 +106,10 @@ quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
         char* data;
         KLGetKeyboardLayoutProperty(layout, kKLKCHRData, TTKConst_cast(const void**, TTKReinterpret_cast(void**, &data)));
         int ct = *TTKReinterpret_cast(short*, data + 258);
-        for (int i = 0; i < ct; i++)
+        for(int i = 0; i < ct; ++i)
         {
             char* keyTable = data + 260 + 128 * i;
-            for (int j = 0; j < 128; j++)
+            for(int j = 0; j < 128; ++j)
             {
                 if(keyTable[j] == ch) return j;
             }

@@ -186,7 +186,7 @@ quint64 DesPrivate::bitTransform(const int *array, int len, quint64 source)
     quint64 dest = 0;
     const quint64 bts = source;
 
-    for(int bti = 0; bti < len; bti++)
+    for(int bti = 0; bti < len; ++bti)
     {
         if(array[bti] >= 0 && (bts & ARRAYMASK[array[bti]]) != 0)
         {
@@ -199,7 +199,7 @@ quint64 DesPrivate::bitTransform(const int *array, int len, quint64 source)
 void DesPrivate::desSubKeys(quint64 key, quint64* K, Des::Mode mode)
 {
     quint64 temp = bitTransform(ARRAYPC_1, 56, key);
-    for(int j = 0; j < 16; j++)
+    for(int j = 0; j < 16; ++j)
     {
         const quint64 source = temp;
         temp = ((source & ARRAYLSMASK[ARRAYLS[j]]) << (28 - ARRAYLS[j])) | ((source & ~ARRAYLSMASK[ARRAYLS[j]]) >> ARRAYLS[j]);
@@ -209,7 +209,7 @@ void DesPrivate::desSubKeys(quint64 key, quint64* K, Des::Mode mode)
     if(mode == Des::Decrypt)
     {
         quint64 t;
-        for(int j = 0; j < 8; j++)
+        for(int j = 0; j < 8; ++j)
         {
             t = K[j];
             K[j] = K[15 - j];
@@ -229,7 +229,7 @@ quint64 DesPrivate::des64(quint64 *subkeys, quint64 data)
     pSource[0] = (int) (out & quint64(0x00000000ffffffffl));
     pSource[1] = (int) ((out & quint64(0xffffffff00000000l)) >> 32);
 
-    for(int i = 0; i < 16; i++)
+    for(int i = 0; i < 16; ++i)
     {
         r = pSource[1];
         r = bitTransform(ARRAYE, 64, r);
@@ -241,7 +241,7 @@ quint64 DesPrivate::des64(quint64 *subkeys, quint64 data)
         }
 
         sOut = 0;
-        for(int sbi = 7; sbi >= 0; sbi--)
+        for(int sbi = 7; sbi >= 0; --sbi)
         {
             sOut <<= 4;
             sOut |= MATRIXNSBOX[sbi][pR[sbi]];
@@ -270,7 +270,7 @@ quint64 DesPrivate::des64(quint64 *subkeys, quint64 data)
 char* DesPrivate::encrypt(char *src, int length, char *key)
 {
     quint64 keyl = 0;
-    for(int i = 0; i < 8; i++)
+    for(int i = 0; i < 8; ++i)
     {
         const quint64 temp = (quint64) key[i] << (i * 8);
         keyl |= temp;
@@ -279,24 +279,24 @@ char* DesPrivate::encrypt(char *src, int length, char *key)
     const int num = length / 8;
 
     quint64* subKey = new quint64[16];
-    for(int i = 0; i < 16; i++)
+    for(int i = 0; i < 16; ++i)
     {
         subKey[i] = 0;
     }
     desSubKeys(keyl, subKey, m_mode);
 
     quint64* pSrc = (quint64*) malloc(num * sizeof(quint64));
-    for(int i = 0; i < num; i++)
+    for(int i = 0; i < num; ++i)
     {
         pSrc[i] = 0;
-        for(int j = 0; j < 8; j++)
+        for(int j = 0; j < 8; ++j)
         {
             pSrc[i] |= (quint64) src[i * 8 + j] << (j * 8);
         }
     }
 
     quint64* pEncyrpt = (quint64*) malloc((((num + 1) * 8 + 1) / 8) * sizeof(quint64));
-    for(int i = 0; i < num; i++)
+    for(int i = 0; i < num; ++i)
     {
         pEncyrpt[i] = des64(subKey, pSrc[i]);
     }
@@ -308,7 +308,7 @@ char* DesPrivate::encrypt(char *src, int length, char *key)
     memcpy(szTail, src + num * 8, length - num * 8);
 
     quint64 tail64 = 0;
-    for(int i = 0; i < tailNum; i++)
+    for(int i = 0; i < tailNum; ++i)
     {
         tail64 = tail64 | (quint64(szTail[i])) << (i * 8);
     }
@@ -317,7 +317,7 @@ char* DesPrivate::encrypt(char *src, int length, char *key)
     char* result = (char*) malloc((num + 1) * 8);
 
     int temp = 0;
-    for(int i = 0; i < (num + 1); i++)
+    for(int i = 0; i < num + 1; ++i)
     {
         for(int j = 0; j < 8; ++j)
         {

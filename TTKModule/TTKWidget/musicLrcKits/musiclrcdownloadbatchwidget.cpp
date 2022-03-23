@@ -25,7 +25,7 @@ void MusicLrcDownloadBatchTableWidget::createAllItems(const MusicSongList &items
 {
     setRowCount(items.count());
     QHeaderView *headerview = horizontalHeader();
-    for(int i=0; i<items.count(); ++i)
+    for(int i = 0; i < items.count(); ++i)
     {
         const MusicSong &song = items[i];
 
@@ -119,7 +119,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
     m_ui->addButton->setEnabled(false);
     m_ui->downloadButton->setEnabled(false);
 
-    for(int i=0; i<m_ui->tableWidget->rowCount(); ++i)
+    for(int i = 0; i < m_ui->tableWidget->rowCount(); ++i)
     {
         QTableWidgetItem *it = m_ui->tableWidget->item(i, 4);
         if(it)
@@ -131,7 +131,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
     const bool skip = m_ui->skipAlreadyLrcCheckBox->isChecked();
     const bool lrcDir = m_ui->saveToLrcDirRadioBox->isChecked();
 
-    for(int i=0; i<m_localSongs.count(); ++i)
+    for(int i = 0; i < m_localSongs.count(); ++i)
     {
         QTableWidgetItem *it = m_ui->tableWidget->item(i, 4);
         if(!it)

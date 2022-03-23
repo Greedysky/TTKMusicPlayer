@@ -155,7 +155,7 @@ MusicFuntionAnimationWidget::MusicFuntionAnimationWidget(QWidget *parent)
 
     QStringList names;
     names << tr("Playlist") << tr("Cloud") << tr("Radio") << tr("Mobile") << tr("Download");
-    for(int i=0; i<names.count(); ++i)
+    for(int i = 0; i < names.count(); ++i)
     {
         QToolButton *btn = new QToolButton(this);
         btn->setToolTip(names[i]);
@@ -207,7 +207,7 @@ MusicOptionAnimationWidget::MusicOptionAnimationWidget(QWidget *parent)
 
     QHBoxLayout *ly = TTKStatic_cast(QHBoxLayout*, layout());
 
-    for(int i=0; i<6; ++i)
+    for(int i = 0; i < 6; ++i)
     {
         QToolButton *btn = new QToolButton(this);
         btn->setFixedSize(54, 23);
@@ -266,7 +266,7 @@ MusicSkinAnimationWidget::MusicSkinAnimationWidget(QWidget *parent)
 
     QStringList names;
     names << tr("Recommand") << tr("Stack") << tr("Daily") << tr("Online");
-    for(int i=0; i<names.count(); ++i)
+    for(int i = 0; i < names.count(); ++i)
     {
         QToolButton *btn = new QToolButton(this);
         btn->setText(names[i]);

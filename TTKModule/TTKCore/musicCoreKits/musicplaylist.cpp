@@ -23,7 +23,7 @@ void MusicPlaylist::setPlaybackMode(MusicObject::PlayMode mode)
 int MusicPlaylist::mapItemIndex(const MusicPlayItem &item) const
 {
     int playIndex = -1;
-    for(int i=0; i<m_mediaList.count(); ++i)
+    for(int i = 0; i < m_mediaList.count(); ++i)
     {
         const MusicPlayItem &it = m_mediaList[i];
         if(item == it)

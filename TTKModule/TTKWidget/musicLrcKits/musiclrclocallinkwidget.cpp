@@ -18,7 +18,7 @@ MusicLrcLocalLinkTableWidget::MusicLrcLocalLinkTableWidget(QWidget *parent)
 
 bool MusicLrcLocalLinkTableWidget::contains(const QString &string)
 {
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         if(item(i, 1)->toolTip() == string)
         {
@@ -34,7 +34,7 @@ void MusicLrcLocalLinkTableWidget::createAllItems(const MusicLocalDataItemList &
     setRowCount(count + items.count());
 
     QHeaderView *headerview = horizontalHeader();
-    for(int i=0; i<items.count(); ++i)
+    for(int i = 0; i < items.count(); ++i)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(items[i].m_name);

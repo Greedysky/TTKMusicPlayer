@@ -134,13 +134,13 @@ void MusicArtistMvsQueryWidget::resizeWindow()
 {
     if(!m_resizeWidgets.isEmpty())
     {
-        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->removeWidget(m_resizeWidgets[i].m_label);
         }
 
         const int lineNumber = width() / LINE_SPACING_SIZE;
-        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignCenter);
         }
@@ -227,13 +227,13 @@ void MusicArtistSimilarQueryWidget::resizeWindow()
 {
     if(!m_resizeWidgets.isEmpty())
     {
-        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->removeWidget(m_resizeWidgets[i].m_label);
         }
 
         const int lineNumber = width() / HEIGHT_LABEL_SIZE;
-        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignCenter);
         }
@@ -296,13 +296,13 @@ void MusicArtistAlbumsQueryWidget::resizeWindow()
 {
     if(!m_resizeWidgets.isEmpty())
     {
-        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->removeWidget(m_resizeWidgets[i].m_label);
         }
 
         const int lineNumber = width() / LINE_SPACING_SIZE;
-        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignCenter);
         }
@@ -637,7 +637,7 @@ void MusicArtistQueryWidget::createLabels()
     int number = 9;
     numberLabel->setText(QString("%1.%2").arg(number).arg(1));
     topRightLayout->addWidget(numberLabel, 0, 0);
-    for(int i=1; i<=5; ++i)
+    for(int i = 1; i <= 5; ++i)
     {
         QLabel *label = new QLabel(topRightWidget);
         label->setPixmap(QPixmap((ceil(number / 2.0) - i) >= 0 ? ":/tiny/lb_star" : ":/tiny/lb_unstar"));
@@ -647,7 +647,7 @@ void MusicArtistQueryWidget::createLabels()
     QLabel *numberTextLabel = new QLabel(tr("Score:"), topRightWidget);
     numberTextLabel->setAlignment(Qt::AlignCenter);
     topRightLayout->addWidget(numberTextLabel, 1, 0);
-    for(int i=1; i<=5; ++i)
+    for(int i = 1; i <= 5; ++i)
     {
         QLabel *label = new QLabel(topRightWidget);
         label->setFixedSize(26, 22);

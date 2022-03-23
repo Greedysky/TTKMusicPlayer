@@ -56,7 +56,7 @@ void MusicBarrageWidget::start()
         return;
     }
 
-    for(int i=0; i<m_labels.count(); i++)
+    for(int i = 0; i < m_labels.count(); ++i)
     {
         m_labels[i]->show();
         m_animations[i]->start();
@@ -70,7 +70,7 @@ void MusicBarrageWidget::pause()
         return;
     }
 
-    for(int i=0; i<m_labels.count(); i++)
+    for(int i = 0; i < m_labels.count(); ++i)
     {
         m_labels[i]->hide();
         m_animations[i]->pause();
@@ -79,7 +79,7 @@ void MusicBarrageWidget::pause()
 
 void MusicBarrageWidget::stop()
 {
-    for(int i=0; i<m_labels.count(); i++)
+    for(int i = 0; i < m_labels.count(); ++i)
     {
         m_labels[i]->hide();
         m_animations[i]->stop();

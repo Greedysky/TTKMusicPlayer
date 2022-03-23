@@ -28,7 +28,7 @@ void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongCheckTo
 {
     setRowCount(items.count());
     QHeaderView *headerview = horizontalHeader();
-    for(int i=0; i<items.count(); ++i)
+    for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongCheckToolsRename &song = items[i];
         QTableWidgetItem *item = new QTableWidgetItem;
@@ -64,7 +64,7 @@ void MusicSongCheckToolsRenameTableWidget::itemCellClicked(int row, int column)
 
 void MusicSongCheckToolsRenameTableWidget::selectedAllItems(bool check)
 {
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }
@@ -128,7 +128,7 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongChec
 {
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
-    for(int i=0; i<songs.count(); ++i)
+    for(int i = 0; i < songs.count(); ++i)
     {
         const MusicSongCheckToolsDuplicate &song = songs[i];
         QTableWidgetItem *item = new QTableWidgetItem;
@@ -180,7 +180,7 @@ void MusicSongCheckToolsDuplicateTableWidget::itemCellClicked(int row, int colum
 
 void MusicSongCheckToolsDuplicateTableWidget::selectedAllItems(bool check)
 {
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }
@@ -260,7 +260,7 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
 {
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
-    for(int i=0; i<songs.count(); ++i)
+    for(int i = 0; i < songs.count(); ++i)
     {
         const MusicSongCheckToolsQuality &song = songs[i];
         QTableWidgetItem *item = new QTableWidgetItem;
@@ -325,7 +325,7 @@ void MusicSongCheckToolsQualityTableWidget::itemCellClicked(int row, int column)
 
 void MusicSongCheckToolsQualityTableWidget::selectedAllItems(bool check)
 {
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }

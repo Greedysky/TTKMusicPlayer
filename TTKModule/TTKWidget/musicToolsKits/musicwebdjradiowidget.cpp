@@ -41,7 +41,7 @@ void MusicWebDJRadioProgramTableWidget::resizeWindow()
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(2, width - WINDOW_WIDTH_MIN + 315);
 
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 2);
         it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));

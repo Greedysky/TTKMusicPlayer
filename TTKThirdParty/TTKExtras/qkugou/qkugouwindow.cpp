@@ -462,7 +462,7 @@ void QKugouWindow::createKugouSingleWidget()
 void QKugouWindow::changeClickedButtonStyle(int index)
 {
     TTK_D(QKugouWindow);
-    for(int i=0; i<d->m_buttonGroup->buttons().count(); ++i)
+    for(int i = 0; i < d->m_buttonGroup->buttons().count(); ++i)
     {
         d->m_buttonGroup->button(i)->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01);
     }

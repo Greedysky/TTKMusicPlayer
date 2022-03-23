@@ -234,7 +234,7 @@ void MusicLocalSongsManagerWidget::filterScanChanged(int index)
 void MusicLocalSongsManagerWidget::musicSearchResultChanged(int, int index)
 {
     TTKIntList result;
-    for(int i=0; i<m_fileNames.count(); ++i)
+    for(int i = 0; i < m_fileNames.count(); ++i)
     {
         if(m_fileNames[i].fileName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {

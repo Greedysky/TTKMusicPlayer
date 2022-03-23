@@ -40,7 +40,7 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongList &s
     setRowCount(songs.count());
 
     QHeaderView *headerview = horizontalHeader();
-    for(int i=count; i<songs.count(); i++)
+    for(int i = count; i < songs.count(); ++i)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
@@ -83,7 +83,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
     MusicAbstractSongsListTableWidget::selectRow(index);
 
     adjustPlayWidgetRow();
-    for(int i=0; i<columnCount(); ++i)
+    for(int i = 0; i < columnCount(); ++i)
     {
         delete takeItem(index, i);
     }
@@ -107,7 +107,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
 
 void MusicSongsListPlayedTableWidget::clearPlayQueueState()
 {
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 0);
         if(it)
@@ -286,7 +286,7 @@ void MusicSongsListPlayedTableWidget::setDeleteItemAt()
         adjustPlayWidgetRow();
     }
 
-    for(int i=deleteList.count() - 1; i>=0; --i)
+    for(int i = deleteList.count() - 1; i >= 0; --i)
     {
         const int index = deleteList[i];
         removeRow(index);

@@ -397,7 +397,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             //
             if(QFile::exists(downloadName))
             {
-                for(int i=1; i<99; ++i)
+                for(int i = 1; i < 99; ++i)
                 {
                     if(!QFile::exists(downloadName))
                     {
@@ -459,7 +459,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
             QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
             if(QFile::exists(downloadName))
             {
-                for(int i=1; i<99; ++i)
+                for(int i = 1; i < 99; ++i)
                 {
                     if(!QFile::exists(downloadName))
                     {

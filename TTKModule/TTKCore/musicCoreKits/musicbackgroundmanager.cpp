@@ -18,7 +18,7 @@ void MusicBackgroundManager::setArtistName(const QString &name)
 
     m_photos.clear();
     const QString &filter = BACKGROUND_DIR_FULL + (m_currentArtistName = sName) + "%1" + SKN_FILE;
-    for(int i=0; i<MAX_INDEX; ++i)
+    for(int i = 0; i < MAX_INDEX; ++i)
     {
         if(QFile::exists(filter.arg(i)))
         {

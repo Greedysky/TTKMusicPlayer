@@ -11,10 +11,10 @@ MusicQQArtistInfoConfigManager::MusicQQArtistInfoConfigManager(QObject *parent)
 void MusicQQArtistInfoConfigManager::readArtistInfoData(MusicResultsItem *item)
 {
     const QDomNodeList &resultlist = m_document->elementsByTagName("info");
-    for(int i=0; i<resultlist.count(); ++i)
+    for(int i = 0; i < resultlist.count(); ++i)
     {
         const QDomNodeList &infolist = resultlist.at(i).childNodes();
-        for(int j=0; j<infolist.count(); ++j)
+        for(int j = 0; j < infolist.count(); ++j)
         {
             const QDomNode &node = infolist.at(j);
             if(node.nodeName() == "desc")
@@ -24,7 +24,7 @@ void MusicQQArtistInfoConfigManager::readArtistInfoData(MusicResultsItem *item)
             else if(node.nodeName() == "basic")
             {
                 const QDomNodeList &basiclist = node.childNodes();
-                for(int k=0; k<basiclist.count(); ++k)
+                for(int k = 0; k < basiclist.count(); ++k)
                 {
                     const QDomNodeList &itemlist = basiclist.at(k).childNodes();
                     if(itemlist.count() != 2)
@@ -45,7 +45,7 @@ void MusicQQArtistInfoConfigManager::readArtistInfoData(MusicResultsItem *item)
             else if(node.nodeName() == "other")
             {
                 const QDomNodeList &otherlist = node.childNodes();
-                for(int k=0; k<otherlist.count(); ++k)
+                for(int k = 0; k < otherlist.count(); ++k)
                 {
                     const QDomNodeList &itemlist = otherlist.at(k).childNodes();
                     if(itemlist.count() != 2)

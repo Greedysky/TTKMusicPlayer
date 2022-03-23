@@ -9,13 +9,13 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
     adjustPosition(this);
 
     QGridLayout* grid = new QGridLayout(this);
-    for(int i=0; i<3; i++)
+    for(int i = 0; i < 3; ++i)
     {
         grid->setRowMinimumHeight(i, 30);
         grid->setRowStretch(i, 1);
     }
 
-    for(int i=0; i<3; i++)
+    for(int i = 0; i < 3; ++i)
     {
         grid->setColumnMinimumWidth(i, 30);
         grid->setColumnStretch(i, 1);
@@ -36,7 +36,7 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
     mainWidgetLayout->addWidget(m_volumeWidget);
 
     m_interval = 0.0f;
-    for(int i=0; i<4; ++i)
+    for(int i = 0; i < 4; ++i)
     {
         m_effect[i] = new QGraphicsOpacityEffect(this);
         m_effect[i]->setOpacity(m_interval);
@@ -48,7 +48,7 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
 
 MusicRemoteWidgetForSquare::~MusicRemoteWidgetForSquare()
 {
-    for(int i=0; i<4; ++i)
+    for(int i = 0; i < 4; ++i)
     {
         delete m_effect[i];
     }
@@ -75,7 +75,7 @@ void MusicRemoteWidgetForSquare::leaveEvent(QEvent *event)
 void MusicRemoteWidgetForSquare::enterTimeout()
 {
     m_interval += 0.1f;
-    for(int i=0; i<4; ++i)
+    for(int i = 0; i < 4; ++i)
     {
         m_effect[i]->setOpacity(m_interval);
     }
@@ -88,7 +88,7 @@ void MusicRemoteWidgetForSquare::enterTimeout()
 void MusicRemoteWidgetForSquare::leaveTimeout()
 {
     m_interval -= 0.1f;
-    for(int i=0; i<4; ++i)
+    for(int i = 0; i < 4; ++i)
     {
         m_effect[i]->setOpacity(m_interval);
     }

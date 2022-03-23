@@ -62,7 +62,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_analysis->setLineMax(5);
     m_ui->musicPage->connectTo(this);
 
-    for(int i=0; i<m_analysis->lineMax(); ++i)
+    for(int i = 0; i < m_analysis->lineMax(); ++i)
     {
         MusicLrcManagerForInterior *w = new MusicLrcManagerForInterior(this);
         w->setLrcPerWidth(-10);
@@ -250,7 +250,7 @@ void MusicSoundKMicroWidget::downLoadFinished(const QByteArray &bytes)
     }
 
     m_analysis->setLrcData(bytes);
-    for(int i=0; i<m_analysis->lineMax(); ++i)
+    for(int i = 0; i < m_analysis->lineMax(); ++i)
     {
         m_musicLrcContainer[i]->setText(QString());
     }
@@ -264,7 +264,7 @@ void MusicSoundKMicroWidget::downLoadFinished(const QByteArray &bytes)
 
 void MusicSoundKMicroWidget::updateAnimationLrc()
 {
-    for(int i=0; i<m_analysis->lineMax(); ++i)
+    for(int i = 0; i < m_analysis->lineMax(); ++i)
     {
         m_musicLrcContainer[i]->setText(m_analysis->text(i));
     }

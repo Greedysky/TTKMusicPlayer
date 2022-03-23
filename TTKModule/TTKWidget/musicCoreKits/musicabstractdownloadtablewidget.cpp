@@ -39,7 +39,7 @@ void MusicAbstractDownloadTableWidget::updateSongsFileName(const MusicSongList &
 
     setRowCount(m_musicSongs->count()); //reset row count
 
-    for(int i=0; i<m_musicSongs->count(); ++i)
+    for(int i = 0; i < m_musicSongs->count(); ++i)
     {
         MusicSong *song = &(*m_musicSongs)[i];
         createItem(i, *song);
@@ -73,7 +73,7 @@ void MusicAbstractDownloadTableWidget::setDeleteItemAt()
         return;
     }
 
-    for(int i=deleteList.count() - 1; i>=0; --i)
+    for(int i = deleteList.count() - 1; i >= 0; --i)
     {
         const int index = deleteList[i];
         removeRow(index);
@@ -99,7 +99,7 @@ void MusicAbstractDownloadTableWidget::itemDoubleClicked(int row, int column)
 
 void MusicAbstractDownloadTableWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)
 {
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 3);
         if(it && it->data(MUSIC_TIME_ROLE).toLongLong() == time)

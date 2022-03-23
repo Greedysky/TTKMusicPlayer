@@ -5,7 +5,7 @@
 
 void MusicHotKeyManager::setInputModule(QObject *object)
 {
-    for(int i=0; i<8; ++i)
+    for(int i = 0; i < 8; ++i)
     {
         m_hotkeys << (new QGlobalShortcut(object));
     }
@@ -25,7 +25,7 @@ void MusicHotKeyManager::setInputModule(QObject *object)
 void MusicHotKeyManager::setDefaultKey()
 {
     const QStringList &keys = defaultKeys();
-    for(int i=0; i<m_hotkeys.count(); ++i)
+    for(int i = 0; i < m_hotkeys.count(); ++i)
     {
         setHotKey(i, keys[i]);
         setEnabled(i, false);
@@ -34,7 +34,7 @@ void MusicHotKeyManager::setDefaultKey()
 
 void MusicHotKeyManager::setHotKeys(const QStringList &keys)
 {
-    for(int i=0; i<m_hotkeys.count(); ++i)
+    for(int i = 0; i < m_hotkeys.count(); ++i)
     {
         setHotKey(i, keys[i]);
         setEnabled(i, false);
@@ -110,7 +110,7 @@ QString MusicHotKeyManager::toString(int key, int modifiers)
     const quint32 modList[] = {Qt::ControlModifier, Qt::ShiftModifier, Qt::AltModifier};
 
     QString keyStr;
-    for(int i=0; i<3; i++)
+    for(int i = 0; i < 3; ++i)
     {
         if(modifiers & modList[i])
         {

@@ -759,7 +759,7 @@ int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
         rk[j + 3] = temp;
     }
     /* apply the inverse MixColumn transform to all round keys but the first and the last: */
-    for (i = 1; i < (key->rounds); i++) {
+    for (i = 1; i < (key->rounds); ++i) {
         rk += 4;
         rk[0] =
                 Td0[Te1[(rk[0] >> 24)] & 0xff] ^
@@ -1335,7 +1335,7 @@ int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
         temp = rk[i + 3]; rk[i + 3] = rk[j + 3]; rk[j + 3] = temp;
     }
     /* apply the inverse MixColumn transform to all round keys but the first and the last: */
-    for (i = 1; i < (key->rounds); i++) {
+    for (i = 1; i < (key->rounds); ++i) {
         rk += 4;
         for (j = 0; j < 4; j++) {
             u32 tp1, tp2, tp4, tp8, tp9, tpb, tpd, tpe, m;

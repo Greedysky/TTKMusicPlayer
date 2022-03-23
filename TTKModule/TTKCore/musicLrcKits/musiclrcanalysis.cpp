@@ -45,7 +45,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
         return Failed;
     }
 
-    for(int i=0; i<lineMiddle(); ++i)
+    for(int i = 0; i < lineMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -62,7 +62,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
         m_currentShowLrcContainer << it.value();
     }
 
-    for(int i=0; i<lineMiddle(); ++i)
+    for(int i = 0; i < lineMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -80,7 +80,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
 
     m_lrcContainer = data;
 
-    for(int i=0; i<lineMiddle(); ++i)
+    for(int i = 0; i < lineMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -97,7 +97,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
         m_currentShowLrcContainer << it.value();
     }
 
-    for(int i=0; i<lineMiddle(); ++i)
+    for(int i = 0; i < lineMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -145,7 +145,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
         return Failed;
     }
 
-    for(int i=0; i<lineMiddle(); ++i)
+    for(int i = 0; i < lineMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -161,7 +161,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
         it.next();
         m_currentShowLrcContainer << it.value();
     }
-    for(int i=0; i<lineMiddle(); ++i)
+    for(int i = 0; i < lineMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -354,7 +354,8 @@ qint64 MusicLrcAnalysis::setSongSpeedChanged(qint64 time)
         index = 0;
         beforeTime = keys[0];
     }
-    for(int i=1; i<keys.count(); ++i)
+
+    for(int i = 1; i < keys.count(); ++i)
     {
         index = i;
         const qint64 afterTime = keys[i];
@@ -495,7 +496,7 @@ qint64 MusicLrcAnalysis::findTime(int index) const
     if(index + m_lineMax < m_currentShowLrcContainer.count())
     {
         TTKIntStringMapIter it(m_lrcContainer);
-        for(int i=0; i<index + 1; ++i)
+        for(int i = 0; i < index + 1; ++i)
         {
             if(it.hasNext())
             {
@@ -518,7 +519,7 @@ qint64 MusicLrcAnalysis::findTime(const QStringList &ts) const
     }
 
     const QStringList copy(m_currentShowLrcContainer);
-    for(int i=0; i<copy.count() - ts.count(); ++i)
+    for(int i = 0; i < copy.count() - ts.count(); ++i)
     {
         if(copy.mid(i, ts.count()) == ts)
         {

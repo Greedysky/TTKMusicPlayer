@@ -86,7 +86,7 @@ bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongProperty *
 
 bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongPropertyList *props)
 {
-    for(int i=0; i<props->count(); ++i)
+    for(int i = 0; i < props->count(); ++i)
     {
         if(!findUrlFileSize(&(*props)[i]))
         {

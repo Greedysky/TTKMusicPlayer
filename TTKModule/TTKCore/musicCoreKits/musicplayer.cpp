@@ -193,7 +193,7 @@ void MusicPlayer::setEqualizerEffect(const TTKIntList &hz)
     EqSettings eq = m_music->eqSettings();
     eq.setPreamp(15 + hz[0]);
     eq.setEnabled(true);
-    for(int i=0; i<EqSettings::EQ_BANDS_10; ++i)
+    for(int i = 0; i < EqSettings::EQ_BANDS_10; ++i)
     {
         eq.setGain(i, hz[i + 1]);
     }

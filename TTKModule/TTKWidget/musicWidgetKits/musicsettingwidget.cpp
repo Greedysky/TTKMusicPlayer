@@ -45,7 +45,7 @@ MusicFunctionTableWidget::MusicFunctionTableWidget(QWidget *parent)
 void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionItemList &items)
 {
     m_listIndex = index;
-    for(int i=0; i<items.count(); ++i)
+    for(int i = 0; i < items.count(); ++i)
     {
         const MusicFunctionItem &fItem = items[i];
         QTableWidgetItem *item = nullptr;

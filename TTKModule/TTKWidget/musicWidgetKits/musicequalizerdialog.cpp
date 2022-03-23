@@ -140,7 +140,7 @@ void MusicEqualizerDialog::initialize()
     sliders << m_ui->verticalSlider10;
     sliders << m_ui->bwVerticalSlider;
 
-    for(int i=0; i<sliders.count(); ++i)
+    for(int i = 0; i < sliders.count(); ++i)
     {
         MusicClickedSlider *slider = sliders[i];
         slider->setRange(-15, 15);

@@ -86,7 +86,7 @@ void MusicItemSearchTableWidget::createFinishedItem()
 
     setRowCount(rowCount() + 1);
     const int count = rowCount() - 1;
-    for(int i=0; i<columnCount(); ++i)
+    for(int i = 0; i < columnCount(); ++i)
     {
         setItem(count, i, new QTableWidgetItem);
     }

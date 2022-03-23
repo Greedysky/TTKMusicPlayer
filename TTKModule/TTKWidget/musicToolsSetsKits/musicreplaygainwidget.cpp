@@ -200,7 +200,7 @@ void MusicReplayGainWidget::addFileButtonClicked()
             }
         }
 
-        for(int i=orcount; i<m_paths.count(); ++i)
+        for(int i = orcount; i < m_paths.count(); ++i)
         {
             m_currentIndex = i;
             MusicSemaphoreLoop loop;
@@ -271,7 +271,7 @@ void MusicReplayGainWidget::applyButtonClicked()
 
     setControlEnabled(false);
     m_ui->progressBarAll->setRange(0, m_ui->tableWidget->rowCount());
-    for(int i=0; i<m_ui->tableWidget->rowCount(); ++i)
+    for(int i = 0; i < m_ui->tableWidget->rowCount(); ++i)
     {
         MusicSemaphoreLoop loop;
         connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
@@ -291,7 +291,7 @@ void MusicReplayGainWidget::applyButtonClicked()
 void MusicReplayGainWidget::lineTextChanged(const QString &text)
 {
     const double d = text.toDouble();
-    for(int i=0; i<m_ui->tableWidget->rowCount(); ++i)
+    for(int i = 0; i < m_ui->tableWidget->rowCount(); ++i)
     {
         QString v = m_ui->tableWidget->item(i, 1)->text();
         m_ui->tableWidget->item(i, 2)->setText(QString::number(d - v.toDouble()));

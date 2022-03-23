@@ -66,7 +66,7 @@ void MusicLrcColorWidget::setColors(const QList<QColor> &colors)
 QList<QColor> MusicLrcColorWidget::colors() const
 {
     QList<QColor> colors;
-    for(int i=0; i<m_ui->listWidget->count(); ++i)
+    for(int i = 0; i < m_ui->listWidget->count(); ++i)
     {
 #if TTK_QT_VERSION_CHECK(5,13,0)
         colors << m_ui->listWidget->item(i)->background().color();

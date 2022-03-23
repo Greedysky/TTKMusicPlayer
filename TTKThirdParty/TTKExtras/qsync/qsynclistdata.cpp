@@ -54,11 +54,11 @@ void QSyncListData::receiveDataFromServer()
         if(docment.setContent(reply->readAll()))
         {
             const QDomNodeList &nodeList = docment.elementsByTagName("Contents");
-            for(int i=0; i<nodeList.count(); ++i)
+            for(int i = 0; i < nodeList.count(); ++i)
             {
                 QSyncDataItem item;
                 const QDomNodeList &childList = nodeList.at(i).childNodes();
-                for(int j=0; j<childList.count(); ++j)
+                for(int j = 0; j < childList.count(); ++j)
                 {
                      const QDomNode &node = childList.at(j);
                      if(node.nodeName() == "Key")

@@ -82,9 +82,9 @@ void MusicPlayedListPopWidget::clear()
 void MusicPlayedListPopWidget::resetToolIndex(const PlayedItemList &indexs)
 {
     MusicPlayItemList *items = m_playlist->mediaList();
-    for(int s=0; s<items->count(); ++s)
+    for(int s = 0; s < items->count(); ++s)
     {
-        for(int i=0; i<indexs.count(); ++i)
+        for(int i = 0; i < indexs.count(); ++i)
         {
             const std::pair<int, int> &index = indexs[i];
             if(items->at(s).m_toolIndex == index.first)
@@ -211,7 +211,7 @@ void MusicPlayedListPopWidget::setDeleteItemAt(const TTKIntList &index)
     const int id = m_playedListWidget->playRowIndex();
     bool contains = false;
 
-    for(int i=index.count() - 1; i>=0; --i)
+    for(int i = index.count() - 1; i >= 0; --i)
     {
         const int row = index[i];
         if(id == row)
@@ -241,7 +241,7 @@ void MusicPlayedListPopWidget::setDeleteItemAt(const TTKIntList &index)
     else
     {
         int offset = 0;
-        for(int i=0; i<index.count(); ++i)
+        for(int i = 0; i < index.count(); ++i)
         {
             if(index[i] >= id)
             {
@@ -264,7 +264,7 @@ void MusicPlayedListPopWidget::setDeleteItemAll()
 
     m_playedListWidget->adjustPlayWidgetRow();
     const int count = m_playedListWidget->rowCount();
-    for(int i=0; i<count; ++i)
+    for(int i = 0; i < count; ++i)
     {
         m_playedListWidget->removeRow(0);
     }
@@ -299,7 +299,7 @@ void MusicPlayedListPopWidget::initWidget()
     layout->setSpacing(2);
 
     layout->addStretch(2);
-    for(int i=0; i<MAX_SIZE; ++i)
+    for(int i = 0; i < MAX_SIZE; ++i)
     {
         QLabel *label = new QLabel(this);
         label->setFixedWidth(9);
@@ -400,16 +400,16 @@ void MusicPlayedListPopWidget::setPlaylistCount(int count)
 {
     if(count >= 1000)
     {
-        for(int i=MAX_SIZE - 1; i>=0; --i)
+        for(int i = MAX_SIZE - 1; i >= 0; --i)
         {
             m_labels[i]->setPixmap(QPixmap(QString(":/tiny/lb_number%1").arg(9)));
         }
     }
     else
     {
-        for(int i=MAX_SIZE - 1; i>=0; --i)
+        for(int i = MAX_SIZE - 1; i >= 0; --i)
         {
-            m_labels[i]->setPixmap(QPixmap(QString(":/tiny/lb_number%1").arg(count%10)));
+            m_labels[i]->setPixmap(QPixmap(QString(":/tiny/lb_number%1").arg(count % 10)));
             count /= 10;
         }
     }

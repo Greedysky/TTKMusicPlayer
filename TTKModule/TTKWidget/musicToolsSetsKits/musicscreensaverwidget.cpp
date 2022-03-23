@@ -180,7 +180,7 @@ void MusicScreenSaverListWidget::resizeWindow()
     }
 
     const int side = width() / 160;
-    for(int i=0; i<m_items.count(); ++i)
+    for(int i = 0; i < m_items.count(); ++i)
     {
         m_gridLayout->addWidget(m_items[i],i / side, i % side, Qt::AlignLeft | Qt::AlignTop);
     }
@@ -365,7 +365,7 @@ void MusicScreenSaverWidget::itemHasClicked(int index, bool status)
     statusVector[index] = status;
 
     QStringList items;
-    for(int i=0; i<statusVector.count(); ++i)
+    for(int i = 0; i < statusVector.count(); ++i)
     {
         items << QString("%1,%2").arg(i).arg(statusVector[i]);
     }
@@ -379,7 +379,7 @@ void MusicScreenSaverWidget::initialize()
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
 
     MusicDownloadQueueDataList datas;
-    for(int i=0; i<OS_COUNT; i++)
+    for(int i = 0; i < OS_COUNT; ++i)
     {
         const QString &url = QSyncUtils::makeDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(i);
         const QString &path = QString("%1%2/%3/").arg(CACHE_DIR_FULL, OS_SCREEN_DIR).arg(i);
@@ -476,7 +476,7 @@ void MusicScreenSaverBackgroundWidget::backgroundTimeout()
 {
     QVector<bool> statusVector(MusicScreenSaverWidget::parseSettingParameter());
     QVector<int> intVector;
-    for(int i=0; i<OS_COUNT; i++)
+    for(int i = 0; i < OS_COUNT; ++i)
     {
         if(statusVector[i])
         {

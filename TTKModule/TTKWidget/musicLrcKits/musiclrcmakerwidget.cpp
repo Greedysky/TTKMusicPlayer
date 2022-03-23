@@ -348,7 +348,7 @@ void MusicLrcMakerWidget::setCurrentSecondWidget()
 
     m_ui->makeTextEdit->setText(m_ui->lrcTextEdit->toPlainText().trimmed() + "\n");
     QTextCursor cursor = m_ui->makeTextEdit->textCursor();
-    for(int i=0; i<m_plainText.count(); ++i)
+    for(int i = 0; i < m_plainText.count(); ++i)
     {
         QTextBlockFormat textBlockFormat = cursor.blockFormat();
         textBlockFormat.setBottomMargin(18);
@@ -377,13 +377,13 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
     if(m_times.count() == m_plainText.count())
     {
         TTKIntStringMap data;
-        for(int i=0; i<m_times.count(); ++i)
+        for(int i = 0; i < m_times.count(); ++i)
         {
             data.insert(m_times.value(i), m_plainText[i]);
         }
         m_analysis->setLrcData(data);
 
-        for(int i=0; i<m_analysis->lineMax(); ++i)
+        for(int i = 0; i < m_analysis->lineMax(); ++i)
         {
             m_musicLrcContainer[i]->setText(QString());
         }
@@ -397,10 +397,11 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
 
 void MusicLrcMakerWidget::updateAnimationLrc()
 {
-    for(int i=0; i<m_analysis->lineMax(); ++i)
+    for(int i = 0; i < m_analysis->lineMax(); ++i)
     {
         m_musicLrcContainer[i]->setText(m_analysis->text(i));
     }
+
     m_analysis->setCurrentIndex(m_analysis->currentIndex() + 1);
     m_musicLrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
 }
@@ -626,7 +627,8 @@ void MusicLrcMakerWidget::createThirdWidget()
     m_analysis = new MusicLrcAnalysis(this);
     m_analysis->setLineMax(5);
     m_ui->lrcViewer->connectTo(this);
-    for(int i=0; i<m_analysis->lineMax(); ++i)
+
+    for(int i = 0; i < m_analysis->lineMax(); ++i)
     {
         MusicLrcManagerForInterior *w = new MusicLrcManagerForInterior(this);
         w->setLrcPerWidth(-20);

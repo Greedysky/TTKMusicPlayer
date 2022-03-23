@@ -25,7 +25,7 @@ TTKString base64Encode(const unsigned char *bytes, unsigned int length)
             char_array_4[2] = ((char_array_3[1] & 0x0F) << 2) + ((char_array_3[2] & 0xC0) >> 6);
             char_array_4[3] = char_array_3[2] & 0x3F;
 
-            for(i = 0; (i <4) ; i++)
+            for(i = 0; i < 4; ++i)
             {
                 ret += base64_chars[char_array_4[i]];
             }
@@ -35,7 +35,7 @@ TTKString base64Encode(const unsigned char *bytes, unsigned int length)
 
     if(i)
     {
-        for(j = i; j < 3; j++)
+        for(j = i; j < 3; ++j)
         {
             char_array_3[j] = '\0';
         }
@@ -45,7 +45,7 @@ TTKString base64Encode(const unsigned char *bytes, unsigned int length)
         char_array_4[2] = ((char_array_3[1] & 0x0F) << 2) + ((char_array_3[2] & 0xC0) >> 6);
         char_array_4[3] = char_array_3[2] & 0x3F;
 
-        for(j = 0; (j < i + 1); j++)
+        for(j = 0; j < i + 1; ++j)
         {
             ret += base64_chars[char_array_4[j]];
         }
@@ -71,7 +71,7 @@ TTKString base64Decode(const TTKString &bytes)
         char_array_4[i++] = bytes[in]; in++;
         if(i ==4)
         {
-            for(i = 0; i <4; i++)
+            for(i = 0; i < 4; ++i)
             {
                 char_array_4[i] = base64_chars.find(char_array_4[i]);
             }
@@ -80,7 +80,7 @@ TTKString base64Decode(const TTKString &bytes)
             char_array_3[1] = ((char_array_4[1] & 0xF) << 4) + ((char_array_4[2] & 0x3C) >> 2);
             char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
 
-            for(i = 0; (i < 3); i++)
+            for(i = 0; i < 3; ++i)
             {
                 ret += char_array_3[i];
             }
@@ -90,7 +90,7 @@ TTKString base64Decode(const TTKString &bytes)
 
     if(i)
     {
-        for(j = i; j <4; j++)
+        for(j = i; j < 4; ++j)
         {
             char_array_4[j] = 0;
         }
@@ -104,7 +104,7 @@ TTKString base64Decode(const TTKString &bytes)
         char_array_3[1] = ((char_array_4[1] & 0xF) << 4) + ((char_array_4[2] & 0x3C) >> 2);
         char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
 
-        for(j = 0; (j < i - 1); j++)
+        for(j = 0; j < i - 1; ++j)
         {
             ret += char_array_3[j];
         }

@@ -13,7 +13,7 @@ MusicSkinThunderConfigManager::MusicSkinThunderConfigManager(QObject *parent)
 void MusicSkinThunderConfigManager::readSkinRemoteData(MusicSkinRemoteGroupList &groups)
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName("group");
-    for(int i=0; i<nodeList.count(); ++i)
+    for(int i = 0; i < nodeList.count(); ++i)
     {
         MusicSkinRemoteGroup group;
         QDomNode node = nodeList.at(i);
@@ -21,7 +21,7 @@ void MusicSkinThunderConfigManager::readSkinRemoteData(MusicSkinRemoteGroupList 
         group.m_id = TTK_DEFAULT_STR;
 
         const QDomNodeList &groupList = node.childNodes();
-        for(int j=0; j<groupList.count(); ++j)
+        for(int j = 0; j < groupList.count(); ++j)
         {
             if(j > MAX_SIZE)
             {
@@ -33,7 +33,7 @@ void MusicSkinThunderConfigManager::readSkinRemoteData(MusicSkinRemoteGroupList 
             MusicSkinRemoteItem item;
             item.m_index = j;
             const QDomNodeList &packageList = node.childNodes();
-            for(int k=0; k<packageList.count(); ++k)
+            for(int k = 0; k < packageList.count(); ++k)
             {
                 const QDomElement &element = packageList.at(k).toElement();
                 if(element.nodeName() == "name")

@@ -9,7 +9,7 @@ MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(MusicObject::
 void MusicDownloadRecordConfigManager::readDownloadData(MusicSongList &records)
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName("value");
-    for(int i=0; i<nodeList.count(); ++i)
+    for(int i = 0; i < nodeList.count(); ++i)
     {
         MusicSong record;
         record.setMusicName(nodeList.at(i).toElement().attribute("name"));

@@ -14,7 +14,7 @@ bool MusicWPLConfigManager::readPlaylistData(MusicSongItemList &items)
     helper.load();
 
     const QDomNodeList &sepNodes = m_document->elementsByTagName(helper.nodeName("seq"));
-    for(int i=0; i<sepNodes.count(); ++i)
+    for(int i = 0; i < sepNodes.count(); ++i)
     {
         const QDomNode &node = sepNodes.at(i);
         MusicSongItem item;
@@ -42,7 +42,7 @@ bool MusicWPLConfigManager::writePlaylistData(const MusicSongItemList &items, co
 
     writeDomElementMutil(headSettingDom, "meta", {MusicXmlAttribute("name", "Generator"),
                          MusicXmlAttribute("content", QString("%1 %2").arg(APP_NAME, TTK_VERSION_STR))});
-    for(int i=0; i<items.count(); ++i)
+    for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
         QDomElement seqDom = writeDomNode(bodySettingDom, "seq");
@@ -62,7 +62,7 @@ MusicSongList MusicWPLConfigManager::readMusicFilePath(const QDomNode &node) con
     const QDomNodeList &nodeList = node.childNodes();
 
     MusicSongList songs;
-    for(int i=0; i<nodeList.count(); i++)
+    for(int i = 0; i < nodeList.count(); ++i)
     {
         const QDomElement &element = nodeList.at(i).toElement();
         songs << MusicSong(element.attribute("src"));

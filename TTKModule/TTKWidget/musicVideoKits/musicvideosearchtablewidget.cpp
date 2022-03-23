@@ -106,7 +106,7 @@ void MusicVideoSearchTableWidget::resizeWindow(int delta)
     headerview->resizeSection(8, 24);
 
     //resize row
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
         it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 5));

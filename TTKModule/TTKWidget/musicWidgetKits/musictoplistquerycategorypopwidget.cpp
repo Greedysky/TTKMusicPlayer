@@ -30,7 +30,7 @@ void MusicToplistQueryCategoryItem::setCategory(const MusicResultsCategory &cate
     MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-    for(int i=0; i<m_category.m_items.count(); ++i)
+    for(int i = 0; i < m_category.m_items.count(); ++i)
     {
         MusicClickedLabel *l = new MusicClickedLabel(m_category.m_items[i].m_value, item);
         l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MQSSColorStyle08));

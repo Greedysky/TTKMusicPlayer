@@ -185,7 +185,7 @@ void MusicDeviceInfoModule::handleReadyRead()
             int index = 0;
 
             const QStringList &list = result.split(" ");
-            for(int i = 0; i < list.count(); i++)
+            for(int i = 0; i < list.count(); ++i)
             {
                 const QString &data = list.at(i).trimmed();
                 if(data.isEmpty())

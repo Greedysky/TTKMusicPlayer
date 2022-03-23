@@ -40,7 +40,7 @@ bool MusicDBPLConfigManager::readPlaylistData(MusicSongItemList &items)
 
     TTKUInt32 cnt = 0;
     m_file.read((char*)&cnt, 4);
-    for(TTKUInt32 i = 0; i < cnt; i++)
+    for(TTKUInt32 i = 0; i < cnt; ++i)
     {
         TTKUInt32 v = 0;
         QString filePath;

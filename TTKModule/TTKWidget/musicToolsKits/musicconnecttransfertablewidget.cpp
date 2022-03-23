@@ -21,7 +21,7 @@ void MusicConnectTransferTableWidget::createAllItems(const MusicSongList &songs)
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
 
-    for(int i=0; i<songs.count(); ++i)
+    for(int i = 0; i < songs.count(); ++i)
     {
         const MusicSong &song = songs[i];
         QTableWidgetItem *item = new QTableWidgetItem;
@@ -44,7 +44,7 @@ void MusicConnectTransferTableWidget::createAllItems(const MusicSongList &songs)
 
 void MusicConnectTransferTableWidget::selectedAllItems(bool check)
 {
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }

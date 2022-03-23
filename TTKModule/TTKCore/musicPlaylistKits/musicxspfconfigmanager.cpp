@@ -13,7 +13,7 @@ bool MusicXSPFConfigManager::readPlaylistData(MusicSongItemList &items)
     helper.load();
 
     const QDomNodeList &trackNodes = m_document->elementsByTagName(helper.nodeName("trackList"));
-    for(int i=0; i<trackNodes.count(); ++i)
+    for(int i = 0; i < trackNodes.count(); ++i)
     {
         const QDomNode &node = trackNodes.at(i);
         MusicSongItem item;
@@ -44,7 +44,7 @@ bool MusicXSPFConfigManager::writePlaylistData(const MusicSongItemList &items, c
                                             << MusicXmlAttribute("version", "1")
                                             << MusicXmlAttribute("xmlns", "http://xspf.org/ns/0/"));
     writeDomText(musicPlayerDom, "creator", APP_NAME);
-    for(int i=0; i<items.count(); ++i)
+    for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
         QDomElement trackListDom = writeDomElementMutil(musicPlayerDom, "trackList", MusicXmlAttributeList()
@@ -81,7 +81,7 @@ MusicSongList MusicXSPFConfigManager::readMusicFilePath(const QDomNode &node) co
     const QDomNodeList &nodeList = node.childNodes();
 
     MusicSongList songs;
-    for(int i=0; i<nodeList.count(); i++)
+    for(int i = 0; i < nodeList.count(); ++i)
     {
         const QDomElement &element = nodeList.at(i).toElement();
         MusicSong song(element.attribute("src"), element.attribute("time"), element.attribute("name"));

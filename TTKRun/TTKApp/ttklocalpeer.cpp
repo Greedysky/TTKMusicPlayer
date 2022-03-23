@@ -155,7 +155,7 @@ bool TTKLocalPeer::sendMessage(const QString &message, int timeout) const
 
     QLocalSocket socket;
     bool connOk = false;
-    for(int i=0; i<2; i++)
+    for(int i = 0; i < 2; ++i)
     {
         // Try twice, in case the other instance is just starting up
         socket.connectToServer(d->m_socketName);
@@ -164,6 +164,7 @@ bool TTKLocalPeer::sendMessage(const QString &message, int timeout) const
         {
             break;
         }
+
         const int ms = 250;
 #if defined(Q_OS_WIN)
         Sleep(DWORD(ms));

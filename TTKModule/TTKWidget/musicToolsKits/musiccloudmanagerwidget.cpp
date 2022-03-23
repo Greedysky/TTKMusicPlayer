@@ -94,7 +94,7 @@ void MusicCloudManagerTableWidget::resizeWindow()
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) + 360);
 
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
         it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
@@ -234,9 +234,9 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
     selectAll();
     const TTKIntList deleteList(multiSelectedIndex());
 
-    for(int i=deleteList.count() - 1; i>=0; --i)
+    for(int i = deleteList.count() - 1; i >= 0; --i)
     {
-        int index = deleteList[i];
+        const int index = deleteList[i];
         QTableWidgetItem *it = item(index, 0);
         if(it == nullptr)
         {
@@ -517,7 +517,7 @@ void MusicCloudManagerTableWidget::createItem(const MusicCloudDataItem &data)
 
 int MusicCloudManagerTableWidget::FindUploadItemRow(const QString &time) const
 {
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 0);
         if(it == nullptr)
@@ -536,7 +536,7 @@ int MusicCloudManagerTableWidget::FindUploadItemRow(const QString &time) const
 
 MusicCloudDataItem MusicCloudManagerTableWidget::FindWaitedItemRow() const
 {
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 0);
         if(it == nullptr)

@@ -89,7 +89,7 @@ void MusicConnectTransferWidget::initColumns()
 #else
     connect(m_buttonGroup, SIGNAL(buttonClicked(int)), SLOT(currentPlaylistSelected(int)));
 #endif
-    for(int i=0; i<songs.count(); ++i)
+    for(int i = 0; i < songs.count(); ++i)
     {
         QPushButton *button = new QPushButton(QString("%1(%2)").arg(songs[i].m_itemName).arg(songs[i].m_songs.count()), this);
         button->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
@@ -154,7 +154,7 @@ void MusicConnectTransferWidget::itemSelectedChanged()
     const TTKIntList list(m_ui->listTableWidget->selectedItems());
     qint64 size = 0;
 
-    for(int i=0; i<list.count(); ++i)
+    for(int i = 0; i < list.count(); ++i)
     {
         size += m_currentSongs[list[i]].musicSize();
     }
@@ -200,7 +200,7 @@ void MusicConnectTransferWidget::startToTransferFiles()
 void MusicConnectTransferWidget::musicSearchResultChanged(int, int index)
 {
     TTKIntList result;
-    for(int i=0; i<m_currentSongs.count(); ++i)
+    for(int i = 0; i < m_currentSongs.count(); ++i)
     {
         if(m_currentSongs[i].musicName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {

@@ -25,7 +25,7 @@ QByteArray MusicUtils::Algorithm::hmacSha1(const QByteArray &data, const QByteAr
     QByteArray innerPadding(blockSize, char(0x36));
     QByteArray outerPadding(blockSize, char(0x5C));
 
-    for(int i = 0; i < key.length(); i++)
+    for(int i = 0; i < key.length(); ++i)
     {
         innerPadding[i] = innerPadding[i] ^ key.at(i);
         outerPadding[i] = outerPadding[i] ^ key.at(i);

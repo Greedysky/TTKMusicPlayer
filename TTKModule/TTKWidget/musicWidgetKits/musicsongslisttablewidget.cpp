@@ -86,7 +86,7 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongList &songs)
     const int count = rowCount();
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
-    for(int i=count; i<songs.count(); i++)
+    for(int i = count; i < songs.count(); ++i)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
@@ -131,7 +131,7 @@ void MusicSongsListTableWidget::selectRow(int index)
     MusicAbstractSongsListTableWidget::selectRow(index);
 
     adjustPlayWidgetRow();
-    for(int i=0; i<columnCount(); ++i)
+    for(int i = 0; i < columnCount(); ++i)
     {
         delete takeItem(index, i);
     }
@@ -462,7 +462,7 @@ void MusicSongsListTableWidget::setDeleteItemAt()
     progress.setTitle(tr("Delete file mode"));
     progress.setRange(0, deleteList.count() / 3 * 2);
 
-    for(int i=0; i<deleteList.count(); ++i)
+    for(int i = 0; i < deleteList.count(); ++i)
     {
         if(i % 3 == 0)
         {
@@ -475,7 +475,7 @@ void MusicSongsListTableWidget::setDeleteItemAt()
         adjustPlayWidgetRow();
     }
 
-    for(int i=deleteList.count() - 1; i>=0; --i)
+    for(int i = deleteList.count() - 1; i >= 0; --i)
     {
         const int index = deleteList[i];
         removeRow(index);
@@ -818,7 +818,7 @@ void MusicSongsListTableWidget::startToDrag()
         }
 
         Q_EMIT queryMusicIndexSwaped(start, end, index, songs);
-        for(int i=qMin(start, end); i<=qMax(start, end); ++i)
+        for(int i = qMin(start, end); i <= qMax(start, end); ++i)
         {
             if(i == index)
             {
@@ -843,7 +843,7 @@ void MusicSongsListTableWidget::createContextMenu(QMenu &menu)
 {
     const QString &songName = currentSongName();
     const QStringList names(MusicUtils::String::stringSplit(songName));
-    for(int i=1; i<=names.count(); ++i)
+    for(int i = 1; i <= names.count(); ++i)
     {
         menu.addAction(tr("Search '%1'").arg(names[i - 1].trimmed()))->setData(i + DEFAULT_LOW_LEVEL);
     }

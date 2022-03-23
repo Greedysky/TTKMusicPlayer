@@ -127,7 +127,7 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
 
     const bool track = MusicFormats::songTrackTpyeContains(suffix);
     const int size = meta.songMetaCount();
-    for(int i=0; i<size; ++i)
+    for(int i = 0; i < size; ++i)
     {
         meta.setSongMetaIndex(i);
 

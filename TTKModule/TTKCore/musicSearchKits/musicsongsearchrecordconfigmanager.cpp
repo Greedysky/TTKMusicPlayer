@@ -9,7 +9,7 @@ MusicSongSearchRecordConfigManager::MusicSongSearchRecordConfigManager(QObject *
 void MusicSongSearchRecordConfigManager::readSearchData(MusicSearchRecordList &records)
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName("value");
-    for(int i=0; i<nodeList.count(); ++i)
+    for(int i = 0; i < nodeList.count(); ++i)
     {
         MusicSearchRecord record;
         record.m_name = nodeList.at(i).toElement().attribute("name");

@@ -255,7 +255,7 @@ void MusicBackgroundOnlineWidget::downLoadFinished(const MusicSkinRemoteGroupLis
 {
     MusicBackgroundRemoteWidget::downLoadFinished(bytes);
     m_typeBox->blockSignals(true);
-    for(int i=0; i<bytes.count(); ++i)
+    for(int i = 0; i < bytes.count(); ++i)
     {
         QString title(m_groups[i].m_group);
         m_typeBox->addItem(title.remove(TTK_STRCAT(MUSIC_THUNDER_DIR, TTK_SEPARATOR)));

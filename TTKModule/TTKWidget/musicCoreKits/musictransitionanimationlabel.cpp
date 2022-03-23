@@ -155,7 +155,7 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                 paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
                 const int number = 10;
                 const int perHeight = height() / number;
-                for(int i=0; i<number; ++i)
+                for(int i = 0; i < number; ++i)
                 {
                     const QRect rect(0, perHeight * i, width(), perHeight * m_currentValue / 100.0);
                     paint.drawPixmap(rect, m_currentPixmap.copy(rect));

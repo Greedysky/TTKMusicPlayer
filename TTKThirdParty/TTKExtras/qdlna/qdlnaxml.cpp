@@ -92,12 +92,12 @@ QDlnaService QDlnaXml::readServiceTag(const QString &type, const QString &tagNam
     }
 
     QDlnaService service;
-    for(int i=0; i<nodeList.count(); ++i)
+    for(int i = 0; i < nodeList.count(); ++i)
     {
         const QDomNode &node = nodeList.at(i);
         const QDomNodeList &paramNodes = node.childNodes();
 
-        for(int j=0; j<paramNodes.count(); ++j)
+        for(int j = 0; j < paramNodes.count(); ++j)
         {
             const QDomNode &paramNode = paramNodes.at(j);
             QString text = paramNode.toElement().text();

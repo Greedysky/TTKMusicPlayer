@@ -174,9 +174,9 @@ void QRCodeQWidget::paintEvent(QPaintEvent *event)
         const double scale = (width () - 2.0 * d->m_margin) / qrcode->width;
         painter.setBrush(d->m_foreground);
 
-        for(int x=0; x<qrcode->width; ++x)
+        for(int x = 0; x < qrcode->width; ++x)
         {
-            for(int y =0; y<qrcode->width; ++y)
+            for(int y = 0; y < qrcode->width; ++y)
             {
                 if(*point & 1)
                 {

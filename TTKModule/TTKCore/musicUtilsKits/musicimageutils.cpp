@@ -97,9 +97,9 @@ void MusicUtils::Image::fusionPixmap(QImage &back, const QImage &front, const QP
 QPixmap MusicUtils::Image::grayScalePixmap(const QPixmap &input, int radius)
 {
     QImage pix = input.toImage();
-    for(int w=0; w<pix.width(); w++)
+    for(int w = 0; w < pix.width(); ++w)
     {
-        for(int h=0; h<pix.height(); h++)
+        for(int h = 0; h < pix.height(); ++h)
         {
             int gray = qGray(pix.pixel(w, h)) + radius;
                 gray = qBound(0, gray, 255);
@@ -113,9 +113,9 @@ QPixmap MusicUtils::Image::grayScalePixmap(const QPixmap &input, int radius)
 int MusicUtils::Image::grayScaleAverage(const QImage &input, int width, int height)
 {
     int average = 0;
-    for(int w=0; w<width; w++)
+    for(int w = 0; w < width; ++w)
     {
-        for(int h=0; h<height; h++)
+        for(int h = 0; h < height; ++h)
         {
             average += qBound(0, qGray(input.pixel(w, h)), 255);
         }
@@ -144,9 +144,9 @@ static int colorBurnTransform(int c, int delta)
 
 void MusicUtils::Image::reRenderImage(int delta, const QImage *input, QImage *output)
 {
-    for(int w=0; w<input->width(); w++)
+    for(int w = 0; w < input->width(); ++w)
     {
-        for(int h=0; h<input->height(); h++)
+        for(int h = 0; h < input->height(); ++h)
         {
             const QRgb rgb = input->pixel(w, h);
             output->setPixel(w, h, qRgb(colorBurnTransform(qRed(rgb), delta),

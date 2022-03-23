@@ -20,7 +20,7 @@ static QStringList processList()
     }
 
     cProcesses = cbNeeded / sizeof(unsigned long);
-    for(unsigned int i = 0; i < cProcesses; i++)
+    for(unsigned int i = 0; i < cProcesses; ++i)
     {
         if(aProcesses[i] == 0)
         {

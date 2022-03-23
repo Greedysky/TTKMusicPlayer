@@ -128,7 +128,7 @@ void MusicSongSearchTableWidget::resizeWindow()
     headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN) / 3.0 + 105);
     headerview->resizeSection(3, (width - WINDOW_WIDTH_MIN) / 3.0 + 105);
 
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
         it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
@@ -427,7 +427,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
 
     if(index == 0)
     {
-        for(int i=0; i<list.count(); ++i)
+        for(int i = 0; i < list.count(); ++i)
         {
             m_searchTableWidget->addSearchMusicToPlaylist(list[i], true && (i == 0));
         }

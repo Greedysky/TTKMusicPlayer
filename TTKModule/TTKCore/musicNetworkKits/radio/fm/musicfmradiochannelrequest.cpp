@@ -38,7 +38,7 @@ void MusicFMRadioChannelRequest::downLoadFinished()
         {
             QVariantMap value = data.toMap();
             const QVariantList &groups = value["groups"].toList();
-            for(int i=0; i<groups.count(); ++i)
+            for(int i = 0; i < groups.count(); ++i)
             {
                 value = groups[i].toMap();
                 const int group = value["group_id"].toInt();
@@ -48,7 +48,7 @@ void MusicFMRadioChannelRequest::downLoadFinished()
                 }
 
                 const QVariantList &channels = value["chls"].toList();
-                for(int i=0; i<channels.count(); ++i)
+                for(int i = 0; i < channels.count(); ++i)
                 {
                     value = channels[i].toMap();
                     MusicFMRadioChannelData channel;

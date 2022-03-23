@@ -316,7 +316,7 @@ void MusicFunctionToolBoxWidget::addItem(QWidget *item, const QString &text)
     }
 
     //hide before widget
-    for(int i=0; i<m_itemList.count(); ++i)
+    for(int i = 0; i < m_itemList.count(); ++i)
     {
         m_itemList[i].m_widgetItem->setItemExpand(false);
     }
@@ -335,7 +335,7 @@ void MusicFunctionToolBoxWidget::addItem(QWidget *item, const QString &text)
 
 void MusicFunctionToolBoxWidget::removeItem(QWidget *item)
 {
-    for(int i=0; i<m_itemList.count(); ++i)
+    for(int i = 0; i < m_itemList.count(); ++i)
     {
         MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
         if(it->item() == item)
@@ -365,7 +365,7 @@ void MusicFunctionToolBoxWidget::swapItem(int before, int after)
 
 void MusicFunctionToolBoxWidget::setTitle(QWidget *item, const QString &text)
 {
-    for(int i=0; i<m_itemList.count(); ++i)
+    for(int i = 0; i < m_itemList.count(); ++i)
     {
         MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
         if(it->item() == item)
@@ -398,7 +398,7 @@ int MusicFunctionToolBoxWidget::count() const
 void MusicFunctionToolBoxWidget::setCurrentIndex(int index)
 {
     m_currentIndex = index;
-    for(int i=0; i<m_itemList.count(); ++i)
+    for(int i = 0; i < m_itemList.count(); ++i)
     {
         m_itemList[i].m_widgetItem->setItemExpand(i == index);
     }
@@ -407,7 +407,7 @@ void MusicFunctionToolBoxWidget::setCurrentIndex(int index)
 void MusicFunctionToolBoxWidget::itemIndexChanged(int index)
 {
     m_currentIndex = foundMappingIndex(index);
-    for(int i=0; i<m_itemList.count(); ++i)
+    for(int i = 0; i < m_itemList.count(); ++i)
     {
         const bool hide = (i == m_currentIndex) ? !m_itemList[i].m_widgetItem->itemExpand() : false;
         m_itemList[i].m_widgetItem->setItemExpand(hide);
@@ -446,7 +446,7 @@ void MusicFunctionToolBoxWidget::mousePressEvent(QMouseEvent *event)
 int MusicFunctionToolBoxWidget::foundMappingIndex(int index)
 {
     int id = -1;
-    for(int i=0; i<m_itemList.count(); ++i)
+    for(int i = 0; i < m_itemList.count(); ++i)
     {
         if(m_itemList[i].m_itemIndex == index)
         {

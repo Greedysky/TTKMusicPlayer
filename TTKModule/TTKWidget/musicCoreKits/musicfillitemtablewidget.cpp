@@ -20,7 +20,7 @@ MusicFillItemTableWidget::~MusicFillItemTableWidget()
 TTKIntList MusicFillItemTableWidget::selectedItems() const
 {
     TTKIntList list;
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         if(item(i, 0)->data(MUSIC_CHECK_ROLE) == Qt::Checked)
         {
@@ -53,7 +53,7 @@ void MusicFillItemTableWidget::itemCellClicked(int row, int column)
 
 void MusicFillItemTableWidget::setSelectedAllItems(bool check)
 {
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }

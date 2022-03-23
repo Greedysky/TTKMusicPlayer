@@ -863,7 +863,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
             contains = true;
         }
         ///other ways
-        for(int i=index.count() - 1; i>=0; --i)
+        for(int i = index.count() - 1; i >= 0; --i)
         {
             m_ui->musicPlayedList->remove(index[i]);
             if(i != 0 && !contains && oldIndex <= index[i] && oldIndex >= index[i - 1])

@@ -236,7 +236,7 @@ void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
                 return;
             }
 
-            for(int i=0; i<parent->childCount(); ++i)
+            for(int i = 0; i < parent->childCount(); ++i)
             {
                 QTreeWidgetItem *it = parent->child(i);
                 it->setData(column, MUSIC_CHECK_ROLE, Qt::Unchecked);

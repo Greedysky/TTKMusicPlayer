@@ -118,7 +118,7 @@ void MusicSpectrumLayoutWidget::addItems(const ItemInfos &items)
     MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SLOT(labelClicked(int)));
 
-    for(int i=0; i<items.count(); ++i)
+    for(int i = 0; i < items.count(); ++i)
     {
         const ItemInfo &info = items[i];
         MusicSpectrumLayoutItem *item = new MusicSpectrumLayoutItem(this);

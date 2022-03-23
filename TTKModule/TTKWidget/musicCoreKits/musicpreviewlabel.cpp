@@ -10,7 +10,7 @@ MusicColorPreviewLabel::MusicColorPreviewLabel(QWidget *parent)
 void MusicColorPreviewLabel::setColors(const QList<QColor> &colors)
 {
     QLinearGradient linearGradient;
-    for(int i=0; i<colors.count(); ++i)
+    for(int i = 0; i < colors.count(); ++i)
     {
         linearGradient.setColorAt((i + 1) * 1.0 / colors.count(), colors[i]);
     }
@@ -74,18 +74,20 @@ void MusicPreviewLabel::setLinearGradient(const MusicPreviewLabelItem &item)
 void MusicPreviewLabel::setLinearGradient(const QList<QColor> &front, const QList<QColor> &back)
 {
     QLinearGradient linearGradient, maskLinearGradient;
-    for(int i=0; i<back.count(); ++i)
+    for(int i = 0; i < back.count(); ++i)
     {
         QColor rgb = back[i];
         rgb.setAlpha(m_transparent);
         linearGradient.setColorAt((i + 1) * 1.0 / back.count(), rgb);
     }
-    for(int i=0; i<front.count(); ++i)
+
+    for(int i = 0; i < front.count(); ++i)
     {
         QColor rgb = front[i];
         rgb.setAlpha(m_transparent);
         maskLinearGradient.setColorAt((i + 1) * 1.0 / front.count(), rgb);
     }
+
     m_linearGradient = linearGradient;
     m_maskLinearGradient = maskLinearGradient;
 }

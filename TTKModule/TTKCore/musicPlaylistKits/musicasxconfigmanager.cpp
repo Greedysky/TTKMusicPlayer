@@ -16,13 +16,13 @@ bool MusicASXConfigManager::readPlaylistData(MusicSongItemList &items)
     helper.load();
 
     const QDomNodeList &itemNodes = m_document->elementsByTagName(helper.nodeName("Entry"));
-    for(int i=0; i<itemNodes.count(); ++i)
+    for(int i = 0; i < itemNodes.count(); ++i)
     {
         const QDomNode &node = itemNodes.at(i);
         const QDomNodeList &paramNodes = node.childNodes();
 
         QString duration, path;
-        for(int j=0; j<paramNodes.count(); ++j)
+        for(int j = 0; j < paramNodes.count(); ++j)
         {
             const QDomNode &paramNode = paramNodes.at(j);
             if(paramNode.nodeName().toLower() == "duration")
@@ -57,7 +57,7 @@ bool MusicASXConfigManager::writePlaylistData(const MusicSongItemList &items, co
     }
     //
     QDomElement musicPlayerDom = createRoot("Asx", MusicXmlAttribute("version ", "3.0"));
-    for(int i=0; i<items.count(); ++i)
+    for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
 

@@ -258,7 +258,7 @@ bool MusicBackgroundListWidget::contains(const MusicBackgroundImage &image) cons
 
 int MusicBackgroundListWidget::find(MusicBackgroundListItem *item) const
 {
-    for(int i=0; i<m_items.count(); ++i)
+    for(int i = 0; i < m_items.count(); ++i)
     {
         if(m_items[i] == item)
         {
@@ -326,7 +326,7 @@ void MusicBackgroundListWidget::itemCloseClicked(MusicBackgroundListItem *item)
         }
     }
 
-    for(int i=index; i<m_items.count(); ++i)
+    for(int i = index; i < m_items.count(); ++i)
     {
         m_gridLayout->addWidget(m_items[i], i / ITEM_COUNT, i % ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     }

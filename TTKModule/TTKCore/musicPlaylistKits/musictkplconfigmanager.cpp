@@ -10,7 +10,7 @@ MusicTKPLConfigManager::MusicTKPLConfigManager()
 bool MusicTKPLConfigManager::readPlaylistData(MusicSongItemList &items)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName("musicList");
-    for(int i=0; i<nodes.count(); ++i)
+    for(int i = 0; i < nodes.count(); ++i)
     {
         const QDomNode &node = nodes.at(i);
         MusicSongItem item;
@@ -37,7 +37,7 @@ bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItemList &items, c
     //
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot(APP_NAME);
-    for(int i=0; i<items.count(); ++i)
+    for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
         QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", MusicXmlAttributeList()
@@ -65,7 +65,7 @@ MusicSongList MusicTKPLConfigManager::readMusicFilePath(const QDomNode &node) co
     const QDomNodeList &nodeList = node.childNodes();
 
     MusicSongList songs;
-    for(int i=0; i<nodeList.count(); i++)
+    for(int i = 0; i < nodeList.count(); ++i)
     {
         const QDomElement &element = nodeList.at(i).toElement();
         MusicSong song(element.text(), element.attribute("time"), element.attribute("name"), true);

@@ -91,7 +91,7 @@ void MusicCryptographicHash::xxteaUintEncrypt(xxtea_uint *v, xxtea_uint len, xxt
     {
         sum += XXTEA_DELTA;
         e = sum >> 2 & 3;
-        for(p = 0; p < n; p++)
+        for(p = 0; p < n; ++p)
         {
             y = v[p + 1];
             z = v[p] += XXTEA_MX;
@@ -114,7 +114,7 @@ void MusicCryptographicHash::xxteaUintDecrypt(xxtea_uint *v, xxtea_uint len, xxt
     while(sum != 0)
     {
         e = sum >> 2 & 3;
-        for(p = n; p > 0; p--)
+        for(p = n; p > 0; --p)
         {
             z = v[p - 1];
             y = v[p] -= XXTEA_MX;
@@ -152,7 +152,7 @@ xxtea_uint *MusicCryptographicHash::xxteaToUintArray(uchar *data, xxtea_uint len
     }
 
     memset(result, 0, n << 2);
-    for(i = 0; i < len; i++)
+    for(i = 0; i < len; ++i)
     {
         result[i >> 2] |= (xxtea_uint)data[i] << ((i & 3) << 3);
     }
@@ -177,7 +177,7 @@ uchar *MusicCryptographicHash::xxteaToByteArray(xxtea_uint *data, xxtea_uint len
     }
 
     result = (uchar *)malloc(n + 1);
-    for(i = 0; i < n; i++)
+    for(i = 0; i < n; ++i)
     {
         result[i] = (uchar)((data[i >> 2] >> ((i & 3) << 3)) & 0xFF);
     }

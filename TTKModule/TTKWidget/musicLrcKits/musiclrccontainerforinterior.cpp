@@ -39,7 +39,7 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     m_containerType = LRC_INTERIOR_TPYE;
     m_layoutWidget = new MusicVLayoutAnimationWidget(this);
     m_layoutWidget->connectTo(this);
-    for(int i=0; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
+    for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
        MusicLrcManager *w = new MusicLrcManagerForInterior(this);
        w->setText(QString());
@@ -121,7 +121,7 @@ void MusicLrcContainerForInterior::updateCurrentLrc(int state)
 {
     m_layoutWidget->stop();
 
-    for(int i=0; i<m_lrcAnalysis->lineMax(); ++i)
+    for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
     {
         m_musicLrcContainer[i]->setText(QString());
     }
@@ -161,7 +161,7 @@ void MusicLrcContainerForInterior::setLrcSize(int size)
     m_lrcSizeProperty = size;
     m_lrcAnalysis->setCurrentIndex(m_lrcAnalysis->currentIndex() - index - 1);
 
-    for(int i=0; i<m_lrcAnalysis->lineMax(); ++i)
+    for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
     {
         m_musicLrcContainer[i]->setLrcFontSize(size);
         m_musicLrcContainer[i]->setY(35 + size);
@@ -363,7 +363,7 @@ void MusicLrcContainerForInterior::musicSongMovieClicked()
 
 void MusicLrcContainerForInterior::updateAnimationLrc()
 {
-    for(int i=0; i<m_lrcAnalysis->lineMax(); ++i)
+    for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
     {
         m_musicLrcContainer[i]->setText(m_lrcAnalysis->text(i));
     }
@@ -590,7 +590,7 @@ void MusicLrcContainerForInterior::mouseMoveEvent(QMouseEvent *event)
             value = (mapLrcSizeProperty(m_lrcChangeDelta) - mapLrcSizeProperty(value)) / 2;
 
             m_lrcAnalysis->setCurrentIndex(index);
-            for(int i=0; i<m_lrcAnalysis->lineMax(); ++i)
+            for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
             {
                 m_musicLrcContainer[i]->setText(m_lrcAnalysis->text(i - value - 1));
             }
@@ -709,7 +709,7 @@ void MusicLrcContainerForInterior::showNoLrcCurrentInfo()
 
 void MusicLrcContainerForInterior::initCurrentLrc(const QString &str)
 {
-    for(int i=0; i<m_lrcAnalysis->lineMax(); ++i)
+    for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
     {
         m_musicLrcContainer[i]->setText(QString());
     }
@@ -776,7 +776,7 @@ void MusicLrcContainerForInterior::setItemStyleSheet()
     const int length = m_lrcAnalysis->lineMax();
     if(length == 11)
     {
-        for(int i=0; i<m_lrcAnalysis->lineMax(); ++i)
+        for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
         {
             if(i == 0 || i == 10) setItemStyleSheet(i, 5, 90);
             else if(i == 1 || i == 9) setItemStyleSheet(i, 4, 80);
@@ -788,7 +788,7 @@ void MusicLrcContainerForInterior::setItemStyleSheet()
     }
     else if(length == 9)
     {
-        for(int i=0; i<m_lrcAnalysis->lineMax(); ++i)
+        for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
         {
             if(i == 0 || i == 8) setItemStyleSheet(i, 8, 90);
             else if(i == 1 || i == 7) setItemStyleSheet(i, 6, 75);
@@ -799,7 +799,7 @@ void MusicLrcContainerForInterior::setItemStyleSheet()
     }
     else if(length == 7)
     {
-        for(int i=0; i<m_lrcAnalysis->lineMax(); ++i)
+        for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
         {
             if(i == 0 || i == 6) setItemStyleSheet(i, 12, 90);
             else if(i == 1 || i == 5) setItemStyleSheet(i, 8, 60);
@@ -809,7 +809,7 @@ void MusicLrcContainerForInterior::setItemStyleSheet()
     }
     else if(length == 5)
     {
-        for(int i=0; i<m_lrcAnalysis->lineMax(); ++i)
+        for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
         {
             if(i == 0 || i == 4) setItemStyleSheet(i, 16, 90);
             else if(i == 1 || i == 3) setItemStyleSheet(i, 8, 45);
@@ -818,7 +818,7 @@ void MusicLrcContainerForInterior::setItemStyleSheet()
     }
     else if(length == 3)
     {
-        for(int i=0; i<m_lrcAnalysis->lineMax(); ++i)
+        for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
         {
             if(i == 0 || i == 2) setItemStyleSheet(i, 20, 90);
             else setItemStyleSheet(i, 0, 0);
@@ -882,17 +882,19 @@ void MusicLrcContainerForInterior::setLrcSizeProperty(int property)
 {
     const int length = MUSIC_LRC_INTERIOR_MAX_LINE - property;
     m_lrcAnalysis->setLineMax(length);
-    for(int i=0; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
+    for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
         m_musicLrcContainer[i]->show();
         m_musicLrcContainer[i]->reset();
         m_layoutWidget->removeWidget(m_musicLrcContainer[i]);
     }
-    for(int i=0; i<length; ++i)
+
+    for(int i = 0; i < length; ++i)
     {
         m_layoutWidget->addWidget(m_musicLrcContainer[i]);
     }
-    for(int i=length; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
+
+    for(int i = length; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
         m_musicLrcContainer[i]->hide();
     }
@@ -900,7 +902,7 @@ void MusicLrcContainerForInterior::setLrcSizeProperty(int property)
 
 void MusicLrcContainerForInterior::resizeWidth(int w, int h)
 {
-    for(int i=0; i<m_lrcAnalysis->lineMax(); ++i)
+    for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
     {
         TTKStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[i])->setLrcPerWidth(w);
     }

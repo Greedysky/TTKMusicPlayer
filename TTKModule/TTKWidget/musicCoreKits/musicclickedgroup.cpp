@@ -21,7 +21,7 @@ void MusicClickedGroup::update()
     }
 
     int index = -1;
-    for(int i=0; i<m_container.count(); ++i)
+    for(int i = 0; i < m_container.count(); ++i)
     {
         if(m_container[i] == widget)
         {

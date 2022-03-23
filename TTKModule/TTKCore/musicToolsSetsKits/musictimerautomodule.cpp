@@ -67,7 +67,7 @@ void MusicTimerAutoModule::timeout()
     hour = l[0].toInt();
     minute = l[1].toInt();
 
-    for(int i=0; i<m_timeDatas.count(); ++i)
+    for(int i = 0; i < m_timeDatas.count(); ++i)
     {
         MusicTimeData *pair = &m_timeDatas[i];
         if(pair->m_state && hour == pair->m_hour && minute == pair->m_minute)

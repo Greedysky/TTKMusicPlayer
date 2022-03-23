@@ -41,7 +41,7 @@ void MusicAbstractSongsListTableWidget::selectRow(int index)
 int MusicAbstractSongsListTableWidget::totalHeight() const
 {
     int height = 0;
-    for(int i=0; i<rowCount(); ++i)
+    for(int i = 0; i < rowCount(); ++i)
     {
         height += rowHeight(i);
     }

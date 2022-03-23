@@ -33,9 +33,9 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
     MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SLOT(labelClicked(int)));
 
-    for(int i=0; i<3; ++i)
+    for(int i = 0; i < 3; ++i)
     {
-        for(int j=0; j<7; ++j)
+        for(int j = 0; j < 7; ++j)
         {
             MusicClickedLabel *l = new MusicClickedLabel(labelWidget);
             l->setAlignment(Qt::AlignCenter);
@@ -60,7 +60,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
 #else
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
 #endif
-    for(int i=0; i<5; ++i)
+    for(int i = 0; i < 5; ++i)
     {
         QToolButton *button = new QToolButton(buttonWidget);
         button->setCursor(Qt::PointingHandCursor);
@@ -101,9 +101,9 @@ void MusicEMOJILabelWidget::buttonClicked(int index)
     }
     m_buttonItems[index]->setStyleSheet(m_buttonItems[index]->styleSheet() + MusicUIObject::MQSSBorderStyle04);
 
-    for(int i=0; i<3; ++i)
+    for(int i = 0; i < 3; ++i)
     {
-        for(int j=0; j<7; ++j)
+        for(int j = 0; j < 7; ++j)
         {
             const int in = i * 7 + j;
             m_labelItems[in]->setPixmap(QPixmap(QString(":/emoji/%1").arg(21 * index + in + 1)));

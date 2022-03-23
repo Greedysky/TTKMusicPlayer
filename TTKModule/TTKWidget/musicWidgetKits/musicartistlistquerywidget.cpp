@@ -77,13 +77,13 @@ void MusicArtistListQueryWidget::resizeWindow()
 {
     if(!m_resizeWidgets.isEmpty() && m_gridLayout)
     {
-        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->removeWidget(m_resizeWidgets[i].m_label);
         }
 
         const int lineNumber = width() / LINE_SPACING_SIZE;
-        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        for(int i = 0; i < m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i / lineNumber, i % lineNumber, Qt::AlignCenter);
         }
@@ -119,7 +119,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultsItem &it
         MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
         connect(clickedGroup, SIGNAL(clicked(int)), SLOT(numberButtonClicked(int)));
 
-        for(int i=-1; i<27; ++i)
+        for(int i = -1; i < 27; ++i)
         {
             MusicClickedLabel *l = new MusicClickedLabel(QString(TTKStatic_cast(char, i + 65)), containNumberWidget);
             l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(MusicUIObject::MQSSColorStyle08, MusicUIObject::MQSSColorStyle11));
