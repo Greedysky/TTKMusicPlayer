@@ -1,9 +1,8 @@
-#include <QPainter>
-#include <QPaintEvent>
-#include <math.h>
-
-#include "inlines.h"
 #include "wavecrest.h"
+#include "inlines.h"
+
+#include <QPainter>
+#include <math.h>
 
 WaveCrest::WaveCrest(QWidget *parent)
     : Visual(parent)
@@ -20,10 +19,10 @@ WaveCrest::~WaveCrest()
     }
 }
 
-void WaveCrest::paintEvent(QPaintEvent *e)
+void WaveCrest::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
+    painter.fillRect(rect(), Qt::black);
     draw(&painter);
 }
 

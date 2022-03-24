@@ -1,14 +1,13 @@
+#include "normalanalyzer.h"
+#include "inlines.h"
+
+#include <QMenu>
 #include <QTimer>
 #include <QSettings>
-#include <QPainter>
-#include <QMenu>
 #include <QActionGroup>
-#include <QPaintEvent>
+#include <QPainter>
 #include <math.h>
 #include <qmmp/qmmp.h>
-
-#include "inlines.h"
-#include "normalanalyzer.h"
 
 NormalAnalyzer::NormalAnalyzer(QWidget *parent)
     : Visual(parent)
@@ -202,19 +201,16 @@ void NormalAnalyzer::showEvent(QShowEvent *e)
     }
 }
 
-void NormalAnalyzer::paintEvent(QPaintEvent *e)
+void NormalAnalyzer::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
+    painter.fillRect(rect(), Qt::black);
     draw(&painter);
 }
 
-void NormalAnalyzer::mousePressEvent(QMouseEvent *e)
+void NormalAnalyzer::contextMenuEvent(QContextMenuEvent *)
 {
-    if(e->button() == Qt::RightButton)
-    {
-        m_menu->exec(e->globalPos());
-    }
+    m_menu->exec(QCursor::pos());
 }
 
 void NormalAnalyzer::process(float *left, float *right)

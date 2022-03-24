@@ -1,10 +1,9 @@
-#include <QPainter>
-#include <QMenu>
-#include <QPaintEvent>
-#include <math.h>
-
 #include "inlines.h"
 #include "plusspacewave.h"
+
+#include <QMenu>
+#include <QPainter>
+#include <math.h>
 
 PlusSpaceWave::PlusSpaceWave(QWidget *parent)
     : Visual(parent)
@@ -26,10 +25,10 @@ PlusSpaceWave::~PlusSpaceWave()
     }
 }
 
-void PlusSpaceWave::paintEvent(QPaintEvent *e)
+void PlusSpaceWave::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
+    painter.fillRect(rect(), Qt::black);
     draw(&painter);
 }
 

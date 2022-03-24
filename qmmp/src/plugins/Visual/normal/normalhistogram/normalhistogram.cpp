@@ -1,13 +1,12 @@
+#include "normalhistogram.h"
+#include "inlines.h"
+
+#include <QMenu>
 #include <QTimer>
 #include <QSettings>
 #include <QPainter>
-#include <QMenu>
-#include <QPaintEvent>
 #include <math.h>
 #include <qmmp/qmmp.h>
-
-#include "inlines.h"
-#include "normalhistogram.h"
 
 NormalHistogram::NormalHistogram(QWidget *parent)
     : Visual(parent)
@@ -128,10 +127,10 @@ void NormalHistogram::showEvent(QShowEvent *e)
     }
 }
 
-void NormalHistogram::paintEvent(QPaintEvent *e)
+void NormalHistogram::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
+    painter.fillRect(rect(), Qt::black);
     draw(&painter);
 }
 

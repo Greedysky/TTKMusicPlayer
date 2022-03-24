@@ -1,7 +1,8 @@
-#include <QPainter>
-#include "fft.h"
-#include "inlines.h"
 #include "floridautism.h"
+#include "inlines.h"
+#include "fft.h"
+
+#include <QPainter>
 
 #define ANIMATION_SIZE  4
 

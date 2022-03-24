@@ -1,13 +1,12 @@
+#include "plusfoldwave.h"
+#include "inlines.h"
+
+#include <QMenu>
 #include <QTimer>
 #include <QSettings>
 #include <QPainter>
-#include <QMenu>
-#include <QPaintEvent>
 #include <math.h>
 #include <qmmp/qmmp.h>
-
-#include "inlines.h"
-#include "plusfoldwave.h"
 
 PlusFoldWave::PlusFoldWave(QWidget *parent)
     : Visual(parent)
@@ -128,10 +127,10 @@ void PlusFoldWave::showEvent(QShowEvent *e)
     }
 }
 
-void PlusFoldWave::paintEvent(QPaintEvent *e)
+void PlusFoldWave::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
+    painter.fillRect(rect(), Qt::black);
     draw(&painter);
 }
 

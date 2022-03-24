@@ -1,6 +1,7 @@
-#include <QPainter>
-#include "inlines.h"
 #include "floridsurround.h"
+#include "inlines.h"
+
+#include <QPainter>
 
 FloridSurround::FloridSurround(QWidget *parent)
     : Florid(parent)

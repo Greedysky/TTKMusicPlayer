@@ -19,8 +19,8 @@
 #ifndef NORMALANALYZER_H
 #define NORMALANALYZER_H
 
-#include <qmmp/visual.h>
 #include "colorwidget.h"
+#include <qmmp/visual.h>
 
 class QMenu;
 class QActionGroup;
@@ -51,7 +51,7 @@ private:
     virtual void hideEvent(QHideEvent *e) override final;
     virtual void showEvent(QShowEvent *e) override final;
     virtual void paintEvent(QPaintEvent *e) override final;
-    virtual void mousePressEvent(QMouseEvent *e) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
     void draw(QPainter *p);

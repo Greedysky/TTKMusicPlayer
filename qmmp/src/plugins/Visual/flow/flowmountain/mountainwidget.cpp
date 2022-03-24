@@ -1,4 +1,5 @@
 #include "mountainwidget.h"
+
 #include <math.h>
 
 MountainWidget::MountainWidget(QWidget *parent)

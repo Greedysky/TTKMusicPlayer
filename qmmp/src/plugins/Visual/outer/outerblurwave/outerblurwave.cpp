@@ -1,13 +1,13 @@
+#include "outerblurwave.h"
+#include "colorwidget.h"
+#include "inlines.h"
+
 #include <QTimer>
 #include <QSettings>
 #include <QPainter>
 #include <QPaintEvent>
 #include <math.h>
 #include <qmmp/qmmp.h>
-
-#include "inlines.h"
-#include "outerblurwave.h"
-#include "colorwidget.h"
 
 #include <QGraphicsView>
 #include <QGraphicsScene>

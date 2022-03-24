@@ -1,6 +1,7 @@
-#include <QPainter>
-#include "inlines.h"
 #include "floridreverb.h"
+#include "inlines.h"
+
+#include <QPainter>
 
 FloridReverb::FloridReverb(QWidget *parent)
     : Florid(parent)

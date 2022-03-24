@@ -1,7 +1,7 @@
 #include "projectmwidget.h"
-#include <qmmp/qmmp.h>
 
 #include <QDir>
+#include <qmmp/qmmp.h>
 
 ProjectMWidget::ProjectMWidget(QWidget *parent)
 #ifdef QT_OPENGL_WIDGET

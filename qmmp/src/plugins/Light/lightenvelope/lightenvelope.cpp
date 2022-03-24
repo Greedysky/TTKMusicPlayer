@@ -2,7 +2,6 @@
 
 #include <QMenu>
 #include <QPainter>
-#include <QPaintEvent>
 #include <QSettings>
 
 #include <math.h>
@@ -301,10 +300,10 @@ void LightEnvelope::positionChanged(qint64 elapsed)
     }
 }
 
-void LightEnvelope::paintEvent(QPaintEvent *e)
+void LightEnvelope::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
+    painter.fillRect(rect(), Qt::black);
 
     if(!m_pixmap.isNull())
     {

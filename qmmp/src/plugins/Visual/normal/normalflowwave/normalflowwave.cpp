@@ -1,13 +1,12 @@
+#include "normalflowwave.h"
+#include "inlines.h"
+
+#include <QMenu>
 #include <QTimer>
 #include <QSettings>
 #include <QPainter>
-#include <QMenu>
-#include <QPaintEvent>
 #include <math.h>
 #include <qmmp/qmmp.h>
-
-#include "inlines.h"
-#include "normalflowwave.h"
 
 NormalFlowWave::NormalFlowWave(QWidget *parent)
     : Visual(parent)
@@ -116,10 +115,10 @@ void NormalFlowWave::showEvent(QShowEvent *e)
     }
 }
 
-void NormalFlowWave::paintEvent(QPaintEvent *e)
+void NormalFlowWave::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
+    painter.fillRect(rect(), Qt::black);
     draw(&painter);
 }
 

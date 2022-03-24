@@ -1,9 +1,8 @@
-#include <QPainter>
-#include <QPaintEvent>
-#include <math.h>
-
-#include "inlines.h"
 #include "outerripples.h"
+#include "inlines.h"
+
+#include <QPainter>
+#include <math.h>
 
 OuterRipples::OuterRipples(QWidget *parent)
     : Visual(parent)

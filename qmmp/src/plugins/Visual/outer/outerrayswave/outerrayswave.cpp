@@ -1,10 +1,9 @@
+#include "outerrayswave.h"
+#include "inlines.h"
+
 #include <QTimer>
 #include <QPainter>
-#include <QPaintEvent>
 #include <math.h>
-
-#include "inlines.h"
-#include "outerrayswave.h"
 
 OuterRaysWave::OuterRaysWave(QWidget *parent)
     : Visual(parent)

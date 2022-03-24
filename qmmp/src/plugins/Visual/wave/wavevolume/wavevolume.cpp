@@ -1,11 +1,10 @@
-#include <QPainter>
+#include "wavevolume.h"
+#include "inlines.h"
+
 #include <QMenu>
-#include <QPaintEvent>
+#include <QPainter>
 #include <math.h>
 #include <qmmp/soundcore.h>
-
-#include "inlines.h"
-#include "wavevolume.h"
 
 WaveVolume::WaveVolume(QWidget *parent)
     : Visual(parent)
@@ -22,10 +21,10 @@ WaveVolume::~WaveVolume()
     }
 }
 
-void WaveVolume::paintEvent(QPaintEvent *e)
+void WaveVolume::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
+    painter.fillRect(rect(), Qt::black);
     draw(&painter);
 }
 
@@ -135,6 +134,7 @@ void WaveVolume::draw(QPainter *p)
             left = SoundCore::instance()->leftVolume() / 100.0;
             right = SoundCore::instance()->rightVolume() / 100.0;
         }
+
         const int wid = ceil(m_rows / 2);
         p->fillRect(0, 0, m_intern_vis_data[0] * left * m_cols/m_rows, wid, line);
         p->fillRect(0, wid, m_intern_vis_data[1] * right * m_cols/m_rows, wid, line);

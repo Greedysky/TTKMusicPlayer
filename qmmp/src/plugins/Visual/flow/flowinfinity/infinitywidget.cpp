@@ -322,12 +322,6 @@ void InfinityWidget::createModule()
 void InfinityWidget::loadRandomEffect()
 {
     m_currentEffect = etables[qrand() % NB_EFFECT_COUNT];
-/*    for(unsigned int i = 0; i < sizeof(VEffect); ++i)
-    {
-
-        *((unsigned char *)&m_currentEffect + i) = *((unsigned char *)(&etables[index]) + i);
-    }
-*/
 }
 
 void InfinityWidget::displayBlur()

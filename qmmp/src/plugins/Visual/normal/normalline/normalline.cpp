@@ -1,14 +1,12 @@
+#include "normalline.h"
+#include "inlines.h"
+
+#include <QMenu>
 #include <QTimer>
 #include <QSettings>
 #include <QPainter>
-#include <QMenu>
-#include <QPaintEvent>
 #include <math.h>
 #include <qmmp/qmmp.h>
-
-#include "inlines.h"
-#include "normalline.h"
-#include "colorwidget.h"
 
 NormalLine::NormalLine(QWidget *parent)
     : Visual(parent)
@@ -134,10 +132,10 @@ void NormalLine::showEvent(QShowEvent *e)
     }
 }
 
-void NormalLine::paintEvent(QPaintEvent *e)
+void NormalLine::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
+    painter.fillRect(rect(), Qt::black);
     draw(&painter);
 }
 

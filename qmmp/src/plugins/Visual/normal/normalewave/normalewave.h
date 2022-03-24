@@ -19,8 +19,8 @@
 #ifndef NORMALEWAVE_H
 #define NORMALEWAVE_H
 
-#include <qmmp/visual.h>
 #include "colorwidget.h"
+#include <qmmp/visual.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>

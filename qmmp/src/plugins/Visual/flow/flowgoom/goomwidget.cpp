@@ -104,7 +104,7 @@ void GoomWidget::process(float *left, float *right)
         buf[1][i] = right[i] * 32767.0;
     }
 
-    goom_update(m_goom, buf, 0, m_timer->interval());
+    goom_update(m_goom, buf, 0, 1000 / m_timer->interval());
 }
 
 void GoomWidget::clearImage()

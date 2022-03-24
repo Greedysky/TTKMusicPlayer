@@ -1,10 +1,9 @@
-#include <QPainter>
-#include <QPaintEvent>
-#include <QMenu>
-#include <math.h>
-
-#include "inlines.h"
 #include "wavevoice.h"
+#include "inlines.h"
+
+#include <QMenu>
+#include <QPainter>
+#include <math.h>
 
 WaveVoice::WaveVoice(QWidget *parent)
     : Visual(parent)
@@ -35,10 +34,10 @@ void WaveVoice::typeChanged(QAction *action)
     initialize();
 }
 
-void WaveVoice::paintEvent(QPaintEvent *e)
+void WaveVoice::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
+    painter.fillRect(rect(), Qt::black);
     draw(&painter);
 }
 

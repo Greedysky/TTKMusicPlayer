@@ -2,9 +2,8 @@
 #include "ethereality.h"
 #include "inlines.h"
 
-#include <qmmp/qmmp.h>
 #include <QPainter>
-#include <QPaintEvent>
+#include <qmmp/qmmp.h>
 
 FlowEthereality::FlowEthereality(QWidget *parent)
     : Visual(parent)
@@ -38,10 +37,10 @@ void FlowEthereality::resizeEvent(QResizeEvent *)
     }
 }
 
-void FlowEthereality::paintEvent(QPaintEvent *e)
+void FlowEthereality::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
+    painter.fillRect(rect(), Qt::black);
 }
 
 void FlowEthereality::process(float *left, float *)

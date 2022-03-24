@@ -1,5 +1,6 @@
-#include <QPainter>
 #include "floridbass.h"
+
+#include <QPainter>
 
 FloridBass::FloridBass(QWidget *parent)
     : Florid(parent)

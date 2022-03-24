@@ -1,12 +1,11 @@
-#include <QSettings>
-#include <QPainter>
-#include <QMenu>
-#include <QPaintEvent>
-#include <math.h>
-#include <qmmp/qmmp.h>
-
 #include "plusxrays.h"
 #include "colorwidget.h"
+
+#include <QMenu>
+#include <QSettings>
+#include <QPainter>
+#include <math.h>
+#include <qmmp/qmmp.h>
 
 PlusXRays::PlusXRays(QWidget *parent)
     : Visual(parent)
@@ -60,10 +59,10 @@ void PlusXRays::changeGridState(bool state)
     update();
 }
 
-void PlusXRays::paintEvent(QPaintEvent *e)
+void PlusXRays::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
+    painter.fillRect(rect(), Qt::black);
     draw(&painter);
 }
 

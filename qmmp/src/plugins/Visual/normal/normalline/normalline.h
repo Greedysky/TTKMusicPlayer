@@ -19,8 +19,8 @@
 #ifndef NORMALLINE_H
 #define NORMALLINE_H
 
-#include <qmmp/visual.h>
 #include "colorwidget.h"
+#include <qmmp/visual.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>

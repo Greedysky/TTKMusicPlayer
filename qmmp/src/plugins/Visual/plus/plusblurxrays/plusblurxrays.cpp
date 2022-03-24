@@ -1,13 +1,12 @@
-#include <QSettings>
-#include <QPainter>
-#include <QMenu>
-#include <QPaintEvent>
-#include <math.h>
-#include <qmmp/qmmp.h>
-
-#include "inlines.h"
 #include "plusblurxrays.h"
 #include "colorwidget.h"
+#include "inlines.h"
+
+#include <QMenu>
+#include <QSettings>
+#include <QPainter>
+#include <math.h>
+#include <qmmp/qmmp.h>
 
 PlusBlurXRays::PlusBlurXRays(QWidget *parent)
     : Visual(parent)
@@ -53,10 +52,10 @@ void PlusBlurXRays::changeColor()
     }
 }
 
-void PlusBlurXRays::paintEvent(QPaintEvent *e)
+void PlusBlurXRays::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
+    painter.fillRect(rect(), Qt::black);
     draw(&painter);
 }
 

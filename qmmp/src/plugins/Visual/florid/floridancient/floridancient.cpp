@@ -1,7 +1,7 @@
-#include <QPainter>
-#include "inlines.h"
 #include "floridancient.h"
+#include "inlines.h"
 
+#include <QPainter>
 #include <QPropertyAnimation>
 
 #define POINT_SIZE          20

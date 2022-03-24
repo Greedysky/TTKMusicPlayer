@@ -1,8 +1,8 @@
-#include <QPainter>
-#include "fft.h"
-#include "inlines.h"
 #include "floridelectric.h"
+#include "inlines.h"
+#include "fft.h"
 
+#include <QPainter>
 #include <QPropertyAnimation>
 
 ElectricPointLabel::ElectricPointLabel(QWidget *parent)
