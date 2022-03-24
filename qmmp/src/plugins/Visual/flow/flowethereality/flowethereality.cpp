@@ -1,10 +1,10 @@
-#include <QPainter>
-#include <QPaintEvent>
-#include "inlines.h"
 #include "flowethereality.h"
 #include "ethereality.h"
+#include "inlines.h"
 
 #include <qmmp/qmmp.h>
+#include <QPainter>
+#include <QPaintEvent>
 
 FlowEthereality::FlowEthereality(QWidget *parent)
     : Visual(parent)

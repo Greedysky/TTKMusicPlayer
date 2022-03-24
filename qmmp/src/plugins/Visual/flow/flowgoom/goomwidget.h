@@ -47,7 +47,6 @@ private:
     virtual void hideEvent(QHideEvent *e) override final;
     virtual void showEvent(QShowEvent *e) override final;
     virtual void paintEvent(QPaintEvent *e) override final;
-    virtual void mousePressEvent(QMouseEvent *e) override final;
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
@@ -60,7 +59,6 @@ private:
     QActionGroup *m_fpsGroup;
     PluginInfo *m_goom = nullptr;
 
-    int m_fps = 25;
     QImage m_image;
 
 };

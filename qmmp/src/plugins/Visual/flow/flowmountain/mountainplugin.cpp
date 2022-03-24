@@ -1,9 +1,9 @@
+#include "mountainplugin.h"
+#include "mountainwidget.h"
+#include "inlines.h"
+
 #include <QMenu>
 #include <QBoxLayout>
-#include "mountainwidget.h"
-#include "mountainplugin.h"
-
-#include "inlines.h"
 
 MountainPlugin::MountainPlugin(QWidget *parent)
     : Visual(parent)

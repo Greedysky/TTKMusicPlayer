@@ -4,14 +4,12 @@ QT += opengl
 DESTDIR = $$PLUGINS_PREFIX/Visual
 TARGET = $${TARGET}
 
-HEADERS += soniqueplugin.h \
-           soniquewidget.h \
+HEADERS += soniquewidget.h \
            visual.h \
            kiss_fft.h \
            visualflowsoniquefactory.h
 
-SOURCES += soniqueplugin.cpp \
-           soniquewidget.cpp \
+SOURCES += soniquewidget.cpp \
            kiss_fft.c \
            visualflowsoniquefactory.cpp
 

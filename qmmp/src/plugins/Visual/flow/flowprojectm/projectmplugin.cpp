@@ -1,7 +1,8 @@
+#include "projectmplugin.h"
+#include "projectmwidget.h"
+
 #include <QMenu>
 #include <QBoxLayout>
-#include "projectmwidget.h"
-#include "projectmplugin.h"
 
 ProjectMPlugin::ProjectMPlugin(QWidget *parent)
     : Visual(parent)

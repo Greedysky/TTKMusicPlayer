@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    Visual::initialize(this);
 //    for(VisualFactory *var : Visual::factories())
 //    {
-//        if(var->properties().shortName == "plusblurxrays")
+//        if(var->properties().shortName == "flowinfinity")
 //        {
 //            Visual::setEnabled(var, true);
 //        }

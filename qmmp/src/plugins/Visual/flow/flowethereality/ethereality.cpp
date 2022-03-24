@@ -69,9 +69,10 @@ void Ethereality::paintEvent(QPaintEvent *e)
 
 void Ethereality::loadFile()
 {
-    QFile file(":/data/text");
+    QFile file(":/data/binary");
     if(!file.open(QIODevice::ReadOnly))
     {
+        qDebug("Ethereality: Open binary data failed");
         return;
     }
 

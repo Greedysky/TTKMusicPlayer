@@ -60,8 +60,8 @@ void NormalFlowWave::starTimeout()
 {
     for(StarPoint *point : qAsConst(m_starPoints))
     {
-        point->m_alpha = rand() % 255;
-        point->m_pt = QPoint(rand() % width(), rand() % height());
+        point->m_alpha = qrand() % 255;
+        point->m_pt = QPoint(qrand() % width(), qrand() % height());
     }
 }
 

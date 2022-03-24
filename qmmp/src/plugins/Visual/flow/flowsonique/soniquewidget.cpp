@@ -2,6 +2,7 @@
 #include <qmmp/qmmp.h>
 
 #include <QDir>
+#include <QMenu>
 #include <QPainter>
 #include <QDateTime>
 
@@ -88,8 +89,11 @@ static QFileInfoList fileListByPath(const QString &dpath, const QStringList &fil
 
 
 SoniqueWidget::SoniqueWidget(QWidget *parent)
-    : QWidget(parent)
+    : Visual(parent)
 {
+    setlocale(LC_NUMERIC, "C"); //fixes problem with non-english locales
+    setWindowTitle(tr("Flow Sonique Widget"));
+
     setMinimumSize(580, 320);
     qsrand(QDateTime::currentMSecsSinceEpoch());
 
@@ -113,7 +117,72 @@ SoniqueWidget::~SoniqueWidget()
     free(m_out_freq_data);
 }
 
-void SoniqueWidget::addBuffer(float *left, float *right)
+void SoniqueWidget::nextPreset()
+{
+    if(m_presetList.isEmpty())
+    {
+        return;
+    }
+
+    m_currentIndex++;
+    if(m_currentIndex >= m_presetList.count())
+    {
+        m_currentIndex = 0;
+    }
+    generatePreset();
+}
+
+void SoniqueWidget::previousPreset()
+{
+    if(m_presetList.isEmpty())
+    {
+        return;
+    }
+
+    m_currentIndex--;
+    if(m_currentIndex < 0)
+    {
+        m_currentIndex = m_presetList.count() - 1;
+    }
+    generatePreset();
+}
+
+void SoniqueWidget::resizeEvent(QResizeEvent *e)
+{
+    QWidget::resizeEvent(e);
+
+    if(!m_sonique)
+    {
+        return;
+    }
+
+    delete m_visProc;
+    m_visProc = nullptr;
+
+    delete m_texture;
+    m_texture = new unsigned int[width() * height()]{0};
+}
+
+void SoniqueWidget::paintEvent(QPaintEvent *e)
+{
+    QWidget::paintEvent(e);
+
+    QPainter painter(this);
+    painter.drawImage(rect(), QImage((uchar*)m_texture, width(), height(), QImage::Format_RGB32));
+}
+
+void SoniqueWidget::contextMenuEvent(QContextMenuEvent *)
+{
+    QMenu menu(this);
+    menu.addAction(m_screenAction);
+    menu.addSeparator();
+    menu.addAction(tr("&Next Preset"), this, SLOT(nextPreset()), tr("N"));
+    menu.addAction(tr("&Previous Preset"), this, SLOT(previousPreset()), tr("P"));
+    menu.addAction(tr("&Random Preset"), this, SLOT(randomPreset()), tr("R"));
+    menu.exec(QCursor::pos());
+}
+
+void SoniqueWidget::process(float *left, float *right)
 {
     if(!m_sonique)
     {
@@ -178,60 +247,6 @@ void SoniqueWidget::addBuffer(float *left, float *right)
     m_sonique->Render(m_texture, w, h, w, m_visData);
 
     update();
-}
-
-void SoniqueWidget::nextPreset()
-{
-    if(m_presetList.isEmpty())
-    {
-        return;
-    }
-
-    m_currentIndex++;
-    if(m_currentIndex >= m_presetList.count())
-    {
-        m_currentIndex = 0;
-    }
-    generatePreset();
-}
-
-void SoniqueWidget::previousPreset()
-{
-    if(m_presetList.isEmpty())
-    {
-        return;
-    }
-
-    m_currentIndex--;
-    if(m_currentIndex < 0)
-    {
-        m_currentIndex = m_presetList.count();
-    }
-    generatePreset();
-}
-
-void SoniqueWidget::resizeEvent(QResizeEvent *e)
-{
-    QWidget::resizeEvent(e);
-
-    if(!m_sonique)
-    {
-        return;
-    }
-
-    delete m_visProc;
-    m_visProc = nullptr;
-
-    delete m_texture;
-    m_texture = new unsigned int[width() * height()]{0};
-}
-
-void SoniqueWidget::paintEvent(QPaintEvent *e)
-{
-    QWidget::paintEvent(e);
-
-    QPainter painter(this);
-    painter.drawImage(rect(), QImage((uchar*)m_texture, width(), height(), QImage::Format_RGB32));
 }
 
 void SoniqueWidget::randomPreset()

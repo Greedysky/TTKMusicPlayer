@@ -1,20 +1,18 @@
-#include <QTimer>
-#include <QSettings>
-#include <QPainter>
+#include "goomwidget.h"
+
 #include <QMenu>
+#include <QTimer>
+#include <QPainter>
+#include <QSettings>
 #include <QActionGroup>
-#include <QPaintEvent>
 #include <math.h>
 #include <qmmp/qmmp.h>
-
-#include "goomwidget.h"
 
 GoomWidget::GoomWidget(QWidget *parent)
     : Visual(parent)
 {
     setWindowTitle("Flow Goom Widget");
-
-    setMinimumSize(150,150);
+    setMinimumSize(150, 150);
 
     createMenu();
     readSettings();
@@ -33,20 +31,21 @@ void GoomWidget::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Goom");
-    m_fps = settings.value("refresh_rate", 25).toInt();
-    m_timer->setInterval(1000 / m_fps);
+    m_timer->setInterval(1000 / settings.value("refresh_rate", 30).toInt());
     settings.endGroup();
 
-    if(!m_update)
+    if(m_update)
     {
-        m_update = true;
-        for(QAction *act : m_fpsGroup->actions())
+        return;
+    }
+
+    m_update = true;
+    for(QAction *act : m_fpsGroup->actions())
+    {
+        if(m_timer->interval() == 1000 / act->data().toInt())
         {
-            if(m_fps == act->data().toInt())
-            {
-                act->setChecked(true);
-                break;
-            }
+            act->setChecked(true);
+            break;
         }
     }
 }
@@ -56,7 +55,7 @@ void GoomWidget::writeSettings()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Goom");
     QAction *act = m_fpsGroup->checkedAction();
-    settings.setValue("refresh_rate", act ? act->data().toInt() : 25);
+    settings.setValue("refresh_rate", act ? act->data().toInt() : 30);
     settings.endGroup();
 
     readSettings();
@@ -79,17 +78,9 @@ void GoomWidget::paintEvent(QPaintEvent *)
     painter.drawImage(0, 0, m_image);
 }
 
-void GoomWidget::mousePressEvent(QMouseEvent *e)
+void GoomWidget::contextMenuEvent(QContextMenuEvent *)
 {
-    if(e->button() == Qt::RightButton)
-    {
-        m_menu->exec(e->globalPos());
-    }
-}
-
-void GoomWidget::contextMenuEvent(QContextMenuEvent *e)
-{
-    Q_UNUSED(e);
+    m_menu->exec(QCursor::pos());
 }
 
 void GoomWidget::process(float *left, float *right)
@@ -113,7 +104,7 @@ void GoomWidget::process(float *left, float *right)
         buf[1][i] = right[i] * 32767.0;
     }
 
-    goom_update(m_goom, buf, 0, m_fps);
+    goom_update(m_goom, buf, 0, m_timer->interval());
 }
 
 void GoomWidget::clearImage()
@@ -134,7 +125,9 @@ void GoomWidget::createMenu()
     m_fpsGroup->setExclusive(true);
     m_fpsGroup->addAction(tr("60 fps"))->setData(60);
     m_fpsGroup->addAction(tr("50 fps"))->setData(50);
-    m_fpsGroup->addAction(tr("25 fps"))->setData(25);
+    m_fpsGroup->addAction(tr("40 fps"))->setData(40);
+    m_fpsGroup->addAction(tr("30 fps"))->setData(30);
+    m_fpsGroup->addAction(tr("20 fps"))->setData(20);
     for(QAction *act : m_fpsGroup->actions())
     {
         act->setCheckable(true);
