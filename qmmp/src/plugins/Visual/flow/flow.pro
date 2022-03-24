@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS += flowgoom flowprojectm flowethereality flowsonique flowmountain
+SUBDIRS += flowgoom flowprojectm flowethereality flowsonique flowmountain flowinfinity
