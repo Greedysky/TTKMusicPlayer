@@ -76,8 +76,8 @@ void InfinityWidget::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Infinity");
-    m_effectTime = settings.value("effect_time", 100).toInt();
-    m_colorTime = settings.value("palette_time", 100).toInt();
+    m_effectTime = settings.value("effect_time", 200).toInt();
+    m_colorTime = settings.value("palette_time", 200).toInt();
     settings.endGroup();
 
     if(m_update)
@@ -110,9 +110,9 @@ void InfinityWidget::writeSettings()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Infinity");
     QAction *act = m_effectsGroup->checkedAction();
-    settings.setValue("effect_time", act ? act->data().toInt() : 100);
+    settings.setValue("effect_time", act ? act->data().toInt() : 200);
     act = m_colorsGroup->checkedAction();
-    settings.setValue("palette_time", act ? act->data().toInt() : 100);
+    settings.setValue("palette_time", act ? act->data().toInt() : 200);
     settings.endGroup();
 }
 
@@ -240,9 +240,6 @@ void InfinityWidget::createMenu()
 {
     m_menu = new QMenu(this);
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
-
-    m_menu->addAction(m_screenAction);
-    m_menu->addSeparator();
 
     QMenu *effects = m_menu->addMenu(tr("Effect Time"));
     m_effectsGroup = new QActionGroup(this);
