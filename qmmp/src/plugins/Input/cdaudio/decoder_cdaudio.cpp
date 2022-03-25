@@ -79,7 +79,7 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &path, TrackInfo
     CdIo_t *cdio = nullptr;
     QString device_path = path;
     if(device_path.isEmpty() || device_path == "/")
-        device_path = settings.value("cdaudio/device").toString();
+        device_path = settings.value("CDAudio/device").toString();
     if(device_path.isEmpty() || device_path == "/")
     {
         char **cd_drives = cdio_get_devices_with_cap(nullptr, CDIO_FS_AUDIO, true); //get drive list with CDA disks
@@ -186,7 +186,7 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &path, TrackInfo
     }
     qDebug("DecoderCDAudio: found %d audio tracks", tracks.count());
 
-    use_cddb = use_cddb && settings.value("cdaudio/use_cddb", false).toBool();
+    use_cddb = use_cddb && settings.value("CDAudio/use_cddb", false).toBool();
     if(use_cddb)
     {
         qDebug("DecoderCDAudio: reading CDDB...");
@@ -199,7 +199,7 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &path, TrackInfo
         else
         {
             cddb_cache_disable(cddb_conn); //disable libcddb cache, use own cache implementation instead
-            settings.beginGroup("cdaudio");
+            settings.beginGroup("CDAudio");
             cddb_set_server_name(cddb_conn, settings.value("cddb_server", "gnudb.org").toByteArray().constData());
             cddb_set_server_port(cddb_conn, settings.value("cddb_port", 8880).toInt());
 
@@ -310,7 +310,7 @@ void DecoderCDAudio::saveToCache(const QList<CDATrack> &tracks,  uint disc_id)
 
 bool DecoderCDAudio::readFromCache(QList<CDATrack> *tracks, uint disc_id)
 {
-    QString path = Qmmp::configDir();
+    QString path = Qmmp::cacheDir();
     path += QString("/cddbcache/%1").arg(disc_id, 0, 16);
     if(!QFile::exists(path))
         return false;

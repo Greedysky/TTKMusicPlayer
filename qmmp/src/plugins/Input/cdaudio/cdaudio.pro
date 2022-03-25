@@ -4,10 +4,14 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
 
 HEADERS += decodercdaudiofactory.h \
-           decoder_cdaudio.h
+           decoder_cdaudio.h \
+           settingsdialog.h
 
 SOURCES += decodercdaudiofactory.cpp \
-           decoder_cdaudio.cpp
+           decoder_cdaudio.cpp \
+           settingsdialog.cpp
+
+FORMS += settingsdialog.ui
 
 INCLUDEPATH += $$EXTRA_PREFIX/libcddb/include \
                $$EXTRA_PREFIX/libcdio/include \

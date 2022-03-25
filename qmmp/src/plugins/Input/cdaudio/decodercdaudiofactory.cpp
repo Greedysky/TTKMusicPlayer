@@ -1,5 +1,6 @@
 #include "decodercdaudiofactory.h"
 #include "decoder_cdaudio.h"
+#include "settingsdialog.h"
 
 #include <QSettings>
 
@@ -25,6 +26,7 @@ DecoderProperties DecoderCDAudioFactory::properties() const
     properties.description = "Compact Disc Input and Control File";
     properties.protocols << "cdda";
     properties.noInput = true;
+    properties.hasSettings = true;
     return properties;
 }
 
@@ -62,7 +64,7 @@ MetaDataModel* DecoderCDAudioFactory::createMetaDataModel(const QString &path, b
 
 void DecoderCDAudioFactory::showSettings(QWidget *parent)
 {
-    Q_UNUSED(parent);
+    (new SettingsDialog(parent))->show();
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

@@ -172,6 +172,10 @@ public:
      */
     static QString configDir();
     /*!
+     * Returns the cache directory path.
+     */
+    static QString cacheDir();
+    /*!
      * Returns %Qmmp library version.
      */
     static QString strVersion();
@@ -180,14 +184,14 @@ public:
      */
     static QString pluginPath();
     /*!
-     * Returns the location of the installed ttk plugins.
-     */
-    static QString ttkPluginPath();
-    /*!
      * Returns a list of found Qmmp plugins (full paths).
      * @param prefix Plugin type or directory name (examples: Inpunt, Transport, Output).
      */
     static QStringList findPlugins(const QString &prefix);
+    /*!
+     * Returns the location of the installed ttk plugins.
+     */
+    static QString ttkPluginPath();
     /*!
      * Returns the decoded text by intput text.
      * @param input text.

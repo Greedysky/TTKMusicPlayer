@@ -19,6 +19,11 @@ QString Qmmp::configDir()
 #endif
 }
 
+QString Qmmp::cacheDir()
+{
+    return configDir();
+}
+
 QString Qmmp::strVersion()
 {
     return QString("%1.%2.%3")
@@ -39,11 +44,6 @@ QString Qmmp::pluginPath()
     return dir.canonicalPath();
 }
 
-QString Qmmp::ttkPluginPath()
-{
-    return Qmmp::pluginPath() + "/../GPlugins";
-}
-
 QStringList Qmmp::findPlugins(const QString &prefix)
 {
     QDir pluginDir(pluginPath() + "/" + prefix);
@@ -53,6 +53,11 @@ QStringList Qmmp::findPlugins(const QString &prefix)
         paths << fin.canonicalFilePath();
     }
     return paths;
+}
+
+QString Qmmp::ttkPluginPath()
+{
+    return Qmmp::pluginPath() + "/../GPlugins";
 }
 
 QByteArray Qmmp::generatePrintable(const QString &text)
