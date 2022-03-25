@@ -8473,6 +8473,46 @@ too high may cause clipping!</source>
         <source>Threshold (db):</source>
         <translation>阈值 (分贝):</translation>
     </message>
+    <message>
+        <source>CD Audio Plugin Settings</source>
+        <translation>CD音频插件设置</translation>
+    </message>
+    <message>
+        <source>Override device:</source>
+        <translation>跳过设备:</translation>
+    </message>
+    <message>
+        <source>Limit cd speed:</source>
+        <translation>限制CD速度:</translation>
+    </message>
+    <message>
+        <source>Use cd-text</source>
+        <translation>使用CD-text</translation>
+    </message>
+    <message>
+        <source>CDDB</source>
+        <translation>CD数据库</translation>
+    </message>
+    <message>
+        <source>Use HTTP instead of CDDBP</source>
+        <translation>使用HTTP而非CDDBP</translation>
+    </message>
+    <message>
+        <source>Server:</source>
+        <translation>服务器:</translation>
+    </message>
+    <message>
+        <source>Path:</source>
+        <translation>路径:</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation>端口:</translation>
+    </message>
+    <message>
+        <source>Clear CDDB cache</source>
+        <translation>清除CDDB缓存</translation>
+    </message>
 </context>
 <context>
     <name>SoniqueWidget</name>
