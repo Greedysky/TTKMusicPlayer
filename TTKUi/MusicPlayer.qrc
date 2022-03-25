@@ -824,5 +824,6 @@
         <file alias="flow_3">../TTKResource/spectrum/flow_3.png</file>
         <file alias="flow_4">../TTKResource/spectrum/flow_4.png</file>
         <file alias="flow_5">../TTKResource/spectrum/flow_5.png</file>
+        <file alias="flow_6">../TTKResource/spectrum/flow_6.png</file>
     </qresource>
 </RCC>

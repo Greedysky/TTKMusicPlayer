@@ -178,14 +178,15 @@ MusicSpectrumFlowLayoutWidget::MusicSpectrumFlowLayoutWidget(QWidget *parent)
     items << ItemInfo(":/spectrum/flow_1", tr("Goom"));
     items << ItemInfo(":/spectrum/flow_2", tr("Dazzle"));
     items << ItemInfo(":/spectrum/flow_3", tr("Sonique"));
-    items << ItemInfo(":/spectrum/flow_4", tr("Mountain"));
-    items << ItemInfo(":/spectrum/flow_5", tr("Ethereality"));
+    items << ItemInfo(":/spectrum/flow_4", tr("Infinity"));
+    items << ItemInfo(":/spectrum/flow_5", tr("Mountain"));
+    items << ItemInfo(":/spectrum/flow_6", tr("Ethereality"));
     addItems(items);
 }
 
 QStringList MusicSpectrumFlowLayoutWidget::spectrumTypeList() const
 {
-    return {"flowgoom", "flowprojectm", "flowsonique", "flowmountain", "flowethereality"};
+    return {"flowgoom", "flowprojectm", "flowsonique", "flowinfinity", "flowmountain", "flowethereality"};
 }
 
 

@@ -1,7 +1,6 @@
 #include "qrcodewidget.h"
 
 #include <QPainter>
-#include <QPaintEvent>
 
 /*! @brief The class of the qr code widget private.
  * @author Jemy Graw <jemygraw@gmail.com>
@@ -207,5 +206,4 @@ void QRCodeQWidget::paintEvent(QPaintEvent *event)
         painter.drawPixmap(target, image, source);
     }
     qrcode = nullptr;
-    event->accept();
 }
