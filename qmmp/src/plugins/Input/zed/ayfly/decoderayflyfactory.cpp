@@ -12,7 +12,7 @@ DecoderProperties DecoderAyflyFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("AyFly Plugin");
     properties.shortName = "alfly";
-    properties.filters << "*.vtx" << "*.asc" << "*.sqt" << "*psg";
+    properties.filters << "*.vtx" << "*.asc" << "*.sqt" << "*.psg";
     properties.filters << "*.stc" << "*.stp";
     properties.filters << "*.pt1" << "*.pt2" << "*.pt3";
     properties.filters << "*.ay";

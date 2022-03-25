@@ -37,13 +37,19 @@ QStringList ArchiveReader::list(const QString &path)
         return QStringList();
     }
 
-    const QString &cache = unpack + path.section("/", -1) + "/";
+    const QString &cache = unpack + QFileInfo(path).fileName() + "/";
 
     QStringList files;
     const QByteArray &data = process.readAllStandardOutput();
     const QString &list = QString::fromLocal8Bit(data.constData(), data.length());
+#ifdef Q_OS_WIN
+    for(QString& file : list.split("\r\n"))
+    {
+        file.replace("\\", "/");
+#else
     for(const QString& file : list.split('\n'))
     {
+#endif
         if(file.contains("....A"))
         {
             files << cache + file.section(" ", -1);
@@ -60,7 +66,7 @@ bool ArchiveReader::unpack(const QString &path)
         return false;
     }
 
-    const QString &cache = unpack + path.section("/", -1);
+    const QString &cache = unpack + QFileInfo(path).fileName();
     const QString &hash = cache + "/hash.tkf";
 
     const qint64 size = QFileInfo(path).size();

@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>WildMidi Plugin Settings</string>
+   <string>Archive Plugin Settings</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
