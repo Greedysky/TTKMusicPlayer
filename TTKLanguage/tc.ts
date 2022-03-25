@@ -8517,6 +8517,22 @@ too high may cause clipping!</source>
         <source>Clear CDDB cache</source>
         <translation>清除CDDB緩存</translation>
     </message>
+    <message>
+        <source>Archive Plugin Settings</source>
+        <translation>歸檔插件設置</translation>
+    </message>
+    <message>
+        <source>Cache path:</source>
+        <translation>緩存路徑:</translation>
+    </message>
+    <message>
+        <source>Cache size:</source>
+        <translation>緩存大小:</translation>
+    </message>
+    <message>
+        <source>Clean</source>
+        <translation>清除緩存</translation>
+    </message>
 </context>
 <context>
     <name>SoniqueWidget</name>
