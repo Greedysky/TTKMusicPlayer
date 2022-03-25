@@ -1,6 +1,7 @@
 #include "decoderarchivefactory.h"
 #include "decoder_archive.h"
 #include "archivereader.h"
+#include "settingsdialog.h"
 
 bool DecoderArchiveFactory::canDecode(QIODevice *) const
 {
@@ -32,6 +33,7 @@ DecoderProperties DecoderArchiveFactory::properties() const
     properties.filters << "*.xar";
     properties.filters << "*.z";
     properties.description = "7z Archive File";
+    properties.hasSettings = true;
     properties.noInput = true;
     return properties;
 }
@@ -80,7 +82,7 @@ MetaDataModel* DecoderArchiveFactory::createMetaDataModel(const QString &path, b
 
 void DecoderArchiveFactory::showSettings(QWidget *parent)
 {
-    Q_UNUSED(parent);
+    (new SettingsDialog(parent))->show();
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

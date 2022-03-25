@@ -16,20 +16,27 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef ARCHIVEREADER_H
-#define ARCHIVEREADER_H
+#ifndef SETTINGSDIALOG_H
+#define SETTINGSDIALOG_H
 
-#include <QFile>
+#include "ui_settingsdialog.h"
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-namespace ArchiveReader
+class SettingsDialog : public QDialog
 {
-    QStringList list(const QString &path);
-    bool unpack(const QString &path);
-    bool removeRecursively(const QString &dir);
-}
+  Q_OBJECT
+public:
+    explicit SettingsDialog(QWidget *parent = nullptr);
+
+public slots:
+    virtual void accept() override final;
+    void on_button_clicked();
+
+private:
+    Ui::SettingsDialog m_ui;
+
+};
 
 #endif
-

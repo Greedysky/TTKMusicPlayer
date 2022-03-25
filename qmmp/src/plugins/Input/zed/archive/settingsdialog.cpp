@@ -1,7 +1,7 @@
 #include "settingsdialog.h"
+#include "archivereader.h"
 
 #include <QSettings>
-#include <QAbstractButton>
 #include <qmmp/qmmp.h>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
@@ -16,17 +16,23 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     }
 #endif
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Network");
-    m_ui.bufferSizeSpinBox->setValue(settings.value("buffer_size", 256).toInt());
+    settings.beginGroup("Archive");
+    m_ui.cachePath->setText(settings.value("unpack_path").toString());
+    m_ui.cacheSize->setValue(settings.value("max_size", 64).toInt());
     settings.endGroup();
 }
 
 void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Network");
-    settings.setValue("buffer_size", m_ui.bufferSizeSpinBox->value());
+    settings.beginGroup("Archive");
+    settings.setValue("unpack_path", m_ui.cachePath->text());
+    settings.setValue("max_size", m_ui.cacheSize->value());
     settings.endGroup();
     QDialog::accept();
 }
 
+void SettingsDialog::on_button_clicked()
+{
+    ArchiveReader::removeRecursively(m_ui.cachePath->text());
+}
