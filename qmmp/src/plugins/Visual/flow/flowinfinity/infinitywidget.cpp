@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <QDateTime>
 #include <QSettings>
+#include <qmath.h>
 #include <qmmp/qmmp.h>
 
 #define ASSIGN_MAX(p, a) (*p = ( *p > a ? *p : a ))
