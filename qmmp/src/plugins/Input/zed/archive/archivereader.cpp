@@ -57,7 +57,7 @@ QStringList ArchiveReader::list(const QString &path)
     }
     return files;
 }
-
+#include <QDebug>
 bool ArchiveReader::unpack(const QString &path)
 {
     const QString &unpack = archive::unpackPath();
@@ -73,7 +73,7 @@ bool ArchiveReader::unpack(const QString &path)
     {
         QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
         settings.beginGroup("Archive");
-        const int maxSize = settings.value("max_size").toInt();
+        const int maxSize = settings.value("max_size", 64).toInt();
         settings.endGroup();
 
         if(size > maxSize * 1024 * 1024)
