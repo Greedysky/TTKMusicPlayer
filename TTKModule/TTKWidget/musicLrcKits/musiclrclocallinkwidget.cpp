@@ -13,7 +13,7 @@ MusicLrcLocalLinkTableWidget::MusicLrcLocalLinkTableWidget(QWidget *parent)
     setColumnCount(2);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 147);
-    headerview->resizeSection(1, 215);
+    headerview->resizeSection(1, 235);
 }
 
 bool MusicLrcLocalLinkTableWidget::contains(const QString &string)
