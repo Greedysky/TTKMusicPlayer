@@ -241,6 +241,9 @@ void InfinityWidget::createMenu()
     m_menu = new QMenu(this);
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
 
+    m_menu->addAction(m_screenAction);
+    m_menu->addSeparator();
+
     QMenu *effects = m_menu->addMenu(tr("Effect Time"));
     m_effectsGroup = new QActionGroup(this);
     m_effectsGroup->setExclusive(true);

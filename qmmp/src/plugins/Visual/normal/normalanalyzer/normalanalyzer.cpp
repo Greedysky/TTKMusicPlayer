@@ -354,6 +354,9 @@ void NormalAnalyzer::createMenu()
     m_menu = new QMenu(this);
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
 
+    m_menu->addAction(m_screenAction);
+    m_menu->addSeparator();
+
     m_peaksAction = m_menu->addAction(tr("Peaks"));
     m_peaksAction->setCheckable(true);
 
@@ -399,8 +402,6 @@ void NormalAnalyzer::createMenu()
         peaksFalloff->addAction(act);
     }
 
-    m_menu->addSeparator();
-    m_menu->addAction(m_screenAction);
     m_menu->addSeparator();
     m_menu->addAction(tr("Color"), this, SLOT(changeColor()));
     m_menu->addAction(m_starAction);
