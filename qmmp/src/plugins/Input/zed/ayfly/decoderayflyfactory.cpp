@@ -12,11 +12,14 @@ DecoderProperties DecoderAyflyFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("AyFly Plugin");
     properties.shortName = "alfly";
-    properties.filters << "*.vtx" << "*.asc" << "*.sqt" << "*.psg";
-    properties.filters << "*.stc" << "*.stp";
-    properties.filters << "*.pt1" << "*.pt2" << "*.pt3";
-    properties.filters << "*.ay";
+    properties.filters << "*.asc" << "*.ay";
     properties.filters << "*.emul";
+    properties.filters << "*.sqt";
+    properties.filters << "*.st13" << "*.stc" << "*.stp" << "*.stp2";
+    properties.filters << "*.psc" << "*.psg";
+    properties.filters << "*.pt1" << "*.pt2" << "*.pt3";
+    properties.filters << "*.vtx";
+    properties.filters << "*.zxs";
     properties.description = "AY/YM Audio File";
     properties.noInput = true;
     return properties;
