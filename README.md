@@ -88,7 +88,7 @@ TTKMusicPlayer can meet your most demands
  * Atari ST(E) And Amiga File(*.sc68)
  * Speex Audio File(*.spx)
  * V2 Player File(*.v2m)
- * AY/YM Audio File(*.vtx *.asc *.sqt *.psg *.stc *.stp *.pt1 *.pt2 *.pt3 *.ay *.emul)
+ * AY/YM Audio File(*.asc *.ay *.emul *.sqt *.st13 *.stc *.stp *.stp2 *.psc *.psg *.pt1 *.pt2 *.pt3 *.vtx *.zxs)
  * ST-Sound File(*.ym)
  * Hively Audio File(*.ahx *.hvl)
  * BP SoundMon Audio File(*.bp *.bp3)
