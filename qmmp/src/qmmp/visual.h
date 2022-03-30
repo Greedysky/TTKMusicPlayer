@@ -158,9 +158,9 @@ protected:
      */
     virtual void process(float *left, float *right) = 0;
     /*!
-     * Process current patch visual data by state.
+     * Process current visual data by state.
      */
-    virtual void processPatch(bool state);
+    virtual void process(bool state);
     /*!
      * Clear current visual data.
      */

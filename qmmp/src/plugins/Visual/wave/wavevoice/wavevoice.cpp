@@ -44,6 +44,7 @@ void WaveVoice::paintEvent(QPaintEvent *)
 void WaveVoice::contextMenuEvent(QContextMenuEvent *event)
 {
     Visual::contextMenuEvent(event);
+
     QMenu menu(this);
     QMenu typeMenu(tr("Type"), &menu);
     typeMenu.addAction(tr("Spectrum"))->setData(10);

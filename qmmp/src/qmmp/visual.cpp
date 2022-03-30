@@ -89,7 +89,7 @@ bool Visual::takeData(float *left, float *right)
     return node != nullptr;
 }
 
-void Visual::processPatch(bool state)
+void Visual::process(bool state)
 {
     Q_UNUSED(state);
 }
@@ -246,14 +246,13 @@ void Visual::updateVisual()
 
     if(takeData(left, right))
     {
-        processPatch(true);
-        //
+        process(true);
         process(left, right);
         update();
     }
     else
     {
-        processPatch(false);
+        process(false);
     }
 }
 

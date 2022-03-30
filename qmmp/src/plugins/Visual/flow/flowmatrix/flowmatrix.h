@@ -16,38 +16,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef ETHEREALITY_H
-#define ETHEREALITY_H
+#ifndef FLOWMATRIX_H
+#define FLOWMATRIX_H
 
-#include <QTimer>
-#include <QWidget>
-#include <QDateTime>
+#include <qmmp/visual.h>
+
+class QTimer;
+class QHideEvent;
+class QShowEvent;
+class Matrix;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class Ethereality : public QWidget
+class FlowMatrix : public Visual
 {
     Q_OBJECT
 public:
-    explicit Ethereality(QWidget *parent = nullptr);
-
-    void start();
-    void stop();
-
-    bool isRunning() const;
-
-private slots:
-    void timeout();
-
-protected:
-    virtual void paintEvent(QPaintEvent *e) override final;
-    void loadFile();
+    explicit FlowMatrix(QWidget *parent = nullptr);
+    virtual ~FlowMatrix();
 
 private:
-    QTimer *m_timer;
-    QStringList m_word_list;
-    QStringList m_word;
+    virtual void resizeEvent(QResizeEvent *e) override final;
+    virtual void paintEvent(QPaintEvent *e) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *) override final;
+
+    virtual void process(float *left, float *right) override final;
+    virtual void process(bool state) override final;
+
+    int m_pos_x = 0, m_pos_y = 0;
+    QList<Matrix*> m_matrixs;
 
 };
 

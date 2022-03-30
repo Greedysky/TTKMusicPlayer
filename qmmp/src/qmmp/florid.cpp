@@ -99,13 +99,13 @@ void Florid::setPixmap(const QPixmap &pix)
 void Florid::start()
 {
     Visual::start();
-    processPatch(true);
+    process(true);
 }
 
 void Florid::stop()
 {
     Visual::stop();
-    processPatch(false);
+    process(false);
 }
 
 void Florid::mediaUrlChanged()
@@ -150,7 +150,7 @@ void Florid::reRenderLabel()
     }
 }
 
-void Florid::processPatch(bool state)
+void Florid::process(bool state)
 {
     state ? m_roundLabel->start() : m_roundLabel->stop();
 }
@@ -158,7 +158,7 @@ void Florid::processPatch(bool state)
 void Florid::hideEvent(QHideEvent *e)
 {
     Visual::hideEvent(e);
-    processPatch(false);
+    process(false);
 }
 
 void Florid::showEvent(QShowEvent *e)
@@ -166,7 +166,7 @@ void Florid::showEvent(QShowEvent *e)
     Visual::showEvent(e);
     if(m_running)
     {
-        processPatch(true);
+        process(true);
     }
 }
 
@@ -205,7 +205,6 @@ void Florid::paintEvent(QPaintEvent *)
 void Florid::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
-
     menu.addAction(m_screenAction);
     menu.exec(QCursor::pos());
 }

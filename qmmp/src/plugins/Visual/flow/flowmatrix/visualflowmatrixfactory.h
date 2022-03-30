@@ -16,15 +16,15 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef VISUALPLUSSPACEWAVEFACTORY_H
-#define VISUALPLUSSPACEWAVEFACTORY_H
+#ifndef VISUALFLOWMATRIXFACTORY_H
+#define VISUALFLOWMATRIXFACTORY_H
 
 #include <qmmp/visualfactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class VisualPLusSpaceWaveFactory : public QObject, public VisualFactory
+class VisualFlowMatrixFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")

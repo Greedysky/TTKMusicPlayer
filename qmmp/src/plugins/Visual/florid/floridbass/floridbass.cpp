@@ -7,7 +7,6 @@ FloridBass::FloridBass(QWidget *parent)
 {
     setWindowTitle(tr("Florid Bass Widget"));
 
-    m_gradientOn = true;
     m_timer->setInterval(QMMP_VISUAL_INTERVAL * 1.5);
 }
 

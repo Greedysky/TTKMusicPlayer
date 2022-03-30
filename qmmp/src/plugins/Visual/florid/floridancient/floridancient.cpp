@@ -99,7 +99,6 @@ FloridAncient::FloridAncient(QWidget *parent)
 {
     setWindowTitle(tr("Florid Ancient Widget"));
 
-    m_gradientOn = true;
     for(int i = 0; i < ANIMATION_SIZE; ++i)
     {
         AncientLabel *label = new AncientLabel(this);

@@ -7,7 +7,6 @@ FloridReverb::FloridReverb(QWidget *parent)
     : Florid(parent)
 {
     setWindowTitle(tr("Florid Reverb Widget"));
-    m_gradientOn = true;
 }
 
 FloridReverb::~FloridReverb()

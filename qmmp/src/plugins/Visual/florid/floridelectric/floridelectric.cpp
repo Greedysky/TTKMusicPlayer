@@ -220,6 +220,7 @@ FloridElectric::FloridElectric(QWidget *parent)
 {
     setWindowTitle(tr("Florid Electric Widget"));
 
+    m_gradientOn = false;
     m_label = new ElectricLabel(this);
 }
 

@@ -73,6 +73,7 @@ void LightSpectrum::resizeEvent(QResizeEvent *e)
 void LightSpectrum::contextMenuEvent(QContextMenuEvent *e)
 {
     Light::contextMenuEvent(e);
+
     QMenu menu(this);
     QMenu typeMenu(tr("Type"), &menu);
     typeMenu.addAction(tr("Spectrum"))->setData(10);

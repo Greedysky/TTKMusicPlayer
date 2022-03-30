@@ -71,6 +71,7 @@ FloridAutism::FloridAutism(QWidget *parent)
         m_labels << label;
     }
 
+    m_gradientOn = false;
     m_timer->setInterval(700);
 }
 

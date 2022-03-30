@@ -7,7 +7,6 @@ FloridSurround::FloridSurround(QWidget *parent)
     : Florid(parent)
 {
     setWindowTitle(tr("Florid Surround Widget"));
-    m_gradientOn = true;
 }
 
 FloridSurround::~FloridSurround()
