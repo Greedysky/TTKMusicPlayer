@@ -220,10 +220,11 @@ MusicSpectrumFloridLayoutWidget::MusicSpectrumFloridLayoutWidget(QWidget *parent
     items << ItemInfo(":/spectrum/florid_4", tr("Surround"));
     items << ItemInfo(":/spectrum/florid_5", tr("Ancient"));
     items << ItemInfo(":/spectrum/florid_6", tr("Electric"));
+    items << ItemInfo(":/spectrum/florid_7", tr("Picture"));
     addItems(items);
 }
 
 QStringList MusicSpectrumFloridLayoutWidget::spectrumTypeList() const
 {
-    return {"floridreverb", "floridautism", "floridbass", "floridsurround", "floridancient", "floridelectric"};
+    return {"floridreverb", "floridautism", "floridbass", "floridsurround", "floridancient", "floridelectric", "floridpicture"};
 }
