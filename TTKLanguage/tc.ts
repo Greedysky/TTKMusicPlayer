@@ -6499,8 +6499,8 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="183"/>
-        <source>Ethereality</source>
-        <translation>空靈</translation>
+        <source>Matrix</source>
+        <translation>矩陣</translation>
     </message>
 </context>
 <context>
@@ -6537,11 +6537,6 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
         <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="158"/>
         <source>FoldWave</source>
         <translation>疊紋</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="159"/>
-        <source>SpaceWave</source>
-        <translation>條紋</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="160"/>
@@ -7554,21 +7549,6 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
     <message>
         <source>Fullscreen</source>
         <translation>全屏顯示</translation>
-    </message>
-</context>
-<context>
-    <name>NormalSpaceWave</name>
-    <message>
-        <source>Star</source>
-        <translation>星星</translation>
-    </message>
-    <message>
-        <source>Color</source>
-        <translation>顏色</translation>
-    </message>
-    <message>
-        <source>StarColor</source>
-        <translation>星星顏色</translation>
     </message>
 </context>
 <context>

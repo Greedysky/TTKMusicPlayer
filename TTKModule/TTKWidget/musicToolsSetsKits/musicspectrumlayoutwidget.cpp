@@ -156,15 +156,14 @@ MusicSpectrumPlusLayoutWidget::MusicSpectrumPlusLayoutWidget(QWidget *parent)
 {
     ItemInfos items;
     items << ItemInfo(":/spectrum/plus_1", tr("FoldWave"));
-    items << ItemInfo(":/spectrum/plus_2", tr("SpaceWave"));
-    items << ItemInfo(":/spectrum/plus_3", tr("XRays"));
-    items << ItemInfo(":/spectrum/plus_4", tr("BlurXRays"));
+    items << ItemInfo(":/spectrum/plus_2", tr("XRays"));
+    items << ItemInfo(":/spectrum/plus_3", tr("BlurXRays"));
     addItems(items);
 }
 
 QStringList MusicSpectrumPlusLayoutWidget::spectrumTypeList() const
 {
-    return {"plusfoldwave", "plusspacewave", "plusxrays", "plusblurxrays"};
+    return {"plusfoldwave", "plusxrays", "plusblurxrays"};
 }
 
 
@@ -180,13 +179,13 @@ MusicSpectrumFlowLayoutWidget::MusicSpectrumFlowLayoutWidget(QWidget *parent)
     items << ItemInfo(":/spectrum/flow_3", tr("Sonique"));
     items << ItemInfo(":/spectrum/flow_4", tr("Infinity"));
     items << ItemInfo(":/spectrum/flow_5", tr("Mountain"));
-    items << ItemInfo(":/spectrum/flow_6", tr("Ethereality"));
+    items << ItemInfo(":/spectrum/flow_6", tr("Matrix"));
     addItems(items);
 }
 
 QStringList MusicSpectrumFlowLayoutWidget::spectrumTypeList() const
 {
-    return {"flowgoom", "flowprojectm", "flowsonique", "flowinfinity", "flowmountain", "flowethereality"};
+    return {"flowgoom", "flowprojectm", "flowsonique", "flowinfinity", "flowmountain", "flowmatrix"};
 }
 
 
