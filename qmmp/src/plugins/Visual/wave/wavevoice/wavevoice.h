@@ -40,14 +40,13 @@ private:
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
-    void draw(QPainter *p);
     void initialize();
 
     VisualPalette::Palette m_palette= VisualPalette::PALETTE_DEFAULT;
     QImage m_backgroundImage;
-    int m_pixPos = 0;
+    int m_pos = 0;
     int *m_x_scale = nullptr;
-    double m_analyzer_falloff = 2.2;
+    const double m_analyzer_size = 2.2;
 
 };
 

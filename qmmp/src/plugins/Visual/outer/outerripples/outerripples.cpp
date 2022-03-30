@@ -22,7 +22,17 @@ OuterRipples::~OuterRipples()
 void OuterRipples::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    draw(&painter);
+    painter.setRenderHints(QPainter::Antialiasing);
+
+    QBrush brush(Qt::white, Qt::SolidPattern);
+    for(int i = 0; i < m_cols; ++i)
+    {
+        const int x = i * m_cell_size.width() + 1;
+        for(int j = 0; j <= m_intern_vis_data[i]; ++j)
+        {
+            painter.fillRect(x, height() - j * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, brush);
+        }
+    }
 }
 
 void OuterRipples::process(float *left, float *)
@@ -84,22 +94,7 @@ void OuterRipples::process(float *left, float *)
             magnitude = qBound(0, magnitude, m_rows);
         }
 
-        m_intern_vis_data[i] -= m_analyzer_falloff * m_rows / 15;
+        m_intern_vis_data[i] -= m_analyzer_size * m_rows / 15;
         m_intern_vis_data[i] = magnitude > m_intern_vis_data[i] ? magnitude : m_intern_vis_data[i];
-    }
-}
-
-void OuterRipples::draw(QPainter *p)
-{
-    QBrush brush(Qt::white, Qt::SolidPattern);
-
-    int x = 0;
-    for(int i = 0; i < m_cols; ++i)
-    {
-        x = i * m_cell_size.width() + 1;
-        for(int j = 0; j <= m_intern_vis_data[i]; ++j)
-        {
-            p->fillRect(x, height() - j * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, brush);
-        }
     }
 }

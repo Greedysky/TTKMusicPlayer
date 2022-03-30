@@ -78,8 +78,8 @@ void ElectricPointLabel::paintEvent(QPaintEvent *e)
     }
 
     QPainter painter(this);
-    painter.setOpacity(m_opacity);
     painter.setRenderHint(QPainter::Antialiasing);
+    painter.setOpacity(m_opacity);
     painter.setPen(QPen(m_color, 2));
     painter.drawEllipse(m_pos, m_size, m_size);
 }
@@ -142,8 +142,8 @@ void ElectricCircleLabel::paintEvent(QPaintEvent *e)
     }
 
     QPainter painter(this);
-    painter.setOpacity(m_opacity);
     painter.setRenderHint(QPainter::Antialiasing);
+    painter.setOpacity(m_opacity);
     painter.setBrush(m_color);
     painter.setPen(QPen(m_color, 1));
     painter.drawEllipse(rect().center(), m_size, m_size);
@@ -220,7 +220,7 @@ FloridElectric::FloridElectric(QWidget *parent)
 {
     setWindowTitle(tr("Florid Electric Widget"));
 
-    m_gradientOn = false;
+    m_gradientLabel = false;
     m_label = new ElectricLabel(this);
 }
 
@@ -240,14 +240,8 @@ void FloridElectric::stop()
     Florid::stop();
 }
 
-void FloridElectric::paintEvent(QPaintEvent *e)
+void FloridElectric::resizeEvent(QResizeEvent *)
 {
-    Florid::paintEvent(e);
-}
-
-void FloridElectric::resizeEvent(QResizeEvent *e)
-{
-    Florid::resizeEvent(e);
     m_label->resizeWindow(QRect(0, 0, width(), height()));
     m_roundLabel->raise();
 }

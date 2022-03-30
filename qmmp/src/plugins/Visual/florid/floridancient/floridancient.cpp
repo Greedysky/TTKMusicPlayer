@@ -81,8 +81,8 @@ void AncientLabel::paintEvent(QPaintEvent *e)
     }
 
     QPainter painter(this);
-    painter.setOpacity(m_opacity);
     painter.setRenderHint(QPainter::Antialiasing);
+    painter.setOpacity(m_opacity);
     painter.setPen(QPen(m_color, 2));
 
     QVector<QLine> points;
@@ -131,13 +131,39 @@ void FloridAncient::stop()
 void FloridAncient::paintEvent(QPaintEvent *e)
 {
     Florid::paintEvent(e);
+    if(m_rows == 0)
+    {
+        return;
+    }
+
     QPainter painter(this);
-    draw(&painter);
+    painter.save();
+    painter.setRenderHints(QPainter::Antialiasing);
+    painter.setPen(QPen(m_averageColor, 3));
+    painter.translate(rect().center());
+
+    qreal startAngle = 0;
+    for(int i = 0; i < m_cols; ++i)
+    {
+        int offset = i;
+        if(i >= m_cols / 2)
+        {
+            offset = m_cols - i;
+        }//mirror
+
+        painter.save();
+        painter.rotate(startAngle);
+        const int value = m_intern_vis_data[int(offset * 0.6)];
+        painter.drawLine(0, DISTANCE + 5 + value * 0.2, 0, DISTANCE + 5 + value * 0.3);
+
+        painter.restore();
+        startAngle += 360.0 / m_cols;
+    }
+    painter.restore();
 }
 
-void FloridAncient::resizeEvent(QResizeEvent *e)
+void FloridAncient::resizeEvent(QResizeEvent *)
 {
-    Florid::resizeEvent(e);
     for(AncientLabel *label : m_labels)
     {
         label->setGeometry(0, 0, width(), height());
@@ -151,7 +177,7 @@ void FloridAncient::process(float *left, float *)
     {
         m_labels[i]->setColor(m_averageColor);
     }
-    //
+
     const int rows = (height() - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width();
 
@@ -209,39 +235,7 @@ void FloridAncient::process(float *left, float *)
             magnitude = qBound(0, magnitude, m_rows);
         }
 
-        m_intern_vis_data[i] -= m_analyzer_falloff * m_rows / 15;
+        m_intern_vis_data[i] -= m_analyzer_size * m_rows / 15;
         m_intern_vis_data[i] = magnitude > m_intern_vis_data[i] ? magnitude : m_intern_vis_data[i];
     }
-}
-
-void FloridAncient::draw(QPainter *p)
-{
-    if(m_rows == 0)
-    {
-        return;
-    }
-
-    p->save();
-    p->setRenderHints(QPainter::Antialiasing);
-    p->setPen(QPen(m_averageColor, 3));
-    p->translate(rect().center());
-
-    qreal startAngle = 0;
-    for(int i = 0; i < m_cols; ++i)
-    {
-        int offset = i;
-        if(i >= m_cols / 2)
-        {
-            offset = m_cols - i;
-        }//mirror
-
-        p->save();
-        p->rotate(startAngle);
-        const int value = m_intern_vis_data[int(offset * 0.6)];
-        p->drawLine(0, DISTANCE + 5 + value * 0.2, 0, DISTANCE + 5 + value * 0.3);
-
-        p->restore();
-        startAngle += 360.0 / m_cols;
-    }
-    p->restore();
 }

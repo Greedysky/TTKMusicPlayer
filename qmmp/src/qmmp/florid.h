@@ -39,7 +39,7 @@ public:
     ~RoundAnimationLabel();
 
     /*!
-     * Set rotating widget background pixmap.
+     * Set background pixmap.
      */
     void setPixmap(const QPixmap &pix);
 
@@ -102,20 +102,20 @@ public slots:
     virtual void stop() override;
 
 private slots:
-   /*!
-    * Current media url changed.
-    */
-   void mediaUrlChanged();
+    /*!
+     * Current media url changed.
+     */
+    void mediaUrlChanged();
 
 protected:
+    /*!
+     * Rerender the image label.
+    */
+    void reRenderLabel();
     /*!
     * Rerender the image by color burn transform.
     */
     void reRenderImage(QColor &avg, const QImage *input);
-    /*!
-    * Rerender the image label.
-    */
-    void reRenderLabel();
     /*!
      * Process current visual data by state.
      */
@@ -129,8 +129,9 @@ protected:
 protected:
     QImage m_image;
     bool m_renderLabel = false;
+    bool m_enabledLabel = true;
+    bool m_gradientLabel = true;
     QColor m_averageColor = QColor(255, 255, 255);
-    bool m_gradientOn = true;
     RoundAnimationLabel *m_roundLabel = nullptr;
 
 };

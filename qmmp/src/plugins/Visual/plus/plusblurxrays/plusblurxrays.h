@@ -43,7 +43,6 @@ private:
     virtual void process(float *left, float *right) override final;
     void blur();
     void drawLine(int x, int y1, int y2);
-    void draw(QPainter *p);
 
     QColor m_color;
     int m_image_size = 0;

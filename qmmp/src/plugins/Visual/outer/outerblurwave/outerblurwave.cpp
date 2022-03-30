@@ -5,7 +5,6 @@
 #include <QTimer>
 #include <QSettings>
 #include <QPainter>
-#include <QPaintEvent>
 #include <math.h>
 #include <qmmp/qmmp.h>
 
@@ -77,13 +76,48 @@ void OuterBlurWave::readSettings()
 
 void OuterBlurWave::paintEvent(QPaintEvent *)
 {
-    QPainter painter(this);
-    draw(&painter);
+    if(m_rows == 0)
+    {
+        return;
+    }
+
+    const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
+
+    QPolygonF points;
+    points << viewToItemPoint(QPoint(0, height() + HEIGHT_OFFSET));
+    for(int i = 0; i < m_cols * 2; ++i)
+    {
+        int x = i * m_cell_size.width() + 1;
+        if(i == m_cols)
+        {
+            continue;
+        }
+
+        if(i > m_cols)
+        {
+            x += rdx; //correct right part position
+        }
+
+        int offset = height() - m_intern_vis_data[i] * m_cell_size.height() * HEIGHT_LIMIT;
+        if(offset == height())
+        {
+            offset = height() + HEIGHT_OFFSET;
+        }
+
+        points << viewToItemPoint(QPoint(x, offset));
+    }
+    points << viewToItemPoint(QPoint(width(), height() + HEIGHT_OFFSET));
+
+    m_graphics_view->setGeometry(0, 0, width(), height() + HEIGHT_OFFSET);
+    m_graphics_item->setBrush(m_color);
+    m_graphics_item->setPen(m_color);
+    m_graphics_item->setOpacity(m_opacity);
+    m_graphics_item->setPolygon(points);
 }
 
-void OuterBlurWave::resizeEvent(QResizeEvent *e)
+void OuterBlurWave::resizeEvent(QResizeEvent *)
 {
-    double offset = 6 * e->size().width() * 0.6 / minimumWidth();
+    const double offset = 6 * width() * 0.6 / minimumWidth();
     m_cell_size.setWidth(offset < 6 ? 6 : offset);
 }
 
@@ -126,7 +160,7 @@ void OuterBlurWave::process(float *left, float *right)
 
     for(int i = 0; i < m_cols; ++i)
     {
-        int j = m_cols + i; //mirror index
+        const int j = m_cols + i; //mirror index
         short yl = 0;
         short yr = 0;
         int magnitude_l = 0;
@@ -160,54 +194,12 @@ void OuterBlurWave::process(float *left, float *right)
         }
 
         const int mirror_index = m_cols - i - 1;
-        m_intern_vis_data[mirror_index] -= m_analyzer_falloff * m_rows / 15;
+        m_intern_vis_data[mirror_index] -= m_analyzer_size * m_rows / 15;
         m_intern_vis_data[mirror_index] = magnitude_l > m_intern_vis_data[mirror_index] ? magnitude_l : m_intern_vis_data[mirror_index];
 
-        m_intern_vis_data[j] -= m_analyzer_falloff * m_rows / 15;
+        m_intern_vis_data[j] -= m_analyzer_size * m_rows / 15;
         m_intern_vis_data[j] = magnitude_r > m_intern_vis_data[j] ? magnitude_r : m_intern_vis_data[j];
     }
-}
-
-void OuterBlurWave::draw(QPainter *p)
-{
-    Q_UNUSED(p);
-    if(m_rows == 0)
-    {
-        return;
-    }
-
-    const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
-
-    QPolygonF points;
-    points << viewToItemPoint(QPoint(0, height() + HEIGHT_OFFSET));
-    for(int i = 0; i < m_cols * 2; ++i)
-    {
-        int x = i * m_cell_size.width() + 1;
-        if(i == m_cols)
-        {
-            continue;
-        }
-
-        if(i > m_cols)
-        {
-            x += rdx; //correct right part position
-        }
-
-        int offset = height() - m_intern_vis_data[i] * m_cell_size.height() * HEIGHT_LIMIT;
-        if(offset == height())
-        {
-            offset = height() + HEIGHT_OFFSET;
-        }
-
-        points << viewToItemPoint(QPoint(x, offset));
-    }
-    points << viewToItemPoint(QPoint(width(), height() + HEIGHT_OFFSET));
-
-    m_graphics_view->setGeometry(0, 0, width(), height() + HEIGHT_OFFSET);
-    m_graphics_item->setBrush(m_color);
-    m_graphics_item->setPen(m_color);
-    m_graphics_item->setOpacity(m_opacity);
-    m_graphics_item->setPolygon(points);
 }
 
 QPointF OuterBlurWave::viewToItemPoint(const QPoint &pt)

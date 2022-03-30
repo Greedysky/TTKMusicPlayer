@@ -147,10 +147,8 @@ void SoniqueWidget::previousPreset()
     generatePreset();
 }
 
-void SoniqueWidget::resizeEvent(QResizeEvent *e)
+void SoniqueWidget::resizeEvent(QResizeEvent *)
 {
-    QWidget::resizeEvent(e);
-
     if(!m_sonique)
     {
         return;
@@ -163,11 +161,10 @@ void SoniqueWidget::resizeEvent(QResizeEvent *e)
     m_texture = new unsigned int[width() * height()]{0};
 }
 
-void SoniqueWidget::paintEvent(QPaintEvent *e)
+void SoniqueWidget::paintEvent(QPaintEvent *)
 {
-    QWidget::paintEvent(e);
-
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.drawImage(rect(), QImage((uchar*)m_texture, width(), height(), QImage::Format_RGB32));
 }
 

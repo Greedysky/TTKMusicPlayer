@@ -20,7 +20,26 @@ OuterRaysWave::~OuterRaysWave()
 void OuterRaysWave::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    draw(&painter);
+    painter.setRenderHints(QPainter::Antialiasing);
+    painter.setPen(QPen(Qt::white, 1));
+
+    for(int i = 0; i < m_cols; ++i)
+    {
+        if((i + 1) >= m_cols)
+        {
+            break;
+        }
+
+        int pFront = m_rows / 2 - m_intern_vis_data[i];
+        int pEnd = m_rows / 2 - m_intern_vis_data[i + 1];
+
+        if(pFront > pEnd)
+        {
+            qSwap(pFront, pEnd);
+        }
+
+        painter.drawLine(i, pFront, i + 1, pEnd);
+    }
 }
 
 void OuterRaysWave::process(float *left, float *)
@@ -49,29 +68,5 @@ void OuterRaysWave::process(float *left, float *)
         pos += step;
         m_intern_vis_data[i] = int(left[pos >> 8] * m_rows / 2);
         m_intern_vis_data[i] = qBound(-m_rows / 2, m_intern_vis_data[i], m_rows / 2);
-    }
-}
-
-void OuterRaysWave::draw(QPainter *p)
-{
-    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    p->setPen(QPen(Qt::white, 1));
-
-    for(int i = 0; i < m_cols; ++i)
-    {
-        if((i + 1) >= m_cols)
-        {
-            break;
-        }
-
-        int pFront = m_rows / 2 - m_intern_vis_data[i];
-        int pEnd = m_rows / 2 - m_intern_vis_data[i + 1];
-
-        if(pFront > pEnd)
-        {
-            qSwap(pFront, pEnd);
-        }
-
-        p->drawLine(i, pFront, i + 1, pEnd);
     }
 }

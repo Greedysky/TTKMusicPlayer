@@ -227,10 +227,16 @@ void ColorWidget::upButtonClicked()
     if(index >= 0)
     {
         QListWidgetItem *it = m_ui->listWidget->takeItem(index);
+        if(!it)
+        {
+            return;
+        }
+
         if(--index < 0)
         {
             index = 0;
         }
+
         m_ui->listWidget->insertItem(index, it);
         m_ui->listWidget->setCurrentRow(index);
     }
@@ -242,10 +248,16 @@ void ColorWidget::downButtonClicked()
     if(index >= 0)
     {
         QListWidgetItem *it = m_ui->listWidget->takeItem(index);
+        if(!it)
+        {
+            return;
+        }
+
         if(++index >= m_ui->listWidget->count())
         {
             index = m_ui->listWidget->count();
         }
+
         m_ui->listWidget->insertItem(index, it);
         m_ui->listWidget->setCurrentRow(index);
     }
@@ -270,8 +282,8 @@ void ColorWidget::mouseMoveEvent(QMouseEvent *event)
         return;
     }
 
-    int xpos = event->globalX() - m_pressAt.x();
-    int ypos = event->globalY() - m_pressAt.y();
+    const int xpos = event->globalX() - m_pressAt.x();
+    const int ypos = event->globalY() - m_pressAt.y();
     m_pressAt = event->globalPos();
     move(x() + xpos, y() + ypos);
 }

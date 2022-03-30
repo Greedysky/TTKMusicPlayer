@@ -16,35 +16,22 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef PLUSXRAYS_H
-#define PLUSXRAYS_H
+#ifndef VISUALFLORIDPICTUREFACTORY_H
+#define VISUALFLORIDPICTUREFACTORY_H
 
-#include <qmmp/visual.h>
+#include <qmmp/visualfactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class PlusXRays : public Visual
+class VisualFloridPictureFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
+    Q_INTERFACES(VisualFactory)
 public:
-    explicit PlusXRays(QWidget *parent = nullptr);
-    virtual ~PlusXRays();
-
-private slots:
-    void readSettings();
-    void writeSettings();
-    void changeColor();
-    void changeGridState(bool state);
-
-private:
-    virtual void paintEvent(QPaintEvent *e) override final;
-    virtual void contextMenuEvent(QContextMenuEvent *e) override final;
-
-    virtual void process(float *left, float *right) override final;
-
-    QList<QColor> m_colors;
-    QAction *m_gridAction;
+    virtual VisualProperties properties() const override final;
+    virtual Visual *create(QWidget *parent) override final;
 
 };
 

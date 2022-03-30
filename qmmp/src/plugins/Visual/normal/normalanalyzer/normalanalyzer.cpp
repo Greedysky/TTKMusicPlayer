@@ -75,8 +75,8 @@ void NormalAnalyzer::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("NormalAnalyzer");
-    m_peaks_falloff = settings.value("peak_falloff", 0.2).toDouble();
-    m_analyzer_falloff = settings.value("analyzer_falloff", 2.2).toDouble();
+    m_peaks_size = settings.value("peak_falloff", 0.2).toDouble();
+    m_analyzer_size = settings.value("analyzer_falloff", 2.2).toDouble();
     m_show_peaks = settings.value("show_peaks", true).toBool();
     m_timer->setInterval(1000 / settings.value("refresh_rate", 30).toInt());
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
@@ -103,7 +103,7 @@ void NormalAnalyzer::readSettings()
 
     for(QAction *act : m_peaksFalloffGroup->actions())
     {
-        if(m_peaks_falloff == act->data().toDouble())
+        if(m_peaks_size == act->data().toDouble())
         {
             act->setChecked(true);
             break;
@@ -112,7 +112,7 @@ void NormalAnalyzer::readSettings()
 
     for(QAction *act : m_analyzerFalloffGroup->actions())
     {
-        if(m_analyzer_falloff == act->data().toDouble())
+        if(m_analyzer_size == act->data().toDouble())
         {
             act->setChecked(true);
             break;
@@ -129,13 +129,13 @@ void NormalAnalyzer::readSettings()
     if(!m_peaksFalloffGroup->checkedAction())
     {
         m_peaksFalloffGroup->actions().at(1)->setChecked(2);
-        m_peaks_falloff = 0.2;
+        m_peaks_size = 0.2;
     }
 
     if(!m_peaksFalloffGroup->checkedAction())
     {
         m_peaksFalloffGroup->actions().at(1)->setChecked(2);
-        m_analyzer_falloff = 2.2;
+        m_analyzer_size = 2.2;
     }
 }
 
@@ -205,7 +205,44 @@ void NormalAnalyzer::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
-    draw(&painter);
+    painter.setRenderHints(QPainter::Antialiasing);
+
+    if(m_starAction->isChecked())
+    {
+        for(StarPoint *point : qAsConst(m_starPoints))
+        {
+            m_starColor.setAlpha(point->m_alpha);
+            painter.setPen(QPen(m_starColor, 3));
+            painter.drawPoint(point->m_pt);
+        }
+    }
+
+    QLinearGradient line(0, 0, 0, height());
+    for(int i = 0; i < m_colors.count(); ++i)
+    {
+        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
+    }
+
+    const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
+
+    for(int i = 0; i < m_cols * 2; ++i)
+    {
+        int x = i * m_cell_size.width() + 1;
+        if(i >= m_cols)
+        {
+            x += rdx; //correct right part position
+        }
+
+        for(int j = 0; j <= m_intern_vis_data[i]; ++j)
+        {
+            painter.fillRect(x, height() - j * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, line);
+        }
+
+        if(m_show_peaks)
+        {
+            painter.fillRect(x, height() - int(m_peaks[i]) * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, "Cyan");
+        }
+    }
 }
 
 void NormalAnalyzer::contextMenuEvent(QContextMenuEvent *)
@@ -258,7 +295,7 @@ void NormalAnalyzer::process(float *left, float *right)
 
     for(int i = 0; i < m_cols; ++i)
     {
-        int j = m_cols * 2 - i - 1; //mirror index
+        const int j = m_cols * 2 - i - 1; //mirror index
         short yl = 0;
         short yr = 0;
         int magnitude_l = 0;
@@ -291,60 +328,19 @@ void NormalAnalyzer::process(float *left, float *right)
             magnitude_r = qBound(0, magnitude_r, m_rows);
         }
 
-        m_intern_vis_data[i] -= m_analyzer_falloff * m_rows / 15;
+        m_intern_vis_data[i] -= m_analyzer_size * m_rows / 15;
         m_intern_vis_data[i] = magnitude_l > m_intern_vis_data[i] ? magnitude_l : m_intern_vis_data[i];
 
-        m_intern_vis_data[j] -= m_analyzer_falloff * m_rows / 15;
+        m_intern_vis_data[j] -= m_analyzer_size * m_rows / 15;
         m_intern_vis_data[j] = magnitude_r > m_intern_vis_data[j] ? magnitude_r : m_intern_vis_data[j];
 
         if(m_show_peaks)
         {
-            m_peaks[i] -= m_peaks_falloff * m_rows / 15;
+            m_peaks[i] -= m_peaks_size * m_rows / 15;
             m_peaks[i] = magnitude_l > m_peaks[i] ? magnitude_l : m_peaks[i];
 
-            m_peaks[j] -= m_peaks_falloff * m_rows / 15;
+            m_peaks[j] -= m_peaks_size * m_rows / 15;
             m_peaks[j] = magnitude_r > m_peaks[j] ? magnitude_r : m_peaks[j];
-        }
-    }
-}
-
-void NormalAnalyzer::draw(QPainter *p)
-{
-    if(m_starAction->isChecked())
-    {
-        for(StarPoint *point : qAsConst(m_starPoints))
-        {
-            m_starColor.setAlpha(point->m_alpha);
-            p->setPen(QPen(m_starColor, 3));
-            p->drawPoint(point->m_pt);
-        }
-    }
-
-    QLinearGradient line(0, 0, 0, height());
-    for(int i = 0; i < m_colors.count(); ++i)
-    {
-        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
-    }
-    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-
-    const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
-
-    for(int i = 0; i < m_cols * 2; ++i)
-    {
-        int x = i * m_cell_size.width() + 1;
-        if(i >= m_cols)
-        {
-            x += rdx; //correct right part position
-        }
-
-        for(int j = 0; j <= m_intern_vis_data[i]; ++j)
-        {
-            p->fillRect(x, height() - j * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, line);
-        }
-
-        if(m_show_peaks)
-        {
-            p->fillRect(x, height() - int(m_peaks[i]) * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, "Cyan");
         }
     }
 }

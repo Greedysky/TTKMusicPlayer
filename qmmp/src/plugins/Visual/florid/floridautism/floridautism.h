@@ -40,7 +40,7 @@ protected slots:
 protected:
     virtual void paintEvent(QPaintEvent *e) override final;
 
-    bool m_circleOn = false;
+    bool m_enabled = false;
     QTimer *m_circleTimer;
     int m_crValue = DISTANCE;
     QPoint m_pos;
@@ -59,7 +59,6 @@ public:
     virtual ~FloridAutism();
 
 private:
-    virtual void paintEvent(QPaintEvent *e) override final;
     virtual void resizeEvent(QResizeEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;

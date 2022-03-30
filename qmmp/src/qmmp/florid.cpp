@@ -1,11 +1,10 @@
 #include "florid.h"
 
-#include <soundcore.h>
-#include <math.h>
+#include <QMenu>
 #include <QBitmap>
 #include <QPainter>
-#include <QMenu>
-#include <QKeyEvent>
+#include <soundcore.h>
+#include <math.h>
 
 RoundAnimationLabel::RoundAnimationLabel(QWidget *parent)
     : QWidget(parent)
@@ -93,6 +92,7 @@ Florid::~Florid()
 void Florid::setPixmap(const QPixmap &pix)
 {
     m_image = pix.toImage();
+    m_renderLabel = false;
     update();
 }
 
@@ -112,6 +112,17 @@ void Florid::mediaUrlChanged()
 {
     m_renderLabel = false;
     update();
+}
+
+void Florid::reRenderLabel()
+{
+    if(!m_image.isNull() && !m_renderLabel)
+    {
+        reRenderImage(m_averageColor, &m_image);
+
+        m_roundLabel->setPixmap(QPixmap::fromImage(m_image));
+        m_renderLabel = true;
+    }
 }
 
 void Florid::reRenderImage(QColor &avg, const QImage *input)
@@ -139,20 +150,12 @@ void Florid::reRenderImage(QColor &avg, const QImage *input)
    avg.setBlue(b /= size);
 }
 
-void Florid::reRenderLabel()
-{
-    if(!m_image.isNull() && !m_renderLabel)
-    {
-        reRenderImage(m_averageColor, &m_image);
-
-        m_roundLabel->setPixmap(QPixmap::fromImage(m_image));
-        m_renderLabel = true;
-    }
-}
-
 void Florid::process(bool state)
 {
-    state ? m_roundLabel->start() : m_roundLabel->stop();
+    if(m_enabledLabel)
+    {
+        state ? m_roundLabel->start() : m_roundLabel->stop();
+    }
 }
 
 void Florid::hideEvent(QHideEvent *e)
@@ -180,7 +183,7 @@ void Florid::paintEvent(QPaintEvent *)
         painter.fillRect(rect(), QColor(150, 150, 150, 150));
 
         const QPoint &pt = rect().center();
-        if(m_gradientOn)
+        if(m_gradientLabel)
         {
             const int length = DISTANCE + 20;
             QRadialGradient gradient(pt.x(), pt.y(), length, pt.x(), pt.y());
@@ -193,8 +196,11 @@ void Florid::paintEvent(QPaintEvent *)
             painter.drawEllipse(pt.x() - length, pt.y() - length, 2 * length, 2 * length);
         }
 
-        reRenderLabel();
-        m_roundLabel->setGeometry(pt.x() - DISTANCE, pt.y() - DISTANCE, 2 * DISTANCE, 2 * DISTANCE);
+        if(m_enabledLabel)
+        {
+            reRenderLabel();
+            m_roundLabel->setGeometry(pt.x() - DISTANCE, pt.y() - DISTANCE, 2 * DISTANCE, 2 * DISTANCE);
+        }
     }
     else
     {

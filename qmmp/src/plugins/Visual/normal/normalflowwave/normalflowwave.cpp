@@ -119,7 +119,35 @@ void NormalFlowWave::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
-    draw(&painter);
+    painter.setRenderHints(QPainter::Antialiasing);
+
+    if(m_starAction->isChecked())
+    {
+        for(StarPoint *point : qAsConst(m_starPoints))
+        {
+            m_starColor.setAlpha(point->m_alpha);
+            painter.setPen(QPen(m_starColor, 3));
+            painter.drawPoint(point->m_pt);
+        }
+    }
+
+    QLinearGradient line(0, 0, width(), 0);
+    line.setColorAt(1.0 * 1 / 7, QColor(72, 176, 211));
+    line.setColorAt(1.0 * 2 / 7, QColor(57, 255, 57));
+    line.setColorAt(1.0 * 4 / 7, QColor(255, 247, 22));
+    line.setColorAt(1.0 * 5 / 7, QColor(255, 64, 59));
+    line.setColorAt(1.0 * 7 / 7, QColor(255, 64, 59));
+
+    for(int i = 0; i < m_cols; ++i)
+    {
+        const int x = i * m_cell_size.width() + 1;
+        for(int j = 0; j <= m_intern_vis_data[i] / 2; ++j)
+        {
+            painter.fillRect(x, height() / 2 - j * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, line);
+            painter.fillRect(x, height() / 2 + j * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, line);
+        }
+    }
+    painter.fillRect(0, height() / 2, width(), height() / 2, QColor(0, 0, 0, 188));
 }
 
 void NormalFlowWave::contextMenuEvent(QContextMenuEvent *)
@@ -193,40 +221,7 @@ void NormalFlowWave::process(float *left, float *)
             magnitude = qBound(0, magnitude, m_rows);
         }
 
-        m_intern_vis_data[i] -= m_analyzer_falloff * m_rows / 15;
+        m_intern_vis_data[i] -= m_analyzer_size * m_rows / 15;
         m_intern_vis_data[i] = magnitude > m_intern_vis_data[i] ? magnitude : m_intern_vis_data[i];
     }
-}
-
-void NormalFlowWave::draw(QPainter *p)
-{
-    if(m_starAction->isChecked())
-    {
-        for(StarPoint *point : qAsConst(m_starPoints))
-        {
-            m_starColor.setAlpha(point->m_alpha);
-            p->setPen(QPen(m_starColor, 3));
-            p->drawPoint(point->m_pt);
-        }
-    }
-
-    QLinearGradient line(0, 0, width(), 0);
-    line.setColorAt(1.0 * 1 / 7, QColor(72, 176, 211));
-    line.setColorAt(1.0 * 2 / 7, QColor(57, 255, 57));
-    line.setColorAt(1.0 * 4 / 7, QColor(255, 247, 22));
-    line.setColorAt(1.0 * 5 / 7, QColor(255, 64, 59));
-    line.setColorAt(1.0 * 7 / 7, QColor(255, 64, 59));
-    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-
-    int x = 0;
-    for(int i = 0; i < m_cols; ++i)
-    {
-        x = i * m_cell_size.width() + 1;
-        for(int j = 0; j <= m_intern_vis_data[i] / 2; ++j)
-        {
-            p->fillRect(x, height() / 2 - j * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, line);
-            p->fillRect(x, height() / 2 + j * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, line);
-        }
-    }
-    p->fillRect(0, height() / 2, width(), height() / 2, QColor(0, 0, 0, 188));
 }

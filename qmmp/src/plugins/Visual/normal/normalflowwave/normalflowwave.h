@@ -50,15 +50,14 @@ private:
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
-    void draw(QPainter *p);
 
     QAction *m_starAction;
     QColor m_starColor;
     QList<StarPoint*> m_starPoints;
     QTimer *m_starTimer;
     int *m_x_scale = nullptr;
-    double m_analyzer_falloff = 2.2;
-    QSize m_cell_size = QSize(15, 6);
+    const double m_analyzer_size = 2.2;
+    const QSize m_cell_size = QSize(15, 6);
 
 };
 

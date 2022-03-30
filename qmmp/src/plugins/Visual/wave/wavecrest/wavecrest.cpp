@@ -23,7 +23,31 @@ void WaveCrest::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
-    draw(&painter);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+
+    if(m_cols != 0)
+    {
+        if(m_pos >= m_cols)
+        {
+            m_pos = m_cols - 1;
+            m_backgroundImage = m_backgroundImage.copy(1, 0, m_cols, m_rows);
+        }
+
+        for(int i = 0; i < m_vis_data / 2; ++i)
+        {
+            const int r = qMin(0x5f + i*3, 0xff);
+            m_backgroundImage.setPixel(m_pos, qMax(m_rows / 2 - i, 0), qRgb(r, r, r));
+            m_backgroundImage.setPixel(m_pos, qMin(m_rows / 2 + i, m_rows), qRgb(r, r, r));
+        }
+        m_backgroundImage.setPixel(m_pos, m_rows / 2, qRgb(0xff, 0xff, 0xff));
+    }
+
+    ++m_pos;
+
+    if(!m_backgroundImage.isNull())
+    {
+        painter.drawImage(0, 0, m_backgroundImage);
+    }
 }
 
 void WaveCrest::process(float *left, float *)
@@ -35,7 +59,7 @@ void WaveCrest::process(float *left, float *)
     {
         m_rows = rows;
         m_cols = cols;
-        m_pixPos = 0;
+        m_pos = 0;
 
         if(m_x_scale)
         {
@@ -84,34 +108,6 @@ void WaveCrest::process(float *left, float *)
         magnitude = qBound(0, magnitude, m_rows);
     }
 
-    m_vis_data -= m_analyzer_falloff * m_rows / 15;
+    m_vis_data -= m_analyzer_size * m_rows / 15;
     m_vis_data = magnitude > m_vis_data ? magnitude : m_vis_data;
-}
-
-void WaveCrest::draw(QPainter *p)
-{
-    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-
-    if(m_cols != 0)
-    {
-        if(m_pixPos >= m_cols)
-        {
-            m_pixPos = m_cols - 1;
-            m_backgroundImage = m_backgroundImage.copy(1, 0, m_cols, m_rows);
-        }
-
-        for(int i = 0; i < m_vis_data / 2; ++i)
-        {
-            const int r = qMin(0x5f + i*3, 0xff);
-            m_backgroundImage.setPixel(m_pixPos, qMax(m_rows / 2 - i, 0), qRgb(r, r, r));
-            m_backgroundImage.setPixel(m_pixPos, qMin(m_rows / 2 + i, m_rows), qRgb(r, r, r));
-        }
-        m_backgroundImage.setPixel(m_pixPos, m_rows / 2, qRgb(0xff, 0xff, 0xff));
-    }
-    ++m_pixPos;
-
-    if(!m_backgroundImage.isNull())
-    {
-        p->drawImage(0, 0, m_backgroundImage);
-    }
 }

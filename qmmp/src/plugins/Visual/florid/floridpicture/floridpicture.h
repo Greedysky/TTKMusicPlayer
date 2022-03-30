@@ -16,35 +16,29 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef PLUSXRAYS_H
-#define PLUSXRAYS_H
+#ifndef FLORIDPICTURE_H
+#define FLORIDPICTURE_H
 
-#include <qmmp/visual.h>
+#include <qmmp/florid.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class PlusXRays : public Visual
+class FloridPicture : public Florid
 {
     Q_OBJECT
 public:
-    explicit PlusXRays(QWidget *parent = nullptr);
-    virtual ~PlusXRays();
-
-private slots:
-    void readSettings();
-    void writeSettings();
-    void changeColor();
-    void changeGridState(bool state);
+    explicit FloridPicture(QWidget *parent = nullptr);
+    virtual ~FloridPicture();
 
 private:
     virtual void paintEvent(QPaintEvent *e) override final;
-    virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
 
-    QList<QColor> m_colors;
-    QAction *m_gridAction;
+    int *m_x_scale = nullptr;
+    const double m_analyzer_size = 2.2;
+    const QSize m_cell_size = QSize(15, 6);
 
 };
 

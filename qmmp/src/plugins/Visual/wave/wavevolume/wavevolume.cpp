@@ -25,7 +25,35 @@ void WaveVolume::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
-    draw(&painter);
+    painter.setRenderHints(QPainter::Antialiasing);
+
+    QLinearGradient line(0, 0, width(), 0);
+    line.setColorAt(0.0f, QColor(0, 0xff, 0).dark());
+    line.setColorAt(0.65f, QColor(0xff, 0xff, 0).dark());
+    line.setColorAt(1.0f, QColor(0xff, 0, 0).dark());
+    painter.fillRect(0, 0, width(), height(), line);
+
+    line.setColorAt(0.0f, QColor(0, 0xff, 0));
+    line.setColorAt(0.65f, QColor(0xff, 0xff, 0));
+    line.setColorAt(1.0f, QColor(0xff, 0, 0));
+
+    if(m_intern_vis_data)
+    {
+        float left = 1.0f, right = 1.0f;
+        if(SoundCore::instance())
+        {
+            left = SoundCore::instance()->leftVolume() / 100.0;
+            right = SoundCore::instance()->rightVolume() / 100.0;
+        }
+
+        const int wid = ceil(m_rows / 2);
+        painter.fillRect(0, 0, m_intern_vis_data[0] * left * m_cols/m_rows, wid, line);
+        painter.fillRect(0, wid, m_intern_vis_data[1] * right * m_cols/m_rows, wid, line);
+    }
+
+    painter.setPen(Qt::white);
+    painter.drawText(10, height() / 4, "L");
+    painter.drawText(10, height() * 3 / 4, "R");
 }
 
 void WaveVolume::contextMenuEvent(QContextMenuEvent *)
@@ -104,43 +132,10 @@ void WaveVolume::process(float *left, float *right)
         magnitude_r = qBound(0, magnitude_r, m_rows);
     }
 
-    m_intern_vis_data[0] -= m_analyzer_falloff * m_rows / 15;
+    m_intern_vis_data[0] -= m_analyzer_size * m_rows / 15;
     m_intern_vis_data[0] = magnitude_l > m_intern_vis_data[0] ? magnitude_l : m_intern_vis_data[0];
 
-    m_intern_vis_data[1] -= m_analyzer_falloff * m_rows / 15;
+    m_intern_vis_data[1] -= m_analyzer_size * m_rows / 15;
     m_intern_vis_data[1] = magnitude_r > m_intern_vis_data[1] ? magnitude_r : m_intern_vis_data[1];
 
-}
-
-void WaveVolume::draw(QPainter *p)
-{
-    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-
-    QLinearGradient line(0, 0, width(), 0);
-    line.setColorAt(0.0f, QColor(0, 0xff, 0).dark());
-    line.setColorAt(0.65f, QColor(0xff, 0xff, 0).dark());
-    line.setColorAt(1.0f, QColor(0xff, 0, 0).dark());
-    p->fillRect(0, 0, width(), height(), line);
-
-    line.setColorAt(0.0f, QColor(0, 0xff, 0));
-    line.setColorAt(0.65f, QColor(0xff, 0xff, 0));
-    line.setColorAt(1.0f, QColor(0xff, 0, 0));
-
-    if(m_intern_vis_data)
-    {
-        float left = 1.0f, right = 1.0f;
-        if(SoundCore::instance())
-        {
-            left = SoundCore::instance()->leftVolume() / 100.0;
-            right = SoundCore::instance()->rightVolume() / 100.0;
-        }
-
-        const int wid = ceil(m_rows / 2);
-        p->fillRect(0, 0, m_intern_vis_data[0] * left * m_cols/m_rows, wid, line);
-        p->fillRect(0, wid, m_intern_vis_data[1] * right * m_cols/m_rows, wid, line);
-    }
-
-    p->setPen(Qt::white);
-    p->drawText(10, height() / 4, "L");
-    p->drawText(10, height() * 3 / 4, "R");
 }

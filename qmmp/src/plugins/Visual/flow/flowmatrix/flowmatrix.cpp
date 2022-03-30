@@ -42,6 +42,7 @@ void FlowMatrix::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     QFont font = painter.font();
     font.setBold(true);
@@ -57,6 +58,7 @@ void FlowMatrix::paintEvent(QPaintEvent *)
     QPixmap pix(":/data/back");
     const int w = pix.width();
     const int h = pix.height();
+
     for(int i = 0; i < width() / w + 1; ++i)
     {
         for(int j = 0; j < height() / h + 1; ++j)

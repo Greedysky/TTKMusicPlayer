@@ -131,7 +131,46 @@ void NormalEWave::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
-    draw(&painter);
+    painter.setRenderHints(QPainter::Antialiasing);
+
+    if(m_rows == 0)
+    {
+        return;
+    }
+
+    if(m_starAction->isChecked())
+    {
+        for(StarPoint *point : qAsConst(m_starPoints))
+        {
+            m_starColor.setAlpha(point->m_alpha);
+            painter.setPen(QPen(m_starColor, 3));
+            painter.drawPoint(point->m_pt);
+        }
+    }
+
+    QLinearGradient line(0, 0, 0, height());
+    for(int i = 0; i < m_colors.count(); ++i)
+    {
+        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
+    }
+
+    painter.setBrush(line);
+    const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
+
+    QPolygon points;
+    points << QPoint(0, height());
+    for(int i = 0; i < m_cols * 2; ++i)
+    {
+        int x = i * m_cell_size.width() + 1;
+        if(i >= m_cols)
+        {
+            x += rdx; //correct right part position
+        }
+        points << QPoint(x, height() - m_intern_vis_data[i] * m_cell_size.height());
+    }
+
+    points << QPoint(width(), height());
+    painter.drawPolygon(points);
 }
 
 void NormalEWave::contextMenuEvent(QContextMenuEvent *)
@@ -184,7 +223,7 @@ void NormalEWave::process(float *left, float *right)
 
     for(int i = 0; i < m_cols; ++i)
     {
-        int j = m_cols * 2 - i - 1; //mirror index
+        const int j = m_cols * 2 - i - 1; //mirror index
         short yl = 0;
         short yr = 0;
         int magnitude_l = 0;
@@ -217,52 +256,10 @@ void NormalEWave::process(float *left, float *right)
             magnitude_r = qBound(0, magnitude_r, m_rows);
         }
 
-        m_intern_vis_data[i] -= m_analyzer_falloff * m_rows / 15;
+        m_intern_vis_data[i] -= m_analyzer_size * m_rows / 15;
         m_intern_vis_data[i] = magnitude_l > m_intern_vis_data[i] ? magnitude_l : m_intern_vis_data[i];
 
-        m_intern_vis_data[j] -= m_analyzer_falloff * m_rows / 15;
+        m_intern_vis_data[j] -= m_analyzer_size * m_rows / 15;
         m_intern_vis_data[j] = magnitude_r > m_intern_vis_data[j] ? magnitude_r : m_intern_vis_data[j];
     }
-}
-
-void NormalEWave::draw(QPainter *p)
-{
-    if(m_rows == 0)
-    {
-        return;
-    }
-
-    if(m_starAction->isChecked())
-    {
-        for(StarPoint *point : qAsConst(m_starPoints))
-        {
-            m_starColor.setAlpha(point->m_alpha);
-            p->setPen(QPen(m_starColor, 3));
-            p->drawPoint(point->m_pt);
-        }
-    }
-
-    QLinearGradient line(0, 0, 0, height());
-    for(int i = 0; i < m_colors.count(); ++i)
-    {
-        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
-    }
-    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    p->setBrush(line);
-
-    const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
-
-    QPolygon points;
-    points << QPoint(0, height());
-    for(int i = 0; i < m_cols * 2; ++i)
-    {
-        int x = i * m_cell_size.width() + 1;
-        if(i >= m_cols)
-        {
-            x += rdx; //correct right part position
-        }
-        points << QPoint(x, height() - m_intern_vis_data[i] * m_cell_size.height());
-    }
-    points << QPoint(width(), height());
-    p->drawPolygon(points);
 }

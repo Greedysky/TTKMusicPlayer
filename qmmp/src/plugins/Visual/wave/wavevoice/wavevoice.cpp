@@ -38,13 +38,30 @@ void WaveVoice::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
-    draw(&painter);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+
+    for(int j = 1; j < m_rows; ++j)
+    {
+        if(m_pos >= m_cols)
+        {
+            m_pos = m_cols - 1;
+            m_backgroundImage = m_backgroundImage.copy(1, 0, m_cols, m_rows);
+        }
+
+        const double level = qBound(0, m_intern_vis_data[j - 1] / 2, 255) / 255.0;
+        m_backgroundImage.setPixel(m_pos, m_rows - j, VisualPalette::renderPalette(m_palette, level));
+    }
+
+    ++m_pos;
+
+    if(!m_backgroundImage.isNull())
+    {
+        painter.drawImage(0, 0, m_backgroundImage);
+    }
 }
 
-void WaveVoice::contextMenuEvent(QContextMenuEvent *event)
+void WaveVoice::contextMenuEvent(QContextMenuEvent *)
 {
-    Visual::contextMenuEvent(event);
-
     QMenu menu(this);
     QMenu typeMenu(tr("Type"), &menu);
     typeMenu.addAction(tr("Spectrum"))->setData(10);
@@ -117,31 +134,8 @@ void WaveVoice::process(float *left, float *)
             magnitude = qBound(0, magnitude, m_cols);
         }
 
-        m_intern_vis_data[i] -= m_analyzer_falloff * m_cols / 15;
+        m_intern_vis_data[i] -= m_analyzer_size * m_cols / 15;
         m_intern_vis_data[i] = magnitude > m_intern_vis_data[i] ? magnitude : m_intern_vis_data[i];
-    }
-}
-
-void WaveVoice::draw(QPainter *p)
-{
-    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-
-    for(int j = 1; j < m_rows; ++j)
-    {
-        if(m_pixPos >= m_cols)
-        {
-            m_pixPos = m_cols - 1;
-            m_backgroundImage = m_backgroundImage.copy(1, 0, m_cols, m_rows);
-        }
-
-        const double level = qBound(0, m_intern_vis_data[j - 1] / 2, 255) / 255.0;
-        m_backgroundImage.setPixel(m_pixPos, m_rows - j, VisualPalette::renderPalette(m_palette, level));
-    }
-
-    ++m_pixPos;
-    if(!m_backgroundImage.isNull())
-    {
-        p->drawImage(0, 0, m_backgroundImage);
     }
 }
 
@@ -149,7 +143,7 @@ void WaveVoice::initialize()
 {
     if(m_rows != 0 && m_cols != 0)
     {
-        m_pixPos = 0;
+        m_pos = 0;
         m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);
         m_backgroundImage.fill(Qt::black);
     }

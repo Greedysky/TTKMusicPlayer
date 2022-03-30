@@ -1,51 +1,51 @@
-#include "floridreverb.h"
+#include "floridpicture.h"
 #include "inlines.h"
 
 #include <QPainter>
 
-FloridReverb::FloridReverb(QWidget *parent)
+FloridPicture::FloridPicture(QWidget *parent)
     : Florid(parent)
 {
-    setWindowTitle(tr("Florid Reverb Widget"));
+    setWindowTitle(tr("Florid Picture Widget"));
+
+    m_enabledLabel = false;
+    m_gradientLabel = false;
+    m_roundLabel->hide();
 }
 
-FloridReverb::~FloridReverb()
+FloridPicture::~FloridPicture()
 {
-    if(m_x_scale)
-    {
-        delete[] m_x_scale;
-    }
+
 }
 
-void FloridReverb::paintEvent(QPaintEvent *e)
+void FloridPicture::paintEvent(QPaintEvent *)
 {
-    Florid::paintEvent(e);
-    if(m_rows == 0)
-    {
-        return;
-    }
-
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing);
-    painter.setPen(QPen(m_averageColor, 3));
-    painter.translate(rect().center());
-
-    qreal startAngle = 0;
-    for(int i = 0; i < DISTANCE; ++i)
+    if(!m_image.isNull())
     {
-        painter.save();
-        painter.rotate(startAngle);
-        const double value = m_intern_vis_data[int(i * m_cols * 0.8 / DISTANCE)];
-        painter.drawLine(0, DISTANCE + 10, 0, DISTANCE + 10 + value * 0.3);
+        painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+        painter.drawImage(0, 0, m_image.scaled(size()));
 
-        painter.restore();
-        startAngle += 360.0 / DISTANCE;
+        const int h = height() / 5;
+        painter.fillRect(0, height() - h, width(), h, QColor(0, 0, 0, 100));
+        reRenderLabel();
+
+        for(int i = 0; i < m_cols; ++i)
+        {
+            const int x = i * m_cell_size.width() + 1;
+            const int offset = m_intern_vis_data[i] * m_cell_size.height();
+            painter.fillRect(x, height() - offset + 1, m_cell_size.width() - 2, offset - 2, m_averageColor);
+        }
+    }
+    else
+    {
+        painter.fillRect(rect(), Qt::black);
     }
 }
 
-void FloridReverb::process(float *left, float *)
-{ 
-    const int rows = (height() - 2) / m_cell_size.height();
+void FloridPicture::process(float *left, float *)
+{
+    const int rows = (height() / 5 - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width();
 
     if(m_rows != rows || m_cols != cols)

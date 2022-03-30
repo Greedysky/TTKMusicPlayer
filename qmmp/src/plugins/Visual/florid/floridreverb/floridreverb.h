@@ -35,11 +35,10 @@ private:
     virtual void paintEvent(QPaintEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
-    void draw(QPainter *p);
 
-    double m_analyzer_falloff = 1.2;
     int *m_x_scale = nullptr;
-    QSize m_cell_size = QSize(6, 2);
+    const double m_analyzer_size = 1.2;
+    const QSize m_cell_size = QSize(6, 2);
 
 };
 

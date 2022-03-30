@@ -56,7 +56,27 @@ void PlusBlurXRays::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
-    draw(&painter);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+
+    if(m_rows == 0)
+    {
+        return;
+    }
+
+    blur();
+
+    int value = m_rows / 2 - m_intern_vis_data[0];
+    value = qBound(0, value, m_rows - 1);
+
+    for(int i = 0; i < m_cols; ++i)
+    {
+        int y = m_rows / 2 - m_intern_vis_data[i];
+        y = qBound(0, y, m_rows - 1);
+        drawLine(i, value, y);
+        value = y;
+    }
+
+    painter.drawImage(0, 0, QImage((unsigned char *)m_image, m_cols, m_rows, QImage::Format_RGB32));
 }
 
 void PlusBlurXRays::contextMenuEvent(QContextMenuEvent *)
@@ -154,27 +174,4 @@ void PlusBlurXRays::drawLine(int x, int y1, int y2)
     {
         *p = !m_color.isValid() ? 0xFF3F7F : m_color.rgba();
     }
-}
-
-void PlusBlurXRays::draw(QPainter *p)
-{
-    if(m_rows == 0)
-    {
-        return;
-    }
-
-    blur();
-
-    int value = m_rows / 2 - m_intern_vis_data[0];
-    value = qBound(0, value, m_rows - 1);
-
-    for(int i = 0; i < m_cols; ++i)
-    {
-        int y = m_rows / 2 - m_intern_vis_data[i];
-        y = qBound(0, y, m_rows - 1);
-        drawLine(i, value, y);
-        value = y;
-    }
-
-    p->drawImage(0, 0, QImage((unsigned char *)m_image, m_cols, m_rows, QImage::Format_RGB32));
 }

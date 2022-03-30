@@ -46,16 +46,15 @@ private:
     virtual void resizeEvent(QResizeEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
-    void draw(QPainter *p);
 
     QPointF viewToItemPoint(const QPoint &pt);
 
     QColor m_color = QColor(0x0, 0xff, 0xff);
     qreal m_opacity = 1.0;
-    double m_analyzer_falloff = 1.2;
     int *m_x_scale = nullptr;
-
+    const double m_analyzer_size = 1.2;
     QSize m_cell_size = QSize(6, 2);
+
     QGraphicsView *m_graphics_view;
     QGraphicsPolygonItem *m_graphics_item;
 

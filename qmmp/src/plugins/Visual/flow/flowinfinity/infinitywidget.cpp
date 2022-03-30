@@ -116,18 +116,14 @@ void InfinityWidget::writeSettings()
     settings.endGroup();
 }
 
-void InfinityWidget::resizeEvent(QResizeEvent *e)
+void InfinityWidget::resizeEvent(QResizeEvent *)
 {
-    QWidget::resizeEvent(e);
-
     deinit();
     createModule();
 }
 
-void InfinityWidget::paintEvent(QPaintEvent *e)
+void InfinityWidget::paintEvent(QPaintEvent *)
 {
-    QWidget::paintEvent(e);
-
     unsigned char *data = m_renders[0];
     if(!data)
     {

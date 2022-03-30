@@ -121,7 +121,6 @@ public slots:
     virtual void stop() override final;
 
 private:
-    virtual void paintEvent(QPaintEvent *e) override final;
     virtual void resizeEvent(QResizeEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;

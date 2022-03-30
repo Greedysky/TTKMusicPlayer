@@ -131,7 +131,30 @@ void NormalHistogram::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
-    draw(&painter);
+    painter.setRenderHints(QPainter::Antialiasing);
+
+    if(m_starAction->isChecked())
+    {
+        for(StarPoint *point : qAsConst(m_starPoints))
+        {
+            m_starColor.setAlpha(point->m_alpha);
+            painter.setPen(QPen(m_starColor, 3));
+            painter.drawPoint(point->m_pt);
+        }
+    }
+
+    QLinearGradient line(0, 0, 0, height());
+    for(int i = 0; i < m_colors.count(); ++i)
+    {
+        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
+    }
+
+    for(int i = 0; i < m_cols; ++i)
+    {
+        const int x = i * m_cell_size.width() + 1;
+        const int offset = m_intern_vis_data[i] * m_cell_size.height();
+        painter.fillRect(x, height() - offset + 1, m_cell_size.width() - 2, offset - 2, line);
+    }
 }
 
 void NormalHistogram::contextMenuEvent(QContextMenuEvent *)
@@ -206,35 +229,7 @@ void NormalHistogram::process(float *left, float *)
             magnitude = qBound(0, magnitude, m_rows);
         }
 
-        m_intern_vis_data[i] -= m_analyzer_falloff * m_rows / 15;
+        m_intern_vis_data[i] -= m_analyzer_size * m_rows / 15;
         m_intern_vis_data[i] = magnitude > m_intern_vis_data[i] ? magnitude : m_intern_vis_data[i];
-    }
-}
-
-void NormalHistogram::draw(QPainter *p)
-{
-    if(m_starAction->isChecked())
-    {
-        for(StarPoint *point : qAsConst(m_starPoints))
-        {
-            m_starColor.setAlpha(point->m_alpha);
-            p->setPen(QPen(m_starColor, 3));
-            p->drawPoint(point->m_pt);
-        }
-    }
-
-    QLinearGradient line(0, 0, 0, height());
-    for(int i = 0; i < m_colors.count(); ++i)
-    {
-        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
-    }
-    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-
-    int x = 0;
-    for(int i = 0; i < m_cols; ++i)
-    {
-        x = i * m_cell_size.width() + 1;
-        const int offset = m_intern_vis_data[i] * m_cell_size.height();
-        p->fillRect(x, height() - offset + 1, m_cell_size.width() - 2, offset - 2, line);
     }
 }

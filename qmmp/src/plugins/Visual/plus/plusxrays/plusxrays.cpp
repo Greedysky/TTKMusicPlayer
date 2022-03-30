@@ -63,7 +63,50 @@ void PlusXRays::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
-    draw(&painter);
+    painter.setRenderHints(QPainter::Antialiasing);
+
+    if(m_gridAction->isChecked())
+    {
+        painter.setPen(QPen(QColor(255, 255, 255, 50), 1));
+        int per = width() / 8;
+
+        for(int w = 0; w < width(); ++w)
+        {
+            painter.drawLine(QPoint(w*per, 0), QPoint(w*per, height()));
+        }
+
+        per = height() / 8;
+        for(int h = 0; h < height(); ++h)
+        {
+            painter.drawLine(QPoint(0, h*per), QPoint(width(), h*per));
+        }
+    }
+
+    QLinearGradient line(0, 0, 0, height());
+    for(int i = 0; i < m_colors.count(); ++i)
+    {
+        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
+    }
+
+    painter.setPen(QPen(line, 1));
+
+    for(int i = 0; i < m_cols; ++i)
+    {
+        if((i + 1) >= m_cols)
+        {
+            break;
+        }
+
+        int pFront = m_rows / 2 - m_intern_vis_data[i];
+        int pEnd = m_rows / 2 - m_intern_vis_data[i + 1];
+
+        if(pFront > pEnd)
+        {
+            qSwap(pFront, pEnd);
+        }
+
+        painter.drawLine(i, pFront, i + 1, pEnd);
+    }
 }
 
 void PlusXRays::contextMenuEvent(QContextMenuEvent *)
@@ -104,52 +147,5 @@ void PlusXRays::process(float *left, float *)
         pos += step;
         m_intern_vis_data[i] = int(left[pos >> 8] * m_rows / 2);
         m_intern_vis_data[i] = qBound(-m_rows / 2, m_intern_vis_data[i], m_rows / 2);
-    }
-}
-
-void PlusXRays::draw(QPainter *p)
-{
-    if(m_gridAction->isChecked())
-    {
-        p->setPen(QPen(QColor(255, 255, 255, 50), 1));
-        int per = width() / 8;
-
-        for(int w = 0; w < width(); ++w)
-        {
-            p->drawLine(QPoint(w*per, 0), QPoint(w*per, height()));
-        }
-
-        per = height() / 8;
-        for(int h = 0; h < height(); ++h)
-        {
-            p->drawLine(QPoint(0, h*per), QPoint(width(), h*per));
-        }
-    }
-
-    QLinearGradient line(0, 0, 0, height());
-    for(int i = 0; i < m_colors.count(); ++i)
-    {
-        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
-    }
-
-    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    p->setPen(QPen(line, 1));
-
-    for(int i = 0; i < m_cols; ++i)
-    {
-        if((i + 1) >= m_cols)
-        {
-            break;
-        }
-
-        int pFront = m_rows / 2 - m_intern_vis_data[i];
-        int pEnd = m_rows / 2 - m_intern_vis_data[i + 1];
-
-        if(pFront > pEnd)
-        {
-            qSwap(pFront, pEnd);
-        }
-
-        p->drawLine(i, pFront, i + 1, pEnd);
     }
 }

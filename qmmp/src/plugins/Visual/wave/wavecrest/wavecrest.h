@@ -35,13 +35,12 @@ private:
     virtual void paintEvent(QPaintEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
-    void draw(QPainter *p);
 
     QImage m_backgroundImage;
-    int m_pixPos = 0;
+    int m_pos = 0;
     int m_vis_data = 0;
     int *m_x_scale = nullptr;
-    double m_analyzer_falloff = 2.2;
+    const double m_analyzer_size = 2.2;
 
 };
 

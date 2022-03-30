@@ -21,7 +21,7 @@ AutismLabel::~AutismLabel()
 
 void AutismLabel::start(const QPoint &pos)
 {
-    m_circleOn = true;
+    m_enabled = true;
     m_pos = pos;
     m_crValue = DISTANCE;
     m_circleTimer->start();
@@ -38,7 +38,7 @@ void AutismLabel::updateRender()
     if(m_crValue >= 2 * DISTANCE)
     {
         m_crValue = DISTANCE;
-        m_circleOn = false;
+        m_enabled = false;
         m_circleTimer->stop();
     }
 
@@ -48,11 +48,11 @@ void AutismLabel::updateRender()
 void AutismLabel::paintEvent(QPaintEvent *e)
 {
     QWidget::paintEvent(e);
-    if(m_circleOn)
+    if(m_enabled)
     {
         QPainter painter(this);
-        painter.setOpacity((2 * DISTANCE - m_crValue) * 0.8 / DISTANCE);
         painter.setRenderHint(QPainter::Antialiasing);
+        painter.setOpacity((2 * DISTANCE - m_crValue) * 0.8 / DISTANCE);
         painter.setPen(QPen(m_color, 2));
         painter.drawEllipse(m_pos, m_crValue, m_crValue);
     }
@@ -71,7 +71,7 @@ FloridAutism::FloridAutism(QWidget *parent)
         m_labels << label;
     }
 
-    m_gradientOn = false;
+    m_gradientLabel = false;
     m_timer->setInterval(700);
 }
 
@@ -80,14 +80,8 @@ FloridAutism::~FloridAutism()
 
 }
 
-void FloridAutism::paintEvent(QPaintEvent *e)
+void FloridAutism::resizeEvent(QResizeEvent *)
 {
-    Florid::paintEvent(e);
-}
-
-void FloridAutism::resizeEvent(QResizeEvent *e)
-{
-    Florid::resizeEvent(e);
     for(AutismLabel *label : qAsConst(m_labels))
     {
         label->setGeometry(0, 0, width(), height());

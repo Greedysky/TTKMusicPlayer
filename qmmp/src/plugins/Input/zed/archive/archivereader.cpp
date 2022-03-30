@@ -57,7 +57,7 @@ QStringList ArchiveReader::list(const QString &path)
     }
     return files;
 }
-#include <QDebug>
+
 bool ArchiveReader::unpack(const QString &path)
 {
     const QString &unpack = archive::unpackPath();

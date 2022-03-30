@@ -306,6 +306,7 @@ void LightEnvelope::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
+    painter.setRenderHint(QPainter::Antialiasing);
 
     if(!m_pixmap.isNull())
     {
@@ -350,7 +351,7 @@ void LightEnvelope::drawWaveform()
     m_pixmap = QPixmap(width(), height());
     m_pixmap.fill(Qt::black);
 
-    float step = float(width()) / NUMBER_OF_VALUES;
+    const float step = float(width()) / NUMBER_OF_VALUES;
 
     QPainter painter(&m_pixmap);
     painter.setPen(Qt::white);
