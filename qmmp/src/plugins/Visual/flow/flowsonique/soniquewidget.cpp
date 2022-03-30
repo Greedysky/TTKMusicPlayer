@@ -129,6 +129,7 @@ void SoniqueWidget::nextPreset()
     {
         m_currentIndex = 0;
     }
+
     generatePreset();
 }
 
@@ -144,6 +145,7 @@ void SoniqueWidget::previousPreset()
     {
         m_currentIndex = m_presetList.count() - 1;
     }
+
     generatePreset();
 }
 

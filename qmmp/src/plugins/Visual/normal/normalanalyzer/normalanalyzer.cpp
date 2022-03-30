@@ -364,6 +364,7 @@ void NormalAnalyzer::createMenu()
     m_fpsGroup->addAction(tr("40 fps"))->setData(40);
     m_fpsGroup->addAction(tr("30 fps"))->setData(30);
     m_fpsGroup->addAction(tr("20 fps"))->setData(20);
+
     for(QAction *act : m_fpsGroup->actions())
     {
         act->setCheckable(true);
@@ -378,6 +379,7 @@ void NormalAnalyzer::createMenu()
     m_analyzerFalloffGroup->addAction(tr("Medium"))->setData(2.2);
     m_analyzerFalloffGroup->addAction(tr("Fast"))->setData(2.4);
     m_analyzerFalloffGroup->addAction(tr("Fastest"))->setData(2.8);
+
     for(QAction *act : m_analyzerFalloffGroup->actions())
     {
         act->setCheckable(true);
@@ -392,6 +394,7 @@ void NormalAnalyzer::createMenu()
     m_peaksFalloffGroup->addAction(tr("Medium"))->setData(0.2);
     m_peaksFalloffGroup->addAction(tr("Fast"))->setData(0.4);
     m_peaksFalloffGroup->addAction(tr("Fastest"))->setData(0.8);
+
     for(QAction *act : m_peaksFalloffGroup->actions())
     {
         act->setCheckable(true);

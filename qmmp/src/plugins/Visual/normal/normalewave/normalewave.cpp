@@ -166,6 +166,7 @@ void NormalEWave::paintEvent(QPaintEvent *)
         {
             x += rdx; //correct right part position
         }
+
         points << QPoint(x, height() - m_intern_vis_data[i] * m_cell_size.height());
     }
 

@@ -38,18 +38,20 @@ void AncientLabel::timeout()
 {
     m_pos = rect().center();
     m_size = qrand() % POINT_SIZE + 1;
-    int pos_x = qrand() % (DISTANCE * 3), pos_y = qrand() % (DISTANCE * 3);
-    if(pos_x % 2 == 0)
+
+    int x = qrand() % (DISTANCE * 3), y = qrand() % (DISTANCE * 3);
+    if(x % 2 == 0)
     {
-        pos_x = -pos_x;
+        x = -x;
     }
-    if(pos_y % 2 == 0)
+
+    if(y % 2 == 0)
     {
-        pos_y = -pos_y;
+        y = -y;
     }
 
     m_posAnimation->setStartValue(m_pos);
-    m_posAnimation->setEndValue(m_pos + QPoint(DISTANCE / 2 + pos_x, DISTANCE / 2 + pos_y));
+    m_posAnimation->setEndValue(m_pos + QPoint(DISTANCE / 2 + x, DISTANCE / 2 + y));
     m_posAnimation->start();
 }
 
@@ -66,8 +68,7 @@ void AncientLabel::posValueChanged(const QVariant &value)
     const QPoint &endPoint = m_posAnimation->endValue().toPoint();
     const int totalLength = sqrt(pow(startPoint.x() - endPoint.x(), 2) + pow(startPoint.y() - endPoint.y(), 2));
     const int currentLength = sqrt(pow(startPoint.x() - m_pos.x(), 2) + pow(startPoint.y() - m_pos.y(), 2));
-    const float delta = (totalLength - currentLength) * 1.0 / totalLength;
-    m_opacity = delta;
+    m_opacity = (totalLength - currentLength) * 1.0 / totalLength;
 
     update();
 }
@@ -75,6 +76,7 @@ void AncientLabel::posValueChanged(const QVariant &value)
 void AncientLabel::paintEvent(QPaintEvent *e)
 {
     QWidget::paintEvent(e);
+
     if(m_pos == QPoint(0, 0))
     {
         return;
@@ -131,6 +133,7 @@ void FloridAncient::stop()
 void FloridAncient::paintEvent(QPaintEvent *e)
 {
     Florid::paintEvent(e);
+
     if(m_rows == 0)
     {
         return;
@@ -145,11 +148,7 @@ void FloridAncient::paintEvent(QPaintEvent *e)
     qreal startAngle = 0;
     for(int i = 0; i < m_cols; ++i)
     {
-        int offset = i;
-        if(i >= m_cols / 2)
-        {
-            offset = m_cols - i;
-        }//mirror
+        const int offset = i >= m_cols / 2 ? m_cols - i : i;
 
         painter.save();
         painter.rotate(startAngle);

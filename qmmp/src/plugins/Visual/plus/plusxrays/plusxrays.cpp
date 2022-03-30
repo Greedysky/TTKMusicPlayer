@@ -72,13 +72,13 @@ void PlusXRays::paintEvent(QPaintEvent *)
 
         for(int w = 0; w < width(); ++w)
         {
-            painter.drawLine(QPoint(w*per, 0), QPoint(w*per, height()));
+            painter.drawLine(QPoint(w * per, 0), QPoint(w * per, height()));
         }
 
         per = height() / 8;
         for(int h = 0; h < height(); ++h)
         {
-            painter.drawLine(QPoint(0, h*per), QPoint(width(), h*per));
+            painter.drawLine(QPoint(0, h * per), QPoint(width(), h * per));
         }
     }
 
@@ -92,20 +92,20 @@ void PlusXRays::paintEvent(QPaintEvent *)
 
     for(int i = 0; i < m_cols; ++i)
     {
-        if((i + 1) >= m_cols)
+        if(i + 1 >= m_cols)
         {
             break;
         }
 
-        int pFront = m_rows / 2 - m_intern_vis_data[i];
-        int pEnd = m_rows / 2 - m_intern_vis_data[i + 1];
+        int front = m_rows / 2 - m_intern_vis_data[i];
+        int end = m_rows / 2 - m_intern_vis_data[i + 1];
 
-        if(pFront > pEnd)
+        if(front > end)
         {
-            qSwap(pFront, pEnd);
+            qSwap(front, end);
         }
 
-        painter.drawLine(i, pFront, i + 1, pEnd);
+        painter.drawLine(i, front, i + 1, end);
     }
 }
 

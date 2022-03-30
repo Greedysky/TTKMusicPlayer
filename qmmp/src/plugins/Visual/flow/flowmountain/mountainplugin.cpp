@@ -34,6 +34,7 @@ void MountainPlugin::process(float *left, float *)
 {
     const int size = QMMP_VISUAL_NODE_SIZE / 2;
     short dest_l[size];
+
     calc_freq(dest_l, left);
 
     float buffer[size];

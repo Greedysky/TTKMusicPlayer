@@ -66,12 +66,12 @@ void ProjectMWidget::initializeGL()
         settings.softCutRatingsEnabled = false;
         m_projectM = new projectM(settings, projectM::FLAG_DISABLE_PLAYLIST_LOAD);
 
-        QDir presetDir(QString::fromLocal8Bit(m_projectM->settings().presetURL.c_str()));
-        presetDir.setFilter(QDir::Files);
+        QDir dir(QString::fromLocal8Bit(m_projectM->settings().presetURL.c_str()));
+        dir.setFilter(QDir::Files);
         QStringList filters;
         filters << "*.prjm" << "*.milk";
 
-        const QFileInfoList &l = presetDir.entryInfoList(filters);
+        const QFileInfoList &l = dir.entryInfoList(filters);
         RatingList list;
         list.push_back(3);
         list.push_back(3);

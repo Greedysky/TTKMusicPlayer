@@ -80,7 +80,6 @@ Florid::Florid(QWidget *parent)
     setMinimumSize(580, 320);
 
     m_roundLabel = new RoundAnimationLabel(this);
-
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
 }
 

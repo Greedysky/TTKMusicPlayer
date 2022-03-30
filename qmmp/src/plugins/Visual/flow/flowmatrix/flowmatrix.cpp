@@ -29,12 +29,12 @@ FlowMatrix::~FlowMatrix()
 
 void FlowMatrix::resizeEvent(QResizeEvent *)
 {
-    const int perWidth = width() / 50;
+    const int w = width() / 50;
     for(int i = 0; i < m_matrixs.count(); ++i)
     {
         Matrix *matrix = m_matrixs[i];
-        matrix->resize(perWidth, height());
-        matrix->move(i * perWidth, 0);
+        matrix->resize(w, height());
+        matrix->move(i * w, 0);
     }
 }
 

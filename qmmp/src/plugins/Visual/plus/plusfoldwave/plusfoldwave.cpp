@@ -169,13 +169,13 @@ void PlusFoldWave::paintEvent(QPaintEvent *)
 
         painter.drawLine(QPoint(x, height() / 2 - offset), QPoint(x, height() / 2 + offset));
 
-        if((i + 1) >= m_cols * 2)
+        if(i + 1 >= m_cols * 2)
         {
             break;
         }
 
         int x1 = (i + 1) * m_cell_size.width() + 1;
-        if((i + 1) >= m_cols)
+        if(i + 1 >= m_cols)
         {
             x1 += rdx; //correct right part position
         }

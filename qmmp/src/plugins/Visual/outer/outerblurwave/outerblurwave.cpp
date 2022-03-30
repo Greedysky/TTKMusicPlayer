@@ -23,26 +23,26 @@ OuterBlurWave::OuterBlurWave(QWidget *parent)
     setWindowTitle(tr("Outer BlurWave Widget"));
     setMinimumWidth(2 * 300 - 30);
 
-    m_graphics_view = new QGraphicsView(this);
-    m_graphics_view->setStyleSheet("background: transparent; border:0px");
-    m_graphics_view->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    m_graphics_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_graphics_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_view = new QGraphicsView(this);
+    m_view->setStyleSheet("background: transparent; border:0px");
+    m_view->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    QGraphicsScene *scene = new QGraphicsScene(m_graphics_view);
-    m_graphics_view->setScene(scene);
+    QGraphicsScene *scene = new QGraphicsScene(m_view);
+    m_view->setScene(scene);
 
-    m_graphics_item = new QGraphicsPolygonItem;
-    m_graphics_item->setFlag(QGraphicsPolygonItem::ItemIsMovable, false);
-    m_graphics_item->setFlag(QGraphicsPolygonItem::ItemIsSelectable, false);
-    m_graphics_item->setFlag(QGraphicsPolygonItem::ItemIsFocusable, false);
-    m_graphics_item->setFlag(QGraphicsPolygonItem::ItemIgnoresTransformations, true);
+    m_item = new QGraphicsPolygonItem;
+    m_item->setFlag(QGraphicsPolygonItem::ItemIsMovable, false);
+    m_item->setFlag(QGraphicsPolygonItem::ItemIsSelectable, false);
+    m_item->setFlag(QGraphicsPolygonItem::ItemIsFocusable, false);
+    m_item->setFlag(QGraphicsPolygonItem::ItemIgnoresTransformations, true);
 
-    scene->addItem(m_graphics_item);
+    scene->addItem(m_item);
 
     QGraphicsBlurEffect *blur_effect = new QGraphicsBlurEffect(this);
     blur_effect->setBlurRadius(20);
-    m_graphics_item->setGraphicsEffect(blur_effect);
+    m_item->setGraphicsEffect(blur_effect);
 }
 
 OuterBlurWave::~OuterBlurWave()
@@ -87,12 +87,12 @@ void OuterBlurWave::paintEvent(QPaintEvent *)
     points << viewToItemPoint(QPoint(0, height() + HEIGHT_OFFSET));
     for(int i = 0; i < m_cols * 2; ++i)
     {
-        int x = i * m_cell_size.width() + 1;
         if(i == m_cols)
         {
             continue;
         }
 
+        int x = i * m_cell_size.width() + 1;
         if(i > m_cols)
         {
             x += rdx; //correct right part position
@@ -108,11 +108,11 @@ void OuterBlurWave::paintEvent(QPaintEvent *)
     }
     points << viewToItemPoint(QPoint(width(), height() + HEIGHT_OFFSET));
 
-    m_graphics_view->setGeometry(0, 0, width(), height() + HEIGHT_OFFSET);
-    m_graphics_item->setBrush(m_color);
-    m_graphics_item->setPen(m_color);
-    m_graphics_item->setOpacity(m_opacity);
-    m_graphics_item->setPolygon(points);
+    m_view->setGeometry(0, 0, width(), height() + HEIGHT_OFFSET);
+    m_item->setBrush(m_color);
+    m_item->setPen(m_color);
+    m_item->setOpacity(m_opacity);
+    m_item->setPolygon(points);
 }
 
 void OuterBlurWave::resizeEvent(QResizeEvent *)
@@ -204,5 +204,5 @@ void OuterBlurWave::process(float *left, float *right)
 
 QPointF OuterBlurWave::viewToItemPoint(const QPoint &pt)
 {
-    return QPointF(m_graphics_item->mapFromScene(m_graphics_view->mapToScene(pt)));
+    return QPointF(m_item->mapFromScene(m_view->mapToScene(pt)));
 }

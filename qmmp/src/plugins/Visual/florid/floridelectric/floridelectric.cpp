@@ -35,18 +35,20 @@ void ElectricPointLabel::timeout()
 {
     m_pos = rect().center();
     m_size = qrand() % DISTANCE / 5 + 1;
-    int pos_x = qrand() % (DISTANCE * 3), pos_y = qrand() % (DISTANCE * 3);
-    if(pos_x % 2 == 0)
+
+    int x = qrand() % (DISTANCE * 3), y = qrand() % (DISTANCE * 3);
+    if(x % 2 == 0)
     {
-        pos_x = -pos_x;
+        x = -x;
     }
-    if(pos_y % 2 == 0)
+
+    if(y % 2 == 0)
     {
-        pos_y = -pos_y;
+        y = -y;
     }
 
     m_posAnimation->setStartValue(m_pos);
-    m_posAnimation->setEndValue(m_pos + QPoint(DISTANCE / 2 + pos_x, DISTANCE / 2 + pos_y));
+    m_posAnimation->setEndValue(m_pos + QPoint(DISTANCE / 2 + x, DISTANCE / 2 + y));
     m_posAnimation->start();
 }
 
@@ -72,6 +74,7 @@ void ElectricPointLabel::posValueChanged(const QVariant &value)
 void ElectricPointLabel::paintEvent(QPaintEvent *e)
 {
     QWidget::paintEvent(e);
+
     if(m_pos == QPoint(0, 0))
     {
         return;
@@ -136,6 +139,7 @@ void ElectricCircleLabel::sizeValueChanged(const QVariant &value)
 void ElectricCircleLabel::paintEvent(QPaintEvent *e)
 {
     QWidget::paintEvent(e);
+
     if(m_size == POINT_SIZE)
     {
         return;

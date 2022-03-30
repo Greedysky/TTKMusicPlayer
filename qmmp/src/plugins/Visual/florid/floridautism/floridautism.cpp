@@ -48,6 +48,7 @@ void AutismLabel::updateRender()
 void AutismLabel::paintEvent(QPaintEvent *e)
 {
     QWidget::paintEvent(e);
+
     if(m_enabled)
     {
         QPainter painter(this);

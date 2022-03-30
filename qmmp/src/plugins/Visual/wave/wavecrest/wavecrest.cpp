@@ -35,7 +35,7 @@ void WaveCrest::paintEvent(QPaintEvent *)
 
         for(int i = 0; i < m_vis_data / 2; ++i)
         {
-            const int r = qMin(0x5f + i*3, 0xff);
+            const int r = qMin(0x5f + i * 3, 0xff);
             m_backgroundImage.setPixel(m_pos, qMax(m_rows / 2 - i, 0), qRgb(r, r, r));
             m_backgroundImage.setPixel(m_pos, qMin(m_rows / 2 + i, m_rows), qRgb(r, r, r));
         }

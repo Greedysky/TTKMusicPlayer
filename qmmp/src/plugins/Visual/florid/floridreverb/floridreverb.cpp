@@ -20,6 +20,7 @@ FloridReverb::~FloridReverb()
 void FloridReverb::paintEvent(QPaintEvent *e)
 {
     Florid::paintEvent(e);
+
     if(m_rows == 0)
     {
         return;

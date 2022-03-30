@@ -129,6 +129,7 @@ void GoomWidget::createMenu()
     m_fpsGroup->addAction(tr("40 fps"))->setData(40);
     m_fpsGroup->addAction(tr("30 fps"))->setData(30);
     m_fpsGroup->addAction(tr("20 fps"))->setData(20);
+
     for(QAction *act : m_fpsGroup->actions())
     {
         act->setCheckable(true);

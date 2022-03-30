@@ -248,6 +248,7 @@ void InfinityWidget::createMenu()
     m_effectsGroup->addAction(tr("Medium"))->setData(300);
     m_effectsGroup->addAction(tr("Fast"))->setData(200);
     m_effectsGroup->addAction(tr("Fastest"))->setData(100);
+
     for(QAction *act : m_effectsGroup->actions())
     {
         act->setCheckable(true);
@@ -262,6 +263,7 @@ void InfinityWidget::createMenu()
     m_colorsGroup->addAction(tr("Medium"))->setData(300);
     m_colorsGroup->addAction(tr("Fast"))->setData(200);
     m_colorsGroup->addAction(tr("Fastest"))->setData(100);
+
     for(QAction *act : m_colorsGroup->actions())
     {
         act->setCheckable(true);

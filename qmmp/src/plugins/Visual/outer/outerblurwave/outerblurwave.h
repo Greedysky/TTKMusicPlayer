@@ -55,8 +55,8 @@ private:
     const double m_analyzer_size = 1.2;
     QSize m_cell_size = QSize(6, 2);
 
-    QGraphicsView *m_graphics_view;
-    QGraphicsPolygonItem *m_graphics_item;
+    QGraphicsView *m_view;
+    QGraphicsPolygonItem *m_item;
 
 };
 

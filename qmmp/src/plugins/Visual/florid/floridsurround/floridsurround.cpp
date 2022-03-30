@@ -17,6 +17,7 @@ FloridSurround::~FloridSurround()
 void FloridSurround::paintEvent(QPaintEvent *e)
 {
     Florid::paintEvent(e);
+
     if(m_rows == 0)
     {
         return;

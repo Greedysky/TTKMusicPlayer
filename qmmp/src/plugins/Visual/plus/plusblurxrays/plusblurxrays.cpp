@@ -132,10 +132,10 @@ void PlusBlurXRays::blur()
 {
     for(int y = 0; y < m_rows; ++y)
     {
-        uint32_t * p = m_corner + m_cols * y;
-        uint32_t * end = p + m_cols;
-        uint32_t * plast = p - m_cols;
-        uint32_t * pnext = p + m_cols;
+        uint32_t *p = m_corner + m_cols * y;
+        uint32_t *end = p + m_cols;
+        uint32_t *plast = p - m_cols;
+        uint32_t *pnext = p + m_cols;
 
         /* We do a quick and dirty average of four color values, first masking
          * off the lowest two bits.  Over a large area, this masking has the net
