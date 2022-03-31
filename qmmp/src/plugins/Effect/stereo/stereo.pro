@@ -15,5 +15,4 @@ FORMS += settingsdialog.ui
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L/usr/lib -I/usr/include
 }

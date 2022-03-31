@@ -53,10 +53,12 @@ The TTKMusicplayer plugin for run
  * floridautism
  * floridbass
  * floridelectric
+ * floridpicture
  * floridreverb
  * floridsurround
- * flowethereality
  * flowgoom
+ * flowinfinity
+ * flowmatrix
  * flowmountain
  * flowprojectm
  * flowsonique
@@ -70,7 +72,6 @@ The TTKMusicplayer plugin for run
  * outerripples
  * plusblurxrays
  * plusfoldwave
- * plusspacewave
  * plusxrays
  * wavecrest
  * wavevoice

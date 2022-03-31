@@ -21,6 +21,5 @@ win32{
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L/usr/lib -I/usr/include
     LIBS += -L$$EXTRA_PREFIX/libsoxr/lib -lsoxr$$STATIC_LIBRARY_SUFFIX
 }

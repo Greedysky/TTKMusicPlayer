@@ -12,5 +12,4 @@ HEADERS += lightenvelope.h \
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L/usr/lib -I/usr/include
 }
