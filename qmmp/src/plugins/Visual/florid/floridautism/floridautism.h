@@ -42,7 +42,7 @@ protected:
 
     bool m_enabled = false;
     QTimer *m_circleTimer;
-    int m_crValue = DISTANCE;
+    int m_crValue = LABEL_RADIUS;
     QPoint m_pos;
     QColor m_color;
 

@@ -42,13 +42,13 @@ void FloridSurround::paintEvent(QPaintEvent *e)
         }
 
         painter.setPen(QPen(m_averageColor, 2));
-        painter.drawLine(0, DISTANCE + 10 + value1 * 0.03, 0, DISTANCE + 10 + value2 * 0.03);
+        painter.drawLine(0, LABEL_RADIUS + 10 + value1 * 0.03, 0, LABEL_RADIUS + 10 + value2 * 0.03);
 
         painter.setPen(QPen(QColor(m_averageColor.green(), m_averageColor.blue(), m_averageColor.red()), 2));
-        painter.drawLine(0, DISTANCE + 10 + value1 * 0.06, 0, DISTANCE + 10 + value2 * 0.06);
+        painter.drawLine(0, LABEL_RADIUS + 10 + value1 * 0.06, 0, LABEL_RADIUS + 10 + value2 * 0.06);
 
         painter.setPen(QPen(QColor(m_averageColor.blue(), m_averageColor.red(), m_averageColor.green()), 2));
-        painter.drawLine(0, DISTANCE + 10 + value1 * 0.09, 0, DISTANCE + 10 + value2 * 0.09);
+        painter.drawLine(0, LABEL_RADIUS + 10 + value1 * 0.09, 0, LABEL_RADIUS + 10 + value2 * 0.09);
 
         painter.restore();
         startAngle += 360.0 / (m_rows * 2);

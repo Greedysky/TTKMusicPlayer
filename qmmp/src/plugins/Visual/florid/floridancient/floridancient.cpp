@@ -39,7 +39,7 @@ void AncientLabel::timeout()
     m_pos = rect().center();
     m_size = qrand() % POINT_SIZE + 1;
 
-    int x = qrand() % (DISTANCE * 3), y = qrand() % (DISTANCE * 3);
+    int x = qrand() % (LABEL_RADIUS * 3), y = qrand() % (LABEL_RADIUS * 3);
     if(x % 2 == 0)
     {
         x = -x;
@@ -51,7 +51,7 @@ void AncientLabel::timeout()
     }
 
     m_posAnimation->setStartValue(m_pos);
-    m_posAnimation->setEndValue(m_pos + QPoint(DISTANCE / 2 + x, DISTANCE / 2 + y));
+    m_posAnimation->setEndValue(m_pos + QPoint(LABEL_RADIUS / 2 + x, LABEL_RADIUS / 2 + y));
     m_posAnimation->start();
 }
 
@@ -153,7 +153,7 @@ void FloridAncient::paintEvent(QPaintEvent *e)
         painter.save();
         painter.rotate(startAngle);
         const int value = m_intern_vis_data[int(offset * 0.6)];
-        painter.drawLine(0, DISTANCE + 5 + value * 0.2, 0, DISTANCE + 5 + value * 0.3);
+        painter.drawLine(0, LABEL_RADIUS + 5 + value * 0.2, 0, LABEL_RADIUS + 5 + value * 0.3);
 
         painter.restore();
         startAngle += 360.0 / m_cols;

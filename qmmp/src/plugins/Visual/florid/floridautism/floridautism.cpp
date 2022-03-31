@@ -23,7 +23,7 @@ void AutismLabel::start(const QPoint &pos)
 {
     m_enabled = true;
     m_pos = pos;
-    m_crValue = DISTANCE;
+    m_crValue = LABEL_RADIUS;
     m_circleTimer->start();
 }
 
@@ -35,9 +35,9 @@ void AutismLabel::setColor(const QColor &color)
 void AutismLabel::updateRender()
 {
     m_crValue += 2;
-    if(m_crValue >= 2 * DISTANCE)
+    if(m_crValue >= 2 * LABEL_RADIUS)
     {
-        m_crValue = DISTANCE;
+        m_crValue = LABEL_RADIUS;
         m_enabled = false;
         m_circleTimer->stop();
     }
@@ -53,7 +53,7 @@ void AutismLabel::paintEvent(QPaintEvent *e)
     {
         QPainter painter(this);
         painter.setRenderHint(QPainter::Antialiasing);
-        painter.setOpacity((2 * DISTANCE - m_crValue) * 0.8 / DISTANCE);
+        painter.setOpacity((2 * LABEL_RADIUS - m_crValue) * 0.8 / LABEL_RADIUS);
         painter.setPen(QPen(m_color, 2));
         painter.drawEllipse(m_pos, m_crValue, m_crValue);
     }

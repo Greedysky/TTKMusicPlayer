@@ -34,9 +34,9 @@ void ElectricPointLabel::setColor(const QColor &color)
 void ElectricPointLabel::timeout()
 {
     m_pos = rect().center();
-    m_size = qrand() % DISTANCE / 5 + 1;
+    m_size = qrand() % LABEL_RADIUS / 5 + 1;
 
-    int x = qrand() % (DISTANCE * 3), y = qrand() % (DISTANCE * 3);
+    int x = qrand() % (LABEL_RADIUS * 3), y = qrand() % (LABEL_RADIUS * 3);
     if(x % 2 == 0)
     {
         x = -x;
@@ -48,7 +48,7 @@ void ElectricPointLabel::timeout()
     }
 
     m_posAnimation->setStartValue(m_pos);
-    m_posAnimation->setEndValue(m_pos + QPoint(DISTANCE / 2 + x, DISTANCE / 2 + y));
+    m_posAnimation->setEndValue(m_pos + QPoint(LABEL_RADIUS / 2 + x, LABEL_RADIUS / 2 + y));
     m_posAnimation->start();
 }
 
@@ -122,16 +122,16 @@ void ElectricCircleLabel::finished()
 
 void ElectricCircleLabel::timeout()
 {
-    m_posAnimation->setStartValue(DISTANCE);
-    m_posAnimation->setKeyValueAt(0.5, DISTANCE + qrand() % (DISTANCE / 2));
-    m_posAnimation->setEndValue(DISTANCE);
+    m_posAnimation->setStartValue(LABEL_RADIUS);
+    m_posAnimation->setKeyValueAt(0.5, LABEL_RADIUS + qrand() % (LABEL_RADIUS / 2));
+    m_posAnimation->setEndValue(LABEL_RADIUS);
     m_posAnimation->start();
 }
 
 void ElectricCircleLabel::sizeValueChanged(const QVariant &value)
 {
     m_size = value.toInt();
-    m_opacity = 1.3 - (m_size - DISTANCE) * 1.0 / (m_posAnimation->keyValueAt(0.5).toInt() - DISTANCE);
+    m_opacity = 1.3 - (m_size - LABEL_RADIUS) * 1.0 / (m_posAnimation->keyValueAt(0.5).toInt() - LABEL_RADIUS);
 
     update();
 }

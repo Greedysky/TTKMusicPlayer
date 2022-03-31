@@ -17,7 +17,7 @@ QStringList ArchiveReader::archiveFilters()
 
 bool ArchiveReader::isSupported(const QString &path)
 {
-    if(!QFile::exists(EXECUTE_PATH))
+    if(!QFile::exists(EXECUTE_PATH) || path.isEmpty())
     {
         return false;
     }

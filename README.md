@@ -8,10 +8,10 @@ The TTKMusicplayer plugin for run
   * |__theme
   * |playlist.tkpl
   * |config.xml
-  * |search.ttk
-  * |download.ttk
-  * |cdownload.ttk
-  * |cupload.ttk
+  * |search.tkf
+  * |download.tkf
+  * |cdownload.tkf
+  * |cupload.tkf
 * |__Downloads
   * |__Lyric
   * |__Movie
@@ -93,7 +93,9 @@ The TTKMusicplayer plugin for run
  * vorbis
  * wavpack
  * wildmidi
+ * xmp
  * adplug
+ * archive
  * asap
  * ayfly
  * dca
@@ -107,5 +109,4 @@ The TTKMusicplayer plugin for run
  * soundmon
  * stsound
  * v2m
- * xmp
  * xsf

@@ -32,15 +32,15 @@ void FloridReverb::paintEvent(QPaintEvent *e)
     painter.translate(rect().center());
 
     qreal startAngle = 0;
-    for(int i = 0; i < DISTANCE; ++i)
+    for(int i = 0; i < LABEL_RADIUS; ++i)
     {
         painter.save();
         painter.rotate(startAngle);
-        const double value = m_intern_vis_data[int(i * m_cols * 0.8 / DISTANCE)];
-        painter.drawLine(0, DISTANCE + 10, 0, DISTANCE + 10 + value * 0.3);
+        const double value = m_intern_vis_data[int(i * m_cols * 0.8 / LABEL_RADIUS)];
+        painter.drawLine(0, LABEL_RADIUS + 10, 0, LABEL_RADIUS + 10 + value * 0.3);
 
         painter.restore();
-        startAngle += 360.0 / DISTANCE;
+        startAngle += 360.0 / LABEL_RADIUS;
     }
 }
 

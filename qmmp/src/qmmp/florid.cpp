@@ -20,7 +20,7 @@ RoundAnimationLabel::~RoundAnimationLabel()
 
 void RoundAnimationLabel::setPixmap(const QPixmap &pix)
 {
-    m_pixmap = pix.scaled(2 * DISTANCE, 2 * DISTANCE);
+    m_pixmap = pix.scaled(2 * LABEL_RADIUS, 2 * LABEL_RADIUS);
 
     QRect rect(QPoint(0, 0), m_pixmap.size());
     QBitmap mask(rect.size());
@@ -28,7 +28,7 @@ void RoundAnimationLabel::setPixmap(const QPixmap &pix)
     painter.fillRect(rect, Qt::white);
     painter.setBrush(QColor(0, 0, 0));
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.drawRoundedRect(rect, DISTANCE, DISTANCE);
+    painter.drawRoundedRect(rect, LABEL_RADIUS, LABEL_RADIUS);
     m_pixmap.setMask(mask);
 }
 
@@ -184,10 +184,11 @@ void Florid::paintEvent(QPaintEvent *)
         const QPoint &pt = rect().center();
         if(m_gradientLabel)
         {
-            const int length = DISTANCE + 20;
+            const int length = LABEL_RADIUS + 20;
             QRadialGradient gradient(pt.x(), pt.y(), length, pt.x(), pt.y());
             painter.setPen(Qt::NoPen);
             gradient.setColorAt(0.7, m_averageColor);
+
             QColor color = m_averageColor;
             color.setAlpha(0);
             gradient.setColorAt(1.0, color);
@@ -198,7 +199,7 @@ void Florid::paintEvent(QPaintEvent *)
         if(m_enabledLabel)
         {
             reRenderLabel();
-            m_roundLabel->setGeometry(pt.x() - DISTANCE, pt.y() - DISTANCE, 2 * DISTANCE, 2 * DISTANCE);
+            m_roundLabel->setGeometry(pt.x() - LABEL_RADIUS, pt.y() - LABEL_RADIUS, 2 * LABEL_RADIUS, 2 * LABEL_RADIUS);
         }
     }
     else
