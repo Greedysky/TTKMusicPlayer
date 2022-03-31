@@ -1,6 +1,5 @@
 #include "matrix.h"
 
-#include <QFile>
 #include <QPainter>
 
 Matrix::Matrix(QWidget *parent)
@@ -12,8 +11,6 @@ Matrix::Matrix(QWidget *parent)
     m_timer = new QTimer(this);
     m_timer->setInterval(1000);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
-    loadFile();
 }
 
 void Matrix::start()
@@ -36,16 +33,10 @@ bool Matrix::isRunning() const
 
 void Matrix::timeout()
 {
-    if(m_word_list.empty())
-    {
-        return;
-    }
-
     m_word.clear();
     for(int i = 0; i < 10; ++i)
     {
-        const int index = qrand() % m_word_list.count();
-        m_word.append(m_word_list[index]);
+        m_word.append(qrand() % 2 ? "0" : "1");
     }
 
     update();
@@ -65,20 +56,5 @@ void Matrix::paintEvent(QPaintEvent *e)
         const QFontMetrics fm(font);
         painter.setFont(font);
         painter.drawText(0, fm.height() * (i + 1), m_word.at(i));
-    }
-}
-
-void Matrix::loadFile()
-{
-    QFile file(":/data/binary");
-    if(!file.open(QIODevice::ReadOnly))
-    {
-        qDebug("Matrix: Open binary data failed");
-        return;
-    }
-
-    while(!file.atEnd())
-    {
-        m_word_list << file.readLine().trimmed();
     }
 }

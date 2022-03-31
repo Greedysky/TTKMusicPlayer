@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/data">
-        <file alias="binary">resource/binary</file>
         <file alias="back">resource/back.png</file>
     </qresource>
 </RCC>

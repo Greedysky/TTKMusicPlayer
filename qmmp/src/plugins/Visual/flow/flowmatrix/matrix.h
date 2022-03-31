@@ -43,12 +43,8 @@ private slots:
 protected:
     virtual void paintEvent(QPaintEvent *e) override final;
 
-    void loadFile();
-
-private:
     QTimer *m_timer;
     QStringList m_word;
-    QStringList m_word_list;
 
 };
 
