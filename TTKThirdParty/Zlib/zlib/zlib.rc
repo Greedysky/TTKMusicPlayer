@@ -4,9 +4,12 @@
     #include <winver.h>
 #endif
 
+#define TTK_FILEVERSION 1,2,11,0
+#define TTK_PRODUCTVERSION "1.2.11.0"
+
 VS_VERSION_INFO VERSIONINFO
-    FILEVERSION 1,2,11,0
-    PRODUCTVERSION 1,2,11,0
+    FILEVERSION TTK_FILEVERSION
+    PRODUCTVERSION TTK_FILEVERSION
     FILEFLAGSMASK 0x3fL
 
 #ifdef _DEBUG
@@ -25,10 +28,10 @@ BEGIN
             BEGIN
                 VALUE "CompanyName", "Greedysky Studio, Ltd."
                 VALUE "FileDescription", "zlib"
-                VALUE "FileVersion", "1.2.11.0"
+                VALUE "FileVersion", TTK_PRODUCTVERSION
                 VALUE "LegalCopyright", "Copyright (C) 2022 Greedysky Studio"
                 VALUE "ProductName", "zlib"
-                VALUE "ProductVersion", "1.2.11.0"
+                VALUE "ProductVersion", TTK_PRODUCTVERSION
             END
     END
     BLOCK "VarFileInfo"
