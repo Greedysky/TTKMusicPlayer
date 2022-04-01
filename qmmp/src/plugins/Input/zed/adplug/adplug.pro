@@ -6,14 +6,12 @@ TARGET = $${TARGET}
 HEADERS += decoderadplugfactory.h \
            decoder_adplug.h \
            adplughelper.h \
-           adplugmetadatamodel.h \
-           magic.h
+           adplugmetadatamodel.h
 
 SOURCES += decoderadplugfactory.cpp \
            decoder_adplug.cpp \
            adplughelper.cpp \
-           adplugmetadatamodel.cpp \
-           magic.cpp
+           adplugmetadatamodel.cpp
 
 INCLUDEPATH += $$EXTRA_PREFIX/libadplug/include \
                $$EXTRA_PREFIX/libadplug/include/libbinio
