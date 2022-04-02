@@ -19,6 +19,7 @@
 #ifndef SC68HELPER_H
 #define SC68HELPER_H
 
+#include <QFile>
 #include <qmmp/trackinfo.h>
 extern "C" {
 #include <libsc68/sc68/sc68.h>

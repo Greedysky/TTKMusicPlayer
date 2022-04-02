@@ -3,9 +3,14 @@
 #include "decoder_adplug.h"
 #include "adplugmetadatamodel.h"
 
-bool DecoderAdplugFactory::canDecode(QIODevice *) const
+bool DecoderAdplugFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    AdplugHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderAdplugFactory::properties() const
@@ -25,8 +30,9 @@ DecoderProperties DecoderAdplugFactory::properties() const
     properties.filters << "*.laa" << "*.lds";
     properties.filters << "*.m" << "*.mad" << "*.mdi" << "*.mkj" << "*.msc" << "*.mtk" << "*.mus";
     properties.filters << "*.rac" << "*.rad" << "*.raw" << "*.rix" << "*.rol";
-    properties.filters << "*.sa2" << "*.sat" << "*.sci" << "*.sdb" << "*.sng" << "*.sop" << "*.sqx";
+    properties.filters << "*.s3m" << "*.sa2" << "*.sat" << "*.sci" << "*.sdb" << "*.sng" << "*.sop" << "*.sqx";
     properties.filters << "*.xad" << "*.xms" << "*.xsm";
+    properties.filters << "*.vgm" << "*.vgz";
     properties.filters << "*.wlf";
     properties.description = "AdLib Sound File";
     properties.noInput = true;

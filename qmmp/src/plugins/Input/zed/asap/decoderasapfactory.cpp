@@ -3,9 +3,14 @@
 #include "decoder_asap.h"
 #include "asapmetadatamodel.h"
 
-bool DecoderAsapFactory::canDecode(QIODevice *) const
+bool DecoderAsapFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    AsapHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderAsapFactory::properties() const

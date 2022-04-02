@@ -21,6 +21,7 @@
 #ifndef GMEHELPER_H
 #define GMEHELPER_H
 
+#include <QFile>
 #include <gme/gme.h>
 #include <qmmp/trackinfo.h>
 

@@ -2,9 +2,14 @@
 #include "sc68helper.h"
 #include "decoder_sc68.h"
 
-bool DecoderSC68Factory::canDecode(QIODevice *) const
+bool DecoderSC68Factory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    SC68Helper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderSC68Factory::properties() const

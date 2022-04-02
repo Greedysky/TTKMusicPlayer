@@ -2,9 +2,14 @@
 #include "mdxhelper.h"
 #include "decoder_mdx.h"
 
-bool DecoderMDXFactory::canDecode(QIODevice *) const
+bool DecoderMDXFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    MDXHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderMDXFactory::properties() const

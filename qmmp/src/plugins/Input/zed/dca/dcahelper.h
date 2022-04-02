@@ -19,7 +19,7 @@
 #ifndef DCAHELPER_H
 #define DCAHELPER_H
 
-#include <QObject>
+#include <QFile>
 extern "C" {
 #include <libdca/dca.h>
 #include <libdca/gettimeofday.h>

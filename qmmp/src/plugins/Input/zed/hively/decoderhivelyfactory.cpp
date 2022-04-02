@@ -2,9 +2,14 @@
 #include "hivelyhelper.h"
 #include "decoder_hively.h"
 
-bool DecoderHivelyFactory::canDecode(QIODevice *) const
+bool DecoderHivelyFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    HivelyHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderHivelyFactory::properties() const

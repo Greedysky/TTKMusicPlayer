@@ -5,9 +5,15 @@
 
 #include <QFileInfo>
 
-bool DecoderXMPFactory::canDecode(QIODevice *) const
+bool DecoderXMPFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    xmp_context ctx = xmp_create_context();
+    const bool v = file ? xmp_load_module(ctx, QmmpPrintable(file->fileName())) != 0 : false;
+    if(v)
+      xmp_release_module(ctx);
+    xmp_free_context(ctx);
+    return v;
 }
 
 DecoderProperties DecoderXMPFactory::properties() const
@@ -26,6 +32,7 @@ DecoderProperties DecoderXMPFactory::properties() const
     properties.filters << "*.rtm";
     properties.filters << "*.tcb";
     properties.description = "XMP Module File";
+    properties.protocols << "file";
     properties.hasSettings = true;
     properties.noInput = true;
     return properties;

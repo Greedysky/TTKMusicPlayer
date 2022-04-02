@@ -2,9 +2,14 @@
 #include "decoder_fc14.h"
 #include "fc14helper.h"
 
-bool DecoderFC14Factory::canDecode(QIODevice *) const
+bool DecoderFC14Factory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    FC14Helper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderFC14Factory::properties() const

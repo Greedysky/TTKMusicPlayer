@@ -2,9 +2,14 @@
 #include "xsfhelper.h"
 #include "decoder_xsf.h"
 
-bool DecoderXSFFactory::canDecode(QIODevice *) const
+bool DecoderXSFFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    XSFHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderXSFFactory::properties() const

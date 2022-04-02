@@ -2,9 +2,14 @@
 #include "ayflyhelper.h"
 #include "decoder_ayfly.h"
 
-bool DecoderAyflyFactory::canDecode(QIODevice *) const
+bool DecoderAyflyFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    AyflyHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderAyflyFactory::properties() const

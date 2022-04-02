@@ -2,9 +2,14 @@
 #include "soundmonhelper.h"
 #include "decoder_soundmon.h"
 
-bool DecoderSoundMonFactory::canDecode(QIODevice *) const
+bool DecoderSoundMonFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    SoundMonHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderSoundMonFactory::properties() const

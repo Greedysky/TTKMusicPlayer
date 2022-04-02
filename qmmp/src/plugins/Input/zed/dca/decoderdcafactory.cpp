@@ -2,9 +2,14 @@
 #include "dcahelper.h"
 #include "decoder_dca.h"
 
-bool DecoderDCAFactory::canDecode(QIODevice *) const
+bool DecoderDCAFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    DCAHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderDCAFactory::properties() const

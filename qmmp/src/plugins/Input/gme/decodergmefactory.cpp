@@ -3,9 +3,14 @@
 #include "decoder_gme.h"
 #include "settingsdialog.h"
 
-bool DecoderGMEFactory::canDecode(QIODevice *) const
+bool DecoderGMEFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    GMEHelper helper;
+    return helper.load(file->fileName());
 }
 
 DecoderProperties DecoderGMEFactory::properties() const

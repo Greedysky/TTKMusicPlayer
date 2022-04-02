@@ -2,9 +2,14 @@
 #include "organyahelper.h"
 #include "decoder_organya.h"
 
-bool DecoderOrganyaFactory::canDecode(QIODevice *) const
+bool DecoderOrganyaFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    OrganyaHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderOrganyaFactory::properties() const

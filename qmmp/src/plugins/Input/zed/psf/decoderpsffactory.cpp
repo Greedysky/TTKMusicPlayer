@@ -3,9 +3,14 @@
 #include "decoder_psf.h"
 #include "psfmetadatamodel.h"
 
-bool DecoderPSFFactory::canDecode(QIODevice *) const
+bool DecoderPSFFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    PSFHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderPSFFactory::properties() const

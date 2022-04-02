@@ -2,9 +2,14 @@
 #include "v2mhelper.h"
 #include "decoder_v2m.h"
 
-bool DecoderV2MFactory::canDecode(QIODevice *) const
+bool DecoderV2MFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    V2MHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderV2MFactory::properties() const

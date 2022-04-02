@@ -2,9 +2,14 @@
 #include "decoder_stsound.h"
 #include "stsoundhelper.h"
 
-bool DecoderStSoundFactory::canDecode(QIODevice *) const
+bool DecoderStSoundFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    StSoundHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderStSoundFactory::properties() const
