@@ -50,13 +50,13 @@ Music_Emu *GMEHelper::load(const QString &path, int sample_rate)
         return nullptr;
     }
 
-    if((err = gme_load_file(m_emu, QmmpPrintable(path))))
+    if((err = gme_load_file(m_emu, QmmpPrintable(filePath))))
     {
         qWarning("GMEHelper: %s", err);
         return nullptr;
     }
 
-    QString m3u_path = path.left(path.lastIndexOf("."));
+    QString m3u_path = filePath.left(filePath.lastIndexOf("."));
     m3u_path.append(".m3u");
     gme_load_m3u(m_emu, QmmpPrintable(m3u_path));
     m_path = path;
