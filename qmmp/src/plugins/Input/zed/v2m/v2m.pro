@@ -11,13 +11,13 @@ SOURCES += decoderv2mfactory.cpp \
            decoder_v2m.cpp \
            v2mhelper.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libv2m/include
+INCLUDEPATH += $$EXTRA_PREFIX/libzed/include
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libv2m/lib -lv2m$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lv2m$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libv2m/lib -lv2m
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lv2m
 }

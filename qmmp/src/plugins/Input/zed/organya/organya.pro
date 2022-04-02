@@ -11,13 +11,13 @@ SOURCES += decoderorganyafactory.cpp \
            decoder_organya.cpp \
            organyahelper.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/liborganya/include
+INCLUDEPATH += $$EXTRA_PREFIX/libzed/include
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/liborganya/lib -lorganya$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lorganya$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/liborganya/lib -lorganya
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lorganya
 }

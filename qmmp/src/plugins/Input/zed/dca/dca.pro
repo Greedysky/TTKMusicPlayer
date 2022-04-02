@@ -12,14 +12,14 @@ SOURCES += decoderdcafactory.cpp \
            decoder_dca.cpp \
            dcahelper.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libdca/include
+INCLUDEPATH += $$EXTRA_PREFIX/libzed/include
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libdca/lib -ldca$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -ldca$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libdca/lib -ldca
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -ldca
 }
 

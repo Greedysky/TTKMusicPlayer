@@ -13,13 +13,13 @@ SOURCES += decoderpsffactory.cpp \
            psfhelper.cpp \
            psfmetadatamodel.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libpsf/include
+INCLUDEPATH += $$EXTRA_PREFIX/libzed/include
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libpsf/lib -lpsf$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lpsf$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libpsf/lib -lpsf
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lpsf
 }

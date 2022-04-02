@@ -13,13 +13,13 @@ SOURCES += decoderasapfactory.cpp \
            asaphelper.cpp \
            asapmetadatamodel.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libasap/include
+INCLUDEPATH += $$EXTRA_PREFIX/libzed/include
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libasap/lib -lasap$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lasap$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libasap/lib -lasap
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lasap
 }

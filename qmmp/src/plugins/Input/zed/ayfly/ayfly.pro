@@ -13,13 +13,13 @@ SOURCES += decoderayflyfactory.cpp \
 
 DEFINES += DISABLE_AUDIO
 
-INCLUDEPATH += $$EXTRA_PREFIX/libayfly/include
+INCLUDEPATH += $$EXTRA_PREFIX/libzed/include
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libayfly/lib -layfly$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -layfly$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libayfly/lib -layfly
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -layfly
 }

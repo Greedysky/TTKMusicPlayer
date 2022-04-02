@@ -11,13 +11,13 @@ SOURCES += decodersc68factory.cpp \
            decoder_sc68.cpp \
            sc68helper.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libsc68/include
+INCLUDEPATH += $$EXTRA_PREFIX/libzed/include
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libsc68/lib -lsc68$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lsc68$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libsc68/lib -lsc68
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lsc68
 }

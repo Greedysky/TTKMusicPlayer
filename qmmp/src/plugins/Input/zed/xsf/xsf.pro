@@ -13,14 +13,14 @@ SOURCES += decoderxsffactory.cpp \
            xsfhelper.cpp \
            xsfreader.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libxsf/include \
-               $$EXTRA_PREFIX/libxsf/include/libxsf/mgba \
+INCLUDEPATH += $$EXTRA_PREFIX/libzed/include \
+               $$EXTRA_PREFIX/libzed/include/libxsf/mgba \
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libxsf/lib -lxsf$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lxsf$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libxsf/lib -lxsf
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lxsf
 }
