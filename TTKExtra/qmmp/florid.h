@@ -23,7 +23,7 @@
 #include "qmmp.h"
 #include "visual.h"
 
-#define DISTANCE    100
+#define LABEL_RADIUS    100
 
 /*! @brief Helper class to round animation widget.
  * @author Greedysky <greedysky@163.com>
