@@ -6,6 +6,8 @@
 #include <QPainter>
 #include <qmmp/qmmp.h>
 
+#define MATRIX_SIZE     5
+
 FlowMatrix::FlowMatrix(QWidget *parent)
     : Visual(parent)
 {
@@ -47,6 +49,7 @@ void FlowMatrix::paintEvent(QPaintEvent *)
     QFont font = painter.font();
     font.setBold(true);
     font.setPixelSize(qMin(height() / 4, width() / 12));
+    painter.setPen(QColor(0x60, 0x60, 0x60));
     painter.setFont(font);
     painter.drawText(0, height() / 4, width(), height() / 4, Qt::AlignCenter, "TTK Music Player");
 
@@ -114,7 +117,7 @@ void FlowMatrix::process(float *left, float *)
         }
     }
 
-    max = (max <= 3) ? 10 : max / 5;
+    max = (max < MATRIX_SIZE) ? MATRIX_SIZE * 2 : max / MATRIX_SIZE;
     for(Matrix *matrix : qAsConst(m_matrixs))
     {
         if(matrix->isRunning())
