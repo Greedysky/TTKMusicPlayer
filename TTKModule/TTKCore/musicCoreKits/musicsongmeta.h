@@ -47,10 +47,6 @@ public:
     bool save();
 
     /*!
-     * Read music decoder name.
-     */
-    QString decoder() const;
-    /*!
      * Read music file path.
      */
     QString filePath() const;
@@ -95,6 +91,10 @@ public:
      * Get song channel.
      */
     QString channel();
+    /*!
+     * Read music decoder name.
+     */
+    QString decoder();
 
     /*!
      * Set artist name.

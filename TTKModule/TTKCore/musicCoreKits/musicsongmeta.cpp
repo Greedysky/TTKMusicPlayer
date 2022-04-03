@@ -1,7 +1,6 @@
 #include "musicsongmeta.h"
 #include "musictime.h"
 #include "musicformats.h"
-#include "musicqmmputils.h"
 #include "musicstringutils.h"
 #include "ttkversion.h"
 
@@ -66,21 +65,6 @@ bool MusicSongMeta::save()
     return saveInformation();
 }
 
-QString MusicSongMeta::decoder() const
-{
-    const QString &suffix = FILE_SUFFIX(QFileInfo(m_path));
-    const TTKStringListMap formats(MusicFormats::supportMusicMapFormats());
-    for(const QString &key : formats.keys())
-    {
-        if(formats.value(key).contains(suffix))
-        {
-            return QFileInfo(MusicUtils::QMMP::pluginPath("Input", key)).baseName();
-        }
-    }
-
-    return QString();
-}
-
 QString MusicSongMeta::filePath() const
 {
     return m_path;
@@ -140,6 +124,11 @@ QString MusicSongMeta::genre()
 QString MusicSongMeta::channel()
 {
     return songMeta()->m_metaData[TagWrapper::CHANNEL];
+}
+
+QString MusicSongMeta::decoder()
+{
+    return songMeta()->m_metaData[TagWrapper::FORMAT];
 }
 
 void MusicSongMeta::setArtist(const QString &artist)
@@ -356,6 +345,7 @@ bool MusicSongMeta::readInformation()
             meta->m_metaData[TagWrapper::SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
             meta->m_metaData[TagWrapper::BITRATE] = info->value(Qmmp::BITRATE);
             meta->m_metaData[TagWrapper::CHANNEL] = info->value(Qmmp::CHANNELS);
+            meta->m_metaData[TagWrapper::FORMAT] = info->value(Qmmp::FORMAT_NAME);
 
             meta->m_metaData[TagWrapper::TITLE] = info->value(Qmmp::TITLE);
             meta->m_metaData[TagWrapper::ARTIST] = info->value(Qmmp::ARTIST);

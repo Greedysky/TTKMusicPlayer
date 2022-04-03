@@ -223,11 +223,10 @@ void MusicFileInformationWidget::saveTag()
 
 void MusicFileInformationWidget::setFileInformation(const QString &name)
 {
-    if(name.contains(CACHE_DIR_FULL))
+    if(name.contains(CACHE_DIR_FULL)) //cache song should not allow open url
     {
         m_ui->viewButton->setEnabled(false);
     }
-    //cache song should not allow open url
 
     MusicSongMeta meta;
     const bool state = meta.read(m_path = name);
@@ -249,7 +248,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     m_ui->ChannelEdit->setText(state ? ((check = meta.channel()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->SamplingRateEdit->setText(state ? ((check = meta.sampleRate()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->TrackNumEdit->setText(state ? ((check = meta.trackNum()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->decoderLabel->setText(state ? ((check = meta.decoder()).isEmpty() ? TTK_DEFAULT_STR : check.toUpper()) : TTK_DEFAULT_STR);
+    m_ui->decoderLabel->setText(state ? ((check = meta.decoder()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
 
     QColor color;
     QString bitrate;

@@ -7,11 +7,6 @@ bool MusicFormats::songTrackValid(const QString &url)
     return Format::songTrackValid(url);
 }
 
-bool MusicFormats::songTrackTpyeContains(const QString &url)
-{
-    return Format::songTrackTpyeContains(url);
-}
-
 QStringList MusicFormats::supportMusicFormats()
 {
     return Format::supportMusicFormats();

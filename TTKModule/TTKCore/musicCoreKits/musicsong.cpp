@@ -125,7 +125,6 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
         return songs;
     }
 
-    const bool track = MusicFormats::songTrackTpyeContains(suffix);
     const int size = meta.songMetaCount();
     for(int i = 0; i < size; ++i)
     {
@@ -139,7 +138,8 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
             name = (artist.isEmpty() || title.isEmpty()) ? artist + title : artist + " - " + title;
         }
 
-        songs << MusicSong(meta.fileBasePath(), meta.lengthString(), name, track);
+        const QString &path = meta.fileBasePath();
+        songs << MusicSong(path, meta.lengthString(), name, MusicFormats::songTrackValid(path));
     }
     return songs;
 }

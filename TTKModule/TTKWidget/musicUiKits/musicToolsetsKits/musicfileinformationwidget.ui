@@ -589,7 +589,7 @@
      <x>180</x>
      <y>410</y>
      <width>54</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="text">
@@ -618,7 +618,7 @@
      <x>180</x>
      <y>445</y>
      <width>54</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="text">

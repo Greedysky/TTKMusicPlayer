@@ -32,10 +32,6 @@ public:
      * Check song track is valid or not.
      */
     static bool songTrackValid(const QString &url);
-    /*!
-     * Check song track contains type.
-     */
-    static bool songTrackTpyeContains(const QString &url);
 
 public:
     /*!
