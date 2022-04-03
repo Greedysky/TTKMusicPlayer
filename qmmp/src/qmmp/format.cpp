@@ -35,21 +35,6 @@ bool Format::songTrackValid(const QString &url)
     return false;
 }
 
-bool Format::songTrackTpyeContains(const QString &url)
-{
-    QStringList list;
-    list << MUSIC_CUE_FILE;
-    list << MUSIC_APE_FILE;
-    list << MUSIC_FFMPEG_FILE;
-    list << MUSIC_M4B_FILE;
-    list << MUSIC_FLAC_FILE;
-    list << MUSIC_GME_FILE;
-    list << MUSIC_SID_FILE;
-    list << MUSIC_WVPACK_FILE;
-    list << MUSIC_SC68_FILE;
-    return list.contains(url);
-}
-
 QStringList Format::supportMusicFormats()
 {
     QStringList formats;

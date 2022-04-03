@@ -64,7 +64,7 @@ QList<TrackInfo*> DecoderXSFFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
-        info->setValue(Qmmp::FORMAT_NAME, "XSF");
+        info->setValue(Qmmp::FORMAT_NAME, "Overload XSF");
         info->setDuration(helper.totalTime());
     }
     return QList<TrackInfo*>() << info;

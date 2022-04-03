@@ -65,12 +65,12 @@ DecoderVorbis::~DecoderVorbis()
 
 bool DecoderVorbis::initialize()
 {
-    qDebug("DecoderVorbis: initialize");
     m_inited = false;
     m_totalTime = 0;
+
     if(!input())
     {
-        qDebug("DecoderVorbis: cannot initialize.  No input");
+        qWarning("DecoderVorbis: cannot initialize.  No input");
         return false;
     }
 
@@ -81,10 +81,10 @@ bool DecoderVorbis::initialize()
         oggclose,
         oggtell
     };
+
     if(ov_open_callbacks(this, &oggfile, nullptr, 0, oggcb) < 0)
     {
         qWarning("DecoderVorbis: cannot open stream");
-
         return false;
     }
 
@@ -116,7 +116,6 @@ bool DecoderVorbis::initialize()
     qDebug("DecoderVorbis: initialize success");
     return true;
 }
-
 
 qint64 DecoderVorbis::totalTime() const
 {

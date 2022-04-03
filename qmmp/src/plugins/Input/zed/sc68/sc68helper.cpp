@@ -206,7 +206,7 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::SAMPLERATE, sampleRate());
             info->setValue(Qmmp::CHANNELS, channels());
             info->setValue(Qmmp::BITS_PER_SAMPLE, depth());
-            info->setValue(Qmmp::FORMAT_NAME, "SC68");
+            info->setValue(Qmmp::FORMAT_NAME, "SC68 Amiga");
         }
 
         info->setPath("sc68://" + cleanPath() + QString("#%1").arg(i));

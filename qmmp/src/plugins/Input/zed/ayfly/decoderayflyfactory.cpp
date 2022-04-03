@@ -66,7 +66,7 @@ QList<TrackInfo*> DecoderAyflyFactory::createPlayList(const QString &path, Track
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
-        info->setValue(Qmmp::FORMAT_NAME, "AyFly");
+        info->setValue(Qmmp::FORMAT_NAME, "AY/YM Audio");
         info->setDuration(helper.totalTime());
     }
     return QList<TrackInfo*>() << info;

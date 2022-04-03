@@ -57,13 +57,12 @@ DecoderOpus::~DecoderOpus()
 
 bool DecoderOpus::initialize()
 {
-    qDebug("DecoderOpus: initialize");
     m_chan = 0;
     m_totalTime = 0;
 
     if(!input())
     {
-        qDebug("DecoderOpus: cannot initialize.  No input");
+        qWarning("DecoderOpus: cannot initialize.  No input");
         return false;
     }
 

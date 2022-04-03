@@ -35,7 +35,7 @@ bool HivelyHelper::initialize()
     m_input = hvl_ParseTune((unsigned char *)module.constData(), size, sampleRate(), 0);
     if(!m_input)
     {
-        qDebug("HivelyHelper: hvl_LoadTune error");
+        qWarning("HivelyHelper: hvl_LoadTune error");
         return false;
     }
 

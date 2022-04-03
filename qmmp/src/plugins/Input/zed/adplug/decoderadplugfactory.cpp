@@ -72,7 +72,7 @@ QList<TrackInfo*> DecoderAdplugFactory::createPlayList(const QString &path, Trac
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
-        info->setValue(Qmmp::FORMAT_NAME, "AdPlug");
+        info->setValue(Qmmp::FORMAT_NAME, "AdLib Sound");
         info->setDuration(helper.totalTime());
     }
     return QList<TrackInfo*>() << info;

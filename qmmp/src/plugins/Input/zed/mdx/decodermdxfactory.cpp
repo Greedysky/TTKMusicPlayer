@@ -59,7 +59,7 @@ QList<TrackInfo*> DecoderMDXFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
-        info->setValue(Qmmp::FORMAT_NAME, "MDX");
+        info->setValue(Qmmp::FORMAT_NAME, "MDX Chiptunes");
         info->setDuration(helper.totalTime());
     }
     return QList<TrackInfo*>() << info;

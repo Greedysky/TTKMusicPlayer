@@ -59,7 +59,7 @@ bool DecoderMAD::initialize()
 
     if(!findHeader())
     {
-        qDebug("DecoderMAD: Can't find a valid MPEG header.");
+        qWarning("DecoderMAD: Can't find a valid MPEG header.");
         return false;
     }
 

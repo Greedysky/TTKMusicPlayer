@@ -217,6 +217,7 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
             info->setValue(Qmmp::SAMPLERATE, c->sample_rate);
             info->setValue(Qmmp::CHANNELS, c->channels);
             info->setValue(Qmmp::BITS_PER_SAMPLE, c->bits_per_raw_sample);
+            info->setValue(Qmmp::FORMAT_NAME, "FFMPEG");
 
             AVCodec *codec = avcodec_find_decoder(c->codec_id);
             if(codec)

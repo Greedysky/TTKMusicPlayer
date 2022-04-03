@@ -50,7 +50,7 @@ QList<TrackInfo*> DecoderSoundMonFactory::createPlayList(const QString &path, Tr
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
-        info->setValue(Qmmp::FORMAT_NAME, "SoundMon");
+        info->setValue(Qmmp::FORMAT_NAME, "BP SoundMon");
         info->setDuration(helper.totalTime());
     }
     return QList<TrackInfo*>() << info;
