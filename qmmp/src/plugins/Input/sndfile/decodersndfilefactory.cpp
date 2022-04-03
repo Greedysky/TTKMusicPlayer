@@ -119,9 +119,9 @@ QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, Tra
     memset(&snd_info, 0, sizeof(snd_info));
     snd_info.format = 0;
 #ifdef Q_OS_WIN
-        sndfile = sf_wchar_open(reinterpret_cast<LPCWSTR>(path.utf16()), SFM_READ, &snd_info);
+    sndfile = sf_wchar_open(reinterpret_cast<LPCWSTR>(path.utf16()), SFM_READ, &snd_info);
 #else
-        sndfile = sf_open(qPrintable(path), SFM_READ, &snd_info);
+    sndfile = sf_open(qPrintable(path), SFM_READ, &snd_info);
 #endif
     if(!sndfile)
     {
