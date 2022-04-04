@@ -45,11 +45,15 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Open Dj Radio window has clicked.
+     * Open FM Radio window has clicked.
+     */
+    void openFMRadioWindow();
+    /*!
+     * Open DJ Radio window has clicked.
      */
     void openDJRadioWindow();
     /*!
-     * Open mv Radio window has clicked.
+     * Open MV Radio window has clicked.
      */
     void openMVRadioWindow();
 

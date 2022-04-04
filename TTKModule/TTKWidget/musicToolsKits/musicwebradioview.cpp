@@ -18,6 +18,13 @@ MusicWebRadioView::MusicWebRadioView(QWidget *parent)
     bottomLayout->setSpacing(0);
     bottomLayout->setContentsMargins(5, 0, 0, 0);
 
+    QPushButton *fm = new QPushButton(this);
+    fm->setIcon(QIcon(":/tiny/btn_fm_radio"));
+    fm->setToolTip(tr("FMRadio"));
+    fm->setCursor(QCursor(Qt::PointingHandCursor));
+    fm->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01);
+    fm->setFixedWidth(40);
+
     QPushButton *dj = new QPushButton(this);
     dj->setIcon(QIcon(":/tiny/btn_dj_radio"));
     dj->setToolTip(tr("DJRadio"));
@@ -32,11 +39,13 @@ MusicWebRadioView::MusicWebRadioView(QWidget *parent)
     mv->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01);
     mv->setFixedWidth(40);
 #ifdef Q_OS_UNIX
+    fm->setFocusPolicy(Qt::NoFocus);
     dj->setFocusPolicy(Qt::NoFocus);
     mv->setFocusPolicy(Qt::NoFocus);
 #endif
 
     bottomLayout->addStretch(1);
+    bottomLayout->addWidget(fm);
     bottomLayout->addWidget(dj);
     bottomLayout->addWidget(mv);
     bottomWidget->setLayout(bottomLayout);
@@ -45,6 +54,7 @@ MusicWebRadioView::MusicWebRadioView(QWidget *parent)
     layout->addWidget(bottomWidget);
     setLayout(layout);
 
+    connect(fm, SIGNAL(clicked()), SLOT(openFMRadioWindow()));
     connect(dj, SIGNAL(clicked()), SLOT(openDJRadioWindow()));
     connect(mv, SIGNAL(clicked()), SLOT(openMVRadioWindow()));
 }
@@ -57,6 +67,11 @@ MusicWebRadioView::~MusicWebRadioView()
 void MusicWebRadioView::init(int index)
 {
     m_musicRadio->initListItems(index);
+}
+
+void MusicWebRadioView::openFMRadioWindow()
+{
+
 }
 
 void MusicWebRadioView::openDJRadioWindow()
