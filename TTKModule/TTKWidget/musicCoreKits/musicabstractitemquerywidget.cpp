@@ -60,16 +60,20 @@ void MusicAbstractItemQueryWidget::initWidget()
 
 void MusicAbstractItemQueryWidget::downLoadFinished(const QByteArray &bytes)
 {
-    if(bytes.isEmpty())
-    {
-        TTK_LOGGER_ERROR("Input byte data is empty");
-        return;
-    }
-
     if(m_iconLabel)
     {
         QPixmap pix;
-        pix.loadFromData(bytes);
+        if(bytes.isEmpty())
+        {
+            TTK_LOGGER_ERROR("Input byte data is empty");
+            pix = QPixmap(1, 1);
+            pix.fill(Qt::transparent);
+        }
+        else
+        {
+            pix.loadFromData(bytes);
+        }
+
         QPixmap cv(":/image/lb_playlist_cover");
         pix = pix.scaled(QSize(180, 180));
         MusicUtils::Image::fusionPixmap(cv, pix, QPoint(0, 0));

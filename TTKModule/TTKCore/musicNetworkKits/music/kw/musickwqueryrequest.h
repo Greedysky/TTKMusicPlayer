@@ -79,7 +79,7 @@ public Q_SLOTS:
     /*!
      * Download single data from net finished.
      */
-    void singleDownLoadFinished();
+    void downLoadSingleFinished();
 
 };
 

@@ -90,7 +90,6 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
 void MusicCloudManagerTableWidget::resizeWindow()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) + 360);
 

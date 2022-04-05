@@ -51,7 +51,7 @@ void MusicKGQueryPlaylistRequest::startToSearch(const QString &playlist)
     MusicKGInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);
-    connect(reply, SIGNAL(finished()), SLOT(queryDetailsFinished()));
+    connect(reply, SIGNAL(finished()), SLOT(downloadDetailsFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 #else
@@ -158,9 +158,9 @@ void MusicKGQueryPlaylistRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicKGQueryPlaylistRequest::queryDetailsFinished()
+void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 queryDetailsFinished").arg(className()));
+    TTK_LOGGER_INFO(QString("%1 downloadDetailsFinished").arg(className()));
 
     MusicQueryPlaylistRequest::downLoadFinished();
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());

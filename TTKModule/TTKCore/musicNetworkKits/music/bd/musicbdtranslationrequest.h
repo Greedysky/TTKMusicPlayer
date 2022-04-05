@@ -74,7 +74,7 @@ protected:
     /*!
      * Map type from enum to string.
      */
-    QString mapTypeFromEnumToString(TranslationType type);
+    QString mapTypeFromEnumToString(TranslationType type) const;
 
 };
 

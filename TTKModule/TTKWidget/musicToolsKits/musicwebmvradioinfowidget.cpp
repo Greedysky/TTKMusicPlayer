@@ -133,7 +133,7 @@ void MusicWebMVRadioInfoWidget::resizeWindow()
     if(!m_resizeWidgets.isEmpty())
     {
         int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-        width = width - WINDOW_WIDTH_MIN + 390;
+            width = width - WINDOW_WIDTH_MIN + 390;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
         data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
@@ -163,13 +163,16 @@ void MusicWebMVRadioInfoWidget::createCategoryInfoItem(const MusicResultsItem &i
             download->startToDownload(item.m_coverUrl);
         }
 
+        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+            width = width - WINDOW_WIDTH_MIN + 390;
+
         TTKResizeWidget *data = &m_resizeWidgets[0];
         data->m_label->setToolTip(item.m_name);
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 390));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[1];
         data->m_label->setToolTip(tr("Type: %1").arg(item.m_nickName));
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 390));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
     }
 }
 

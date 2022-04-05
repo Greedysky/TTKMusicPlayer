@@ -53,7 +53,7 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &category)
                       MusicUtils::Algorithm::mdII(DJ_DETAIL_DATA_URL, false).arg(category));
 
     QNetworkReply *reply = m_manager.post(request, parameter);
-    connect(reply, SIGNAL(finished()), SLOT(queryDetailsFinished()));
+    connect(reply, SIGNAL(finished()), SLOT(downloadDetailsFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 #else
@@ -139,9 +139,9 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicDJRadioProgramCategoryRequest::queryDetailsFinished()
+void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 queryDetailsFinished").arg(className()));
+    TTK_LOGGER_INFO(QString("%1 downloadDetailsFinished").arg(className()));
 
     MusicAbstractQueryRequest::downLoadFinished();
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());

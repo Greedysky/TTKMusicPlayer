@@ -43,7 +43,7 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
     MusicKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(pageDownLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadPageFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 #else
@@ -58,7 +58,7 @@ void MusicKWQueryMovieRequest::startToSingleSearch(const QString &text)
     deleteAll();
     m_queryText = text.trimmed();
 
-    QTimer::singleShot(MT_MS, this, SLOT(singleDownLoadFinished()));
+    QTimer::singleShot(MT_MS, this, SLOT(downLoadSingleFinished()));
 }
 
 void MusicKWQueryMovieRequest::downLoadFinished()
@@ -118,9 +118,9 @@ void MusicKWQueryMovieRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicKWQueryMovieRequest::pageDownLoadFinished()
+void MusicKWQueryMovieRequest::downLoadPageFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(className()));
+    TTK_LOGGER_INFO(QString("%1 downLoadPageFinished").arg(className()));
 
     MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -164,9 +164,9 @@ void MusicKWQueryMovieRequest::pageDownLoadFinished()
     deleteAll();
 }
 
-void MusicKWQueryMovieRequest::singleDownLoadFinished()
+void MusicKWQueryMovieRequest::downLoadSingleFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(className()));
+    TTK_LOGGER_INFO(QString("%1 downLoadSingleFinished").arg(className()));
 
     MusicQueryMovieRequest::downLoadFinished();
 

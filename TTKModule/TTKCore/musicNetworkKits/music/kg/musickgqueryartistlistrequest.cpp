@@ -23,12 +23,12 @@ void MusicKGQueryArtistListRequest::startToPage(int offset)
             catId = "area=1&sex=1";
         }
 
-        int mIdx = dds[1].toInt();
-        if(mIdx > -1 && mIdx < 26)
+        const int id = dds[1].toInt();
+        if(id > -1 && id < 26)
         {
-            m_rawData["initial"] = QString(TTKStatic_cast(char, mIdx + 65));
+            m_rawData["initial"] = QString(TTKStatic_cast(char, id + 65));
         }
-        else if(mIdx >= 26)
+        else if(id >= 26)
         {
             m_rawData["initial"] = "%E5%85%B6%E4%BB%96";
         }

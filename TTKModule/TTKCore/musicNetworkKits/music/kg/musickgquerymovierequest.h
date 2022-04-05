@@ -57,11 +57,11 @@ public Q_SLOTS:
     /*!
      * Download page data from net finished.
      */
-    void pageDownLoadFinished();
+    void downLoadPageFinished();
     /*!
      * Download single data from net finished.
      */
-    void singleDownLoadFinished();
+    void downLoadSingleFinished();
 
 protected:
     /*!

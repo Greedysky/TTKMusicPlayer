@@ -393,19 +393,19 @@ void MusicArtistQueryWidget::resizeWindow()
     if(!m_resizeWidgets.isEmpty())
     {
         int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-            width = width - WINDOW_WIDTH_MIN;
+            width = width - WINDOW_WIDTH_MIN + 180;
 
         TTKResizeWidget *data = &m_resizeWidgets[1];
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180 + width));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[2];
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 160 + width));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width - 20));
 
         data = &m_resizeWidgets[3];
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180 + width));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[4];
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180 + width));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
     }
 
     if(m_artistAlbums)
@@ -478,9 +478,6 @@ void MusicArtistQueryWidget::createArtistInfoItem(const MusicResultsItem &item)
 
     if(!m_resizeWidgets.isEmpty())
     {
-        TTKResizeWidget *data = &m_resizeWidgets[0];
-        data->m_label->setText(tr("<font color=#158FE1> Artist > %1 </font>").arg(item.m_name));
-
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
@@ -488,21 +485,27 @@ void MusicArtistQueryWidget::createArtistInfoItem(const MusicResultsItem &item)
             download->startToDownload(item.m_coverUrl);
         }
 
+        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+            width = width - WINDOW_WIDTH_MIN + 180;
+
+        TTKResizeWidget *data = &m_resizeWidgets[0];
+        data->m_label->setText(tr("<font color=#158FE1> Artist > %1 </font>").arg(item.m_name));
+
         data = &m_resizeWidgets[1];
         data->m_label->setToolTip(item.m_name);
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[2];
         data->m_label->setToolTip(tr("NickName: %1").arg(item.m_nickName));
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 160));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width - 20));
 
         data = &m_resizeWidgets[3];
         data->m_label->setToolTip(tr("Country: %1").arg(item.m_tags));
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[4];
         data->m_label->setToolTip(tr("Birth: %1").arg(item.m_updateTime));
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         m_infoLabel->setText(item.m_description);
     }

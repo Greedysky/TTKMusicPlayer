@@ -53,7 +53,7 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &playlist)
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(playlist));
 
     QNetworkReply *reply = m_manager.post(request, parameter);
-    connect(reply, SIGNAL(finished()), SLOT(queryDetailsFinished()));
+    connect(reply, SIGNAL(finished()), SLOT(downloadDetailsFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 #else
@@ -169,9 +169,9 @@ void MusicWYQueryPlaylistRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicWYQueryPlaylistRequest::queryDetailsFinished()
+void MusicWYQueryPlaylistRequest::downloadDetailsFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 queryDetailsFinished").arg(className()));
+    TTK_LOGGER_INFO(QString("%1 downloadDetailsFinished").arg(className()));
 
     MusicQueryPlaylistRequest::downLoadFinished();
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());

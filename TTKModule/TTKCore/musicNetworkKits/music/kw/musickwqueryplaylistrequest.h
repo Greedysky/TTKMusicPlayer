@@ -60,11 +60,11 @@ public Q_SLOTS:
     /*!
      * Download details data from net finished.
      */
-    void queryDetailsFinished();
+    void downloadDetailsFinished();
     /*!
-     * Query more playlisy details finished.
+     * Download more playlisy details finished.
      */
-    void queryMorePlaylistDetailsFinished();
+    void downloadMoreDetailsFinished();
 
 protected:
     /*!

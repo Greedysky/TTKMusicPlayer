@@ -70,7 +70,7 @@ public Q_SLOTS:
     /*!
      * Download details data from net finished.
      */
-    void queryDetailsFinished();
+    void downloadDetailsFinished();
 
 };
 

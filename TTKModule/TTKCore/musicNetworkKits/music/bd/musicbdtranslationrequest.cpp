@@ -31,7 +31,7 @@ void MusicBDTranslationRequest::startToDownload(TranslationType from, Translatio
 #endif
 }
 
-QString MusicBDTranslationRequest::mapTypeFromEnumToString(TranslationType type)
+QString MusicBDTranslationRequest::mapTypeFromEnumToString(TranslationType type) const
 {
     switch(type)
     {

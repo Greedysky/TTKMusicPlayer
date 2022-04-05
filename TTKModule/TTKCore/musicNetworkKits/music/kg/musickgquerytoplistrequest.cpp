@@ -53,7 +53,10 @@ void MusicKGQueryToplistRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("data"))
             {
-                initToplistInfoItem();
+                if(!initToplistInfoItem())
+                {
+                    return;
+                }
                 //
                 value = value["data"].toMap();
                 const QVariantList &datas = value["info"].toList();

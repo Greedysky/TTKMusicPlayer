@@ -37,7 +37,7 @@ void MusicKWQueryAlbumRequest::startToSingleSearch(const QString &artist)
     MusicKWInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);
-    connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));
+    connect(reply, SIGNAL(finished()), SLOT(downLoadSingleFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 #else
@@ -139,9 +139,9 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicKWQueryAlbumRequest::singleDownLoadFinished()
+void MusicKWQueryAlbumRequest::downLoadSingleFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(className()));
+    TTK_LOGGER_INFO(QString("%1 downLoadSingleFinished").arg(className()));
 
     MusicPageQueryRequest::downLoadFinished();
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
