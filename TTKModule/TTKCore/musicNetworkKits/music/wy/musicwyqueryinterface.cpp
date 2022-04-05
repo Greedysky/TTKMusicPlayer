@@ -16,7 +16,7 @@ void MusicWYInterface::makeRequestRawHeader(QNetworkRequest *request)
 }
 
 
-QByteArray MusicWYQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type)
+QByteArray MusicWYQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type) const
 {
     QAlgorithm::Aes aes;
     QByteArray parameter = aes.encryptCBC(type.toUtf8(), "0CoJUm6Qyw8W8jud", "0102030405060708");
@@ -29,7 +29,7 @@ QByteArray MusicWYQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, co
     return "params=" + parameter + "&encSecKey=" + WY_SECKRY_STRING.toUtf8();
 }
 
-void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, int bitrate)
+void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, int bitrate) const
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate * 1000).arg(info->m_songId));
@@ -77,7 +77,7 @@ void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
+void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const
 {
     int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
@@ -148,7 +148,7 @@ void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, int bitrate)
+void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, int bitrate) const
 {
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
@@ -194,7 +194,7 @@ void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongI
     }
 }
 
-void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
+void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const
 {
     int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();

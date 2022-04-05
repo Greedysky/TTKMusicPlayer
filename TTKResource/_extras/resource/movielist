@@ -4,14 +4,15 @@
         <tag value="类型">
             <value key="1" value="热门"/>
             <value key="5" value="儿童"/>
-            <value key="8" value="诱惑"/>
-            <value key="9" value="场景"/>
             <value key="4" value="主题"/>
-            <value key="11" value="现场"/>
             <value key="10" value="影视"/>
-            <value key="6" value="舞蹈"/>
-            <value key="2" value="歌手"/>
+            <value key="12" value="综艺"/>
+            <value key="14" value="二次元"/>
+            <value key="9" value="场景"/>
             <value key="3" value="语言"/>
+            <value key="6" value="舞蹈"/>
+            <value key="11" value="现场"/>
+            <value key="2" value="歌手"/>
         </tag>
     </KuGou>
 <TTKMusicPlayer>

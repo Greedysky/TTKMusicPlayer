@@ -77,24 +77,24 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate);
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all);
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate);
+    void readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key);
+    void readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key) const;
 
     /*!
      * Get music key.
      */
-    QString generateMusicPath(const QString &file, const QString &mid);
+    QString generateMusicPath(const QString &file, const QString &mid) const;
 
 };
 

@@ -10,7 +10,7 @@ void MusicKWInterface::makeRequestRawHeader(QNetworkRequest *request)
 }
 
 
-void MusicKWQueryInterface::readFromMusicHighProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
+void MusicKWQueryInterface::readFromMusicHighProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -52,7 +52,7 @@ void MusicKWQueryInterface::readFromMusicHighProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
+void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const
 {
     if(format.contains("MP3128") && bitrate == MB_128 && suffix == MP3_FILE_PREFIX)
     {
@@ -91,7 +91,7 @@ void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicKWQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
+void MusicKWQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const
 {
     if(format.contains("128kmp3") && bitrate == MB_128 && suffix == MP3_FILE_PREFIX)
     {
@@ -130,7 +130,7 @@ void MusicKWQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongI
     }
 }
 
-void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &format, const QString &quality, bool all)
+void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &format, const QString &quality, bool all) const
 {
     if(all)
     {
@@ -162,7 +162,7 @@ void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantList &format, const QString &quality, bool all)
+void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantList &format, const QString &quality, bool all) const
 {
     for(const QVariant &var : qAsConst(format))
     {
@@ -198,7 +198,7 @@ void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicKWQueryInterface::readFromMusicSongPicture(MusicObject::MusicSongInformation *info)
+void MusicKWQueryInterface::readFromMusicSongPicture(MusicObject::MusicSongInformation *info) const
 {
     if(info->m_songId.isEmpty())
     {

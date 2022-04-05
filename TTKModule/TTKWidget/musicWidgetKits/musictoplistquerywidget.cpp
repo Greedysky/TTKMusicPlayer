@@ -207,7 +207,7 @@ void MusicToplistQueryWidget::createToplistInfoItem(const MusicResultsItem &item
 
         data = &m_resizeWidgets[3];
         data->m_label->setToolTip(tr("Description: %1").arg(item.m_description));
-        data->m_label->setText(data->m_label->toolTip());
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 410));
     }
 
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);

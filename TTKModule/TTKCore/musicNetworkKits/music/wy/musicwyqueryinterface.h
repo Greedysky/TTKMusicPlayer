@@ -100,24 +100,24 @@ public:
     /*!
      * Make token query url string.
      */
-    QByteArray makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type);
+    QByteArray makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type) const;
 
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, int bitrate);
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all);
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, int bitrate);
+    void readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all);
+    void readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const;
 
 };
 

@@ -199,7 +199,7 @@ protected:
     /*!
      * Check background draw enable.
      */
-    bool isEnableBackground();
+    bool isEnableBackground() const;
     /*!
      * Create remote widget.
      */

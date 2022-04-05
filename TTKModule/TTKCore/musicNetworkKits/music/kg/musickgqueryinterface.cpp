@@ -8,7 +8,7 @@ void MusicKGInterface::makeRequestRawHeader(QNetworkRequest *request)
 }
 
 
-void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &hash)
+void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &hash) const
 {
     if(hash.isEmpty())
     {
@@ -51,7 +51,7 @@ void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
+void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const
 {
     if(all)
     {
@@ -78,7 +78,7 @@ void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicKGQueryInterface::readFromMusicSongLrcAndPicture(MusicObject::MusicSongInformation *info)
+void MusicKGQueryInterface::readFromMusicSongLrcAndPicture(MusicObject::MusicSongInformation *info) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -112,7 +112,7 @@ void MusicKGQueryInterface::readFromMusicSongLrcAndPicture(MusicObject::MusicSon
     }
 }
 
-void MusicKGQueryInterface::readFromMusicSongAlbumInfo(MusicResultsItem *info, const QString &album)
+void MusicKGQueryInterface::readFromMusicSongAlbumInfo(MusicResultsItem *info, const QString &album) const
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KG_ALBUM_INFO_URL, false).arg(album));

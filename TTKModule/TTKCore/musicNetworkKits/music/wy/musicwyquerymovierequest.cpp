@@ -330,7 +330,7 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
     }
 }
 
-void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id, int bitrate)
+void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id, int bitrate) const
 {
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,

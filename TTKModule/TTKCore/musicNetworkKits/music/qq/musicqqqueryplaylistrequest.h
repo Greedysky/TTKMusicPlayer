@@ -66,7 +66,7 @@ protected:
     /*!
      * Get more download details data.
      */
-    void moreDetails(MusicResultsItem *item);
+    void moreDetails(MusicResultsItem *item) const;
 
 };
 

@@ -96,26 +96,4 @@
             <value key="10" value="其他"/>
         </tag>
     </KuWo>
-    <XiaMi>
-        <tag value="华语">
-            <value key="class=1ntype=1" value="华语男歌手"/>
-            <value key="class=2ntype=1" value="华语女歌手"/>
-            <value key="class=3ntype=1" value="华语组合歌手"/>
-        </tag>
-        <tag value="欧美">
-            <value key="class=1ntype=2" value="欧美男歌手"/>
-            <value key="class=2ntype=2" value="欧美女歌手"/>
-            <value key="class=3ntype=2" value="欧美组合"/>
-        </tag>
-        <tag value="日本">
-            <value key="class=1ntype=3" value="日本男歌手"/>
-            <value key="class=2ntype=3" value="日本女歌手"/>
-            <value key="class=3ntype=3" value="日本组合"/>
-        </tag>
-        <tag value="韩国">
-            <value key="class=1ntype=4" value="韩国男歌手"/>
-            <value key="class=2ntype=4" value="韩国女歌手"/>
-            <value key="class=3ntype=4" value="韩国组合"/>
-        </tag>
-    </XiaMi>
 <TTKMusicPlayer>

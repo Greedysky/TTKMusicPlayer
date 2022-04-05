@@ -199,7 +199,7 @@ void MusicQQQueryMovieRequest::singleDownLoadFinished()
     deleteAll();
 }
 
-void MusicQQQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, bool more)
+void MusicQQQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, bool more) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -289,7 +289,7 @@ void MusicQQQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInf
     }
 }
 
-QString MusicQQQueryMovieRequest::generateMovieKey(int id, const QString &videoId)
+QString MusicQQQueryMovieRequest::generateMovieKey(int id, const QString &videoId) const
 {
     if(videoId.isEmpty())
     {

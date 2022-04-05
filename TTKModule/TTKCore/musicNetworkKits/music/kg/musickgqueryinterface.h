@@ -42,7 +42,8 @@ const QString KG_ALBUM_INFO_URL         = "ajBGaXREQ3Y1S3pwZGkxd1pJUEREbUNxL3d0S
 const QString KG_MOVIE_URL              = "TDRVU3d2Z0ozOXBMYzlhQlo4MkJObDBGOE9DVG9jRGRpT21XVHp3S0svZ1NzaFFrb3k1NFlmTU9raVU3eTV1ZQ==";
 const QString KG_MOVIE_INFO_URL         = "ajJaR0tsRUUzcUE0ZnZGYmhhR205TkwvUGFMcSt3RU5RaGhqQVFEelRjemRVR3RKNjBEVXJzaWFCU2NFNExoaTFFcDI5bkpMQlRnZlRmWHcvQS9DNzVNNGw4ek1pM2NoTjN4QVBYME4zWkxBME94Mg==";
 ///toplist url
-const QString KG_TOPLIST_URL            = "MlJFQW9HR2FuQUFtalo0d1ZhT21JMTFxdGg1YlNPSEpUSXFtV2ZOdXBWUVd3RFUwRWR3VXV4Qk10K1ZmeUdGSWVKTEtxZXBCQm5Qcm9xSGo=";
+const QString KG_TOPLIST_URL            = "bE9wdGo1ZVdxQkR6TnJaSDhxdzlNbDRFMDJLQm9reGVQNkxkOVFIdG90OGFPZzhzWlVPbnlqZlZhZzU2akF6VlFBNUFCRnJNTEtja1lZbjZUaFRNdFNuZVNWdUt3TjJBNGluWUovYlhVNms9";
+const QString KG_TOPLIST_INFO_URL       = "b1QrYWx1TlJMWm00UHRMSUF3Ymcram5IWVRML1lXazdIR2I2RXVmZ0VzTUV3MjNEZG1nS003T2ZJV0c2Njl0NA==";
 ///comment url
 const QString KG_COMMENT_SONG_URL       = "bEoxaXdMVjlvczg1T2VCZEtCOENUQkFPNXlzZ3BsS3FVVUc3M0ZibnM2Q0VvbURVTHV1NmFHdmR2VnpBRFhXVnl0OVFBZys2MmErVitzZ3VpT2ZjZTUydHpMN3ExQ0tUVnFmRXNiR0lER2tkZmVTUWVuL2tpODBKRS9SWk9kNnNlbitTYzdIV2EwZUtHOFhn";
 const QString KG_COMMENT_PLAYLIST_URL   = "TEZ4NXdPYnM4MkNJSTZMNUVjU2h5cGFvY0FzWmI2Lzc1RGM5UUJTRTdVcVZEQndyMGRQZ0x0cXJlb1E0dXVqRUZSWXRoSUR4V1lRUVRLQjVuNkdyUDdFZ2x1ZitLZml2eThxU2R2TEJHYUM5a1hDak5GSS9weStvb2JYRXhKL3hkMGVMdmVVbm5DOFEwL3BTMjd6N1VvY1pXYzRlcWdpNFJKVmZqa1hEOTRWUitrVEE3UTBWcEMwMllsMXJZSjV4S1FQSE9wWTlsdmtXQ1pYaA==";
@@ -77,20 +78,20 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &hash);
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &hash) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all);
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const;
 
     /*!
      * Read tags(lrc\smallpic) from query results.
      */
-    void readFromMusicSongLrcAndPicture(MusicObject::MusicSongInformation *info);
+    void readFromMusicSongLrcAndPicture(MusicObject::MusicSongInformation *info) const;
     /*!
      * Read tags(album info) from query results.
      */
-    void readFromMusicSongAlbumInfo(MusicResultsItem *info, const QString &album);
+    void readFromMusicSongAlbumInfo(MusicResultsItem *info, const QString &album) const;
 
 };
 

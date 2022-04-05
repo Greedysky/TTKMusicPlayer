@@ -50,6 +50,12 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override final;
 
+private:
+    /*!
+     * Init toplist info item.
+     */
+    bool initToplistInfoItem();
+
 };
 
 #endif // MUSICKGQUERYTOPLISTREQUEST_H

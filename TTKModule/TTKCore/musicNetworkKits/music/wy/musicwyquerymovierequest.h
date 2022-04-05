@@ -75,7 +75,7 @@ protected:
     /*!
      * Start to get video url path.
      */
-    void queryVideoUrlPath(QString &url, const QString &id, int bitrate);
+    void queryVideoUrlPath(QString &url, const QString &id, int bitrate) const;
     /*!
      * Get artist mv count.
      */

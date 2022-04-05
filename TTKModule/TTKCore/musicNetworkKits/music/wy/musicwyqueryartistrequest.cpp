@@ -128,7 +128,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicWYQueryArtistRequest::downLoadIntro(MusicResultsItem *item)
+void MusicWYQueryArtistRequest::downLoadIntro(MusicResultsItem *item) const
 {
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,

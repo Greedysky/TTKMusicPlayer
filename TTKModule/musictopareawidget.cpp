@@ -415,7 +415,7 @@ void MusicTopAreaWidget::backgroundTransparentChanged(int value)
     m_ui->centerLeftWidget->backgroundTransparent(value);
 }
 
-bool MusicTopAreaWidget::isEnableBackground()
+bool MusicTopAreaWidget::isEnableBackground() const
 {
     return m_ui->functionsContainer->currentIndex() != APP_WINDOW_INDEX_1;
 }

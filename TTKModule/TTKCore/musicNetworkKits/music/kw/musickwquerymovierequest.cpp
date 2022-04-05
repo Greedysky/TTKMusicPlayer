@@ -193,7 +193,7 @@ void MusicKWQueryMovieRequest::singleDownLoadFinished()
     deleteAll();
 }
 
-void MusicKWQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QString &format)
+void MusicKWQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QString &format) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -221,7 +221,7 @@ void MusicKWQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInf
     }
 }
 
-void MusicKWQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QString &format, int bitrate)
+void MusicKWQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QString &format, int bitrate) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -265,7 +265,7 @@ void MusicKWQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInf
     }
 }
 
-void MusicKWQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInformation *info)
+void MusicKWQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInformation *info) const
 {
     if(info->m_songId.isEmpty())
     {

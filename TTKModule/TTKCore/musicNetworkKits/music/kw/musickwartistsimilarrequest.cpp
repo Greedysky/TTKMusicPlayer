@@ -61,7 +61,7 @@ void MusicKWArtistSimilarRequest::downLoadFinished()
     deleteAll();
 }
 
-QString MusicKWArtistSimilarRequest::artistNameById(const QString &id)
+QString MusicKWArtistSimilarRequest::artistNameById(const QString &id) const
 {
     QString name;
     if(id.isEmpty())
@@ -91,7 +91,7 @@ QString MusicKWArtistSimilarRequest::artistNameById(const QString &id)
     return name;
 }
 
-QString MusicKWArtistSimilarRequest::artistIdName(const QString &name)
+QString MusicKWArtistSimilarRequest::artistIdName(const QString &name) const
 {
     if(name.isEmpty())
     {

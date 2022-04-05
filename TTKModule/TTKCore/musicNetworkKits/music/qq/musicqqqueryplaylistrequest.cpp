@@ -267,7 +267,7 @@ void MusicQQQueryPlaylistRequest::queryDetailsFinished()
     Q_EMIT downLoadDataChanged(QString());
 }
 
-void MusicQQQueryPlaylistRequest::moreDetails(MusicResultsItem *item)
+void MusicQQQueryPlaylistRequest::moreDetails(MusicResultsItem *item) const
 {
     TTK_LOGGER_INFO(QString("%1 moreDetails %2").arg(className(), item->m_id));
 

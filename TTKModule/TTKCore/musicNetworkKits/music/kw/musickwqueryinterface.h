@@ -81,28 +81,27 @@ public:
     /*!
      * Read high info property from query results.
      */
-    void readFromMusicHighProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate);
+    void readFromMusicHighProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate);
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate);
+    void readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &format, const QString &quality, bool all);
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &format, const QString &quality, bool all) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantList &format, const QString &quality, bool all);
-
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantList &format, const QString &quality, bool all) const;
     /*!
      * Read tags(lrc\smallpic) from query results.
      */
-    void readFromMusicSongPicture(MusicObject::MusicSongInformation *info);
+    void readFromMusicSongPicture(MusicObject::MusicSongInformation *info) const;
 
 };
 

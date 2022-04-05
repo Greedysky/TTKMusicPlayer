@@ -23,6 +23,7 @@ void MusicKGQueryToplistRequest::startToSearch(const QString &toplist)
     TTK_LOGGER_INFO(QString("%1 startToSearch").arg(className()));
 
     deleteAll();
+    m_queryText = toplist;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KG_TOPLIST_URL, false).arg(toplist));
@@ -50,20 +51,12 @@ void MusicKGQueryToplistRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("songs"))
+            if(value.contains("data"))
             {
-                MusicResultsItem info;
-                QVariantMap topInfo = value["info"].toMap();
-                info.m_name = topInfo["rankname"].toString();
-                info.m_coverUrl = topInfo["imgurl"].toString().replace("{size}", "400");
-                info.m_playCount = TTK_DEFAULT_STR;
-                info.m_description = topInfo["intro"].toString();
-
-                value = value["songs"].toMap();
-                info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["timestamp"].toLongLong() * 1000).toString(MUSIC_YEAR_FORMAT);
-                Q_EMIT createToplistInfoItem(info);
+                initToplistInfoItem();
                 //
-                const QVariantList &datas = value["list"].toList();
+                value = value["data"].toMap();
+                const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
@@ -122,4 +115,55 @@ void MusicKGQueryToplistRequest::downLoadFinished()
 
     Q_EMIT downLoadDataChanged(QString());
     deleteAll();
+}
+
+bool MusicKGQueryToplistRequest::initToplistInfoItem()
+{
+    QNetworkRequest request;
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_TOPLIST_INFO_URL, false));
+    MusicKGInterface::makeRequestRawHeader(&request);
+
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
+    {
+        return false;
+    }
+
+    QJson::Parser json;
+    bool ok;
+    const QVariant &data = json.parse(bytes, &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value.contains("data"))
+        {
+            value = value["data"].toMap();
+            MusicResultsItem info;
+            info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["timestamp"].toLongLong() * 1000).toString(MUSIC_YEAR_FORMAT);
+
+            const QVariantList &datas = value["info"].toList();
+            for(const QVariant &var : qAsConst(datas))
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                value = var.toMap();
+
+                if(m_queryText != value["rankid"])
+                {
+                    continue;
+                }
+
+                info.m_name = value["rankname"].toString();
+                info.m_coverUrl = value["banner7url"].toString().replace("{size}", "400");
+                info.m_playCount = value["play_times"].toString();;
+                info.m_description = value["intro"].toString();
+                Q_EMIT createToplistInfoItem(info);
+                return true;
+            }
+        }
+    }
+    return true;
 }

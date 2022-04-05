@@ -11,7 +11,7 @@ void MusicQQInterface::makeRequestRawHeader(QNetworkRequest *request)
 }
 
 
-void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
+void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate) const
 {
     const QString &mid = key["songmid"].toString();
     if(key["size128"].toULongLong() != 0 && bitrate == MB_128)
@@ -76,7 +76,7 @@ void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
+void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const
 {
     if(all)
     {
@@ -108,7 +108,7 @@ void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicQQQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
+void MusicQQQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate) const
 {
     const QString &mid = key["media_mid"].toString();
     if(key["size_128mp3"].toULongLong() != 0 && bitrate == MB_128)
@@ -173,7 +173,7 @@ void MusicQQQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongI
     }
 }
 
-void MusicQQQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key)
+void MusicQQQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key) const
 {
     readFromMusicSongPropertyNew(info, key, MB_128);
     readFromMusicSongPropertyNew(info, key, MB_192);
@@ -182,7 +182,7 @@ void MusicQQQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongI
     readFromMusicSongPropertyNew(info, key, MB_1000);
 }
 
-QString MusicQQQueryInterface::generateMusicPath(const QString &file, const QString &mid)
+QString MusicQQQueryInterface::generateMusicPath(const QString &file, const QString &mid) const
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_SONG_KEY_URL, false).arg(file, mid));

@@ -67,15 +67,15 @@ protected:
     /*!
      * Read mv infos from query results.
      */
-    void readFromMusicMVInfo(MusicObject::MusicSongInformation *info);
+    void readFromMusicMVInfo(MusicObject::MusicSongInformation *info) const;
     /*!
      * Read mv tags(size\bitrate\url) from query results.
      */
-    void readFromMusicMVProperty(MusicObject::MusicSongInformation *info, bool more);
+    void readFromMusicMVProperty(MusicObject::MusicSongInformation *info, bool more) const;
     /*!
      * Read mv info property from query results.
      */
-    void readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key);
+    void readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key) const;
 
 };
 

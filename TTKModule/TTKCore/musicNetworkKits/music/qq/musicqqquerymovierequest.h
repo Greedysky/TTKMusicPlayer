@@ -67,11 +67,11 @@ protected:
     /*!
      * Read mv tags(size\bitrate\url) from query results.
      */
-    void readFromMusicMVProperty(MusicObject::MusicSongInformation *info, bool more);
+    void readFromMusicMVProperty(MusicObject::MusicSongInformation *info, bool more) const;
     /*!
      * Get movie key.
      */
-    QString generateMovieKey(int id, const QString &videoId);
+    QString generateMovieKey(int id, const QString &videoId) const;
 
 };
 

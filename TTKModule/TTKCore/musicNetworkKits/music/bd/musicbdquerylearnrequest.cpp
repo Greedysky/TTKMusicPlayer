@@ -94,7 +94,7 @@ void MusicBDQueryLearnRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicBDQueryLearnRequest::readFromMusicSongProperty(MusicObject::MusicSongInformation *info)
+void MusicBDQueryLearnRequest::readFromMusicSongProperty(MusicObject::MusicSongInformation *info) const
 {
     const QString &key = MusicUtils::Algorithm::mdII(BD_LEARN_DATA_URL, false).arg(info->m_songId).arg(MusicTime::timestamp());
     QString eKey = QString(QAlgorithm::Aes().encryptCBC(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
@@ -132,7 +132,7 @@ void MusicBDQueryLearnRequest::readFromMusicSongProperty(MusicObject::MusicSongI
     }
 }
 
-void MusicBDQueryLearnRequest::readFromMusicLrcProperty(MusicObject::MusicSongInformation *info)
+void MusicBDQueryLearnRequest::readFromMusicLrcProperty(MusicObject::MusicSongInformation *info) const
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(BD_SONG_PATH_URL, false).arg(info->m_songId));

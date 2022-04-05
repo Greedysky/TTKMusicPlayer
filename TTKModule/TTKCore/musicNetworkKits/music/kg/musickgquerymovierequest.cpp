@@ -190,7 +190,7 @@ void MusicKGQueryMovieRequest::singleDownLoadFinished()
     deleteAll();
 }
 
-void MusicKGQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInformation *info)
+void MusicKGQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInformation *info) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -216,7 +216,7 @@ void MusicKGQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInforma
     }
 }
 
-void MusicKGQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, bool more)
+void MusicKGQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, bool more) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -274,7 +274,7 @@ void MusicKGQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInf
     }
 }
 
-void MusicKGQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key)
+void MusicKGQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key) const
 {
     MusicObject::MusicSongProperty prop;
     prop.m_url = key["downurl"].toString();

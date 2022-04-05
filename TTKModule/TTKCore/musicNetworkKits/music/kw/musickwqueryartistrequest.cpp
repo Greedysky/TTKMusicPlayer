@@ -112,7 +112,7 @@ void MusicKWQueryArtistRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicKWQueryArtistRequest::downLoadIntro(MusicResultsItem *item)
+void MusicKWQueryArtistRequest::downLoadIntro(MusicResultsItem *item) const
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(m_queryText));

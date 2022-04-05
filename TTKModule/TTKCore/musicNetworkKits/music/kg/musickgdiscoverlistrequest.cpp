@@ -40,10 +40,10 @@ void MusicKGDiscoverListRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("songs"))
+            if(value.contains("data"))
             {
-                value = value["songs"].toMap();
-                const QVariantList &datas = value["list"].toList();
+                value = value["data"].toMap();
+                const QVariantList &datas = value["info"].toList();
                 int where = datas.count();
                 where = (where > 0) ? MusicTime::random(where) : 0;
 

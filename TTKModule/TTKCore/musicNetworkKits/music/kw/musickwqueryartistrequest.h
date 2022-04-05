@@ -50,7 +50,7 @@ protected:
     /*!
      * Get Download introduction data from net.
      */
-    void downLoadIntro(MusicResultsItem *item);
+    void downLoadIntro(MusicResultsItem *item) const;
 
 };
 
