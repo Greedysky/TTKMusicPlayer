@@ -40,10 +40,6 @@ public:
      */
     static QStringList supportMusicFormats();
     /*!
-     * Get player supported map formats.
-     */
-    static QMap<QString, QStringList> supportMusicMapFormats();
-    /*!
      * Get player supported input filter formats.
      */
     static QStringList supportMusicInputFilterFormats();

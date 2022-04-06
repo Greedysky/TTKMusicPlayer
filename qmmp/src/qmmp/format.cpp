@@ -49,26 +49,6 @@ QStringList Format::supportMusicFormats()
     return formats;
 }
 
-QMap<QString, QStringList> Format::supportMusicMapFormats()
-{
-    QMap<QString, QStringList> formats;
-    const QList<DecoderFactory *> factorys(Decoder::enabledFactories());
-    for(DecoderFactory *factory : qAsConst(factorys))
-    {
-        QStringList filters;
-        for(QString filter : factory->properties().filters)
-        {
-            filters << filter.remove(0, 2); // remove *.
-        }
-
-        if(!filters.isEmpty())
-        {
-            formats.insert(factory->properties().shortName, filters);
-        }
-    }
-    return formats;
-}
-
 QStringList Format::supportMusicInputFilterFormats()
 {
     QStringList formats;
