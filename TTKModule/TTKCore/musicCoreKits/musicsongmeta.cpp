@@ -216,7 +216,7 @@ QString MusicSongMeta::bitrate()
     return bitrate.isEmpty() ? TTK_DEFAULT_STR : bitrate + " kbps";
 }
 
-QString MusicSongMeta::lengthString()
+QString MusicSongMeta::duration()
 {
     return songMeta()->m_metaData[TagWrapper::LENGTH];
 }

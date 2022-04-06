@@ -141,7 +141,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
 
     if(state)
     {
-        time = meta.lengthString();
+        time = meta.duration();
     }
     else
     {

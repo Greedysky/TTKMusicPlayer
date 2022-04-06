@@ -139,9 +139,30 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
         }
 
         const QString &path = meta.fileBasePath();
-        songs << MusicSong(path, meta.lengthString(), name, MusicFormats::songTrackValid(path));
+        songs << MusicSong(path, meta.duration(), name, MusicFormats::songTrackValid(path));
     }
     return songs;
+}
+
+QString MusicObject::generateMusicPlayTime(const QString &path)
+{
+    QString v = path;
+    if(path.startsWith(HTTP_PREFIX) || path.startsWith(HTTPS_PREFIX))
+    {
+        /*Replace network url path to local path*/
+        const QString &id = path.section("#", -1);
+        if(id != path)
+        {
+            const QString &cachePath = CACHE_DIR_FULL + id;
+            if(QFile::exists(cachePath))
+            {
+                v = cachePath;
+            }
+        }
+    }
+
+    MusicSongMeta meta;
+    return meta.read(v) ? meta.duration() : TTK_DEFAULT_STR;
 }
 
 bool MusicObject::playlistRowValid(int index)

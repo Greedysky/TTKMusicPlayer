@@ -147,9 +147,9 @@ public:
      */
     QString bitrate();
     /*!
-     * Get song time length.
+     * Get song time duration.
      */
-    QString lengthString();
+    QString duration();
 
 public:
     MusicSongMeta(const MusicSongMeta &other);

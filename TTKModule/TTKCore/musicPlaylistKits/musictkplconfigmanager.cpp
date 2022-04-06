@@ -48,10 +48,16 @@ bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItemList &items, c
                                                    << MusicXmlAttribute("sortType", item.m_sort.m_order));
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
+            QString playTime = song.musicPlayTime();
+            if(item.m_itemIndex == MUSIC_NETWORK_LIST && playTime == TTK_DEFAULT_STR)
+            {
+                playTime = MusicObject::generateMusicPlayTime(song.musicPath());
+            }
+
             writeDomElementMutilText(pathDom, "value", MusicXmlAttributeList()
                                      << MusicXmlAttribute("name", song.musicName())
                                      << MusicXmlAttribute("playCount", song.musicPlayCount())
-                                     << MusicXmlAttribute("time", song.musicPlayTime()), song.musicPath());
+                                     << MusicXmlAttribute("time", playTime), song.musicPath());
         }
     }
 

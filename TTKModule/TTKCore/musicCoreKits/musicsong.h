@@ -201,11 +201,15 @@ namespace MusicObject
      */
     TTK_MODULE_EXPORT QString trackRelatedPath(const QString &path);
     /*!
-     * Generate music song plyalist.
+     * Generate music song playlist.
      */
     TTK_MODULE_EXPORT MusicSongList generateMusicSongList(const QString &path);
     /*!
-     * Check current song plyalist row is valid or not.
+     * Generate music song play time.
+    */
+    TTK_MODULE_EXPORT QString generateMusicPlayTime(const QString &path);
+    /*!
+     * Check current song playlist row is valid or not.
      */
     TTK_MODULE_EXPORT bool playlistRowValid(int index);
 

@@ -242,7 +242,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     m_ui->fileGenreEdit->setText(state ? ((check = meta.genre()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->fileTitleEdit->setText(state ? ((check = meta.title()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->fileYearEdit->setText(state ? ((check = meta.year()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->fileTimeEdit->setText(state ? ((check = meta.lengthString()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->fileTimeEdit->setText(state ? ((check = meta.duration()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
 
     m_ui->BitrateEdit->setText(state ? ((check = (meta.bitrate())).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->ChannelEdit->setText(state ? ((check = meta.channel()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
