@@ -489,7 +489,7 @@ void MusicSongsSummariziedWidget::swapDragItemIndex(int before, int after)
     }
 
     swapItem(before, after);
-    MusicSongItem item = m_songItems.takeAt(before);
+    const MusicSongItem &item = m_songItems.takeAt(before);
     m_songItems.insert(after, item);
 
     resetToolIndex();

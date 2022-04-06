@@ -39,10 +39,6 @@ public:
      */
     static QStringList supportMusicFormats();
     /*!
-     * Get player supported map formats.
-     */
-    static TTKStringListMap supportMusicMapFormats();
-    /*!
      * Get player supported input filter formats.
      */
     static QStringList supportMusicInputFilterFormats();
@@ -52,9 +48,14 @@ public:
     static QString supportMusicInputFormats();
 
     /*!
+     * Get spek supported input filter formats.
+     */
+    static QStringList supportSpekInputFilterFormats();
+    /*!
      * Get spek supported input formats.
      */
     static QString supportSpekInputFormats();
+
     /*!
      * Get playlist supported input formats.
      */

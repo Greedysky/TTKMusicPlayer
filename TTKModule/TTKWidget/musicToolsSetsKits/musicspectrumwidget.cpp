@@ -239,7 +239,7 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::SpectrumType spect
         const int index = findSpectrumWidget(name);
         if(index != -1)
         {
-            MusicSpectrum type = m_types.takeAt(index);
+            const MusicSpectrum &type = m_types.takeAt(index);
             layout->removeWidget(type.m_object);
             MusicUtils::QMMP::enabledVisualPlugin(name, false);
         }
@@ -262,7 +262,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::SpectrumType spectru
     const int index = findSpectrumWidget(*module);
     if(index != -1)
     {
-        MusicSpectrum type = m_types.takeAt(index);
+        const MusicSpectrum &type = m_types.takeAt(index);
         layout->removeWidget(type.m_object);
         MusicUtils::QMMP::enabledVisualPlugin(*module, false);
     }
@@ -332,16 +332,30 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::SpectrumType spectrum
 
         const int index = findSpectrumWidget(name);
         Light *light = TTKStatic_cast(Light*, m_types[index].m_object);
-        light->open(url.isEmpty() ? SoundCore::instance()->path() : url);
+        if(light)
+        {
+            const QString &path = url.isEmpty() ? SoundCore::instance()->path() : url;
+            const QString &suffix = FILE_SUFFIX(QFileInfo(path));
+            for(QString &filter : MusicFormats::supportSpekInputFilterFormats())
+            {
+                if(filter.remove(0, 2) == suffix)   // remove *.
+                {
+                    light->open(path);
+                    return;
+                }
+            }
+
+            MusicToastLabel::popup(tr("Unsupported file format"));
+        }
     }
     else
     {
         const int index = findSpectrumWidget(name);
         if(index != -1)
         {
-            MusicSpectrum t = m_types.takeAt(index);
-            layout->removeWidget(t.m_object);
-            delete t.m_object;
+            const MusicSpectrum &type = m_types.takeAt(index);
+            layout->removeWidget(type.m_object);
+            delete type.m_object;
         }
     }
 }

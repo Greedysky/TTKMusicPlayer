@@ -260,6 +260,7 @@ void MusicWebMVRadioInfoWidget::createLabels()
 #endif
 
 #ifdef Q_OS_UNIX
+    backButton->setFocusPolicy(Qt::NoFocus);
     m_songButton->setFocusPolicy(Qt::NoFocus);
 #endif
     grid->addWidget(functionWidget);

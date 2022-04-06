@@ -12,11 +12,6 @@ QStringList MusicFormats::supportMusicFormats()
     return Format::supportMusicFormats();
 }
 
-TTKStringListMap MusicFormats::supportMusicMapFormats()
-{
-    return Format::supportMusicMapFormats();
-}
-
 QStringList MusicFormats::supportMusicInputFilterFormats()
 {
     return Format::supportMusicInputFilterFormats();
@@ -28,11 +23,20 @@ QString MusicFormats::supportMusicInputFormats()
     return formats.join(";;");
 }
 
+QStringList MusicFormats::supportSpekInputFilterFormats()
+{
+    QStringList formats;
+    formats << "*.3gp" << "*.aac" << "*.aif" << "*.aifc" << "*.aiff" << "*.amr";
+    formats << "*.awb" << "*.ape" << "*.au" << "*.dts" << "*.flac" << "*.flv";
+    formats << "*.gsm" << "*.m4a" << "*.m4p" << "*.mp3" << "*.mp4" << "*.mp+";
+    formats << "*.mpc" << "*.mpp" << "*.oga" << "*.ogg" << "*.opus" << "*.ra";
+    formats << "*.ram" << "*.snd" << "*.wav" << "*.wma" << "*.wv";
+    return formats;
+}
+
 QString MusicFormats::supportSpekInputFormats()
 {
-    return QString("Audio File(*.3gp *.aac *.aif *.aifc *.aiff *.amr *.awb *.ape *.au *.dts *.flac \
-                    *.flv *.gsm *.m4a *.m4p *.mp3 *.mp4 *.mp+ *.mpc *.mpp *.oga *.ogg *.opus *.ra \
-                    *.ram *.snd *.wav *.wma *.wv)");
+    return QString("Audio File(%1)").arg(supportSpekInputFilterFormats().join(" "));
 }
 
 QString MusicFormats::supportPlaylistInputFormats()
