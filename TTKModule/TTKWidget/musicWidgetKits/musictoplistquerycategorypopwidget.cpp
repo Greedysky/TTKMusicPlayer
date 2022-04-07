@@ -57,7 +57,7 @@ void MusicToplistQueryCategoryItem::buttonClicked(int index)
 MusicToplistQueryCategoryPopWidget::MusicToplistQueryCategoryPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-    initWidget();
+    initialize();
 }
 
 void MusicToplistQueryCategoryPopWidget::setCategory(const QString &server, QObject *obj)
@@ -97,7 +97,7 @@ void MusicToplistQueryCategoryPopWidget::popupMenu()
     m_menu->exec(mapToGlobal(QPoint(0, 0)));
 }
 
-void MusicToplistQueryCategoryPopWidget::initWidget()
+void MusicToplistQueryCategoryPopWidget::initialize()
 {
     setFixedSize(200, 30);
     setTranslucentBackground();

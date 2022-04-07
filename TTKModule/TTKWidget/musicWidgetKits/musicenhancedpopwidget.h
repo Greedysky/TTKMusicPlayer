@@ -115,7 +115,7 @@ protected:
     /*!
      * Create all widget in layout.
      */
-    void initWidget();
+    void initialize();
 
     int m_lastSelectedIndex;
     QToolButton *m_caseButton;

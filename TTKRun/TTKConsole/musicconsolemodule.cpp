@@ -73,7 +73,7 @@ MusicConsoleModule::~MusicConsoleModule()
     delete m_musicPlaylist;
 }
 
-bool MusicConsoleModule::init(const QCoreApplication &app)
+bool MusicConsoleModule::initialize(const QCoreApplication &app)
 {
 #if TTK_QT_VERSION_CHECK(5,2,0)
     QCommandLineOption op1("u", "", TTK_DOT);

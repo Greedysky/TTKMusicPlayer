@@ -6,7 +6,7 @@
 MusicVideoQualityPopWidget::MusicVideoQualityPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-    initWidget();
+    initialize();
 
     setFixedSize(44, 20);
     setStyleSheet(MusicUIObject::MQSSVideoBtnSDMode);
@@ -62,7 +62,7 @@ void MusicVideoQualityPopWidget::movieQualityChoiced(QAction *action)
     Q_EMIT mediaUrlChanged(url);
 }
 
-void MusicVideoQualityPopWidget::initWidget()
+void MusicVideoQualityPopWidget::initialize()
 {
     setTranslucentBackground();
     m_actionGroup = new QActionGroup(this);

@@ -38,7 +38,7 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     m_ui->saveSongButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    initControlParameter();
+    initialize();
 
     m_startPos = 0;
     m_stopPos = DEFAULT_HIGH_LEVEL;
@@ -187,7 +187,7 @@ int MusicSongRingtoneMaker::exec()
     return MusicAbstractMoveDialog::exec();
 }
 
-void MusicSongRingtoneMaker::initControlParameter() const
+void MusicSongRingtoneMaker::initialize() const
 {
     m_ui->formatCombo->addItems({"MP3", "WAV"});
     m_ui->kbpsCombo->addItems({"32", "48", "56", "64", "80", "96", "112", "128", "192", "224", "256", "320"});

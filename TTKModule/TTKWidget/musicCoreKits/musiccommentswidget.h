@@ -75,7 +75,7 @@ public:
     /*!
      * Init widget.
      */
-    virtual void initWidget(bool isPain);
+    virtual void initialize(bool isPain);
     /*!
      * Set current song name.
      */

@@ -166,7 +166,7 @@ MusicCommentsWidget::~MusicCommentsWidget()
     delete m_networkRequest;
 }
 
-void MusicCommentsWidget::initWidget(bool isPain)
+void MusicCommentsWidget::initialize(bool isPain)
 {
     m_isPain = isPain;
 
@@ -357,7 +357,6 @@ void MusicCommentsWidget::initLabel(const QString &name, int total)
 {
     m_topLabel->setText(tr("<span style='font-size:15pt;color:#AAAAAA;font-style:bold;'>\"%1\" Commit</span>"
                            "<span style='font-size:11pt;color:#666666;font-style:bold;'> (Just %2 Commits)</span>").arg(name).arg(total));
-
     m_commentsLabel->setText(tr("All Comments(%1)").arg(total));
 }
 

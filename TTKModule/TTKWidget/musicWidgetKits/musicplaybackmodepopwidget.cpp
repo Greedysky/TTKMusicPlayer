@@ -5,7 +5,7 @@
 MusicPlayBackModePopWidget::MusicPlayBackModePopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-    initWidget();
+    initialize();
 }
 
 void MusicPlayBackModePopWidget::setPlaybackMode(MusicObject::PlayMode mode)
@@ -46,7 +46,7 @@ void MusicPlayBackModePopWidget::setPlaybackMode(MusicObject::PlayMode mode)
     }
 }
 
-void MusicPlayBackModePopWidget::initWidget()
+void MusicPlayBackModePopWidget::initialize()
 {
     setTranslucentBackground();
     m_containWidget->setFixedSize(140, 160);

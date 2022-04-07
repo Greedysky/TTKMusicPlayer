@@ -18,7 +18,7 @@ MusicProgressWidget::MusicProgressWidget(QWidget *parent)
     setFixedSize(368, 123);
     setMinimumDuration(2);
 
-    initWidget();
+    initialize();
 }
 
 MusicProgressWidget::~MusicProgressWidget()
@@ -28,7 +28,7 @@ MusicProgressWidget::~MusicProgressWidget()
     delete m_progressBar;
 }
 
-void MusicProgressWidget::initWidget()
+void MusicProgressWidget::initialize()
 {
     m_background = new QLabel(this);
     m_background->setGeometry(4, 4, 360, 115);

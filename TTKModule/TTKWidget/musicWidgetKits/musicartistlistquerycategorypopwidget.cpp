@@ -57,7 +57,7 @@ void MusicArtistListQueryCategoryItem::buttonClicked(int index)
 MusicArtistListQueryCategoryPopWidget::MusicArtistListQueryCategoryPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-    initWidget();
+    initialize();
 }
 
 void MusicArtistListQueryCategoryPopWidget::setCategory(const QString &server, QObject *obj)
@@ -97,7 +97,7 @@ void MusicArtistListQueryCategoryPopWidget::popupMenu()
     m_menu->exec(mapToGlobal(QPoint(0, 0)));
 }
 
-void MusicArtistListQueryCategoryPopWidget::initWidget()
+void MusicArtistListQueryCategoryPopWidget::initialize()
 {
     setFixedSize(100, 30);
     setTranslucentBackground();

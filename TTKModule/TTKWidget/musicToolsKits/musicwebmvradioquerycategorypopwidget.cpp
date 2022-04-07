@@ -58,7 +58,7 @@ void MusicWebMVRadioQueryCategoryItem::buttonClicked(int index)
 MusicWebMVRadioQueryCategoryPopWidget::MusicWebMVRadioQueryCategoryPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-    initWidget();
+    initialize();
 }
 
 void MusicWebMVRadioQueryCategoryPopWidget::setCategory(const QString &server, QObject *obj)
@@ -98,7 +98,7 @@ void MusicWebMVRadioQueryCategoryPopWidget::popupMenu()
     m_menu->exec(mapToGlobal(QPoint(0, 0)));
 }
 
-void MusicWebMVRadioQueryCategoryPopWidget::initWidget()
+void MusicWebMVRadioQueryCategoryPopWidget::initialize()
 {
     setFixedSize(150, 30);
     setTranslucentBackground();

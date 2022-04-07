@@ -48,7 +48,7 @@ MusicPlayedListPopWidget::MusicPlayedListPopWidget(QWidget *parent)
     setToolTip(tr("Played List"));
     setStyleSheet(MusicUIObject::MQSSBtnPlayedList);
 
-    initWidget();
+    initialize();
 }
 
 MusicPlayedListPopWidget::~MusicPlayedListPopWidget()
@@ -292,7 +292,7 @@ void MusicPlayedListPopWidget::itemDoubleClicked(int row, int column)
     QTimer::singleShot(10 * MT_MS, this, SLOT(itemDoubleClicked()));
 }
 
-void MusicPlayedListPopWidget::initWidget()
+void MusicPlayedListPopWidget::initialize()
 {
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);

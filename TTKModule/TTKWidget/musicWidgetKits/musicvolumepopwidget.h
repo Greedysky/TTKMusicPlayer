@@ -71,7 +71,7 @@ protected:
     /*!
      * Create all widget in layout.
      */
-    void initWidget();
+    void initialize();
 
     bool m_menuShown;
     MusicClickedSlider *m_volumeSlider;

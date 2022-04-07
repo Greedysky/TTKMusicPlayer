@@ -58,7 +58,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     m_ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
     m_currentType = Music;
 
-    initControlParameter();
+    initialize();
 }
 
 MusicTransformWidget::~MusicTransformWidget()
@@ -68,7 +68,7 @@ MusicTransformWidget::~MusicTransformWidget()
     delete m_ui;
 }
 
-void MusicTransformWidget::initControlParameter() const
+void MusicTransformWidget::initialize() const
 {
     m_ui->formatCombo->addItems({"MP3", "WAV", "WMA", "OGG", "FLAC", "AC3", "AAC"});
     m_ui->kbpsCombo->addItems({"32", "48", "56", "64", "80", "96", "112", "128", "192", "224", "256", "320"});

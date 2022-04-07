@@ -288,7 +288,7 @@ void MusicPlaylistQueryInfoWidget::queryAllFinished()
 void MusicPlaylistQueryInfoWidget::initThirdWidget()
 {
     m_commentsWidget = new MusicPlaylistQueryCommentsWidget(this);
-    m_commentsWidget->initWidget(false);
+    m_commentsWidget->initialize(false);
     m_container->addWidget(m_commentsWidget);
     m_commentsWidget->setCurrentSongName(m_songNameFull);
 }

@@ -1,5 +1,5 @@
 #include "qsyncutils.h"
-#include "qsyncconf.h"
+#include "qsyncconfig.h"
 
 #include <QLocale>
 #include <QDateTime>

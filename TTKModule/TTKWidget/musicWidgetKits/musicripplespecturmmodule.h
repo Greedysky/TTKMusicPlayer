@@ -56,7 +56,7 @@ public:
     /*!
      * Init ripple spectrum paramters.
      */
-    void init(QVBoxLayout *layout, QWidget *widget);
+    void initialize(QVBoxLayout *layout, QWidget *widget);
 
 private:
     /*!

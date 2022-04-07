@@ -67,9 +67,9 @@ MusicWebRadioView::~MusicWebRadioView()
     delete m_ttkRadio;
 }
 
-void MusicWebRadioView::init(int index)
+void MusicWebRadioView::initialize(int index)
 {
-    m_radio->initListItems(index);
+    m_radio->initialize(index);
 }
 
 void MusicWebRadioView::openFMRadioWindow()

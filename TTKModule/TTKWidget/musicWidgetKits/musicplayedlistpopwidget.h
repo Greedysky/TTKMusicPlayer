@@ -156,7 +156,7 @@ protected:
     /*!
      * Create all widget in layout.
      */
-    void initWidget();
+    void initialize();
     /*!
      * Create container widget.
      */

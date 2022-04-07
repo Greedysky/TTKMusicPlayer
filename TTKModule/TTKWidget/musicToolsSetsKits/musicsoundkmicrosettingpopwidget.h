@@ -61,7 +61,7 @@ protected:
     /*!
      * Create all widget in layout.
      */
-    void initWidget();
+    void initialize();
 
     QComboBox *m_inputComboBox, *m_outputComboBox;
     MusicAudioRecorderModule *m_recordCore;

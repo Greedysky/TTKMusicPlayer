@@ -142,7 +142,7 @@ MusicSettingWidget::~MusicSettingWidget()
     delete m_ui;
 }
 
-void MusicSettingWidget::initControllerParameter()
+void MusicSettingWidget::initialize()
 {
     //
     m_ui->autoPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::AutoPlayMode).toBool());

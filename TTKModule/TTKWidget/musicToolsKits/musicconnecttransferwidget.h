@@ -78,7 +78,7 @@ public Q_SLOTS:
     /*!
      * Create the left button column
      */
-    void initColumns();
+    void initialize();
     /*!
      * Override exec function.
      */

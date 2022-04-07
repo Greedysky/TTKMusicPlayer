@@ -56,7 +56,7 @@ public:
     /*!
      * Init widget interface.
      */
-    void initWidget();
+    void initialize();
 
 public Q_SLOTS:
     /*!

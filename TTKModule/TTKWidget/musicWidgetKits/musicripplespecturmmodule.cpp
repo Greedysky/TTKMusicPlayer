@@ -81,7 +81,7 @@ void MusicRippleSpecturmModule::update(bool up)
     }
 }
 
-void MusicRippleSpecturmModule::init(QVBoxLayout *layout, QWidget *widget)
+void MusicRippleSpecturmModule::initialize(QVBoxLayout *layout, QWidget *widget)
 {
     m_topAreaLayout = layout;
     m_topAreaWidget = widget;

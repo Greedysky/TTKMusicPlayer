@@ -70,7 +70,7 @@ protected:
     /*!
      * Create all widget in layout.
      */
-    void initWidget();
+    void initialize();
 
     MusicClickedSlider *m_slider;
 

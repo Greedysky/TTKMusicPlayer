@@ -131,6 +131,11 @@ protected:
      * Override the widget event.
      */
     virtual void closeEvent(QCloseEvent *event) override final;
+
+    /*!
+     * Init parameters.
+     */
+    void initialize();
     /*!
      * Create core module.
      */

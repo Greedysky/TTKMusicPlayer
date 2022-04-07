@@ -90,7 +90,7 @@ void MusicLeftAreaWidget::radioExecuteOutside(const QString &path)
 {
     musicStackedRadioWidgetChanged();
     MusicWebRadioView *w = TTKStatic_cast(MusicWebRadioView*, m_stackedWidget);
-    w->init(path.toInt());
+    w->initialize(path.toInt());
 }
 
 void MusicLeftAreaWidget::musictLoveStateClicked(bool state)
@@ -143,7 +143,7 @@ void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
 
     delete m_stackedWidget;
     MusicWebRadioView *w = new MusicWebRadioView(this);
-    w->init(DEFAULT_NORMAL_LEVEL);
+    w->initialize(DEFAULT_NORMAL_LEVEL);
     m_stackedWidget = w;
 
     m_ui->songsContainer->insertWidget(1, m_stackedWidget);

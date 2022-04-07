@@ -58,7 +58,7 @@ protected:
     /*!
      * Create all widget in layout.
      */
-    void initWidget();
+    void initialize();
 
     QLabel *m_background, *m_textLabel;
     QProgressBar *m_progressBar;

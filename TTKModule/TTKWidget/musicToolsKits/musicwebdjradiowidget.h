@@ -43,7 +43,7 @@ public:
     /*!
      * Init widget.
      */
-    void init(MusicObject::Program type);
+    void initialize(MusicObject::Program type);
     /*!
      * Resize window bound by widget resize called.
      */

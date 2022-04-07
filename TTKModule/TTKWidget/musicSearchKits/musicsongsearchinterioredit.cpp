@@ -22,7 +22,7 @@ MusicSongSearchInteriorEdit::~MusicSongSearchInteriorEdit()
     delete m_suggestRequest;
 }
 
-void MusicSongSearchInteriorEdit::initWidget(QWidget *parent)
+void MusicSongSearchInteriorEdit::initialize(QWidget *parent)
 {
     setFocus(Qt::MouseFocusReason);
     setFocusPolicy(Qt::ClickFocus);

@@ -64,7 +64,7 @@ protected:
     /*!
      * Create all widget in layout.
      */
-    void initWidget();
+    void initialize();
     /*!
      * Find mv url by given bitrate.
      */

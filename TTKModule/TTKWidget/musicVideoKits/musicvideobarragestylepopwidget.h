@@ -58,7 +58,7 @@ protected:
     /*!
      * Create all widget in layout.
      */
-    void initWidget();
+    void initialize();
 
     int m_barrageSize;
     QColor m_barrageColor;

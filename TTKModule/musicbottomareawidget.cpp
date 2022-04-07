@@ -40,7 +40,7 @@ void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
 
-    m_rippleModule->init(ui->backgroundLayout, ui->bottomWidget);
+    m_rippleModule->initialize(ui->backgroundLayout, ui->bottomWidget);
 
     ui->resizeLabelWidget->setPixmap(QPixmap(":/tiny/lb_resize_normal"));
     ui->showCurrentSong->setEffectOnResize(true);

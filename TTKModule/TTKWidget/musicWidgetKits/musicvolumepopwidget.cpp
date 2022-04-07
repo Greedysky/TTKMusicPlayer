@@ -8,7 +8,7 @@
 MusicVolumePopWidget::MusicVolumePopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-    initWidget();
+    initialize();
     m_menuShown = false;
 
     disconnect(this, SIGNAL(clicked()), this, SLOT(popupMenu()));
@@ -77,7 +77,7 @@ void MusicVolumePopWidget::timeToReset()
     m_menuShown = false;
 }
 
-void MusicVolumePopWidget::initWidget()
+void MusicVolumePopWidget::initialize()
 {
     setTranslucentBackground();
     m_containWidget->setFixedSize(20, 100);

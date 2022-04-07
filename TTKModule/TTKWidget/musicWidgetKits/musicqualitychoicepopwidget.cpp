@@ -149,12 +149,12 @@ MusicQualityChoicePopWidget::MusicQualityChoicePopWidget(QWidget *parent)
     setToolTip(tr("Quality Choice"));
     setFixedSize(48, 20);
 
-    initWidget();
+    initialize();
 
     setStyleSheet(MusicUIObject::MQSSToolButtonStyle05 + MusicUIObject::MQSSBtnQuality + "QToolButton{ margin-left:-48px; }");
 }
 
-void MusicQualityChoicePopWidget::initWidget()
+void MusicQualityChoicePopWidget::initialize()
 {
     setTranslucentBackground();
     m_menu->setStyleSheet(MusicUIObject::MQSSMenuStyle04);

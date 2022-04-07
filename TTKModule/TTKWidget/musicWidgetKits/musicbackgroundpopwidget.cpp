@@ -5,7 +5,7 @@
 MusicBackgroundPopWidget::MusicBackgroundPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-    initWidget();
+    initialize();
 }
 
 MusicBackgroundPopWidget::~MusicBackgroundPopWidget()
@@ -33,7 +33,7 @@ void MusicBackgroundPopWidget::sliderReleased()
     Q_EMIT sliderStateChanged(false);
 }
 
-void MusicBackgroundPopWidget::initWidget()
+void MusicBackgroundPopWidget::initialize()
 {
     m_menu->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
     m_containWidget->setFixedSize(60, 160);

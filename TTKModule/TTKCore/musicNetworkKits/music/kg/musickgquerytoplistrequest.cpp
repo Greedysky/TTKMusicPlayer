@@ -53,7 +53,7 @@ void MusicKGQueryToplistRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("data"))
             {
-                if(!initToplistInfoItem())
+                if(!initialize())
                 {
                     return;
                 }
@@ -120,7 +120,7 @@ void MusicKGQueryToplistRequest::downLoadFinished()
     deleteAll();
 }
 
-bool MusicKGQueryToplistRequest::initToplistInfoItem()
+bool MusicKGQueryToplistRequest::initialize()
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KG_TOPLIST_INFO_URL, false));

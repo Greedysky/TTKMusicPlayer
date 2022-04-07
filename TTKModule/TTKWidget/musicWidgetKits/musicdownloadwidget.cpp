@@ -150,7 +150,7 @@ MusicDownloadWidget::~MusicDownloadWidget()
     delete m_networkRequest;
 }
 
-void MusicDownloadWidget::initWidget()
+void MusicDownloadWidget::initialize()
 {
     m_ui->loadingLabel->run(true);
 
@@ -177,7 +177,7 @@ void MusicDownloadWidget::controlEnabled(bool enable)
 void MusicDownloadWidget::setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type)
 {
     m_queryType = type;
-    initWidget();
+    initialize();
 
     m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 200));
     m_networkRequest->setQueryAllRecords(true);
@@ -190,7 +190,7 @@ void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &i
     m_singleSongInfo = info;
     m_querySingleInfo = true;
 
-    initWidget();
+    initialize();
     m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName, info.m_songName), Qt::ElideRight, 200));
 
     createAllItems(info.m_songProps);

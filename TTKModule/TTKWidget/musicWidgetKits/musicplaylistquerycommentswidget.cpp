@@ -7,9 +7,9 @@ MusicPlaylistQueryCommentsWidget::MusicPlaylistQueryCommentsWidget(QWidget *pare
 
 }
 
-void MusicPlaylistQueryCommentsWidget::initWidget(bool isPain)
+void MusicPlaylistQueryCommentsWidget::initialize(bool isPain)
 {
-    MusicCommentsWidget::initWidget(isPain);
+    MusicCommentsWidget::initialize(isPain);
 
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makePlaylistCommentRequest(this);
     connect(m_networkRequest, SIGNAL(createSearchedItem(MusicResultsItem)), SLOT(createSearchedItem(MusicResultsItem)));

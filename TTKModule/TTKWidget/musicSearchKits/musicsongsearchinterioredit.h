@@ -42,7 +42,7 @@ public:
     /*!
      * Create all widget in layout.
      */
-    void initWidget(QWidget *parent);
+    void initialize(QWidget *parent);
 
     /*!
      * Close pop widget possible.

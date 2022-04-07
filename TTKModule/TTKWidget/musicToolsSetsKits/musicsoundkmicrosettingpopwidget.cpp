@@ -8,7 +8,7 @@
 MusicSoundKMicroSettingPopWidget::MusicSoundKMicroSettingPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-    initWidget();
+    initialize();
 }
 
 MusicSoundKMicroSettingPopWidget::~MusicSoundKMicroSettingPopWidget()
@@ -17,7 +17,7 @@ MusicSoundKMicroSettingPopWidget::~MusicSoundKMicroSettingPopWidget()
     delete m_outputComboBox;
 }
 
-void MusicSoundKMicroSettingPopWidget::initWidget()
+void MusicSoundKMicroSettingPopWidget::initialize()
 {
     setFixedSize(54, 24);
     setTranslucentBackground();

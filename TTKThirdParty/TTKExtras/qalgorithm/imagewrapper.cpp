@@ -85,9 +85,9 @@ QPixmap GaussBlur::render(const QPixmap &pixmap, int value)
 
     const int width = image.width();
     const int height = image.height();
-    int* pix = (int*)image.bits();
-    int* rowData  = (int*)malloc(width * sizeof(int));
-    int* listData = (int*)malloc(height * sizeof(int));
+    int *pix = (int*)image.bits();
+    int *rowData  = (int*)malloc(width * sizeof(int));
+    int *listData = (int*)malloc(height * sizeof(int));
 
     for(int y = 0; y < height; ++y)
     {
@@ -167,7 +167,6 @@ QPixmap GaussBlur::render(const QPixmap &pixmap, int value)
     free(gaussMatrix);
     free(rowData);
     free(listData);
-
     return QPixmap::fromImage(image);
 }
 
@@ -181,7 +180,7 @@ class CubeWavePrivate : public SharpeImagePrivate
 public:
     CubeWavePrivate();
 
-    void init(int width, int height);
+    void initialize(int width, int height);
 
     int count() const;
     bool isValid(int index, int value) const;
@@ -200,7 +199,7 @@ CubeWavePrivate::CubeWavePrivate()
     QAlgorithm::initRandom();
 }
 
-void CubeWavePrivate::init(int width, int height)
+void CubeWavePrivate::initialize(int width, int height)
 {
     m_column = ceil(width * 1.0 / 8);
     m_row = ceil(height * 1.0  / 8);
@@ -233,7 +232,7 @@ void CubeWave::input(const QRect &region)
     SharpeImage::input(region);
 
     TTK_D(CubeWave);
-    d->init(region.width(), region.height());
+    d->initialize(region.width(), region.height());
     for(int index = 0; index < d->count(); ++index)
     {
         d->m_data.push_back(QAlgorithm::random(100));
@@ -285,7 +284,7 @@ public:
 
     int* data();
     void render();
-    void init(const QImage &image, int radius);
+    void initialize(const QImage &image, int radius);
 
     void setWaveSourcePower(int radius, int depth);
     void setWaveSourcePosition(int x, int y);
@@ -362,7 +361,7 @@ void WaterWavePrivate::render()
     renderRipple();
 }
 
-void WaterWavePrivate::init(const QImage &image, int radius)
+void WaterWavePrivate::initialize(const QImage &image, int radius)
 {
     m_orginPixels = nullptr;
     m_newPixels = nullptr;
@@ -474,7 +473,7 @@ WaterWave::WaterWave(const QImage &image, int radius)
     : SharpeImage(TTK_CREATE_PRIVATE(WaterWave))
 {
     TTK_D(WaterWave);
-    d->init(image, radius);
+    d->initialize(image, radius);
 }
 
 void WaterWave::input(const QRect &region)

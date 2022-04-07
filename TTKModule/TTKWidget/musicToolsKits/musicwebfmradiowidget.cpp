@@ -44,7 +44,7 @@ MusicWebFMRadioWidget::~MusicWebFMRadioWidget()
     delete m_getChannelThread;
 }
 
-void MusicWebFMRadioWidget::initListItems(int index)
+void MusicWebFMRadioWidget::initialize(int index)
 {
     m_outerIndex = index;
     if(rowCount() == 0)

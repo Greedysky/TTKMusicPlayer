@@ -4,7 +4,7 @@
 MusicMoreFunctionsPopWidget::MusicMoreFunctionsPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-    initWidget();
+    initialize();
 }
 
 void MusicMoreFunctionsPopWidget::setCurrentSongName(const QString &name)
@@ -29,7 +29,7 @@ void MusicMoreFunctionsPopWidget::functionClicked(QAction *index)
     }
 }
 
-void MusicMoreFunctionsPopWidget::initWidget()
+void MusicMoreFunctionsPopWidget::initialize()
 {
     setTranslucentBackground();
     m_containWidget->setFixedSize(140, 285);

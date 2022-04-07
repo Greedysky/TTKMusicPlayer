@@ -44,7 +44,7 @@ void MusicSpectrumLayoutItem::paintEvent(QPaintEvent *event)
 MusicSpectrumLayoutWidget::MusicSpectrumLayoutWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-    initWidget();
+    initialize();
 }
 
 MusicSpectrumLayoutWidget::~MusicSpectrumLayoutWidget()
@@ -81,7 +81,7 @@ void MusicSpectrumLayoutWidget::labelClicked(int index)
     m_menu->close();
 }
 
-void MusicSpectrumLayoutWidget::initWidget()
+void MusicSpectrumLayoutWidget::initialize()
 {
     m_exclusive = false;
 

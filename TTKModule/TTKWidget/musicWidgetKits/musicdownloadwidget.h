@@ -189,7 +189,7 @@ protected:
     /*!
      * Create all widget in layout.
      */
-    void initWidget();
+    void initialize();
     /*!
      * Enable or disable control state.
      */

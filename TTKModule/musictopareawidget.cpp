@@ -53,7 +53,7 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     musicBackgroundAnimationChanged(true);
     ui->userIcon->setPixmap(MusicUtils::Image::pixmapToRound(QPixmap(":/image/lb_app_logo"), QPixmap(":/image/lb_mask_30"), QSize(30, 30)));
 
-    ui->musicSongSearchEdit->initWidget(MusicApplication::instance());
+    ui->musicSongSearchEdit->initialize(MusicApplication::instance());
     ui->musicSongSearchEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle03);
 
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));

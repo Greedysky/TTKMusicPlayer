@@ -54,7 +54,7 @@ private:
     /*!
      * Init toplist info item.
      */
-    bool initToplistInfoItem();
+    bool initialize();
 
 };
 

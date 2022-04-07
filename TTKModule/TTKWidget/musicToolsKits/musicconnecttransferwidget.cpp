@@ -53,7 +53,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     m_ui->searchLineLabel->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    QTimer::singleShot(MT_MS, this, SLOT(initColumns()));
+    QTimer::singleShot(MT_MS, this, SLOT(initialize()));
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
@@ -77,7 +77,7 @@ void MusicConnectTransferWidget::setDeviceInfoItem(MusicDeviceInfoItem *item)
     m_ui->selectCountLabel->setText(m_selectCountLabel.arg(0).arg(0));
 }
 
-void MusicConnectTransferWidget::initColumns()
+void MusicConnectTransferWidget::initialize()
 {
     MusicSongItemList songs;
     Q_EMIT queryMusicItemList(songs);

@@ -7,7 +7,7 @@
 MusicVideoBarrageStylePopWidget::MusicVideoBarrageStylePopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-    initWidget();
+    initialize();
     m_barrageSize = 15;
     m_barrageColor = QColor(255, 255, 255);
 }
@@ -124,7 +124,7 @@ void MusicVideoBarrageStylePopWidget::barrageColorButtonClicked(int index)
     }
 }
 
-void MusicVideoBarrageStylePopWidget::initWidget()
+void MusicVideoBarrageStylePopWidget::initialize()
 {
     setTranslucentBackground();
     m_containWidget->setFixedSize(200, 85);

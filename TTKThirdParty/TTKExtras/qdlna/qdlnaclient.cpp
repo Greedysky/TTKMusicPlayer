@@ -21,7 +21,7 @@ public:
     QDlnaClientPrivate();
     ~QDlnaClientPrivate();
 
-    void initData(const QString &data);
+    void initialize(const QString &data);
     bool connectServer();
 
     bool m_isConnected;
@@ -45,7 +45,7 @@ QDlnaClientPrivate::~QDlnaClientPrivate()
     delete m_xml;
 }
 
-void QDlnaClientPrivate::initData(const QString &data)
+void QDlnaClientPrivate::initialize(const QString &data)
 {
     const QStringList& list = data.split("\r\n");
     for(QString str : qAsConst(list))
@@ -145,7 +145,7 @@ QDlnaClient::QDlnaClient(const QString &data)
 {
     TTK_INIT_PRIVATE(QDlnaClient);
     TTK_D(QDlnaClient);
-    d->initData(data);
+    d->initialize(data);
 }
 
 QString QDlnaClient::server()

@@ -30,7 +30,7 @@ MusicWebDJRadioProgramTableWidget::~MusicWebDJRadioProgramTableWidget()
     delete m_programThread;
 }
 
-void MusicWebDJRadioProgramTableWidget::init(MusicObject::Program type)
+void MusicWebDJRadioProgramTableWidget::initialize(MusicObject::Program type)
 {
     m_programThread->startToDownload(type);
 }
@@ -210,7 +210,7 @@ MusicWebDJRadioProgramWidget::~MusicWebDJRadioProgramWidget()
 
 void MusicWebDJRadioProgramWidget::initialize()
 {
-    m_tableWidget->init(m_type);
+    m_tableWidget->initialize(m_type);
 }
 
 void MusicWebDJRadioProgramWidget::resizeWindow()

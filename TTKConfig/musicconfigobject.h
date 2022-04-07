@@ -21,7 +21,7 @@
 
 #include "musicconfigdefine.h"
 
-/*! @brief The class of the music init object.
+/*! @brief The class of the music initialize object.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicConfigObject : public QObject

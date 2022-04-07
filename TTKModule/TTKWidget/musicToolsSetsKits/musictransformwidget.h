@@ -86,7 +86,7 @@ protected:
     /*!
      * Init control parameter.
      */
-    void initControlParameter() const;
+    void initialize() const;
     /*!
      * Start a process to transform.
      */

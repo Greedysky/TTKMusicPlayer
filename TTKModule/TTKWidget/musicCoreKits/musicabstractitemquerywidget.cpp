@@ -19,7 +19,7 @@ MusicAbstractItemQueryWidget::MusicAbstractItemQueryWidget(QWidget *parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    initWidget();
+    initialize();
 
     layout->addWidget(m_mainWindow);
     setLayout(layout);
@@ -44,7 +44,7 @@ void MusicAbstractItemQueryWidget::setSongName(const QString &name)
     m_songNameFull = name;
 }
 
-void MusicAbstractItemQueryWidget::initWidget()
+void MusicAbstractItemQueryWidget::initialize()
 {
     m_mainWindow = new QWidget(this);
     m_mainWindow->setObjectName("MainWindow");

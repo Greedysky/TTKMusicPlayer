@@ -240,7 +240,7 @@ void MusicRightAreaWidget::checkLrcValid() const
 
 void MusicRightAreaWidget::showSettingWidget() const
 {
-    m_settingWidget->initControllerParameter();
+    m_settingWidget->initialize();
     m_settingWidget->exec();
 }
 

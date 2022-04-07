@@ -97,7 +97,7 @@ MusicEnhancedPopWidget::MusicEnhancedPopWidget(QWidget *parent)
 {
     setToolTip(tr("Magic Music"));
 
-    initWidget();
+    initialize();
 
     connect(MusicApplicationModule::instance(), SIGNAL(enhancedMusicChanged(int)), SLOT(setEnhancedMusicConfig(int)));
     connect(m_menu, SIGNAL(windowStateChanged(bool)), SLOT(buttonAnimationChanged(bool)));
@@ -168,7 +168,7 @@ void MusicEnhancedPopWidget::helpButtonClicked()
     m_menu->close();
 }
 
-void MusicEnhancedPopWidget::initWidget()
+void MusicEnhancedPopWidget::initialize()
 {
     setTranslucentBackground();
     m_menu->setStyleSheet(MusicUIObject::MQSSMenuStyle05);

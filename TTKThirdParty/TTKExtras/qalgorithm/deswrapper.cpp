@@ -224,8 +224,8 @@ quint64 DesPrivate::des64(quint64 *subkeys, quint64 data)
     quint64 l = 0, r = 0;
     int sOut = 0;
 
-    uchar* pR = new uchar[8];
-    int* pSource = new int[2];
+    uchar *pR = new uchar[8];
+    int *pSource = new int[2];
     pSource[0] = (int) (out & quint64(0x00000000ffffffffl));
     pSource[1] = (int) ((out & quint64(0xffffffff00000000l)) >> 32);
 

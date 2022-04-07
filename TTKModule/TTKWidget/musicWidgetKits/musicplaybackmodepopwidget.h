@@ -37,7 +37,7 @@ public:
     /*!
      * Create all widget in layout.
      */
-    void initWidget();
+    void initialize();
 
     /*!
      * Set current play mode.
