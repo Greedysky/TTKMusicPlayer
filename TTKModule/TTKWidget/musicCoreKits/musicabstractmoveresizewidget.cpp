@@ -10,7 +10,7 @@ MusicAbstractMoveResizeWidget::MusicAbstractMoveResizeWidget(QWidget *parent)
 {
     m_struct.m_mouseLeftPress = false;
     m_struct.m_isPressBorder = false;
-    m_direction = Direction_No;
+    m_direction = DirectionNo;
 
     setWindowFlags(Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
@@ -32,7 +32,7 @@ bool MusicAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
 void MusicAbstractMoveResizeWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
-    if(m_struct.m_isPressBorder || m_direction == Direction_No)
+    if(m_struct.m_isPressBorder || m_direction == DirectionNo)
     {
         return;
     }
@@ -41,7 +41,7 @@ void MusicAbstractMoveResizeWidget::paintEvent(QPaintEvent *event)
     if(point.y() > DISTANCE && point.y() < height() - DISTANCE && point.x() > DISTANCE && point.x() < width() - DISTANCE)
     {
         setCursor(Qt::ArrowCursor);
-        m_direction = Direction_No;
+        m_direction = DirectionNo;
     }
 }
 
@@ -105,7 +105,7 @@ void MusicAbstractMoveResizeWidget::mouseReleaseEvent(QMouseEvent *event)
     m_struct.m_isPressBorder = false;
     m_struct.m_mouseLeftPress = false;
     setCursor(QCursor(Qt::ArrowCursor));
-    m_direction = Direction_No;
+    m_direction = DirectionNo;
 }
 
 void MusicAbstractMoveResizeWidget::sizeDirection()
@@ -114,47 +114,47 @@ void MusicAbstractMoveResizeWidget::sizeDirection()
     if(point.x() > width() - DISTANCE && point.y() < height() - DISTANCE && point.y() > DISTANCE)
     {
         setCursor(Qt::SizeHorCursor);
-        m_direction = Direction_Right;
+        m_direction = DirectionRight;
     }
     else if(point.x() < DISTANCE && point.y() < height() - DISTANCE && point.y() > DISTANCE)
     {
         setCursor(Qt::SizeHorCursor);
-        m_direction = Direction_Left;
+        m_direction = DirectionLeft;
     }
     else if(point.y() > height() - DISTANCE && point.x() > DISTANCE && point.x() < width() - DISTANCE)
     {
         setCursor(Qt::SizeVerCursor);
-        m_direction = Direction_Bottom;
+        m_direction = DirectionBottom;
     }
     else if(point.y() < DISTANCE && point.x() > DISTANCE && point.x() < width() - DISTANCE)
     {
         setCursor(Qt::SizeVerCursor);
-        m_direction = Direction_Top;
+        m_direction = DirectionTop;
     }
     else if(point.y() < DISTANCE && point.x() > width() - DISTANCE)
     {
         setCursor(Qt::SizeBDiagCursor);
-        m_direction = Direction_RightTop;
+        m_direction = DirectionRightTop;
     }
     else if(point.y() < DISTANCE && point.x() < DISTANCE)
     {
         setCursor(Qt::SizeFDiagCursor);
-        m_direction = Direction_LeftTop;
+        m_direction = DirectionLeftTop;
     }
     else if(point.x() > DISTANCE && point.y() > height() - DISTANCE)
     {
         setCursor(Qt::SizeFDiagCursor);
-        m_direction = Direction_RightBottom;
+        m_direction = DirectionRightBottom;
     }
     else if(point.x() < DISTANCE && point.y() > height() - DISTANCE)
     {
         setCursor(Qt::SizeBDiagCursor);
-        m_direction = Direction_LeftBottom;
+        m_direction = DirectionLeftBottom;
     }
     else
     {
         setCursor(Qt::ArrowCursor);
-        m_direction = Direction_No;
+        m_direction = DirectionNo;
     }
 }
 
@@ -162,7 +162,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
 {
     switch(m_direction)
     {
-        case Direction_Right:
+        case DirectionRight:
         {
             const int wValue = QCursor::pos().x() - x();
             if(minimumWidth() <= wValue && wValue <= maximumWidth())
@@ -171,7 +171,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
             }
             break;
         }
-        case Direction_Left:
+        case DirectionLeft:
         {
             const int wValue = x() + width() - QCursor::pos().x();
             if(minimumWidth() <= wValue && wValue <= maximumWidth())
@@ -180,7 +180,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
             }
             break;
         }
-        case Direction_Bottom:
+        case DirectionBottom:
         {
             const int hValue = QCursor::pos().y() - y();
             if(minimumHeight() <= hValue && hValue <= maximumHeight())
@@ -189,7 +189,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
             }
             break;
         }
-        case Direction_Top:
+        case DirectionTop:
         {
             const int hValue = y() - QCursor::pos().y() + height();
             if(minimumHeight() <= hValue && hValue <= maximumHeight())
@@ -198,7 +198,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
             }
             break;
         }
-        case Direction_RightTop:
+        case DirectionRightTop:
         {
             int hValue = y() + height() - QCursor::pos().y();
             const int wValue = QCursor::pos().x() - x();
@@ -217,7 +217,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
             setGeometry(m_struct.m_windowPos.x(), yValue, wValue, hValue);
             break;
         }
-        case Direction_LeftTop:
+        case DirectionLeftTop:
         {
             int yValue = QCursor::pos().y();
             int xValue = QCursor::pos().x();
@@ -254,14 +254,14 @@ void MusicAbstractMoveResizeWidget::moveDirection()
             setGeometry(xValue, yValue, wValue, hValue);
             break;
         }
-        case Direction_RightBottom:
+        case DirectionRightBottom:
         {
             const int wValue = QCursor::pos().x() - x();
             const int hValue = QCursor::pos().y() - y();
             setGeometry(m_struct.m_windowPos.x(), m_struct.m_windowPos.y(), wValue, hValue);
             break;
         }
-        case Direction_LeftBottom:
+        case DirectionLeftBottom:
         {
             int wValue = x() + width() - QCursor::pos().x();
             const int hValue = QCursor::pos().y() - m_struct.m_windowPos.y();

@@ -40,20 +40,20 @@ public:
 
     enum LrcFormat
     {
-        Type01, /*!< [xx:xx.xxx]*/
-        Type02, /*!< [xx:xx.xx]*/
-        Type03, /*!< [xx:xx.x]*/
-        Type04, /*!< [xx:xx:xxx]*/
-        Type05, /*!< [xx:xx:xx]*/
-        Type06, /*!< [xx:xx:x]*/
-        Type07, /*!< [xx:xx]*/
-        Type08, /*!< [xx.xx.xxx]*/
-        Type09, /*!< [xx.xx.xx]*/
-        Type10, /*!< [xx.xx.x]*/
-        Type11, /*!< [xx.xx:xxx]*/
-        Type12, /*!< [xx.xx:xx]*/
-        Type13, /*!< [xx.xx:x]*/
-        Type14  /*!< [xx.xx]*/
+        Type01,     /*!< [xx:xx.xxx]*/
+        Type02,     /*!< [xx:xx.xx]*/
+        Type03,     /*!< [xx:xx.x]*/
+        Type04,     /*!< [xx:xx:xxx]*/
+        Type05,     /*!< [xx:xx:xx]*/
+        Type06,     /*!< [xx:xx:x]*/
+        Type07,     /*!< [xx:xx]*/
+        Type08,     /*!< [xx.xx.xxx]*/
+        Type09,     /*!< [xx.xx.xx]*/
+        Type10,     /*!< [xx.xx.x]*/
+        Type11,     /*!< [xx.xx:xxx]*/
+        Type12,     /*!< [xx.xx:xx]*/
+        Type13,     /*!< [xx.xx:x]*/
+        Type14      /*!< [xx.xx]*/
     };
 
     /*!

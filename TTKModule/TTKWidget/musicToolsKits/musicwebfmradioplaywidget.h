@@ -110,7 +110,7 @@ protected:
 
     Ui::MusicWebFMRadioPlayWidget *m_ui;
     bool m_isPlaying;
-    QString m_currentID;
+    QString m_currentIndex;
     MusicLrcAnalysis *m_analysis;
     MusicCoreMPlayer *m_player;
     MusicFMRadioSongsRequest *m_songThread;

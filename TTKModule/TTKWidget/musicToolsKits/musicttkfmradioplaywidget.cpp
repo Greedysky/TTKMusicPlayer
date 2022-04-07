@@ -43,6 +43,7 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     setFixedSize(size());
 
     m_isPlaying = false;
+    m_currentIndex = 0;
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -111,25 +112,15 @@ void MusicTTKFMRadioPlayWidget::radioItemChanged(QTreeWidgetItem *item, int colu
 {
     if(item && column == 0)
     {
-        const QString &url = item->data(column, MUSIC_DATA_ROLE).toString();
-        if(url.isEmpty())
+        bool ok;
+        const int index = item->data(column, MUSIC_DATA_ROLE).toInt(&ok);
+        if(!ok || index < 0 || index >= m_items.count())
         {
             return;
         }
 
-        m_isPlaying = true;
-        if(!m_player)
-        {
-            createCoreModule();
-        }
-
-        m_player->setMedia(MusicCoreMPlayer::MusicCategory, item->data(column, MUSIC_DATA_ROLE).toString());
-        m_player->play();
-
-        /// fix current play volume temporary
-        const int v = m_ui->volumeSlider->value();
-        m_ui->volumeSlider->setValue(0);
-        m_ui->volumeSlider->setValue(v);
+        m_currentIndex = index;
+        startCoreModule();
     }
 }
 
@@ -155,30 +146,22 @@ void MusicTTKFMRadioPlayWidget::radioPlay()
 
 void MusicTTKFMRadioPlayWidget::radioPrevious()
 {
-//    if(m_currentID.isEmpty())
-//    {
-//        return;
-//    }
-
-    if(!m_isPlaying)
+    if(--m_currentIndex < 0)
     {
-        m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
+        m_currentIndex = 0;
     }
+
+    startCoreModule();
 }
 
 void MusicTTKFMRadioPlayWidget::radioNext()
 {
-//    if(m_currentID.isEmpty())
-//    {
-//        return;
-//    }
-
-//    m_songThread->startToDownload(m_currentID);
-
-    if(!m_isPlaying)
+    if(++m_currentIndex >= m_items.count())
     {
-        m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
+        m_currentIndex = 0;
     }
+
+    startCoreModule();
 }
 
 void MusicTTKFMRadioPlayWidget::radioVolume(int num)
@@ -203,6 +186,7 @@ void MusicTTKFMRadioPlayWidget::initialize()
     MusicFMCategoryList categorys;
     manager.readBuffer(categorys);
 
+    int index = 0;
     for(const MusicFMCategory &category : categorys)
     {
         QTreeWidgetItem *item = new QTreeWidgetItem(m_ui->itemTree, {category.m_category});
@@ -211,12 +195,17 @@ void MusicTTKFMRadioPlayWidget::initialize()
         for(const MusicFMCategoryItem &channel : category.m_items)
         {
             QTreeWidgetItem *it = new QTreeWidgetItem(item, {channel.m_name, channel.m_location});
-            it->setData(0, MUSIC_DATA_ROLE, channel.m_url);
+            it->setData(0, MUSIC_DATA_ROLE, index++);
         }
         m_items << category.m_items;
     }
 
     createCoreModule();
+
+    /// fix current play volume temporary
+    const int v = m_ui->volumeSlider->value();
+    m_ui->volumeSlider->setValue(0);
+    m_ui->volumeSlider->setValue(v);
 }
 
 void MusicTTKFMRadioPlayWidget::createCoreModule()
@@ -225,6 +214,21 @@ void MusicTTKFMRadioPlayWidget::createCoreModule()
 
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_player, SIGNAL(finished(int)), SLOT(mediaAutionPlayError(int)));
+}
+
+void MusicTTKFMRadioPlayWidget::startCoreModule()
+{
+    m_isPlaying = false;
+    if(!m_player)
+    {
+        createCoreModule();
+    }
+
+    m_player->setMedia(MusicCoreMPlayer::MusicCategory, m_items[m_currentIndex].m_url);
+    radioPlay();
+
+    m_ui->titleWidget->setText(m_items[m_currentIndex].m_name);
+    m_isPlaying = true;
 }
 
 void MusicTTKFMRadioPlayWidget::positionChanged(qint64 position)

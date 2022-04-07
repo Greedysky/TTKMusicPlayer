@@ -19,7 +19,7 @@
 MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
     : QWidget(parent)
 {
-    m_type = Type_01;
+    m_type = Type01;
 
     m_pixmap.load(G_BACKGROUND_PTR->artistPhotoPathNoIndex());
     if(m_pixmap.isNull())
@@ -69,23 +69,23 @@ void MusicLrcPosterItemWidget::paintEvent(QPaintEvent *event)
 
     switch(m_type)
     {
-        case Type_01: drawTheme1(&painter); break;
-        case Type_02: drawTheme2(&painter); break;
-        case Type_03: drawTheme3(&painter); break;
-        case Type_04: drawTheme4(&painter); break;
-        case Type_05: drawTheme5(&painter); break;
-        case Type_06: drawTheme6(&painter); break;
-        case Type_07: drawTheme7(&painter); break;
-        case Type_08: drawTheme8(&painter); break;
-        case Type_09: drawTheme9(&painter); break;
-        case Type_10: drawTheme10(&painter); break;
-        case Type_11: drawTheme11(&painter); break;
-        case Type_12: drawTheme12(&painter); break;
-        case Type_13: drawTheme13(&painter); break;
-        case Type_14: drawTheme14(&painter); break;
-        case Type_15: drawTheme15(&painter); break;
-        case Type_16: drawTheme16(&painter); break;
-        case Type_17: drawTheme17(&painter); break;
+        case Type01: drawTheme1(&painter); break;
+        case Type02: drawTheme2(&painter); break;
+        case Type03: drawTheme3(&painter); break;
+        case Type04: drawTheme4(&painter); break;
+        case Type05: drawTheme5(&painter); break;
+        case Type06: drawTheme6(&painter); break;
+        case Type07: drawTheme7(&painter); break;
+        case Type08: drawTheme8(&painter); break;
+        case Type09: drawTheme9(&painter); break;
+        case Type10: drawTheme10(&painter); break;
+        case Type11: drawTheme11(&painter); break;
+        case Type12: drawTheme12(&painter); break;
+        case Type13: drawTheme13(&painter); break;
+        case Type14: drawTheme14(&painter); break;
+        case Type15: drawTheme15(&painter); break;
+        case Type16: drawTheme16(&painter); break;
+        case Type17: drawTheme17(&painter); break;
         default: break;
     }
 }

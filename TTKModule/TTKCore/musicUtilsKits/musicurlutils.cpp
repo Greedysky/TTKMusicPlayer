@@ -36,7 +36,7 @@ bool MusicUtils::Url::openUrl(const QString &path, bool local)
         return true;
 #elif defined Q_OS_UNIX
         MusicPlatformManager platform;
-        if(platform.systemName() == MusicPlatformManager::System_Linux_Ubuntu)
+        if(platform.systemName() == MusicPlatformManager::SystemLinuxUbuntu)
         {
             return QProcess::startDetached("nautilus", QStringList() << path);
         }

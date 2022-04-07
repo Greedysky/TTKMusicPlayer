@@ -161,9 +161,9 @@ void MusicSongRingtoneMaker::posChanged(qint64 start, qint64 end)
 {
     m_startPos = start;
     m_stopPos = end;
-    m_ui->startTimeLabel->setText(tr("Begin: ") + MusicTime::toString(start, MusicTime::All_Sec, "mm:ss:zzz"));
-    m_ui->stopTimeLabel->setText(tr("End: ") + MusicTime::toString(end, MusicTime::All_Sec, "mm:ss:zzz"));
-    m_ui->ringLabelValue->setText(tr("Ring Info.\tCut Length: %1").arg(MusicTime::toString(end - start, MusicTime::All_Sec, "mm:ss")));
+    m_ui->startTimeLabel->setText(tr("Begin: ") + MusicTime::toString(start, MusicTime::AllSec, "mm:ss:zzz"));
+    m_ui->stopTimeLabel->setText(tr("End: ") + MusicTime::toString(end, MusicTime::AllSec, "mm:ss:zzz"));
+    m_ui->ringLabelValue->setText(tr("Ring Info.\tCut Length: %1").arg(MusicTime::toString(end - start, MusicTime::AllSec, "mm:ss")));
 }
 
 void MusicSongRingtoneMaker::buttonReleaseChanged(qint64 pos)

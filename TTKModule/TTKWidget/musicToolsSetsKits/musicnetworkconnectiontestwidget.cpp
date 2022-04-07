@@ -109,7 +109,7 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->iconLabel->setType(MusicGifLabelWidget::Gif_Check_Blue);
+    m_ui->iconLabel->setType(MusicGifLabelWidget::CheckBlue);
     m_ui->textLabel->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->startButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 #ifdef Q_OS_UNIX

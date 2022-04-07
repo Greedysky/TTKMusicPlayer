@@ -5,7 +5,7 @@
 
 MusicTime::MusicTime()
 {
-    m_defaultType = All_Msec;
+    m_defaultType = AllMsec;
     m_greedyMode = false;
     initialize();
 }
@@ -19,13 +19,13 @@ MusicTime::MusicTime(qint64 value, Type type)
     : MusicTime()
 {
     m_defaultType = type;
-    fromTimeStamp(value, type == All_Sec ? MT_S : MT_S2MS);
+    fromTimeStamp(value, type == AllSec ? MT_S : MT_S2MS);
 }
 
 MusicTime::MusicTime(int day, int hour, int min, int sec, int msec)
     : MusicTime()
 {
-    m_defaultType = All_Msec;
+    m_defaultType = AllMsec;
     setHMSM(day, hour, min, sec, msec);
 }
 
@@ -82,9 +82,9 @@ QString MusicTime::toString(const QString &format) const
 
 qint64 MusicTime::timestamp(Type type) const
 {
-    qint64 delta = (type == All_Sec) ? MT_S : MT_S2MS;
+    qint64 delta = (type == AllSec) ? MT_S : MT_S2MS;
            delta = (m_day * MT_D2S + m_hour * MT_H2S + m_min * MT_M2S + m_sec) * delta;
-    return (type == All_Sec) ? delta : (delta + m_msec);
+    return (type == AllSec) ? delta : (delta + m_msec);
 }
 
 qint64 MusicTime::timestamp(bool ms)
@@ -106,7 +106,7 @@ int MusicTime::random(int value)
 qint64 MusicTime::labelJustified2MsecTime(const QString &time)
 {
     MusicTime t = MusicTime::fromString(time, "mm:ss");
-    return t.timestamp(MusicTime::All_Msec);
+    return t.timestamp(MusicTime::AllMsec);
 }
 
 QString MusicTime::msecTime2LabelJustified()
@@ -124,7 +124,7 @@ QString MusicTime::msecTime2LabelJustified()
 
 QString MusicTime::msecTime2LabelJustified(qint64 time, bool greedy)
 {
-    MusicTime t(time, MusicTime::All_Msec);
+    MusicTime t(time, MusicTime::AllMsec);
     if(!greedy || time < MT_H2S * MT_S2MS)
     {
         return t.toString("mm:ss");
@@ -188,90 +188,90 @@ MusicTime& MusicTime::operator= (const MusicTime &other)
 
 MusicTime& MusicTime::operator+= (const MusicTime &other)
 {
-    const qint64 t = timestamp(All_Msec) + other.timestamp(All_Msec);
-    fromTimeStamp(t, m_defaultType == All_Sec ? MT_S : MT_S2MS);
+    const qint64 t = timestamp(AllMsec) + other.timestamp(AllMsec);
+    fromTimeStamp(t, m_defaultType == AllSec ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator+= (const int other)
 {
-    const qint64 t = timestamp(All_Msec) + other;
-    fromTimeStamp(t, m_defaultType == All_Sec ? MT_S : MT_S2MS);
+    const qint64 t = timestamp(AllMsec) + other;
+    fromTimeStamp(t, m_defaultType == AllSec ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator-= (const MusicTime &other)
 {
-    const qint64 t = timestamp(All_Msec) - other.timestamp(All_Msec);
-    fromTimeStamp(t, m_defaultType == All_Sec ? MT_S : MT_S2MS);
+    const qint64 t = timestamp(AllMsec) - other.timestamp(AllMsec);
+    fromTimeStamp(t, m_defaultType == AllSec ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator-= (const int other)
 {
-    const qint64 t = timestamp(All_Msec) - other;
-    fromTimeStamp(t, m_defaultType == All_Sec ? MT_S : MT_S2MS);
+    const qint64 t = timestamp(AllMsec) - other;
+    fromTimeStamp(t, m_defaultType == AllSec ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator*= (const int other)
 {
-    const qint64 t = timestamp(All_Msec) * other;
-    fromTimeStamp(t, m_defaultType == All_Sec ? MT_S : MT_S2MS);
+    const qint64 t = timestamp(AllMsec) * other;
+    fromTimeStamp(t, m_defaultType == AllSec ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator/= (const int other)
 {
-    const qint64 t = timestamp(All_Msec) / other;
-    fromTimeStamp(t, m_defaultType == All_Sec ? MT_S : MT_S2MS);
+    const qint64 t = timestamp(AllMsec) / other;
+    fromTimeStamp(t, m_defaultType == AllSec ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime MusicTime::operator+ (const MusicTime &other)
 {
-    const qint64 t = timestamp(All_Msec) + other.timestamp(All_Msec);
+    const qint64 t = timestamp(AllMsec) + other.timestamp(AllMsec);
     return MusicTime(t, m_defaultType);
 }
 
 MusicTime MusicTime::operator+ (const int other)
 {
-    const qint64 t = timestamp(All_Msec) + other;
+    const qint64 t = timestamp(AllMsec) + other;
     return MusicTime(t, m_defaultType);
 }
 
 MusicTime MusicTime::operator- (const MusicTime &other)
 {
-    const qint64 t = timestamp(All_Msec) - other.timestamp(All_Msec);
+    const qint64 t = timestamp(AllMsec) - other.timestamp(AllMsec);
     return MusicTime(t, m_defaultType);
 }
 
 MusicTime MusicTime::operator- (const int other)
 {
-    const qint64 t = timestamp(All_Msec) - other;
+    const qint64 t = timestamp(AllMsec) - other;
     return MusicTime(t, m_defaultType);
 }
 
 MusicTime MusicTime::operator* (const int other)
 {
-    const qint64 t = timestamp(All_Msec) * other;
+    const qint64 t = timestamp(AllMsec) * other;
     return MusicTime(t, m_defaultType);
 }
 
 MusicTime MusicTime::operator/ (const int other)
 {
-    const qint64 t = timestamp(All_Msec) / other;
+    const qint64 t = timestamp(AllMsec) / other;
     return MusicTime(t, m_defaultType);
 }
 
 bool MusicTime::operator== (const MusicTime &other) const
 {
-    return timestamp(All_Msec) == other.timestamp(All_Msec);
+    return timestamp(AllMsec) == other.timestamp(AllMsec);
 }
 
 bool MusicTime::operator!= (const MusicTime &other) const
 {
-    return timestamp(All_Msec) != other.timestamp(All_Msec);
+    return timestamp(AllMsec) != other.timestamp(AllMsec);
 }
 
 void MusicTime::initialize()

@@ -40,7 +40,7 @@ public:
     enum TransformType
     {
         Music,  /*!< Music category*/
-        Lrc,    /*!< Lrc category*/
+        Lrc     /*!< Lrc category*/
     };
     /*!
      * Object contsructor.

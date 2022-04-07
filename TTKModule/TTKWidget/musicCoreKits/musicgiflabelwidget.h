@@ -34,16 +34,16 @@ class TTK_MODULE_EXPORT MusicGifLabelWidget : public QLabel
 public:
     enum Type
     {
-        Gif_Ballon_White,           /*!< gif ballon white*/
-        Gif_Cicle_Blue,             /*!< gif cicle blue*/
-        Gif_Rice_Font_White,        /*!< gif rice font white*/
-        Gif_Rice_Font_Black,        /*!< gif rice font black*/
-        Gif_Rice_Font_Black_Big,    /*!< gif rice font black big*/
-        Gif_Hourglass_White,        /*!< gif hourglass white*/
-        Gif_Radio_Blue,             /*!< gif radio blue*/
-        Gif_Check_Blue,             /*!< gif check blue*/
-        Gif_Record_red,             /*!< gif record red*/
-        Gif_Close_White             /*!< gif close white*/
+        BallonWhite,         /*!< gif ballon white*/
+        CicleBlue,           /*!< gif cicle blue*/
+        RiceFontWhite,       /*!< gif rice font white*/
+        RiceFontBlack,       /*!< gif rice font black*/
+        RiceFontBlackBig,    /*!< gif rice font black big*/
+        HourglassWhite,      /*!< gif hourglass white*/
+        RadioBlue,           /*!< gif radio blue*/
+        CheckBlue,           /*!< gif check blue*/
+        RecordRed,           /*!< gif record red*/
+        CloseWhite           /*!< gif close white*/
     };
 
     /*!

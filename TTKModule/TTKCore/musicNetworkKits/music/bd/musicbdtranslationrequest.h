@@ -31,23 +31,23 @@ class TTK_MODULE_EXPORT MusicBDTranslationRequest : public MusicTranslationReque
 public:
     enum TranslationType
     {
-        Type_Auto,  /*!< automatic detection*/
-        Type_Ara,   /*!< Arabic*/
-        Type_De,    /*!< German*/
-        Type_Ru,    /*!< Russian*/
-        Type_Fra,   /*!< French*/
-        Type_Kor,   /*!< Korean*/
-        Type_Nl,    /*!< Dutch*/
-        Type_Pt,    /*!< Portuguese*/
-        Type_Jp,    /*!< Japanese*/
-        Type_Th,    /*!< Thai*/
-        Type_Wyw,   /*!< Classical*/
-        Type_Spa,   /*!< Spanish*/
-        Type_El,    /*!< Greek*/
-        Type_It,    /*!< Italian*/
-        Type_En,    /*!< English*/
-        Type_Yue,   /*!< Cantonese*/
-        Type_Zh     /*!< Chinese*/
+        TypeAuto,  /*!< automatic detection*/
+        TypeAra,   /*!< Arabic*/
+        TypeDe,    /*!< German*/
+        TypeRu,    /*!< Russian*/
+        TypeFra,   /*!< French*/
+        TypeKor,   /*!< Korean*/
+        TypeNl,    /*!< Dutch*/
+        TypePt,    /*!< Portuguese*/
+        TypeJp,    /*!< Japanese*/
+        TypeTh,    /*!< Thai*/
+        TypeWyw,   /*!< Classical*/
+        TypeSpa,   /*!< Spanish*/
+        TypeEl,    /*!< Greek*/
+        TypeIt,    /*!< Italian*/
+        TypeEn,    /*!< English*/
+        TypeYue,   /*!< Cantonese*/
+        TypeZh     /*!< Chinese*/
     };
 
     /*!

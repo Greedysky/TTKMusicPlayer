@@ -140,9 +140,14 @@ protected:
      * Create core module.
      */
     void createCoreModule();
+    /*!
+     * Start to core module.
+     */
+    void startCoreModule();
 
     Ui::MusicTTKFMRadioPlayWidget *m_ui;
     bool m_isPlaying;
+    int m_currentIndex;
     MusicCoreMPlayer *m_player;
     MusicFMCategoryItemList m_items;
 

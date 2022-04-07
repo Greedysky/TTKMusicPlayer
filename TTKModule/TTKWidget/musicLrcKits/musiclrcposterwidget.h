@@ -37,23 +37,23 @@ class TTK_MODULE_EXPORT MusicLrcPosterItemWidget : public QWidget
 public:
     enum Type
     {
-        Type_01,    /*!< thmeme 1*/
-        Type_02,    /*!< thmeme 2*/
-        Type_03,    /*!< thmeme 3*/
-        Type_04,    /*!< thmeme 4*/
-        Type_05,    /*!< thmeme 5*/
-        Type_06,    /*!< thmeme 6*/
-        Type_07,    /*!< thmeme 7*/
-        Type_08,    /*!< thmeme 8*/
-        Type_09,    /*!< thmeme 9*/
-        Type_10,    /*!< thmeme 10*/
-        Type_11,    /*!< thmeme 11*/
-        Type_12,    /*!< thmeme 12*/
-        Type_13,    /*!< thmeme 13*/
-        Type_14,    /*!< thmeme 14*/
-        Type_15,    /*!< thmeme 15*/
-        Type_16,    /*!< thmeme 16*/
-        Type_17     /*!< thmeme 17*/
+        Type01,    /*!< thmeme 1*/
+        Type02,    /*!< thmeme 2*/
+        Type03,    /*!< thmeme 3*/
+        Type04,    /*!< thmeme 4*/
+        Type05,    /*!< thmeme 5*/
+        Type06,    /*!< thmeme 6*/
+        Type07,    /*!< thmeme 7*/
+        Type08,    /*!< thmeme 8*/
+        Type09,    /*!< thmeme 9*/
+        Type10,    /*!< thmeme 10*/
+        Type11,    /*!< thmeme 11*/
+        Type12,    /*!< thmeme 12*/
+        Type13,    /*!< thmeme 13*/
+        Type14,    /*!< thmeme 14*/
+        Type15,    /*!< thmeme 15*/
+        Type16,    /*!< thmeme 16*/
+        Type17     /*!< thmeme 17*/
     };
 
     /*!

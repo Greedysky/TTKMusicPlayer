@@ -135,7 +135,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
 
     m_queryType = MusicAbstractQueryRequest::MusicQuery;
-    m_ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
+    m_ui->loadingLabel->setType(MusicGifLabelWidget::CicleBlue);
 
     connect(m_ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startToDownload()));

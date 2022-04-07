@@ -55,7 +55,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     m_ui->krc2lrcBox->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    m_ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
+    m_ui->loadingLabel->setType(MusicGifLabelWidget::CicleBlue);
     m_currentType = Music;
 
     initialize();

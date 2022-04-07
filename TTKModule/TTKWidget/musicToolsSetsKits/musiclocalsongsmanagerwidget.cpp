@@ -41,7 +41,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     m_ui->scanCustButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->searchLineLabel->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
+    m_ui->loadingLabel->setType(MusicGifLabelWidget::CicleBlue);
 
     m_ui->scanButton->setIcon(QIcon(":/toolSets/btn_search"));
     m_ui->scanButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle10);

@@ -75,8 +75,8 @@ MusicWebFMRadioPlayWidget::~MusicWebFMRadioPlayWidget()
 
 void MusicWebFMRadioPlayWidget::updateRadioSong(const QString &id)
 {
-    m_currentID = id;
-    m_songThread->startToDownload(m_currentID);
+    m_currentIndex = id;
+    m_songThread->startToDownload(m_currentIndex);
 }
 
 void MusicWebFMRadioPlayWidget::mediaAutionPlayError(int code)
@@ -101,12 +101,12 @@ void MusicWebFMRadioPlayWidget::radioPlay()
 
 void MusicWebFMRadioPlayWidget::radioPrevious()
 {
-    if(m_currentID.isEmpty())
+    if(m_currentIndex.isEmpty())
     {
         return;
     }
 
-    m_songThread->startToDownload(m_currentID);
+    m_songThread->startToDownload(m_currentIndex);
 
     if(!m_isPlaying)
     {
@@ -116,12 +116,12 @@ void MusicWebFMRadioPlayWidget::radioPrevious()
 
 void MusicWebFMRadioPlayWidget::radioNext()
 {
-    if(m_currentID.isEmpty())
+    if(m_currentIndex.isEmpty())
     {
         return;
     }
 
-    m_songThread->startToDownload(m_currentID);
+    m_songThread->startToDownload(m_currentIndex);
 
     if(!m_isPlaying)
     {

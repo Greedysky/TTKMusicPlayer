@@ -61,6 +61,7 @@ void MusicLrcMakerWidgetItem::moveUp()
         m_currentIndex = 0;
         return;
     }
+
     m_paintIndex = 0;
     m_intervalCount = 5;
     m_painetLineDone = false;
@@ -711,7 +712,7 @@ void MusicLrcMakerWidget::setControlEnabled(bool enable) const
 
 QString MusicLrcMakerWidget::translateTimeString(qint64 time)
 {
-    const MusicTime t(time, MusicTime::All_Msec);
+    const MusicTime t(time, MusicTime::AllMsec);
     return QString("[%1.%2]").arg(t.toString("mm:ss"), QString::number(t.millionSecond()).rightJustified(3, '0'));
 }
 

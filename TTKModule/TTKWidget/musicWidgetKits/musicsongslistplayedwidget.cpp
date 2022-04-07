@@ -22,7 +22,7 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
     m_textLabel->setStyleSheet(MusicUIObject::MQSSColorStyle11);
     m_textLabel->setGeometry(23, 0, 170, 30);
 
-    m_gifLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Gif_Radio_Blue, this);
+    m_gifLabel = new MusicGifLabelWidget(MusicGifLabelWidget::RadioBlue, this);
     m_gifLabel->setInterval(50);
     m_gifLabel->setGeometry(193, 8, 14, 14);
 

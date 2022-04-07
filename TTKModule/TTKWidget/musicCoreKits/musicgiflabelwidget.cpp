@@ -45,16 +45,16 @@ void MusicGifLabelWidget::setType(Type type)
     m_index = 0;
     switch(m_type = type)
     {
-        case Gif_Ballon_White: setFixedSize(GIF_BALLON_WHITE, GIF_BALLON_WHITE); break;
-        case Gif_Cicle_Blue: setFixedSize(GIF_CICLE_BLUE, GIF_CICLE_BLUE); break;
-        case Gif_Rice_Font_White: setFixedSize(GIF_RICE_FONT_WHITE, GIF_RICE_FONT_WHITE); break;
-        case Gif_Rice_Font_Black_Big: setFixedSize(GIF_RICE_FONT_BLACK_BIG, GIF_RICE_FONT_BLACK_BIG); break;
-        case Gif_Rice_Font_Black: setFixedSize(GIF_RICE_FONT_BLACK, GIF_RICE_FONT_BLACK); break;
-        case Gif_Hourglass_White: setFixedSize(GIF_HOURGLASS_WHITE, GIF_HOURGLASS_WHITE); break;
-        case Gif_Radio_Blue: setFixedSize(GIF_RADIO_BLUE, GIF_RADIO_BLUE); break;
-        case Gif_Check_Blue: setFixedSize(GIF_CHECK_BLUE, GIF_CHECK_BLUE); break;
-        case Gif_Record_red: setFixedSize(GIF_RECORD_RED, GIF_RECORD_RED); break;
-        case Gif_Close_White: setFixedSize(GIF_CLOSE_WHITE_WIDTH, GIF_CLOSE_WHITE_HEIGHT); break;
+        case BallonWhite: setFixedSize(GIF_BALLON_WHITE, GIF_BALLON_WHITE); break;
+        case CicleBlue: setFixedSize(GIF_CICLE_BLUE, GIF_CICLE_BLUE); break;
+        case RiceFontWhite: setFixedSize(GIF_RICE_FONT_WHITE, GIF_RICE_FONT_WHITE); break;
+        case RiceFontBlackBig: setFixedSize(GIF_RICE_FONT_BLACK_BIG, GIF_RICE_FONT_BLACK_BIG); break;
+        case RiceFontBlack: setFixedSize(GIF_RICE_FONT_BLACK, GIF_RICE_FONT_BLACK); break;
+        case HourglassWhite: setFixedSize(GIF_HOURGLASS_WHITE, GIF_HOURGLASS_WHITE); break;
+        case RadioBlue: setFixedSize(GIF_RADIO_BLUE, GIF_RADIO_BLUE); break;
+        case CheckBlue: setFixedSize(GIF_CHECK_BLUE, GIF_CHECK_BLUE); break;
+        case RecordRed: setFixedSize(GIF_RECORD_RED, GIF_RECORD_RED); break;
+        case CloseWhite: setFixedSize(GIF_CLOSE_WHITE_WIDTH, GIF_CLOSE_WHITE_HEIGHT); break;
         default: break;
     }
 }
@@ -115,7 +115,7 @@ void MusicGifLabelWidget::timeout()
     ++m_index;
     switch(m_type)
     {
-        case Gif_Ballon_White:
+        case BallonWhite:
         {
             if(m_index == 40 && infinitedModeCheck())
             {
@@ -126,7 +126,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case Gif_Cicle_Blue:
+        case CicleBlue:
         {
             if(m_index == 12 && infinitedModeCheck())
             {
@@ -137,7 +137,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case Gif_Rice_Font_White:
+        case RiceFontWhite:
         {
             if(m_index == 8 && infinitedModeCheck())
             {
@@ -148,7 +148,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case Gif_Rice_Font_Black_Big:
+        case RiceFontBlackBig:
         {
             if(m_index == 8 && infinitedModeCheck())
             {
@@ -159,7 +159,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case Gif_Rice_Font_Black:
+        case RiceFontBlack:
         {
             if(m_index == 12 && infinitedModeCheck())
             {
@@ -170,7 +170,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case Gif_Hourglass_White:
+        case HourglassWhite:
         {
             if(m_index == 16 && infinitedModeCheck())
             {
@@ -181,7 +181,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case Gif_Radio_Blue:
+        case RadioBlue:
         {
             if(m_index == 10 && infinitedModeCheck())
             {
@@ -192,7 +192,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case Gif_Check_Blue:
+        case CheckBlue:
         {
             if(m_index == 22 && infinitedModeCheck())
             {
@@ -203,7 +203,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case Gif_Record_red:
+        case RecordRed:
         {
             if(m_index == 5 && infinitedModeCheck())
             {
@@ -214,7 +214,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case Gif_Close_White:
+        case CloseWhite:
         {
             if(m_index == 12 && infinitedModeCheck())
             {

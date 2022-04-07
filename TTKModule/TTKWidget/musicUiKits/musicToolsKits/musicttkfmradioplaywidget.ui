@@ -170,7 +170,7 @@
     <string notr="true">font-size:20px;font-weight:bold;color:white</string>
    </property>
    <property name="text">
-    <string>00:00:00</string>
+    <string>00:00</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>

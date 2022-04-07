@@ -31,8 +31,8 @@ class TTK_MODULE_EXPORT MusicTime
 public:
     enum Type
     {
-        All_Msec,   /*!< Current time entity is msec*/
-        All_Sec     /*!< Current time entity is sec*/
+        AllMsec,   /*!< Current time entity is msec*/
+        AllSec     /*!< Current time entity is sec*/
     };
 
     /*!

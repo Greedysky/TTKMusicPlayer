@@ -394,7 +394,7 @@ void MusicLrcAnalysis::saveLrcData()
     while(it.hasNext())
     {
         it.next();
-        data.append(MusicTime::toString(it.key(), MusicTime::All_Msec, "[mm:ss.zzz]"));
+        data.append(MusicTime::toString(it.key(), MusicTime::AllMsec, "[mm:ss.zzz]"));
         data.append(it.value() + "\n");
     }
 

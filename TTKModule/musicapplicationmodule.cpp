@@ -249,7 +249,7 @@ void MusicApplicationModule::windowCloseAnimationFinished()
         m_quitContainer->setAttribute(Qt::WA_TranslucentBackground);
 
         MusicGifLabelWidget *gifWidget = new MusicGifLabelWidget(m_quitContainer);
-        gifWidget->setType(MusicGifLabelWidget::Gif_Close_White);
+        gifWidget->setType(MusicGifLabelWidget::CloseWhite);
         gifWidget->setInterval(25 * MT_MS);
         gifWidget->setInfinited(false);
         m_quitContainer->resize(gifWidget->size());

@@ -1115,7 +1115,7 @@
         <channel name="嘉善人民广播电台" location="浙江" url="http://116.62.31.234:1935/jsgdfm99.3/myStream/playlist.m3u8"/>
         <channel name="西宁新闻综合广播" location="青海" url="http://180.150.191.89/live/3377772.m3u8?deviceid=2d0b102230b947539a30a260dc141d8e"/>
         <channel name="西宁新闻综合广播" location="青海" url="http://ls.qingting.fm/live/5022282/24k.m3u8"/>
-        <channel name="三亚天涯之声" location="7070"" url=""rtsp://221.212.177.248:554/broadcast/sanya.rm?cloakport=8080"/>
+        <channel name="三亚天涯之声" location="7070" url="rtsp://221.212.177.248:554/broadcast/sanya.rm?cloakport=8080"/>
         <channel name="三亚天涯之声" location="海南" url="http://180.150.191.89/live/68236.m3u8?deviceid=2d0b102230b947539a30a260dc141d8e"/>
         <channel name="三亚天涯之声" location="海南" url="http://live.xmcdn.com/live/531/64.m3u8"/>
         <channel name="海口新闻综合广播" location="海南" url="http://live.anyradio.cn/10.251.25.34/radios/135621/index_135621.m3u8"/>

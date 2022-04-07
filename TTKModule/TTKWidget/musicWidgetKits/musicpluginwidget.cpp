@@ -23,7 +23,7 @@ class MusicPluginItem : public QTreeWidgetItem
 {
 public:
     MusicPluginItem(QTreeWidgetItem *parent, DecoderFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, DECODER)
+        : QTreeWidgetItem(parent, PDecoder)
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
@@ -35,7 +35,7 @@ public:
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, EffectFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, EFFECT)
+        : QTreeWidgetItem(parent, PEffect)
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
@@ -46,7 +46,7 @@ public:
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, VisualFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, VISUAL)
+        : QTreeWidgetItem(parent, PVisual)
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
@@ -57,7 +57,7 @@ public:
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, InputSourceFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, TRANSPORTS)
+        : QTreeWidgetItem(parent, PTransports)
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
@@ -68,7 +68,7 @@ public:
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, OutputFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, OUTPUT)
+        : QTreeWidgetItem(parent, POutput)
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
@@ -80,22 +80,22 @@ public:
 
     enum PluginType
     {
-        DECODER = QTreeWidgetItem::UserType,
-        EFFECT,
-        VISUAL,
-        TRANSPORTS,
-        OUTPUT
+        PDecoder = QTreeWidgetItem::UserType,
+        PEffect,
+        PVisual,
+        PTransports,
+        POutput
     };
 
     bool hasSettings() const
     {
         switch(type())
         {
-            case MusicPluginItem::DECODER: return TTKStatic_cast(DecoderFactory*, m_factory)->properties().hasSettings;
-            case MusicPluginItem::EFFECT: return false;
-            case MusicPluginItem::VISUAL: return false;
-            case MusicPluginItem::TRANSPORTS: return TTKStatic_cast(InputSourceFactory*, m_factory)->properties().hasSettings;
-            case MusicPluginItem::OUTPUT: return TTKStatic_cast(OutputFactory*, m_factory)->properties().hasSettings;
+            case MusicPluginItem::PDecoder: return TTKStatic_cast(DecoderFactory*, m_factory)->properties().hasSettings;
+            case MusicPluginItem::PEffect: return false;
+            case MusicPluginItem::PVisual: return false;
+            case MusicPluginItem::PTransports: return TTKStatic_cast(InputSourceFactory*, m_factory)->properties().hasSettings;
+            case MusicPluginItem::POutput: return TTKStatic_cast(OutputFactory*, m_factory)->properties().hasSettings;
             default: return false;
         }
     }
@@ -104,11 +104,11 @@ public:
     {
         switch(type())
         {
-            case MusicPluginItem::DECODER: TTKStatic_cast(DecoderFactory*, m_factory)->showSettings(treeWidget()); break;
-            case MusicPluginItem::EFFECT: break;
-            case MusicPluginItem::VISUAL: break;
-            case MusicPluginItem::TRANSPORTS: TTKStatic_cast(InputSourceFactory*, m_factory)->showSettings(treeWidget()); break;
-            case MusicPluginItem::OUTPUT: TTKStatic_cast(OutputFactory*, m_factory)->showSettings(treeWidget()); break;
+            case MusicPluginItem::PDecoder: TTKStatic_cast(DecoderFactory*, m_factory)->showSettings(treeWidget()); break;
+            case MusicPluginItem::PEffect: break;
+            case MusicPluginItem::PVisual: break;
+            case MusicPluginItem::PTransports: TTKStatic_cast(InputSourceFactory*, m_factory)->showSettings(treeWidget()); break;
+            case MusicPluginItem::POutput: TTKStatic_cast(OutputFactory*, m_factory)->showSettings(treeWidget()); break;
             default: break;
         }
     }
@@ -117,11 +117,11 @@ public:
     {
         switch(type())
         {
-            case MusicPluginItem::DECODER: Decoder::setEnabled(TTKStatic_cast(DecoderFactory*, m_factory), enabled); break;
-            case MusicPluginItem::EFFECT: break;
-            case MusicPluginItem::VISUAL: break;
-            case MusicPluginItem::TRANSPORTS: InputSource::setEnabled(TTKStatic_cast(InputSourceFactory*, m_factory), enabled); break;
-            case MusicPluginItem::OUTPUT:
+            case MusicPluginItem::PDecoder: Decoder::setEnabled(TTKStatic_cast(DecoderFactory*, m_factory), enabled); break;
+            case MusicPluginItem::PEffect: break;
+            case MusicPluginItem::PVisual: break;
+            case MusicPluginItem::PTransports: InputSource::setEnabled(TTKStatic_cast(InputSourceFactory*, m_factory), enabled); break;
+            case MusicPluginItem::POutput:
             {
                 if(enabled)
                 {
@@ -226,9 +226,9 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
 
 void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
 {
-    if(column == 0 && (item->type() == MusicPluginItem::DECODER || item->type() == MusicPluginItem::TRANSPORTS || item->type() == MusicPluginItem::OUTPUT))
+    if(column == 0 && (item->type() == MusicPluginItem::PDecoder || item->type() == MusicPluginItem::PTransports || item->type() == MusicPluginItem::POutput))
     {
-        if(item->type() == MusicPluginItem::OUTPUT)
+        if(item->type() == MusicPluginItem::POutput)
         {
             QTreeWidgetItem *parent = item->parent();
             if(!parent)

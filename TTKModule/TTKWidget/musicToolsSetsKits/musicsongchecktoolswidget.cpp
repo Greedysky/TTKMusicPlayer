@@ -250,7 +250,7 @@ void MusicSongCheckToolsWidget::initRenameWidget()
 #endif
 
     m_ui->renameSelectAllButton->setEnabled(false);
-    m_ui->renameLoadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
+    m_ui->renameLoadingLabel->setType(MusicGifLabelWidget::CicleBlue);
     m_ui->renameLoadingLabel->hide();
     m_ui->renameReCheckButton->hide();
 
@@ -270,7 +270,7 @@ void MusicSongCheckToolsWidget::initQualityWidget()
     m_ui->qualityCheckButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    m_ui->qualityLoadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
+    m_ui->qualityLoadingLabel->setType(MusicGifLabelWidget::CicleBlue);
     m_ui->qualityLoadingLabel->hide();
     m_ui->qualityReCheckButton->hide();
 
@@ -294,7 +294,7 @@ void MusicSongCheckToolsWidget::initDuplicateWidget()
 #endif
 
     m_ui->duplicateSelectAllButton->setEnabled(false);
-    m_ui->duplicateLoadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
+    m_ui->duplicateLoadingLabel->setType(MusicGifLabelWidget::CicleBlue);
     m_ui->duplicateLoadingLabel->hide();
     m_ui->duplicateReCheckButton->hide();
 

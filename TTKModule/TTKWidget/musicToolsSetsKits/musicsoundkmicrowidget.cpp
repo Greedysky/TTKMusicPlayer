@@ -45,8 +45,8 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     setButtonStyle(true);
     setStateButtonStyle(true);
 
-    m_ui->gifLabel->setType(MusicGifLabelWidget::Gif_Record_red);
-    m_ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
+    m_ui->gifLabel->setType(MusicGifLabelWidget::RecordRed);
+    m_ui->loadingLabel->setType(MusicGifLabelWidget::CicleBlue);
     m_ui->loadingLabel->hide();
 
     m_ui->volumeButton->setValue(100);

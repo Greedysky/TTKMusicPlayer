@@ -9,7 +9,7 @@ MusicBDTranslationRequest::MusicBDTranslationRequest(QObject *parent)
 
 void MusicBDTranslationRequest::startToDownload(const QString &data)
 {
-    startToDownload(MusicBDTranslationRequest::Type_Auto, MusicBDTranslationRequest::Type_Zh, data);
+    startToDownload(MusicBDTranslationRequest::TypeAuto, MusicBDTranslationRequest::TypeZh, data);
 }
 
 void MusicBDTranslationRequest::startToDownload(TranslationType from, TranslationType to, const QString &data)
@@ -35,23 +35,23 @@ QString MusicBDTranslationRequest::mapTypeFromEnumToString(TranslationType type)
 {
     switch(type)
     {
-        case Type_Auto: return "auto";
-        case Type_Ara: return "ara";
-        case Type_De: return "de";
-        case Type_Ru: return "ru";
-        case Type_Fra: return "fra";
-        case Type_Kor: return "kor";
-        case Type_Nl: return "nl";
-        case Type_Pt: return "pt";
-        case Type_Jp: return "jp";
-        case Type_Th: return "th";
-        case Type_Wyw: return "wyw";
-        case Type_Spa: return "spa";
-        case Type_El: return "el";
-        case Type_It: return "it";
-        case Type_En: return "en";
-        case Type_Yue: return "yue";
-        case Type_Zh: return "zh";
+        case TypeAuto: return "auto";
+        case TypeAra: return "ara";
+        case TypeDe: return "de";
+        case TypeRu: return "ru";
+        case TypeFra: return "fra";
+        case TypeKor: return "kor";
+        case TypeNl: return "nl";
+        case TypePt: return "pt";
+        case TypeJp: return "jp";
+        case TypeTh: return "th";
+        case TypeWyw: return "wyw";
+        case TypeSpa: return "spa";
+        case TypeEl: return "el";
+        case TypeIt: return "it";
+        case TypeEn: return "en";
+        case TypeYue: return "yue";
+        case TypeZh: return "zh";
         default: return QString();
     }
 }
