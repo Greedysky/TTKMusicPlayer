@@ -22,7 +22,8 @@
 #include "qmmp_export.h"
 
 namespace VisualPalette {
-typedef enum palette {
+typedef enum palette
+{
     PALETTE_SPECTRUM,
     PALETTE_SPECTROGRAM,
     PALETTE_SOX,

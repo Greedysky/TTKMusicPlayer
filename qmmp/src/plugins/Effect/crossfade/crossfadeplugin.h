@@ -41,10 +41,10 @@ public:
 private:
     enum State
     {
-        WAITING = 0,
-        CHECKING,
-        PREPARING,
-        PROCESSING,
+        Waiting = 0,
+        Checking,
+        Preparing,
+        Processing,
     };
 
     void mix(float *cur_buf, float *prev_buf, uint samples, double volume);
@@ -53,7 +53,7 @@ private:
     size_t m_buffer_at = 0;
     size_t m_buffer_size = 0;
     qint64 m_overlap;
-    int m_state = WAITING;
+    int m_state = Waiting;
     SoundCore *m_core;
     StateHandler *m_handler;
 

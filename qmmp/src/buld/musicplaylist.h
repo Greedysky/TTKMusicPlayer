@@ -24,11 +24,11 @@
 
 enum SongPlayType
     {
-        MC_PlayOrder = 1,
-        MC_PlayRandom,
-        MC_PlayListLoop,
-        MC_PlayOneLoop,
-        MC_PlayOnce
+        PlayOrder = 1,
+        PlayRandom,
+        PlayListLoop,
+        PlayOneLoop,
+        PlayOnce
     };
 
 class MusicPlaylist : public QObject

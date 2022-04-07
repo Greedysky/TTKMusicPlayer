@@ -209,7 +209,7 @@ LADSPAControl *LADSPAHost::createControl(const LADSPA_Descriptor *desc, unsigned
 
     if(LADSPA_IS_HINT_TOGGLED(hint.HintDescriptor))
     {
-        c->type = LADSPAControl::BUTTON;
+        c->type = LADSPAControl::Button;
         c->min = 0;
         c->max = 0;
         c->step = 0;
@@ -275,9 +275,9 @@ LADSPAControl *LADSPAHost::createControl(const LADSPA_Descriptor *desc, unsigned
         start = min * 0.5f + max * 0.5f;
 
     if(LADSPA_IS_PORT_OUTPUT(desc->PortDescriptors[port]))
-        c->type = LADSPAControl::LABEL;
+        c->type = LADSPAControl::Label;
     else
-        c->type = LADSPAControl::SLIDER;
+        c->type = LADSPAControl::Slider;
     c->min = min;
     c->max = max;
     c->step = step;

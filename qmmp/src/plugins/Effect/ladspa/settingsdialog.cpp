@@ -85,16 +85,16 @@ void SettingsDialog::on_configureButton_clicked()
     {
         switch((int) c->type)
         {
-        case LADSPAControl::BUTTON:
+        case LADSPAControl::Button:
             button = new LADSPAButton(&c->value, dialog);
             button->setText(c->name);
             formLayout->addRow(button);
             break;
-        case LADSPAControl::SLIDER:
+        case LADSPAControl::Slider:
             slider = new LADSPASlider(c->min, c->max, c->step, &c->value, dialog);
             formLayout->addRow(c->name, slider);
             break;
-        case LADSPAControl::LABEL:
+        case LADSPAControl::Label:
             label = new QLabel(this);
             label->setText(QString("%1").arg(c->value));
             label->setFrameStyle(QFrame::StyledPanel);

@@ -32,7 +32,13 @@ class SettingsDialog : public QDialog
 public:
     explicit SettingsDialog(QWidget *parent = nullptr);
 
-    enum TagType {ID3v1 = 0, ID3v2, APE, Disabled};
+    enum TagType
+    {
+        ID3v1 = 0,
+        ID3v2,
+        APE,
+        Disabled
+    };
 
 public slots:
     virtual void accept() override final;

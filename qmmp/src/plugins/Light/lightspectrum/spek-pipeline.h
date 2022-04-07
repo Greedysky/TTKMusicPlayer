@@ -26,7 +26,8 @@ class AudioFile;
 class FFTPlan;
 struct spek_pipeline;
 
-enum WindowFunction {
+enum WindowFunction
+{
     WINDOW_HANN,
     WINDOW_HAMMING,
     WINDOW_BLACKMAN_HARRIS,

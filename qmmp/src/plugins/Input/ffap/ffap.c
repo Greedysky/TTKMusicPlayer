@@ -105,7 +105,8 @@ static inline uint32_t bytestream_get_be32 (const uint8_t **ptr) {
  * Possible compression levels
  * @{
  */
-enum APECompressionLevel {
+enum APECompressionLevel
+{
     COMPRESSION_LEVEL_FAST       = 1000,
     COMPRESSION_LEVEL_NORMAL     = 2000,
     COMPRESSION_LEVEL_HIGH       = 3000,

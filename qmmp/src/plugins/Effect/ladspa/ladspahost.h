@@ -52,9 +52,9 @@ class LADSPAControl
 public:
     enum Type
     {
-        BUTTON = 0,
-        SLIDER,
-        LABEL
+        Button = 0,
+        Slider,
+        Label
     };
 
     double min;

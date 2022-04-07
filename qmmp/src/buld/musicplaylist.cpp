@@ -6,7 +6,7 @@ MusicPlaylist::MusicPlaylist(QObject *parent)
 {
     qsrand(time(0));
     m_currentIndex = 0;
-    m_playbackMode = MC_PlayOrder;
+    m_playbackMode = PlayOrder;
 }
 
 SongPlayType MusicPlaylist::playbackMode() const
@@ -130,23 +130,23 @@ void MusicPlaylist::setCurrentIndex(int index)
     {
         switch(m_playbackMode)
         {
-            case MC_PlayOneLoop: break;
-            case MC_PlayOrder:
+            case PlayOneLoop: break;
+            case PlayOrder:
                 if(++m_currentIndex >= m_mediaList.count())
                 {
                     m_currentIndex = -1;
                 }
                 break;
-            case MC_PlayListLoop:
+            case PlayListLoop:
                 if(++m_currentIndex >= m_mediaList.count())
                 {
                     m_currentIndex = 0;
                 }
                 break;
-            case MC_PlayRandom:
+            case PlayRandom:
                 m_currentIndex = rand() % m_mediaList.count();
                 break;
-            case MC_PlayOnce :
+            case PlayOnce :
                 break;
         }
     }

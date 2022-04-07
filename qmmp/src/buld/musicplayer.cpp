@@ -136,7 +136,7 @@ void MusicPlayer::setTimeOut()
     if(!(state == Qmmp::Playing || state == Qmmp::Paused || state == Qmmp::Buffering))
     {
         m_timer.stop();
-        if(m_playlist->playbackMode() == MC_PlayOnce)
+        if(m_playlist->playbackMode() == PlayOnce)
         {
             m_music->stop();
             emit positionChanged(0);
@@ -144,7 +144,7 @@ void MusicPlayer::setTimeOut()
             return;
         }
         m_playlist->setCurrentIndex();
-        if(m_playlist->playbackMode() == MC_PlayOrder &&
+        if(m_playlist->playbackMode() == PlayOrder &&
            m_playlist->currentIndex() == -1)
         {
             m_music->stop();

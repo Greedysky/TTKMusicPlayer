@@ -25,21 +25,21 @@ void CrossfadePlugin::applyEffect(Buffer *b)
 {
     switch(m_state)
     {
-    case WAITING:
+    case Waiting:
         if((m_core->duration() > m_overlap + 2000) && (m_core->duration() - m_handler->elapsed() < m_overlap + 2000))
         {
             StateHandler::instance()->sendNextTrackRequest();
-            m_state = CHECKING;
+            m_state = Checking;
         }
         break;
-    case CHECKING:
+    case Checking:
         //next source has been received and current engine will be used to play it
         if(SoundCore::instance()->nextTrackAccepted())
         {
-            m_state = PREPARING;
+            m_state = Preparing;
         }
         break;
-    case PREPARING:
+    case Preparing:
         if(m_core->duration() && (m_core->duration() - m_handler->elapsed() <  m_overlap))
         {
             if(m_buffer_at + b->samples > m_buffer_size)
@@ -67,10 +67,10 @@ void CrossfadePlugin::applyEffect(Buffer *b)
         }
         else if(m_buffer_at > 0)
         {
-            m_state = PROCESSING;
+            m_state = Processing;
         }
         break;
-    case PROCESSING:
+    case Processing:
         if(m_buffer_at > 0)
         {
             double volume = (double)m_buffer_at/m_buffer_size;
@@ -81,7 +81,7 @@ void CrossfadePlugin::applyEffect(Buffer *b)
         }
         else
         {
-            m_state = WAITING;
+            m_state = Waiting;
         }
         break;
     default:
