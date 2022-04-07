@@ -68,7 +68,7 @@ MusicTransformWidget::~MusicTransformWidget()
     delete m_ui;
 }
 
-void MusicTransformWidget::initialize() const
+void MusicTransformWidget::initialize()
 {
     m_ui->formatCombo->addItems({"MP3", "WAV", "WMA", "OGG", "FLAC", "AC3", "AAC"});
     m_ui->kbpsCombo->addItems({"32", "48", "56", "64", "80", "96", "112", "128", "192", "224", "256", "320"});

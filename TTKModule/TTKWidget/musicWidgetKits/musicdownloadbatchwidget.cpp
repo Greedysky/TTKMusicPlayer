@@ -4,8 +4,6 @@
 #include "musicdownloadrecordconfigmanager.h"
 #include "musicdownloadtagdatarequest.h"
 
-#include <QTimer>
-
 Q_DECLARE_METATYPE(MusicObject::MusicSongProperty)
 
 MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)

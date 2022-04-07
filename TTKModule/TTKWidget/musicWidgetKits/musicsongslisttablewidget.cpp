@@ -16,8 +16,6 @@
 
 #include <qmath.h>
 #include <QAction>
-#include <QTimer>
-#include <QMouseEvent>
 
 #define SEARCH_ITEM_DEFINED(index, names)                                                   \
     case index:                                                                             \

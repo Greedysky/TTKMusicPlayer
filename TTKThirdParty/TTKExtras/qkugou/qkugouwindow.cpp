@@ -18,7 +18,6 @@
 #  endif
 #endif
 
-#include <QTimer>
 #include <QLabel>
 #include <QBoxLayout>
 #include <QPushButton>

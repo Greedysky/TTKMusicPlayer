@@ -153,7 +153,6 @@ MusicDownloadWidget::~MusicDownloadWidget()
 void MusicDownloadWidget::initialize()
 {
     m_ui->loadingLabel->run(true);
-
     controlEnabled(true);
 
     if(m_queryType == MusicAbstractQueryRequest::MovieQuery)

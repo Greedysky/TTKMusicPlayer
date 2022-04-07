@@ -3,7 +3,6 @@
 #include "musicinteriorfloatuiobject.h"
 #include "musiclrcdefines.h"
 
-#include <QTimer>
 #include <QButtonGroup>
 
 MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)

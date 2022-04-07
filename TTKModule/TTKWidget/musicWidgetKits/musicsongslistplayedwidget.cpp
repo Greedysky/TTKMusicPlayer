@@ -8,7 +8,8 @@
 #include <QTimer>
 
 MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *parent)
-    : QWidget(parent), m_parentClass(parent)
+    : QWidget(parent),
+      m_parentClass(parent)
 {
     QPalette pal = palette();
     pal.setBrush(QPalette::Base, QBrush(QColor(0, 0, 0, 20)));

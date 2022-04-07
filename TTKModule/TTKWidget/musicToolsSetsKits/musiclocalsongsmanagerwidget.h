@@ -20,8 +20,6 @@
  ***************************************************************************/
 
 #include <QFileInfo>
-#include <QMouseEvent>
-
 #include "musicwidgetheaders.h"
 #include "musicabstractmovewidget.h"
 

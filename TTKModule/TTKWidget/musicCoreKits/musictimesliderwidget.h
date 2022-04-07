@@ -20,7 +20,6 @@
  ***************************************************************************/
 
 #include <QWidget>
-#include <QMouseEvent>
 #include "musicglobaldefine.h"
 
 class MusicGifLabelWidget;

@@ -10,9 +10,6 @@
 
 #include "qsync/qsyncutils.h"
 
-#include <QEvent>
-#include <QTimer>
-
 #define OS_ITEM_SIZE        QSize(165, 110)
 #define OS_COUNT            10
 

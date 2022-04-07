@@ -1,7 +1,6 @@
 #include "musiclrcmanager.h"
 #include "musicwidgetutils.h"
 
-#include <QFile>
 #include <QFontDatabase>
 
 MusicLrcColor::MusicLrcColor()

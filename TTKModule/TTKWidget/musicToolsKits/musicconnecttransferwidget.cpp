@@ -7,8 +7,6 @@
 #include "musicsongssummariziedwidget.h"
 #include "musicconnecttransferthread.h"
 
-#include <QFile>
-#include <QTimer>
 #include <QButtonGroup>
 
 MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)

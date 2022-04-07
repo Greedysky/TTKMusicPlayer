@@ -1,10 +1,10 @@
 #include "musicfunctiontoolboxwidget.h"
 #include "musicwidgetutils.h"
 
-#include <QScrollArea>
-#include <QMouseEvent>
 #include <QDrag>
 #include <QMimeData>
+#include <QScrollArea>
+#include <QMouseEvent>
 
 #define DRAG_FORMAT     "Swap Item"
 
