@@ -7,7 +7,7 @@ MusicM3UConfigManager::MusicM3UConfigManager()
 
 }
 
-bool MusicM3UConfigManager::readPlaylistData(MusicSongItemList &items)
+bool MusicM3UConfigManager::readBuffer(MusicSongItemList &items)
 {
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file.fileName()).baseName();
@@ -52,7 +52,7 @@ bool MusicM3UConfigManager::readPlaylistData(MusicSongItemList &items)
     return true;
 }
 
-bool MusicM3UConfigManager::writePlaylistData(const MusicSongItemList &items, const QString &path)
+bool MusicM3UConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
 {
     if(items.isEmpty())
     {

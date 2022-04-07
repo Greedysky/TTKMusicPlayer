@@ -235,7 +235,6 @@ protected:
     Ui::MusicLrcMakerWidget *m_ui;
     QStringList m_plainText;
     QMap<int, qint64> m_times;
-
     int m_currentLine;
     MusicObject::PlayMode m_playMode;
     qint64 m_intervalTime;

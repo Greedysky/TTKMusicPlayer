@@ -30,7 +30,7 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
     connect(m_timer, SIGNAL(timeout()), SLOT(detectedTimeOut()));
 
     m_lrcLabel = nullptr;
-    m_mediaPlayer = nullptr;
+    m_player = nullptr;
     m_analysis = nullptr;
     m_recordCore = new MusicAudioRecorderModule(this);
     m_detectedThread = new MusicIdentifySongsRequest(this);
@@ -45,7 +45,7 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
 MusicIdentifySongsWidget::~MusicIdentifySongsWidget()
 {
     delete m_timer;
-    delete m_mediaPlayer;
+    delete m_player;
     delete m_analysis;
     delete m_recordCore;
     delete m_detectedThread;
@@ -101,9 +101,9 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
 void MusicIdentifySongsWidget::reDetectButtonClicked()
 {
     m_mainWindow->setCurrentIndex(IDENTIFY_SONGS_INDEX_0);
-    if(m_mediaPlayer)
+    if(m_player)
     {
-        m_mediaPlayer->stop();
+        m_player->stop();
     }
 }
 
@@ -129,14 +129,14 @@ void MusicIdentifySongsWidget::detectedTimeOut()
 
 void MusicIdentifySongsWidget::musicSongPlay()
 {
-    if(!m_mediaPlayer)
+    if(!m_player)
     {
         return;
     }
 
     if(!m_currentSong.m_songProps.isEmpty())
     {
-        m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, m_currentSong.m_songProps.front().m_url);
+        m_player->setMedia(MusicCoreMPlayer::MusicCategory, m_currentSong.m_songProps.front().m_url);
     }
 }
 
@@ -165,7 +165,7 @@ void MusicIdentifySongsWidget::musicSongShare()
 
 void MusicIdentifySongsWidget::positionChanged(qint64 position)
 {
-    if(!m_mediaPlayer)
+    if(!m_player)
     {
         return;
     }
@@ -255,10 +255,10 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     }
     else
     {
-        m_mediaPlayer = new MusicCoreMPlayer(this);
+        m_player = new MusicCoreMPlayer(this);
         m_analysis = new MusicLrcAnalysis(this);
         m_analysis->setLineMax(11);
-        connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
+        connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     }
     const MusicSongIdentifyData songIdentify(m_detectedThread->identifySongs().front());
 
@@ -372,7 +372,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
 
         if(!m_currentSong.m_songProps.isEmpty())
         {
-            m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, m_currentSong.m_songProps.front().m_url);
+            m_player->setMedia(MusicCoreMPlayer::MusicCategory, m_currentSong.m_songProps.front().m_url);
         }
     }
 

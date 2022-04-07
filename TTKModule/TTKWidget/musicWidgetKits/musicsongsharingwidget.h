@@ -113,7 +113,6 @@ public Q_SLOTS:
 
 protected:
     Ui::MusicSongSharingWidget *m_ui;
-
     Type m_type;
     QVariantMap m_data;
     QRCodeQWidget *m_qrCodeWidget;

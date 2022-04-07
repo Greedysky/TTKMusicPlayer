@@ -145,8 +145,8 @@ protected:
      */
     void loadingLabelState(bool state);
 
-    bool m_runTypeChanged;
     Ui::MusicLocalSongsManagerWidget *m_ui;
+    bool m_runTypeChanged;
     QFileInfoList m_fileNames;
     MusicLocalSongsManagerThread *m_thread;
     TTKIntListMap m_searchResultCache;

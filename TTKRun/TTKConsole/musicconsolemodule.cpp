@@ -148,14 +148,15 @@ bool MusicConsoleModule::init(const QCoreApplication &app)
                 return false;
             }
 
-            MusicSongItemList items;
             MusicTKPLConfigManager manager;
-            if(!manager.readConfig(path))
+            if(!manager.fromFile(path))
             {
                 TTK_LOGGER_ERROR("Music playlist read error");
                 return false;
             }
-            manager.readPlaylistData(items);
+
+            MusicSongItemList items;
+            manager.readBuffer(items);
 
             for(const MusicSongItem &item : qAsConst(items))
             {

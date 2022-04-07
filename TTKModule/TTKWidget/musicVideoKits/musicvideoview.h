@@ -173,7 +173,7 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
     MusicViewWidget *m_videoWidget;
-    MusicCoreMPlayer *m_mediaPlayer;
+    MusicCoreMPlayer *m_player;
     MusicVideoControlWidget *m_videoControl;
     MusicBarrageWidget *m_barrageCore;
 

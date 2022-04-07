@@ -1,5 +1,5 @@
-#ifndef MUSICWEBFMRADIOPLAYWIDGET_H
-#define MUSICWEBFMRADIOPLAYWIDGET_H
+#ifndef MUSICTTKFMRADIOPLAYWIDGET_H
+#define MUSICTTKFMRADIOPLAYWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,36 +19,84 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include "musicabstractxml.h"
 #include "musicabstractmovewidget.h"
 
-class MusicLrcAnalysis;
+class QTreeWidgetItem;
 class MusicCoreMPlayer;
-class MusicFMRadioSongsRequest;
 
 namespace Ui {
-class MusicWebFMRadioPlayWidget;
+class MusicTTKFMRadioPlayWidget;
 }
 
-/*! @brief The class of the web music radio widget.
+/*! @brief The class of the fm category item.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWebFMRadioPlayWidget : public MusicAbstractMoveWidget
+struct TTK_MODULE_EXPORT MusicFMCategoryItem
+{
+    QString m_name;
+    QString m_location;
+    QString m_url;
+};
+TTK_DECLARE_LIST(MusicFMCategoryItem);
+
+
+/*! @brief The class of the fm category core.
+ * @author Greedysky <greedysky@163.com>
+ */
+struct TTK_MODULE_EXPORT MusicFMCategory
+{
+    QString m_category;
+    MusicFMCategoryItemList m_items;
+};
+TTK_DECLARE_LIST(MusicFMCategory);
+
+
+/*! @brief The class of the fm config manager.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicFMConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebFMRadioPlayWidget)
+    TTK_DECLARE_MODULE(MusicFMConfigManager)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebFMRadioPlayWidget(QWidget *parent = nullptr);
-    ~MusicWebFMRadioPlayWidget();
+    explicit MusicFMConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Update radio song by given id.
+     * Read datas from xml file.
      */
-    void updateRadioSong(const QString &id);
+    inline bool fromFile() { return MusicAbstractXml::fromFile(":/data/fmlist"); }
+
+    /*!
+     * Read datas from config file.
+     */
+    void readBuffer(MusicFMCategoryList &items);
+
+};
+
+
+/*! @brief The class of the web music radio widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicTTKFMRadioPlayWidget : public MusicAbstractMoveWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicTTKFMRadioPlayWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicTTKFMRadioPlayWidget(QWidget *parent = nullptr);
+    ~MusicTTKFMRadioPlayWidget();
 
 public Q_SLOTS:
+    /*!
+     * Radio item clicked changed.
+     */
+    void radioItemChanged(QTreeWidgetItem *item, int column);
     /*!
      * Media aution play error.
      */
@@ -70,29 +118,9 @@ public Q_SLOTS:
      */
     void radioVolume(int num);
     /*!
-     * Radio resource download.
-     */
-    void radioResourceDownload();
-    /*!
-     * Query song information finished.
-     */
-    void querySongInfoFinished();
-    /*!
-     * Lrc download state changed.
-     */
-    void lrcDownloadStateChanged();
-    /*!
-     * Small pic download state changed.
-     */
-    void picDownloadStateChanged();
-    /*!
      * Current position changed.
      */
     void positionChanged(qint64 position);
-    /*!
-     * Current duration changed.
-     */
-    void durationChanged(qint64 duration);
     /*!
      * Override show function.
      */
@@ -108,13 +136,11 @@ protected:
      */
     void createCoreModule();
 
-    Ui::MusicWebFMRadioPlayWidget *m_ui;
+    Ui::MusicTTKFMRadioPlayWidget *m_ui;
     bool m_isPlaying;
-    QString m_currentID;
-    MusicLrcAnalysis *m_analysis;
     MusicCoreMPlayer *m_player;
-    MusicFMRadioSongsRequest *m_songThread;
+    MusicFMCategoryItemList m_items;
 
 };
 
-#endif // MUSICWEBFMRADIOPLAYWIDGET_H
+#endif // MUSICTTKFMRADIOPLAYWIDGET_H

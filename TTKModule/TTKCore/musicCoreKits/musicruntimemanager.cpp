@@ -93,8 +93,8 @@ void MusicRunTimeManager::run() const
     G_NETWORK_PTR->start();
 
     MusicConfigManager xml;
-    xml.readConfig();
-    xml.readSysConfigData();
+    xml.fromFile();
+    xml.readBuffer();
 
     MusicObject::checkCacheSize();
     G_NETWORK_PTR->setBlockNetWork(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());

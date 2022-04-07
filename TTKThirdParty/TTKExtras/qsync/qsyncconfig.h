@@ -27,7 +27,7 @@
 /*! @brief The class of the sync data config.
  * @author Greedysky <greedysky@163.com>
  */
-struct TTK_MODULE_EXPORT QSyncConf
+struct TTK_MODULE_EXPORT QSyncConfig
 {
     static QString HOST;
     static QString NAME;

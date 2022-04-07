@@ -7,7 +7,7 @@ MusicASXConfigManager::MusicASXConfigManager()
 
 }
 
-bool MusicASXConfigManager::readPlaylistData(MusicSongItemList &items)
+bool MusicASXConfigManager::readBuffer(MusicSongItemList &items)
 {
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
@@ -49,14 +49,14 @@ bool MusicASXConfigManager::readPlaylistData(MusicSongItemList &items)
     return true;
 }
 
-bool MusicASXConfigManager::writePlaylistData(const MusicSongItemList &items, const QString &path)
+bool MusicASXConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
 {
-    if(items.isEmpty() || !writeConfig(path))
+    if(items.isEmpty() || !toFile(path))
     {
         return false;
     }
     //
-    QDomElement musicPlayerDom = createRoot("Asx", MusicXmlAttribute("version ", "3.0"));
+    QDomElement musicPlayerDom = createRoot("Asx", {"version ", "3.0"});
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
@@ -68,8 +68,8 @@ bool MusicASXConfigManager::writePlaylistData(const MusicSongItemList &items, co
             QDomElement trackDom = writeDomNode(musicPlayerDom, "Entry");
 
             writeDomText(trackDom, "Title", song.musicArtistBack());
-            writeDomElement(trackDom, "Ref", MusicXmlAttribute("href", song.musicPath()));
-            writeDomElement(trackDom, "Duration", MusicXmlAttribute("value", "00:" + song.musicPlayTime() + ".000"));
+            writeDomElement(trackDom, "Ref", {"href", song.musicPath()});
+            writeDomElement(trackDom, "Duration", {"value", "00:" + song.musicPlayTime() + ".000"});
             writeDomText(trackDom, "Author", APP_NAME);
         }
     }

@@ -120,8 +120,8 @@ protected:
      */
     void searchInLocalLrc();
 
-    QString m_currentName;
     Ui::MusicLrcLocalLinkWidget *m_ui;
+    QString m_currentName;
 
 };
 

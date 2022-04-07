@@ -117,7 +117,6 @@ protected:
     void switchToSelectedItemStyle(int index);
 
     Ui::MusicSongCheckToolsWidget *m_ui;
-
     MusicSongList m_localSongs;
     MusicSongCheckToolsRenameThread *m_renameCore;
     MusicSongCheckToolsDuplicateThread *m_duplicateCore;

@@ -94,7 +94,6 @@ protected:
      */
     QStringList selectedFiles() const;
 
-
     Ui::MusicConnectTransferWidget *m_ui;
     int m_currentIndex;
     MusicSongList m_currentSongs;

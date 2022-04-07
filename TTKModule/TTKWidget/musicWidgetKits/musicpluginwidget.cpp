@@ -190,20 +190,20 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     checkDelegate->setTreeModel(true);
     m_ui->treeWidget->setItemDelegateForColumn(0, checkDelegate);
 
-    MusicLabelDelegate *delegate_title = new MusicLabelDelegate(this);
-    delegate_title->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    delegate_title->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
-    m_ui->treeWidget->setItemDelegateForColumn(1, delegate_title);
+    MusicLabelDelegate *delegateTitle = new MusicLabelDelegate(this);
+    delegateTitle->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    delegateTitle->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->treeWidget->setItemDelegateForColumn(1, delegateTitle);
 
-    MusicLabelDelegate *delegate_name = new MusicLabelDelegate(this);
-    delegate_name->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    delegate_name->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
-    m_ui->treeWidget->setItemDelegateForColumn(2, delegate_name);
+    MusicLabelDelegate *delegateName = new MusicLabelDelegate(this);
+    delegateName->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    delegateName->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->treeWidget->setItemDelegateForColumn(2, delegateName);
 
-    MusicLabelDelegate *delegate_setting = new MusicLabelDelegate(this);
-    delegate_setting->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    delegate_setting->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
-    m_ui->treeWidget->setItemDelegateForColumn(3, delegate_setting);
+    MusicLabelDelegate *delegateSetting = new MusicLabelDelegate(this);
+    delegateSetting->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    delegateSetting->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->treeWidget->setItemDelegateForColumn(3, delegateSetting);
 
     m_ui->treeWidget->setColumnWidth(0, 65);
     m_ui->treeWidget->setColumnWidth(1, 210);
@@ -280,48 +280,48 @@ void MusicPluginWidget::loadPluginsInfo()
     QTreeWidgetItem *item = nullptr;
     item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Decoder")});
     item->setFirstColumnSpanned(true);
+    item->setExpanded(true);
     for(DecoderFactory *factory : Decoder::factories())
     {
-        new MusicPluginItem(item, factory,  Decoder::file(factory));
+        new MusicPluginItem(item, factory, Decoder::file(factory));
     }
     m_ui->treeWidget->addTopLevelItem(item);
-    item->setExpanded(true);
 
     item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Effect")});
     item->setFirstColumnSpanned(true);
+    item->setExpanded(true);
     for(EffectFactory *factory : Effect::factories())
     {
         new MusicPluginItem(item, factory, Effect::file(factory));
     }
     m_ui->treeWidget->addTopLevelItem(item);
-    item->setExpanded(true);
 
     item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Visualization")});
     item->setFirstColumnSpanned(true);
+    item->setExpanded(true);
     for(VisualFactory *factory : Visual::factories())
     {
         new MusicPluginItem(item, factory, Visual::file(factory));
     }
     m_ui->treeWidget->addTopLevelItem(item);
-    item->setExpanded(true);
 
     item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Transport")});
     item->setFirstColumnSpanned(true);
+    item->setExpanded(true);
     for(InputSourceFactory *factory : InputSource::factories())
     {
         new MusicPluginItem(item, factory, InputSource::file(factory));
     }
     m_ui->treeWidget->addTopLevelItem(item);
-    item->setExpanded(true);
 
     item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Output")});
     item->setFirstColumnSpanned(true);
+    item->setExpanded(true);
     for(OutputFactory *factory : Output::factories())
     {
         new MusicPluginItem(item, factory, Output::file(factory));
     }
     m_ui->treeWidget->addTopLevelItem(item);
-    item->setExpanded(true);
 
     m_ui->treeWidget->blockSignals(false);
 }

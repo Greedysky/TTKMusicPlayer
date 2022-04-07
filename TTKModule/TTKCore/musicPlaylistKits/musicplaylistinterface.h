@@ -36,9 +36,9 @@ public:
     }
 
     /*!
-     * Read datas from xml file by given name.
+     * Read datas from file by given name.
      */
-    inline bool readConfig(const QString &name)
+    inline bool fromFile(const QString &name)
     {
         m_file.setFileName(name);
         return m_file.open(QFile::ReadOnly);
@@ -66,11 +66,11 @@ public:
     /*!
      * Read datas from config file.
      */
-    virtual bool readPlaylistData(MusicSongItemList &items) = 0;
+    virtual bool readBuffer(MusicSongItemList &items) = 0;
     /*!
      * Write datas into config file.
      */
-    virtual bool writePlaylistData(const MusicSongItemList &items, const QString &path) = 0;
+    virtual bool writeBuffer(const MusicSongItemList &items, const QString &path) = 0;
 
 };
 

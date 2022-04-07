@@ -21,7 +21,7 @@
 
 #include "musicplaylistinterface.h"
 
-/*! @brief The class of the csv playlist Config Manager.
+/*! @brief The class of the csv playlist config manager.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicCSVConfigManager : public MusicPlaylistReader, private MusicPlaylistInterface
@@ -36,11 +36,11 @@ public:
     /*!
      * Read datas from config file.
      */
-    virtual bool readPlaylistData(MusicSongItemList &items) override final;
+    virtual bool readBuffer(MusicSongItemList &items) override final;
     /*!
      * Write datas into config file.
      */
-    virtual bool writePlaylistData(const MusicSongItemList &items, const QString &path) override final;
+    virtual bool writeBuffer(const MusicSongItemList &items, const QString &path) override final;
 
 };
 

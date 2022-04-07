@@ -39,7 +39,7 @@ void MusicBackgroundListItem::updatePixImage(const MusicBackgroundImage &image)
     setPixmap(image.m_pix.scaled(size()));
 }
 
-bool MusicBackgroundListItem::contains(const MusicSkinConfigItem &item) const
+bool MusicBackgroundListItem::contains(const MusicSkinItem &item) const
 {
     if(item.isValid() && m_imageInfo.isValid())
     {

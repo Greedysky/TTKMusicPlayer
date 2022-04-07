@@ -7,7 +7,7 @@ MusicCSVConfigManager::MusicCSVConfigManager()
 
 }
 
-bool MusicCSVConfigManager::readPlaylistData(MusicSongItemList &items)
+bool MusicCSVConfigManager::readBuffer(MusicSongItemList &items)
 {
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file.fileName()).baseName();
@@ -35,7 +35,7 @@ bool MusicCSVConfigManager::readPlaylistData(MusicSongItemList &items)
     return true;
 }
 
-bool MusicCSVConfigManager::writePlaylistData(const MusicSongItemList &items, const QString &path)
+bool MusicCSVConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
 {
     if(items.isEmpty())
     {

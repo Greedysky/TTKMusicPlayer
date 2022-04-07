@@ -102,9 +102,9 @@ void MusicPlaylistManager::musicSongItems(const QStringList& paths, MusicSongIte
 bool MusicPlaylistManager::readTKPLConfig(const QString &path, MusicSongItemList &items)
 {
     MusicTKPLConfigManager manager;
-    if(manager.readConfig(path))
+    if(manager.fromFile(path))
     {
-        return manager.readPlaylistData(items);
+        return manager.readBuffer(items);
     }
     return false;
 }
@@ -112,15 +112,15 @@ bool MusicPlaylistManager::readTKPLConfig(const QString &path, MusicSongItemList
 bool MusicPlaylistManager::writeTKPLConfig(const QString &path, const MusicSongItem &item)
 {
     MusicTKPLConfigManager manager;
-    return manager.writePlaylistData({item}, path);
+    return manager.writeBuffer({item}, path);
 }
 
 bool MusicPlaylistManager::readM3UConfig(const QString &path, MusicSongItemList &items)
 {
     MusicM3UConfigManager manager;
-    if(manager.readConfig(path))
+    if(manager.fromFile(path))
     {
-        return manager.readPlaylistData(items);
+        return manager.readBuffer(items);
     }
     return false;
 }
@@ -128,15 +128,15 @@ bool MusicPlaylistManager::readM3UConfig(const QString &path, MusicSongItemList 
 bool MusicPlaylistManager::writeM3UConfig(const QString &path, const MusicSongItem &item)
 {
     MusicM3UConfigManager manager;
-    return manager.writePlaylistData({item}, path);
+    return manager.writeBuffer({item}, path);
 }
 
 bool MusicPlaylistManager::readPLSConfig(const QString &path, MusicSongItemList &items)
 {
     MusicPLSConfigManager manager;
-    if(manager.readConfig(path))
+    if(manager.fromFile(path))
     {
-        return manager.readPlaylistData(items);
+        return manager.readBuffer(items);
     }
     return false;
 }
@@ -144,15 +144,15 @@ bool MusicPlaylistManager::readPLSConfig(const QString &path, MusicSongItemList 
 bool MusicPlaylistManager::writePLSConfig(const QString &path, const MusicSongItem &item)
 {
     MusicPLSConfigManager manager;
-    return manager.writePlaylistData({item}, path);
+    return manager.writeBuffer({item}, path);
 }
 
 bool MusicPlaylistManager::readWPLConfig(const QString &path, MusicSongItemList &items)
 {
     MusicWPLConfigManager manager;
-    if(manager.readConfig(path))
+    if(manager.fromFile(path))
     {
-        return manager.readPlaylistData(items);
+        return manager.readBuffer(items);
     }
     return false;
 }
@@ -160,15 +160,15 @@ bool MusicPlaylistManager::readWPLConfig(const QString &path, MusicSongItemList 
 bool MusicPlaylistManager::writeWPLConfig(const QString &path, const MusicSongItem &item)
 {
     MusicWPLConfigManager manager;
-    return manager.writePlaylistData({item}, path);
+    return manager.writeBuffer({item}, path);
 }
 
 bool MusicPlaylistManager::readXSPFConfig(const QString &path, MusicSongItemList &items)
 {
     MusicXSPFConfigManager manager;
-    if(manager.readConfig(path))
+    if(manager.fromFile(path))
     {
-        return manager.readPlaylistData(items);
+        return manager.readBuffer(items);
     }
     return false;
 }
@@ -176,15 +176,15 @@ bool MusicPlaylistManager::readXSPFConfig(const QString &path, MusicSongItemList
 bool MusicPlaylistManager::writeXSPFConfig(const QString &path, const MusicSongItem &item)
 {
     MusicXSPFConfigManager manager;
-    return manager.writePlaylistData({item}, path);
+    return manager.writeBuffer({item}, path);
 }
 
 bool MusicPlaylistManager::readASXConfig(const QString &path, MusicSongItemList &items)
 {
     MusicASXConfigManager manager;
-    if(manager.readConfig(path))
+    if(manager.fromFile(path))
     {
-        return manager.readPlaylistData(items);
+        return manager.readBuffer(items);
     }
     return false;
 }
@@ -192,15 +192,15 @@ bool MusicPlaylistManager::readASXConfig(const QString &path, MusicSongItemList 
 bool MusicPlaylistManager::writeASXConfig(const QString &path, const MusicSongItem &item)
 {
     MusicASXConfigManager manager;
-    return manager.writePlaylistData({item}, path);
+    return manager.writeBuffer({item}, path);
 }
 
 bool MusicPlaylistManager::readFPLConfig(const QString &path, MusicSongItemList &items)
 {
     MusicFPLConfigManager manager;
-    if(manager.readConfig(path))
+    if(manager.fromFile(path))
     {
-        return manager.readPlaylistData(items);
+        return manager.readBuffer(items);
     }
     return false;
 }
@@ -208,9 +208,9 @@ bool MusicPlaylistManager::readFPLConfig(const QString &path, MusicSongItemList 
 bool MusicPlaylistManager::readDBPLConfig(const QString &path, MusicSongItemList &items)
 {
     MusicDBPLConfigManager manager;
-    if(manager.readConfig(path))
+    if(manager.fromFile(path))
     {
-        return manager.readPlaylistData(items);
+        return manager.readBuffer(items);
     }
     return false;
 }
@@ -218,9 +218,9 @@ bool MusicPlaylistManager::readDBPLConfig(const QString &path, MusicSongItemList
 bool MusicPlaylistManager::readCSVConfig(const QString &path, MusicSongItemList &items)
 {
     MusicCSVConfigManager manager;
-    if(manager.readConfig(path))
+    if(manager.fromFile(path))
     {
-        return manager.readPlaylistData(items);
+        return manager.readBuffer(items);
     }
     return false;
 }
@@ -228,15 +228,15 @@ bool MusicPlaylistManager::readCSVConfig(const QString &path, MusicSongItemList 
 bool MusicPlaylistManager::writeCSVConfig(const QString &path, const MusicSongItem &item)
 {
     MusicCSVConfigManager manager;
-    return manager.writePlaylistData({item}, path);
+    return manager.writeBuffer({item}, path);
 }
 
 bool MusicPlaylistManager::readTXTConfig(const QString &path, MusicSongItemList &items)
 {
     MusicTXTConfigManager manager;
-    if(manager.readConfig(path))
+    if(manager.fromFile(path))
     {
-        return manager.readPlaylistData(items);
+        return manager.readBuffer(items);
     }
     return false;
 }
@@ -244,5 +244,5 @@ bool MusicPlaylistManager::readTXTConfig(const QString &path, MusicSongItemList 
 bool MusicPlaylistManager::writeTXTConfig(const QString &path, const MusicSongItem &item)
 {
     MusicTXTConfigManager manager;
-    return manager.writePlaylistData({item}, path);
+    return manager.writeBuffer({item}, path);
 }

@@ -7,7 +7,7 @@ MusicTKPLConfigManager::MusicTKPLConfigManager()
 
 }
 
-bool MusicTKPLConfigManager::readPlaylistData(MusicSongItemList &items)
+bool MusicTKPLConfigManager::readBuffer(MusicSongItemList &items)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName("musicList");
     for(int i = 0; i < nodes.count(); ++i)
@@ -28,9 +28,9 @@ bool MusicTKPLConfigManager::readPlaylistData(MusicSongItemList &items)
     return true;
 }
 
-bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItemList &items, const QString &path)
+bool MusicTKPLConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
 {
-    if(items.isEmpty() || !writeConfig(path))
+    if(items.isEmpty() || !toFile(path))
     {
         return false;
     }
@@ -40,12 +40,12 @@ bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItemList &items, c
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-        QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", MusicXmlAttributeList()
-                                                   << MusicXmlAttribute("name", item.m_itemName)
-                                                   << MusicXmlAttribute("index", i)
-                                                   << MusicXmlAttribute("count", item.m_songs.count())
-                                                   << MusicXmlAttribute("sortIndex", item.m_sort.m_type)
-                                                   << MusicXmlAttribute("sortType", item.m_sort.m_order));
+        QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", {
+                                                   {"name", item.m_itemName},
+                                                   {"index", i},
+                                                   {"count", item.m_songs.count()},
+                                                   {"sortIndex", item.m_sort.m_type},
+                                                   {"sortType", item.m_sort.m_order}});
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
             QString playTime = song.musicPlayTime();
@@ -54,10 +54,10 @@ bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItemList &items, c
                 playTime = MusicObject::generateMusicPlayTime(song.musicPath());
             }
 
-            writeDomElementMutilText(pathDom, "value", MusicXmlAttributeList()
-                                     << MusicXmlAttribute("name", song.musicName())
-                                     << MusicXmlAttribute("playCount", song.musicPlayCount())
-                                     << MusicXmlAttribute("time", playTime), song.musicPath());
+            writeDomElementMutilText(pathDom, "value", {
+                                     {"name", song.musicName()},
+                                     {"playCount", song.musicPlayCount()},
+                                     {"time", playTime}}, song.musicPath());
         }
     }
 

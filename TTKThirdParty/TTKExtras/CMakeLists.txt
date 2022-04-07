@@ -138,7 +138,7 @@ set(MUSIC_HEADERS
     qrencode/rscode.h
     qrencode/split.h
     qrencode/qrcodewidget.h
-    qsync/qsyncconf.h
+    qsync/qsyncconfig.h
     qsync/qsyncdataitem.h
     qsync/qsyncutils.h
     qsync/qsyncdatainterface.h
@@ -187,7 +187,7 @@ set(MUSIC_SOURCES
     qrencode/rscode.c
     qrencode/split.c
     qrencode/qrcodewidget.cpp
-    qsync/qsyncconf.cpp
+    qsync/qsyncconfig.cpp
     qsync/qsyncutils.cpp
     qsync/qsyncdatainterface.cpp
     qsync/qsynclistdata.cpp

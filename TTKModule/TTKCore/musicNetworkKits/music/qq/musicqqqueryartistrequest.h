@@ -39,7 +39,7 @@ public:
     /*!
      * Read datas from config file.
      */
-    void readArtistInfoData(MusicResultsItem *item);
+    void readBuffer(MusicResultsItem *item);
 
 };
 

@@ -6,7 +6,7 @@ MusicSongSearchRecordConfigManager::MusicSongSearchRecordConfigManager(QObject *
 
 }
 
-void MusicSongSearchRecordConfigManager::readSearchData(MusicSearchRecordList &records)
+void MusicSongSearchRecordConfigManager::readBuffer(MusicSearchRecordList &items)
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName("value");
     for(int i = 0; i < nodeList.count(); ++i)
@@ -14,25 +14,24 @@ void MusicSongSearchRecordConfigManager::readSearchData(MusicSearchRecordList &r
         MusicSearchRecord record;
         record.m_name = nodeList.at(i).toElement().attribute("name");
         record.m_timestamp = nodeList.at(i).toElement().text();
-        records << record;
+        items << record;
     }
 }
 
-void MusicSongSearchRecordConfigManager::writeSearchData(const MusicSearchRecordList &records)
+void MusicSongSearchRecordConfigManager::writeBuffer(const MusicSearchRecordList &items)
 {
-    if(!writeConfig(SEARCH_PATH_FULL))
+    if(!toFile(SEARCH_PATH_FULL))
     {
         return;
     }
-
     //
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot(APP_NAME);
     QDomElement download = writeDomNode(musicPlayer, "record");
 
-    for(const MusicSearchRecord &record : qAsConst(records))
+    for(const MusicSearchRecord &record : qAsConst(items))
     {
-        writeDomElementText(download, "value", MusicXmlAttribute("name", record.m_name), record.m_timestamp);
+        writeDomElementText(download, "value", {"name", record.m_name}, record.m_timestamp);
     }
 
     QTextStream out(m_file);

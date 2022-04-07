@@ -7,7 +7,7 @@ MusicXSPFConfigManager::MusicXSPFConfigManager()
 
 }
 
-bool MusicXSPFConfigManager::readPlaylistData(MusicSongItemList &items)
+bool MusicXSPFConfigManager::readBuffer(MusicSongItemList &items)
 {
     MusicXmlNodeHelper helper(m_document->documentElement());
     helper.load();
@@ -31,43 +31,42 @@ bool MusicXSPFConfigManager::readPlaylistData(MusicSongItemList &items)
     return true;
 }
 
-bool MusicXSPFConfigManager::writePlaylistData(const MusicSongItemList &items, const QString &path)
+bool MusicXSPFConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
 {
-    if(items.isEmpty() || !writeConfig(path))
+    if(items.isEmpty() || !toFile(path))
     {
         return false;
     }
     //
     createProcessingInstruction();
     //
-    QDomElement musicPlayerDom = createRoot("playlist", MusicXmlAttributeList()
-                                            << MusicXmlAttribute("version", "1")
-                                            << MusicXmlAttribute("xmlns", "http://xspf.org/ns/0/"));
+    QDomElement musicPlayerDom = createRoot("playlist", {{"version", "1"},
+                                                         {"xmlns", "http://xspf.org/ns/0/"}});
     writeDomText(musicPlayerDom, "creator", APP_NAME);
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-        QDomElement trackListDom = writeDomElementMutil(musicPlayerDom, "trackList", MusicXmlAttributeList()
-                                                       << MusicXmlAttribute("name", item.m_itemName)
-                                                       << MusicXmlAttribute("index", i)
-                                                       << MusicXmlAttribute("count", item.m_songs.count())
-                                                       << MusicXmlAttribute("sortIndex", item.m_sort.m_type)
-                                                       << MusicXmlAttribute("sortType", item.m_sort.m_order));
+        QDomElement trackListDom = writeDomElementMutil(musicPlayerDom, "trackList", {
+                                                       {"name", item.m_itemName},
+                                                       {"index", i},
+                                                       {"count", item.m_songs.count()},
+                                                       {"sortIndex", item.m_sort.m_type},
+                                                       {"sortType", item.m_sort.m_order}});
 
         for(const MusicSong &song : qAsConst(items[i].m_songs))
         {
-            QDomElement trackDom = writeDomElementMutil(trackListDom, "track", MusicXmlAttributeList()
-                                                        << MusicXmlAttribute("name", song.musicName())
-                                                        << MusicXmlAttribute("playCount", song.musicPlayCount())
-                                                        << MusicXmlAttribute("time", song.musicPlayTime())
-                                                        << MusicXmlAttribute("src", song.musicPath()));
+            QDomElement trackDom = writeDomElementMutil(trackListDom, "track", {
+                                                        {"name", song.musicName()},
+                                                        {"playCount", song.musicPlayCount()},
+                                                        {"time", song.musicPlayTime()},
+                                                        {"src", song.musicPath()}});
             writeDomText(trackDom, "location", song.musicPath());
             writeDomText(trackDom, "title", song.musicArtistBack());
             writeDomText(trackDom, "creator", song.musicArtistFront());
             writeDomText(trackDom, "annotation", QString());
             writeDomText(trackDom, "album", QString());
             writeDomText(trackDom, "trackNum", QString());
-            writeDomElementText(trackDom, "meta", MusicXmlAttribute("rel", "year"), QString());
+            writeDomElementText(trackDom, "meta", {"rel", "year"}, QString());
         }
     }
 

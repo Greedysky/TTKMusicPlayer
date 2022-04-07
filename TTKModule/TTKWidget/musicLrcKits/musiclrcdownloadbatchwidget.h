@@ -84,7 +84,6 @@ public Q_SLOTS:
 
 protected:
     Ui::MusicLrcDownloadBatchWidget *m_ui;
-
     MusicSongList m_localSongs;
 
 };

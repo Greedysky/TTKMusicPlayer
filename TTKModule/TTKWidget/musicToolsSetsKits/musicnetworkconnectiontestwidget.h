@@ -107,8 +107,8 @@ public Q_SLOTS:
     void testFinshed();
 
 protected:
-    int m_countIndex;
     Ui::MusicNetworkConnectionTestWidget *m_ui;
+    int m_countIndex;
     QList<MusicNetworkConnectionItem*> m_connectionItems;
 
 };

@@ -168,7 +168,6 @@ public Q_SLOTS:
 
 protected:
     Ui::MusicColorDialog *m_ui;
-
     int m_status;
     QColor m_color;
 

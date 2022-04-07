@@ -8,7 +8,7 @@ MusicWPLConfigManager::MusicWPLConfigManager()
 
 }
 
-bool MusicWPLConfigManager::readPlaylistData(MusicSongItemList &items)
+bool MusicWPLConfigManager::readBuffer(MusicSongItemList &items)
 {
     MusicXmlNodeHelper helper(m_document->documentElement());
     helper.load();
@@ -25,9 +25,9 @@ bool MusicWPLConfigManager::readPlaylistData(MusicSongItemList &items)
     return true;
 }
 
-bool MusicWPLConfigManager::writePlaylistData(const MusicSongItemList &items, const QString &path)
+bool MusicWPLConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
 {
-    if(items.isEmpty() || !writeConfig(path))
+    if(items.isEmpty() || !toFile(path))
     {
         return false;
     }
@@ -40,15 +40,15 @@ bool MusicWPLConfigManager::writePlaylistData(const MusicSongItemList &items, co
     QDomElement headSettingDom = writeDomNode(musicPlayerDom, "head");
     QDomElement bodySettingDom = writeDomNode(musicPlayerDom, "body");
 
-    writeDomElementMutil(headSettingDom, "meta", {MusicXmlAttribute("name", "Generator"),
-                         MusicXmlAttribute("content", QString("%1 %2").arg(APP_NAME, TTK_VERSION_STR))});
+    writeDomElementMutil(headSettingDom, "meta", {{"name", "Generator"},
+                                                  {"content", QString("%1 %2").arg(APP_NAME, TTK_VERSION_STR)}});
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
         QDomElement seqDom = writeDomNode(bodySettingDom, "seq");
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
-            writeDomElementMutil(seqDom, "media", {MusicXmlAttribute("src", song.musicPath())});
+            writeDomElementMutil(seqDom, "media", {{"src", song.musicPath()}});
         }
     }
 

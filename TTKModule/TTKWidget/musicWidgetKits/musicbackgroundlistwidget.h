@@ -64,7 +64,7 @@ public:
     /*!
      * Current item contains or not.
      */
-    bool contains(const MusicSkinConfigItem &item) const;
+    bool contains(const MusicSkinItem &item) const;
 
     /*!
      * Select the current item.
@@ -128,7 +128,7 @@ protected:
     bool m_printMask, m_isSelected, m_selectedMask;
     bool m_closeMask, m_closeSet, m_showNameMask;
     QString m_name, m_path;
-    MusicSkinConfigItem m_imageInfo;
+    MusicSkinItem m_imageInfo;
 
 };
 

@@ -2,6 +2,7 @@
 #include "musicwebfmradiowidget.h"
 #include "musicrightareawidget.h"
 #include "musicwidgetheaders.h"
+#include "musicttkfmradioplaywidget.h"
 
 MusicWebRadioView::MusicWebRadioView(QWidget *parent)
     : QWidget(parent)
@@ -10,7 +11,8 @@ MusicWebRadioView::MusicWebRadioView(QWidget *parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    m_musicRadio = new MusicWebFMRadioWidget(this);
+    m_radio = new MusicWebFMRadioWidget(this);
+    m_ttkRadio = nullptr;
 
     QWidget *bottomWidget = new QWidget(this);
     bottomWidget->setFixedHeight(40);
@@ -50,7 +52,7 @@ MusicWebRadioView::MusicWebRadioView(QWidget *parent)
     bottomLayout->addWidget(mv);
     bottomWidget->setLayout(bottomLayout);
 
-    layout->addWidget(m_musicRadio);
+    layout->addWidget(m_radio);
     layout->addWidget(bottomWidget);
     setLayout(layout);
 
@@ -61,17 +63,22 @@ MusicWebRadioView::MusicWebRadioView(QWidget *parent)
 
 MusicWebRadioView::~MusicWebRadioView()
 {
-    delete m_musicRadio;
+    delete m_radio;
+    delete m_ttkRadio;
 }
 
 void MusicWebRadioView::init(int index)
 {
-    m_musicRadio->initListItems(index);
+    m_radio->initListItems(index);
 }
 
 void MusicWebRadioView::openFMRadioWindow()
 {
-
+    if(!m_ttkRadio)
+    {
+        m_ttkRadio = new MusicTTKFMRadioPlayWidget(this);
+    }
+    m_ttkRadio->show();
 }
 
 void MusicWebRadioView::openDJRadioWindow()

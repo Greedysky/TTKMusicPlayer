@@ -34,13 +34,13 @@ public:
 
     void insertAuthorization(const QString &method, TTKStringMap &headers, const QString &resource) const
     {
-        if(!QSyncConf::NAME.isEmpty() && !QSyncConf::KEY.isEmpty())
+        if(!QSyncConfig::NAME.isEmpty() && !QSyncConfig::KEY.isEmpty())
         {
-            headers.insert("Authorization", QSyncUtils::createSignForNormalAuth(method, QSyncConf::NAME, QSyncConf::KEY, headers, resource));
+            headers.insert("Authorization", QSyncUtils::createSignForNormalAuth(method, QSyncConfig::NAME, QSyncConfig::KEY, headers, resource));
         }
-        else if(!QSyncConf::NAME.isEmpty())
+        else if(!QSyncConfig::NAME.isEmpty())
         {
-            headers.insert("Authorization", QSyncConf::NAME);
+            headers.insert("Authorization", QSyncConfig::NAME);
         }
     }
 

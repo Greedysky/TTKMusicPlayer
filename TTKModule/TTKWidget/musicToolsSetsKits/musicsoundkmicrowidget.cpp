@@ -51,7 +51,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
 
     m_ui->volumeButton->setValue(100);
     m_ui->volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_mediaPlayer = new MusicCoreMPlayer(this);
+    m_player = new MusicCoreMPlayer(this);
     m_searchWidget = new MusicSoundKMicroSearchWidget(this);
     m_searchWidget->connectTo(this);
     m_searchWidget->show();
@@ -85,9 +85,9 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     connect(m_ui->timeSlider, SIGNAL(sliderReleasedAt(int)), SLOT(setPosition(int)));
     connect(m_ui->volumeButton, SIGNAL(musicVolumeChanged(int)), SLOT(volumeChanged(int)));
     connect(m_ui->recordButton, SIGNAL(clicked()), SLOT(recordButtonClicked()));
-    connect(m_mediaPlayer, SIGNAL(finished(int)), SLOT(playFinished()));
-    connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
-    connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
+    connect(m_player, SIGNAL(finished(int)), SLOT(playFinished()));
+    connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
+    connect(m_player, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
 }
 
 MusicSoundKMicroWidget::~MusicSoundKMicroWidget()
@@ -113,7 +113,7 @@ void MusicSoundKMicroWidget::startSeachKMicro(const QString &name)
 
 void MusicSoundKMicroWidget::volumeChanged(int volume)
 {
-    m_mediaPlayer->setVolume(volume);
+    m_player->setVolume(volume);
 }
 
 void MusicSoundKMicroWidget::positionChanged(qint64 position)
@@ -148,7 +148,7 @@ void MusicSoundKMicroWidget::durationChanged(qint64 duration)
 
 void MusicSoundKMicroWidget::playFinished()
 {
-    m_mediaPlayer->stop();
+    m_player->stop();
     if(m_ui->gifLabel->isRunning())
     {
         MusicToastLabel::popup(tr("Record finished"));
@@ -165,14 +165,14 @@ void MusicSoundKMicroWidget::playFinished()
 
 void MusicSoundKMicroWidget::setPosition(int position)
 {
-    m_mediaPlayer->setPosition(position/MT_S2MS);
+    m_player->setPosition(position/MT_S2MS);
     m_analysis->setSongSpeedChanged(position);
 }
 
 void MusicSoundKMicroWidget::playButtonChanged()
 {
-    m_mediaPlayer->play();
-    switch(m_mediaPlayer->state())
+    m_player->play();
+    switch(m_player->state())
     {
         case MusicObject::PlayingState: setButtonStyle(false); break;
         case MusicObject::PausedState: setButtonStyle(true); break;
@@ -181,7 +181,7 @@ void MusicSoundKMicroWidget::playButtonChanged()
 
     if(!m_queryMovieMode)
     {
-        if(m_mediaPlayer->state() == MusicObject::PlayingState)
+        if(m_player->state() == MusicObject::PlayingState)
         {
             m_musicLrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
         }
@@ -225,14 +225,14 @@ void MusicSoundKMicroWidget::mediaUrlChanged(bool mv, const QString &url, const 
     if(m_queryMovieMode = mv)
     {
         m_ui->stackedWidget->setCurrentIndex(SOUND_KMICRO_INDEX_0);
-        m_mediaPlayer->setMedia(MusicCoreMPlayer::VideoCategory, url, (int)m_ui->videoPage->winId());
-        m_mediaPlayer->play();
+        m_player->setMedia(MusicCoreMPlayer::VideoCategory, url, (int)m_ui->videoPage->winId());
+        m_player->play();
     }
     else
     {
         m_ui->stackedWidget->setCurrentIndex(SOUND_KMICRO_INDEX_1);
-        m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, url);
-        m_mediaPlayer->play();
+        m_player->setMedia(MusicCoreMPlayer::MusicCategory, url);
+        m_player->play();
 
         //
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
@@ -304,7 +304,7 @@ void MusicSoundKMicroWidget::closeEvent(QCloseEvent *event)
 
     qDeleteAll(m_musicLrcContainer);
     delete m_analysis;
-    delete m_mediaPlayer;
+    delete m_player;
     delete m_searchWidget;
     delete m_recordCore;
 }
@@ -325,11 +325,11 @@ void MusicSoundKMicroWidget::multiMediaChanged()
 {
     if(m_queryMovieMode)
     {
-        m_mediaPlayer->setMultiVoice(m_stateButtonOn ? 0 : 1);
+        m_player->setMultiVoice(m_stateButtonOn ? 0 : 1);
     }
     else
     {
-        m_stateButtonOn ? m_mediaPlayer->setRightVolume() : m_mediaPlayer->setLeftVolume();
+        m_stateButtonOn ? m_player->setRightVolume() : m_player->setLeftVolume();
     }
 
     volumeChanged(m_ui->volumeButton->value());
@@ -360,7 +360,7 @@ void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transpar
 
 void MusicSoundKMicroWidget::recordStateChanged(bool state)
 {
-    if(state && m_mediaPlayer->state() != MusicObject::StoppedState)
+    if(state && m_player->state() != MusicObject::StoppedState)
     {
         m_ui->gifLabel->start();
         m_ui->recordButton->setStyleSheet(MusicUIObject::MQSSRerecord);

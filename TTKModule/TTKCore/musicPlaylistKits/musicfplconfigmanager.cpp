@@ -28,7 +28,7 @@ MusicFPLConfigManager::MusicFPLConfigManager()
 
 }
 
-bool MusicFPLConfigManager::readPlaylistData(MusicSongItemList &items)
+bool MusicFPLConfigManager::readBuffer(MusicSongItemList &items)
 {
     const QFileInfo fin(m_file.fileName());
     MusicSongItem item;
@@ -84,7 +84,7 @@ bool MusicFPLConfigManager::readPlaylistData(MusicSongItemList &items)
     return true;
 }
 
-bool MusicFPLConfigManager::writePlaylistData(const MusicSongItemList &items, const QString &path)
+bool MusicFPLConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
 {
     Q_UNUSED(items);
     Q_UNUSED(path);

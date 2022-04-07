@@ -91,6 +91,5 @@ int main(int argc, char *argv[])
     MusicMPRISPlayer mpris;
     mpris.run();
 #endif
-
     return app.exec();
 }

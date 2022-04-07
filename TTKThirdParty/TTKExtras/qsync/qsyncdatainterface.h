@@ -21,7 +21,7 @@
 
 #include "qsyncdataitem.h"
 #include "qsyncutils.h"
-#include "qsyncconf.h"
+#include "qsyncconfig.h"
 #include <QtNetwork/QNetworkReply>
 
 class QSyncDataInterfacePrivate;

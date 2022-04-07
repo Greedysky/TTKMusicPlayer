@@ -36,18 +36,18 @@ public:
     explicit MusicConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read config datas from xml file by given name.
+     * Read datas from xml file.
      */
-    inline bool readConfig() { return MusicAbstractXml::readConfig(COFIG_PATH_FULL); }
+    inline bool fromFile() { return MusicAbstractXml::fromFile(COFIG_PATH_FULL); }
 
     /*!
      * Read datas from config file.
      */
-    void readSysConfigData() const;
+    void readBuffer() const;
     /*!
      * Write datas into config file.
      */
-    void writeSysConfigData();
+    void writeBuffer();
 
     /*!
      * Read window widget Geometry Config.

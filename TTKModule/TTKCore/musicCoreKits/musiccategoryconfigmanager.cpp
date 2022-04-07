@@ -6,7 +6,7 @@ MusicCategoryConfigManager::MusicCategoryConfigManager(QObject *parent)
 
 }
 
-bool MusicCategoryConfigManager::readConfig(Type type)
+bool MusicCategoryConfigManager::fromFile(Type type)
 {
     QString v;
     switch(type)
@@ -18,10 +18,10 @@ bool MusicCategoryConfigManager::readConfig(Type type)
         default: break;
     }
 
-    return MusicAbstractXml::readConfig(v);
+    return MusicAbstractXml::fromFile(v);
 }
 
-void MusicCategoryConfigManager::readCategoryData(MusicResultsCategoryList &records, const QString &key)
+void MusicCategoryConfigManager::readBuffer(MusicResultsCategoryList &items, const QString &key)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName(key);
     for(int i = 0; i < nodes.count(); ++i)
@@ -42,7 +42,7 @@ void MusicCategoryConfigManager::readCategoryData(MusicResultsCategoryList &reco
                 item.m_value = typeNode.toElement().attribute("value");
                 category.m_items.append(item);
             }
-            records.append(category);
+            items.append(category);
         }
     }
 }

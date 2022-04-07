@@ -85,7 +85,6 @@ public Q_SLOTS:
 
 private:
     Ui::MusicSongDlnaTransferWidget *m_ui;
-
     bool m_isPlaying;
     int m_currentPlayIndex;
     MusicSongList *m_musicSongs;

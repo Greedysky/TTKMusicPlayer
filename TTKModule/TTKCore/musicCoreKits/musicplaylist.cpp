@@ -96,7 +96,7 @@ void MusicPlaylist::clear()
 
 int MusicPlaylist::find(int toolIndex, const QString &content, int from)
 {
-    return m_mediaList.indexOf(MusicPlayItem(toolIndex, content), from);
+    return m_mediaList.indexOf({toolIndex, content}, from);
 }
 
 void MusicPlaylist::add(int toolIndex, const QString &content)
@@ -157,8 +157,8 @@ void MusicPlaylist::appendQueue(int toolIndex, const QString &content)
     }
 
     const int index = m_currentIndex + 1;
-    (index != m_mediaList.count()) ? m_mediaList.insert(index, MusicPlayItem(toolIndex, content))
-                                   : m_mediaList.append(MusicPlayItem(toolIndex, content));
+    (index != m_mediaList.count()) ? m_mediaList.insert(index, {toolIndex, content})
+                                   : m_mediaList.append({toolIndex, content});
     m_queueList << MusicPlayItem(index + m_queueList.count(), content);
 }
 
@@ -243,6 +243,6 @@ void MusicPlaylist::setCurrentIndex(int index)
 
 void MusicPlaylist::setCurrentIndex(int toolIndex, const QString &path)
 {
-    const int playIndex = mapItemIndex(MusicPlayItem(toolIndex, path));
+    const int playIndex = mapItemIndex({toolIndex, path});
     setCurrentIndex(playIndex);
 }

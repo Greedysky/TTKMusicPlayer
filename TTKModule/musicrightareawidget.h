@@ -304,14 +304,13 @@ protected:
      */
     void createkWindow(int type);
 
+    Ui::MusicApplication *m_ui;
     QVariant m_rawData;
     bool m_lowPowerMode;
     MusicFunction m_funcIndex;
     QWidget *m_stackedFuncWidget, *m_stackedAutoWidget;
-    Ui::MusicApplication *m_ui;
     MusicSettingWidget *m_settingWidget;
     MusicVideoPlayWidget *m_videoPlayerWidget;
-
     MusicLrcAnalysis *m_lrcAnalysis;
     MusicLrcContainerForInterior *m_musicLrcForInterior;
     MusicLrcContainerForDesktop *m_musicLrcForDesktop;

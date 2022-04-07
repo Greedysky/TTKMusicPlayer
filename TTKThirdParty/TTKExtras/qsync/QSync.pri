@@ -21,7 +21,7 @@ QT += network
 INCLUDEPATH += $$PWD
 
 HEADERS += \
-    $$PWD/qsyncconf.h \
+    $$PWD/qsyncconfig.h \
     $$PWD/qsyncdataitem.h \
     $$PWD/qsyncutils.h \
     $$PWD/qsyncdatainterface.h \
@@ -32,7 +32,7 @@ HEADERS += \
     $$PWD/qsyncdownloaddata.h
 
 SOURCES += \
-    $$PWD/qsyncconf.cpp \
+    $$PWD/qsyncconfig.cpp \
     $$PWD/qsyncutils.cpp \
     $$PWD/qsyncdatainterface.cpp \
     $$PWD/qsynclistdata.cpp \

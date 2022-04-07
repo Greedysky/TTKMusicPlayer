@@ -10,7 +10,7 @@ MusicSkinThunderConfigManager::MusicSkinThunderConfigManager(QObject *parent)
 
 }
 
-void MusicSkinThunderConfigManager::readSkinRemoteData(MusicSkinRemoteGroupList &groups)
+void MusicSkinThunderConfigManager::readBuffer(MusicSkinRemoteGroupList &items)
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName("group");
     for(int i = 0; i < nodeList.count(); ++i)
@@ -58,7 +58,7 @@ void MusicSkinThunderConfigManager::readSkinRemoteData(MusicSkinRemoteGroupList 
 
         if(group.isValid())
         {
-            groups << group;
+            items << group;
         }
     }
 }
@@ -83,7 +83,7 @@ void MusicDownloadThunderSkinRequest::downLoadFinished(const QByteArray &bytes)
     MusicSkinThunderConfigManager manager;
     if(manager.fromByteArray(bytes))
     {
-        manager.readSkinRemoteData(groups);
+        manager.readBuffer(groups);
     }
 
     Q_EMIT downLoadDataChanged(groups);

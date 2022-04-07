@@ -130,7 +130,7 @@ protected:
     Ui::MusicSoundKMicroWidget *m_ui;
     qint64 m_intervalTime;
     bool m_stateButtonOn, m_queryMovieMode;
-    MusicCoreMPlayer *m_mediaPlayer;
+    MusicCoreMPlayer *m_player;
     MusicSoundKMicroSearchWidget *m_searchWidget;
     MusicLrcAnalysis *m_analysis;
     QList<MusicLrcManagerForInterior*> m_musicLrcContainer;

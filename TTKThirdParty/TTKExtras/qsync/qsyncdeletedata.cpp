@@ -13,7 +13,7 @@ void QSyncDeleteData::deleteDataOperator(const QString &bucket, const QString &f
     const QString &method = "DELETE";
     const QString &url = TTK_SEPARATOR + fileName;
     const QString &resource = TTK_SEPARATOR + bucket + url;
-    const QString &host = bucket + TTK_DOT + QSyncConf::HOST;
+    const QString &host = bucket + TTK_DOT + QSyncConfig::HOST;
 
     TTKStringMap headers;
     headers.insert("Date", QSyncUtils::GMT());

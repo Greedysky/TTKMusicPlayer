@@ -70,7 +70,7 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     setObjectName("MusicVideoView");
     setStyleSheet(QString("#MusicVideoView{%1}").arg(MusicUIObject::MQSSBackgroundStyle02));
 
-    m_mediaPlayer = new MusicCoreMPlayer(this);
+    m_player = new MusicCoreMPlayer(this);
     m_videoWidget = new MusicViewWidget(this);
     m_barrageCore = new MusicBarrageWidget(this);
 
@@ -83,10 +83,10 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     connect(m_videoControl, SIGNAL(addBarrageChanged(MusicBarrageRecord)), SLOT(addBarrageChanged(MusicBarrageRecord)));
     connect(m_videoControl, SIGNAL(pushBarrageChanged(bool)), SLOT(pushBarrageChanged(bool)));
 
-    connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
-    connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
-    connect(m_mediaPlayer, SIGNAL(mediaChanged(QString)), SLOT(mediaChanged(QString)));
-    connect(m_mediaPlayer, SIGNAL(finished(int)), SLOT(mediaAutionPlayError(int)));
+    connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
+    connect(m_player, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
+    connect(m_player, SIGNAL(mediaChanged(QString)), SLOT(mediaChanged(QString)));
+    connect(m_player, SIGNAL(finished(int)), SLOT(mediaAutionPlayError(int)));
 
     resizeWindow(0, 0);
 }
@@ -94,7 +94,7 @@ MusicVideoView::MusicVideoView(QWidget *parent)
 MusicVideoView::~MusicVideoView()
 {
     delete m_barrageCore;
-    delete m_mediaPlayer;
+    delete m_player;
     delete m_videoControl;
     delete m_videoWidget;
 }
@@ -107,7 +107,7 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicVideoView::setMedia(const QString &data)
 {
-    m_mediaPlayer->setMedia(MusicCoreMPlayer::VideoCategory, data, (int)m_videoWidget->winId());
+    m_player->setMedia(MusicCoreMPlayer::VideoCategory, data, (int)m_videoWidget->winId());
     m_videoControl->setQualityActionState();
 }
 
@@ -123,7 +123,7 @@ void MusicVideoView::createRightMenu()
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
-    menu.addAction(QString(), this, SLOT(play()))->setText(m_mediaPlayer->isPlaying() ? tr("Video Pause") : tr("Video Play"));
+    menu.addAction(QString(), this, SLOT(play()))->setText(m_player->isPlaying() ? tr("Video Pause") : tr("Video Play"));
     menu.addAction(tr("Video Stop"), this, SLOT(stop()));
     menu.addSeparator();
     menu.addAction(tr("Search"), this, SIGNAL(searchButtonClicked()));
@@ -138,8 +138,8 @@ void MusicVideoView::createRightMenu()
 
 void MusicVideoView::play()
 {
-    m_mediaPlayer->play();
-    switch(m_mediaPlayer->state())
+    m_player->play();
+    switch(m_player->state())
     {
         case MusicObject::PlayingState:
         {
@@ -159,7 +159,7 @@ void MusicVideoView::play()
 
 void MusicVideoView::stop()
 {
-    m_mediaPlayer->stop();
+    m_player->stop();
     m_barrageCore->stop();
     update();
 }
@@ -176,12 +176,12 @@ void MusicVideoView::durationChanged(qint64 duration)
 
 void MusicVideoView::setPosition(int position)
 {
-    m_mediaPlayer->setPosition(position / MT_S2MS);
+    m_player->setPosition(position / MT_S2MS);
 }
 
 void MusicVideoView::volumeChanged(int volume)
 {
-    m_mediaPlayer->setVolume(volume);
+    m_player->setVolume(volume);
 }
 
 void MusicVideoView::mediaChanged(const QString &data)

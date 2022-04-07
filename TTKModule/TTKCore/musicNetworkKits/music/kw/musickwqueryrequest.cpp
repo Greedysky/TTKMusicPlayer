@@ -6,14 +6,14 @@ MusicKWMusicInfoConfigManager::MusicKWMusicInfoConfigManager(QObject *parent)
 
 }
 
-void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongInformation *info)
+void MusicKWMusicInfoConfigManager::readBuffer(MusicObject::MusicSongInformation *item)
 {
-    info->m_singerName = readXmlTextByTagName("artist");
-    info->m_songName = readXmlTextByTagName("name");
-    info->m_songId = readXmlTextByTagName("music_id");
-    info->m_artistId = readXmlTextByTagName("albid");
-    info->m_albumId = readXmlTextByTagName("artid");
-    info->m_albumName = readXmlTextByTagName("special");
+    item->m_singerName = readXmlTextByTagName("artist");
+    item->m_songName = readXmlTextByTagName("name");
+    item->m_songId = readXmlTextByTagName("music_id");
+    item->m_artistId = readXmlTextByTagName("albid");
+    item->m_albumId = readXmlTextByTagName("artid");
+    item->m_albumName = readXmlTextByTagName("special");
 
     const QString &mp3Url = readXmlTextByTagName("mp3dl");
     if(!mp3Url.isEmpty())
@@ -26,7 +26,7 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
             prop.m_format = MP3_FILE_PREFIX;
             prop.m_size = TTK_DEFAULT_STR;
             prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
-            info->m_songProps.append(prop);
+            item->m_songProps.append(prop);
         }
 
         v = readXmlTextByTagName("path");
@@ -37,7 +37,7 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
             prop.m_format = WMA_FILE_PREFIX;
             prop.m_size = TTK_DEFAULT_STR;
             prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
-            info->m_songProps.append(prop);
+            item->m_songProps.append(prop);
         }
     }
 
@@ -52,7 +52,7 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
             prop.m_format = AAC_FILE_PREFIX;
             prop.m_size = TTK_DEFAULT_STR;
             prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, aacUrl, v);
-            info->m_songProps.append(prop);
+            item->m_songProps.append(prop);
         }
     }
 }
@@ -204,11 +204,11 @@ void MusicKWQueryRequest::downLoadSingleFinished()
         data.insert(0, "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n");
         data.replace("&", "%26");
 
-        MusicObject::MusicSongInformation musicInfo;
         MusicKWMusicInfoConfigManager xml;
         if(xml.fromByteArray(data))
         {
-            xml.readMusicInfoConfig(&musicInfo);
+            MusicObject::MusicSongInformation musicInfo;
+            xml.readBuffer(&musicInfo);
 
             musicInfo.m_year = QString();
             musicInfo.m_discNumber = "1";

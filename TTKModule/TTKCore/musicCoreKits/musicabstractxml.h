@@ -32,12 +32,6 @@ struct TTK_MODULE_EXPORT MusicXmlAttribute
 {
     QString m_key;
     QVariant m_value;
-
-    MusicXmlAttribute(const QString &key, const QVariant &value)
-    {
-        m_key = key;
-        m_value = value;
-    }
 };
 TTK_DECLARE_LIST(MusicXmlAttribute);
 
@@ -93,12 +87,7 @@ public:
     /*!
      * Read datas from xml file by given name.
      */
-    bool readConfig(const QString &name);
-    /*!
-     * Write datas into xml file by given name.
-     */
-    bool writeConfig(const QString &name);
-
+    bool fromFile(const QString &name);
     /*!
      * Xml stream data from string.
      */
@@ -107,6 +96,10 @@ public:
      * Xml stream data from byteArray.
      */
     bool fromByteArray(const QByteArray &data);
+    /*!
+     * Write datas into xml file by given name.
+     */
+    bool toFile(const QString &name);
 
     /*!
      * Xml stream data to string.

@@ -139,11 +139,11 @@ protected:
      */
     void showMessageBoxWidget();
 
+    Ui::MusicSpectrumWidget *m_ui;
     QLayout *m_spectrumLayout;
     QString m_lastFlowName;
     QString m_lastFloridName;
     MusicSpectrumList m_types;
-    Ui::MusicSpectrumWidget *m_ui;
 
 };
 

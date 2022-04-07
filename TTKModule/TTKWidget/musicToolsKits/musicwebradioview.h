@@ -23,6 +23,7 @@
 #include "musicglobaldefine.h"
 
 class MusicWebFMRadioWidget;
+class MusicTTKFMRadioPlayWidget;
 
 /*! @brief The class of the web radio widget.
  * @author Greedysky <greedysky@163.com>
@@ -58,7 +59,8 @@ public Q_SLOTS:
     void openMVRadioWindow();
 
 protected:
-    MusicWebFMRadioWidget *m_musicRadio;
+    MusicWebFMRadioWidget *m_radio;
+    MusicTTKFMRadioPlayWidget *m_ttkRadio;
 
 };
 

@@ -11,7 +11,7 @@ MusicConfigManager::MusicConfigManager(QObject *parent)
 
 }
 
-void MusicConfigManager::readSysConfigData() const
+void MusicConfigManager::readBuffer() const
 {
     G_SETTING_PTR->setValue(MusicSettingManager::ConfigVersion, readXmlAttributeByTagNameValue("configVersion"));
 
@@ -127,7 +127,7 @@ void MusicConfigManager::readSysConfigData() const
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadUploadLimitSize, readXmlAttributeByTagNameValue("downloadUploadLimitSize"));
 }
 
-void MusicConfigManager::writeSysConfigData()
+void MusicConfigManager::writeBuffer()
 {
     const int playMode = G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt();
     const int volume = G_SETTING_PTR->value(MusicSettingManager::Volume).toInt();
@@ -223,7 +223,7 @@ void MusicConfigManager::writeSysConfigData()
     const QString &downloadDownloadLimitSize = G_SETTING_PTR->value(MusicSettingManager::DownloadDownloadLimitSize).toString();
     const QString &downloadUploadLimitSize = G_SETTING_PTR->value(MusicSettingManager::DownloadUploadLimitSize).toString();
     //
-    if(!writeConfig(COFIG_PATH_FULL))
+    if(!toFile(COFIG_PATH_FULL))
     {
         return;
     }
@@ -243,100 +243,100 @@ void MusicConfigManager::writeSysConfigData()
     QDomElement timeSettingDom = writeDomNode(musicPlayerDom, "timeSetting");
     QDomElement downloadSettingDom = writeDomNode(musicPlayerDom, "downloadSetting");
 
-    writeDomElement(musicSettingDom, "configVersion", MusicXmlAttribute("value", TTK_CONFIG_VERSION_STR));
-    writeDomElement(musicSettingDom, "playMode", MusicXmlAttribute("value", playMode));
-    writeDomElement(musicSettingDom, "playVolume", MusicXmlAttribute("value", volume));
-    writeDomElement(musicSettingDom, "lastPlayIndex", MusicXmlAttribute("value", QString("%1,%2,%3").arg(lastPlayIndex[0], lastPlayIndex[1], lastPlayIndex[2])));
+    writeDomElement(musicSettingDom, "configVersion", {"value", TTK_CONFIG_VERSION_STR});
+    writeDomElement(musicSettingDom, "playMode", {"value", playMode});
+    writeDomElement(musicSettingDom, "playVolume", {"value", volume});
+    writeDomElement(musicSettingDom, "lastPlayIndex", {"value", QString("%1,%2,%3").arg(lastPlayIndex[0], lastPlayIndex[1], lastPlayIndex[2])});
     //
-    writeDomElement(plusSettingDom, "geometry", MusicXmlAttribute("value", QString("%1,%2,%3,%4").arg(widgetPosition.x()).arg(widgetPosition.y()).arg(widgetSize.width()).arg(widgetSize.height())));
-    writeDomElement(plusSettingDom, "language", MusicXmlAttribute("value", languageIndex));
-    writeDomElement(plusSettingDom, "autoPlayMode", MusicXmlAttribute("value", autoPlayMode));
-    writeDomElement(plusSettingDom, "closeEventMode", MusicXmlAttribute("value", closeEventMode));
-    writeDomElement(plusSettingDom, "closeNetworkMode", MusicXmlAttribute("value", closeNetWorkMode));
-    writeDomElement(plusSettingDom, "fileAssociationMode", MusicXmlAttribute("value", fileAssociationMode));
-    writeDomElement(plusSettingDom, "windowConciseMode", MusicXmlAttribute("value", windowConciseMode));
-    writeDomElement(plusSettingDom, "remoteWidgetMode", MusicXmlAttribute("value", remoteWidgetMode));
-    writeDomElement(plusSettingDom, "windowQuitMode", MusicXmlAttribute("value", windowQuitMode));
+    writeDomElement(plusSettingDom, "geometry", {"value", QString("%1,%2,%3,%4").arg(widgetPosition.x()).arg(widgetPosition.y()).arg(widgetSize.width()).arg(widgetSize.height())});
+    writeDomElement(plusSettingDom, "language", {"value", languageIndex});
+    writeDomElement(plusSettingDom, "autoPlayMode", {"value", autoPlayMode});
+    writeDomElement(plusSettingDom, "closeEventMode", {"value", closeEventMode});
+    writeDomElement(plusSettingDom, "closeNetworkMode", {"value", closeNetWorkMode});
+    writeDomElement(plusSettingDom, "fileAssociationMode", {"value", fileAssociationMode});
+    writeDomElement(plusSettingDom, "windowConciseMode", {"value", windowConciseMode});
+    writeDomElement(plusSettingDom, "remoteWidgetMode", {"value", remoteWidgetMode});
+    writeDomElement(plusSettingDom, "windowQuitMode", {"value", windowQuitMode});
 
     //
-    writeDomElement(otherSettingDom, "otherCheckUpdateEnable", MusicXmlAttribute("value", otherCheckUpdateEnable));
-    writeDomElement(otherSettingDom, "otherUseAlbumCover", MusicXmlAttribute("value", otherUseAlbumCover));
-    writeDomElement(otherSettingDom, "otherUseFileInfo", MusicXmlAttribute("value", otherUseFileInfo));
-    writeDomElement(otherSettingDom, "otherWriteAlbumCover", MusicXmlAttribute("value", otherWriteAlbumCover));
-    writeDomElement(otherSettingDom, "otherWriteFileInfo", MusicXmlAttribute("value", otherWriteFileInfo));
-    writeDomElement(otherSettingDom, "otherSideByMode", MusicXmlAttribute("value", otherSideByMode));
-    writeDomElement(otherSettingDom, "otherLrcKTVMode", MusicXmlAttribute("value", otherLrcKTVMode));
-    writeDomElement(otherSettingDom, "otherScreenSaverEnable", MusicXmlAttribute("value", otherScreenSaverEnable));
-    writeDomElement(otherSettingDom, "otherScreenSaverTime", MusicXmlAttribute("value", otherScreenSaverTime));
-    writeDomElement(otherSettingDom, "otherScreenSaverIndex", MusicXmlAttribute("value", otherScreenSaverIndex));
+    writeDomElement(otherSettingDom, "otherCheckUpdateEnable", {"value", otherCheckUpdateEnable});
+    writeDomElement(otherSettingDom, "otherUseAlbumCover", {"value", otherUseAlbumCover});
+    writeDomElement(otherSettingDom, "otherUseFileInfo", {"value", otherUseFileInfo});
+    writeDomElement(otherSettingDom, "otherWriteAlbumCover", {"value", otherWriteAlbumCover});
+    writeDomElement(otherSettingDom, "otherWriteFileInfo", {"value", otherWriteFileInfo});
+    writeDomElement(otherSettingDom, "otherSideByMode", {"value", otherSideByMode});
+    writeDomElement(otherSettingDom, "otherLrcKTVMode", {"value", otherLrcKTVMode});
+    writeDomElement(otherSettingDom, "otherScreenSaverEnable", {"value", otherScreenSaverEnable});
+    writeDomElement(otherSettingDom, "otherScreenSaverTime", {"value", otherScreenSaverTime});
+    writeDomElement(otherSettingDom, "otherScreenSaverIndex", {"value", otherScreenSaverIndex});
     //
-    writeDomElement(rippleSettingDom, "rippleLowPowerMode", MusicXmlAttribute("value", rippleLowPowerMode));
-    writeDomElement(rippleSettingDom, "rippleSpectrumEnable", MusicXmlAttribute("value", rippleSpectrumEnable));
-    writeDomElement(rippleSettingDom, "rippleSpectrumColor", MusicXmlAttribute("value", rippleSpectrumColor));
+    writeDomElement(rippleSettingDom, "rippleLowPowerMode", {"value", rippleLowPowerMode});
+    writeDomElement(rippleSettingDom, "rippleSpectrumEnable", {"value", rippleSpectrumEnable});
+    writeDomElement(rippleSettingDom, "rippleSpectrumColor", {"value", rippleSpectrumColor});
     //
-    writeDomElement(backgroundSettingDom, "backgroundThemeValue", MusicXmlAttribute("value", backgroundThemeValue));
-    writeDomElement(backgroundSettingDom, "backgroundTransparent", MusicXmlAttribute("value", backgroundTransparent));
-    writeDomElement(backgroundSettingDom, "backgroundListTransparent", MusicXmlAttribute("value", backgroundListTransparent));
-    writeDomElement(backgroundSettingDom, "backgroundTransparentEnable", MusicXmlAttribute("value", backgroundTransparentEnable));
+    writeDomElement(backgroundSettingDom, "backgroundThemeValue", {"value", backgroundThemeValue});
+    writeDomElement(backgroundSettingDom, "backgroundTransparent", {"value", backgroundTransparent});
+    writeDomElement(backgroundSettingDom, "backgroundListTransparent", {"value", backgroundListTransparent});;
+    writeDomElement(backgroundSettingDom, "backgroundTransparentEnable", {"value", backgroundTransparentEnable});
     //
-    writeDomElement(hotkeySettingDom, "hotkeyEnable", MusicXmlAttribute("value", hotkeyEnable));
-    writeDomElement(hotkeySettingDom, "hotkeyValue", MusicXmlAttribute("value", hotkeyValue));
+    writeDomElement(hotkeySettingDom, "hotkeyEnable", {"value", hotkeyEnable});
+    writeDomElement(hotkeySettingDom, "hotkeyValue", {"value", hotkeyValue});
     //
-    writeDomElement(interiorLrcSettingDom, "showInteriorLrc", MusicXmlAttribute("value", showInteriorLrc));
-    writeDomElement(interiorLrcSettingDom, "lrcColor", MusicXmlAttribute("value", lrcColor));
-    writeDomElement(interiorLrcSettingDom, "lrcSize", MusicXmlAttribute("value", lrcSize));
-    writeDomElement(interiorLrcSettingDom, "lrcFamily", MusicXmlAttribute("value", lrcFamily));
-    writeDomElement(interiorLrcSettingDom, "lrcType", MusicXmlAttribute("value", lrcType));
-    writeDomElement(interiorLrcSettingDom, "lrcTransparent", MusicXmlAttribute("value", lrcTransparent));
-    writeDomElement(interiorLrcSettingDom, "lrcFrontgroundColor", MusicXmlAttribute("value", lrcFrontgroundColor));
-    writeDomElement(interiorLrcSettingDom, "lrcBackgroundColor", MusicXmlAttribute("value", lrcBackgroundColor));
+    writeDomElement(interiorLrcSettingDom, "showInteriorLrc", {"value", showInteriorLrc});
+    writeDomElement(interiorLrcSettingDom, "lrcColor", {"value", lrcColor});
+    writeDomElement(interiorLrcSettingDom, "lrcSize", {"value", lrcSize});
+    writeDomElement(interiorLrcSettingDom, "lrcFamily", {"value", lrcFamily});
+    writeDomElement(interiorLrcSettingDom, "lrcType", {"value", lrcType});
+    writeDomElement(interiorLrcSettingDom, "lrcTransparent", {"value", lrcTransparent});
+    writeDomElement(interiorLrcSettingDom, "lrcFrontgroundColor", {"value", lrcFrontgroundColor});
+    writeDomElement(interiorLrcSettingDom, "lrcBackgroundColor", {"value", lrcBackgroundColor});
     //
-    writeDomElement(desktopLrcSettingDom, "showDesktopLrc", MusicXmlAttribute("value", showDesktopLrc));
-    writeDomElement(desktopLrcSettingDom, "lrcDColor", MusicXmlAttribute("value", DLrcColor));
-    writeDomElement(desktopLrcSettingDom, "lrcDSize", MusicXmlAttribute("value", DLrcSize));
-    writeDomElement(desktopLrcSettingDom, "lrcDFamily", MusicXmlAttribute("value", DLrcFamily));
-    writeDomElement(desktopLrcSettingDom, "lrcDType", MusicXmlAttribute("value", DLrcType));
-    writeDomElement(desktopLrcSettingDom, "lrcDTransparent", MusicXmlAttribute("value", DLrcTransparent));
-    writeDomElement(desktopLrcSettingDom, "lrcDFrontgroundColor", MusicXmlAttribute("value", DLrcFrontgroundColor));
-    writeDomElement(desktopLrcSettingDom, "lrcDBackgroundColor", MusicXmlAttribute("value", DLrcBackgroundColor));
-    writeDomElement(desktopLrcSettingDom, "lrcDWindowMode", MusicXmlAttribute("value", DLrcWindowMode));
-    writeDomElement(desktopLrcSettingDom, "lrcDSingleLineMode", MusicXmlAttribute("value", DLrcSingleLineMode));
-    writeDomElement(desktopLrcSettingDom, "lrcDLockedMode", MusicXmlAttribute("value", DLrcLockedMode));
-    writeDomElement(desktopLrcSettingDom, "lrcDGeometry", MusicXmlAttribute("value", QString("%1,%2").arg(DLrcGeometry.x()).arg(DLrcGeometry.y())));
+    writeDomElement(desktopLrcSettingDom, "showDesktopLrc", {"value", showDesktopLrc});
+    writeDomElement(desktopLrcSettingDom, "lrcDColor", {"value", DLrcColor});
+    writeDomElement(desktopLrcSettingDom, "lrcDSize", {"value", DLrcSize});
+    writeDomElement(desktopLrcSettingDom, "lrcDFamily", {"value", DLrcFamily});
+    writeDomElement(desktopLrcSettingDom, "lrcDType", {"value", DLrcType});
+    writeDomElement(desktopLrcSettingDom, "lrcDTransparent", {"value", DLrcTransparent});
+    writeDomElement(desktopLrcSettingDom, "lrcDFrontgroundColor", {"value", DLrcFrontgroundColor});
+    writeDomElement(desktopLrcSettingDom, "lrcDBackgroundColor", {"value", DLrcBackgroundColor});
+    writeDomElement(desktopLrcSettingDom, "lrcDWindowMode", {"value", DLrcWindowMode});
+    writeDomElement(desktopLrcSettingDom, "lrcDSingleLineMode", {"value", DLrcSingleLineMode});
+    writeDomElement(desktopLrcSettingDom, "lrcDLockedMode", {"value", DLrcLockedMode});
+    writeDomElement(desktopLrcSettingDom, "lrcDGeometry", {"value", QString("%1,%2").arg(DLrcGeometry.x()).arg(DLrcGeometry.y())});
     //
-    writeDomElement(equalizerSettingDom, "enhancedMusicIndex", MusicXmlAttribute("value", enhancedMusicIndex));
-    writeDomElement(equalizerSettingDom, "equalizerEnable", MusicXmlAttribute("value", equalizerEnable));
-    writeDomElement(equalizerSettingDom, "equalizerIndex", MusicXmlAttribute("value", equalizerIndex));
-    writeDomElement(equalizerSettingDom, "equalizerValue", MusicXmlAttribute("value", equalizerValue));
-    writeDomElement(equalizerSettingDom, "enhancedFadeEnable", MusicXmlAttribute("value", enhancedFadeEnable));
-    writeDomElement(equalizerSettingDom, "enhancedFadeInValue", MusicXmlAttribute("value", enhancedFadeInValue));
-    writeDomElement(equalizerSettingDom, "enhancedFadeOutValue", MusicXmlAttribute("value", enhancedFadeOutValue));
-    writeDomElement(equalizerSettingDom, "enhancedEffectValue", MusicXmlAttribute("value", enhancedEffectValue));
+    writeDomElement(equalizerSettingDom, "enhancedMusicIndex", {"value", enhancedMusicIndex});
+    writeDomElement(equalizerSettingDom, "equalizerEnable", {"value", equalizerEnable});
+    writeDomElement(equalizerSettingDom, "equalizerIndex", {"value", equalizerIndex});
+    writeDomElement(equalizerSettingDom, "equalizerValue", {"value", equalizerValue});
+    writeDomElement(equalizerSettingDom, "enhancedFadeEnable", {"value", enhancedFadeEnable});
+    writeDomElement(equalizerSettingDom, "enhancedFadeInValue", {"value", enhancedFadeInValue});
+    writeDomElement(equalizerSettingDom, "enhancedFadeOutValue", {"value", enhancedFadeOutValue});
+    writeDomElement(equalizerSettingDom, "enhancedEffectValue", {"value", enhancedEffectValue});
     //
-    writeDomElement(timeSettingDom, "timeAutoIndex", MusicXmlAttribute("value", timeAutoIndex));
-    writeDomElement(timeSettingDom, "timeAutoPlayMode", MusicXmlAttribute("value", timeAutoPlayMode));
-    writeDomElement(timeSettingDom, "timeAutoPlayHour", MusicXmlAttribute("value", timeAutoPlayHour));
-    writeDomElement(timeSettingDom, "timeAutoPlaySecond", MusicXmlAttribute("value", timeAutoPlaySecond));
-    writeDomElement(timeSettingDom, "timeAutoPlayRepeat", MusicXmlAttribute("value", timeAutoPlayRepeat));
-    writeDomElement(timeSettingDom, "timeAutoPlayItemIndex", MusicXmlAttribute("value", timeAutoPlayItemIndex));
-    writeDomElement(timeSettingDom, "timeAutoPlaySongIndex", MusicXmlAttribute("value", timeAutoPlaySongIndex));
-    writeDomElement(timeSettingDom, "timeAutoStopMode", MusicXmlAttribute("value", timeAutoStopMode));
-    writeDomElement(timeSettingDom, "timeAutoStopHour", MusicXmlAttribute("value", timeAutoStopHour));
-    writeDomElement(timeSettingDom, "timeAutoStopSecond", MusicXmlAttribute("value", timeAutoStopSecond));
-    writeDomElement(timeSettingDom, "timeAutoStopRepeat", MusicXmlAttribute("value", timeAutoStopRepeat));
-    writeDomElement(timeSettingDom, "timeAutoShutdownMode", MusicXmlAttribute("value", timeAutoShutdownMode));
-    writeDomElement(timeSettingDom, "timeAutoShutdownHour", MusicXmlAttribute("value", timeAutoShutdownHour));
-    writeDomElement(timeSettingDom, "timeAutoShutdownSecond", MusicXmlAttribute("value", timeAutoShutdownSecond));
-    writeDomElement(timeSettingDom, "timeAutoShutdownRepeat", MusicXmlAttribute("value", timeAutoShutdownRepeat));
+    writeDomElement(timeSettingDom, "timeAutoIndex", {"value", timeAutoIndex});
+    writeDomElement(timeSettingDom, "timeAutoPlayMode", {"value", timeAutoPlayMode});
+    writeDomElement(timeSettingDom, "timeAutoPlayHour", {"value", timeAutoPlayHour});
+    writeDomElement(timeSettingDom, "timeAutoPlaySecond", {"value", timeAutoPlaySecond});
+    writeDomElement(timeSettingDom, "timeAutoPlayRepeat", {"value", timeAutoPlayRepeat});
+    writeDomElement(timeSettingDom, "timeAutoPlayItemIndex", {"value", timeAutoPlayItemIndex});
+    writeDomElement(timeSettingDom, "timeAutoPlaySongIndex", {"value", timeAutoPlaySongIndex});
+    writeDomElement(timeSettingDom, "timeAutoStopMode", {"value", timeAutoStopMode});
+    writeDomElement(timeSettingDom, "timeAutoStopHour", {"value", timeAutoStopHour});
+    writeDomElement(timeSettingDom, "timeAutoStopSecond", {"value", timeAutoStopSecond});
+    writeDomElement(timeSettingDom, "timeAutoStopRepeat", {"value", timeAutoStopRepeat});
+    writeDomElement(timeSettingDom, "timeAutoShutdownMode", {"value", timeAutoShutdownMode});
+    writeDomElement(timeSettingDom, "timeAutoShutdownHour", {"value", timeAutoShutdownHour});
+    writeDomElement(timeSettingDom, "timeAutoShutdownSecond", {"value", timeAutoShutdownSecond});
+    writeDomElement(timeSettingDom, "timeAutoShutdownRepeat", {"value", timeAutoShutdownRepeat});
     //
-    writeDomElement(downloadSettingDom, "downloadMusicPath", MusicXmlAttribute("value", downloadMusicPath));
-    writeDomElement(downloadSettingDom, "downloadLrcPath", MusicXmlAttribute("value", downloadLrcPath));
-    writeDomElement(downloadSettingDom, "downloadCacheEnable", MusicXmlAttribute("value", downloadCacheEnable));
-    writeDomElement(downloadSettingDom, "downloadCacheSize", MusicXmlAttribute("value", downloadCacheSize));
-    writeDomElement(downloadSettingDom, "downloadLimitEnable", MusicXmlAttribute("value", downloadLimitEnable));
-    writeDomElement(downloadSettingDom, "downloadServerIndex", MusicXmlAttribute("value", downloadServerIndex));
-    writeDomElement(downloadSettingDom, "downloadDownloadLimitSize", MusicXmlAttribute("value", downloadDownloadLimitSize));
-    writeDomElement(downloadSettingDom, "downloadUploadLimitSize", MusicXmlAttribute("value", downloadUploadLimitSize));
+    writeDomElement(downloadSettingDom, "downloadMusicPath", {"value", downloadMusicPath});
+    writeDomElement(downloadSettingDom, "downloadLrcPath", {"value", downloadLrcPath});
+    writeDomElement(downloadSettingDom, "downloadCacheEnable", {"value", downloadCacheEnable});
+    writeDomElement(downloadSettingDom, "downloadCacheSize", {"value", downloadCacheSize});
+    writeDomElement(downloadSettingDom, "downloadLimitEnable", {"value", downloadLimitEnable});
+    writeDomElement(downloadSettingDom, "downloadServerIndex", {"value", downloadServerIndex});
+    writeDomElement(downloadSettingDom, "downloadDownloadLimitSize", {"value", downloadDownloadLimitSize});
+    writeDomElement(downloadSettingDom, "downloadUploadLimitSize", {"value", downloadUploadLimitSize});
 
     QTextStream out(m_file);
     m_document->save(out, 4);

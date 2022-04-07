@@ -13,7 +13,7 @@
 #include "musicconnectionpool.h"
 #include "musiccloudtablewidget.h"
 
-#include "qsync/qsyncconf.h"
+#include "qsync/qsyncconfig.h"
 #include "qsync/qsynclistdata.h"
 #include "qsync/qsyncuploaddata.h"
 #include "qsync/qsyncdeletedata.h"
@@ -84,7 +84,7 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
     loop.exec();
     updateListToServer();
 
-    return !QSyncConf::NAME.isEmpty() && !QSyncConf::KEY.isEmpty();
+    return !QSyncConfig::NAME.isEmpty() && !QSyncConfig::KEY.isEmpty();
 }
 
 void MusicCloudManagerTableWidget::resizeWindow()
@@ -125,8 +125,8 @@ void MusicCloudManagerTableWidget::downLoadFinished(const QByteArray &bytes)
         if(ok)
         {
             QVariantMap value = data.toMap();
-            QSyncConf::NAME = value["key"].toString();
-            QSyncConf::KEY = value["secret"].toByteArray();
+            QSyncConfig::NAME = value["key"].toString();
+            QSyncConfig::KEY = value["secret"].toByteArray();
         }
     }
     Q_EMIT finished();

@@ -184,22 +184,23 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
     QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
 
-    MusicSongList records;
     MusicDownloadRecordConfigManager down(MusicObject::RecordNormalDownload, this);
-    if(!down.readConfig())
+    if(!down.fromFile())
     {
         return;
     }
 
-    down.readDownloadData(records);
+    MusicSongList records;
+    down.readBuffer(records);
+
     MusicSong record;
     record.setMusicName(musicSong);
     record.setMusicPath(QFileInfo(downloadName).absoluteFilePath());
     record.setMusicSizeStr(prop.m_size);
     record.setMusicAddTimeStr("-1");
     records << record;
-    down.writeDownloadData(records);
-    //
+    down.writeBuffer(records);
+
     if(QFile::exists(downloadName))
     {
         for(int i = 1; i < 99; ++i)
@@ -216,7 +217,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
             downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
         }
     }
-    //
+
     MusicDownloadTagDataRequest *downSong = new MusicDownloadTagDataRequest(prop.m_url, downloadName, MusicObject::DownloadMusic, this);
     downSong->setRecordType(MusicObject::RecordNormalDownload);
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));

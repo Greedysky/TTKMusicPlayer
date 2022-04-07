@@ -111,7 +111,6 @@ public Q_SLOTS:
 
 protected:
     Ui::MusicApplication *m_ui;
-
     int m_currentIndex;
     QWidget *m_stackedWidget;
     MusicQualityChoicePopWidget *m_qualityChoiceWidget;

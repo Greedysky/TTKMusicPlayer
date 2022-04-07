@@ -36,18 +36,18 @@ public:
     explicit MusicTKPLConfigManager();
 
     /*!
-     * Read config datas from xml file by given name.
+     * Read datas from xml file by given name.
      */
-    inline bool readConfig(const QString &name = PLAYLIST_PATH_FULL) { return MusicAbstractXml::readConfig(name); }
+    inline bool fromFile(const QString &name = PLAYLIST_PATH_FULL) { return MusicAbstractXml::fromFile(name); }
 
     /*!
      * Read datas from config file.
      */
-    virtual bool readPlaylistData(MusicSongItemList &items) override final;
+    virtual bool readBuffer(MusicSongItemList &items) override final;
     /*!
      * Write datas into config file.
      */
-    virtual bool writePlaylistData(const MusicSongItemList &items, const QString &path) override final;
+    virtual bool writeBuffer(const MusicSongItemList &items, const QString &path) override final;
 
 protected:
     /*!

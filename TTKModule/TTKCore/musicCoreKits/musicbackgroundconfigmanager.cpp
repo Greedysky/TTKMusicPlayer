@@ -6,15 +6,15 @@ MusicSkinConfigManager::MusicSkinConfigManager(QObject *parent)
 
 }
 
-void MusicSkinConfigManager::readSkinData(MusicSkinConfigItem &item)
+void MusicSkinConfigManager::readBuffer(MusicSkinItem &item)
 {
     item.m_name = readXmlAttributeByTagNameValue("name");
     item.m_useCount = readXmlAttributeByTagNameValue("useCount").toInt();
 }
 
-void MusicSkinConfigManager::writeSkinData(const MusicSkinConfigItem &item, const QString &path)
+void MusicSkinConfigManager::writeBuffer(const MusicSkinItem &item, const QString &path)
 {
-    if(!writeConfig(path))
+    if(!toFile(path))
     {
         return;
     }
@@ -23,9 +23,9 @@ void MusicSkinConfigManager::writeSkinData(const MusicSkinConfigItem &item, cons
     //
     QDomElement musicPlayerDom = createRoot("TTKSkin");
     //Class A
-    writeDomElement(musicPlayerDom, "creator", MusicXmlAttribute("value", APP_NAME));
-    writeDomElement(musicPlayerDom, "name", MusicXmlAttribute("value", item.m_name));
-    writeDomElement(musicPlayerDom, "useCount", MusicXmlAttribute("value", item.m_useCount));
+    writeDomElement(musicPlayerDom, "creator", {"value", APP_NAME});
+    writeDomElement(musicPlayerDom, "name", {"value", item.m_name});
+    writeDomElement(musicPlayerDom, "useCount", {"value", item.m_useCount});
 
     QTextStream out(m_file);
     m_document->save(out, 4);

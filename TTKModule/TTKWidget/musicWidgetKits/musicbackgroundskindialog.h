@@ -162,11 +162,10 @@ protected:
      */
     static int cpoyFileToLocal(const QString &path);
 
-    int m_stackThemeIndex;
     Ui::MusicBackgroundSkinDialog *m_ui;
+    int m_stackThemeIndex;
     MusicBackgroundListWidget *m_cacheBackgroundList;
     MusicBackgroundListWidget *m_stackBackgroundList;
-
     MusicBackgroundDailyWidget *m_dailyBackgroundList;
     MusicBackgroundOnlineWidget *m_onlineBackgroundList;
 

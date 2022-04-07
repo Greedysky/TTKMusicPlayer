@@ -45,18 +45,18 @@ public:
     inline MusicObject::RecordType type() const { return m_type; }
 
     /*!
-     * Read history download datas from xml file by given name.
+     * Read datas from xml file.
      */
-    inline bool readConfig() { return MusicAbstractXml::readConfig(mappingFilePathFromEnum()); }
+    inline bool fromFile() { return MusicAbstractXml::fromFile(mappingFilePathFromEnum()); }
 
     /*!
      * Read datas from config file.
      */
-    void readDownloadData(MusicSongList &records);
+    void readBuffer(MusicSongList &items);
     /*!
      * Write datas into config file.
      */
-    void writeDownloadData(const MusicSongList &records);
+    void writeBuffer(const MusicSongList &items);
 
 protected:
     /*!

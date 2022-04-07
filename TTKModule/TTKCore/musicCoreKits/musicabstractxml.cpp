@@ -88,7 +88,7 @@ MusicAbstractXml::~MusicAbstractXml()
     delete m_document;
 }
 
-bool MusicAbstractXml::readConfig(const QString &name)
+bool MusicAbstractXml::fromFile(const QString &name)
 {
     delete m_file;
     delete m_document;
@@ -110,15 +110,6 @@ bool MusicAbstractXml::readConfig(const QString &name)
     return true;
 }
 
-bool MusicAbstractXml::writeConfig(const QString &name)
-{
-    delete m_file;
-    delete m_document;
-    m_file = new QFile(name);
-    m_document = new QDomDocument;
-    return m_file->open(QFile::WriteOnly | QFile::Text);
-}
-
 bool MusicAbstractXml::fromString(const QString &data)
 {
     delete m_file;
@@ -135,6 +126,15 @@ bool MusicAbstractXml::fromByteArray(const QByteArray &data)
     m_file = nullptr;
     m_document = new QDomDocument;
     return m_document->setContent(data);
+}
+
+bool MusicAbstractXml::toFile(const QString &name)
+{
+    delete m_file;
+    delete m_document;
+    m_file = new QFile(name);
+    m_document = new QDomDocument;
+    return m_file->open(QFile::WriteOnly | QFile::Text);
 }
 
 QString MusicAbstractXml::toString() const

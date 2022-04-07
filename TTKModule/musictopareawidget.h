@@ -224,7 +224,6 @@ protected:
     Ui::MusicApplication *m_ui;
     MusicBackgroundSkinDialog *m_musicBackgroundWidget;
     MusicRemoteWidget *m_musicRemoteWidget;
-
     QImage m_backgroundImage;
     int m_lastRemoteBeforeWallpaper;
     QString m_backgroundImagePath;

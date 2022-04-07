@@ -22,15 +22,15 @@
 #include <QPixmap>
 #include "musicabstractxml.h"
 
-/*! @brief The class of the skin config item.
+/*! @brief The class of the skin item.
  * @author Greedysky <greedysky@163.com>
  */
-struct TTK_MODULE_EXPORT MusicSkinConfigItem
+struct TTK_MODULE_EXPORT MusicSkinItem
 {
     QString m_name;
     int m_useCount;
 
-    MusicSkinConfigItem()
+    MusicSkinItem()
     {
         m_name = MUSIC_AUTHOR_NAME;
         m_useCount = 8888;
@@ -49,7 +49,7 @@ struct TTK_MODULE_EXPORT MusicSkinConfigItem
 struct TTK_MODULE_EXPORT MusicBackgroundImage
 {
     QPixmap m_pix;
-    MusicSkinConfigItem m_item;
+    MusicSkinItem m_item;
 
     inline bool isValid() const
     {
@@ -58,7 +58,7 @@ struct TTK_MODULE_EXPORT MusicBackgroundImage
 };
 
 
-/*! @brief The class of the skin XML Config Manager.
+/*! @brief The class of the skin XML config manager.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicSkinConfigManager : public MusicAbstractXml
@@ -74,11 +74,11 @@ public:
     /*!
      * Read datas from config file.
      */
-    void readSkinData(MusicSkinConfigItem &item);
+    void readBuffer(MusicSkinItem &item);
     /*!
      * Write datas into config file.
      */
-    void writeSkinData(const MusicSkinConfigItem &item, const QString &path);
+    void writeBuffer(const MusicSkinItem &item, const QString &path);
 
 };
 

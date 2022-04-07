@@ -22,7 +22,7 @@
 #include "ttkdesktopwrapper.h"
 
 #include "qdevicewatcher.h"
-#include "qsync/qsyncconf.h"
+#include "qsync/qsyncconfig.h"
 
 #define MARGIN_SIDE     5
 #define MARGIN_SIDE_BY  1
@@ -33,7 +33,6 @@ MusicApplicationModule *MusicApplicationModule::m_instance = nullptr;
 MusicApplicationModule::MusicApplicationModule(QObject *parent)
     : QObject(parent)
 {
-    Q_INIT_RESOURCE(MusicPlayer);
     m_instance = this;
 
     musicResetWindow();
@@ -93,7 +92,7 @@ void MusicApplicationModule::loadNetWorkSetting()
     TTK_LOGGER_INFO(QString("Application network support ssl: %1").arg(QSslSocket::supportsSsl() ? "true" : "false"));
 #endif
     // sync host init
-    QSyncConf::HOST = MusicUtils::Algorithm::mdII(SYNC_HOST_URL, false);
+    QSyncConfig::HOST = MusicUtils::Algorithm::mdII(SYNC_HOST_URL, false);
     //
     m_sourceUpdatehread->startToDownload();
     m_counterPVThread->startToDownload();

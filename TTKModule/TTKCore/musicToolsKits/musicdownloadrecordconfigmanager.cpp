@@ -6,7 +6,7 @@ MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(MusicObject::
     m_type = type;
 }
 
-void MusicDownloadRecordConfigManager::readDownloadData(MusicSongList &records)
+void MusicDownloadRecordConfigManager::readBuffer(MusicSongList &items)
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName("value");
     for(int i = 0; i < nodeList.count(); ++i)
@@ -16,13 +16,13 @@ void MusicDownloadRecordConfigManager::readDownloadData(MusicSongList &records)
         record.setMusicSizeStr(nodeList.at(i).toElement().attribute("size"));
         record.setMusicAddTimeStr(nodeList.at(i).toElement().attribute("time"));
         record.setMusicPath(nodeList.at(i).toElement().text());
-        records << record;
+        items << record;
     }
 }
 
-void MusicDownloadRecordConfigManager::writeDownloadData(const MusicSongList &records)
+void MusicDownloadRecordConfigManager::writeBuffer(const MusicSongList &items)
 {
-    if(!writeConfig(mappingFilePathFromEnum()))
+    if(!toFile(mappingFilePathFromEnum()))
     {
         return;
     }
@@ -31,11 +31,11 @@ void MusicDownloadRecordConfigManager::writeDownloadData(const MusicSongList &re
     QDomElement musicPlayer = createRoot(APP_NAME);
     QDomElement download = writeDomNode(musicPlayer, "record");
 
-    for(const MusicSong &record : qAsConst(records))
+    for(const MusicSong &record : qAsConst(items))
     {
-        writeDomElementMutilText(download, "value", {MusicXmlAttribute("name", record.musicName()),
-                                                     MusicXmlAttribute("size", record.musicSizeStr()),
-                                                     MusicXmlAttribute("time", record.musicAddTimeStr())}, record.musicPath());
+        writeDomElementMutilText(download, "value", {{"name", record.musicName()},
+                                                     {"size", record.musicSizeStr()},
+                                                     {"time", record.musicAddTimeStr()}}, record.musicPath());
     }
 
     QTextStream out(m_file);

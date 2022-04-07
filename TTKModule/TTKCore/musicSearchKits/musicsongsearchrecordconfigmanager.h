@@ -45,18 +45,18 @@ public:
     explicit MusicSongSearchRecordConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read history search datas from xml file by given name.
+     * Read datas from xml file.
      */
-    inline bool readConfig() { return MusicAbstractXml::readConfig(SEARCH_PATH_FULL); }
+    inline bool fromFile() { return MusicAbstractXml::fromFile(SEARCH_PATH_FULL); }
 
     /*!
      * Read datas from config file.
      */
-    void readSearchData(MusicSearchRecordList &records);
+    void readBuffer(MusicSearchRecordList &items);
     /*!
      * Write datas into config file.
      */
-    void writeSearchData(const MusicSearchRecordList &records);
+    void writeBuffer(const MusicSearchRecordList &items);
 
 };
 

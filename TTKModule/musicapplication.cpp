@@ -1075,25 +1075,23 @@ void MusicApplication::setMusicPlayIndex()
 void MusicApplication::readSystemConfigFromFile()
 {
     int value = DEFAULT_NORMAL_LEVEL;
-
     //Path configuration song
     MusicSongItemList songs;
     MusicTKPLConfigManager manager;
-    if(manager.readConfig())
+    if(manager.fromFile())
     {
-        manager.readPlaylistData(songs);
+        manager.readBuffer(songs);
     }
     const bool success = m_musicSongTreeWidget->addMusicItemList(songs);
-    //
+
     MusicConfigManager xml;
-    if(!xml.readConfig())
+    if(!xml.fromFile())
     {
         return;
     }
-    xml.readSysConfigData();
+    xml.readBuffer();
     m_applicationObject->loadNetWorkSetting();
 
-    //
     switch(G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt())
     {
         case MusicObject::PlayOrder: musicPlayOrder();break;
@@ -1103,7 +1101,7 @@ void MusicApplication::readSystemConfigFromFile()
         case MusicObject::PlayOnce: musicPlayOnce();break;
         default:break;
     }
-    //
+
     value = G_SETTING_PTR->value(MusicSettingManager::RemoteWidgetMode).toInt();
     if(value != 0)
     {
@@ -1237,8 +1235,8 @@ void MusicApplication::writeSystemConfigToFile()
     G_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparent, m_topAreaWidget->backgroundListAlpha());
     G_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentEnable, m_topAreaWidget->backgroundTransparentEnable());
     G_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, m_rightAreaWidget->destopLrcVisible());
-    xml.writeSysConfigData();
+    xml.writeBuffer();
 
     MusicTKPLConfigManager manager;
-    manager.writePlaylistData(m_musicSongTreeWidget->musicItemList(), PLAYLIST_PATH_FULL);
+    manager.writeBuffer(m_musicSongTreeWidget->musicItemList(), PLAYLIST_PATH_FULL);
 }

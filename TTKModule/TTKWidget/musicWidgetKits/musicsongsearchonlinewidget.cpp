@@ -47,20 +47,22 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
         clearAllItems();
         return;
     }
-    //
-    MusicSearchRecordList records;
+
     MusicSongSearchRecordConfigManager search(this);
-    if(!search.readConfig())
+    if(!search.fromFile())
     {
         return;
     }
-    search.readSearchData(records);
+
+    MusicSearchRecordList records;
+    search.readBuffer(records);
+
     MusicSearchRecord record;
     record.m_name = text;
     record.m_timestamp = QString::number(MusicTime::timestamp());
     records.insert(0, record);
-    search.writeSearchData(records);
-    //
+    search.writeBuffer(records);
+
     if(!m_networkRequest)
     {
         MusicItemSearchTableWidget::startSearchQuery(text);
@@ -71,7 +73,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
         MusicItemSearchTableWidget::startSearchQuery(text);
         m_networkRequest->setQueryQuality(quality);
     }
-    //
+
     m_loadingLabel->run(true);
     m_networkRequest->setQueryAllRecords(m_queryAllRecords);
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, text);

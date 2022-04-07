@@ -28,17 +28,6 @@ struct TTK_MODULE_EXPORT MusicResultsCategoryItem
 {
     QString m_key;
     QString m_value;
-
-    MusicResultsCategoryItem()
-    {
-
-    }
-
-    MusicResultsCategoryItem(const QString &key, const QString &value)
-    {
-        m_key = key;
-        m_value = value;
-    }
 };
 TTK_DECLARE_LIST(MusicResultsCategoryItem);
 
@@ -54,7 +43,7 @@ struct TTK_MODULE_EXPORT MusicResultsCategory
 TTK_DECLARE_LIST(MusicResultsCategory);
 
 
-/*! @brief The class of the category Config Manager.
+/*! @brief The class of the category config manager.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicCategoryConfigManager : public MusicAbstractXml
@@ -75,14 +64,14 @@ public:
     explicit MusicCategoryConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read user datas from xml file by given name.
+     * Read datas from xml file by given name.
      */
-    bool readConfig(Type type);
+    bool fromFile(Type type);
 
     /*!
      * Read datas from config file.
      */
-    void readCategoryData(MusicResultsCategoryList &records, const QString &key);
+    void readBuffer(MusicResultsCategoryList &items, const QString &key);
 
 };
 

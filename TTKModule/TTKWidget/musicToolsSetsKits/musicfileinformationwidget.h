@@ -86,7 +86,6 @@ protected:
     void setEditLineEnabled(bool enable);
 
     Ui::MusicFileInformationWidget *m_ui;
-
     QString m_path, m_imagePath;
     bool m_advanceOn;
     bool m_deleteOn;

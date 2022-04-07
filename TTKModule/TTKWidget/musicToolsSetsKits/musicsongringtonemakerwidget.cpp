@@ -48,7 +48,7 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     m_ui->playRingButton->setEnabled(false);
     m_ui->saveSongButton->setEnabled(false);
     m_ui->cutSliderWidget->resizeWindow(440, 55);
-    m_mediaPlayer = new MusicCoreMPlayer(this);
+    m_player = new MusicCoreMPlayer(this);
 
     connect(m_ui->addSongButton, SIGNAL(clicked()), SLOT(initInputPath()));
     connect(m_ui->playSongButton, SIGNAL(clicked()), SLOT(playInputSong()));
@@ -56,13 +56,13 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     connect(m_ui->saveSongButton, SIGNAL(clicked()), SLOT(initOutputPath()));
     connect(m_ui->cutSliderWidget, SIGNAL(posChanged(qint64,qint64)), SLOT(posChanged(qint64,qint64)));
     connect(m_ui->cutSliderWidget, SIGNAL(buttonReleaseChanged(qint64)), SLOT(buttonReleaseChanged(qint64)));
-    connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
-    connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
+    connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
+    connect(m_player, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
 }
 
 MusicSongRingtoneMaker::~MusicSongRingtoneMaker()
 {
-    delete m_mediaPlayer;
+    delete m_player;
     delete m_ui;
 }
 
@@ -103,7 +103,7 @@ void MusicSongRingtoneMaker::initInputPath()
     m_ui->playRingButton->setEnabled(true);
     m_ui->saveSongButton->setEnabled(true);
 
-    m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, m_inputFilePath);
+    m_player->setMedia(MusicCoreMPlayer::MusicCategory, m_inputFilePath);
     playInputSong();
 
 }
@@ -129,17 +129,17 @@ void MusicSongRingtoneMaker::playInputSong()
 {
     m_playRingtone = false;
     playButtonStateChanged();
-    m_mediaPlayer->play();
+    m_player->play();
 }
 
 void MusicSongRingtoneMaker::playRingtone()
 {
-    if(!m_mediaPlayer->isPlaying())
+    if(!m_player->isPlaying())
     {
         m_ui->playSongButton->setText(tr("Pause"));
     }
     m_playRingtone = true;
-    m_mediaPlayer->setPosition(m_startPos);
+    m_player->setPosition(m_startPos);
 }
 
 void MusicSongRingtoneMaker::positionChanged(qint64 position)
@@ -147,7 +147,7 @@ void MusicSongRingtoneMaker::positionChanged(qint64 position)
     m_ui->cutSliderWidget->setPosition(position);
     if(m_playRingtone && m_stopPos < position)
     {
-        m_mediaPlayer->play();
+        m_player->play();
         m_ui->playSongButton->setText(tr("Play"));
     }
 }
@@ -168,11 +168,11 @@ void MusicSongRingtoneMaker::posChanged(qint64 start, qint64 end)
 
 void MusicSongRingtoneMaker::buttonReleaseChanged(qint64 pos)
 {
-    if(!m_mediaPlayer->isPlaying())
+    if(!m_player->isPlaying())
     {
         m_ui->playSongButton->setText(tr("Pause"));
     }
-    m_mediaPlayer->setPosition(pos);
+    m_player->setPosition(pos);
 }
 
 int MusicSongRingtoneMaker::exec()
@@ -200,7 +200,7 @@ void MusicSongRingtoneMaker::initControlParameter() const
 
 void MusicSongRingtoneMaker::playButtonStateChanged()
 {
-    if(!m_mediaPlayer->isPlaying())
+    if(!m_player->isPlaying())
     {
         m_ui->playSongButton->setText(tr("Pause"));
     }
