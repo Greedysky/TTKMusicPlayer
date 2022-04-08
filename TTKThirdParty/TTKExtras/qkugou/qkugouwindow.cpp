@@ -19,6 +19,7 @@
 #endif
 
 #include <QLabel>
+#include <QTimer>
 #include <QBoxLayout>
 #include <QPushButton>
 #include <QButtonGroup>
