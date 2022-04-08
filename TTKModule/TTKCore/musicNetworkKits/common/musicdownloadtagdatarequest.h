@@ -65,4 +65,4 @@ protected:
 
 };
 
-#endif // MusicDownloadTagDataRequest_H
+#endif // MUSICDOWNLOADTAGDATAREQUEST_H

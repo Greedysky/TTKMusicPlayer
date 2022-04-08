@@ -236,7 +236,7 @@ void MusicBackgroundOnlineWidget::outputRemoteSkin(MusicBackgroundImage &image, 
 
 void MusicBackgroundOnlineWidget::currentTypeChanged(int index)
 {
-    index -= 1; //remove first index because it is tips
+    index -= 1; // remove first index because it is tips
     if(index < 0 || index >= m_groups.count())
     {
         return;

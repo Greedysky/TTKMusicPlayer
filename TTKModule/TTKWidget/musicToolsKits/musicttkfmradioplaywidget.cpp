@@ -25,7 +25,7 @@ void MusicFMConfigManager::readBuffer(MusicFMCategoryList &items)
         for(int j = 0; j < chnNodes.count(); ++j)
         {
             const QDomNode &chnNode = chnNodes.at(j);
-            MusicFMCategoryItem item;
+            MusicFMChannel item;
             item.m_name = chnNode.toElement().attribute("name");
             item.m_location = chnNode.toElement().attribute("location");
             item.m_url = chnNode.toElement().attribute("url");
@@ -48,11 +48,11 @@ void MusicFMConfigManager::writeBuffer(const MusicFMCategoryList &items)
     QDomElement rootDom = createRoot(APP_NAME);
     QDomElement categoryDom = writeDomElement(rootDom, "category", {"value", item.m_category});
 
-    for(const MusicFMCategoryItem &it : qAsConst(item.m_items))
+    for(const MusicFMChannel &channel : qAsConst(item.m_items))
     {
-        writeDomMutilElement(categoryDom, "channel", {{"name", it.m_name},
-                                                      {"location", it.m_location},
-                                                      {"url", it.m_url}});
+        writeDomMutilElement(categoryDom, "channel", {{"name", channel.m_name},
+                                                      {"location", channel.m_location},
+                                                      {"url", channel.m_url}});
     }
 
     QTextStream out(m_file);
@@ -240,7 +240,7 @@ void MusicTTKFMRadioPlayWidget::initialize()
         QTreeWidgetItem *item = new QTreeWidgetItem(m_ui->itemTree, {category.m_category});
         m_ui->itemTree->addTopLevelItem(item);
 
-        for(const MusicFMCategoryItem &channel : category.m_items)
+        for(const MusicFMChannel &channel : category.m_items)
         {
             QTreeWidgetItem *it = new QTreeWidgetItem(item, {channel.m_name, channel.m_location});
             it->setData(0, MUSIC_DATA_ROLE, index++);

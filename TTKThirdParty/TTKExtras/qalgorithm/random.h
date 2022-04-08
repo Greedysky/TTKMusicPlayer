@@ -33,4 +33,4 @@ namespace QAlgorithm
     TTK_MODULE_EXPORT int random(int value);
 }
 
-#endif //RANDOM_H
+#endif // RANDOM_H

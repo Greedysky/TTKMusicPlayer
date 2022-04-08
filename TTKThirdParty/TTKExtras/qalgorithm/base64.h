@@ -33,4 +33,4 @@ namespace QAlgorithm
     TTK_MODULE_EXPORT TTKString base64Decode(const TTKString &bytes);
 }
 
-#endif //BASE64_H
+#endif // BASE64_H

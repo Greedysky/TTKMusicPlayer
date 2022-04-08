@@ -32,7 +32,7 @@ MusicSoundKMicroSearchTableWidget::~MusicSoundKMicroSearchTableWidget()
 
 void MusicSoundKMicroSearchTableWidget::startSearchQuery(const QString &text)
 {
-    if(!G_NETWORK_PTR->isOnline())   //no network connection
+    if(!G_NETWORK_PTR->isOnline())   // no network connection
     {
         clearAllItems();
         return;

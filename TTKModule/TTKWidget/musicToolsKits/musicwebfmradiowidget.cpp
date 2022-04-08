@@ -155,7 +155,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
         }
     }
 
-    //radio outer flag
+    // radio outer flag
     if(m_outerIndex != -1)
     {
         selectRow(m_outerIndex);

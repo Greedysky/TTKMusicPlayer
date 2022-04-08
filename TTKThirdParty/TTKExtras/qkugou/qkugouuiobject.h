@@ -41,4 +41,4 @@ namespace MusicUIObject
 
 }
 
-#endif //QKUGOUOBJECT_H
+#endif // QKUGOUOBJECT_H

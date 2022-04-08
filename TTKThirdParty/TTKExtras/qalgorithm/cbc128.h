@@ -23,4 +23,4 @@ void CRYPTO_cbc128_decrypt(const unsigned char *in, unsigned char *out,
                            size_t len, const void *key,
                            unsigned char ivec[16], block128_f block);
 
-#endif //MYAPPLICATION_CBC128_H
+#endif // MYAPPLICATION_CBC128_H

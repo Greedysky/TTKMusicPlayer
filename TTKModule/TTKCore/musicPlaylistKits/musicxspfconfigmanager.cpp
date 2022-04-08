@@ -46,20 +46,17 @@ bool MusicXSPFConfigManager::writeBuffer(const MusicSongItemList &items, const Q
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-        QDomElement trackListDom = writeDomMutilElement(rootDom, "trackList", {
-                                                       {"name", item.m_itemName},
-                                                       {"index", i},
-                                                       {"count", item.m_songs.count()},
-                                                       {"sortIndex", item.m_sort.m_type},
-                                                       {"sortType", item.m_sort.m_order}});
-
+        QDomElement trackListDom = writeDomMutilElement(rootDom, "trackList", {{"name", item.m_itemName},
+                                                                               {"index", i},
+                                                                               {"count", item.m_songs.count()},
+                                                                               {"sortIndex", item.m_sort.m_type},
+                                                                               {"sortType", item.m_sort.m_order}});
         for(const MusicSong &song : qAsConst(items[i].m_songs))
         {
-            QDomElement trackDom = writeDomMutilElement(trackListDom, "track", {
-                                                        {"name", song.musicName()},
-                                                        {"playCount", song.musicPlayCount()},
-                                                        {"time", song.musicPlayTime()},
-                                                        {"src", song.musicPath()}});
+            QDomElement trackDom = writeDomMutilElement(trackListDom, "track", {{"name", song.musicName()},
+                                                                                {"playCount", song.musicPlayCount()},
+                                                                                {"time", song.musicPlayTime()},
+                                                                                {"src", song.musicPath()}});
             writeDomText(trackDom, "location", song.musicPath());
             writeDomText(trackDom, "title", song.musicArtistBack());
             writeDomText(trackDom, "creator", song.musicArtistFront());

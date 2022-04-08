@@ -230,7 +230,6 @@ void MusicConfigManager::writeBuffer()
 
     createProcessingInstruction();
     QDomElement rootDom = createRoot(APP_NAME);
-
     QDomElement baseSettingDom = writeDomNode(rootDom, "musicSetting");
     QDomElement plusSettingDom = writeDomNode(rootDom, "plusSetting");
     QDomElement otherSettingDom = writeDomNode(rootDom, "otherSetting");

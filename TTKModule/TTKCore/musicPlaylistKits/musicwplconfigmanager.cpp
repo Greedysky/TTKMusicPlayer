@@ -36,7 +36,6 @@ bool MusicWPLConfigManager::writeBuffer(const MusicSongItemList &items, const QS
     m_document->appendChild(node);
 
     QDomElement rootDom = createRoot("smil");
-
     QDomElement headDom = writeDomNode(rootDom, "head");
     QDomElement bodyDom = writeDomNode(rootDom, "body");
 
@@ -46,6 +45,7 @@ bool MusicWPLConfigManager::writeBuffer(const MusicSongItemList &items, const QS
     {
         const MusicSongItem &item = items[i];
         QDomElement seqDom = writeDomNode(bodyDom, "seq");
+
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
             writeDomElement(seqDom, "media", {"src", song.musicPath()});

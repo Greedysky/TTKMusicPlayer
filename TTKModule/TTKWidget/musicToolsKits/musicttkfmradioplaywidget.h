@@ -29,25 +29,25 @@ namespace Ui {
 class MusicTTKFMRadioPlayWidget;
 }
 
-/*! @brief The class of the fm category item.
+/*! @brief The class of the fm channel item.
  * @author Greedysky <greedysky@163.com>
  */
-struct TTK_MODULE_EXPORT MusicFMCategoryItem
+struct TTK_MODULE_EXPORT MusicFMChannel
 {
     QString m_name;
     QString m_location;
     QString m_url;
 };
-TTK_DECLARE_LIST(MusicFMCategoryItem);
+TTK_DECLARE_LIST(MusicFMChannel);
 
 
-/*! @brief The class of the fm category core.
+/*! @brief The class of the fm category item.
  * @author Greedysky <greedysky@163.com>
  */
 struct TTK_MODULE_EXPORT MusicFMCategory
 {
     QString m_category;
-    MusicFMCategoryItemList m_items;
+    MusicFMChannelList m_items;
 };
 TTK_DECLARE_LIST(MusicFMCategory);
 
@@ -165,7 +165,7 @@ protected:
     int m_currentIndex;
     MusicCoreMPlayer *m_player;
     MusicFMCategoryList m_favItem;
-    MusicFMCategoryItemList m_items;
+    MusicFMChannelList m_items;
 
 };
 
