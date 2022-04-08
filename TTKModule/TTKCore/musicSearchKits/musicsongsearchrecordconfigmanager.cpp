@@ -24,10 +24,10 @@ void MusicSongSearchRecordConfigManager::writeBuffer(const MusicSearchRecordList
     {
         return;
     }
-    //
+
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot(APP_NAME);
-    QDomElement download = writeDomNode(musicPlayer, "record");
+    QDomElement rootDom = createRoot(APP_NAME);
+    QDomElement download = writeDomNode(rootDom, "record");
 
     for(const MusicSearchRecord &record : qAsConst(items))
     {

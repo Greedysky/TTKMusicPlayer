@@ -37,16 +37,16 @@ bool MusicXSPFConfigManager::writeBuffer(const MusicSongItemList &items, const Q
     {
         return false;
     }
-    //
+
     createProcessingInstruction();
-    //
-    QDomElement musicPlayerDom = createRoot("playlist", {{"version", "1"},
-                                                         {"xmlns", "http://xspf.org/ns/0/"}});
-    writeDomText(musicPlayerDom, "creator", APP_NAME);
+    QDomElement rootDom = createRoot("playlist", {{"version", "1"},
+                                                  {"xmlns", "http://xspf.org/ns/0/"}});
+    writeDomText(rootDom, "creator", APP_NAME);
+
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-        QDomElement trackListDom = writeDomElementMutil(musicPlayerDom, "trackList", {
+        QDomElement trackListDom = writeDomMutilElement(rootDom, "trackList", {
                                                        {"name", item.m_itemName},
                                                        {"index", i},
                                                        {"count", item.m_songs.count()},
@@ -55,7 +55,7 @@ bool MusicXSPFConfigManager::writeBuffer(const MusicSongItemList &items, const Q
 
         for(const MusicSong &song : qAsConst(items[i].m_songs))
         {
-            QDomElement trackDom = writeDomElementMutil(trackListDom, "track", {
+            QDomElement trackDom = writeDomMutilElement(trackListDom, "track", {
                                                         {"name", song.musicName()},
                                                         {"playCount", song.musicPlayCount()},
                                                         {"time", song.musicPlayTime()},

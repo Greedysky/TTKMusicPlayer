@@ -35,6 +35,7 @@ public:
     enum Category
     {
         NullCategory,   /*!< no category*/
+        RadioCategory,  /*!< radio category*/
         MusicCategory,  /*!< music category*/
         VideoCategory   /*!< video category*/
     };
@@ -132,7 +133,7 @@ private Q_SLOTS:
     /*!
      * Player music data has recieved.
      */
-    void musicStandardRecieve();
+    void standardRecieve();
     /*!
      * Player one second time out.
      */
@@ -148,13 +149,17 @@ protected:
      */
     void closeModule();
     /*!
-     * Set player to video media data.
+     * Set player to radio media data.
      */
-    void setVideoMedia(const QString &data, int winId);
+    void setRadioMedia(const QString &data);
     /*!
      * Set player to music media data.
      */
     void setMusicMedia(const QString &data);
+    /*!
+     * Set player to video media data.
+     */
+    void setVideoMedia(const QString &data, int winId);
 
     QProcess *m_process;
     MusicObject::PlayState m_playState;

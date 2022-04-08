@@ -161,7 +161,7 @@ bool MusicKGQueryToplistRequest::initialize()
 
                 info.m_name = value["rankname"].toString();
                 info.m_coverUrl = value["banner7url"].toString().replace("{size}", "400");
-                info.m_playCount = value["play_times"].toString();;
+                info.m_playCount = value["play_times"].toString();
                 info.m_description = value["intro"].toString();
                 Q_EMIT createToplistInfoItem(info);
                 return true;

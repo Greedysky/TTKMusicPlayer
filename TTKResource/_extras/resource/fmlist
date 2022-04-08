@@ -1223,8 +1223,6 @@
         <channel name="新疆柯尔克孜语广播" location="新疆" url="http://aod.xjbs.com.cn:1935/live/ky/32K/tzwj_video.m3u8"/>
         <channel name="乌鲁木齐维语综合广播" location="新疆" url="rtsp://222.82.214.243/1046/audio"/>
     </category>
-    <category value="情感">
-    </category>
     <category value="音乐">
         <channel name="清晨音乐台" location="网络" url="rtsp://radio.qingc.net/live"/>
         <channel name="央广音乐之声" location="中央" url="http://rtmpcnr003.cnr.cn/live/yyzs/chunklist.m3u8"/>
@@ -1517,4 +1515,5 @@
         <channel name="潍坊881音乐之声" location="山东" url="http://ls.qingting.fm/live/15318631/64k.m3u8"/>
         <channel name="威海音乐广播" location="山东" url="http://l1.weihai.tv:8081/hls/3B4EC2bCl3.m3u8"/>
     </category>
+    <category value="我的收藏"/>
 </TTKMusicPlayer>

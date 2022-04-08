@@ -31,24 +31,24 @@ bool MusicWPLConfigManager::writeBuffer(const MusicSongItemList &items, const QS
     {
         return false;
     }
-    //
+
     const QDomNode &node = m_document->createProcessingInstruction(WPL_FILE_PREFIX, "version='1.0' encoding='UTF-8'");
     m_document->appendChild(node);
-    //
-    QDomElement musicPlayerDom = createRoot("smil");
 
-    QDomElement headSettingDom = writeDomNode(musicPlayerDom, "head");
-    QDomElement bodySettingDom = writeDomNode(musicPlayerDom, "body");
+    QDomElement rootDom = createRoot("smil");
 
-    writeDomElementMutil(headSettingDom, "meta", {{"name", "Generator"},
-                                                  {"content", QString("%1 %2").arg(APP_NAME, TTK_VERSION_STR)}});
+    QDomElement headDom = writeDomNode(rootDom, "head");
+    QDomElement bodyDom = writeDomNode(rootDom, "body");
+
+    writeDomMutilElement(headDom, "meta", {{"name", "Generator"},
+                                           {"content", QString("%1 %2").arg(APP_NAME, TTK_VERSION_STR)}});
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-        QDomElement seqDom = writeDomNode(bodySettingDom, "seq");
+        QDomElement seqDom = writeDomNode(bodyDom, "seq");
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
-            writeDomElementMutil(seqDom, "media", {{"src", song.musicPath()}});
+            writeDomElement(seqDom, "media", {"src", song.musicPath()});
         }
     }
 

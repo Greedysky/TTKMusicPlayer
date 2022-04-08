@@ -66,14 +66,13 @@ public:
     explicit MusicFMConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read datas from xml file.
-     */
-    inline bool fromFile() { return MusicAbstractXml::fromFile(":/data/fmlist"); }
-
-    /*!
      * Read datas from config file.
      */
     void readBuffer(MusicFMCategoryList &items);
+    /*!
+     * Write datas from config file.
+     */
+    void writeBuffer(const MusicFMCategoryList &items);
 
 };
 
@@ -122,6 +121,18 @@ public Q_SLOTS:
      */
     void positionChanged(qint64 position);
     /*!
+     * Add button clicked.
+     */
+    void addButtonClicked();
+    /*!
+     * Delete button clicked.
+     */
+    void deleteButtonClicked();
+    /*!
+     * Info button clicked.
+     */
+    void infoButtonClicked();
+    /*!
      * Override show function.
      */
     void show();
@@ -144,11 +155,16 @@ protected:
      * Start to core module.
      */
     void startCoreModule();
+    /*!
+     * Check index valid.
+     */
+    int valid(QTreeWidgetItem *item) const;
 
     Ui::MusicTTKFMRadioPlayWidget *m_ui;
     bool m_isPlaying;
     int m_currentIndex;
     MusicCoreMPlayer *m_player;
+    MusicFMCategoryList m_favItem;
     MusicFMCategoryItemList m_items;
 
 };

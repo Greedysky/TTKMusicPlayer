@@ -18,14 +18,13 @@ void MusicSkinConfigManager::writeBuffer(const MusicSkinItem &item, const QStrin
     {
         return;
     }
-    //
+
     createProcessingInstruction();
-    //
-    QDomElement musicPlayerDom = createRoot("TTKSkin");
-    //Class A
-    writeDomElement(musicPlayerDom, "creator", {"value", APP_NAME});
-    writeDomElement(musicPlayerDom, "name", {"value", item.m_name});
-    writeDomElement(musicPlayerDom, "useCount", {"value", item.m_useCount});
+    QDomElement rootDom = createRoot("TTKSkin");
+
+    writeDomElement(rootDom, "creator", {"value", APP_NAME});
+    writeDomElement(rootDom, "name", {"value", item.m_name});
+    writeDomElement(rootDom, "useCount", {"value", item.m_useCount});
 
     QTextStream out(m_file);
     m_document->save(out, 4);

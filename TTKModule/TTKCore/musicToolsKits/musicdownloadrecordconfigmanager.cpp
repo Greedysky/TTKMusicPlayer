@@ -26,14 +26,14 @@ void MusicDownloadRecordConfigManager::writeBuffer(const MusicSongList &items)
     {
         return;
     }
-    //
+
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot(APP_NAME);
-    QDomElement download = writeDomNode(musicPlayer, "record");
+    QDomElement rootDom = createRoot(APP_NAME);
+    QDomElement download = writeDomNode(rootDom, "record");
 
     for(const MusicSong &record : qAsConst(items))
     {
-        writeDomElementMutilText(download, "value", {{"name", record.musicName()},
+        writeDomMutilElementText(download, "value", {{"name", record.musicName()},
                                                      {"size", record.musicSizeStr()},
                                                      {"time", record.musicAddTimeStr()}}, record.musicPath());
     }

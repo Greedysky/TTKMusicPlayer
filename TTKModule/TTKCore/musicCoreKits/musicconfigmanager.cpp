@@ -227,26 +227,26 @@ void MusicConfigManager::writeBuffer()
     {
         return;
     }
-    //
+
     createProcessingInstruction();
-    QDomElement musicPlayerDom = createRoot(APP_NAME);
+    QDomElement rootDom = createRoot(APP_NAME);
 
-    QDomElement musicSettingDom = writeDomNode(musicPlayerDom, "musicSetting");
-    QDomElement plusSettingDom = writeDomNode(musicPlayerDom, "plusSetting");
-    QDomElement otherSettingDom = writeDomNode(musicPlayerDom, "otherSetting");
-    QDomElement rippleSettingDom = writeDomNode(musicPlayerDom, "rippleSetting");
-    QDomElement backgroundSettingDom = writeDomNode(musicPlayerDom, "backgroundSetting");
-    QDomElement hotkeySettingDom = writeDomNode(musicPlayerDom, "hotkeySetting");
-    QDomElement interiorLrcSettingDom = writeDomNode(musicPlayerDom, "interiorLrcSetting");
-    QDomElement desktopLrcSettingDom = writeDomNode(musicPlayerDom, "desktopLrcSetting");
-    QDomElement equalizerSettingDom = writeDomNode(musicPlayerDom, "equalizerSetting");
-    QDomElement timeSettingDom = writeDomNode(musicPlayerDom, "timeSetting");
-    QDomElement downloadSettingDom = writeDomNode(musicPlayerDom, "downloadSetting");
+    QDomElement baseSettingDom = writeDomNode(rootDom, "musicSetting");
+    QDomElement plusSettingDom = writeDomNode(rootDom, "plusSetting");
+    QDomElement otherSettingDom = writeDomNode(rootDom, "otherSetting");
+    QDomElement rippleSettingDom = writeDomNode(rootDom, "rippleSetting");
+    QDomElement backgroundSettingDom = writeDomNode(rootDom, "backgroundSetting");
+    QDomElement hotkeySettingDom = writeDomNode(rootDom, "hotkeySetting");
+    QDomElement interiorLrcSettingDom = writeDomNode(rootDom, "interiorLrcSetting");
+    QDomElement desktopLrcSettingDom = writeDomNode(rootDom, "desktopLrcSetting");
+    QDomElement equalizerSettingDom = writeDomNode(rootDom, "equalizerSetting");
+    QDomElement timeSettingDom = writeDomNode(rootDom, "timeSetting");
+    QDomElement downloadSettingDom = writeDomNode(rootDom, "downloadSetting");
 
-    writeDomElement(musicSettingDom, "configVersion", {"value", TTK_CONFIG_VERSION_STR});
-    writeDomElement(musicSettingDom, "playMode", {"value", playMode});
-    writeDomElement(musicSettingDom, "playVolume", {"value", volume});
-    writeDomElement(musicSettingDom, "lastPlayIndex", {"value", QString("%1,%2,%3").arg(lastPlayIndex[0], lastPlayIndex[1], lastPlayIndex[2])});
+    writeDomElement(baseSettingDom, "configVersion", {"value", TTK_CONFIG_VERSION_STR});
+    writeDomElement(baseSettingDom, "playMode", {"value", playMode});
+    writeDomElement(baseSettingDom, "playVolume", {"value", volume});
+    writeDomElement(baseSettingDom, "lastPlayIndex", {"value", QString("%1,%2,%3").arg(lastPlayIndex[0], lastPlayIndex[1], lastPlayIndex[2])});
     //
     writeDomElement(plusSettingDom, "geometry", {"value", QString("%1,%2,%3,%4").arg(widgetPosition.x()).arg(widgetPosition.y()).arg(widgetSize.width()).arg(widgetSize.height())});
     writeDomElement(plusSettingDom, "language", {"value", languageIndex});
@@ -257,7 +257,6 @@ void MusicConfigManager::writeBuffer()
     writeDomElement(plusSettingDom, "windowConciseMode", {"value", windowConciseMode});
     writeDomElement(plusSettingDom, "remoteWidgetMode", {"value", remoteWidgetMode});
     writeDomElement(plusSettingDom, "windowQuitMode", {"value", windowQuitMode});
-
     //
     writeDomElement(otherSettingDom, "otherCheckUpdateEnable", {"value", otherCheckUpdateEnable});
     writeDomElement(otherSettingDom, "otherUseAlbumCover", {"value", otherUseAlbumCover});
@@ -276,7 +275,7 @@ void MusicConfigManager::writeBuffer()
     //
     writeDomElement(backgroundSettingDom, "backgroundThemeValue", {"value", backgroundThemeValue});
     writeDomElement(backgroundSettingDom, "backgroundTransparent", {"value", backgroundTransparent});
-    writeDomElement(backgroundSettingDom, "backgroundListTransparent", {"value", backgroundListTransparent});;
+    writeDomElement(backgroundSettingDom, "backgroundListTransparent", {"value", backgroundListTransparent});
     writeDomElement(backgroundSettingDom, "backgroundTransparentEnable", {"value", backgroundTransparentEnable});
     //
     writeDomElement(hotkeySettingDom, "hotkeyEnable", {"value", hotkeyEnable});

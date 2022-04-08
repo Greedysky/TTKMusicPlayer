@@ -129,6 +129,7 @@
 #define CLOUD_DOWN_PATH         TTK_STRCAT("cdownload", TKF_FILE)
 #define CLOUD_UP_PATH           TTK_STRCAT("cupload", TKF_FILE)
 #define SEARCH_PATH             TTK_STRCAT("search", TKF_FILE)
+#define FMRADIO_PATH            TTK_STRCAT("fmradio", TKF_FILE)
 
 
 #define MAIN_DIR_FULL           MusicObject::applicationPath() + TTK_PDIR
@@ -152,6 +153,7 @@
 #define CLOUD_DOWN_PATH_FULL    APPDATA_DIR_FULL + CLOUD_DOWN_PATH
 #define CLOUD_UP_PATH_FULL      APPDATA_DIR_FULL + CLOUD_UP_PATH
 #define SEARCH_PATH_FULL        APPDATA_DIR_FULL + SEARCH_PATH
+#define FMRADIO_PATH_FULL       APPDATA_DIR_FULL + FMRADIO_PATH
 #define USER_THEME_DIR_FULL     APPDATA_DIR_FULL + USER_THEME_DIR
 
 

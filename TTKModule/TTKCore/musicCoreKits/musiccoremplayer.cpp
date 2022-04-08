@@ -45,6 +45,7 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
 
     switch(m_category)
     {
+        case RadioCategory: setRadioMedia(url); break;
         case MusicCategory: setMusicMedia(url); break;
         case VideoCategory: setVideoMedia(url, winId); break;
         case NullCategory: break;
@@ -66,6 +67,26 @@ void MusicCoreMPlayer::closeModule()
     }
 }
 
+void MusicCoreMPlayer::setRadioMedia(const QString &data)
+{
+    Q_EMIT mediaChanged(data);
+
+    QStringList arguments;
+    arguments << "-softvol" << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
+    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
+    m_process->start(MAKE_PLAYER_FULL, arguments);
+}
+
+void MusicCoreMPlayer::setMusicMedia(const QString &data)
+{
+    Q_EMIT mediaChanged(data);
+
+    QStringList arguments;
+    arguments << "-cache" << "5000" << "-softvol" << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
+    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
+    m_process->start(MAKE_PLAYER_FULL, arguments);
+}
+
 void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
 {
     QStringList arguments;
@@ -80,16 +101,6 @@ void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
 
     m_process->setProcessChannelMode(QProcess::MergedChannels);
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(durationRecieve()));
-    m_process->start(MAKE_PLAYER_FULL, arguments);
-}
-
-void MusicCoreMPlayer::setMusicMedia(const QString &data)
-{
-    Q_EMIT mediaChanged(data);
-
-    QStringList arguments;
-    arguments << "-cache" << "5000" << "-softvol" << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
-    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
     m_process->start(MAKE_PLAYER_FULL, arguments);
 }
 
@@ -215,7 +226,8 @@ void MusicCoreMPlayer::dataRecieve()
 {
     switch(m_category)
     {
-        case MusicCategory: musicStandardRecieve(); break;
+        case RadioCategory: positionRecieve(); break;
+        case MusicCategory: standardRecieve(); break;
         case VideoCategory: positionRecieve(); break;
         case NullCategory: break;
         default: break;
@@ -236,7 +248,7 @@ void MusicCoreMPlayer::positionRecieve()
     }
 }
 
-void MusicCoreMPlayer::musicStandardRecieve()
+void MusicCoreMPlayer::standardRecieve()
 {
     while(m_process->canReadLine())
     {
@@ -246,6 +258,7 @@ void MusicCoreMPlayer::musicStandardRecieve()
             message.replace("\r\n", "");
             Q_EMIT durationChanged(message.mid(11).toFloat());
         }
+
         if(message.startsWith("ANS_TIME_POSITION"))
         {
             message.replace("\r\n", "");

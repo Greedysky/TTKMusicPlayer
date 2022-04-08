@@ -176,8 +176,8 @@ void MusicDownloadWidget::controlEnabled(bool enable)
 void MusicDownloadWidget::setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type)
 {
     m_queryType = type;
-    initialize();
 
+    initialize();
     m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 200));
     m_networkRequest->setQueryAllRecords(true);
     m_networkRequest->startToSearch(type, name);

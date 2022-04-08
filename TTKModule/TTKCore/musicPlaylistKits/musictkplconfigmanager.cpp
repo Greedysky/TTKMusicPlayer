@@ -34,18 +34,18 @@ bool MusicTKPLConfigManager::writeBuffer(const MusicSongItemList &items, const Q
     {
         return false;
     }
-    //
+
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot(APP_NAME);
+    QDomElement rootDom = createRoot(APP_NAME);
+
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-        QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", {
-                                                   {"name", item.m_itemName},
-                                                   {"index", i},
-                                                   {"count", item.m_songs.count()},
-                                                   {"sortIndex", item.m_sort.m_type},
-                                                   {"sortType", item.m_sort.m_order}});
+        QDomElement pathDom = writeDomMutilElement(rootDom, "musicList", {{"name", item.m_itemName},
+                                                                          {"index", i},
+                                                                          {"count", item.m_songs.count()},
+                                                                          {"sortIndex", item.m_sort.m_type},
+                                                                          {"sortType", item.m_sort.m_order}});
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
             QString playTime = song.musicPlayTime();
@@ -54,10 +54,9 @@ bool MusicTKPLConfigManager::writeBuffer(const MusicSongItemList &items, const Q
                 playTime = MusicObject::generateMusicPlayTime(song.musicPath());
             }
 
-            writeDomElementMutilText(pathDom, "value", {
-                                     {"name", song.musicName()},
-                                     {"playCount", song.musicPlayCount()},
-                                     {"time", playTime}}, song.musicPath());
+            writeDomMutilElementText(pathDom, "value", {{"name", song.musicName()},
+                                                        {"playCount", song.musicPlayCount()},
+                                                        {"time", playTime}}, song.musicPath());
         }
     }
 

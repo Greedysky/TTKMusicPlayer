@@ -122,7 +122,7 @@ void MusicGifLabelWidget::timeout()
                 break;
             }
 
-            m_renderer = QPixmap(":/gif/lb_ballon_white").copy(GIF_BALLON_WHITE*m_index, 0, width(), height());
+            m_renderer = QPixmap(":/gif/lb_ballon_white").copy(GIF_BALLON_WHITE * m_index, 0, width(), height());
             update();
             break;
         }
@@ -133,7 +133,7 @@ void MusicGifLabelWidget::timeout()
                 break;
             }
 
-            m_renderer = QPixmap(":/gif/lb_cicle_blue").copy(GIF_CICLE_BLUE*m_index, 0, width(), height());
+            m_renderer = QPixmap(":/gif/lb_cicle_blue").copy(GIF_CICLE_BLUE * m_index, 0, width(), height());
             update();
             break;
         }
@@ -144,7 +144,7 @@ void MusicGifLabelWidget::timeout()
                 break;
             }
 
-            m_renderer = QPixmap(":/gif/lb_rice_font_white").copy(GIF_RICE_FONT_WHITE*m_index, 0, width(), height());
+            m_renderer = QPixmap(":/gif/lb_rice_font_white").copy(GIF_RICE_FONT_WHITE * m_index, 0, width(), height());
             update();
             break;
         }
@@ -155,7 +155,7 @@ void MusicGifLabelWidget::timeout()
                 break;
             }
 
-            m_renderer = QPixmap(":/gif/lb_rice_font_black_big").copy(GIF_RICE_FONT_BLACK_BIG*m_index, 0, width(), height());
+            m_renderer = QPixmap(":/gif/lb_rice_font_black_big").copy(GIF_RICE_FONT_BLACK_BIG * m_index, 0, width(), height());
             update();
             break;
         }
@@ -166,7 +166,7 @@ void MusicGifLabelWidget::timeout()
                 break;
             }
 
-            m_renderer = QPixmap(":/gif/lb_rice_font_black").copy(GIF_RICE_FONT_BLACK*m_index, 0, width(), height());
+            m_renderer = QPixmap(":/gif/lb_rice_font_black").copy(GIF_RICE_FONT_BLACK * m_index, 0, width(), height());
             update();
             break;
         }
@@ -177,7 +177,7 @@ void MusicGifLabelWidget::timeout()
                 break;
             }
 
-            m_renderer = QPixmap(":/gif/lb_hourglass_white").copy(GIF_HOURGLASS_WHITE*m_index, 0, width(), height());
+            m_renderer = QPixmap(":/gif/lb_hourglass_white").copy(GIF_HOURGLASS_WHITE * m_index, 0, width(), height());
             update();
             break;
         }
@@ -188,7 +188,7 @@ void MusicGifLabelWidget::timeout()
                 break;
             }
 
-            m_renderer = QPixmap(":/gif/lb_radio_blue").copy(GIF_RADIO_BLUE*m_index, 0, width(), height());
+            m_renderer = QPixmap(":/gif/lb_radio_blue").copy(GIF_RADIO_BLUE * m_index, 0, width(), height());
             update();
             break;
         }
@@ -199,7 +199,7 @@ void MusicGifLabelWidget::timeout()
                 break;
             }
 
-            m_renderer = QPixmap(":/gif/lb_check_blue").copy(GIF_CHECK_BLUE*m_index, 0, width(), height());
+            m_renderer = QPixmap(":/gif/lb_check_blue").copy(GIF_CHECK_BLUE * m_index, 0, width(), height());
             update();
             break;
         }
@@ -210,7 +210,7 @@ void MusicGifLabelWidget::timeout()
                 break;
             }
 
-            m_renderer = QPixmap(":/gif/lb_record_red").copy(GIF_RECORD_RED*m_index, 0, width(), height());
+            m_renderer = QPixmap(":/gif/lb_record_red").copy(GIF_RECORD_RED * m_index, 0, width(), height());
             update();
             break;
         }
@@ -221,7 +221,7 @@ void MusicGifLabelWidget::timeout()
                 break;
             }
 
-            m_renderer = QPixmap(":/gif/lb_close_white").copy(GIF_CLOSE_WHITE_WIDTH*m_index, 0, width(), height());
+            m_renderer = QPixmap(":/gif/lb_close_white").copy(GIF_CLOSE_WHITE_WIDTH * m_index, 0, width(), height());
             update();
             break;
         }

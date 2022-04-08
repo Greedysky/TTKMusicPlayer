@@ -62,7 +62,7 @@
    <property name="geometry">
     <rect>
      <x>88</x>
-     <y>215</y>
+     <y>170</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -75,7 +75,7 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>260</y>
+     <y>220</y>
      <width>120</width>
      <height>20</height>
     </rect>
@@ -88,7 +88,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>260</y>
+     <y>220</y>
      <width>31</width>
      <height>16</height>
     </rect>
@@ -135,7 +135,7 @@
    <property name="geometry">
     <rect>
      <x>45</x>
-     <y>215</y>
+     <y>170</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -148,7 +148,7 @@
    <property name="geometry">
     <rect>
      <x>130</x>
-     <y>215</y>
+     <y>170</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -161,7 +161,7 @@
    <property name="geometry">
     <rect>
      <x>25</x>
-     <y>100</y>
+     <y>80</y>
      <width>150</width>
      <height>30</height>
     </rect>
@@ -186,6 +186,110 @@
     </rect>
    </property>
   </widget>
+  <widget class="MusicGifLabelWidget" name="gifLabel_1" native="true">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>130</y>
+     <width>14</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size:20px;font-weight:bold;color:white</string>
+   </property>
+  </widget>
+  <widget class="MusicGifLabelWidget" name="gifLabel_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>130</y>
+     <width>14</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size:20px;font-weight:bold;color:white</string>
+   </property>
+  </widget>
+  <widget class="MusicGifLabelWidget" name="gifLabel_3" native="true">
+   <property name="geometry">
+    <rect>
+     <x>95</x>
+     <y>130</y>
+     <width>14</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size:20px;font-weight:bold;color:white</string>
+   </property>
+  </widget>
+  <widget class="MusicGifLabelWidget" name="gifLabel_4" native="true">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>130</y>
+     <width>14</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size:20px;font-weight:bold;color:white</string>
+   </property>
+  </widget>
+  <widget class="MusicGifLabelWidget" name="gifLabel_5" native="true">
+   <property name="geometry">
+    <rect>
+     <x>125</x>
+     <y>130</y>
+     <width>14</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size:20px;font-weight:bold;color:white</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="addButton">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>265</y>
+     <width>50</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>添加</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="deleteButton">
+   <property name="geometry">
+    <rect>
+     <x>75</x>
+     <y>265</y>
+     <width>50</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>删除</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="infoButton">
+   <property name="geometry">
+    <rect>
+     <x>135</x>
+     <y>265</y>
+     <width>50</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>信息</string>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -198,6 +302,14 @@
   <zorder>positionLabel</zorder>
   <zorder>titleWidget</zorder>
   <zorder>itemTree</zorder>
+  <zorder>gifLabel_1</zorder>
+  <zorder>gifLabel_2</zorder>
+  <zorder>gifLabel_3</zorder>
+  <zorder>gifLabel_4</zorder>
+  <zorder>gifLabel_5</zorder>
+  <zorder>addButton</zorder>
+  <zorder>deleteButton</zorder>
+  <zorder>infoButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -209,6 +321,12 @@
    <class>MusicMarqueeWidget</class>
    <extends>QWidget</extends>
    <header>musicmarqueewidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicGifLabelWidget</class>
+   <extends>QWidget</extends>
+   <header>musicgiflabelwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -55,17 +55,17 @@ bool MusicASXConfigManager::writeBuffer(const MusicSongItemList &items, const QS
     {
         return false;
     }
-    //
-    QDomElement musicPlayerDom = createRoot("Asx", {"version ", "3.0"});
+
+    QDomElement rootDom = createRoot("Asx", {"version ", "3.0"});
+
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-
-        writeDomText(musicPlayerDom, "Title", item.m_itemName);
+        writeDomText(rootDom, "Title", item.m_itemName);
 
         for(const MusicSong &song : qAsConst(items[i].m_songs))
         {
-            QDomElement trackDom = writeDomNode(musicPlayerDom, "Entry");
+            QDomElement trackDom = writeDomNode(rootDom, "Entry");
 
             writeDomText(trackDom, "Title", song.musicArtistBack());
             writeDomElement(trackDom, "Ref", {"href", song.musicPath()});

@@ -2,6 +2,7 @@
 #include "ui_musicttkfmradioplaywidget.h"
 #include "musiccoremplayer.h"
 #include "musicitemdelegate.h"
+#include "musictoastlabel.h"
 
 #include <QScrollBar>
 
@@ -34,6 +35,30 @@ void MusicFMConfigManager::readBuffer(MusicFMCategoryList &items)
     }
 }
 
+void MusicFMConfigManager::writeBuffer(const MusicFMCategoryList &items)
+{
+    if(!toFile(FMRADIO_PATH_FULL) || items.isEmpty())
+    {
+        return;
+    }
+
+    const MusicFMCategory &item = items.back();
+
+    createProcessingInstruction();
+    QDomElement rootDom = createRoot(APP_NAME);
+    QDomElement categoryDom = writeDomElement(rootDom, "category", {"value", item.m_category});
+
+    for(const MusicFMCategoryItem &it : qAsConst(item.m_items))
+    {
+        writeDomMutilElement(categoryDom, "channel", {{"name", it.m_name},
+                                                      {"location", it.m_location},
+                                                      {"url", it.m_url}});
+    }
+
+    QTextStream out(m_file);
+    m_document->save(out, 4);
+}
+
 
 MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -58,11 +83,17 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     m_ui->playButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->previousButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->nextButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->addButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->deleteButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->infoButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->playButton->setFocusPolicy(Qt::NoFocus);
     m_ui->previousButton->setFocusPolicy(Qt::NoFocus);
     m_ui->nextButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->addButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->deleteButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->infoButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     m_ui->playButton->setIconSize(QSize(31, 31));
@@ -72,6 +103,9 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     m_ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->previousButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->nextButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->addButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->infoButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->volumeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle10);
     m_ui->volumeSlider->setRange(0, 100);
@@ -98,6 +132,9 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
     connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(radioPrevious()));
     connect(m_ui->nextButton, SIGNAL(clicked()), SLOT(radioNext()));
+    connect(m_ui->addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
+    connect(m_ui->deleteButton, SIGNAL(clicked()), SLOT(deleteButtonClicked()));
+    connect(m_ui->infoButton, SIGNAL(clicked()), SLOT(infoButtonClicked()));
     connect(m_ui->volumeSlider, SIGNAL(valueChanged(int)), SLOT(radioVolume(int)));
     connect(m_ui->itemTree, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(radioItemChanged(QTreeWidgetItem*,int)));
 }
@@ -112,9 +149,8 @@ void MusicTTKFMRadioPlayWidget::radioItemChanged(QTreeWidgetItem *item, int colu
 {
     if(item && column == 0)
     {
-        bool ok;
-        const int index = item->data(column, MUSIC_DATA_ROLE).toInt(&ok);
-        if(!ok || index < 0 || index >= m_items.count())
+        const int index = valid(item);
+        if(index < 0)
         {
             return;
         }
@@ -128,7 +164,7 @@ void MusicTTKFMRadioPlayWidget::mediaAutionPlayError(int code)
 {
     if(DEFAULT_LOW_LEVEL == code)
     {
-        radioNext();
+        startCoreModule();
     }
 }
 
@@ -181,10 +217,22 @@ void MusicTTKFMRadioPlayWidget::closeEvent(QCloseEvent *event)
 
 void MusicTTKFMRadioPlayWidget::initialize()
 {
-    MusicFMConfigManager manager;
-    manager.fromFile();
     MusicFMCategoryList categorys;
-    manager.readBuffer(categorys);
+    {
+        MusicFMConfigManager manager;
+        manager.fromFile(":/data/fmlist");
+        manager.readBuffer(categorys);
+    }
+
+    {
+        MusicFMConfigManager manager;
+        if(manager.fromFile(FMRADIO_PATH_FULL))
+        {
+            categorys.takeLast();
+            manager.readBuffer(m_favItem);
+            categorys << m_favItem;
+        }
+    }
 
     int index = 0;
     for(const MusicFMCategory &category : categorys)
@@ -206,6 +254,12 @@ void MusicTTKFMRadioPlayWidget::initialize()
     const int v = m_ui->volumeSlider->value();
     m_ui->volumeSlider->setValue(0);
     m_ui->volumeSlider->setValue(v);
+    ///
+    m_ui->gifLabel_1->setType(MusicGifLabelWidget::RadioBlue);
+    m_ui->gifLabel_2->setType(MusicGifLabelWidget::RadioBlue);
+    m_ui->gifLabel_3->setType(MusicGifLabelWidget::RadioBlue);
+    m_ui->gifLabel_4->setType(MusicGifLabelWidget::RadioBlue);
+    m_ui->gifLabel_5->setType(MusicGifLabelWidget::RadioBlue);
 }
 
 void MusicTTKFMRadioPlayWidget::createCoreModule()
@@ -224,11 +278,35 @@ void MusicTTKFMRadioPlayWidget::startCoreModule()
         createCoreModule();
     }
 
-    m_player->setMedia(MusicCoreMPlayer::MusicCategory, m_items[m_currentIndex].m_url);
+    m_player->setMedia(MusicCoreMPlayer::RadioCategory, m_items[m_currentIndex].m_url);
     radioPlay();
 
     m_ui->titleWidget->setText(m_items[m_currentIndex].m_name);
+    m_ui->gifLabel_1->start();
+    m_ui->gifLabel_2->start();
+    m_ui->gifLabel_3->start();
+    m_ui->gifLabel_4->start();
+    m_ui->gifLabel_5->start();
+
+    positionChanged(0);
     m_isPlaying = true;
+}
+
+int MusicTTKFMRadioPlayWidget::valid(QTreeWidgetItem *item) const
+{
+    if(!item)
+    {
+        return -1;
+    }
+
+    bool ok;
+    const int index = item->data(0, MUSIC_DATA_ROLE).toInt(&ok);
+    if(!ok || index < 0 || index >= m_items.count())
+    {
+        return -1;
+    }
+
+    return index;
 }
 
 void MusicTTKFMRadioPlayWidget::positionChanged(qint64 position)
@@ -239,6 +317,42 @@ void MusicTTKFMRadioPlayWidget::positionChanged(qint64 position)
     }
 
     m_ui->positionLabel->setText(QString("%1").arg(MusicTime::msecTime2LabelJustified(position * MT_S2MS)));
+}
+
+void MusicTTKFMRadioPlayWidget::addButtonClicked()
+{
+
+}
+
+void MusicTTKFMRadioPlayWidget::deleteButtonClicked()
+{
+    const int index = valid(m_ui->itemTree->currentItem());
+    if(index < 0)
+    {
+        return;
+    }
+
+    const int size = m_items.count() - 1;
+    if(index < size)
+    {
+        MusicToastLabel::popup(tr("The current channel can not be deleted"));
+        return;
+    }
+
+    m_favItem.back().m_items.removeAt(index - size);
+    MusicFMConfigManager manager;
+    manager.writeBuffer(m_favItem);
+}
+
+void MusicTTKFMRadioPlayWidget::infoButtonClicked()
+{
+    const int index = valid(m_ui->itemTree->currentItem());
+    if(index < 0)
+    {
+        return;
+    }
+
+    qDebug() << index;
 }
 
 void MusicTTKFMRadioPlayWidget::show()
