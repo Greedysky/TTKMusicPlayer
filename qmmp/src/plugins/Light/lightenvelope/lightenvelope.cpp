@@ -85,7 +85,7 @@ bool LightEnvelopeScanner::scan(const QString &path)
 
     m_decoder = decoder;
     m_input = source;
-    m_user_stop = false;
+    m_stop = false;
     return true;
 }
 
@@ -94,7 +94,7 @@ void LightEnvelopeScanner::stop()
     if(isRunning())
     {
         m_mutex.lock();
-        m_user_stop = true;
+        m_stop = true;
         m_mutex.unlock();
         wait();
     }
@@ -144,7 +144,7 @@ void LightEnvelopeScanner::run()
     int channels = m_ap.channels();
     float value = 0.f;
 
-    while(!m_user_stop)
+    while(!m_stop)
     {
         m_mutex.unlock();
         const qint64 len = m_decoder->read(in, sizeof(in));

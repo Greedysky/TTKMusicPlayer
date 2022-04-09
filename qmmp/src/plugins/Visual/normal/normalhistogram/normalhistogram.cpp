@@ -34,9 +34,9 @@ NormalHistogram::NormalHistogram(QWidget *parent)
 NormalHistogram::~NormalHistogram()
 {
     qDeleteAll(m_starPoints);
-    if(m_x_scale)
+    if(m_xscale)
     {
-        delete[] m_x_scale;
+        delete[] m_xscale;
     }
 }
 
@@ -151,9 +151,9 @@ void NormalHistogram::paintEvent(QPaintEvent *)
 
     for(int i = 0; i < m_cols; ++i)
     {
-        const int x = i * m_cell_size.width() + 1;
-        const int offset = m_intern_vis_data[i] * m_cell_size.height();
-        painter.fillRect(x, height() - offset + 1, m_cell_size.width() - 2, offset - 2, line);
+        const int x = i * m_cellSize.width() + 1;
+        const int offset = m_intern_vis_data[i] * m_cellSize.height();
+        painter.fillRect(x, height() - offset + 1, m_cellSize.width() - 2, offset - 2, line);
     }
 }
 
@@ -172,8 +172,8 @@ void NormalHistogram::contextMenuEvent(QContextMenuEvent *)
 
 void NormalHistogram::process(float *left, float *)
 {
-    const int rows = (height() - 2) / m_cell_size.height();
-    const int cols = (width() - 2) / m_cell_size.width();
+    const int rows = (height() - 2) / m_cellSize.height();
+    const int cols = (width() - 2) / m_cellSize.width();
 
     if(m_rows != rows || m_cols != cols)
     {
@@ -185,17 +185,17 @@ void NormalHistogram::process(float *left, float *)
             delete[] m_intern_vis_data;
         }
 
-        if(m_x_scale)
+        if(m_xscale)
         {
-            delete[] m_x_scale;
+            delete[] m_xscale;
         }
 
         m_intern_vis_data = new int[m_cols]{0};
-        m_x_scale = new int[m_cols + 1]{0};
+        m_xscale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
         {
-            m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+            m_xscale[i] = pow(pow(255.0, 1.0 / m_cols), i);
         }
     }
 
@@ -211,12 +211,12 @@ void NormalHistogram::process(float *left, float *)
         y = 0;
         magnitude = 0;
 
-        if(m_x_scale[i] == m_x_scale[i + 1])
+        if(m_xscale[i] == m_xscale[i + 1])
         {
             y = dest[i];
         }
 
-        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; ++k)
+        for(k = m_xscale[i]; k < m_xscale[i + 1]; ++k)
         {
             y = qMax(dest[k], y);
         }
@@ -229,7 +229,7 @@ void NormalHistogram::process(float *left, float *)
             magnitude = qBound(0, magnitude, m_rows);
         }
 
-        m_intern_vis_data[i] -= m_analyzer_size * m_rows / 15;
+        m_intern_vis_data[i] -= m_analyzerSize * m_rows / 15;
         m_intern_vis_data[i] = magnitude > m_intern_vis_data[i] ? magnitude : m_intern_vis_data[i];
     }
 }

@@ -13,9 +13,9 @@ WaveCrest::WaveCrest(QWidget *parent)
 
 WaveCrest::~WaveCrest()
 {
-    if(m_x_scale)
+    if(m_xscale)
     {
-        delete[] m_x_scale;
+        delete[] m_xscale;
     }
 }
 
@@ -33,7 +33,7 @@ void WaveCrest::paintEvent(QPaintEvent *)
             m_backgroundImage = m_backgroundImage.copy(1, 0, m_cols, m_rows);
         }
 
-        for(int i = 0; i < m_vis_data / 2; ++i)
+        for(int i = 0; i < m_visData / 2; ++i)
         {
             const int r = qMin(0x5f + i * 3, 0xff);
             m_backgroundImage.setPixel(m_pos, qMax(m_rows / 2 - i, 0), qRgb(r, r, r));
@@ -61,13 +61,13 @@ void WaveCrest::process(float *left, float *)
         m_cols = cols;
         m_pos = 0;
 
-        if(m_x_scale)
+        if(m_xscale)
         {
-            delete[] m_x_scale;
+            delete[] m_xscale;
         }
 
-        m_vis_data = 0;
-        m_x_scale = new int[2];
+        m_visData = 0;
+        m_xscale = new int[2];
 
         m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);
         m_backgroundImage.fill(Qt::black);
@@ -79,7 +79,7 @@ void WaveCrest::process(float *left, float *)
 
         for(int i = 0; i < 2; ++i)
         {
-            m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+            m_xscale[i] = pow(pow(255.0, 1.0 / m_cols), i);
         }
     }
 
@@ -90,12 +90,12 @@ void WaveCrest::process(float *left, float *)
     calc_freq(dest, left);
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
-    if(m_x_scale[0] == m_x_scale[1])
+    if(m_xscale[0] == m_xscale[1])
     {
         y = dest[0];
     }
 
-    for(int k = m_x_scale[0]; k < m_x_scale[1]; ++k)
+    for(int k = m_xscale[0]; k < m_xscale[1]; ++k)
     {
         y = qMax(dest[k], y);
     }
@@ -108,6 +108,6 @@ void WaveCrest::process(float *left, float *)
         magnitude = qBound(0, magnitude, m_rows);
     }
 
-    m_vis_data -= m_analyzer_size * m_rows / 15;
-    m_vis_data = magnitude > m_vis_data ? magnitude : m_vis_data;
+    m_visData -= m_analyzerSize * m_rows / 15;
+    m_visData = magnitude > m_visData ? magnitude : m_visData;
 }

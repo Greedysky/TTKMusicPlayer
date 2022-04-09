@@ -106,14 +106,14 @@ void PlusBlurXRays::process(float *left, float *)
         }
 
         m_intern_vis_data = new int[m_cols]{0};
-        m_image_size = (m_cols << 2) * (m_rows + 2);
+        m_imageSize = (m_cols << 2) * (m_rows + 2);
 
         if(m_image)
         {
             delete[] m_image;
         }
 
-        m_image = new unsigned int[m_image_size]{0};
+        m_image = new unsigned int[m_imageSize]{0};
         m_corner = m_image + m_cols + 1;
     }
 

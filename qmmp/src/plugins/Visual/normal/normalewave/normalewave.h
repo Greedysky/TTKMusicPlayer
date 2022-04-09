@@ -57,9 +57,9 @@ private:
     QColor m_starColor;
     QList<StarPoint*> m_starPoints;
     QTimer *m_starTimer;
-    int *m_x_scale = nullptr;
-    const double m_analyzer_size = 1.2;
-    const QSize m_cell_size = QSize(6, 2);
+    int *m_xscale = nullptr;
+    const double m_analyzerSize = 1.2;
+    const QSize m_cellSize = QSize(6, 2);
 
 };
 

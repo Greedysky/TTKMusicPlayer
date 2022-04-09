@@ -73,9 +73,9 @@ private:
 
     virtual void process(float *left, float *right) override final;
 
-    int *m_x_scale = nullptr;
-    const double m_analyzer_size = 1.2;
-    const QSize m_cell_size = QSize(6, 2);
+    int *m_xscale = nullptr;
+    const double m_analyzerSize = 1.2;
+    const QSize m_cellSize = QSize(6, 2);
     QList<AncientLabel*> m_labels;
 
 };

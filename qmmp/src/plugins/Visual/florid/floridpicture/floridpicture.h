@@ -36,9 +36,9 @@ private:
 
     virtual void process(float *left, float *right) override final;
 
-    int *m_x_scale = nullptr;
-    const double m_analyzer_size = 2.2;
-    const QSize m_cell_size = QSize(15, 6);
+    int *m_xscale = nullptr;
+    const double m_analyzerSize = 2.2;
+    const QSize m_cellSize = QSize(15, 6);
 
 };
 

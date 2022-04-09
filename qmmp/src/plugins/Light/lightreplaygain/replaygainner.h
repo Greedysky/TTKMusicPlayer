@@ -61,7 +61,7 @@ private:
     InputSource *m_source = nullptr;
     Decoder *m_decoder = nullptr;
     QMutex m_mutex;
-    bool m_user_stop = false, m_is_running = false, m_is_pending = false, m_has_values = false;
+    bool m_stop = false, m_isRunning = false, m_isPending = false, m_hasValues = false;
     QString m_url;
     double m_gain = 0.0;
     double m_peak = 0.0;

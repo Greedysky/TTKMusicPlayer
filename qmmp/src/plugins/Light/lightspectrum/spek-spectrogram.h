@@ -68,16 +68,16 @@ private:
     int m_stream = 0;
     int m_channels = 0;
     int m_channel = 0;
-    enum WindowFunction m_window_function = WINDOW_DEFAULT;
+    enum WindowFunction m_window = WINDOW_DEFAULT;
     QString m_path;
     QString m_desc;
     double m_duration = 0.0;
-    int m_sample_rate = 0;
+    int m_sampleRate = 0;
     VisualPalette::Palette m_palette = VisualPalette::PALETTE_SPECTRUM;
-    QImage m_palette_image;
     QImage m_image;
-    int m_prev_width = -1;
-    int m_fft_bits;
+    QImage m_paletteImage;
+    int m_prevWidth = -1;
+    int m_bits;
     int m_urange;
     int m_lrange;
 

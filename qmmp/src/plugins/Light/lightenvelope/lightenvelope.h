@@ -50,7 +50,7 @@ signals:
 private:
     virtual void run() override final;
 
-    bool m_user_stop = false;
+    bool m_stop = false;
     Decoder *m_decoder = nullptr;
     InputSource *m_input = nullptr;
     mutable QMutex m_mutex;

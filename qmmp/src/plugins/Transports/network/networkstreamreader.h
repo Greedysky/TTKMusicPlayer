@@ -85,7 +85,7 @@ private:
     QMutex m_mutex;
     StreamData m_stream;
     bool m_ready = false;
-    size_t m_buffer_size = 0;
+    size_t m_bufferSize = 0;
 
     QNetworkReply *m_reply = nullptr;
     QNetworkAccessManager m_manager;

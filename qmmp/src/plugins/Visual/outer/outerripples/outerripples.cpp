@@ -13,9 +13,9 @@ OuterRipples::OuterRipples(QWidget *parent)
 
 OuterRipples::~OuterRipples()
 {
-    if(m_x_scale)
+    if(m_xscale)
     {
-        delete[] m_x_scale;
+        delete[] m_xscale;
     }
 }
 
@@ -27,18 +27,18 @@ void OuterRipples::paintEvent(QPaintEvent *)
     QBrush brush(Qt::white, Qt::SolidPattern);
     for(int i = 0; i < m_cols; ++i)
     {
-        const int x = i * m_cell_size.width() + 1;
+        const int x = i * m_cellSize.width() + 1;
         for(int j = 0; j <= m_intern_vis_data[i]; ++j)
         {
-            painter.fillRect(x, height() - j * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, brush);
+            painter.fillRect(x, height() - j * m_cellSize.height() + 1, m_cellSize.width() - 2, m_cellSize.height() - 2, brush);
         }
     }
 }
 
 void OuterRipples::process(float *left, float *)
 {
-    const int rows = (height() - 2) / m_cell_size.height();
-    const int cols = (width() - 2) / m_cell_size.width();
+    const int rows = (height() - 2) / m_cellSize.height();
+    const int cols = (width() - 2) / m_cellSize.width();
 
     if(m_rows != rows || m_cols != cols)
     {
@@ -50,17 +50,17 @@ void OuterRipples::process(float *left, float *)
             delete[] m_intern_vis_data;
         }
 
-        if(m_x_scale)
+        if(m_xscale)
         {
-            delete[] m_x_scale;
+            delete[] m_xscale;
         }
 
         m_intern_vis_data = new int[m_cols]{0};
-        m_x_scale = new int[m_cols + 1]{0};
+        m_xscale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
         {
-            m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+            m_xscale[i] = pow(pow(255.0, 1.0 / m_cols), i);
         }
     }
 
@@ -76,12 +76,12 @@ void OuterRipples::process(float *left, float *)
         y = 0;
         magnitude = 0;
 
-        if(m_x_scale[i] == m_x_scale[i + 1])
+        if(m_xscale[i] == m_xscale[i + 1])
         {
             y = dest[i];
         }
 
-        for(int k = m_x_scale[i]; k < m_x_scale[i + 1]; ++k)
+        for(int k = m_xscale[i]; k < m_xscale[i + 1]; ++k)
         {
             y = qMax(dest[k], y);
         }
@@ -94,7 +94,7 @@ void OuterRipples::process(float *left, float *)
             magnitude = qBound(0, magnitude, m_rows);
         }
 
-        m_intern_vis_data[i] -= m_analyzer_size * m_rows / 15;
+        m_intern_vis_data[i] -= m_analyzerSize * m_rows / 15;
         m_intern_vis_data[i] = magnitude > m_intern_vis_data[i] ? magnitude : m_intern_vis_data[i];
     }
 }

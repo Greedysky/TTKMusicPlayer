@@ -18,7 +18,7 @@ NetworkStreamReader::NetworkStreamReader(const QString &url, QObject *parent)
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Network");
-    m_buffer_size = settings.value("buffer_size", 256).toInt() * 1024;
+    m_bufferSize = settings.value("buffer_size", 256).toInt() * 1024;
     if(!m_path.isEmpty())
     {
         m_path = settings.value("buffer_path").toString() + m_path;
@@ -116,7 +116,7 @@ void NetworkStreamReader::handleReadyRead()
         return;
     }
 
-    if(m_stream.buffer_size > m_buffer_size)
+    if(m_stream.buffer_size > m_bufferSize)
     {
         m_ready  = true;
         NetworkInputSource *object = static_cast<NetworkInputSource*>(parent());
@@ -153,7 +153,7 @@ void NetworkStreamReader::handleReadyRead()
     }
     else
     {
-        StateHandler::instance()->dispatchBuffer(100 * m_stream.buffer_size / m_buffer_size);
+        StateHandler::instance()->dispatchBuffer(100 * m_stream.buffer_size / m_bufferSize);
         qApp->processEvents();
     }
 }

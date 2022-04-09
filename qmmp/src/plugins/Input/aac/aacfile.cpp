@@ -119,7 +119,7 @@ quint32 AACFile::bitrate() const
 
 quint32 AACFile::sampleRate() const
 {
-    return m_samplerate;
+    return m_sampleRate;
 }
 
 int AACFile::offset() const
@@ -171,7 +171,7 @@ void AACFile::parseADTS()
                 break;
 
             if(frames == 0)
-                m_samplerate = adts_sample_rates[(buf[2] & 0x3c)>>2];
+                m_sampleRate = adts_sample_rates[(buf[2] & 0x3c)>>2];
 
             frame_length = ((((unsigned int)buf[3] & 0x3)) << 11)
                            | (((unsigned int)buf[4]) << 3) | (buf[5] >> 5);
@@ -193,7 +193,7 @@ void AACFile::parseADTS()
         }
     }
     m_input->seek(pos);
-    frames_per_sec = (float) m_samplerate/1024.0f;
+    frames_per_sec = (float) m_sampleRate/1024.0f;
     if(frames != 0)
         bytes_per_frame = (float)t_framelength/(float)(frames*1000);
     else

@@ -7,7 +7,7 @@ SoXResampler::SoXResampler()
     : Effect()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    m_overSamplingFs = settings.value("SOXR/sample_rate", 48000).toInt();
+    m_sampleRate = settings.value("SOXR/sample_rate", 48000).toInt();
     m_quality = soxr_quality_spec(settings.value("SOXR/quality", SOXR_HQ).toInt(), 0);
 }
 
@@ -22,7 +22,7 @@ void SoXResampler::applyEffect(Buffer *b)
     {
         size_t done = 0;
         soxr_process(m_soxr, b->data, b->samples / channels(), nullptr,
-                     m_out, m_out_samples / channels(), &done);
+                     m_out, m_samples / channels(), &done);
 
         b->samples = done * channels();
         if(b->samples > b->size)
@@ -39,15 +39,15 @@ void SoXResampler::applyEffect(Buffer *b)
 void SoXResampler::configure(quint32 freq, ChannelMap map)
 {
     freeSoXR();
-    if(freq != m_overSamplingFs)
+    if(freq != m_sampleRate)
     {
         soxr_error_t error = nullptr;
-        m_soxr = soxr_create(freq, m_overSamplingFs, map.count(), &error, nullptr, &m_quality, nullptr);
-        double ratio = (double)m_overSamplingFs/freq;
-        m_out_samples = ratio * QMMP_BLOCK_FRAMES * map.count() * 2 + 2;
-        m_out = new float[m_out_samples];
+        m_soxr = soxr_create(freq, m_sampleRate, map.count(), &error, nullptr, &m_quality, nullptr);
+        double ratio = (double)m_sampleRate/freq;
+        m_samples = ratio * QMMP_BLOCK_FRAMES * map.count() * 2 + 2;
+        m_out = new float[m_samples];
     }
-    Effect::configure(m_overSamplingFs, map);
+    Effect::configure(m_sampleRate, map);
 }
 
 void SoXResampler::freeSoXR()
@@ -62,6 +62,6 @@ void SoXResampler::freeSoXR()
     {
         delete[] m_out;
         m_out = nullptr;
-        m_out_samples = 0;
+        m_samples = 0;
     }
 }

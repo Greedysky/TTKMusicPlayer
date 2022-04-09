@@ -50,8 +50,8 @@ private:
     void mix(float *cur_buf, float *prev_buf, uint samples, double volume);
 
     float *m_buffer = nullptr;
-    size_t m_buffer_at = 0;
-    size_t m_buffer_size = 0;
+    size_t m_bufferAt = 0;
+    size_t m_bufferSize = 0;
     qint64 m_overlap;
     int m_state = Waiting;
     SoundCore *m_core;

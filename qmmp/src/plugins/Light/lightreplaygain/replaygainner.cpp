@@ -24,7 +24,7 @@ ReplayGainner::~ReplayGainner()
 
 bool ReplayGainner::prepare(const QString &url)
 {
-    m_is_pending = false;
+    m_isPending = false;
     deinit();
 
     m_url = url;
@@ -83,32 +83,32 @@ bool ReplayGainner::prepare(const QString &url)
 
     m_decoder = decoder;
     m_source = source;
-    m_user_stop = false;
-    m_has_values = false;
-    m_is_pending = true;
+    m_stop = false;
+    m_hasValues = false;
+    m_isPending = true;
     return true;
 }
 
 void ReplayGainner::stop()
 {
     m_mutex.lock();
-    m_user_stop = true;
+    m_stop = true;
     m_mutex.unlock();
 }
 
 bool ReplayGainner::isRunning() const
 {
-    return m_is_running;
+    return m_isRunning;
 }
 
 bool ReplayGainner::isPending() const
 {
-    return m_is_pending;
+    return m_isPending;
 }
 
 bool ReplayGainner::hasValues() const
 {
-    return m_has_values;
+    return m_hasValues;
 }
 
 QMap<Qmmp::ReplayGainKey, double> ReplayGainner::oldReplayGainInfo() const
@@ -143,16 +143,16 @@ GainHandle_t *ReplayGainner::handle()
 
 void ReplayGainner::run()
 {
-    if(m_user_stop)
+    if(m_stop)
     {
-        m_is_pending = false;
+        m_isPending = false;
         return;
     }
 
     QString name = m_url.section("/", -1);
     qDebug("ReplayGainner: [%s] staring thread", qPrintable(name));
-    m_is_running = true;
-    m_is_pending = false;
+    m_isRunning = true;
+    m_isPending = false;
     bool error = false;
 
     AudioParameters ap = m_decoder->audioParameters();
@@ -220,7 +220,7 @@ void ReplayGainner::run()
         emit progress(100 * sample_counter / totalSamples);
 
         m_mutex.lock();
-        if(m_user_stop)
+        if(m_stop)
         {
             m_mutex.unlock();
             break;
@@ -232,7 +232,7 @@ void ReplayGainner::run()
     {
         qWarning("ReplayGainner: [%s] finished with error", qPrintable(name));
     }
-    else if(m_user_stop)
+    else if(m_stop)
     {
         qDebug("ReplayGainner: [%s] stopped by user", qPrintable(name));
     }
@@ -243,11 +243,11 @@ void ReplayGainner::run()
         emit progress(100);
         qDebug("ReplayGainner: [%s] peak=%f, gain=%f", qPrintable(name), m_peak, m_gain);
         qDebug("ReplayGainner: [%s] finished with success ", qPrintable(name));
-        m_has_values = true;
+        m_hasValues = true;
     }
 
     deinit();
-    m_is_running = false;
+    m_isRunning = false;
     emit finished(m_url);
 }
 

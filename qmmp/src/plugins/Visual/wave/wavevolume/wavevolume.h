@@ -37,8 +37,8 @@ private:
 
     virtual void process(float *left, float *right) override final;
 
-    int *m_x_scale = nullptr;
-    const double m_analyzer_size = 1.2;
+    int *m_xscale = nullptr;
+    const double m_analyzerSize = 1.2;
 
 };
 

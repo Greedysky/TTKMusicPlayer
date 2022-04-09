@@ -49,12 +49,13 @@ public:
 private:
     void parseADTS();
     void parseID3v2(const QByteArray &data);
+
     qint64 m_duration = 0;
     quint32 m_bitrate = 0;
     int m_offset = 0;
     QIODevice *m_input;
     bool m_isValid = false;
-    quint32 m_samplerate = 0;
+    quint32 m_sampleRate = 0;
     QMap<Qmmp::MetaData, QString> m_metaData;
 
 };

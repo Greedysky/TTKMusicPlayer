@@ -41,9 +41,9 @@ NormalAnalyzer::~NormalAnalyzer()
         delete[] m_peaks;
     }
 
-    if(m_x_scale)
+    if(m_xscale)
     {
-        delete[] m_x_scale;
+        delete[] m_xscale;
     }
 }
 
@@ -75,9 +75,9 @@ void NormalAnalyzer::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("NormalAnalyzer");
-    m_peaks_size = settings.value("peak_falloff", 0.2).toDouble();
-    m_analyzer_size = settings.value("analyzer_falloff", 2.2).toDouble();
-    m_show_peaks = settings.value("show_peaks", true).toBool();
+    m_peakSize = settings.value("peak_falloff", 0.2).toDouble();
+    m_analyzerSize = settings.value("analyzer_falloff", 2.2).toDouble();
+    m_showPeaks = settings.value("show_peaks", true).toBool();
     m_timer->setInterval(1000 / settings.value("refresh_rate", 30).toInt());
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     m_starAction->setChecked(settings.value("show_star", false).toBool());
@@ -90,7 +90,7 @@ void NormalAnalyzer::readSettings()
     }
 
     m_update = true;
-    m_peaksAction->setChecked(m_show_peaks);
+    m_peaksAction->setChecked(m_showPeaks);
 
     for(QAction *act : m_fpsGroup->actions())
     {
@@ -103,7 +103,7 @@ void NormalAnalyzer::readSettings()
 
     for(QAction *act : m_peaksFalloffGroup->actions())
     {
-        if(m_peaks_size == act->data().toDouble())
+        if(m_peakSize == act->data().toDouble())
         {
             act->setChecked(true);
             break;
@@ -112,7 +112,7 @@ void NormalAnalyzer::readSettings()
 
     for(QAction *act : m_analyzerFalloffGroup->actions())
     {
-        if(m_analyzer_size == act->data().toDouble())
+        if(m_analyzerSize == act->data().toDouble())
         {
             act->setChecked(true);
             break;
@@ -129,13 +129,13 @@ void NormalAnalyzer::readSettings()
     if(!m_peaksFalloffGroup->checkedAction())
     {
         m_peaksFalloffGroup->actions().at(1)->setChecked(2);
-        m_peaks_size = 0.2;
+        m_peakSize = 0.2;
     }
 
     if(!m_peaksFalloffGroup->checkedAction())
     {
         m_peaksFalloffGroup->actions().at(1)->setChecked(2);
-        m_analyzer_size = 2.2;
+        m_analyzerSize = 2.2;
     }
 }
 
@@ -223,11 +223,11 @@ void NormalAnalyzer::paintEvent(QPaintEvent *)
         line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
     }
 
-    const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
+    const int rdx = qMax(0, width() - 2 * m_cellSize.width() * m_cols);
 
     for(int i = 0; i < m_cols * 2; ++i)
     {
-        int x = i * m_cell_size.width() + 1;
+        int x = i * m_cellSize.width() + 1;
         if(i >= m_cols)
         {
             x += rdx; //correct right part position
@@ -235,12 +235,12 @@ void NormalAnalyzer::paintEvent(QPaintEvent *)
 
         for(int j = 0; j <= m_intern_vis_data[i]; ++j)
         {
-            painter.fillRect(x, height() - j * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, line);
+            painter.fillRect(x, height() - j * m_cellSize.height() + 1, m_cellSize.width() - 2, m_cellSize.height() - 2, line);
         }
 
-        if(m_show_peaks)
+        if(m_showPeaks)
         {
-            painter.fillRect(x, height() - int(m_peaks[i]) * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, "Cyan");
+            painter.fillRect(x, height() - int(m_peaks[i]) * m_cellSize.height() + 1, m_cellSize.width() - 2, m_cellSize.height() - 2, "Cyan");
         }
     }
 }
@@ -252,8 +252,8 @@ void NormalAnalyzer::contextMenuEvent(QContextMenuEvent *)
 
 void NormalAnalyzer::process(float *left, float *right)
 {
-    const int rows = (height() - 2) / m_cell_size.height();
-    const int cols = (width() - 2) / m_cell_size.width() / 2;
+    const int rows = (height() - 2) / m_cellSize.height();
+    const int cols = (width() - 2) / m_cellSize.width() / 2;
 
     if(m_rows != rows || m_cols != cols)
     {
@@ -270,18 +270,18 @@ void NormalAnalyzer::process(float *left, float *right)
             delete[] m_intern_vis_data;
         }
 
-        if(m_x_scale)
+        if(m_xscale)
         {
-            delete[] m_x_scale;
+            delete[] m_xscale;
         }
 
         m_peaks = new double[m_cols * 2]{0};
         m_intern_vis_data = new int[m_cols * 2]{0};
-        m_x_scale = new int[m_cols + 1]{0};
+        m_xscale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
         {
-            m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+            m_xscale[i] = pow(pow(255.0, 1.0 / m_cols), i);
         }
     }
 
@@ -301,13 +301,13 @@ void NormalAnalyzer::process(float *left, float *right)
         int magnitude_l = 0;
         int magnitude_r = 0;
 
-        if(m_x_scale[i] == m_x_scale[i + 1])
+        if(m_xscale[i] == m_xscale[i + 1])
         {
             yl = dest_l[i];
             yr = dest_r[i];
         }
 
-        for(int k = m_x_scale[i]; k < m_x_scale[i + 1]; ++k)
+        for(int k = m_xscale[i]; k < m_xscale[i + 1]; ++k)
         {
             yl = qMax(dest_l[k], yl);
             yr = qMax(dest_r[k], yr);
@@ -328,18 +328,18 @@ void NormalAnalyzer::process(float *left, float *right)
             magnitude_r = qBound(0, magnitude_r, m_rows);
         }
 
-        m_intern_vis_data[i] -= m_analyzer_size * m_rows / 15;
+        m_intern_vis_data[i] -= m_analyzerSize * m_rows / 15;
         m_intern_vis_data[i] = magnitude_l > m_intern_vis_data[i] ? magnitude_l : m_intern_vis_data[i];
 
-        m_intern_vis_data[j] -= m_analyzer_size * m_rows / 15;
+        m_intern_vis_data[j] -= m_analyzerSize * m_rows / 15;
         m_intern_vis_data[j] = magnitude_r > m_intern_vis_data[j] ? magnitude_r : m_intern_vis_data[j];
 
-        if(m_show_peaks)
+        if(m_showPeaks)
         {
-            m_peaks[i] -= m_peaks_size * m_rows / 15;
+            m_peaks[i] -= m_peakSize * m_rows / 15;
             m_peaks[i] = magnitude_l > m_peaks[i] ? magnitude_l : m_peaks[i];
 
-            m_peaks[j] -= m_peaks_size * m_rows / 15;
+            m_peaks[j] -= m_peakSize * m_rows / 15;
             m_peaks[j] = magnitude_r > m_peaks[j] ? magnitude_r : m_peaks[j];
         }
     }

@@ -39,9 +39,9 @@ public:
 private:
     void freeSoXR();
 
-    quint32 m_overSamplingFs;
+    quint32 m_sampleRate;
     float *m_out = nullptr;
-    size_t m_out_samples = 0;
+    size_t m_samples = 0;
     soxr_quality_spec_t m_quality;
     soxr_t m_soxr = nullptr;
 

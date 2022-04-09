@@ -45,8 +45,8 @@ private:
     VisualPalette::Palette m_palette= VisualPalette::PALETTE_DEFAULT;
     QImage m_backgroundImage;
     int m_pos = 0;
-    int *m_x_scale = nullptr;
-    const double m_analyzer_size = 2.2;
+    int *m_xscale = nullptr;
+    const double m_analyzerSize = 2.2;
 
 };
 

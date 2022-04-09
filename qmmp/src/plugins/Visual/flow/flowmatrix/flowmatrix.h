@@ -44,7 +44,7 @@ private:
     virtual void process(float *left, float *right) override final;
     virtual void process(bool state) override final;
 
-    int m_pos_x = 0, m_pos_y = 0;
+    int m_x = 0, m_y = 0;
     QList<Matrix*> m_matrixs;
 
 };

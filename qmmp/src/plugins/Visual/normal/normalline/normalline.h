@@ -58,9 +58,9 @@ private:
     QList<StarPoint*> m_starPoints;
     QTimer *m_starTimer;
     double *m_peaks = nullptr;
-    int *m_x_scale = nullptr;
-    const double m_peaks_size = 0.2, m_analyzer_size = 1.2;
-    const QSize m_cell_size = QSize(3, 2);
+    int *m_xscale = nullptr;
+    const double m_peakSize = 0.2, m_analyzerSize = 1.2;
+    const QSize m_cellSize = QSize(3, 2);
 
 };
 

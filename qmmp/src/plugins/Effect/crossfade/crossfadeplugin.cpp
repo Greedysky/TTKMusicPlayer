@@ -42,15 +42,15 @@ void CrossfadePlugin::applyEffect(Buffer *b)
     case Preparing:
         if(m_core->duration() && (m_core->duration() - m_handler->elapsed() <  m_overlap))
         {
-            if(m_buffer_at + b->samples > m_buffer_size)
+            if(m_bufferAt + b->samples > m_bufferSize)
             {
-                m_buffer_size = m_buffer_at + b->samples;
+                m_bufferSize = m_bufferAt + b->samples;
                 float *buffer = m_buffer;
-                m_buffer = (float *)realloc(m_buffer, m_buffer_size * sizeof(float));
+                m_buffer = (float *)realloc(m_buffer, m_bufferSize * sizeof(float));
                 if(!m_buffer)
                 {
-                    qWarning("CrossfadePlugin: unable to allocate  %zu bytes", m_buffer_size);
-                    m_buffer_size = 0;
+                    qWarning("CrossfadePlugin: unable to allocate  %zu bytes", m_bufferSize);
+                    m_bufferSize = 0;
                     if(buffer)
                     {
                         free(buffer);
@@ -60,24 +60,24 @@ void CrossfadePlugin::applyEffect(Buffer *b)
 
             if(m_buffer)
             {
-                memcpy(m_buffer + m_buffer_at, b->data, b->samples * sizeof(float));
-                m_buffer_at += b->samples;
+                memcpy(m_buffer + m_bufferAt, b->data, b->samples * sizeof(float));
+                m_bufferAt += b->samples;
                 b->samples = 0;
             }
         }
-        else if(m_buffer_at > 0)
+        else if(m_bufferAt > 0)
         {
             m_state = Processing;
         }
         break;
     case Processing:
-        if(m_buffer_at > 0)
+        if(m_bufferAt > 0)
         {
-            double volume = (double)m_buffer_at/m_buffer_size;
-            size_t samples = qMin(m_buffer_at, b->samples);
+            double volume = (double)m_bufferAt/m_bufferSize;
+            size_t samples = qMin(m_bufferAt, b->samples);
             mix(b->data, m_buffer, samples, volume);
-            m_buffer_at -= samples;
-            memmove(m_buffer, m_buffer + samples, m_buffer_at * sizeof(float));
+            m_bufferAt -= samples;
+            memmove(m_buffer, m_buffer + samples, m_bufferAt * sizeof(float));
         }
         else
         {

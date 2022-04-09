@@ -39,11 +39,10 @@ public:
 private:
     void freeSRC();
 
-    SRC_STATE *m_src_state = nullptr;
-    SRC_DATA m_src_data;
-    quint32 m_overSamplingFs;
-    int m_srcError = 0;
-    int m_converter_type;
+    SRC_STATE *m_state = nullptr;
+    SRC_DATA m_data;
+    quint32 m_sampleRate;
+    int m_engine;
 
 };
 

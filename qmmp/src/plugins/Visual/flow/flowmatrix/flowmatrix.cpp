@@ -122,15 +122,16 @@ void FlowMatrix::process(float *left, float *)
     {
         if(matrix->isRunning())
         {
-            m_pos_x = matrix->pos().x();
-            m_pos_y = matrix->pos().y();
-            m_pos_y += 1;
+            m_x = matrix->pos().x();
+            m_y = matrix->pos().y();
+            m_y += 1;
 
-            if(m_pos_y > height())
+            if(m_y > height())
             {
-                m_pos_y = 0;
+                m_y = 0;
             }
-            matrix->move(m_pos_x, m_pos_y + qrand() % max);
+
+            matrix->move(m_x, m_y + qrand() % max);
         }
         else
         {
