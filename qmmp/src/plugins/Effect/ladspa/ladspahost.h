@@ -111,11 +111,11 @@ private:
     QList<LADSPAPlugin*> m_plugins;
     QList<LADSPAEffect*> m_effects;
 
-    static LADSPAHost *m_instance;
     int m_chan = 2;
     quint32 m_freq = 44100;
     QList<void*> m_modules;
     LADSPA_Data m_buf[9][MAX_SAMPLES];
+    static LADSPAHost *m_instance;
 
 };
 

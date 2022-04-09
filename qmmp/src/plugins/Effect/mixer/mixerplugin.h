@@ -47,6 +47,7 @@ public:
     virtual void configure(quint32 freq, ChannelMap map) override final;
 
     void setType(MixerType type);
+
     static MixerPlugin* instance();
 
 private:

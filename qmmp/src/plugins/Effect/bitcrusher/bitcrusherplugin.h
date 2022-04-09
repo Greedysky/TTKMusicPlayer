@@ -36,6 +36,7 @@ public:
 
     void setDepth(double depth);
     void setDownsample(double downsample);
+
     static BitcrusherPlugin* instance();
 
 private:

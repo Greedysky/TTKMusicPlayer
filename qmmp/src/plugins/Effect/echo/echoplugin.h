@@ -37,6 +37,7 @@ public:
     void setDelay(int delay);
     void setFeedback(int feedback);
     void setVolume(int volume);
+
     static EchoPlugin* instance();
 
 private:

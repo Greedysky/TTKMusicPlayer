@@ -39,7 +39,7 @@
 #if defined(_WIN32) && ! defined(_MSC_VER)
 #include <malloc.h>
 int posix_memalign (void **memptr, size_t alignment, size_t size) {
-    *memptr = __mingw_aligned_malloc (size, alignment);
+    *memptr = __mingw_aligned_malloc(size, alignment);
     return *memptr ? 0 : -1;
 }
 #endif
@@ -724,7 +724,7 @@ int ffap_init(FFap_decoder *decoder)
 
 
 
-    decoder->ape_ctx->packet_data = malloc (PACKET_BUFFER_SIZE);
+    decoder->ape_ctx->packet_data = malloc(PACKET_BUFFER_SIZE);
     if(!decoder->ape_ctx->packet_data) {
         fprintf (stderr, "ape: failed to allocate memory for packet data\n");
         return -1;
@@ -1657,14 +1657,14 @@ FFap_decoder *ffap_new(ffap_read_callback read_callback,
                        ffap_getlength_callback getlength_callback,
                        void *client_data)
 {
-    FFap_decoder *decoder = malloc (sizeof (FFap_decoder));
+    FFap_decoder *decoder = malloc(sizeof (FFap_decoder));
     memset (decoder, 0, sizeof (FFap_decoder));
     decoder->read = read_callback;
     decoder->seek = seek_callback;
     decoder->tell = tell_callback;
     decoder->getlength = getlength_callback;
     decoder->client_data = client_data;
-    decoder->ape_ctx = malloc (sizeof (APEContext));
+    decoder->ape_ctx = malloc(sizeof (APEContext));
     memset(decoder->ape_ctx, 0, (sizeof (APEContext)));
     return decoder;
 }

@@ -38,6 +38,7 @@ public:
     virtual void configure(quint32 freq, ChannelMap map) override final;
 
     void setCrossfeedLevel(uint32_t level);
+
     static Bs2bPlugin* instance();
 
 private:

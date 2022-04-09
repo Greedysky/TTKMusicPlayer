@@ -36,6 +36,7 @@ public:
     virtual void applyEffect(Buffer *b) override final;
 
     void setIntensity(double level);
+
     static StereoPlugin* instance();
 
 private:

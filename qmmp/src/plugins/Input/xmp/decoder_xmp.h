@@ -52,8 +52,8 @@ private:
     qint64 m_totalTime = 0;
     QString m_path;
     quint32 m_srate = 44100;
-
     static DecoderXMP *m_instance;
+
 };
 
 #endif

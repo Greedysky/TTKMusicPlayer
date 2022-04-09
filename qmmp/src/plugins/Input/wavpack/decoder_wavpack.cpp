@@ -43,7 +43,7 @@ bool DecoderWavPack::initialize()
         int cue_len = WavpackGetTagItem(m_context, "cuesheet", nullptr, 0);
         if(cue_len > 0)
         {
-            char *value = (char*)malloc (cue_len * 2 + 1);
+            char *value = (char*)malloc(cue_len * 2 + 1);
             WavpackGetTagItem(m_context, "cuesheet", value, cue_len + 1);
             m_parser = new CueParser(value);
             m_parser->setDuration((qint64)WavpackGetNumSamples(m_context) * 1000 / WavpackGetSampleRate(m_context));

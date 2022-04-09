@@ -44,7 +44,6 @@ public:
 
 private:
     OpenMPTHelper *m_helper = nullptr;
-
     static DecoderOpenMPT *m_instance;
 
 };

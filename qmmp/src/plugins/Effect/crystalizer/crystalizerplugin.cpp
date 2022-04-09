@@ -46,6 +46,7 @@ void CrystalizerPlugin::configure(quint32 freq, ChannelMap map)
         {
             delete[] m_buffer;
         }
+
         m_buffer = new float[channels()]{0};
     }
 

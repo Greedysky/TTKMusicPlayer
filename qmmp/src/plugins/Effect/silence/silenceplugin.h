@@ -34,6 +34,7 @@ public:
     virtual void applyEffect(Buffer *b) override final;
 
     void setThreshold(double value);
+
     static SilencePlugin* instance();
 
 private:
