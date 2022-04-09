@@ -41,7 +41,7 @@ public:
     ~MusicFileInformationWidget();
 
     /*!
-     * Set music file song path name.
+     * Set music file song information.
      */
     void setFileInformation(const QString &name);
 

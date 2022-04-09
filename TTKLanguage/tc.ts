@@ -6705,6 +6705,49 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
     </message>
 </context>
 <context>
+    <name>MusicTTKFMRadioInformationWidget</name>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="14"/>
+        <source>电台信息</source>
+        <translation>電臺信息</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="42"/>
+        <source>电台信息</source>
+        <translation>電臺信息</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="55"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="81"/>
+        <source>名称:</source>
+        <translation>名稱:</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="94"/>
+        <source>地区:</source>
+        <translation>地區:</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="107"/>
+        <source>链接地址:</source>
+        <translation>鏈接地址:</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="174"/>
+        <source>Finish</source>
+        <translation>完成</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="76"/>
+        <source>Close</source>
+        <translation>關閉</translation>
+    </message>
+</context>
+<context>
     <name>MusicTTKFMRadioPlayWidget</name>
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioplaywidget.ui" line="14"/>
@@ -6728,9 +6771,44 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
         <translation type="unfinished">00:00</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="51"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioplaywidget.ui" line="264"/>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioplaywidget.ui" line="277"/>
+        <source>Delete</source>
+        <translation>刪除</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioplaywidget.ui" line="290"/>
+        <source>Info</source>
+        <translation>詳情</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="131"/>
         <source>Close</source>
         <translation>關閉</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="403"/>
+        <source>Add current channel success!</source>
+        <translation>電臺添加成功!</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="410"/>
+        <source>Are you sure to delete?</source>
+        <translation>你確定要刪除嗎？</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="426"/>
+        <source>The current channel can not be deleted</source>
+        <translation>當前電臺不能刪除</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="446"/>
+        <source>Delete current channel success!</source>
+        <translation>刪除電臺成功!</translation>
     </message>
 </context>
 <context>
@@ -7654,52 +7732,52 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
 <context>
     <name>QKugouWindow</name>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="255"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="256"/>
         <source> SongRecommend </source>
         <translation> 推薦 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="258"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="259"/>
         <source> SongRank </source>
         <translation> 排行榜 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="261"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="262"/>
         <source> SongSinger </source>
         <translation> 歌手 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="264"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="265"/>
         <source> SongCategory </source>
         <translation> 分類 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="316"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="317"/>
         <source> RadioPublic </source>
         <translation> 公共電臺 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="319"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="320"/>
         <source> RadioHigh </source>
         <translation> 高潮電臺 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="322"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="323"/>
         <source> RadioFx </source>
         <translation> 真人電臺 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="400"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="401"/>
         <source> MVRadio </source>
         <translation> MV電臺 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="403"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="404"/>
         <source> MVRecommend </source>
         <translation> MV推薦 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="406"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="407"/>
         <source> MVFanxing </source>
         <translation> MV繁星 </translation>
     </message>

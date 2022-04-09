@@ -43,6 +43,7 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_WIDGET_UI_DIR}/musicToolsKits/musiccloudfileinformationwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsKits/musictoolsetswidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsKits/musicttkfmradioplaywidget.ui
+    ${MUSIC_WIDGET_UI_DIR}/musicToolsKits/musicttkfmradioinformationwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicbackgroundskindialog.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicbackgroundpalettewidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicdownloadwidget.ui

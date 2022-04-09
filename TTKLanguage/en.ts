@@ -6491,6 +6491,49 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
     </message>
 </context>
 <context>
+    <name>MusicTTKFMRadioInformationWidget</name>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="14"/>
+        <source>电台信息</source>
+        <translation>Radio Info</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="42"/>
+        <source>电台信息</source>
+        <translation>Radio Info</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="55"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="81"/>
+        <source>名称:</source>
+        <translation>Title:</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="94"/>
+        <source>地区:</source>
+        <translation>Region:</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="107"/>
+        <source>链接地址:</source>
+        <translation>Url:</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioinformationwidget.ui" line="174"/>
+        <source>Finish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="76"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MusicTTKFMRadioPlayWidget</name>
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioplaywidget.ui" line="14"/>
@@ -6514,8 +6557,43 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
         <translation type="unfinished">00:00</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="51"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioplaywidget.ui" line="264"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioplaywidget.ui" line="277"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsKits/musicttkfmradioplaywidget.ui" line="290"/>
+        <source>Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="131"/>
         <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="403"/>
+        <source>Add current channel success!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="410"/>
+        <source>Are you sure to delete?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="426"/>
+        <source>The current channel can not be deleted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicttkfmradioplaywidget.cpp" line="446"/>
+        <source>Delete current channel success!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7257,52 +7335,52 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
 <context>
     <name>QKugouWindow</name>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="255"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="256"/>
         <source> SongRecommend </source>
         <translation>Recommend</translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="258"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="259"/>
         <source> SongRank </source>
         <translation>Rank</translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="261"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="262"/>
         <source> SongSinger </source>
         <translation>Singer</translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="264"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="265"/>
         <source> SongCategory </source>
         <translation>Category</translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="316"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="317"/>
         <source> RadioPublic </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="319"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="320"/>
         <source> RadioHigh </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="322"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="323"/>
         <source> RadioFx </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="400"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="401"/>
         <source> MVRadio </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="403"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="404"/>
         <source> MVRecommend </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="406"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="407"/>
         <source> MVFanxing </source>
         <translation type="unfinished"></translation>
     </message>

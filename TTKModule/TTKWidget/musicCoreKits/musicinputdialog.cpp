@@ -19,7 +19,6 @@ MusicInputDialog::MusicInputDialog(QWidget *parent)
 #ifdef Q_OS_UNIX
     m_ui->button->setFocusPolicy(Qt::NoFocus);
 #endif
-
     connect(m_ui->button, SIGNAL(clicked()), SLOT(accept()));
 }
 

@@ -21,12 +21,14 @@
 
 #include "musicabstractxml.h"
 #include "musicabstractmovewidget.h"
+#include "musicabstractmovedialog.h"
 
 class QTreeWidgetItem;
 class MusicCoreMPlayer;
 
 namespace Ui {
 class MusicTTKFMRadioPlayWidget;
+class MusicTTKFMRadioInformationWidget;
 }
 
 /*! @brief The class of the fm channel item.
@@ -73,6 +75,46 @@ public:
      * Write datas from config file.
      */
     void writeBuffer(const MusicFMCategoryList &items);
+
+};
+
+
+/*! @brief The class of the web music radio information widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicTTKFMRadioInformationWidget : public MusicAbstractMoveDialog
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicTTKFMRadioInformationWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicTTKFMRadioInformationWidget(QWidget *parent = nullptr);
+    ~MusicTTKFMRadioInformationWidget();
+
+    /*!
+     * Set read only mode.
+     */
+    void setReadOnly(bool mode);
+    /*!
+     * Set channel information.
+     */
+    void setChannelInformation(const MusicFMChannel &channel);
+    /*!
+     * Get channel information.
+     */
+    MusicFMChannel channelInformation() const;
+
+public Q_SLOTS:
+    /*!
+     * Override exec function.
+     */
+    virtual int exec();
+
+protected:
+    Ui::MusicTTKFMRadioInformationWidget *m_ui;
+    bool m_readOnly;
 
 };
 
@@ -158,7 +200,7 @@ protected:
     /*!
      * Check index valid.
      */
-    int valid(QTreeWidgetItem *item) const;
+    int indexValid(QTreeWidgetItem *item) const;
 
     Ui::MusicTTKFMRadioPlayWidget *m_ui;
     bool m_isPlaying;

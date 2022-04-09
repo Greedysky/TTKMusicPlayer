@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MusicCloudFileInformationWidget</class>
- <widget class="QWidget" name="MusicCloudFileInformationWidget">
+ <class>MusicTTKFMRadioInformationWidget</class>
+ <widget class="QWidget" name="MusicTTKFMRadioInformationWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>478</width>
-    <height>247</height>
+    <height>207</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>歌曲信息</string>
+   <string>电台信息</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
@@ -19,7 +19,7 @@
      <x>4</x>
      <y>4</y>
      <width>470</width>
-     <height>239</height>
+     <height>199</height>
     </rect>
    </property>
    <property name="text">
@@ -39,7 +39,7 @@
     <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
    </property>
    <property name="text">
-    <string>歌曲信息</string>
+    <string>电台信息</string>
    </property>
   </widget>
   <widget class="QToolButton" name="topTitleCloseButton">
@@ -61,7 +61,7 @@
      <x>4</x>
      <y>29</y>
      <width>470</width>
-     <height>214</height>
+     <height>174</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -72,26 +72,26 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>15</x>
-      <y>155</y>
+      <y>75</y>
       <width>54</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
-     <string>文件大小:</string>
+     <string>名称:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>155</y>
-      <width>54</width>
+      <x>270</x>
+      <y>75</y>
+      <width>45</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
-     <string>格式:</string>
+     <string>地区:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -104,18 +104,18 @@ QLabel{background:transparent;}</string>
      </rect>
     </property>
     <property name="text">
-     <string>文件名:</string>
+     <string>链接地址:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="fileSizeEdit">
+   <widget class="QLineEdit" name="nameEdit">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
       <x>75</x>
-      <y>155</y>
-      <width>141</width>
+      <y>75</y>
+      <width>161</width>
       <height>25</height>
      </rect>
     </property>
@@ -123,15 +123,15 @@ QLabel{background:transparent;}</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="fileFormatEdit">
+   <widget class="QLineEdit" name="locationEdit">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>155</y>
-      <width>141</width>
+      <x>320</x>
+      <y>75</y>
+      <width>121</width>
       <height>25</height>
      </rect>
     </property>
@@ -139,9 +139,9 @@ QLabel{background:transparent;}</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="filePathEdit">
+   <widget class="QLineEdit" name="pathEdit">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -158,62 +158,20 @@ QLabel{background:transparent;}</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="fileKeyEdit">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
+   <widget class="QPushButton" name="button">
     <property name="geometry">
      <rect>
-      <x>75</x>
-      <y>75</y>
-      <width>365</width>
-      <height>25</height>
+      <x>180</x>
+      <y>125</y>
+      <width>110</width>
+      <height>30</height>
      </rect>
     </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="fileUpdateTimeEdit">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>75</x>
-      <y>115</y>
-      <width>365</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>115</y>
-      <width>54</width>
-      <height>25</height>
-     </rect>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="text">
-     <string>更新时间:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>15</x>
-      <y>75</y>
-      <width>54</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>文件值:</string>
+     <string>Finish</string>
     </property>
    </widget>
   </widget>

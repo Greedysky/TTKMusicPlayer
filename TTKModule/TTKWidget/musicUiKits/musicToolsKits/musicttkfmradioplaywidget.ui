@@ -261,7 +261,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>添加</string>
+    <string>Add</string>
    </property>
   </widget>
   <widget class="QPushButton" name="deleteButton">
@@ -274,7 +274,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>删除</string>
+    <string>Delete</string>
    </property>
   </widget>
   <widget class="QPushButton" name="infoButton">
@@ -287,7 +287,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>信息</string>
+    <string>Info</string>
    </property>
   </widget>
   <zorder>background</zorder>
