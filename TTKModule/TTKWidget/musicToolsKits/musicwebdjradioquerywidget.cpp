@@ -176,7 +176,9 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultsItem &item)
         backButton->setCursor(QCursor(Qt::PointingHandCursor));
         connect(backButton, SIGNAL(clicked()), this, SIGNAL(backToMainMenu()));
         containTopLayout->addWidget(backButton);
-
+#ifdef Q_OS_UNIX
+        backButton->setFocusPolicy(Qt::NoFocus);
+#endif
         containTopWidget->setLayout(containTopLayout);
 
         QFrame *line = new QFrame(m_mainWindow);

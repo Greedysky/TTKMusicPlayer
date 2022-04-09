@@ -193,6 +193,10 @@ MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(MusicObject::Program 
     topLayout->addWidget(backButton);
     layout->addWidget(top);
 
+#ifdef Q_OS_UNIX
+    backButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     QFrame *line = new QFrame(this);
     line->setFrameShape(QFrame::HLine);
     line->setStyleSheet(MusicUIObject::MQSSColorStyle05);

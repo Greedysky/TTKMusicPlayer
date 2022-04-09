@@ -126,6 +126,8 @@
  *
  *  MPRIS D-Bus interface specification supported.
  *
+ *  MMS and online fm radio supported.
+ *
  */
  
 /***************************************************************************

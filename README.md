@@ -114,7 +114,7 @@ TTKMusicPlayer can meet your most demands
  * Music replay gain scan and write supported.
  * Music screen saver supported.
  * MPRIS D-Bus interface specification supported.
- 
+ * MMS and online fm radio supported.
 
 Screenshots
 ----

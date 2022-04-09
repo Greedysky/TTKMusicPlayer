@@ -199,11 +199,11 @@ void MusicWebDJRadioInfoWidget::createLabels()
 #endif
 
 #ifdef Q_OS_UNIX
+    backButton->setFocusPolicy(Qt::NoFocus);
     m_songButton->setFocusPolicy(Qt::NoFocus);
 #endif
-    grid->addWidget(functionWidget);
 
-    //
+    grid->addWidget(functionWidget);
     grid->addWidget(m_container);
     grid->addStretch(1);
 
