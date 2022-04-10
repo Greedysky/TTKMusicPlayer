@@ -228,7 +228,7 @@ MusicWebDJRadioWidget::MusicWebDJRadioWidget(QWidget *parent)
     : QStackedWidget(parent)
 {
     setObjectName("MainWindow");
-    setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle17));
+    setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle12));
 
     m_recommendWidget = nullptr;
     m_programWidget = nullptr;

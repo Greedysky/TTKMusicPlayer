@@ -44,9 +44,9 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     m_ui->loadingLabel->setType(MusicGifLabelWidget::CicleBlue);
 
     m_ui->scanButton->setIcon(QIcon(":/toolSets/btn_search"));
-    m_ui->scanButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle10);
+    m_ui->scanButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle08);
     m_ui->scanCustButton->setIcon(QIcon(":/toolSets/btn_search"));
-    m_ui->scanCustButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle10);
+    m_ui->scanCustButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle08);
 
     MusicUtils::Widget::generateComboBoxFormat(m_ui->filterComboBox);
 
@@ -57,7 +57,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     m_ui->showAlbumButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->showAlbumButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->toolWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
+    m_ui->toolWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle12);
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_ui->scanButton, 0);

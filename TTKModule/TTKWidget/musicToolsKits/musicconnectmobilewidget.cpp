@@ -40,10 +40,10 @@ void MusicConnectMobileWidget::initFirstWidget()
     QWidget *firstWidget = new QWidget(this);
     QVBoxLayout *vBox = new QVBoxLayout(firstWidget);
     QLabel *textLabel = new QLabel(tr("Please choose the way"), firstWidget);
-    textLabel->setStyleSheet(MusicUIObject::MQSSFontStyle05 + MusicUIObject::MQSSColorStyle12);
+    textLabel->setStyleSheet(MusicUIObject::MQSSFontStyle04 + MusicUIObject::MQSSColorStyle09);
 
     QPushButton *firButton = new QPushButton(tr("Wired Mode"), firstWidget);
-    firButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle11 + MusicUIObject::MQSSColorStyle12);
+    firButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSColorStyle09);
     firButton->setIcon(QIcon(":/toolSets/lb_wired"));
     firButton->setIconSize(QSize(50, 50));
     firButton->setFixedSize(200, 90);
@@ -51,7 +51,7 @@ void MusicConnectMobileWidget::initFirstWidget()
     connect(firButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetSecond()));
 
     QPushButton *secButton = new QPushButton(tr("Wirel Mode"), firstWidget);
-    secButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle11 + MusicUIObject::MQSSColorStyle12);
+    secButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSColorStyle09);
     secButton->setIcon(QIcon(":/toolSets/lb_wireless"));
     secButton->setIconSize(QSize(50, 50));
     secButton->setFixedSize(200, 90);
@@ -84,7 +84,7 @@ void MusicConnectMobileWidget::initSecondWidget()
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
 
     QPushButton *backButton = new QPushButton(tr("< "), topWidget);
-    backButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle12);
+    backButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle10);
     backButton->setFixedSize(45, 25);
     backButton->setCursor(Qt::PointingHandCursor);
     connect(backButton, SIGNAL(clicked()), SLOT(changeStatckedWidgetFirst()));
@@ -165,13 +165,13 @@ void MusicConnectMobileWidget::initThirdWidget()
     QVBoxLayout *vBox = new QVBoxLayout(thirdWidget);
 
     QPushButton *backButton = new QPushButton(tr("< "), thirdWidget);
-    backButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle12);
+    backButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle10);
     backButton->setFixedSize(45, 25);
     backButton->setCursor(Qt::PointingHandCursor);
     connect(backButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetFirst()));
 
     QLabel *label = new QLabel(tr("Use mobile app to connect"), thirdWidget);
-    label->setStyleSheet(MusicUIObject::MQSSFontStyle05);
+    label->setStyleSheet(MusicUIObject::MQSSFontStyle04);
 
     QRCodeQWidget *code = new QRCodeQWidget(QByteArray(), QSize(130, 130), this);
     code->setMargin(8);

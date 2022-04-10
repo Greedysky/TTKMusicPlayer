@@ -27,8 +27,7 @@
 namespace MusicUIObject
 {
 ///Color
-    const QString MQSSColor01 = "#404040";
-
+    const QString MQSSColor01 = "#444444";
 
 ///Color
     const QString MQSSColorStyle01 = " \
@@ -56,26 +55,13 @@ namespace MusicUIObject
             color:#158FE1;";
 
     const QString MQSSColorStyle09 = " \
-            color:#666666;";
-
-    const QString MQSSColorStyle10 = " \
             color:#444444;";
 
-    const QString MQSSColorStyle11 = " \
+    const QString MQSSColorStyle10 = " \
             color:#169AF3;";
 
-    const QString MQSSColorStyle12 = " \
-            color:#323232;";
-
-    const QString MQSSColorStyle13 = " \
+    const QString MQSSColorStyle11 = " \
             color:#000000;";
-
-    const QString MQSSColorStyle14 = " \
-            color:#CCCCCC;";
-
-    const QString MQSSColorStyle15 = " \
-            color:#404040;";
-
 
 ///Background
     const QString MQSSBackgroundStyle01 = " \
@@ -107,41 +93,22 @@ namespace MusicUIObject
             background:rgba(0, 0, 0, 100);";
 
     const QString MQSSBackgroundStyle09 = " \
-            background:rgba(255, 255, 255, 25);";
-
-    const QString MQSSBackgroundStyle10 = " \
             background:rgba(255 ,255, 255, 50);";
 
-    const QString MQSSBackgroundStyle11 = " \
-            background:rgba(255, 255, 255, 125);";
-
-    const QString MQSSBackgroundStyle12 = " \
-            background:rgba(255, 255, 255, 180);";
-
-    const QString MQSSBackgroundStyle13 = " \
+    const QString MQSSBackgroundStyle10 = " \
             background:rgba(255, 255, 255, 200);";
 
-    const QString MQSSBackgroundStyle14 = " \
-            background:#158FE1;";
-
-    const QString MQSSBackgroundStyle15 = " \
+    const QString MQSSBackgroundStyle11 = " \
             background:#BFBFBF;";
 
-    const QString MQSSBackgroundStyle16 = " \
-            background:#F9D982;";
-
-    const QString MQSSBackgroundStyle17 = " \
+    const QString MQSSBackgroundStyle12 = " \
             background:#FFFFFF;";
 
-    const QString MQSSBackgroundStyle18 = " \
+    const QString MQSSBackgroundStyle13 = " \
             background:rgb(254, 249, 229);";
 
-    const QString MQSSBackgroundStyle19 = " \
+    const QString MQSSBackgroundStyle14 = " \
             background:rgba(0, 0, 0, 175);";
-
-    const QString MQSSBackgroundStyle20 = " \
-            background:#EDF8FE;";
-
 
 ///border
     const QString MQSSBorderStyle01 = " \
@@ -151,20 +118,16 @@ namespace MusicUIObject
             border:1px solid #666666;";
 
     const QString MQSSBorderStyle03 = " \
-            border:1px solid #555555;";
-
-    const QString MQSSBorderStyle04 = " \
             border:1px solid gray;";
 
-    const QString MQSSBorderStyle05 = " \
+    const QString MQSSBorderStyle04 = " \
             border:1px solid #0095CD;";
 
-    const QString MQSSBorderStyle06 = " \
+    const QString MQSSBorderStyle05 = " \
             border-top:1px dashed gray;";
 
-    const QString MQSSBorderStyle07 = " \
+    const QString MQSSBorderStyle06 = " \
             border-radius:3px;";
-
 
 ///Font
     const QString MQSSFontStyle01 = " \
@@ -177,14 +140,10 @@ namespace MusicUIObject
             font-size:15px;";
 
     const QString MQSSFontStyle04 = " \
-            font-size:18px;";
-
-    const QString MQSSFontStyle05 = " \
             font-size:20px;";
 
-    const QString MQSSFontStyle06 = " \
+    const QString MQSSFontStyle05 = " \
             font-size:25px;";
-
 
 ///Custom
     const QString MQSSCustomStyle01 = " \
@@ -192,7 +151,6 @@ namespace MusicUIObject
 
     const QString MQSSCustomStyle02 = " \
             text-align:center;";
-
 
 ///ToolButton
     const QString MQSSToolButtonStyle01 = " \
@@ -219,7 +177,6 @@ namespace MusicUIObject
             QToolButton::hover{ border:1px solid #444444; color:#222222; } \
             QToolButton::disabled{ color:#999999; border:1px solid #BBBBBB; }";
 
-
 ///PushButton
     const QString MQSSPushButtonStyle01 = " \
             QPushButton{ background-color:transparent; " +
@@ -240,45 +197,37 @@ namespace MusicUIObject
             QPushButton::hover{ border:1px solid #555555; color:#444444; } \
             QPushButton::disabled{ color:#BBBBBB; border:1px solid #DDDDDD; }";
 
-    const QString MQSSPushButtonStyle05 = " \
-            QPushButton{ border:none; color:#3333FF; } \
-            QPushButton::hover{ color:#7777FF; }";
-
-    const QString MQSSPushButtonStyle06 = MQSSPushButtonStyle03 + " \
+    const QString MQSSPushButtonStyle05 = MQSSPushButtonStyle03 + " \
             QPushButton{ font-size:17px; font-weight:bold; }";
 
-    const QString MQSSPushButtonStyle07 = MQSSPushButtonStyle02 + " \
-            QPushButton{ font-size:12px; color:#FFFFFF; }";
-
-    const QString MQSSPushButtonStyle08 = " \
+    const QString MQSSPushButtonStyle06 = " \
             QPushButton{ color:#CCCCCC; } \
             QPushButton:hover{ color:#FFFFFF; }";
            
-    const QString MQSSPushButtonStyle09 = MQSSPushButtonStyle08 + " \
+    const QString MQSSPushButtonStyle07 = MQSSPushButtonStyle06 + " \
             QPushButton{ text-align:right; }";
 
-    const QString MQSSPushButtonStyle10 = MQSSPushButtonStyle01 + " \
+    const QString MQSSPushButtonStyle08 = MQSSPushButtonStyle01 + " \
             QPushButton::hover{ border:1px solid #000000; }";
 
-    const QString MQSSPushButtonStyle11 = " \
+    const QString MQSSPushButtonStyle09 = " \
             QPushButton{ border-radius:5px; font-size:20px; \
             background:rgba(0, 0, 0, 50); } \
             QPushButton::hover{ background:rgba(0, 0, 0, 100); }";
 
-    const QString MQSSPushButtonStyle12 = " \
+    const QString MQSSPushButtonStyle10 = " \
             QPushButton{ border-radius:2px; background:rgba(0, 0, 0, 50); }";
 
-    const QString MQSSPushButtonStyle13 = " \
+    const QString MQSSPushButtonStyle11 = " \
             QPushButton::menu-indicator{ image:none; }";
 
-    const QString MQSSPushButtonStyle14 = " \
+    const QString MQSSPushButtonStyle12 = " \
             QPushButton{ color:#E6C117; } \
             QPushButton:hover{ color:#E6E317; } \
             QPushButton{ text-align:right; }";
 
-    const QString MQSSPushButtonStyle15 = " \
+    const QString MQSSPushButtonStyle13 = " \
             QPushButton{ background-color:#DDDDDD; color:#222222; }";
-
 
 ///RadioButton
     const QString MQSSRadioButtonStyle01 = " \
@@ -287,7 +236,6 @@ namespace MusicUIObject
             QRadioButton::checked { color:#E67300; } \
             QRadioButton::indicator:checked { image:url(:/control/btn_radiobutton_checked); } \
             QRadioButton::disabled{ color:#BBBBBB; }";
-
 
 ///CheckBox
     const QString MQSSCheckBoxStyle01 = " \
@@ -317,12 +265,10 @@ namespace MusicUIObject
             QCheckBox::indicator:checked { image:url(:/control/btn_checkBox2_checked); } \
             QCheckBox::disabled{ color:#BBBBBB; }";
 
-
 ///GroupBox
     const QString MQSSGroupBoxStyle01 = " \
             QGroupBox::indicator::unchecked{ image:url(:/control/btn_checkBox_unchecked); } \
             QGroupBox::indicator:checked { image:url(:/control/btn_checkBox_checked); }";
-
 
 ///ScrollBar
     const QString MQSSScrollBarStyle01 = " \
@@ -347,18 +293,9 @@ namespace MusicUIObject
     const QString MQSSScrollBarStyle04 = MQSSScrollBarStyle02 + " \
             QScrollBar{ background:transparent; }";
 
-
 ///Label
     const QString MQSSLabelStyle01 = " \
             QLabel{ color:#888888; background-color:#FFE6E6; border:1px solid gray; }";
-
-    const QString MQSSLabelStyle02 = " \
-            QLabel{ color:#777777; font-size:15px; } \
-            QLabel::hover{ color:rgb(22, 154, 243); }";
-
-    const QString MQSSLabelStyle03 = " \
-            QLabel{ color:rgb(22, 154, 243); }";
-
 
 ///LineEdit
     const QString MQSSLineEditStyle01 = " \
@@ -372,16 +309,12 @@ namespace MusicUIObject
     const QString MQSSLineEditStyle03 = MQSSLineEditStyle02 + " \
             QLineEdit{ font-size:13px; color:#333333; }";
 
-    const QString MQSSLineEditStyle04 = MQSSLineEditStyle02 + " \
-            QLineEdit{ color:#6495ED; }";
-
-    const QString MQSSLineEditStyle05 = " \
+    const QString MQSSLineEditStyle04 = " \
             QLineEdit{ color:#6495ED; border:1px solid #555555; }";
 
-    const QString MQSSLineEditStyle06 = MQSSLineEditStyle01 + " \
+    const QString MQSSLineEditStyle05 = MQSSLineEditStyle01 + " \
             QLineEdit{ color:white; border:1px solid #545454; } \
             QLineEdit::disabled{ color:#323232; border:1px solid #323232; }";
-
 
 ///Menu
     const QString MQSSMenuStyle01 = " \
@@ -413,7 +346,6 @@ namespace MusicUIObject
 
     const QString MQSSMenuStyle05 = " \
             QMenu{ border:none; background:transparent; }";
-
 
 ///Slider
     const QString MQSSSliderStyle01 = " \
@@ -491,10 +423,9 @@ namespace MusicUIObject
             QSlider::handle:horizontal{ background:rgba(255, 255, 255, 255); \
             width:9px; margin-top:-3px; margin-bottom:-3px; border-radius:4px; }";
 
-
 ///ComboBox
     const QString MQSSComboBoxStyle01 = " \
-            QComboBox{ border: 1px solid gray; } \
+            QComboBox{ border: 1px solid gray; color:#666666; } \
             QComboBox::hover{ border: 1px solid rgb(22, 154, 243); } \
             QComboBox::drop-down{ subcontrol-origin:padding; \
             subcontrol-position:top right; width:20px; border-left:none; } \
@@ -504,7 +435,6 @@ namespace MusicUIObject
     const QString MQSSComboBoxStyle02 = MQSSComboBoxStyle01 + " \
             QComboBox{ border:none; } \
             QComboBox::hover{ border:none; }";
-
 
 ///TableWidget
     const QString MQSSTableWidgetStyle01 = " \
@@ -519,7 +449,6 @@ namespace MusicUIObject
     const QString MQSSTableWidgetStyle04 = " \
             QTableWidget{ background:rgba(0, 0, 0, 255); }";
 
-
 ///TabWidget
     const QString MQSSTabWidgetStyle01 = " \
             QTabWidget{ border:none; } \
@@ -527,32 +456,19 @@ namespace MusicUIObject
             QTabBar::tab{ height:30px; width:100px; background-color:#BFBFBF; color:white; margin-left:0; margin-right:0; } \
             QTabBar::tab:selected{ background-color:#158FE1; color:white}";
 
-
 ///TextEdit
     const QString MQSSTextEditStyle01 = " \
             QTextEdit{ border:1px solid gray; color:#666666; } \
             QTextEdit::hover{ border:1px solid rgb(22, 154, 243); } \
             QTextEdit::disabled{ color:#BBBBBB; border: 1px solid #BBBBBB; }";
 
-
 ///HeadView
     const QString MQSSHeaderView01 = " \
             QHeaderView{ background-color:white; color:black; }";
 
-
 ///Widget
     const QString MQSSWidgetStyle01 = " \
             QWidget{ background:rgba(255, 255, 255, 50); color:white; font-weight:bold; }";
-
-
-///DateEdit
-    const QString MQSSDateEditStyle01 = " \
-            QDateEdit{ font-size:12px; color:#666666; font-weight:normal; border: 1px solid gray; } \
-            QDateEdit::hover{ border:1px solid rgb(22, 154, 243); } \
-            QDateEdit::up-button{ image:url(:/image/btn_up_arrow); } \
-            QDateEdit::down-button{ image:url(:/image/btn_down_arrow); } \
-            QDateEdit::disabled{ color:#BBBBBB; border: 1px solid #BBBBBB; }";
-
 
 ///SpinBox
     const QString MQSSSpinBoxStyle01 = " \
@@ -562,12 +478,10 @@ namespace MusicUIObject
             QSpinBox::down-button{ image:url(:/image/btn_down_arrow); } \
             QSpinBox::disabled{ color:#BBBBBB; border: 1px solid #BBBBBB; }";
 
-
 ///ProgressBar
     const QString MQSSProgressBar01 = " \
             QProgressBar{ border:none; background:rgb(210, 225, 240); text-align:center; } \
             QProgressBar::chunk{ background:rgb(60, 140, 220); }";
-
 
 ///ItemView
     const QString MQSSItemView01 = " \

@@ -21,7 +21,7 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
     layout->setContentsMargins(0, 0, 0, 0);
     m_mainWindow = new QStackedWidget(this);
     m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle17));
+    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle12));
     layout->addWidget(m_mainWindow);
     setLayout(layout);
 
@@ -205,7 +205,7 @@ void MusicIdentifySongsWidget::positionChanged(qint64 position)
 void MusicIdentifySongsWidget::createDetectedWidget()
 {
     QWidget *widget = new QWidget(m_mainWindow);
-    widget->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle05);
+    widget->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle04);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
 
     m_detectedMovie = new QMovie(":/toolSets/lb_radar", QByteArray(), widget);
@@ -263,7 +263,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     const MusicSongIdentifyData songIdentify(m_detectedThread->identifySongs().front());
 
     QWidget *widget = new QWidget(m_mainWindow);
-    widget->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle05);
+    widget->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle04);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
     //
     QWidget *infoWidget = new QWidget(widget);
@@ -408,7 +408,7 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
         delete m_mainWindow->widget(1);
     }
     QWidget *widget = new QWidget(m_mainWindow);
-    widget->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle05);
+    widget->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle04);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
 
     QLabel *iconLabel = new QLabel(widget);

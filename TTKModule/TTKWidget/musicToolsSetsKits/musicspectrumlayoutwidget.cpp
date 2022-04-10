@@ -85,7 +85,7 @@ void MusicSpectrumLayoutWidget::initialize()
 {
     m_exclusive = false;
 
-    const QString &style = MusicUIObject::MQSSBorderStyle04 + MusicUIObject::MQSSBackgroundStyle17;
+    const QString &style = MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBackgroundStyle12;
     setObjectName("mianWidget");
     setStyleSheet(QString("#mianWidget{%1}").arg(style));
 
@@ -99,7 +99,7 @@ void MusicSpectrumLayoutWidget::initialize()
 
     QScrollArea *scrollArea = new QScrollArea(m_containWidget);
     QWidget *containWidget = new QWidget(scrollArea);
-    containWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
+    containWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle12);
     m_containLayout = new QVBoxLayout(containWidget);
 
     m_containLayout->setContentsMargins(5, 0, 0, 0);
@@ -107,7 +107,7 @@ void MusicSpectrumLayoutWidget::initialize()
     containWidget->setLayout(m_containLayout);
 
     MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, containWidget);
-    scrollArea->viewport()->setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
+    scrollArea->viewport()->setStyleSheet(MusicUIObject::MQSSBackgroundStyle12);
     layout->addWidget(scrollArea);
 
     m_containWidget->setLayout(layout);

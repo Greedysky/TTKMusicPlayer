@@ -38,11 +38,11 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_wallpaper->setGeometry(15, 130, 80, 20);
     m_photo->setGeometry(15, 170, 80, 20);
 
-    m_update->setStyleSheet(MusicUIObject::MQSSInteriorFloatUpdate + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
-    m_search->setStyleSheet(MusicUIObject::MQSSInteriorFloatSearch + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
-    m_more->setStyleSheet(MusicUIObject::MQSSInteriorFloatMore + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
-    m_wallpaper->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaper + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
-    m_photo->setStyleSheet(MusicUIObject::MQSSInteriorFloatPhoto + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
+    m_update->setStyleSheet(MusicUIObject::MQSSInteriorFloatUpdate + MusicUIObject::MQSSPushButtonStyle07 + MusicUIObject::MQSSPushButtonStyle01);
+    m_search->setStyleSheet(MusicUIObject::MQSSInteriorFloatSearch + MusicUIObject::MQSSPushButtonStyle07 + MusicUIObject::MQSSPushButtonStyle01);
+    m_more->setStyleSheet(MusicUIObject::MQSSInteriorFloatMore + MusicUIObject::MQSSPushButtonStyle07 + MusicUIObject::MQSSPushButtonStyle01);
+    m_wallpaper->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaper + MusicUIObject::MQSSPushButtonStyle07 + MusicUIObject::MQSSPushButtonStyle01);
+    m_photo->setStyleSheet(MusicUIObject::MQSSInteriorFloatPhoto + MusicUIObject::MQSSPushButtonStyle07 + MusicUIObject::MQSSPushButtonStyle01);
 
     m_update->setCursor(QCursor(Qt::PointingHandCursor));
     m_search->setCursor(QCursor(Qt::PointingHandCursor));
@@ -101,11 +101,11 @@ void MusicLrcFloatWidget::musicContainerForWallpaperClicked()
 {
     if(m_wallpaper->styleSheet().contains(MusicUIObject::MQSSInteriorFloatWallpaper))
     {
-        m_wallpaper->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaperOn + MusicUIObject::MQSSPushButtonStyle14 + MusicUIObject::MQSSPushButtonStyle01);
+        m_wallpaper->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaperOn + MusicUIObject::MQSSPushButtonStyle12 + MusicUIObject::MQSSPushButtonStyle01);
     }
     else
     {
-        m_wallpaper->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaper + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
+        m_wallpaper->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaper + MusicUIObject::MQSSPushButtonStyle07 + MusicUIObject::MQSSPushButtonStyle01);
     }
 
     if(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen())

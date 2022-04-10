@@ -57,15 +57,15 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     QPushButton *artBackButton = new QPushButton(tr("Art"), this);
     artBackButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(artBackButton, SIGNAL(clicked()), SLOT(lrcArtBackgroundChanged()));
-    musicBackButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle08);
-    artBackButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle08);
+    musicBackButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle06);
+    artBackButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle06);
     musicBackButton->setGeometry(15, 150, 60, 22);
     artBackButton->setGeometry(90, 150, 60, 22);
 
     QPushButton *settingButton = new QPushButton(tr("More"), this);
     settingButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(settingButton, SIGNAL(clicked()), parent, SIGNAL(changeCurrentLrcColorSetting()));
-    settingButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle08);
+    settingButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle06);
     settingButton->setGeometry(15, 175, 60, 22);
 
 #ifdef Q_OS_UNIX

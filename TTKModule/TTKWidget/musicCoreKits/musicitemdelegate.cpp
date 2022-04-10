@@ -186,7 +186,7 @@ MusicLabelDelegate::MusicLabelDelegate(QObject *parent)
     m_treeMode = false;
     m_label  = new QLabel;
     m_label->setAlignment(Qt::AlignCenter);
-    m_label->setStyleSheet(MusicUIObject::MQSSBackgroundStyle18);
+    m_label->setStyleSheet(MusicUIObject::MQSSBackgroundStyle13);
 }
 
 MusicLabelDelegate::~MusicLabelDelegate()
@@ -250,7 +250,7 @@ MusicPushButtonDelegate::MusicPushButtonDelegate(QObject *parent)
     m_treeMode = false;
     m_pushButton  = new QPushButton;
     m_pushButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_pushButton->setStyleSheet(MusicUIObject::MQSSBorderStyle04 + MusicUIObject::MQSSBorderStyle07 + MusicUIObject::MQSSBackgroundStyle17);
+    m_pushButton->setStyleSheet(MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBorderStyle06 + MusicUIObject::MQSSBackgroundStyle12);
 #ifdef Q_OS_UNIX
     m_pushButton->setFocusPolicy(Qt::NoFocus);
 #endif

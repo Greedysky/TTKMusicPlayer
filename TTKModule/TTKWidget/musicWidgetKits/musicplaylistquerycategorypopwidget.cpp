@@ -70,7 +70,7 @@ void MusicPlaylistFoundCategoryPopWidget::setCategory(const QString &server, QOb
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
     QWidget *containWidget = new QWidget(m_containWidget);
-    containWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
+    containWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle12);
     QVBoxLayout *containLayout = new QVBoxLayout(containWidget);
     containWidget->setLayout(containLayout);
 
@@ -104,7 +104,7 @@ void MusicPlaylistFoundCategoryPopWidget::initialize()
     setTranslucentBackground();
     setText(tr("All"));
 
-    const QString &style = MusicUIObject::MQSSBorderStyle04 + MusicUIObject::MQSSBackgroundStyle17;
+    const QString &style = MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBackgroundStyle12;
     setObjectName("mianWidget");
     setStyleSheet(QString("#mianWidget{%1}").arg(style));
 

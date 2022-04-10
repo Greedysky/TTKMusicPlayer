@@ -366,7 +366,7 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
     m_ui->qualityBox->setCurrentIndex(0);
 
     m_ui->tableWidget->setParentClass(this);
-    m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle06);
+    m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle05);
 #ifdef Q_OS_UNIX
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif

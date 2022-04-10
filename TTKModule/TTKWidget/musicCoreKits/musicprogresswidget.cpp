@@ -34,7 +34,7 @@ void MusicProgressWidget::initialize()
     m_background->setGeometry(4, 4, 360, 115);
     QWidget *backgroundMask = new QWidget(this);
     backgroundMask->setGeometry(4, 29, 360, 90);
-    backgroundMask->setStyleSheet(MusicUIObject::MQSSBackgroundStyle13);
+    backgroundMask->setStyleSheet(MusicUIObject::MQSSBackgroundStyle10);
 
     QLabel *topTitleName = new QLabel(this);
     topTitleName->setText(tr("Progress Bar"));

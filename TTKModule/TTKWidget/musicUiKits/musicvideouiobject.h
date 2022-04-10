@@ -187,6 +187,7 @@ namespace MusicUIObject
             QPushButton{ border:none; \
             background-image: url(:/video/btn_accompaniment_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_accompaniment_hover); }";
+
 }
 
 #endif // MUSICVIDEOUIOBJECT_H

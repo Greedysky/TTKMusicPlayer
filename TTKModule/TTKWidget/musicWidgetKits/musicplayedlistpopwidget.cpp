@@ -319,7 +319,7 @@ void MusicPlayedListPopWidget::initialize()
 
     m_scrollArea = new QScrollArea(this);
 
-    const QString &background = MusicUIObject::MQSSBackgroundStyle17;
+    const QString &background = MusicUIObject::MQSSBackgroundStyle12;
     QWidget *view = m_scrollArea->viewport();
     view->setObjectName("viewport");
     view->setStyleSheet(QString("#viewport{%1}").arg(background));
@@ -348,12 +348,12 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     MusicPlayedListTopContainerWidget *topWidget = new MusicPlayedListTopContainerWidget(this);
 #ifdef Q_OS_UNIX
     topWidget->setObjectName("topWidget");
-    topWidget->setStyleSheet(QString("#topWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle17));
+    topWidget->setStyleSheet(QString("#topWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle12));
 #endif
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setSpacing(15);
     QLabel *label = new QLabel(tr("Played List"), topWidget);
-    label->setStyleSheet(MusicUIObject::MQSSColorStyle11 + MusicUIObject::MQSSFontStyle01 + MusicUIObject::MQSSFontStyle03);
+    label->setStyleSheet(MusicUIObject::MQSSColorStyle10 + MusicUIObject::MQSSFontStyle01 + MusicUIObject::MQSSFontStyle03);
 
     QPushButton *shareButton = new QPushButton(this);
     shareButton->setFixedSize(16, 16);

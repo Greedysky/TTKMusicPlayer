@@ -406,7 +406,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             m_videoPlayerWidget->popupMode(false);
 
             QWidget *widget = new QWidget(this);
-            widget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
+            widget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle12);
             m_stackedFuncWidget = widget;
             m_ui->functionsContainer->addWidget(m_videoPlayerWidget);
             m_ui->functionsContainer->setCurrentWidget(m_videoPlayerWidget);
@@ -903,7 +903,7 @@ void MusicRightAreaWidget::createkWindow(int type)
     {
         QLabel *label = new QLabel(this);
         label->setAlignment(Qt::AlignCenter);
-        label->setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
+        label->setStyleSheet(MusicUIObject::MQSSBackgroundStyle12);
         label->setPixmap(QPixmap(":/image/lb_no_power_mode"));
         widget = label;
     }

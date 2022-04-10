@@ -198,7 +198,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     topWidget->setFixedHeight(35);
 
     QWidget *searchWidget = new QWidget(this);
-    searchWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle15);
+    searchWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle11);
     searchWidget->setFixedHeight(35);
     QHBoxLayout *searchLayout = new QHBoxLayout(searchWidget);
     searchLayout->setContentsMargins(5, 0, 5, 0);

@@ -28,11 +28,11 @@ MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
     m_download->setGeometry(15, 130, 80, 20);
     m_share->setGeometry(15, 170, 80, 20);
 
-    m_search->setStyleSheet(MusicUIObject::MQSSVideoFloatSearch + MusicUIObject::MQSSPushButtonStyle09);
-    m_popup->setStyleSheet(MusicUIObject::MQSSVideoFloatFresh + MusicUIObject::MQSSPushButtonStyle09);
-    m_fullscreen->setStyleSheet(MusicUIObject::MQSSVideoFloatFullscreen + MusicUIObject::MQSSPushButtonStyle09);
-    m_download->setStyleSheet(MusicUIObject::MQSSVideoFloatDownload + MusicUIObject::MQSSPushButtonStyle09);
-    m_share->setStyleSheet(MusicUIObject::MQSSVideoFloatShare + MusicUIObject::MQSSPushButtonStyle09);
+    m_search->setStyleSheet(MusicUIObject::MQSSVideoFloatSearch + MusicUIObject::MQSSPushButtonStyle07);
+    m_popup->setStyleSheet(MusicUIObject::MQSSVideoFloatFresh + MusicUIObject::MQSSPushButtonStyle07);
+    m_fullscreen->setStyleSheet(MusicUIObject::MQSSVideoFloatFullscreen + MusicUIObject::MQSSPushButtonStyle07);
+    m_download->setStyleSheet(MusicUIObject::MQSSVideoFloatDownload + MusicUIObject::MQSSPushButtonStyle07);
+    m_share->setStyleSheet(MusicUIObject::MQSSVideoFloatShare + MusicUIObject::MQSSPushButtonStyle07);
 
     m_search->setCursor(QCursor(Qt::PointingHandCursor));
     m_popup->setCursor(QCursor(Qt::PointingHandCursor));

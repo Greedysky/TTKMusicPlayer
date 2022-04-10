@@ -124,7 +124,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_ui->downloadPathEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
     m_ui->pathChangedButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     m_ui->settingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
-    m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle06);
+    m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle05);
 #ifdef Q_OS_UNIX
     m_ui->pathChangedButton->setFocusPolicy(Qt::NoFocus);
     m_ui->settingButton->setFocusPolicy(Qt::NoFocus);

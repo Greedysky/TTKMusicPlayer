@@ -34,11 +34,6 @@ namespace MusicUIObject
     const QString MQSSBtnDownload = MQSSBtnUnDownload + " \
             QToolButton{ margin-left:-20px; }";
 
-    const QString MQSSBtnSimilar = " \
-            QToolButton{ border:none; \
-            background-image: url(:/functions/btn_similar_normal); } \
-            QToolButton:hover{ background-image: url(:/functions/btn_similar_hover); }";
-
     const QString MQSSBtnSound = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_sound_normal); } \

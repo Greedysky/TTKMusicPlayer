@@ -55,7 +55,7 @@ void MusicSoundKMicroSettingPopWidget::initialize()
 
     m_inputComboBox = new QComboBox(m_containWidget);
     m_inputComboBox->setGeometry(60, 120, 230, 25);
-    MusicUtils::Widget::generateComboBoxFormat(m_inputComboBox, MusicUIObject::MQSSBorderStyle04);
+    MusicUtils::Widget::generateComboBoxFormat(m_inputComboBox, MusicUIObject::MQSSBorderStyle03);
 
     for(const QAudioDeviceInfo &info : QAudioDeviceInfo::availableDevices(QAudio::AudioInput))
     {
@@ -76,7 +76,7 @@ void MusicSoundKMicroSettingPopWidget::initialize()
 
     m_outputComboBox = new QComboBox(m_containWidget);
     m_outputComboBox->setGeometry(60, 150, 230, 25);
-    MusicUtils::Widget::generateComboBoxFormat(m_inputComboBox, MusicUIObject::MQSSBorderStyle04);
+    MusicUtils::Widget::generateComboBoxFormat(m_inputComboBox, MusicUIObject::MQSSBorderStyle03);
 
     for(const QAudioDeviceInfo &info : QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
     {

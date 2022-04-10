@@ -22,7 +22,7 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const MusicPluginProper
                                MusicUIObject::MQSSSliderStyle06 +
                                MusicUIObject::MQSSCheckBoxStyle01 +
                                MusicUIObject::MQSSComboBoxStyle01 +
-                               MusicUIObject::MQSSPushButtonStyle15);
+                               MusicUIObject::MQSSPushButtonStyle13);
 
     QWidget *func = new QWidget(this);
     func->setStyleSheet(MusicUIObject::MQSSBackgroundStyle04);

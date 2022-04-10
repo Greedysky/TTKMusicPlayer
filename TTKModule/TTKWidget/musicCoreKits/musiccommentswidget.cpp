@@ -98,7 +98,7 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     //
     QFrame *solidLine = new QFrame(this);
     solidLine->setFixedHeight(1);
-    solidLine->setStyleSheet(MusicUIObject::MQSSBorderStyle06 + MusicUIObject::MQSSColorStyle03);
+    solidLine->setStyleSheet(MusicUIObject::MQSSBorderStyle05 + MusicUIObject::MQSSColorStyle03);
     //
     layout->addWidget(centerWidget);
     layout->addWidget(solidLine);
@@ -171,7 +171,7 @@ void MusicCommentsWidget::initialize(bool isPain)
     m_isPain = isPain;
 
     setObjectName("MainWidnow");
-    setStyleSheet(QString("#MainWidnow{%1}").arg(MusicUIObject::MQSSBackgroundStyle19));
+    setStyleSheet(QString("#MainWidnow{%1}").arg(MusicUIObject::MQSSBackgroundStyle14));
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);

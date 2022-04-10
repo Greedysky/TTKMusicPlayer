@@ -48,10 +48,10 @@ void MusicAbstractItemQueryWidget::initialize()
 {
     m_mainWindow = new QWidget(this);
     m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle17));
+    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle12));
 
     m_statusLabel = new QLabel(tr("Loading now ... "), m_mainWindow);
-    m_statusLabel->setStyleSheet(MusicUIObject::MQSSFontStyle05 + MusicUIObject::MQSSFontStyle01);
+    m_statusLabel->setStyleSheet(MusicUIObject::MQSSFontStyle04 + MusicUIObject::MQSSFontStyle01);
 
     QVBoxLayout *mLayout = new QVBoxLayout(m_mainWindow);
     mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);

@@ -171,7 +171,7 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     m_ui->itemTree->setColumnWidth(1, 100);
 
     m_ui->itemTree->header()->setVisible(false);
-    m_ui->itemTree->setStyleSheet(MusicUIObject::MQSSColorStyle10);
+    m_ui->itemTree->setStyleSheet(MusicUIObject::MQSSColorStyle09);
     m_ui->itemTree->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_ui->itemTree->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
     m_ui->itemTree->setFocusPolicy(Qt::NoFocus);

@@ -26,7 +26,7 @@ MusicFunctionToolBoxTopWidget::MusicFunctionToolBoxTopWidget(int index, const QS
     m_labelIcon = new QLabel(this);
     m_labelIcon->setPixmap(QPixmap(":/tiny/lb_arrow_up_normal"));
     m_labelText = new QLabel(this);
-    m_labelText->setStyleSheet(MusicUIObject::MQSSColorStyle10);
+    m_labelText->setStyleSheet(MusicUIObject::MQSSColorStyle09);
     m_labelText->setText(text);
     MusicUtils::Widget::setLabelFontStyle(m_labelText, MusicObject::Bold);
 

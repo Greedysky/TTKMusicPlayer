@@ -39,7 +39,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     m_ui->transferUSBButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->transferUSBButton, SIGNAL(clicked()), SLOT(startToTransferFiles()));
 
-    m_ui->searchLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle05);
+    m_ui->searchLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle04);
     connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchResultChanged(int,int)));
 
     m_transferThread = new MusicConnectTransferThread(this);

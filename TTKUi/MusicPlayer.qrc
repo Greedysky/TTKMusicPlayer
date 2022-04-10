@@ -397,9 +397,6 @@
         <file alias="btn_detect_download_normal">../TTKResource/toolSets/btn_detect_download_normal.png</file>
         <file alias="btn_detect_download_hover">../TTKResource/toolSets/btn_detect_download_hover.png</file>
         <file alias="btn_detect_download_disable">../TTKResource/toolSets/btn_detect_download_disable.png</file>
-        <file alias="btn_detect_love_normal ">../TTKResource/toolSets/btn_detect_love_normal.png</file>
-        <file alias="btn_detect_love_hover">../TTKResource/toolSets/btn_detect_love_hover.png</file>
-        <file alias="btn_detect_love_disable">../TTKResource/toolSets/btn_detect_love_disable.png</file>
         <file alias="btn_detect_play_normal">../TTKResource/toolSets/btn_detect_play_normal.png</file>
         <file alias="btn_detect_play_hover">../TTKResource/toolSets/btn_detect_play_hover.png</file>
         <file alias="btn_detect_play_disable">../TTKResource/toolSets/btn_detect_play_disable.png</file>
@@ -424,8 +421,6 @@
         <file alias="btn_transfer_normal">../TTKResource/toolSets/btn_transfer_normal.png</file>
         <file alias="btn_rerecord_normal">../TTKResource/toolSets/btn_rerecord_normal.png</file>
         <file alias="btn_rerecord_hover">../TTKResource/toolSets/btn_rerecord_hover.png</file>
-        <file alias="btn_record_finish_normal">../TTKResource/toolSets/btn_record_finish_normal.png</file>
-        <file alias="btn_record_finish_hover">../TTKResource/toolSets/btn_record_finish_hover.png</file>
         <file alias="lb_record_off">../TTKResource/toolSets/lb_record_off.png</file>
         <file alias="lb_record_on">../TTKResource/toolSets/lb_record_on.png</file>
         <file alias="btn_arrow_normal">../TTKResource/toolSets/btn_arrow_normal.png</file>
@@ -523,13 +518,9 @@
         <file alias="btn_list_normal">../TTKResource/tiny/btn_list_normal.png</file>
         <file alias="btn_list_hover">../TTKResource/tiny/btn_list_hover.png</file>
         <file alias="btn_wallpaper_off_normal">../TTKResource/tiny/btn_wallpaper_off_normal.png</file>
-        <file alias="btn_wallpaper_off_hover">../TTKResource/tiny/btn_wallpaper_off_hover.png</file>
         <file alias="btn_wallpaper_on_normal">../TTKResource/tiny/btn_wallpaper_on_normal.png</file>
-        <file alias="btn_wallpaper_on_hover">../TTKResource/tiny/btn_wallpaper_on_hover.png</file>
         <file alias="btn_lrc_off_normal">../TTKResource/tiny/btn_lrc_off_normal.png</file>
         <file alias="btn_lrc_off_hover">../TTKResource/tiny/btn_lrc_off_hover.png</file>
-        <file alias="btn_lrc_on_normal">../TTKResource/tiny/btn_lrc_on_normal.png</file>
-        <file alias="btn_lrc_on_hover">../TTKResource/tiny/btn_lrc_on_hover.png</file>
         <file alias="btn_collapse_w_normal">../TTKResource/tiny/btn_collapse_w_normal.png</file>
         <file alias="btn_collapse_w_hover">../TTKResource/tiny/btn_collapse_w_hover.png</file>
         <file alias="btn_expand_w_normal">../TTKResource/tiny/btn_expand_w_normal.png</file>

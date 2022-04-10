@@ -60,12 +60,6 @@ namespace MusicUIObject
             QPushButton:hover{ background-image: url(:/toolSets/btn_detect_share_hover); } \
             QPushButton:disabled{ background-image: url(:/toolSets/btn_detect_share_disable); }";
 
-    const QString MQSSSongsDetectLoveBtn = " \
-            QPushButton{ border:none; \
-            background-image: url(:/toolSets/btn_detect_love_normal); } \
-            QPushButton:hover{ background-image: url(:/toolSets/btn_detect_love_hover); } \
-            QPushButton:disabled{ background-image: url(:/toolSets/btn_detect_love_disable); }";
-            
     const QString MQSSSongsDetectUnloveBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_detect_unlove_normal); } \
@@ -113,11 +107,6 @@ namespace MusicUIObject
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_rerecord_normal); } \
             QToolButton:hover{ background-image: url(:/toolSets/btn_rerecord_hover); }";
-            
-    const QString MQSSRecordFinish = " \
-            QToolButton{ border:none; \
-            background-image: url(:/toolSets/btn_record_finish_normal); } \
-            QToolButton:hover{ background-image: url(:/toolSets/btn_record_finish_hover); }";
             
     const QString MQSSTimeToStop = " \
             QPushButton{ border:none; \
@@ -184,6 +173,7 @@ namespace MusicUIObject
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_saver_disable); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_saver_disable_hover); }";
+
 }
 
 #endif // MUSICTOOLSETSUIOBJECT_H

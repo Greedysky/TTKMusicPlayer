@@ -39,7 +39,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
         {
             MusicClickedLabel *l = new MusicClickedLabel(labelWidget);
             l->setAlignment(Qt::AlignCenter);
-            l->setStyleSheet(QString("QLabel{%1}QLabel:hover{%2}").arg(MusicUIObject::MQSSBorderStyle04, MusicUIObject::MQSSBorderStyle05));
+            l->setStyleSheet(QString("QLabel{%1}QLabel:hover{%2}").arg(MusicUIObject::MQSSBorderStyle03, MusicUIObject::MQSSBorderStyle04));
             l->setFixedSize(32, 32);
             labelIconLayout->addWidget(l, i, j);
 
@@ -99,7 +99,7 @@ void MusicEMOJILabelWidget::buttonClicked(int index)
     {
         button->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01 + MusicUIObject::MQSSBorderStyle01);
     }
-    m_buttonItems[index]->setStyleSheet(m_buttonItems[index]->styleSheet() + MusicUIObject::MQSSBorderStyle04);
+    m_buttonItems[index]->setStyleSheet(m_buttonItems[index]->styleSheet() + MusicUIObject::MQSSBorderStyle03);
 
     for(int i = 0; i < 3; ++i)
     {

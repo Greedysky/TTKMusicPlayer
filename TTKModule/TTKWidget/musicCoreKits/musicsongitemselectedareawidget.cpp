@@ -145,7 +145,7 @@ MusicSongItemSelectedAreaWidget::MusicSongItemSelectedAreaWidget(QWidget *parent
     m_itemLabel->setFixedWidth(75);
     m_modifiedItemButton->setFixedWidth(30);
 
-    m_label->setStyleSheet(MusicUIObject::MQSSFontStyle01 + MusicUIObject::MQSSColorStyle10);
+    m_label->setStyleSheet(MusicUIObject::MQSSFontStyle01 + MusicUIObject::MQSSColorStyle09);
     m_itemLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04);
     m_modifiedItemButton->setStyleSheet(MusicUIObject::MQSSColorStyle08);
 

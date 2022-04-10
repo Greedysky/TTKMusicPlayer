@@ -19,7 +19,7 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
     m_currentPlayIndex = index;
 
     m_textLabel = new QLabel(this);
-    m_textLabel->setStyleSheet(MusicUIObject::MQSSColorStyle11);
+    m_textLabel->setStyleSheet(MusicUIObject::MQSSColorStyle10);
     m_textLabel->setGeometry(23, 0, 170, 30);
 
     m_gifLabel = new MusicGifLabelWidget(MusicGifLabelWidget::RadioBlue, this);
@@ -40,7 +40,7 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
 
     m_moreButton = new QPushButton(this);
     m_moreButton->setGeometry(270, 7, 16, 16);
-    m_moreButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle13 + MusicUIObject::MQSSTinyBtnMore);
+    m_moreButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle11 + MusicUIObject::MQSSTinyBtnMore);
     m_moreButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_moreButton->setToolTip(tr("More"));
 

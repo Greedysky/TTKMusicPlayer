@@ -194,7 +194,7 @@ void MusicScreenSaverListWidget::resizeEvent(QResizeEvent *event)
 MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle17 + MusicUIObject::MQSSColorStyle09);
+    setStyleSheet(MusicUIObject::MQSSBackgroundStyle12 + MusicUIObject::MQSSColorStyle09);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
@@ -217,7 +217,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     QFont pLabelFont = pLabel->font();
     pLabelFont.setPixelSize(20);
     pLabel->setFont(pLabelFont);
-    pLabel->setStyleSheet(MusicUIObject::MQSSColorStyle13);
+    pLabel->setStyleSheet(MusicUIObject::MQSSColorStyle11);
 
     QLabel *iLabel = new QLabel(tr("Popular singers spend your leisure time with you"), topWidget);
     QFont iLabelFont = iLabel->font();
@@ -256,7 +256,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     frame->setFixedHeight(1);
     frame->setFrameShape(QFrame::HLine);
     frame->setFrameShadow(QFrame::Plain);
-    frame->setStyleSheet(MusicUIObject::MQSSColorStyle14);
+    frame->setStyleSheet(MusicUIObject::MQSSColorStyle04);
     mainLayout->addWidget(frame);
     //
     QWidget *functionWidget = new QWidget(this);
