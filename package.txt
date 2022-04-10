@@ -12,7 +12,7 @@ libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
 libmad-0.15.1b	https://sourceforge.net/projects/mad
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.5	https://xiph.org/downloads
-libopenmpt-0.3.37		https://lib.openmpt.org/libopenmpt
+libopenmpt-0.3.38		https://lib.openmpt.org/libopenmpt
 libprojectm-2.2.1		https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.2		https://github.com/libsndfile/libsamplerate
 libsidplayfp-2.3.1.patch	https://github.com/libsidplayfp/libsidplayfp
@@ -30,7 +30,7 @@ wavpack-5.4.0	https://www.wavpack.com/downloads.html
 wildmidi-wildmidi-0.4.4.patch	https://github.com/Mindwerks/wildmidi
 libxmp-4.5.0.patch	https://github.com/libxmp/libxmp
 7zip-21.07		https://sparanoid.com/lab/7z/download.html
-zed-1.1.3
+zed-1.1.4
 (libasap-5.2.0	https://sourceforge.net/projects/asap)
 (libfc14-1.0.3	https://sourceforge.net/projects/xmms-fc)
 (libgoom-2k4	https://sourceforge.net/projects/goom)
