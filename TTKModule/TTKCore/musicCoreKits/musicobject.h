@@ -211,6 +211,15 @@ namespace MusicObject
         Kerningt =   0x00040    /*!< font kerningt*/
     };
 
+    enum QueryQuality
+    {
+        NoneQuality,            /*!< none*/
+        StandardQuality,        /*!< sd*/
+        HighQuality,            /*!< hq*/
+        SuperQuality,           /*!< sq*/
+        LosslessQuality         /*!< cd*/
+    };
+
 
     /*! @brief The class of the music song property.
      * @author Greedysky <greedysky@163.com>

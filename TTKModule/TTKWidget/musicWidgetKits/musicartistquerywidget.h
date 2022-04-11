@@ -294,7 +294,7 @@ protected:
 
     MusicArtistAlbumsQueryWidget *m_artistAlbums;
     MusicArtistMvsQueryWidget *m_artistMvs;
-    MusicArtistSimilarQueryWidget *m_artistSim;
+    MusicArtistSimilarQueryWidget *m_artistSimilar;
 
 };
 

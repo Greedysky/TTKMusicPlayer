@@ -3,10 +3,10 @@
 MusicAbstractQueryRequest::MusicAbstractQueryRequest(QObject *parent)
     : MusicPageQueryRequest(parent)
 {
-    m_queryQuality = tr("SD");
     m_queryServer = "Invalid";
+    m_queryQuality = MusicObject::StandardQuality;
     m_queryAllRecords = false;
-    m_querySimplify = false;
+    m_queryLite = false;
 }
 
 void MusicAbstractQueryRequest::startToSingleSearch(const QString &value)

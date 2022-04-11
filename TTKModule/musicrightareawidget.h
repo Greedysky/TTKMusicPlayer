@@ -256,7 +256,7 @@ public Q_SLOTS:
     /*!
      * Research query by quality it changed.
      */
-    void researchQueryByQuality(const QString &quality);
+    void researchQueryByQuality(MusicObject::QueryQuality quality);
     /*!
      * Video button clicked by name to search.
      */

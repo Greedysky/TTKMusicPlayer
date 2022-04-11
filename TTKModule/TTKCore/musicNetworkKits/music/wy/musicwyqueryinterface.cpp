@@ -77,7 +77,7 @@ void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const
+void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
 {
     int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
@@ -129,19 +129,19 @@ void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
     else
     {
-        if(quality == QObject::tr("SD") && maxBr >= MB_128)
+        if(quality == MusicObject::StandardQuality && maxBr >= MB_128)
         {
             readFromMusicSongProperty(info, MB_128);
         }
-        else if(quality == QObject::tr("HQ") && maxBr >= MB_192)
+        else if(quality == MusicObject::HighQuality && maxBr >= MB_192)
         {
             readFromMusicSongProperty(info, MB_192);
         }
-        else if(quality == QObject::tr("SQ") && maxBr >= MB_320)
+        else if(quality == MusicObject::SuperQuality && maxBr >= MB_320)
         {
             readFromMusicSongProperty(info, MB_320);
         }
-        else if(quality == QObject::tr("CD") && maxBr >= MB_1000)
+        else if(quality == MusicObject::LosslessQuality && maxBr >= MB_1000)
         {
             readFromMusicSongProperty(info, MB_1000);
         }
@@ -194,7 +194,7 @@ void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongI
     }
 }
 
-void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const
+void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
 {
     int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
@@ -246,19 +246,19 @@ void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongI
     }
     else
     {
-        if(quality == QObject::tr("SD") && maxBr >= MB_128)
+        if(quality == MusicObject::StandardQuality && maxBr >= MB_128)
         {
             readFromMusicSongProperty(info, MB_128);
         }
-        else if(quality == QObject::tr("HQ") && maxBr >= MB_192)
+        else if(quality == MusicObject::HighQuality && maxBr >= MB_192)
         {
             readFromMusicSongProperty(info, MB_192);
         }
-        else if(quality == QObject::tr("SQ") && maxBr >= MB_320)
+        else if(quality == MusicObject::SuperQuality && maxBr >= MB_320)
         {
             readFromMusicSongProperty(info, MB_320);
         }
-        else if(quality == QObject::tr("CD") && maxBr >= MB_1000)
+        else if(quality == MusicObject::LosslessQuality && maxBr >= MB_1000)
         {
             readFromMusicSongProperty(info, MB_1000);
         }

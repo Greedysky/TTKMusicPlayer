@@ -51,7 +51,7 @@ void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const
+void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
 {
     if(all)
     {
@@ -62,16 +62,16 @@ void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
     else
     {
-        if(quality == QObject::tr("SD"))
+        if(quality == MusicObject::StandardQuality)
         {
             readFromMusicSongProperty(info, key["hash"].toString());
             readFromMusicSongProperty(info, key["128hash"].toString());
         }
-        else if(quality == QObject::tr("SQ"))
+        else if(quality == MusicObject::SuperQuality)
         {
             readFromMusicSongProperty(info, key["320hash"].toString());
         }
-        else if(quality == QObject::tr("CD"))
+        else if(quality == MusicObject::LosslessQuality)
         {
             readFromMusicSongProperty(info, key["sqhash"].toString());
         }

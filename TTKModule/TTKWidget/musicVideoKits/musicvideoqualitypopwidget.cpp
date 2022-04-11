@@ -52,10 +52,10 @@ void MusicVideoQualityPopWidget::movieQualityChoiced(QAction *action)
     QString url;
     switch(action->data().toInt())
     {
-        case 0: url = findMVUrlByBitrate(MB_250); break;
-        case 1: url = findMVUrlByBitrate(MB_500); break;
-        case 2: url = findMVUrlByBitrate(MB_750); break;
-        case 3: url = findMVUrlByBitrate(MB_1000); break;
+        case MusicObject::NoneQuality: url = findMVUrlByBitrate(MB_250); break;
+        case MusicObject::StandardQuality: url = findMVUrlByBitrate(MB_500); break;
+        case MusicObject::HighQuality: url = findMVUrlByBitrate(MB_750); break;
+        case MusicObject::SuperQuality: url = findMVUrlByBitrate(MB_1000); break;
         default: break;
     }
     setQualityText(url);
@@ -70,10 +70,10 @@ void MusicVideoQualityPopWidget::initialize()
 
     m_containWidget->setFixedSize(140, 125);
     m_menu->removeAction(m_menu->actions().front());
-    m_actionGroup->addAction(m_menu->addAction(tr("ST")))->setData(0);
-    m_actionGroup->addAction(m_menu->addAction(tr("SD")))->setData(1);
-    m_actionGroup->addAction(m_menu->addAction(tr("HD")))->setData(2);
-    m_actionGroup->addAction(m_menu->addAction(tr("SQ")))->setData(3);
+    m_actionGroup->addAction(m_menu->addAction(tr("ST")))->setData(MusicObject::NoneQuality);
+    m_actionGroup->addAction(m_menu->addAction(tr("SD")))->setData(MusicObject::StandardQuality);
+    m_actionGroup->addAction(m_menu->addAction(tr("HD")))->setData(MusicObject::HighQuality);
+    m_actionGroup->addAction(m_menu->addAction(tr("SQ")))->setData(MusicObject::SuperQuality);
 
     setQualityActionState();
 }

@@ -355,7 +355,7 @@ MusicArtistQueryWidget::MusicArtistQueryWidget(QWidget *parent)
 {
     m_artistAlbums = nullptr;
     m_artistMvs = nullptr;
-    m_artistSim = nullptr;
+    m_artistSimilar = nullptr;
     m_shareType = MusicSongSharingWidget::Artist;
     m_queryTableWidget = new MusicArtistQueryTableWidget(this);
     m_queryTableWidget->hide();
@@ -367,14 +367,14 @@ MusicArtistQueryWidget::~MusicArtistQueryWidget()
 {
     delete m_artistAlbums;
     delete m_artistMvs;
-    delete m_artistSim;
+    delete m_artistSimilar;
 }
 
 void MusicArtistQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
     m_networkRequest->setQueryAllRecords(false);
-    m_networkRequest->setQuerySimplify(true);
+    m_networkRequest->setQueryLite(true);
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, MusicUtils::String::artistName(name));
 }
 
@@ -418,9 +418,9 @@ void MusicArtistQueryWidget::resizeWindow()
         m_artistMvs->resizeWindow();
     }
 
-    if(m_artistSim)
+    if(m_artistSimilar)
     {
-        m_artistSim->resizeWindow();
+        m_artistSimilar->resizeWindow();
     }
 }
 
@@ -527,8 +527,8 @@ void MusicArtistQueryWidget::setCurrentIndex(int index)
     m_artistAlbums = nullptr;
     delete m_artistMvs;
     m_artistMvs = nullptr;
-    delete m_artistSim;
-    m_artistSim = nullptr;
+    delete m_artistSimilar;
+    m_artistSimilar = nullptr;
 
     if(index == 0)
     {
@@ -758,7 +758,7 @@ void MusicArtistQueryWidget::initFourthWidget()
 
 void MusicArtistQueryWidget::initFivethWidget()
 {
-    m_artistSim = new MusicArtistSimilarQueryWidget(m_container);
-    m_container->addWidget(m_artistSim);
-    m_artistSim->setSongName(m_songNameFull);
+    m_artistSimilar = new MusicArtistSimilarQueryWidget(m_container);
+    m_container->addWidget(m_artistSimilar);
+    m_artistSimilar->setSongName(m_songNameFull);
 }

@@ -84,8 +84,6 @@ protected:
      */
     void initialize();
 
-    QString m_currentQuality;
-
 };
 
 #endif // MUSICQUALITYCHOICEPOPWIDGET_H

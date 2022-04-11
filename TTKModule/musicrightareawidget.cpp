@@ -730,7 +730,7 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowMode, v);
 }
 
-void MusicRightAreaWidget::researchQueryByQuality(const QString &quality)
+void MusicRightAreaWidget::researchQueryByQuality(MusicObject::QueryQuality quality)
 {
     const QString &text = m_ui->showCurrentSong->text().trimmed();
     if(text.isEmpty())

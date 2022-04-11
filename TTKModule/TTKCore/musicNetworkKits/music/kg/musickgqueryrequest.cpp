@@ -103,7 +103,7 @@ void MusicKGQueryRequest::downLoadFinished()
                     readFromMusicSongLrcAndPicture(&musicInfo);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(!m_querySimplify)
+                    if(!m_queryLite)
                     {
                         TTK_NETWORK_QUERY_CHECK();
                         readFromMusicSongProperty(&musicInfo, value, m_queryQuality, m_queryAllRecords);
@@ -167,9 +167,9 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                         continue;
                     }
 
-                    const QVariantMap &albumMap = var.toMap();
-                    musicInfo.m_albumId = albumMap["album_audio_id"].toString();
-                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumMap["album_name"].toString());
+                    const QVariantMap &albumObject = var.toMap();
+                    musicInfo.m_albumId = albumObject["album_audio_id"].toString();
+                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumObject["album_name"].toString());
                 }
 
                 musicInfo.m_year = QString();

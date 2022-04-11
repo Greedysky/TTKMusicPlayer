@@ -34,14 +34,14 @@ void MusicKWDownloadImageRequest::downLoadFinished(const QByteArray &bytes)
         const QVariant &data = json.parse(bytes, &ok);
         if(ok)
         {
-            QVariantMap dataMap = data.toMap();
-            const QVariantList &datas = dataMap["array"].toList();
+            QVariantMap value = data.toMap();
+            const QVariantList &datas = value["array"].toList();
             for(const QVariant &var : qAsConst(datas))
             {
-                dataMap = var.toMap();
-                if(m_counter < 5 && !dataMap.isEmpty())
+                value = var.toMap();
+                if(m_counter < 5 && !value.isEmpty())
                 {
-                    const QString &url = dataMap.values().front().toString();
+                    const QString &url = value.values().front().toString();
                     MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::DownloadBigBackground, this);
                     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
                     download->startToDownload();

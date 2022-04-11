@@ -14,7 +14,7 @@ void MusicQQSongCommentsRequest::startToSearch(const QString &value)
     MusicSemaphoreLoop loop;
     MusicQQQueryRequest *d = new MusicQQQueryRequest(this);
     d->setQueryAllRecords(false);
-    d->setQuerySimplify(true);
+    d->setQueryLite(true);
     d->startToSearch(MusicAbstractQueryRequest::MusicQuery, value);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();

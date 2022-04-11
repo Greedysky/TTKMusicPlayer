@@ -82,14 +82,6 @@ TTK_DECLARE_LIST(MusicResultsItem);
 #define QUERY_KW_INTERFACE      "KuWo"
 #define QUERY_KG_INTERFACE      "KuGou"
 
-enum DownloadQueryServer
-{
-    WYQueryServer,
-    QQQueryServer,
-    KWQueryServer,
-    KGQueryServer
-};
-
 /*! @brief The class of abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
@@ -98,6 +90,14 @@ class TTK_MODULE_EXPORT MusicAbstractQueryRequest : public MusicPageQueryRequest
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractQueryRequest)
 public:
+    enum QueryServer
+    {
+        WYQueryServer,
+        QQQueryServer,
+        KWQueryServer,
+        KGQueryServer
+    };
+
     enum QueryType
     {
         MusicQuery,     /*!< query music*/
@@ -125,11 +125,11 @@ public:
     /*!
      * Set query data quality.
      */
-    inline void setQueryQuality(const QString &qual) { m_queryQuality = qual; }
+    inline void setQueryQuality(MusicObject::QueryQuality quality) { m_queryQuality = quality; }
     /*!
      * Get query data quality.
      */
-    inline QString queryQuality() const { return m_queryQuality; }
+    inline MusicObject::QueryQuality queryQuality() const { return m_queryQuality; }
     /*!
      * Set wheather query all quality of records.
      */
@@ -139,13 +139,13 @@ public:
      */
     inline bool queryAllRecords() const { return m_queryAllRecords; }
     /*!
-     * Set query simplify mode.
+     * Set query lite mode.
      */
-    inline void setQuerySimplify(bool state) { m_querySimplify = state; }
+    inline void setQueryLite(bool state) { m_queryLite = state; }
     /*!
-     * Get query simplify flag.
+     * Get query lite flag.
      */
-    inline bool querySimplify() const { return m_querySimplify; }
+    inline bool queryLite() const { return m_queryLite; }
     /*!
      * Return the current song query type.
      */
@@ -213,9 +213,9 @@ protected:
 
     QString m_queryValue;
     QString m_queryServer;
-    QString m_queryQuality;
     QueryType m_queryType;
-    bool m_queryAllRecords, m_querySimplify;
+    MusicObject::QueryQuality m_queryQuality;
+    bool m_queryAllRecords, m_queryLite;
     MusicObject::MusicSongInformationList m_musicSongInfos;
 
 };

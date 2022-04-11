@@ -80,11 +80,6 @@
 <context>
     <name>MusicAbstractQueryRequest</name>
     <message>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/musicabstractqueryrequest.cpp" line="8"/>
-        <source>SD</source>
-        <translation>标准品质</translation>
-    </message>
-    <message>
         <location filename="../TTKModule/TTKCore/musicNetworkKits/musicabstractqueryrequest.cpp" line="19"/>
         <source>Current used server from %1</source>
         <translation type="unfinished"></translation>
@@ -3677,26 +3672,6 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="149"/>
         <source>Quality Choice</source>
         <translation>Quality Choice</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="184"/>
-        <source>SD</source>
-        <translation>标准品质</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="190"/>
-        <source>HQ</source>
-        <translation>普高品质</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="196"/>
-        <source>SQ</source>
-        <translation>超高品质</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="202"/>
-        <source>CD</source>
-        <translation>无损品质</translation>
     </message>
 </context>
 <context>
@@ -7421,45 +7396,6 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
         <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="179"/>
         <source>day</source>
         <translation>DAY</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/kg/musickgqueryinterface.cpp" line="65"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/kw/musickwqueryinterface.cpp" line="145"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/kw/musickwqueryinterface.cpp" line="180"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/qq/musicqqqueryinterface.cpp" line="91"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/wy/musicwyqueryinterface.cpp" line="132"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/wy/musicwyqueryinterface.cpp" line="249"/>
-        <source>SD</source>
-        <translation>标准品质</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/kw/musickwqueryinterface.cpp" line="149"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/kw/musickwqueryinterface.cpp" line="184"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/qq/musicqqqueryinterface.cpp" line="95"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/wy/musicwyqueryinterface.cpp" line="136"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/wy/musicwyqueryinterface.cpp" line="253"/>
-        <source>HQ</source>
-        <translation>普高品质</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/kg/musickgqueryinterface.cpp" line="70"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/kw/musickwqueryinterface.cpp" line="153"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/kw/musickwqueryinterface.cpp" line="188"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/qq/musicqqqueryinterface.cpp" line="99"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/wy/musicwyqueryinterface.cpp" line="140"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/wy/musicwyqueryinterface.cpp" line="257"/>
-        <source>SQ</source>
-        <translation>超高品质</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/kg/musickgqueryinterface.cpp" line="74"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/kw/musickwqueryinterface.cpp" line="157"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/kw/musickwqueryinterface.cpp" line="192"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/qq/musicqqqueryinterface.cpp" line="103"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/wy/musicwyqueryinterface.cpp" line="144"/>
-        <location filename="../TTKModule/TTKCore/musicNetworkKits/music/wy/musicwyqueryinterface.cpp" line="261"/>
-        <source>CD</source>
-        <translation>无损品质</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKCore/musicUtilsKits/musicnumberutils.cpp" line="92"/>

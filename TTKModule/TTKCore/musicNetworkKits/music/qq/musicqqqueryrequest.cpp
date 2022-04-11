@@ -111,7 +111,7 @@ void MusicQQQueryRequest::downLoadFinished()
                     musicInfo.m_discNumber = value["cdIdx"].toString();
                     musicInfo.m_trackNumber = value["belongCD"].toString();
 
-                    if(!m_querySimplify)
+                    if(!m_queryLite)
                     {
                         musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                         musicInfo.m_coverUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
@@ -190,9 +190,9 @@ void MusicQQQueryRequest::downLoadSingleFinished()
                     m_rawData["sid"] = QString::number(value["id"].toLongLong());
                     musicInfo.m_songId = value["mid"].toString();
 
-                    const QVariantMap &albumMap = value["album"].toMap();
-                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumMap["name"].toString());
-                    musicInfo.m_albumId = albumMap["mid"].toString();
+                    const QVariantMap &albumObject = value["album"].toMap();
+                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumObject["name"].toString());
+                    musicInfo.m_albumId = albumObject["mid"].toString();
 
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                     musicInfo.m_coverUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);

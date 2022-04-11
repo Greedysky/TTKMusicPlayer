@@ -60,7 +60,7 @@ public:
     /*!
      * Set search data quality.
      */
-    void setSearchQuality(const QString &quality);
+    void setSearchQuality(MusicObject::QueryQuality quality);
 
     /*!
      * Resize window bound by widget resize called.
@@ -139,7 +139,7 @@ public:
     /*!
      * Research query by quality it changed.
      */
-    void researchQueryByQuality(const QString &name, const QString &quality);
+    void researchQueryByQuality(const QString &name, MusicObject::QueryQuality quality);
     /*!
      * Resize window bound by widget resize called.
      */

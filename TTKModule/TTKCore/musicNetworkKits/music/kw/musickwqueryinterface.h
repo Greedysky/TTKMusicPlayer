@@ -93,11 +93,11 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &format, const QString &quality, bool all) const;
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &format, MusicObject::QueryQuality quality, bool all) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantList &format, const QString &quality, bool all) const;
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantList &format, MusicObject::QueryQuality quality, bool all) const;
     /*!
      * Read tags(lrc\smallpic) from query results.
      */

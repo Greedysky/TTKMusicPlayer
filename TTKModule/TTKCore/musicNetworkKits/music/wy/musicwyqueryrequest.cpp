@@ -117,7 +117,7 @@ void MusicWYQueryRequest::downLoadFinished()
                     musicInfo.m_discNumber = value["cd"].toString();
                     musicInfo.m_trackNumber = value["no"].toString();
 
-                    if(!m_querySimplify)
+                    if(!m_queryLite)
                     {
                         TTK_NETWORK_QUERY_CHECK();
                         readFromMusicSongPropertyNew(&musicInfo, value, m_queryQuality, m_queryAllRecords);

@@ -157,7 +157,7 @@ void MusicKWQueryRequest::downLoadFinished()
                     musicInfo.m_discNumber = "1";
                     musicInfo.m_trackNumber = "0";
 
-                    if(!m_querySimplify)
+                    if(!m_queryLite)
                     {
                         TTK_NETWORK_QUERY_CHECK();
                         readFromMusicSongPicture(&musicInfo);

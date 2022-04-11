@@ -72,9 +72,9 @@ void MusicQQQueryRecommendRequest::downLoadFinished()
                     m_rawData["sid"] = value["id"].toString();
                     musicInfo.m_songId = value["mid"].toString();
 
-                    const QVariantMap &albumMap = value["album"].toMap();
-                    musicInfo.m_albumId = albumMap["mid"].toString();
-                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumMap["name"].toString());
+                    const QVariantMap &albumObject = value["album"].toMap();
+                    musicInfo.m_albumId = albumObject["mid"].toString();
+                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumObject["name"].toString());
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                     musicInfo.m_coverUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
 

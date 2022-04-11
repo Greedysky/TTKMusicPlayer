@@ -13,7 +13,12 @@ void MusicQQInterface::makeRequestRawHeader(QNetworkRequest *request)
 
 void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &mid, quint64 key, int bitrate) const
 {
-    if(key != 0 && bitrate == MB_128)
+    if(key == 0)
+    {
+        return;
+    }
+
+    if(bitrate == MB_128)
     {
         const QString &musicUrl = generateMusicPath("M500" + mid + MP3_FILE, mid);
         if(musicUrl.isEmpty())
@@ -28,7 +33,7 @@ void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
         prop.m_bitrate = bitrate;
         info->m_songProps.append(prop);
     }
-    else if(key != 0 && bitrate == MB_320)
+    else if(bitrate == MB_320)
     {
         const QString &musicUrl = generateMusicPath("M800" + mid + MP3_FILE, mid);
         if(musicUrl.isEmpty())
@@ -43,7 +48,7 @@ void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
         prop.m_bitrate = bitrate;
         info->m_songProps.append(prop);
     }
-    else if(key != 0 && bitrate == MB_750)
+    else if(bitrate == MB_750)
     {
         const QString &musicUrl = generateMusicPath("A000" + mid + APE_FILE, mid);
         if(musicUrl.isEmpty())
@@ -58,7 +63,7 @@ void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
         prop.m_bitrate = bitrate;
         info->m_songProps.append(prop);
     }
-    else if(key != 0 && bitrate == MB_1000)
+    else if(bitrate == MB_1000)
     {
         const QString &musicUrl = generateMusicPath("F000" + mid + FLAC_FILE, mid);
         if(musicUrl.isEmpty())
@@ -75,7 +80,7 @@ void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const
+void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
 {
     const QString &mid = key["songmid"].toString();
 
@@ -89,19 +94,19 @@ void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
     else
     {
-        if(quality == QObject::tr("SD"))
+        if(quality == MusicObject::StandardQuality)
         {
             readFromMusicSongProperty(info, mid, key["size128"].toULongLong(), MB_128);
         }
-        else if(quality == QObject::tr("HQ"))
+        else if(quality == MusicObject::HighQuality)
         {
             readFromMusicSongProperty(info, mid, key["size192"].toULongLong(), MB_192);
         }
-        else if(quality == QObject::tr("SQ"))
+        else if(quality == MusicObject::SuperQuality)
         {
             readFromMusicSongProperty(info, mid, key["size320"].toULongLong(), MB_320);
         }
-        else if(quality == QObject::tr("CD"))
+        else if(quality == MusicObject::LosslessQuality)
         {
             readFromMusicSongProperty(info, mid, key["sizeape"].toULongLong(), MB_750);
             readFromMusicSongProperty(info, mid, key["sizeflac"].toULongLong(), MB_1000);
@@ -147,13 +152,13 @@ QString MusicQQQueryInterface::generateMusicPath(const QString &file, const QStr
                 QVariantMap req = value["req"].toMap();
                 req = req["data"].toMap();
 
-                QString url_prefix;
+                QString prefix;
                 if(req.contains("sip"))
                 {
                     const QVariantList &sip = req["sip"].toList();
                     if(sip.count() > 0)
                     {
-                        url_prefix = sip[0].toString();
+                        prefix = sip[0].toString();
                     }
                 }
 
@@ -168,9 +173,9 @@ QString MusicQQQueryInterface::generateMusicPath(const QString &file, const QStr
                     }
                 }
 
-                if(!url_prefix.isEmpty() && !url.isEmpty())
+                if(!prefix.isEmpty() && !url.isEmpty())
                 {
-                    url = url_prefix + url;
+                    url = prefix + url;
                     url.replace("\u0026", "&");
                 }
             }

@@ -130,7 +130,7 @@ void MusicKWQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongI
     }
 }
 
-void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &format, const QString &quality, bool all) const
+void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &format, MusicObject::QueryQuality quality, bool all) const
 {
     if(all)
     {
@@ -142,19 +142,19 @@ void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
     else
     {
-        if(quality == QObject::tr("SD"))
+        if(quality == MusicObject::StandardQuality)
         {
             readFromMusicSongProperty(info, MP3_FILE_PREFIX, format, MB_128);
         }
-        else if(quality == QObject::tr("HQ"))
+        else if(quality == MusicObject::HighQuality)
         {
             readFromMusicSongProperty(info, MP3_FILE_PREFIX, format, MB_192);
         }
-        else if(quality == QObject::tr("SQ"))
+        else if(quality == MusicObject::SuperQuality)
         {
             readFromMusicSongProperty(info, MP3_FILE_PREFIX, format, MB_320);
         }
-        else if(quality == QObject::tr("CD"))
+        else if(quality == MusicObject::LosslessQuality)
         {
             readFromMusicSongProperty(info, APE_FILE_PREFIX, format, MB_750);
             readFromMusicSongProperty(info, FLAC_FILE_PREFIX, format, MB_1000);
@@ -162,7 +162,7 @@ void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantList &format, const QString &quality, bool all) const
+void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantList &format, MusicObject::QueryQuality quality, bool all) const
 {
     for(const QVariant &var : qAsConst(format))
     {
@@ -177,19 +177,19 @@ void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
         }
         else
         {
-            if(quality == QObject::tr("SD"))
+            if(quality == MusicObject::StandardQuality)
             {
                 readFromMusicSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_128);
             }
-            else if(quality == QObject::tr("HQ"))
+            else if(quality == MusicObject::HighQuality)
             {
                 readFromMusicSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_192);
             }
-            else if(quality == QObject::tr("SQ"))
+            else if(quality == MusicObject::SuperQuality)
             {
                 readFromMusicSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_320);
             }
-            else if(quality == QObject::tr("CD"))
+            else if(quality == MusicObject::LosslessQuality)
             {
                 readFromMusicSongPropertyNew(info, APE_FILE_PREFIX, fs, MB_750);
                 readFromMusicSongPropertyNew(info, FLAC_FILE_PREFIX, fs, MB_1000);

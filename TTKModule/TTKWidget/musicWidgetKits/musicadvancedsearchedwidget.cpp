@@ -171,9 +171,9 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
 
 void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
 {
-    switch(TTKStatic_cast(DownloadQueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
+    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
     {
-        case WYQueryServer:
+        case MusicAbstractQueryRequest::WYQueryServer:
         {
             m_songEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_UNIMP_KEY, false).arg("28830412"));
             m_artistEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AR_SHARE, ALG_UNIMP_KEY, false).arg("964486"));
@@ -182,7 +182,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
             m_movieEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_UNIMP_KEY, false).arg("5343487"));
             break;
         }
-        case QQQueryServer:
+        case MusicAbstractQueryRequest::QQQueryServer:
         {
             m_songEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_SG_SHARE, ALG_UNIMP_KEY, false).arg("004TXEXY2G2c7C"));
             m_artistEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AR_SHARE, ALG_UNIMP_KEY, false).arg("0029gk1t3wpGWU"));
@@ -191,7 +191,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
             m_movieEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_MV_SHARE, ALG_UNIMP_KEY, false).arg("o0032ayz7c2"));
             break;
         }
-        case KWQueryServer:
+        case MusicAbstractQueryRequest::KWQueryServer:
         {
             m_songEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_SG_SHARE, ALG_UNIMP_KEY, false).arg("23983067"));
             m_artistEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AR_SHARE, ALG_UNIMP_KEY, false).arg("373"));
@@ -200,7 +200,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
             m_movieEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_MV_SHARE, ALG_UNIMP_KEY, false).arg("9812716"));
             break;
         }
-        case KGQueryServer:
+        case MusicAbstractQueryRequest::KGQueryServer:
         {
             m_songEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_SG_SHARE, ALG_UNIMP_KEY, false).arg("b2bc0eb8553b0eb70b66b950fc3ad287"));
             m_artistEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AR_SHARE, ALG_UNIMP_KEY, false).arg("832532"));
@@ -216,21 +216,21 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
 QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &url)
 {
     QString key;
-    switch(TTKStatic_cast(DownloadQueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
+    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
     {
-        case WYQueryServer:
+        case MusicAbstractQueryRequest::WYQueryServer:
         {
             QRegExp regx("id=(\\d+)");
             key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
             break;
         }
-        case QQQueryServer:
+        case MusicAbstractQueryRequest::QQQueryServer:
         {
             QRegExp regx("/(\\w+).html");
             key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
             break;
         }
-        case KWQueryServer:
+        case MusicAbstractQueryRequest::KWQueryServer:
         {
             QRegExp regx;
             if(type == 1)
@@ -248,7 +248,7 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
             key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
             break;
         }
-        case KGQueryServer:
+        case MusicAbstractQueryRequest::KGQueryServer:
         {
             QRegExp regx;
             if(type == 0)

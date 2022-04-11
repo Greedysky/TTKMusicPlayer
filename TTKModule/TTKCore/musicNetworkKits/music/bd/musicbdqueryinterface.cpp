@@ -31,7 +31,7 @@ void MusicBDQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     info->m_songProps.append(prop);
 }
 
-void MusicBDQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const
+void MusicBDQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
 {
     info->m_lrcUrl = MusicUtils::Algorithm::mdII(BD_BASE_URL, false) + key["lrcUrl"].toString();
     info->m_coverUrl = key["picUrl"].toString();
@@ -46,19 +46,19 @@ void MusicBDQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
     else
     {
-        if(quality == QObject::tr("SD"))
+        if(quality == MusicObject::StandardQuality)
         {
             readFromMusicSongProperty(info, key["lqUrl"].toString(), MB_128);
         }
-        else if(quality == QObject::tr("HQ"))
+        else if(quality == MusicObject::HighQuality)
         {
             readFromMusicSongProperty(info, key["hqUrl"].toString(), MB_192);
         }
-        else if(quality == QObject::tr("SQ"))
+        else if(quality == MusicObject::SuperQuality)
         {
             readFromMusicSongProperty(info, key["sqUrl"].toString(), MB_320);
         }
-        else if(quality == QObject::tr("CD"))
+        else if(quality == MusicObject::LosslessQuality)
         {
             readFromMusicSongProperty(info, key["apeUrl"].toString(), MB_750);
             readFromMusicSongProperty(info, key["flacUrl"].toString(), MB_1000);
