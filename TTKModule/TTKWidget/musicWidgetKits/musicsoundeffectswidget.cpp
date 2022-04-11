@@ -34,7 +34,7 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const MusicPluginProper
     m_settingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01);
     m_settingButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_settingButton->setFixedWidth(40);
-    m_settingButton->setText(tr("PSet"));
+    m_settingButton->setText(tr("Sets"));
     m_settingButton->setEnabled(false);
     connect(m_settingButton, SIGNAL(clicked()), SLOT(soundEffectValueChanged()));
 
