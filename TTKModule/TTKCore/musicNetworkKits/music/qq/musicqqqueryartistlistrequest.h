@@ -42,7 +42,7 @@ public:
     /*!
      * Start to Search data.
      */
-    virtual void startToSearch(const QString &artistlist) override final;
+    virtual void startToSearch(const QString &value) override final;
 
 public Q_SLOTS:
     /*!

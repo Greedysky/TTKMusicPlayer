@@ -38,11 +38,11 @@ public:
      * Start to search data from name and type.
      * Subclass should implement this function.
      */
-    virtual void startToSearch(QueryType type, const QString &text) = 0;
+    virtual void startToSearch(QueryType type, const QString &value) = 0;
     /*!
      * Start to Search data from name and type.
      */
-    virtual void startToSearch(const QString &movie);
+    virtual void startToSearch(const QString &value);
 
 Q_SIGNALS:
     /*!

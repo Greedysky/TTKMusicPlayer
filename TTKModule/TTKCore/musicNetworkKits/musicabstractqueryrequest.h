@@ -115,13 +115,12 @@ public:
      * Start to search data from name and type.
      * Subclass should implement this function.
      */
-    virtual void startToSearch(QueryType type, const QString &text) = 0;
-
+    virtual void startToSearch(QueryType type, const QString &value) = 0;
     /*!
      * Start to search single data from id.
      * Subclass should implement this function.
      */
-    virtual void startToSingleSearch(const QString &text);
+    virtual void startToSingleSearch(const QString &value);
 
     /*!
      * Set query data quality.
@@ -150,11 +149,11 @@ public:
     /*!
      * Return the current song query type.
      */
-    inline void setQueryType(QueryType type) { m_currentType = type; }
+    inline void setQueryType(QueryType type) { m_queryType = type; }
     /*!
      * Return the current song query type.
      */
-    inline QueryType queryType() const { return m_currentType; }
+    inline QueryType queryType() const { return m_queryType; }
     /*!
      * Return the current song query server.
      */
@@ -162,7 +161,7 @@ public:
     /*!
      * Return the current song name.
      */
-    inline QString queryText() const { return m_queryText; }
+    inline QString queryValue() const { return m_queryValue; }
     /*!
      * Set the current song container.
      */
@@ -184,7 +183,7 @@ public:
     /*!
      * Get download file size.
      */
-    static qint64 urlFileSize(const QString &url);
+    static qint64 fileSizeByUrl(const QString &url);
 
 Q_SIGNALS:
     /*!
@@ -212,11 +211,12 @@ protected:
      */
     bool findUrlFileSize(MusicObject::MusicSongPropertyList *props) const;
 
-    MusicObject::MusicSongInformationList m_musicSongInfos;
-    QString m_queryText, m_queryQuality;
+    QString m_queryValue;
     QString m_queryServer;
-    QueryType m_currentType;
+    QString m_queryQuality;
+    QueryType m_queryType;
     bool m_queryAllRecords, m_querySimplify;
+    MusicObject::MusicSongInformationList m_musicSongInfos;
 
 };
 

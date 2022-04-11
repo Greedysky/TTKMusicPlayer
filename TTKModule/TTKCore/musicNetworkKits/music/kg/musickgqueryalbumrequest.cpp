@@ -6,15 +6,15 @@ MusicKGQueryAlbumRequest::MusicKGQueryAlbumRequest(QObject *parent)
     m_queryServer = QUERY_KG_INTERFACE;
 }
 
-void MusicKGQueryAlbumRequest::startToSearch(const QString &album)
+void MusicKGQueryAlbumRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), album));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
-    m_queryText = album;
+    m_queryValue = value;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_ALBUM_URL, false).arg(album));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_ALBUM_URL, false).arg(value));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -26,14 +26,14 @@ void MusicKGQueryAlbumRequest::startToSearch(const QString &album)
 #endif
 }
 
-void MusicKGQueryAlbumRequest::startToSingleSearch(const QString &artist)
+void MusicKGQueryAlbumRequest::startToSingleSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), artist));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), value));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_ALBUM_URL, false).arg(artist));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_ALBUM_URL, false).arg(value));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);
@@ -94,7 +94,7 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
                     musicInfo.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAlbumInfo(&info, m_queryText);
+                    readFromMusicSongAlbumInfo(&info, m_queryValue);
                     musicInfo.m_albumName = MusicUtils::String::charactersReplaced(info.m_nickName);
                     TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongLrcAndPicture(&musicInfo);

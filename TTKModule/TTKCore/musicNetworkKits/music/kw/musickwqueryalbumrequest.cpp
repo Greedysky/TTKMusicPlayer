@@ -6,15 +6,15 @@ MusicKWQueryAlbumRequest::MusicKWQueryAlbumRequest(QObject *parent)
     m_queryServer = QUERY_KW_INTERFACE;
 }
 
-void MusicKWQueryAlbumRequest::startToSearch(const QString &album)
+void MusicKWQueryAlbumRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), album));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
-    m_queryText = album;
+    m_queryValue = value;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_ALBUM_URL, false).arg(album));
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_ALBUM_URL, false).arg(value));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -26,14 +26,14 @@ void MusicKWQueryAlbumRequest::startToSearch(const QString &album)
 #endif
 }
 
-void MusicKWQueryAlbumRequest::startToSingleSearch(const QString &artist)
+void MusicKWQueryAlbumRequest::startToSingleSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), artist));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), value));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_ALBUM_URL, false).arg(artist));
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_ALBUM_URL, false).arg(value));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);

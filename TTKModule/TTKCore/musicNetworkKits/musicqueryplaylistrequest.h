@@ -37,7 +37,7 @@ public:
     /*!
      * Start to Search data.
      */
-    virtual void startToSearch(const QString &playlist) = 0;
+    virtual void startToSearch(const QString &value) = 0;
     /*!
      * Query playlist info.
      */

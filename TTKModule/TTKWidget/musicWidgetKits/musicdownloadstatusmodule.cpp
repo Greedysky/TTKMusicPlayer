@@ -88,7 +88,7 @@ void MusicDownloadStatusModule::currentLrcDataDownload()
     const MusicObject::MusicSongInformationList musicSongInfos(d->musicSongInfoList());
     if(!musicSongInfos.isEmpty())
     {
-        const QString &fileName = d->queryText();
+        const QString &fileName = d->queryValue();
         const int count = MusicUtils::String::stringSplit(fileName).count();
         const QString &artistName = MusicUtils::String::artistName(fileName);
         const QString &songName = MusicUtils::String::songName(fileName);

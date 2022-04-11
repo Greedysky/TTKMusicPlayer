@@ -6,26 +6,26 @@ MusicQQQueryToplistRequest::MusicQQQueryToplistRequest(QObject *parent)
     m_queryServer = QUERY_QQ_INTERFACE;
 }
 
-void MusicQQQueryToplistRequest::startToSearch(QueryType type, const QString &toplist)
+void MusicQQQueryToplistRequest::startToSearch(QueryType type, const QString &value)
 {
     if(type == MusicQuery)
     {
-        startToSearch(toplist);
+        startToSearch(value);
     }
     else
     {
-        startToSearch(toplist.isEmpty() ? "4" : toplist);
+        startToSearch(value.isEmpty() ? "4" : value);
     }
 }
 
-void MusicQQQueryToplistRequest::startToSearch(const QString &toplist)
+void MusicQQQueryToplistRequest::startToSearch(const QString &value)
 {
     TTK_LOGGER_INFO(QString("%1 startToSearch").arg(className()));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(QQ_TOPLIST_URL, false).arg(toplist));
+    request.setUrl(MusicUtils::Algorithm::mdII(QQ_TOPLIST_URL, false).arg(value));
     MusicQQInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);

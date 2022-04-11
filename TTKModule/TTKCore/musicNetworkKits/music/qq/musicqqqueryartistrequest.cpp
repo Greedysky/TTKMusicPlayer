@@ -69,15 +69,15 @@ MusicQQQueryArtistRequest::MusicQQQueryArtistRequest(QObject *parent)
     m_queryServer = QUERY_QQ_INTERFACE;
 }
 
-void MusicQQQueryArtistRequest::startToSearch(const QString &artist)
+void MusicQQQueryArtistRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), artist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
-    m_queryText = artist;
+    m_queryValue = value;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_URL, false).arg(artist).arg(0).arg(50));
+    request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_URL, false).arg(value).arg(0).arg(50));
     MusicQQInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -189,7 +189,7 @@ void MusicQQQueryArtistRequest::downLoadFinished()
 void MusicQQQueryArtistRequest::downLoadIntro(MusicResultsItem *item) const
 {
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_INFO_URL, false).arg(m_queryText));
+    request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_INFO_URL, false).arg(m_queryValue));
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
     MusicQQInterface::makeRequestRawHeader(&request);
 

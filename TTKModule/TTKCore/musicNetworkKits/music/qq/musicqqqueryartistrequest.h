@@ -60,7 +60,7 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    virtual void startToSearch(const QString &artist) override final;
+    virtual void startToSearch(const QString &value) override final;
 
 public Q_SLOTS:
     /*!

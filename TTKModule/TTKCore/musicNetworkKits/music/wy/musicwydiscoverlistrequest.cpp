@@ -66,8 +66,8 @@ void MusicWYDiscoverListRequest::downLoadFinished()
                             continue;
                         }
 
-                        const QVariantMap &artistMap = artistValue.toMap();
-                        m_toplistInfo = artistMap["name"].toString();
+                        const QVariantMap &artistObject = artistValue.toMap();
+                        m_toplistInfo = artistObject["name"].toString();
                     }
 
                     m_toplistInfo += " - " + value["name"].toString();

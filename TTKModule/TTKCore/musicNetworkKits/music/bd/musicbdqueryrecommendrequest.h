@@ -1,5 +1,5 @@
-#ifndef MUSICKGARTISTSIMILARREQUEST_H
-#define MUSICKGARTISTSIMILARREQUEST_H
+#ifndef MUSICBDQUERYRECOMMENDREQUEST_H
+#define MUSICBDQUERYRECOMMENDREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,25 +19,26 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicsimilarrequest.h"
+#include "musicbdqueryinterface.h"
+#include "musicqueryrecommendrequest.h"
 
-/*! @brief The class of query kugou artist similar download data from net.
+/*! @brief The class of baidu query recommend download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicKGArtistSimilarRequest : public MusicSimilarRequest
+class TTK_MODULE_EXPORT MusicBDQueryRecommendRequest : public MusicQueryRecommendRequest, private MusicBDQueryInterface
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKGArtistSimilarRequest)
+    TTK_DECLARE_MODULE(MusicBDQueryRecommendRequest)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicKGArtistSimilarRequest(QObject *parent = nullptr);
+    explicit MusicBDQueryRecommendRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to Search data from name.
+     * Start to Search data from name and type.
      */
-    virtual void startToSearch(const QString &value) override final;
+    virtual void startToSearch() override final;
 
 public Q_SLOTS:
     /*!
@@ -47,5 +48,4 @@ public Q_SLOTS:
 
 };
 
-
-#endif // MUSICKGARTISTSIMILARREQUEST_H
+#endif // MUSICBDQUERYRECOMMENDREQUEST_H

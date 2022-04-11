@@ -59,6 +59,7 @@ public:
      * Start to translation data.
      */
     virtual void startToDownload(const QString &data) override final;
+
     /*!
      * Start to translation data.
      */

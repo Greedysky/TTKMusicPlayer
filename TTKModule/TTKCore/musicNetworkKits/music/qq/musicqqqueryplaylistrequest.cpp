@@ -9,15 +9,15 @@ MusicQQQueryPlaylistRequest::MusicQQQueryPlaylistRequest(QObject *parent)
     m_queryServer = QUERY_QQ_INTERFACE;
 }
 
-void MusicQQQueryPlaylistRequest::startToSearch(QueryType type, const QString &playlist)
+void MusicQQQueryPlaylistRequest::startToSearch(QueryType type, const QString &value)
 {
     if(type == MusicQuery)
     {
-        startToSearch(playlist);
+        startToSearch(value);
     }
     else
     {
-        m_queryText = playlist.isEmpty() ? "10000000" : playlist;
+        m_queryValue = value.isEmpty() ? "10000000" : value;
         startToPage(0);
     }
 }
@@ -30,7 +30,7 @@ void MusicQQQueryPlaylistRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(QQ_PLAYLIST_URL, false).arg(m_queryText).arg(m_pageSize * offset).arg(m_pageSize * (offset + 1) - 1));
+    request.setUrl(MusicUtils::Algorithm::mdII(QQ_PLAYLIST_URL, false).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize * (offset + 1) - 1));
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
     MusicQQInterface::makeRequestRawHeader(&request);
 
@@ -43,14 +43,14 @@ void MusicQQQueryPlaylistRequest::startToPage(int offset)
 #endif
 }
 
-void MusicQQQueryPlaylistRequest::startToSearch(const QString &playlist)
+void MusicQQQueryPlaylistRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), playlist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(QQ_PLAYLIST_INFO_URL, false).arg(playlist));
+    request.setUrl(MusicUtils::Algorithm::mdII(QQ_PLAYLIST_INFO_URL, false).arg(value));
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
     MusicQQInterface::makeRequestRawHeader(&request);
 

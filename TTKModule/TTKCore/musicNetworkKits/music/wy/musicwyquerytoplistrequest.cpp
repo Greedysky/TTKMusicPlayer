@@ -6,28 +6,28 @@ MusicWYQueryToplistRequest::MusicWYQueryToplistRequest(QObject *parent)
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicWYQueryToplistRequest::startToSearch(QueryType type, const QString &toplist)
+void MusicWYQueryToplistRequest::startToSearch(QueryType type, const QString &value)
 {
     if(type == MusicQuery)
     {
-        startToSearch(toplist);
+        startToSearch(value);
     }
     else
     {
-        startToSearch(toplist.isEmpty() ? "19723756" : toplist);
+        startToSearch(value.isEmpty() ? "19723756" : value);
     }
 }
 
-void MusicWYQueryToplistRequest::startToSearch(const QString &toplist)
+void MusicWYQueryToplistRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), toplist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_TOPLIST_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(toplist));
+                      MusicUtils::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(value));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -92,9 +92,9 @@ void MusicWYQueryToplistRequest::downLoadFinished()
                             continue;
                         }
 
-                        const QVariantMap &artistMap = artistValue.toMap();
-                        musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
-                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistMap["name"].toString());
+                        const QVariantMap &artistObject = artistValue.toMap();
+                        musicInfo.m_artistId = QString::number(artistObject["id"].toULongLong());
+                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
                         break; //just find first singer
                     }
 

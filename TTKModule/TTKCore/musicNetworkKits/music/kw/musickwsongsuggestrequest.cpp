@@ -7,14 +7,14 @@ MusicKWSongSuggestRequest::MusicKWSongSuggestRequest(QObject *parent)
 
 }
 
-void MusicKWSongSuggestRequest::startToSearch(const QString &text)
+void MusicKWSongSuggestRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_SUGGEST_URL, false).arg(text));
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_SUGGEST_URL, false).arg(value));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);

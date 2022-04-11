@@ -14,7 +14,7 @@ void MusicKGQueryArtistListRequest::startToPage(int offset)
     deleteAll();
     QString catId = "type=1&sextype=1";
     m_rawData["initial"] = "%E7%83%AD%E9%97%A8";
-    const QStringList &dds = m_queryText.split(TTK_SPLITER);
+    const QStringList &dds = m_queryValue.split(TTK_SPLITER);
     if(dds.count() == 2)
     {
         catId = dds[0];
@@ -48,10 +48,10 @@ void MusicKGQueryArtistListRequest::startToPage(int offset)
 #endif
 }
 
-void MusicKGQueryArtistListRequest::startToSearch(const QString &artistlist)
+void MusicKGQueryArtistListRequest::startToSearch(const QString &value)
 {
-    m_queryText = artistlist;
-    m_queryText.replace("n", "&");
+    m_queryValue = value;
+    m_queryValue.replace("n", "&");
     startToPage(0);
 }
 

@@ -60,16 +60,15 @@ public:
     /*!
      * Start to search data from name and type.
      */
-    virtual void startToSearch(QueryType type, const QString &text) override final;
+    virtual void startToSearch(QueryType type, const QString &value) override final;
     /*!
      * Start to search data from name and type bt page.
      */
     virtual void startToPage(int offset) override final;
-
     /*!
      * Start to search data by given id.
      */
-    virtual void startToSingleSearch(const QString &text) override final;
+    virtual void startToSingleSearch(const QString &value) override final;
 
 public Q_SLOTS:
     /*!

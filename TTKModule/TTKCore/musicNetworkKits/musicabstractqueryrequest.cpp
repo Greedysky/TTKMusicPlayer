@@ -3,15 +3,15 @@
 MusicAbstractQueryRequest::MusicAbstractQueryRequest(QObject *parent)
     : MusicPageQueryRequest(parent)
 {
-    m_queryAllRecords = false;
-    m_querySimplify = false;
     m_queryQuality = tr("SD");
     m_queryServer = "Invalid";
+    m_queryAllRecords = false;
+    m_querySimplify = false;
 }
 
-void MusicAbstractQueryRequest::startToSingleSearch(const QString &text)
+void MusicAbstractQueryRequest::startToSingleSearch(const QString &value)
 {
-    Q_UNUSED(text);
+    Q_UNUSED(value);
 }
 
 QString MusicAbstractQueryRequest::mapQueryServerString() const
@@ -31,7 +31,7 @@ QString MusicAbstractQueryRequest::mapQueryServerString() const
         return QString();
 }
 
-qint64 MusicAbstractQueryRequest::urlFileSize(const QString &url)
+qint64 MusicAbstractQueryRequest::fileSizeByUrl(const QString &url)
 {
     qint64 size = -1;
 
@@ -59,7 +59,7 @@ qint64 MusicAbstractQueryRequest::urlFileSize(const QString &url)
     const QVariant &redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
     if(!redirection.isNull())
     {
-        size = urlFileSize(redirection.toString());
+        size = fileSizeByUrl(redirection.toString());
     }
 
     reply->deleteLater();
@@ -78,7 +78,7 @@ bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongProperty *
     TTK_NETWORK_QUERY_CHECK(false);
     if(prop->m_size.isEmpty() || prop->m_size == TTK_DEFAULT_STR)
     {
-        prop->m_size = MusicUtils::Number::sizeByte2Label(urlFileSize(prop->m_url));
+        prop->m_size = MusicUtils::Number::sizeByte2Label(fileSizeByUrl(prop->m_url));
     }
     TTK_NETWORK_QUERY_CHECK(false);
     return true;

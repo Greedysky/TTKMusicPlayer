@@ -38,7 +38,7 @@ public:
     /*!
      * Start to Search data from name.
      */
-    virtual void startToSearch(const QString &text) override final;
+    virtual void startToSearch(const QString &value) override final;
 
 public Q_SLOTS:
     /*!

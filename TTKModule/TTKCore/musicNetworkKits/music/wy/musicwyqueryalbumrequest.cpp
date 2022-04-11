@@ -8,16 +8,16 @@ MusicWYQueryAlbumRequest::MusicWYQueryAlbumRequest(QObject *parent)
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicWYQueryAlbumRequest::startToSearch(const QString &album)
+void MusicWYQueryAlbumRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), album));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
-    m_queryText = album;
+    m_queryValue = value;
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_ALBUM_URL, false).arg(album),
+                      MusicUtils::Algorithm::mdII(WY_ALBUM_URL, false).arg(value),
                       QString("{}"));
 
     m_reply = m_manager.post(request, parameter);
@@ -29,15 +29,15 @@ void MusicWYQueryAlbumRequest::startToSearch(const QString &album)
 #endif
 }
 
-void MusicWYQueryAlbumRequest::startToSingleSearch(const QString &album)
+void MusicWYQueryAlbumRequest::startToSingleSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), album));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), value));
 
     deleteAll();
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_URL, false).arg(album),
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_URL, false).arg(value),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_DATA_URL, false));
 
     QNetworkReply *reply = m_manager.post(request, parameter);
@@ -104,9 +104,9 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                             continue;
                         }
 
-                        const QVariantMap &artistMap = artistValue.toMap();
-                        musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
-                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistMap["name"].toString());
+                        const QVariantMap &artistObject = artistValue.toMap();
+                        musicInfo.m_artistId = QString::number(artistObject["id"].toULongLong());
+                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
                         break; //just find first singer
                     }
 

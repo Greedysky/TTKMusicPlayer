@@ -8,15 +8,15 @@ MusicDJRadioProgramCategoryRequest::MusicDJRadioProgramCategoryRequest(QObject *
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicDJRadioProgramCategoryRequest::startToSearch(QueryType type, const QString &category)
+void MusicDJRadioProgramCategoryRequest::startToSearch(QueryType type, const QString &value)
 {
     if(type == MusicQuery)
     {
-        startToSearch(category);
+        startToSearch(value);
     }
     else
     {
-        m_queryText = category;
+        m_queryValue = value;
         startToPage(0);
     }
 }
@@ -29,7 +29,7 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(DJ_RADIO_LIST_URL, false).arg(m_queryText));
+    request.setUrl(MusicUtils::Algorithm::mdII(DJ_RADIO_LIST_URL, false).arg(m_queryValue));
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager.get(request);
@@ -41,16 +41,16 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
 #endif
 }
 
-void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &category)
+void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), category));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(DJ_DETAIL_URL, false),
-                      MusicUtils::Algorithm::mdII(DJ_DETAIL_DATA_URL, false).arg(category));
+                      MusicUtils::Algorithm::mdII(DJ_DETAIL_DATA_URL, false).arg(value));
 
     QNetworkReply *reply = m_manager.post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(downloadDetailsFinished()));

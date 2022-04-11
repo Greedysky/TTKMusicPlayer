@@ -6,8 +6,8 @@ MusicQueryToplistRequest::MusicQueryToplistRequest(QObject *parent)
 
 }
 
-void MusicQueryToplistRequest::startToSearch(QueryType type, const QString &artist)
+void MusicQueryToplistRequest::startToSearch(QueryType type, const QString &value)
 {
     Q_UNUSED(type);
-    startToSearch(artist);
+    startToSearch(value);
 }

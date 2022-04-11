@@ -7,12 +7,12 @@ MusicWYQueryRequest::MusicWYQueryRequest(QObject *parent)
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicWYQueryRequest::startToSearch(QueryType type, const QString &text)
+void MusicWYQueryRequest::startToSearch(QueryType type, const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
-    m_currentType = type;
-    m_queryText = text.trimmed();
+    m_queryType = type;
+    m_queryValue = value.trimmed();
     MusicAbstractQueryRequest::downLoadFinished();
 
     startToPage(0);
@@ -29,7 +29,7 @@ void MusicWYQueryRequest::startToPage(int offset)
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryText).arg(1).arg(m_pageSize).arg(m_pageSize * offset).toUtf8());
+                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryValue).arg(1).arg(m_pageSize).arg(m_pageSize * offset).toUtf8());
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -40,16 +40,16 @@ void MusicWYQueryRequest::startToPage(int offset)
 #endif
 }
 
-void MusicWYQueryRequest::startToSingleSearch(const QString &text)
+void MusicWYQueryRequest::startToSingleSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), text));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), value));
 
     deleteAll();
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_INFO_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SONG_INFO_DATA_URL, false).arg(text));
+                      MusicUtils::Algorithm::mdII(WY_SONG_INFO_DATA_URL, false).arg(value));
 
     QNetworkReply *reply = m_manager.post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(downLoadSingleFinished()));
@@ -107,9 +107,9 @@ void MusicWYQueryRequest::downLoadFinished()
                             continue;
                         }
 
-                        const QVariantMap &artistMap = artistValue.toMap();
-                        musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
-                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistMap["name"].toString());
+                        const QVariantMap &artistObject = artistValue.toMap();
+                        musicInfo.m_artistId = QString::number(artistObject["id"].toULongLong());
+                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
                         break; //just find first singer
                     }
 
@@ -192,9 +192,9 @@ void MusicWYQueryRequest::downLoadSingleFinished()
                             continue;
                         }
 
-                        const QVariantMap &artistMap = artistValue.toMap();
-                        musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
-                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistMap["name"].toString());
+                        const QVariantMap &artistObject = artistValue.toMap();
+                        musicInfo.m_artistId = QString::number(artistObject["id"].toULongLong());
+                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
                         break; //just find first singer
                     }
 

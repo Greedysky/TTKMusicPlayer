@@ -10,15 +10,15 @@ MusicBDQueryLearnRequest::MusicBDQueryLearnRequest(QObject *parent)
     m_queryServer = QUERY_BD_INTERFACE;
 }
 
-void MusicBDQueryLearnRequest::startToSearch(QueryType type, const QString &text)
+void MusicBDQueryLearnRequest::startToSearch(QueryType type, const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     Q_UNUSED(type);
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(BD_LEARN_URL, false).arg(text).arg(1).arg(30));
+    request.setUrl(MusicUtils::Algorithm::mdII(BD_LEARN_URL, false).arg(value).arg(1).arg(30));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 

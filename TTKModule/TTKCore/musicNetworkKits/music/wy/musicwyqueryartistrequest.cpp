@@ -6,16 +6,16 @@ MusicWYQueryArtistRequest::MusicWYQueryArtistRequest(QObject *parent)
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicWYQueryArtistRequest::startToSearch(const QString &artist)
+void MusicWYQueryArtistRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), artist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
-    m_queryText = artist;
+    m_queryValue = value;
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_URL, false).arg(artist),
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_URL, false).arg(value),
                       QString("{}"));
 
     m_reply = m_manager.post(request, parameter);
@@ -79,8 +79,8 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                             continue;
                         }
 
-                        const QVariantMap &artistMap = artistValue.toMap();
-                        musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
+                        const QVariantMap &artistObject = artistValue.toMap();
+                        musicInfo.m_artistId = QString::number(artistObject["id"].toULongLong());
                         break; //just find first singer
                     }
 
@@ -104,7 +104,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                         TTK_NETWORK_QUERY_CHECK();
                         downLoadIntro(&info);
                         TTK_NETWORK_QUERY_CHECK();
-                        info.m_id = m_queryText;
+                        info.m_id = m_queryValue;
                         info.m_name = musicInfo.m_singerName;
                         info.m_nickName = artistObject["trans"].toString();
                         info.m_coverUrl = musicInfo.m_coverUrl;
@@ -133,7 +133,7 @@ void MusicWYQueryArtistRequest::downLoadIntro(MusicResultsItem *item) const
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_INFO_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_INFO_DATA_URL, false).arg(m_queryText));
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_INFO_DATA_URL, false).arg(m_queryValue));
 
     const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
     if(bytes.isEmpty())

@@ -38,7 +38,7 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    virtual void startToSearch(QueryType type, const QString &playlist) override final;
+    virtual void startToSearch(QueryType type, const QString &value) override final;
     /*!
      * Start to search data from name and type bt page.
      */
@@ -46,7 +46,7 @@ public:
     /*!
      * Start to Search data.
      */
-    virtual void startToSearch(const QString &playlist) override final;
+    virtual void startToSearch(const QString &value) override final;
     /*!
      * Query playlist info.
      */

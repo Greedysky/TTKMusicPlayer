@@ -6,12 +6,11 @@ MusicQQQueryRecommendRequest::MusicQQQueryRecommendRequest(QObject *parent)
     m_queryServer = QUERY_QQ_INTERFACE;
 }
 
-void MusicQQQueryRecommendRequest::startToSearch(const QString &id)
+void MusicQQQueryRecommendRequest::startToSearch()
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), id));
+    TTK_LOGGER_INFO(QString("%1 startToSearch").arg(className()));
 
     deleteAll();
-    m_queryText = id;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_RECOMMEND_URL, false));

@@ -13,7 +13,7 @@ void MusicWYQueryArtistListRequest::startToPage(int offset)
 
     deleteAll();
     QString catId = "1001", initial = "-1";
-    const QStringList &dds = m_queryText.split(TTK_SPLITER);
+    const QStringList &dds = m_queryValue.split(TTK_SPLITER);
     if(dds.count() == 2)
     {
         catId = dds[0];
@@ -50,9 +50,9 @@ void MusicWYQueryArtistListRequest::startToPage(int offset)
 #endif
 }
 
-void MusicWYQueryArtistListRequest::startToSearch(const QString &artistlist)
+void MusicWYQueryArtistListRequest::startToSearch(const QString &value)
 {
-    m_queryText = artistlist;
+    m_queryValue = value;
     startToPage(0);
 }
 

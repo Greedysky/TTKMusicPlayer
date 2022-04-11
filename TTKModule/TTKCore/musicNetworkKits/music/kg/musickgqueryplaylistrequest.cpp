@@ -7,15 +7,15 @@ MusicKGQueryPlaylistRequest::MusicKGQueryPlaylistRequest(QObject *parent)
     m_queryServer = QUERY_KG_INTERFACE;
 }
 
-void MusicKGQueryPlaylistRequest::startToSearch(QueryType type, const QString &playlist)
+void MusicKGQueryPlaylistRequest::startToSearch(QueryType type, const QString &value)
 {
     if(type == MusicQuery)
     {
-        startToSearch(playlist);
+        startToSearch(value);
     }
     else
     {
-        m_queryText = playlist;
+        m_queryValue = value;
         startToPage(0);
     }
 }
@@ -28,7 +28,7 @@ void MusicKGQueryPlaylistRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_PLAYLIST_URL, false).arg(m_queryText).arg(offset + 1).arg(m_pageSize));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_PLAYLIST_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -40,14 +40,14 @@ void MusicKGQueryPlaylistRequest::startToPage(int offset)
 #endif
 }
 
-void MusicKGQueryPlaylistRequest::startToSearch(const QString &playlist)
+void MusicKGQueryPlaylistRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), playlist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_PLAYLIST_INFO_URL, false).arg(playlist));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_PLAYLIST_INFO_URL, false).arg(value));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);

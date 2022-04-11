@@ -7,15 +7,15 @@ MusicKGSongCommentsRequest::MusicKGSongCommentsRequest(QObject *parent)
     m_pageSize = 20;
 }
 
-void MusicKGSongCommentsRequest::startToSearch(const QString &name)
+void MusicKGSongCommentsRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), name));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     MusicSemaphoreLoop loop;
     MusicKGQueryRequest *d = new MusicKGQueryRequest(this);
     d->setQueryAllRecords(false);
     d->setQuerySimplify(true);
-    d->startToSearch(MusicAbstractQueryRequest::MusicQuery, name);
+    d->startToSearch(MusicAbstractQueryRequest::MusicQuery, value);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
@@ -99,11 +99,11 @@ MusicKGPlaylistCommentsRequest::MusicKGPlaylistCommentsRequest(QObject *parent)
     m_pageSize = 20;
 }
 
-void MusicKGPlaylistCommentsRequest::startToSearch(const QString &name)
+void MusicKGPlaylistCommentsRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), name));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
-    m_rawData["sid"] = name;
+    m_rawData["sid"] = value;
     startToPage(0);
 }
 

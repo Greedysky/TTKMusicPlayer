@@ -226,7 +226,7 @@ MusicObject::MusicSongInformation MusicDownloadWidget::matchMusicSongInformation
     const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
     if(!musicSongInfos.isEmpty())
     {
-        const QString &fileName = m_networkRequest->queryText();
+        const QString &fileName = m_networkRequest->queryValue();
         const QString &artistName = MusicUtils::String::artistName(fileName);
         const QString &songName = MusicUtils::String::songName(fileName);
 

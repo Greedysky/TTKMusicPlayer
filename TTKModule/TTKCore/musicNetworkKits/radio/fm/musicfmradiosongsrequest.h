@@ -38,6 +38,7 @@ public:
      * Start to download data.
      */
     virtual void startToDownload(const QString &id) override final;
+
     /*!
      * Get music song information.
      */

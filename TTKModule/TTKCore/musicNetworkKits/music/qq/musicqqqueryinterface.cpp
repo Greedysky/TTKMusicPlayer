@@ -11,10 +11,9 @@ void MusicQQInterface::makeRequestRawHeader(QNetworkRequest *request)
 }
 
 
-void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate) const
+void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &mid, quint64 key, int bitrate) const
 {
-    const QString &mid = key["songmid"].toString();
-    if(key["size128"].toULongLong() != 0 && bitrate == MB_128)
+    if(key != 0 && bitrate == MB_128)
     {
         const QString &musicUrl = generateMusicPath("M500" + mid + MP3_FILE, mid);
         if(musicUrl.isEmpty())
@@ -24,12 +23,12 @@ void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
 
         MusicObject::MusicSongProperty prop;
         prop.m_url = musicUrl;
-        prop.m_size = MusicUtils::Number::sizeByte2Label(key["size128"].toULongLong());
+        prop.m_size = MusicUtils::Number::sizeByte2Label(key);
         prop.m_format = MP3_FILE_PREFIX;
         prop.m_bitrate = bitrate;
         info->m_songProps.append(prop);
     }
-    else if(key["size320"].toULongLong() != 0 && bitrate == MB_320)
+    else if(key != 0 && bitrate == MB_320)
     {
         const QString &musicUrl = generateMusicPath("M800" + mid + MP3_FILE, mid);
         if(musicUrl.isEmpty())
@@ -39,12 +38,12 @@ void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
 
         MusicObject::MusicSongProperty prop;
         prop.m_url = musicUrl;
-        prop.m_size = MusicUtils::Number::sizeByte2Label(key["size320"].toULongLong());
+        prop.m_size = MusicUtils::Number::sizeByte2Label(key);
         prop.m_format = MP3_FILE_PREFIX;
         prop.m_bitrate = bitrate;
         info->m_songProps.append(prop);
     }
-    else if(key["sizeape"].toULongLong() != 0 && bitrate == MB_750)
+    else if(key != 0 && bitrate == MB_750)
     {
         const QString &musicUrl = generateMusicPath("A000" + mid + APE_FILE, mid);
         if(musicUrl.isEmpty())
@@ -54,12 +53,12 @@ void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
 
         MusicObject::MusicSongProperty prop;
         prop.m_url = musicUrl;
-        prop.m_size = MusicUtils::Number::sizeByte2Label(key["sizeape"].toULongLong());
+        prop.m_size = MusicUtils::Number::sizeByte2Label(key);
         prop.m_format = APE_FILE_PREFIX;
         prop.m_bitrate = bitrate;
         info->m_songProps.append(prop);
     }
-    else if(key["sizeflac"].toULongLong() != 0 && bitrate == MB_1000)
+    else if(key != 0 && bitrate == MB_1000)
     {
         const QString &musicUrl = generateMusicPath("F000" + mid + FLAC_FILE, mid);
         if(musicUrl.isEmpty())
@@ -69,7 +68,7 @@ void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
 
         MusicObject::MusicSongProperty prop;
         prop.m_url = musicUrl;
-        prop.m_size = MusicUtils::Number::sizeByte2Label(key["sizeflac"].toULongLong());
+        prop.m_size = MusicUtils::Number::sizeByte2Label(key);
         prop.m_format = FLAC_FILE_PREFIX;
         prop.m_bitrate = bitrate;
         info->m_songProps.append(prop);
@@ -78,108 +77,47 @@ void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
 
 void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all) const
 {
+    const QString &mid = key["songmid"].toString();
+
     if(all)
     {
-        readFromMusicSongProperty(info, key, MB_128);
-        readFromMusicSongProperty(info, key, MB_192);
-        readFromMusicSongProperty(info, key, MB_320);
-        readFromMusicSongProperty(info, key, MB_750);
-        readFromMusicSongProperty(info, key, MB_1000);
+        readFromMusicSongProperty(info, mid, key["size128"].toULongLong(), MB_128);
+        readFromMusicSongProperty(info, mid, key["size192"].toULongLong(), MB_192);
+        readFromMusicSongProperty(info, mid, key["size320"].toULongLong(), MB_320);
+        readFromMusicSongProperty(info, mid, key["sizeape"].toULongLong(), MB_750);
+        readFromMusicSongProperty(info, mid, key["sizeflac"].toULongLong(), MB_1000);
     }
     else
     {
         if(quality == QObject::tr("SD"))
         {
-            readFromMusicSongProperty(info, key, MB_128);
+            readFromMusicSongProperty(info, mid, key["size128"].toULongLong(), MB_128);
         }
         else if(quality == QObject::tr("HQ"))
         {
-            readFromMusicSongProperty(info, key, MB_192);
+            readFromMusicSongProperty(info, mid, key["size192"].toULongLong(), MB_192);
         }
         else if(quality == QObject::tr("SQ"))
         {
-            readFromMusicSongProperty(info, key, MB_320);
+            readFromMusicSongProperty(info, mid, key["size320"].toULongLong(), MB_320);
         }
         else if(quality == QObject::tr("CD"))
         {
-            readFromMusicSongProperty(info, key, MB_750);
-            readFromMusicSongProperty(info, key, MB_1000);
+            readFromMusicSongProperty(info, mid, key["sizeape"].toULongLong(), MB_750);
+            readFromMusicSongProperty(info, mid, key["sizeflac"].toULongLong(), MB_1000);
         }
-    }
-}
-
-void MusicQQQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate) const
-{
-    const QString &mid = key["media_mid"].toString();
-    if(key["size_128mp3"].toULongLong() != 0 && bitrate == MB_128)
-    {
-        const QString &musicUrl = generateMusicPath("M500" + mid + MP3_FILE, mid);
-        if(musicUrl.isEmpty())
-        {
-            return;
-        }
-
-        MusicObject::MusicSongProperty prop;
-        prop.m_url = musicUrl;
-        prop.m_size = MusicUtils::Number::sizeByte2Label(key["size_128mp3"].toULongLong());
-        prop.m_format = MP3_FILE_PREFIX;
-        prop.m_bitrate = bitrate;
-        info->m_songProps.append(prop);
-    }
-    else if(key["size_320mp3"].toULongLong() != 0 && bitrate == MB_320)
-    {
-        const QString &musicUrl = generateMusicPath("M800" + mid + MP3_FILE, mid);
-        if(musicUrl.isEmpty())
-        {
-            return;
-        }
-
-        MusicObject::MusicSongProperty prop;
-        prop.m_url = musicUrl;
-        prop.m_size = MusicUtils::Number::sizeByte2Label(key["size_320mp3"].toULongLong());
-        prop.m_format = MP3_FILE_PREFIX;
-        prop.m_bitrate = bitrate;
-        info->m_songProps.append(prop);
-    }
-    else if(key["size_ape"].toULongLong() != 0 && bitrate == MB_750)
-    {
-        const QString &musicUrl = generateMusicPath("A000" + mid + APE_FILE, mid);
-        if(musicUrl.isEmpty())
-        {
-            return;
-        }
-
-        MusicObject::MusicSongProperty prop;
-        prop.m_url = musicUrl;
-        prop.m_size = MusicUtils::Number::sizeByte2Label(key["size_ape"].toULongLong());
-        prop.m_format = APE_FILE_PREFIX;
-        prop.m_bitrate = bitrate;
-        info->m_songProps.append(prop);
-    }
-    else if(key["size_flac"].toULongLong() != 0 && bitrate == MB_1000)
-    {
-        const QString &musicUrl = generateMusicPath("F000" + mid + FLAC_FILE, mid);
-        if(musicUrl.isEmpty())
-        {
-            return;
-        }
-
-        MusicObject::MusicSongProperty prop;
-        prop.m_url = musicUrl;
-        prop.m_size = MusicUtils::Number::sizeByte2Label(key["size_flac"].toULongLong());
-        prop.m_format = FLAC_FILE_PREFIX;
-        prop.m_bitrate = bitrate;
-        info->m_songProps.append(prop);
     }
 }
 
 void MusicQQQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key) const
 {
-    readFromMusicSongPropertyNew(info, key, MB_128);
-    readFromMusicSongPropertyNew(info, key, MB_192);
-    readFromMusicSongPropertyNew(info, key, MB_320);
-    readFromMusicSongPropertyNew(info, key, MB_750);
-    readFromMusicSongPropertyNew(info, key, MB_1000);
+    const QString &mid = key["media_mid"].toString();
+
+    readFromMusicSongProperty(info, mid, key["size_128mp3"].toULongLong(), MB_128);
+    readFromMusicSongProperty(info, mid, key["size_192mp3"].toULongLong(), MB_192);
+    readFromMusicSongProperty(info, mid, key["size_320mp3"].toULongLong(), MB_320);
+    readFromMusicSongProperty(info, mid, key["size_ape"].toULongLong(), MB_750);
+    readFromMusicSongProperty(info, mid, key["size_flac"].toULongLong(), MB_1000);
 }
 
 QString MusicQQQueryInterface::generateMusicPath(const QString &file, const QString &mid) const

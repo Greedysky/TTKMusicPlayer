@@ -7,14 +7,14 @@ MusicKGArtistSimilarRequest::MusicKGArtistSimilarRequest(QObject *parent)
 
 }
 
-void MusicKGArtistSimilarRequest::startToSearch(const QString &text)
+void MusicKGArtistSimilarRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_SIMILAR_URL, false).arg(text));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_SIMILAR_URL, false).arg(value));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);

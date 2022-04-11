@@ -37,7 +37,7 @@ public:
     /*!
      * Start to Search data from name.
      */
-    virtual void startToSearch(const QString &name) override final;
+    virtual void startToSearch(const QString &value) override final;
     /*!
      * Start to search data from name and type bt page.
      */
@@ -68,7 +68,7 @@ public:
     /*!
      * Start to Search data from name.
      */
-    virtual void startToSearch(const QString &name) override final;
+    virtual void startToSearch(const QString &value) override final;
     /*!
      * Start to search data from name and type bt page.
      */

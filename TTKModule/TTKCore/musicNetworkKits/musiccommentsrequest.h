@@ -38,7 +38,7 @@ public:
      * Start to Search data from name.
      * Subclass should implement this function.
      */
-    virtual void startToSearch(const QString &name) = 0;
+    virtual void startToSearch(const QString &value) = 0;
 
 Q_SIGNALS:
     /*!

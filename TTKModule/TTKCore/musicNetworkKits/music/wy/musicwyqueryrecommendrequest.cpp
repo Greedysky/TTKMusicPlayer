@@ -6,12 +6,11 @@ MusicWYQueryRecommendRequest::MusicWYQueryRecommendRequest(QObject *parent)
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicWYQueryRecommendRequest::startToSearch(const QString &id)
+void MusicWYQueryRecommendRequest::startToSearch()
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), id));
+    TTK_LOGGER_INFO(QString("%1 startToSearch").arg(className()));
 
     deleteAll();
-    m_queryText = id;
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
@@ -72,9 +71,9 @@ void MusicWYQueryRecommendRequest::downLoadFinished()
                             continue;
                         }
 
-                        const QVariantMap &artistMap = artistValue.toMap();
-                        musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
-                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistMap["name"].toString());
+                        const QVariantMap &artistObject = artistValue.toMap();
+                        musicInfo.m_artistId = QString::number(artistObject["id"].toULongLong());
+                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
                         break; //just find first singer
                     }
 

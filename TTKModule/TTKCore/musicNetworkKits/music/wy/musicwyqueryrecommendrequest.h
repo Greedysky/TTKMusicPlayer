@@ -38,7 +38,7 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    virtual void startToSearch(const QString &id) override final;
+    virtual void startToSearch() override final;
 
 public Q_SLOTS:
     /*!
@@ -47,6 +47,5 @@ public Q_SLOTS:
     virtual void downLoadFinished() override final;
 
 };
-
 
 #endif // MUSICWYQUERYRECOMMENDREQUEST_H

@@ -6,15 +6,15 @@ MusicKGQueryArtistRequest::MusicKGQueryArtistRequest(QObject *parent)
     m_queryServer = QUERY_KG_INTERFACE;
 }
 
-void MusicKGQueryArtistRequest::startToSearch(const QString &artist)
+void MusicKGQueryArtistRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), artist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
-    m_queryText = artist;
+    m_queryValue = value;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_URL, false).arg(artist).arg(0).arg(50));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_URL, false).arg(value).arg(0).arg(50));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -97,7 +97,7 @@ void MusicKGQueryArtistRequest::downLoadFinished()
                         downLoadIntro(&info);
                         TTK_NETWORK_QUERY_CHECK();
 
-                        info.m_id = m_queryText;
+                        info.m_id = m_queryValue;
                         info.m_name = musicInfo.m_singerName;
                         info.m_coverUrl = musicInfo.m_coverUrl;
                         Q_EMIT createArtistInfoItem(info);
@@ -123,7 +123,7 @@ void MusicKGQueryArtistRequest::downLoadFinished()
 void MusicKGQueryArtistRequest::downLoadIntro(MusicResultsItem *item) const
 {
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_INFO_URL, false).arg(m_queryText));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_INFO_URL, false).arg(m_queryValue));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);

@@ -93,6 +93,7 @@ HEADERS += \
     $$PWD/music/bd/musicbdqueryinterface.h \
     $$PWD/music/bd/musicbdquerylearnrequest.h \
     $$PWD/music/bd/musicbdtranslationrequest.h \
+    $$PWD/music/bd/musicbdqueryrecommendrequest.h \
     $$PWD/music/qq/musicqqqueryinterface.h \
     $$PWD/music/qq/musicqqqueryrequest.h \
     $$PWD/music/qq/musicqqqueryalbumrequest.h \
@@ -200,8 +201,10 @@ SOURCES += \
     $$PWD/music/kw/musickwcommentsrequest.cpp \
     $$PWD/music/kw/musickwsongsuggestrequest.cpp \
     $$PWD/music/kw/musickwartistsimilarrequest.cpp \
+    $$PWD/music/bd/musicbdqueryinterface.cpp \
     $$PWD/music/bd/musicbdquerylearnrequest.cpp \
     $$PWD/music/bd/musicbdtranslationrequest.cpp \
+    $$PWD/music/bd/musicbdqueryrecommendrequest.cpp \
     $$PWD/music/qq/musicqqqueryinterface.cpp \
     $$PWD/music/qq/musicqqqueryrequest.cpp \
     $$PWD/music/qq/musicqqqueryalbumrequest.cpp \

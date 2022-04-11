@@ -31,7 +31,7 @@ void MusicMVRadioCategoryRequest::downLoadFinished()
                 QVariantMap value = var.toMap();
                 TTK_NETWORK_QUERY_CHECK();
 
-                if(value["classId"].toString() == m_queryText)
+                if(value["classId"].toString() == m_queryValue)
                 {
                     const QVariantList &fms = value["fm_list"].toList();
                     for(const QVariant &var : qAsConst(fms))

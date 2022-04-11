@@ -36,6 +36,7 @@
 #include "musickgqueryplaylistrequest.h"
 #include "musickwqueryplaylistrequest.h"
 //
+#include "musicbdqueryrecommendrequest.h"
 #include "musicwyqueryrecommendrequest.h"
 #include "musicqqqueryrecommendrequest.h"
 #include "musickgqueryrecommendrequest.h"

@@ -37,7 +37,7 @@ public:
     /*!
      * Start to search data from name and type.
      */
-    virtual void startToSearch(QueryType type, const QString &text) override final;
+    virtual void startToSearch(QueryType type, const QString &value) override final;
 
 Q_SIGNALS:
     /*!

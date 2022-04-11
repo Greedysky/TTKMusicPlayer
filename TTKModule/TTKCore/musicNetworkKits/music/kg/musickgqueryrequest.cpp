@@ -7,12 +7,12 @@ MusicKGQueryRequest::MusicKGQueryRequest(QObject *parent)
     m_queryServer = QUERY_KG_INTERFACE;
 }
 
-void MusicKGQueryRequest::startToSearch(QueryType type, const QString &text)
+void MusicKGQueryRequest::startToSearch(QueryType type, const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
 
-    m_currentType = type;
-    m_queryText = text.trimmed();
+    m_queryType = type;
+    m_queryValue = value.trimmed();
     MusicAbstractQueryRequest::downLoadFinished();
 
     startToPage(0);
@@ -27,7 +27,7 @@ void MusicKGQueryRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_SONG_SEARCH_URL, false).arg(m_queryText).arg(offset + 1).arg(m_pageSize));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_SONG_SEARCH_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -39,14 +39,14 @@ void MusicKGQueryRequest::startToPage(int offset)
 #endif
 }
 
-void MusicKGQueryRequest::startToSingleSearch(const QString &text)
+void MusicKGQueryRequest::startToSingleSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), text));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), value));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(text));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(value));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);

@@ -38,15 +38,16 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    virtual void startToSearch(QueryType type, const QString &category) override final;
+    virtual void startToSearch(QueryType type, const QString &value) override final;
     /*!
      * Start to search data from name and type bt page.
      */
     virtual void startToPage(int offset) override final;
+
     /*!
      * Start to Search data.
      */
-    void startToSearch(const QString &category);
+    void startToSearch(const QString &value);
     /*!
      * Query category info.
      */

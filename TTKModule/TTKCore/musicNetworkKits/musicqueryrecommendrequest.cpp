@@ -6,8 +6,9 @@ MusicQueryRecommendRequest::MusicQueryRecommendRequest(QObject *parent)
 
 }
 
-void MusicQueryRecommendRequest::startToSearch(QueryType type, const QString &id)
+void MusicQueryRecommendRequest::startToSearch(QueryType type, const QString &value)
 {
     Q_UNUSED(type);
-    startToSearch(id);
+    Q_UNUSED(value);
+    startToSearch();
 }
