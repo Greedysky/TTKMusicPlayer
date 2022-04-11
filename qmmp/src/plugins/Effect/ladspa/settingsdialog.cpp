@@ -29,7 +29,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.pluginsTreeView->setModel(m_model);
 
     if(!LADSPAHost::instance())
+    {
         new LADSPAHost(qApp);
+    }
 
     QList<LADSPAPlugin*> plugin_list = LADSPAHost::instance()->plugins();
 

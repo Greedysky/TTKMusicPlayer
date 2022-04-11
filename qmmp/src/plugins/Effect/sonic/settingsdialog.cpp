@@ -27,7 +27,9 @@ void SettingsDialog::accept()
     settings.setValue("Sonic/ratio", m_ui.ratioSlider->value());
 
     if(SonicPlugin::instance())
+    {
         SonicPlugin::instance()->setRatio(m_ui.ratioSlider->value());
+    }
     QDialog::accept();
 }
 

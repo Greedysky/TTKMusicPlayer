@@ -32,12 +32,14 @@ public:
 
 public slots:
     virtual void accept() override final;
+    virtual void reject() override final;
 
 private slots:
     void on_intensitySlider_valueChanged(int value);
 
 private:
     Ui::SettingsDialog m_ui;
+    int m_intensity = 0;
 
 };
 

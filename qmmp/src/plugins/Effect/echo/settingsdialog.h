@@ -32,6 +32,7 @@ public:
 
 public slots:
     virtual void accept() override final;
+    virtual void reject() override final;
 
 private slots:
     void on_delaySlider_valueChanged(int value);
@@ -40,6 +41,9 @@ private slots:
 
 private:
     Ui::SettingsDialog m_ui;
+    int m_delay = 0;
+    int m_feedback = 0;
+    int m_volume = 0;
 
 };
 

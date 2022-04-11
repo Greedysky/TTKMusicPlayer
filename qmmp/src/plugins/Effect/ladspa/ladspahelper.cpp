@@ -7,7 +7,9 @@ LADSPAHelper::LADSPAHelper()
     : Effect()
 {
     if(!LADSPAHost::instance())
+    {
         new LADSPAHost(qApp);
+    }
 }
 
 LADSPAHelper::~LADSPAHelper()
