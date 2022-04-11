@@ -36,21 +36,21 @@ void SettingsDialog::accept()
 
 void SettingsDialog::on_delaySlider_valueChanged(int value)
 {
-    m_ui.delayLabel->setText(QString(tr("%1 ms")).arg(value));
+    m_ui.delayLabel->setText(tr("%1 ms").arg(value));
     if(EchoPlugin::instance())
         EchoPlugin::instance()->setDelay(value);
 }
 
 void SettingsDialog::on_feedSlider_valueChanged(int value)
 {
-    m_ui.feedLabel->setText(QString(tr("%1 %")).arg(value));
+    m_ui.feedLabel->setText(tr("%1 %").arg(value));
     if(EchoPlugin::instance())
         EchoPlugin::instance()->setFeedback(value);
 }
 
 void SettingsDialog::on_volumeSlider_valueChanged(int value)
 {
-    m_ui.volumeLabel->setText(QString(tr("%1 %")).arg(value));
+    m_ui.volumeLabel->setText(tr("%1 %").arg(value));
     if(EchoPlugin::instance())
         EchoPlugin::instance()->setVolume(value);
 }

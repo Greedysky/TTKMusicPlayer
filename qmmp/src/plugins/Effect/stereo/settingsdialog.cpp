@@ -36,8 +36,8 @@ void SettingsDialog::SettingsDialog::reject()
 
 void SettingsDialog::on_intensitySlider_valueChanged(int value)
 {
-    double level = value * 10.0 / 100;
-    m_ui.intensityLabel->setText(QString(tr("%1")).arg(level));
+    const double level = value * 10.0 / 100;
+    m_ui.intensityLabel->setText(QString::number(level, 'f', 1));
     if(StereoPlugin::instance())
         StereoPlugin::instance()->setIntensity(level);
 }

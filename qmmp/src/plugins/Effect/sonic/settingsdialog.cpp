@@ -1,5 +1,5 @@
 #include "settingsdialog.h"
-#include "crystalizerplugin.h"
+#include "sonicplugin.h"
 
 #include <QSettings>
 #include <QAbstractButton>
@@ -15,22 +15,23 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         button->setFocusPolicy(Qt::NoFocus);
     }
 #endif
-    m_ui.intensitySlider->setRange(0, 100);
+    m_ui.ratioSlider->setRange(12, 100);  // (0.25, 2)
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    m_ui.intensitySlider->setValue(settings.value("Crystalizer/intensity", DEFAULT_INTENSITY).toUInt());
+    m_ui.ratioSlider->setValue(settings.value("Sonic/ratio", DEFAULT_RATIO).toInt());
 }
 
 void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.setValue("Crystalizer/intensity", m_ui.intensitySlider->value());
+    settings.setValue("Sonic/ratio", m_ui.ratioSlider->value());
+
+    if(SonicPlugin::instance())
+        SonicPlugin::instance()->setRatio(m_ui.ratioSlider->value());
     QDialog::accept();
 }
 
-void SettingsDialog::on_intensitySlider_valueChanged(int value)
+void SettingsDialog::on_ratioSlider_valueChanged(int value)
 {
-    m_ui.intensityLabel->setText(QString::number(value * 1.0 / DEFAULT_INTENSITY, 'f', 1));
-    if(CrystalizerPlugin::instance())
-        CrystalizerPlugin::instance()->setIntensity(value);
+    m_ui.ratioLabel->setText(QString::number(value * 1.0 / DEFAULT_RATIO, 'f', 2));
 }

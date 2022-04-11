@@ -7,12 +7,20 @@ contains(CONFIG, BITCRUSHER_PLUGIN){
     SUBDIRS += bitcrusher
 }
 
+contains(CONFIG, BS2B_PLUGIN){
+    SUBDIRS += bs2b
+}
+
 contains(CONFIG, CRYSTALIZER_PLUGIN){
     SUBDIRS += crystalizer
 }
 
 contains(CONFIG, ECHO_PLUGIN){
     SUBDIRS += echo
+}
+
+unix:contains(CONFIG, LADSPA_PLUGIN){
+    SUBDIRS += ladspa
 }
 
 contains(CONFIG, MUFFLER_PLUGIN){
@@ -23,8 +31,8 @@ contains(CONFIG, SILENCE_PLUGIN){
     SUBDIRS += silence
 }
 
-contains(CONFIG, BS2B_PLUGIN){
-    SUBDIRS += bs2b
+contains(CONFIG, SONIC_PLUGIN){
+    SUBDIRS += sonic
 }
 
 contains(CONFIG, SOXR_PLUGIN){
@@ -33,8 +41,4 @@ contains(CONFIG, SOXR_PLUGIN){
 
 contains(CONFIG, SRC_PLUGIN){
     SUBDIRS += srconverter
-}
-
-unix:contains(CONFIG, LADSPA_PLUGIN){
-    SUBDIRS += ladspa
 }

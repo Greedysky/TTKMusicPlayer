@@ -43,7 +43,7 @@ void SoXResampler::configure(quint32 freq, ChannelMap map)
     {
         soxr_error_t error = nullptr;
         m_soxr = soxr_create(freq, m_sampleRate, map.count(), &error, nullptr, &m_quality, nullptr);
-        double ratio = (double)m_sampleRate/freq;
+        double ratio = (double)m_sampleRate / freq;
         m_samples = ratio * QMMP_BLOCK_FRAMES * map.count() * 2 + 2;
         m_out = new float[m_samples];
     }
