@@ -134,7 +134,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
 
     const QString &text = QString(krc.decodeString());
     //The lyrics by line into the lyrics list
-    for(const QString &oneLine : text.split(MusicUtils::String::newlines()))
+    for(const QString &oneLine : text.split(MusicUtils::String::lineWrap()))
     {
         matchLrcLine(oneLine);
     }

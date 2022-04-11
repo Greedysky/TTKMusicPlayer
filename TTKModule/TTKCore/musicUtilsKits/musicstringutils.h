@@ -73,7 +73,7 @@ namespace MusicUtils
         /*!
          * Get new \r \n string key.
          */
-        TTK_MODULE_EXPORT QString newlines();
+        TTK_MODULE_EXPORT QString lineWrap();
 
         /*!
          * Check the given char is or not chinese character.

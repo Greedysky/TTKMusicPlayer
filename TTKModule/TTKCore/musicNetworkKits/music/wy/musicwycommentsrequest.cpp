@@ -13,8 +13,8 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &value)
 
     MusicSemaphoreLoop loop;
     MusicWYQueryRequest *d = new MusicWYQueryRequest(this);
-    d->setQueryAllRecords(false);
     d->setQueryLite(true);
+    d->setQueryAllRecords(false);
     d->startToSearch(MusicAbstractQueryRequest::MusicQuery, value);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();

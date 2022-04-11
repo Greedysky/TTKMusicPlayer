@@ -17,7 +17,7 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     headerview->resizeSection(2, 25);
 
     MusicUtils::Widget::setTransparent(this, 0);
-    setStyleSheet(MusicUIObject::MQSSTableWidgetStyle03 + MusicUIObject::MQSSLineEditStyle01 + MusicUIObject::MQSSTableWidgetStyle04);
+    setStyleSheet(MusicUIObject::MQSSTableWidgetStyle03 + MusicUIObject::MQSSTableWidgetStyle04);
 
     MusicCheckBoxDelegate *delegate = new MusicCheckBoxDelegate(this);
     delegate->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle02);

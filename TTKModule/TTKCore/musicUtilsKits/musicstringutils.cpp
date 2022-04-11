@@ -94,7 +94,7 @@ QString MusicUtils::String::removeStringToken(const QString &value, const QStrin
     return s;
 }
 
-QString MusicUtils::String::newlines()
+QString MusicUtils::String::lineWrap()
 {
 #ifdef Q_OS_WIN
     return "\r\n";
