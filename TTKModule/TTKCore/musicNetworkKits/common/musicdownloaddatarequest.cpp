@@ -32,7 +32,7 @@ void MusicDownloadDataRequest::setRecordType(MusicObject::RecordType type)
     m_recordType = type;
 }
 
-void MusicDownloadDataRequest::startRequest(const QUrl &url)
+void MusicDownloadDataRequest::startRequest(const QString &url)
 {
     m_speedTimer.start();
 
@@ -49,6 +49,7 @@ void MusicDownloadDataRequest::startRequest(const QUrl &url)
 #endif
     connect(m_reply, SIGNAL(readyRead()), this, SLOT(handleReadyRead()));
     connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
+
     /// only download music data can that show progress
     if(m_downloadType == MusicObject::DownloadMusic && !m_redirection)
     {
@@ -71,18 +72,18 @@ void MusicDownloadDataRequest::downLoadFinished()
     m_file->flush();
     m_file->close();
 
-    const QVariant &redirectionTarget = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+    const QVariant &redirection = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
     if(m_reply->error() != QNetworkReply::NoError)
     {
         m_file->remove();
     }
-    else if(!redirectionTarget.isNull())
+    else if(redirection.isValid())
     {
         m_redirection = true;
         m_reply->deleteLater();
         m_file->open(QIODevice::WriteOnly);
         m_file->resize(0);
-        startRequest(m_reply->url().resolved(redirectionTarget.toUrl()));
+        startRequest(redirection.toString());
         return;
     }
     else

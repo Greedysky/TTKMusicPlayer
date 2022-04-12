@@ -84,7 +84,7 @@ protected:
     /*!
      * Start to download data from url.
      */
-    void startRequest(const QUrl &url);
+    void startRequest(const QString &url);
 
     qint64 m_createItemTime;
     bool m_redirection, m_needUpdate;

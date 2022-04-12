@@ -21,11 +21,12 @@ void MusicDownloadSourceRequest::downLoadFinished()
     MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        if(m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute).isValid())
+        const QVariant &redirection = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+        if(redirection.isValid())
         {
-            const QString &newUrl = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
+            const QString &url = redirection.toString();
             deleteAll();
-            startToDownload(newUrl); ///redirection target url
+            startToDownload(url);
         }
         else
         {

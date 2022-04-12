@@ -57,7 +57,7 @@ qint64 MusicAbstractQueryRequest::fileSizeByUrl(const QString &url)
 
     size = reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
     const QVariant &redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
-    if(!redirection.isNull())
+    if(redirection.isValid())
     {
         size = fileSizeByUrl(redirection.toString());
     }

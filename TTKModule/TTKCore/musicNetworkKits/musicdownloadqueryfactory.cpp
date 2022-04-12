@@ -197,7 +197,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeRecommendRequest(QObje
         case MusicAbstractQueryRequest::QQQueryServer: request = new MusicQQQueryRecommendRequest(parent); break;
         case MusicAbstractQueryRequest::KWQueryServer: request = new MusicKWQueryRecommendRequest(parent); break;
         case MusicAbstractQueryRequest::KGQueryServer: request = new MusicKGQueryRecommendRequest(parent); break;
-        default: request = new MusicWYQueryRecommendRequest(parent);
+        default: request = new MusicBDQueryRecommendRequest(parent);
     }
     TTK_LOGGER_INFO(QString("MusicQueryRecommendRequest server: %1").arg(request->queryServer()));
     return request;

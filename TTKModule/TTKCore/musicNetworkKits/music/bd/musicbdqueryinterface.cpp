@@ -8,7 +8,7 @@ void MusicBDInterface::makeRequestRawHeader(QNetworkRequest *request)
 }
 
 
-void MusicBDQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &key, int bitrate) const
+void MusicBDQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &key, int length, int bitrate) const
 {
     if(key.isEmpty())
     {
@@ -17,7 +17,7 @@ void MusicBDQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
 
     MusicObject::MusicSongProperty prop;
     prop.m_url = MusicUtils::Algorithm::mdII(BD_BASE_URL, false) + key;
-    prop.m_size = "-";
+    prop.m_size = MusicUtils::Number::sizeByte2Label(length * 1000 * bitrate / 8);
     switch(bitrate)
     {
     case MB_128: prop.m_format = MP3_FILE_PREFIX; break;
@@ -35,33 +35,39 @@ void MusicBDQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
 {
     info->m_lrcUrl = MusicUtils::Algorithm::mdII(BD_BASE_URL, false) + key["lrcUrl"].toString();
     info->m_coverUrl = key["picUrl"].toString();
+    const int length = key["length"].toInt();
 
     if(all)
     {
-        readFromMusicSongProperty(info, key["lqUrl"].toString(), MB_128);
-        readFromMusicSongProperty(info, key["hqUrl"].toString(), MB_192);
-        readFromMusicSongProperty(info, key["sqUrl"].toString(), MB_320);
-        readFromMusicSongProperty(info, key["apeUrl"].toString(), MB_750);
-        readFromMusicSongProperty(info, key["flacUrl"].toString(), MB_1000);
+        readFromMusicSongProperty(info, key["lqUrl"].toString(), length, MB_128);
+        readFromMusicSongProperty(info, key["hqUrl"].toString(), length, MB_192);
+        readFromMusicSongProperty(info, key["sqUrl"].toString(), length, MB_320);
+        readFromMusicSongProperty(info, key["apeUrl"].toString(), length, MB_750);
+        readFromMusicSongProperty(info, key["flacUrl"].toString(), length, MB_1000);
     }
     else
     {
         if(quality == MusicObject::StandardQuality)
         {
-            readFromMusicSongProperty(info, key["lqUrl"].toString(), MB_128);
+            readFromMusicSongProperty(info, key["lqUrl"].toString(), length, MB_128);
         }
         else if(quality == MusicObject::HighQuality)
         {
-            readFromMusicSongProperty(info, key["hqUrl"].toString(), MB_192);
+            readFromMusicSongProperty(info, key["hqUrl"].toString(), length, MB_192);
         }
         else if(quality == MusicObject::SuperQuality)
         {
-            readFromMusicSongProperty(info, key["sqUrl"].toString(), MB_320);
+            readFromMusicSongProperty(info, key["sqUrl"].toString(), length, MB_320);
         }
         else if(quality == MusicObject::LosslessQuality)
         {
-            readFromMusicSongProperty(info, key["apeUrl"].toString(), MB_750);
-            readFromMusicSongProperty(info, key["flacUrl"].toString(), MB_1000);
+            readFromMusicSongProperty(info, key["apeUrl"].toString(), length, MB_750);
+            readFromMusicSongProperty(info, key["flacUrl"].toString(), length, MB_1000);
         }
+    }
+
+    if(info->m_songProps.isEmpty())
+    {
+        readFromMusicSongProperty(info, key["copyUrl"].toString(), length, MB_128);
     }
 }

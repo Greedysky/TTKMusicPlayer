@@ -57,7 +57,7 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &key, int bitrate) const;
+    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &key, int length, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
