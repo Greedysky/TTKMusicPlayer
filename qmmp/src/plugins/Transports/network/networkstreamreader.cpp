@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QSettings>
 #include <QApplication>
+#include <QSslConfiguration>
 #include <qmmp/statehandler.h>
 
 NetworkStreamReader::NetworkStreamReader(const QString &url, QObject *parent)
@@ -83,6 +84,11 @@ void NetworkStreamReader::run()
     QNetworkRequest request;
     request.setUrl(m_url);
     request.setRawHeader("Icy-MetaData", "1");
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(readyRead()), SLOT(handleReadyRead()));
@@ -160,6 +166,15 @@ void NetworkStreamReader::handleReadyRead()
 
 void NetworkStreamReader::handleFinished()
 {
+    const QVariant &redirection = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+    if(redirection.isValid())
+    {
+        m_url = redirection.toString();
+        m_reply->deleteLater();
+        run();
+        return;
+    }
+
     if(m_path.isEmpty() || m_stream.buffer_size <= 0 || m_stream.aborted)
     {
         return;
