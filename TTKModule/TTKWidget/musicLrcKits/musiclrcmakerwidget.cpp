@@ -178,7 +178,7 @@ MusicLrcMakerWidget::~MusicLrcMakerWidget()
     resetToOriginPlayMode();
     G_CONNECTION_PTR->removeValue(className());
     G_SINGLE_MANAGER_PTR->removeObject(className());
-    qDeleteAll(m_musicLrcContainer);
+    qDeleteAll(m_lrcContainer);
     delete m_lineItem;
     delete m_analysis;
     delete m_ui;
@@ -222,7 +222,7 @@ void MusicLrcMakerWidget::positionChanged(qint64 position)
         QString currentLrc, laterLrc;
         if(m_analysis->findText(position, m_ui->timeSlider_F->maximum(), currentLrc, laterLrc, m_intervalTime))
         {
-            if(currentLrc != m_musicLrcContainer[m_analysis->lineMiddle()]->text())
+            if(currentLrc != m_lrcContainer[m_analysis->lineMiddle()]->text())
             {
                 updateCurrentLrc(m_intervalTime);
             }
@@ -306,11 +306,11 @@ void MusicLrcMakerWidget::thirdWidgetStateButtonClicked()
     MusicApplication::instance()->musicStatePlay();
     if(state)
     {
-        m_musicLrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
+        m_lrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
     }
     else
     {
-        m_musicLrcContainer[m_analysis->lineMiddle()]->stopDrawLrc();
+        m_lrcContainer[m_analysis->lineMiddle()]->stopDrawLrc();
         m_ui->lrcViewer->stop();
     }
 }
@@ -386,7 +386,7 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
 
         for(int i = 0; i < m_analysis->lineMax(); ++i)
         {
-            m_musicLrcContainer[i]->setText(QString());
+            m_lrcContainer[i]->setText(QString());
         }
         setItemStyleSheet(0, -3, 90);
         setItemStyleSheet(1, -6, 35);
@@ -400,11 +400,11 @@ void MusicLrcMakerWidget::updateAnimationLrc()
 {
     for(int i = 0; i < m_analysis->lineMax(); ++i)
     {
-        m_musicLrcContainer[i]->setText(m_analysis->text(i));
+        m_lrcContainer[i]->setText(m_analysis->text(i));
     }
 
     m_analysis->setCurrentIndex(m_analysis->currentIndex() + 1);
-    m_musicLrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
+    m_lrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
 }
 
 void MusicLrcMakerWidget::lrcSpeedSlower()
@@ -634,7 +634,7 @@ void MusicLrcMakerWidget::createThirdWidget()
         MusicLrcManagerForInterior *w = new MusicLrcManagerForInterior(this);
         w->setLrcPerWidth(-20);
         m_ui->lrcViewer->addWidget(w);
-        m_musicLrcContainer.append(w);
+        m_lrcContainer.append(w);
     }
 
     m_ui->stateButton_T->setText(!MusicApplication::instance()->isPlaying() ? tr("Play") : tr("Pause"));
@@ -741,7 +741,7 @@ void MusicLrcMakerWidget::updateCurrentLrc(qint64 time)
 
 void MusicLrcMakerWidget::setItemStyleSheet(int index, int size, int transparent)
 {
-    MusicLrcManagerForInterior *w = m_musicLrcContainer[index];
+    MusicLrcManagerForInterior *w = m_lrcContainer[index];
     w->setFontSize(size);
 
     const int value = qBound<int>(0, 100 - transparent, 100);

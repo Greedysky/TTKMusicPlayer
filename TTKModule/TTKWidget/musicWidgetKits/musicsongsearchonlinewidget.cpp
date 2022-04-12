@@ -105,14 +105,14 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
 
 void MusicSongSearchTableWidget::musicDownloadLocal(int row)
 {
-    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
-    if(row < 0 || (row >= rowCount() - 1) || row >= musicSongInfos.count())
+    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    if(row < 0 || (row >= rowCount() - 1) || row >= songInfos.count())
     {
         return;
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], MusicAbstractQueryRequest::MusicQuery);
+    download->setSongName(songInfos[row], MusicAbstractQueryRequest::MusicQuery);
     download->show();
 }
 
@@ -256,8 +256,8 @@ void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
         return;
     }
 
-    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
-    const MusicObject::MusicSongInformation &info = musicSongInfos[row];
+    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const MusicObject::MusicSongInformation &info = songInfos[row];
 
     switch(action->data().toInt())
     {
@@ -279,9 +279,9 @@ void MusicSongSearchTableWidget::musicSongDownload(int row)
         return;
     }
 
-    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
+    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], MusicAbstractQueryRequest::MusicQuery);
+    download->setSongName(songInfos[row], MusicAbstractQueryRequest::MusicQuery);
     download->show();
 }
 
@@ -325,27 +325,29 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
         return;
     }
 
-    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
-    const MusicObject::MusicSongInformation &musicSongInfo = musicSongInfos[row];
-    MusicObject::MusicSongPropertyList props(musicSongInfo.m_songProps);
+    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const MusicObject::MusicSongInformation &info = songInfos[row];
+    MusicObject::MusicSongPropertyList props(info.m_songProps);
     std::sort(props.begin(), props.end()); //to find out the min bitrate
 
     if(!props.isEmpty())
     {
         const MusicObject::MusicSongProperty &prop = props.front();
+
         MusicResultsItem result;
         result.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
-        result.m_updateTime = musicSongInfo.m_duration;
-        result.m_id = musicSongInfo.m_songId;
+        result.m_updateTime = info.m_duration;
+        result.m_id = info.m_songId;
         result.m_nickName = prop.m_url;
         result.m_description = prop.m_format;
         result.m_playCount = prop.m_size;
-        result.m_tags = play ? "true" : "false";
+        result.m_tags = play ? TTK_DOTDOT : TTK_DOT;
+
         if(m_networkRequest)
         {
             result.m_id = m_networkRequest->queryServer() + result.m_id;
         }
-        Q_EMIT musicSongToPlaylistChanged(result);
+        Q_EMIT songBufferToPlaylist(result);
     }
 }
 
@@ -449,15 +451,15 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
             return;
         }
 
-        MusicObject::MusicSongInformationList selectedItems, musicSongInfos(d->musicSongInfoList());
+        MusicObject::MusicSongInformationList selectedItems, songInfos(d->songInfoList());
         for(int index : qAsConst(list))
         {
-            if(index < 0 || index >= musicSongInfos.count())
+            if(index < 0 || index >= songInfos.count())
             {
                 continue;
             }
 
-            selectedItems << musicSongInfos[index];
+            selectedItems << songInfos[index];
         }
 
         MusicDownloadBatchWidget *w = GENERATE_SINGLE_WIDGET_CLASS(MusicDownloadBatchWidget);

@@ -52,12 +52,12 @@ void MusicWYArtistSimilarRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem info;
-                    info.m_id = QString::number(value["id"].toULongLong());
-                    info.m_coverUrl = value["picUrl"].toString();
-                    info.m_name = value["name"].toString();
-                    info.m_updateTime.clear();
-                    Q_EMIT createSimilarItem(info);
+                    MusicResultsItem result;
+                    result.m_id = QString::number(value["id"].toULongLong());
+                    result.m_coverUrl = value["picUrl"].toString();
+                    result.m_name = value["name"].toString();
+                    result.m_updateTime.clear();
+                    Q_EMIT createSimilarItem(result);
                 }
             }
         }

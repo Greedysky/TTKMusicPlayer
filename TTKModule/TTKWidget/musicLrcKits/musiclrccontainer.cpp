@@ -11,12 +11,12 @@ MusicLrcContainer::MusicLrcContainer(QWidget *parent)
     m_totalTime = 0;
     m_linkLocalLrc = true;
     m_lrcAnalysis = nullptr;
-    m_musicLrcSearchWidget = nullptr;
+    m_lrcSearchWidget = nullptr;
 }
 
 MusicLrcContainer::~MusicLrcContainer()
 {
-    delete m_musicLrcSearchWidget;
+    delete m_lrcSearchWidget;
 }
 
 void MusicLrcContainer::applySettingParameter()
@@ -32,7 +32,7 @@ void MusicLrcContainer::setLinearGradientColor(MusicLrcColor::LrcColorType lrcCo
 
 void MusicLrcContainer::setLinearGradientColor(const MusicLrcColor &color)
 {
-    for(MusicLrcManager *manager : qAsConst(m_musicLrcContainer))
+    for(MusicLrcManager *manager : qAsConst(m_lrcManagers))
     {
         manager->setLinearGradientColor(color);
     }
@@ -89,10 +89,10 @@ void MusicLrcContainer::changeCurrentLrcColor(int index)
 
 void MusicLrcContainer::searchMusicLrcs()
 {
-    delete m_musicLrcSearchWidget;
-    m_musicLrcSearchWidget = new MusicLrcSearchWidget(this);
-    m_musicLrcSearchWidget->setCurrentSongName(m_currentSongName);
-    m_musicLrcSearchWidget->exec();
+    delete m_lrcSearchWidget;
+    m_lrcSearchWidget = new MusicLrcSearchWidget(this);
+    m_lrcSearchWidget->setCurrentSongName(m_currentSongName);
+    m_lrcSearchWidget->exec();
 }
 
 void MusicLrcContainer::showLrcMakedWidget()
@@ -105,7 +105,7 @@ void MusicLrcContainer::showLrcMakedWidget()
 void MusicLrcContainer::linkLrcStateChanged()
 {
     m_linkLocalLrc = !m_linkLocalLrc;
-    for(MusicLrcManager *w : qAsConst(m_musicLrcContainer))
+    for(MusicLrcManager *w : qAsConst(m_lrcManagers))
     {
         w->setVisible(m_linkLocalLrc);
     }
@@ -113,13 +113,13 @@ void MusicLrcContainer::linkLrcStateChanged()
 
 void MusicLrcContainer::clearAllMusicLRCManager()
 {
-    qDeleteAll(m_musicLrcContainer);
-    m_musicLrcContainer.clear();
+    qDeleteAll(m_lrcManagers);
+    m_lrcManagers.clear();
 }
 
 void MusicLrcContainer::applySettingParameter(const QString &t)
 {
-    for(MusicLrcManager *manager : qAsConst(m_musicLrcContainer))
+    for(MusicLrcManager *manager : qAsConst(m_lrcManagers))
     {
         manager->setFontFamily(G_SETTING_PTR->value(t + "LrcFamily").toInt());
         manager->setFontType(G_SETTING_PTR->value(t + "LrcType").toInt());

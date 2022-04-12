@@ -30,31 +30,31 @@ void MusicLrcDownloadBatchTableWidget::createAllItems(const MusicSongList &items
         const MusicSong &song = items[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setToolTip(song.musicPath());
+        item->setToolTip(song.path());
         item->setText(QString::number(i + 1));
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.musicPath());
-        item->setText(MusicUtils::Widget::elidedText(font(), song.musicArtistBack(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        item->setToolTip(song.path());
+        item->setText(MusicUtils::Widget::elidedText(font(), song.artistBack(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.musicPath());
-        item->setText(MusicUtils::Widget::elidedText(font(), song.musicArtistFront(), Qt::ElideRight, headerview->sectionSize(2) - 10));
+        item->setToolTip(song.path());
+        item->setText(MusicUtils::Widget::elidedText(font(), song.artistFront(), Qt::ElideRight, headerview->sectionSize(2) - 10));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.musicPath());
-        item->setText(MusicUtils::Widget::elidedText(font(), song.musicName(), Qt::ElideRight, headerview->sectionSize(3) - 10));
+        item->setToolTip(song.path());
+        item->setText(MusicUtils::Widget::elidedText(font(), song.name(), Qt::ElideRight, headerview->sectionSize(3) - 10));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 3, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.musicPath());
+        item->setToolTip(song.path());
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
     }
@@ -142,8 +142,8 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         it->setText("...");
 
         MusicSong *song = &m_localSongs[i];
-        const QString &prefix = lrcDir ? MusicUtils::String::lrcPrefix() : QFileInfo(song->musicPath()).path() + TTK_SEPARATOR;
-        const QString &path = QString("%1/%2%3").arg(prefix, song->musicName(), LRC_FILE);
+        const QString &prefix = lrcDir ? MusicUtils::String::lrcPrefix() : QFileInfo(song->path()).path() + TTK_SEPARATOR;
+        const QString &path = QString("%1/%2%3").arg(prefix, song->name(), LRC_FILE);
         if(skip && QFile::exists(path))
         {
 #if TTK_QT_VERSION_CHECK(5,13,0)
@@ -158,12 +158,12 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         MusicSemaphoreLoop loop;
         MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        d->startToSearch(MusicAbstractQueryRequest::MusicQuery, song->musicName().trimmed());
+        d->startToSearch(MusicAbstractQueryRequest::MusicQuery, song->name().trimmed());
         loop.exec();
 
         if(!d->isEmpty())
         {
-            const MusicObject::MusicSongInformation info(d->musicSongInfoList().front());
+            const MusicObject::MusicSongInformation info(d->songInfoList().front());
             MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, MusicObject::DownloadLrc, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startToDownload();

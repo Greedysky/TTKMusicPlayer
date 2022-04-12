@@ -133,12 +133,12 @@ void MusicPlayedListPopWidget::remove(int toolIndex, const QString &path)
 
 void MusicPlayedListPopWidget::remove(int toolIndex, const MusicSong &song)
 {
-    remove(toolIndex, song.musicPath());
+    remove(toolIndex, song.path());
 }
 
 void MusicPlayedListPopWidget::append(int toolIndex, const MusicSong &song)
 {
-    m_playlist->append(toolIndex, song.musicPath());
+    m_playlist->append(toolIndex, song.path());
     m_songList << song;
     updateSongsFileName();
 }
@@ -163,7 +163,7 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
     }
 
     (index != m_songList.count()) ? m_songList.insert(index, song) : m_songList.append(song);
-    m_playlist->appendQueue(toolIndex, song.musicPath());
+    m_playlist->appendQueue(toolIndex, song.path());
 
     const int row = m_playedListWidget->playRowIndex();
     m_playedListWidget->clearAllItems();
@@ -186,7 +186,7 @@ void MusicPlayedListPopWidget::setCurrentIndex()
 
 void MusicPlayedListPopWidget::setCurrentIndex(int toolIndex, const MusicSong &song)
 {
-    m_playlist->setCurrentIndex(toolIndex, song.musicPath());
+    m_playlist->setCurrentIndex(toolIndex, song.path());
     setCurrentIndex();
 }
 

@@ -66,9 +66,9 @@ void MusicKGSongSuggestRequest::downLoadFinished()
                             value = var.toMap();
                             TTK_NETWORK_QUERY_CHECK();
 
-                            MusicResultsItem item;
-                            item.m_name = MusicUtils::String::charactersReplaced(value["HintInfo"].toString());
-                            m_items << item;
+                            MusicResultsItem result;
+                            result.m_name = MusicUtils::String::charactersReplaced(value["HintInfo"].toString());
+                            m_items << result;
                         }
                     }
                     break;

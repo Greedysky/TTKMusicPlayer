@@ -63,7 +63,7 @@ public:
     /*!
      * Set music sort.
      */
-    inline void setMusicSongSort(MusicSongSort *sort) { m_musicSort = sort; }
+    inline void setSongSort(MusicSongSort *sort) { m_songSort = sort; }
     /*!
      * Update item time label time.
      */
@@ -195,15 +195,15 @@ protected:
 
     QTimer m_timerShow, m_timerStay;
     MusicOpenFileWidget *m_openFileWidget;
-    MusicSongsListItemInfoWidget *m_musicSongsInfoWidget;
-    MusicSongsListPlayWidget *m_musicSongsPlayWidget;
+    MusicSongsListItemInfoWidget *m_songsInfoWidget;
+    MusicSongsListPlayWidget *m_songsPlayWidget;
 
     bool m_leftButtonPressed;
     bool m_renameActived, m_deleteItemWithFile;
     MusicSongList m_searchedSongs;
     QTableWidgetItem *m_renameItem;
     MusicRenameLineEditDelegate *m_renameLineEditDelegate;
-    MusicSongSort *m_musicSort;
+    MusicSongSort *m_songSort;
 
 };
 

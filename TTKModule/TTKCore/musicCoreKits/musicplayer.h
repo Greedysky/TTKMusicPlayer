@@ -166,10 +166,10 @@ private Q_SLOTS:
 protected:
     MusicPlaylist *m_playlist;
     MusicObject::PlayState m_state;
-    SoundCore *m_music;
+    SoundCore *m_core;
     QTimer m_timer;
     QString m_currentMedia;
-    Enhanced m_musicEnhanced;
+    Enhanced m_enhanced;
     qint64 m_duration;
 
     int m_durationTimes;

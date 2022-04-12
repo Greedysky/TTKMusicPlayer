@@ -12,7 +12,7 @@ MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, con
 
 void MusicDownloadTagDataRequest::setSongMeta(MusicSongMeta &meta)
 {
-    m_musicMeta = std::move(meta);
+    m_songMeta = std::move(meta);
 }
 
 void MusicDownloadTagDataRequest::startToDownload()
@@ -49,7 +49,7 @@ void MusicDownloadTagDataRequest::downLoadFinished()
         MusicSemaphoreLoop loop;
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        download->startToDownload(m_musicMeta.comment());
+        download->startToDownload(m_songMeta.comment());
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
         loop.exec();
     }
@@ -65,11 +65,11 @@ void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &bytes)
     {
         if(G_SETTING_PTR->value(MusicSettingManager::OtherWriteFileInfo).toBool())
         {
-            meta.setTitle(m_musicMeta.title());
-            meta.setArtist(m_musicMeta.artist());
-            meta.setAlbum(m_musicMeta.album());
-            meta.setTrackNum(m_musicMeta.trackNum());
-            meta.setYear(m_musicMeta.year());
+            meta.setTitle(m_songMeta.title());
+            meta.setArtist(m_songMeta.artist());
+            meta.setAlbum(m_songMeta.album());
+            meta.setTrackNum(m_songMeta.trackNum());
+            meta.setYear(m_songMeta.year());
         }
 
         if(G_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool())

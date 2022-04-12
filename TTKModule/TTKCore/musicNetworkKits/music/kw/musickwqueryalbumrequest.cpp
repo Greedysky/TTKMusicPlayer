@@ -62,19 +62,18 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
             {
                 bool albumFound = false;
                 //
-                MusicResultsItem info;
+                MusicResultsItem result;
                 const QString &albumName = value["name"].toString();
-                info.m_nickName = value["albumid"].toString();
-                info.m_coverUrl = value["pic"].toString();
-                if(!info.m_coverUrl.contains(HTTP_PREFIX) && !info.m_coverUrl.contains(TTK_NULL_STR))
+                result.m_nickName = value["albumid"].toString();
+                result.m_coverUrl = value["pic"].toString();
+                if(!result.m_coverUrl.contains(HTTP_PREFIX) && !result.m_coverUrl.contains(TTK_NULL_STR))
                 {
-                    info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info.m_coverUrl;
+                    result.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + result.m_coverUrl;
                 }
-                info.m_description = albumName + TTK_SPLITER +
-                                     value["lang"].toString() + TTK_SPLITER +
-                                     value["company"].toString() + TTK_SPLITER +
-                                     value["pub"].toString();
-                //
+                result.m_description = albumName + TTK_SPLITER +
+                                       value["lang"].toString() + TTK_SPLITER +
+                                       value["company"].toString() + TTK_SPLITER +
+                                       value["pub"].toString();
                 const QVariantList &datas = value["musiclist"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -86,50 +85,53 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
-                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                    musicInfo.m_duration = TTK_DEFAULT_STR;
+                    MusicObject::MusicSongInformation info;
+                    info.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
+                    info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
+                    info.m_duration = TTK_DEFAULT_STR;
 
-                    musicInfo.m_songId = value["id"].toString();
-                    musicInfo.m_artistId = value["artistid"].toString();
-                    musicInfo.m_albumId = info.m_nickName;
-                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumName);
+                    info.m_songId = value["id"].toString();
+                    info.m_artistId = value["artistid"].toString();
+                    info.m_albumId = result.m_nickName;
+                    info.m_albumName = MusicUtils::String::charactersReplaced(albumName);
 
-                    musicInfo.m_year = QString();
-                    musicInfo.m_discNumber = "1";
-                    musicInfo.m_trackNumber = "0";
+                    info.m_year = QString();
+                    info.m_discNumber = "1";
+                    info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongPicture(&musicInfo);
+                    readFromMusicSongPicture(&info);
                     TTK_NETWORK_QUERY_CHECK();
-                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                    readFromMusicSongProperty(&musicInfo, value["formats"].toString(), m_queryQuality, m_queryAllRecords);
+                    info.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
+                    readFromMusicSongProperty(&info, value["formats"].toString(), m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songProps.isEmpty())
+                    if(info.m_songProps.isEmpty())
                     {
                         continue;
                     }
-                    //
-                    if(!findUrlFileSize(&musicInfo.m_songProps)) return;
-                    //
+
+                    if(!findUrlFileSize(&info.m_songProps))
+                    {
+                        return;
+                    }
+
                     if(!albumFound)
                     {
                         albumFound = true;
-                        info.m_id = musicInfo.m_albumId;
-                        info.m_name = musicInfo.m_singerName;
-                        Q_EMIT createAlbumInfoItem(info);
+                        result.m_id = info.m_albumId;
+                        result.m_name = info.m_singerName;
+                        Q_EMIT createAlbumInfoItem(result);
                     }
-                    //
+
                     MusicSearchedItem item;
-                    item.m_songName = musicInfo.m_songName;
-                    item.m_singerName = musicInfo.m_singerName;
-                    item.m_albumName = musicInfo.m_albumName;
-                    item.m_duration = musicInfo.m_duration;
+                    item.m_songName = info.m_songName;
+                    item.m_singerName = info.m_singerName;
+                    item.m_albumName = info.m_albumName;
+                    item.m_duration = info.m_duration;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
-                    m_musicSongInfos << musicInfo;
+                    m_songInfos << info;
                 }
             }
         }
@@ -166,16 +168,16 @@ void MusicKWQueryAlbumRequest::downLoadSingleFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem info;
-                    info.m_id = value["albumid"].toString();
-                    info.m_coverUrl = value["pic"].toString();
-                    if(!info.m_coverUrl.contains(HTTP_PREFIX) && !info.m_coverUrl.contains(TTK_NULL_STR))
+                    MusicResultsItem result;
+                    result.m_id = value["albumid"].toString();
+                    result.m_coverUrl = value["pic"].toString();
+                    if(!result.m_coverUrl.contains(HTTP_PREFIX) && !result.m_coverUrl.contains(TTK_NULL_STR))
                     {
-                        info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info.m_coverUrl;
+                        result.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + result.m_coverUrl;
                     }
-                    info.m_name = value["name"].toString();
-                    info.m_updateTime = value["pub"].toString().replace(TTK_DEFAULT_STR, TTK_DOT);
-                    Q_EMIT createAlbumInfoItem(info);
+                    result.m_name = value["name"].toString();
+                    result.m_updateTime = value["pub"].toString().replace(TTK_DEFAULT_STR, TTK_DOT);
+                    Q_EMIT createAlbumInfoItem(result);
                 }
             }
         }

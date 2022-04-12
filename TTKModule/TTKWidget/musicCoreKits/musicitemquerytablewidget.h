@@ -101,7 +101,7 @@ protected:
     /*!
      * Download data from net and just play or not.
      */
-    bool downloadDataFrom(const MusicObject::MusicSongInformation &downloadInfo, bool play);
+    bool downloadDataFrom(const MusicObject::MusicSongInformation &info, bool play);
 
     MusicLabelDelegate *m_labelDelegate;
 

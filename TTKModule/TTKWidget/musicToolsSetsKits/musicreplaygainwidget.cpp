@@ -353,7 +353,7 @@ void MusicReplayGainWidget::confirmDataChanged()
     {
         if(m_replayGainWidget)
         {
-            m_replayGainWidget->open(song.musicPath());
+            m_replayGainWidget->open(song.path());
         }
     }
 }

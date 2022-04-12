@@ -22,7 +22,7 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &value)
     m_rawData["sid"] = 0;
     if(!d->isEmpty())
     {
-        m_rawData["sid"] = d->musicSongInfoList().front().m_songId.toInt();
+        m_rawData["sid"] = d->songInfoList().front().m_songId.toInt();
         startToPage(0);
     }
 }
@@ -75,14 +75,14 @@ void MusicWYSongCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem item;
+                    MusicResultsItem result;
                     const QVariantMap &user = value["user"].toMap();
-                    item.m_nickName = user["nickname"].toString();
-                    item.m_coverUrl = user["avatarUrl"].toString();
-                    item.m_playCount = QString::number(value["likedCount"].toLongLong());
-                    item.m_updateTime = QString::number(value["time"].toLongLong());
-                    item.m_description = value["content"].toString();
-                    Q_EMIT createSearchedItem(item);
+                    result.m_nickName = user["nickname"].toString();
+                    result.m_coverUrl = user["avatarUrl"].toString();
+                    result.m_playCount = QString::number(value["likedCount"].toLongLong());
+                    result.m_updateTime = QString::number(value["time"].toLongLong());
+                    result.m_description = value["content"].toString();
+                    Q_EMIT createSearchedItem(result);
                 }
             }
         }
@@ -156,14 +156,14 @@ void MusicWYPlaylistCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem item;
+                    MusicResultsItem result;
                     const QVariantMap &user = value["user"].toMap();
-                    item.m_nickName = user["nickname"].toString();
-                    item.m_coverUrl = user["avatarUrl"].toString();
-                    item.m_playCount = QString::number(value["likedCount"].toLongLong());
-                    item.m_updateTime = QString::number(value["time"].toLongLong());
-                    item.m_description = value["content"].toString();
-                    Q_EMIT createSearchedItem(item);
+                    result.m_nickName = user["nickname"].toString();
+                    result.m_coverUrl = user["avatarUrl"].toString();
+                    result.m_playCount = QString::number(value["likedCount"].toLongLong());
+                    result.m_updateTime = QString::number(value["time"].toLongLong());
+                    result.m_description = value["content"].toString();
+                    Q_EMIT createSearchedItem(result);
                 }
             }
         }

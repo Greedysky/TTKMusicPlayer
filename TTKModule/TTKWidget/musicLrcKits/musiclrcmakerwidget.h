@@ -240,7 +240,7 @@ protected:
     qint64 m_intervalTime;
     MusicLrcMakerWidgetItem *m_lineItem;
     MusicLrcAnalysis *m_analysis;
-    QList<MusicLrcManagerForInterior*> m_musicLrcContainer;
+    QList<MusicLrcManagerForInterior*> m_lrcContainer;
 
 };
 

@@ -48,7 +48,7 @@ bool MusicWPLConfigManager::writeBuffer(const MusicSongItemList &items, const QS
 
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
-            writeDomElement(seqDom, "media", {"src", song.musicPath()});
+            writeDomElement(seqDom, "media", {"src", song.path()});
         }
     }
 

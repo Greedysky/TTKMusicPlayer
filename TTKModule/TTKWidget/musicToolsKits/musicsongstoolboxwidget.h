@@ -41,7 +41,7 @@ public:
     /*!
      * Set music sort.
      */
-    inline void setMusicSongSort(MusicSongSort *sort) { m_musicSort = sort; }
+    inline void setSongSort(MusicSongSort *sort) { m_songSort = sort; }
 
 Q_SIGNALS:
     /*!
@@ -137,7 +137,7 @@ protected:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
     
-    MusicSongSort *m_musicSort;
+    MusicSongSort *m_songSort;
     MusicSongsToolItemRenamedWidget *m_renameLine;
 
 };
@@ -184,7 +184,7 @@ public:
     /*!
      * Set music sort.
      */
-    void setMusicSongSort(MusicSongSort *sort);
+    void setSongSort(MusicSongSort *sort);
 
 Q_SIGNALS:
     /*!
@@ -243,7 +243,7 @@ public:
     /*!
      * Set music sort.
      */
-    void setMusicSongSort(QWidget *item, MusicSongSort *sort);
+    void setSongSort(QWidget *item, MusicSongSort *sort);
 
 protected:
     /*!

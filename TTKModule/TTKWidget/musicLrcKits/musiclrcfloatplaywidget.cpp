@@ -10,32 +10,32 @@ MusicLrcFloatPlayWidget::MusicLrcFloatPlayWidget(QWidget *parent)
     layout->setContentsMargins(2, 2, 2, 2);
     layout->setSpacing(0);
 
-    m_musicPrevious = new QToolButton(this);
-    m_musicNext = new QToolButton(this);
-    m_musicKey = new QToolButton(this);
-    layout->addWidget(m_musicPrevious);
-    layout->addWidget(m_musicKey);
-    layout->addWidget(m_musicNext);
+    m_buttonPrevious = new QToolButton(this);
+    m_buttonNext = new QToolButton(this);
+    m_buttonKey = new QToolButton(this);
+    layout->addWidget(m_buttonPrevious);
+    layout->addWidget(m_buttonKey);
+    layout->addWidget(m_buttonNext);
     setLayout(layout);
 
-    m_musicPrevious->setStyleSheet(MusicUIObject::MQSSBtnPrevious);
-    m_musicNext->setStyleSheet(MusicUIObject::MQSSBtnNext);
+    m_buttonPrevious->setStyleSheet(MusicUIObject::MQSSBtnPrevious);
+    m_buttonNext->setStyleSheet(MusicUIObject::MQSSBtnNext);
 
-    m_musicPrevious->setCursor(QCursor(Qt::PointingHandCursor));
-    m_musicKey->setCursor(QCursor(Qt::PointingHandCursor));
-    m_musicNext->setCursor(QCursor(Qt::PointingHandCursor));
+    m_buttonPrevious->setCursor(QCursor(Qt::PointingHandCursor));
+    m_buttonKey->setCursor(QCursor(Qt::PointingHandCursor));
+    m_buttonNext->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_musicPrevious->setFixedSize(44, 44);
-    m_musicNext->setFixedSize(44, 44);
-    m_musicKey->setFixedSize(44, 44);
+    m_buttonPrevious->setFixedSize(44, 44);
+    m_buttonNext->setFixedSize(44, 44);
+    m_buttonKey->setFixedSize(44, 44);
 
-    connect(m_musicKey, SIGNAL(clicked()), SLOT(musicStatePlay()));
-    connect(m_musicPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
-    connect(m_musicNext, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayNext()));
+    connect(m_buttonKey, SIGNAL(clicked()), SLOT(musicStatePlay()));
+    connect(m_buttonPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
+    connect(m_buttonNext, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayNext()));
 
-    m_musicKey->setToolTip(tr("Play"));
-    m_musicPrevious->setToolTip(tr("Previous"));
-    m_musicNext->setToolTip(tr("Next"));
+    m_buttonKey->setToolTip(tr("Play"));
+    m_buttonPrevious->setToolTip(tr("Previous"));
+    m_buttonNext->setToolTip(tr("Next"));
 
     resizeWindow(0, 0);
     setCurrentPlayState();
@@ -45,9 +45,9 @@ MusicLrcFloatPlayWidget::MusicLrcFloatPlayWidget(QWidget *parent)
 
 MusicLrcFloatPlayWidget::~MusicLrcFloatPlayWidget()
 {
-    delete m_musicPrevious;
-    delete m_musicNext;
-    delete m_musicKey;
+    delete m_buttonPrevious;
+    delete m_buttonNext;
+    delete m_buttonKey;
 }
 
 void MusicLrcFloatPlayWidget::resizeWindow(int width, int height)
@@ -81,5 +81,5 @@ void MusicLrcFloatPlayWidget::enterEvent(QEvent *event)
 
 void MusicLrcFloatPlayWidget::setCurrentPlayState()
 {
-    m_musicKey->setStyleSheet(MusicApplication::instance()->isPlaying() ? MusicUIObject::MQSSBtnPause : MusicUIObject::MQSSBtnPlay);
+    m_buttonKey->setStyleSheet(MusicApplication::instance()->isPlaying() ? MusicUIObject::MQSSBtnPause : MusicUIObject::MQSSBtnPlay);
 }

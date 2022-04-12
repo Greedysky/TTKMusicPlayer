@@ -52,16 +52,16 @@ void MusicWYQueryRecommendRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
-                    musicInfo.m_songId = QString::number(value["id"].toInt());
-                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(musicInfo.m_songId);
+                    MusicObject::MusicSongInformation info;
+                    info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
+                    info.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
+                    info.m_songId = QString::number(value["id"].toInt());
+                    info.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(info.m_songId);
 
                     const QVariantMap &albumObject = value["album"].toMap();
-                    musicInfo.m_coverUrl = albumObject["picUrl"].toString();
-                    musicInfo.m_albumId = QString::number(albumObject["id"].toInt());
-                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumObject["name"].toString());
+                    info.m_coverUrl = albumObject["picUrl"].toString();
+                    info.m_albumId = QString::number(albumObject["id"].toInt());
+                    info.m_albumName = MusicUtils::String::charactersReplaced(albumObject["name"].toString());
 
                     const QVariantList &artistsArray = value["artists"].toList();
                     for(const QVariant &artistValue : qAsConst(artistsArray))
@@ -72,32 +72,32 @@ void MusicWYQueryRecommendRequest::downLoadFinished()
                         }
 
                         const QVariantMap &artistObject = artistValue.toMap();
-                        musicInfo.m_artistId = QString::number(artistObject["id"].toULongLong());
-                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
+                        info.m_artistId = QString::number(artistObject["id"].toULongLong());
+                        info.m_singerName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
                         break; //just find first singer
                     }
 
-                    musicInfo.m_year = QString();
-                    musicInfo.m_discNumber = value["disc"].toString();
-                    musicInfo.m_trackNumber = value["no"].toString();
+                    info.m_year = QString();
+                    info.m_discNumber = value["disc"].toString();
+                    info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongProperty(&musicInfo, value, m_queryQuality, m_queryAllRecords);
+                    readFromMusicSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songProps.isEmpty())
+                    if(info.m_songProps.isEmpty())
                     {
                         continue;
                     }
-                    //
+
                     MusicSearchedItem item;
-                    item.m_songName = musicInfo.m_songName;
-                    item.m_singerName = musicInfo.m_singerName;
-                    item.m_albumName = musicInfo.m_albumName;
-                    item.m_duration = musicInfo.m_duration;
+                    item.m_songName = info.m_songName;
+                    item.m_singerName = info.m_singerName;
+                    item.m_albumName = info.m_albumName;
+                    item.m_duration = info.m_duration;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
-                    m_musicSongInfos << musicInfo;
+                    m_songInfos << info;
                 }
             }
         }

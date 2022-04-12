@@ -20,19 +20,19 @@ MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
 
-    m_musicSongs = new MusicSongList;
+    m_songs = new MusicSongList;
 }
 
 MusicLocalSongsTableWidget::~MusicLocalSongsTableWidget()
 {
     clear();
-    delete m_musicSongs;
+    delete m_songs;
 }
 
 void MusicLocalSongsTableWidget::clear()
 {
     MusicAbstractTableWidget::clear();
-    m_musicSongs->clear();
+    m_songs->clear();
 }
 
 void MusicLocalSongsTableWidget::addItems(const QFileInfoList &path)
@@ -64,7 +64,7 @@ void MusicLocalSongsTableWidget::addItems(const QFileInfoList &path)
         item->setIcon(QIcon(":/contextMenu/btn_add"));
         setItem(i, 4, item);
 
-        m_musicSongs->append(MusicSong(path[i].absoluteFilePath()));
+        m_songs->append(MusicSong(path[i].absoluteFilePath()));
     }
 }
 
@@ -86,7 +86,7 @@ void MusicLocalSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     createMoreMenu(&menu);
 
-    const bool status = !m_musicSongs->isEmpty();
+    const bool status = !m_songs->isEmpty();
     menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));

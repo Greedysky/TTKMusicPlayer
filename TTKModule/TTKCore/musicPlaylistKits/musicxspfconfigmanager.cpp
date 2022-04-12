@@ -53,13 +53,13 @@ bool MusicXSPFConfigManager::writeBuffer(const MusicSongItemList &items, const Q
                                                                                {"sortType", item.m_sort.m_order}});
         for(const MusicSong &song : qAsConst(items[i].m_songs))
         {
-            QDomElement trackDom = writeDomMutilElement(trackListDom, "track", {{"name", song.musicName()},
-                                                                                {"playCount", song.musicPlayCount()},
-                                                                                {"time", song.musicPlayTime()},
-                                                                                {"src", song.musicPath()}});
-            writeDomText(trackDom, "location", song.musicPath());
-            writeDomText(trackDom, "title", song.musicArtistBack());
-            writeDomText(trackDom, "creator", song.musicArtistFront());
+            QDomElement trackDom = writeDomMutilElement(trackListDom, "track", {{"name", song.name()},
+                                                                                {"playCount", song.playCount()},
+                                                                                {"time", song.playTime()},
+                                                                                {"src", song.path()}});
+            writeDomText(trackDom, "location", song.path());
+            writeDomText(trackDom, "title", song.artistBack());
+            writeDomText(trackDom, "creator", song.artistFront());
             writeDomText(trackDom, "annotation", QString());
             writeDomText(trackDom, "album", QString());
             writeDomText(trackDom, "trackNum", QString());
@@ -81,7 +81,7 @@ MusicSongList MusicXSPFConfigManager::readMusicFilePath(const QDomNode &node) co
     {
         const QDomElement &element = nodeList.at(i).toElement();
         MusicSong song(element.attribute("src"), element.attribute("time"), element.attribute("name"));
-        song.setMusicPlayCount(element.attribute("playCount").toInt());
+        song.setPlayCount(element.attribute("playCount").toInt());
         songs << song;
     }
     return songs;

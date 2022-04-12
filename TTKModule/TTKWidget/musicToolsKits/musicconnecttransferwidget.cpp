@@ -141,7 +141,7 @@ QStringList MusicConnectTransferWidget::selectedFiles() const
             const int count = m_ui->searchLineEdit->text().trimmed().count();
             index = m_searchResultCache.value(count)[index];
         }
-        paths << m_currentSongs[index].musicPath();
+        paths << m_currentSongs[index].path();
     }
 
     return paths;
@@ -154,7 +154,7 @@ void MusicConnectTransferWidget::itemSelectedChanged()
 
     for(int i = 0; i < list.count(); ++i)
     {
-        size += m_currentSongs[list[i]].musicSize();
+        size += m_currentSongs[list[i]].size();
     }
 
     double dSize = (size * 100 / MH_MB2B) * 1.0 / 100;
@@ -200,7 +200,7 @@ void MusicConnectTransferWidget::musicSearchResultChanged(int, int index)
     TTKIntList result;
     for(int i = 0; i < m_currentSongs.count(); ++i)
     {
-        if(m_currentSongs[i].musicName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
+        if(m_currentSongs[i].name().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {
             result << i;
         }

@@ -42,15 +42,15 @@ void MusicKWArtistSimilarRequest::downLoadFinished()
         {
             TTK_NETWORK_QUERY_CHECK();
 
-            MusicResultsItem info;
+            MusicResultsItem result;
             TTK_NETWORK_QUERY_CHECK();
-            info.m_id = artistIdName(regx.cap(2));
+            result.m_id = artistIdName(regx.cap(2));
             TTK_NETWORK_QUERY_CHECK();
 
-            info.m_coverUrl = regx.cap(1);
-            info.m_name = regx.cap(2);
-            info.m_updateTime.clear();
-            Q_EMIT createSimilarItem(info);
+            result.m_coverUrl = regx.cap(1);
+            result.m_name = regx.cap(2);
+            result.m_updateTime.clear();
+            Q_EMIT createSimilarItem(result);
 
             pos += regx.matchedLength();
             pos = regx.indexIn(html, pos);

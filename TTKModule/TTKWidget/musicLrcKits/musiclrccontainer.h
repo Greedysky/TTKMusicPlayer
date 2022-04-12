@@ -151,8 +151,8 @@ protected:
     qint64 m_currentTime, m_totalTime;
     QString m_currentSongName, m_containerType;
     MusicLrcAnalysis *m_lrcAnalysis;
-    QList<MusicLrcManager*> m_musicLrcContainer;
-    MusicLrcSearchWidget *m_musicLrcSearchWidget;
+    QList<MusicLrcManager*> m_lrcManagers;
+    MusicLrcSearchWidget *m_lrcSearchWidget;
 
 };
 

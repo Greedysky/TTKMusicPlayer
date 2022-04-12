@@ -53,14 +53,14 @@ void MusicQQQueryToplistRequest::downLoadFinished()
             if(value["code"].toInt() == 0 && value.contains("songlist"))
             {
                 const QVariantMap &topInfo = value["topinfo"].toMap();
-                MusicResultsItem info;
-                info.m_name = topInfo["ListName"].toString();
-                info.m_coverUrl = topInfo["pic"].toString();
-                info.m_playCount = QString::number(topInfo["listennum"].toULongLong());
-                info.m_description = topInfo["info"].toString();
-                info.m_updateTime = value["date"].toString();
-                Q_EMIT createToplistInfoItem(info);
-                //
+                MusicResultsItem result;
+                result.m_name = topInfo["ListName"].toString();
+                result.m_coverUrl = topInfo["pic"].toString();
+                result.m_playCount = QString::number(topInfo["listennum"].toULongLong());
+                result.m_description = topInfo["info"].toString();
+                result.m_updateTime = value["date"].toString();
+                Q_EMIT createToplistInfoItem(result);
+
                 const QVariantList &datas = value["songlist"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -73,7 +73,7 @@ void MusicQQQueryToplistRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     value = value["data"].toMap();
-                    MusicObject::MusicSongInformation musicInfo;
+                    MusicObject::MusicSongInformation info;
                     for(const QVariant &var : value["singer"].toList())
                     {
                         if(var.isNull())
@@ -82,42 +82,42 @@ void MusicQQQueryToplistRequest::downLoadFinished()
                         }
 
                         const QVariantMap &name = var.toMap();
-                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(name["name"].toString());
-                        musicInfo.m_artistId = name["mid"].toString();
+                        info.m_singerName = MusicUtils::String::charactersReplaced(name["name"].toString());
+                        info.m_artistId = name["mid"].toString();
                         break; //just find first singer
                     }
-                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
-                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["interval"].toInt() * 1000);
+                    info.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
+                    info.m_duration = MusicTime::msecTime2LabelJustified(value["interval"].toInt() * 1000);
 
                     m_rawData["sid"] = value["songid"].toString();
-                    musicInfo.m_songId = value["songmid"].toString();
-                    musicInfo.m_albumId = value["albummid"].toString();
-                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(value["albumname"].toString());
+                    info.m_songId = value["songmid"].toString();
+                    info.m_albumId = value["albummid"].toString();
+                    info.m_albumName = MusicUtils::String::charactersReplaced(value["albumname"].toString());
 
-                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                    musicInfo.m_coverUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
+                    info.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(info.m_songId);
+                    info.m_coverUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(info.m_albumId);
 
-                    musicInfo.m_year = QString();
-                    musicInfo.m_discNumber = value["cdIdx"].toString();
-                    musicInfo.m_trackNumber = value["belongCD"].toString();
+                    info.m_year = QString();
+                    info.m_discNumber = value["cdIdx"].toString();
+                    info.m_trackNumber = value["belongCD"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongProperty(&musicInfo, value, m_queryQuality, m_queryAllRecords);
+                    readFromMusicSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songProps.isEmpty())
+                    if(info.m_songProps.isEmpty())
                     {
                         continue;
                     }
-                    //
+
                     MusicSearchedItem item;
-                    item.m_songName = musicInfo.m_songName;
-                    item.m_singerName = musicInfo.m_singerName;
-                    item.m_albumName = musicInfo.m_albumName;
-                    item.m_duration = musicInfo.m_duration;
+                    item.m_songName = info.m_songName;
+                    item.m_singerName = info.m_singerName;
+                    item.m_albumName = info.m_albumName;
+                    item.m_duration = info.m_duration;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
-                    m_musicSongInfos << musicInfo;
+                    m_songInfos << info;
                 }
             }
         }

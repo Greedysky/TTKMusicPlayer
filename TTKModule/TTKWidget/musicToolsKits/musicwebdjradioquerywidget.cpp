@@ -124,9 +124,9 @@ void MusicWebDJRadioQueryWidget::setSongName(const QString &name)
 void MusicWebDJRadioQueryWidget::setSongNameById(const QString &id)
 {
     MusicAbstractItemQueryWidget::setSongName(id);
-    MusicResultsItem item;
-    item.m_id = id;
-    currentRadioClicked(item);
+    MusicResultsItem result;
+    result.m_id = id;
+    currentRadioClicked(result);
 }
 
 void MusicWebDJRadioQueryWidget::resizeWindow()

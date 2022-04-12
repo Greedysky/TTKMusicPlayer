@@ -67,7 +67,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
         MusicLrcManagerForInterior *w = new MusicLrcManagerForInterior(this);
         w->setLrcPerWidth(-10);
         m_ui->musicPage->addWidget(w);
-        m_musicLrcContainer.append(w);
+        m_lrcContainer.append(w);
     }
 
     m_recordCore = new MusicAudioRecorderModule(this);
@@ -126,7 +126,7 @@ void MusicSoundKMicroWidget::positionChanged(qint64 position)
         QString currentLrc, laterLrc;
         if(m_analysis->findText(m_ui->timeSlider->value(), m_ui->timeSlider->maximum(), currentLrc, laterLrc, m_intervalTime))
         {
-            if(currentLrc != m_musicLrcContainer[m_analysis->lineMiddle()]->text())
+            if(currentLrc != m_lrcContainer[m_analysis->lineMiddle()]->text())
             {
                 if(m_analysis->isValid())
                 {
@@ -183,11 +183,11 @@ void MusicSoundKMicroWidget::playButtonChanged()
     {
         if(m_player->state() == MusicObject::PlayingState)
         {
-            m_musicLrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
+            m_lrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
         }
         else
         {
-            m_musicLrcContainer[m_analysis->lineMiddle()]->stopDrawLrc();
+            m_lrcContainer[m_analysis->lineMiddle()]->stopDrawLrc();
             m_ui->musicPage->stop();
         }
     }
@@ -252,7 +252,7 @@ void MusicSoundKMicroWidget::downLoadFinished(const QByteArray &bytes)
     m_analysis->setLrcData(bytes);
     for(int i = 0; i < m_analysis->lineMax(); ++i)
     {
-        m_musicLrcContainer[i]->setText(QString());
+        m_lrcContainer[i]->setText(QString());
     }
 
     setItemStyleSheet(0, -3, 90);
@@ -266,10 +266,10 @@ void MusicSoundKMicroWidget::updateAnimationLrc()
 {
     for(int i = 0; i < m_analysis->lineMax(); ++i)
     {
-        m_musicLrcContainer[i]->setText(m_analysis->text(i));
+        m_lrcContainer[i]->setText(m_analysis->text(i));
     }
     m_analysis->setCurrentIndex(m_analysis->currentIndex() + 1);
-    m_musicLrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
+    m_lrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
 }
 
 void MusicSoundKMicroWidget::recordButtonClicked()
@@ -302,7 +302,7 @@ void MusicSoundKMicroWidget::closeEvent(QCloseEvent *event)
     MusicAbstractMoveWidget::closeEvent(event);
     G_SINGLE_MANAGER_PTR->removeObject(className());
 
-    qDeleteAll(m_musicLrcContainer);
+    qDeleteAll(m_lrcContainer);
     delete m_analysis;
     delete m_player;
     delete m_searchWidget;
@@ -337,7 +337,7 @@ void MusicSoundKMicroWidget::multiMediaChanged()
 
 void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transparent)
 {
-    MusicLrcManagerForInterior *w = m_musicLrcContainer[index];
+    MusicLrcManagerForInterior *w = m_lrcContainer[index];
     w->setFontSize(size);
 
     const int value = qBound<int>(0, 100 - transparent, 100);

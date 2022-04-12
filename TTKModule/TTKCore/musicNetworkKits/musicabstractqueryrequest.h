@@ -165,15 +165,15 @@ public:
     /*!
      * Set the current song container.
      */
-    inline void setMusicSongInfoList(const MusicObject::MusicSongInformationList &infos) { m_musicSongInfos = infos; }
+    inline void setSongInfoList(const MusicObject::MusicSongInformationList &songInfos) { m_songInfos = songInfos; }
     /*!
      * Get the current song container.
      */
-    inline const MusicObject::MusicSongInformationList& musicSongInfoList() const { return m_musicSongInfos; }
+    inline const MusicObject::MusicSongInformationList& songInfoList() const { return m_songInfos; }
     /*!
      * Check the current song container is empty.
      */
-    inline bool isEmpty() const { return m_musicSongInfos.isEmpty(); }
+    inline bool isEmpty() const { return m_songInfos.isEmpty(); }
     /*!
      * Map query server string.
      */
@@ -216,7 +216,7 @@ protected:
     QueryType m_queryType;
     MusicObject::QueryQuality m_queryQuality;
     bool m_queryAllRecords, m_queryLite;
-    MusicObject::MusicSongInformationList m_musicSongInfos;
+    MusicObject::MusicSongInformationList m_songInfos;
 
 };
 

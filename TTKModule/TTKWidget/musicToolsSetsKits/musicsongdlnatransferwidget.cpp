@@ -17,7 +17,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
 
     m_isPlaying = false;
     m_currentPlayIndex = -1;
-    m_musicSongs = nullptr;
+    m_songs = nullptr;
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -138,15 +138,15 @@ void MusicSongDlnaTransferWidget::musicPlay()
         return;
     }
 
-    m_musicSongs = &songs[0].m_songs;
+    m_songs = &songs[0].m_songs;
     ++m_currentPlayIndex;
-    if(m_currentPlayIndex < 0 || m_currentPlayIndex >= m_musicSongs->count())
+    if(m_currentPlayIndex < 0 || m_currentPlayIndex >= m_songs->count())
     {
         m_currentPlayIndex = 0;
     }
 
-    const MusicSong &song = (*m_musicSongs)[m_currentPlayIndex];
-    const QFileInfo fin(song.musicPath());
+    const MusicSong &song = (*m_songs)[m_currentPlayIndex];
+    const QFileInfo fin(song.path());
 
     QDlnaClient *client = m_dlnaFinder->client(index);
     m_dlnaFileServer->setPrefixPath(fin.path());

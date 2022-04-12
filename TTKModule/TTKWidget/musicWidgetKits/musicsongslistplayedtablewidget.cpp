@@ -23,7 +23,7 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
     headerview->resizeSection(4, 45);
 
     m_hasParentToolIndex = false;
-    m_musicSongsPlayWidget = nullptr;
+    m_songsPlayWidget = nullptr;
 
     MusicUtils::Widget::setTransparent(this, 0xFF);
 }
@@ -31,7 +31,7 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
 MusicSongsListPlayedTableWidget::~MusicSongsListPlayedTableWidget()
 {
     clearAllItems();
-    delete m_musicSongsPlayWidget;
+    delete m_songsPlayWidget;
 }
 
 void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongList &songs)
@@ -46,7 +46,7 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongList &s
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(songs[i].musicName());
+        item->setToolTip(songs[i].name());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
 #if TTK_QT_VERSION_CHECK(5,13,0)
         item->setForeground(QColor(MusicUIObject::MQSSColor01));
@@ -61,7 +61,7 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongList &s
                           item = new QTableWidgetItem;
         setItem(i, 3, item);
 
-                          item = new QTableWidgetItem(songs[i].musicPlayTime());
+                          item = new QTableWidgetItem(songs[i].playTime());
 #if TTK_QT_VERSION_CHECK(5,13,0)
         item->setForeground(QColor(MusicUIObject::MQSSColor01));
 #else
@@ -88,13 +88,13 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
         delete takeItem(index, i);
     }
 
-    const QString &name = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).musicName() : QString();
+    const QString &name = !m_songs->isEmpty() ? m_songs->at(index).name() : QString();
 
-    m_musicSongsPlayWidget = new MusicSongsListPlayedWidget(index, this);
-    m_musicSongsPlayWidget->setParameter(name);
+    m_songsPlayWidget = new MusicSongsListPlayedWidget(index, this);
+    m_songsPlayWidget->setParameter(name);
 
     setSpan(index, 0, 1, 5);
-    setCellWidget(index, 0, m_musicSongsPlayWidget);
+    setCellWidget(index, 0, m_songsPlayWidget);
     m_playRowIndex = index;
 
     setFixedHeight(qMax(365, totalHeight()));
@@ -141,8 +141,8 @@ void MusicSongsListPlayedTableWidget::clearAllItems()
     //Remove play widget
     removeCellWidget(m_playRowIndex, 0);
 
-    delete m_musicSongsPlayWidget;
-    m_musicSongsPlayWidget = nullptr;
+    delete m_songsPlayWidget;
+    m_songsPlayWidget = nullptr;
 
     m_playRowIndex = -1;
     //Remove all the original item
@@ -162,7 +162,7 @@ void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
         return;
     }
 
-    const QString &name = !m_musicSongs->isEmpty() ? m_musicSongs->at(m_playRowIndex).musicName() : QString();
+    const QString &name = !m_songs->isEmpty() ? m_songs->at(m_playRowIndex).name() : QString();
 
     removeCellWidget(m_playRowIndex, 0);
     delete takeItem(m_playRowIndex, 0);
@@ -186,7 +186,7 @@ void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
     setItem(m_playRowIndex, 2, new QTableWidgetItem);
     setItem(m_playRowIndex, 3, new QTableWidgetItem);
 
-    item = new QTableWidgetItem((*m_musicSongs)[m_playRowIndex].musicPlayTime());
+    item = new QTableWidgetItem((*m_songs)[m_playRowIndex].playTime());
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(MusicUIObject::MQSSColor01));
 #else
@@ -195,8 +195,8 @@ void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 4, item);
 
-    delete m_musicSongsPlayWidget;
-    m_musicSongsPlayWidget = nullptr;
+    delete m_songsPlayWidget;
+    m_songsPlayWidget = nullptr;
 
     //m_playRowIndex = -1;
     //just fix table widget size hint
@@ -221,7 +221,7 @@ void MusicSongsListPlayedTableWidget::itemCellEntered(int row, int column)
     if(it)
     {
         it->setIcon(QIcon());
-        it->setText((*m_musicSongs)[m_previousColorRow].musicPlayTime());
+        it->setText((*m_songs)[m_previousColorRow].playTime());
     }
 
     ///draw new table item state
@@ -290,7 +290,7 @@ void MusicSongsListPlayedTableWidget::setDeleteItemAt()
     {
         const int index = deleteList[i];
         removeRow(index);
-        m_musicSongs->removeAt(index);
+        m_songs->removeAt(index);
     }
 
     //just fix table widget size hint

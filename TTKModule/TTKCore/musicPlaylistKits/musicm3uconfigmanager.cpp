@@ -64,9 +64,9 @@ bool MusicM3UConfigManager::writeBuffer(const MusicSongItemList &items, const QS
     data << QString("#EXTM3U");
     for(const MusicSong &song : qAsConst(item.m_songs))
     {
-        data.append(QString("#EXTINF:%1,%2 - %3").arg(MusicTime::labelJustified2MsecTime(song.musicPlayTime()) / MT_S2MS)
-                                                 .arg(song.musicArtistFront(), song.musicArtistBack()));
-        data.append(song.musicPath());
+        data.append(QString("#EXTINF:%1,%2 - %3").arg(MusicTime::labelJustified2MsecTime(song.playTime()) / MT_S2MS)
+                                                 .arg(song.artistFront(), song.artistBack()));
+        data.append(song.path());
     }
 
     m_file.setFileName(path);

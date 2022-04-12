@@ -92,13 +92,13 @@ void MusicQQSongCommentsRequest::downLoadFinished()
                     req = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem item;
-                    item.m_playCount = QString::number(req["PraiseNum"].toInt());
-                    item.m_updateTime = QString::number(req["PubTime"].toLongLong());
-                    item.m_description = req["Content"].toString();
-                    item.m_nickName = req["Nick"].toString();
-                    item.m_coverUrl = req["Avatar"].toString();
-                    Q_EMIT createSearchedItem(item);
+                    MusicResultsItem result;
+                    result.m_playCount = QString::number(req["PraiseNum"].toInt());
+                    result.m_updateTime = QString::number(req["PubTime"].toLongLong());
+                    result.m_description = req["Content"].toString();
+                    result.m_nickName = req["Nick"].toString();
+                    result.m_coverUrl = req["Avatar"].toString();
+                    Q_EMIT createSearchedItem(result);
                 }
 
                 req = value["req_2"].toMap();
@@ -115,13 +115,13 @@ void MusicQQSongCommentsRequest::downLoadFinished()
                     req = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem item;
-                    item.m_playCount = QString::number(req["PraiseNum"].toInt());
-                    item.m_updateTime = QString::number(req["PubTime"].toLongLong());
-                    item.m_description = req["Content"].toString();
-                    item.m_nickName = req["Nick"].toString();
-                    item.m_coverUrl = req["Avatar"].toString();
-                    Q_EMIT createSearchedItem(item);
+                    MusicResultsItem result;
+                    result.m_playCount = QString::number(req["PraiseNum"].toInt());
+                    result.m_updateTime = QString::number(req["PubTime"].toLongLong());
+                    result.m_description = req["Content"].toString();
+                    result.m_nickName = req["Nick"].toString();
+                    result.m_coverUrl = req["Avatar"].toString();
+                    Q_EMIT createSearchedItem(result);
                 }
             }
         }
@@ -212,13 +212,13 @@ void MusicQQPlaylistCommentsRequest::downLoadFinished()
                     req = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem item;
-                    item.m_playCount = QString::number(req["PraiseNum"].toInt());
-                    item.m_updateTime = QString::number(req["PubTime"].toLongLong());
-                    item.m_description = req["Content"].toString();
-                    item.m_nickName = req["Nick"].toString();
-                    item.m_coverUrl = req["Avatar"].toString();
-                    Q_EMIT createSearchedItem(item);
+                    MusicResultsItem result;
+                    result.m_playCount = QString::number(req["PraiseNum"].toInt());
+                    result.m_updateTime = QString::number(req["PubTime"].toLongLong());
+                    result.m_description = req["Content"].toString();
+                    result.m_nickName = req["Nick"].toString();
+                    result.m_coverUrl = req["Avatar"].toString();
+                    Q_EMIT createSearchedItem(result);
                 }
 
                 req = value["req_2"].toMap();
@@ -235,13 +235,13 @@ void MusicQQPlaylistCommentsRequest::downLoadFinished()
                     req = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem item;
-                    item.m_playCount = QString::number(req["PraiseNum"].toInt());
-                    item.m_updateTime = QString::number(req["PubTime"].toLongLong());
-                    item.m_description = req["Content"].toString();
-                    item.m_nickName = req["Nick"].toString();
-                    item.m_coverUrl = req["Avatar"].toString();
-                    Q_EMIT createSearchedItem(item);
+                    MusicResultsItem result;
+                    result.m_playCount = QString::number(req["PraiseNum"].toInt());
+                    result.m_updateTime = QString::number(req["PubTime"].toLongLong());
+                    result.m_description = req["Content"].toString();
+                    result.m_nickName = req["Nick"].toString();
+                    result.m_coverUrl = req["Avatar"].toString();
+                    Q_EMIT createSearchedItem(result);
                 }
             }
         }

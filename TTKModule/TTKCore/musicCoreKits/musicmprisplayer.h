@@ -173,10 +173,10 @@ private:
     void syncProperties();
     void sendProperties();
 
-    int m_prev_track;
-    qint64 m_prev_pos;
-    SoundCore *m_music;
-    MusicApplication *m_player;
+    int m_prevTrack;
+    qint64 m_prevPos;
+    SoundCore *m_core;
+    MusicApplication *m_application;
     QDBusObjectPath m_trackID;
     TTKVariantMap m_properties;
 

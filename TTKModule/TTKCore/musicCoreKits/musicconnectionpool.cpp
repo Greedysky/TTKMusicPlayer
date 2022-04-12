@@ -66,7 +66,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     else if((from == MusicSongSearchTableWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicItemQueryTableWidget::className() && to == MusicSongsSummariziedWidget::className()))
     {
-        QObject::connect(first, SIGNAL(musicSongToPlaylistChanged(MusicResultsItem)), second, SLOT(addNetMusicSongToPlaylist(MusicResultsItem)));
+        QObject::connect(first, SIGNAL(songBufferToPlaylist(MusicResultsItem)), second, SLOT(addSongBufferToPlaylist(MusicResultsItem)));
     }
     else if(from == MusicLrcLocalLinkWidget::className() && to == MusicDownloadStatusModule::className())
     {

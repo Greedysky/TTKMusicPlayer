@@ -159,7 +159,7 @@ protected:
     bool m_setWindowToTop;
     bool m_leftSideByOn, m_rightSideByOn;
     QPropertyAnimation *m_quitAnimation, *m_sideAnimation;
-    MusicTimerAutoModule *m_MusicTimerAutoModule;
+    MusicTimerAutoModule *m_timerAutoModule;
     MusicMobileDevicesWidget *m_mobileDeviceWidget;
     QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;

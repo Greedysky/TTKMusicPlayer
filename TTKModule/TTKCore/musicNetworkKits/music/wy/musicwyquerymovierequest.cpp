@@ -149,12 +149,12 @@ void MusicWYQueryMovieRequest::downLoadPageFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem info;
-                    info.m_id = QString::number(value["id"].toLongLong());
-                    info.m_coverUrl = value["imgurl"].toString();
-                    info.m_name = value["name"].toString();
-                    info.m_updateTime.clear();
-                    Q_EMIT createMovieInfoItem(info);
+                    MusicResultsItem result;
+                    result.m_id = QString::number(value["id"].toLongLong());
+                    result.m_coverUrl = value["imgurl"].toString();
+                    result.m_name = value["name"].toString();
+                    result.m_updateTime.clear();
+                    Q_EMIT createMovieInfoItem(result);
                 }
             }
         }
@@ -204,11 +204,11 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
         if(value.contains("code") && value["code"].toInt() == 200)
         {
             value = value["data"].toMap();
-            MusicObject::MusicSongInformation musicInfo;
-            musicInfo.m_songId = QString::number(id);
-            musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-            musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["artistName"].toString());
-            musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
+            MusicObject::MusicSongInformation info;
+            info.m_songId = QString::number(id);
+            info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
+            info.m_singerName = MusicUtils::String::charactersReplaced(value["artistName"].toString());
+            info.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
 
             value = value["brs"].toMap();
             for(const QString &key : value.keys())
@@ -226,24 +226,27 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
 
                 prop.m_url = value[key].toString();
                 prop.m_format = MusicUtils::String::stringSplitToken(prop.m_url);
-                //
-                if(!findUrlFileSize(&prop)) return;
-                //
-                musicInfo.m_songProps.append(prop);
+
+                if(!findUrlFileSize(&prop))
+                {
+                    return;
+                }
+
+                info.m_songProps.append(prop);
             }
 
-            if(musicInfo.m_songProps.isEmpty())
+            if(info.m_songProps.isEmpty())
             {
                 return;
             }
-            //
+
             MusicSearchedItem item;
-            item.m_songName = musicInfo.m_songName;
-            item.m_singerName = musicInfo.m_singerName;
-            item.m_duration = musicInfo.m_duration;
+            item.m_songName = info.m_songName;
+            item.m_singerName = info.m_singerName;
+            item.m_duration = info.m_duration;
             item.m_type = mapQueryServerString();
             Q_EMIT createSearchedItem(item);
-            m_musicSongInfos << musicInfo;
+            m_songInfos << info;
         }
     }
 }
@@ -270,13 +273,13 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
         if(value.contains("code") && value["code"].toInt() == 200)
         {
             value = value["data"].toMap();
-            MusicObject::MusicSongInformation musicInfo;
-            musicInfo.m_songId = id;
-            musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["title"].toString());
-            musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["durationms"].toInt());
+            MusicObject::MusicSongInformation info;
+            info.m_songId = id;
+            info.m_songName = MusicUtils::String::charactersReplaced(value["title"].toString());
+            info.m_duration = MusicTime::msecTime2LabelJustified(value["durationms"].toInt());
 
             const QVariantMap &artistObject = value["creator"].toMap();
-            musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistObject["nickname"].toString());
+            info.m_singerName = MusicUtils::String::charactersReplaced(artistObject["nickname"].toString());
 
             const QVariantList &datas = value["resolutions"].toList();
             for(const QVariant &var : qAsConst(datas))
@@ -310,22 +313,21 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
 
                 prop.m_size = MusicUtils::Number::sizeByte2Label(value["size"].toInt());
                 prop.m_format = MusicUtils::String::stringSplitToken(prop.m_url);
-                //
-                musicInfo.m_songProps.append(prop);
+                info.m_songProps.append(prop);
             }
 
-            if(musicInfo.m_songProps.isEmpty())
+            if(info.m_songProps.isEmpty())
             {
                 return;
             }
-            //
+
             MusicSearchedItem item;
-            item.m_songName = musicInfo.m_songName;
-            item.m_singerName = musicInfo.m_singerName;
-            item.m_duration = musicInfo.m_duration;
+            item.m_songName = info.m_songName;
+            item.m_singerName = info.m_singerName;
+            item.m_duration = info.m_duration;
             item.m_type = mapQueryServerString();
             Q_EMIT createSearchedItem(item);
-            m_musicSongInfos << musicInfo;
+            m_songInfos << info;
         }
     }
 }

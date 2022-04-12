@@ -9,72 +9,72 @@
 #include <qmmp/regularwrapper.h>
 
 MusicSong::MusicSong()
-    : m_sortType(SortByFileName),
-      m_musicSize(0),
-      m_musicAddTime(-1),
-      m_musicSizeStr(TTK_DEFAULT_STR),
-      m_musicAddTimeStr(TTK_DEFAULT_STR),
-      m_musicPlayCount(0),
-      m_musicName(TTK_DEFAULT_STR),
-      m_musicPath(TTK_DEFAULT_STR),
-      m_musicType(TTK_DEFAULT_STR),
-      m_musicPlayTime(TTK_DEFAULT_STR)
+    : m_sort(SortByFileName),
+      m_size(0),
+      m_addTime(-1),
+      m_sizeStr(TTK_DEFAULT_STR),
+      m_addTimeStr(TTK_DEFAULT_STR),
+      m_playCount(0),
+      m_name(TTK_DEFAULT_STR),
+      m_path(TTK_DEFAULT_STR),
+      m_type(TTK_DEFAULT_STR),
+      m_playTime(TTK_DEFAULT_STR)
 {
 
 }
 
-MusicSong::MusicSong(const QString &musicPath, bool track)
-    : MusicSong(musicPath, QString(), QString(), track)
+MusicSong::MusicSong(const QString &path, bool track)
+    : MusicSong(path, QString(), QString(), track)
 {
 
 }
 
-MusicSong::MusicSong(const QString &musicPath, const QString &playTime, const QString &musicName, bool track)
+MusicSong::MusicSong(const QString &path, const QString &playTime, const QString &name, bool track)
     : MusicSong()
 {
-    m_musicPath = musicPath;
-    m_musicPath.replace("\\", TTK_SEPARATOR);
+    m_path = path;
+    m_path.replace("\\", TTK_SEPARATOR);
 
-    const QFileInfo fin(!track ? m_musicPath : MusicObject::trackRelatedPath(m_musicPath));
-    m_musicName = musicName;
-    if(m_musicName.isEmpty())
+    const QFileInfo fin(!track ? m_path : MusicObject::trackRelatedPath(m_path));
+    m_name = name;
+    if(m_name.isEmpty())
     {
-        m_musicName = fin.completeBaseName();
+        m_name = fin.completeBaseName();
     }
 
-    m_musicSize = fin.size();
-    m_musicType = FILE_SUFFIX(fin);
-    m_musicAddTime = fin.lastModified().currentMSecsSinceEpoch();
-    m_musicPlayTime = playTime;
-    m_musicAddTimeStr = QString::number(m_musicAddTime);
-    m_musicSizeStr = MusicUtils::Number::sizeByte2Label(m_musicSize);
+    m_size = fin.size();
+    m_type = FILE_SUFFIX(fin);
+    m_addTime = fin.lastModified().currentMSecsSinceEpoch();
+    m_playTime = playTime;
+    m_addTimeStr = QString::number(m_addTime);
+    m_sizeStr = MusicUtils::Number::sizeByte2Label(m_size);
 }
 
-QString MusicSong::musicArtistFront() const
+QString MusicSong::artistFront() const
 {
-    return MusicUtils::String::artistName(m_musicName);
+    return MusicUtils::String::artistName(m_name);
 }
 
-QString MusicSong::musicArtistBack() const
+QString MusicSong::artistBack() const
 {
-    return MusicUtils::String::songName(m_musicName);
+    return MusicUtils::String::songName(m_name);
 }
 
 bool MusicSong::operator== (const MusicSong &other) const
 {
-    return m_musicPath == other.m_musicPath;
+    return m_path == other.m_path;
 }
 
 bool MusicSong::operator< (const MusicSong &other) const
 {
-    switch(m_sortType)
+    switch(m_sort)
     {
-        case SortByFileName: return m_musicName < other.m_musicName;
-        case SortBySinger: return musicArtistFront() < other.musicArtistFront();
-        case SortByFileSize: return m_musicSize < other.m_musicSize;
-        case SortByAddTime: return m_musicAddTime < other.m_musicAddTime;
-        case SortByPlayTime: return m_musicPlayTime < other.m_musicPlayTime;
-        case SortByPlayCount: return m_musicPlayCount < other.m_musicPlayCount;
+        case SortByFileName: return m_name < other.m_name;
+        case SortBySinger: return artistFront() < other.artistFront();
+        case SortByFileSize: return m_size < other.m_size;
+        case SortByAddTime: return m_addTime < other.m_addTime;
+        case SortByPlayTime: return m_playTime < other.m_playTime;
+        case SortByPlayCount: return m_playCount < other.m_playCount;
         default: break;
     }
     return false;
@@ -82,14 +82,14 @@ bool MusicSong::operator< (const MusicSong &other) const
 
 bool MusicSong::operator> (const MusicSong &other) const
 {
-    switch(m_sortType)
+    switch(m_sort)
     {
-        case SortByFileName: return m_musicName > other.m_musicName;
-        case SortBySinger: return musicArtistFront() > other.musicArtistFront();
-        case SortByFileSize: return m_musicSize > other.m_musicSize;
-        case SortByAddTime: return m_musicAddTime > other.m_musicAddTime;
-        case SortByPlayTime: return m_musicPlayTime > other.m_musicPlayTime;
-        case SortByPlayCount: return m_musicPlayCount > other.m_musicPlayCount;
+        case SortByFileName: return m_name > other.m_name;
+        case SortBySinger: return artistFront() > other.artistFront();
+        case SortByFileSize: return m_size > other.m_size;
+        case SortByAddTime: return m_addTime > other.m_addTime;
+        case SortByPlayTime: return m_playTime > other.m_playTime;
+        case SortByPlayCount: return m_playCount > other.m_playCount;
         default: break;
     }
     return false;

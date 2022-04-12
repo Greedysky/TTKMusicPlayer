@@ -82,10 +82,10 @@ void MusicQQQueryArtistListRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem info;
-                    info.m_id = value["Fsinger_mid"].toString();
-                    info.m_name = value["Fsinger_name"].toString();
-                    Q_EMIT createArtistListItem(info);
+                    MusicResultsItem result;
+                    result.m_id = value["Fsinger_mid"].toString();
+                    result.m_name = value["Fsinger_name"].toString();
+                    Q_EMIT createArtistListItem(result);
                 }
             }
         }

@@ -156,9 +156,9 @@ void MusicPlaylistQueryWidget::setSongNameById(const QString &id)
 {
     setSongName(id);
 
-    MusicResultsItem item;
-    item.m_id = id;
-    currentPlaylistClicked(item);
+    MusicResultsItem result;
+    result.m_id = id;
+    currentPlaylistClicked(result);
 }
 
 void MusicPlaylistQueryWidget::resizeWindow()

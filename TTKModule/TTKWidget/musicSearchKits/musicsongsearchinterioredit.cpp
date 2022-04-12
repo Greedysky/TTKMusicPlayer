@@ -53,7 +53,7 @@ void MusicSongSearchInteriorEdit::textChanged(const QString &text)
 void MusicSongSearchInteriorEdit::suggestDataChanged()
 {
     QStringList names;
-    for(const MusicResultsItem &item : m_suggestRequest->getSearchedItems())
+    for(const MusicResultsItem &item : m_suggestRequest->searchedItems())
     {
         QString value = item.m_name;
         if(!item.m_nickName.isEmpty() && item.m_nickName != TTK_DEFAULT_STR)

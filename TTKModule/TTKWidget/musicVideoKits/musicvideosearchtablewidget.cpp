@@ -72,7 +72,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
     setQueryInput(d);
     //
     m_singleRadioMode = true;
-    d->setMusicSongInfoList({data.value<MusicObject::MusicSongInformation>()});
+    d->setSongInfoList({data.value<MusicObject::MusicSongInformation>()});
 }
 
 void MusicVideoSearchTableWidget::musicDownloadLocal(int row)
@@ -220,15 +220,15 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
         return;
     }
 
-    const MusicObject::MusicSongInformation &musicSongInfo = m_networkRequest->musicSongInfoList()[row];
-    const MusicObject::MusicSongPropertyList &props = musicSongInfo.m_songProps;
+    const MusicObject::MusicSongInformation &info = m_networkRequest->songInfoList()[row];
+    const MusicObject::MusicSongPropertyList &props = info.m_songProps;
     if(!props.isEmpty())
     {
         const MusicObject::MusicSongProperty &prop = props.front();
         MusicVideoItem data;
         data.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
         data.m_url = prop.m_url;
-        data.m_id = musicSongInfo.m_songId;
+        data.m_id = info.m_songId;
         data.m_server = m_networkRequest->queryServer();
         Q_EMIT mediaUrlPathChanged(data);
     }
@@ -242,8 +242,8 @@ void MusicVideoSearchTableWidget::musicMediaInfo(MusicObject::MusicSongPropertyL
     }
 
     const int row = !m_singleRadioMode ? m_previousClickRow : 0;
-    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
-    props = (!musicSongInfos.isEmpty() && row != -1) ? musicSongInfos[row].m_songProps : MusicObject::MusicSongPropertyList();
+    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    props = (!songInfos.isEmpty() && row != -1) ? songInfos[row].m_songProps : MusicObject::MusicSongPropertyList();
 }
 
 void MusicVideoSearchTableWidget::downloadLocalFromControl()
@@ -272,13 +272,13 @@ void MusicVideoSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicVideoSearchTableWidget::downloadLocalMovie(int row)
 {
-    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
-    if(row < 0 || row >= musicSongInfos.count())
+    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    if(row < 0 || row >= songInfos.count())
     {
         return;
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], MusicAbstractQueryRequest::MovieQuery);
+    download->setSongName(songInfos[row], MusicAbstractQueryRequest::MovieQuery);
     download->show();
 }

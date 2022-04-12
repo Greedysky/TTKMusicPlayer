@@ -64,9 +64,9 @@ void MusicSoundKMicroSearchTableWidget::musicDownloadLocal(int row)
         return;
     }
 
-    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
+    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], m_queryMovieMode ? MusicAbstractQueryRequest::MovieQuery : MusicAbstractQueryRequest::MusicQuery);
+    download->setSongName(songInfos[row], m_queryMovieMode ? MusicAbstractQueryRequest::MovieQuery : MusicAbstractQueryRequest::MusicQuery);
     download->show();
 }
 
@@ -162,10 +162,10 @@ void MusicSoundKMicroSearchTableWidget::dataDownloadPlay(int row)
         return;
     }
 
-    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
-    for(const MusicObject::MusicSongProperty &prop : qAsConst(musicSongInfos[row].m_songProps))
+    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    for(const MusicObject::MusicSongProperty &prop : qAsConst(songInfos[row].m_songProps))
     {
-        Q_EMIT mediaUrlChanged(m_queryMovieMode, prop.m_url, m_queryMovieMode ? QString() : musicSongInfos[row].m_lrcUrl);
+        Q_EMIT mediaUrlChanged(m_queryMovieMode, prop.m_url, m_queryMovieMode ? QString() : songInfos[row].m_lrcUrl);
     }
 }
 

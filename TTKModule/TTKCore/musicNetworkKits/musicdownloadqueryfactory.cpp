@@ -193,10 +193,10 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeRecommendRequest(QObje
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
     switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
     {
-        case MusicAbstractQueryRequest::WYQueryServer: request = new MusicWYQueryRecommendRequest(parent); break;
-        case MusicAbstractQueryRequest::QQQueryServer: request = new MusicQQQueryRecommendRequest(parent); break;
-        case MusicAbstractQueryRequest::KWQueryServer: request = new MusicKWQueryRecommendRequest(parent); break;
-        case MusicAbstractQueryRequest::KGQueryServer: request = new MusicKGQueryRecommendRequest(parent); break;
+//        case MusicAbstractQueryRequest::WYQueryServer: request = new MusicWYQueryRecommendRequest(parent); break;
+//        case MusicAbstractQueryRequest::QQQueryServer: request = new MusicQQQueryRecommendRequest(parent); break;
+//        case MusicAbstractQueryRequest::KWQueryServer: request = new MusicKWQueryRecommendRequest(parent); break;
+//        case MusicAbstractQueryRequest::KGQueryServer: request = new MusicKGQueryRecommendRequest(parent); break;
         default: request = new MusicBDQueryRecommendRequest(parent);
     }
     TTK_LOGGER_INFO(QString("MusicQueryRecommendRequest server: %1").arg(request->queryServer()));

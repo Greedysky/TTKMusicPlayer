@@ -14,19 +14,19 @@
 MusicConsoleModule::MusicConsoleModule(QObject *parent)
     : QObject(parent)
 {
-    m_musicPlayer = new MusicPlayer(this);
-    m_musicPlaylist = new MusicPlaylist(this);
+    m_player = new MusicPlayer(this);
+    m_playlist = new MusicPlaylist(this);
 
     m_volume = 100;
     m_playbackMode = "Order";
     m_enhanced = "Off";
 
-    m_musicPlaylist->setPlaybackMode(MusicObject::PlayOrder);
-    m_musicPlayer->setPlaylist(m_musicPlaylist);
+    m_playlist->setPlaybackMode(MusicObject::PlayOrder);
+    m_player->setPlaylist(m_playlist);
 
-    connect(m_musicPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
-    connect(m_musicPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
-    connect(m_musicPlaylist, SIGNAL(currentIndexChanged(int)), SLOT(currentIndexChanged(int)));
+    connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
+    connect(m_player, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
+    connect(m_playlist, SIGNAL(currentIndexChanged(int)), SLOT(currentIndexChanged(int)));
 
     G_HOTKEY_PTR->addHotKey("Ctrl+B");
     G_HOTKEY_PTR->addHotKey("Ctrl+Left");
@@ -69,8 +69,8 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
 MusicConsoleModule::~MusicConsoleModule()
 {
     TTK_LOGGER_INFO("\nRelease all");
-    delete m_musicPlayer;
-    delete m_musicPlaylist;
+    delete m_player;
+    delete m_playlist;
 }
 
 bool MusicConsoleModule::initialize(const QCoreApplication &app)
@@ -106,8 +106,8 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
         else
         {
             TTK_LOGGER_INFO("Add play url path: " << path);
-            m_musicPlaylist->add(0, path);
-            m_musicPlaylist->setCurrentIndex(0);
+            m_playlist->add(0, path);
+            m_playlist->setCurrentIndex(0);
         }
     }
     else if(parser.isSet(op2))
@@ -123,12 +123,12 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
             for(const QFileInfo &fin : MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats()))
             {
                 TTK_LOGGER_INFO("Add play url path: " << fin.absoluteFilePath());
-                m_musicPlaylist->append(0, fin.absoluteFilePath());
+                m_playlist->append(0, fin.absoluteFilePath());
             }
 
-            if(!m_musicPlaylist->isEmpty())
+            if(!m_playlist->isEmpty())
             {
-                m_musicPlaylist->setCurrentIndex(0);
+                m_playlist->setCurrentIndex(0);
             }
         }
     }
@@ -162,14 +162,14 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
             {
                 for(const MusicSong &song : qAsConst(item.m_songs))
                 {
-                    TTK_LOGGER_INFO("Add play url path: " << song.musicPath());
-                    m_musicPlaylist->append(0, song.musicPath());
+                    TTK_LOGGER_INFO("Add play url path: " << song.path());
+                    m_playlist->append(0, song.path());
                 }
             }
 
-            if(!m_musicPlaylist->isEmpty())
+            if(!m_playlist->isEmpty())
             {
-                m_musicPlaylist->setCurrentIndex(0);
+                m_playlist->setCurrentIndex(0);
             }
         }
     }
@@ -179,10 +179,10 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
         return false;
     }
 
-    TTK_LOGGER_INFO("\nMusic Files count: " << m_musicPlaylist->count() << "\n");
+    TTK_LOGGER_INFO("\nMusic Files count: " << m_playlist->count() << "\n");
 
-    m_musicPlayer->play();
-    m_musicPlayer->setVolume(m_volume);
+    m_player->play();
+    m_player->setVolume(m_volume);
 #else
     TTK_LOGGER_ERROR("Qt version less than 5.2 not support commend line");
 #endif
@@ -197,7 +197,7 @@ void MusicConsoleModule::durationChanged(qint64 duration)
 
 void MusicConsoleModule::positionChanged(qint64 position)
 {
-    print(position, m_musicPlayer->duration());
+    print(position, m_player->duration());
 }
 
 void MusicConsoleModule::currentIndexChanged(int index)
@@ -208,158 +208,158 @@ void MusicConsoleModule::currentIndexChanged(int index)
 
 void MusicConsoleModule::musicStatePlay()
 {
-    if(m_musicPlaylist->isEmpty())
+    if(m_playlist->isEmpty())
     {
         return;
     }
 
-    if(m_musicPlayer->isPlaying())
+    if(m_player->isPlaying())
     {
-        m_musicPlayer->pause();
+        m_player->pause();
     }
     else
     {
-        m_musicPlayer->play();
-        m_musicPlayer->setVolume(m_volume);
+        m_player->play();
+        m_player->setVolume(m_volume);
     }
 }
 
 void MusicConsoleModule::musicPlayPrevious()
 {
-    if(m_musicPlaylist->isEmpty())
+    if(m_playlist->isEmpty())
     {
         return;
     }
 
-    if(m_musicPlaylist->playbackMode() == MusicObject::PlayRandom)
+    if(m_playlist->playbackMode() == MusicObject::PlayRandom)
     {
-        m_musicPlaylist->setCurrentIndex();
+        m_playlist->setCurrentIndex();
     }
     else
     {
-        m_musicPlayer->playPrevious();
+        m_player->playPrevious();
     }
 
-    m_musicPlayer->play();
-    m_musicPlayer->setVolume(m_volume);
+    m_player->play();
+    m_player->setVolume(m_volume);
 }
 
 void MusicConsoleModule::musicPlayNext()
 {
-    if(m_musicPlaylist->isEmpty())
+    if(m_playlist->isEmpty())
     {
         return;
     }
 
-    if(m_musicPlaylist->playbackMode() == MusicObject::PlayRandom)
+    if(m_playlist->playbackMode() == MusicObject::PlayRandom)
     {
-        m_musicPlaylist->setCurrentIndex();
+        m_playlist->setCurrentIndex();
     }
     else
     {
-        m_musicPlayer->playNext();
+        m_player->playNext();
     }
 
-    m_musicPlayer->play();
-    m_musicPlayer->setVolume(m_volume);
+    m_player->play();
+    m_player->setVolume(m_volume);
 }
 
 void MusicConsoleModule::resetVolume()
 {
-    m_musicPlayer->setVolume(m_volume);
+    m_player->setVolume(m_volume);
 }
 
 void MusicConsoleModule::musicActionVolumeSub()
 {
-    m_volume = m_musicPlayer->volume();
+    m_volume = m_player->volume();
     m_volume -= 15;
     if(m_volume < 0)
     {
         m_volume = 0;
     }
 
-    m_musicPlayer->setVolume(m_volume);
+    m_player->setVolume(m_volume);
 }
 
 void MusicConsoleModule::musicActionVolumePlus()
 {
-    m_volume = m_musicPlayer->volume();
+    m_volume = m_player->volume();
     m_volume += 15;
     if(m_volume > 100)
     {
         m_volume = 100;
     }
 
-    m_musicPlayer->setVolume(m_volume);
+    m_player->setVolume(m_volume);
 }
 
 void MusicConsoleModule::musicPlayOrder()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PlayOrder);
+    m_playlist->setPlaybackMode(MusicObject::PlayOrder);
     m_playbackMode = "Order";
 }
 
 void MusicConsoleModule::musicPlayRandom()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PlayRandom);
+    m_playlist->setPlaybackMode(MusicObject::PlayRandom);
     m_playbackMode = "Random";
 }
 
 void MusicConsoleModule::musicPlaylistLoop()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PlaylistLoop);
+    m_playlist->setPlaybackMode(MusicObject::PlaylistLoop);
     m_playbackMode = "ListLoop";
 }
 
 void MusicConsoleModule::musicPlayOneLoop()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PlayOneLoop);
+    m_playlist->setPlaybackMode(MusicObject::PlayOneLoop);
     m_playbackMode = "OneLoop";
 }
 
 void MusicConsoleModule::musicPlayOnce()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PlayOnce);
+    m_playlist->setPlaybackMode(MusicObject::PlayOnce);
     m_playbackMode = "Once";
 }
 
 void MusicConsoleModule::musicEnhancedOff()
 {
-    m_musicPlayer->setMusicEnhanced(MusicPlayer::EnhancedOff);
+    m_player->setMusicEnhanced(MusicPlayer::EnhancedOff);
     m_enhanced = "Off";
 }
 
 void MusicConsoleModule::musicEnhanced3D()
 {
-    m_musicPlayer->setMusicEnhanced(MusicPlayer::Enhanced3D);
+    m_player->setMusicEnhanced(MusicPlayer::Enhanced3D);
     m_enhanced = "3D";
 }
 
 void MusicConsoleModule::musicEnhancedNICAM()
 {
-    m_musicPlayer->setMusicEnhanced(MusicPlayer::EnhancedNICAM);
+    m_player->setMusicEnhanced(MusicPlayer::EnhancedNICAM);
     m_enhanced = "NICAM";
 }
 
 void MusicConsoleModule::musicEnhancedSubwoofer()
 {
-    m_musicPlayer->setMusicEnhanced(MusicPlayer::EnhancedSubwoofer);
+    m_player->setMusicEnhanced(MusicPlayer::EnhancedSubwoofer);
     m_enhanced = "Subwoofer";
 }
 
 void MusicConsoleModule::musicEnhancedVocal()
 {
-    m_musicPlayer->setMusicEnhanced(MusicPlayer::EnhancedVocal);
+    m_player->setMusicEnhanced(MusicPlayer::EnhancedVocal);
     m_enhanced = "Vocal";
 }
 
 void MusicConsoleModule::print(qint64 position, qint64 duration) const
 {
-    const MusicPlayItem &item = m_musicPlaylist->currentItem();
+    const MusicPlayItem &item = m_playlist->currentItem();
     TTK_LOGGER_INFO(QString("Music Name: %1, Time:[%2/%3], Volume:%4, PlaybackMode:%5, Enhance:%6"))
                 .arg(item.m_path,
                      MusicTime::msecTime2LabelJustified(position),
                      MusicTime::msecTime2LabelJustified(duration))
-                .arg(m_musicPlayer->volume())
+                .arg(m_player->volume())
                 .arg(m_playbackMode, m_enhanced);
 }

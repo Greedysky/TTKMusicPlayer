@@ -101,7 +101,7 @@ protected:
     MusicLrcAnalysis *m_analysis;
     MusicAudioRecorderModule *m_recordCore;
     MusicIdentifySongsRequest *m_detectedThread;
-    MusicObject::MusicSongInformation m_currentSong;
+    MusicObject::MusicSongInformation m_songInfo;
 
 };
 

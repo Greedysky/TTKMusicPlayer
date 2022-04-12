@@ -312,9 +312,9 @@ protected:
     MusicSettingWidget *m_settingWidget;
     MusicVideoPlayWidget *m_videoPlayerWidget;
     MusicLrcAnalysis *m_lrcAnalysis;
-    MusicLrcContainerForInterior *m_musicLrcForInterior;
-    MusicLrcContainerForDesktop *m_musicLrcForDesktop;
-    MusicLrcContainerForWallpaper *m_musicLrcForWallpaper;
+    MusicLrcContainerForInterior *m_lrcForInterior;
+    MusicLrcContainerForDesktop *m_lrcForDesktop;
+    MusicLrcContainerForWallpaper *m_lrcForWallpaper;
     MusicDownloadStatusModule *m_downloadStatusObject;
 
     static MusicRightAreaWidget *m_instance;

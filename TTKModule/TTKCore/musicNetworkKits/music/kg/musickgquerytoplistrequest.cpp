@@ -57,7 +57,7 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                 {
                     return;
                 }
-                //
+
                 value = value["data"].toMap();
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -70,47 +70,47 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["filename"].toString());
-                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                    MusicObject::MusicSongInformation info;
+                    info.m_songName = MusicUtils::String::charactersReplaced(value["filename"].toString());
+                    info.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
-                    if(musicInfo.m_songName.contains(TTK_DEFAULT_STR))
+                    if(info.m_songName.contains(TTK_DEFAULT_STR))
                     {
-                        const QStringList &ll = musicInfo.m_songName.split(TTK_DEFAULT_STR);
-                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(ll.front().trimmed());
-                        musicInfo.m_songName = MusicUtils::String::charactersReplaced(ll.back().trimmed());
+                        const QStringList &ll = info.m_songName.split(TTK_DEFAULT_STR);
+                        info.m_singerName = MusicUtils::String::charactersReplaced(ll.front().trimmed());
+                        info.m_songName = MusicUtils::String::charactersReplaced(ll.back().trimmed());
                     }
 
-                    musicInfo.m_songId = value["hash"].toString();
-                    musicInfo.m_albumId = value["album_id"].toString();
+                    info.m_songId = value["hash"].toString();
+                    info.m_albumId = value["album_id"].toString();
 
-                    musicInfo.m_year = QString();
-                    musicInfo.m_discNumber = "1";
-                    musicInfo.m_trackNumber = "0";
+                    info.m_year = QString();
+                    info.m_discNumber = "1";
+                    info.m_trackNumber = "0";
 
                     MusicResultsItem albumInfo;
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAlbumInfo(&albumInfo, musicInfo.m_albumId);
-                    musicInfo.m_albumName = albumInfo.m_nickName;
+                    readFromMusicSongAlbumInfo(&albumInfo, info.m_albumId);
+                    info.m_albumName = albumInfo.m_nickName;
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongLrcAndPicture(&musicInfo);
+                    readFromMusicSongLrcAndPicture(&info);
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongProperty(&musicInfo, value, m_queryQuality, m_queryAllRecords);
+                    readFromMusicSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songProps.isEmpty())
+                    if(info.m_songProps.isEmpty())
                     {
                         continue;
                     }
-                    //
+
                     MusicSearchedItem item;
-                    item.m_songName = musicInfo.m_songName;
-                    item.m_singerName = musicInfo.m_singerName;
-                    item.m_albumName = musicInfo.m_albumName;
-                    item.m_duration = musicInfo.m_duration;
+                    item.m_songName = info.m_songName;
+                    item.m_singerName = info.m_singerName;
+                    item.m_albumName = info.m_albumName;
+                    item.m_duration = info.m_duration;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
-                    m_musicSongInfos << musicInfo;
+                    m_songInfos << info;
                 }
             }
         }
@@ -141,8 +141,8 @@ bool MusicKGQueryToplistRequest::initialize()
         if(value.contains("data"))
         {
             value = value["data"].toMap();
-            MusicResultsItem info;
-            info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["timestamp"].toLongLong() * 1000).toString(MUSIC_YEAR_FORMAT);
+            MusicResultsItem result;
+            result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["timestamp"].toLongLong() * 1000).toString(MUSIC_YEAR_FORMAT);
 
             const QVariantList &datas = value["info"].toList();
             for(const QVariant &var : qAsConst(datas))
@@ -159,11 +159,11 @@ bool MusicKGQueryToplistRequest::initialize()
                     continue;
                 }
 
-                info.m_name = value["rankname"].toString();
-                info.m_coverUrl = value["banner7url"].toString().replace("{size}", "400");
-                info.m_playCount = value["play_times"].toString();
-                info.m_description = value["intro"].toString();
-                Q_EMIT createToplistInfoItem(info);
+                result.m_name = value["rankname"].toString();
+                result.m_coverUrl = value["banner7url"].toString().replace("{size}", "400");
+                result.m_playCount = value["play_times"].toString();
+                result.m_description = value["intro"].toString();
+                Q_EMIT createToplistInfoItem(result);
                 return true;
             }
         }

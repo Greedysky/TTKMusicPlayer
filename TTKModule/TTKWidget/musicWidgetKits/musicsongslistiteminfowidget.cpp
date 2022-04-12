@@ -37,17 +37,17 @@ bool MusicSongsListItemInfoWidget::showArtistPicture(const QString &name)
 
 void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &song)
 {
-    const QString &musicArtist = song.musicArtistFront();
-    m_ui->songNameValue->setText(song.musicName().isEmpty() ? TTK_DEFAULT_STR : MusicUtils::Widget::elidedText(font(), song.musicName(), Qt::ElideRight, m_ui->songNameValue->width()));
+    const QString &musicArtist = song.artistFront();
+    m_ui->songNameValue->setText(song.name().isEmpty() ? TTK_DEFAULT_STR : MusicUtils::Widget::elidedText(font(), song.name(), Qt::ElideRight, m_ui->songNameValue->width()));
     m_ui->artlistValue->setText(musicArtist.isEmpty() ? TTK_DEFAULT_STR : MusicUtils::Widget::elidedText(font(), musicArtist, Qt::ElideRight, m_ui->artlistValue->width()));
-    m_ui->sizeValue->setText(MusicUtils::Widget::elidedText(font(), song.musicSizeStr(), Qt::ElideRight, m_ui->sizeValue->width()));
-    m_ui->typeValue->setText(song.musicType().isEmpty() ? TTK_DEFAULT_STR : MusicUtils::Widget::elidedText(font(), song.musicType(), Qt::ElideRight, m_ui->typeValue->width()));
-    m_ui->timeValue->setText(MusicUtils::Widget::elidedText(font(), QString::number(song.musicPlayCount()), Qt::ElideRight, m_ui->timeValue->width()));
+    m_ui->sizeValue->setText(MusicUtils::Widget::elidedText(font(), song.sizeStr(), Qt::ElideRight, m_ui->sizeValue->width()));
+    m_ui->typeValue->setText(song.type().isEmpty() ? TTK_DEFAULT_STR : MusicUtils::Widget::elidedText(font(), song.type(), Qt::ElideRight, m_ui->typeValue->width()));
+    m_ui->timeValue->setText(MusicUtils::Widget::elidedText(font(), QString::number(song.playCount()), Qt::ElideRight, m_ui->timeValue->width()));
 
     if(G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())
     {
         MusicSongMeta meta;
-        if(meta.read(song.musicPath()))
+        if(meta.read(song.path()))
         {
             const QPixmap &pix = meta.cover();
             if(!pix.isNull())
@@ -58,7 +58,7 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &song
         }
     }
 
-    if(!showArtistPicture(musicArtist) && !showArtistPicture(song.musicArtistBack()))
+    if(!showArtistPicture(musicArtist) && !showArtistPicture(song.artistBack()))
     {
         m_ui->artPicture->setPixmap(QPixmap(":/image/lb_default_art").scaled(60, 60));
     }

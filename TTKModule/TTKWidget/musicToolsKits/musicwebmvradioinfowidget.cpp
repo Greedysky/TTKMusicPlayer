@@ -30,14 +30,14 @@ void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *qu
 
 void MusicWebMVRadioInfoTableWidget::musicDownloadLocal(int row)
 {
-    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
-    if(row < 0 || row >= musicSongInfos.count())
+    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    if(row < 0 || row >= songInfos.count())
     {
         return;
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], MusicAbstractQueryRequest::MovieQuery);
+    download->setSongName(songInfos[row], MusicAbstractQueryRequest::MovieQuery);
     download->show();
 }
 
@@ -49,12 +49,12 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
         case 5:
         case 6:
         {
-            const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
-            if(row < 0 || row >= musicSongInfos.count())
+            const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+            if(row < 0 || row >= songInfos.count())
             {
                 return;
             }
-            MusicRightAreaWidget::instance()->musicMovieRadioSearch(QVariant::fromValue<MusicObject::MusicSongInformation>(musicSongInfos[row]));
+            MusicRightAreaWidget::instance()->musicMovieRadioSearch(QVariant::fromValue<MusicObject::MusicSongInformation>(songInfos[row]));
             break;
         }
         case 7: musicDownloadLocal(row); break;
@@ -65,8 +65,8 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
 void MusicWebMVRadioInfoTableWidget::actionChanged(QAction *action)
 {
     const int row = currentRow();
-    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
-    if(row < 0 || row >= musicSongInfos.count())
+    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    if(row < 0 || row >= songInfos.count())
     {
         return;
     }
@@ -87,8 +87,8 @@ void MusicWebMVRadioInfoTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     const int row = currentRow();
-    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
-    if(row < 0 || row >= musicSongInfos.count())
+    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    if(row < 0 || row >= songInfos.count())
     {
         return;
     }

@@ -153,8 +153,9 @@ protected:
      */
     QString songName(int index) const;
 
-    int m_playRowIndex, m_toolIndex;
-    MusicSongList *m_musicSongs;
+    int m_toolIndex;
+    int m_playRowIndex;
+    MusicSongList *m_songs;
     bool m_hasParentToolIndex;
 
 };

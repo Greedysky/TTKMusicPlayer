@@ -59,9 +59,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Add current network music to download to local.
+     * Add current network music buffer to playlist.
      */
-    void musicSongToPlaylistChanged(const MusicResultsItem &songItem);
+    void songBufferToPlaylist(const MusicResultsItem &songItem);
     /*!
      * Restart search query by name.
      */

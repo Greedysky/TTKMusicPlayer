@@ -32,8 +32,8 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                 QVariantMap value = var.toMap();
                 TTK_NETWORK_QUERY_CHECK();
 
-                MusicResultsItem item;
-                item.m_nickName = value["className"].toString();
+                MusicResultsItem result;
+                result.m_nickName = value["className"].toString();
 
                 for(const QVariant &var : value["fm_list"].toList())
                 {
@@ -48,11 +48,10 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                     if(!contains && value["fmId"].toString() == m_queryValue)
                     {
                         contains = true;
-                        item.m_name = value["fmName"].toString();
-                        item.m_id = value["fmId"].toString();
-                        item.m_coverUrl = value["imgUrlMv"].toString();
-
-                        Q_EMIT createCategoryItem(item);
+                        result.m_name = value["fmName"].toString();
+                        result.m_id = value["fmId"].toString();
+                        result.m_coverUrl = value["imgUrlMv"].toString();
+                        Q_EMIT createCategoryItem(result);
 
                         for(const QVariant &var : value["mvs"].toList())
                         {
@@ -64,38 +63,38 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                             value = var.toMap();
                             TTK_NETWORK_QUERY_CHECK();
 
-                            MusicObject::MusicSongInformation musicInfo;
-                            musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                            musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                            if(musicInfo.m_singerName.contains(" - "))
+                            MusicObject::MusicSongInformation info;
+                            info.m_singerName = MusicUtils::String::charactersReplaced(value["name"].toString());
+                            info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
+                            if(info.m_singerName.contains(" - "))
                             {
-                                const QStringList &ds = musicInfo.m_singerName.split(" - ");
+                                const QStringList &ds = info.m_singerName.split(" - ");
                                 if(ds.count() >= 2)
                                 {
-                                    musicInfo.m_singerName = ds.front();
-                                    musicInfo.m_songName = ds.back();
+                                    info.m_singerName = ds.front();
+                                    info.m_songName = ds.back();
                                 }
                             }
-                            musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["time"].toInt());
+                            info.m_duration = MusicTime::msecTime2LabelJustified(value["time"].toInt());
 
-                            musicInfo.m_songId = value["mvhash"].toString();
+                            info.m_songId = value["mvhash"].toString();
                             TTK_NETWORK_QUERY_CHECK();
-                            readFromMusicMVProperty(&musicInfo);
+                            readFromMusicMVProperty(&info);
                             TTK_NETWORK_QUERY_CHECK();
 
-                            if(musicInfo.m_songProps.isEmpty())
+                            if(info.m_songProps.isEmpty())
                             {
                                 continue;
                             }
-                            //
+
                             MusicSearchedItem item;
-                            item.m_songName = musicInfo.m_songName;
-                            item.m_singerName = musicInfo.m_singerName;
-                            item.m_duration = musicInfo.m_duration;
+                            item.m_songName = info.m_songName;
+                            item.m_singerName = info.m_singerName;
+                            item.m_duration = info.m_duration;
                             item.m_albumName.clear();
                             item.m_type.clear();
                             Q_EMIT createSearchedItem(item);
-                            m_musicSongInfos << musicInfo;
+                            m_songInfos << info;
                         }
                     }
                 }

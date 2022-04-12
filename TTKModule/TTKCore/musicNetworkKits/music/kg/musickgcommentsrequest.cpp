@@ -22,7 +22,7 @@ void MusicKGSongCommentsRequest::startToSearch(const QString &value)
     m_rawData["sid"].clear();
     if(!d->isEmpty())
     {
-        m_rawData["sid"] = d->musicSongInfoList().front().m_songId;
+        m_rawData["sid"] = d->songInfoList().front().m_songId;
         startToPage(0);
     }
 }
@@ -75,13 +75,13 @@ void MusicKGSongCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem item;
-                    item.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());
-                    item.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(), MUSIC_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
-                    item.m_description = value["content"].toString();
-                    item.m_nickName = value["user_name"].toString();
-                    item.m_coverUrl = value["user_pic"].toString();
-                    Q_EMIT createSearchedItem(item);
+                    MusicResultsItem result;
+                    result.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());
+                    result.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(), MUSIC_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
+                    result.m_description = value["content"].toString();
+                    result.m_nickName = value["user_name"].toString();
+                    result.m_coverUrl = value["user_pic"].toString();
+                    Q_EMIT createSearchedItem(result);
                 }
             }
         }
@@ -155,13 +155,13 @@ void MusicKGPlaylistCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem item;
-                    item.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());
-                    item.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(), MUSIC_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
-                    item.m_description = value["content"].toString();
-                    item.m_nickName = value["user_name"].toString();
-                    item.m_coverUrl = value["user_pic"].toString();
-                    Q_EMIT createSearchedItem(item);
+                    MusicResultsItem result;
+                    result.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());
+                    result.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(), MUSIC_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
+                    result.m_description = value["content"].toString();
+                    result.m_nickName = value["user_name"].toString();
+                    result.m_coverUrl = value["user_pic"].toString();
+                    Q_EMIT createSearchedItem(result);
                 }
             }
         }

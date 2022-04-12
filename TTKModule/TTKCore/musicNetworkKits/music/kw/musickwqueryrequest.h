@@ -39,7 +39,7 @@ public:
     /*!
      * Read datas from config file.
      */
-    void readBuffer(MusicObject::MusicSongInformation *item);
+    void readBuffer(MusicObject::MusicSongInformation *info);
 
 };
 

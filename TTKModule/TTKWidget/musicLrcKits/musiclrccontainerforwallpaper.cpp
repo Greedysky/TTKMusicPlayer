@@ -45,12 +45,12 @@ MusicLrcContainerForWallpaper::~MusicLrcContainerForWallpaper()
 
 void MusicLrcContainerForWallpaper::startDrawLrc()
 {
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->startDrawLrc();
+    m_lrcManagers[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->startDrawLrc();
 }
 
 void MusicLrcContainerForWallpaper::stopDrawLrc()
 {
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->stopDrawLrc();
+    m_lrcManagers[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->stopDrawLrc();
     m_layoutWidget->stop();
 }
 
@@ -59,7 +59,7 @@ void MusicLrcContainerForWallpaper::applySettingParameter()
     const int width = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize().width() - LRC_PER_WIDTH;
     for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
-        MusicLrcManagerForInterior *w = TTKStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[i]);
+        MusicLrcManagerForInterior *w = TTKStatic_cast(MusicLrcManagerForInterior*, m_lrcManagers[i]);
         w->setLrcPerWidth(width);
         w->setLrcFontSize(36);
         w->setY(35 + 36);
@@ -85,7 +85,7 @@ void MusicLrcContainerForWallpaper::setLrcAnalysisModel(MusicLrcAnalysis *analys
     {
        MusicLrcManager *w = new MusicLrcManagerForInterior(this);
        m_layoutWidget->addWidget(w);
-       m_musicLrcContainer.append(w);
+       m_lrcManagers.append(w);
     }
     m_layoutWidget->addStretch(1);
 
@@ -109,9 +109,9 @@ void MusicLrcContainerForWallpaper::updateCurrentLrc(const QString &text)
 {
     for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
-        m_musicLrcContainer[i]->setText(QString());
+        m_lrcManagers[i]->setText(QString());
     }
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(text);
+    m_lrcManagers[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(text);
 }
 
 void MusicLrcContainerForWallpaper::start(bool immediate)
@@ -149,23 +149,23 @@ void MusicLrcContainerForWallpaper::updateAnimationLrc()
     const int length = (MUSIC_LRC_INTERIOR_MAX_LINE - m_lrcAnalysis->lineMax()) / 2 + 1;
     for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
-        m_musicLrcContainer[i]->setText(m_lrcAnalysis->text(i - length));
+        m_lrcManagers[i]->setText(m_lrcAnalysis->text(i - length));
     }
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->startDrawLrcMask(m_animationFreshTime);
+    m_lrcManagers[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->startDrawLrcMask(m_animationFreshTime);
 }
 
 void MusicLrcContainerForWallpaper::initCurrentLrc(const QString &str)
 {
     for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
     {
-        m_musicLrcContainer[i]->setText(QString());
+        m_lrcManagers[i]->setText(QString());
     }
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(str);
+    m_lrcManagers[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(str);
 }
 
 void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int transparent)
 {
-    MusicLrcManagerForInterior *w = TTKStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[index]);
+    MusicLrcManagerForInterior *w = TTKStatic_cast(MusicLrcManagerForInterior*, m_lrcManagers[index]);
     w->setFontSize(size);
 
     const int value = 100 - transparent;

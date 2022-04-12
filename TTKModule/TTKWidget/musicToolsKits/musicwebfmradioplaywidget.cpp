@@ -142,7 +142,7 @@ void MusicWebFMRadioPlayWidget::radioResourceDownload()
     MusicObject::MusicSongInformation info;
     if(m_songThread)
     {
-        info = m_songThread->musicSongInfo();
+        info = m_songThread->songInfo();
     }
 
     if(info.m_songProps.isEmpty())
@@ -160,7 +160,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     MusicObject::MusicSongInformation info;
     if(m_songThread)
     {
-        info = m_songThread->musicSongInfo();
+        info = m_songThread->songInfo();
     }
 
     m_isPlaying = true;
@@ -230,7 +230,7 @@ void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
     MusicObject::MusicSongInformation info;
     if(m_songThread)
     {
-        info = m_songThread->musicSongInfo();
+        info = m_songThread->songInfo();
     }
 
     if(info.m_songProps.isEmpty())
@@ -248,7 +248,7 @@ void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
     MusicObject::MusicSongInformation info;
     if(m_songThread)
     {
-        info = m_songThread->musicSongInfo();
+        info = m_songThread->songInfo();
     }
 
     if(info.m_songProps.isEmpty())

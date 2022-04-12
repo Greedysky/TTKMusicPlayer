@@ -222,8 +222,8 @@ protected:
     void drawWindowBackgroundRectString(const QString &path);
 
     Ui::MusicApplication *m_ui;
-    MusicBackgroundSkinDialog *m_musicBackgroundWidget;
-    MusicRemoteWidget *m_musicRemoteWidget;
+    MusicBackgroundSkinDialog *m_backgroundWidget;
+    MusicRemoteWidget *m_remoteWidget;
     QImage m_backgroundImage;
     int m_lastRemoteBeforeWallpaper;
     QString m_backgroundImagePath;

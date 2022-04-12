@@ -32,8 +32,8 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent),
       m_parentClass(parent),
       m_openFileWidget(nullptr),
-      m_musicSongsInfoWidget(nullptr),
-      m_musicSongsPlayWidget(nullptr)
+      m_songsInfoWidget(nullptr),
+      m_songsPlayWidget(nullptr)
 {
     m_deleteItemWithFile = false;
     m_renameActived = false;
@@ -43,7 +43,7 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     m_mouseMoved = false;
     m_toolIndex = index;
     m_renameLineEditDelegate = nullptr;
-    m_musicSort = nullptr;
+    m_songSort = nullptr;
 
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -69,8 +69,8 @@ MusicSongsListTableWidget::~MusicSongsListTableWidget()
 {
     clearAllItems();
     delete m_openFileWidget;
-    delete m_musicSongsInfoWidget;
-    delete m_musicSongsPlayWidget;
+    delete m_songsInfoWidget;
+    delete m_songsPlayWidget;
     delete m_renameLineEditDelegate;
 }
 
@@ -89,7 +89,7 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongList &songs)
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::Widget::elidedText(font(), songs[i].musicName(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        item->setText(MusicUtils::Widget::elidedText(font(), songs[i].name(), Qt::ElideRight, headerview->sectionSize(1) - 10));
 #if TTK_QT_VERSION_CHECK(5,13,0)
         item->setForeground(QColor(MusicUIObject::MQSSColor01));
 #else
@@ -107,7 +107,7 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongList &songs)
                           item = new QTableWidgetItem;
         setItem(i, 4, item);
 
-                          item = new QTableWidgetItem(songs[i].musicPlayTime());
+                          item = new QTableWidgetItem(songs[i].playTime());
 #if TTK_QT_VERSION_CHECK(5,13,0)
         item->setForeground(QColor(MusicUIObject::MQSSColor01));
 #else
@@ -134,24 +134,24 @@ void MusicSongsListTableWidget::selectRow(int index)
         delete takeItem(index, i);
     }
 
-    const QString &name = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).musicName() : QString();
-    const QString &path = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).musicPath() : QString();
+    const QString &name = !m_songs->isEmpty() ? m_songs->at(index).name() : QString();
+    const QString &path = !m_songs->isEmpty() ? m_songs->at(index).path() : QString();
     QString timeLabel;
 
-    m_musicSongsPlayWidget = new MusicSongsListPlayWidget(index, this);
-    m_musicSongsPlayWidget->setParameter(name, path, timeLabel);
+    m_songsPlayWidget = new MusicSongsListPlayWidget(index, this);
+    m_songsPlayWidget->setParameter(name, path, timeLabel);
 
-    if(!m_musicSongs->isEmpty())
+    if(!m_songs->isEmpty())
     {
-        MusicSong *song = &(*m_musicSongs)[index];
-        if(song->musicPlayTime().isEmpty() || song->musicPlayTime() == MUSIC_TIME_INIT)
+        MusicSong *song = &(*m_songs)[index];
+        if(song->playTime().isEmpty() || song->playTime() == MUSIC_TIME_INIT)
         {
-            song->setMusicPlayTime(timeLabel);
+            song->setPlayTime(timeLabel);
         }
     }
 
     setSpan(index, 0, 1, 6);
-    setCellWidget(index, 0, m_musicSongsPlayWidget);
+    setCellWidget(index, 0, m_songsPlayWidget);
     setRowHeight(index, ITEM_ROW_HEIGHT_XL);
     m_playRowIndex = index;
 
@@ -170,8 +170,8 @@ void MusicSongsListTableWidget::clearAllItems()
     setRowHeight(m_playRowIndex, ITEM_ROW_HEIGHT_M);
     removeCellWidget(m_playRowIndex, 0);
 
-    delete m_musicSongsPlayWidget;
-    m_musicSongsPlayWidget = nullptr;
+    delete m_songsPlayWidget;
+    m_songsPlayWidget = nullptr;
 
     m_playRowIndex = -1;
     //Remove all the original item
@@ -184,21 +184,21 @@ void MusicSongsListTableWidget::updateSearchFileName(MusicSongList *songs, const
     m_searchedSongs.clear();
     if(songs->count() == result.count())
     {
-        m_musicSongs = songs;
+        m_songs = songs;
     }
     else
     {
-        m_musicSongs = &m_searchedSongs;
+        m_songs = &m_searchedSongs;
         for(int index : qAsConst(result))
         {
-            m_musicSongs->append((*songs)[index]);
+            m_songs->append((*songs)[index]);
         }
     }
 
     clearAllItems();
-    if(!m_musicSongs->isEmpty())
+    if(!m_songs->isEmpty())
     {
-        updateSongsFileName(*m_musicSongs);
+        updateSongsFileName(*m_songs);
     }
     else
     {
@@ -208,17 +208,17 @@ void MusicSongsListTableWidget::updateSearchFileName(MusicSongList *songs, const
 
 void MusicSongsListTableWidget::updateTimeLabel(const QString &current, const QString &total) const
 {
-    if(m_musicSongsPlayWidget)
+    if(m_songsPlayWidget)
     {
-        m_musicSongsPlayWidget->updateTimeLabel(current, total);
+        m_songsPlayWidget->updateTimeLabel(current, total);
     }
 }
 
 void MusicSongsListTableWidget::updateCurrentArtist()
 {
-    if(m_musicSongsPlayWidget)
+    if(m_songsPlayWidget)
     {
-        m_musicSongsPlayWidget->updateCurrentArtist();
+        m_songsPlayWidget->updateCurrentArtist();
     }
 }
 
@@ -229,7 +229,7 @@ void MusicSongsListTableWidget::adjustPlayWidgetRow()
         return;
     }
 
-    const QString &name = !m_musicSongs->isEmpty() ? m_musicSongs->at(m_playRowIndex).musicName() : QString();
+    const QString &name = !m_songs->isEmpty() ? m_songs->at(m_playRowIndex).name() : QString();
 
     setRowHeight(m_playRowIndex, ITEM_ROW_HEIGHT_M);
 
@@ -254,7 +254,7 @@ void MusicSongsListTableWidget::adjustPlayWidgetRow()
     setItem(m_playRowIndex, 3, new QTableWidgetItem);
     setItem(m_playRowIndex, 4, new QTableWidgetItem);
 
-    item = new QTableWidgetItem((*m_musicSongs)[m_playRowIndex].musicPlayTime());
+    item = new QTableWidgetItem((*m_songs)[m_playRowIndex].playTime());
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(MusicUIObject::MQSSColor01));
 #else
@@ -263,8 +263,8 @@ void MusicSongsListTableWidget::adjustPlayWidgetRow()
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 5, item);
 
-    delete m_musicSongsPlayWidget;
-    m_musicSongsPlayWidget = nullptr;
+    delete m_songsPlayWidget;
+    m_songsPlayWidget = nullptr;
 
     m_playRowIndex = -1;
     //just fix table widget size hint
@@ -273,7 +273,7 @@ void MusicSongsListTableWidget::adjustPlayWidgetRow()
 
 bool MusicSongsListTableWidget::createUploadFileModule()
 {
-    if(m_musicSongs->isEmpty() && MusicObject::playlistRowValid(m_toolIndex))
+    if(m_songs->isEmpty() && MusicObject::playlistRowValid(m_toolIndex))
     {
         setFixedSize(LEFT_SIDE_WIDTH_MIN, 100);
         if(m_openFileWidget == nullptr && m_parentClass)
@@ -325,7 +325,7 @@ void MusicSongsListTableWidget::itemCellEntered(int row, int column)
     if(it)
     {
         it->setIcon(QIcon());
-        it->setText((*m_musicSongs)[m_previousColorRow].musicPlayTime());
+        it->setText((*m_songs)[m_previousColorRow].playTime());
     }
 
     ///draw new table item state
@@ -368,10 +368,10 @@ void MusicSongsListTableWidget::itemCellEntered(int row, int column)
     MusicAbstractSongsListTableWidget::itemCellEntered(row, column);
 
     //To show music Songs Item information
-    if(m_musicSongsInfoWidget == nullptr)
+    if(m_songsInfoWidget == nullptr)
     {
-        m_musicSongsInfoWidget = new MusicSongsListItemInfoWidget;
-        m_musicSongsInfoWidget->hide();
+        m_songsInfoWidget = new MusicSongsListItemInfoWidget;
+        m_songsInfoWidget->hide();
     }
     m_timerShow.stop();
     m_timerShow.start(0.5 * MT_S2MS);
@@ -495,28 +495,28 @@ void MusicSongsListTableWidget::setDeleteItemWithFile()
 void MusicSongsListTableWidget::showTimeOut()
 {
     m_timerShow.stop();
-    if(m_musicSongsInfoWidget)
+    if(m_songsInfoWidget)
     {
-        if(m_previousColorRow < 0 || m_previousColorRow >= m_musicSongs->count())
+        if(m_previousColorRow < 0 || m_previousColorRow >= m_songs->count())
         {
             return;
         }
 
-        const MusicSong &song = (*m_musicSongs)[m_previousColorRow];
-        m_musicSongsInfoWidget->setMusicSongInformation(song);
-        m_musicSongsInfoWidget->move(mapToGlobal(QPoint(width(), 0)).x() + 8, QCursor::pos().y());
+        const MusicSong &song = (*m_songs)[m_previousColorRow];
+        m_songsInfoWidget->setMusicSongInformation(song);
+        m_songsInfoWidget->move(mapToGlobal(QPoint(width(), 0)).x() + 8, QCursor::pos().y());
 
         bool state;
         Q_EMIT isCurrentIndex(state);
-        m_musicSongsInfoWidget->setVisible(state ? (m_musicSongsPlayWidget && !m_musicSongsPlayWidget->itemRenameState()) : true);
+        m_songsInfoWidget->setVisible(state ? (m_songsPlayWidget && !m_songsPlayWidget->itemRenameState()) : true);
     }
 }
 
 void MusicSongsListTableWidget::stayTimeOut()
 {
     m_timerStay.stop();
-    delete m_musicSongsInfoWidget;
-    m_musicSongsInfoWidget = nullptr;
+    delete m_songsInfoWidget;
+    m_songsInfoWidget = nullptr;
 }
 
 void MusicSongsListTableWidget::setChangSongName()
@@ -527,9 +527,9 @@ void MusicSongsListTableWidget::setChangSongName()
     }
 
     //the playing widget allow renaming
-    if((currentRow() == m_playRowIndex) && m_musicSongsPlayWidget)
+    if((currentRow() == m_playRowIndex) && m_songsPlayWidget)
     {
-        m_musicSongsPlayWidget->setItemRename();
+        m_songsPlayWidget->setItemRename();
         return;
     }
 
@@ -539,7 +539,7 @@ void MusicSongsListTableWidget::setChangSongName()
     setItemDelegateForRow(currentRow(), m_renameLineEditDelegate);
     m_renameActived = true;
     m_renameItem = item(currentRow(), 1);
-    m_renameItem->setText((*m_musicSongs)[m_renameItem->row()].musicName());
+    m_renameItem->setText((*m_songs)[m_renameItem->row()].name());
     openPersistentEditor(m_renameItem);
     editItem(m_renameItem);
 }
@@ -591,7 +591,7 @@ void MusicSongsListTableWidget::musicAddToPlayLater()
         return;
     }
 
-    MusicPlayedListPopWidget::instance()->insert(m_toolIndex, (*m_musicSongs)[row]);
+    MusicPlayedListPopWidget::instance()->insert(m_toolIndex, (*m_songs)[row]);
 }
 
 void MusicSongsListTableWidget::musicAddToPlayedList()
@@ -602,7 +602,7 @@ void MusicSongsListTableWidget::musicAddToPlayedList()
         return;
     }
 
-    MusicPlayedListPopWidget::instance()->append(m_toolIndex, (*m_musicSongs)[row]);
+    MusicPlayedListPopWidget::instance()->append(m_toolIndex, (*m_songs)[row]);
 }
 
 void MusicSongsListTableWidget::setItemRenameFinished(const QString &name)
@@ -612,7 +612,7 @@ void MusicSongsListTableWidget::setItemRenameFinished(const QString &name)
         return;
     }
 
-    (*m_musicSongs)[m_playRowIndex].setMusicName(name);
+    (*m_songs)[m_playRowIndex].setName(name);
 }
 
 void MusicSongsListTableWidget::musicListSongSortBy(QAction *action)
@@ -623,19 +623,19 @@ void MusicSongsListTableWidget::musicListSongSortBy(QAction *action)
         return;
     }
 
-    if(m_musicSort)
+    if(m_songSort)
     {
-        const int type = m_musicSort->m_type;
-        m_musicSort->m_type = newType;
+        const int type = m_songSort->m_type;
+        m_songSort->m_type = newType;
 
         if(type == newType)
         {
-            const bool asc = m_musicSort->m_order == Qt::AscendingOrder;
-            m_musicSort->m_order = asc ? Qt::DescendingOrder : Qt::AscendingOrder;
+            const bool asc = m_songSort->m_order == Qt::AscendingOrder;
+            m_songSort->m_order = asc ? Qt::DescendingOrder : Qt::AscendingOrder;
         }
         else
         {
-            m_musicSort->m_order = Qt::AscendingOrder;
+            m_songSort->m_order = Qt::AscendingOrder;
         }
         Q_EMIT musicListSongSortBy(m_toolIndex);
     }
@@ -681,8 +681,8 @@ void MusicSongsListTableWidget::leaveEvent(QEvent *event)
     MusicAbstractSongsListTableWidget::leaveEvent(event);
     itemCellEntered(-1, -1);
 
-    delete m_musicSongsInfoWidget;
-    m_musicSongsInfoWidget = nullptr;
+    delete m_songsInfoWidget;
+    m_songsInfoWidget = nullptr;
     closeRenameItem();
 }
 
@@ -714,13 +714,13 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicUtils::Widget::adjustMenuPosition(&sortFiles);
     connect(&sortFiles, SIGNAL(triggered(QAction*)), SLOT(musicListSongSortBy(QAction*)));
 
-    if(m_musicSort)
+    if(m_songSort)
     {
         const QList<QAction*> actions(sortFiles.actions());
-        if(-1 < m_musicSort->m_type && m_musicSort->m_type < actions.count())
+        if(-1 < m_songSort->m_type && m_songSort->m_type < actions.count())
         {
-            const bool asc = m_musicSort->m_order == Qt::AscendingOrder;
-            actions[m_musicSort->m_type]->setIcon(QIcon(asc ? ":/tiny/lb_sort_asc" : ":/tiny/lb_sort_desc"));
+            const bool asc = m_songSort->m_order == Qt::AscendingOrder;
+            actions[m_songSort->m_type]->setIcon(QIcon(asc ? ":/tiny/lb_sort_asc" : ":/tiny/lb_sort_desc"));
         }
     }
     menu.addMenu(&sortFiles);
@@ -772,7 +772,7 @@ void MusicSongsListTableWidget::closeRenameItem()
     if(m_renameActived)
     {
         QHeaderView *headerview = horizontalHeader();
-        (*m_musicSongs)[m_renameItem->row()].setMusicName(m_renameItem->text());
+        (*m_songs)[m_renameItem->row()].setName(m_renameItem->text());
         m_renameItem->setText(MusicUtils::Widget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, headerview->sectionSize(1) - 10));
 
         m_renameActived = false;
@@ -824,8 +824,8 @@ void MusicSongsListTableWidget::startToDrag()
             }
 
             QHeaderView *headerview = horizontalHeader();
-            item(i, 1)->setText(MusicUtils::Widget::elidedText(font(), songs[i].musicName(), Qt::ElideRight, headerview->sectionSize(1) - 10));
-            item(i, 5)->setText(songs[i].musicPlayTime());
+            item(i, 1)->setText(MusicUtils::Widget::elidedText(font(), songs[i].name(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+            item(i, 5)->setText(songs[i].playTime());
         }
 
         bool state;

@@ -133,7 +133,7 @@ protected:
     MusicCoreMPlayer *m_player;
     MusicSoundKMicroSearchWidget *m_searchWidget;
     MusicLrcAnalysis *m_analysis;
-    QList<MusicLrcManagerForInterior*> m_musicLrcContainer;
+    QList<MusicLrcManagerForInterior*> m_lrcContainer;
     MusicAudioRecorderModule *m_recordCore;
 
 };

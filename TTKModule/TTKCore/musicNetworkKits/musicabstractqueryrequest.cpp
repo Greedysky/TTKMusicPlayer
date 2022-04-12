@@ -69,7 +69,7 @@ qint64 MusicAbstractQueryRequest::fileSizeByUrl(const QString &url)
 void MusicAbstractQueryRequest::downLoadFinished()
 {
     Q_EMIT clearAllItems();
-    m_musicSongInfos.clear();
+    m_songInfos.clear();
     MusicPageQueryRequest::downLoadFinished();
 }
 

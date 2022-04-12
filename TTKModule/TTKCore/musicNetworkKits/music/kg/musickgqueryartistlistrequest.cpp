@@ -94,10 +94,10 @@ void MusicKGQueryArtistListRequest::downLoadFinished()
                             value = sg.toMap();
                             TTK_NETWORK_QUERY_CHECK();
 
-                            MusicResultsItem info;
-                            info.m_id = QString::number(value["singerid"].toLongLong());
-                            info.m_name = value["singername"].toString();
-                            Q_EMIT createArtistListItem(info);
+                            MusicResultsItem result;
+                            result.m_id = QString::number(value["singerid"].toLongLong());
+                            result.m_name = value["singername"].toString();
+                            Q_EMIT createArtistListItem(result);
                         }
                         break;
                     }

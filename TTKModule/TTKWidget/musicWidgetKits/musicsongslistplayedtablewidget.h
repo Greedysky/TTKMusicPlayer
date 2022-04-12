@@ -94,7 +94,7 @@ protected:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
-    MusicSongsListPlayedWidget *m_musicSongsPlayWidget;
+    MusicSongsListPlayedWidget *m_songsPlayWidget;
 
 };
 

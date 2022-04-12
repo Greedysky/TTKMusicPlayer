@@ -6,14 +6,14 @@ MusicKWMusicInfoConfigManager::MusicKWMusicInfoConfigManager(QObject *parent)
 
 }
 
-void MusicKWMusicInfoConfigManager::readBuffer(MusicObject::MusicSongInformation *item)
+void MusicKWMusicInfoConfigManager::readBuffer(MusicObject::MusicSongInformation *info)
 {
-    item->m_singerName = readXmlTextByTagName("artist");
-    item->m_songName = readXmlTextByTagName("name");
-    item->m_songId = readXmlTextByTagName("music_id");
-    item->m_artistId = readXmlTextByTagName("albid");
-    item->m_albumId = readXmlTextByTagName("artid");
-    item->m_albumName = readXmlTextByTagName("special");
+    info->m_singerName = readXmlTextByTagName("artist");
+    info->m_songName = readXmlTextByTagName("name");
+    info->m_songId = readXmlTextByTagName("music_id");
+    info->m_artistId = readXmlTextByTagName("albid");
+    info->m_albumId = readXmlTextByTagName("artid");
+    info->m_albumName = readXmlTextByTagName("special");
 
     const QString &mp3Url = readXmlTextByTagName("mp3dl");
     if(!mp3Url.isEmpty())
@@ -26,7 +26,7 @@ void MusicKWMusicInfoConfigManager::readBuffer(MusicObject::MusicSongInformation
             prop.m_format = MP3_FILE_PREFIX;
             prop.m_size = TTK_DEFAULT_STR;
             prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
-            item->m_songProps.append(prop);
+            info->m_songProps.append(prop);
         }
 
         v = readXmlTextByTagName("path");
@@ -37,7 +37,7 @@ void MusicKWMusicInfoConfigManager::readBuffer(MusicObject::MusicSongInformation
             prop.m_format = WMA_FILE_PREFIX;
             prop.m_size = TTK_DEFAULT_STR;
             prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
-            item->m_songProps.append(prop);
+            info->m_songProps.append(prop);
         }
     }
 
@@ -52,7 +52,7 @@ void MusicKWMusicInfoConfigManager::readBuffer(MusicObject::MusicSongInformation
             prop.m_format = AAC_FILE_PREFIX;
             prop.m_size = TTK_DEFAULT_STR;
             prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, aacUrl, v);
-            item->m_songProps.append(prop);
+            info->m_songProps.append(prop);
         }
     }
 }
@@ -144,45 +144,48 @@ void MusicKWQueryRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["ARTIST"].toString());
-                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["SONGNAME"].toString());
-                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["DURATION"].toInt() * 1000);
+                    MusicObject::MusicSongInformation info;
+                    info.m_singerName = MusicUtils::String::charactersReplaced(value["ARTIST"].toString());
+                    info.m_songName = MusicUtils::String::charactersReplaced(value["SONGNAME"].toString());
+                    info.m_duration = MusicTime::msecTime2LabelJustified(value["DURATION"].toInt() * 1000);
 
-                    musicInfo.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
-                    musicInfo.m_artistId = value["ARTISTID"].toString();
-                    musicInfo.m_albumId = value["ALBUMID"].toString();
+                    info.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
+                    info.m_artistId = value["ARTISTID"].toString();
+                    info.m_albumId = value["ALBUMID"].toString();
 
-                    musicInfo.m_year = value["RELEASEDATE"].toString();
-                    musicInfo.m_discNumber = "1";
-                    musicInfo.m_trackNumber = "0";
+                    info.m_year = value["RELEASEDATE"].toString();
+                    info.m_discNumber = "1";
+                    info.m_trackNumber = "0";
 
                     if(!m_queryLite)
                     {
                         TTK_NETWORK_QUERY_CHECK();
-                        readFromMusicSongPicture(&musicInfo);
+                        readFromMusicSongPicture(&info);
                         TTK_NETWORK_QUERY_CHECK();
-                        musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                        musicInfo.m_albumName = MusicUtils::String::charactersReplaced(value["ALBUM"].toString());
-                        readFromMusicSongProperty(&musicInfo, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
+                        info.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
+                        info.m_albumName = MusicUtils::String::charactersReplaced(value["ALBUM"].toString());
+                        readFromMusicSongProperty(&info, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
                         TTK_NETWORK_QUERY_CHECK();
 
-                        if(musicInfo.m_songProps.isEmpty())
+                        if(info.m_songProps.isEmpty())
                         {
                             continue;
                         }
-                        //
-                        if(!findUrlFileSize(&musicInfo.m_songProps)) return;
-                        //
+
+                        if(!findUrlFileSize(&info.m_songProps))
+                        {
+                            return;
+                        }
+
                         MusicSearchedItem item;
-                        item.m_songName = musicInfo.m_songName;
-                        item.m_singerName = musicInfo.m_singerName;
-                        item.m_albumName = musicInfo.m_albumName;
-                        item.m_duration = musicInfo.m_duration;
+                        item.m_songName = info.m_songName;
+                        item.m_singerName = info.m_singerName;
+                        item.m_albumName = info.m_albumName;
+                        item.m_duration = info.m_duration;
                         item.m_type = mapQueryServerString();
                         Q_EMIT createSearchedItem(item);
                     }
-                    m_musicSongInfos << musicInfo;
+                    m_songInfos << info;
                 }
             }
         }
@@ -207,29 +210,32 @@ void MusicKWQueryRequest::downLoadSingleFinished()
         MusicKWMusicInfoConfigManager xml;
         if(xml.fromByteArray(data))
         {
-            MusicObject::MusicSongInformation musicInfo;
-            xml.readBuffer(&musicInfo);
+            MusicObject::MusicSongInformation info;
+            xml.readBuffer(&info);
 
-            musicInfo.m_year = QString();
-            musicInfo.m_discNumber = "1";
-            musicInfo.m_trackNumber = "0";
+            info.m_year = QString();
+            info.m_discNumber = "1";
+            info.m_trackNumber = "0";
 
             TTK_NETWORK_QUERY_CHECK();
-            readFromMusicSongPicture(&musicInfo);
+            readFromMusicSongPicture(&info);
             TTK_NETWORK_QUERY_CHECK();
-            musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-            //
-            if(!findUrlFileSize(&musicInfo.m_songProps)) return;
-            //
-            if(!musicInfo.m_songProps.isEmpty())
+            info.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
+
+            if(!findUrlFileSize(&info.m_songProps))
+            {
+                return;
+            }
+
+            if(!info.m_songProps.isEmpty())
             {
                 MusicSearchedItem item;
-                item.m_songName = musicInfo.m_songName;
-                item.m_singerName = musicInfo.m_singerName;
-                item.m_duration = musicInfo.m_duration;
+                item.m_songName = info.m_songName;
+                item.m_singerName = info.m_singerName;
+                item.m_duration = info.m_duration;
                 item.m_type = mapQueryServerString();
                 Q_EMIT createSearchedItem(item);
-                m_musicSongInfos << musicInfo;
+                m_songInfos << info;
             }
         }
     }

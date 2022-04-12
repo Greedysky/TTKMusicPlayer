@@ -86,43 +86,43 @@ void MusicKGQueryRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
-                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
-                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                    MusicObject::MusicSongInformation info;
+                    info.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
+                    info.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
+                    info.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
-                    musicInfo.m_songId = value["hash"].toString();
-                    musicInfo.m_albumId = value["album_id"].toString();
-                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(value["album_name"].toString());
+                    info.m_songId = value["hash"].toString();
+                    info.m_albumId = value["album_id"].toString();
+                    info.m_albumName = MusicUtils::String::charactersReplaced(value["album_name"].toString());
 
-                    musicInfo.m_year = QString();
-                    musicInfo.m_discNumber = "1";
-                    musicInfo.m_trackNumber = "0";
+                    info.m_year = QString();
+                    info.m_discNumber = "1";
+                    info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongLrcAndPicture(&musicInfo);
+                    readFromMusicSongLrcAndPicture(&info);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!m_queryLite)
                     {
                         TTK_NETWORK_QUERY_CHECK();
-                        readFromMusicSongProperty(&musicInfo, value, m_queryQuality, m_queryAllRecords);
+                        readFromMusicSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
                         TTK_NETWORK_QUERY_CHECK();
 
-                        if(musicInfo.m_songProps.isEmpty())
+                        if(info.m_songProps.isEmpty())
                         {
                             continue;
                         }
-                        //
+
                         MusicSearchedItem item;
-                        item.m_songName = musicInfo.m_songName;
-                        item.m_singerName = musicInfo.m_singerName;
-                        item.m_albumName = musicInfo.m_albumName;
-                        item.m_duration = musicInfo.m_duration;
+                        item.m_songName = info.m_songName;
+                        item.m_singerName = info.m_singerName;
+                        item.m_albumName = info.m_albumName;
+                        item.m_duration = info.m_duration;
                         item.m_type = mapQueryServerString();
                         Q_EMIT createSearchedItem(item);
                     }
-                    m_musicSongInfos << musicInfo;
+                    m_songInfos << info;
                 }
             }
         }
@@ -149,15 +149,15 @@ void MusicKGQueryRequest::downLoadSingleFinished()
             if(value["errcode"].toInt() == 0 && value.contains("data"))
             {
                 value = value["data"].toMap();
-                MusicObject::MusicSongInformation musicInfo;
-                musicInfo.m_songId = value["hash"].toString();
-                musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
-                musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
-                musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
-                musicInfo.m_artistId = QString::number(value["singerid"].toULongLong());
-                musicInfo.m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
-                musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
-                                                        .arg(musicInfo.m_songName, musicInfo.m_songId)
+                MusicObject::MusicSongInformation info;
+                info.m_songId = value["hash"].toString();
+                info.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
+                info.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
+                info.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                info.m_artistId = QString::number(value["singerid"].toULongLong());
+                info.m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
+                info.m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
+                                                        .arg(info.m_songName, info.m_songId)
                                                         .arg(value["duration"].toInt() * 1000);
                 const QVariantList &albumArray = value["album"].toList();
                 for(const QVariant &var : qAsConst(albumArray))
@@ -168,28 +168,28 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                     }
 
                     const QVariantMap &albumObject = var.toMap();
-                    musicInfo.m_albumId = albumObject["album_audio_id"].toString();
-                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumObject["album_name"].toString());
+                    info.m_albumId = albumObject["album_audio_id"].toString();
+                    info.m_albumName = MusicUtils::String::charactersReplaced(albumObject["album_name"].toString());
                 }
 
-                musicInfo.m_year = QString();
-                musicInfo.m_discNumber = "1";
-                musicInfo.m_trackNumber = "0";
+                info.m_year = QString();
+                info.m_discNumber = "1";
+                info.m_trackNumber = "0";
 
                 TTK_NETWORK_QUERY_CHECK();
-                readFromMusicSongProperty(&musicInfo, value["extra"].toMap(), m_queryQuality, true);
+                readFromMusicSongProperty(&info, value["extra"].toMap(), m_queryQuality, true);
                 TTK_NETWORK_QUERY_CHECK();
 
-                if(!musicInfo.m_songProps.isEmpty())
+                if(!info.m_songProps.isEmpty())
                 {
                     MusicSearchedItem item;
-                    item.m_songName = musicInfo.m_songName;
-                    item.m_singerName = musicInfo.m_singerName;
-                    item.m_albumName = musicInfo.m_albumName;
-                    item.m_duration = musicInfo.m_duration;
+                    item.m_songName = info.m_songName;
+                    item.m_singerName = info.m_singerName;
+                    item.m_albumName = info.m_albumName;
+                    item.m_duration = info.m_duration;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
-                    m_musicSongInfos << musicInfo;
+                    m_songInfos << info;
                 }
             }
         }

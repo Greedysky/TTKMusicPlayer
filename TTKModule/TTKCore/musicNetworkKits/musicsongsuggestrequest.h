@@ -43,7 +43,7 @@ public:
     /*!
      * Get suggest list items.
      */
-    inline const MusicResultsItemList& getSearchedItems() const { return m_items; }
+    inline const MusicResultsItemList& searchedItems() const { return m_items; }
 
 protected:
     MusicResultsItemList m_items;

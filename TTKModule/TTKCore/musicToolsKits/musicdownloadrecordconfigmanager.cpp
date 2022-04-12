@@ -12,10 +12,10 @@ void MusicDownloadRecordConfigManager::readBuffer(MusicSongList &items)
     for(int i = 0; i < nodeList.count(); ++i)
     {
         MusicSong record;
-        record.setMusicName(nodeList.at(i).toElement().attribute("name"));
-        record.setMusicSizeStr(nodeList.at(i).toElement().attribute("size"));
-        record.setMusicAddTimeStr(nodeList.at(i).toElement().attribute("time"));
-        record.setMusicPath(nodeList.at(i).toElement().text());
+        record.setName(nodeList.at(i).toElement().attribute("name"));
+        record.setSizeStr(nodeList.at(i).toElement().attribute("size"));
+        record.setAddTimeStr(nodeList.at(i).toElement().attribute("time"));
+        record.setPath(nodeList.at(i).toElement().text());
         items << record;
     }
 }
@@ -33,9 +33,9 @@ void MusicDownloadRecordConfigManager::writeBuffer(const MusicSongList &items)
 
     for(const MusicSong &record : qAsConst(items))
     {
-        writeDomMutilElementText(recordDom, "value", {{"name", record.musicName()},
-                                                      {"size", record.musicSizeStr()},
-                                                      {"time", record.musicAddTimeStr()}}, record.musicPath());
+        writeDomMutilElementText(recordDom, "value", {{"name", record.name()},
+                                                      {"size", record.sizeStr()},
+                                                      {"time", record.addTimeStr()}}, record.path());
     }
 
     QTextStream out(m_file);

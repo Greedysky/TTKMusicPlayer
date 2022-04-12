@@ -55,8 +55,8 @@ void MusicWYSongSuggestRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem item;
-                    item.m_name = MusicUtils::String::charactersReplaced(value["name"].toString());
+                    MusicResultsItem result;
+                    result.m_name = MusicUtils::String::charactersReplaced(value["name"].toString());
                     const QVariantList &artistsArray = value["artists"].toList();
                     for(const QVariant &artistValue : qAsConst(artistsArray))
                     {
@@ -66,9 +66,9 @@ void MusicWYSongSuggestRequest::downLoadFinished()
                         }
 
                         const QVariantMap &artistObject = artistValue.toMap();
-                        item.m_nickName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
+                        result.m_nickName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
                     }
-                    m_items << item;
+                    m_items << result;
                 }
             }
         }

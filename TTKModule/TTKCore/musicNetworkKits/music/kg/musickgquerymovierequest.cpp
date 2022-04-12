@@ -86,28 +86,28 @@ void MusicKGQueryMovieRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
-                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
-                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                    MusicObject::MusicSongInformation info;
+                    info.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
+                    info.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
+                    info.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
-                    musicInfo.m_songId = value["mvhash"].toString();
+                    info.m_songId = value["mvhash"].toString();
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicMVProperty(&musicInfo, false);
+                    readFromMusicMVProperty(&info, false);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songProps.isEmpty())
+                    if(info.m_songProps.isEmpty())
                     {
                         continue;
                     }
-                    //
+
                     MusicSearchedItem item;
-                    item.m_songName = musicInfo.m_songName;
-                    item.m_singerName = musicInfo.m_singerName;
-                    item.m_duration = musicInfo.m_duration;
+                    item.m_songName = info.m_songName;
+                    item.m_singerName = info.m_singerName;
+                    item.m_duration = info.m_duration;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
-                    m_musicSongInfos << musicInfo;
+                    m_songInfos << info;
                 }
             }
         }
@@ -146,12 +146,12 @@ void MusicKGQueryMovieRequest::downLoadPageFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem info;
-                    info.m_id = value["hash"].toString();
-                    info.m_coverUrl = value["imgurl"].toString();
-                    info.m_name = value["filename"].toString();
-                    info.m_updateTime.clear();
-                    Q_EMIT createMovieInfoItem(info);
+                    MusicResultsItem result;
+                    result.m_id = value["hash"].toString();
+                    result.m_coverUrl = value["imgurl"].toString();
+                    result.m_name = value["filename"].toString();
+                    result.m_updateTime.clear();
+                    Q_EMIT createMovieInfoItem(result);
                 }
             }
         }
@@ -167,23 +167,23 @@ void MusicKGQueryMovieRequest::downLoadSingleFinished()
 
     MusicQueryMovieRequest::downLoadFinished();
 
-    MusicObject::MusicSongInformation musicInfo;
-    musicInfo.m_songId = m_queryValue;
+    MusicObject::MusicSongInformation info;
+    info.m_songId = m_queryValue;
     TTK_NETWORK_QUERY_CHECK();
-    readFromMusicMVInfo(&musicInfo);
+    readFromMusicMVInfo(&info);
     TTK_NETWORK_QUERY_CHECK();
-    readFromMusicMVProperty(&musicInfo, true);
+    readFromMusicMVProperty(&info, true);
     TTK_NETWORK_QUERY_CHECK();
 
-    if(!musicInfo.m_songProps.isEmpty())
+    if(!info.m_songProps.isEmpty())
     {
         MusicSearchedItem item;
-        item.m_songName = musicInfo.m_songName;
-        item.m_singerName = musicInfo.m_singerName;
-        item.m_duration = musicInfo.m_duration;
+        item.m_songName = info.m_songName;
+        item.m_singerName = info.m_singerName;
+        item.m_duration = info.m_duration;
         item.m_type = mapQueryServerString();
         Q_EMIT createSearchedItem(item);
-        m_musicSongInfos << musicInfo;
+        m_songInfos << info;
     }
 
     Q_EMIT downLoadDataChanged(QString());

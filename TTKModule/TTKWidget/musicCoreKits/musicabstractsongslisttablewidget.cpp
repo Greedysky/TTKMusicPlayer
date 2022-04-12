@@ -11,9 +11,9 @@
 MusicAbstractSongsListTableWidget::MusicAbstractSongsListTableWidget(QWidget *parent)
     : MusicSmoothMovingTableWidget(parent)
 {
-    m_playRowIndex = -1;
     m_toolIndex = -1;
-    m_musicSongs = nullptr;
+    m_playRowIndex = -1;
+    m_songs = nullptr;
     m_hasParentToolIndex = true;
 }
 
@@ -24,7 +24,7 @@ MusicAbstractSongsListTableWidget::~MusicAbstractSongsListTableWidget()
 
 void MusicAbstractSongsListTableWidget::setSongsFileName(MusicSongList *songs)
 {
-    m_musicSongs = songs;
+    m_songs = songs;
     updateSongsFileName(*songs);
 }
 
@@ -89,7 +89,7 @@ void MusicAbstractSongsListTableWidget::musicOpenFileDir()
         return;
     }
 
-    const QString &path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).musicPath() : QString();
+    const QString &path = !m_songs->isEmpty() ? m_songs->at(currentRow()).path() : QString();
     if(QFileInfo(path).baseName() == MusicUtils::Algorithm::mdII(currentSongName(), ALG_ARC_KEY, true))
     {
         //cache song should not allow open url
@@ -235,7 +235,7 @@ QString MusicAbstractSongsListTableWidget::currentSongPath() const
 
 QString MusicAbstractSongsListTableWidget::songPath(int index) const
 {
-    return !m_musicSongs->isEmpty() ? m_musicSongs->at(index).musicPath().trimmed() : QString();
+    return !m_songs->isEmpty() ? m_songs->at(index).path().trimmed() : QString();
 }
 
 QString MusicAbstractSongsListTableWidget::currentSongName() const
@@ -255,5 +255,5 @@ QString MusicAbstractSongsListTableWidget::songName(int index) const
         return QString();
     }
 
-    return !m_musicSongs->isEmpty() ? m_musicSongs->at(index).musicName().trimmed() : QString();
+    return !m_songs->isEmpty() ? m_songs->at(index).name().trimmed() : QString();
 }

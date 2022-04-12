@@ -22,8 +22,8 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     : QWidget(parent)
 {
     m_instance = this;
-    m_musicBackgroundWidget = nullptr;
-    m_musicRemoteWidget = nullptr;
+    m_backgroundWidget = nullptr;
+    m_remoteWidget = nullptr;
 
     m_pictureCarouselTimer.setInterval(10 * MT_S2MS);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
@@ -37,8 +37,8 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
 
 MusicTopAreaWidget::~MusicTopAreaWidget()
 {
-    delete m_musicBackgroundWidget;
-    delete m_musicRemoteWidget;
+    delete m_backgroundWidget;
+    delete m_remoteWidget;
 }
 
 MusicTopAreaWidget *MusicTopAreaWidget::instance()
@@ -108,18 +108,18 @@ void MusicTopAreaWidget::setBackgroundParameter()
 
 int MusicTopAreaWidget::backgroundListAlpha()
 {
-    if(m_musicBackgroundWidget)
+    if(m_backgroundWidget)
     {
-        m_backgroundListAlpha = m_musicBackgroundWidget->backgroundListAlpha();
+        m_backgroundListAlpha = m_backgroundWidget->backgroundListAlpha();
     }
     return m_backgroundListAlpha;
 }
 
 bool MusicTopAreaWidget::backgroundTransparentEnable() const
 {
-    if(m_musicBackgroundWidget)
+    if(m_backgroundWidget)
     {
-        return m_musicBackgroundWidget->backgroundTransparentEnable();
+        return m_backgroundWidget->backgroundTransparentEnable();
     }
     return false;
 }
@@ -136,37 +136,37 @@ void MusicTopAreaWidget::setBackgroundAnimation(bool state)
 
 void MusicTopAreaWidget::setCurrentPlayStatus(bool status)
 {
-    if(m_musicRemoteWidget)
+    if(m_remoteWidget)
     {
-        m_musicRemoteWidget->setCurrentPlayStatus(status);
+        m_remoteWidget->setCurrentPlayStatus(status);
     }
 }
 
 void MusicTopAreaWidget::setLabelText(const QString &name) const
 {
-    if(m_musicRemoteWidget)
+    if(m_remoteWidget)
     {
-        m_musicRemoteWidget->setLabelText(name);
+        m_remoteWidget->setLabelText(name);
     }
 }
 
 void MusicTopAreaWidget::setVolumeValue(int value) const
 {
-    if(m_musicRemoteWidget)
+    if(m_remoteWidget)
     {
-        m_musicRemoteWidget->setVolumeValue(value);
+        m_remoteWidget->setVolumeValue(value);
     }
 }
 
 void MusicTopAreaWidget::musicShowSkinChangedWindow()
 {
-    if(m_musicBackgroundWidget == nullptr)
+    if(m_backgroundWidget == nullptr)
     {
-        m_musicBackgroundWidget = new MusicBackgroundSkinDialog(this);
+        m_backgroundWidget = new MusicBackgroundSkinDialog(this);
     }
 
-    m_musicBackgroundWidget->setCurrentBackgroundTheme(m_backgroundImagePath, m_backgroundAlpha, m_backgroundListAlpha);
-    m_musicBackgroundWidget->exec();
+    m_backgroundWidget->setCurrentBackgroundTheme(m_backgroundImagePath, m_backgroundAlpha, m_backgroundListAlpha);
+    m_backgroundWidget->exec();
 }
 
 void MusicTopAreaWidget::musicBackgroundTransparentChanged(int value)
@@ -176,9 +176,9 @@ void MusicTopAreaWidget::musicBackgroundTransparentChanged(int value)
         return;
     }
 
-    if(m_musicBackgroundWidget)
+    if(m_backgroundWidget)
     {
-        m_musicBackgroundWidget->setSkinTransToolText(value);
+        m_backgroundWidget->setSkinTransToolText(value);
     }
 
     m_backgroundAlpha = value;
@@ -206,9 +206,9 @@ void MusicTopAreaWidget::musicSetAsArtistBackground()
             return;
         }
 
-        if(m_musicBackgroundWidget)
+        if(m_backgroundWidget)
         {
-            m_musicBackgroundWidget->updateArtistFileTheme(path);
+            m_backgroundWidget->updateArtistFileTheme(path);
         }
 
         musicBackgroundSkinChanged(path);
@@ -276,9 +276,9 @@ void MusicTopAreaWidget::musicBackgroundThemeChangedByResize()
 
 void MusicTopAreaWidget::musicPlaylistTransparent(int index)
 {
-    if(m_musicBackgroundWidget)
+    if(m_backgroundWidget)
     {
-        m_musicBackgroundWidget->setListTransToolText(index);
+        m_backgroundWidget->setListTransToolText(index);
     }
 
     m_backgroundListAlpha = index;
@@ -287,48 +287,48 @@ void MusicTopAreaWidget::musicPlaylistTransparent(int index)
 
 void MusicTopAreaWidget::musicSquareRemote()
 {
-    if(m_musicRemoteWidget)
+    if(m_remoteWidget)
     {
-        delete m_musicRemoteWidget;
+        delete m_remoteWidget;
     }
 
-    m_musicRemoteWidget = new MusicRemoteWidgetForSquare;
+    m_remoteWidget = new MusicRemoteWidgetForSquare;
     createRemoteWidget();
 }
 
 void MusicTopAreaWidget::musicRectangleRemote()
 {
-    if(m_musicRemoteWidget)
+    if(m_remoteWidget)
     {
-        delete m_musicRemoteWidget;
+        delete m_remoteWidget;
     }
 
-    m_musicRemoteWidget = new MusicRemoteWidgetForRectangle;
-    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
+    m_remoteWidget = new MusicRemoteWidgetForRectangle;
+    m_remoteWidget->setLabelText(m_ui->showCurrentSong->text());
     createRemoteWidget();
 }
 
 void MusicTopAreaWidget::musicSimpleStyleRemote()
 {
-    if(m_musicRemoteWidget)
+    if(m_remoteWidget)
     {
-        delete m_musicRemoteWidget;
+        delete m_remoteWidget;
     }
 
-    m_musicRemoteWidget = new MusicRemoteWidgetForSimpleStyle;
-    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
+    m_remoteWidget = new MusicRemoteWidgetForSimpleStyle;
+    m_remoteWidget->setLabelText(m_ui->showCurrentSong->text());
     createRemoteWidget();
 }
 
 void MusicTopAreaWidget::musicComplexStyleRemote()
 {
-    if(m_musicRemoteWidget)
+    if(m_remoteWidget)
     {
-        delete m_musicRemoteWidget;
+        delete m_remoteWidget;
     }
 
-    m_musicRemoteWidget = new MusicRemoteWidgetForComplexStyle;
-    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
+    m_remoteWidget = new MusicRemoteWidgetForComplexStyle;
+    m_remoteWidget->setLabelText(m_ui->showCurrentSong->text());
     createRemoteWidget();
 }
 
@@ -336,20 +336,20 @@ void MusicTopAreaWidget::musicWallpaperRemote(bool create)
 {
     if(create)
     {
-        if(m_musicRemoteWidget)
+        if(m_remoteWidget)
         {
-            m_lastRemoteBeforeWallpaper = m_musicRemoteWidget->mapRemoteTypeIndex();
-            delete m_musicRemoteWidget;
+            m_lastRemoteBeforeWallpaper = m_remoteWidget->mapRemoteTypeIndex();
+            delete m_remoteWidget;
         }
 
-        m_musicRemoteWidget = new MusicRemoteWidgetForStrip;
-        m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
+        m_remoteWidget = new MusicRemoteWidgetForStrip;
+        m_remoteWidget->setLabelText(m_ui->showCurrentSong->text());
         createRemoteWidget();
     }
     else
     {
-        delete m_musicRemoteWidget;
-        m_musicRemoteWidget = nullptr;
+        delete m_remoteWidget;
+        m_remoteWidget = nullptr;
         musicRemoteTypeChanged(m_lastRemoteBeforeWallpaper);
         m_lastRemoteBeforeWallpaper = -1;
     }
@@ -357,35 +357,35 @@ void MusicTopAreaWidget::musicWallpaperRemote(bool create)
 
 void MusicTopAreaWidget::musicRippleRemote()
 {
-    if(m_musicRemoteWidget)
+    if(m_remoteWidget)
     {
-        delete m_musicRemoteWidget;
+        delete m_remoteWidget;
     }
 
-    m_musicRemoteWidget = new MusicRemoteWidgetForRipple;
-    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
+    m_remoteWidget = new MusicRemoteWidgetForRipple;
+    m_remoteWidget->setLabelText(m_ui->showCurrentSong->text());
     createRemoteWidget();
 }
 
 void MusicTopAreaWidget::musicDeleteRemote()
 {
-    delete m_musicRemoteWidget;
-    m_musicRemoteWidget = nullptr;
+    delete m_remoteWidget;
+    m_remoteWidget = nullptr;
 }
 
 void MusicTopAreaWidget::musicRemoteTypeChanged(QAction *type)
 {
-    if(!m_musicRemoteWidget)
+    if(!m_remoteWidget)
     {
         return;
     }
 
-    MusicRemoteWidget *remote = m_musicRemoteWidget;
-    m_musicRemoteWidget = nullptr;
+    MusicRemoteWidget *remote = m_remoteWidget;
+    m_remoteWidget = nullptr;
 
     musicRemoteTypeChanged(type->data().toInt());
 
-    if(m_musicRemoteWidget)
+    if(m_remoteWidget)
     {
         remote->deleteLater();
     }
@@ -422,22 +422,22 @@ bool MusicTopAreaWidget::isEnableBackground() const
 
 void MusicTopAreaWidget::createRemoteWidget()
 {
-    if(!m_musicRemoteWidget)
+    if(!m_remoteWidget)
     {
         return;
     }
 
-    m_musicRemoteWidget->setCurrentPlayStatus(MusicApplication::instance()->isPlaying());
-    m_musicRemoteWidget->setVolumeValue(m_ui->musicSound->value());
+    m_remoteWidget->setCurrentPlayStatus(MusicApplication::instance()->isPlaying());
+    m_remoteWidget->setVolumeValue(m_ui->musicSound->value());
 
-    connect(m_musicRemoteWidget, SIGNAL(musicWindowChanged()), MusicApplication::instance(), SLOT(showNormal()));
-    connect(m_musicRemoteWidget, SIGNAL(musicPlayPreviousChanged()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
-    connect(m_musicRemoteWidget, SIGNAL(musicPlayNextChanged()), MusicApplication::instance(), SLOT(musicPlayNext()));
-    connect(m_musicRemoteWidget, SIGNAL(musicKeyChanged()), MusicApplication::instance(), SLOT(musicStatePlay()));
-    connect(m_musicRemoteWidget, SIGNAL(musicSettingChanged()), MusicApplication::instance(), SLOT(musicSetting()));
-    connect(m_musicRemoteWidget, SIGNAL(musicVolumeChanged(int)), MusicApplication::instance(), SLOT(musicVolumeChanged(int)));
-    connect(m_musicRemoteWidget, SIGNAL(musicRemoteTypeChanged(QAction*)), SLOT(musicRemoteTypeChanged(QAction*)));
-    m_musicRemoteWidget->show();
+    connect(m_remoteWidget, SIGNAL(musicWindowChanged()), MusicApplication::instance(), SLOT(showNormal()));
+    connect(m_remoteWidget, SIGNAL(musicPlayPreviousChanged()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
+    connect(m_remoteWidget, SIGNAL(musicPlayNextChanged()), MusicApplication::instance(), SLOT(musicPlayNext()));
+    connect(m_remoteWidget, SIGNAL(musicKeyChanged()), MusicApplication::instance(), SLOT(musicStatePlay()));
+    connect(m_remoteWidget, SIGNAL(musicSettingChanged()), MusicApplication::instance(), SLOT(musicSetting()));
+    connect(m_remoteWidget, SIGNAL(musicVolumeChanged(int)), MusicApplication::instance(), SLOT(musicVolumeChanged(int)));
+    connect(m_remoteWidget, SIGNAL(musicRemoteTypeChanged(QAction*)), SLOT(musicRemoteTypeChanged(QAction*)));
+    m_remoteWidget->show();
 }
 
 void MusicTopAreaWidget::drawWindowBackgroundRect()

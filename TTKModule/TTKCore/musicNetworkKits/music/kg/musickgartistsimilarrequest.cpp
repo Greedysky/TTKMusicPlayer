@@ -42,16 +42,17 @@ void MusicKGArtistSimilarRequest::downLoadFinished()
         {
             TTK_NETWORK_QUERY_CHECK();
 
-            MusicResultsItem info;
+            MusicResultsItem result;
             QRegExp idrx("/(\\d+)");
             if(regx.cap(2).indexOf(idrx) != -1)
             {
-                info.m_id = idrx.cap(1);
+                result.m_id = idrx.cap(1);
             }
-            info.m_coverUrl = regx.cap(1);
-            info.m_name = regx.cap(3);
-            info.m_updateTime.clear();
-            Q_EMIT createSimilarItem(info);
+
+            result.m_coverUrl = regx.cap(1);
+            result.m_name = regx.cap(3);
+            result.m_updateTime.clear();
+            Q_EMIT createSimilarItem(result);
 
             pos += regx.matchedLength();
             pos = regx.indexIn(html, pos);

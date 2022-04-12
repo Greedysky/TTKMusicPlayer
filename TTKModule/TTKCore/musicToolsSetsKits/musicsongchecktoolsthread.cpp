@@ -31,16 +31,15 @@ void MusicSongCheckToolsRenameThread::run()
                     return;
                 }
 
-                if(!meta.read(song.musicPath()))
+                if(!meta.read(song.path()))
                 {
                     continue;
                 }
 
                 if((!meta.artist().isEmpty() && !meta.title().isEmpty()) &&
-                    (meta.artist() != song.musicArtistFront() ||
-                     meta.title() != song.musicArtistBack()))
+                    (meta.artist() != song.artistFront() || meta.title() != song.artistBack()))
                 {
-                    m_datas << MusicSongCheckToolsRename(song.musicName(), meta.artist() + " - " + meta.title(), song.musicPath());
+                    m_datas << MusicSongCheckToolsRename(song.name(), meta.artist() + " - " + meta.title(), song.path());
                 }
             }
         }
@@ -94,7 +93,7 @@ void MusicSongCheckToolsDuplicateThread::run()
                     return;
                 }
 
-                if(!meta.read(song.musicPath()))
+                if(!meta.read(song.path()))
                 {
                     continue;
                 }
@@ -113,7 +112,7 @@ void MusicSongCheckToolsDuplicateThread::run()
                 }
 
                 const MusicSongCheckToolsDuplicate &song = m_datas[index];
-                QFile::remove(song.m_song.musicPath());
+                QFile::remove(song.m_song.path());
             }
         }
     }
@@ -149,7 +148,7 @@ void MusicSongCheckToolsQualityThread::run()
                 return;
             }
 
-            if(!meta.read(song.musicPath()))
+            if(!meta.read(song.path()))
             {
                 continue;
             }

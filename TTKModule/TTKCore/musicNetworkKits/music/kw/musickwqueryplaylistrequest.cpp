@@ -158,42 +158,45 @@ void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
-                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                    MusicObject::MusicSongInformation info;
+                    info.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
+                    info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
+                    info.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
-                    musicInfo.m_songId = value["id"].toString();
-                    musicInfo.m_artistId = value["artistid"].toString();
-                    musicInfo.m_albumId = value["albumid"].toString();
-                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(value["album"].toString());
+                    info.m_songId = value["id"].toString();
+                    info.m_artistId = value["artistid"].toString();
+                    info.m_albumId = value["albumid"].toString();
+                    info.m_albumName = MusicUtils::String::charactersReplaced(value["album"].toString());
 
-                    musicInfo.m_year = QString();
-                    musicInfo.m_discNumber = "1";
-                    musicInfo.m_trackNumber = "0";
+                    info.m_year = QString();
+                    info.m_discNumber = "1";
+                    info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongPicture(&musicInfo);
+                    readFromMusicSongPicture(&info);
                     TTK_NETWORK_QUERY_CHECK();
-                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                    readFromMusicSongProperty(&musicInfo, value["formats"].toString(), m_queryQuality, m_queryAllRecords);
+                    info.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
+                    readFromMusicSongProperty(&info, value["formats"].toString(), m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songProps.isEmpty())
+                    if(info.m_songProps.isEmpty())
                     {
                         continue;
                     }
-                    //
-                    if(!findUrlFileSize(&musicInfo.m_songProps)) return;
-                    //
+
+                    if(!findUrlFileSize(&info.m_songProps))
+                    {
+                        return;
+                    }
+
                     MusicSearchedItem item;
-                    item.m_songName = musicInfo.m_songName;
-                    item.m_singerName = musicInfo.m_singerName;
-                    item.m_albumName = musicInfo.m_albumName;
-                    item.m_duration = musicInfo.m_duration;
+                    item.m_songName = info.m_songName;
+                    item.m_singerName = info.m_singerName;
+                    item.m_albumName = info.m_albumName;
+                    item.m_duration = info.m_duration;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
-                    m_musicSongInfos << musicInfo;
+                    m_songInfos << info;
                 }
             }
         }
@@ -217,16 +220,16 @@ void MusicKWQueryPlaylistRequest::downloadMoreDetailsFinished()
             const QVariantMap &value = data.toMap();
             if(value["result"].toString() == "ok")
             {
-                MusicResultsItem item;
-                item.m_tags = m_tags;
-                item.m_coverUrl = value["pic"].toString();
-                item.m_id = value["id"].toString();
-                item.m_name = value["title"].toString();
-                item.m_playCount = QString::number(value["playnum"].toULongLong());
-                item.m_description = value["info"].toString();
-                item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong() * 1000).toString(MUSIC_YEAR_FORMAT);
-                item.m_nickName = value["uname"].toString();
-                Q_EMIT createPlaylistItem(item);
+                MusicResultsItem result;
+                result.m_tags = m_tags;
+                result.m_coverUrl = value["pic"].toString();
+                result.m_id = value["id"].toString();
+                result.m_name = value["title"].toString();
+                result.m_playCount = QString::number(value["playnum"].toULongLong());
+                result.m_description = value["info"].toString();
+                result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong() * 1000).toString(MUSIC_YEAR_FORMAT);
+                result.m_nickName = value["uname"].toString();
+                Q_EMIT createPlaylistItem(result);
             }
         }
     }

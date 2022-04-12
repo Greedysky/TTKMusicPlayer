@@ -62,7 +62,7 @@ protected:
      */
     void setCurrentPlayState();
 
-    QToolButton *m_musicPrevious, *m_musicNext, *m_musicKey;
+    QToolButton *m_buttonPrevious, *m_buttonNext, *m_buttonKey;
 
 };
 

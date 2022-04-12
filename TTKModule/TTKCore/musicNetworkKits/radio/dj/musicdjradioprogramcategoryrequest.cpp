@@ -122,14 +122,14 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem info;
-                    info.m_id = QString::number(value["id"].toInt());
+                    MusicResultsItem result;
+                    result.m_id = QString::number(value["id"].toInt());
 
-                    info.m_coverUrl = value["picUrl"].toString();
-                    info.m_name = value["name"].toString();
+                    result.m_coverUrl = value["picUrl"].toString();
+                    result.m_name = value["name"].toString();
                     value = value["dj"].toMap();
-                    info.m_nickName = value["nickname"].toString();
-                    Q_EMIT createProgramItem(info);
+                    result.m_nickName = value["nickname"].toString();
+                    Q_EMIT createProgramItem(result);
                 }
             }
         }
@@ -168,47 +168,47 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
+                    MusicObject::MusicSongInformation info;
+                    info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
+                    info.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
 
                     const QVariantMap &radioObject = value["radio"].toMap();
-                    musicInfo.m_coverUrl = radioObject["picUrl"].toString();
-                    musicInfo.m_artistId = QString::number(radioObject["id"].toInt());
-                    musicInfo.m_singerName = MusicUtils::String::charactersReplaced(radioObject["name"].toString());
+                    info.m_coverUrl = radioObject["picUrl"].toString();
+                    info.m_artistId = QString::number(radioObject["id"].toInt());
+                    info.m_singerName = MusicUtils::String::charactersReplaced(radioObject["name"].toString());
 
                     const QVariantMap &mainSongObject = value["mainSong"].toMap();
-                    musicInfo.m_songId = QString::number(mainSongObject["id"].toInt());
+                    info.m_songId = QString::number(mainSongObject["id"].toInt());
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongProperty(&musicInfo, mainSongObject, m_queryQuality, true);
+                    readFromMusicSongProperty(&info, mainSongObject, m_queryQuality, true);
                     TTK_NETWORK_QUERY_CHECK();
-                    //
+
                     if(!categoryFound)
                     {
                         categoryFound = true;
-                        MusicResultsItem info;
-                        info.m_name = musicInfo.m_songName;
-                        info.m_nickName = musicInfo.m_singerName;
-                        info.m_coverUrl = musicInfo.m_coverUrl;
-                        info.m_playCount = QString::number(radioObject["subCount"].toInt());
-                        info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["createTime"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
-                        Q_EMIT createCategoryInfoItem(info);
+                        MusicResultsItem result;
+                        result.m_name = info.m_songName;
+                        result.m_nickName = info.m_singerName;
+                        result.m_coverUrl = info.m_coverUrl;
+                        result.m_playCount = QString::number(radioObject["subCount"].toInt());
+                        result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["createTime"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
+                        Q_EMIT createCategoryInfoItem(result);
                     }
-                    //
-                    if(musicInfo.m_songProps.isEmpty())
+
+                    if(info.m_songProps.isEmpty())
                     {
                         continue;
                     }
-                    //
+
                     MusicSearchedItem item;
-                    item.m_songName = musicInfo.m_songName;
-                    item.m_singerName = musicInfo.m_singerName;
+                    item.m_songName = info.m_songName;
+                    item.m_singerName = info.m_singerName;
                     item.m_albumName.clear();
-                    item.m_duration = musicInfo.m_duration;
+                    item.m_duration = info.m_duration;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
-                    m_musicSongInfos << musicInfo;
+                    m_songInfos << info;
                 }
             }
         }

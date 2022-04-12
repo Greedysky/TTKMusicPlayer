@@ -58,33 +58,33 @@ void MusicBDQueryLearnRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["artist_name"].toString());
-                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["song_title"].toString());
-                    musicInfo.m_songId = value["song_id"].toString();
-                    musicInfo.m_albumId = value["album_id"].toString();
+                    MusicObject::MusicSongInformation info;
+                    info.m_singerName = MusicUtils::String::charactersReplaced(value["artist_name"].toString());
+                    info.m_songName = MusicUtils::String::charactersReplaced(value["song_title"].toString());
+                    info.m_songId = value["song_id"].toString();
+                    info.m_albumId = value["album_id"].toString();
 
-                    musicInfo.m_year = value["publishtime"].toString();
-                    musicInfo.m_discNumber = "1";
-                    musicInfo.m_trackNumber = value["album_no"].toString();
+                    info.m_year = value["publishtime"].toString();
+                    info.m_discNumber = "1";
+                    info.m_trackNumber = value["album_no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicLrcProperty(&musicInfo);
+                    readFromMusicLrcProperty(&info);
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongProperty(&musicInfo);
+                    readFromMusicSongProperty(&info);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(musicInfo.m_songProps.isEmpty())
+                    if(info.m_songProps.isEmpty())
                     {
                         continue;
                     }
-                    //
+
                     MusicSearchedItem item;
-                    item.m_songName = musicInfo.m_songName;
-                    item.m_singerName = musicInfo.m_singerName;
+                    item.m_songName = info.m_songName;
+                    item.m_singerName = info.m_singerName;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
-                    m_musicSongInfos << musicInfo;
+                    m_songInfos << info;
                 }
             }
         }
@@ -124,9 +124,12 @@ void MusicBDQueryLearnRequest::readFromMusicSongProperty(MusicObject::MusicSongI
             prop.m_bitrate = MB_128;
             prop.m_url = value["merge_link"].toString();
             prop.m_format = MP3_FILE_PREFIX;
-            //
-            if(!findUrlFileSize(&prop)) return;
-            //
+
+            if(!findUrlFileSize(&prop))
+            {
+                return;
+            }
+
             info->m_songProps.append(prop);
         }
     }

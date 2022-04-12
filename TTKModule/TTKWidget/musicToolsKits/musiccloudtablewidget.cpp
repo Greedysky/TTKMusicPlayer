@@ -40,7 +40,7 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicSong &recor
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(record.musicName());
+    item->setToolTip(record.name());
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(MusicUIObject::MQSSColor01));
@@ -54,14 +54,14 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicSong &recor
     item->setData(MUSIC_PROGRESS_ROLE, 100);
     setItem(index, 2, item);
 
-                      item = new QTableWidgetItem(record.musicSizeStr());
+                      item = new QTableWidgetItem(record.sizeStr());
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(MusicUIObject::MQSSColor01));
 #else
     item->setTextColor(QColor(MusicUIObject::MQSSColor01));
 #endif
     item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    item->setData(MUSIC_TIME_ROLE, record.musicAddTimeStr());
+    item->setData(MUSIC_TIME_ROLE, record.addTimeStr());
     setItem(index, 3, item);
 
     //just fix table widget size hint
@@ -100,9 +100,9 @@ void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item
     setRowCount(count);
 
     MusicSong record;
-    record.setMusicName(item.m_dataItem.m_name);
-    record.setMusicPath(item.m_path);
-    record.setMusicSizeStr(MusicUtils::Number::sizeByte2Label(item.m_dataItem.m_size));
+    record.setName(item.m_dataItem.m_name);
+    record.setPath(item.m_path);
+    record.setSizeStr(MusicUtils::Number::sizeByte2Label(item.m_dataItem.m_size));
 
     createItem(count - 1, record);
 }
@@ -162,11 +162,11 @@ void MusicCloudUploadTableWidget::createItem(int index, const MusicSong &record)
 {
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(MUSIC_DATA_ROLE, record.musicPath());
+    item->setData(MUSIC_DATA_ROLE, record.path());
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(record.musicName());
+    item->setToolTip(record.name());
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(MusicUIObject::MQSSColor01));
@@ -176,14 +176,14 @@ void MusicCloudUploadTableWidget::createItem(int index, const MusicSong &record)
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 1, item);
 
-                      item = new QTableWidgetItem(record.musicSizeStr());
+                      item = new QTableWidgetItem(record.sizeStr());
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(MusicUIObject::MQSSColor01));
 #else
     item->setTextColor(QColor(MusicUIObject::MQSSColor01));
 #endif
     item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    item->setData(MUSIC_TIME_ROLE, record.musicAddTimeStr());
+    item->setData(MUSIC_TIME_ROLE, record.addTimeStr());
     setItem(index, 2, item);
 
     //just fix table widget size hint
@@ -196,7 +196,7 @@ void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
-    const bool status = !m_musicSongs->isEmpty();
+    const bool status = !m_songs->isEmpty();
     menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
     menu.addSeparator();

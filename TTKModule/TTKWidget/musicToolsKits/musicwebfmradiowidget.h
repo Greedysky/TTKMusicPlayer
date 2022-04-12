@@ -80,8 +80,8 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
     int m_outerIndex;
-    MusicWebFMRadioPlayWidget *m_musicRadio;
-    MusicFMRadioChannelRequest *m_getChannelThread;
+    MusicWebFMRadioPlayWidget *m_fmRadio;
+    MusicFMRadioChannelRequest *m_channelThread;
 
 };
 

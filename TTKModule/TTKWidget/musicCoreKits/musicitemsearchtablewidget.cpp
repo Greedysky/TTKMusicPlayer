@@ -114,13 +114,13 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
     menu.addSeparator();
 
     const int row = currentRow();
-    const MusicObject::MusicSongInformationList musicSongInfos(m_networkRequest->musicSongInfoList());
-    if(row < 0 || row >= musicSongInfos.count())
+    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    if(row < 0 || row >= songInfos.count())
     {
         return;
     }
 
-    const MusicObject::MusicSongInformation &info = musicSongInfos[row];
+    const MusicObject::MusicSongInformation &info = songInfos[row];
     m_actionGroup->addAction(menu.addAction(tr("Search '%1'").arg(info.m_songName)))->setData(1);
     m_actionGroup->addAction(menu.addAction(tr("Search '%1'").arg(info.m_singerName)))->setData(2);
     m_actionGroup->addAction(menu.addAction(tr("Search '%1 - %2'").arg(info.m_singerName, info.m_songName)))->setData(3);

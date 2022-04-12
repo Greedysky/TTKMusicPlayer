@@ -17,8 +17,8 @@
 
 MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent),
-      m_musicRadio(nullptr),
-      m_getChannelThread(nullptr)
+      m_fmRadio(nullptr),
+      m_channelThread(nullptr)
 {
     setIconSize(QSize(ICON_SIZE, ICON_SIZE));
     setColumnCount(4);
@@ -40,8 +40,8 @@ MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
 
 MusicWebFMRadioWidget::~MusicWebFMRadioWidget()
 {
-    delete m_musicRadio;
-    delete m_getChannelThread;
+    delete m_fmRadio;
+    delete m_channelThread;
 }
 
 void MusicWebFMRadioWidget::initialize(int index)
@@ -49,10 +49,10 @@ void MusicWebFMRadioWidget::initialize(int index)
     m_outerIndex = index;
     if(rowCount() == 0)
     {
-        delete m_getChannelThread;
-        m_getChannelThread = new MusicFMRadioChannelRequest(this);
-        connect(m_getChannelThread, SIGNAL(downLoadDataChanged(QString)), SLOT(addListWidgetItem()));
-        m_getChannelThread->startToDownload(QString());
+        delete m_channelThread;
+        m_channelThread = new MusicFMRadioChannelRequest(this);
+        connect(m_channelThread, SIGNAL(downLoadDataChanged(QString)), SLOT(addListWidgetItem()));
+        m_channelThread->startToDownload(QString());
     }
 }
 
@@ -95,27 +95,27 @@ void MusicWebFMRadioWidget::itemDoubleClicked(int row, int column)
 {
     Q_UNUSED(column);
 
-    if(!m_getChannelThread)
+    if(!m_channelThread)
     {
         return;
     }
 
-    const MusicFMRadioChannelDataList &channels = m_getChannelThread->musicChannel();
-    if(m_musicRadio == nullptr)
+    const MusicFMRadioChannelDataList &channels = m_channelThread->musicChannel();
+    if(m_fmRadio == nullptr)
     {
-        m_musicRadio = new MusicWebFMRadioPlayWidget(this);
+        m_fmRadio = new MusicWebFMRadioPlayWidget(this);
     }
 
     if(!channels.isEmpty())
     {
-        m_musicRadio->updateRadioSong(channels[row].m_id);
+        m_fmRadio->updateRadioSong(channels[row].m_id);
     }
-    m_musicRadio->show();
+    m_fmRadio->show();
 }
 
 void MusicWebFMRadioWidget::addListWidgetItem()
 {
-    const MusicFMRadioChannelDataList &channels = m_getChannelThread->musicChannel();
+    const MusicFMRadioChannelDataList &channels = m_channelThread->musicChannel();
     for(const MusicFMRadioChannelData &channel : qAsConst(channels))
     {
         const int index = rowCount();

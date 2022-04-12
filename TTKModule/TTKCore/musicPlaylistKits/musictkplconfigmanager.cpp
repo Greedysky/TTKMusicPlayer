@@ -48,15 +48,15 @@ bool MusicTKPLConfigManager::writeBuffer(const MusicSongItemList &items, const Q
                                                                           {"sortType", item.m_sort.m_order}});
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
-            QString playTime = song.musicPlayTime();
+            QString playTime = song.playTime();
             if(item.m_itemIndex == MUSIC_NETWORK_LIST && playTime == TTK_DEFAULT_STR)
             {
-                playTime = MusicObject::generateMusicPlayTime(song.musicPath());
+                playTime = MusicObject::generateMusicPlayTime(song.path());
             }
 
-            writeDomMutilElementText(pathDom, "value", {{"name", song.musicName()},
-                                                        {"playCount", song.musicPlayCount()},
-                                                        {"time", playTime}}, song.musicPath());
+            writeDomMutilElementText(pathDom, "value", {{"name", song.name()},
+                                                        {"playCount", song.playCount()},
+                                                        {"time", playTime}}, song.path());
         }
     }
 
@@ -74,7 +74,7 @@ MusicSongList MusicTKPLConfigManager::readMusicFilePath(const QDomNode &node) co
     {
         const QDomElement &element = nodeList.at(i).toElement();
         MusicSong song(element.text(), element.attribute("time"), element.attribute("name"), true);
-        song.setMusicPlayCount(element.attribute("playCount").toInt());
+        song.setPlayCount(element.attribute("playCount").toInt());
         songs << song;
     }
     return songs;

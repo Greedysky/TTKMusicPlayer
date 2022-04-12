@@ -21,7 +21,7 @@ MusicAbstractDownloadTableWidget::~MusicAbstractDownloadTableWidget()
 {
     G_CONNECTION_PTR->removeValue(className());
     MusicDownloadRecordConfigManager xml(m_type, this);
-    xml.writeBuffer(*m_musicSongs);
+    xml.writeBuffer(*m_songs);
     clear();
 
     delete m_delegate;
@@ -35,15 +35,15 @@ void MusicAbstractDownloadTableWidget::updateSongsFileName(const MusicSongList &
     {
         return;
     }
-    xml.readBuffer(*m_musicSongs);
+    xml.readBuffer(*m_songs);
 
-    setRowCount(m_musicSongs->count()); //reset row count
+    setRowCount(m_songs->count()); //reset row count
 
-    for(int i = 0; i < m_musicSongs->count(); ++i)
+    for(int i = 0; i < m_songs->count(); ++i)
     {
-        MusicSong *song = &(*m_musicSongs)[i];
+        MusicSong *song = &(*m_songs)[i];
         createItem(i, *song);
-        G_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPairData(song->musicAddTimeStr().toULongLong(), this, m_type));
+        G_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPairData(song->addTimeStr().toULongLong(), this, m_type));
     }
 }
 
@@ -54,7 +54,7 @@ void MusicAbstractDownloadTableWidget::musicPlay()
         return;
     }
 
-    const QString &path = m_musicSongs->at(currentRow()).musicPath();
+    const QString &path = m_songs->at(currentRow()).path();
     Q_EMIT addSongToPlaylist(QStringList(QFile::exists(path) ? path : QString()));
 }
 
@@ -77,7 +77,7 @@ void MusicAbstractDownloadTableWidget::setDeleteItemAt()
     {
         const int index = deleteList[i];
         removeRow(index);
-        m_musicSongs->removeAt(index);
+        m_songs->removeAt(index);
     }
     //just fix table widget size hint
     setFixedHeight(totalHeight());
@@ -107,7 +107,7 @@ void MusicAbstractDownloadTableWidget::downloadProgressChanged(float percent, co
             item(i, 2)->setData(MUSIC_PROGRESS_ROLE, percent);
             item(i, 3)->setText(total);
 
-            (*m_musicSongs)[i].setMusicSizeStr(total);
+            (*m_songs)[i].setSizeStr(total);
             break;
         }
     }
@@ -120,11 +120,11 @@ void MusicAbstractDownloadTableWidget::createDownloadItem(const QString &name, q
     musicName.remove(MusicUtils::String::musicPrefix()).chop(4);
 
     MusicSong record;
-    record.setMusicName(musicName);
-    record.setMusicPath(QFileInfo(name).absoluteFilePath());
-    record.setMusicSizeStr("0.00M");
-    record.setMusicAddTimeStr(QString::number(time));
-    m_musicSongs->append(record);
+    record.setName(musicName);
+    record.setPath(QFileInfo(name).absoluteFilePath());
+    record.setSizeStr("0.00M");
+    record.setAddTimeStr(QString::number(time));
+    m_songs->append(record);
 
     createItem(rowCount() - 1, record);
     Q_EMIT updateItemTitle(m_toolIndex);
@@ -142,7 +142,7 @@ void MusicAbstractDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event
 
     createMoreMenu(&menu);
 
-    const bool status = !m_musicSongs->isEmpty();
+    const bool status = !m_songs->isEmpty();
     menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));

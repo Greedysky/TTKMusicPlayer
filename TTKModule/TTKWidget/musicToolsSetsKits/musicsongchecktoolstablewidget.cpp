@@ -136,18 +136,18 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongChec
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.m_song.musicName());
+        item->setToolTip(song.m_song.name());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 45));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_song.musicPlayTime());
+        item->setText(song.m_song.playTime());
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_song.musicSizeStr());
+        item->setText(song.m_song.sizeStr());
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 3, item);
 
@@ -158,7 +158,7 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongChec
 
                 item = new QTableWidgetItem;
         item->setData(MUSIC_TEXT_ROLE, tr("Play"));
-        item->setData(MUSIC_DATA_ROLE, song.m_song.musicPath());
+        item->setData(MUSIC_DATA_ROLE, song.m_song.path());
         setItem(i, 5, item);
 
                 item = new QTableWidgetItem;
@@ -268,18 +268,18 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.m_song.musicName());
+        item->setToolTip(song.m_song.name());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_song.musicPlayTime());
+        item->setText(song.m_song.playTime());
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_song.musicSizeStr());
+        item->setText(song.m_song.sizeStr());
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 3, item);
 
@@ -303,7 +303,7 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
 
                 item = new QTableWidgetItem;
         item->setData(MUSIC_TEXT_ROLE, tr("Play"));
-        item->setData(MUSIC_DATA_ROLE, song.m_song.musicPath());
+        item->setData(MUSIC_DATA_ROLE, song.m_song.path());
         setItem(i, 6, item);
 
                 item = new QTableWidgetItem;

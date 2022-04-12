@@ -132,8 +132,8 @@ protected:
      */
     void print(qint64 position, qint64 duration) const;
 
-    MusicPlayer* m_musicPlayer;
-    MusicPlaylist* m_musicPlaylist;
+    MusicPlayer* m_player;
+    MusicPlaylist* m_playlist;
     int m_volume;
     QString m_playbackMode, m_enhanced;
 

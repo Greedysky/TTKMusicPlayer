@@ -222,7 +222,7 @@ protected:
     /*!
      * Strat to download music.
      */
-    void startToDownloadMusic(const MusicObject::MusicSongInformation &musicSongInfo);
+    void startToDownloadMusic(const MusicObject::MusicSongInformation &info);
     /*!
      * Strat to download movie.
      */
@@ -230,13 +230,13 @@ protected:
     /*!
      * Strat to download movie.
      */
-    void startToDownloadMovie(const MusicObject::MusicSongInformation &musicSongInfo);
+    void startToDownloadMovie(const MusicObject::MusicSongInformation &info);
 
     Ui::MusicDownloadWidget *m_ui;
     bool m_querySingleInfo;
     MusicAbstractQueryRequest *m_networkRequest;
+    MusicObject::MusicSongInformation m_songInfo;
     MusicAbstractQueryRequest::QueryType m_queryType;
-    MusicObject::MusicSongInformation m_singleSongInfo;
 
 };
 

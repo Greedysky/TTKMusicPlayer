@@ -51,7 +51,7 @@ bool MusicTXTConfigManager::writeBuffer(const MusicSongItemList &items, const QS
     QStringList data;
     for(int i = 0; i < item.m_songs.count(); ++i)
     {
-        data << QString("%1:%2 - %3").arg(i).arg(item.m_songs[i].musicPath(), item.m_songs[i].musicPlayTime());
+        data << QString("%1:%2 - %3").arg(i).arg(item.m_songs[i].path(), item.m_songs[i].playTime());
     }
 
     m_file.setFileName(path);

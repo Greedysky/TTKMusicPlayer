@@ -328,10 +328,10 @@ protected:
 private:
     Ui::MusicApplication *m_ui;
     bool m_quitWindowClose;
-    int m_currentMusicSongTreeIndex;
-    MusicPlayer* m_musicPlayer;
-    MusicPlaylist* m_musicPlaylist;
-    MusicSongsSummariziedWidget *m_musicSongTreeWidget;
+    int m_currentSongTreeIndex;
+    MusicPlayer* m_player;
+    MusicPlaylist* m_playlist;
+    MusicSongsSummariziedWidget *m_songTreeWidget;
     MusicBottomAreaWidget *m_bottomAreaWidget;
     MusicTopAreaWidget *m_topAreaWidget;
     MusicRightAreaWidget *m_rightAreaWidget;

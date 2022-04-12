@@ -42,7 +42,7 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_quitAnimation->setTargetObject(parent);
     m_sideAnimation->setDuration(250 * MT_MS);
 
-    m_MusicTimerAutoModule = new MusicTimerAutoModule(this);
+    m_timerAutoModule = new MusicTimerAutoModule(this);
     m_screenSaverWidget = nullptr;
     m_setWindowToTop = false;
     m_mobileDeviceWidget = nullptr;
@@ -64,7 +64,7 @@ MusicApplicationModule::~MusicApplicationModule()
 {
     Q_CLEANUP_RESOURCE(MusicPlayer);
 
-    delete m_MusicTimerAutoModule;
+    delete m_timerAutoModule;
     delete m_screenSaverWidget;
     delete m_quitAnimation;
     delete m_sideAnimation;
@@ -321,7 +321,7 @@ void MusicApplicationModule::musicResetWindow()
 
 void MusicApplicationModule::musicToolSetsParameter()
 {
-    m_MusicTimerAutoModule->runTimerAutoConfig();
+    m_timerAutoModule->runTimerAutoConfig();
 #ifdef Q_OS_WIN
     MusicPlatformManager platform;
     const int version = platform.windowsIEVersion();

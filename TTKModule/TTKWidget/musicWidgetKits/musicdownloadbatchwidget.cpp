@@ -192,10 +192,10 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     down.readBuffer(records);
 
     MusicSong record;
-    record.setMusicName(musicSong);
-    record.setMusicPath(QFileInfo(downloadName).absoluteFilePath());
-    record.setMusicSizeStr(prop.m_size);
-    record.setMusicAddTimeStr("-1");
+    record.setName(musicSong);
+    record.setPath(QFileInfo(downloadName).absoluteFilePath());
+    record.setSizeStr(prop.m_size);
+    record.setAddTimeStr("-1");
     records << record;
     down.writeBuffer(records);
 
@@ -380,13 +380,13 @@ MusicDownloadBatchWidget::~MusicDownloadBatchWidget()
     delete m_ui;
 }
 
-void MusicDownloadBatchWidget::setSongName(const MusicObject::MusicSongInformationList &infos, MusicAbstractQueryRequest::QueryType type)
+void MusicDownloadBatchWidget::setSongName(const MusicObject::MusicSongInformationList &songInfos, MusicAbstractQueryRequest::QueryType type)
 {
-    for(const MusicObject::MusicSongInformation &info : qAsConst(infos))
+    for(const MusicObject::MusicSongInformation &info : qAsConst(songInfos))
     {
         m_ui->tableWidget->createItem(info, type);
     }
-    m_ui->songCountLabel->setText(tr("All Songs Count %1").arg(infos.count()));
+    m_ui->songCountLabel->setText(tr("All Songs Count %1").arg(songInfos.count()));
 }
 
 void MusicDownloadBatchWidget::show()

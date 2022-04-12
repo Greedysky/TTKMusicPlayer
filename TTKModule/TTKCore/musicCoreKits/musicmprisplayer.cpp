@@ -102,16 +102,16 @@ MusicMPRISPlayerBase::MusicMPRISPlayerBase(QObject *parent)
 {
     MusicTime::initRandom();
 
-    m_prev_track = 0;
-    m_prev_pos = 0;
-    m_music = SoundCore::instance();
-    m_player = MusicApplication::instance();
+    m_prevTrack = 0;
+    m_prevPos = 0;
+    m_core = SoundCore::instance();
+    m_application = MusicApplication::instance();
 
-    connect(m_music, SIGNAL(trackInfoChanged()), SLOT(trackInfoChanged()));
-    connect(m_music, SIGNAL(stateChanged(Qmmp::State)), SLOT(stateChanged()));
-    connect(m_music, SIGNAL(volumeChanged(int)), SLOT(volumeChanged()));
-    connect(m_music, SIGNAL(elapsedChanged(qint64)), SLOT(elapsedChanged(qint64)));
-    connect(m_player->m_musicPlaylist, SIGNAL(playbackModeChanged(MusicObject::PlayMode)), SLOT(playbackModeChanged()));
+    connect(m_core, SIGNAL(trackInfoChanged()), SLOT(trackInfoChanged()));
+    connect(m_core, SIGNAL(stateChanged(Qmmp::State)), SLOT(stateChanged()));
+    connect(m_core, SIGNAL(volumeChanged(int)), SLOT(volumeChanged()));
+    connect(m_core, SIGNAL(elapsedChanged(qint64)), SLOT(elapsedChanged(qint64)));
+    connect(m_application->m_playlist, SIGNAL(playbackModeChanged(MusicObject::PlayMode)), SLOT(playbackModeChanged()));
 
     updateTrackID();
     syncProperties();
@@ -124,31 +124,31 @@ bool MusicMPRISPlayerBase::canControl() const
 
 bool MusicMPRISPlayerBase::canGoNext() const
 {
-    return !m_player->m_musicPlaylist->isEmpty();
+    return !m_application->m_playlist->isEmpty();
 }
 
 bool MusicMPRISPlayerBase::canGoPrevious() const
 {
-    return !m_player->m_musicPlaylist->isEmpty();
+    return !m_application->m_playlist->isEmpty();
 }
 
 bool MusicMPRISPlayerBase::canPause() const
 {
-    return !m_player->m_musicPlaylist->isEmpty();
+    return !m_application->m_playlist->isEmpty();
 }
 bool MusicMPRISPlayerBase::canPlay() const
 {
-    return !m_player->m_musicPlaylist->isEmpty();
+    return !m_application->m_playlist->isEmpty();
 }
 
 bool MusicMPRISPlayerBase::canSeek() const
 {
-    return m_music->duration() > 0;
+    return m_core->duration() > 0;
 }
 
 QString MusicMPRISPlayerBase::loopStatus() const
 {
-    switch(m_player->playMode())
+    switch(m_application->playMode())
     {
         case MusicObject::PlayOneLoop: return "Track";
         case MusicObject::PlaylistLoop: return "Playlist";
@@ -160,15 +160,15 @@ void MusicMPRISPlayerBase::setLoopStatus(const QString &value)
 {
     if(value == "Track")
     {
-        m_player->musicPlayOneLoop();
+        m_application->musicPlayOneLoop();
     }
     else if(value == "Playlist")
     {
-        m_player->musicPlaylistLoop();
+        m_application->musicPlaylistLoop();
     }
     else
     {
-        m_player->musicPlayOrder();
+        m_application->musicPlayOrder();
     }
 }
 
@@ -179,14 +179,14 @@ double MusicMPRISPlayerBase::maximumRate() const
 
 QVariantMap MusicMPRISPlayerBase::metadata() const
 {
-    if(m_music->path().isEmpty())
+    if(m_core->path().isEmpty())
     {
         return QVariantMap();
     }
 
     QVariantMap map;
-    TrackInfo info = m_music->trackInfo();
-    map["mpris:length"] = qMax(m_music->duration() * 1000 , qint64(0));
+    TrackInfo info = m_core->trackInfo();
+    map["mpris:length"] = qMax(m_core->duration() * 1000 , qint64(0));
     if(!MetaDataManager::instance()->getCoverPath(info.path()).isEmpty())
     {
         map["mpris:artUrl"] = QUrl::fromLocalFile(MetaDataManager::instance()->getCoverPath(info.path())).toString();
@@ -254,11 +254,11 @@ double MusicMPRISPlayerBase::minimumRate() const
 
 QString MusicMPRISPlayerBase::playbackStatus() const
 {
-    if(m_music->state() == Qmmp::Playing)
+    if(m_core->state() == Qmmp::Playing)
     {
         return "Playing";
     }
-    else if(m_music->state() == Qmmp::Paused)
+    else if(m_core->state() == Qmmp::Paused)
     {
         return "Paused";
     }
@@ -267,7 +267,7 @@ QString MusicMPRISPlayerBase::playbackStatus() const
 
 qlonglong MusicMPRISPlayerBase::position() const
 {
-    return qMax(m_music->elapsed() * 1000, qint64(0));
+    return qMax(m_core->elapsed() * 1000, qint64(0));
 }
 
 double MusicMPRISPlayerBase::rate() const
@@ -282,32 +282,32 @@ void MusicMPRISPlayerBase::setRate(double value)
 
 bool MusicMPRISPlayerBase::shuffle() const
 {
-    return m_player->playMode() == MusicObject::PlayRandom;
+    return m_application->playMode() == MusicObject::PlayRandom;
 }
 
 void MusicMPRISPlayerBase::setShuffle(bool value)
 {
-    m_player->m_musicPlaylist->setPlaybackMode(value ? MusicObject::PlayRandom : MusicObject::PlayOrder);
+    m_application->m_playlist->setPlaybackMode(value ? MusicObject::PlayRandom : MusicObject::PlayOrder);
 }
 
 double MusicMPRISPlayerBase::volume() const
 {
-    return m_player->m_musicPlayer->volume();
+    return m_application->m_player->volume();
 }
 
 void MusicMPRISPlayerBase::setVolume(double value)
 {
-    m_player->m_musicPlayer->setVolume(value);
+    m_application->m_player->setVolume(value);
 }
 
 void MusicMPRISPlayerBase::Previous()
 {
-    m_player->musicPlayPrevious();
+    m_application->musicPlayPrevious();
 }
 
 void MusicMPRISPlayerBase::Next()
 {
-    m_player->musicPlayNext();
+    m_application->musicPlayNext();
 }
 
 void MusicMPRISPlayerBase::OpenUri(const QString &uri)
@@ -322,39 +322,39 @@ void MusicMPRISPlayerBase::OpenUri(const QString &uri)
         }
     }
 
-    m_player->musicImportSongsPathOutside({path}, true);
+    m_application->musicImportSongsPathOutside({path}, true);
 }
 
 void MusicMPRISPlayerBase::Pause()
 {
-    m_player->musicStatePlay();
+    m_application->musicStatePlay();
 }
 
 void MusicMPRISPlayerBase::Play()
 {
-    m_player->musicStatePlay();
+    m_application->musicStatePlay();
 }
 
 void MusicMPRISPlayerBase::PlayPause()
 {
-    m_player->musicStatePlay();
+    m_application->musicStatePlay();
 }
 
 void MusicMPRISPlayerBase::Stop()
 {
-    m_player->musicStateStop();
+    m_application->musicStateStop();
 }
 
 void MusicMPRISPlayerBase::Seek(qlonglong offset)
 {
-    m_music->seek(qMax(qint64(0), m_music->elapsed() +  offset / 1000));
+    m_core->seek(qMax(qint64(0), m_core->elapsed() +  offset / 1000));
 }
 
 void MusicMPRISPlayerBase::SetPosition(const QDBusObjectPath &trackId, qlonglong position)
 {
     if(m_trackID == trackId)
     {
-        m_music->seek(position / 1000);
+        m_core->seek(position / 1000);
     }
     else
     {
@@ -370,10 +370,10 @@ void MusicMPRISPlayerBase::trackInfoChanged()
 
 void MusicMPRISPlayerBase::stateChanged()
 {
-    if(m_music->state() == Qmmp::Playing)
+    if(m_core->state() == Qmmp::Playing)
     {
         updateTrackID();
-        m_prev_pos = 0;
+        m_prevPos = 0;
     }
     sendProperties();
 }
@@ -385,11 +385,11 @@ void MusicMPRISPlayerBase::volumeChanged()
 
 void MusicMPRISPlayerBase::elapsedChanged(qint64 elapsed)
 {
-    if(std::abs(elapsed - m_prev_pos) > 2000)
+    if(std::abs(elapsed - m_prevPos) > 2000)
     {
         emit Seeked(elapsed * 1000);
     }
-    m_prev_pos = elapsed;
+    m_prevPos = elapsed;
 }
 
 void MusicMPRISPlayerBase::playbackModeChanged()
@@ -399,10 +399,10 @@ void MusicMPRISPlayerBase::playbackModeChanged()
 
 void MusicMPRISPlayerBase::updateTrackID()
 {
-    if(m_prev_track != m_player->m_musicPlaylist->currentIndex())
+    if(m_prevTrack != m_application->m_playlist->currentIndex())
     {
         m_trackID = QDBusObjectPath(QString("%1/Track/%2").arg("/org/qmmp/MediaPlayer2").arg(MusicTime::random()));
-        m_prev_track = m_player->m_musicPlaylist->currentIndex();
+        m_prevTrack = m_application->m_playlist->currentIndex();
     }
 }
 

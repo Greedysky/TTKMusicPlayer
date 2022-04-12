@@ -46,7 +46,7 @@ bool MusicCSVConfigManager::writeBuffer(const MusicSongItemList &items, const QS
     QStringList data;
     for(const MusicSong &song : qAsConst(item.m_songs))
     {
-        data << song.musicName() + "," + song.musicPlayTime() + "," + song.musicPath();
+        data << song.name() + "," + song.playTime() + "," + song.path();
     }
 
     m_file.setFileName(path);

@@ -11,7 +11,7 @@
 MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent)
     : MusicFunctionToolBoxTopWidget(index, text, parent)
 {
-    m_musicSort = nullptr;
+    m_songSort = nullptr;
     m_renameLine = nullptr;
 
     QPushButton *shareListButton = new QPushButton(this);
@@ -111,13 +111,13 @@ void MusicSongsToolBoxTopWidget::showMenu()
     MusicUtils::Widget::adjustMenuPosition(&sortFiles);
     connect(&sortFiles, SIGNAL(triggered(QAction*)), SLOT(musicListSongSortBy(QAction*)));
 
-    if(m_musicSort)
+    if(m_songSort)
     {
         const QList<QAction*> actions(sortFiles.actions());
-        if(-1 < m_musicSort->m_type && m_musicSort->m_type < actions.count())
+        if(-1 < m_songSort->m_type && m_songSort->m_type < actions.count())
         {
-            const bool asc = m_musicSort->m_order == Qt::AscendingOrder;
-            actions[m_musicSort->m_type]->setIcon(QIcon(asc ? ":/tiny/lb_sort_asc" : ":/tiny/lb_sort_desc"));
+            const bool asc = m_songSort->m_order == Qt::AscendingOrder;
+            actions[m_songSort->m_type]->setIcon(QIcon(asc ? ":/tiny/lb_sort_asc" : ":/tiny/lb_sort_desc"));
         }
     }
     menu.addMenu(&sortFiles);
@@ -135,20 +135,20 @@ void MusicSongsToolBoxTopWidget::showMenu()
 
 void MusicSongsToolBoxTopWidget::musicListSongSortBy(QAction *action)
 {
-    if(m_musicSort)
+    if(m_songSort)
     {
-        const int type = m_musicSort->m_type;
+        const int type = m_songSort->m_type;
         const int newType = action->data().toInt();
-        m_musicSort->m_type = newType;
+        m_songSort->m_type = newType;
 
         if(type == newType)
         {
-            const bool asc = m_musicSort->m_order == Qt::AscendingOrder;
-            m_musicSort->m_order = asc ? Qt::DescendingOrder : Qt::AscendingOrder;
+            const bool asc = m_songSort->m_order == Qt::AscendingOrder;
+            m_songSort->m_order = asc ? Qt::DescendingOrder : Qt::AscendingOrder;
         }
         else
         {
-            m_musicSort->m_order = Qt::AscendingOrder;
+            m_songSort->m_order = Qt::AscendingOrder;
         }
         Q_EMIT musicListSongSortBy(m_index);
     }
@@ -240,9 +240,9 @@ MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QStrin
     initialize();
 }
 
-void MusicSongsToolBoxWidgetItem::setMusicSongSort(MusicSongSort *sort)
+void MusicSongsToolBoxWidgetItem::setSongSort(MusicSongSort *sort)
 {
-    TTKStatic_cast(MusicSongsToolBoxTopWidget*, m_topWidget)->setMusicSongSort(sort);
+    TTKStatic_cast(MusicSongsToolBoxTopWidget*, m_topWidget)->setSongSort(sort);
 }
 
 
@@ -253,14 +253,14 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
 
 }
 
-void MusicSongsToolBoxWidget::setMusicSongSort(QWidget *item, MusicSongSort *sort)
+void MusicSongsToolBoxWidget::setSongSort(QWidget *item, MusicSongSort *sort)
 {
     for(int i = 0; i < m_itemList.count(); ++i)
     {
         MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
         if(it->item() == item)
         {
-            TTKStatic_cast(MusicSongsToolBoxWidgetItem*, it)->setMusicSongSort(sort);
+            TTKStatic_cast(MusicSongsToolBoxWidgetItem*, it)->setSongSort(sort);
             return;
         }
     }

@@ -173,9 +173,9 @@ public Q_SLOTS:
      */
     void musicSongToLovestListAt(bool state, int row);
     /*!
-     * Add current network music to download to local.
+     * Add current network music buffer to playlist.
      */
-    void addNetMusicSongToPlaylist(const MusicResultsItem &songItem);
+    void addSongBufferToPlaylist(const MusicResultsItem &songItem);
     /*!
      * Add current selected song to play list.
      */

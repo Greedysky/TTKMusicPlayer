@@ -57,12 +57,12 @@ void MusicQQArtistSimilarRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem info;
-                    info.m_id = value["mid"].toString();
-                    info.m_coverUrl = value["pic"].toString();
-                    info.m_name = value["name"].toString();
-                    info.m_updateTime.clear();
-                    Q_EMIT createSimilarItem(info);
+                    MusicResultsItem result;
+                    result.m_id = value["mid"].toString();
+                    result.m_coverUrl = value["pic"].toString();
+                    result.m_name = value["name"].toString();
+                    result.m_updateTime.clear();
+                    Q_EMIT createSimilarItem(result);
                 }
             }
         }
