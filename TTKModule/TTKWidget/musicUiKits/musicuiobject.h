@@ -304,15 +304,12 @@ namespace MusicUIObject
             QLineEdit::disabled{ color:#BBBBBB; border:1px solid #BBBBBB; }";
 
     const QString MQSSLineEditStyle02 = " \
-            QLineEdit{ border-image:url(:/tiny/lb_transparent); }";
+            QLineEdit{ border-image:url(:/tiny/lb_transparent); font-size:13px; color:#333333; }";
 
-    const QString MQSSLineEditStyle03 = MQSSLineEditStyle02 + " \
-            QLineEdit{ font-size:13px; color:#333333; }";
-
-    const QString MQSSLineEditStyle04 = " \
+    const QString MQSSLineEditStyle03 = " \
             QLineEdit{ color:#6495ED; border:1px solid #555555; }";
 
-    const QString MQSSLineEditStyle05 = MQSSLineEditStyle01 + " \
+    const QString MQSSLineEditStyle04 = MQSSLineEditStyle01 + " \
             QLineEdit{ color:white; border:1px solid #545454; } \
             QLineEdit::disabled{ color:#323232; border:1px solid #323232; }";
 

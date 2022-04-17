@@ -6,7 +6,7 @@
 MusicSearchEdit::MusicSearchEdit(QWidget *parent)
     : QLineEdit(parent)
 {
-    setStyleSheet(MusicUIObject::MQSSLineEditStyle03);
+    setStyleSheet(MusicUIObject::MQSSLineEditStyle02);
     setPlaceholderText(tr("Please input search words!"));
 }
 
