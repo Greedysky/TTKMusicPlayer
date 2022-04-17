@@ -53,11 +53,6 @@ public:
      */
     bool pluginEnabled() const;
 
-    /*!
-     * Sound effect changed.
-     */
-    static void soundEffectChanged(const QString &name, bool enable);
-
 public Q_SLOTS:
     /*!
      * Set plugin enable or not.

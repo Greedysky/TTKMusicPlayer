@@ -133,16 +133,14 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
 
     m_lastSelectedIndex = (type == 0) ? m_lastSelectedIndex : type;
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicIndex, type);
-    //
+
     if(type != 0)
     {
         G_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, 0);
     }
 
-    MusicUtils::QMMP::enabledEffectPlugin(false);
-    //
+    MusicUtils::TTKQmmp::enabledEffectPlugin(false);
     Q_EMIT enhancedMusicChanged(type);
-
     m_menu->close();
 }
 

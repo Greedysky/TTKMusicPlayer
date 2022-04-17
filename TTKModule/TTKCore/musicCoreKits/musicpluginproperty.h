@@ -29,7 +29,7 @@ struct TTK_MODULE_EXPORT MusicPluginProperty
     QString m_type;
     QString m_name;
     QString m_description;
-    bool m_setting;
+    bool m_hasSettings;
 };
 TTK_DECLARE_LIST(MusicPluginProperty);
 

@@ -71,7 +71,7 @@ MusicSpectrumWidget::~MusicSpectrumWidget()
     G_SINGLE_MANAGER_PTR->removeObject(className());
     for(const MusicSpectrum &type : qAsConst(m_types))
     {
-        MusicUtils::QMMP::enabledVisualPlugin(type.m_module, false);
+        MusicUtils::TTKQmmp::enabledVisualPlugin(type.m_module, false);
     }
     delete m_ui;
 }
@@ -184,7 +184,7 @@ void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
                 return;
             }
 
-            MusicUtils::QMMP::enabledVisualPlugin(type.m_module, false);
+            MusicUtils::TTKQmmp::enabledVisualPlugin(type.m_module, false);
 
             bool state = true;
             switch(type.m_type)
@@ -207,7 +207,7 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::SpectrumType spect
     if(state)
     {
         const int before = Visual::visuals()->count();
-        MusicUtils::QMMP::enabledVisualPlugin(name, true);
+        MusicUtils::TTKQmmp::enabledVisualPlugin(name, true);
         const QList<Visual*> *vs = Visual::visuals();
         if(before == vs->count())
         {
@@ -241,7 +241,7 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::SpectrumType spect
         {
             const MusicSpectrum &type = m_types.takeAt(index);
             layout->removeWidget(type.m_object);
-            MusicUtils::QMMP::enabledVisualPlugin(name, false);
+            MusicUtils::TTKQmmp::enabledVisualPlugin(name, false);
         }
     }
 }
@@ -264,7 +264,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::SpectrumType spectru
     {
         const MusicSpectrum &type = m_types.takeAt(index);
         layout->removeWidget(type.m_object);
-        MusicUtils::QMMP::enabledVisualPlugin(*module, false);
+        MusicUtils::TTKQmmp::enabledVisualPlugin(*module, false);
     }
 
     if(!state)
@@ -274,7 +274,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::SpectrumType spectru
     }
 
     const int before = Visual::visuals()->count();
-    MusicUtils::QMMP::enabledVisualPlugin(name, true);
+    MusicUtils::TTKQmmp::enabledVisualPlugin(name, true);
     const QList<Visual*> *vs = Visual::visuals();
     if(before == vs->count())
     {
@@ -315,7 +315,7 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::SpectrumType spectrum
         if(findSpectrumWidget(name) == -1)
         {
             QPluginLoader loader;
-            loader.setFileName(MusicUtils::QMMP::pluginPath("Light", name));
+            loader.setFileName(MusicUtils::TTKQmmp::pluginPath("Light", name));
             const QObject *obj = loader.instance();
             LightFactory *factory = nullptr;
             if(obj && (factory = TTKObject_cast(LightFactory*, obj)))

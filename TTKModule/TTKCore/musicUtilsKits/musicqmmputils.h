@@ -22,12 +22,12 @@
 #include "musicglobaldefine.h"
 #include "musicpluginproperty.h"
 
-/*! @brief The namespace of the utils qmmp.
+/*! @brief The namespace of the utils ttk qmmp.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils
 {
-    namespace QMMP
+    namespace TTKQmmp
     {
         /*!
          * Get qmmp plugin dir path.
@@ -36,16 +36,12 @@ namespace MusicUtils
         /*!
          * Update qmmp config file transfer.
          */
-        TTK_MODULE_EXPORT void updateQmmpConfigFile();
+        TTK_MODULE_EXPORT void updateConfig();
 
         /*!
          * Enable effect module control.
          */
-        TTK_MODULE_EXPORT void enabledEffectPlugin(bool enable);
-        /*!
-         * Enable effect module control.
-         */
-        TTK_MODULE_EXPORT void enabledEffectPlugin(const QString &name, bool enable);
+        TTK_MODULE_EXPORT void enabledEffectPlugin(bool enable, const QString &name = QString());
         /*!
          * Check effect is valid.
          */
@@ -60,9 +56,9 @@ namespace MusicUtils
          */
         TTK_MODULE_EXPORT void enabledVisualPlugin(const QString &name, bool enable);
         /*!
-         * Update ripple spectrum config file transfer.
+         * Update ripple spectrum config.
          */
-        TTK_MODULE_EXPORT void updateRippleSpectrumConfigFile();
+        TTK_MODULE_EXPORT void updateRippleConfig();
     }
 }
 

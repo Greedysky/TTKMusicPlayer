@@ -86,27 +86,22 @@ bool MusicSoundEffectsItemWidget::pluginEnabled() const
     return m_enable;
 }
 
-void MusicSoundEffectsItemWidget::soundEffectChanged(const QString &name, bool enable)
-{
-    MusicUtils::QMMP::enabledEffectPlugin(name, enable);
-}
-
 void MusicSoundEffectsItemWidget::setPluginEnabled()
 {
     if(!m_enable)
     {
         m_enable = true;
         m_openButton->setIcon(QIcon(":/tiny/btn_effect_off"));
-        soundEffectChanged(m_property.m_type, true);
+        MusicUtils::TTKQmmp::enabledEffectPlugin(true, m_property.m_type);
 
-        m_settingButton->setEnabled(m_property.m_setting);
+        m_settingButton->setEnabled(m_property.m_hasSettings);
         m_openButton->setToolTip(tr("Off"));
     }
     else
     {
         m_enable = false;
         m_openButton->setIcon(QIcon(":/tiny/btn_effect_on"));
-        soundEffectChanged(m_property.m_type, false);
+        MusicUtils::TTKQmmp::enabledEffectPlugin(false, m_property.m_type);
         m_settingButton->setEnabled(false);
         m_openButton->setToolTip(tr("On"));
     }
@@ -114,7 +109,7 @@ void MusicSoundEffectsItemWidget::setPluginEnabled()
 
 void MusicSoundEffectsItemWidget::soundEffectValueChanged()
 {
-    MusicUtils::QMMP::showEffectSetting(m_property.m_type, m_textLabel);
+    MusicUtils::TTKQmmp::showEffectSetting(m_property.m_type, m_textLabel);
 }
 
 
@@ -223,7 +218,7 @@ void MusicSoundEffectsWidget::readSoundEffect()
 #else
     const QStringList &effects = value.split(";", QString::SkipEmptyParts);
 #endif
-    for(const MusicPluginProperty &property : MusicUtils::QMMP::effectPlugins())
+    for(const MusicPluginProperty &property : MusicUtils::TTKQmmp::effectPlugins())
     {
         MusicSoundEffectsItemWidget *item = new MusicSoundEffectsItemWidget(property, this);
         m_items.push_back(item);

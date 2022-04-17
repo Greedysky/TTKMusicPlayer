@@ -8,7 +8,7 @@
 #include <qmmp/effect.h>
 #include <qmmp/effectfactory.h>
 
-QString MusicUtils::QMMP::pluginPath(const QString &module, const QString &format)
+QString MusicUtils::TTKQmmp::pluginPath(const QString &module, const QString &format)
 {
     QString path = MusicObject::applicationPath();
 #ifdef Q_OS_WIN
@@ -19,7 +19,7 @@ QString MusicUtils::QMMP::pluginPath(const QString &module, const QString &forma
     return path;
 }
 
-void MusicUtils::QMMP::updateQmmpConfigFile()
+void MusicUtils::TTKQmmp::updateConfig()
 {
     const QString &confPath = MAKE_CONFIG_DIR_FULL + "wildmidi.cfg";
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
@@ -51,19 +51,15 @@ void MusicUtils::QMMP::updateQmmpConfigFile()
     file.close();
 }
 
-void MusicUtils::QMMP::enabledEffectPlugin(bool enable)
+void MusicUtils::TTKQmmp::enabledEffectPlugin(bool enable, const QString &name)
 {
     for(EffectFactory *factory : Effect::factories())
     {
-        Effect::setEnabled(factory, enable);
-    }
-}
-
-void MusicUtils::QMMP::enabledEffectPlugin(const QString &name, bool enable)
-{
-    for(EffectFactory *factory : Effect::factories())
-    {
-        if(factory->properties().shortName == name)
+        if(name.isEmpty())
+        {
+            Effect::setEnabled(factory, enable);
+        }
+        else if(factory->properties().shortName == name)
         {
             Effect::setEnabled(factory, enable);
             break;
@@ -71,7 +67,7 @@ void MusicUtils::QMMP::enabledEffectPlugin(const QString &name, bool enable)
     }
 }
 
-MusicPluginPropertyList MusicUtils::QMMP::effectPlugins()
+MusicPluginPropertyList MusicUtils::TTKQmmp::effectPlugins()
 {
     MusicPluginPropertyList properties;
     for(EffectFactory *factory : Effect::factories())
@@ -85,13 +81,13 @@ MusicPluginPropertyList MusicUtils::QMMP::effectPlugins()
         MusicPluginProperty property;
         property.m_type = factory->properties().shortName;
         property.m_name = factory->properties().name;
-        property.m_setting = factory->properties().hasSettings;
+        property.m_hasSettings = factory->properties().hasSettings;
         properties << property;
     }
     return properties;
 }
 
-void MusicUtils::QMMP::showEffectSetting(const QString &name, QWidget *parent)
+void MusicUtils::TTKQmmp::showEffectSetting(const QString &name, QWidget *parent)
 {
     for(EffectFactory *factory : Effect::factories())
     {
@@ -103,7 +99,7 @@ void MusicUtils::QMMP::showEffectSetting(const QString &name, QWidget *parent)
     }
 }
 
-void MusicUtils::QMMP::enabledVisualPlugin(const QString &name, bool enable)
+void MusicUtils::TTKQmmp::enabledVisualPlugin(const QString &name, bool enable)
 {
     for(VisualFactory *v : Visual::factories())
     {
@@ -115,7 +111,7 @@ void MusicUtils::QMMP::enabledVisualPlugin(const QString &name, bool enable)
     }
 }
 
-void MusicUtils::QMMP::updateRippleSpectrumConfigFile()
+void MusicUtils::TTKQmmp::updateRippleConfig()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("OuterBlurWave");

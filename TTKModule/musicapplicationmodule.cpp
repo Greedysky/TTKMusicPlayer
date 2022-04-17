@@ -386,7 +386,7 @@ void MusicApplicationModule::musicEffectChanged()
 #endif
     for(const QString &effect : qAsConst(effects))
     {
-        MusicSoundEffectsItemWidget::soundEffectChanged(effect, true);
+        MusicUtils::TTKQmmp::enabledEffectPlugin(true, effect);
     }
 }
 

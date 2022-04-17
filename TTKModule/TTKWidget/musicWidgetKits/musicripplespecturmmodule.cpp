@@ -33,7 +33,7 @@ void MusicRippleSpecturmModule::show()
         return;
     }
 
-    MusicUtils::QMMP::enabledVisualPlugin("outerblurwave", true);
+    MusicUtils::TTKQmmp::enabledVisualPlugin("outerblurwave", true);
 
     const QList<Visual*> *vs = Visual::visuals();
     if(!vs->isEmpty() && vs->back())
@@ -70,7 +70,7 @@ void MusicRippleSpecturmModule::update(bool up)
 {
     up ? show() : close();
 
-    MusicUtils::QMMP::updateRippleSpectrumConfigFile();
+    MusicUtils::TTKQmmp::updateRippleConfig();
     if(m_visualWidget)
     {
         Visual *widget = TTKStatic_cast(Visual*, m_visualWidget);
@@ -92,6 +92,6 @@ void MusicRippleSpecturmModule::removeSpectrum()
     if(m_visualWidget)
     {
         m_visualWidget = nullptr;
-        MusicUtils::QMMP::enabledVisualPlugin("outerblurwave", false);
+        MusicUtils::TTKQmmp::enabledVisualPlugin("outerblurwave", false);
     }
 }

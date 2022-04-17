@@ -27,7 +27,7 @@ public:
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
-        property.m_setting = factory->properties().hasSettings;
+        property.m_hasSettings = factory->properties().hasSettings;
         property.m_description = factory->properties().description;
         property.m_type = path;
         initialize(Decoder::isEnabled(factory), true, property);
@@ -39,7 +39,7 @@ public:
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
-        property.m_setting = factory->properties().hasSettings;
+        property.m_hasSettings = factory->properties().hasSettings;
         property.m_type = path;
         initialize(Effect::isEnabled(factory), false, property);
         m_factory = factory;
@@ -50,7 +50,7 @@ public:
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
-        property.m_setting = factory->properties().hasSettings;
+        property.m_hasSettings = factory->properties().hasSettings;
         property.m_type = path;
         initialize(Visual::isEnabled(factory), false, property);
         m_factory = factory;
@@ -61,7 +61,7 @@ public:
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
-        property.m_setting = factory->properties().hasSettings;
+        property.m_hasSettings = factory->properties().hasSettings;
         property.m_type = path;
         initialize(InputSource::isEnabled(factory), true, property);
         m_factory = factory;
@@ -72,7 +72,7 @@ public:
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
-        property.m_setting = factory->properties().hasSettings;
+        property.m_hasSettings = factory->properties().hasSettings;
         property.m_type = path;
         initialize(Output::currentFactory() == factory, true, property);
         m_factory = factory;
@@ -146,7 +146,7 @@ public:
             setToolTip(2, property.m_description);
         }
 
-        if(property.m_setting)
+        if(property.m_hasSettings)
         {
             setIcon(3, QIcon(":/contextMenu/btn_setting"));
         }
