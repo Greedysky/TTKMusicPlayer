@@ -22,7 +22,7 @@ SRConverter::SRConverter()
 
 SRConverter::~SRConverter()
 {
-    freeSRC();
+    deinit();
 }
 
 void SRConverter::applyEffect(Buffer *b)
@@ -56,7 +56,7 @@ void SRConverter::applyEffect(Buffer *b)
 
 void SRConverter::configure(quint32 freq, ChannelMap map)
 {
-    freeSRC();
+    deinit();
     if(freq != m_sampleRate)
     {
         m_state = src_new(m_engine, map.count(), nullptr);
@@ -71,7 +71,7 @@ void SRConverter::configure(quint32 freq, ChannelMap map)
     Effect::configure(m_sampleRate, map);
 }
 
-void SRConverter::freeSRC()
+void SRConverter::deinit()
 {
     if(m_state)
     {

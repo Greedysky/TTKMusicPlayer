@@ -174,7 +174,7 @@ void MountainWidget::drawRectangle(float x1, float y1, float z1, float x2, float
 
 void MountainWidget::drawBar(float x, float z, float h, float r, float g, float b)
 {
-    drawRectangle(x, 0, z, x + BAR_WIDTH, h, z + BAR_WIDTH, r *(0.2f + 0.8f * h), g *(0.2f + 0.8f * h), b *(0.2f + 0.8f * h));
+    drawRectangle(x, 0, z, x + BAR_WIDTH, h, z + BAR_WIDTH, r * (0.2f + 0.8f * h), g * (0.2f + 0.8f * h), b * (0.2f + 0.8f * h));
 }
 
 void MountainWidget::drawBars()

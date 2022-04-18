@@ -12,10 +12,7 @@ SonicPlugin::SonicPlugin()
 
 SonicPlugin::~SonicPlugin()
 {
-    if(m_stream)
-    {
-        sonicDestroyStream(m_stream);
-    }
+    deinit();
 }
 
 void SonicPlugin::applyEffect(Buffer *b)
@@ -49,6 +46,7 @@ void SonicPlugin::configure(quint32 srate, ChannelMap map)
 {
     Effect::configure(srate, map);
 
+    deinit();
     m_stream = sonicCreateStream(srate, map.count());
     sonicSetVolume(m_stream, 1);
     sonicSetQuality(m_stream, 0);
@@ -65,4 +63,12 @@ void SonicPlugin::setRatio(int ratio)
 SonicPlugin* SonicPlugin::instance()
 {
     return m_instance;
+}
+
+void SonicPlugin::deinit()
+{
+    if(m_stream)
+    {
+        sonicDestroyStream(m_stream);
+    }
 }

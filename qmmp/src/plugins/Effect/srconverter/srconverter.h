@@ -37,7 +37,7 @@ public:
     virtual void configure(quint32 freq, ChannelMap map) override final;
 
 private:
-    void freeSRC();
+    void deinit();
 
     SRC_STATE *m_state = nullptr;
     SRC_DATA m_data;

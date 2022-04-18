@@ -37,12 +37,11 @@ OuterBlurWave::OuterBlurWave(QWidget *parent)
     m_item->setFlag(QGraphicsPolygonItem::ItemIsSelectable, false);
     m_item->setFlag(QGraphicsPolygonItem::ItemIsFocusable, false);
     m_item->setFlag(QGraphicsPolygonItem::ItemIgnoresTransformations, true);
-
     scene->addItem(m_item);
 
-    QGraphicsBlurEffect *blur_effect = new QGraphicsBlurEffect(this);
-    blur_effect->setBlurRadius(20);
-    m_item->setGraphicsEffect(blur_effect);
+    QGraphicsBlurEffect *effect = new QGraphicsBlurEffect(this);
+    effect->setBlurRadius(20);
+    m_item->setGraphicsEffect(effect);
 }
 
 OuterBlurWave::~OuterBlurWave()

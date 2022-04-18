@@ -13,7 +13,7 @@ SoXResampler::SoXResampler()
 
 SoXResampler::~SoXResampler()
 {
-    freeSoXR();
+    deinit();
 }
 
 void SoXResampler::applyEffect(Buffer *b)
@@ -38,7 +38,7 @@ void SoXResampler::applyEffect(Buffer *b)
 
 void SoXResampler::configure(quint32 freq, ChannelMap map)
 {
-    freeSoXR();
+    deinit();
     if(freq != m_sampleRate)
     {
         soxr_error_t error = nullptr;
@@ -50,7 +50,7 @@ void SoXResampler::configure(quint32 freq, ChannelMap map)
     Effect::configure(m_sampleRate, map);
 }
 
-void SoXResampler::freeSoXR()
+void SoXResampler::deinit()
 {
     if(m_soxr)
     {

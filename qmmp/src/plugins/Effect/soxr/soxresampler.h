@@ -37,7 +37,7 @@ public:
     virtual void configure(quint32 freq, ChannelMap map) override final;
 
 private:
-    void freeSoXR();
+    void deinit();
 
     quint32 m_sampleRate;
     float *m_out = nullptr;

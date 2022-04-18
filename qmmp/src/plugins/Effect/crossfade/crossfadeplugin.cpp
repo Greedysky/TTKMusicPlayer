@@ -73,8 +73,8 @@ void CrossfadePlugin::applyEffect(Buffer *b)
     case Processing:
         if(m_bufferAt > 0)
         {
-            double volume = (double)m_bufferAt/m_bufferSize;
-            size_t samples = qMin(m_bufferAt, b->samples);
+            const double volume = (double)m_bufferAt/m_bufferSize;
+            const size_t samples = qMin(m_bufferAt, b->samples);
             mix(b->data, m_buffer, samples, volume);
             m_bufferAt -= samples;
             memmove(m_buffer, m_buffer + samples, m_bufferAt * sizeof(float));

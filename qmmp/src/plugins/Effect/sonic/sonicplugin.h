@@ -42,6 +42,8 @@ public:
     static SonicPlugin* instance();
 
 private:
+    void deinit();
+
     sonicStream m_stream = nullptr;
     static SonicPlugin *m_instance;
 
