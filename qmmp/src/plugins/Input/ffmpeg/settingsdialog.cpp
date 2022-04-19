@@ -13,7 +13,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 #ifdef Q_OS_WIN
-    setFixedHeight(450);
+    setFixedHeight(500);
 #elif defined Q_OS_UNIX
     for(QAbstractButton *button : m_ui.buttonBox->buttons())
     {
@@ -51,6 +51,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.spxCheckBox->setChecked(!disabledFilters.contains("*.spx") && avcodec_find_decoder(AV_CODEC_ID_TRUESPEECH));
     m_ui.webmCheckBox->setEnabled(avcodec_find_decoder(AV_CODEC_ID_OPUS));
     m_ui.webmCheckBox->setChecked(!disabledFilters.contains("*.webm") && avcodec_find_decoder(AV_CODEC_ID_OPUS));
+    m_ui.gsmCheckBox->setEnabled(avcodec_find_decoder(AV_CODEC_ID_GSM));
+    m_ui.gsmCheckBox->setChecked(!disabledFilters.contains("*.gsm") && avcodec_find_decoder(AV_CODEC_ID_GSM));
+    m_ui.amrCheckBox->setEnabled(avcodec_find_decoder(AV_CODEC_ID_AMR_NB));
+    m_ui.amrCheckBox->setChecked(!disabledFilters.contains("*.amr") && avcodec_find_decoder(AV_CODEC_ID_AMR_NB));
     m_ui.dsdCheckBox->setEnabled(avcodec_find_decoder(AV_CODEC_ID_DSD_LSBF));
     m_ui.dsdCheckBox->setChecked(!disabledFilters.contains("*.dsdiff") && avcodec_find_decoder(AV_CODEC_ID_DSD_LSBF));
 }
@@ -86,6 +90,10 @@ void SettingsDialog::accept()
         disabledFilters << "*.spx";
     if(!m_ui.webmCheckBox->isChecked())
         disabledFilters << "*.webm";
+    if(!m_ui.gsmCheckBox->isChecked())
+        disabledFilters << "*.gsm";
+    if(!m_ui.amrCheckBox->isChecked())
+        disabledFilters << "*.amr";
     if(!m_ui.dsdCheckBox->isChecked())
         disabledFilters << "*.dsf" << "*.dsdiff";
 

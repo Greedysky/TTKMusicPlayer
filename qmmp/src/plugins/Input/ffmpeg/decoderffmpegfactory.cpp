@@ -43,7 +43,17 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
 
     if(filters.contains("*.wma") && formats.contains("asf"))
         return true;
+    else if(filters.contains("*.ape") && formats.contains("ape"))
+        return true;
+    else if(filters.contains("*.tta") && formats.contains("tta"))
+        return true;
+    else if(filters.contains("*.m4a") && (formats.contains("m4a") || formats.contains("mp4")))
+        return true;
     else if(filters.contains("*.aac") && formats.contains("aac"))
+        return true;
+    else if(filters.contains("*.ra") && formats.contains("rm"))
+        return true;
+    else if(filters.contains("*.shn") && formats.contains("shn"))
         return true;
     else if(filters.contains("*.ac3") && formats.contains("eac3"))
         return true;
@@ -53,17 +63,27 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
         return true;
     else if(filters.contains("*.vqf") && formats.contains("vqf"))
         return true;
-    else if(filters.contains("*.ape") && formats.contains("ape"))
-        return true;
-    else if(filters.contains("*.tta") && formats.contains("tta"))
-        return true;
-    else if(filters.contains("*.m4a") && (formats.contains("m4a") || formats.contains("mp4")))
-        return true;
     else if(filters.contains("*.tak") && formats.contains("tak"))
         return true;
     else if(filters.contains("*.spx") && formats.contains("spx"))
         return true;
     else if(filters.contains("*.webm") && (formats.contains("webm") || formats.contains("matroska")))
+        return true;
+    else if(filters.contains("*.wve") && formats.contains("wve"))
+        return true;
+    else if(filters.contains("*.sln") && formats.contains("sln"))
+        return true;
+    else if(filters.contains("*.paf") && formats.contains("epaf"))
+        return true;
+    else if(filters.contains("*.pvf") && formats.contains("pvf"))
+        return true;
+    else if(filters.contains("*.ircam") && formats.contains("ircam"))
+        return true;
+    else if(filters.contains("*.gsm") && formats.contains("gsm"))
+        return true;
+    else if(filters.contains("*.avr") && formats.contains("avr"))
+        return true;
+    else if(filters.contains("*.amr") && formats.contains("amr"))
         return true;
     else if(formats.contains("matroska") && avcodec_find_decoder(AV_CODEC_ID_OPUS) && input->isSequential()) //audio from YouTube
         return true;
@@ -74,7 +94,8 @@ DecoderProperties DecoderFFmpegFactory::properties() const
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QStringList filters = {
-        "*.wma", "*.ape", "*.tta", "*.m4a", "*.m4b", "*.aac", "*.ra", "*.shn", "*.vqf", "*.ac3", "*.tak", "*.spx", "*.webm", "*.dsf", "*.dsdiff", "*.mka"
+        "*.wma", "*.ape", "*.tta", "*.m4a", "*.m4b", "*.aac", "*.ra", "*.shn", "*.ac3", "*.mka", "*.vqf", "*.tak", "*.spx", "*.webm",
+        "*.wve", "*.sln", "*.paf", "*.pvf", "*.ircam", "*.gsm", "*.avr", "*.amr", "*.dsf", "*.dsdiff"
     };
 
     const QStringList &disabledFilters = settings.value("FFMPEG/disabled_filters").toStringList();
@@ -90,13 +111,13 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         filters.removeAll("*.ape");
     if(!avcodec_find_decoder(AV_CODEC_ID_TTA))
         filters.removeAll("*.tta");
-    if(!avcodec_find_decoder(AV_CODEC_ID_AAC))
-        filters.removeAll("*.aac");
     if(!avcodec_find_decoder(AV_CODEC_ID_AAC) && !avcodec_find_decoder(AV_CODEC_ID_ALAC))
     {
         filters.removeAll("*.m4a");
         filters.removeAll("*.m4b");
     }
+    if(!avcodec_find_decoder(AV_CODEC_ID_AAC))
+        filters.removeAll("*.aac");
     if(!avcodec_find_decoder(AV_CODEC_ID_RA_288))
         filters.removeAll("*.ra");
     if(!avcodec_find_decoder(AV_CODEC_ID_SHORTEN))
@@ -115,11 +136,23 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         filters.removeAll("*.spx");
     if(!avcodec_find_decoder(AV_CODEC_ID_OPUS))
         filters.removeAll("*.webm");
-    if(!avcodec_find_decoder(AV_CODEC_ID_DSD_LSBF))
+    if(!avcodec_find_decoder(AV_CODEC_ID_PCM_ALAW))
+        filters.removeAll("*.wve");
+    if(!avcodec_find_decoder(AV_CODEC_ID_PCM_S16LE))
     {
-        filters.removeAll("*.dsf");
-        filters.removeAll("*.dsdiff");
+        filters.removeAll("*.sln");
+        filters.removeAll("*.ircam");
     }
+    if(!avcodec_find_decoder(AV_CODEC_ID_PCM_S16BE))
+    {
+        filters.removeAll("*.paf");
+        filters.removeAll("*.pvf");
+        filters.removeAll("*.avr");
+    }
+    if(!avcodec_find_decoder(AV_CODEC_ID_GSM))
+        filters.removeAll("*.gsm");
+    if(!avcodec_find_decoder(AV_CODEC_ID_AMR_NB))
+        filters.removeAll("*.amr");
 
     DecoderProperties properties;
     properties.name = tr("FFmpeg Plugin");
@@ -129,16 +162,18 @@ DecoderProperties DecoderFFmpegFactory::properties() const
 
     if(filters.contains("*.wma"))
         properties.contentTypes << "audio/x-ms-wma";
-    if(filters.contains("*.aac"))
-        properties.contentTypes << "audio/aac" << "audio/aacp";
-    if(filters.contains("*.shn"))
-        properties.contentTypes << "audio/x-ffmpeg-shorten";
     if(filters.contains("*.m4a"))
     {
         properties.contentTypes << "audio/3gpp" << "audio/3gpp2" << "audio/mp4";
         properties.contentTypes << "audio/MP4A-LATM" << "audio/mpeg4-generic";
         properties.contentTypes << "audio/m4a";
     }
+    if(filters.contains("*.aac"))
+        properties.contentTypes << "audio/aac" << "audio/aacp";
+    if(filters.contains("*.ra"))
+        properties.contentTypes << "audio/vnd.rn-realaudio";
+    if(filters.contains("*.shn"))
+        properties.contentTypes << "audio/x-ffmpeg-shorten";
     if(filters.contains("*.ac3"))
         properties.contentTypes << "audio/ac3" << "audio/eac3";
     if(filters.contains("*.dts"))
