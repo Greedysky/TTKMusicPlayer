@@ -3,7 +3,7 @@
 #include <QProcess>
 #include <qmmp/qmmp.h>
 
-#define EXECUTE_PATH    (Qmmp::ttkPluginPath() + "/archive.tkx")
+#define ARCHIVE_PATH    (Qmmp::ttkPluginPath() + "/archive.tkx")
 
 QStringList ArchiveReader::archiveFilters()
 {
@@ -17,7 +17,7 @@ QStringList ArchiveReader::archiveFilters()
 
 bool ArchiveReader::isSupported(const QString &path)
 {
-    if(!QFile::exists(EXECUTE_PATH) || path.isEmpty())
+    if(!QFile::exists(ARCHIVE_PATH) || path.isEmpty())
     {
         return false;
     }
@@ -38,7 +38,7 @@ QByteArray ArchiveReader::unpack(const QString &path)
     QProcess process;
     QStringList args;
     args << "-so" << "e" << path;
-    process.start(EXECUTE_PATH, args);
+    process.start(ARCHIVE_PATH, args);
     process.waitForFinished();
     return process.readAllStandardOutput();
 }

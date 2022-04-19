@@ -8,7 +8,7 @@
 #include <QDirIterator>
 #include <QApplication>
 
-#define EXECUTE_PATH    (Qmmp::ttkPluginPath() + "/archive.tkx")
+#define ARCHIVE_PATH    (Qmmp::ttkPluginPath() + "/archive.tkx")
 
 namespace archive {
 static QString unpackPath()
@@ -28,7 +28,7 @@ QStringList ArchiveReader::list(const QString &path)
     QStringList args;
     args << "l" << path;
     process.setProcessChannelMode(QProcess::MergedChannels);
-    process.start(EXECUTE_PATH, args);
+    process.start(ARCHIVE_PATH, args);
     process.waitForFinished();
 
     const QString &unpack = archive::unpackPath();
@@ -120,7 +120,7 @@ bool ArchiveReader::unpack(const QString &path)
     QProcess process;
     QStringList args;
     args << "x" << path << "-o" + cache;
-    process.start(EXECUTE_PATH, args);
+    process.start(ARCHIVE_PATH, args);
     while(process.state() != QProcess::NotRunning)
     {
         qApp->processEvents();

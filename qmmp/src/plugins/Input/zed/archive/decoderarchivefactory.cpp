@@ -13,7 +13,7 @@ DecoderProperties DecoderArchiveFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("7z Archive Plugin");
     properties.shortName = "archive";
-    properties.filters << "*.7z" << "*.xz" << "*.bzip2" << "*.gzip" << "*.tar" << "*.zip" << "*.wim";
+    properties.filters << "*.7z" << "*.xz" << "*.bz2" << "*.gz" << "*.tar" << "*.zip" << "*.wim";
     properties.filters << "*.ar" << "*.arj";
     properties.filters << "*.cab" << "*.chm" << "*.cpio" << "*.cramfs";
     properties.filters << "*.dmg";
