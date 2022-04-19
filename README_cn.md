@@ -68,7 +68,7 @@ TTKMusicPlayer的一些特性
  * Ogg Vorbis File(*.ogg *.ogv)
  * Ogg Opus File(*.opus)
  * ADTS AAC File(*.aac)
- * MIDI File(*.mid)
+ * MIDI File(*.mid *.mus *.hmp *.hmi *.xmi)
  * PCM File(*.wav *.au *.snd *.aif *.aiff *.8svx *.sph *.sf *.voc *.w64)
  * CUE File(*.cue)
  * MPEG File(*.mp1 *.mp2 *.mp3)
