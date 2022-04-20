@@ -8,18 +8,14 @@ HEADERS += decoderffmpegfactory.h \
            ffmpegmetadatamodel.h \
            decoder_ffmpegcue.h \
            decoder_ffmpegm4b.h \
-           replaygainreader.h \
-           settingsdialog.h
+           replaygainreader.h
 
 SOURCES += decoderffmpegfactory.cpp \
            decoder_ffmpeg.cpp \
            ffmpegmetadatamodel.cpp \
            decoder_ffmpegcue.cpp \
            decoder_ffmpegm4b.cpp \
-           replaygainreader.cpp \
-           settingsdialog.cpp
-
-FORMS += settingsdialog.ui
+           replaygainreader.cpp
 
 INCLUDEPATH += $$EXTRA_PREFIX/libffmpeg/include \
                $$EXTRA_PREFIX/libtaglib/include

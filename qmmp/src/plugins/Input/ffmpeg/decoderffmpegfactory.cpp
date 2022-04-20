@@ -1,6 +1,5 @@
 #include "decoderffmpegfactory.h"
 #include "ffmpegmetadatamodel.h"
-#include "settingsdialog.h"
 #include "decoder_ffmpeg.h"
 #include "decoder_ffmpegcue.h"
 #include "decoder_ffmpegm4b.h"
@@ -10,7 +9,6 @@ extern "C" {
 #include <libavutil/dict.h>
 #include <libavutil/avutil.h>
 }
-#include <QSettings>
 #include <qmmp/cueparser.h>
 
 DecoderFFmpegFactory::DecoderFFmpegFactory()
@@ -41,13 +39,15 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
 
     const QStringList &formats = QString::fromLatin1(fmt->name).split(",");
 
-    if(filters.contains("*.wma") && formats.contains("asf"))
+    if((filters.contains("*.wma") || filters.contains("*.asf")) && formats.contains("asf"))
         return true;
     else if(filters.contains("*.ape") && formats.contains("ape"))
         return true;
     else if(filters.contains("*.tta") && formats.contains("tta"))
         return true;
-    else if(filters.contains("*.m4a") && (formats.contains("m4a") || formats.contains("mp4")))
+    else if((filters.contains("*.mov") || filters.contains("*.mp4") || filters.contains("*.m4a") || filters.contains("*.3gp") || filters.contains("*.3g2") ||
+             filters.contains("*.f4v") || filters.contains("*.hevc") || filters.contains("*.m4v")) &&
+            (formats.contains("mov") || formats.contains("mp4") || formats.contains("m4a") || formats.contains("3gp") || formats.contains("3g2")))
         return true;
     else if(filters.contains("*.aac") && formats.contains("aac"))
         return true;
@@ -67,8 +67,6 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
         return true;
     else if(filters.contains("*.spx") && formats.contains("spx"))
         return true;
-    else if(filters.contains("*.webm") && (formats.contains("webm") || formats.contains("matroska")))
-        return true;
     else if(filters.contains("*.wve") && formats.contains("wve"))
         return true;
     else if(filters.contains("*.sln") && formats.contains("sln"))
@@ -85,6 +83,20 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
         return true;
     else if(filters.contains("*.amr") && formats.contains("amr"))
         return true;
+    else if(filters.contains("*.webm") && (formats.contains("webm") || formats.contains("matroska")))
+        return true;
+    else if(filters.contains("*.avi") && formats.contains("avi"))
+        return true;
+    else if(filters.contains("*.flv") && formats.contains("flv"))
+        return true;
+    else if((filters.contains("*.mpeg") || filters.contains("*.vob")) && formats.contains("mpeg"))
+        return true;
+    else if(filters.contains("*.rm") && formats.contains("rm"))
+        return true;
+    else if(filters.contains("*.swf") && formats.contains("swf"))
+        return true;
+    else if(filters.contains("*.wtv") && formats.contains("wtv"))
+        return true;
     else if(formats.contains("matroska") && avcodec_find_decoder(AV_CODEC_ID_OPUS) && input->isSequential()) //audio from YouTube
         return true;
     return false;
@@ -92,15 +104,11 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
 
 DecoderProperties DecoderFFmpegFactory::properties() const
 {
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QStringList filters = {
-        "*.wma", "*.ape", "*.tta", "*.m4a", "*.m4b", "*.aac", "*.ra", "*.shn", "*.ac3", "*.mka", "*.vqf", "*.tak", "*.spx", "*.webm",
-        "*.wve", "*.sln", "*.paf", "*.pvf", "*.ircam", "*.gsm", "*.avr", "*.amr", "*.dsf", "*.dsdiff"
+        "*.wma", "*.ape", "*.tta", "*.m4a", "*.m4b", "*.aac", "*.ra", "*.shn", "*.ac3", "*.mka", "*.vqf", "*.tak", "*.spx",
+        "*.wve", "*.sln", "*.paf", "*.pvf", "*.ircam", "*.gsm", "*.avr", "*.amr", "*.dsf", "*.dsdiff",
+        "*.webm", "*.3g2", "*.3gp", "*.asf", "*.avi", "*.f4v", "*.flv", "*.hevc", "*.m4v", "*.mov", "*.mp4", "*.mpeg", "*.rm", "*.swf", "*.vob", "*.wtv"
     };
-
-    const QStringList &disabledFilters = settings.value("FFMPEG/disabled_filters").toStringList();
-    for(const QString &filter : qAsConst(disabledFilters))
-        filters.removeAll(filter);
 
     if(filters.contains("*.m4a") && !filters.contains("*.m4b"))
         filters << "*.m4b";
@@ -115,6 +123,12 @@ DecoderProperties DecoderFFmpegFactory::properties() const
     {
         filters.removeAll("*.m4a");
         filters.removeAll("*.m4b");
+        filters.removeAll("*.m4v");
+        filters.removeAll("*.mov");
+        filters.removeAll("*.mp4");
+        filters.removeAll("*.f4v");
+        filters.removeAll("*.flv");
+        filters.removeAll("*.hevc");
     }
     if(!avcodec_find_decoder(AV_CODEC_ID_AAC))
         filters.removeAll("*.aac");
@@ -134,8 +148,6 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         filters.removeAll("*.tak");
     if(!avcodec_find_decoder(AV_CODEC_ID_TRUESPEECH))
         filters.removeAll("*.spx");
-    if(!avcodec_find_decoder(AV_CODEC_ID_OPUS))
-        filters.removeAll("*.webm");
     if(!avcodec_find_decoder(AV_CODEC_ID_PCM_ALAW))
         filters.removeAll("*.wve");
     if(!avcodec_find_decoder(AV_CODEC_ID_PCM_S16LE))
@@ -152,7 +164,30 @@ DecoderProperties DecoderFFmpegFactory::properties() const
     if(!avcodec_find_decoder(AV_CODEC_ID_GSM))
         filters.removeAll("*.gsm");
     if(!avcodec_find_decoder(AV_CODEC_ID_AMR_NB))
+    {
         filters.removeAll("*.amr");
+        filters.removeAll("*.3g2");
+        filters.removeAll("*.3gp");
+    }
+    if(!avcodec_find_decoder(AV_CODEC_ID_OPUS))
+        filters.removeAll("*.webm");
+    if(!avcodec_find_decoder(AV_CODEC_ID_WMAV2))
+        filters.removeAll("*.asf");
+    if(!avcodec_find_decoder(AV_CODEC_ID_MP3))
+    {
+        filters.removeAll("*.avi");
+        filters.removeAll("*.swf");
+    }
+    if(!avcodec_find_decoder(AV_CODEC_ID_MP2))
+    {
+        filters.removeAll("*.mpeg");
+        filters.removeAll("*.vob");
+    }
+    if(!avcodec_find_decoder(AV_CODEC_ID_AC3))
+    {
+        filters.removeAll("*.rm");
+        filters.removeAll("*.wtv");
+    }
 
     DecoderProperties properties;
     properties.name = tr("FFmpeg Plugin");
@@ -187,7 +222,6 @@ DecoderProperties DecoderFFmpegFactory::properties() const
 
     properties.protocols << "ffmpeg" << "m4b";
     properties.priority = 10;
-    properties.hasSettings = true;
     return properties;
 }
 
@@ -379,7 +413,7 @@ MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bo
 
 void DecoderFFmpegFactory::showSettings(QWidget *parent)
 {
-    (new SettingsDialog(parent))->show();
+    Q_UNUSED(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
