@@ -1,13 +1,9 @@
 #include "decodersndfilefactory.h"
 #include "decoder_sndfile.h"
 #include <QFileInfo>
-#ifdef Q_OS_WIN
-#include <windows.h>
-#define ENABLE_SNDFILE_WINDOWS_PROTOTYPES 1
-#endif
 
 #ifndef WAVE_FORMAT_PCM
-#define WAVE_FORMAT_PCM 0x0001
+#  define WAVE_FORMAT_PCM 0x0001
 #endif
 #define WAVE_FORMAT_ADPCM 0x0002
 #define WAVE_FORMAT_IEEE_FLOAT 0x0003
