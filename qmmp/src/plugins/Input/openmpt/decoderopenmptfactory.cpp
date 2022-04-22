@@ -33,7 +33,7 @@ DecoderProperties DecoderOpenMPTFactory::properties() const
     properties.filters << "*.ult" << "*.umx";
     properties.filters << "*.wow";
     properties.filters << "*.xm" << "*.xpk";
-    properties.filters << ArchiveReader::archiveFilters();
+    properties.filters << ArchiveReader::filters();
     properties.description = "OpenMPT Module Files";
     properties.hasSettings = true;
     return properties;

@@ -31,7 +31,7 @@ extern "C" {
 // one block may be up to 22K samples, which is 88Kb for stereo
 #define HEADER_SIZE 14
 
-typedef struct
+struct decode_info
 {
     FILE *file;
     int offset;
@@ -57,7 +57,7 @@ typedef struct
     int end_sample;
     int current_sample;
     int samples_to_skip;
-} decode_info;
+};
 
 /*!
  * @author Greedysky <greedysky@163.com>

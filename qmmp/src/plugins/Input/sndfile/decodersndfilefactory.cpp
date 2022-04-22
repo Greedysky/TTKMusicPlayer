@@ -19,7 +19,6 @@ bool DecoderSndFileFactory::canDecode(QIODevice *input) const
     if(!memcmp(buf + 8, "WAVE", 4) && (!memcmp(buf, "RIFF", 4) || !memcmp(buf, "RIFX", 4)))
     {
         quint16 subformat = 0;
-
         if(!memcmp(buf + 12, "fmt ", 4))
         {
             subformat = (quint16(buf[21]) << 8) + buf[20];
@@ -81,7 +80,6 @@ bool DecoderSndFileFactory::canDecode(QIODevice *input) const
         return true;
     else if(!memcmp(buf, "riff", 4))
         return true;
-
     return false;
 }
 

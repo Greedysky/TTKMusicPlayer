@@ -26,7 +26,7 @@
  */
 namespace ArchiveReader
 {
-    QStringList archiveFilters();
+    QStringList filters();
     bool isSupported(const QString &path);
     QByteArray unpack(const QString &path);
 }

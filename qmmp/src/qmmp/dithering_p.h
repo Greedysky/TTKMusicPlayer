@@ -43,12 +43,11 @@ private:
     void clearHistory();
     int m_chan = 2;
 
-    typedef struct
+    struct AudioDither
     {
         float error[3];
         quint32 random;
-
-    } AudioDither;
+    };
 
     AudioDither m_dither[9];
     float m_lsb = 0.0f;

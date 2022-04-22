@@ -5,10 +5,9 @@
 bool DecoderOpusFactory::canDecode(QIODevice *input) const
 {
     char buf[36];
-    if(input->peek(buf, 36) == 36 && !memcmp(buf, "OggS", 4)
-            && !memcmp(buf + 28, "OpusHead", 8))
-        return true;
-    return false;
+    if(input->peek(buf, 36) != 36)
+        return false;
+    return !memcmp(buf, "OggS", 4) && !memcmp(buf + 28, "OpusHead", 8);
 }
 
 DecoderProperties DecoderOpusFactory::properties() const

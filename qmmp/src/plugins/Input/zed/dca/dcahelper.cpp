@@ -68,7 +68,7 @@ int channel_remap[][7] = {
     {1,2,5,3,4,6,7} // FL|FR|LFE|FLC|FRC|RL|RR
 };
 
-typedef struct
+struct wavfmt_t
 {
     uint16_t wFormatTag;
     uint16_t nChannels;
@@ -77,7 +77,7 @@ typedef struct
     uint16_t nBlockAlign;
     uint16_t wBitsPerSample;
     uint16_t cbSize;
-} wavfmt_t;
+};
 
 int dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
 {

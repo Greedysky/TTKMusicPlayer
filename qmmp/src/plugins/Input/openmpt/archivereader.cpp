@@ -5,7 +5,7 @@
 
 #define ARCHIVE_PATH    (Qmmp::ttkPluginPath() + "/archive.tkx")
 
-QStringList ArchiveReader::archiveFilters()
+QStringList ArchiveReader::filters()
 {
     QStringList path;
     path << "*.mdr" << "*.s3r" << "*.xmr" << "*.itr";
@@ -23,9 +23,9 @@ bool ArchiveReader::isSupported(const QString &path)
     }
 
     const QString &filePath = path.toLower();
-    for(const QString &suffix : archiveFilters())
+    for(const QString &suffix : filters())
     {
-        if(filePath.endsWith(suffix.mid(1, suffix.length())))
+        if(filePath.endsWith(suffix.mid(1)))
         {
             return true;
         }

@@ -31,5 +31,15 @@ namespace ArchiveReader
     bool removeRecursively(const QString &dir);
 }
 
+namespace A7zipReader
+{
+    QStringList filters();
+}
+
+namespace RSNReader
+{
+    QStringList filters();
+}
+
 #endif
 

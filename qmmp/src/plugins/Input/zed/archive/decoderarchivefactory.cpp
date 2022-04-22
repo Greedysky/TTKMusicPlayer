@@ -11,28 +11,11 @@ bool DecoderArchiveFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderArchiveFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("7z Archive Plugin");
+    properties.name = tr("Archive Plugin");
     properties.shortName = "archive";
-    properties.filters << "*.7z" << "*.xz" << "*.bz2" << "*.gz" << "*.tar" << "*.zip" << "*.wim";
-    properties.filters << "*.ar" << "*.arj";
-    properties.filters << "*.cab" << "*.chm" << "*.cpio" << "*.cramfs";
-    properties.filters << "*.dmg";
-    properties.filters << "*.ext";
-    properties.filters << "*.fat";
-    properties.filters << "*.gpt";
-    properties.filters << "*.hfs";
-    properties.filters << "*.ihex" << "*.iso";
-    properties.filters << "*.lzh" << "*.lzma";
-    properties.filters << "*.mbr" << "*.msi";
-    properties.filters << "*.nsis" << "*.ntfs";
-    properties.filters << "*.qcow2";
-    properties.filters << "*.rar" << "*.rpm";
-    properties.filters << "*.squashfs";
-    properties.filters << "*.udf" << "*.uefi";
-    properties.filters << "*.vdi" << "*.vhd" << "*.vmdk";
-    properties.filters << "*.xar";
-    properties.filters << "*.z";
-    properties.description = "7z Archive File";
+    properties.filters << A7zipReader::filters();
+    properties.filters << RSNReader::filters();
+    properties.description = "Archive File";
     properties.hasSettings = true;
     properties.noInput = true;
     return properties;

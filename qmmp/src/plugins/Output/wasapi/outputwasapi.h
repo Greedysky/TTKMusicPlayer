@@ -69,7 +69,7 @@ private:
     QString m_id;
     bool m_exclusive = false;
 
-    typedef struct
+    struct
     {
         Qmmp::ChannelPosition pos;
         DWORD chan_mask;

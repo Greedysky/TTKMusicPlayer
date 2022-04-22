@@ -24,7 +24,7 @@ bool DecoderSIDFactory::canDecode(QIODevice *input) const
     char buf[4];
     if(input->peek(buf, 4) != 4)
         return false;
-    return (!memcmp(buf, "RSID", 4) || !memcmp(buf, "PSID", 4));
+    return !memcmp(buf, "RSID", 4) || !memcmp(buf, "PSID", 4);
 }
 
 DecoderProperties DecoderSIDFactory::properties() const

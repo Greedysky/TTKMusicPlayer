@@ -60,6 +60,11 @@ QStringList ArchiveReader::list(const QString &path)
 
 bool ArchiveReader::unpack(const QString &path)
 {
+    if(!QFile::exists(ARCHIVE_PATH) || path.isEmpty())
+    {
+        return false;
+    }
+
     const QString &unpack = archive::unpackPath();
     if(unpack.isEmpty())
     {
@@ -177,4 +182,37 @@ bool ArchiveReader::removeRecursively(const QString &dir)
         success = dr.rmdir(dr.absolutePath());
     }
     return success;
+}
+
+
+QStringList A7zipReader::filters()
+{
+    QStringList filter;
+    filter << "*.7z" << "*.xz" << "*.bz2" << "*.gz" << "*.tar" << "*.zip" << "*.wim";
+    filter << "*.ar" << "*.arj";
+    filter << "*.cab" << "*.chm" << "*.cpio" << "*.cramfs";
+    filter << "*.dmg";
+    filter << "*.ext";
+    filter << "*.fat";
+    filter << "*.gpt";
+    filter << "*.hfs";
+    filter << "*.ihex" << "*.iso";
+    filter << "*.lzh" << "*.lzma";
+    filter << "*.mbr" << "*.msi";
+    filter << "*.nsis" << "*.ntfs";
+    filter << "*.qcow2";
+    filter << "*.rar" << "*.rpm";
+    filter << "*.squashfs";
+    filter << "*.udf" << "*.uefi";
+    filter << "*.vdi" << "*.vhd" << "*.vmdk";
+    filter << "*.xar";
+    filter << "*.z";
+    return filter;
+}
+
+QStringList RSNReader::filters()
+{
+    QStringList filter;
+    filter << "*.rsn" << "*.rps" << "*.rdc" << "*.rds" << "*.rgs" << "*.r64";
+    return filter;
 }

@@ -7,7 +7,9 @@
 bool DecoderWavPackFactory::canDecode(QIODevice *input) const
 {
     char buf[4];
-    return (input->peek(buf, 4) == 4 && !memcmp(buf, "wvpk", 4));
+    if(input->peek(buf, 4) != 4)
+        return false;
+    return !memcmp(buf, "wvpk", 4);
 }
 
 DecoderProperties DecoderWavPackFactory::properties() const

@@ -2,13 +2,13 @@
 #include <libv2m/v2mconv.h>
 #include <libv2m/sounddef.h>
 
-static bool v2m_initialized = false;
-int load_and_convert(unsigned char *module, qint64 size, uint8_t **conv, int *convlen)
+static bool v2mInitialized = false;
+int loadAndConvert(unsigned char *module, qint64 size, uint8_t **conv, int *convlen)
 {
-    if(!v2m_initialized)
+    if(!v2mInitialized)
     {
         sdInit();
-        v2m_initialized = true;
+        v2mInitialized = true;
     }
 
     const int ver = CheckV2MVersion(module, size);
@@ -61,7 +61,7 @@ bool V2MHelper::initialize()
     file.close();
 
     int convlen;
-    if(load_and_convert((unsigned char *)module.constData(), size, &m_tune, &convlen) < 0)
+    if(loadAndConvert((unsigned char *)module.constData(), size, &m_tune, &convlen) < 0)
     {
         qWarning("V2MHelper: load_and_convert error");
         return false;
