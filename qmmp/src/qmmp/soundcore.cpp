@@ -1,4 +1,3 @@
-#include <QFile>
 #include <QApplication>
 #include <QSettings>
 #include <QDir>

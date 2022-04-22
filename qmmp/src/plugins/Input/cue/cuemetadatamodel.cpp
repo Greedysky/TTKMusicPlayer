@@ -51,8 +51,11 @@ QString CUEMetaDataModel::cue() const
     }
 
     QFile file(m_cueFilePath);
-    file.open(QIODevice::ReadOnly);
-    QByteArray data = file.readAll();
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        return QString();
+    }
+    const QByteArray data = file.readAll();
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("CUE");

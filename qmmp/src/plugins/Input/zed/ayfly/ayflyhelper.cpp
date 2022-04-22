@@ -35,6 +35,7 @@ bool AyflyHelper::initialize()
 
     const qint64 size = file.size();
     const QByteArray module = file.readAll();
+    file.close();
 
     if(!ay_initsongindirect((unsigned char *)module.constData(), sampleRate(), size))
     {

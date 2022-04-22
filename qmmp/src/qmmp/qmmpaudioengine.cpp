@@ -1,6 +1,5 @@
 #include <QMetaType>
 #include <QIODevice>
-#include <QFile>
 #include "replaygain_p.h"
 #include "effect.h"
 #include "buffer.h"

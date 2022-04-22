@@ -1,4 +1,3 @@
-#include <QFile>
 #include <QDir>
 #include <algorithm>
 #include "qmmpplugincache_p.h"

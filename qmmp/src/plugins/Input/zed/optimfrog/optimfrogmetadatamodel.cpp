@@ -13,16 +13,20 @@ QList<MetaDataItem> OptimFROGMetaDataModel::extraProperties() const
     QList<MetaDataItem> ep;
 
     QFile file(m_path);
-    if(file.open(QIODevice::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
-        OptimFROGHelper helper(&file);
-        if(!helper.initialize())
-        {
-            return ep;
-        }
-
-        ep << MetaDataItem(tr("Version"), QString::number(helper.version()));
-        ep << MetaDataItem(tr("Compression ratio"), QString::number(helper.compression()));
+        return ep;
     }
+
+    OptimFROGHelper helper(&file);
+    if(!helper.initialize())
+    {
+        file.close();
+        return ep;
+    }
+
+    ep << MetaDataItem(tr("Version"), QString::number(helper.version()));
+    ep << MetaDataItem(tr("Compression ratio"), QString::number(helper.compression()));
+    file.close();
     return ep;
 }

@@ -58,6 +58,7 @@ bool V2MHelper::initialize()
 
     const qint64 size = file.size();
     const QByteArray module = file.readAll();
+    file.close();
 
     int convlen;
     if(load_and_convert((unsigned char *)module.constData(), size, &m_tune, &convlen) < 0)

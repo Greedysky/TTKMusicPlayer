@@ -5,7 +5,6 @@
 #include "archivereader.h"
 #include "settingsdialog.h"
 
-#include <QFile>
 #include <QSettings>
 
 bool DecoderOpenMPTFactory::canDecode(QIODevice *input) const
@@ -64,6 +63,7 @@ QList<TrackInfo*> DecoderOpenMPTFactory::createPlayList(const QString &path, Tra
     OpenMPTHelper helper(&file);
     if(!helper.initialize())
     {
+        file.close();
         delete info;
         return QList<TrackInfo*>();
     }

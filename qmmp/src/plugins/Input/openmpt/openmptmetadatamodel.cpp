@@ -7,16 +7,18 @@ OpenMPTMetaDataModel::OpenMPTMetaDataModel(const QString &path)
     : MetaDataModel(true)
 {
   QFile file(path);
-  if(file.open(QIODevice::ReadOnly))
+  if(!file.open(QIODevice::ReadOnly))
   {
-      OpenMPTHelper helper(&file);
-      if(helper.initialize())
-      {
-          fillInExtraProperties(&helper);
-          fillInDescriptions(&helper);
-          file.close();
-      }
+      return;
   }
+
+  OpenMPTHelper helper(&file);
+  if(helper.initialize())
+  {
+      fillInExtraProperties(&helper);
+      fillInDescriptions(&helper);
+  }
+  file.close();
 }
 
 void OpenMPTMetaDataModel::fillInExtraProperties(OpenMPTHelper *helper)

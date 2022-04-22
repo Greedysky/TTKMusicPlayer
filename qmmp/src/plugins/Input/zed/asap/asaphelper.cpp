@@ -30,6 +30,7 @@ bool AsapHelper::initialize()
 
     const qint64 size = file.size();
     const QByteArray module = file.readAll();
+    file.close();
 
     m_input = ASAP_New();
     ASAP_DetectSilence(m_input, 5);

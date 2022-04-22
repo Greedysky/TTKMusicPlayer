@@ -46,6 +46,10 @@ contains(CONFIG, PSF_PLUGIN){
     SUBDIRS += psf
 }
 
+contains(CONFIG, S98_PLUGIN){
+    SUBDIRS += s98
+}
+
 contains(CONFIG, SC68_PLUGIN){
     SUBDIRS += sc68
 }

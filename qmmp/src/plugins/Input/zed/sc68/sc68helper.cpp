@@ -1,7 +1,5 @@
 #include "sc68helper.h"
 
-#include <QFile>
-
 void meta_from_music_info(TrackInfo *info, sc68_music_info_t *ti)
 {
     // add metainfo
@@ -74,8 +72,9 @@ bool SC68Helper::initialize()
     }
 
     const qint64 size = file.size();
-    sc68_init(nullptr);
+    file.close();
 
+    sc68_init(nullptr);
     m_input = sc68_create(nullptr);
     if(!m_input)
     {

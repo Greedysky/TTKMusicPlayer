@@ -32,8 +32,9 @@ bool PSFHelper::initialize()
         return false;
     }
 
-    m_file_size = file.size();
+    const qint64 size = file.size();
     const QByteArray module = file.readAll();
+    file.close();
 
     m_type = ao_identify((char *)module.constData());
     if(m_type < 0)
@@ -42,7 +43,7 @@ bool PSFHelper::initialize()
         return false;
     }
 
-    m_input = ao_start(m_type, QmmpPrintable(m_path), (uint8 *)module.constData(), m_file_size);
+    m_input = ao_start(m_type, QmmpPrintable(m_path), (uint8 *)module.constData(), size);
     if(!m_input)
     {
         qWarning("PSFHelper: ao_start error");
@@ -58,6 +59,8 @@ bool PSFHelper::initialize()
     }
 
     m_length = 120;
+    m_bitrate = size * 8.0 / totalTime() + 1.0f;
+
     if(!have_info)
     {
         qDebug("PSFHelper: ao has no display info");

@@ -45,6 +45,7 @@ QList<TrackInfo*> DecoderAACFactory::createPlayList(const QString &path, TrackIn
     AACFile aac_file(&file, parts & TrackInfo::MetaData);
     if(!aac_file.isValid())
     {
+        file.close();
         delete info;
         return QList<TrackInfo*>();
     }
@@ -63,6 +64,8 @@ QList<TrackInfo*> DecoderAACFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::FORMAT_NAME, "AAC");
         info->setDuration(aac_file.duration());
     }
+
+    file.close();
     return QList<TrackInfo*>() << info;
 }
 
