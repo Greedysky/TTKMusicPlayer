@@ -173,20 +173,36 @@ static int TFMXLoad(TfmxState *state, const char *path)
     }
     else if(strncasecmp(extension, ".tfx", 4) == 0)
     {
-        // Check for <filename>.tfx, <filename>.sam
-        char *smplName = strdup(path);
-        // Case-preserving conversion of "tfx" to "samp"
-        smplName[eOffset + 0] ^= 't' ^ 's';
-        smplName[eOffset + 1] ^= 'f' ^ 'a';
-        smplName[eOffset + 2] ^= 'x' ^ 'm';
+        if(!status)
+        {
+            // Check for <filename>.tfx, <filename>.sam
+            char *smplName = strdup(path);
+            // Case-preserving conversion of "tfx" to "sam"
+            smplName[eOffset + 0] ^= 't' ^ 's';
+            smplName[eOffset + 1] ^= 'f' ^ 'a';
+            smplName[eOffset + 2] ^= 'x' ^ 'm';
 
-        status = loadMDAT(state, path, smplName);
-        free(smplName);
+            status = loadMDAT(state, path, smplName);
+            free(smplName);
+        }
+
+        if(!status)
+        {
+            // Check for <filename>.tfx, <filename>.smp
+            char *smplName = strdup(path);
+            // Case-preserving conversion of "tfx" to "smp"
+            smplName[eOffset + 0] ^= 't' ^ 's';
+            smplName[eOffset + 1] ^= 'f' ^ 'm';
+            smplName[eOffset + 2] ^= 'x' ^ 'p';
+
+            status = loadMDAT(state, path, smplName);
+            free(smplName);
+        }
     }
     else if(strncasecmp(extension, ".tfm", 3) == 0)
     {
         // Check for <filename>.tfm which is a single format
-        loadTFM(state, path);
+        status = loadTFM(state, path);
     }
     return status;
 }
