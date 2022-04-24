@@ -1,14 +1,9 @@
 #include "sc68helper.h"
 
-void meta_from_music_info(TrackInfo *info, sc68_music_info_t *ti)
+static void metaFromMusicInfo(TrackInfo *info, sc68_music_info_t *ti)
 {
     // add metainfo
-    if(!ti->title || !ti->title[0])
-    {
-        // title is empty, this call will set track title to filename without extension
-        info->setValue(Qmmp::TITLE, QString());
-    }
-    else
+    if(ti->title && ti->title[0])
     {
         info->setValue(Qmmp::TITLE, ti->title);
     }
@@ -195,7 +190,7 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
         TrackInfo *info = new TrackInfo();
         if(parts & TrackInfo::MetaData)
         {
-            meta_from_music_info(info, &ti);
+            metaFromMusicInfo(info, &ti);
             info->setValue(Qmmp::TRACK, i);
         }
 

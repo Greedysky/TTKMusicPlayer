@@ -20,7 +20,7 @@ bool DecoderGME::initialize()
     if(!m_emu)
         return false;
 
-    int count = gme_track_count(m_emu);
+    const int count = gme_track_count(m_emu);
     if(track > count || track < 0)
     {
         qWarning("DecoderGME: track number is out of range");

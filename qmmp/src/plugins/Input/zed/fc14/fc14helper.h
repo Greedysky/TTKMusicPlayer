@@ -22,9 +22,7 @@
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
-extern "C" {
 #include <libfc14/fc14audiodecoder.h>
-}
 
 /*!
  * @author Greedysky <greedysky@163.com>

@@ -19,12 +19,10 @@
 #ifndef AYFLYHELPER_H
 #define AYFLYHELPER_H
 
-extern "C" {
-#include <libayfly/ayfly.h>
-}
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
+#include <libayfly/ayfly.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>

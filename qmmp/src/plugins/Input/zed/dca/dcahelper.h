@@ -41,8 +41,8 @@ struct decode_info
     int disable_dynrng;// = 0;
     uint8_t inbuf[BUFFER_SIZE]; // input data buffer
     uint8_t buf[BUFFER_SIZE]; // decoder data buffer (inbuf gets appended here)
-    uint8_t * bufptr;// = buf;
-    uint8_t * bufpos;// = buf + HEADER_SIZE;
+    uint8_t *bufptr;// = buf;
+    uint8_t *bufpos;// = buf + HEADER_SIZE;
     int sample_rate;
     int frame_length;
     int flags;

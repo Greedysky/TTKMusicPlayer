@@ -43,7 +43,7 @@ bool OpenMPTHelper::initialize()
 
     openmpt_module_select_subsong(m_mod, -1);
 
-    m_duration = openmpt_module_get_duration_seconds(m_mod) * 1000;
+    m_length = openmpt_module_get_duration_seconds(m_mod) * 1000;
     m_title = toString(openmpt_module_get_metadata(m_mod, "title"));
     m_patternCount = openmpt_module_get_num_patterns(m_mod);
     m_instrumentCount = openmpt_module_get_num_instruments(m_mod);
@@ -153,6 +153,6 @@ void OpenMPTHelper::setStereoSeparation(int separation)
 qint64 OpenMPTHelper::read(unsigned char *data, qint64 maxSize)
 {
     maxSize /= sizeof(float) * channels();
-    const std::size_t n = openmpt_module_read_interleaved_float_stereo(m_mod, sampleRate(), maxSize, reinterpret_cast<float *>(data));
+    const size_t n = openmpt_module_read_interleaved_float_stereo(m_mod, sampleRate(), maxSize, reinterpret_cast<float *>(data));
     return n * channels() * sizeof(float);
 }

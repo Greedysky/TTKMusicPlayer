@@ -203,10 +203,10 @@ int convert_samples(decode_info *state, int)
     return 0;
 }
 
-int dca_decode_data(decode_info *ddb_state, uint8_t * start, int size, int probe)
+int dca_decode_data(decode_info *ddb_state, uint8_t *start, int size, int probe)
 {
     int n_decoded = 0;
-    uint8_t * end = start + size;
+    uint8_t *end = start + size;
     int len;
 
     while(true)

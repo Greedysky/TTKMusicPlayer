@@ -19,12 +19,10 @@
 #ifndef ASAPHELPER_H
 #define ASAPHELPER_H
 
-extern "C" {
-#include <libasap/asap.h>
-}
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
+#include <libasap/asap.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>

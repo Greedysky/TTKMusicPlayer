@@ -11,6 +11,7 @@
 #define MUSIC_SID_FILE              "sid"
 #define MUSIC_WVPACK_FILE           "wvpack"
 #define MUSIC_SC68_FILE             "sc68"
+#define MUSIC_TFMX_FILE             "tfmx"
 
 bool Format::songTrackValid(const QString &url)
 {
@@ -24,6 +25,7 @@ bool Format::songTrackValid(const QString &url)
     list << MUSIC_SID_FILE "://";
     list << MUSIC_WVPACK_FILE "://";
     list << MUSIC_SC68_FILE "://";
+    list << MUSIC_TFMX_FILE "://";
 
     for(const QString &path : qAsConst(list))
     {

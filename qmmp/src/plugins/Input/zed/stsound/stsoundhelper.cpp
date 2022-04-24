@@ -52,19 +52,19 @@ bool StSoundHelper::initialize()
 qint64 StSoundHelper::read(unsigned char *data, qint64 maxSize)
 {
     ymsample *psample = (ymsample *)data;
-    qint64 stereoSize = maxSize / (2 * sizeof(ymsample));
+    const qint64 stereoSize = maxSize / (2 * sizeof(ymsample));
 
-    if(m_music->update(psample, stereoSize))
+    if(!m_music->update(psample, stereoSize))
     {
-        // recopy mono YM sound to 2 channels
-        for(qint64 i = stereoSize - 1; i >= 0; --i)
-        {
-            psample[(i * 2)    ] = psample[i];
-            psample[(i * 2) + 1] = psample[i];
-        }
-        return maxSize;
+        return 0;
     }
-    return 0;
+    // recopy mono YM sound to 2 channels
+    for(qint64 i = stereoSize - 1; i >= 0; --i)
+    {
+        psample[(i * 2)    ] = psample[i];
+        psample[(i * 2) + 1] = psample[i];
+    }
+    return maxSize;
 }
 
 QMap<Qmmp::MetaData, QString> StSoundHelper::readMetaData() const

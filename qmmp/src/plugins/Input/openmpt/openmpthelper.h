@@ -49,7 +49,7 @@ public:
     void setStereoSeparation(int separation);
 
     inline void seek(qint64 time) { openmpt_module_set_position_seconds(m_mod, time / 1000.0); }
-    inline int totalTime() const { return m_duration; }
+    inline int totalTime() const { return m_length; }
 
     inline int bitrate() const { m_input->size() * 8.0 / totalTime() + 1.0f; }
     inline int sampleRate() const { return 44100; }
@@ -81,7 +81,7 @@ private:
 
     QIODevice *m_input = nullptr;
     openmpt_module *m_mod = nullptr;
-    int m_duration = 0;
+    int m_length = 0;
     QString m_title;
     QString m_comment;
     int m_patternCount = 0, m_channelCount = 0;

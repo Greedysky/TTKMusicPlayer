@@ -438,7 +438,6 @@ qint64 DecoderCDAudio::read(unsigned char *data, qint64 maxSize)
 {
     if(!m_buffer_at)
     {
-
         lsn_t secorts_to_read = qMin(CDDA_SECTORS, (m_last_sector - m_current_sector + 1));
 
         if(secorts_to_read <= 0)
