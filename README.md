@@ -62,7 +62,7 @@ Features
 -------
 TTKMusicPlayer can meet your most demands
  * Support for multiple music formats.
- * SID File(*.sid *.mus *.str *.prg *.P00 *.c64)
+ * SID File(*.sid *.psid *.mus *.str *.p00 *.prg *.c64)
  * MusePack File(*.mpc)
  * WavPack File(*.wv)
  * Ogg Vorbis File(*.ogg *.ogv)
@@ -86,7 +86,7 @@ TTKMusicPlayer can meet your most demands
  * OptimFrog File(*.ofr *.ofs)
  * Audio Overload File(*.psf *.spu *.ssf *.qsf *.dsf *.minipsf *.minissf *.miniqsf *.minidsf *.2sf *.mini2sf *.gsf *.minigsf *.usf *.miniusf *.ncsf *.minincsf *.snsf *.minisnsf)
  * S98 Audio File(*.s98 *.cym *.mym *.x1f)
- * Atari ST(E) And Amiga File(*.sc68)
+ * Atari ST(E) And Amiga File(*.sc68 *.snd *.sndh)
  * Speex Audio File(*.spx)
  * V2 Player File(*.v2m)
  * AY/YM Audio File(*.asc *.ay *.emul *.sqt *.st13 *.stc *.stp *.stp2 *.psc *.psg *.pt1 *.pt2 *.pt3 *.vtx *.zxs)

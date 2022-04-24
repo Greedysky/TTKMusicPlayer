@@ -22,7 +22,7 @@
  *
  * Support for multiple music formats.
  *
- * SID File(*.sid *.mus *.str *.prg *.P00 *.c64)
+ * SID File(*.sid *.psid *.mus *.str *.p00 *.prg *.c64)
  *
  * MusePack File(*.mpc)
  *
@@ -70,7 +70,7 @@
  *
  * S98 Audio File(*.s98 *.cym *.mym *.x1f)
  *
- * Atari ST(E) And Amiga File(*.sc68)
+ * Atari ST(E) And Amiga File(*.sc68 *.snd *.sndh)
  *
  * Speex Audio File(*.spx)
  *
