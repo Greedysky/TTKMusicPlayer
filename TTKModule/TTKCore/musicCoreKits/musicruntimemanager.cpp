@@ -102,7 +102,7 @@ void MusicRunTimeManager::run() const
 
 QString MusicRunTimeManager::translator() const
 {
-    const int index = G_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt();
     return MusicObject::languageName(index);
 }
 

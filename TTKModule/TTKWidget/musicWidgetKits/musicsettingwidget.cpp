@@ -163,7 +163,7 @@ void MusicSettingWidget::initialize()
     {
         m_ui->quitWindowRadioBox->setChecked(true);
     }
-    m_ui->languageComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt());
+    m_ui->languageComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt());
 
     //
     QStringList hotkeys = G_SETTING_PTR->value(MusicSettingManager::HotkeyValue).toString().split(TTK_SPLITER);
@@ -539,11 +539,11 @@ void MusicSettingWidget::musicFadeInAndOutClicked(bool state)
 
 void MusicSettingWidget::saveParameterSettings()
 {
-    const bool languageChanged = G_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt() != m_ui->languageComboBox->currentIndex();
+    const bool languageChanged = G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt() != m_ui->languageComboBox->currentIndex();
     QStringList lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
     lastPlayIndex[0] = QString::number(m_ui->backPlayCheckBox->isChecked());
 
-    G_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndex, m_ui->languageComboBox->currentIndex());
+    G_SETTING_PTR->setValue(MusicSettingManager::LanguageIndex, m_ui->languageComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::AutoPlayMode, m_ui->autoPlayCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndex, lastPlayIndex);
     G_SETTING_PTR->setValue(MusicSettingManager::CloseEventMode, m_ui->quitRadioBox->isChecked());

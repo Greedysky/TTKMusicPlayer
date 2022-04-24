@@ -36,7 +36,7 @@ void MusicConfigManager::readBuffer() const
         G_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndex, lastPlayIndex);
     }
 
-    G_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndex, readXmlAttributeByTagNameValue("language").toInt());
+    G_SETTING_PTR->setValue(MusicSettingManager::LanguageIndex, readXmlAttributeByTagNameValue("language").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::AutoPlayMode, readXmlAttributeByTagNameValue("autoPlayMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::CloseEventMode, readXmlAttributeByTagNameValue("closeEventMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::CloseNetWorkMode, readXmlAttributeByTagNameValue("closeNetworkMode").toInt());
@@ -44,6 +44,7 @@ void MusicConfigManager::readBuffer() const
     G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, readXmlAttributeByTagNameValue("windowConciseMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetMode, readXmlAttributeByTagNameValue("remoteWidgetMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, readXmlAttributeByTagNameValue("windowQuitMode").toInt());
+    G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, readXmlAttributeByTagNameValue("lastFileDialogPath"));
 
     G_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateEnable, readXmlAttributeByTagNameValue("otherCheckUpdateEnable").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCover, readXmlAttributeByTagNameValue("otherUseAlbumCover").toInt());
@@ -136,13 +137,14 @@ void MusicConfigManager::writeBuffer()
     const QPoint &widgetPosition = G_SETTING_PTR->value(MusicSettingManager::WidgetPosition).toPoint();
     const QSize &widgetSize = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize();
     const int autoPlayMode = G_SETTING_PTR->value(MusicSettingManager::AutoPlayMode).toInt();
-    const int languageIndex = G_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt();
+    const int languageIndex = G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt();
     const int closeEventMode = G_SETTING_PTR->value(MusicSettingManager::CloseEventMode).toInt();
     const int closeNetWorkMode = G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt();
     const int fileAssociationMode = G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toInt();
     const int windowConciseMode = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toInt();
     const int remoteWidgetMode = G_SETTING_PTR->value(MusicSettingManager::RemoteWidgetMode).toInt();
     const int windowQuitMode = G_SETTING_PTR->value(MusicSettingManager::WindowQuitMode).toInt();
+    const QString lastFileDialogPath = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();
     //
     const int otherCheckUpdateEnable = G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateEnable).toInt();
     const int otherUseAlbumCover = G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toInt();
@@ -256,6 +258,7 @@ void MusicConfigManager::writeBuffer()
     writeDomElement(plusSettingDom, "windowConciseMode", {"value", windowConciseMode});
     writeDomElement(plusSettingDom, "remoteWidgetMode", {"value", remoteWidgetMode});
     writeDomElement(plusSettingDom, "windowQuitMode", {"value", windowQuitMode});
+    writeDomElement(plusSettingDom, "lastFileDialogPath", {"value", lastFileDialogPath});
     //
     writeDomElement(otherSettingDom, "otherCheckUpdateEnable", {"value", otherCheckUpdateEnable});
     writeDomElement(otherSettingDom, "otherUseAlbumCover", {"value", otherUseAlbumCover});

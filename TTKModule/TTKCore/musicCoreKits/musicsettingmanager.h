@@ -42,17 +42,18 @@ public:
         ConfigVersion,                   /*!< Config Version Parameter*/
         PlayMode,                        /*!< Play Mode Parameter*/
         Volume,                          /*!< Volume Parameter*/
-        //
-        AutoPlayMode,                    /*!< Auto Play Parameter*/
-        CurrentLanIndex,                 /*!< Current LanIndex Parameter*/
-        CloseEventMode,                  /*!< Close Event Parameter*/
         LastPlayIndex,                   /*!< Last Play Index Parameter*/
+        //
+        LanguageIndex,                   /*!< Language Index Parameter*/
+        AutoPlayMode,                    /*!< Auto Play Parameter*/
+        CloseEventMode,                  /*!< Close Event Parameter*/
         CloseNetWorkMode,                /*!< Close NetWork Parameter*/
         FileAssociationMode,             /*!< File Association Parameter*/
-        ExtraDevicePath,                 /*!< Set Extra Device Path Parameter*/
         WindowConciseMode,               /*!< Window Concise Parameter*/
         RemoteWidgetMode,                /*!< Remote Widget Mode Parameter*/
         WindowQuitMode,                  /*!< Window Quit Mode Parameter*/
+        ExtraDevicePath,                 /*!< Extra Device Path Parameter*/
+        LastFileDialogPath,              /*!< Last File Dialog Path Parameter*/
         //
         BackgroundThemeValue,            /*!< Background Theme Parameter*/
         BackgroundTransparent,           /*!< Background Transparent Parameter*/
