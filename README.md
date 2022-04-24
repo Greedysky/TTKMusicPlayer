@@ -39,6 +39,7 @@ The TTKMusicplayer plugin for run
  * mixer
  * muffler
  * silence
+ * sonic
  * soxr
  * srconverter
  * stereo
@@ -105,8 +106,10 @@ The TTKMusicplayer plugin for run
  * optimfrog
  * organya
  * psf
+ * s98
  * sc68
  * soundmon
  * stsound
+ * tfmx
  * v2m
  * xsf
