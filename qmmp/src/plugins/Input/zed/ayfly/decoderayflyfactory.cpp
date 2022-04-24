@@ -26,6 +26,7 @@ DecoderProperties DecoderAyflyFactory::properties() const
     properties.filters << "*.vtx";
     properties.filters << "*.zxs";
     properties.description = "AY/YM Audio File";
+    properties.protocols << "file";
     properties.noInput = true;
     return properties;
 }

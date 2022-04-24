@@ -21,7 +21,7 @@ DecoderProperties DecoderGMEFactory::properties() const
     properties.filters << "*.ay" << "*.gbs" << "*.gym" << "*.hes" << "*.kss" << "*.nsf" << "*.nsfe";
     properties.filters << "*.sap" << "*.spc" << "*.vgm" << "*.vgz";
     properties.description = "Game Music Emulator File";
-    properties.protocols << "gme";
+    properties.protocols << "file" << "gme";
     properties.hasSettings = true;
     properties.noInput = true;
     return properties;

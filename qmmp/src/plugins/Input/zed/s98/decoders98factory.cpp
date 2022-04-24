@@ -19,6 +19,7 @@ DecoderProperties DecoderS98Factory::properties() const
     properties.shortName = "s98";
     properties.filters << "*.s98" << "*.cym" << "*.mym" << "*.x1f";
     properties.description = "S98 Audio File";
+    properties.protocols << "file";
     properties.noInput = true;
     return properties;
 }

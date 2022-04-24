@@ -35,6 +35,7 @@ DecoderProperties DecoderAdplugFactory::properties() const
     properties.filters << "*.vgm" << "*.vgz";
     properties.filters << "*.wlf";
     properties.description = "AdLib Sound File";
+    properties.protocols << "file";
     properties.noInput = true;
     return properties;
 }

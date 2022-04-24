@@ -19,6 +19,7 @@ DecoderProperties DecoderOrganyaFactory::properties() const
     properties.shortName = "organya";
     properties.filters << "*.org";
     properties.description = "Cave Story's org Audio File";
+    properties.protocols << "file";
     properties.noInput = true;
     return properties;
 }

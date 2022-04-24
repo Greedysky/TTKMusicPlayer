@@ -19,6 +19,7 @@ DecoderProperties DecoderStSoundFactory::properties() const
     properties.shortName = "stsound";
     properties.filters << "*.ym";
     properties.description = "ST-Sound, ATARI-ST Audio File";
+    properties.protocols << "file";
     properties.noInput = true;
     return properties;
 }

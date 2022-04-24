@@ -19,6 +19,7 @@ DecoderProperties DecoderSoundMonFactory::properties() const
     properties.shortName = "soundmon";
     properties.filters << "*.bp" << "*.bp3";
     properties.description = "BP SoundMon Audio File";
+    properties.protocols << "file";
     properties.noInput = true;
     return properties;
 }

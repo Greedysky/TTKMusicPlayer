@@ -21,8 +21,8 @@
 #ifndef DECODERSIDFACTORY_H
 #define DECODERSIDFACTORY_H
 
-#include <sidplayfp/SidDatabase.h>
 #include <qmmp/decoderfactory.h>
+#include <sidplayfp/SidDatabase.h>
 
 /**
    @author Ilya Kotov <forkotov02@ya.ru>

@@ -4,6 +4,7 @@
 #include "sidhelper.h"
 #include "settingsdialog.h"
 
+#include <QFile>
 #include <QSettings>
 
 DecoderSIDFactory::DecoderSIDFactory()
@@ -24,7 +25,16 @@ bool DecoderSIDFactory::canDecode(QIODevice *input) const
     char buf[4];
     if(input->peek(buf, 4) != 4)
         return false;
-    return !memcmp(buf, "RSID", 4) || !memcmp(buf, "PSID", 4);
+    if(memcmp(buf, "RSID", 4) && memcmp(buf, "PSID", 4))
+        return true;
+
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+        return false;
+
+    SidTune tune(nullptr);
+    tune.load(QmmpPrintable(file->fileName()));
+    return tune.getInfo();
 }
 
 DecoderProperties DecoderSIDFactory::properties() const
@@ -32,7 +42,7 @@ DecoderProperties DecoderSIDFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("SID Plugin");
     properties.shortName = "sid";
-    properties.filters << "*.sid" << "*.mus" << "*.str" << "*.prg" << "*.P00" << "*.c64";
+    properties.filters << "*.sid" << "*.psid" << "*.mus" << "*.str" << "*.p00" << "*.prg" << "*.c64";
     properties.description = "SID File";
     properties.protocols << "file" << "sid";
     properties.hasSettings = true;

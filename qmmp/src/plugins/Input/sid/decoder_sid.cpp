@@ -30,6 +30,7 @@ bool DecoderSID::initialize()
 {
     m_length_in_bytes = 0;
     m_read_bytes = 0;
+
     QString path = m_path;
     path.remove("sid://");
     path.remove(RegularWrapper("#\\d+$"));
@@ -53,7 +54,6 @@ bool DecoderSID::initialize()
     }
 
     m_tune.selectSong(track);
-
     if(!m_tune.getStatus())
     {
         qWarning("DecoderSID: error: %s", m_tune.statusString());
@@ -73,7 +73,7 @@ bool DecoderSID::initialize()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("SID");
 
-    char md5[SidTune::MD5_LENGTH+1];
+    char md5[SidTune::MD5_LENGTH + 1];
     m_tune.createMD5(md5);
     m_length = m_db->length(md5, track) * 1000;
 
@@ -97,8 +97,7 @@ bool DecoderSID::initialize()
 
     SidConfig cfg = m_player->config();
     cfg.frequency    = settings.value("sample_rate", 44100).toInt();
-    int sm = settings.value("resampling_method", SidConfig::INTERPOLATE).toInt();
-    cfg.samplingMethod = (SidConfig::sampling_method_t) sm;
+    cfg.samplingMethod = (SidConfig::sampling_method_t)settings.value("resampling_method", SidConfig::INTERPOLATE).toInt();
     cfg.playback     = SidConfig::STEREO;
     cfg.sidEmulation = rs;
     cfg.fastSampling = settings.value("fast_resampling", false).toBool();
@@ -144,5 +143,5 @@ qint64 DecoderSID::read(unsigned char *data, qint64 maxSize)
     if(maxSize <= 0)
         return 0;
     m_read_bytes += maxSize;
-    return m_player->play((short *)data, maxSize/2) * 2;
+    return m_player->play((short *)data, maxSize / 2) * 2;
 }

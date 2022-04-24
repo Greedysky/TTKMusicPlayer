@@ -48,7 +48,7 @@ qint64 DecoderTFMX::read(unsigned char *data, qint64 maxSize)
     return m_helper->read(data, maxSize);
 }
 
-void DecoderTFMX::seek(qint64)
+void DecoderTFMX::seek(qint64 time)
 {
-
+    Q_UNUSED(time);
 }
