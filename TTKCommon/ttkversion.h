@@ -20,113 +20,117 @@
  * \section result Features
  * TTKMusicPlayer can meet your most demands
  *
- *  Support for multiple music formats.
+ * Support for multiple music formats.
  *
- *  SID File(*.sid *.mus *.str *.prg *.P00)
+ * SID File(*.sid *.mus *.str *.prg *.P00 *.c64)
  *
- *  MusePack File(*.mpc)
+ * MusePack File(*.mpc)
  *
- *  WavPack File(*.wv)
+ * WavPack File(*.wv)
  *
- *  Ogg Vorbis File(*.ogg *.ogv)
+ * Ogg Vorbis File(*.ogg *.ogv)
  *
- *  Ogg Opus File(*.opus)
+ * Ogg Opus File(*.opus)
  *
- *  ADTS AAC File(*.aac)
+ * ADTS AAC File(*.aac)
  *
- *  MIDI File(*.mid *.mus *.hmp *.hmi *.xmi)
+ * MIDI File(*.mid *.mus *.hmp *.hmi *.xmi)
  *
- *  PCM File(*.wav *.au *.snd *.aif *.aiff *.8svx *.sph *.sf *.voc *.w64)
+ * PCM File(*.wav *.au *.snd *.aif *.aiff *.8svx *.sph *.sf *.voc *.w64)
  *
- *  CUE File(*.cue)
+ * CUE File(*.cue)
  *
- *  MPEG File(*.mp1 *.mp2 *.mp3)
+ * MPEG File(*.mp1 *.mp2 *.mp3)
  *
- *  Game Audio File(*.ay *.gbs *.gms *.gym *.hes *.kss *.nsf *.nsfe *.sap *.spc *.vgm *.vgz)
+ * Game Audio File(*.ay *.gbs *.gms *.gym *.hes *.kss *.nsf *.nsfe *.sap *.spc *.vgm *.vgz)
  *
- *  FLAC File(*.flac *.oga)
+ * FLAC File(*.flac *.oga)
  *
- *  Monkey's Audio File(*.ape)
+ * Monkey's Audio File(*.ape)
  *
- *  FFmpeg File(*.wma *.ape *.tta *.m4a *.m4b *.aac *.ra *.shn *.ac3 *.mka *.vqf *.tak *.spx *.wve *.sln *.paf *.pvf *.ircam *.gsm *.avr *.amr *.dsf *.dsdiff *.webm *.3g2 *.3gp *.asf *.avi *.f4v *.flv *.hevc *.m4v *.mov *.mp4 *.mpeg *.rm *.swf *.vob *.wtv)
+ * FFmpeg File(*.wma *.ape *.tta *.m4a *.m4b *.aac *.ra *.shn *.ac3 *.mka *.vqf *.tak *.spx *.wve *.sln *.paf *.pvf *.ircam *.gsm *.avr *.amr *.dsf *.dsdiff *.webm *.3g2 *.3gp *.asf *.avi *.f4v *.flv *.hevc *.m4v *.mov *.mp4 *.mpeg *.rm *.swf *.vob *.wtv)
  *
- *  OpenMPT File(*.669 *.ams *.amf *.dsm *.dmf *.dbm *.digi *.dtm *.far *.gdm *.it *.ice *.imf *.j2b *.mod *.mptm *.m15 *.mtm *.med *.mdl *.mt2 *.mms *.mo3 *.mmcmp *.nst *.okt *.okta *.pt36 *.ptm *.psm *.plm *.ppm *.s3m *.stm *.stk *.st26 *.sfx *.sfx2 *.stp *.ult *.umx *.wow *.xm *.xpk *.mdr *.s3r *.xmr *.itr *.mdz *.s3z *.xmz *.itz *.mdgz *.s3gz *.xmgz *.itgz *.mdbz *.s3bz *.xmbz *.itbz)
+ * OpenMPT File(*.669 *.ams *.amf *.dsm *.dmf *.dbm *.digi *.dtm *.far *.gdm *.it *.ice *.imf *.j2b *.mod *.mptm *.m15 *.mtm *.med *.mdl *.mt2 *.mms *.mo3 *.mmcmp *.nst *.okt *.okta *.pt36 *.ptm *.psm *.plm *.ppm *.s3m *.stm *.stk *.st26 *.sfx *.sfx2 *.stp *.ult *.umx *.wow *.xm *.xpk *.mdr *.s3r *.xmr *.itr *.mdz *.s3z *.xmz *.itz *.mdgz *.s3gz *.xmgz *.itgz *.mdbz *.s3bz *.xmbz *.itbz)
  *
- *  Archive File(*.7z *.xz *.bz2 *.gz *.tar *.zip *.wim *.ar *.arj *.cab *.chm *.cpio *.cramfs *.dmg *.ext *.fat *.gpt *.hfs *.ihex *.iso *.lzh *.lzma *.mbr *.msi *.nsis *.ntfs *.qcow2 *.rar *.rpm *.squashfs *.udf *.uefi *.vdi *.vhd *.vmdk *.xar *.z)
+ * Archive File(*.7z *.xz *.bz2 *.gz *.tar *.zip *.wim *.ar *.arj *.cab *.chm *.cpio *.cramfs *.dmg *.ext *.fat *.gpt *.hfs *.ihex *.iso *.lzh *.lzma *.mbr *.msi *.nsis *.ntfs *.qcow2 *.rar *.rpm *.squashfs *.udf *.uefi *.vdi *.vhd *.vmdk *.xar *.z *.rsn *.rps *.rdc *.rds *.rgs *.r64)
  *
- *  AdLib Sound File(*.a2m *.adl *.adlib *.amd *.as3m *.bam *.cmf *.d00 *.dfm *.dmo *.dro *.dtm *.hsc *.imf *.jbm *.laa *.lds *.m *.mad *.mkj *.msc *.mtk *.rad *.raw *.sa2 *.sat *.sng *.sqx *.xad *.xms *.xsm)
+ * AdLib Sound File(*.a2m *.adl *.adlib *.amd *.as3m *.bam *.cmf *.d00 *.dfm *.dmo *.dro *.dtm *.hsc *.imf *.jbm *.laa *.lds *.m *.mad *.mkj *.msc *.mtk *.rad *.raw *.sa2 *.sat *.sng *.sqx *.xad *.xms *.xsm)
  *
- *  XMP File(*.abk *.dsym *.emod *.fnk *.gtk *.ims *.liq *.mfp *.mgt *.rtm *.tcb)
+ * XMP File(*.abk *.dsym *.emod *.fnk *.gtk *.ims *.liq *.mfp *.mgt *.rtm *.tcb)
  *
- *  Another Slight Atari File(*.cm3 *.cmc *.cmr *.cms *.dlt *.dmc *.fc *.mpd *.mpt *.rmt *.sap *.tm2 *.tm8 *.tmc)
+ * Another Slight Atari File(*.cm3 *.cmc *.cmr *.cms *.dlt *.dmc *.fc *.mpd *.mpt *.rmt *.sap *.tm2 *.tm8 *.tmc)
  *
- *  DTS Coherent Acoustics File(*.dts *.cpt)
+ * DTS Coherent Acoustics File(*.dts *.cpt)
  *
- *  Future Composer File(*.fc *.fc13 *.fc14 *.smod)
+ * Future Composer File(*.fc *.fc13 *.fc14 *.smod)
  *
- *  OptimFrog File(*.ofr *.ofs)
+ * OptimFrog File(*.ofr *.ofs)
  *
- *  Audio Overload File(*.psf *.spu *.ssf *.qsf *.dsf *.minipsf *.minissf *.miniqsf *.minidsf *.2sf *.mini2sf *.gsf *.minigsf *.usf *.miniusf *.ncsf *.minincsf *.snsf *.minisnsf)
+ * Audio Overload File(*.psf *.spu *.ssf *.qsf *.dsf *.minipsf *.minissf *.miniqsf *.minidsf *.2sf *.mini2sf *.gsf *.minigsf *.usf *.miniusf *.ncsf *.minincsf *.snsf *.minisnsf)
  *
- *  Atari ST(E) And Amiga File(*.sc68)
+ * S98 Audio File(*.s98 *.cym *.mym *.x1f)
  *
- *  Speex Audio File(*.spx)
+ * Atari ST(E) And Amiga File(*.sc68)
  *
- *  V2 Player File(*.v2m)
+ * Speex Audio File(*.spx)
  *
- *  AY/YM Audio File(*.asc *.ay *.emul *.sqt *.st13 *.stc *.stp *.stp2 *.psc *.psg *.pt1 *.pt2 *.pt3 *.vtx *.zxs)
+ * V2 Player File(*.v2m)
  *
- *  ST-Sound File(*.ym)
+ * AY/YM Audio File(*.asc *.ay *.emul *.sqt *.st13 *.stc *.stp *.stp2 *.psc *.psg *.pt1 *.pt2 *.pt3 *.vtx *.zxs)
  *
- *  Hively Audio File(*.ahx *.hvl)
+ * ST-Sound File(*.ym)
  *
- *  BP SoundMon Audio File(*.bp *.bp3)
+ * Hively Audio File(*.ahx *.hvl)
  *
- *  MDX Chiptunes Audio File(*.mdx *.m)
+ * BP SoundMon Audio File(*.bp *.bp3)
  *
- *  Cave Story's org Audio File(*.org)
+ * MDX Chiptunes Audio File(*.mdx *.m)
  *
- *  Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, asx, fpl, dbpl, csv, txt)
+ * Cave Story's org Audio File(*.org)
  *
- *  Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing Screenshots.
+ * Final Music System Tracker Module File(*.tfmx *.tfx *.tfm *.mdat)
  *
- *  Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function.
+ * Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, asx, fpl, dbpl, csv, txt)
  *
- *  Perfect music. It supports local playback, compatible with all audio files, super perfect sound, music and more appealing.
+ * Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing Screenshots.
  *
- *  User-friendly design. Attention to detail design, personalize, simple operation, found music more convenient.
+ * Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function.
  *
- *  Personalized cell phone ringtones. Ringtones DIY, so you have personalized ringtone.
+ * Perfect music. It supports local playback, compatible with all audio files, super perfect sound, music and more appealing.
  *
- *  Personalized skin. DIY your own personalized skin, creating a only part of your skin.
+ * User-friendly design. Attention to detail design, personalize, simple operation, found music more convenient.
  *
- *  Music cube model. After entering the mini mode, it will remain in your desktop a "Clover" shaped icon, you can freely drag the desktop, you want to control the player, cut songs, play, lyrics control, volume adjustment in control.
+ * Personalized cell phone ringtones. Ringtones DIY, so you have personalized ringtone.
  *
- *  Colorful custom skin. You can select skin color, set the transparency of freedom, and support transparent frosted glass (Windows Aero effects), music from becoming a type, colored.
+ * Personalized skin. DIY your own personalized skin, creating a only part of your skin.
  *
- *  Search Download Manager. Search Results tab merger - all of the search results tab concentrated under one label, make operation easier. 
+ * Music cube model. After entering the mini mode, it will remain in your desktop a "Clover" shaped icon, you can freely drag the desktop, you want to control the player, cut songs, play, lyrics control, volume adjustment in control.
  *
- *  Local music search, and cloud music library and interactive, custom ringtone.
+ * Colorful custom skin. You can select skin color, set the transparency of freedom, and support transparent frosted glass (Windows Aero effects), music from becoming a type, colored.
  *
- *  Support converting different music formats, and can change the sound as like Tom Cat, also can enhance the sound.
+ * Search Download Manager. Search Results tab merger - all of the search results tab concentrated under one label, make operation easier. 
  *
- *  Local music transferred to the cloud or mobile device.
+ * Local music search, and cloud music library and interactive, custom ringtone.
  *
- *  Local music and the human voice humming recognition.
+ * Support converting different music formats, and can change the sound as like Tom Cat, also can enhance the sound.
  *
- *  Music song, artist, album and playlist search supported.
+ * Local music transferred to the cloud or mobile device.
  *
- *  Music DSP effects and Visual effects supported.
+ * Local music and the human voice humming recognition.
  *
- *  Music song spectrum(projectm, goom, sonique, florid, wavebar) and test supported.
+ * Music song, artist, album and playlist search supported.
  *
- *  Music replay gain scan and write supported.
+ * Music DSP effects and Visual effects supported.
  *
- *  Music screen saver supported.
+ * Music song spectrum(projectm, goom, sonique, florid, wavebar) and test supported.
  *
- *  MPRIS D-Bus interface specification supported.
+ * Music replay gain scan and write supported.
  *
- *  MMS and online fm radio supported.
+ * Music screen saver supported.
+ *
+ * MPRIS D-Bus interface specification supported.
+ *
+ * MMS and online fm radio supported.
  *
  */
  
