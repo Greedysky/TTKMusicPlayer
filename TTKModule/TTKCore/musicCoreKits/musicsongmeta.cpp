@@ -360,9 +360,20 @@ bool MusicSongMeta::readInformation()
             {
                 meta->m_metaData[TagWrapper::LENGTH] = MusicTime::msecTime2LabelJustified(length);
             }
+            else
+            {
+                TagWrapper wrapper;
+                if(wrapper.readFile(m_path))
+                {
+                    const QMap<TagWrapper::Type, QString> &data = wrapper.musicTags();
+                    length = data[TagWrapper::LENGTH].toLongLong();
+                }
+
+                meta->m_metaData[TagWrapper::LENGTH] = MusicTime::msecTime2LabelJustified(length);
+            }
 
             m_songMetas << meta;
-            m_offset = 0;
+            m_offset = m_songMetas.count() - 1;
         }
         qDeleteAll(infos);
 
@@ -373,17 +384,6 @@ bool MusicSongMeta::readInformation()
             {
                 songMeta()->m_cover = model->cover();
                 delete model;
-            }
-
-            if(length == 0)
-            {
-                TagWrapper wrapper;
-                if(wrapper.readFile(m_path))
-                {
-                    const QMap<TagWrapper::Type, QString> &data = wrapper.musicTags();
-                    length = data[TagWrapper::LENGTH].toLongLong();
-                }
-                songMeta()->m_metaData[TagWrapper::LENGTH] = MusicTime::msecTime2LabelJustified(length);
             }
         }
     }
