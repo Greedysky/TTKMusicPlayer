@@ -5,7 +5,7 @@
 MDXHelper::MDXHelper(const QString &path)
     : m_path(path)
 {
-    memset(&m_input, 0, sizeof(t_mdxmini));
+    memset(&m_mdx, 0, sizeof(t_mdxmini));
 }
 
 MDXHelper::~MDXHelper()
@@ -15,16 +15,20 @@ MDXHelper::~MDXHelper()
 
 void MDXHelper::deinit()
 {
-    if(m_input.self)
+    if(!m_mdx.self)
     {
-        if(m_mdx_mode)
-        {
-            mdx_close(&m_input);
-        }
-        else
-        {
-            pmd_stop();
-        }
+        return;
+    }
+
+    switch(m_type)
+    {
+    case MDX:
+        mdx_close(&m_mdx);
+        break;
+    case PMD:
+        pmd_stop();
+        break;
+    default: break;
     }
 }
 
@@ -39,69 +43,111 @@ bool MDXHelper::initialize()
     }
 
     const qint64 size = file.size();
-    file.close();
 
-    if(m_path.toLower().endsWith(".mdx"))
+    char buffer[1024];
+    const QString &suffix = m_path.toLower();
+
+    if(suffix.endsWith(".mdx"))
     {
-        m_mdx_mode = true;
-        mdx_set_rate(sampleRate());
+        m_type = MDX;
     }
-    else
+    else if(suffix.endsWith(".m"))
+    {
+        m_type = PMD;
+    }
+    else if(suffix.endsWith(".mub") || suffix.endsWith(".muc"))
+    {
+        m_type = MUC;
+    }
+
+    switch(m_type)
+    {
+    case MDX:
+    {
+        mdx_set_rate(sampleRate());
+
+        if(mdx_open(&m_mdx, QmmpPrintable(m_path), nullptr) != 0)
+        {
+            qWarning("MDXHelper: mdx_open error");
+            return false;
+        }
+
+        m_length = mdx_get_length(&m_mdx) * 1000;
+
+        mdx_set_max_loop(&m_mdx, 0);
+        mdx_get_title(&m_mdx, buffer);
+        m_metaData.insert(Qmmp::TITLE, buffer);
+        break;
+    }
+    case PMD:
     {
         pmd_init();
         pmd_setrate(sampleRate());
-    }
 
-    char buffer[1024];
-    if(m_mdx_mode)
-    {
-       if(mdx_open(&m_input, QmmpPrintable(m_path), nullptr) != 0)
-       {
-           qWarning("MDXHelper: mdx_open error");
-           return false;
-       }
-
-        m_length = mdx_get_length(&m_input) * 1000;	// len in msecs: use to stop playback
-        mdx_set_max_loop(&m_input, 0);
-        mdx_get_title(&m_input, buffer);
-        m_metaData.insert(Qmmp::TITLE, buffer);
-    }
-    else
-    {
         if(pmd_play(QmmpPrintable(m_path), nullptr) != 0)
         {
             qWarning("MDXHelper: mdx_open error");
             return false;
         }
+
         m_length = pmd_length_sec() * 1000;
 
         pmd_get_compo(buffer);
         m_metaData.insert(Qmmp::ARTIST, buffer);
-
         pmd_get_title(buffer);
         m_metaData.insert(Qmmp::TITLE, buffer);
+        break;
+    }
+    case MUC:
+    {
+        m_muc.SetRate(sampleRate());
+        const QByteArray &module = file.readAll();
+        m_muc.OpenMemory((unsigned char *)module.constData(), size, suffix.endsWith(".mub"));
+        m_muc.UseFader(true);
+        m_muc.Play();
+
+        m_length = m_muc.GetLength() * 1000;
+        m_metaData.insert(Qmmp::TITLE, QString::fromStdString(m_muc.tag->title));
+        m_metaData.insert(Qmmp::ARTIST, QString::fromStdString(m_muc.tag->author));
+        m_metaData.insert(Qmmp::COMPOSER, QString::fromStdString(m_muc.tag->composer));
+        break;
+    }
+    default: break;
     }
 
+    file.close();
     m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }
 
 qint64 MDXHelper::read(unsigned char *data, qint64)
 {
-    if(m_length > 0 && m_pos >= m_length)
+    if(m_type != MUC)
     {
-        return 0;	// stop song
-    }
+        if(m_length > 0 && m_pos >= m_length)
+        {
+            return 0;	// stop song
+        }
 
-    if(m_mdx_mode)
-    {
-        mdx_calc_sample(&m_input, (short*)data, SAMPLE_BUF_SIZE);
+        if(m_type == MDX)
+        {
+            mdx_calc_sample(&m_mdx, (short*)data, SAMPLE_BUF_SIZE);
+        }
+        else
+        {
+            pmd_renderer((short*)data, SAMPLE_BUF_SIZE);
+        }
+
+        m_pos += SAMPLE_BUF_SIZE * 1000.0 / sampleRate();
     }
     else
     {
-        pmd_renderer((short*)data, SAMPLE_BUF_SIZE);
-    }
+        if(m_length > 0 && m_muc.IsEnd())
+        {
+            return 0;	// stop song
+        }
 
-    m_pos += SAMPLE_BUF_SIZE * 1000.0 / sampleRate();
+        m_muc.Mix((short*)data, SAMPLE_BUF_SIZE);
+    }
     return SAMPLE_BUF_SIZE * 4;
 }

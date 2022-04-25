@@ -17,7 +17,7 @@ DecoderProperties DecoderMDXFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("MDX Plugin");
     properties.shortName = "mdx";
-    properties.filters << "*.mdx" << "*.m";
+    properties.filters << "*.mdx" << "*.m" << "*.mub" << "*.muc";
     properties.description = "MDX Chiptunes Audio File";
     properties.protocols << "file";
     properties.noInput = true;

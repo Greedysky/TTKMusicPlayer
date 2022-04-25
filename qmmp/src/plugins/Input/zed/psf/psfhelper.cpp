@@ -33,7 +33,7 @@ bool PSFHelper::initialize()
     }
 
     const qint64 size = file.size();
-    const QByteArray module = file.readAll();
+    const QByteArray &module = file.readAll();
     file.close();
 
     m_type = ao_identify((char *)module.constData());

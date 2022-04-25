@@ -29,7 +29,7 @@ bool HivelyHelper::initialize()
     }
 
     const qint64 size = file.size();
-    const QByteArray module = file.readAll();
+    const QByteArray &module = file.readAll();
     file.close();
 
     hvl_InitReplayer();

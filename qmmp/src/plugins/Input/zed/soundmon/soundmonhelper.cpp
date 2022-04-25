@@ -29,7 +29,7 @@ bool SoundMonHelper::initialize()
     }
 
     const qint64 size = file.size();
-    const QByteArray module = file.readAll();
+    const QByteArray &module = file.readAll();
     file.close();
 
     m_input = new Player((BYTE*)module.constData(), size);

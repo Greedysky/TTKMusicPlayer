@@ -36,7 +36,7 @@ bool S98Helper::initialize()
     }
 
     const qint64 size = file.size();
-    const QByteArray module = file.readAll();
+    const QByteArray &module = file.readAll();
     file.close();
 
     if(!m_input->OpenFromBuffer((unsigned char *)module.constData(), size, &m_info))

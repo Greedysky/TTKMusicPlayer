@@ -25,6 +25,8 @@
 extern "C" {
 #include <libmdx/mdxmini/mdxmini.h>
 #include <libmdx/pmdmini/pmdmini.h>
+#include <libmdx/mucom88/mucomtag.h>
+#include <libmdx/mucom88/mucom_module.h>
 }
 
 /*!
@@ -39,7 +41,6 @@ public:
     void deinit();
     bool initialize();
 
-    inline void seek(qint64 time) { Q_UNUSED(time); }
     inline qint64 totalTime() const { return m_length; }
 
     inline int bitrate() const { return m_bitrate; }
@@ -52,8 +53,16 @@ public:
 
 private:
     QString m_path;
-    t_mdxmini m_input;
-    bool m_mdx_mode = false;
+    t_mdxmini m_mdx;
+    MucomModule m_muc;
+
+    enum Type
+    {
+        MDX,
+        PMD,
+        MUC
+    } m_type = MDX;
+
     int m_pos = 0;
     int m_bitrate = 0;
     int m_length = 0;

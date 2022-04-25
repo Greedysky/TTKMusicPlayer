@@ -50,5 +50,5 @@ qint64 DecoderMDX::read(unsigned char *data, qint64 maxSize)
 
 void DecoderMDX::seek(qint64 time)
 {
-    m_helper->seek(time);
+    Q_UNUSED(time);
 }

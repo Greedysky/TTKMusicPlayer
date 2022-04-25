@@ -29,7 +29,7 @@ bool FC14Helper::initialize()
     }
 
     const qint64 size = file.size();
-    const QByteArray module = file.readAll();
+    const QByteArray &module = file.readAll();
     file.close();
 
     m_input = fc14dec_new();
