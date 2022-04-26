@@ -39,7 +39,6 @@ bool OrganyaHelper::initialize()
         return false;
     }
 
-    m_input->state.sample_rate = sampleRate();
     m_bitrate = size * 8.0 / totalTime() + 1.0f;
 
     seek(0);

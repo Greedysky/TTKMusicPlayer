@@ -28,9 +28,9 @@ bool StSoundHelper::initialize()
         return false;
     }
 
-    ymMusicInfo_t info;
     if(m_music->load(QmmpPrintable(m_path)))
     {
+        ymMusicInfo_t info;
         m_music->getMusicInfo(&info);
         m_music->setLoopMode(YMFALSE);
         m_length = info.musicTimeInMs;
@@ -78,12 +78,8 @@ QMap<Qmmp::MetaData, QString> StSoundHelper::readMetaData() const
     ymMusicInfo_t musicInfo;
     m_music->getMusicInfo(&musicInfo);
 
-    char* title = strdup(musicInfo.pSongName);
-    char* composer = strdup(musicInfo.pSongAuthor);
-    char* comment = strdup(musicInfo.pSongComment);
-
-    metaData.insert(Qmmp::TITLE, QString::fromUtf8(title).trimmed());
-    metaData.insert(Qmmp::COMPOSER, QString::fromUtf8(composer).trimmed());
-    metaData.insert(Qmmp::COMMENT, QString::fromUtf8(comment).trimmed());
+    metaData.insert(Qmmp::TITLE, QString::fromUtf8(musicInfo.pSongName).trimmed());
+    metaData.insert(Qmmp::COMPOSER, QString::fromUtf8(musicInfo.pSongAuthor).trimmed());
+    metaData.insert(Qmmp::COMMENT, QString::fromUtf8(musicInfo.pSongComment).trimmed());
     return metaData;
 }

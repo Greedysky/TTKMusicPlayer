@@ -5,7 +5,7 @@
 MDXHelper::MDXHelper(const QString &path)
     : m_path(path)
 {
-    memset(&m_mdx, 0, sizeof(t_mdxmini));
+    memset(&m_mdx, 0, sizeof(MDXMini));
 }
 
 MDXHelper::~MDXHelper()

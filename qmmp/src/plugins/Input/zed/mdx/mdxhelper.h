@@ -53,7 +53,7 @@ public:
 
 private:
     QString m_path;
-    t_mdxmini m_mdx;
+    MDXMini m_mdx;
     MucomModule m_muc;
 
     enum Type

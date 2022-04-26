@@ -22,8 +22,7 @@
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
-#include <liborganya/decoder.h>
-#include <liborganya/organya.h>
+#include <liborganya/organya/organya.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
