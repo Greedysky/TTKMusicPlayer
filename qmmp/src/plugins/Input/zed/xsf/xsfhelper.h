@@ -24,7 +24,7 @@
 #include <qmmp/qmmp.h>
 #include "xsfreader.h"
 
-#define SAMPLE_BUF_SIZE     1024
+#define INPUT_BUFFER_SIZE   1024
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -48,7 +48,7 @@ public:
     inline int channels() const { return 2; }
     inline int depth() const { return 16; }
 
-    inline qint64 read(unsigned char *data, qint64 maxSize) { return m_input->read((short*)data, SAMPLE_BUF_SIZE) * 4; }
+    inline qint64 read(unsigned char *data, qint64 maxSize) { return m_input->read((short*)data, INPUT_BUFFER_SIZE) * 4; }
     QMap<Qmmp::MetaData, QString> readMetaData() const;
 
 private:

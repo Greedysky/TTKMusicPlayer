@@ -6,8 +6,6 @@
 #define O_LARGEFILE 0
 #endif
 
-#define BUFSIZE 1024
-
 FILE *stdio_open(const char *fname)
 {
     if(!memcmp(fname, "file://", 7))

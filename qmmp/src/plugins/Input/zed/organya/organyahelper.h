@@ -22,7 +22,10 @@
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
+extern "C" {
 #include <liborganya/organya/organya.h>
+#include <liborganya/pxtone/pxtnService.h>
+}
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -36,8 +39,8 @@ public:
     void deinit();
     bool initialize();
 
-    inline void seek(qint64 time) { org_decoder_seek_sample(m_input, time * sampleRate() / 1000); }
-    inline qint64 totalTime() const { return org_decoder_get_total_samples(m_input) / sampleRate() * 1000; }
+    void seek(qint64 time);
+    qint64 totalTime() const;
 
     inline int bitrate() const { return m_bitrate; }
     inline int sampleRate() const { return 44100; }
@@ -48,7 +51,16 @@ public:
 
 private:
     QString m_path;
-    org_decoder_t *m_input = nullptr;
+    org_decoder_t *m_org = nullptr;
+    pxtnService *m_pxs = nullptr;
+    pxtnDescriptor *m_pxd = nullptr;
+
+    enum Type
+    {
+        Organya,
+        PxTone
+    } m_type = Organya;
+
     int m_bitrate = 0;
 
 };

@@ -193,9 +193,9 @@ void AACFile::parseADTS()
         }
     }
     m_input->seek(pos);
-    frames_per_sec = (float) m_sampleRate/1024.0f;
+    frames_per_sec = (float) m_sampleRate / 1024.0f;
     if(frames != 0)
-        bytes_per_frame = (float)t_framelength/(float)(frames*1000);
+        bytes_per_frame = (float)t_framelength/(float)(frames * 1000);
     else
         bytes_per_frame = 0;
     m_bitrate = (quint32)(8. * bytes_per_frame * frames_per_sec + 1.0f);

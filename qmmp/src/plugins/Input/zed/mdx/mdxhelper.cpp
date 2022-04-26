@@ -1,6 +1,6 @@
 #include "mdxhelper.h"
 
-#define SAMPLE_BUF_SIZE     1024
+#define INPUT_BUFFER_SIZE   1024
 
 MDXHelper::MDXHelper(const QString &path)
     : m_path(path)
@@ -44,7 +44,7 @@ bool MDXHelper::initialize()
 
     const qint64 size = file.size();
 
-    char buffer[1024];
+    char buffer[INPUT_BUFFER_SIZE];
     const QString &suffix = m_path.toLower();
 
     if(suffix.endsWith(".mdx"))
@@ -131,14 +131,14 @@ qint64 MDXHelper::read(unsigned char *data, qint64)
 
         if(m_type == MDX)
         {
-            mdx_calc_sample(&m_mdx, (short*)data, SAMPLE_BUF_SIZE);
+            mdx_calc_sample(&m_mdx, (short*)data, INPUT_BUFFER_SIZE);
         }
         else
         {
-            pmd_renderer((short*)data, SAMPLE_BUF_SIZE);
+            pmd_renderer((short*)data, INPUT_BUFFER_SIZE);
         }
 
-        m_pos += SAMPLE_BUF_SIZE * 1000.0 / sampleRate();
+        m_pos += INPUT_BUFFER_SIZE * 1000.0 / sampleRate();
     }
     else
     {
@@ -147,7 +147,7 @@ qint64 MDXHelper::read(unsigned char *data, qint64)
             return 0;	// stop song
         }
 
-        m_muc.Mix((short*)data, SAMPLE_BUF_SIZE);
+        m_muc.Mix((short*)data, INPUT_BUFFER_SIZE);
     }
-    return SAMPLE_BUF_SIZE * 4;
+    return INPUT_BUFFER_SIZE * 4;
 }
