@@ -364,6 +364,7 @@ void LightEnvelope::drawWaveform()
         const float x2 = step * (i / m_channels / 3 + 1);
         bool draw = false;
         float zeroPos = 0, ratio = 0;
+
         if(ch == 0 && (m_channels == 1 || !showTwoChannels))
         {
             zeroPos = height() / 2;
@@ -379,10 +380,10 @@ void LightEnvelope::drawWaveform()
 
         if(draw)
         {
-            float y1 = zeroPos - m_data[i] * ratio;
-            float y2 = zeroPos - m_data[i + 1] * ratio;
-            float y3 = zeroPos - m_data[i + m_channels * 3] * ratio;
-            float y4 = zeroPos - m_data[i + m_channels * 3 + 1] * ratio;
+            const float y1 = zeroPos - m_data[i] * ratio;
+            const float y2 = zeroPos - m_data[i + 1] * ratio;
+            const float y3 = zeroPos - m_data[i + m_channels * 3] * ratio;
+            const float y4 = zeroPos - m_data[i + m_channels * 3 + 1] * ratio;
 
             QPointF points[4] = {
                 { x1, y1 },
@@ -427,10 +428,10 @@ void LightEnvelope::drawWaveform()
 
         if(draw)
         {
-            float y1 = zeroPos + m_data[i + 2] * ratio;
-            float y2 = zeroPos - m_data[i + 2] * ratio;
-            float y3 = zeroPos + m_data[i + m_channels * 3 + 2] * ratio;
-            float y4 = zeroPos - m_data[i + m_channels * 3 + 2] * ratio;
+            const float y1 = zeroPos + m_data[i + 2] * ratio;
+            const float y2 = zeroPos - m_data[i + 2] * ratio;
+            const float y3 = zeroPos + m_data[i + m_channels * 3 + 2] * ratio;
+            const float y4 = zeroPos - m_data[i + m_channels * 3 + 2] * ratio;
 
             QPointF points[4] = {
                 { x1, y1 },
