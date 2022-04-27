@@ -7827,13 +7827,18 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
         <translation>無損音質</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKCore/musicUtilsKits/musicfileutils.cpp" line="83"/>
-        <location filename="../TTKModule/TTKCore/musicUtilsKits/musicfileutils.cpp" line="88"/>
+        <location filename="../TTKModule/TTKCore/musicUtilsKits/musicfileutils.cpp" line="80"/>
+        <source>Choose a dir to open under</source>
+        <translation>打開文件夾</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKCore/musicUtilsKits/musicfileutils.cpp" line="91"/>
+        <location filename="../TTKModule/TTKCore/musicUtilsKits/musicfileutils.cpp" line="102"/>
         <source>Choose a filename to open under</source>
         <translation>打開文件</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKCore/musicUtilsKits/musicfileutils.cpp" line="93"/>
+        <location filename="../TTKModule/TTKCore/musicUtilsKits/musicfileutils.cpp" line="116"/>
         <source>Choose a filename to save under</source>
         <translation>保存文件</translation>
     </message>

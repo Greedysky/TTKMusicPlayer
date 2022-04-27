@@ -66,7 +66,7 @@
  *
  * OptimFrog File(*.ofr *.ofs)
  *
- * Audio Overload File(*.psf *.spu *.ssf *.qsf *.dsf *.minipsf *.minissf *.miniqsf *.minidsf *.2sf *.mini2sf *.gsf *.minigsf *.usf *.miniusf *.ncsf *.minincsf *.snsf *.minisnsf)
+ * Audio Overload File(*.pcm *.msu *.psf *.spu *.ssf *.qsf *.dsf *.minipsf *.minissf *.miniqsf *.minidsf *.2sf *.mini2sf *.gsf *.minigsf *.usf *.miniusf *.ncsf *.minincsf *.snsf *.minisnsf)
  *
  * S98 Audio File(*.s98 *.cym *.mym *.x1f)
  *
@@ -84,9 +84,9 @@
  *
  * BP SoundMon Audio File(*.bp *.bp3)
  *
- * MDX Chiptunes Audio File(*.mdx *.m)
+ * MDX Chiptunes Audio File(*.mdx *.m *.mub *.muc)
  *
- * Cave Story's org Audio File(*.org)
+ * Cave Story's org Audio File(*.org *.pttune *.ptcop)
  *
  * Final Music System Tracker Module File(*.tfmx *.tfx *.tfm *.mdat)
  *
