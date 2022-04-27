@@ -292,7 +292,8 @@ void QKugouWindow::createKugouSongWidget()
 #else
     Q_UNUSED(d);
     QLabel *pix = new QLabel(this);
-    pix->setScaledContents(true);
+    pix->setAlignment(Qt::AlignCenter);
+    pix->setStyleSheet("background:white;");
     pix->setPixmap(QPixmap(":/image/lb_no_module"));
     layout->addWidget(pix);
 #endif
@@ -348,7 +349,8 @@ void QKugouWindow::createKugouRadioWidget()
 #else
     Q_UNUSED(d);
     QLabel *pix = new QLabel(this);
-    pix->setScaledContents(true);
+    pix->setAlignment(Qt::AlignCenter);
+    pix->setStyleSheet("background:white;");
     pix->setPixmap(QPixmap(":/image/lb_no_module"));
     layout->addWidget(pix);
 #endif
@@ -376,7 +378,8 @@ void QKugouWindow::createKugouListWidget()
 #else
     Q_UNUSED(d);
     QLabel *pix = new QLabel(this);
-    pix->setScaledContents(true);
+    pix->setAlignment(Qt::AlignCenter);
+    pix->setStyleSheet("background:white;");
     pix->setPixmap(QPixmap(":/image/lb_no_module"));
     layout->addWidget(pix);
 #endif
@@ -432,7 +435,8 @@ void QKugouWindow::createKugouMovieWidget()
 #else
     Q_UNUSED(d);
     QLabel *pix = new QLabel(this);
-    pix->setScaledContents(true);
+    pix->setAlignment(Qt::AlignCenter);
+    pix->setStyleSheet("background:white;");
     pix->setPixmap(QPixmap(":/image/lb_no_module"));
     layout->addWidget(pix);
 #endif
@@ -452,8 +456,9 @@ void QKugouWindow::createKugouSingleWidget()
 #else
     Q_UNUSED(d);
     QLabel *pix = new QLabel(this);
-    pix->setScaledContents(true);
+    pix->setAlignment(Qt::AlignCenter);
     pix->setStyleSheet("background:white;");
+    pix->setPixmap(QPixmap(":/image/lb_no_module"));
     layout->addWidget(pix);
 #endif
     setLayout(layout);

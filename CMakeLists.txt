@@ -160,6 +160,7 @@ else()
     set(QT_USE_QTNETWORK ON)
     set(QT_USE_QTXML ON)
     set(QT_USE_QTOPENGL ON)
+
     if(WIN32)
       set(QT_USE_QTMULTIMEDIA ON)
     else(UNIX)
