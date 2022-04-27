@@ -5,6 +5,7 @@
 #include <libxsf/fileusf.h>
 #include <libxsf/filencsf.h>
 #include <libxsf/filesnsf.h>
+#include <libxsf/filemsu.h>
 
 FileReader *XSFReader::makeReader(const QString &path)
 {
@@ -28,6 +29,10 @@ FileReader *XSFReader::makeReader(const QString &path)
     else if(suffix.endsWith(".snsf") || suffix.endsWith(".minisnsf"))
     {
         return new FileSNSFReader;
+    }
+    else if(suffix.endsWith(".pcm") || suffix.endsWith(".msu"))
+    {
+        return new FileMSUReader;
     }
     return nullptr;
 }

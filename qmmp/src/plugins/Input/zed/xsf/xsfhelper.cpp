@@ -11,7 +11,7 @@ XSFHelper::~XSFHelper()
     deinit();
 }
 
-void XSFHelper::metaOnly(bool meta)
+void XSFHelper::metaMode(bool meta)
 {
     m_meta = meta;
 }

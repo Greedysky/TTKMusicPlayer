@@ -22,10 +22,8 @@
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
-extern "C" {
 #include <liborganya/organya/organya.h>
 #include <liborganya/pxtone/pxtnService.h>
-}
 
 /*!
  * @author Greedysky <greedysky@163.com>

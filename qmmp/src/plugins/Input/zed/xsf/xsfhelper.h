@@ -35,7 +35,7 @@ public:
     explicit XSFHelper(const QString &path);
     ~XSFHelper();
 
-    void metaOnly(bool meta);
+    void metaMode(bool meta);
 
     void deinit();
     bool initialize();
@@ -48,7 +48,7 @@ public:
     inline int channels() const { return 2; }
     inline int depth() const { return 16; }
 
-    inline qint64 read(unsigned char *data, qint64 maxSize) { return m_input->read((short*)data, INPUT_BUFFER_SIZE) * 4; }
+    inline qint64 read(unsigned char *data, qint64) { return m_input->read((short*)data, INPUT_BUFFER_SIZE) * 4; }
     QMap<Qmmp::MetaData, QString> readMetaData() const;
 
 private:
