@@ -22,8 +22,29 @@
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
-#include <liborganya/organya/organya.h>
-#include <liborganya/pxtone/pxtnService.h>
+
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
+class FileReader
+{
+public:
+    FileReader() { }
+    virtual ~FileReader() { }
+
+    virtual bool load(const QString &path) = 0;
+    virtual void seek(qint64 time) = 0;
+    virtual qint64 totalTime() const = 0;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) = 0;
+
+    inline int bitrate() const { return m_bitrate; }
+    inline int sampleRate() const { return 44100; }
+    inline int channels() const { return 2; }
+
+protected:
+    int m_bitrate = 0;
+};
+
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -37,29 +58,19 @@ public:
     void deinit();
     bool initialize();
 
-    void seek(qint64 time);
-    qint64 totalTime() const;
+    inline void seek(qint64 time) { m_input->seek(time); }
+    inline qint64 totalTime() const { return m_input->totalTime(); }
 
-    inline int bitrate() const { return m_bitrate; }
-    inline int sampleRate() const { return 44100; }
-    inline int channels() const { return 2; }
+    inline int bitrate() const { return m_input->bitrate(); }
+    inline int sampleRate() const { return m_input->sampleRate(); }
+    inline int channels() const { return m_input->channels(); }
     inline int depth() const { return 16; }
 
-    qint64 read(unsigned char *data, qint64 maxSize);
+    inline qint64 read(unsigned char *data, qint64 maxSize) { return m_input->read(data, maxSize); }
 
 private:
     QString m_path;
-    org_decoder_t *m_org = nullptr;
-    pxtnService *m_pxs = nullptr;
-    pxtnDescriptor *m_pxd = nullptr;
-
-    enum Type
-    {
-        Organya,
-        PxTone
-    } m_type = Organya;
-
-    int m_bitrate = 0;
+    FileReader *m_input = nullptr;
 
 };
 

@@ -22,12 +22,33 @@
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
-extern "C" {
-#include <libmdx/mdxmini/mdxmini.h>
-#include <libmdx/pmdmini/pmdmini.h>
-#include <libmdx/mucom88/mucomtag.h>
-#include <libmdx/mucom88/mucom_module.h>
-}
+
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
+class FileReader
+{
+public:
+    FileReader() { }
+    virtual ~FileReader() { }
+
+    virtual bool load(const QString &path) = 0;
+    virtual qint64 totalTime() const = 0;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) = 0;
+
+    inline int bitrate() const { return m_bitrate; }
+    inline int sampleRate() const { return 44100; }
+
+    inline const QMap<Qmmp::MetaData, QString> &readMetaData() const { return m_metaData; }
+
+protected:
+    int m_pos = 0;
+    int m_length = 0;
+    int m_bitrate = 0;
+    QMap<Qmmp::MetaData, QString> m_metaData;
+
+};
+
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -41,32 +62,19 @@ public:
     void deinit();
     bool initialize();
 
-    inline qint64 totalTime() const { return m_length; }
+    inline qint64 totalTime() const { return m_input->totalTime(); }
 
-    inline int bitrate() const { return m_bitrate; }
-    inline int sampleRate() const { return 44100; }
+    inline int bitrate() const { return m_input->bitrate(); }
+    inline int sampleRate() const { return m_input->sampleRate(); }
     inline int channels() const { return 2; }
     inline int depth() const { return 16; }
 
-    qint64 read(unsigned char *data, qint64 maxSize);
-    inline const QMap<Qmmp::MetaData, QString> &readMetaData() const { return m_metaData; }
+    inline qint64 read(unsigned char *data, qint64 maxSize) { return m_input->read(data, maxSize); }
+    inline const QMap<Qmmp::MetaData, QString> &readMetaData() const { return m_input->readMetaData(); }
 
 private:
     QString m_path;
-    MDXMini m_mdx;
-    MucomModule m_muc;
-
-    enum Type
-    {
-        MDX,
-        PMD,
-        MUC
-    } m_type = MDX;
-
-    int m_pos = 0;
-    int m_bitrate = 0;
-    int m_length = 0;
-    QMap<Qmmp::MetaData, QString> m_metaData;
+    FileReader *m_input = nullptr;
 
 };
 

@@ -18,7 +18,7 @@ DecoderProperties DecoderMDXFactory::properties() const
     properties.name = tr("MDX Plugin");
     properties.shortName = "mdx";
     properties.filters << "*.mdx" << "*.m" << "*.mub" << "*.muc";
-    properties.description = "MDX Chiptunes Audio File";
+    properties.description = "MDX Game Audio File";
     properties.protocols << "file";
     properties.noInput = true;
     return properties;
@@ -60,7 +60,7 @@ QList<TrackInfo*> DecoderMDXFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
-        info->setValue(Qmmp::FORMAT_NAME, "MDX Chiptunes");
+        info->setValue(Qmmp::FORMAT_NAME, "MDX");
         info->setDuration(helper.totalTime());
     }
     return QList<TrackInfo*>() << info;

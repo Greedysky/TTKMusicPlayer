@@ -1,11 +1,247 @@
 #include "mdxhelper.h"
 
+extern "C" {
+#include <libmdx/mdxmini/mdxmini.h>
+#include <libmdx/pmdmini/pmdmini.h>
+#include <libmdx/mucom88/mucomtag.h>
+#include <libmdx/mucom88/mucom_module.h>
+}
+
 #define INPUT_BUFFER_SIZE   1024
+
+class MDXFileReader : public FileReader
+{
+public:
+    MDXFileReader();
+    virtual ~MDXFileReader();
+
+    virtual bool load(const QString &path) override final;
+    virtual qint64 totalTime() const override final;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
+
+private:
+    MDXMini *m_input = nullptr;
+
+};
+
+MDXFileReader::MDXFileReader()
+{
+
+}
+
+MDXFileReader::~MDXFileReader()
+{
+    if(m_input)
+    {
+        mdx_close(m_input);
+        delete m_input;
+    }
+}
+
+bool MDXFileReader::load(const QString &path)
+{
+    QFile file(path);
+    if(!file.open(QFile::ReadOnly))
+    {
+        qWarning("MDXFileReader: open file failed");
+        return false;
+    }
+
+    const qint64 size = file.size();
+    file.close();
+
+    m_input = new MDXMini;
+    mdx_set_rate(sampleRate());
+
+    if(mdx_open(m_input, QmmpPrintable(path), nullptr) != 0)
+    {
+        qWarning("MDXFileReader: mdx_open error");
+        return false;
+    }
+
+    char buffer[INPUT_BUFFER_SIZE] = {0};
+    mdx_set_max_loop(m_input, 0);
+    mdx_get_title(m_input, buffer);
+    m_metaData.insert(Qmmp::TITLE, buffer);
+
+    m_length = mdx_get_length(m_input) * 1000;
+    m_bitrate = size * 8.0 / totalTime() + 1.0f;
+    return true;
+}
+
+qint64 MDXFileReader::totalTime() const
+{
+    return m_length;
+}
+
+qint64 MDXFileReader::read(unsigned char *data, qint64)
+{
+    if(m_length > 0 && m_pos >= m_length)
+    {
+        return 0;	// stop song
+    }
+
+    mdx_calc_sample(m_input, (short*)data, INPUT_BUFFER_SIZE);
+    m_pos += INPUT_BUFFER_SIZE * 1000.0 / sampleRate();
+    return INPUT_BUFFER_SIZE * 4;
+}
+
+
+class PMDFileReader : public FileReader
+{
+public:
+    PMDFileReader();
+    virtual ~PMDFileReader();
+
+    virtual bool load(const QString &path) override final;
+    virtual qint64 totalTime() const override final;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
+
+};
+
+PMDFileReader::PMDFileReader()
+{
+    pmd_init();
+}
+
+PMDFileReader::~PMDFileReader()
+{
+    pmd_stop();
+}
+
+bool PMDFileReader::load(const QString &path)
+{
+    QFile file(path);
+    if(!file.open(QFile::ReadOnly))
+    {
+        qWarning("PMDFileReader: open file failed");
+        return false;
+    }
+
+    const qint64 size = file.size();
+    file.close();
+
+    pmd_setrate(sampleRate());
+
+    if(pmd_play(QmmpPrintable(path), nullptr) != 0)
+    {
+        qWarning("PMDFileReader: pmd_play error");
+        return false;
+    }
+
+    char buffer[INPUT_BUFFER_SIZE] = {0};
+    pmd_get_compo(buffer);
+    m_metaData.insert(Qmmp::ARTIST, buffer);
+    pmd_get_title(buffer);
+    m_metaData.insert(Qmmp::TITLE, buffer);
+
+    m_length = pmd_length_sec() * 1000;
+    m_bitrate = size * 8.0 / totalTime() + 1.0f;
+    return true;
+}
+
+qint64 PMDFileReader::totalTime() const
+{
+    return m_length;
+}
+
+qint64 PMDFileReader::read(unsigned char *data, qint64)
+{
+    if(m_length > 0 && m_pos >= m_length)
+    {
+        return 0;	// stop song
+    }
+
+    pmd_renderer((short*)data, INPUT_BUFFER_SIZE);
+    m_pos += INPUT_BUFFER_SIZE * 1000.0 / sampleRate();
+    return INPUT_BUFFER_SIZE * 4;
+}
+
+
+class MUCFileReader : public FileReader
+{
+public:
+    MUCFileReader();
+    virtual ~MUCFileReader();
+
+    virtual bool load(const QString &path) override final;
+    virtual qint64 totalTime() const override final;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
+
+private:
+    MucomModule *m_input = nullptr;
+
+};
+
+MUCFileReader::MUCFileReader()
+{
+
+}
+
+MUCFileReader::~MUCFileReader()
+{
+    delete m_input;
+}
+
+bool MUCFileReader::load(const QString &path)
+{
+    QFile file(path);
+    if(!file.open(QFile::ReadOnly))
+    {
+        qWarning("PMDFileReader: open file failed");
+        return false;
+    }
+
+    const qint64 size = file.size();
+    const QByteArray &module = file.readAll();
+    file.close();
+
+    m_input = new MucomModule;
+    m_input->SetRate(sampleRate());
+    m_input->OpenMemory((unsigned char *)module.constData(), size, path.toLower().endsWith(".mub"));
+    m_input->UseFader(true);
+    m_input->Play();
+
+    m_metaData.insert(Qmmp::TITLE, QString::fromStdString(m_input->tag->title));
+    m_metaData.insert(Qmmp::ARTIST, QString::fromStdString(m_input->tag->author));
+    m_metaData.insert(Qmmp::COMPOSER, QString::fromStdString(m_input->tag->composer));
+
+    m_length = m_input->GetLength() * 1000;
+    m_bitrate = size * 8.0 / totalTime() + 1.0f;
+    return true;
+}
+
+qint64 MUCFileReader::totalTime() const
+{
+    return m_length;
+}
+
+qint64 MUCFileReader::read(unsigned char *data, qint64)
+{
+    if(m_length > 0 && m_input->IsEnd())
+    {
+        return 0;	// stop song
+    }
+
+    m_input->Mix((short*)data, INPUT_BUFFER_SIZE);
+    return INPUT_BUFFER_SIZE * 4;
+}
+
+
+static FileReader *generateFileReader(const QString &path)
+{
+    const QString &suffix = path.toLower();
+    if(suffix.endsWith(".mdx")) return new MDXFileReader;
+    else if(suffix.endsWith(".m")) return new PMDFileReader;
+    else if(suffix.endsWith(".mub") || suffix.endsWith(".muc")) return new MUCFileReader;
+    else return nullptr;
+}
+
 
 MDXHelper::MDXHelper(const QString &path)
     : m_path(path)
 {
-    memset(&m_mdx, 0, sizeof(MDXMini));
+
 }
 
 MDXHelper::~MDXHelper()
@@ -15,139 +251,22 @@ MDXHelper::~MDXHelper()
 
 void MDXHelper::deinit()
 {
-    if(!m_mdx.self)
-    {
-        return;
-    }
-
-    switch(m_type)
-    {
-    case MDX:
-        mdx_close(&m_mdx);
-        break;
-    case PMD:
-        pmd_stop();
-        break;
-    default: break;
-    }
+    delete m_input;
 }
 
 bool MDXHelper::initialize()
 {
-    QFile file(m_path);
-    if(!file.open(QFile::ReadOnly))
+    m_input = generateFileReader(m_path);
+    if(!m_input)
     {
-        qWarning("MDXHelper: open file failed");
-        file.close();
+        qWarning("MDXHelper: load file suffix error");
         return false;
     }
 
-    const qint64 size = file.size();
-
-    char buffer[INPUT_BUFFER_SIZE];
-    const QString &suffix = m_path.toLower();
-
-    if(suffix.endsWith(".mdx"))
+    if(!m_input->load(m_path))
     {
-        m_type = MDX;
+       qWarning("MDXHelper: load error");
+       return false;
     }
-    else if(suffix.endsWith(".m"))
-    {
-        m_type = PMD;
-    }
-    else if(suffix.endsWith(".mub") || suffix.endsWith(".muc"))
-    {
-        m_type = MUC;
-    }
-
-    switch(m_type)
-    {
-    case MDX:
-    {
-        mdx_set_rate(sampleRate());
-
-        if(mdx_open(&m_mdx, QmmpPrintable(m_path), nullptr) != 0)
-        {
-            qWarning("MDXHelper: mdx_open error");
-            return false;
-        }
-
-        m_length = mdx_get_length(&m_mdx) * 1000;
-
-        mdx_set_max_loop(&m_mdx, 0);
-        mdx_get_title(&m_mdx, buffer);
-        m_metaData.insert(Qmmp::TITLE, buffer);
-        break;
-    }
-    case PMD:
-    {
-        pmd_init();
-        pmd_setrate(sampleRate());
-
-        if(pmd_play(QmmpPrintable(m_path), nullptr) != 0)
-        {
-            qWarning("MDXHelper: mdx_open error");
-            return false;
-        }
-
-        m_length = pmd_length_sec() * 1000;
-
-        pmd_get_compo(buffer);
-        m_metaData.insert(Qmmp::ARTIST, buffer);
-        pmd_get_title(buffer);
-        m_metaData.insert(Qmmp::TITLE, buffer);
-        break;
-    }
-    case MUC:
-    {
-        m_muc.SetRate(sampleRate());
-        const QByteArray &module = file.readAll();
-        m_muc.OpenMemory((unsigned char *)module.constData(), size, suffix.endsWith(".mub"));
-        m_muc.UseFader(true);
-        m_muc.Play();
-
-        m_length = m_muc.GetLength() * 1000;
-        m_metaData.insert(Qmmp::TITLE, QString::fromStdString(m_muc.tag->title));
-        m_metaData.insert(Qmmp::ARTIST, QString::fromStdString(m_muc.tag->author));
-        m_metaData.insert(Qmmp::COMPOSER, QString::fromStdString(m_muc.tag->composer));
-        break;
-    }
-    default: break;
-    }
-
-    file.close();
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
-}
-
-qint64 MDXHelper::read(unsigned char *data, qint64)
-{
-    if(m_type != MUC)
-    {
-        if(m_length > 0 && m_pos >= m_length)
-        {
-            return 0;	// stop song
-        }
-
-        if(m_type == MDX)
-        {
-            mdx_calc_sample(&m_mdx, (short*)data, INPUT_BUFFER_SIZE);
-        }
-        else
-        {
-            pmd_renderer((short*)data, INPUT_BUFFER_SIZE);
-        }
-
-        m_pos += INPUT_BUFFER_SIZE * 1000.0 / sampleRate();
-    }
-    else
-    {
-        if(m_length > 0 && m_muc.IsEnd())
-        {
-            return 0;	// stop song
-        }
-
-        m_muc.Mix((short*)data, INPUT_BUFFER_SIZE);
-    }
-    return INPUT_BUFFER_SIZE * 4;
 }

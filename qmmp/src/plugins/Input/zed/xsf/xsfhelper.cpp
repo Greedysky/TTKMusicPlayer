@@ -7,7 +7,7 @@
 #include <libxsf/filesnsf.h>
 #include <libxsf/filemsu.h>
 
-static FileReader *generateXSFReader(const QString &path)
+static FileReader *generateFileReader(const QString &path)
 {
     const QString &suffix = path.toLower();
     if(suffix.endsWith(".2sf") || suffix.endsWith(".mini2sf")) return new File2SFReader;
@@ -47,14 +47,13 @@ bool XSFHelper::initialize()
     if(!file.open(QFile::ReadOnly))
     {
         qWarning("XSFHelper: open file failed");
-        file.close();
         return false;
     }
 
     const qint64 size = file.size();
     file.close();
 
-    m_input = generateXSFReader(m_path);
+    m_input = generateFileReader(m_path);
     if(!m_input)
     {
         qWarning("XSFHelper: load file suffix error");
