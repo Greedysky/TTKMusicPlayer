@@ -21,7 +21,7 @@ MountainWidget::~MountainWidget()
 
 void MountainWidget::addBuffer(float *left)
 {
-    makeLogGraph(left, m_bars[m_pos]);
+    generateLogGraph(left, m_bars[m_pos]);
     m_pos =(m_pos + 1) % NUM_BANDS;
 
     m_angle += m_angleSpeed;
@@ -89,7 +89,7 @@ void MountainWidget::paintGL()
 
 /* stolen from the skins plugin */
 /* convert linear frequency graph to logarithmic one */
-void MountainWidget::makeLogGraph(const float * freq, float * graph)
+void MountainWidget::generateLogGraph(const float * freq, float * graph)
 {
     for(int i = 0; i < NUM_BANDS; ++i)
     {

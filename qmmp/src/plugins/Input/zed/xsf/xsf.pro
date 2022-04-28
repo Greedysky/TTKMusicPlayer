@@ -5,13 +5,11 @@ TARGET = $${TARGET}
 
 HEADERS += decoderxsffactory.h \
            decoder_xsf.h \
-           xsfhelper.h \
-           xsfreader.h
+           xsfhelper.h
     
 SOURCES += decoderxsffactory.cpp \
            decoder_xsf.cpp \
-           xsfhelper.cpp \
-           xsfreader.cpp
+           xsfhelper.cpp
 
 INCLUDEPATH += $$EXTRA_PREFIX/libzed/include \
                $$EXTRA_PREFIX/libzed/include/libxsf/mgba \

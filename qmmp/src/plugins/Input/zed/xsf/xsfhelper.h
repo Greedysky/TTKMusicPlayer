@@ -22,9 +22,11 @@
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
-#include "xsfreader.h"
+#include <libxsf/psflib/psfcore.h>
 
 #define INPUT_BUFFER_SIZE   1024
+
+class FileReader;
 
 /*!
  * @author Greedysky <greedysky@163.com>
