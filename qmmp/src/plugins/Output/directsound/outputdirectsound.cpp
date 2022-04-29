@@ -132,7 +132,7 @@ bool OutputDirectSound::initialize(quint32 freq, ChannelMap map, Qmmp::AudioForm
     bufferDesc.dwFlags       = DSBCAPS_CTRLFREQUENCY | DSBCAPS_CTRLPAN | DSBCAPS_CTRLVOLUME |
             DSBCAPS_GLOBALFOCUS | DSBCAPS_GETCURRENTPOSITION2 | DSBCAPS_CTRLPOSITIONNOTIFY;
     bufferDesc.lpwfxFormat   = (WAVEFORMATEX*)&wfex;
-    bufferDesc.dwBufferBytes = DS_BUFSIZE; // buffer size
+    bufferDesc.dwBufferBytes = INPUT_BUFFER_SIZE; // buffer size
 
     IDirectSoundBuffer *pDSB;
     if((result = m_ds->CreateSoundBuffer(&bufferDesc, &pDSB, nullptr)) != DS_OK)
@@ -169,11 +169,11 @@ qint64 OutputDirectSound::writeAudio(unsigned char *data, qint64 len)
     unsigned char *ptr = nullptr, *ptr2 = nullptr;
     DWORD size = 0, size2 = 0;
     DWORD available = bytesToWrite(); //available bytes
-    m_latency = (DS_BUFSIZE - available) * 1000 / m_bytesPerSecond;
+    m_latency = (INPUT_BUFFER_SIZE - available) * 1000 / m_bytesPerSecond;
 
     if(m_reset)
     {
-        available = DS_BUFSIZE;
+        available = INPUT_BUFFER_SIZE;
         m_dsBuffer->SetCurrentPosition(m_dsBufferAt);
         m_reset = false;
     }
@@ -218,7 +218,7 @@ qint64 OutputDirectSound::writeAudio(unsigned char *data, qint64 len)
     m_dsBuffer->Unlock((void*)ptr, size, (void*)ptr2, size2);
 
     m_dsBufferAt += totalSize;
-    m_dsBufferAt %= DS_BUFSIZE;
+    m_dsBufferAt %= INPUT_BUFFER_SIZE;
 
     return totalSize;
 }
@@ -293,7 +293,7 @@ DWORD OutputDirectSound::bytesToWrite()
 
     if(available < 0)
     {
-        available += DS_BUFSIZE;
+        available += INPUT_BUFFER_SIZE;
     }
     return available;
 }

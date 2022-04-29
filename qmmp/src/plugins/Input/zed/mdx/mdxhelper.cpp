@@ -242,7 +242,7 @@ static FileReader *generateFileReader(const QString &path)
     const QString &suffix = path.toLower();
     if(suffix.endsWith(".mdx")) return new MDXFileReader;
     else if(suffix.endsWith(".m")) return new PMDFileReader;
-    else if(suffix.endsWith(".mub") || suffix.endsWith(".muc")) return new MUCFileReader;
+    else if(/*suffix.endsWith(".mub") || */suffix.endsWith(".muc")) return new MUCFileReader;
     else return nullptr;
 }
 

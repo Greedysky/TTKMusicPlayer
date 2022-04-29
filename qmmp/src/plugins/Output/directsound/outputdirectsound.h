@@ -65,7 +65,7 @@ private:
     IDirectSoundBuffer8 *m_dsBuffer = nullptr;
     DWORD m_dsBufferAt = 0;
 
-    struct
+    typedef struct
     {
         Qmmp::ChannelPosition pos;
         DWORD chan_mask;

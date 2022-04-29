@@ -19,5 +19,5 @@ unix{
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libzed/lib -ltfmx
+    LIBS += -L$$EXTRA_PREFIX/libzed/lib -ltfmx -lws2_32
 }
