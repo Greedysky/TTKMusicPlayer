@@ -97,16 +97,23 @@ public:
     virtual qint64 totalTime() const override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
 
+private:
+    PMDMini *m_input = nullptr;
+
 };
 
 PMDFileReader::PMDFileReader()
 {
-    pmd_init();
+
 }
 
 PMDFileReader::~PMDFileReader()
 {
-    pmd_stop();
+    if(m_input)
+    {
+        m_input->pmd_stop();
+        delete m_input;
+    }
 }
 
 bool PMDFileReader::load(const QString &path)
@@ -121,21 +128,23 @@ bool PMDFileReader::load(const QString &path)
     const qint64 size = file.size();
     file.close();
 
-    pmd_setrate(sampleRate());
+    m_input = new PMDMini;
+    m_input->pmd_init();
+    m_input->pmd_setrate(sampleRate());
 
-    if(pmd_play(QmmpPrintable(path), nullptr) != 0)
+    if(m_input->pmd_play(QmmpPrintable(path), nullptr) != 0)
     {
         qWarning("PMDFileReader: pmd_play error");
         return false;
     }
 
     char buffer[INPUT_BUFFER_SIZE] = {0};
-    pmd_get_compo(buffer);
+    m_input->pmd_get_compo(buffer);
     m_metaData.insert(Qmmp::ARTIST, buffer);
-    pmd_get_title(buffer);
+    m_input->pmd_get_title(buffer);
     m_metaData.insert(Qmmp::TITLE, buffer);
 
-    m_length = pmd_length_sec() * 1000;
+    m_length =  m_input->pmd_length_sec() * 1000;
     m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }
@@ -152,7 +161,7 @@ qint64 PMDFileReader::read(unsigned char *data, qint64)
         return 0;	// stop song
     }
 
-    pmd_renderer((short*)data, INPUT_BUFFER_SIZE);
+    m_input->pmd_renderer((short*)data, INPUT_BUFFER_SIZE);
     m_pos += INPUT_BUFFER_SIZE * 1000.0 / sampleRate();
     return INPUT_BUFFER_SIZE * 4;
 }
