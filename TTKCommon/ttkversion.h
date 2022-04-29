@@ -152,16 +152,16 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-//update time 2022.03.05
-#define TTK_VERSION_STR    "2.15.8.0"
-#define TTK_VER_TIME_STR   "(2022/03/05)"
+//update time 2022.04.30
+#define TTK_VERSION_STR    "2.15.9.0"
+#define TTK_VER_TIME_STR   "(2022/04/30)"
 
 #define TTK_MAJOR_VERSION 2
 #define TTK_MIDLE_VERSION 15
-#define TTK_MINOR_VERSION 8
+#define TTK_MINOR_VERSION 9
 #define TTK_PATCH_VERSION 0
 
-#define TTK_VERSION 0x02F80
+#define TTK_VERSION 0x02F90
 
 #define TTK_CONFIG_VERSION_STR	"1.0.1"
 
