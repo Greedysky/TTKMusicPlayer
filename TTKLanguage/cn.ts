@@ -7726,32 +7726,32 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
         <translation> 分类 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="317"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="318"/>
         <source> RadioPublic </source>
         <translation> 公共电台 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="320"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="321"/>
         <source> RadioHigh </source>
         <translation> 高潮电台 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="323"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="324"/>
         <source> RadioFx </source>
         <translation> 真人电台 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="401"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="404"/>
         <source> MVRadio </source>
         <translation> MV电台 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="404"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="407"/>
         <source> MVRecommend </source>
         <translation> MV推荐 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="407"/>
+        <location filename="../TTKThirdParty/TTKExtras/qkugou/qkugouwindow.cpp" line="410"/>
         <source> MVFanxing </source>
         <translation> 繁星MV </translation>
     </message>
@@ -8688,6 +8688,10 @@ too high may cause clipping!</source>
 </context>
 <context>
     <name>WaveVoice</name>
+    <message>
+        <source>Double Channels</source>
+        <translation>双通道</translation>
+    </message>
     <message>
         <source>Type</source>
         <translation>类型</translation>
