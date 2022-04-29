@@ -42,7 +42,7 @@ public:
     inline const QMap<Qmmp::MetaData, QString> &readMetaData() const { return m_metaData; }
 
 protected:
-    int m_pos = 0;
+    int m_offset = 0;
     int m_length = 0;
     int m_bitrate = 0;
     QMap<Qmmp::MetaData, QString> m_metaData;

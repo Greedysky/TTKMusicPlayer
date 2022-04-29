@@ -46,7 +46,6 @@ private:
     virtual void resizeEvent(QResizeEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
-
     QPointF viewToItemPoint(const QPoint &pt);
 
     QColor m_color = QColor(0x0, 0xff, 0xff);

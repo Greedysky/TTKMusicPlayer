@@ -114,6 +114,7 @@ void InfinityWidget::writeSettings()
     act = m_colorsGroup->checkedAction();
     settings.setValue("palette_time", act ? act->data().toInt() : 200);
     settings.endGroup();
+    readSettings();
 }
 
 void InfinityWidget::resizeEvent(QResizeEvent *)
@@ -332,9 +333,9 @@ void InfinityWidget::displayBlur()
     int index = 0;
     register unsigned char *pix = nullptr;
 
-    for(int j = 0; j < h; ++j)
+    for(int i = 0; i < h; ++i)
     {
-        for(int i = 0; i < w; ++i)
+        for(int j = 0; j < w; ++j)
         {
             VInterpol *interpol = &field[index];
             pix = &(m_renders[0])[(interpol->coord & 0xFFFF) * w + (interpol->coord >> 16)];
@@ -490,13 +491,13 @@ void InfinityWidget::displayCurve()
     const float vr = 0.001;
     const float amplitude = (float)effect->curve_amplitude / 256;
 
-    for(int j = 0; j < 2; ++j)
+    for(int i = 0; i < 2; ++i)
     {
         k = effect->curve;
-        for(int i = 0; i < 64; ++i)
+        for(int j = 0; j < 64; ++j)
         {
-            const float x = std::cos((float)(k) / (v + v * j * 1.34)) * h * amplitude;
-            const float y = std::sin((float)(k) / (1.756 * (v + v * j * 0.93))) * h * amplitude;
+            const float x = std::cos((float)(k) / (v + v * i * 1.34)) * h * amplitude;
+            const float y = std::sin((float)(k) / (1.756 * (v + v * i * 0.93))) * h * amplitude;
 
             const int x1 = x * std::cos((float)k * vr) + y * std::sin((float)k * vr) + w / 2;
             const int y1 = x * std::sin((float)k * vr) - y * std::cos((float)k * vr) + h / 2;

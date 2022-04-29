@@ -57,7 +57,6 @@ void GoomWidget::writeSettings()
     QAction *act = m_fpsGroup->checkedAction();
     settings.setValue("refresh_rate", act ? act->data().toInt() : 30);
     settings.endGroup();
-
     readSettings();
 }
 
@@ -118,8 +117,6 @@ void GoomWidget::createMenu()
 {
     m_menu = new QMenu(this);
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
-
-    m_menu->addSeparator();
 
     QMenu *refreshRate = m_menu->addMenu(tr("Refresh Rate"));
     m_fpsGroup = new QActionGroup(this);

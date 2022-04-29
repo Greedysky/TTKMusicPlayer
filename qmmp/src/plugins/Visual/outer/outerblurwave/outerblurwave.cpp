@@ -159,7 +159,6 @@ void OuterBlurWave::process(float *left, float *right)
 
     for(int i = 0; i < m_cols; ++i)
     {
-        const int j = m_cols + i; //mirror index
         short yl = 0;
         short yr = 0;
         int magnitude_l = 0;
@@ -196,6 +195,7 @@ void OuterBlurWave::process(float *left, float *right)
         m_intern_vis_data[mirror_index] -= m_analyzerSize * m_rows / 15;
         m_intern_vis_data[mirror_index] = magnitude_l > m_intern_vis_data[mirror_index] ? magnitude_l : m_intern_vis_data[mirror_index];
 
+        const int j = m_cols + i;
         m_intern_vis_data[j] -= m_analyzerSize * m_rows / 15;
         m_intern_vis_data[j] = magnitude_r > m_intern_vis_data[j] ? magnitude_r : m_intern_vis_data[j];
     }

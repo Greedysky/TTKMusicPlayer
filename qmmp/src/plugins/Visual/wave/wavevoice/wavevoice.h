@@ -33,6 +33,8 @@ public:
     virtual ~WaveVoice();
 
 private slots:
+    void readSettings();
+    void writeSettings();
     void typeChanged(QAction *action);
 
 private:
@@ -44,9 +46,10 @@ private:
 
     VisualPalette::Palette m_palette= VisualPalette::PALETTE_DEFAULT;
     QImage m_backgroundImage;
-    int m_pos = 0;
+    int m_offset = 0;
     int *m_xscale = nullptr;
     const double m_analyzerSize = 2.2;
+    QAction *m_channelsAction;
 
 };
 

@@ -62,7 +62,7 @@ private:
     float m_logScale[NUM_BANDS + 1];
     float m_colors[NUM_BANDS][NUM_BANDS][3];
 
-    int m_pos = 0;
+    int m_offset = 0;
     float m_angle = 25, m_angleSpeed = 0.05f;
     float m_bars[NUM_BANDS][NUM_BANDS];
 

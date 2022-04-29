@@ -54,7 +54,6 @@ private:
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
-
     void createMenu();
 
     QAction *m_starAction;

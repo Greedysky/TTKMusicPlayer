@@ -88,7 +88,7 @@ private:
     void drawWaveform();
 
     LightEnvelopeScanner *m_scanner = nullptr;
-    QAction *m_showTwoChannelsAction, *m_showRmsAction;
+    QAction *m_channelsAction, *m_rmsAction;
     QList<int> m_data;
     int m_channels = 0;
     qint64 m_elapsed = 0;

@@ -33,7 +33,7 @@ void ElectricPointLabel::setColor(const QColor &color)
 
 void ElectricPointLabel::timeout()
 {
-    m_pos = rect().center();
+    m_offset = rect().center();
     m_size = qrand() % LABEL_RADIUS / 5 + 1;
 
     int x = qrand() % (LABEL_RADIUS * 3), y = qrand() % (LABEL_RADIUS * 3);
@@ -47,8 +47,8 @@ void ElectricPointLabel::timeout()
         y = -y;
     }
 
-    m_posAnimation->setStartValue(m_pos);
-    m_posAnimation->setEndValue(m_pos + QPoint(LABEL_RADIUS / 2 + x, LABEL_RADIUS / 2 + y));
+    m_posAnimation->setStartValue(m_offset);
+    m_posAnimation->setEndValue(m_offset + QPoint(LABEL_RADIUS / 2 + x, LABEL_RADIUS / 2 + y));
     m_posAnimation->start();
 }
 
@@ -59,12 +59,12 @@ void ElectricPointLabel::finished()
 
 void ElectricPointLabel::posValueChanged(const QVariant &value)
 {
-    m_pos = value.toPoint();
+    m_offset = value.toPoint();
 
     const QPoint &startPoint = m_posAnimation->startValue().toPoint();
     const QPoint &endPoint = m_posAnimation->endValue().toPoint();
     const int totalLength = sqrt(pow(startPoint.x() - endPoint.x(), 2) + pow(startPoint.y() - endPoint.y(), 2));
-    const int currentLength = sqrt(pow(startPoint.x() - m_pos.x(), 2) + pow(startPoint.y() - m_pos.y(), 2));
+    const int currentLength = sqrt(pow(startPoint.x() - m_offset.x(), 2) + pow(startPoint.y() - m_offset.y(), 2));
     const float delta = (totalLength - currentLength) * 1.0 / totalLength;
     m_opacity = delta;
 
@@ -75,7 +75,7 @@ void ElectricPointLabel::paintEvent(QPaintEvent *e)
 {
     QWidget::paintEvent(e);
 
-    if(m_pos == QPoint(0, 0))
+    if(m_offset == QPoint(0, 0))
     {
         return;
     }
@@ -84,7 +84,7 @@ void ElectricPointLabel::paintEvent(QPaintEvent *e)
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setOpacity(m_opacity);
     painter.setPen(QPen(m_color, 2));
-    painter.drawEllipse(m_pos, m_size, m_size);
+    painter.drawEllipse(m_offset, m_size, m_size);
 }
 
 

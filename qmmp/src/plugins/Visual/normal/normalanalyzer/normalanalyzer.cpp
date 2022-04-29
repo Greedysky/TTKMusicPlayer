@@ -154,7 +154,6 @@ void NormalAnalyzer::writeSettings()
     settings.setValue("show_star", m_starAction->isChecked());
     settings.setValue("star_color", ColorWidget::writeSingleColorConfig(m_starColor));
     settings.endGroup();
-
     readSettings();
 }
 
@@ -295,7 +294,6 @@ void NormalAnalyzer::process(float *left, float *right)
 
     for(int i = 0; i < m_cols; ++i)
     {
-        const int j = m_cols * 2 - i - 1; //mirror index
         short yl = 0;
         short yr = 0;
         int magnitude_l = 0;
@@ -331,6 +329,7 @@ void NormalAnalyzer::process(float *left, float *right)
         m_intern_vis_data[i] -= m_analyzerSize * m_rows / 15;
         m_intern_vis_data[i] = magnitude_l > m_intern_vis_data[i] ? magnitude_l : m_intern_vis_data[i];
 
+        const int j = m_cols * 2 - i - 1; //mirror index
         m_intern_vis_data[j] -= m_analyzerSize * m_rows / 15;
         m_intern_vis_data[j] = magnitude_r > m_intern_vis_data[j] ? magnitude_r : m_intern_vis_data[j];
 

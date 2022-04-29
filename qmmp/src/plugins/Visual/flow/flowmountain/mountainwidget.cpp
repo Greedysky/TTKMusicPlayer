@@ -21,8 +21,8 @@ MountainWidget::~MountainWidget()
 
 void MountainWidget::addBuffer(float *left)
 {
-    generateLogGraph(left, m_bars[m_pos]);
-    m_pos =(m_pos + 1) % NUM_BANDS;
+    generateLogGraph(left, m_bars[m_offset]);
+    m_offset =(m_offset + 1) % NUM_BANDS;
 
     m_angle += m_angleSpeed;
     if(m_angle > 45 || m_angle < -45)
@@ -188,10 +188,9 @@ void MountainWidget::drawBars()
     for(int i = 0; i < NUM_BANDS; ++i)
     {
         float z = -1.6f +(NUM_BANDS - i) * BAR_SPACING;
-
         for(int j = 0; j < NUM_BANDS; ++j)
         {
-            drawBar(1.6f - BAR_SPACING * j, z, m_bars[(m_pos + i) % NUM_BANDS][j] * 1.6, m_colors[i][j][0], m_colors[i][j][1], m_colors[i][j][2]);
+            drawBar(1.6f - BAR_SPACING * j, z, m_bars[(m_offset + i) % NUM_BANDS][j] * 1.6, m_colors[i][j][0], m_colors[i][j][1], m_colors[i][j][2]);
         }
     }
 

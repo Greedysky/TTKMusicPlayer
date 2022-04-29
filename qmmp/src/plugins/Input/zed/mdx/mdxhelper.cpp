@@ -76,13 +76,13 @@ qint64 MDXFileReader::totalTime() const
 
 qint64 MDXFileReader::read(unsigned char *data, qint64)
 {
-    if(m_length > 0 && m_pos >= m_length)
+    if(m_length > 0 && m_offset >= m_length)
     {
         return 0;	// stop song
     }
 
     mdx_calc_sample(m_input, (short*)data, INPUT_BUFFER_SIZE);
-    m_pos += INPUT_BUFFER_SIZE * 1000.0 / sampleRate();
+    m_offset += INPUT_BUFFER_SIZE * 1000.0 / sampleRate();
     return INPUT_BUFFER_SIZE * 4;
 }
 
@@ -156,13 +156,13 @@ qint64 PMDFileReader::totalTime() const
 
 qint64 PMDFileReader::read(unsigned char *data, qint64)
 {
-    if(m_length > 0 && m_pos >= m_length)
+    if(m_length > 0 && m_offset >= m_length)
     {
         return 0;	// stop song
     }
 
     m_input->pmd_renderer((short*)data, INPUT_BUFFER_SIZE);
-    m_pos += INPUT_BUFFER_SIZE * 1000.0 / sampleRate();
+    m_offset += INPUT_BUFFER_SIZE * 1000.0 / sampleRate();
     return INPUT_BUFFER_SIZE * 4;
 }
 

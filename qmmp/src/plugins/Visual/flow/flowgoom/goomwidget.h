@@ -50,7 +50,6 @@ private:
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
-
     void clearImage();
     void createMenu();
 
@@ -58,7 +57,6 @@ private:
     QMenu *m_menu;
     QActionGroup *m_fpsGroup;
     PluginInfo *m_goom = nullptr;
-
     QImage m_image;
 
 };

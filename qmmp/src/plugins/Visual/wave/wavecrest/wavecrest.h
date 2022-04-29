@@ -37,7 +37,7 @@ private:
     virtual void process(float *left, float *right) override final;
 
     QImage m_backgroundImage;
-    int m_pos = 0;
+    int m_offset = 0;
     int m_visData = 0;
     int *m_xscale = nullptr;
     const double m_analyzerSize = 2.2;

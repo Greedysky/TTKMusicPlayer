@@ -43,7 +43,7 @@ protected:
     bool m_enabled = false;
     QTimer *m_circleTimer;
     int m_crValue = LABEL_RADIUS;
-    QPoint m_pos;
+    QPoint m_offset;
     QColor m_color;
 
 };

@@ -207,11 +207,11 @@ LightEnvelope::LightEnvelope(QWidget *parent) :
     connect(m_scanner, SIGNAL(finished()), SLOT(scanFinished()));
     connect(m_scanner, SIGNAL(dataChanged()), SLOT(dataChanged()));
 
-    m_showTwoChannelsAction = new QAction(tr("Double Channels"), this);
-    m_showTwoChannelsAction->setCheckable(true);
+    m_channelsAction = new QAction(tr("Double Channels"), this);
+    m_channelsAction->setCheckable(true);
     //: Root mean square
-    m_showRmsAction = new QAction(tr("Root Mean Square"), this);
-    m_showRmsAction->setCheckable(true);
+    m_rmsAction = new QAction(tr("Root Mean Square"), this);
+    m_rmsAction->setCheckable(true);
 
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
     connect(SoundCore::instance(), SIGNAL(elapsedChanged(qint64)), SLOT(positionChanged(qint64)));
@@ -251,8 +251,8 @@ void LightEnvelope::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("LightEnvelope");
-    m_showTwoChannelsAction->setChecked(settings.value("show_two_channels", true).toBool());
-    m_showRmsAction->setChecked(settings.value("show_rms", true).toBool());
+    m_channelsAction->setChecked(settings.value("show_two_channels", true).toBool());
+    m_rmsAction->setChecked(settings.value("show_rms", true).toBool());
     settings.endGroup();
     drawWaveform();
 }
@@ -261,8 +261,8 @@ void LightEnvelope::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("LightEnvelope");
-    settings.setValue("show_two_channels", m_showTwoChannelsAction->isChecked());
-    settings.setValue("show_rms", m_showRmsAction->isChecked());
+    settings.setValue("show_two_channels", m_channelsAction->isChecked());
+    settings.setValue("show_rms", m_rmsAction->isChecked());
     settings.endGroup();
     drawWaveform();
 }
@@ -331,8 +331,8 @@ void LightEnvelope::contextMenuEvent(QContextMenuEvent *)
     QMenu menu(this);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
 
-    menu.addAction(m_showTwoChannelsAction);
-    menu.addAction(m_showRmsAction);
+    menu.addAction(m_channelsAction);
+    menu.addAction(m_rmsAction);
     menu.exec(QCursor::pos());
 }
 
@@ -345,8 +345,8 @@ void LightEnvelope::drawWaveform()
         return;
     }
 
-    const bool showTwoChannels = m_showTwoChannelsAction->isChecked();
-    const bool showRms = m_showRmsAction->isChecked();
+    const bool showTwoChannels = m_channelsAction->isChecked();
+    const bool showRms = m_rmsAction->isChecked();
 
     m_pixmap = QPixmap(width(), height());
     m_pixmap.fill(Qt::black);

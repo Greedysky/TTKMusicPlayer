@@ -27,23 +27,22 @@ void WaveCrest::paintEvent(QPaintEvent *)
 
     if(m_cols != 0)
     {
-        if(m_pos >= m_cols)
+        if(m_offset >= m_cols)
         {
-            m_pos = m_cols - 1;
+            m_offset = m_cols - 1;
             m_backgroundImage = m_backgroundImage.copy(1, 0, m_cols, m_rows);
         }
 
         for(int i = 0; i < m_visData / 2; ++i)
         {
             const int r = qMin(0x5f + i * 3, 0xff);
-            m_backgroundImage.setPixel(m_pos, qMax(m_rows / 2 - i, 0), qRgb(r, r, r));
-            m_backgroundImage.setPixel(m_pos, qMin(m_rows / 2 + i, m_rows), qRgb(r, r, r));
+            m_backgroundImage.setPixel(m_offset, qMax(m_rows / 2 - i, 0), qRgb(r, r, r));
+            m_backgroundImage.setPixel(m_offset, qMin(m_rows / 2 + i, m_rows), qRgb(r, r, r));
         }
-        m_backgroundImage.setPixel(m_pos, m_rows / 2, qRgb(0xff, 0xff, 0xff));
+        m_backgroundImage.setPixel(m_offset, m_rows / 2, qRgb(0xff, 0xff, 0xff));
     }
 
-    ++m_pos;
-
+    ++m_offset;
     if(!m_backgroundImage.isNull())
     {
         painter.drawImage(0, 0, m_backgroundImage);
@@ -59,7 +58,7 @@ void WaveCrest::process(float *left, float *)
     {
         m_rows = rows;
         m_cols = cols;
-        m_pos = 0;
+        m_offset = 0;
 
         if(m_xscale)
         {

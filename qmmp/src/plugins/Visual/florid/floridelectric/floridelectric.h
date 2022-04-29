@@ -50,7 +50,7 @@ protected:
 
     float m_opacity = 1;
     int m_size = 5;
-    QPoint m_pos = QPoint(0, 0);
+    QPoint m_offset = QPoint(0, 0);
     QColor m_color = QColor(255, 255, 255, 0);
     QPropertyAnimation *m_posAnimation;
 
