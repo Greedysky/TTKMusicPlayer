@@ -56,7 +56,7 @@ bool MusicASXConfigManager::writeBuffer(const MusicSongItemList &items, const QS
         return false;
     }
 
-    QDomElement rootDom = createRoot("Asx", {"version ", "3.0"});
+    QDomElement rootDom = createRoot("Asx", MusicXmlAttribute{"version ", "3.0"});
 
     for(int i = 0; i < items.count(); ++i)
     {
