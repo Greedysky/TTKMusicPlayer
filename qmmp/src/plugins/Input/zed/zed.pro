@@ -62,9 +62,9 @@ contains(CONFIG, STSOUND_PLUGIN){
     SUBDIRS += stsound
 }
 
-#contains(CONFIG, TFMX_PLUGIN){
-#    SUBDIRS += tfmx
-#}
+contains(CONFIG, TFMX_PLUGIN){
+    SUBDIRS += tfmx
+}
 
 contains(CONFIG, V2M_PLUGIN){
     SUBDIRS += v2m
@@ -73,4 +73,3 @@ contains(CONFIG, V2M_PLUGIN){
 contains(CONFIG, XSF_PLUGIN){
     SUBDIRS += xsf
 }
-
