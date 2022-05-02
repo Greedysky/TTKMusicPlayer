@@ -80,6 +80,11 @@ void MetaDataModel::removeCover()
 
 }
 
+QString MetaDataModel::lyrics() const
+{
+    return QString();
+}
+
 QString MetaDataModel::coverPath() const
 {
     return QString();

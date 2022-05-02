@@ -42,6 +42,7 @@ public:
     virtual QPixmap cover() const override final;
     virtual void setCover(const QPixmap &pix) override final;
     virtual void removeCover() override final;
+    virtual QString lyrics() const override final;
 
 private:
     QList<TagModel*> m_tags;
@@ -67,6 +68,7 @@ public:
     virtual void create() override final;
     virtual void remove() override final;
     virtual void save() override final;
+    QString lyrics() const;
 
 private:
     QTextCodec *m_codec;
