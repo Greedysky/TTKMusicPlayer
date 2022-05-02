@@ -66,6 +66,7 @@ QPixmap MPEGMetaDataModel::cover() const
 {
     if(!m_file->ID3v2Tag())
         return QPixmap();
+
     TagLib::ID3v2::FrameList frames = m_file->ID3v2Tag()->frameListMap()["APIC"];
     if(frames.isEmpty())
         return QPixmap();
@@ -399,13 +400,12 @@ void MpegFileTagModel::save()
 
 QString MpegFileTagModel::lyrics() const
 {
-    if(m_type == TagLib::MPEG::File::ID3v2 && m_tag)
+    if(m_tag && m_type == TagLib::MPEG::File::ID3v2)
     {
-        bool utf = m_codec->name().contains("UTF");
         TagLib::ID3v2::Tag *id3v2_tag = static_cast<TagLib::ID3v2::Tag *>(m_tag);
-
         const TagLib::ID3v2::FrameListMap& map = id3v2_tag->frameListMap();
 
+        const bool utf = m_codec->name().contains("UTF");
         if(!map["USLT"].isEmpty())
             return m_codec->toUnicode(map["USLT"].front()->toString().toCString(utf));
         else if(!map["SYLT"].isEmpty())
