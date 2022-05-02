@@ -130,6 +130,11 @@ public:
      */
     virtual void removeCover();
     /*!
+     * Lyrics.
+     * Subclass should reimplement this function. Default implementation does nothing.
+     */
+    virtual QString lyrics() const;
+    /*!
      * Returns path to cover pixmap.
      */
     virtual QString coverPath() const;

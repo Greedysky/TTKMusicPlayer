@@ -132,6 +132,13 @@
     </message>
 </context>
 <context>
+    <name>EffectSubwooferFactory</name>
+    <message>
+        <source>Subwoofer Simulator Plugin</source>
+        <translation>超低音扬声器模拟器插件(subwoofer)</translation>
+    </message>
+</context>
+<context>
     <name>GoomWidget</name>
     <message>
         <source>Refresh Rate</source>
@@ -8586,6 +8593,14 @@ too high may cause clipping!</source>
     <message>
         <source>Ratio:</source>
         <translation>比率:</translation>
+    </message>
+    <message>
+        <source>Subwoofer Simulator Plugin Settings</source>
+        <translation>超低音扬声器模拟器插件设置</translation>
+    </message>
+    <message>
+        <source>Cutoff:</source>
+        <translation>截断:</translation>
     </message>
 </context>
 <context>
