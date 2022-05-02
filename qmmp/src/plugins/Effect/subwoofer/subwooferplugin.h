@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef ECHOPLUGIN_H
-#define ECHOPLUGIN_H
+#ifndef SUBWOOFERPLUGIN_H
+#define SUBWOOFERPLUGIN_H
 
 #include <QMutex>
 #include <qmmp/effect.h>
@@ -25,28 +25,27 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class EchoPlugin : public Effect
+class SubwooferPlugin : public Effect
 {
 public:
-    EchoPlugin();
-    virtual ~EchoPlugin();
+    SubwooferPlugin();
+    virtual ~SubwooferPlugin();
 
     virtual void applyEffect(Buffer *b) override final;
     virtual void configure(quint32 freq, ChannelMap map) override final;
 
     void setDelay(int delay);
     void setFeedback(int feedback);
-    void setVolume(int volume);
+    void setCutOff(int value);
 
-    static EchoPlugin* instance();
+    static SubwooferPlugin* instance();
 
 private:
     QMutex m_mutex;
     int m_offset = 0;
-    int m_delay = 0, m_feedback = 0, m_volume = 0;
-    int m_size = 0;
+    int m_delay = 20, m_feedback = 60, m_cutoff = 100;
     float *m_buffer = nullptr;
-    static EchoPlugin *m_instance;
+    static SubwooferPlugin *m_instance;
 
 };
 

@@ -42,3 +42,7 @@ contains(CONFIG, SOXR_PLUGIN){
 contains(CONFIG, SRC_PLUGIN){
     SUBDIRS += srconverter
 }
+
+contains(CONFIG, SUBWOOFER_PLUGIN){
+    SUBDIRS += subwoofer
+}

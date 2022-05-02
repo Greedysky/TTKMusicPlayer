@@ -23,6 +23,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_delay = settings.value("Echo/delay", 500).toUInt();
     m_feedback = settings.value("Echo/feedback", 50).toUInt();
     m_volume = settings.value("Echo/volume", 50).toUInt();
+
     m_ui.delaySlider->setValue(m_delay);
     m_ui.feedSlider->setValue(m_feedback);
     m_ui.volumeSlider->setValue(m_volume);

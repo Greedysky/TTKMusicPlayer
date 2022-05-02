@@ -16,37 +16,23 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef ECHOPLUGIN_H
-#define ECHOPLUGIN_H
+#ifndef EFFECTSUBWOOFERFACTORY_H
+#define EFFECTSUBWOOFERFACTORY_H
 
-#include <QMutex>
-#include <qmmp/effect.h>
+#include <qmmp/effectfactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class EchoPlugin : public Effect
+class EffectSubwooferFactory : public QObject, public EffectFactory
 {
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.EffectFactoryInterface.1.0")
+    Q_INTERFACES(EffectFactory)
 public:
-    EchoPlugin();
-    virtual ~EchoPlugin();
-
-    virtual void applyEffect(Buffer *b) override final;
-    virtual void configure(quint32 freq, ChannelMap map) override final;
-
-    void setDelay(int delay);
-    void setFeedback(int feedback);
-    void setVolume(int volume);
-
-    static EchoPlugin* instance();
-
-private:
-    QMutex m_mutex;
-    int m_offset = 0;
-    int m_delay = 0, m_feedback = 0, m_volume = 0;
-    int m_size = 0;
-    float *m_buffer = nullptr;
-    static EchoPlugin *m_instance;
+    virtual const EffectProperties properties() const override final;
+    virtual Effect *create() override final;
+    virtual void showSettings(QWidget *parent) override final;
 
 };
 

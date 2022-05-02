@@ -16,37 +16,34 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef ECHOPLUGIN_H
-#define ECHOPLUGIN_H
+#ifndef SETTINGSDIALOG_H
+#define SETTINGSDIALOG_H
 
-#include <QMutex>
-#include <qmmp/effect.h>
+#include "ui_settingsdialog.h"
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class EchoPlugin : public Effect
+class SettingsDialog : public QDialog
 {
+    Q_OBJECT
 public:
-    EchoPlugin();
-    virtual ~EchoPlugin();
+    explicit SettingsDialog(QWidget *parent = nullptr);
 
-    virtual void applyEffect(Buffer *b) override final;
-    virtual void configure(quint32 freq, ChannelMap map) override final;
+public slots:
+    virtual void accept() override final;
+    virtual void reject() override final;
 
-    void setDelay(int delay);
-    void setFeedback(int feedback);
-    void setVolume(int volume);
-
-    static EchoPlugin* instance();
+private slots:
+    void on_delaySlider_valueChanged(int value);
+    void on_feedSlider_valueChanged(int value);
+    void on_cutOffSlider_valueChanged(int value);
 
 private:
-    QMutex m_mutex;
-    int m_offset = 0;
-    int m_delay = 0, m_feedback = 0, m_volume = 0;
-    int m_size = 0;
-    float *m_buffer = nullptr;
-    static EchoPlugin *m_instance;
+    Ui::SettingsDialog m_ui;
+    int m_delay = 0;
+    int m_feedback = 0;
+    int m_cutoff = 0;
 
 };
 
