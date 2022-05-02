@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Echo Plugin Settings</string>
+   <string>Subwoofer Simulator Plugin Settings</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">

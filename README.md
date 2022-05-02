@@ -43,6 +43,7 @@ The TTKMusicplayer plugin for run
  * soxr
  * srconverter
  * stereo
+ * subwoofer
 ### Light
  * lightenvelope
  * lightreplaygain
