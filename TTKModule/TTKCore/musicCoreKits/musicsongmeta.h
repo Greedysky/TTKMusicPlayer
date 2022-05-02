@@ -139,6 +139,10 @@ public:
      */
     QPixmap cover();
     /*!
+     * Get song lyrics buffer data.
+     */
+    QString lyrics();
+    /*!
      * Get song sample rate.
      */
     QString sampleRate();

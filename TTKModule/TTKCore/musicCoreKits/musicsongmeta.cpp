@@ -15,6 +15,7 @@ struct MusicMeta
 {
     QString m_path;
     QPixmap m_cover;
+    QString m_lyrics;
     QMap<TagWrapper::Type, QString> m_metaData;
 };
 
@@ -205,6 +206,11 @@ QPixmap MusicSongMeta::cover()
 #endif
 }
 
+QString MusicSongMeta::lyrics()
+{
+    return songMeta()->m_lyrics;
+}
+
 QString MusicSongMeta::sampleRate()
 {
     return songMeta()->m_metaData[TagWrapper::SAMPLERATE];
@@ -383,6 +389,7 @@ bool MusicSongMeta::readInformation()
             if(model)
             {
                 songMeta()->m_cover = model->cover();
+                songMeta()->m_lyrics = model->lyrics();
                 delete model;
             }
         }
@@ -394,44 +401,43 @@ bool MusicSongMeta::readInformation()
 bool MusicSongMeta::saveInformation()
 {
     DecoderFactory *factory = Decoder::findByFilePath(m_path);
-
-    if(factory)
+    if(!factory)
     {
-        MetaDataModel *model = factory->createMetaDataModel(m_path, false);
-        if(model)
-        {
-            const QList<TagModel* > &tags = model->tags();
-            if(!tags.isEmpty())
-            {
-                TagModel *tagModel = tags.front();
-                if(tags.count() == 3)
-                {
-                    tagModel = tags[1]; //id3v2 mode tag
-                }
-
-                tagModel->setValue(Qmmp::ALBUM, album());
-                tagModel->setValue(Qmmp::ARTIST, artist());
-                tagModel->setValue(Qmmp::TITLE, title());
-                tagModel->setValue(Qmmp::YEAR, year());
-                tagModel->setValue(Qmmp::GENRE, genre());
-                tagModel->setValue(Qmmp::TRACK, trackNum());
-                tagModel->save();
-            }
-
-            const QPixmap &pix = cover();
-            if(!pix.isNull())
-            {
-                model->setCover(pix);
-            }
-            else
-            {
-                model->removeCover();
-            }
-        }
-
-        delete model;
-        return true;
+        return false;
     }
 
-    return false;
+    MetaDataModel *model = factory->createMetaDataModel(m_path, false);
+    if(model)
+    {
+        const QList<TagModel* > &tags = model->tags();
+        if(!tags.isEmpty())
+        {
+            TagModel *tagModel = tags.front();
+            if(tags.count() == 3)
+            {
+                tagModel = tags[1]; //id3v2 mode tag
+            }
+
+            tagModel->setValue(Qmmp::ALBUM, album());
+            tagModel->setValue(Qmmp::ARTIST, artist());
+            tagModel->setValue(Qmmp::TITLE, title());
+            tagModel->setValue(Qmmp::YEAR, year());
+            tagModel->setValue(Qmmp::GENRE, genre());
+            tagModel->setValue(Qmmp::TRACK, trackNum());
+            tagModel->save();
+        }
+
+        const QPixmap &pix = cover();
+        if(!pix.isNull())
+        {
+            model->setCover(pix);
+        }
+        else
+        {
+            model->removeCover();
+        }
+    }
+
+    delete model;
+    return true;
 }
