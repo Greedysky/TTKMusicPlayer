@@ -42,6 +42,7 @@ public:
     virtual QPixmap cover() const override final;
     virtual void setCover(const QPixmap &pix) override final;
     virtual void removeCover() override final;
+    virtual QString lyrics() const override final;
 
 private:
     QString m_path;

@@ -100,6 +100,22 @@ void OpusMetaDataModel::removeCover()
     }
 }
 
+QString OpusMetaDataModel::lyrics() const
+{
+    TagLib::Ogg::XiphComment *tag = m_file->tag();
+    if(tag && !tag->isEmpty())
+    {
+        const TagLib::Ogg::FieldListMap &items = tag->fieldListMap();
+
+        if(!items["UNSYNCEDLYRICS"].isEmpty())
+            return TStringToQString(items["UNSYNCEDLYRICS"].front());
+        else if(!items["LYRICS"].isEmpty())
+            return TStringToQString(items["LYRICS"].front());
+    }
+    return QString();
+}
+
+
 VorbisCommentModel::VorbisCommentModel(TagLib::Ogg::Opus::File *file)
     : TagModel(TagModel::Save),
       m_file(file),

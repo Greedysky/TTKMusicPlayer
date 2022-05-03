@@ -99,7 +99,7 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
 
     if((parts & TrackInfo::ReplayGainInfo) && tag && !tag->isEmpty())
     {
-        TagLib::Ogg::FieldListMap items = tag->fieldListMap();
+        const TagLib::Ogg::FieldListMap &items = tag->fieldListMap();
         if(items.contains("REPLAYGAIN_TRACK_GAIN"))
             info->setValue(Qmmp::REPLAYGAIN_TRACK_GAIN,TStringToQString(items["REPLAYGAIN_TRACK_GAIN"].front()));
         if(items.contains("REPLAYGAIN_TRACK_PEAK"))

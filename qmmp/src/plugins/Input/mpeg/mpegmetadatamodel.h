@@ -68,6 +68,7 @@ public:
     virtual void create() override final;
     virtual void remove() override final;
     virtual void save() override final;
+
     QString lyrics() const;
 
 private:

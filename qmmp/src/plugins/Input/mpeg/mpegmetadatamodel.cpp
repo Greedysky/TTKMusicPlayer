@@ -142,6 +142,7 @@ QString MPEGMetaDataModel::lyrics() const
     return QString();
 }
 
+
 MpegFileTagModel::MpegFileTagModel(TagLib::MPEG::File *file, TagLib::MPEG::File::TagTypes type)
     : TagModel(),
       m_file(file),
@@ -403,13 +404,13 @@ QString MpegFileTagModel::lyrics() const
     if(m_tag && m_type == TagLib::MPEG::File::ID3v2)
     {
         TagLib::ID3v2::Tag *id3v2_tag = static_cast<TagLib::ID3v2::Tag *>(m_tag);
-        const TagLib::ID3v2::FrameListMap& map = id3v2_tag->frameListMap();
+        const TagLib::ID3v2::FrameListMap& items = id3v2_tag->frameListMap();
 
         const bool utf = m_codec->name().contains("UTF");
-        if(!map["USLT"].isEmpty())
-            return m_codec->toUnicode(map["USLT"].front()->toString().toCString(utf));
-        else if(!map["SYLT"].isEmpty())
-            return m_codec->toUnicode(map["SYLT"].front()->toString().toCString(utf));
+        if(!items["USLT"].isEmpty())
+            return m_codec->toUnicode(items["USLT"].front()->toString().toCString(utf));
+        else if(!items["SYLT"].isEmpty())
+            return m_codec->toUnicode(items["SYLT"].front()->toString().toCString(utf));
     }
     return QString();
 }

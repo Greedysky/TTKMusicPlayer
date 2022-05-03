@@ -49,7 +49,7 @@ QList<TrackInfo*> DecoderVorbisFactory::createPlayList(const QString &path, Trac
         info->setValue(Qmmp::YEAR, tag->year());
         info->setValue(Qmmp::TRACK, tag->track());
 
-        TagLib::Ogg::FieldListMap items = tag->fieldListMap();
+        const TagLib::Ogg::FieldListMap &items = tag->fieldListMap();
         if(!items["ALBUMARTIST"].isEmpty())
             info->setValue(Qmmp::ALBUMARTIST, TStringToQString(items["ALBUMARTIST"].toString()));
          if(!items["COMPOSER"].isEmpty())
@@ -72,7 +72,7 @@ QList<TrackInfo*> DecoderVorbisFactory::createPlayList(const QString &path, Trac
     if((parts & TrackInfo::ReplayGainInfo) && fileRef.tag() && !fileRef.tag()->isEmpty())
     {
         TagLib::Ogg::XiphComment *tag = fileRef.tag();
-        TagLib::Ogg::FieldListMap items = tag->fieldListMap();
+        const TagLib::Ogg::FieldListMap &items = tag->fieldListMap();
         if(items.contains("REPLAYGAIN_TRACK_GAIN"))
             info->setValue(Qmmp::REPLAYGAIN_TRACK_GAIN, TStringToQString(items["REPLAYGAIN_TRACK_GAIN"].front()));
         if(items.contains("REPLAYGAIN_TRACK_PEAK"))
