@@ -14,7 +14,6 @@ static float* alignFrame(int channels, float* begin, float* sample, bool end)
     {
         offset += channels;
     }
-
     return begin + (offset - offset % channels);
 }
 

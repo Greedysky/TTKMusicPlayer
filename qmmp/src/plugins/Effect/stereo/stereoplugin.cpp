@@ -26,8 +26,9 @@ void StereoPlugin::applyEffect(Buffer *b)
     }
 
     m_mutex.lock();
-    float *data = b->data;
     double average = 0, ldiff = 0, rdiff = 0, offset = 0;
+
+    float *data = b->data;
     for(size_t i = 0; i < b->samples; i += 2)
     {
         average = (data[i] + data[i + 1]) / 2;
