@@ -82,8 +82,8 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
     if(file.open(QFile::ReadOnly))
     {
        m_datas = QString(file.readAll()).split(MusicUtils::String::lineWrap());
+       file.close();
     }
-    file.close();
 }
 
 MusicEMOJILabelWidget::~MusicEMOJILabelWidget()

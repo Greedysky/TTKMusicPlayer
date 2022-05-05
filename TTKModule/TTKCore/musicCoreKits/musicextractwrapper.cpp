@@ -27,11 +27,11 @@ bool MusicExtractWrapper::outputThunderSkin(QPixmap &image, const QString &input
 
     for(ZPOS64_T i = 0; i < gInfo.number_entry; ++i)
     {
-        char file[WIN_NAME_MAX_LENGTH] = {0};
+        char name[WIN_NAME_MAX_LENGTH] = {0};
         char ext[WIN_NAME_MAX_LENGTH] = {0};
         char com[MH_KB] = {0};
 
-        if(unzGetCurrentFileInfo64(zFile, &fileInfo, file, sizeof(file), ext, WIN_NAME_MAX_LENGTH, com, MH_KB) != UNZ_OK)
+        if(unzGetCurrentFileInfo64(zFile, &fileInfo, name, sizeof(name), ext, WIN_NAME_MAX_LENGTH, com, MH_KB) != UNZ_OK)
         {
             break;
         }
@@ -45,7 +45,7 @@ bool MusicExtractWrapper::outputThunderSkin(QPixmap &image, const QString &input
         int size = 0;
 
         QByteArray arrayData;
-        if(QString(file).toLower().contains("image/bkg"))
+        if(QString(name).toLower().contains("image/bkg"))
         {
             while(true)
             {
@@ -66,8 +66,8 @@ bool MusicExtractWrapper::outputThunderSkin(QPixmap &image, const QString &input
             return false;
         }
     }
-    unzClose(zFile);
 
+    unzClose(zFile);
     return true;
 }
 
@@ -93,18 +93,18 @@ bool MusicExtractWrapper::outputBinary(const QString &input, const QString &outp
 
     for(ZPOS64_T i = 0; i < gInfo.number_entry; ++i)
     {
-        char file[WIN_NAME_MAX_LENGTH] = {0};
+        char name[WIN_NAME_MAX_LENGTH] = {0};
         char ext[WIN_NAME_MAX_LENGTH] = {0};
         char com[MH_KB] = {0};
 
-        if(unzGetCurrentFileInfo64(zFile, &fileInfo, file, sizeof(file), ext, WIN_NAME_MAX_LENGTH, com, MH_KB) != UNZ_OK)
+        if(unzGetCurrentFileInfo64(zFile, &fileInfo, name, sizeof(name), ext, WIN_NAME_MAX_LENGTH, com, MH_KB) != UNZ_OK)
         {
             break;
         }
 
-        if(QString(file).contains(TTK_SEPARATOR))
+        if(QString(name).contains(TTK_SEPARATOR))
         {
-            dir.mkpath(QFileInfo(file).path());
+            dir.mkpath(QFileInfo(name).path());
         }
 
         if(unzOpenCurrentFile(zFile) != UNZ_OK)
@@ -115,8 +115,12 @@ bool MusicExtractWrapper::outputBinary(const QString &input, const QString &outp
         char dt[MH_KB] = {0};
         int size = 0;
 
-        QFile outputFile(output + file);
-        outputFile.open(QFile::WriteOnly);
+        QFile file(output + name);
+        if(!file.open(QFile::WriteOnly))
+        {
+            continue;
+        }
+
         while(true)
         {
             size= unzReadCurrentFile(zFile, dt, sizeof(dt));
@@ -124,11 +128,11 @@ bool MusicExtractWrapper::outputBinary(const QString &input, const QString &outp
             {
                 break;
             }
-            outputFile.write(dt, size);
+            file.write(dt, size);
         }
 
-        outputFile.close();
-        path << outputFile.fileName();
+        file.close();
+        path << file.fileName();
         unzCloseCurrentFile(zFile);
 
         if(i < gInfo.number_entry - 1 && unzGoToNextFile(zFile) != UNZ_OK)
@@ -136,8 +140,8 @@ bool MusicExtractWrapper::outputBinary(const QString &input, const QString &outp
             return false;
         }
     }
-    unzClose(zFile);
 
+    unzClose(zFile);
     return true;
 }
 
@@ -159,11 +163,11 @@ bool MusicExtractWrapper::outputSkin(MusicBackgroundImage *image, const QString 
 
     for(ZPOS64_T i = 0; i < gInfo.number_entry; ++i)
     {
-        char file[WIN_NAME_MAX_LENGTH] = {0};
+        char name[WIN_NAME_MAX_LENGTH] = {0};
         char ext[WIN_NAME_MAX_LENGTH] = {0};
         char com[MH_KB] = {0};
 
-        if(unzGetCurrentFileInfo64(zFile, &fileInfo, file, sizeof(file), ext, WIN_NAME_MAX_LENGTH, com, MH_KB) != UNZ_OK)
+        if(unzGetCurrentFileInfo64(zFile, &fileInfo, name, sizeof(name), ext, WIN_NAME_MAX_LENGTH, com, MH_KB) != UNZ_OK)
         {
             break;
         }
@@ -177,7 +181,7 @@ bool MusicExtractWrapper::outputSkin(MusicBackgroundImage *image, const QString 
         int size = 0;
 
         QByteArray arrayData;
-        if(QString(file).toLower().contains(SKN_FILE))
+        if(QString(name).toLower().contains(SKN_FILE))
         {
             while(true)
             {
@@ -193,7 +197,7 @@ bool MusicExtractWrapper::outputSkin(MusicBackgroundImage *image, const QString 
             pix.loadFromData(arrayData);
             image->m_pix = pix;
         }
-        else if(QString(file).toLower().contains(XML_FILE))
+        else if(QString(name).toLower().contains(XML_FILE))
         {
             while(true)
             {
@@ -221,8 +225,8 @@ bool MusicExtractWrapper::outputSkin(MusicBackgroundImage *image, const QString 
             return false;
         }
     }
-    unzClose(zFile);
 
+    unzClose(zFile);
     return true;
 }
 
@@ -255,7 +259,6 @@ bool MusicExtractWrapper::inputSkin(MusicBackgroundImage *image, const QString &
     QFile::remove(MUSIC_IMAGE_FILE);
 
     zipClose(zFile, nullptr);
-
     return true;
 }
 
@@ -277,11 +280,11 @@ bool MusicExtractWrapper::outputData(QByteArray &data, const QString &input)
 
     for(ZPOS64_T i = 0; i < gInfo.number_entry; ++i)
     {
-        char file[WIN_NAME_MAX_LENGTH] = {0};
+        char name[WIN_NAME_MAX_LENGTH] = {0};
         char ext[WIN_NAME_MAX_LENGTH] = {0};
         char com[MH_KB] = {0};
 
-        if(unzGetCurrentFileInfo64(zFile, &fileInfo, file, sizeof(file), ext, WIN_NAME_MAX_LENGTH, com, MH_KB) != UNZ_OK)
+        if(unzGetCurrentFileInfo64(zFile, &fileInfo, name, sizeof(name), ext, WIN_NAME_MAX_LENGTH, com, MH_KB) != UNZ_OK)
         {
             break;
         }
@@ -311,8 +314,8 @@ bool MusicExtractWrapper::outputData(QByteArray &data, const QString &input)
             return false;
         }
     }
-    unzClose(zFile);
 
+    unzClose(zFile);
     return true;
 }
 
@@ -339,8 +342,6 @@ bool MusicExtractWrapper::inputData(const QByteArray &data, const QString &outpu
     zipOpenNewFileInZip(zFile, qPrintable(nPrefix), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
     zipWriteInFileInZip(zFile, data.constData(), data.length());
     zipCloseFileInZip(zFile);
-
     zipClose(zFile, nullptr);
-
     return true;
 }

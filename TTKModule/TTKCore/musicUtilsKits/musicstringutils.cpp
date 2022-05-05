@@ -20,16 +20,15 @@ static QString makeFilePrefix(MusicSettingManager::ConfigType type, const QStrin
     {
         QDir().mkpath(dir);
     }
-
     return dir;
 }
 
-QString MusicUtils::String::lrcPrefix()
+QString MusicUtils::String::lrcDirPrefix()
 {
     return makeFilePrefix(MusicSettingManager::DownloadLrcDirPath, LRC_DIR_FULL);
 }
 
-QString MusicUtils::String::musicPrefix()
+QString MusicUtils::String::musicDirPrefix()
 {
     return makeFilePrefix(MusicSettingManager::DownloadMusicDirPath, MUSIC_DIR_FULL);
 }

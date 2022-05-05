@@ -30,8 +30,8 @@ MusicAudioRecorderModule::MusicAudioRecorderModule(QObject *parent)
     m_audioInputFile = nullptr;
     m_audioOutputFile = nullptr;
 
-    m_outputFile = new QFile(this);
-    m_outputFile->setFileName(MUSIC_RECORD_FILE);
+    m_file = new QFile(this);
+    m_file->setFileName(MUSIC_RECORD_FILE);
     m_formatFile.setChannelCount(1);
     m_formatFile.setSampleSize(16);
     m_formatFile.setSampleRate(8000);
@@ -64,7 +64,7 @@ MusicAudioRecorderModule::~MusicAudioRecorderModule()
     QFile::remove(MUSIC_RECORD_FILE);
     QFile::remove(MUSIC_RECORD_DATA_FILE);
 
-    delete m_outputFile;
+    delete m_file;
     delete m_audioInputFile;
     delete m_audioOutputFile;
 }
@@ -104,7 +104,7 @@ int MusicAudioRecorderModule::addWavHeader(const char *fileName) const
 
     FILE *input = nullptr;
     FILE *output = nullptr;
-    if((input = fopen(qPrintable(m_outputFile->fileName()), "rb")) == nullptr)
+    if((input = fopen(qPrintable(m_file->fileName()), "rb")) == nullptr)
     {
         return OPEN_FILE_ERROR;
     }
@@ -168,12 +168,12 @@ int MusicAudioRecorderModule::volume() const
 
 void MusicAudioRecorderModule::setFileName(const QString &name)
 {
-    m_outputFile->setFileName(name);
+    m_file->setFileName(name);
 }
 
 QString MusicAudioRecorderModule::fileName() const
 {
-    return m_outputFile->fileName();
+    return m_file->fileName();
 }
 
 bool MusicAudioRecorderModule::error() const
@@ -188,9 +188,9 @@ bool MusicAudioRecorderModule::error() const
 
 void MusicAudioRecorderModule::onRecordStart()
 {
-    if(!m_outputFile->isOpen())
+    if(!m_file->isOpen())
     {
-        m_outputFile->open(QIODevice::WriteOnly | QIODevice::Truncate);
+        m_file->open(QIODevice::WriteOnly | QIODevice::Truncate);
         m_audioInputFile = new QAudioInput(m_formatFile, this);
     }
 
@@ -202,7 +202,7 @@ void MusicAudioRecorderModule::onRecordStart()
 #if TTK_QT_VERSION_CHECK(5,0,0)
     m_audioInputFile->setVolume(m_inputVolume);
 #endif
-    m_audioInputFile->start(m_outputFile);
+    m_audioInputFile->start(m_file);
 }
 
 void MusicAudioRecorderModule::onRecordStop()
@@ -221,5 +221,5 @@ void MusicAudioRecorderModule::onRecordStop()
         m_audioOutputFile = nullptr;
     }
 
-    m_outputFile->close();
+    m_file->close();
 }

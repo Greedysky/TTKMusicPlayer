@@ -45,8 +45,8 @@ bool MusicSongMeta::read(const QString &url)
         }
     }
 
-    const QFile f(path);
-    if(!f.exists() || f.size() <= 0)
+    const QFile file(path);
+    if(!file.exists() || file.size() <= 0)
     {
         return false;
     }

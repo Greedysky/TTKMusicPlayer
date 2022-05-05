@@ -65,7 +65,7 @@ void MusicDownloadStatusModule::checkLrcValid()
 
        const QString &fileName = m_parentClass->currentFileName();
        ///Check if the file exists
-       if(QFile::exists(MusicUtils::String::lrcPrefix() + fileName + LRC_FILE))
+       if(QFile::exists(MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE))
        {
            return;
        }
@@ -106,7 +106,7 @@ void MusicDownloadStatusModule::currentLrcDataDownload()
         }
 
         ///download lrc
-        G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, MusicUtils::String::lrcPrefix() + fileName + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
         ///download art picture
         G_DOWNLOAD_QUERY_PTR->makeSmallPictureRequest(info.m_coverUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
         ///download big picture

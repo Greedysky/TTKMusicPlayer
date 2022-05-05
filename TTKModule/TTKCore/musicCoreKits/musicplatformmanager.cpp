@@ -212,11 +212,11 @@ MusicPlatformManager::SystemType MusicPlatformManager::systemName() const
     }
     FreeLibrary(instance);
 #elif defined Q_OS_LINUX
-    QFile lsb("/etc/lsb-release");
-    if(lsb.open(QFile::ReadOnly))
+    QFile file("/etc/lsb-release");
+    if(file.open(QFile::ReadOnly))
     {
         QRegExp regx("DISTRIB_ID=(\\w+)");
-        if(QString(lsb.readAll()).indexOf(regx) != -1)
+        if(QString(file.readAll()).indexOf(regx) != -1)
         {
             const QString &system = regx.cap(1).toLower();
             if(system == "ubuntu")
@@ -236,6 +236,7 @@ MusicPlatformManager::SystemType MusicPlatformManager::systemName() const
                 return SystemLinuxCentOS;
             }
         }
+        file.close();
     }
     return SystemLinux;
 #else

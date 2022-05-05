@@ -31,11 +31,11 @@ namespace MusicUtils
         /*!
          * Get lrc dir prefix path.
          */
-        TTK_MODULE_EXPORT QString lrcPrefix();
+        TTK_MODULE_EXPORT QString lrcDirPrefix();
         /*!
          * Get music dir prefix path.
          */
-        TTK_MODULE_EXPORT QString musicPrefix();
+        TTK_MODULE_EXPORT QString musicDirPrefix();
 
         /*!
          * Get string prefix path.

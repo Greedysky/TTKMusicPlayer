@@ -66,6 +66,7 @@ void MusicIdentifySongsRequest::startToDownload(const QString &path)
     body.append(value.toUtf8());
     body.append(file.readAll());
     body.append(end.toUtf8());
+    file.close();
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QUERY_URL, false));

@@ -182,7 +182,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     m_ui->volumeSlider->setValue(0);
     m_ui->volumeSlider->setValue(v);
 
-    QString name = MusicUtils::String::lrcPrefix() + info.m_singerName + " - " + info.m_songName + LRC_FILE;
+    QString name = MusicUtils::String::lrcDirPrefix() + info.m_singerName + " - " + info.m_songName + LRC_FILE;
     if(!QFile::exists(name))
     {
         MusicFMRadioDownLoadTextRequest* lrcDownload = new MusicFMRadioDownLoadTextRequest(info.m_lrcUrl, name, MusicObject::DownloadLrc, this);
@@ -240,7 +240,7 @@ void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
 
     const QString &name = (info.m_singerName + " - " + info.m_songName).trimmed();
     m_ui->titleWidget->setText(name);
-    m_analysis->readFromLrcFile(MusicUtils::String::lrcPrefix() + name + LRC_FILE);
+    m_analysis->readFromLrcFile(MusicUtils::String::lrcDirPrefix() + name + LRC_FILE);
 }
 
 void MusicWebFMRadioPlayWidget::picDownloadStateChanged()

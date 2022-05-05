@@ -268,7 +268,7 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
     const MusicCloudDataItem &data = it->data(MUSIC_DATA_ROLE).value<MusicCloudDataItem>();
     const QString &url = m_syncDownloadData->downloadUrl(MUSIC_BUCKET, data.m_dataItem.m_name);
 
-    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, MusicUtils::String::musicPrefix() + data.m_dataItem.m_name, MusicObject::DownloadMusic, this);
+    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, MusicUtils::String::musicDirPrefix() + data.m_dataItem.m_name, MusicObject::DownloadMusic, this);
     download->setRecordType(MusicObject::RecordCloudDownload);
     download->startToDownload();
 }

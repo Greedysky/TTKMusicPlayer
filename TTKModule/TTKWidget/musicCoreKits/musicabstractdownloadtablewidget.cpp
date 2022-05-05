@@ -117,7 +117,7 @@ void MusicAbstractDownloadTableWidget::createDownloadItem(const QString &name, q
 {
     setRowCount(rowCount() + 1);
     QString musicName = name;
-    musicName.remove(MusicUtils::String::musicPrefix()).chop(4);
+    musicName.remove(MusicUtils::String::musicDirPrefix()).chop(4);
 
     MusicSong record;
     record.setName(musicName);

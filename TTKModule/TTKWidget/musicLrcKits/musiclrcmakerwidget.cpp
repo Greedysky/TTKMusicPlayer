@@ -187,7 +187,7 @@ MusicLrcMakerWidget::~MusicLrcMakerWidget()
 void MusicLrcMakerWidget::setCurrentSongName(const QString &name)
 {
     m_plainText.clear();
-    m_analysis->setCurrentFilePath(QString("%1%2%3").arg(MusicUtils::String::lrcPrefix(), name, LRC_FILE));
+    m_analysis->setCurrentFilePath(QString("%1%2%3").arg(MusicUtils::String::lrcDirPrefix(), name, LRC_FILE));
     m_ui->songNameEdit->setText(MusicUtils::String::songName(name));
     m_ui->artNameEdit->setText(MusicUtils::String::artistName(name));
 }

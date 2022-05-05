@@ -77,7 +77,7 @@ public:
 
 protected:
     int m_inputVolume;
-    QFile *m_outputFile;
+    QFile *m_file;
     QAudioFormat m_formatFile;
     QAudioInput *m_audioInputFile;
     QAudioOutput *m_audioOutputFile;

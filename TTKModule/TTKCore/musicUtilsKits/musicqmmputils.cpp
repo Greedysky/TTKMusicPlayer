@@ -48,7 +48,6 @@ void MusicUtils::TTKQmmp::updateConfig()
             file.write(data);
         }
     }
-    file.close();
 }
 
 void MusicUtils::TTKQmmp::enabledEffectPlugin(bool enable, const QString &name)

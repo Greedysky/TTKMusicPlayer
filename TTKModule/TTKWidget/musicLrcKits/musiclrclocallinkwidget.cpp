@@ -120,7 +120,7 @@ void MusicLrcLocalLinkWidget::searchInLocalLrc()
     }
 
     m_ui->fuzzyButton->isChecked();
-    const QStringList &list = QDir(MusicUtils::String::lrcPrefix()).entryList(QDir::Files |  QDir::Hidden | QDir::NoDotAndDotDot);
+    const QStringList &list = QDir(MusicUtils::String::lrcDirPrefix()).entryList(QDir::Files |  QDir::Hidden | QDir::NoDotAndDotDot);
 
     MusicLocalDataItemList items;
     for(const QString &var : list)
@@ -129,7 +129,7 @@ void MusicLrcLocalLinkWidget::searchInLocalLrc()
         {
             MusicLocalDataItem item;
             item.m_name = var;
-            item.m_path = MusicUtils::String::lrcPrefix() + var;
+            item.m_path = MusicUtils::String::lrcDirPrefix() + var;
             items << item;
         }
     }
@@ -183,7 +183,6 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
     if(!fileIn.open(QIODevice::ReadOnly))
     {
         TTK_LOGGER_ERROR("Lrc Input File Error");
-        fileIn.close();
         close();
         return;
     }
@@ -191,11 +190,10 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
     const QByteArray data(fileIn.readAll());
     fileIn.close();
 
-    QFile fileOut(QString("%1%2%3").arg(MusicUtils::String::lrcPrefix(), m_currentName, LRC_FILE));
+    QFile fileOut(QString("%1%2%3").arg(MusicUtils::String::lrcDirPrefix(), m_currentName, LRC_FILE));
     if(!fileOut.open(QIODevice::WriteOnly))
     {
         TTK_LOGGER_ERROR("Lrc Output File Error");
-        fileOut.close();
         close();
         return;
     }

@@ -360,7 +360,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
 
     if(!m_songInfo.m_singerName.isEmpty())
     {
-        const QString &name = MusicUtils::String::lrcPrefix() + m_songInfo.m_singerName + " - " + m_songInfo.m_songName + LRC_FILE;
+        const QString &name = MusicUtils::String::lrcDirPrefix() + m_songInfo.m_singerName + " - " + m_songInfo.m_songName + LRC_FILE;
         if(!QFile::exists(name))
         {
             MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_songInfo.m_lrcUrl, name, MusicObject::DownloadLrc, this);

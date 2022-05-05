@@ -141,6 +141,16 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
         const QString &path = meta.fileBasePath();
         songs << MusicSong(path, meta.duration(), name, MusicFormats::songTrackValid(path));
     }
+
+    if(!(songs.isEmpty() || meta.lyrics().isEmpty()))
+    {
+        QFile file(MusicUtils::String::lrcDirPrefix() + songs.back().name() + LRC_FILE);
+        if(file.open(QFile::WriteOnly))
+        {
+            file.write(meta.lyrics().toUtf8());
+            file.close();
+        }
+    }
     return songs;
 }
 
