@@ -131,7 +131,7 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
         meta.setSongMetaIndex(i);
 
         QString name;
-        if(G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool())
+        if(G_SETTING_PTR->value(MusicSettingManager::OtherReadFileInfo).toBool())
         {
             const QString &title = meta.title();
             const QString &artist = meta.artist();

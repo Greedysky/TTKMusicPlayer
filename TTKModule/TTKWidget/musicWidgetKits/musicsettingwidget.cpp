@@ -198,8 +198,8 @@ void MusicSettingWidget::initialize()
 
     //
     m_ui->otherCheckUpdateBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateEnable).toBool());
-    m_ui->otherUseAlbumCoverCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool());
-    m_ui->otherUseInfoCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool());
+    m_ui->otherReadAlbumCoverCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherReadAlbumCover).toBool());
+    m_ui->otherReadInfoCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherReadFileInfo).toBool());
     m_ui->otherWriteAlbumCoverCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool());
     m_ui->otherWriteInfoCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherWriteFileInfo).toBool());
     m_ui->otherSideByCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherSideByMode).toBool());
@@ -578,8 +578,8 @@ void MusicSettingWidget::saveParameterSettings()
 
 
     G_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateEnable, m_ui->otherCheckUpdateBox->isChecked());
-    G_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCover, m_ui->otherUseAlbumCoverCheckBox->isChecked());
-    G_SETTING_PTR->setValue(MusicSettingManager::OtherUseFileInfo, m_ui->otherUseInfoCheckBox->isChecked());
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherReadAlbumCover, m_ui->otherReadAlbumCoverCheckBox->isChecked());
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherReadFileInfo, m_ui->otherReadInfoCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherWriteAlbumCover, m_ui->otherWriteAlbumCoverCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherWriteFileInfo, m_ui->otherWriteInfoCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByMode, m_ui->otherSideByCheckBox->isChecked());
@@ -803,8 +803,8 @@ void MusicSettingWidget::initSpectrumSettingWidget()
 void MusicSettingWidget::initOtherSettingWidget()
 {
     m_ui->otherCheckUpdateBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
-    m_ui->otherUseAlbumCoverCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
-    m_ui->otherUseInfoCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->otherReadAlbumCoverCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->otherReadInfoCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->otherWriteAlbumCoverCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->otherWriteInfoCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->otherSideByCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
@@ -816,8 +816,8 @@ void MusicSettingWidget::initOtherSettingWidget()
     connect(m_ui->otherPluginManagerButton, SIGNAL(clicked()), SLOT(otherPluginManagerChanged()));
 #ifdef Q_OS_UNIX
     m_ui->otherCheckUpdateBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherUseAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherUseInfoCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherReadAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherReadInfoCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherWriteAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherWriteInfoCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);

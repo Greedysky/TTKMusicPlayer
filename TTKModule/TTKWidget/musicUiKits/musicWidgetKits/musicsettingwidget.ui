@@ -1205,7 +1205,7 @@ font-weight:bold;</string>
       <string>开启左右靠边停靠模式</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherUseAlbumCoverCheckBox">
+    <widget class="QCheckBox" name="otherReadAlbumCoverCheckBox">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -1218,7 +1218,7 @@ font-weight:bold;</string>
       <string>从文件中读取专辑封面</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherUseInfoCheckBox">
+    <widget class="QCheckBox" name="otherReadInfoCheckBox">
      <property name="geometry">
       <rect>
        <x>25</x>

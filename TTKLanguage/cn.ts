@@ -134,8 +134,8 @@
 <context>
     <name>EffectSubwooferFactory</name>
     <message>
-        <source>Subwoofer Simulator Plugin</source>
-        <translation>超低音扬声器模拟器插件(subwoofer)</translation>
+        <source>Subwoofer Plugin</source>
+        <translation>超低音扬声器插件(subwoofer)</translation>
     </message>
 </context>
 <context>
@@ -8595,8 +8595,12 @@ too high may cause clipping!</source>
         <translation>比率:</translation>
     </message>
     <message>
-        <source>Subwoofer Simulator Plugin Settings</source>
-        <translation>超低音扬声器模拟器插件设置</translation>
+        <source>Subwoofer Plugin Settings</source>
+        <translation>超低音扬声器插件设置</translation>
+    </message>
+    <message>
+        <source>Level:</source>
+        <translation>级别:</translation>
     </message>
     <message>
         <source>Cutoff:</source>

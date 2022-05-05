@@ -61,8 +61,8 @@ public:
         BackgroundTransparentEnable,     /*!< Background Transparent Enable Parameter*/
         //
         OtherCheckUpdateEnable,          /*!< Other Check Update Parameter*/
-        OtherUseAlbumCover,              /*!< Other Use File Album Parameter*/
-        OtherUseFileInfo,                /*!< Other Use File Info Parameter*/
+        OtherReadAlbumCover,             /*!< Other Read File Album Parameter*/
+        OtherReadFileInfo,               /*!< Other Read File Info Parameter*/
         OtherWriteAlbumCover,            /*!< Other Write File Album Parameter*/
         OtherWriteFileInfo,              /*!< Other Write File Info Parameter*/
         OtherSideByMode,                 /*!< Other App Side By Mode Parameter*/

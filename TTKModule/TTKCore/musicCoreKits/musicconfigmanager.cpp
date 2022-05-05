@@ -47,8 +47,8 @@ void MusicConfigManager::readBuffer() const
     G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, readXmlAttributeByTagNameValue("lastFileDialogPath"));
 
     G_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateEnable, readXmlAttributeByTagNameValue("otherCheckUpdateEnable").toInt());
-    G_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCover, readXmlAttributeByTagNameValue("otherUseAlbumCover").toInt());
-    G_SETTING_PTR->setValue(MusicSettingManager::OtherUseFileInfo, readXmlAttributeByTagNameValue("otherUseFileInfo").toInt());
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherReadAlbumCover, readXmlAttributeByTagNameValue("otherUseAlbumCover").toInt());
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherReadFileInfo, readXmlAttributeByTagNameValue("otherUseFileInfo").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherWriteAlbumCover, readXmlAttributeByTagNameValue("otherWriteAlbumCover").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherWriteFileInfo, readXmlAttributeByTagNameValue("otherWriteFileInfo").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByMode, readXmlAttributeByTagNameValue("otherSideByMode").toInt());
@@ -147,8 +147,8 @@ void MusicConfigManager::writeBuffer()
     const QString lastFileDialogPath = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();
     //
     const int otherCheckUpdateEnable = G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateEnable).toInt();
-    const int otherUseAlbumCover = G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toInt();
-    const int otherUseFileInfo = G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toInt();
+    const int otherReadAlbumCover = G_SETTING_PTR->value(MusicSettingManager::OtherReadAlbumCover).toInt();
+    const int otherReadFileInfo = G_SETTING_PTR->value(MusicSettingManager::OtherReadFileInfo).toInt();
     const int otherWriteAlbumCover = G_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toInt();
     const int otherWriteFileInfo = G_SETTING_PTR->value(MusicSettingManager::OtherWriteFileInfo).toInt();
     const int otherSideByMode = G_SETTING_PTR->value(MusicSettingManager::OtherSideByMode).toInt();
@@ -261,8 +261,8 @@ void MusicConfigManager::writeBuffer()
     writeDomElement(plusSettingDom, "lastFileDialogPath", {"value", lastFileDialogPath});
     //
     writeDomElement(otherSettingDom, "otherCheckUpdateEnable", {"value", otherCheckUpdateEnable});
-    writeDomElement(otherSettingDom, "otherUseAlbumCover", {"value", otherUseAlbumCover});
-    writeDomElement(otherSettingDom, "otherUseFileInfo", {"value", otherUseFileInfo});
+    writeDomElement(otherSettingDom, "otherUseAlbumCover", {"value", otherReadAlbumCover});
+    writeDomElement(otherSettingDom, "otherUseFileInfo", {"value", otherReadFileInfo});
     writeDomElement(otherSettingDom, "otherWriteAlbumCover", {"value", otherWriteAlbumCover});
     writeDomElement(otherSettingDom, "otherWriteFileInfo", {"value", otherWriteFileInfo});
     writeDomElement(otherSettingDom, "otherSideByMode", {"value", otherSideByMode});
