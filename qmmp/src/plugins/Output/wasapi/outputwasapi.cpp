@@ -131,7 +131,7 @@ bool OutputWASAPI::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat fo
             mask |= m_wasapi_pos[i].chan_mask;
             out_map << m_wasapi_pos[i].pos;
         }
-        i++;
+        ++i;
     }
 
     wfex.dwChannelMask = mask;

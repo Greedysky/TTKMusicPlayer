@@ -22,6 +22,37 @@
 #include <QMutex>
 #include <qmmp/effect.h>
 
+#define STAGE_LENGTH  3
+
+struct BiquadZCoefs
+{
+    float a0;
+    float a1;
+    float a2;
+    float b0;
+    float b1;
+    float b2;
+};
+
+struct BiquadSCoefs
+{
+    float a;
+    float b;
+    float c;
+    float d;
+    float e;
+    float f;
+};
+
+struct BiquadBuffer
+{
+    float x1;
+    float x2;
+    float y1;
+    float y2;
+};
+
+
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -34,17 +65,18 @@ public:
     virtual void applyEffect(Buffer *b) override final;
     virtual void configure(quint32 freq, ChannelMap map) override final;
 
-    void setDelay(int delay);
-    void setFeedback(int feedback);
+    void setLevel(float level);
     void setCutOff(int value);
+    void reset();
 
     static SubwooferPlugin* instance();
 
 private:
     QMutex m_mutex;
-    int m_offset = 0;
-    int m_delay = 20, m_feedback = 60, m_cutoff = 100;
-    float *m_buffer = nullptr;
+    int m_level = 10;
+    int m_cutoff = 250;
+    BiquadZCoefs m_coefs[STAGE_LENGTH];
+    BiquadBuffer m_buffer[2][STAGE_LENGTH];
     static SubwooferPlugin *m_instance;
 
 };

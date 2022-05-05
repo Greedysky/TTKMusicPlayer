@@ -15,25 +15,21 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         button->setFocusPolicy(Qt::NoFocus);
     }
 #endif
-    m_ui.delaySlider->setRange(0, 100);
-    m_ui.feedSlider->setRange(0, 100);
-    m_ui.cutOffSlider->setRange(50, 1500);
+    m_ui.levelSlider->setRange(3, 30);
+    m_ui.cutOffSlider->setRange(50, 500);
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    m_delay = settings.value("Subwoofer/delay", 20).toUInt();
-    m_feedback = settings.value("Subwoofer/feedback", 60).toUInt();
-    m_cutoff = settings.value("Subwoofer/cutoff", 100).toUInt();
+    m_level = settings.value("Subwoofer/level", 10).toUInt();
+    m_cutoff = settings.value("Subwoofer/cutoff", 250).toUInt();
 
-    m_ui.delaySlider->setValue(m_delay);
-    m_ui.feedSlider->setValue(m_feedback);
+    m_ui.levelSlider->setValue(m_level);
     m_ui.cutOffSlider->setValue(m_cutoff);
 }
 
 void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.setValue("Subwoofer/delay", m_ui.delaySlider->value());
-    settings.setValue("Subwoofer/feedback", m_ui.feedSlider->value());
+    settings.setValue("Subwoofer/level", m_ui.levelSlider->value());
     settings.setValue("Subwoofer/cutoff", m_ui.cutOffSlider->value());
     QDialog::accept();
 }
@@ -42,28 +38,18 @@ void SettingsDialog::SettingsDialog::reject()
 {
     if(SubwooferPlugin::instance())
     {
-        SubwooferPlugin::instance()->setDelay(m_delay); // restore settings
-        SubwooferPlugin::instance()->setFeedback(m_feedback); // restore settings
+        SubwooferPlugin::instance()->setLevel(m_level); // restore settings
         SubwooferPlugin::instance()->setCutOff(m_cutoff); // restore settings
     }
     QDialog::reject();
 }
 
-void SettingsDialog::on_delaySlider_valueChanged(int value)
+void SettingsDialog::on_levelSlider_valueChanged(int value)
 {
-    m_ui.delayLabel->setText(tr("%1 ms").arg(value));
+    m_ui.levelLabel->setText(tr("%1").arg(value / 10.0f));
     if(SubwooferPlugin::instance())
     {
-        SubwooferPlugin::instance()->setDelay(value);
-    }
-}
-
-void SettingsDialog::on_feedSlider_valueChanged(int value)
-{
-    m_ui.feedLabel->setText(tr("%1 %").arg(value));
-    if(SubwooferPlugin::instance())
-    {
-        SubwooferPlugin::instance()->setFeedback(value);
+        SubwooferPlugin::instance()->setLevel(value);
     }
 }
 

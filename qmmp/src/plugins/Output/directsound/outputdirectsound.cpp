@@ -109,7 +109,7 @@ bool OutputDirectSound::initialize(quint32 freq, ChannelMap map, Qmmp::AudioForm
             mask |= m_dsound_pos[i].chan_mask;
             out_map << m_dsound_pos[i].pos;
         }
-        i++;
+        ++i;
     }
 
     wfex.dwChannelMask = mask;

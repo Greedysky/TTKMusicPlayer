@@ -5,7 +5,7 @@
 const EffectProperties EffectSubwooferFactory::properties() const
 {
     EffectProperties properties;
-    properties.name = tr("Subwoofer Simulator Plugin");
+    properties.name = tr("Subwoofer Plugin");
     properties.shortName = "subwoofer";
     properties.hasSettings = true;
     return properties;

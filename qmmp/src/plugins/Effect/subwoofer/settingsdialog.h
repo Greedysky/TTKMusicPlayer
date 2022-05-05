@@ -35,15 +35,13 @@ public slots:
     virtual void reject() override final;
 
 private slots:
-    void on_delaySlider_valueChanged(int value);
-    void on_feedSlider_valueChanged(int value);
+    void on_levelSlider_valueChanged(int value);
     void on_cutOffSlider_valueChanged(int value);
 
 private:
     Ui::SettingsDialog m_ui;
-    int m_delay = 0;
-    int m_feedback = 0;
-    int m_cutoff = 0;
+    int m_level = 10;
+    int m_cutoff = 250;
 
 };
 
