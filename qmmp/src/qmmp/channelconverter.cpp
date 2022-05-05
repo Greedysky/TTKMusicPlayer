@@ -36,8 +36,20 @@ void ChannelConverter::configure(quint32 srate, ChannelMap in_map)
         reorderStringList << QString("%1").arg(m_reorder_array[i]);
     }
 
-    qDebug("ChannelConverter: {%s} ==> {%s}; {%s}", qPrintable(in_map.toString()),
-           qPrintable(m_out_map.toString()), qPrintable(reorderStringList.join(",")));
+    //trying to use available channels for stereo output
+    if(m_out_map.count() == 2 && m_reorder_array[0] == -1 && m_reorder_array[1] == -1)
+    {
+        static const QList<Qmmp::ChannelPosition> leftChannels = {Qmmp::CHAN_FRONT_LEFT, Qmmp::CHAN_SIDE_LEFT, Qmmp::CHAN_REAR_LEFT};
+        //remapping is not necessary
+        if((m_disabled = (leftChannels.contains(in_map[0]) && leftChannels.contains(m_out_map[0]))))
+            return;
+
+        //swap channels
+        m_reorder_array[0] = 1;
+        m_reorder_array[1] = 0;
+    }
+
+    qDebug("ChannelConverter: {%s} ==> {%s}; {%s}", qPrintable(in_map.toString()), qPrintable(m_out_map.toString()), qPrintable(reorderStringList.join(",")));
 }
 
 void ChannelConverter::applyEffect(Buffer *b)
