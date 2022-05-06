@@ -39,7 +39,15 @@ bool DecoderOptimFROG::initialize()
             return false;
     }
 
-    configure(m_helper->sampleRate(), m_helper->channels(), format);
+    const int rate = m_helper->sampleRate();
+    const int channels = m_helper->channels();
+    if(rate == 0 || channels == 0)
+    {
+        qWarning("DecoderOptimFROG: rate or channel invalid");
+        return false;
+    }
+
+    configure(rate, channels, format);
     qDebug("DecoderOptimFROG: initialize success");
     return true;
 }

@@ -123,7 +123,7 @@ void ChannelMap::generateMap(int channels)
                 | Qmmp::CHAN_SIDE_RIGHT;
         break;
     default:
-        ;
+        break;
     }
 
     for(int i = 0; i < 9; ++i)

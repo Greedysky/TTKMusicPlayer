@@ -293,7 +293,7 @@ ChannelMap DecoderWavPack::findChannelMap(int channels)
             << Qmmp::CHAN_SIDE_RIGHT;
         break;
     default:
-        ;
+        break;
     }
     return map;
 }

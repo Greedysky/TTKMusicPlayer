@@ -45,9 +45,17 @@ bool DecoderOpenMPT::initialize()
         return false;
     }
 
+    const int rate = m_helper->sampleRate();
+    const int channels = m_helper->channels();
+    if(rate == 0 || channels == 0)
+    {
+        qWarning("DecoderOpenMPT: rate or channel invalid");
+        return false;
+    }
+
     readSettings();
 
-    configure(m_helper->sampleRate(), m_helper->channels(), Qmmp::PCM_FLOAT);
+    configure(rate, channels, Qmmp::PCM_FLOAT);
     qDebug("DecoderOpenMPT: initialize success");
     return true;
 }

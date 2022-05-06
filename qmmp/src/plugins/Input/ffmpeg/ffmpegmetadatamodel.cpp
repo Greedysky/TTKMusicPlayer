@@ -216,8 +216,9 @@ void ApeTagModel::setValue(Qmmp::MetaData key, const QString &value)
         break;
     case Qmmp::TRACK:
         tag->setTrack(value.toInt());
+        break;
     default:
-        ;
+        break;
     }
 }
 

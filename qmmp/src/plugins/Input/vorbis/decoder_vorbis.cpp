@@ -228,7 +228,7 @@ ChannelMap DecoderVorbis::findChannelMap(int channels)
             << Qmmp::CHAN_LFE;
         break;
     default:
-        ;
+        break;
     }
     return map;
 }

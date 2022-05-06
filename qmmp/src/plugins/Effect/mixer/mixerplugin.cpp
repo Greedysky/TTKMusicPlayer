@@ -178,7 +178,8 @@ void MixerPlugin::applyEffect(Buffer *b)
             }
             break;
         }
-        default: break;
+        default:
+            break;
     }
     m_mutex.unlock();
 }

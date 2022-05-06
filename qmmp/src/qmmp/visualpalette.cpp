@@ -175,16 +175,11 @@ uint32_t renderPalette(Palette palette, double level)
 {
     switch(palette)
     {
-    case PALETTE_SPECTRUM:
-        return spectrum(level);
-    case PALETTE_SPECTROGRAM:
-        return spectrogram(level);
-    case PALETTE_SOX:
-        return sox(level);
-    case PALETTE_MONO:
-        return mono(level);
-    default:
-        return 0;
+    case PALETTE_SPECTRUM: return spectrum(level);
+    case PALETTE_SPECTROGRAM: return spectrogram(level);
+    case PALETTE_SOX: return sox(level);
+    case PALETTE_MONO: return mono(level);
+    default: return 0;
     }
 }
 }

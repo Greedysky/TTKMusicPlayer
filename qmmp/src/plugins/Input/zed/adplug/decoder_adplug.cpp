@@ -20,10 +20,18 @@ bool DecoderAdplug::initialize()
         return false;
     }
 
-    m_length = m_helper->totalTime();
-    m_divisor = (m_helper->sampleRate() * m_helper->channels() * (m_helper->depth() / 8)) / 1000.0;
+    const int rate = m_helper->sampleRate();
+    const int channels = m_helper->channels();
+    if(rate == 0 || channels == 0)
+    {
+        qWarning("DecoderAdplug: rate or channel invalid");
+        return false;
+    }
 
-    configure(m_helper->sampleRate(), m_helper->channels(), Qmmp::PCM_S16LE);
+    m_length = m_helper->totalTime();
+    m_divisor = (rate * channels * (m_helper->depth() / 8)) / 1000.0;
+
+    configure(rate, channels, Qmmp::PCM_S16LE);
     qDebug("DecoderAdplug: initialize success");
     return true;
 }

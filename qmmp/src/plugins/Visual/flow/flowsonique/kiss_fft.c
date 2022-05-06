@@ -191,7 +191,7 @@ static void kf_bfly_generic(kiss_fft_cpx * fout, const size_t fstride, const kis
         }
 
         k=u;
-        for( q1=0 ; q1<p ; ++q1 ) {
+        for( q1=0; q1<p; ++q1 ) {
             int twidx=0;
             fout[ k ] = scratch[0];
             for(q=1;q<p;++q ) {

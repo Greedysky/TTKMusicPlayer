@@ -36,7 +36,7 @@ void Dithering::setFormats(Qmmp::AudioFormat in, Qmmp::AudioFormat out)
             m_required = true;
             break;
         default:
-            ;
+            break;
         }
     }
     (m_required && m_enabled) ? qDebug("Dithering: enabled") : qDebug("Dithering: disabled");

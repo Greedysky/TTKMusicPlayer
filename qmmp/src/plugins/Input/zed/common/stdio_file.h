@@ -37,7 +37,7 @@ FILE * stdio_open(const char *fname);
 void stdio_close(FILE *stream);
 size_t stdio_read(void *ptr, size_t size, size_t nmemb, FILE *stream);
 int stdio_seek(FILE *stream, int64_t offset, int whence);
-int64_t stdio_tell(FILE *stream) ;
+int64_t stdio_tell(FILE *stream);
 void stdio_rewind(FILE *stream);
 int64_t stdio_length(FILE *stream);
 int stdio_get_leading_size(FILE *stream);

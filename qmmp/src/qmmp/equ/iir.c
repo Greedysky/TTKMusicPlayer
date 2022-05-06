@@ -87,8 +87,8 @@ void eq_init_iir(unsigned int srate, int band_num)
  */
 __inline__ int round_trick(float floatvalue_to_round)
 {
-  float   floattmp ;
-  int     rounded_value ;
+  float   floattmp;
+  int     rounded_value;
 
   floattmp      = (int) 0x00FD8000L + (floatvalue_to_round);
   rounded_value = *(int*)(&floattmp) - (int)0x4B7D8000L;

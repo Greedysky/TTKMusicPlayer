@@ -85,7 +85,7 @@ void CrossfadePlugin::applyEffect(Buffer *b)
         }
         break;
     default:
-        ;
+        break;
     }
     return;
 }

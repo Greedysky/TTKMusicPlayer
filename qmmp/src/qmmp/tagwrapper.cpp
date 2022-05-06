@@ -119,7 +119,8 @@ bool TagWrapper::writeMusicTag(Type tag, const QString &value, int id3v2Version)
         case GENRE:
             tags->setGenre(QStringToTString(value));
             break;
-        default: break;
+        default:
+            break;
     }
 
 #if ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION <= 11))
