@@ -4,6 +4,7 @@ faad2-2.10.0	https://github.com/knik0/faad2
 ffmpeg-3.4.6	https://github.com/FFmpeg/FFmpeg
 flac-1.3.3	https://xiph.org/flac/download.html
 game-music-emu-0.6.3	https://bitbucket.org/mpyne/game-music-emu/downloads
+libADLMIDI-1.5.0.1	https://github.com/Wohlstand/libADLMIDI
 libbinio-1.5	https://github.com/adplug/libbinio
 libbs2b-3.1.0	https://sourceforge.net/projects/bs2b
 libcddb-1.3.2	https://sourceforge.net/projects/libcddb
@@ -27,7 +28,6 @@ soxr-0.1.3	https://sourceforge.net/projects/soxr
 speex-1.2.0	https://gitlab.xiph.org/xiph/speex
 taglib-1.12	https://github.com/taglib/taglib
 wavpack-5.4.0	https://www.wavpack.com/downloads.html
-wildmidi-wildmidi-0.4.4.patch	https://github.com/Mindwerks/wildmidi
 libxmp-4.5.0.patch	https://github.com/libxmp/libxmp
 7zip-21.07		https://sparanoid.com/lab/7z/download.html
 zed-1.1.6

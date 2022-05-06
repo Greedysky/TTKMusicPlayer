@@ -31,8 +31,8 @@ contains(CONFIG, GME_PLUGIN){
     SUBDIRS += gme
 }
 
-contains(CONFIG, WILDMIDI_PLUGIN){
-    SUBDIRS += wildmidi
+contains(CONFIG, ADLMIDI_PLUGIN){
+    SUBDIRS += adlmidi
 }
 
 contains(CONFIG, OPUS_PLUGIN){
