@@ -8315,24 +8315,20 @@ too high may cause clipping!</source>
         <translation>快速重新取樣</translation>
     </message>
     <message>
-        <source>WildMidi Plugin Settings</source>
-        <translation>WildMidi插件設置</translation>
+        <source>AdlMidi Plugin Settings</source>
+        <translation>AdlMidi插件設置</translation>
+    </message>
+    <message>
+        <source>Default Banks:</source>
+        <translation>默認庫:</translation>
+    </message>
+    <message>
+        <source>Use WOPL Bank</source>
+        <translation>使用WOPL庫</translation>
     </message>
     <message>
         <source>Config path:</source>
         <translation>配置路徑:</translation>
-    </message>
-    <message>
-        <source>Sample rate:</source>
-        <translation>取樣率：</translation>
-    </message>
-    <message>
-        <source>Enhanced resampling</source>
-        <translation>提高再取樣</translation>
-    </message>
-    <message>
-        <source>Reverberation</source>
-        <translation>混響效果</translation>
     </message>
     <message>
         <source>WASAPI Plugin Settings</source>
@@ -8445,6 +8441,10 @@ too high may cause clipping!</source>
     <message>
         <source>XMP Plugin Settings</source>
         <translation>XMP插件設置</translation>
+    </message>
+    <message>
+        <source>Sample rate:</source>
+        <translation>取樣率：</translation>
     </message>
     <message>
         <source> Amplification factor:</source>

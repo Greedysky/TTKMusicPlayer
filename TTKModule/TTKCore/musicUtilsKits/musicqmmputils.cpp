@@ -21,12 +21,7 @@ QString MusicUtils::TTKQmmp::pluginPath(const QString &module, const QString &fo
 
 void MusicUtils::TTKQmmp::updateConfig()
 {
-    const QString &confPath = MAKE_CONFIG_DIR_FULL + "wildmidi.cfg";
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Midi");
-    settings.setValue("conf_path", confPath);
-    settings.endGroup();
-
     settings.beginGroup("Network");
     settings.setValue("buffer_path", CACHE_DIR_FULL);
     settings.endGroup();
@@ -34,20 +29,6 @@ void MusicUtils::TTKQmmp::updateConfig()
     settings.beginGroup("Archive");
     settings.setValue("unpack_path", ARCHIVE_DIR_DIR_FULL);
     settings.endGroup();
-
-    QFile file(confPath);
-    if(file.open(QFile::ReadOnly))
-    {
-        QByteArray data = file.readAll();
-        file.close();
-
-        if(file.open(QFile::WriteOnly))
-        {
-            data.remove(0, data.indexOf("\r\n"));
-            data.insert(0, QString("dir %1freepats/").arg(MAKE_CONFIG_DIR_FULL).toUtf8());
-            file.write(data);
-        }
-    }
 }
 
 void MusicUtils::TTKQmmp::enabledEffectPlugin(bool enable, const QString &name)
