@@ -1,5 +1,7 @@
 #include "adlmidihelper.h"
 
+#include <QSettings>
+
 AdlMidiHelper::AdlMidiHelper(const QString &path)
     : m_path(path)
 {
@@ -38,10 +40,27 @@ bool AdlMidiHelper::initialize()
         return false;
     }
 
-    adl_setBank(m_input, 0);
+    readSettings();
     adl_setLoopEnabled(m_input, 0);
+
     m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
+}
+
+void AdlMidiHelper::readSettings()
+{
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("Midi");
+    if(!settings.value("use_wopl", false).toBool())
+    {
+        const int index = settings.value("index", -1).toInt();
+        adl_setBank(m_input, index >= adl_getBanksCount() ? 0 : index);
+    }
+    else
+    {
+        adl_openBankFile(m_input, QmmpPrintable(settings.value("conf_path").toString()));
+    }
+    adl_reset(m_input);
 }
 
 qint64 AdlMidiHelper::read(unsigned char *data, qint64 maxSize)

@@ -33,8 +33,7 @@ public:
     explicit SettingsDialog(QWidget *parent = nullptr);
 
 private slots:
-    void writeSettings();
-    void exec(QAbstractButton *button);
+    virtual void accept() override final;
 
 private:
      Ui::SettingsDialog m_ui;

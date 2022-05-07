@@ -144,7 +144,7 @@ bool PMDFileReader::load(const QString &path)
     m_input->pmd_get_title(buffer);
     m_metaData.insert(Qmmp::TITLE, buffer);
 
-    m_length =  m_input->pmd_length_sec() * 1000;
+    m_length = m_input->pmd_length_sec() * 1000;
     m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }

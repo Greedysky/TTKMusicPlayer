@@ -1,6 +1,7 @@
 #include "decoderadlmidifactory.h"
 #include "decoder_adlmidi.h"
 #include "adlmidihelper.h"
+#include "settingsdialog.h"
 
 bool DecoderAdlMidiFactory::canDecode(QIODevice *input) const
 {
@@ -17,9 +18,10 @@ DecoderProperties DecoderAdlMidiFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("AdlMidi Plugin");
     properties.shortName = "adlmidi";
-    properties.filters << "*.mid"<< "*.midi" << "*.mus" << "*.rmi" << "*.xmi";
+    properties.filters << "*.mid" << "*.midi" << "*.mus" << "*.rmi" << "*.xmi";
     properties.description = "Midi File";
     properties.protocols << "file";
+    properties.hasSettings = true;
     properties.noInput = true;
     return properties;
 }
@@ -66,7 +68,7 @@ MetaDataModel* DecoderAdlMidiFactory::createMetaDataModel(const QString &path, b
 
 void DecoderAdlMidiFactory::showSettings(QWidget *parent)
 {
-    Q_UNUSED(parent);
+    (new SettingsDialog(parent))->show();
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

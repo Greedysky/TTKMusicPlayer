@@ -46,7 +46,7 @@ bool S98Helper::initialize()
     }
 
     const int length = totalTime();
-    m_bitrate = length != 0 ? (size * 8.0 / totalTime() + 1.0f) : 0;
+    m_bitrate = length != 0 ? (size * 8.0 / length + 1.0f) : 0;
     return true;
 }
 

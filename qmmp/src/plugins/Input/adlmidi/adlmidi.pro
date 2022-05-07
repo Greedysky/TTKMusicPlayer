@@ -5,11 +5,15 @@ TARGET = $${TARGET}
 
 HEADERS += decoderadlmidifactory.h \
            decoder_adlmidi.h \
-           adlmidihelper.h
+           adlmidihelper.h \
+           settingsdialog.h
 
 SOURCES += decoderadlmidifactory.cpp \
            decoder_adlmidi.cpp \
-           adlmidihelper.cpp
+           adlmidihelper.cpp \
+           settingsdialog.cpp
+
+FORMS += settingsdialog.ui
 
 INCLUDEPATH += $$EXTRA_PREFIX/libadlmidi/include
 

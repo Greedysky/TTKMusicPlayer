@@ -1,15 +1,29 @@
 #include "decoder_adlmidi.h"
 #include "adlmidihelper.h"
 
+DecoderAdlMidi *DecoderAdlMidi::m_instance = nullptr;
+
 DecoderAdlMidi::DecoderAdlMidi(const QString &path)
     : Decoder()
 {
+    m_instance = this;
     m_helper = new AdlMidiHelper(path);
 }
 
 DecoderAdlMidi::~DecoderAdlMidi()
 {
+    m_instance = nullptr;
     delete m_helper;
+}
+
+DecoderAdlMidi *DecoderAdlMidi::instance()
+{
+    return m_instance;
+}
+
+void DecoderAdlMidi::readSettings()
+{
+    m_helper->readSettings();
 }
 
 bool DecoderAdlMidi::initialize()

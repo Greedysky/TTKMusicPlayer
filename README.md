@@ -80,6 +80,7 @@ The TTKMusicplayer plugin for run
  * wavevolume
 ### Input
  * aac
+ * adlmidi
  * cdaudio
  * cue
  * ffap
@@ -94,7 +95,6 @@ The TTKMusicplayer plugin for run
  * sndfile
  * vorbis
  * wavpack
- * wildmidi
  * xmp
  * adplug
  * archive

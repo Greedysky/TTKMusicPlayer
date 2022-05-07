@@ -42,11 +42,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.vblankCheckBox->setChecked(settings.value("vblank", false).toBool());
     m_ui.fx9BugCheckBox->setChecked(settings.value("fx9bug", false).toBool());
     settings.endGroup();
-
-    connect(m_ui.buttonBox, SIGNAL(clicked(QAbstractButton *)), SLOT(exec(QAbstractButton *)));
 }
 
-void SettingsDialog::writeSettings()
+void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Xmp");
@@ -74,18 +72,5 @@ void SettingsDialog::writeSettings()
     {
         DecoderXMP::instance()->readSettings();
     }
-}
-
-void SettingsDialog::exec(QAbstractButton *button)
-{
-    switch((int)m_ui.buttonBox->buttonRole(button))
-    {
-    case QDialogButtonBox::AcceptRole:
-        writeSettings();
-        accept();
-        break;
-    case QDialogButtonBox::ApplyRole:
-        writeSettings();
-        break;
-    }
+    QDialog::accept();
 }
