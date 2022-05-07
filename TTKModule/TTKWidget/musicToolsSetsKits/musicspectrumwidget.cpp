@@ -14,8 +14,10 @@
 #include <qmmp/lightfactory.h>
 #include <qmmp/soundcore.h>
 
-#define ITEM_DEFAULT_COUNT      3
 #define ITEM_OFFSET             107
+#define ITEM_DEFAULT_COUNT      3
+#define LIGHT_SPECTRUM_MODULE   "lightspectrum"
+#define LIGHT_ENVELOPE_MODULE   "lightenvelope"
 
 MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     : MusicAbstractMoveWidget(false, parent),
@@ -104,7 +106,7 @@ void MusicSpectrumWidget::spectrumPlusTypeChanged(bool &state, const QString &na
 
 void MusicSpectrumWidget::spectrumWaveTypeChanged(bool &state, const QString &name)
 {
-    if(name == "lightenvelope")
+    if(name == LIGHT_ENVELOPE_MODULE)
     {
         createLightWidget(MusicSpectrum::Light, state, name, m_ui->spectrumWaveAreaLayout);
     }
@@ -134,7 +136,7 @@ void MusicSpectrumWidget::show()
 void MusicSpectrumWidget::localFileButtonClicked()
 {
     bool state = true;
-    createLightWidget(MusicSpectrum::Light, state, "lightspectrum", m_ui->spectrumLightAreaLayout);
+    createLightWidget(MusicSpectrum::Light, state, LIGHT_SPECTRUM_MODULE, m_ui->spectrumLightAreaLayout);
 }
 
 void MusicSpectrumWidget::openFileButtonClicked()
@@ -143,7 +145,7 @@ void MusicSpectrumWidget::openFileButtonClicked()
     if(!path.isEmpty())
     {
         bool state = true;
-        createLightWidget(MusicSpectrum::Light, state, "lightspectrum", m_ui->spectrumLightAreaLayout, path);
+        createLightWidget(MusicSpectrum::Light, state, LIGHT_SPECTRUM_MODULE, m_ui->spectrumLightAreaLayout, path);
     }
 }
 
@@ -331,8 +333,13 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::SpectrumType spectrum
         }
 
         const int index = findSpectrumWidget(name);
+        if(index == -1)
+        {
+            return;
+        }
+
         Light *light = TTKStatic_cast(Light*, m_types[index].m_object);
-        if(light)
+        if(light && LIGHT_SPECTRUM_MODULE == name)
         {
             const QString &path = url.isEmpty() ? SoundCore::instance()->path() : url;
             const QString &suffix = FILE_SUFFIX(QFileInfo(path));
