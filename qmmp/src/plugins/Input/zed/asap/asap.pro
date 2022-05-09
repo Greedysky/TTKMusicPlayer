@@ -1,4 +1,4 @@
-include($$PWD/../zed.pri)
+include($$PWD/../../Input.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
@@ -13,13 +13,13 @@ SOURCES += decoderasapfactory.cpp \
            asaphelper.cpp \
            asapmetadatamodel.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libzed/include
+INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lasap$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lasap$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lasap
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lasap
 }

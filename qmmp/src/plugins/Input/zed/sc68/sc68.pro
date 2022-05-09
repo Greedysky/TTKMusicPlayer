@@ -1,4 +1,4 @@
-include($$PWD/../zed.pri)
+include($$PWD/../../Input.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
@@ -11,13 +11,13 @@ SOURCES += decodersc68factory.cpp \
            decoder_sc68.cpp \
            sc68helper.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libzed/include
+INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lsc68$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lsc68$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lsc68
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lsc68
 }

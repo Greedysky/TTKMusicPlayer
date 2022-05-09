@@ -9,13 +9,13 @@ HEADERS += goomwidget.h \
 SOURCES += goomwidget.cpp \
            visualflowgoomfactory.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libzed/include
+INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lgoom$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lgoom$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lgoom
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lgoom
 }

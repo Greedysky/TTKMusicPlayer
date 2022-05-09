@@ -13,13 +13,13 @@ SOURCES += sonicplugin.cpp \
 
 FORMS += settingsdialog.ui
 
-INCLUDEPATH += $$EXTRA_PREFIX/libzed/include
+INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lsonic
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lsonic
 }
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lsonic$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lsonic$$STATIC_LIBRARY_SUFFIX
 }

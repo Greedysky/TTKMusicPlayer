@@ -1,4 +1,4 @@
-include($$PWD/../zed.pri)
+include($$PWD/../../Input.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
@@ -11,13 +11,13 @@ SOURCES += decoderorganyafactory.cpp \
            decoder_organya.cpp \
            organyahelper.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libzed/include
+INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lorganya$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lorganya$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lorganya
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lorganya
 }

@@ -1,4 +1,4 @@
-include($$PWD/../zed.pri)
+include($$PWD/../../Input.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}

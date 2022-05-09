@@ -1,4 +1,4 @@
-include($$PWD/../zed.pri)
+include($$PWD/../../Input.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
@@ -11,14 +11,14 @@ SOURCES += decoderxsffactory.cpp \
            decoder_xsf.cpp \
            xsfhelper.cpp
 
-INCLUDEPATH += $$EXTRA_PREFIX/libzed/include \
-               $$EXTRA_PREFIX/libzed/include/libxsf/mgba \
+INCLUDEPATH += $$EXTRA_PREFIX/libttk/include \
+               $$EXTRA_PREFIX/libttk/include/libxsf/mgba \
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lxsf$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lxsf$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libzed/lib -lxsf
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lxsf
 }
