@@ -41,7 +41,7 @@ public:
     inline void seek(qint64 time) { hvl_Seek(m_input, time); }
     inline qint64 totalTime() const { return hvl_GetPlayTime(m_input); }
 
-    inline int bitrate() const { return m_bitrate; }
+    inline int bitrate() const { return 8; }
     inline int sampleRate() const { return 44100; }
     inline int channels() const { return 2; }
     inline int depth() const { return 16; }
@@ -52,7 +52,6 @@ public:
 private:
     QString m_path;
     struct hvl_tune *m_input = nullptr;
-    int m_bitrate = 0;
     QMap<Qmmp::MetaData, QString> m_metaData;
 
 };

@@ -71,8 +71,6 @@ bool V2MHelper::initialize()
     m_input = new V2MPlayer;
     m_input->Init();
     m_input->Open(m_tune);
-
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
     m_input->Play();
     return true;
 }

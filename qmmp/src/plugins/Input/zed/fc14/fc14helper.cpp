@@ -49,7 +49,6 @@ bool FC14Helper::initialize()
     // precision : bits per sample  channels : 1=mono, 2=stereo
     // zero : value of silent output sample (e.g. 0x80 for unsigned 8-bit, 0x0000 for signed 16-bit)
     fc14dec_mixer_init(m_input, sampleRate(), depth(), channels(), 0x0000);
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }
 

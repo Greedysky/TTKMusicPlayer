@@ -19,7 +19,7 @@
 #ifndef ADPLUGHELPER_H
 #define ADPLUGHELPER_H
 
-#include <QFileInfo>
+#include <QFile>
 #include <QStringList>
 #include <adplug/adplug.h>
 #include <adplug/emuopl.h>
@@ -52,7 +52,7 @@ public:
     inline void seek(qint64 time) const { m_player->seek(time); }
     inline qint64 totalTime() const { return m_player->songlength(); }
 
-    inline int bitrate() const { QFileInfo(m_path).size() * 8.0 / totalTime() + 1.0f; }
+    inline int bitrate() const { return 8; }
     inline int sampleRate() const { return 44100; }
     inline int channels() const { return 1; }
     inline int depth() const { return 16; }

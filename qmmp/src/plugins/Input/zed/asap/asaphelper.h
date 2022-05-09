@@ -39,7 +39,7 @@ public:
     inline void seek(qint64 time) { ASAP_Seek(m_input, time); }
     inline qint64 totalTime() const { return m_length; }
 
-    inline int bitrate() const { return m_bitrate; }
+    inline int bitrate() const { return 8; }
     inline int sampleRate() const { return ASAP_SAMPLE_RATE; }
     inline int channels() const { return m_channels; }
     inline int depth() const { return 16; }
@@ -51,7 +51,6 @@ private:
     QString m_path;
     ASAP *m_input = nullptr;
     int m_length = 0;
-    int m_bitrate = 0;
     int m_channels = 0;
     QMap<Qmmp::MetaData, QString> m_metaData;
 

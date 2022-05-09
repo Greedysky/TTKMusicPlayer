@@ -38,8 +38,6 @@ bool SoundMonHelper::initialize()
         qWarning("SoundMonHelper: Load error");
         return false;
     }
-
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }
 

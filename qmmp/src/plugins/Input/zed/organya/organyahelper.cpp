@@ -36,24 +36,12 @@ OrgFileReader::~OrgFileReader()
 
 bool OrgFileReader::load(const QString &path)
 {
-    QFile file(path);
-    if(!file.open(QFile::ReadOnly))
-    {
-        qWarning("OrgFileReader: open file failed");
-        return false;
-    }
-
-    const qint64 size = file.size();
-    file.close();
-
     m_input = org_decoder_create(QmmpPrintable(path), 1);
     if(!m_input)
     {
         qWarning("OrgFileReader: org_decoder_create error");
         return false;
     }
-
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }
 
@@ -163,8 +151,6 @@ bool PxFileReader::load(const QString &path)
         qWarning("PxFileReader: moo_preparation error");
         return false;
     }
-
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }
 

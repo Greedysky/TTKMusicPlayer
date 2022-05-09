@@ -58,7 +58,6 @@ bool AsapHelper::initialize()
 
     m_length = ASAPInfo_GetDuration(info, ASAPInfo_GetDefaultSong(info));
     m_channels = ASAPInfo_GetChannels(info);
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }
 

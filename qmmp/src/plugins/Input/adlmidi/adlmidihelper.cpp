@@ -23,16 +23,6 @@ void AdlMidiHelper::deinit()
 
 bool AdlMidiHelper::initialize()
 {
-    QFile file(m_path);
-    if(!file.open(QFile::ReadOnly))
-    {
-        qWarning("AdlMidiHelper: open file failed");
-        return false;
-    }
-
-    const qint64 size = file.size();
-    file.close();
-
     m_input = adl_init(sampleRate());
     if(adl_openFile(m_input, QmmpPrintable(m_path)) < 0)
     {
@@ -42,8 +32,6 @@ bool AdlMidiHelper::initialize()
 
     readSettings();
     adl_setLoopEnabled(m_input, 0);
-
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }
 

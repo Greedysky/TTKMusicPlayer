@@ -40,7 +40,7 @@ public:
     void seek(qint64 time);
     inline qint64 totalTime() const { return m_length; }
 
-    inline int bitrate() const { return m_bitrate; }
+    inline int bitrate() const { return 8; }
     inline int sampleRate() const { return 44100; }
     inline int channels() const { return 2; }
     inline int depth() const { return 16; }
@@ -55,7 +55,6 @@ private:
     sc68_t *m_input = nullptr;
     int m_track = 0;
     int m_loop = 0;
-    int m_bitrate = 0;
     int m_length = 0;
     int m_current_sample = 0;
     int m_total_samples = 0;

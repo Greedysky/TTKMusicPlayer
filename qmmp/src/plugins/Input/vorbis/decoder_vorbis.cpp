@@ -129,7 +129,6 @@ int DecoderVorbis::bitrate() const
     return m_bitrate;
 }
 
-
 void DecoderVorbis::deinit()
 {
     if(m_inited)

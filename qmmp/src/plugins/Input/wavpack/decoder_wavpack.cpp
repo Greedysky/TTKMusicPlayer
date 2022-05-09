@@ -129,9 +129,7 @@ bool DecoderWavPack::initialize()
 
 int DecoderWavPack::bitrate() const
 {
-    if(m_context)
-        return int(WavpackGetInstantBitrate(m_context) / 1000);
-    return 0;
+    return m_context ? int(WavpackGetInstantBitrate(m_context) / 1000) : 0;
 }
 
 qint64 DecoderWavPack::totalTime() const

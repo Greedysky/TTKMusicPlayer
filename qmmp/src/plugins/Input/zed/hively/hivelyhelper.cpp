@@ -40,8 +40,6 @@ bool HivelyHelper::initialize()
         return false;
     }
 
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
-
     bool ahx = true;
     if((module[0] == 'H') && (module[1] == 'V') && (module[2] == 'L'))
     {

@@ -43,16 +43,6 @@ void XSFHelper::deinit()
 
 bool XSFHelper::initialize()
 {
-    QFile file(m_path);
-    if(!file.open(QFile::ReadOnly))
-    {
-        qWarning("XSFHelper: open file failed");
-        return false;
-    }
-
-    const qint64 size = file.size();
-    file.close();
-
     m_input = generateFileReader(m_path);
     if(!m_input)
     {
@@ -65,8 +55,6 @@ bool XSFHelper::initialize()
        qWarning("XSFHelper: load error");
        return false;
     }
-
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }
 

@@ -39,7 +39,7 @@ public:
     inline void seek(qint64 time) { return m_input->Seek(time); }
     inline qint64 totalTime() const { return m_input->GetLength(); }
 
-    inline int bitrate() const { return m_bitrate; }
+    inline int bitrate() const { return 8; }
     inline int sampleRate() const { return SAMPLERATE; }
     inline int channels() const { return 2; }
     inline int depth() const { return 8; }
@@ -50,7 +50,6 @@ public:
 private:
     QString m_path;
     Player *m_input = nullptr;
-    int m_bitrate = 0;
 
 };
 

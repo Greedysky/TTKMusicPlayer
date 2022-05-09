@@ -59,16 +59,6 @@ bool SC68Helper::initialize()
     const int track = m_path.section("#", -1).toInt();
     const QString &path = cleanPath();
 
-    QFile file(path);
-    if(!file.open(QFile::ReadOnly))
-    {
-        qWarning("SC68Helper: open file failed");
-        return false;
-    }
-
-    const qint64 size = file.size();
-    file.close();
-
     sc68_init(nullptr);
     m_input = sc68_create(nullptr);
     if(!m_input)
@@ -111,7 +101,6 @@ bool SC68Helper::initialize()
     }
 
     m_length = m_total_samples / sampleRate() * 1000;
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
 
     sc68_play(m_input, m_track, m_loop);
     return true;

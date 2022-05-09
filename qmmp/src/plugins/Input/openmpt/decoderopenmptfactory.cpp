@@ -25,7 +25,7 @@ DecoderProperties DecoderOpenMPTFactory::properties() const
     properties.filters << "*.gdm";
     properties.filters << "*.it" << "*.ice" << "*.imf";
     properties.filters << "*.j2b";
-    properties.filters << "*.mod" << "*.mptm" << "*.m15" << "*.mtm" << "*.med" << "*.mdl" << "*.mt2" << "*.mms" << "*.mo3" << "*.mmcmp";
+    properties.filters << "*.mod" << "*.mptm" << "*.m15" << "*.mtm" << "*.med" << "*.mmd" << "*.mmd0" << "*.mmd1" << "*.mmd2" << "*.mmd3" << "*.mdl" << "*.mt2" << "*.mms" << "*.mo3" << "*.mmcmp";
     properties.filters << "*.nst";
     properties.filters << "*.okt" << "*.okta";
     properties.filters << "*.pt36" << "*.ptm" << "*.psm" << "*.plm" << "*.ppm";

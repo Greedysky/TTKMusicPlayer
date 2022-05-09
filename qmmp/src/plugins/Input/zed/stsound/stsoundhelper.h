@@ -20,7 +20,7 @@
 #define STSOUNDHELPER_H
 
 #include <QMap>
-#include <QFileInfo>
+#include <QFile>
 #include <qmmp/qmmp.h>
 #include <libstsound/ym_music.h>
 
@@ -39,7 +39,7 @@ public:
     inline void seek(qint64 time) { m_music->setMusicTime((ymu32)time); }
     inline qint64 totalTime() const { return m_length; }
 
-    inline int bitrate() const { return QFileInfo(m_path).size() * 8.0 / totalTime() + 1.0f; }
+    inline int bitrate() const { return 8; }
     inline int sampleRate() const { return 44100; }
     inline int channels() const { return 2; }
     inline int depth() const { return 16; }

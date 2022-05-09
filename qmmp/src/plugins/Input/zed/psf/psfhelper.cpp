@@ -59,7 +59,6 @@ bool PSFHelper::initialize()
     }
 
     m_length = 120;
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
 
     if(!have_info)
     {

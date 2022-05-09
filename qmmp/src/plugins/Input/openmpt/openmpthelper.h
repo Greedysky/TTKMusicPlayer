@@ -51,7 +51,7 @@ public:
     inline void seek(qint64 time) { openmpt_module_set_position_seconds(m_mod, time / 1000.0); }
     inline int totalTime() const { return m_length; }
 
-    inline int bitrate() const { m_input->size() * 8.0 / totalTime() + 1.0f; }
+    inline int bitrate() const { return 8; }
     inline int sampleRate() const { return 44100; }
     inline int channels() const { return 2; }
     inline int depth() const { return 16; }

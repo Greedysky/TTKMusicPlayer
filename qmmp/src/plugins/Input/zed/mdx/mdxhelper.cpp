@@ -40,16 +40,6 @@ MDXFileReader::~MDXFileReader()
 
 bool MDXFileReader::load(const QString &path)
 {
-    QFile file(path);
-    if(!file.open(QFile::ReadOnly))
-    {
-        qWarning("MDXFileReader: open file failed");
-        return false;
-    }
-
-    const qint64 size = file.size();
-    file.close();
-
     m_input = new MDXMini;
     mdx_set_rate(sampleRate());
 
@@ -65,7 +55,6 @@ bool MDXFileReader::load(const QString &path)
     m_metaData.insert(Qmmp::TITLE, buffer);
 
     m_length = mdx_get_length(m_input) * 1000;
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }
 
@@ -118,16 +107,6 @@ PMDFileReader::~PMDFileReader()
 
 bool PMDFileReader::load(const QString &path)
 {
-    QFile file(path);
-    if(!file.open(QFile::ReadOnly))
-    {
-        qWarning("PMDFileReader: open file failed");
-        return false;
-    }
-
-    const qint64 size = file.size();
-    file.close();
-
     m_input = new PMDMini;
     m_input->pmd_init();
     m_input->pmd_setrate(sampleRate());
@@ -145,7 +124,6 @@ bool PMDFileReader::load(const QString &path)
     m_metaData.insert(Qmmp::TITLE, buffer);
 
     m_length = m_input->pmd_length_sec() * 1000;
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }
 
@@ -216,7 +194,6 @@ bool MUCFileReader::load(const QString &path)
     m_metaData.insert(Qmmp::COMPOSER, QString::fromStdString(m_input->tag->composer));
 
     m_length = m_input->GetLength() * 1000;
-    m_bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }
 

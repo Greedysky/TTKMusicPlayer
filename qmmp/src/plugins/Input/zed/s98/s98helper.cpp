@@ -44,9 +44,6 @@ bool S98Helper::initialize()
         qWarning("S98Helper: OpenFromBuffer error");
         return false;
     }
-
-    const int length = totalTime();
-    m_bitrate = length != 0 ? (size * 8.0 / length + 1.0f) : 0;
     return true;
 }
 

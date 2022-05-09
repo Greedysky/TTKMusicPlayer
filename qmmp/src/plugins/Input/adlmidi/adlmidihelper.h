@@ -39,7 +39,7 @@ public:
     inline void seek(qint64 time) { adl_positionSeek(m_input, time / 1000.0); }
     inline qint64 totalTime() const { return adl_totalTimeLength(m_input) * 1000; }
 
-    inline int bitrate() const { return m_bitrate; }
+    inline int bitrate() const { return 8; }
     inline int sampleRate() const { return 44100; }
     inline int channels() const { return 2; }
     inline int depth() const { return 16; }
@@ -48,7 +48,6 @@ public:
 
 private:
     QString m_path;
-    int m_bitrate = 0;
     ADL_MIDIPlayer *m_input = nullptr;
 
 };
