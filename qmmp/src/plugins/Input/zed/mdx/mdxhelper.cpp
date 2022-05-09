@@ -46,6 +46,8 @@ bool MDXFileReader::load(const QString &path)
     if(mdx_open(m_input, QmmpPrintable(path), nullptr) != 0)
     {
         qWarning("MDXFileReader: mdx_open error");
+        delete m_input;
+        m_input = nullptr;
         return false;
     }
 
