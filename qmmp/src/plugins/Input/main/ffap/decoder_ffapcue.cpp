@@ -32,6 +32,7 @@ bool DecoderFFapCUE::initialize()
         qWarning("DecoderFFapCUE: invalid path.");
         return false;
     }
+
     filePath.remove("ape://");
     filePath.remove(RegularWrapper("#\\d+$"));
     m_track = m_path.section("#", -1).toInt();

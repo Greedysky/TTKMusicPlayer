@@ -6,7 +6,9 @@ bool DecoderOrganyaFactory::canDecode(QIODevice *input) const
 {
     QFile *file = static_cast<QFile*>(input);
     if(!file)
+    {
         return false;
+    }
 
     OrganyaHelper helper(file->fileName());
     return helper.initialize();

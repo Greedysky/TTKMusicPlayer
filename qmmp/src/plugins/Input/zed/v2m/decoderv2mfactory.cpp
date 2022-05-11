@@ -6,7 +6,9 @@ bool DecoderV2MFactory::canDecode(QIODevice *input) const
 {
     QFile *file = static_cast<QFile*>(input);
     if(!file)
+    {
         return false;
+    }
 
     V2MHelper helper(file->fileName());
     return helper.initialize();

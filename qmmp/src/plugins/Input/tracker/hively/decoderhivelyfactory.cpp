@@ -6,7 +6,9 @@ bool DecoderHivelyFactory::canDecode(QIODevice *input) const
 {
     QFile *file = static_cast<QFile*>(input);
     if(!file)
+    {
         return false;
+    }
 
     HivelyHelper helper(file->fileName());
     return helper.initialize();

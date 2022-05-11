@@ -253,7 +253,7 @@ bool MDXHelper::initialize()
 
     if(!m_input->load(m_path))
     {
-       qWarning("MDXHelper: load error");
+       qWarning("MDXHelper: unable to open file");
        return false;
     }
     return true;

@@ -39,6 +39,7 @@ bool DecoderFFmpegM4b::initialize()
         qWarning("DecoderFFmpegM4b: invalid path.");
         return false;
     }
+
     filePath.remove("m4b://");
     filePath.remove(RegularWrapper("#\\d+$"));
     m_track = m_path.section("#", -1).toInt();

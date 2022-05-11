@@ -7,7 +7,9 @@ bool DecoderAdlMidiFactory::canDecode(QIODevice *input) const
 {
     QFile *file = static_cast<QFile*>(input);
     if(!file)
+    {
         return false;
+    }
 
     AdlMidiHelper helper(file->fileName());
     return helper.initialize();

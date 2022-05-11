@@ -6,7 +6,9 @@ bool DecoderMDXFactory::canDecode(QIODevice *input) const
 {
     QFile *file = static_cast<QFile*>(input);
     if(!file)
+    {
         return false;
+    }
 
     MDXHelper helper(file->fileName());
     return helper.initialize();

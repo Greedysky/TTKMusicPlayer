@@ -52,7 +52,7 @@ bool XSFHelper::initialize()
 
     if(!m_input->load(QmmpPrintable(m_path), m_meta))
     {
-       qWarning("XSFHelper: load error");
+       qWarning("XSFHelper: unable to open file");
        return false;
     }
     return true;

@@ -67,16 +67,14 @@ bool SC68Helper::initialize()
         return false;
     }
 
-    int res = sc68_load_uri(m_input, QmmpPrintable("file://" + path));
-    if(res)
+    if(sc68_load_uri(m_input, QmmpPrintable("file://" + path)))
     {
-        qWarning("SC68Helper: sc68_load_uri error");
+        qWarning("SC68Helper: unable to open file");
         return false;
     }
 
     sc68_music_info_t info;
-    res = sc68_music_info(m_input, &info, 0, 0);
-    if(res < 0)
+    if(sc68_music_info(m_input, &info, 0, 0) < 0)
     {
         qWarning("SC68Helper: sc68_music_info error");
         return false;
@@ -169,9 +167,9 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
 
     for(int i = 1; i <= info.tracks; ++i)
     {
-        sc68_music_info_t ti;
-        memset(&ti, 0, sizeof(ti));
-        if(sc68_music_info(m_input, &ti, i, 0) < 0)
+        sc68_music_info_t tag;
+        memset(&tag, 0, sizeof(tag));
+        if(sc68_music_info(m_input, &tag, i, 0) < 0)
         {
             continue;
         }
@@ -179,7 +177,7 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
         TrackInfo *info = new TrackInfo();
         if(parts & TrackInfo::MetaData)
         {
-            metaFromMusicInfo(info, &ti);
+            metaFromMusicInfo(info, &tag);
             info->setValue(Qmmp::TRACK, i);
         }
 
@@ -193,7 +191,7 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
         }
 
         info->setPath("sc68://" + cleanPath() + QString("#%1").arg(i));
-        info->setDuration(ti.trk.time_ms > 0 ? ti.trk.time_ms : (2 * 60));
+        info->setDuration(tag.trk.time_ms > 0 ? tag.trk.time_ms : (2 * 60));
         playlist << info;
     }
     return playlist;

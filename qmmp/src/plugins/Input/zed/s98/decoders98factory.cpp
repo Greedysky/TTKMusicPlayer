@@ -6,7 +6,9 @@ bool DecoderS98Factory::canDecode(QIODevice *input) const
 {
     QFile *file = static_cast<QFile*>(input);
     if(!file)
+    {
         return false;
+    }
 
     S98Helper helper(file->fileName());
     return helper.initialize();

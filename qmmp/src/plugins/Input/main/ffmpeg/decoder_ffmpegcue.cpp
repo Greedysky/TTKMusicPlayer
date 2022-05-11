@@ -34,6 +34,7 @@ bool DecoderFFmpegCue::initialize()
         qWarning("DecoderFFmpegCue: invalid path.");
         return false;
     }
+
     filePath.remove("ffmpeg://");
     filePath.remove(RegularWrapper("#\\d+$"));
     m_track = m_path.section("#", -1).toInt();

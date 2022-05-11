@@ -65,7 +65,6 @@ bool DecoderMPC::initialize()
         m_data = new mpc_data;
     }
 
-    qDebug("DecoderMPC: setting callbacks");
     m_data->reader.read = mpc_callback_read;
     m_data->reader.seek = mpc_callback_seek;
     m_data->reader.tell = mpc_callback_tell;

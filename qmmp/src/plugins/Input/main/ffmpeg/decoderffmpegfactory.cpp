@@ -384,17 +384,17 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
 QList<TrackInfo*> DecoderFFmpegFactory::createPlayListFromChapters(AVFormatContext *in, TrackInfo *extraInfo, int trackNumber)
 {
     QList<TrackInfo*> playlist;
-    for(unsigned int i = 0; i < in->nb_chapters; ++i)
+    for(unsigned int i = 1; i <= in->nb_chapters; ++i)
     {
-        if((trackNumber > 0) && (int(i + 1) != trackNumber))
+        if((trackNumber > 0) && (int(i) != trackNumber))
             continue;
 
-        AVChapter *chapter = in->chapters[i];
-        TrackInfo *info = new TrackInfo(QString("m4b://%1#%2").arg(extraInfo->path()).arg(i + 1));
+        AVChapter *chapter = in->chapters[i - 1];
+        TrackInfo *info = new TrackInfo(QString("m4b://%1#%2").arg(extraInfo->path()).arg(i));
         info->setDuration((chapter->end - chapter->start) * av_q2d(chapter->time_base) * 1000);
         info->setValues(extraInfo->properties());
         info->setValues(extraInfo->metaData());
-        info->setValue(Qmmp::TRACK, i + 1);
+        info->setValue(Qmmp::TRACK, i);
 
         AVDictionaryEntry *title = av_dict_get(chapter->metadata,"title", nullptr, 0);
         if(title)

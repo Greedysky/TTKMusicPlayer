@@ -46,7 +46,7 @@ bool PSFHelper::initialize()
     m_input = ao_start(m_type, QmmpPrintable(m_path), (uint8 *)module.constData(), size);
     if(!m_input)
     {
-        qWarning("PSFHelper: ao_start error");
+        qWarning("PSFHelper: unable to open file");
         return false;
     }
 

@@ -6,7 +6,9 @@ bool DecoderFC14Factory::canDecode(QIODevice *input) const
 {
     QFile *file = static_cast<QFile*>(input);
     if(!file)
+    {
         return false;
+    }
 
     FC14Helper helper(file->fileName());
     return helper.initialize();

@@ -215,7 +215,7 @@ bool OrganyaHelper::initialize()
 
     if(!m_input->load(m_path))
     {
-       qWarning("OrganyaHelper: load error");
+       qWarning("OrganyaHelper: unable to open file");
        return false;
     }
 

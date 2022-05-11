@@ -48,20 +48,20 @@ QList<TrackInfo*> SIDHelper::createPlayList(TrackInfo::Parts parts)
     }
 
     const int count = m_tune->getInfo()->songs();
-    char md5[SidTune::MD5_LENGTH+1];
+    char md5[SidTune::MD5_LENGTH + 1];
     m_tune->createMD5(md5);
 
     for(int i = 1; i <= count; ++i)
     {
-        m_tune->selectSong(i+1);
+        m_tune->selectSong(i + 1);
         TrackInfo *info = new TrackInfo();
 
         if(parts & TrackInfo::MetaData)
         {
-            const SidTuneInfo *tune_info = m_tune->getInfo();
-            info->setValue(Qmmp::TITLE, tune_info->infoString(0));
-            info->setValue(Qmmp::ARTIST, tune_info->infoString(1));
-            info->setValue(Qmmp::COMMENT, tune_info->commentString(0));
+            const SidTuneInfo *tag = m_tune->getInfo();
+            info->setValue(Qmmp::TITLE, tag->infoString(0));
+            info->setValue(Qmmp::ARTIST, tag->infoString(1));
+            info->setValue(Qmmp::COMMENT, tag->commentString(0));
             info->setValue(Qmmp::TRACK, i);
         }
 

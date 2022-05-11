@@ -41,7 +41,7 @@ bool S98Helper::initialize()
 
     if(!m_input->OpenFromBuffer((unsigned char *)module.constData(), size, &m_info))
     {
-        qWarning("S98Helper: OpenFromBuffer error");
+        qWarning("S98Helper: unable to open file");
         return false;
     }
     return true;

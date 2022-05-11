@@ -6,7 +6,9 @@ bool DecoderSoundMonFactory::canDecode(QIODevice *input) const
 {
     QFile *file = static_cast<QFile*>(input);
     if(!file)
+    {
         return false;
+    }
 
     SoundMonHelper helper(file->fileName());
     return helper.initialize();

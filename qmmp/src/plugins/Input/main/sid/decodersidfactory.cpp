@@ -24,7 +24,9 @@ bool DecoderSIDFactory::canDecode(QIODevice *input) const
 {
     QFile *file = static_cast<QFile*>(input);
     if(!file)
+    {
         return false;
+    }
 
     SidTune tune(nullptr);
     tune.load(QmmpPrintable(file->fileName()));
