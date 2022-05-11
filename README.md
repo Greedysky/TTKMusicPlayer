@@ -89,28 +89,29 @@ The TTKMusicplayer plugin for run
  * gme
  * mpc
  * mpeg
- * openmpt
  * opus
  * sid
  * sndfile
  * vorbis
  * wavpack
+ * fc14
+ * hively
+ * openmpt
+ * sc68
+ * soundmon
+ * stsound
+ * tfmx
+ * uade
  * xmp
  * adplug
  * archive
  * asap
  * ayfly
  * dca
- * fc14
- * hively
  * mdx
  * optimfrog
  * organya
  * psf
  * s98
- * sc68
- * soundmon
- * stsound
- * tfmx
  * v2m
  * xsf
