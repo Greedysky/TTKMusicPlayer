@@ -19,6 +19,7 @@
 #ifndef UADEHELPER_H
 #define UADEHELPER_H
 
+#include <QMutex>
 #include <QFileInfo>
 #include <qmmp/trackinfo.h>
 #include <uade/uade.h>
@@ -38,20 +39,21 @@ public:
     static UADEHelper *instance();
 
     void seek(qint64 time);
-    qint64 totalTime() const;
+    qint64 totalTime();
 
     inline int bitrate() const { return 8; }
     inline int sampleRate() const { return 44100; }
     inline int channels() const { return 2; }
     inline int depth() const { return 16; }
 
-    inline qint64 read(unsigned char *data, qint64 maxSize) { return uade_read(data, maxSize, m_state); }
+    qint64 read(unsigned char *data, qint64 maxSize);
 
     QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts);
     QString cleanPath(const QString &path) const;
 
 private:
     QString m_path;
+    QMutex m_mutex;
     struct uade_state* m_state = nullptr;
 
 };

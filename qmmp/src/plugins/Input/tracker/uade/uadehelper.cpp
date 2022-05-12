@@ -47,29 +47,30 @@ bool UADEHelper::initialize(const QString &path, bool store)
     const int track = path.section("#", -1).toInt();
     const QString &ipath = cleanPath(path);
 
-    if(!m_state)
-    {
-        struct uade_config* config = uade_new_config();
-        uade_config_set_option(config, UC_ONE_SUBSONG, NULL);
-        uade_config_set_option(config, UC_IGNORE_PLAYER_CHECK, NULL);
-        uade_config_set_option(config, UC_NO_EP_END, NULL);
-        uade_config_set_option(config, UC_FREQUENCY, "44100");
-//        uade_config_set_option(config, UC_VERBOSE, "true");
-        uade_config_set_option(config, UC_BASE_DIR, qPrintable(Qmmp::ttkPluginPath() + "/config/uade"));
-
-        m_state = uade_new_state(config);
-        free(config);
-    }
-    else
+    m_mutex.lock();
+    if(m_state)
     {
         uade_stop(m_state);
+        uade_cleanup_state(m_state);
     }
 
-    if(uade_play(QmmpPrintable(ipath), track, m_state) != 1)
+    struct uade_config* config = uade_new_config();
+    uade_config_set_option(config, UC_ONE_SUBSONG, NULL);
+    uade_config_set_option(config, UC_IGNORE_PLAYER_CHECK, NULL);
+    uade_config_set_option(config, UC_FREQUENCY, "44100");
+    uade_config_set_option(config, UC_BASE_DIR, qPrintable(Qmmp::ttkPluginPath() + "/config/uade"));
+
+    m_state = uade_new_state(config);
+    free(config);
+
+    if(uade_play(QmmpPrintable(ipath), track - 1, m_state) != 1)
     {
-        qWarning("UADEHelper: Unable to open file");
+        qWarning("UADEHelper: Unable to open file, %s", qPrintable(ipath));
+        m_mutex.unlock();
         return false;
     }
+
+    m_mutex.unlock();
     return true;
 }
 
@@ -81,12 +82,16 @@ UADEHelper *UADEHelper::instance()
 
 void UADEHelper::seek(qint64 time)
 {
+    m_mutex.lock();
     uade_seek(UADE_SEEK_SONG_RELATIVE, time / 1000.0, 0, m_state);
+    m_mutex.unlock();
 }
 
-qint64 UADEHelper::totalTime() const
+qint64 UADEHelper::totalTime()
 {
+    m_mutex.lock();
     const struct uade_song_info *info = uade_get_song_info(m_state);
+    m_mutex.unlock();
     if(!info)
     {
         return 0;
@@ -100,6 +105,14 @@ qint64 UADEHelper::totalTime() const
     }
 
     return (time <= 0 ? (info->modulebytes / 8 / 10 / max) : time) * 1000;
+}
+
+qint64 UADEHelper::read(unsigned char *data, qint64 maxSize)
+{
+    m_mutex.lock();
+    const int size = uade_read(data, maxSize, m_state);
+    m_mutex.unlock();
+    return size;
 }
 
 QList<TrackInfo*> UADEHelper::createPlayList(const QString &path, TrackInfo::Parts parts)
