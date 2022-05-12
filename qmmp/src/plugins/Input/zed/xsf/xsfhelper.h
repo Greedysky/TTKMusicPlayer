@@ -51,7 +51,9 @@ public:
     inline int depth() const { return 16; }
 
     inline qint64 read(unsigned char *data, qint64) { return m_input->read((short*)data, INPUT_BUFFER_SIZE) * 4; }
-    QMap<Qmmp::MetaData, QString> readMetaData() const;
+
+    inline bool hasTags() const { return !m_input->get_meta_map().empty(); }
+    inline QString tag(const char *tag) { return QString::fromStdString(m_input->get_meta_map()[tag]); }
 
 private:
     QString m_path;

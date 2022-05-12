@@ -40,12 +40,13 @@ void AdplugHelper::deinit()
     delete m_player;
 }
 
-QStringList AdplugHelper::instruments() const
+QString AdplugHelper::instruments() const
 {
-    QStringList insts;
+    QString value;
     for(unsigned int i = 0; i < instrumentCount(); ++i)
     {
-        insts << QString::fromStdString(m_player->getinstrument(i));
+        value += QString::fromStdString(m_player->getinstrument(i));
+        value += "\n";
     }
-    return insts;
+    return value;
 }

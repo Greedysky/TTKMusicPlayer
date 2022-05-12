@@ -40,41 +40,39 @@ bool HivelyHelper::initialize()
         return false;
     }
 
-    bool ahx = true;
-    if((module[0] == 'H') && (module[1] == 'V') && (module[2] == 'L'))
-    {
-        ahx = false;
-    }
+    m_ahxHeader = (module[0] == 'H') && (module[1] == 'V') && (module[2] == 'L');
+    return true;
+}
 
-    const char* tool = ahx ? "AHX Tracker" : "Hively Tracker";
-    m_metaData.insert(Qmmp::ALBUM/*"SongTypeTag"*/, tool);
-    m_metaData.insert(Qmmp::ARTIST/*"AuthoringToolTag"*/, tool);
-    m_metaData.insert(Qmmp::TITLE/*"TitleTag"*/, m_input->ht_Name);
-    
-    QString instruments;
+QString HivelyHelper::format() const
+{
+    return m_ahxHeader ? "AHX Tracker" : "Hively Tracker";
+}
+
+QString HivelyHelper::instruments() const
+{
+    QString value;
     // instruments starts from 1 in hively so skip 0
-    for(int i = 1; i < m_input->ht_InstrumentNr; ++i)
+    for(int i = 1; i < instrumentCount(); ++i)
     {
-        instruments += m_input->ht_Instruments[i].ins_Name;
-        instruments += " ";
+        value += m_input->ht_Instruments[i].ins_Name;
+        value += "\n";
     }
-    m_metaData.insert(Qmmp::COMMENT/*"Instruments"*/, instruments);
+    return value;
+}
 
-    QString subsongs;
-    if(m_input->ht_SubsongNr > 1)
+QString HivelyHelper::subSongs() const
+{
+    QString value;
+    if(subSongCount() > 1)
     {
-        for(int i = 0, c = m_input->ht_SubsongNr; i < c; ++i)
+        for(int i = 0; i < subSongCount(); ++i)
         {
-            char subsong_name[1024] = {0};
-            sprintf(subsong_name, "%s (%d/%d)", m_input->ht_Name, i + 1, m_input->ht_SubsongNr);
-
-            subsongs += subsong_name;
-            subsongs += " ";
+            value += m_input->ht_Name;
+            value += "\n";
         }
     }
-
-    m_metaData.insert(Qmmp::TRACK/*"SubSongs"*/, subsongs);
-    return true;
+    return value;
 }
 
 qint64 HivelyHelper::read(unsigned char *data, qint64)

@@ -1,11 +1,10 @@
 #include "xmpmetadatamodel.h"
 
 XMPMetaDataModel::XMPMetaDataModel(const QString &path)
-    : MetaDataModel(true),
-      m_path(path)
+    : MetaDataModel(true)
 {
     m_ctx = xmp_create_context();
-    const int err = xmp_load_module(m_ctx, QmmpPrintable(m_path));
+    const int err = xmp_load_module(m_ctx, QmmpPrintable(path));
     if(err != 0)
     {
         xmp_free_context(m_ctx);
@@ -26,6 +25,10 @@ XMPMetaDataModel::~XMPMetaDataModel()
 QList<MetaDataItem> XMPMetaDataModel::extraProperties() const
 {
     QList<MetaDataItem> ep;
+    if(!m_ctx)
+    {
+        return ep;
+    }
 
     xmp_module_info mi;
     xmp_get_module_info(m_ctx, &mi);
@@ -45,39 +48,36 @@ QList<MetaDataItem> XMPMetaDataModel::extraProperties() const
 QList<MetaDataItem> XMPMetaDataModel::descriptions() const
 {
     QList<MetaDataItem> desc;
-    QString text;
+    if(!m_ctx)
+    {
+        return desc;
+    }
 
     xmp_module_info mi;
     xmp_get_module_info(m_ctx, &mi);
 
+    QString value;
     for(int i = 0; i < mi.mod->smp; ++i)
     {
-        text += QString::fromUtf8(mi.mod->xxs[i].name) + '\n';
+        value += QString::fromUtf8(mi.mod->xxs[i].name) + '\n';
     }
 
-    text = text.trimmed();
-    if(!text.isEmpty())
+    value = value.trimmed();
+    if(!value.isEmpty())
     {
-        desc << MetaDataItem(tr("Samples"), text);
+        desc << MetaDataItem(tr("Samples"), value);
     }
-    text.clear();
+    value.clear();
 
     for(int i = 0; i < mi.mod->ins; ++i)
     {
-        text += QString::fromUtf8(mi.mod->xxi[i].name) + '\n';
+        value += QString::fromUtf8(mi.mod->xxi[i].name) + '\n';
     }
 
-    text = text.trimmed();
-    if(!text.isEmpty())
+    value = value.trimmed();
+    if(!value.isEmpty())
     {
-        desc << MetaDataItem(tr("Instruments"), text);
-    }
-    text.clear();
-
-    text = QString::fromUtf8(mi.comment).trimmed();
-    if(!text.isEmpty())
-    {
-        desc << MetaDataItem(tr("Comment"), text);
+        desc << MetaDataItem(tr("Instruments"), value);
     }
     return desc;
 }

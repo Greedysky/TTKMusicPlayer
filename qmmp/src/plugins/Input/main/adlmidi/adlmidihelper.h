@@ -46,6 +46,13 @@ public:
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
+    QString trackTitle() const;
+    QString metaMarker() const;
+    inline int trackTitleCount() const { return adl_metaTrackTitleCount(m_input); }
+    inline int metaMarkerCount() const { return adl_metaMarkerCount(m_input); }
+    inline QString title() const { return adl_metaMusicTitle(m_input); }
+    inline QString copyright() const { return adl_metaMusicCopyright(m_input); }
+
 private:
     QString m_path;
     ADL_MIDIPlayer *m_input = nullptr;

@@ -49,11 +49,7 @@ QList<TrackInfo*> DecoderFC14Factory::createPlayList(const QString &path, TrackI
 
     if(parts & TrackInfo::MetaData)
     {
-        const QMap<Qmmp::MetaData, QString> metaData(helper.readMetaData());
-        for(auto itr = metaData.begin(); itr != metaData.end(); ++itr)
-        {
-            info->setValue(itr.key(), itr.value());
-        }
+        info->setValue(Qmmp::COMMENT, helper.comment());
     }
 
     if(parts & TrackInfo::Properties)

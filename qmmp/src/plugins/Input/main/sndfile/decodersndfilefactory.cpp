@@ -1,5 +1,7 @@
 #include "decodersndfilefactory.h"
+#include "sndfilemetadatamodel.h"
 #include "decoder_sndfile.h"
+
 #include <QFileInfo>
 
 #ifndef WAVE_FORMAT_PCM
@@ -109,13 +111,12 @@ QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, Tra
     }
 
     SF_INFO snd_info;
-    SNDFILE *sndfile = nullptr;
     memset(&snd_info, 0, sizeof(snd_info));
     snd_info.format = 0;
 #ifdef Q_OS_WIN
-    sndfile = sf_wchar_open(reinterpret_cast<LPCWSTR>(path.utf16()), SFM_READ, &snd_info);
+    SNDFILE *sndfile = sf_wchar_open(reinterpret_cast<LPCWSTR>(path.utf16()), SFM_READ, &snd_info);
 #else
-    sndfile = sf_open(qPrintable(path), SFM_READ, &snd_info);
+    SNDFILE *sndfile = sf_open(qPrintable(path), SFM_READ, &snd_info);
 #endif
     if(!sndfile)
     {
@@ -181,9 +182,8 @@ QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, Tra
 
 MetaDataModel* DecoderSndFileFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    Q_UNUSED(path);
     Q_UNUSED(readOnly);
-    return nullptr;
+    return new SndFileMetaDataModel(path);
 }
 
 void DecoderSndFileFactory::showSettings(QWidget *parent)

@@ -7,58 +7,32 @@ OpenMPTMetaDataModel::OpenMPTMetaDataModel(const QString &path)
     : MetaDataModel(true)
 {
   QFile file(path);
-  if(!file.open(QIODevice::ReadOnly))
+  if(file.open(QIODevice::ReadOnly))
   {
-      return;
-  }
+      OpenMPTHelper helper(&file);
+      if(helper.initialize())
+      {
+          fillProperties(&helper);
+      }
 
-  OpenMPTHelper helper(&file);
-  if(helper.initialize())
-  {
-      fillInExtraProperties(&helper);
-      fillInDescriptions(&helper);
+      file.close();
   }
-  file.close();
 }
 
-void OpenMPTMetaDataModel::fillInExtraProperties(OpenMPTHelper *helper)
+void OpenMPTMetaDataModel::fillProperties(OpenMPTHelper *helper)
 {
-    QString text;
-    for(const QString &s : helper->instruments())
-    {
-        if(s.isEmpty())
-        {
-            continue;
-        }
-        text += s + "\n";
-    }
-    m_desc << MetaDataItem(tr("Instruments"), text);
+    m_ep << MetaDataItem(tr("Patterns"), QString::number(helper->patternCount()));
+    m_ep << MetaDataItem(tr("Channels"), QString::number(helper->channelCount()));
+    m_ep << MetaDataItem(tr("Samples"), QString::number(helper->sampleCount()));
+    m_ep << MetaDataItem(tr("Instruments"), QString::number(helper->instrumentCount()));
 
-    text.clear();
-    for(const QString &s : helper->samples())
-    {
-        if(s.isEmpty())
-        {
-            continue;
-        }
-        text += s + "\n";
-    }
-
-    m_desc << MetaDataItem(tr("Samples"), text);
-    m_desc << MetaDataItem(tr("Comment"), helper->comment());
-}
-
-void OpenMPTMetaDataModel::fillInDescriptions(OpenMPTHelper *helper)
-{
-    m_ap << MetaDataItem(tr("Patterns"), QString::number(helper->patternCount()));
-    m_ap << MetaDataItem(tr("Channels"), QString::number(helper->channelCount()));
-    m_ap << MetaDataItem(tr("Instruments"), QString::number(helper->instrumentCount()));
-    m_ap << MetaDataItem(tr("Samples"), QString::number(helper->sampleCount()));
+    m_desc << MetaDataItem(tr("Samples"), helper->samples());
+    m_desc << MetaDataItem(tr("Instruments"), helper->instruments());
 }
 
 QList<MetaDataItem> OpenMPTMetaDataModel::extraProperties() const
 {
-    return m_ap;
+    return m_ep;
 }
 
 QList<MetaDataItem> OpenMPTMetaDataModel::descriptions() const

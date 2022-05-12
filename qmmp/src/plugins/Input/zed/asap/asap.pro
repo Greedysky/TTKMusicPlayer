@@ -5,13 +5,11 @@ TARGET = $${TARGET}
 
 HEADERS += decoderasapfactory.h \
            decoder_asap.h \
-           asaphelper.h \
-           asapmetadatamodel.h
+           asaphelper.h
 
 SOURCES += decoderasapfactory.cpp \
            decoder_asap.cpp \
-           asaphelper.cpp \
-           asapmetadatamodel.cpp
+           asaphelper.cpp
 
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 

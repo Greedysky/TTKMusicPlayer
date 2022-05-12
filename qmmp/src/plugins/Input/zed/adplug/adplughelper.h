@@ -66,7 +66,7 @@ public:
     inline unsigned int patternCount() const { return m_player->getpatterns(); }
     inline unsigned int instrumentCount() const { return m_player->getinstruments(); }
 
-    QStringList instruments() const;
+    QString instruments() const;
 
 private:
     QString m_path;

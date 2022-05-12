@@ -57,24 +57,3 @@ bool XSFHelper::initialize()
     }
     return true;
 }
-
-QMap<Qmmp::MetaData, QString> XSFHelper::readMetaData() const
-{
-    QMap<Qmmp::MetaData, QString> metaData;
-    if(!m_input)
-    {
-        return metaData;
-    }
-
-    const file_meta meta(m_input->get_meta_map());
-    for(auto itr = meta.begin(); itr != meta.end(); ++itr)
-    {
-        if(itr->first == "title") metaData.insert(Qmmp::TITLE, QString::fromStdString(itr->second));
-        else if(itr->first == "artist") metaData.insert(Qmmp::ARTIST, QString::fromStdString(itr->second));
-        else if(itr->first == "album") metaData.insert(Qmmp::ALBUM, QString::fromStdString(itr->second));
-        else if(itr->first == "year") metaData.insert(Qmmp::YEAR, QString::fromStdString(itr->second));
-        else if(itr->first == "genre") metaData.insert(Qmmp::GENRE, QString::fromStdString(itr->second));
-        else if(itr->first == "copyright") metaData.insert(Qmmp::COMMENT, QString::fromStdString(itr->second));
-    }
-    return metaData;
-}

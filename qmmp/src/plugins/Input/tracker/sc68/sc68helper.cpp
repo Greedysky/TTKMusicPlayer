@@ -1,40 +1,5 @@
 #include "sc68helper.h"
 
-static void metaFromMusicInfo(TrackInfo *info, sc68_music_info_t *ti)
-{
-    // add metainfo
-    if(ti->title && ti->title[0])
-    {
-        info->setValue(Qmmp::TITLE, ti->title);
-    }
-
-    if(ti->artist && ti->artist[0])
-    {
-        info->setValue(Qmmp::ARTIST, ti->artist);
-    }
-
-    if(ti->album && ti->album[0])
-    {
-        info->setValue(Qmmp::ALBUM, ti->album);
-    }
-
-    if(ti->genre && ti->genre[0])
-    {
-        info->setValue(Qmmp::GENRE, ti->genre);
-    }
-
-    if(ti->year && ti->year[0])
-    {
-        info->setValue(Qmmp::YEAR, ti->year);
-    }
-
-    if(ti->format && ti->format[0])
-    {
-        info->setValue(Qmmp::COMMENT, ti->format);
-    }
-}
-
-
 SC68Helper::SC68Helper(const QString &path)
     : m_path(path)
 {
@@ -177,7 +142,32 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
         TrackInfo *info = new TrackInfo();
         if(parts & TrackInfo::MetaData)
         {
-            metaFromMusicInfo(info, &tag);
+            // add metainfo
+            if(tag.title && tag.title[0])
+            {
+                info->setValue(Qmmp::TITLE, tag.title);
+            }
+            else if(tag.artist && tag.artist[0])
+            {
+                info->setValue(Qmmp::ARTIST, tag.artist);
+            }
+            else if(tag.album && tag.album[0])
+            {
+                info->setValue(Qmmp::ALBUM, tag.album);
+            }
+            else if(tag.genre && tag.genre[0])
+            {
+                info->setValue(Qmmp::GENRE, tag.genre);
+            }
+            else if(tag.year && tag.year[0])
+            {
+                info->setValue(Qmmp::YEAR, tag.year);
+            }
+            else if(tag.format && tag.format[0])
+            {
+                info->setValue(Qmmp::COMMENT, tag.format);
+            }
+
             info->setValue(Qmmp::TRACK, i);
         }
 

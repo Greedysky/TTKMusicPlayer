@@ -1,4 +1,5 @@
 #include "decoders98factory.h"
+#include "s98metadatamodel.h"
 #include "s98helper.h"
 #include "decoder_s98.h"
 
@@ -47,13 +48,14 @@ QList<TrackInfo*> DecoderS98Factory::createPlayList(const QString &path, TrackIn
         return QList<TrackInfo*>();
     }
 
-    if(parts & TrackInfo::MetaData)
+    if((parts & TrackInfo::MetaData) && helper.hasTags())
     {
-        const QMap<Qmmp::MetaData, QString> metaData(helper.readMetaData());
-        for(auto itr = metaData.begin(); itr != metaData.end(); ++itr)
-        {
-            info->setValue(itr.key(), itr.value());
-        }
+        info->setValue(Qmmp::TITLE, helper.tag("title"));
+        info->setValue(Qmmp::ARTIST, helper.tag("artist"));
+        info->setValue(Qmmp::COMMENT, helper.tag("comment"));
+        info->setValue(Qmmp::GENRE, helper.tag("genre"));
+        info->setValue(Qmmp::COMPOSER, helper.tag("s98by"));
+        info->setValue(Qmmp::YEAR, helper.tag("year"));
     }
 
     if(parts & TrackInfo::Properties)
@@ -70,9 +72,8 @@ QList<TrackInfo*> DecoderS98Factory::createPlayList(const QString &path, TrackIn
 
 MetaDataModel* DecoderS98Factory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    Q_UNUSED(path);
     Q_UNUSED(readOnly);
-    return nullptr;
+    return new S98MetaDataModel(path);
 }
 
 void DecoderS98Factory::showSettings(QWidget *parent)

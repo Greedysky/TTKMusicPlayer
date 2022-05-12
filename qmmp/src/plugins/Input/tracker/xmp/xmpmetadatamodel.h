@@ -39,7 +39,6 @@ public:
 
 private:
     xmp_context m_ctx;
-    QString m_path;
 
 };
 

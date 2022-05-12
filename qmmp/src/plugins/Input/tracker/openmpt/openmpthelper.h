@@ -66,8 +66,8 @@ public:
     inline int sampleCount() const { return m_sampleCount; }
     inline int instrumentCount() const { return m_instrumentCount; }
 
-    inline QStringList instruments()const  { return m_instruments; }
-    inline QStringList samples() const { return m_samples; }
+    inline QString instruments() const { return m_instruments; }
+    inline QString samples() const { return m_samples; }
 
 private:
     QString toString(const char *input);
@@ -86,8 +86,8 @@ private:
     QString m_comment;
     int m_patternCount = 0, m_channelCount = 0;
     int m_instrumentCount = 0, m_sampleCount = 0;
-    QStringList m_instruments;
-    QStringList m_samples;
+    QString m_instruments;
+    QString m_samples;
 
 };
 

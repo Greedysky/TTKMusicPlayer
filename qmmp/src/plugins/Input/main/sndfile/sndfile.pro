@@ -4,10 +4,12 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
 
 HEADERS += decodersndfilefactory.h \
-           decoder_sndfile.h
+           decoder_sndfile.h \
+           sndfilemetadatamodel.h
            
 SOURCES += decodersndfilefactory.cpp \
-           decoder_sndfile.cpp
+           decoder_sndfile.cpp \
+           sndfilemetadatamodel.cpp
 
 INCLUDEPATH += $$EXTRA_PREFIX/libsndfile/include
 

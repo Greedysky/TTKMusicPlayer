@@ -33,7 +33,11 @@ bool StSoundHelper::initialize()
         ymMusicInfo_t info;
         m_music->getMusicInfo(&info);
         m_music->setLoopMode(YMFALSE);
+
         m_length = info.musicTimeInMs;
+        m_title = QString::fromUtf8(info.pSongName);
+        m_author = QString::fromUtf8(info.pSongAuthor);
+        m_comment =  QString::fromUtf8(info.pSongComment);
     }
     else
     {
@@ -65,21 +69,4 @@ qint64 StSoundHelper::read(unsigned char *data, qint64 maxSize)
         psample[(i * 2) + 1] = psample[i];
     }
     return maxSize;
-}
-
-QMap<Qmmp::MetaData, QString> StSoundHelper::readMetaData() const
-{
-    QMap<Qmmp::MetaData, QString> metaData;
-    if(!m_music)
-    {
-        return metaData;
-    }
-
-    ymMusicInfo_t musicInfo;
-    m_music->getMusicInfo(&musicInfo);
-
-    metaData.insert(Qmmp::TITLE, QString::fromUtf8(musicInfo.pSongName).trimmed());
-    metaData.insert(Qmmp::COMPOSER, QString::fromUtf8(musicInfo.pSongAuthor).trimmed());
-    metaData.insert(Qmmp::COMMENT, QString::fromUtf8(musicInfo.pSongComment).trimmed());
-    return metaData;
 }

@@ -30,7 +30,7 @@ class PSFHelper
 {
 public:
     explicit PSFHelper(const QString &path);
-    virtual ~PSFHelper();
+     ~PSFHelper();
 
     void deinit();
     bool initialize();
@@ -44,7 +44,9 @@ public:
     inline int depth() const { return 16; }
 
     qint64 read(unsigned char *data, qint64 maxSize);
-    QMap<Qmmp::MetaData, QString> readMetaData() const;
+
+    inline bool hasTags() const { return !m_tags.isEmpty(); }
+    inline QString tag(const char *tag) { return m_tags[tag]; }
 
 private:
     QString m_path;
@@ -55,6 +57,7 @@ private:
     int m_length = 0;
     int m_current_sample = 0;
     int m_samples_to_skip = 0;
+    QMap<QString, QString> m_tags;
 
 };
 

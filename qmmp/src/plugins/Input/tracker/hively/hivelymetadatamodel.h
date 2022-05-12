@@ -16,47 +16,30 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef ASAPMETADATAMODEL_H
-#define ASAPMETADATAMODEL_H
+#ifndef HIVELYMETADATAMODEL_H
+#define HIVELYMETADATAMODEL_H
 
 #include <qmmp/metadatamodel.h>
 
-class AsapHelper;
+class HivelyHelper;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class AsapMetaDataModel : public MetaDataModel
+class HivelyMetaDataModel : public MetaDataModel
 {
-    Q_DECLARE_TR_FUNCTIONS(AsapMetaDataModel)
+    Q_DECLARE_TR_FUNCTIONS(HivelyMetaDataModel)
 public:
-    explicit AsapMetaDataModel(const QString &path);
-    virtual ~AsapMetaDataModel();
+    explicit HivelyMetaDataModel(const QString &path);
 
-    virtual QList<TagModel*> tags() const override final;
+    virtual QList<MetaDataItem> extraProperties() const override final;
+    virtual QList<MetaDataItem> descriptions() const override final;
 
 private:
-    QList<TagModel*> m_tags;
-    AsapHelper *m_helper = nullptr;
+    void fillProperties(HivelyHelper *helper);
 
-};
-
-/*!
- * @author Greedysky <greedysky@163.com>
- */
-class AsapFileTagModel : public TagModel
-{
-public:
-    explicit AsapFileTagModel(AsapHelper* asap);
-    virtual ~AsapFileTagModel();
-
-    virtual QString name() const override final;
-    virtual QList<Qmmp::MetaData> keys() const override final;
-    virtual QString value(Qmmp::MetaData key) const override final;
-    virtual void setValue(Qmmp::MetaData key, const QString &value) override final;
-
-private:
-    AsapHelper *m_helper = nullptr;
+    QList<MetaDataItem> m_ep;
+    QList<MetaDataItem> m_desc;
 
 };
 

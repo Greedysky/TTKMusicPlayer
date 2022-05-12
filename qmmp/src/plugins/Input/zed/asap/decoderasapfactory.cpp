@@ -1,7 +1,6 @@
 #include "decoderasapfactory.h"
 #include "asaphelper.h"
 #include "decoder_asap.h"
-#include "asapmetadatamodel.h"
 
 bool DecoderAsapFactory::canDecode(QIODevice *input) const
 {
@@ -55,11 +54,9 @@ QList<TrackInfo*> DecoderAsapFactory::createPlayList(const QString &path, TrackI
 
     if(parts & TrackInfo::MetaData)
     {
-        const QMap<Qmmp::MetaData, QString> metaData(helper.readMetaData());
-        for(auto itr = metaData.begin(); itr != metaData.end(); ++itr)
-        {
-            info->setValue(itr.key(), itr.value());
-        }
+        info->setValue(Qmmp::TITLE, helper.title());
+        info->setValue(Qmmp::ARTIST, helper.author());
+        info->setValue(Qmmp::YEAR, helper.year());
     }
 
     if(parts & TrackInfo::Properties)
@@ -76,8 +73,9 @@ QList<TrackInfo*> DecoderAsapFactory::createPlayList(const QString &path, TrackI
 
 MetaDataModel* DecoderAsapFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(path);
     Q_UNUSED(readOnly);
-    return new AsapMetaDataModel(path);
+    return nullptr;
 }
 
 void DecoderAsapFactory::showSettings(QWidget *parent)

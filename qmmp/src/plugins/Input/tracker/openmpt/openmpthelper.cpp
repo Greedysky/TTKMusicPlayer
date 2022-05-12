@@ -52,12 +52,14 @@ bool OpenMPTHelper::initialize()
 
     for(int i = 0; i < openmpt_module_get_num_instruments(m_mod); ++i)
     {
-        m_instruments.push_back(toString(openmpt_module_get_instrument_name(m_mod, i)));
+        m_instruments += toString(openmpt_module_get_instrument_name(m_mod, i));
+        m_instruments += "\n";
     }
 
     for(int i = 0; i < openmpt_module_get_num_samples(m_mod); ++i)
     {
-        m_samples.push_back(toString(openmpt_module_get_sample_name(m_mod, i)));
+        m_samples += toString(openmpt_module_get_sample_name(m_mod, i));
+        m_samples += "\n";
     }
 
     m_comment = toString(openmpt_module_get_metadata(m_mod, "message_raw"));

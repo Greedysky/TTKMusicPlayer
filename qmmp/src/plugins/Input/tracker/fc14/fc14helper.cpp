@@ -57,10 +57,3 @@ qint64 FC14Helper::read(unsigned char *data, qint64 maxSize)
     fc14dec_buffer_fill(m_input, data, maxSize);
     return fc14dec_song_end(m_input) ? 0 : maxSize;
 }
-
-QMap<Qmmp::MetaData, QString> FC14Helper::readMetaData() const
-{
-    QMap<Qmmp::MetaData, QString> metaData;
-    metaData.insert(Qmmp::COMMENT, fc14dec_format_name(m_input));
-    return metaData;
-}

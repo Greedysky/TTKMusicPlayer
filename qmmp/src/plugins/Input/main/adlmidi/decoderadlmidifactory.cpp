@@ -1,4 +1,5 @@
 #include "decoderadlmidifactory.h"
+#include "adlmidimetadatamodel.h"
 #include "decoder_adlmidi.h"
 #include "adlmidihelper.h"
 #include "settingsdialog.h"
@@ -49,6 +50,11 @@ QList<TrackInfo*> DecoderAdlMidiFactory::createPlayList(const QString &path, Tra
         return QList<TrackInfo*>();
     }
 
+    if(parts & TrackInfo::MetaData)
+    {
+        info->setValue(Qmmp::TITLE, helper.title());
+    }
+
     if(parts & TrackInfo::Properties)
     {
         info->setValue(Qmmp::BITRATE, helper.bitrate());
@@ -63,9 +69,8 @@ QList<TrackInfo*> DecoderAdlMidiFactory::createPlayList(const QString &path, Tra
 
 MetaDataModel* DecoderAdlMidiFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    Q_UNUSED(path);
     Q_UNUSED(readOnly);
-    return nullptr;
+    return new AdlMidiMetaDataModel(path);
 }
 
 void DecoderAdlMidiFactory::showSettings(QWidget *parent)

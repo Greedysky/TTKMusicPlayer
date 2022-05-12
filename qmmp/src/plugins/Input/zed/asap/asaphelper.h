@@ -45,14 +45,19 @@ public:
     inline int depth() const { return 16; }
 
     qint64 read(unsigned char *data, qint64 maxSize);
-    inline const QMap<Qmmp::MetaData, QString> &readMetaData() const { return m_metaData; }
+
+    inline QString title() const { return m_title; }
+    inline QString author() const { return m_author; }
+    inline QString year() const { return m_year; }
 
 private:
     QString m_path;
     ASAP *m_input = nullptr;
     int m_length = 0;
     int m_channels = 0;
-    QMap<Qmmp::MetaData, QString> m_metaData;
+    QString m_title;
+    QString m_author;
+    QString m_year;
 
 };
 

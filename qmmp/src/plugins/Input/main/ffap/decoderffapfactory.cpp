@@ -97,11 +97,11 @@ QList<TrackInfo*> DecoderFFapFactory::createPlayList(const QString &path, TrackI
             return parser.createPlayList(track);
         }
 
-        info->setValue(Qmmp::ALBUM, TStringToQString(tag->album()));
+        info->setValue(Qmmp::TITLE, TStringToQString(tag->title()));
         info->setValue(Qmmp::ARTIST, TStringToQString(tag->artist()));
+        info->setValue(Qmmp::ALBUM, TStringToQString(tag->album()));
         info->setValue(Qmmp::COMMENT, TStringToQString(tag->comment()));
         info->setValue(Qmmp::GENRE, TStringToQString(tag->genre()));
-        info->setValue(Qmmp::TITLE, TStringToQString(tag->title()));
         info->setValue(Qmmp::YEAR, tag->year());
         info->setValue(Qmmp::TRACK, tag->track());
         //additional metadata

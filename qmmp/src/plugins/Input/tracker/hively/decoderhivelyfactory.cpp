@@ -1,4 +1,5 @@
 #include "decoderhivelyfactory.h"
+#include "hivelymetadatamodel.h"
 #include "hivelyhelper.h"
 #include "decoder_hively.h"
 
@@ -49,11 +50,7 @@ QList<TrackInfo*> DecoderHivelyFactory::createPlayList(const QString &path, Trac
 
     if(parts & TrackInfo::MetaData)
     {
-        const QMap<Qmmp::MetaData, QString> metaData(helper.readMetaData());
-        for(auto itr = metaData.begin(); itr != metaData.end(); ++itr)
-        {
-            info->setValue(itr.key(), itr.value());
-        }
+        info->setValue(Qmmp::TITLE, helper.title());
     }
 
     if(parts & TrackInfo::Properties)
@@ -70,9 +67,8 @@ QList<TrackInfo*> DecoderHivelyFactory::createPlayList(const QString &path, Trac
 
 MetaDataModel* DecoderHivelyFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    Q_UNUSED(path);
     Q_UNUSED(readOnly);
-    return nullptr;
+    return new HivelyMetaDataModel(path);
 }
 
 void DecoderHivelyFactory::showSettings(QWidget *parent)

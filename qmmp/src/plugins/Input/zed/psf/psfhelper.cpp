@@ -68,7 +68,7 @@ bool PSFHelper::initialize()
 
     for(int i = 1; i < 9; ++i)
     {
-        if(!strncasecmp(info.title[i], "Length: ", 8))
+        if(!strncasecmp(info.title[i], "Length:", 7))
         {
             int min;
             float sec;
@@ -80,7 +80,42 @@ bool PSFHelper::initialize()
             {
                 m_length = sec;
             }
-            break;
+        }
+        else if(!strncasecmp(info.title[i], "Name:", 5) || !strncasecmp(info.title[i], "Song:", 5))
+        {
+            m_tags.insert("title", info.info[i]);
+        }
+        else if(!strncasecmp(info.title[i], "Artist:", 7))
+        {
+            m_tags.insert("artist", info.info[i]);
+        }
+        else if(!strncasecmp(info.title[i], "Year:", 5))
+        {
+            m_tags.insert("year", info.info[i]);
+        }
+        else if(!strncasecmp(info.title[i], "Game:", 5))
+        {
+            m_tags.insert("game", info.info[i]);
+        }
+        else if(!strncasecmp(info.title[i], "Fade:", 5))
+        {
+            m_tags.insert("fade", info.info[i]);
+        }
+        else if(!strncasecmp(info.title[i], "Ripper:", 7))
+        {
+            m_tags.insert("ripper", info.info[i]);
+        }
+        else if(!strncasecmp(info.title[i], "Copyright:", 10))
+        {
+            m_tags.insert("copyright", info.info[i]);
+        }
+        else
+        {
+            const char *colon = strchr(info.title[i], ':');
+            char name[colon - info.title[i] + 1];
+            memcpy(name, info.title[i], colon - info.title[i]);
+            name[colon - info.title[i]] = 0;
+            m_tags.insert("title", info.info[i]);
         }
     }
     return true;
@@ -147,63 +182,4 @@ qint64 PSFHelper::read(unsigned char *data, qint64 maxSize)
 
     m_current_sample += (initSize - maxSize) / (channels() * depth() / 8);
     return initSize - maxSize;
-}
-
-QMap<Qmmp::MetaData, QString> PSFHelper::readMetaData() const
-{
-    QMap<Qmmp::MetaData, QString> metaData;
-    if(m_type < 0 || !m_input)
-    {
-        return metaData;
-    }
-
-    ao_display_info info;
-    memset(&info, 0, sizeof(info));
-    bool have_info = false;
-    if(ao_get_info(m_type, m_input, &info) == AO_SUCCESS)
-    {
-       have_info = true;
-    }
-
-    if(have_info)
-    {
-        return metaData;
-    }
-
-    for(int i = 1; i < 9; ++i)
-    {
-        if(!strncasecmp(info.title[i], "Name: ", 6) || !strncasecmp(info.title[i], "Song: ", 6))
-        {
-            metaData.insert(Qmmp::TITLE, info.info[i]);
-        }
-        else if(!strncasecmp(info.title[i], "Game: ", 6))
-        {
-            metaData.insert(Qmmp::ALBUM, info.info[i]);
-        }
-        else if(!strncasecmp(info.title[i], "Artist: ", 8))
-        {
-            metaData.insert(Qmmp::ARTIST, info.info[i]);
-        }
-        else if(!strncasecmp(info.title[i], "Copyright: ", 11))
-        {
-            metaData.insert(Qmmp::COMPOSER, info.info[i]);
-        }
-        else if(!strncasecmp(info.title[i], "Year: ", 6))
-        {
-            metaData.insert(Qmmp::YEAR, info.info[i]);
-        }
-        else if(!strncasecmp(info.title[i], "Fade: ", 6))
-        {
-            // do nothing
-        }
-        else
-        {
-            char *colon = strchr(info.title[i], ':');
-            char name[colon - info.title[i] + 1];
-            memcpy(name, info.title[i], colon - info.title[i]);
-            name[colon - info.title[i]] = 0;
-            metaData.insert(Qmmp::COMMENT, info.info[i]);
-        }
-    }
-    return metaData;
 }

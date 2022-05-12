@@ -45,12 +45,18 @@ public:
     inline int depth() const { return 16; }
 
     qint64 read(unsigned char *data, qint64 maxSize);
-    QMap<Qmmp::MetaData, QString> readMetaData() const;
+
+    inline QString title() const { return m_title; }
+    inline QString author() const { return m_author; }
+    inline QString comment() const { return m_comment; }
 
 private:
     QString m_path;
     CYmMusic *m_music = nullptr;
     int m_length = 0;
+    QString m_title;
+    QString m_author;
+    QString m_comment;
 
 };
 

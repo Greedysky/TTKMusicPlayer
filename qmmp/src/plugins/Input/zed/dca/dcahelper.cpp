@@ -18,7 +18,7 @@
 #  define u16_LE(u16) (u16)
 #endif
 
-int channel_remap[][7] = {
+static int channel_remap[][7] = {
 // DCA_MONO
     {0},
 // DCA_CHANNEL
@@ -79,7 +79,7 @@ struct wavfmt_t
     uint16_t cbSize;
 };
 
-int dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
+static int dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
 {
     char riff[4];
     if(stdio_read(&riff, 1, sizeof(riff), fp) != sizeof(riff))
@@ -172,7 +172,7 @@ int dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
     return stdio_tell(fp);
 }
 
-int16_t convert(int32_t i)
+static int16_t convert(int32_t i)
 {
 #ifdef LIBDCA_FIXED
     i >>= 15;
@@ -182,7 +182,7 @@ int16_t convert(int32_t i)
     return (i > 32767) ? 32767 : ((i < -32768) ? -32768 : i);
 }
 
-int convert_samples(decode_info *state, int)
+static int convert_samples(decode_info *state, int)
 {
     sample_t *samples = dca_samples(state->state);
 
@@ -203,7 +203,7 @@ int convert_samples(decode_info *state, int)
     return 0;
 }
 
-int dca_decode_data(decode_info *ddb_state, uint8_t *start, int size, int probe)
+static int dca_decode_data(decode_info *ddb_state, uint8_t *start, int size, int probe)
 {
     int n_decoded = 0;
     uint8_t *end = start + size;

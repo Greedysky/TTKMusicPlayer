@@ -47,12 +47,19 @@ public:
     inline int depth() const { return 16; }
 
     qint64 read(unsigned char *data, qint64 maxSize);
-    inline const QMap<Qmmp::MetaData, QString> &readMetaData() const { return m_metaData; }
+
+    inline QString title() const { return m_input->ht_Name; }
+    inline int subSongCount() const { return m_input->ht_SubsongNr; }
+    inline int instrumentCount() const { return m_input->ht_InstrumentNr; }
+
+    QString format() const;
+    QString subSongs() const;
+    QString instruments() const;
 
 private:
     QString m_path;
+    bool m_ahxHeader = true;
     struct hvl_tune *m_input = nullptr;
-    QMap<Qmmp::MetaData, QString> m_metaData;
 
 };
 

@@ -1,18 +1,18 @@
-#include "psfmetadatamodel.h"
-#include "psfhelper.h"
+#include "s98metadatamodel.h"
+#include "s98helper.h"
 
-PSFMetaDataModel::PSFMetaDataModel(const QString &path)
+S98MetaDataModel::S98MetaDataModel(const QString &path)
     : MetaDataModel(true),
       m_path(path)
 {
 
 }
 
-QList<MetaDataItem> PSFMetaDataModel::extraProperties() const
+QList<MetaDataItem> S98MetaDataModel::extraProperties() const
 {
     QList<MetaDataItem> ep;
 
-    PSFHelper helper(m_path);
+    S98Helper helper(m_path);
     if(!helper.initialize())
     {
         return ep;
@@ -21,8 +21,7 @@ QList<MetaDataItem> PSFMetaDataModel::extraProperties() const
     if(helper.hasTags())
     {
         ep << MetaDataItem("Game", helper.tag("game"));
-        ep << MetaDataItem("Fade", helper.tag("fade"));
-        ep << MetaDataItem("Ripper", helper.tag("ripper"));
+        ep << MetaDataItem("System", helper.tag("system"));
         ep << MetaDataItem("Copyright", helper.tag("copyright"));
     }
     return ep;

@@ -54,8 +54,7 @@ bool MDXFileReader::load(const QString &path)
     char buffer[INPUT_BUFFER_SIZE] = {0};
     mdx_set_max_loop(m_input, 0);
     mdx_get_title(m_input, buffer);
-    m_metaData.insert(Qmmp::TITLE, buffer);
-
+    m_title = buffer;
     m_length = mdx_get_length(m_input) * 1000;
     return true;
 }
@@ -120,11 +119,10 @@ bool PMDFileReader::load(const QString &path)
     }
 
     char buffer[INPUT_BUFFER_SIZE] = {0};
-    m_input->pmd_get_compo(buffer);
-    m_metaData.insert(Qmmp::ARTIST, buffer);
     m_input->pmd_get_title(buffer);
-    m_metaData.insert(Qmmp::TITLE, buffer);
-
+    m_title = buffer;
+    m_input->pmd_get_compo(buffer);
+    m_author = buffer;
     m_length = m_input->pmd_length_sec() * 1000;
     return true;
 }
@@ -191,10 +189,8 @@ bool MUCFileReader::load(const QString &path)
     m_input->UseFader(true);
     m_input->Play();
 
-    m_metaData.insert(Qmmp::TITLE, QString::fromStdString(m_input->tag->title));
-    m_metaData.insert(Qmmp::ARTIST, QString::fromStdString(m_input->tag->author));
-    m_metaData.insert(Qmmp::COMPOSER, QString::fromStdString(m_input->tag->composer));
-
+    m_title = QString::fromStdString(m_input->tag->title);
+    m_author = QString::fromStdString(m_input->tag->author);
     m_length = m_input->GetLength() * 1000;
     return true;
 }

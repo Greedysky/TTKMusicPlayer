@@ -52,10 +52,9 @@ bool AsapHelper::initialize()
         return false;
     }
 
-    m_metaData.insert(Qmmp::TITLE, ASAPInfo_GetTitle(info));
-    m_metaData.insert(Qmmp::ARTIST, ASAPInfo_GetAuthor(info));
-    m_metaData.insert(Qmmp::YEAR, QString::number(ASAPInfo_GetYear(info)));
-
+    m_title = ASAPInfo_GetTitle(info);
+    m_author = ASAPInfo_GetAuthor(info);
+    m_year = QString::number(ASAPInfo_GetYear(info));
     m_length = ASAPInfo_GetDuration(info, ASAPInfo_GetDefaultSong(info));
     m_channels = ASAPInfo_GetChannels(info);
     return true;

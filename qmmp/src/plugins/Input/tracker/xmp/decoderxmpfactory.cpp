@@ -51,31 +51,36 @@ QList<TrackInfo*> DecoderXMPFactory::createPlayList(const QString &path, TrackIn
     QList<TrackInfo*> plyalist;
     TrackInfo *info = new TrackInfo(path);
 
-    if(parts & (TrackInfo::MetaData | TrackInfo::Properties))
+    xmp_context ctx = xmp_create_context();
+    if(xmp_load_module(ctx, QmmpPrintable(path)) != 0)
     {
-        xmp_context ctx = xmp_create_context();
-        if(xmp_load_module(ctx, QmmpPrintable(path)) != 0)
-        {
-            qWarning("DecoderXMPFactory: unable to load module");
-            xmp_free_context(ctx);
-            delete info;
-            return plyalist;
-        }
+        qWarning("DecoderXMPFactory: unable to load module");
+        xmp_free_context(ctx);
+        delete info;
+        return plyalist;
+    }
 
-        xmp_module_info mi;
-        xmp_get_module_info(ctx, &mi);
+    xmp_module_info mi;
+    xmp_get_module_info(ctx, &mi);
 
+    if(parts & TrackInfo::MetaData)
+    {
         info->setValue(Qmmp::TITLE, mi.mod->name);
+        info->setValue(Qmmp::COMMENT, mi.comment);
+    }
+
+    if(parts & TrackInfo::Properties)
+    {
         info->setValue(Qmmp::BITRATE, QFileInfo(path).size() * 8.0 / mi.seq_data[0].duration + 1.0f);
         info->setValue(Qmmp::SAMPLERATE, 44100);
         info->setValue(Qmmp::CHANNELS, 2);
         info->setValue(Qmmp::BITS_PER_SAMPLE, 16);
         info->setValue(Qmmp::FORMAT_NAME, mi.mod->type);
         info->setDuration(mi.seq_data[0].duration);
+    }
 
-        xmp_release_module(ctx);
-        xmp_free_context(ctx);
-    };
+    xmp_release_module(ctx);
+    xmp_free_context(ctx);
     return plyalist << info;
 }
 

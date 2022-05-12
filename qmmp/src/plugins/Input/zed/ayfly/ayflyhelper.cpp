@@ -52,8 +52,5 @@ bool AyflyHelper::initialize()
 
     m_length = ay_getsonglength(m_input) / 50 * 1000;
     ay_setelapsedcallback(m_input, endCallback, nullptr);
-
-    m_metaData.insert(Qmmp::TITLE, ay_getsongname(m_input));
-    m_metaData.insert(Qmmp::ARTIST, ay_getsongauthor(m_input));
     return true;
 }

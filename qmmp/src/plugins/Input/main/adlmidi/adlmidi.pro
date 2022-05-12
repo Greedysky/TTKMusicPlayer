@@ -6,11 +6,13 @@ TARGET = $${TARGET}
 HEADERS += decoderadlmidifactory.h \
            decoder_adlmidi.h \
            adlmidihelper.h \
+           adlmidimetadatamodel.h \
            settingsdialog.h
 
 SOURCES += decoderadlmidifactory.cpp \
            decoder_adlmidi.cpp \
            adlmidihelper.cpp \
+           adlmidimetadatamodel.cpp \
            settingsdialog.cpp
 
 FORMS += settingsdialog.ui

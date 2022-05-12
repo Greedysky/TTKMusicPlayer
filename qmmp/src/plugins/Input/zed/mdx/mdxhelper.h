@@ -38,12 +38,14 @@ public:
 
     inline int sampleRate() const { return 44100; }
 
-    inline const QMap<Qmmp::MetaData, QString> &readMetaData() const { return m_metaData; }
+    inline QString title() const { return m_title; }
+    inline QString author() const { return m_author; }
 
 protected:
     int m_offset = 0;
     int m_length = 0;
-    QMap<Qmmp::MetaData, QString> m_metaData;
+    QString m_title;
+    QString m_author;
 
 };
 
@@ -68,7 +70,9 @@ public:
     inline int depth() const { return 16; }
 
     inline qint64 read(unsigned char *data, qint64 maxSize) { return m_input->read(data, maxSize); }
-    inline const QMap<Qmmp::MetaData, QString> &readMetaData() const { return m_input->readMetaData(); }
+
+    inline QString title() const { return m_input->title(); }
+    inline QString author() const { return m_input->author(); }
 
 private:
     QString m_path;

@@ -36,10 +36,9 @@ public:
     virtual QList<MetaDataItem> descriptions() const override final;
 
 private:
-    void fillInExtraProperties(OpenMPTHelper *helper);
-    void fillInDescriptions(OpenMPTHelper *helper);
+    void fillProperties(OpenMPTHelper *helper);
 
-    QList<MetaDataItem> m_ap;
+    QList<MetaDataItem> m_ep;
     QList<MetaDataItem> m_desc;
 
 };

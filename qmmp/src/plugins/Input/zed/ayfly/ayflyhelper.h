@@ -45,13 +45,14 @@ public:
     inline int depth() const { return 16; }
 
     inline qint64 read(unsigned char *data, qint64 maxSize) { return ay_rendersongbuffer(m_input, data, maxSize); }
-    inline const QMap<Qmmp::MetaData, QString> &readMetaData() const { return m_metaData; }
+
+    inline QString title() const { return ay_getsongname(m_input); }
+    inline QString author() const { return ay_getsongauthor(m_input); }
 
 private:
     QString m_path;
     void *m_input = nullptr;
     int m_length = 0;
-    QMap<Qmmp::MetaData, QString> m_metaData;
 
 };
 

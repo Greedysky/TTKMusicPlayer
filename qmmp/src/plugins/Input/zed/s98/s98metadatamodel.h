@@ -16,43 +16,24 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef S98HELPER_H
-#define S98HELPER_H
+#ifndef S98METADATAMODEL_H
+#define S98METADATAMODEL_H
 
-#include <QFile>
-#include <qmmp/trackinfo.h>
-#include <libs98/s98.h>
+#include <qmmp/metadatamodel.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class S98Helper
+class S98MetaDataModel : public MetaDataModel
 {
+    Q_DECLARE_TR_FUNCTIONS(S98MetaDataModel)
 public:
-    explicit S98Helper(const QString &path);
-    ~S98Helper();
+    explicit S98MetaDataModel(const QString &path);
 
-    void deinit();
-    bool initialize();
-
-    inline void seek(qint64 time) { m_input->SetPosition(time); }
-    inline qint64 totalTime() const { return m_info.dwLength; }
-
-    inline int bitrate() const { return 8; }
-    inline int sampleRate() const { return 44100; }
-    inline int channels() const { return 2; }
-    inline int depth() const { return 16; }
-
-    qint64 read(unsigned char *data, qint64 maxSize);
-
-    inline bool hasTags() const { return !m_tags.isEmpty(); }
-    inline QString tag(const char *tag) { return m_tags[tag]; }
+    virtual QList<MetaDataItem> extraProperties() const override final;
 
 private:
     QString m_path;
-    SOUNDINFO m_info;
-    s98File *m_input = nullptr;
-    QMap<QString, QString> m_tags;
 
 };
 
