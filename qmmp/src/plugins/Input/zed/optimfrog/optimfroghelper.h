@@ -52,7 +52,7 @@ public:
     inline double compression() const { return 1000.0 * bitrate() / sampleRate() / channels() / depth(); }
 
     inline bool hasTags() const { return !m_tags.isEmpty(); }
-    inline QString tag(const char *tag) { return m_tags[tag]; }
+    inline QString tag(const char *key) const { return m_tags[key]; }
 
 private:
 #if defined Q_OS_WIN && defined __GNUC__

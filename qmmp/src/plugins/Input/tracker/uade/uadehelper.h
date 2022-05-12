@@ -52,7 +52,7 @@ public:
     QString cleanPath(const QString &path) const;
 
     inline bool hasTags() const { return !m_tags.isEmpty(); }
-    inline QString tag(const char *tag) { return m_tags[tag]; }
+    inline QString tag(const char *key) const { return m_tags[key]; }
 
 private:
     QString m_path;

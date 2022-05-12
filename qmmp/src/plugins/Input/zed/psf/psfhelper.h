@@ -46,7 +46,7 @@ public:
     qint64 read(unsigned char *data, qint64 maxSize);
 
     inline bool hasTags() const { return !m_tags.isEmpty(); }
-    inline QString tag(const char *tag) { return m_tags[tag]; }
+    inline QString tag(const char *key) const { return m_tags[key]; }
 
 private:
     QString m_path;

@@ -53,12 +53,12 @@ public:
     inline qint64 read(unsigned char *data, qint64) { return m_input->read((short*)data, INPUT_BUFFER_SIZE) * 4; }
 
     inline bool hasTags() const { return !m_input->get_meta_map().empty(); }
-    inline QString tag(const char *tag) { return QString::fromStdString(m_input->get_meta_map()[tag]); }
+    inline QString tag(const char *key) const { return QString::fromStdString(m_input->get_meta_map()[key]); }
 
 private:
     QString m_path;
-    FileReader *m_input = nullptr;
     bool m_meta = false;
+    FileReader *m_input = nullptr;
 
 };
 

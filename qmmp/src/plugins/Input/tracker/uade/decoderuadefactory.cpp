@@ -19,7 +19,7 @@ DecoderProperties DecoderUADEFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("UADE Plugin");
     properties.shortName = "uade";
-    properties.filters << "*.aam" << "*.amc" << "*.aon" << "*.ash" << "*.ast" << "*.avp";
+    properties.filters << "*.aam" << "*.amc" << "*.aon" << "*.aps" << "*.ash" << "*.ast" << "*.avp";
     properties.filters << "*.bd" << "*.bds" << "*.bsi" << "*.bss" << "*.bye";
     properties.filters << "*.cm" << "*.core" << "*.cust";
     properties.filters << "*.dat" << "*.dh" << "*.dl" << "*.dln" << "*.dm" << "*.dm2" << "*.dmu" << "*.doda" << "*.dsc" << "*.dsr" << "*.dss" << "*.dum" << "*.dw" << "*.dz";
