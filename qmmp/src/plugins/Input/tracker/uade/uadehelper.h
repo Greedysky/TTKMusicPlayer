@@ -51,9 +51,13 @@ public:
     QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts);
     QString cleanPath(const QString &path) const;
 
+    inline bool hasTags() const { return !m_tags.isEmpty(); }
+    inline QString tag(const char *tag) { return m_tags[tag]; }
+
 private:
     QString m_path;
     QMutex m_mutex;
+    QMap<QString, QString> m_tags;
     struct uade_state* m_state = nullptr;
 
 };

@@ -11,7 +11,6 @@ OptimFROGMetaDataModel::OptimFROGMetaDataModel(const QString &path)
 QList<MetaDataItem> OptimFROGMetaDataModel::extraProperties() const
 {
     QList<MetaDataItem> ep;
-
     QFile file(m_path);
     if(file.open(QIODevice::ReadOnly))
     {

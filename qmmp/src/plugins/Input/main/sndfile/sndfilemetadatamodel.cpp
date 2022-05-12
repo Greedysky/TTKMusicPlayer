@@ -11,7 +11,6 @@ SndFileMetaDataModel::SndFileMetaDataModel(const QString &path)
 QList<MetaDataItem> SndFileMetaDataModel::extraProperties() const
 {
     QList<MetaDataItem> ep;
-
     SF_INFO snd_info;
     memset(&snd_info, 0, sizeof(snd_info));
     snd_info.format = 0;

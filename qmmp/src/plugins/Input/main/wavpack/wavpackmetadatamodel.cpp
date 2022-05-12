@@ -48,7 +48,6 @@ WavPackMetaDataModel::~WavPackMetaDataModel()
 QList<MetaDataItem> WavPackMetaDataModel::extraProperties() const
 {
     QList<MetaDataItem> ep;
-
     if(!m_ctx)
         return ep;
 

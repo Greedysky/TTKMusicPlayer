@@ -11,7 +11,6 @@ S98MetaDataModel::S98MetaDataModel(const QString &path)
 QList<MetaDataItem> S98MetaDataModel::extraProperties() const
 {
     QList<MetaDataItem> ep;
-
     S98Helper helper(m_path);
     if(!helper.initialize())
     {

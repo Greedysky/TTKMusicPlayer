@@ -5,11 +5,13 @@ TARGET = $${TARGET}
 
 HEADERS += decoderuadefactory.h \
            decoder_uade.h \
-           uadehelper.h
+           uadehelper.h \
+           uademetadatamodel.h
            
 SOURCES += decoderuadefactory.cpp \
            decoder_uade.cpp \
-           uadehelper.cpp
+           uadehelper.cpp\
+           uademetadatamodel.cpp
 
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 

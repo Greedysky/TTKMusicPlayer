@@ -1,4 +1,5 @@
 #include "decoderuadefactory.h"
+#include "uademetadatamodel.h"
 #include "decoder_uade.h"
 #include "uadehelper.h"
 
@@ -87,9 +88,8 @@ QList<TrackInfo*> DecoderUADEFactory::createPlayList(const QString &path, TrackI
 
 MetaDataModel* DecoderUADEFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    Q_UNUSED(path);
     Q_UNUSED(readOnly);
-    return nullptr;
+    return new UADEMetaDataModel(path);
 }
 
 void DecoderUADEFactory::showSettings(QWidget *parent)

@@ -50,6 +50,7 @@ bool UADEHelper::initialize(const QString &path, bool store)
     m_mutex.lock();
     if(m_state)
     {
+        m_tags.clear();
         uade_stop(m_state);
         uade_cleanup_state(m_state);
     }
@@ -60,14 +61,34 @@ bool UADEHelper::initialize(const QString &path, bool store)
     uade_config_set_option(config, UC_FREQUENCY, "44100");
     uade_config_set_option(config, UC_BASE_DIR, qPrintable(Qmmp::ttkPluginPath() + "/config/uade"));
 
-    m_state = uade_new_state(config);
-    free(config);
+    try
+    {
+        m_state = uade_new_state(config);
+        free(config);
+    }
+    catch(...)
+    {
+        free(config);
+        m_mutex.unlock();
+        return false;
+    }
 
     if(uade_play(QmmpPrintable(ipath), track - 1, m_state) != 1)
     {
         qWarning("UADEHelper: Unable to open file, %s", qPrintable(ipath));
         m_mutex.unlock();
         return false;
+    }
+
+    const struct uade_song_info *info = uade_get_song_info(m_state);
+    if(info)
+    {
+        m_tags.insert("modulemd5", info->modulemd5);
+        m_tags.insert("modulepath", info->modulefname);
+        m_tags.insert("formatname", info->formatname);
+        m_tags.insert("modulename", info->modulename);
+        m_tags.insert("playername", info->playername);
+        m_tags.insert("format", info->detectioninfo.ext);
     }
 
     m_mutex.unlock();
@@ -92,6 +113,7 @@ qint64 UADEHelper::totalTime()
     m_mutex.lock();
     const struct uade_song_info *info = uade_get_song_info(m_state);
     m_mutex.unlock();
+
     if(!info)
     {
         return 0;

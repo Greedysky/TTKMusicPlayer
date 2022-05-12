@@ -11,7 +11,6 @@ PSFMetaDataModel::PSFMetaDataModel(const QString &path)
 QList<MetaDataItem> PSFMetaDataModel::extraProperties() const
 {
     QList<MetaDataItem> ep;
-
     PSFHelper helper(m_path);
     if(!helper.initialize())
     {
