@@ -156,7 +156,6 @@ else()
 
     set(QT_USE_QTCORE ON)
     set(QT_USE_QTGUI ON)
-    set(QT_USE_QTXML ON)
     set(QT_USE_QTNETWORK ON)
     set(QT_USE_QTXML ON)
     set(QT_USE_QTOPENGL ON)
