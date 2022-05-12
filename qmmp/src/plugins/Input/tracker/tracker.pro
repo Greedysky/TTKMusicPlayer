@@ -1,5 +1,7 @@
 TEMPLATE = subdirs
 
+SUBDIRS += asap
+SUBDIRS += ayfly
 SUBDIRS += fc14
 SUBDIRS += hively
 SUBDIRS += openmpt

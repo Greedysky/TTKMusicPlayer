@@ -2,8 +2,6 @@ TEMPLATE = subdirs
 
 SUBDIRS += adplug
 SUBDIRS += archive
-SUBDIRS += asap
-SUBDIRS += ayfly
 SUBDIRS += dca
 SUBDIRS += mdx
 SUBDIRS += optimfrog

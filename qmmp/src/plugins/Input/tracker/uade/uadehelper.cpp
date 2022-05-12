@@ -44,7 +44,11 @@ bool UADEHelper::initialize(const QString &path, bool store)
         m_path = path;
     }
 
-    const int track = path.section("#", -1).toInt();
+    m_track = path.section("#", -1).toInt() - 1;
+    if(m_track < 0)
+    {
+        m_track = 0;
+    }
     const QString &ipath = cleanPath(path);
 
     m_mutex.lock();
@@ -73,7 +77,7 @@ bool UADEHelper::initialize(const QString &path, bool store)
         return false;
     }
 
-    if(uade_play(QmmpPrintable(ipath), track - 1, m_state) != 1)
+    if(uade_play(QmmpPrintable(ipath), m_track, m_state) != 1)
     {
         qWarning("UADEHelper: Unable to open file, %s", qPrintable(ipath));
         m_mutex.unlock();
@@ -104,7 +108,7 @@ UADEHelper *UADEHelper::instance()
 void UADEHelper::seek(qint64 time)
 {
     m_mutex.lock();
-    uade_seek(UADE_SEEK_SONG_RELATIVE, time / 1000.0, 0, m_state);
+    uade_seek(UADE_SEEK_SONG_RELATIVE, time / 1000.0, m_track, m_state);
     m_mutex.unlock();
 }
 

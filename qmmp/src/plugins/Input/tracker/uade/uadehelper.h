@@ -56,6 +56,7 @@ public:
 
 private:
     QString m_path;
+    int m_track = 0;
     QMutex m_mutex;
     QMap<QString, QString> m_tags;
     struct uade_state* m_state = nullptr;
