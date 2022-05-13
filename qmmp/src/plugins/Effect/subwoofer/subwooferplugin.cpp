@@ -1,5 +1,6 @@
 #include "subwooferplugin.h"
 
+#include <qmath.h>
 #include <QSettings>
 
 static BiquadSCoefs coefs[STAGE_LENGTH] = {
@@ -10,7 +11,7 @@ static BiquadSCoefs coefs[STAGE_LENGTH] = {
 
 static void biquadBilinearDesign(BiquadZCoefs *out, const BiquadSCoefs *in, float omega)
 {
-    const float t = 2.0 * tan(omega * M_PI_2);
+    const float t = 2.0 * tan(omega * M_PI / 2);
     const float v = (4.0 * in->a + 2.0 * in->b * t + in->c * t * t);
 
     out->a2 = (4.0 * in->a - 2.0 * in->b * t + in->c * t * t) / v;
