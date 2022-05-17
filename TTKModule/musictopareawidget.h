@@ -107,7 +107,7 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Show change background skin dailog.
+     * Show change background skin dialog.
      */
     void musicShowSkinChangedWindow();
     /*!
