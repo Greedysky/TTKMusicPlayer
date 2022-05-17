@@ -18,7 +18,7 @@ SonicPlugin::~SonicPlugin()
 void SonicPlugin::applyEffect(Buffer *b)
 {
     sonicWriteFloatToStream(m_stream, b->data, b->samples);
-    const int samples = sonicSamplesAvailable(m_stream);
+    const size_t samples = sonicSamplesAvailable(m_stream);
 
     if(samples > b->size)
     {

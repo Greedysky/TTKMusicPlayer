@@ -57,8 +57,8 @@ void ChannelConverter::applyEffect(Buffer *b)
     if(m_disabled)
         return;
 
-    int in_channels = m_in_map.count();
-    int out_channels = m_out_map.count();
+    const int in_channels = m_in_map.count();
+    const int out_channels = m_out_map.count();
 
     if(b->samples > m_tmp_size)
     {
@@ -68,7 +68,7 @@ void ChannelConverter::applyEffect(Buffer *b)
     }
     memcpy(m_tmp_buf, b->data, b->samples * sizeof(float));
 
-    size_t samples = b->samples * out_channels / in_channels;
+    const size_t samples = b->samples * out_channels / in_channels;
     if(samples > b->size)
     {
         delete [] b->data;
