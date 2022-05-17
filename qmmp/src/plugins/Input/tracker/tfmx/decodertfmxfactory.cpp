@@ -7,7 +7,7 @@ bool DecoderTFMXFactory::canDecode(QIODevice *input) const
     char buf[9];
     if(input->peek(buf, 9) != 9)
         return false;
-    return !memcmp(buf, "TFMXSONG", 8) || !memcmp(buf, "TFMX-MOD", 8) || !memcmp(buf, "TFMX ", 5);
+    return !memcmp(buf, "TFMXSONG", 8) || !memcmp(buf, "TFMX-MOD", 8) || !memcmp(buf, "TFMX ", 5) ||
            !memcmp(buf, "TFMX-SONG", 9) || !memcmp(buf, "TFMX_SONG", 9);
 }
 

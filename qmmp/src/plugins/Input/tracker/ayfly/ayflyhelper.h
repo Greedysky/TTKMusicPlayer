@@ -22,6 +22,7 @@
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
+#undef _UNICODE
 #include <libayfly/ayfly.h>
 
 /*!
