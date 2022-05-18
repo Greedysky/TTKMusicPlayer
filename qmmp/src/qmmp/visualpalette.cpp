@@ -17,7 +17,7 @@ static QVector<QColor> globalGolors = { QColor(0, 0, 0),
                                         QColor(255, 0, 0)
                                       };
 
-void createGradientTable()
+static void createGradientTable()
 {
     int numbers = 6;
     for(int i = 0; i < GRADIENT_TABLE_SIZE; ++i)
@@ -62,7 +62,7 @@ void createGradientTable()
 
 // Modified version of Dan Bruton's algorithm:
 // http://www.physics.sfasu.edu/astro/color/spectra.html
-uint32_t spectrum(double level)
+static uint32_t spectrum(double level)
 {
     level *= 0.6625;
     double r = 0.0, g = 0.0, b = 0.0;
@@ -112,7 +112,7 @@ uint32_t spectrum(double level)
     return (rr << 16) + (gg << 8) + bb;
 }
 
-uint32_t spectrogram(double level)
+static uint32_t spectrogram(double level)
 {
     if(!globalTableInit)
     {
@@ -125,7 +125,7 @@ uint32_t spectrogram(double level)
 }
 
 // The default palette used by SoX and written by Rob Sykes.
-uint32_t sox(double level)
+static uint32_t sox(double level)
 {
     double r = 0.0;
     if(level >= 0.13 && level < 0.73)
@@ -164,7 +164,7 @@ uint32_t sox(double level)
     return (rr << 16) + (gg << 8) + bb;
 }
 
-uint32_t mono(double level)
+static uint32_t mono(double level)
 {
     uint32_t v = (uint32_t) (level * 255.0 + 0.5);
     return (v << 16) + (v << 8) + v;

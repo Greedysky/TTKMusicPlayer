@@ -271,7 +271,7 @@ void LightSpectrum::create_palette()
 {
     m_paletteImage = QImage(RULER, bits_to_bands(m_bits), QImage::Format_RGB32);
     for(int y = 0; y < bits_to_bands(m_bits); ++y) {
-        uint32_t color = VisualPalette::renderPalette(m_palette, y / (double)bits_to_bands(m_bits));
+        const uint32_t color = VisualPalette::renderPalette(m_palette, y / (double)bits_to_bands(m_bits));
         for(int j = 0; j < RULER; ++j) {
             m_paletteImage.setPixel(
                 j,

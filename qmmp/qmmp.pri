@@ -34,7 +34,7 @@ DEFINES += QMMP_LIBRARY
 #Version
 
 TTKMusicPlayer = 2.15.9.0
-QMMP_VERSION = 1.5.4
+QMMP_VERSION = 1.6.0
 CONFIG += USE_STATIC_LIBRARY
 
 #Comment/uncomment this if you want to change plugins list
