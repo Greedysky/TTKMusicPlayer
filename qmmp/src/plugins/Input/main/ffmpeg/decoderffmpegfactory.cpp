@@ -67,6 +67,10 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
         return true;
     else if(filters.contains("*.spx") && formats.contains("spx"))
         return true;
+    else if(filters.contains("*.adx") && formats.contains("adx"))
+        return true;
+    else if(filters.contains("*.aix") && formats.contains("aix"))
+        return true;
     else if(filters.contains("*.wve") && formats.contains("wve"))
         return true;
     else if(filters.contains("*.sln") && formats.contains("sln"))
@@ -105,7 +109,7 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderFFmpegFactory::properties() const
 {
     QStringList filters = {
-        "*.wma", "*.ape", "*.tta", "*.m4a", "*.m4b", "*.aac", "*.ra", "*.shn", "*.ac3", "*.mka", "*.vqf", "*.tak", "*.spx",
+        "*.wma", "*.ape", "*.tta", "*.m4a", "*.m4b", "*.aac", "*.ra", "*.shn", "*.ac3", "*.mka", "*.vqf", "*.tak", "*.spx", "*.adx", "*.aix",
         "*.wve", "*.sln", "*.paf", "*.pvf", "*.ircam", "*.gsm", "*.avr", "*.amr", "*.dsf", "*.dsdiff",
         "*.webm", "*.3g2", "*.3gp", "*.asf", "*.avi", "*.f4v", "*.flv", "*.hevc", "*.m4v", "*.mov", "*.mp4", "*.mpeg", "*.rm", "*.swf", "*.vob", "*.wtv"
     };
@@ -148,6 +152,11 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         filters.removeAll("*.tak");
     if(!avcodec_find_decoder(AV_CODEC_ID_TRUESPEECH))
         filters.removeAll("*.spx");
+    if(!avcodec_find_decoder(AV_CODEC_ID_ADPCM_ADX))
+    {
+        filters.removeAll("*.adx");
+        filters.removeAll("*.aix");
+    }
     if(!avcodec_find_decoder(AV_CODEC_ID_PCM_ALAW))
         filters.removeAll("*.wve");
     if(!avcodec_find_decoder(AV_CODEC_ID_PCM_S16LE))
