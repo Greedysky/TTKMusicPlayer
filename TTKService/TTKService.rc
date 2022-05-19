@@ -3,16 +3,14 @@
 #else
     #include <winver.h>
 #endif
+#include "../TTKCommon/ttkversion.h"
 
 IDI_ICON1                ICON     DISCARDABLE     "../TTKResource/lb_app_logo.ico"
 IDI_ICON2                ICON     DISCARDABLE     "../TTKResource/fileIcon/fileIcon.ico"
 
-#define TTK_FILEVERSION 2,15,9,0
-#define TTK_PRODUCTVERSION "2.15.9.0"
-
 VS_VERSION_INFO VERSIONINFO
-    FILEVERSION TTK_FILEVERSION
-    PRODUCTVERSION TTK_FILEVERSION
+    FILEVERSION TTK_RC_FILEVERSION
+    PRODUCTVERSION TTK_RC_FILEVERSION
     FILEFLAGSMASK 0x3fL
 
 #ifdef _DEBUG
@@ -29,14 +27,14 @@ BEGIN
     BEGIN
         BLOCK "080404b0"
             BEGIN
-                VALUE "CompanyName", "Greedysky Studio, Ltd."
-                VALUE "FileDescription", "天天酷音"
-                VALUE "FileVersion", TTK_PRODUCTVERSION
-                VALUE "InternalName", "天天酷音.exe"
-                VALUE "LegalCopyright", "Copyright (C) 2022 Greedysky Studio"
-                VALUE "OriginalFilename", "天天酷音.exe"
-                VALUE "ProductName", "天天酷音"
-                VALUE "ProductVersion", TTK_PRODUCTVERSION
+                VALUE "CompanyName", TTK_RC_COMPANY
+                VALUE "FileDescription", "TTKService"
+                VALUE "FileVersion", TTK_RC_PRODUCTVERSION
+                VALUE "InternalName", "TTKService.exe"
+                VALUE "LegalCopyright", TTK_RC_COPYRIGHT
+                VALUE "OriginalFilename", "TTKService.exe"
+                VALUE "ProductName", "TTKService"
+                VALUE "ProductVersion", TTK_RC_PRODUCTVERSION
             END
     END
     BLOCK "VarFileInfo"

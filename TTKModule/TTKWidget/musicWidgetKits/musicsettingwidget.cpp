@@ -185,8 +185,8 @@ void MusicSettingWidget::initialize()
 
     //
     m_ui->rippleVersionValue->setText(QString("V") + TTK_VERSION_STR);
-    m_ui->rippleVersionUpdateValue->setText(TTK_VER_TIME_STR);
-    m_ui->rippleVersionFileValue->setText(MusicUtils::Algorithm::sha1(TTK_VER_TIME_STR).toHex().toUpper());
+    m_ui->rippleVersionUpdateValue->setText(TTK_VERSION_TIME_STR);
+    m_ui->rippleVersionFileValue->setText(MusicUtils::Algorithm::sha1(TTK_VERSION_TIME_STR).toHex().toUpper());
     m_ui->rippleLowPowerModeBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool());
     m_ui->rippleSpectrumEnableBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool());
     m_ui->rippleSpectrumColorButton->setColors(MusicLrcColor::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString()));

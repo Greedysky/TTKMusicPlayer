@@ -264,7 +264,7 @@ void MusicApplicationModule::windowCloseAnimationFinished()
     }
 }
 
-void MusicApplicationModule::musicAboutUs()
+void MusicApplicationModule::musicAbout()
 {
     MusicMessageAboutDialog().exec();
 }

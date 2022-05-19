@@ -98,9 +98,9 @@ public Q_SLOTS:
      */
     void windowCloseAnimationFinished();
     /*!
-     * Show about us widget.
+     * Show about widget.
      */
-    void musicAboutUs();
+    void musicAbout();
     /*!
      * Show bug report view.
      */

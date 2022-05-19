@@ -3,13 +3,11 @@
 #else
     #include <winver.h>
 #endif
-
-#define TTK_FILEVERSION 1,0,0,0
-#define TTK_PRODUCTVERSION "1.0.0.0"
+#include "../../../TTKCommon/ttkversion.h"
 
 VS_VERSION_INFO VERSIONINFO
-    FILEVERSION TTK_FILEVERSION
-    PRODUCTVERSION TTK_FILEVERSION
+    FILEVERSION TTK_RC_FILEVERSION
+    PRODUCTVERSION TTK_RC_FILEVERSION
     FILEFLAGSMASK 0x3fL
 
 #ifdef _DEBUG
@@ -26,12 +24,12 @@ BEGIN
     BEGIN
         BLOCK "080404b0"
             BEGIN
-                VALUE "CompanyName", "Greedysky Studio, Ltd."
+                VALUE "CompanyName", TTK_RC_COMPANY
                 VALUE "FileDescription", "TTKZip"
-                VALUE "FileVersion", TTK_PRODUCTVERSION
-                VALUE "LegalCopyright", "Copyright (C) 2022 Greedysky Studio"
+                VALUE "FileVersion", TTK_RC_PRODUCTVERSION
+                VALUE "LegalCopyright", TTK_RC_COPYRIGHT
                 VALUE "ProductName", "TTKZip"
-                VALUE "ProductVersion", TTK_PRODUCTVERSION
+                VALUE "ProductVersion", TTK_RC_PRODUCTVERSION
             END
     END
     BLOCK "VarFileInfo"
