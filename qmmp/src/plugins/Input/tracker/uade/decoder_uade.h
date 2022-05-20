@@ -21,6 +21,8 @@
 
 #include <qmmp/decoder.h>
 
+class UADEHelper;
+
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -38,7 +40,7 @@ public:
     virtual void seek(qint64 time) override final;
 
 private:
-    QString m_path;
+    UADEHelper *m_helper = nullptr;
 
 };
 

@@ -9,5 +9,6 @@ SUBDIRS += sc68
 SUBDIRS += soundmon
 SUBDIRS += stsound
 SUBDIRS += tfmx
-SUBDIRS += uade
 SUBDIRS += xmp
+
+unix:SUBDIRS += uade

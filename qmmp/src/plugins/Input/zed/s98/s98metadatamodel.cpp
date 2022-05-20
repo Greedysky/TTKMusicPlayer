@@ -12,16 +12,13 @@ QList<MetaDataItem> S98MetaDataModel::extraProperties() const
 {
     QList<MetaDataItem> ep;
     S98Helper helper(m_path);
-    if(!helper.initialize())
+    if(!(helper.initialize() && helper.hasTags()))
     {
         return ep;
     }
 
-    if(helper.hasTags())
-    {
-        ep << MetaDataItem("Game", helper.tag("game"));
-        ep << MetaDataItem("System", helper.tag("system"));
-        ep << MetaDataItem("Copyright", helper.tag("copyright"));
-    }
+    ep << MetaDataItem("Game", helper.tag("game"));
+    ep << MetaDataItem("System", helper.tag("system"));
+    ep << MetaDataItem("Copyright", helper.tag("copyright"));
     return ep;
 }

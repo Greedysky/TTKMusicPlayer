@@ -19,7 +19,6 @@
 #ifndef UADEHELPER_H
 #define UADEHELPER_H
 
-#include <QMutex>
 #include <QFileInfo>
 #include <qmmp/trackinfo.h>
 #include <uade/uade.h>
@@ -27,16 +26,14 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class UADEHelper : public QObject
+class UADEHelper
 {
 public:
-    explicit UADEHelper(QObject *parent = nullptr);
+    explicit UADEHelper(const QString &path);
     ~UADEHelper();
 
     void deinit();
-    bool initialize(const QString &path, bool store = false);
-
-    static UADEHelper *instance();
+    bool initialize();
 
     void seek(qint64 time);
     qint64 totalTime();
@@ -48,8 +45,8 @@ public:
 
     qint64 read(unsigned char *data, qint64 maxSize);
 
-    QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts);
-    QString cleanPath(const QString &path) const;
+    QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
+    QString cleanPath() const;
 
     inline bool hasTags() const { return !m_tags.isEmpty(); }
     inline QString tag(const char *key) const { return m_tags[key]; }
@@ -57,7 +54,6 @@ public:
 private:
     QString m_path;
     int m_track = 0;
-    QMutex m_mutex;
     QMap<QString, QString> m_tags;
     struct uade_state* m_state = nullptr;
 

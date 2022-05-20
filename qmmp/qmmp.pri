@@ -2,7 +2,7 @@
 
 #Extra clean target
 
-unix: QMAKE_DISTCLEAN += -r .build
+unix:QMAKE_DISTCLEAN += -r .build
 
 #Some conf to redirect intermediate stuff in separate dirs
 

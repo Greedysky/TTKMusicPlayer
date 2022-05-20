@@ -1,24 +1,7 @@
 #include "uadehelper.h"
 
-#include <thread>
-
-static std::thread UadeThread;
-
-extern "C" {
-void uade_run_thread(void (*f)(void*), void* data)
-{
-    UadeThread = std::thread(f, data);
-}
-
-void uade_wait_thread()
-{
-    UadeThread.join();
-}
-}
-
-
-UADEHelper::UADEHelper(QObject *parent)
-    : QObject(parent)
+UADEHelper::UADEHelper(const QString &path)
+    : m_path(path)
 {
 
 }
@@ -32,33 +15,14 @@ void UADEHelper::deinit()
 {
     if(m_state)
     {
+        m_tags.clear();
         uade_stop(m_state);
         uade_cleanup_state(m_state);
     }
 }
 
-bool UADEHelper::initialize(const QString &path, bool store)
+bool UADEHelper::initialize()
 {
-    if(store)
-    {
-        m_path = path;
-    }
-
-    m_track = path.section("#", -1).toInt() - 1;
-    if(m_track < 0)
-    {
-        m_track = 0;
-    }
-    const QString &ipath = cleanPath(path);
-
-    m_mutex.lock();
-    if(m_state)
-    {
-        m_tags.clear();
-        uade_stop(m_state);
-        uade_cleanup_state(m_state);
-    }
-
     struct uade_config* config = uade_new_config();
     uade_config_set_option(config, UC_ONE_SUBSONG, NULL);
     uade_config_set_option(config, UC_IGNORE_PLAYER_CHECK, NULL);
@@ -73,14 +37,25 @@ bool UADEHelper::initialize(const QString &path, bool store)
     catch(...)
     {
         free(config);
-        m_mutex.unlock();
         return false;
     }
 
-    if(uade_play(QmmpPrintable(ipath), m_track, m_state) != 1)
+    if(!m_state)
     {
-        qWarning("UADEHelper: Unable to open file, %s", qPrintable(ipath));
-        m_mutex.unlock();
+        qWarning("UADEHelper: Unable to create uade state");
+        return false;
+    }
+
+    m_track = m_path.section("#", -1).toInt() - 1;
+    if(m_track < 0)
+    {
+        m_track = 0;
+    }
+    const QString &path = cleanPath();
+
+    if(uade_play(QmmpPrintable(path), m_track, m_state) != 1)
+    {
+        qWarning("UADEHelper: Unable to open file, %s", qPrintable(path));
         return false;
     }
 
@@ -94,30 +69,17 @@ bool UADEHelper::initialize(const QString &path, bool store)
         m_tags.insert("playername", info->playername);
         m_tags.insert("format", info->detectioninfo.ext);
     }
-
-    m_mutex.unlock();
     return true;
-}
-
-UADEHelper *UADEHelper::instance()
-{
-    static UADEHelper helper;
-    return &helper;
 }
 
 void UADEHelper::seek(qint64 time)
 {
-    m_mutex.lock();
     uade_seek(UADE_SEEK_SONG_RELATIVE, time / 1000.0, m_track, m_state);
-    m_mutex.unlock();
 }
 
 qint64 UADEHelper::totalTime()
 {
-    m_mutex.lock();
     const struct uade_song_info *info = uade_get_song_info(m_state);
-    m_mutex.unlock();
-
     if(!info)
     {
         return 0;
@@ -135,27 +97,19 @@ qint64 UADEHelper::totalTime()
 
 qint64 UADEHelper::read(unsigned char *data, qint64 maxSize)
 {
-    m_mutex.lock();
-    const int size = uade_read(data, maxSize, m_state);
-    m_mutex.unlock();
-    return size;
+    return uade_read(data, maxSize, m_state);
 }
 
-QList<TrackInfo*> UADEHelper::createPlayList(const QString &path, TrackInfo::Parts parts)
+QList<TrackInfo*> UADEHelper::createPlayList(TrackInfo::Parts parts)
 {
     QList<TrackInfo*> playlist;
-    if(!initialize(path))
-    {
-        return playlist;
-    }
-
     const struct uade_song_info *tag = uade_get_song_info(m_state);
     if(!tag)
     {
         return playlist;
     }
 
-    const QString &title = QFileInfo(cleanPath(path)).baseName();
+    const QString &title = QFileInfo(cleanPath()).baseName();
     for(int i = 1; i <= tag->subsongs.max + 1; ++i)
     {
         TrackInfo *info = new TrackInfo();
@@ -174,26 +128,20 @@ QList<TrackInfo*> UADEHelper::createPlayList(const QString &path, TrackInfo::Par
             info->setValue(Qmmp::FORMAT_NAME, "UADE");
         }
 
-        info->setPath("uade://" + cleanPath(path) + QString("#%1").arg(i));
+        info->setPath("uade://" + cleanPath() + QString("#%1").arg(i));
         info->setDuration(totalTime());
         playlist << info;
-    }
-
-    if(!m_path.isEmpty())
-    {
-        initialize(m_path);
-        seek(0);
     }
     return playlist;
 }
 
-QString UADEHelper::cleanPath(const QString &path) const
+QString UADEHelper::cleanPath() const
 {
-    QString v = path;
-    if(path.contains("://"))
+    QString path = m_path;
+    if(m_path.contains("://"))
     {
-        v.remove("uade://");
-        v.remove(RegularWrapper("#\\d+$"));
+        path.remove("uade://");
+        path.remove(RegularWrapper("#\\d+$"));
     }
-    return v;
+    return path;
 }

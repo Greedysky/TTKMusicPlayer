@@ -2,27 +2,26 @@
 #include "uadehelper.h"
 
 DecoderUADE::DecoderUADE(const QString &path)
-    : Decoder(),
-      m_path(path)
+    : Decoder()
 {
-
+    m_helper = new UADEHelper(path);
 }
 
 DecoderUADE::~DecoderUADE()
 {
-
+    delete m_helper;
 }
 
 bool DecoderUADE::initialize()
 {
-    if(!UADEHelper::instance()->initialize(m_path, true))
+    if(!m_helper->initialize())
     {
         qWarning("DecoderUADE: initialize failed");
         return false;
     }
 
-    const int rate = UADEHelper::instance()->sampleRate();
-    const int channels = UADEHelper::instance()->channels();
+    const int rate = m_helper->sampleRate();
+    const int channels = m_helper->channels();
     if(rate == 0 || channels == 0)
     {
         qWarning("DecoderUADE: rate or channel invalid");
@@ -36,20 +35,20 @@ bool DecoderUADE::initialize()
 
 qint64 DecoderUADE::totalTime() const
 {
-    return UADEHelper::instance()->totalTime();
+    return m_helper->totalTime();
 }
 
 int DecoderUADE::bitrate() const
 {
-    return UADEHelper::instance()->bitrate();
+    return m_helper->bitrate();
 }
 
 qint64 DecoderUADE::read(unsigned char *data, qint64 maxSize)
 {
-    return UADEHelper::instance()->read(data, maxSize);
+    return m_helper->read(data, maxSize);
 }
 
 void DecoderUADE::seek(qint64 time)
 {
-    UADEHelper::instance()->seek(time);
+    m_helper->seek(time);
 }

@@ -32,6 +32,9 @@ public:
 
     virtual QList<MetaDataItem> extraProperties() const override final;
 
+private:
+    QString m_path;
+
 };
 
 #endif

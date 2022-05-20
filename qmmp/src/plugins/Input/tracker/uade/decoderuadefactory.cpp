@@ -11,7 +11,8 @@ bool DecoderUADEFactory::canDecode(QIODevice *input) const
         return false;
     }
 
-    return UADEHelper::instance()->initialize(file->fileName());
+    UADEHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderUADEFactory::properties() const
@@ -83,7 +84,13 @@ QList<TrackInfo*> DecoderUADEFactory::createPlayList(const QString &path, TrackI
         }
     }
 
-    return UADEHelper::instance()->createPlayList(path, parts);
+    UADEHelper helper(path);
+    if(!helper.initialize())
+    {
+        qWarning("DecoderUADEFactory: unable to open file");
+        return QList<TrackInfo*>();
+    }
+    return helper.createPlayList(parts);
 }
 
 MetaDataModel* DecoderUADEFactory::createMetaDataModel(const QString &path, bool readOnly)
