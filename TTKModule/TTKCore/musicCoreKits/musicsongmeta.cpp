@@ -362,21 +362,26 @@ bool MusicSongMeta::readInformation()
             meta->m_metaData[TagWrapper::GENRE] = info->value(Qmmp::GENRE);
 
             length = info->duration();
-            if(length != 0)
-            {
-                meta->m_metaData[TagWrapper::LENGTH] = MusicTime::msecTime2LabelJustified(length);
-            }
-            else
+            if(length == 0)
             {
                 TagWrapper wrapper;
-                if(wrapper.readFile(m_path))
+                if(wrapper.readFile(meta->m_metaData[TagWrapper::URL]))
                 {
                     const QMap<TagWrapper::Type, QString> &data = wrapper.musicTags();
                     length = data[TagWrapper::LENGTH].toLongLong();
                 }
-
-                meta->m_metaData[TagWrapper::LENGTH] = MusicTime::msecTime2LabelJustified(length);
             }
+
+            if(length == 0)
+            {
+                const int bitrate = info->value(Qmmp::BITRATE).toInt();
+                if(bitrate > 0)
+                {
+                    length = QFileInfo(meta->m_metaData[TagWrapper::URL]).size() * 8.0f / bitrate;
+                }
+            }
+
+            meta->m_metaData[TagWrapper::LENGTH] = MusicTime::msecTime2LabelJustified(length);
 
             m_songMetas << meta;
             m_offset = m_songMetas.count() - 1;
