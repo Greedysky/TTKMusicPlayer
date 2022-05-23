@@ -1,7 +1,6 @@
 include($$PWD/../../Input.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = $${TARGET}
 
 HEADERS += decoderflacfactory.h \
            decoder_flac.h \

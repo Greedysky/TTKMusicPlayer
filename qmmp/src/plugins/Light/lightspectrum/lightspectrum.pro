@@ -2,7 +2,6 @@ include($$PWD/../../plugins.pri)
 include($$PWD/../../Visual/common/common.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Light
-TARGET = $${TARGET}
 
 SOURCES += spek-ruler.cc \
            spek-spectrogram.cc \

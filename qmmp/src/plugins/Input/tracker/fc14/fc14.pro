@@ -1,7 +1,6 @@
 include($$PWD/../../Input.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = $${TARGET}
 
 HEADERS += decoderfc14factory.h \
            decoder_fc14.h \

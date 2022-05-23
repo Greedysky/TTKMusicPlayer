@@ -2,7 +2,6 @@ include($$PWD/../../plugins.pri)
 
 QT += network
 DESTDIR = $$PLUGINS_PREFIX/Transports
-TARGET = $${TARGET}
 
 HEADERS += networkinputfactory.h \
            networkinputsource.h \

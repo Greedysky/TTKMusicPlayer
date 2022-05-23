@@ -1,7 +1,6 @@
 include($$PWD/../../Input.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = $${TARGET}
 
 HEADERS += decoderorganyafactory.h \
            decoder_organya.h \

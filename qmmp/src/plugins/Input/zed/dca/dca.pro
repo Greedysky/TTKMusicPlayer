@@ -2,7 +2,6 @@ include($$PWD/../../Input.pri)
 include($$PWD/common/common.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = $${TARGET}
 
 HEADERS += decoderdcafactory.h \
            decoder_dca.h \

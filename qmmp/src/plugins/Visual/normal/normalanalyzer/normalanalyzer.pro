@@ -1,7 +1,6 @@
 include($$PWD/../../Visual.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Visual
-TARGET = $${TARGET}
 
 HEADERS += normalanalyzer.h \
            visualnormalanalyzerfactory.h

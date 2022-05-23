@@ -1,7 +1,6 @@
 include($$PWD/../../plugins.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Effect
-TARGET = $${TARGET}
 
 HEADERS += bitcrusherplugin.h \
            effectbitcrusherfactory.h \

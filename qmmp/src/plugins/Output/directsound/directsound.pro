@@ -1,7 +1,6 @@
 include($$PWD/../../plugins.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Output
-TARGET = $${TARGET}
 
 HEADERS += outputdirectsoundfactory.h \
            outputdirectsound.h

@@ -2,7 +2,6 @@ include($$PWD/../../Visual.pri)
 
 QT += opengl
 DESTDIR = $$PLUGINS_PREFIX/Visual
-TARGET = $${TARGET}
 
 HEADERS += soniquewidget.h \
            visual.h \

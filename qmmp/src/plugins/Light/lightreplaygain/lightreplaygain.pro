@@ -1,7 +1,6 @@
 include($$PWD/../../plugins.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Light
-TARGET = $${TARGET}
 
 HEADERS += replaygainfactory.h \
            replaygainwidget.h \
