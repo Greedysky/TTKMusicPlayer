@@ -16,37 +16,22 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef FLOWMATRIX_H
-#define FLOWMATRIX_H
+#ifndef VISUALFLOWVUMETERFACTORY_H
+#define VISUALFLOWVUMETERFACTORY_H
 
-#include <qmmp/visual.h>
-
-class QTimer;
-class QHideEvent;
-class QShowEvent;
-class Matrix;
+#include <qmmp/visualfactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class FlowMatrix : public Visual
+class VisualFlowVUMeterFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
+    Q_INTERFACES(VisualFactory)
 public:
-    explicit FlowMatrix(QWidget *parent = nullptr);
-    virtual ~FlowMatrix();
-
-private:
-    virtual void resizeEvent(QResizeEvent *e) override final;
-    virtual void paintEvent(QPaintEvent *e) override final;
-    virtual void contextMenuEvent(QContextMenuEvent *) override final;
-
-    virtual void process(float *left, float *right) override final;
-    virtual void process(bool state) override final;
-
-    int m_x = 0, m_y = 0;
-    QPixmap m_pixmap;
-    QList<Matrix*> m_matrixs;
+    virtual VisualProperties properties() const override final;
+    virtual Visual *create(QWidget *parent) override final;
 
 };
 

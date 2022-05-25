@@ -22,6 +22,8 @@ FlowMatrix::FlowMatrix(QWidget *parent)
         matrix->move(i * 20, 0);
         m_matrixs << matrix;
     }
+
+    m_pixmap.load(":/data/back");
 }
 
 FlowMatrix::~FlowMatrix()
@@ -58,15 +60,14 @@ void FlowMatrix::paintEvent(QPaintEvent *)
     painter.drawText(0, height() / 2, width(), height() / 4, Qt::AlignCenter, "Greedysky");
     painter.setOpacity(0.8);
 
-    QPixmap pix(":/data/back");
-    const int w = pix.width();
-    const int h = pix.height();
+    const int w = m_pixmap.width();
+    const int h = m_pixmap.height();
 
     for(int i = 0; i < width() / w + 1; ++i)
     {
         for(int j = 0; j < height() / h + 1; ++j)
         {
-            painter.drawPixmap(i * w, j * h, pix);
+            painter.drawPixmap(i * w, j * h, m_pixmap);
         }
     }
 }

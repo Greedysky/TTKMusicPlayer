@@ -47,8 +47,8 @@ void WaveVolume::paintEvent(QPaintEvent *)
         }
 
         const int wid = ceil(m_rows / 2);
-        painter.fillRect(0, 0, m_intern_vis_data[0] * left * m_cols/m_rows, wid, line);
-        painter.fillRect(0, wid, m_intern_vis_data[1] * right * m_cols/m_rows, wid, line);
+        painter.fillRect(0, 0, m_intern_vis_data[0] * left * m_cols / m_rows, wid, line);
+        painter.fillRect(0, wid, m_intern_vis_data[1] * right * m_cols / m_rows, wid, line);
     }
 
     painter.setPen(Qt::white);

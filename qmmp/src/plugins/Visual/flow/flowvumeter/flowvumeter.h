@@ -16,37 +16,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef FLOWMATRIX_H
-#define FLOWMATRIX_H
+#ifndef FLOWVUMETER_H
+#define FLOWVUMETER_H
 
 #include <qmmp/visual.h>
 
-class QTimer;
-class QHideEvent;
-class QShowEvent;
-class Matrix;
+#define CHANNEL_MAX    2
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class FlowMatrix : public Visual
+class FlowVUMeter : public Visual
 {
     Q_OBJECT
 public:
-    explicit FlowMatrix(QWidget *parent = nullptr);
-    virtual ~FlowMatrix();
+    explicit FlowVUMeter(QWidget *parent = nullptr);
+    virtual ~FlowVUMeter();
+
+private slots:
+    void rangeChanged(QAction *action);
 
 private:
-    virtual void resizeEvent(QResizeEvent *e) override final;
     virtual void paintEvent(QPaintEvent *e) override final;
-    virtual void contextMenuEvent(QContextMenuEvent *) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
-    virtual void process(bool state) override final;
 
-    int m_x = 0, m_y = 0;
     QPixmap m_pixmap;
-    QList<Matrix*> m_matrixs;
+    int m_rangeValue = 30;
+    const int m_channels = 1;
+    float m_values[CHANNEL_MAX] = {0};
 
 };
 

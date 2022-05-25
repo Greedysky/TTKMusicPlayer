@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/data">
+        <file alias="vu">resource/vu.png</file>
+    </qresource>
+</RCC>
