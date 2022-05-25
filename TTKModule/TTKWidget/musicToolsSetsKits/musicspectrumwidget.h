@@ -21,9 +21,6 @@
 
 #include "musicabstractmovewidget.h"
 
-class Spek;
-class QAbstractButton;
-
 namespace Ui {
 class MusicSpectrumWidget;
 }

@@ -805,6 +805,13 @@
         <file alias="wave_2">../TTKResource/spectrum/wave_2.png</file>
         <file alias="wave_3">../TTKResource/spectrum/wave_3.png</file>
         <file alias="wave_4">../TTKResource/spectrum/wave_4.png</file>
+        <file alias="flow_1">../TTKResource/spectrum/flow_1.png</file>
+        <file alias="flow_2">../TTKResource/spectrum/flow_2.png</file>
+        <file alias="flow_3">../TTKResource/spectrum/flow_3.png</file>
+        <file alias="flow_4">../TTKResource/spectrum/flow_4.png</file>
+        <file alias="flow_5">../TTKResource/spectrum/flow_5.png</file>
+        <file alias="flow_6">../TTKResource/spectrum/flow_6.png</file>
+        <file alias="flow_7">../TTKResource/spectrum/flow_7.png</file>
         <file alias="florid_1">../TTKResource/spectrum/florid_1.png</file>
         <file alias="florid_2">../TTKResource/spectrum/florid_2.png</file>
         <file alias="florid_3">../TTKResource/spectrum/florid_3.png</file>
@@ -812,11 +819,5 @@
         <file alias="florid_5">../TTKResource/spectrum/florid_5.png</file>
         <file alias="florid_6">../TTKResource/spectrum/florid_6.png</file>
         <file alias="florid_7">../TTKResource/spectrum/florid_7.png</file>
-        <file alias="flow_1">../TTKResource/spectrum/flow_1.png</file>
-        <file alias="flow_2">../TTKResource/spectrum/flow_2.png</file>
-        <file alias="flow_3">../TTKResource/spectrum/flow_3.png</file>
-        <file alias="flow_4">../TTKResource/spectrum/flow_4.png</file>
-        <file alias="flow_5">../TTKResource/spectrum/flow_5.png</file>
-        <file alias="flow_6">../TTKResource/spectrum/flow_6.png</file>
     </qresource>
 </RCC>

@@ -180,12 +180,13 @@ MusicSpectrumFlowLayoutWidget::MusicSpectrumFlowLayoutWidget(QWidget *parent)
     items << ItemInfo(":/spectrum/flow_4", tr("Infinity"));
     items << ItemInfo(":/spectrum/flow_5", tr("Mountain"));
     items << ItemInfo(":/spectrum/flow_6", tr("Matrix"));
+    items << ItemInfo(":/spectrum/flow_7", tr("VU Meter"));
     addItems(items);
 }
 
 QStringList MusicSpectrumFlowLayoutWidget::spectrumTypeList() const
 {
-    return {"flowgoom", "flowprojectm", "flowsonique", "flowinfinity", "flowmountain", "flowmatrix"};
+    return {"flowgoom", "flowprojectm", "flowsonique", "flowinfinity", "flowmountain", "flowmatrix", "flowvumeter"};
 }
 
 
