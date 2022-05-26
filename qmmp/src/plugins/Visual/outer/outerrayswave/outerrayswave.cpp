@@ -1,5 +1,4 @@
 #include "outerrayswave.h"
-#include "inlines.h"
 
 #include <QTimer>
 #include <QPainter>

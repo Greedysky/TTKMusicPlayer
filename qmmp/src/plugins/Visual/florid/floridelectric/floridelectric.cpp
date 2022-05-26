@@ -1,6 +1,4 @@
 #include "floridelectric.h"
-#include "inlines.h"
-#include "fft.h"
 
 #include <QPainter>
 #include <QPropertyAnimation>

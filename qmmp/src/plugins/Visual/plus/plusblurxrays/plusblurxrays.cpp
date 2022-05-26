@@ -1,6 +1,5 @@
 #include "plusblurxrays.h"
 #include "colorwidget.h"
-#include "inlines.h"
 
 #include <QMenu>
 #include <QSettings>

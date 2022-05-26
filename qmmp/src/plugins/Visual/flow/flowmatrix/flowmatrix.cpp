@@ -1,6 +1,5 @@
 #include "flowmatrix.h"
 #include "matrix.h"
-#include "inlines.h"
 
 #include <QMenu>
 #include <QPainter>

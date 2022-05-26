@@ -1,6 +1,4 @@
 #include "floridautism.h"
-#include "inlines.h"
-#include "fft.h"
 
 #include <QPainter>
 

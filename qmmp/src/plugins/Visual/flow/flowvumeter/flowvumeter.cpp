@@ -1,5 +1,4 @@
 #include "flowvumeter.h"
-#include "inlines.h"
 
 #include <QMenu>
 #include <QPainter>
