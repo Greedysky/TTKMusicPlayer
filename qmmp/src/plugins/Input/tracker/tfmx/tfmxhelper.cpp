@@ -43,8 +43,8 @@ static bool loadMDAT(TfmxState *state, const char *mdatName, const char *smplNam
         return false;
     }
 
-    mdat.size = mdatFile.size();
-    const QByteArray mdatBuffer = mdatFile.readAll();
+    const QByteArray &mdatBuffer = mdatFile.readAll();
+    mdat.size = mdatBuffer.length();
     mdat.data = (U8*)mdatBuffer.data();
 
     // Load sample file to memory
@@ -54,8 +54,8 @@ static bool loadMDAT(TfmxState *state, const char *mdatName, const char *smplNam
         return false;
     }
 
-    smpl.size = smplFile.size();
-    const QByteArray smplBuffer = smplFile.readAll();
+    const QByteArray &smplBuffer = smplFile.readAll();
+    smpl.size = smplBuffer.length();
     smpl.data = (U8*)smplBuffer.data();
     return LoadTFMXFile(state, &mdat, &smpl);;
 }
@@ -70,7 +70,7 @@ static bool loadTFM(TfmxState *state, const char *path)
     }
 
     TfmxData mdat = {0};
-    const QByteArray mdatBuffer = mdatFile.readAll();
+    const QByteArray &mdatBuffer = mdatFile.readAll();
     mdat.data = (U8*)mdatBuffer.data();
 
     if(mdat.size <= 0)

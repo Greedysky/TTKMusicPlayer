@@ -35,11 +35,10 @@ bool S98Helper::initialize()
         return false;
     }
 
-    const qint64 size = file.size();
     const QByteArray &module = file.readAll();
     file.close();
 
-    if(!m_input->OpenFromBuffer((unsigned char *)module.constData(), size, &m_info))
+    if(!m_input->OpenFromBuffer((unsigned char *)module.constData(), module.length(), &m_info))
     {
         qWarning("S98Helper: unable to open file");
         return false;

@@ -28,12 +28,11 @@ bool HivelyHelper::initialize()
         return false;
     }
 
-    const qint64 size = file.size();
     const QByteArray &module = file.readAll();
     file.close();
 
     hvl_InitReplayer();
-    m_input = hvl_ParseTune((unsigned char *)module.constData(), size, sampleRate(), 0);
+    m_input = hvl_ParseTune((unsigned char *)module.constData(), module.length(), sampleRate(), 0);
     if(!m_input)
     {
         qWarning("HivelyHelper: hvl_LoadTune error");

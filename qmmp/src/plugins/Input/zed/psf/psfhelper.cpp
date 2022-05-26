@@ -32,7 +32,6 @@ bool PSFHelper::initialize()
         return false;
     }
 
-    const qint64 size = file.size();
     const QByteArray &module = file.readAll();
     file.close();
 
@@ -43,7 +42,7 @@ bool PSFHelper::initialize()
         return false;
     }
 
-    m_input = ao_start(m_type, QmmpPrintable(m_path), (uint8 *)module.constData(), size);
+    m_input = ao_start(m_type, QmmpPrintable(m_path), (uint8 *)module.constData(), module.length());
     if(!m_input)
     {
         qWarning("PSFHelper: unable to open file");

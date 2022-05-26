@@ -1,4 +1,5 @@
 #include "v2mhelper.h"
+#include "archivereader.h"
 
 #include <libv2m/v2mconv.h>
 #include <libv2m/sounddef.h>
@@ -57,12 +58,11 @@ bool V2MHelper::initialize()
         return false;
     }
 
-    const qint64 size = file.size();
-    const QByteArray &module = file.readAll();
+    const QByteArray &module = ArchiveReader::isSupported(m_path) ? ArchiveReader::unpack(m_path) : file.readAll();
     file.close();
 
     int convlen;
-    if(loadAndConvert((unsigned char *)module.constData(), size, &m_tune, &convlen) < 0)
+    if(loadAndConvert((unsigned char *)module.constData(), module.length(), &m_tune, &convlen) < 0)
     {
         qWarning("V2MHelper: load_and_convert error");
         return false;

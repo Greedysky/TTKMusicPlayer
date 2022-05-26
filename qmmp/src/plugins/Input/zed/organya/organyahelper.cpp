@@ -118,11 +118,10 @@ bool PxFileReader::load(const QString &path)
         return false;
     }
 
-    const qint64 size = file.size();
     const QByteArray &module = file.readAll();
     file.close();
 
-    if(!m_pxd->set_memory_r((void*)module.constData(), size))
+    if(!m_pxd->set_memory_r((void*)module.constData(), module.length()))
     {
         qWarning("PxFileReader: set_memory_r error");
         return false;

@@ -28,18 +28,17 @@ bool FC14Helper::initialize()
         return false;
     }
 
-    const qint64 size = file.size();
     const QByteArray &module = file.readAll();
     file.close();
 
     m_input = fc14dec_new();
-    if(!fc14dec_detect(m_input, (void*)module.constData(), size))
+    if(!fc14dec_detect(m_input, (void*)module.constData(), module.length()))
     {
         qWarning("FC14Helper: fc14dec_detect error");
         return false;
     }
 
-    if(!fc14dec_init(m_input, (void*)module.constData(), size))
+    if(!fc14dec_init(m_input, (void*)module.constData(), module.length()))
     {
         qWarning("FC14Helper: fc14dec_init error");
         return false;

@@ -28,14 +28,13 @@ bool AsapHelper::initialize()
         return false;
     }
 
-    const qint64 size = file.size();
     const QByteArray &module = file.readAll();
     file.close();
 
     m_input = ASAP_New();
     ASAP_DetectSilence(m_input, 5);
 
-    if(!ASAP_Load(m_input, QmmpPrintable(m_path), (unsigned char *)module.constData(), size))
+    if(!ASAP_Load(m_input, QmmpPrintable(m_path), (unsigned char *)module.constData(), module.length()))
     {
         qWarning("AsapHelper: ASAP_Load error");
         return false;

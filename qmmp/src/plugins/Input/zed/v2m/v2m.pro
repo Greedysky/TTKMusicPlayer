@@ -4,11 +4,13 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 
 HEADERS += decoderv2mfactory.h \
            decoder_v2m.h \
-           v2mhelper.h
+           v2mhelper.h \
+           archivereader.h
     
 SOURCES += decoderv2mfactory.cpp \
            decoder_v2m.cpp \
-           v2mhelper.cpp
+           v2mhelper.cpp \
+           archivereader.cpp
 
 INCLUDEPATH += $$EXTRA_PREFIX/libttk/include
 
