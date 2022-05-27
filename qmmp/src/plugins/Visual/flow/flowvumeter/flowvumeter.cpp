@@ -2,7 +2,7 @@
 
 #include <QMenu>
 #include <QPainter>
-#include <math.h>
+#include <qmath.h>
 
 FlowVUMeter::FlowVUMeter(QWidget *parent)
     : Visual(parent)
