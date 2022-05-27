@@ -86,7 +86,7 @@ void FlowVUMeter::process(float *left, float *right)
         m_values[i] = 0;
         const float db = m_rangeValue + (20.0f * log10f(peaks[i]));
 
-        if(db >m_values[i])
+        if(db > m_values[i])
         {
             m_values[i] = db;
         }
