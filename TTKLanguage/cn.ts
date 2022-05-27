@@ -139,6 +139,13 @@
     </message>
 </context>
 <context>
+    <name>FlowVUMeter</name>
+    <message>
+        <source>Range</source>
+        <translation>分贝范围</translation>
+    </message>
+</context>
+<context>
     <name>GoomWidget</name>
     <message>
         <source>Refresh Rate</source>
