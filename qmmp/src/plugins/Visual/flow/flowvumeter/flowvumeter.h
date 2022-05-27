@@ -44,7 +44,7 @@ private:
 
     QPixmap m_pixmap;
     int m_rangeValue = 30;
-    const int m_channels = 1;
+    const int m_channels = 2;
     float m_values[CHANNEL_MAX] = {0};
 
 };

@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    Visual::initialize(this);
 //    for(VisualFactory *var : Visual::factories())
 //    {
-//        if(var->properties().shortName == "flowinfinity")
+//        if(var->properties().shortName == "flowvumeter")
 //        {
 //            Visual::setEnabled(var, true);
 //        }

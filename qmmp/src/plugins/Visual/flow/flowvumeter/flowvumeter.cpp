@@ -63,31 +63,32 @@ void FlowVUMeter::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void FlowVUMeter::process(float *left, float*)
+void FlowVUMeter::process(float *left, float *right)
 {
-    float data[CHANNEL_MAX];
-    const int samples = QMMP_VISUAL_NODE_SIZE / m_channels;
-    for(int c = 0; c < m_channels; ++c)
-    {
-        data[c] = 0;
-        for(int s = 0; s < samples + c; ++s)
-        {
-            const float v = left[(s * m_channels) + c];
-            data[c] += v * v;
-        }
+    const int channels = qBound(m_channels, 1, CHANNEL_MAX);
 
-        data[c] = sqrt(data[c] / samples);
+    float peaks[channels];
+    for(int i = 0; i < channels; ++i)
+    {
+        peaks[i] = fabsf(i == 0 ? left[0] : right[0]);
     }
 
-    const int c = qBound(1, m_channels, CHANNEL_MAX);
-    for(int i = 0; i < c; ++i)
+    for(int i = 0; i < QMMP_VISUAL_NODE_SIZE; ++i)
+    {
+        for(int j = 0; j < channels; ++j)
+        {
+            peaks[j] = fmaxf(peaks[j], fabsf(j == 0 ? left[i] : right[i]));
+        }
+    }
+
+    for(int i = 0; i < channels; ++i)
     {
         m_values[i] = 0;
-        const float v = m_rangeValue + (20.0f * log10f(data[i]));
+        const float db = m_rangeValue + (20.0f * log10f(peaks[i]));
 
-        if(v >m_values[i])
+        if(db >m_values[i])
         {
-            m_values[i] = v;
+            m_values[i] = db;
         }
     }
 }
