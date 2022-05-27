@@ -154,19 +154,19 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-//update time 2022.04.30
-#define TTK_VERSION             0x02F90
-#define TTK_VERSION_STR         "2.15.9.0"
-#define TTK_VERSION_TIME_STR    "(2022/04/30)"
+//update time 2022.05.28
+#define TTK_VERSION             0x02FA0
+#define TTK_VERSION_STR         "2.15.10.0"
+#define TTK_VERSION_TIME_STR    "(2022/05/28)"
 
 #define TTK_MAJOR_VERSION 2
 #define TTK_MIDLE_VERSION 15
-#define TTK_MINOR_VERSION 9
+#define TTK_MINOR_VERSION 10
 #define TTK_PATCH_VERSION 0
 
 #define TTK_CONFIG_VERSION_STR	"1.0.1"
 
-#define TTK_RC_FILEVERSION      2,15,9,0
+#define TTK_RC_FILEVERSION      2,15,10,0
 #define TTK_RC_PRODUCTVERSION   TTK_VERSION_STR
 #define TTK_RC_COMPANY          "Greedysky Studio, Ltd."
 #define TTK_RC_COPYRIGHT        "Copyright (C) 2022 Greedysky Studio"
