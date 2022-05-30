@@ -80,11 +80,6 @@ void MetaDataModel::removeCover()
 
 }
 
-QString MetaDataModel::lyrics() const
-{
-    return QString();
-}
-
 QString MetaDataModel::coverPath() const
 {
     return QString();
@@ -103,6 +98,11 @@ void MetaDataModel::setCue(const QString &content)
 void MetaDataModel::removeCue()
 {
 
+}
+
+QString MetaDataModel::lyrics() const
+{
+    return QString();
 }
 
 bool MetaDataModel::isReadOnly() const
