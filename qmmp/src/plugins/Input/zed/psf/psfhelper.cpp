@@ -111,10 +111,13 @@ bool PSFHelper::initialize()
         else
         {
             const char *colon = strchr(info.title[i], ':');
-            char name[colon - info.title[i] + 1];
-            memcpy(name, info.title[i], colon - info.title[i]);
-            name[colon - info.title[i]] = 0;
-            m_tags.insert("title", info.info[i]);
+            if(colon)
+            {
+                char name[colon - info.title[i] + 1];
+                memcpy(name, info.title[i], colon - info.title[i]);
+                name[colon - info.title[i]] = 0;
+                m_tags.insert("title", info.info[i]);
+            }
         }
     }
     return true;
