@@ -26,8 +26,6 @@
 
 #define INPUT_BUFFER_SIZE   1024
 
-class FileReader;
-
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -58,7 +56,7 @@ public:
 private:
     QString m_path;
     bool m_meta = false;
-    FileReader *m_input = nullptr;
+    AbstractReader *m_input = nullptr;
 
 };
 

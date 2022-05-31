@@ -26,11 +26,11 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class FileReader
+class AbstractReader
 {
 public:
-    FileReader() { }
-    virtual ~FileReader() { }
+    AbstractReader() { }
+    virtual ~AbstractReader() { }
 
     virtual bool load(const QString &path) = 0;
     virtual void seek(qint64 time) = 0;
@@ -67,7 +67,7 @@ public:
 
 private:
     QString m_path;
-    FileReader *m_input = nullptr;
+    AbstractReader *m_input = nullptr;
 
 };
 

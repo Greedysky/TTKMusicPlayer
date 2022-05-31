@@ -5,7 +5,7 @@
 
 #define INPUT_BUFFER_SIZE   1024
 
-class OrgFileReader : public FileReader
+class OrgFileReader : public AbstractReader
 {
 public:
     OrgFileReader();
@@ -62,7 +62,7 @@ qint64 OrgFileReader::read(unsigned char *data, qint64 maxSize)
 }
 
 
-class PxFileReader : public FileReader
+class PxFileReader : public AbstractReader
 {
 public:
     PxFileReader();
@@ -178,15 +178,6 @@ qint64 PxFileReader::read(unsigned char *data, qint64)
 }
 
 
-static FileReader *generateFileReader(const QString &path)
-{
-    const QString &suffix = path.toLower();
-    if(suffix.endsWith(".org")) return new OrgFileReader;
-    else if(suffix.endsWith(".pttune") || suffix.endsWith(".ptcop")) return new PxFileReader;
-    else return nullptr;
-}
-
-
 OrganyaHelper::OrganyaHelper(const QString &path)
     : m_path(path)
 {
@@ -205,7 +196,10 @@ void OrganyaHelper::deinit()
 
 bool OrganyaHelper::initialize()
 {
-    m_input = generateFileReader(m_path);
+    const QString &suffix = m_path.toLower();
+    if(suffix.endsWith(".org")) m_input = new OrgFileReader;
+    else if(suffix.endsWith(".pttune") || suffix.endsWith(".ptcop")) m_input = new PxFileReader;
+
     if(!m_input)
     {
         qWarning("OrganyaHelper: load file suffix error");

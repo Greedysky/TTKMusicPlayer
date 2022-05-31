@@ -7,19 +7,6 @@
 #include <libxsf/filesnsf.h>
 #include <libxsf/filemsu.h>
 
-static FileReader *generateFileReader(const QString &path)
-{
-    const QString &suffix = path.toLower();
-    if(suffix.endsWith(".2sf") || suffix.endsWith(".mini2sf")) return new File2SFReader;
-    else if(suffix.endsWith(".gsf") || suffix.endsWith(".minigsf")) return new FileGSFReader;
-    else if(suffix.endsWith(".usf") || suffix.endsWith(".miniusf")) return new FileUSFReader;
-    else if(suffix.endsWith(".ncsf") || suffix.endsWith(".minincsf")) return new FileNCSFReader;
-    else if(suffix.endsWith(".snsf") || suffix.endsWith(".minisnsf")) return new FileSNSFReader;
-    else if(suffix.endsWith(".pcm") || suffix.endsWith(".msu")) return new FileMSUReader;
-    else return nullptr;
-}
-
-
 XSFHelper::XSFHelper(const QString &path)
     : m_path(path)
 {
@@ -43,7 +30,14 @@ void XSFHelper::deinit()
 
 bool XSFHelper::initialize()
 {
-    m_input = generateFileReader(m_path);
+    const QString &suffix = m_path.toLower();
+    if(suffix.endsWith(".2sf") || suffix.endsWith(".mini2sf")) m_input = new File2SFReader;
+    else if(suffix.endsWith(".gsf") || suffix.endsWith(".minigsf")) m_input = new FileGSFReader;
+    else if(suffix.endsWith(".usf") || suffix.endsWith(".miniusf")) m_input = new FileUSFReader;
+    else if(suffix.endsWith(".ncsf") || suffix.endsWith(".minincsf")) m_input = new FileNCSFReader;
+    else if(suffix.endsWith(".snsf") || suffix.endsWith(".minisnsf")) m_input = new FileSNSFReader;
+    else if(suffix.endsWith(".pcm") || suffix.endsWith(".msu")) m_input = new FileMSUReader;
+
     if(!m_input)
     {
         qWarning("XSFHelper: load file suffix error");
