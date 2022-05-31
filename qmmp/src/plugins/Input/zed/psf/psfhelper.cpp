@@ -21,6 +21,7 @@ void PSFHelper::deinit()
     {
         ao_stop(m_type, m_input);
     }
+    delete[] m_data;
 }
 
 bool PSFHelper::initialize()
@@ -32,17 +33,19 @@ bool PSFHelper::initialize()
         return false;
     }
 
-    const QByteArray &module = file.readAll();
+    const qint64 size = file.size();
+    m_data = new char[size]{0};
+    file.read(m_data, size);
     file.close();
 
-    m_type = ao_identify((char *)module.constData());
+    m_type = ao_identify(m_data);
     if(m_type < 0)
     {
         qWarning("PSFHelper: ao_identify error");
         return false;
     }
 
-    m_input = ao_start(m_type, QmmpPrintable(m_path), (uint8 *)module.constData(), module.length());
+    m_input = ao_start(m_type, QmmpPrintable(m_path), (uint8 *)m_data, size);
     if(!m_input)
     {
         qWarning("PSFHelper: unable to open file");

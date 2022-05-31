@@ -52,6 +52,7 @@ private:
     QString m_path;
     int m_type = 0;
     void *m_input = nullptr;
+    char *m_data = nullptr;
     char m_buffer[735 * 4] = {0}; // psf2 decoder only works with 735 samples buffer
     int m_remaining = 0;
     int m_length = 0;

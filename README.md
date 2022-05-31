@@ -64,6 +64,7 @@ The TTKMusicplayer plugin for run
  * flowmountain
  * flowprojectm
  * flowsonique
+ * flowvumeter
  * normalanalyzer
  * normalewave
  * normalflowwave
