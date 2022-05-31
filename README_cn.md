@@ -85,7 +85,7 @@ TTKMusicPlayer的一些特性
  * DTS Coherent Acoustics File(*.dts *.cpt)
  * Future Composer File(*.fc *.fc13 *.fc14 *.smod)
  * OptimFrog File(*.ofr *.ofs)
- * Audio Overload File(*.pcm *.msu *.psf *.spu *.ssf *.qsf *.dsf *.minipsf *.minissf *.miniqsf *.minidsf *.2sf *.mini2sf *.gsf *.minigsf *.usf *.miniusf *.ncsf *.minincsf *.snsf *.minisnsf)
+ * Audio Overload File(*.pcm *.msu *.spu *.psf *.ssf *.qsf *.dsf *.psf2 *.minipsf *.minissf *.miniqsf *.minidsf *.minipsf2 *.2sf *.mini2sf *.gsf *.minigsf *.usf *.miniusf *.ncsf *.minincsf *.snsf *.minisnsf)
  * S98 Audio File(*.s98 *.cym *.mym *.x1f)
  * Atari ST(E) And Amiga File(*.sc68 *.snd *.sndh)
  * Speex Audio File(*.spx)
