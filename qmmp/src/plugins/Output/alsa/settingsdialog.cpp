@@ -208,7 +208,7 @@ int SettingsDialog::getMixer(snd_mixer_t **mixer, QString card)
     {
         qWarning("SettingsDialog(ALSA): alsa_get_mixer(): "
                  "Failed to open empty mixer: %s", snd_strerror(-err));
-        mixer = NULL;
+        mixer = nullptr;
         return -1;
     }
     if((err = snd_mixer_attach(*mixer, card.toLatin1().constData())) < 0)

@@ -45,7 +45,7 @@ void SettingsDialog::enumDevices()
     m_ui.deviceComboBox->addItem(tr("Default"), "default");
 
     IMMDeviceEnumerator *pEnumerator = nullptr;
-    HRESULT result = CoCreateInstance(CLSID_MMDeviceEnumerator, NULL, CLSCTX_ALL, IID_IMMDeviceEnumerator, (void**)&pEnumerator);
+    HRESULT result = CoCreateInstance(CLSID_MMDeviceEnumerator, nullptr, CLSCTX_ALL, IID_IMMDeviceEnumerator, (void**)&pEnumerator);
     if(result != S_OK)
     {
         qWarning("SettingsDialog: CoCreateInstance failed, error code = 0x%lx", result);

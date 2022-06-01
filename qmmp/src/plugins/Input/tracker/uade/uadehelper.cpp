@@ -24,8 +24,8 @@ void UADEHelper::deinit()
 bool UADEHelper::initialize()
 {
     struct uade_config* config = uade_new_config();
-    uade_config_set_option(config, UC_ONE_SUBSONG, NULL);
-    uade_config_set_option(config, UC_IGNORE_PLAYER_CHECK, NULL);
+    uade_config_set_option(config, UC_ONE_SUBSONG, nullptr);
+    uade_config_set_option(config, UC_IGNORE_PLAYER_CHECK, nullptr);
     uade_config_set_option(config, UC_FREQUENCY, "44100");
     uade_config_set_option(config, UC_BASE_DIR, qPrintable(Qmmp::ttkPluginPath() + "/config/uade"));
 

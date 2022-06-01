@@ -4,7 +4,6 @@
 #include <QMenu>
 #include <QPainter>
 #include <math.h>
-#include <qmmp/soundcore.h>
 
 WaveVolume::WaveVolume(QWidget *parent)
     : Visual(parent)
@@ -39,16 +38,9 @@ void WaveVolume::paintEvent(QPaintEvent *)
 
     if(m_intern_vis_data)
     {
-        float left = 1.0f, right = 1.0f;
-        if(SoundCore::instance())
-        {
-            left = SoundCore::instance()->leftVolume() / 100.0;
-            right = SoundCore::instance()->rightVolume() / 100.0;
-        }
-
         const int wid = ceil(m_rows / 2);
-        painter.fillRect(0, 0, m_intern_vis_data[0] * left * m_cols / m_rows, wid, line);
-        painter.fillRect(0, wid, m_intern_vis_data[1] * right * m_cols / m_rows, wid, line);
+        painter.fillRect(0, 0, m_intern_vis_data[0] * m_cols / m_rows, wid, line);
+        painter.fillRect(0, wid, m_intern_vis_data[1] * m_cols / m_rows, wid, line);
     }
 
     painter.setPen(Qt::white);
