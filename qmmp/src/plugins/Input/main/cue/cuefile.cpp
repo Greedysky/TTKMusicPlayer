@@ -24,7 +24,7 @@ CueFile::CueFile(const QString &path)
         return;
     }
 
-    const QByteArray &module = file.readAll();
+    const QByteArray &buffer = file.readAll();
     file.close();
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
@@ -38,7 +38,7 @@ CueFile::CueFile(const QString &path)
         if(analyser)
         {
             enca_set_threshold(analyser, 1.38);
-            EncaEncoding encoding = enca_analyse(analyser, (uchar *)module.constData(), module.length());
+            EncaEncoding encoding = enca_analyse(analyser, (uchar *)buffer.constData(), buffer.length());
             if(encoding.charset != ENCA_CS_UNKNOWN)
             {
                 codec = QTextCodec::codecForName(enca_charset_name(encoding.charset, ENCA_NAME_STYLE_ENCA));
@@ -54,7 +54,7 @@ CueFile::CueFile(const QString &path)
         codec = QTextCodec::codecForName("UTF-8");
     settings.endGroup();
 
-    loadData(module, codec);
+    loadData(buffer, codec);
     setUrl("cue", m_path);
 
     for(const QString &dataFileName : files())

@@ -179,12 +179,12 @@ bool MUCFileReader::load(const QString &path)
         return false;
     }
 
-    const QByteArray &module = file.readAll();
+    const QByteArray &buffer = file.readAll();
     file.close();
 
     m_input = new MucomModule;
     m_input->SetRate(sampleRate());
-    m_input->OpenMemory((unsigned char *)module.constData(), module.length(), path.toLower().endsWith(".mub"));
+    m_input->OpenMemory((unsigned char *)buffer.constData(), buffer.length(), path.toLower().endsWith(".mub"));
     m_input->UseFader(true);
     m_input->Play();
 

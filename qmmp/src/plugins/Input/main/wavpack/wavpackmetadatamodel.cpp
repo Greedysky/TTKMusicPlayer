@@ -82,8 +82,8 @@ QString WavPackMetaDataModel::cue() const
 
 void WavPackMetaDataModel::setCue(const QString &content)
 {
-    const QByteArray &data = content.toUtf8();
-    WavpackAppendTagItem(m_ctx, "cuesheet", data.data(), data.length());
+    const QByteArray &buffer = content.toUtf8();
+    WavpackAppendTagItem(m_ctx, "cuesheet", buffer.data(), buffer.length());
     WavpackWriteTag(m_ctx);
 }
 

@@ -55,7 +55,7 @@ QString CUEMetaDataModel::cue() const
     {
         return QString();
     }
-    const QByteArray &module = file.readAll();
+    const QByteArray &buffer = file.readAll();
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("CUE");
@@ -68,7 +68,7 @@ QString CUEMetaDataModel::cue() const
         if(analyser)
         {
             enca_set_threshold(analyser, 1.38);
-            EncaEncoding encoding = enca_analyse(analyser, (uchar *)module.constData(), module.length());
+            EncaEncoding encoding = enca_analyse(analyser, (uchar *)buffer.constData(), buffer.length());
             if(encoding.charset != ENCA_CS_UNKNOWN)
             {
                 m_codec = QTextCodec::codecForName(enca_charset_name(encoding.charset,ENCA_NAME_STYLE_ENCA));
@@ -81,7 +81,7 @@ QString CUEMetaDataModel::cue() const
         m_codec = QTextCodec::codecForName(settings.value("encoding", "UTF-8").toByteArray());
     settings.endGroup();
 
-    return m_codec->toUnicode(module);
+    return m_codec->toUnicode(buffer);
 }
 
 void CUEMetaDataModel::setCue(const QString &content)

@@ -14,11 +14,6 @@ QStringList ArchiveReader::filters()
 
 bool ArchiveReader::isSupported(const QString &path)
 {
-    if(!QFile::exists(ARCHIVE_PATH) || path.isEmpty())
-    {
-        return false;
-    }
-
     const QString &filePath = path.toLower();
     for(const QString &suffix : filters())
     {
@@ -32,6 +27,11 @@ bool ArchiveReader::isSupported(const QString &path)
 
 QByteArray ArchiveReader::unpack(const QString &path)
 {
+    if(!QFile::exists(ARCHIVE_PATH) || path.isEmpty())
+    {
+        return QByteArray();
+    }
+
     QProcess process;
     QStringList args;
     args << "-so" << "e" << path;

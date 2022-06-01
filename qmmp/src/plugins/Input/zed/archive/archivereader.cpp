@@ -40,8 +40,8 @@ QStringList ArchiveReader::list(const QString &path)
     const QString &cache = unpack + QFileInfo(path).fileName() + "/";
 
     QStringList files;
-    const QByteArray &data = process.readAllStandardOutput();
-    const QString &list = QString::fromLocal8Bit(data.constData(), data.length());
+    const QByteArray &buffer = process.readAllStandardOutput();
+    const QString &list = QString::fromLocal8Bit(buffer.constData(), buffer.length());
 #ifdef Q_OS_WIN
     for(QString& file : list.split("\r\n"))
     {

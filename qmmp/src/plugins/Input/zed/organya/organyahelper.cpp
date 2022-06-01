@@ -118,10 +118,10 @@ bool PxFileReader::load(const QString &path)
         return false;
     }
 
-    const QByteArray &module = file.readAll();
+    const QByteArray &buffer = file.readAll();
     file.close();
 
-    if(!m_pxd->set_memory_r((void*)module.constData(), module.length()))
+    if(!m_pxd->set_memory_r((void*)buffer.constData(), buffer.length()))
     {
         qWarning("PxFileReader: set_memory_r error");
         return false;

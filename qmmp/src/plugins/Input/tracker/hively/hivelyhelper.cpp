@@ -28,18 +28,18 @@ bool HivelyHelper::initialize()
         return false;
     }
 
-    const QByteArray &module = file.readAll();
+    const QByteArray &buffer = file.readAll();
     file.close();
 
     hvl_InitReplayer();
-    m_input = hvl_ParseTune((unsigned char *)module.constData(), module.length(), sampleRate(), 0);
+    m_input = hvl_ParseTune((unsigned char *)buffer.constData(), buffer.length(), sampleRate(), 0);
     if(!m_input)
     {
         qWarning("HivelyHelper: hvl_LoadTune error");
         return false;
     }
 
-    m_ahxHeader = (module[0] == 'H') && (module[1] == 'V') && (module[2] == 'L');
+    m_ahxHeader = (buffer[0] == 'H') && (buffer[1] == 'V') && (buffer[2] == 'L');
     return true;
 }
 

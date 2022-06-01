@@ -111,10 +111,10 @@ void NetworkStreamReader::replyError(QNetworkReply::NetworkError status)
 
 void NetworkStreamReader::handleReadyRead()
 {
-    const QByteArray &data = m_reply->readAll();
+    const QByteArray &buffer = m_reply->readAll();
     m_mutex.lock();
-    m_stream.buffer.push_back(data);
-    m_stream.buffer_size += data.length();
+    m_stream.buffer.push_back(buffer);
+    m_stream.buffer_size += buffer.length();
     m_mutex.unlock();
 
     if(m_stream.aborted || m_ready)

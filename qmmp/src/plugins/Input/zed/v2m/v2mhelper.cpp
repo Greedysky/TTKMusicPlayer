@@ -58,11 +58,17 @@ bool V2MHelper::initialize()
         return false;
     }
 
-    const QByteArray &module = ArchiveReader::isSupported(m_path) ? ArchiveReader::unpack(m_path) : file.readAll();
+    const QByteArray &buffer = ArchiveReader::isSupported(m_path) ? ArchiveReader::unpack(m_path) : file.readAll();
     file.close();
 
+    if(buffer.isEmpty())
+    {
+        qWarning("V2MHelper: input buffer is empty");
+        return false;
+    }
+
     int convlen;
-    if(loadAndConvert((unsigned char *)module.constData(), module.length(), &m_tune, &convlen) < 0)
+    if(loadAndConvert((unsigned char *)buffer.constData(), buffer.length(), &m_tune, &convlen) < 0)
     {
         qWarning("V2MHelper: load_and_convert error");
         return false;

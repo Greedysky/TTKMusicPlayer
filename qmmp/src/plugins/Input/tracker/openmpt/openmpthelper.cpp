@@ -27,8 +27,14 @@ bool OpenMPTHelper::initialize()
         const QString &path = file ? file->fileName() : QString();
         if(ArchiveReader::isSupported(path))
         {
-            const QByteArray &data = ArchiveReader::unpack(path);
-            m_mod = openmpt_module_create_from_memory2(data.constData(), data.length(), openmpt_log_func_silent, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
+            const QByteArray &buffer = ArchiveReader::unpack(path);
+            if(buffer.isEmpty())
+            {
+                qWarning("OpenMPTHelper: input buffer is empty");
+                return false;
+            }
+
+            m_mod = openmpt_module_create_from_memory2(buffer.constData(), buffer.length(), openmpt_log_func_silent, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
         }
         else
         {
