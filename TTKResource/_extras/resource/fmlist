@@ -1,9 +1,106 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <TTKMusicPlayer>
-    <category value="外语">
-        <channel name="北京外语广播" location="北京" url="mmsh://alive.rbc.cn/am774"/>
-        <channel name="北京外语广播" location="北京" url="rtsp://alive.rbc.cn/am774"/>
-        <channel name="北京外语广播" location="北京" url="http://audiolive.rbc.cn:1935/live/am774/96K/tzwj_video.m3u8"/>
+    <category value="国外">
+        <channel name="Real Country (KHTC)" location="Classic" url="http://s2.stationplaylist.com:7034/listen.aac"/>
+        <channel name="stream" location="NULL" url="http://playradio.mx:5047/stream"/>
+        <channel name="Radio Dom Druzhbi" location="Russian" url="http://62.109.3.230:80/dom_druzhby.mp3"/>
+        <channel name="PT. Radio Elshinta" location="Talk" url="http://stream-ssl.arenastreaming.com:8000/jakarta"/>
+        <channel name="AFM" location="NULL" url="http://s4.myradiostream.com:4284/stream"/>
+        <channel name="Radio G Giulianova" location="various" url="http://ice09.fluidstream.net:80/r_giulianova.mp3"/>
+        <channel name="Radio Sport Chile" location="Sports" url="http://ascl.denial.cl:8034/stream"/>
+        <channel name="This is my server name" location="Rock" url="http://stm01.virtualcast.com.br:8128/live"/>
+        <channel name="chiru.no webm" location="Anime" url="http://chiru.no:8000/stream.webm"/>
+        <channel name="Move Ibiza Radio" location="Electronic" url="http://s5.myradiostream.com:42006/moveibiza"/>
+        <channel name="Green Radio" location="Various" url="http://c1.siar.us:10579/live"/>
+        <channel name="Mein Testradio" location="Various" url="http://media1.mmit-server.de:18470/stream"/>
+        <channel name="WYNFM" location="Community" url="http://streamer5.rightclickitservices.com:9740/mp3"/>
+        <channel name="R5K" location="EDM" url="http://cast.deck8.uk:8010/stream"/>
+        <channel name="Life Radio Tirol" location="Mix" url="https://liferadiotirol.apa.at:8000/xstream"/>
+        <channel name="Love a Child FM" location="Creole Christian" url="http://ctntv.getstreamhosting.com:8028/creole"/>
+        <channel name="MEGATOP RADIO" location="various" url="http://streaming.megatopradio.com:8100/megatopradio_radioboss"/>
+        <channel name="24Music Radio" location="Pop" url="http://134.119.178.2:9000/live"/>
+        <channel name="LAROCKAFORTE (MBStudio4)" location="Rock" url="http://stream.radiomusic.net:28120/stream"/>
+        <channel name="ONE FM HQ" location="Mixed" url="http://live7.avf.ch:8000/oneHQ"/>
+        <channel name="Terraine 24-7" location="Oldies" url="http://ruby.torontocast.com:3080/stream"/>
+        <channel name="Unspecified name" location="various" url="http://relay.radiostreamserver.de:80/kaparkona.aac"/>
+        <channel name="Dubstep.fm" location="Dubstep" url="http://ice1.dubstep.fm:80/24aac"/>
+        <channel name="Radio Seagull" location="Alternative" url="http://nl.nb24.nl:8000/seagull3"/>
+        <channel name="WRGM1" location="pop" url="http://as.fm1.be:8000/wrgm1"/>
+        <channel name="HearMe - Smooth Jazz" location="Jazz" url="http://hearme.fm:8180/stream"/>
+        <channel name="Online Radio" location="mix" url="http://server2.inetcast.nl:1900/stream"/>
+        <channel name="Radio 31 de Enero" location="various" url="http://radio.latina.red:8000/radio31deenero.mp3"/>
+        <channel name="Alet.Rocks" location="various" url="http://s7.voscast.com:9910/stream"/>
+        <channel name="EL SONERO" location="Pop" url="http://radiomusic.newradio.it:80/elsonero-mob"/>
+        <channel name="Radio De Blauwe Vogel" location="various" url="http://cast.streamkeuze.nl:1910/stream"/>
+        <channel name="Radio T Foz" location="various" url="http://live.paineldj.com.br:10488/live"/>
+        <channel name="stepupzorgradio" location="Various" url="http://stream-10.pmteurope.com:8026/stream"/>
+        <channel name="Unspecified name" location="various" url="http://rocket.streamradio.fr:18038/stream"/>
+        <channel name="Ally-Radio" location="Various" url="http://everestcast.streams.ovh:2300/stream"/>
+        <channel name="Vijayafm101.6Mhz" location="Genre2 Genre1" url="http://live.itech.host:3310/live"/>
+        <channel name="Kurdish Radio Ireland" location="radio" url="http://proxima.shoutca.st:8089/autodj"/>
+        <channel name="NStation Russian" location="Rock" url="http://icecast.nstation.ru:8000/nstation_russian_192"/>
+        <channel name="KCLW AM 900" location="Country" url="http://ais-edge23-dal02.cdnstream.com:80/1573_128"/>
+        <channel name="Itgel Radio" location="Christian" url="http://c14.radioboss.fm:8077/live"/>
+        <channel name="Holiday Radio" location="Pop" url="http://ec1.yesstreaming.net:1540/stream"/>
+        <channel name="WRMU" location="Contemporary" url="http://ais-edge49-nyc04.cdnstream.com:80/2187_128.mp3"/>
+        <channel name="RadioVeg.it" location="Various" url="http://nrf1.newradio.it:10382/stream"/>
+        <channel name="RADIO RWL" location="Various" url="http://manager4.streamradio.fr:2370/stream"/>
+        <channel name="Radio Ruzafa" location="Electronic" url="http://online.radioruzafa.com:8020/radio"/>
+        <channel name="AC Mixx" location="Contemporary" url="http://ais-edge23-dal02.cdnstream.com:80/1980_64.aac"/>
+        <channel name="La Arrasante Radio.com" location="World" url="http://cp9.serverse.com:7000/stream.mp3"/>
+        <channel name="Tordas Radio" location="folk pirate" url="http://stream.tilos.hu:80/tordas_radio_online"/>
+        <channel name="Fallback" location="Unspecified" url="http://hestia.cdnstream.com:80/1145_64"/>
+        <channel name="PEP'HIT" location="Hits" url="http://ecmanager4.pro-fhi.net:1230/stream"/>
+        <channel name="RadioBOSS Stream" location="Other" url="http://pu.klikhost.com:8082/live"/>
+        <channel name="BDPST ROCK SQ" location="Rock" url="http://s2.audiostream.hu:8081/bdpstrock_192k"/>
+        <channel name="Global Sport SUISSE" location="PROCOL" url="http://live7.avf.ch:8000/globalfm"/>
+        <channel name="Radio Darmstadt (HD MP3)" location="Radio" url="http://stream.radiodarmstadt.de:7990/radar_hd.mp3"/>
+        <channel name="Radio Whm 52" location="Tous" url="http://manager3.streamradio.fr:2050/stream"/>
+        <channel name="Radio Pure" location="Greek" url="http://caststream.eu:1080/stream"/>
+        <channel name="My Station name" location="Various" url="http://radio02.zas.media:8045/live"/>
+        <channel name="DG Radio" location="Variedad" url="http://sv2.globalhostlive.com:7029/autodj"/>
+        <channel name="IDS Radio RU" location="Speech" url="http://ids-radio.com:8000/128K"/>
+        <channel name="Masterpiece Radio" location="various" url="http://radio.digibro.net:1220/stream"/>
+        <channel name="Radio Superfly" location="various" url="http://stream01.superfly.fm:8080/live-aac"/>
+        <channel name="Hawaiian Pacific Radio" location="Pacific Hawaiian" url="http://s10.citrus3.com:8254/stream"/>
+        <channel name="Deep House" location="Dance" url="http://radio4.vip-radios.fm:8012/stream-mp3-Deep_autodj"/>
+        <channel name="baden.fm 70er" location="70er" url="http://frontend.streams.baden.fm/badenfm-70er/stream/aacp"/>
+        <channel name="Chillout Lounge" location="EDM" url="http://ec4.yesstreaming.net:2720/stream"/>
+        <channel name="Cevallos Radio" location="Variedad" url="http://sv2.globalhostlive.com:7135/autodj"/>
+        <channel name="Magic Radio" location="80s" url="http://mp3.magic-radio.net:80"/>
+        <channel name="Serenade FM Live" location="pop soul" url="http://stream2.hippynet.co.uk:8226/stream"/>
+        <channel name="KALH Radio 95.1 FM" location="Country" url="http://s7.voscast.com:9370/stream"/>
+        <channel name="cfm radio" location="cfm radio" url="http://stric6.streamakaci.com:80/cfmrodez.mp3"/>
+        <channel name="Nailsradio Uk Hits" location="various" url=">http://live.webhosting4u.gr:1690/stream"/>
+        <channel name="Dance Wave!" location="Electronic" url="http://stream.dancewave.online:8080/dance.flac.ogg"/>
+        <channel name="Radio Monza" location="General" url="http://streaming.intronic.nl:80/radiomonza"/>
+        <channel name="Old Time Radio" location="OTR" url="http://walmradio.com:8000/otr-fallback"/>
+        <channel name="R7" location="POP" url="http://s4.hostingcentar.com:20630/stream"/>
+        <channel name="MINI 1" location="various" url="http://icecast.movemedia.be:8000/miniradio"/>
+        <channel name="Dubstep.fm" location="Dubstep" url="http://ice1.dubstep.fm:80/24mp3"/>
+        <channel name="RKC Italiano HQ" location="Spiritual" url="http://live.radiokrishna.com:8000/stream"/>
+        <channel name="CEDRO FM" location="Pop" url="http://radio.viaflux.com:5555/live"/>
+        <channel name="Reillann'Air" location="Associative" url="http://icecast.reillannair.com:80/reillannair"/>
+        <channel name="WYEP" location="various" url="http://ais-edge63-dal03.cdnstream.com:80/2557_128.mp3"/>
+        <channel name="rythmosradio" location="Unspecified" url="http://i5.streams.ovh:14086/autodj"/>
+        <channel name="Trucker Country" location="various" url="http://ec3.yesstreaming.net:1780/stream"/>
+        <channel name="ALFA.FM Deep" location="DEEP" url="http://icecast.station2000.ru:8000/royal_deep"/>
+        <channel name="Sonora Purwokerto" location="Family Radio" url="http://streaming502.radionomy.com:80/sonora-purwokerto"/>
+        <channel name="Okyanus" location="various" url="http://radyo.yayinda.net:1120/stream"/>
+        <channel name="WQOK" location="Disco" url="http://ais-edge49-nyc04.cdnstream.com:80/1683_128"/>
+        <channel name="RCS - NAPOLI" location="Pop" url="http://ice09.fluidstream.net:80/fluid0905.aac"/>
+        <channel name="TT Node" location="Main" url="http://stream.p-node.org:80/dab_mulhouse.mp3"/>
+        <channel name="Maracaibo Stream" location="various" url="http://topradio.pro:8078/autodj"/>
+        <channel name="Pilot Secret" location="Pop" url="http://188.254.50.254:8000/pilot_secret"/>
+        <channel name="Enjoy 80's" location="80s" url="http://i8.streams.ovh:18044/live"/>
+        <channel name="Radio-Beats" location="Music" url="http://c18.radioboss.fm:8221/autodj"/>
+        <channel name="BoemerangFM" location="Gouwe" url="http://evcast01.mediacp.eu:1440/stream"/>
+        <channel name="PROG.FM" location="Rock" url="http://stream.prog.fm:9030/listen.ogg"/>
+        <channel name="Radio Love 100" location="Contemporary" url="http://hestia.cdnstream.com:80/1718_128"/>
+        <channel name="Radio F 94.5" location="Oldies" url="http://frontend.streamonkey.net/fhn-radiof945/stream/mp3"/>
+        <channel name="Radio Gong 97.1" location="Rock" url="http://frontend.streamonkey.net/fhn-gong971/stream/mp3"/>
+        <channel name="Nostalgie, le meilleur de" location="Pop" url="http://streaming501.radionomy.com:80/NostalgieLeMeilleur-aac"/>
+        <channel name="Petunya" location="Arabesk" url="http://youtube.radyohizmeti.com:1680/stream"/>
     </category>
     <category value="生活">
         <channel name="央广都市之声" location="中央" url="mmsh://mms.cnr.cn/cnr004"/>
