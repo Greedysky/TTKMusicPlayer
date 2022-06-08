@@ -79,7 +79,7 @@ struct wavfmt_t
     uint16_t cbSize;
 };
 
-static int dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
+static int64_t dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
 {
     char riff[4];
     if(stdio_read(&riff, 1, sizeof(riff), fp) != sizeof(riff))
@@ -168,7 +168,6 @@ static int dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
 
     datasize = u32_LE(datasize);
     *totalsamples = datasize / ((fmt->wBitsPerSample >> 3) * fmt->nChannels);
-
     return stdio_tell(fp);
 }
 
@@ -185,14 +184,11 @@ static int16_t convert(int32_t i)
 static int convert_samples(decode_info *state, int)
 {
     sample_t *samples = dca_samples(state->state);
-
-    int n, i, c;
-    n = 256;
     int16_t *dst = state->output_buffer + state->remaining * state->channels;
 
-    for(i = 0; i < n; ++i)
+    for(int i = 0; i < 256; ++i)
     {
-        for(c = 0; c < state->channels; ++c)
+        for(int c = 0; c < state->channels; ++c)
         {
             *dst++ = convert(*((int32_t*)(samples + 256 * c)));
         }
@@ -203,11 +199,11 @@ static int convert_samples(decode_info *state, int)
     return 0;
 }
 
-static int dca_decode_data(decode_info *ddb_state, uint8_t *start, int size, int probe)
+static int dca_decode_data(decode_info *ddb_state, uint8_t *start, size_t size, int probe)
 {
+    size_t len;
     int n_decoded = 0;
     uint8_t *end = start + size;
-    int len;
 
     while(true)
     {
@@ -230,7 +226,7 @@ static int dca_decode_data(decode_info *ddb_state, uint8_t *start, int size, int
         {
             if(ddb_state->bufpos == ddb_state->buf + HEADER_SIZE)
             {
-                int length = dca_syncinfo(ddb_state->state, ddb_state->buf, &ddb_state->flags, &ddb_state->sample_rate, &ddb_state->bitrate, &ddb_state->frame_length);
+                const int length = dca_syncinfo(ddb_state->state, ddb_state->buf, &ddb_state->flags, &ddb_state->sample_rate, &ddb_state->bitrate, &ddb_state->frame_length);
                 if(!length)
                 {
                     for(ddb_state->bufptr = ddb_state->buf; ddb_state->bufptr < ddb_state->buf + HEADER_SIZE-1; ++ddb_state->bufptr)
@@ -245,16 +241,15 @@ static int dca_decode_data(decode_info *ddb_state, uint8_t *start, int size, int
                 }
                 ddb_state->bufpos = ddb_state->buf + length;
             }
-            else {
-                level_t level = 1;
-                sample_t bias = 384;
-
+            else
+            {
                 if(!ddb_state->disable_adjust)
                 {
                     ddb_state->flags |= DCA_ADJUST_LEVEL;
                 }
 
-                level = (level_t)(level * ddb_state->gain);
+                const sample_t bias = 384;
+                level_t level = (level_t)ddb_state->gain;
                 if(dca_frame(ddb_state->state, ddb_state->buf, &ddb_state->flags, &level, bias))
                 {
                     goto error;
@@ -275,6 +270,7 @@ static int dca_decode_data(decode_info *ddb_state, uint8_t *start, int size, int
                     convert_samples(ddb_state, ddb_state->flags);
                     n_decoded += 256;
                 }
+
                 ddb_state->bufptr = ddb_state->buf;
                 ddb_state->bufpos = ddb_state->buf + HEADER_SIZE;
                 continue;
@@ -307,6 +303,7 @@ void DCAHelper::deinit()
         {
             dca_free(m_info->state);
         }
+
         if(m_info->file)
         {
            stdio_close(m_info->file);
@@ -329,8 +326,8 @@ bool DCAHelper::initialize()
     // WAV format
     if((m_info->offset = dts_open_wav(m_info->file, &fmt, &total)) == -1)
     {
-        m_info->offset = 0;
         total = -1;
+        m_info->offset = 0;
         m_info->bits_per_sample = 16;
     }
     else
@@ -353,16 +350,19 @@ bool DCAHelper::initialize()
     }
 
     // prebuffer 1st piece, and get decoded samplerate and nchannels
-    size_t rd = stdio_read(m_info->inbuf, 1, BUFFER_SIZE, m_info->file);
+    const size_t rd = stdio_read(m_info->inbuf, 1, BUFFER_SIZE, m_info->file);
     const int len = dca_decode_data(m_info, m_info->inbuf, rd, 1);
     if(!len)
     {
         qWarning("DCAHelper: dca_decode_data error");
         return false;
     }
+
+    m_info->bufptr = m_info->buf;
+    m_info->bufpos = m_info->buf + HEADER_SIZE;
     m_info->frame_byte_size = len;
 
-    int flags = m_info->flags &~ (DCA_LFE | DCA_ADJUST_LEVEL);
+    const int flags = m_info->flags &~ (DCA_LFE | DCA_ADJUST_LEVEL);
     switch(flags)
     {
     case DCA_MONO:
@@ -450,16 +450,17 @@ qint64 DCAHelper::read(unsigned char *data, qint64 maxSize)
         }
     }
 
-    int initSize = maxSize;
+    const int initSize = maxSize;
     while(maxSize > 0)
     {
         if(m_info->samples_to_skip > 0 && m_info->remaining > 0)
         {
-            int skip = MIN(m_info->remaining, m_info->samples_to_skip);
+            const int skip = MIN(m_info->remaining, m_info->samples_to_skip);
             if(skip < m_info->remaining)
             {
                 memmove(m_info->output_buffer, m_info->output_buffer + skip * channels(), (m_info->remaining - skip) * sampleSize);
             }
+
             m_info->remaining -= skip;
             m_info->samples_to_skip -= skip;
         }
@@ -490,6 +491,7 @@ qint64 DCAHelper::read(unsigned char *data, qint64 maxSize)
                     {
                         ((int16_t *)data)[i] = ((int16_t*)in)[channel_remap[chmap][i]];
                     }
+
                     in += sampleSize;
                     data += sampleSize;
                 }
@@ -499,15 +501,15 @@ qint64 DCAHelper::read(unsigned char *data, qint64 maxSize)
             {
                 memmove(m_info->output_buffer, m_info->output_buffer + n * channels(), (m_info->remaining - n) * sampleSize);
             }
+
             maxSize -= n * sampleSize;
             m_info->remaining -= n;
         }
 
         if(maxSize > 0 && !m_info->remaining)
         {
-            size_t rd = stdio_read(m_info->inbuf, 1, BUFFER_SIZE, m_info->file);
-            int nsamples = dca_decode_data(m_info, m_info->inbuf, rd, 0);
-            if(!nsamples)
+            const size_t rd = stdio_read(m_info->inbuf, 1, BUFFER_SIZE, m_info->file);
+            if(!dca_decode_data(m_info, m_info->inbuf, rd, 0))
             {
                 break;
             }

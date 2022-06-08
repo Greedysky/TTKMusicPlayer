@@ -26,7 +26,7 @@ extern "C" {
 #include <stdio_file.h>
 }
 
-#define BUFFER_SIZE 24576
+#define BUFFER_SIZE 65536
 #define OUT_BUFFER_SIZE 25000
 // one block may be up to 22K samples, which is 88Kb for stereo
 #define HEADER_SIZE 14
