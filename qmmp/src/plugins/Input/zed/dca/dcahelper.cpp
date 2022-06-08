@@ -416,18 +416,16 @@ bool DCAHelper::initialize()
         m_info->length = (float)total / m_info->sample_rate * 1000;
     }
 
-    m_info->start_sample = 0;
     m_info->end_sample = total - 1;
     return true;
 }
 
 void DCAHelper::seek(qint64 time)
 {
-    int sample = time * sampleRate() / 1000;
+    const int sample = time * sampleRate() / 1000;
     // calculate file offset from framesize / framesamples
-    sample += m_info->start_sample;
-    int64_t nframe = sample / m_info->frame_length;
-    int64_t offs = m_info->frame_byte_size * nframe + m_info->offset;
+    const int64_t nframe = sample / m_info->frame_length;
+    const int64_t offs = m_info->frame_byte_size * nframe + m_info->offset;
 
     stdio_seek(m_info->file, offs, SEEK_SET);
     m_info->remaining = 0;

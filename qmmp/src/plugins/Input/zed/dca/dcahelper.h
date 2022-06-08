@@ -21,20 +21,21 @@
 
 #include <QFile>
 extern "C" {
+#include <stdio_file.h>
 #include <libdca/dca.h>
 #include <libdca/gettimeofday.h>
-#include <stdio_file.h>
 }
 
 #define BUFFER_SIZE 65536
-#define OUT_BUFFER_SIZE 25000
-// one block may be up to 22K samples, which is 88Kb for stereo
+#define OUT_BUFFER_SIZE 25000   // one block may be up to 22K samples, which is 88Kb for stereo
 #define HEADER_SIZE 14
 
 struct decode_info
 {
     FILE *file;
-    int offset;
+    int64_t offset;
+    int64_t end_sample;
+    int64_t current_sample;
     dca_state_t *state;
     int disable_adjust;// = 0;
     float gain;// = 1;
@@ -48,15 +49,12 @@ struct decode_info
     int flags;
     int bitrate;
     int frame_byte_size;
-    int bits_per_sample;
-    int channels;
     int16_t output_buffer[OUT_BUFFER_SIZE*6]; // output samples
     int remaining;
-    int length;
-    int start_sample;
-    int end_sample;
-    int current_sample;
     int samples_to_skip;
+    int length;
+    int channels;
+    int bits_per_sample;
 };
 
 /*!
