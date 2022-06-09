@@ -26,11 +26,10 @@ QString MusicFormats::supportMusicInputFormats()
 QStringList MusicFormats::supportSpekInputFilterFormats()
 {
     QStringList formats;
-    formats << "*.3gp" << "*.aac" << "*.aif" << "*.aifc" << "*.aiff" << "*.amr";
-    formats << "*.awb" << "*.ape" << "*.au" << "*.dts" << "*.flac" << "*.flv";
-    formats << "*.gsm" << "*.m4a" << "*.m4p" << "*.mp3" << "*.mp4" << "*.mp+";
-    formats << "*.mpc" << "*.mpp" << "*.oga" << "*.ogg" << "*.opus" << "*.ra";
-    formats << "*.ram" << "*.snd" << "*.wav" << "*.wma" << "*.wv";
+    formats << "*.wma" << "*.ape" << "*.tta" << "*.m4a" << "*.m4b" << "*.aac" << "*.ra" << "*.shn" << "*.ac3" << "*.mka" << "*.vqf" << "*.tak" << "*.spx" << "*.adx" << "*.aix";
+    formats << "*.wve" << "*.sln" << "*.paf" << "*.pvf" << "*.ircam" << "*.gsm" << "*.avr" << "*.amr" << "*.dsf" << "*.dsdiff";
+    formats << "*.webm" << "*.3g2" << "*.3gp" << "*.asf" << "*.avi" << "*.f4v" << "*.flv" << "*.hevc" << "*.m4v" << "*.mov" << "*.mp4" << "*.mpeg" << "*.rm" << "*.swf" << "*.vob" << "*.wtv";
+    formats << "*.aiff" << "*.au" << "*.dts" << "*.mp3" << "*.ogg" << "*.opus" << "*.snd" << "*.oga" << "flac";
     return formats;
 }
 
