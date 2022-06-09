@@ -65,7 +65,7 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
         return true;
     else if(filters.contains("*.tak") && formats.contains("tak"))
         return true;
-    else if(filters.contains("*.spx") && formats.contains("spx"))
+    else if(filters.contains("*.spx") && (formats.contains("spx") || formats.contains("ogg")))
         return true;
     else if(filters.contains("*.adx") && formats.contains("adx"))
         return true;
@@ -150,7 +150,7 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         filters.removeAll("*.vqf");
     if(!avcodec_find_decoder(AV_CODEC_ID_TAK))
         filters.removeAll("*.tak");
-    if(!avcodec_find_decoder(AV_CODEC_ID_TRUESPEECH))
+    if(!avcodec_find_decoder(AV_CODEC_ID_SPEEX))
         filters.removeAll("*.spx");
     if(!avcodec_find_decoder(AV_CODEC_ID_ADPCM_ADX))
     {
