@@ -18,5 +18,5 @@ unix{
 }
 
 win32{
-    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lmdx
+    LIBS += -L$$EXTRA_PREFIX/libttk/lib -lmdx -lws2_32
 }
