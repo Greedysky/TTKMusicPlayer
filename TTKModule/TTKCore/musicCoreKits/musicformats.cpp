@@ -29,7 +29,7 @@ QStringList MusicFormats::supportSpekInputFilterFormats()
     formats << "*.wma" << "*.ape" << "*.tta" << "*.m4a" << "*.m4b" << "*.aac" << "*.ra" << "*.shn" << "*.ac3" << "*.mka" << "*.vqf" << "*.tak" << "*.spx" << "*.adx" << "*.aix";
     formats << "*.wve" << "*.sln" << "*.paf" << "*.pvf" << "*.ircam" << "*.gsm" << "*.avr" << "*.amr" << "*.dsf" << "*.dsdiff";
     formats << "*.webm" << "*.3g2" << "*.3gp" << "*.asf" << "*.avi" << "*.f4v" << "*.flv" << "*.hevc" << "*.m4v" << "*.mov" << "*.mp4" << "*.mpeg" << "*.rm" << "*.swf" << "*.vob" << "*.wtv";
-    formats << "*.aiff" << "*.au" << "*.dts" << "*.mp3" << "*.ogg" << "*.opus" << "*.snd" << "*.oga" << "flac";
+    formats << "*.aiff" << "*.au" << "*.dts" << "*.mp3" << "*.ogg" << "*.opus" << "*.snd" << "*.oga" << "*.flac";
     return formats;
 }
 
