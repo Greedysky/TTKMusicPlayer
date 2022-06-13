@@ -1,8 +1,11 @@
 #!/bin/sh
 
-path=share/applications/TTKMusicPlayer.desktop
-packpath="$PWD/$path"
-userpath=~/.local/$path
+path=share/applications
+mkdir $path
+
+datapath=$path/TTKMusicPlayer.desktop
+packpath="$PWD/$datapath"
+userpath=~/.local/$datapath
 iconpath="$PWD/share/pixmaps/ttkmusicplayer.png"
 execpath="$PWD/../TTKMusicPlayer"
 
@@ -14,7 +17,9 @@ Comment=天天酷音
 Icon=$iconpath
 Exec=$execpath
 Terminal=false
-Categories=Development;
+Keywords=player;audio;video;multimedia;
+Categories=AudioVideo;Player;Audio;Qt;
+X-KDE-StartupNotify=false
 Name[zh_CN]=天天酷音\n" > $packpath
 
 cp -rv $packpath $userpath

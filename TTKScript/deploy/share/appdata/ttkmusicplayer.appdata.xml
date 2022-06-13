@@ -7,18 +7,65 @@
   <name>TTKMusicPlayer</name>
   <pkgname>TTKMusicPlayer</pkgname>
   <summary>The music player that imitation Kugou</summary>
-
   <description>
     <p>
       TTKMusicPlayer that imitation Kugou music, the music player uses of qmmp core library based on Qt for windows and linux.
     </p>
   </description>
-
+  <categories>
+    <category>AudioVideo</category>
+    <category>Audio</category>
+  </categories>
+  <keywords>
+    <keyword>audio</keyword>
+    <keyword>multimedia</keyword>
+    <keyword>video</keyword>
+  </keywords>
   <url type="homepage">https://github.com/Greedysky/TTKMusicplayer</url>
   <developer_name>Greedysky Studio</developer_name>
-
   <releases>
-    <release version="2.15.10.0" date="2022-05-28">
-    </release>
+    <release version="2.15.10.0" date="2022-05-28" />
+    <release version="2.15.9.0" date="2022-04-30" />
+    <release version="2.15.8.0" date="2022-03-05" />
+    <release version="2.15.7.0" date="2022-01-02" />
+    <release version="2.15.6.0" date="2021-12-18" />
+    <release version="2.15.5.0" date="2021-11-19" />
+    <release version="2.15.4.0" date="2021-10-08" />
+    <release version="2.15.3.0" date="2021-09-27" />
+    <release version="2.15.2.0" date="2021-08-16" />
+    <release version="2.15.1.0" date="2021-06-26" />
+    <release version="2.15.0.0" date="2021-05-02" />
+    <release version="2.14.0.0" date="2021-02-27" />
+    <release version="2.13.4.0" date="2021-01-09" />
+    <release version="2.13.3.0" date="2020-11-21" />
+    <release version="2.13.2.0" date="2020-09-19" />
+    <release version="2.13.1.0" date="2020-07-12" />
+    <release version="2.13.0.0" date="2020-06-06" />
+    <release version="2.12.0.0" date="2020-04-25" />
+    <release version="2.11.1.0" date="2020-02-08" />
+    <release version="2.11.0.0" date="2020-01-18" />
+    <release version="2.10.0.0" date="2019-11-30" />
+    <release version="2.9.0.0" date="2019-06-29" />
+    <release version="2.8.0.0" date="2019-01-11" />
+    <release version="2.7.0.0" date="2018-07-01" />
+    <release version="2.6.8.0" date="2018-05-05" />
+    <release version="2.6.7.0" date="2018-04-04" />
+    <release version="2.6.6.0" date="2018-03-03" />
+    <release version="2.6.5.0" date="2018-02-02" />
+    <release version="2.6.4.0" date="2018-01-01" />
+    <release version="2.6.3.0" date="2017-12-12" />
+    <release version="2.6.2.0" date="2017-11-11" />
+    <release version="2.6.1.0" date="2017-10-10" />
+    <release version="2.6.0.0" date="2017-09-09" />
+    <release version="2.5.3.0" date="2017-08-08" />
+    <release version="2.5.1.0" date="2017-07-07" />
+    <release version="2.5.0.0" date="2017-06-06" />
+    <release version="2.4.8.0" date="2017-04-11" />
+    <release version="2.4.7.0" date="2017-02-20" />
+    <release version="2.4.6.0" date="2017-01-19" />
+    <release version="2.4.5.0" date="2016-12-03" />
+    <release version="2.4.2.0" date="2016-11-06" />
+    <release version="2.4.1.0" date="2016-10-09" />
+    <release version="2.4.0.0" date="2016-08-20" />
   </releases>
 </component>

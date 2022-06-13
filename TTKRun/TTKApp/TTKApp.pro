@@ -46,6 +46,9 @@ win32{
         $$PWD/../../TTKConfig/musicconfigobject.h \
         $$PWD/../../TTKConfig/musicconfigdefine.h
     SOURCES += $$PWD/../../TTKConfig/musicconfigobject.cpp
+
+    appdata.files = $$PWD/../../TTKScript/deploy/share/appdata/ttkmusicplayer.appdata.xml
+    appdata.path = $$PWD/../../TTKScript/deploy/share/appdata/ttkmusicplayer.appdata.xml
 }
 
 INCLUDEPATH += \
