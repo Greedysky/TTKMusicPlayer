@@ -6,6 +6,8 @@ extern "C" {
 #include <libmdx/pmdmini/pmdmini.h>
 #include <libmdx/mucom88/mucomtag.h>
 #include <libmdx/mucom88/mucom_module.h>
+#include <libmdx/vgs/vgsdec.h>
+#include <libmdx/vgs/vgsmml.h>
 }
 
 #define INPUT_BUFFER_SIZE   1024
@@ -111,7 +113,7 @@ bool PDXFileReader::load(const QString &path)
 
     if(!m_input->open(QmmpPrintable(path)))
     {
-        qWarning("MDXFileReader: mdx_open error");
+        qWarning("PDXFileReader: open error");
         delete m_input;
         m_input = nullptr;
         return false;
@@ -228,7 +230,7 @@ bool MUCFileReader::load(const QString &path)
     QFile file(path);
     if(!file.open(QFile::ReadOnly))
     {
-        qWarning("PMDFileReader: open file failed");
+        qWarning("MUCFileReader: open file failed");
         return false;
     }
 
@@ -264,6 +266,116 @@ qint64 MUCFileReader::read(unsigned char *data, qint64)
 }
 
 
+class VGSFileReader : public AbstractReader
+{
+public:
+    VGSFileReader();
+    virtual ~VGSFileReader();
+
+    virtual bool load(const QString &path) override final;
+    virtual qint64 totalTime() const override final;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
+
+    virtual int sampleRate() const override final { return 22050 / 2; }
+
+private:
+    void *m_input = nullptr;
+
+};
+
+VGSFileReader::VGSFileReader()
+{
+
+}
+
+VGSFileReader::~VGSFileReader()
+{
+    if(m_input)
+    {
+        vgsdec_release_context(m_input);
+    }
+}
+
+bool VGSFileReader::load(const QString &path)
+{
+    QFile file(path);
+    if(!file.open(QFile::ReadOnly))
+    {
+        qWarning("VGSFileReader: open file failed");
+        return false;
+    }
+
+    const QByteArray &buffer = file.readAll();
+    file.close();
+
+    m_input = vgsdec_create_context();
+    if(!m_input)
+    {
+        qWarning("VGSFileReader: vgsdec create context failed");
+        return false;
+    }
+
+    if(path.toLower().endsWith(".mml"))
+    {
+        struct VgsMmlErrorInfo error;
+        struct VgsBgmData *data = vgsmml_compile_from_memory((void*)buffer.constData(), buffer.length(), &error);
+        if(!data)
+        {
+            qWarning("VGSFileReader: vgsmml compile data failed");
+            return false;
+        }
+
+        if(vgsdec_load_bgm_from_memory(m_input, data->data, data->size))
+        {
+            qWarning("VGSFileReader: vgsdec load bgm from mml data failed");
+            return false;
+        }
+        vgsmml_free_bgm_data(data);
+    }
+    else
+    {
+        if(vgsdec_load_bgm_from_memory(m_input, (void*)buffer.constData(), buffer.length()))
+        {
+            qWarning("VGSFileReader: vgsdec load bgm data failed");
+            return false;
+        }
+    }
+
+    struct VgsMetaData* meta = vgsdec_get_meta_data(m_input, 0);
+    if(meta)
+    {
+        m_title = QString::fromStdString(meta->song);
+        m_author = QString::fromStdString(meta->team);
+    }
+
+    m_length = vgsdec_get_value(m_input, VGSDEC_REG_TIME_LENGTH) * 1.0 / 22050 * 1000 + 5000;
+    return true;
+}
+
+qint64 VGSFileReader::totalTime() const
+{
+    return m_length;
+}
+
+qint64 VGSFileReader::read(unsigned char *data, qint64)
+{
+    if(!vgsdec_get_value(m_input, VGSDEC_REG_PLAYING))
+    {
+        return 0;
+    }
+
+    if(vgsdec_get_value(m_input, VGSDEC_REG_LOOP_COUNT))
+    {
+        /* waiting for the end of fadeout if looped */
+        vgsdec_set_value(m_input, VGSDEC_REG_FADEOUT, 1);
+    }
+
+    /* decoding loop */
+    vgsdec_execute(m_input, data, INPUT_BUFFER_SIZE);
+    return INPUT_BUFFER_SIZE;
+}
+
+
 MDXHelper::MDXHelper(const QString &path)
     : m_path(path)
 {
@@ -287,6 +399,7 @@ bool MDXHelper::initialize()
     else if(suffix.endsWith(".pdx")) m_input = new PDXFileReader;
     else if(suffix.endsWith(".m")) m_input = new PMDFileReader;
     else if(suffix.endsWith(".mub") || suffix.endsWith(".muc")) m_input = new MUCFileReader;
+    else if(suffix.endsWith(".vgs") || suffix.endsWith(".bgm") || suffix.endsWith(".mml")) m_input = new VGSFileReader;
 
     if(!m_input)
     {
