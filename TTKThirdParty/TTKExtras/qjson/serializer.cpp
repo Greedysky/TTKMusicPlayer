@@ -420,7 +420,7 @@ void Serializer::serialize( const QVariant &v, QIODevice* io, bool* ok)
   }
 
   const QByteArray str = serialize( v, ok);
-  if (*ok && (io->write(str) != str.count())) {
+  if (*ok && (io->write(str) != str.length())) {
     *ok = false;
     d->errorMessage = QLatin1String("Something went wrong while writing to IO device");
   }
