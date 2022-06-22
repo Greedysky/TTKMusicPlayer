@@ -36,5 +36,5 @@ ttk-1.1.7
 (libfc14-1.0.3	https://sourceforge.net/projects/xmms-fc)
 (libgoom-2k4	https://sourceforge.net/projects/goom)
 (libsc68-2.2.1	https://sourceforge.net/projects/sc68)
-(libuade-3.01	http://zakalwe.fi/uade 5affa7d8e903a885ed693e3b1d9d848750ffaf2b)
+(libuade-3.02	https://gitlab.com/uade-music-player/uade 19504a85573aeebe2e91830a746e3542d44ca449)
 (libv2m-20211104	https://github.com/jgilje/v2m-player)
