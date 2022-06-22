@@ -86,7 +86,7 @@
  *
  * BP SoundMon Audio File(*.bp *.bp3)
  *
- * MDX Game Audio File(*.mdx *.m *.mub *.muc)
+ * MDX Game Audio File(*.mdx *.pdx *.m *.mub *.muc *.vgs *.bgm *.mml)
  *
  * Cave Story's org Audio File(*.org *.pttune *.ptcop)
  *
