@@ -189,7 +189,7 @@ namespace Qt
 #  define QtMouseEventY(p) p->position().y()
 #  define QtMouseEventPos(p) p->position()
 #  define QtMouseEventGlobalX(p) p->globalPosition().x()
-#  define QtMouseEventGlobalY(p) p->globalPosition).y()
+#  define QtMouseEventGlobalY(p) p->globalPosition().y()
 #  define QtMouseEventGlobalPos(p) p->globalPosition().toPoint()
 #else
 #  define QtMouseEventX(p) p->x()
