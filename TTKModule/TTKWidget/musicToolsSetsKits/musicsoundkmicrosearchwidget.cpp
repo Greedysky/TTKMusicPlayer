@@ -128,7 +128,7 @@ void MusicSoundKMicroSearchTableWidget::itemCellEntered(int row, int column)
     QTableWidgetItem *it = item(row, 0);
     if(it)
     {
-        QtItemSetForegroundColor(it, m_backgroundColor);
+        QtItemSetBackgroundColor(it, m_backgroundColor);
     }
 }
 

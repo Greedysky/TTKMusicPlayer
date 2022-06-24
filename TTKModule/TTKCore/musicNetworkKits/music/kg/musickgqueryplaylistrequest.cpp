@@ -48,7 +48,7 @@ void MusicKGQueryPlaylistRequest::startToSearch(const QString &value)
 
     QNetworkReply *reply = m_manager.get(request);
     connect(reply, SIGNAL(finished()), SLOT(downloadDetailsFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(reply, this, replyError);
 }
 
 void MusicKGQueryPlaylistRequest::queryPlaylistInfo(MusicResultsItem &item)
