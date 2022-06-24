@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkglobal.h"
+#include "ttkqtwrapper.h"
 
 #ifdef TTK_LIBRARY
 #  define TTK_MODULE_EXPORT Q_DECL_EXPORT

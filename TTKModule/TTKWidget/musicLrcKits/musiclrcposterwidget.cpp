@@ -1036,6 +1036,7 @@ void MusicLrcPosterWidget::saveButtonClicked()
         {
             rect.setWidth(rect.width() + ITEM_SCROLL_WIDTH);
         }
+
 #if TTK_QT_VERSION_CHECK(5,0,0)
         m_itemWidget->grab(rect).save(path, JPG_FILE_PREFIX);
 #else

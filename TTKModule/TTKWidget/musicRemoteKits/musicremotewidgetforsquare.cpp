@@ -54,11 +54,7 @@ MusicRemoteWidgetForSquare::~MusicRemoteWidgetForSquare()
     }
 }
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-void MusicRemoteWidgetForSquare::enterEvent(QEnterEvent *event)
-#else
-void MusicRemoteWidgetForSquare::enterEvent(QEvent *event)
-#endif
+void MusicRemoteWidgetForSquare::enterEvent(QtEnterEvent *event)
 {
     QWidget::enterEvent(event);
     m_leaveTimer.stop();

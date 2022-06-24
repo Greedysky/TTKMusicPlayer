@@ -21,6 +21,7 @@
 
 #include "serializer.h"
 
+#include <QtCore/QIODevice>
 #include <QtCore/QDataStream>
 #include <QtCore/QStringList>
 #include <QtCore/QVariant>
@@ -93,11 +94,17 @@ QByteArray Serializer::SerializerPrivate::join( const QList<QByteArray>& list, c
 QByteArray Serializer::SerializerPrivate::serialize( const QVariant &v, bool *ok, int indentLevel)
 {
   QByteArray str;
-  const QVariant::Type type = v.type();
+#if TTK_QT_VERSION_CHECK(6,0,0)
+  const int type = v.metaType().id();
+#else
+  const int type = v.type();
+#endif
 
   if ( ! v.isValid() ) { // invalid or null?
     str = "null";
-  } else if (( type == QVariant::List ) || ( type == QVariant::StringList )) { // an array or a stringlist?
+  }
+  else if (( type == QMetaType::QVariantList ) || ( type == QMetaType::QStringList ))
+  { // an array or a stringlist?
     const QVariantList list = v.toList();
     QList<QByteArray> values;
     for( const QVariant &var : qAsConst(list) )
@@ -137,8 +144,9 @@ QByteArray Serializer::SerializerPrivate::serialize( const QVariant &v, bool *ok
     else {
       str = "[ " + join( values, ", " ) + " ]";
     }
-
-  } else if ( type == QVariant::Map ) { // variant is a map?
+  }
+  else if ( type == QMetaType::QVariantMap )
+  { // variant is a map?
     const QVariantMap vmap = v.toMap();
 
     if (indentMode == QJson::IndentMinimum) {
@@ -195,8 +203,9 @@ QByteArray Serializer::SerializerPrivate::serialize( const QVariant &v, bool *ok
     else {
       str += " }";
     }
-
-  } else if ( type == QVariant::Hash ) { // variant is a hash?
+  }
+  else if ( type == QMetaType::QVariantHash )
+  { // variant is a hash?
     const QVariantHash vhash = v.toHash();
 
     if (indentMode == QJson::IndentMinimum) {
@@ -267,9 +276,12 @@ QByteArray Serializer::SerializerPrivate::serialize( const QVariant &v, bool *ok
         break;
     }
 
-    if (( type == QVariant::String ) ||  ( type == QVariant::ByteArray )) { // a string or a byte array?
+    if (( type == QMetaType::QString ) ||  ( type == QMetaType::QByteArray ))
+    { // a string or a byte array?
       str += escapeString( v.toString() );
-    } else if (( type == QVariant::Double) || ((QMetaType::Type)type == QMetaType::Float)) { // a double or a float?
+    }
+    else if (( type == QMetaType::Double) || (type == QMetaType::Float))
+    { // a double or a float?
       const double value = v.toDouble();
 //  #if defined _WIN32 && !defined(Q_OS_SYMBIAN)
 ////      const bool special = _isnan(value) || !_finite(value);
@@ -306,11 +318,17 @@ QByteArray Serializer::SerializerPrivate::serialize( const QVariant &v, bool *ok
           str += ".0";
         }
       }
-    } else if ( type == QVariant::Bool ) { // boolean value?
+    }
+    else if (( type == QMetaType::Bool))
+    { // boolean value?
       str += ( v.toBool() ? "true" : "false" );
-    } else if ( type == QVariant::ULongLong ) { // large unsigned number?
+    }
+    else if (( type == QMetaType::ULongLong))
+    { // large unsigned number?
       str += QByteArray::number( v.value<qulonglong>() );
-    } else if ( type == QVariant::UInt ) { // unsigned int number?
+    }
+    else if (( type == QMetaType::UInt))
+    { // unsigned int number?
       str += QByteArray::number( v.value<quint32>() );
     } else if ( v.canConvert<qlonglong>() ) { // any signed number?
       str += QByteArray::number( v.value<qlonglong>() );

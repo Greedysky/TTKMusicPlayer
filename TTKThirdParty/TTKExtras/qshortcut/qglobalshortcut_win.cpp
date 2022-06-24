@@ -3,11 +3,12 @@
 
 #if !TTK_QT_VERSION_CHECK(5,0,0)
 bool QGlobalShortcutPrivate::eventFilter(void* message)
-{
-#else
+#elif !TTK_QT_VERSION_CHECK(6,0,0)
 bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message, long *)
-{
+#else
+bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message, qintptr *)
 #endif
+{
     MSG* msg = TTKStatic_cast(MSG*, message);
     if(msg->message == WM_HOTKEY)
     {

@@ -43,11 +43,7 @@ qint64 MusicAbstractQueryRequest::fileSizeByUrl(const QString &url)
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.head(request);
     connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
+    QtNetworkErrorNoneConnect(reply, &loop, quit);
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)

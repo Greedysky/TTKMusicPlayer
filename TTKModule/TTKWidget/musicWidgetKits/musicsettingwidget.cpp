@@ -56,11 +56,7 @@ void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionIt
         setItem(i, 1, item);
 
                       item = new QTableWidgetItem(fItem.m_name);
-#if TTK_QT_VERSION_CHECK(5,13,0)
-        item->setForeground(QColor(80, 80, 80));
-#else
-        item->setTextColor(QColor(80, 80, 80));
-#endif
+        QtItemSetForegroundColor(item, MusicUIObject::MQSSColor02);
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
@@ -875,29 +871,17 @@ void MusicSettingWidget::initDownloadWidget()
     QButtonGroup *buttonGroup1 = new QButtonGroup(this);
     buttonGroup1->addButton(m_ui->downloadCacheAutoRadioBox, 0);
     buttonGroup1->addButton(m_ui->downloadCacheManRadioBox, 1);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(buttonGroup1, SIGNAL(idClicked(int)), SLOT(downloadGroupCached(int)));
-#else
-    connect(buttonGroup1, SIGNAL(buttonClicked(int)), SLOT(downloadGroupCached(int)));
-#endif
+    QtButtonGroupConnect(buttonGroup1, this, downloadGroupCached);
 
     QButtonGroup *buttonGroup2 = new QButtonGroup(this);
     buttonGroup2->addButton(m_ui->downloadFullRadioBox, 0);
     buttonGroup2->addButton(m_ui->downloadLimitRadioBox, 1);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(buttonGroup2, SIGNAL(idClicked(int)), SLOT(downloadGroupSpeedLimit(int)));
-#else
-    connect(buttonGroup2, SIGNAL(buttonClicked(int)), SLOT(downloadGroupSpeedLimit(int)));
-#endif
+    QtButtonGroupConnect(buttonGroup2, this, downloadGroupSpeedLimit);
 
     QButtonGroup *buttonGroup3 = new QButtonGroup(this);
     buttonGroup3->addButton(m_ui->downloadDirButton, 0);
     buttonGroup3->addButton(m_ui->downloadLrcDirButton, 1);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(buttonGroup3, SIGNAL(idClicked(int)), SLOT(downloadDirSelected(int)));
-#else
-    connect(buttonGroup3, SIGNAL(buttonClicked(int)), SLOT(downloadDirSelected(int)));
-#endif
+    QtButtonGroupConnect(buttonGroup3, this, downloadDirSelected);
 
     m_ui->downloadCacheAutoRadioBox->click();
     m_ui->downloadFullRadioBox->click();

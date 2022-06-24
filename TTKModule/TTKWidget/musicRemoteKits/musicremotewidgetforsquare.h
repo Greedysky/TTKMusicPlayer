@@ -51,11 +51,7 @@ protected:
     /*!
      * Override the widget event.
      */
-#if TTK_QT_VERSION_CHECK(6,0,0)
-    virtual void enterEvent(QEnterEvent *event) override final;
-#else
-    virtual void enterEvent(QEvent *event) override final;
-#endif
+    virtual void enterEvent(QtEnterEvent *event) override final;
     virtual void leaveEvent(QEvent *event) override final;
 
     QGraphicsOpacityEffect *m_effect[4];

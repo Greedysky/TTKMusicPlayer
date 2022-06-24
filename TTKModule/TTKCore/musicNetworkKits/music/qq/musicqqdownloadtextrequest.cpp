@@ -25,12 +25,8 @@ void MusicQQDownLoadTextRequest::startToDownload()
 
             m_reply = m_manager.get(request);
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-            connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-#else
-            connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-#endif
             connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
+            QtNetworkErrorConnect(m_reply, this, replyError);
         }
         else
         {
@@ -68,11 +64,7 @@ void MusicQQDownLoadTextRequest::downLoadFinished()
             QTextStream outstream(m_file);
             outstream.setCodec("utf-8");
             outstream << lrcData;
-#if TTK_QT_VERSION_CHECK(5,15,0)
-            outstream << Qt::endl;
-#else
-            outstream << endl;
-#endif
+            QtStreamEndl(outstream);
             m_file->close();
             TTK_LOGGER_INFO(QString("%1 download has finished").arg(className()));
         }

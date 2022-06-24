@@ -91,13 +91,9 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(ui->musicSearchButton, MusicRightAreaWidget::SearchWidget);
     buttonGroup->addButton(ui->musicWindowIdentify, MusicRightAreaWidget::IndentifyWidget);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(functionClicked(int)));
-#else
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(functionClicked(int)));
-#endif
-    connect(ui->functionOptionWidget, SIGNAL(buttonClicked(int)), SLOT(functionClicked(int)));
+    QtButtonGroupConnect(buttonGroup, this, functionClicked);
     //
+    connect(ui->functionOptionWidget, SIGNAL(buttonClicked(int)), SLOT(functionClicked(int)));
     connect(m_lrcForInterior, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeInteriorLrcWidget()));
     connect(m_lrcForInterior, SIGNAL(currentLrcUpdated()), MusicApplication::instance(), SLOT(musicCurrentLrcUpdated()));
     connect(m_lrcForInterior, SIGNAL(backgroundChanged()), SIGNAL(updateBackgroundThemeDownload()));

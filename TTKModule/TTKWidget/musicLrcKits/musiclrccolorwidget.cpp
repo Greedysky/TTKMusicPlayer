@@ -54,11 +54,7 @@ void MusicLrcColorWidget::setColors(const QList<QColor> &colors)
     for(const QColor &color : qAsConst(colors))
     {
         QListWidgetItem *it = new QListWidgetItem(m_ui->listWidget);
-#if TTK_QT_VERSION_CHECK(5,13,0)
-        it->setBackground(color);
-#else
-        it->setBackgroundColor(color);
-#endif
+        QtItemSetBackgroundColor(it, color);
         m_ui->listWidget->addItem(it);
     }
 }
@@ -68,11 +64,7 @@ QList<QColor> MusicLrcColorWidget::colors() const
     QList<QColor> colors;
     for(int i = 0; i < m_ui->listWidget->count(); ++i)
     {
-#if TTK_QT_VERSION_CHECK(5,13,0)
-        colors << m_ui->listWidget->item(i)->background().color();
-#else
-        colors << m_ui->listWidget->item(i)->backgroundColor();
-#endif
+        colors << QtItemBackgroundColor(m_ui->listWidget->item(i));
     }
     return colors;
 }
@@ -84,11 +76,7 @@ void MusicLrcColorWidget::addButtonClicked()
     {
         const QColor &color = dialog.color();
         QListWidgetItem *it = new QListWidgetItem(m_ui->listWidget);
-#if TTK_QT_VERSION_CHECK(5,13,0)
-        it->setBackground(color);
-#else
-        it->setBackgroundColor(color);
-#endif
+        QtItemSetBackgroundColor(it, color);
         m_ui->listWidget->addItem(it);
     }
 }
@@ -111,11 +99,7 @@ void MusicLrcColorWidget::modifyButtonClicked()
         QListWidgetItem *it = m_ui->listWidget->currentItem();
         if(it)
         {
-#if TTK_QT_VERSION_CHECK(5,13,0)
-            it->setBackground(color);
-#else
-            it->setBackgroundColor(color);
-#endif
+            QtItemSetBackgroundColor(it, color);
         }
     }
 }

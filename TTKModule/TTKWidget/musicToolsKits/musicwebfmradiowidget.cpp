@@ -135,11 +135,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
         f.setBold(true);
         item->setFont(f);
         item->setText(channel.m_name);
-#if TTK_QT_VERSION_CHECK(5,13,0)
-        item->setForeground(QColor(100, 100, 100));
-#else
-        item->setTextColor(QColor(100, 100, 100));
-#endif
+        QtItemSetForegroundColor(item, MusicUIObject::MQSSColor02);
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(index, 2, item);
 

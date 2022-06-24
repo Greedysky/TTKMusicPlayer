@@ -54,11 +54,7 @@ void MusicMovingLabelSlider::mouseMoveEvent(QMouseEvent *event)
     m_textLabel->setText(MusicTime::msecTime2LabelJustified(changePos.y()));
 }
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-void MusicMovingLabelSlider::enterEvent(QEnterEvent *event)
-#else
-void MusicMovingLabelSlider::enterEvent(QEvent *event)
-#endif
+void MusicMovingLabelSlider::enterEvent(QtEnterEvent *event)
 {
     MusicClickedSlider::enterEvent(event);
 #ifndef Q_OS_UNIX

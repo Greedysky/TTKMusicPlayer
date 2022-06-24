@@ -24,6 +24,7 @@ HEADERS += \
     $$PWD/ttkprivate.h \
     $$PWD/ttksingleton.h \
     $$PWD/ttkversion.h \
+    $$PWD/ttkqtwrapper.h \
     $$PWD/ttkdesktopwrapper.h
 
 SOURCES += $$PWD/ttkdesktopwrapper.cpp

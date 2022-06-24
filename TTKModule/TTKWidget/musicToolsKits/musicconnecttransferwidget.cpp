@@ -82,11 +82,8 @@ void MusicConnectTransferWidget::initialize()
 
     m_ui->playListLayoutWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_buttonGroup = new QButtonGroup(this);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(m_buttonGroup, SIGNAL(idClicked(int)), SLOT(currentPlaylistSelected(int)));
-#else
-    connect(m_buttonGroup, SIGNAL(buttonClicked(int)), SLOT(currentPlaylistSelected(int)));
-#endif
+    QtButtonGroupConnect(m_buttonGroup, this, currentPlaylistSelected);
+
     for(int i = 0; i < songs.count(); ++i)
     {
         QPushButton *button = new QPushButton(QString("%1(%2)").arg(songs[i].m_itemName).arg(songs[i].m_songs.count()), this);

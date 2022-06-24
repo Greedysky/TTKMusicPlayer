@@ -57,11 +57,7 @@ void MusicVolumePopWidget::leaveEvent(QEvent *event)
     QTimer::singleShot(500 * MT_MS, m_menu, SLOT(close()));
 }
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-void MusicVolumePopWidget::enterEvent(QEnterEvent *event)
-#else
-void MusicVolumePopWidget::enterEvent(QEvent *event)
-#endif
+void MusicVolumePopWidget::enterEvent(QtEnterEvent *event)
 {
     MusicToolMenuWidget::enterEvent(event);
     if(!m_menuShown)

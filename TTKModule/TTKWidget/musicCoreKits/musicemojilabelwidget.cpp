@@ -55,11 +55,8 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
     buttonWidgetLayout->addStretch(1);
 
     QButtonGroup *buttonGroup = new QButtonGroup(buttonWidget);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(buttonClicked(int)));
-#else
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
-#endif
+    QtButtonGroupConnect(buttonGroup, this, buttonClicked);
+
     for(int i = 0; i < 5; ++i)
     {
         QToolButton *button = new QToolButton(buttonWidget);

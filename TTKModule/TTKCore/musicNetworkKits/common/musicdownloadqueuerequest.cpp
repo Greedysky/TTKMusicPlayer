@@ -106,11 +106,7 @@ void MusicDownloadQueueRequest::startDownload(const QString &url)
     m_reply = m_manager.get(*m_request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(readyRead()), SLOT(handleReadyRead()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
-#else
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
-#endif
+    QtNetworkErrorConnect(m_reply, this, handleError);
 }
 
 void MusicDownloadQueueRequest::downLoadFinished()

@@ -69,11 +69,7 @@ void MusicLrcFloatPlayWidget::musicStatePlay()
     setCurrentPlayState();
 }
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-void MusicLrcFloatPlayWidget::enterEvent(QEnterEvent *event)
-#else
-void MusicLrcFloatPlayWidget::enterEvent(QEvent *event)
-#endif
+void MusicLrcFloatPlayWidget::enterEvent(QtEnterEvent *event)
 {
     MusicAbstractFloatWidget::enterEvent(event);
     setCurrentPlayState();

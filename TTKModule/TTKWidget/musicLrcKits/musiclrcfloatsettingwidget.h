@@ -73,7 +73,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void enterEvent(QEvent *) override final {}
+    virtual void enterEvent(QtEnterEvent *) override final {}
     virtual void leaveEvent(QEvent *event) override final;
     /*!
      * Create pushButton by given index.

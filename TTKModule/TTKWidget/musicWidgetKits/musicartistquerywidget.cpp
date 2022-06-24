@@ -712,11 +712,7 @@ void MusicArtistQueryWidget::createLabels()
     buttonGroup->addButton(similarButton, 2);
     buttonGroup->addButton(albumsButton, 3);
     buttonGroup->addButton(mvsButton, 4);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(setCurrentIndex(int)));
-#else
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(setCurrentIndex(int)));
-#endif
+    QtButtonGroupConnect(buttonGroup, this, setCurrentIndex);
 
 #ifdef Q_OS_UNIX
     playAllButton->setFocusPolicy(Qt::NoFocus);

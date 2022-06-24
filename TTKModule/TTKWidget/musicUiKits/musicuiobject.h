@@ -29,6 +29,8 @@ namespace MusicUIObject
 ///Color
     const QString MQSSColor01 = "#444444";
 
+    const QString MQSSColor02 = "#646464";
+
 ///Color
     const QString MQSSColorStyle01 = " \
             color:#FFFFFF;";

@@ -156,39 +156,23 @@ void MusicVideoSearchTableWidget::createSearchedItem(const MusicSearchedItem &so
 
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setBackground(m_backgroundColor);
-#else
-    item->setBackgroundColor(m_backgroundColor);
-#endif
+    QtItemSetBackgroundColor(item, m_backgroundColor);
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_songName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 5));
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(100, 100, 100));
-#else
-    item->setTextColor(QColor(100, 100, 100));
-#endif
+    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor02);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(100, 100, 100));
-#else
-    item->setTextColor(QColor(100, 100, 100));
-#endif
+    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor02);
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_duration);
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(100, 100, 100));
-#else
-    item->setTextColor(QColor(100, 100, 100));
-#endif
+    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor02);
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;

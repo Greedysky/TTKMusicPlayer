@@ -15,7 +15,7 @@ static int q_x_errhandler(Display* display, XErrorEvent *event)
         case BadWindow:
             if(event->request_code == 33 /* X_GrabKey */ || event->request_code == 34 /* X_UngrabKey */)
             {
-                QGlobalShortcutPrivate::error = true;
+                QGlobalShortcutPrivate::m_error = true;
                 //TODO:
                 //char errstr[256];
                 //XGetErrorText(dpy, err->error_code, errstr, 256);
@@ -96,26 +96,26 @@ bool QGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeM
     Bool owner = True;
     int pointer = GrabModeAsync;
     int keyboard = GrabModeAsync;
-    error = false;
+    m_error = false;
 
     original_x_errhandler = XSetErrorHandler(q_x_errhandler);
     XGrabKey(display, nativeKey, nativeMods, window, owner, pointer, keyboard);
     XGrabKey(display, nativeKey, nativeMods | Mod2Mask, window, owner, pointer, keyboard); // allow numlock
     XSync(display, False);
     XSetErrorHandler(original_x_errhandler);
-    return !error;
+    return !m_error;
 }
 
 bool QGlobalShortcutPrivate::unregisterShortcut(quint32 nativeKey, quint32 nativeMods)
 {
     Display* display = QX11Info::display();
     Window window = QX11Info::appRootWindow();
-    error = false;
+    m_error = false;
 
     original_x_errhandler = XSetErrorHandler(q_x_errhandler);
     XUngrabKey(display, nativeKey, nativeMods, window);
     XUngrabKey(display, nativeKey, nativeMods | Mod2Mask, window); // allow numlock
     XSync(display, False);
     XSetErrorHandler(original_x_errhandler);
-    return !error;
+    return !m_error;
 }

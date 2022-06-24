@@ -99,11 +99,7 @@ void MusicToastLabel::paintEvent(QPaintEvent *event)
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(Qt::NoPen);
     painter.setBrush(QColor(0, 0, 0, 175));
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    painter.drawRoundedRect(rect(), 6, 6);
-#else
-    painter.drawRoundRect(rect(), 6, 6);
-#endif
+    QtDrawRoundedRect(&painter, rect(), 6, 6);
 
     painter.setPen(QColor(255, 255, 255));
     painter.drawText(rect(), Qt::AlignCenter, text());

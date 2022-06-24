@@ -201,16 +201,12 @@ namespace yy {
   json_parser::yy_symbol_value_print_ (int yytype,
 			   const semantic_type* yyvaluep, const location_type* yylocationp)
   {
-    YYUSE (yylocationp);
-    YYUSE (yyvaluep);
     std::ostream& yyo = debug_stream ();
     std::ostream& yyoutput = yyo;
+    YYUSE (yylocationp);
+    YYUSE (yyvaluep);
     YYUSE (yyoutput);
-    switch (yytype)
-      {
-         default:
-	  break;
-      }
+    YYUSE (yytype);
   }
 
 
@@ -230,19 +226,13 @@ namespace yy {
   json_parser::yydestruct_ (const char* yymsg,
 			   int yytype, semantic_type* yyvaluep, location_type* yylocationp)
   {
-    YYUSE (yylocationp);
-    YYUSE (yymsg);
-    YYUSE (yyvaluep);
-
     if (yymsg)
       YY_SYMBOL_PRINT (yymsg, yytype, yyvaluep, yylocationp);
 
-    switch (yytype)
-      {
-  
-	default:
-	  break;
-      }
+    YYUSE (yylocationp);
+    YYUSE (yymsg);
+    YYUSE (yyvaluep);
+    YYUSE (yytype);
   }
 
   void
@@ -495,7 +485,7 @@ namespace yy {
     {
           QVariantMap* pair = new QVariantMap();
           pair->insert((yysemantic_stack_[(3) - (1)]).toString(), (yysemantic_stack_[(3) - (3)]));
-          (yyval).setValue<QVariantMap* >(pair);
+          (yyval).setValue<QVariantMap*>(std::move(pair));
         }
     break;
 

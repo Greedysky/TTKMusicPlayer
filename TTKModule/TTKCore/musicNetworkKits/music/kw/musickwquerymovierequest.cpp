@@ -23,11 +23,7 @@ void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &valu
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-#else
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-#endif
+    QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
 void MusicKWQueryMovieRequest::startToPage(int offset)
@@ -44,11 +40,7 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadPageFinished()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-#else
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-#endif
+    QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
 void MusicKWQueryMovieRequest::startToSingleSearch(const QString &value)

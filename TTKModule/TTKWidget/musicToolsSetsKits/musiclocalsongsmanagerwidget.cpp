@@ -62,11 +62,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_ui->scanButton, 0);
     buttonGroup->addButton(m_ui->scanCustButton, 1);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(filterScanChanged(int)));
-#else
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(filterScanChanged(int)));
-#endif
+    QtButtonGroupConnect(buttonGroup, this, filterScanChanged);
 
     connect(m_ui->auditionButton, SIGNAL(clicked()), SLOT(auditionButtonClick()));
     connect(m_ui->addButton, SIGNAL(clicked()), SLOT(addButtonClick()));

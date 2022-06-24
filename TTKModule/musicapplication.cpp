@@ -1015,11 +1015,7 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     musicCreateRightMenu();
 }
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-void MusicApplication::enterEvent(QEnterEvent *event)
-#else
-void MusicApplication::enterEvent(QEvent *event)
-#endif
+void MusicApplication::enterEvent(QtEnterEvent *event)
 {
     MusicAbstractMoveResizeWidget::enterEvent(event);
     m_applicationObject->sideAnimationByOff();

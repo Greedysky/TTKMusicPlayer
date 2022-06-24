@@ -199,6 +199,7 @@ void MusicAudioRecorderModule::onRecordStart()
         TTK_LOGGER_ERROR("Audio input open error");
         return;
     }
+
 #if TTK_QT_VERSION_CHECK(5,0,0)
     m_audioInputFile->setVolume(m_inputVolume);
 #endif

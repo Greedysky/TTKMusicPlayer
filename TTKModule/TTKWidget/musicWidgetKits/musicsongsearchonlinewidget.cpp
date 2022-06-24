@@ -186,39 +186,23 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicSearchedItem &son
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_songName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(100, 100, 100));
-#else
-    item->setTextColor(QColor(100, 100, 100));
-#endif
+    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor02);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 30));
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(100, 100, 100));
-#else
-    item->setTextColor(QColor(100, 100, 100));
-#endif
+    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor02);
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_albumName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 30));
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(100, 100, 100));
-#else
-    item->setTextColor(QColor(100, 100, 100));
-#endif
+    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor02);
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem(songItem.m_duration);
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(100, 100, 100));
-#else
-    item->setTextColor(QColor(100, 100, 100));
-#endif
+    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor02);
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
@@ -515,11 +499,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     buttonGroup->addButton(m_playButton, 0);
     buttonGroup->addButton(addButton, 1);
     buttonGroup->addButton(downloadButton, 2);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(buttonClicked(int)));
-#else
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
-#endif
+    QtButtonGroupConnect(buttonGroup, this, buttonClicked);
     funcWidget->setLayout(funcLayout);
     wLayout->addWidget(funcWidget);
 

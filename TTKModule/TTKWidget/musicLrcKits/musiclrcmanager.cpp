@@ -125,11 +125,7 @@ MusicLrcColor MusicLrcColor::mapIndexToColor(MusicLrcColor::LrcColorType index)
 QList<QColor> MusicLrcColor::readColorConfig(const QString &value)
 {
     QList<QColor> colors;
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    const QStringList &rgbs = value.split(";", Qt::SkipEmptyParts);
-#else
-    const QStringList &rgbs = value.split(";", QString::SkipEmptyParts);
-#endif
+    const QStringList &rgbs = value.split(";", QtSkipEmptyParts);
     for(const QString &rgb : qAsConst(rgbs))
     {
         const QStringList &var = rgb.split(",");

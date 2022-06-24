@@ -11,11 +11,7 @@ MusicSplitItemClickedLabel::MusicSplitItemClickedLabel(QWidget *parent)
     setMouseTracking(true);
 }
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-void MusicSplitItemClickedLabel::enterEvent(QEnterEvent *event)
-#else
-void MusicSplitItemClickedLabel::enterEvent(QEvent *event)
-#endif
+void MusicSplitItemClickedLabel::enterEvent(QtEnterEvent *event)
 {
     QLabel::enterEvent(event);
     m_lineGeometry = QRectF();

@@ -42,13 +42,9 @@ void MusicDownloadDataRequest::startRequest(const QString &url)
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-#else
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-#endif
     connect(m_reply, SIGNAL(readyRead()), this, SLOT(handleReadyRead()));
     connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
+    QtNetworkErrorConnect(m_reply, this, replyError);
 
     /// only download music data can that show progress
     if(m_downloadType == MusicObject::DownloadMusic && !m_redirection)

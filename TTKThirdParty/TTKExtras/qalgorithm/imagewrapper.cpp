@@ -488,12 +488,9 @@ QPixmap WaterWave::render(const QPixmap &pixmap, int value)
 {
     TTK_D(WaterWave);
     d->render();
+
     QImage image = pixmap.toImage();
-#if TTK_QT_VERSION_CHECK(5,10,0)
-    memcpy(image.bits(), (const uchar*)d->data(), image.sizeInBytes());
-#else
-    memcpy(image.bits(), (const uchar*)d->data(), image.byteCount());
-#endif
+    memcpy(image.bits(), (const uchar*)d->data(), QtImageBytes(image));
 
     QPixmap pix(d->m_rectangle.size());
     pix.fill(Qt::transparent);

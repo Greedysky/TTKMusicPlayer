@@ -39,20 +39,22 @@ public:
     QGlobalShortcutPrivate();
     ~QGlobalShortcutPrivate();
 
-    bool enabled;
-    Qt::Key key;
-    Qt::KeyboardModifiers mods;
+    bool m_enabled;
+    Qt::Key m_key;
+    Qt::KeyboardModifiers m_mods;
 
     bool setShortcut(const QKeySequence &shortcut);
     bool unsetShortcut();
 
-    static bool error;
-    static int ref;
+    static bool m_error;
+    static int m_ref;
 #if !TTK_QT_VERSION_CHECK(5,0,0)
-    static QAbstractEventDispatcher::EventFilter prevEventFilter;
+    static QAbstractEventDispatcher::EventFilter m_prevEventFilter;
     static bool eventFilter(void* message);
-#else
+#elif !TTK_QT_VERSION_CHECK(6,0,0)
     virtual bool nativeEventFilter(const QByteArray &type, void *message, long *result) override final;
+#else
+    virtual bool nativeEventFilter(const QByteArray &type, void *message, qintptr *result) override final;
 #endif
 
 private:
@@ -62,7 +64,7 @@ private:
     static bool unregisterShortcut(quint32 nativeKey, quint32 nativeMods);
     static void activateShortcut(quint32 nativeKey, quint32 nativeMods);
 
-    static QHash<QPair<quint32, quint32>, QGlobalShortcut*> shortcuts;
+    static QHash<QPair<quint32, quint32>, QGlobalShortcut*> m_shortcuts;
 };
 
 #endif // QGLOBALSHORTCUT_P_H

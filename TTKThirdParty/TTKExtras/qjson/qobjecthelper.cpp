@@ -25,7 +25,6 @@
 
 #include <QtCore/QMetaObject>
 #include <QtCore/QMetaProperty>
-#include <QtCore/QObject>
 
 using namespace QJson;
 
@@ -66,7 +65,11 @@ void QObjectHelper::qvariant2qobject(const QVariantMap &variant, QObject* object
     }
 
     QMetaProperty metaproperty = metaobject->property( pIdx );
-    QVariant::Type type = metaproperty.type();
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    const QMetaType type = metaproperty.metaType();
+#else
+    const QVariant::Type type = metaproperty.type();
+#endif
     QVariant v( iter.value() );
     if ( v.canConvert( type ) ) {
       v.convert( type );

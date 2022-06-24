@@ -58,7 +58,7 @@ void ParserRunnable::run()
   Parser parser;
   QVariant result = parser.parse (d->m_data, &ok);
   if (ok) {
-    TTK_LOGGER_INFO("Successfully converted json item to QVariant object");
+    TTK_LOGGER_INFO("successfully converted json item to QVariant object");
     Q_EMIT parsingFinished(result, true, QString());
   } else {
     const QString errorText = tr("An error occurred while parsing json: %1").arg(parser.errorString());

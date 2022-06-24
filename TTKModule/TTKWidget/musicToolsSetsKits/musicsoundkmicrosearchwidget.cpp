@@ -89,21 +89,13 @@ void MusicSoundKMicroSearchTableWidget::createSearchedItem(const MusicSearchedIt
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setBackground(m_backgroundColor);
-#else
-    item->setBackgroundColor(m_backgroundColor);
-#endif
+    QtItemSetBackgroundColor(item, m_backgroundColor);
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName + " - " + songItem.m_songName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(100, 100, 100));
-#else
-    item->setTextColor(QColor(100, 100, 100));
-#endif
+    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor02);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
@@ -136,11 +128,7 @@ void MusicSoundKMicroSearchTableWidget::itemCellEntered(int row, int column)
     QTableWidgetItem *it = item(row, 0);
     if(it)
     {
-#if TTK_QT_VERSION_CHECK(5,13,0)
-        it->setBackground(m_backgroundColor);
-#else
-        it->setBackgroundColor(m_backgroundColor);
-#endif
+        QtItemSetForegroundColor(it, m_backgroundColor);
     }
 }
 
@@ -214,11 +202,8 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(mvButton, 0);
     buttonGroup->addButton(songButton, 1);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(setQueryMovieFlag(int)));
-#else
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(setQueryMovieFlag(int)));
-#endif
+    QtButtonGroupConnect(buttonGroup, this, setQueryMovieFlag);
+
     searchLayout->addWidget(mvButton, 1);
     searchLayout->addWidget(songButton, 1);
     searchLayout->addStretch(1);

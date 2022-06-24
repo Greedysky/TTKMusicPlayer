@@ -87,11 +87,7 @@ QByteArray syncNetworkQueryForGet(QNetworkRequest *request)
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.get(*request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
+    QtNetworkErrorNoneConnect(reply, &loop, quit);
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)
@@ -110,11 +106,7 @@ QByteArray syncNetworkQueryForPost(QNetworkRequest *request, const QByteArray &d
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.post(*request, data);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
+    QtNetworkErrorNoneConnect(reply, &loop, quit);
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)

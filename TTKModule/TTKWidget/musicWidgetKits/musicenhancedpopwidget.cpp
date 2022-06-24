@@ -78,11 +78,7 @@ void MusicEnhancedToolButton::finished()
     }
 }
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-void MusicEnhancedToolButton::enterEvent(QEnterEvent *event)
-#else
-void MusicEnhancedToolButton::enterEvent(QEvent *event)
-#endif
+void MusicEnhancedToolButton::enterEvent(QtEnterEvent *event)
 {
     QToolButton::enterEvent(event);
     if(!m_state)
@@ -227,11 +223,7 @@ void MusicEnhancedPopWidget::initialize()
     buttonGroup->addButton(button2, 2);
     buttonGroup->addButton(button3, 3);
     buttonGroup->addButton(button4, 4);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(setEnhancedMusicConfig(int)));
-#else
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(setEnhancedMusicConfig(int)));
-#endif
+    QtButtonGroupConnect(buttonGroup, this, setEnhancedMusicConfig);
     m_buttons << button1 << button2 << button3 << button4;
 
     m_lastSelectedIndex = G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt();

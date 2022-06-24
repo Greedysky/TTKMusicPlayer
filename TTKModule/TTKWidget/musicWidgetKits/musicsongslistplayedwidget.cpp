@@ -81,11 +81,7 @@ void MusicSongsListPlayedWidget::setDeleteItemAt()
     QTimer::singleShot(MT_MS, m_parentClass, SLOT(setDeleteItemAt()));
 }
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-void MusicSongsListPlayedWidget::enterEvent(QEnterEvent *event)
-#else
-void MusicSongsListPlayedWidget::enterEvent(QEvent *event)
-#endif
+void MusicSongsListPlayedWidget::enterEvent(QtEnterEvent *event)
 {
     QWidget::enterEvent(event);
     Q_EMIT enterChanged(m_currentPlayIndex, -1);

@@ -353,11 +353,7 @@ void MusicVideoPlayWidget::resizeEvent(QResizeEvent *event)
     m_leaverAnimation->stop();
 }
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-void MusicVideoPlayWidget::enterEvent(QEnterEvent *event)
-#else
-void MusicVideoPlayWidget::enterEvent(QEvent *event)
-#endif
+void MusicVideoPlayWidget::enterEvent(QtEnterEvent *event)
 {
     MusicAbstractMoveWidget::enterEvent(event);
     m_leaverTimer->stop();

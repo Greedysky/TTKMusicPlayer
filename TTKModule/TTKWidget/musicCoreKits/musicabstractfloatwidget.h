@@ -52,11 +52,7 @@ protected:
     /*!
      * Override the widget event.
      */
-#if TTK_QT_VERSION_CHECK(6,0,0)
-    virtual void enterEvent(QEnterEvent *event) override;
-#else
-    virtual void enterEvent(QEvent *event) override;
-#endif
+    virtual void enterEvent(QtEnterEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *) override final {}
     virtual void mousePressEvent(QMouseEvent *) override final {}

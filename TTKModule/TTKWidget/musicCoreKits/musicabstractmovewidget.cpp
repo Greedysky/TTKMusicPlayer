@@ -53,11 +53,8 @@ void MusicAbstractMoveWidget::mousePressEvent(QMouseEvent *event)
     {
         m_leftButtonPress = true;
     }
-#if TTK_QT_VERSION_CHECK(6,0,0)
-    m_pressAt = event->globalPosition().toPoint();
-#else
-    m_pressAt = event->globalPos();
-#endif
+
+    m_pressAt = QtMouseEventGlobalPos(event);
 }
 
 void MusicAbstractMoveWidget::mouseMoveEvent(QMouseEvent *event)
@@ -68,26 +65,17 @@ void MusicAbstractMoveWidget::mouseMoveEvent(QMouseEvent *event)
         event->ignore();
         return;
     }
-#if TTK_QT_VERSION_CHECK(6,0,0)
-    const int xpos = event->globalPosition().x() - m_pressAt.x();
-    const int ypos = event->globalPosition().y() - m_pressAt.y();
-    m_pressAt = event->globalPosition().toPoint();
-#else
-    const int xpos = event->globalX() - m_pressAt.x();
-    const int ypos = event->globalY() - m_pressAt.y();
-    m_pressAt = event->globalPos();
-#endif
+
+    const int xpos = QtMouseEventGlobalX(event) - m_pressAt.x();
+    const int ypos = QtMouseEventGlobalY(event) - m_pressAt.y();
+    m_pressAt = QtMouseEventGlobalPos(event);
     move(x() + xpos, y() + ypos);
 }
 
 void MusicAbstractMoveWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     QWidget::mouseReleaseEvent(event);
-#if TTK_QT_VERSION_CHECK(6,0,0)
-    m_pressAt = event->globalPosition().toPoint();
-#else
-    m_pressAt = event->globalPos();
-#endif
+    m_pressAt = QtMouseEventGlobalPos(event);
     m_leftButtonPress = false;
 }
 

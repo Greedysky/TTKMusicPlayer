@@ -93,11 +93,7 @@ void MusicBackgroundListItem::leaveEvent(QEvent *event)
     update();
 }
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-void MusicBackgroundListItem::enterEvent(QEnterEvent *event)
-#else
-void MusicBackgroundListItem::enterEvent(QEvent *event)
-#endif
+void MusicBackgroundListItem::enterEvent(QtEnterEvent *event)
 {
     QLabel::enterEvent(event);
     m_printMask = true;

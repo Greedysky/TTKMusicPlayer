@@ -91,11 +91,7 @@ void MusicAbstractTableWidget::setRowColor(int row, const QColor &color) const
         QTableWidgetItem *it = item(row, col);
         if(it)
         {
-#if TTK_QT_VERSION_CHECK(5,13,0)
-            it->setBackground(color);
-#else
-            it->setBackgroundColor(color);
-#endif
+            QtItemSetBackgroundColor(it, color);
         }
     }
 }

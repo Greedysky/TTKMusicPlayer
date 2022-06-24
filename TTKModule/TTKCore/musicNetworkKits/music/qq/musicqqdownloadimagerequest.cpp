@@ -23,11 +23,7 @@ void MusicQQDownloadImageRequest::startToDownload()
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadDataFinished()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-#else
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-#endif
+    QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
 void MusicQQDownloadImageRequest::downLoadDataFinished()
@@ -119,9 +115,5 @@ void MusicQQDownloadImageRequest::downLoadUrl(const QString &id)
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadUrlFinished()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-#else
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-#endif
+    QtNetworkErrorConnect(m_reply, this, replyError);
 }

@@ -294,11 +294,7 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
         MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(song.m_bitrate), bitrate, color);
         item->setText(bitrate);
         item->setTextAlignment(Qt::AlignCenter);
-#if TTK_QT_VERSION_CHECK(5,13,0)
-        item->setForeground(color);
-#else
-        item->setTextColor(color);
-#endif
+        QtItemSetForegroundColor(item, color);
         setItem(i, 5, item);
 
                 item = new QTableWidgetItem;

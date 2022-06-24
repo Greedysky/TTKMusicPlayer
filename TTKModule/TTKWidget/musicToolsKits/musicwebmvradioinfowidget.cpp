@@ -251,13 +251,10 @@ void MusicWebMVRadioInfoWidget::createLabels()
     hlayout->addWidget(m_songButton);
     hlayout->addStretch(1);
     functionWidget->setLayout(hlayout);
+
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_songButton, 0);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(buttonGroup, SIGNAL(idClicked(int)), m_container, SLOT(setCurrentIndex(int)));
-#else
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), m_container, SLOT(setCurrentIndex(int)));
-#endif
+    QtButtonGroupConnect(buttonGroup, m_container, setCurrentIndex);
 
 #ifdef Q_OS_UNIX
     backButton->setFocusPolicy(Qt::NoFocus);

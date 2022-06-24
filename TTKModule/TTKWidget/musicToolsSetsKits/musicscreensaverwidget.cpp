@@ -98,12 +98,9 @@ void MusicScreenSaverHoverItem::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
     QPainter painter(this);
     MusicUtils::Widget::setBorderShadow(this, &painter);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    const QPixmap &pix = pixmap(Qt::ReturnByValue);
-#else
-    const QPixmap &pix = *pixmap();
-#endif
-    painter.drawPixmap(QRect(QPoint(4, 4), OS_ITEM_SIZE), pix.scaled(OS_ITEM_SIZE));
+
+    const QPixmap &pixmap = QtLablePixmap(this);
+    painter.drawPixmap(QRect(QPoint(4, 4), OS_ITEM_SIZE), pixmap.scaled(OS_ITEM_SIZE));
 }
 
 
@@ -133,11 +130,7 @@ void MusicScreenSaverListItem::setStatus(int index, bool status)
     m_hoverItem->setStatus(index, status);
 }
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-void MusicScreenSaverListItem::enterEvent(QEnterEvent *event)
-#else
-void MusicScreenSaverListItem::enterEvent(QEvent *event)
-#endif
+void MusicScreenSaverListItem::enterEvent(QtEnterEvent *event)
 {
     QLabel::enterEvent(event);
     m_hoverItem->showItem(mapToParent(rect().center()));

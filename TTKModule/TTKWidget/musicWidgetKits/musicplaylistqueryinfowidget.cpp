@@ -214,11 +214,7 @@ void MusicPlaylistQueryInfoWidget::setMusicResultsItem(const MusicResultsItem &i
     buttonGroup->addButton(m_songButton, 0);
     buttonGroup->addButton(infoButton, 1);
     buttonGroup->addButton(commentsButton, 2);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(setCurrentIndex(int)));
-#else
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(setCurrentIndex(int)));
-#endif
+    QtButtonGroupConnect(buttonGroup, this, setCurrentIndex);
 
     grid->addWidget(functionWidget);
 #ifdef Q_OS_UNIX

@@ -344,11 +344,7 @@ void MusicLrcContainerForDesktop::mousePressEvent(QMouseEvent *event)
     MusicLrcContainer::mousePressEvent(event);
     if(!m_windowLocked && event->button() == Qt::LeftButton)
     {
-#if TTK_QT_VERSION_CHECK(6,0,0)
-        m_offset = event->globalPosition().toPoint() - frameGeometry().topLeft();
-#else
-        m_offset = event->globalPos() - frameGeometry().topLeft();
-#endif
+        m_offset = QtMouseEventGlobalPos(event) - frameGeometry().topLeft();
     }
 }
 
@@ -358,20 +354,12 @@ void MusicLrcContainerForDesktop::mouseMoveEvent(QMouseEvent *event)
     if(!m_windowLocked && (event->buttons() & Qt::LeftButton))
     {
         setCursor(Qt::CrossCursor);
-#if TTK_QT_VERSION_CHECK(6,0,0)
-        move(event->globalPosition().toPoint() - m_offset);
-#else
-        move(event->globalPos() - m_offset);
-#endif
+        move(QtMouseEventGlobalPos(event) - m_offset);
         G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, pos());
     }
 }
 
-#if TTK_QT_VERSION_CHECK(6,0,0)
-void MusicLrcContainerForDesktop::enterEvent(QEnterEvent *event)
-#else
-void MusicLrcContainerForDesktop::enterEvent(QEvent *event)
-#endif
+void MusicLrcContainerForDesktop::enterEvent(QtEnterEvent *event)
 {
     if(m_windowLocked)
     {

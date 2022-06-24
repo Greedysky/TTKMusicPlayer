@@ -301,11 +301,7 @@ protected:
     virtual void dragMoveEvent(QDragMoveEvent *event) override final;
     virtual void dropEvent(QDropEvent *event) override final;
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
-#if TTK_QT_VERSION_CHECK(6,0,0)
-    virtual void enterEvent(QEnterEvent *event) override final;
-#else
-    virtual void enterEvent(QEvent *event) override final;
-#endif
+    virtual void enterEvent(QtEnterEvent *event) override final;
     virtual void leaveEvent(QEvent *event) override final;
     virtual void mousePressEvent(QMouseEvent *event) override final;
     virtual void mouseReleaseEvent(QMouseEvent *event) override final;

@@ -90,11 +90,7 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongList &songs)
         setItem(i, 0, item);
                           item = new QTableWidgetItem;
         item->setText(MusicUtils::Widget::elidedText(font(), songs[i].name(), Qt::ElideRight, headerview->sectionSize(1) - 10));
-#if TTK_QT_VERSION_CHECK(5,13,0)
-        item->setForeground(QColor(MusicUIObject::MQSSColor01));
-#else
-        item->setTextColor(QColor(MusicUIObject::MQSSColor01));
-#endif
+        QtItemSetForegroundColor(item, MusicUIObject::MQSSColor01);
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
@@ -108,11 +104,7 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongList &songs)
         setItem(i, 4, item);
 
                           item = new QTableWidgetItem(songs[i].playTime());
-#if TTK_QT_VERSION_CHECK(5,13,0)
-        item->setForeground(QColor(MusicUIObject::MQSSColor01));
-#else
-        item->setTextColor(QColor(MusicUIObject::MQSSColor01));
-#endif
+        QtItemSetForegroundColor(item, MusicUIObject::MQSSColor01);
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);
     }
@@ -242,11 +234,7 @@ void MusicSongsListTableWidget::adjustPlayWidgetRow()
     setItem(m_playRowIndex, 0, item);
 
     item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, headerview->sectionSize(1) - 10));
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(MusicUIObject::MQSSColor01));
-#else
-    item->setTextColor(QColor(MusicUIObject::MQSSColor01));
-#endif
+    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor01);
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
     setItem(m_playRowIndex, 1, item);
@@ -255,11 +243,7 @@ void MusicSongsListTableWidget::adjustPlayWidgetRow()
     setItem(m_playRowIndex, 4, new QTableWidgetItem);
 
     item = new QTableWidgetItem((*m_songs)[m_playRowIndex].playTime());
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(MusicUIObject::MQSSColor01));
-#else
-    item->setTextColor(QColor(MusicUIObject::MQSSColor01));
-#endif
+    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor01);
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 5, item);
 

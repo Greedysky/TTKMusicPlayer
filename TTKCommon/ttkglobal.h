@@ -170,6 +170,19 @@ public: \
 #  define TTK_STRCAT(a, b)      a b
 #endif
 
+// marco preprocessor overload
+#define TTK_PP_OVERLOAD(prefix, ...) TTK_PP_CAT(prefix, TTK_PP_VARIADIC_SIZE(__VA_ARGS__))
+#define TTK_PP_CAT(a, b) TTK_PP_CAT_I(a, b)
+#define TTK_PP_CAT_I(a, b) a ## b
+#define TTK_PP_EMPTY()
+#ifdef Q_CC_MSVC
+#  define TTK_PP_VARIADIC_SIZE(...) TTK_PP_CAT(TTK_PP_VARIADIC_SIZE_I(__VA_ARGS__, 8, 7, 6, 5, 4, 3, 2, 1,),)
+#else
+#  define TTK_PP_VARIADIC_SIZE(...) TTK_PP_VARIADIC_SIZE_I(__VA_ARGS__, 8, 7, 6, 5, 4, 3, 2, 1,)
+#endif
+#define TTK_PP_VARIADIC_SIZE_I(e0, e1, e2, e3, e4, e5, e6, e7, size, ...) size
+
+// declare list and flag
 #define TTK_DECLARE_LIST(Class)        typedef QList<Class> Class##List
 #define TTK_DECLARE_FLAG(Flags, Enum)  typedef QFlags<Enum> Flags
 

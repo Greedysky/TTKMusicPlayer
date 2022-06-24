@@ -379,11 +379,7 @@ void MusicApplicationModule::musicSetSoundEffect()
 void MusicApplicationModule::musicEffectChanged()
 {
     const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    const QStringList &effects = value.split(";", Qt::SkipEmptyParts);
-#else
-    const QStringList &effects = value.split(";", QString::SkipEmptyParts);
-#endif
+    const QStringList &effects = value.split(";", QtSkipEmptyParts);
     for(const QString &effect : qAsConst(effects))
     {
         MusicUtils::TTKQmmp::enabledEffectPlugin(true, effect);
