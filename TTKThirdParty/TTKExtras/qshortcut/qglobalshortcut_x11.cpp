@@ -34,7 +34,7 @@ bool QGlobalShortcutPrivate::eventFilter(void* message)
         unsigned int keycode = key->keycode;
         unsigned int keystate = key->state;
 #else
-bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &type, void *message, long *)
+bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &type, void *message, qint *)
 {
     xcb_key_press_event_t *kev = nullptr;
     if(type == "xcb_generic_event_t")

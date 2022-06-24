@@ -20,10 +20,15 @@
  ***************************************************************************/
 
 #include "qglobalshortcut.h"
-#include <QAbstractEventDispatcher>
 #include <QHash>
+#include <QAbstractEventDispatcher>
 #if TTK_QT_VERSION_CHECK(5,0,0)
 #  include <QAbstractNativeEventFilter>
+#  if TTK_QT_VERSION_CHECK(6,0,0)
+#    define qint qintptr
+#  else
+#    define qint long
+#  endif
 #endif
 
 /*! @brief The class of the qglobal shortcut private.
@@ -51,10 +56,8 @@ public:
 #if !TTK_QT_VERSION_CHECK(5,0,0)
     static QAbstractEventDispatcher::EventFilter m_prevEventFilter;
     static bool eventFilter(void* message);
-#elif !TTK_QT_VERSION_CHECK(6,0,0)
-    virtual bool nativeEventFilter(const QByteArray &type, void *message, long *result) override final;
 #else
-    virtual bool nativeEventFilter(const QByteArray &type, void *message, qintptr *result) override final;
+    virtual bool nativeEventFilter(const QByteArray &type, void *message, qint *result) override final;
 #endif
 
 private:

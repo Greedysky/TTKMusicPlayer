@@ -32,7 +32,7 @@ bool QGlobalShortcutPrivate::eventFilter(void* message)
     return false;
 }
 #else
-bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message, long *)
+bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message, qint *)
 {
     EventRef event = (EventRef) message;
     if(GetEventClass(event) == kEventClassKeyboard && GetEventKind(event) == kEventHotKeyPressed)
