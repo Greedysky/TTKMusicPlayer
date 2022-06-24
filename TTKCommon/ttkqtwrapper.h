@@ -48,7 +48,7 @@ namespace Qt
 #define QtFontInit(...) \
   TTK_PP_OVERLOAD(QtFontInit_, __VA_ARGS__)(__VA_ARGS__)
 #else
-#define QtFontInit_(...) \
+#define QtFontInit(...) \
   TTK_PP_CAT(TTK_PP_OVERLOAD(QtFontInit_, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
 #endif
 
