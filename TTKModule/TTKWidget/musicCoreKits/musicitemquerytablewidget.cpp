@@ -237,18 +237,18 @@ void MusicItemQueryTableWidget::createSearchedItem(const MusicSearchedItem &song
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip(songItem.m_singerName + " - " + songItem.m_songName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
-    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor02);
+    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip(songItem.m_albumName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
-    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor02);
+    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_duration);
-    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor02);
+    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(count, 3, item);
 

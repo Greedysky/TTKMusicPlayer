@@ -48,7 +48,7 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongList &s
                           item = new QTableWidgetItem;
         item->setToolTip(songs[i].name());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));  
-        QtItemSetForegroundColor(item, MusicUIObject::MQSSColor01);
+        QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
         setItem(i, 1, item);
@@ -58,7 +58,7 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongList &s
         setItem(i, 3, item);
 
                           item = new QTableWidgetItem(songs[i].playTime());
-        QtItemSetForegroundColor(item, MusicUIObject::MQSSColor01);
+        QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
     }
@@ -167,7 +167,7 @@ void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
     item = new QTableWidgetItem;
     item->setToolTip(name);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
-    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor01);
+    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
     setItem(m_playRowIndex, 1, item);
@@ -175,7 +175,7 @@ void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
     setItem(m_playRowIndex, 3, new QTableWidgetItem);
 
     item = new QTableWidgetItem((*m_songs)[m_playRowIndex].playTime());
-    QtItemSetForegroundColor(item, MusicUIObject::MQSSColor01);
+    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 4, item);
 

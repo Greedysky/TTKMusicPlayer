@@ -171,7 +171,7 @@ namespace Qt
 
 /// String skip empty parts
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtSkipEmptyParts Qt::QtSkipEmptyParts
+#  define QtSkipEmptyParts Qt::SkipEmptyParts
 #else
 #  define QtSkipEmptyParts QString::SkipEmptyParts
 #endif

@@ -146,7 +146,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         const QString &path = QString("%1/%2%3").arg(prefix, song->name(), LRC_FILE);
         if(skip && QFile::exists(path))
         {
-            QtItemSetForegroundColor(it, MusicUIObject::MQSSColor02);
+            QtItemSetForegroundColor(it, QColor(MusicUIObject::MQSSColor02));
             it->setText(tr("Skip"));
             continue;
         }
