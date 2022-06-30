@@ -29,8 +29,8 @@ speex-1.2.1	https://gitlab.xiph.org/xiph/speex
 taglib-1.12	https://github.com/taglib/taglib
 wavpack-5.4.0	https://www.wavpack.com/downloads.html
 libxmp-4.5.0.patch	https://github.com/libxmp/libxmp
-7zip-21.07		https://sparanoid.com/lab/7z/download.html
-ttk-1.1.7
+7zip-22.00		https://www.7-zip.org/download.html
+ttk-1.1.8
 (sonic-master	https://github.com/waywardgeek/sonic)
 (libasap-5.2.0	https://sourceforge.net/projects/asap)
 (libfc14-1.0.3	https://sourceforge.net/projects/xmms-fc)
