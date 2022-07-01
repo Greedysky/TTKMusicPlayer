@@ -24,6 +24,7 @@
   <url type="homepage">https://github.com/Greedysky/TTKMusicplayer</url>
   <developer_name>Greedysky Studio</developer_name>
   <releases>
+    <release version="2.15.11.0" date="2022-07-01" />
     <release version="2.15.10.0" date="2022-05-28" />
     <release version="2.15.9.0" date="2022-04-30" />
     <release version="2.15.8.0" date="2022-03-05" />
