@@ -14,20 +14,20 @@
 **音樂播放器基於qmmp和Qt庫開發. 編譯教程我已經寫在wiki上了.(看這裏<u>https://github.com/Greedysky/TTKMusicplayer/wiki</u> )**
 
 ### 本項目代碼不用於商用，僅限研究和學習使用，資源版權歸個音樂平臺所有。
- 
+
 ## 構建狀態
- * 基於Qt4.8.7的windows-mingw 32bit版本測試通過
- * 基於Qt4.8.7的linux-gcc 64bit版本測試通過
- * 基於Qt5.x的windows-mingw 32bit版本測試通過
- * 基於Qt5.x的linux-gcc 64bit版本測試通過
- 
-| 平臺 | Qt & 編譯器       | 狀態                                                                                      |
-| :---:    | :---:               | :---:                                                                                       |
-| Linux    | 4.8.7 GCC & 5.x GCC    | ![Linux](https://img.shields.io/badge/build-passing-brightgreen.svg)                            |
-| Windows  | 4.8.7 GCC & 5.x GCC       | ![Windows](https://img.shields.io/badge/build-passing-brightgreen.svg) |
-| Windows  | 5.x MSVC       | ![Windows](https://img.shields.io/badge/build-unknown-lightgrey.svg) |
-| OS X     | 5.x Clang     | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg)                           |
- 
+ * Qt stable version be tested on Qt4.8.7 for windows-mingw 32bit
+ * Qt stable version be tested on Qt4.8.7 for ubuntu-linux-gcc 64bit
+ * Qt stable version be tested on Qt5.9.9 for ubuntu-linux-gcc 64bit
+ * Qt stable version be tested on Qt5.x for windows-mingw 32bit
+
+| Platform | Qt & Compiler           | Status                                                                 |
+| :---:    | :---:                   | :---:                                                                  |
+| Linux    | 4.8.7 GCC & 5.9.9 GCC   | ![Linux](https://img.shields.io/badge/build-passing-brightgreen.svg)   |
+| Windows  | 4.8.7 GCC & 5.x GCC     | ![Windows](https://img.shields.io/badge/build-passing-brightgreen.svg) |
+| Windows  | MSVC                    | ![Windows](https://img.shields.io/badge/build-unknown-lightgrey.svg)   |
+| OS X     | Clang                   | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg)       |
+
 # 開發者
 
 許可證
@@ -162,7 +162,7 @@ TTKMusicPlayer的壹些特性
  * This file is part of the TTK Music Player project.
  * Copyright (C) 2015 - 2022 Greedysky Studio.
  * Mail: greedysky@163.com.
- 
+
 貢獻
 -------
  * Fork this project on github and make a branch. Commit in that branch, and push, then create a pull request to be reviewed and merged.
