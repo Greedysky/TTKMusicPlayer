@@ -1,16 +1,29 @@
 #include "optimfroghelper.h"
 
 #if defined Q_OS_WIN && defined __GNUC__
-typedef void* (*OFROG_createInstance)(void);
-typedef condition_t (*OFROG_openExt)(void*, ReadInterface*, void*, condition_t);
-typedef void (*OFROG_destroyInstance)(void*);
-typedef condition_t (*OFROG_getInfo)(void*, OptimFROG_Info*);
-typedef condition_t (*OFROG_getTags)(void*, OptimFROG_Tags*);
-typedef void (*OFROG_freeTags)(OptimFROG_Tags*);
-typedef condition_t (*OFROG_close)(void*);
-typedef sInt32_t (*OFROG_read)(void*, void*, uInt32_t, condition_t);
-typedef condition_t (*OFROG_seekable)(void*);
-typedef condition_t (*OFROG_seekTime)(void*, sInt64_t);
+typedef void* (*_OptimFROG_createInstance)(void);
+typedef condition_t (*_OptimFROG_openExt)(void*, ReadInterface*, void*, condition_t);
+typedef void (*_OptimFROG_destroyInstance)(void*);
+typedef condition_t (*_OptimFROG_getInfo)(void*, OptimFROG_Info*);
+typedef condition_t (*_OptimFROG_getTags)(void*, OptimFROG_Tags*);
+typedef void (*_OptimFROG_freeTags)(OptimFROG_Tags*);
+typedef condition_t (*_OptimFROG_close)(void*);
+typedef sInt32_t (*_OptimFROG_read)(void*, void*, uInt32_t, condition_t);
+typedef condition_t (*_OptimFROG_seekable)(void*);
+typedef condition_t (*_OptimFROG_seekTime)(void*, sInt64_t);
+//
+#define CREATE_OFR_MODULE(Module) ((_##Module)GetSymbolAddress(#Module))
+//
+#define OptimFROG_createInstance  CREATE_OFR_MODULE(OptimFROG_createInstance)
+#define OptimFROG_openExt         CREATE_OFR_MODULE(OptimFROG_openExt)
+#define OptimFROG_destroyInstance CREATE_OFR_MODULE(OptimFROG_destroyInstance)
+#define OptimFROG_getInfo         CREATE_OFR_MODULE(OptimFROG_getInfo)
+#define OptimFROG_getTags         CREATE_OFR_MODULE(OptimFROG_getTags)
+#define OptimFROG_freeTags        CREATE_OFR_MODULE(OptimFROG_freeTags)
+#define OptimFROG_close           CREATE_OFR_MODULE(OptimFROG_close)
+#define OptimFROG_read            CREATE_OFR_MODULE(OptimFROG_read)
+#define OptimFROG_seekable        CREATE_OFR_MODULE(OptimFROG_seekable)
+#define OptimFROG_seekTime        CREATE_OFR_MODULE(OptimFROG_seekTime)
 #endif
 
 OptimFROGHelper::OptimFROGHelper(QIODevice *input)
@@ -31,13 +44,8 @@ void OptimFROGHelper::deinit()
         return;
     }
 
-#if defined Q_OS_WIN && defined __GNUC__
-    ((OFROG_close)GetSymbolAddress("OptimFROG_close"))(m_decoder);
-    ((OFROG_destroyInstance)GetSymbolAddress("OptimFROG_destroyInstance"))(m_decoder);
-#else
     OptimFROG_close(m_decoder);
     OptimFROG_destroyInstance(m_decoder);
-#endif
 }
 
 bool OptimFROGHelper::initialize()
@@ -49,10 +57,9 @@ bool OptimFROGHelper::initialize()
         qWarning("OptimFROGHelper: load plugin failed");
         return false;
     }
-    m_decoder = ((OFROG_createInstance)GetSymbolAddress("OptimFROG_createInstance"))();
-#else
-    m_decoder = OptimFROG_createInstance();
 #endif
+    m_decoder = OptimFROG_createInstance();
+
     static ReadInterface rint =
     {
         ofr_close,
@@ -70,21 +77,12 @@ bool OptimFROGHelper::initialize()
         return false;
     }
 
-#if defined Q_OS_WIN && defined __GNUC__
-    if(!((OFROG_openExt)GetSymbolAddress("OptimFROG_openExt"))(m_decoder, &rint, m_input, C_TRUE))
-    {
-        qWarning("OptimFROGHelper: OptimFROG_openExt failed");
-        return false;
-    }
-    ((OFROG_getInfo)GetSymbolAddress("OptimFROG_getInfo"))(m_decoder, &m_info);
-#else
     if(!OptimFROG_openExt(m_decoder, &rint, m_input, C_TRUE))
     {
         qWarning("OptimFROGHelper: OptimFROG_openExt failed");
         return false;
     }
     OptimFROG_getInfo(m_decoder, &m_info);
-#endif
 
     /* 24- and 32-bit audio is converted to 16-bit. */
     if(m_info.bitspersample > 16)
@@ -102,37 +100,24 @@ bool OptimFROGHelper::initialize()
 
     OptimFROG_Tags ofr_tags;
     m_signed = m_info.sampleType[0] == 'S';
-#if defined Q_OS_WIN && defined __GNUC__
-    ((OFROG_getTags)GetSymbolAddress("OptimFROG_getTags"))(m_decoder, &ofr_tags);
-#else
     OptimFROG_getTags(m_decoder, &ofr_tags);
-#endif
+
     for(uInt32_t i = 0; i < ofr_tags.keyCount; ++i)
     {
         const QString key(ofr_tags.keys[i]);
         m_tags.insert(key.toLower(), QString(ofr_tags.values[i]));
     }
-#if defined Q_OS_WIN && defined __GNUC__
-    ((OFROG_freeTags)GetSymbolAddress("OptimFROG_freeTags"))(&ofr_tags);
-#else
+
     OptimFROG_freeTags(&ofr_tags);
-#endif
     return true;
 }
 
 void OptimFROGHelper::seek(qint64 time)
 {
-#if defined Q_OS_WIN && defined __GNUC__
-    if(((OFROG_seekable)GetSymbolAddress("OptimFROG_seekable"))(m_decoder))
-    {
-        ((OFROG_seekTime)GetSymbolAddress("OptimFROG_seekTime"))(m_decoder, time);
-    }
-#else
     if(OptimFROG_seekable(m_decoder))
     {
         OptimFROG_seekTime(m_decoder, time);
     }
-#endif
 }
 
 qint64 OptimFROGHelper::totalTime() const
@@ -158,14 +143,10 @@ FARPROC OptimFROGHelper::GetSymbolAddress(const char* name) const
 
 qint64 OptimFROGHelper::read(unsigned char *data, qint64 maxSize)
 {
-    sInt32_t n;
     const int bytes = depth() / 8;
-    sInt32_t point_conversion = bytes * m_info.channels;
-#if defined Q_OS_WIN && defined __GNUC__
-    n = ((OFROG_read)GetSymbolAddress("OptimFROG_read"))(m_decoder, data, maxSize / point_conversion, C_TRUE);
-#else
-    n = OptimFROG_read(m_decoder, data, maxSize / point_conversion, C_TRUE);
-#endif
+    const sInt32_t point_conversion = bytes * m_info.channels;
+
+    sInt32_t n = OptimFROG_read(m_decoder, data, maxSize / point_conversion, C_TRUE);
     n = n > 0 ? n * point_conversion : 0;
 
     /* Qmmp doesn't support unsigned samples, so convert here. */
