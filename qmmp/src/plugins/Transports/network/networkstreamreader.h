@@ -73,8 +73,8 @@ private slots:
     void handleFinished();
 
 protected:
-    virtual qint64 readData(char*, qint64) override final;
-    virtual qint64 writeData(const char*, qint64) override final;
+    virtual qint64 readData(char *, qint64) override final;
+    virtual qint64 writeData(const char *, qint64) override final;
 
 private:
     void abort();

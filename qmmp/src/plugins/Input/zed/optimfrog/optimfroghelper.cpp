@@ -130,7 +130,7 @@ qint64 OptimFROGHelper::totalTime() const
 }
 
 #if defined Q_OS_WIN && defined __GNUC__
-FARPROC OptimFROGHelper::GetSymbolAddress(const char* name) const
+FARPROC OptimFROGHelper::GetSymbolAddress(const char *name) const
 {
     FARPROC func = nullptr;
     if(m_instance)

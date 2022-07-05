@@ -56,7 +56,7 @@ public:
 
 private:
 #if defined Q_OS_WIN && defined __GNUC__
-    FARPROC GetSymbolAddress(const char* name) const;
+    FARPROC GetSymbolAddress(const char *name) const;
     HINSTANCE m_instance = nullptr;
 #endif
     void *m_input = nullptr;
@@ -70,11 +70,11 @@ private:
 
     static condition_t ofr_close(void *) { return true; }
     static sInt32_t ofr_read(void *instance, void *buf, uInt32_t n) { return VFS(instance)->read(reinterpret_cast<char *>(buf), n); }
-    static condition_t ofr_eof(void* instance) { return VFS(instance)->atEnd(); }
-    static condition_t ofr_seekable(void* instance) { return !VFS(instance)->isSequential(); }
-    static sInt64_t ofr_length(void* instance) { return VFS(instance)->size(); }
-    static sInt64_t ofr_get_pos(void* instance) { return VFS(instance)->pos(); }
-    static condition_t ofr_seek(void* instance, sInt64_t offset) { return VFS(instance)->seek(offset); }
+    static condition_t ofr_eof(void *instance) { return VFS(instance)->atEnd(); }
+    static condition_t ofr_seekable(void *instance) { return !VFS(instance)->isSequential(); }
+    static sInt64_t ofr_length(void *instance) { return VFS(instance)->size(); }
+    static sInt64_t ofr_get_pos(void *instance) { return VFS(instance)->pos(); }
+    static condition_t ofr_seek(void *instance, sInt64_t offset) { return VFS(instance)->seek(offset); }
 
 };
 

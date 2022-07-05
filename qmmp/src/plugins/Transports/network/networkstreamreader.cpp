@@ -189,7 +189,7 @@ void NetworkStreamReader::handleFinished()
     }
 }
 
-qint64 NetworkStreamReader::readData(char* data, qint64 maxlen)
+qint64 NetworkStreamReader::readData(char *data, qint64 maxlen)
 {
     m_mutex.lock();
     if(m_stream.buffer_size == 0)
@@ -203,7 +203,7 @@ qint64 NetworkStreamReader::readData(char* data, qint64 maxlen)
     return len;
 }
 
-qint64 NetworkStreamReader::writeData(const char*, qint64)
+qint64 NetworkStreamReader::writeData(const char *, qint64)
 {
     return -1;
 }
