@@ -138,7 +138,7 @@ void SunVoxHelper::deinit()
 #endif
     if(m_copyMode)
     {
-//        QFile::remove(LIBRARY_CNAME);
+        QFile::remove(LIBRARY_CNAME);
     }
 }
 
@@ -195,8 +195,8 @@ bool SunVoxHelper::initialize(bool copy)
         int x, y, finetune, relnote;
         SV_GET_MODULE_XY(xy, x, y);
         SV_GET_MODULE_FINETUNE(ft, finetune, relnote);
-        m_modules += QString("module %1: %2; (x=%3, y=%4); color=(%5, %6, %7); finetune=%8; rel.note=%9;\n")
-                    .arg(i)
+        m_modules += QString("Module %1: %2; (x=%3, y=%4); color=(%5, %6, %7); finetune=%8; rel.note=%9;\n")
+                    .arg(i + 1)
                     .arg(sv_get_module_name(SV_SLOT, i))
                     .arg(x)
                     .arg(y)
@@ -213,15 +213,15 @@ bool SunVoxHelper::initialize(bool copy)
             v << sv_get_module_ctl_name(SV_SLOT, i, j);
         }
 
-        m_modules += QString("module ctls: %1; names: %2\n")
+        m_modules += QString("Module ctls: %1; names: %2\n\n")
                     .arg(sv_get_number_of_module_ctls(SV_SLOT, i))
                     .arg(v.join(","));
     }
 
     for(int i = 0; i < m_patternCount; ++i)
     {
-        m_patterns += QString("pattern %1: %2; (x=%3, y=%4); tracks=%5; lines=%6;\n")
-                     .arg(i)
+        m_patterns += QString("Pattern %1: %2; (x=%3, y=%4); tracks=%5; lines=%6;\n")
+                     .arg(i + 1)
                      .arg(sv_get_pattern_name(SV_SLOT, i))
                      .arg(sv_get_pattern_x(SV_SLOT, i))
                      .arg(sv_get_pattern_y(SV_SLOT, i))

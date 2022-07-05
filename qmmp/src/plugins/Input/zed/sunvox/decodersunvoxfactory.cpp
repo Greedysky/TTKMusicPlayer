@@ -5,8 +5,14 @@
 
 bool DecoderSunVoxFactory::canDecode(QIODevice *input) const
 {
-    Q_UNUSED(input);
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+    {
+        return false;
+    }
+
+    SunVoxHelper helper(file->fileName());
+    return helper.initialize(true);
 }
 
 DecoderProperties DecoderSunVoxFactory::properties() const
@@ -40,6 +46,11 @@ QList<TrackInfo*> DecoderSunVoxFactory::createPlayList(const QString &path, Trac
     {
         delete info;
         return QList<TrackInfo*>();
+    }
+
+    if(TrackInfo::MetaData)
+    {
+        info->setValue(Qmmp::TITLE, helper.title());
     }
 
     if(parts & TrackInfo::Properties)
