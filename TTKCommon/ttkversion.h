@@ -82,6 +82,8 @@
  *
  * ST-Sound File(*.ym)
  *
+ * SunVox Audio File(*.sunvox)
+ *
  * Hively Audio File(*.ahx *.hvl)
  *
  * BP SoundMon Audio File(*.bp *.bp3)

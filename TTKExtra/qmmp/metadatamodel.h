@@ -130,11 +130,6 @@ public:
      */
     virtual void removeCover();
     /*!
-     * Lyrics.
-     * Subclass should reimplement this function. Default implementation does nothing.
-     */
-    virtual QString lyrics() const;
-    /*!
      * Returns path to cover pixmap.
      */
     virtual QString coverPath() const;
@@ -147,9 +142,13 @@ public:
      */
     virtual void setCue(const QString &content);
     /*!
-     * Removes CUE file or tag. Default implementation doesn nothing.
+     * Removes CUE file or tag. Default implementation does nothing.
      */
     virtual void removeCue();
+    /*!
+     * Returns song lyrics. Default returns empty string.
+     */
+    virtual QString lyrics() const;
     /*!
      * Remove cue data.
      */

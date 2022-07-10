@@ -92,6 +92,7 @@ TTKMusicPlayer can meet your most demands
  * V2 Player File(*.v2m)
  * AY/YM Audio File(*.asc *.ay *.emul *.sqt *.st13 *.stc *.stp *.stp2 *.psc *.psg *.pt1 *.pt2 *.pt3 *.vtx *.zxs)
  * ST-Sound File(*.ym)
+ * SunVox Audio File(*.sunvox)
  * Hively Audio File(*.ahx *.hvl)
  * BP SoundMon Audio File(*.bp *.bp3)
  * MDX Game Audio File(*.mdx *.pdx *.m *.mub *.muc *.vgs *.bgm *.mml)
