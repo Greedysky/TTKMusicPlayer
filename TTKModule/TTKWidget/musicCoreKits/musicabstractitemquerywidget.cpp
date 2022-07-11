@@ -31,6 +31,7 @@ MusicAbstractItemQueryWidget::~MusicAbstractItemQueryWidget()
     {
         delete m_resizeWidgets.takeLast().m_label;
     }
+
     delete m_iconLabel;
     delete m_statusLabel;
     delete m_infoLabel;

@@ -11,6 +11,7 @@
 #include "qrencode/qrcodewidget.h"
 
 #include <qmath.h>
+#include <malloc.h>
 
 #define WIDTH_LABEL_SIZE   150
 #define HEIGHT_LABEL_SIZE  200
@@ -99,6 +100,7 @@ MusicArtistMvsQueryWidget::MusicArtistMvsQueryWidget(QWidget *parent)
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
+
     m_pageQueryWidget = nullptr;
     m_initialized = false;
 
@@ -265,6 +267,7 @@ MusicArtistAlbumsQueryWidget::MusicArtistAlbumsQueryWidget(QWidget *parent)
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
+
     QWidget *function = new QWidget(m_mainWindow);
     m_gridLayout = new QGridLayout(function);
     function->setLayout(m_gridLayout);

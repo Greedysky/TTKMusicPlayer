@@ -42,8 +42,8 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     m_ui->searchLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle03);
     connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchResultChanged(int,int)));
 
-    m_transferThread = new MusicConnectTransferThread(this);
-    connect(m_transferThread, SIGNAL(transferFileFinished(QString)), m_ui->completeTableWidget, SLOT(createItem(QString)));
+    m_thread = new MusicConnectTransferThread(this);
+    connect(m_thread, SIGNAL(transferFileFinished(QString)), m_ui->completeTableWidget, SLOT(createItem(QString)));
 
 #ifdef Q_OS_UNIX
     m_ui->allSelectedcheckBox->setFocusPolicy(Qt::NoFocus);
@@ -62,7 +62,7 @@ MusicConnectTransferWidget::~MusicConnectTransferWidget()
     G_CONNECTION_PTR->removeValue(className());
     delete m_buttonGroup;
     delete m_ui;
-    delete m_transferThread;
+    delete m_thread;
 }
 
 void MusicConnectTransferWidget::setDeviceInfoItem(MusicDeviceInfoItem *item)
@@ -188,8 +188,8 @@ void MusicConnectTransferWidget::startToTransferFiles()
         return;
     }
 
-    m_transferThread->setCopyFilePath(m_currentDeviceItem->m_path, names);
-    m_transferThread->start();
+    m_thread->setCopyFilePath(m_currentDeviceItem->m_path, names);
+    m_thread->start();
 }
 
 void MusicConnectTransferWidget::musicSearchResultChanged(int, int index)

@@ -101,7 +101,7 @@ protected:
     TTKIntListMap m_searchResultCache;
     MusicDeviceInfoItem *m_currentDeviceItem;
     QString m_songCountLabel, m_selectCountLabel;
-    MusicConnectTransferThread *m_transferThread;
+    MusicConnectTransferThread *m_thread;
 
 };
 

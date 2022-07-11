@@ -118,9 +118,9 @@ protected:
 
     Ui::MusicSongCheckToolsWidget *m_ui;
     MusicSongList m_localSongs;
-    MusicSongCheckToolsRenameThread *m_renameCore;
-    MusicSongCheckToolsDuplicateThread *m_duplicateCore;
-    MusicSongCheckToolsQualityThread *m_qualityCore;
+    MusicSongCheckToolsRenameThread *m_renameThread;
+    MusicSongCheckToolsDuplicateThread *m_duplicateThread;
+    MusicSongCheckToolsQualityThread *m_qualityThread;
 
 };
 
