@@ -92,10 +92,10 @@ void MusicPlaylistQueryInfoWidget::setMusicResultsItem(const MusicResultsItem &i
     m_iconLabel->setPixmap(QPixmap(":/image/lb_warning").scaled(180, 180));
     m_iconLabel->setFixedSize(210, 180);
 
-    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
+        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
+        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         download->startToDownload(item.m_coverUrl);
     }
 

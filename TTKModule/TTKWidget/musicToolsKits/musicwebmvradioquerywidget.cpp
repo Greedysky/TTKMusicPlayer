@@ -47,10 +47,10 @@ void MusicWebMVRadioQueryItemWidget::setMusicResultsItem(const MusicResultsItem 
     m_nameLabel->setToolTip(item.m_name);
     m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
-    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
+        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
+        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         download->startToDownload(item.m_coverUrl);
     }
 
@@ -112,7 +112,6 @@ MusicWebMVRadioQueryWidget::MusicWebMVRadioQueryWidget(QWidget *parent)
     m_infoWidget = nullptr;
     m_gridLayout = nullptr;
     m_categoryButton = nullptr;
-
     m_networkRequest = new MusicMVRadioCategoryRequest(this);
     connect(m_networkRequest, SIGNAL(createCategoryItem(MusicResultsItem)), SLOT(createCategoryItem(MusicResultsItem)));
 }
@@ -122,7 +121,6 @@ MusicWebMVRadioQueryWidget::~MusicWebMVRadioQueryWidget()
     delete m_infoWidget;
     delete m_gridLayout;
     delete m_categoryButton;
-    delete m_networkRequest;
 }
 
 void MusicWebMVRadioQueryWidget::setSongName(const QString &name)

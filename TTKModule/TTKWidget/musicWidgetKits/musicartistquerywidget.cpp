@@ -59,10 +59,10 @@ void MusicArtistAlbumsItemWidget::setMusicResultsItem(const MusicResultsItem &it
     m_updateLabel->setToolTip(item.m_updateTime);
     m_updateLabel->setText(MusicUtils::Widget::elidedText(m_updateLabel->font(), m_updateLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
-    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
+        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
+        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         download->startToDownload(item.m_coverUrl);
     }
 }
@@ -195,6 +195,7 @@ MusicArtistSimilarQueryWidget::MusicArtistSimilarQueryWidget(QWidget *parent)
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
+
     QWidget *function = new QWidget(m_mainWindow);
     m_gridLayout = new QGridLayout(function);
     function->setLayout(m_gridLayout);
@@ -478,10 +479,10 @@ void MusicArtistQueryWidget::createArtistInfoItem(const MusicResultsItem &item)
 
     if(!m_resizeWidgets.isEmpty())
     {
-        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
         {
+            MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
+            connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
             download->startToDownload(item.m_coverUrl);
         }
 
@@ -525,8 +526,10 @@ void MusicArtistQueryWidget::setCurrentIndex(int index)
 
     delete m_artistAlbums;
     m_artistAlbums = nullptr;
+
     delete m_artistMvs;
     m_artistMvs = nullptr;
+
     delete m_artistSimilar;
     m_artistSimilar = nullptr;
 

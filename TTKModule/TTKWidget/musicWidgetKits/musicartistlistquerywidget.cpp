@@ -58,7 +58,6 @@ MusicArtistListQueryWidget::~MusicArtistListQueryWidget()
 {
     delete m_gridLayout;
     delete m_categoryButton;
-    delete m_networkRequest;
     delete m_pageQueryWidget;
 }
 

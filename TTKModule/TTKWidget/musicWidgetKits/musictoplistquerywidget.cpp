@@ -209,10 +209,10 @@ void MusicToplistQueryWidget::createToplistInfoItem(const MusicResultsItem &item
         data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width + 410 * 4));
     }
 
-    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
+        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
+        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         download->startToDownload(item.m_coverUrl);
     }
 }

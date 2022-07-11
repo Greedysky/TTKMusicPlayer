@@ -142,10 +142,10 @@ void MusicWebFMRadioWidget::addListWidgetItem()
                           item = new QTableWidgetItem;
         setItem(index, 3, item);
 
-        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != TTK_NULL_STR)
         {
+            MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
+            connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
             download->setHeader("id", index);
             download->startToDownload(channel.m_coverUrl);
         }

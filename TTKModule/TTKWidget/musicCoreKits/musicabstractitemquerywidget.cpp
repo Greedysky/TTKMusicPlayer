@@ -37,6 +37,7 @@ MusicAbstractItemQueryWidget::~MusicAbstractItemQueryWidget()
     delete m_songButton;
     delete m_queryTableWidget;
     delete m_mainWindow;
+    delete m_networkRequest;
 }
 
 void MusicAbstractItemQueryWidget::setSongName(const QString &name)

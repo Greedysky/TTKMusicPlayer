@@ -87,10 +87,10 @@ void MusicWebDJRadioInfoWidget::createCategoryInfoItem(const MusicResultsItem &i
 
     if(!m_resizeWidgets.isEmpty())
     {
-        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
         {
+            MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
+            connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
             download->startToDownload(item.m_coverUrl);
         }
 

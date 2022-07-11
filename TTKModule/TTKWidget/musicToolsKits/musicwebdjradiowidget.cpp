@@ -115,10 +115,10 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem
     item->setTextAlignment(Qt::AlignCenter);
     setItem(index, 5, item);
 
-    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     if(!data.m_coverUrl.isEmpty() && data.m_coverUrl != TTK_NULL_STR)
     {
+        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
+        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         download->setHeader("id", index);
         download->startToDownload(data.m_coverUrl);
     }

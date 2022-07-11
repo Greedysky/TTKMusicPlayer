@@ -308,7 +308,8 @@ protected:
     QVariant m_rawData;
     bool m_lowPowerMode;
     MusicFunction m_funcIndex;
-    QWidget *m_stackedFuncWidget, *m_stackedCloudWidget;
+    QWidget *m_stackedFuncWidget;
+    QWidget *m_stackedCloudWidget;
     MusicSettingWidget *m_settingWidget;
     MusicVideoPlayWidget *m_videoPlayerWidget;
     MusicLrcAnalysis *m_lrcAnalysis;
