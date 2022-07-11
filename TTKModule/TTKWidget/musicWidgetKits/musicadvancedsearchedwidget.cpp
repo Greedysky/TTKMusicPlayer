@@ -26,6 +26,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
 
     m_tabWidget = new QTabWidget(mainWidget);
     m_tabWidget->setFixedHeight(300);
+    m_tabWidget->setFocusPolicy(Qt::NoFocus);
     m_tabWidget->setStyleSheet(MusicUIObject::MQSSTabWidgetStyle01 + "QTabBar::tab{ width:120px; }");
     //
     QWidget *songWidget = new QWidget(m_tabWidget);

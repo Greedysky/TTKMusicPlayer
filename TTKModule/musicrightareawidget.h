@@ -296,19 +296,19 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Function parameter init.
+     * Function initialize.
      */
-    void functionParameterInit();
+    void functionInitialize();
     /*!
-     * Create kugou window.
+     * Create kugou web window.
      */
-    void createkWindow(int type);
+    void createkWebWindow(int type);
 
     Ui::MusicApplication *m_ui;
     QVariant m_rawData;
     bool m_lowPowerMode;
     MusicFunction m_funcIndex;
-    QWidget *m_stackedFuncWidget, *m_stackedAutoWidget;
+    QWidget *m_stackedFuncWidget, *m_stackedCloudWidget;
     MusicSettingWidget *m_settingWidget;
     MusicVideoPlayWidget *m_videoPlayerWidget;
     MusicLrcAnalysis *m_lrcAnalysis;

@@ -39,7 +39,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     m_lowPowerMode = false;
     m_funcIndex = KugGouSongWidget;
     m_stackedFuncWidget = nullptr;
-    m_stackedAutoWidget = nullptr;
+    m_stackedCloudWidget = nullptr;
     m_lrcForInterior = nullptr;
     m_lrcForDesktop = nullptr;
     m_lrcForWallpaper = nullptr;
@@ -310,9 +310,9 @@ void MusicRightAreaWidget::resizeWindow()
         TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget)->resizeWindow();
     }
 
-    if(TTKObject_cast(MusicCloudManagerWidget*, m_stackedAutoWidget))
+    if(TTKObject_cast(MusicCloudManagerWidget*, m_stackedCloudWidget))
     {
-        TTKObject_cast(MusicCloudManagerWidget*, m_stackedAutoWidget)->resizeWindow();
+        TTKObject_cast(MusicCloudManagerWidget*, m_stackedCloudWidget)->resizeWindow();
     }
 
     if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopupMode())
@@ -355,13 +355,13 @@ void MusicRightAreaWidget::applySettingParameter()
 void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
 {
     m_funcIndex = TTKStatic_cast(MusicFunction, index);
-    functionParameterInit();
+    functionInitialize();
 
     if(widget)
     {
-        m_stackedAutoWidget = widget;
-        m_ui->functionsContainer->addWidget(m_stackedAutoWidget);
-        m_ui->functionsContainer->setCurrentWidget(m_stackedAutoWidget);
+        m_stackedCloudWidget = widget;
+        m_ui->functionsContainer->addWidget(m_stackedCloudWidget);
+        m_ui->functionsContainer->setCurrentWidget(m_stackedCloudWidget);
         Q_EMIT updateBackgroundTheme();
         return;
     }
@@ -375,19 +375,19 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
     {
         case KugGouSongWidget: //insert kugou song widget
         {
-            createkWindow(QKugouWindow::KuGouSong);
+            createkWebWindow(QKugouWindow::KuGouSong);
             Q_EMIT updateBackgroundTheme();
             break;
         }
         case KugGouRadioWidget: //insert kugou radio widget
         {
-            createkWindow(QKugouWindow::KuGouRadio);
+            createkWebWindow(QKugouWindow::KuGouRadio);
             Q_EMIT updateBackgroundTheme();
             break;
         }
         case kugouListWidget: //insert kugou list widget
         {
-            createkWindow(QKugouWindow::KuGouList);
+            createkWebWindow(QKugouWindow::KuGouList);
             Q_EMIT updateBackgroundTheme();
             break;
         }
@@ -411,7 +411,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         }
         case kugouLiveWidget: //insert kugou live widget
         {
-            createkWindow(QKugouWindow::KugouMovie);
+            createkWebWindow(QKugouWindow::KugouMovie);
             Q_EMIT updateBackgroundTheme();
             break;
         }
@@ -525,7 +525,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         }
         case KuiSheWidget: //insert kugou kuishe widget
         {
-            createkWindow(QKugouWindow::KuGouSingle);
+            createkWebWindow(QKugouWindow::KuGouSingle);
             Q_EMIT updateBackgroundTheme();
             break;
         }
@@ -735,7 +735,7 @@ void MusicRightAreaWidget::researchQueryByQuality(MusicObject::QueryQuality qual
     }
 
     m_funcIndex = MusicRightAreaWidget::SearchWidget;
-    functionParameterInit();
+    functionInitialize();
 
     m_ui->songSearchWidget->researchQueryByQuality(text, quality);
     m_ui->functionsContainer->setCurrentIndex(APP_WINDOW_INDEX_0);
@@ -864,7 +864,7 @@ void MusicRightAreaWidget::musicChangeDownloadCustumWidget()
     showSettingWidget();
 }
 
-void MusicRightAreaWidget::functionParameterInit()
+void MusicRightAreaWidget::functionInitialize()
 {
     if(G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
@@ -882,8 +882,8 @@ void MusicRightAreaWidget::functionParameterInit()
         m_ui->stackedFunctionWidget->transparent(false);
     }
 
-    deleteStackedFuncWidget();
-    m_stackedAutoWidget = nullptr;
+//    deleteStackedFuncWidget();
+    m_stackedCloudWidget = nullptr;
 
     m_ui->lrcDisplayAllButton->setVisible(false);
     if(m_lrcForInterior->lrcDisplayExpand() && m_funcIndex != LrcWidget)
@@ -892,7 +892,7 @@ void MusicRightAreaWidget::functionParameterInit()
     }
 }
 
-void MusicRightAreaWidget::createkWindow(int type)
+void MusicRightAreaWidget::createkWebWindow(int type)
 {
     QWidget *widget = nullptr;
     if(G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool())
