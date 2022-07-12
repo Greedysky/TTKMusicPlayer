@@ -6,6 +6,12 @@ MusicDownloadSourceRequest::MusicDownloadSourceRequest(QObject *parent)
 
 }
 
+void MusicDownloadSourceRequest::deleteAll()
+{
+    MusicAbstractNetwork::deleteAll();
+    deleteLater();
+}
+
 void MusicDownloadSourceRequest::startToDownload(const QString &url)
 {
     QNetworkRequest request;

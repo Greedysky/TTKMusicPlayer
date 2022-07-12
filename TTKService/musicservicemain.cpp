@@ -24,7 +24,7 @@ void loadAppScaledFactor(int argc, char *argv[])
      const float dpi = platform.logicalDotsPerInch() / 96.0;
      qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
 #  else
-//     qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
+     qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
 #  endif
 #endif
     Q_UNUSED(argc);
@@ -42,6 +42,8 @@ int main(int argc, char *argv[])
         return -1;
     }
 #endif
+//    mallopt(M_MMAP_THRESHOLD, 1024 * 1024);   // 1MB，防止频繁mmap，大于1M，则使用mmap分配内存
+//    mallopt(M_TRIM_THRESHOLD, 2 * 1024 * 1024); // 2MB，防止频繁brk，大于2M，才使用brk归还内存
     //
     QCoreApplication::setOrganizationName(APP_NAME);
     QCoreApplication::setOrganizationDomain(APP_COME_NAME);

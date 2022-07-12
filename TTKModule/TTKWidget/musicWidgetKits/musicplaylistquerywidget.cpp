@@ -99,7 +99,7 @@ void MusicPlaylistQueryItemWidget::downLoadFinished(const QByteArray &bytes)
         return;
     }
 
-    MusicImageRenderer *render = new MusicImageRenderer(this);
+    MusicImageRenderer *render = new MusicImageRenderer(sender());
     connect(render, SIGNAL(renderFinished(QPixmap)), SLOT(renderFinished(QPixmap)));
     render->setInputData(bytes, m_iconLabel->size());
     render->start();

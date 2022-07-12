@@ -35,6 +35,11 @@ public:
     explicit MusicDownloadSourceRequest(QObject *parent = nullptr);
 
     /*!
+     * Release the network object.
+     */
+    virtual void deleteAll();
+
+    /*!
      * Start to download data.
      */
     void startToDownload(const QString &url);
