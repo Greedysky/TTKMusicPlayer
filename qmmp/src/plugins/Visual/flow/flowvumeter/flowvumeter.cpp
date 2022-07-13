@@ -36,7 +36,7 @@ void FlowVUMeter::paintEvent(QPaintEvent *)
         value = std::max(value, m_values[c]);
     }
 
-    const int radius = 130;
+    constexpr int radius = 130;
     const int x = m_pixmap.width() / 2;
     const int y = m_pixmap.height() - 174 / 2;
     const float offset = M_PI * (value / (m_rangeValue * 2.5) - 0.75);

@@ -248,7 +248,7 @@ static int dca_decode_data(decode_info *ddb_state, uint8_t *start, size_t size, 
                     ddb_state->flags |= DCA_ADJUST_LEVEL;
                 }
 
-                const sample_t bias = 384;
+                constexpr sample_t bias = 384;
                 level_t level = (level_t)ddb_state->gain;
                 if(dca_frame(ddb_state->state, ddb_state->buf, &ddb_state->flags, &level, bias))
                 {

@@ -290,7 +290,7 @@ void InfinityWidget::createModule()
                 fin = h;
             }
 
-            const int prop = 249;
+            constexpr int prop = 249;
             const int add1 = i * w * h;
             VCoord c;
 
@@ -361,7 +361,7 @@ void InfinityWidget::displaySpectral(short *left, short *right)
 
     float y1 = (((left[0] + right[0]) >> 9) * effect->spectral_amplitude * h) >> 12;
     float y2 = (((left[0] + right[0]) >> 9) * effect->spectral_amplitude * h) >> 12;
-    const int step = 4;
+    constexpr int step = 4;
 
     if(cosw.i != w || sinw.i != w)
     {
@@ -487,8 +487,8 @@ void InfinityWidget::displayCurve()
     VEffect *effect = &m_currentEffect;
 
     int k = 0;
-    const float v = 80;
-    const float vr = 0.001;
+    constexpr float v = 80;
+    constexpr float vr = 0.001;
     const float amplitude = (float)effect->curve_amplitude / 256;
 
     for(int i = 0; i < 2; ++i)
