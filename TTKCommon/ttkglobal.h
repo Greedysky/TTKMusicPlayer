@@ -104,6 +104,13 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 #endif
 
 //
+#if defined Q_CC_MSVC
+#  if __cplusplus < 201403L
+#    define constexpr const
+#  endif
+#endif
+
+//
 #if !TTK_QT_VERSION_CHECK(5,0,0) && defined(Q_CC_GNU)
 #  if defined(__GXX_EXPERIMENTAL_CXX0X__) || __cplusplus >= 201103L
 #    define Q_COMPILER_DEFAULT_MEMBERS
