@@ -254,7 +254,7 @@ void MusicSongSharingWidget::downLoadFinished(const QString &playUrl, const QStr
 
 void MusicSongSharingWidget::textAreaChanged()
 {
-    const int max = 150;
+    constexpr int max = 150;
     QString text = m_ui->textEdit->toPlainText();
     const int length = text.count();
 

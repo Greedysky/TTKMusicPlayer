@@ -188,8 +188,8 @@ void TTKDumperPrivate::errorHandler(int id)
     sprintf(stamp, "%ld", time(nullptr));
     const TTKString& file_name = (m_name + '_' + m_version).toStdString() + "." + stamp + ".dmp";
 
-    const int size = 512;
-    void*     array[size];
+    constexpr int size = 512;
+    void* array[size];
     const int fd = open(file_name.c_str(), O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH);
     backtrace_symbols_fd(array, backtrace(array, size), fd);
     close(fd);

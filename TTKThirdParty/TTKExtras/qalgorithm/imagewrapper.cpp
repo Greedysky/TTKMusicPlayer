@@ -396,8 +396,8 @@ void WaterWavePrivate::setWaveSourcePower(int radius, int depth)
     const int value = m_sourceRadius * m_sourceRadius;
     const int diameter = (m_sourceRadius << 1) + 1;
     const int rate = m_sourceRadius / value;
+    const int size = diameter * diameter;
 
-    const int size = diameter*diameter;
     m_sourcePower = new int[size]{};
     m_sourcePosition = new int[size]{};
 
@@ -435,7 +435,7 @@ void WaterWavePrivate::setWaveSourcePosition(int x, int y)
 
 void WaterWavePrivate::spreedRipple()
 {
-    const int length = m_width*(m_height -1);
+    const int length = m_width * (m_height - 1);
     for(int i = m_width; i < length; ++i)
     {
         m_buffer2[i] = ((m_buffer1[i - 1] + m_buffer1[i - m_width] + m_buffer1[i + 1] + m_buffer1[i + m_width]) >> 1) - m_buffer2[i];

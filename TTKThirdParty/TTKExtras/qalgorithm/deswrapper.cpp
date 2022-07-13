@@ -3,7 +3,7 @@
 
 namespace QAlgorithm
 {
-static const quint64 ARRAYMASK[] = {
+static constexpr quint64 ARRAYMASK[] = {
     0x0000000000000001l, 0x0000000000000002l, 0x0000000000000004l, 0x0000000000000008l,
     0x0000000000000010l, 0x0000000000000020l, 0x0000000000000040l, 0x0000000000000080l,
     0x0000000000000100l, 0x0000000000000200l, 0x0000000000000400l, 0x0000000000000800l,
@@ -22,7 +22,7 @@ static const quint64 ARRAYMASK[] = {
     0x1000000000000000l, 0x2000000000000000l, 0x4000000000000000l, 0x8000000000000000l
 };
 
-static const int ARRAYIP[] = {
+static constexpr int ARRAYIP[] = {
     57, 49, 41, 33, 25, 17,  9, 1,
     59, 51, 43, 35, 27, 19, 11, 3,
     61, 53, 45, 37, 29, 21, 13, 5,
@@ -33,7 +33,7 @@ static const int ARRAYIP[] = {
     62, 54, 46, 38, 30, 22, 14, 6
 };
 
-static const int ARRAYE[] = {
+static constexpr int ARRAYE[] = {
     31, 0,   1,  2,  3,  4, -1, -1,
     3,  4,   5,  6,  7,  8, -1, -1,
     7,  8,   9, 10, 11, 12, -1, -1,
@@ -44,7 +44,7 @@ static const int ARRAYE[] = {
     27, 28, 29, 30, 31, 30, -1, -1
 };
 
-static const char MATRIXNSBOX[8][64] = {
+static constexpr char MATRIXNSBOX[8][64] = {
     { 14,  4,  3, 15,  2, 13, 5,  3,
       13, 14,  6,  9, 11,  2, 0,  5,
        4,  1, 10, 12, 15,  6, 9, 10,
@@ -119,14 +119,14 @@ static const char MATRIXNSBOX[8][64] = {
     }
 };
 
-static const int ARRAYP[] = {
+static constexpr int ARRAYP[] = {
     15,  6, 19, 20, 28, 11, 27, 16,
      0, 14, 22, 25,  4, 17, 30,  9,
      1,  7, 23, 13, 31, 26,  2,  8,
     18, 12, 29,  5, 21, 10,  3, 24
 };
 
-static const int ARRAYIP_1[] = {
+static constexpr int ARRAYIP_1[] = {
     39, 7, 47, 15, 55, 23, 63, 31,
     38, 6, 46, 14, 54, 22, 62, 30,
     37, 5, 45, 13, 53, 21, 61, 29,
@@ -137,7 +137,7 @@ static const int ARRAYIP_1[] = {
     32, 0, 40,  8, 48, 16, 56, 24
 };
 
-static const int ARRAYPC_1[] = {
+static constexpr int ARRAYPC_1[] = {
     56, 48, 40, 32, 24, 16,  8,  0,
     57, 49, 41, 33, 25, 17,  9,  1,
     58, 50, 42, 34, 26, 18, 10,  2,
@@ -147,7 +147,7 @@ static const int ARRAYPC_1[] = {
     28, 20, 12,  4, 27, 19, 11,  3
 };
 
-static const int ARRAYPC_2[] = {
+static constexpr int ARRAYPC_2[] = {
     13, 16, 10, 23,  0,  4, -1, -1,
      2, 27, 14,  5, 20,  9, -1, -1,
     22, 18, 11,  3, 25,  7, -1, -1,
@@ -158,12 +158,12 @@ static const int ARRAYPC_2[] = {
     45, 41, 49, 35, 28, 31, -1, -1
 };
 
-static const int ARRAYLS[] = {
+static constexpr int ARRAYLS[] = {
     1, 1, 2, 2, 2, 2, 2, 2,
     1, 2, 2, 2, 2, 2, 2, 1
 };
 
-static const quint64 ARRAYLSMASK[] = {
+static constexpr quint64 ARRAYLSMASK[] = {
     0x0000000000000000l, 0x0000000000100001l, 0x0000000000300003l
 };
 

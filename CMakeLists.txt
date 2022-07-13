@@ -1,8 +1,5 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-add_definitions(-DTTK_LIBRARY)
-add_definitions(-DQMMP_LIBRARY)
-
 set(TTK_MAJOR_VERSION "2.15.11")
 set(TTK_VERSION ${TTK_MAJOR_VERSION}.0)
 
@@ -22,6 +19,9 @@ if(TTK_BUILD_SHARED)
 else()
   message(STATUS "Message TTK build by static link")
 endif()
+
+add_definitions(-DTTK_LIBRARY)
+add_definitions(-DQMMP_LIBRARY)
 
 set(MUSIC_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 set(MUSIC_COMMON_DIR "${MUSIC_DIR}/TTKCommon")

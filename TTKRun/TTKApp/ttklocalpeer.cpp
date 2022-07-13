@@ -165,7 +165,7 @@ bool TTKLocalPeer::sendMessage(const QString &message, int timeout) const
             break;
         }
 
-        const int ms = 250;
+        constexpr int ms = 250;
 #if defined(Q_OS_WIN)
         Sleep(DWORD(ms));
 #else

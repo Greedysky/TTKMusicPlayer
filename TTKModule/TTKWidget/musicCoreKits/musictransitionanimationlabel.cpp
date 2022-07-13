@@ -147,7 +147,7 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                 QPixmap pix(m_previousPixmap);
                 QPainter paint(&pix);
                 paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
-                const int number = 10;
+                constexpr int number = 10;
                 const int perHeight = height() / number;
                 for(int i = 0; i < number; ++i)
                 {

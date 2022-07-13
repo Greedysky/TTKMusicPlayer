@@ -41,7 +41,7 @@ QString makeSocketGetReply(const QString &ip, const QString &port, const QString
 {
     QTcpSocket sock;
     sock.connectToHost(ip, port.toUShort());
-    const int timeout = 5000 / 2;
+    constexpr int timeout = 5000 / 2;
 
     if(sock.waitForConnected(timeout))
     {
