@@ -45,11 +45,9 @@ namespace Qt
 #endif
 
 #ifndef Q_CC_MSVC
-#define QtFontInit(...) \
-  TTK_PP_OVERLOAD(QtFontInit_, __VA_ARGS__)(__VA_ARGS__)
+#  define QtFontInit(...) TTK_PP_OVERLOAD(QtFontInit_, __VA_ARGS__)(__VA_ARGS__)
 #else
-#define QtFontInit(...) \
-  TTK_PP_CAT(TTK_PP_OVERLOAD(QtFontInit_, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
+#  define QtFontInit(...) TTK_PP_CAT(TTK_PP_OVERLOAD(QtFontInit_, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
 #endif
 
 /// Image byte count
@@ -83,6 +81,13 @@ namespace Qt
 #  define QtItemBackgroundColor(p) p->background().color()
 #else
 #  define QtItemBackgroundColor(p) p->backgroundColor()
+#endif
+
+/// Item text alignment
+#if TTK_QT_VERSION_CHECK(6,4,0)
+#  define QtItemSetTextAlignment(p, a) p->setTextAlignment(Qt::Alignment(a));
+#else
+#  define QtItemSetTextAlignment(p, a) p->setTextAlignment(a);
 #endif
 
 /// Painter

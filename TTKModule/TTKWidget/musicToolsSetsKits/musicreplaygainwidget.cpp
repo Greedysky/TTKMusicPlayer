@@ -151,27 +151,27 @@ void MusicReplayGainWidget::createItemFinished(const QString &track, const QStri
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setToolTip(m_paths[m_currentIndex]);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 15));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     m_ui->tableWidget->setItem(row, 0, item);
 
                       item = new QTableWidgetItem;
     item->setText(QString::number(GAIN_DEFAULT - track.toDouble()));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     m_ui->tableWidget->setItem(row, 1, item);
 
                       item = new QTableWidgetItem;
     item->setText(QString::number(m_ui->volumeLineEdit->text().toDouble() - GAIN_DEFAULT + track.toDouble()));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     m_ui->tableWidget->setItem(row, 2, item);
 
                       item = new QTableWidgetItem;
     item->setText(QString::number(GAIN_DEFAULT - album.toDouble()));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     m_ui->tableWidget->setItem(row, 3, item);
 
                       item = new QTableWidgetItem;
     item->setText(QString::number(m_ui->volumeLineEdit->text().toDouble() - GAIN_DEFAULT + album.toDouble()));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     m_ui->tableWidget->setItem(row, 4, item);
 }
 

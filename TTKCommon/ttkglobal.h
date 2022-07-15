@@ -56,12 +56,10 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 #  endif
 #endif
 
-//
 #ifdef QT_DEBUG
 #  define TTK_DEBUG
 #endif
 
-//
 #if __cplusplus >= 201103L
 #  define TTK_CAST
 #endif
@@ -103,14 +101,19 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 #  define TTKVoid_cast(x) (x)
 #endif
 
-//
-#if defined Q_CC_MSVC
-#  if __cplusplus < 201403L
-#    define constexpr const
-#  endif
+#if defined(Q_CC_MSVC) && _MSC_VER <= 1800
+#  define constexpr const
 #endif
 
-//
+// deprecated function
+#ifdef Q_CC_MSVC
+#  define TTK_DEPRECATED          __declspec(deprecated)
+#  define TTK_DEPRECATED_X(text)  __declspec(deprecated(text))
+#else
+#  define TTK_DEPRECATED          __attribute__((__deprecated__))
+#  define TTK_DEPRECATED_X(text)  __attribute__((__deprecated__(text)))
+#endif
+
 #if !TTK_QT_VERSION_CHECK(5,0,0) && defined(Q_CC_GNU)
 #  if defined(__GXX_EXPERIMENTAL_CXX0X__) || __cplusplus >= 201103L
 #    define Q_COMPILER_DEFAULT_MEMBERS
@@ -124,7 +127,7 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 #ifdef Q_COMPILER_NULLPTR
 #  define TTK_NULLPTR  nullptr
 #else
-# define TTK_NULLPTR  NULL
+#  define TTK_NULLPTR  NULL
 #endif
 
 #ifdef Q_COMPILER_DEFAULT_MEMBERS
@@ -134,39 +137,44 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 #endif
 
 #ifdef Q_COMPILER_DELETE_MEMBERS
-# define TTK_DELETE = delete
+#  define TTK_DELETE = delete
 #else
-# define TTK_DELETE
+#  define TTK_DELETE
 #endif
 
 #ifdef Q_COMPILER_EXPLICIT_OVERRIDES
-# define TTK_OVERRIDE override
-# define TTK_FINAL final
+#  define TTK_OVERRIDE override
+#  define TTK_FINAL final
 #else
-# ifndef TTK_OVERRIDE
-#  define TTK_OVERRIDE
-# endif
-# ifndef TTK_FINAL
-#  define TTK_FINAL
-# endif
+#  ifndef TTK_OVERRIDE
+#    define TTK_OVERRIDE
+#  endif
+#  ifndef TTK_FINAL
+#    define TTK_FINAL
+#  endif
 #endif
 
 // disable copy
 #define TTK_DISABLE_COPY(Class) \
 private: \
-    Class(const Class &) TTK_DELETE; \
-    Class &operator=(const Class &) TTK_DELETE;
+  Class(const Class &) TTK_DELETE; \
+  Class &operator=(const Class &) TTK_DELETE;
+
+// disable init and copy
+#define TTK_DISABLE_INIT_COPY(Class) \
+  BZROBOT_DISABLE_COPY(Class) \
+  Class() TTK_DELETE;
 
 // make class name
 #define TTK_DECLARE_MODULE(Class) \
 public: \
-    inline static QString className() \
-    { \
-        return #Class; \
-    }
+  inline static QString className() \
+  { \
+    return #Class; \
+  }
 
 // marco str cat
-#ifndef _MSC_VER
+#ifndef Q_CC_MSVC
 // gcc version less than 3.4.0
 #  if __GNUC__ <= 3 && __GNUC_MINOR__ <= 4
 #    define TTK_STRCAT(a, b)    a##b

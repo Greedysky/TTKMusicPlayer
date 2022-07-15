@@ -32,30 +32,30 @@ void MusicLrcDownloadBatchTableWidget::createAllItems(const MusicSongList &items
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(song.path());
         item->setText(QString::number(i + 1));
-        item->setTextAlignment(Qt::AlignCenter);
+        QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
         item->setToolTip(song.path());
         item->setText(MusicUtils::Widget::elidedText(font(), song.artistBack(), Qt::ElideRight, headerview->sectionSize(1) - 10));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                           item = new QTableWidgetItem;
         item->setToolTip(song.path());
         item->setText(MusicUtils::Widget::elidedText(font(), song.artistFront(), Qt::ElideRight, headerview->sectionSize(2) - 10));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
                           item = new QTableWidgetItem;
         item->setToolTip(song.path());
         item->setText(MusicUtils::Widget::elidedText(font(), song.name(), Qt::ElideRight, headerview->sectionSize(3) - 10));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 3, item);
 
                           item = new QTableWidgetItem;
         item->setToolTip(song.path());
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
     }
 }

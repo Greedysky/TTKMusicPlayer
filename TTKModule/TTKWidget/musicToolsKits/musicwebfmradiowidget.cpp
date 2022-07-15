@@ -136,7 +136,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
         item->setFont(f);
         item->setText(channel.m_name);
         QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(index, 2, item);
 
                           item = new QTableWidgetItem;

@@ -31,13 +31,13 @@ void MusicConnectTransferTableWidget::createAllItems(const MusicSongList &songs)
                           item = new QTableWidgetItem;
         item->setToolTip(song.path());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
         item->setToolTip(song.playTime());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
     }
 }
@@ -98,6 +98,6 @@ void MusicConnectTransferCompleteTableWidget::createItem(const QString &name)
     item = new QTableWidgetItem;
     item->setToolTip(name);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 1, item);
 }

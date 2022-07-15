@@ -856,7 +856,7 @@ void MusicLrcPosterTableWidget::createAllItems(const QStringList &lrcs)
 
                           item = new QTableWidgetItem;
         item->setText(lrcs[i]);
-        item->setTextAlignment(Qt::AlignCenter);
+        QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 1, item);
     }
 }

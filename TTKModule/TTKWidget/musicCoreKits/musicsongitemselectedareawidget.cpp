@@ -46,7 +46,7 @@ void MusicSongItemSelectedTableWidget::createAllItems(MusicSongItemList *items)
                           item = new QTableWidgetItem;
         item->setToolTip(song.m_itemName);
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 30));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
     }
 }

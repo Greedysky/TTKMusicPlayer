@@ -38,7 +38,7 @@ void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &reco
     item->setToolTip(record.name());
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
     QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 1, item);
 
                       item = new QTableWidgetItem;
@@ -47,7 +47,7 @@ void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &reco
 
                       item = new QTableWidgetItem(record.sizeStr());
     QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
-    item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    QtItemSetTextAlignment(item, Qt::AlignRight| Qt::AlignVCenter);
     item->setData(MUSIC_TIME_ROLE, record.addTimeStr());
     setItem(index, 3, item);
 

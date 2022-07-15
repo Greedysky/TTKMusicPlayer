@@ -43,17 +43,17 @@ void MusicLocalSongsTableWidget::addItems(const QFileInfoList &path)
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(path[i].fileName());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 20));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 0, item);
 
                          item = new QTableWidgetItem;
         item->setToolTip(MusicUtils::Number::sizeByte2Label(path[i].size()));
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
-        item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                          item = new QTableWidgetItem(path[i].lastModified().date().toString(Qt::ISODate));
-        item->setTextAlignment(Qt::AlignCenter);
+        QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 2, item);
 
                          item = new QTableWidgetItem;
@@ -135,19 +135,20 @@ void MusicLocalSongsInfoTableWidget::addItems(const MusicInfoData &data)
         {
             pix.load(":/image/lb_default_art");
         }
+
         item->setIcon(QIcon(pix));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 0, item);
 
                          item = new QTableWidgetItem;
         item->setToolTip(it.key());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                          item = new QTableWidgetItem;
         item->setText(tr("All number %1").arg(it.value().count()));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         QVariant v;
         v.setValue(it.value());
         item->setData(MUSIC_INFO_ROLE, v);

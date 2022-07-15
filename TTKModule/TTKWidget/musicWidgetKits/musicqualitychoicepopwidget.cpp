@@ -38,22 +38,22 @@ void MusicQualityChoiceTableWidget::createItems()
 
     QTableWidgetItem *item = new QTableWidgetItem(tr("SD"));
     QtItemSetForegroundColor(item, PREVIOUS_COLOR);
-    item->setTextAlignment(Qt::AlignCenter);
+    QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(0, 0, item);
 
                       item = new QTableWidgetItem(tr("HQ"));
     QtItemSetForegroundColor(item, PREVIOUS_COLOR);
-    item->setTextAlignment(Qt::AlignCenter);
+    QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(1, 0, item);
 
                       item = new QTableWidgetItem(tr("SQ"));
     QtItemSetForegroundColor(item, PREVIOUS_COLOR);
-    item->setTextAlignment(Qt::AlignCenter);
+    QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(2, 0, item);
 
                       item = new QTableWidgetItem(tr("CD"));
     QtItemSetForegroundColor(item, PREVIOUS_COLOR);
-    item->setTextAlignment(Qt::AlignCenter);
+    QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(3, 0, item);
 
                       item = new QTableWidgetItem;

@@ -97,22 +97,22 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem
     item->setToolTip(data.m_name);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
     QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 2, item);
 
                       item = new QTableWidgetItem(data.m_tags);
     QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
-    item->setTextAlignment(Qt::AlignCenter);
+    QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(index, 3, item);
 
                       item = new QTableWidgetItem(tr("Played %1").arg(data.m_playCount));
     QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 4, item);
 
                       item = new QTableWidgetItem(data.m_updateTime);
     QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
-    item->setTextAlignment(Qt::AlignCenter);
+    QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(index, 5, item);
 
     if(!data.m_coverUrl.isEmpty() && data.m_coverUrl != TTK_NULL_STR)

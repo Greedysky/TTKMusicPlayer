@@ -38,13 +38,13 @@ void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongCheckTo
                           item = new QTableWidgetItem;
         item->setToolTip(song.m_locaName);
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 10));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
         item->setToolTip(song.m_recommendName);
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 10));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
@@ -138,22 +138,22 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongChec
                           item = new QTableWidgetItem;
         item->setToolTip(song.m_song.name());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 45));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
         item->setText(song.m_song.playTime());
-        item->setTextAlignment(Qt::AlignCenter);
+        QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
         item->setText(song.m_song.sizeStr());
-        item->setTextAlignment(Qt::AlignCenter);
+        QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 3, item);
 
                 item = new QTableWidgetItem;
         item->setText(song.m_bitrate);
-        item->setTextAlignment(Qt::AlignCenter);
+        QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 4, item);
 
                 item = new QTableWidgetItem;
@@ -270,22 +270,22 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
                           item = new QTableWidgetItem;
         item->setToolTip(song.m_song.name());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 10));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
         item->setText(song.m_song.playTime());
-        item->setTextAlignment(Qt::AlignCenter);
+        QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
         item->setText(song.m_song.sizeStr());
-        item->setTextAlignment(Qt::AlignCenter);
+        QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 3, item);
 
                 item = new QTableWidgetItem;
         item->setText(song.m_bitrate);
-        item->setTextAlignment(Qt::AlignCenter);
+        QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 4, item);
 
                 item = new QTableWidgetItem;
@@ -293,7 +293,7 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
         QString bitrate;
         MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(song.m_bitrate), bitrate, color);
         item->setText(bitrate);
-        item->setTextAlignment(Qt::AlignCenter);
+        QtItemSetTextAlignment(item, Qt::AlignCenter);
         QtItemSetForegroundColor(item, color);
         setItem(i, 5, item);
 
