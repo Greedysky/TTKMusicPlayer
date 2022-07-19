@@ -81,6 +81,37 @@ void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mo
 #endif
 }
 
+qint64 queryFileSizeByUrl(const QString &url)
+{
+    qint64 size = -1;
+
+    QNetworkRequest request;
+    request.setUrl(url);
+    MusicObject::setSslConfiguration(&request);
+
+    MusicSemaphoreLoop loop;
+    QNetworkAccessManager manager;
+    QNetworkReply *reply = manager.head(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QtNetworkErrorNoneConnect(reply, &loop, quit);
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return size;
+    }
+
+    size = reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
+    const QVariant &redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+    if(redirection.isValid())
+    {
+        size = queryFileSizeByUrl(redirection.toString());
+    }
+
+    reply->deleteLater();
+    return size;
+}
+
 QByteArray syncNetworkQueryForGet(QNetworkRequest *request)
 {
     MusicSemaphoreLoop loop;

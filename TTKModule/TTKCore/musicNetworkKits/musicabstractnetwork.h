@@ -108,6 +108,10 @@ namespace MusicObject
      */
     TTK_MODULE_EXPORT void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode = QSslSocket::VerifyNone);
     /*!
+     * Get download file size by url.
+     */
+    TTK_MODULE_EXPORT qint64 queryFileSizeByUrl(const QString &url);
+    /*!
      * Sync network query for get.
      */
     TTK_MODULE_EXPORT QByteArray syncNetworkQueryForGet(QNetworkRequest *request);

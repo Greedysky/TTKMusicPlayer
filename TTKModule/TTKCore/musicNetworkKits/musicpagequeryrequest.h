@@ -53,7 +53,9 @@ public:
     inline int pageIndex() const { return m_pageIndex; }
 
 protected:
-    int m_pageSize, m_totalSize, m_pageIndex;
+    int m_pageSize;
+    int m_totalSize;
+    int m_pageIndex;
 
 };
 

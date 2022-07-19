@@ -75,8 +75,8 @@ void MusicDownloadDataRequest::downLoadFinished()
     }
     else if(redirection.isValid())
     {
+        MusicAbstractNetwork::deleteAll();
         m_redirection = true;
-        m_reply->deleteLater();
         m_file->open(QIODevice::WriteOnly);
         m_file->resize(0);
         startRequest(redirection.toString());

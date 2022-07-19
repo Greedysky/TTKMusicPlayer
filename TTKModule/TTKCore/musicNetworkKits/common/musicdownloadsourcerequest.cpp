@@ -32,7 +32,7 @@ void MusicDownloadSourceRequest::downLoadFinished()
         if(redirection.isValid())
         {
             const QString &url = redirection.toString();
-            deleteAll();
+            MusicAbstractNetwork::deleteAll();
             startToDownload(url);
         }
         else

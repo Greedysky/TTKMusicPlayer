@@ -179,12 +179,6 @@ public:
      */
     QString mapQueryServerString() const;
 
-public:
-    /*!
-     * Get download file size.
-     */
-    static qint64 fileSizeByUrl(const QString &url);
-
 Q_SIGNALS:
     /*!
      * Clear all items before the new query start.

@@ -37,7 +37,7 @@ public:
     /*!
      * Release the network object.
      */
-    virtual void deleteAll();
+    virtual void deleteAll() override final;
 
     /*!
      * Start to download data.

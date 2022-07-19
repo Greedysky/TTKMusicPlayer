@@ -31,37 +31,6 @@ QString MusicAbstractQueryRequest::mapQueryServerString() const
         return QString();
 }
 
-qint64 MusicAbstractQueryRequest::fileSizeByUrl(const QString &url)
-{
-    qint64 size = -1;
-
-    QNetworkRequest request;
-    request.setUrl(url);
-    MusicObject::setSslConfiguration(&request);
-
-    MusicSemaphoreLoop loop;
-    QNetworkAccessManager manager;
-    QNetworkReply *reply = manager.head(request);
-    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    QtNetworkErrorNoneConnect(reply, &loop, quit);
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
-    {
-        return size;
-    }
-
-    size = reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
-    const QVariant &redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
-    if(redirection.isValid())
-    {
-        size = fileSizeByUrl(redirection.toString());
-    }
-
-    reply->deleteLater();
-    return size;
-}
-
 void MusicAbstractQueryRequest::downLoadFinished()
 {
     Q_EMIT clearAllItems();
@@ -74,7 +43,7 @@ bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongProperty *
     TTK_NETWORK_QUERY_CHECK(false);
     if(prop->m_size.isEmpty() || prop->m_size == TTK_DEFAULT_STR)
     {
-        prop->m_size = MusicUtils::Number::sizeByte2Label(fileSizeByUrl(prop->m_url));
+        prop->m_size = MusicUtils::Number::sizeByte2Label(MusicObject::queryFileSizeByUrl(prop->m_url));
     }
     TTK_NETWORK_QUERY_CHECK(false);
     return true;

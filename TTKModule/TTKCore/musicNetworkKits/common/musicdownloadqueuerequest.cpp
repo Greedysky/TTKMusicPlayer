@@ -119,9 +119,8 @@ void MusicDownloadQueueRequest::downLoadFinished()
     MusicAbstractDownLoadRequest::downLoadFinished();
     m_file->flush();
     m_file->close();
-    m_reply->deleteLater();
-    m_reply = nullptr;
     m_isDownload = false;
+    MusicAbstractNetwork::deleteAll();
     Q_EMIT downLoadDataChanged(m_imageQueue.takeFirst().m_savePath);
 
     startOrderImageQueue();
@@ -152,8 +151,7 @@ void MusicDownloadQueueRequest::handleError(QNetworkReply::NetworkError code)
     m_file->flush();
     if(!m_isAbort)
     {
-        m_reply->deleteLater();
-        m_reply = nullptr;
+        MusicAbstractNetwork::deleteAll();
     }
 
     startToDownload();
