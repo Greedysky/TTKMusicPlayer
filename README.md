@@ -114,5 +114,6 @@ The TTKMusicplayer plugin for run
  * organya
  * psf
  * s98
+ * sunvox
  * v2m
  * xsf

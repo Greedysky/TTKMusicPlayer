@@ -3,6 +3,25 @@
 #include <QDir>
 #include <qmmp/qmmp.h>
 
+static QFileInfoList fileListByPath(const QString &dpath, const QStringList &filter)
+{
+    QDir dir(dpath);
+    if(!dir.exists())
+    {
+        return QFileInfoList();
+    }
+
+    QFileInfoList fileList = dir.entryInfoList(filter, QDir::Files | QDir::Hidden);
+    const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+    for(const QFileInfo &fin : folderList)
+    {
+        fileList.append(fileListByPath(fin.absoluteFilePath(), filter));
+    }
+
+    return fileList;
+}
+
+
 ProjectMWidget::ProjectMWidget(QWidget *parent)
 #ifdef QT_OPENGL_WIDGET
     : QOpenGLWidget(parent)
@@ -66,17 +85,10 @@ void ProjectMWidget::initializeGL()
         settings.softCutRatingsEnabled = false;
         m_projectM = new projectM(settings, projectM::FLAG_DISABLE_PLAYLIST_LOAD);
 
-        QDir dir(QString::fromLocal8Bit(m_projectM->settings().presetURL.c_str()));
-        dir.setFilter(QDir::Files);
-        QStringList filters;
-        filters << "*.prjm" << "*.milk";
-
-        const QFileInfoList &l = dir.entryInfoList(filters);
-        RatingList list;
-        list.push_back(3);
-        list.push_back(3);
-
-        for(const QFileInfo &fin : l)
+        const RatingList list = {3, 3};
+        const QString &path = QString::fromLocal8Bit(settings.presetURL.c_str());
+        const QFileInfoList folderList(fileListByPath(path, QStringList() << "*.prjm" << "*.milk"));
+        for(const QFileInfo &fin : folderList)
         {
             m_projectM->addPresetURL(fin.absoluteFilePath().toStdString(), fin.fileName().toStdString(), list);
         }

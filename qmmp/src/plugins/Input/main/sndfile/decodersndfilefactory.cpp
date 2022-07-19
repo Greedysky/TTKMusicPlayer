@@ -28,7 +28,7 @@ bool DecoderSndFileFactory::canDecode(QIODevice *input) const
         else if(!input->isSequential())
         {
             input->seek(12);
-            //skip "JUNK" and "bext" chunks
+            //skip "JUNK", "bext" and "fact" chunks
             while(!input->atEnd())
             {
                 if(input->peek(buf, sizeof(buf)) != sizeof(buf))
@@ -39,7 +39,7 @@ bool DecoderSndFileFactory::canDecode(QIODevice *input) const
                     subformat = (quint16(buf[9]) << 8) + buf[8];
                     break;
                 }
-                else if(!memcmp(buf, "JUNK", 4) || !memcmp(buf, "bext", 4))
+                else if(!memcmp(buf, "JUNK", 4) || !memcmp(buf, "bext", 4) || !memcmp(buf, "fact", 4))
                 {
                     size_t size = buf[4] + (buf[5] << 8) + (buf[6] << 16) + (buf[7] << 24);
                     if(!input->seek(input->pos() + size + 8))
