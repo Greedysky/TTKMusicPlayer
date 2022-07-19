@@ -4,6 +4,7 @@
 #include "musicplatformmanager.h"
 #include "ttkdumper.h"
 #ifdef Q_OS_UNIX
+#  include <malloc.h>
 #  include "musicmprisplayer.h"
 #endif
 
@@ -34,7 +35,7 @@ void loadAppScaledFactor(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
     loadAppScaledFactor(argc, argv);
-    //
+
     QApplication app(argc, argv);
 #if !defined TTK_DEBUG && !defined Q_OS_UNIX
     if(argc <= 1 || QString(argv[1]) != APP_NAME)
@@ -42,9 +43,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 #endif
-//    mallopt(M_MMAP_THRESHOLD, 1024 * 1024);   // 1MB，防止频繁mmap，大于1M，则使用mmap分配内存
-//    mallopt(M_TRIM_THRESHOLD, 2 * 1024 * 1024); // 2MB，防止频繁brk，大于2M，才使用brk归还内存
-    //
+
     QCoreApplication::setOrganizationName(APP_NAME);
     QCoreApplication::setOrganizationDomain(APP_COME_NAME);
     QCoreApplication::setApplicationName(APP_NAME);
@@ -90,8 +89,13 @@ int main(int argc, char *argv[])
         }
     }
 #elif defined Q_OS_UNIX
+    // unix mpris module
     MusicMPRISPlayer mpris;
     mpris.run();
+#endif
+#ifdef Q_OS_UNIX
+    mallopt(M_MMAP_THRESHOLD, 1024 * 1024);   // 1MB mmap
+    mallopt(M_TRIM_THRESHOLD, 2 * 1024 * 1024); // 2MB brk
 #endif
     return app.exec();
 }
