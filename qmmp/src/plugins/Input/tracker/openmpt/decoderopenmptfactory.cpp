@@ -20,8 +20,9 @@ DecoderProperties DecoderOpenMPTFactory::properties() const
     properties.shortName = "openmpt";
     properties.filters << "*.669";
     properties.filters << "*.ams" << "*.amf";
+    properties.filters << "*.c67";
     properties.filters << "*.dsm" << "*.dmf" << "*.dbm" << "*.digi" << "*.dtm";
-    properties.filters << "*.far";
+    properties.filters << "*.far" << "*.fmt";
     properties.filters << "*.gdm";
     properties.filters << "*.it" << "*.ice" << "*.imf";
     properties.filters << "*.j2b";
