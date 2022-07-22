@@ -19,8 +19,11 @@
 #ifndef PROJECTMPLUGIN_H
 #define PROJECTMPLUGIN_H
 
+#include <QSplitter>
 #include <qmmp/visual.h>
 
+class QMenu;
+class QListWidget;
 class ProjectMWidget;
 
 /*!
@@ -38,6 +41,9 @@ private:
 
     virtual void process(float *left, float *right) override final;
 
+    QMenu *m_menu;
+    QSplitter *m_splitter;
+    QListWidget *m_itemWidget;
     ProjectMWidget *m_projectMWidget;
 
 };

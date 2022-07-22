@@ -22,12 +22,33 @@ static QFileInfoList fileListByPath(const QString &dpath, const QStringList &fil
 }
 
 
-ProjectMWidget::ProjectMWidget(QWidget *parent)
+ProjectMWrapper::ProjectMWrapper(const projectM::Settings &settings, int flags, QObject *parent)
+    : QObject(parent), projectM(settings, flags)
+{
+}
+
+void ProjectMWrapper::setCurrentPreset(int index)
+{
+    if(index >= 0)
+    {
+        projectM::selectPreset(index);
+    }
+}
+
+void ProjectMWrapper::presetSwitchedEvent(bool isHardCut, unsigned int index) const
+{
+    Q_UNUSED(isHardCut);
+    emit currentPresetChanged(index);
+}
+
+
+ProjectMWidget::ProjectMWidget(QListWidget *widget, QWidget *parent)
 #ifdef QT_OPENGL_WIDGET
     : QOpenGLWidget(parent)
 #else
     : QGLWidget(parent)
 #endif
+    , m_itemWidget(widget)
 {
     setMinimumSize(580, 320);
 }
@@ -83,7 +104,7 @@ void ProjectMWidget::initializeGL()
         settings.easterEgg = 1.0;
         settings.shuffleEnabled = false;
         settings.softCutRatingsEnabled = false;
-        m_projectM = new projectM(settings, projectM::FLAG_DISABLE_PLAYLIST_LOAD);
+        m_projectM = new ProjectMWrapper(settings, projectM::FLAG_DISABLE_PLAYLIST_LOAD);
 
         const RatingList list = {3, 3};
         const QString &path = QString::fromLocal8Bit(settings.presetURL.c_str());
@@ -91,8 +112,12 @@ void ProjectMWidget::initializeGL()
         for(const QFileInfo &fin : folderList)
         {
             m_projectM->addPresetURL(fin.absoluteFilePath().toStdString(), fin.fileName().toStdString(), list);
+            m_itemWidget->addItem(fin.fileName());
+            m_itemWidget->setCurrentRow(0, QItemSelectionModel::Select);
         }
 
+        connect(m_itemWidget, SIGNAL(currentRowChanged(int)), m_projectM, SLOT(setCurrentPreset(int)));
+        connect(m_projectM, SIGNAL(currentPresetChanged(int)), SLOT(setCurrentRow(int)));
         randomPreset();
     }
 }
@@ -127,4 +152,14 @@ void ProjectMWidget::previousPreset()
 void ProjectMWidget::randomPreset()
 {
     m_projectM->key_handler(PROJECTM_KEYDOWN, PROJECTM_K_r, PROJECTM_KMOD_LSHIFT);
+}
+
+void ProjectMWidget::lockPreset(bool lock)
+{
+    m_projectM->setPresetLock(lock);
+}
+
+void ProjectMWidget::setCurrentRow(int row)
+{
+    m_itemWidget->setCurrentRow(row);
 }

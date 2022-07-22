@@ -20,6 +20,7 @@
 #define PROJECTMWIDGET_H
 
 #include <QGLWidget>
+#include <QListWidget>
 #if QT_VERSION >= 0x050400
 #  ifdef Q_OS_UNIX
 #    include <QOpenGLWidget>
@@ -27,6 +28,24 @@
 #  endif
 #endif
 #include <libprojectM/projectM.hpp>
+
+class ProjectMWrapper : public QObject, public projectM
+{
+    Q_OBJECT
+public:
+    explicit ProjectMWrapper(const Settings &settings, int flags, QObject *parent = nullptr);
+
+signals:
+    void currentPresetChanged(int index) const;
+
+public slots:
+    void setCurrentPreset(int index);
+
+private:
+    virtual void presetSwitchedEvent(bool isHardCut, unsigned int index) const override final;
+
+};
+
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -39,7 +58,7 @@ class ProjectMWidget : public QGLWidget
 {
     Q_OBJECT
 public:
-    explicit ProjectMWidget(QWidget *parent = nullptr);
+    explicit ProjectMWidget(QListWidget *widget, QWidget *parent = nullptr);
     virtual ~ProjectMWidget();
 
     projectM *projectMInstance();
@@ -53,9 +72,12 @@ public slots:
     void nextPreset();
     void previousPreset();
     void randomPreset();
+    void lockPreset(bool lock);
+    void setCurrentRow(int row);
 
 private:
-    projectM *m_projectM = nullptr;
+    QListWidget *m_itemWidget;
+    ProjectMWrapper *m_projectM = nullptr;
 
 };
 
