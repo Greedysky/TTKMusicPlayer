@@ -68,9 +68,7 @@ void MusicSpectrumLayoutWidget::labelClicked(int index)
     }
 
     const QStringList &types = spectrumTypeList();
-    bool state = m_items[index]->isChecked();
-
-    state = !state;
+    bool state = !m_items[index]->isChecked();
     m_items[index]->setCheck(state);
 
     Q_EMIT stateChanged(state, types[index]);

@@ -1,5 +1,6 @@
-v2.15.12.0 Final 2022.0X.XX
+v2.15.12.0 Final 2022.08.XX
 支持SunVox解码器。
+支持ProjectM自选频谱。
 修复一些内存泄漏问题。
 优化SNDFILE解码器。
 优化其他一些细节。
