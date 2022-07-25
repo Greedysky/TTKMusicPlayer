@@ -28,6 +28,7 @@ extern "C" {
 #include <libavutil/dict.h>
 }
 
+#include <QHash>
 #include <qmmp/decoder.h>
 
 #define PROBE_BUFFER_SIZE 8192
@@ -69,6 +70,9 @@ private:
     int m_channels = 0;
     bool m_eof = false;
 
+#if LIBAVUTIL_VERSION_INT >= AV_VERSION_INT(57, 28, 100) //ffmpeg-5.1
+    static const QHash<AVChannel, Qmmp::ChannelPosition> m_ff_channels;
+#endif
 };
 
 #endif

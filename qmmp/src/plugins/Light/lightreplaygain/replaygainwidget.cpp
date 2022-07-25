@@ -412,7 +412,7 @@ void ReplayGainWidget::writeButtonClicked()
             TagLib::MPEG::File file(qPrintable(item->url));
             writeAPETag(file.APETag(true), item);
             writeID3v2Tag(file.ID3v2Tag(true), item);
-#if ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION <= 11))
+#if TAGLIB_MAJOR_VERSION == 1 && TAGLIB_MINOR_VERSION <= 11
             file.save(TagLib::MPEG::File::APE | TagLib::MPEG::File::ID3v2, false, 3);
 #else
             file.save(TagLib::MPEG::File::APE | TagLib::MPEG::File::ID3v2, TagLib::File::StripNone, TagLib::ID3v2::Version::v3);

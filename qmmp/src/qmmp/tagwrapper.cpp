@@ -123,7 +123,7 @@ bool TagWrapper::writeMusicTag(Type tag, const QString &value, int id3v2Version)
             break;
     }
 
-#if ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION <= 11))
+#if TAGLIB_MAJOR_VERSION == 1 && TAGLIB_MINOR_VERSION <= 11
     if(file.save(TagLib::MPEG::File::AllTags, true, id3v2Version))
 #else
     if(file.save(TagLib::MPEG::File::AllTags, TagLib::File::StripOthers, static_cast<TagLib::ID3v2::Version>(id3v2Version)))
