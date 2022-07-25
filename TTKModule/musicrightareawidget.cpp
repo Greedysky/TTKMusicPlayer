@@ -38,7 +38,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     m_instance = this;
     m_lowPowerMode = false;
     m_funcIndex = KugGouSongWidget;
-    m_stackedFuncWidget = nullptr;\
+    m_stackedFuncWidget = nullptr;
     m_stackedCloudWidget = nullptr;
     m_lrcForInterior = nullptr;
     m_lrcForDesktop = nullptr;

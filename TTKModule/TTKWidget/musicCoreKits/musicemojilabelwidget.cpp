@@ -50,7 +50,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
     labelWidget->setLayout(labelIconLayout);
     //
     QWidget *buttonWidget = new QWidget(this);
-    QHBoxLayout *buttonWidgetLayout = new QHBoxLayout(buttonWidget);\
+    QHBoxLayout *buttonWidgetLayout = new QHBoxLayout(buttonWidget);
     buttonWidgetLayout->setContentsMargins(0, 0, 5, 0);
     buttonWidgetLayout->addStretch(1);
 
