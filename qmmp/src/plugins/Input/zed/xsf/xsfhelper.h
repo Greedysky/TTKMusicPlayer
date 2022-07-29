@@ -44,7 +44,7 @@ public:
     inline qint64 totalTime() const { return m_input->length(); }
 
     inline int bitrate() const { return 8; }
-    inline int sampleRate() const { return 44100; }
+    inline int sampleRate() const { return m_input->rate(); }
     inline int channels() const { return 2; }
     inline int depth() const { return 16; }
 
