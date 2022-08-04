@@ -17,6 +17,7 @@ DecoderProperties DecoderTFMXFactory::properties() const
     properties.name = tr("TFMX Plugin");
     properties.shortName = "tfmx";
     properties.filters << "*.tfmx" << "*.tfx" << "*.tfm" << "*.mdat";
+    properties.filters << "tfmx.*" << "mdat.*"; // prefix section
     properties.description = "Final Music System Tracker Module File";
     properties.protocols << "file" << "tfmx";
     properties.noInput = true;
