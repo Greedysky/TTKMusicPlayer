@@ -52,7 +52,7 @@
  *
  * OpenMPT File(*.669 *.ams *.amf *.c67 *.dsm *.dmf *.dbm *.digi *.dtm *.far *.fmt *.gdm *.it *.ice *.imf *.j2b *.mod *.mptm *.m15 *.mtm *.med *.mmd *.mmd0 *.mmd1 *.mmd2 *.mmd3 *.mdl *.mt2 *.mms *.mo3 *.mmcmp *.nst *.okt *.okta *.pt36 *.ptm *.psm *.plm *.ppm *.s3m *.stm *.stk *.st26 *.sfx *.sfx2 *.stp *.ult *.umx *.wow *.xm *.xpk *.mdr *.s3r *.xmr *.itr *.mdz *.s3z *.xmz *.itz *.mdgz *.s3gz *.xmgz *.itgz *.mdbz *.s3bz *.xmbz *.itbz)
  *
- * Unix Amiga Delitracker Emulator File(*.aam *.amc *.aon *.aon8 *.aps *.ash *.ast *.avp *.bd *.bds *.bsi *.bss *.bye *.cm *.core *.cust *.dh *.dl *.dlm1 *.dlm2 *.dln *.dm *.dm2 *.dmu *.doda *.dsc *.dsr *.dss *.dw *.dz *.ea *.ems *.emsv6 *.ex *.fp *.fred *.fw *.glue *.gmc *.gray *.hd *.hip *.hip7 *.hipc *.hot *.ims *.is *.is20 *.jam *.jcb *.jcbo *.jd *.jmf *.jo *.jpo *.jt *.kh *.kim *.kris *.lion *.lme *.ma *.mc *.mcmd *.mco *.md *.mii *.mk2 *.mkii *.ml *.mm8 *.mmdc *.mok *.mon *.mosh *.mso *.mug *.mug2 *.mw *.ntp *.pap *.pn *.ps *.psa *.psf *.pt *.puma *.pvp *.rh *.rho *.riff *.rmc *.s7g *.sa *.sas *.sb *.sc *.scn *.scr *.sct *.scumm *.sdr *.sg *.sid1 *.sid2 *.sm *.sm3 *.smn *.smpro *.sng *.snk *.soc *.sog *.spl *.sqt *.ss *.sun *.syn *.synmod *.tcb *.tf *.tfmx *.thx *.tits *.tme *.tro *.tronic *.tw *.ufo *.vss *.wb *.smus *.snx *.tiny *.adsc *.dat *.dum *.osp dns.* jpn.* jpnd.* max.* mcr.* mfp.* npp.* pat.* qpa.* qts.* sjs.* thm.* tmk.* tpu.* uds.*)
+ * Unix Amiga Delitracker Emulator File(*.aam *.amc *.aon *.aon8 *.aps *.ash *.ast *.avp *.bd *.bds *.bsi *.bss *.bye *.cm *.core *.cust *.dh *.dl *.dlm1 *.dlm2 *.dln *.dm *.dm2 *.dmu *.doda *.dsc *.dsr *.dss *.dw *.dz *.ea *.ems *.emsv6 *.ex *.fp *.fred *.fw *.glue *.gmc *.gray *.hd *.hip *.hip7 *.hipc *.hot *.ims *.is *.is20 *.jam *.jcb *.jcbo *.jd *.jmf *.jo *.jpo *.jt *.kh *.kim *.kris *.lion *.lme *.ma *.mc *.mcmd *.mco *.md *.mii *.mk2 *.mkii *.ml *.mm8 *.mmdc *.mok *.mon *.mosh *.mso *.mug *.mug2 *.mw *.ntp *.pap *.pn *.ps *.psa *.psf *.pt *.puma *.pvp *.rh *.rho *.riff *.rmc *.s7g *.sa *.sas *.sb *.sc *.scn *.scr *.sct *.scumm *.sdr *.sg *.sid1 *.sid2 *.sm *.sm3 *.smn *.smpro *.sng *.snk *.soc *.sog *.spl *.sqt *.ss *.sun *.syn *.synmod *.tcb *.tf *.tfmx *.thx *.tits *.tme *.tro *.tronic *.tw *.ufo *.vss *.wb *.smus *.snx *.tiny *.adsc *.dat *.dum *.osp *.dns *.jpn *.jpnd *.max *.mcr *.mfp *.npp *.pat *.qpa *.qts *.sjs *.thm *.tmk *.tpu *.uds)
  *
  * Archive File(*.7z *.xz *.bz2 *.gz *.tar *.zip *.wim *.ar *.arj *.cab *.chm *.cpio *.cramfs *.dmg *.ext *.fat *.gpt *.hfs *.ihex *.iso *.lzh *.lzma *.mbr *.msi *.nsis *.ntfs *.qcow2 *.rar *.rpm *.squashfs *.udf *.uefi *.vdi *.vhd *.vmdk *.xar *.z *.rsn *.rps *.rdc *.rds *.rgs *.r64)
  *
@@ -92,7 +92,7 @@
  *
  * Cave Story's org Audio File(*.org *.pttune *.ptcop)
  *
- * Final Music System Tracker Module File(*.tfm *.tfmx *.mdat *.tfx tfmx.* mdat.*)
+ * Final Music System Tracker Module File(*.tfm *.tfmx *.mdat *.tfx)
  *
  * Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, asx, fpl, dbpl, csv, txt)
  *
