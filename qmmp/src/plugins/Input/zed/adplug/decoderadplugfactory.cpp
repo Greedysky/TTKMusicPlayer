@@ -28,14 +28,17 @@ DecoderProperties DecoderAdplugFactory::properties() const
     properties.filters << "*.ha2" << "*.hsc" << "*.hsq" << "*.hsp";
     properties.filters << "*.imf" << "*.ims";
     properties.filters << "*.jbm";
-    properties.filters << "*.ksm";
     properties.filters << "*.laa" << "*.lds";
     properties.filters << "*.m" << "*.mad" << "*.mdi" << "*.mkj" << "*.msc" << "*.mtk" << "*.mus";
-    properties.filters << "*.rac" << "*.rad" << "*.raw" << "*.rix" << "*.rol";
-    properties.filters << "*.s3m" << "*.sa2" << "*.sat" << "*.sci" << "*.sdb" << "*.sng" << "*.sop" << "*.sqx";
+    properties.filters << "*.rac" << "*.rad" << "*.raw" << "*.rix";
+    properties.filters << "*.s3m" << "*.sa2" << "*.sat" << "*.sdb" << "*.sng" << "*.sop" << "*.sqx";
     properties.filters << "*.xad" << "*.xms" << "*.xsm";
     properties.filters << "*.vgm" << "*.vgz";
     properties.filters << "*.wlf";
+    // pair suffix section
+    properties.filters << "*.ksm"; // (ksm, dat)
+    properties.filters << "*.rol"; // (rol, bnk)
+    properties.filters << "*.sci"; // (sci, name)
     properties.description = "AdLib Sound File";
     properties.protocols << "file";
     properties.noInput = true;

@@ -8,6 +8,11 @@
 bool DecoderXMPFactory::canDecode(QIODevice *input) const
 {
     QFile *file = static_cast<QFile*>(input);
+    if(!file)
+    {
+        return false;
+    }
+
     xmp_context ctx = xmp_create_context();
     const bool v = file ? xmp_load_module(ctx, QmmpPrintable(file->fileName())) != 0 : false;
     if(v)
