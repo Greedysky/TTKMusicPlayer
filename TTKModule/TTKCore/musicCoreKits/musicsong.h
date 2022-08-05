@@ -97,11 +97,11 @@ public:
     /*!
      * Set music format.
      */
-    inline void setType(const QString &t) { m_type = t; }
+    inline void setFormat(const QString &t) { m_format = t; }
     /*!
      * Get music format.
      */
-    inline QString type() const { return m_type; }
+    inline QString format() const { return m_format; }
     /*!
      * Set music time.
      */
@@ -145,7 +145,7 @@ protected:
     qint64 m_size, m_addTime;
     QString m_sizeStr, m_addTimeStr;
     int m_playCount;
-    QString m_name, m_path, m_type, m_playTime;
+    QString m_name, m_path, m_format, m_playTime;
 
 };
 TTK_DECLARE_LIST(MusicSong);

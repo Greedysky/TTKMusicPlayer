@@ -201,7 +201,7 @@ QString MusicApplication::musicDownloadContains(bool &contains) const
         {
             const MusicSong currentSong(item.m_path);
             path = QString("%1%2.%3").arg(G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString(),
-                                          currentSong.name(), currentSong.type());
+                                          currentSong.name(), currentSong.format());
             contains = QFile::exists(path);
         }
     }

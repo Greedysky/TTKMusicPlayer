@@ -720,7 +720,7 @@ void MusicSongsSummariziedWidget::addSongBufferToPlaylist(const MusicResultsItem
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
     const QByteArray &md5 = MusicUtils::Algorithm::md5(songItem.m_id.toUtf8());
     MusicSong song(songItem.m_nickName + "#" + md5 + "." + songItem.m_description, songItem.m_updateTime, songItem.m_name);
-    song.setType(songItem.m_description);
+    song.setFormat(songItem.m_description);
     song.setSizeStr(songItem.m_playCount);
 
     int index = item->m_songs.indexOf(song);

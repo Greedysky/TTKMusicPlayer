@@ -17,7 +17,7 @@ MusicSong::MusicSong()
       m_playCount(0),
       m_name(TTK_DEFAULT_STR),
       m_path(TTK_DEFAULT_STR),
-      m_type(TTK_DEFAULT_STR),
+      m_format(TTK_DEFAULT_STR),
       m_playTime(TTK_DEFAULT_STR)
 {
 
@@ -43,7 +43,7 @@ MusicSong::MusicSong(const QString &path, const QString &playTime, const QString
     }
 
     m_size = fin.size();
-    m_type = FILE_SUFFIX(fin);
+    m_format = FILE_SUFFIX(fin);
     m_addTime = fin.lastModified().currentMSecsSinceEpoch();
     m_playTime = playTime;
     m_addTimeStr = QString::number(m_addTime);
@@ -111,15 +111,8 @@ QString MusicObject::trackRelatedPath(const QString &path)
 MusicSongList MusicObject::generateMusicSongList(const QString &path)
 {
     MusicSongList songs;
-    const QStringList &support = MusicFormats::supportMusicFormats();
-    const QString &suffix = FILE_SUFFIX(QFileInfo(path));
-
-    if(!support.contains(suffix))
-    {
-        return songs;
-    }
-
     MusicSongMeta meta;
+
     if(!meta.read(path))
     {
         return songs;

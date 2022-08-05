@@ -25,13 +25,13 @@ bool MusicPlatformManager::isFileAssociate()
 
 void MusicPlatformManager::setMusicRegeditAssociateFileIcon()
 {
-    const QStringList &types = MusicFormats::supportMusicFormats();
-    for(int i = 0; i < types.count(); ++i)
+    const QStringList &formats = MusicFormats::supportMusicFormats();
+    for(int i = 0; i < formats.count(); ++i)
     {
-        const QString &type = types[i];
-        if(!currentNodeExist(type))
+        const QString &format = formats[i];
+        if(!currentNodeExist(format))
         {
-            createMusicRegedit(type);
+            createMusicRegedit(format);
         }
     }
 }
