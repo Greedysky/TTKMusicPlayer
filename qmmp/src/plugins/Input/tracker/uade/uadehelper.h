@@ -20,6 +20,7 @@
 #define UADEHELPER_H
 
 #include <QFileInfo>
+#include <QStringList>
 #include <qmmp/trackinfo.h>
 #include <uade/uade.h>
 
@@ -47,6 +48,8 @@ public:
 
     QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
     QString cleanPath() const;
+
+    static QStringList filters();
 
     inline bool hasTags() const { return !m_tags.isEmpty(); }
     inline QString tag(const char *key) const { return m_tags[key]; }

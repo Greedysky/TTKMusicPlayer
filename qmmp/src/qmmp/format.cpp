@@ -37,7 +37,15 @@ QStringList Format::supportMusicFormats()
     {
         for(QString filter : factory->properties().filters)
         {
-            formats << filter.remove(0, 2); // remove *.
+            if(filter.startsWith("*."))
+            {
+                formats << filter.remove(0, 2); // remove first *.
+            }
+            else
+            {
+                filter.chop(2); // remove last .*
+                formats << filter;
+            }
         }
     }
     return formats;

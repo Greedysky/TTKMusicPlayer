@@ -51,8 +51,8 @@ bool UADEHelper::initialize()
     {
         m_track = 0;
     }
-    const QString &path = cleanPath();
 
+    const QString &path = cleanPath();
     if(uade_play(QmmpPrintable(path), m_track, m_state) != 1)
     {
         qWarning("UADEHelper: Unable to open file, %s", qPrintable(path));
@@ -109,8 +109,22 @@ QList<TrackInfo*> UADEHelper::createPlayList(TrackInfo::Parts parts)
         return playlist;
     }
 
-    const QString &title = QFileInfo(cleanPath()).baseName();
-    for(int i = 1; i <= tag->subsongs.max + 1; ++i)
+    QFileInfo fin(cleanPath());
+    QString title = fin.baseName();
+    if(!filters().contains("*." + fin.suffix().toLower()))
+    {
+        title = fin.suffix();
+    }
+
+    int min = tag->subsongs.min;
+    int max = tag->subsongs.max;
+    if(min == 0)
+    {
+        min += 1;
+        max += 1;
+    }
+
+    for(int i = min; i <= max; ++i)
     {
         TrackInfo *info = new TrackInfo();
         if(parts & TrackInfo::MetaData)
@@ -144,4 +158,56 @@ QString UADEHelper::cleanPath() const
         path.remove(RegularWrapper("#\\d+$"));
     }
     return path;
+}
+
+QStringList UADEHelper::filters()
+{
+    QStringList filters;
+    filters << "*.aam" << "*.amc" << "*.aon" << "*.aon8" << "*.aps" << "*.ash" << "*.ast" << "*.avp";
+    filters << "*.bd" << "*.bds" << "*.bsi" << "*.bss" << "*.bye";
+    filters << "*.cm" << "*.core" << "*.cust";
+    filters << "*.dh" << "*.dl" << "*.dlm1" << "*.dlm2" << "*.dln" << "*.dm" << "*.dm2" << "*.dmu" << "*.doda" << "*.dsc" << "*.dsr" << "*.dss" << "*.dw" << "*.dz";
+    filters << "*.ea" << "*.ems" << "*.emsv6" << "*.ex";
+    filters << "*.fp" << "*.fred" << "*.fw";
+    filters << "*.glue" << "*.gmc" << "*.gray";
+    filters << "*.hd" << "*.hip" << "*.hip7" << "*.hipc" << "*.hot";
+    filters << "*.ims" << "*.is" << "*.is20";
+    filters << "*.jam" << "*.jcb" << "*.jcbo" << "*.jd" << "*.jmf" << "*.jo" << "*.jpo" << "*.jt";
+    filters << "*.kh" << "*.kim" << "*.kris";
+    filters << "*.lion" << "*.lme";
+    filters << "*.ma" << "*.mc" << "*.mcmd" << "*.mco" << "*.md" << "*.mii" << "*.mk2" << "*.mkii" << "*.ml" << "*.mm8" << "*.mmdc" << "*.mok" << "*.mon" << "*.mosh" << "*.mso" << "*.mug" << "*.mug2" << "*.mw";
+    filters << "*.ntp";
+    filters << "*.pap" << "*.pn" << "*.ps" << "*.psa" << "*.psf" << "*.pt" << "*.puma" << "*.pvp";
+    filters << "*.rh" << "*.rho" << "*.riff" << "*.rmc";
+    filters << "*.s7g" << "*.sa" << "*.sas"  << "*.sb" << "*.sc" << "*.scn" << "*.scr" << "*.sct" << "*.scumm" << "*.sdr" << "*.sg" << "*.sid1" << "*.sid2" << "*.sm" << "*.sm3" << "*.smn" << "*.smpro" << "*.sng" << "*.snk" << "*.soc" << "*.sog" << "*.spl" << "*.sqt" << "*.ss" << "*.sun" << "*.syn" << "*.synmod";
+    filters << "*.tcb" << "*.tf" << "*.tfmx" << "*.thx" << "*.tits" << "*.tme" << "*.tro" << "*.tronic" << "*.tw";
+    filters << "*.ufo";
+    filters << "*.vss";
+    filters << "*.wb";
+    // dir section
+    filters << "*.smus"; // (Instruments)
+    filters << "*.snx";  // (Instruments)
+    filters << "*.tiny"; // (Instruments)
+    // pair suffix section
+    filters << "*.adsc"; // (adsc, as)
+    filters << "*.dat";  // (dat, ssd)
+    filters << "*.dum";  // (dum, ins)
+    filters << "*.osp";  // (osp, smp)
+    // pair prefix section
+    filters << "dns.*";  // (dns, smp)
+    filters << "jpn.*";  // (jpn, smp)
+    filters << "jpnd.*"; // (jpnd, jpns)
+    filters << "max.*";  // (thm, smp)
+    filters << "mcr.*";  // (mcr, mcs)
+    filters << "mfp.*";  // (mfp, smp)
+    filters << "npp.*";  // (npp, smp)
+    filters << "pat.*";  // (pat, smp, WantedTeam.bin)
+    filters << "qpa.*";  // (qpa, smp)
+    filters << "qts.*";  // (qts, smp)
+    filters << "sjs.*";  // (sjs, smp)
+    filters << "thm.*";  // (thm, smp)
+    filters << "tmk.*";  // (tmk, smp)
+    filters << "tpu.*";  // (tpu, smp)
+    filters << "uds.*";  // (uds, smp)
+    return filters;
 }

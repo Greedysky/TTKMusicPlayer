@@ -20,52 +20,7 @@ DecoderProperties DecoderUADEFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("UADE Plugin");
     properties.shortName = "uade";
-    properties.filters << "*.aam" << "*.amc" << "*.aon" << "*.aon8" << "*.aps" << "*.ash" << "*.ast" << "*.avp";
-    properties.filters << "*.bd" << "*.bds" << "*.bsi" << "*.bss" << "*.bye";
-    properties.filters << "*.cm" << "*.core" << "*.cust";
-    properties.filters << "*.dh" << "*.dl" << "*.dlm1" << "*.dlm2" << "*.dln" << "*.dm" << "*.dm2" << "*.dmu" << "*.doda" << "*.dsc" << "*.dsr" << "*.dss" << "*.dw" << "*.dz";
-    properties.filters << "*.ea" << "*.ems" << "*.emsv6" << "*.ex";
-    properties.filters << "*.fp" << "*.fred" << "*.fw";
-    properties.filters << "*.glue" << "*.gmc" << "*.gray";
-    properties.filters << "*.hd" << "*.hip" << "*.hip7" << "*.hipc" << "*.hot";
-    properties.filters << "*.ims" << "*.is" << "*.is20";
-    properties.filters << "*.jam" << "*.jcb" << "*.jcbo" << "*.jd" << "*.jmf" << "*.jo" << "*.jpo" << "*.jt";
-    properties.filters << "*.kh" << "*.kim" << "*.kris";
-    properties.filters << "*.lion" << "*.lme";
-    properties.filters << "*.ma" << "*.mc" << "*.mcmd" << "*.mco" << "*.md" << "*.mii" << "*.mk2" << "*.mkii" << "*.ml" << "*.mm8" << "*.mmdc" << "*.mok" << "*.mon" << "*.mosh" << "*.mso" << "*.mug" << "*.mug2" << "*.mw";
-    properties.filters << "*.ntp";
-    properties.filters << "*.pap" << "*.pn" << "*.ps" << "*.psa" << "*.psf" << "*.pt" << "*.puma" << "*.pvp";
-    properties.filters << "*.rh" << "*.rho" << "*.riff" << "*.rmc";
-    properties.filters << "*.s7g" << "*.sa" << "*.sas"  << "*.sb" << "*.sc" << "*.scn" << "*.scr" << "*.sct" << "*.scumm" << "*.sdr" << "*.sg" << "*.sid1" << "*.sid2" << "*.sm" << "*.sm3" << "*.smn" << "*.smpro" << "*.sng" << "*.snk" << "*.soc" << "*.sog" << "*.spl" << "*.sqt" << "*.ss" << "*.sun" << "*.syn" << "*.synmod";
-    properties.filters << "*.tcb" << "*.tf" << "*.tfmx" << "*.thx" << "*.tits" << "*.tme" << "*.tro" << "*.tronic" << "*.tw";
-    properties.filters << "*.ufo";
-    properties.filters << "*.vss";
-    properties.filters << "*.wb";
-    // dir section
-    properties.filters << "*.smus"; // (Instruments)
-    properties.filters << "*.snx";  // (Instruments)
-    properties.filters << "*.tiny"; // (Instruments)
-    // pair prefix section
-    properties.filters << "*.adsc"; // (adsc, as)
-    properties.filters << "*.dat";  // (dat, ssd)
-    properties.filters << "*.dum";  // (dum, ins)
-    properties.filters << "*.osp";  // (osp, smp)
-    // pair suffix section
-    properties.filters << "dns.*";  // (dns, smp)
-    properties.filters << "jpn.*";  // (jpn, smp)
-    properties.filters << "jpnd.*"; // (jpnd, jpns)
-    properties.filters << "max.*";  // (thm, smp)
-    properties.filters << "mcr.*";  // (mcr, mcs)
-    properties.filters << "mfp.*";  // (mfp, smp)
-    properties.filters << "npp.*";  // (npp, smp)
-    properties.filters << "pat.*";  // (pat, smp, WantedTeam.bin)
-    properties.filters << "qpa.*";  // (qpa, smp)
-    properties.filters << "qts.*";  // (qts, smp)
-    properties.filters << "sjs.*";  // (sjs, smp)
-    properties.filters << "thm.*";  // (thm, smp)
-    properties.filters << "tmk.*";  // (tmk, smp)
-    properties.filters << "tpu.*";  // (tpu, smp)
-    properties.filters << "uds.*";  // (uds, smp)
+    properties.filters << UADEHelper::filters();
     properties.description = "Unix Amiga Delitracker Emulator File";
     properties.protocols << "file" << "uade";
     properties.noInput = true;

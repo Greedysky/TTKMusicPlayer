@@ -272,7 +272,13 @@ QList<TrackInfo*> TFMXHelper::createPlayList(TrackInfo::Parts parts)
         return playlist;
     }
 
-    const QString &title = QFileInfo(cleanPath()).baseName();
+    QFileInfo fin(cleanPath());
+    QString title = fin.baseName();
+    if(!filters().contains("*." + fin.suffix().toLower()))
+    {
+        title = fin.suffix();
+    }
+
     for(int i = 1; i <= TFMXGetSubSongs(m_state); ++i)
     {
         TrackInfo *info = new TrackInfo();
@@ -310,4 +316,18 @@ QString TFMXHelper::cleanPath() const
         path.remove(RegularWrapper("#\\d+$"));
     }
     return path;
+}
+
+QStringList TFMXHelper::filters()
+{
+    QStringList filters;
+    filters << "*.tfm";
+    // pair suffix section
+    filters << "*.tfmx"; // (tfmx, smpl)
+    filters << "*.mdat"; // (mdat, smpl))
+    filters << "*.tfx";  // (tfx, (smp, sam))
+    // pair prefix section
+    filters << "tfmx.*"; // (tfmx, smpl)
+    filters << "mdat.*"; // (mdat, smpl)
+    return filters;
 }

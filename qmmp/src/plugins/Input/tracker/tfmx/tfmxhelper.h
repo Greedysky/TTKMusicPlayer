@@ -20,6 +20,7 @@
 #define TFMXHELPER_H
 
 #include <QFileInfo>
+#include <QStringList>
 #include <qmmp/trackinfo.h>
 extern "C" {
 #include <libtfmx/tfmx.h>
@@ -49,6 +50,8 @@ public:
 
     QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
     QString cleanPath() const;
+
+    static QStringList filters();
 
 private:
     QString m_path;
