@@ -3,6 +3,7 @@ TEMPLATE = subdirs
 SUBDIRS += adplug
 SUBDIRS += archive
 SUBDIRS += dca
+SUBDIRS += ken
 SUBDIRS += mdx
 SUBDIRS += optimfrog
 SUBDIRS += organya

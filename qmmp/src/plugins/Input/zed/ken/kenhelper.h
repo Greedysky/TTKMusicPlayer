@@ -16,47 +16,61 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef STSOUNDHELPER_H
-#define STSOUNDHELPER_H
+#ifndef KENHELPER_H
+#define KENHELPER_H
 
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
-#include <libstsound/ym_music.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class StSoundHelper
+class AbstractReader
 {
 public:
-    explicit StSoundHelper(const QString &path);
-    ~StSoundHelper();
+    AbstractReader() { }
+    virtual ~AbstractReader() { }
+
+    virtual bool load(const QString &path) = 0;
+    virtual void seek(qint64 time) = 0;
+    virtual qint64 read(unsigned char *data) = 0;
+
+    inline qint64 totalTime() const { return m_length; }
+    inline int sampleRate() const { return 44100; }
+    inline int channels() const { return 2; }
+
+protected:
+    int m_length = 0;
+
+};
+
+
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
+class KenHelper
+{
+public:
+    explicit KenHelper(const QString &path);
+    ~KenHelper();
 
     void deinit();
     bool initialize();
 
-    inline void seek(qint64 time) { m_input->setMusicTime((ymu32)time); }
-    inline qint64 totalTime() const { return m_length; }
+    inline void seek(qint64 time) { return m_input->seek(time); }
+    inline qint64 totalTime() const { return m_input->totalTime(); }
 
     inline int bitrate() const { return 8; }
-    inline int sampleRate() const { return 44100; }
-    inline int channels() const { return 2; }
+    inline int sampleRate() const { return m_input->sampleRate(); }
+    inline int channels() const { return m_input->channels(); }
     inline int depth() const { return 16; }
 
-    qint64 read(unsigned char *data, qint64 maxSize);
-
-    inline QString title() const { return m_title; }
-    inline QString author() const { return m_author; }
-    inline QString comment() const { return m_comment; }
+    inline qint64 read(unsigned char *data, qint64 ) const { return m_input->read(data); }
 
 private:
     QString m_path;
-    CYmMusic *m_input = nullptr;
-    int m_length = 0;
-    QString m_title;
-    QString m_author;
-    QString m_comment;
+    AbstractReader *m_input = nullptr;
 
 };
 

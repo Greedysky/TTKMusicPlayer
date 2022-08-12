@@ -16,47 +16,31 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef STSOUNDHELPER_H
-#define STSOUNDHELPER_H
+#ifndef DECODER_KEN_H
+#define DECODER_KEN_H
 
-#include <QMap>
-#include <QFile>
-#include <qmmp/qmmp.h>
-#include <libstsound/ym_music.h>
+#include <qmmp/decoder.h>
+
+class KenHelper;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class StSoundHelper
+class DecoderKen : public Decoder
 {
 public:
-    explicit StSoundHelper(const QString &path);
-    ~StSoundHelper();
+    explicit DecoderKen(const QString &path);
+    virtual ~DecoderKen();
 
-    void deinit();
-    bool initialize();
-
-    inline void seek(qint64 time) { m_input->setMusicTime((ymu32)time); }
-    inline qint64 totalTime() const { return m_length; }
-
-    inline int bitrate() const { return 8; }
-    inline int sampleRate() const { return 44100; }
-    inline int channels() const { return 2; }
-    inline int depth() const { return 16; }
-
-    qint64 read(unsigned char *data, qint64 maxSize);
-
-    inline QString title() const { return m_title; }
-    inline QString author() const { return m_author; }
-    inline QString comment() const { return m_comment; }
+    // Standard Decoder API
+    virtual bool initialize() override final;
+    virtual qint64 totalTime() const override final;
+    virtual int bitrate() const override final;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
+    virtual void seek(qint64 time) override final;
 
 private:
-    QString m_path;
-    CYmMusic *m_input = nullptr;
-    int m_length = 0;
-    QString m_title;
-    QString m_author;
-    QString m_comment;
+    KenHelper *m_helper = nullptr;
 
 };
 

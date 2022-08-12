@@ -13,26 +13,26 @@ StSoundHelper::~StSoundHelper()
 
 void StSoundHelper::deinit()
 {
-    if(m_music)
+    if(m_input)
     {
-        delete m_music;
+        delete m_input;
     }
 }
 
 bool StSoundHelper::initialize()
 {
-    m_music = new CYmMusic;
-    if(!m_music)
+    m_input = new CYmMusic;
+    if(!m_input)
     {
         qWarning("StSoundHelper: failed to create CYmMusic");
         return false;
     }
 
-    if(m_music->load(QmmpPrintable(m_path)))
+    if(m_input->load(QmmpPrintable(m_path)))
     {
         ymMusicInfo_t info;
-        m_music->getMusicInfo(&info);
-        m_music->setLoopMode(YMFALSE);
+        m_input->getMusicInfo(&info);
+        m_input->setLoopMode(YMFALSE);
 
         m_length = info.musicTimeInMs;
         m_title = QString::fromUtf8(info.pSongName);
@@ -41,12 +41,12 @@ bool StSoundHelper::initialize()
     }
     else
     {
-        if(m_music)
+        if(m_input)
         {
-            delete m_music;
+            delete m_input;
         }
 
-        m_music = nullptr;
+        m_input = nullptr;
         qWarning("StSoundHelper: failed to open: %s", QmmpPrintable(m_path));
         return false;
     }
@@ -58,7 +58,7 @@ qint64 StSoundHelper::read(unsigned char *data, qint64 maxSize)
     ymsample *psample = (ymsample *)data;
     const qint64 stereoSize = maxSize / (2 * sizeof(ymsample));
 
-    if(!m_music->update(psample, stereoSize))
+    if(!m_input->update(psample, stereoSize))
     {
         return 0;
     }

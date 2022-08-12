@@ -16,47 +16,26 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef STSOUNDHELPER_H
-#define STSOUNDHELPER_H
+#ifndef DECODERKENFACTORY_H
+#define DECODERKENFACTORY_H
 
-#include <QMap>
-#include <QFile>
-#include <qmmp/qmmp.h>
-#include <libstsound/ym_music.h>
+#include <qmmp/decoderfactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class StSoundHelper
+class DecoderKenFactory : public QObject, DecoderFactory
 {
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.DecoderFactoryInterface.1.0")
+    Q_INTERFACES(DecoderFactory)
 public:
-    explicit StSoundHelper(const QString &path);
-    ~StSoundHelper();
-
-    void deinit();
-    bool initialize();
-
-    inline void seek(qint64 time) { m_input->setMusicTime((ymu32)time); }
-    inline qint64 totalTime() const { return m_length; }
-
-    inline int bitrate() const { return 8; }
-    inline int sampleRate() const { return 44100; }
-    inline int channels() const { return 2; }
-    inline int depth() const { return 16; }
-
-    qint64 read(unsigned char *data, qint64 maxSize);
-
-    inline QString title() const { return m_title; }
-    inline QString author() const { return m_author; }
-    inline QString comment() const { return m_comment; }
-
-private:
-    QString m_path;
-    CYmMusic *m_input = nullptr;
-    int m_length = 0;
-    QString m_title;
-    QString m_author;
-    QString m_comment;
+    virtual bool canDecode(QIODevice *input) const override final;
+    virtual DecoderProperties properties() const override final;
+    virtual Decoder *create(const QString &path, QIODevice *input) override final;
+    virtual QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) override final;
+    virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override final;
+    virtual void showSettings(QWidget *parent) override final;
 
 };
 
