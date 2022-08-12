@@ -151,7 +151,7 @@ QString MusicApplication::currentFilePath() const
 
 bool MusicApplication::checkMusicListCurrentIndex() const
 {
-    return (m_playlist->currentIndex() == DEFAULT_NORMAL_LEVEL);
+    return m_playlist->currentIndex() == DEFAULT_NORMAL_LEVEL;
 }
 
 void MusicApplication::musicLoadCurrentSongLrc()
