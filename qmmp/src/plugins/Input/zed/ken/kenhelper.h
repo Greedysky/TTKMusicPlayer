@@ -58,7 +58,7 @@ public:
     void deinit();
     bool initialize();
 
-    inline void seek(qint64 time) { return m_input->seek(time); }
+    inline void seek(qint64 time) { m_input->seek(time); }
     inline qint64 totalTime() const { return m_input->totalTime(); }
 
     inline int bitrate() const { return 8; }
@@ -66,7 +66,7 @@ public:
     inline int channels() const { return m_input->channels(); }
     inline int depth() const { return 16; }
 
-    inline qint64 read(unsigned char *data, qint64 ) const { return m_input->read(data); }
+    inline qint64 read(unsigned char *data, qint64 ) { return m_input->read(data); }
 
 private:
     QString m_path;

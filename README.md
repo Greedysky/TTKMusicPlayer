@@ -109,6 +109,7 @@ The TTKMusicplayer plugin for run
  * asap
  * ayfly
  * dca
+ * ken
  * mdx
  * optimfrog
  * organya
