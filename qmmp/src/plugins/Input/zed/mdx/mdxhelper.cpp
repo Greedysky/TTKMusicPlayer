@@ -2,7 +2,6 @@
 
 extern "C" {
 #include <libmdx/mdxmini/mdxmini.h>
-#include <libmdx/pdxmini/pdxmini.h>
 #include <libmdx/pmdmini/pmdmini.h>
 #include <libmdx/mucom88/mucomtag.h>
 #include <libmdx/mucom88/mucom_module.h>
@@ -77,58 +76,6 @@ qint64 MDXFileReader::read(unsigned char *data, qint64)
     mdx_calc_sample(m_input, (short*)data, INPUT_BUFFER_SIZE);
     m_offset += INPUT_BUFFER_SIZE * 1000.0 / sampleRate();
     return INPUT_BUFFER_SIZE * 4;
-}
-
-
-class PDXFileReader : public AbstractReader
-{
-public:
-    PDXFileReader();
-    virtual ~PDXFileReader();
-
-    virtual bool load(const QString &path) override final;
-    virtual qint64 totalTime() const override final;
-    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
-
-    virtual int sampleRate() const override final { return m_input->sampleRate(); }
-
-private:
-    PDXMini *m_input = nullptr;
-
-};
-
-PDXFileReader::PDXFileReader()
-{
-
-}
-
-PDXFileReader::~PDXFileReader()
-{
-    delete m_input;
-}
-
-bool PDXFileReader::load(const QString &path)
-{
-    m_input = new PDXMini;
-
-    if(!m_input->open(QmmpPrintable(path)))
-    {
-        qWarning("PDXFileReader: open error");
-        delete m_input;
-        m_input = nullptr;
-        return false;
-    }
-    return true;
-}
-
-qint64 PDXFileReader::totalTime() const
-{
-    return m_input->length();
-}
-
-qint64 PDXFileReader::read(unsigned char *data, qint64)
-{
-    return m_input->render((char*)data);
 }
 
 
@@ -395,8 +342,7 @@ void MDXHelper::deinit()
 bool MDXHelper::initialize()
 {
     const QString &suffix = m_path.toLower();
-    if(suffix.endsWith(".mdx")) m_input = new MDXFileReader;
-    else if(suffix.endsWith(".pdx")) m_input = new PDXFileReader;
+    if(suffix.endsWith(".mdx") || suffix.endsWith(".pdx")) m_input = new MDXFileReader;
     else if(suffix.endsWith(".m")) m_input = new PMDFileReader;
     else if(suffix.endsWith(".mub") || suffix.endsWith(".muc")) m_input = new MUCFileReader;
     else if(suffix.endsWith(".vgs") || suffix.endsWith(".bgm") || suffix.endsWith(".mml")) m_input = new VGSFileReader;
