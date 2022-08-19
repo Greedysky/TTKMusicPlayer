@@ -44,7 +44,7 @@ MusicSong::MusicSong(const QString &path, const QString &playTime, const QString
 
     m_size = fin.size();
     m_format = FILE_SUFFIX(fin);
-    m_addTime = fin.lastModified().currentMSecsSinceEpoch();
+    m_addTime = fin.lastModified().toMSecsSinceEpoch();
     m_playTime = playTime;
     m_addTimeStr = QString::number(m_addTime);
     m_sizeStr = MusicUtils::Number::sizeByte2Label(m_size);
@@ -102,8 +102,7 @@ QString MusicObject::trackRelatedPath(const QString &path)
         return path;
     }
 
-    QString url = path;
-    url = url.section("://", -1);
+    QString url = path.section("://", -1);
     url.remove(RegularWrapper("#\\d+$"));
     return url;
 }

@@ -269,6 +269,7 @@ MusicDownloadBatchTableWidget::MusicDownloadBatchTableWidget(QWidget *parent)
     m_downloadOffset = 0;
 
     setColumnCount(1);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 530);
 

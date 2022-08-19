@@ -113,6 +113,7 @@ void MusicQualityChoiceTableWidget::itemCellClicked(int row, int)
     {
         item(m_previousClickRow, 2)->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
     }
+
     m_previousClickRow = row;
     item(row, 2)->setData(MUSIC_CHECK_ROLE, Qt::Checked);
 }
