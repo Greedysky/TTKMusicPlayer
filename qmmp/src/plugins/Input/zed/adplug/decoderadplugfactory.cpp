@@ -41,7 +41,6 @@ DecoderProperties DecoderAdplugFactory::properties() const
     properties.filters << "*.sci"; // (sci, name)
     properties.description = "AdLib Sound File";
     properties.protocols << "file";
-    properties.priority = 9;
     properties.noInput = true;
     return properties;
 }
