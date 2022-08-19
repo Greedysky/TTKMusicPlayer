@@ -19,9 +19,29 @@ MusicLrcContainer::~MusicLrcContainer()
     delete m_lrcSearchWidget;
 }
 
-void MusicLrcContainer::applySettingParameter()
+void MusicLrcContainer::applyParameter()
 {
-    applySettingParameter(m_containerType == LRC_DESKTOP_TPYE ? LRC_DESKTOP_PREFIX : QString());
+    const QString &t = (m_containerType == LRC_DESKTOP_TPYE ? LRC_DESKTOP_PREFIX : QString());
+
+    for(MusicLrcManager *manager : qAsConst(m_lrcManagers))
+    {
+        manager->setFontFamily(G_SETTING_PTR->value(t + "LrcFamily").toInt());
+        manager->setFontType(G_SETTING_PTR->value(t + "LrcType").toInt());
+        manager->setFontTransparent(G_SETTING_PTR->value(t + "LrcColorTransparent").toInt());
+        manager->setLrcFontSize(G_SETTING_PTR->value(t + "LrcSize").toInt());
+    }
+
+    if(G_SETTING_PTR->value(t + "LrcColor").toInt() != -1)
+    {
+        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, G_SETTING_PTR->value(t + "LrcColor").toInt());
+        setLinearGradientColor(index);
+    }
+    else
+    {
+        const MusicLrcColor cl(MusicLrcColor::readColorConfig(G_SETTING_PTR->value(t + "LrcFrontgroundColor").toString()),
+                               MusicLrcColor::readColorConfig(G_SETTING_PTR->value(t + "LrcBackgroundColor").toString()));
+        setLinearGradientColor(cl);
+    }
 }
 
 void MusicLrcContainer::setLinearGradientColor(MusicLrcColor::LrcColorType lrcColorType)
@@ -115,26 +135,4 @@ void MusicLrcContainer::clearAllMusicLRCManager()
 {
     qDeleteAll(m_lrcManagers);
     m_lrcManagers.clear();
-}
-
-void MusicLrcContainer::applySettingParameter(const QString &t)
-{
-    for(MusicLrcManager *manager : qAsConst(m_lrcManagers))
-    {
-        manager->setFontFamily(G_SETTING_PTR->value(t + "LrcFamily").toInt());
-        manager->setFontType(G_SETTING_PTR->value(t + "LrcType").toInt());
-        manager->setFontTransparent(G_SETTING_PTR->value(t + "LrcColorTransparent").toInt());
-        manager->setLrcFontSize(G_SETTING_PTR->value(t + "LrcSize").toInt());
-    }
-    if(G_SETTING_PTR->value(t + "LrcColor").toInt() != -1)
-    {
-        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, G_SETTING_PTR->value(t + "LrcColor").toInt());
-        setLinearGradientColor(index);
-    }
-    else
-    {
-        const MusicLrcColor cl(MusicLrcColor::readColorConfig(G_SETTING_PTR->value(t + "LrcFrontgroundColor").toString()),
-                               MusicLrcColor::readColorConfig(G_SETTING_PTR->value(t + "LrcBackgroundColor").toString()));
-        setLinearGradientColor(cl);
-    }
 }

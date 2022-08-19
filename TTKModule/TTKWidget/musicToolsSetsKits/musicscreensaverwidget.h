@@ -171,7 +171,7 @@ public:
     /*!
      * Apply settings parameters.
      */
-    void applySettingParameter();
+    void applyParameter();
     /*!
      * Parse settings parameters.
      */
@@ -232,7 +232,7 @@ public:
     /*!
      * Apply settings parameters.
      */
-    void applySettingParameter();
+    void applyParameter();
 
 private Q_SLOTS:
     /*!

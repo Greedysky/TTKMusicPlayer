@@ -45,14 +45,15 @@ void MusicLrcContainerForDesktop::stopDrawLrc()
     }
 }
 
-void MusicLrcContainerForDesktop::applySettingParameter()
+void MusicLrcContainerForDesktop::applyParameter()
 {
-    MusicLrcContainer::applySettingParameter();
+    MusicLrcContainer::applyParameter();
     for(MusicLrcManager *manager : qAsConst(m_lrcManagers))
     {
         m_currentLrcFontSize = G_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt();
         manager->setLrcFontSize(m_currentLrcFontSize);
     }
+
     m_windowLocked = G_SETTING_PTR->value(MusicSettingManager::DLrcLockedMode).toInt() == 1;
     m_singleLineType = !(G_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineMode).toInt() == 1);
     setSingleLineTypeChanged();

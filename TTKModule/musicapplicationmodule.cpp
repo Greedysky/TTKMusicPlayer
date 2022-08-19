@@ -98,7 +98,7 @@ void MusicApplicationModule::loadNetWorkSetting()
     m_counterPVThread->startToDownload();
 }
 
-void MusicApplicationModule::applySettingParameter()
+void MusicApplicationModule::applyParameter()
 {
 #ifdef Q_OS_WIN
     if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toInt())
@@ -111,7 +111,7 @@ void MusicApplicationModule::applySettingParameter()
     {
         m_screenSaverWidget = new MusicScreenSaverBackgroundWidget;
     }
-    m_screenSaverWidget->applySettingParameter();
+    m_screenSaverWidget->applyParameter();
 }
 
 void MusicApplicationModule::windowCloseAnimation()

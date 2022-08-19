@@ -53,7 +53,7 @@ public:
     /*!
      * Set setting parameter.
      */
-    virtual void applySettingParameter() override final;
+    virtual void applyParameter() override final;
 
     /*!
      * Update current lrc by given time.
@@ -242,8 +242,8 @@ protected:
     void resizeWidth(int w, int h);
 
     QPoint m_mousePressedAt;
-    bool m_mouseLeftPressed, m_lrcChangeState, m_mouseMoved;
     int m_lrcChangeOffset, m_lrcChangeDelta;
+    bool m_mouseLeftPressed, m_lrcChangeState, m_mouseMoved;
 
     bool m_lrcDisplayAll, m_showArtistBackground;
     int m_animationFreshTime, m_lrcSizeProperty;

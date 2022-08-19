@@ -56,7 +56,7 @@ public Q_SLOTS:
     /*!
      * Lrc desktop wallpaper button clicked.
      */
-    void musicContainerForWallpaperClicked();
+    void wallpaperButtonClicked();
 
 protected:
     QPushButton *m_more, *m_update, *m_search;

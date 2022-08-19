@@ -196,10 +196,10 @@ protected:
     /*!
      * Convert String type to Config Type.
      */
-    ConfigType typeStringToEnum(const QString &stype) const
+    inline ConfigType typeStringToEnum(const QString &stype) const
     {
         const int index = staticMetaObject.indexOfEnumerator("ConfigType");
-        QMetaEnum metaEnum = staticMetaObject.enumerator(index);
+        const QMetaEnum &metaEnum = staticMetaObject.enumerator(index);
         const int key = metaEnum.keyToValue(stype.toStdString().c_str());
         return TTKStatic_cast(ConfigType, key);
     }

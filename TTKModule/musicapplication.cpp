@@ -812,12 +812,12 @@ void MusicApplication::musicCreateRightMenu()
     menu.exec(QCursor::pos());
 }
 
-void MusicApplication::applySettingParameter()
+void MusicApplication::applyParameter()
 {
     //This attribute is effective immediately.
-    m_applicationObject->applySettingParameter();
-    m_rightAreaWidget->applySettingParameter();
-    m_bottomAreaWidget->applySettingParameter();
+    m_applicationObject->applyParameter();
+    m_rightAreaWidget->applyParameter();
+    m_bottomAreaWidget->applyParameter();
 }
 
 void MusicApplication::setLoveDeleteItemAt(const QString &path, bool current)
@@ -1199,9 +1199,9 @@ void MusicApplication::readSystemConfigFromFile()
         m_applicationObject->soureUpdateCheck();
     }
 
-    m_rightAreaWidget->applySettingParameter();
-    m_bottomAreaWidget->applySettingParameter();
-    m_applicationObject->applySettingParameter();
+    m_rightAreaWidget->applyParameter();
+    m_bottomAreaWidget->applyParameter();
+    m_applicationObject->applyParameter();
 }
 
 void MusicApplication::writeSystemConfigToFile()

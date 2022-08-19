@@ -194,7 +194,7 @@ void MusicBottomAreaWidget::resizeWindow()
     m_ui->lrcDisplayAllButton->move(m_ui->lrcDisplayAllButton->x(), h / 2);
 }
 
-void MusicBottomAreaWidget::applySettingParameter()
+void MusicBottomAreaWidget::applyParameter()
 {
     bool config = G_SETTING_PTR->value(MusicSettingManager::CloseEventMode).toBool();
     setSystemCloseConfig(config);

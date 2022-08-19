@@ -112,6 +112,7 @@ public:
      * Stop timer clock to draw lrc mask.
      */
     void stopDrawLrc();
+
     /*!
      * Set linear gradient color.
      */

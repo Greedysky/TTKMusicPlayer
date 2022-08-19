@@ -111,7 +111,7 @@ public:
     /*!
      * Apply settings parameters.
      */
-    void applySettingParameter();
+    void applyParameter();
     /*!
      * Check the setting has open interior or desktop lrc on or not.
      */

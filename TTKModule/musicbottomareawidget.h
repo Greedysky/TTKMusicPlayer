@@ -98,7 +98,7 @@ public:
     /*!
      * Apply settings parameters.
      */
-    void applySettingParameter();
+    void applyParameter();
     /*!
      * Current is show full container.
      */

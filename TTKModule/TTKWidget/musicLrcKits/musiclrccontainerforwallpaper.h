@@ -50,7 +50,7 @@ public:
     /*!
      * Set setting parameter.
      */
-    virtual void applySettingParameter() override final;
+    virtual void applyParameter() override final;
 
     /*!
      * Set lrc analysis model.

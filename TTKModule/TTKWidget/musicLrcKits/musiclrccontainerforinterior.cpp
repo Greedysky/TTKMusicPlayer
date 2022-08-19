@@ -39,6 +39,7 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     m_containerType = LRC_INTERIOR_TPYE;
     m_layoutWidget = new MusicVLayoutAnimationWidget(this);
     m_layoutWidget->connectTo(this);
+
     for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
        MusicLrcManager *w = new MusicLrcManagerForInterior(this);
@@ -49,16 +50,17 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     vBoxLayout->addWidget(m_layoutWidget);
 
     m_lrcChangeOffset = 0;
-    m_lrcChangeState = false;
-    m_mouseLeftPressed = false;
-    m_showArtistBackground = true;
-    m_lrcDisplayAll = false;
-    m_mouseMoved = false;
-    m_changeSpeedValue = 0;
-    m_animationFreshTime = 0;
     m_lrcChangeDelta = -1;
+    m_mouseLeftPressed = false;
+    m_lrcChangeState = false;
+    m_mouseMoved = false;
+    m_lrcDisplayAll = false;
+    m_showArtistBackground = true;
+    m_animationFreshTime = 0;
     m_lrcSizeProperty = -1;
+    m_changeSpeedValue = 0;
 
+    initFunctionLabel();
     m_lrcFloatWidget = new MusicLrcFloatWidget(this);
     m_floatPlayWidget = nullptr;
 
@@ -92,14 +94,15 @@ void MusicLrcContainerForInterior::stopDrawLrc()
     m_layoutWidget->stop();
 }
 
-void MusicLrcContainerForInterior::applySettingParameter()
+void MusicLrcContainerForInterior::applyParameter()
 {
-    MusicLrcContainer::applySettingParameter();
+    MusicLrcContainer::applyParameter();
     const int size = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
     if(m_lrcSizeProperty == -1)
     {
         m_lrcSizeProperty = size;
     }
+
     if(m_lrcChangeDelta == -1)
     {
         m_lrcChangeDelta = size;
@@ -202,6 +205,7 @@ void MusicLrcContainerForInterior::createFloatPlayWidget()
 {
     delete m_floatPlayWidget;
     m_floatPlayWidget = nullptr;
+
     if(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen())
     {
         m_floatPlayWidget = new MusicLrcFloatPlayWidget(this);
@@ -708,6 +712,7 @@ void MusicLrcContainerForInterior::initFunctionLabel()
 {
     m_functionLabel = new QWidget(this);
     m_functionLabel->setFixedHeight(40);
+
     QHBoxLayout *functionLayout = new QHBoxLayout(m_functionLabel);
     functionLayout->setContentsMargins(0, 0, 0, 0);
 

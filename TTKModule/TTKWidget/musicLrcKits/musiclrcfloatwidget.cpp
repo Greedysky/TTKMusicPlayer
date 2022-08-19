@@ -56,7 +56,7 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
 
     connect(m_update, SIGNAL(clicked()), parent, SIGNAL(currentLrcUpdated()));
     connect(m_search, SIGNAL(clicked()), parent, SLOT(searchMusicLrcs()));
-    connect(m_wallpaper, SIGNAL(clicked()), SLOT(musicContainerForWallpaperClicked()));
+    connect(m_wallpaper, SIGNAL(clicked()), SLOT(wallpaperButtonClicked()));
     connect(m_photo, SIGNAL(clicked()), m_floatPhotoWidget, SLOT(show()));
     connect(m_floatSettingWidget, SIGNAL(widgetClose()), SLOT(closeFloatSettingWidget()));
     connect(m_more, SIGNAL(clicked()), SLOT(showFloatSettingWidget()));
@@ -97,7 +97,7 @@ void MusicLrcFloatWidget::closeFloatSettingWidget()
     setBlockAnimation(false);
 }
 
-void MusicLrcFloatWidget::musicContainerForWallpaperClicked()
+void MusicLrcFloatWidget::wallpaperButtonClicked()
 {
     if(m_wallpaper->styleSheet().contains(MusicUIObject::MQSSInteriorFloatWallpaper))
     {

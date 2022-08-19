@@ -50,7 +50,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
 
     m_downloadStatusObject = new MusicDownloadStatusModule(parent);
     m_settingWidget = new MusicSettingWidget(this);
-    connect(m_settingWidget, SIGNAL(parameterSettingChanged()), parent, SLOT(applySettingParameter()));
+    connect(m_settingWidget, SIGNAL(parameterSettingChanged()), parent, SLOT(applyParameter()));
 }
 
 MusicRightAreaWidget::~MusicRightAreaWidget()
@@ -78,7 +78,6 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_lrcForInterior = ui->musiclrccontainerforinterior;
     //
     m_lrcForInterior->setLrcAnalysisModel(m_lrcAnalysis);
-    m_lrcForInterior->initFunctionLabel();
     m_lrcForInterior->resize(ui->functionsContainer->size());
 
     ui->musicBackButton->setStyleSheet(MusicUIObject::MQSSBtnBackBack);
@@ -321,13 +320,13 @@ void MusicRightAreaWidget::resizeWindow()
     }
 }
 
-void MusicRightAreaWidget::applySettingParameter()
+void MusicRightAreaWidget::applyParameter()
 {
-    m_lrcForDesktop->applySettingParameter();
-    m_lrcForInterior->applySettingParameter();
+    m_lrcForDesktop->applyParameter();
+    m_lrcForInterior->applyParameter();
     if(m_lrcForWallpaper)
     {
-        m_lrcForWallpaper->applySettingParameter();
+        m_lrcForWallpaper->applyParameter();
     }
 
     bool config = G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool();
@@ -348,7 +347,7 @@ void MusicRightAreaWidget::applySettingParameter()
 
     if(TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget))
     {
-        TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget)->applySettingParameter();
+        TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget)->applyParameter();
     }
 }
 
@@ -715,7 +714,7 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
         desktop->deleteLater();
     }
 
-    m_lrcForDesktop->applySettingParameter();
+    m_lrcForDesktop->applyParameter();
     m_lrcForDesktop->initCurrentLrc();
     m_lrcForDesktop->setVisible(G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toInt());
 
@@ -842,7 +841,7 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
 #endif
         m_lrcForWallpaper = new MusicLrcContainerForWallpaper;
         m_lrcForWallpaper->setLrcAnalysisModel(m_lrcAnalysis);
-        m_lrcForWallpaper->applySettingParameter();
+        m_lrcForWallpaper->applyParameter();
         m_lrcForWallpaper->showFullScreen();
         connect(m_lrcForInterior, SIGNAL(linearGradientColorChanged()), m_lrcForWallpaper, SLOT(changeCurrentLrcColor()));
 

@@ -63,7 +63,7 @@ public:
     /*!
      * Apply settings parameters.
      */
-    void applySettingParameter();
+    void applyParameter();
     /*!
      * Window close animation.
      */

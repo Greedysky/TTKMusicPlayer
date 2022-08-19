@@ -57,7 +57,7 @@ public:
     /*!
      * Set setting parameter.
      */
-    virtual void applySettingParameter();
+    virtual void applyParameter();
 
     /*!
      * Set linear gradient color.
@@ -142,10 +142,6 @@ protected:
      * Clear all music lrc manager.
      */
     void clearAllMusicLRCManager();
-    /*!
-     * Set setting parameter by diff type.
-     */
-    void applySettingParameter(const QString &t);
 
     bool m_linkLocalLrc;
     qint64 m_currentTime, m_totalTime;

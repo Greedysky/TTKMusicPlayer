@@ -264,7 +264,7 @@ public Q_SLOTS:
     /*!
      * Apply settings parameters.
      */
-    void applySettingParameter();
+    void applyParameter();
     /*!
      * Delete love item from indexs.
      */

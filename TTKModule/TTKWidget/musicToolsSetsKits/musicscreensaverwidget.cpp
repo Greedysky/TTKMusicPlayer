@@ -266,10 +266,10 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     connect(m_caseButton, SIGNAL(clicked()), SLOT(caseButtonOnAndOff()));
 
     initialize();
-    applySettingParameter();
+    applyParameter();
 }
 
-void MusicScreenSaverWidget::applySettingParameter()
+void MusicScreenSaverWidget::applyParameter()
 {
     const bool state = G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool();
     const int value = G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toInt();
@@ -312,7 +312,7 @@ void MusicScreenSaverWidget::inputDataChanged()
     if(state)
     {
         G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverTime, m_inputEdit->text().toInt());
-        MusicApplicationModule::instance()->applySettingParameter();
+        MusicApplicationModule::instance()->applyParameter();
     }
 }
 
@@ -332,7 +332,7 @@ void MusicScreenSaverWidget::caseButtonOnAndOff()
 
     m_inputEdit->setEnabled(m_currentState);
     G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverEnable, m_currentState);
-    MusicApplicationModule::instance()->applySettingParameter();
+    MusicApplicationModule::instance()->applyParameter();
 }
 
 void MusicScreenSaverWidget::downLoadFinished(const QString &bytes)
@@ -360,7 +360,7 @@ void MusicScreenSaverWidget::itemHasClicked(int index, bool status)
         items << QString("%1,%2").arg(i).arg(statusVector[i]);
     }
     G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverIndex, items.join(";"));
-    MusicApplicationModule::instance()->applySettingParameter();
+    MusicApplicationModule::instance()->applyParameter();
 }
 
 void MusicScreenSaverWidget::initialize()
@@ -430,7 +430,7 @@ MusicScreenSaverBackgroundWidget::~MusicScreenSaverBackgroundWidget()
     delete m_backgroundTimer;
 }
 
-void MusicScreenSaverBackgroundWidget::applySettingParameter()
+void MusicScreenSaverBackgroundWidget::applyParameter()
 {
     if(m_runningTimer->isActive())
     {

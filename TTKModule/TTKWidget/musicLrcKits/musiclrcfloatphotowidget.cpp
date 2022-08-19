@@ -140,22 +140,23 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_planes << item;
 
     m_checkBox = new QCheckBox(tr("All"), this);
-    m_checkBox->setGeometry(29, 130, 100, 20);
+    m_checkBox->setGeometry(29, 127, 100, 20);
     m_checkBox->setChecked(true);
     m_checkBox->setCursor(QCursor(Qt::PointingHandCursor));
     m_checkBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 
     m_confirmButton = new QPushButton(tr("Confirm"), this);
-    m_confirmButton->setGeometry(589, 130, 60, 22);
+    m_confirmButton->setGeometry(589, 127, 60, 22);
     m_confirmButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle06);
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_previous = new QPushButton("<", m_filmBackgroundWidget);
-    m_previous->setGeometry(29, 38, 15, 50);
-    m_next = new QPushButton(">", m_filmBackgroundWidget);
-    m_next->setGeometry(634, 38, 15, 50);
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
+    m_previous->setGeometry(29, 38, 15, 50);
+
+    m_next = new QPushButton(">", m_filmBackgroundWidget);
     m_next->setCursor(QCursor(Qt::PointingHandCursor));
+    m_next->setGeometry(634, 38, 15, 50);
 
 #ifdef Q_OS_UNIX
     m_checkBox->setFocusPolicy(Qt::NoFocus);
@@ -197,8 +198,8 @@ void MusicLrcFloatPhotoWidget::resizeWindow(int width, int height)
     m_rectOut = QRect(0, 355 + height, 680 + width, 180);
 
     m_filmBackgroundWidget->move(width / 2, 0);
-    m_checkBox->move(width / 2 + 20, 130);
-    m_confirmButton->move(width / 2 + 580, 130);
+    m_checkBox->move(width / 2 + 20, 127);
+    m_confirmButton->move(width / 2 + 580, 127);
 
     setGeometry(m_rectOut);
 }
