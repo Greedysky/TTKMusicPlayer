@@ -201,20 +201,19 @@ public: \
 #define TTK_DECLARE_LIST(Class)        typedef QList<Class> Class##List
 #define TTK_DECLARE_FLAG(Flags, Enum)  typedef QFlags<Enum> Flags
 #define TTK_DECLARE_OPERATORS_FOR_ENUM(Enum) \
-using Enum##Type = std::underlying_type<Enum>::type; \
-inline constexpr Enum operator~(const Enum lhs) { return TTKStatic_cast(Enum, ~TTKStatic_cast(Enum##Type, lhs)); } \
-inline constexpr Enum operator!(const Enum lhs) { return TTKStatic_cast(Enum, !TTKStatic_cast(Enum##Type, lhs)); } \
-inline constexpr bool operator>(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) > TTKStatic_cast(Enum##Type, rhs); } \
-inline constexpr bool operator<(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) < TTKStatic_cast(Enum##Type, rhs); } \
-inline constexpr bool operator>=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) >= TTKStatic_cast(Enum##Type, rhs); } \
-inline constexpr bool operator<=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) <= TTKStatic_cast(Enum##Type, rhs); } \
-inline constexpr bool operator==(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) == TTKStatic_cast(Enum##Type, rhs); } \
-inline constexpr bool operator!=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) != TTKStatic_cast(Enum##Type, rhs); } \
-inline constexpr Enum operator&(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(Enum##Type, lhs) & TTKStatic_cast(Enum##Type, rhs)); } \
-inline constexpr Enum operator|(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(Enum##Type, lhs) | TTKStatic_cast(Enum##Type, rhs)); } \
-inline constexpr Enum operator^(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(Enum##Type, lhs) ^ TTKStatic_cast(Enum##Type, rhs)); } \
-inline constexpr bool operator||(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) || TTKStatic_cast(Enum##Type, rhs); } \
-inline constexpr bool operator&&(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) && TTKStatic_cast(Enum##Type, rhs); } \
+inline constexpr Enum operator~(const Enum lhs) { return TTKStatic_cast(Enum, ~TTKStatic_cast(std::underlying_type<Enum>::type, lhs)); } \
+inline constexpr Enum operator!(const Enum lhs) { return TTKStatic_cast(Enum, !TTKStatic_cast(std::underlying_type<Enum>::type, lhs)); } \
+inline constexpr bool operator>(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) > TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
+inline constexpr bool operator<(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) < TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
+inline constexpr bool operator>=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) >= TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
+inline constexpr bool operator<=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) <= TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
+inline constexpr bool operator==(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) == TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
+inline constexpr bool operator!=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) != TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
+inline constexpr Enum operator&(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(std::underlying_type<Enum>::type, lhs) & TTKStatic_cast(std::underlying_type<Enum>::type, rhs)); } \
+inline constexpr Enum operator|(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(std::underlying_type<Enum>::type, lhs) | TTKStatic_cast(std::underlying_type<Enum>::type, rhs)); } \
+inline constexpr Enum operator^(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(std::underlying_type<Enum>::type, lhs) ^ TTKStatic_cast(std::underlying_type<Enum>::type, rhs)); } \
+inline constexpr bool operator||(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) || TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
+inline constexpr bool operator&&(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) && TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
 inline const Enum& operator|=(Enum& lhs, const Enum rhs) { return lhs = (lhs | rhs); } \
 inline const Enum& operator&=(Enum& lhs, const Enum rhs) { return lhs = (lhs & rhs); } \
 inline const Enum& operator^=(Enum& lhs, const Enum rhs) { return lhs = (lhs ^ rhs); }
