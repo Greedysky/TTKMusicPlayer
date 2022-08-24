@@ -1,6 +1,6 @@
 #include "musickwdownloadtextrequest.h"
 
-MusicKWDownLoadTextRequest::MusicKWDownLoadTextRequest(const QString &url, const QString &save, MusicObject::DownloadType  type, QObject *parent)
+MusicKWDownLoadTextRequest::MusicKWDownLoadTextRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent)
     : MusicAbstractDownLoadRequest(url, save, type, parent)
 {
 
@@ -51,7 +51,7 @@ void MusicKWDownLoadTextRequest::downLoadFinished()
                 for(const QVariant &var : qAsConst(datas))
                 {
                     value = var.toMap();
-                    lrcData.append(MusicTime(value["time"].toString().toDouble(), MusicTime::AllSec).toString("[mm:ss.zzz]"))
+                    lrcData.append(MusicTime(value["time"].toString().toDouble(), MusicTime::Entity::Second).toString("[mm:ss.zzz]"))
                            .append(value["lineLyric"].toByteArray()).append("\n");
                 }
             }

@@ -154,13 +154,13 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         MusicSemaphoreLoop loop;
         MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        d->startToSearch(MusicAbstractQueryRequest::MusicQuery, song->name().trimmed());
+        d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, song->name().trimmed());
         loop.exec();
 
         if(!d->isEmpty())
         {
             const MusicObject::MusicSongInformation info(d->songInfoList().front());
-            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, MusicObject::DownloadLrc, this);
+            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, MusicObject::Download::Lrc, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startToDownload();
             loop.exec();

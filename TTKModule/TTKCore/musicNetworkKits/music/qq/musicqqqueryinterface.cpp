@@ -94,19 +94,19 @@ void MusicQQQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
     else
     {
-        if(quality == MusicObject::StandardQuality)
+        if(quality == MusicObject::QueryQuality::Standard)
         {
             readFromMusicSongProperty(info, mid, key["size128"].toULongLong(), MB_128);
         }
-        else if(quality == MusicObject::HighQuality)
+        else if(quality == MusicObject::QueryQuality::High)
         {
             readFromMusicSongProperty(info, mid, key["size192"].toULongLong(), MB_192);
         }
-        else if(quality == MusicObject::SuperQuality)
+        else if(quality == MusicObject::QueryQuality::Super)
         {
             readFromMusicSongProperty(info, mid, key["size320"].toULongLong(), MB_320);
         }
-        else if(quality == MusicObject::LosslessQuality)
+        else if(quality == MusicObject::QueryQuality::Lossless)
         {
             readFromMusicSongProperty(info, mid, key["sizeape"].toULongLong(), MB_750);
             readFromMusicSongProperty(info, mid, key["sizeflac"].toULongLong(), MB_1000);

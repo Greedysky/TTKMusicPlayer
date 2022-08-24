@@ -42,7 +42,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
 
     if(m_lrcContainer.isEmpty())
     {
-        return Failed;
+        return State::Failed;
     }
 
     for(int i = 0; i < lineMiddle(); ++i)
@@ -67,7 +67,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
         m_currentShowLrcContainer << QString();
     }
 
-    return Success;
+    return State::Success;
 }
 
 MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data)
@@ -75,7 +75,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
     clear();
     if(data.isEmpty())
     {
-        return Failed;
+        return State::Failed;
     }
 
     m_lrcContainer = data;
@@ -102,7 +102,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
         m_currentShowLrcContainer << QString();
     }
 
-    return Success;
+    return State::Success;
 }
 
 MusicLrcAnalysis::State MusicLrcAnalysis::readFromLrcFile(const QString &path)
@@ -112,7 +112,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromLrcFile(const QString &path)
     clear();
     if(!file.open(QIODevice::ReadOnly))
     {
-        return Failed;
+        return State::Failed;
     }
 
     const State state = setLrcData(file.readAll());
@@ -129,7 +129,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
     MusicLrcFromKrc krc;
     if(!krc.decode(path))
     {
-        return Failed;
+        return State::Failed;
     }
 
     const QString &text = QString(krc.decodeString());
@@ -142,7 +142,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
     //If the lrcContainer is empty
     if(m_lrcContainer.isEmpty())
     {
-        return Failed;
+        return State::Failed;
     }
 
     for(int i = 0; i < lineMiddle(); ++i)
@@ -166,7 +166,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
         m_currentShowLrcContainer << QString();
     }
 
-    return Success;
+    return State::Success;
 }
 
 void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
@@ -186,76 +186,76 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
     const QRegExp regx13("\\[\\d{2}\\.\\d{2}:\\d{1}\\]");
     const QRegExp regx14("\\[\\d{2}\\.\\d{2}\\]");
 
-    LrcFormat type = Type02;
+    Format type = Format::Type02;
     QRegExp regx;
     if(oneLine.contains(regx01))
     {
-        type = Type01;
+        type = Format::Type01;
         regx = regx01;
     }
     else if(oneLine.contains(regx02))
     {
-        type = Type02;
+        type = Format::Type02;
         regx = regx02;
     }
     else if(oneLine.contains(regx03))
     {
-        type = Type03;
+        type = Format::Type03;
         regx = regx03;
     }
     else if(oneLine.contains(regx04))
     {
-        type = Type04;
+        type = Format::Type04;
         regx = regx04;
     }
     else if(oneLine.contains(regx05))
     {
-        type = Type05;
+        type = Format::Type05;
         regx = regx05;
     }
     else if(oneLine.contains(regx06))
     {
-        type = Type06;
+        type = Format::Type06;
         regx = regx06;
     }
     else if(oneLine.contains(regx07))
     {
-        type = Type07;
+        type = Format::Type07;
         regx = regx07;
     }
     else if(oneLine.contains(regx08))
     {
-        type = Type08;
+        type = Format::Type08;
         regx = regx08;
     }
     else if(oneLine.contains(regx09))
     {
-        type = Type09;
+        type = Format::Type09;
         regx = regx09;
     }
     else if(oneLine.contains(regx10))
     {
-        type = Type10;
+        type = Format::Type10;
         regx = regx10;
     }
     else if(oneLine.contains(regx11))
     {
-        type = Type11;
+        type = Format::Type11;
         regx = regx11;
     }
     else if(oneLine.contains(regx12))
     {
-        type = Type12;
+        type = Format::Type12;
         regx = regx12;
     }
     else if(oneLine.contains(regx13))
     {
-        type = Type13;
+        type = Format::Type13;
         regx = regx13;
     }
     else
     {
-        type = Type14;
+        type = Format::Type14;
         regx = regx14;
     }
 
@@ -269,20 +269,20 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
         //The time tag into the time value, in milliseconds
         switch(type)
         {
-            case Type01: matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{3}(?=\\])"); break;
-            case Type02: matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{2}(?=\\])"); break;
-            case Type03: matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{1}(?=\\])"); break;
-            case Type04: matchLrcLine(temp, cap, ":"); break;
-            case Type05: matchLrcLine(temp, cap, ":"); break;
-            case Type06: matchLrcLine(temp, cap, ":"); break;
-            case Type07: matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\])"); break;
-            case Type08: matchLrcLine(temp, cap, "."); break;
-            case Type09: matchLrcLine(temp, cap, "."); break;
-            case Type10: matchLrcLine(temp, cap, "."); break;
-            case Type11: matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{3}(?=\\])"); break;
-            case Type12: matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{2}(?=\\])"); break;
-            case Type13: matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{1}(?=\\])"); break;
-            case Type14: matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=\\])"); break;
+            case Format::Type01: matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{3}(?=\\])"); break;
+            case Format::Type02: matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{2}(?=\\])"); break;
+            case Format::Type03: matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{1}(?=\\])"); break;
+            case Format::Type04: matchLrcLine(temp, cap, ":"); break;
+            case Format::Type05: matchLrcLine(temp, cap, ":"); break;
+            case Format::Type06: matchLrcLine(temp, cap, ":"); break;
+            case Format::Type07: matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\])"); break;
+            case Format::Type08: matchLrcLine(temp, cap, "."); break;
+            case Format::Type09: matchLrcLine(temp, cap, "."); break;
+            case Format::Type10: matchLrcLine(temp, cap, "."); break;
+            case Format::Type11: matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{3}(?=\\])"); break;
+            case Format::Type12: matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{2}(?=\\])"); break;
+            case Format::Type13: matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{1}(?=\\])"); break;
+            case Format::Type14: matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=\\])"); break;
             default: break;
         }
         pos += regx.matchedLength();
@@ -394,7 +394,7 @@ void MusicLrcAnalysis::saveLrcData()
     while(it.hasNext())
     {
         it.next();
-        data.append(MusicTime::toString(it.key(), MusicTime::AllMsec, "[mm:ss.zzz]"));
+        data.append(MusicTime::toString(it.key(), MusicTime::Entity::Millisecond, "[mm:ss.zzz]"));
         data.append(it.value() + "\n");
     }
 

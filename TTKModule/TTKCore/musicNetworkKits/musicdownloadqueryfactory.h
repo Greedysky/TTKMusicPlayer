@@ -102,11 +102,11 @@ public:
     /*!
      * Make download small picture object by type.
      */
-    MusicAbstractDownLoadRequest *makeSmallPictureRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent = nullptr);
+    MusicAbstractDownLoadRequest *makeSmallPictureRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent = nullptr);
     /*!
      * Make download lrc object by type.
      */
-    MusicAbstractDownLoadRequest *makeLrcRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent = nullptr);
+    MusicAbstractDownLoadRequest *makeLrcRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent = nullptr);
     /*!
      * Make download big picture object by type.
      */

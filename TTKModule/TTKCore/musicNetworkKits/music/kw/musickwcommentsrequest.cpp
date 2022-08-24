@@ -15,7 +15,7 @@ void MusicKWSongCommentsRequest::startToSearch(const QString &value)
     MusicKWQueryRequest *d = new MusicKWQueryRequest(this);
     d->setQueryLite(true);
     d->setQueryAllRecords(false);
-    d->startToSearch(MusicAbstractQueryRequest::MusicQuery, value);
+    d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, value);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 

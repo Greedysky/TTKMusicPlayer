@@ -33,13 +33,13 @@ class TTK_MODULE_EXPORT MusicPlayer : public QObject
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlayer)
 public:
-    enum Enhanced
+    enum class Enhance
     {
-        EnhancedOff,       /*!< enhanced off, no any effect*/
-        Enhanced3D,        /*!< 3d music effect*/
-        EnhancedNICAM,     /*!< nicam music effect*/
-        EnhancedSubwoofer, /*!< subwoofer music effect*/
-        EnhancedVocal      /*!< vocal music effect*/
+        Off,        /*!< enhance off, no any effect*/
+        M3D,        /*!< 3d music effect*/
+        NICAM,      /*!< nicam music effect*/
+        Subwoofer,  /*!< subwoofer music effect*/
+        Vocal       /*!< vocal music effect*/
     };
 
     /*!
@@ -107,11 +107,11 @@ public:
     /*!
      * Set current music enhanced effect.
      */
-    void setMusicEnhanced(Enhanced type);
+    void setMusicEnhanced(Enhance type);
     /*!
      * Get current music enhanced effect.
      */
-    Enhanced musicEnhanced() const;
+    Enhance musicEnhanced() const;
 
 Q_SIGNALS:
     /*!
@@ -169,7 +169,7 @@ protected:
     SoundCore *m_core;
     QTimer m_timer;
     QString m_currentMedia;
-    Enhanced m_enhanced;
+    Enhance m_enhance;
     qint64 m_duration;
 
     int m_durationTimes;

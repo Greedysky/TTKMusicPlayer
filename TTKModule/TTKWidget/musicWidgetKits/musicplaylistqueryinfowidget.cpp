@@ -11,7 +11,7 @@
 MusicPlaylistQueryInfoWidget::MusicPlaylistQueryInfoWidget(QWidget *parent)
     : MusicAbstractItemQueryWidget(parent)
 {
-    m_shareType = MusicSongSharingWidget::Playlist;
+    m_shareType = MusicSongSharingWidget::Module::Playlist;
     m_commentsWidget = nullptr;
     m_queryTableWidget = new MusicPlaylistQueryTableWidget(this);
     m_container->show();
@@ -30,7 +30,7 @@ void MusicPlaylistQueryInfoWidget::resizeWindow()
     m_queryTableWidget->resizeWindow();
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];

@@ -52,7 +52,7 @@ void MusicItemQueryTableWidget::startSearchQuery(const QString &text)
     }
 
     m_networkRequest->setQueryAllRecords(true);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, text);
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, text);
 }
 
 void MusicItemQueryTableWidget::musicDownloadLocal(int row)
@@ -64,7 +64,7 @@ void MusicItemQueryTableWidget::musicDownloadLocal(int row)
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(songInfos[row], MusicAbstractQueryRequest::MusicQuery);
+    download->setSongName(songInfos[row], MusicAbstractQueryRequest::QueryType::Music);
     download->show();
 }
 
@@ -109,12 +109,12 @@ void MusicItemQueryTableWidget::downloadBatchData(bool music)
     }
 
     MusicDownloadBatchWidget *w = GENERATE_SINGLE_WIDGET_PARENT(MusicDownloadBatchWidget, this);
-    w->setSongName(items, music ? MusicAbstractQueryRequest::MusicQuery : MusicAbstractQueryRequest::MovieQuery);
+    w->setSongName(items, music ? MusicAbstractQueryRequest::QueryType::Music : MusicAbstractQueryRequest::QueryType::Movie);
 }
 
 void MusicItemQueryTableWidget::resizeWindow()
 {
-    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) * 0.5 + 342);
     headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN) * 0.5 + 110);

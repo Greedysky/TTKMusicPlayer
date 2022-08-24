@@ -55,8 +55,8 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     m_ui->krc2lrcBox->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    m_ui->loadingLabel->setType(MusicGifLabelWidget::CicleBlue);
-    m_currentType = Music;
+    m_ui->loadingLabel->setType(MusicGifLabelWidget::Module::CicleBlue);
+    m_currentType = Module::Music;
 
     initialize();
 }
@@ -83,7 +83,8 @@ void MusicTransformWidget::initInputPath()
 {
     QString path;
     QStringList supportedFormat;
-    (m_currentType == Music) ? (supportedFormat << "mp3" << "wav" << "wma" << "ogg" << "flac" << "ac3" << "aac") : supportedFormat << "krc";
+    (m_currentType == Module::Music) ? (supportedFormat << "mp3" << "wav" << "wma" << "ogg" << "flac" << "ac3" << "aac") : supportedFormat << "krc";
+
     if(!m_ui->folderBox->isChecked())
     {
         QString filter = "Files (";
@@ -159,7 +160,7 @@ void MusicTransformWidget::transformFinish()
             m_ui->listWidget->setToolTip(path);
         }
 
-        if(!processTransform((m_currentType == Music) ? MAKE_TRANSFORM_FULL : MAKE_KRC2LRC_FULL))
+        if(!processTransform((m_currentType == Module::Music) ? MAKE_TRANSFORM_FULL : MAKE_KRC2LRC_FULL))
         {
             return;
         }
@@ -167,7 +168,7 @@ void MusicTransformWidget::transformFinish()
     else
     {
         setCheckedControl(true);
-        if(m_currentType == Lrc)
+        if(m_currentType == Module::Lrc)
         {
             setMusicCheckedControl(false);
         }
@@ -194,7 +195,7 @@ bool MusicTransformWidget::processTransform(const QString &para)
         return false;
     }
 
-    if(m_currentType == Music)
+    if(m_currentType == Module::Music)
     {
         if(m_ui->formatCombo->currentText() == "OGG")
         {
@@ -221,7 +222,7 @@ bool MusicTransformWidget::processTransform(const QString &para)
 
 void MusicTransformWidget::startTransform()
 {
-    const QString &func = (m_currentType == Music) ? MAKE_TRANSFORM_FULL : MAKE_KRC2LRC_FULL;
+    const QString &func = (m_currentType == Module::Music) ? MAKE_TRANSFORM_FULL : MAKE_KRC2LRC_FULL;
     if(!QFile(func).exists() || !processTransform(func))
     {
         return;
@@ -241,7 +242,7 @@ void MusicTransformWidget::folderBoxChecked()
 
 void MusicTransformWidget::krc2lrcBoxChecked(bool check)
 {
-    m_currentType = check ? Lrc : Music;
+    m_currentType = check ? Module::Lrc : Module::Music;
     folderBoxChecked();
     setMusicCheckedControl(!check);
 }

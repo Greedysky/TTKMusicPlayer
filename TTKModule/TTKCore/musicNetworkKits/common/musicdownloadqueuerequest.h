@@ -43,16 +43,16 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadQueueRequest(MusicObject::DownloadType  type, QObject *parent = nullptr);
+    explicit MusicDownloadQueueRequest(MusicObject::Download type, QObject *parent = nullptr);
 
     /*!
      * Object contsructor.
      */
-    MusicDownloadQueueRequest(const MusicDownloadQueueData &data, MusicObject::DownloadType  type, QObject *parent = nullptr);
+    MusicDownloadQueueRequest(const MusicDownloadQueueData &data, MusicObject::Download type, QObject *parent = nullptr);
     /*!
      * Object contsructor.
      */
-    MusicDownloadQueueRequest(const MusicDownloadQueueDataList &datas, MusicObject::DownloadType  type, QObject *parent = nullptr);
+    MusicDownloadQueueRequest(const MusicDownloadQueueDataList &datas, MusicObject::Download type, QObject *parent = nullptr);
     ~MusicDownloadQueueRequest();
 
     /*!

@@ -4,7 +4,7 @@
 
 #include <QImage>
 
-MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
+MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent)
     : MusicDownloadDataRequest(url, save, type, parent)
 {
     m_needUpdate = false;
@@ -63,7 +63,7 @@ void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &bytes)
     MusicSongMeta meta;
     if(meta.read(m_savePath))
     {
-        if(G_SETTING_PTR->value(MusicSettingManager::OtherWriteFileInfo).toBool())
+        if(G_SETTING_PTR->value(MusicSettingManager::Config::OtherWriteFileInfo).toBool())
         {
             meta.setTitle(m_songMeta.title());
             meta.setArtist(m_songMeta.artist());
@@ -72,7 +72,7 @@ void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &bytes)
             meta.setYear(m_songMeta.year());
         }
 
-        if(G_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool())
+        if(G_SETTING_PTR->value(MusicSettingManager::Config::OtherWriteAlbumCover).toBool())
         {
             if(bytes.isEmpty())
             {

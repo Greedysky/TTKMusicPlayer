@@ -33,14 +33,14 @@ class TTK_MODULE_EXPORT MusicRemoteWidget : public MusicAbstractMoveWidget
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRemoteWidget)
 public:
-    enum RemoteType
+    enum Module
     {
-        Null = 0,       /*!< Romote Null type*/
-        Square,         /*!< Romote Square type*/
-        Rectangle,      /*!< Romote Rectangle type*/
-        SimpleStyle,    /*!< Romote SimpleStyle type*/
-        ComplexStyle,   /*!< Romote ComplexStyle type*/
-        Ripple          /*!< Romote Ripple type*/
+        Null = 0,       /*!< Romote Null module*/
+        Square,         /*!< Romote Square module*/
+        Rectangle,      /*!< Romote Rectangle module*/
+        SimpleStyle,    /*!< Romote SimpleStyle module*/
+        ComplexStyle,   /*!< Romote ComplexStyle module*/
+        Ripple          /*!< Romote Ripple module*/
     };
 
     /*!

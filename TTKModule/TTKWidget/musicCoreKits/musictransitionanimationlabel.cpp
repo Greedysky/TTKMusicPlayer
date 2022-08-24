@@ -9,7 +9,7 @@ MusicTransitionAnimationLabel::MusicTransitionAnimationLabel(QWidget *parent)
     : QLabel(parent)
 {
     MusicTime::initRandom();
-    m_type = FadeEffect;
+    m_type = Module::FadeEffect;
     m_isAnimating = false;
     m_currentValue = 0;
     m_noAnimationSet = false;
@@ -62,20 +62,20 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
     m_currentPixmap = pix;
     m_isAnimating = true;
 
-    m_type = TTKStatic_cast(AnimationType, MusicTime::random(5));
+    m_type = TTKStatic_cast(Module, MusicTime::random(5));
     switch(m_type)
     {
-        case FadeEffect:
+        case Module::FadeEffect:
         {
             m_animation->setDuration(200);
             break;
         }
-        case BlindsEffect:
+        case Module::BlindsEffect:
         {
             m_animation->setDuration(500);
             break;
         }
-        case CubeEffect:
+        case Module::CubeEffect:
         {
             delete m_cubeWave;
             m_cubeWave = new QAlgorithm::CubeWave;
@@ -83,7 +83,7 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
             m_animation->setDuration(500);
             break;
         }
-        case WaterEffect:
+        case Module::WaterEffect:
         {
             delete m_waterWave;
             m_waterWave = new QAlgorithm::WaterWave(m_currentPixmap.toImage(), height() / 6);
@@ -91,12 +91,12 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
             m_animation->setDuration(1000);
             break;
         }
-        case LeftToRightEffect:
+        case Module::LeftToRightEffect:
         {
             m_animation->setDuration(150);
             break;
         }
-        case TopToBottomEffect:
+        case Module::TopToBottomEffect:
         {
             m_animation->setDuration(150);
             break;
@@ -129,7 +129,7 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
         QPainter painter(this);
         switch(m_type)
         {
-            case FadeEffect:
+            case Module::FadeEffect:
             {
                 painter.drawPixmap(rect(), m_previousPixmap);
                 QPixmap pix(size());
@@ -142,7 +142,7 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                 m_rendererPixmap = pix;
                 break;
             }
-            case BlindsEffect:
+            case Module::BlindsEffect:
             {
                 QPixmap pix(m_previousPixmap);
                 QPainter paint(&pix);
@@ -157,19 +157,19 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                 m_rendererPixmap = pix;
                 break;
             }
-            case CubeEffect:
+            case Module::CubeEffect:
             {
                 painter.drawPixmap(rect(), m_previousPixmap);
                 m_rendererPixmap = m_cubeWave->render(m_currentPixmap, m_currentValue);
                 break;
             }
-            case WaterEffect:
+            case Module::WaterEffect:
             {
                 painter.drawPixmap(rect(), m_previousPixmap);
                 m_rendererPixmap = m_waterWave->render(m_currentPixmap, m_currentValue);
                 break;
             }
-            case LeftToRightEffect:
+            case Module::LeftToRightEffect:
             {
                 QPixmap pix(m_previousPixmap);
                 QPainter paint(&pix);
@@ -179,7 +179,7 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                 m_rendererPixmap = pix;
                 break;
             }
-            case TopToBottomEffect:
+            case Module::TopToBottomEffect:
             {
                 QPixmap pix(m_previousPixmap);
                 QPainter paint(&pix);

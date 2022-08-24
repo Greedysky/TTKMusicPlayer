@@ -62,7 +62,7 @@ public:
     /*!
      * Set linear gradient color.
      */
-    void setLinearGradientColor(MusicLrcColor::LrcColorType lrcColorType);
+    void setLinearGradientColor(MusicLrcColor::Color color);
     /*!
      * Set linear gradient color.
      */

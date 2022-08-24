@@ -315,11 +315,11 @@ void MusicTTKFMRadioPlayWidget::initialize()
     m_ui->volumeSlider->setValue(0);
     m_ui->volumeSlider->setValue(v);
     ///
-    m_ui->gifLabel_1->setType(MusicGifLabelWidget::RadioBlue);
-    m_ui->gifLabel_2->setType(MusicGifLabelWidget::RadioBlue);
-    m_ui->gifLabel_3->setType(MusicGifLabelWidget::RadioBlue);
-    m_ui->gifLabel_4->setType(MusicGifLabelWidget::RadioBlue);
-    m_ui->gifLabel_5->setType(MusicGifLabelWidget::RadioBlue);
+    m_ui->gifLabel_1->setType(MusicGifLabelWidget::Module::RadioBlue);
+    m_ui->gifLabel_2->setType(MusicGifLabelWidget::Module::RadioBlue);
+    m_ui->gifLabel_3->setType(MusicGifLabelWidget::Module::RadioBlue);
+    m_ui->gifLabel_4->setType(MusicGifLabelWidget::Module::RadioBlue);
+    m_ui->gifLabel_5->setType(MusicGifLabelWidget::Module::RadioBlue);
 }
 
 void MusicTTKFMRadioPlayWidget::createCoreModule()
@@ -338,7 +338,7 @@ void MusicTTKFMRadioPlayWidget::startCoreModule()
         createCoreModule();
     }
 
-    m_player->setMedia(MusicCoreMPlayer::RadioCategory, m_items[m_currentIndex].m_url);
+    m_player->setMedia(MusicCoreMPlayer::Module::Radio, m_items[m_currentIndex].m_url);
     radioPlay();
 
     m_ui->titleWidget->setText(m_items[m_currentIndex].m_name);

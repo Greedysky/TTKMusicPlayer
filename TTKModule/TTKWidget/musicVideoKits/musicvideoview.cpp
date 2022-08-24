@@ -107,7 +107,7 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicVideoView::setMedia(const QString &data)
 {
-    m_player->setMedia(MusicCoreMPlayer::VideoCategory, data, (int)m_videoWidget->winId());
+    m_player->setMedia(MusicCoreMPlayer::Module::Video, data, (int)m_videoWidget->winId());
     m_videoControl->setQualityActionState();
 }
 
@@ -141,13 +141,13 @@ void MusicVideoView::play()
     m_player->play();
     switch(m_player->state())
     {
-        case MusicObject::PlayingState:
+        case MusicObject::PlayState::Playing:
         {
             m_videoControl->setButtonStyle(false);
             m_barrageCore->start();
             break;
         }
-        case MusicObject::PausedState:
+        case MusicObject::PlayState::Paused:
         {
             m_videoControl->setButtonStyle(true);
             m_barrageCore->pause();

@@ -126,7 +126,7 @@ MusicWebMVRadioQueryWidget::~MusicWebMVRadioQueryWidget()
 void MusicWebMVRadioQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, QString());
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, QString());
 }
 
 void MusicWebMVRadioQueryWidget::setSongNameById(const QString &id)
@@ -235,6 +235,6 @@ void MusicWebMVRadioQueryWidget::categoryChanged(const MusicResultsCategoryItem 
             m_gridLayout->removeWidget(w);
             delete w;
         }
-        m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, category.m_key);
+        m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, category.m_key);
     }
 }

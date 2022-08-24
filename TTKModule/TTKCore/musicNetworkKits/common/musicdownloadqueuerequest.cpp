@@ -2,13 +2,13 @@
 
 #include <QStringList>
 
-MusicDownloadQueueRequest::MusicDownloadQueueRequest(MusicObject::DownloadType  type, QObject *parent)
+MusicDownloadQueueRequest::MusicDownloadQueueRequest(MusicObject::Download type, QObject *parent)
     : MusicDownloadQueueRequest(MusicDownloadQueueData(), type, parent)
 {
 
 }
 
-MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueData &data, MusicObject::DownloadType  type, QObject *parent)
+MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueData &data, MusicObject::Download type, QObject *parent)
     : MusicAbstractDownLoadRequest(data.m_url, data.m_savePath, type, parent)
 {
     m_isDownload = false;
@@ -18,7 +18,7 @@ MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueDat
     MusicObject::setSslConfiguration(m_request);
 }
 
-MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueDataList &datas, MusicObject::DownloadType  type, QObject *parent)
+MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueDataList &datas, MusicObject::Download type, QObject *parent)
     : MusicDownloadQueueRequest(MusicDownloadQueueData(), type, parent)
 {
     addImageQueue(datas);

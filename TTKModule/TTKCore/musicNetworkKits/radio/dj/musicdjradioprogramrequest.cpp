@@ -13,7 +13,7 @@ void MusicDJRadioProgramRequest::startToDownload(MusicObject::Program type)
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request, type == MusicObject::Recommed ?
+    const QByteArray &parameter = makeTokenQueryUrl(&request, type == MusicObject::Program::Recommed ?
                       MusicUtils::Algorithm::mdII(DJ_RECOMMEND_URL, false):
                       MusicUtils::Algorithm::mdII(DJ_HOT_URL, false),
                       MusicUtils::Algorithm::mdII(DJ_HOT_DATA_URL, false));

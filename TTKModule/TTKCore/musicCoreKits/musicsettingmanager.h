@@ -29,10 +29,10 @@
 class TTK_MODULE_EXPORT MusicSettingManager : public QObject
 {
     Q_OBJECT
-    Q_ENUMS(ConfigType)
+    Q_ENUMS(Config)
     TTK_DECLARE_MODULE(MusicSettingManager)
 public:
-    enum ConfigType
+    enum class Config
     {
         Null = -1,                       /*!< No Parameter*/
         ScreenSize,                      /*!< Screen Size Parameter*/
@@ -139,7 +139,7 @@ public:
     /*!
      * Set current value by Config Type.
      */
-    inline void setValue(ConfigType type, const QVariant &var)
+    inline void setValue(Config type, const QVariant &var)
     {
         m_parameter[type] = var;
     }
@@ -155,7 +155,7 @@ public:
     /*!
      * Get current value by Config Type.
      */
-    inline QVariant value(ConfigType type) const
+    inline QVariant value(Config type) const
     {
         return m_parameter[type];
     }
@@ -187,7 +187,7 @@ public:
     /*!
      * Current parameter contains type.
      */
-    inline bool contains(ConfigType type) const
+    inline bool contains(Config type) const
     {
         return m_parameter.contains(type);
     }
@@ -196,16 +196,16 @@ protected:
     /*!
      * Convert String type to Config Type.
      */
-    inline ConfigType typeStringToEnum(const QString &stype) const
+    inline Config typeStringToEnum(const QString &stype) const
     {
-        const int index = staticMetaObject.indexOfEnumerator("ConfigType");
+        const int index = staticMetaObject.indexOfEnumerator("Config");
         const QMetaEnum &metaEnum = staticMetaObject.enumerator(index);
         const int key = metaEnum.keyToValue(stype.toStdString().c_str());
-        return TTKStatic_cast(ConfigType, key);
+        return TTKStatic_cast(Config, key);
     }
 
     QVariant m_variant;
-    QMap<ConfigType, QVariant> m_parameter;
+    QMap<Config, QVariant> m_parameter;
 
     DECLARE_SINGLETON_CLASS(MusicSettingManager)
 };

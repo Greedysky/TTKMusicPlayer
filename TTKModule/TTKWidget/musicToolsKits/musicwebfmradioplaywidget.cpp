@@ -151,7 +151,7 @@ void MusicWebFMRadioPlayWidget::radioResourceDownload()
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(info, MusicAbstractQueryRequest::MusicQuery);
+    download->setSongName(info, MusicAbstractQueryRequest::QueryType::Music);
     download->show();
 }
 
@@ -174,7 +174,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
         createCoreModule();
     }
 
-    m_player->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songProps.front().m_url);
+    m_player->setMedia(MusicCoreMPlayer::Module::Music, info.m_songProps.front().m_url);
     m_player->play();
 
     /// fix current play volume temporary
@@ -185,7 +185,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     QString name = MusicUtils::String::lrcDirPrefix() + info.m_singerName + " - " + info.m_songName + LRC_FILE;
     if(!QFile::exists(name))
     {
-        MusicFMRadioDownLoadTextRequest* lrcDownload = new MusicFMRadioDownLoadTextRequest(info.m_lrcUrl, name, MusicObject::DownloadLrc, this);
+        MusicFMRadioDownLoadTextRequest* lrcDownload = new MusicFMRadioDownLoadTextRequest(info.m_lrcUrl, name, MusicObject::Download::Lrc, this);
         connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));
         lrcDownload->startToDownload();
     }
@@ -197,7 +197,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     name = ART_DIR_FULL + info.m_singerName + SKN_FILE;
     if(!QFile::exists(name))
     {
-        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(info.m_coverUrl, name, MusicObject::DownloadSmallBackground, this);
+        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(info.m_coverUrl, name, MusicObject::Download::SmallBackground, this);
         connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
         download->startToDownload();
     }

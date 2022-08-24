@@ -158,12 +158,12 @@ void MusicRemoteWidget::musicVolumeSliderChanged(int value)
 void MusicRemoteWidget::show()
 {
     MusicAbstractMoveWidget::show();
-    G_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetMode, mapRemoteTypeIndex());
+    G_SETTING_PTR->setValue(MusicSettingManager::Config::RemoteWidgetMode, mapRemoteTypeIndex());
 }
 
 bool MusicRemoteWidget::close()
 {
-    G_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetMode, Null);
+    G_SETTING_PTR->setValue(MusicSettingManager::Config::RemoteWidgetMode, Null);
     return MusicAbstractMoveWidget::close();
 }
 
@@ -201,6 +201,6 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicRemoteWidget::adjustPosition(QWidget *w)
 {
-    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::Config::ScreenSize).toSize();
     w->move(windowSize.width() - w->width() - 150, w->height() + 70);
 }

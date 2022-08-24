@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor provide download URL\ save local path and download type.
      */
-    MusicDownloadDataRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent = nullptr);
+    MusicDownloadDataRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent = nullptr);
 
     /*!
      * Start to download data.
@@ -42,7 +42,7 @@ public:
     /*!
      * Set record type.
      */
-    void setRecordType(MusicObject::RecordType type);
+    void setRecordType(MusicObject::Record type);
 
 Q_SIGNALS:
     /*!
@@ -88,7 +88,7 @@ protected:
 
     qint64 m_createItemTime;
     bool m_redirection, m_needUpdate;
-    MusicObject::RecordType m_recordType;
+    MusicObject::Record m_recordType;
 };
 
 #endif // MUSICDOWNLOADDATAREQUEST_H

@@ -47,7 +47,7 @@ void MusicLrcManagerForInterior::paintEvent(QPaintEvent *)
                      m_position.x(), m_position.y(), Qt::AlignLeft | Qt::AlignVCenter, text());
 
     int offsetValue = m_lrcMaskWidth;
-    if(!G_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool())
+    if(!G_SETTING_PTR->value(MusicSettingManager::Config::OtherLrcKTVMode).toBool())
     {
         offsetValue = (m_lrcMaskWidth != 0) ? m_position.x() : m_lrcMaskWidth;
     }

@@ -31,7 +31,7 @@ class DesPrivate;
 class TTK_MODULE_EXPORT Des
 {
 public:
-    enum Mode
+    enum class Mode
     {
         Encrypt = 0,
         Decrypt = 1

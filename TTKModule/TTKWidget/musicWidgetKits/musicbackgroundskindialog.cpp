@@ -27,7 +27,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 
     m_ui->paletteButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->customSkin->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->stackedWidget->setLength(m_ui->stackedWidget->width(), MusicAnimationStackedWidget::RightToLeft);
+    m_ui->stackedWidget->setLength(m_ui->stackedWidget->width(), MusicAnimationStackedWidget::Module::RightToLeft);
 #ifdef Q_OS_UNIX
     m_ui->paletteButton->setFocusPolicy(Qt::NoFocus);
     m_ui->customSkin->setFocusPolicy(Qt::NoFocus);
@@ -134,7 +134,7 @@ void MusicBackgroundSkinDialog::setCurrentBackgroundTheme(const QString &theme, 
     m_ui->listTransparentButton->setValue(list);
     setListTransToolText(list);
 
-    const bool state = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparentEnable).toBool();
+    const bool state = G_SETTING_PTR->value(MusicSettingManager::Config::BackgroundTransparentEnable).toBool();
     m_ui->skinTransparentButton->setValue(state ? skin : 0);
     m_ui->skinTransparentButton->setEnabled(state);
     setSkinTransToolText(state ? skin : 0);
@@ -278,7 +278,7 @@ void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
 void MusicBackgroundSkinDialog::windowTransparentChanged(bool state)
 {
     m_ui->skinTransparentButton->setEnabled(state);
-    G_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentEnable, state);
+    G_SETTING_PTR->setValue(MusicSettingManager::Config::BackgroundTransparentEnable, state);
     if(!state)
     {
         m_ui->skinTransparentButton->setValue(0);

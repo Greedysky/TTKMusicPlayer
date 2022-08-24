@@ -43,17 +43,17 @@ class TTK_MODULE_EXPORT MusicAbstractMoveResizeWidget : public QWidget
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractMoveResizeWidget)
 public:
-    enum Direction
+    enum class Direction
     {
-        DirectionNo = 0,                                         /*!< no direction*/
-        DirectionLeft = 1,                                       /*!< left direction*/
-        DirectionTop = 2,                                        /*!< top direction*/
-        DirectionRight = 4,                                      /*!< right direction*/
-        DirectionBottom = 8,                                     /*!< bottom direction*/
-        DirectionLeftTop = DirectionLeft + DirectionTop,         /*!< left top direction*/
-        DirectionLeftBottom = DirectionLeft + DirectionBottom,   /*!< left bottom direction*/
-        DirectionRightTop = DirectionRight + DirectionTop,       /*!< right top direction*/
-        DirectionRightBottom = DirectionRight + DirectionBottom  /*!< right bottom direction*/
+        No = 0,                                             /*!< no direction*/
+        Left = 1,                                           /*!< left direction*/
+        Top = 2,                                            /*!< top direction*/
+        Right = 4,                                          /*!< right direction*/
+        Bottom = 8,                                         /*!< bottom direction*/
+        LeftTop = Direction::Left | Direction::Top,         /*!< left top direction*/
+        LeftBottom = Direction::Left | Direction::Bottom,   /*!< left bottom direction*/
+        RightTop = Direction::Right | Direction::Top,       /*!< right top direction*/
+        RightBottom = Direction::Right | Direction::Bottom  /*!< right bottom direction*/
     };
     /*!
      * Object contsructor.

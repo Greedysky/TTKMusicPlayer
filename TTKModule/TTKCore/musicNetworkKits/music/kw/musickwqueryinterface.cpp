@@ -142,19 +142,19 @@ void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
     else
     {
-        if(quality == MusicObject::StandardQuality)
+        if(quality == MusicObject::QueryQuality::Standard)
         {
             readFromMusicSongProperty(info, MP3_FILE_PREFIX, format, MB_128);
         }
-        else if(quality == MusicObject::HighQuality)
+        else if(quality == MusicObject::QueryQuality::High)
         {
             readFromMusicSongProperty(info, MP3_FILE_PREFIX, format, MB_192);
         }
-        else if(quality == MusicObject::SuperQuality)
+        else if(quality == MusicObject::QueryQuality::Super)
         {
             readFromMusicSongProperty(info, MP3_FILE_PREFIX, format, MB_320);
         }
-        else if(quality == MusicObject::LosslessQuality)
+        else if(quality == MusicObject::QueryQuality::Lossless)
         {
             readFromMusicSongProperty(info, APE_FILE_PREFIX, format, MB_750);
             readFromMusicSongProperty(info, FLAC_FILE_PREFIX, format, MB_1000);
@@ -177,19 +177,19 @@ void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
         }
         else
         {
-            if(quality == MusicObject::StandardQuality)
+            if(quality == MusicObject::QueryQuality::Standard)
             {
                 readFromMusicSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_128);
             }
-            else if(quality == MusicObject::HighQuality)
+            else if(quality == MusicObject::QueryQuality::High)
             {
                 readFromMusicSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_192);
             }
-            else if(quality == MusicObject::SuperQuality)
+            else if(quality == MusicObject::QueryQuality::Super)
             {
                 readFromMusicSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_320);
             }
-            else if(quality == MusicObject::LosslessQuality)
+            else if(quality == MusicObject::QueryQuality::Lossless)
             {
                 readFromMusicSongPropertyNew(info, APE_FILE_PREFIX, fs, MB_750);
                 readFromMusicSongPropertyNew(info, FLAC_FILE_PREFIX, fs, MB_1000);

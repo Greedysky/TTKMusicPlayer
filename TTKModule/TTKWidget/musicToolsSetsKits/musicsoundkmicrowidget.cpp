@@ -45,8 +45,8 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     setButtonStyle(true);
     setStateButtonStyle(true);
 
-    m_ui->gifLabel->setType(MusicGifLabelWidget::RecordRed);
-    m_ui->loadingLabel->setType(MusicGifLabelWidget::CicleBlue);
+    m_ui->gifLabel->setType(MusicGifLabelWidget::Module::RecordRed);
+    m_ui->loadingLabel->setType(MusicGifLabelWidget::Module::CicleBlue);
     m_ui->loadingLabel->hide();
 
     m_ui->volumeButton->setValue(100);
@@ -174,14 +174,14 @@ void MusicSoundKMicroWidget::playButtonChanged()
     m_player->play();
     switch(m_player->state())
     {
-        case MusicObject::PlayingState: setButtonStyle(false); break;
-        case MusicObject::PausedState: setButtonStyle(true); break;
+        case MusicObject::PlayState::Playing: setButtonStyle(false); break;
+        case MusicObject::PlayState::Paused: setButtonStyle(true); break;
         default: break;
     }
 
     if(!m_queryMovieMode)
     {
-        if(m_player->state() == MusicObject::PlayingState)
+        if(m_player->state() == MusicObject::PlayState::Playing)
         {
             m_lrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
         }
@@ -225,13 +225,13 @@ void MusicSoundKMicroWidget::mediaUrlChanged(bool mv, const QString &url, const 
     if(m_queryMovieMode = mv)
     {
         m_ui->stackedWidget->setCurrentIndex(SOUND_KMICRO_INDEX_0);
-        m_player->setMedia(MusicCoreMPlayer::VideoCategory, url, (int)m_ui->videoPage->winId());
+        m_player->setMedia(MusicCoreMPlayer::Module::Video, url, (int)m_ui->videoPage->winId());
         m_player->play();
     }
     else
     {
         m_ui->stackedWidget->setCurrentIndex(SOUND_KMICRO_INDEX_1);
-        m_player->setMedia(MusicCoreMPlayer::MusicCategory, url);
+        m_player->setMedia(MusicCoreMPlayer::Module::Music, url);
         m_player->play();
 
         //
@@ -346,7 +346,7 @@ void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transpar
 
     if(G_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, G_SETTING_PTR->value("LrcColor").toInt());
+        const MusicLrcColor::Color index = TTKStatic_cast(MusicLrcColor::Color, G_SETTING_PTR->value("LrcColor").toInt());
         const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(index);
         w->setLinearGradientColor(cl);
     }
@@ -360,7 +360,7 @@ void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transpar
 
 void MusicSoundKMicroWidget::recordStateChanged(bool state)
 {
-    if(state && m_player->state() != MusicObject::StoppedState)
+    if(state && m_player->state() != MusicObject::PlayState::Stopped)
     {
         m_ui->gifLabel->start();
         m_ui->recordButton->setStyleSheet(MusicUIObject::MQSSRerecord);

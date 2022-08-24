@@ -76,7 +76,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
 
     m_loadingLabel->run(true);
     m_networkRequest->setQueryAllRecords(m_queryAllRecords);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, text);
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, text);
 }
 
 void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
@@ -112,7 +112,7 @@ void MusicSongSearchTableWidget::musicDownloadLocal(int row)
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(songInfos[row], MusicAbstractQueryRequest::MusicQuery);
+    download->setSongName(songInfos[row], MusicAbstractQueryRequest::QueryType::Music);
     download->show();
 }
 
@@ -124,7 +124,7 @@ void MusicSongSearchTableWidget::setSearchQuality(MusicObject::QueryQuality qual
 
 void MusicSongSearchTableWidget::resizeWindow()
 {
-    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) / 3.0 + 273);
     headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN) / 3.0 + 105);
@@ -265,7 +265,7 @@ void MusicSongSearchTableWidget::musicSongDownload(int row)
 
     const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(songInfos[row], MusicAbstractQueryRequest::MusicQuery);
+    download->setSongName(songInfos[row], MusicAbstractQueryRequest::QueryType::Music);
     download->show();
 }
 
@@ -447,7 +447,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
         }
 
         MusicDownloadBatchWidget *w = GENERATE_SINGLE_WIDGET_CLASS(MusicDownloadBatchWidget);
-        w->setSongName(selectedItems, MusicAbstractQueryRequest::MusicQuery);
+        w->setSongName(selectedItems, MusicAbstractQueryRequest::QueryType::Music);
     }
 }
 
@@ -550,7 +550,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 
 void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
 {
-    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
     if(!m_resizeWidgets.isEmpty())
     {
         m_resizeWidgets[1]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 273);

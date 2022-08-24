@@ -5,7 +5,7 @@
 
 #include <QSslError>
 
-MusicAbstractDownLoadRequest::MusicAbstractDownLoadRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
+MusicAbstractDownLoadRequest::MusicAbstractDownLoadRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent)
     : MusicAbstractNetwork(parent)
 {
     m_url = url;
@@ -78,9 +78,9 @@ void MusicAbstractDownLoadRequest::updateDownloadSpeed()
 {
     int delta = m_currentReceived - m_hasReceived;
     ///limit speed
-    if(G_SETTING_PTR->value(MusicSettingManager::DownloadLimitEnable).toInt() == 0)
+    if(G_SETTING_PTR->value(MusicSettingManager::Config::DownloadLimitEnable).toInt() == 0)
     {
-        const int limitValue = G_SETTING_PTR->value(MusicSettingManager::DownloadDownloadLimitSize).toInt();
+        const int limitValue = G_SETTING_PTR->value(MusicSettingManager::Config::DownloadDownloadLimitSize).toInt();
         if(limitValue != 0 && delta > limitValue * MH_KB)
         {
             MusicUtils::Core::sleep(MT_S2MS - limitValue * MH_KB * MT_S2MS / delta);
@@ -94,12 +94,12 @@ QString MusicAbstractDownLoadRequest::mapCurrentQueryData() const
 {
     switch(m_downloadType)
     {
-        case MusicObject::DownloadMusic: return "DownloadMusic";
-        case MusicObject::DownloadLrc: return "DownloadLrc";
-        case MusicObject::DownloadSmallBackground: return "DownloadSmallBackground";
-        case MusicObject::DownloadBigBackground: return "DownloadBigBackground";
-        case MusicObject::DownloadVideo: return "DownloadVideo";
-        case MusicObject::DownloadOther: return "DownloadOther";
+        case MusicObject::Download::Music: return "DownloadMusic";
+        case MusicObject::Download::Lrc: return "DownloadLrc";
+        case MusicObject::Download::SmallBackground: return "DownloadSmallBackground";
+        case MusicObject::Download::BigBackground: return "DownloadBigBackground";
+        case MusicObject::Download::Video: return "DownloadVideo";
+        case MusicObject::Download::Other: return "DownloadOther";
         default: return QString();
     }
 }

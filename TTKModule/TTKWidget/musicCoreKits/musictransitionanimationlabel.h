@@ -36,7 +36,7 @@ class TTK_MODULE_EXPORT MusicTransitionAnimationLabel : public QLabel
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTransitionAnimationLabel)
 public:
-    enum AnimationType
+    enum class Module
     {
         FadeEffect,
         BlindsEffect,
@@ -93,7 +93,7 @@ protected:
      */
     virtual void paintEvent(QPaintEvent *event) override final;
 
-    AnimationType m_type;
+    Module m_type;
     bool m_isAnimating;
     int m_currentValue;
     bool m_noAnimationSet;

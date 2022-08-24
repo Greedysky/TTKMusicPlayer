@@ -637,7 +637,7 @@ void MusicSongsSummariziedWidget::musicSearchResultChanged(int, int index)
 
 void MusicSongsSummariziedWidget::updateCurrentIndex()
 {
-    const QStringList &lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
+    const QStringList &lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::Config::LastPlayIndex).toStringList();
     if(lastPlayIndex.count() != 3)
     {
         return;
@@ -944,7 +944,7 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
     closeSearchWidgetInNeed();
 
     MusicSongsListTableWidget *widget = TTKStatic_cast(MusicSongsListTableWidget*, m_songItems[id].m_itemObject);
-    MusicSong::Sort sort = MusicSong::SortByFileName;
+    MusicSong::Sort sort = MusicSong::Sort::ByFileName;
     index = m_songItems[id].m_sort.m_type;
     if(index != -1)
     {

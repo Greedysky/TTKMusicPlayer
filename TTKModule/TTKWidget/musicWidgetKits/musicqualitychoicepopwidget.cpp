@@ -153,31 +153,31 @@ void MusicQualityChoicePopWidget::itemCellClicked(int row)
     m_menu->close();
 
     QString style;
-    MusicObject::QueryQuality quality = MusicObject::StandardQuality;
+    MusicObject::QueryQuality quality = MusicObject::QueryQuality::Standard;
     switch(row)
     {
         case 0:
         {
             style = "QToolButton{ margin-left:-0px; }";
-            quality = MusicObject::StandardQuality;
+            quality = MusicObject::QueryQuality::Standard;
             break;
         }
         case 1:
         {
             style = "QToolButton{ margin-left:-48px; }";
-            quality = MusicObject::HighQuality;
+            quality = MusicObject::QueryQuality::High;
             break;
         }
         case 2:
         {
             style = "QToolButton{ margin-left:-96px; }";
-            quality = MusicObject::SuperQuality;
+            quality = MusicObject::QueryQuality::Super;
             break;
         }
         case 3:
         {
             style = "QToolButton{ margin-left:-144px; }";
-            quality = MusicObject::LosslessQuality;
+            quality = MusicObject::QueryQuality::Lossless;
             break;
         }
         default: break;

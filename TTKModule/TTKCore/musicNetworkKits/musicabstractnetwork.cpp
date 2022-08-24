@@ -4,7 +4,7 @@ MusicAbstractNetwork::MusicAbstractNetwork(QObject *parent)
     : QObject(parent)
 {
     m_interrupt = false;
-    m_stateCode = MusicObject::NetworkQuery;
+    m_stateCode = MusicObject::NetworkCode::Query;
     m_reply = nullptr;
 #ifndef QT_NO_SSL
     connect(&m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
@@ -14,7 +14,7 @@ MusicAbstractNetwork::MusicAbstractNetwork(QObject *parent)
 MusicAbstractNetwork::~MusicAbstractNetwork()
 {
     m_interrupt = true;
-    m_stateCode = MusicObject::NetworkError;
+    m_stateCode = MusicObject::NetworkCode::Error;
 
     deleteAll();
 }

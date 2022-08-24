@@ -33,7 +33,7 @@ void MusicLrcContainer::applyParameter()
 
     if(G_SETTING_PTR->value(t + "LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, G_SETTING_PTR->value(t + "LrcColor").toInt());
+        const MusicLrcColor::Color index = TTKStatic_cast(MusicLrcColor::Color, G_SETTING_PTR->value(t + "LrcColor").toInt());
         setLinearGradientColor(index);
     }
     else
@@ -44,9 +44,9 @@ void MusicLrcContainer::applyParameter()
     }
 }
 
-void MusicLrcContainer::setLinearGradientColor(MusicLrcColor::LrcColorType lrcColorType)
+void MusicLrcContainer::setLinearGradientColor(MusicLrcColor::Color color)
 {
-    const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(lrcColorType);
+    const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(color);
     setLinearGradientColor(cl);
 }
 
@@ -57,7 +57,7 @@ void MusicLrcContainer::setLinearGradientColor(const MusicLrcColor &color)
         manager->setLinearGradientColor(color);
     }
 
-    G_SETTING_PTR->setValue((m_containerType == LRC_DESKTOP_TPYE) ? MusicSettingManager::DLrcColor : MusicSettingManager::LrcColor, color.m_index);
+    G_SETTING_PTR->setValue((m_containerType == LRC_DESKTOP_TPYE) ? MusicSettingManager::Config::DLrcColor : MusicSettingManager::Config::LrcColor, TTKStatic_cast(int, color.m_index));
     Q_EMIT linearGradientColorChanged();
 }
 
@@ -82,29 +82,29 @@ void MusicLrcContainer::changeCurrentLrcColor(QAction *action)
 {
     switch(action->data().toInt())
     {
-        case 0: setLinearGradientColor(MusicLrcColor::IYellow); break;
-        case 1: setLinearGradientColor(MusicLrcColor::IBlue); break;
-        case 2: setLinearGradientColor(MusicLrcColor::IGray); break;
-        case 3: setLinearGradientColor(MusicLrcColor::IPink); break;
-        case 4: setLinearGradientColor(MusicLrcColor::IGreen); break;
-        case 5: setLinearGradientColor(MusicLrcColor::IRed); break;
-        case 6: setLinearGradientColor(MusicLrcColor::IPurple); break;
-        case 7: setLinearGradientColor(MusicLrcColor::IOrange); break;
-        case 8: setLinearGradientColor(MusicLrcColor::IIndigo); break;
-        case 9: setLinearGradientColor(MusicLrcColor::DWhite); break;
-        case 10: setLinearGradientColor(MusicLrcColor::DBlue); break;
-        case 11: setLinearGradientColor(MusicLrcColor::DRed); break;
-        case 12: setLinearGradientColor(MusicLrcColor::DBlack); break;
-        case 13: setLinearGradientColor(MusicLrcColor::DYellow); break;
-        case 14: setLinearGradientColor(MusicLrcColor::DPurple); break;
-        case 15: setLinearGradientColor(MusicLrcColor::DGreen); break;
+        case 0: setLinearGradientColor(MusicLrcColor::Color::IYellow); break;
+        case 1: setLinearGradientColor(MusicLrcColor::Color::IBlue); break;
+        case 2: setLinearGradientColor(MusicLrcColor::Color::IGray); break;
+        case 3: setLinearGradientColor(MusicLrcColor::Color::IPink); break;
+        case 4: setLinearGradientColor(MusicLrcColor::Color::IGreen); break;
+        case 5: setLinearGradientColor(MusicLrcColor::Color::IRed); break;
+        case 6: setLinearGradientColor(MusicLrcColor::Color::IPurple); break;
+        case 7: setLinearGradientColor(MusicLrcColor::Color::IOrange); break;
+        case 8: setLinearGradientColor(MusicLrcColor::Color::IIndigo); break;
+        case 9: setLinearGradientColor(MusicLrcColor::Color::DWhite); break;
+        case 10: setLinearGradientColor(MusicLrcColor::Color::DBlue); break;
+        case 11: setLinearGradientColor(MusicLrcColor::Color::DRed); break;
+        case 12: setLinearGradientColor(MusicLrcColor::Color::DBlack); break;
+        case 13: setLinearGradientColor(MusicLrcColor::Color::DYellow); break;
+        case 14: setLinearGradientColor(MusicLrcColor::Color::DPurple); break;
+        case 15: setLinearGradientColor(MusicLrcColor::Color::DGreen); break;
         default: break;
     }
 }
 
 void MusicLrcContainer::changeCurrentLrcColor(int index)
 {
-    setLinearGradientColor(TTKStatic_cast(MusicLrcColor::LrcColorType, index));
+    setLinearGradientColor(TTKStatic_cast(MusicLrcColor::Color, index));
 }
 
 void MusicLrcContainer::searchMusicLrcs()

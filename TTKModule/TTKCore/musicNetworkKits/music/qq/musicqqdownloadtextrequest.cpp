@@ -3,7 +3,7 @@
 #define HOST_URL    "ellnUHg0Um83L2x1U29LbWw1UjFtandwRHNIRUxPcnQ="
 #define REFER_URL   "YnZJaDZBVEFHSllTWlRualJFblR3U0NkYitRd1N1ZmNKaDZFQUdQVFRKND0="
 
-MusicQQDownLoadTextRequest::MusicQQDownLoadTextRequest(const QString &url, const QString &save, MusicObject::DownloadType  type, QObject *parent)
+MusicQQDownLoadTextRequest::MusicQQDownLoadTextRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent)
     : MusicAbstractDownLoadRequest(url, save, type, parent)
 {
 

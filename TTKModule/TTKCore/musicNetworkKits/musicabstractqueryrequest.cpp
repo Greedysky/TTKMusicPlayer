@@ -4,7 +4,7 @@ MusicAbstractQueryRequest::MusicAbstractQueryRequest(QObject *parent)
     : MusicPageQueryRequest(parent)
 {
     m_queryServer = "Invalid";
-    m_queryQuality = MusicObject::StandardQuality;
+    m_queryQuality = MusicObject::QueryQuality::Standard;
     m_queryAllRecords = false;
     m_queryLite = false;
 }

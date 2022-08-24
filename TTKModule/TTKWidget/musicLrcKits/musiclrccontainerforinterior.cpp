@@ -97,7 +97,7 @@ void MusicLrcContainerForInterior::stopDrawLrc()
 void MusicLrcContainerForInterior::applyParameter()
 {
     MusicLrcContainer::applyParameter();
-    const int size = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
+    const int size = G_SETTING_PTR->value(MusicSettingManager::Config::LrcSize).toInt();
     if(m_lrcSizeProperty == -1)
     {
         m_lrcSizeProperty = size;
@@ -120,7 +120,7 @@ void MusicLrcContainerForInterior::updateCurrentLrc(qint64 time)
     }
 }
 
-void MusicLrcContainerForInterior::updateCurrentLrc(int state)
+void MusicLrcContainerForInterior::updateCurrentLrc(MusicLrcAnalysis::State state)
 {
     m_layoutWidget->stop();
 
@@ -129,7 +129,7 @@ void MusicLrcContainerForInterior::updateCurrentLrc(int state)
         m_lrcManagers[i]->setText(QString());
     }
 
-    if(state == MusicLrcAnalysis::Failed)
+    if(state == MusicLrcAnalysis::State::Failed)
     {
         m_lrcManagers[m_lrcAnalysis->lineMiddle()]->setText(tr("No lrc data file found"));
         showNoLrcCurrentInfo();
@@ -170,7 +170,7 @@ void MusicLrcContainerForInterior::setLrcSize(int size)
         m_lrcManagers[i]->setY(35 + size);
         m_lrcManagers[i]->setText(m_lrcAnalysis->text(i));
     }
-    G_SETTING_PTR->setValue(MusicSettingManager::LrcSize, size);
+    G_SETTING_PTR->setValue(MusicSettingManager::Config::LrcSize, size);
 
     resizeWindow();
     setItemStyleSheet();
@@ -179,13 +179,13 @@ void MusicLrcContainerForInterior::setLrcSize(int size)
 
 int MusicLrcContainerForInterior::lrcSize() const
 {
-    return G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
+    return G_SETTING_PTR->value(MusicSettingManager::Config::LrcSize).toInt();
 }
 
 void MusicLrcContainerForInterior::resizeWindow()
 {
-    int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    int height = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+    int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
+    int height = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().height();
 
     if(m_lrcDisplayAll)
     {
@@ -424,7 +424,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     group->addAction(changeLrcSize.addAction(tr("Big")))->setData(3);
     group->addAction(changeLrcSize.addAction(tr("Bigger")))->setData(4);
 
-    int index = -1, size = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
+    int index = -1, size = G_SETTING_PTR->value(MusicSettingManager::Config::LrcSize).toInt();
     switch(size)
     {
         case 14: index = 0; break;
@@ -582,7 +582,7 @@ void MusicLrcContainerForInterior::mouseMoveEvent(QMouseEvent *event)
                 index = m_lrcAnalysis->count() - m_lrcAnalysis->lineMiddle() + 2;
             }
 
-            int value = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
+            int value = G_SETTING_PTR->value(MusicSettingManager::Config::LrcSize).toInt();
             value = (mapLrcSizeProperty(m_lrcChangeDelta) - mapLrcSizeProperty(value)) / 2;
 
             m_lrcAnalysis->setCurrentIndex(index);
@@ -681,7 +681,7 @@ void MusicLrcContainerForInterior::createNoLrcCurrentInfo()
 {
     m_noLrcCurrentInfo = new MusicClickedLabel(this);
     MusicUtils::Widget::setLabelFontSize(m_noLrcCurrentInfo, 15);
-    MusicUtils::Widget::setLabelFontStyle(m_noLrcCurrentInfo, MusicObject::Underline);
+    MusicUtils::Widget::setLabelFontStyle(m_noLrcCurrentInfo, MusicObject::FontStyleMode::Underline);
     m_noLrcCurrentInfo->setStyleSheet(MusicUIObject::MQSSColorStyle06);
     m_noLrcCurrentInfo->setText(tr("Lrc Make"));
 
@@ -832,7 +832,7 @@ void MusicLrcContainerForInterior::setItemStyleSheet(int index, int size, int tr
 
     if(G_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, G_SETTING_PTR->value("LrcColor").toInt());
+        const MusicLrcColor::Color index = TTKStatic_cast(MusicLrcColor::Color, G_SETTING_PTR->value("LrcColor").toInt());
         setLinearGradientColor(index);
     }
     else

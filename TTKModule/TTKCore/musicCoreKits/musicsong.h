@@ -29,14 +29,14 @@ class TTK_MODULE_EXPORT MusicSong
 {
     TTK_DECLARE_MODULE(MusicSong)
 public:
-    enum Sort
+    enum class Sort
     {
-        SortByFileName,      /*!< Sort by file name*/
-        SortBySinger,        /*!< Sort by singer name*/
-        SortByFileSize,      /*!< Sort by file size*/
-        SortByAddTime,       /*!< Sort by add time*/
-        SortByPlayTime,      /*!< Sort by play time*/
-        SortByPlayCount      /*!< Sort by play count*/
+        ByFileName,      /*!< Sort by file name*/
+        BySinger,        /*!< Sort by singer name*/
+        ByFileSize,      /*!< Sort by file size*/
+        ByAddTime,       /*!< Sort by add time*/
+        ByPlayTime,      /*!< Sort by play time*/
+        ByPlayCount      /*!< Sort by play count*/
     };
 
     /*!

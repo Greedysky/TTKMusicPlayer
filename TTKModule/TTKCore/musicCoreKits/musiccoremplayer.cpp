@@ -8,8 +8,8 @@ MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
     : QObject(parent)
 {
     m_process = nullptr;
-    m_playState = MusicObject::StoppedState;
-    m_category = NullCategory;
+    m_playState = MusicObject::PlayState::Stopped;
+    m_category = Module::Null;
 
     m_timer.setInterval(MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
@@ -23,7 +23,7 @@ MusicCoreMPlayer::~MusicCoreMPlayer()
     closeModule();
 }
 
-void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
+void MusicCoreMPlayer::setMedia(Module type, const QString &data, int winId)
 {
     closeModule();
     if(!QFile::exists(MAKE_PLAYER_FULL))
@@ -33,7 +33,7 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
     }
 
     m_category = type;
-    m_playState = MusicObject::StoppedState;
+    m_playState = MusicObject::PlayState::Stopped;
     m_process = new QProcess(this);
     connect(m_process, SIGNAL(finished(int)), SIGNAL(finished(int)));
 
@@ -45,10 +45,10 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
 
     switch(m_category)
     {
-        case RadioCategory: setRadioMedia(url); break;
-        case MusicCategory: setMusicMedia(url); break;
-        case VideoCategory: setVideoMedia(url, winId); break;
-        case NullCategory: break;
+        case Module::Radio: setRadioMedia(url); break;
+        case Module::Music: setMusicMedia(url); break;
+        case Module::Video: setVideoMedia(url, winId); break;
+        case Module::Null: break;
         default: break;
     }
 }
@@ -166,7 +166,7 @@ void MusicCoreMPlayer::setVolume(int value)
 
 bool MusicCoreMPlayer::isPlaying() const
 {
-    return m_playState == MusicObject::PlayingState;
+    return m_playState == MusicObject::PlayState::Playing;
 }
 
 void MusicCoreMPlayer::play()
@@ -180,22 +180,22 @@ void MusicCoreMPlayer::play()
     }
 
     m_process->write("pause\n");
-    if(m_playState == MusicObject::StoppedState || m_playState == MusicObject::PausedState)
+    if(m_playState == MusicObject::PlayState::Stopped || m_playState == MusicObject::PlayState::Paused)
     {
-        m_playState = MusicObject::PlayingState;
+        m_playState = MusicObject::PlayState::Playing;
         connect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(positionRecieve()));
         m_process->write("get_time_pos\n");
     }
     else
     {
-        m_playState = MusicObject::PausedState;
+        m_playState = MusicObject::PlayState::Paused;
         disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(positionRecieve()));
     }
 }
 
 void MusicCoreMPlayer::stop()
 {
-    m_playState = MusicObject::StoppedState;
+    m_playState = MusicObject::PlayState::Stopped;
     m_timer.stop();
     m_checkTimer.stop();
 
@@ -226,10 +226,10 @@ void MusicCoreMPlayer::dataRecieve()
 {
     switch(m_category)
     {
-        case RadioCategory: positionRecieve(); break;
-        case MusicCategory: standardRecieve(); break;
-        case VideoCategory: positionRecieve(); break;
-        case NullCategory: break;
+        case Module::Radio: positionRecieve(); break;
+        case Module::Music: standardRecieve(); break;
+        case Module::Video: positionRecieve(); break;
+        case Module::Null: break;
         default: break;
     }
 }

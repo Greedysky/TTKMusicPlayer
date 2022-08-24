@@ -21,7 +21,7 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
     m_playbackMode = "Order";
     m_enhanced = "Off";
 
-    m_playlist->setPlaybackMode(MusicObject::PlayOrder);
+    m_playlist->setPlaybackMode(MusicObject::PlayMode::Order);
     m_player->setPlaylist(m_playlist);
 
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
@@ -231,7 +231,7 @@ void MusicConsoleModule::musicPlayPrevious()
         return;
     }
 
-    if(m_playlist->playbackMode() == MusicObject::PlayRandom)
+    if(m_playlist->playbackMode() == MusicObject::PlayMode::Random)
     {
         m_playlist->setCurrentIndex();
     }
@@ -251,7 +251,7 @@ void MusicConsoleModule::musicPlayNext()
         return;
     }
 
-    if(m_playlist->playbackMode() == MusicObject::PlayRandom)
+    if(m_playlist->playbackMode() == MusicObject::PlayMode::Random)
     {
         m_playlist->setCurrentIndex();
     }
@@ -295,61 +295,61 @@ void MusicConsoleModule::musicActionVolumePlus()
 
 void MusicConsoleModule::musicPlayOrder()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayOrder);
+    m_playlist->setPlaybackMode(MusicObject::PlayMode::Order);
     m_playbackMode = "Order";
 }
 
 void MusicConsoleModule::musicPlayRandom()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayRandom);
+    m_playlist->setPlaybackMode(MusicObject::PlayMode::Random);
     m_playbackMode = "Random";
 }
 
 void MusicConsoleModule::musicPlaylistLoop()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlaylistLoop);
+    m_playlist->setPlaybackMode(MusicObject::PlayMode::ListLoop);
     m_playbackMode = "ListLoop";
 }
 
 void MusicConsoleModule::musicPlayOneLoop()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayOneLoop);
+    m_playlist->setPlaybackMode(MusicObject::PlayMode::OneLoop);
     m_playbackMode = "OneLoop";
 }
 
 void MusicConsoleModule::musicPlayOnce()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayOnce);
+    m_playlist->setPlaybackMode(MusicObject::PlayMode::Once);
     m_playbackMode = "Once";
 }
 
 void MusicConsoleModule::musicEnhancedOff()
 {
-    m_player->setMusicEnhanced(MusicPlayer::EnhancedOff);
+    m_player->setMusicEnhanced(MusicPlayer::Enhance::Off);
     m_enhanced = "Off";
 }
 
 void MusicConsoleModule::musicEnhanced3D()
 {
-    m_player->setMusicEnhanced(MusicPlayer::Enhanced3D);
+    m_player->setMusicEnhanced(MusicPlayer::Enhance::M3D);
     m_enhanced = "3D";
 }
 
 void MusicConsoleModule::musicEnhancedNICAM()
 {
-    m_player->setMusicEnhanced(MusicPlayer::EnhancedNICAM);
+    m_player->setMusicEnhanced(MusicPlayer::Enhance::NICAM);
     m_enhanced = "NICAM";
 }
 
 void MusicConsoleModule::musicEnhancedSubwoofer()
 {
-    m_player->setMusicEnhanced(MusicPlayer::EnhancedSubwoofer);
+    m_player->setMusicEnhanced(MusicPlayer::Enhance::Subwoofer);
     m_enhanced = "Subwoofer";
 }
 
 void MusicConsoleModule::musicEnhancedVocal()
 {
-    m_player->setMusicEnhanced(MusicPlayer::EnhancedVocal);
+    m_player->setMusicEnhanced(MusicPlayer::Enhance::Vocal);
     m_enhanced = "Vocal";
 }
 

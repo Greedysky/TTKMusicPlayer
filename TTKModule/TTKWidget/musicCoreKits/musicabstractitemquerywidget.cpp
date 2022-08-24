@@ -13,7 +13,7 @@ MusicAbstractItemQueryWidget::MusicAbstractItemQueryWidget(QWidget *parent)
     m_networkRequest = nullptr;
     m_container = new QStackedWidget(this);
     m_container->hide();
-    m_shareType = MusicSongSharingWidget::Null;
+    m_shareType = MusicSongSharingWidget::Module::Null;
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setSpacing(0);

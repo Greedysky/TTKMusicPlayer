@@ -34,7 +34,7 @@
 class TTK_MODULE_EXPORT MusicLrcColor
 {
 public:
-    enum LrcColorType
+    enum class Color
     {
         Null = -1,   /*!< color null */
         IYellow,     /*!< color yellow */
@@ -64,12 +64,12 @@ public:
     /*!
      * Object contsructor.
      */
-    MusicLrcColor(const QList<QColor> &front, const QList<QColor> &back, MusicLrcColor::LrcColorType index = MusicLrcColor::Null);
+    MusicLrcColor(const QList<QColor> &front, const QList<QColor> &back, Color index = Color::Null);
 
     /*!
      * Map index to color.
      */
-    static MusicLrcColor mapIndexToColor(MusicLrcColor::LrcColorType index);
+    static MusicLrcColor mapIndexToColor(Color index);
     /*!
      * Transform colors string to color list.
      */
@@ -81,7 +81,7 @@ public:
 
     QList<QColor> m_frontColor;
     QList<QColor> m_backColor;
-    MusicLrcColor::LrcColorType m_index;
+    MusicLrcColor::Color m_index;
 
 };
 

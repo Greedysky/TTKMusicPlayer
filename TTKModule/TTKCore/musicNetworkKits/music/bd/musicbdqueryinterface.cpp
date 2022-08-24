@@ -47,19 +47,19 @@ void MusicBDQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
     else
     {
-        if(quality == MusicObject::StandardQuality)
+        if(quality == MusicObject::QueryQuality::Standard)
         {
             readFromMusicSongProperty(info, key["lqUrl"].toString(), length, MB_128);
         }
-        else if(quality == MusicObject::HighQuality)
+        else if(quality == MusicObject::QueryQuality::High)
         {
             readFromMusicSongProperty(info, key["hqUrl"].toString(), length, MB_192);
         }
-        else if(quality == MusicObject::SuperQuality)
+        else if(quality == MusicObject::QueryQuality::Super)
         {
             readFromMusicSongProperty(info, key["sqUrl"].toString(), length, MB_320);
         }
-        else if(quality == MusicObject::LosslessQuality)
+        else if(quality == MusicObject::QueryQuality::Lossless)
         {
             readFromMusicSongProperty(info, key["apeUrl"].toString(), length, MB_750);
             readFromMusicSongProperty(info, key["flacUrl"].toString(), length, MB_1000);

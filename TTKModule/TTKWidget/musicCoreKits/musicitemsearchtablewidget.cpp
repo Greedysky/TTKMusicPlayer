@@ -8,7 +8,7 @@
 MusicItemSearchTableWidget::MusicItemSearchTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
 {
-    m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::CicleBlue, this);
+    m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::CicleBlue, this);
     m_actionGroup = new QActionGroup(this);
     m_labelDelegate = new MusicLabelDelegate(this);
 

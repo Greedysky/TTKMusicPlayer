@@ -53,7 +53,7 @@ QKugouWindowPrivate::~QKugouWindowPrivate()
 
 
 
-QKugouWindow::QKugouWindow(KuGouType type, QWidget *parent)
+QKugouWindow::QKugouWindow(Module type, QWidget *parent)
     : QWidget(parent)
 {
     TTK_INIT_PRIVATE(QKugouWindow);

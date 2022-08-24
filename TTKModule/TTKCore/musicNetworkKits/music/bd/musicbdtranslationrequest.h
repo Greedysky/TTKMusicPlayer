@@ -29,25 +29,25 @@ class TTK_MODULE_EXPORT MusicBDTranslationRequest : public MusicTranslationReque
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBDTranslationRequest)
 public:
-    enum TranslationType
+    enum class Language
     {
-        TypeAuto,  /*!< automatic detection*/
-        TypeAra,   /*!< Arabic*/
-        TypeDe,    /*!< German*/
-        TypeRu,    /*!< Russian*/
-        TypeFra,   /*!< French*/
-        TypeKor,   /*!< Korean*/
-        TypeNl,    /*!< Dutch*/
-        TypePt,    /*!< Portuguese*/
-        TypeJp,    /*!< Japanese*/
-        TypeTh,    /*!< Thai*/
-        TypeWyw,   /*!< Classical*/
-        TypeSpa,   /*!< Spanish*/
-        TypeEl,    /*!< Greek*/
-        TypeIt,    /*!< Italian*/
-        TypeEn,    /*!< English*/
-        TypeYue,   /*!< Cantonese*/
-        TypeZh     /*!< Chinese*/
+        Auto,  /*!< automatic detection*/
+        Ara,   /*!< Arabic*/
+        De,    /*!< German*/
+        Ru,    /*!< Russian*/
+        Fra,   /*!< French*/
+        Kor,   /*!< Korean*/
+        Nl,    /*!< Dutch*/
+        Pt,    /*!< Portuguese*/
+        Jp,    /*!< Japanese*/
+        Th,    /*!< Thai*/
+        Wyw,   /*!< Classical*/
+        Spa,   /*!< Spanish*/
+        El,    /*!< Greek*/
+        It,    /*!< Italian*/
+        En,    /*!< English*/
+        Yue,   /*!< Cantonese*/
+        Zh     /*!< Chinese*/
     };
 
     /*!
@@ -63,7 +63,7 @@ public:
     /*!
      * Start to translation data.
      */
-    void startToDownload(TranslationType from, TranslationType to, const QString &data);
+    void startToDownload(Language from, Language to, const QString &data);
 
 public Q_SLOTS:
     /*!
@@ -75,7 +75,7 @@ protected:
     /*!
      * Map type from enum to string.
      */
-    QString mapTypeFromEnumToString(TranslationType type) const;
+    QString mapTypeFromEnumToString(Language type) const;
 
 };
 

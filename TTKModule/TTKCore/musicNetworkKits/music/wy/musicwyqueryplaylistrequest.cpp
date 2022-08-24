@@ -9,7 +9,7 @@ MusicWYQueryPlaylistRequest::MusicWYQueryPlaylistRequest(QObject *parent)
 
 void MusicWYQueryPlaylistRequest::startToSearch(QueryType type, const QString &value)
 {
-    if(type == MusicQuery)
+    if(type == QueryType::Music)
     {
         startToSearch(value);
     }

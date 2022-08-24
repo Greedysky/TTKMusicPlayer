@@ -24,32 +24,31 @@
  */
 namespace MusicObject
 {
-    enum NetworkCode
+    enum class NetworkCode
     {
-        NetworkQuery = 0xFFFFF00, /*!< Network state query*/
-        NetworkSuccess = 0,       /*!< Network state success*/
-        NetworkError = -1,        /*!< Network state error*/
-        NetworkUnKnow = 2,        /*!< Network state unknow*/
+        Query = 0xFF00,    /*!< Network state query*/
+        Success = 0,       /*!< Network state success*/
+        Error = -1,        /*!< Network state error*/
+        UnKnow = 2,        /*!< Network state unknow*/
     };
 
-    enum DownloadType
+    enum class Download
     {
-        DownloadMusic,            /*!< type of dwonlaod music*/
-        DownloadLrc,              /*!< type of dwonlaod lrc*/
-        DownloadSmallBackground,  /*!< type of dwonlaod small background*/
-        DownloadBigBackground,    /*!< type of dwonlaod big background*/
-        DownloadVideo,            /*!< type of dwonlaod video*/
-        DownloadOther             /*!< type of dwonlaod other user mod*/
+        Music,             /*!< type of dwonlaod music*/
+        Lrc,               /*!< type of dwonlaod lrc*/
+        SmallBackground,   /*!< type of dwonlaod small background*/
+        BigBackground,     /*!< type of dwonlaod big background*/
+        Video,             /*!< type of dwonlaod video*/
+        Other              /*!< type of dwonlaod other user mod*/
     };
 
-    enum RecordType
+    enum class Record
     {
-        RecordNull,               /*!< None File Config*/
-        RecordNormalDownload,     /*!< Local Download File Config*/
-        RecordCloudDownload,      /*!< Cloud Download File Config*/
-        RecordCloudUpload         /*!< Cloud Upload Failed File Config*/
+        Null,              /*!< None File Config*/
+        NormalDownload,    /*!< Local Download File Config*/
+        CloudDownload,     /*!< Cloud Download File Config*/
+        CloudUpload        /*!< Cloud Upload Failed File Config*/
     };
-
 }
 
 #endif // MUSICNETWORKDEFINES_H

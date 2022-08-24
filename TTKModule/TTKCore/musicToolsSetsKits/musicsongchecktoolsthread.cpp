@@ -5,7 +5,7 @@ MusicSongCheckToolsRenameThread::MusicSongCheckToolsRenameThread(QObject *parent
     : MusicAbstractThread(parent)
 {
     m_songItems = nullptr;
-    m_operateMode = MusicObject::Check;
+    m_operateMode = MusicObject::CheckMode::Check;
 }
 
 void MusicSongCheckToolsRenameThread::setRenameSongs(MusicSongList *songs)
@@ -19,7 +19,7 @@ void MusicSongCheckToolsRenameThread::run()
 
     if(m_songItems && !m_songItems->isEmpty())
     {
-        if(m_operateMode == MusicObject::Check)
+        if(m_operateMode == MusicObject::CheckMode::Check)
         {
             m_datas.clear();
             MusicSongMeta meta;
@@ -81,7 +81,7 @@ void MusicSongCheckToolsDuplicateThread::run()
 
     if(m_songItems && !m_songItems->isEmpty())
     {
-        if(m_operateMode == MusicObject::Check)
+        if(m_operateMode == MusicObject::CheckMode::Check)
         {
             m_datas.clear();
             MusicSongMeta meta;

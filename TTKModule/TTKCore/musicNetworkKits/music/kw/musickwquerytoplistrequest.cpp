@@ -8,7 +8,7 @@ MusicKWQueryToplistRequest::MusicKWQueryToplistRequest(QObject *parent)
 
 void MusicKWQueryToplistRequest::startToSearch(QueryType type, const QString &value)
 {
-    if(type == MusicQuery)
+    if(type == QueryType::Music)
     {
         startToSearch(value);
     }

@@ -112,7 +112,7 @@ protected:
     MusicResultsItem m_currentPlaylistItem;
     MusicItemQueryTableWidget *m_queryTableWidget;
     MusicAbstractQueryRequest *m_networkRequest;
-    MusicSongSharingWidget::Type m_shareType;
+    MusicSongSharingWidget::Module m_shareType;
 
     struct TTKResizeWidget
     {

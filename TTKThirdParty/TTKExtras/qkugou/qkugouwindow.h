@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT QKugouWindow : public QWidget
 {
     Q_OBJECT
 public:
-    enum KuGouType
+    enum Module
     {
         KuGouSong,      /*!< KuGou Song*/
         KuGouRadio,     /*!< KuGou Radio*/
@@ -43,7 +43,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit QKugouWindow(KuGouType type, QWidget *parent = nullptr);
+    explicit QKugouWindow(Module type, QWidget *parent = nullptr);
 
     /*!
      * Set current web viewer url to show.

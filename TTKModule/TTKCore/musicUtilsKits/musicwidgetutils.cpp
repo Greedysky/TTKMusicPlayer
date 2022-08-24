@@ -36,13 +36,13 @@ void MusicUtils::Widget::setLabelFontStyle(QWidget *widget, MusicObject::FontSty
     QFont font = widget->font();
     switch(type)
     {
-        case MusicObject::Bold: font.setBold(true); break;
-        case MusicObject::Italic: font.setItalic(true); break;
-        case MusicObject::Underline: font.setUnderline(true); break;
-        case MusicObject::Overline: font.setOverline(true); break;
-        case MusicObject::StrikeOut: font.setStrikeOut(true); break;
-        case MusicObject::FixedPitch: font.setFixedPitch(true); break;
-        case MusicObject::Kerningt: font.setKerning(true); break;
+        case MusicObject::FontStyleMode::Bold: font.setBold(true); break;
+        case MusicObject::FontStyleMode::Italic: font.setItalic(true); break;
+        case MusicObject::FontStyleMode::Underline: font.setUnderline(true); break;
+        case MusicObject::FontStyleMode::Overline: font.setOverline(true); break;
+        case MusicObject::FontStyleMode::StrikeOut: font.setStrikeOut(true); break;
+        case MusicObject::FontStyleMode::FixedPitch: font.setFixedPitch(true); break;
+        case MusicObject::FontStyleMode::Kerningt: font.setKerning(true); break;
         default: break;
     }
     widget->setFont(font);

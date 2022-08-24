@@ -66,33 +66,33 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 
 // cast
 #ifdef TTK_CAST
-#  define TTKConst_cast(x,y) (const_cast<x>(y))
+#  define TTKConst_cast(x, y) (const_cast<x>(y))
 #else
-#  define TTKConst_cast(x,y) ((x)(y))
+#  define TTKConst_cast(x, y) ((x)(y))
 #endif
 
 #ifdef TTK_CAST
-#  define TTKDynamic_cast(x,y) (dynamic_cast<x>(y))
+#  define TTKDynamic_cast(x, y) (dynamic_cast<x>(y))
 #else
-#  define TTKDynamic_cast(x,y) ((x)(y))
+#  define TTKDynamic_cast(x, y) ((x)(y))
 #endif
 
 #ifdef TTK_CAST
-#  define TTKReinterpret_cast(x,y) (reinterpret_cast<x>(y))
+#  define TTKReinterpret_cast(x, y) (reinterpret_cast<x>(y))
 #else
-#  define TTKReinterpret_cast(x,y) ((x)(y))
+#  define TTKReinterpret_cast(x, y) ((x)(y))
 #endif
 
 #ifdef TTK_CAST
-#  define TTKStatic_cast(x,y) (static_cast<x>(y))
+#  define TTKStatic_cast(x, y) (static_cast<x>(y))
 #else
-#  define TTKStatic_cast(x,y) ((x)(y))
+#  define TTKStatic_cast(x, y) ((x)(y))
 #endif
 
 #ifdef TTK_CAST
-#  define TTKObject_cast(x,y) (qobject_cast<x>(y))
+#  define TTKObject_cast(x, y) (qobject_cast<x>(y))
 #else
-#  define TTKObject_cast(x,y) ((x)(y))
+#  define TTKObject_cast(x, y) ((x)(y))
 #endif
 
 #if defined TTK_CAST && TTK_QT_VERSION_CHECK(5,15,0)
@@ -197,9 +197,27 @@ public: \
 #endif
 #define TTK_PP_VARIADIC_SIZE_I(e0, e1, e2, e3, e4, e5, e6, e7, size, ...) size
 
-// declare list and flag
+// declare list and enum flag
 #define TTK_DECLARE_LIST(Class)        typedef QList<Class> Class##List
 #define TTK_DECLARE_FLAG(Flags, Enum)  typedef QFlags<Enum> Flags
+#define TTK_DECLARE_OPERATORS_FOR_ENUM(Enum) \
+using Enum##Type = std::underlying_type<Enum>::type; \
+inline constexpr Enum operator~(const Enum lhs) { return TTKStatic_cast(Enum, ~TTKStatic_cast(Enum##Type, lhs)); } \
+inline constexpr Enum operator!(const Enum lhs) { return TTKStatic_cast(Enum, !TTKStatic_cast(Enum##Type, lhs)); } \
+inline constexpr bool operator>(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) > TTKStatic_cast(Enum##Type, rhs); } \
+inline constexpr bool operator<(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) < TTKStatic_cast(Enum##Type, rhs); } \
+inline constexpr bool operator>=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) >= TTKStatic_cast(Enum##Type, rhs); } \
+inline constexpr bool operator<=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) <= TTKStatic_cast(Enum##Type, rhs); } \
+inline constexpr bool operator==(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) == TTKStatic_cast(Enum##Type, rhs); } \
+inline constexpr bool operator!=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) != TTKStatic_cast(Enum##Type, rhs); } \
+inline constexpr Enum operator&(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(Enum##Type, lhs) & TTKStatic_cast(Enum##Type, rhs)); } \
+inline constexpr Enum operator|(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(Enum##Type, lhs) | TTKStatic_cast(Enum##Type, rhs)); } \
+inline constexpr Enum operator^(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(Enum##Type, lhs) ^ TTKStatic_cast(Enum##Type, rhs)); } \
+inline constexpr bool operator||(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) || TTKStatic_cast(Enum##Type, rhs); } \
+inline constexpr bool operator&&(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum##Type, lhs) && TTKStatic_cast(Enum##Type, rhs); } \
+inline const Enum& operator|=(Enum& lhs, const Enum rhs) { return lhs = (lhs | rhs); } \
+inline const Enum& operator&=(Enum& lhs, const Enum rhs) { return lhs = (lhs & rhs); } \
+inline const Enum& operator^=(Enum& lhs, const Enum rhs) { return lhs = (lhs ^ rhs); }
 
 #define TTK_DOT             "."
 #define TTK_DOTDOT          ".."

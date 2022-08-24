@@ -62,7 +62,7 @@ public:
     /*!
      * Update current lrc by given state.
      */
-    void updateCurrentLrc(int state);
+    void updateCurrentLrc(MusicLrcAnalysis::State state);
     /*!
      * Get current lrc text in middle.
      */

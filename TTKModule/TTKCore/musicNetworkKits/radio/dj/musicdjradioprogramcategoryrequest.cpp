@@ -10,7 +10,7 @@ MusicDJRadioProgramCategoryRequest::MusicDJRadioProgramCategoryRequest(QObject *
 
 void MusicDJRadioProgramCategoryRequest::startToSearch(QueryType type, const QString &value)
 {
-    if(type == MusicQuery)
+    if(type == QueryType::Music)
     {
         startToSearch(value);
     }

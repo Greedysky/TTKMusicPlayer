@@ -53,7 +53,7 @@ void MusicToastLabel::popup(QWidget *parent)
 {
     if(!parent)
     {
-        const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+        const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::Config::ScreenSize).toSize();
         move((windowSize.width() - width()) / 2, windowSize.height() - 200);
     }
     else

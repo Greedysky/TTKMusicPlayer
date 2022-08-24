@@ -45,14 +45,14 @@ void MusicSoundKMicroSearchTableWidget::startSearchQuery(const QString &text)
         MusicKWQueryMovieRequest *d = new MusicKWQueryMovieRequest(this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
         setQueryInput(d);
-        m_networkRequest->startToSearch(MusicAbstractQueryRequest::MovieQuery, text);
+        m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Movie, text);
     }
     else
     {
         MusicBDQueryLearnRequest *d = new MusicBDQueryLearnRequest(this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
         setQueryInput(d);
-        m_networkRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, text);
+        m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, text);
     }
 }
 
@@ -66,7 +66,7 @@ void MusicSoundKMicroSearchTableWidget::musicDownloadLocal(int row)
 
     const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(songInfos[row], m_queryMovieMode ? MusicAbstractQueryRequest::MovieQuery : MusicAbstractQueryRequest::MusicQuery);
+    download->setSongName(songInfos[row], m_queryMovieMode ? MusicAbstractQueryRequest::QueryType::Movie : MusicAbstractQueryRequest::QueryType::Music);
     download->show();
 }
 

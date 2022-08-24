@@ -43,7 +43,7 @@ class TTK_MODULE_EXPORT MusicRightAreaWidget : public QWidget
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRightAreaWidget)
 public:
-    enum MusicFunction
+    enum FunctionModule
     {
         KugGouSongWidget,       /*!< insert kugou song widget*/
         KugGouRadioWidget,      /*!< insert kugou radio widget*/
@@ -307,7 +307,7 @@ protected:
     Ui::MusicApplication *m_ui;
     QVariant m_rawData;
     bool m_lowPowerMode;
-    MusicFunction m_funcIndex;
+    FunctionModule m_funcIndex;
     QWidget *m_stackedFuncWidget;
     QWidget *m_stackedCloudWidget;
     MusicSettingWidget *m_settingWidget;

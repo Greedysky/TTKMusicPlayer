@@ -26,7 +26,7 @@
  */
 namespace MusicObject
 {
-    enum Program
+    enum class Program
     {
         Recommed,
         Rank

@@ -30,7 +30,7 @@ class MusicSpectrumWidget;
  */
 struct TTK_MODULE_EXPORT MusicSpectrum
 {
-    enum SpectrumType
+    enum class Module
     {
         Normal,
         Plus,
@@ -42,7 +42,7 @@ struct TTK_MODULE_EXPORT MusicSpectrum
 
     QString m_module;
     QWidget *m_object;
-    SpectrumType m_type;
+    Module m_type;
 };
 TTK_DECLARE_LIST(MusicSpectrum);
 
@@ -106,23 +106,23 @@ protected:
     /*!
      * Create spectrum widget.
      */
-    void createSpectrumWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout);
+    void createSpectrumWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout);
     /*!
      * Create flow widget.
      */
-    void createFlowWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout);
+    void createFlowWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout);
     /*!
      * Create florid widget.
      */
-    void createFloridWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout);
+    void createFloridWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout);
     /*!
      * Create module widget.
      */
-    void createModuleWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout, bool florid);
+    void createModuleWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout, bool florid);
     /*!
      * Create light widget.
      */
-    void createLightWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout, const QString &url = QString());
+    void createLightWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout, const QString &url = QString());
     /*!
      * Adjust widget layout.
      */

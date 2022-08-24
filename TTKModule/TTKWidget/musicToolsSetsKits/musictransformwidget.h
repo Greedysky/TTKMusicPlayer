@@ -37,11 +37,12 @@ class TTK_MODULE_EXPORT MusicTransformWidget : public MusicAbstractMoveDialog
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTransformWidget)
 public:
-    enum TransformType
+    enum class Module
     {
-        Music,  /*!< Music category*/
-        Lrc     /*!< Lrc category*/
+        Music,  /*!< Music module*/
+        Lrc     /*!< Lrc module*/
     };
+
     /*!
      * Object contsructor.
      */
@@ -103,7 +104,7 @@ protected:
     Ui::MusicTransformWidget *m_ui;
     QProcess *m_process;
     QStringList m_path;
-    TransformType m_currentType;
+    Module m_currentType;
 
 };
 

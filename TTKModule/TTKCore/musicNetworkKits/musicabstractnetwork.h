@@ -99,7 +99,7 @@ protected:
 
 };
 
-#define TTK_NETWORK_QUERY_CHECK(VALUE)   if(m_interrupt || m_stateCode != MusicObject::NetworkQuery) return VALUE
+#define TTK_NETWORK_QUERY_CHECK(VALUE)   if(m_interrupt || m_stateCode != MusicObject::NetworkCode::Query) return VALUE
 
 namespace MusicObject
 {

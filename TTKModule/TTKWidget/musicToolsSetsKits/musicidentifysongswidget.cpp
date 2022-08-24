@@ -136,7 +136,7 @@ void MusicIdentifySongsWidget::musicSongPlay()
 
     if(!m_songInfo.m_songProps.isEmpty())
     {
-        m_player->setMedia(MusicCoreMPlayer::MusicCategory, m_songInfo.m_songProps.front().m_url);
+        m_player->setMedia(MusicCoreMPlayer::Module::Music, m_songInfo.m_songProps.front().m_url);
     }
 }
 
@@ -145,7 +145,7 @@ void MusicIdentifySongsWidget::musicSongDownload()
     if(!m_songInfo.m_singerName.isEmpty())
     {
         MusicDownloadWidget *download = new MusicDownloadWidget(this);
-        download->setSongName(m_songInfo, MusicAbstractQueryRequest::MusicQuery);
+        download->setSongName(m_songInfo, MusicAbstractQueryRequest::QueryType::Music);
         download->show();
     }
 }
@@ -158,7 +158,7 @@ void MusicIdentifySongsWidget::musicSongShare()
         data["songName"] = m_songInfo.m_songName;
 
         MusicSongSharingWidget shareWidget(this);
-        shareWidget.setData(MusicSongSharingWidget::Song, data);
+        shareWidget.setData(MusicSongSharingWidget::Module::Song, data);
         shareWidget.exec();
     }
 }
@@ -282,7 +282,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     MusicSemaphoreLoop loop;
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    d->startToSearch(MusicAbstractQueryRequest::MusicQuery, textLabel->text().trimmed());
+    d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, textLabel->text().trimmed());
     loop.exec();
 
     if(!d->isEmpty())
@@ -305,7 +305,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         const QString &name = ART_DIR_FULL + m_songInfo.m_singerName + SKN_FILE;
         if(!QFile::exists(name))
         {
-            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(m_songInfo.m_coverUrl, name, MusicObject::DownloadSmallBackground, this);
+            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(m_songInfo.m_coverUrl, name, MusicObject::Download::SmallBackground, this);
             connect(download, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             download->startToDownload();
             loop.exec();
@@ -363,7 +363,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         const QString &name = MusicUtils::String::lrcDirPrefix() + m_songInfo.m_singerName + " - " + m_songInfo.m_songName + LRC_FILE;
         if(!QFile::exists(name))
         {
-            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_songInfo.m_lrcUrl, name, MusicObject::DownloadLrc, this);
+            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_songInfo.m_lrcUrl, name, MusicObject::Download::Lrc, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startToDownload();
             loop.exec();
@@ -372,7 +372,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
 
         if(!m_songInfo.m_songProps.isEmpty())
         {
-            m_player->setMedia(MusicCoreMPlayer::MusicCategory, m_songInfo.m_songProps.front().m_url);
+            m_player->setMedia(MusicCoreMPlayer::Module::Music, m_songInfo.m_songProps.front().m_url);
         }
     }
 

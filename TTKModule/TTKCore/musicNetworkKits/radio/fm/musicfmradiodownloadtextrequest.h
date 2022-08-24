@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor provide download URL\ save local path and download type.
      */
-    MusicFMRadioDownLoadTextRequest(const QString &url, const QString &save, MusicObject::DownloadType  type, QObject *parent = nullptr);
+    MusicFMRadioDownLoadTextRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent = nullptr);
 
     /*!
      * Start to download data.

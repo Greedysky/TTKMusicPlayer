@@ -6,15 +6,15 @@ MusicCategoryConfigManager::MusicCategoryConfigManager(QObject *parent)
 
 }
 
-bool MusicCategoryConfigManager::fromFile(Type type)
+bool MusicCategoryConfigManager::fromFile(Category type)
 {
     QString v;
     switch(type)
     {
-        case Playlist: v = ":/data/playlist"; break;
-        case Toplist: v = ":/data/toplist"; break;
-        case ArtistList: v = ":/data/artistlist"; break;
-        case MovieList: v = ":/data/movielist"; break;
+        case Category::PlayList: v = ":/data/playlist"; break;
+        case Category::TopList: v = ":/data/toplist"; break;
+        case Category::ArtistList: v = ":/data/artistlist"; break;
+        case Category::MovieList: v = ":/data/movielist"; break;
         default: break;
     }
 

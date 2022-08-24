@@ -34,7 +34,7 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
     MusicItemSearchTableWidget::startSearchQuery(text);
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SIGNAL(resolvedSuccess()));
     m_loadingLabel->run(true);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::LrcQuery, text);
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Lrc, text);
 }
 
 void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
@@ -49,7 +49,7 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
     ///download lrc
     MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(songInfos[row].m_lrcUrl,
                                       MusicUtils::String::lrcDirPrefix() + m_networkRequest->queryValue() + LRC_FILE,
-                                      MusicObject::DownloadLrc, this);
+                                      MusicObject::Download::Lrc, this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SIGNAL(lrcDownloadStateChanged(QString)));
     d->startToDownload();
 }

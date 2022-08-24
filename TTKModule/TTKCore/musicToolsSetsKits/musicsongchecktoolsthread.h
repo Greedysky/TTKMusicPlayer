@@ -38,11 +38,11 @@ public:
     /*!
      * Set music song check tool mode.
      */
-    inline void setMode(MusicObject::MusicSongCheckToolsMode mode) { m_operateMode = mode; }
+    inline void setMode(MusicObject::CheckMode mode) { m_operateMode = mode; }
     /*!
      * Get music song check tool mode.
      */
-    inline MusicObject::MusicSongCheckToolsMode mode() const { return m_operateMode; }
+    inline MusicObject::CheckMode mode() const { return m_operateMode; }
     /*!
      * Set item list.
      */
@@ -69,7 +69,7 @@ protected:
     MusicSongList *m_songItems;
     TTKIntList m_itemIDs;
     MusicSongCheckToolsRenameList m_datas;
-    MusicObject::MusicSongCheckToolsMode m_operateMode;
+    MusicObject::CheckMode m_operateMode;
 
 };
 
@@ -90,11 +90,11 @@ public:
     /*!
      * Set music song check tool mode.
      */
-    inline void setMode(MusicObject::MusicSongCheckToolsMode mode) { m_operateMode = mode; }
+    inline void setMode(MusicObject::CheckMode mode) { m_operateMode = mode; }
     /*!
      * Get music song check tool mode.
      */
-    inline MusicObject::MusicSongCheckToolsMode mode() const { return m_operateMode; }
+    inline MusicObject::CheckMode mode() const { return m_operateMode; }
     /*!
      * Set item list.
      */
@@ -122,7 +122,7 @@ protected:
     MusicSongList *m_songItems;
     TTKIntList m_itemIDs;
     MusicSongCheckToolsDuplicateList m_datas;
-    MusicObject::MusicSongCheckToolsMode m_operateMode;
+    MusicObject::CheckMode m_operateMode;
 
 };
 

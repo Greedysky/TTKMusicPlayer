@@ -37,7 +37,7 @@ void MusicWebDJRadioProgramTableWidget::initialize(MusicObject::Program type)
 
 void MusicWebDJRadioProgramTableWidget::resizeWindow()
 {
-    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(2, width - WINDOW_WIDTH_MIN + 315);
 
@@ -162,7 +162,7 @@ MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(MusicObject::Program 
     topLayout->setContentsMargins(10, 20, 10, 0);
     top->setLayout(topLayout);
 
-    QLabel *label = new QLabel(type == MusicObject::Recommed ? tr("Recommend") : tr("Program"), this);
+    QLabel *label = new QLabel(type == MusicObject::Program::Recommed ? tr("Recommend") : tr("Program"), this);
     QFont font = label->font();
     font.setPixelSize(20);
     font.setBold(true);
@@ -265,7 +265,7 @@ void MusicWebDJRadioWidget::backToMainMenu()
 void MusicWebDJRadioWidget::createRecommendWidget()
 {
     delete m_recommendWidget;
-    m_recommendWidget = new MusicWebDJRadioProgramWidget(MusicObject::Recommed, this);
+    m_recommendWidget = new MusicWebDJRadioProgramWidget(MusicObject::Program::Recommed, this);
     m_recommendWidget->initialize();
     addWidget(m_recommendWidget);
     setCurrentWidget(m_recommendWidget);
@@ -274,7 +274,7 @@ void MusicWebDJRadioWidget::createRecommendWidget()
 void MusicWebDJRadioWidget::createProgramWidget()
 {
     delete m_programWidget;
-    m_programWidget = new MusicWebDJRadioProgramWidget(MusicObject::Rank, this);
+    m_programWidget = new MusicWebDJRadioProgramWidget(MusicObject::Program::Rank, this);
     m_programWidget->initialize();
     addWidget(m_programWidget);
     setCurrentWidget(m_programWidget);

@@ -62,16 +62,16 @@ void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
     else
     {
-        if(quality == MusicObject::StandardQuality)
+        if(quality == MusicObject::QueryQuality::Standard)
         {
             readFromMusicSongProperty(info, key["hash"].toString());
             readFromMusicSongProperty(info, key["128hash"].toString());
         }
-        else if(quality == MusicObject::SuperQuality)
+        else if(quality == MusicObject::QueryQuality::Super)
         {
             readFromMusicSongProperty(info, key["320hash"].toString());
         }
-        else if(quality == MusicObject::LosslessQuality)
+        else if(quality == MusicObject::QueryQuality::Lossless)
         {
             readFromMusicSongProperty(info, key["sqhash"].toString());
         }

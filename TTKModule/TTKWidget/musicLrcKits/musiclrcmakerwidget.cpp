@@ -712,7 +712,7 @@ void MusicLrcMakerWidget::setControlEnabled(bool enable) const
 
 QString MusicLrcMakerWidget::translateTimeString(qint64 time)
 {
-    const MusicTime t(time, MusicTime::AllMsec);
+    const MusicTime t(time, MusicTime::Entity::Millisecond);
     return QString("[%1.%2]").arg(t.toString("mm:ss"), QString::number(t.millionSecond()).rightJustified(3, '0'));
 }
 
@@ -721,11 +721,11 @@ void MusicLrcMakerWidget::resetToOriginPlayMode()
     MusicApplication *w = MusicApplication::instance();
     switch(m_playMode)
     {
-        case MusicObject::PlayOrder: w->musicPlayOrder(); break;
-        case MusicObject::PlayRandom: w->musicPlayRandom(); break;
-        case MusicObject::PlaylistLoop: w->musicPlaylistLoop(); break;
-        case MusicObject::PlayOneLoop: w->musicPlayOneLoop(); break;
-        case MusicObject::PlayOnce: w->musicPlayOnce(); break;
+        case MusicObject::PlayMode::Order: w->musicPlayOrder(); break;
+        case MusicObject::PlayMode::Random: w->musicPlayRandom(); break;
+        case MusicObject::PlayMode::ListLoop: w->musicPlaylistLoop(); break;
+        case MusicObject::PlayMode::OneLoop: w->musicPlayOneLoop(); break;
+        case MusicObject::PlayMode::Once: w->musicPlayOnce(); break;
         default: break;
     }
 }
@@ -750,7 +750,7 @@ void MusicLrcMakerWidget::setItemStyleSheet(int index, int size, int transparent
 
     if(G_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, G_SETTING_PTR->value("LrcColor").toInt());
+        const MusicLrcColor::Color index = TTKStatic_cast(MusicLrcColor::Color, G_SETTING_PTR->value("LrcColor").toInt());
         const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(index);
         w->setLinearGradientColor(cl);
     }

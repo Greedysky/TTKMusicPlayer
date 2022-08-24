@@ -32,12 +32,12 @@ class TTK_MODULE_EXPORT MusicCoreMPlayer : public QObject
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCoreMPlayer)
 public:
-    enum Category
+    enum class Module
     {
-        NullCategory,   /*!< no category*/
-        RadioCategory,  /*!< radio category*/
-        MusicCategory,  /*!< music category*/
-        VideoCategory   /*!< video category*/
+        Null,   /*!< no module*/
+        Radio,  /*!< radio module*/
+        Music,  /*!< music module*/
+        Video   /*!< video module*/
     };
 
     /*!
@@ -49,7 +49,7 @@ public:
     /*!
      * Set media by type and data path.
      */
-    void setMedia(Category type, const QString &data, int winId = -1);
+    void setMedia(Module type, const QString &data, int winId = -1);
 
     /*!
      * Set current play pos.
@@ -87,7 +87,7 @@ public:
     /*!
      * Get current player category.
      */
-    inline Category category() const { return m_category; }
+    inline Module category() const { return m_category; }
 
 Q_SIGNALS:
     /*!
@@ -163,7 +163,7 @@ protected:
 
     QProcess *m_process;
     MusicObject::PlayState m_playState;
-    Category m_category;
+    Module m_category;
     QTimer m_timer, m_checkTimer;
 
 };

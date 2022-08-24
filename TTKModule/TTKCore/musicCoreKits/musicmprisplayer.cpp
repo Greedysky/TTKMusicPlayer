@@ -150,8 +150,8 @@ QString MusicMPRISPlayerBase::loopStatus() const
 {
     switch(m_application->playMode())
     {
-        case MusicObject::PlayOneLoop: return "Track";
-        case MusicObject::PlaylistLoop: return "Playlist";
+        case MusicObject::PlayMode::OneLoop: return "Track";
+        case MusicObject::PlayMode::ListLoop: return "Playlist";
         default: return "None";
     }
 }
@@ -282,12 +282,12 @@ void MusicMPRISPlayerBase::setRate(double value)
 
 bool MusicMPRISPlayerBase::shuffle() const
 {
-    return m_application->playMode() == MusicObject::PlayRandom;
+    return m_application->playMode() == MusicObject::PlayMode::Random;
 }
 
 void MusicMPRISPlayerBase::setShuffle(bool value)
 {
-    m_application->m_playlist->setPlaybackMode(value ? MusicObject::PlayRandom : MusicObject::PlayOrder);
+    m_application->m_playlist->setPlaybackMode(value ? MusicObject::PlayMode::Random : MusicObject::PlayMode::Order);
 }
 
 double MusicMPRISPlayerBase::volume() const

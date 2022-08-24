@@ -45,7 +45,7 @@ void MusicDownloadStatusModule::networkConnectionStateChanged(bool state)
 
 bool MusicDownloadStatusModule::checkSettingParameterValue() const
 {
-    return G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
+    return G_SETTING_PTR->value(MusicSettingManager::Config::ShowInteriorLrc).toBool() || G_SETTING_PTR->value(MusicSettingManager::Config::ShowDesktopLrc).toBool();
 }
 
 void MusicDownloadStatusModule::checkLrcValid()
@@ -74,7 +74,7 @@ void MusicDownloadStatusModule::checkLrcValid()
        MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
        d->setQueryLite(true);
        d->setQueryAllRecords(false);
-       d->startToSearch(MusicAbstractQueryRequest::MusicQuery, fileName);
+       d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, fileName);
        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(currentLrcDataDownload()));
     }
 }
@@ -106,9 +106,9 @@ void MusicDownloadStatusModule::currentLrcDataDownload()
         }
 
         ///download lrc
-        G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE, MusicObject::Download::Lrc, this)->startToDownload();
         ///download art picture
-        G_DOWNLOAD_QUERY_PTR->makeSmallPictureRequest(info.m_coverUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->makeSmallPictureRequest(info.m_coverUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::Download::SmallBackground, this)->startToDownload();
         ///download big picture
         G_DOWNLOAD_QUERY_PTR->makeBigPictureRequest(count == 1 ? info.m_singerName : artistName, artistName, this)->startToDownload();
     }

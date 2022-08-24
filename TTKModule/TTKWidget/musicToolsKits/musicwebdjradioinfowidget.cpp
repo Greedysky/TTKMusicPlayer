@@ -57,7 +57,7 @@ void MusicWebDJRadioInfoWidget::resizeWindow()
     m_queryTableWidget->resizeWindow();
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN + 390;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
@@ -94,7 +94,7 @@ void MusicWebDJRadioInfoWidget::createCategoryInfoItem(const MusicResultsItem &i
             download->startToDownload(item.m_coverUrl);
         }
 
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN + 390;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];

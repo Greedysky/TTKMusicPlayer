@@ -43,7 +43,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
 
     m_qualityChoiceWidget = new MusicQualityChoicePopWidget(this);
     m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
-    m_ui->songsContainer->setLength(LEFT_SIDE_WIDTH_MIN, MusicAnimationStackedWidget::LeftToRight);
+    m_ui->songsContainer->setLength(LEFT_SIDE_WIDTH_MIN, MusicAnimationStackedWidget::Module::LeftToRight);
 
     connect(ui->musicKey, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicStatePlay()));
     connect(ui->musicPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
@@ -108,7 +108,7 @@ void MusicLeftAreaWidget::createSoundKMicroWidget(const QString &name)
 void MusicLeftAreaWidget::musicDownloadSongToLocal()
 {
     MusicDownloadMgmtWidget mgmt(this);
-    mgmt.setSongName(m_ui->showCurrentSong->text(), MusicAbstractQueryRequest::MusicQuery);
+    mgmt.setSongName(m_ui->showCurrentSong->text(), MusicAbstractQueryRequest::QueryType::Music);
 }
 
 void MusicLeftAreaWidget::musicDownloadSongFinished()

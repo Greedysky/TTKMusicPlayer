@@ -10,8 +10,8 @@ MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
 {
     m_playlist = nullptr;
-    m_state = MusicObject::StoppedState;
-    m_enhanced = EnhancedOff;
+    m_state = MusicObject::PlayState::Stopped;
+    m_enhance = Enhance::Off;
     m_core = new SoundCore(this);
     m_posOnCircle = 0;
     m_volumeMusic3D = 0;
@@ -32,7 +32,7 @@ MusicPlayer::~MusicPlayer()
 
 bool MusicPlayer::isPlaying() const
 {
-    return m_state == MusicObject::PlayingState;
+    return m_state == MusicObject::PlayState::Playing;
 }
 
 MusicObject::PlayState MusicPlayer::state() const
@@ -99,11 +99,11 @@ void MusicPlayer::setMuted(bool muted)
     m_core->setMuted(muted);
 }
 
-void MusicPlayer::setMusicEnhanced(Enhanced type)
+void MusicPlayer::setMusicEnhanced(Enhance type)
 {
-    m_enhanced = type;
+    m_enhance = type;
 
-    if(m_enhanced == Enhanced3D)
+    if(m_enhance == Enhance::M3D)
     {
         m_volumeMusic3D = volume();
     }
@@ -112,31 +112,31 @@ void MusicPlayer::setMusicEnhanced(Enhanced type)
         m_core->setBalance(0);
         m_core->setVolume(m_volumeMusic3D, m_volumeMusic3D);
 
-        switch(m_enhanced)
+        switch(m_enhance)
         {
-            case EnhancedOff: setEqualizerEffect({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}); break;
-            case EnhancedVocal: setEqualizerEffect({0, 0, 4, 1, -5, -1, 2, -2, -4, -4, 0}); break;
-            case EnhancedNICAM: setEqualizerEffect({6, -12, -12, -9, -6, -3, -12, -9, -6, -3, -12}); break;
-            case EnhancedSubwoofer: setEqualizerEffect({6, 6, -10, -10, 0, 0, -3, -5, -7, -9, -11}); break;
+            case Enhance::Off: setEqualizerEffect({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}); break;
+            case Enhance::Vocal: setEqualizerEffect({0, 0, 4, 1, -5, -1, 2, -2, -4, -4, 0}); break;
+            case Enhance::NICAM: setEqualizerEffect({6, -12, -12, -9, -6, -3, -12, -9, -6, -3, -12}); break;
+            case Enhance::Subwoofer: setEqualizerEffect({6, 6, -10, -10, 0, 0, -3, -5, -7, -9, -11}); break;
             default: break;
         }
     }
 }
 
-MusicPlayer::Enhanced MusicPlayer::musicEnhanced() const
+MusicPlayer::Enhance MusicPlayer::musicEnhanced() const
 {
-    return m_enhanced;
+    return m_enhance;
 }
 
 void MusicPlayer::play()
 {
     if(m_playlist->isEmpty())
     {
-        m_state = MusicObject::StoppedState;
+        m_state = MusicObject::PlayState::Stopped;
         return;
     }
 
-    m_state = MusicObject::PlayingState;
+    m_state = MusicObject::PlayState::Playing;
     const Qmmp::State state = m_core->state(); ///Get the current state of play
 
     const QString &mediaPath = m_playlist->currentMediaPath();
@@ -152,7 +152,7 @@ void MusicPlayer::play()
     ///The current playback path
     if(!m_core->play(m_currentMedia))
     {
-        m_state = MusicObject::StoppedState;
+        m_state = MusicObject::PlayState::Stopped;
         return;
     }
 
@@ -165,21 +165,21 @@ void MusicPlayer::play()
 
 void MusicPlayer::pause()
 {
-    if(m_state != MusicObject::PausedState)
+    if(m_state != MusicObject::PlayState::Paused)
     {
         m_core->pause();
         m_timer.stop();
-        m_state = MusicObject::PausedState;
+        m_state = MusicObject::PlayState::Paused;
     }
 }
 
 void MusicPlayer::stop()
 {
-    if(m_state != MusicObject::StoppedState)
+    if(m_state != MusicObject::PlayState::Stopped)
     {
         m_core->stop();
         m_timer.stop();
-        m_state = MusicObject::StoppedState;
+        m_state = MusicObject::PlayState::Stopped;
     }
 }
 
@@ -211,10 +211,10 @@ void MusicPlayer::setEnabledEffect(bool enable)
 void MusicPlayer::setEqualizerConfig()
 {
     ///Read the equalizer parameters from a configuration file
-    if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
+    if(G_SETTING_PTR->value(MusicSettingManager::Config::EqualizerEnable).toInt())
     {
         setEnabledEffect(true);
-        const QStringList &eqValue = G_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(",");
+        const QStringList &eqValue = G_SETTING_PTR->value(MusicSettingManager::Config::EqualizerValue).toString().split(",");
         if(eqValue.count() == 11)
         {
             setEqualizerEffect({eqValue[0].toInt(), eqValue[1].toInt(), eqValue[2].toInt(), eqValue[3].toInt(),
@@ -232,7 +232,7 @@ void MusicPlayer::update()
 {
     Q_EMIT positionChanged(position());
 
-    if(m_enhanced == Enhanced3D && !isMuted())
+    if(m_enhance == Enhance::M3D && !isMuted())
     {
         ///3D music settings
         setEnabledEffect(false);
@@ -244,20 +244,20 @@ void MusicPlayer::update()
     if(!(state == Qmmp::Playing || state == Qmmp::Paused || state == Qmmp::Buffering))
     {
         m_timer.stop();
-        if(m_playlist->playbackMode() == MusicObject::PlayOnce)
+        if(m_playlist->playbackMode() == MusicObject::PlayMode::Once)
         {
             m_core->stop();
             Q_EMIT positionChanged(0);
-            Q_EMIT stateChanged(MusicObject::StoppedState);
+            Q_EMIT stateChanged(MusicObject::PlayState::Stopped);
             return;
         }
 
         m_playlist->setCurrentIndex();
-        if(m_playlist->playbackMode() == MusicObject::PlayOrder && m_playlist->currentIndex() == -1)
+        if(m_playlist->playbackMode() == MusicObject::PlayMode::Order && m_playlist->currentIndex() == -1)
         {
             m_core->stop();
             Q_EMIT positionChanged(0);
-            Q_EMIT stateChanged(MusicObject::StoppedState);
+            Q_EMIT stateChanged(MusicObject::PlayState::Stopped);
             return;
         }
         play();

@@ -51,10 +51,10 @@ class TTK_MODULE_EXPORT MusicCategoryConfigManager : public MusicAbstractXml
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCategoryConfigManager)
 public:
-    enum Type
+    enum class Category
     {
-        Playlist,        /*!< Playlist Category*/
-        Toplist,         /*!< Toplist Category*/
+        PlayList,        /*!< PlayList Category*/
+        TopList,         /*!< TopList Category*/
         ArtistList,      /*!< ArtistList Category*/
         MovieList,       /*!< MovieList Category*/
     };
@@ -66,7 +66,7 @@ public:
     /*!
      * Read datas from xml file by given name.
      */
-    bool fromFile(Type type);
+    bool fromFile(Category type);
 
     /*!
      * Read datas from config file.

@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicAnimationStackedWidget : public QStackedWidget
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAnimationStackedWidget)
 public:
-    enum AnimationType
+    enum class Module
     {
         LeftToRight,    /*!< Animation from left to right*/
         RightToLeft,    /*!< Animation from right to left*/
@@ -56,7 +56,7 @@ public:
     /*!
      * Set animation start and end pos distance and animation type.
      */
-    void setLength(int length, AnimationType type);
+    void setLength(int length, Module type);
     /*!
      * Get previoud index.
      */
@@ -102,7 +102,7 @@ protected:
     bool m_isAnimating;
     float m_currentValue;
     int m_currentIndex, m_previousIndex;
-    AnimationType m_type;
+    Module m_type;
     QPropertyAnimation *m_animation;
 
 };

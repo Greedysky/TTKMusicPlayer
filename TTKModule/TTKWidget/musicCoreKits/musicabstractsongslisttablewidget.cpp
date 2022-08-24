@@ -155,7 +155,7 @@ void MusicAbstractSongsListTableWidget::musicSongSharedWidget()
     data["songName"] = currentSongName();
 
     MusicSongSharingWidget shareWidget;
-    shareWidget.setData(MusicSongSharingWidget::Song, data);
+    shareWidget.setData(MusicSongSharingWidget::Module::Song, data);
     shareWidget.exec();
 }
 
@@ -167,7 +167,7 @@ void MusicAbstractSongsListTableWidget::musicSongDownload()
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget;
-    download->setSongName(currentSongName(), MusicAbstractQueryRequest::MusicQuery);
+    download->setSongName(currentSongName(), MusicAbstractQueryRequest::QueryType::Music);
     download->show();
 }
 
@@ -202,7 +202,7 @@ void MusicAbstractSongsListTableWidget::musicSongPlayedSharedWidget()
     data["songName"] = songName(m_playRowIndex);
 
     MusicSongSharingWidget shareWidget;
-    shareWidget.setData(MusicSongSharingWidget::Song, data);
+    shareWidget.setData(MusicSongSharingWidget::Module::Song, data);
     shareWidget.exec();
 }
 

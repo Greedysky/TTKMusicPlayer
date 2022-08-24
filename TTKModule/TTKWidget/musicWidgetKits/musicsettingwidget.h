@@ -93,16 +93,16 @@ class TTK_MODULE_EXPORT MusicSettingWidget : public MusicAbstractMoveDialog
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSettingWidget)
 public:
-    enum LrcType
+    enum class Lrc
     {
-        LrcInterior, /*!< lrc interior type*/
-        LrcDesktop   /*!< lrc desktop type*/
+        Interior, /*!< lrc interior type*/
+        Desktop   /*!< lrc desktop type*/
     };
 
-    enum ProxyType
+    enum class Proxy
     {
-        ProxyTest,   /*!< proxy test type*/
-        ProxyApply   /*!< proxy apply type*/
+        Test,   /*!< proxy test type*/
+        Apply   /*!< proxy apply type*/
     };
 
     /*!
@@ -331,19 +331,19 @@ protected:
     /*!
      * Set lrc color value by type and value type.
      */
-    void lcrColorValue(LrcType key, const QString &type, QLabel *obj);
+    void lcrColorValue(Lrc key, const QString &type, QLabel *obj);
     /*!
      * Set lrc default color by type and index.
      */
-    void lrcColorByDefault(LrcType key, int index);
+    void lrcColorByDefault(Lrc key, int index);
     /*!
      * Set lrc transparent by type and value.
      */
-    void lrcTransparentValue(LrcType key, int value) const;
+    void lrcTransparentValue(Lrc key, int value) const;
     /*!
      * Set network proxy by type.
      */
-    bool setNetworkProxyByType(ProxyType type);
+    bool setNetworkProxyByType(Proxy type);
 
     Ui::MusicSettingWidget *m_ui;
 

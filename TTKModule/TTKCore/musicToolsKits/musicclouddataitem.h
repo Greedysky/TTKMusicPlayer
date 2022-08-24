@@ -28,12 +28,12 @@
  */
 struct TTK_MODULE_EXPORT MusicCloudDataItem
 {
-    enum State
+    enum class State
     {
-        Waited,         /*!< 0 waited*/
-        Uploaded,       /*!< 1 Uploaded*/
-        Successed,      /*!< 2 successed*/
-        Errored         /*!< 3 error*/
+        Waited,         /*!< waited state*/
+        Uploaded,       /*!< Uploaded state*/
+        Successed,      /*!< successed state*/
+        Errored         /*!< error state*/
     };
 
     QString m_id;
@@ -50,7 +50,7 @@ struct TTK_MODULE_EXPORT MusicCloudDataItem
     {
         m_id.clear();
         m_path.clear();
-        m_state = Waited;
+        m_state = State::Waited;
         m_dataItem.clear();
     }
 

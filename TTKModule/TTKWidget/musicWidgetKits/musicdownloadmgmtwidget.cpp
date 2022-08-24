@@ -57,7 +57,7 @@ void MusicDownloadResetWidget::show()
 void MusicDownloadResetWidget::restartToDownload()
 {
     MusicDownloadWidget *download = new MusicDownloadWidget(m_parentClass);
-    download->setSongName(m_currentName, MusicAbstractQueryRequest::MusicQuery);
+    download->setSongName(m_currentName, MusicAbstractQueryRequest::QueryType::Music);
     download->show();
 
     close();
@@ -89,7 +89,7 @@ MusicDownloadMgmtWidget::MusicDownloadMgmtWidget(QObject *parent)
 
 void MusicDownloadMgmtWidget::setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type)
 {
-    if(type == MusicAbstractQueryRequest::MusicQuery)
+    if(type == MusicAbstractQueryRequest::QueryType::Music)
     {
         bool exist = false;
         MusicApplication::instance()->musicDownloadContains(exist);

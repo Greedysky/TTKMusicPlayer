@@ -28,32 +28,32 @@ class TTK_MODULE_EXPORT MusicPlatformManager
 {
     TTK_DECLARE_MODULE(MusicPlatformManager)
 public:
-    enum SystemType
+    enum class System
     {
-        SystemWin10,
-        SystemWin81,
-        SystemWin8,
-        SystemWin7,
-        SystemWinVista,
-        SystemWinXP,
-        SystemWinXPProfessionalEdition,
-        SystemWin2000,
-        SystemWinNT40,
-        SystemWin95,
-        SystemWin98,
-        SystemWinMe,
-        SystemWinServer2003,
-        SystemWinServer2003R2,
-        SystemWinServer2008,
-        SystemWinServer2008R2,
-        SystemWinServer2012,
-        SystemLinux,
-        SystemLinuxUbuntu,
-        SystemLinuxDebian,
-        SystemLinuxArch,
-        SystemLinuxCentOS,
-        SystemMac,
-        SystemUnkown
+        Win10,
+        Win81,
+        Win8,
+        Win7,
+        WinVista,
+        WinXP,
+        WinXPProfessionalEdition,
+        Win2000,
+        WinNT40,
+        Win95,
+        Win98,
+        WinMe,
+        WinServer2003,
+        WinServer2003R2,
+        WinServer2008,
+        WinServer2008R2,
+        WinServer2012,
+        Linux,
+        LinuxUbuntu,
+        LinuxDebian,
+        LinuxArch,
+        LinuxCentOS,
+        Mac,
+        Unkown
     };
 
 #ifdef Q_OS_WIN
@@ -92,7 +92,7 @@ public:
     /*!
      * Get system name.
      */
-    SystemType systemName() const;
+    System systemName() const;
     /*!
      * Set file link.
      */

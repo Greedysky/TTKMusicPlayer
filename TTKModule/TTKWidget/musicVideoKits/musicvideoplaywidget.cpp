@@ -125,7 +125,7 @@ void MusicVideoPlayWidget::popupMode(bool popup)
 
     if(popup)
     {
-        const QSize &size = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+        const QSize &size = G_SETTING_PTR->value(MusicSettingManager::Config::ScreenSize).toSize();
         setGeometry((size.width() - WINDOW_WIDTH) / 2, (size.height() - WINDOW_HEIGHT) / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
         resizeWindow(0, 0);
         setParent(nullptr);
@@ -150,8 +150,8 @@ bool MusicVideoPlayWidget::isPopupMode() const
 
 void MusicVideoPlayWidget::resizeWindow()
 {
-    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    const int height = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
+    const int height = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().height();
 
     if(!isFullScreen())
     {
@@ -330,7 +330,7 @@ void MusicVideoPlayWidget::shareButtonClicked()
     data["queryServer"] = m_videoItem.m_server;
 
     MusicSongSharingWidget shareWidget(this);
-    shareWidget.setData(MusicSongSharingWidget::Movie, data);
+    shareWidget.setData(MusicSongSharingWidget::Module::Movie, data);
     shareWidget.exec();
 }
 

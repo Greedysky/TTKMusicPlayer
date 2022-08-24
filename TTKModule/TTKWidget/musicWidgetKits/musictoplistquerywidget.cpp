@@ -50,7 +50,7 @@ void MusicToplistQueryWidget::setSongName(const QString &name)
     MusicAbstractItemQueryWidget::setSongName(name);
 
     m_networkRequest->setQueryAllRecords(true);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, QString());
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, QString());
 
     createLabels();
 }
@@ -66,7 +66,7 @@ void MusicToplistQueryWidget::resizeWindow()
 
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN + 410;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
@@ -189,7 +189,7 @@ void MusicToplistQueryWidget::createToplistInfoItem(const MusicResultsItem &item
 {
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN + 410;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
@@ -226,6 +226,6 @@ void MusicToplistQueryWidget::categoryChanged(const MusicResultsCategoryItem &ca
 
         m_songButton->setText(tr("SongItems"));
         m_networkRequest->setQueryAllRecords(true);
-        m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, category.m_key);
+        m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, category.m_key);
     }
 }

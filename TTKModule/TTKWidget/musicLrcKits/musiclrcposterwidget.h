@@ -35,7 +35,7 @@ class TTK_MODULE_EXPORT MusicLrcPosterItemWidget : public QWidget
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcPosterItemWidget)
 public:
-    enum Type
+    enum class Format
     {
         Type01,    /*!< thmeme 1*/
         Type02,    /*!< thmeme 2*/
@@ -158,7 +158,7 @@ protected:
      */
     void drawTheme17(QPainter *painter);
 
-    Type m_type;
+    Format m_type;
     QStringList m_data;
     QPixmap m_pixmap;
     QString m_title;

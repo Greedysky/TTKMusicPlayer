@@ -64,7 +64,7 @@ MusicArtistListQueryWidget::~MusicArtistListQueryWidget()
 void MusicArtistListQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, QString());
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, QString());
 }
 
 void MusicArtistListQueryWidget::setSongNameById(const QString &id)
@@ -222,5 +222,5 @@ void MusicArtistListQueryWidget::numberButtonClicked(int index)
     m_categoryChanged = true;
 
     const QString &v = QString("%1%2%3").arg(m_categoryId, TTK_SPLITER).arg(index);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, v);
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, v);
 }

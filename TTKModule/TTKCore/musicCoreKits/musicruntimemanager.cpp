@@ -37,14 +37,14 @@ static quint64 directorySize(const QString &dirName)
 
 static void checkCacheSize()
 {
-    const bool disabled = G_SETTING_PTR->value(MusicSettingManager::DownloadCacheEnable).toInt();
+    const bool disabled = G_SETTING_PTR->value(MusicSettingManager::Config::DownloadCacheEnable).toInt();
     if(!disabled)
     {
         return;
     }
 
-    const quint64 cacheSize = G_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt() * MH_MB2B;
-    const QString &path = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
+    const quint64 cacheSize = G_SETTING_PTR->value(MusicSettingManager::Config::DownloadCacheSize).toInt() * MH_MB2B;
+    const QString &path = G_SETTING_PTR->value(MusicSettingManager::Config::DownloadMusicDirPath).toString();
     quint64 size = directorySize(path);
     if(size > cacheSize)
     {
@@ -97,16 +97,16 @@ void MusicRunTimeManager::run() const
     xml.readBuffer();
 
     MusicObject::checkCacheSize();
-    G_NETWORK_PTR->setBlockNetWork(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());
+    G_NETWORK_PTR->setBlockNetWork(G_SETTING_PTR->value(MusicSettingManager::Config::CloseNetWorkMode).toInt());
 }
 
 QString MusicRunTimeManager::translator() const
 {
-    const int index = G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::Config::LanguageIndex).toInt();
     return MusicObject::languageName(index);
 }
 
 bool MusicRunTimeManager::configVersionCheck() const
 {
-    return G_SETTING_PTR->value(MusicSettingManager::ConfigVersion).toString() == TTK_CONFIG_VERSION_STR;
+    return G_SETTING_PTR->value(MusicSettingManager::Config::ConfigVersion).toString() == TTK_CONFIG_VERSION_STR;
 }

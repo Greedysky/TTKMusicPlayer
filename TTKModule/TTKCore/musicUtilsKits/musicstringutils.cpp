@@ -4,7 +4,7 @@
 #include <QColor>
 #include <QTextDocument>
 
-static QString makeFilePrefix(MusicSettingManager::ConfigType type, const QString &path)
+static QString makeFilePrefix(MusicSettingManager::Config type, const QString &path)
 {
     QString dir = G_SETTING_PTR->value(type).toString();
     if(dir.isEmpty())
@@ -25,12 +25,12 @@ static QString makeFilePrefix(MusicSettingManager::ConfigType type, const QStrin
 
 QString MusicUtils::String::lrcDirPrefix()
 {
-    return makeFilePrefix(MusicSettingManager::DownloadLrcDirPath, LRC_DIR_FULL);
+    return makeFilePrefix(MusicSettingManager::Config::DownloadLrcDirPath, LRC_DIR_FULL);
 }
 
 QString MusicUtils::String::musicDirPrefix()
 {
-    return makeFilePrefix(MusicSettingManager::DownloadMusicDirPath, MUSIC_DIR_FULL);
+    return makeFilePrefix(MusicSettingManager::Config::DownloadMusicDirPath, MUSIC_DIR_FULL);
 }
 
 QString MusicUtils::String::stringPrefix(const QString &name)

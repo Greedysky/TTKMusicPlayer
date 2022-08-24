@@ -65,7 +65,7 @@ void MusicWebMVRadioQueryCategoryPopWidget::setCategory(const QString &server, Q
 {
     MusicResultsCategoryList categorys;
     MusicCategoryConfigManager manager;
-    manager.fromFile(MusicCategoryConfigManager::MovieList);
+    manager.fromFile(MusicCategoryConfigManager::Category::MovieList);
     manager.readBuffer(categorys, server);
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);

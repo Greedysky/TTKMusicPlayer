@@ -129,19 +129,19 @@ void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
     else
     {
-        if(quality == MusicObject::StandardQuality && maxBr >= MB_128)
+        if(quality == MusicObject::QueryQuality::Standard && maxBr >= MB_128)
         {
             readFromMusicSongProperty(info, MB_128);
         }
-        else if(quality == MusicObject::HighQuality && maxBr >= MB_192)
+        else if(quality == MusicObject::QueryQuality::High && maxBr >= MB_192)
         {
             readFromMusicSongProperty(info, MB_192);
         }
-        else if(quality == MusicObject::SuperQuality && maxBr >= MB_320)
+        else if(quality == MusicObject::QueryQuality::Super && maxBr >= MB_320)
         {
             readFromMusicSongProperty(info, MB_320);
         }
-        else if(quality == MusicObject::LosslessQuality && maxBr >= MB_1000)
+        else if(quality == MusicObject::QueryQuality::Lossless && maxBr >= MB_1000)
         {
             readFromMusicSongProperty(info, MB_1000);
         }
@@ -246,19 +246,19 @@ void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongI
     }
     else
     {
-        if(quality == MusicObject::StandardQuality && maxBr >= MB_128)
+        if(quality == MusicObject::QueryQuality::Standard && maxBr >= MB_128)
         {
             readFromMusicSongProperty(info, MB_128);
         }
-        else if(quality == MusicObject::HighQuality && maxBr >= MB_192)
+        else if(quality == MusicObject::QueryQuality::High && maxBr >= MB_192)
         {
             readFromMusicSongProperty(info, MB_192);
         }
-        else if(quality == MusicObject::SuperQuality && maxBr >= MB_320)
+        else if(quality == MusicObject::QueryQuality::Super && maxBr >= MB_320)
         {
             readFromMusicSongProperty(info, MB_320);
         }
-        else if(quality == MusicObject::LosslessQuality && maxBr >= MB_1000)
+        else if(quality == MusicObject::QueryQuality::Lossless && maxBr >= MB_1000)
         {
             readFromMusicSongProperty(info, MB_1000);
         }

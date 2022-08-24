@@ -5,7 +5,7 @@
 
 MusicTime::MusicTime()
 {
-    m_defaultType = AllMsec;
+    m_defaultType = Entity::Millisecond;
     m_greedyMode = false;
     initialize();
 }
@@ -15,17 +15,17 @@ MusicTime::MusicTime(const MusicTime &other)
     copyToThis(other);
 }
 
-MusicTime::MusicTime(qint64 value, Type type)
+MusicTime::MusicTime(qint64 value, Entity type)
     : MusicTime()
 {
     m_defaultType = type;
-    fromTimeStamp(value, type == AllSec ? MT_S : MT_S2MS);
+    fromTimeStamp(value, type == Entity::Second ? MT_S : MT_S2MS);
 }
 
 MusicTime::MusicTime(int day, int hour, int min, int sec, int msec)
     : MusicTime()
 {
-    m_defaultType = AllMsec;
+    m_defaultType = Entity::Millisecond;
     setHMSM(day, hour, min, sec, msec);
 }
 
@@ -70,7 +70,7 @@ MusicTime MusicTime::fromString(const QString &s, const QString &format)
     return time;
 }
 
-QString MusicTime::toString(qint64 value, Type type, const QString &format)
+QString MusicTime::toString(qint64 value, Entity type, const QString &format)
 {
     return MusicTime(value, type).toString(format);
 }
@@ -80,11 +80,11 @@ QString MusicTime::toString(const QString &format) const
     return QTime(m_hour, m_min, m_sec, m_msec).toString(format);
 }
 
-qint64 MusicTime::timestamp(Type type) const
+qint64 MusicTime::timestamp(Entity type) const
 {
-    qint64 delta = (type == AllSec) ? MT_S : MT_S2MS;
+    qint64 delta = (type == Entity::Second) ? MT_S : MT_S2MS;
            delta = (m_day * MT_D2S + m_hour * MT_H2S + m_min * MT_M2S + m_sec) * delta;
-    return (type == AllSec) ? delta : (delta + m_msec);
+    return (type == Entity::Second) ? delta : (delta + m_msec);
 }
 
 qint64 MusicTime::timestamp(bool ms)
@@ -106,7 +106,7 @@ int MusicTime::random(int value)
 qint64 MusicTime::labelJustified2MsecTime(const QString &time)
 {
     MusicTime t = MusicTime::fromString(time, "mm:ss");
-    return t.timestamp(MusicTime::AllMsec);
+    return t.timestamp(Entity::Millisecond);
 }
 
 QString MusicTime::msecTime2LabelJustified()
@@ -124,7 +124,7 @@ QString MusicTime::msecTime2LabelJustified()
 
 QString MusicTime::msecTime2LabelJustified(qint64 time, bool greedy)
 {
-    MusicTime t(time, MusicTime::AllMsec);
+    MusicTime t(time, Entity::Millisecond);
     if(!greedy || time < MT_H2S * MT_S2MS)
     {
         return t.toString("mm:ss");
@@ -188,90 +188,90 @@ MusicTime& MusicTime::operator= (const MusicTime &other)
 
 MusicTime& MusicTime::operator+= (const MusicTime &other)
 {
-    const qint64 t = timestamp(AllMsec) + other.timestamp(AllMsec);
-    fromTimeStamp(t, m_defaultType == AllSec ? MT_S : MT_S2MS);
+    const qint64 t = timestamp(Entity::Millisecond) + other.timestamp(Entity::Millisecond);
+    fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator+= (const int other)
 {
-    const qint64 t = timestamp(AllMsec) + other;
-    fromTimeStamp(t, m_defaultType == AllSec ? MT_S : MT_S2MS);
+    const qint64 t = timestamp(Entity::Millisecond) + other;
+    fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator-= (const MusicTime &other)
 {
-    const qint64 t = timestamp(AllMsec) - other.timestamp(AllMsec);
-    fromTimeStamp(t, m_defaultType == AllSec ? MT_S : MT_S2MS);
+    const qint64 t = timestamp(Entity::Millisecond) - other.timestamp(Entity::Millisecond);
+    fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator-= (const int other)
 {
-    const qint64 t = timestamp(AllMsec) - other;
-    fromTimeStamp(t, m_defaultType == AllSec ? MT_S : MT_S2MS);
+    const qint64 t = timestamp(Entity::Millisecond) - other;
+    fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator*= (const int other)
 {
-    const qint64 t = timestamp(AllMsec) * other;
-    fromTimeStamp(t, m_defaultType == AllSec ? MT_S : MT_S2MS);
+    const qint64 t = timestamp(Entity::Millisecond) * other;
+    fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator/= (const int other)
 {
-    const qint64 t = timestamp(AllMsec) / other;
-    fromTimeStamp(t, m_defaultType == AllSec ? MT_S : MT_S2MS);
+    const qint64 t = timestamp(Entity::Millisecond) / other;
+    fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime MusicTime::operator+ (const MusicTime &other)
 {
-    const qint64 t = timestamp(AllMsec) + other.timestamp(AllMsec);
+    const qint64 t = timestamp(Entity::Millisecond) + other.timestamp(Entity::Millisecond);
     return MusicTime(t, m_defaultType);
 }
 
 MusicTime MusicTime::operator+ (const int other)
 {
-    const qint64 t = timestamp(AllMsec) + other;
+    const qint64 t = timestamp(Entity::Millisecond) + other;
     return MusicTime(t, m_defaultType);
 }
 
 MusicTime MusicTime::operator- (const MusicTime &other)
 {
-    const qint64 t = timestamp(AllMsec) - other.timestamp(AllMsec);
+    const qint64 t = timestamp(Entity::Millisecond) - other.timestamp(Entity::Millisecond);
     return MusicTime(t, m_defaultType);
 }
 
 MusicTime MusicTime::operator- (const int other)
 {
-    const qint64 t = timestamp(AllMsec) - other;
+    const qint64 t = timestamp(Entity::Millisecond) - other;
     return MusicTime(t, m_defaultType);
 }
 
 MusicTime MusicTime::operator* (const int other)
 {
-    const qint64 t = timestamp(AllMsec) * other;
+    const qint64 t = timestamp(Entity::Millisecond) * other;
     return MusicTime(t, m_defaultType);
 }
 
 MusicTime MusicTime::operator/ (const int other)
 {
-    const qint64 t = timestamp(AllMsec) / other;
+    const qint64 t = timestamp(Entity::Millisecond) / other;
     return MusicTime(t, m_defaultType);
 }
 
 bool MusicTime::operator== (const MusicTime &other) const
 {
-    return timestamp(AllMsec) == other.timestamp(AllMsec);
+    return timestamp(Entity::Millisecond) == other.timestamp(Entity::Millisecond);
 }
 
 bool MusicTime::operator!= (const MusicTime &other) const
 {
-    return timestamp(AllMsec) != other.timestamp(AllMsec);
+    return timestamp(Entity::Millisecond) != other.timestamp(Entity::Millisecond);
 }
 
 void MusicTime::initialize()

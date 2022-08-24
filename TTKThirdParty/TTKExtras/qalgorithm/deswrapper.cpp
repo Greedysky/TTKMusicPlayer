@@ -206,7 +206,7 @@ void DesPrivate::desSubKeys(quint64 key, quint64* K, Des::Mode mode)
         K[j] = bitTransform(ARRAYPC_2, 64, temp);
     }
 
-    if(mode == Des::Decrypt)
+    if(mode == Des::Mode::Decrypt)
     {
         quint64 t;
         for(int j = 0; j < 8; ++j)
@@ -344,7 +344,7 @@ Des::Des()
 QByteArray Des::encrypt(const QByteArray &in, const QByteArray &key)
 {
     TTK_D(Des);
-    d->m_mode = Encrypt;
+    d->m_mode = Mode::Encrypt;
     char *encData = d->encrypt((char *)in.data(), in.length(), (char *)key.data());
     const TTKString &str = QAlgorithm::base64Encode((unsigned char *)encData, (in.length() / 8 + 1) * 8);
 
@@ -356,7 +356,7 @@ QByteArray Des::encrypt(const QByteArray &in, const QByteArray &key)
 QByteArray Des::decrypt(const QByteArray &in, const QByteArray &key)
 {
     TTK_D(Des);
-    d->m_mode = Decrypt;
+    d->m_mode = Mode::Decrypt;
     const TTKString &str = QAlgorithm::base64Decode(TTKString(in.data(), in.length()));
     char *encData = d->encrypt((char *)str.data(), str.length(), (char *)key.data());
 

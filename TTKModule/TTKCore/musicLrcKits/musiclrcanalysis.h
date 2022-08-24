@@ -32,13 +32,13 @@ class TTK_MODULE_EXPORT MusicLrcAnalysis : public QObject
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcAnalysis)
 public:
-    enum State
+    enum class State
     {
         Success,    /*!< open file success*/
         Failed      /*!< open file failed*/
     };
 
-    enum LrcFormat
+    enum class Format
     {
         Type01,     /*!< [xx:xx.xxx]*/
         Type02,     /*!< [xx:xx.xx]*/

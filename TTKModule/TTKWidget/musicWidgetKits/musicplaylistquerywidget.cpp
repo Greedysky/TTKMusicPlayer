@@ -148,7 +148,7 @@ MusicPlaylistQueryWidget::~MusicPlaylistQueryWidget()
 void MusicPlaylistQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, QString());
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, QString());
 }
 
 void MusicPlaylistQueryWidget::setSongNameById(const QString &id)
@@ -292,7 +292,7 @@ void MusicPlaylistQueryWidget::categoryChanged(const MusicResultsCategoryItem &c
             m_gridLayout->removeWidget(w);
             delete w;
         }
-        m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, category.m_key);
+        m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, category.m_key);
     }
 }
 

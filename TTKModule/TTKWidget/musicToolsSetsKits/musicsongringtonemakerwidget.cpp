@@ -103,7 +103,7 @@ void MusicSongRingtoneMaker::initInputPath()
     m_ui->playRingButton->setEnabled(true);
     m_ui->saveSongButton->setEnabled(true);
 
-    m_player->setMedia(MusicCoreMPlayer::MusicCategory, m_inputFilePath);
+    m_player->setMedia(MusicCoreMPlayer::Module::Music, m_inputFilePath);
     playInputSong();
 
 }
@@ -161,9 +161,9 @@ void MusicSongRingtoneMaker::posChanged(qint64 start, qint64 end)
 {
     m_startPos = start;
     m_stopPos = end;
-    m_ui->startTimeLabel->setText(tr("Begin: ") + MusicTime::toString(start, MusicTime::AllSec, "mm:ss:zzz"));
-    m_ui->stopTimeLabel->setText(tr("End: ") + MusicTime::toString(end, MusicTime::AllSec, "mm:ss:zzz"));
-    m_ui->ringLabelValue->setText(tr("Ring Info.\tCut Length: %1").arg(MusicTime::toString(end - start, MusicTime::AllSec, "mm:ss")));
+    m_ui->startTimeLabel->setText(tr("Begin: ") + MusicTime::toString(start, MusicTime::Entity::Second, "mm:ss:zzz"));
+    m_ui->stopTimeLabel->setText(tr("End: ") + MusicTime::toString(end, MusicTime::Entity::Second, "mm:ss:zzz"));
+    m_ui->ringLabelValue->setText(tr("Ring Info.\tCut Length: %1").arg(MusicTime::toString(end - start, MusicTime::Entity::Second, "mm:ss")));
 }
 
 void MusicSongRingtoneMaker::buttonReleaseChanged(qint64 pos)

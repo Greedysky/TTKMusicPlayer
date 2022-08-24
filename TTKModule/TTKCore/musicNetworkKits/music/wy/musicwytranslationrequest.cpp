@@ -19,7 +19,7 @@ void MusicWYTranslationRequest::startToDownload(const QString &data)
     MusicWYQueryRequest *d = new MusicWYQueryRequest(this);
     d->setQueryLite(true);
     d->setQueryAllRecords(false);
-    d->startToSearch(MusicAbstractQueryRequest::MusicQuery, QFileInfo(m_rawData["name"].toString()).baseName());
+    d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, QFileInfo(m_rawData["name"].toString()).baseName());
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 

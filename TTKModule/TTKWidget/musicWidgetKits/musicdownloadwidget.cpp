@@ -134,8 +134,8 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_querySingleInfo = false;
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
 
-    m_queryType = MusicAbstractQueryRequest::MusicQuery;
-    m_ui->loadingLabel->setType(MusicGifLabelWidget::CicleBlue);
+    m_queryType = MusicAbstractQueryRequest::QueryType::Music;
+    m_ui->loadingLabel->setType(MusicGifLabelWidget::Module::CicleBlue);
 
     connect(m_ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startToDownload()));
@@ -155,13 +155,13 @@ void MusicDownloadWidget::initialize()
     m_ui->loadingLabel->run(true);
     controlEnabled(true);
 
-    if(m_queryType == MusicAbstractQueryRequest::MovieQuery)
+    if(m_queryType == MusicAbstractQueryRequest::QueryType::Movie)
     {
         m_ui->downloadPathEdit->setText(MOVIE_DIR_FULL);
     }
     else
     {
-        m_ui->downloadPathEdit->setText(G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString());
+        m_ui->downloadPathEdit->setText(G_SETTING_PTR->value(MusicSettingManager::Config::DownloadMusicDirPath).toString());
     }
 }
 
@@ -252,23 +252,23 @@ void MusicDownloadWidget::createAllItems(const MusicObject::MusicSongPropertyLis
 
     for(const MusicObject::MusicSongProperty &prop : qAsConst(propertys))
     {
-        if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-           (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::MovieQuery))       ///sd
+        if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+           (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
         {
             m_ui->viewArea->createItem(prop, tr("SD"), QString(":/quality/lb_sd_quality"));
         }
-        else if((prop.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-                (prop.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::MovieQuery))  ///hd
+        else if((prop.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+                (prop.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
         {
             m_ui->viewArea->createItem(prop, tr("HQ"), QString(":/quality/lb_hd_quality"));
         }
-        else if((prop.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-                (prop.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::MovieQuery))  ///sq
+        else if((prop.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+                (prop.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
         {
             m_ui->viewArea->createItem(prop, tr("SQ"), QString(":/quality/lb_sq_quality"));
         }
-        else if((prop.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-                (prop.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::MovieQuery)) ///cd
+        else if((prop.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+                (prop.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
         {
             m_ui->viewArea->createItem(prop, tr("CD"), QString(":/quality/lb_cd_quality"));
         }
@@ -318,9 +318,9 @@ void MusicDownloadWidget::downloadDirSelected()
     const QString &path = MusicUtils::File::openDirectoryDialog(nullptr);
     if(!path.isEmpty())
     {
-        if(m_queryType == MusicAbstractQueryRequest::MusicQuery)
+        if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
         {
-            G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicDirPath, path + TTK_SEPARATOR);
+            G_SETTING_PTR->setValue(MusicSettingManager::Config::DownloadMusicDirPath, path + TTK_SEPARATOR);
         }
         m_ui->downloadPathEdit->setText(path + TTK_SEPARATOR);
     }
@@ -335,11 +335,11 @@ void MusicDownloadWidget::startToDownload()
     }
 
     hide(); ///hide download widget
-    if(m_queryType == MusicAbstractQueryRequest::MusicQuery)
+    if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
     {
         m_querySingleInfo ? startToDownloadMusic(m_songInfo) : startToDownloadMusic();
     }
-    else if(m_queryType == MusicAbstractQueryRequest::MovieQuery)
+    else if(m_queryType == MusicAbstractQueryRequest::QueryType::Movie)
     {
         m_querySingleInfo ? startToDownloadMovie(m_songInfo) : startToDownloadMovie();
     }
@@ -378,7 +378,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             const QString &downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MUSIC_DIR_FULL : m_ui->downloadPathEdit->text();
             QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
 
-            MusicDownloadRecordConfigManager down(MusicObject::RecordNormalDownload, this);
+            MusicDownloadRecordConfigManager down(MusicObject::Record::NormalDownload, this);
             if(!down.fromFile())
             {
                 return;
@@ -412,8 +412,8 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
                 }
             }
 
-            MusicDownloadTagDataRequest *downSong = new MusicDownloadTagDataRequest(prop.m_url, downloadName, MusicObject::DownloadMusic, this);
-            downSong->setRecordType(MusicObject::RecordNormalDownload);
+            MusicDownloadTagDataRequest *downSong = new MusicDownloadTagDataRequest(prop.m_url, downloadName, MusicObject::Download::Music, this);
+            downSong->setRecordType(MusicObject::Record::NormalDownload);
             connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
 
             MusicSongMeta meta;
@@ -474,7 +474,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
                 }
             }
 
-            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(prop.m_url, downloadName, MusicObject::DownloadVideo, this);
+            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(prop.m_url, downloadName, MusicObject::Download::Video, this);
             connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
             download->startToDownload();
         }

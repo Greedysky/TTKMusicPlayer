@@ -110,7 +110,7 @@ MusicArtistMvsQueryWidget::MusicArtistMvsQueryWidget(QWidget *parent)
     m_mainWindow->layout()->addWidget(function);
     m_container->show();
 
-    m_shareType = MusicSongSharingWidget::Artist;
+    m_shareType = MusicSongSharingWidget::Module::Artist;
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this);
     connect(m_networkRequest, SIGNAL(createMovieInfoItem(MusicResultsItem)), SLOT(createArtistMvsItem(MusicResultsItem)));
 }
@@ -204,7 +204,7 @@ MusicArtistSimilarQueryWidget::MusicArtistSimilarQueryWidget(QWidget *parent)
     m_mainWindow->layout()->addWidget(function);
     m_container->show();
 
-    m_shareType = MusicSongSharingWidget::Artist;
+    m_shareType = MusicSongSharingWidget::Module::Artist;
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeSimilarArtistRequest(this);
     connect(m_networkRequest, SIGNAL(createSimilarItem(MusicResultsItem)), SLOT(createArtistSimilarItem(MusicResultsItem)));
 }
@@ -274,7 +274,7 @@ MusicArtistAlbumsQueryWidget::MusicArtistAlbumsQueryWidget(QWidget *parent)
     m_mainWindow->layout()->addWidget(function);
     m_container->show();
 
-    m_shareType = MusicSongSharingWidget::Artist;
+    m_shareType = MusicSongSharingWidget::Module::Artist;
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
     connect(m_networkRequest, SIGNAL(createAlbumInfoItem(MusicResultsItem)), SLOT(createArtistAlbumsItem(MusicResultsItem)));
 }
@@ -360,7 +360,7 @@ MusicArtistQueryWidget::MusicArtistQueryWidget(QWidget *parent)
     m_artistAlbums = nullptr;
     m_artistMvs = nullptr;
     m_artistSimilar = nullptr;
-    m_shareType = MusicSongSharingWidget::Artist;
+    m_shareType = MusicSongSharingWidget::Module::Artist;
     m_queryTableWidget = new MusicArtistQueryTableWidget(this);
     m_queryTableWidget->hide();
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
@@ -379,7 +379,7 @@ void MusicArtistQueryWidget::setSongName(const QString &name)
     MusicAbstractItemQueryWidget::setSongName(name);
     m_networkRequest->setQueryLite(true);
     m_networkRequest->setQueryAllRecords(false);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, MusicUtils::String::artistName(name));
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, MusicUtils::String::artistName(name));
 }
 
 void MusicArtistQueryWidget::setSongNameById(const QString &id)
@@ -396,7 +396,7 @@ void MusicArtistQueryWidget::resizeWindow()
     m_queryTableWidget->resizeWindow();
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN + 180;
 
         TTKResizeWidget *data = &m_resizeWidgets[1];
@@ -489,7 +489,7 @@ void MusicArtistQueryWidget::createArtistInfoItem(const MusicResultsItem &item)
             download->startToDownload(item.m_coverUrl);
         }
 
-        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN + 180;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];

@@ -18,7 +18,7 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     headerview->resizeSection(2, 83);
     headerview->resizeSection(3, 50);
 
-    m_type = MusicObject::RecordCloudDownload;
+    m_type = MusicObject::Record::CloudDownload;
     setItemDelegateForColumn(2, m_delegate);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
@@ -72,7 +72,7 @@ MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     headerview->resizeSection(1, 251);
     headerview->resizeSection(2, 50);
 
-    m_type = MusicObject::RecordCloudUpload;
+    m_type = MusicObject::Record::CloudUpload;
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     MusicUtils::Widget::setTransparent(this, 0);

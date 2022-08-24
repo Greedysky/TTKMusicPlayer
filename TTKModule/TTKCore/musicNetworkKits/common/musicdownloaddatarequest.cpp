@@ -1,13 +1,13 @@
 #include "musicdownloaddatarequest.h"
 #include "musicdownloadmanager.h"
 
-MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
+MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent)
     : MusicAbstractDownLoadRequest(url, save, type, parent)
 {
     m_createItemTime = -1;
     m_redirection = false;
     m_needUpdate = true;
-    m_recordType = MusicObject::RecordNull;
+    m_recordType = MusicObject::Record::Null;
 }
 
 void MusicDownloadDataRequest::startToDownload()
@@ -27,7 +27,7 @@ void MusicDownloadDataRequest::startToDownload()
     }
 }
 
-void MusicDownloadDataRequest::setRecordType(MusicObject::RecordType type)
+void MusicDownloadDataRequest::setRecordType(MusicObject::Record type)
 {
     m_recordType = type;
 }
@@ -47,7 +47,7 @@ void MusicDownloadDataRequest::startRequest(const QString &url)
     QtNetworkErrorConnect(m_reply, this, replyError);
 
     /// only download music data can that show progress
-    if(m_downloadType == MusicObject::DownloadMusic && !m_redirection)
+    if(m_downloadType == MusicObject::Download::Music && !m_redirection)
     {
         m_createItemTime = MusicTime::timestamp();
         G_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPairData(m_createItemTime, this, m_recordType));
@@ -105,7 +105,7 @@ void MusicDownloadDataRequest::downloadProgress(qint64 bytesReceived, qint64 byt
 {
     MusicAbstractDownLoadRequest::downloadProgress(bytesReceived, bytesTotal);
     /// only download music data or oather type can that show progress
-    if(m_downloadType == MusicObject::DownloadMusic || m_downloadType == MusicObject::DownloadOther)
+    if(m_downloadType == MusicObject::Download::Music || m_downloadType == MusicObject::Download::Other)
     {
         const QString &total = MusicUtils::Number::sizeByte2Label(bytesTotal);
         Q_EMIT downloadProgressChanged(bytesTotal != 0 ? bytesReceived * 100.0 / bytesTotal : 0, total, m_createItemTime);

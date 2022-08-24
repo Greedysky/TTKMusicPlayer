@@ -29,7 +29,7 @@ MusicGifLabelWidget::MusicGifLabelWidget(QWidget *parent)
     connect(m_timer, SIGNAL(timeout()), SLOT(timeout()));
 }
 
-MusicGifLabelWidget::MusicGifLabelWidget(Type type, QWidget *parent)
+MusicGifLabelWidget::MusicGifLabelWidget(Module type, QWidget *parent)
     : MusicGifLabelWidget(parent)
 {
     setType(type);
@@ -40,26 +40,26 @@ MusicGifLabelWidget::~MusicGifLabelWidget()
     delete m_timer;
 }
 
-void MusicGifLabelWidget::setType(Type type)
+void MusicGifLabelWidget::setType(Module type)
 {
     m_index = 0;
     switch(m_type = type)
     {
-        case BallonWhite: setFixedSize(GIF_BALLON_WHITE, GIF_BALLON_WHITE); break;
-        case CicleBlue: setFixedSize(GIF_CICLE_BLUE, GIF_CICLE_BLUE); break;
-        case RiceFontWhite: setFixedSize(GIF_RICE_FONT_WHITE, GIF_RICE_FONT_WHITE); break;
-        case RiceFontBlackBig: setFixedSize(GIF_RICE_FONT_BLACK_BIG, GIF_RICE_FONT_BLACK_BIG); break;
-        case RiceFontBlack: setFixedSize(GIF_RICE_FONT_BLACK, GIF_RICE_FONT_BLACK); break;
-        case HourglassWhite: setFixedSize(GIF_HOURGLASS_WHITE, GIF_HOURGLASS_WHITE); break;
-        case RadioBlue: setFixedSize(GIF_RADIO_BLUE, GIF_RADIO_BLUE); break;
-        case CheckBlue: setFixedSize(GIF_CHECK_BLUE, GIF_CHECK_BLUE); break;
-        case RecordRed: setFixedSize(GIF_RECORD_RED, GIF_RECORD_RED); break;
-        case CloseWhite: setFixedSize(GIF_CLOSE_WHITE_WIDTH, GIF_CLOSE_WHITE_HEIGHT); break;
+        case Module::BallonWhite: setFixedSize(GIF_BALLON_WHITE, GIF_BALLON_WHITE); break;
+        case Module::CicleBlue: setFixedSize(GIF_CICLE_BLUE, GIF_CICLE_BLUE); break;
+        case Module::RiceFontWhite: setFixedSize(GIF_RICE_FONT_WHITE, GIF_RICE_FONT_WHITE); break;
+        case Module::RiceFontBlackBig: setFixedSize(GIF_RICE_FONT_BLACK_BIG, GIF_RICE_FONT_BLACK_BIG); break;
+        case Module::RiceFontBlack: setFixedSize(GIF_RICE_FONT_BLACK, GIF_RICE_FONT_BLACK); break;
+        case Module::HourglassWhite: setFixedSize(GIF_HOURGLASS_WHITE, GIF_HOURGLASS_WHITE); break;
+        case Module::RadioBlue: setFixedSize(GIF_RADIO_BLUE, GIF_RADIO_BLUE); break;
+        case Module::CheckBlue: setFixedSize(GIF_CHECK_BLUE, GIF_CHECK_BLUE); break;
+        case Module::RecordRed: setFixedSize(GIF_RECORD_RED, GIF_RECORD_RED); break;
+        case Module::CloseWhite: setFixedSize(GIF_CLOSE_WHITE_WIDTH, GIF_CLOSE_WHITE_HEIGHT); break;
         default: break;
     }
 }
 
-MusicGifLabelWidget::Type MusicGifLabelWidget::type() const
+MusicGifLabelWidget::Module MusicGifLabelWidget::type() const
 {
     return m_type;
 }
@@ -115,7 +115,7 @@ void MusicGifLabelWidget::timeout()
     ++m_index;
     switch(m_type)
     {
-        case BallonWhite:
+        case Module::BallonWhite:
         {
             if(m_index == 40 && infinitedModeCheck())
             {
@@ -126,7 +126,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case CicleBlue:
+        case Module::CicleBlue:
         {
             if(m_index == 12 && infinitedModeCheck())
             {
@@ -137,7 +137,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case RiceFontWhite:
+        case Module::RiceFontWhite:
         {
             if(m_index == 8 && infinitedModeCheck())
             {
@@ -148,7 +148,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case RiceFontBlackBig:
+        case Module::RiceFontBlackBig:
         {
             if(m_index == 8 && infinitedModeCheck())
             {
@@ -159,7 +159,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case RiceFontBlack:
+        case Module::RiceFontBlack:
         {
             if(m_index == 12 && infinitedModeCheck())
             {
@@ -170,7 +170,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case HourglassWhite:
+        case Module::HourglassWhite:
         {
             if(m_index == 16 && infinitedModeCheck())
             {
@@ -181,7 +181,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case RadioBlue:
+        case Module::RadioBlue:
         {
             if(m_index == 10 && infinitedModeCheck())
             {
@@ -192,7 +192,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case CheckBlue:
+        case Module::CheckBlue:
         {
             if(m_index == 22 && infinitedModeCheck())
             {
@@ -203,7 +203,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case RecordRed:
+        case Module::RecordRed:
         {
             if(m_index == 5 && infinitedModeCheck())
             {
@@ -214,7 +214,7 @@ void MusicGifLabelWidget::timeout()
             update();
             break;
         }
-        case CloseWhite:
+        case Module::CloseWhite:
         {
             if(m_index == 12 && infinitedModeCheck())
             {
@@ -270,12 +270,12 @@ MusicGifLabelMaskWidget::~MusicGifLabelMaskWidget()
     delete m_gifLabel;
 }
 
-void MusicGifLabelMaskWidget::setType(MusicGifLabelWidget::Type type)
+void MusicGifLabelMaskWidget::setType(MusicGifLabelWidget::Module type)
 {
     m_gifLabel->setType(type);
 }
 
-MusicGifLabelWidget::Type MusicGifLabelMaskWidget::type() const
+MusicGifLabelWidget::Module MusicGifLabelMaskWidget::type() const
 {
     return m_gifLabel->type();
 }

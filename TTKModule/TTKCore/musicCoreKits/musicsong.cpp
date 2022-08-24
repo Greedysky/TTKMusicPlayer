@@ -9,7 +9,7 @@
 #include <qmmp/regularwrapper.h>
 
 MusicSong::MusicSong()
-    : m_sort(SortByFileName),
+    : m_sort(Sort::ByFileName),
       m_size(0),
       m_addTime(-1),
       m_sizeStr(TTK_DEFAULT_STR),
@@ -69,12 +69,12 @@ bool MusicSong::operator< (const MusicSong &other) const
 {
     switch(m_sort)
     {
-        case SortByFileName: return m_name < other.m_name;
-        case SortBySinger: return artistFront() < other.artistFront();
-        case SortByFileSize: return m_size < other.m_size;
-        case SortByAddTime: return m_addTime < other.m_addTime;
-        case SortByPlayTime: return m_playTime < other.m_playTime;
-        case SortByPlayCount: return m_playCount < other.m_playCount;
+        case Sort::ByFileName: return m_name < other.m_name;
+        case Sort::BySinger: return artistFront() < other.artistFront();
+        case Sort::ByFileSize: return m_size < other.m_size;
+        case Sort::ByAddTime: return m_addTime < other.m_addTime;
+        case Sort::ByPlayTime: return m_playTime < other.m_playTime;
+        case Sort::ByPlayCount: return m_playCount < other.m_playCount;
         default: break;
     }
     return false;
@@ -84,12 +84,12 @@ bool MusicSong::operator> (const MusicSong &other) const
 {
     switch(m_sort)
     {
-        case SortByFileName: return m_name > other.m_name;
-        case SortBySinger: return artistFront() > other.artistFront();
-        case SortByFileSize: return m_size > other.m_size;
-        case SortByAddTime: return m_addTime > other.m_addTime;
-        case SortByPlayTime: return m_playTime > other.m_playTime;
-        case SortByPlayCount: return m_playCount > other.m_playCount;
+        case Sort::ByFileName: return m_name > other.m_name;
+        case Sort::BySinger: return artistFront() > other.artistFront();
+        case Sort::ByFileSize: return m_size > other.m_size;
+        case Sort::ByAddTime: return m_addTime > other.m_addTime;
+        case Sort::ByPlayTime: return m_playTime > other.m_playTime;
+        case Sort::ByPlayCount: return m_playCount > other.m_playCount;
         default: break;
     }
     return false;
@@ -123,7 +123,7 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
         meta.setSongMetaIndex(i);
 
         QString name;
-        if(G_SETTING_PTR->value(MusicSettingManager::OtherReadFileInfo).toBool())
+        if(G_SETTING_PTR->value(MusicSettingManager::Config::OtherReadFileInfo).toBool())
         {
             const QString &title = meta.title();
             const QString &artist = meta.artist();

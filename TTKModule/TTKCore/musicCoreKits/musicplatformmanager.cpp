@@ -132,7 +132,7 @@ int MusicPlatformManager::logicalDotsPerInch() const
     return (dpi.width() + dpi.height()) / 2;
 }
 
-MusicPlatformManager::SystemType MusicPlatformManager::systemName() const
+MusicPlatformManager::System MusicPlatformManager::systemName() const
 {
 #ifdef Q_OS_WIN
     typedef void(__stdcall*NTPROC)(DWORD*, DWORD*, DWORD*);
@@ -143,11 +143,11 @@ MusicPlatformManager::SystemType MusicPlatformManager::systemName() const
 
     if(major == 6 && minor == 3)	//win 8.1
     {
-        return SystemWin81;
+        return System::Win81;
     }
     if(major == 10 && minor == 0)	//win 10
     {
-        return SystemWin10;
+        return System::Win10;
     }
 
     SYSTEM_INFO info;
@@ -165,35 +165,35 @@ MusicPlatformManager::SystemType MusicPlatformManager::systemName() const
                     case 0:
                         if(os.dwPlatformId == VER_PLATFORM_WIN32_NT)
                         {
-                            return SystemWinNT40;
+                            return System::WinNT40;
                         }
                         else if(os.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
                         {
-                            return SystemWin95;
+                            return System::Win95;
                         }
                         break;
-                    case 10: return SystemWin98;
-                    case 90: return SystemWinMe;
+                    case 10: return System::Win98;
+                    case 90: return System::WinMe;
                     default: break;
                 }
                 break;
             case 5:
                 switch(os.dwMinorVersion)
                 {
-                    case 0: return SystemWin2000;
-                    case 1: return SystemWinXP;
+                    case 0: return System::Win2000;
+                    case 1: return System::WinXP;
                     case 2:
                         if(os.wProductType == VER_NT_WORKSTATION && info.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
                         {
-                            return SystemWinXPProfessionalEdition;
+                            return System::WinXPProfessionalEdition;
                         }
                         else if(GetSystemMetrics(SM_SERVERR2) == 0)
                         {
-                            return SystemWinServer2003;
+                            return System::WinServer2003;
                         }
                         else if(GetSystemMetrics(SM_SERVERR2) != 0)
                         {
-                            return SystemWinServer2003R2;
+                            return System::WinServer2003R2;
                         }
                     default: break;
                 }
@@ -201,13 +201,13 @@ MusicPlatformManager::SystemType MusicPlatformManager::systemName() const
             case 6:
                 switch(os.dwMinorVersion)
                 {
-                    case 0: return os.wProductType == VER_NT_WORKSTATION ? SystemWinVista : SystemWinServer2008;
-                    case 1: return os.wProductType == VER_NT_WORKSTATION ? SystemWin7 : SystemWinServer2008R2;
-                    case 2: return os.wProductType == VER_NT_WORKSTATION ? SystemWin8 : SystemWinServer2012;
+                    case 0: return os.wProductType == VER_NT_WORKSTATION ? System::WinVista : System::WinServer2008;
+                    case 1: return os.wProductType == VER_NT_WORKSTATION ? System::Win7 : System::WinServer2008R2;
+                    case 2: return os.wProductType == VER_NT_WORKSTATION ? System::Win8 : System::WinServer2012;
                     default: break;
                 }
                 break;
-            default: return SystemUnkown;
+            default: return System::Unkown;
         }
     }
     FreeLibrary(instance);
@@ -221,28 +221,28 @@ MusicPlatformManager::SystemType MusicPlatformManager::systemName() const
             const QString &system = regx.cap(1).toLower();
             if(system == "ubuntu")
             {
-                return SystemLinuxUbuntu;
+                return System::LinuxUbuntu;
             }
             else if(system == "debian")
             {
-                return SystemLinuxDebian;
+                return System::LinuxDebian;
             }
             else if(system == "arch")
             {
-                return SystemLinuxArch;
+                return System::LinuxArch;
             }
             else if(system == "centos")
             {
-                return SystemLinuxCentOS;
+                return System::LinuxCentOS;
             }
         }
         file.close();
     }
-    return SystemLinux;
+    return System::Linux;
 #else
-    return SystemMac;
+    return System::Mac;
 #endif
-    return SystemUnkown;
+    return System::Unkown;
 }
 
 void MusicPlatformManager::setFileLink(const QString &src, const QString &des, const QString &ico, const QString &args, const QString &description)

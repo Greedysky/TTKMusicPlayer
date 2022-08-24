@@ -8,7 +8,7 @@ MusicWYQueryToplistRequest::MusicWYQueryToplistRequest(QObject *parent)
 
 void MusicWYQueryToplistRequest::startToSearch(QueryType type, const QString &value)
 {
-    if(type == MusicQuery)
+    if(type == QueryType::Music)
     {
         startToSearch(value);
     }

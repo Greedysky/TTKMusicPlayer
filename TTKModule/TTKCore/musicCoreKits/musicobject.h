@@ -184,40 +184,40 @@
  */
 namespace MusicObject
 {
-    enum PlayState
+    enum class PlayState
     {
-        StoppedState,           /*!< stop state*/
-        PlayingState,           /*!< play state*/
-        PausedState             /*!< pause state*/
+        Stopped,           /*!< stop state*/
+        Playing,           /*!< play state*/
+        Paused             /*!< pause state*/
     };
 
-    enum PlayMode
+    enum class PlayMode
     {
-        PlayOrder,              /*!< play order*/
-        PlayRandom,             /*!< play random*/
-        PlaylistLoop,           /*!< play list loop*/
-        PlayOneLoop,            /*!< play single loop*/
-        PlayOnce                /*!< play just once*/
+        Order,             /*!< play order mode*/
+        Random,            /*!< play random mode*/
+        ListLoop,          /*!< play list loop mode*/
+        OneLoop,           /*!< play single loop mode*/
+        Once               /*!< play just once mode*/
     };
 
-    enum FontStyleMode
+    enum class FontStyleMode
     {
-        Bold =       0x00001,   /*!< font bold*/
-        Italic =     0x00002,   /*!< font italic*/
-        Underline =  0x00004,   /*!< font underline*/
-        Overline =   0x00008,   /*!< font overline*/
-        StrikeOut =  0x00010,   /*!< font strikeOut*/
-        FixedPitch = 0x00020,   /*!< font fixedPitch*/
-        Kerningt =   0x00040    /*!< font kerningt*/
+        Bold =       0x0001,   /*!< font bold mode*/
+        Italic =     0x0002,   /*!< font italic mode*/
+        Underline =  0x0004,   /*!< font underline mode*/
+        Overline =   0x0008,   /*!< font overline mode*/
+        StrikeOut =  0x0010,   /*!< font strikeOut mode*/
+        FixedPitch = 0x0020,   /*!< font fixedPitch mode*/
+        Kerningt =   0x0040    /*!< font kerningt mode*/
     };
 
-    enum QueryQuality
+    enum class QueryQuality
     {
-        NoneQuality,            /*!< none*/
-        StandardQuality,        /*!< sd*/
-        HighQuality,            /*!< hq*/
-        SuperQuality,           /*!< sq*/
-        LosslessQuality         /*!< cd*/
+        None,            /*!< none quality*/
+        Standard,        /*!< sd quality*/
+        High,            /*!< hq quality*/
+        Super,           /*!< sq quality*/
+        Lossless         /*!< cd quality*/
     };
 
 

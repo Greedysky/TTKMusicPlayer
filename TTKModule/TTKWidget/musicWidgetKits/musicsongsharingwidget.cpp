@@ -21,7 +21,7 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_type = Null;
+    m_type = Module::Null;
 
     m_ui->qqButton->setChecked(true);
     m_ui->textEdit->setStyleSheet(MusicUIObject::MQSSTextEditStyle01);
@@ -51,7 +51,7 @@ MusicSongSharingWidget::~MusicSongSharingWidget()
     delete m_ui;
 }
 
-void MusicSongSharingWidget::setData(Type type, const QVariantMap &data)
+void MusicSongSharingWidget::setData(Module type, const QVariantMap &data)
 {
     m_type = type;
     m_data = data;
@@ -60,11 +60,11 @@ void MusicSongSharingWidget::setData(Type type, const QVariantMap &data)
 
     switch(m_type)
     {
-        case Song: break;
-        case Movie: break;
-        case Artist:
-        case Album:
-        case Playlist:
+        case Module::Song: break;
+        case Module::Movie: break;
+        case Module::Artist:
+        case Module::Album:
+        case Module::Playlist:
         {
             const QString &smallUrl = data["smallUrl"].toString();
             if(!smallUrl.isEmpty() && smallUrl != TTK_NULL_STR)
@@ -96,10 +96,10 @@ void MusicSongSharingWidget::confirmButtonClicked()
 {
     switch(m_type)
     {
-        case Song:
+        case Module::Song:
         {
             MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-            d->startToSearch(MusicAbstractQueryRequest::MusicQuery, m_ui->sharedName->text().trimmed());
+            d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, m_ui->sharedName->text().trimmed());
 
             MusicSemaphoreLoop loop;
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
@@ -131,7 +131,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             }
             break;
         }
-        case Movie:
+        case Module::Movie:
         {
             QString server = m_data["queryServer"].toString(), id = m_data["id"].toString();
             if(server == QUERY_WY_INTERFACE)
@@ -151,7 +151,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             downLoadFinished(server, QString());
             break;
         }
-        case Artist:
+        case Module::Artist:
         {
             QString server = m_data["queryServer"].toString();
             if(server == QUERY_WY_INTERFACE)
@@ -171,7 +171,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             downLoadFinished(server, m_data["smallUrl"].toString());
             break;
         }
-        case Album:
+        case Module::Album:
         {
             QString server = m_data["queryServer"].toString();
             if(server == QUERY_WY_INTERFACE)
@@ -191,7 +191,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             downLoadFinished(server, m_data["smallUrl"].toString());
             break;
         }
-        case Playlist:
+        case Module::Playlist:
         {
             QString server = m_data["queryServer"].toString();
             if(server == QUERY_WY_INTERFACE)

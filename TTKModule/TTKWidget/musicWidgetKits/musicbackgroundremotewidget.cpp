@@ -21,7 +21,7 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     m_currentIndex = -1;
     m_downloadRequest = nullptr;
 
-    m_downloadQueue = new MusicDownloadQueueRequest(MusicObject::DownloadBigBackground, this);
+    m_downloadQueue = new MusicDownloadQueueRequest(MusicObject::Download::BigBackground, this);
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
     connect(m_backgroundList, SIGNAL(itemClicked(int,QString)), parent, SLOT(remoteListWidgetItemClicked(int,QString)));
 }

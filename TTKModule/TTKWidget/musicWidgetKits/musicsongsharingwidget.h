@@ -64,7 +64,7 @@ class TTK_MODULE_EXPORT MusicSongSharingWidget : public MusicAbstractMoveDialog
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongSharingWidget)
 public:
-    enum Type
+    enum class Module
     {
         Song,       /*!< song type*/
         Movie,      /*!< Movie type*/
@@ -83,7 +83,7 @@ public:
     /*!
      * Set current data to share.
      */
-    void setData(Type type, const QVariantMap &data);
+    void setData(Module type, const QVariantMap &data);
 
 public Q_SLOTS:
     /*!
@@ -113,7 +113,7 @@ public Q_SLOTS:
 
 protected:
     Ui::MusicSongSharingWidget *m_ui;
-    Type m_type;
+    Module m_type;
     QVariantMap m_data;
     QRCodeQWidget *m_qrCodeWidget;
 

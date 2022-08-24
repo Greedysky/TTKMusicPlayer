@@ -38,7 +38,7 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
     //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::MovieQuery, text);
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Movie, text);
 }
 
 void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
@@ -55,7 +55,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
     //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
-    m_networkRequest->setQueryType(MusicAbstractQueryRequest::MovieQuery);
+    m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Movie);
     m_networkRequest->startToSingleSearch(text);
 }
 
@@ -263,6 +263,6 @@ void MusicVideoSearchTableWidget::downloadLocalMovie(int row)
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(songInfos[row], MusicAbstractQueryRequest::MovieQuery);
+    download->setSongName(songInfos[row], MusicAbstractQueryRequest::QueryType::Movie);
     download->show();
 }

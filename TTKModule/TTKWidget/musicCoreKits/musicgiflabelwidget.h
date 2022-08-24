@@ -32,7 +32,7 @@ class TTK_MODULE_EXPORT MusicGifLabelWidget : public QLabel
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicGifLabelWidget)
 public:
-    enum Type
+    enum class Module
     {
         BallonWhite,         /*!< gif ballon white*/
         CicleBlue,           /*!< gif cicle blue*/
@@ -53,17 +53,17 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicGifLabelWidget(Type type, QWidget *parent = nullptr);
+    explicit MusicGifLabelWidget(Module type, QWidget *parent = nullptr);
     ~MusicGifLabelWidget();
 
     /*!
      * Set the gif type.
      */
-    void setType(Type type);
+    void setType(Module type);
     /*!
      * Get the gif type.
      */
-    Type type() const;
+    Module type() const;
 
     /*!
      * Set the gif interval.
@@ -118,7 +118,7 @@ protected:
     bool infinitedModeCheck();
 
     int m_index;
-    Type m_type;
+    Module m_type;
     QTimer *m_timer;
     QPixmap m_renderer;
     bool m_isRunning, m_infinited;
@@ -143,11 +143,11 @@ public:
     /*!
      * Set the gif type.
      */
-    void setType(MusicGifLabelWidget::Type type);
+    void setType(MusicGifLabelWidget::Module type);
     /*!
      * Get the gif type.
      */
-    MusicGifLabelWidget::Type type() const;
+    MusicGifLabelWidget::Module type() const;
 
     /*!
      * Run the gif.

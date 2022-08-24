@@ -9,10 +9,10 @@ MusicBDTranslationRequest::MusicBDTranslationRequest(QObject *parent)
 
 void MusicBDTranslationRequest::startToDownload(const QString &data)
 {
-    startToDownload(MusicBDTranslationRequest::TypeAuto, MusicBDTranslationRequest::TypeZh, data);
+    startToDownload(Language::Auto, Language::Zh, data);
 }
 
-void MusicBDTranslationRequest::startToDownload(TranslationType from, TranslationType to, const QString &data)
+void MusicBDTranslationRequest::startToDownload(Language from, Language to, const QString &data)
 {
     TTK_LOGGER_INFO(QString("%1 startToSearch").arg(className()));
 
@@ -27,27 +27,27 @@ void MusicBDTranslationRequest::startToDownload(TranslationType from, Translatio
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
-QString MusicBDTranslationRequest::mapTypeFromEnumToString(TranslationType type) const
+QString MusicBDTranslationRequest::mapTypeFromEnumToString(Language type) const
 {
     switch(type)
     {
-        case TypeAuto: return "auto";
-        case TypeAra: return "ara";
-        case TypeDe: return "de";
-        case TypeRu: return "ru";
-        case TypeFra: return "fra";
-        case TypeKor: return "kor";
-        case TypeNl: return "nl";
-        case TypePt: return "pt";
-        case TypeJp: return "jp";
-        case TypeTh: return "th";
-        case TypeWyw: return "wyw";
-        case TypeSpa: return "spa";
-        case TypeEl: return "el";
-        case TypeIt: return "it";
-        case TypeEn: return "en";
-        case TypeYue: return "yue";
-        case TypeZh: return "zh";
+        case Language::Auto: return "auto";
+        case Language::Ara: return "ara";
+        case Language::De: return "de";
+        case Language::Ru: return "ru";
+        case Language::Fra: return "fra";
+        case Language::Kor: return "kor";
+        case Language::Nl: return "nl";
+        case Language::Pt: return "pt";
+        case Language::Jp: return "jp";
+        case Language::Th: return "th";
+        case Language::Wyw: return "wyw";
+        case Language::Spa: return "spa";
+        case Language::El: return "el";
+        case Language::It: return "it";
+        case Language::En: return "en";
+        case Language::Yue: return "yue";
+        case Language::Zh: return "zh";
         default: return QString();
     }
 }

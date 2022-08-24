@@ -50,12 +50,12 @@ void MusicVideoQualityPopWidget::setQualityText(const QString &url)
 void MusicVideoQualityPopWidget::movieQualityChoiced(QAction *action)
 {
     QString url;
-    switch(action->data().toInt())
+    switch(TTKStatic_cast(MusicObject::QueryQuality, action->data().toInt()))
     {
-        case MusicObject::NoneQuality: url = findMVUrlByBitrate(MB_250); break;
-        case MusicObject::StandardQuality: url = findMVUrlByBitrate(MB_500); break;
-        case MusicObject::HighQuality: url = findMVUrlByBitrate(MB_750); break;
-        case MusicObject::SuperQuality: url = findMVUrlByBitrate(MB_1000); break;
+        case MusicObject::QueryQuality::None: url = findMVUrlByBitrate(MB_250); break;
+        case MusicObject::QueryQuality::Standard: url = findMVUrlByBitrate(MB_500); break;
+        case MusicObject::QueryQuality::High: url = findMVUrlByBitrate(MB_750); break;
+        case MusicObject::QueryQuality::Super: url = findMVUrlByBitrate(MB_1000); break;
         default: break;
     }
     setQualityText(url);
@@ -70,10 +70,10 @@ void MusicVideoQualityPopWidget::initialize()
 
     m_containWidget->setFixedSize(140, 125);
     m_menu->removeAction(m_menu->actions().front());
-    m_actionGroup->addAction(m_menu->addAction(tr("ST")))->setData(MusicObject::NoneQuality);
-    m_actionGroup->addAction(m_menu->addAction(tr("SD")))->setData(MusicObject::StandardQuality);
-    m_actionGroup->addAction(m_menu->addAction(tr("HD")))->setData(MusicObject::HighQuality);
-    m_actionGroup->addAction(m_menu->addAction(tr("SQ")))->setData(MusicObject::SuperQuality);
+    m_actionGroup->addAction(m_menu->addAction(tr("ST")))->setData(TTKStatic_cast(int, MusicObject::QueryQuality::None));
+    m_actionGroup->addAction(m_menu->addAction(tr("SD")))->setData(TTKStatic_cast(int, MusicObject::QueryQuality::Standard));
+    m_actionGroup->addAction(m_menu->addAction(tr("HD")))->setData(TTKStatic_cast(int, MusicObject::QueryQuality::High));
+    m_actionGroup->addAction(m_menu->addAction(tr("SQ")))->setData(TTKStatic_cast(int, MusicObject::QueryQuality::Super));
 
     setQualityActionState();
 }

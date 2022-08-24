@@ -22,7 +22,7 @@ MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)
     m_singer->setGeometry(180, 0, 120, ITEM_ROW_HEIGHT_S);
     m_qulity->setGeometry(300, 0, 80, ITEM_ROW_HEIGHT_S);
     m_information->setGeometry(380, 0, 150, ITEM_ROW_HEIGHT_S);
-    m_queryType = MusicAbstractQueryRequest::MusicQuery;
+    m_queryType = MusicAbstractQueryRequest::QueryType::Music;
 
     connect(m_qulity, SIGNAL(currentIndexChanged(int)), SLOT(currentQualityChanged(int)));
 }
@@ -51,26 +51,26 @@ void MusicDownloadBatchTableItem::createItem(const MusicObject::MusicSongInforma
 
     for(const MusicObject::MusicSongProperty &prop : qAsConst(props))
     {
-        if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-           (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::MovieQuery))       ///sd
+        if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+           (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
         {
             m_qulity->addItem(tr("SD"), QVariant::fromValue<MusicObject::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
-        else if((prop.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-                (prop.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::MovieQuery))  ///hd
+        else if((prop.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+                (prop.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
         {
             m_qulity->addItem(tr("HQ"), QVariant::fromValue<MusicObject::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
-        else if((prop.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-                (prop.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::MovieQuery))  ///sq
+        else if((prop.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+                (prop.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
         {
             m_qulity->addItem(tr("SQ"), QVariant::fromValue<MusicObject::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
-        else if((prop.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-                (prop.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::MovieQuery)) ///cd
+        else if((prop.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+                (prop.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
         {
             m_qulity->addItem(tr("CD"), QVariant::fromValue<MusicObject::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
@@ -92,11 +92,11 @@ void MusicDownloadBatchTableItem::startToDownload()
         return;
     }
 
-    if(m_queryType == MusicAbstractQueryRequest::MusicQuery)
+    if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
     {
         startToDownloadMusic();
     }
-    else if(m_queryType == MusicAbstractQueryRequest::MovieQuery)
+    else if(m_queryType == MusicAbstractQueryRequest::QueryType::Movie)
     {
         startToDownloadMovie();
     }
@@ -105,7 +105,7 @@ void MusicDownloadBatchTableItem::startToDownload()
 void MusicDownloadBatchTableItem::setCurrentQuality(int index)
 {
     int bitrate = -1;
-    if(m_queryType == MusicAbstractQueryRequest::MusicQuery)
+    if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
     {
         switch(index)
         {
@@ -116,7 +116,7 @@ void MusicDownloadBatchTableItem::setCurrentQuality(int index)
             default: break;
         }
     }
-    else if(m_queryType == MusicAbstractQueryRequest::MovieQuery)
+    else if(m_queryType == MusicAbstractQueryRequest::QueryType::Movie)
     {
         switch(index)
         {
@@ -153,23 +153,23 @@ void MusicDownloadBatchTableItem::currentQualityChanged(int index)
     }
 
     const MusicObject::MusicSongProperty &prop = m_qulity->itemData(index).value<MusicObject::MusicSongProperty>();
-    if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-       (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::MovieQuery))       ///sd
+    if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+       (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
     {
         m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
     }
-    else if((prop.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-            (prop.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::MovieQuery))  ///hd
+    else if((prop.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+            (prop.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
     {
         m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
     }
-    else if((prop.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-            (prop.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::MovieQuery))  ///sq
+    else if((prop.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+            (prop.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
     {
         m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
     }
-    else if((prop.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
-            (prop.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::MovieQuery)) ///cd
+    else if((prop.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+            (prop.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
     {
         m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
     }
@@ -179,10 +179,10 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
 {
     const MusicObject::MusicSongProperty &prop = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongProperty>();
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
-    const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
+    const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::Config::DownloadMusicDirPath).toString();
     QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
 
-    MusicDownloadRecordConfigManager down(MusicObject::RecordNormalDownload, this);
+    MusicDownloadRecordConfigManager down(MusicObject::Record::NormalDownload, this);
     if(!down.fromFile())
     {
         return;
@@ -216,8 +216,8 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
         }
     }
 
-    MusicDownloadTagDataRequest *downSong = new MusicDownloadTagDataRequest(prop.m_url, downloadName, MusicObject::DownloadMusic, this);
-    downSong->setRecordType(MusicObject::RecordNormalDownload);
+    MusicDownloadTagDataRequest *downSong = new MusicDownloadTagDataRequest(prop.m_url, downloadName, MusicObject::Download::Music, this);
+    downSong->setRecordType(MusicObject::Record::NormalDownload);
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
 
     MusicSongMeta meta;
@@ -256,7 +256,7 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
         }
     }
     //
-    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(prop.m_url, downloadName, MusicObject::DownloadVideo, this);
+    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(prop.m_url, downloadName, MusicObject::Download::Video, this);
     download->startToDownload();
 }
 
