@@ -13,7 +13,7 @@ libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
 libmad-0.15.1b	https://sourceforge.net/projects/mad
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.5	https://xiph.org/downloads
-libopenmpt-0.4.30		https://lib.openmpt.org/libopenmpt
+libopenmpt-0.4.31		https://lib.openmpt.org/libopenmpt
 libprojectm-2.2.1		https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.2		https://github.com/libsndfile/libsamplerate
 libsidplayfp-2.3.1.patch	https://github.com/libsidplayfp/libsidplayfp
@@ -37,6 +37,6 @@ ttk-1.1.9
 (libfc14-1.0.3	https://sourceforge.net/projects/xmms-fc)
 (libgoom-2k4	https://sourceforge.net/projects/goom)
 (libsc68-2.2.1	https://sourceforge.net/projects/sc68)
-(libuade-3.02	https://gitlab.com/uade-music-player/uade 19504a85573aeebe2e91830a746e3542d44ca449)
+(libuade-3.02	https://gitlab.com/uade-music-player/uade 96cf85b0fe0a35761649778fa5af5a858e9d8ef8)
 (libv2m-20211104	https://github.com/jgilje/v2m-player)
-///Update time 2022-08-16
+///Update time 2022-08-24
