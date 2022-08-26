@@ -120,6 +120,7 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 #    define Q_COMPILER_DELETE_MEMBERS
 #    define Q_COMPILER_NULLPTR
 #    define Q_COMPILER_EXPLICIT_OVERRIDES
+#    define Q_COMPILER_CONSTEXPR
 #  endif
 #endif
 
@@ -154,6 +155,19 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 #  endif
 #endif
 
+#if defined Q_COMPILER_CONSTEXPR
+#  if defined(__cpp_constexpr) && __cpp_constexpr >= 201304L
+#    define TTK_CONSTEXPR constexpr
+#    define TTK_RCONSTEXPR constexpr
+#  else
+#    define TTK_CONSTEXPR constexpr
+#    define TTK_RCONSTEXPR const
+#  endif
+#else
+#  define TTK_CONSTEXPR const
+#  define TTK_RCONSTEXPR const
+#endif
+
 // disable copy
 #define TTK_DISABLE_COPY(Class) \
 private: \
@@ -162,7 +176,7 @@ private: \
 
 // disable init and copy
 #define TTK_DISABLE_INIT_COPY(Class) \
-  BZROBOT_DISABLE_COPY(Class) \
+  TTK_DISABLE_COPY(Class) \
   Class() TTK_DELETE;
 
 // make class name
@@ -200,20 +214,21 @@ public: \
 // declare list and enum flag
 #define TTK_DECLARE_LIST(Class)        typedef QList<Class> Class##List
 #define TTK_DECLARE_FLAG(Flags, Enum)  typedef QFlags<Enum> Flags
+#define TTK_ENUM_TYPE(Enum)            std::underlying_type<Enum>::type
 #define TTK_DECLARE_OPERATORS_FOR_ENUM(Enum) \
-inline constexpr Enum operator~(const Enum lhs) { return TTKStatic_cast(Enum, ~TTKStatic_cast(std::underlying_type<Enum>::type, lhs)); } \
-inline constexpr Enum operator!(const Enum lhs) { return TTKStatic_cast(Enum, !TTKStatic_cast(std::underlying_type<Enum>::type, lhs)); } \
-inline constexpr bool operator>(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) > TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
-inline constexpr bool operator<(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) < TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
-inline constexpr bool operator>=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) >= TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
-inline constexpr bool operator<=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) <= TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
-inline constexpr bool operator==(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) == TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
-inline constexpr bool operator!=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) != TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
-inline constexpr Enum operator&(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(std::underlying_type<Enum>::type, lhs) & TTKStatic_cast(std::underlying_type<Enum>::type, rhs)); } \
-inline constexpr Enum operator|(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(std::underlying_type<Enum>::type, lhs) | TTKStatic_cast(std::underlying_type<Enum>::type, rhs)); } \
-inline constexpr Enum operator^(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(std::underlying_type<Enum>::type, lhs) ^ TTKStatic_cast(std::underlying_type<Enum>::type, rhs)); } \
-inline constexpr bool operator||(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) || TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
-inline constexpr bool operator&&(const Enum lhs, const Enum rhs) { return TTKStatic_cast(std::underlying_type<Enum>::type, lhs) && TTKStatic_cast(std::underlying_type<Enum>::type, rhs); } \
+inline constexpr Enum operator~(const Enum lhs) { return TTKStatic_cast(Enum, ~TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs)); } \
+inline constexpr Enum operator!(const Enum lhs) { return TTKStatic_cast(Enum, !TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs)); } \
+inline constexpr bool operator>(const Enum lhs, const Enum rhs) { return TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs) > TTKStatic_cast(TTK_ENUM_TYPE(Enum), rhs); } \
+inline constexpr bool operator<(const Enum lhs, const Enum rhs) { return TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs) < TTKStatic_cast(TTK_ENUM_TYPE(Enum), rhs); } \
+inline constexpr bool operator>=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs) >= TTKStatic_cast(TTK_ENUM_TYPE(Enum), rhs); } \
+inline constexpr bool operator<=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs) <= TTKStatic_cast(TTK_ENUM_TYPE(Enum), rhs); } \
+inline constexpr bool operator==(const Enum lhs, const Enum rhs) { return TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs) == TTKStatic_cast(TTK_ENUM_TYPE(Enum), rhs); } \
+inline constexpr bool operator!=(const Enum lhs, const Enum rhs) { return TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs) != TTKStatic_cast(TTK_ENUM_TYPE(Enum), rhs); } \
+inline constexpr Enum operator&(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs) & TTKStatic_cast(TTK_ENUM_TYPE(Enum), rhs)); } \
+inline constexpr Enum operator|(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs) | TTKStatic_cast(TTK_ENUM_TYPE(Enum), rhs)); } \
+inline constexpr Enum operator^(const Enum lhs, const Enum rhs) { return TTKStatic_cast(Enum, TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs) ^ TTKStatic_cast(TTK_ENUM_TYPE(Enum), rhs)); } \
+inline constexpr bool operator||(const Enum lhs, const Enum rhs) { return TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs) || TTKStatic_cast(TTK_ENUM_TYPE(Enum), rhs); } \
+inline constexpr bool operator&&(const Enum lhs, const Enum rhs) { return TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs) && TTKStatic_cast(TTK_ENUM_TYPE(Enum), rhs); } \
 inline const Enum& operator|=(Enum& lhs, const Enum rhs) { return lhs = (lhs | rhs); } \
 inline const Enum& operator&=(Enum& lhs, const Enum rhs) { return lhs = (lhs & rhs); } \
 inline const Enum& operator^=(Enum& lhs, const Enum rhs) { return lhs = (lhs ^ rhs); }
