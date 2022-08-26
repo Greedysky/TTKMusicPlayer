@@ -34,7 +34,7 @@ void MusicMobileDevicesWidget::showMobileManager()
     hide();
     MusicLocalSongsManagerWidget *w = GENERATE_SINGLE_WIDGET_CLASS(MusicLocalSongsManagerWidget);
 #ifdef Q_OS_WIN
-    w->findExtraDevicePath(G_SETTING_PTR->value(MusicSettingManager::ExtraDevicePath).toString());
+    w->findExtraDevicePath(G_SETTING_PTR->value(MusicSettingManager::Config::ExtraDevicePath).toString());
 #else
     Q_UNUSED(w);
 #endif
