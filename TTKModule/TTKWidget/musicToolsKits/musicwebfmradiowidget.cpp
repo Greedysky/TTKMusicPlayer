@@ -2,23 +2,15 @@
 #include "musicfmradiochannelrequest.h"
 #include "musicwebfmradioplaywidget.h"
 #include "musicdownloadsourcerequest.h"
-#include "musicplatformmanager.h"
 #include "musicwidgetheaders.h"
 #include "musicitemdelegate.h"
 #include "musicimageutils.h"
-
-#if TTK_QT_VERSION_CHECK(5,0,0)
-#  include <QStandardPaths>
-#else
-#  include <QDesktopServices>
-#endif
 
 #define ICON_SIZE       50
 
 MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent),
-      m_fmRadio(nullptr),
-      m_channelThread(nullptr)
+      m_fmRadio(nullptr)
 {
     setIconSize(QSize(ICON_SIZE, ICON_SIZE));
     setColumnCount(4);
@@ -29,31 +21,20 @@ MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
     headerview->resizeSection(2, 157);
     headerview->resizeSection(3, 75);
 
-    m_outerIndex = -1;
-
     MusicUtils::Widget::setTransparent(this, 0);
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
+    m_channelThread = new MusicFMRadioChannelRequest(this);
+    connect(m_channelThread, SIGNAL(downLoadDataChanged(QString)), SLOT(addListWidgetItem()));
+    m_channelThread->startToDownload(QString());
 }
 
 MusicWebFMRadioWidget::~MusicWebFMRadioWidget()
 {
     delete m_fmRadio;
     delete m_channelThread;
-}
-
-void MusicWebFMRadioWidget::initialize(int index)
-{
-    m_outerIndex = index;
-    if(rowCount() == 0)
-    {
-        delete m_channelThread;
-        m_channelThread = new MusicFMRadioChannelRequest(this);
-        connect(m_channelThread, SIGNAL(downLoadDataChanged(QString)), SLOT(addListWidgetItem()));
-        m_channelThread->startToDownload(QString());
-    }
 }
 
 void MusicWebFMRadioWidget::itemCellEntered(int row, int column)
@@ -84,7 +65,6 @@ void MusicWebFMRadioWidget::itemCellEntered(int row, int column)
 void MusicWebFMRadioWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
-
     if(column == 3)
     {
         itemDoubleClicked(row, DEFAULT_NORMAL_LEVEL);
@@ -94,7 +74,6 @@ void MusicWebFMRadioWidget::itemCellClicked(int row, int column)
 void MusicWebFMRadioWidget::itemDoubleClicked(int row, int column)
 {
     Q_UNUSED(column);
-
     if(!m_channelThread)
     {
         return;
@@ -150,13 +129,6 @@ void MusicWebFMRadioWidget::addListWidgetItem()
             download->startToDownload(channel.m_coverUrl);
         }
     }
-
-    // radio outer flag
-    if(m_outerIndex != -1)
-    {
-        selectRow(m_outerIndex);
-        itemDoubleClicked(m_outerIndex, DEFAULT_NORMAL_LEVEL);
-    }
 }
 
 void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &bytes)
@@ -191,35 +163,6 @@ void MusicWebFMRadioWidget::musicPlayClicked()
     }
 }
 
-void MusicWebFMRadioWidget::sendToDesktopLink()
-{
-    const int row = currentRow();
-    if(row < 0)
-    {
-        return;
-    }
-
-    QString fileName("Radio");
-    QTableWidgetItem *it = item(row, 2);
-    if(it)
-    {
-        fileName = it->text();
-    }
-
-#if TTK_QT_VERSION_CHECK(5,0,0)
-    const QString &desktop = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-#else
-    const QString &desktop = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
-#endif
-
-    MusicPlatformManager platform;
-#ifdef Q_OS_WIN
-    platform.setFileLink(MusicObject::applicationPath() + APP_EXE_NAME, desktop + TTK_SEPARATOR + fileName + ".lnk", QString(), QString("%1 \"%2\"").arg(MUSIC_OUTSIDE_RADIO).arg(row), tr("TTK Radio Link"));
-#else
-    platform.setFileLink(QString(" %1 \"%2\"").arg(MUSIC_OUTSIDE_RADIO).arg(row), desktop, MAIN_DIR_FULL + APP_NAME, MusicObject::applicationPath(), fileName);
-#endif
-}
-
 void MusicWebFMRadioWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicAbstractTableWidget::contextMenuEvent(event);
@@ -230,7 +173,6 @@ void MusicWebFMRadioWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("Play"), this, SLOT(musicPlayClicked()));
     menu.addSeparator();
     menu.addAction(QIcon(":/contextMenu/btn_mobile"), tr("Song To Mobile"));
-    menu.addAction(tr("Send To Desktop Link"), this, SLOT(sendToDesktopLink()));
 
     menu.exec(QCursor::pos());
 }

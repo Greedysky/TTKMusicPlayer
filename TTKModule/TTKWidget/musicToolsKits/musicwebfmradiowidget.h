@@ -38,11 +38,6 @@ public:
     explicit MusicWebFMRadioWidget(QWidget *parent = nullptr);
     ~MusicWebFMRadioWidget();
 
-    /*!
-     * To init list items.
-     */
-    void initialize(int index);
-
 public Q_SLOTS:
     /*!
      * Table widget item cell enter.
@@ -68,10 +63,6 @@ public Q_SLOTS:
      * Music item has been clicked.
      */
     void musicPlayClicked();
-    /*!
-     * Send to desktop link.
-     */
-    void sendToDesktopLink();
 
 protected:
     /*!
@@ -79,7 +70,6 @@ protected:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
-    int m_outerIndex;
     MusicWebFMRadioPlayWidget *m_fmRadio;
     MusicFMRadioChannelRequest *m_channelThread;
 

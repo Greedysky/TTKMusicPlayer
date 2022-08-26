@@ -83,10 +83,6 @@ int main(int argc, char *argv[])
         {
             w.musicImportSongsPathOutside({QString::fromLocal8Bit(argv[4])}, false);
         }
-        else if(data == MUSIC_OUTSIDE_RADIO)
-        {
-            w.radioExecuteOutside(argv[4]);
-        }
     }
 #elif defined Q_OS_UNIX
     // unix mpris module

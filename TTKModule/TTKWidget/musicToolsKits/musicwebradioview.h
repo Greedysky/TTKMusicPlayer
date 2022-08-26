@@ -39,11 +39,6 @@ public:
     explicit MusicWebRadioView(QWidget *parent = nullptr);
     ~MusicWebRadioView();
 
-    /*!
-     * To init list items.
-     */
-    void initialize(int index);
-
 public Q_SLOTS:
     /*!
      * Open FM Radio window has clicked.

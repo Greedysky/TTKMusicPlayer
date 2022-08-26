@@ -86,13 +86,6 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicPlayMode->setToolTip(tr("Play Mode"));
 }
 
-void MusicLeftAreaWidget::radioExecuteOutside(const QString &path)
-{
-    musicStackedRadioWidgetChanged();
-    MusicWebRadioView *w = TTKStatic_cast(MusicWebRadioView*, m_stackedWidget);
-    w->initialize(path.toInt());
-}
-
 void MusicLeftAreaWidget::musictLoveStateClicked(bool state)
 {
     m_ui->musicBestLove->setStyleSheet(state ? MusicUIObject::MQSSBtnLove : MusicUIObject::MQSSBtnUnLove);
@@ -142,9 +135,7 @@ void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
     m_currentIndex = 2;
 
     delete m_stackedWidget;
-    MusicWebRadioView *w = new MusicWebRadioView(this);
-    w->initialize(DEFAULT_NORMAL_LEVEL);
-    m_stackedWidget = w;
+    m_stackedWidget = new MusicWebRadioView(this);
 
     m_ui->songsContainer->insertWidget(1, m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);

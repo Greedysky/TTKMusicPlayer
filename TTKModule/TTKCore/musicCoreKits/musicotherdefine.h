@@ -38,7 +38,6 @@
 #  define MUSIC_OUTSIDE_OPEN        "-Open"
 #  define MUSIC_OUTSIDE_LIST        "-List"
 #endif
-#define MUSIC_OUTSIDE_RADIO         "-Radio"
 
 #define MUSIC_TIME_FORMAT           "hh:mm"
 #define MUSIC_STIME_FORMAT          "hh:mm:ss"
