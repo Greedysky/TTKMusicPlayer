@@ -96,7 +96,7 @@ TTKMusicPlayer的壹些特性
  * Hively Audio File(*.ahx *.hvl)
  * BP SoundMon Audio File(*.bp *.bp3)
  * Ken Silverman's Audio File(*.kdm *.ksm *.sm *.snd)
- * MDX Game Audio File(*.mdx *.pdx *.m *.mub *.muc *.vgs *.bgm *.mml)
+ * XMDX Game Audio File(*.mdx *.pdx *.m *.mub *.muc *.vgs *.bgm *.mml)
  * Cave Story's org Audio File(*.org *.pttune *.ptcop)
  * Final Music System Tracker Module File(*.tfm *.tfmx *.mdat *.tfx)
  * 支持的播放列表格式(tkpl, m3u, m3u8, pls, wpl, xspf, asx, fpl, dbpl, csv, txt)

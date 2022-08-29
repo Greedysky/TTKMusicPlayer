@@ -90,7 +90,7 @@
  *
  * Ken Silverman's Audio File(*.kdm *.ksm *.sm *.snd)
  *
- * MDX Game Audio File(*.mdx *.pdx *.m *.mub *.muc *.vgs *.bgm *.mml)
+ * XMDX Game Audio File(*.mdx *.pdx *.m *.mub *.muc *.vgs *.bgm *.mml)
  *
  * Cave Story's org Audio File(*.org *.pttune *.ptcop)
  *
