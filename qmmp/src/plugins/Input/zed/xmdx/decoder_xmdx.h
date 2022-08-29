@@ -16,21 +16,21 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef DECODER_MDX_H
-#define DECODER_MDX_H
+#ifndef DECODER_XMDX_H
+#define DECODER_XMDX_H
 
 #include <qmmp/decoder.h>
 
-class MDXHelper;
+class XMDXHelper;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class DecoderMDX : public Decoder
+class DecoderXMDX : public Decoder
 {
 public:
-    explicit DecoderMDX(const QString &path);
-    virtual ~DecoderMDX();
+    explicit DecoderXMDX(const QString &path);
+    virtual ~DecoderXMDX();
 
     // Standard Decoder API
     virtual bool initialize() override final;
@@ -40,7 +40,7 @@ public:
     virtual void seek(qint64 time) override final;
 
 private:
-    MDXHelper *m_helper = nullptr;
+    XMDXHelper *m_helper = nullptr;
 
 };
 

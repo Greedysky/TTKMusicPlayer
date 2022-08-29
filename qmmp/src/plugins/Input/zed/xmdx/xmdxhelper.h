@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef MDXHELPER_H
-#define MDXHELPER_H
+#ifndef XMDXHELPER_H
+#define XMDXHELPER_H
 
 #include <QMap>
 #include <QFile>
@@ -53,11 +53,11 @@ protected:
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class MDXHelper
+class XMDXHelper
 {
 public:
-    explicit MDXHelper(const QString &path);
-    ~MDXHelper();
+    explicit XMDXHelper(const QString &path);
+    ~XMDXHelper();
 
     void deinit();
     bool initialize();

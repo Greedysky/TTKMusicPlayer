@@ -1,8 +1,8 @@
-#include "decodermdxfactory.h"
-#include "mdxhelper.h"
-#include "decoder_mdx.h"
+#include "decoderxmdxfactory.h"
+#include "xmdxhelper.h"
+#include "decoder_xmdx.h"
 
-bool DecoderMDXFactory::canDecode(QIODevice *input) const
+bool DecoderXMDXFactory::canDecode(QIODevice *input) const
 {
     QFile *file = static_cast<QFile*>(input);
     if(!file)
@@ -10,29 +10,29 @@ bool DecoderMDXFactory::canDecode(QIODevice *input) const
         return false;
     }
 
-    MDXHelper helper(file->fileName());
+    XMDXHelper helper(file->fileName());
     return helper.initialize();
 }
 
-DecoderProperties DecoderMDXFactory::properties() const
+DecoderProperties DecoderXMDXFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("MDX Plugin");
-    properties.shortName = "mdx";
+    properties.name = tr("XMDX Plugin");
+    properties.shortName = "xmdx";
     properties.filters << "*.mdx" << "*.pdx" << "*.m" << "*.mub" << "*.muc" << "*.vgs" << "*.bgm" << "*.mml";
-    properties.description = "MDX Game Audio File";
+    properties.description = "XMDX Game Audio File";
     properties.protocols << "file";
     properties.noInput = true;
     return properties;
 }
 
-Decoder *DecoderMDXFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderXMDXFactory::create(const QString &path, QIODevice *input)
 {
     Q_UNUSED(input);
-    return new DecoderMDX(path);
+    return new DecoderXMDX(path);
 }
 
-QList<TrackInfo*> DecoderMDXFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderXMDXFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
     if(parts == TrackInfo::Parts())
@@ -40,7 +40,7 @@ QList<TrackInfo*> DecoderMDXFactory::createPlayList(const QString &path, TrackIn
         return QList<TrackInfo*>() << info;
     }
 
-    MDXHelper helper(path);
+    XMDXHelper helper(path);
     if(!helper.initialize())
     {
         delete info;
@@ -59,25 +59,25 @@ QList<TrackInfo*> DecoderMDXFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
-        info->setValue(Qmmp::FORMAT_NAME, "MDX");
+        info->setValue(Qmmp::FORMAT_NAME, "XMDX");
         info->setDuration(helper.totalTime());
     }
     return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderMDXFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderXMDXFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
     Q_UNUSED(readOnly);
     return nullptr;
 }
 
-void DecoderMDXFactory::showSettings(QWidget *parent)
+void DecoderXMDXFactory::showSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #include <QtPlugin>
-Q_EXPORT_PLUGIN2(mdx, DecoderMDXFactory)
+Q_EXPORT_PLUGIN2(xmdx, DecoderXMDXFactory)
 #endif

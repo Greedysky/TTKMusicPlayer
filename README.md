@@ -110,11 +110,11 @@ The TTKMusicplayer plugin for run
  * ayfly
  * dca
  * ken
- * mdx
  * optimfrog
  * organya
  * psf
  * s98
  * sunvox
  * v2m
+ * xmdx
  * xsf

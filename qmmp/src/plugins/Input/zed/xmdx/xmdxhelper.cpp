@@ -1,12 +1,12 @@
-#include "mdxhelper.h"
+#include "xmdxhelper.h"
 
 extern "C" {
-#include <libmdx/mdxmini/mdxmini.h>
-#include <libmdx/pmdmini/pmdmini.h>
-#include <libmdx/mucom88/mucomtag.h>
-#include <libmdx/mucom88/mucom_module.h>
-#include <libmdx/vgs/vgsdec.h>
-#include <libmdx/vgs/vgsmml.h>
+#include <libxmdx/mdxmini/mdxmini.h>
+#include <libxmdx/pmdmini/pmdmini.h>
+#include <libxmdx/mucom88/mucomtag.h>
+#include <libxmdx/mucom88/mucom_module.h>
+#include <libxmdx/vgs/vgsdec.h>
+#include <libxmdx/vgs/vgsmml.h>
 }
 
 #define INPUT_BUFFER_SIZE   1024
@@ -323,23 +323,23 @@ qint64 VGSFileReader::read(unsigned char *data, qint64)
 }
 
 
-MDXHelper::MDXHelper(const QString &path)
+XMDXHelper::XMDXHelper(const QString &path)
     : m_path(path)
 {
 
 }
 
-MDXHelper::~MDXHelper()
+XMDXHelper::~XMDXHelper()
 {
     deinit();
 }
 
-void MDXHelper::deinit()
+void XMDXHelper::deinit()
 {
     delete m_input;
 }
 
-bool MDXHelper::initialize()
+bool XMDXHelper::initialize()
 {
     const QString &suffix = m_path.toLower();
     if(suffix.endsWith(".mdx") || suffix.endsWith(".pdx")) m_input = new MDXFileReader;
@@ -349,13 +349,13 @@ bool MDXHelper::initialize()
 
     if(!m_input)
     {
-        qWarning("MDXHelper: load file suffix error");
+        qWarning("XMDXHelper: load file suffix error");
         return false;
     }
 
     if(!m_input->load(m_path))
     {
-       qWarning("MDXHelper: unable to open file");
+       qWarning("XMDXHelper: unable to open file");
        return false;
     }
     return true;
