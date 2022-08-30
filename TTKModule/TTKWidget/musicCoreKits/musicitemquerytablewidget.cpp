@@ -68,6 +68,16 @@ void MusicItemQueryTableWidget::musicDownloadLocal(int row)
     download->show();
 }
 
+void MusicItemQueryTableWidget::itemDoubleClicked(int row, int column)
+{
+    if(column <= 0 || row < 0 || (row >= rowCount() - 1))
+    {
+        return;
+    }
+
+    addSearchMusicToPlaylist(row, true);
+}
+
 void MusicItemQueryTableWidget::downloadDataFrom(bool play)
 {
     const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());

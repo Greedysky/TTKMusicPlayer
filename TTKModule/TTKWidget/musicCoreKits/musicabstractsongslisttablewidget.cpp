@@ -53,6 +53,11 @@ void MusicAbstractSongsListTableWidget::setToolIndex(int index)
     m_toolIndex = index;
 }
 
+void MusicAbstractSongsListTableWidget::setDeleteItemAt()
+{
+
+}
+
 void MusicAbstractSongsListTableWidget::musicPlayClicked()
 {
     if(rowCount() == 0 || currentRow() < 0)
@@ -61,11 +66,6 @@ void MusicAbstractSongsListTableWidget::musicPlayClicked()
     }
 
     Q_EMIT cellDoubleClicked(currentRow(), 0);
-}
-
-void MusicAbstractSongsListTableWidget::setDeleteItemAt()
-{
-
 }
 
 void MusicAbstractSongsListTableWidget::setDeleteItemAll()

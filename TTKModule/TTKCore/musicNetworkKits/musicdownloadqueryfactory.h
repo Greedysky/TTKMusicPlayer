@@ -22,7 +22,6 @@
 #include "ttksingleton.h"
 #include "musicabstractdownloadrequest.h"
 
-class MusicSimilarRequest;
 class MusicSongSuggestRequest;
 class MusicCommentsRequest;
 class MusicDiscoverListRequest;
@@ -74,10 +73,6 @@ public:
      */
     MusicAbstractQueryRequest *makeSimilarSongRequest(QObject *parent = nullptr);
 
-    /*!
-     * Make similar query request object by type.
-     */
-    MusicSimilarRequest *makeSimilarArtistRequest(QObject *parent = nullptr);
     /*!
      * Make suggest request object by type.
      */

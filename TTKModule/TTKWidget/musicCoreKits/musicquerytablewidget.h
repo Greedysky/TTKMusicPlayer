@@ -69,6 +69,11 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
+     * Item has double clicked.
+     * Subclass should implement this function.
+     */
+    virtual void itemDoubleClicked(int row, int column) = 0;
+    /*!
      * Clear All Items.
      * Subclass should implement this function.
      */

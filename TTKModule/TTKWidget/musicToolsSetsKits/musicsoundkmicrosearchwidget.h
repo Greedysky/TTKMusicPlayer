@@ -58,18 +58,6 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Clear All Items.
-     */
-    virtual void clearAllItems() override final;
-    /*!
-     * Create searched items.
-     */
-    virtual void createSearchedItem(const MusicSearchedItem &songItem) override final;
-    /*!
-     * Item has double clicked.
-     */
-    virtual void itemDoubleClicked(int row, int column) override final;
-    /*!
      * Table widget item cell enter.
      */
     virtual void itemCellEntered(int row, int column) override final;
@@ -77,6 +65,18 @@ public Q_SLOTS:
      * Table widget item cell click.
      */
     virtual void itemCellClicked(int row, int column) override final;
+    /*!
+     * Item has double clicked.
+     */
+    virtual void itemDoubleClicked(int row, int column) override final;
+    /*!
+     * Clear All Items.
+     */
+    virtual void clearAllItems() override final;
+    /*!
+     * Create searched items.
+     */
+    virtual void createSearchedItem(const MusicSearchedItem &songItem) override final;
 
 protected:
     /*!

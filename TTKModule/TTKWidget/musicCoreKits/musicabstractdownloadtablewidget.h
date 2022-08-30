@@ -52,10 +52,6 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Add selected music song path to list.
-     */
-    void musicPlay();
-    /*!
      * Delete item from list at current row.
      */
     virtual void setDeleteItemAt() override final;
@@ -63,6 +59,10 @@ public Q_SLOTS:
      * Table widget item cell click.
      */
     virtual void itemCellClicked(int row, int column) override final;
+    /*!
+     * Add selected music song path to list.
+     */
+    void musicPlay();
     /*!
      * Table widget item cell double click.
      */

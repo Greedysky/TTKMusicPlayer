@@ -33,6 +33,7 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     QHBoxLayout *userWidgetLayout = new QHBoxLayout(userWidget);
     userWidgetLayout->setContentsMargins(0, 0, 0, 0);
     userWidgetLayout->setSpacing(2);
+    //
     m_userName = new QLabel(userWidget);
     m_userCommit = new QTextEdit(userWidget);
     m_userCommit->setReadOnly(true);
@@ -188,10 +189,14 @@ void MusicCommentsWidget::initialize(bool isPain)
         m_topLabel = new QLabel(topWidget);
         m_topLabel->setAlignment(Qt::AlignCenter);
         topWidgetLayout->addWidget(m_topLabel);
+
         QPushButton *closeButton = new QPushButton(this);
         closeButton->setFixedSize(14, 14);
         closeButton->setStyleSheet(MusicUIObject::MQSSBtnPClose);
         closeButton->setCursor(QCursor(Qt::PointingHandCursor));
+#ifdef Q_OS_UNIX
+        closeButton->setFocusPolicy(Qt::NoFocus);
+#endif
         connect(closeButton, SIGNAL(clicked()), SLOT(close()));
 
         topWidgetLayout->addWidget(closeButton);

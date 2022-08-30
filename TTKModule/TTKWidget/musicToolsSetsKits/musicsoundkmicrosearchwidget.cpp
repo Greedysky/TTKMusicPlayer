@@ -75,6 +75,36 @@ void MusicSoundKMicroSearchTableWidget::setQueryMovieFlag(bool flag)
     m_queryMovieMode = flag;
 }
 
+void MusicSoundKMicroSearchTableWidget::itemCellEntered(int row, int column)
+{
+    MusicItemSearchTableWidget::itemCellEntered(row, column);
+    QTableWidgetItem *it = item(row, 0);
+    if(it)
+    {
+        QtItemSetBackgroundColor(it, m_backgroundColor);
+    }
+}
+
+void MusicSoundKMicroSearchTableWidget::itemCellClicked(int row, int column)
+{
+    MusicItemSearchTableWidget::itemCellClicked(row, column);
+    switch(column)
+    {
+        case 4: dataDownloadPlay(row); break;
+        default: break;
+    }
+}
+
+void MusicSoundKMicroSearchTableWidget::itemDoubleClicked(int row, int column)
+{
+    if(column <= 0)
+    {
+        return;
+    }
+
+    dataDownloadPlay(row);
+}
+
 void MusicSoundKMicroSearchTableWidget::clearAllItems()
 {
     MusicItemSearchTableWidget::clearAllItems();
@@ -110,36 +140,6 @@ void MusicSoundKMicroSearchTableWidget::createSearchedItem(const MusicSearchedIt
                       item = new QTableWidgetItem;
     item->setIcon(QIcon(":/contextMenu/btn_audition"));
     setItem(count, 4, item);
-}
-
-void MusicSoundKMicroSearchTableWidget::itemDoubleClicked(int row, int column)
-{
-    if(column <= 0)
-    {
-        return;
-    }
-
-    dataDownloadPlay(row);
-}
-
-void MusicSoundKMicroSearchTableWidget::itemCellEntered(int row, int column)
-{
-    MusicItemSearchTableWidget::itemCellEntered(row, column);
-    QTableWidgetItem *it = item(row, 0);
-    if(it)
-    {
-        QtItemSetBackgroundColor(it, m_backgroundColor);
-    }
-}
-
-void MusicSoundKMicroSearchTableWidget::itemCellClicked(int row, int column)
-{
-    MusicItemSearchTableWidget::itemCellClicked(row, column);
-    switch(column)
-    {
-        case 4: dataDownloadPlay(row); break;
-        default: break;
-    }
 }
 
 void MusicSoundKMicroSearchTableWidget::dataDownloadPlay(int row)

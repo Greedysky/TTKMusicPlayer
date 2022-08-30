@@ -167,6 +167,16 @@ void MusicSongSearchTableWidget::itemCellClicked(int row, int column)
     }
 }
 
+void MusicSongSearchTableWidget::itemDoubleClicked(int row, int column)
+{
+    if(column <= 0 || row < 0 || (row >= rowCount() - 1))
+    {
+        return;
+    }
+
+    addSearchMusicToPlaylist(row, true);
+}
+
 void MusicSongSearchTableWidget::clearAllItems()
 {
     MusicItemSearchTableWidget::clearAllItems();
@@ -221,15 +231,6 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicSearchedItem &son
                       item = new QTableWidgetItem;
     item->setIcon(QIcon(":/contextMenu/btn_download"));
     setItem(count, 8, item);
-}
-
-void MusicSongSearchTableWidget::itemDoubleClicked(int row, int column)
-{
-    if(column <= 0 || row < 0|| (row >= rowCount() - 1))
-    {
-        return;
-    }
-    addSearchMusicToPlaylist(row, true);
 }
 
 void MusicSongSearchTableWidget::actionGroupClick(QAction *action)

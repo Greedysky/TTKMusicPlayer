@@ -13,7 +13,6 @@ MusicItemSearchTableWidget::MusicItemSearchTableWidget(QWidget *parent)
     m_labelDelegate = new MusicLabelDelegate(this);
 
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
-    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
 
 MusicItemSearchTableWidget::~MusicItemSearchTableWidget()

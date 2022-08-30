@@ -117,51 +117,6 @@ protected:
 
 };
 
-class MusicSimilarRequest;
-
-/*! @brief The class of the artist similar query widget.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicArtistSimilarQueryWidget : public MusicAbstractItemQueryWidget
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicArtistSimilarQueryWidget)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicArtistSimilarQueryWidget(QWidget *parent = nullptr);
-    ~MusicArtistSimilarQueryWidget();
-
-    /*!
-     * Set current name to search founds.
-     */
-    virtual void setSongName(const QString &name) override final;
-    /*!
-     * Set current id to search founds.
-     */
-    virtual void setSongNameById(const QString &id) override final;
-    /*!
-     * Resize window bound by widget resize called.
-     */
-    virtual void resizeWindow() override final;
-
-public Q_SLOTS:
-    /*!
-     * Create the current similar item.
-     */
-    void createArtistSimilarItem(const MusicResultsItem &item);
-    /*!
-     * Current item clicked.
-     */
-    void currentItemClicked(const QString &id);
-
-protected:
-    QGridLayout *m_gridLayout;
-    MusicSimilarRequest *m_networkRequest;
-
-};
-
 
 /*! @brief The class of the artist albums query widget.
  * @author Greedysky <greedysky@163.com>
@@ -287,14 +242,9 @@ protected:
      * Init the fourth widget.
      */
     void initFourthWidget();
-    /*!
-     * Init the five widget.
-     */
-    void initFivethWidget();
 
     MusicArtistAlbumsQueryWidget *m_artistAlbums;
     MusicArtistMvsQueryWidget *m_artistMvs;
-    MusicArtistSimilarQueryWidget *m_artistSimilar;
 
 };
 

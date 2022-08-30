@@ -4,6 +4,7 @@ MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
 {
     m_networkRequest = nullptr;
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
 
 MusicQueryTableWidget::~MusicQueryTableWidget()

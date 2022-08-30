@@ -57,11 +57,6 @@ public Q_SLOTS:
      */
     virtual void actionGroupClick(QAction *action);
     /*!
-     * Item has double clicked.
-     * Subclass should implement this function.
-     */
-    virtual void itemDoubleClicked(int row, int column) = 0;
-    /*!
      * Create the search finished item.
      */
     void createFinishedItem();

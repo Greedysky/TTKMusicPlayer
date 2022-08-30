@@ -149,13 +149,16 @@ void MusicKWQueryRequest::downLoadFinished()
                     info.m_discNumber = "1";
                     info.m_trackNumber = "0";
 
+                    TTK_NETWORK_QUERY_CHECK();
+                    readFromMusicSongPicture(&info);
+                    TTK_NETWORK_QUERY_CHECK();
+                    info.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
+                    info.m_albumName = MusicUtils::String::charactersReplaced(value["ALBUM"].toString());
+                    TTK_NETWORK_QUERY_CHECK();
+
                     if(!m_queryLite)
                     {
                         TTK_NETWORK_QUERY_CHECK();
-                        readFromMusicSongPicture(&info);
-                        TTK_NETWORK_QUERY_CHECK();
-                        info.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
-                        info.m_albumName = MusicUtils::String::charactersReplaced(value["ALBUM"].toString());
                         readFromMusicSongProperty(&info, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
                         TTK_NETWORK_QUERY_CHECK();
 

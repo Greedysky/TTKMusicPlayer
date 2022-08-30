@@ -77,6 +77,16 @@ void MusicLrcSearchTableWidget::itemCellClicked(int row, int column)
     }
 }
 
+void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int column)
+{
+    if(column <= 0)
+    {
+        return;
+    }
+
+    musicDownloadLocal(row);
+}
+
 void MusicLrcSearchTableWidget::clearAllItems()
 {
     MusicItemSearchTableWidget::clearAllItems();
@@ -121,15 +131,6 @@ void MusicLrcSearchTableWidget::createSearchedItem(const MusicSearchedItem &song
                       item = new QTableWidgetItem;
     item->setIcon(QIcon(":/contextMenu/btn_download"));
     setItem(count, 6, item);
-}
-
-void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int column)
-{
-    if(column <= 0)
-    {
-        return;
-    }
-    musicDownloadLocal(row);
 }
 
 void MusicLrcSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)

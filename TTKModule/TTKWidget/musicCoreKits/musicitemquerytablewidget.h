@@ -71,6 +71,11 @@ public Q_SLOTS:
      */
     virtual void itemCellClicked(int row, int column) override;
     /*!
+     * Item has double clicked.
+     * Subclass should implement this function.
+     */
+    virtual void itemDoubleClicked(int row, int column) override final;
+    /*!
      * Clear All Items.
      */
     virtual void clearAllItems() override final;

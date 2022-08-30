@@ -87,6 +87,10 @@ public Q_SLOTS:
      */
     virtual void itemCellClicked(int row, int column) override final;
     /*!
+     * Item has double clicked.
+     */
+    virtual void itemDoubleClicked(int row, int column) override final;
+    /*!
      * Clear All Items.
      */
     virtual void clearAllItems() override final;
@@ -94,10 +98,6 @@ public Q_SLOTS:
      * Create searched items.
      */
     virtual void createSearchedItem(const MusicSearchedItem &songItem) override final;
-    /*!
-     * Item has double clicked.
-     */
-    virtual void itemDoubleClicked(int row, int column) override final;
     /*!
      * Get music media information data.
      */

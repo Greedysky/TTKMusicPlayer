@@ -141,6 +141,27 @@ void MusicVideoSearchTableWidget::itemCellClicked(int row, int column)
     }
 }
 
+void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
+{
+    if(column <= 0 || row < 0 || (row >= rowCount() - 1))
+    {
+        return;
+    }
+
+    const MusicObject::MusicSongInformation &info = m_networkRequest->songInfoList()[row];
+    const MusicObject::MusicSongPropertyList &props = info.m_songProps;
+    if(!props.isEmpty())
+    {
+        const MusicObject::MusicSongProperty &prop = props.front();
+        MusicVideoItem data;
+        data.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
+        data.m_url = prop.m_url;
+        data.m_id = info.m_songId;
+        data.m_server = m_networkRequest->queryServer();
+        Q_EMIT mediaUrlPathChanged(data);
+    }
+}
+
 void MusicVideoSearchTableWidget::clearAllItems()
 {
     MusicItemSearchTableWidget::clearAllItems();
@@ -195,27 +216,6 @@ void MusicVideoSearchTableWidget::createSearchedItem(const MusicSearchedItem &so
                       item = new QTableWidgetItem;
     item->setIcon(QIcon(":/video/btn_download"));
     setItem(count, 8, item);
-}
-
-void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
-{
-    if(column <= 0 || row < 0 || (row >= rowCount() - 1))
-    {
-        return;
-    }
-
-    const MusicObject::MusicSongInformation &info = m_networkRequest->songInfoList()[row];
-    const MusicObject::MusicSongPropertyList &props = info.m_songProps;
-    if(!props.isEmpty())
-    {
-        const MusicObject::MusicSongProperty &prop = props.front();
-        MusicVideoItem data;
-        data.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
-        data.m_url = prop.m_url;
-        data.m_id = info.m_songId;
-        data.m_server = m_networkRequest->queryServer();
-        Q_EMIT mediaUrlPathChanged(data);
-    }
 }
 
 void MusicVideoSearchTableWidget::musicMediaInfo(MusicObject::MusicSongPropertyList &props)

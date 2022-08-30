@@ -75,13 +75,13 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Music item has been clicked.
-     */
-    void musicPlayClicked();
-    /*!
      * Delete item from list at current row.
      */
     virtual void setDeleteItemAt();
+    /*!
+     * Music item has been clicked.
+     */
+    void musicPlayClicked();
     /*!
      * Delete all items from list.
      */
