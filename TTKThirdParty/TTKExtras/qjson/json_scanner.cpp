@@ -40,11 +40,13 @@ JSonScanner::~JSonScanner()
 {
 }
 
-void JSonScanner::allowSpecialNumbers(bool allow) {
+void JSonScanner::allowSpecialNumbers(bool allow)
+{
   m_allowSpecialNumbers = allow;
 }
 
-int JSonScanner::yylex(YYSTYPE* yylval, yy::location *yylloc) {
+int JSonScanner::yylex(YYSTYPE* yylval, yy::location *yylloc)
+{
   m_yylval = yylval;
   m_yylloc = yylloc;
   m_yylloc->step();
@@ -57,7 +59,8 @@ int JSonScanner::yylex(YYSTYPE* yylval, yy::location *yylloc) {
   return result;
 }
 
-int JSonScanner::LexerInput(char* buf, int max_size) {
+int JSonScanner::LexerInput(char* buf, int max_size)
+{
   if (!m_io->isOpen()) {
     qCritical() << "JSonScanner::yylex - io device is not open";
     m_criticalError = true;

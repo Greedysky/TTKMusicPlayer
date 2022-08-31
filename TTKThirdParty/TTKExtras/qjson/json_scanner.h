@@ -52,6 +52,7 @@ class JSonScanner : public yyFlexLexer
         int yylex(YYSTYPE* yylval, yy::location *yylloc);
         int yylex();
         int LexerInput(char* buf, int max_size);
+		
     protected:
         bool m_allowSpecialNumbers;
         QIODevice* m_io;

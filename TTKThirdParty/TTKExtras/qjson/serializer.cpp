@@ -66,12 +66,13 @@ class Serializer::SerializerPrivate : public TTKPrivate<Serializer>
     QByteArray serialize( const QVariant &v, bool *ok, int indentLevel = 0);
 
     static QByteArray buildIndent(int spaces);
-    static QByteArray escapeString( const QString& str );
-    static QByteArray join( const QList<QByteArray>& list, const QByteArray &sep );
-    static QByteArray join( const QList<QByteArray>& list, char sep );
+    static QByteArray escapeString(const QString& str);
+    static QByteArray join(const QList<QByteArray>& list, const QByteArray &sep);
+    static QByteArray join(const QList<QByteArray>& list, char sep);
 };
 
-QByteArray Serializer::SerializerPrivate::join( const QList<QByteArray>& list, const QByteArray &sep ) {
+QByteArray Serializer::SerializerPrivate::join(const QList<QByteArray>& list, const QByteArray &sep)
+{
   QByteArray res;
   for( const QByteArray &i : qAsConst(list) ) {
     if ( !res.isEmpty() )
@@ -81,7 +82,8 @@ QByteArray Serializer::SerializerPrivate::join( const QList<QByteArray>& list, c
   return res;
 }
 
-QByteArray Serializer::SerializerPrivate::join( const QList<QByteArray>& list, char sep ) {
+QByteArray Serializer::SerializerPrivate::join(const QList<QByteArray>& list, char sep)
+{
   QByteArray res;
   for( const QByteArray &i : qAsConst(list) ) {
     if ( !res.isEmpty() )
@@ -91,7 +93,7 @@ QByteArray Serializer::SerializerPrivate::join( const QList<QByteArray>& list, c
   return res;
 }
 
-QByteArray Serializer::SerializerPrivate::serialize( const QVariant &v, bool *ok, int indentLevel)
+QByteArray Serializer::SerializerPrivate::serialize(const QVariant &v, bool *ok, int indentLevel)
 {
   QByteArray str;
 #if TTK_QT_VERSION_CHECK(6,0,0)
@@ -367,7 +369,7 @@ QByteArray Serializer::SerializerPrivate::buildIndent(int spaces)
    return indent;
 }
 
-QByteArray Serializer::SerializerPrivate::escapeString( const QString& str )
+QByteArray Serializer::SerializerPrivate::escapeString(const QString& str)
 {
   QByteArray result;
   result.reserve(str.size() + 2);
@@ -415,7 +417,7 @@ Serializer::Serializer()
   TTK_INIT_PRIVATE(Serializer);
 }
 
-void Serializer::serialize( const QVariant &v, QIODevice* io, bool* ok)
+void Serializer::serialize(const QVariant &v, QIODevice* io, bool* ok)
 {
   Q_ASSERT( io );
   TTK_D(Serializer);
@@ -444,7 +446,7 @@ void Serializer::serialize( const QVariant &v, QIODevice* io, bool* ok)
   }
 }
 
-QByteArray Serializer::serialize( const QVariant &v, bool *ok)
+QByteArray Serializer::serialize(const QVariant &v, bool *ok)
 {
   TTK_D(Serializer);
   bool _ok = true;

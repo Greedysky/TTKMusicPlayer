@@ -43,7 +43,8 @@ ParserPrivate::~ParserPrivate()
     delete m_scanner;
 }
 
-void ParserPrivate::setError(const QString &errorMsg, int errorLine) {
+void ParserPrivate::setError(const QString &errorMsg, int errorLine)
+{
   m_error = true;
   m_errorMsg = errorMsg;
   m_errorLine = errorLine;
@@ -65,7 +66,7 @@ Parser::Parser()
   TTK_INIT_PRIVATE(Parser);
 }
 
-QVariant Parser::parse (QIODevice* io, bool* ok)
+QVariant Parser::parse(QIODevice* io, bool* ok)
 {
   TTK_D(Parser);
   d->reset();
@@ -110,7 +111,8 @@ QVariant Parser::parse (QIODevice* io, bool* ok)
   return d->m_result;
 }
 
-QVariant Parser::parse(const QByteArray &jsonString, bool* ok) {
+QVariant Parser::parse(const QByteArray &jsonString, bool* ok)
+{
   QBuffer buffer;
   buffer.open(QBuffer::ReadWrite | QBuffer::Text);
   buffer.write(jsonString);

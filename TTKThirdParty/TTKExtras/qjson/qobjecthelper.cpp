@@ -33,7 +33,7 @@ QObjectHelper::QObjectHelper()
 
 }
 
-QVariantMap QObjectHelper::qobject2qvariant( const QObject* object,
+QVariantMap QObjectHelper::qobject2qvariant(const QObject* object,
                               const QStringList& ignoredProperties)
 {
   QVariantMap result;

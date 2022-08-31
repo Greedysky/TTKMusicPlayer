@@ -47,7 +47,7 @@ namespace QJson {
        *
        * @param json QVariant containing the json representation to be serialized
        */
-      void setJsonObject( const QVariant &json );
+      void setJsonObject(const QVariant &json);
 
       /* reimp */ void run();
 

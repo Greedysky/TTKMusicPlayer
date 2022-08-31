@@ -43,7 +43,7 @@ ParserRunnable::ParserRunnable(QObject* parent)
   qRegisterMetaType<QVariant>("QVariant");
 }
 
-void ParserRunnable::setData( const QByteArray &data )
+void ParserRunnable::setData(const QByteArray &data)
 {
   TTK_D(ParserRunnable);
   d->m_data = data;
@@ -51,7 +51,6 @@ void ParserRunnable::setData( const QByteArray &data )
 
 void ParserRunnable::run()
 {
-  TTK_LOGGER_INFO(Q_FUNC_INFO);
   TTK_D(ParserRunnable);
 
   bool ok;

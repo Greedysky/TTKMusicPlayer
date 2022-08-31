@@ -201,8 +201,9 @@ namespace yy {
   json_parser::yy_symbol_value_print_ (int yytype,
 			   const semantic_type* yyvaluep, const location_type* yylocationp)
   {
-    std::ostream& yyo = debug_stream ();
+    std::ostream& yyo = debug_stream();
     std::ostream& yyoutput = yyo;
+
     YYUSE (yylocationp);
     YYUSE (yyvaluep);
     YYUSE (yyoutput);

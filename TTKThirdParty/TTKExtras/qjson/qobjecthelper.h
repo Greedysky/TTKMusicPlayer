@@ -115,7 +115,8 @@ namespace QJson {
     \sa Parser
     \sa Serializer
   */
-  class TTK_MODULE_EXPORT QObjectHelper {
+  class TTK_MODULE_EXPORT QObjectHelper
+  {
     public:
       QObjectHelper();
 
@@ -125,7 +126,7 @@ namespace QJson {
     * @param object The QObject instance to be converted.
     * @param ignoredProperties Properties that won't be converted.
     */
-    static QVariantMap qobject2qvariant( const QObject* object,
+    static QVariantMap qobject2qvariant(const QObject* object,
                                   const QStringList& ignoredProperties = QStringList(QString(QLatin1String("objectName"))));
 
     /**
