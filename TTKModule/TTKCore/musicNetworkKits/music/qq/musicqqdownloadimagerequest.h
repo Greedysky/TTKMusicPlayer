@@ -24,15 +24,15 @@
 /*! @brief The class of qq download art background image.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicQQDownloadImageRequest : public MusicDownloadImageRequest
+class TTK_MODULE_EXPORT MusicQQDownloadBackgroundRequest : public MusicDownloadImageRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicQQDownloadImageRequest)
+    TTK_DECLARE_MODULE(MusicQQDownloadBackgroundRequest)
 public:
     /*!
      * Object contsructor provide artist name and save local path.
      */
-    MusicQQDownloadImageRequest(const QString &name, const QString &save, QObject *parent = nullptr);
+    MusicQQDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent = nullptr);
 
     /*!
      * Start to download artist picture from net.

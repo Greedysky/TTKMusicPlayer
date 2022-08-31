@@ -305,7 +305,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         const QString &name = ART_DIR_FULL + m_songInfo.m_singerName + SKN_FILE;
         if(!QFile::exists(name))
         {
-            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(m_songInfo.m_coverUrl, name, MusicObject::Download::SmallBackground, this);
+            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(m_songInfo.m_coverUrl, name, MusicObject::Download::Cover, this);
             connect(download, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             download->startToDownload();
             loop.exec();
@@ -363,7 +363,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         const QString &name = MusicUtils::String::lrcDirPrefix() + m_songInfo.m_singerName + " - " + m_songInfo.m_songName + LRC_FILE;
         if(!QFile::exists(name))
         {
-            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_songInfo.m_lrcUrl, name, MusicObject::Download::Lrc, this);
+            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_songInfo.m_lrcUrl, name, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startToDownload();
             loop.exec();

@@ -30,9 +30,9 @@ class TTK_MODULE_EXPORT MusicQQDownLoadTextRequest : public MusicAbstractDownLoa
     TTK_DECLARE_MODULE(MusicQQDownLoadTextRequest)
 public:
     /*!
-     * Object contsructor provide download URL\ save local path and download type.
+     * Object contsructor provide download url save local path and download type.
      */
-    MusicQQDownLoadTextRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent = nullptr);
+    MusicQQDownLoadTextRequest(const QString &url, const QString &save, QObject *parent = nullptr);
 
     /*!
      * Start to download data.

@@ -91,12 +91,9 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                     info.m_discNumber = "1";
                     info.m_trackNumber = "0";
 
-                    TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongPicture(&info);
-                    TTK_NETWORK_QUERY_CHECK();
+                    info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);
                     info.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                     readFromMusicSongProperty(&info, value["formats"].toString(), m_queryQuality, m_queryAllRecords);
-                    TTK_NETWORK_QUERY_CHECK();
 
                     if(info.m_songProps.isEmpty())
                     {

@@ -95,17 +95,17 @@ public:
     MusicTranslationRequest *makeTranslationRequest(QObject *parent = nullptr);
 
     /*!
-     * Make download small picture object by type.
-     */
-    MusicAbstractDownLoadRequest *makeSmallPictureRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent = nullptr);
-    /*!
      * Make download lrc object by type.
      */
-    MusicAbstractDownLoadRequest *makeLrcRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent = nullptr);
+    MusicAbstractDownLoadRequest *makeLrcRequest(const QString &url, const QString &save, QObject *parent = nullptr);
     /*!
-     * Make download big picture object by type.
+     * Make download art cover object by type.
      */
-    MusicDownloadImageRequest *makeBigPictureRequest(const QString &name, const QString &save, QObject *parent = nullptr);
+    MusicAbstractDownLoadRequest *makeCoverRequest(const QString &url, const QString &save, QObject *parent = nullptr);
+    /*!
+     * Make download art background object by type.
+     */
+    MusicDownloadImageRequest *makeBackgroundRequest(const QString &name, const QString &save, QObject *parent = nullptr);
 
 protected:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)

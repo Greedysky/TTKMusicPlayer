@@ -36,8 +36,8 @@ namespace MusicObject
     {
         Music,             /*!< type of dwonlaod music*/
         Lrc,               /*!< type of dwonlaod lrc*/
-        SmallBackground,   /*!< type of dwonlaod small background*/
-        BigBackground,     /*!< type of dwonlaod big background*/
+        Cover,             /*!< type of dwonlaod cover*/
+        Background,        /*!< type of dwonlaod background*/
         Video,             /*!< type of dwonlaod video*/
         Other              /*!< type of dwonlaod other user mod*/
     };
@@ -50,5 +50,12 @@ namespace MusicObject
         CloudUpload        /*!< Cloud Upload Failed File Config*/
     };
 }
+
+#define DOWNLOAD_KEY_MUSIC      "DownloadMusic"
+#define DOWNLOAD_KEY_LRC        "DownloadLrc"
+#define DOWNLOAD_KEY_COVER      "DownloadCover"
+#define DOWNLOAD_KEY_BACKGROUND "DownloadBackground"
+#define DOWNLOAD_KEY_VIDEO      "DownloadVideo"
+#define DOWNLOAD_KEY_OTHER      "DownloadOther"
 
 #endif // MUSICNETWORKDEFINES_H

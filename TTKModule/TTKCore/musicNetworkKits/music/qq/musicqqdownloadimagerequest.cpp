@@ -3,15 +3,15 @@
 #include "musicdownloaddatarequest.h"
 #include "musicqqqueryinterface.h"
 
-const QString BIG_ART_URL = "dGJmTlZOK1QvMDJENUxjMDk5UVhBWHVCb001eWtnQ1hKSnhsRWxLczNvRm9FV0kwbHhocTk4aml5SCs1Ym5mQU44SU05c1VZYVFzR2hLTEpGQ0hCNmM1ZUlZVnhnMm92QXNGMFN3PT0=";
+const QString ART_BACKGROUND_URL = "dGJmTlZOK1QvMDJENUxjMDk5UVhBWHVCb001eWtnQ1hKSnhsRWxLczNvRm9FV0kwbHhocTk4aml5SCs1Ym5mQU44SU05c1VZYVFzR2hLTEpGQ0hCNmM1ZUlZVnhnMm92QXNGMFN3PT0=";
 
-MusicQQDownloadImageRequest::MusicQQDownloadImageRequest(const QString &name, const QString &save, QObject *parent)
+MusicQQDownloadBackgroundRequest::MusicQQDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent)
     : MusicDownloadImageRequest(name, save, parent)
 {
 
 }
 
-void MusicQQDownloadImageRequest::startToDownload()
+void MusicQQDownloadBackgroundRequest::startToDownload()
 {
     TTK_LOGGER_INFO(QString("%1 startToDownload").arg(className()));
 
@@ -26,7 +26,7 @@ void MusicQQDownloadImageRequest::startToDownload()
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
-void MusicQQDownloadImageRequest::downLoadDataFinished()
+void MusicQQDownloadBackgroundRequest::downLoadDataFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadDataFinished").arg(className()));
 
@@ -65,7 +65,7 @@ void MusicQQDownloadImageRequest::downLoadDataFinished()
     downLoadUrl(songId);
 }
 
-void MusicQQDownloadImageRequest::downLoadUrlFinished()
+void MusicQQDownloadBackgroundRequest::downLoadUrlFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadUrlFinished").arg(className()));
 
@@ -88,7 +88,7 @@ void MusicQQDownloadImageRequest::downLoadUrlFinished()
         {
             if(m_counter < 5)
             {
-                MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::BigBackground, this);
+                MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
                 connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
                 download->startToDownload();
             }
@@ -103,14 +103,14 @@ void MusicQQDownloadImageRequest::downLoadUrlFinished()
     }
 }
 
-void MusicQQDownloadImageRequest::downLoadUrl(const QString &id)
+void MusicQQDownloadBackgroundRequest::downLoadUrl(const QString &id)
 {
     TTK_LOGGER_INFO(QString("%1 downLoadUrl %2").arg(className(), id));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(id));
+    request.setUrl(MusicUtils::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(id));
     MusicQQInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);

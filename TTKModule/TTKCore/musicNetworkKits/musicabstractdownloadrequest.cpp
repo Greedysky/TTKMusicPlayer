@@ -94,12 +94,12 @@ QString MusicAbstractDownLoadRequest::mapCurrentQueryData() const
 {
     switch(m_downloadType)
     {
-        case MusicObject::Download::Music: return "DownloadMusic";
-        case MusicObject::Download::Lrc: return "DownloadLrc";
-        case MusicObject::Download::SmallBackground: return "DownloadSmallBackground";
-        case MusicObject::Download::BigBackground: return "DownloadBigBackground";
-        case MusicObject::Download::Video: return "DownloadVideo";
-        case MusicObject::Download::Other: return "DownloadOther";
+        case MusicObject::Download::Music: return DOWNLOAD_KEY_MUSIC;
+        case MusicObject::Download::Lrc: return DOWNLOAD_KEY_LRC;
+        case MusicObject::Download::Cover: return DOWNLOAD_KEY_COVER;
+        case MusicObject::Download::Background: return DOWNLOAD_KEY_BACKGROUND;
+        case MusicObject::Download::Video: return DOWNLOAD_KEY_VIDEO;
+        case MusicObject::Download::Other: return DOWNLOAD_KEY_OTHER;
         default: return QString();
     }
 }

@@ -197,7 +197,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     name = ART_DIR_FULL + info.m_singerName + SKN_FILE;
     if(!QFile::exists(name))
     {
-        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(info.m_coverUrl, name, MusicObject::Download::SmallBackground, this);
+        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(info.m_coverUrl, name, MusicObject::Download::Cover, this);
         connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
         download->startToDownload();
     }

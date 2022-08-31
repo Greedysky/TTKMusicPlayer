@@ -160,7 +160,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         if(!d->isEmpty())
         {
             const MusicObject::MusicSongInformation info(d->songInfoList().front());
-            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, MusicObject::Download::Lrc, this);
+            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startToDownload();
             loop.exec();

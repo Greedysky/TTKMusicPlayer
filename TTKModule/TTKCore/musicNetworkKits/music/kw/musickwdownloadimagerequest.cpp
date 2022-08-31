@@ -2,15 +2,61 @@
 #include "musicdownloadsourcerequest.h"
 #include "musicdownloaddatarequest.h"
 
-const QString BIG_ART_URL = "NUJnNFVlSHprVzdaMWxMdXRvbEp5a3lldU51Um9GeU5RKzRDWFNER2FHL3pSRE1uK1VNRzVhVk53Y1JBUTlMbnhjeFBvRFMySnpUSldlY21xQjBkWE5GTWVkVXFsa0lNa1RKSnE3VHEwMDFPdVRDbXhUSThhWkM4TFI4RUZqbHFzVFFnQkpOY2hUR2c2YWdzb3U2cjBKSUdMYnpnZktucEJpbDVBTDlzMGF0QVMwcEtLR2JWVnc9PQ==";
+const QString ART_BACKGROUND_URL = "NUJnNFVlSHprVzdaMWxMdXRvbEp5a3lldU51Um9GeU5RKzRDWFNER2FHL3pSRE1uK1VNRzVhVk53Y1JBUTlMbnhjeFBvRFMySnpUSldlY21xQjBkWE5GTWVkVXFsa0lNa1RKSnE3VHEwMDFPdVRDbXhUSThhWkM4TFI4RUZqbHFzVFFnQkpOY2hUR2c2YWdzb3U2cjBKSUdMYnpnZktucEJpbDVBTDlzMGF0QVMwcEtLR2JWVnc9PQ==";
 
-MusicKWDownloadImageRequest::MusicKWDownloadImageRequest(const QString &name, const QString &save, QObject *parent)
+MusicKWDownLoadCoverRequest::MusicKWDownLoadCoverRequest(const QString &url, const QString &save, QObject *parent)
+    : MusicAbstractDownLoadRequest(url, save, MusicObject::Download::Cover, parent)
+{
+
+}
+
+void MusicKWDownLoadCoverRequest::startToDownload()
+{
+    QNetworkRequest request;
+    request.setUrl(m_url);
+    MusicObject::setSslConfiguration(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError);
+}
+
+void MusicKWDownLoadCoverRequest::downLoadFinished()
+{
+    MusicAbstractDownLoadRequest::downLoadFinished();
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
+    {
+        const QByteArray &bytes = m_reply->readAll();
+        if(bytes != "NO_PIC")
+        {
+            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(bytes, m_savePath, MusicObject::Download::Cover, this);
+            connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged()));
+            download->startToDownload();
+            return;
+        }
+    }
+    else
+    {
+        TTK_LOGGER_ERROR("Download kw cover data error");
+    }
+
+    downLoadDataChanged();
+}
+
+void MusicKWDownLoadCoverRequest::downLoadDataChanged()
+{
+    deleteAll();
+}
+
+
+
+MusicKWDownloadBackgroundRequest::MusicKWDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent)
     : MusicDownloadImageRequest(name, save, parent)
 {
 
 }
 
-void MusicKWDownloadImageRequest::startToDownload()
+void MusicKWDownloadBackgroundRequest::startToDownload()
 {
     TTK_LOGGER_INFO(QString("%1 startToDownload").arg(className()));
 
@@ -19,10 +65,10 @@ void MusicKWDownloadImageRequest::startToDownload()
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     ///Set search image API
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(m_artName));
+    download->startToDownload(MusicUtils::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(m_artName));
 }
 
-void MusicKWDownloadImageRequest::downLoadFinished(const QByteArray &bytes)
+void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
 {
     TTK_LOGGER_INFO(QString("%1 downLoadDataFinished").arg(className()));
 
@@ -42,7 +88,7 @@ void MusicKWDownloadImageRequest::downLoadFinished(const QByteArray &bytes)
                 if(m_counter < 5 && !value.isEmpty())
                 {
                     const QString &url = value.values().front().toString();
-                    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::BigBackground, this);
+                    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
                     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
                     download->startToDownload();
                 }

@@ -21,11 +21,11 @@ MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
 void MusicDownloadStatusModule::showDownLoadInfoFinished(const QString &bytes)
 {
     ///If the lyrics download finished immediately loaded to display
-    if(bytes == "DownloadLrc")
+    if(bytes == DOWNLOAD_KEY_LRC)
     {
         m_parentClass->musicLoadCurrentSongLrc();
     }
-    else if(bytes == "DownloadSmallBackground")
+    else if(bytes == DOWNLOAD_KEY_COVER)
     {
         m_parentClass->updateCurrentArtist();
     }
@@ -106,11 +106,11 @@ void MusicDownloadStatusModule::currentLrcDataDownload()
         }
 
         ///download lrc
-        G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE, MusicObject::Download::Lrc, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE, this)->startToDownload();
         ///download art picture
-        G_DOWNLOAD_QUERY_PTR->makeSmallPictureRequest(info.m_coverUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::Download::SmallBackground, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->makeCoverRequest(info.m_coverUrl, ART_DIR_FULL + artistName + SKN_FILE, this)->startToDownload();
         ///download big picture
-        G_DOWNLOAD_QUERY_PTR->makeBigPictureRequest(count == 1 ? info.m_singerName : artistName, artistName, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->makeBackgroundRequest(count == 1 ? info.m_singerName : artistName, artistName, this)->startToDownload();
     }
     else
     {

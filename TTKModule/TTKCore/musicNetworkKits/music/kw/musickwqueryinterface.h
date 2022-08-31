@@ -39,7 +39,7 @@ const QString KW_ARTIST_MOVIE_URL       = "b0FaUGp1UFFwbngwdWFSQXU1L2hEWEFyUWJLa
 const QString KW_ARTIST_LIST_URL        = "NEtJeVhYZFJ4NE4reDlqU2paYVhpUlZqVWtWWXBnbUVnTGVFRVdkbzBTb2dldXhtdnpaNlhVTHZzSk1yaU0wTHowZTR2dWxiYzg4c2xybmtsNU1FU2w1aFZKcTdsWERvMzVKUVdNSWNQemdUQ1FLMVF3V3RUdE1iVTZmQ1FRK3g=";
 ///album url
 const QString KW_ALBUM_URL              = "Nk5uY2lGelFqNHpteXVuekpQdFhpcWkvUnVRUWdZc1FOdUpXQkdYSWs3VmtDZU1PN29ZcUQ4dTNvczBhSmFMdkRLOGFJNnljSWJNc1QreU1TSU1SRldnN0RnRzlzWFBrUlNIbGlJUzFFelRsNzFoRUJEVkNLbHRzUnAwSzdtdEc2UFRmZEhSV0lvNVVSVXdjamhLT1dvTWxyZEE3aXlvQWFtQTg3Wmtrb05pZ0RIbXU5V3dxeWZLL3hQaFM5WmdKekRaRVhDL3VISVk9";
-const QString KW_ALBUM_COVER_URL        = "bnkrUTZjQmxjcFVtVXZzR1M5c3hBN25MbWx3aHZpbE50aHNQVkRZQ0dKdXdLZUh1TTA5aWJnPT0=";
+const QString KW_ALBUM_COVER_URL        = "S0Z0Z0dTckV1TysxVnRGem43cU96Q0RRUVhiTS93RVhyNUFTNWNqOEduMDdMalZ1cCtGKzRudHRFcDB0enJ0bXI0VG5QVWMwQU1UKzRRdGc5clZPZ1NwKzRINjZoaDluWVAzVXpMWXlaemQvYnNjd1JwcmM5NGQ5VFhVU3k2SjE=";
 ///movie url
 const QString KW_MOVIE_URL              = "TjhtdUUydHowZVp1d2RsUVl1UGg0QWkzTjhqZ1NGTWVLNmxqZytTQzV5T291VytwcUpSczNPMGdQV1U9";
 const QString KW_MOVIE_HOME_URL         = "a3gvOXZGUzF6Sko4TDlWcVRBMFMrdy8yMURLS0JFR0xFVEdJcVE9PQ==";
@@ -96,10 +96,6 @@ public:
      * Read tags(size\bitrate\url) from query results.
      */
     void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantList &format, MusicObject::QueryQuality quality, bool all) const;
-    /*!
-     * Read tags(lrc\smallpic) from query results.
-     */
-    void readFromMusicSongPicture(MusicObject::MusicSongInformation *info) const;
 
 };
 

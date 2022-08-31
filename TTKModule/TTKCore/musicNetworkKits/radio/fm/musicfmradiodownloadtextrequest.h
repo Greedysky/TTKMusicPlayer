@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicFMRadioDownLoadTextRequest : public MusicAbstractDo
     TTK_DECLARE_MODULE(MusicFMRadioDownLoadTextRequest)
 public:
     /*!
-     * Object contsructor provide download URL\ save local path and download type.
+     * Object contsructor provide download url save local path and download type.
      */
     MusicFMRadioDownLoadTextRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent = nullptr);
 

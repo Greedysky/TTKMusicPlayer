@@ -3,6 +3,7 @@
 #include "musicconnectionpool.h"
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
+#include "musicnetworkdefines.h"
 #include "musicdownloadstatusmodule.h"
 
 #include <QDir>
@@ -202,7 +203,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
     fileOut.flush();
     fileOut.close();
 
-    Q_EMIT currentLrcChanged("DownloadLrc");
+    Q_EMIT currentLrcChanged(DOWNLOAD_KEY_LRC);
     close();
 }
 

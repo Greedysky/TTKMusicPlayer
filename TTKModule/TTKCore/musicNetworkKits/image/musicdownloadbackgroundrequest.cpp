@@ -11,7 +11,7 @@ MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &na
 
 void MusicDownloadBackgroundRequest::startToDownload()
 {
-    MusicDownloadImageRequest *d = new MusicKWDownloadImageRequest(m_artName, m_savePath, this);
+    MusicDownloadImageRequest *d = new MusicKWDownloadBackgroundRequest(m_artName, m_savePath, this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
     d->startToDownload();
 }
@@ -25,7 +25,7 @@ void MusicDownloadBackgroundRequest::downLoadFinished(const QString &bytes)
     }
     else if(bytes.toInt() == 0)
     {
-        MusicDownloadImageRequest *d = new MusicQQDownloadImageRequest(m_artName, m_savePath, this);
+        MusicDownloadImageRequest *d = new MusicQQDownloadBackgroundRequest(m_artName, m_savePath, this);
         d->startToDownload();
     }
 }
