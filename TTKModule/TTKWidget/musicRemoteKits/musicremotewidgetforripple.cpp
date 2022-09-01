@@ -6,7 +6,9 @@
 #include <qmmp/visual.h>
 
 MusicRemoteWidgetForRipple::MusicRemoteWidgetForRipple(QWidget *parent)
-    : MusicRemoteWidget(parent)
+    : MusicRemoteWidget(parent),
+      m_mode(true),
+      m_visual(nullptr)
 {
     setGeometry(200, 200, 320, 100);
     adjustPosition(this);
@@ -24,8 +26,6 @@ MusicRemoteWidgetForRipple::MusicRemoteWidgetForRipple(QWidget *parent)
     m_visualLayout->addWidget(bottomWidget);
     m_mainWidget->setLayout(m_visualLayout);
 
-    m_mode = true;
-    m_visual = nullptr;
     createVisualWidget();
 
     m_songNameLabel = new MusicMarqueeWidget(this);

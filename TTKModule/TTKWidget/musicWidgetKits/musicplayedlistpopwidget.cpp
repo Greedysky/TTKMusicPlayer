@@ -40,10 +40,10 @@ void MusicPlayedListTopContainerWidget::paintEvent(QPaintEvent *event)
 MusicPlayedListPopWidget *MusicPlayedListPopWidget::m_instance = nullptr;
 
 MusicPlayedListPopWidget::MusicPlayedListPopWidget(QWidget *parent)
-    : MusicToolMenuWidget(parent)
+    : MusicToolMenuWidget(parent),
+      m_playlist(nullptr)
 {
     m_instance = this;
-    m_playlist = nullptr;
 
     setToolTip(tr("Played List"));
     setStyleSheet(MusicUIObject::MQSSBtnPlayedList);

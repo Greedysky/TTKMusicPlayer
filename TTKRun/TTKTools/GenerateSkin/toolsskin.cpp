@@ -7,12 +7,12 @@
 
 ToolsSkin::ToolsSkin(QWidget *parent)
     : QWidget(parent),
-      m_ui(new Ui::ToolsSkin)
+      m_ui(new Ui::ToolsSkin),
+      m_pixmap(QPixmap(1, 1))
 {
     m_ui->setupUi(this);
     setFixedSize(630, 400);
 
-    m_pixmap = QPixmap(1, 1);
     m_pixmap.fill(Qt::white);
     m_ui->pixLabel->setPixmap(m_pixmap.scaled(m_ui->pixLabel->size()));
 

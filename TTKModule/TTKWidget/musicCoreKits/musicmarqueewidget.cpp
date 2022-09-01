@@ -3,11 +3,12 @@
 #include "musicwidgetutils.h"
 
 MusicMarqueeWidget::MusicMarqueeWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_offset(0),
+      m_timerId(0),
+      m_effectOnResize(false)
 {
-    m_offset = 0;
-    m_timerId = 0;
-    m_effectOnResize = false;
+
 }
 
 void MusicMarqueeWidget::setText(const QString &newText)

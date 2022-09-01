@@ -4,11 +4,12 @@
 #include <qmmp/visual.h>
 
 MusicRippleSpecturmModule::MusicRippleSpecturmModule(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_topAreaLayout(nullptr),
+      m_topAreaWidget(nullptr),
+      m_visualWidget(nullptr)
 {
-    m_topAreaLayout = nullptr;
-    m_topAreaWidget = nullptr;
-    m_visualWidget = nullptr;
+
 }
 
 MusicRippleSpecturmModule::~MusicRippleSpecturmModule()

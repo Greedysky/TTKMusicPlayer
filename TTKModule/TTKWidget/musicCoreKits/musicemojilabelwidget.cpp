@@ -9,7 +9,8 @@
 #include <QButtonGroup>
 
 MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
-    : QLabel(parent)
+    : QLabel(parent),
+      m_currentPage(-1)
 {
     setFixedSize(260, 175);
     setAttribute(Qt::WA_DeleteOnClose);

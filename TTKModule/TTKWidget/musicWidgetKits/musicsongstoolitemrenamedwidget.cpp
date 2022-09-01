@@ -4,12 +4,10 @@
 #include "musictoastlabel.h"
 
 MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(QWidget *parent)
-    : QLineEdit(parent)
+    : QLineEdit(parent),
+      m_focusBlock(false)
 {
     setGeometry(1, 0, 330, 20);
-
-    m_focusBlock = false;
-
     setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
     setFocus(Qt::MouseFocusReason);
     setFocusPolicy(Qt::ClickFocus);

@@ -4,8 +4,12 @@
 #include <QPropertyAnimation>
 
 MusicLayoutAnimationWidget::MusicLayoutAnimationWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_isAnimating(false),
+      m_currentValue(0),
+      m_widgetLayout(nullptr)
 {
+
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
@@ -13,11 +17,6 @@ MusicLayoutAnimationWidget::MusicLayoutAnimationWidget(QWidget *parent)
     m_mainWidget = new QWidget(this);
     mainLayout->addWidget(m_mainWidget);
     setLayout(mainLayout);
-
-    m_widgetLayout = nullptr;
-
-    m_isAnimating = false;
-    m_currentValue = 0;
 
     m_animation = new QPropertyAnimation(m_mainWidget, QByteArray(), this);
     m_animation->setDuration(500);

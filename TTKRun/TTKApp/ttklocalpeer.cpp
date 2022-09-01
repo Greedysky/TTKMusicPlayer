@@ -51,8 +51,9 @@ public:
 const char *TTKLocalPeerPrivate::m_ack = "ack";
 
 TTKLocalPeerPrivate::TTKLocalPeerPrivate()
+    : m_server(nullptr)
 {
-    m_server = nullptr;
+
 }
 
 TTKLocalPeerPrivate::~TTKLocalPeerPrivate()

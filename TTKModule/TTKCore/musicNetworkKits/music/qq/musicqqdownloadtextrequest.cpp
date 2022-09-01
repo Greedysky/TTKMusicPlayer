@@ -3,8 +3,8 @@
 #define HOST_URL    "ellnUHg0Um83L2x1U29LbWw1UjFtandwRHNIRUxPcnQ="
 #define REFER_URL   "YnZJaDZBVEFHSllTWlRualJFblR3U0NkYitRd1N1ZmNKaDZFQUdQVFRKND0="
 
-MusicQQDownLoadTextRequest::MusicQQDownLoadTextRequest(const QString &url, const QString &save, QObject *parent)
-    : MusicAbstractDownLoadRequest(url, save, MusicObject::Download::Lrc, parent)
+MusicQQDownLoadTextRequest::MusicQQDownLoadTextRequest(const QString &url, const QString &path, QObject *parent)
+    : MusicAbstractDownLoadRequest(url, path, MusicObject::Download::Lrc, parent)
 {
 
 }
@@ -61,6 +61,7 @@ void MusicQQDownLoadTextRequest::downLoadFinished()
                     lrcData.replace(QString("&#%1;").arg(i).toUtf8(), QString(QChar(i)).toUtf8());
                 }
             }
+
             QTextStream outstream(m_file);
             outstream.setCodec("utf-8");
             outstream << lrcData;

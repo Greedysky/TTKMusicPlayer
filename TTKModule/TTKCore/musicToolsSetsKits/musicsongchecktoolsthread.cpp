@@ -2,10 +2,11 @@
 #include "musicsongmeta.h"
 
 MusicSongCheckToolsRenameThread::MusicSongCheckToolsRenameThread(QObject *parent)
-    : MusicAbstractThread(parent)
+    : MusicAbstractThread(parent),
+      m_songItems(nullptr),
+      m_operateMode(MusicObject::CheckMode::Check)
 {
-    m_songItems = nullptr;
-    m_operateMode = MusicObject::CheckMode::Check;
+
 }
 
 void MusicSongCheckToolsRenameThread::setRenameSongs(MusicSongList *songs)

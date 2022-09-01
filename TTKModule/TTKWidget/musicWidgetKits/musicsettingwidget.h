@@ -34,14 +34,15 @@ class MusicSettingWidget;
  */
 struct TTK_MODULE_EXPORT MusicFunctionItem
 {
-    MusicFunctionItem(const QString &icon, const QString &name)
-    {
-        m_icon = icon;
-        m_name = name;
-    }
-
     QString m_icon;
     QString m_name;
+
+    MusicFunctionItem(const QString &icon, const QString &name)
+        : m_icon(icon),
+          m_name(name)
+    {
+
+    }
 };
 TTK_DECLARE_LIST(MusicFunctionItem);
 

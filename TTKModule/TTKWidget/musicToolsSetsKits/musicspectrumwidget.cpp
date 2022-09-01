@@ -21,7 +21,8 @@
 
 MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     : MusicAbstractMoveWidget(false, parent),
-      m_ui(new Ui::MusicSpectrumWidget)
+      m_ui(new Ui::MusicSpectrumWidget),
+      m_spectrumLayout(nullptr)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -34,7 +35,6 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_spectrumLayout = nullptr;
     m_ui->mainViewWidget->setStyleSheet(MusicUIObject::MQSSTabWidgetStyle01);
 
     m_ui->localFileButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);

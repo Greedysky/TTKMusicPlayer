@@ -1,7 +1,7 @@
 #include "musicwydownloadtextrequest.h"
 
-MusicWYDownLoadTextRequest::MusicWYDownLoadTextRequest(const QString &url, const QString &save, QObject *parent)
-    : MusicAbstractDownLoadRequest(url, save, MusicObject::Download::Lrc, parent)
+MusicWYDownLoadTextRequest::MusicWYDownLoadTextRequest(const QString &url, const QString &path, QObject *parent)
+    : MusicAbstractDownLoadRequest(url, path, MusicObject::Download::Lrc, parent)
 {
 
 }

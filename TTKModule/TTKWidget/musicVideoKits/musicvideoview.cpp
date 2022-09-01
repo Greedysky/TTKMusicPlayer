@@ -7,12 +7,11 @@
 #include <QMouseEvent>
 
 MusicViewWidget::MusicViewWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_leftPressed(false)
 {
     m_clickedTimer = new QTimer(this);
     m_clickedTimer->setSingleShot(true);
-    m_leftPressed = false;
-
     connect(m_clickedTimer, SIGNAL(timeout()), SIGNAL(timeToPlay()));
 }
 

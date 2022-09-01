@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor provide download url save local path and download type.
      */
-    MusicKWDownLoadCoverRequest(const QString &url, const QString &save, QObject *parent = nullptr);
+    MusicKWDownLoadCoverRequest(const QString &url, const QString &path, QObject *parent = nullptr);
 
     /*!
      * Start to download data.
@@ -64,7 +64,7 @@ public:
     /*!
      * Object contsructor provide artist name and save local path.
      */
-    MusicKWDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent = nullptr);
+    MusicKWDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 
     /*!
      * Start to download artist picture from net.

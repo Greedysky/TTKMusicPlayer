@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor provide download url save local path and download type.
      */
-    MusicDownloadDataRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent = nullptr);
+    MusicDownloadDataRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent = nullptr);
 
     /*!
      * Start to download data.

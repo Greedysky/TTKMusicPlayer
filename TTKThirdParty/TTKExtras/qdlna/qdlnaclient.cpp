@@ -35,9 +35,10 @@ public:
 };
 
 QDlnaClientPrivate::QDlnaClientPrivate()
+    : m_isConnected(false),
+      m_xml(new QDlnaXml)
 {
-    m_isConnected = false;
-    m_xml = new QDlnaXml;
+
 }
 
 QDlnaClientPrivate::~QDlnaClientPrivate()

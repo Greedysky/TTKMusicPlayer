@@ -1,11 +1,11 @@
 #include "musicabstractfloatwidget.h"
 
 MusicAbstractFloatWidget::MusicAbstractFloatWidget(QWidget *parent)
-    : QLabel(parent)
+    : QLabel(parent),
+      m_blockAnimation(false)
 {
     m_animation = new QPropertyAnimation(this, "geometry", this);
     m_animation->setDuration(500);
-    m_blockAnimation = false;
 }
 
 MusicAbstractFloatWidget::~MusicAbstractFloatWidget()

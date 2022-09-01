@@ -6,16 +6,15 @@
 #include <QPropertyAnimation>
 
 MusicTransitionAnimationLabel::MusicTransitionAnimationLabel(QWidget *parent)
-    : QLabel(parent)
+    : QLabel(parent),
+      m_type(Module::FadeEffect),
+      m_isAnimating(false),
+      m_currentValue(0),
+      m_noAnimationSet(false),
+      m_cubeWave(nullptr),
+      m_waterWave(nullptr)
 {
     MusicTime::initRandom();
-    m_type = Module::FadeEffect;
-    m_isAnimating = false;
-    m_currentValue = 0;
-    m_noAnimationSet = false;
-
-    m_cubeWave = nullptr;
-    m_waterWave = nullptr;
 
     m_animation = new QPropertyAnimation(this, QByteArray());
     m_animation->setDuration(200);

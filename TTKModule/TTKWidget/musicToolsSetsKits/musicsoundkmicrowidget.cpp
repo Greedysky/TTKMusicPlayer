@@ -17,7 +17,10 @@
 
 MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     : MusicAbstractMoveWidget(false, parent),
-    m_ui(new Ui::MusicSoundKMicroWidget)
+      m_ui(new Ui::MusicSoundKMicroWidget),
+      m_intervalTime(0),
+      m_stateButtonOn(true),
+      m_queryMovieMode(true)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -36,11 +39,6 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_ui->timeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle01);
     m_ui->transferButton->setStyleSheet(MusicUIObject::MQSSRecordTransfer);
 
-    m_queryMovieMode = true;
-    m_stateButtonOn = true;
-    m_intervalTime = 0;
-    m_recordCore = nullptr;
-
     recordStateChanged(false);
     setButtonStyle(true);
     setStateButtonStyle(true);
@@ -51,6 +49,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
 
     m_ui->volumeButton->setValue(100);
     m_ui->volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
+
     m_player = new MusicCoreMPlayer(this);
     m_searchWidget = new MusicSoundKMicroSearchWidget(this);
     m_searchWidget->connectTo(this);

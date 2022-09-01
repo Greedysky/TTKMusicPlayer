@@ -32,7 +32,12 @@ public:
     /*!
      * Object contsructor provide artist name and save local path.
      */
-    MusicDownloadImageRequest(const QString &name, const QString &save, QObject *parent = nullptr);
+    MusicDownloadImageRequest(const QString &name, const QString &path, QObject *parent = nullptr);
+
+    /*!
+     * Release the network object.
+     */
+    virtual void deleteAll() override final;
 
     /*!
      * Start to download artist picture from net.

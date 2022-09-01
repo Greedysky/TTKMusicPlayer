@@ -160,9 +160,10 @@ struct TTK_MODULE_EXPORT MusicSongSort
     Qt::SortOrder m_order;
 
     MusicSongSort()
+        : m_type(-1),
+          m_order(Qt::AscendingOrder)
     {
-        m_type = -1;
-        m_order = Qt::AscendingOrder;
+
     }
 };
 
@@ -181,9 +182,10 @@ struct TTK_MODULE_EXPORT MusicSongItem
     MusicAbstractSongsListTableWidget *m_itemObject;
 
     MusicSongItem()
+        : m_itemIndex(-1),
+          m_itemObject(nullptr)
     {
-        m_itemIndex = -1;
-        m_itemObject = nullptr;
+
     }
 
     inline bool operator<(const MusicSongItem &other) const

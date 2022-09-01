@@ -13,11 +13,11 @@
 #define PHOTO_BACKGROUNDG_WIDTH  44
 
 MusicLrcFloatPhotoItem::MusicLrcFloatPhotoItem(int index, QWidget *parent)
-    : MusicClickedLabel(parent)
+    : MusicClickedLabel(parent),
+      m_index(index)
 {
     resize(PHOTO_WIDTH, PHOTO_HEIGHT);
 
-    m_index = index;
     m_checkBox = new QCheckBox(this);
     m_checkBox->setGeometry(90, 45, 20, 20);
     m_checkBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
@@ -120,7 +120,8 @@ void MusicLrcFloatPhotoItem::contextMenuEvent(QContextMenuEvent *event)
 
 
 MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
-    : MusicAbstractFloatWidget(parent)
+    : MusicAbstractFloatWidget(parent),
+      m_currentIndex(0)
 {
     setObjectName("MusicLrcFloatPhotoWidget");
     setStyleSheet(QString("#MusicLrcFloatPhotoWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle08));
@@ -167,8 +168,6 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     m_previous->setStyleSheet(MusicUIObject::MQSSBackgroundStyle09 + MusicUIObject::MQSSBorderStyle01);
     m_next->setStyleSheet(MusicUIObject::MQSSBackgroundStyle09 + MusicUIObject::MQSSBorderStyle01);
-
-    m_currentIndex = 0;
 
     connect(m_confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
     connect(m_previous, SIGNAL(clicked()), SLOT(photoPrevious()));

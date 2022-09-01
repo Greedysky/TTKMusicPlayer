@@ -17,9 +17,10 @@ public:
 };
 
 TTKRunApplicationPrivate::TTKRunApplicationPrivate()
+    : m_peer(nullptr),
+      m_activeWindow(nullptr)
 {
-    m_peer = nullptr;
-    m_activeWindow = nullptr;
+
 }
 
 TTKRunApplicationPrivate::~TTKRunApplicationPrivate()

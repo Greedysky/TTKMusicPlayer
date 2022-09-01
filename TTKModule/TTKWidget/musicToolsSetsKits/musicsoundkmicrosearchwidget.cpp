@@ -10,9 +10,11 @@
 #include <QButtonGroup>
 
 MusicSoundKMicroSearchTableWidget::MusicSoundKMicroSearchTableWidget(QWidget *parent)
-    : MusicItemSearchTableWidget(parent)
+    : MusicItemSearchTableWidget(parent),
+      m_queryMovieMode(true)
 {
     setColumnCount(5);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 290);
@@ -20,9 +22,8 @@ MusicSoundKMicroSearchTableWidget::MusicSoundKMicroSearchTableWidget(QWidget *pa
     headerview->resizeSection(3, 24);
     headerview->resizeSection(4, 24);
 
-    m_queryMovieMode = true;
-    viewport()->setStyleSheet(MusicUIObject::MQSSBackgroundStyle02);
     m_backgroundColor = Qt::black;
+    viewport()->setStyleSheet(MusicUIObject::MQSSBackgroundStyle02);
 }
 
 MusicSoundKMicroSearchTableWidget::~MusicSoundKMicroSearchTableWidget()
@@ -169,7 +170,8 @@ void MusicSoundKMicroSearchTableWidget::contextMenuEvent(QContextMenuEvent *even
 
 
 MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
-    : MusicAbstractMoveSingleWidget(parent)
+    : MusicAbstractMoveSingleWidget(parent),
+      m_queryMovieMode(true)
 {
     setWindowFlags(windowFlags() | Qt::Tool);
     blockMoveOption(true);
@@ -219,7 +221,6 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     layout->addWidget(m_searchTableWidget);
     m_container->setLayout(layout);
 
-    m_queryMovieMode = true;
     mvButton->setChecked(true);
 
     connect(m_searchEdit, SIGNAL(clicked()), SLOT(startToSearch()));

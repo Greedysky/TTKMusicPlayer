@@ -49,11 +49,9 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_more->setCursor(QCursor(Qt::PointingHandCursor));
     m_wallpaper->setCursor(QCursor(Qt::PointingHandCursor));
     m_photo->setCursor(QCursor(Qt::PointingHandCursor));
-
 #ifdef Q_OS_UNIX
     m_wallpaper->setEnabled(false);
 #endif
-
     connect(m_update, SIGNAL(clicked()), parent, SIGNAL(currentLrcUpdated()));
     connect(m_search, SIGNAL(clicked()), parent, SLOT(searchMusicLrcs()));
     connect(m_wallpaper, SIGNAL(clicked()), SLOT(wallpaperButtonClicked()));

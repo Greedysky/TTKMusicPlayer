@@ -232,8 +232,9 @@ namespace MusicObject
         QString m_size;
 
         MusicSongProperty()
+            : m_bitrate(-1)
         {
-            m_bitrate = -1;
+
         }
 
         inline bool operator< (const MusicSongProperty &other) const

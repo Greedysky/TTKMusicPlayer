@@ -23,7 +23,6 @@ MusicMoveButton::MusicMoveButton(QWidget *parent)
 
 void MusicMoveButton::mousePressEvent(QMouseEvent *event)
 {
-//    QWidget::mousePressEvent(event);
     if(event->button() == Qt::LeftButton)
     {
         m_leftButtonPress = true;
@@ -34,7 +33,6 @@ void MusicMoveButton::mousePressEvent(QMouseEvent *event)
 
 void MusicMoveButton::mouseMoveEvent(QMouseEvent *event)
 {
-//    QWidget::mouseMoveEvent(event);
     if(!m_leftButtonPress)
     {
         event->ignore();
@@ -50,7 +48,6 @@ void MusicMoveButton::mouseMoveEvent(QMouseEvent *event)
 
 void MusicMoveButton::mouseReleaseEvent(QMouseEvent *event)
 {
-//    QWidget::mouseReleaseEvent(event);
     m_pressAt = QtMouseEventGlobalPos(event);
     m_leftButtonPress = false;
     Q_EMIT buttonRelease();
@@ -58,7 +55,9 @@ void MusicMoveButton::mouseReleaseEvent(QMouseEvent *event)
 
 
 MusicCutSliderWidget::MusicCutSliderWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_duration(0),
+      m_position(0)
 {
     m_leftControl = new MusicMoveButton(this);
     m_rightControl = new MusicMoveButton(this);
@@ -70,8 +69,6 @@ MusicCutSliderWidget::MusicCutSliderWidget(QWidget *parent)
     connect(m_leftControl, SIGNAL(buttonRelease()), SLOT(buttonReleaseLeft()));
     connect(m_rightControl, SIGNAL(buttonRelease()), SLOT(buttonReleaseRight()));
 
-    m_position = 0;
-    m_duration = 0;
     resizeWindow(width(), height());
 }
 

@@ -30,7 +30,20 @@
 #define LRC_TIME_LABEL_POSITION     20
 
 MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
-    : MusicLrcContainer(parent)
+    : MusicLrcContainer(parent),
+      m_lrcChangeOffset(0),
+      m_lrcChangeDelta(-1),
+      m_mouseLeftPressed(false),
+      m_lrcChangeState(false),
+      m_mouseMoved(false),
+      m_lrcDisplayAll(false),
+      m_showArtistBackground(true),
+      m_animationFreshTime(0),
+      m_lrcSizeProperty(-1),
+      m_changeSpeedValue(0),
+      m_floatPlayWidget(nullptr),
+      m_commentsWidget(nullptr),
+      m_translatedWidget(nullptr)
 {
     QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
     vBoxLayout->setMargin(0);
@@ -39,6 +52,7 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     m_containerType = LRC_INTERIOR_TPYE;
     m_layoutWidget = new MusicVLayoutAnimationWidget(this);
     m_layoutWidget->connectTo(this);
+    m_lrcFloatWidget = new MusicLrcFloatWidget(this);
 
     for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
@@ -49,26 +63,10 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     }
     vBoxLayout->addWidget(m_layoutWidget);
 
-    m_lrcChangeOffset = 0;
-    m_lrcChangeDelta = -1;
-    m_mouseLeftPressed = false;
-    m_lrcChangeState = false;
-    m_mouseMoved = false;
-    m_lrcDisplayAll = false;
-    m_showArtistBackground = true;
-    m_animationFreshTime = 0;
-    m_lrcSizeProperty = -1;
-    m_changeSpeedValue = 0;
-
     initFunctionLabel();
-    m_lrcFloatWidget = new MusicLrcFloatWidget(this);
-    m_floatPlayWidget = nullptr;
-
-    m_lrcManagers[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(tr("No song is playing now!"));
     createNoLrcCurrentInfo();
 
-    m_commentsWidget = nullptr;
-    m_translatedWidget = nullptr;
+    m_lrcManagers[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(tr("No song is playing now!"));
 }
 
 MusicLrcContainerForInterior::~MusicLrcContainerForInterior()

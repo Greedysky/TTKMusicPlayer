@@ -34,12 +34,13 @@ struct TTK_MODULE_EXPORT MusicSearchedItem
     QString m_type;
 
     MusicSearchedItem()
+        : m_songName(TTK_DEFAULT_STR),
+          m_singerName(TTK_DEFAULT_STR),
+          m_albumName(TTK_DEFAULT_STR),
+          m_duration(TTK_DEFAULT_STR),
+          m_type(TTK_DEFAULT_STR)
     {
-        m_songName = TTK_DEFAULT_STR;
-        m_singerName = TTK_DEFAULT_STR;
-        m_albumName = TTK_DEFAULT_STR;
-        m_duration = TTK_DEFAULT_STR;
-        m_type = TTK_DEFAULT_STR;
+
     }
 };
 
@@ -58,15 +59,16 @@ struct TTK_MODULE_EXPORT MusicResultsItem
     QString m_tags;
 
     MusicResultsItem()
+        : m_id(TTK_DEFAULT_STR),
+          m_name(TTK_DEFAULT_STR),
+          m_nickName(TTK_DEFAULT_STR),
+          m_coverUrl(TTK_DEFAULT_STR),
+          m_playCount(TTK_DEFAULT_STR),
+          m_description(TTK_DEFAULT_STR),
+          m_updateTime(TTK_DEFAULT_STR),
+          m_tags(TTK_DEFAULT_STR)
     {
-        m_id = TTK_DEFAULT_STR;
-        m_name = TTK_DEFAULT_STR;
-        m_nickName = TTK_DEFAULT_STR;
-        m_coverUrl = TTK_DEFAULT_STR;
-        m_playCount = TTK_DEFAULT_STR;
-        m_description = TTK_DEFAULT_STR;
-        m_updateTime = TTK_DEFAULT_STR;
-        m_tags = TTK_DEFAULT_STR;
+
     }
 
     inline bool isEmpty() const

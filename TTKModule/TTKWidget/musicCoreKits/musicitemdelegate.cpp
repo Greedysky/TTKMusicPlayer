@@ -3,10 +3,10 @@
 #include "musicwidgetheaders.h"
 
 MusicRadioButtonDelegate::MusicRadioButtonDelegate(QObject *parent)
-    : QItemDelegate(parent)
+    : QItemDelegate(parent),
+      m_treeMode(false)
 {
-    m_treeMode = false;
-    m_radioButton  = new QRadioButton;
+    m_radioButton = new QRadioButton;
     m_radioButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
 #ifdef Q_OS_UNIX
     m_radioButton->setFocusPolicy(Qt::NoFocus);
@@ -56,12 +56,12 @@ void MusicRadioButtonDelegate::paint(QPainter *painter, const QStyleOptionViewIt
 
 
 MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
-    : QItemDelegate(parent)
+    : QItemDelegate(parent),
+      m_textMode(false),
+      m_treeMode(false),
+      m_background(false)
 {
-    m_background = false;
-    m_textMode = false;
-    m_treeMode = false;
-    m_checkBox  = new QCheckBox;
+    m_checkBox = new QCheckBox;
     m_checkBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_checkBox->setFocusPolicy(Qt::NoFocus);
@@ -132,9 +132,9 @@ void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
 
 
 MusicProgressBarDelegate::MusicProgressBarDelegate(QObject *parent)
-    : QItemDelegate(parent)
+    : QItemDelegate(parent),
+      m_treeMode(false)
 {
-    m_treeMode = false;
     m_progress = new QProgressBar;
     m_progress->setStyleSheet(MusicUIObject::MQSSProgressBar01);
 }
@@ -180,10 +180,11 @@ void MusicProgressBarDelegate::paint(QPainter *painter, const QStyleOptionViewIt
 }
 
 
+
 MusicLabelDelegate::MusicLabelDelegate(QObject *parent)
-    : QItemDelegate(parent)
+    : QItemDelegate(parent),
+      m_treeMode(false)
 {
-    m_treeMode = false;
     m_label  = new QLabel;
     m_label->setAlignment(Qt::AlignCenter);
     m_label->setStyleSheet(MusicUIObject::MQSSBackgroundStyle13);
@@ -245,10 +246,10 @@ void MusicLabelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 
 
 MusicPushButtonDelegate::MusicPushButtonDelegate(QObject *parent)
-    : QItemDelegate(parent)
+    : QItemDelegate(parent),
+      m_treeMode(false)
 {
-    m_treeMode = false;
-    m_pushButton  = new QPushButton;
+    m_pushButton = new QPushButton;
     m_pushButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_pushButton->setStyleSheet(MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBorderStyle06 + MusicUIObject::MQSSBackgroundStyle12);
 #ifdef Q_OS_UNIX

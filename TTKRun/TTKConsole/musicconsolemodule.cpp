@@ -12,16 +12,14 @@
 #endif
 
 MusicConsoleModule::MusicConsoleModule(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_volume(100),
+      m_playbackMode("Order"),
+      m_enhanced("Off")
 {
-    m_player = new MusicPlayer(this);
     m_playlist = new MusicPlaylist(this);
-
-    m_volume = 100;
-    m_playbackMode = "Order";
-    m_enhanced = "Off";
-
     m_playlist->setPlaybackMode(MusicObject::PlayMode::Order);
+    m_player = new MusicPlayer(this);
     m_player->setPlaylist(m_playlist);
 
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));

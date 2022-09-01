@@ -8,11 +8,11 @@
 #include <qmath.h>
 
 MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent)
-    : MusicAbstractSongsListTableWidget(parent)
+    : MusicAbstractSongsListTableWidget(parent),
+      m_songsPlayWidget(nullptr)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
     setColumnCount(5);
 
     QHeaderView *headerview = horizontalHeader();
@@ -23,8 +23,6 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
     headerview->resizeSection(4, 45);
 
     m_hasParentToolIndex = false;
-    m_songsPlayWidget = nullptr;
-
     MusicUtils::Widget::setTransparent(this, 0xFF);
 }
 

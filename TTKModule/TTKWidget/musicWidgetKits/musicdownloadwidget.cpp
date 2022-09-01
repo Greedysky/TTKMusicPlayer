@@ -13,9 +13,9 @@ Q_DECLARE_METATYPE(MusicDownloadTableItemRole)
 MusicDownloadTableItem::MusicDownloadTableItem(QWidget *parent)
     : QWidget(parent)
 {
-    m_information = new QLabel(this);
     m_icon = new QLabel(this);
     m_text = new QLabel(this);
+    m_information = new QLabel(this);
 
     m_text->setGeometry(0, 0, 60, ITEM_ROW_HEIGHT_S);
     m_icon->setGeometry(70, 0, 30, ITEM_ROW_HEIGHT_S);
@@ -50,6 +50,7 @@ MusicDownloadTableWidget::MusicDownloadTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
     setColumnCount(1);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 400);
     MusicUtils::Widget::setTransparent(this, 255);
@@ -109,7 +110,8 @@ void MusicDownloadTableWidget::itemCellClicked(int row, int column)
 
 MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicDownloadWidget)
+      m_ui(new Ui::MusicDownloadWidget),
+      m_querySingleInfo(false)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -131,7 +133,6 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    m_querySingleInfo = false;
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
 
     m_queryType = MusicAbstractQueryRequest::QueryType::Music;

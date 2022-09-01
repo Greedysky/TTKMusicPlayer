@@ -35,6 +35,7 @@ MusicAlbumQueryWidget::MusicAlbumQueryWidget(QWidget *parent)
     m_shareType = MusicSongSharingWidget::Module::Album;
     m_queryTableWidget = new MusicAlbumQueryTableWidget(this);
     m_queryTableWidget->hide();
+
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 }

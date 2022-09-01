@@ -61,7 +61,7 @@ public:
     /*!
      * Get rename item artist label state.
      */
-    inline bool itemRenameState() { return m_renameLine != nullptr; }
+    inline bool itemRenameState() { return m_renameEdit != nullptr; }
     /*!
      * Set current play index.
      */
@@ -119,7 +119,7 @@ protected:
     MusicSplitItemClickedLabel *m_songNameLabel;
     QPushButton *m_loveButton, *m_deleteButton,* m_showMVButton;
     QPushButton *m_downloadButton, *m_moreButton;
-    MusicSongsToolItemRenamedWidget *m_renameLine;
+    MusicSongsToolItemRenamedWidget *m_renameEdit;
 
 };
 

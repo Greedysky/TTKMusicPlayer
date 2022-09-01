@@ -8,17 +8,16 @@
 #define ITEM_COUNT      4
 
 MusicBackgroundListItem::MusicBackgroundListItem(QWidget *parent)
-    : QLabel(parent)
+    : QLabel(parent),
+      m_printMask(false),
+      m_isSelected(false),
+      m_selectedMask(true),
+      m_closeMask(false),
+      m_closeSet(false),
+      m_showNameMask(true)
 {
     setFixedSize(137, 100);
     setCursor(Qt::PointingHandCursor);
-
-    m_printMask = false;
-    m_closeMask = false;
-    m_isSelected = false;
-    m_closeSet = false;
-    m_showNameMask = true;
-    m_selectedMask = true;
 }
 
 void MusicBackgroundListItem::updatePixImage()
@@ -142,14 +141,14 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
 
 
 MusicBackgroundListWidget::MusicBackgroundListWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_type(First),
+      m_currentItem(nullptr)
 {
-    m_type = First;
     m_gridLayout = new QGridLayout(this);
     m_gridLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     m_gridLayout->setContentsMargins(7, 0, 7, 0);
     setLayout(m_gridLayout);
-    m_currentItem = nullptr;
 }
 
 MusicBackgroundListWidget::~MusicBackgroundListWidget()

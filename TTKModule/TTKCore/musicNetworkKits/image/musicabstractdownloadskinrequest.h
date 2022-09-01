@@ -32,10 +32,11 @@ struct TTK_MODULE_EXPORT MusicSkinRemoteItem
     int m_index;
 
     MusicSkinRemoteItem()
+        : m_name(MUSIC_AUTHOR_NAME),
+          m_useCount(8888),
+          m_index(0)
     {
-        m_name = MUSIC_AUTHOR_NAME;
-        m_useCount = 8888;
-        m_index = 0;
+
     }
 
     inline bool isValid() const

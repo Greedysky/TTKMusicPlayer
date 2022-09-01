@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor provide artist name and save local path.
      */
-    MusicQQDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent = nullptr);
+    MusicQQDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 
     /*!
      * Start to download artist picture from net.

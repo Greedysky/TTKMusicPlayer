@@ -54,9 +54,9 @@ void MusicColorPreviewLabel::paintEvent(QPaintEvent *)
 
 
 MusicPreviewLabel::MusicPreviewLabel(QWidget *parent)
-    : QLabel(parent)
+    : QLabel(parent),
+      m_transparent(255)
 {
-    m_transparent = 255;
     m_linearGradient.setStart(0, 0);
     m_maskLinearGradient.setStart(0, 0);
 }

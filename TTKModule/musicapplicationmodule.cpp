@@ -31,7 +31,11 @@
 MusicApplicationModule *MusicApplicationModule::m_instance = nullptr;
 
 MusicApplicationModule::MusicApplicationModule(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_setWindowToTop(false),
+      m_mobileDeviceWidget(nullptr),
+      m_quitContainer(nullptr),
+      m_screenSaverWidget(nullptr)
 {
     m_instance = this;
 
@@ -43,10 +47,6 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_sideAnimation->setDuration(250 * MT_MS);
 
     m_timerAutoModule = new MusicTimerAutoModule(this);
-    m_screenSaverWidget = nullptr;
-    m_setWindowToTop = false;
-    m_mobileDeviceWidget = nullptr;
-    m_quitContainer = nullptr;
 
     m_deviceWatcher = new QDeviceWatcher(this);
     connect(m_deviceWatcher, SIGNAL(deviceChanged(bool)), SLOT(musicDeviceChanged(bool)));

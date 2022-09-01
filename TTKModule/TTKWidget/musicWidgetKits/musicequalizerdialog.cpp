@@ -16,7 +16,8 @@ static void makeBlockedValue(QSlider *slider, int value)
 
 MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicEqualizerDialog)
+      m_ui(new Ui::MusicEqualizerDialog),
+      m_enable(false)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -26,8 +27,6 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
-
-    m_enable = false;
 
     initialize();
 

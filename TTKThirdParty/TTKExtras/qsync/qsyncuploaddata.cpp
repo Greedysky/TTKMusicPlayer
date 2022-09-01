@@ -9,7 +9,8 @@
 class QSyncUploadDataPrivate : public QSyncDataInterfacePrivate
 {
 public:
-    QSyncUploadDataPrivate() : QSyncDataInterfacePrivate()
+    QSyncUploadDataPrivate()
+        : QSyncDataInterfacePrivate()
     {
     }
 

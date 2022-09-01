@@ -5,8 +5,8 @@
 
 const QString ART_BACKGROUND_URL = "dGJmTlZOK1QvMDJENUxjMDk5UVhBWHVCb001eWtnQ1hKSnhsRWxLczNvRm9FV0kwbHhocTk4aml5SCs1Ym5mQU44SU05c1VZYVFzR2hLTEpGQ0hCNmM1ZUlZVnhnMm92QXNGMFN3PT0=";
 
-MusicQQDownloadBackgroundRequest::MusicQQDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent)
-    : MusicDownloadImageRequest(name, save, parent)
+MusicQQDownloadBackgroundRequest::MusicQQDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent)
+    : MusicDownloadImageRequest(name, path, parent)
 {
 
 }
@@ -15,7 +15,7 @@ void MusicQQDownloadBackgroundRequest::startToDownload()
 {
     TTK_LOGGER_INFO(QString("%1 startToDownload").arg(className()));
 
-    deleteAll();
+    MusicAbstractNetwork::deleteAll();
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(m_artName).arg(0).arg(50));
@@ -99,7 +99,6 @@ void MusicQQDownloadBackgroundRequest::downLoadUrlFinished()
     if(m_counter == 0)
     {
         deleteAll();
-        deleteLater();
     }
 }
 
@@ -107,7 +106,7 @@ void MusicQQDownloadBackgroundRequest::downLoadUrl(const QString &id)
 {
     TTK_LOGGER_INFO(QString("%1 downLoadUrl %2").arg(className(), id));
 
-    deleteAll();
+    MusicAbstractNetwork::deleteAll();
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(id));

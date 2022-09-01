@@ -2,24 +2,24 @@
 #include "musicimageutils.h"
 
 MusicAbstractItemQueryWidget::MusicAbstractItemQueryWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_mainWindow(nullptr),
+      m_songButton(nullptr),
+      m_iconLabel(nullptr),
+      m_statusLabel(nullptr),
+      m_infoLabel(nullptr),
+      m_queryTableWidget(nullptr),
+      m_networkRequest(nullptr),
+      m_shareType(MusicSongSharingWidget::Module::Null)
 {
-    m_mainWindow = nullptr;
-    m_songButton = nullptr;
-    m_iconLabel = nullptr;
-    m_infoLabel = nullptr;
-    m_statusLabel = nullptr;
-    m_queryTableWidget = nullptr;
-    m_networkRequest = nullptr;
-    m_container = new QStackedWidget(this);
-    m_container->hide();
-    m_shareType = MusicSongSharingWidget::Module::Null;
-
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
     initialize();
+
+    m_container = new QStackedWidget(this);
+    m_container->hide();
 
     layout->addWidget(m_mainWindow);
     setLayout(layout);

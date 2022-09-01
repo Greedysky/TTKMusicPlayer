@@ -11,14 +11,13 @@
 MusicBottomAreaWidget *MusicBottomAreaWidget::m_instance = nullptr;
 
 MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_systemCloseConfig(false),
+      m_lrcWidgetShowFullScreen(true)
 {
     m_instance = this;
-    m_systemCloseConfig = false;
-    m_lrcWidgetShowFullScreen = true;
 
     createSystemTrayIcon();
-
     m_platformExtras = new MusicPlatformExtras(this);
     m_rippleModule = new MusicRippleSpecturmModule(this);
 }

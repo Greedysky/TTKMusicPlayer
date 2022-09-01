@@ -97,7 +97,8 @@ void MusicNetworkConnectionItem::testFinshed(bool state)
 
 MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicNetworkConnectionTestWidget)
+      m_ui(new Ui::MusicNetworkConnectionTestWidget),
+      m_countIndex(0)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -153,8 +154,6 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
     item->setUrl(MusicUtils::Algorithm::mdII(CHECK_SERVER_VISIT, false));
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
     m_ui->verticalLayout->addWidget(item);
-
-    m_countIndex = 0;
 
     connect(m_ui->startButton, SIGNAL(clicked()), SLOT(buttonStateChanged()));
 }

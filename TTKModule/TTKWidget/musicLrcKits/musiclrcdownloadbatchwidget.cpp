@@ -9,22 +9,23 @@ MusicLrcDownloadBatchTableWidget::MusicLrcDownloadBatchTableWidget(QWidget *pare
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-
     setColumnCount(5);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 50);
     headerview->resizeSection(1, 150);
     headerview->resizeSection(2, 100);
     headerview->resizeSection(3, 190);
     headerview->resizeSection(4, 60);
+
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 }
 
 void MusicLrcDownloadBatchTableWidget::createAllItems(const MusicSongList &items)
 {
     setRowCount(items.count());
     QHeaderView *headerview = horizontalHeader();
+
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSong &song = items[i];

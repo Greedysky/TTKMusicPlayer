@@ -50,21 +50,27 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     QHBoxLayout *operWidgetLayout = new QHBoxLayout(operWidget);
     operWidgetLayout->setContentsMargins(0, 0, 0, 0);
     operWidgetLayout->setSpacing(4);
+
     m_timerLabel = new QLabel(operWidget);
     m_timerLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
+
     MusicClickedLabel *ngReportLabel = new MusicClickedLabel(tr("Report"), operWidget);
     ngReportLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
+
     QFrame *spliteLine1 = new QFrame(operWidget);
     spliteLine1->setFixedWidth(1);
     spliteLine1->setFrameShape(QFrame::VLine);
     spliteLine1->setStyleSheet(MusicUIObject::MQSSColorStyle03);
+
     QPushButton *starButton = new QPushButton(operWidget);
     starButton->setCursor(QCursor(Qt::PointingHandCursor));
     starButton->setFixedSize(12, 11);
     starButton->setStyleSheet(MusicUIObject::MQSSInteriorStar);
+
     m_starLabel = new QLabel(operWidget);
     m_starLabel->setText("(0)");
     m_starLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBackgroundStyle01);
+
     QFrame *spliteLine2 = new QFrame(operWidget);
     spliteLine2->setFixedWidth(1);
     spliteLine2->setFrameShape(QFrame::VLine);
@@ -145,15 +151,16 @@ void MusicCommentsItem::downLoadFinished(const QByteArray &bytes)
 
 
 MusicCommentsWidget::MusicCommentsWidget(QWidget *parent)
-    : QLabel(parent)
+    : QLabel(parent),
+      m_isPain(true),
+      m_messageEdit(nullptr),
+      m_topLabel(nullptr),
+      m_commentsLabel(nullptr),
+      m_messageComments(nullptr),
+      m_pageQueryWidget(nullptr),
+      m_networkRequest(nullptr)
 {
-    m_isPain = true;
-    m_topLabel = nullptr;
-    m_commentsLabel = nullptr;
-    m_messageEdit = nullptr;
-    m_pageQueryWidget = nullptr;
-    m_messageComments = nullptr;
-    m_networkRequest = nullptr;
+
 }
 
 MusicCommentsWidget::~MusicCommentsWidget()

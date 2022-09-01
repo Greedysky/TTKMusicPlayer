@@ -4,8 +4,8 @@
 
 const QString ART_BACKGROUND_URL = "NUJnNFVlSHprVzdaMWxMdXRvbEp5a3lldU51Um9GeU5RKzRDWFNER2FHL3pSRE1uK1VNRzVhVk53Y1JBUTlMbnhjeFBvRFMySnpUSldlY21xQjBkWE5GTWVkVXFsa0lNa1RKSnE3VHEwMDFPdVRDbXhUSThhWkM4TFI4RUZqbHFzVFFnQkpOY2hUR2c2YWdzb3U2cjBKSUdMYnpnZktucEJpbDVBTDlzMGF0QVMwcEtLR2JWVnc9PQ==";
 
-MusicKWDownLoadCoverRequest::MusicKWDownLoadCoverRequest(const QString &url, const QString &save, QObject *parent)
-    : MusicAbstractDownLoadRequest(url, save, MusicObject::Download::Cover, parent)
+MusicKWDownLoadCoverRequest::MusicKWDownLoadCoverRequest(const QString &url, const QString &path, QObject *parent)
+    : MusicAbstractDownLoadRequest(url, path, MusicObject::Download::Cover, parent)
 {
 
 }
@@ -50,8 +50,8 @@ void MusicKWDownLoadCoverRequest::downLoadDataChanged()
 
 
 
-MusicKWDownloadBackgroundRequest::MusicKWDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent)
-    : MusicDownloadImageRequest(name, save, parent)
+MusicKWDownloadBackgroundRequest::MusicKWDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent)
+    : MusicDownloadImageRequest(name, path, parent)
 {
 
 }
@@ -60,7 +60,7 @@ void MusicKWDownloadBackgroundRequest::startToDownload()
 {
     TTK_LOGGER_INFO(QString("%1 startToDownload").arg(className()));
 
-    deleteAll();
+    MusicAbstractNetwork::deleteAll();
 
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     ///Set search image API
@@ -100,6 +100,5 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
     if(m_counter == 0)
     {
         deleteAll();
-        deleteLater();
     }
 }

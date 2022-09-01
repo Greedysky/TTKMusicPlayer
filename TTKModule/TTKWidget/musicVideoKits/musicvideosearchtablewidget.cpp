@@ -7,14 +7,14 @@
 #include "musicgiflabelwidget.h"
 
 MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)
-    : MusicItemSearchTableWidget(parent)
+    : MusicItemSearchTableWidget(parent),
+      m_singleRadioMode(false)
 {
     setColumnCount(9);
     resizeWindow(0);
 
-    m_singleRadioMode = false;
-
     MusicTime::initRandom();
+
     G_CONNECTION_PTR->setValue(className(), this);
 }
 

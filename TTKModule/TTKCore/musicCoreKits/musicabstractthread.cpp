@@ -1,9 +1,10 @@
 #include "musicabstractthread.h"
 
 MusicAbstractThread::MusicAbstractThread(QObject *parent)
-    : QThread(parent)
+    : QThread(parent),
+      m_running(true)
 {
-    m_running = true;
+
 }
 
 MusicAbstractThread::~MusicAbstractThread()

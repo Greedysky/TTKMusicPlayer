@@ -10,7 +10,8 @@
 
 MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicSongSharingWidget)
+      m_ui(new Ui::MusicSongSharingWidget),
+      m_type(Module::Null)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -20,8 +21,6 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
-
-    m_type = Module::Null;
 
     m_ui->qqButton->setChecked(true);
     m_ui->textEdit->setStyleSheet(MusicUIObject::MQSSTextEditStyle01);

@@ -1,9 +1,9 @@
 #include "musicquerytablewidget.h"
 
 MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
-    : MusicFillItemTableWidget(parent)
+    : MusicFillItemTableWidget(parent),
+      m_networkRequest(nullptr)
 {
-    m_networkRequest = nullptr;
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
 
@@ -20,7 +20,7 @@ void MusicQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
     connect(m_networkRequest, SIGNAL(createSearchedItem(MusicSearchedItem)), SLOT(createSearchedItem(MusicSearchedItem)));
 }
 
-MusicAbstractQueryRequest *MusicQueryTableWidget::getQueryInput()
+MusicAbstractQueryRequest *MusicQueryTableWidget::getQueryInput() const
 {
     return m_networkRequest;
 }

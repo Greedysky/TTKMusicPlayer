@@ -24,23 +24,20 @@
 Q_DECLARE_METATYPE(MusicCloudDataItem)
 
 MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent)
+    : MusicAbstractTableWidget(parent),
+      m_uploading(false),
+      m_cancel(false),
+      m_totalFileSzie(0),
+      m_openFileWidget(nullptr)
 {
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(className(), MusicCloudUploadTableWidget::className());
-
     setColumnCount(5);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
     headerview->resizeSection(1, 360);
     headerview->resizeSection(2, 110);
     headerview->resizeSection(3, 50);
     headerview->resizeSection(4, 120);
-
-    m_uploading = false;
-    m_cancel = false;
-    m_openFileWidget = nullptr;
-    m_totalFileSzie = 0;
 
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     MusicUtils::Widget::setTransparent(this, 0);
@@ -58,6 +55,9 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
     connect(m_syncListData, SIGNAL(receiveFinshed(QSyncDataItemList)), SLOT(receiveDataFinshed(QSyncDataItemList)));
     connect(m_syncDeleteData, SIGNAL(deleteFileFinished(bool)), SLOT(deleteFileFinished(bool)));
     connect(m_syncUploadData, SIGNAL(uploadFileFinished(QString)), SLOT(uploadFileFinished(QString)));
+
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->poolConnect(className(), MusicCloudUploadTableWidget::className());
 }
 
 MusicCloudManagerTableWidget::~MusicCloudManagerTableWidget()

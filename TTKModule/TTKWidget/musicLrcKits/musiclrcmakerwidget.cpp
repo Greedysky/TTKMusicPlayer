@@ -143,7 +143,9 @@ void MusicLrcMakerWidgetItem::paintEvent(QPaintEvent *event)
 
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicLrcMakerWidget)
+      m_ui(new Ui::MusicLrcMakerWidget),
+      m_currentLine(0),
+      m_intervalTime(0)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -157,9 +159,6 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_ui->stackedWidget->setStyleSheet(QString("#stackedWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle12));
-
-    m_currentLine = 0;
-    m_intervalTime = 0;
 
     createMainWidget();
     createFirstWidget();

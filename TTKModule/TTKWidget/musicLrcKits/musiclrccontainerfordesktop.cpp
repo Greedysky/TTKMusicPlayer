@@ -9,19 +9,19 @@
 #include "musicbottomareawidget.h"
 
 MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
-    : MusicLrcContainer(parent)
+    : MusicLrcContainer(parent),
+      m_verticalWindow(false),
+      m_singleLineType(false),
+      m_windowLocked(false),
+      m_reverse(false),
+      m_currentLrcFontSize(0),
+      m_widgetWidth(0)
 {
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
     setAttribute(Qt::WA_TranslucentBackground);
     setMouseTracking(true);
 
     m_containerType = LRC_DESKTOP_TPYE;
-    m_reverse = false;
-    m_singleLineType = false;
-    m_windowLocked = false;
-    m_verticalWindow = false;
-    m_currentLrcFontSize = 0;
-    m_widgetWidth = 0;
 }
 
 MusicLrcContainerForDesktop::~MusicLrcContainerForDesktop()

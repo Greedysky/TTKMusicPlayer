@@ -2,14 +2,20 @@
 #include "musicbackgroundmanager.h"
 #include "musictopareawidget.h"
 
-MusicDownloadImageRequest::MusicDownloadImageRequest(const QString &name, const QString &save, QObject *parent)
+MusicDownloadImageRequest::MusicDownloadImageRequest(const QString &name, const QString &path, QObject *parent)
     : MusicAbstractNetwork(parent),
       m_index(0),
       m_counter(0),
       m_artName(name),
-      m_savePath(save)
+      m_savePath(path)
 {
 
+}
+
+void MusicDownloadImageRequest::deleteAll()
+{
+    MusicAbstractNetwork::deleteAll();
+    deleteLater();
 }
 
 void MusicDownloadImageRequest::downLoadFinished()
@@ -21,6 +27,5 @@ void MusicDownloadImageRequest::downLoadFinished()
         MusicTopAreaWidget::instance()->musicBackgroundThemeDownloadFinished();
         emit downLoadDataChanged(TTK_DEFAULT_STR);
         deleteAll();
-        deleteLater();
     }
 }

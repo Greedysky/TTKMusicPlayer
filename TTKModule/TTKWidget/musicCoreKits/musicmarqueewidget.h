@@ -38,7 +38,7 @@ public:
     /*!
      * Set effect on resize.
      */
-    void setEffectOnResize(bool on) { m_effectOnResize = on; }
+    inline void setEffectOnResize(bool on) { m_effectOnResize = on; }
     /*!
      * Set marquee text.
      */

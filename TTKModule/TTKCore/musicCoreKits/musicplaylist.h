@@ -30,14 +30,16 @@ struct TTK_MODULE_EXPORT MusicPlayItem
     QString m_path;
 
     MusicPlayItem()
+        : m_toolIndex(-1)
     {
-        m_toolIndex = -1;
+
     }
 
     MusicPlayItem(int index, const QString &path)
+        : m_toolIndex(index),
+          m_path(path)
     {
-        m_toolIndex = index;
-        m_path = path;
+
     }
 
     inline bool isValid() const

@@ -108,6 +108,7 @@ public Q_SLOTS:
 
 protected:
     Ui::MusicNetworkConnectionTestWidget *m_ui;
+
     int m_countIndex;
     QList<MusicNetworkConnectionItem*> m_connectionItems;
 

@@ -8,13 +8,12 @@
 
 MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicDownloadResetWidget)
+      m_ui(new Ui::MusicDownloadResetWidget),
+      m_parentClass(parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
     setAttribute(Qt::WA_DeleteOnClose);
-
-    m_parentClass = parent;
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -82,9 +81,10 @@ void MusicDownloadResetWidget::openFileLocation()
 
 
 MusicDownloadMgmtWidget::MusicDownloadMgmtWidget(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_parentClass(TTKStatic_cast(QWidget*, parent))
 {
-    m_parentClass = TTKStatic_cast(QWidget*, parent);
+
 }
 
 void MusicDownloadMgmtWidget::setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type)

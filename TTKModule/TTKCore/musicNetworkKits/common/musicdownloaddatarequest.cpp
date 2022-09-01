@@ -1,13 +1,14 @@
 #include "musicdownloaddatarequest.h"
 #include "musicdownloadmanager.h"
 
-MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent)
-    : MusicAbstractDownLoadRequest(url, save, type, parent)
+MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent)
+    : MusicAbstractDownLoadRequest(url, path, type, parent),
+      m_createItemTime(-1),
+      m_redirection(false),
+      m_needUpdate(true),
+      m_recordType(MusicObject::Record::Null)
 {
-    m_createItemTime = -1;
-    m_redirection = false;
-    m_needUpdate = true;
-    m_recordType = MusicObject::Record::Null;
+
 }
 
 void MusicDownloadDataRequest::startToDownload()

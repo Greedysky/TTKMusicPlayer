@@ -7,12 +7,11 @@
 #include <QButtonGroup>
 
 MusicHlPalette::MusicHlPalette(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_dblSaturation(1.0)
 {
     setMinimumSize(QSize(360, 120));
     setMouseTracking(true);
-
-    m_dblSaturation = 1.0;
 }
 
 QColor MusicHlPalette::color() const
@@ -121,17 +120,16 @@ void MusicHlPalette::calculateColor()
 
 
 MusicHlSaturationPalette::MusicHlSaturationPalette(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_color(Qt::red),
+      m_dblVernierX(0),
+      m_dblVernierPercentX(0),
+      m_dblSaturation(0)
 {
     setMouseTracking(true);
     setMinimumWidth(360);
     setMinimumHeight(16);
     setMaximumHeight(24);
-
-    m_color = Qt::red;
-    m_dblVernierX = 0;
-    m_dblVernierPercentX = 0;
-    m_dblSaturation = 0;
 }
 
 double MusicHlSaturationPalette::saturation() const
@@ -236,7 +234,8 @@ void MusicHlSaturationPalette::calculateSuration()
 
 MusicColorDialog::MusicColorDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicColorDialog)
+      m_ui(new Ui::MusicColorDialog),
+      m_status(0)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -260,7 +259,6 @@ MusicColorDialog::MusicColorDialog(QWidget *parent)
     connect(m_ui->wgtPalette, SIGNAL(colorChanged(QColor)), SLOT(colorChanged(QColor)));
     connect(m_ui->wgtSaturationIndicator, SIGNAL(saturationChanged(double)), m_ui->wgtPalette, SLOT(setSaturation(double)));
 
-    m_status = 0;
     m_ui->wgtPalette->initialize();
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);

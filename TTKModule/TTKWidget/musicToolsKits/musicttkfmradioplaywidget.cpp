@@ -117,13 +117,12 @@ int MusicTTKFMRadioInformationWidget::exec()
 
 MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicTTKFMRadioPlayWidget)
+      m_ui(new Ui::MusicTTKFMRadioPlayWidget),
+      m_isPlaying(false),
+      m_currentIndex(0)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
-
-    m_isPlaying = false;
-    m_currentIndex = 0;
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);

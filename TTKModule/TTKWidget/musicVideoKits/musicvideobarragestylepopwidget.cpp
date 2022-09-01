@@ -5,11 +5,11 @@
 #include <QButtonGroup>
 
 MusicVideoBarrageStylePopWidget::MusicVideoBarrageStylePopWidget(QWidget *parent)
-    : MusicToolMenuWidget(parent)
+    : MusicToolMenuWidget(parent),
+      m_barrageSize(15),
+      m_barrageColor(255, 255, 255)
 {
     initialize();
-    m_barrageSize = 15;
-    m_barrageColor = QColor(255, 255, 255);
 }
 
 MusicVideoBarrageStylePopWidget::~MusicVideoBarrageStylePopWidget()

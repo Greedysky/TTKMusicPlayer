@@ -13,6 +13,7 @@ MusicCloudSharedSongWidget::MusicCloudSharedSongWidget(QWidget *parent)
 
     m_toolBoxWidget = new MusicCloudToolBoxWidget(this);
     m_managerWidget = new MusicCloudManagerWidget(this);
+
     layout->addWidget(m_toolBoxWidget);
     setLayout(layout);
 }

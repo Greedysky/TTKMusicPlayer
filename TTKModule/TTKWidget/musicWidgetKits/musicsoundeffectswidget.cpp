@@ -6,11 +6,10 @@
 #include "musicwidgetheaders.h"
 
 MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const MusicPluginProperty &property, QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_enable(false),
+      m_property(property)
 {
-    m_property = property;
-    m_enable = false;
-
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(1, 1, 1, 1);
     layout->setSpacing(0);

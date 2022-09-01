@@ -9,8 +9,8 @@ MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidg
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-
     setColumnCount(4);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 290);
@@ -28,6 +28,7 @@ void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongCheckTo
 {
     setRowCount(items.count());
     QHeaderView *headerview = horizontalHeader();
+
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongCheckToolsRename &song = items[i];
@@ -96,8 +97,8 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-
     setColumnCount(7);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 290);
@@ -128,6 +129,7 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongChec
 {
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
+
     for(int i = 0; i < songs.count(); ++i)
     {
         const MusicSongCheckToolsDuplicate &song = songs[i];
@@ -227,8 +229,8 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-
     setColumnCount(8);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 220);
@@ -260,6 +262,7 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
 {
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
+
     for(int i = 0; i < songs.count(); ++i)
     {
         const MusicSongCheckToolsQuality &song = songs[i];

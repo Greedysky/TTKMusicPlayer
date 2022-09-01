@@ -16,9 +16,11 @@
 #include <QButtonGroup>
 
 MusicSongSearchTableWidget::MusicSongSearchTableWidget(QWidget *parent)
-    : MusicItemSearchTableWidget(parent)
+    : MusicItemSearchTableWidget(parent),
+      m_queryAllRecords(true)
 {
     setColumnCount(9);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 273);
@@ -29,8 +31,6 @@ MusicSongSearchTableWidget::MusicSongSearchTableWidget(QWidget *parent)
     headerview->resizeSection(6, 26);
     headerview->resizeSection(7, 26);
     headerview->resizeSection(8, 26);
-
-    m_queryAllRecords = true;
 
     G_CONNECTION_PTR->setValue(className(), this);
 }

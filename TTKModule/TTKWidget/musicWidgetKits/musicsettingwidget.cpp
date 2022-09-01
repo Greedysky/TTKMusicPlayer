@@ -29,7 +29,8 @@
 #define SCROLL_ITEM_HEIGHT 370
 
 MusicFunctionTableWidget::MusicFunctionTableWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent)
+    : MusicAbstractTableWidget(parent),
+      m_listIndex(0)
 {
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 20);
@@ -39,7 +40,6 @@ MusicFunctionTableWidget::MusicFunctionTableWidget(QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     setRowCount(3);
-    m_listIndex = 0;
 }
 
 void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionItemList &items)

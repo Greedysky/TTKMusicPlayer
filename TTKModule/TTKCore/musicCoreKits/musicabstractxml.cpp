@@ -1,9 +1,10 @@
 #include "musicabstractxml.h"
 
 MusicXmlNodeHelper::MusicXmlNodeHelper(const QDomNode& root)
+    : m_root(root),
+      m_current(root)
 {
-    m_root    = root;
-    m_current = root;
+
 }
 
 void MusicXmlNodeHelper::load()
@@ -76,10 +77,11 @@ QString MusicXmlNodeHelper::nodeName(const QString &name) const
 
 
 MusicAbstractXml::MusicAbstractXml(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_file(nullptr),
+      m_document(nullptr)
 {
-    m_file = nullptr;
-    m_document = nullptr;
+
 }
 
 MusicAbstractXml::~MusicAbstractXml()
@@ -92,6 +94,7 @@ bool MusicAbstractXml::fromFile(const QString &name)
 {
     delete m_file;
     delete m_document;
+
     m_file = new QFile(name);
     m_document = new QDomDocument;
 

@@ -1,11 +1,11 @@
 #include "musicabstractnetwork.h"
 
 MusicAbstractNetwork::MusicAbstractNetwork(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_interrupt(false),
+      m_stateCode(MusicObject::NetworkCode::Query),
+      m_reply(nullptr)
 {
-    m_interrupt = false;
-    m_stateCode = MusicObject::NetworkCode::Query;
-    m_reply = nullptr;
 #ifndef QT_NO_SSL
     connect(&m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
 #endif
@@ -37,7 +37,7 @@ void MusicAbstractNetwork::downLoadFinished()
 void MusicAbstractNetwork::replyError(QNetworkReply::NetworkError)
 {
     TTK_LOGGER_ERROR("Abnormal network connection");
-    Q_EMIT downLoadDataChanged(QString());
+//    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 
@@ -45,7 +45,7 @@ void MusicAbstractNetwork::replyError(QNetworkReply::NetworkError)
 void MusicAbstractNetwork::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
     sslErrorsString(reply, errors);
-    Q_EMIT downLoadDataChanged(QString());
+//    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 

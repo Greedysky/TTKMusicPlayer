@@ -9,7 +9,8 @@
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicTransformWidget)
+      m_ui(new Ui::MusicTransformWidget),
+      m_currentType(Module::Music)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -56,7 +57,6 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
 #endif
 
     m_ui->loadingLabel->setType(MusicGifLabelWidget::Module::CicleBlue);
-    m_currentType = Module::Music;
 
     initialize();
 }

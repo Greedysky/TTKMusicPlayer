@@ -7,21 +7,21 @@
 #include <qmath.h>
 
 MusicPlayer::MusicPlayer(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_playlist(nullptr),
+      m_state(MusicObject::PlayState::Stopped),
+      m_enhance(Enhance::Off),
+      m_duration(0),
+      m_durationTimes(0),
+      m_volumeMusic3D(0),
+      m_posOnCircle(0)
 {
-    m_playlist = nullptr;
-    m_state = MusicObject::PlayState::Stopped;
-    m_enhance = Enhance::Off;
     m_core = new SoundCore(this);
-    m_posOnCircle = 0;
-    m_volumeMusic3D = 0;
-    m_duration = 0;
-    m_durationTimes = 0;
-
     setEnabledEffect(false);
 
     m_timer.setInterval(MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(update()));
+
     G_CONNECTION_PTR->setValue(className(), this);
 }
 

@@ -22,14 +22,15 @@ public:
 };
 
 QRCodeQWidgetPrivate::QRCodeQWidgetPrivate()
+    : m_casesen(true),
+      m_margin(10),
+      m_percent(0.23f),
+      m_foreground(QColor("black")),
+      m_background(QColor("white")),
+      m_mode(QR_MODE_8),
+      m_level(QR_ECLEVEL_Q)
 {
-    m_margin = 10;
-    m_foreground = QColor("black");
-    m_background = QColor("white");
-    m_casesen = true;
-    m_mode = QR_MODE_8;
-    m_level = QR_ECLEVEL_Q;
-    m_percent = 0.23f;
+
 }
 
 

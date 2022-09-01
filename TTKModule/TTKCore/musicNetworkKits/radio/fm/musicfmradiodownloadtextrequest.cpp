@@ -1,7 +1,7 @@
 #include "musicfmradiodownloadtextrequest.h"
 
-MusicFMRadioDownLoadTextRequest::MusicFMRadioDownLoadTextRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent)
-    : MusicAbstractDownLoadRequest(url, save, type, parent)
+MusicFMRadioDownLoadTextRequest::MusicFMRadioDownLoadTextRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent)
+    : MusicAbstractDownLoadRequest(url, path, type, parent)
 {
 
 }

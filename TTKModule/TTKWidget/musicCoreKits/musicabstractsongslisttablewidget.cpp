@@ -9,12 +9,19 @@
 #include "musicleftareawidget.h"
 
 MusicAbstractSongsListTableWidget::MusicAbstractSongsListTableWidget(QWidget *parent)
-    : MusicSmoothMovingTableWidget(parent)
+    : MusicAbstractSongsListTableWidget(-1, parent)
 {
-    m_toolIndex = -1;
-    m_playRowIndex = -1;
-    m_songs = nullptr;
-    m_hasParentToolIndex = true;
+
+}
+
+MusicAbstractSongsListTableWidget::MusicAbstractSongsListTableWidget(int index, QWidget *parent)
+    : MusicSmoothMovingTableWidget(parent),
+      m_toolIndex(index),
+      m_playRowIndex(-1),
+      m_songs(nullptr),
+      m_hasParentToolIndex(true)
+{
+
 }
 
 MusicAbstractSongsListTableWidget::~MusicAbstractSongsListTableWidget()

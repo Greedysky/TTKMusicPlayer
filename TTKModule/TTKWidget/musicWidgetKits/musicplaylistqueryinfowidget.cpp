@@ -9,10 +9,10 @@
 #include <qmath.h>
 
 MusicPlaylistQueryInfoWidget::MusicPlaylistQueryInfoWidget(QWidget *parent)
-    : MusicAbstractItemQueryWidget(parent)
+    : MusicAbstractItemQueryWidget(parent),
+      m_commentsWidget(nullptr)
 {
     m_shareType = MusicSongSharingWidget::Module::Playlist;
-    m_commentsWidget = nullptr;
     m_queryTableWidget = new MusicPlaylistQueryTableWidget(this);
     m_container->show();
 

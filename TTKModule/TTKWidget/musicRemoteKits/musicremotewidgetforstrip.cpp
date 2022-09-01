@@ -17,6 +17,7 @@ MusicRemoteWidgetForStrip::MusicRemoteWidgetForStrip(QWidget *parent)
 
     QWidget *topWidget = new QWidget(m_mainWidget);
     m_bottomWidget = new QWidget(m_mainWidget);
+
     QVBoxLayout *mhbox = new QVBoxLayout(m_mainWidget);
     mhbox->addWidget(topWidget);
     mhbox->addWidget(m_bottomWidget);

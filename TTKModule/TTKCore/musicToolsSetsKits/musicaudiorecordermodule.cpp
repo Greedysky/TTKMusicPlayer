@@ -24,14 +24,14 @@ struct WavHeader
 
 
 MusicAudioRecorderModule::MusicAudioRecorderModule(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_inputVolume(0),
+      m_audioInputFile(nullptr),
+      m_audioOutputFile(nullptr)
 {
-    m_inputVolume = 0;
-    m_audioInputFile = nullptr;
-    m_audioOutputFile = nullptr;
-
     m_file = new QFile(this);
     m_file->setFileName(MUSIC_RECORD_FILE);
+
     m_formatFile.setChannelCount(1);
     m_formatFile.setSampleSize(16);
     m_formatFile.setSampleRate(8000);

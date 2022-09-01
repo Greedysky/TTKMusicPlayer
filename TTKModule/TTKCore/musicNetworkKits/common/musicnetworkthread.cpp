@@ -13,10 +13,12 @@
 #define NETWORK_REQUEST_ADDRESS     "www.baidu.com"  // ip
 
 MusicNetworkThread::MusicNetworkThread()
-    : QObject(nullptr), m_networkState(true)
+    : QObject(nullptr),
+      m_networkState(true)
 {
-    G_CONNECTION_PTR->setValue(className(), this);
     connect(&m_timer, SIGNAL(timeout()), SLOT(networkStateChanged()));
+
+    G_CONNECTION_PTR->setValue(className(), this);
 }
 
 MusicNetworkThread::~MusicNetworkThread()

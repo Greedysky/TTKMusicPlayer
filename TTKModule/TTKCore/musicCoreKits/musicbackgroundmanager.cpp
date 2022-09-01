@@ -4,8 +4,9 @@
 #define MAX_INDEX 5
 
 MusicBackgroundManager::MusicBackgroundManager()
+    : m_currentIndex(0)
 {
-    m_currentIndex = 0;
+
 }
 
 void MusicBackgroundManager::setArtistName(const QString &name)

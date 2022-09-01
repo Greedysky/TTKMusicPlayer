@@ -9,12 +9,10 @@ MusicMovingClickedSlider::MusicMovingClickedSlider(QWidget *parent)
 }
 
 MusicMovingClickedSlider::MusicMovingClickedSlider(Qt::Orientation orientation, QWidget *parent)
-    : MusicClickedSlider(orientation, parent)
+    : MusicClickedSlider(orientation, parent),
+      m_isMoving(false)
 {
     setMouseTracking(true);
-
-    m_isMoving = false;
-    m_orientation = orientation;
 }
 
 void MusicMovingClickedSlider::setValue(int value)

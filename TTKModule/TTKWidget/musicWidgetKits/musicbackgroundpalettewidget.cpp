@@ -57,12 +57,11 @@ void MusicBackgroundPalette::mousePressEvent(QMouseEvent *event)
 
 MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicBackgroundPaletteWidget)
+      m_ui(new Ui::MusicBackgroundPaletteWidget),
+      m_confirmButtonClicked(false)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
-
-    m_confirmButtonClicked = false;
 
     QList<QColor> colors;
     colors << QColor(225, 152, 180);

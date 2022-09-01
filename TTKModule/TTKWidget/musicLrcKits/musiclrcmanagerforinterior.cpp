@@ -3,13 +3,14 @@
 #include "musicwidgetutils.h"
 
 MusicLrcManagerForInterior::MusicLrcManagerForInterior(QWidget *parent)
-    : MusicLrcManager(parent)
+    : MusicLrcManager(parent),
+      m_gradientFontSize(0),
+      m_gradientTransparent(100)
 {
     setAlignment(Qt::AlignCenter);
+
     m_font.setPointSize(15);
     m_speedLevel = 40;
-    m_gradientFontSize = 0;
-    m_gradientTransparent = 100;
     m_position.setX(m_lrcPerWidth = LRC_PER_WIDTH);
     m_position.setY(35);
 }

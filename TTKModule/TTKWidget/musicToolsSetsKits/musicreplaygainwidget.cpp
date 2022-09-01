@@ -19,6 +19,7 @@ MusicReplayGainTableWidget::MusicReplayGainTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
     setColumnCount(5);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 332);
     headerview->resizeSection(1, 60);
@@ -36,7 +37,9 @@ void MusicReplayGainTableWidget::itemCellClicked(int row, int column)
 
 MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicReplayGainWidget), m_process(nullptr)
+      m_ui(new Ui::MusicReplayGainWidget),
+      m_replayGainWidget(nullptr),
+      m_currentIndex(-1)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -94,8 +97,6 @@ MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)
 
     m_process = new QProcess(this);
     m_process->setProcessChannelMode(QProcess::MergedChannels);
-    m_replayGainWidget = nullptr;
-    m_currentIndex = -1;
 
     initialize();
 
@@ -122,6 +123,7 @@ void MusicReplayGainWidget::initialize()
     QPluginLoader loader;
     loader.setFileName(MusicUtils::TTKQmmp::pluginPath("Light", "lightreplaygain"));
     const QObject *obj = loader.instance();
+
     LightFactory *factory = nullptr;
     if(obj && (factory = TTKObject_cast(LightFactory*, obj)))
     {

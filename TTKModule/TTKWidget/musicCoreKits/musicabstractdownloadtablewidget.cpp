@@ -7,14 +7,14 @@
 #include "musicstringutils.h"
 
 MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *parent)
-    : MusicAbstractSongsListTableWidget(parent)
+    : MusicAbstractSongsListTableWidget(parent),
+      m_type(MusicObject::Record::Null)
 {
     m_delegate = new MusicProgressBarDelegate(this);
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
-
-    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
 
 MusicAbstractDownloadTableWidget::~MusicAbstractDownloadTableWidget()

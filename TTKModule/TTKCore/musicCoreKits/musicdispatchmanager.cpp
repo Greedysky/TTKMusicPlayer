@@ -8,6 +8,7 @@ MusicDispatchManager::MusicDispatchManager()
 {
     m_timer = new QTimer(this);
     m_timer->setInterval(5000);
+
     connect(m_timer, SIGNAL(timeout()), SLOT(activeFunctions()));
     m_timer->start();
 }

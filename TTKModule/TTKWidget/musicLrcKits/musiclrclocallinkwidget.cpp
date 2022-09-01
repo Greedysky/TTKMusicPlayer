@@ -12,6 +12,7 @@ MusicLrcLocalLinkTableWidget::MusicLrcLocalLinkTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
     setColumnCount(2);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 147);
     headerview->resizeSection(1, 235);
@@ -86,7 +87,6 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     m_ui->previewButton->setFocusPolicy(Qt::NoFocus);
     m_ui->deleteButton->setFocusPolicy(Qt::NoFocus);
 #endif
-
     m_ui->fuzzyButton->setChecked(true);
 
     connect(m_ui->fuzzyButton, SIGNAL(clicked(bool)), SLOT(fuzzyStateChanged()));

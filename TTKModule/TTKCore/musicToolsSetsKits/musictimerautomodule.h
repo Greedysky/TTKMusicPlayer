@@ -34,11 +34,12 @@ struct TTK_MODULE_EXPORT MusicTimeData
     bool m_state;
 
     MusicTimeData()
+        : m_index(-1),
+          m_hour(-1),
+          m_minute(-1),
+          m_state(false)
     {
-        m_index = -1;
-        m_hour = -1;
-        m_minute = -1;
-        m_state = false;
+
     }
 };
 TTK_DECLARE_LIST(MusicTimeData);

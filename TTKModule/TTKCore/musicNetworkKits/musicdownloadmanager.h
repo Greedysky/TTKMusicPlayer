@@ -32,22 +32,25 @@ struct TTK_MODULE_EXPORT MusicDownLoadPairData
     MusicObject::Record m_type;
 
     MusicDownLoadPairData()
+        : m_timestamp(-1),
+          m_object(nullptr),
+          m_type(MusicObject::Record::NormalDownload)
     {
-        m_timestamp = -1;
-        m_object = nullptr;
-        m_type = MusicObject::Record::NormalDownload;
+
     }
 
-    MusicDownLoadPairData(qint64 t) : MusicDownLoadPairData()
+    MusicDownLoadPairData(qint64 t)
+        : MusicDownLoadPairData()
     {
         m_timestamp = t;
     }
 
     MusicDownLoadPairData(qint64 t, QObject *object, MusicObject::Record type)
+        : m_timestamp(t),
+          m_object(object),
+          m_type(type)
     {
-        m_timestamp = t;
-        m_object = object;
-        m_type = type;
+
     }
 
     inline bool operator< (const MusicDownLoadPairData &other) const

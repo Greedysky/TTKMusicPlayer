@@ -27,10 +27,9 @@ void MusicToplistQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *quer
 
 
 MusicToplistQueryWidget::MusicToplistQueryWidget(QWidget *parent)
-    : MusicAbstractItemQueryWidget(parent)
+    : MusicAbstractItemQueryWidget(parent),
+      m_categoryButton(nullptr)
 {
-    m_categoryButton = nullptr;
-
     m_queryTableWidget = new MusicToplistQueryTableWidget(this);
     m_queryTableWidget->hide();
 

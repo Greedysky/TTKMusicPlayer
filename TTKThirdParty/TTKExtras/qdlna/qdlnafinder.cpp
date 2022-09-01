@@ -25,8 +25,8 @@ public:
 };
 
 QDlnaFinderPrivate::QDlnaFinderPrivate()
+    : m_udpSock(new QUdpSocket)
 {
-    m_udpSock = new QUdpSocket;
     m_udpSock->bind(QHostAddress(QHostAddress::Any), 6000);
 }
 

@@ -6,7 +6,8 @@
 #include "musicbackgroundmanager.h"
 
 MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
-    : MusicLrcContainer(parent)
+    : MusicLrcContainer(parent),
+      m_animationFreshTime(0)
 {
     QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
     vBoxLayout->setContentsMargins(0, 0, 0, 0);
@@ -27,7 +28,6 @@ MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     m_layoutWidget->connectTo(this);
     bBoxLayout->addWidget(m_layoutWidget);
 
-    m_animationFreshTime = 0;
     m_wallThread = new MusicDesktopWallpaperThread(this);
     connect(m_wallThread, SIGNAL(updateBackground(QPixmap)), SLOT(updateBackground(QPixmap)));
 

@@ -9,11 +9,10 @@
 #include "musicwidgetutils.h"
 
 MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent)
-    : MusicFunctionToolBoxTopWidget(index, text, parent)
+    : MusicFunctionToolBoxTopWidget(index, text, parent),
+      m_songSort(nullptr),
+      m_renameEdit(nullptr)
 {
-    m_songSort = nullptr;
-    m_renameLine = nullptr;
-
     QPushButton *shareListButton = new QPushButton(this);
     shareListButton->setToolTip(tr("Share Playlist"));
     shareListButton->setStyleSheet(MusicUIObject::MQSSTinyBtnShare);
@@ -36,7 +35,7 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
 
 MusicSongsToolBoxTopWidget::~MusicSongsToolBoxTopWidget()
 {
-    delete m_renameLine;
+    delete m_renameEdit;
 }
 
 void MusicSongsToolBoxTopWidget::deleteRowItem()
@@ -51,13 +50,13 @@ void MusicSongsToolBoxTopWidget::deleteRowItemAll()
 
 void MusicSongsToolBoxTopWidget::changRowItemName()
 {
-    if(!m_renameLine)
+    if(!m_renameEdit)
     {
-        m_renameLine = new MusicSongsToolItemRenamedWidget(title(), this);
-        connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(changItemName(QString)));
-        m_renameLine->setGeometry(m_labelIcon->width(), 3, RENAME_WIDTH, height() - 6);
+        m_renameEdit = new MusicSongsToolItemRenamedWidget(title(), this);
+        connect(m_renameEdit, SIGNAL(renameFinished(QString)), SLOT(changItemName(QString)));
+        m_renameEdit->setGeometry(m_labelIcon->width(), 3, RENAME_WIDTH, height() - 6);
     }
-    m_renameLine->show();
+    m_renameEdit->show();
 }
 
 void MusicSongsToolBoxTopWidget::changItemName(const QString &name)
@@ -65,8 +64,8 @@ void MusicSongsToolBoxTopWidget::changItemName(const QString &name)
     setTitle(name + m_suffixString);
     Q_EMIT changRowItemName(m_index, name);
 
-    m_renameLine->deleteLater();
-    m_renameLine = nullptr;
+    m_renameEdit->deleteLater();
+    m_renameEdit = nullptr;
 }
 
 void MusicSongsToolBoxTopWidget::musicAddNewFiles()
@@ -171,7 +170,6 @@ bool MusicSongsToolBoxTopWidget::isItemEnabled() const
 
 void MusicSongsToolBoxTopWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-//    QWidget::contextMenuEvent(event);
     Q_UNUSED(event);
     showMenu();
 }

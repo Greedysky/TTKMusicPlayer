@@ -6,7 +6,8 @@
 #include <QAudioDeviceInfo>
 
 MusicSoundKMicroSettingPopWidget::MusicSoundKMicroSettingPopWidget(QWidget *parent)
-    : MusicToolMenuWidget(parent)
+    : MusicToolMenuWidget(parent),
+      m_recordCore(nullptr)
 {
     initialize();
 }
@@ -22,7 +23,6 @@ void MusicSoundKMicroSettingPopWidget::initialize()
     setFixedSize(54, 24);
     setTranslucentBackground();
 
-    m_recordCore = nullptr;
     m_containWidget->setFixedSize(310, 190);
     m_containWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle08 + MusicUIObject::MQSSColorStyle03);
 

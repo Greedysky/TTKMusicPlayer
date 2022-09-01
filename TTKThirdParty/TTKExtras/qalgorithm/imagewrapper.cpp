@@ -191,11 +191,10 @@ public:
 };
 
 CubeWavePrivate::CubeWavePrivate()
-    : SharpeImagePrivate()
+    : SharpeImagePrivate(),
+      m_row(0),
+      m_column(0)
 {
-    m_row = 0;
-    m_column = 0;
-
     QAlgorithm::initRandom();
 }
 
@@ -502,7 +501,4 @@ QPixmap WaterWave::render(const QPixmap &pixmap, int value)
 
     return pix;
 }
-
-
-////////////////////////////////////////////////////////////////////////
 }

@@ -138,7 +138,7 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
     
     MusicSongSort *m_songSort;
-    MusicSongsToolItemRenamedWidget *m_renameLine;
+    MusicSongsToolItemRenamedWidget *m_renameEdit;
 
 };
 

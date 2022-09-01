@@ -9,11 +9,10 @@ MusicDownloadQueueRequest::MusicDownloadQueueRequest(MusicObject::Download type,
 }
 
 MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueData &data, MusicObject::Download type, QObject *parent)
-    : MusicAbstractDownLoadRequest(data.m_url, data.m_savePath, type, parent)
+    : MusicAbstractDownLoadRequest(data.m_url, data.m_savePath, type, parent),
+      m_isDownload(false),
+      m_isAbort(false)
 {
-    m_isDownload = false;
-    m_isAbort = false;
-
     m_request = new QNetworkRequest;
     MusicObject::setSslConfiguration(m_request);
 }

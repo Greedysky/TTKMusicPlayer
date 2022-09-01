@@ -1,12 +1,13 @@
 #include "musicabstractqueryrequest.h"
 
 MusicAbstractQueryRequest::MusicAbstractQueryRequest(QObject *parent)
-    : MusicPageQueryRequest(parent)
+    : MusicPageQueryRequest(parent),
+      m_queryServer("Invalid"),
+      m_queryQuality(MusicObject::QueryQuality::Standard),
+      m_queryAllRecords(false),
+      m_queryLite(false)
 {
-    m_queryServer = "Invalid";
-    m_queryQuality = MusicObject::QueryQuality::Standard;
-    m_queryAllRecords = false;
-    m_queryLite = false;
+
 }
 
 void MusicAbstractQueryRequest::startToSingleSearch(const QString &value)

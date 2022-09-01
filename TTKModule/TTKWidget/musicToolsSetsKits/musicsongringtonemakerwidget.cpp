@@ -11,7 +11,10 @@
 
 MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicSongRingtoneMaker)
+      m_ui(new Ui::MusicSongRingtoneMaker),
+      m_playRingtone(false),
+      m_startPos(0),
+      m_stopPos(DEFAULT_HIGH_LEVEL)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -37,18 +40,14 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     m_ui->playRingButton->setFocusPolicy(Qt::NoFocus);
     m_ui->saveSongButton->setFocusPolicy(Qt::NoFocus);
 #endif
+    m_player = new MusicCoreMPlayer(this);
 
     initialize();
-
-    m_startPos = 0;
-    m_stopPos = DEFAULT_HIGH_LEVEL;
-    m_playRingtone = false;
 
     m_ui->playSongButton->setEnabled(false);
     m_ui->playRingButton->setEnabled(false);
     m_ui->saveSongButton->setEnabled(false);
     m_ui->cutSliderWidget->resizeWindow(440, 55);
-    m_player = new MusicCoreMPlayer(this);
 
     connect(m_ui->addSongButton, SIGNAL(clicked()), SLOT(initInputPath()));
     connect(m_ui->playSongButton, SIGNAL(clicked()), SLOT(playInputSong()));

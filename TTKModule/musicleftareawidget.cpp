@@ -16,13 +16,13 @@
 MusicLeftAreaWidget *MusicLeftAreaWidget::m_instance = nullptr;
 
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_currentIndex(0),
+      m_stackedWidget(nullptr),
+      m_qualityChoiceWidget(nullptr),
+      m_cloudSharedSongWidget(nullptr)
 {
     m_instance = this;
-    m_stackedWidget = nullptr;
-    m_qualityChoiceWidget = nullptr;
-    m_cloudSharedSongWidget = nullptr;
-    m_currentIndex = 0;
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()

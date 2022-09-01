@@ -14,6 +14,7 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
 
     m_showLrcAction = new QAction(QIcon(":/contextMenu/btn_lrc_label"),tr("Show Desktop Lrc"), this);
     connect(m_showLrcAction, SIGNAL(triggered()), SLOT(showDesktopLrc()));
+
     m_lockLrcAction = new QAction(QIcon(":/contextMenu/btn_lock"), tr("Lock Lrc"), this);
     connect(m_lockLrcAction, SIGNAL(triggered()), SLOT(setWindowLockedChanged()));
 #ifndef Q_OS_UNIX

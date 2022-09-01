@@ -5,10 +5,10 @@
 #include "musicdiscoverlistrequest.h"
 
 MusicSongSearchInteriorEdit::MusicSongSearchInteriorEdit(QWidget *parent)
-    : MusicSearchEdit(parent)
+    : MusicSearchEdit(parent),
+      m_popWidget(nullptr),
+      m_suggestRequest(nullptr)
 {
-    m_popWidget = nullptr;
-    m_suggestRequest = nullptr;
     connect(this, SIGNAL(textChanged(QString)), SLOT(textChanged(QString)));
 
     m_discoverRequest = G_DOWNLOAD_QUERY_PTR->makeDiscoverListRequest(this);

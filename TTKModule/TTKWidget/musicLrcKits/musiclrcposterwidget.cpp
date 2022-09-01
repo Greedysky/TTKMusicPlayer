@@ -17,10 +17,9 @@
 #define ITEM_HEIGHT         330
 
 MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_type(Format::Type01)
 {
-    m_type = Format::Type01;
-
     m_pixmap.load(G_BACKGROUND_PTR->artistPhotoPathNoIndex());
     if(m_pixmap.isNull())
     {
@@ -836,13 +835,13 @@ MusicLrcPosterTableWidget::MusicLrcPosterTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-
     setColumnCount(2);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 237);
+
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 }
 
 void MusicLrcPosterTableWidget::createAllItems(const QStringList &lrcs)

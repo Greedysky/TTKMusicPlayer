@@ -6,9 +6,8 @@
 MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
     : MusicAbstractDownloadTableWidget(parent)
 {
-    G_CONNECTION_PTR->setValue(className(), this);
-
     setColumnCount(4);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
     headerview->resizeSection(1, 168);
@@ -21,6 +20,8 @@ MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
 
     MusicUtils::Widget::setTransparent(this, 0);
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
+
+    G_CONNECTION_PTR->setValue(className(), this);
 }
 
 MusicDownloadRecordTableWidget::~MusicDownloadRecordTableWidget()

@@ -29,25 +29,22 @@
 
 
 MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
-    : MusicAbstractSongsListTableWidget(parent),
+    : MusicAbstractSongsListTableWidget(index, parent),
       m_parentClass(parent),
+      m_dragStartIndex(-1),
+      m_mouseMoved(false),
       m_openFileWidget(nullptr),
       m_songsInfoWidget(nullptr),
-      m_songsPlayWidget(nullptr)
+      m_songsPlayWidget(nullptr),
+      m_leftButtonPressed(false),
+      m_renameActived(false),
+      m_deleteItemWithFile(false),
+      m_renameItem(nullptr),
+      m_renameLineEditDelegate(nullptr),
+      m_songSort(nullptr)
 {
-    m_deleteItemWithFile = false;
-    m_renameActived = false;
-    m_renameItem = nullptr;
-    m_dragStartIndex = -1;
-    m_leftButtonPressed = false;
-    m_mouseMoved = false;
-    m_toolIndex = index;
-    m_renameLineEditDelegate = nullptr;
-    m_songSort = nullptr;
-
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
     setColumnCount(6);
 
     QHeaderView *headerview = horizontalHeader();
@@ -84,6 +81,7 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongList &songs)
     const int count = rowCount();
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
+
     for(int i = count; i < songs.count(); ++i)
     {
         QTableWidgetItem *item = new QTableWidgetItem;

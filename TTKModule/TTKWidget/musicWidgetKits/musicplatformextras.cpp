@@ -185,7 +185,8 @@ public:
 
 
 MusicPlatformExtras::MusicPlatformExtras(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_disableBlurBehindWindow(true)
 {
 #ifdef Q_OS_WIN
     m_platformExtras = new MusicWindowsExtras;
@@ -194,7 +195,6 @@ MusicPlatformExtras::MusicPlatformExtras(QObject *parent)
 #else
     m_platformExtras = new MusicMacExtras;
 #endif
-    m_disableBlurBehindWindow = true;
 }
 
 MusicPlatformExtras::~MusicPlatformExtras()

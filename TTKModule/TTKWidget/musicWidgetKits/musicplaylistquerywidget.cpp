@@ -120,19 +120,19 @@ void MusicPlaylistQueryItemWidget::currentItemClicked()
 
 
 MusicPlaylistQueryWidget::MusicPlaylistQueryWidget(QWidget *parent)
-    : MusicAbstractItemQueryWidget(parent)
+    : MusicAbstractItemQueryWidget(parent),
+      m_initialized(false),
+      m_categoryChanged(false),
+      m_gridLayout(nullptr),
+      m_pageQueryWidget(nullptr),
+      m_infoWidget(nullptr),
+      m_categoryButton(nullptr)
 {
     m_container->show();
     layout()->removeWidget(m_mainWindow);
     layout()->addWidget(m_container);
     m_container->addWidget(m_mainWindow);
 
-    m_initialized = false;
-    m_categoryChanged = false;
-    m_infoWidget = nullptr;
-    m_gridLayout = nullptr;
-    m_categoryButton = nullptr;
-    m_pageQueryWidget = nullptr;
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makePlaylistRequest(this);
     connect(m_networkRequest, SIGNAL(createPlaylistItem(MusicResultsItem)), SLOT(createPlaylistItem(MusicResultsItem)));
 }

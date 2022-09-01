@@ -3,7 +3,8 @@
 #include <QGraphicsOpacityEffect>
 
 MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
-    : MusicRemoteWidget(parent)
+    : MusicRemoteWidget(parent),
+      m_interval(0.0f)
 {
     setGeometry(200, 200, 100, 100);
     adjustPosition(this);
@@ -35,7 +36,6 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
     mainWidgetLayout->setAlignment(m_showMainWindowButton, Qt::AlignCenter);
     mainWidgetLayout->addWidget(m_volumeWidget);
 
-    m_interval = 0.0f;
     for(int i = 0; i < 4; ++i)
     {
         m_effect[i] = new QGraphicsOpacityEffect(this);

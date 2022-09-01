@@ -4,15 +4,17 @@
 #include <QFontDatabase>
 
 MusicLrcColor::MusicLrcColor()
+    : m_index(Color::Null)
 {
 
 }
 
 MusicLrcColor::MusicLrcColor(const QList<QColor> &front, const QList<QColor> &back, Color index)
+    : m_frontColor(front),
+      m_backColor(back),
+      m_index(index)
 {
-    m_frontColor = front;
-    m_backColor = back;
-    m_index = index;
+
 }
 
 MusicLrcColor MusicLrcColor::mapIndexToColor(Color index)
@@ -150,19 +152,17 @@ QString MusicLrcColor::writeColorConfig(const QList<QColor> &colors)
 
 
 MusicLrcManager::MusicLrcManager(QWidget *parent)
-    : QLabel(parent)
+    : QLabel(parent),
+      m_lrcMaskWidth(0),
+      m_lrcMaskWidthInterval(0),
+      m_intervalCount(0.0f),
+      m_lrcPerWidth(0),
+      m_transparent(100),
+      m_speedLevel(1)
 {
-    m_intervalCount = 0.0f;
-
+    m_font.setBold(true);
     m_linearGradient.setStart(0, 0);
     m_maskLinearGradient.setStart(0, 0);
-
-    m_font.setBold(true);
-
-    m_lrcMaskWidth = 0;
-    m_lrcMaskWidthInterval = 0;
-    m_speedLevel = 1;
-    m_transparent = 100;
 
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), SLOT(setUpdateMask()));

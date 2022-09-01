@@ -9,9 +9,8 @@ Q_DECLARE_METATYPE(MusicCloudDataItem)
 MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     : MusicAbstractDownloadTableWidget(parent)
 {
-    G_CONNECTION_PTR->setValue(className(), this);
-
     setColumnCount(4);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
     headerview->resizeSection(1, 168);
@@ -26,6 +25,8 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
     setFixedHeight(0);
+
+    G_CONNECTION_PTR->setValue(className(), this);
 }
 
 MusicCloudDownloadTableWidget::~MusicCloudDownloadTableWidget()
@@ -64,9 +65,8 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicSong &recor
 MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     : MusicAbstractDownloadTableWidget(parent)
 {
-    G_CONNECTION_PTR->setValue(className(), this);
-
     setColumnCount(3);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
     headerview->resizeSection(1, 251);
@@ -79,6 +79,8 @@ MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
     setFixedHeight(0);
+
+    G_CONNECTION_PTR->setValue(className(), this);
 }
 
 MusicCloudUploadTableWidget::~MusicCloudUploadTableWidget()

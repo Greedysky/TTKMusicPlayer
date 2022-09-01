@@ -9,15 +9,14 @@
 
 MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicSongDlnaTransferWidget)
+      m_ui(new Ui::MusicSongDlnaTransferWidget),
+      m_isPlaying(false),
+      m_currentPlayIndex(-1),
+      m_songs(nullptr)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
     setAttribute(Qt::WA_DeleteOnClose);
-
-    m_isPlaying = false;
-    m_currentPlayIndex = -1;
-    m_songs = nullptr;
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);

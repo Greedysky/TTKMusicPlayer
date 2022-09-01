@@ -5,14 +5,14 @@
 #include "musicttkfmradioplaywidget.h"
 
 MusicWebRadioView::MusicWebRadioView(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_ttkRadio(nullptr)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
     m_radio = new MusicWebFMRadioWidget(this);
-    m_ttkRadio = nullptr;
 
     QWidget *bottomWidget = new QWidget(this);
     bottomWidget->setFixedHeight(40);

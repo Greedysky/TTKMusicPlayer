@@ -19,23 +19,21 @@
 #define  RECENT_ITEM_MAX_COUNT      50
 
 MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
-    : MusicSongsToolBoxWidget(parent)
+    : MusicSongsToolBoxWidget(parent),
+      m_playToolIndex(MUSIC_NORMAL_LIST),
+      m_searchResultLevel(0),
+      m_lastSearchIndex(MUSIC_NORMAL_LIST),
+      m_selectImportIndex(MUSIC_NORMAL_LIST),
+      m_selectDeleteIndex(MUSIC_NORMAL_LIST),
+      m_toolDeleteChanged(false),
+      m_listFunctionWidget(nullptr),
+      m_songSearchWidget(nullptr)
 {
-    m_playToolIndex = MUSIC_NORMAL_LIST;
-    m_searchResultLevel = 0;
-    m_lastSearchIndex = MUSIC_NORMAL_LIST;
-    m_selectImportIndex = MUSIC_NORMAL_LIST;
-    m_selectDeleteIndex = MUSIC_NORMAL_LIST;
-    m_toolDeleteChanged = false;
-
     m_listMaskWidget = new MusicSongsToolBoxMaskWidget(this);
     setInputModule(m_listMaskWidget);
 
     connect(m_listMaskWidget, SIGNAL(itemIndexChanged(int)), SLOT(itemIndexChanged(int)));
     connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(sliderValueChanaged(int)));
-
-    m_listFunctionWidget = nullptr;
-    m_songSearchWidget = nullptr;
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::className(), className());

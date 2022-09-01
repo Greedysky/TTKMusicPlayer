@@ -6,10 +6,10 @@
 #include <QTimer>
 
 MusicVolumePopWidget::MusicVolumePopWidget(QWidget *parent)
-    : MusicToolMenuWidget(parent)
+    : MusicToolMenuWidget(parent),
+      m_menuShown(false)
 {
     initialize();
-    m_menuShown = false;
 
     disconnect(this, SIGNAL(clicked()), this, SLOT(popupMenu()));
 }

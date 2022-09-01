@@ -63,6 +63,7 @@ protected:
     bool m_leftPressed;
 };
 
+
 /*! @brief The class of the video view widget.
  * @author Greedysky <greedysky@163.com>
  */

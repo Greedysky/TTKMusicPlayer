@@ -1,9 +1,10 @@
 #include "musicdownloadrecordconfigmanager.h"
 
 MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(MusicObject::Record type, QObject *parent)
-    : MusicAbstractXml(parent)
+    : MusicAbstractXml(parent),
+      m_type(type)
 {
-    m_type = type;
+
 }
 
 void MusicDownloadRecordConfigManager::readBuffer(MusicSongList &items)

@@ -9,13 +9,12 @@
 #define DRAG_FORMAT     "Swap Item"
 
 MusicFunctionToolBoxTopWidget::MusicFunctionToolBoxTopWidget(int index, const QString &text, QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_index(index),
+      m_isDrawTopState(false),
+      m_isDrawMoveState(false),
+      m_isBlockMoveExpand(false)
 {
-    m_index = index;
-    m_isDrawTopState = false;
-    m_isDrawMoveState = false;
-    m_isBlockMoveExpand = false;
-
     setAcceptDrops(true);
     setFixedHeight(40);
 
@@ -25,6 +24,7 @@ MusicFunctionToolBoxTopWidget::MusicFunctionToolBoxTopWidget(int index, const QS
 
     m_labelIcon = new QLabel(this);
     m_labelIcon->setPixmap(QPixmap(":/tiny/lb_arrow_up_normal"));
+
     m_labelText = new QLabel(this);
     m_labelText->setStyleSheet(MusicUIObject::MQSSColorStyle09);
     m_labelText->setText(text);
@@ -181,11 +181,12 @@ void MusicFunctionToolBoxTopWidget::paintEvent(QPaintEvent *event)
 
 
 MusicFunctionToolBoxWidgetItem::MusicFunctionToolBoxWidgetItem(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_layout(nullptr),
+      m_item(nullptr),
+      m_topWidget(nullptr)
 {
-    m_layout = nullptr;
-    m_item = nullptr;
-    m_topWidget = nullptr;
+
 }
 
 MusicFunctionToolBoxWidgetItem::MusicFunctionToolBoxWidgetItem(int index, const QString &text, QWidget *parent)
@@ -264,12 +265,11 @@ MusicNormalToolBoxWidgetItem::MusicNormalToolBoxWidgetItem(int index, const QStr
 
 
 MusicFunctionToolBoxWidget::MusicFunctionToolBoxWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_currentIndex(-1),
+      m_itemIndexRaise(0)
 {
     setAttribute(Qt::WA_TranslucentBackground);
-
-    m_currentIndex = -1;
-    m_itemIndexRaise = 0;
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);

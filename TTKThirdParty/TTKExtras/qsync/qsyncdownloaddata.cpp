@@ -10,7 +10,8 @@
 class QSyncDownloadDataPrivate : public QSyncDataInterfacePrivate
 {
 public:
-    QSyncDownloadDataPrivate() : QSyncDataInterfacePrivate()
+    QSyncDownloadDataPrivate()
+        : QSyncDataInterfacePrivate()
     {
     }
 

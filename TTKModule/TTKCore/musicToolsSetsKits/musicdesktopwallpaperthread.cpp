@@ -7,17 +7,16 @@
 #include <QPixmap>
 
 MusicDesktopWallpaperThread::MusicDesktopWallpaperThread(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_run(false),
+      m_random(false),
+      m_currentImageIndex(0)
 {
     MusicTime::initRandom();
 
-    m_run = false;
-    m_random = false;
-    m_currentImageIndex = 0;
     m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), SLOT(timeout()));
-
     setInterval(20 * MT_S2MS);
+    connect(m_timer, SIGNAL(timeout()), SLOT(timeout()));
 }
 
 MusicDesktopWallpaperThread::~MusicDesktopWallpaperThread()

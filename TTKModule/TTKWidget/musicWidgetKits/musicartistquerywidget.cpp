@@ -95,13 +95,12 @@ void MusicArtistAlbumsItemWidget::currentItemClicked()
 
 
 MusicArtistMvsQueryWidget::MusicArtistMvsQueryWidget(QWidget *parent)
-    : MusicAbstractItemQueryWidget(parent)
+    : MusicAbstractItemQueryWidget(parent),
+      m_initialized(false),
+      m_pageQueryWidget(nullptr)
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
-
-    m_pageQueryWidget = nullptr;
-    m_initialized = false;
 
     QWidget *function = new QWidget(m_mainWindow);
     m_gridLayout = new QGridLayout(function);
@@ -284,10 +283,10 @@ void MusicArtistQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query
 
 
 MusicArtistQueryWidget::MusicArtistQueryWidget(QWidget *parent)
-    : MusicAbstractItemQueryWidget(parent)
+    : MusicAbstractItemQueryWidget(parent),
+      m_artistAlbums(nullptr),
+      m_artistMvs(nullptr)
 {
-    m_artistAlbums = nullptr;
-    m_artistMvs = nullptr;
     m_shareType = MusicSongSharingWidget::Module::Artist;
     m_queryTableWidget = new MusicArtistQueryTableWidget(this);
     m_queryTableWidget->hide();

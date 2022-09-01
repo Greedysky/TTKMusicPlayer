@@ -9,8 +9,6 @@ MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-    MusicUtils::Widget::setTransparent(this, 150);
-
     setColumnCount(5);
 
     QHeaderView *headerview = horizontalHeader();
@@ -21,6 +19,7 @@ MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
     headerview->resizeSection(4, 26);
 
     m_songs = new MusicSongList;
+    MusicUtils::Widget::setTransparent(this, 150);
 }
 
 MusicLocalSongsTableWidget::~MusicLocalSongsTableWidget()
@@ -101,16 +100,15 @@ MusicLocalSongsInfoTableWidget::MusicLocalSongsInfoTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-    MusicUtils::Widget::setTransparent(this, 150);
-
-    setColumnCount(3);
     setIconSize(QSize(50, 50));
+    setColumnCount(3);
 
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 60);
     headerview->resizeSection(1, 447);
     headerview->resizeSection(2, 120);
 
+    MusicUtils::Widget::setTransparent(this, 150);
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
 

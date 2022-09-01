@@ -2,11 +2,11 @@
 #include "musictime.h"
 
 MusicPlaylist::MusicPlaylist(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_currentIndex(-1),
+      m_playbackMode(MusicObject::PlayMode::Order)
 {
     MusicTime::initRandom();
-    m_currentIndex = -1;
-    m_playbackMode = MusicObject::PlayMode::Order;
 }
 
 MusicObject::PlayMode MusicPlaylist::playbackMode() const

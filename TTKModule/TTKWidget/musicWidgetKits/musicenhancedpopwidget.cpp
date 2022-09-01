@@ -15,10 +15,9 @@
 #define LABEL_BUTTON_HEIGHT 111
 
 MusicEnhancedToolButton::MusicEnhancedToolButton(QWidget *parent)
-    : QToolButton(parent)
+    : QToolButton(parent),
+      m_state(false)
 {
-    m_state = false;
-
     m_animationLabel = new QLabel(this);
     m_animationLabel->setGeometry(-LABEL_ANIMAT_WIDGET, 0, LABEL_ANIMAT_WIDGET, LABEL_BUTTON_HEIGHT);
     m_animationLabel->setAttribute(Qt::WA_TransparentForMouseEvents, true);

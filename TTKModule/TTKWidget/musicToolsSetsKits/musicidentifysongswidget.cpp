@@ -14,11 +14,15 @@
 #include <QShortcut>
 
 MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_lrcLabel(nullptr),
+      m_player(nullptr),
+      m_analysis(nullptr)
 {
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
+
     m_mainWindow = new QStackedWidget(this);
     m_mainWindow->setObjectName("MainWindow");
     m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle12));
@@ -29,9 +33,6 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
     m_timer->setInterval(10 * MT_S2MS);
     connect(m_timer, SIGNAL(timeout()), SLOT(detectedTimeOut()));
 
-    m_lrcLabel = nullptr;
-    m_player = nullptr;
-    m_analysis = nullptr;
     m_recordCore = new MusicAudioRecorderModule(this);
     m_detectedThread = new MusicIdentifySongsRequest(this);
 

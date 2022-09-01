@@ -11,7 +11,9 @@
 
 MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicFileInformationWidget)
+      m_ui(new Ui::MusicFileInformationWidget),
+      m_advanceOn(false),
+      m_deleteOn(false)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -25,8 +27,6 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
     setEditLineEnabled(false);
 
-    m_advanceOn = false;
-    m_deleteOn = false;
     advanceClicked();
 
     QPixmap pix(":/image/lb_default_art");

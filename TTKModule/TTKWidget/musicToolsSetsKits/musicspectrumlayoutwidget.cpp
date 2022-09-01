@@ -6,10 +6,10 @@
 #include <QScrollArea>
 
 MusicSpectrumLayoutItem::MusicSpectrumLayoutItem(QWidget *parent)
-    : MusicClickedLabel(parent)
+    : MusicClickedLabel(parent),
+      m_isSelected(false)
 {
     setFixedSize(219, 123);
-    m_isSelected = false;
 }
 
 void MusicSpectrumLayoutItem::addItem(const QString &item, const QString &tip)

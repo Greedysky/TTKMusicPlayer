@@ -34,9 +34,10 @@ struct TTK_MODULE_EXPORT MusicDispatchItem
     TTKVariantList m_args;
 
     MusicDispatchItem()
+        : m_type(-1),
+          m_times(0)
     {
-        m_times = 0;
-        m_type = -1;
+
     }
 
     inline bool isEmpty() const

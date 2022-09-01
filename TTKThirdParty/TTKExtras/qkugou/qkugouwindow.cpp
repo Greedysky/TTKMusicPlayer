@@ -38,10 +38,11 @@ public:
 };
 
 QKugouWindowPrivate::QKugouWindowPrivate()
+    : m_webView(nullptr),
+      m_topWidget(nullptr),
+      m_buttonGroup(nullptr)
 {
-    m_buttonGroup = nullptr;
-    m_topWidget = nullptr;
-    m_webView = nullptr;
+
 }
 
 QKugouWindowPrivate::~QKugouWindowPrivate()

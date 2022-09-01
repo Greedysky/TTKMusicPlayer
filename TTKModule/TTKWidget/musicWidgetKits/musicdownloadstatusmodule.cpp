@@ -8,11 +8,10 @@
 #include "musicdownloadimagerequest.h"
 
 MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_previousState(true),
+      m_parentClass(TTKStatic_cast(MusicApplication*, parent))
 {
-    m_previousState = true;
-    m_parentClass = TTKStatic_cast(MusicApplication*, parent);
-
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::className(), className());
     G_CONNECTION_PTR->poolConnect(MusicNetworkThread::className(), className());

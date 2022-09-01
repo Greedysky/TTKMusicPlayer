@@ -7,10 +7,11 @@
 #include <qmath.h>
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_lineMax(0),
+      m_currentLrcIndex(0)
 {
-    m_lineMax = 0;
-    m_currentLrcIndex = 0;
+
 }
 
 MusicLrcAnalysis::~MusicLrcAnalysis()

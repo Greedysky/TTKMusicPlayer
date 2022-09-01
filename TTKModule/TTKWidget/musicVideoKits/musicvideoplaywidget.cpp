@@ -15,7 +15,8 @@
 #define WINDOW_WIDTH    678
 
 MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
-    : MusicAbstractMoveWidget(false, parent)
+    : MusicAbstractMoveWidget(false, parent),
+      m_backButton(nullptr)
 {
     setWindowTitle(tr("TTKMovie"));
 
@@ -27,6 +28,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
+
     m_topWidget = new QWidget(this);
     m_topWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle06 + MusicUIObject::MQSSBorderStyle01);
 
@@ -69,7 +71,6 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     setLayout(layout);
 
     m_searchEdit->hide();
-    m_backButton = nullptr;
     m_topWidget->raise();
 
     m_videoFloatWidget = new MusicVideoFloatWidget(this);

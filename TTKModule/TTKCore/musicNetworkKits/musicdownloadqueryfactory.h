@@ -97,15 +97,15 @@ public:
     /*!
      * Make download lrc object by type.
      */
-    MusicAbstractDownLoadRequest *makeLrcRequest(const QString &url, const QString &save, QObject *parent = nullptr);
+    MusicAbstractDownLoadRequest *makeLrcRequest(const QString &url, const QString &path, QObject *parent = nullptr);
     /*!
      * Make download art cover object by type.
      */
-    MusicAbstractDownLoadRequest *makeCoverRequest(const QString &url, const QString &save, QObject *parent = nullptr);
+    MusicAbstractDownLoadRequest *makeCoverRequest(const QString &url, const QString &path, QObject *parent = nullptr);
     /*!
      * Make download art background object by type.
      */
-    MusicDownloadImageRequest *makeBackgroundRequest(const QString &name, const QString &save, QObject *parent = nullptr);
+    MusicDownloadImageRequest *makeBackgroundRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 
 protected:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)

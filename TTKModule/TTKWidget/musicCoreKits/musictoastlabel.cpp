@@ -6,7 +6,8 @@
 #include <QPropertyAnimation>
 
 MusicToastLabel::MusicToastLabel(QWidget *parent)
-    : QLabel(parent)
+    : QLabel(parent),
+      m_font(font())
 {
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
@@ -15,7 +16,6 @@ MusicToastLabel::MusicToastLabel(QWidget *parent)
     setFontSize(15);
     setFontMargin(20, 20);
 
-    m_font = font();
     connect(&m_timer, SIGNAL(timeout()), SLOT(closeAnimation()));
     m_timer.setInterval(MT_S2MS);
     m_timer.start();

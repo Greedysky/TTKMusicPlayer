@@ -70,9 +70,9 @@ protected:
      */
     void setRowColor(int row, const QColor &color) const;
 
-    QColor m_backgroundColor;
     int m_previousColorRow;
     int m_previousClickRow;
+    QColor m_backgroundColor;
 
 };
 

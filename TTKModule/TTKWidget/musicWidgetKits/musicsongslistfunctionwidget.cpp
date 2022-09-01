@@ -6,7 +6,8 @@
 #include <QPropertyAnimation>
 
 MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
-    : QLabel(parent)
+    : QLabel(parent),
+      m_currentAnimationValue(1)
 {
     setWindowFlags(Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
@@ -34,7 +35,6 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     connect(locationButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicCurrentPlayLocation()));
     connect(searchButton, SIGNAL(clicked()), parent, SLOT(showSearchWidget()));
 
-    m_currentAnimationValue = 1;
     m_timer.setInterval(3 * MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(leaveTimeout()));
 

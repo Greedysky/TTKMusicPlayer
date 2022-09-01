@@ -41,15 +41,17 @@ struct TTK_MODULE_EXPORT MusicDownloadTableItemRole
     QString m_size;
 
     MusicDownloadTableItemRole()
+        : m_bitrate(-1)
     {
-        m_bitrate = -1;
+
     }
 
     MusicDownloadTableItemRole(int b, const QString &f, const QString &s)
+        : m_bitrate(b),
+          m_format(f),
+          m_size(s)
     {
-        m_bitrate = b;
-        m_format = f;
-        m_size = s;
+
     }
 
     inline bool isEmpty() const
@@ -62,6 +64,7 @@ struct TTK_MODULE_EXPORT MusicDownloadTableItemRole
         return m_bitrate == r.m_bitrate && m_format == r.m_format && m_size == r.m_size;
     }
 };
+
 
 /*! @brief The class of the download table item.
  * @author Greedysky <greedysky@163.com>
@@ -133,6 +136,7 @@ protected:
     QList<QObject*> m_items;
 
 };
+
 
 /*! @brief The class of the download widget.
  * @author Greedysky <greedysky@163.com>

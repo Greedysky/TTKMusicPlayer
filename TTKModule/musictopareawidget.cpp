@@ -19,18 +19,17 @@
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 
 MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_backgroundWidget(nullptr),
+      m_remoteWidget(nullptr),
+      m_lastRemoteBeforeWallpaper(-1),
+      m_backgroundListAlpha(60)
 {
     m_instance = this;
-    m_backgroundWidget = nullptr;
-    m_remoteWidget = nullptr;
 
     m_pictureCarouselTimer.setInterval(10 * MT_S2MS);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
     connect(G_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
-
-    m_backgroundListAlpha = 60;
-    m_lastRemoteBeforeWallpaper = -1;
 
     Visual::initialize(MusicApplication::instance());
 }

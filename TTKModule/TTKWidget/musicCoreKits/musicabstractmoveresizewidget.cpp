@@ -6,11 +6,11 @@
 #define DISTANCE  5
 
 MusicAbstractMoveResizeWidget::MusicAbstractMoveResizeWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_direction(Direction::No)
 {
     m_struct.m_mouseLeftPress = false;
     m_struct.m_isPressBorder = false;
-    m_direction = Direction::No;
 
     setWindowFlags(Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);

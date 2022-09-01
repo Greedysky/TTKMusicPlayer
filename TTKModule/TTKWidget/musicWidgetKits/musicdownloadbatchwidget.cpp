@@ -7,9 +7,9 @@
 Q_DECLARE_METATYPE(MusicObject::MusicSongProperty)
 
 MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_supperClass(parent)
 {
-    m_supperClass = parent;
     m_songName = new QLabel(this);
     m_singer = new QLabel(this);
     m_information = new QLabel(this);
@@ -263,11 +263,10 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
 
 
 MusicDownloadBatchTableWidget::MusicDownloadBatchTableWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent)
+    : MusicAbstractTableWidget(parent),
+      m_supperClass(nullptr),
+      m_downloadOffset(0)
 {
-    m_supperClass = nullptr;
-    m_downloadOffset = 0;
-
     setColumnCount(1);
 
     QHeaderView *headerview = horizontalHeader();

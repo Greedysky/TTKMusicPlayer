@@ -18,8 +18,9 @@ public:
 };
 
 TTKRunObjectPrivate::TTKRunObjectPrivate()
+    : m_process(nullptr)
 {
-    m_process = nullptr;
+
 }
 
 TTKRunObjectPrivate::~TTKRunObjectPrivate()

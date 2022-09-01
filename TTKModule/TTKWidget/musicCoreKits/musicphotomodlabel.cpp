@@ -5,13 +5,14 @@
 #include <QWheelEvent>
 
 MusicPhotoModLabel::MusicPhotoModLabel(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_ratio(0.0f),
+      m_picMoved(false),
+      m_width(0),
+      m_height(0),
+      m_originWidth(0)
 {
-    m_width = 0;
-    m_height = 0;
-    m_originWidth = 0;
-    m_ratio = 0.0f;
-    m_picMoved = false;
+
 }
 
 void MusicPhotoModLabel::setImagePath(const QString &path)

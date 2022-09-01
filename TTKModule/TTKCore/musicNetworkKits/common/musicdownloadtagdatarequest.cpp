@@ -4,8 +4,8 @@
 
 #include <QImage>
 
-MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent)
-    : MusicDownloadDataRequest(url, save, type, parent)
+MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent)
+    : MusicDownloadDataRequest(url, path, type, parent)
 {
     m_needUpdate = false;
 }

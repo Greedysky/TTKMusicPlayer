@@ -7,10 +7,11 @@
 #define PAGE_SIZE   10
 
 MusicPageQueryWidget::MusicPageQueryWidget(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_currentPage(0),
+      m_pageWidget(nullptr)
 {
-    m_currentPage = 0;
-    m_pageWidget = nullptr;
+
 }
 
 MusicPageQueryWidget::~MusicPageQueryWidget()

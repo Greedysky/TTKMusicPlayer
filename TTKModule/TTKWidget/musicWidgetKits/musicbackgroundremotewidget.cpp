@@ -8,7 +8,9 @@
 #include <QDir>
 
 MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_currentIndex(-1),
+      m_downloadRequest(nullptr)
 {
     QHBoxLayout *hbox = new QHBoxLayout(this);
     hbox->setContentsMargins(0, 0, 0, 0);
@@ -17,9 +19,6 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     m_backgroundList = new MusicBackgroundListWidget(this);
     hbox->addWidget(m_backgroundList);
     setLayout(hbox);
-
-    m_currentIndex = -1;
-    m_downloadRequest = nullptr;
 
     m_downloadQueue = new MusicDownloadQueueRequest(MusicObject::Download::Background, this);
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
@@ -136,9 +135,9 @@ void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroupList
 
 
 MusicBackgroundOnlineWidget::MusicBackgroundOnlineWidget(QWidget *parent)
-    : MusicBackgroundRemoteWidget(parent)
+    : MusicBackgroundRemoteWidget(parent),
+      m_functionsWidget(nullptr)
 {
-    m_functionsWidget = nullptr;
     m_backgroundList->setType(MusicBackgroundListWidget::Four);
 }
 

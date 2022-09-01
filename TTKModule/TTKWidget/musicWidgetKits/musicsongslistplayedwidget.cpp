@@ -9,14 +9,13 @@
 
 MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *parent)
     : QWidget(parent),
+      m_currentPlayIndex(index),
       m_parentClass(parent)
 {
     QPalette pal = palette();
     pal.setBrush(QPalette::Base, QBrush(QColor(0, 0, 0, 20)));
     setPalette(pal);
     setAutoFillBackground(true);
-
-    m_currentPlayIndex = index;
 
     m_textLabel = new QLabel(this);
     m_textLabel->setStyleSheet(MusicUIObject::MQSSColorStyle10);
@@ -57,7 +56,6 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
     connect(m_downloadButton, SIGNAL(clicked()), MusicLeftAreaWidget::instance(), SLOT(musicDownloadSongToLocal()));
     connect(m_deleteButton, SIGNAL(clicked()), SLOT(setDeleteItemAt()));
     connect(this, SIGNAL(enterChanged(int,int)), m_parentClass, SLOT(itemCellEntered(int,int)));
-
 }
 
 MusicSongsListPlayedWidget::~MusicSongsListPlayedWidget()

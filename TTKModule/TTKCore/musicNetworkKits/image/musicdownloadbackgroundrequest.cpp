@@ -3,8 +3,8 @@
 #include "musickwdownloadimagerequest.h"
 #include "musicqqdownloadimagerequest.h"
 
-MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent)
-    : MusicDownloadImageRequest(name, save, parent)
+MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent)
+    : MusicDownloadImageRequest(name, path, parent)
 {
 
 }

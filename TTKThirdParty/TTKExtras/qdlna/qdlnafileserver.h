@@ -33,7 +33,7 @@ class TTK_MODULE_EXPORT QDlnaFileServer : public QObject
 {
     Q_OBJECT
 public:
-    QDlnaFileServer(QObject *parent = nullptr);
+    explicit QDlnaFileServer(QObject *parent = nullptr);
 
     void start();
 

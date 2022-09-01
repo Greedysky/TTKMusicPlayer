@@ -41,7 +41,7 @@ void MusicMovingLabelSlider::mouseMoveEvent(QMouseEvent *event)
     const QSize &sizePos = size();
     QPoint changePos;
 
-    if(m_orientation == Qt::Vertical)
+    if(orientation() == Qt::Vertical)
     {
         changePos = limitLableGeometry(curPos.y(), glbPos.y(), sizePos.height());
         m_textLabel->move((glbPos + QPoint(sizePos.width(), 0)).x(), changePos.x());

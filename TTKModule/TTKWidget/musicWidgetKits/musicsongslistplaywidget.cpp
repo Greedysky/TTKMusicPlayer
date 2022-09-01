@@ -13,15 +13,15 @@
 #include <QTimer>
 
 MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
-    : QWidget(parent), m_renameLine(nullptr)
+    : QWidget(parent),
+      m_noCover(false),
+      m_currentPlayIndex(index),
+      m_renameEdit(nullptr)
 {
     QPalette pal = palette();
     pal.setBrush(QPalette::Base, QBrush(QColor(0, 0, 0, 40)));
     setPalette(pal);
     setAutoFillBackground(true);
-
-    m_noCover = false;
-    m_currentPlayIndex = index;
 
     QPushButton *addButton = new QPushButton(this);
     addButton->setGeometry(2, 25, 16, 16);
@@ -102,7 +102,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
 MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
 {
-    delete m_renameLine;
+    delete m_renameEdit;
     delete m_artistPictureLabel;
     delete m_songNameLabel;
     delete m_timeLabel;
@@ -174,16 +174,16 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
 
 void MusicSongsListPlayWidget::setItemRename()
 {
-    m_renameLine = new MusicSongsToolItemRenamedWidget(m_songNameLabel->toolTip(), this);
-    connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(changItemName(QString)));
-    m_renameLine->setGeometry(85, 5, 200, 25);
-    m_renameLine->show();
+    m_renameEdit = new MusicSongsToolItemRenamedWidget(m_songNameLabel->toolTip(), this);
+    connect(m_renameEdit, SIGNAL(renameFinished(QString)), SLOT(changItemName(QString)));
+    m_renameEdit->setGeometry(85, 5, 200, 25);
+    m_renameEdit->show();
 }
 
 void MusicSongsListPlayWidget::deleteRenameItem()
 {
-    delete m_renameLine;
-    m_renameLine = nullptr;
+    delete m_renameEdit;
+    m_renameEdit = nullptr;
 }
 
 void MusicSongsListPlayWidget::changItemName(const QString &name)

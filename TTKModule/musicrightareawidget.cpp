@@ -33,17 +33,17 @@
 MusicRightAreaWidget *MusicRightAreaWidget::m_instance = nullptr;
 
 MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_lowPowerMode(false),
+      m_funcIndex(KugGouSongWidget),
+      m_stackedFuncWidget(nullptr),
+      m_stackedCloudWidget(nullptr),
+      m_videoPlayerWidget(nullptr),
+      m_lrcForInterior(nullptr),
+      m_lrcForDesktop(nullptr),
+      m_lrcForWallpaper(nullptr)
 {
     m_instance = this;
-    m_lowPowerMode = false;
-    m_funcIndex = KugGouSongWidget;
-    m_stackedFuncWidget = nullptr;
-    m_stackedCloudWidget = nullptr;
-    m_lrcForInterior = nullptr;
-    m_lrcForDesktop = nullptr;
-    m_lrcForWallpaper = nullptr;
-    m_videoPlayerWidget = nullptr;
 
     m_lrcAnalysis = new MusicLrcAnalysis(this);
     m_lrcAnalysis->setLineMax(MUSIC_LRC_INTERIOR_MAX_LINE);

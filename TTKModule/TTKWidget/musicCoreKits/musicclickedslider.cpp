@@ -9,11 +9,11 @@ MusicClickedSlider::MusicClickedSlider(QWidget *parent)
 }
 
 MusicClickedSlider::MusicClickedSlider(Qt::Orientation orientation, QWidget *parent)
-    : QSlider(orientation, parent)
+    : QSlider(orientation, parent),
+      m_value(0),
+      m_mousePress(false)
 {
     setCursor(QCursor(Qt::PointingHandCursor));
-    m_mousePress = false;
-    m_value = 0;
 }
 
 bool MusicClickedSlider::event(QEvent *event)

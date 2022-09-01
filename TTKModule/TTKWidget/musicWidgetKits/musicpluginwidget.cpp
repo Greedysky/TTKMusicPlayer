@@ -23,7 +23,8 @@ class MusicPluginItem : public QTreeWidgetItem
 {
 public:
     MusicPluginItem(QTreeWidgetItem *parent, DecoderFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, PDecoder)
+        : QTreeWidgetItem(parent, PDecoder),
+          m_factory(factory)
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
@@ -31,51 +32,50 @@ public:
         property.m_description = factory->properties().description;
         property.m_type = path;
         initialize(Decoder::isEnabled(factory), true, property);
-        m_factory = factory;
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, EffectFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, PEffect)
+        : QTreeWidgetItem(parent, PEffect),
+          m_factory(factory)
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
         property.m_hasSettings = factory->properties().hasSettings;
         property.m_type = path;
         initialize(Effect::isEnabled(factory), false, property);
-        m_factory = factory;
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, VisualFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, PVisual)
+        : QTreeWidgetItem(parent, PVisual),
+          m_factory(factory)
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
         property.m_hasSettings = factory->properties().hasSettings;
         property.m_type = path;
         initialize(Visual::isEnabled(factory), false, property);
-        m_factory = factory;
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, InputSourceFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, PTransports)
+        : QTreeWidgetItem(parent, PTransports),
+          m_factory(factory)
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
         property.m_hasSettings = factory->properties().hasSettings;
         property.m_type = path;
         initialize(InputSource::isEnabled(factory), true, property);
-        m_factory = factory;
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, OutputFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, POutput)
+        : QTreeWidgetItem(parent, POutput),
+          m_factory(factory)
     {
         MusicPluginProperty property;
         property.m_name = factory->properties().name;
         property.m_hasSettings = factory->properties().hasSettings;
         property.m_type = path;
         initialize(Output::currentFactory() == factory, true, property);
-        m_factory = factory;
     }
 
     enum Module

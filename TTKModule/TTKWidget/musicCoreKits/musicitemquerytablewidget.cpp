@@ -14,6 +14,8 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setColumnCount(8);
 
+    m_labelDelegate = new MusicLabelDelegate(this);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 342);
@@ -23,8 +25,6 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
     headerview->resizeSection(5, 26);
     headerview->resizeSection(6, 26);
     headerview->resizeSection(7, 26);
-
-    m_labelDelegate = new MusicLabelDelegate(this);
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
@@ -229,6 +229,7 @@ void MusicItemQueryTableWidget::clearAllItems()
     {
         setItemDelegateForRow(rowCount() - 1, nullptr);
     }
+
     MusicQueryTableWidget::clear();
     setColumnCount(8);
 }

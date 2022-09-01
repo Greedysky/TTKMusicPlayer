@@ -68,7 +68,6 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
 
     bool m_isMoving;
-    Qt::Orientation m_orientation;
 
 };
 

@@ -150,7 +150,8 @@ void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &bytes
 
 
 MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(MusicObject::Program type, QWidget *parent)
-    : QWidget(parent), m_type(type)
+    : QWidget(parent),
+      m_type(type)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -209,14 +210,13 @@ void MusicWebDJRadioProgramWidget::resizeWindow()
 
 
 MusicWebDJRadioWidget::MusicWebDJRadioWidget(QWidget *parent)
-    : QStackedWidget(parent)
+    : QStackedWidget(parent),
+      m_recommendWidget(nullptr),
+      m_programWidget(nullptr),
+      m_queryTableWidget(nullptr)
 {
     setObjectName("MainWindow");
     setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle12));
-
-    m_recommendWidget = nullptr;
-    m_programWidget = nullptr;
-    m_queryTableWidget = nullptr;
 
     initFirstWidget();
 }

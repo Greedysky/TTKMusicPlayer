@@ -8,6 +8,7 @@ MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     : MusicItemSearchTableWidget(parent)
 {
     setColumnCount(7);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 213);

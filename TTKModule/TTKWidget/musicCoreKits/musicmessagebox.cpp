@@ -5,12 +5,12 @@
 
 MusicMessageBox::MusicMessageBox(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicMessageBox)
+      m_ui(new Ui::MusicMessageBox),
+      m_status(0)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
 
-    m_status = 0;
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));

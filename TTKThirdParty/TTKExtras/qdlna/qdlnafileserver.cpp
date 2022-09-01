@@ -23,8 +23,9 @@ public:
 };
 
 QDlnaFileServerPrivate::QDlnaFileServerPrivate()
+    : m_server(new QHttpServer)
 {
-    m_server = new QHttpServer;
+
 }
 
 QDlnaFileServerPrivate::~QDlnaFileServerPrivate()

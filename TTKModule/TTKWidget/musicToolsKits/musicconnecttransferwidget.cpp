@@ -11,16 +11,16 @@
 
 MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicConnectTransferWidget)
+      m_ui(new Ui::MusicConnectTransferWidget),
+      m_currentIndex(-1),
+      m_buttonGroup(nullptr),
+      m_currentDeviceItem(nullptr)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
 
     setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
-    m_currentIndex = -1;
-    m_buttonGroup = nullptr;
-    m_currentDeviceItem = nullptr;
     m_songCountLabel = m_ui->songCountLabel->text();
     m_selectCountLabel = m_ui->selectCountLabel->text();
 

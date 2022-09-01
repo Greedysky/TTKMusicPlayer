@@ -38,18 +38,18 @@ void MusicArtistListQueryItemWidget::currentItemClicked()
 
 
 MusicArtistListQueryWidget::MusicArtistListQueryWidget(QWidget *parent)
-    : MusicAbstractItemQueryWidget(parent)
+    : MusicAbstractItemQueryWidget(parent),
+      m_initialized(false),
+      m_categoryChanged(false),
+      m_gridLayout(nullptr),
+      m_pageQueryWidget(nullptr),
+      m_categoryButton(nullptr)
 {
     m_container->show();
     layout()->removeWidget(m_mainWindow);
     layout()->addWidget(m_container);
     m_container->addWidget(m_mainWindow);
 
-    m_initialized = false;
-    m_categoryChanged = false;
-    m_gridLayout = nullptr;
-    m_categoryButton = nullptr;
-    m_pageQueryWidget = nullptr;
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeArtistListRequest(this);
     connect(m_networkRequest, SIGNAL(createArtistListItem(MusicResultsItem)), SLOT(createArtistListItem(MusicResultsItem)));
 }

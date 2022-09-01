@@ -14,7 +14,8 @@
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicBackgroundSkinDialog)
+      m_ui(new Ui::MusicBackgroundSkinDialog),
+      m_stackThemeIndex(CURRENT_ITEMS_COUNT)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -50,7 +51,6 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     m_onlineBackgroundList = new MusicBackgroundOnlineWidget(this);
     MusicUtils::Widget::generateVScrollAreaFormat(m_ui->remoteScrollArea, m_onlineBackgroundList);
 
-    m_stackThemeIndex = CURRENT_ITEMS_COUNT;
     addThemeListWidgetItem();
     backgroundListWidgetChanged(0);
     //

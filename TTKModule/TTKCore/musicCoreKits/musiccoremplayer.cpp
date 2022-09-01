@@ -5,12 +5,11 @@
 #include <QProcess>
 
 MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_process(nullptr),
+      m_playState(MusicObject::PlayState::Stopped),
+      m_category(Module::Null)
 {
-    m_process = nullptr;
-    m_playState = MusicObject::PlayState::Stopped;
-    m_category = Module::Null;
-
     m_timer.setInterval(MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
 

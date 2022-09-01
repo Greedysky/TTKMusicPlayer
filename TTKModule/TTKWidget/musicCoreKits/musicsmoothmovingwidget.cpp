@@ -6,18 +6,17 @@
 #include <QPropertyAnimation>
 
 MusicSmoothMovingTableWidget::MusicSmoothMovingTableWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent)
+    : MusicAbstractTableWidget(parent),
+      m_initialized(true),
+      m_previousValue(0),
+      m_deltaValue(0),
+      m_scrollBar(nullptr),
+      m_slowAnimation(nullptr)
 {
-    m_deltaValue = 0;
-    m_previousValue = 0;
-    m_initialized = true;
-    m_slowAnimation = nullptr;
-    m_scrollBar = nullptr;
-    m_animationTimer = new QTimer(this);
-    m_animationTimer->setInterval(100 * MT_MS);
-
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
+    m_animationTimer = new QTimer(this);
+    m_animationTimer->setInterval(100 * MT_MS);
     connect(m_animationTimer, SIGNAL(timeout()), SLOT(timeToAnimation()));
 }
 
@@ -84,13 +83,13 @@ void MusicSmoothMovingTableWidget::wheelEvent(QWheelEvent *event)
 
 
 MusicSmoothMovingScrollArea::MusicSmoothMovingScrollArea(QWidget *parent)
-    : QScrollArea(parent)
+    : QScrollArea(parent),
+      m_initialized(true),
+      m_previousValue(0),
+      m_deltaValue(0),
+      m_scrollBar(nullptr),
+      m_slowAnimation(nullptr)
 {
-    m_deltaValue = 0;
-    m_previousValue = 0;
-    m_initialized = true;
-    m_slowAnimation = nullptr;
-    m_scrollBar = nullptr;
     m_animationTimer = new QTimer(this);
     m_animationTimer->setInterval(100 * MT_MS);
 

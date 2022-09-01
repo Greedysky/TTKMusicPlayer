@@ -3,10 +3,11 @@
 #include <QPainter>
 
 MusicTextSliderWidget::MusicTextSliderWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_maxValue(1),
+      m_currentValue(0)
 {
-    m_maxValue = 1;
-    m_currentValue = 0;
+
 }
 
 void MusicTextSliderWidget::setMaxValue(int max)

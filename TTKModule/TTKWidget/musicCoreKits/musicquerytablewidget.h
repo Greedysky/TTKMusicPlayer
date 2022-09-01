@@ -45,7 +45,7 @@ public:
     /*!
      * Get network query input.
      */
-    MusicAbstractQueryRequest *getQueryInput();
+    MusicAbstractQueryRequest *getQueryInput() const;
     /*!
      * Start search query by text.
      * Subclass should implement this function.

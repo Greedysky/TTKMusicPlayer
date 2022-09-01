@@ -29,7 +29,9 @@ MusicApplication *MusicApplication::m_instance = nullptr;
 
 MusicApplication::MusicApplication(QWidget *parent)
     : MusicAbstractMoveResizeWidget(parent),
-      m_ui(new Ui::MusicApplication)
+      m_ui(new Ui::MusicApplication),
+      m_quitWindowClose(false),
+      m_currentSongTreeIndex(DEFAULT_NORMAL_LEVEL)
 {
     m_instance = this;
 #if defined Q_OS_WIN && !TTK_QT_VERSION_CHECK(5,2,0)
@@ -69,14 +71,10 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_player->setPlaylist(m_playlist);
     m_player->setVolume(100);  //The default Volume is 100
 
-    m_quitWindowClose = false;
-    m_currentSongTreeIndex = DEFAULT_NORMAL_LEVEL;
-
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_player, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_player, SIGNAL(stateChanged(MusicObject::PlayState)), SLOT(stateChanged()));
     connect(m_playlist, SIGNAL(currentIndexChanged(int)), SLOT(showCurrentSong()));
-
     connect(m_ui->musicDesktopLrc, SIGNAL(clicked(bool)), m_rightAreaWidget, SLOT(setDestopLrcVisible(bool)));
 
     m_ui->musicKey->setFocus();

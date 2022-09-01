@@ -4,9 +4,9 @@
 #include <QDateTime>
 
 MusicTime::MusicTime()
+    : m_greedyMode(false),
+      m_defaultType(Entity::Millisecond)
 {
-    m_defaultType = Entity::Millisecond;
-    m_greedyMode = false;
     initialize();
 }
 

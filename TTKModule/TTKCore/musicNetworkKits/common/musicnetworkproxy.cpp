@@ -3,10 +3,12 @@
 #include <QNetworkProxy>
 
 MusicNetworkProxy::MusicNetworkProxy(QObject *parent)
-    : QObject(parent), m_socket(nullptr)
+    : QObject(parent),
+      m_port(-1),
+      m_type(2), ///no proxy
+      m_socket(nullptr)
 {
-    m_port = -1;
-    m_type = 2; ///no proxy
+
 }
 
 MusicNetworkProxy::~MusicNetworkProxy()

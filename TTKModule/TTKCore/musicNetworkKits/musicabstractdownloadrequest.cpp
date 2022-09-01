@@ -5,15 +5,14 @@
 
 #include <QSslError>
 
-MusicAbstractDownLoadRequest::MusicAbstractDownLoadRequest(const QString &url, const QString &save, MusicObject::Download type, QObject *parent)
-    : MusicAbstractNetwork(parent)
+MusicAbstractDownLoadRequest::MusicAbstractDownLoadRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent)
+    : MusicAbstractNetwork(parent),
+      m_url(url),
+      m_savePath(path),
+      m_downloadType(type),
+      m_hasReceived(0),
+      m_currentReceived(0)
 {
-    m_url = url;
-    m_savePath = save;
-    m_downloadType = type;
-    m_hasReceived = 0;
-    m_currentReceived = 0;
-
     if(QFile::exists(m_savePath))
     {
         QFile::remove(m_savePath);
@@ -55,7 +54,7 @@ void MusicAbstractDownLoadRequest::downLoadFinished()
 void MusicAbstractDownLoadRequest::replyError(QNetworkReply::NetworkError)
 {
     TTK_LOGGER_ERROR("Abnormal network connection");
-    Q_EMIT downLoadDataChanged("The file create failed");
+//    Q_EMIT downLoadDataChanged("The file create failed");
     deleteAll();
 }
 
@@ -63,7 +62,7 @@ void MusicAbstractDownLoadRequest::replyError(QNetworkReply::NetworkError)
 void MusicAbstractDownLoadRequest::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
     sslErrorsString(reply, errors);
-    Q_EMIT downLoadDataChanged("The file create failed");
+//    Q_EMIT downLoadDataChanged("The file create failed");
     deleteAll();
 }
 #endif

@@ -12,7 +12,8 @@
 
 MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicLocalSongsManagerWidget)
+      m_ui(new Ui::MusicLocalSongsManagerWidget),
+      m_runTypeChanged(false)
 {
     Q_UNUSED(qRegisterMetaType<QFileInfoList>("QFileInfoList"));
     m_ui->setupUi(this);
@@ -86,7 +87,6 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     m_ui->searchLineLabel->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    m_runTypeChanged = false;
     addDrivesList();
     m_ui->filterComboBox->setCurrentIndex(DEFAULT_NORMAL_LEVEL);
 

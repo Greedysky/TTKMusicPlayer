@@ -6,6 +6,7 @@ MusicSongSearchPopTableWidget::MusicSongSearchPopTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
     setColumnCount(2);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 215);
     headerview->resizeSection(1, 62);

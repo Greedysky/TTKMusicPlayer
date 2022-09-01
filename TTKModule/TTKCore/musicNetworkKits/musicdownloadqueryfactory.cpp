@@ -276,35 +276,35 @@ MusicTranslationRequest *MusicDownLoadQueryFactory::makeTranslationRequest(QObje
     return request;
 }
 
-MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeLrcRequest(const QString &url, const QString &save, QObject *parent)
+MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeLrcRequest(const QString &url, const QString &path, QObject *parent)
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::Config::DownloadServerIndex).toInt();
     switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
     {
-        case MusicAbstractQueryRequest::QueryServer::WY: return (new MusicWYDownLoadTextRequest(url, save, parent));
-        case MusicAbstractQueryRequest::QueryServer::QQ: return (new MusicQQDownLoadTextRequest(url, save, parent));
-        case MusicAbstractQueryRequest::QueryServer::KW: return (new MusicKWDownLoadTextRequest(url, save, parent));
-        case MusicAbstractQueryRequest::QueryServer::KG: return (new MusicDownLoadTextRequest(url, save, parent));
+        case MusicAbstractQueryRequest::QueryServer::WY: return (new MusicWYDownLoadTextRequest(url, path, parent));
+        case MusicAbstractQueryRequest::QueryServer::QQ: return (new MusicQQDownLoadTextRequest(url, path, parent));
+        case MusicAbstractQueryRequest::QueryServer::KW: return (new MusicKWDownLoadTextRequest(url, path, parent));
+        case MusicAbstractQueryRequest::QueryServer::KG: return (new MusicDownLoadTextRequest(url, path, parent));
         default: break;
     }
-    return (new MusicDownLoadTextRequest(url, save, parent));
+    return (new MusicDownLoadTextRequest(url, path, parent));
 }
 
-MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeCoverRequest(const QString &url, const QString &save, QObject *parent)
+MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeCoverRequest(const QString &url, const QString &path, QObject *parent)
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::Config::DownloadServerIndex).toInt();
     switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
     {
-        case MusicAbstractQueryRequest::QueryServer::WY: return (new MusicDownloadDataRequest(url, save, MusicObject::Download::Cover, parent));
-        case MusicAbstractQueryRequest::QueryServer::QQ: return (new MusicDownloadDataRequest(url, save, MusicObject::Download::Cover, parent));
-        case MusicAbstractQueryRequest::QueryServer::KW: return (new MusicKWDownLoadCoverRequest(url, save, parent));
-        case MusicAbstractQueryRequest::QueryServer::KG: return (new MusicDownloadDataRequest(url, save, MusicObject::Download::Cover, parent));
+        case MusicAbstractQueryRequest::QueryServer::WY: return (new MusicDownloadDataRequest(url, path, MusicObject::Download::Cover, parent));
+        case MusicAbstractQueryRequest::QueryServer::QQ: return (new MusicDownloadDataRequest(url, path, MusicObject::Download::Cover, parent));
+        case MusicAbstractQueryRequest::QueryServer::KW: return (new MusicKWDownLoadCoverRequest(url, path, parent));
+        case MusicAbstractQueryRequest::QueryServer::KG: return (new MusicDownloadDataRequest(url, path, MusicObject::Download::Cover, parent));
         default: break;
     }
-    return (new MusicDownloadDataRequest(url, save, MusicObject::Download::Cover, parent));
+    return (new MusicDownloadDataRequest(url, path, MusicObject::Download::Cover, parent));
 }
 
-MusicDownloadImageRequest *MusicDownLoadQueryFactory::makeBackgroundRequest(const QString &name, const QString &save, QObject *parent)
+MusicDownloadImageRequest *MusicDownLoadQueryFactory::makeBackgroundRequest(const QString &name, const QString &path, QObject *parent)
 {
-    return (new MusicDownloadBackgroundRequest(name, save, parent));
+    return (new MusicDownloadBackgroundRequest(name, path, parent));
 }

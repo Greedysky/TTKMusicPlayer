@@ -40,10 +40,11 @@ struct TTK_MODULE_EXPORT MusicSongCheckToolsRename
     QString m_path;
 
     MusicSongCheckToolsRename(const QString &locaName, const QString &recommendName, const QString &path)
+        : m_locaName(locaName),
+          m_recommendName(recommendName),
+          m_path(path)
     {
-        m_locaName = locaName;
-        m_recommendName = recommendName;
-        m_path = path;
+
     }
 };
 TTK_DECLARE_LIST(MusicSongCheckToolsRename);
@@ -58,9 +59,10 @@ struct TTK_MODULE_EXPORT MusicSongCheckToolsDuplicate
     QString m_bitrate;
 
     MusicSongCheckToolsDuplicate(const MusicSong &song, const QString &bitrate)
+        : m_song(song),
+          m_bitrate(bitrate)
     {
-        m_song = song;
-        m_bitrate = bitrate;
+
     }
 };
 TTK_DECLARE_LIST(MusicSongCheckToolsDuplicate);
@@ -75,9 +77,10 @@ struct TTK_MODULE_EXPORT MusicSongCheckToolsQuality
     QString m_bitrate;
 
     MusicSongCheckToolsQuality(const MusicSong &song, const QString &bitrate)
+        : m_song(song),
+          m_bitrate(bitrate)
     {
-        m_song = song;
-        m_bitrate = bitrate;
+
     }
 };
 TTK_DECLARE_LIST(MusicSongCheckToolsQuality);

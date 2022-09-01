@@ -2,7 +2,9 @@
 #include "qdevicewatcher_p.h"
 
 QDeviceWatcher::QDeviceWatcher(QObject* parent)
-	:QObject(parent),running(false),d_ptr(new QDeviceWatcherPrivate)
+    : QObject(parent),
+      running(false),
+      d_ptr(new QDeviceWatcherPrivate)
 {
 	Q_D(QDeviceWatcher);
 	d->setWatcher(this);

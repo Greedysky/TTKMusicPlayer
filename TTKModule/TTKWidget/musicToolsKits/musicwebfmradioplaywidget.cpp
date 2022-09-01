@@ -12,12 +12,12 @@
 MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicWebFMRadioPlayWidget),
+      m_isPlaying(false),
       m_songThread(nullptr)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
 
-    m_isPlaying = false;
     m_analysis = new MusicLrcAnalysis(this);
     m_analysis->setLineMax(9);
 

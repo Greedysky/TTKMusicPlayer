@@ -28,8 +28,9 @@ class QSyncDataInterfacePrivate : public TTKPrivate<QSyncDataInterface>
 {
 public:
     QSyncDataInterfacePrivate()
+        : m_manager(nullptr)
     {
-        m_manager = nullptr;
+
     }
 
     void insertAuthorization(const QString &method, TTKStringMap &headers, const QString &resource) const

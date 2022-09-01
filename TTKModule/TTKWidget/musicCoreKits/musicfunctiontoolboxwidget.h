@@ -191,9 +191,10 @@ struct TTK_MODULE_EXPORT MusicToolBoxWidgetItem
     MusicFunctionToolBoxWidgetItem* m_widgetItem;
 
     MusicToolBoxWidgetItem()
+        : m_itemIndex(-1),
+          m_widgetItem(nullptr)
     {
-        m_itemIndex = -1;
-        m_widgetItem = nullptr;
+
     }
 };
 TTK_DECLARE_LIST(MusicToolBoxWidgetItem);

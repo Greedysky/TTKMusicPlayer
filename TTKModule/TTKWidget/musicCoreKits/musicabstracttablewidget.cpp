@@ -1,7 +1,10 @@
 #include "musicabstracttablewidget.h"
 
 MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
-    : QTableWidget(parent)
+    : QTableWidget(parent),
+      m_previousColorRow(-1),
+      m_previousClickRow(-1),
+      m_backgroundColor(255, 255, 255, 0)
 {
     setAttribute(Qt::WA_TranslucentBackground);
     setColumnCount(3);
@@ -33,9 +36,6 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setFocusPolicy(Qt::NoFocus);
 
     MusicUtils::Widget::setTransparent(this, 50);
-    m_previousColorRow = -1;
-    m_previousClickRow = -1;
-    m_backgroundColor = QColor(255, 255, 255, 0);
 
     connect(this, SIGNAL(cellEntered(int,int)), SLOT(itemCellEntered(int,int)));
     connect(this, SIGNAL(cellClicked(int,int)), SLOT(itemCellClicked(int,int)));

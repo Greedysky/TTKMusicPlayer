@@ -11,10 +11,8 @@ MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *pare
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-
     setColumnCount(2);
+
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
 #ifdef Q_OS_UNIX
@@ -22,6 +20,7 @@ MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *pare
 #else
     headerview->resizeSection(1, 222);
 #endif
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 }
 
 void MusicSongItemSelectedTableWidget::createAllItems(MusicSongItemList *items)
@@ -35,6 +34,7 @@ void MusicSongItemSelectedTableWidget::createAllItems(MusicSongItemList *items)
 
     setRowCount(items->count());
     QHeaderView *headerview = horizontalHeader();
+
     for(int i = 0; i < items->count(); ++i)
     {
         const MusicSongItem &song = items->at(i);
@@ -134,9 +134,9 @@ int MusicSongItemSelectedDialog::exec()
 
 
 MusicSongItemSelectedAreaWidget::MusicSongItemSelectedAreaWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_selected(false)
 {
-    m_selected = false;
     m_label = new QLabel(tr("Range:"));
     m_itemLabel = new QLabel(tr("All List"));
     m_modifiedItemButton = new MusicClickedLabel(tr("Mod"));

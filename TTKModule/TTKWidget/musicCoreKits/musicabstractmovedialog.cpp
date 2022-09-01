@@ -10,15 +10,14 @@ MusicAbstractMoveDialog::MusicAbstractMoveDialog(QWidget *parent)
 }
 
 MusicAbstractMoveDialog::MusicAbstractMoveDialog(bool transparent, QWidget *parent)
-    : QDialog(parent)
-    , MusicWidgetRenderer()
+    : QDialog(parent),
+      MusicWidgetRenderer(),
+      m_moveOption(false),
+      m_showShadow(true),
+      m_leftButtonPress(false)
 {
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground, transparent);
-
-    m_moveOption = false;
-    m_leftButtonPress = false;
-    m_showShadow = true;
 
     G_BACKGROUND_PTR->addObserver(this);
 }

@@ -20,14 +20,15 @@
 #define OS_SCREEN_DIR       "Screen"
 
 MusicScreenSaverHoverItem::MusicScreenSaverHoverItem(QLabel *parent)
-    : QLabel(parent)
+    : QLabel(parent),
+      m_index(-1),
+      m_parentClass(parent)
 {
     setFixedSize(OS_ITEM_SIZE + QSize(8, 8));
     setAttribute(Qt::WA_TranslucentBackground);
 
     hide();
-    m_index = -1;
-    m_parentClass = parent;
+
     m_enableButton = new QPushButton(this);
     m_enableButton->setCursor(Qt::PointingHandCursor);
     m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemDisable);
@@ -185,7 +186,8 @@ void MusicScreenSaverListWidget::resizeEvent(QResizeEvent *event)
 
 
 MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_currentState(false)
 {
     setStyleSheet(MusicUIObject::MQSSBackgroundStyle12 + MusicUIObject::MQSSColorStyle09);
 
@@ -220,7 +222,6 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     QLabel *wLabel = new QLabel(tr("Wait"), topWidget);
     QLabel *mLabel = new QLabel(tr("Min"), topWidget);
 
-    m_currentState = false;
     m_inputEdit = new QLineEdit(topWidget);
     m_inputEdit->setFixedWidth(50);
     m_inputEdit->setEnabled(false);
@@ -397,12 +398,11 @@ void MusicScreenSaverWidget::initialize()
 
 
 MusicScreenSaverBackgroundWidget::MusicScreenSaverBackgroundWidget(QWidget *parent)
-    : MusicTransitionAnimationLabel(parent)
+    : MusicTransitionAnimationLabel(parent),
+      m_state(false),
+      m_isRunning(false)
 {
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
-
-    m_state = false;
-    m_isRunning = false;
 
     m_runningTimer = new QTimer(this);
     connect(m_runningTimer, SIGNAL(timeout()), SLOT(runningTimeout()));

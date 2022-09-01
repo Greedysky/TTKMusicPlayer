@@ -13,6 +13,7 @@ MusicLrcFloatPlayWidget::MusicLrcFloatPlayWidget(QWidget *parent)
     m_buttonPrevious = new QToolButton(this);
     m_buttonNext = new QToolButton(this);
     m_buttonKey = new QToolButton(this);
+
     layout->addWidget(m_buttonPrevious);
     layout->addWidget(m_buttonKey);
     layout->addWidget(m_buttonNext);

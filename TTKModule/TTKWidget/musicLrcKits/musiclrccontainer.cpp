@@ -5,13 +5,14 @@
 #include <QActionGroup>
 
 MusicLrcContainer::MusicLrcContainer(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_linkLocalLrc(true),
+      m_currentTime(0),
+      m_totalTime(0),
+      m_lrcAnalysis(nullptr),
+      m_lrcSearchWidget(nullptr)
 {
-    m_currentTime = 0;
-    m_totalTime = 0;
-    m_linkLocalLrc = true;
-    m_lrcAnalysis = nullptr;
-    m_lrcSearchWidget = nullptr;
+
 }
 
 MusicLrcContainer::~MusicLrcContainer()

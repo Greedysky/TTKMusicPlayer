@@ -16,8 +16,9 @@ public:
 };
 
 QDlnaXmlPrivate::QDlnaXmlPrivate()
+    : m_document(new QDomDocument)
 {
-    m_document = new QDomDocument;
+
 }
 
 QDlnaXmlPrivate::~QDlnaXmlPrivate()

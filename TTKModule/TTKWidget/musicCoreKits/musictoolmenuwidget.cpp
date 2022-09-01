@@ -21,6 +21,7 @@ void MusicToolMenu::hideEvent(QHideEvent *event)
 }
 
 
+
 MusicToolMenuWidget::MusicToolMenuWidget(QWidget *parent)
     : QToolButton(parent)
 {
