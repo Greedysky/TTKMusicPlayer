@@ -45,8 +45,7 @@ VisualNode *VisualBuffer::take()
 {
     int steps = 0;
     qint64 t = m_elapsed + m_time.elapsed();
-    while(m_buffer[m_take_index].used ||
-          ((m_buffer[m_take_index].ts + m_buffer[m_take_index].delay < t) && (steps++ < VISUAL_BUFFER_SIZE)))
+    while((m_buffer[m_take_index].ts + m_buffer[m_take_index].delay < t) && (steps++ < VISUAL_BUFFER_SIZE))
     {
         m_take_index++;
         m_take_index %= VISUAL_BUFFER_SIZE;
@@ -70,7 +69,6 @@ void VisualBuffer::clear()
     {
         m_buffer[i].ts = 0;
         m_buffer[i].delay = 0;
-        m_buffer[i].used = false;
         memset(m_buffer[i].data[0], 0, 512 * sizeof(float));
         memset(m_buffer[i].data[1], 0, 512 * sizeof(float));
     }
