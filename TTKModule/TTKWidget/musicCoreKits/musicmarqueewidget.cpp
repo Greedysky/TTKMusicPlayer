@@ -16,7 +16,7 @@ void MusicMarqueeWidget::setText(const QString &newText)
     int width = 0;
     if(m_effectOnResize)
     {
-        width = (G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN) / 10;
+        width = (G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN) / 10;
     }
 
     int length = MusicUtils::Widget::fontTextWidth(font(), newText);

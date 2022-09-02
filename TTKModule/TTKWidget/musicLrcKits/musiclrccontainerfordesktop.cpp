@@ -50,15 +50,15 @@ void MusicLrcContainerForDesktop::applyParameter()
     MusicLrcContainer::applyParameter();
     for(MusicLrcManager *manager : qAsConst(m_lrcManagers))
     {
-        m_currentLrcFontSize = G_SETTING_PTR->value(MusicSettingManager::Config::DLrcSize).toInt();
+        m_currentLrcFontSize = G_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt();
         manager->setLrcFontSize(m_currentLrcFontSize);
     }
 
-    m_windowLocked = G_SETTING_PTR->value(MusicSettingManager::Config::DLrcLockedMode).toInt() == 1;
-    m_singleLineType = !(G_SETTING_PTR->value(MusicSettingManager::Config::DLrcSingleLineMode).toInt() == 1);
+    m_windowLocked = G_SETTING_PTR->value(MusicSettingManager::DLrcLockedMode).toInt() == 1;
+    m_singleLineType = !(G_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineMode).toInt() == 1);
     setSingleLineTypeChanged();
 
-    const QPoint &point = G_SETTING_PTR->value(MusicSettingManager::Config::DLrcGeometry).toPoint();
+    const QPoint &point = G_SETTING_PTR->value(MusicSettingManager::DLrcGeometry).toPoint();
     if(!point.isNull())
     {
         move(point);
@@ -111,7 +111,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
        m_toolBarWidget->hide();
        setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     }
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::DLrcLockedMode,  m_windowLocked ? 1 : 0);
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcLockedMode,  m_windowLocked ? 1 : 0);
     MusicBottomAreaWidget::instance()->lockDesktopLrc(m_windowLocked);
 }
 
@@ -144,7 +144,7 @@ void MusicLrcContainerForDesktop::toolStyleChanged()
 void MusicLrcContainerForDesktop::setSingleLineTypeChanged()
 {
     m_singleLineType = !m_singleLineType;
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::DLrcSingleLineMode, m_singleLineType);
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineMode, m_singleLineType);
 
     if(m_singleLineType)
     {
@@ -337,7 +337,7 @@ void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool resize)
     }
 
     resizeLrcSizeArea();
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::DLrcSize, m_currentLrcFontSize);
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcSize, m_currentLrcFontSize);
 }
 
 void MusicLrcContainerForDesktop::mousePressEvent(QMouseEvent *event)
@@ -356,7 +356,7 @@ void MusicLrcContainerForDesktop::mouseMoveEvent(QMouseEvent *event)
     {
         setCursor(Qt::CrossCursor);
         move(QtMouseEventGlobalPos(event) - m_offset);
-        G_SETTING_PTR->setValue(MusicSettingManager::Config::DLrcGeometry, pos());
+        G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, pos());
     }
 }
 
@@ -423,7 +423,7 @@ MusicLrcContainerHorizontalDesktop::MusicLrcContainerHorizontalDesktop(QWidget *
     : MusicLrcContainerForDesktop(parent)
 {
     m_verticalWindow = false;
-    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::Config::ScreenSize).toSize();
+    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     m_widgetWidth = windowSize.width() - 300;
     m_geometry.setX(m_widgetWidth);
     m_geometry.setY(60);
@@ -504,7 +504,7 @@ MusicLrcContainerVerticalDesktop::MusicLrcContainerVerticalDesktop(QWidget *pare
     : MusicLrcContainerForDesktop(parent)
 {
     m_verticalWindow = true;
-    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::Config::ScreenSize).toSize();
+    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     m_widgetWidth = windowSize.height() - 150;
     m_geometry.setX(m_widgetWidth);
     m_geometry.setY(60);

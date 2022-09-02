@@ -635,7 +635,7 @@ void MusicSongsSummariziedWidget::musicSearchResultChanged(int, int index)
 
 void MusicSongsSummariziedWidget::updateCurrentIndex()
 {
-    const QStringList &lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::Config::LastPlayIndex).toStringList();
+    const QStringList &lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
     if(lastPlayIndex.count() != 3)
     {
         return;

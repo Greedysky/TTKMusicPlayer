@@ -25,12 +25,12 @@ static QString makeFilePrefix(MusicSettingManager::Config type, const QString &p
 
 QString MusicUtils::String::lrcDirPrefix()
 {
-    return makeFilePrefix(MusicSettingManager::Config::DownloadLrcDirPath, LRC_DIR_FULL);
+    return makeFilePrefix(MusicSettingManager::DownloadLrcDirPath, LRC_DIR_FULL);
 }
 
 QString MusicUtils::String::musicDirPrefix()
 {
-    return makeFilePrefix(MusicSettingManager::Config::DownloadMusicDirPath, MUSIC_DIR_FULL);
+    return makeFilePrefix(MusicSettingManager::DownloadMusicDirPath, MUSIC_DIR_FULL);
 }
 
 QString MusicUtils::String::stringPrefix(const QString &name)

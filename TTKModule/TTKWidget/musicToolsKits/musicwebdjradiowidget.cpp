@@ -37,7 +37,7 @@ void MusicWebDJRadioProgramTableWidget::initialize(MusicObject::Program type)
 
 void MusicWebDJRadioProgramTableWidget::resizeWindow()
 {
-    const int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(2, width - WINDOW_WIDTH_MIN + 315);
 

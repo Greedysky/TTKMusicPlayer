@@ -77,9 +77,9 @@ void MusicAbstractDownLoadRequest::updateDownloadSpeed()
 {
     int delta = m_currentReceived - m_hasReceived;
     ///limit speed
-    if(G_SETTING_PTR->value(MusicSettingManager::Config::DownloadLimitEnable).toInt() == 0)
+    if(G_SETTING_PTR->value(MusicSettingManager::DownloadLimitEnable).toInt() == 0)
     {
-        const int limitValue = G_SETTING_PTR->value(MusicSettingManager::Config::DownloadDownloadLimitSize).toInt();
+        const int limitValue = G_SETTING_PTR->value(MusicSettingManager::DownloadDownloadLimitSize).toInt();
         if(limitValue != 0 && delta > limitValue * MH_KB)
         {
             MusicUtils::Core::sleep(MT_S2MS - limitValue * MH_KB * MT_S2MS / delta);

@@ -65,7 +65,7 @@ void MusicToplistQueryWidget::resizeWindow()
 
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN + 410;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
@@ -188,7 +188,7 @@ void MusicToplistQueryWidget::createToplistInfoItem(const MusicResultsItem &item
 {
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN + 410;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];

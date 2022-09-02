@@ -156,7 +156,7 @@ MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
 
 void MusicSoundEffectsWidget::setInputModule(QObject *object)
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::Config::EqualizerEnable).toInt())
+    if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
     {
         m_ui->eqButton->setText(tr("Off"));
     }
@@ -176,10 +176,10 @@ void MusicSoundEffectsWidget::equalizerButtonChanged(bool state)
 
 void MusicSoundEffectsWidget::equalizerButtonChanged()
 {
-    const int state = !G_SETTING_PTR->value(MusicSettingManager::Config::EqualizerEnable).toInt();
+    const int state = !G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt();
     equalizerButtonChanged(state);
 
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::EqualizerEnable, state);
+    G_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, state);
     Q_EMIT setEqualizerConfig();
 }
 
@@ -211,7 +211,7 @@ void MusicSoundEffectsWidget::readSoundEffect()
     layout->setSpacing(10);
     m_ui->effectContainer->setLayout(layout);
 
-    const QString &value = G_SETTING_PTR->value(MusicSettingManager::Config::EnhancedEffectValue).toString();
+    const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
     const QStringList &effects = value.split(";", QtSkipEmptyParts);
     for(const MusicPluginProperty &property : MusicUtils::TTKQmmp::effectPlugins())
     {
@@ -236,5 +236,5 @@ void MusicSoundEffectsWidget::writeSoundEffect()
             value.append(item->type() + ";");
         }
     }
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::EnhancedEffectValue, value);
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedEffectValue, value);
 }

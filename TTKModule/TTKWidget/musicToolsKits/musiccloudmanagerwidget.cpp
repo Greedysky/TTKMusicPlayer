@@ -88,7 +88,7 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
 
 void MusicCloudManagerTableWidget::resizeWindow()
 {
-    const int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) + 360);
 
@@ -673,7 +673,7 @@ void MusicCloudManagerWidget::resizeWindow()
     m_managerTableWidget->resizeWindow();
     if(!m_resizeWidgets.isEmpty())
     {
-        const int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
+        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
         m_resizeWidgets[0]->setFixedWidth((width - WINDOW_WIDTH_MIN) + 540);
     }
 }

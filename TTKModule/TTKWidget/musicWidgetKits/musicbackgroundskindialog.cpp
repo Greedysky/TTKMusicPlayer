@@ -134,7 +134,7 @@ void MusicBackgroundSkinDialog::setCurrentBackgroundTheme(const QString &theme, 
     m_ui->listTransparentButton->setValue(list);
     setListTransToolText(list);
 
-    const bool state = G_SETTING_PTR->value(MusicSettingManager::Config::BackgroundTransparentEnable).toBool();
+    const bool state = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparentEnable).toBool();
     m_ui->skinTransparentButton->setValue(state ? skin : 0);
     m_ui->skinTransparentButton->setEnabled(state);
     setSkinTransToolText(state ? skin : 0);
@@ -278,7 +278,7 @@ void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
 void MusicBackgroundSkinDialog::windowTransparentChanged(bool state)
 {
     m_ui->skinTransparentButton->setEnabled(state);
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::BackgroundTransparentEnable, state);
+    G_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentEnable, state);
     if(!state)
     {
         m_ui->skinTransparentButton->setValue(0);

@@ -61,7 +61,7 @@ void MusicAlbumQueryWidget::resizeWindow()
     m_queryTableWidget->resizeWindow();
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN + 180;
 
         TTKResizeWidget *data = &m_resizeWidgets[1];
@@ -156,7 +156,7 @@ void MusicAlbumQueryWidget::createAlbumInfoItem(const MusicResultsItem &item)
             }
         }
 
-        int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN + 180;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];

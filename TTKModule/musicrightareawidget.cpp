@@ -149,7 +149,7 @@ bool MusicRightAreaWidget::interiorLrcVisible() const
 
 bool MusicRightAreaWidget::checkSettingParameterValue() const
 {
-    return (G_SETTING_PTR->value(MusicSettingManager::Config::ShowInteriorLrc).toBool() || G_SETTING_PTR->value(MusicSettingManager::Config::ShowDesktopLrc).toBool());
+    return (G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool());
 }
 
 void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const
@@ -329,13 +329,13 @@ void MusicRightAreaWidget::applyParameter()
         m_lrcForWallpaper->applyParameter();
     }
 
-    bool config = G_SETTING_PTR->value(MusicSettingManager::Config::ShowInteriorLrc).toBool();
+    bool config = G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool();
     m_lrcForInterior->setVisible(config);
-         config = G_SETTING_PTR->value(MusicSettingManager::Config::ShowDesktopLrc).toBool();
+         config = G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
     m_lrcForDesktop->setVisible(config);
     m_ui->musicDesktopLrc->setChecked(config);
 
-    config = G_SETTING_PTR->value(MusicSettingManager::Config::RippleLowPowerMode).toBool();
+    config = G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool();
     if(config != m_lowPowerMode)
     {
         m_lowPowerMode = config;
@@ -560,7 +560,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
 
 void MusicRightAreaWidget::musicSongCommentsWidget()
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::Config::WindowConciseMode).toBool())
+    if(G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
         MusicApplication::instance()->musicWindowConciseChanged();
     }
@@ -667,10 +667,10 @@ void MusicRightAreaWidget::musicSingleSearchedFound(const QString &id)
 void MusicRightAreaWidget::musicLoadSongIndexWidget()
 {
     ///To prevent concise state changed while function musicWindowConciseChanged first called
-    const bool pre = G_SETTING_PTR->value(MusicSettingManager::Config::WindowConciseMode).toBool();
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::WindowConciseMode, false);
+    const bool pre = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
+    G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, false);
     functionClicked(MusicRightAreaWidget::KugGouSongWidget);
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::WindowConciseMode, pre);
+    G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, pre);
 }
 
 void MusicRightAreaWidget::deleteStackedFuncWidget()
@@ -684,7 +684,7 @@ void MusicRightAreaWidget::setDestopLrcVisible(bool visible) const
     m_ui->musicDesktopLrc->setChecked(visible);
     m_lrcForDesktop->setVisible(visible);
     m_lrcForDesktop->initCurrentLrc();
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::ShowDesktopLrc, visible);
+    G_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, visible);
 }
 
 void MusicRightAreaWidget::setWindowLockedChanged()
@@ -694,8 +694,8 @@ void MusicRightAreaWidget::setWindowLockedChanged()
 
 void MusicRightAreaWidget::setWindowLrcTypeChanged()
 {
-    const bool v = m_lrcForDesktop ? m_lrcForDesktop->isVerticalWindowType() : TTKStatic_cast(bool, G_SETTING_PTR->value(MusicSettingManager::Config::DLrcWindowMode).toInt());
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::DLrcGeometry, QPoint());
+    const bool v = m_lrcForDesktop ? m_lrcForDesktop->isVerticalWindowType() : TTKStatic_cast(bool, G_SETTING_PTR->value(MusicSettingManager::DLrcWindowMode).toInt());
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, QPoint());
 
     MusicLrcContainerForDesktop *desktop = m_lrcForDesktop;
     if(v)
@@ -716,13 +716,13 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
 
     m_lrcForDesktop->applyParameter();
     m_lrcForDesktop->initCurrentLrc();
-    m_lrcForDesktop->setVisible(G_SETTING_PTR->value(MusicSettingManager::Config::ShowDesktopLrc).toInt());
+    m_lrcForDesktop->setVisible(G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toInt());
 
     connect(m_lrcForDesktop, SIGNAL(currentLrcUpdated()), MusicApplication::instance(), SLOT(musicCurrentLrcUpdated()));
     connect(m_lrcForDesktop, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(), SLOT(musicSetting()));
     connect(m_lrcForDesktop, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeDesktopLrcWidget()));
 
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::DLrcWindowMode, v);
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowMode, v);
 }
 
 void MusicRightAreaWidget::researchQueryByQuality(MusicObject::QueryQuality quality)
@@ -853,19 +853,19 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
 
 void MusicRightAreaWidget::musicChangeDownloadFulllyWidget()
 {
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::DownloadLimitEnable, true);
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitEnable, true);
 }
 
 void MusicRightAreaWidget::musicChangeDownloadCustumWidget()
 {
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::DownloadLimitEnable, false);
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitEnable, false);
     m_settingWidget->changeDownloadWidget();
     showSettingWidget();
 }
 
 void MusicRightAreaWidget::functionInitialize()
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::Config::WindowConciseMode).toBool())
+    if(G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
         MusicApplication::instance()->musicWindowConciseChanged();
     }
@@ -894,7 +894,7 @@ void MusicRightAreaWidget::functionInitialize()
 void MusicRightAreaWidget::createkWebWindow(int type)
 {
     QWidget *widget = nullptr;
-    if(G_SETTING_PTR->value(MusicSettingManager::Config::RippleLowPowerMode).toBool())
+    if(G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool())
     {
         QLabel *label = new QLabel(this);
         label->setAlignment(Qt::AlignCenter);

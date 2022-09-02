@@ -58,7 +58,7 @@ void MusicLrcContainer::setLinearGradientColor(const MusicLrcColor &color)
         manager->setLinearGradientColor(color);
     }
 
-    G_SETTING_PTR->setValue((m_containerType == LRC_DESKTOP_TPYE) ? MusicSettingManager::Config::DLrcColor : MusicSettingManager::Config::LrcColor, TTKStatic_cast(int, color.m_index));
+    G_SETTING_PTR->setValue((m_containerType == LRC_DESKTOP_TPYE) ? MusicSettingManager::DLrcColor : MusicSettingManager::LrcColor, TTKStatic_cast(int, color.m_index));
     Q_EMIT linearGradientColorChanged();
 }
 

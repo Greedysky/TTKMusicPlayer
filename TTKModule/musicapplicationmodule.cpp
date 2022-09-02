@@ -101,7 +101,7 @@ void MusicApplicationModule::loadNetWorkSetting()
 void MusicApplicationModule::applyParameter()
 {
 #ifdef Q_OS_WIN
-    if(G_SETTING_PTR->value(MusicSettingManager::Config::FileAssociationMode).toInt())
+    if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toInt())
     {
         MusicPlatformManager platform;
         platform.setMusicRegeditAssociateFileIcon();
@@ -116,7 +116,7 @@ void MusicApplicationModule::applyParameter()
 
 void MusicApplicationModule::windowCloseAnimation()
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::Config::WindowQuitMode).toBool())
+    if(G_SETTING_PTR->value(MusicSettingManager::WindowQuitMode).toBool())
     {
         MusicTopAreaWidget::instance()->setBackgroundAnimation(false);
         MusicApplication *w = MusicApplication::instance();
@@ -132,7 +132,7 @@ void MusicApplicationModule::windowCloseAnimation()
     }
     else
     {
-        float v = G_SETTING_PTR->value(MusicSettingManager::Config::BackgroundTransparent).toInt();
+        float v = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
               v = MusicUtils::Image::reRenderValue<float>(1, 0.35, 100 - v);
         m_quitAnimation->stop();
         m_quitAnimation->setPropertyName("windowOpacity");
@@ -153,7 +153,7 @@ void MusicApplicationModule::soureUpdateCheck()
 
 void MusicApplicationModule::sideAnimationByOn()
 {
-    if(!G_SETTING_PTR->value(MusicSettingManager::Config::OtherSideByMode).toBool())
+    if(!G_SETTING_PTR->value(MusicSettingManager::OtherSideByMode).toBool())
     {
         return;
     }
@@ -172,7 +172,7 @@ void MusicApplicationModule::sideAnimationByOn()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(-w->width() + MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
-        G_SETTING_PTR->setValue(MusicSettingManager::Config::OtherSideByInMode, true);
+        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, true);
     }
 
     const QRect &rect = TTKDesktopWrapper::screenGeometry();
@@ -184,13 +184,13 @@ void MusicApplicationModule::sideAnimationByOn()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(rect.width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
-        G_SETTING_PTR->setValue(MusicSettingManager::Config::OtherSideByInMode, true);
+        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, true);
     }
 }
 
 void MusicApplicationModule::sideAnimationByOff()
 {
-    if(!G_SETTING_PTR->value(MusicSettingManager::Config::OtherSideByMode).toBool())
+    if(!G_SETTING_PTR->value(MusicSettingManager::OtherSideByMode).toBool())
     {
         return;
     }
@@ -203,7 +203,7 @@ void MusicApplicationModule::sideAnimationByOff()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
-        G_SETTING_PTR->setValue(MusicSettingManager::Config::OtherSideByInMode, false);
+        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, false);
     }
     else if(m_rightSideByOn)
     {
@@ -213,13 +213,13 @@ void MusicApplicationModule::sideAnimationByOff()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(rect.width() - w->width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
-        G_SETTING_PTR->setValue(MusicSettingManager::Config::OtherSideByInMode, false);
+        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, false);
     }
 }
 
 void MusicApplicationModule::sideAnimationReset()
 {
-    if(!G_SETTING_PTR->value(MusicSettingManager::Config::OtherSideByMode).toBool())
+    if(!G_SETTING_PTR->value(MusicSettingManager::OtherSideByMode).toBool())
     {
         return;
     }
@@ -308,8 +308,8 @@ void MusicApplicationModule::musicResetWindow()
     m_rightSideByOn = false;
 
     const QRect &rect = TTKDesktopWrapper::screenGeometry();
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::ScreenSize, rect.size());
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::WidgetSize, QSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN));
+    G_SETTING_PTR->setValue(MusicSettingManager::ScreenSize, rect.size());
+    G_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, QSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN));
 
     QWidget *w = MusicApplication::instance();
     if(w->isMaximized() || w->isMinimized() || w->isFullScreen())
@@ -334,7 +334,7 @@ void MusicApplicationModule::musicToolSetsParameter()
 
 void MusicApplicationModule::musicDeviceNameChanged(const QString &name)
 {
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::ExtraDevicePath, name);
+    G_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePath, name);
 }
 
 void MusicApplicationModule::musicDeviceChanged(bool state)
@@ -349,7 +349,7 @@ void MusicApplicationModule::musicDeviceChanged(bool state)
     }
     else
     {
-        G_SETTING_PTR->setValue(MusicSettingManager::Config::ExtraDevicePath, QString());
+        G_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePath, QString());
     }
 }
 
@@ -378,7 +378,7 @@ void MusicApplicationModule::musicSetSoundEffect()
 
 void MusicApplicationModule::musicEffectChanged()
 {
-    const QString &value = G_SETTING_PTR->value(MusicSettingManager::Config::EnhancedEffectValue).toString();
+    const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
     const QStringList &effects = value.split(";", QtSkipEmptyParts);
     for(const QString &effect : qAsConst(effects))
     {
@@ -388,7 +388,7 @@ void MusicApplicationModule::musicEffectChanged()
 
 bool MusicApplicationModule::closeCurrentEqualizer()
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::Config::EnhancedMusicIndex).toInt() != 0)
+    if(G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt() != 0)
     {
         MusicMessageBox message;
         message.setText(tr("We are opening the magic sound, if you want to close?"));

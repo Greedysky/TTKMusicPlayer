@@ -95,7 +95,7 @@ void MusicLrcContainerForInterior::stopDrawLrc()
 void MusicLrcContainerForInterior::applyParameter()
 {
     MusicLrcContainer::applyParameter();
-    const int size = G_SETTING_PTR->value(MusicSettingManager::Config::LrcSize).toInt();
+    const int size = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
     if(m_lrcSizeProperty == -1)
     {
         m_lrcSizeProperty = size;
@@ -168,7 +168,7 @@ void MusicLrcContainerForInterior::setLrcSize(int size)
         m_lrcManagers[i]->setY(35 + size);
         m_lrcManagers[i]->setText(m_lrcAnalysis->text(i));
     }
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::LrcSize, size);
+    G_SETTING_PTR->setValue(MusicSettingManager::LrcSize, size);
 
     resizeWindow();
     setItemStyleSheet();
@@ -177,13 +177,13 @@ void MusicLrcContainerForInterior::setLrcSize(int size)
 
 int MusicLrcContainerForInterior::lrcSize() const
 {
-    return G_SETTING_PTR->value(MusicSettingManager::Config::LrcSize).toInt();
+    return G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
 }
 
 void MusicLrcContainerForInterior::resizeWindow()
 {
-    int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
-    int height = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().height();
+    int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    int height = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
 
     if(m_lrcDisplayAll)
     {
@@ -422,7 +422,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     group->addAction(changeLrcSize.addAction(tr("Big")))->setData(3);
     group->addAction(changeLrcSize.addAction(tr("Bigger")))->setData(4);
 
-    int index = -1, size = G_SETTING_PTR->value(MusicSettingManager::Config::LrcSize).toInt();
+    int index = -1, size = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
     switch(size)
     {
         case 14: index = 0; break;
@@ -580,7 +580,7 @@ void MusicLrcContainerForInterior::mouseMoveEvent(QMouseEvent *event)
                 index = m_lrcAnalysis->count() - m_lrcAnalysis->lineMiddle() + 2;
             }
 
-            int value = G_SETTING_PTR->value(MusicSettingManager::Config::LrcSize).toInt();
+            int value = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
             value = (mapLrcSizeProperty(m_lrcChangeDelta) - mapLrcSizeProperty(value)) / 2;
 
             m_lrcAnalysis->setCurrentIndex(index);

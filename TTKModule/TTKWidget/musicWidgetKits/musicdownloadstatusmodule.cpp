@@ -44,7 +44,7 @@ void MusicDownloadStatusModule::networkConnectionStateChanged(bool state)
 
 bool MusicDownloadStatusModule::checkSettingParameterValue() const
 {
-    return G_SETTING_PTR->value(MusicSettingManager::Config::ShowInteriorLrc).toBool() || G_SETTING_PTR->value(MusicSettingManager::Config::ShowDesktopLrc).toBool();
+    return G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
 }
 
 void MusicDownloadStatusModule::checkLrcValid()

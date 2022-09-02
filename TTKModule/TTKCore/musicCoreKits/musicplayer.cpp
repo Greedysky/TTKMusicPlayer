@@ -211,10 +211,10 @@ void MusicPlayer::setEnabledEffect(bool enable)
 void MusicPlayer::setEqualizerConfig()
 {
     ///Read the equalizer parameters from a configuration file
-    if(G_SETTING_PTR->value(MusicSettingManager::Config::EqualizerEnable).toInt())
+    if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
     {
         setEnabledEffect(true);
-        const QStringList &eqValue = G_SETTING_PTR->value(MusicSettingManager::Config::EqualizerValue).toString().split(",");
+        const QStringList &eqValue = G_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(",");
         if(eqValue.count() == 11)
         {
             setEqualizerEffect({eqValue[0].toInt(), eqValue[1].toInt(), eqValue[2].toInt(), eqValue[3].toInt(),

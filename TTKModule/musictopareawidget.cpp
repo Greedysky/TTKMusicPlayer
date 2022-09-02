@@ -100,9 +100,9 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 
 void MusicTopAreaWidget::setBackgroundParameter()
 {
-    m_backgroundImagePath = G_SETTING_PTR->value(MusicSettingManager::Config::BackgroundThemeValue).toString();
-    m_backgroundListAlpha = G_SETTING_PTR->value(MusicSettingManager::Config::BackgroundListTransparent).toInt();
-    m_backgroundAlpha = G_SETTING_PTR->value(MusicSettingManager::Config::BackgroundTransparent).toInt();
+    m_backgroundImagePath = G_SETTING_PTR->value(MusicSettingManager::BackgroundThemeValue).toString();
+    m_backgroundListAlpha = G_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparent).toInt();
+    m_backgroundAlpha = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
 }
 
 int MusicTopAreaWidget::backgroundListAlpha()
@@ -410,7 +410,7 @@ void MusicTopAreaWidget::musicStackedToolsWidgetChanged()
 
 void MusicTopAreaWidget::backgroundTransparentChanged(int value)
 {
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::BackgroundListTransparent, value);
+    G_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparent, value);
     m_ui->centerLeftWidget->backgroundTransparent(value);
 }
 
@@ -473,7 +473,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
     const float v = MusicUtils::Image::reRenderValue<float>(1, 0.35, 100 - m_backgroundAlpha);
     MusicApplication::instance()->setWindowOpacity(v);
 
-    const QSize size(G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize());
+    const QSize size(G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());
 
     QPixmap pixmap(size);
     pixmap.fill(Qt::transparent);

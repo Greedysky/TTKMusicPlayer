@@ -32,7 +32,7 @@ class TTK_MODULE_EXPORT MusicSettingManager : public QObject
     Q_ENUMS(Config)
     TTK_DECLARE_MODULE(MusicSettingManager)
 public:
-    enum class Config
+    enum Config
     {
         Null = -1,                       /*!< No Parameter*/
         ScreenSize,                      /*!< Screen Size Parameter*/

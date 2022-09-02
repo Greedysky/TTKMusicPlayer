@@ -186,15 +186,15 @@ void MusicEqualizerDialog::setControlEnabled(bool enable) const
 
 void MusicEqualizerDialog::readInformation()
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::Config::EqualizerEnable).toInt())
+    if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
     {
         m_ui->showEqButton->click();
     }
 
-    const QStringList &eqValue = G_SETTING_PTR->value(MusicSettingManager::Config::EqualizerValue).toString().split(",");
+    const QStringList &eqValue = G_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(",");
     if(eqValue.count() == 11)
     {
-        if(G_SETTING_PTR->value(MusicSettingManager::Config::EqualizerIndex).toInt() == 0)
+        if(G_SETTING_PTR->value(MusicSettingManager::EqualizerIndex).toInt() == 0)
         {
             makeBlockedValue(m_ui->bwVerticalSlider, eqValue[0].toInt());
             makeBlockedValue(m_ui->verticalSlider1,  eqValue[1].toInt());
@@ -210,7 +210,7 @@ void MusicEqualizerDialog::readInformation()
         }
         else
         {
-           m_ui->eqChoice->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::Config::EqualizerIndex).toInt());
+           m_ui->eqChoice->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::EqualizerIndex).toInt());
         }
     }
     else
@@ -221,9 +221,9 @@ void MusicEqualizerDialog::readInformation()
 
 void MusicEqualizerDialog::writeInformation() const
 {
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::EqualizerEnable, m_enable ? 1 : 0);
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::EqualizerIndex, m_ui->eqChoice->currentIndex());
-    G_SETTING_PTR->setValue(MusicSettingManager::Config::EqualizerValue,
+    G_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, m_enable ? 1 : 0);
+    G_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndex, m_ui->eqChoice->currentIndex());
+    G_SETTING_PTR->setValue(MusicSettingManager::EqualizerValue,
           QString("%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11").arg(m_ui->bwVerticalSlider->value())
                  .arg(m_ui->verticalSlider1->value()).arg(m_ui->verticalSlider2->value()).arg(m_ui->verticalSlider3->value())
                  .arg(m_ui->verticalSlider4->value()).arg(m_ui->verticalSlider5->value()).arg(m_ui->verticalSlider6->value())

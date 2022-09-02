@@ -124,7 +124,7 @@ void MusicSongSearchTableWidget::setSearchQuality(MusicObject::QueryQuality qual
 
 void MusicSongSearchTableWidget::resizeWindow()
 {
-    const int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) / 3.0 + 273);
     headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN) / 3.0 + 105);
@@ -551,7 +551,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 
 void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
 {
-    const int width = G_SETTING_PTR->value(MusicSettingManager::Config::WidgetSize).toSize().width();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     if(!m_resizeWidgets.isEmpty())
     {
         m_resizeWidgets[1]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 273);

@@ -162,7 +162,7 @@ void MusicDownloadWidget::initialize()
     }
     else
     {
-        m_ui->downloadPathEdit->setText(G_SETTING_PTR->value(MusicSettingManager::Config::DownloadMusicDirPath).toString());
+        m_ui->downloadPathEdit->setText(G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString());
     }
 }
 
@@ -321,7 +321,7 @@ void MusicDownloadWidget::downloadDirSelected()
     {
         if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
         {
-            G_SETTING_PTR->setValue(MusicSettingManager::Config::DownloadMusicDirPath, path + TTK_SEPARATOR);
+            G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicDirPath, path + TTK_SEPARATOR);
         }
         m_ui->downloadPathEdit->setText(path + TTK_SEPARATOR);
     }
