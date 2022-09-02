@@ -1,5 +1,6 @@
 #include "musicplaylist.h"
 #include "musictime.h"
+#include "musicstringutils.h"
 
 MusicPlaylist::MusicPlaylist(QObject *parent)
     : QObject(parent),
@@ -53,9 +54,9 @@ MusicPlayItem MusicPlaylist::currentItem() const
 QString MusicPlaylist::currentMediaPath() const
 {
     const MusicPlayItem &item = currentItem();
-    if(item.m_toolIndex == MUSIC_NETWORK_LIST && /*Replace network url path to local path*/
-      (item.m_path.startsWith(HTTP_PREFIX) || item.m_path.startsWith(HTTPS_PREFIX)))
+    if(item.m_toolIndex == MUSIC_NETWORK_LIST && MusicUtils::String::isNetworkUrl(item.m_path))
     {
+        /*Replace network url path to local path*/
         const QString &id = item.m_path.section("#", -1);
         if(id == item.m_path)
         {

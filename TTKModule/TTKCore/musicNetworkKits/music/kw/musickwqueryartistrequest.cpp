@@ -83,11 +83,10 @@ void MusicKWQueryArtistRequest::downLoadFinished()
                         artistFound = true;
                         MusicResultsItem result;
                         TTK_NETWORK_QUERY_CHECK();
-                        downLoadIntro(&result);
+                        queryArtistIntro(&result);
                         TTK_NETWORK_QUERY_CHECK();
                         result.m_id = info.m_artistId;
                         result.m_name = info.m_singerName;
-                        result.m_coverUrl = info.m_coverUrl;
                         Q_EMIT createArtistInfoItem(result);
                     }
 
@@ -108,7 +107,7 @@ void MusicKWQueryArtistRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicKWQueryArtistRequest::downLoadIntro(MusicResultsItem *item) const
+void MusicKWQueryArtistRequest::queryArtistIntro(MusicResultsItem *item) const
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(m_queryValue));
@@ -129,6 +128,7 @@ void MusicKWQueryArtistRequest::downLoadIntro(MusicResultsItem *item) const
         item->m_tags = value["country"].toString();
         item->m_updateTime = value["birthday"].toString();
         item->m_nickName = value["aartist"].toString();
+        item->m_coverUrl = value["hts_pic"].toString();
         item->m_description = MusicUtils::String::convertHtmlToPlain(value["info"].toString());
     }
 }

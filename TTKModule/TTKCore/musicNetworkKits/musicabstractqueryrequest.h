@@ -19,7 +19,6 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicstringutils.h"
 #include "musicpagequeryrequest.h"
 
 /*! @brief The class of the searched data item.

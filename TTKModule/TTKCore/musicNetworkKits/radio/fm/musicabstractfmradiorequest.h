@@ -19,7 +19,6 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicstringutils.h"
 #include "musicabstractnetwork.h"
 
 const QString FM_CHANNEL_URL  = "MUs2SnhKN1FOVUFNMzJrVGF3MzM3NVg1NjkxNVUzZUNxTzNZNHVzWi9yMHhvd2JidTRRb1BRb0NTWHU0akIzUzRFVHFudXMyRDFLZVVtTWdydThKVDROYjJ1UkVEdGJjcFhSZXJ6Y2REWHQyU0ZUWWVPZW8xQT09";

@@ -111,6 +111,11 @@ bool MusicUtils::String::isChinese(const QChar &c)
 #endif
 }
 
+bool MusicUtils::String::isNetworkUrl(const QString &path)
+{
+    return path.startsWith(HTTP_PREFIX) || path.startsWith(HTTPS_PREFIX);
+}
+
 QString MusicUtils::String::artistName(const QString &value, const QString &key)
 {
     const QStringList &s = stringSplit(value);

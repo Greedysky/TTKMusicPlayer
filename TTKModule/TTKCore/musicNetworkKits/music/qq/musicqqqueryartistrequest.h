@@ -72,7 +72,7 @@ protected:
     /*!
      * Get Download introduction data from net.
      */
-    void downLoadIntro(MusicResultsItem *item) const;
+    void queryArtistIntro(MusicResultsItem *item) const;
 
 };
 

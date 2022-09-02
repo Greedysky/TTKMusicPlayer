@@ -47,6 +47,11 @@ void MusicTransitionAnimationLabel::stop()
 
 void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
 {
+    if(pix.isNull())
+    {
+        return;
+    }
+
     const QPixmap &pixmap = QtLablePixmap(this);
     if(m_noAnimationSet || pixmap.isNull())
     {

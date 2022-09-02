@@ -53,6 +53,7 @@ namespace MusicUtils
          * Get string suffix path.
          */
         TTK_MODULE_EXPORT QString stringSuffix(const QString &name, const QString &suffix);
+
         /*!
          * Get string splite path.
          */
@@ -74,11 +75,14 @@ namespace MusicUtils
          * Get new \r \n string key.
          */
         TTK_MODULE_EXPORT QString lineWrap();
-
         /*!
          * Check the given char is or not chinese character.
          */
         TTK_MODULE_EXPORT bool isChinese(const QChar &c);
+        /*!
+         * Check input url path is network path or not.
+         */
+        TTK_MODULE_EXPORT bool isNetworkUrl(const QString &path);
 
         /*!
          * Get song artist name.

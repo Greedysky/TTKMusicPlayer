@@ -27,6 +27,7 @@
 #include "musicnetworkthread.h"
 #include "musicnetworkdefines.h"
 #include "musicnumberutils.h"
+#include "musicstringutils.h"
 #include "musicalgorithmutils.h"
 
 #include "qjson/parser.h"

@@ -29,9 +29,20 @@ void MusicKWDownLoadCoverRequest::downLoadFinished()
         const QByteArray &bytes = m_reply->readAll();
         if(bytes != "NO_PIC")
         {
-            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(bytes, m_savePath, MusicObject::Download::Cover, this);
-            connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged()));
-            download->startToDownload();
+            if(MusicUtils::String::isNetworkUrl(bytes))
+            {
+                MusicDownloadDataRequest *download = new MusicDownloadDataRequest(bytes, m_savePath, MusicObject::Download::Cover, this);
+                connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged()));
+                download->startToDownload();
+            }
+            else
+            {
+                if(m_file->open(QIODevice::WriteOnly | QIODevice::Truncate))
+                {
+                    m_file->write(bytes);
+                    m_file->close();
+                }
+            }
             return;
         }
     }

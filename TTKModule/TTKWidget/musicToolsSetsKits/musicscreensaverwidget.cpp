@@ -4,7 +4,6 @@
 #include "musictoolsetsuiobject.h"
 #include "musicdownloadqueuerequest.h"
 #include "musicimageutils.h"
-#include "musicstringutils.h"
 #include "musicwidgetutils.h"
 #include "ttkdesktopwrapper.h"
 

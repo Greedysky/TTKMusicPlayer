@@ -4,7 +4,6 @@
 #include "musicconnectionpool.h"
 #include "musicitemdelegate.h"
 #include "musicmessagebox.h"
-#include "musicstringutils.h"
 
 MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent),

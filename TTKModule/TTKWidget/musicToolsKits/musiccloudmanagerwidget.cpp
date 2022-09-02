@@ -7,7 +7,6 @@
 #include "musicdownloaddatarequest.h"
 #include "musiccoreutils.h"
 #include "musicfileutils.h"
-#include "musicstringutils.h"
 #include "musicformats.h"
 #include "musictoastlabel.h"
 #include "musicconnectionpool.h"

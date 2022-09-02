@@ -149,7 +149,7 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
 QString MusicObject::generateMusicPlayTime(const QString &path)
 {
     QString v = path;
-    if(path.startsWith(HTTP_PREFIX) || path.startsWith(HTTPS_PREFIX))
+    if(MusicUtils::String::isNetworkUrl(path))
     {
         /*Replace network url path to local path*/
         const QString &id = path.section("#", -1);

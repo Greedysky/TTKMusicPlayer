@@ -157,7 +157,7 @@ void MusicQQQueryArtistRequest::downLoadFinished()
                         artistFound = true;
                         MusicResultsItem result;
                         TTK_NETWORK_QUERY_CHECK();
-                        downLoadIntro(&result);
+                        queryArtistIntro(&result);
                         TTK_NETWORK_QUERY_CHECK();
                         result.m_id = info.m_artistId;
                         result.m_name = info.m_singerName;
@@ -182,7 +182,7 @@ void MusicQQQueryArtistRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicQQQueryArtistRequest::downLoadIntro(MusicResultsItem *item) const
+void MusicQQQueryArtistRequest::queryArtistIntro(MusicResultsItem *item) const
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_INFO_URL, false).arg(m_queryValue));

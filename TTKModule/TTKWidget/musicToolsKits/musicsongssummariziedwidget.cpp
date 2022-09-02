@@ -181,7 +181,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
 
         importMusicSongsByPath(files);
     }
-    else if(path.startsWith(HTTP_PREFIX) || path.startsWith(HTTPS_PREFIX))
+    else if(MusicUtils::String::isNetworkUrl(path))
     {
         closeSearchWidgetInNeed();
 

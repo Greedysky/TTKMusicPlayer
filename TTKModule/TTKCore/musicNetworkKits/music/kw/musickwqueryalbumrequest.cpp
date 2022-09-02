@@ -58,9 +58,9 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                 const QString &albumName = value["name"].toString();
                 result.m_nickName = value["albumid"].toString();
                 result.m_coverUrl = value["pic"].toString();
-                if(!result.m_coverUrl.contains(HTTP_PREFIX) && !result.m_coverUrl.contains(TTK_NULL_STR))
+                if(!MusicUtils::String::isNetworkUrl(result.m_coverUrl) && !result.m_coverUrl.contains(TTK_NULL_STR))
                 {
-                    result.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + result.m_coverUrl;
+                    result.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_PREFIX_URL, false) + result.m_coverUrl;
                 }
                 result.m_description = albumName + TTK_SPLITER +
                                        value["lang"].toString() + TTK_SPLITER +
@@ -160,9 +160,9 @@ void MusicKWQueryAlbumRequest::downLoadSingleFinished()
                     MusicResultsItem result;
                     result.m_id = value["albumid"].toString();
                     result.m_coverUrl = value["pic"].toString();
-                    if(!result.m_coverUrl.contains(HTTP_PREFIX) && !result.m_coverUrl.contains(TTK_NULL_STR))
+                    if(!result.m_coverUrl.contains(TTK_NULL_STR) && !MusicUtils::String::isNetworkUrl(result.m_coverUrl))
                     {
-                        result.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + result.m_coverUrl;
+                        result.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_PREFIX_URL, false) + result.m_coverUrl;
                     }
                     result.m_name = value["name"].toString();
                     result.m_updateTime = value["pub"].toString().replace(TTK_DEFAULT_STR, TTK_DOT);
