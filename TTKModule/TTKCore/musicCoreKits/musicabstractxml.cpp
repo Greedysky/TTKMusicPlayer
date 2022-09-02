@@ -117,6 +117,7 @@ bool MusicAbstractXml::fromString(const QString &data)
 {
     delete m_file;
     delete m_document;
+
     m_file = nullptr;
     m_document = new QDomDocument;
     return m_document->setContent(data);
@@ -126,6 +127,7 @@ bool MusicAbstractXml::fromByteArray(const QByteArray &data)
 {
     delete m_file;
     delete m_document;
+
     m_file = nullptr;
     m_document = new QDomDocument;
     return m_document->setContent(data);
@@ -135,6 +137,7 @@ bool MusicAbstractXml::toFile(const QString &name)
 {
     delete m_file;
     delete m_document;
+
     m_file = new QFile(name);
     m_document = new QDomDocument;
     return m_file->open(QFile::WriteOnly | QFile::Text);

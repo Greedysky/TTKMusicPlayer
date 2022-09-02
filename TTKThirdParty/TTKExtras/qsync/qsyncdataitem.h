@@ -33,8 +33,9 @@ struct TTK_MODULE_EXPORT QSyncDataItem
     int m_size;
 
     QSyncDataItem()
+        : m_size(0)
     {
-        m_size = 0;
+
     }
 
     inline void clear()
