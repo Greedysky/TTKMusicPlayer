@@ -31,48 +31,8 @@
 
 class QLabel;
 class QCheckBox;
-class QRadioButton;
 class QProgressBar;
 class QPushButton;
-
-/*! @brief The class of the radio button item delegate.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicRadioButtonDelegate : public QItemDelegate
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRadioButtonDelegate)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicRadioButtonDelegate(QObject* parent = nullptr);
-    ~MusicRadioButtonDelegate();
-
-    /*!
-     * Set delegate item style.
-     */
-    void setStyleSheet(const QString &style);
-    /*!
-     * Set tree model.
-     */
-    void setTreeModel(bool tree);
-
-    /*!
-     * Override size hint.
-     */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override final;
-    /*!
-     * Override paint.
-     */
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
-
-protected:
-    bool m_treeMode;
-    QRadioButton *m_radioButton;
-
-};
-
 
 /*! @brief The class of the checkbox item delegate.
  * @author Greedysky <greedysky@163.com>
@@ -246,18 +206,18 @@ protected:
 };
 
 
-/*! @brief The class of the rename lineedit item delegate.
+/*! @brief The class of the lineedit item delegate.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicRenameLineEditDelegate : public QItemDelegate
+class TTK_MODULE_EXPORT MusicLineEditDelegate : public QItemDelegate
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRenameLineEditDelegate)
+    TTK_DECLARE_MODULE(MusicLineEditDelegate)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRenameLineEditDelegate(QObject *parent);
+    explicit MusicLineEditDelegate(QObject *parent);
 
     /*!
      * Override createEditor.

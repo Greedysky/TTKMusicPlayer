@@ -26,7 +26,6 @@ HEADERS += \
     $$PWD/musicplatformextras.h \
     $$PWD/musicsongslistiteminfowidget.h \
     $$PWD/musicsongsearchonlinewidget.h \
-    $$PWD/musicsongstoolitemrenamedwidget.h \
     $$PWD/musicsongslistplaywidget.h \
     $$PWD/musicsongslistplayedwidget.h \
     $$PWD/musicsongslistfunctionwidget.h \
@@ -77,7 +76,6 @@ SOURCES += \
     $$PWD/musicplatformextras.cpp \
     $$PWD/musicsongslistiteminfowidget.cpp \
     $$PWD/musicsongsearchonlinewidget.cpp \
-    $$PWD/musicsongstoolitemrenamedwidget.cpp \
     $$PWD/musicsongslistplaywidget.cpp \
     $$PWD/musicsongslistplayedwidget.cpp \
     $$PWD/musicsongslistfunctionwidget.cpp \

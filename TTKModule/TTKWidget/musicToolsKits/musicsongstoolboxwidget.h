@@ -22,7 +22,7 @@
 #include "musicfunctiontoolboxwidget.h"
 
 class MusicSongSort;
-class MusicSongsToolItemRenamedWidget;
+class MusicItemRenameEidt;
 
 /*! @brief The class of the tool box top widget.
  * @author Greedysky <greedysky@163.com>
@@ -138,7 +138,7 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
     
     MusicSongSort *m_songSort;
-    MusicSongsToolItemRenamedWidget *m_renameEdit;
+    MusicItemRenameEidt *m_renameEdit;
 
 };
 

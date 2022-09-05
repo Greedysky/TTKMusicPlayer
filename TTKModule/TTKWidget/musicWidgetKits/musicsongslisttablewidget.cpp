@@ -40,7 +40,7 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
       m_renameActived(false),
       m_deleteItemWithFile(false),
       m_renameItem(nullptr),
-      m_renameLineEditDelegate(nullptr),
+      m_renameEditDelegate(nullptr),
       m_songSort(nullptr)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -68,7 +68,7 @@ MusicSongsListTableWidget::~MusicSongsListTableWidget()
     delete m_openFileWidget;
     delete m_songsInfoWidget;
     delete m_songsPlayWidget;
-    delete m_renameLineEditDelegate;
+    delete m_renameEditDelegate;
 }
 
 void MusicSongsListTableWidget::updateSongsFileName(const MusicSongList &songs)
@@ -516,9 +516,10 @@ void MusicSongsListTableWidget::setChangSongName()
     }
 
     //others
-    delete m_renameLineEditDelegate;
-    m_renameLineEditDelegate = new MusicRenameLineEditDelegate(this);
-    setItemDelegateForRow(currentRow(), m_renameLineEditDelegate);
+    delete m_renameEditDelegate;
+    m_renameEditDelegate = new MusicLineEditDelegate(this);
+    setItemDelegateForRow(currentRow(), m_renameEditDelegate);
+
     m_renameActived = true;
     m_renameItem = item(currentRow(), 1);
     m_renameItem->setText((*m_songs)[m_renameItem->row()].name());
@@ -761,8 +762,8 @@ void MusicSongsListTableWidget::closeRenameItem()
         setItemDelegateForRow(m_renameItem->row(), nullptr);
         m_renameItem = nullptr;
 
-        delete m_renameLineEditDelegate;
-        m_renameLineEditDelegate = nullptr;
+        delete m_renameEditDelegate;
+        m_renameEditDelegate = nullptr;
     }
 }
 

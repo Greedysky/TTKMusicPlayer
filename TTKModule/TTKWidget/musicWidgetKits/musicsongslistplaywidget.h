@@ -25,7 +25,7 @@
 class QMenu;
 class QPushButton;
 class MusicSplitItemClickedLabel;
-class MusicSongsToolItemRenamedWidget;
+class MusicItemRenameEidt;
 
 /*! @brief The class of the song list play widget.
  * @author Greedysky <greedysky@163.com>
@@ -119,7 +119,7 @@ protected:
     MusicSplitItemClickedLabel *m_songNameLabel;
     QPushButton *m_loveButton, *m_deleteButton,* m_showMVButton;
     QPushButton *m_downloadButton, *m_moreButton;
-    MusicSongsToolItemRenamedWidget *m_renameEdit;
+    MusicItemRenameEidt *m_renameEdit;
 
 };
 

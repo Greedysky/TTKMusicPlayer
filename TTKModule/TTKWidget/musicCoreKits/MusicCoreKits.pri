@@ -32,6 +32,7 @@ HEADERS += \
     $$PWD/musicquerytablewidget.h \
     $$PWD/musicitemsearchtablewidget.h \
     $$PWD/musicitemquerytablewidget.h \
+    $$PWD/musicitemrenameedit.h \
     $$PWD/musicsmoothmovingwidget.h \
     $$PWD/musicitemdelegate.h \
     $$PWD/musiccolordialog.h \
@@ -78,6 +79,7 @@ SOURCES += \
     $$PWD/musicquerytablewidget.cpp \
     $$PWD/musicitemsearchtablewidget.cpp \
     $$PWD/musicitemquerytablewidget.cpp \
+    $$PWD/musicitemrenameedit.cpp \
     $$PWD/musicsmoothmovingwidget.cpp \
     $$PWD/musicitemdelegate.cpp \
     $$PWD/musiccolordialog.cpp \

@@ -1,5 +1,5 @@
 #include "musicsongstoolboxwidget.h"
-#include "musicsongstoolitemrenamedwidget.h"
+#include "musicitemrenameedit.h"
 #include "musicsettingmanager.h"
 #include "musictinyuiobject.h"
 #include "musicsong.h"
@@ -52,7 +52,7 @@ void MusicSongsToolBoxTopWidget::changRowItemName()
 {
     if(!m_renameEdit)
     {
-        m_renameEdit = new MusicSongsToolItemRenamedWidget(title(), this);
+        m_renameEdit = new MusicItemRenameEidt(title(), this);
         connect(m_renameEdit, SIGNAL(renameFinished(QString)), SLOT(changItemName(QString)));
         m_renameEdit->setGeometry(m_labelIcon->width(), 3, RENAME_WIDTH, height() - 6);
     }

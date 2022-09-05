@@ -1,5 +1,5 @@
-#ifndef MUSICSONGSTOOLITEMRENAMEDWIDGET_H
-#define MUSICSONGSTOOLITEMRENAMEDWIDGET_H
+#ifndef MUSICITEMRENAMEEIDT_H
+#define MUSICITEMRENAMEEIDT_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -22,19 +22,19 @@
 #include <QLineEdit>
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the song tool item rename widget.
+/*! @brief The class of the item rename edit.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongsToolItemRenamedWidget : public QLineEdit
+class TTK_MODULE_EXPORT MusicItemRenameEidt : public QLineEdit
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongsToolItemRenamedWidget)
+    TTK_DECLARE_MODULE(MusicItemRenameEidt)
 public:
     /*!
      * Object contsructor by index and origin name.
      */
-    explicit MusicSongsToolItemRenamedWidget(QWidget *parent = nullptr);
-    explicit MusicSongsToolItemRenamedWidget(const QString &text, QWidget *parent = nullptr);
+    explicit MusicItemRenameEidt(QWidget *parent = nullptr);
+    explicit MusicItemRenameEidt(const QString &text, QWidget *parent = nullptr);
 
 Q_SIGNALS:
     /*!
@@ -66,4 +66,4 @@ protected:
 
 };
 
-#endif // MUSICSONGSTOOLITEMRENAMEDWIDGET_H
+#endif // MUSICITEMRENAMEEIDT_H

@@ -1,6 +1,6 @@
 #include "musicsongslistplaywidget.h"
 #include "musicsongmeta.h"
-#include "musicsongstoolitemrenamedwidget.h"
+#include "musicitemrenameedit.h"
 #include "musicstringutils.h"
 #include "musicwidgetutils.h"
 #include "musicsettingmanager.h"
@@ -174,7 +174,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
 
 void MusicSongsListPlayWidget::setItemRename()
 {
-    m_renameEdit = new MusicSongsToolItemRenamedWidget(m_songNameLabel->toolTip(), this);
+    m_renameEdit = new MusicItemRenameEidt(m_songNameLabel->toolTip(), this);
     connect(m_renameEdit, SIGNAL(renameFinished(QString)), SLOT(changItemName(QString)));
     m_renameEdit->setGeometry(85, 5, 200, 25);
     m_renameEdit->show();

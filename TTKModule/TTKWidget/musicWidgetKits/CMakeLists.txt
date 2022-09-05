@@ -8,7 +8,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musicplatformextras.h
     ${MUSIC_WIDGET_DIR}/musicsongslistiteminfowidget.h
     ${MUSIC_WIDGET_DIR}/musicsongsearchonlinewidget.h
-    ${MUSIC_WIDGET_DIR}/musicsongstoolitemrenamedwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistplaywidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistfunctionwidget.h
@@ -60,7 +59,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musicplatformextras.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistiteminfowidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongsearchonlinewidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicsongstoolitemrenamedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistplaywidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistfunctionwidget.cpp

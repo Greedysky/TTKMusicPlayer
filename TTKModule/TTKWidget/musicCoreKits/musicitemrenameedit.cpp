@@ -1,9 +1,9 @@
-#include "musicsongstoolitemrenamedwidget.h"
+#include "musicitemrenameedit.h"
 #include "musicstringutils.h"
 #include "musicuiobject.h"
 #include "musictoastlabel.h"
 
-MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(QWidget *parent)
+MusicItemRenameEidt::MusicItemRenameEidt(QWidget *parent)
     : QLineEdit(parent),
       m_focusBlock(false)
 {
@@ -14,16 +14,15 @@ MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(QWidget *parent
 
     connect(this, SIGNAL(textChanged(QString)), SLOT(textChanged(QString)));
     connect(this, SIGNAL(editingFinished()), SLOT(renameFinished()));
-
 }
 
-MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(const QString &text, QWidget *parent)
-    : MusicSongsToolItemRenamedWidget(parent)
+MusicItemRenameEidt::MusicItemRenameEidt(const QString &text, QWidget *parent)
+    : MusicItemRenameEidt(parent)
 {
     setText(text);
 }
 
-void MusicSongsToolItemRenamedWidget::textChanged(const QString &text)
+void MusicItemRenameEidt::textChanged(const QString &text)
 {
     if(MusicUtils::String::isCharacterValid(text))
     {
@@ -37,18 +36,18 @@ void MusicSongsToolItemRenamedWidget::textChanged(const QString &text)
     }
 }
 
-void MusicSongsToolItemRenamedWidget::renameFinished()
+void MusicItemRenameEidt::renameFinished()
 {
     Q_EMIT renameFinished(text());
 }
 
-void MusicSongsToolItemRenamedWidget::animationCloseChanged()
+void MusicItemRenameEidt::animationCloseChanged()
 {
     m_focusBlock = false;
     setFocus(Qt::MouseFocusReason);
 }
 
-void MusicSongsToolItemRenamedWidget::focusOutEvent(QFocusEvent *event)
+void MusicItemRenameEidt::focusOutEvent(QFocusEvent *event)
 {
     if(!m_focusBlock)
     {

@@ -26,7 +26,7 @@ class QPropertyAnimation;
 class MusicOpenFileWidget;
 class MusicSongsListPlayWidget;
 class MusicSongsListItemInfoWidget;
-class MusicRenameLineEditDelegate;
+class MusicLineEditDelegate;
 
 /*! @brief The class of the songs list table widget.
  * @author Greedysky <greedysky@163.com>
@@ -202,7 +202,7 @@ protected:
     bool m_renameActived, m_deleteItemWithFile;
     MusicSongList m_searchedSongs;
     QTableWidgetItem *m_renameItem;
-    MusicRenameLineEditDelegate *m_renameLineEditDelegate;
+    MusicLineEditDelegate *m_renameEditDelegate;
     MusicSongSort *m_songSort;
 
 };

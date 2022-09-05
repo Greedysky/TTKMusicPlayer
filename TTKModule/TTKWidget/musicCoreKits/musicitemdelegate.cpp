@@ -1,59 +1,6 @@
 #include "musicitemdelegate.h"
-#include "musicsongstoolitemrenamedwidget.h"
+#include "musicitemrenameedit.h"
 #include "musicwidgetheaders.h"
-
-MusicRadioButtonDelegate::MusicRadioButtonDelegate(QObject *parent)
-    : QItemDelegate(parent),
-      m_treeMode(false)
-{
-    m_radioButton = new QRadioButton;
-    m_radioButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
-#ifdef Q_OS_UNIX
-    m_radioButton->setFocusPolicy(Qt::NoFocus);
-#endif
-}
-
-MusicRadioButtonDelegate::~MusicRadioButtonDelegate()
-{
-    delete m_radioButton;
-}
-
-void MusicRadioButtonDelegate::setStyleSheet(const QString &style)
-{
-    m_radioButton->setStyleSheet(style);
-}
-
-void MusicRadioButtonDelegate::setTreeModel(bool tree)
-{
-    m_treeMode = tree;
-}
-
-QSize MusicRadioButtonDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
-{
-    QSize size = option.rect.size();
-    size.setHeight(25);
-    return size;
-}
-
-void MusicRadioButtonDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
-{
-    QItemDelegate::paint(painter, option, index);
-
-    if(m_treeMode && !index.parent().isValid())
-    {
-        return;
-    }
-
-    painter->save();
-    const int minSize = qMin(option.rect.width(), option.rect.height());
-    m_radioButton->resize(minSize, minSize);
-    m_radioButton->setChecked(TTKStatic_cast(Qt::CheckState, index.data(MUSIC_CHECK_ROLE).toInt()) == Qt::Checked);
-    painter->translate((option.rect.width() - 16) / 2, 0); // top left
-
-    m_radioButton->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
-    painter->restore();
-}
-
 
 MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
     : QItemDelegate(parent),
@@ -299,13 +246,13 @@ void MusicPushButtonDelegate::paint(QPainter *painter, const QStyleOptionViewIte
 
 
 
-MusicRenameLineEditDelegate::MusicRenameLineEditDelegate(QObject *parent)
+MusicLineEditDelegate::MusicLineEditDelegate(QObject *parent)
     : QItemDelegate(parent)
 {
 
 }
 
-QWidget *MusicRenameLineEditDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+QWidget *MusicLineEditDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     Q_UNUSED(option);
 
@@ -316,6 +263,6 @@ QWidget *MusicRenameLineEditDelegate::createEditor(QWidget *parent, const QStyle
         text = model->data(index, Qt::DisplayRole).toString();
     }
 
-    MusicSongsToolItemRenamedWidget *edit = new MusicSongsToolItemRenamedWidget(text, parent);
+    MusicItemRenameEidt *edit = new MusicItemRenameEidt(text, parent);
     return edit;
 }
