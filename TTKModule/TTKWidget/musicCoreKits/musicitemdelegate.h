@@ -34,10 +34,50 @@ class QCheckBox;
 class QProgressBar;
 class QPushButton;
 
+/*! @brief The class of the abstract item delegate.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicAbstractDelegate : public QItemDelegate
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicAbstractDelegate)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicAbstractDelegate(QObject* parent = nullptr);
+    ~MusicAbstractDelegate();
+
+    /*!
+     * Set text mode.
+     */
+    inline void setTextMode(bool mode) { m_textMode = mode; }
+    /*!
+     * Set align mode.
+     */
+    inline void setElideMode(bool mode) { m_elideMode = mode; }
+    /*!
+     * Set tree model.
+     */
+    inline void setTreeModel(bool tree) { m_treeMode = tree; }
+
+    /*!
+     * Set delegate item style.
+     */
+    virtual void setStyleSheet(const QString &style) const = 0;
+
+protected:
+    bool m_textMode;
+    bool m_elideMode;
+    bool m_treeMode;
+
+};
+
+
 /*! @brief The class of the checkbox item delegate.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicCheckBoxDelegate : public QItemDelegate
+class TTK_MODULE_EXPORT MusicCheckBoxDelegate : public MusicAbstractDelegate
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCheckBoxDelegate)
@@ -51,16 +91,7 @@ public:
     /*!
      * Set delegate item style.
      */
-    void setStyleSheet(const QString &style);
-    /*!
-     * Show text mode.
-     */
-    void showTextMode(bool mode);
-    /*!
-     * Set tree model.
-     */
-    void setTreeModel(bool tree);
-
+    virtual void setStyleSheet(const QString &style) const override final;
     /*!
      * Override size hint.
      */
@@ -77,8 +108,6 @@ Q_SIGNALS:
     void buttonChecked();
 
 protected:
-    bool m_textMode;
-    bool m_treeMode;
     bool m_background;
     QCheckBox *m_checkBox;
 
@@ -88,7 +117,7 @@ protected:
 /*! @brief The class of the progress bar item delegate.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicProgressBarDelegate : public QItemDelegate
+class TTK_MODULE_EXPORT MusicProgressBarDelegate : public MusicAbstractDelegate
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicProgressBarDelegate)
@@ -102,12 +131,7 @@ public:
     /*!
      * Set delegate item style.
      */
-    void setStyleSheet(const QString &style);
-    /*!
-     * Set tree model.
-     */
-    void setTreeModel(bool tree);
-
+    virtual void setStyleSheet(const QString &style) const override final;
     /*!
      * Override size hint.
      */
@@ -118,7 +142,6 @@ public:
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
 
 private:
-    bool m_treeMode;
     QProgressBar *m_progress;
 
 };
@@ -127,7 +150,7 @@ private:
 /*! @brief The class of the label item delegate.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLabelDelegate : public QItemDelegate
+class TTK_MODULE_EXPORT MusicLabelDelegate : public MusicAbstractDelegate
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLabelDelegate)
@@ -139,18 +162,14 @@ public:
     ~MusicLabelDelegate();
 
     /*!
-     * Set delegate item style.
-     */
-    void setStyleSheet(const QString &style);
-    /*!
      * Set text alignment.
      */
-    void setAlignment(Qt::Alignment alignment);
-    /*!
-     * Set tree model.
-     */
-    void setTreeModel(bool tree);
+    void setAlignment(Qt::Alignment alignment) const;
 
+    /*!
+     * Set delegate item style.
+     */
+    virtual void setStyleSheet(const QString &style) const override final;
     /*!
      * Override size hint.
      */
@@ -161,7 +180,6 @@ public:
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
 
 protected:
-    bool m_treeMode;
     QLabel *m_label;
 
 };
@@ -170,7 +188,7 @@ protected:
 /*! @brief The class of the push button item delegate.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicPushButtonDelegate : public QItemDelegate
+class TTK_MODULE_EXPORT MusicPushButtonDelegate : public MusicAbstractDelegate
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPushButtonDelegate)
@@ -184,12 +202,7 @@ public:
     /*!
      * Set delegate item style.
      */
-    void setStyleSheet(const QString &style);
-    /*!
-     * Set tree model.
-     */
-    void setTreeModel(bool tree);
-
+    virtual void setStyleSheet(const QString &style) const override final;
     /*!
      * Override size hint.
      */
@@ -217,7 +230,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLineEditDelegate(QObject *parent);
+    explicit MusicLineEditDelegate(QObject *parent = nullptr);
 
     /*!
      * Override createEditor.

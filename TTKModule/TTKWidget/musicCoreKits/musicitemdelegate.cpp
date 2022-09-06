@@ -1,11 +1,25 @@
 #include "musicitemdelegate.h"
 #include "musicitemrenameedit.h"
 #include "musicwidgetheaders.h"
+#include "musicwidgetutils.h"
 
-MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
+MusicAbstractDelegate::MusicAbstractDelegate(QObject *parent)
     : QItemDelegate(parent),
       m_textMode(false),
-      m_treeMode(false),
+      m_elideMode(false),
+      m_treeMode(false)
+{
+
+}
+
+MusicAbstractDelegate::~MusicAbstractDelegate()
+{
+
+}
+
+
+MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
+    : MusicAbstractDelegate(parent),
       m_background(false)
 {
     m_checkBox = new QCheckBox;
@@ -20,19 +34,9 @@ MusicCheckBoxDelegate::~MusicCheckBoxDelegate()
     delete m_checkBox;
 }
 
-void MusicCheckBoxDelegate::setStyleSheet(const QString &style)
+void MusicCheckBoxDelegate::setStyleSheet(const QString &style) const
 {
     m_checkBox->setStyleSheet(style);
-}
-
-void MusicCheckBoxDelegate::showTextMode(bool mode)
-{
-    m_textMode = mode;
-}
-
-void MusicCheckBoxDelegate::setTreeModel(bool tree)
-{
-    m_treeMode = tree;
 }
 
 QSize MusicCheckBoxDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
@@ -79,8 +83,7 @@ void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
 
 
 MusicProgressBarDelegate::MusicProgressBarDelegate(QObject *parent)
-    : QItemDelegate(parent),
-      m_treeMode(false)
+    : MusicAbstractDelegate(parent)
 {
     m_progress = new QProgressBar;
     m_progress->setStyleSheet(MusicUIObject::MQSSProgressBar01);
@@ -91,14 +94,9 @@ MusicProgressBarDelegate::~MusicProgressBarDelegate()
     delete m_progress;
 }
 
-void MusicProgressBarDelegate::setStyleSheet(const QString &style)
+void MusicProgressBarDelegate::setStyleSheet(const QString &style) const
 {
     m_progress->setStyleSheet(style);
-}
-
-void MusicProgressBarDelegate::setTreeModel(bool tree)
-{
-    m_treeMode = tree;
 }
 
 QSize MusicProgressBarDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
@@ -129,8 +127,7 @@ void MusicProgressBarDelegate::paint(QPainter *painter, const QStyleOptionViewIt
 
 
 MusicLabelDelegate::MusicLabelDelegate(QObject *parent)
-    : QItemDelegate(parent),
-      m_treeMode(false)
+    : MusicAbstractDelegate(parent)
 {
     m_label  = new QLabel;
     m_label->setAlignment(Qt::AlignCenter);
@@ -142,19 +139,14 @@ MusicLabelDelegate::~MusicLabelDelegate()
     delete m_label;
 }
 
-void MusicLabelDelegate::setStyleSheet(const QString &style)
-{
-    m_label->setStyleSheet(style);
-}
-
-void MusicLabelDelegate::setAlignment(Qt::Alignment alignment)
+void MusicLabelDelegate::setAlignment(Qt::Alignment alignment) const
 {
     m_label->setAlignment(alignment);
 }
 
-void MusicLabelDelegate::setTreeModel(bool tree)
+void MusicLabelDelegate::setStyleSheet(const QString &style) const
 {
-    m_treeMode = tree;
+    m_label->setStyleSheet(style);
 }
 
 QSize MusicLabelDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
@@ -182,7 +174,8 @@ void MusicLabelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
         m_label->setPalette(pal);
     }
 
-    m_label->setText(index.data(MUSIC_TEXT_ROLE).toString());
+    const QString &text = index.data(MUSIC_TEXT_ROLE).toString();
+    m_label->setText(m_elideMode ? MusicUtils::Widget::elidedText(m_label->font(), text, Qt::ElideRight, option.rect.width() - 5) : text);
     m_label->resize(option.rect.size());
     painter->translate(0, 0);
 
@@ -193,8 +186,7 @@ void MusicLabelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 
 
 MusicPushButtonDelegate::MusicPushButtonDelegate(QObject *parent)
-    : QItemDelegate(parent),
-      m_treeMode(false)
+    : MusicAbstractDelegate(parent)
 {
     m_pushButton = new QPushButton;
     m_pushButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -209,14 +201,9 @@ MusicPushButtonDelegate::~MusicPushButtonDelegate()
     delete m_pushButton;
 }
 
-void MusicPushButtonDelegate::setStyleSheet(const QString &style)
+void MusicPushButtonDelegate::setStyleSheet(const QString &style) const
 {
     m_pushButton->setStyleSheet(style);
-}
-
-void MusicPushButtonDelegate::setTreeModel(bool tree)
-{
-    m_treeMode = tree;
 }
 
 QSize MusicPushButtonDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
@@ -263,6 +250,5 @@ QWidget *MusicLineEditDelegate::createEditor(QWidget *parent, const QStyleOption
         text = model->data(index, Qt::DisplayRole).toString();
     }
 
-    MusicItemRenameEidt *edit = new MusicItemRenameEidt(text, parent);
-    return edit;
+    return new MusicItemRenameEidt(text, parent);
 }

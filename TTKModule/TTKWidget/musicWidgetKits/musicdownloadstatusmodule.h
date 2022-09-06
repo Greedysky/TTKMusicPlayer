@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadStatusModule(QObject *parent);
+    explicit MusicDownloadStatusModule(QObject *parent = nullptr);
 
     /*!
      * Check the current song already has lrc or not,
