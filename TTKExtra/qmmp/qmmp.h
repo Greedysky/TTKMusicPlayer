@@ -54,7 +54,7 @@
 #define CSTR_TO_QSTR(codec, str, utf) codec->toUnicode(str.toCString(utf)).trimmed()
 
 #ifndef TTK_AS_CONST
-#  if (QT_VERSION < QT_VERSION_CHECK(5,7,0))
+#  if QT_VERSION < QT_VERSION_CHECK(5,7,0)
 // this adds const to non-const objects (like std::as_const)
 template <typename T>
 Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) noexcept { return t; }
