@@ -224,8 +224,8 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::Module spectrum, b
             type.m_module = name;
             type.m_object = vs->back();
             type.m_type = spectrum;
-            layout->addWidget(type.m_object);
             m_types << type;
+            layout->addWidget(type.m_object);
             type.m_object->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
             connect(type.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
@@ -292,8 +292,8 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
         type.m_module = name;
         type.m_object = vs->back();
         type.m_type = spectrum;
-        layout->addWidget(type.m_object);
         m_types << type;
+        layout->addWidget(type.m_object);
         type.m_object->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
         if(florid)
