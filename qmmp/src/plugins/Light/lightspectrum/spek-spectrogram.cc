@@ -1,6 +1,7 @@
 #include "spek-audio.h"
 #include "spek-fft.h"
 #include "spek-ruler.h"
+#include "spek-utils.h"
 #include "spek-spectrogram.h"
 #include <qmmp/soundcore.h>
 
@@ -8,8 +9,8 @@
 #include <QMenu>
 #include <QPainter>
 #include <QDateTime>
+#include <QKeyEvent>
 #include <QApplication>
-#include <QDebug>
 
 enum
 {
@@ -54,6 +55,74 @@ void LightSpectrum::open(const QString &path)
     m_path = path;
     m_stream = 0;
     m_channel = 0;
+    start();
+}
+
+void LightSpectrum::keyPressEvent(QKeyEvent *event)
+{
+    switch(event->key()) {
+    case Qt::Key_C:
+        if(m_channels) {
+            if(event->modifiers() == Qt::NoModifier) {   // 'c'
+                m_channel = (m_channel + 1) % m_channels;
+            } else if(event->modifiers() == Qt::ShiftModifier) {   // 'C'
+                m_channel = (m_channel - 1 + m_channels) % m_channels;
+            }
+        }
+        break;
+    case Qt::Key_F:
+        if(event->modifiers() == Qt::NoModifier) {   // 'f'
+            m_window = (WindowFunction) ((m_window + 1) % WINDOW_COUNT);
+        } else if(event->modifiers() == Qt::ShiftModifier) {   // 'F'
+            m_window = (WindowFunction) ((m_window - 1 + WINDOW_COUNT) % WINDOW_COUNT);
+        }
+        break;
+    case Qt::Key_L:
+        if(event->modifiers() == Qt::NoModifier) {   // 'l'
+            m_lrange = spek_min(m_lrange + 1, m_urange - 1);
+        } else if(event->modifiers() == Qt::ShiftModifier) {   // 'L'
+            m_lrange = spek_max(m_lrange - 1, MIN_RANGE);
+        }
+        break;
+    case Qt::Key_P:
+        if(event->modifiers() == Qt::NoModifier) {   // 'p'
+            m_palette = (VisualPalette::Palette) ((m_palette + 1) % VisualPalette::PALETTE_COUNT);
+            create_palette();
+        } else if(event->modifiers() == Qt::ShiftModifier) {   // 'P'
+            m_palette = (VisualPalette::Palette) ((m_palette - 1 + VisualPalette::PALETTE_COUNT) % VisualPalette::PALETTE_COUNT);
+            create_palette();
+        }
+        break;
+    case Qt::Key_S:
+        if(m_streams) {
+            if(event->modifiers() == Qt::NoModifier) {   // 's'
+                m_stream = (m_stream + 1) % m_streams;
+            } else if(event->modifiers() == Qt::ShiftModifier) {   // 'S'
+                m_stream = (m_stream - 1 + m_streams) % m_streams;
+            }
+        }
+        break;
+    case Qt::Key_U:
+        if(event->modifiers() == Qt::NoModifier) {   // 'u'
+            m_urange = spek_min(m_urange + 1, MAX_RANGE);
+        } else if(event->modifiers() == Qt::ShiftModifier) {   // 'U'
+            m_urange = spek_max(m_urange - 1, m_lrange + 1);
+        }
+        break;
+    case Qt::Key_W:
+        if(event->modifiers() == Qt::NoModifier) {   // 'w'
+            m_bits = spek_min(m_bits + 1, MAX_FFT_BITS);
+            this->create_palette();
+        } else if(event->modifiers() == Qt::ShiftModifier) {   // 'W'
+            m_bits = spek_max(m_bits - 1, MIN_FFT_BITS);
+            this->create_palette();
+        }
+        break;
+    default:
+        event->ignore();
+        return;
+    }
+
     start();
 }
 
@@ -248,6 +317,11 @@ void LightSpectrum::stop()
     }
 }
 
+void LightSpectrum::mediaUrlChanged()
+{
+    open(SoundCore::instance()->path());
+}
+
 void LightSpectrum::typeChanged(QAction *action)
 {
     switch(action->data().toInt())
@@ -258,13 +332,9 @@ void LightSpectrum::typeChanged(QAction *action)
         case 40: m_palette = VisualPalette::PALETTE_MONO; break;
         default: break;
     }
+
     create_palette();
     start();
-}
-
-void LightSpectrum::mediaUrlChanged()
-{
-    open(SoundCore::instance()->path());
 }
 
 void LightSpectrum::create_palette()

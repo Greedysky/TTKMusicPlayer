@@ -50,10 +50,11 @@ public:
     inline VisualPalette::Palette getPalette() const { return m_palette; }
 
 private slots:
-    void typeChanged(QAction *action);
     void mediaUrlChanged();
+    void typeChanged(QAction *action);
 
 private:
+    virtual void keyPressEvent(QKeyEvent *event) override final;
     virtual void paintEvent(QPaintEvent *e) override final;
     virtual void resizeEvent(QResizeEvent *e) override final;
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;

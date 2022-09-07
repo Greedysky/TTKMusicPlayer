@@ -16,27 +16,20 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef VISUALPALETTE_H
-#define VISUALPALETTE_H
+#ifndef SPEKUTILS_H
+#define SPEKUTILS_H
 
-#include "qmmp_export.h"
-
-namespace VisualPalette {
-enum Palette
+inline int spek_max(int a, int b)
 {
-    PALETTE_SPECTRUM,
-    PALETTE_SPECTROGRAM,
-    PALETTE_SOX,
-    PALETTE_MONO,
-    PALETTE_COUNT,
-    PALETTE_DEFAULT = PALETTE_SPECTROGRAM,
-};
-
-/*!
-* Returns visual render palette by type.
-*/
-QMMP_EXPORT uint32_t renderPalette(Palette palette, double level);
-
+    return a > b ? a : b;
 }
+
+inline int spek_min(int a, int b)
+{
+    return a < b ? a : b;
+}
+
+// Compare version numbers, e.g. 1.9.2 < 1.10.0
+int spek_vercmp(const char *a, const char *b);
 
 #endif
