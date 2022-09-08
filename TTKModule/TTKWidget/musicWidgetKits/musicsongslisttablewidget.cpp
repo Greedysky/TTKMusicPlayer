@@ -156,7 +156,7 @@ void MusicSongsListTableWidget::clearAllItems()
 //    }
 
     //Remove play widget
-    setRowHeight(m_playRowIndex, TTK_ITEM_SIZE_XL);
+    setRowHeight(m_playRowIndex, TTK_ITEM_SIZE_M);
     removeCellWidget(m_playRowIndex, 0);
 
     delete m_songsPlayWidget;
