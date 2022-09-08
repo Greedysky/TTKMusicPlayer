@@ -96,7 +96,7 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
             for(const QVariant &var : qAsConst(datas))
             {
                 value = var.toMap();
-                if(m_counter < 5 && !value.isEmpty())
+                if(m_counter < MAX_IMAGE_COUNTER && !value.isEmpty())
                 {
                     const QString &url = value.values().front().toString();
                     MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);

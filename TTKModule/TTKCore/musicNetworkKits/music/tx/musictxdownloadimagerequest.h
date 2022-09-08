@@ -1,5 +1,5 @@
-#ifndef MUSICQQQUERYARTISTREQUEST_H
-#define MUSICQQQUERYARTISTREQUEST_H
+#ifndef MUSICTXDOWNLOADIMAGEREQUEST_H
+#define MUSICTXDOWNLOADIMAGEREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -20,60 +20,63 @@
  ***************************************************************************/
 
 #include "musicabstractxml.h"
-#include "musicqqqueryinterface.h"
-#include "musicqueryartistrequest.h"
+#include "musicdownloadimagerequest.h"
 
-/*! @brief The class of qq query artist info xml data from net.
+/*! @brief The class of tencent query info xml data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicQQArtistInfoConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicTXImageConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicQQArtistInfoConfigManager)
+    TTK_DECLARE_MODULE(MusicTXImageConfigManager)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicQQArtistInfoConfigManager(QObject *parent = nullptr);
+    explicit MusicTXImageConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read datas from config file.
      */
-    void readBuffer(MusicResultsItem *item);
+    void readBuffer(QStringList &items);
 
 };
 
 
-/*! @brief The class of qq query artist download data from net.
+/*! @brief The class of tencent download art background image.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicQQQueryArtistRequest : public MusicQueryArtistRequest, private MusicQQQueryInterface
+class TTK_MODULE_EXPORT MusicTXDownloadBackgroundRequest : public MusicDownloadImageRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicQQQueryArtistRequest)
+    TTK_DECLARE_MODULE(MusicTXDownloadBackgroundRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object contsructor provide artist name and save local path.
      */
-    explicit MusicQQQueryArtistRequest(QObject *parent = nullptr);
+    MusicTXDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 
     /*!
-     * Start to Search data from name and type.
+     * Start to download artist picture from net.
      */
-    virtual void startToSearch(const QString &value) override final;
+    virtual void startToDownload() override final;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override final;
+    void downLoadDataFinished();
+    /*!
+     * Download data from net finished.
+     */
+    void downLoadUrlFinished();
 
 protected:
     /*!
-     * Get Download introduction data from net.
+     * Download data from net.
      */
-    void queryArtistIntro(MusicResultsItem *item) const;
+    void downLoadUrl(const QString &id);
 
 };
 
-#endif // MUSICQQQUERYARTISTREQUEST_H
+#endif // MUSICTXDOWNLOADIMAGEREQUEST_H

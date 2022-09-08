@@ -110,8 +110,6 @@ void MusicSongSharingWidget::confirmButtonClicked()
                 QString server = d->queryServer();
                 if(server == QUERY_WY_INTERFACE)
                     server = MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_UNIMP_KEY, false).arg(info.m_songId);
-                else if(server == QUERY_QQ_INTERFACE)
-                    server = MusicUtils::Algorithm::mdII(QQ_SG_SHARE, ALG_UNIMP_KEY, false).arg(info.m_songId);
                 else if(server == QUERY_KG_INTERFACE)
                     server = MusicUtils::Algorithm::mdII(KG_SG_SHARE, ALG_UNIMP_KEY, false).arg(info.m_songId);
                 else if(server == QUERY_KW_INTERFACE)
@@ -135,8 +133,6 @@ void MusicSongSharingWidget::confirmButtonClicked()
             QString server = m_data["queryServer"].toString(), id = m_data["id"].toString();
             if(server == QUERY_WY_INTERFACE)
                 server = MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_UNIMP_KEY, false).arg(id);
-            else if(server == QUERY_QQ_INTERFACE)
-                server = MusicUtils::Algorithm::mdII(QQ_MV_SHARE, ALG_UNIMP_KEY, false).arg(id);
             else if(server == QUERY_KG_INTERFACE)
                 server = MusicUtils::Algorithm::mdII(KG_MV_SHARE, ALG_UNIMP_KEY, false).arg(id);
             else if(server == QUERY_KW_INTERFACE)
@@ -155,8 +151,6 @@ void MusicSongSharingWidget::confirmButtonClicked()
             QString server = m_data["queryServer"].toString();
             if(server == QUERY_WY_INTERFACE)
                 server = MusicUtils::Algorithm::mdII(WY_AR_SHARE, ALG_UNIMP_KEY, false).arg(m_data["id"].toString());
-            else if(server == QUERY_QQ_INTERFACE)
-                server = MusicUtils::Algorithm::mdII(QQ_AR_SHARE, ALG_UNIMP_KEY, false).arg(m_data["id"].toString());
             else if(server == QUERY_KG_INTERFACE)
                 server = MusicUtils::Algorithm::mdII(KG_AR_SHARE, ALG_UNIMP_KEY, false).arg(m_data["id"].toString());
             else if(server == QUERY_KW_INTERFACE)
@@ -175,8 +169,6 @@ void MusicSongSharingWidget::confirmButtonClicked()
             QString server = m_data["queryServer"].toString();
             if(server == QUERY_WY_INTERFACE)
                 server = MusicUtils::Algorithm::mdII(WY_AL_SHARE, ALG_UNIMP_KEY, false).arg(m_data["id"].toString());
-            else if(server == QUERY_QQ_INTERFACE)
-                server = MusicUtils::Algorithm::mdII(QQ_AL_SHARE, ALG_UNIMP_KEY, false).arg(m_data["id"].toString());
             else if(server == QUERY_KG_INTERFACE)
                 server = MusicUtils::Algorithm::mdII(KG_AL_SHARE, ALG_UNIMP_KEY, false).arg(m_data["id"].toString());
             else if(server == QUERY_KW_INTERFACE)
@@ -195,8 +187,6 @@ void MusicSongSharingWidget::confirmButtonClicked()
             QString server = m_data["queryServer"].toString();
             if(server == QUERY_WY_INTERFACE)
                 server = MusicUtils::Algorithm::mdII(WY_PL_SHARE, ALG_UNIMP_KEY, false).arg(m_data["id"].toString());
-            else if(server == QUERY_QQ_INTERFACE)
-                server = MusicUtils::Algorithm::mdII(QQ_PL_SHARE, ALG_UNIMP_KEY, false).arg(m_data["id"].toString());
             else if(server == QUERY_KG_INTERFACE)
                 server = MusicUtils::Algorithm::mdII(KG_PL_SHARE, ALG_UNIMP_KEY, false).arg(m_data["id"].toString());
             else if(server == QUERY_KW_INTERFACE)
@@ -228,7 +218,7 @@ void MusicSongSharingWidget::downLoadFinished(const QString &playUrl, const QStr
     }
     else if(m_ui->qqspaceButton->isChecked())
     {
-        url = QString(MusicUtils::Algorithm::mdII(QQ_SPACE_SHARE, ALG_UNIMP_KEY, false)).arg(playUrl, tr("TTKMusicPlayer"), imageUrl, m_ui->textEdit->toPlainText());
+        url = QString(MusicUtils::Algorithm::mdII(QZONE_SHARE, ALG_UNIMP_KEY, false)).arg(playUrl, tr("TTKMusicPlayer"), imageUrl, m_ui->textEdit->toPlainText());
     }
     else if(m_ui->sinaButton->isChecked())
     {

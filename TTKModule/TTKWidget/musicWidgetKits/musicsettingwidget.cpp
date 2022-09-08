@@ -861,7 +861,6 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->uploadLimitSpeedComboBox->addItems(downloadSpeed);
 
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_wangyiyun"), tr("WangYi Music"));
-    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_qq"), tr("QQ Music"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kuwo"), tr("KuWo Music"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("KuGou Music"));
 

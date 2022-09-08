@@ -21,6 +21,8 @@
 
 #include "musicabstractnetwork.h"
 
+#define MAX_IMAGE_COUNTER     5
+
 /*! @brief The class of download art background image.
  * @author Greedysky <greedysky@163.com>
  */

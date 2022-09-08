@@ -24,7 +24,7 @@ INCLUDEPATH += \
     $$PWD/music/kg \
     $$PWD/music/kw \
     $$PWD/music/bd \
-    $$PWD/music/qq \
+    $$PWD/music/tx \
     $$PWD/radio/fm \
     $$PWD/radio/dj \
     $$PWD/radio/mv
@@ -91,20 +91,8 @@ HEADERS += \
     $$PWD/music/bd/musicbdquerylearnrequest.h \
     $$PWD/music/bd/musicbdtranslationrequest.h \
     $$PWD/music/bd/musicbdqueryrecommendrequest.h \
-    $$PWD/music/qq/musicqqqueryinterface.h \
-    $$PWD/music/qq/musicqqqueryrequest.h \
-    $$PWD/music/qq/musicqqqueryalbumrequest.h \
-    $$PWD/music/qq/musicqqqueryartistrequest.h \
-    $$PWD/music/qq/musicqqqueryplaylistrequest.h \
-    $$PWD/music/qq/musicqqquerytoplistrequest.h \
-    $$PWD/music/qq/musicqqquerymovierequest.h \
-    $$PWD/music/qq/musicqqqueryrecommendrequest.h \
-    $$PWD/music/qq/musicqqqueryartistlistrequest.h \
-    $$PWD/music/qq/musicqqdownloadtextrequest.h \
-    $$PWD/music/qq/musicqqdownloadimagerequest.h \
-    $$PWD/music/qq/musicqqdiscoverlistrequest.h \
-    $$PWD/music/qq/musicqqcommentsrequest.h \
-    $$PWD/music/qq/musicqqsongsuggestrequest.h \
+    $$PWD/music/tx/musictxqueryinterface.h \
+    $$PWD/music/tx/musictxdownloadimagerequest.h \
     $$PWD/radio/fm/musicfmradiochannelrequest.h \
     $$PWD/radio/fm/musicfmradiodownloadtextrequest.h \
     $$PWD/radio/fm/musicfmradiosongsrequest.h \
@@ -197,20 +185,8 @@ SOURCES += \
     $$PWD/music/bd/musicbdquerylearnrequest.cpp \
     $$PWD/music/bd/musicbdtranslationrequest.cpp \
     $$PWD/music/bd/musicbdqueryrecommendrequest.cpp \
-    $$PWD/music/qq/musicqqqueryinterface.cpp \
-    $$PWD/music/qq/musicqqqueryrequest.cpp \
-    $$PWD/music/qq/musicqqqueryalbumrequest.cpp \
-    $$PWD/music/qq/musicqqqueryartistrequest.cpp \
-    $$PWD/music/qq/musicqqqueryplaylistrequest.cpp \
-    $$PWD/music/qq/musicqqquerytoplistrequest.cpp \
-    $$PWD/music/qq/musicqqquerymovierequest.cpp \
-    $$PWD/music/qq/musicqqqueryrecommendrequest.cpp \
-    $$PWD/music/qq/musicqqqueryartistlistrequest.cpp \
-    $$PWD/music/qq/musicqqdownloadtextrequest.cpp \
-    $$PWD/music/qq/musicqqdownloadimagerequest.cpp \
-    $$PWD/music/qq/musicqqdiscoverlistrequest.cpp \
-    $$PWD/music/qq/musicqqcommentsrequest.cpp \
-    $$PWD/music/qq/musicqqsongsuggestrequest.cpp \
+    $$PWD/music/tx/musictxqueryinterface.cpp \
+    $$PWD/music/tx/musictxdownloadimagerequest.cpp \
     $$PWD/radio/fm/musicfmradiochannelrequest.cpp \
     $$PWD/radio/fm/musicfmradiodownloadtextrequest.cpp \
     $$PWD/radio/fm/musicfmradiosongsrequest.cpp \

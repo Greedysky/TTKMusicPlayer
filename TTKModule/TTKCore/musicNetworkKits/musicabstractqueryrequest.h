@@ -78,7 +78,7 @@ struct TTK_MODULE_EXPORT MusicResultsItem
 TTK_DECLARE_LIST(MusicResultsItem);
 
 #define QUERY_WY_INTERFACE      "WangYi"
-#define QUERY_QQ_INTERFACE      "QQ"
+#define QUERY_TX_INTERFACE      "Tencent"
 #define QUERY_BD_INTERFACE      "BaiDu"
 #define QUERY_KW_INTERFACE      "KuWo"
 #define QUERY_KG_INTERFACE      "KuGou"
@@ -94,7 +94,6 @@ public:
     enum class QueryServer
     {
         WY,     /*!< wangyi query server*/
-        QQ,     /*!< qq query server*/
         KW,     /*!< kuwo query server*/
         KG      /*!< kugou query server*/
     };

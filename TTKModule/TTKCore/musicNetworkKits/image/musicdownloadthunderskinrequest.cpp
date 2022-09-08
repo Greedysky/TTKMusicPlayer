@@ -79,12 +79,12 @@ void MusicDownloadThunderSkinRequest::startToDownload()
 
 void MusicDownloadThunderSkinRequest::downLoadFinished(const QByteArray &bytes)
 {
-    MusicSkinRemoteGroupList groups;
+    MusicSkinRemoteGroupList items;
     MusicSkinThunderConfigManager manager;
     if(manager.fromByteArray(bytes))
     {
-        manager.readBuffer(groups);
+        manager.readBuffer(items);
     }
 
-    Q_EMIT downLoadDataChanged(groups);
+    Q_EMIT downLoadDataChanged(items);
 }

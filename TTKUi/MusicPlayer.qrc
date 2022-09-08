@@ -348,7 +348,6 @@
     <qresource prefix="/server">
         <file alias="lb_kugou">../TTKResource/server/lb_server_kugou.png</file>
         <file alias="lb_kuwo">../TTKResource/server/lb_server_kuwo.png</file>
-        <file alias="lb_qq">../TTKResource/server/lb_server_qq.png</file>
         <file alias="lb_wangyiyun">../TTKResource/server/lb_server_wangyiyun.png</file>
     </qresource>
     <qresource prefix="/toolSets">

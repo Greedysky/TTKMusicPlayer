@@ -1,5 +1,4 @@
 #include "musicfmradiosongsrequest.h"
-#include "musicqqqueryinterface.h"
 
 MusicFMRadioSongsRequest::MusicFMRadioSongsRequest(QObject *parent)
     : MusicAbstractFMRadioRequest(parent)

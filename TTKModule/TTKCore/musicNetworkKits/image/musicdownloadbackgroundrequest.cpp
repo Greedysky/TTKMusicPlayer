@@ -1,7 +1,6 @@
 #include "musicdownloadbackgroundrequest.h"
-
 #include "musickwdownloadimagerequest.h"
-#include "musicqqdownloadimagerequest.h"
+#include "musictxdownloadimagerequest.h"
 
 MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent)
     : MusicDownloadImageRequest(name, path, parent)
@@ -25,7 +24,7 @@ void MusicDownloadBackgroundRequest::downLoadFinished(const QString &bytes)
     }
     else if(bytes.toInt() == 0)
     {
-        MusicDownloadImageRequest *d = new MusicQQDownloadBackgroundRequest(m_artName, m_savePath, this);
+        MusicDownloadImageRequest *d = new MusicTXDownloadBackgroundRequest(m_artName, m_savePath, this);
         d->startToDownload();
     }
 }

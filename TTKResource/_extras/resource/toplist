@@ -41,51 +41,6 @@
             <value key="7095271308" value="泰语榜"/>
         </tag>
     </WangYi>
-    <QQ>
-        <tag value="巅峰榜">
-            <value key="4" value="流行指数"/>
-            <value key="26" value="热歌榜"/>
-            <value key="27" value="新歌榜"/>
-            <value key="62" value="飙升榜"/>
-            <value key="57" value="喜力电音榜"/>
-            <value key="52" value="腾讯音乐人原创榜"/>
-            <value key="67" value="听歌识曲榜"/>
-        </tag>
-        <tag value="地区榜">
-            <value key="5" value="内地榜"/>
-            <value key="59" value="香港地区榜"/>
-            <value key="61" value="台湾地区榜"/>
-            <value key="3" value="欧美榜"/>
-            <value key="16" value="韩国榜"/>
-            <value key="17" value="日本榜"/>
-        </tag>
-        <tag value="特色榜">
-            <value key="28" value="网络歌曲榜"/>
-            <value key="63" value="DJ舞曲榜"/>
-            <value key="74" value="Q音快手榜"/>
-            <value key="60" value="抖快榜"/>
-            <value key="64" value="综艺新歌榜"/>
-            <value key="29" value="影视金曲榜"/>
-            <value key="65" value="国风热歌榜"/>
-            <value key="58" value="说唱榜"/>
-            <value key="72" value="动漫音乐榜"/>
-            <value key="73" value="游戏音乐榜"/>
-            <value key="70" value="达人音乐榜"/>
-            <value key="36" value="K歌金曲榜"/>
-            <value key="131" value="校园音乐人排行榜"/>
-        </tag>
-        <tag value="全球榜">
-            <value key="108" value="美国公告牌榜"/>
-            <value key="123" value="美国热门音乐榜"/>
-            <value key="129" value="韩国Melon榜"/>
-            <value key="107" value="英国UK榜"/>
-            <value key="105" value="日本公信榜"/>
-            <value key="126" value="JOOX本地热播榜"/>
-            <value key="130" value="香港TVB劲歌金榜"/>
-            <value key="127" value="台湾KKBOX榜"/>
-            <value key="128" value="YouTube音乐排行榜"/>
-        </tag>
-    </QQ>
     <KuGou>
         <tag value="热门榜单">
             <value key="6666" value="酷狗飙升榜"/>
