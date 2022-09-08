@@ -8,7 +8,7 @@
 MusicWebDJRadioProgramTableWidget::MusicWebDJRadioProgramTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
-    setIconSize(QSize(ITEM_ROW_HEIGHT_L, ITEM_ROW_HEIGHT_L));
+    setIconSize(QSize(TTK_ITEM_SIZE_L, TTK_ITEM_SIZE_L));
     setColumnCount(6);
 
     QHeaderView *headerview = horizontalHeader();
@@ -83,7 +83,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem
 {
     const int index = rowCount();
     setRowCount(index + 1);
-    setRowHeight(index, ITEM_ROW_HEIGHT_L);
+    setRowHeight(index, TTK_ITEM_SIZE_L);
 
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;

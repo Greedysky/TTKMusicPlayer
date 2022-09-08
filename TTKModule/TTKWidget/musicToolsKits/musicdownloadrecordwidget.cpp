@@ -52,7 +52,6 @@ void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &reco
     item->setData(MUSIC_TIME_ROLE, record.addTimeStr());
     setItem(index, 3, item);
 
-    // just fix table widget size hint
     setFixedHeight(totalHeight());
 }
 

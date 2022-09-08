@@ -73,7 +73,7 @@ void MusicKWSongCommentsRequest::downLoadFinished()
 
                     MusicResultsItem result;
                     result.m_playCount = value["like_num"].toString();
-                    result.m_updateTime = QString::number(QDateTime::fromString(value["time"].toString(), MUSIC_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
+                    result.m_updateTime = QString::number(QDateTime::fromString(value["time"].toString(), TTK_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
                     result.m_description = value["msg"].toString();
                     result.m_nickName = QUrl::fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
                     result.m_coverUrl = value["u_pic"].toString();
@@ -149,7 +149,7 @@ void MusicKWPlaylistCommentsRequest::downLoadFinished()
 
                     MusicResultsItem result;
                     result.m_playCount = value["like_num"].toString();
-                    result.m_updateTime = QString::number(QDateTime::fromString(value["time"].toString(), MUSIC_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
+                    result.m_updateTime = QString::number(QDateTime::fromString(value["time"].toString(), TTK_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
                     result.m_description = value["msg"].toString();
                     result.m_nickName = QUrl().fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
                     result.m_coverUrl = value["u_pic"].toString();

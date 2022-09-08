@@ -57,7 +57,6 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicSong &recor
     item->setData(MUSIC_TIME_ROLE, record.addTimeStr());
     setItem(index, 3, item);
 
-    //just fix table widget size hint
     setFixedHeight(totalHeight());
 }
 
@@ -172,7 +171,6 @@ void MusicCloudUploadTableWidget::createItem(int index, const MusicSong &record)
     item->setData(MUSIC_TIME_ROLE, record.addTimeStr());
     setItem(index, 2, item);
 
-    //just fix table widget size hint
     setFixedHeight(totalHeight());
 }
 

@@ -17,9 +17,9 @@ MusicDownloadTableItem::MusicDownloadTableItem(QWidget *parent)
     m_text = new QLabel(this);
     m_information = new QLabel(this);
 
-    m_text->setGeometry(0, 0, 60, ITEM_ROW_HEIGHT_S);
-    m_icon->setGeometry(70, 0, 30, ITEM_ROW_HEIGHT_S);
-    m_information->setGeometry(170, 0, 150, ITEM_ROW_HEIGHT_S);
+    m_text->setGeometry(0, 0, 60, TTK_ITEM_SIZE_S);
+    m_icon->setGeometry(70, 0, 30, TTK_ITEM_SIZE_S);
+    m_information->setGeometry(170, 0, 150, TTK_ITEM_SIZE_S);
 }
 
 MusicDownloadTableItem::~MusicDownloadTableItem()
@@ -73,7 +73,7 @@ void MusicDownloadTableWidget::createItem(const MusicObject::MusicSongProperty &
 {
     const int index = rowCount();
     setRowCount(index + 1);
-    setRowHeight(index, ITEM_ROW_HEIGHT_S);
+    setRowHeight(index, TTK_ITEM_SIZE_S);
 
     QTableWidgetItem *it = new QTableWidgetItem;
     MusicDownloadTableItemRole role(prop.m_bitrate, prop.m_format, prop.m_size);
@@ -287,12 +287,12 @@ void MusicDownloadWidget::resizeWindow()
     m_ui->loadingLabel->run(false);
 
     int delta = m_ui->viewArea->rowCount();
-        delta = ((delta == 0) ? 0 : (delta - 1) * ITEM_ROW_HEIGHT_S) - 2 * ITEM_ROW_HEIGHT_S;
+        delta = ((delta == 0) ? 0 : (delta - 1) * TTK_ITEM_SIZE_S) - 2 * TTK_ITEM_SIZE_S;
 
     setFixedHeightWidget(this, delta);
     setFixedHeightWidget(m_ui->backgroundMask, delta);
     setFixedHeightWidget(m_ui->background, delta);
-    setFixedHeightWidget(m_ui->viewArea, delta + 2 * ITEM_ROW_HEIGHT_S);
+    setFixedHeightWidget(m_ui->viewArea, delta + 2 * TTK_ITEM_SIZE_S);
 
     setMoveWidget(m_ui->label2, delta);
     setMoveWidget(m_ui->downloadPathEdit, delta);

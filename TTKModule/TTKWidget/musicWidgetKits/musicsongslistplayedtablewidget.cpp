@@ -23,7 +23,7 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
     headerview->resizeSection(4, 45);
 
     m_hasParentToolIndex = false;
-    MusicUtils::Widget::setTransparent(this, 0xFF);
+    MusicUtils::Widget::setTransparent(this, 255);
 }
 
 MusicSongsListPlayedTableWidget::~MusicSongsListPlayedTableWidget()
@@ -180,8 +180,6 @@ void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
     delete m_songsPlayWidget;
     m_songsPlayWidget = nullptr;
 
-    //m_playRowIndex = -1;
-    //just fix table widget size hint
     setFixedHeight(qMax(365, totalHeight()));
 }
 
@@ -275,7 +273,6 @@ void MusicSongsListPlayedTableWidget::setDeleteItemAt()
         m_songs->removeAt(index);
     }
 
-    //just fix table widget size hint
     setFixedHeight(qMax(365, totalHeight()));
     Q_EMIT deleteItemAt(deleteList);
 }

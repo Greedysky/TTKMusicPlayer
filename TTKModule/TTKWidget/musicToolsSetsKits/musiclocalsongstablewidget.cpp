@@ -125,7 +125,7 @@ void MusicLocalSongsInfoTableWidget::addItems(const MusicInfoData &data)
     while(it.hasNext())
     {
         it.next();
-        setRowHeight(i, ITEM_ROW_HEIGHT_XL);
+        setRowHeight(i, TTK_ITEM_SIZE_XL);
 
         QTableWidgetItem *item = new QTableWidgetItem;
         QPixmap pix(ART_DIR_FULL + it.key() + SKN_FILE);

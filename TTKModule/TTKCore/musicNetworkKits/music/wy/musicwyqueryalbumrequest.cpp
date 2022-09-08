@@ -64,7 +64,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                 result.m_description = albumValue["name"].toString() + TTK_SPLITER +
                                        albumValue["language"].toString() + TTK_SPLITER +
                                        albumValue["company"].toString() + TTK_SPLITER +
-                                       QDateTime::fromMSecsSinceEpoch(albumValue["publishTime"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
+                                       QDateTime::fromMSecsSinceEpoch(albumValue["publishTime"].toULongLong()).toString(TTK_YEAR_FORMAT);
                 const QVariantList &datas = value["songs"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

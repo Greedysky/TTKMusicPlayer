@@ -184,7 +184,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                         result.m_nickName = info.m_singerName;
                         result.m_coverUrl = info.m_coverUrl;
                         result.m_playCount = QString::number(radioObject["subCount"].toInt());
-                        result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["createTime"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
+                        result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["createTime"].toULongLong()).toString(TTK_YEAR_FORMAT);
                         Q_EMIT createCategoryInfoItem(result);
                     }
 

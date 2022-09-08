@@ -298,7 +298,7 @@ void MusicCloudManagerTableWidget::uploadFileDirToServer()
             item.m_path = path;
             item.m_state = MusicCloudDataItem::State::Waited;
             item.m_dataItem.m_name = fin.fileName().trimmed();
-            item.m_dataItem.m_putTime = fin.lastModified().toString(MUSIC_YEAR_TIME_FORMAT);
+            item.m_dataItem.m_putTime = fin.lastModified().toString(TTK_YEAR_TIME_FORMAT);
             item.m_dataItem.m_size = fin.size();
 
             createItem(item);
@@ -408,7 +408,7 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
         item.m_path = path;
         item.m_state = MusicCloudDataItem::State::Waited;
         item.m_dataItem.m_name = fin.fileName().trimmed();
-        item.m_dataItem.m_putTime = fin.lastModified().toString(MUSIC_YEAR_TIME_FORMAT);
+        item.m_dataItem.m_putTime = fin.lastModified().toString(TTK_YEAR_TIME_FORMAT);
         item.m_dataItem.m_size = fin.size();
 
         MusicUtils::Core::sleep(MT_MS);

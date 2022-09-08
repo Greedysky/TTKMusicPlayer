@@ -92,7 +92,7 @@ void MusicUtils::Widget::positionInCenter(QWidget *widget)
 void MusicUtils::Widget::setTransparent(QWidget *widget, int alpha)
 {
     QPalette pal = widget->palette();
-    pal.setBrush(QPalette::Base, QBrush(QColor(0xFF, 0xFF, 0xFF, alpha)));
+    pal.setBrush(QPalette::Base, QBrush(QColor(255, 255, 255, alpha)));
     widget->setPalette(pal);
 }
 

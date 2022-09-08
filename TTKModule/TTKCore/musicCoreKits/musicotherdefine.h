@@ -39,11 +39,16 @@
 #  define MUSIC_OUTSIDE_LIST        "-List"
 #endif
 
-#define MUSIC_TIME_FORMAT           "hh:mm"
-#define MUSIC_STIME_FORMAT          "hh:mm:ss"
-#define MUSIC_YEAR_FORMAT           "yyyy-MM-dd"
-#define MUSIC_YEAR_TIME_FORMAT      "yyyy-MM-dd hh:mm"
-#define MUSIC_YEAR_STIME_FORMAT     "yyyy-MM-dd hh:mm:ss"
+#define TTK_TIME_FORMAT             "hh:mm"
+#define TTK_STIME_FORMAT            "hh:mm:ss"
+#define TTK_YEAR_FORMAT             "yyyy-MM-dd"
+#define TTK_YEAR_TIME_FORMAT        "yyyy-MM-dd hh:mm"
+#define TTK_YEAR_STIME_FORMAT       "yyyy-MM-dd hh:mm:ss"
+
+#define TTK_ITEM_SIZE_S             25
+#define TTK_ITEM_SIZE_M             30
+#define TTK_ITEM_SIZE_L             40
+#define TTK_ITEM_SIZE_XL            60
 
 #define DEFAULT_LOW_LEVEL           -999
 #define DEFAULT_NORMAL_LEVEL        -1

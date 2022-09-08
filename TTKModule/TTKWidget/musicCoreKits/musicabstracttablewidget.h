@@ -25,11 +25,6 @@
 
 #include "musicwidgetutils.h"
 
-#define ITEM_ROW_HEIGHT_S   25
-#define ITEM_ROW_HEIGHT_M   30
-#define ITEM_ROW_HEIGHT_L   40
-#define ITEM_ROW_HEIGHT_XL  60
-
 /*! @brief The class of the table widget base.
  * @author Greedysky <greedysky@163.com>
  */

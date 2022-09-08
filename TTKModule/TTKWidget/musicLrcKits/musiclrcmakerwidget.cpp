@@ -16,14 +16,12 @@
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
 
-#define ITEM_HEIGHT     40
-
 MusicLrcMakerWidgetItem::MusicLrcMakerWidgetItem(QWidget *ui, QObject *parent)
     : QLabel(ui),
       m_parentClass(parent)
 {
     setStyleSheet(MusicUIObject::MQSSBorderStyle02 + MusicUIObject::MQSSBackgroundStyle12);
-    setFixedSize(650, ITEM_HEIGHT);
+    setFixedSize(650, TTK_ITEM_SIZE_L);
 
     reset();
 
@@ -66,7 +64,7 @@ void MusicLrcMakerWidgetItem::moveUp()
     m_intervalCount = 5;
     m_painetLineDone = false;
 
-    move(0, ITEM_HEIGHT*m_currentIndex);
+    move(0, TTK_ITEM_SIZE_L * m_currentIndex);
 }
 
 void MusicLrcMakerWidgetItem::moveDown()
@@ -79,7 +77,7 @@ void MusicLrcMakerWidgetItem::moveDown()
     m_intervalCount = 5;
     m_painetLineDone = false;
 
-    move(0, ITEM_HEIGHT*m_currentIndex);
+    move(0, TTK_ITEM_SIZE_L * m_currentIndex);
 }
 
 void MusicLrcMakerWidgetItem::moveLeft()

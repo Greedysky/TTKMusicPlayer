@@ -53,7 +53,7 @@ void MusicAbstractTableWidget::clear()
 
     m_previousColorRow = -1;
     m_previousClickRow = -1;
-    m_backgroundColor = QColor(255, 255, 255, 0);
+    m_backgroundColor = Qt::transparent;
 }
 
 TTKIntList MusicAbstractTableWidget::multiSelectedIndex() const

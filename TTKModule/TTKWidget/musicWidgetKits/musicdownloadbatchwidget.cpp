@@ -18,10 +18,10 @@ MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)
     m_qulity = new QComboBox(this);
     MusicUtils::Widget::generateComboBoxFormat(m_qulity, MusicUIObject::MQSSComboBoxStyle02 + MusicUIObject::MQSSItemView01);
 
-    m_songName->setGeometry(0, 0, 190, ITEM_ROW_HEIGHT_S);
-    m_singer->setGeometry(180, 0, 120, ITEM_ROW_HEIGHT_S);
-    m_qulity->setGeometry(300, 0, 80, ITEM_ROW_HEIGHT_S);
-    m_information->setGeometry(380, 0, 150, ITEM_ROW_HEIGHT_S);
+    m_songName->setGeometry(0, 0, 190, TTK_ITEM_SIZE_S);
+    m_singer->setGeometry(180, 0, 120, TTK_ITEM_SIZE_S);
+    m_qulity->setGeometry(300, 0, 80, TTK_ITEM_SIZE_S);
+    m_information->setGeometry(380, 0, 150, TTK_ITEM_SIZE_S);
     m_queryType = MusicAbstractQueryRequest::QueryType::Music;
 
     connect(m_qulity, SIGNAL(currentIndexChanged(int)), SLOT(currentQualityChanged(int)));
@@ -300,7 +300,7 @@ void MusicDownloadBatchTableWidget::createItem(const MusicObject::MusicSongInfor
 {
     const int index = rowCount();
     setRowCount(index + 1);
-    setRowHeight(index, ITEM_ROW_HEIGHT_S);
+    setRowHeight(index, TTK_ITEM_SIZE_S);
 
     QTableWidgetItem *it = new QTableWidgetItem;
     setItem(index, 0,  it);

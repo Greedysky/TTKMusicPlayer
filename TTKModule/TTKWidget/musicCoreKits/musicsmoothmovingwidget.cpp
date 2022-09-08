@@ -49,7 +49,7 @@ void MusicSmoothMovingTableWidget::timeToAnimation()
     m_deltaValue = (m_deltaValue / 480.0) * (m_deltaValue < 0 ? m_deltaValue + 120 : -m_deltaValue + 120);
 
     m_slowAnimation->setStartValue(m_previousValue);
-    m_slowAnimation->setEndValue(m_scrollBar->value() + m_deltaValue * ITEM_ROW_HEIGHT_M / 30);
+    m_slowAnimation->setEndValue(m_scrollBar->value() + m_deltaValue * TTK_ITEM_SIZE_M / 30);
     m_slowAnimation->start();
 }
 
@@ -131,7 +131,7 @@ void MusicSmoothMovingScrollArea::timeToAnimation()
     m_deltaValue = (m_deltaValue / 480.0) * (m_deltaValue < 0 ? m_deltaValue + 120 : -m_deltaValue + 120);
 
     m_slowAnimation->setStartValue(m_previousValue);
-    m_slowAnimation->setEndValue(m_scrollBar->value() + m_deltaValue * ITEM_ROW_HEIGHT_M / 30);
+    m_slowAnimation->setEndValue(m_scrollBar->value() + m_deltaValue * TTK_ITEM_SIZE_M / 30);
     m_slowAnimation->start();
 }
 

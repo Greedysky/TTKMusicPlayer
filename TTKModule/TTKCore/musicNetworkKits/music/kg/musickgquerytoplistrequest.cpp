@@ -138,7 +138,7 @@ bool MusicKGQueryToplistRequest::initialize()
         {
             value = value["data"].toMap();
             MusicResultsItem result;
-            result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["timestamp"].toLongLong() * 1000).toString(MUSIC_YEAR_FORMAT);
+            result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["timestamp"].toLongLong() * 1000).toString(TTK_YEAR_FORMAT);
 
             const QVariantList &datas = value["info"].toList();
             for(const QVariant &var : qAsConst(datas))

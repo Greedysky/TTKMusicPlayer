@@ -95,7 +95,7 @@ void MusicQQQueryPlaylistRequest::queryPlaylistInfo(MusicResultsItem &item)
                 item.m_name = value["dissname"].toString();
                 item.m_playCount = QString::number(value["listennum"].toULongLong());
                 item.m_description = value["desc"].toString();
-                item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong() * 1000).toString(MUSIC_YEAR_FORMAT);
+                item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong() * 1000).toString(TTK_YEAR_FORMAT);
                 item.m_nickName = value["nickname"].toString();
 
                 item.m_tags.clear();

@@ -106,7 +106,7 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongList &songs)
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);
     }
-    //just fix table widget size hint
+
     setFixedHeight(totalHeight());
 }
 
@@ -142,10 +142,9 @@ void MusicSongsListTableWidget::selectRow(int index)
 
     setSpan(index, 0, 1, 6);
     setCellWidget(index, 0, m_songsPlayWidget);
-    setRowHeight(index, ITEM_ROW_HEIGHT_XL);
+    setRowHeight(index, TTK_ITEM_SIZE_XL);
     m_playRowIndex = index;
 
-    //just fix table widget size hint
     setFixedHeight(totalHeight());
 }
 
@@ -157,7 +156,7 @@ void MusicSongsListTableWidget::clearAllItems()
 //    }
 
     //Remove play widget
-    setRowHeight(m_playRowIndex, ITEM_ROW_HEIGHT_M);
+    setRowHeight(m_playRowIndex, TTK_ITEM_SIZE_XL);
     removeCellWidget(m_playRowIndex, 0);
 
     delete m_songsPlayWidget;
@@ -221,7 +220,7 @@ void MusicSongsListTableWidget::adjustPlayWidgetRow()
 
     const QString &name = !m_songs->isEmpty() ? m_songs->at(m_playRowIndex).name() : QString();
 
-    setRowHeight(m_playRowIndex, ITEM_ROW_HEIGHT_M);
+    setRowHeight(m_playRowIndex, TTK_ITEM_SIZE_M);
 
     removeCellWidget(m_playRowIndex, 0);
     delete takeItem(m_playRowIndex, 0);
@@ -249,7 +248,6 @@ void MusicSongsListTableWidget::adjustPlayWidgetRow()
     m_songsPlayWidget = nullptr;
 
     m_playRowIndex = -1;
-    //just fix table widget size hint
     setFixedHeight(totalHeight());
 }
 
@@ -462,7 +460,6 @@ void MusicSongsListTableWidget::setDeleteItemAt()
         progress.setValue(deleteList.count() * 2 - i);
     }
 
-    //just fix table widget size hint
     setFixedHeight(totalHeight());
     Q_EMIT deleteItemAt(deleteList, m_deleteItemWithFile);
 }
