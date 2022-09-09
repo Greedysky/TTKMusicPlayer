@@ -10,6 +10,7 @@ MusicSongSearchPopTableWidget::MusicSongSearchPopTableWidget(QWidget *parent)
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 215);
     headerview->resizeSection(1, 62);
+
     MusicUtils::Widget::setTransparent(this, 255);
 }
 

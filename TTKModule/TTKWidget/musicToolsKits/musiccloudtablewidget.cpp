@@ -18,7 +18,7 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     headerview->resizeSection(3, 50);
 
     m_type = MusicObject::Record::CloudDownload;
-    setItemDelegateForColumn(2, m_delegate);
+    setItemDelegateForColumn(2, m_progressBarDelegate);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     MusicUtils::Widget::setTransparent(this, 0);

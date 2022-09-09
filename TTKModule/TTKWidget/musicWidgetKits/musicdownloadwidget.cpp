@@ -53,6 +53,7 @@ MusicDownloadTableWidget::MusicDownloadTableWidget(QWidget *parent)
 
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 400);
+
     MusicUtils::Widget::setTransparent(this, 255);
 }
 

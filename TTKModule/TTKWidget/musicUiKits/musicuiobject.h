@@ -67,11 +67,11 @@ namespace MusicUIObject
 
 ///Background
     const QString MQSSBackgroundStyle01 = " \
-            background-color:transparent; "
+            background-color:transparent; " +
 #ifdef Q_OS_UNIX
-            + QString("border-style:falt;")
+            QString("border-style:falt;") +
 #endif
-            ;
+            QString();
 
     const QString MQSSBackgroundStyle02 = " \
             background-color:black;";
@@ -235,8 +235,8 @@ namespace MusicUIObject
     const QString MQSSRadioButtonStyle01 = " \
             QRadioButton{ background-color:transparent; } \
             QRadioButton::indicator::unchecked{ image:url(:/control/btn_radioButton_unchecked); } \
-            QRadioButton::checked { color:#E67300; } \
-            QRadioButton::indicator:checked { image:url(:/control/btn_radiobutton_checked); } \
+            QRadioButton::checked{ color:#E67300; } \
+            QRadioButton::indicator:checked{ image:url(:/control/btn_radiobutton_checked); } \
             QRadioButton::disabled{ color:#BBBBBB; }";
 
 ///CheckBox
@@ -244,14 +244,14 @@ namespace MusicUIObject
             QCheckBox{ background-color:transparent; } \
             QCheckBox::indicator::unchecked{ image:url(:/control/btn_checkBox_unchecked); } \
             QCheckBox::checked{ color:#E67300; } \
-            QCheckBox::indicator:checked { image:url(:/control/btn_checkBox_checked); } \
+            QCheckBox::indicator:checked{ image:url(:/control/btn_checkBox_checked); } \
             QCheckBox::disabled{ color:#BBBBBB; }";
 
     const QString MQSSCheckBoxStyle02 = " \
             QCheckBox{ background-color:transparent; } \
             QCheckBox::indicator::unchecked{ image:url(:/control/btn_radioButton2_unchecked); } \
-            QCheckBox::checked { color:#E67300; } \
-            QCheckBox::indicator:checked { image:url(:/control/btn_radiobutton2_checked); } \
+            QCheckBox::checked{ color:#E67300; } \
+            QCheckBox::indicator:checked{ image:url(:/control/btn_radiobutton2_checked); } \
             QCheckBox::disabled{ color:#BBBBBB; }";
 
     const QString MQSSCheckBoxStyle03 = MQSSCheckBoxStyle01 + " \
@@ -263,14 +263,14 @@ namespace MusicUIObject
     const QString MQSSCheckBoxStyle05 = " \
             QCheckBox{ background-color:transparent; color:rgb(222, 222, 222); } \
             QCheckBox::indicator::unchecked{ image:url(:/control/btn_checkBox2_unchecked); } \
-            QCheckBox::checked { color:rgb(255, 255, 255); } \
-            QCheckBox::indicator:checked { image:url(:/control/btn_checkBox2_checked); } \
+            QCheckBox::checked{ color:rgb(255, 255, 255); } \
+            QCheckBox::indicator:checked{ image:url(:/control/btn_checkBox2_checked); } \
             QCheckBox::disabled{ color:#BBBBBB; }";
 
 ///GroupBox
     const QString MQSSGroupBoxStyle01 = " \
             QGroupBox::indicator::unchecked{ image:url(:/control/btn_checkBox_unchecked); } \
-            QGroupBox::indicator:checked { image:url(:/control/btn_checkBox_checked); }";
+            QGroupBox::indicator:checked{ image:url(:/control/btn_checkBox_checked); }";
 
 ///ScrollBar
     const QString MQSSScrollBarStyle01 = " \
@@ -436,17 +436,29 @@ namespace MusicUIObject
             QComboBox::hover{ border:none; }";
 
 ///TableWidget
-    const QString MQSSTableWidgetStyle01 = " \
-            QTableWidget{ selection-background-color:rgba(20, 20, 20, 20); }";
+    const QString MQSSTableWidgetStyle01 =
+#if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
+            "QTableWidget::item:selected{ background:rgba(20, 20, 20, 20); }";
+#else
+            "QTableWidget{ selection-background-color:rgba(20, 20, 20, 20); }";
+#endif
 
-    const QString MQSSTableWidgetStyle02 = " \
-            QTableWidget{ selection-background-color:rgb(220, 220, 220); }";
+    const QString MQSSTableWidgetStyle02 =
+#if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
+            "QTableWidget::item:selected{ background:rgb(220, 220, 220); }";
+#else
+            "QTableWidget{ selection-background-color:rgb(220, 220, 220); }";
+#endif
 
-    const QString MQSSTableWidgetStyle03 = " \
-            QTableWidget{ selection-background-color:rgb(50, 50, 50); }";
+    const QString MQSSTableWidgetStyle03 =
+#if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
+            "QTableWidget::item:selected{ background:rgb(50, 50, 50); }";
+#else
+            "QTableWidget{ selection-background-color:rgb(50, 50, 50); }";
+#endif
 
     const QString MQSSTableWidgetStyle04 = " \
-            QTableWidget{ background:rgba(0, 0, 0, 255); }";
+            QTableWidget{ background:rgb(0, 0, 0); }";
 
 ///TabWidget
     const QString MQSSTabWidgetStyle01 = " \
@@ -484,7 +496,7 @@ namespace MusicUIObject
 
 ///ItemView
     const QString MQSSItemView01 = " \
-            QAbstractItemView::item { height:20px; }";
+            QAbstractItemView::item{ height:20px; }";
 
 }
 

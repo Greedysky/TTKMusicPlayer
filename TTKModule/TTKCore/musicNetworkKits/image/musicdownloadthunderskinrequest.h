@@ -24,15 +24,15 @@
 /*! @brief The class of the thunder skin XML config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSkinThunderConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicThunderSkinConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSkinThunderConfigManager)
+    TTK_DECLARE_MODULE(MusicThunderSkinConfigManager)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSkinThunderConfigManager(QObject *parent = nullptr);
+    explicit MusicThunderSkinConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read datas from config file.

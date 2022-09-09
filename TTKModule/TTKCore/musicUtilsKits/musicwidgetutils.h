@@ -74,6 +74,11 @@ namespace MusicUtils
          */
         TTK_MODULE_EXPORT void setTransparent(QWidget *widget, int alpha);
         /*!
+         * Set widget transparent.
+         */
+        TTK_MODULE_EXPORT void setTransparent(QWidget *widget, const QColor &color);
+
+        /*!
          * Set ComboBox text.
          */
         TTK_MODULE_EXPORT void setComboBoxText(QComboBox *widget, const QString &text);

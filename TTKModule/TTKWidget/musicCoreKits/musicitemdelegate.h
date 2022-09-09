@@ -213,7 +213,6 @@ public:
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
 
 protected:
-    bool m_treeMode;
     QPushButton *m_pushButton;
 
 };

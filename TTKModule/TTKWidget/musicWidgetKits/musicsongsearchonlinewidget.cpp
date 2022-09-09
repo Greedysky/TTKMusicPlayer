@@ -354,7 +354,20 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
 
     m_searchTableWidget = new MusicSongSearchTableWidget(this);
     boxLayout->addWidget(toolWidget);
+#if !TTK_QT_VERSION_CHECK(5,0,0)
+    QWidget *containerWidget = new QWidget(this);
+    containerWidget->setAutoFillBackground(true);
+    containerWidget->setPalette(pal);
+
+    QVBoxLayout *layout = new QVBoxLayout(containerWidget);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
+    layout->addWidget(m_searchTableWidget);
+    containerWidget->setLayout(layout);
+    boxLayout->addWidget(containerWidget);
+#else
     boxLayout->addWidget(m_searchTableWidget);
+#endif
     setLayout(boxLayout);
 
     createToolWidget(toolWidget);

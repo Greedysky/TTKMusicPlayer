@@ -88,7 +88,7 @@ void MusicSongCheckToolsDuplicateThread::run()
             MusicSongMeta meta;
             for(const MusicSong &song : qAsConst(*m_songItems))
             {
-                if(!m_run)
+                if(!m_running)
                 {
                     Q_EMIT finished(MusicSongCheckToolsDuplicateList());
                     return;
@@ -106,7 +106,7 @@ void MusicSongCheckToolsDuplicateThread::run()
         {
             for(const int index : qAsConst(m_itemIDs))
             {
-                if(!m_run)
+                if(!m_running)
                 {
                     Q_EMIT finished(MusicSongCheckToolsDuplicateList());
                     return;

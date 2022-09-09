@@ -185,10 +185,10 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
 #endif
     m_ui->treeWidget->setHeaderLabels({QString(), tr("Description"), tr("Name"), QString()});
 
-    MusicCheckBoxDelegate *checkDelegate = new MusicCheckBoxDelegate(this);
-    checkDelegate->setTextMode(true);
-    checkDelegate->setTreeModel(true);
-    m_ui->treeWidget->setItemDelegateForColumn(0, checkDelegate);
+    MusicCheckBoxDelegate *delegateCheck = new MusicCheckBoxDelegate(this);
+    delegateCheck->setTextMode(true);
+    delegateCheck->setTreeModel(true);
+    m_ui->treeWidget->setItemDelegateForColumn(0, delegateCheck);
 
     MusicLabelDelegate *delegateTitle = new MusicLabelDelegate(this);
     delegateTitle->setElideMode(true);

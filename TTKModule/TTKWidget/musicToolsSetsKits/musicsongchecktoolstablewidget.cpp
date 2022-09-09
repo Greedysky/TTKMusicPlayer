@@ -112,9 +112,8 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
     headerview->resizeSection(6, 54);
 #endif
 
-    MusicPushButtonDelegate *delegate = new MusicPushButtonDelegate(this);
-    setItemDelegateForColumn(5, delegate);
-    setItemDelegateForColumn(6, delegate);
+    setItemDelegateForColumn(5, new MusicPushButtonDelegate(this));
+    setItemDelegateForColumn(6, new MusicPushButtonDelegate(this));
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
@@ -245,9 +244,8 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
     headerview->resizeSection(7, 54);
 #endif
 
-    MusicPushButtonDelegate *delegate = new MusicPushButtonDelegate(this);
-    setItemDelegateForColumn(6, delegate);
-    setItemDelegateForColumn(7, delegate);
+    setItemDelegateForColumn(6, new MusicPushButtonDelegate(this));
+    setItemDelegateForColumn(7, new MusicPushButtonDelegate(this));
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());

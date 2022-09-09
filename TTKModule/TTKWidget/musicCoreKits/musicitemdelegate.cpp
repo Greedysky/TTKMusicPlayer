@@ -48,7 +48,11 @@ QSize MusicCheckBoxDelegate::sizeHint(const QStyleOptionViewItem &option, const 
 
 void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+#if !TTK_QT_VERSION_CHECK(5,7,0)
     QItemDelegate::paint(painter, option, index);
+#else
+    drawBackground(painter, option, index);
+#endif
 
     if(m_treeMode && !index.parent().isValid())
     {
@@ -108,7 +112,11 @@ QSize MusicProgressBarDelegate::sizeHint(const QStyleOptionViewItem &option, con
 
 void MusicProgressBarDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+#if !TTK_QT_VERSION_CHECK(5,7,0)
     QItemDelegate::paint(painter, option, index);
+#else
+    drawBackground(painter, option, index);
+#endif
 
     if(m_treeMode && !index.parent().isValid())
     {
@@ -116,7 +124,7 @@ void MusicProgressBarDelegate::paint(QPainter *painter, const QStyleOptionViewIt
     }
 
     painter->save();
-    m_progress->resize(option.rect.width() - 21, option.rect.height() - 21);
+    m_progress->resize(option.rect.width() - 21, option.rect.height() - 17);
     m_progress->setValue(index.data(MUSIC_PROGRESS_ROLE).toInt());
     painter->translate(10, 10);
 
@@ -158,7 +166,11 @@ QSize MusicLabelDelegate::sizeHint(const QStyleOptionViewItem &option, const QMo
 
 void MusicLabelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+#if !TTK_QT_VERSION_CHECK(5,7,0)
     QItemDelegate::paint(painter, option, index);
+#else
+    drawBackground(painter, option, index);
+#endif
 
     if(m_treeMode && !index.parent().isValid())
     {
@@ -215,7 +227,11 @@ QSize MusicPushButtonDelegate::sizeHint(const QStyleOptionViewItem &option, cons
 
 void MusicPushButtonDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+#if !TTK_QT_VERSION_CHECK(5,7,0)
     QItemDelegate::paint(painter, option, index);
+#else
+    drawBackground(painter, option, index);
+#endif
 
     if(m_treeMode && !index.parent().isValid())
     {

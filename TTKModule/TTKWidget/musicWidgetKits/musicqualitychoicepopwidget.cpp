@@ -5,8 +5,8 @@
 
 #include <QBoxLayout>
 
-#define PREVIOUS_COLOR  QColor(187, 187, 187)
 #define HOVER_COLOR     QColor(255, 255, 255)
+#define PREVIOUS_COLOR  QColor(187, 187, 187)
 
 MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
@@ -16,9 +16,12 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     headerview->resizeSection(1, 25);
     headerview->resizeSection(2, 25);
 
-    MusicUtils::Widget::setTransparent(this, 0);
     setStyleSheet(MusicUIObject::MQSSTableWidgetStyle03 + MusicUIObject::MQSSTableWidgetStyle04);
 
+    MusicUtils::Widget::setTransparent(this, 0);
+#if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
+    MusicUtils::Widget::setTransparent(this, QColor(50, 50, 50));
+#endif
     MusicCheckBoxDelegate *delegate = new MusicCheckBoxDelegate(this);
     delegate->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle02);
     setItemDelegateForColumn(2, delegate);

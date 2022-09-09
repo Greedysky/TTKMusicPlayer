@@ -9,7 +9,7 @@ MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *pare
     : MusicAbstractSongsListTableWidget(parent),
       m_type(MusicObject::Record::Null)
 {
-    m_delegate = new MusicProgressBarDelegate(this);
+    m_progressBarDelegate = new MusicProgressBarDelegate(this);
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
     G_CONNECTION_PTR->setValue(className(), this);
@@ -23,7 +23,7 @@ MusicAbstractDownloadTableWidget::~MusicAbstractDownloadTableWidget()
     xml.writeBuffer(*m_songs);
     clear();
 
-    delete m_delegate;
+    delete m_progressBarDelegate;
 }
 
 void MusicAbstractDownloadTableWidget::updateSongsFileName(const MusicSongList &songs)

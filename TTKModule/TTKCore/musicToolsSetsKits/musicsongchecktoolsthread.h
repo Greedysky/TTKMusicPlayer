@@ -118,7 +118,6 @@ protected:
      */
 
 protected:
-    bool m_run;
     MusicSongList *m_songItems;
     TTKIntList m_itemIDs;
     MusicSongCheckToolsDuplicateList m_datas;

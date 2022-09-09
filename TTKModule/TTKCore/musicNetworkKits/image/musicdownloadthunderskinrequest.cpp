@@ -4,13 +4,13 @@
 #define MAX_SIZE    30
 #define QUERY_URL   "eC9KOTYxbVhvVDJNcGEwckhyMVZRdVRhOHhFRHQ2eFVNdWJxaURFSzA1ZWVmZm5HOFlzS1VCY2ZKOFRlYStBL2Y3SjNEK2gzY2QwPQ=="
 
-MusicSkinThunderConfigManager::MusicSkinThunderConfigManager(QObject *parent)
+MusicThunderSkinConfigManager::MusicThunderSkinConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
 {
 
 }
 
-void MusicSkinThunderConfigManager::readBuffer(MusicSkinRemoteGroupList &items)
+void MusicThunderSkinConfigManager::readBuffer(MusicSkinRemoteGroupList &items)
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName("group");
     for(int i = 0; i < nodeList.count(); ++i)
@@ -80,7 +80,7 @@ void MusicDownloadThunderSkinRequest::startToDownload()
 void MusicDownloadThunderSkinRequest::downLoadFinished(const QByteArray &bytes)
 {
     MusicSkinRemoteGroupList items;
-    MusicSkinThunderConfigManager manager;
+    MusicThunderSkinConfigManager manager;
     if(manager.fromByteArray(bytes))
     {
         manager.readBuffer(items);

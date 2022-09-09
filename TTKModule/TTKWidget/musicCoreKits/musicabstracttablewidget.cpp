@@ -36,7 +36,9 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setFocusPolicy(Qt::NoFocus);
 
     MusicUtils::Widget::setTransparent(this, 50);
-
+#if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
+    MusicUtils::Widget::setTransparent(this, QColor(20, 20, 20, 10));
+#endif
     connect(this, SIGNAL(cellEntered(int,int)), SLOT(itemCellEntered(int,int)));
     connect(this, SIGNAL(cellClicked(int,int)), SLOT(itemCellClicked(int,int)));
 }

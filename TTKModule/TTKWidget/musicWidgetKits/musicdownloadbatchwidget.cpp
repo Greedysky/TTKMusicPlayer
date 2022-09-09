@@ -272,9 +272,13 @@ MusicDownloadBatchTableWidget::MusicDownloadBatchTableWidget(QWidget *parent)
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 530);
 
-    MusicUtils::Widget::setTransparent(this, 255);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     setStyleSheet(styleSheet() + MusicUIObject::MQSSTableWidgetStyle02);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+
+    MusicUtils::Widget::setTransparent(this, 255);
+#if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
+    MusicUtils::Widget::setTransparent(this, QColor(220, 220, 220));
+#endif
 }
 
 MusicDownloadBatchTableWidget::~MusicDownloadBatchTableWidget()

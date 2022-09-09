@@ -38,8 +38,8 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
     headerview->resizeSection(3, 50);
     headerview->resizeSection(4, 120);
 
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
     MusicUtils::Widget::setTransparent(this, 0);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
     m_progressBarDelegate = new MusicProgressBarDelegate(this);

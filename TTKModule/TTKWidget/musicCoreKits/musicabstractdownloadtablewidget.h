@@ -87,7 +87,7 @@ protected:
     virtual void createItem(int index, const MusicSong &record) = 0;
 
     MusicObject::Record m_type;
-    MusicProgressBarDelegate *m_delegate;
+    MusicProgressBarDelegate *m_progressBarDelegate;
 
 };
 
