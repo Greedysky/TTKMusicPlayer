@@ -12,9 +12,9 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
       m_currentPlayIndex(index),
       m_parentClass(parent)
 {
-    QPalette pal = palette();
-    pal.setBrush(QPalette::Base, QBrush(QColor(0, 0, 0, 20)));
-    setPalette(pal);
+    QPalette plt(palette());
+    plt.setBrush(QPalette::Base, QBrush(QColor(0, 0, 0, 20)));
+    setPalette(plt);
     setAutoFillBackground(true);
 
     m_textLabel = new QLabel(this);

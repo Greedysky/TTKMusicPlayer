@@ -18,9 +18,9 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
       m_currentPlayIndex(index),
       m_renameEdit(nullptr)
 {
-    QPalette pal = palette();
-    pal.setBrush(QPalette::Base, QBrush(QColor(0, 0, 0, 40)));
-    setPalette(pal);
+    QPalette plt(palette());
+    plt.setBrush(QPalette::Base, QBrush(QColor(0, 0, 0, 40)));
+    setPalette(plt);
     setAutoFillBackground(true);
 
     QPushButton *addButton = new QPushButton(this);

@@ -91,16 +91,16 @@ void MusicUtils::Widget::positionInCenter(QWidget *widget)
 
 void MusicUtils::Widget::setTransparent(QWidget *widget, int alpha)
 {
-    QPalette palette = widget->palette();
-    palette.setBrush(QPalette::Base, QBrush(QColor(255, 255, 255, alpha)));
-    widget->setPalette(palette);
+    QPalette plt(widget->palette());
+    plt.setBrush(QPalette::Base, QBrush(QColor(255, 255, 255, alpha)));
+    widget->setPalette(plt);
 }
 
 void MusicUtils::Widget::setTransparent(QWidget *widget, const QColor &color)
 {
-    QPalette palette = widget->palette();
-    palette.setBrush(QPalette::Highlight, QBrush(color));
-    widget->setPalette(palette);
+    QPalette plt(widget->palette());
+    plt.setBrush(QPalette::Highlight, QBrush(color));
+    widget->setPalette(plt);
 }
 
 void MusicUtils::Widget::setComboBoxText(QComboBox *object, const QString &text)

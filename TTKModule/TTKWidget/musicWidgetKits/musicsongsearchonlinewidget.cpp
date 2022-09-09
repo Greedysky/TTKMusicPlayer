@@ -347,17 +347,17 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
 
     QWidget *toolWidget = new QWidget(this);
     toolWidget->setFixedHeight(80);
-    QPalette pal(palette());
-    pal.setColor(QPalette::Background, Qt::white);
+    QPalette plt(palette());
+    plt.setColor(QPalette::Background, Qt::white);
     toolWidget->setAutoFillBackground(true);
-    toolWidget->setPalette(pal);
+    toolWidget->setPalette(plt);
 
     m_searchTableWidget = new MusicSongSearchTableWidget(this);
     boxLayout->addWidget(toolWidget);
 #if !TTK_QT_VERSION_CHECK(5,0,0)
     QWidget *containerWidget = new QWidget(this);
     containerWidget->setAutoFillBackground(true);
-    containerWidget->setPalette(pal);
+    containerWidget->setPalette(plt);
 
     QVBoxLayout *layout = new QVBoxLayout(containerWidget);
     layout->setContentsMargins(0, 0, 0, 0);

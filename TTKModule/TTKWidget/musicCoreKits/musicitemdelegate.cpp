@@ -56,6 +56,7 @@ void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
 
     if(m_treeMode && !index.parent().isValid())
     {
+        drawDisplay(painter, option, option.rect, index.data(Qt::DisplayRole).toString());
         return;
     }
 
@@ -174,6 +175,7 @@ void MusicLabelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 
     if(m_treeMode && !index.parent().isValid())
     {
+        drawDisplay(painter, option, option.rect, index.data(Qt::DisplayRole).toString());
         return;
     }
 
@@ -181,9 +183,9 @@ void MusicLabelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
     const QColor &color = index.data(Qt::TextColorRole).value<QColor>();
     if(color.isValid())
     {
-        QPalette pal(m_label->palette());
-        pal.setColor(QPalette::WindowText, color);
-        m_label->setPalette(pal);
+        QPalette plt(m_label->palette());
+        plt.setColor(QPalette::WindowText, color);
+        m_label->setPalette(plt);
     }
 
     const QString &text = index.data(MUSIC_TEXT_ROLE).toString();
@@ -235,6 +237,7 @@ void MusicPushButtonDelegate::paint(QPainter *painter, const QStyleOptionViewIte
 
     if(m_treeMode && !index.parent().isValid())
     {
+        drawDisplay(painter, option, option.rect, index.data(Qt::DisplayRole).toString());
         return;
     }
 
