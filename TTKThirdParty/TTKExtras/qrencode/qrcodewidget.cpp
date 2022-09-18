@@ -41,7 +41,7 @@ QRCodeQWidget::QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget 
     TTK_INIT_PRIVATE(QRCodeQWidget);
     TTK_D(QRCodeQWidget);
 
-    d->m_text = text.isEmpty() ? QByteArray("https://github.com/Greedysky/TTKMusicplayer") : text;
+    d->m_text = text.isEmpty() ? QByteArray("https://github.com/Greedysky/TTKMusicPlayer") : text;
     setFixedSize(size);
 }
 

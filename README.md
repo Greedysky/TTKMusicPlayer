@@ -1,17 +1,17 @@
 # TTKMusicPlayer
 [简体中文 Chinese](./README_cn.md) | [繁体中文 Chinese](./README_tc.md)
 
-![TTKMusicplayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
+![TTKMusicPlayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
 ![Version](https://img.shields.io/badge/Version-2.15.12.0-blue.svg?style=flat-square)
 ![License](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
 
 ![LOGO](https://github.com/Greedysky/Resource/blob/master/Screen/logo_pic.png?raw=true)
 
-### **|[About](https://github.com/Greedysky/TTKMusicplayer#usage)|[License](https://github.com/Greedysky/TTKMusicplayer#license)|[Download](https://github.com/Greedysky/TTKMusicplayer#download)|[Features](https://github.com/Greedysky/TTKMusicplayer#features)|[Screenshots](https://github.com/Greedysky/TTKMusicplayer#screenshots)|[Copyright](https://github.com/Greedysky/TTKMusicplayer#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicplayer#how-to-contribute)|**
+### **|[About](https://github.com/Greedysky/TTKMusicPlayer#usage)|[License](https://github.com/Greedysky/TTKMusicPlayer#license)|[Download](https://github.com/Greedysky/TTKMusicPlayer#download)|[Features](https://github.com/Greedysky/TTKMusicPlayer#features)|[Screenshots](https://github.com/Greedysky/TTKMusicPlayer#screenshots)|[Copyright](https://github.com/Greedysky/TTKMusicPlayer#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicPlayer#how-to-contribute)|**
 
 Usage
 ----
-**The music player use of qmmp core library based on Qt. Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Greedysky/TTKMusicplayer/wiki</u> )**
+**The music player use of qmmp core library based on Qt. Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Greedysky/TTKMusicPlayer/wiki</u> )**
 
 ### Attention: This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
 
@@ -32,7 +32,7 @@ Usage
 
 License
 ---
-TTKMusicPlayer is free software licensed under the term of [Licence GPL v3](https://github.com/Greedysky/TTKMusicplayer/blob/master/LICENSE). If you use TTKMusicPlayer or its constituent libraries, you must adhere to the terms of the license in question.
+TTKMusicPlayer is free software licensed under the term of [Licence GPL v3](https://github.com/Greedysky/TTKMusicPlayer/blob/master/LICENSE). If you use TTKMusicPlayer or its constituent libraries, you must adhere to the terms of the license in question.
 
 API Document
 ---
@@ -46,7 +46,7 @@ Qmmp Source Player URL: **<u>https://qmmp.ylsoftware.com</u>**
 
 Qmmp Source Mirror URL: **<u>https://github.com/Greedysky/qmmp</u>**
 
-Qmmp Source Modified URL: **<u>https://github.com/Greedysky/TTKMusicplayer/tree/plugins</u>**
+Qmmp Source Modified URL: **<u>https://github.com/Greedysky/TTKMusicPlayer/tree/plugins</u>**
 
 Qmmp Extra Plugins URL: **<u>https://github.com/TTK-qmmp</u>**
 

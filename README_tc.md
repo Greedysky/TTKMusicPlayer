@@ -1,17 +1,17 @@
 # TTKMusicPlayer
 [简体中文 Chinese](./README_cn.md) | [英文 English](./README.md)
 
-![TTKMusicplayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
+![TTKMusicPlayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
 ![版本](https://img.shields.io/badge/Version-2.15.12.0-blue.svg?style=flat-square)
 ![許可](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
 
 ![徽標](https://github.com/Greedysky/Resource/blob/master/Screen/logo_pic.png?raw=true)
 
-### **|[關於](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_tc.md#使用方法)|[許可證](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_tc.md#許可證)|[下載](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_tc.md#下載)|[特性](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_tc.md#特性)|[快照](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_tc.md#快照)|[版權](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_tc.md#版權)|[貢獻](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_tc.md#貢獻)|**
+### **|[關於](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#使用方法)|[許可證](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#許可證)|[下載](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#下載)|[特性](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#特性)|[快照](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#快照)|[版權](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#版權)|[貢獻](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#貢獻)|**
 
 使用方法
 ----
-**音樂播放器基於qmmp和Qt庫開發. 編譯教程我已經寫在wiki上了.(看這裏<u>https://github.com/Greedysky/TTKMusicplayer/wiki</u> )**
+**音樂播放器基於qmmp和Qt庫開發. 編譯教程我已經寫在wiki上了.(看這裏<u>https://github.com/Greedysky/TTKMusicPlayer/wiki</u> )**
 
 ### 本項目代碼不用於商用，僅限研究和學習使用，資源版權歸個音樂平臺所有。
 
@@ -32,7 +32,7 @@
 
 許可證
 ---
-TTKMusicPlayer是基於[Licence GPL v3](https://github.com/Greedysky/TTKMusicplayer/blob/master/LICENSE)條款授權的免費軟件。如果您使用TTKMusicPlayer或者它的動態庫，則務必添加相關許可證到項目中。
+TTKMusicPlayer是基於[Licence GPL v3](https://github.com/Greedysky/TTKMusicPlayer/blob/master/LICENSE)條款授權的免費軟件。如果您使用TTKMusicPlayer或者它的動態庫，則務必添加相關許可證到項目中。
 
 API 文檔
 ---
@@ -46,7 +46,7 @@ Qmmp原版下載地址: **<u>https://qmmp.ylsoftware.com</u>**
 
 Qmmp原版鏡像下載地址: **<u>https://github.com/Greedysky/qmmp</u>**
 
-Qmmp修改版下載地址: **<u>https://github.com/Greedysky/TTKMusicplayer/tree/plugins</u>**
+Qmmp修改版下載地址: **<u>https://github.com/Greedysky/TTKMusicPlayer/tree/plugins</u>**
 
 Qmmp更多插件下载地址: **<u>https://github.com/TTK-qmmp</u>**
 
