@@ -4,7 +4,7 @@
 #  include <unistd.h>
 #endif
 
-static bool appVersionCheck(const QStringList &ol, const QStringList &dl, int depth)
+static bool versionCheck(const QStringList &ol, const QStringList &dl, int depth)
 {
     if(depth >= ol.count())
     {
@@ -15,7 +15,7 @@ static bool appVersionCheck(const QStringList &ol, const QStringList &dl, int de
     {
         if(dl[depth].toInt() == ol[depth].toInt())
         {
-            return appVersionCheck(ol, dl, depth + 1);
+            return versionCheck(ol, dl, depth + 1);
         }
         else
         {
@@ -43,5 +43,5 @@ bool MusicUtils::Core::appVersionCheck(const QString &o, const QString &d)
         return false;
     }
 
-    return appVersionCheck(ol, dl, 0);
+    return versionCheck(ol, dl, 0);
 }

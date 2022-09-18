@@ -710,6 +710,7 @@ void MusicLrcContainerForInterior::initFunctionLabel()
 {
     m_functionLabel = new QWidget(this);
     m_functionLabel->setFixedHeight(40);
+    m_functionLabel->lower();
 
     QHBoxLayout *functionLayout = new QHBoxLayout(m_functionLabel);
     functionLayout->setContentsMargins(0, 0, 0, 0);

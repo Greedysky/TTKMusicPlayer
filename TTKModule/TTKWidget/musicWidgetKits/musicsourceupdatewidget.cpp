@@ -77,12 +77,12 @@ void MusicSourceUpdateNotifyWidget::updateSourceClicked()
 void MusicSourceUpdateNotifyWidget::downLoadFinished(const QVariant &bytes)
 {
     const QVariantMap &value = bytes.toMap();
-    const QString &versionStr = value["version"].toString();
+    const QString &version = value["version"].toString();
 
-    if(MusicUtils::Core::appVersionCheck(TTK_VERSION_STR, versionStr))
+    if(MusicUtils::Core::appVersionCheck(TTK_VERSION_STR, version))
     {
         show();
-        m_textLabel->setText(tr("New version found") + "\r\n" + versionStr);
+        m_textLabel->setText(tr("New version found") + "\r\n" + version);
     }
     else
     {
@@ -145,7 +145,7 @@ void MusicSourceUpdateWidget::downLoadFinished(const QVariant &bytes)
         text.append(value["data"].toString());
 
         m_ui->upgradeButton->setEnabled(true);
-        m_ui->titleLable->move(50, 0);
+        m_ui->titleLable->move(50, 5);
         m_ui->titleLable->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     }
     else

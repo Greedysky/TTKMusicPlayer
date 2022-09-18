@@ -965,7 +965,7 @@ void MusicLrcPosterThemeListWidget::addListWidgetItem()
     item->setSizeHint(QSize(70, 80));
     addItem(item);
 
-    setFixedWidth(70*count());
+    setFixedWidth(70 * count());
 }
 
 
