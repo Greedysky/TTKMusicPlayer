@@ -103,8 +103,7 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
 {
     m_items.clear();
 #ifdef Q_OS_WIN
-    const QFileInfoList &drives = QDir::drives();
-    for(const QFileInfo &fin : qAsConst(drives))
+    for(const QFileInfo &fin : QDir::drives())
     {
         const QString &path = fin.absoluteDir().absolutePath();
         const int type = GetDriveTypeW(path.toStdWString().c_str());
@@ -130,11 +129,13 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
 
         if(GetDiskFreeSpaceExW(path.toStdWString().c_str(), &freeAvailable, &totalNumberOfBytes, &totalNumberOfFreeBytes))
         {
+            const qint64 available = freeAvailable.QuadPart / MH_GB2B;
+            const qint64 total = totalNumberOfBytes.QuadPart / MH_GB2B;
+
             MusicDeviceInfoItem item;
             item.m_path = path;
-            item.m_availableBytes = freeAvailable.QuadPart / MH_GB2B; //GB
-            item.m_totalBytes = totalNumberOfBytes.QuadPart / MH_GB2B; //GB
-            item.m_availableBytes = item.m_availableBytes >= item.m_totalBytes ? item.m_totalBytes : item.m_totalBytes - item.m_availableBytes;
+            item.m_availableBytes = available >= total ? total : total - available;
+            item.m_totalBytes = total;
 
             DWORD serialNumber = 0;
             DWORD maxLength = 0;

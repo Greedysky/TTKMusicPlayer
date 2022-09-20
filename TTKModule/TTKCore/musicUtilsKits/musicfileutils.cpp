@@ -12,13 +12,18 @@ QStringList MusicUtils::File::fileListByPath(const QString &dpath, const QString
         return QStringList();
     }
 
-    QStringList fileList = dir.entryList(filter, QDir::Files | QDir::Hidden);
+    QStringList fileList;
+    for(const QString &path : dir.entryList(filter, QDir::Files | QDir::Hidden))
+    {
+        fileList.append(dpath + path);
+    }
+
     if(recursively)
     {
-        const QStringList& folderList = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-        for(const QString &dir : qAsConst(folderList))
+        const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+        for(const QFileInfo &fin : qAsConst(folderList))
         {
-            fileList.append(fileListByPath(dir, filter, recursively));
+            fileList.append(fileListByPath(fin.absoluteFilePath(), filter, recursively));
         }
     }
     return fileList;
