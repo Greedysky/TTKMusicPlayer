@@ -1,5 +1,5 @@
 #include "musicmobiledeviceswidget.h"
-#include "musiclocalsongsmanagerwidget.h"
+#include "musicmobilesongsmanagerwidget.h"
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
 
@@ -32,10 +32,7 @@ MusicMobileDevicesWidget::~MusicMobileDevicesWidget()
 void MusicMobileDevicesWidget::showMobileManager()
 {
     hide();
-    MusicLocalSongsManagerWidget *w = GENERATE_SINGLE_WIDGET_CLASS(MusicLocalSongsManagerWidget);
-#ifdef Q_OS_WIN
+    //
+    MusicMobileSongsManagerWidget *w = GENERATE_SINGLE_WIDGET_CLASS(MusicMobileSongsManagerWidget);
     w->findExtraDevicePath(G_SETTING_PTR->value(MusicSettingManager::ExtraDevicePath).toString());
-#else
-    Q_UNUSED(w);
-#endif
 }

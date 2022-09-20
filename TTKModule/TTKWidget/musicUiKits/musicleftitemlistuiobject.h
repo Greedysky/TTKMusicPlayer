@@ -35,14 +35,23 @@ namespace MusicUIObject
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_music_clicked); }";
 
-    const QString MQSSItemFavourite = " \
+    const QString MQSSItemLocal = " \
             QToolButton{ border:none; \
-            background-image: url(:/appTools/item_favorite_normal); } \
-            QToolButton:hover{ background-image: url(:/appTools/item_favorite_hover); }";
+            background-image: url(:/appTools/item_local_normal); } \
+            QToolButton:hover{ background-image: url(:/appTools/item_local_hover); }";
 
-    const QString MQSSItemFavouriteClicked = " \
+    const QString MQSSItemLocalClicked = " \
             QToolButton{ border:none; \
-            background-image: url(:/appTools/item_favorite_clicked); }";
+            background-image: url(:/appTools/item_local_clicked); }";
+
+    const QString MQSSItemCloud = " \
+            QToolButton{ border:none; \
+            background-image: url(:/appTools/item_cloud_normal); } \
+            QToolButton:hover{ background-image: url(:/appTools/item_cloud_hover); }";
+
+    const QString MQSSItemCloudClicked = " \
+            QToolButton{ border:none; \
+            background-image: url(:/appTools/item_cloud_clicked); }";
 
     const QString MQSSItemRadio = " \
             QToolButton{ border:none; \
@@ -52,15 +61,6 @@ namespace MusicUIObject
     const QString MQSSItemRadioClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_radio_clicked); }";
-
-    const QString MQSSItemMobile = " \
-            QToolButton{ border:none; \
-            background-image: url(:/appTools/item_mobile_normal); } \
-            QToolButton:hover{ background-image: url(:/appTools/item_mobile_hover); }";
-
-    const QString MQSSItemMobileClicked = " \
-            QToolButton{ border:none; \
-            background-image: url(:/appTools/item_mobile_clicked); }";
 
     const QString MQSSItemDownload = " \
             QToolButton{ border:none; \

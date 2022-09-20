@@ -118,67 +118,35 @@ void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
     {
         return;
     }
-    m_currentIndex = 0;
 
     delete m_stackedWidget;
     m_stackedWidget = nullptr;
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(0);
+    m_currentIndex = 0;
 }
 
-void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
+void MusicLeftAreaWidget::musicStackedLocalWidgetChanged()
 {
-    if(m_currentIndex == 2)
+    if(m_currentIndex == 1)
     {
         return;
     }
-    m_currentIndex = 2;
-
-    delete m_stackedWidget;
-    m_stackedWidget = new MusicWebRadioView(this);
-
-    m_ui->songsContainer->insertWidget(1, m_stackedWidget);
-    m_ui->songsContainer->setIndex(0, 0);
-    m_ui->songsContainer->start(1);
-}
-
-void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
-{
-    if(m_currentIndex == 4)
-    {
-        return;
-    }
-    m_currentIndex = 4;
-
-    delete m_stackedWidget;
-    m_stackedWidget = new MusicDownloadToolBoxWidget(this);
-    m_ui->songsContainer->insertWidget(1, m_stackedWidget);
-    m_ui->songsContainer->setIndex(0, 0);
-    m_ui->songsContainer->start(1);
-}
-
-void MusicLeftAreaWidget::musicStackedMobileWidgetChanged()
-{
-    if(m_currentIndex == 3)
-    {
-        return;
-    }
-    m_currentIndex = 3;
 
     delete m_stackedWidget;
     m_stackedWidget = new MusicConnectMobileWidget(this);
     m_ui->songsContainer->insertWidget(1, m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
+    m_currentIndex = 1;
 }
 
 void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
 {
-    if(m_currentIndex == 1)
+    if(m_currentIndex == 2)
     {
         return;
     }
-    m_currentIndex = 1;
 
     delete m_stackedWidget;
     m_stackedWidget = new QWidget(this);
@@ -190,9 +158,41 @@ void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
         m_ui->songsContainer->addWidget(m_cloudSharedSongWidget);
     }
 
-    m_cloudSharedSongWidget->showMainWindow();
+    m_cloudSharedSongWidget->initialize();
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
+    m_currentIndex = 2;
+}
+
+void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
+{
+    if(m_currentIndex == 3)
+    {
+        return;
+    }
+
+    delete m_stackedWidget;
+    m_stackedWidget = new MusicWebRadioView(this);
+
+    m_ui->songsContainer->insertWidget(1, m_stackedWidget);
+    m_ui->songsContainer->setIndex(0, 0);
+    m_ui->songsContainer->start(1);
+    m_currentIndex = 3;
+}
+
+void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
+{
+    if(m_currentIndex == 4)
+    {
+        return;
+    }
+
+    delete m_stackedWidget;
+    m_stackedWidget = new MusicDownloadToolBoxWidget(this);
+    m_ui->songsContainer->insertWidget(1, m_stackedWidget);
+    m_ui->songsContainer->setIndex(0, 0);
+    m_ui->songsContainer->start(1);
+    m_currentIndex = 4;
 }
 
 void MusicLeftAreaWidget::switchToSelectedItemStyle(int index)
@@ -200,9 +200,9 @@ void MusicLeftAreaWidget::switchToSelectedItemStyle(int index)
     switch(index)
     {
         case 0: musicStackedSongListWidgetChanged(); break;
-        case 1: musicStackedCloudWidgetChanged(); break;
-        case 2: musicStackedRadioWidgetChanged(); break;
-        case 3: musicStackedMobileWidgetChanged(); break;
+        case 1: musicStackedLocalWidgetChanged(); break;
+        case 2: musicStackedCloudWidgetChanged(); break;
+        case 3: musicStackedRadioWidgetChanged(); break;
         case 4: musicStackedMyDownWidgetChanged(); break;
         default: break;
     }

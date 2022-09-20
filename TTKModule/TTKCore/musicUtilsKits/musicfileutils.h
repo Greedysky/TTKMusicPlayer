@@ -27,11 +27,15 @@
 namespace MusicUtils
 {
     namespace File
-    {
+    {   
         /*!
          * Get all files in given dir.
          */
-        TTK_MODULE_EXPORT QFileInfoList fileListByPath(const QString &dpath, const QStringList &filter = QStringList(), bool recursively = true);
+        TTK_MODULE_EXPORT QStringList fileListByPath(const QString &dpath, const QStringList &filter = QStringList(), bool recursively = true);
+        /*!
+         * Get all file infos in given dir.
+         */
+        TTK_MODULE_EXPORT QFileInfoList fileInfoListByPath(const QString &dpath, const QStringList &filter = QStringList(), bool recursively = true);
         /*!
          * Dir remove recursively.
          */

@@ -109,7 +109,7 @@ void MusicTransformWidget::initInputPath()
         path = MusicUtils::File::openDirectoryDialog(this);
         if(!path.isEmpty())
         {
-            for(const QFileInfo &fin : MusicUtils::File::fileListByPath(path))
+            for(const QFileInfo &fin : MusicUtils::File::fileInfoListByPath(path))
             {
                 if(!m_path.contains(fin.absoluteFilePath()) && supportedFormat.contains(FILE_SUFFIX(fin)))
                 {

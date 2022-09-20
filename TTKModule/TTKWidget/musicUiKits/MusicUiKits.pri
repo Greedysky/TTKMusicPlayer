@@ -45,7 +45,7 @@ FORMS += \
     $$PWD/musicLrcKits/musiclrcposterwidget.ui \
     $$PWD/musicLrcKits/musiclrcdownloadbatchwidget.ui \
     $$PWD/musicToolsetsKits/musicfileinformationwidget.ui \
-    $$PWD/musicToolsetsKits/musiclocalsongsmanagerwidget.ui \
+    $$PWD/musicToolsetsKits/musicmobilesongsmanagerwidget.ui \
     $$PWD/musicToolsetsKits/musictimerwidget.ui \
     $$PWD/musicToolsetsKits/musictransformwidget.ui \
     $$PWD/musicToolsetsKits/musicnetworkconnectiontestwidget.ui \

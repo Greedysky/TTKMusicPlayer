@@ -4,7 +4,27 @@
 
 #include <QDirIterator>
 
-QFileInfoList MusicUtils::File::fileListByPath(const QString &dpath, const QStringList &filter, bool recursively)
+QStringList MusicUtils::File::fileListByPath(const QString &dpath, const QStringList &filter, bool recursively)
+{
+    QDir dir(dpath);
+    if(!dir.exists())
+    {
+        return QStringList();
+    }
+
+    QStringList fileList = dir.entryList(filter, QDir::Files | QDir::Hidden);
+    if(recursively)
+    {
+        const QStringList& folderList = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+        for(const QString &dir : qAsConst(folderList))
+        {
+            fileList.append(fileListByPath(dir, filter, recursively));
+        }
+    }
+    return fileList;
+}
+
+QFileInfoList MusicUtils::File::fileInfoListByPath(const QString &dpath, const QStringList &filter, bool recursively)
 {
     QDir dir(dpath);
     if(!dir.exists())
@@ -18,7 +38,7 @@ QFileInfoList MusicUtils::File::fileListByPath(const QString &dpath, const QStri
         const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
         for(const QFileInfo &fin : qAsConst(folderList))
         {
-            fileList.append(fileListByPath(fin.absoluteFilePath(), filter, recursively));
+            fileList.append(fileInfoListByPath(fin.absoluteFilePath(), filter, recursively));
         }
     }
     return fileList;

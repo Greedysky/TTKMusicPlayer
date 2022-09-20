@@ -118,7 +118,7 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
         }
         else
         {
-            for(const QFileInfo &fin : MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats()))
+            for(const QFileInfo &fin : MusicUtils::File::fileInfoListByPath(path, MusicFormats::supportMusicInputFilterFormats()))
             {
                 TTK_LOGGER_INFO("Add play url path: " << fin.absoluteFilePath());
                 m_playlist->append(0, fin.absoluteFilePath());

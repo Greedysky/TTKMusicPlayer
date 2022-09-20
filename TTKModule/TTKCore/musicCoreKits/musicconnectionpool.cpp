@@ -3,7 +3,7 @@
 #include "musicplayer.h"
 #include "musiclrcmakerwidget.h"
 #include "musicsongssummariziedwidget.h"
-#include "musiclocalsongsmanagerwidget.h"
+#include "musicmobilesongsmanagerwidget.h"
 #include "musicequalizerdialog.h"
 #include "musiclrclocallinkwidget.h"
 #include "musicsongslistplaywidget.h"
@@ -43,7 +43,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(positionChanged(qint64)), second, SLOT(positionChanged(qint64)));
         QObject::connect(first, SIGNAL(durationChanged(qint64)), second, SLOT(durationChanged(qint64)));
     }
-    else if((from == MusicLocalSongsManagerWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
+    else if((from == MusicMobileSongsManagerWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicSongCheckToolsDuplicateTableWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicSongCheckToolsQualityTableWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicAbstractDownloadTableWidget::className() && to == MusicSongsSummariziedWidget::className()))

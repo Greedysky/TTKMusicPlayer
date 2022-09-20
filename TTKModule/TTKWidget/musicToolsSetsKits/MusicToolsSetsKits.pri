@@ -20,11 +20,10 @@ INCLUDEPATH += $$PWD
 
 HEADERS += \
     $$PWD/musicmobiledeviceswidget.h \
+    $$PWD/musicmobilesongsmanagerwidget.h \
     $$PWD/musictimerwidget.h \
-    $$PWD/musiclocalsongsmanagerwidget.h \
     $$PWD/musictransformwidget.h \
     $$PWD/musicfileinformationwidget.h \
-    $$PWD/musiclocalsongstablewidget.h \
     $$PWD/musicreplaygainwidget.h \
     $$PWD/musicsongringtonemakerwidget.h \
     $$PWD/musicidentifysongswidget.h \
@@ -41,11 +40,10 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/musicmobiledeviceswidget.cpp \
+    $$PWD/musicmobilesongsmanagerwidget.cpp \
     $$PWD/musictimerwidget.cpp \
-    $$PWD/musiclocalsongsmanagerwidget.cpp \
     $$PWD/musictransformwidget.cpp \
     $$PWD/musicfileinformationwidget.cpp \
-    $$PWD/musiclocalsongstablewidget.cpp \
     $$PWD/musicreplaygainwidget.cpp \
     $$PWD/musicsongringtonemakerwidget.cpp \
     $$PWD/musicidentifysongswidget.cpp \

@@ -40,9 +40,9 @@ public:
     ~MusicCloudSharedSongWidget();
 
     /*!
-     * Show cloud main widget.
+     * Initialize cloud main widget.
      */
-    void showMainWindow();
+    void initialize();
 
 protected:
     MusicCloudToolBoxWidget *m_toolBoxWidget;

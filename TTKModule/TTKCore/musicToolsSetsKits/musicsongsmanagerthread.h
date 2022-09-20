@@ -1,5 +1,5 @@
-#ifndef MUSICLOCALSONGSMANAGERTHREAD_H
-#define MUSICLOCALSONGSMANAGERTHREAD_H
+#ifndef MUSICSONGSMANAGERTHREAD_H
+#define MUSICSONGSMANAGERTHREAD_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,21 +19,20 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QFileInfoList>
 #include "musicabstractthread.h"
 
-/*! @brief The class of the local songs manager thread.
+/*! @brief The class of the songs manager thread.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLocalSongsManagerThread : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicSongsManagerThread : public MusicAbstractThread
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalSongsManagerThread)
+    TTK_DECLARE_MODULE(MusicSongsManagerThread)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongsManagerThread(QObject *parent = nullptr);
+    explicit MusicSongsManagerThread(QObject *parent = nullptr);
 
     /*!
      * Set find file path by given path.
@@ -48,7 +47,7 @@ Q_SIGNALS:
     /*!
      * Send the searched file or path.
      */
-    void setSongNamePath(const QFileInfoList &name);
+    void searchFilePathChanged(const QStringList &name);
 
 protected:
     /*!
@@ -61,4 +60,4 @@ protected:
 
 };
 
-#endif // MUSICLOCALSONGSMANAGERTHREAD_H
+#endif // MUSICSONGSMANAGERTHREAD_H

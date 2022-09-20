@@ -24,7 +24,7 @@ MusicCloudSharedSongWidget::~MusicCloudSharedSongWidget()
     delete m_managerWidget;
 }
 
-void MusicCloudSharedSongWidget::showMainWindow()
+void MusicCloudSharedSongWidget::initialize()
 {
     MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::CloudManagerWidget, m_managerWidget);
 }

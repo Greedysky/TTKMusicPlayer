@@ -1,5 +1,5 @@
-#ifndef MUSICLOCALSONGSMANAGERWIDGET_H
-#define MUSICLOCALSONGSMANAGERWIDGET_H
+#ifndef MUSICMOBILESONGSMANAGERWIDGET_H
+#define MUSICMOBILESONGSMANAGERWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,29 +19,64 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QFileInfo>
 #include "musicwidgetheaders.h"
 #include "musicabstractmovewidget.h"
+#include "musicabstractsongslisttablewidget.h"
 
-class MusicLocalSongsManagerThread;
+/*! @brief The class of the lcal songs table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicMobileSongsTableWidget : public MusicAbstractSongsListTableWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicMobileSongsTableWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicMobileSongsTableWidget(QWidget *parent = nullptr);
+    ~MusicMobileSongsTableWidget();
+
+    /*!
+     * Clear current items.
+     */
+    void clear();
+    /*!
+     * Add show list items.
+     */
+    void addItems(const QStringList &path);
+
+public Q_SLOTS:
+    /*!
+     * Table widget item cell click.
+     */
+    virtual void itemCellClicked(int row, int column) override final;
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
+
+};
+
+class MusicSongsManagerThread;
 
 namespace Ui {
-class MusicLocalSongsManagerWidget;
+class MusicMobileSongsManagerWidget;
 }
 
 /*! @brief The class of the lcal songs manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLocalSongsManagerWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicMobileSongsManagerWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalSongsManagerWidget)
+    TTK_DECLARE_MODULE(MusicMobileSongsManagerWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongsManagerWidget(QWidget *parent = nullptr);
-    ~MusicLocalSongsManagerWidget();
+    explicit MusicMobileSongsManagerWidget(QWidget *parent = nullptr);
+    ~MusicMobileSongsManagerWidget();
 
     /*!
      * Find extra device path.
@@ -78,32 +113,12 @@ public Q_SLOTS:
     /*!
      * Send the searched file or path.
      */
-    void setSongNamePath(const QFileInfoList &name);
-    /*!
-     * Start to fetch file or files.
-     */
-    void filterScanChanged(int index);
+    void searchFilePathChanged(const QStringList &name);
     /*!
      * Search result from list.
      */
     void musicSearchResultChanged(int row, int col);
-    /*!
-     * Update file list.
-     */
-    void updateFileList(const QFileInfoList &list);
 
-    /*!
-     * Select to show list mode.
-     */
-    void setShowlistButton();
-    /*!
-     * Select to show art mode.
-     */
-    void setShowArtButton();
-    /*!
-     * Select to show album mode.
-     */
-    void setShowAlbumButton();
     /*!
      * Override show function.
      */
@@ -117,38 +132,18 @@ protected:
     /*!
      * Add all file items into list.
      */
-    void addAllItems(const QFileInfoList &name);
-    /*!
-     * Add current system all supported drives list.
-     */
-    void addDrivesList();
+    void addAllItems(const QStringList &name);
     /*!
      * Set current item or items selected.
      */
     void itemsSelected();
-    /*!
-     * Current drive index changed.
-     */
-    bool filterIndexChanged();
-    /*!
-     * Current custom dir path changed.
-     */
-    bool filterIndexCustChanged();
-    /*!
-     * Control enable or disable.
-     */
-    void controlEnabled(bool state);
-    /*!
-     * Loading label disable.
-     */
-    void loadingLabelState(bool state);
 
-    Ui::MusicLocalSongsManagerWidget *m_ui;
-    bool m_runTypeChanged;
-    QFileInfoList m_fileNames;
-    MusicLocalSongsManagerThread *m_thread;
+    Ui::MusicMobileSongsManagerWidget *m_ui;
+
+    QStringList m_fileNames;
+    MusicSongsManagerThread *m_thread;
     TTKIntListMap m_searchResultCache;
 
 };
 
-#endif // MUSICLOCALSONGSMANAGERWIDGET_H
+#endif // MUSICMOBILESONGSMANAGERWIDGET_H

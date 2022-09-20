@@ -1,28 +1,28 @@
-#include "musiclocalsongsmanagerthread.h"
+#include "musicsongsmanagerthread.h"
 #include "musicfileutils.h"
 #include "musicformats.h"
 
-MusicLocalSongsManagerThread::MusicLocalSongsManagerThread(QObject *parent)
+MusicSongsManagerThread::MusicSongsManagerThread(QObject *parent)
     : MusicAbstractThread(parent)
 {
 
 }
 
-void MusicLocalSongsManagerThread::setFindFilePath(const QString &path)
+void MusicSongsManagerThread::setFindFilePath(const QString &path)
 {
     setFindFilePath(QStringList(path));
 }
 
-void MusicLocalSongsManagerThread::setFindFilePath(const QStringList &path)
+void MusicSongsManagerThread::setFindFilePath(const QStringList &path)
 {
     m_path = path;
 }
 
-void MusicLocalSongsManagerThread::run()
+void MusicSongsManagerThread::run()
 {
     MusicAbstractThread::run();
 
-    QFileInfoList list;
+    QStringList list;
     for(const QString &path : qAsConst(m_path))
     {
         if(m_running)
@@ -31,5 +31,5 @@ void MusicLocalSongsManagerThread::run()
         }
     }
     ///The name and path search ended when sending the corresponding
-    Q_EMIT setSongNamePath(list);
+    Q_EMIT searchFilePathChanged(list);
 }

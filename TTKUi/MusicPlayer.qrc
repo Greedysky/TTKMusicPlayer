@@ -111,20 +111,14 @@
         <file alias="btn_horizontal_hover">../TTKResource/desktopTool/btn_horizontal_hover.png</file>
     </qresource>
     <qresource prefix="/tools">
-        <file alias="lb_ktv">../TTKResource/tools/lb_ktv.png</file>
-        <file alias="lb_localmanager">../TTKResource/tools/lb_localmanager.png</file>
         <file alias="lb_bell">../TTKResource/tools/lb_thebell.png</file>
         <file alias="lb_timer">../TTKResource/tools/lb_timer.png</file>
         <file alias="lb_transform">../TTKResource/tools/lb_transform.png</file>
         <file alias="lb_spectrum">../TTKResource/tools/lb_spectrum.png</file>
-        <file alias="lb_phone">../TTKResource/tools/lb_phone.png</file>
-        <file alias="lb_gain">../TTKResource/tools/lb_gain.png</file>
-        <file alias="lb_soundtouch">../TTKResource/tools/lb_soundtouch.png</file>
-        <file alias="lb_detect">../TTKResource/tools/lb_detect.png</file>
-        <file alias="lb_grabwindow">../TTKResource/tools/lb_grabwindow.png</file>
         <file alias="lb_connections">../TTKResource/tools/lb_connections.png</file>
-        <file alias="lb_radio">../TTKResource/tools/lb_radio.png</file>
+        <file alias="lb_gain">../TTKResource/tools/lb_gain.png</file>
         <file alias="lb_dlna">../TTKResource/tools/lb_dlna.png</file>
+        <file alias="lb_detect">../TTKResource/tools/lb_detect.png</file>
         <file alias="lb_screen_saver">../TTKResource/tools/lb_screensaver.png</file>
     </qresource>
     <qresource prefix="/contextMenu">
@@ -302,15 +296,15 @@
         <file alias="item_music_normal">../TTKResource/appTools/item_music_normal.png</file>
         <file alias="item_music_hover">../TTKResource/appTools/item_music_hover.png</file>
         <file alias="item_music_clicked">../TTKResource/appTools/item_music_clicked.png</file>
-        <file alias="item_favorite_normal">../TTKResource/appTools/item_favorite_normal.png</file>
-        <file alias="item_favorite_hover">../TTKResource/appTools/item_favorite_hover.png</file>
-        <file alias="item_favorite_clicked">../TTKResource/appTools/item_favorite_clicked.png</file>
+        <file alias="item_local_normal">../TTKResource/appTools/item_local_normal.png</file>
+        <file alias="item_local_hover">../TTKResource/appTools/item_local_hover.png</file>
+        <file alias="item_local_clicked">../TTKResource/appTools/item_local_clicked.png</file>
+        <file alias="item_cloud_normal">../TTKResource/appTools/item_cloud_normal.png</file>
+        <file alias="item_cloud_hover">../TTKResource/appTools/item_cloud_hover.png</file>
+        <file alias="item_cloud_clicked">../TTKResource/appTools/item_cloud_clicked.png</file>
         <file alias="item_radio_normal">../TTKResource/appTools/item_radio_normal.png</file>
         <file alias="item_radio_hover">../TTKResource/appTools/item_radio_hover.png</file>
         <file alias="item_radio_clicked">../TTKResource/appTools/item_radio_clicked.png</file>
-        <file alias="item_mobile_normal">../TTKResource/appTools/item_mobile_normal.png</file>
-        <file alias="item_mobile_hover">../TTKResource/appTools/item_mobile_hover.png</file>
-        <file alias="item_mobile_clicked">../TTKResource/appTools/item_mobile_clicked.png</file>
         <file alias="item_download_normal">../TTKResource/appTools/item_download_normal.png</file>
         <file alias="item_download_hover">../TTKResource/appTools/item_download_hover.png</file>
         <file alias="item_download_clicked">../TTKResource/appTools/item_download_clicked.png</file>
@@ -351,7 +345,6 @@
         <file alias="lb_wangyiyun">../TTKResource/server/lb_server_wangyiyun.png</file>
     </qresource>
     <qresource prefix="/toolSets">
-        <file alias="btn_search">../TTKResource/toolSets/btn_search.png</file>
         <file alias="btn_timer_play">../TTKResource/toolSets/btn_timer_play.png</file>
         <file alias="btn_timer_play_hover">../TTKResource/toolSets/btn_timer_play_hover.png</file>
         <file alias="btn_timer_play_clicked">../TTKResource/toolSets/btn_timer_play_clicked.png</file>

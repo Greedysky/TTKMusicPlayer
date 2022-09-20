@@ -171,7 +171,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
     if(fin.isDir())
     {
         QStringList files;
-        for(const QFileInfo &fin : MusicUtils::File::fileListByPath(path))
+        for(const QFileInfo &fin : MusicUtils::File::fileInfoListByPath(path))
         {
             if(MusicFormats::supportMusicFormats().contains(FILE_SUFFIX(fin)))
             {

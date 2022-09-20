@@ -1,7 +1,6 @@
 #include "musictoolsetswidget.h"
 #include "ui_musictoolsetswidget.h"
 #include "musictimerwidget.h"
-#include "musiclocalsongsmanagerwidget.h"
 #include "musictransformwidget.h"
 #include "musicnetworkconnectiontestwidget.h"
 #include "musicreplaygainwidget.h"
@@ -62,8 +61,7 @@ void MusicToolSetsWidget::addListWidgetItem()
     TTK_DECLARE_LIST(ToolItem);
 
     ToolItemList pairs;
-    pairs << ToolItem(":/tools/lb_localmanager", tr("Loacl"))
-          << ToolItem(":/tools/lb_bell", tr("Bell"))
+    pairs << ToolItem(":/tools/lb_bell", tr("Bell"))
           << ToolItem(":/tools/lb_timer", tr("Timing"))
           << ToolItem(":/tools/lb_transform", tr("Transform"))
           << ToolItem(":/tools/lb_spectrum", tr("Spectrum"))
@@ -90,15 +88,10 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
     {
         case 0:
         {
-            GENERATE_SINGLE_WIDGET_CLASS(MusicLocalSongsManagerWidget);
-            break;
-        }
-        case 1:
-        {
             MusicSongRingtoneMaker(this).exec();
             break;
         }
-        case 2:
+        case 1:
         {
             MusicTimerWidget timer(this);
             QStringList songlist;
@@ -107,37 +100,37 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             timer.exec();
             break;
         }
-        case 3:
+        case 2:
         {
             MusicTransformWidget(this).exec();
             break;
         }
-        case 4:
+        case 3:
         {
             GENERATE_SINGLE_WIDGET_CLASS(MusicSpectrumWidget);
             break;
         }
-        case 5:
+        case 4:
         {
             GENERATE_SINGLE_WIDGET_CLASS(MusicNetworkConnectionTestWidget);
             break;
         }
-        case 6:
+        case 5:
         {
             GENERATE_SINGLE_WIDGET_CLASS(MusicReplayGainWidget);
             break;
         }
-        case 7:
+        case 6:
         {
             GENERATE_SINGLE_WIDGET_CLASS(MusicSongDlnaTransferWidget);
             break;
         }
-        case 8:
+        case 7:
         {
             MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::IndentifyWidget);
             break;
         }
-        case 9:
+        case 8:
         {
             MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::ScreenSaverWidget);
             break;

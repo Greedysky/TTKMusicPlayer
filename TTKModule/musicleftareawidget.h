@@ -89,6 +89,14 @@ public Q_SLOTS:
      */
     void musicStackedSongListWidgetChanged();
     /*!
+     * Change to shared local widget.
+     */
+    void musicStackedLocalWidgetChanged();
+    /*!
+     * Change to shared cloud widget.
+     */
+    void musicStackedCloudWidgetChanged();
+    /*!
      * Change to radio widget.
      */
     void musicStackedRadioWidgetChanged();
@@ -96,14 +104,6 @@ public Q_SLOTS:
      * Change to my download widget.
      */
     void musicStackedMyDownWidgetChanged();
-    /*!
-     * Change to mobile widget.
-     */
-    void musicStackedMobileWidgetChanged();
-    /*!
-     * Change to shared cloud widget.
-     */
-    void musicStackedCloudWidgetChanged();
 
 protected:
     Ui::MusicApplication *m_ui;

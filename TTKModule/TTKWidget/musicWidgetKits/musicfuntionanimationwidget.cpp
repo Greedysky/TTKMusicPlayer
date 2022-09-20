@@ -148,7 +148,7 @@ MusicFuntionAnimationWidget::MusicFuntionAnimationWidget(QWidget *parent)
     QHBoxLayout *ly = TTKStatic_cast(QHBoxLayout*, layout());
 
     QStringList names;
-    names << tr("Playlist") << tr("Cloud") << tr("Radio") << tr("Mobile") << tr("Download");
+    names << tr("Playlist") << tr("Local") << tr("Cloud") << tr("Radio") << tr("Download");
     for(int i = 0; i < names.count(); ++i)
     {
         QToolButton *btn = new QToolButton(this);
@@ -172,17 +172,17 @@ void MusicFuntionAnimationWidget::paintEvent(QPaintEvent *event)
 void MusicFuntionAnimationWidget::switchToSelectedItemStyle(int index)
 {
     m_container[0]->setStyleSheet(MusicUIObject::MQSSItemMusic);
-    m_container[1]->setStyleSheet(MusicUIObject::MQSSItemFavourite);
-    m_container[2]->setStyleSheet(MusicUIObject::MQSSItemRadio);
-    m_container[3]->setStyleSheet(MusicUIObject::MQSSItemMobile);
+    m_container[1]->setStyleSheet(MusicUIObject::MQSSItemLocal);
+    m_container[2]->setStyleSheet(MusicUIObject::MQSSItemCloud);
+    m_container[3]->setStyleSheet(MusicUIObject::MQSSItemRadio);
     m_container[4]->setStyleSheet(MusicUIObject::MQSSItemDownload);
 
     switch(index)
     {
         case 0: m_container[0]->setStyleSheet(MusicUIObject::MQSSItemMusicClicked); break;
-        case 1: m_container[1]->setStyleSheet(MusicUIObject::MQSSItemFavouriteClicked); break;
-        case 2: m_container[2]->setStyleSheet(MusicUIObject::MQSSItemRadioClicked); break;
-        case 3: m_container[3]->setStyleSheet(MusicUIObject::MQSSItemMobileClicked); break;
+        case 1: m_container[1]->setStyleSheet(MusicUIObject::MQSSItemLocalClicked); break;
+        case 2: m_container[2]->setStyleSheet(MusicUIObject::MQSSItemCloudClicked); break;
+        case 3: m_container[3]->setStyleSheet(MusicUIObject::MQSSItemRadioClicked); break;
         case 4: m_container[4]->setStyleSheet(MusicUIObject::MQSSItemDownloadClicked); break;
         default: break;
     }
