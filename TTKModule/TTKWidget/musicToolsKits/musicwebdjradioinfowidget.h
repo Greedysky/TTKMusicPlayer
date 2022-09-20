@@ -68,7 +68,7 @@ public:
     /*!
      * Resize window bound by widget resize called.
      */
-    virtual void resizeWindow() override final;
+    void resizeWindow();
 
 Q_SIGNALS:
     /*!

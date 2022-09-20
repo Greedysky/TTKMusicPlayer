@@ -42,14 +42,14 @@ public:
     ~MusicPlaylistQueryInfoWidget();
 
     /*!
-     * Resize window bound by widget resize called.
-     */
-    virtual void resizeWindow() override final;
-
-    /*!
      * Set current id to search founds.
      */
     virtual void setSongNameById(const QString &id) override final;
+
+    /*!
+     * Resize window bound by widget resize called.
+     */
+    void resizeWindow();
 
     /*!
      * Set music playlist item.

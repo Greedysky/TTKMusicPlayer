@@ -23,6 +23,7 @@
 #include "musicdeviceinfomodule.h"
 
 class MusicTextSliderWidget;
+class MusicLocalManagerWidget;
 class MusicAnimationStackedWidget;
 
 /*! @brief The class of the connect local widget.
@@ -81,6 +82,7 @@ protected:
     MusicTextSliderWidget *m_deviceSizeLabel;
     MusicDeviceInfoItem m_currentDeviceItem;
     MusicDeviceInfoModule *m_deviceInfo;
+    MusicLocalManagerWidget *m_mediaWidget;
     MusicAnimationStackedWidget *m_stackedWidget;
 
 };

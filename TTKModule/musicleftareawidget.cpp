@@ -19,16 +19,18 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
     : QWidget(parent),
       m_currentIndex(0),
       m_stackedWidget(nullptr),
-      m_qualityChoiceWidget(nullptr),
-      m_cloudSharedSongWidget(nullptr)
+      m_localSharedSongWidget(nullptr),
+      m_cloudSharedSongWidget(nullptr),
+      m_qualityChoiceWidget(nullptr)
 {
     m_instance = this;
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
 {
-    delete m_qualityChoiceWidget;
+    delete m_localSharedSongWidget;
     delete m_cloudSharedSongWidget;
+    delete m_qualityChoiceWidget;
     delete m_stackedWidget;
 }
 
@@ -135,9 +137,21 @@ void MusicLeftAreaWidget::musicStackedLocalWidgetChanged()
     }
 
     delete m_stackedWidget;
-    m_stackedWidget = new MusicConnectLocalWidget(this);
+    m_stackedWidget = new QWidget(this);
+    m_stackedWidget->hide();
 
-    m_ui->songsContainer->insertWidget(1, m_stackedWidget);
+    if(m_cloudSharedSongWidget)
+    {
+        m_ui->songsContainer->removeWidget(m_cloudSharedSongWidget);
+        m_cloudSharedSongWidget->hide();
+    }
+
+    if(!m_localSharedSongWidget)
+    {
+        m_localSharedSongWidget = new MusicConnectLocalWidget(this);
+    }
+
+    m_ui->songsContainer->addWidget(m_localSharedSongWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
     m_currentIndex = 1;
@@ -154,12 +168,18 @@ void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
     m_stackedWidget = new QWidget(this);
     m_stackedWidget->hide();
 
+    if(m_localSharedSongWidget)
+    {
+        m_ui->songsContainer->removeWidget(m_localSharedSongWidget);
+        m_localSharedSongWidget->hide();
+    }
+
     if(!m_cloudSharedSongWidget)
     {
         m_cloudSharedSongWidget = new MusicCloudSharedSongWidget(this);
-        m_ui->songsContainer->addWidget(m_cloudSharedSongWidget);
     }
 
+    m_ui->songsContainer->addWidget(m_cloudSharedSongWidget);
     m_cloudSharedSongWidget->initialize();
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);

@@ -1,5 +1,5 @@
-#ifndef MUSICLRCFLOATWIDGET_H
-#define MUSICLRCFLOATWIDGET_H
+#ifndef MUSICLOCALMANAGERWIDGET_H
+#define MUSICLOCALMANAGERWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,51 +19,37 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractfloatwidget.h"
+#include "musicwidgetheaders.h"
+#include "musicglobaldefine.h"
 
-class QPushButton;
-class MusicLrcFloatPhotoWidget;
-class MusicLrcFloatSettingWidget;
-
-/*! @brief The class of the lrc float widget.
+/*! @brief The class of the local manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLrcFloatWidget : public MusicAbstractFloatWidget
+class TTK_MODULE_EXPORT MusicLocalManagerWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcFloatWidget)
+    TTK_DECLARE_MODULE(MusicLocalManagerWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcFloatWidget(QWidget *parent = nullptr);
-    ~MusicLrcFloatWidget();
+    explicit MusicLocalManagerWidget(QWidget *parent = nullptr);
+    ~MusicLocalManagerWidget();
 
     /*!
-     * Resize window bound by given width and height.
+     * Resize window bound by widget resize called.
      */
-    void resizeWindow(int width, int height);
-
-public Q_SLOTS:
-    /*!
-     * Show float setting widget.
-     */
-    void showFloatSettingWidget();
-    /*!
-     * Close float setting widget.
-     */
-    void closeFloatSettingWidget();
-    /*!
-     * Lrc desktop wallpaper button clicked.
-     */
-    void wallpaperButtonClicked();
+    void resizeWindow();
 
 protected:
-    QPushButton *m_more, *m_update, *m_search;
-    QPushButton *m_wallpaper, *m_photo;
-    MusicLrcFloatPhotoWidget *m_floatPhotoWidget;
-    MusicLrcFloatSettingWidget *m_floatSettingWidget;
+    /*!
+     * Override the widget event.
+     */
+    virtual void resizeEvent(QResizeEvent *event) override final;
+
+protected:
+    QList<QWidget*> m_resizeWidgets;
 
 };
 
-#endif // MUSICLRCFLOATWIDGET_H
+#endif // MUSICLOCALMANAGERWIDGET_H

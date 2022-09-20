@@ -4,11 +4,14 @@
 #include "musictextsliderwidget.h"
 #include "musicclickedlabel.h"
 #include "musictoolsetsuiobject.h"
+#include "musiclocalmanagerwidget.h"
+#include "musicrightareawidget.h"
 
 Q_DECLARE_METATYPE(MusicDeviceInfoItem)
 
 MusicConnectLocalWidget::MusicConnectLocalWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_mediaWidget(nullptr)
 {
     QVBoxLayout *vBox = new QVBoxLayout(this);
     vBox->setContentsMargins(0, 0, 0, 0);
@@ -28,6 +31,7 @@ MusicConnectLocalWidget::MusicConnectLocalWidget(QWidget *parent)
 MusicConnectLocalWidget::~MusicConnectLocalWidget()
 {
     delete m_deviceInfo;
+    delete m_mediaWidget;
     delete m_stackedWidget;
 }
 
@@ -167,7 +171,12 @@ void MusicConnectLocalWidget::changeStatckedWidgetSecond()
 
 void MusicConnectLocalWidget::changeStatckedWidgetThird()
 {
+    if(!m_mediaWidget)
+    {
+        m_mediaWidget = new MusicLocalManagerWidget(this);
+    }
 
+    MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::LocalManagerWidget, m_mediaWidget);
 }
 
 void MusicConnectLocalWidget::openTransferFilesToMobile()

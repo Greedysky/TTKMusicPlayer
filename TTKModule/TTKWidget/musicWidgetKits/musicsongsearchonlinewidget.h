@@ -61,7 +61,6 @@ public:
      * Set search data quality.
      */
     void setSearchQuality(MusicObject::QueryQuality quality);
-
     /*!
      * Resize window bound by widget resize called.
      */

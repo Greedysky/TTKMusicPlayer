@@ -39,7 +39,7 @@ public:
     /*!
      * Resize window bound by given width and height.
      */
-    virtual void resizeWindow(int width, int height) override final;
+    void resizeWindow(int width, int height);
 
 Q_SIGNALS:
     /*!

@@ -91,10 +91,11 @@ public:
      * Set current id to search founds.
      */
     virtual void setSongNameById(const QString &id) override final;
+
     /*!
      * Resize window bound by widget resize called.
      */
-    virtual void resizeWindow() override final;
+    void resizeWindow();
 
 public Q_SLOTS:
     /*!
@@ -140,10 +141,11 @@ public:
      * Set current id to search founds.
      */
     virtual void setSongNameById(const QString &id) override final;
+
     /*!
      * Resize window bound by widget resize called.
      */
-    virtual void resizeWindow() override final;
+    void resizeWindow();
 
 public Q_SLOTS:
     /*!
@@ -209,7 +211,7 @@ public:
     /*!
      * Resize window bound by widget resize called.
      */
-    virtual void resizeWindow() override final;
+    void resizeWindow();
 
 public Q_SLOTS:
     /*!

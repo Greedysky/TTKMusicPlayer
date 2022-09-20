@@ -65,6 +65,7 @@ public:
         KuiSheWidget,           /*!< insert kugou kuishe widget*/
         WebDJRadioWidget,       /*!< insert web dj radio widget*/
         WebMVRadioWidget,       /*!< insert web mv radio widget*/
+        LocalManagerWidget,     /*!< insert local manager widget*/
         CloudManagerWidget,     /*!< insert cloud manager widget*/
         ScreenSaverWidget       /*!< insert screen saver widget*/
     };

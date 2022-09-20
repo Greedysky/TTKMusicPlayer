@@ -204,7 +204,7 @@ public:
     /*!
      * Resize window bound by widget resize called.
      */
-    virtual void resizeWindow();
+    void resizeWindow();
 
 public Q_SLOTS:
     /*!

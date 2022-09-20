@@ -140,7 +140,7 @@ public:
     /*!
      * Resize window bound by widget resize called.
      */
-    virtual void resizeWindow();
+    void resizeWindow();
 
 protected:
     /*!
@@ -180,7 +180,7 @@ public:
     /*!
      * Resize window bound by widget resize called.
      */
-    virtual void resizeWindow();
+    void resizeWindow();
 
 private Q_SLOTS:
     /*!
