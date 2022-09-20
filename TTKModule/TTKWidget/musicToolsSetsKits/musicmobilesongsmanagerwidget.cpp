@@ -12,8 +12,8 @@ MusicMobileSongsTableWidget::MusicMobileSongsTableWidget(QWidget *parent)
     setColumnCount(5);
 
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 405);
-    headerview->resizeSection(1, 65);
+    headerview->resizeSection(0, 460);
+    headerview->resizeSection(1, 85);
     headerview->resizeSection(2, 105);
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
@@ -43,7 +43,7 @@ void MusicMobileSongsTableWidget::addItems(const QStringList &path)
 
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(fin.fileName());
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 20));
+        item->setText(" " + MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 20));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 0, item);
 
@@ -185,7 +185,7 @@ void MusicMobileSongsManagerWidget::auditionButtonClick()
 {
     if(m_ui->songlistTable->selectedItems().count() > 0)
     {
-        itemsSelected();
+        selectedItems();
         return;
     }
 
@@ -195,14 +195,14 @@ void MusicMobileSongsManagerWidget::auditionButtonClick()
         return;
     }
 
-    itemsSelected();
+    selectedItems();
 }
 
 void MusicMobileSongsManagerWidget::addButtonClick()
 {
     if(m_ui->songlistTable->selectedItems().count() > 0)
     {
-        itemsSelected();
+        selectedItems();
         return;
     }
 
@@ -212,7 +212,7 @@ void MusicMobileSongsManagerWidget::addButtonClick()
         return;
     }
 
-    itemsSelected();
+    selectedItems();
 }
 
 void MusicMobileSongsManagerWidget::itemCellOnClick(int row, int col)
@@ -250,17 +250,13 @@ void MusicMobileSongsManagerWidget::itemDoubleClicked(int row, int)
 
 void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &name)
 {
-    QStringList files;
-    for(int i=0 ; i< 50; ++i)
-    files << "/home/greedysky/qmmp_all/files/mpeg/1.mp3";
-
     TTK_LOGGER_INFO("Stop fetch result");
 
     clearAllItems();
     m_ui->searchLineEdit->clear();
     m_searchResultCache.clear();
 
-    addAllItems(m_fileNames =files);
+    addAllItems(m_fileNames = name);
     m_ui->loadingLabel->run(false);
 }
 
@@ -309,7 +305,7 @@ void MusicMobileSongsManagerWidget::addAllItems(const QStringList &fileName)
     m_ui->songlistTable->addItems(fileName);
 }
 
-void MusicMobileSongsManagerWidget::itemsSelected()
+void MusicMobileSongsManagerWidget::selectedItems()
 {
     TTKIntSet auditionRow; //if selected multi rows
     for(QTableWidgetItem *item : m_ui->songlistTable->selectedItems())

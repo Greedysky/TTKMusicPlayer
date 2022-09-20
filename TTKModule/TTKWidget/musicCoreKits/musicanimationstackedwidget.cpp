@@ -120,6 +120,7 @@ void MusicAnimationStackedWidget::start(int index)
     {
         return;
     }
+
     m_previousIndex = m_currentIndex;
     m_currentIndex = index;
 

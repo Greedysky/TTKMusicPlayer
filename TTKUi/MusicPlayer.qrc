@@ -368,7 +368,7 @@
         <file alias="btn_analysis_apply">../TTKResource/toolSets/btn_analysis_apply.png</file>
         <file alias="btn_arrow">../TTKResource/toolSets/btn_arrow.png</file>
         <file alias="lb_wired">../TTKResource/toolSets/lb_wired.png</file>
-        <file alias="lb_wireless">../TTKResource/toolSets/lb_wireless.png</file>
+        <file alias="lb_media">../TTKResource/toolSets/lb_media.png</file>
         <file alias="btn_change_dev_normal">../TTKResource/toolSets/btn_change_dev_normal.png</file>
         <file alias="btn_change_dev_hover">../TTKResource/toolSets/btn_change_dev_hover.png</file>
         <file alias="btn_import_ring_normal">../TTKResource/toolSets/btn_import_ring_normal.png</file>

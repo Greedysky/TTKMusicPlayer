@@ -4,7 +4,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_HEADERS
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicsongssummariziedwidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musictoolsetswidget.h
-    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnectmobilewidget.h
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnectlocalwidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransferwidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransfertablewidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicttkfmradioplaywidget.h
@@ -30,7 +30,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_SOURCES
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicsongssummariziedwidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musictoolsetswidget.cpp
-    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnectmobilewidget.cpp
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnectlocalwidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransferwidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransfertablewidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicttkfmradioplaywidget.cpp

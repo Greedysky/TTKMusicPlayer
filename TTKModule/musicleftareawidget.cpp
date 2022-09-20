@@ -6,7 +6,7 @@
 #include "musicdownloadmgmtwidget.h"
 #include "musicdownloadrecordwidget.h"
 #include "musicwebradioview.h"
-#include "musicconnectmobilewidget.h"
+#include "musicconnectlocalwidget.h"
 #include "musiccloudsharedsongwidget.h"
 #include "musicqualitychoicepopwidget.h"
 #include "musicsoundkmicrowidget.h"
@@ -121,6 +121,7 @@ void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
 
     delete m_stackedWidget;
     m_stackedWidget = nullptr;
+
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(0);
     m_currentIndex = 0;
@@ -134,7 +135,8 @@ void MusicLeftAreaWidget::musicStackedLocalWidgetChanged()
     }
 
     delete m_stackedWidget;
-    m_stackedWidget = new MusicConnectMobileWidget(this);
+    m_stackedWidget = new MusicConnectLocalWidget(this);
+
     m_ui->songsContainer->insertWidget(1, m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
@@ -189,6 +191,7 @@ void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
 
     delete m_stackedWidget;
     m_stackedWidget = new MusicDownloadToolBoxWidget(this);
+
     m_ui->songsContainer->insertWidget(1, m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);

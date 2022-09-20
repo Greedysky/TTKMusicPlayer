@@ -136,7 +136,7 @@ protected:
     /*!
      * Set current item or items selected.
      */
-    void itemsSelected();
+    void selectedItems();
 
     Ui::MusicMobileSongsManagerWidget *m_ui;
 

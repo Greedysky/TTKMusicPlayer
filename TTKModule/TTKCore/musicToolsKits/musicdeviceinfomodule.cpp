@@ -12,15 +12,15 @@ MusicDeviceInfoModule::MusicDeviceInfoModule(QObject *parent)
     : QObject(parent)
 {
 #ifdef Q_OS_UNIX
-    m_dfProcess = new QProcess(this);
-    connect(m_dfProcess, SIGNAL(readyRead()), this, SLOT(handleReadyRead()));
+    m_process = new QProcess(this);
+    connect(m_process, SIGNAL(readyRead()), this, SLOT(handleReadyRead()));
 #endif
 }
 
 MusicDeviceInfoModule::~MusicDeviceInfoModule()
 {
 #ifdef Q_OS_UNIX
-    delete m_dfProcess;
+    delete m_process;
 #endif
 }
 
@@ -160,10 +160,10 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
     }
 #else
     MusicSemaphoreLoop loop;
-    m_dfProcess->close();
-    m_dfProcess->start("df -h");
-    QObject::connect(m_dfProcess, SIGNAL(finished(int)), &loop, SLOT(quit()));
-    QtProcessNoneConnect(m_dfProcess, &loop, quit);
+    m_process->close();
+    m_process->start("df -h");
+    QObject::connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
+    QtProcessNoneConnect(m_process, &loop, quit);
     loop.exec();
 #endif
     return m_items;
@@ -172,9 +172,9 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
 #ifdef Q_OS_UNIX
 void MusicDeviceInfoModule::handleReadyRead()
 {
-    while(!m_dfProcess->atEnd())
+    while(!m_process->atEnd())
     {
-        const QString &result = QLatin1String(m_dfProcess->readLine());
+        const QString &result = QLatin1String(m_process->readLine());
         if(result.startsWith("/dev/sd"))
         {
             QString dev, use, all, path;

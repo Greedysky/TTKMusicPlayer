@@ -1,5 +1,5 @@
-#ifndef MUSICCONNECTMOBILEWIDGET_H
-#define MUSICCONNECTMOBILEWIDGET_H
+#ifndef MUSICCONNECTLOCALWIDGET_H
+#define MUSICCONNECTLOCALWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -25,20 +25,20 @@
 class MusicTextSliderWidget;
 class MusicAnimationStackedWidget;
 
-/*! @brief The class of the connect mobile widget.
+/*! @brief The class of the connect local widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicConnectMobileWidget : public QWidget
+class TTK_MODULE_EXPORT MusicConnectLocalWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicConnectMobileWidget)
+    TTK_DECLARE_MODULE(MusicConnectLocalWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicConnectMobileWidget(QWidget *parent = nullptr);
+    explicit MusicConnectLocalWidget(QWidget *parent = nullptr);
 
-    ~MusicConnectMobileWidget();
+    ~MusicConnectLocalWidget();
 
 private Q_SLOTS:
     /*!
@@ -50,13 +50,13 @@ private Q_SLOTS:
      */
     void changeStatckedWidgetSecond();
     /*!
-     * Change to wire widget.
+     * Change to media library widget.
      */
     void changeStatckedWidgetThird();
     /*!
      * Open transfer files to mobile widget.
      */
-    void openTransferFiles2Mobile();
+    void openTransferFilesToMobile();
     /*!
      * Device type changed.
      */
@@ -75,10 +75,6 @@ protected:
      * Init connect to wireless widget.
      */
     void initSecondWidget();
-    /*!
-     * Init connect to wire widget.
-     */
-    void initThirdWidget();
 
     QMenu m_popMenu;
     QLabel *m_deviceInfoLabel;
@@ -89,4 +85,4 @@ protected:
 
 };
 
-#endif // MUSICCONNECTMOBILEWIDGET_H
+#endif // MUSICCONNECTLOCALWIDGET_H

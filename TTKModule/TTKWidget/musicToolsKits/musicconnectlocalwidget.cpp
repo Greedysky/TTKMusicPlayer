@@ -1,15 +1,13 @@
-#include "musicconnectmobilewidget.h"
+#include "musicconnectlocalwidget.h"
 #include "musicconnecttransferwidget.h"
 #include "musicanimationstackedwidget.h"
 #include "musictextsliderwidget.h"
 #include "musicclickedlabel.h"
 #include "musictoolsetsuiobject.h"
 
-#include "qrencode/qrcodewidget.h"
-
 Q_DECLARE_METATYPE(MusicDeviceInfoItem)
 
-MusicConnectMobileWidget::MusicConnectMobileWidget(QWidget *parent)
+MusicConnectLocalWidget::MusicConnectLocalWidget(QWidget *parent)
     : QWidget(parent)
 {
     QVBoxLayout *vBox = new QVBoxLayout(this);
@@ -23,25 +21,24 @@ MusicConnectMobileWidget::MusicConnectMobileWidget(QWidget *parent)
 
     initFirstWidget();
     initSecondWidget();
-    initThirdWidget();
 
-    m_stackedWidget->setCurrentIndex(CONNECT_MOBILE_INDEX_0);
+    m_stackedWidget->setCurrentIndex(0);
 }
 
-MusicConnectMobileWidget::~MusicConnectMobileWidget()
+MusicConnectLocalWidget::~MusicConnectLocalWidget()
 {
     delete m_deviceInfo;
     delete m_stackedWidget;
 }
 
-void MusicConnectMobileWidget::initFirstWidget()
+void MusicConnectLocalWidget::initFirstWidget()
 {
     QWidget *firstWidget = new QWidget(this);
     QVBoxLayout *vBox = new QVBoxLayout(firstWidget);
     QLabel *textLabel = new QLabel(tr("Please choose the way"), firstWidget);
     textLabel->setStyleSheet(MusicUIObject::MQSSFontStyle04 + MusicUIObject::MQSSColorStyle09);
 
-    QPushButton *firButton = new QPushButton(tr("Wired Mode"), firstWidget);
+    QPushButton *firButton = new QPushButton(tr("Mobile Media"), firstWidget);
     firButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSColorStyle09);
     firButton->setIcon(QIcon(":/toolSets/lb_wired"));
     firButton->setIconSize(QSize(50, 50));
@@ -49,9 +46,9 @@ void MusicConnectMobileWidget::initFirstWidget()
     firButton->setCursor(Qt::PointingHandCursor);
     connect(firButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetSecond()));
 
-    QPushButton *secButton = new QPushButton(tr("Wirel Mode"), firstWidget);
+    QPushButton *secButton = new QPushButton(tr("Media Library"), firstWidget);
     secButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSColorStyle09);
-    secButton->setIcon(QIcon(":/toolSets/lb_wireless"));
+    secButton->setIcon(QIcon(":/toolSets/lb_media"));
     secButton->setIconSize(QSize(50, 50));
     secButton->setFixedSize(200, 90);
     secButton->setCursor(Qt::PointingHandCursor);
@@ -74,7 +71,7 @@ void MusicConnectMobileWidget::initFirstWidget()
     m_stackedWidget->addWidget(firstWidget);
 }
 
-void MusicConnectMobileWidget::initSecondWidget()
+void MusicConnectLocalWidget::initSecondWidget()
 {
     QWidget *secondWidget = new QWidget(this);
     QVBoxLayout *vBox = new QVBoxLayout(secondWidget);
@@ -109,7 +106,7 @@ void MusicConnectMobileWidget::initSecondWidget()
 
     MusicClickedLabel *pixLabel = new MusicClickedLabel(secondWidget);
     pixLabel->setPixmap(QPixmap(":/toolSets/lb_mobile_usb"));
-    connect(pixLabel, SIGNAL(clicked()), SLOT(openTransferFiles2Mobile()));
+    connect(pixLabel, SIGNAL(clicked()), SLOT(openTransferFilesToMobile()));
 
     m_deviceInfoLabel = new QLabel(secondWidget);
     m_deviceInfoLabel->setStyleSheet(MusicUIObject::MQSSFontStyle03);
@@ -124,13 +121,13 @@ void MusicConnectMobileWidget::initSecondWidget()
     importSong->setStyleSheet(MusicUIObject::MQSSTransferSong);
     importSong->setFixedSize(130, 96);
     importSong->setCursor(Qt::PointingHandCursor);
-    connect(importSong, SIGNAL(clicked()), SLOT(openTransferFiles2Mobile()));
+    connect(importSong, SIGNAL(clicked()), SLOT(openTransferFilesToMobile()));
 
     QPushButton *importRing = new QPushButton(secondWidget);
     importRing->setStyleSheet(MusicUIObject::MQSSTransferRing);
     importRing->setFixedSize(130, 96);
     importRing->setCursor(Qt::PointingHandCursor);
-    connect(importRing, SIGNAL(clicked()), SLOT(openTransferFiles2Mobile()));
+    connect(importRing, SIGNAL(clicked()), SLOT(openTransferFilesToMobile()));
 
     buttonWidgetLayout->addWidget(importSong);
     buttonWidgetLayout->addWidget(importRing);
@@ -158,63 +155,22 @@ void MusicConnectMobileWidget::initSecondWidget()
     updateDeviceInfo();
 }
 
-void MusicConnectMobileWidget::initThirdWidget()
-{
-    QWidget *thirdWidget = new QWidget(this);
-    QVBoxLayout *vBox = new QVBoxLayout(thirdWidget);
-
-    QPushButton *backButton = new QPushButton(tr("< "), thirdWidget);
-    backButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle10);
-    backButton->setFixedSize(45, 25);
-    backButton->setCursor(Qt::PointingHandCursor);
-    connect(backButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetFirst()));
-
-    QLabel *label = new QLabel(tr("Use mobile app to connect"), thirdWidget);
-    label->setStyleSheet(MusicUIObject::MQSSFontStyle04);
-
-    QRCodeQWidget *code = new QRCodeQWidget(QByteArray(), QSize(130, 130), this);
-    code->setMargin(8);
-    code->setIcon(":/image/lb_app_logo", 0.23);
-
-    QLabel *label2 = new QLabel(tr("\t1. Client and app must in the same wifi"), thirdWidget);
-    label2->setStyleSheet(MusicUIObject::MQSSFontStyle03);
-    QLabel *label3 = new QLabel(tr("\t2. Use scanning by mobile app"), thirdWidget);
-    label3->setStyleSheet(MusicUIObject::MQSSFontStyle03);
-
-#ifdef Q_OS_UNIX
-    backButton->setFocusPolicy(Qt::NoFocus);
-#endif
-
-    vBox->addWidget(backButton);
-    vBox->addStretch(3);
-    vBox->addWidget(label, 0, Qt::AlignCenter);
-    vBox->addStretch(1);
-    vBox->addWidget(code, 0, Qt::AlignCenter);
-    vBox->addStretch(1);
-    vBox->addWidget(label2, 0, Qt::AlignVCenter);
-    vBox->addWidget(label3, 0, Qt::AlignVCenter);
-    vBox->addStretch(5);
-
-    thirdWidget->setLayout(vBox);
-    m_stackedWidget->addWidget(thirdWidget);
-}
-
-void MusicConnectMobileWidget::changeStatckedWidgetFirst()
+void MusicConnectLocalWidget::changeStatckedWidgetFirst()
 {
     m_stackedWidget->start(0);
 }
 
-void MusicConnectMobileWidget::changeStatckedWidgetSecond()
+void MusicConnectLocalWidget::changeStatckedWidgetSecond()
 {
     m_stackedWidget->start(1);
 }
 
-void MusicConnectMobileWidget::changeStatckedWidgetThird()
+void MusicConnectLocalWidget::changeStatckedWidgetThird()
 {
-    m_stackedWidget->start(2);
+
 }
 
-void MusicConnectMobileWidget::openTransferFiles2Mobile()
+void MusicConnectLocalWidget::openTransferFilesToMobile()
 {
     if(m_currentDeviceItem.m_path.isEmpty())
     {
@@ -226,7 +182,7 @@ void MusicConnectMobileWidget::openTransferFiles2Mobile()
     w.exec();
 }
 
-void MusicConnectMobileWidget::deviceTypeChanged(QAction *action)
+void MusicConnectLocalWidget::deviceTypeChanged(QAction *action)
 {
     m_currentDeviceItem = action->data().value<MusicDeviceInfoItem>();
     m_deviceInfoLabel->setToolTip(action->text());
@@ -238,7 +194,7 @@ void MusicConnectMobileWidget::deviceTypeChanged(QAction *action)
     m_deviceSizeLabel->setBackText(tr("Total:%1GB").arg(m_currentDeviceItem.m_totalBytes));
 }
 
-void MusicConnectMobileWidget::updateDeviceInfo()
+void MusicConnectLocalWidget::updateDeviceInfo()
 {
     for(QAction *action : m_popMenu.actions())
     {

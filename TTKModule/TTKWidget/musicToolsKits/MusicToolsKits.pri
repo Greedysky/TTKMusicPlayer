@@ -22,7 +22,7 @@ HEADERS += \
     $$PWD/musicsongstoolboxwidget.h \
     $$PWD/musicsongssummariziedwidget.h \
     $$PWD/musictoolsetswidget.h \
-    $$PWD/musicconnectmobilewidget.h \
+    $$PWD/musicconnectlocalwidget.h \
     $$PWD/musicconnecttransferwidget.h \
     $$PWD/musicconnecttransfertablewidget.h \
     $$PWD/musicttkfmradioplaywidget.h \
@@ -47,7 +47,7 @@ SOURCES += \
     $$PWD/musicsongstoolboxwidget.cpp \
     $$PWD/musicsongssummariziedwidget.cpp \
     $$PWD/musictoolsetswidget.cpp \
-    $$PWD/musicconnectmobilewidget.cpp \
+    $$PWD/musicconnectlocalwidget.cpp \
     $$PWD/musicconnecttransferwidget.cpp \
     $$PWD/musicconnecttransfertablewidget.cpp \
     $$PWD/musicttkfmradioplaywidget.cpp \

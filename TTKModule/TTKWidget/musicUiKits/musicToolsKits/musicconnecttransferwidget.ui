@@ -73,7 +73,7 @@ QLabel{background:transparent;}</string>
      <rect>
       <x>30</x>
       <y>150</y>
-      <width>90</width>
+      <width>101</width>
       <height>300</height>
      </rect>
     </property>
@@ -161,9 +161,9 @@ QLabel{background:transparent;}</string>
    <widget class="QLineEdit" name="searchLineEdit">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>25</x>
       <y>95</y>
-      <width>141</width>
+      <width>120</width>
       <height>25</height>
      </rect>
     </property>
@@ -171,7 +171,7 @@ QLabel{background:transparent;}</string>
    <widget class="QPushButton" name="searchLineLabel">
     <property name="geometry">
      <rect>
-      <x>155</x>
+      <x>150</x>
       <y>100</y>
       <width>16</width>
       <height>16</height>

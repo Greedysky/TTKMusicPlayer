@@ -60,9 +60,6 @@
 #define LRC_MAKER_INDEX_2           2
 #define LRC_MAKER_INDEX_3           3
 
-//MusicConnectMobileWidget
-#define CONNECT_MOBILE_INDEX_0      0
-
 //MusicSongsSummariziedWidget
 #define MUSIC_NORMAL_LIST           0
 #define MUSIC_LOVEST_LIST           1

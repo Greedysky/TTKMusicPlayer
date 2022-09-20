@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>768</width>
-    <height>558</height>
+    <width>718</width>
+    <height>523</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,8 +21,8 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>760</width>
-     <height>550</height>
+     <width>710</width>
+     <height>515</height>
     </rect>
    </property>
    <property name="text">
@@ -48,7 +48,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>743</x>
+     <x>693</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -63,8 +63,8 @@
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>760</width>
-     <height>525</height>
+     <width>710</width>
+     <height>490</height>
     </rect>
    </property>
    <property name="autoFillBackground">
@@ -76,7 +76,7 @@
    <widget class="QCheckBox" name="allSelectedcheckBox">
     <property name="geometry">
      <rect>
-      <x>15</x>
+      <x>8</x>
       <y>12</y>
       <width>75</width>
       <height>16</height>
@@ -86,7 +86,7 @@
    <widget class="QToolButton" name="auditionButton">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>650</x>
       <y>7</y>
       <width>25</width>
       <height>25</height>
@@ -96,7 +96,7 @@
    <widget class="QToolButton" name="addButton">
     <property name="geometry">
      <rect>
-      <x>730</x>
+      <x>675</x>
       <y>7</y>
       <width>25</width>
       <height>25</height>
@@ -106,7 +106,7 @@
    <widget class="QLineEdit" name="searchLineEdit">
     <property name="geometry">
      <rect>
-      <x>246</x>
+      <x>360</x>
       <y>7</y>
       <width>250</width>
       <height>25</height>
@@ -119,7 +119,7 @@
    <widget class="QPushButton" name="searchLineLabel">
     <property name="geometry">
      <rect>
-      <x>500</x>
+      <x>615</x>
       <y>12</y>
       <width>16</width>
       <height>16</height>
@@ -157,8 +157,8 @@ background:rgba(255,255,255,50)</string>
      <rect>
       <x>0</x>
       <y>40</y>
-      <width>760</width>
-      <height>485</height>
+      <width>710</width>
+      <height>450</height>
      </rect>
     </property>
    </widget>
@@ -187,8 +187,8 @@ background:rgba(255,255,255,50)</string>
   <widget class="MusicGifLabelWidget" name="loadingLabel">
    <property name="geometry">
     <rect>
-     <x>355</x>
-     <y>270</y>
+     <x>330</x>
+     <y>253</y>
      <width>58</width>
      <height>58</height>
     </rect>

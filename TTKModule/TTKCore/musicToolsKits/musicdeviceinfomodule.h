@@ -66,7 +66,7 @@ private Q_SLOTS:
     void handleReadyRead();
 
 private:
-    QProcess* m_dfProcess;
+    QProcess* m_process;
 #endif
 private:
     MusicDeviceInfoItemList m_items;
