@@ -7,25 +7,28 @@
 #include "musicdownloadstatusmodule.h"
 #include "musicsettingwidget.h"
 #include "musictoastlabel.h"
-#include "musicalbumquerywidget.h"
-#include "musicartistquerywidget.h"
-#include "musicsimilarquerywidget.h"
-#include "musicplaylistquerywidget.h"
-#include "musictoplistquerywidget.h"
-#include "musicidentifysongswidget.h"
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicfunctionlistuiobject.h"
-#include "musicplatformmanager.h"
 #include "musictopareawidget.h"
+
 #include "musicadvancedsearchedwidget.h"
+#include "musicidentifysongswidget.h"
+#include "musicsimilarquerywidget.h"
+#include "musicalbumquerywidget.h"
+#include "musicartistquerywidget.h"
+#include "musictoplistquerywidget.h"
+#include "musicplaylistquerywidget.h"
 #include "musicrecommendquerywidget.h"
 #include "musicartistlistquerywidget.h"
 #include "musicwebdjradiowidget.h"
 #include "musicwebmvradioquerywidget.h"
-#include "musiccloudmanagerwidget.h"
 #include "musicscreensaverwidget.h"
+#include "musiccloudmanagerwidget.h"
 
+#ifdef Q_OS_WIN
+#  include "musicplatformmanager.h"
+#endif
 #include "qkugou/qkugouwindow.h"
 
 #include <QPropertyAnimation>
@@ -36,8 +39,8 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     : QWidget(parent),
       m_lowPowerMode(false),
       m_funcIndex(KugGouSongWidget),
-      m_stackedFuncWidget(nullptr),
-      m_stackedCloudWidget(nullptr),
+      m_stackedWidget(nullptr),
+      m_stackedStandWidget(nullptr),
       m_videoPlayerWidget(nullptr),
       m_lrcForInterior(nullptr),
       m_lrcForDesktop(nullptr),
@@ -268,50 +271,50 @@ void MusicRightAreaWidget::resizeWindow()
     m_ui->songSearchWidget->resizeWindow();
     m_lrcForInterior->resizeWindow();
 
-    if(TTKObject_cast(MusicSimilarQueryWidget*, m_stackedFuncWidget))
+    if(TTKObject_cast(MusicSimilarQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicSimilarQueryWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicSimilarQueryWidget*, m_stackedWidget)->resizeWindow();
     }
-    else if(TTKObject_cast(MusicAlbumQueryWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicAlbumQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicAlbumQueryWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicAlbumQueryWidget*, m_stackedWidget)->resizeWindow();
     }
-    else if(TTKObject_cast(MusicArtistQueryWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicArtistQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicArtistQueryWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicArtistQueryWidget*, m_stackedWidget)->resizeWindow();
     }
-    else if(TTKObject_cast(MusicToplistQueryWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicToplistQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicToplistQueryWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicToplistQueryWidget*, m_stackedWidget)->resizeWindow();
     }
-    else if(TTKObject_cast(MusicPlaylistQueryWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicPlaylistQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicPlaylistQueryWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicPlaylistQueryWidget*, m_stackedWidget)->resizeWindow();
     }
-    else if(TTKObject_cast(MusicRecommendQueryWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicRecommendQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicRecommendQueryWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicRecommendQueryWidget*, m_stackedWidget)->resizeWindow();
     }
-    else if(TTKObject_cast(MusicArtistListQueryWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicArtistListQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicArtistListQueryWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicArtistListQueryWidget*, m_stackedWidget)->resizeWindow();
     }
-    else if(TTKObject_cast(MusicWebDJRadioWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicWebDJRadioWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicWebDJRadioWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicWebDJRadioWidget*, m_stackedWidget)->resizeWindow();
     }
-    else if(TTKObject_cast(MusicWebMVRadioQueryWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicWebMVRadioQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicWebMVRadioQueryWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicWebMVRadioQueryWidget*, m_stackedWidget)->resizeWindow();
     }
-    else if(TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicScreenSaverWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicScreenSaverWidget*, m_stackedWidget)->resizeWindow();
     }
 
-    if(TTKObject_cast(MusicCloudManagerWidget*, m_stackedCloudWidget))
+    if(TTKObject_cast(MusicCloudManagerWidget*, m_stackedStandWidget))
     {
-        TTKObject_cast(MusicCloudManagerWidget*, m_stackedCloudWidget)->resizeWindow();
+        TTKObject_cast(MusicCloudManagerWidget*, m_stackedStandWidget)->resizeWindow();
     }
 
     if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopupMode())
@@ -345,9 +348,9 @@ void MusicRightAreaWidget::applyParameter()
         }
     }
 
-    if(TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget))
+    if(TTKObject_cast(MusicScreenSaverWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget)->applyParameter();
+        TTKObject_cast(MusicScreenSaverWidget*, m_stackedWidget)->applyParameter();
     }
 }
 
@@ -358,9 +361,9 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
 
     if(widget)
     {
-        m_stackedCloudWidget = widget;
-        m_ui->functionsContainer->addWidget(m_stackedCloudWidget);
-        m_ui->functionsContainer->setCurrentWidget(m_stackedCloudWidget);
+        m_stackedStandWidget = widget;
+        m_ui->functionsContainer->addWidget(m_stackedStandWidget);
+        m_ui->functionsContainer->setCurrentWidget(m_stackedStandWidget);
         Q_EMIT updateBackgroundTheme();
         return;
     }
@@ -402,7 +405,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
 
             QWidget *widget = new QWidget(this);
             widget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle12);
-            m_stackedFuncWidget = widget;
+            m_stackedWidget = widget;
             m_ui->functionsContainer->addWidget(m_videoPlayerWidget);
             m_ui->functionsContainer->setCurrentWidget(m_videoPlayerWidget);
             Q_EMIT updateBackgroundTheme();
@@ -452,7 +455,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case SimilarWidget: //insert similar found widget
         {
             MusicSimilarQueryWidget *widget = new MusicSimilarQueryWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             Q_EMIT updateBackgroundTheme();
             break;
@@ -460,7 +463,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case AlbumWidget: //insert album found widget
         {
             MusicAlbumQueryWidget *widget = new MusicAlbumQueryWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             Q_EMIT updateBackgroundTheme();
             break;
@@ -468,7 +471,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case ArtistWidget: //insert artist found widget
         {
             MusicArtistQueryWidget *widget = new MusicArtistQueryWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             Q_EMIT updateBackgroundTheme();
             break;
@@ -476,7 +479,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case ArtistCategoryWidget: //insert artist category found widget
         {
             MusicArtistListQueryWidget *widget = new MusicArtistListQueryWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             Q_EMIT updateBackgroundTheme();
             break;
@@ -484,7 +487,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case ToplistWidget: //insert toplist found widget
         {
             MusicToplistQueryWidget *widget = new MusicToplistQueryWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             Q_EMIT updateBackgroundTheme();
             break;
@@ -492,7 +495,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case PlaylistWidget: //insert playlist found widget
         {
             MusicPlaylistQueryWidget *widget = new MusicPlaylistQueryWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             Q_EMIT updateBackgroundTheme();
             break;
@@ -500,7 +503,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case RecommendWidget: //insert recommend found widget
         {
             MusicRecommendQueryWidget *widget = new MusicRecommendQueryWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             Q_EMIT updateBackgroundTheme();
             break;
@@ -508,7 +511,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case AdvancedSearchWidget: //insert advanced search widget
         {
             MusicAdvancedSearchedWidget *widget = new MusicAdvancedSearchedWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             Q_EMIT updateBackgroundTheme();
             break;
@@ -516,7 +519,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case IndentifyWidget: //insert indentify songs widget
         {
             MusicIdentifySongsWidget *widget = new MusicIdentifySongsWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             widget->queryIdentifyKey();
             Q_EMIT updateBackgroundTheme();
@@ -531,7 +534,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case WebDJRadioWidget: //insert web dj radio widget
         {
             MusicWebDJRadioWidget *widget = new MusicWebDJRadioWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             widget->initialize();
             Q_EMIT updateBackgroundTheme();
@@ -540,7 +543,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case WebMVRadioWidget: //insert web mv radio widget
         {
             MusicWebMVRadioQueryWidget *widget = new MusicWebMVRadioQueryWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             widget->setSongName(QString());
             Q_EMIT updateBackgroundTheme();
@@ -549,7 +552,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case ScreenSaverWidget: //insert screen saver widget
         {
             MusicScreenSaverWidget *widget = new MusicScreenSaverWidget(this);
-            m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+            m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             Q_EMIT updateBackgroundTheme();
             break;
@@ -576,20 +579,20 @@ void MusicRightAreaWidget::musicSongCommentsWidget()
 void MusicRightAreaWidget::musicSimilarFound(const QString &text)
 {
     functionClicked(MusicRightAreaWidget::SimilarWidget);
-    TTKStatic_cast(MusicSimilarQueryWidget*, m_stackedFuncWidget)->setSongName(text);
+    TTKStatic_cast(MusicSimilarQueryWidget*, m_stackedWidget)->setSongName(text);
 }
 
 void MusicRightAreaWidget::musicAlbumFound(const QString &text, const QString &id)
 {
     functionClicked(MusicRightAreaWidget::AlbumWidget);
-    MusicAlbumQueryWidget *w = TTKStatic_cast(MusicAlbumQueryWidget*, m_stackedFuncWidget);
+    MusicAlbumQueryWidget *w = TTKStatic_cast(MusicAlbumQueryWidget*, m_stackedWidget);
     id.isEmpty() ? w->setSongName(text) : w->setSongNameById(id);
 }
 
 void MusicRightAreaWidget::musicArtistCategoryFound()
 {
     functionClicked(MusicRightAreaWidget::ArtistCategoryWidget);
-    TTKStatic_cast(MusicArtistListQueryWidget*, m_stackedFuncWidget)->setSongName(QString());
+    TTKStatic_cast(MusicArtistListQueryWidget*, m_stackedWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicArtistSearchFound()
@@ -624,27 +627,27 @@ void MusicRightAreaWidget::musicMovieSearchRadioFound()
 void MusicRightAreaWidget::musicArtistFound(const QString &text, const QString &id)
 {
     functionClicked(MusicRightAreaWidget::ArtistWidget);
-    MusicArtistQueryWidget *w = TTKStatic_cast(MusicArtistQueryWidget*, m_stackedFuncWidget);
+    MusicArtistQueryWidget *w = TTKStatic_cast(MusicArtistQueryWidget*, m_stackedWidget);
     id.isEmpty() ? w->setSongName(text) : w->setSongNameById(id);
 }
 
 void MusicRightAreaWidget::musicToplistFound()
 {
     functionClicked(MusicRightAreaWidget::ToplistWidget);
-    TTKStatic_cast(MusicToplistQueryWidget*, m_stackedFuncWidget)->setSongName(QString());
+    TTKStatic_cast(MusicToplistQueryWidget*, m_stackedWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicPlaylistFound(const QString &id)
 {
     functionClicked(MusicRightAreaWidget::PlaylistWidget);
-    MusicPlaylistQueryWidget *w = TTKStatic_cast(MusicPlaylistQueryWidget*, m_stackedFuncWidget);
+    MusicPlaylistQueryWidget *w = TTKStatic_cast(MusicPlaylistQueryWidget*, m_stackedWidget);
     id.isEmpty() ? w->setSongName(QString()) : w->setSongNameById(id);
 }
 
 void MusicRightAreaWidget::musicRecommendFound()
 {
     functionClicked(MusicRightAreaWidget::RecommendWidget);
-    TTKStatic_cast(MusicRecommendQueryWidget*, m_stackedFuncWidget)->setSongName(QString());
+    TTKStatic_cast(MusicRecommendQueryWidget*, m_stackedWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicAdvancedSearch()
@@ -675,8 +678,8 @@ void MusicRightAreaWidget::musicLoadSongIndexWidget()
 
 void MusicRightAreaWidget::deleteStackedFuncWidget()
 {
-    delete m_stackedFuncWidget;
-    m_stackedFuncWidget = nullptr;
+    delete m_stackedWidget;
+    m_stackedWidget = nullptr;
 }
 
 void MusicRightAreaWidget::setDestopLrcVisible(bool visible) const
@@ -765,8 +768,8 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
     m_videoPlayerWidget->popupMode(popup);
     if(popup)
     {
-        m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
-        m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
+        m_ui->functionsContainer->addWidget(m_stackedWidget);
+        m_ui->functionsContainer->setCurrentWidget(m_stackedWidget);
 #ifdef Q_OS_WIN
         MusicPlatformManager platform;
         platform.enabledLeftWinMode();
@@ -882,7 +885,7 @@ void MusicRightAreaWidget::functionInitialize()
     }
 
 //    deleteStackedFuncWidget();
-    m_stackedCloudWidget = nullptr;
+    m_stackedStandWidget = nullptr;
 
     m_ui->lrcDisplayAllButton->setVisible(false);
     if(m_lrcForInterior->lrcDisplayExpand() && m_funcIndex != LrcWidget)
@@ -909,6 +912,6 @@ void MusicRightAreaWidget::createkWebWindow(int type)
         connect(m_ui->musicRefreshButton, SIGNAL(clicked()), widget, SLOT(refresh()));
     }
 
-    m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+    m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
     m_ui->functionsContainer->setCurrentWidget(widget);
 }

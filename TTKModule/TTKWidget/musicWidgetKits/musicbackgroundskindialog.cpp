@@ -272,7 +272,7 @@ void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
     }
 
     G_BACKGROUND_PTR->setBackgroundUrl(path);
-    Q_EMIT G_BACKGROUND_PTR->backgroundUrlChanged();
+    G_BACKGROUND_PTR->backgroundUrlChanged();
 }
 
 void MusicBackgroundSkinDialog::windowTransparentChanged(bool state)
@@ -303,7 +303,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundListWidget 
     QString path = USER_THEME_DIR_FULL + s + TKM_FILE;
     MusicBackgroundSkinDialog::themeValidCheck(s, path);
     G_BACKGROUND_PTR->setBackgroundUrl(path);
-    Q_EMIT G_BACKGROUND_PTR->backgroundUrlChanged();
+    G_BACKGROUND_PTR->backgroundUrlChanged();
 }
 
 void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundRemoteWidget *item, const QString &name)
