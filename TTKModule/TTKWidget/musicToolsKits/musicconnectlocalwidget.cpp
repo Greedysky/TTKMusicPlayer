@@ -197,9 +197,9 @@ void MusicConnectLocalWidget::deviceTypeChanged(QAction *action)
     m_deviceInfoLabel->setToolTip(action->text());
     m_deviceInfoLabel->setText(MusicUtils::Widget::elidedText(font(), action->text(), Qt::ElideRight, 250));
 
+    m_deviceSizeLabel->setValue(m_currentDeviceItem.m_usedBytes);
     m_deviceSizeLabel->setMaxValue(m_currentDeviceItem.m_totalBytes);
-    m_deviceSizeLabel->setValue(m_currentDeviceItem.m_availableBytes);
-    m_deviceSizeLabel->setFrontText(tr("Used:%1GB").arg(m_currentDeviceItem.m_availableBytes));
+    m_deviceSizeLabel->setFrontText(tr("Used:%1GB").arg(m_currentDeviceItem.m_usedBytes));
     m_deviceSizeLabel->setBackText(tr("Total:%1GB").arg(m_currentDeviceItem.m_totalBytes));
 }
 

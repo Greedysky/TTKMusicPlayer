@@ -29,7 +29,7 @@ struct TTK_MODULE_EXPORT MusicDeviceInfoItem
 {
     QString m_name;
     QString m_path;
-    int m_availableBytes;
+    int m_usedBytes;
     int m_totalBytes;
 };
 TTK_DECLARE_LIST(MusicDeviceInfoItem);

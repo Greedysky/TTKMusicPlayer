@@ -134,7 +134,7 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
 
             MusicDeviceInfoItem item;
             item.m_path = path;
-            item.m_availableBytes = available >= total ? total : total - available;
+            item.m_usedBytes = available >= total ? total : total - available;
             item.m_totalBytes = total;
 
             DWORD serialNumber = 0;
@@ -171,14 +171,29 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
 }
 
 #ifdef Q_OS_UNIX
+static int mapDriveSize(QString &v)
+{
+    if(v.endsWith("G"))
+    {
+        v.remove("G");
+        return v.toDouble();
+    }
+    else if(v.endsWith("M"))
+    {
+        v.remove("M");
+        return 1;
+    }
+    return 0;
+}
+
 void MusicDeviceInfoModule::handleReadyRead()
 {
     while(!m_process->atEnd())
     {
-        const QString &result = QLatin1String(m_process->readLine());
+        const QString &result = QString::fromLocal8Bit(m_process->readLine());
         if(result.startsWith("/dev/sd"))
         {
-            QString dev, use, all, path;
+            QString dev, use, total, path;
             int index = 0;
 
             const QStringList &list = result.split(" ");
@@ -197,13 +212,11 @@ void MusicDeviceInfoModule::handleReadyRead()
                 }
                 else if(index == 2)
                 {
-                    all = data;
-                    all.remove("G");
+                    total = data;
                 }
                 else if(index == 3)
                 {
                     use = data;
-                    use.remove("G");
                 }
                 else if(index == 6)
                 {
@@ -216,9 +229,13 @@ void MusicDeviceInfoModule::handleReadyRead()
                 MusicDeviceInfoItem item;
                 item.m_name = dev;
                 item.m_path = path;
-                item.m_availableBytes = use.toDouble();
-                item.m_totalBytes = all.toDouble();
-                item.m_availableBytes = item.m_availableBytes >= item.m_totalBytes ? item.m_totalBytes : item.m_totalBytes - item.m_availableBytes;
+                item.m_usedBytes = mapDriveSize(use);
+                item.m_totalBytes = mapDriveSize(total);
+
+                if(item.m_usedBytes >= item.m_totalBytes)
+                {
+                    item.m_usedBytes = item.m_totalBytes;
+                }
                 m_items << item;
             }
         }
