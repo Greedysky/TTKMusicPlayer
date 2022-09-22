@@ -72,9 +72,15 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Click the item emit.
+     * Trigger the item emit.
      */
-    void clicked();
+    void trigger(const QString &text);
+
+protected Q_SLOTS:
+    /*!
+     * User input the enter key emit.
+     */
+    void enterFinished();
 
 private:
     /*!

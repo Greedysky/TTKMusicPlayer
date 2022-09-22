@@ -22,6 +22,8 @@
 #include "musicwidgetheaders.h"
 #include "musicglobaldefine.h"
 
+class MusicItemQueryEdit;
+
 /*! @brief The class of the local manager widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -41,6 +43,12 @@ public:
      */
     void resizeWindow();
 
+protected Q_SLOTS:
+    /*!
+     * Type index changed.
+     */
+    void typeIndexChanged(int index);
+
 protected:
     /*!
      * Override the widget event.
@@ -48,6 +56,8 @@ protected:
     virtual void resizeEvent(QResizeEvent *event) override final;
 
 protected:
+    QTabWidget *m_tabWidget;
+    MusicItemQueryEdit *m_searchEdit;
     QList<QWidget*> m_resizeWidgets;
 
 };

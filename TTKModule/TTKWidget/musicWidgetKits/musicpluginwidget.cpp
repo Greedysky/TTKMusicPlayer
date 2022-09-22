@@ -151,7 +151,7 @@ public:
             setIcon(3, QIcon(":/contextMenu/btn_setting"));
         }
 
-        const QColor &color = enable ? (state ? "#E67300" : "#000000") : "#BBBBBB";
+        const QColor &color = enable ? (state ? QColor(0xE6, 0x73, 0x00) : QColor(0x00, 0x00, 0x00)) : QColor(0xBB, 0xBB, 0xBB);
         setData(1, Qt::TextColorRole, color);
         setData(2, Qt::TextColorRole, color);
     }
@@ -242,8 +242,8 @@ void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
             {
                 QTreeWidgetItem *it = parent->child(i);
                 it->setData(column, MUSIC_CHECK_ROLE, Qt::Unchecked);
-                it->setData(1, Qt::TextColorRole, "#000000");
-                it->setData(2, Qt::TextColorRole, "#000000");
+                it->setData(1, Qt::TextColorRole, QColor(0x00, 0x00, 0x00));
+                it->setData(2, Qt::TextColorRole, QColor(0x00, 0x00, 0x00));
             }
         }
 
@@ -251,7 +251,7 @@ void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
         item->setData(column, MUSIC_CHECK_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
         TTKDynamic_cast(MusicPluginItem*, item)->setEnabled(status != Qt::Checked);
 
-        const QColor &color = (status != Qt::Checked) ? "#E67300" : "#000000";
+        const QColor &color = (status != Qt::Checked) ? QColor(0xE6, 0x73, 0x00) : QColor(0x00, 0x00, 0x00);
         item->setData(1, Qt::TextColorRole, color);
         item->setData(2, Qt::TextColorRole, color);
     }

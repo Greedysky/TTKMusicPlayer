@@ -48,7 +48,7 @@ protected:
     /*!
      * Update placeholder text.
      */
-    void updateServerPlaceholderText();
+    void updatePlaceholderText();
     /*!
      * Get search key.
      */

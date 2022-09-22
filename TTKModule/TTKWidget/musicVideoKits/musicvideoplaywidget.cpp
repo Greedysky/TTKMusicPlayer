@@ -91,8 +91,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
 
     connect(m_videoTable, SIGNAL(mediaUrlPathChanged(MusicVideoItem)), SLOT(mediaUrlPathChanged(MusicVideoItem)));
     connect(m_videoTable, SIGNAL(restartSearchQuery(QString)), SLOT(videoResearchButtonSearched(QString)));
-    connect(m_searchEdit, SIGNAL(clicked()), SLOT(searchButtonClicked()));
-    connect(m_searchEdit->editor(), SIGNAL(enterFinished(QString)), SLOT(videoResearchButtonSearched(QString)));
+    connect(m_searchEdit, SIGNAL(trigger(QString)), SLOT(videoResearchButtonSearched(QString)));
 
     connect(m_videoFloatWidget, SIGNAL(searchButtonClicked()), SLOT(switchToSearchTable()));
     connect(m_videoFloatWidget, SIGNAL(popupButtonClicked()), SLOT(popupButtonClicked()));
@@ -231,11 +230,6 @@ void MusicVideoPlayWidget::switchToPlayView()
     setTitleText(m_videoItem.m_name);
     m_searchEdit->hide();
     m_stackedWidget->setCurrentIndex(VIDEO_WINDOW_INDEX_0);
-}
-
-void MusicVideoPlayWidget::searchButtonClicked()
-{
-    videoResearchButtonSearched(searchText());
 }
 
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)

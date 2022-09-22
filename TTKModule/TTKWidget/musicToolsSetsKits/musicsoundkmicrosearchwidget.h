@@ -122,7 +122,7 @@ public Q_SLOTS:
     /*!
      * Start to search.
      */
-    void startToSearch();
+    void startToSearch(const QString &text);
     /*!
      * Set query MV flag.
      */

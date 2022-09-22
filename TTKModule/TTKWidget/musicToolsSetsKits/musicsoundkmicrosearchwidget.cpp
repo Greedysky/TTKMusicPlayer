@@ -196,6 +196,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
 
     m_searchEdit = new MusicItemQueryEdit(searchWidget);
     m_searchEdit->setFixedHeight(25);
+
     QRadioButton *mvButton = new QRadioButton(tr("Movie"), searchWidget);
     mvButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
     QRadioButton *songButton = new QRadioButton(tr("Song"), searchWidget);
@@ -223,8 +224,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
 
     mvButton->setChecked(true);
 
-    connect(m_searchEdit, SIGNAL(clicked()), SLOT(startToSearch()));
-    connect(m_searchEdit->editor(), SIGNAL(enterFinished(QString)), SLOT(startToSearch()));
+    connect(m_searchEdit, SIGNAL(trigger(QString)), SLOT(startToSearch(QString)));
     connect(m_searchTableWidget, SIGNAL(restartSearchQuery(QString)), SLOT(setCurrentSongName(QString)));
 }
 
@@ -242,14 +242,15 @@ void MusicSoundKMicroSearchWidget::connectTo(QObject *obj)
 void MusicSoundKMicroSearchWidget::startSeachKMicro(const QString &name)
 {
     m_searchEdit->editor()->setText(name);
-    startToSearch();
+    startToSearch(m_searchEdit->editor()->text());
 }
 
-void MusicSoundKMicroSearchWidget::startToSearch()
+void MusicSoundKMicroSearchWidget::startToSearch(const QString &text)
 {
     m_searchTableWidget->setQueryMovieFlag(m_queryMovieMode);
-    m_searchTableWidget->startSearchQuery(m_searchEdit->editor()->text());
+    m_searchTableWidget->startSearchQuery(text);
 }
+
 void MusicSoundKMicroSearchWidget::setQueryMovieFlag(int flag)
 {
     m_queryMovieMode = (flag == 0);

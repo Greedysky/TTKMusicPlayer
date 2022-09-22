@@ -27,7 +27,7 @@ void MusicItemSearchEdit::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 
     QPainter painter(this);
-    painter.setPen(QPen("#666666"));
+    painter.setPen(QPen(QColor(0x66, 0x66, 0x66)));
     painter.drawLine(0, 0, width() - 1, 0);
     painter.drawLine(0, 0, 0, height() - 1);
     painter.drawLine(0, height() - 1, width() - 1, height() - 1);
@@ -55,12 +55,18 @@ MusicItemQueryEdit::MusicItemQueryEdit(QWidget *parent)
     layout->addWidget(button);
     setLayout(layout);
 
-    connect(button, SIGNAL(clicked()), SIGNAL(clicked()));
+    connect(button, SIGNAL(clicked()), SLOT(enterFinished()));
+    connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(enterFinished()));
 }
 
 MusicItemQueryEdit::~MusicItemQueryEdit()
 {
     delete m_searchEdit;
+}
+
+void MusicItemQueryEdit::enterFinished()
+{
+    Q_EMIT trigger(m_searchEdit->text());
 }
 
 void MusicItemQueryEdit::paintEvent(QPaintEvent *event)
@@ -70,7 +76,7 @@ void MusicItemQueryEdit::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.fillRect(rect(), QColor(255, 255, 255, 180));
 
-    painter.setPen(QPen("#666666"));
+    painter.setPen(QPen(QColor(0x66, 0x66, 0x66)));
     painter.drawLine(0, 0, width() - 1, 0);
     painter.drawLine(0, 0, 0, height() - 1);
     painter.drawLine(0, height() - 1, width() - 1, height() - 1);

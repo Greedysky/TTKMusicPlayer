@@ -112,7 +112,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     mainLayout->addWidget(button, 0, Qt::AlignCenter);
     mainLayout->addStretch(1);
 
-    updateServerPlaceholderText();
+    updatePlaceholderText();
 }
 
 MusicAdvancedSearchedWidget::~MusicAdvancedSearchedWidget()
@@ -170,7 +170,7 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
     }
 }
 
-void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
+void MusicAdvancedSearchedWidget::updatePlaceholderText()
 {
     switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
     {

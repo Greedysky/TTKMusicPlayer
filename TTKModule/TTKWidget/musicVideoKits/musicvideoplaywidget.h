@@ -90,10 +90,6 @@ public Q_SLOTS:
      */
     void switchToPlayView();
     /*!
-     * Search button clicked.
-     */
-    void searchButtonClicked();
-    /*!
      * Video research button searched by name.
      */
     void videoResearchButtonSearched(const QString &name);
