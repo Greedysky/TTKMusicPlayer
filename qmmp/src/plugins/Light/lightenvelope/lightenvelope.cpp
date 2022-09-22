@@ -316,11 +316,11 @@ void LightEnvelope::paintEvent(QPaintEvent *)
     if(m_duration > 0)
     {
         const int x = width() * m_elapsed / m_duration;
-        QColor color = "#33CA10";
+        QColor color(0x33, 0xCA, 0x10);
         color.setAlpha(0x96);
         QBrush brush(color);
         painter.fillRect(0, 0, x, height(), brush);
-        color.setAlpha(0xff);
+        color.setAlpha(0xFF);
         painter.setPen(color);
         painter.drawLine(x, 0, x, height());
     }
@@ -402,8 +402,8 @@ void LightEnvelope::drawWaveform()
         return;
     }
 
-    painter.setPen(QColor("#DDDDDD"));
-    painter.setBrush(QColor("#DDDDDD"));
+    painter.setPen(QColor(0xDD, 0xDD, 0xDD));
+    painter.setBrush(QColor(0xDD, 0xDD, 0xDD));
 
     for(int i = 0; i < m_data.count() - m_channels * 3; i += 3)
     {
