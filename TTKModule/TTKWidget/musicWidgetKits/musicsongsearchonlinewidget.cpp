@@ -342,7 +342,7 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
     : QWidget(parent)
 {
     QVBoxLayout *boxLayout = new QVBoxLayout(this);
-    boxLayout->setMargin(0);
+    boxLayout->setContentsMargins(0, 0, 0, 0);
     boxLayout->setSpacing(0);
 
     QWidget *toolWidget = new QWidget(this);

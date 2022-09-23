@@ -89,12 +89,12 @@ void MusicConnectLocalWidget::initSecondWidget()
     backButton->setCursor(Qt::PointingHandCursor);
     connect(backButton, SIGNAL(clicked()), SLOT(changeStatckedWidgetFirst()));
 
-    QPushButton *deviceButton = new QPushButton(topWidget);
-    deviceButton->setStyleSheet(MusicUIObject::MQSSTransferChangedDev);
-    deviceButton->setFixedSize(80, 20);
-    deviceButton->setCursor(Qt::PointingHandCursor);
-    deviceButton->setMenu(&m_popMenu);
-    connect(&m_popMenu, SIGNAL(triggered(QAction*)), SLOT(deviceTypeChanged(QAction*)));
+    m_deviceButton = new QPushButton(topWidget);
+    m_deviceButton->setStyleSheet(MusicUIObject::MQSSTransferChangedDev);
+    m_deviceButton->setFixedSize(80, 20);
+    m_deviceButton->setCursor(Qt::PointingHandCursor);
+    m_deviceButton->setMenu(new QMenu(m_deviceButton));
+    connect(m_deviceButton->menu(), SIGNAL(triggered(QAction*)), SLOT(deviceTypeChanged(QAction*)));
 
     QPushButton *refreshButton = new QPushButton(topWidget);
     refreshButton->setStyleSheet(MusicUIObject::MQSSTransferRefreshDev);
@@ -104,7 +104,7 @@ void MusicConnectLocalWidget::initSecondWidget()
 
     topWidgetLayout->addWidget(backButton);
     topWidgetLayout->addStretch(1);
-    topWidgetLayout->addWidget(deviceButton);
+    topWidgetLayout->addWidget(m_deviceButton);
     topWidgetLayout->addWidget(refreshButton);
     ///////////////////////////////////////////////////////
 
@@ -138,7 +138,7 @@ void MusicConnectLocalWidget::initSecondWidget()
 
 #ifdef Q_OS_UNIX
     backButton->setFocusPolicy(Qt::NoFocus);
-    deviceButton->setFocusPolicy(Qt::NoFocus);
+    m_deviceButton->setFocusPolicy(Qt::NoFocus);
     refreshButton->setFocusPolicy(Qt::NoFocus);
     importSong->setFocusPolicy(Qt::NoFocus);
     importRing->setFocusPolicy(Qt::NoFocus);
@@ -158,6 +158,17 @@ void MusicConnectLocalWidget::initSecondWidget()
     m_stackedWidget->addWidget(secondWidget);
 
     updateDeviceInfo();
+}
+
+void MusicConnectLocalWidget::updateDeviceDisplay(const QString &text)
+{
+    m_deviceInfoLabel->setToolTip(text);
+    m_deviceInfoLabel->setText(MusicUtils::Widget::elidedText(font(), text, Qt::ElideRight, 250));
+
+    m_deviceSizeLabel->setValue(m_currentDeviceItem.m_usedBytes);
+    m_deviceSizeLabel->setMaxValue(m_currentDeviceItem.m_totalBytes);
+    m_deviceSizeLabel->setFrontText(tr("Used:%1GB").arg(m_currentDeviceItem.m_usedBytes));
+    m_deviceSizeLabel->setBackText(tr("Total:%1GB").arg(m_currentDeviceItem.m_totalBytes));
 }
 
 void MusicConnectLocalWidget::changeStatckedWidgetFirst()
@@ -182,7 +193,7 @@ void MusicConnectLocalWidget::changeStatckedWidgetThird()
 
 void MusicConnectLocalWidget::openTransferFilesToMobile()
 {
-    if(m_currentDeviceItem.m_path.isEmpty())
+    if(!m_currentDeviceItem.isValid())
     {
         return;
     }
@@ -195,24 +206,29 @@ void MusicConnectLocalWidget::openTransferFilesToMobile()
 void MusicConnectLocalWidget::deviceTypeChanged(QAction *action)
 {
     m_currentDeviceItem = action->data().value<MusicDeviceInfoItem>();
-    m_deviceInfoLabel->setToolTip(action->text());
-    m_deviceInfoLabel->setText(MusicUtils::Widget::elidedText(font(), action->text(), Qt::ElideRight, 250));
-
-    m_deviceSizeLabel->setValue(m_currentDeviceItem.m_usedBytes);
-    m_deviceSizeLabel->setMaxValue(m_currentDeviceItem.m_totalBytes);
-    m_deviceSizeLabel->setFrontText(tr("Used:%1GB").arg(m_currentDeviceItem.m_usedBytes));
-    m_deviceSizeLabel->setBackText(tr("Total:%1GB").arg(m_currentDeviceItem.m_totalBytes));
+    updateDeviceDisplay(action->text());
 }
 
 void MusicConnectLocalWidget::updateDeviceInfo()
 {
-    for(QAction *action : m_popMenu.actions())
+    for(QAction *action : m_deviceButton->menu()->actions())
     {
-        m_popMenu.removeAction(action);
+        m_deviceButton->menu()->removeAction(action);
     }
 
     for(const MusicDeviceInfoItem &item : m_deviceInfo->removableDrive())
     {
-        m_popMenu.addAction(item.m_name + "(" + item.m_path + ")")->setData(QVariant::fromValue<MusicDeviceInfoItem>(item));
+        m_deviceButton->menu()->addAction(item.m_name + "(" + item.m_path + ")")->setData(QVariant::fromValue<MusicDeviceInfoItem>(item));
+    }
+
+    if(m_deviceButton->menu()->actions().isEmpty())
+    {
+        m_deviceButton->setEnabled(false);
+        m_currentDeviceItem.clear();
+        updateDeviceDisplay(QString());
+    }
+    else
+    {
+        m_deviceButton->setEnabled(true);
     }
 }

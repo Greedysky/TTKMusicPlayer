@@ -46,7 +46,7 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
       m_translatedWidget(nullptr)
 {
     QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
-    vBoxLayout->setMargin(0);
+    vBoxLayout->setContentsMargins(0, 0, 0, 0);
     setLayout(vBoxLayout);
 
     m_containerType = LRC_INTERIOR_TPYE;

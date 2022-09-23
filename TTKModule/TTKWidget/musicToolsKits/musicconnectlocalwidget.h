@@ -76,9 +76,13 @@ protected:
      * Init connect to wireless widget.
      */
     void initSecondWidget();
+    /*!
+     * Update device label display.
+     */
+    void updateDeviceDisplay(const QString &text);
 
-    QMenu m_popMenu;
     QLabel *m_deviceInfoLabel;
+    QPushButton *m_deviceButton;
     MusicTextSliderWidget *m_deviceSizeLabel;
     MusicDeviceInfoItem m_currentDeviceItem;
     MusicDeviceInfoModule *m_deviceInfo;

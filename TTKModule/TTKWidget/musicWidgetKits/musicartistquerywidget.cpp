@@ -594,7 +594,6 @@ void MusicArtistQueryWidget::createLabels()
     topFuncWidget->setLayout(topFuncLayout);
     grid->addWidget(topFuncWidget);
     //
-
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);

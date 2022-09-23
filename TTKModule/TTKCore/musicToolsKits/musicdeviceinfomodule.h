@@ -31,6 +31,19 @@ struct TTK_MODULE_EXPORT MusicDeviceInfoItem
     QString m_path;
     int m_usedBytes;
     int m_totalBytes;
+
+    inline bool isValid() const
+    {
+        return !m_path.isEmpty();
+    }
+
+    inline void clear()
+    {
+        m_name.clear();
+        m_path.clear();
+        m_usedBytes = 0;
+        m_totalBytes = 0;
+    }
 };
 TTK_DECLARE_LIST(MusicDeviceInfoItem);
 
