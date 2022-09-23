@@ -2,7 +2,7 @@
 
 namespace QAlgorithm
 {
-static const TTKString base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+static const char *base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 static bool isBase64(unsigned char c)
 {
@@ -64,7 +64,9 @@ TTKString base64Decode(const TTKString &bytes)
     int length = bytes.length();
     int i = 0, j = 0, in = 0;
     unsigned char char_array_4[4], char_array_3[3];
+
     TTKString ret;
+    const TTKString container(base64_chars);
 
     while(length-- && (bytes[in] != '=') && isBase64(bytes[in]))
     {
@@ -73,7 +75,7 @@ TTKString base64Decode(const TTKString &bytes)
         {
             for(i = 0; i < 4; ++i)
             {
-                char_array_4[i] = base64_chars.find(char_array_4[i]);
+                char_array_4[i] = container.find(char_array_4[i]);
             }
 
             char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
@@ -97,7 +99,7 @@ TTKString base64Decode(const TTKString &bytes)
 
         for(j = 0; j <4; j++)
         {
-            char_array_4[j] = base64_chars.find(char_array_4[j]);
+            char_array_4[j] = container.find(char_array_4[j]);
         }
 
         char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);

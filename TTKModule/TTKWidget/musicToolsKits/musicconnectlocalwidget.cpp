@@ -156,6 +156,7 @@ void MusicConnectLocalWidget::initSecondWidget()
 
     secondWidget->setLayout(vBox);
     m_stackedWidget->addWidget(secondWidget);
+
     updateDeviceInfo();
 }
 

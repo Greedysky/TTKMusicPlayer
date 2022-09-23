@@ -32,7 +32,7 @@ static QString hmacSha1(QByteArray key, const QByteArray &baseString)
     return QCryptographicHash::hash(total, QCryptographicHash::Sha1).toBase64();
 }
 
-static const QString self_define_header_prefix = "x-oss-";
+static const char *self_define_header_prefix = "x-oss-";
 
 static TTKStringMap formatHeader(const TTKStringMap &headers)
 {
