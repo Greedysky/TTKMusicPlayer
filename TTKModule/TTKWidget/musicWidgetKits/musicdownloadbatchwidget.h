@@ -97,10 +97,7 @@ public:
      * Set parent class.
      */
     void setParentClass(QWidget *parent);
-    /*!
-     * Clear All Items.
-     */
-    void clearAllItems();
+
     /*!
      * Create current item by song info.
      */
@@ -115,6 +112,10 @@ public Q_SLOTS:
      * Table widget item cell click.
      */
     virtual void itemCellClicked(int row, int column) override final;
+    /*!
+     * Remove all items.
+     */
+    virtual void removeItems() override final;
     /*!
      * Data download is finished.
      */

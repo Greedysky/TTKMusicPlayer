@@ -48,13 +48,13 @@ void MusicItemSearchTableWidget::itemCellClicked(int row, int column)
     }
 }
 
-void MusicItemSearchTableWidget::clearAllItems()
+void MusicItemSearchTableWidget::removeItems()
 {
     if(rowCount() > 0)
     {
         setItemDelegateForRow(rowCount() - 1, nullptr);
     }
-    MusicAbstractTableWidget::clear();
+    MusicQueryTableWidget::removeItems();
 }
 
 void MusicItemSearchTableWidget::actionGroupClick(QAction *action)

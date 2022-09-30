@@ -56,10 +56,6 @@ public:
     void setPlayQueueState(int row);
 
     /*!
-     * Clear All Items.
-     */
-    void clearAllItems();
-    /*!
      * Select the current played row.
      */
     void selectPlayedRow();
@@ -83,6 +79,10 @@ public Q_SLOTS:
      * Table widget item cell click.
      */
     virtual void itemCellClicked(int row, int column) override final;
+    /*!
+     * Remove all items.
+     */
+    virtual void removeItems() override final;
     /*!
      * Delete item from list at current row.
      */

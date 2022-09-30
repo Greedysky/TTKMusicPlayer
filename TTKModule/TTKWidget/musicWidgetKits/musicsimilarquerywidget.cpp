@@ -9,7 +9,7 @@ MusicSimilarQueryTableWidget::MusicSimilarQueryTableWidget(QWidget *parent)
 
 MusicSimilarQueryTableWidget::~MusicSimilarQueryTableWidget()
 {
-    clearAllItems();
+    removeItems();
 }
 
 void MusicSimilarQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)

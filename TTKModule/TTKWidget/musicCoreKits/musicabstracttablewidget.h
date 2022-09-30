@@ -40,10 +40,6 @@ public:
     ~MusicAbstractTableWidget();
 
     /*!
-     * Clear current items.
-     */
-    void clear();
-    /*!
      * Get multi selected index set.
      */
     TTKIntList multiSelectedIndex() const;
@@ -58,6 +54,10 @@ public Q_SLOTS:
      * Subclass should implement this function.
      */
     virtual void itemCellClicked(int row, int column) = 0;
+    /*!
+     * Remove all items.
+     */
+    virtual void removeItems();
 
 protected:
     /*!

@@ -48,16 +48,6 @@ MusicAbstractTableWidget::~MusicAbstractTableWidget()
 
 }
 
-void MusicAbstractTableWidget::clear()
-{
-    clearContents();
-    setRowCount(0);
-
-    m_previousColorRow = -1;
-    m_previousClickRow = -1;
-    m_backgroundColor = Qt::transparent;
-}
-
 TTKIntList MusicAbstractTableWidget::multiSelectedIndex() const
 {
     TTKIntSet rows;
@@ -84,6 +74,16 @@ void MusicAbstractTableWidget::itemCellEntered(int row, int column)
     }
 
     m_previousColorRow = row;
+}
+
+void MusicAbstractTableWidget::removeItems()
+{
+    clearContents();
+    setRowCount(0);
+
+    m_previousColorRow = -1;
+    m_previousClickRow = -1;
+    m_backgroundColor = Qt::transparent;
 }
 
 void MusicAbstractTableWidget::setRowColor(int row, const QColor &color) const

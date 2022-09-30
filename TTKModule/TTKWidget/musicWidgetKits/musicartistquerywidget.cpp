@@ -268,7 +268,7 @@ MusicArtistQueryTableWidget::MusicArtistQueryTableWidget(QWidget *parent)
 
 MusicArtistQueryTableWidget::~MusicArtistQueryTableWidget()
 {
-    clearAllItems();
+    removeItems();
 }
 
 void MusicArtistQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)

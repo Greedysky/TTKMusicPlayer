@@ -114,10 +114,6 @@ public:
     ~MusicDownloadTableWidget();
 
     /*!
-     * Clear All Items.
-     */
-    void clearAllItems();
-    /*!
      * Create current item by given bitrate\type\icon.
      */
     void createItem(const MusicObject::MusicSongProperty &prop, const QString &type, const QString &icon);
@@ -131,6 +127,10 @@ public Q_SLOTS:
      * Table widget item cell click.
      */
     virtual void itemCellClicked(int row, int column) override final;
+    /*!
+     * Remove all items.
+     */
+    virtual void removeItems() override final;
 
 protected:
     QList<QObject*> m_items;

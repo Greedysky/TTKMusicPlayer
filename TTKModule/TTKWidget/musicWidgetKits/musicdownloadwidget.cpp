@@ -59,15 +59,7 @@ MusicDownloadTableWidget::MusicDownloadTableWidget(QWidget *parent)
 
 MusicDownloadTableWidget::~MusicDownloadTableWidget()
 {
-    clearAllItems();
-}
-
-void MusicDownloadTableWidget::clearAllItems()
-{
-    qDeleteAll(m_items);
-    m_items.clear();
-    MusicAbstractTableWidget::clear();
-    setColumnCount(1);
+    removeItems();
 }
 
 void MusicDownloadTableWidget::createItem(const MusicObject::MusicSongProperty &prop, const QString &type, const QString &icon)
@@ -105,6 +97,14 @@ void MusicDownloadTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
+}
+
+void MusicDownloadTableWidget::removeItems()
+{
+    qDeleteAll(m_items);
+    m_items.clear();
+    MusicAbstractTableWidget::removeItems();
+    setColumnCount(1);
 }
 
 
@@ -210,7 +210,7 @@ void MusicDownloadWidget::downLoadFinished()
         return;
     }
 
-    m_ui->viewArea->clearAllItems();
+    m_ui->viewArea->removeItems();
     const MusicObject::MusicSongInformation info(matchMusicSongInformation());
     if(!info.m_songName.isEmpty() || !info.m_singerName.isEmpty())
     {

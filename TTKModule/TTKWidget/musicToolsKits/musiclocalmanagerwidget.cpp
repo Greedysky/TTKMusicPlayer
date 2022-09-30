@@ -21,14 +21,8 @@ MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *pa
 
 MusicLocalManagerSongsTableWidget::~MusicLocalManagerSongsTableWidget()
 {
-    clearAllItems();
+    removeItems();
     delete m_songs;
-}
-
-void MusicLocalManagerSongsTableWidget::clearAllItems()
-{
-    MusicAbstractTableWidget::clear();
-    m_songs->clear();
 }
 
 //void MusicLocalManagerSongsTableWidget::addItems(const QStringList &path)
@@ -70,6 +64,12 @@ void MusicLocalManagerSongsTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
+}
+
+void MusicLocalManagerSongsTableWidget::removeItems()
+{
+    MusicAbstractSongsListTableWidget::removeItems();
+    m_songs->clear();
 }
 
 

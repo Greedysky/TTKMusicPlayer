@@ -28,14 +28,14 @@ MusicSoundKMicroSearchTableWidget::MusicSoundKMicroSearchTableWidget(QWidget *pa
 
 MusicSoundKMicroSearchTableWidget::~MusicSoundKMicroSearchTableWidget()
 {
-    clearAllItems();
+    removeItems();
 }
 
 void MusicSoundKMicroSearchTableWidget::startSearchQuery(const QString &text)
 {
     if(!G_NETWORK_PTR->isOnline())   // no network connection
     {
-        clearAllItems();
+        removeItems();
         return;
     }
 
@@ -106,9 +106,9 @@ void MusicSoundKMicroSearchTableWidget::itemDoubleClicked(int row, int column)
     dataDownloadPlay(row);
 }
 
-void MusicSoundKMicroSearchTableWidget::clearAllItems()
+void MusicSoundKMicroSearchTableWidget::removeItems()
 {
-    MusicItemSearchTableWidget::clearAllItems();
+    MusicItemSearchTableWidget::removeItems();
     setColumnCount(5);
 }
 

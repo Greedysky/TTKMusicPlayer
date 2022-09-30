@@ -38,10 +38,6 @@ public:
     ~MusicSongSearchPopTableWidget();
 
     /*!
-     * Clear All Items.
-     */
-    void clearAllItems();
-    /*!
      * Create popup table item by index and name and time.
      */
     void createItems(int index, const QString &name, const QString &time);
@@ -57,6 +53,10 @@ public Q_SLOTS:
      * Table widget item cell click.
      */
     virtual void itemCellClicked(int row, int column) override final;
+    /*!
+     * Remove all items.
+     */
+    virtual void removeItems() override final;
 
 };
 

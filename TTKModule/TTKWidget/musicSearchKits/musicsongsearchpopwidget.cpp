@@ -16,13 +16,7 @@ MusicSongSearchPopTableWidget::MusicSongSearchPopTableWidget(QWidget *parent)
 
 MusicSongSearchPopTableWidget::~MusicSongSearchPopTableWidget()
 {
-    clearAllItems();
-}
-
-void MusicSongSearchPopTableWidget::clearAllItems()
-{
-    MusicAbstractTableWidget::clear();
-    setColumnCount(2);
+    removeItems();
 }
 
 void MusicSongSearchPopTableWidget::createItems(int index, const QString &name, const QString &time)
@@ -49,6 +43,12 @@ void MusicSongSearchPopTableWidget::itemCellClicked(int row, int)
     QWidget *widget = TTKStatic_cast(QWidget*, parent());
     widget->lower();
     widget->hide();
+}
+
+void MusicSongSearchPopTableWidget::removeItems()
+{
+    MusicAbstractTableWidget::removeItems();
+    setColumnCount(2);
 }
 
 
@@ -94,7 +94,7 @@ MusicSongSearchPopWidget::~MusicSongSearchPopWidget()
 void MusicSongSearchPopWidget::createItems()
 {
     m_clearButton->show();
-    m_popTableWidget->clearAllItems();
+    m_popTableWidget->removeItems();
 
     MusicSongSearchRecordConfigManager search(this);
     if(!search.fromFile())
@@ -118,7 +118,7 @@ void MusicSongSearchPopWidget::createItems()
 void MusicSongSearchPopWidget::createSuggestItems(const QStringList &names)
 {
     m_clearButton->hide();
-    m_popTableWidget->clearAllItems();
+    m_popTableWidget->removeItems();
 
     const int count = names.count();
     resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < 6 ? count * TTK_ITEM_SIZE_M + 8 : 6 * TTK_ITEM_SIZE_M + 8));

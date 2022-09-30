@@ -75,7 +75,7 @@ MusicPlaylist *MusicPlayedListPopWidget::playlist() const
 void MusicPlayedListPopWidget::clear()
 {
     m_songList.clear();
-    m_playedListWidget->clearAllItems();
+    m_playedListWidget->removeItems();
     setPlaylistCount(0);
 }
 
@@ -166,7 +166,7 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
     m_playlist->appendQueue(toolIndex, song.path());
 
     const int row = m_playedListWidget->playRowIndex();
-    m_playedListWidget->clearAllItems();
+    m_playedListWidget->removeItems();
     updateSongsFileName();
 
     m_playedListWidget->setPlayRowIndex(row);

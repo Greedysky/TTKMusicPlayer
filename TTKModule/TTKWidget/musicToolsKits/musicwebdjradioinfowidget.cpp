@@ -13,7 +13,7 @@ MusicWebDJRadioInfoTableWidget::MusicWebDJRadioInfoTableWidget(QWidget *parent)
 
 MusicWebDJRadioInfoTableWidget::~MusicWebDJRadioInfoTableWidget()
 {
-    clearAllItems();
+    removeItems();
 }
 
 void MusicWebDJRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *query)

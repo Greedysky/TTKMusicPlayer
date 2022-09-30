@@ -38,10 +38,6 @@ public:
     ~MusicMobileSongsTableWidget();
 
     /*!
-     * Clear current items.
-     */
-    void clearAllItems();
-    /*!
      * Add show list items.
      */
     void addItems(const QStringList &path);
@@ -51,6 +47,10 @@ public Q_SLOTS:
      * Table widget item cell click.
      */
     virtual void itemCellClicked(int row, int column) override final;
+    /*!
+     * Remove all items.
+     */
+    virtual void removeItems() override final;
     /*!
      * Override the widget event.
      */

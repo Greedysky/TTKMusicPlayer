@@ -21,14 +21,14 @@ MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)
 MusicVideoSearchTableWidget::~MusicVideoSearchTableWidget()
 {
     G_CONNECTION_PTR->removeValue(className());
-    clearAllItems();
+    removeItems();
 }
 
 void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
-        clearAllItems();
+        removeItems();
         return;
     }
     //
@@ -45,7 +45,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
-        clearAllItems();
+        removeItems();
         return;
     }
     //
@@ -63,7 +63,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
-        clearAllItems();
+        removeItems();
         return;
     }
     //
@@ -162,9 +162,9 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
     }
 }
 
-void MusicVideoSearchTableWidget::clearAllItems()
+void MusicVideoSearchTableWidget::removeItems()
 {
-    MusicItemSearchTableWidget::clearAllItems();
+    MusicItemSearchTableWidget::removeItems();
     setColumnCount(9);
 }
 

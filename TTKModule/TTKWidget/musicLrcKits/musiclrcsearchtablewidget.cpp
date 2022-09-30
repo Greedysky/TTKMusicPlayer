@@ -21,14 +21,14 @@ MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
 
 MusicLrcSearchTableWidget::~MusicLrcSearchTableWidget()
 {
-    clearAllItems();
+    removeItems();
 }
 
 void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
-        clearAllItems();
+        removeItems();
         return;
     }
 
@@ -87,9 +87,9 @@ void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int column)
     musicDownloadLocal(row);
 }
 
-void MusicLrcSearchTableWidget::clearAllItems()
+void MusicLrcSearchTableWidget::removeItems()
 {
-    MusicItemSearchTableWidget::clearAllItems();
+    MusicItemSearchTableWidget::removeItems();
     setColumnCount(7);
 }
 

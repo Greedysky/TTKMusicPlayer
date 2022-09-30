@@ -52,10 +52,6 @@ public:
     virtual void selectRow(int index) override final;
 
     /*!
-     * Clear All Items.
-     */
-    void clearAllItems();
-    /*!
      * Set current search result indexs.
      */
     void updateSearchFileName(MusicSongList *songs, const TTKIntList &result);
@@ -116,6 +112,10 @@ public Q_SLOTS:
      * Table widget item cell click.
      */
     virtual void itemCellClicked(int row, int column) override final;
+    /*!
+     * Remove all items.
+     */
+    virtual void removeItems() override final;
     /*!
      * Delete item from list at current row.
      */

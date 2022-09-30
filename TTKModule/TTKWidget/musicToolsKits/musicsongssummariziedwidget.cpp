@@ -677,7 +677,7 @@ void MusicSongsSummariziedWidget::addSongToLovestListAt(bool state, int row)
     {
         if(item->m_songs.removeOne(song))
         {
-            widget->clearAllItems();
+            widget->removeItems();
             widget->updateSongsFileName(item->m_songs);
             setItemTitle(item);
             MusicApplication::instance()->setLoveDeleteItemAt(song.path(), m_playToolIndex == MUSIC_LOVEST_LIST);
@@ -705,7 +705,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
     {
         if(item->m_songs.removeOne(song))
         {
-            widget->clearAllItems();
+            widget->removeItems();
             widget->updateSongsFileName(item->m_songs);
             setItemTitle(item);
             MusicApplication::instance()->setLoveDeleteItemAt(song.path(), m_playToolIndex == MUSIC_LOVEST_LIST);
@@ -877,7 +877,7 @@ void MusicSongsSummariziedWidget::setRecentMusicSongs(int index)
         if(recentSongs->count() >= RECENT_ITEM_MAX_COUNT)
         {
             recentSongs->takeFirst();
-            widget->clearAllItems();
+            widget->removeItems();
         }
 
         recentSong.setPlayCount(recentSong.playCount() + 1);
@@ -966,7 +966,7 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
         std::sort(songs->begin(), songs->end(), std::greater<MusicSong>());
     }
 
-    widget->clearAllItems();
+    widget->removeItems();
     widget->setSongsFileName(songs);
 
     index = songs->indexOf(song);

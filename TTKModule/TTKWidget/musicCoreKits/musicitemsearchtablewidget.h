@@ -49,9 +49,9 @@ public Q_SLOTS:
      */
     virtual void itemCellClicked(int row, int column) override;
     /*!
-     * Clear All Items.
+     * Remove all items.
      */
-    virtual void clearAllItems() override;
+    virtual void removeItems() override;
     /*!
      * Left context menu action group click by action.
      */

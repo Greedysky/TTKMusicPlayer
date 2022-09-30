@@ -283,21 +283,12 @@ MusicDownloadBatchTableWidget::MusicDownloadBatchTableWidget(QWidget *parent)
 
 MusicDownloadBatchTableWidget::~MusicDownloadBatchTableWidget()
 {
-    clearAllItems();
+    removeItems();
 }
 
 void MusicDownloadBatchTableWidget::setParentClass(QWidget *parent)
 {
     m_supperClass = parent;
-}
-
-void MusicDownloadBatchTableWidget::clearAllItems()
-{
-    m_downloadOffset = 0;
-    qDeleteAll(m_items);
-    m_items.clear();
-    MusicAbstractTableWidget::clear();
-    setColumnCount(1);
 }
 
 void MusicDownloadBatchTableWidget::createItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)
@@ -327,6 +318,15 @@ void MusicDownloadBatchTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
+}
+
+void MusicDownloadBatchTableWidget::removeItems()
+{
+    m_downloadOffset = 0;
+    qDeleteAll(m_items);
+    m_items.clear();
+    MusicAbstractTableWidget::removeItems();
+    setColumnCount(1);
 }
 
 void MusicDownloadBatchTableWidget::dataDownloadFinished()

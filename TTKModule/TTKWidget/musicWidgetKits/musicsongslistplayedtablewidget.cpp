@@ -27,7 +27,7 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
 
 MusicSongsListPlayedTableWidget::~MusicSongsListPlayedTableWidget()
 {
-    clearAllItems();
+    removeItems();
     delete m_songsPlayWidget;
 }
 
@@ -118,25 +118,6 @@ void MusicSongsListPlayedTableWidget::setPlayQueueState(int row)
     {
         it->setIcon(QIcon(":/tiny/lb_playlater"));
     }
-}
-
-void MusicSongsListPlayedTableWidget::clearAllItems()
-{
-    if(m_playRowIndex < 0)
-    {
-        return;
-    }
-
-    //Remove play widget
-    removeCellWidget(m_playRowIndex, 0);
-
-    delete m_songsPlayWidget;
-    m_songsPlayWidget = nullptr;
-
-    m_playRowIndex = -1;
-    //Remove all the original item
-    MusicAbstractSongsListTableWidget::clear();
-    setColumnCount(5);
 }
 
 void MusicSongsListPlayedTableWidget::selectPlayedRow()
@@ -250,6 +231,25 @@ void MusicSongsListPlayedTableWidget::itemCellClicked(int row, int column)
         }
         default: break;
     }
+}
+
+void MusicSongsListPlayedTableWidget::removeItems()
+{
+    if(m_playRowIndex < 0)
+    {
+        return;
+    }
+
+    //Remove play widget
+    removeCellWidget(m_playRowIndex, 0);
+
+    delete m_songsPlayWidget;
+    m_songsPlayWidget = nullptr;
+
+    m_playRowIndex = -1;
+    //Remove all the original item
+    MusicAbstractSongsListTableWidget::removeItems();
+    setColumnCount(5);
 }
 
 void MusicSongsListPlayedTableWidget::setDeleteItemAt()

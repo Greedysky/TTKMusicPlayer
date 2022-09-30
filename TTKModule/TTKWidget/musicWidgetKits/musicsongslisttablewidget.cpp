@@ -64,7 +64,7 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
 
 MusicSongsListTableWidget::~MusicSongsListTableWidget()
 {
-    clearAllItems();
+    removeItems();
     delete m_openFileWidget;
     delete m_songsInfoWidget;
     delete m_songsPlayWidget;
@@ -148,26 +148,6 @@ void MusicSongsListTableWidget::selectRow(int index)
     setFixedHeight(totalHeight());
 }
 
-void MusicSongsListTableWidget::clearAllItems()
-{
-//    if(m_playRowIndex < 0)
-//    {
-//        return;
-//    }
-
-    //Remove play widget
-    setRowHeight(m_playRowIndex, TTK_ITEM_SIZE_M);
-    removeCellWidget(m_playRowIndex, 0);
-
-    delete m_songsPlayWidget;
-    m_songsPlayWidget = nullptr;
-
-    m_playRowIndex = -1;
-    //Remove all the original item
-    MusicAbstractSongsListTableWidget::clear();
-    setColumnCount(6);
-}
-
 void MusicSongsListTableWidget::updateSearchFileName(MusicSongList *songs, const TTKIntList &result)
 {
     m_searchedSongs.clear();
@@ -184,7 +164,7 @@ void MusicSongsListTableWidget::updateSearchFileName(MusicSongList *songs, const
         }
     }
 
-    clearAllItems();
+    removeItems();
     if(!m_songs->isEmpty())
     {
         updateSongsFileName(*m_songs);
@@ -263,8 +243,12 @@ bool MusicSongsListTableWidget::createUploadFileModule()
             connect(m_openFileWidget, SIGNAL(uploadDirClicked()), m_parentClass, SLOT(musicImportSongsByDir()));
             m_openFileWidget->adjustWidgetRect(width(), height());
         }
-        m_openFileWidget->raise();
-        m_openFileWidget->show();
+
+        if(m_openFileWidget)
+        {
+            m_openFileWidget->raise();
+            m_openFileWidget->show();
+        }
         return true;
     }
     else
@@ -417,6 +401,26 @@ void MusicSongsListTableWidget::itemCellClicked(int row, int column)
         }
         default: break;
     }
+}
+
+void MusicSongsListTableWidget::removeItems()
+{
+//    if(m_playRowIndex < 0)
+//    {
+//        return;
+//    }
+
+    //Remove play widget
+    setRowHeight(m_playRowIndex, TTK_ITEM_SIZE_M);
+    removeCellWidget(m_playRowIndex, 0);
+
+    delete m_songsPlayWidget;
+    m_songsPlayWidget = nullptr;
+
+    m_playRowIndex = -1;
+    //Remove all the original item
+    MusicAbstractSongsListTableWidget::removeItems();
+    setColumnCount(6);
 }
 
 void MusicSongsListTableWidget::setDeleteItemAt()

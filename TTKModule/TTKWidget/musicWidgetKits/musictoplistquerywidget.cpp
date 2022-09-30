@@ -12,7 +12,7 @@ MusicToplistQueryTableWidget::MusicToplistQueryTableWidget(QWidget *parent)
 
 MusicToplistQueryTableWidget::~MusicToplistQueryTableWidget()
 {
-    clearAllItems();
+    removeItems();
 }
 
 void MusicToplistQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)

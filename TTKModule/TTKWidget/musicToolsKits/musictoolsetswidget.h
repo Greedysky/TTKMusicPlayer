@@ -58,7 +58,7 @@ protected:
     /*!
      * Clear All Items.
      */
-    void clearAllItems();
+    void clear();
     /*!
      * Override the widget event.
      */

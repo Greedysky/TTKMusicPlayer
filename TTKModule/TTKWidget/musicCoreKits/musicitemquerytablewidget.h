@@ -67,18 +67,17 @@ public Q_SLOTS:
      */
     virtual void itemCellEntered(int row, int column) override final;
     /*!
-     * Subclass should implement this function.
+     * Table widget item cell click.
      */
     virtual void itemCellClicked(int row, int column) override;
     /*!
-     * Item has double clicked.
-     * Subclass should implement this function.
+     * Table widget item cell double clicked.
      */
     virtual void itemDoubleClicked(int row, int column) override final;
     /*!
-     * Clear All Items.
+     * Remove all items.
      */
-    virtual void clearAllItems() override final;
+    virtual void removeItems() override final;
     /*!
      * Create searched items.
      */

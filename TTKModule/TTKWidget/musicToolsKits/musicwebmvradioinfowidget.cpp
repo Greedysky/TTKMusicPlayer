@@ -16,7 +16,7 @@ MusicWebMVRadioInfoTableWidget::MusicWebMVRadioInfoTableWidget(QWidget *parent)
 
 MusicWebMVRadioInfoTableWidget::~MusicWebMVRadioInfoTableWidget()
 {
-    clearAllItems();
+    removeItems();
 }
 
 void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *query)

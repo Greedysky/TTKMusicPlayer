@@ -9,7 +9,7 @@ MusicRecommendQueryTableWidget::MusicRecommendQueryTableWidget(QWidget *parent)
 
 MusicRecommendQueryTableWidget::~MusicRecommendQueryTableWidget()
 {
-    clearAllItems();
+    removeItems();
 }
 
 void MusicRecommendQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)

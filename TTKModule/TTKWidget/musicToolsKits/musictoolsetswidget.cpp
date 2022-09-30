@@ -40,7 +40,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
     G_SINGLE_MANAGER_PTR->removeObject(className());
-    clearAllItems();
+    clear();
     delete m_ui;
 }
 
@@ -145,7 +145,7 @@ void MusicToolSetsWidget::show()
     MusicAbstractMoveWidget::show();
 }
 
-void MusicToolSetsWidget::clearAllItems()
+void MusicToolSetsWidget::clear()
 {
     m_ui->listItemWidget->clear();
 }

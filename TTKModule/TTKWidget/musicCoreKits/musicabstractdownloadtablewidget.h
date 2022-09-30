@@ -64,7 +64,7 @@ public Q_SLOTS:
      */
     void musicPlay();
     /*!
-     * Table widget item cell double click.
+     * Table widget item cell double clicked.
      */
     void itemDoubleClicked(int row, int column);
     /*!

@@ -37,14 +37,14 @@ MusicSongSearchTableWidget::MusicSongSearchTableWidget(QWidget *parent)
 
 MusicSongSearchTableWidget::~MusicSongSearchTableWidget()
 {
-    clearAllItems();
+    removeItems();
 }
 
 void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
-        clearAllItems();
+        removeItems();
         return;
     }
 
@@ -83,7 +83,7 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
-        clearAllItems();
+        removeItems();
         return;
     }
     //
@@ -177,9 +177,9 @@ void MusicSongSearchTableWidget::itemDoubleClicked(int row, int column)
     addSearchMusicToPlaylist(row, true);
 }
 
-void MusicSongSearchTableWidget::clearAllItems()
+void MusicSongSearchTableWidget::removeItems()
 {
-    MusicItemSearchTableWidget::clearAllItems();
+    MusicItemSearchTableWidget::removeItems();
     setColumnCount(9);
 }
 

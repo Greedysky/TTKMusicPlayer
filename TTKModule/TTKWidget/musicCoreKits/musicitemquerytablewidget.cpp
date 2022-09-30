@@ -34,7 +34,7 @@ MusicItemQueryTableWidget::~MusicItemQueryTableWidget()
 {
     G_CONNECTION_PTR->removeValue(className());
     delete m_labelDelegate;
-    clearAllItems();
+    removeItems();
 }
 
 void MusicItemQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
@@ -47,7 +47,7 @@ void MusicItemQueryTableWidget::startSearchQuery(const QString &text)
 {
     if(!G_NETWORK_PTR->isOnline())
     {
-        clearAllItems();
+        removeItems();
         return;
     }
 
@@ -223,14 +223,14 @@ void MusicItemQueryTableWidget::itemCellClicked(int row, int column)
     }
 }
 
-void MusicItemQueryTableWidget::clearAllItems()
+void MusicItemQueryTableWidget::removeItems()
 {
     if(rowCount() > 0)
     {
         setItemDelegateForRow(rowCount() - 1, nullptr);
     }
 
-    MusicQueryTableWidget::clear();
+    MusicQueryTableWidget::removeItems();
     setColumnCount(8);
 }
 

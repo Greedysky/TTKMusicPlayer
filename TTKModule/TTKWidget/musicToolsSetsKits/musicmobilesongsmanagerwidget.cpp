@@ -24,14 +24,8 @@ MusicMobileSongsTableWidget::MusicMobileSongsTableWidget(QWidget *parent)
 
 MusicMobileSongsTableWidget::~MusicMobileSongsTableWidget()
 {
-    clearAllItems();
+    removeItems();
     delete m_songs;
-}
-
-void MusicMobileSongsTableWidget::clearAllItems()
-{
-    MusicAbstractTableWidget::clear();
-    m_songs->clear();
 }
 
 void MusicMobileSongsTableWidget::addItems(const QStringList &path)
@@ -73,6 +67,12 @@ void MusicMobileSongsTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
+}
+
+void MusicMobileSongsTableWidget::removeItems()
+{
+    MusicAbstractSongsListTableWidget::removeItems();
+    m_songs->clear();
 }
 
 void MusicMobileSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
