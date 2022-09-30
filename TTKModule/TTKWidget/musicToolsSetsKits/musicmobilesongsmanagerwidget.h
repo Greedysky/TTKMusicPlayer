@@ -23,7 +23,7 @@
 #include "musicabstractmovewidget.h"
 #include "musicabstractsongslisttablewidget.h"
 
-/*! @brief The class of the lcal songs table widget.
+/*! @brief The class of the mobile songs table widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicMobileSongsTableWidget : public MusicAbstractSongsListTableWidget
@@ -40,7 +40,7 @@ public:
     /*!
      * Clear current items.
      */
-    void clear();
+    void clearAllItems();
     /*!
      * Add show list items.
      */
@@ -64,7 +64,7 @@ namespace Ui {
 class MusicMobileSongsManagerWidget;
 }
 
-/*! @brief The class of the lcal songs manager widget.
+/*! @brief The class of the mobile songs manager widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicMobileSongsManagerWidget : public MusicAbstractMoveWidget

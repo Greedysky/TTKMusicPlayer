@@ -24,11 +24,11 @@ MusicMobileSongsTableWidget::MusicMobileSongsTableWidget(QWidget *parent)
 
 MusicMobileSongsTableWidget::~MusicMobileSongsTableWidget()
 {
-    clear();
+    clearAllItems();
     delete m_songs;
 }
 
-void MusicMobileSongsTableWidget::clear()
+void MusicMobileSongsTableWidget::clearAllItems()
 {
     MusicAbstractTableWidget::clear();
     m_songs->clear();

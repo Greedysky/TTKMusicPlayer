@@ -19,8 +19,35 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicwidgetheaders.h"
-#include "musicglobaldefine.h"
+#include "musicabstractsongslisttablewidget.h"
+
+/*! @brief The class of the local manager songs table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicLocalManagerSongsTableWidget : public MusicAbstractSongsListTableWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLocalManagerSongsTableWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicLocalManagerSongsTableWidget(QWidget *parent = nullptr);
+    ~MusicLocalManagerSongsTableWidget();
+
+    /*!
+     * Clear current items.
+     */
+    void clearAllItems();
+
+public Q_SLOTS:
+    /*!
+     * Table widget item cell click.
+     */
+    virtual void itemCellClicked(int row, int column) override final;
+
+};
+
 
 class MusicItemQueryEdit;
 

@@ -2,6 +2,77 @@
 #include "musicsettingmanager.h"
 #include "musicitemsearchedit.h"
 
+MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *parent)
+    : MusicAbstractSongsListTableWidget(parent)
+{
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setColumnCount(5);
+
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 460);
+    headerview->resizeSection(1, 85);
+    headerview->resizeSection(2, 105);
+    headerview->resizeSection(3, 26);
+    headerview->resizeSection(4, 26);
+
+    m_songs = new MusicSongList;
+    MusicUtils::Widget::setTransparent(this, 150);
+}
+
+MusicLocalManagerSongsTableWidget::~MusicLocalManagerSongsTableWidget()
+{
+    clearAllItems();
+    delete m_songs;
+}
+
+void MusicLocalManagerSongsTableWidget::clearAllItems()
+{
+    MusicAbstractTableWidget::clear();
+    m_songs->clear();
+}
+
+//void MusicLocalManagerSongsTableWidget::addItems(const QStringList &path)
+//{
+//    QHeaderView *headerview = horizontalHeader();
+//    for(int i = 0; i < path.count(); ++i)
+//    {
+//        QFileInfo fin(path[i]);
+
+//        QTableWidgetItem *item = new QTableWidgetItem;
+//        item->setToolTip(fin.fileName());
+//        item->setText(" " + MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 20));
+//        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+//        setItem(i, 0, item);
+
+//                         item = new QTableWidgetItem;
+//        item->setToolTip(MusicUtils::Number::sizeByte2Label(fin.size()));
+//        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
+//        QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
+//        setItem(i, 1, item);
+
+//                         item = new QTableWidgetItem(fin.lastModified().date().toString(Qt::ISODate));
+//        QtItemSetTextAlignment(item, Qt::AlignCenter);
+//        setItem(i, 2, item);
+
+//                         item = new QTableWidgetItem;
+//        item->setIcon(QIcon(":/contextMenu/btn_audition"));
+//        setItem(i, 3, item);
+
+//                         item = new QTableWidgetItem;
+//        item->setIcon(QIcon(":/contextMenu/btn_add"));
+//        setItem(i, 4, item);
+
+//        m_songs->append(MusicSong(fin.absoluteFilePath()));
+//    }
+//}
+
+void MusicLocalManagerSongsTableWidget::itemCellClicked(int row, int column)
+{
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+}
+
+
 MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     : QWidget(parent)
 {
