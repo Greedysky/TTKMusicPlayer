@@ -13,6 +13,8 @@ SOURCES += decoderflacfactory.cpp \
 INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
                $$EXTRA_PREFIX/libflac/include
 
+DEFINES += FLAC__NO_DLL
+
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libflac/lib -lFLAC$$STATIC_LIBRARY_SUFFIX \
