@@ -36,8 +36,10 @@ void MusicSongSearchPopTableWidget::createItems(int index, const QString &name, 
     setItem(index, 1, item);
 }
 
-void MusicSongSearchPopTableWidget::itemCellClicked(int row, int)
+void MusicSongSearchPopTableWidget::itemCellClicked(int row, int column)
 {
+    MusicAbstractTableWidget::itemCellClicked(row, column);
+
     Q_EMIT setText(item(row, 0)->toolTip().trimmed());
 
     QWidget *widget = TTKStatic_cast(QWidget*, parent());

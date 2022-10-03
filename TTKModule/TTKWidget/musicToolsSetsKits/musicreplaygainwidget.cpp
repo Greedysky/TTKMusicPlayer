@@ -28,11 +28,6 @@ MusicReplayGainTableWidget::MusicReplayGainTableWidget(QWidget *parent)
     headerview->resizeSection(4, 60);
 }
 
-void MusicReplayGainTableWidget::itemCellClicked(int row, int column)
-{
-    Q_UNUSED(row);
-    Q_UNUSED(column);
-}
 
 
 MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)

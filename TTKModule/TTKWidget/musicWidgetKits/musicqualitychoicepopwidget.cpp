@@ -110,8 +110,10 @@ void MusicQualityChoiceTableWidget::itemCellEntered(int row, int column)
     }
 }
 
-void MusicQualityChoiceTableWidget::itemCellClicked(int row, int)
+void MusicQualityChoiceTableWidget::itemCellClicked(int row, int column)
 {
+    MusicAbstractTableWidget::itemCellClicked(row, column);
+
     if(m_previousClickRow != -1)
     {
         item(m_previousClickRow, 2)->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);

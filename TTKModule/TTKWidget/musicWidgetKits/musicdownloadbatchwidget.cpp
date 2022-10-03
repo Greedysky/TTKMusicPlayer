@@ -314,12 +314,6 @@ void MusicDownloadBatchTableWidget::startToDownload()
     }
 }
 
-void MusicDownloadBatchTableWidget::itemCellClicked(int row, int column)
-{
-    Q_UNUSED(row);
-    Q_UNUSED(column);
-}
-
 void MusicDownloadBatchTableWidget::removeItems()
 {
     m_downloadOffset = 0;

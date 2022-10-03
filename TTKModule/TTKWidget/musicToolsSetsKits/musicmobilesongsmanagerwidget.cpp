@@ -63,12 +63,6 @@ void MusicMobileSongsTableWidget::addItems(const QStringList &path)
     }
 }
 
-void MusicMobileSongsTableWidget::itemCellClicked(int row, int column)
-{
-    Q_UNUSED(row);
-    Q_UNUSED(column);
-}
-
 void MusicMobileSongsTableWidget::removeItems()
 {
     MusicAbstractSongsListTableWidget::removeItems();

@@ -104,12 +104,6 @@ void MusicCloudManagerTableWidget::resizeWindow()
     }
 }
 
-void MusicCloudManagerTableWidget::itemCellClicked(int row, int column)
-{
-    Q_UNUSED(row);
-    Q_UNUSED(column);
-}
-
 void MusicCloudManagerTableWidget::downLoadFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())

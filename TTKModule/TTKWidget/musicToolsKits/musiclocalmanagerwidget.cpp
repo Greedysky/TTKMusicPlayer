@@ -9,14 +9,23 @@ MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *pa
     setColumnCount(5);
 
     QHeaderView *headerview = horizontalHeader();
+    headerview->setVisible(true);
     headerview->resizeSection(0, 460);
     headerview->resizeSection(1, 85);
     headerview->resizeSection(2, 105);
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
 
+    setHorizontalHeaderLabels({tr("Song"), tr("Artist"), tr("Album"), tr("Year"), tr("Genre")});
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+
     m_songs = new MusicSongList;
-    MusicUtils::Widget::setTransparent(this, 150);
+
+    setRowCount(1);
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setText(" sdfsdfsdfeeeeeeeee");
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+    setItem(0, 0, item);
 }
 
 MusicLocalManagerSongsTableWidget::~MusicLocalManagerSongsTableWidget()
@@ -59,12 +68,6 @@ MusicLocalManagerSongsTableWidget::~MusicLocalManagerSongsTableWidget()
 //        m_songs->append(MusicSong(fin.absoluteFilePath()));
 //    }
 //}
-
-void MusicLocalManagerSongsTableWidget::itemCellClicked(int row, int column)
-{
-    Q_UNUSED(row);
-    Q_UNUSED(column);
-}
 
 void MusicLocalManagerSongsTableWidget::removeItems()
 {
@@ -129,8 +132,19 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     m_tabWidget->setStyleSheet(MusicUIObject::MQSSTabWidgetStyle01 + "QTabBar::tab{ width:120px; }");
     mainLayout->addWidget(m_tabWidget);
     //
+
     QWidget *songWidget = new QWidget(m_tabWidget);
-    songWidget->setStyleSheet("background:rgb(200,200,200)");
+    songWidget->setStyleSheet("background:rgb(160,160,160)");
+
+
+    QVBoxLayout *songWidgetLayout = new QVBoxLayout(songWidget);
+    songWidgetLayout->setSpacing(0);
+    songWidgetLayout->setContentsMargins(0, 10, 0, 10);
+    songWidget->setLayout(songWidgetLayout);
+
+songWidgetLayout->addWidget(new MusicLocalManagerSongsTableWidget(songWidget));
+
+
     m_tabWidget->addTab(songWidget, tr("Song"));
     //
     QWidget *artistWidget = new QWidget(m_tabWidget);

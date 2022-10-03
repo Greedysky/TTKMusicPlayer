@@ -83,12 +83,6 @@ void MusicAbstractDownloadTableWidget::setDeleteItemAt()
     Q_EMIT updateItemTitle(m_toolIndex);
 }
 
-void MusicAbstractDownloadTableWidget::itemCellClicked(int row, int column)
-{
-    Q_UNUSED(row);
-    Q_UNUSED(column);
-}
-
 void MusicAbstractDownloadTableWidget::itemDoubleClicked(int row, int column)
 {
     Q_UNUSED(row);

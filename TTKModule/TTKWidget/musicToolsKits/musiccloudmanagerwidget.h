@@ -74,10 +74,6 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Table widget item cell click.
-     */
-    virtual void itemCellClicked(int row, int column) override final;
-    /*!
      * Send recieved data from net.
      */
     void downLoadFinished(const QByteArray &bytes);

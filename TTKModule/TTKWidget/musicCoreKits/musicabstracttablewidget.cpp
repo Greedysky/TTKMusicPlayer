@@ -31,7 +31,6 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setFrameShape(QFrame::NoFrame);//Set No Border
     setEditTriggers(QTableWidget::NoEditTriggers);//No edit
     setSelectionBehavior(QTableWidget::SelectRows);
-    //Multi-line election
     setSelectionMode(QAbstractItemView::SingleSelection);
     setFocusPolicy(Qt::NoFocus);
 
@@ -74,6 +73,12 @@ void MusicAbstractTableWidget::itemCellEntered(int row, int column)
     }
 
     m_previousColorRow = row;
+}
+
+void MusicAbstractTableWidget::itemCellClicked(int row, int column)
+{
+    Q_UNUSED(row);
+    Q_UNUSED(column);
 }
 
 void MusicAbstractTableWidget::removeItems()

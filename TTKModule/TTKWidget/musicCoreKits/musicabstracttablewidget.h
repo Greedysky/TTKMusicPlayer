@@ -51,9 +51,8 @@ public Q_SLOTS:
     virtual void itemCellEntered(int row, int column);
     /*!
      * Table widget item cell click.
-     * Subclass should implement this function.
      */
-    virtual void itemCellClicked(int row, int column) = 0;
+    virtual void itemCellClicked(int row, int column);
     /*!
      * Remove all items.
      */
