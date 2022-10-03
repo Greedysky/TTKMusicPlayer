@@ -2,7 +2,7 @@ adplug-2.3.3	https://github.com/adplug/adplug
 enca-1.19	https://cihar.com/software/enca
 faad2-2.10.0	https://github.com/knik0/faad2
 ffmpeg-3.4.11	http://ffmpeg.org/releases/
-flac-1.3.3	https://ftp.osuosl.org/pub/xiph/releases/flac/
+flac-1.4.1	https://ftp.osuosl.org/pub/xiph/releases/flac/
 game-music-emu-0.6.3	https://bitbucket.org/mpyne/game-music-emu/downloads
 libADLMIDI-1.5.0.1	https://github.com/Wohlstand/libADLMIDI
 libbinio-1.5	https://github.com/adplug/libbinio
@@ -13,7 +13,7 @@ libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
 libmad-0.15.1b	https://sourceforge.net/projects/mad
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.5	https://xiph.org/downloads
-libopenmpt-0.4.31		https://lib.openmpt.org/libopenmpt
+libopenmpt-0.4.32		https://lib.openmpt.org/libopenmpt
 libprojectm-2.2.1		https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.2		https://github.com/libsndfile/libsamplerate
 libsidplayfp-2.3.1.patch	https://github.com/libsidplayfp/libsidplayfp
@@ -30,13 +30,14 @@ sunvox-2.0e	https://warmplace.ru/soft/sunvox/sunvox_lib.php
 taglib-1.12	https://github.com/taglib/taglib
 wavpack-5.5.0	https://www.wavpack.com/downloads.html
 libxmp-4.5.0.patch	https://github.com/libxmp/libxmp
+zlib-1.2.12		https://github.com/madler/zlib
 7zip-22.01		https://www.7-zip.org/download.html
-ttk-1.1.9
+ttk-1.2.0
 (sonic-master	https://github.com/waywardgeek/sonic)
 (libasap-5.2.0	https://sourceforge.net/projects/asap)
 (libfc14-1.0.3	https://sourceforge.net/projects/xmms-fc)
 (libgoom-2k4	https://sourceforge.net/projects/goom)
 (libsc68-2.2.1	https://sourceforge.net/projects/sc68)
-(libuade-3.02	https://gitlab.com/uade-music-player/uade 96cf85b0fe0a35761649778fa5af5a858e9d8ef8)
+(libuade-3.02	https://gitlab.com/uade-music-player/uade 6338df4c66de709e1f1d3c2c395f8754efaf338a)
 (libv2m-20211104	https://github.com/jgilje/v2m-player)
-///Update time 2022-09-13
+///Update time 2022-09-30
