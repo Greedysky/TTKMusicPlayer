@@ -43,7 +43,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchResultChanged(int,int)));
 
     m_thread = new MusicConnectTransferThread(this);
-    connect(m_thread, SIGNAL(transferFileFinished(QString)), m_ui->completeTableWidget, SLOT(createItem(QString)));
+    connect(m_thread, SIGNAL(transferFileFinished(QString)), m_ui->completeTableWidget, SLOT(addItem(QString)));
 
 #ifdef Q_OS_UNIX
     m_ui->allSelectedcheckBox->setFocusPolicy(Qt::NoFocus);

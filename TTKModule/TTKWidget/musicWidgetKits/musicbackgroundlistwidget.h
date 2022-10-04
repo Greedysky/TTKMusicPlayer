@@ -175,13 +175,13 @@ public:
     void clearAllItems();
 
     /*!
-     * Create item by name and path.
-     */
-    void createItem(const QString &name, const QString &path, bool state);
-    /*!
      * Create item by icon.
      */
-    void createItem(const QString &icon, bool state);
+    void addItem(const QString &icon, bool state);
+    /*!
+     * Create item by name and path.
+     */
+    void addItem(const QString &name, const QString &path, bool state);
 
     /*!
      * Update item by backgroud image.

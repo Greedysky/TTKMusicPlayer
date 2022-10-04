@@ -86,7 +86,7 @@ protected:
      */
     void startRequest(const QString &url);
 
-    qint64 m_createItemTime;
+    qint64 m_createTime;
     bool m_redirection, m_needUpdate;
     MusicObject::Record m_recordType;
 };

@@ -74,7 +74,7 @@ MusicConnectTransferCompleteTableWidget::MusicConnectTransferCompleteTableWidget
     headerview->resizeSection(1, 305);
 }
 
-void MusicConnectTransferCompleteTableWidget::createItem(const QString &name)
+void MusicConnectTransferCompleteTableWidget::addItem(const QString &name)
 {
     const int index = rowCount();
     setRowCount(index + 1);

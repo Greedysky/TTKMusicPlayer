@@ -91,8 +91,8 @@ public Q_SLOTS:
     void labelClicked(int index);
 
 protected:
-    typedef QPair<QString, QString> ItemInfo;
-    typedef QList< ItemInfo > ItemInfos;
+    typedef QPair<QString, QString> SpectrumInfo;
+    typedef QList<SpectrumInfo> SpectrumInfoList;
 
 protected:
     /*!
@@ -106,7 +106,7 @@ protected:
     /*!
      * Create all spectrum items.
      */
-    void addItems(const ItemInfos &items);
+    void addItems(const SpectrumInfoList &items);
 
     bool m_exclusive;
     QVBoxLayout *m_containLayout;

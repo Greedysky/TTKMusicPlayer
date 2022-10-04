@@ -83,7 +83,7 @@ void MusicSongSearchInteriorEdit::popWidgetChanged(const QString &text)
 {
     if(text.trimmed().isEmpty())
     {
-        m_popWidget->createItems();
+        m_popWidget->addItems();
     }
 
     if(m_popWidget->height() != 0)

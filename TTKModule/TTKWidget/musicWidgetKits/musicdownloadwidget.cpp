@@ -62,7 +62,7 @@ MusicDownloadTableWidget::~MusicDownloadTableWidget()
     removeItems();
 }
 
-void MusicDownloadTableWidget::createItem(const MusicObject::MusicSongProperty &prop, const QString &type, const QString &icon)
+void MusicDownloadTableWidget::addItem(const MusicObject::MusicSongProperty &prop, const QString &type, const QString &icon)
 {
     const int index = rowCount();
     setRowCount(index + 1);
@@ -257,22 +257,22 @@ void MusicDownloadWidget::createAllItems(const MusicObject::MusicSongPropertyLis
         if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
            (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
         {
-            m_ui->viewArea->createItem(prop, tr("SD"), QString(":/quality/lb_sd_quality"));
+            m_ui->viewArea->addItem(prop, tr("SD"), QString(":/quality/lb_sd_quality"));
         }
         else if((prop.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
         {
-            m_ui->viewArea->createItem(prop, tr("HQ"), QString(":/quality/lb_hd_quality"));
+            m_ui->viewArea->addItem(prop, tr("HQ"), QString(":/quality/lb_hd_quality"));
         }
         else if((prop.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
         {
-            m_ui->viewArea->createItem(prop, tr("SQ"), QString(":/quality/lb_sq_quality"));
+            m_ui->viewArea->addItem(prop, tr("SQ"), QString(":/quality/lb_sq_quality"));
         }
         else if((prop.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
         {
-            m_ui->viewArea->createItem(prop, tr("CD"), QString(":/quality/lb_cd_quality"));
+            m_ui->viewArea->addItem(prop, tr("CD"), QString(":/quality/lb_cd_quality"));
         }
         else
         {

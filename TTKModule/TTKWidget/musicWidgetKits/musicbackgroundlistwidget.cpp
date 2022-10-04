@@ -184,13 +184,11 @@ void MusicBackgroundListWidget::clearAllItems()
     m_currentItem = nullptr;
 }
 
-void MusicBackgroundListWidget::createItem(const QString &name, const QString &path, bool state)
+void MusicBackgroundListWidget::addItem(const QString &icon, bool state)
 {
     MusicBackgroundListItem *item = new MusicBackgroundListItem(this);
     item->setCloseEnabled(state);
-    item->setFileName(name);
-    item->setFilePath(path);
-    item->updatePixImage();
+    item->setPixmap(QPixmap(icon).scaled(item->size()));
 
     connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(itemHasClicked(MusicBackgroundListItem*)));
     connect(item, SIGNAL(closeClicked(MusicBackgroundListItem*)), SLOT(itemCloseClicked(MusicBackgroundListItem*)));
@@ -198,11 +196,13 @@ void MusicBackgroundListWidget::createItem(const QString &name, const QString &p
     m_items << item;
 }
 
-void MusicBackgroundListWidget::createItem(const QString &icon, bool state)
+void MusicBackgroundListWidget::addItem(const QString &name, const QString &path, bool state)
 {
     MusicBackgroundListItem *item = new MusicBackgroundListItem(this);
     item->setCloseEnabled(state);
-    item->setPixmap(QPixmap(icon).scaled(item->size()));
+    item->setFileName(name);
+    item->setFilePath(path);
+    item->updatePixImage();
 
     connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(itemHasClicked(MusicBackgroundListItem*)));
     connect(item, SIGNAL(closeClicked(MusicBackgroundListItem*)), SLOT(itemCloseClicked(MusicBackgroundListItem*)));

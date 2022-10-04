@@ -143,6 +143,10 @@ protected:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
     /*!
+     * Create table item.
+     */
+    void addItem(const MusicCloudDataItem &data);
+    /*!
      * Upload files to server.
      */
     void uploadFilesToServer(const QStringList &paths);
@@ -154,10 +158,6 @@ protected:
      * Start to upload files to server.
      */
     void startToUploadFile();
-    /*!
-     * Create table item.
-     */
-    void createItem(const MusicCloudDataItem &data);
     /*!
      * Find upload item row.
      */

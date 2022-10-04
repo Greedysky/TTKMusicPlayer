@@ -113,7 +113,7 @@ protected:
     /*!
      * Create table item finished.
      */
-    void createItemFinished(const QString &track, const QString &album);
+    void addItemFinished(const QString &track, const QString &album);
     /*!
      * Enable or disable control state.
      */

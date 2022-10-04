@@ -40,7 +40,7 @@ public:
     /*!
      * Create popup table item by index and name and time.
      */
-    void createItems(int index, const QString &name, const QString &time);
+    void addItem(int index, const QString &name, const QString &time);
 
 Q_SIGNALS:
     /*!
@@ -78,7 +78,7 @@ public:
     /*!
      * Create popup search history table items.
      */
-    void createItems();
+    void addItems();
     /*!
      * Create popup search suggest table items.
      */

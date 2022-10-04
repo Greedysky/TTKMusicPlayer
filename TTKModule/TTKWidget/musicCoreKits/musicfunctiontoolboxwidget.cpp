@@ -319,7 +319,7 @@ void MusicFunctionToolBoxWidget::addItem(QWidget *item, const QString &text)
 
     // Add item and make sure it stretches the remaining space.
     MusicToolBoxWidgetItem widgetItem;
-    widgetItem.m_widgetItem = createItem(item, text);
+    widgetItem.m_widgetItem = initialItem(item, text);
     widgetItem.m_itemIndex = m_itemIndexRaise++;
     m_itemList.append(widgetItem);
 
@@ -426,7 +426,7 @@ void MusicFunctionToolBoxWidget::setTransparent(int alpha)
             QScrollBar::add-page, QScrollBar::sub-page{ background:none; }");
 }
 
-MusicFunctionToolBoxWidgetItem *MusicFunctionToolBoxWidget::createItem(QWidget *item, const QString &text)
+MusicFunctionToolBoxWidgetItem *MusicFunctionToolBoxWidget::initialItem(QWidget *item, const QString &text)
 {
     MusicFunctionToolBoxWidgetItem *it = new MusicFunctionToolBoxWidgetItem(m_itemIndexRaise, text, this);
     it->addItem(item);

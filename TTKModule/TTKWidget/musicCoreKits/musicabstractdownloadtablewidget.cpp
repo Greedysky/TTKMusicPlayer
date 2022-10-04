@@ -41,7 +41,7 @@ void MusicAbstractDownloadTableWidget::updateSongsFileName(const MusicSongList &
     for(int i = 0; i < m_songs->count(); ++i)
     {
         MusicSong *song = &(*m_songs)[i];
-        createItem(i, *song);
+        addItem(i, *song);
         G_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPairData(song->addTimeStr().toULongLong(), this, m_type));
     }
 }
@@ -119,7 +119,7 @@ void MusicAbstractDownloadTableWidget::createDownloadItem(const QString &name, q
     record.setAddTimeStr(QString::number(time));
     m_songs->append(record);
 
-    createItem(rowCount() - 1, record);
+    addItem(rowCount() - 1, record);
     Q_EMIT updateItemTitle(m_toolIndex);
 }
 

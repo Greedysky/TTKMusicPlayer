@@ -34,7 +34,7 @@ MusicCloudDownloadTableWidget::~MusicCloudDownloadTableWidget()
     G_CONNECTION_PTR->removeValue(className());
 }
 
-void MusicCloudDownloadTableWidget::createItem(int index, const MusicSong &record)
+void MusicCloudDownloadTableWidget::addItem(int index, const MusicSong &record)
 {
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
@@ -97,7 +97,7 @@ void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item
     record.setPath(item.m_path);
     record.setSizeStr(MusicUtils::Number::sizeByte2Label(item.m_dataItem.m_size));
 
-    createItem(count - 1, record);
+    addItem(count - 1, record);
 }
 
 void MusicCloudUploadTableWidget::reuploadFile()
@@ -151,7 +151,7 @@ void MusicCloudUploadTableWidget::reuploadFiles()
     }
 }
 
-void MusicCloudUploadTableWidget::createItem(int index, const MusicSong &record)
+void MusicCloudUploadTableWidget::addItem(int index, const MusicSong &record)
 {
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;

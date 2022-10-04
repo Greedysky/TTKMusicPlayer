@@ -80,7 +80,7 @@ protected:
     /*!
      * Create item by index and name and size and time.
      */
-    virtual void createItem(int index, const MusicSong &record) = 0;
+    virtual void addItem(int index, const MusicSong &record) = 0;
 
     MusicObject::Record m_type;
     MusicProgressBarDelegate *m_progressBarDelegate;

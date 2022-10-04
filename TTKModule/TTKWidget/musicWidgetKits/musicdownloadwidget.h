@@ -116,7 +116,7 @@ public:
     /*!
      * Create current item by given bitrate\type\icon.
      */
-    void createItem(const MusicObject::MusicSongProperty &prop, const QString &type, const QString &icon);
+    void addItem(const MusicObject::MusicSongProperty &prop, const QString &type, const QString &icon);
     /*!
      * Get current bitrate from item.
      */

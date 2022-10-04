@@ -29,7 +29,7 @@ MusicDownloadRecordTableWidget::~MusicDownloadRecordTableWidget()
     G_CONNECTION_PTR->removeValue(className());
 }
 
-void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &record)
+void MusicDownloadRecordTableWidget::addItem(int index, const MusicSong &record)
 {
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
@@ -99,7 +99,7 @@ void MusicDownloadToolBoxWidget::createWidgetItem(MusicAbstractDownloadTableWidg
     setTitle(widget, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 
-MusicFunctionToolBoxWidgetItem *MusicDownloadToolBoxWidget::createItem(QWidget *item, const QString &text)
+MusicFunctionToolBoxWidgetItem *MusicDownloadToolBoxWidget::initialItem(QWidget *item, const QString &text)
 {
     MusicFunctionToolBoxWidgetItem *it = new MusicNormalToolBoxWidgetItem(m_itemIndexRaise, text, this);
     it->addItem(item);

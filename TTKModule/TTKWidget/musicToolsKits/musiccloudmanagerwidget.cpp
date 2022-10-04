@@ -147,7 +147,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItemList &i
         data.m_dataItem = item;
         m_totalFileSzie += item.m_size;
 
-        createItem(data);
+        addItem(data);
     }
 
     Q_EMIT updateLabelMessage(tr("List update finished!"));
@@ -295,7 +295,7 @@ void MusicCloudManagerTableWidget::uploadFileDirToServer()
             item.m_dataItem.m_putTime = fin.lastModified().toString(TTK_YEAR_TIME_FORMAT);
             item.m_dataItem.m_size = fin.size();
 
-            createItem(item);
+            addItem(item);
         }
 
         if(!m_uploading)
@@ -384,6 +384,44 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.exec(QCursor::pos());
 }
 
+void MusicCloudManagerTableWidget::addItem(const MusicCloudDataItem &data)
+{
+    int row = rowCount();
+    setRowCount(row + 1);
+
+    QHeaderView *headerview = horizontalHeader();
+
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setData(MUSIC_DATA_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
+    setItem(row, 0, item);
+
+                      item = new QTableWidgetItem;
+    item->setToolTip(data.m_dataItem.m_name);
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+    setItem(row, 1, item);
+
+                      item = new QTableWidgetItem;
+    item->setData(MUSIC_PROGRESS_ROLE, data.m_dataItem.m_hash.isEmpty() ? 0 : 100);
+    setItem(row, 2, item);
+
+                      item = new QTableWidgetItem;
+    item->setToolTip(MusicUtils::Number::sizeByte2Label(data.m_dataItem.m_size));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 5));
+    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
+    QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
+    setItem(row, 3, item);
+
+                      item = new QTableWidgetItem;
+    item->setToolTip(data.m_dataItem.m_putTime);
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(4) - 5));
+    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
+    QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
+    setItem(row, 4, item);
+}
+
+
 void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
 {
     if(paths.isEmpty())
@@ -407,7 +445,7 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
 
         MusicUtils::Core::sleep(MT_MS);
 
-        createItem(item);
+        addItem(item);
     }
 
     if(!m_uploading)
@@ -456,43 +494,6 @@ void MusicCloudManagerTableWidget::startToUploadFile()
     m_syncUploadData->uploadDataOperator(m_currentDataItem.m_id, MUSIC_BUCKET,
                                        m_currentDataItem.m_dataItem.m_name,
                                        m_currentDataItem.m_path);
-}
-
-void MusicCloudManagerTableWidget::createItem(const MusicCloudDataItem &data)
-{
-    int row = rowCount();
-    setRowCount(row + 1);
-
-    QHeaderView *headerview = horizontalHeader();
-
-    QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(MUSIC_DATA_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
-    setItem(row, 0, item);
-
-                      item = new QTableWidgetItem;
-    item->setToolTip(data.m_dataItem.m_name);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
-    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
-    setItem(row, 1, item);
-
-                      item = new QTableWidgetItem;
-    item->setData(MUSIC_PROGRESS_ROLE, data.m_dataItem.m_hash.isEmpty() ? 0 : 100);
-    setItem(row, 2, item);
-
-                      item = new QTableWidgetItem;
-    item->setToolTip(MusicUtils::Number::sizeByte2Label(data.m_dataItem.m_size));
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 5));
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
-    QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
-    setItem(row, 3, item);
-
-                      item = new QTableWidgetItem;
-    item->setToolTip(data.m_dataItem.m_putTime);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(4) - 5));
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
-    QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
-    setItem(row, 4, item);
 }
 
 int MusicCloudManagerTableWidget::FindUploadItemRow(const QString &time) const

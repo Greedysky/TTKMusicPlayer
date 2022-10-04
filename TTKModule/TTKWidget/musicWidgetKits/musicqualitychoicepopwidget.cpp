@@ -27,7 +27,7 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     setItemDelegateForColumn(2, delegate);
     m_previousClickRow = 0;
 
-    createItems();
+    addItem();
 }
 
 MusicQualityChoiceTableWidget::~MusicQualityChoiceTableWidget()
@@ -35,7 +35,7 @@ MusicQualityChoiceTableWidget::~MusicQualityChoiceTableWidget()
     clear();
 }
 
-void MusicQualityChoiceTableWidget::createItems()
+void MusicQualityChoiceTableWidget::addItem()
 {
     setRowCount(4);
 

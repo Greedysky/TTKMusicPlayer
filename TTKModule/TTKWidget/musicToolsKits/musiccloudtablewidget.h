@@ -40,7 +40,7 @@ protected:
     /*!
      * Create item by index and name and size and time.
      */
-    virtual void createItem(int index, const MusicSong &record) override final;
+    virtual void addItem(int index, const MusicSong &record) override final;
 
 };
 
@@ -83,7 +83,7 @@ protected:
     /*!
      * Create item by index and name and size and time.
      */
-    virtual void createItem(int index, const MusicSong &record) override final;
+    virtual void addItem(int index, const MusicSong &record) override final;
     /*!
      * Override the widget event.
      */

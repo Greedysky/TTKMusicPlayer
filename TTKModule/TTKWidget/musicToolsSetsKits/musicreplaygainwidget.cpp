@@ -134,7 +134,7 @@ void MusicReplayGainWidget::initialize()
     }
 }
 
-void MusicReplayGainWidget::createItemFinished(const QString &track, const QString &album)
+void MusicReplayGainWidget::addItemFinished(const QString &track, const QString &album)
 {
     if(m_currentIndex >= m_paths.count())
     {
@@ -319,7 +319,7 @@ void MusicReplayGainWidget::analysisOutput()
 
     if(!track.isEmpty() || !album.isEmpty())
     {
-        createItemFinished(track, album);
+        addItemFinished(track, album);
     }
 }
 

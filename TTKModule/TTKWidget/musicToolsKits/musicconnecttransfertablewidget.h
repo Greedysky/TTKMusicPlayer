@@ -63,7 +63,7 @@ public Q_SLOTS:
     /*!
      * Create all items.
      */
-    void createItem(const QString &name);
+    void addItem(const QString &name);
 
 };
 

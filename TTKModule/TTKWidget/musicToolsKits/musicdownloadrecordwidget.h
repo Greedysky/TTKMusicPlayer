@@ -40,7 +40,7 @@ protected:
     /*!
      * Create item by index and name and size and time.
      */
-    virtual void createItem(int index, const MusicSong &record) override final;
+    virtual void addItem(int index, const MusicSong &record) override final;
 
 };
 
@@ -72,7 +72,7 @@ protected:
     /*!
      * Create item.
      */
-    virtual MusicFunctionToolBoxWidgetItem* createItem(QWidget *item, const QString &text) override final;
+    virtual MusicFunctionToolBoxWidgetItem* initialItem(QWidget *item, const QString &text) override final;
 
     MusicSongItemList m_songItems;
     MusicDownloadRecordTableWidget *m_downloadTable;

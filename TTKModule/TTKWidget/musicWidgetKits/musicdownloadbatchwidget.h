@@ -44,7 +44,7 @@ public:
     /*!
      * Create current item by song info.
      */
-    void createItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
+    void addItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
     /*!
      * Start to download data.
      */
@@ -101,7 +101,7 @@ public:
     /*!
      * Create current item by song info.
      */
-    void createItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
+    void addItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
     /*!
      * Start to download music data.
      */

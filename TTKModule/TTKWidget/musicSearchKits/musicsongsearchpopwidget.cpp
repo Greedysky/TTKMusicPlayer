@@ -19,7 +19,7 @@ MusicSongSearchPopTableWidget::~MusicSongSearchPopTableWidget()
     removeItems();
 }
 
-void MusicSongSearchPopTableWidget::createItems(int index, const QString &name, const QString &time)
+void MusicSongSearchPopTableWidget::addItem(int index, const QString &name, const QString &time)
 {
     setRowHeight(index, TTK_ITEM_SIZE_M);
 
@@ -93,7 +93,7 @@ MusicSongSearchPopWidget::~MusicSongSearchPopWidget()
     delete m_clearButton;
 }
 
-void MusicSongSearchPopWidget::createItems()
+void MusicSongSearchPopWidget::addItems()
 {
     m_clearButton->show();
     m_popTableWidget->removeItems();
@@ -113,7 +113,7 @@ void MusicSongSearchPopWidget::createItems()
     m_popTableWidget->setRowCount(count);
     for(int i = 0; i < count; ++i)
     {
-        m_popTableWidget->createItems(i, records[i].m_name, utcTimeToLocal(records[i].m_timestamp));
+        m_popTableWidget->addItem(i, records[i].m_name, utcTimeToLocal(records[i].m_timestamp));
     }
 }
 
@@ -128,7 +128,7 @@ void MusicSongSearchPopWidget::createSuggestItems(const QStringList &names)
     m_popTableWidget->setRowCount(count);
     for(int i = 0; i < count; ++i)
     {
-        m_popTableWidget->createItems(i, names[i], QString());
+        m_popTableWidget->addItem(i, names[i], QString());
     }
 }
 

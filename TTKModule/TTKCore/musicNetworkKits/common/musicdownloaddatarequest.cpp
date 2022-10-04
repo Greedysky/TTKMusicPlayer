@@ -3,7 +3,7 @@
 
 MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent)
     : MusicAbstractDownLoadRequest(url, path, type, parent),
-      m_createItemTime(-1),
+      m_createTime(-1),
       m_redirection(false),
       m_needUpdate(true),
       m_recordType(MusicObject::Record::Null)
@@ -50,9 +50,9 @@ void MusicDownloadDataRequest::startRequest(const QString &url)
     /// only download music data can that show progress
     if(m_downloadType == MusicObject::Download::Music && !m_redirection)
     {
-        m_createItemTime = MusicTime::timestamp();
-        G_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPairData(m_createItemTime, this, m_recordType));
-        Q_EMIT createDownloadItem(m_savePath, m_createItemTime);
+        m_createTime = MusicTime::timestamp();
+        G_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPairData(m_createTime, this, m_recordType));
+        Q_EMIT createDownloadItem(m_savePath, m_createTime);
     }
 }
 
@@ -109,7 +109,7 @@ void MusicDownloadDataRequest::downloadProgress(qint64 bytesReceived, qint64 byt
     if(m_downloadType == MusicObject::Download::Music || m_downloadType == MusicObject::Download::Other)
     {
         const QString &total = MusicUtils::Number::sizeByte2Label(bytesTotal);
-        Q_EMIT downloadProgressChanged(bytesTotal != 0 ? bytesReceived * 100.0 / bytesTotal : 0, total, m_createItemTime);
+        Q_EMIT downloadProgressChanged(bytesTotal != 0 ? bytesReceived * 100.0 / bytesTotal : 0, total, m_createTime);
     }
 }
 

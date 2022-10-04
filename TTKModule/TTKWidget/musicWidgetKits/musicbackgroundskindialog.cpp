@@ -122,7 +122,7 @@ QString MusicBackgroundSkinDialog::cpoyArtistFileToLocal(const QString &path)
 void MusicBackgroundSkinDialog::updateArtistFileTheme(const QString &theme)
 {
     const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL, theme, TKM_FILE);
-    m_stackBackgroundList->createItem(theme, des, true);
+    m_stackBackgroundList->addItem(theme, des, true);
     m_stackBackgroundList->updateLastedItem();
 }
 
@@ -191,7 +191,7 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
             m_stackThemeIndex = index;
             QString des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(index + 1).arg(TKM_FILE);
             QFile::copy(path, des);
-            m_stackBackgroundList->createItem(QString("theme-%1").arg(index + 1), des, true);
+            m_stackBackgroundList->addItem(QString("theme-%1").arg(index + 1), des, true);
         }
     }
     else
@@ -240,7 +240,7 @@ void MusicBackgroundSkinDialog::classicalListWidgetItemClicked(int type, const Q
         {
             const QString &path = QString("%1%2%3").arg(USER_THEME_DIR_FULL, name, TKM_FILE);
             QFile::copy(QString("%1%2%3").arg(THEME_DIR_FULL, name, TKM_FILE), path);
-            m_stackBackgroundList->createItem(name, path, true);
+            m_stackBackgroundList->addItem(name, path, true);
         }
         listWidgetItemClicked(m_stackBackgroundList, name);
     }
@@ -323,7 +323,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundRemoteWidge
         const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL, theme, TKM_FILE);
         MusicExtractWrapper::inputSkin(&image, des);
 
-        m_stackBackgroundList->createItem(theme, des, true);
+        m_stackBackgroundList->addItem(theme, des, true);
         listWidgetItemClicked(m_stackBackgroundList, theme);
     }
     else
@@ -351,7 +351,7 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem(MusicBackgroundListWidget
     for(const int index : qAsConst(data))
     {
         const QFileInfo fin(QString("%1theme-%2%3").arg(dir).arg(index).arg(TKM_FILE));
-        item->createItem(fin.baseName(), fin.filePath(), state);
+        item->addItem(fin.baseName(), fin.filePath(), state);
     }
 }
 
@@ -362,7 +362,7 @@ void MusicBackgroundSkinDialog::cpoyFileFromLocal(const QString &path)
     {
         m_stackThemeIndex = index;
         const QString &des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(m_stackThemeIndex + 1).arg(TKM_FILE);
-        m_stackBackgroundList->createItem(QString("theme-%1").arg(m_stackThemeIndex + 1), des, true);
+        m_stackBackgroundList->addItem(QString("theme-%1").arg(m_stackThemeIndex + 1), des, true);
     }
 }
 

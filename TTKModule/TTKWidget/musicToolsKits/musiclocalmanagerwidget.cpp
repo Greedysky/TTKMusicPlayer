@@ -10,22 +10,50 @@ MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *pa
 
     QHeaderView *headerview = horizontalHeader();
     headerview->setVisible(true);
-    headerview->resizeSection(0, 460);
-    headerview->resizeSection(1, 85);
-    headerview->resizeSection(2, 105);
-    headerview->resizeSection(3, 26);
-    headerview->resizeSection(4, 26);
+    headerview->resizeSection(0, 300);
+    headerview->resizeSection(1, 200);
+    headerview->resizeSection(2, 200);
+    headerview->resizeSection(3, 100);
+    headerview->resizeSection(4, 50);
 
-    setHorizontalHeaderLabels({tr("Song"), tr("Artist"), tr("Album"), tr("Year"), tr("Genre")});
+    setHorizontalHeaderLabels({tr("Title"), tr("Artist"), tr("Album"), tr("Year"), tr("Genre")});
     setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    horizontalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle04);
 
     m_songs = new MusicSongList;
 
     setRowCount(1);
+    {
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setText(" sdfsdfsdfeeeeeeeee");
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(0, 0, item);
+    }
+    {
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setText(" sdfsdfsdfeeeeeeeee");
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+    setItem(0, 1, item);
+    }
+    {
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setText(" sdfsdfsdfeeeeeeeee");
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+    setItem(0, 2, item);
+    }
+    {
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setText(" sdfsdfsdfeeeeeeeee");
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+    setItem(0, 3, item);
+    }
+    {
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setText(" sdfsdfsdfeeeeeeeee");
+    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+    setItem(0, 4, item);
+    }
+
 }
 
 MusicLocalManagerSongsTableWidget::~MusicLocalManagerSongsTableWidget()
@@ -89,7 +117,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     QWidget *mainWidget = new QWidget(this);
     QVBoxLayout *mainLayout = new QVBoxLayout(mainWidget);
     mainLayout->setSpacing(10);
-    mainLayout->setContentsMargins(20, 20, 20, 20);
+    mainLayout->setContentsMargins(20, 20, 20, 10);
     mainWidget->setLayout(mainLayout);
     layout->addWidget(mainWidget);
 
@@ -132,19 +160,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     m_tabWidget->setStyleSheet(MusicUIObject::MQSSTabWidgetStyle01 + "QTabBar::tab{ width:120px; }");
     mainLayout->addWidget(m_tabWidget);
     //
-
-    QWidget *songWidget = new QWidget(m_tabWidget);
-    songWidget->setStyleSheet("background:rgb(160,160,160)");
-
-
-    QVBoxLayout *songWidgetLayout = new QVBoxLayout(songWidget);
-    songWidgetLayout->setSpacing(0);
-    songWidgetLayout->setContentsMargins(0, 10, 0, 10);
-    songWidget->setLayout(songWidgetLayout);
-
-songWidgetLayout->addWidget(new MusicLocalManagerSongsTableWidget(songWidget));
-
-
+    QWidget *songWidget = new MusicLocalManagerSongsTableWidget(m_tabWidget);
     m_tabWidget->addTab(songWidget, tr("Song"));
     //
     QWidget *artistWidget = new QWidget(m_tabWidget);
