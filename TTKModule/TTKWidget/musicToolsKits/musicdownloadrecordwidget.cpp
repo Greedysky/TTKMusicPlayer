@@ -94,7 +94,7 @@ void MusicDownloadToolBoxWidget::createWidgetItem(MusicAbstractDownloadTableWidg
     addItem(widget, item->m_itemName);
 
     widget->setToolIndex(item->m_itemIndex);
-    widget->setSongsFileName(&item->m_songs);
+    widget->setSongsList(&item->m_songs);
 
     setTitle(widget, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }

@@ -110,7 +110,7 @@ void MusicPlayedListPopWidget::remove(int index)
     m_playlist->remove(index);
     m_songList.removeAt(index);
 
-    updateSongsFileName();
+    setPlaylistSongs();
 }
 
 void MusicPlayedListPopWidget::remove(int toolIndex, const QString &path)
@@ -128,7 +128,7 @@ void MusicPlayedListPopWidget::remove(int toolIndex, const QString &path)
     } while(index != -1);
     m_playedListWidget->setPlayRowIndex(DEFAULT_NORMAL_LEVEL);
 
-    updateSongsFileName();
+    setPlaylistSongs();
 }
 
 void MusicPlayedListPopWidget::remove(int toolIndex, const MusicSong &song)
@@ -140,14 +140,14 @@ void MusicPlayedListPopWidget::append(int toolIndex, const MusicSong &song)
 {
     m_playlist->append(toolIndex, song.path());
     m_songList << song;
-    updateSongsFileName();
+    setPlaylistSongs();
 }
 
 void MusicPlayedListPopWidget::append(const MusicSongList &song)
 {
     clear();
     m_songList = song;
-    updateSongsFileName();
+    setPlaylistSongs();
 }
 
 void MusicPlayedListPopWidget::insert(int toolIndex, const MusicSong &song)
@@ -167,7 +167,7 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
 
     const int row = m_playedListWidget->playRowIndex();
     m_playedListWidget->removeItems();
-    updateSongsFileName();
+    setPlaylistSongs();
 
     m_playedListWidget->setPlayRowIndex(row);
     m_playedListWidget->selectPlayedRow();
@@ -325,7 +325,7 @@ void MusicPlayedListPopWidget::initialize()
     view->setStyleSheet(QString("#viewport{%1}").arg(background));
 
     m_playedListWidget = new MusicSongsListPlayedTableWidget(this);
-    m_playedListWidget->setSongsFileName(&m_songList);
+    m_playedListWidget->setSongsList(&m_songList);
     connect(m_playedListWidget, SIGNAL(deleteItemAt(TTKIntList)), SLOT(setDeleteItemAt(TTKIntList)));
     connect(m_playedListWidget, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
@@ -390,10 +390,10 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     return topWidget;
 }
 
-void MusicPlayedListPopWidget::updateSongsFileName()
+void MusicPlayedListPopWidget::setPlaylistSongs()
 {
     setPlaylistCount(m_songList.count());
-    m_playedListWidget->updateSongsFileName(m_songList);
+    m_playedListWidget->updateSongsList(m_songList);
 }
 
 void MusicPlayedListPopWidget::setPlaylistCount(int count)

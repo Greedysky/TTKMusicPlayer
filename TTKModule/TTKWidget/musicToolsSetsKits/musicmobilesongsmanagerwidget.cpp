@@ -28,12 +28,14 @@ MusicMobileSongsTableWidget::~MusicMobileSongsTableWidget()
     delete m_songs;
 }
 
-void MusicMobileSongsTableWidget::addItems(const QStringList &path)
+void MusicMobileSongsTableWidget::updateSongsList(const QStringList &songs)
 {
+    setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
-    for(int i = 0; i < path.count(); ++i)
+
+    for(int i = 0; i < songs.count(); ++i)
     {
-        QFileInfo fin(path[i]);
+        QFileInfo fin(songs[i]);
 
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(fin.fileName());
@@ -242,7 +244,7 @@ void MusicMobileSongsManagerWidget::itemDoubleClicked(int row, int)
     Q_EMIT addSongToPlaylist(QStringList(m_fileNames[row]));
 }
 
-void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &name)
+void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &path)
 {
     TTK_LOGGER_INFO("Stop fetch result");
 
@@ -250,7 +252,8 @@ void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &nam
     m_ui->searchLineEdit->clear();
     m_searchResultCache.clear();
 
-    addAllItems(m_fileNames = name);
+    m_fileNames = path;
+    m_ui->songlistTable->updateSongsList(m_fileNames);
     m_ui->loadingLabel->run(false);
 }
 
@@ -273,7 +276,8 @@ void MusicMobileSongsManagerWidget::musicSearchResultChanged(int, int index)
     {
         names.append(m_fileNames[index]);
     }
-    addAllItems(names);
+
+    m_ui->songlistTable->updateSongsList(names);
 }
 
 void MusicMobileSongsManagerWidget::show()
@@ -291,12 +295,6 @@ void MusicMobileSongsManagerWidget::clearAllItems()
     }
 
     m_ui->songlistTable->clear();
-}
-
-void MusicMobileSongsManagerWidget::addAllItems(const QStringList &fileName)
-{
-    m_ui->songlistTable->setRowCount(fileName.count()); //reset row count
-    m_ui->songlistTable->addItems(fileName);
 }
 
 void MusicMobileSongsManagerWidget::selectedItems()

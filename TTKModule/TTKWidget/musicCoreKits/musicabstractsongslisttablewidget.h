@@ -39,13 +39,17 @@ public:
     ~MusicAbstractSongsListTableWidget();
 
     /*!
-     * Set songs file names.
+     * Set songs files.
      */
-    virtual void setSongsFileName(MusicSongList *songs);
+    virtual void setSongsList(MusicSongList *songs);
     /*!
-     * Update songs file names in table.
+     * Update songs files in table.
      */
-    virtual void updateSongsFileName(const MusicSongList &songs);
+    virtual void updateSongsList(const MusicSongList &songs);
+    /*!
+     * Update songs files in table.
+     */
+    virtual void updateSongsList(const QStringList &songs);
     /*!
      * Select the current play row by given index.
      */

@@ -93,7 +93,7 @@ MusicSongSearchPopWidget::~MusicSongSearchPopWidget()
     delete m_clearButton;
 }
 
-void MusicSongSearchPopWidget::addItems()
+void MusicSongSearchPopWidget::initialize()
 {
     m_clearButton->show();
     m_popTableWidget->removeItems();

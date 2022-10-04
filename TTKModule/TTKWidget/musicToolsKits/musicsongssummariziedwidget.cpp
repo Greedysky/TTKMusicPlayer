@@ -153,7 +153,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
         item->m_songs << MusicObject::generateMusicSongList(path);
     }
 
-    item->m_itemObject->updateSongsFileName(item->m_songs);
+    item->m_itemObject->updateSongsList(item->m_songs);
     setItemTitle(item);
     setCurrentIndex(m_selectImportIndex);
 
@@ -196,7 +196,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
         }
 
         item->m_songs << song;
-        item->m_itemObject->updateSongsFileName(item->m_songs);
+        item->m_itemObject->updateSongsList(item->m_songs);
         setItemTitle(item);
     }
     else
@@ -597,7 +597,7 @@ void MusicSongsSummariziedWidget::musicSearchResultChanged(int, int index)
 
         if(item->m_songs.isEmpty())
         {
-            item->m_itemObject->updateSongsFileName(item->m_songs);
+            item->m_itemObject->updateSongsList(item->m_songs);
         }
 
         m_searchResultCache.clear();
@@ -625,7 +625,7 @@ void MusicSongsSummariziedWidget::musicSearchResultChanged(int, int index)
     {
         if(item->m_songs.isEmpty())
         {
-            item->m_itemObject->updateSongsFileName(item->m_songs);
+            item->m_itemObject->updateSongsList(item->m_songs);
         }
 
         m_searchResultLevel = 0;
@@ -670,7 +670,7 @@ void MusicSongsSummariziedWidget::addSongToLovestListAt(bool state, int row)
     if(state)    ///Add to lovest list
     {
         item->m_songs << song;
-        widget->updateSongsFileName(item->m_songs);
+        widget->updateSongsList(item->m_songs);
         setItemTitle(item);
     }
     else        ///Remove to lovest list
@@ -678,7 +678,7 @@ void MusicSongsSummariziedWidget::addSongToLovestListAt(bool state, int row)
         if(item->m_songs.removeOne(song))
         {
             widget->removeItems();
-            widget->updateSongsFileName(item->m_songs);
+            widget->updateSongsList(item->m_songs);
             setItemTitle(item);
             MusicApplication::instance()->setLoveDeleteItemAt(song.path(), m_playToolIndex == MUSIC_LOVEST_LIST);
         }
@@ -698,7 +698,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
     if(state)    ///Add to lovest list
     {
         item->m_songs << song;
-        widget->updateSongsFileName(item->m_songs);
+        widget->updateSongsList(item->m_songs);
         setItemTitle(item);
     }
     else        ///Remove to lovest list
@@ -706,7 +706,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
         if(item->m_songs.removeOne(song))
         {
             widget->removeItems();
-            widget->updateSongsFileName(item->m_songs);
+            widget->updateSongsList(item->m_songs);
             setItemTitle(item);
             MusicApplication::instance()->setLoveDeleteItemAt(song.path(), m_playToolIndex == MUSIC_LOVEST_LIST);
         }
@@ -725,7 +725,7 @@ void MusicSongsSummariziedWidget::addSongBufferToPlaylist(const MusicResultsItem
     if(index == -1)
     {
         item->m_songs << song;
-        item->m_itemObject->updateSongsFileName(item->m_songs);
+        item->m_itemObject->updateSongsList(item->m_songs);
         setItemTitle(item);
         index = item->m_songs.count() - 1;
     }
@@ -882,7 +882,7 @@ void MusicSongsSummariziedWidget::setRecentMusicSongs(int index)
 
         recentSong.setPlayCount(recentSong.playCount() + 1);
         recentSongs->append(recentSong);
-        widget->updateSongsFileName(*recentSongs);
+        widget->updateSongsList(*recentSongs);
 
         const QString title(QString("%1[%2]").arg(item->m_itemName).arg(recentSongs->count()));
         setTitle(widget, title);
@@ -967,7 +967,7 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
     }
 
     widget->removeItems();
-    widget->setSongsFileName(songs);
+    widget->setSongsList(songs);
 
     index = songs->indexOf(song);
     if(m_currentIndex == m_playToolIndex)
@@ -1083,7 +1083,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     ///connect to items
     setInputModule(m_itemList.back().m_widgetItem);
 
-    object->setSongsFileName(&item->m_songs);
+    object->setSongsList(&item->m_songs);
     setTitle(object, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 

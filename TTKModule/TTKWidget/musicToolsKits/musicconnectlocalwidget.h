@@ -38,7 +38,6 @@ public:
      * Object contsructor.
      */
     explicit MusicConnectLocalWidget(QWidget *parent = nullptr);
-
     ~MusicConnectLocalWidget();
 
 private Q_SLOTS:

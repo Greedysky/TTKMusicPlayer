@@ -188,6 +188,7 @@ void MusicConnectLocalWidget::changeStatckedWidgetThird()
         m_mediaWidget = new MusicLocalManagerWidget(this);
     }
 
+    m_mediaWidget->initialize();
     MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::LocalManagerWidget, m_mediaWidget);
 }
 

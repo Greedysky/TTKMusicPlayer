@@ -38,9 +38,9 @@ public:
     ~MusicSongsListPlayedTableWidget();
 
     /*!
-     * Update songs file names in table.
+     * Update songs files in table.
      */
-    virtual void updateSongsFileName(const MusicSongList &songs) override final;
+    virtual void updateSongsList(const MusicSongList &songs) override final;
     /*!
      * Select the current play row by given index.
      */

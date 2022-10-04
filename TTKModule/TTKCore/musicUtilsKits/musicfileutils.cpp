@@ -12,10 +12,12 @@ QStringList MusicUtils::File::fileListByPath(const QString &dpath, const QString
         return QStringList();
     }
 
+    const QString &spr = dpath.endsWith(TTK_SEPARATOR) ? QString() : TTK_SEPARATOR;
+
     QStringList fileList;
     for(const QString &path : dir.entryList(filter, QDir::Files | QDir::Hidden))
     {
-        fileList.append(dpath + path);
+        fileList.append(dpath + spr + path);
     }
 
     if(recursively)

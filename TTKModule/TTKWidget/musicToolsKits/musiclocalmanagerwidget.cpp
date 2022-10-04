@@ -1,12 +1,15 @@
 #include "musiclocalmanagerwidget.h"
 #include "musicsettingmanager.h"
 #include "musicitemsearchedit.h"
+#include "musicsongmeta.h"
+#include "musicfileutils.h"
+#include "musicformats.h"
 
 MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-    setColumnCount(5);
+    setColumnCount(6);
 
     QHeaderView *headerview = horizontalHeader();
     headerview->setVisible(true);
@@ -14,46 +17,17 @@ MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *pa
     headerview->resizeSection(1, 200);
     headerview->resizeSection(2, 200);
     headerview->resizeSection(3, 100);
-    headerview->resizeSection(4, 50);
+    headerview->resizeSection(4, 100);
+    headerview->resizeSection(5, 400);
 
-    setHorizontalHeaderLabels({tr("Title"), tr("Artist"), tr("Album"), tr("Year"), tr("Genre")});
+    setTextElideMode(Qt::ElideRight);
+    setWordWrap(false);
+
+    setHorizontalHeaderLabels({tr("Title"), tr("Artist"), tr("Album"), tr("Year"), tr("Genre"), tr("Path")});
     setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     horizontalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle04);
 
     m_songs = new MusicSongList;
-
-    setRowCount(1);
-    {
-    QTableWidgetItem *item = new QTableWidgetItem;
-    item->setText(" sdfsdfsdfeeeeeeeee");
-    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
-    setItem(0, 0, item);
-    }
-    {
-    QTableWidgetItem *item = new QTableWidgetItem;
-    item->setText(" sdfsdfsdfeeeeeeeee");
-    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
-    setItem(0, 1, item);
-    }
-    {
-    QTableWidgetItem *item = new QTableWidgetItem;
-    item->setText(" sdfsdfsdfeeeeeeeee");
-    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
-    setItem(0, 2, item);
-    }
-    {
-    QTableWidgetItem *item = new QTableWidgetItem;
-    item->setText(" sdfsdfsdfeeeeeeeee");
-    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
-    setItem(0, 3, item);
-    }
-    {
-    QTableWidgetItem *item = new QTableWidgetItem;
-    item->setText(" sdfsdfsdfeeeeeeeee");
-    QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
-    setItem(0, 4, item);
-    }
-
 }
 
 MusicLocalManagerSongsTableWidget::~MusicLocalManagerSongsTableWidget()
@@ -62,46 +36,62 @@ MusicLocalManagerSongsTableWidget::~MusicLocalManagerSongsTableWidget()
     delete m_songs;
 }
 
-//void MusicLocalManagerSongsTableWidget::addItems(const QStringList &path)
-//{
-//    QHeaderView *headerview = horizontalHeader();
-//    for(int i = 0; i < path.count(); ++i)
-//    {
-//        QFileInfo fin(path[i]);
+void MusicLocalManagerSongsTableWidget::updateSongsList(const QStringList &songs)
+{
+    setRowCount(songs.count());
 
-//        QTableWidgetItem *item = new QTableWidgetItem;
-//        item->setToolTip(fin.fileName());
-//        item->setText(" " + MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 20));
-//        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
-//        setItem(i, 0, item);
+    for(int i = 0; i < songs.count(); ++i)
+    {
+        MusicSongMeta meta;
+        QString check;
+        const bool state = meta.read(songs[i]);
 
-//                         item = new QTableWidgetItem;
-//        item->setToolTip(MusicUtils::Number::sizeByte2Label(fin.size()));
-//        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
-//        QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
-//        setItem(i, 1, item);
+        QTableWidgetItem *item = new QTableWidgetItem;
+        item->setToolTip(state ? meta.artist() + " - " + meta.title() : TTK_DEFAULT_STR);
+        item->setText(item->toolTip());
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 0, item);
 
-//                         item = new QTableWidgetItem(fin.lastModified().date().toString(Qt::ISODate));
-//        QtItemSetTextAlignment(item, Qt::AlignCenter);
-//        setItem(i, 2, item);
+                         item = new QTableWidgetItem;
+        item->setToolTip(state ? ((check = meta.artist()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+        item->setText(item->toolTip());
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 1, item);
 
-//                         item = new QTableWidgetItem;
-//        item->setIcon(QIcon(":/contextMenu/btn_audition"));
-//        setItem(i, 3, item);
+                item = new QTableWidgetItem;
+        item->setToolTip(state ? ((check = meta.album()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+        item->setText(item->toolTip());
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 2, item);
 
-//                         item = new QTableWidgetItem;
-//        item->setIcon(QIcon(":/contextMenu/btn_add"));
-//        setItem(i, 4, item);
+                item = new QTableWidgetItem;
+        item->setToolTip(state ? ((check = meta.year()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+        item->setText(item->toolTip());
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 3, item);
 
-//        m_songs->append(MusicSong(fin.absoluteFilePath()));
-//    }
-//}
+                item = new QTableWidgetItem;
+        item->setToolTip(state ? ((check = meta.genre()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+        item->setText(item->toolTip());
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 4, item);
+
+                item = new QTableWidgetItem;
+        item->setToolTip(meta.fileRelatedPath());
+        item->setText(item->toolTip());
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 5, item);
+
+        m_songs->append(MusicSong(meta.fileRelatedPath()));
+    }
+}
 
 void MusicLocalManagerSongsTableWidget::removeItems()
 {
     MusicAbstractSongsListTableWidget::removeItems();
     m_songs->clear();
 }
+
 
 
 MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
@@ -157,7 +147,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
 
     m_tabWidget = new QTabWidget(mainWidget);
     m_tabWidget->setFocusPolicy(Qt::NoFocus);
-    m_tabWidget->setStyleSheet(MusicUIObject::MQSSTabWidgetStyle01 + "QTabBar::tab{ width:120px; }");
+    m_tabWidget->setStyleSheet(MusicUIObject::MQSSTabWidgetStyle01);
     mainLayout->addWidget(m_tabWidget);
     //
     QWidget *songWidget = new MusicLocalManagerSongsTableWidget(m_tabWidget);
@@ -179,14 +169,23 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     genreWidget->setStyleSheet("background:rgb(40,40,40)");
     m_tabWidget->addTab(genreWidget, tr("Genre"));
 
-    typeIndexChanged(0);
+    m_fileWatcher = new QFileSystemWatcher(this);
 
     connect(m_tabWidget, SIGNAL(currentChanged(int)), SLOT(typeIndexChanged(int)));
+    connect(m_fileWatcher, SIGNAL(directoryChanged(QString)), SLOT(mediaPathChanged(QString)));
 }
 
 MusicLocalManagerWidget::~MusicLocalManagerWidget()
 {
+    delete m_tabWidget;
+    delete m_searchEdit;
+    delete m_fileWatcher;
+}
 
+void MusicLocalManagerWidget::initialize()
+{
+    mediaPathChanged("/home/greedysky/qmmp_all/files/modplug/");
+    m_fileWatcher->addPath("/home/greedysky/qmmp_all/files/modplug/");
 }
 
 void MusicLocalManagerWidget::resizeWindow()
@@ -230,6 +229,12 @@ void MusicLocalManagerWidget::typeIndexChanged(int index)
         default: break;
     }
     m_searchEdit->editor()->clear();
+}
+
+void MusicLocalManagerWidget::mediaPathChanged(const QString &path)
+{
+    TTKStatic_cast(MusicLocalManagerSongsTableWidget*, m_tabWidget->widget(0))->
+    updateSongsList(MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats()));
 }
 
 void MusicLocalManagerWidget::resizeEvent(QResizeEvent *event)

@@ -71,7 +71,7 @@ MusicSongsListTableWidget::~MusicSongsListTableWidget()
     delete m_renameEditDelegate;
 }
 
-void MusicSongsListTableWidget::updateSongsFileName(const MusicSongList &songs)
+void MusicSongsListTableWidget::updateSongsList(const MusicSongList &songs)
 {
     if(createUploadFileModule())
     {
@@ -167,7 +167,7 @@ void MusicSongsListTableWidget::updateSearchFileName(MusicSongList *songs, const
     removeItems();
     if(!m_songs->isEmpty())
     {
-        updateSongsFileName(*m_songs);
+        updateSongsList(*m_songs);
     }
     else
     {

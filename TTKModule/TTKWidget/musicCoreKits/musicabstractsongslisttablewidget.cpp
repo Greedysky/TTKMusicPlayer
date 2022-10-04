@@ -29,13 +29,18 @@ MusicAbstractSongsListTableWidget::~MusicAbstractSongsListTableWidget()
 
 }
 
-void MusicAbstractSongsListTableWidget::setSongsFileName(MusicSongList *songs)
+void MusicAbstractSongsListTableWidget::setSongsList(MusicSongList *songs)
 {
     m_songs = songs;
-    updateSongsFileName(*songs);
+    updateSongsList(*songs);
 }
 
-void MusicAbstractSongsListTableWidget::updateSongsFileName(const MusicSongList &songs)
+void MusicAbstractSongsListTableWidget::updateSongsList(const MusicSongList &songs)
+{
+    Q_UNUSED(songs);
+}
+
+void MusicAbstractSongsListTableWidget::updateSongsList(const QStringList &songs)
 {
     Q_UNUSED(songs);
 }

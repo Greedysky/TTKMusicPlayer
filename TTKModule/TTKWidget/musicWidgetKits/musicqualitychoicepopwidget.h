@@ -48,7 +48,7 @@ public Q_SLOTS:
     /*!
      * Create Table widget item.
      */
-    void addItem();
+    void initialize();
 
 };
 

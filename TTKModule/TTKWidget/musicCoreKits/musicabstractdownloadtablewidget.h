@@ -36,9 +36,9 @@ public:
     ~MusicAbstractDownloadTableWidget();
 
     /*!
-     * Read all config from file and insert items.
+     * Update songs files in table.
      */
-    virtual void updateSongsFileName(const MusicSongList &songs) override final;
+    virtual void updateSongsList(const MusicSongList &songs) override final;
 
 Q_SIGNALS:
     /*!

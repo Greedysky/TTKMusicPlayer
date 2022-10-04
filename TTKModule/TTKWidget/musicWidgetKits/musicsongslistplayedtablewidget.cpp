@@ -31,7 +31,7 @@ MusicSongsListPlayedTableWidget::~MusicSongsListPlayedTableWidget()
     delete m_songsPlayWidget;
 }
 
-void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongList &songs)
+void MusicSongsListPlayedTableWidget::updateSongsList(const MusicSongList &songs)
 {
     const int count = rowCount();
     setRowCount(songs.count());

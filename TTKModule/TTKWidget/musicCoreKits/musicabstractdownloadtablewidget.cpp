@@ -26,9 +26,10 @@ MusicAbstractDownloadTableWidget::~MusicAbstractDownloadTableWidget()
     delete m_progressBarDelegate;
 }
 
-void MusicAbstractDownloadTableWidget::updateSongsFileName(const MusicSongList &songs)
+void MusicAbstractDownloadTableWidget::updateSongsList(const MusicSongList &songs)
 {
     Q_UNUSED(songs);
+
     MusicDownloadRecordConfigManager xml(m_type, this);
     if(!xml.fromFile())
     {

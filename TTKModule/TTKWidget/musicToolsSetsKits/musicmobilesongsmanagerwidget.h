@@ -38,9 +38,9 @@ public:
     ~MusicMobileSongsTableWidget();
 
     /*!
-     * Add show list items.
+     * Update songs files in table.
      */
-    void addItems(const QStringList &path);
+    virtual void updateSongsList(const QStringList &songs) override final;
 
 public Q_SLOTS:
     /*!
@@ -109,7 +109,7 @@ public Q_SLOTS:
     /*!
      * Send the searched file or path.
      */
-    void searchFilePathChanged(const QStringList &name);
+    void searchFilePathChanged(const QStringList &path);
     /*!
      * Search result from list.
      */
@@ -125,10 +125,6 @@ protected:
      * Clear All Items.
      */
     void clearAllItems();
-    /*!
-     * Add all file items into list.
-     */
-    void addAllItems(const QStringList &name);
     /*!
      * Set current item or items selected.
      */

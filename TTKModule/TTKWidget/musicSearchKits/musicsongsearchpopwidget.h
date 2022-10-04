@@ -78,7 +78,7 @@ public:
     /*!
      * Create popup search history table items.
      */
-    void addItems();
+    void initialize();
     /*!
      * Create popup search suggest table items.
      */

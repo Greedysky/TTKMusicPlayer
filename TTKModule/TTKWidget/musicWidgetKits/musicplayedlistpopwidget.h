@@ -162,9 +162,9 @@ protected:
      */
     QWidget *createContainerWidget();
     /*!
-     * Update songs file names.
+     * Set play list songs files.
      */
-    void updateSongsFileName();
+    void setPlaylistSongs();
     /*!
      * Set play list count.
      */
