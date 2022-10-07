@@ -16,7 +16,7 @@ MusicFillItemTableWidget::MusicFillItemTableWidget(QWidget *parent)
 
 MusicFillItemTableWidget::~MusicFillItemTableWidget()
 {
-    clear();
+    removeItems();
     delete m_checkBoxDelegate;
 }
 

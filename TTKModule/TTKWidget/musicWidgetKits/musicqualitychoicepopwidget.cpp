@@ -32,7 +32,7 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
 
 MusicQualityChoiceTableWidget::~MusicQualityChoiceTableWidget()
 {
-    clear();
+    removeItems();
 }
 
 void MusicQualityChoiceTableWidget::initialize()

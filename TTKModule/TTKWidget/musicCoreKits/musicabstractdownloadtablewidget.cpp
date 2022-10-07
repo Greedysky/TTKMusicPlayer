@@ -21,7 +21,7 @@ MusicAbstractDownloadTableWidget::~MusicAbstractDownloadTableWidget()
     G_CONNECTION_PTR->removeValue(className());
     MusicDownloadRecordConfigManager xml(m_type, this);
     xml.writeBuffer(*m_songs);
-    clear();
+    removeItems();
 
     delete m_progressBarDelegate;
 }

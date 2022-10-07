@@ -26,10 +26,12 @@ MusicCloudFileInformationWidget::~MusicCloudFileInformationWidget()
 void MusicCloudFileInformationWidget::setFileInformation(QSyncDataItem *data)
 {
     m_ui->filePathEdit->setText(data->m_name);
-    m_ui->fileFormatEdit->setText(data->m_mimeType);
     m_ui->fileSizeEdit->setText(MusicUtils::Number::sizeByte2Label(data->m_size));
     m_ui->fileKeyEdit->setText(data->m_hash);
     m_ui->fileUpdateTimeEdit->setText(data->m_putTime);
+
+    const QString &suffix = FILE_SUFFIX(QFileInfo(data->m_name));
+    m_ui->fileFormatEdit->setText(suffix.isEmpty() ? data->m_mimeType : suffix);
 }
 
 int MusicCloudFileInformationWidget::exec()

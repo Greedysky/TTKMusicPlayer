@@ -122,12 +122,13 @@ void MusicCloudManagerTableWidget::downLoadFinished(const QByteArray &bytes)
             QSyncConfig::KEY = value["secret"].toByteArray();
         }
     }
+
     Q_EMIT finished();
 }
 
 void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItemList &items)
 {
-    clear();
+    removeItems();
     m_totalFileSzie = 0;
 
     const int count = items.count();
