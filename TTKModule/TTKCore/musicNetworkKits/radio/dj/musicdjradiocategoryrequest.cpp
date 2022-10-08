@@ -46,7 +46,7 @@ void MusicDJRadioCategoryRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_name = value["name"].toString();
                     result.m_id = value["id"].toString();
                     result.m_coverUrl = value["picMacUrl"].toString();

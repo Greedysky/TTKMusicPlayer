@@ -13,7 +13,7 @@ void MusicLrcCommentsWidget::initialize(bool isPain)
     MusicCommentsWidget::initialize(isPain);
 
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeSongCommentRequest(this);
-    connect(m_networkRequest, SIGNAL(createSearchedItem(MusicResultsItem)), SLOT(createSearchedItem(MusicResultsItem)));
+    connect(m_networkRequest, SIGNAL(createCommentItem(MusicResultDataItem)), SLOT(createCommentItem(MusicResultDataItem)));
 }
 
 void MusicLrcCommentsWidget::wheelEvent(QWheelEvent *event)

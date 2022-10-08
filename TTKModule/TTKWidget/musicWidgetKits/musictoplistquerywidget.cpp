@@ -36,7 +36,7 @@ MusicToplistQueryWidget::MusicToplistQueryWidget(QWidget *parent)
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeToplistRequest(this);
     m_queryTableWidget->setQueryInput(m_networkRequest);
 
-    connect(m_networkRequest, SIGNAL(createToplistInfoItem(MusicResultsItem)), SLOT(createToplistInfoItem(MusicResultsItem)));
+    connect(m_networkRequest, SIGNAL(createToplistItem(MusicResultDataItem)), SLOT(createToplistItem(MusicResultDataItem)));
 }
 
 MusicToplistQueryWidget::~MusicToplistQueryWidget()
@@ -184,7 +184,7 @@ void MusicToplistQueryWidget::createLabels()
     m_resizeWidgets.push_back({descriptionLabel, descriptionLabel->font()});
 }
 
-void MusicToplistQueryWidget::createToplistInfoItem(const MusicResultsItem &item)
+void MusicToplistQueryWidget::createToplistItem(const MusicResultDataItem &item)
 {
     if(!m_resizeWidgets.isEmpty())
     {

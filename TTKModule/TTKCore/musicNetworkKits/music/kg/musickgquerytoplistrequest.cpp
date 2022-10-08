@@ -84,7 +84,7 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                     info.m_discNumber = "1";
                     info.m_trackNumber = "0";
 
-                    MusicResultsItem albumInfo;
+                    MusicResultDataItem albumInfo;
                     TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAlbumInfo(&albumInfo, info.m_albumId);
                     info.m_albumName = albumInfo.m_nickName;
@@ -99,7 +99,7 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                         continue;
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;
@@ -137,7 +137,7 @@ bool MusicKGQueryToplistRequest::initialize()
         if(value.contains("data"))
         {
             value = value["data"].toMap();
-            MusicResultsItem result;
+            MusicResultDataItem result;
             result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["timestamp"].toLongLong() * 1000).toString(TTK_YEAR_FORMAT);
 
             const QVariantList &datas = value["info"].toList();
@@ -159,7 +159,7 @@ bool MusicKGQueryToplistRequest::initialize()
                 result.m_coverUrl = value["banner7url"].toString().replace("{size}", "400");
                 result.m_playCount = value["play_times"].toString();
                 result.m_description = value["intro"].toString();
-                Q_EMIT createToplistInfoItem(result);
+                Q_EMIT createToplistItem(result);
                 return true;
             }
         }

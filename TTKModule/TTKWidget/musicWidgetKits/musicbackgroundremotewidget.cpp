@@ -75,7 +75,7 @@ void MusicBackgroundRemoteWidget::startToDownload(const QString &prefix)
         m_backgroundList->addItem(":/image/lb_none_image", false);
         MusicDownloadQueueData data;
         data.m_url = item.m_url;
-        data.m_savePath = QString("%1/%2%3").arg(path).arg(item.m_index).arg(prefix);
+        data.m_path = QString("%1/%2%3").arg(path).arg(item.m_index).arg(prefix);
         datas << data;
     }
 

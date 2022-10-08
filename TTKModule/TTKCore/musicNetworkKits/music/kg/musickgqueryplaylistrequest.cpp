@@ -51,7 +51,7 @@ void MusicKGQueryPlaylistRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(reply, this, replyError);
 }
 
-void MusicKGQueryPlaylistRequest::queryPlaylistInfo(MusicResultsItem &item)
+void MusicKGQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
 {
     TTK_LOGGER_INFO(QString("%1 queryPlaylistInfo %2").arg(className(), item.m_id));
 
@@ -130,7 +130,7 @@ void MusicKGQueryPlaylistRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
                     result.m_id = QString::number(value["specialid"].toULongLong());
                     result.m_name = value["specialname"].toString();
@@ -195,7 +195,7 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
                     info.m_discNumber = "1";
                     info.m_trackNumber = "0";
 
-                    MusicResultsItem albumInfo;
+                    MusicResultDataItem albumInfo;
                     TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAlbumInfo(&albumInfo, info.m_albumId);
                     info.m_albumName = albumInfo.m_nickName;
@@ -211,7 +211,7 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
                         continue;
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;

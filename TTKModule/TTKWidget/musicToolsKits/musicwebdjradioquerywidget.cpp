@@ -48,7 +48,7 @@ MusicWebDJRadioQueryItemWidget::~MusicWebDJRadioQueryItemWidget()
     delete m_creatorLabel;
 }
 
-void MusicWebDJRadioQueryItemWidget::setMusicResultsItem(const MusicResultsItem &item)
+void MusicWebDJRadioQueryItemWidget::setMusicResultDataItem(const MusicResultDataItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
@@ -104,7 +104,7 @@ MusicWebDJRadioQueryWidget::MusicWebDJRadioQueryWidget(QWidget *parent)
     m_gridLayout = nullptr;
     m_pageQueryWidget = nullptr;
     m_networkRequest = new MusicDJRadioProgramCategoryRequest(this);
-    connect(m_networkRequest, SIGNAL(createProgramItem(MusicResultsItem)), SLOT(createProgramItem(MusicResultsItem)));
+    connect(m_networkRequest, SIGNAL(createProgramItem(MusicResultDataItem)), SLOT(createProgramItem(MusicResultDataItem)));
 }
 
 MusicWebDJRadioQueryWidget::~MusicWebDJRadioQueryWidget()
@@ -123,7 +123,7 @@ void MusicWebDJRadioQueryWidget::setSongName(const QString &name)
 void MusicWebDJRadioQueryWidget::setSongNameById(const QString &id)
 {
     MusicAbstractItemQueryWidget::setSongName(id);
-    MusicResultsItem result;
+    MusicResultDataItem result;
     result.m_id = id;
     currentRadioClicked(result);
 }
@@ -150,7 +150,7 @@ void MusicWebDJRadioQueryWidget::resizeWindow()
     }
 }
 
-void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultsItem &item)
+void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &item)
 {
     if(!m_initialized)
     {
@@ -208,8 +208,8 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultsItem &item)
     }
 
     MusicWebDJRadioQueryItemWidget *label = new MusicWebDJRadioQueryItemWidget(this);
-    connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SLOT(currentRadioClicked(MusicResultsItem)));
-    label->setMusicResultsItem(item);
+    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentRadioClicked(MusicResultDataItem)));
+    label->setMusicResultDataItem(item);
 
     int lineNumber = width() / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
@@ -217,7 +217,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultsItem &item)
     m_resizeWidgets.push_back({label, label->font()});
 }
 
-void MusicWebDJRadioQueryWidget::currentRadioClicked(const MusicResultsItem &item)
+void MusicWebDJRadioQueryWidget::currentRadioClicked(const MusicResultDataItem &item)
 {
     delete m_infoWidget;
     m_infoWidget = new MusicWebDJRadioInfoWidget(this);

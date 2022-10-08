@@ -93,7 +93,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
                         continue;
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_duration = info.m_duration;
@@ -138,12 +138,12 @@ void MusicKGQueryMovieRequest::downLoadPageFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_id = value["hash"].toString();
                     result.m_coverUrl = value["imgurl"].toString();
                     result.m_name = value["filename"].toString();
                     result.m_updateTime.clear();
-                    Q_EMIT createMovieInfoItem(result);
+                    Q_EMIT createMovieItem(result);
                 }
             }
         }
@@ -169,7 +169,7 @@ void MusicKGQueryMovieRequest::downLoadSingleFinished()
 
     if(!info.m_songProps.isEmpty())
     {
-        MusicSearchedItem item;
+        MusicResultInfoItem item;
         item.m_songName = info.m_songName;
         item.m_singerName = info.m_singerName;
         item.m_duration = info.m_duration;

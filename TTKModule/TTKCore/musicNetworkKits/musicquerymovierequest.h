@@ -48,7 +48,7 @@ Q_SIGNALS:
     /*!
      * Create the current movie info item.
      */
-    void createMovieInfoItem(const MusicResultsItem &item);
+    void createMovieItem(const MusicResultDataItem &item);
 
 };
 

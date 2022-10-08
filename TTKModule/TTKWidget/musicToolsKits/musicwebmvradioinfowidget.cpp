@@ -113,7 +113,7 @@ MusicWebMVRadioInfoWidget::MusicWebMVRadioInfoWidget(QWidget *parent)
 
     MusicMVRadioProgramRequest *v = new MusicMVRadioProgramRequest(this);
     m_queryTableWidget->setQueryInput(v);
-    connect(v, SIGNAL(createCategoryItem(MusicResultsItem)), SLOT(createCategoryInfoItem(MusicResultsItem)));
+    connect(v, SIGNAL(createCategoryItem(MusicResultDataItem)), SLOT(createCategoryInfoItem(MusicResultDataItem)));
 }
 
 void MusicWebMVRadioInfoWidget::setSongName(const QString &name)
@@ -148,7 +148,7 @@ void MusicWebMVRadioInfoWidget::queryAllFinished()
     setSongCountText();
 }
 
-void MusicWebMVRadioInfoWidget::createCategoryInfoItem(const MusicResultsItem &item)
+void MusicWebMVRadioInfoWidget::createCategoryInfoItem(const MusicResultDataItem &item)
 {
     m_currentPlaylistItem = item;
 

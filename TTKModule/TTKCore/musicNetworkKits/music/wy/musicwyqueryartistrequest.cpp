@@ -96,7 +96,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                     if(!artistFound)
                     {
                         artistFound = true;
-                        MusicResultsItem result;
+                        MusicResultDataItem result;
                         TTK_NETWORK_QUERY_CHECK();
                         queryArtistIntro(&result);
                         TTK_NETWORK_QUERY_CHECK();
@@ -104,10 +104,10 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                         result.m_name = info.m_singerName;
                         result.m_nickName = artistObject["trans"].toString();
                         result.m_coverUrl = info.m_coverUrl;
-                        Q_EMIT createArtistInfoItem(result);
+                        Q_EMIT createArtistItem(result);
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;
@@ -124,7 +124,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicWYQueryArtistRequest::queryArtistIntro(MusicResultsItem *item) const
+void MusicWYQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) const
 {
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,

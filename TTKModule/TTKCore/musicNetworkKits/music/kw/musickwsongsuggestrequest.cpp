@@ -50,7 +50,7 @@ void MusicKWSongSuggestRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_name = MusicUtils::String::charactersReplaced(value["SONGNAME"].toString());
                     result.m_nickName = MusicUtils::String::charactersReplaced(value["ARTIST"].toString());
                     m_items << result;

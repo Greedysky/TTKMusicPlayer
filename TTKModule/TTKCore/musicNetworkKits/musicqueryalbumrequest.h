@@ -47,7 +47,7 @@ Q_SIGNALS:
     /*!
      * Create the current album info item.
      */
-    void createAlbumInfoItem(const MusicResultsItem &item);
+    void createAlbumItem(const MusicResultDataItem &item);
 
 };
 

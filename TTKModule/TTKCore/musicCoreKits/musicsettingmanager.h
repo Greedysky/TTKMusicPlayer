@@ -54,6 +54,7 @@ public:
         WindowQuitMode,                  /*!< Window Quit Mode Parameter*/
         ExtraDevicePath,                 /*!< Extra Device Path Parameter*/
         LastFileDialogPath,              /*!< Last File Dialog Path Parameter*/
+        MediaLibraryPath,                /*!< Media Library Path Parameter*/
         //
         BackgroundThemeValue,            /*!< Background Theme Parameter*/
         BackgroundTransparent,           /*!< Background Transparent Parameter*/

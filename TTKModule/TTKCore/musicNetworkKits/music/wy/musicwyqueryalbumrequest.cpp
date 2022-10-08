@@ -58,7 +58,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
             {
                 bool albumFound = false;
                 //
-                MusicResultsItem result;
+                MusicResultDataItem result;
                 const QVariantMap &albumValue = value["album"].toMap();
                 result.m_coverUrl = albumValue["picUrl"].toString();
                 result.m_description = albumValue["name"].toString() + TTK_SPLITER +
@@ -119,10 +119,10 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                         albumFound = true;
                         result.m_id = info.m_albumId;
                         result.m_name = info.m_singerName;
-                        Q_EMIT createAlbumInfoItem(result);
+                        Q_EMIT createAlbumItem(result);
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;
@@ -166,12 +166,12 @@ void MusicWYQueryAlbumRequest::downLoadSingleFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_id = QString::number(value["id"].toULongLong());
                     result.m_coverUrl = value["picUrl"].toString();
                     result.m_name = value["name"].toString();
                     result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["publishTime"].toULongLong()).toString("yyyy.MM.dd");
-                    Q_EMIT createAlbumInfoItem(result);
+                    Q_EMIT createAlbumItem(result);
                 }
             }
         }

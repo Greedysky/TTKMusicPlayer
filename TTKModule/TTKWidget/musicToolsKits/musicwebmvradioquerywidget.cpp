@@ -41,7 +41,7 @@ MusicWebMVRadioQueryItemWidget::~MusicWebMVRadioQueryItemWidget()
     delete m_nameLabel;
 }
 
-void MusicWebMVRadioQueryItemWidget::setMusicResultsItem(const MusicResultsItem &item)
+void MusicWebMVRadioQueryItemWidget::setMusicResultDataItem(const MusicResultDataItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
@@ -113,7 +113,7 @@ MusicWebMVRadioQueryWidget::MusicWebMVRadioQueryWidget(QWidget *parent)
     m_gridLayout = nullptr;
     m_categoryButton = nullptr;
     m_networkRequest = new MusicMVRadioCategoryRequest(this);
-    connect(m_networkRequest, SIGNAL(createCategoryItem(MusicResultsItem)), SLOT(createCategoryItem(MusicResultsItem)));
+    connect(m_networkRequest, SIGNAL(createCategoryItem(MusicResultDataItem)), SLOT(createCategoryItem(MusicResultDataItem)));
 }
 
 MusicWebMVRadioQueryWidget::~MusicWebMVRadioQueryWidget()
@@ -156,7 +156,7 @@ void MusicWebMVRadioQueryWidget::resizeWindow()
     }
 }
 
-void MusicWebMVRadioQueryWidget::createCategoryItem(const MusicResultsItem &item)
+void MusicWebMVRadioQueryWidget::createCategoryItem(const MusicResultDataItem &item)
 {
     if(!m_initialized)
     {
@@ -196,8 +196,8 @@ void MusicWebMVRadioQueryWidget::createCategoryItem(const MusicResultsItem &item
     }
 
     MusicWebMVRadioQueryItemWidget *label = new MusicWebMVRadioQueryItemWidget(this);
-    connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SLOT(currentRadioClicked(MusicResultsItem)));
-    label->setMusicResultsItem(item);
+    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentRadioClicked(MusicResultDataItem)));
+    label->setMusicResultDataItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
@@ -205,7 +205,7 @@ void MusicWebMVRadioQueryWidget::createCategoryItem(const MusicResultsItem &item
     m_resizeWidgets.push_back({label, label->font()});
 }
 
-void MusicWebMVRadioQueryWidget::currentRadioClicked(const MusicResultsItem &item)
+void MusicWebMVRadioQueryWidget::currentRadioClicked(const MusicResultDataItem &item)
 {
     delete m_infoWidget;
     m_infoWidget = new MusicWebMVRadioInfoWidget(this);

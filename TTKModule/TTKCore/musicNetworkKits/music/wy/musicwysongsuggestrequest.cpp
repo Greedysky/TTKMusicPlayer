@@ -51,7 +51,7 @@ void MusicWYSongSuggestRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_name = MusicUtils::String::charactersReplaced(value["name"].toString());
                     const QVariantList &artistsArray = value["artists"].toList();
                     for(const QVariant &artistValue : qAsConst(artistsArray))

@@ -61,7 +61,7 @@ Q_SIGNALS:
     /*!
      * Add current network music buffer to playlist.
      */
-    void songBufferToPlaylist(const MusicResultsItem &songItem);
+    void songBufferToPlaylist(const MusicResultDataItem &songItem);
     /*!
      * Restart search query by name.
      */
@@ -77,7 +77,7 @@ public Q_SLOTS:
      * Create searched items.
      * Subclass should implement this function.
      */
-    virtual void createSearchedItem(const MusicSearchedItem &songItem) = 0;
+    virtual void createSearchedItem(const MusicResultInfoItem &songItem) = 0;
 
 protected:
     MusicAbstractQueryRequest *m_networkRequest;

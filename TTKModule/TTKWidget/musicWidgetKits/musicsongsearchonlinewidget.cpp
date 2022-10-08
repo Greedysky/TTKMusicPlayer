@@ -183,7 +183,7 @@ void MusicSongSearchTableWidget::removeItems()
     setColumnCount(9);
 }
 
-void MusicSongSearchTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
+void MusicSongSearchTableWidget::createSearchedItem(const MusicResultInfoItem &songItem)
 {
     const int count = rowCount();
     setRowCount(count + 1);
@@ -319,7 +319,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
     {
         const MusicObject::MusicSongProperty &prop = props.front();
 
-        MusicResultsItem result;
+        MusicResultDataItem result;
         result.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
         result.m_updateTime = info.m_duration;
         result.m_id = info.m_songId;

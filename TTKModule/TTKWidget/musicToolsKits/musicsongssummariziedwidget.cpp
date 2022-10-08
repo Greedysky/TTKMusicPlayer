@@ -713,7 +713,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
     }
 }
 
-void MusicSongsSummariziedWidget::addSongBufferToPlaylist(const MusicResultsItem &songItem)
+void MusicSongsSummariziedWidget::addSongBufferToPlaylist(const MusicResultDataItem &songItem)
 {
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
     const QByteArray &md5 = MusicUtils::Algorithm::md5(songItem.m_id.toUtf8());

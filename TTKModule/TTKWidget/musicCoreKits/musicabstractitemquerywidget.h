@@ -104,7 +104,7 @@ protected:
     QPushButton *m_songButton;
     QLabel *m_iconLabel, *m_statusLabel, *m_infoLabel;
     QStackedWidget *m_container;
-    MusicResultsItem m_currentPlaylistItem;
+    MusicResultDataItem m_currentPlaylistItem;
     MusicItemQueryTableWidget *m_queryTableWidget;
     MusicAbstractQueryRequest *m_networkRequest;
     MusicSongSharingWidget::Module m_shareType;

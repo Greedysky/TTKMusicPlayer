@@ -42,13 +42,13 @@ public:
     /*!
      * Set music results item.
      */
-    void setMusicResultsItem(const MusicResultsItem &item);
+    void setMusicResultDataItem(const MusicResultDataItem &item);
 
 Q_SIGNALS:
     /*!
      * Current item clicked.
      */
-    void currentItemClicked(const MusicResultsItem &item);
+    void currentItemClicked(const MusicResultDataItem &item);
 
 public Q_SLOTS:
     /*!
@@ -62,7 +62,7 @@ public Q_SLOTS:
 
 protected:
     QLabel *m_iconLabel, *m_nameLabel;
-    MusicResultsItem m_itemData;
+    MusicResultDataItem m_itemData;
 
 };
 
@@ -94,7 +94,7 @@ Q_SIGNALS:
     /*!
      * Current category clicked.
      */
-    void currentCategoryClicked(const MusicResultsItem &item);
+    void currentCategoryClicked(const MusicResultDataItem &item);
 
 public Q_SLOTS:
     /*!

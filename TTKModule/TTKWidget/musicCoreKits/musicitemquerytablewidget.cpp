@@ -234,7 +234,7 @@ void MusicItemQueryTableWidget::removeItems()
     setColumnCount(8);
 }
 
-void MusicItemQueryTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
+void MusicItemQueryTableWidget::createSearchedItem(const MusicResultInfoItem &songItem)
 {
     const int count = rowCount();
     setRowCount(count + 1);
@@ -334,7 +334,7 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const MusicObject::MusicSongInf
     {
         const MusicObject::MusicSongProperty &prop = props.front();
 
-        MusicResultsItem result;
+        MusicResultDataItem result;
         result.m_name = info.m_singerName + " - " + info.m_songName;
         result.m_updateTime = info.m_duration;
         result.m_id = info.m_songId;

@@ -66,7 +66,7 @@ void MusicKGQueryRecommendRequest::downLoadFinished()
                     info.m_discNumber = "1";
                     info.m_trackNumber = "0";
 
-                    MusicResultsItem albumInfo;
+                    MusicResultDataItem albumInfo;
                     TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAlbumInfo(&albumInfo, info.m_albumId);
                     info.m_albumName = MusicUtils::String::charactersReplaced(albumInfo.m_nickName);
@@ -81,7 +81,7 @@ void MusicKGQueryRecommendRequest::downLoadFinished()
                         continue;
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;

@@ -21,10 +21,10 @@
 
 #include "musicpagequeryrequest.h"
 
-/*! @brief The class of the searched data item.
+/*! @brief The class of the search result info item.
  * @author Greedysky <greedysky@163.com>
  */
-struct TTK_MODULE_EXPORT MusicSearchedItem
+struct TTK_MODULE_EXPORT MusicResultInfoItem
 {
     QString m_songName;
     QString m_singerName;
@@ -32,7 +32,7 @@ struct TTK_MODULE_EXPORT MusicSearchedItem
     QString m_duration;
     QString m_type;
 
-    MusicSearchedItem()
+    MusicResultInfoItem()
         : m_songName(TTK_DEFAULT_STR),
           m_singerName(TTK_DEFAULT_STR),
           m_albumName(TTK_DEFAULT_STR),
@@ -43,10 +43,10 @@ struct TTK_MODULE_EXPORT MusicSearchedItem
     }
 };
 
-/*! @brief The class of the search song results data item.
+/*! @brief The class of the search result data item.
  * @author Greedysky <greedysky@163.com>
  */
-struct TTK_MODULE_EXPORT MusicResultsItem
+struct TTK_MODULE_EXPORT MusicResultDataItem
 {
     QString m_id;
     QString m_name;
@@ -57,7 +57,7 @@ struct TTK_MODULE_EXPORT MusicResultsItem
     QString m_updateTime;
     QString m_tags;
 
-    MusicResultsItem()
+    MusicResultDataItem()
         : m_id(TTK_DEFAULT_STR),
           m_name(TTK_DEFAULT_STR),
           m_nickName(TTK_DEFAULT_STR),
@@ -75,7 +75,7 @@ struct TTK_MODULE_EXPORT MusicResultsItem
         return m_name == TTK_DEFAULT_STR || m_nickName == TTK_DEFAULT_STR || m_coverUrl == TTK_DEFAULT_STR || m_description == TTK_DEFAULT_STR || m_tags == TTK_DEFAULT_STR;
     }
 };
-TTK_DECLARE_LIST(MusicResultsItem);
+TTK_DECLARE_LIST(MusicResultDataItem);
 
 #define QUERY_WY_INTERFACE      "WangYi"
 #define QUERY_TX_INTERFACE      "Tencent"
@@ -187,7 +187,7 @@ Q_SIGNALS:
     /*!
      * Create the current items by song name\ artist name and time.
      */
-    void createSearchedItem(const MusicSearchedItem &songItem);
+    void createSearchedItem(const MusicResultInfoItem &songItem);
 
 public Q_SLOTS:
     /*!

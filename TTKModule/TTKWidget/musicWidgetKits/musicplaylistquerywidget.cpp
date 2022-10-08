@@ -57,7 +57,7 @@ MusicPlaylistQueryItemWidget::~MusicPlaylistQueryItemWidget()
     delete m_creatorLabel;
 }
 
-void MusicPlaylistQueryItemWidget::setMusicResultsItem(const MusicResultsItem &item)
+void MusicPlaylistQueryItemWidget::setMusicResultDataItem(const MusicResultDataItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
@@ -134,7 +134,7 @@ MusicPlaylistQueryWidget::MusicPlaylistQueryWidget(QWidget *parent)
     m_container->addWidget(m_mainWindow);
 
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makePlaylistRequest(this);
-    connect(m_networkRequest, SIGNAL(createPlaylistItem(MusicResultsItem)), SLOT(createPlaylistItem(MusicResultsItem)));
+    connect(m_networkRequest, SIGNAL(createPlaylistItem(MusicResultDataItem)), SLOT(createPlaylistItem(MusicResultDataItem)));
 }
 
 MusicPlaylistQueryWidget::~MusicPlaylistQueryWidget()
@@ -155,7 +155,7 @@ void MusicPlaylistQueryWidget::setSongNameById(const QString &id)
 {
     setSongName(id);
 
-    MusicResultsItem result;
+    MusicResultDataItem result;
     result.m_id = id;
     currentPlaylistClicked(result);
 }
@@ -182,7 +182,7 @@ void MusicPlaylistQueryWidget::resizeWindow()
     }
 }
 
-void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultsItem &item)
+void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &item)
 {
     if(!m_initialized)
     {
@@ -246,8 +246,8 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultsItem &item)
     }
 
     MusicPlaylistQueryItemWidget *label = new MusicPlaylistQueryItemWidget(this);
-    connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SLOT(currentPlaylistClicked(MusicResultsItem)));
-    label->setMusicResultsItem(item);
+    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentPlaylistClicked(MusicResultDataItem)));
+    label->setMusicResultDataItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
@@ -255,19 +255,19 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultsItem &item)
     m_resizeWidgets.push_back({label, label->font()});
 }
 
-void MusicPlaylistQueryWidget::currentPlaylistClicked(const MusicResultsItem &item)
+void MusicPlaylistQueryWidget::currentPlaylistClicked(const MusicResultDataItem &item)
 {
     delete m_infoWidget;
     m_infoWidget = new MusicPlaylistQueryInfoWidget(this);
     MusicQueryPlaylistRequest *d = TTKStatic_cast(MusicQueryPlaylistRequest*, G_DOWNLOAD_QUERY_PTR->makePlaylistRequest(this));
-    MusicResultsItem it(item);
+    MusicResultDataItem it(item);
     if(it.isEmpty())
     {
         d->queryPlaylistInfo(it);
     }
 
     m_infoWidget->setQueryInput(d);
-    m_infoWidget->setMusicResultsItem(it, this);
+    m_infoWidget->setMusicResultDataItem(it, this);
     m_container->addWidget(m_infoWidget);
     m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_1);
 }

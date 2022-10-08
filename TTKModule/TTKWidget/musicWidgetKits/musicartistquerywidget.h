@@ -38,7 +38,7 @@ public:
     /*!
      * Set music results item.
      */
-    void setMusicResultsItem(const MusicResultsItem &item);
+    void setMusicResultDataItem(const MusicResultDataItem &item);
 
 Q_SIGNALS:
     /*!
@@ -61,7 +61,7 @@ public Q_SLOTS:
     void currentItemClicked();
 
 protected:
-    MusicResultsItem m_itemData;
+    MusicResultDataItem m_itemData;
     QPushButton *m_playButton;
     QLabel *m_iconLabel, *m_nameLabel, *m_updateLabel;
 
@@ -101,7 +101,7 @@ public Q_SLOTS:
     /*!
      * Create the current albums item.
      */
-    void createArtistMvsItem(const MusicResultsItem &item);
+    void createArtistMvsItem(const MusicResultDataItem &item);
     /*!
      * Current item clicked.
      */
@@ -151,7 +151,7 @@ public Q_SLOTS:
     /*!
      * Create the current albums item.
      */
-    void createArtistAlbumsItem(const MusicResultsItem &item);
+    void createArtistAlbumsItem(const MusicResultDataItem &item);
     /*!
      * Current item clicked.
      */
@@ -225,7 +225,7 @@ public Q_SLOTS:
     /*!
      * Create the current artist info item.
      */
-    void createArtistInfoItem(const MusicResultsItem &item);
+    void createArtistItem(const MusicResultDataItem &item);
     /*!
      * Set current container index.
      */

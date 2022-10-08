@@ -54,7 +54,7 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
             {
                 bool albumFound = false;
                 //
-                MusicResultsItem result;
+                MusicResultDataItem result;
                 value = value["data"].toMap();
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -105,10 +105,10 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
                         result.m_id = info.m_albumId;
                         result.m_name = info.m_singerName;
                         result.m_coverUrl = info.m_coverUrl;
-                        Q_EMIT createAlbumInfoItem(result);
+                        Q_EMIT createAlbumItem(result);
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;
@@ -153,12 +153,12 @@ void MusicKGQueryAlbumRequest::downLoadSingleFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_id = value["albumid"].toString();
                     result.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
                     result.m_name = value["albumname"].toString();
                     result.m_updateTime = MusicUtils::String::stringSplit(value["publishtime"].toString().replace(TTK_DEFAULT_STR, TTK_DOT), " ").front();
-                    Q_EMIT createAlbumInfoItem(result);
+                    Q_EMIT createAlbumItem(result);
                 }
             }
         }

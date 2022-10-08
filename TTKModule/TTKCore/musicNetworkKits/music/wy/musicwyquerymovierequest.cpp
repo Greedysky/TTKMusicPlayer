@@ -141,12 +141,12 @@ void MusicWYQueryMovieRequest::downLoadPageFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_id = QString::number(value["id"].toLongLong());
                     result.m_coverUrl = value["imgurl"].toString();
                     result.m_name = value["name"].toString();
                     result.m_updateTime.clear();
-                    Q_EMIT createMovieInfoItem(result);
+                    Q_EMIT createMovieItem(result);
                 }
             }
         }
@@ -232,7 +232,7 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
                 return;
             }
 
-            MusicSearchedItem item;
+            MusicResultInfoItem item;
             item.m_songName = info.m_songName;
             item.m_singerName = info.m_singerName;
             item.m_duration = info.m_duration;
@@ -313,7 +313,7 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
                 return;
             }
 
-            MusicSearchedItem item;
+            MusicResultInfoItem item;
             item.m_songName = info.m_songName;
             item.m_singerName = info.m_singerName;
             item.m_duration = info.m_duration;

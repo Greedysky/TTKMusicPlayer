@@ -50,16 +50,16 @@ public:
     /*!
      * Get suggest list items.
      */
-    inline const MusicResultsItemList& searchedItems() const { return m_items; }
+    inline const MusicResultDataItemList& searchedItems() const { return m_items; }
 
 Q_SIGNALS:
     /*!
      * Create the current category item.
      */
-    void createProgramItem(const MusicResultsItem &item);
+    void createProgramItem(const MusicResultDataItem &item);
 
 protected:
-    MusicResultsItemList m_items;
+    MusicResultDataItemList m_items;
 
 };
 

@@ -104,7 +104,7 @@ public Q_SLOTS:
     /*!
      * Create the current category info item.
      */
-    void createCategoryInfoItem(const MusicResultsItem &item);
+    void createCategoryInfoItem(const MusicResultDataItem &item);
     /*!
      * Download button clicked now.
      */

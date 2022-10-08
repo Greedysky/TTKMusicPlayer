@@ -50,7 +50,7 @@ public:
     /*!
      * Query playlist info.
      */
-    virtual void queryPlaylistInfo(MusicResultsItem &item) override final;
+    virtual void queryPlaylistInfo(MusicResultDataItem &item) override final;
 
 public Q_SLOTS:
     /*!

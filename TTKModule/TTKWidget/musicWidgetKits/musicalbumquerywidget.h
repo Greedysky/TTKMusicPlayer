@@ -82,7 +82,7 @@ public Q_SLOTS:
     /*!
      * Create the current album info item.
      */
-    void createAlbumInfoItem(const MusicResultsItem &item);
+    void createAlbumItem(const MusicResultDataItem &item);
 
 protected:
     /*!

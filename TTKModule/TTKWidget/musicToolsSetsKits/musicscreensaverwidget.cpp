@@ -377,17 +377,17 @@ void MusicScreenSaverWidget::initialize()
 
         MusicDownloadQueueData wallData;
         wallData.m_url = url + OS_WALLPAPER_NAME;
-        wallData.m_savePath = path + OS_WALLPAPER_NAME;
+        wallData.m_path = path + OS_WALLPAPER_NAME;
         datas << wallData;
 
         MusicDownloadQueueData barData;
         barData.m_url = url + OS_WALLBAR_NAME;
-        barData.m_savePath = path + OS_WALLBAR_NAME;
+        barData.m_path = path + OS_WALLBAR_NAME;
         datas << barData;
 
         MusicDownloadQueueData nailData;
         nailData.m_url = url + OS_WALLNAIL_NAME;
-        nailData.m_savePath = path + OS_WALLNAIL_NAME;
+        nailData.m_path = path + OS_WALLNAIL_NAME;
         datas << nailData;
     }
 

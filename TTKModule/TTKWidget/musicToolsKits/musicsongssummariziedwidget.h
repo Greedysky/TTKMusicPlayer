@@ -175,7 +175,7 @@ public Q_SLOTS:
     /*!
      * Add current network music buffer to playlist.
      */
-    void addSongBufferToPlaylist(const MusicResultsItem &songItem);
+    void addSongBufferToPlaylist(const MusicResultDataItem &songItem);
     /*!
      * Add current selected song to play list.
      */

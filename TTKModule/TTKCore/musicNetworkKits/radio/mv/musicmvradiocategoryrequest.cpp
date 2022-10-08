@@ -44,7 +44,7 @@ void MusicMVRadioCategoryRequest::downLoadFinished()
                         value = var.toMap();
                         TTK_NETWORK_QUERY_CHECK();
 
-                        MusicResultsItem result;
+                        MusicResultDataItem result;
                         result.m_name = value["fmName"].toString();
                         result.m_id = value["fmId"].toString();
                         result.m_coverUrl = value["imgUrlMv"].toString();

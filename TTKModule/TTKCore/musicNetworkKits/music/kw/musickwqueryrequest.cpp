@@ -169,7 +169,7 @@ void MusicKWQueryRequest::downLoadFinished()
                             return;
                         }
 
-                        MusicSearchedItem item;
+                        MusicResultInfoItem item;
                         item.m_songName = info.m_songName;
                         item.m_singerName = info.m_singerName;
                         item.m_albumName = info.m_albumName;
@@ -219,7 +219,7 @@ void MusicKWQueryRequest::downLoadSingleFinished()
 
             if(!info.m_songProps.isEmpty())
             {
-                MusicSearchedItem item;
+                MusicResultInfoItem item;
                 item.m_songName = info.m_songName;
                 item.m_singerName = info.m_singerName;
                 item.m_duration = info.m_duration;

@@ -22,7 +22,7 @@ MusicWebDJRadioProgramTableWidget::MusicWebDJRadioProgramTableWidget(QWidget *pa
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
     m_programThread = new MusicDJRadioProgramRequest(this);
-    connect(m_programThread, SIGNAL(createProgramItem(MusicResultsItem)), SLOT(createProgramItem(MusicResultsItem)));
+    connect(m_programThread, SIGNAL(createProgramItem(MusicResultDataItem)), SLOT(createProgramItem(MusicResultDataItem)));
 }
 
 MusicWebDJRadioProgramTableWidget::~MusicWebDJRadioProgramTableWidget()
@@ -65,7 +65,7 @@ void MusicWebDJRadioProgramTableWidget::itemCellEntered(int row, int column)
 void MusicWebDJRadioProgramTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
-    MusicResultsItemList items(m_programThread->searchedItems());
+    MusicResultDataItemList items(m_programThread->searchedItems());
     if(row < 0 || row >= items.count())
     {
         return;
@@ -79,7 +79,7 @@ void MusicWebDJRadioProgramTableWidget::itemCellClicked(int row, int column)
     }
 }
 
-void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem &data)
+void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultDataItem &data)
 {
     const int index = rowCount();
     setRowCount(index + 1);
@@ -299,7 +299,7 @@ void MusicWebDJRadioWidget::programItemClicked(const QString &rid, const QString
     setCurrentWidget(m_queryTableWidget);
 }
 
-void MusicWebDJRadioWidget::currentCategoryClicked(const MusicResultsItem &item)
+void MusicWebDJRadioWidget::currentCategoryClicked(const MusicResultDataItem &item)
 {
     programItemClicked("-1", item.m_id);
 }
@@ -363,7 +363,7 @@ void MusicWebDJRadioWidget::initFirstWidget()
     layout->addWidget(line);
     //
     m_categoryWidget = new MusicWebDJRadioCategoryWidget(this);
-    connect(m_categoryWidget, SIGNAL(currentCategoryClicked(MusicResultsItem)), SLOT(currentCategoryClicked(MusicResultsItem)));
+    connect(m_categoryWidget, SIGNAL(currentCategoryClicked(MusicResultDataItem)), SLOT(currentCategoryClicked(MusicResultDataItem)));
     layout->addWidget(m_categoryWidget);
 
     addWidget(w);

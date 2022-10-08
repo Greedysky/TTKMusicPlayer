@@ -72,7 +72,7 @@ void MusicKWQueryArtistListRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_id = value["id"].toString();
                     result.m_name = value["name"].toString();
                     Q_EMIT createArtistListItem(result);

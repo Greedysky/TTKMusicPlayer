@@ -42,13 +42,13 @@ public:
     /*!
      * Set music results item.
      */
-    void setMusicResultsItem(const MusicResultsItem &item);
+    void setMusicResultDataItem(const MusicResultDataItem &item);
 
 Q_SIGNALS:
     /*!
      * Current item clicked.
      */
-    void currentItemClicked(const MusicResultsItem &item);
+    void currentItemClicked(const MusicResultDataItem &item);
 
 public Q_SLOTS:
     /*!
@@ -65,7 +65,7 @@ public Q_SLOTS:
     void currentItemClicked();
 
 protected:
-    MusicResultsItem m_itemData;
+    MusicResultDataItem m_itemData;
     QPushButton *m_playButton;
     QLabel *m_iconLabel, *m_nameLabel, *m_creatorLabel;
 
@@ -111,11 +111,11 @@ public Q_SLOTS:
     /*!
      * Query all quality musics is finished.
      */
-    void createProgramItem(const MusicResultsItem &item);
+    void createProgramItem(const MusicResultDataItem &item);
     /*!
      * Current radio clicked.
      */
-    void currentRadioClicked(const MusicResultsItem &item);
+    void currentRadioClicked(const MusicResultDataItem &item);
     /*!
      * Set current index to main menu page.
      */

@@ -9,7 +9,7 @@ MusicDownloadQueueRequest::MusicDownloadQueueRequest(MusicObject::Download type,
 }
 
 MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueData &data, MusicObject::Download type, QObject *parent)
-    : MusicAbstractDownLoadRequest(data.m_url, data.m_savePath, type, parent),
+    : MusicAbstractDownLoadRequest(data.m_url, data.m_path, type, parent),
       m_isDownload(false),
       m_isAbort(false)
 {
@@ -70,9 +70,9 @@ void MusicDownloadQueueRequest::startOrderImageQueue()
 {
     if(!m_imageQueue.isEmpty())
     {
-        if(QFile::exists(m_imageQueue.front().m_savePath))
+        if(QFile::exists(m_imageQueue.front().m_path))
         {
-            Q_EMIT downLoadDataChanged(m_imageQueue.takeFirst().m_savePath);
+            Q_EMIT downLoadDataChanged(m_imageQueue.takeFirst().m_path);
             startOrderImageQueue();
         }
         else if(G_NETWORK_PTR->isOnline())
@@ -86,7 +86,7 @@ void MusicDownloadQueueRequest::startDownload(const QString &url)
 {
     m_isDownload = true;
     delete m_file;
-    m_file = new QFile(m_imageQueue.front().m_savePath, this);
+    m_file = new QFile(m_imageQueue.front().m_path, this);
     if(!m_file->open(QFile::WriteOnly))
     {
         m_file->close();
@@ -120,7 +120,7 @@ void MusicDownloadQueueRequest::downLoadFinished()
     m_file->close();
     m_isDownload = false;
     MusicAbstractNetwork::deleteAll();
-    Q_EMIT downLoadDataChanged(m_imageQueue.takeFirst().m_savePath);
+    Q_EMIT downLoadDataChanged(m_imageQueue.takeFirst().m_path);
 
     startOrderImageQueue();
 }

@@ -47,7 +47,7 @@ Q_SIGNALS:
     /*!
      * Create the current toplist info item.
      */
-    void createToplistInfoItem(const MusicResultsItem &item);
+    void createToplistItem(const MusicResultDataItem &item);
 
 };
 

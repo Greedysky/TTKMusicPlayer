@@ -42,7 +42,7 @@ public:
     /*!
      * Create the current song comment.
      */
-    void createSearchedItem(const MusicResultsItem &comments);
+    void createItem(const MusicResultDataItem &comments);
 
 private Q_SLOTS:
     /*!
@@ -85,7 +85,7 @@ public Q_SLOTS:
     /*!
      * Create the current song comment.
      */
-    void createSearchedItem(const MusicResultsItem &comments);
+    void createCommentItem(const MusicResultDataItem &comments);
     /*!
      * Page widget button has changed.
      */

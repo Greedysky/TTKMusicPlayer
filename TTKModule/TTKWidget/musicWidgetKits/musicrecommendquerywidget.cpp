@@ -21,7 +21,7 @@ void MusicRecommendQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *qu
     }
 }
 
-void MusicRecommendQueryTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
+void MusicRecommendQueryTableWidget::createSearchedItem(const MusicResultInfoItem &songItem)
 {
     if(rowCount() >= 50)
     {

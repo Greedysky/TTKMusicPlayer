@@ -67,7 +67,7 @@ public Q_SLOTS:
     /*!
      * Create the current program info item.
      */
-    void createProgramItem(const MusicResultsItem &item);
+    void createProgramItem(const MusicResultDataItem &item);
     /*!
      * Send recieved data from net.
      */
@@ -152,7 +152,7 @@ public Q_SLOTS:
     /*!
      * Current category clicked.
      */
-    void currentCategoryClicked(const MusicResultsItem &item);
+    void currentCategoryClicked(const MusicResultDataItem &item);
 
 protected:
     /*!

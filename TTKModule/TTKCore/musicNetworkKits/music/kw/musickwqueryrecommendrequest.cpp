@@ -75,7 +75,7 @@ void MusicKWQueryRecommendRequest::downLoadFinished()
                         return;
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;

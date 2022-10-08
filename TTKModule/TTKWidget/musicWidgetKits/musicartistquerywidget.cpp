@@ -51,7 +51,7 @@ MusicArtistAlbumsItemWidget::~MusicArtistAlbumsItemWidget()
     delete m_updateLabel;
 }
 
-void MusicArtistAlbumsItemWidget::setMusicResultsItem(const MusicResultsItem &item)
+void MusicArtistAlbumsItemWidget::setMusicResultDataItem(const MusicResultDataItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
@@ -110,7 +110,7 @@ MusicArtistMvsQueryWidget::MusicArtistMvsQueryWidget(QWidget *parent)
 
     m_shareType = MusicSongSharingWidget::Module::Artist;
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this);
-    connect(m_networkRequest, SIGNAL(createMovieInfoItem(MusicResultsItem)), SLOT(createArtistMvsItem(MusicResultsItem)));
+    connect(m_networkRequest, SIGNAL(createMovieItem(MusicResultDataItem)), SLOT(createArtistMvsItem(MusicResultDataItem)));
 }
 
 MusicArtistMvsQueryWidget::~MusicArtistMvsQueryWidget()
@@ -147,7 +147,7 @@ void MusicArtistMvsQueryWidget::resizeWindow()
     }
 }
 
-void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultsItem &item)
+void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultDataItem &item)
 {
     if(!m_initialized)
     {
@@ -161,7 +161,7 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultsItem &item
 
     MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
-    label->setMusicResultsItem(item);
+    label->setMusicResultDataItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
@@ -204,7 +204,7 @@ MusicArtistAlbumsQueryWidget::MusicArtistAlbumsQueryWidget(QWidget *parent)
 
     m_shareType = MusicSongSharingWidget::Module::Artist;
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
-    connect(m_networkRequest, SIGNAL(createAlbumInfoItem(MusicResultsItem)), SLOT(createArtistAlbumsItem(MusicResultsItem)));
+    connect(m_networkRequest, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createArtistAlbumsItem(MusicResultDataItem)));
 }
 
 MusicArtistAlbumsQueryWidget::~MusicArtistAlbumsQueryWidget()
@@ -241,11 +241,11 @@ void MusicArtistAlbumsQueryWidget::resizeWindow()
     }
 }
 
-void MusicArtistAlbumsQueryWidget::createArtistAlbumsItem(const MusicResultsItem &item)
+void MusicArtistAlbumsQueryWidget::createArtistAlbumsItem(const MusicResultDataItem &item)
 {
     MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
-    label->setMusicResultsItem(item);
+    label->setMusicResultDataItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
@@ -314,7 +314,7 @@ void MusicArtistQueryWidget::setSongNameById(const QString &id)
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeArtistRequest(this);
     m_queryTableWidget->setQueryInput(d);
     m_queryTableWidget->startSearchQuery(id);
-    connect(d, SIGNAL(createArtistInfoItem(MusicResultsItem)), SLOT(createArtistInfoItem(MusicResultsItem)));
+    connect(d, SIGNAL(createArtistItem(MusicResultDataItem)), SLOT(createArtistItem(MusicResultDataItem)));
 }
 
 void MusicArtistQueryWidget::resizeWindow()
@@ -395,7 +395,7 @@ void MusicArtistQueryWidget::queryArtistFinished()
     }
 }
 
-void MusicArtistQueryWidget::createArtistInfoItem(const MusicResultsItem &item)
+void MusicArtistQueryWidget::createArtistItem(const MusicResultDataItem &item)
 {
     m_currentPlaylistItem = item;
 

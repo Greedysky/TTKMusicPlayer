@@ -26,8 +26,8 @@
  */
 struct TTK_MODULE_EXPORT MusicDownloadQueueData
 {
-    QString m_url;        ///*download url*/
-    QString m_savePath;   ///*save local path*/
+    QString m_url;    ///*download url*/
+    QString m_path;   ///*save local path*/
 };
 TTK_DECLARE_LIST(MusicDownloadQueueData);
 

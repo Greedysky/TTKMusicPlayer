@@ -32,7 +32,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                 QVariantMap value = var.toMap();
                 TTK_NETWORK_QUERY_CHECK();
 
-                MusicResultsItem result;
+                MusicResultDataItem result;
                 result.m_nickName = value["className"].toString();
 
                 for(const QVariant &var : value["fm_list"].toList())
@@ -87,7 +87,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                                 continue;
                             }
 
-                            MusicSearchedItem item;
+                            MusicResultInfoItem item;
                             item.m_songName = info.m_songName;
                             item.m_singerName = info.m_singerName;
                             item.m_duration = info.m_duration;

@@ -53,7 +53,7 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(reply, this, replyError);
 }
 
-void MusicDJRadioProgramCategoryRequest::queryProgramInfo(MusicResultsItem &item)
+void MusicDJRadioProgramCategoryRequest::queryProgramInfo(MusicResultDataItem &item)
 {
     TTK_LOGGER_INFO(QString("%1 queryProgramInfo %2").arg(className(), item.m_id));
 
@@ -114,7 +114,7 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_id = QString::number(value["id"].toInt());
 
                     result.m_coverUrl = value["picUrl"].toString();
@@ -179,7 +179,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                     if(!categoryFound)
                     {
                         categoryFound = true;
-                        MusicResultsItem result;
+                        MusicResultDataItem result;
                         result.m_name = info.m_songName;
                         result.m_nickName = info.m_singerName;
                         result.m_coverUrl = info.m_coverUrl;
@@ -193,7 +193,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                         continue;
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName.clear();

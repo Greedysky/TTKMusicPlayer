@@ -42,13 +42,13 @@ public:
     /*!
      * Set music results item.
      */
-    void setMusicResultsItem(const MusicResultsItem &item);
+    void setMusicResultDataItem(const MusicResultDataItem &item);
 
 Q_SIGNALS:
     /*!
      * Current item clicked.
      */
-    void currentItemClicked(const MusicResultsItem &item);
+    void currentItemClicked(const MusicResultDataItem &item);
 
 public Q_SLOTS:
     /*!
@@ -71,7 +71,7 @@ protected:
     virtual void enterEvent(QtEnterEvent *event) override final;
     virtual void leaveEvent(QEvent *event) override final;
 
-    MusicResultsItem m_itemData;
+    MusicResultDataItem m_itemData;
     QPushButton *m_playButton;
     QLabel *m_iconLabel, *m_nameLabel;
 
@@ -111,11 +111,11 @@ public Q_SLOTS:
     /*!
      * Create the current category item.
      */
-    void createCategoryItem(const MusicResultsItem &item);
+    void createCategoryItem(const MusicResultDataItem &item);
     /*!
      * Current item clicked.
      */
-    void currentRadioClicked(const MusicResultsItem &item);
+    void currentRadioClicked(const MusicResultDataItem &item);
     /*!
      * Set current index to main menu page.
      */

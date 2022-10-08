@@ -20,6 +20,7 @@ MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *pa
     headerview->resizeSection(4, 100);
     headerview->resizeSection(5, 400);
 
+    setFrameShape(QFrame::Box);
     setTextElideMode(Qt::ElideRight);
     setWordWrap(false);
 
@@ -82,7 +83,6 @@ void MusicLocalManagerSongsTableWidget::updateSongsList(const QStringList &songs
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);
 
-        qApp->processEvents();
         m_songs->append(MusicSong(meta.fileRelatedPath()));
     }
 }
@@ -186,7 +186,12 @@ MusicLocalManagerWidget::~MusicLocalManagerWidget()
 void MusicLocalManagerWidget::initialize()
 {
     mediaPathChanged("/home/greedysky/qmmp_all/files/modplug/");
-    m_fileWatcher->addPath("/home/greedysky/qmmp_all/files/modplug/");
+
+    const QString &path = G_SETTING_PTR->value(MusicSettingManager::MediaLibraryPath).toString();
+    if(!path.isEmpty())
+    {
+        m_fileWatcher->addPath(path);
+    }
 }
 
 void MusicLocalManagerWidget::resizeWindow()

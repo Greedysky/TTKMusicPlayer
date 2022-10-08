@@ -69,7 +69,7 @@ void MusicKGQueryArtistRequest::downLoadFinished()
                     info.m_discNumber = "1";
                     info.m_trackNumber = "0";
 
-                    MusicResultsItem albumInfo;
+                    MusicResultDataItem albumInfo;
                     TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAlbumInfo(&albumInfo, info.m_albumId);
                     info.m_albumName = albumInfo.m_nickName;
@@ -88,7 +88,7 @@ void MusicKGQueryArtistRequest::downLoadFinished()
                     if(!artistFound)
                     {
                         artistFound = true;
-                        MusicResultsItem result;
+                        MusicResultDataItem result;
                         TTK_NETWORK_QUERY_CHECK();
                         queryArtistIntro(&result);
                         TTK_NETWORK_QUERY_CHECK();
@@ -96,10 +96,10 @@ void MusicKGQueryArtistRequest::downLoadFinished()
                         result.m_id = m_queryValue;
                         result.m_name = info.m_singerName;
                         result.m_coverUrl = info.m_coverUrl;
-                        Q_EMIT createArtistInfoItem(result);
+                        Q_EMIT createArtistItem(result);
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;
@@ -116,7 +116,7 @@ void MusicKGQueryArtistRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicKGQueryArtistRequest::queryArtistIntro(MusicResultsItem *item) const
+void MusicKGQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) const
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_INFO_URL, false).arg(m_queryValue));

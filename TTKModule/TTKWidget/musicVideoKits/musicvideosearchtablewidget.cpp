@@ -168,7 +168,7 @@ void MusicVideoSearchTableWidget::removeItems()
     setColumnCount(9);
 }
 
-void MusicVideoSearchTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
+void MusicVideoSearchTableWidget::createSearchedItem(const MusicResultInfoItem &songItem)
 {
     const int count = rowCount();
     setRowCount(count + 1);

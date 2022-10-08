@@ -47,7 +47,7 @@ Q_SIGNALS:
     /*!
      * Create the current playlist item.
      */
-    void createArtistListItem(const MusicResultsItem &item);
+    void createArtistListItem(const MusicResultDataItem &item);
 
 };
 

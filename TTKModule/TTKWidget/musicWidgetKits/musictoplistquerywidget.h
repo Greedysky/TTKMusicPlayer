@@ -82,7 +82,7 @@ public Q_SLOTS:
     /*!
      * Create the current toplist info item.
      */
-    void createToplistInfoItem(const MusicResultsItem &item);
+    void createToplistItem(const MusicResultDataItem &item);
     /*!
      * Current category changed.
      */

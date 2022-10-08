@@ -51,17 +51,17 @@ public:
     /*!
      * Query category info.
      */
-    void queryProgramInfo(MusicResultsItem &item);
+    void queryProgramInfo(MusicResultDataItem &item);
 
 Q_SIGNALS:
     /*!
      * Create the current category item.
      */
-    void createProgramItem(const MusicResultsItem &item);
+    void createProgramItem(const MusicResultDataItem &item);
     /*!
      * Create the current category info item.
      */
-    void createCategoryInfoItem(const MusicResultsItem &item);
+    void createCategoryInfoItem(const MusicResultDataItem &item);
 
 public Q_SLOTS:
     /*!

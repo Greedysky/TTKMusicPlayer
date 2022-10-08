@@ -53,7 +53,7 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(reply, this, replyError);
 }
 
-void MusicWYQueryPlaylistRequest::queryPlaylistInfo(MusicResultsItem &item)
+void MusicWYQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
 {
     TTK_LOGGER_INFO(QString("%1 queryPlaylistInfo %2").arg(className(), item.m_id));
 
@@ -130,7 +130,7 @@ void MusicWYQueryPlaylistRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_coverUrl = value["coverImgUrl"].toString();
                     result.m_id = QString::number(value["id"].toULongLong());
                     result.m_name = value["name"].toString();
@@ -227,7 +227,7 @@ void MusicWYQueryPlaylistRequest::downloadDetailsFinished()
                         continue;
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;

@@ -41,13 +41,13 @@ public:
     /*!
      * Query playlist info.
      */
-    virtual void queryPlaylistInfo(MusicResultsItem &item) = 0;
+    virtual void queryPlaylistInfo(MusicResultDataItem &item) = 0;
 
 Q_SIGNALS:
     /*!
      * Create the current playlist item.
      */
-    void createPlaylistItem(const MusicResultsItem &item);
+    void createPlaylistItem(const MusicResultDataItem &item);
 
 };
 

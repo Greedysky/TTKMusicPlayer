@@ -71,14 +71,14 @@ void MusicWYSongCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     const QVariantMap &user = value["user"].toMap();
                     result.m_nickName = user["nickname"].toString();
                     result.m_coverUrl = user["avatarUrl"].toString();
                     result.m_playCount = QString::number(value["likedCount"].toLongLong());
                     result.m_updateTime = QString::number(value["time"].toLongLong());
                     result.m_description = value["content"].toString();
-                    Q_EMIT createSearchedItem(result);
+                    Q_EMIT createCommentItem(result);
                 }
             }
         }
@@ -148,14 +148,14 @@ void MusicWYPlaylistCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     const QVariantMap &user = value["user"].toMap();
                     result.m_nickName = user["nickname"].toString();
                     result.m_coverUrl = user["avatarUrl"].toString();
                     result.m_playCount = QString::number(value["likedCount"].toLongLong());
                     result.m_updateTime = QString::number(value["time"].toLongLong());
                     result.m_description = value["content"].toString();
-                    Q_EMIT createSearchedItem(result);
+                    Q_EMIT createCommentItem(result);
                 }
             }
         }

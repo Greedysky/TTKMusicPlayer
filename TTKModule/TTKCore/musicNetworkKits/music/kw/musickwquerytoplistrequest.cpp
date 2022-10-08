@@ -48,13 +48,13 @@ void MusicKWQueryToplistRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("musiclist"))
             {
-                MusicResultsItem result;
+                MusicResultDataItem result;
                 result.m_name = value["name"].toString();
                 result.m_coverUrl = value["pic"].toString();
                 result.m_playCount = TTK_DEFAULT_STR;
                 result.m_description = value["info"].toString();
                 result.m_updateTime = value["pub"].toString();
-                Q_EMIT createToplistInfoItem(result);
+                Q_EMIT createToplistItem(result);
 
                 const QVariantList &datas = value["musiclist"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -95,7 +95,7 @@ void MusicKWQueryToplistRequest::downLoadFinished()
                         return;
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;

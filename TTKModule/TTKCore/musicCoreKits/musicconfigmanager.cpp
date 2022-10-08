@@ -46,6 +46,7 @@ void MusicConfigManager::readBuffer() const
     G_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetMode, readXmlAttributeByTagNameValue("remoteWidgetMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, readXmlAttributeByTagNameValue("windowQuitMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, readXmlAttributeByTagNameValue("lastFileDialogPath"));
+    G_SETTING_PTR->setValue(MusicSettingManager::MediaLibraryPath, readXmlAttributeByTagNameValue("mediaLibraryPath"));
 
     G_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateEnable, readXmlAttributeByTagNameValue("otherCheckUpdateEnable").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherReadAlbumCover, readXmlAttributeByTagNameValue("otherUseAlbumCover").toInt());
@@ -146,6 +147,7 @@ void MusicConfigManager::writeBuffer()
     const int remoteWidgetMode = G_SETTING_PTR->value(MusicSettingManager::RemoteWidgetMode).toInt();
     const int windowQuitMode = G_SETTING_PTR->value(MusicSettingManager::WindowQuitMode).toInt();
     const QString lastFileDialogPath = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();
+    const QString mediaLibraryPath = G_SETTING_PTR->value(MusicSettingManager::MediaLibraryPath).toString();
     //
     const int otherCheckUpdateEnable = G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateEnable).toInt();
     const int otherReadAlbumCover = G_SETTING_PTR->value(MusicSettingManager::OtherReadAlbumCover).toInt();
@@ -260,6 +262,7 @@ void MusicConfigManager::writeBuffer()
     writeDomElement(plusSettingDom, "remoteWidgetMode", {"value", remoteWidgetMode});
     writeDomElement(plusSettingDom, "windowQuitMode", {"value", windowQuitMode});
     writeDomElement(plusSettingDom, "lastFileDialogPath", {"value", lastFileDialogPath});
+    writeDomElement(plusSettingDom, "mediaLibraryPath", {"value", mediaLibraryPath});
     //
     writeDomElement(otherSettingDom, "otherCheckUpdateEnable", {"value", otherCheckUpdateEnable});
     writeDomElement(otherSettingDom, "otherUseAlbumCover", {"value", otherReadAlbumCover});

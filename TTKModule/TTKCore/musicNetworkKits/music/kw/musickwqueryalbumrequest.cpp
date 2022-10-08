@@ -54,7 +54,7 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
             {
                 bool albumFound = false;
                 //
-                MusicResultsItem result;
+                MusicResultDataItem result;
                 const QString &albumName = value["name"].toString();
                 result.m_nickName = value["albumid"].toString();
                 result.m_coverUrl = value["pic"].toString();
@@ -110,10 +110,10 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                         albumFound = true;
                         result.m_id = info.m_albumId;
                         result.m_name = info.m_singerName;
-                        Q_EMIT createAlbumInfoItem(result);
+                        Q_EMIT createAlbumItem(result);
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;
@@ -157,7 +157,7 @@ void MusicKWQueryAlbumRequest::downLoadSingleFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_id = value["albumid"].toString();
                     result.m_coverUrl = value["pic"].toString();
                     if(!result.m_coverUrl.contains(TTK_NULL_STR) && !MusicUtils::String::isNetworkUrl(result.m_coverUrl))
@@ -166,7 +166,7 @@ void MusicKWQueryAlbumRequest::downLoadSingleFinished()
                     }
                     result.m_name = value["name"].toString();
                     result.m_updateTime = value["pub"].toString().replace(TTK_DEFAULT_STR, TTK_DOT);
-                    Q_EMIT createAlbumInfoItem(result);
+                    Q_EMIT createAlbumItem(result);
                 }
             }
         }

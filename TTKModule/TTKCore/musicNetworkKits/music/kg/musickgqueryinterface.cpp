@@ -112,7 +112,7 @@ void MusicKGQueryInterface::readFromMusicSongLrcAndPicture(MusicObject::MusicSon
     }
 }
 
-void MusicKGQueryInterface::readFromMusicSongAlbumInfo(MusicResultsItem *info, const QString &album) const
+void MusicKGQueryInterface::readFromMusicSongAlbumInfo(MusicResultDataItem *info, const QString &album) const
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KG_ALBUM_INFO_URL, false).arg(album));

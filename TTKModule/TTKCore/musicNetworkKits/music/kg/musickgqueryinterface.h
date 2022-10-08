@@ -56,8 +56,8 @@ const QString KG_RECOMMEND_URL          = "U281QUUzc3V6dnRPeFRvckNoTEFIeDQxdlE2Y
 const QString KG_SUGGEST_URL            = "UUFkNUtUeXBhZ2hxbG1nY0ZDRzBxTS9GNzdZMDdDbmpMUDVTaFJKeHMxSFBhdEw4dGZSRWVCL0tJY2NkMUdObjVyM0dObFdaaUtqbHZhcVpFWFJDTU5JREdnVmR1RFZ0";
 
 
-class MusicResultsItem;
 class QNetworkRequest;
+class MusicResultDataItem;
 
 namespace MusicKGInterface
 {
@@ -90,7 +90,7 @@ public:
     /*!
      * Read tags(album info) from query results.
      */
-    void readFromMusicSongAlbumInfo(MusicResultsItem *info, const QString &album) const;
+    void readFromMusicSongAlbumInfo(MusicResultDataItem *info, const QString &album) const;
 
 };
 

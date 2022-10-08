@@ -81,16 +81,16 @@ void MusicKWQueryArtistRequest::downLoadFinished()
                     if(!artistFound)
                     {
                         artistFound = true;
-                        MusicResultsItem result;
+                        MusicResultDataItem result;
                         TTK_NETWORK_QUERY_CHECK();
                         queryArtistIntro(&result);
                         TTK_NETWORK_QUERY_CHECK();
                         result.m_id = info.m_artistId;
                         result.m_name = info.m_singerName;
-                        Q_EMIT createArtistInfoItem(result);
+                        Q_EMIT createArtistItem(result);
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;
@@ -107,7 +107,7 @@ void MusicKWQueryArtistRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicKWQueryArtistRequest::queryArtistIntro(MusicResultsItem *item) const
+void MusicKWQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) const
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(m_queryValue));

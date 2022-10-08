@@ -21,7 +21,7 @@ void MusicSimilarQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *quer
     }
 }
 
-void MusicSimilarQueryTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
+void MusicSimilarQueryTableWidget::createSearchedItem(const MusicResultInfoItem &songItem)
 {
     if(rowCount() >= 15)
     {

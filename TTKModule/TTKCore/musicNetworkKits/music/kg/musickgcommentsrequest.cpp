@@ -71,13 +71,13 @@ void MusicKGSongCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());
                     result.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(), TTK_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
                     result.m_description = value["content"].toString();
                     result.m_nickName = value["user_name"].toString();
                     result.m_coverUrl = value["user_pic"].toString();
-                    Q_EMIT createSearchedItem(result);
+                    Q_EMIT createCommentItem(result);
                 }
             }
         }
@@ -147,13 +147,13 @@ void MusicKGPlaylistCommentsRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultsItem result;
+                    MusicResultDataItem result;
                     result.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());
                     result.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(), TTK_YEAR_STIME_FORMAT).toMSecsSinceEpoch());
                     result.m_description = value["content"].toString();
                     result.m_nickName = value["user_name"].toString();
                     result.m_coverUrl = value["user_pic"].toString();
-                    Q_EMIT createSearchedItem(result);
+                    Q_EMIT createCommentItem(result);
                 }
             }
         }

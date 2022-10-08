@@ -50,7 +50,7 @@ protected:
     /*!
      * Get Download introduction data from net.
      */
-    void queryArtistIntro(MusicResultsItem *item) const;
+    void queryArtistIntro(MusicResultDataItem *item) const;
 
 };
 

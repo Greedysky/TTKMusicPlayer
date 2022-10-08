@@ -50,13 +50,13 @@ void MusicWYQueryToplistRequest::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("playlist"))
             {
                 value = value["playlist"].toMap();
-                MusicResultsItem result;
+                MusicResultDataItem result;
                 result.m_name = value["name"].toString();
                 result.m_coverUrl = value["coverImgUrl"].toString();
                 result.m_playCount = QString::number(value["playCount"].toULongLong());
                 result.m_description = value["description"].toString();
                 result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["updateTime"].toULongLong()).toString(TTK_YEAR_FORMAT);
-                Q_EMIT createToplistInfoItem(result);
+                Q_EMIT createToplistItem(result);
 
                 const QVariantList &datas = value["tracks"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -107,7 +107,7 @@ void MusicWYQueryToplistRequest::downLoadFinished()
                         continue;
                     }
 
-                    MusicSearchedItem item;
+                    MusicResultInfoItem item;
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;

@@ -53,7 +53,7 @@ void MusicAlbumQueryWidget::setSongNameById(const QString &id)
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
     m_queryTableWidget->setQueryInput(d);
     m_queryTableWidget->startSearchQuery(id);
-    connect(d, SIGNAL(createAlbumInfoItem(MusicResultsItem)), SLOT(createAlbumInfoItem(MusicResultsItem)));
+    connect(d, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createAlbumItem(MusicResultDataItem)));
 }
 
 void MusicAlbumQueryWidget::resizeWindow()
@@ -127,7 +127,7 @@ void MusicAlbumQueryWidget::queryAlbumFinished()
     }
 }
 
-void MusicAlbumQueryWidget::createAlbumInfoItem(const MusicResultsItem &item)
+void MusicAlbumQueryWidget::createAlbumItem(const MusicResultDataItem &item)
 {
     m_currentPlaylistItem = item;
 

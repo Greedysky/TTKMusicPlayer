@@ -54,7 +54,7 @@ public:
     /*!
      * Set music playlist item.
      */
-    void setMusicResultsItem(const MusicResultsItem &item, QObject *obj);
+    void setMusicResultDataItem(const MusicResultDataItem &item, QObject *obj);
     /*!
      * Set network query input.
      */

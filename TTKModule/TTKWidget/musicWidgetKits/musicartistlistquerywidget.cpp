@@ -23,7 +23,7 @@ MusicArtistListQueryItemWidget::MusicArtistListQueryItemWidget(QWidget *parent)
     connect(this, SIGNAL(clicked()), SLOT(currentItemClicked()));
 }
 
-void MusicArtistListQueryItemWidget::setMusicResultsItem(const MusicResultsItem &item)
+void MusicArtistListQueryItemWidget::setMusicResultDataItem(const MusicResultDataItem &item)
 {
     m_itemData = item;
     setToolTip(item.m_name);
@@ -51,7 +51,7 @@ MusicArtistListQueryWidget::MusicArtistListQueryWidget(QWidget *parent)
     m_container->addWidget(m_mainWindow);
 
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeArtistListRequest(this);
-    connect(m_networkRequest, SIGNAL(createArtistListItem(MusicResultsItem)), SLOT(createArtistListItem(MusicResultsItem)));
+    connect(m_networkRequest, SIGNAL(createArtistListItem(MusicResultDataItem)), SLOT(createArtistListItem(MusicResultDataItem)));
 }
 
 MusicArtistListQueryWidget::~MusicArtistListQueryWidget()
@@ -89,7 +89,7 @@ void MusicArtistListQueryWidget::resizeWindow()
     }
 }
 
-void MusicArtistListQueryWidget::createArtistListItem(const MusicResultsItem &item)
+void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem &item)
 {
     if(!m_initialized)
     {
@@ -169,8 +169,8 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultsItem &it
     }
 
     MusicArtistListQueryItemWidget *label = new MusicArtistListQueryItemWidget(this);
-    connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SLOT(currentArtistListClicked(MusicResultsItem)));
-    label->setMusicResultsItem(item);
+    connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentArtistListClicked(MusicResultDataItem)));
+    label->setMusicResultDataItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
@@ -178,7 +178,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultsItem &it
     m_resizeWidgets.push_back({label, label->font()});
 }
 
-void MusicArtistListQueryWidget::currentArtistListClicked(const MusicResultsItem &item)
+void MusicArtistListQueryWidget::currentArtistListClicked(const MusicResultDataItem &item)
 {
     MusicRightAreaWidget::instance()->musicArtistSearch(item.m_id);
 }
