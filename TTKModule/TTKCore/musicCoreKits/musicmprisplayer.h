@@ -28,7 +28,7 @@
 class SoundCore;
 class MusicApplication;
 class MusicMPRISPlayerRoot;
-class MusicMPRISPlayerBase;
+class MusicMPRISPlayerCore;
 
 /*! @brief The class of the app mpris main widget.
  * @author Greedysky <greedysky@163.com>
@@ -48,7 +48,7 @@ public:
 
 private:
     MusicMPRISPlayerRoot *m_root;
-    MusicMPRISPlayerBase *m_player;
+    MusicMPRISPlayerCore *m_player;
 
 };
 
@@ -89,7 +89,7 @@ public Q_SLOTS:
 /*! @brief The class of the app mpris player object.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicMPRISPlayerBase : public QDBusAbstractAdaptor
+class TTK_MODULE_EXPORT MusicMPRISPlayerCore : public QDBusAbstractAdaptor
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.mpris.MediaPlayer2.Player")
@@ -110,7 +110,7 @@ class TTK_MODULE_EXPORT MusicMPRISPlayerBase : public QDBusAbstractAdaptor
     Q_PROPERTY(double Volume READ volume WRITE setVolume)
 
 public:
-    MusicMPRISPlayerBase(QObject *parent = nullptr);
+    MusicMPRISPlayerCore(QObject *parent = nullptr);
 
     bool canControl() const;
     bool canGoNext() const;

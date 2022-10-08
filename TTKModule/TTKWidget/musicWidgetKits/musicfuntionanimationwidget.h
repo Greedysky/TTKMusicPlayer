@@ -87,16 +87,16 @@ protected:
 /*! @brief The class of the animation base widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicBaseAnimationWidget : public QWidget
+class TTK_MODULE_EXPORT MusicAbstractAnimationWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBaseAnimationWidget)
+    TTK_DECLARE_MODULE(MusicAbstractAnimationWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBaseAnimationWidget(QWidget *parent = nullptr);
-    ~MusicBaseAnimationWidget();
+    explicit MusicAbstractAnimationWidget(QWidget *parent = nullptr);
+    ~MusicAbstractAnimationWidget();
 
 Q_SIGNALS:
     /*!
@@ -139,7 +139,7 @@ protected:
 /*! @brief The class of the function animation widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicFuntionAnimationWidget : public MusicBaseAnimationWidget
+class TTK_MODULE_EXPORT MusicFuntionAnimationWidget : public MusicAbstractAnimationWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicFuntionAnimationWidget)
@@ -167,7 +167,7 @@ protected:
 /*! @brief The class of the function option animation widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicOptionAnimationWidget : public MusicBaseAnimationWidget
+class TTK_MODULE_EXPORT MusicOptionAnimationWidget : public MusicAbstractAnimationWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicOptionAnimationWidget)
@@ -204,7 +204,7 @@ protected:
 /*! @brief The class of the function skin animation widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSkinAnimationWidget : public MusicBaseAnimationWidget
+class TTK_MODULE_EXPORT MusicSkinAnimationWidget : public MusicAbstractAnimationWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSkinAnimationWidget)

@@ -60,7 +60,7 @@ void MusicLineBackgroundWidget::paintEvent(QPaintEvent *event)
 
 
 
-MusicBaseAnimationWidget::MusicBaseAnimationWidget(QWidget *parent)
+MusicAbstractAnimationWidget::MusicAbstractAnimationWidget(QWidget *parent)
     : QWidget(parent),
       m_pix(":/toolSets/btn_arrow_normal"),
       m_curIndex(0),
@@ -87,14 +87,14 @@ MusicBaseAnimationWidget::MusicBaseAnimationWidget(QWidget *parent)
     QtButtonGroupConnect(m_buttonGroup, this, switchToSelectedItemStyle);
 }
 
-MusicBaseAnimationWidget::~MusicBaseAnimationWidget()
+MusicAbstractAnimationWidget::~MusicAbstractAnimationWidget()
 {
     qDeleteAll(m_container);
     delete m_animation;
     delete m_buttonGroup;
 }
 
-void MusicBaseAnimationWidget::paintEvent(QPaintEvent *event)
+void MusicAbstractAnimationWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
 
@@ -117,7 +117,7 @@ void MusicBaseAnimationWidget::paintEvent(QPaintEvent *event)
     }
 }
 
-void MusicBaseAnimationWidget::switchToSelectedItemStyle(int index)
+void MusicAbstractAnimationWidget::switchToSelectedItemStyle(int index)
 {
     m_isAnimation = true;
     m_preIndex = m_curIndex;
@@ -129,13 +129,13 @@ void MusicBaseAnimationWidget::switchToSelectedItemStyle(int index)
     Q_EMIT buttonClicked(index);
 }
 
-void MusicBaseAnimationWidget::animationChanged(const QVariant &value)
+void MusicAbstractAnimationWidget::animationChanged(const QVariant &value)
 {
     m_x = value.toInt();
     update();
 }
 
-void MusicBaseAnimationWidget::finished()
+void MusicAbstractAnimationWidget::finished()
 {
     m_isAnimation = false;
 }
@@ -143,7 +143,7 @@ void MusicBaseAnimationWidget::finished()
 
 
 MusicFuntionAnimationWidget::MusicFuntionAnimationWidget(QWidget *parent)
-    : MusicBaseAnimationWidget(parent)
+    : MusicAbstractAnimationWidget(parent)
 {
     QHBoxLayout *ly = TTKStatic_cast(QHBoxLayout*, layout());
 
@@ -166,7 +166,7 @@ MusicFuntionAnimationWidget::MusicFuntionAnimationWidget(QWidget *parent)
 void MusicFuntionAnimationWidget::paintEvent(QPaintEvent *event)
 {
     m_totalWidth = width();
-    MusicBaseAnimationWidget::paintEvent(event);
+    MusicAbstractAnimationWidget::paintEvent(event);
 }
 
 void MusicFuntionAnimationWidget::switchToSelectedItemStyle(int index)
@@ -187,13 +187,13 @@ void MusicFuntionAnimationWidget::switchToSelectedItemStyle(int index)
         default: break;
     }
 
-    MusicBaseAnimationWidget::switchToSelectedItemStyle(index);
+    MusicAbstractAnimationWidget::switchToSelectedItemStyle(index);
 }
 
 
 
 MusicOptionAnimationWidget::MusicOptionAnimationWidget(QWidget *parent)
-    : MusicBaseAnimationWidget(parent)
+    : MusicAbstractAnimationWidget(parent)
 {
     m_pix = QPixmap(54, 2);
     m_pix.fill(QColor(0x80, 0xB7, 0xF1));
@@ -241,12 +241,12 @@ void MusicOptionAnimationWidget::musicButtonStyle(int index)
 void MusicOptionAnimationWidget::paintEvent(QPaintEvent *event)
 {
     m_totalWidth = width();
-    MusicBaseAnimationWidget::paintEvent(event);
+    MusicAbstractAnimationWidget::paintEvent(event);
 }
 
 void MusicOptionAnimationWidget::switchToSelectedItemStyle(int index)
 {
-    MusicBaseAnimationWidget::switchToSelectedItemStyle(index);
+    MusicAbstractAnimationWidget::switchToSelectedItemStyle(index);
     m_showState = (index != 5);
     update();
 }
@@ -254,7 +254,7 @@ void MusicOptionAnimationWidget::switchToSelectedItemStyle(int index)
 
 
 MusicSkinAnimationWidget::MusicSkinAnimationWidget(QWidget *parent)
-    : MusicBaseAnimationWidget(parent)
+    : MusicAbstractAnimationWidget(parent)
 {
     QHBoxLayout *ly = TTKStatic_cast(QHBoxLayout*, layout());
 
@@ -278,7 +278,7 @@ MusicSkinAnimationWidget::MusicSkinAnimationWidget(QWidget *parent)
 void MusicSkinAnimationWidget::paintEvent(QPaintEvent *event)
 {
     m_totalWidth = width();
-    MusicBaseAnimationWidget::paintEvent(event);
+    MusicAbstractAnimationWidget::paintEvent(event);
 }
 
 void MusicSkinAnimationWidget::switchToSelectedItemStyle(int index)
@@ -294,5 +294,5 @@ void MusicSkinAnimationWidget::switchToSelectedItemStyle(int index)
     }
 
     m_container[index]->setStyleSheet(MusicUIObject::MQSSColorStyle08 + MusicUIObject::MQSSBackgroundStyle01);
-    MusicBaseAnimationWidget::switchToSelectedItemStyle(index);
+    MusicAbstractAnimationWidget::switchToSelectedItemStyle(index);
 }
