@@ -48,7 +48,7 @@ MusicWebDJRadioQueryItemWidget::~MusicWebDJRadioQueryItemWidget()
     delete m_creatorLabel;
 }
 
-void MusicWebDJRadioQueryItemWidget::setMusicResultDataItem(const MusicResultDataItem &item)
+void MusicWebDJRadioQueryItemWidget::setResultDataItem(const MusicResultDataItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
@@ -209,7 +209,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
 
     MusicWebDJRadioQueryItemWidget *label = new MusicWebDJRadioQueryItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentRadioClicked(MusicResultDataItem)));
-    label->setMusicResultDataItem(item);
+    label->setResultDataItem(item);
 
     int lineNumber = width() / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);

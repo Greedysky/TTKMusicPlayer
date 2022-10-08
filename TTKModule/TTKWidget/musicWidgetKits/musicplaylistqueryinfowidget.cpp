@@ -52,7 +52,7 @@ void MusicPlaylistQueryInfoWidget::setSongNameById(const QString &id)
     Q_UNUSED(id);
 }
 
-void MusicPlaylistQueryInfoWidget::setMusicResultDataItem(const MusicResultDataItem &item, QObject *obj)
+void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &item, QObject *obj)
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;

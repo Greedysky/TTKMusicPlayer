@@ -51,7 +51,7 @@ MusicArtistAlbumsItemWidget::~MusicArtistAlbumsItemWidget()
     delete m_updateLabel;
 }
 
-void MusicArtistAlbumsItemWidget::setMusicResultDataItem(const MusicResultDataItem &item)
+void MusicArtistAlbumsItemWidget::setResultDataItem(const MusicResultDataItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
@@ -161,7 +161,7 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultDataItem &i
 
     MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
-    label->setMusicResultDataItem(item);
+    label->setResultDataItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
@@ -245,7 +245,7 @@ void MusicArtistAlbumsQueryWidget::createArtistAlbumsItem(const MusicResultDataI
 {
     MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
-    label->setMusicResultDataItem(item);
+    label->setResultDataItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);

@@ -41,7 +41,7 @@ MusicWebMVRadioQueryItemWidget::~MusicWebMVRadioQueryItemWidget()
     delete m_nameLabel;
 }
 
-void MusicWebMVRadioQueryItemWidget::setMusicResultDataItem(const MusicResultDataItem &item)
+void MusicWebMVRadioQueryItemWidget::setResultDataItem(const MusicResultDataItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
@@ -113,7 +113,7 @@ MusicWebMVRadioQueryWidget::MusicWebMVRadioQueryWidget(QWidget *parent)
     m_gridLayout = nullptr;
     m_categoryButton = nullptr;
     m_networkRequest = new MusicMVRadioCategoryRequest(this);
-    connect(m_networkRequest, SIGNAL(createCategoryItem(MusicResultDataItem)), SLOT(createCategoryItem(MusicResultDataItem)));
+    connect(m_networkRequest, SIGNAL(createMVRadioItem(MusicResultDataItem)), SLOT(createMVRadioCategoryItem(MusicResultDataItem)));
 }
 
 MusicWebMVRadioQueryWidget::~MusicWebMVRadioQueryWidget()
@@ -156,7 +156,7 @@ void MusicWebMVRadioQueryWidget::resizeWindow()
     }
 }
 
-void MusicWebMVRadioQueryWidget::createCategoryItem(const MusicResultDataItem &item)
+void MusicWebMVRadioQueryWidget::createMVRadioCategoryItem(const MusicResultDataItem &item)
 {
     if(!m_initialized)
     {
@@ -197,7 +197,7 @@ void MusicWebMVRadioQueryWidget::createCategoryItem(const MusicResultDataItem &i
 
     MusicWebMVRadioQueryItemWidget *label = new MusicWebMVRadioQueryItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentRadioClicked(MusicResultDataItem)));
-    label->setMusicResultDataItem(item);
+    label->setResultDataItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);

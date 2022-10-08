@@ -39,6 +39,7 @@ public:
      * Get the line eidtor.
      */
     inline MusicSearchEdit* editor() const { return m_searchEdit; }
+    inline MusicSearchEdit* operator()() const { return m_searchEdit; }
 
 private:
     /*!
@@ -69,6 +70,7 @@ public:
      * Get the line eidtor.
      */
     inline MusicSearchEdit* editor() const { return m_searchEdit; }
+    inline MusicSearchEdit* operator()() const { return m_searchEdit; }
 
 Q_SIGNALS:
     /*!

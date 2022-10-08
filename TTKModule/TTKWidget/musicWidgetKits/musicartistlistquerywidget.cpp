@@ -23,7 +23,7 @@ MusicArtistListQueryItemWidget::MusicArtistListQueryItemWidget(QWidget *parent)
     connect(this, SIGNAL(clicked()), SLOT(currentItemClicked()));
 }
 
-void MusicArtistListQueryItemWidget::setMusicResultDataItem(const MusicResultDataItem &item)
+void MusicArtistListQueryItemWidget::setResultDataItem(const MusicResultDataItem &item)
 {
     m_itemData = item;
     setToolTip(item.m_name);
@@ -170,7 +170,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
 
     MusicArtistListQueryItemWidget *label = new MusicArtistListQueryItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentArtistListClicked(MusicResultDataItem)));
-    label->setMusicResultDataItem(item);
+    label->setResultDataItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);

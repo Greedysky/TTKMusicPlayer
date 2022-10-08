@@ -38,7 +38,7 @@ MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)
 
     MusicDJRadioProgramCategoryRequest *v = new MusicDJRadioProgramCategoryRequest(this);
     m_queryTableWidget->setQueryInput(v);
-    connect(v, SIGNAL(createCategoryInfoItem(MusicResultDataItem)), SLOT(createCategoryInfoItem(MusicResultDataItem)));
+    connect(v, SIGNAL(createCategoryItem(MusicResultDataItem)), SLOT(createProgramCategoryItem(MusicResultDataItem)));
 }
 
 void MusicWebDJRadioInfoWidget::setSongName(const QString &name)
@@ -79,7 +79,7 @@ void MusicWebDJRadioInfoWidget::queryAllFinished()
     setSongCountText();
 }
 
-void MusicWebDJRadioInfoWidget::createCategoryInfoItem(const MusicResultDataItem &item)
+void MusicWebDJRadioInfoWidget::createProgramCategoryItem(const MusicResultDataItem &item)
 {
     m_currentPlaylistItem = item;
 

@@ -43,7 +43,7 @@ Q_SIGNALS:
     /*!
      * Create the current category item.
      */
-    void createCategoryItem(const MusicResultDataItem &item);
+    void createMVRadioItem(const MusicResultDataItem &item);
 
 };
 

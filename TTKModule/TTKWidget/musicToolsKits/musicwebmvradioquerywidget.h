@@ -42,7 +42,7 @@ public:
     /*!
      * Set music results item.
      */
-    void setMusicResultDataItem(const MusicResultDataItem &item);
+    void setResultDataItem(const MusicResultDataItem &item);
 
 Q_SIGNALS:
     /*!
@@ -111,7 +111,7 @@ public Q_SLOTS:
     /*!
      * Create the current category item.
      */
-    void createCategoryItem(const MusicResultDataItem &item);
+    void createMVRadioCategoryItem(const MusicResultDataItem &item);
     /*!
      * Current item clicked.
      */

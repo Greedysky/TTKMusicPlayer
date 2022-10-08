@@ -73,7 +73,7 @@ public Q_SLOTS:
     /*!
      * Table widget item cell double clicked.
      */
-    virtual void itemDoubleClicked(int row, int column) override final;
+    virtual void itemDoubleClicked(int row, int column) override;
     /*!
      * Remove all items.
      */

@@ -57,7 +57,7 @@ MusicPlaylistQueryItemWidget::~MusicPlaylistQueryItemWidget()
     delete m_creatorLabel;
 }
 
-void MusicPlaylistQueryItemWidget::setMusicResultDataItem(const MusicResultDataItem &item)
+void MusicPlaylistQueryItemWidget::setResultDataItem(const MusicResultDataItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
@@ -247,7 +247,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
 
     MusicPlaylistQueryItemWidget *label = new MusicPlaylistQueryItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SLOT(currentPlaylistClicked(MusicResultDataItem)));
-    label->setMusicResultDataItem(item);
+    label->setResultDataItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
@@ -267,7 +267,7 @@ void MusicPlaylistQueryWidget::currentPlaylistClicked(const MusicResultDataItem 
     }
 
     m_infoWidget->setQueryInput(d);
-    m_infoWidget->setMusicResultDataItem(it, this);
+    m_infoWidget->setResultDataItem(it, this);
     m_container->addWidget(m_infoWidget);
     m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_1);
 }

@@ -42,7 +42,7 @@ public:
     /*!
      * Set music results item.
      */
-    void setMusicResultDataItem(const MusicResultDataItem &item);
+    void setResultDataItem(const MusicResultDataItem &item);
 
 Q_SIGNALS:
     /*!

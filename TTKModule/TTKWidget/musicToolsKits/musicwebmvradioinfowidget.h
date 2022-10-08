@@ -50,6 +50,10 @@ public Q_SLOTS:
      */
     virtual void itemCellClicked(int row, int column) override final;
     /*!
+     * Table widget item cell double clicked.
+     */
+    virtual void itemDoubleClicked(int row, int column) override final;
+    /*!
      * Menu action type changed.
      */
     void actionChanged(QAction *action);
@@ -104,7 +108,7 @@ public Q_SLOTS:
     /*!
      * Create the current category info item.
      */
-    void createCategoryInfoItem(const MusicResultDataItem &item);
+    void createMVRadioProgramItem(const MusicResultDataItem &item);
     /*!
      * Download button clicked now.
      */

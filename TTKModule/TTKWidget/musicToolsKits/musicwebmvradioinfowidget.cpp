@@ -62,6 +62,12 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
     }
 }
 
+void MusicWebMVRadioInfoTableWidget::itemDoubleClicked(int row, int column)
+{
+    Q_UNUSED(column);
+    itemCellClicked(row, 5);
+}
+
 void MusicWebMVRadioInfoTableWidget::actionChanged(QAction *action)
 {
     const int row = currentRow();
@@ -113,7 +119,7 @@ MusicWebMVRadioInfoWidget::MusicWebMVRadioInfoWidget(QWidget *parent)
 
     MusicMVRadioProgramRequest *v = new MusicMVRadioProgramRequest(this);
     m_queryTableWidget->setQueryInput(v);
-    connect(v, SIGNAL(createCategoryItem(MusicResultDataItem)), SLOT(createCategoryInfoItem(MusicResultDataItem)));
+    connect(v, SIGNAL(createMVRadioItem(MusicResultDataItem)), SLOT(createMVRadioProgramItem(MusicResultDataItem)));
 }
 
 void MusicWebMVRadioInfoWidget::setSongName(const QString &name)
@@ -148,7 +154,7 @@ void MusicWebMVRadioInfoWidget::queryAllFinished()
     setSongCountText();
 }
 
-void MusicWebMVRadioInfoWidget::createCategoryInfoItem(const MusicResultDataItem &item)
+void MusicWebMVRadioInfoWidget::createMVRadioProgramItem(const MusicResultDataItem &item)
 {
     m_currentPlaylistItem = item;
 

@@ -48,7 +48,7 @@ void MusicMVRadioCategoryRequest::downLoadFinished()
                         result.m_name = value["fmName"].toString();
                         result.m_id = value["fmId"].toString();
                         result.m_coverUrl = value["imgUrlMv"].toString();
-                        Q_EMIT createCategoryItem(result);
+                        Q_EMIT createMVRadioItem(result);
                     }
                 }
             }

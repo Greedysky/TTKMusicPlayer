@@ -29,7 +29,7 @@ MusicWebDJRadioCategoryItemWidget::~MusicWebDJRadioCategoryItemWidget()
     delete m_nameLabel;
 }
 
-void MusicWebDJRadioCategoryItemWidget::setMusicResultDataItem(const MusicResultDataItem &item)
+void MusicWebDJRadioCategoryItemWidget::setResultDataItem(const MusicResultDataItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
@@ -122,7 +122,7 @@ void MusicWebDJRadioCategoryWidget::createCategoryItems()
     {
         MusicWebDJRadioCategoryItemWidget *label = new MusicWebDJRadioCategoryItemWidget(this);
         connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SIGNAL(currentCategoryClicked(MusicResultDataItem)));
-        label->setMusicResultDataItem(item);
+        label->setResultDataItem(item);
 
         const int lineNumber = width() / LINE_SPACING_SIZE;
         m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);

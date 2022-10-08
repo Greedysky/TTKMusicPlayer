@@ -61,7 +61,7 @@ Q_SIGNALS:
     /*!
      * Create the current category info item.
      */
-    void createCategoryInfoItem(const MusicResultDataItem &item);
+    void createCategoryItem(const MusicResultDataItem &item);
 
 public Q_SLOTS:
     /*!

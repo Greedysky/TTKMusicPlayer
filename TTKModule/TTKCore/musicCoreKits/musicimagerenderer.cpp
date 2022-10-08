@@ -18,12 +18,13 @@ void MusicImageRenderer::setInputData(const QByteArray &data, const QSize &size)
 {
     m_size = size;
     m_buffer = data;
+#if TTK_QT_VERSION_CHECK(5,0,0)
 }
 
 void MusicImageRenderer::run()
 {
     MusicAbstractThread::run();
-
+#endif
     QImage image;
     image.loadFromData(m_buffer);
     if(!image.isNull() || m_size.isValid())
@@ -39,3 +40,10 @@ void MusicImageRenderer::run()
         Q_EMIT renderFinished(QPixmap::fromImage(image));
     }
 }
+
+#if !TTK_QT_VERSION_CHECK(5,0,0)
+void MusicImageRenderer::run()
+{
+    MusicAbstractThread::run();
+}
+#endif

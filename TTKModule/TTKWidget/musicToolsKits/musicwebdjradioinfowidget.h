@@ -84,7 +84,7 @@ public Q_SLOTS:
     /*!
      * Create the current category info item.
      */
-    void createCategoryInfoItem(const MusicResultDataItem &item);
+    void createProgramCategoryItem(const MusicResultDataItem &item);
 
 protected:
     /*!
