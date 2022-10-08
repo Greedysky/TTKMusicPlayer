@@ -24,7 +24,6 @@ MusicLrcFloatPhotoItem::MusicLrcFloatPhotoItem(int index, QWidget *parent)
 #ifdef Q_OS_UNIX
     m_checkBox->setFocusPolicy(Qt::NoFocus);
 #endif
-
     connect(this, SIGNAL(clicked()), SLOT(sendUserSelectArt()));
     connect(m_checkBox, SIGNAL(clicked()), SLOT(sendUserBoxClicked()));
 }
@@ -177,8 +176,8 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
         connect(item, SIGNAL(itemClicked(int)), SLOT(sendUserSelectArtBackground(int)));
         connect(item, SIGNAL(boxClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
     }
-    connect(G_BACKGROUND_PTR, SIGNAL(artistNameChanged()), SLOT(artistNameChanged()));
     connect(m_checkBox, SIGNAL(clicked(bool)), SLOT(selectAllStateChanged(bool)));
+    connect(G_BACKGROUND_PTR, SIGNAL(artistNameChanged()), SLOT(artistNameChanged()));
 }
 
 MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
@@ -223,6 +222,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
     {
        list << m_artPath[i];
     }
+
     G_BACKGROUND_PTR->setArtistPhotoPathList(list);
     close();
 }

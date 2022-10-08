@@ -13,6 +13,7 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
 
     m_floatPhotoWidget = new MusicLrcFloatPhotoWidget(parent);
     m_floatPhotoWidget->hide();
+
     m_floatSettingWidget = new MusicLrcFloatSettingWidget(parent);
     m_floatSettingWidget->hide();
 

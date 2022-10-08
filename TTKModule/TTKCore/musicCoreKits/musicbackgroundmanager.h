@@ -126,7 +126,7 @@ Q_SIGNALS:
     /*!
      * User selected index changed emit.
      */
-    void userSelectIndexChanged();
+    void selectIndexChanged();
 
 protected:
     /*!

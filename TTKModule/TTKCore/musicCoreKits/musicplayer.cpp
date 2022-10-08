@@ -132,11 +132,11 @@ void MusicPlayer::play()
 {
     if(m_playlist->isEmpty())
     {
-        m_state = MusicObject::PlayState::Stopped;
+        setCurrentPlayState(MusicObject::PlayState::Stopped);
         return;
     }
 
-    m_state = MusicObject::PlayState::Playing;
+    setCurrentPlayState(MusicObject::PlayState::Playing);
     const Qmmp::State state = m_core->state(); ///Get the current state of play
 
     const QString &mediaPath = m_playlist->currentMediaPath();
@@ -152,12 +152,11 @@ void MusicPlayer::play()
     ///The current playback path
     if(!m_core->play(m_currentMedia))
     {
-        m_state = MusicObject::PlayState::Stopped;
+        setCurrentPlayState(MusicObject::PlayState::Stopped);
         return;
     }
 
     m_timer.start();
-
     m_durationTimes = 0;
     queryCurrentDuration();
     Q_EMIT positionChanged(0);
@@ -169,7 +168,7 @@ void MusicPlayer::pause()
     {
         m_core->pause();
         m_timer.stop();
-        m_state = MusicObject::PlayState::Paused;
+        setCurrentPlayState(MusicObject::PlayState::Paused);
     }
 }
 
@@ -179,7 +178,7 @@ void MusicPlayer::stop()
     {
         m_core->stop();
         m_timer.stop();
-        m_state = MusicObject::PlayState::Stopped;
+        setCurrentPlayState(MusicObject::PlayState::Stopped);
     }
 }
 
@@ -248,7 +247,7 @@ void MusicPlayer::update()
         {
             m_core->stop();
             Q_EMIT positionChanged(0);
-            Q_EMIT stateChanged(MusicObject::PlayState::Stopped);
+            setCurrentPlayState(MusicObject::PlayState::Stopped);
             return;
         }
 
@@ -257,9 +256,10 @@ void MusicPlayer::update()
         {
             m_core->stop();
             Q_EMIT positionChanged(0);
-            Q_EMIT stateChanged(MusicObject::PlayState::Stopped);
+            setCurrentPlayState(MusicObject::PlayState::Stopped);
             return;
         }
+
         play();
     }
 }
@@ -276,4 +276,10 @@ void MusicPlayer::queryCurrentDuration()
         Q_EMIT durationChanged(m_duration = d);
         Q_EMIT positionChanged(position());
     }
+}
+
+void MusicPlayer::setCurrentPlayState(MusicObject::PlayState state)
+{
+    m_state = state;
+    Q_EMIT stateChanged(m_state);
 }

@@ -73,7 +73,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_player, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
-    connect(m_player, SIGNAL(stateChanged(MusicObject::PlayState)), SLOT(stateChanged()));
+    connect(m_player, SIGNAL(stateChanged(MusicObject::PlayState)), SLOT(playerStateChanged(MusicObject::PlayState)));
     connect(m_playlist, SIGNAL(currentIndexChanged(int)), SLOT(showCurrentSong()));
     connect(m_ui->musicDesktopLrc, SIGNAL(clicked(bool)), m_rightAreaWidget, SLOT(setDestopLrcVisible(bool)));
 
@@ -287,10 +287,13 @@ void MusicApplication::durationChanged(qint64 duration)
     musicLoadCurrentSongLrc();
 }
 
-void MusicApplication::stateChanged()
+void MusicApplication::playerStateChanged(MusicObject::PlayState state)
 {
-    const bool concise = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
-    m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSBtnPlay);
+    if(state == MusicObject::PlayState::Stopped)
+    {
+        const bool concise = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
+        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSBtnPlay);
+    }
 }
 
 void MusicApplication::showCurrentSong()

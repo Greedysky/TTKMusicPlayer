@@ -1,10 +1,11 @@
 #include "musiclrccommentswidget.h"
 #include "musicdownloadqueryfactory.h"
+#include "musicbackgroundmanager.h"
 
 MusicLrcCommentsWidget::MusicLrcCommentsWidget(QWidget *parent)
     : MusicCommentsWidget(parent)
 {
-
+    connect(G_BACKGROUND_PTR, SIGNAL(artistNameChanged()), SLOT(close()));
 }
 
 void MusicLrcCommentsWidget::initialize(bool isPain)

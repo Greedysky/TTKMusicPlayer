@@ -164,6 +164,11 @@ private Q_SLOTS:
     void queryCurrentDuration();
 
 protected:
+    /*!
+     * set current play state.
+     */
+    void setCurrentPlayState(MusicObject::PlayState state);
+
     MusicPlaylist *m_playlist;
     MusicObject::PlayState m_state;
     SoundCore *m_core;

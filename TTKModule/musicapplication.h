@@ -124,7 +124,7 @@ public Q_SLOTS:
     /*!
      * Current state changed.
      */
-    void stateChanged();
+    void playerStateChanged(MusicObject::PlayState state);
     /*!
      * Show current song some information.
      */

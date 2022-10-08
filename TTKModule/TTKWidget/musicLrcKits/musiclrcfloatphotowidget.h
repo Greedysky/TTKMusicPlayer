@@ -125,7 +125,7 @@ public Q_SLOTS:
     /*!
      * Close current widget.
      */
-    void parentClose() { QLabel::close(); }
+    inline void parentClose() { QLabel::close(); }
     /*!
      * Confirm button clicked that show selected artist pics.
      */

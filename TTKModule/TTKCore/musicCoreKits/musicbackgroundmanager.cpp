@@ -95,7 +95,7 @@ void MusicBackgroundManager::setArtistPhotoPathList(const QStringList &list)
 void MusicBackgroundManager::setUserSelectArtistIndex(int index)
 {
     m_currentIndex = index;
-    Q_EMIT userSelectIndexChanged();
+    Q_EMIT selectIndexChanged();
 }
 
 void MusicBackgroundManager::addObserver(QObject *object)

@@ -29,7 +29,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
 
     m_pictureCarouselTimer.setInterval(10 * MT_S2MS);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
-    connect(G_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
+    connect(G_BACKGROUND_PTR, SIGNAL(selectIndexChanged()), SLOT(musicBackgroundChanged()));
 
     Visual::initialize(MusicApplication::instance());
 }
