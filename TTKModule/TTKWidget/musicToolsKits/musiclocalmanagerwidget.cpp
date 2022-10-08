@@ -82,6 +82,7 @@ void MusicLocalManagerSongsTableWidget::updateSongsList(const QStringList &songs
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);
 
+        qApp->processEvents();
         m_songs->append(MusicSong(meta.fileRelatedPath()));
     }
 }
@@ -233,8 +234,8 @@ void MusicLocalManagerWidget::typeIndexChanged(int index)
 
 void MusicLocalManagerWidget::mediaPathChanged(const QString &path)
 {
-    TTKStatic_cast(MusicLocalManagerSongsTableWidget*, m_tabWidget->widget(0))->
-    updateSongsList(MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats()));
+//    TTKStatic_cast(MusicLocalManagerSongsTableWidget*, m_tabWidget->widget(0))->
+//    updateSongsList(MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats()));
 }
 
 void MusicLocalManagerWidget::resizeEvent(QResizeEvent *event)

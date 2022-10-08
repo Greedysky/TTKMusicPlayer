@@ -79,6 +79,10 @@ protected:
      * Move direction to be.
      */
     void moveDirection();
+    /*!
+     * Get all inside widgets.
+     */
+    QObjectList foreachWidget(QObject *object);
 
     MoveResizeData m_struct;
     Direction m_direction;
