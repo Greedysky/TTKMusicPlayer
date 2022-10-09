@@ -27,6 +27,7 @@
  */
 class QMMP_EXPORT Light : public QWidget
 {
+    Q_OBJECT
 public:
     /*!
      * Constructor.

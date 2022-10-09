@@ -4,7 +4,7 @@
 
 bool DecoderStSoundFactory::canDecode(QIODevice *input) const
 {
-    QFile *file = static_cast<QFile*>(input);
+    const QFile * const file = qobject_cast<QFile*>(input);
     if(!file)
     {
         return false;

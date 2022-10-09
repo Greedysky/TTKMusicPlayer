@@ -23,7 +23,7 @@ void OpenMPTHelper::deinit()
 bool OpenMPTHelper::initialize()
 {
     {
-        QFile *file = static_cast<QFile*>(m_input);
+        const QFile * const file = qobject_cast<QFile*>(m_input);
         const QString &path = file ? file->fileName() : QString();
         if(ArchiveReader::isSupported(path))
         {
