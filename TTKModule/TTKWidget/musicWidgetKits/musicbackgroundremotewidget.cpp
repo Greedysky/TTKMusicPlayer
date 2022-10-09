@@ -196,7 +196,7 @@ QWidget* MusicBackgroundOnlineWidget::createFunctionsWidget(bool revert, QWidget
         connect(m_typeBox, SIGNAL(currentIndexChanged(int)), SLOT(currentTypeChanged(int)));
     }
 
-    QHBoxLayout *layout = TTKStatic_cast(QHBoxLayout*, m_functionsWidget->layout());
+    QHBoxLayout *layout = TTKObject_cast(QHBoxLayout*, m_functionsWidget->layout());
     if(revert)
     {
         layout->removeWidget(m_typeBox);

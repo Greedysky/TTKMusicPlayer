@@ -59,7 +59,7 @@ void MusicLrcContainerForWallpaper::applyParameter()
     const int width = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize().width() - LRC_PER_WIDTH;
     for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
-        MusicLrcManagerForInterior *w = TTKStatic_cast(MusicLrcManagerForInterior*, m_lrcManagers[i]);
+        MusicLrcManagerForInterior *w = TTKObject_cast(MusicLrcManagerForInterior*, m_lrcManagers[i]);
         w->setLrcPerWidth(width);
         w->setLrcFontSize(36);
         w->setY(35 + 36);
@@ -165,7 +165,7 @@ void MusicLrcContainerForWallpaper::initCurrentLrc(const QString &str)
 
 void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int transparent)
 {
-    MusicLrcManagerForInterior *w = TTKStatic_cast(MusicLrcManagerForInterior*, m_lrcManagers[index]);
+    MusicLrcManagerForInterior *w = TTKObject_cast(MusicLrcManagerForInterior*, m_lrcManagers[index]);
     w->setFontSize(size);
 
     const int value = 100 - transparent;

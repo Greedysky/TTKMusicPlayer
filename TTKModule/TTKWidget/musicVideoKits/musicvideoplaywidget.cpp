@@ -207,7 +207,7 @@ QString MusicVideoPlayWidget::searchText() const
 
 void MusicVideoPlayWidget::switchToSearchTable()
 {
-    QHBoxLayout *topLayout = TTKStatic_cast(QHBoxLayout*, m_topWidget->layout());
+    QHBoxLayout *topLayout = TTKObject_cast(QHBoxLayout*, m_topWidget->layout());
     delete m_backButton;
     m_backButton = new QToolButton(m_topWidget);
     m_backButton->setFixedSize(20, 20);
@@ -375,10 +375,10 @@ void MusicVideoPlayWidget::setTitleText(const QString &text)
 void MusicVideoPlayWidget::start(int st, int end, int ctrlst, int ctrlend)
 {
     m_leaverAnimation->stop();
-    QPropertyAnimation *animation = TTKStatic_cast(QPropertyAnimation*, m_leaverAnimation->animationAt(0));
+    QPropertyAnimation *animation = TTKObject_cast(QPropertyAnimation*, m_leaverAnimation->animationAt(0));
     animation->setStartValue(QPoint(0, st));
     animation->setEndValue(QPoint(0, end));
-                        animation = TTKStatic_cast(QPropertyAnimation*, m_leaverAnimation->animationAt(1));
+                        animation = TTKObject_cast(QPropertyAnimation*, m_leaverAnimation->animationAt(1));
     animation->setStartValue(QPoint(0, ctrlst));
     animation->setEndValue(QPoint(0, ctrlend));
     m_leaverAnimation->start();

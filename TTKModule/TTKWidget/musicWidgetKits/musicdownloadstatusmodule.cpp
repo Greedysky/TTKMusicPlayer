@@ -10,7 +10,7 @@
 MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
     : QObject(parent),
       m_previousState(true),
-      m_parentClass(TTKStatic_cast(MusicApplication*, parent))
+      m_parentClass(TTKObject_cast(MusicApplication*, parent))
 {
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::className(), className());
@@ -80,7 +80,7 @@ void MusicDownloadStatusModule::checkLrcValid()
 
 void MusicDownloadStatusModule::currentLrcDataDownload()
 {
-    MusicAbstractQueryRequest *d = TTKStatic_cast(MusicAbstractQueryRequest*, sender());
+    MusicAbstractQueryRequest *d = TTKObject_cast(MusicAbstractQueryRequest*, sender());
     if(!G_NETWORK_PTR->isOnline() || !d)   //no network connection
     {
         return;

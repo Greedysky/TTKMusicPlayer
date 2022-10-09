@@ -14,7 +14,7 @@ void MusicClickedGroup::mapped(QWidget *widget)
 
 void MusicClickedGroup::update()
 {
-    QWidget *widget = TTKStatic_cast(QWidget*, sender());
+    QWidget *widget = TTKObject_cast(QWidget*, sender());
     if(!widget)
     {
         return;

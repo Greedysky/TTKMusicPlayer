@@ -35,7 +35,7 @@
     {                                                                      \
         manager->createObject(#name, new name(parent));                    \
     }                                                                      \
-    name *w = TTKStatic_cast(name*, manager->object(#name));               \
+    name *w = TTKObject_cast(name*, manager->object(#name));               \
     MusicUtils::Widget::positionInCenter(w);                               \
     w->raise();                                                            \
     w->show();                                                             \

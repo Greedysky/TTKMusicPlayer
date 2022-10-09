@@ -59,7 +59,7 @@ void MusicViewWidget::mouseDoubleClickEvent(QMouseEvent *event)
 void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
-    TTKStatic_cast(MusicVideoView*, parent())->createRightMenu();
+    TTKObject_cast(MusicVideoView*, parent())->createRightMenu();
 }
 
 

@@ -302,7 +302,7 @@ void MusicSongsSummariziedWidget::setCurrentMusicSongTreeIndex(int index)
 
     if(before >= 0)
     {
-        MusicSongsListTableWidget *widget = TTKStatic_cast(MusicSongsListTableWidget*, m_songItems[before].m_itemObject);
+        MusicSongsListTableWidget *widget = TTKObject_cast(MusicSongsListTableWidget*, m_songItems[before].m_itemObject);
         if(widget && !m_songItems[before].m_songs.isEmpty())
         {
             widget->adjustPlayWidgetRow();
@@ -337,7 +337,7 @@ void MusicSongsSummariziedWidget::updateTimeLabel(const QString &current, const 
     {
         return;
     }
-    TTKStatic_cast(MusicSongsListTableWidget*, m_songItems[m_playToolIndex].m_itemObject)->updateTimeLabel(current, total);
+    TTKObject_cast(MusicSongsListTableWidget*, m_songItems[m_playToolIndex].m_itemObject)->updateTimeLabel(current, total);
 }
 
 void MusicSongsSummariziedWidget::addNewRowItem()
@@ -426,7 +426,7 @@ void MusicSongsSummariziedWidget::deleteRowItemAll(int index)
     m_selectDeleteIndex = id;
     m_toolDeleteChanged = true;
 
-    MusicSongsListTableWidget *widget = TTKStatic_cast(MusicSongsListTableWidget*, m_songItems[id].m_itemObject);
+    MusicSongsListTableWidget *widget = TTKObject_cast(MusicSongsListTableWidget*, m_songItems[id].m_itemObject);
     if(widget->rowCount() > 0)
     {
         widget->setCurrentCell(0, 1);
@@ -593,7 +593,7 @@ void MusicSongsSummariziedWidget::musicSearchResultChanged(int, int index)
         }
 
         MusicSongItem *item = &m_songItems[m_lastSearchIndex];
-        TTKStatic_cast(MusicSongsListTableWidget*, item->m_itemObject)->updateSearchFileName(&item->m_songs, result);
+        TTKObject_cast(MusicSongsListTableWidget*, item->m_itemObject)->updateSearchFileName(&item->m_songs, result);
 
         if(item->m_songs.isEmpty())
         {
@@ -619,7 +619,7 @@ void MusicSongsSummariziedWidget::musicSearchResultChanged(int, int index)
     m_searchResultCache.insert(index, result);
 
     MusicSongItem *item = &m_songItems[m_currentIndex];
-    TTKStatic_cast(MusicSongsListTableWidget*, item->m_itemObject)->updateSearchFileName(&item->m_songs, result);
+    TTKObject_cast(MusicSongsListTableWidget*, item->m_itemObject)->updateSearchFileName(&item->m_songs, result);
 
     if(index == 0)
     {
@@ -666,7 +666,7 @@ void MusicSongsSummariziedWidget::addSongToLovestListAt(bool state, int row)
         return;
     }
 
-    MusicSongsListTableWidget *widget = TTKStatic_cast(MusicSongsListTableWidget*, item->m_itemObject);
+    MusicSongsListTableWidget *widget = TTKObject_cast(MusicSongsListTableWidget*, item->m_itemObject);
     if(state)    ///Add to lovest list
     {
         item->m_songs << song;
@@ -694,7 +694,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
 
     const MusicSong &song = m_songItems[m_playToolIndex].m_songs[row];
     MusicSongItem *item = &m_songItems[MUSIC_LOVEST_LIST];
-    MusicSongsListTableWidget *widget = TTKStatic_cast(MusicSongsListTableWidget*, item->m_itemObject);
+    MusicSongsListTableWidget *widget = TTKObject_cast(MusicSongsListTableWidget*, item->m_itemObject);
     if(state)    ///Add to lovest list
     {
         item->m_songs << song;
@@ -799,9 +799,8 @@ void MusicSongsSummariziedWidget::setDeleteItemAt(const TTKIntList &index, bool 
     MusicApplication::instance()->setDeleteItemAt(deleteFiles, fileRemove, currentIndex == m_playToolIndex, currentIndex);
 
     setItemTitle(item);
-
     //create upload file widget if current items is all been deleted
-    TTKStatic_cast(MusicSongsListTableWidget*, item->m_itemObject)->createUploadFileModule();
+    TTKObject_cast(MusicSongsListTableWidget*, item->m_itemObject)->createUploadFileModule();
 }
 
 void MusicSongsSummariziedWidget::setMusicIndexSwaped(int before, int after, int play, MusicSongList &songs)
@@ -871,7 +870,7 @@ void MusicSongsSummariziedWidget::setRecentMusicSongs(int index)
     MusicSongItem *item = &m_songItems[MUSIC_RECENT_LIST];
     MusicSong recentSong(songs->at(index));
     MusicSongList *recentSongs = &item->m_songs;
-    MusicSongsListTableWidget *widget = TTKStatic_cast(MusicSongsListTableWidget*, item->m_itemObject);
+    MusicSongsListTableWidget *widget = TTKObject_cast(MusicSongsListTableWidget*, item->m_itemObject);
     if(!recentSongs->contains(recentSong))
     {
         if(recentSongs->count() >= RECENT_ITEM_MAX_COUNT)
@@ -912,7 +911,7 @@ void MusicSongsSummariziedWidget::updateCurrentArtist()
     {
         return;
     }
-    TTKStatic_cast(MusicSongsListTableWidget*, m_songItems[m_playToolIndex].m_itemObject)->updateCurrentArtist();
+    TTKObject_cast(MusicSongsListTableWidget*, m_songItems[m_playToolIndex].m_itemObject)->updateCurrentArtist();
 }
 
 void MusicSongsSummariziedWidget::showFloatWidget()
@@ -941,7 +940,7 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
 
     closeSearchWidgetInNeed();
 
-    MusicSongsListTableWidget *widget = TTKStatic_cast(MusicSongsListTableWidget*, m_songItems[id].m_itemObject);
+    MusicSongsListTableWidget *widget = TTKObject_cast(MusicSongsListTableWidget*, m_songItems[id].m_itemObject);
     MusicSong::Sort sort = MusicSong::Sort::ByFileName;
     index = m_songItems[id].m_sort.m_type;
     if(index != -1)

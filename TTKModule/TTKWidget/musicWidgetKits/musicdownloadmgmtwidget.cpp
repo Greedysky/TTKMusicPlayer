@@ -82,7 +82,7 @@ void MusicDownloadResetWidget::openFileLocation()
 
 MusicDownloadMgmtWidget::MusicDownloadMgmtWidget(QObject *parent)
     : QObject(parent),
-      m_parentClass(TTKStatic_cast(QWidget*, parent))
+      m_parentClass(TTKObject_cast(QWidget*, parent))
 {
 
 }

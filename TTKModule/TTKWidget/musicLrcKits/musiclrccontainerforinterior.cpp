@@ -213,7 +213,7 @@ void MusicLrcContainerForInterior::createFloatPlayWidget()
 
 void MusicLrcContainerForInterior::lrcWidgetShowFullScreen()
 {
-    QHBoxLayout *layout = TTKStatic_cast(QHBoxLayout*, m_functionLabel->layout());
+    QHBoxLayout *layout = TTKObject_cast(QHBoxLayout*, m_functionLabel->layout());
     if(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen())
     {
         layout->removeItem(layout->itemAt(layout->count() - 1));
@@ -820,7 +820,7 @@ void MusicLrcContainerForInterior::setItemStyleSheet()
 
 void MusicLrcContainerForInterior::setItemStyleSheet(int index, int size, int transparent)
 {
-    MusicLrcManagerForInterior *w = TTKStatic_cast(MusicLrcManagerForInterior*, m_lrcManagers[index]);
+    MusicLrcManagerForInterior *w = TTKObject_cast(MusicLrcManagerForInterior*, m_lrcManagers[index]);
     w->setFontSize(size);
 
     int value = G_SETTING_PTR->value("LrcColorTransparent").toInt() - transparent;
@@ -896,7 +896,7 @@ void MusicLrcContainerForInterior::resizeWidth(int w, int h)
 {
     for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
     {
-        TTKStatic_cast(MusicLrcManagerForInterior*, m_lrcManagers[i])->setLrcPerWidth(w);
+        TTKObject_cast(MusicLrcManagerForInterior*, m_lrcManagers[i])->setLrcPerWidth(w);
     }
 
     m_lrcFloatWidget->resizeWindow(w, h);

@@ -72,7 +72,7 @@ void QSyncUploadData::uploadDataOperator(const QString &time, const QString &buc
 void QSyncUploadData::receiveDataFromServer()
 {
     TTK_D(QSyncUploadData);
-    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, sender());
     if(reply)
     {
         if(reply->error() == QNetworkReply::NoError)

@@ -185,7 +185,7 @@ void QHttpConnection::waitForBytesWritten()
 void QHttpConnection::responseDone()
 {
     TTK_D(QHttpConnection);
-    QHttpResponse *response = TTKObject_cast(QHttpResponse*, QObject::sender());
+    QHttpResponse *response = TTKObject_cast(QHttpResponse*, sender());
     if(response->isLast())
     {
         d->m_socket->disconnectFromHost();

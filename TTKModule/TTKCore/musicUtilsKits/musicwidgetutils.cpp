@@ -126,7 +126,7 @@ void MusicUtils::Widget::widgetToRound(QWidget *widget, int ratioX, int ratioY)
 
 void MusicUtils::Widget::generateVScrollAreaFormat(QWidget *widget, QWidget *parent, bool background)
 {
-    QScrollArea *area = TTKStatic_cast(QScrollArea*, widget);
+    QScrollArea *area = TTKObject_cast(QScrollArea*, widget);
     if(area)
     {
         const QString &style = background ? MusicUIObject::MQSSScrollBarStyle01 : MusicUIObject::MQSSScrollBarStyle03;
@@ -143,7 +143,7 @@ void MusicUtils::Widget::generateVScrollAreaFormat(QWidget *widget, QWidget *par
 
 void MusicUtils::Widget::generateHScrollAreaFormat(QWidget *widget, QWidget *parent, bool background)
 {
-    QScrollArea *area = TTKStatic_cast(QScrollArea*, widget);
+    QScrollArea *area = TTKObject_cast(QScrollArea*, widget);
     if(area)
     {
         const QString &style = background ? MusicUIObject::MQSSScrollBarStyle02 : MusicUIObject::MQSSScrollBarStyle04;

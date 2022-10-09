@@ -1070,7 +1070,7 @@ void MusicSettingWidget::lcrColorValue(Lrc key, const QString &type, QLabel *obj
     if(dialog.exec())
     {
         const QList<QColor> &colors = dialog.colors();
-        TTKStatic_cast(MusicColorPreviewLabel*, obj)->setColors(colors);
+        TTKObject_cast(MusicColorPreviewLabel*, obj)->setColors(colors);
     }
     key == Lrc::Interior ? showInteriorLrcDemo() : showDesktopLrcDemo();
 }

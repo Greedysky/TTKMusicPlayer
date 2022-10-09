@@ -121,7 +121,7 @@ MusicArtistMvsQueryWidget::~MusicArtistMvsQueryWidget()
 void MusicArtistMvsQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    MusicQueryMovieRequest *d = TTKStatic_cast(MusicQueryMovieRequest*, m_networkRequest);
+    MusicQueryMovieRequest *d = TTKObject_cast(MusicQueryMovieRequest*, m_networkRequest);
     d->startToSearch(m_songNameFull);
 }
 

@@ -239,7 +239,7 @@ void MusicLocalManagerWidget::typeIndexChanged(int index)
 
 void MusicLocalManagerWidget::mediaPathChanged(const QString &path)
 {
-//    TTKStatic_cast(MusicLocalManagerSongsTableWidget*, m_tabWidget->widget(0))->
+//    TTKObject_cast(MusicLocalManagerSongsTableWidget*, m_tabWidget->widget(0))->
 //    updateSongsList(MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats()));
 }
 

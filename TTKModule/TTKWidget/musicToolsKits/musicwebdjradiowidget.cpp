@@ -132,7 +132,7 @@ void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &bytes
         return;
     }
 
-    MusicDownloadSourceRequest *download(TTKStatic_cast(MusicDownloadSourceRequest*, sender()));
+    MusicDownloadSourceRequest *download(TTKObject_cast(MusicDownloadSourceRequest*, sender()));
     if(!download)
     {
         return;

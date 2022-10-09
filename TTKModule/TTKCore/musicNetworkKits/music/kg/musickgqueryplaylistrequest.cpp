@@ -154,7 +154,7 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
     TTK_LOGGER_INFO(QString("%1 downloadDetailsFinished").arg(className()));
 
     MusicQueryPlaylistRequest::downLoadFinished();
-    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;

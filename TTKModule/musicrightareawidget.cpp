@@ -579,20 +579,20 @@ void MusicRightAreaWidget::musicSongCommentsWidget()
 void MusicRightAreaWidget::musicSimilarFound(const QString &text)
 {
     functionClicked(MusicRightAreaWidget::SimilarWidget);
-    TTKStatic_cast(MusicSimilarQueryWidget*, m_stackedWidget)->setSongName(text);
+    TTKObject_cast(MusicSimilarQueryWidget*, m_stackedWidget)->setSongName(text);
 }
 
 void MusicRightAreaWidget::musicAlbumFound(const QString &text, const QString &id)
 {
     functionClicked(MusicRightAreaWidget::AlbumWidget);
-    MusicAlbumQueryWidget *w = TTKStatic_cast(MusicAlbumQueryWidget*, m_stackedWidget);
+    MusicAlbumQueryWidget *w = TTKObject_cast(MusicAlbumQueryWidget*, m_stackedWidget);
     id.isEmpty() ? w->setSongName(text) : w->setSongNameById(id);
 }
 
 void MusicRightAreaWidget::musicArtistCategoryFound()
 {
     functionClicked(MusicRightAreaWidget::ArtistCategoryWidget);
-    TTKStatic_cast(MusicArtistListQueryWidget*, m_stackedWidget)->setSongName(QString());
+    TTKObject_cast(MusicArtistListQueryWidget*, m_stackedWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicArtistSearchFound()
@@ -627,27 +627,27 @@ void MusicRightAreaWidget::musicMovieSearchRadioFound()
 void MusicRightAreaWidget::musicArtistFound(const QString &text, const QString &id)
 {
     functionClicked(MusicRightAreaWidget::ArtistWidget);
-    MusicArtistQueryWidget *w = TTKStatic_cast(MusicArtistQueryWidget*, m_stackedWidget);
+    MusicArtistQueryWidget *w = TTKObject_cast(MusicArtistQueryWidget*, m_stackedWidget);
     id.isEmpty() ? w->setSongName(text) : w->setSongNameById(id);
 }
 
 void MusicRightAreaWidget::musicToplistFound()
 {
     functionClicked(MusicRightAreaWidget::ToplistWidget);
-    TTKStatic_cast(MusicToplistQueryWidget*, m_stackedWidget)->setSongName(QString());
+    TTKObject_cast(MusicToplistQueryWidget*, m_stackedWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicPlaylistFound(const QString &id)
 {
     functionClicked(MusicRightAreaWidget::PlaylistWidget);
-    MusicPlaylistQueryWidget *w = TTKStatic_cast(MusicPlaylistQueryWidget*, m_stackedWidget);
+    MusicPlaylistQueryWidget *w = TTKObject_cast(MusicPlaylistQueryWidget*, m_stackedWidget);
     id.isEmpty() ? w->setSongName(QString()) : w->setSongNameById(id);
 }
 
 void MusicRightAreaWidget::musicRecommendFound()
 {
     functionClicked(MusicRightAreaWidget::RecommendWidget);
-    TTKStatic_cast(MusicRecommendQueryWidget*, m_stackedWidget)->setSongName(QString());
+    TTKObject_cast(MusicRecommendQueryWidget*, m_stackedWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicAdvancedSearch()

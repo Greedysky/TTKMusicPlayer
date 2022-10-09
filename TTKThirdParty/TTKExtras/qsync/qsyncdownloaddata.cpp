@@ -93,7 +93,7 @@ QString QSyncDownloadData::downloadUrl(const QString &bucket, const QString &fil
 void QSyncDownloadData::receiveDataFromServer()
 {
     TTK_D(QSyncDownloadData);
-    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, sender());
     if(reply)
     {
         if(reply->error() == QNetworkReply::NoError)

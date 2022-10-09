@@ -153,7 +153,7 @@ void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
 {
     if(state)
     {
-        QWidget *parent = TTKStatic_cast(QWidget*, widget->parent());
+        QWidget *parent = TTKObject_cast(QWidget*, widget->parent());
         if(parent)
         {
             m_spectrumLayout = parent->layout();
@@ -298,7 +298,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
 
         if(florid)
         {
-            TTKStatic_cast(Florid*, type.m_object)->setPixmap(MusicTopAreaWidget::instance()->rendererPixmap());
+            TTKObject_cast(Florid*, type.m_object)->setPixmap(MusicTopAreaWidget::instance()->rendererPixmap());
             connect(MusicTopAreaWidget::instance(), SIGNAL(backgroundPixmapChanged(QPixmap)), type.m_object, SLOT(setPixmap(QPixmap)));
         }
         connect(type.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
@@ -338,7 +338,7 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::Module spectrum, bool
             return;
         }
 
-        Light *light = TTKStatic_cast(Light*, m_types[index].m_object);
+        Light *light = TTKObject_cast(Light*, m_types[index].m_object);
         if(light && LIGHT_SPECTRUM_MODULE == name)
         {
             const QString &path = url.isEmpty() ? SoundCore::instance()->path() : url;

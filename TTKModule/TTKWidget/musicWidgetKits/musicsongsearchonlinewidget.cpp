@@ -386,7 +386,7 @@ void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name, bool all
     setResizeLabelText(name);
     if(!m_resizeWidgets.isEmpty())
     {
-        TTKStatic_cast(QCheckBox*, m_resizeWidgets[0])->setChecked(false);
+        TTKObject_cast(QCheckBox*, m_resizeWidgets[0])->setChecked(false);
     }
 
     m_searchTableWidget->setQueryAllRecords(all);
@@ -398,7 +398,7 @@ void MusicSongSearchOnlineWidget::startSearchSingleQuery(const QString &name)
     setResizeLabelText(name);
     if(!m_resizeWidgets.isEmpty())
     {
-        TTKStatic_cast(QCheckBox*, m_resizeWidgets[0])->setChecked(false);
+        TTKObject_cast(QCheckBox*, m_resizeWidgets[0])->setChecked(false);
     }
 
     m_searchTableWidget->setQueryAllRecords(true);
