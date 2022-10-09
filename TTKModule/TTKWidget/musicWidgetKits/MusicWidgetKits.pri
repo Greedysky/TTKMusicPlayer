@@ -29,7 +29,7 @@ HEADERS += \
     $$PWD/musicsongslistplaywidget.h \
     $$PWD/musicsongslistplayedwidget.h \
     $$PWD/musicsongslistfunctionwidget.h \
-    $$PWD/musicsongslisttablewidget.h \
+    $$PWD/musicsongslistplaytablewidget.h \
     $$PWD/musicsongslistplayedtablewidget.h \
     $$PWD/musicbackgroundlistwidget.h \
     $$PWD/musicbackgroundpalettewidget.h \
@@ -79,7 +79,7 @@ SOURCES += \
     $$PWD/musicsongslistplaywidget.cpp \
     $$PWD/musicsongslistplayedwidget.cpp \
     $$PWD/musicsongslistfunctionwidget.cpp \
-    $$PWD/musicsongslisttablewidget.cpp \
+    $$PWD/musicsongslistplaytablewidget.cpp \
     $$PWD/musicsongslistplayedtablewidget.cpp \
     $$PWD/musicbackgroundlistwidget.cpp \
     $$PWD/musicbackgroundpalettewidget.cpp \

@@ -1,5 +1,5 @@
-#ifndef MUSICSONGSLISTTABLEWIDGET_H
-#define MUSICSONGSLISTTABLEWIDGET_H
+#ifndef MUSICSONGSLISTPLAYTABLEWIDGET_H
+#define MUSICSONGSLISTPLAYTABLEWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -28,19 +28,19 @@ class MusicSongsListPlayWidget;
 class MusicSongsListItemInfoWidget;
 class MusicLineEditDelegate;
 
-/*! @brief The class of the songs list table widget.
+/*! @brief The class of the songs list play table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongsListTableWidget : public MusicAbstractSongsListTableWidget
+class TTK_MODULE_EXPORT MusicSongsListPlayTableWidget : public MusicAbstractSongsListTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongsListTableWidget)
+    TTK_DECLARE_MODULE(MusicSongsListPlayTableWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongsListTableWidget(int index, QWidget *parent = nullptr);
-    ~MusicSongsListTableWidget();
+    explicit MusicSongsListPlayTableWidget(int index, QWidget *parent = nullptr);
+    ~MusicSongsListPlayTableWidget();
 
     /*!
      * Update songs files in table.
@@ -207,4 +207,4 @@ protected:
 
 };
 
-#endif // MUSICSONGSLISTTABLEWIDGET_H
+#endif // MUSICSONGSLISTPLAYTABLEWIDGET_H

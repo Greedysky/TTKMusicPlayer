@@ -20,14 +20,14 @@ MusicDispatchManager::~MusicDispatchManager()
     qDeleteAll(m_observer);
 }
 
-void MusicDispatchManager::dispatch(int type)
+void MusicDispatchManager::dispatch(Module type)
 {
     MusicDispatchItem *item = new MusicDispatchItem;
     item->m_type = type;
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(int type, const TTKVariantList &args)
+void MusicDispatchManager::dispatch(Module type, const TTKVariantList &args)
 {
     MusicDispatchItem *item = new MusicDispatchItem;
     item->m_type = type;
@@ -35,7 +35,7 @@ void MusicDispatchManager::dispatch(int type, const TTKVariantList &args)
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(int type, void *funcs)
+void MusicDispatchManager::dispatch(Module type, void *funcs)
 {
     MusicDispatchItem *item = new MusicDispatchItem;
     item->m_type = type;
@@ -43,7 +43,7 @@ void MusicDispatchManager::dispatch(int type, void *funcs)
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(int type, const QVariant &arg1)
+void MusicDispatchManager::dispatch(Module type, const QVariant &arg1)
 {
     MusicDispatchItem *item = new MusicDispatchItem;
     item->m_type = type;
@@ -51,7 +51,7 @@ void MusicDispatchManager::dispatch(int type, const QVariant &arg1)
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(int type, const QVariant &arg1, const QVariant &arg2)
+void MusicDispatchManager::dispatch(Module type, const QVariant &arg1, const QVariant &arg2)
 {
     MusicDispatchItem *item = new MusicDispatchItem;
     item->m_type = type;
@@ -59,7 +59,7 @@ void MusicDispatchManager::dispatch(int type, const QVariant &arg1, const QVaria
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(int type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3)
+void MusicDispatchManager::dispatch(Module type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3)
 {
     MusicDispatchItem *item = new MusicDispatchItem;
     item->m_type = type;
@@ -67,7 +67,7 @@ void MusicDispatchManager::dispatch(int type, const QVariant &arg1, const QVaria
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(int type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3, const QVariant &arg4)
+void MusicDispatchManager::dispatch(Module type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3, const QVariant &arg4)
 {
     MusicDispatchItem *item = new MusicDispatchItem;
     item->m_type = type;
@@ -88,10 +88,9 @@ void MusicDispatchManager::activeFunctions()
     bool state = true;
     switch(item->m_type)
     {
-        case 0: break;
-        case 1:
+        case Module::FileRemove:
         {
-            if(item->m_args.count() == 1)
+            if(!item->m_args.isEmpty())
             {
                 state = QFile::remove(item->m_args.front().toString());
             }

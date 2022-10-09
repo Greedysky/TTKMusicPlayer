@@ -107,7 +107,7 @@ QString MusicObject::trackRelatedPath(const QString &path)
     return url;
 }
 
-MusicSongList MusicObject::generateMusicSongList(const QString &path)
+MusicSongList MusicObject::generateSongList(const QString &path)
 {
     MusicSongList songs;
     MusicSongMeta meta;
@@ -146,7 +146,18 @@ MusicSongList MusicObject::generateMusicSongList(const QString &path)
     return songs;
 }
 
-QString MusicObject::generateMusicPlayTime(const QString &path)
+bool MusicObject::playlistRowValid(int index)
+{
+    return index != MUSIC_LOVEST_LIST && index != MUSIC_NETWORK_LIST && index != MUSIC_RECENT_LIST;
+}
+
+QString MusicObject::generateNetworkSongTime(const QString &path)
+{
+    MusicSongMeta meta;
+    return meta.read(MusicObject::generateNetworkSongPath(path)) ? meta.duration() : TTK_DEFAULT_STR;
+}
+
+QString MusicObject::generateNetworkSongPath(const QString &path)
 {
     QString v = path;
     if(MusicUtils::String::isNetworkUrl(path))
@@ -163,11 +174,5 @@ QString MusicObject::generateMusicPlayTime(const QString &path)
         }
     }
 
-    MusicSongMeta meta;
-    return meta.read(v) ? meta.duration() : TTK_DEFAULT_STR;
-}
-
-bool MusicObject::playlistRowValid(int index)
-{
-    return index != MUSIC_LOVEST_LIST && index != MUSIC_NETWORK_LIST && index != MUSIC_RECENT_LIST;
+    return v;
 }

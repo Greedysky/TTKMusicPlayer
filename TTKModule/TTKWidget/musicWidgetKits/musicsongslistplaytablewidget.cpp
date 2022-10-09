@@ -1,4 +1,4 @@
-#include "musicsongslisttablewidget.h"
+#include "musicsongslistplaytablewidget.h"
 #include "musicsongslistiteminfowidget.h"
 #include "musicsongslistplaywidget.h"
 #include "musictransformwidget.h"
@@ -28,7 +28,7 @@
     }
 
 
-MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
+MusicSongsListPlayTableWidget::MusicSongsListPlayTableWidget(int index, QWidget *parent)
     : MusicAbstractSongsListTableWidget(index, parent),
       m_parentClass(parent),
       m_dragStartIndex(-1),
@@ -62,7 +62,7 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     connect(this, SIGNAL(cellDoubleClicked(int,int)), MusicApplication::instance(), SLOT(musicPlayIndexClicked(int,int)));
 }
 
-MusicSongsListTableWidget::~MusicSongsListTableWidget()
+MusicSongsListPlayTableWidget::~MusicSongsListPlayTableWidget()
 {
     removeItems();
     delete m_openFileWidget;
@@ -71,7 +71,7 @@ MusicSongsListTableWidget::~MusicSongsListTableWidget()
     delete m_renameEditDelegate;
 }
 
-void MusicSongsListTableWidget::updateSongsList(const MusicSongList &songs)
+void MusicSongsListPlayTableWidget::updateSongsList(const MusicSongList &songs)
 {
     if(createUploadFileModule())
     {
@@ -110,7 +110,7 @@ void MusicSongsListTableWidget::updateSongsList(const MusicSongList &songs)
     setFixedHeight(totalHeight());
 }
 
-void MusicSongsListTableWidget::selectRow(int index)
+void MusicSongsListPlayTableWidget::selectRow(int index)
 {
     if(index < 0)
     {
@@ -148,7 +148,7 @@ void MusicSongsListTableWidget::selectRow(int index)
     setFixedHeight(totalHeight());
 }
 
-void MusicSongsListTableWidget::updateSearchFileName(MusicSongList *songs, const TTKIntList &result)
+void MusicSongsListPlayTableWidget::updateSearchFileName(MusicSongList *songs, const TTKIntList &result)
 {
     m_searchedSongs.clear();
     if(songs->count() == result.count())
@@ -175,7 +175,7 @@ void MusicSongsListTableWidget::updateSearchFileName(MusicSongList *songs, const
     }
 }
 
-void MusicSongsListTableWidget::updateTimeLabel(const QString &current, const QString &total) const
+void MusicSongsListPlayTableWidget::updateTimeLabel(const QString &current, const QString &total) const
 {
     if(m_songsPlayWidget)
     {
@@ -183,7 +183,7 @@ void MusicSongsListTableWidget::updateTimeLabel(const QString &current, const QS
     }
 }
 
-void MusicSongsListTableWidget::updateCurrentArtist()
+void MusicSongsListPlayTableWidget::updateCurrentArtist()
 {
     if(m_songsPlayWidget)
     {
@@ -191,7 +191,7 @@ void MusicSongsListTableWidget::updateCurrentArtist()
     }
 }
 
-void MusicSongsListTableWidget::adjustPlayWidgetRow()
+void MusicSongsListPlayTableWidget::adjustPlayWidgetRow()
 {
     if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)
     {
@@ -231,7 +231,7 @@ void MusicSongsListTableWidget::adjustPlayWidgetRow()
     setFixedHeight(totalHeight());
 }
 
-bool MusicSongsListTableWidget::createUploadFileModule()
+bool MusicSongsListPlayTableWidget::createUploadFileModule()
 {
     if(m_songs->isEmpty() && MusicObject::playlistRowValid(m_toolIndex))
     {
@@ -259,7 +259,7 @@ bool MusicSongsListTableWidget::createUploadFileModule()
     return false;
 }
 
-void MusicSongsListTableWidget::itemCellEntered(int row, int column)
+void MusicSongsListPlayTableWidget::itemCellEntered(int row, int column)
 {
     QTableWidgetItem *it = item(m_previousColorRow, 0);
     if(it)
@@ -343,7 +343,7 @@ void MusicSongsListTableWidget::itemCellEntered(int row, int column)
     m_timerStay.start(3 * MT_S2MS);
 }
 
-void MusicSongsListTableWidget::itemCellClicked(int row, int column)
+void MusicSongsListPlayTableWidget::itemCellClicked(int row, int column)
 {
     if(row == m_playRowIndex)
     {
@@ -403,7 +403,7 @@ void MusicSongsListTableWidget::itemCellClicked(int row, int column)
     }
 }
 
-void MusicSongsListTableWidget::removeItems()
+void MusicSongsListPlayTableWidget::removeItems()
 {
 //    if(m_playRowIndex < 0)
 //    {
@@ -423,7 +423,7 @@ void MusicSongsListTableWidget::removeItems()
     setColumnCount(6);
 }
 
-void MusicSongsListTableWidget::setDeleteItemAt()
+void MusicSongsListPlayTableWidget::setDeleteItemAt()
 {
     MusicMessageBox message;
     message.setText(tr("Are you sure to delete?"));
@@ -468,14 +468,14 @@ void MusicSongsListTableWidget::setDeleteItemAt()
     Q_EMIT deleteItemAt(deleteList, m_deleteItemWithFile);
 }
 
-void MusicSongsListTableWidget::setDeleteItemWithFile()
+void MusicSongsListPlayTableWidget::setDeleteItemWithFile()
 {
     m_deleteItemWithFile = true;
     setDeleteItemAt();
     m_deleteItemWithFile = false;
 }
 
-void MusicSongsListTableWidget::showTimeOut()
+void MusicSongsListPlayTableWidget::showTimeOut()
 {
     m_timerShow.stop();
     if(m_songsInfoWidget)
@@ -495,14 +495,14 @@ void MusicSongsListTableWidget::showTimeOut()
     }
 }
 
-void MusicSongsListTableWidget::stayTimeOut()
+void MusicSongsListPlayTableWidget::stayTimeOut()
 {
     m_timerStay.stop();
     delete m_songsInfoWidget;
     m_songsInfoWidget = nullptr;
 }
 
-void MusicSongsListTableWidget::setChangSongName()
+void MusicSongsListPlayTableWidget::setChangSongName()
 {
     if(rowCount() == 0 || currentRow() < 0 /*|| currentItem()->column() != 1*/)
     {
@@ -528,7 +528,7 @@ void MusicSongsListTableWidget::setChangSongName()
     editItem(m_renameItem);
 }
 
-void MusicSongsListTableWidget::musicMakeRingWidget()
+void MusicSongsListPlayTableWidget::musicMakeRingWidget()
 {
     if(rowCount() == 0 || currentRow() < 0)
     {
@@ -538,7 +538,7 @@ void MusicSongsListTableWidget::musicMakeRingWidget()
     MusicSongRingtoneMaker(this).exec();
 }
 
-void MusicSongsListTableWidget::musicTransformWidget()
+void MusicSongsListPlayTableWidget::musicTransformWidget()
 {
     if(rowCount() == 0 || currentRow() < 0)
     {
@@ -548,7 +548,7 @@ void MusicSongsListTableWidget::musicTransformWidget()
     MusicTransformWidget(this).exec();
 }
 
-void MusicSongsListTableWidget::musicSearchQuery(QAction *action)
+void MusicSongsListPlayTableWidget::musicSearchQuery(QAction *action)
 {
     if(action->data().isNull())
     {
@@ -567,7 +567,7 @@ void MusicSongsListTableWidget::musicSearchQuery(QAction *action)
     }
 }
 
-void MusicSongsListTableWidget::musicAddToPlayLater()
+void MusicSongsListPlayTableWidget::musicAddToPlayLater()
 {
     const int row = currentRow();
     if(rowCount() == 0 || row < 0)
@@ -578,7 +578,7 @@ void MusicSongsListTableWidget::musicAddToPlayLater()
     MusicPlayedListPopWidget::instance()->insert(m_toolIndex, (*m_songs)[row]);
 }
 
-void MusicSongsListTableWidget::musicAddToPlayedList()
+void MusicSongsListPlayTableWidget::musicAddToPlayedList()
 {
     const int row = currentRow();
     if(rowCount() == 0 || row < 0)
@@ -589,7 +589,7 @@ void MusicSongsListTableWidget::musicAddToPlayedList()
     MusicPlayedListPopWidget::instance()->append(m_toolIndex, (*m_songs)[row]);
 }
 
-void MusicSongsListTableWidget::setItemRenameFinished(const QString &name)
+void MusicSongsListPlayTableWidget::setItemRenameFinished(const QString &name)
 {
     if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)
     {
@@ -599,7 +599,7 @@ void MusicSongsListTableWidget::setItemRenameFinished(const QString &name)
     (*m_songs)[m_playRowIndex].setName(name);
 }
 
-void MusicSongsListTableWidget::musicListSongSortBy(QAction *action)
+void MusicSongsListPlayTableWidget::musicListSongSortBy(QAction *action)
 {
     const int newType = action->data().toInt();
     if(newType < 0 || newType > 5)
@@ -625,7 +625,7 @@ void MusicSongsListTableWidget::musicListSongSortBy(QAction *action)
     }
 }
 
-void MusicSongsListTableWidget::mousePressEvent(QMouseEvent *event)
+void MusicSongsListPlayTableWidget::mousePressEvent(QMouseEvent *event)
 {
     MusicAbstractSongsListTableWidget::mousePressEvent(event);
     closeRenameItem();
@@ -638,7 +638,7 @@ void MusicSongsListTableWidget::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void MusicSongsListTableWidget::mouseMoveEvent(QMouseEvent *event)
+void MusicSongsListPlayTableWidget::mouseMoveEvent(QMouseEvent *event)
 {
     MusicAbstractSongsListTableWidget::mouseMoveEvent(event);
     if(m_leftButtonPressed && abs(m_dragStartPoint.y() - event->pos().y()) > 15)
@@ -649,7 +649,7 @@ void MusicSongsListTableWidget::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void MusicSongsListTableWidget::mouseReleaseEvent(QMouseEvent *event)
+void MusicSongsListPlayTableWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     MusicAbstractSongsListTableWidget::mouseReleaseEvent(event);
     startToDrag();
@@ -660,7 +660,7 @@ void MusicSongsListTableWidget::mouseReleaseEvent(QMouseEvent *event)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 }
 
-void MusicSongsListTableWidget::leaveEvent(QEvent *event)
+void MusicSongsListPlayTableWidget::leaveEvent(QEvent *event)
 {
     MusicAbstractSongsListTableWidget::leaveEvent(event);
     itemCellEntered(-1, -1);
@@ -670,14 +670,14 @@ void MusicSongsListTableWidget::leaveEvent(QEvent *event)
     closeRenameItem();
 }
 
-void MusicSongsListTableWidget::wheelEvent(QWheelEvent *event)
+void MusicSongsListPlayTableWidget::wheelEvent(QWheelEvent *event)
 {
     MusicAbstractSongsListTableWidget::wheelEvent(event);
     closeRenameItem();
     Q_EMIT showFloatWidget();
 }
 
-void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
+void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
     QMenu menu(this);
@@ -739,7 +739,7 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.exec(QCursor::pos());
 }
 
-void MusicSongsListTableWidget::closeRenameItem()
+void MusicSongsListPlayTableWidget::closeRenameItem()
 {
     if(!m_renameItem)
     {
@@ -768,7 +768,7 @@ void MusicSongsListTableWidget::closeRenameItem()
     }
 }
 
-void MusicSongsListTableWidget::startToDrag()
+void MusicSongsListPlayTableWidget::startToDrag()
 {
     bool empty;
     Q_EMIT isSearchResultEmpty(empty);
@@ -821,7 +821,7 @@ void MusicSongsListTableWidget::startToDrag()
     }
 }
 
-void MusicSongsListTableWidget::createContextMenu(QMenu &menu)
+void MusicSongsListPlayTableWidget::createContextMenu(QMenu &menu)
 {
     const QString &songName = currentSongName();
     const QStringList names(MusicUtils::String::stringSplit(songName));

@@ -886,9 +886,10 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
             m_player->stop();
             musicStatePlay();
 
-            if(remove && !QFile::remove(item.m_path))
+            const QString &removeParh = toolIndex == MUSIC_NETWORK_LIST ? MusicObject::generateNetworkSongPath(item.m_path) : item.m_path;
+            if(remove && !QFile::remove(removeParh))
             {
-                G_DISPATCH_PTR->dispatch(1, item.m_path);
+                G_DISPATCH_PTR->dispatch(MusicDispatchManager::Module::FileRemove, removeParh);
             }
         }
     }

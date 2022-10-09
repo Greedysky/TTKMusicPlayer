@@ -11,7 +11,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musicsongslistplaywidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistfunctionwidget.h
-    ${MUSIC_WIDGET_DIR}/musicsongslisttablewidget.h
+    ${MUSIC_WIDGET_DIR}/musicsongslistplaytablewidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedtablewidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundpalettewidget.h
@@ -62,7 +62,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musicsongslistplaywidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistfunctionwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicsongslisttablewidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicsongslistplaytablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedtablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundpalettewidget.cpp
