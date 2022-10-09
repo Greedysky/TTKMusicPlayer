@@ -37,19 +37,15 @@ static const char *self_define_header_prefix = "x-oss-";
 static TTKStringMap formatHeader(const TTKStringMap &headers)
 {
     TTKStringMap value;
-    TTKStringMapIter it(headers);
-    it.toFront();
-
-    while(it.hasNext())
+    for(auto itr = headers.constBegin(); itr != headers.constEnd(); ++itr)
     {
-        it.next();
-        if(it.key().toLower().startsWith(self_define_header_prefix))
+        if(itr.key().toLower().startsWith(self_define_header_prefix))
         {
-            value.insert(it.key().toLower(), it.value());
+            value.insert(itr.key().toLower(), itr.value());
         }
         else
         {
-            value.insert(it.key(), it.value());
+            value.insert(itr.key(), itr.value());
         }
     }
     return value;
@@ -67,13 +63,11 @@ QString QSyncUtils::authorizationCode(const QString &key, const QString &method,
 
     if(origin_headers.count() > 0)
     {
-        TTKStringMapIter it(origin_headers);
-        while(it.hasNext())
+        for(auto itr = origin_headers.constBegin(); itr != origin_headers.constEnd(); ++itr)
         {
-            it.next();
-            if(it.key().startsWith(self_define_header_prefix))
+            if(itr.key().startsWith(self_define_header_prefix))
             {
-                canonicalized_headers += it.key() + ":" + it.value() + "\n";
+                canonicalized_headers += itr.key() + ":" + itr.value() + "\n";
             }
         }
     }

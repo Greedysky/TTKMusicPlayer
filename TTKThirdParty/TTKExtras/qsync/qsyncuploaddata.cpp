@@ -46,11 +46,9 @@ void QSyncUploadData::uploadDataOperator(const QString &time, const QString &buc
     QNetworkRequest request;
     request.setUrl("http://" + host + url);
 
-    TTKStringMapIter it(headers);
-    while(it.hasNext())
+    for(auto itr = headers.constBegin(); itr != headers.constEnd(); ++itr)
     {
-        it.next();
-        request.setRawHeader(it.key().toUtf8(), it.value().toUtf8());
+        request.setRawHeader(itr.key().toUtf8(), itr.value().toUtf8());
     }
 
     QFile file(filePath);

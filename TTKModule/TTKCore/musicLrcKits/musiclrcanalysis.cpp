@@ -56,11 +56,9 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
         m_lrcContainer.insert(0, QString());
     }
 
-    TTKIntStringMapIter it(m_lrcContainer);
-    while(it.hasNext())
+    for(auto itr = m_lrcContainer.constBegin(); itr != m_lrcContainer.constEnd(); ++itr)
     {
-        it.next();
-        m_currentShowLrcContainer << it.value();
+        m_currentShowLrcContainer << itr.value();
     }
 
     for(int i = 0; i < lineMiddle(); ++i)
@@ -91,11 +89,9 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
         m_lrcContainer.insert(0, QString());
     }
 
-    TTKIntStringMapIter it(m_lrcContainer);
-    while(it.hasNext())
+    for(auto itr = m_lrcContainer.constBegin(); itr != m_lrcContainer.constEnd(); ++itr)
     {
-        it.next();
-        m_currentShowLrcContainer << it.value();
+        m_currentShowLrcContainer << itr.value();
     }
 
     for(int i = 0; i < lineMiddle(); ++i)
@@ -156,11 +152,9 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
        m_lrcContainer.insert(0, QString());
     }
 
-    TTKIntStringMapIter it(m_lrcContainer);
-    while(it.hasNext())
+    for(auto itr = m_lrcContainer.constBegin(); itr != m_lrcContainer.constEnd(); ++itr)
     {
-        it.next();
-        m_currentShowLrcContainer << it.value();
+        m_currentShowLrcContainer << itr.value();
     }
     for(int i = 0; i < lineMiddle(); ++i)
     {
@@ -377,26 +371,23 @@ qint64 MusicLrcAnalysis::setSongSpeedChanged(qint64 time)
 
 void MusicLrcAnalysis::revertLrcTime(qint64 pos)
 {
-    TTKIntStringMapIter it(m_lrcContainer);
     TTKIntStringMap copy;
-    while(it.hasNext())
+    for(auto itr = m_lrcContainer.constBegin(); itr != m_lrcContainer.constEnd(); ++itr)
     {
-        it.next();
-        copy.insert(it.key() + pos, it.value());
+        copy.insert(itr.key() + pos, itr.value());
     }
     m_lrcContainer = copy;
 }
 
 void MusicLrcAnalysis::saveLrcData()
 {
-    TTKIntStringMapIter it(m_lrcContainer);
     QString data;
     data.append(QString("[by: %1]\n[offset:0]\n").arg(APP_NAME));
-    while(it.hasNext())
+
+    for(auto itr = m_lrcContainer.constBegin(); itr != m_lrcContainer.constEnd(); ++itr)
     {
-        it.next();
-        data.append(MusicTime::toString(it.key(), MusicTime::Entity::Millisecond, "[mm:ss.zzz]"));
-        data.append(it.value() + "\n");
+        data.append(MusicTime::toString(itr.key(), MusicTime::Entity::Millisecond, "[mm:ss.zzz]"));
+        data.append(itr.value() + "\n");
     }
 
     QFile file(m_currentFilePath);
@@ -492,15 +483,13 @@ qint64 MusicLrcAnalysis::findTime(int index) const
 {
     if(index + m_lineMax < m_currentShowLrcContainer.count())
     {
-        TTKIntStringMapIter it(m_lrcContainer);
+
+        auto itr = m_lrcContainer.constBegin();
         for(int i = 0; i < index + 1; ++i)
         {
-            if(it.hasNext())
-            {
-                it.next();
-            }
+            ++itr;
         }
-        return it.key();
+        return itr != m_lrcContainer.constEnd() ? itr.key() : -1;
     }
     else
     {

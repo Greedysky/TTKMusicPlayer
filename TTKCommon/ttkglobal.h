@@ -271,7 +271,4 @@ typedef QMap<QString, QStringList>       TTKStringListMap; /* stringStrlistsMap 
 typedef QMap<int, TTKIntList>            TTKIntListMap;    /* intIntlistMap */
 typedef QMap<qint64, QString>            TTKIntStringMap;  /* intStrMap */
 
-typedef QMapIterator<QString, QString>   TTKStringMapIter;      /* stringsMapIterator */
-typedef QMapIterator<qint64, QString>    TTKIntStringMapIter;   /* intStrMapIterator */
-
 #endif // TTKGLOBAL_H
