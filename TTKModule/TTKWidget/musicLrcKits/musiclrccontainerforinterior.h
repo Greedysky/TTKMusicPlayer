@@ -207,7 +207,7 @@ protected:
     /*!
      * Revert lrc time speed by pos.
      */
-    void revertLrcTimeSpeed(qint64 pos);
+    void revertTimeSpeed(qint64 pos);
     /*!
      * Create no lrc current information.
      */

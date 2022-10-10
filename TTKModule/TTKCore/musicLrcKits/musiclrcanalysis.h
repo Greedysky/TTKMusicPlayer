@@ -78,24 +78,24 @@ public:
     /*!
      * Set lrc container data from other raw data.
      */
-    State setLrcData(const QByteArray &data);
+    State setData(const QByteArray &data);
     /*!
      * Set lrc container data from other raw data.
      */
-    State setLrcData(const TTKIntStringMap &data);
+    State setData(const TTKIntStringMap &data);
     /*!
      * Save lrc data to current lrc file.
      */
-    void saveLrcData();
+    void saveData();
 
     /*!
      * Analysis lrc file to map return the state.
      */
-    State readFromLrcFile(const QString &path);
+    State loadFromLrcFile(const QString &path);
     /*!
      * Analysis krc file to map return the state.
      */
-    State readFromKrcFile(const QString &path);
+    State loadFromKrcFile(const QString &path);
 
     /*!
      * Set song speed by given time, return new time.
@@ -104,7 +104,7 @@ public:
     /*!
      * Revert lrc time by pos, both + or - the same pos.
      */
-    void revertLrcTime(qint64 pos);
+    void revertTime(qint64 pos);
 
     /*!
      * Set current middle index.
@@ -160,11 +160,11 @@ public:
     /*!
      * Get all lrcs from container.
      */
-    QStringList generateLrcList() const;
+    QString generateDataString() const;
     /*!
      * Get all lrcs from container.
      */
-    QString generateLrcString() const;
+    QStringList generateDataList() const;
 
 protected:
     /*!

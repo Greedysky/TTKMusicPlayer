@@ -49,11 +49,11 @@ protected:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info) const;
+    void parseFromSongProperty(MusicObject::MusicSongInformation *info) const;
     /*!
      * Read lrc tag from query results.
      */
-    void readFromMusicLrcProperty(MusicObject::MusicSongInformation *info) const;
+    void parseFromLrcProperty(MusicObject::MusicSongInformation *info) const;
 
 };
 

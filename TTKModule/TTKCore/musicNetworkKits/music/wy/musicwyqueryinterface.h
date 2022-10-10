@@ -103,19 +103,19 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, int bitrate) const;
+    void parseFromSongProperty(MusicObject::MusicSongInformation *info, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const;
+    void parseFromSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, int bitrate) const;
+    void parseFromSongPropertyNew(MusicObject::MusicSongInformation *info, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const;
+    void parseFromSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const;
 
 };
 

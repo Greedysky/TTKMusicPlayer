@@ -77,20 +77,20 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &hash) const;
+    void parseFromSongProperty(MusicObject::MusicSongInformation *info, const QString &hash) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const;
+    void parseFromSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const;
 
     /*!
      * Read tags(lrc\smallpic) from query results.
      */
-    void readFromMusicSongLrcAndPicture(MusicObject::MusicSongInformation *info) const;
+    void parseFromSongLrcAndPicture(MusicObject::MusicSongInformation *info) const;
     /*!
      * Read tags(album info) from query results.
      */
-    void readFromMusicSongAlbumInfo(MusicResultDataItem *info, const QString &album) const;
+    void parseFromSongAlbumInfo(MusicResultDataItem *info, const QString &album) const;
 
 };
 

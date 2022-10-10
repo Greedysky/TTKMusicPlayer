@@ -85,7 +85,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
 
                     info.m_songId = value["mvhash"].toString();
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicMVProperty(&info, false);
+                    parseFromMovieProperty(&info, false);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(info.m_songProps.isEmpty())
@@ -162,9 +162,9 @@ void MusicKGQueryMovieRequest::downLoadSingleFinished()
     MusicObject::MusicSongInformation info;
     info.m_songId = m_queryValue;
     TTK_NETWORK_QUERY_CHECK();
-    readFromMusicMVInfo(&info);
+    parseFromMovieInfo(&info);
     TTK_NETWORK_QUERY_CHECK();
-    readFromMusicMVProperty(&info, true);
+    parseFromMovieProperty(&info, true);
     TTK_NETWORK_QUERY_CHECK();
 
     if(!info.m_songProps.isEmpty())
@@ -182,7 +182,7 @@ void MusicKGQueryMovieRequest::downLoadSingleFinished()
     deleteAll();
 }
 
-void MusicKGQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInformation *info) const
+void MusicKGQueryMovieRequest::parseFromMovieInfo(MusicObject::MusicSongInformation *info) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -208,7 +208,7 @@ void MusicKGQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInforma
     }
 }
 
-void MusicKGQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, bool more) const
+void MusicKGQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInformation *info, bool more) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -245,28 +245,28 @@ void MusicKGQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInf
             QVariantMap mv = value["sd"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVProperty(info, mv);
+                parseFromMovieProperty(info, mv);
             }
             mv = value["hd"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVProperty(info, mv);
+                parseFromMovieProperty(info, mv);
             }
             mv = value["sq"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVProperty(info, mv);
+                parseFromMovieProperty(info, mv);
             }
             mv = value["rq"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVProperty(info, mv);
+                parseFromMovieProperty(info, mv);
             }
         }
     }
 }
 
-void MusicKGQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key) const
+void MusicKGQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key) const
 {
     MusicObject::MusicSongProperty prop;
     prop.m_url = key["downurl"].toString();

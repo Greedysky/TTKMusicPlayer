@@ -41,11 +41,11 @@ protected:
     /*!
      * Read mv tags(size\bitrate\url) from query results.
      */
-    void readFromMusicMVProperty(MusicObject::MusicSongInformation *info);
+    void parseFromMovieProperty(MusicObject::MusicSongInformation *info);
     /*!
      * Read mv info property from query results.
      */
-    void readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key);
+    void parseFromMovieProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key);
 
 };
 

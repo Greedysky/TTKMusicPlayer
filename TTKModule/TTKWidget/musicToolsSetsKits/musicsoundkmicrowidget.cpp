@@ -248,7 +248,7 @@ void MusicSoundKMicroWidget::downLoadFinished(const QByteArray &bytes)
         return;
     }
 
-    m_analysis->setLrcData(bytes);
+    m_analysis->setData(bytes);
     for(int i = 0; i < m_analysis->lineMax(); ++i)
     {
         m_lrcContainer[i]->setText(QString());

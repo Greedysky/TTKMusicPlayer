@@ -112,7 +112,7 @@ void MusicWYQueryRequest::downLoadFinished()
                     if(!m_queryLite)
                     {
                         TTK_NETWORK_QUERY_CHECK();
-                        readFromMusicSongPropertyNew(&info, value, m_queryQuality, m_queryAllRecords);
+                        parseFromSongPropertyNew(&info, value, m_queryQuality, m_queryAllRecords);
                         TTK_NETWORK_QUERY_CHECK();
 
                         if(info.m_songProps.isEmpty())
@@ -195,7 +195,7 @@ void MusicWYQueryRequest::downLoadSingleFinished()
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongProperty(&info, value, m_queryQuality, true);
+                    parseFromSongProperty(&info, value, m_queryQuality, true);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!info.m_songProps.isEmpty())

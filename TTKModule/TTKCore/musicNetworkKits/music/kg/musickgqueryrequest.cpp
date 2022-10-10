@@ -92,13 +92,13 @@ void MusicKGQueryRequest::downLoadFinished()
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongLrcAndPicture(&info);
+                    parseFromSongLrcAndPicture(&info);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!m_queryLite)
                     {
                         TTK_NETWORK_QUERY_CHECK();
-                        readFromMusicSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
+                        parseFromSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
                         TTK_NETWORK_QUERY_CHECK();
 
                         if(info.m_songProps.isEmpty())
@@ -169,7 +169,7 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                 info.m_trackNumber = "0";
 
                 TTK_NETWORK_QUERY_CHECK();
-                readFromMusicSongProperty(&info, value["extra"].toMap(), m_queryQuality, true);
+                parseFromSongProperty(&info, value["extra"].toMap(), m_queryQuality, true);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(!info.m_songProps.isEmpty())

@@ -79,7 +79,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
 
                             info.m_songId = value["mvhash"].toString();
                             TTK_NETWORK_QUERY_CHECK();
-                            readFromMusicMVProperty(&info);
+                            parseFromMovieProperty(&info);
                             TTK_NETWORK_QUERY_CHECK();
 
                             if(info.m_songProps.isEmpty())
@@ -106,7 +106,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicMVRadioProgramRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info)
+void MusicMVRadioProgramRequest::parseFromMovieProperty(MusicObject::MusicSongInformation *info)
 {
     if(info->m_songId.isEmpty())
     {
@@ -137,28 +137,28 @@ void MusicMVRadioProgramRequest::readFromMusicMVProperty(MusicObject::MusicSongI
             QVariantMap mv = value["sd"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVProperty(info, mv);
+                parseFromMovieProperty(info, mv);
             }
             mv = value["hd"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVProperty(info, mv);
+                parseFromMovieProperty(info, mv);
             }
             mv = value["sq"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVProperty(info, mv);
+                parseFromMovieProperty(info, mv);
             }
             mv = value["rq"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVProperty(info, mv);
+                parseFromMovieProperty(info, mv);
             }
         }
     }
 }
 
-void MusicMVRadioProgramRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key)
+void MusicMVRadioProgramRequest::parseFromMovieProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key)
 {
     MusicObject::MusicSongProperty prop;
     prop.m_url = key["downurl"].toString();

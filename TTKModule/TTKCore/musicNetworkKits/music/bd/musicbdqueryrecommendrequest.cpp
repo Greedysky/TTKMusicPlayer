@@ -72,7 +72,7 @@ void MusicBDQueryRecommendRequest::downLoadFinished()
                 info.m_trackNumber = value["trackNum"].toString();
 
                 TTK_NETWORK_QUERY_CHECK();
-                readFromMusicSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
+                parseFromSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(info.m_songProps.isEmpty())

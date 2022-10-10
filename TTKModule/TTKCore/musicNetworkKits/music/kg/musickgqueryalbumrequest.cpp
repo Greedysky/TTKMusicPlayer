@@ -86,12 +86,12 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAlbumInfo(&result, m_queryValue);
+                    parseFromSongAlbumInfo(&result, m_queryValue);
                     info.m_albumName = MusicUtils::String::charactersReplaced(result.m_nickName);
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongLrcAndPicture(&info);
+                    parseFromSongLrcAndPicture(&info);
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
+                    parseFromSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(info.m_songProps.isEmpty())

@@ -65,9 +65,9 @@ void MusicBDQueryLearnRequest::downLoadFinished()
                     info.m_trackNumber = value["album_no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicLrcProperty(&info);
+                    parseFromLrcProperty(&info);
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongProperty(&info);
+                    parseFromSongProperty(&info);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(info.m_songProps.isEmpty())
@@ -90,7 +90,7 @@ void MusicBDQueryLearnRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicBDQueryLearnRequest::readFromMusicSongProperty(MusicObject::MusicSongInformation *info) const
+void MusicBDQueryLearnRequest::parseFromSongProperty(MusicObject::MusicSongInformation *info) const
 {
     const QString &key = MusicUtils::Algorithm::mdII(BD_LEARN_DATA_URL, false).arg(info->m_songId).arg(MusicTime::timestamp());
     QString eKey = QString(QAlgorithm::Aes().encryptCBC(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
@@ -131,7 +131,7 @@ void MusicBDQueryLearnRequest::readFromMusicSongProperty(MusicObject::MusicSongI
     }
 }
 
-void MusicBDQueryLearnRequest::readFromMusicLrcProperty(MusicObject::MusicSongInformation *info) const
+void MusicBDQueryLearnRequest::parseFromLrcProperty(MusicObject::MusicSongInformation *info) const
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(BD_SONG_PATH_URL, false).arg(info->m_songId));

@@ -29,7 +29,7 @@ QByteArray MusicWYQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, co
     return "params=" + parameter + "&encSecKey=" + WY_SECKRY_STRING.toUtf8();
 }
 
-void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, int bitrate) const
+void MusicWYQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformation *info, int bitrate) const
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate * 1000).arg(info->m_songId));
@@ -61,7 +61,7 @@ void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
 
             if(prop.m_url.isEmpty())
             {
-                readFromMusicSongPropertyNew(info, bitrate);
+                parseFromSongPropertyNew(info, bitrate);
                 return;
             }
 
@@ -77,7 +77,7 @@ void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
+void MusicWYQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
 {
     int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
@@ -106,49 +106,49 @@ void MusicWYQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     {
         if(maxBr == MB_1000)
         {
-            readFromMusicSongProperty(info, MB_128);
-            readFromMusicSongProperty(info, MB_192);
-            readFromMusicSongProperty(info, MB_320);
-            readFromMusicSongProperty(info, MB_1000);
+            parseFromSongProperty(info, MB_128);
+            parseFromSongProperty(info, MB_192);
+            parseFromSongProperty(info, MB_320);
+            parseFromSongProperty(info, MB_1000);
         }
         else if(maxBr == MB_320)
         {
-            readFromMusicSongProperty(info, MB_128);
-            readFromMusicSongProperty(info, MB_192);
-            readFromMusicSongProperty(info, MB_320);
+            parseFromSongProperty(info, MB_128);
+            parseFromSongProperty(info, MB_192);
+            parseFromSongProperty(info, MB_320);
         }
         else if(maxBr == MB_192)
         {
-            readFromMusicSongProperty(info, MB_128);
-            readFromMusicSongProperty(info, MB_192);
+            parseFromSongProperty(info, MB_128);
+            parseFromSongProperty(info, MB_192);
         }
         else
         {
-            readFromMusicSongProperty(info, MB_128);
+            parseFromSongProperty(info, MB_128);
         }
     }
     else
     {
         if(quality == MusicObject::QueryQuality::Standard && maxBr >= MB_128)
         {
-            readFromMusicSongProperty(info, MB_128);
+            parseFromSongProperty(info, MB_128);
         }
         else if(quality == MusicObject::QueryQuality::High && maxBr >= MB_192)
         {
-            readFromMusicSongProperty(info, MB_192);
+            parseFromSongProperty(info, MB_192);
         }
         else if(quality == MusicObject::QueryQuality::Super && maxBr >= MB_320)
         {
-            readFromMusicSongProperty(info, MB_320);
+            parseFromSongProperty(info, MB_320);
         }
         else if(quality == MusicObject::QueryQuality::Lossless && maxBr >= MB_1000)
         {
-            readFromMusicSongProperty(info, MB_1000);
+            parseFromSongProperty(info, MB_1000);
         }
     }
 }
 
-void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, int bitrate) const
+void MusicWYQueryInterface::parseFromSongPropertyNew(MusicObject::MusicSongInformation *info, int bitrate) const
 {
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
@@ -194,7 +194,7 @@ void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongI
     }
 }
 
-void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
+void MusicWYQueryInterface::parseFromSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
 {
     int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
@@ -223,44 +223,44 @@ void MusicWYQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongI
     {
         if(maxBr == MB_1000)
         {
-            readFromMusicSongProperty(info, MB_128);
-            readFromMusicSongProperty(info, MB_192);
-            readFromMusicSongProperty(info, MB_320);
-            readFromMusicSongProperty(info, MB_1000);
+            parseFromSongProperty(info, MB_128);
+            parseFromSongProperty(info, MB_192);
+            parseFromSongProperty(info, MB_320);
+            parseFromSongProperty(info, MB_1000);
         }
         else if(maxBr == MB_320)
         {
-            readFromMusicSongProperty(info, MB_128);
-            readFromMusicSongProperty(info, MB_192);
-            readFromMusicSongProperty(info, MB_320);
+            parseFromSongProperty(info, MB_128);
+            parseFromSongProperty(info, MB_192);
+            parseFromSongProperty(info, MB_320);
         }
         else if(maxBr == MB_192)
         {
-            readFromMusicSongProperty(info, MB_128);
-            readFromMusicSongProperty(info, MB_192);
+            parseFromSongProperty(info, MB_128);
+            parseFromSongProperty(info, MB_192);
         }
         else
         {
-            readFromMusicSongProperty(info, MB_128);
+            parseFromSongProperty(info, MB_128);
         }
     }
     else
     {
         if(quality == MusicObject::QueryQuality::Standard && maxBr >= MB_128)
         {
-            readFromMusicSongProperty(info, MB_128);
+            parseFromSongProperty(info, MB_128);
         }
         else if(quality == MusicObject::QueryQuality::High && maxBr >= MB_192)
         {
-            readFromMusicSongProperty(info, MB_192);
+            parseFromSongProperty(info, MB_192);
         }
         else if(quality == MusicObject::QueryQuality::Super && maxBr >= MB_320)
         {
-            readFromMusicSongProperty(info, MB_320);
+            parseFromSongProperty(info, MB_320);
         }
         else if(quality == MusicObject::QueryQuality::Lossless && maxBr >= MB_1000)
         {
-            readFromMusicSongProperty(info, MB_1000);
+            parseFromSongProperty(info, MB_1000);
         }
     }
 }

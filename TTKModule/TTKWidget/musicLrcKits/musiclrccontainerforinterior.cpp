@@ -254,7 +254,7 @@ void MusicLrcContainerForInterior::lrcTimeSpeedChanged(QAction *action)
     }
 
     m_changeSpeedValue += timeValue;
-    revertLrcTimeSpeed(timeValue);
+    revertTimeSpeed(timeValue);
 }
 
 void MusicLrcContainerForInterior::revertLrcTimeSpeed()
@@ -263,12 +263,12 @@ void MusicLrcContainerForInterior::revertLrcTimeSpeed()
     {
         return;
     }
-    revertLrcTimeSpeed(-m_changeSpeedValue);
+    revertTimeSpeed(-m_changeSpeedValue);
 }
 
 void MusicLrcContainerForInterior::saveLrcTimeChanged()
 {
-    m_lrcAnalysis->saveLrcData();
+    m_lrcAnalysis->saveData();
 }
 
 void MusicLrcContainerForInterior::artistBackgroundChanged()
@@ -292,7 +292,7 @@ void MusicLrcContainerForInterior::lrcOpenFileDir() const
 void MusicLrcContainerForInterior::lrcCopyClipboard() const
 {
     QClipboard *clipBoard = QApplication::clipboard();
-    clipBoard->setText(m_lrcAnalysis->generateLrcString());
+    clipBoard->setText(m_lrcAnalysis->generateDataString());
 }
 
 void MusicLrcContainerForInterior::showLocalLinkWidget()
@@ -330,7 +330,7 @@ void MusicLrcContainerForInterior::showSoundKMicroWidget()
 void MusicLrcContainerForInterior::showLrcPosterWidget()
 {
     MusicLrcPosterWidget poster(this);
-    poster.setCurrentLrcs(m_lrcAnalysis->generateLrcList(), m_currentSongName);
+    poster.setCurrentLrcs(m_lrcAnalysis->generateDataList(), m_currentSongName);
     poster.exec();
 }
 
@@ -381,7 +381,7 @@ void MusicLrcContainerForInterior::translatedLrcData()
     connect(request, SIGNAL(downLoadDataChanged(QString)), SLOT(queryTranslatedLrcFinished(QString)));
 
     request->setHeader("name", m_lrcAnalysis->currentFilePath());
-    request->startToDownload(m_lrcAnalysis->generateLrcString());
+    request->startToDownload(m_lrcAnalysis->generateDataString());
 }
 
 void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
@@ -647,9 +647,9 @@ void MusicLrcContainerForInterior::createColorMenu(QMenu &menu)
     }
 }
 
-void MusicLrcContainerForInterior::revertLrcTimeSpeed(qint64 pos)
+void MusicLrcContainerForInterior::revertTimeSpeed(qint64 pos)
 {
-    m_lrcAnalysis->revertLrcTime(pos);
+    m_lrcAnalysis->revertTime(pos);
     const qint64 beforeTime = setSongSpeedChanged(m_currentTime);
     updateCurrentLrc(beforeTime);
 

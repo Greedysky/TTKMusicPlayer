@@ -25,6 +25,7 @@ void MusicDownloadBackgroundRequest::downLoadFinished(const QString &bytes)
     else if(bytes.toInt() == 0)
     {
         MusicDownloadImageRequest *d = new MusicTXDownloadBackgroundRequest(m_artName, m_savePath, this);
+//        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
         d->startToDownload();
     }
 }

@@ -66,7 +66,7 @@ void MusicKWQueryArtistRequest::downLoadFinished()
 
                     info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);
                     info.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
-                    readFromMusicSongProperty(&info, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
+                    parseFromSongProperty(&info, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
 
                     if(info.m_songProps.isEmpty())
                     {

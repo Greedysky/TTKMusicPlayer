@@ -74,7 +74,6 @@ void MusicKWDownloadBackgroundRequest::startToDownload()
     MusicAbstractNetwork::deleteAll();
 
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-    ///Set search image API
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(MusicUtils::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(m_artName));
 }
@@ -91,6 +90,7 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
         const QVariant &data = json.parse(bytes, &ok);
         if(ok)
         {
+            QString lastUrl;
             QVariantMap value = data.toMap();
             const QVariantList &datas = value["array"].toList();
             for(const QVariant &var : qAsConst(datas))
@@ -99,6 +99,12 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
                 if(m_counter < MAX_IMAGE_COUNTER && !value.isEmpty())
                 {
                     const QString &url = value.values().front().toString();
+                    if(url == lastUrl)
+                    {
+                        continue;
+                    }
+
+                    lastUrl = url;
                     MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
                     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
                     download->startToDownload();

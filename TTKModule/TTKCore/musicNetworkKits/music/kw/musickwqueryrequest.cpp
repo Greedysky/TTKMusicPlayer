@@ -156,7 +156,7 @@ void MusicKWQueryRequest::downLoadFinished()
                     if(!m_queryLite)
                     {
                         TTK_NETWORK_QUERY_CHECK();
-                        readFromMusicSongProperty(&info, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
+                        parseFromSongProperty(&info, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
                         TTK_NETWORK_QUERY_CHECK();
 
                         if(info.m_songProps.isEmpty())

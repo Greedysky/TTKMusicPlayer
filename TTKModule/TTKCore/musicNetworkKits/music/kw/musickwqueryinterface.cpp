@@ -10,7 +10,7 @@ void MusicKWInterface::makeRequestRawHeader(QNetworkRequest *request)
 }
 
 
-void MusicKWQueryInterface::readFromMusicHighProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const
+void MusicKWQueryInterface::parseFromSongHighProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -52,7 +52,7 @@ void MusicKWQueryInterface::readFromMusicHighProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const
+void MusicKWQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const
 {
     if(format.contains("MP3128") && bitrate == MB_128 && suffix == MP3_FILE_PREFIX)
     {
@@ -83,15 +83,15 @@ void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
     else if(format.contains("ALFLAC") && bitrate == MB_1000 && suffix == FLAC_FILE_PREFIX)
     {
-        readFromMusicHighProperty(info, FLAC_FILE_PREFIX, "2000kflac", bitrate);
+        parseFromSongHighProperty(info, FLAC_FILE_PREFIX, "2000kflac", bitrate);
     }
     else if(format.contains("AL") && bitrate == MB_750 && suffix == APE_FILE_PREFIX)
     {
-        readFromMusicHighProperty(info, APE_FILE_PREFIX, "1000kape", bitrate);
+        parseFromSongHighProperty(info, APE_FILE_PREFIX, "1000kape", bitrate);
     }
 }
 
-void MusicKWQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const
+void MusicKWQueryInterface::parseFromSongPropertyNew(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const
 {
     if(format.contains("128kmp3") && bitrate == MB_128 && suffix == MP3_FILE_PREFIX)
     {
@@ -122,77 +122,77 @@ void MusicKWQueryInterface::readFromMusicSongPropertyNew(MusicObject::MusicSongI
     }
     else if(format.contains("2000kflac") && bitrate == MB_1000 && suffix == FLAC_FILE_PREFIX)
     {
-        readFromMusicHighProperty(info, FLAC_FILE_PREFIX, "2000kflac", bitrate);
+        parseFromSongHighProperty(info, FLAC_FILE_PREFIX, "2000kflac", bitrate);
     }
     else if(format.contains("1000kape") && bitrate == MB_750 && suffix == APE_FILE_PREFIX)
     {
-        readFromMusicHighProperty(info, APE_FILE_PREFIX, "1000kape", bitrate);
+        parseFromSongHighProperty(info, APE_FILE_PREFIX, "1000kape", bitrate);
     }
 }
 
-void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &format, MusicObject::QueryQuality quality, bool all) const
+void MusicKWQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformation *info, const QString &format, MusicObject::QueryQuality quality, bool all) const
 {
     if(all)
     {
-        readFromMusicSongProperty(info, MP3_FILE_PREFIX, format, MB_128);
-        readFromMusicSongProperty(info, MP3_FILE_PREFIX, format, MB_192);
-        readFromMusicSongProperty(info, MP3_FILE_PREFIX, format, MB_320);
-        readFromMusicSongProperty(info, APE_FILE_PREFIX, format, MB_750);
-        readFromMusicSongProperty(info, FLAC_FILE_PREFIX, format, MB_1000);
+        parseFromSongProperty(info, MP3_FILE_PREFIX, format, MB_128);
+        parseFromSongProperty(info, MP3_FILE_PREFIX, format, MB_192);
+        parseFromSongProperty(info, MP3_FILE_PREFIX, format, MB_320);
+        parseFromSongProperty(info, APE_FILE_PREFIX, format, MB_750);
+        parseFromSongProperty(info, FLAC_FILE_PREFIX, format, MB_1000);
     }
     else
     {
         if(quality == MusicObject::QueryQuality::Standard)
         {
-            readFromMusicSongProperty(info, MP3_FILE_PREFIX, format, MB_128);
+            parseFromSongProperty(info, MP3_FILE_PREFIX, format, MB_128);
         }
         else if(quality == MusicObject::QueryQuality::High)
         {
-            readFromMusicSongProperty(info, MP3_FILE_PREFIX, format, MB_192);
+            parseFromSongProperty(info, MP3_FILE_PREFIX, format, MB_192);
         }
         else if(quality == MusicObject::QueryQuality::Super)
         {
-            readFromMusicSongProperty(info, MP3_FILE_PREFIX, format, MB_320);
+            parseFromSongProperty(info, MP3_FILE_PREFIX, format, MB_320);
         }
         else if(quality == MusicObject::QueryQuality::Lossless)
         {
-            readFromMusicSongProperty(info, APE_FILE_PREFIX, format, MB_750);
-            readFromMusicSongProperty(info, FLAC_FILE_PREFIX, format, MB_1000);
+            parseFromSongProperty(info, APE_FILE_PREFIX, format, MB_750);
+            parseFromSongProperty(info, FLAC_FILE_PREFIX, format, MB_1000);
         }
     }
 }
 
-void MusicKWQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantList &format, MusicObject::QueryQuality quality, bool all) const
+void MusicKWQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformation *info, const QVariantList &format, MusicObject::QueryQuality quality, bool all) const
 {
     for(const QVariant &var : qAsConst(format))
     {
         const QString &fs = var.toString();
         if(all)
         {
-            readFromMusicSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_128);
-            readFromMusicSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_192);
-            readFromMusicSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_320);
-            readFromMusicSongPropertyNew(info, APE_FILE_PREFIX, fs, MB_750);
-            readFromMusicSongPropertyNew(info, FLAC_FILE_PREFIX, fs, MB_1000);
+            parseFromSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_128);
+            parseFromSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_192);
+            parseFromSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_320);
+            parseFromSongPropertyNew(info, APE_FILE_PREFIX, fs, MB_750);
+            parseFromSongPropertyNew(info, FLAC_FILE_PREFIX, fs, MB_1000);
         }
         else
         {
             if(quality == MusicObject::QueryQuality::Standard)
             {
-                readFromMusicSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_128);
+                parseFromSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_128);
             }
             else if(quality == MusicObject::QueryQuality::High)
             {
-                readFromMusicSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_192);
+                parseFromSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_192);
             }
             else if(quality == MusicObject::QueryQuality::Super)
             {
-                readFromMusicSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_320);
+                parseFromSongPropertyNew(info, MP3_FILE_PREFIX, fs, MB_320);
             }
             else if(quality == MusicObject::QueryQuality::Lossless)
             {
-                readFromMusicSongPropertyNew(info, APE_FILE_PREFIX, fs, MB_750);
-                readFromMusicSongPropertyNew(info, FLAC_FILE_PREFIX, fs, MB_1000);
+                parseFromSongPropertyNew(info, APE_FILE_PREFIX, fs, MB_750);
+                parseFromSongPropertyNew(info, FLAC_FILE_PREFIX, fs, MB_1000);
             }
         }
     }

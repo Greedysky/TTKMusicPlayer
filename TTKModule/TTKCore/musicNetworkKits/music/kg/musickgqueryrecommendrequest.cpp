@@ -68,12 +68,12 @@ void MusicKGQueryRecommendRequest::downLoadFinished()
 
                     MusicResultDataItem albumInfo;
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAlbumInfo(&albumInfo, info.m_albumId);
+                    parseFromSongAlbumInfo(&albumInfo, info.m_albumId);
                     info.m_albumName = MusicUtils::String::charactersReplaced(albumInfo.m_nickName);
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongLrcAndPicture(&info);
+                    parseFromSongLrcAndPicture(&info);
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
+                    parseFromSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(info.m_songProps.isEmpty())

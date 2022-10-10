@@ -86,7 +86,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
 
                     info.m_songId = value["MUSICRID"].toString().remove("MUSIC_");
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicMVProperty(&info, value["FORMATS"].toString());
+                    parseFromMovieProperty(&info, value["FORMATS"].toString());
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(info.m_songProps.isEmpty())
@@ -165,9 +165,9 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
     MusicObject::MusicSongInformation info;
     info.m_songId = m_queryValue;
     TTK_NETWORK_QUERY_CHECK();
-    readFromMusicMVInfo(&info);
+    parseFromMovieInfo(&info);
     TTK_NETWORK_QUERY_CHECK();
-    readFromMusicMVProperty(&info, QString("MP4UL|MP4L|MP4HV|MP4"));
+    parseFromMovieProperty(&info, QString("MP4UL|MP4L|MP4HV|MP4"));
     TTK_NETWORK_QUERY_CHECK();
 
     if(!info.m_songProps.isEmpty())
@@ -185,7 +185,7 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
     deleteAll();
 }
 
-void MusicKWQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QString &format) const
+void MusicKWQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInformation *info, const QString &format) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -196,24 +196,24 @@ void MusicKWQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInf
     {
         if(v.contains("MP4L"))
         {
-            readFromMusicMVProperty(info, "MP4L", MB_250);
+            parseFromMovieProperty(info, "MP4L", MB_250);
         }
         else if(v.contains("MP4HV"))
         {
-            readFromMusicMVProperty(info, "MP4HV", MB_750);
+            parseFromMovieProperty(info, "MP4HV", MB_750);
         }
         else if(v.contains("MP4UL"))
         {
-            readFromMusicMVProperty(info, "MP4UL", MB_1000);
+            parseFromMovieProperty(info, "MP4UL", MB_1000);
         }
         else if(v.contains("MP4"))
         {
-            readFromMusicMVProperty(info, "MP4", MB_500);
+            parseFromMovieProperty(info, "MP4", MB_500);
         }
     }
 }
 
-void MusicKWQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInformation *info, const QString &format, int bitrate) const
+void MusicKWQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInformation *info, const QString &format, int bitrate) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -260,7 +260,7 @@ void MusicKWQueryMovieRequest::readFromMusicMVProperty(MusicObject::MusicSongInf
     }
 }
 
-void MusicKWQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInformation *info) const
+void MusicKWQueryMovieRequest::parseFromMovieInfo(MusicObject::MusicSongInformation *info) const
 {
     if(info->m_songId.isEmpty())
     {

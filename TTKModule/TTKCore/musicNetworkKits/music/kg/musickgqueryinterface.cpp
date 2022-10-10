@@ -8,7 +8,7 @@ void MusicKGInterface::makeRequestRawHeader(QNetworkRequest *request)
 }
 
 
-void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QString &hash) const
+void MusicKGQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformation *info, const QString &hash) const
 {
     if(hash.isEmpty())
     {
@@ -51,34 +51,34 @@ void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicKGQueryInterface::readFromMusicSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
+void MusicKGQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
 {
     if(all)
     {
-        readFromMusicSongProperty(info, key["hash"].toString());
-        readFromMusicSongProperty(info, key["128hash"].toString());
-        readFromMusicSongProperty(info, key["320hash"].toString());
-        readFromMusicSongProperty(info, key["sqhash"].toString());
+        parseFromSongProperty(info, key["hash"].toString());
+        parseFromSongProperty(info, key["128hash"].toString());
+        parseFromSongProperty(info, key["320hash"].toString());
+        parseFromSongProperty(info, key["sqhash"].toString());
     }
     else
     {
         if(quality == MusicObject::QueryQuality::Standard)
         {
-            readFromMusicSongProperty(info, key["hash"].toString());
-            readFromMusicSongProperty(info, key["128hash"].toString());
+            parseFromSongProperty(info, key["hash"].toString());
+            parseFromSongProperty(info, key["128hash"].toString());
         }
         else if(quality == MusicObject::QueryQuality::Super)
         {
-            readFromMusicSongProperty(info, key["320hash"].toString());
+            parseFromSongProperty(info, key["320hash"].toString());
         }
         else if(quality == MusicObject::QueryQuality::Lossless)
         {
-            readFromMusicSongProperty(info, key["sqhash"].toString());
+            parseFromSongProperty(info, key["sqhash"].toString());
         }
     }
 }
 
-void MusicKGQueryInterface::readFromMusicSongLrcAndPicture(MusicObject::MusicSongInformation *info) const
+void MusicKGQueryInterface::parseFromSongLrcAndPicture(MusicObject::MusicSongInformation *info) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -112,7 +112,7 @@ void MusicKGQueryInterface::readFromMusicSongLrcAndPicture(MusicObject::MusicSon
     }
 }
 
-void MusicKGQueryInterface::readFromMusicSongAlbumInfo(MusicResultDataItem *info, const QString &album) const
+void MusicKGQueryInterface::parseFromSongAlbumInfo(MusicResultDataItem *info, const QString &album) const
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KG_ALBUM_INFO_URL, false).arg(album));

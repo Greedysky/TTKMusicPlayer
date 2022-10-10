@@ -19,7 +19,7 @@ MusicLrcAnalysis::~MusicLrcAnalysis()
 
 }
 
-MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
+MusicLrcAnalysis::State MusicLrcAnalysis::setData(const QByteArray &data)
 {
     clear();
 
@@ -69,7 +69,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
     return State::Success;
 }
 
-MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data)
+MusicLrcAnalysis::State MusicLrcAnalysis::setData(const TTKIntStringMap &data)
 {
     clear();
     if(data.isEmpty())
@@ -102,7 +102,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
     return State::Success;
 }
 
-MusicLrcAnalysis::State MusicLrcAnalysis::readFromLrcFile(const QString &path)
+MusicLrcAnalysis::State MusicLrcAnalysis::loadFromLrcFile(const QString &path)
 {
     QFile file(m_currentFilePath = path);
 
@@ -112,13 +112,13 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromLrcFile(const QString &path)
         return State::Failed;
     }
 
-    const State state = setLrcData(file.readAll());
+    const State state = setData(file.readAll());
     file.close();
 
     return state;
 }
 
-MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
+MusicLrcAnalysis::State MusicLrcAnalysis::loadFromKrcFile(const QString &path)
 {
     clear();
     m_currentFilePath = path;
@@ -370,7 +370,7 @@ qint64 MusicLrcAnalysis::setSongSpeedChanged(qint64 time)
     return time;
 }
 
-void MusicLrcAnalysis::revertLrcTime(qint64 pos)
+void MusicLrcAnalysis::revertTime(qint64 pos)
 {
     TTKIntStringMap copy;
     for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
@@ -380,7 +380,7 @@ void MusicLrcAnalysis::revertLrcTime(qint64 pos)
     m_lrcContainer = copy;
 }
 
-void MusicLrcAnalysis::saveLrcData()
+void MusicLrcAnalysis::saveData()
 {
     QString data;
     data.append(QString("[by: %1]\n[offset:0]\n").arg(APP_NAME));
@@ -518,12 +518,7 @@ qint64 MusicLrcAnalysis::findTime(const QStringList &ts) const
     return -1;
 }
 
-QStringList MusicLrcAnalysis::generateLrcList() const
-{
-    return m_lrcContainer.values();
-}
-
-QString MusicLrcAnalysis::generateLrcString() const
+QString MusicLrcAnalysis::generateDataString() const
 {
     QString clipString;
     for(const QString &s : m_lrcContainer.values())
@@ -531,4 +526,9 @@ QString MusicLrcAnalysis::generateLrcString() const
         clipString.append(s + "\n");
     }
     return clipString;
+}
+
+QStringList MusicLrcAnalysis::generateDataList() const
+{
+    return m_lrcContainer.values();
 }

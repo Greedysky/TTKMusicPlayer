@@ -369,7 +369,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
             d->startToDownload();
             loop.exec();
         }
-        m_analysis->readFromLrcFile(name);
+        m_analysis->loadFromLrcFile(name);
 
         if(!m_songInfo.m_songProps.isEmpty())
         {

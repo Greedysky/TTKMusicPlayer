@@ -99,7 +99,7 @@ void MusicWYQueryToplistRequest::downLoadFinished()
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongPropertyNew(&info, value, m_queryQuality, m_queryAllRecords);
+                    parseFromSongPropertyNew(&info, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(info.m_songProps.isEmpty())

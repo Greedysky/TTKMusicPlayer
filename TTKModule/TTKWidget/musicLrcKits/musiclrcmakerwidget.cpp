@@ -257,7 +257,7 @@ void MusicLrcMakerWidget::saveButtonClicked()
     {
         return;
     }
-    m_analysis->saveLrcData();
+    m_analysis->saveData();
 
     MusicToastLabel::popup(tr("Save file finished"));
 }
@@ -379,7 +379,7 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
         {
             data.insert(m_times.value(i), m_plainText[i]);
         }
-        m_analysis->setLrcData(data);
+        m_analysis->setData(data);
 
         for(int i = 0; i < m_analysis->lineMax(); ++i)
         {
@@ -406,13 +406,13 @@ void MusicLrcMakerWidget::updateAnimationLrc()
 
 void MusicLrcMakerWidget::lrcSpeedSlower()
 {
-    m_analysis->revertLrcTime(MT_S2MS);
+    m_analysis->revertTime(MT_S2MS);
     updateCurrentLrc(m_analysis->setSongSpeedChanged(m_ui->timeSlider_T->value()));
 }
 
 void MusicLrcMakerWidget::lrcSpeedFaster()
 {
-    m_analysis->revertLrcTime(-MT_S2MS);
+    m_analysis->revertTime(-MT_S2MS);
     updateCurrentLrc(m_analysis->setSongSpeedChanged(m_ui->timeSlider_T->value()));
 }
 

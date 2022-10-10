@@ -240,7 +240,7 @@ void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
 
     const QString &name = (info.m_singerName + " - " + info.m_songName).trimmed();
     m_ui->titleWidget->setText(name);
-    m_analysis->readFromLrcFile(MusicUtils::String::lrcDirPrefix() + name + LRC_FILE);
+    m_analysis->loadFromLrcFile(MusicUtils::String::lrcDirPrefix() + name + LRC_FILE);
 }
 
 void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
