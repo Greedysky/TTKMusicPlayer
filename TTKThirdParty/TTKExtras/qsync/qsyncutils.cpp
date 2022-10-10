@@ -58,7 +58,7 @@ QString QSyncUtils::authorizationCode(const QString &key, const QString &method,
     const QString &date = headers.value("Date", "");
     const QString &canonicalized_resource = resource;
 
-    QString canonicalized_headers = "";
+    QString canonicalized_headers;
     TTKStringMap origin_headers = formatHeader(headers);
 
     if(origin_headers.count() > 0)
@@ -77,7 +77,7 @@ QString QSyncUtils::authorizationCode(const QString &key, const QString &method,
 }
 
 QString QSyncUtils::createSignForNormalAuth(const QString &method,  const QString &access, const QString &secret,
-                                          const TTKStringMap &headers, const QString &resource)
+                                            const TTKStringMap &headers, const QString &resource)
 {
     return QString("OSS ") + access + ":" + authorizationCode(secret,  method, headers, resource);
 }
@@ -85,7 +85,7 @@ QString QSyncUtils::createSignForNormalAuth(const QString &method,  const QStrin
 QString QSyncUtils::GMT()
 {
     QLocale local(QLocale::English, QLocale::UnitedStates);
-    return local.toString(QDateTime::currentDateTime().toUTC(), "ddd, dd MMM yyyy hh:mm:ss") + " GMT";
+    return local.toString(QDateTime::currentDateTimeUtc(), "ddd, dd MMM yyyy hh:mm:ss") + " GMT";
 }
 
 QString QSyncUtils::makeDataBucketUrl()

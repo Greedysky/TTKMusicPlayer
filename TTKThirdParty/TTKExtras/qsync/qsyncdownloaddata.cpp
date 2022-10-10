@@ -72,7 +72,7 @@ QString QSyncDownloadData::downloadUrl(const QString &bucket, const QString &fil
 
 QString QSyncDownloadData::downloadUrl(const QString &bucket, const QString &fileName, const QString &contentType)
 {
-    const qint64 deadline = QDateTime::currentDateTime().toUTC().addSecs(60 * 30).toMSecsSinceEpoch() / 1000;
+    const qint64 deadline = QDateTime::currentDateTimeUtc().addSecs(60 * 30).toMSecsSinceEpoch() / 1000;
 
     const QString &encodeKey = pathEncode(fileName);
     const QString &method = "GET";

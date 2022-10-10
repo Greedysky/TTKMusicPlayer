@@ -149,13 +149,14 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
 
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
     {
-       m_lrcContainer.insert(0, QString());
+        m_lrcContainer.insert(0, QString());
     }
 
     for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
     {
         m_currentShowLrcContainer << it.value();
     }
+
     for(int i = 0; i < lineMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
@@ -483,13 +484,15 @@ qint64 MusicLrcAnalysis::findTime(int index) const
 {
     if(index + m_lineMax < m_currentShowLrcContainer.count())
     {
-
         auto it = m_lrcContainer.constBegin();
         for(int i = 0; i < index + 1; ++i)
         {
-            ++it;
+            if(it != m_lrcContainer.constEnd())
+            {
+                ++it;
+            }
         }
-        return it != m_lrcContainer.constEnd() ? it.key() : -1;
+        return it.key();
     }
     else
     {
