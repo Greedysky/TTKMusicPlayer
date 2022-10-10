@@ -36,7 +36,7 @@ public:
     /*!
      * Get translator path.
      */
-    QString translator() const;
+    QStringList translator() const;
 
     /*!
      * Check config version is new.

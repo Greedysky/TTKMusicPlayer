@@ -72,6 +72,18 @@ static QString languageName(int index)
         default: return QString();
     }
 }
+
+static QString languageQmmp(int index)
+{
+    QString lan(LANGUAGE_DIR_FULL);
+    switch(index)
+    {
+        case 0: return lan.append("cnq.ln");
+        case 1: return lan.append("tcq.ln");
+        case 2: return lan.append("enq.ln");
+        default: return QString();
+    }
+}
 }
 
 
@@ -100,10 +112,10 @@ void MusicRunTimeManager::run() const
     G_NETWORK_PTR->setBlockNetWork(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());
 }
 
-QString MusicRunTimeManager::translator() const
+QStringList MusicRunTimeManager::translator() const
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt();
-    return MusicObject::languageName(index);
+    return {MusicObject::languageName(index), MusicObject::languageQmmp(index)};
 }
 
 bool MusicRunTimeManager::configVersionCheck() const

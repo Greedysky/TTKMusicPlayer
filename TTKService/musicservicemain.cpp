@@ -61,12 +61,17 @@ int main(int argc, char *argv[])
         config.reset();
     }
 
-    QTranslator translator;
-    if(!translator.load(manager.translator()))
+    for(const QString &v : manager.translator())
     {
-        TTK_LOGGER_ERROR("Load translation error");
+        QTranslator *translator = new QTranslator(&app);
+        if(!translator->load(v))
+        {
+            TTK_LOGGER_ERROR("Load translation error: " << v);
+            delete translator;
+            continue;
+        }
+        app.installTranslator(translator);
     }
-    app.installTranslator(&translator);
 
     MusicApplication w;
     w.show();
