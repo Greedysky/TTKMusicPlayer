@@ -193,7 +193,7 @@ public:
         return m_parameter.contains(type);
     }
 
-protected:
+private:
     /*!
      * Convert String type to Config Type.
      */
@@ -209,6 +209,7 @@ protected:
     QMap<Config, QVariant> m_parameter;
 
     DECLARE_SINGLETON_CLASS(MusicSettingManager)
+
 };
 
 #define G_SETTING_PTR makeMusicSettingManager()

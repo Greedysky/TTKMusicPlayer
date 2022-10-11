@@ -71,7 +71,7 @@ public Q_SLOTS:
      */
     void downLoadUrlFinished();
 
-protected:
+private:
     /*!
      * Download data from net.
      */

@@ -50,7 +50,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     Ui::MusicMessageAboutDialog *m_ui;
     MusicDownloadCounterPVRequest *m_downloadRequest;
 

@@ -47,7 +47,7 @@ public:
      */
     QColor color() const;
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -96,7 +96,7 @@ public:
      */
     void setTransparent(int trans) { m_transparent = trans; }
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

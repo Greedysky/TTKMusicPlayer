@@ -43,7 +43,7 @@ Q_SIGNALS:
      */
     void deleteFileFinished(bool state);
 
-protected Q_SLOTS:
+private Q_SLOTS:
     /*!
      * Receive data from server.
      */

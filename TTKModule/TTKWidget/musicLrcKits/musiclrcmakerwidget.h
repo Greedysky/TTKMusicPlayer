@@ -180,7 +180,7 @@ private Q_SLOTS:
      */
     void lrcSpeedFaster();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

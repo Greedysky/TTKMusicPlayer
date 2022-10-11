@@ -54,7 +54,7 @@ public:
      */
     QString decrypt(const QString &data, const QString &key);
 
-protected:
+private:
     /*!
      * XXTEA encrypt by TTKString data.
      */

@@ -66,7 +66,7 @@ private Q_SLOTS:
      */
     void updateDeviceInfo();
 
-protected:
+private:
     /*!
      * Init main widget.
      */

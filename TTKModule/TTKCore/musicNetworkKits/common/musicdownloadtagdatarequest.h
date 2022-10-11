@@ -60,7 +60,7 @@ public Q_SLOTS:
      */
     void downLoadFinished(const QByteArray &bytes);
 
-protected:
+private:
     MusicSongMeta m_songMeta;
 
 };

@@ -96,7 +96,7 @@ public Q_SLOTS:
      */
     void clearButtonClicked();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

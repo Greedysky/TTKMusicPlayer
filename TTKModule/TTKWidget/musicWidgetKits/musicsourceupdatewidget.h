@@ -59,7 +59,7 @@ public Q_SLOTS:
      */
     void downLoadFinished(const QVariant &bytes);
 
-protected:
+private:
     QLabel *m_textLabel;
 
 };
@@ -98,7 +98,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     Ui::MusicSourceUpdateWidget *m_ui;
 
 };

@@ -75,7 +75,7 @@ public:
      */
     void removeValue(const QString &name);
 
-protected:
+private:
     QMap<QString, QObject*> m_parameter;
 
     /*!

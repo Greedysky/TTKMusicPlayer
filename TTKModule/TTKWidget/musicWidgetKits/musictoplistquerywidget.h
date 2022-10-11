@@ -88,7 +88,7 @@ public Q_SLOTS:
      */
     void categoryChanged(const MusicResultsCategoryItem &category);
 
-protected:
+private:
     /*!
      * Create init interface lables.
      */

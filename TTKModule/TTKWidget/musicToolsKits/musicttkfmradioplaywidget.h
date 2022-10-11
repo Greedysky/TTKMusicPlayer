@@ -112,7 +112,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     Ui::MusicTTKFMRadioInformationWidget *m_ui;
     bool m_readOnly;
 
@@ -179,7 +179,7 @@ public Q_SLOTS:
      */
     void show();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

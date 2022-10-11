@@ -172,7 +172,7 @@ public:
      */
     int songMetaCount() const;
 
-protected:
+private:
     /*!
      * Clear music song meta.
      */

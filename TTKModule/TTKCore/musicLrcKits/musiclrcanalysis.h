@@ -166,7 +166,7 @@ public:
      */
     QStringList generateDataList() const;
 
-protected:
+private:
     /*!
      * Lrc analysis by match lrc line base.
      */

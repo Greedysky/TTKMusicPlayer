@@ -74,7 +74,7 @@ private Q_SLOTS:
      */
     void kugouMVIndexChanged(int index);
 
-protected:
+private:
     /*!
      * Create web view widget.
      */

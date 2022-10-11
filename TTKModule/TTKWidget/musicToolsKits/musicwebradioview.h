@@ -53,7 +53,7 @@ public Q_SLOTS:
      */
     void openMVRadioWindow();
 
-protected:
+private:
     MusicWebFMRadioWidget *m_radio;
     MusicTTKFMRadioPlayWidget *m_ttkRadio;
 

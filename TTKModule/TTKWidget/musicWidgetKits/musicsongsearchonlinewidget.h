@@ -96,7 +96,7 @@ public Q_SLOTS:
      */
     void musicSongDownload(int row);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -150,7 +150,7 @@ public Q_SLOTS:
      */
     void buttonClicked(int index);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

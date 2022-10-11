@@ -128,7 +128,7 @@ Q_SIGNALS:
      */
     void selectIndexChanged();
 
-protected:
+private:
     /*!
      * Object contsructor.
      */
@@ -140,6 +140,7 @@ protected:
     QString m_currentArtistName, m_background;
 
     DECLARE_SINGLETON_CLASS(MusicBackgroundManager)
+
 };
 
 #define G_BACKGROUND_PTR makeMusicBackgroundManager()

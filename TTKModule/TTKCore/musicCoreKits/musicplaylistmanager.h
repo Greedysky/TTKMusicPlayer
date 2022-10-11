@@ -37,7 +37,7 @@ public:
      */
     void musicSongItems(const QStringList &paths, MusicSongItemList &items);
 
-protected:
+private:
     /*!
      * Read ttk music playlist data from file.
      */

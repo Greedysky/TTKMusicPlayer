@@ -107,7 +107,7 @@ public Q_SLOTS:
      */
     void timeout();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -154,7 +154,7 @@ public:
      */
     void run(bool run);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

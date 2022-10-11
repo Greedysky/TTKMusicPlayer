@@ -40,7 +40,7 @@ public:
      */
     void setHotKeyEnabled(bool state);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

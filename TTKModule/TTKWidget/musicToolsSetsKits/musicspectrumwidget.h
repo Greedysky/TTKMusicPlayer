@@ -102,7 +102,7 @@ public Q_SLOTS:
      */
     void fullscreenByUser(QWidget *widget, bool state);
 
-protected:
+private:
     /*!
      * Create spectrum widget.
      */

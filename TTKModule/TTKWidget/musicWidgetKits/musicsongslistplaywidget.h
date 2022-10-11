@@ -99,7 +99,7 @@ public Q_SLOTS:
      */
     void currentDownloadStateClicked();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

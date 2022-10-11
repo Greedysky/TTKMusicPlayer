@@ -78,7 +78,7 @@ public Q_SLOTS:
      */
     void itemCellClicked(int row);
 
-protected:
+private:
     /*!
      * Create all widget in layout.
      */

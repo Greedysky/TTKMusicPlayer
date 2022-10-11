@@ -38,7 +38,7 @@ private Q_SLOTS:
     void readClicked();
     void writeClicked();
 
-protected:
+private:
     Ui::ToolsSkin *m_ui;
     QPixmap m_pixmap;
 

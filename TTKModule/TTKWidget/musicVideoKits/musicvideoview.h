@@ -50,7 +50,7 @@ Q_SIGNALS:
      */
     void timeToPlay();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -61,6 +61,7 @@ protected:
 
     QTimer *m_clickedTimer;
     bool m_leftPressed;
+
 };
 
 
@@ -167,7 +168,7 @@ private Q_SLOTS:
      */
     void fullscreenButtonTrigger();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

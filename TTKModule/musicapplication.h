@@ -290,7 +290,7 @@ public Q_SLOTS:
      */
     void currentPlaylist(QStringList &list);
 
-protected:
+private:
     virtual void resizeEvent(QResizeEvent *event) override final;
     virtual void closeEvent(QCloseEvent *event) override final;
     virtual void dragEnterEvent(QDragEnterEvent *event) override final;

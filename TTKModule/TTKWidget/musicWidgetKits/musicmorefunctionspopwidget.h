@@ -45,7 +45,7 @@ private Q_SLOTS:
      */
     void functionClicked(QAction *index);
 
-protected:
+private:
     /*!
      * Create all widget in layout.
      */

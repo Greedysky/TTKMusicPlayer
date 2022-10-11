@@ -106,7 +106,7 @@ public Q_SLOTS:
      */
     void musicStackedMyDownWidgetChanged();
 
-protected:
+private:
     Ui::MusicApplication *m_ui;
     int m_currentIndex;
     QWidget *m_stackedWidget;

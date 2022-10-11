@@ -60,7 +60,7 @@ public Q_SLOTS:
      */
     void networkConnectionStateChanged(bool state);
 
-protected:
+private:
     bool m_previousState;
     MusicApplication *m_parentClass;
 

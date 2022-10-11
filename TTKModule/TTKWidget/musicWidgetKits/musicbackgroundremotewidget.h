@@ -148,7 +148,7 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished(const MusicSkinRemoteGroupList &bytes) override final;
 
-protected:
+private:
     QWidget *m_functionsWidget;
     QPushButton *m_allButton;
     QComboBox *m_typeBox;

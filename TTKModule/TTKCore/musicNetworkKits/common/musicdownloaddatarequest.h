@@ -89,6 +89,7 @@ protected:
     qint64 m_createTime;
     bool m_redirection, m_needUpdate;
     MusicObject::Record m_recordType;
+
 };
 
 #endif // MUSICDOWNLOADDATAREQUEST_H

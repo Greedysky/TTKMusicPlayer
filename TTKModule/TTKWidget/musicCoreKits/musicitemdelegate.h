@@ -107,7 +107,7 @@ Q_SIGNALS:
      */
     void buttonChecked();
 
-protected:
+private:
     bool m_background;
     QCheckBox *m_checkBox;
 
@@ -179,7 +179,7 @@ public:
      */
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
 
-protected:
+private:
     QLabel *m_label;
 
 };
@@ -212,7 +212,7 @@ public:
      */
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
 
-protected:
+private:
     QPushButton *m_pushButton;
 
 };

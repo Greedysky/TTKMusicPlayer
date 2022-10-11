@@ -62,7 +62,7 @@ public Q_SLOTS:
      */
     void downLoadSingleFinished();
 
-protected:
+private:
     /*!
      * Start to search mv list by id.
      */

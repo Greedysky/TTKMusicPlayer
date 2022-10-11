@@ -60,7 +60,7 @@ private Q_SLOTS:
      */
     void animationFinished();
 
-protected:
+private:
     /*!
      * Start to turn on animation.
      */

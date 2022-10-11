@@ -108,7 +108,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     /*!
      * Search local lrc in dir.
      */

@@ -43,7 +43,7 @@ public Q_SLOTS:
      */
     void showMobileManager();
 
-protected:
+private:
     QToolButton *m_closeButton;
 
 };

@@ -45,7 +45,7 @@ public:
      */
     void setMusicSongInformation(const MusicSong &song);
 
-protected:
+private:
     /*!
      * Show artist small picture, if no exsit there is default pic.
      */

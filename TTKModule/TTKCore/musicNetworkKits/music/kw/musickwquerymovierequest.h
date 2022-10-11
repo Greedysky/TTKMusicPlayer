@@ -62,7 +62,7 @@ public Q_SLOTS:
      */
     void downLoadSingleFinished();
 
-protected:
+private:
     /*!
      * Read mv tags(size\bitrate\url) from query results.
      */

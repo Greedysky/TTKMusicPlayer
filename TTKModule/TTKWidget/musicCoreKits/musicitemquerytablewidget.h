@@ -91,7 +91,7 @@ public Q_SLOTS:
      */
     void menuActionChanged(QAction *action);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

@@ -47,7 +47,7 @@ public Q_SLOTS:
      */
     void leaveTimeout();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

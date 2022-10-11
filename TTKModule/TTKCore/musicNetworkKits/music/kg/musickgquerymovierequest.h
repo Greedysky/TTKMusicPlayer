@@ -62,7 +62,7 @@ public Q_SLOTS:
      */
     void downLoadSingleFinished();
 
-protected:
+private:
     /*!
      * Read mv infos from query results.
      */

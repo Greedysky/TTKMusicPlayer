@@ -165,7 +165,7 @@ public Q_SLOTS:
      */
     void musicListSongSortBy(QAction *action);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

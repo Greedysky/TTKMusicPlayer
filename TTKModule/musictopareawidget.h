@@ -191,7 +191,7 @@ public Q_SLOTS:
      */
     void musicStackedToolsWidgetChanged();
 
-protected:
+private:
     /*!
      * Set list background skin transparent changed.
      */

@@ -67,7 +67,7 @@ private Q_SLOTS:
      */
     void testFinshed(bool state);
 
-protected:
+private:
     MusicNetworkTestThread *m_thread;
     QLabel *m_iconLabel, *m_nameText, *m_stateText;
 
@@ -106,7 +106,7 @@ public Q_SLOTS:
      */
     void testFinshed();
 
-protected:
+private:
     Ui::MusicNetworkConnectionTestWidget *m_ui;
 
     int m_countIndex;

@@ -44,7 +44,7 @@ public:
      */
     void initialize();
 
-protected:
+private:
     MusicCloudToolBoxWidget *m_toolBoxWidget;
     MusicCloudManagerWidget *m_managerWidget;
 

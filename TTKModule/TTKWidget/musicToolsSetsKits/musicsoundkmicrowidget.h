@@ -107,7 +107,7 @@ public Q_SLOTS:
      */
     void recordButtonClicked();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

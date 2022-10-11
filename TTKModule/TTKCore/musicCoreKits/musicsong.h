@@ -140,7 +140,7 @@ public:
      */
     bool operator> (const MusicSong &other) const;
 
-protected:
+private:
     Sort m_sort;
     qint64 m_size, m_addTime;
     QString m_sizeStr, m_addTimeStr;

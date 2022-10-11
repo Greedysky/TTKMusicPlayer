@@ -84,7 +84,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     /*!
      * Create all items.
      */

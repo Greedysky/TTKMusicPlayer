@@ -58,7 +58,7 @@ public Q_SLOTS:
      */
     void actionChanged(QAction *action);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -114,7 +114,7 @@ public Q_SLOTS:
      */
     void downloadMVsButtonClicked();
 
-protected:
+private:
     /*!
      * Create init interface lables.
      */

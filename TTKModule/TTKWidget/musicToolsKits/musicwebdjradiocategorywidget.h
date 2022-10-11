@@ -60,7 +60,7 @@ public Q_SLOTS:
      */
     void currentItemClicked();
 
-protected:
+private:
     QLabel *m_iconLabel, *m_nameLabel;
     MusicResultDataItem m_itemData;
 
@@ -102,7 +102,7 @@ public Q_SLOTS:
      */
     void createCategoryItems();
 
-protected:
+private:
     QGridLayout *m_gridLayout;
     QList<QLabel*> m_resizeWidgets;
     MusicDJRadioCategoryRequest *m_categoryThread;

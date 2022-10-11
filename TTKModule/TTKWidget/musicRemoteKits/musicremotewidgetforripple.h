@@ -48,7 +48,7 @@ public Q_SLOTS:
      */
     void visualModeChanged();
 
-protected:
+private:
     /*!
      * Create visual widget.
      */

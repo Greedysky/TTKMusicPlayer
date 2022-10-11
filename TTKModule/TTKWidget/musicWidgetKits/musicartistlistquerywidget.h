@@ -57,7 +57,7 @@ public Q_SLOTS:
      */
     void currentItemClicked();
 
-protected:
+private:
     MusicResultDataItem m_itemData;
 
 };
@@ -114,7 +114,7 @@ public Q_SLOTS:
      */
     void numberButtonClicked(int index);
 
-protected:
+private:
     bool m_initialized, m_categoryChanged;
     QString m_categoryId;
     QGridLayout *m_gridLayout;

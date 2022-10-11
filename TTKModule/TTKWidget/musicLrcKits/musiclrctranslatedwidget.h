@@ -41,7 +41,7 @@ public:
      */
     void setPlainText(const QString &name, const QString &text);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

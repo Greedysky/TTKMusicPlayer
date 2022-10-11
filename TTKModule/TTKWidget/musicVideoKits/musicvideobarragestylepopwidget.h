@@ -54,7 +54,7 @@ public Q_SLOTS:
      */
     void barrageColorButtonClicked(int index);
 
-protected:
+private:
     /*!
      * Create all widget in layout.
      */

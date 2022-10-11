@@ -54,7 +54,7 @@ public Q_SLOTS:
      */
     void show();
 
-protected:
+private:
     /*!
      * Clear All Items.
      */

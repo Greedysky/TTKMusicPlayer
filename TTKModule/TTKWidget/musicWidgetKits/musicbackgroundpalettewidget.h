@@ -55,7 +55,7 @@ Q_SIGNALS:
      */
     void currentColorToMemoryChanged(const QString &path);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -122,7 +122,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     Ui::MusicBackgroundPaletteWidget *m_ui;
     QList<QWidget*> m_widgets;
     QColor m_currentColor;

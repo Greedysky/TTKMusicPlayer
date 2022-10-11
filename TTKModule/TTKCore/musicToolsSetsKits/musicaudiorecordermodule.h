@@ -75,7 +75,7 @@ public:
      */
     void onRecordStop();
 
-protected:
+private:
     int m_inputVolume;
     QFile *m_file;
     QAudioFormat m_formatFile;

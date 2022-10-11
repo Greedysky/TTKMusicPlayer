@@ -103,7 +103,7 @@ public:
      */
     virtual void start() override final;
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -130,7 +130,7 @@ public:
      */
     virtual void start() override final;
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

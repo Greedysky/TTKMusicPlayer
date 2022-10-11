@@ -44,7 +44,7 @@ public:
      */
     void backgroundTransparent(int value);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -73,7 +73,7 @@ public:
      */
     void transparent(bool state);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -155,7 +155,7 @@ public Q_SLOTS:
      */
     virtual void switchToSelectedItemStyle(int index) override final;
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -192,7 +192,7 @@ public Q_SLOTS:
      */
     virtual void switchToSelectedItemStyle(int index) override final;
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -220,7 +220,7 @@ public Q_SLOTS:
      */
     virtual void switchToSelectedItemStyle(int index) override final;
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

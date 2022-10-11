@@ -60,7 +60,7 @@ public Q_SLOTS:
      */
     void movieQualityChoiced(QAction *action);
 
-protected:
+private:
     /*!
      * Create all widget in layout.
      */

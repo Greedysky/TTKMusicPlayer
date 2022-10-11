@@ -66,7 +66,7 @@ public Q_SLOTS:
      */
     void setSliderStyleByType(int type);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

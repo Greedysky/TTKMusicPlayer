@@ -137,7 +137,7 @@ public Q_SLOTS:
      */
     void showFileInformationWidget();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -220,13 +220,12 @@ public Q_SLOTS:
      */
     void uploadFilesToServer();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
     virtual void resizeEvent(QResizeEvent *event) override final;
 
-protected:
     QLabel *m_sizeValueLabel;
     QProgressBar *m_sizeValueBar;
     QList<QWidget*> m_resizeWidgets;

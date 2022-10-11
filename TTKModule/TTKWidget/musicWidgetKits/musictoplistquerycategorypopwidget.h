@@ -52,7 +52,7 @@ public Q_SLOTS:
      */
     void buttonClicked(int index);
 
-protected:
+private:
     MusicResultsCategory m_category;
 
 };
@@ -87,7 +87,7 @@ public Q_SLOTS:
      */
     virtual void popupMenu() override final;
 
-protected:
+private:
     /*!
      * Create all widget in layout.
      */

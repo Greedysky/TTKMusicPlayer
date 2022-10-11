@@ -47,13 +47,12 @@ Q_SIGNALS:
      */
     void renderFinished(const QPixmap &data);
 
-protected:
+private:
     /*!
      * Thread run now.
      */
     virtual void run() override final;
 
-private:
     QSize m_size;
     QByteArray m_buffer;
 

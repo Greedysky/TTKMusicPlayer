@@ -70,7 +70,7 @@ public Q_SLOTS:
      */
     void queryAllFinished();
 
-protected:
+private:
     /*!
      * Init the third widget.
      */

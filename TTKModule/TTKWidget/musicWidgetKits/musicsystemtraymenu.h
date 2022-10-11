@@ -69,7 +69,7 @@ public Q_SLOTS:
      */
     void setWindowLockedChanged();
 
-protected:
+private:
     /*!
      * Create play widget actions.
      */

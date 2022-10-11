@@ -118,7 +118,7 @@ public:
      */
     QRecLevel level() const;
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

@@ -50,7 +50,7 @@ public:
      */
     explicit MusicLrcManagerHorizontalDesktop(QWidget *parent = nullptr);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -72,7 +72,7 @@ public:
      */
     explicit MusicLrcManagerVerticalDesktop(QWidget *parent = nullptr);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

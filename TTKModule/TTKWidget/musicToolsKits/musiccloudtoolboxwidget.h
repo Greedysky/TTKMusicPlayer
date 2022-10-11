@@ -46,7 +46,7 @@ public Q_SLOTS:
      */
     void updateItemTitle(int index);
 
-protected:
+private:
     /*!
      * Create widget item.
      */

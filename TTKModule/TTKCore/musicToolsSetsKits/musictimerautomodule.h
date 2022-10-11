@@ -64,13 +64,13 @@ public:
      */
     void runTimerAutoConfig();
 
-public Q_SLOTS:
+private Q_SLOTS:
     /*!
      * Check current state by one minute.
      */
     void timeout();
 
-protected:
+private:
     /*!
      * Set current system to shutdown.
      */

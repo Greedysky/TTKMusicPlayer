@@ -112,7 +112,7 @@ void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
         }
     }
 
-    emit downLoadDataChanged(QString::number(m_counter));
+    Q_EMIT downLoadDataChanged(QString::number(m_counter));
     if(m_counter == 0)
     {
         deleteAll();

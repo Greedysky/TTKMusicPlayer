@@ -49,7 +49,7 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override final;
 
-protected:
+private:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */

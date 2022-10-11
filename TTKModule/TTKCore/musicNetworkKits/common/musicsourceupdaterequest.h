@@ -66,7 +66,7 @@ public Q_SLOTS:
      */
     void downLoadFinished(const QByteArray &bytes);
 
-protected:
+private:
     QVariantMap m_rawData;
 
 };

@@ -49,13 +49,12 @@ Q_SIGNALS:
      */
     void searchFilePathChanged(const QStringList &name);
 
-protected:
+private:
     /*!
      * Thread run now.
      */
     virtual void run() override final;
 
-protected:
     QStringList m_path;
 
 };

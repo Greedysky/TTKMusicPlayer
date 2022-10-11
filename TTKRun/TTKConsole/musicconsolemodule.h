@@ -126,7 +126,7 @@ private Q_SLOTS:
      */
     void musicEnhancedVocal();
 
-protected:
+private:
     /*!
      * Print debug info.
      */

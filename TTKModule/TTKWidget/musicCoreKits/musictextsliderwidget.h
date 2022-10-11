@@ -52,7 +52,7 @@ public:
      */
     void setBackText(const QString &text);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

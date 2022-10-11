@@ -40,7 +40,7 @@ public:
     explicit MusicMovingLabelSlider(Qt::Orientation orientation, QWidget *parent = nullptr);
     ~MusicMovingLabelSlider();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

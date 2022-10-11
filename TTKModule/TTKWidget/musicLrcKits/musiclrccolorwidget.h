@@ -74,7 +74,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     Ui::MusicLrcColorWidget *m_ui;
 
 };

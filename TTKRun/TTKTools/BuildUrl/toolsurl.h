@@ -36,7 +36,7 @@ private Q_SLOTS:
     void encodeClicked();
     void decodeClicked();
 
-protected:
+private:
     Ui::ToolsUrl *m_ui;
 
 };

@@ -46,7 +46,7 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override final;
 
-protected:
+private:
     /*!
      * Get Download introduction data from net.
      */

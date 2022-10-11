@@ -61,7 +61,7 @@ private Q_SLOTS:
      */
     void activeFunctions();
 
-protected:
+private:
     /*!
      * Object contsructor.
      */

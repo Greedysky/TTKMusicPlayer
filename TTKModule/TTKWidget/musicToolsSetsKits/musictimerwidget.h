@@ -62,7 +62,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     /*!
      * Init time to play widget.
      */

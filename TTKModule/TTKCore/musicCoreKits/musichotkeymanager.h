@@ -92,7 +92,7 @@ public:
      */
     QStringList keys() const;
 
-protected:
+private:
     /*!
      * Set default key.
      */
@@ -101,6 +101,7 @@ protected:
     QList<QGlobalShortcut*> m_hotkeys;
 
     DECLARE_SINGLETON_CLASS(MusicHotKeyManager)
+
 };
 
 #define G_HOTKEY_PTR makeMusicHotKeyManager()

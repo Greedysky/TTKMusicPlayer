@@ -53,7 +53,7 @@ Q_SIGNALS:
      */
     void deltaValueChanged(float v);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

@@ -67,7 +67,7 @@ private Q_SLOTS:
      */
     void caseButtonOnAndOff();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -107,13 +107,14 @@ public:
      */
     void setStatus(int index, bool status);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
     virtual void enterEvent(QtEnterEvent *event) override final;
 
     MusicScreenSaverHoverItem *m_hoverItem;
+
 };
 
 
@@ -142,7 +143,7 @@ public:
      */
     void resizeWindow();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

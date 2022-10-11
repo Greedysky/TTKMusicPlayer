@@ -61,7 +61,7 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override final;
 
-protected:
+private:
     MusicFMRadioChannelDataList m_channels;
 
 };

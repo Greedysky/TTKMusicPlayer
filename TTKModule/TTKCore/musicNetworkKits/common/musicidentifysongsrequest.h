@@ -73,7 +73,7 @@ public Q_SLOTS:
      */
     void downLoadFinished(const QByteArray &bytes);
 
-protected:
+private:
     MusicSongIdentifyDataList m_songIdentifys;
     QString m_accessKey, m_accessSecret;
 

@@ -66,7 +66,7 @@ private Q_SLOTS:
      */
     void sliderReleased();
 
-protected:
+private:
     /*!
      * Create all widget in layout.
      */

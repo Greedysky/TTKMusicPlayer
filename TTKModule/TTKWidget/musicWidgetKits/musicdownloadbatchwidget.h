@@ -60,7 +60,7 @@ public Q_SLOTS:
      */
     void currentQualityChanged(int index);
 
-protected:
+private:
     /*!
      * Start to download music data.
      */
@@ -121,7 +121,7 @@ public Q_SLOTS:
      */
     void currentQualityChanged(int index);
 
-protected:
+private:
     QObject *m_supperClass;
     int m_downloadOffset;
     QList<MusicDownloadBatchTableItem*> m_items;
@@ -158,7 +158,7 @@ public Q_SLOTS:
      */
     void startToDownload();
 
-protected:
+private:
     Ui::MusicDownloadBatchWidget *m_ui;
 
 };

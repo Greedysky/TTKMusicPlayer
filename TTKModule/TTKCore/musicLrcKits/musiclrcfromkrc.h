@@ -43,7 +43,7 @@ public:
      */
     QByteArray decodeString() const;
 
-protected:
+private:
     /*!
      * Sncasecmp by input and size n.
      */

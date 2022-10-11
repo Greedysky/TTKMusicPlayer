@@ -80,7 +80,7 @@ public Q_SLOTS:
      */
     void exportArtPixmap();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -155,7 +155,7 @@ public Q_SLOTS:
      */
     void selectAllStateChanged(bool state);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

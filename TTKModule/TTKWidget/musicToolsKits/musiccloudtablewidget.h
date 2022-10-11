@@ -36,7 +36,7 @@ public:
     explicit MusicCloudDownloadTableWidget(QWidget *parent = nullptr);
     ~MusicCloudDownloadTableWidget();
 
-protected:
+private:
     /*!
      * Create item by index and name and size and time.
      */
@@ -79,7 +79,7 @@ public Q_SLOTS:
      */
     void reuploadFiles();
 
-protected:
+private:
     /*!
      * Create item by index and name and size and time.
      */

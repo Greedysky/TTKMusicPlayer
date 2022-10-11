@@ -100,7 +100,7 @@ private Q_SLOTS:
      */
     void downloadProgressChanged(float percent, const QString &total, qint64 time);
 
-protected:
+private:
     QList<QObject*> m_queueList;
     QList<MusicDownLoadPairData> m_pairList;
 

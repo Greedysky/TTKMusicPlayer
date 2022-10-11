@@ -127,7 +127,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     /*!
      * Background list widget item has clicked changed.
      */

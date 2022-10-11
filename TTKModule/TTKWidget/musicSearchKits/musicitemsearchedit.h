@@ -78,7 +78,7 @@ Q_SIGNALS:
      */
     void trigger(const QString &text);
 
-protected Q_SLOTS:
+private Q_SLOTS:
     /*!
      * User input the enter key emit.
      */

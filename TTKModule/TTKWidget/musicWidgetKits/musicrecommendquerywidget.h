@@ -83,7 +83,7 @@ public Q_SLOTS:
      */
     void queryAllFinished();
 
-protected:
+private:
     /*!
      * Create init interface lables.
      */

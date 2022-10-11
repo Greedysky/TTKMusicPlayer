@@ -60,7 +60,7 @@ public Q_SLOTS:
      */
     void currentItemClicked();
 
-protected:
+private:
     MusicResultDataItem m_itemData;
     QPushButton *m_playButton;
     QLabel *m_iconLabel, *m_nameLabel, *m_updateLabel;
@@ -111,7 +111,7 @@ public Q_SLOTS:
      */
     void buttonClicked(int index);
 
-protected:
+private:
     QGridLayout *m_gridLayout;
     bool m_initialized;
     MusicPageQueryWidget *m_pageQueryWidget;
@@ -157,7 +157,7 @@ public Q_SLOTS:
      */
     void currentItemClicked(const QString &id);
 
-protected:
+private:
     QGridLayout *m_gridLayout;
 
 };
@@ -231,7 +231,7 @@ public Q_SLOTS:
      */
     void setCurrentIndex(int index);
 
-protected:
+private:
     /*!
      * Create init interface lables.
      */

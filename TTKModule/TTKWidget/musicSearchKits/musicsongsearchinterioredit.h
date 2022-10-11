@@ -63,7 +63,7 @@ public Q_SLOTS:
      */
     void searchToplistInfoFinished(const QString &bytes);
 
-protected:
+private:
     /*!
      * Pop widget changed.
      */

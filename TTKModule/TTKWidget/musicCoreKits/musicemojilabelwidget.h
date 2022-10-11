@@ -54,7 +54,7 @@ private Q_SLOTS:
      */
     void labelClicked(int index);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

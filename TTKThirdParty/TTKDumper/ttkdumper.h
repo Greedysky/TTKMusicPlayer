@@ -39,7 +39,7 @@ public:
      */
     void run();
 
-protected:
+private:
     TTK_DECLARE_PRIVATE(TTKDumper)
 
 };

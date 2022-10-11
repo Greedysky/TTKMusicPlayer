@@ -107,7 +107,7 @@ public:
      */
     MusicDownloadImageRequest *makeBackgroundRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 
-protected:
+private:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)
 
 };

@@ -43,7 +43,7 @@ Q_SIGNALS:
      */
     void receiveFinshed(const QSyncDataItemList &items);
 
-protected Q_SLOTS:
+private Q_SLOTS:
     /*!
      * Receive data from server finshed.
      */

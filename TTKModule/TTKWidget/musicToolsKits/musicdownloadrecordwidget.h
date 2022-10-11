@@ -36,7 +36,7 @@ public:
     explicit MusicDownloadRecordTableWidget(QWidget *parent = nullptr);
     ~MusicDownloadRecordTableWidget();
 
-protected:
+private:
     /*!
      * Create item by index and name and size and time.
      */
@@ -64,7 +64,7 @@ public Q_SLOTS:
      */
     void updateItemTitle(int index);
 
-protected:
+private:
     /*!
      * Create widget item.
      */

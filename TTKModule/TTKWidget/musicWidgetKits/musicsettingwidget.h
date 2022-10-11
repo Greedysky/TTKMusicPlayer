@@ -76,13 +76,14 @@ public Q_SLOTS:
      */
     virtual void itemCellClicked(int row, int column) override final;
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
     virtual void leaveEvent(QEvent *event) override final;
 
     int m_listIndex;
+
 };
 
 
@@ -284,7 +285,7 @@ private Q_SLOTS:
      */
     void scrollWidgetValueChanged(int value);
 
-protected:
+private:
     /*!
      * Select function table index.
      */

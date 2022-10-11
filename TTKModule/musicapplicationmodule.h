@@ -150,7 +150,7 @@ public Q_SLOTS:
      */
     void musicEffectChanged();
 
-protected:
+private:
     /*!
      * Close current equalizer.
      */

@@ -50,7 +50,7 @@ private Q_SLOTS:
      */
     void downLoadFinished(const QByteArray &bytes);
 
-protected:
+private:
     QTextEdit *m_userCommit;
     QLabel *m_userName, *m_timerLabel;
     QLabel *m_iconLabel, *m_starLabel;

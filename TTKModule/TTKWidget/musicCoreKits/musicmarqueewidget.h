@@ -52,7 +52,7 @@ public:
      */
     QSize sizeHint() const;
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -62,7 +62,6 @@ protected:
     virtual void timerEvent(QTimerEvent *event) override final;
     virtual void resizeEvent(QResizeEvent *event) override final;
 
-private:
     QString m_text;
     int m_offset,m_timerId;
     bool m_effectOnResize;

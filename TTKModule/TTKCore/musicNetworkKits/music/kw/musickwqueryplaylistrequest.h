@@ -66,7 +66,7 @@ public Q_SLOTS:
      */
     void downloadMoreDetailsFinished();
 
-protected:
+private:
     /*!
      * Get more playlisy details.
      */

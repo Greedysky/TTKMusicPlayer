@@ -98,7 +98,7 @@ public:
      */
     void setFileLink(const QString &src, const QString &des, const QString &ico, const QString &args, const QString &description);
 
-protected:
+private:
 #ifdef Q_OS_WIN
     /*!
      * Check current regedit item has exist.

@@ -387,7 +387,7 @@ void MusicMPRISPlayerCore::elapsedChanged(qint64 elapsed)
 {
     if(std::abs(elapsed - m_prevPos) > 2000)
     {
-        emit Seeked(elapsed * 1000);
+        Q_EMIT Seeked(elapsed * 1000);
     }
     m_prevPos = elapsed;
 }

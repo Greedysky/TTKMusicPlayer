@@ -88,7 +88,7 @@ public Q_SLOTS:
      */
     virtual void setDeleteItemAt() override final;
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

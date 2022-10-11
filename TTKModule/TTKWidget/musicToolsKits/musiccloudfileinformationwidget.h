@@ -52,7 +52,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     Ui::MusicCloudFileInformationWidget *m_ui;
 
 };

@@ -57,7 +57,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     Ui::MusicLrcArtPhotoUploadWidget *m_ui;
 
 };

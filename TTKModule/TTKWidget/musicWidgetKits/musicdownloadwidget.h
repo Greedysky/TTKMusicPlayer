@@ -93,7 +93,7 @@ public:
      */
     void setText(const QString &text);
 
-protected:
+private:
     QLabel *m_text, *m_information, *m_icon;
 
 };
@@ -132,7 +132,7 @@ public Q_SLOTS:
      */
     virtual void removeItems() override final;
 
-protected:
+private:
     QList<QObject*> m_items;
 
 };
@@ -189,7 +189,7 @@ public Q_SLOTS:
      */
     void dataDownloadFinished();
 
-protected:
+private:
     /*!
      * Create all widget in layout.
      */

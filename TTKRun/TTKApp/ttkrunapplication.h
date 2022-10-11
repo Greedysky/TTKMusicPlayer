@@ -80,6 +80,7 @@ private:
     */
     void initialize(const QString &appId = QString());
 
+private:
     TTK_DECLARE_PRIVATE(TTKRunApplication)
 
 };

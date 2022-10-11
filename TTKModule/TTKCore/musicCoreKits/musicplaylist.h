@@ -188,7 +188,7 @@ public Q_SLOTS:
      */
     void setCurrentIndex(int toolIndex, const QString &path);
 
-protected:
+private:
     int m_currentIndex;
     MusicPlayItemList m_mediaList;
     MusicPlayItemList m_queueList;

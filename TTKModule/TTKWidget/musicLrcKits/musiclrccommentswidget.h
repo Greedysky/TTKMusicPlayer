@@ -39,7 +39,7 @@ public:
      */
     virtual void initialize(bool isPain) override final;
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

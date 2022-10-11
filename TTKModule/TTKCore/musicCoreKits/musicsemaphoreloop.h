@@ -48,7 +48,7 @@ public Q_SLOTS:
      */
     void quit();
 
-protected:
+private:
     QTimer m_timer;
 
 };

@@ -45,13 +45,12 @@ Q_SIGNALS:
      */
     void networkConnectionTestChanged(bool state);
 
-protected:
+private:
     /*!
      * Thread run now.
      */
     virtual void run() override final;
 
-protected:
     QString m_currentUrl;
 
 };

@@ -107,7 +107,7 @@ public Q_SLOTS:
      */
     void downloadLocalFromControl();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

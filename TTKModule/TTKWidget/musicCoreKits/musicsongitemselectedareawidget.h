@@ -92,7 +92,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     Ui::MusicSongItemSelectedDialog *m_ui;
 
 };
@@ -139,12 +139,13 @@ public Q_SLOTS:
      */
     void itemListChanged(const TTKIntList &items);
 
-protected:
+private:
     bool m_selected;
     TTKIntList m_selectedItems;
 
     QLabel *m_label, *m_itemLabel;
     MusicClickedLabel *m_modifiedItemButton;
+
 };
 
 #endif // MUSICSONGITEMSELECTEDAREAWIDGET_H

@@ -45,13 +45,12 @@ Q_SIGNALS:
      */
     void transferFileFinished(const QString &name);
 
-protected:
+private:
     /*!
      * Thread run now.
      */
     virtual void run() override final;
 
-protected:
     QString m_target;
     QStringList m_path;
 

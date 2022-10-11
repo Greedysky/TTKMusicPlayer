@@ -71,7 +71,7 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override final;
 
-protected:
+private:
     /*!
      * Map type from enum to string.
      */

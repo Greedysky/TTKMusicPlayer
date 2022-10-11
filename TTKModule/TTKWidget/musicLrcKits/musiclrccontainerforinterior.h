@@ -189,7 +189,7 @@ private Q_SLOTS:
      */
     void translatedLrcData();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

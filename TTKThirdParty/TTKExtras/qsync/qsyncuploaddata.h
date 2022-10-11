@@ -48,7 +48,7 @@ Q_SIGNALS:
      */
     void uploadProgressChanged(const QString &time, qint64 bytesSent, qint64 bytesTotal);
 
-protected Q_SLOTS:
+private Q_SLOTS:
     /*!
      * Receive data from server finshed.
      */

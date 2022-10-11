@@ -56,7 +56,7 @@ public Q_SLOTS:
      */
     void stop();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

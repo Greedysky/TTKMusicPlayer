@@ -44,7 +44,7 @@ public:
      */
     virtual bool writeBuffer(const MusicSongItemList &items, const QString &path) override final;
 
-protected:
+private:
     /*!
      * Read Music File Path.
      */

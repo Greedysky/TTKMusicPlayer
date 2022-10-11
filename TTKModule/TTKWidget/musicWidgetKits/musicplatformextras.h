@@ -50,7 +50,7 @@ public:
      */
     inline bool isDisableBlurBehindWindow() const { return m_disableBlurBehindWindow; }
 
-protected:
+private:
     bool m_disableBlurBehindWindow;
     MusicAbstractPlatformExtras *m_platformExtras;
 

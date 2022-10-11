@@ -105,7 +105,7 @@ private Q_SLOTS:
      */
     void confirmDataChanged();
 
-protected:
+private:
     /*!
      * Init parameters.
      */

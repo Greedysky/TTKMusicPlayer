@@ -84,7 +84,7 @@ public Q_SLOTS:
      */
     void currentTypeChanged(int type);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -255,7 +255,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     Ui::MusicLrcPosterWidget *m_ui;
     MusicLrcPosterItemWidget *m_itemWidget;
     MusicLrcPosterThemeListWidget *m_themeWidget;

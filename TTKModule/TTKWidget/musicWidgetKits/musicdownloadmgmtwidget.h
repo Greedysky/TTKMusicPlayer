@@ -69,7 +69,7 @@ public Q_SLOTS:
      */
     void openFileLocation();
 
-protected:
+private:
     Ui::MusicDownloadResetWidget* m_ui;
 
     QWidget *m_parentClass;
@@ -96,7 +96,7 @@ public:
      */
     void setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type);
 
-protected:
+private:
     QWidget *m_parentClass;
 
 };

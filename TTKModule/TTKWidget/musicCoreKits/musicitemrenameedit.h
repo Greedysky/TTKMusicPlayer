@@ -56,7 +56,7 @@ public Q_SLOTS:
      */
     void animationCloseChanged();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

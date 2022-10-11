@@ -44,7 +44,7 @@ private Q_SLOTS:
      */
     void searchButtonClicked();
 
-protected:
+private:
     /*!
      * Update placeholder text.
      */

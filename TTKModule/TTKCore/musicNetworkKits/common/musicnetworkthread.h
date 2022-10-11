@@ -71,6 +71,7 @@ private:
     bool m_networkState;
 
     DECLARE_SINGLETON_CLASS(MusicNetworkThread)
+
 };
 
 #define G_NETWORK_PTR makeMusicNetworkThread()

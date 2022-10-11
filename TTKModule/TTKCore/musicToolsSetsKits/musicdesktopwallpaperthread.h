@@ -93,7 +93,7 @@ public Q_SLOTS:
      */
     void timeout();
 
-protected:
+private:
     bool m_run, m_random;
     int m_currentImageIndex;
     QTimer *m_timer;

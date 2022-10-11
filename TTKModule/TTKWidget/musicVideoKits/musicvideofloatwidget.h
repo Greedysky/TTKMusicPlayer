@@ -81,7 +81,7 @@ Q_SIGNALS:
      */
     void shareButtonClicked();
 
-protected:
+private:
     QPushButton *m_search, *m_popup, *m_fullscreen;
     QPushButton *m_download, *m_share;
 

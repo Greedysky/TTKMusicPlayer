@@ -84,7 +84,7 @@ public Q_SLOTS:
      */
     void createAlbumItem(const MusicResultDataItem &item);
 
-protected:
+private:
     /*!
      * Create init interface lables.
      */

@@ -163,7 +163,7 @@ private Q_SLOTS:
      */
     void queryCurrentDuration();
 
-protected:
+private:
     /*!
      * set current play state.
      */

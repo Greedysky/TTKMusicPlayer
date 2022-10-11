@@ -127,7 +127,7 @@ public Q_SLOTS:
      */
     void addToPlayedList();
 
-protected:
+private:
     /*!
      * Check the item is enable or not.
      */
@@ -157,7 +157,7 @@ public:
     explicit MusicSongsToolBoxMaskWidget(QWidget *parent = nullptr);
     ~MusicSongsToolBoxMaskWidget();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -245,7 +245,7 @@ public:
      */
     void setSongSort(QWidget *item, MusicSongSort *sort);
 
-protected:
+private:
     /*!
      * Create item.
      */

@@ -73,7 +73,7 @@ public Q_SLOTS:
      */
     void downLoadFinished(const QByteArray &bytes);
 
-protected:
+private:
     MusicDJRadioProgramRequest *m_programThread;
 
 };
@@ -102,7 +102,7 @@ public:
      */
     void resizeWindow();
 
-protected:
+private:
     MusicObject::Program m_type;
     MusicWebDJRadioProgramTableWidget *m_tableWidget;
 
@@ -154,7 +154,7 @@ public Q_SLOTS:
      */
     void currentCategoryClicked(const MusicResultDataItem &item);
 
-protected:
+private:
     /*!
      * Init the first widget.
      */

@@ -143,7 +143,7 @@ private Q_SLOTS:
      */
     void checkTimerout();
 
-protected:
+private:
     /*!
      * Close output media module.
      */

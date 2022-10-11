@@ -63,7 +63,7 @@ public Q_SLOTS:
      */
     void soundEffectValueChanged();
 
-protected:
+private:
     bool m_enable;
     QLabel *m_textLabel;
     QPushButton *m_settingButton, *m_openButton;
@@ -115,7 +115,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     /*!
      * Read sound effect function.
      */

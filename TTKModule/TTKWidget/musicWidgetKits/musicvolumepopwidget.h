@@ -58,7 +58,7 @@ public Q_SLOTS:
      */
     void timeToReset();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

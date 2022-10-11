@@ -106,7 +106,7 @@ public Q_SLOTS:
      */
     void downLoadFinished(const QByteArray &bytes);
 
-protected:
+private:
     Ui::MusicSongSharingWidget *m_ui;
     Module m_type;
     QVariantMap m_data;

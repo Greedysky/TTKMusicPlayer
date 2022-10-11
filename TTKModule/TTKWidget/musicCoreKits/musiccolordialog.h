@@ -55,7 +55,7 @@ public Q_SLOTS:
      */
     void setSaturation(double dblsaturation);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -106,7 +106,7 @@ public Q_SLOTS:
      */
     void setBaseColor(const QColor &color);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -166,7 +166,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     Ui::MusicColorDialog *m_ui;
     int m_status;
     QColor m_color;

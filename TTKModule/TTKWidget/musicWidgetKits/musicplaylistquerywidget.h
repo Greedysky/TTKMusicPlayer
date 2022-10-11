@@ -66,7 +66,7 @@ public Q_SLOTS:
      */
     void currentItemClicked();
 
-protected:
+private:
     MusicResultDataItem m_itemData;
     QPushButton *m_topListenButton, *m_playButton;
     QLabel *m_iconLabel, *m_nameLabel, *m_creatorLabel;
@@ -125,7 +125,7 @@ public Q_SLOTS:
      */
     void buttonClicked(int index);
 
-protected:
+private:
     bool m_initialized, m_categoryChanged;
     QGridLayout *m_gridLayout;
     MusicPageQueryWidget *m_pageQueryWidget;

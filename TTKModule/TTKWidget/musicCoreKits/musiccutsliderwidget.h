@@ -45,7 +45,7 @@ Q_SIGNALS:
      */
     void buttonRelease();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -110,7 +110,7 @@ public Q_SLOTS:
      */
     void buttonReleaseRight();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

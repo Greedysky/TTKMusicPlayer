@@ -102,7 +102,7 @@ private Q_SLOTS:
      */
     void testProxyChanged(QAbstractSocket::SocketState state);
 
-protected:
+private:
     int m_port, m_type;
     QString m_hostName, m_user, m_pwd;
     QTcpSocket *m_socket;

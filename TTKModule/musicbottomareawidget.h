@@ -122,7 +122,7 @@ public Q_SLOTS:
      */
     void iconActivated(QSystemTrayIcon::ActivationReason);
 
-protected:
+private:
     /*!
      * Create system tray icon.
      */

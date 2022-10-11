@@ -57,7 +57,7 @@ private Q_SLOTS:
      */
     void finished();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -66,6 +66,7 @@ protected:
     bool m_state;
     QLabel *m_foreLabel, *m_animationLabel;
     QPropertyAnimation *m_animation;
+
 };
 
 
@@ -107,7 +108,7 @@ public Q_SLOTS:
      */
     void helpButtonClicked();
 
-protected:
+private:
     /*!
      * Create all widget in layout.
      */

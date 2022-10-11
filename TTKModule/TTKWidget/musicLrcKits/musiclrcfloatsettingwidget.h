@@ -69,7 +69,7 @@ public Q_SLOTS:
      */
     void lrcArtBackgroundChanged();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

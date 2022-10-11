@@ -42,7 +42,7 @@ Q_SIGNALS:
      */
     void clicked();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

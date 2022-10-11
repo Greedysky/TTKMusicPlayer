@@ -58,7 +58,7 @@ public:
      */
     void writeBuffer(const MusicSongList &items);
 
-protected:
+private:
     /*!
      * Mapping file path from enum type.
      */

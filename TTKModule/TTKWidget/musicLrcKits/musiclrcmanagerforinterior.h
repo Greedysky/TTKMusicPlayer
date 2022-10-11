@@ -49,7 +49,7 @@ public:
      */
     inline void setTransparent(int tran) { m_gradientTransparent = tran; }
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

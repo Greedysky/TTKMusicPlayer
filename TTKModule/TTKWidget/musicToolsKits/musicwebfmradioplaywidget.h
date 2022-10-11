@@ -98,7 +98,7 @@ public Q_SLOTS:
      */
     void show();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

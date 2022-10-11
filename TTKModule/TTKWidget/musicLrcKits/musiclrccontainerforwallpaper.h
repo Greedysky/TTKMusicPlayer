@@ -85,7 +85,7 @@ private Q_SLOTS:
      */
     void updateAnimationLrc();
 
-protected:
+private:
     /*!
      * Init current lrc when the first show.
      */

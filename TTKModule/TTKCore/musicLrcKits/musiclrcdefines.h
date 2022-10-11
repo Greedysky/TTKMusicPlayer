@@ -85,7 +85,7 @@ public:
      */
     int findDesktopLastSize() const;
 
-protected:
+private:
     QStringList m_interiorLrcSize, m_desktopLrcSize;
 
 };

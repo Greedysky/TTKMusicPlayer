@@ -175,7 +175,7 @@ public Q_SLOTS:
      */
     virtual void setSingleLineTypeChanged() override final;
 
-protected:
+private:
     /*!
      * Resize lrc size area by change size.
      */
@@ -208,7 +208,7 @@ public Q_SLOTS:
      */
     virtual void setSingleLineTypeChanged() override final;
 
-protected:
+private:
     /*!
      * Resize lrc size area by change size.
      */

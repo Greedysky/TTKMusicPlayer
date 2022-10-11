@@ -44,7 +44,7 @@ Q_SIGNALS:
      */
     void windowStateChanged(bool state);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

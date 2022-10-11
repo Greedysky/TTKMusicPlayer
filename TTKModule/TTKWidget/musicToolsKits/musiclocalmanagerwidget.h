@@ -75,7 +75,7 @@ public:
      */
     void resizeWindow();
 
-protected Q_SLOTS:
+private Q_SLOTS:
     /*!
      * Type index changed.
      */
@@ -85,13 +85,12 @@ protected Q_SLOTS:
      */
     void mediaPathChanged(const QString &path);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
     virtual void resizeEvent(QResizeEvent *event) override final;
 
-protected:
     QTabWidget *m_tabWidget;
     MusicItemQueryEdit *m_searchEdit;
     QFileSystemWatcher *m_fileWatcher;

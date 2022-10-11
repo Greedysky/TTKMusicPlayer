@@ -77,7 +77,7 @@ public Q_SLOTS:
      */
     void show();
 
-protected:
+private:
     Ui::MusicLrcDownloadBatchWidget *m_ui;
     MusicSongList m_localSongs;
 

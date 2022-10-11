@@ -128,7 +128,7 @@ public:
      */
     explicit MusicSpectrumNormalLayoutWidget(QWidget *parent = nullptr);
 
-protected:
+private:
     /*!
      * Spectrum types list.
      */
@@ -150,7 +150,7 @@ public:
      */
     explicit MusicSpectrumPlusLayoutWidget(QWidget *parent = nullptr);
 
-protected:
+private:
     /*!
      * Spectrum types list.
      */
@@ -172,7 +172,7 @@ public:
      */
     explicit MusicSpectrumFlowLayoutWidget(QWidget *parent = nullptr);
 
-protected:
+private:
     /*!
      * Spectrum types list.
      */
@@ -194,7 +194,7 @@ public:
      */
     explicit MusicSpectrumWaveLayoutWidget(QWidget *parent = nullptr);
 
-protected:
+private:
     /*!
      * Spectrum types list.
      */
@@ -216,7 +216,7 @@ public:
      */
     explicit MusicSpectrumFloridLayoutWidget(QWidget *parent = nullptr);
 
-protected:
+private:
     /*!
      * Spectrum types list.
      */

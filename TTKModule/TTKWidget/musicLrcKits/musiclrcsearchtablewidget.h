@@ -76,7 +76,7 @@ public Q_SLOTS:
      */
     virtual void createSearchedItem(const MusicResultInfoItem &songItem) override final;
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

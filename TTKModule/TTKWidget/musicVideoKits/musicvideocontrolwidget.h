@@ -98,7 +98,7 @@ public Q_SLOTS:
      */
     void sendBarrageClicked();
 
-protected:
+private:
     /*!
      * Create video barrage widget.
      */

@@ -68,7 +68,7 @@ public:
      */
     bool contains(const QString &name) const;
 
-protected:
+private:
     QMap<QString, QObject*> m_parameter;
 
     /*!

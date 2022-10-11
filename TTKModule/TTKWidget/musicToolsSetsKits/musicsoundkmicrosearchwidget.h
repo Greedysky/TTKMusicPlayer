@@ -78,7 +78,7 @@ public Q_SLOTS:
      */
     virtual void createSearchedItem(const MusicResultInfoItem &songItem) override final;
 
-protected:
+private:
     /*!
      * Data download to play.
      */
@@ -132,7 +132,7 @@ public Q_SLOTS:
      */
     void setCurrentSongName(const QString &name);
 
-protected:
+private:
     bool m_queryMovieMode;
     MusicItemQueryEdit *m_searchEdit;
     MusicSoundKMicroSearchTableWidget *m_searchTableWidget;

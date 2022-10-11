@@ -113,7 +113,7 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
         }
     }
 
-    emit downLoadDataChanged(QString::number(m_counter));
+    Q_EMIT downLoadDataChanged(QString::number(m_counter));
     if(m_counter == 0)
     {
         deleteAll();

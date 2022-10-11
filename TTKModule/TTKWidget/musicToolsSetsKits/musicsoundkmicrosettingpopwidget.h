@@ -57,7 +57,7 @@ public Q_SLOTS:
      */
     void volumeChanged(int value);
 
-protected:
+private:
     /*!
      * Create all widget in layout.
      */

@@ -78,7 +78,7 @@ public Q_SLOTS:
      */
     void positionChanged(qint64 position);
 
-protected:
+private:
     /*!
      * Create the detected widget.
      */

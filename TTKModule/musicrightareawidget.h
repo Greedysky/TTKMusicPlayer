@@ -295,7 +295,7 @@ public Q_SLOTS:
      */
     void musicChangeDownloadCustumWidget();
 
-protected:
+private:
     /*!
      * Function initialize.
      */

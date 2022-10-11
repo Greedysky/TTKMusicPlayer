@@ -235,7 +235,7 @@ private Q_SLOTS:
      */
     void deleteFloatWidget();
 
-protected:
+private:
     /*!
      * Check current search result is empty or not.
      */

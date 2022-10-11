@@ -65,7 +65,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     Ui::MusicLrcSearchWidget *m_ui;
 
 };

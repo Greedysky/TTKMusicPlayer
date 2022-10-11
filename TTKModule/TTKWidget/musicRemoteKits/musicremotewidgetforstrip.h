@@ -56,7 +56,7 @@ private Q_SLOTS:
      */
     bool close();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

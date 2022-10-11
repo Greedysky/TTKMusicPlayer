@@ -54,7 +54,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     Ui::MusicInputDialog *m_ui;
 
 };

@@ -97,7 +97,7 @@ public Q_SLOTS:
      */
     void valueChanged(int value);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

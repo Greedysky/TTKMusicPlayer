@@ -56,7 +56,7 @@ Q_SIGNALS:
     */
     void messageReceived(const QString &message);
 
-protected Q_SLOTS:
+private Q_SLOTS:
     /*!
      * Current message received.
     */

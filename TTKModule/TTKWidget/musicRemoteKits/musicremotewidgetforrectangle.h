@@ -42,7 +42,7 @@ public:
      */
     virtual void setLabelText(const QString &value) override final;
 
-protected:
+private:
     MusicMarqueeWidget *m_songNameLabel;
     QWidget *m_toolWidget;
 

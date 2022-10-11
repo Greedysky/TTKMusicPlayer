@@ -64,7 +64,7 @@ public Q_SLOTS:
      */
     void currentItemClicked();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -125,7 +125,7 @@ public Q_SLOTS:
      */
     void categoryChanged(const MusicResultsCategoryItem &category);
 
-protected:
+private:
     bool m_initialized;
     QGridLayout *m_gridLayout;
     MusicWebMVRadioInfoWidget *m_infoWidget;

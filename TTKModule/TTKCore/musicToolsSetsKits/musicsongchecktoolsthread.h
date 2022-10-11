@@ -59,13 +59,12 @@ Q_SIGNALS:
      */
     void finished(const MusicSongCheckToolsRenameList &items);
 
-protected:
+private:
     /*!
      * Thread run now.
      */
     virtual void run() override final;
 
-protected:
     MusicSongList *m_songItems;
     TTKIntList m_itemIDs;
     MusicSongCheckToolsRenameList m_datas;
@@ -111,13 +110,12 @@ Q_SIGNALS:
      */
     void finished(const MusicSongCheckToolsDuplicateList &items);
 
-protected:
-    virtual void run() override final;
+private:
     /*!
      * Thread run now.
      */
+    virtual void run() override final;
 
-protected:
     MusicSongList *m_songItems;
     TTKIntList m_itemIDs;
     MusicSongCheckToolsDuplicateList m_datas;
@@ -150,13 +148,12 @@ Q_SIGNALS:
      */
     void finished(const MusicSongCheckToolsQualityList &items);
 
-protected:
+private:
     /*!
      * Thread run now.
      */
     virtual void run() override final;
 
-protected:
     MusicSongList *m_songItems;
 
 };

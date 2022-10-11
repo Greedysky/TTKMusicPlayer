@@ -44,7 +44,7 @@ public:
      */
     explicit MusicPlayedListTopContainerWidget(QWidget *parent = nullptr);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -152,7 +152,7 @@ public Q_SLOTS:
      */
     void itemDoubleClicked(int row, int column);
 
-protected:
+private:
     /*!
      * Create all widget in layout.
      */

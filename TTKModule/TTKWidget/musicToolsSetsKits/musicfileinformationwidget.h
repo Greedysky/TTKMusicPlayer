@@ -79,7 +79,7 @@ public Q_SLOTS:
      */
     virtual int exec();
 
-protected:
+private:
     /*!
      * Eet editLine enable.
      */

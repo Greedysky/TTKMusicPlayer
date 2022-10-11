@@ -50,7 +50,7 @@ public Q_SLOTS:
      */
     void selectedAllItems(bool check);
 
-protected:
+private:
     /*!
      * Delete current selected row.
      */
@@ -95,7 +95,7 @@ public Q_SLOTS:
      */
     void selectedAllItems(bool check);
 
-protected:
+private:
     /*!
      * Add selected music song path to list.
      */
@@ -144,7 +144,7 @@ public Q_SLOTS:
      */
     void selectedAllItems(bool check);
 
-protected:
+private:
     /*!
      * Add selected music song path to list.
      */

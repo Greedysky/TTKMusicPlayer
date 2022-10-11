@@ -46,12 +46,13 @@ public:
      */
     void setSize(const QSize &size);
 
-public Q_SLOTS:
+private Q_SLOTS:
     /*!
      * Current animation is finished.
-     */   void animationFinished();
+     */
+    void animationFinished();
 
-protected:
+private:
     /*!
      * Init parameters.
      */
@@ -102,7 +103,7 @@ public:
      */
     void addBarrage(const MusicBarrageRecord &record);
 
-protected:
+private:
     /*!
      * Clear all items.
      */

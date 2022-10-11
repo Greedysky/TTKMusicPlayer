@@ -41,7 +41,7 @@ Q_SIGNALS:
      */
     void enterFinished(const QString &text);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

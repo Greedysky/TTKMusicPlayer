@@ -64,7 +64,7 @@ public Q_SLOTS:
      */
     void musicPlayClicked();
 
-protected:
+private:
     /*!
      * Override the widget event.
      */

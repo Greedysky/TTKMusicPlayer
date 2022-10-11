@@ -112,7 +112,7 @@ Q_SIGNALS:
      */
     void itemClicked(MusicBackgroundListItem *item);
 
-protected:
+private:
     /*!
      * Override the widget event.
      */
@@ -236,7 +236,7 @@ private Q_SLOTS:
      */
     void itemHasClicked(MusicBackgroundListItem *item);
 
-protected:
+private:
     Module m_type;
     QGridLayout *m_gridLayout;
     MusicBackgroundListItem *m_currentItem;
