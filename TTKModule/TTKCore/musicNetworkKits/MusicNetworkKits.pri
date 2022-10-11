@@ -42,6 +42,7 @@ HEADERS += \
     $$PWD/common/musicsourceupdaterequest.h \
     $$PWD/common/musicdownloadcounterpvrequest.h \
     $$PWD/image/musicdownloadbackgroundrequest.h \
+    $$PWD/image/musicbpdownloadimagerequest.h \
     $$PWD/image/musicdownloadskin.h \
     $$PWD/image/musicabstractdownloadskinrequest.h \
     $$PWD/image/musicdownloadbingskinrequest.h \
@@ -133,6 +134,7 @@ SOURCES += \
     $$PWD/common/musicsourceupdaterequest.cpp \
     $$PWD/common/musicdownloadcounterpvrequest.cpp \
     $$PWD/image/musicdownloadbackgroundrequest.cpp \
+    $$PWD/image/musicbpdownloadimagerequest.cpp \
     $$PWD/image/musicabstractdownloadskinrequest.cpp \
     $$PWD/image/musicdownloadbingskinrequest.cpp \
     $$PWD/image/musicdownloadthunderskinrequest.cpp \

@@ -1,8 +1,7 @@
 #include "musickwdownloadimagerequest.h"
-#include "musicdownloadsourcerequest.h"
 #include "musicdownloaddatarequest.h"
 
-const QString ART_BACKGROUND_URL = "NUJnNFVlSHprVzdaMWxMdXRvbEp5a3lldU51Um9GeU5RKzRDWFNER2FHL3pSRE1uK1VNRzVhVk53Y1JBUTlMbnhjeFBvRFMySnpUSldlY21xQjBkWE5GTWVkVXFsa0lNa1RKSnE3VHEwMDFPdVRDbXhUSThhWkM4TFI4RUZqbHFzVFFnQkpOY2hUR2c2YWdzb3U2cjBKSUdMYnpnZktucEJpbDVBTDlzMGF0QVMwcEtLR2JWVnc9PQ==";
+#define ART_BACKGROUND_URL  "NUJnNFVlSHprVzdaMWxMdXRvbEp5a3lldU51Um9GeU5RKzRDWFNER2FHL3pSRE1uK1VNRzVhVk53Y1JBUTlMbnhjeFBvRFMySnpUSldlY21xQjBkWE5GTWVkVXFsa0lNa1RKSnE3VHEwMDFPdVRDbXhUSThhWkM4TFI4RUZqbHFzVFFnQkpOY2hUR2c2YWdzb3U2cjBKSUdMYnpnZktucEJpbDVBTDlzMGF0QVMwcEtLR2JWVnc9PQ=="
 
 MusicKWDownLoadCoverRequest::MusicKWDownLoadCoverRequest(const QString &url, const QString &path, QObject *parent)
     : MusicAbstractDownLoadRequest(url, path, MusicObject::Download::Cover, parent)
@@ -73,41 +72,49 @@ void MusicKWDownloadBackgroundRequest::startToDownload()
 
     MusicAbstractNetwork::deleteAll();
 
-    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(m_artName));
+    QNetworkRequest request;
+    request.setUrl(MusicUtils::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(m_artName));
+    MusicObject::setSslConfiguration(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
-void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
+void MusicKWDownloadBackgroundRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadDataFinished").arg(className()));
 
     MusicAbstractNetwork::downLoadFinished();
-    if(bytes != "NO_PIC")
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser json;
-        bool ok;
-        const QVariant &data = json.parse(bytes, &ok);
-        if(ok)
+        const QByteArray &bytes = m_reply->readAll();
+        if(bytes != "NO_PIC")
         {
-            QString lastUrl;
-            QVariantMap value = data.toMap();
-            const QVariantList &datas = value["array"].toList();
-            for(const QVariant &var : qAsConst(datas))
+            QJson::Parser json;
+            bool ok;
+            const QVariant &data = json.parse(bytes, &ok);
+            if(ok)
             {
-                value = var.toMap();
-                if(m_counter < MAX_IMAGE_COUNTER && !value.isEmpty())
+                QString lastUrl;
+                QVariantMap value = data.toMap();
+                const QVariantList &datas = value["array"].toList();
+                for(const QVariant &var : qAsConst(datas))
                 {
-                    const QString &url = value.values().front().toString();
-                    if(url == lastUrl)
+                    value = var.toMap();
+                    if(m_counter < MAX_IMAGE_COUNTER && !value.isEmpty())
                     {
-                        continue;
-                    }
+                        const QString &url = value.values().front().toString();
+                        if(url == lastUrl)
+                        {
+                            continue;
+                        }
 
-                    lastUrl = url;
-                    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
-                    connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
-                    download->startToDownload();
+                        lastUrl = url;
+                        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
+                        connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
+                        download->startToDownload();
+                    }
                 }
             }
         }

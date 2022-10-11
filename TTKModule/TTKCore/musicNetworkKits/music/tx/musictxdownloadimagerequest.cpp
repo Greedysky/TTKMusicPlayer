@@ -1,7 +1,8 @@
 #include "musictxdownloadimagerequest.h"
-#include "musicdownloadsourcerequest.h"
 #include "musicdownloaddatarequest.h"
 #include "musictxqueryinterface.h"
+
+#define ART_BACKGROUND_URL  "dGJmTlZOK1QvMDJENUxjMDk5UVhBWHVCb001eWtnQ1hKSnhsRWxLczNvRm9FV0kwbHhocTk4aml5SCs1Ym5mQU44SU05c1VZYVFzR2hLTEpGQ0hCNmM1ZUlZVnhnMm92QXNGMFN3PT0="
 
 MusicTXImageConfigManager::MusicTXImageConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
@@ -126,7 +127,7 @@ void MusicTXDownloadBackgroundRequest::downLoadUrl(const QString &id)
     MusicAbstractNetwork::deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(TX_BACKGROUND_URL, false).arg(id));
+    request.setUrl(MusicUtils::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(id));
     MusicTXInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);

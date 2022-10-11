@@ -45,6 +45,15 @@ public Q_SLOTS:
      */
     void downLoadFinished(const QString &bytes);
 
+private:
+    /*!
+     * Find image plugin.
+     */
+    void findImagePlugin();
+
+private:
+    int m_pluginIndex;
+
 };
 
 #endif // MUSICDOWNLOADBACKGROUNDREQUEST_H

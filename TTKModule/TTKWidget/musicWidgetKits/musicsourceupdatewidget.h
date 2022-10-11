@@ -55,7 +55,7 @@ public Q_SLOTS:
      */
     void updateSourceClicked();
     /*!
-     * Download data from kuwo net finished.
+     * Download data from net finished.
      */
     void downLoadFinished(const QVariant &bytes);
 
@@ -90,7 +90,7 @@ public Q_SLOTS:
      */
     void upgradeButtonClicked();
     /*!
-     * Download data from kuwo net finished.
+     * Download data from net finished.
      */
     void downLoadFinished(const QVariant &bytes);
     /*!

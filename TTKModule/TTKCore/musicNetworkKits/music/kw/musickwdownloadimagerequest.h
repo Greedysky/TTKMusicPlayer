@@ -73,9 +73,9 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Download data from kuwo net finished.
+     * Download data from net finished.
      */
-    void downLoadFinished(const QByteArray &bytes);
+    virtual void downLoadFinished() override final;
 
 };
 

@@ -146,8 +146,8 @@ void MusicConfigManager::writeBuffer()
     const int windowConciseMode = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toInt();
     const int remoteWidgetMode = G_SETTING_PTR->value(MusicSettingManager::RemoteWidgetMode).toInt();
     const int windowQuitMode = G_SETTING_PTR->value(MusicSettingManager::WindowQuitMode).toInt();
-    const QString lastFileDialogPath = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();
-    const QString mediaLibraryPath = G_SETTING_PTR->value(MusicSettingManager::MediaLibraryPath).toString();
+    const QString &lastFileDialogPath = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();
+    const QString &mediaLibraryPath = G_SETTING_PTR->value(MusicSettingManager::MediaLibraryPath).toString();
     //
     const int otherCheckUpdateEnable = G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateEnable).toInt();
     const int otherReadAlbumCover = G_SETTING_PTR->value(MusicSettingManager::OtherReadAlbumCover).toInt();
