@@ -19,8 +19,7 @@ void MusicBDQueryLearnRequest::startToSearch(QueryType type, const QString &valu
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(BD_LEARN_URL, false).arg(value).arg(1).arg(30));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicBDInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -98,8 +97,7 @@ void MusicBDQueryLearnRequest::parseFromSongProperty(MusicObject::MusicSongInfor
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(BD_LEARN_INFO_URL, false).arg(key, eKey));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicBDInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -135,8 +133,7 @@ void MusicBDQueryLearnRequest::parseFromLrcProperty(MusicObject::MusicSongInform
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(BD_SONG_PATH_URL, false).arg(info->m_songId));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicBDInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())

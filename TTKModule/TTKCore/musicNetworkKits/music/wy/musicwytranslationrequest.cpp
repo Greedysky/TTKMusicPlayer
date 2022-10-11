@@ -17,10 +17,10 @@ void MusicWYTranslationRequest::startToDownload(const QString &data)
 
     MusicSemaphoreLoop loop;
     MusicWYQueryRequest *d = new MusicWYQueryRequest(this);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryLite(true);
     d->setQueryAllRecords(false);
     d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, QFileInfo(m_rawData["name"].toString()).baseName());
-    connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
     QUrl url;

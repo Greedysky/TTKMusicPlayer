@@ -95,7 +95,7 @@
       <height>281</height>
      </rect>
     </property>
-    <widget class="QScrollArea" name="recommandScrollArea"/>
+    <widget class="QScrollArea" name="recommendScrollArea"/>
     <widget class="QScrollArea" name="userScrollArea"/>
     <widget class="QScrollArea" name="dailyScrollArea"/>
     <widget class="QScrollArea" name="remoteScrollArea"/>

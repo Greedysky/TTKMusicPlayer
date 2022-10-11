@@ -76,13 +76,12 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
     MusicSemaphoreLoop loop;
     connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
-    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(QSyncUtils::makeDataBucketUrl() + OS_CLOUD_URL);
-
+    MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    d->startToDownload(QSyncUtils::makeDataBucketUrl() + OS_CLOUD_URL);
     loop.exec();
-    updateListToServer();
 
+    updateListToServer();
     return !QSyncConfig::NAME.isEmpty() && !QSyncConfig::KEY.isEmpty();
 }
 

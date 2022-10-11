@@ -47,10 +47,11 @@ void MusicDownloadTagDataRequest::downLoadFinished()
     if(save)
     {
         MusicSemaphoreLoop loop;
-        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        download->startToDownload(m_songMeta.comment());
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
+
+        MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        d->startToDownload(m_songMeta.comment());
         loop.exec();
     }
 

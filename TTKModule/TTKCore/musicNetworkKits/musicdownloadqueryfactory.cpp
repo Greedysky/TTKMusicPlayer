@@ -29,10 +29,7 @@
 #include "musickgqueryplaylistrequest.h"
 #include "musickwqueryplaylistrequest.h"
 //
-#include "musicbdqueryrecommendrequest.h"
-#include "musicwyqueryrecommendrequest.h"
-#include "musickgqueryrecommendrequest.h"
-#include "musickwqueryrecommendrequest.h"
+#include "musicqueryrecommendrequest.h"
 //
 #include "musicwycommentsrequest.h"
 #include "musickgcommentsrequest.h"
@@ -166,17 +163,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makePlaylistRequest(QObjec
 
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeRecommendRequest(QObject *parent)
 {
-    MusicAbstractQueryRequest *request = nullptr;
-    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
-    {
-//        case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYQueryRecommendRequest(parent); break;
-//        case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWQueryRecommendRequest(parent); break;
-//        case MusicAbstractQueryRequest::QueryServer::KG: request = new MusicKGQueryRecommendRequest(parent); break;
-        default: request = new MusicBDQueryRecommendRequest(parent);
-    }
-    TTK_LOGGER_INFO(QString("MusicQueryRecommendRequest server: %1").arg(request->queryServer()));
-    return request;
+    return (new MusicQueryRecommendRequest(parent));
 }
 
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeSimilarSongRequest(QObject *parent)

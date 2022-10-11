@@ -161,10 +161,10 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
     }
 #else
     MusicSemaphoreLoop loop;
-    m_process->close();
-    m_process->start("df -h");
     connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
     QtProcessNoneConnect(m_process, &loop, quit);
+    m_process->close();
+    m_process->start("df -h");
     loop.exec();
 #endif
     return m_items;

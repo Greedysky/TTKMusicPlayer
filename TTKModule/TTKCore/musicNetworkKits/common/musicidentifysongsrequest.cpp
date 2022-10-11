@@ -20,9 +20,9 @@ bool MusicIdentifySongsRequest::queryIdentifyKey()
     MusicSemaphoreLoop loop;
     connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
-    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(QSyncUtils::makeDataBucketUrl() + OS_ACRUA_URL);
+    MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    d->startToDownload(QSyncUtils::makeDataBucketUrl() + OS_ACRUA_URL);
     loop.exec();
 
     return !m_accessKey.isEmpty() && !m_accessSecret.isEmpty();

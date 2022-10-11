@@ -13,10 +13,10 @@ void MusicKWSongCommentsRequest::startToSearch(const QString &value)
 
     MusicSemaphoreLoop loop;
     MusicKWQueryRequest *d = new MusicKWQueryRequest(this);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryLite(true);
     d->setQueryAllRecords(false);
     d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, value);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
     m_rawData["sid"].clear();

@@ -97,11 +97,10 @@ void MusicSongSharingWidget::confirmButtonClicked()
     {
         case Module::Song:
         {
-            MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-            d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, m_ui->sharedName->text().trimmed());
-
             MusicSemaphoreLoop loop;
+            MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, m_ui->sharedName->text().trimmed());
             loop.exec();
 
             if(!d->isEmpty())

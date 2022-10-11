@@ -41,7 +41,23 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    virtual void startToSearch() = 0;
+    virtual void startToSearch();
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadFinished() override final;
+
+protected:
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void parseFromSongProperty(MusicObject::MusicSongInformation *info, const QString &key, int length, int bitrate) const;
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void parseFromSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const;
 
 };
 

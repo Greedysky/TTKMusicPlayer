@@ -54,7 +54,6 @@ HEADERS += \
     $$PWD/music/wy/musicwyqueryplaylistrequest.h \
     $$PWD/music/wy/musicwyquerytoplistrequest.h \
     $$PWD/music/wy/musicwyquerymovierequest.h \
-    $$PWD/music/wy/musicwyqueryrecommendrequest.h \
     $$PWD/music/wy/musicwyqueryartistlistrequest.h \
     $$PWD/music/wy/musicwydownloadtextrequest.h \
     $$PWD/music/wy/musicwycommentsrequest.h \
@@ -68,7 +67,6 @@ HEADERS += \
     $$PWD/music/kg/musickgqueryplaylistrequest.h \
     $$PWD/music/kg/musickgquerytoplistrequest.h \
     $$PWD/music/kg/musickgquerymovierequest.h \
-    $$PWD/music/kg/musickgqueryrecommendrequest.h \
     $$PWD/music/kg/musickgqueryartistlistrequest.h \
     $$PWD/music/kg/musickgdiscoverlistrequest.h \
     $$PWD/music/kg/musickgcommentsrequest.h \
@@ -80,7 +78,6 @@ HEADERS += \
     $$PWD/music/kw/musickwqueryplaylistrequest.h \
     $$PWD/music/kw/musickwquerytoplistrequest.h \
     $$PWD/music/kw/musickwquerymovierequest.h \
-    $$PWD/music/kw/musickwqueryrecommendrequest.h \
     $$PWD/music/kw/musickwqueryartistlistrequest.h \
     $$PWD/music/kw/musickwdownloadtextrequest.h \
     $$PWD/music/kw/musickwdownloadimagerequest.h \
@@ -90,7 +87,6 @@ HEADERS += \
     $$PWD/music/bd/musicbdqueryinterface.h \
     $$PWD/music/bd/musicbdquerylearnrequest.h \
     $$PWD/music/bd/musicbdtranslationrequest.h \
-    $$PWD/music/bd/musicbdqueryrecommendrequest.h \
     $$PWD/music/tx/musictxqueryinterface.h \
     $$PWD/music/tx/musictxdownloadimagerequest.h \
     $$PWD/radio/fm/musicfmradiochannelrequest.h \
@@ -148,7 +144,6 @@ SOURCES += \
     $$PWD/music/wy/musicwyqueryplaylistrequest.cpp \
     $$PWD/music/wy/musicwyquerytoplistrequest.cpp \
     $$PWD/music/wy/musicwyquerymovierequest.cpp \
-    $$PWD/music/wy/musicwyqueryrecommendrequest.cpp \
     $$PWD/music/wy/musicwyqueryartistlistrequest.cpp \
     $$PWD/music/wy/musicwydownloadtextrequest.cpp \
     $$PWD/music/wy/musicwycommentsrequest.cpp \
@@ -162,7 +157,6 @@ SOURCES += \
     $$PWD/music/kg/musickgqueryplaylistrequest.cpp \
     $$PWD/music/kg/musickgquerytoplistrequest.cpp \
     $$PWD/music/kg/musickgquerymovierequest.cpp \
-    $$PWD/music/kg/musickgqueryrecommendrequest.cpp \
     $$PWD/music/kg/musickgqueryartistlistrequest.cpp \
     $$PWD/music/kg/musickgdiscoverlistrequest.cpp \
     $$PWD/music/kg/musickgcommentsrequest.cpp \
@@ -174,7 +168,6 @@ SOURCES += \
     $$PWD/music/kw/musickwqueryplaylistrequest.cpp \
     $$PWD/music/kw/musickwquerytoplistrequest.cpp \
     $$PWD/music/kw/musickwquerymovierequest.cpp \
-    $$PWD/music/kw/musickwqueryrecommendrequest.cpp \
     $$PWD/music/kw/musickwqueryartistlistrequest.cpp \
     $$PWD/music/kw/musickwdownloadtextrequest.cpp \
     $$PWD/music/kw/musickwdownloadimagerequest.cpp \
@@ -184,7 +177,6 @@ SOURCES += \
     $$PWD/music/bd/musicbdqueryinterface.cpp \
     $$PWD/music/bd/musicbdquerylearnrequest.cpp \
     $$PWD/music/bd/musicbdtranslationrequest.cpp \
-    $$PWD/music/bd/musicbdqueryrecommendrequest.cpp \
     $$PWD/music/tx/musictxqueryinterface.cpp \
     $$PWD/music/tx/musictxdownloadimagerequest.cpp \
     $$PWD/radio/fm/musicfmradiochannelrequest.cpp \

@@ -39,7 +39,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 
     m_cacheBackgroundList = new MusicBackgroundListWidget(this);
     m_cacheBackgroundList->setType(MusicBackgroundListWidget::First);
-    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->recommandScrollArea, m_cacheBackgroundList);
+    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->recommendScrollArea, m_cacheBackgroundList);
 
     m_stackBackgroundList = new MusicBackgroundListWidget(this);
     m_stackBackgroundList->setType(MusicBackgroundListWidget::Second);
