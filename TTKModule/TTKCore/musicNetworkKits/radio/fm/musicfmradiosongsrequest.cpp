@@ -6,7 +6,7 @@ MusicFMRadioSongsRequest::MusicFMRadioSongsRequest(QObject *parent)
 
 }
 
-void MusicFMRadioSongsRequest::startToDownload(const QString &id)
+void MusicFMRadioSongsRequest::startRequest(const QString &id)
 {
     m_cachedID = id;
     m_songInfo = MusicObject::MusicSongInformation();
@@ -36,7 +36,7 @@ void MusicFMRadioSongsRequest::downLoadFinished()
             {
                 TTK_LOGGER_ERROR("The fm radio song is empty");
                 deleteAll();
-                startToDownload(m_cachedID);
+                startRequest(m_cachedID);
                 return;
             }
 

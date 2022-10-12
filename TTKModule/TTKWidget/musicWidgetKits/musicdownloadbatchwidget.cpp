@@ -85,7 +85,7 @@ void MusicDownloadBatchTableItem::addItem(const MusicObject::MusicSongInformatio
     m_qulity->setCurrentIndex(0);
 }
 
-void MusicDownloadBatchTableItem::startToDownload()
+void MusicDownloadBatchTableItem::startRequest()
 {
     if(!G_NETWORK_PTR->isOnline() || m_qulity->currentIndex() < 0)
     {
@@ -94,11 +94,11 @@ void MusicDownloadBatchTableItem::startToDownload()
 
     if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
     {
-        startToDownloadMusic();
+        startRequestMusic();
     }
     else if(m_queryType == MusicAbstractQueryRequest::QueryType::Movie)
     {
-        startToDownloadMovie();
+        startRequestMovie();
     }
 }
 
@@ -175,7 +175,7 @@ void MusicDownloadBatchTableItem::currentQualityChanged(int index)
     }
 }
 
-void MusicDownloadBatchTableItem::startToDownloadMusic()
+void MusicDownloadBatchTableItem::startRequestMusic()
 {
     const MusicObject::MusicSongProperty &prop = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongProperty>();
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
@@ -229,10 +229,10 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     meta.setYear(m_songInfo.m_year);
 
     downSong->setSongMeta(meta);
-    downSong->startToDownload();
+    downSong->startRequest();
 }
 
-void MusicDownloadBatchTableItem::startToDownloadMovie()
+void MusicDownloadBatchTableItem::startRequestMovie()
 {
     const MusicObject::MusicSongProperty &prop = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongProperty>();
     const QString &downloadPrefix = MOVIE_DIR_FULL;
@@ -257,7 +257,7 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
     }
     //
     MusicDownloadDataRequest *download = new MusicDownloadDataRequest(prop.m_url, downloadName, MusicObject::Download::Video, this);
-    download->startToDownload();
+    download->startRequest();
 }
 
 
@@ -306,11 +306,11 @@ void MusicDownloadBatchTableWidget::addItem(const MusicObject::MusicSongInformat
     setCellWidget(index, 0, item);
 }
 
-void MusicDownloadBatchTableWidget::startToDownload()
+void MusicDownloadBatchTableWidget::startRequest()
 {
     for(MusicDownloadBatchTableItem *item : qAsConst(m_items))
     {
-        item->startToDownload();
+        item->startRequest();
     }
 }
 
@@ -369,7 +369,7 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startToDownload()));
+    connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startRequest()));
 }
 
 MusicDownloadBatchWidget::~MusicDownloadBatchWidget()
@@ -393,8 +393,8 @@ void MusicDownloadBatchWidget::show()
     return MusicAbstractMoveWidget::show();
 }
 
-void MusicDownloadBatchWidget::startToDownload()
+void MusicDownloadBatchWidget::startRequest()
 {
-    m_ui->tableWidget->startToDownload();
+    m_ui->tableWidget->startRequest();
     hide();
 }

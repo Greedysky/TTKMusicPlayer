@@ -10,18 +10,18 @@ MusicDownloadBirdSkinRequest::MusicDownloadBirdSkinRequest(QObject *parent)
 
 }
 
-void MusicDownloadBirdSkinRequest::startToDownload()
+void MusicDownloadBirdSkinRequest::startRequest()
 {
-    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(MAIN_URL, false));
+    MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    d->startRequest(MusicUtils::Algorithm::mdII(MAIN_URL, false));
 }
 
-void MusicDownloadBirdSkinRequest::startToDownload(const QString &id)
+void MusicDownloadBirdSkinRequest::startRequest(const QString &id)
 {
-    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadItemsFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(QUERY_URL, false).arg(id));
+    MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadItemsFinished(QByteArray)));
+    d->startRequest(MusicUtils::Algorithm::mdII(QUERY_URL, false).arg(id));
 }
 
 void MusicDownloadBirdSkinRequest::downLoadFinished(const QByteArray &bytes)

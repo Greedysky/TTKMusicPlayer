@@ -32,7 +32,7 @@ MusicWebDJRadioProgramTableWidget::~MusicWebDJRadioProgramTableWidget()
 
 void MusicWebDJRadioProgramTableWidget::initialize(MusicObject::Program type)
 {
-    m_programThread->startToDownload(type);
+    m_programThread->startRequest(type);
 }
 
 void MusicWebDJRadioProgramTableWidget::resizeWindow()
@@ -117,10 +117,10 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultDataI
 
     if(!data.m_coverUrl.isEmpty() && data.m_coverUrl != TTK_NULL_STR)
     {
-        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        download->setHeader("id", index);
-        download->startToDownload(data.m_coverUrl);
+        MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
+        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        d->setHeader("id", index);
+        d->startRequest(data.m_coverUrl);
     }
 }
 
@@ -132,13 +132,13 @@ void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &bytes
         return;
     }
 
-    MusicDownloadSourceRequest *download(TTKObject_cast(MusicDownloadSourceRequest*, sender()));
-    if(!download)
+    MusicDownloadCoverRequest *d(TTKObject_cast(MusicDownloadCoverRequest*, sender()));
+    if(!d)
     {
         return;
     }
 
-    QTableWidgetItem *it = item(download->header("id").toInt(), 1);
+    QTableWidgetItem *it = item(d->header("id").toInt(), 1);
     if(it)
     {
         QPixmap pix;

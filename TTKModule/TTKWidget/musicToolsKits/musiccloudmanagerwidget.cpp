@@ -78,7 +78,7 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
 
     MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startToDownload(QSyncUtils::makeDataBucketUrl() + OS_CLOUD_URL);
+    d->startRequest(QSyncUtils::makeDataBucketUrl() + OS_CLOUD_URL);
     loop.exec();
 
     updateListToServer();
@@ -263,7 +263,7 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
 
     MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, MusicUtils::String::musicDirPrefix() + data.m_dataItem.m_name, MusicObject::Download::Music, this);
     download->setRecordType(MusicObject::Record::CloudDownload);
-    download->startToDownload();
+    download->startRequest();
 }
 
 void MusicCloudManagerTableWidget::cancelUploadFilesToServer()

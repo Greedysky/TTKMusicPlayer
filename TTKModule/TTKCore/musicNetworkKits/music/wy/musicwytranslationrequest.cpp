@@ -8,7 +8,7 @@ MusicWYTranslationRequest::MusicWYTranslationRequest(QObject *parent)
 
 }
 
-void MusicWYTranslationRequest::startToDownload(const QString &data)
+void MusicWYTranslationRequest::startRequest(const QString &data)
 {
     TTK_LOGGER_INFO(QString("%1 startToSearch").arg(className()));
 

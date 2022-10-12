@@ -1,5 +1,5 @@
-#ifndef MusicDownloadTagDataRequest_H
-#define MusicDownloadTagDataRequest_H
+#ifndef MUSICDOWNLOADIMAGEREQUEST_H
+#define MUSICDOWNLOADIMAGEREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,50 +19,44 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicsongmeta.h"
-#include "musicdownloaddatarequest.h"
+#include "musicabstractnetwork.h"
 
-/*! @brief The class of download the type of data by custom tags.
+#define MAX_IMAGE_COUNTER     5
+
+/*! @brief The class of download art background image.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadTagDataRequest : public MusicDownloadDataRequest
+class TTK_MODULE_EXPORT MusicDownloadImageRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadTagDataRequest)
+    TTK_DECLARE_MODULE(MusicDownloadImageRequest)
 public:
     /*!
-     * Object contsructor provide download url save local path and download type.
+     * Object contsructor provide artist name and save local path.
      */
-    MusicDownloadTagDataRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent = nullptr);
+    MusicDownloadImageRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 
     /*!
-     * Set custom tags.
+     * Release the network object.
      */
-    void setSongMeta(MusicSongMeta &meta);
+    virtual void deleteAll() override final;
+
     /*!
      * Start to download data from net.
+     * Subclass should implement this function.
      */
-    virtual void startToDownload() override final;
-
-Q_SIGNALS:
-    /*!
-     * Modify tag finished.
-     */
-    void finished();
+    virtual void startRequest() = 0;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override final;
-    /*!
-     * Send download byte data from net.
-     */
-    void downLoadFinished(const QByteArray &bytes);
+    void downLoadDataFinished();
 
-private:
-    MusicSongMeta m_songMeta;
+protected:
+    int m_index, m_counter;
+    QString m_artName, m_savePath;
 
 };
 
-#endif // MUSICDOWNLOADTAGDATAREQUEST_H
+#endif // MUSICDOWNLOADIMAGEREQUEST_H

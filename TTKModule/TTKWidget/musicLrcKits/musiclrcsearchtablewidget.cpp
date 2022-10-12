@@ -51,7 +51,7 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
     MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(songInfos[row].m_lrcUrl,
                                       MusicUtils::String::lrcDirPrefix() + m_networkRequest->queryValue() + LRC_FILE, this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SIGNAL(lrcDownloadStateChanged(QString)));
-    d->startToDownload();
+    d->startRequest();
 }
 
 void MusicLrcSearchTableWidget::itemCellEntered(int row, int column)

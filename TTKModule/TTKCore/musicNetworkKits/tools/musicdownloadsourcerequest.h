@@ -42,7 +42,7 @@ public:
     /*!
      * Start to download data.
      */
-    void startToDownload(const QString &url);
+    void startRequest(const QString &url);
 
 public Q_SLOTS:
     /*!
@@ -51,5 +51,7 @@ public Q_SLOTS:
     virtual void downLoadFinished() override final;
 
 };
+
+using MusicDownloadCoverRequest = MusicDownloadSourceRequest;
 
 #endif // MUSICDOWNLOADSOURCEREQUEST_H

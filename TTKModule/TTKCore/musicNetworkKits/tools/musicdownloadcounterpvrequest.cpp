@@ -6,7 +6,7 @@ MusicDownloadCounterPVRequest::MusicDownloadCounterPVRequest(QObject *parent)
 
 }
 
-void MusicDownloadCounterPVRequest::startToDownload()
+void MusicDownloadCounterPVRequest::startRequest()
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QUERY_URL, false));

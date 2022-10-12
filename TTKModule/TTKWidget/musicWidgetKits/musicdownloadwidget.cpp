@@ -140,7 +140,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_ui->loadingLabel->setType(MusicGifLabelWidget::Module::CicleBlue);
 
     connect(m_ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
-    connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startToDownload()));
+    connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startRequest()));
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
 
     MusicUtils::Widget::positionInCenter(this);
@@ -328,7 +328,7 @@ void MusicDownloadWidget::downloadDirSelected()
     }
 }
 
-void MusicDownloadWidget::startToDownload()
+void MusicDownloadWidget::startRequest()
 {
     if(m_ui->viewArea->currentItemRole().isEmpty())
     {
@@ -339,11 +339,11 @@ void MusicDownloadWidget::startToDownload()
     hide(); ///hide download widget
     if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
     {
-        m_querySingleInfo ? startToDownloadMusic(m_songInfo) : startToDownloadMusic();
+        m_querySingleInfo ? startRequestMusic(m_songInfo) : startRequestMusic();
     }
     else if(m_queryType == MusicAbstractQueryRequest::QueryType::Movie)
     {
-        m_querySingleInfo ? startToDownloadMovie(m_songInfo) : startToDownloadMovie();
+        m_querySingleInfo ? startRequestMovie(m_songInfo) : startRequestMovie();
     }
     controlEnabled(false);
 }
@@ -354,16 +354,16 @@ void MusicDownloadWidget::dataDownloadFinished()
     close();
 }
 
-void MusicDownloadWidget::startToDownloadMusic()
+void MusicDownloadWidget::startRequestMusic()
 {
     const MusicObject::MusicSongInformation info(matchMusicSongInformation());
     if(!info.m_songName.isEmpty() || !info.m_singerName.isEmpty())
     {
-        startToDownloadMusic(info);
+        startRequestMusic(info);
     }
 }
 
-void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInformation &info)
+void MusicDownloadWidget::startRequestMusic(const MusicObject::MusicSongInformation &info)
 {
     const MusicDownloadTableItemRole &role = m_ui->viewArea->currentItemRole();
     const MusicObject::MusicSongPropertyList &props = info.m_songProps;
@@ -427,22 +427,22 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             meta.setYear(info.m_year);
 
             downSong->setSongMeta(meta);
-            downSong->startToDownload();
+            downSong->startRequest();
             break;
         }
     }
 }
 
-void MusicDownloadWidget::startToDownloadMovie()
+void MusicDownloadWidget::startRequestMovie()
 {
     const MusicObject::MusicSongInformation info(matchMusicSongInformation());
     if(!info.m_songName.isEmpty() || !info.m_singerName.isEmpty())
     {
-        startToDownloadMovie(info);
+        startRequestMovie(info);
     }
 }
 
-void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInformation &info)
+void MusicDownloadWidget::startRequestMovie(const MusicObject::MusicSongInformation &info)
 {
     const MusicDownloadTableItemRole &role = m_ui->viewArea->currentItemRole();
     const MusicObject::MusicSongPropertyList &props = info.m_songProps;
@@ -478,7 +478,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
 
             MusicDownloadDataRequest *download = new MusicDownloadDataRequest(prop.m_url, downloadName, MusicObject::Download::Video, this);
             connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
-            download->startToDownload();
+            download->startRequest();
         }
     }
 }

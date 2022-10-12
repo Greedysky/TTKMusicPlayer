@@ -7,12 +7,12 @@ MusicBDTranslationRequest::MusicBDTranslationRequest(QObject *parent)
 
 }
 
-void MusicBDTranslationRequest::startToDownload(const QString &data)
+void MusicBDTranslationRequest::startRequest(const QString &data)
 {
-    startToDownload(Language::Auto, Language::Zh, data);
+    startRequest(Language::Auto, Language::Zh, data);
 }
 
-void MusicBDTranslationRequest::startToDownload(Language from, Language to, const QString &data)
+void MusicBDTranslationRequest::startRequest(Language from, Language to, const QString &data)
 {
     TTK_LOGGER_INFO(QString("%1 startToSearch").arg(className()));
 

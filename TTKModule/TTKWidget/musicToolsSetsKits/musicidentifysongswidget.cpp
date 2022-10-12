@@ -113,7 +113,7 @@ void MusicIdentifySongsWidget::detectedTimeOut()
     m_recordCore->addWavHeader(MUSIC_RECORD_DATA_FILE);
 
     MusicSemaphoreLoop loop;
-    m_detectedThread->startToDownload(MUSIC_RECORD_DATA_FILE);
+    m_detectedThread->startRequest(MUSIC_RECORD_DATA_FILE);
     connect(m_detectedThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
@@ -308,7 +308,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         {
             MusicDownloadDataRequest *download = new MusicDownloadDataRequest(m_songInfo.m_coverUrl, name, MusicObject::Download::Cover, this);
             connect(download, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            download->startToDownload();
+            download->startRequest();
             loop.exec();
         }
         iconLabel->setPixmap(QPixmap(name).scaled(iconLabel->size()));
@@ -366,7 +366,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         {
             MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_songInfo.m_lrcUrl, name, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            d->startToDownload();
+            d->startRequest();
             loop.exec();
         }
         m_analysis->loadFromLrcFile(name);

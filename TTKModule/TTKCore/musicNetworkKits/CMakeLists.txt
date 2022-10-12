@@ -1,17 +1,21 @@
 cmake_minimum_required(VERSION 2.8.11)
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicnetworkthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicnetworkproxy.h
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicnetworkoperator.h
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloaddatarequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadtextrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadtagdatarequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadsourcerequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadqueuerequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicidentifysongsrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicsourceupdaterequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadcounterpvrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractqueryrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractnetwork.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractdownloadrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicdownloadimagerequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicpagequeryrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicqueryalbumrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicqueryartistrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicqueryartistlistrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicqueryplaylistrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicquerytoplistrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicquerymovierequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicsongsuggestrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musictranslationrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musiccommentsrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicdiscoverlistrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbackgroundrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/musicbpdownloadimagerequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadskin.h
@@ -19,6 +23,30 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbingskinrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadthunderskinrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbirdskinrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicnetworkthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicnetworkproxy.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicnetworkoperator.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloaddatarequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadtextrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadtagdatarequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadsourcerequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadqueuerequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicidentifysongsrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicsourceupdaterequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadcounterpvrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadmanager.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicqueryrecommendrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiochannelrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiodownloadtextrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongsrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicabstractfmradiorequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategoryrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramcategoryrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradiocategoryrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradioprogramrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicabstractmvradiorequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryinterface.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryalbumrequest.h
@@ -61,56 +89,56 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdtranslationrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/tx/musictxqueryinterface.h
     ${MUSIC_CORE_NETWORK_DIR}/music/tx/musictxdownloadimagerequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiochannelrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiodownloadtextrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongsrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicabstractfmradiorequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategoryrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramcategoryrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradiocategoryrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradioprogramrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicabstractmvradiorequest.h
     ${MUSIC_CORE_NETWORK_DIR}/musicnetworkdefines.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicabstractqueryrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicabstractnetwork.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicabstractdownloadrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadmanager.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadimagerequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicpagequeryrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicqueryalbumrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicqueryartistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicqueryartistlistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicqueryplaylistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicquerytoplistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicqueryrecommendrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicquerymovierequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicsongsuggestrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musictranslationrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musiccommentsrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicdiscoverlistrequest.h
 )
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicnetworkthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicnetworkproxy.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicnetworkoperator.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloaddatarequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadtextrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadtagdatarequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadsourcerequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadqueuerequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicidentifysongsrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicsourceupdaterequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadcounterpvrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractqueryrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractnetwork.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractdownloadrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicdownloadimagerequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicpagequeryrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicqueryalbumrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicqueryartistrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicqueryartistlistrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicqueryplaylistrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicquerytoplistrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicquerymovierequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicsongsuggestrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musictranslationrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musiccommentsrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/core/musicdiscoverlistrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbackgroundrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/image/musicbpdownloadimagerequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/image/musicabstractdownloadskinrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbingskinrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadthunderskinrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbirdskinrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicnetworkthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicnetworkproxy.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicnetworkoperator.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloaddatarequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadtextrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadtagdatarequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadsourcerequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadqueuerequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicidentifysongsrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicsourceupdaterequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadcounterpvrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadmanager.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicqueryrecommendrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiochannelrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiodownloadtextrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongsrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicabstractfmradiorequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategoryrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramcategoryrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradiocategoryrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradioprogramrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicabstractmvradiorequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryinterface.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryalbumrequest.cpp
@@ -153,33 +181,5 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdtranslationrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/tx/musictxqueryinterface.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/tx/musictxdownloadimagerequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiochannelrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiodownloadtextrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongsrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicabstractfmradiorequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategoryrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramcategoryrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradiocategoryrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradioprogramrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicabstractmvradiorequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicabstractqueryrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicabstractnetwork.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicabstractdownloadrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadmanager.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadimagerequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicpagequeryrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicqueryalbumrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicqueryartistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicqueryartistlistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicqueryplaylistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicquerytoplistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicqueryrecommendrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicquerymovierequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicsongsuggestrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musictranslationrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musiccommentsrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicdiscoverlistrequest.cpp
 )

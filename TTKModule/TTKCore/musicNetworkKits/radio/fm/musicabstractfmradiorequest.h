@@ -42,7 +42,7 @@ public:
      * Start to download data from net.
      * Subclass should implement this function.
      */
-    virtual void startToDownload(const QString &data) = 0;
+    virtual void startRequest(const QString &data) = 0;
 
 };
 

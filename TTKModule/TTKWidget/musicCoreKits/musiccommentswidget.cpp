@@ -130,9 +130,9 @@ void MusicCommentsItem::addItem(const MusicResultDataItem &comments)
     m_starLabel->setText(QString("(%1)").arg(comments.m_playCount));
     m_userCommit->setText(comments.m_description);
 
-    MusicDownloadSourceRequest *request = new MusicDownloadSourceRequest(this);
-    connect(request, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    request->startToDownload(comments.m_coverUrl);
+    MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
+    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    d->startRequest(comments.m_coverUrl);
 }
 
 void MusicCommentsItem::downLoadFinished(const QByteArray &bytes)

@@ -10,11 +10,11 @@ MusicDownloadBingSkinRequest::MusicDownloadBingSkinRequest(QObject *parent)
 
 }
 
-void MusicDownloadBingSkinRequest::startToDownload()
+void MusicDownloadBingSkinRequest::startRequest()
 {
-    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(QUERY_URL, false));
+    MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    d->startRequest(MusicUtils::Algorithm::mdII(QUERY_URL, false));
 }
 
 void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)

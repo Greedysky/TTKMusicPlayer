@@ -18,7 +18,7 @@ set(MUSIC_HEADERS
 
 set(MUSIC_SOURCES
     toolsskin.cpp
-    mainskin.cpp
+    main.cpp
   )
   
 set(MUSIC_UIS

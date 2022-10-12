@@ -59,7 +59,7 @@ public Q_SLOTS:
     /*!
      * Restart to dwonload music data.
      */
-    void restartToDownload();
+    void restartRequest();
     /*!
      * Open file details information by song.
      */

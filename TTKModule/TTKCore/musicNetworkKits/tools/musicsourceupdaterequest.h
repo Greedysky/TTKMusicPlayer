@@ -39,7 +39,7 @@ public:
     /*!
      * Start to download data from net.
      */
-    void startToDownload();
+    void startRequest();
 
     /*!
      * Get lasted version.

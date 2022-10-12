@@ -157,7 +157,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
             const MusicObject::MusicSongInformation info(d->songInfoList().front());
             MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            d->startToDownload();
+            d->startRequest();
             loop.exec();
             QtItemSetForegroundColor(it, QColor(0, 0xFF, 0));
             it->setText(tr("Finish"));

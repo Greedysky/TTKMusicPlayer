@@ -58,12 +58,12 @@ public:
     /*!
      * Start to translation data.
      */
-    virtual void startToDownload(const QString &data) override final;
+    virtual void startRequest(const QString &data) override final;
 
     /*!
      * Start to translation data.
      */
-    void startToDownload(Language from, Language to, const QString &data);
+    void startRequest(Language from, Language to, const QString &data);
 
 public Q_SLOTS:
     /*!

@@ -49,7 +49,7 @@ public:
     /*!
      * Start to download data from net.
      */
-    void startToDownload(MusicObject::Program type);
+    void startRequest(MusicObject::Program type);
 
 public Q_SLOTS:
     /*!

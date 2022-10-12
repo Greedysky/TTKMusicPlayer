@@ -512,7 +512,7 @@ void MusicSettingWidget::testNetworkConnection()
 {
     MusicNetworkOperator *network = new MusicNetworkOperator(this);
     connect(network, SIGNAL(queryNetworkOperatorFinished(QString)), SLOT(testNetworkConnectionStateChanged(QString)));
-    network->startToDownload();
+    network->startRequest();
 }
 
 void MusicSettingWidget::checkNetworkConnection()

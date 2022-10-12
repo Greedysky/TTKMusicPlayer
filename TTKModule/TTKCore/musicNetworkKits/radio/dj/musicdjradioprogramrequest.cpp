@@ -8,7 +8,7 @@ MusicDJRadioProgramRequest::MusicDJRadioProgramRequest(QObject *parent)
 
 }
 
-void MusicDJRadioProgramRequest::startToDownload(MusicObject::Program type)
+void MusicDJRadioProgramRequest::startRequest(MusicObject::Program type)
 {
     deleteAll();
 

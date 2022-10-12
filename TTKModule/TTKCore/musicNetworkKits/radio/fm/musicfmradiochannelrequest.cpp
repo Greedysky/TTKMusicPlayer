@@ -8,7 +8,7 @@ MusicFMRadioChannelRequest::MusicFMRadioChannelRequest(QObject *parent)
 
 }
 
-void MusicFMRadioChannelRequest::startToDownload(const QString &id)
+void MusicFMRadioChannelRequest::startRequest(const QString &id)
 {
     Q_UNUSED(id);
     QNetworkRequest request;

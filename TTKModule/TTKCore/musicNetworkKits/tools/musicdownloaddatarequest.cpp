@@ -11,7 +11,7 @@ MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QSt
 
 }
 
-void MusicDownloadDataRequest::startToDownload()
+void MusicDownloadDataRequest::startRequest()
 {
     if(m_file && (!m_file->exists() || m_file->size() < 4))
     {

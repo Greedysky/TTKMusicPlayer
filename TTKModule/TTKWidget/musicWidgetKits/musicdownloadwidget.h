@@ -183,7 +183,7 @@ public Q_SLOTS:
     /*!
      * Start to download data from net.
      */
-    void startToDownload();
+    void startRequest();
     /*!
      * Data download is finished.
      */
@@ -222,19 +222,19 @@ private:
     /*!
      * Strat to download music.
      */
-    void startToDownloadMusic();
+    void startRequestMusic();
     /*!
      * Strat to download music.
      */
-    void startToDownloadMusic(const MusicObject::MusicSongInformation &info);
+    void startRequestMusic(const MusicObject::MusicSongInformation &info);
     /*!
      * Strat to download movie.
      */
-    void startToDownloadMovie();
+    void startRequestMovie();
     /*!
      * Strat to download movie.
      */
-    void startToDownloadMovie(const MusicObject::MusicSongInformation &info);
+    void startRequestMovie(const MusicObject::MusicSongInformation &info);
 
     Ui::MusicDownloadWidget *m_ui;
     bool m_querySingleInfo;

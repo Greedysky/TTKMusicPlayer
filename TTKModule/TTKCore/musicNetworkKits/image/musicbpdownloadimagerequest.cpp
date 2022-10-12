@@ -9,9 +9,9 @@ MusicBPDownloadBackgroundRequest::MusicBPDownloadBackgroundRequest(const QString
 
 }
 
-void MusicBPDownloadBackgroundRequest::startToDownload()
+void MusicBPDownloadBackgroundRequest::startRequest()
 {
-    TTK_LOGGER_INFO(QString("%1 startToDownload").arg(className()));
+    TTK_LOGGER_INFO(QString("%1 startRequest").arg(className()));
 
     MusicAbstractNetwork::deleteAll();
 
@@ -51,7 +51,7 @@ void MusicBPDownloadBackgroundRequest::downLoadFinished()
                         const QString &url = value["url"].toString();
                         MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
                         connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
-                        download->startToDownload();
+                        download->startRequest();
                     }
                 }
             }

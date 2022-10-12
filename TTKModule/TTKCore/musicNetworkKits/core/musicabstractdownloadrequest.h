@@ -46,7 +46,7 @@ public:
      * Start to download data from net.
      * Subclass should implement this function.
      */
-    virtual void startToDownload() = 0;
+    virtual void startRequest() = 0;
 
 public Q_SLOTS:
     /*!

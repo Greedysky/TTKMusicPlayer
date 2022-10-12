@@ -37,11 +37,11 @@ public:
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload() override final;
+    virtual void startRequest() override final;
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload(const QString &id) override final;
+    virtual void startRequest(const QString &id) override final;
 
 Q_SIGNALS:
     /*!

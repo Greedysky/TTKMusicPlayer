@@ -38,7 +38,7 @@ public:
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload() override final;
+    virtual void startRequest() override final;
 
 public Q_SLOTS:
     /*!
@@ -69,7 +69,7 @@ public:
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload() override final;
+    virtual void startRequest() override final;
 
 public Q_SLOTS:
     /*!

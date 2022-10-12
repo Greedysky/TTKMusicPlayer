@@ -37,7 +37,7 @@ public:
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload() override;
+    virtual void startRequest() override;
 
     /*!
      * Set record type.

@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADTEXTREQUEST_H
-#define MUSICDOWNLOADTEXTREQUEST_H
+#ifndef MusicDownloadTagDataRequest_H
+#define MusicDownloadTagDataRequest_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,32 +19,50 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractdownloadrequest.h"
+#include "musicsongmeta.h"
+#include "musicdownloaddatarequest.h"
 
-/*! @brief The class of download the type of txt.
+/*! @brief The class of download the type of data by custom tags.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownLoadTextRequest : public MusicAbstractDownLoadRequest
+class TTK_MODULE_EXPORT MusicDownloadTagDataRequest : public MusicDownloadDataRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownLoadTextRequest)
+    TTK_DECLARE_MODULE(MusicDownloadTagDataRequest)
 public:
     /*!
      * Object contsructor provide download url save local path and download type.
      */
-    MusicDownLoadTextRequest(const QString &url, const QString &path, QObject *parent = nullptr);
+    MusicDownloadTagDataRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent = nullptr);
 
+    /*!
+     * Set custom tags.
+     */
+    void setSongMeta(MusicSongMeta &meta);
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload() override final;
+    virtual void startRequest() override final;
+
+Q_SIGNALS:
+    /*!
+     * Modify tag finished.
+     */
+    void finished();
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
     virtual void downLoadFinished() override final;
+    /*!
+     * Send download byte data from net.
+     */
+    void downLoadFinished(const QByteArray &bytes);
+
+private:
+    MusicSongMeta m_songMeta;
 
 };
 
-#endif // MUSICDOWNLOADTEXTREQUEST_H
+#endif // MUSICDOWNLOADTAGDATAREQUEST_H

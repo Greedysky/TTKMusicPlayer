@@ -392,7 +392,7 @@ void MusicScreenSaverWidget::initialize()
     }
 
     m_downloadQueue->addImageQueue(datas);
-    m_downloadQueue->startToDownload();
+    m_downloadQueue->startRequest();
 }
 
 

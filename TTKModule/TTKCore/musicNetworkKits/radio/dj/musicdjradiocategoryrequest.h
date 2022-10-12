@@ -37,7 +37,7 @@ public:
     /*!
      * Start to download data from net.
      */
-    void startToDownload();
+    void startRequest();
 
 public Q_SLOTS:
     /*!

@@ -31,7 +31,7 @@ MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     m_ui->openDirButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(restartToDownload()));
+    connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(restartRequest()));
     connect(m_ui->openDetailButton, SIGNAL(clicked()), SLOT(openDetailInfo()));
     connect(m_ui->openDirButton, SIGNAL(clicked()), SLOT(openFileLocation()));
     connect(this, SIGNAL(openStackedDownloadWidget()), MusicLeftAreaWidget::instance(), SLOT(musicStackedMyDownWidgetChanged()));
@@ -53,7 +53,7 @@ void MusicDownloadResetWidget::show()
     return MusicAbstractMoveWidget::show();
 }
 
-void MusicDownloadResetWidget::restartToDownload()
+void MusicDownloadResetWidget::restartRequest()
 {
     MusicDownloadWidget *download = new MusicDownloadWidget(m_parentClass);
     download->setSongName(m_currentName, MusicAbstractQueryRequest::QueryType::Music);

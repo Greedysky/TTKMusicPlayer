@@ -381,7 +381,7 @@ void MusicLrcContainerForInterior::translatedLrcData()
     connect(request, SIGNAL(downLoadDataChanged(QString)), SLOT(queryTranslatedLrcFinished(QString)));
 
     request->setHeader("name", m_lrcAnalysis->currentFilePath());
-    request->startToDownload(m_lrcAnalysis->generateDataString());
+    request->startRequest(m_lrcAnalysis->generateDataString());
 }
 
 void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)

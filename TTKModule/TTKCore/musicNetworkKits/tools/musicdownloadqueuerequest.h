@@ -62,7 +62,7 @@ public:
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload() override final;
+    virtual void startRequest() override final;
     /*!
      * Abort current download request.
      */

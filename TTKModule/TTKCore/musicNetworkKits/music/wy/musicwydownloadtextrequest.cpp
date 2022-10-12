@@ -6,7 +6,7 @@ MusicWYDownLoadTextRequest::MusicWYDownLoadTextRequest(const QString &url, const
 
 }
 
-void MusicWYDownLoadTextRequest::startToDownload()
+void MusicWYDownLoadTextRequest::startRequest()
 {
     if(m_file && (!m_file->exists() || m_file->size() < 4))
     {

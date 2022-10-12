@@ -232,11 +232,10 @@ void MusicSoundKMicroWidget::mediaUrlChanged(bool mv, const QString &url, const 
         m_ui->stackedWidget->setCurrentIndex(SOUND_KMICRO_INDEX_1);
         m_player->setMedia(MusicCoreMPlayer::Module::Music, url);
         m_player->play();
-
         //
-        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        download->startToDownload(lrcUrl);
+        MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
+        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        d->startRequest(lrcUrl);
     }
 }
 

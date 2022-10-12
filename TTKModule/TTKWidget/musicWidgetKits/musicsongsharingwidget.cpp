@@ -65,12 +65,12 @@ void MusicSongSharingWidget::setData(Module type, const QVariantMap &data)
         case Module::Album:
         case Module::Playlist:
         {
-            const QString &smallUrl = data["smallUrl"].toString();
-            if(!smallUrl.isEmpty() && smallUrl != TTK_NULL_STR)
+            const QString &cover = data["smallUrl"].toString();
+            if(!cover.isEmpty() && cover != TTK_NULL_STR)
             {
-                MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-                connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-                download->startToDownload(smallUrl);
+                MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
+                connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+                d->startRequest(cover);
             }
             break;
         }

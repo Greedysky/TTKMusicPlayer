@@ -12,11 +12,11 @@ MusicSourceUpdateRequest::MusicSourceUpdateRequest(QObject *parent)
 
 }
 
-void MusicSourceUpdateRequest::startToDownload()
+void MusicSourceUpdateRequest::startRequest()
 {
-    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(QSyncUtils::makeDataBucketUrl() + OS_VERSION_URL);
+    MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    d->startRequest(QSyncUtils::makeDataBucketUrl() + OS_VERSION_URL);
 }
 
 QString MusicSourceUpdateRequest::version() const

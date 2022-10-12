@@ -65,7 +65,7 @@ protected:
     /*!
      * Start to download data from net.
      */
-    void startToDownload(const QString &suffix);
+    void startRequest(const QString &suffix);
 
     int m_currentIndex;
     MusicSkinRemoteGroupList m_groups;

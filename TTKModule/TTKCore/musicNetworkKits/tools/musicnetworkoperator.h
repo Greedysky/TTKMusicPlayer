@@ -1,5 +1,5 @@
-#ifndef MUSICTRANSLATIONREQUEST_H
-#define MUSICTRANSLATIONREQUEST_H
+#ifndef MUSICNETWORKOPERATOR_H
+#define MUSICNETWORKOPERATOR_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,27 +19,38 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractnetwork.h"
+#include "musicglobaldefine.h"
 
-/*! @brief The class of translation words request.
+/*! @brief The class of music network operator.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicTranslationRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicNetworkOperator : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicTranslationRequest)
+    TTK_DECLARE_MODULE(MusicNetworkOperator)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicTranslationRequest(QObject *parent = nullptr);
+    explicit MusicNetworkOperator(QObject *parent = nullptr);
 
     /*!
-     * Start to translation data.
-     * Subclass should implement this function.
+     * Start to download data from net.
      */
-    virtual void startToDownload(const QString &data) = 0;
+    void startRequest();
+
+Q_SIGNALS:
+    /*!
+     * Query network operator is finished.
+     */
+    void queryNetworkOperatorFinished(const QString &name);
+
+private Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    void downLoadFinished(const QByteArray &bytes);
 
 };
 
-#endif // MUSICTRANSLATIONREQUEST_H
+#endif // MUSICNETWORKOPERATOR_H

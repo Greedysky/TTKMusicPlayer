@@ -33,7 +33,7 @@ MusicDownloadQueueRequest::~MusicDownloadQueueRequest()
     deleteAll();
 }
 
-void MusicDownloadQueueRequest::startToDownload()
+void MusicDownloadQueueRequest::startRequest()
 {
     if(!m_imageQueue.isEmpty())
     {
@@ -153,5 +153,5 @@ void MusicDownloadQueueRequest::handleError(QNetworkReply::NetworkError code)
         MusicAbstractNetwork::deleteAll();
     }
 
-    startToDownload();
+    startRequest();
 }

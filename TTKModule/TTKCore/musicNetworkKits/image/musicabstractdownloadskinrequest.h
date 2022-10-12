@@ -80,11 +80,11 @@ public:
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload();
+    virtual void startRequest();
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload(const QString &id);
+    virtual void startRequest(const QString &id);
 
 Q_SIGNALS:
     /*!

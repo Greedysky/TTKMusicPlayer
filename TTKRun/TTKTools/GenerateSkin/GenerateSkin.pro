@@ -53,7 +53,7 @@ unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKqmmp -lTTKUi -lTTKEx
 HEADERS += $$PWD/toolsskin.h
 
 SOURCES += \
-    $$PWD/mainskin.cpp \
+    $$PWD/main.cpp \
     $$PWD/toolsskin.cpp
 
 FORMS += $$PWD/toolsskin.ui

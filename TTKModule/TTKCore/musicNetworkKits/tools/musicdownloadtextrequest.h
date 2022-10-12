@@ -1,5 +1,5 @@
-#ifndef MUSICNETWORKOPERATOR_H
-#define MUSICNETWORKOPERATOR_H
+#ifndef MUSICDOWNLOADTEXTREQUEST_H
+#define MUSICDOWNLOADTEXTREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,38 +19,32 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicglobaldefine.h"
+#include "musicabstractdownloadrequest.h"
 
-/*! @brief The class of music network operator.
+/*! @brief The class of download the type of txt.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicNetworkOperator : public QObject
+class TTK_MODULE_EXPORT MusicDownLoadTextRequest : public MusicAbstractDownLoadRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicNetworkOperator)
+    TTK_DECLARE_MODULE(MusicDownLoadTextRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object contsructor provide download url save local path and download type.
      */
-    explicit MusicNetworkOperator(QObject *parent = nullptr);
+    MusicDownLoadTextRequest(const QString &url, const QString &path, QObject *parent = nullptr);
 
     /*!
      * Start to download data from net.
      */
-    void startToDownload();
+    virtual void startRequest() override final;
 
-Q_SIGNALS:
-    /*!
-     * Query network operator is finished.
-     */
-    void queryNetworkOperatorFinished(const QString &name);
-
-private Q_SLOTS:
+public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished(const QByteArray &bytes);
+    virtual void downLoadFinished() override final;
 
 };
 
-#endif // MUSICNETWORKOPERATOR_H
+#endif // MUSICDOWNLOADTEXTREQUEST_H

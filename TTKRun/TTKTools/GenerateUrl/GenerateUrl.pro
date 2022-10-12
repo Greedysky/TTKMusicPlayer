@@ -33,7 +33,7 @@ win32:msvc{
 
 include($$PWD/../../../TTKVersion.pri)
 
-TARGET = BuildUrl
+TARGET = GenerateUrl
 
 TEMPLATE = app
 DEFINES += TTK_LIBRARY
@@ -51,7 +51,7 @@ unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKqmmp -lTTKUi -lTTKEx
 HEADERS += $$PWD/toolsurl.h
 
 SOURCES += \
-    $$PWD/mainurl.cpp\
+    $$PWD/main.cpp\
     $$PWD/toolsurl.cpp
 
 FORMS += $$PWD/toolsurl.ui

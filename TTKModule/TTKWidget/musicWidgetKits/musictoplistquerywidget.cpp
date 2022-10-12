@@ -210,9 +210,9 @@ void MusicToplistQueryWidget::createToplistItem(const MusicResultDataItem &item)
 
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
-        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        download->startToDownload(item.m_coverUrl);
+        MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
+        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        d->startRequest(item.m_coverUrl);
     }
 }
 

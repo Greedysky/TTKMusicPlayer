@@ -2,8 +2,6 @@
 #include "musicdownloadsourcerequest.h"
 #include "musicsettingmanager.h"
 
-#include <QImage>
-
 MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent)
     : MusicDownloadDataRequest(url, path, type, parent)
 {
@@ -15,13 +13,13 @@ void MusicDownloadTagDataRequest::setSongMeta(MusicSongMeta &meta)
     m_songMeta = std::move(meta);
 }
 
-void MusicDownloadTagDataRequest::startToDownload()
+void MusicDownloadTagDataRequest::startRequest()
 {
     if(m_file && (!m_file->exists() || m_file->size() < 4))
     {
         if(m_file->open(QIODevice::WriteOnly))
         {
-            startRequest(m_url);
+            MusicDownloadDataRequest::startRequest(m_url);
             disconnect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
             connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
         }
@@ -49,9 +47,9 @@ void MusicDownloadTagDataRequest::downLoadFinished()
         MusicSemaphoreLoop loop;
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
-        MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+        MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startToDownload(m_songMeta.comment());
+        d->startRequest(m_songMeta.comment());
         loop.exec();
     }
 

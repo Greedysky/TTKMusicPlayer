@@ -76,7 +76,7 @@ MusicWebFMRadioPlayWidget::~MusicWebFMRadioPlayWidget()
 void MusicWebFMRadioPlayWidget::updateRadioSong(const QString &id)
 {
     m_currentIndex = id;
-    m_songThread->startToDownload(m_currentIndex);
+    m_songThread->startRequest(m_currentIndex);
 }
 
 void MusicWebFMRadioPlayWidget::mediaAutionPlayError(int code)
@@ -106,7 +106,7 @@ void MusicWebFMRadioPlayWidget::radioPrevious()
         return;
     }
 
-    m_songThread->startToDownload(m_currentIndex);
+    m_songThread->startRequest(m_currentIndex);
 
     if(!m_isPlaying)
     {
@@ -121,7 +121,7 @@ void MusicWebFMRadioPlayWidget::radioNext()
         return;
     }
 
-    m_songThread->startToDownload(m_currentIndex);
+    m_songThread->startRequest(m_currentIndex);
 
     if(!m_isPlaying)
     {
@@ -187,7 +187,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     {
         MusicFMRadioDownLoadTextRequest* lrcDownload = new MusicFMRadioDownLoadTextRequest(info.m_lrcUrl, name, MusicObject::Download::Lrc, this);
         connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));
-        lrcDownload->startToDownload();
+        lrcDownload->startRequest();
     }
     else
     {
@@ -199,7 +199,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     {
         MusicDownloadDataRequest *download = new MusicDownloadDataRequest(info.m_coverUrl, name, MusicObject::Download::Cover, this);
         connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
-        download->startToDownload();
+        download->startRequest();
     }
     else
     {

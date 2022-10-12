@@ -94,8 +94,8 @@ void MusicApplicationModule::loadNetWorkSetting()
     // sync host init
     QSyncConfig::HOST = MusicUtils::Algorithm::mdII(SYNC_HOST_URL, false);
     //
-    m_sourceUpdatehread->startToDownload();
-    m_counterPVThread->startToDownload();
+    m_sourceUpdatehread->startRequest();
+    m_counterPVThread->startRequest();
 }
 
 void MusicApplicationModule::applyParameter()

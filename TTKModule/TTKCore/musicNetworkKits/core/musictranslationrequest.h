@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADIMAGEREQUEST_H
-#define MUSICDOWNLOADIMAGEREQUEST_H
+#ifndef MUSICTRANSLATIONREQUEST_H
+#define MUSICTRANSLATIONREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -21,42 +21,25 @@
 
 #include "musicabstractnetwork.h"
 
-#define MAX_IMAGE_COUNTER     5
-
-/*! @brief The class of download art background image.
+/*! @brief The class of translation words request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadImageRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicTranslationRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadImageRequest)
+    TTK_DECLARE_MODULE(MusicTranslationRequest)
 public:
     /*!
-     * Object contsructor provide artist name and save local path.
+     * Object contsructor.
      */
-    MusicDownloadImageRequest(const QString &name, const QString &path, QObject *parent = nullptr);
+    explicit MusicTranslationRequest(QObject *parent = nullptr);
 
     /*!
-     * Release the network object.
-     */
-    virtual void deleteAll() override final;
-
-    /*!
-     * Start to download data from net.
+     * Start to translation data.
      * Subclass should implement this function.
      */
-    virtual void startToDownload() = 0;
-
-public Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    void downLoadDataFinished();
-
-protected:
-    int m_index, m_counter;
-    QString m_artName, m_savePath;
+    virtual void startRequest(const QString &data) = 0;
 
 };
 
-#endif // MUSICDOWNLOADIMAGEREQUEST_H
+#endif // MUSICTRANSLATIONREQUEST_H

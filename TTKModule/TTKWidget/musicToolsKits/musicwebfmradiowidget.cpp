@@ -28,7 +28,7 @@ MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
 
     m_channelThread = new MusicFMRadioChannelRequest(this);
     connect(m_channelThread, SIGNAL(downLoadDataChanged(QString)), SLOT(addListWidgetItem()));
-    m_channelThread->startToDownload(QString());
+    m_channelThread->startRequest(QString());
 }
 
 MusicWebFMRadioWidget::~MusicWebFMRadioWidget()
@@ -123,10 +123,10 @@ void MusicWebFMRadioWidget::addListWidgetItem()
 
         if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != TTK_NULL_STR)
         {
-            MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
-            connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-            download->setHeader("id", index);
-            download->startToDownload(channel.m_coverUrl);
+            MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
+            connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+            d->setHeader("id", index);
+            d->startRequest(channel.m_coverUrl);
         }
     }
 }
@@ -139,13 +139,13 @@ void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &bytes)
         return;
     }
 
-    MusicDownloadSourceRequest *download(TTKObject_cast(MusicDownloadSourceRequest*, sender()));
-    if(!download)
+    MusicDownloadCoverRequest *d(TTKObject_cast(MusicDownloadCoverRequest*, sender()));
+    if(!d)
     {
         return;
     }
 
-    QTableWidgetItem *it = item(download->header("id").toInt(), 1);
+    QTableWidgetItem *it = item(d->header("id").toInt(), 1);
     if(it)
     {
         QPixmap pix;

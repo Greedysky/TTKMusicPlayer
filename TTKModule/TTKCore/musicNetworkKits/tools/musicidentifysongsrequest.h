@@ -51,7 +51,7 @@ public:
     /*!
      * To query song by input path.
      */
-    void startToDownload(const QString &path);
+    void startRequest(const QString &path);
     /*!
      * Get identify songs.
      */

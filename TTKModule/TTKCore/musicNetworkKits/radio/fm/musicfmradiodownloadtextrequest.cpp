@@ -6,7 +6,7 @@ MusicFMRadioDownLoadTextRequest::MusicFMRadioDownLoadTextRequest(const QString &
 
 }
 
-void MusicFMRadioDownLoadTextRequest::startToDownload()
+void MusicFMRadioDownLoadTextRequest::startRequest()
 {
     if(m_file && (!m_file->exists() || m_file->size() < 4))
     {

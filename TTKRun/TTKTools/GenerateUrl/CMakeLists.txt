@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-set(TARGET_NAME BuildUrl)
+set(TARGET_NAME GenerateUrl)
 project(${TARGET_NAME})
 
 if(COMMAND cmake_policy)
@@ -18,7 +18,7 @@ set(MUSIC_HEADERS
 
 set(MUSIC_SOURCES
     toolsurl.cpp
-    mainurl.cpp
+    main.cpp
   )
   
 set(MUSIC_UIS

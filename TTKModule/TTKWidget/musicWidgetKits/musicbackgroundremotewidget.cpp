@@ -59,7 +59,7 @@ void MusicBackgroundRemoteWidget::downLoadFinished(const MusicSkinRemoteGroupLis
     m_groups = bytes;
 }
 
-void MusicBackgroundRemoteWidget::startToDownload(const QString &prefix)
+void MusicBackgroundRemoteWidget::startRequest(const QString &prefix)
 {
     if(m_groups.isEmpty())
     {
@@ -80,7 +80,7 @@ void MusicBackgroundRemoteWidget::startToDownload(const QString &prefix)
     }
 
     m_downloadQueue->addImageQueue(datas);
-    m_downloadQueue->startToDownload();
+    m_downloadQueue->startRequest();
 }
 
 
@@ -98,12 +98,12 @@ void MusicBackgroundDailyWidget::initialize()
     {
         m_downloadRequest = new MusicDownloadBingSkinRequest(this);
         connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroupList)), SLOT(downLoadFinished(MusicSkinRemoteGroupList)));
-        m_downloadRequest->startToDownload();
+        m_downloadRequest->startRequest();
     }
     else
     {
         m_backgroundList->clearAllItems();
-        startToDownload(TKM_FILE);
+        startRequest(TKM_FILE);
     }
 }
 
@@ -129,7 +129,7 @@ void MusicBackgroundDailyWidget::outputRemoteSkin(MusicBackgroundImage &image, c
 void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroupList &bytes)
 {
     MusicBackgroundRemoteWidget::downLoadFinished(bytes);
-    startToDownload(TKM_FILE);
+    startRequest(TKM_FILE);
 }
 
 
@@ -157,7 +157,7 @@ void MusicBackgroundOnlineWidget::initialize()
     {
         m_downloadRequest = new MusicDownloadThunderSkinRequest(this);
         connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroupList)), SLOT(downLoadFinished(MusicSkinRemoteGroupList)));
-        m_downloadRequest->startToDownload();
+        m_downloadRequest->startRequest();
     }
     else
     {
@@ -247,7 +247,7 @@ void MusicBackgroundOnlineWidget::currentTypeChanged(int index)
     }
 
     m_currentIndex = index;
-    startToDownload(TKM_FILE);
+    startRequest(TKM_FILE);
 }
 
 void MusicBackgroundOnlineWidget::downLoadFinished(const MusicSkinRemoteGroupList &bytes)

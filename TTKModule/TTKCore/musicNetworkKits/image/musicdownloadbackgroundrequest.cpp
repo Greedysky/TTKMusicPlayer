@@ -10,7 +10,7 @@ MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &na
 
 }
 
-void MusicDownloadBackgroundRequest::startToDownload()
+void MusicDownloadBackgroundRequest::startRequest()
 {
     m_pluginIndex = -1;
     findImagePlugin();
@@ -37,21 +37,21 @@ void MusicDownloadBackgroundRequest::findImagePlugin()
         {
             MusicDownloadImageRequest *d = new MusicKWDownloadBackgroundRequest(m_artName, m_savePath, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
-            d->startToDownload();
+            d->startRequest();
             break;
         }
         case 1:
         {
             MusicDownloadImageRequest *d = new MusicTXDownloadBackgroundRequest(m_artName, m_savePath, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
-            d->startToDownload();
+            d->startRequest();
             break;
         }
         case 2:
         {
             MusicDownloadImageRequest *d = new MusicBPDownloadBackgroundRequest(m_artName, m_savePath, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
-            d->startToDownload();
+            d->startRequest();
             break;
         }
         default:

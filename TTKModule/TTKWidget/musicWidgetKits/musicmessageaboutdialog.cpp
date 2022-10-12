@@ -26,7 +26,7 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
 
     m_downloadRequest = new MusicDownloadCounterPVRequest(this);
     connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(musicGetCounterFinished(QString)));
-    m_downloadRequest->startToDownload();
+    m_downloadRequest->startRequest();
 }
 
 MusicMessageAboutDialog::~MusicMessageAboutDialog()

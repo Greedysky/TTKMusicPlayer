@@ -48,7 +48,7 @@ public:
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload(const QString &id) override final;
+    virtual void startRequest(const QString &id) override final;
 
     /*!
      * Get music channel.

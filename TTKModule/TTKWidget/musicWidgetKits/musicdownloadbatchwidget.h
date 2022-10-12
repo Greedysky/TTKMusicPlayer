@@ -48,7 +48,7 @@ public:
     /*!
      * Start to download data from net.
      */
-    void startToDownload();
+    void startRequest();
     /*!
      * Set current quality by index.
      */
@@ -64,11 +64,11 @@ private:
     /*!
      * Start to download music data.
      */
-    void startToDownloadMusic();
+    void startRequestMusic();
     /*!
      * Start to download movie data.
      */
-    void startToDownloadMovie();
+    void startRequestMovie();
 
     QObject *m_supperClass;
     QComboBox *m_qulity;
@@ -105,7 +105,7 @@ public:
     /*!
      * Start to download data from net.
      */
-    void startToDownload();
+    void startRequest();
 
 public Q_SLOTS:
     /*!
@@ -156,7 +156,7 @@ public Q_SLOTS:
     /*!
      * Start to download data from net.
      */
-    void startToDownload();
+    void startRequest();
 
 private:
     Ui::MusicDownloadBatchWidget *m_ui;
