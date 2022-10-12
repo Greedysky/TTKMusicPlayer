@@ -4,7 +4,7 @@
 #include "musicpagequerywidget.h"
 #include "musicsettingmanager.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicdownloadsourcerequest.h"
+#include "musicdownloadcoverrequest.h"
 #include "musicwebdjradioinfowidget.h"
 
 #include <qmath.h>

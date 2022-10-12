@@ -40,7 +40,7 @@ public:
     /*!
      * Update songs files in table.
      */
-    virtual void updateSongsList(const QStringList &songs) override final;
+    void updateSongsList(const QStringList &songs);
 
 public Q_SLOTS:
     /*!

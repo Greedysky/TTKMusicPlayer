@@ -40,11 +40,6 @@ void MusicAbstractSongsListTableWidget::updateSongsList(const MusicSongList &son
     Q_UNUSED(songs);
 }
 
-void MusicAbstractSongsListTableWidget::updateSongsList(const QStringList &songs)
-{
-    Q_UNUSED(songs);
-}
-
 void MusicAbstractSongsListTableWidget::selectRow(int index)
 {
     MusicSmoothMovingTableWidget::selectRow(index);

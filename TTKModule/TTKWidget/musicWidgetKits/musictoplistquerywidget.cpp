@@ -1,6 +1,6 @@
 #include "musictoplistquerywidget.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicdownloadsourcerequest.h"
+#include "musicdownloadcoverrequest.h"
 #include "musicsettingmanager.h"
 #include "musictoplistquerycategorypopwidget.h"
 

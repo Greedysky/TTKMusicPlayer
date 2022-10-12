@@ -20,7 +20,6 @@
  ***************************************************************************/
 
 #include "musicabstractsongslisttablewidget.h"
-#include <QFileSystemWatcher>
 
 /*! @brief The class of the local manager songs table widget.
  * @author Greedysky <greedysky@163.com>
@@ -39,7 +38,7 @@ public:
     /*!
      * Update songs files in table.
      */
-    virtual void updateSongsList(const QStringList &songs) override final;
+    void updateSongsList(const QStringList &songs);
 
 public Q_SLOTS:
     /*!
@@ -51,6 +50,7 @@ public Q_SLOTS:
 
 
 class MusicItemQueryEdit;
+class MusicGifLabelWidget;
 
 /*! @brief The class of the local manager widget.
  * @author Greedysky <greedysky@163.com>
@@ -66,24 +66,19 @@ public:
     explicit MusicLocalManagerWidget(QWidget *parent = nullptr);
     ~MusicLocalManagerWidget();
 
-    /*!
-     * Init parameters.
-     */
-    void initialize();
-    /*!
-     * Resize window bound by widget resize called.
-     */
-    void resizeWindow();
-
 private Q_SLOTS:
     /*!
      * Type index changed.
      */
     void typeIndexChanged(int index);
     /*!
-     * Media path changed.
+     * Refresh table items.
      */
-    void mediaPathChanged(const QString &path);
+    void refreshItems();
+    /*!
+     * Update media library path.
+     */
+    void updateMediaLibraryPath();
 
 private:
     /*!
@@ -93,8 +88,7 @@ private:
 
     QTabWidget *m_tabWidget;
     MusicItemQueryEdit *m_searchEdit;
-    QFileSystemWatcher *m_fileWatcher;
-    QList<QWidget*> m_resizeWidgets;
+    MusicGifLabelWidget *m_loadingLabel;
 
 };
 

@@ -4,7 +4,7 @@
 #include "musicdownloadqueryfactory.h"
 #include "musictoastlabel.h"
 #include "musicurlutils.h"
-#include "musicdownloadsourcerequest.h"
+#include "musicdownloadcoverrequest.h"
 
 #include "qrencode/qrcodewidget.h"
 

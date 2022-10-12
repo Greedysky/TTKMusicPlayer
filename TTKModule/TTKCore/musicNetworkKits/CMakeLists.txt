@@ -30,6 +30,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadtextrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadtagdatarequest.h
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadsourcerequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadcoverrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadqueuerequest.h
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicidentifysongsrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicsourceupdaterequest.h

@@ -60,6 +60,7 @@ HEADERS += \
     $$PWD/tools/musicdownloadtextrequest.h \
     $$PWD/tools/musicdownloadtagdatarequest.h \
     $$PWD/tools/musicdownloadsourcerequest.h \
+    $$PWD/tools/musicdownloadcoverrequest.h \
     $$PWD/tools/musicdownloadqueuerequest.h \
     $$PWD/tools/musicidentifysongsrequest.h \
     $$PWD/tools/musicsourceupdaterequest.h \

@@ -1,6 +1,6 @@
 #include "musicplaylistqueryinfowidget.h"
 #include "musicplaylistquerytablewidget.h"
-#include "musicdownloadsourcerequest.h"
+#include "musicdownloadcoverrequest.h"
 #include "musicplaylistquerycommentswidget.h"
 #include "musicsettingmanager.h"
 

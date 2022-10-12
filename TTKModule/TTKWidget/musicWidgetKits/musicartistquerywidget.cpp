@@ -1,6 +1,6 @@
 #include "musicartistquerywidget.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicdownloadsourcerequest.h"
+#include "musicdownloadcoverrequest.h"
 #include "musicquerymovierequest.h"
 #include "musicrightareawidget.h"
 #include "musicpagequerywidget.h"

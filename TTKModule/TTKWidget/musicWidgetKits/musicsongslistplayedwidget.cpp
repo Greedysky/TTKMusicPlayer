@@ -76,7 +76,7 @@ void MusicSongsListPlayedWidget::setParameter(const QString &name)
 
 void MusicSongsListPlayedWidget::setDeleteItemAt()
 {
-    QTimer::singleShot(MT_MS, m_parentClass, SLOT(setDeleteItemAt()));
+    QTimer::singleShot(MT_ONCE, m_parentClass, SLOT(setDeleteItemAt()));
 }
 
 void MusicSongsListPlayedWidget::enterEvent(QtEnterEvent *event)

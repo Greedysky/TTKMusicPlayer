@@ -90,7 +90,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_ui->centerWidget->installEventFilter(this);
 
     readSystemConfigFromFile();
-    QTimer::singleShot(MT_MS, m_rightAreaWidget, SLOT(musicLoadSongIndexWidget()));
+    QTimer::singleShot(MT_ONCE, m_rightAreaWidget, SLOT(musicLoadSongIndexWidget()));
 }
 
 MusicApplication::~MusicApplication()
@@ -1155,7 +1155,7 @@ void MusicApplication::readSystemConfigFromFile()
 
     if(success && lastPlayIndex[0] == "1")
     {
-        QTimer::singleShot(MT_MS, m_songTreeWidget, SLOT(updateCurrentIndex()));
+        QTimer::singleShot(MT_ONCE, m_songTreeWidget, SLOT(updateCurrentIndex()));
         const int index = lastPlayIndex[2].toInt();
         m_currentSongTreeIndex = (index == DEFAULT_NORMAL_LEVEL) ? DEFAULT_NORMAL_LEVEL : value;
         m_playlist->blockSignals(true);

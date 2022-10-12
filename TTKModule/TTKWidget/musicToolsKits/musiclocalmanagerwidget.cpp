@@ -1,9 +1,12 @@
 #include "musiclocalmanagerwidget.h"
 #include "musicsettingmanager.h"
 #include "musicitemsearchedit.h"
+#include "musicgiflabelwidget.h"
 #include "musicsongmeta.h"
 #include "musicfileutils.h"
 #include "musicformats.h"
+
+#include <QTimer>
 
 MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)
@@ -20,6 +23,7 @@ MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *pa
     headerview->resizeSection(4, 100);
     headerview->resizeSection(5, 400);
 
+    setAlternatingRowColors(true);
     setFrameShape(QFrame::Box);
     setTextElideMode(Qt::ElideRight);
     setWordWrap(false);
@@ -39,11 +43,11 @@ MusicLocalManagerSongsTableWidget::~MusicLocalManagerSongsTableWidget()
 
 void MusicLocalManagerSongsTableWidget::updateSongsList(const QStringList &songs)
 {
+    MusicSongMeta meta;
     setRowCount(songs.count());
 
     for(int i = 0; i < songs.count(); ++i)
     {
-        MusicSongMeta meta;
         QString check;
         const bool state = meta.read(songs[i]);
 
@@ -83,6 +87,7 @@ void MusicLocalManagerSongsTableWidget::updateSongsList(const QStringList &songs
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);
 
+        qApp->processEvents();
         m_songs->append(MusicSong(meta.fileRelatedPath()));
     }
 }
@@ -127,10 +132,17 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
 
     QLabel *pLabel = new QLabel(tr("Media Library"), functionWidget);
     QFont pLabelFont = pLabel->font();
-    pLabelFont.setPixelSize(20);
+    pLabelFont.setPixelSize(30);
     pLabel->setFont(pLabelFont);
     pLabel->setStyleSheet(MusicUIObject::MQSSColorStyle11);
     functionWidgetLayout->addWidget(pLabel);
+
+    QPushButton *refresh = new QPushButton(tr("Refresh"), functionWidget);
+    refresh->setIcon(QIcon(":/functions/btn_setting_hover"));
+    refresh->setFixedSize(90, 30);
+    refresh->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    refresh->setCursor(QCursor(Qt::PointingHandCursor));
+    functionWidgetLayout->addWidget(refresh);
 
     QPushButton *button = new QPushButton(tr("Settings"), functionWidget);
     button->setIcon(QIcon(":/functions/btn_setting_hover"));
@@ -170,37 +182,20 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     genreWidget->setStyleSheet("background:rgb(40,40,40)");
     m_tabWidget->addTab(genreWidget, tr("Genre"));
 
-    m_fileWatcher = new QFileSystemWatcher(this);
+    m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::CicleBlue, this);
+    m_loadingLabel->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
 
+    QTimer::singleShot(MT_MS, this, SLOT(refreshItems()));
+    connect(refresh, SIGNAL(clicked()), SLOT(refreshItems()));
+    connect(button, SIGNAL(clicked()), SLOT(updateMediaLibraryPath()));
     connect(m_tabWidget, SIGNAL(currentChanged(int)), SLOT(typeIndexChanged(int)));
-    connect(m_fileWatcher, SIGNAL(directoryChanged(QString)), SLOT(mediaPathChanged(QString)));
 }
 
 MusicLocalManagerWidget::~MusicLocalManagerWidget()
 {
     delete m_tabWidget;
     delete m_searchEdit;
-    delete m_fileWatcher;
-}
-
-void MusicLocalManagerWidget::initialize()
-{
-    mediaPathChanged("/home/greedysky/qmmp_all/files/modplug/");
-
-    const QString &path = G_SETTING_PTR->value(MusicSettingManager::MediaLibraryPath).toString();
-    if(!path.isEmpty())
-    {
-        m_fileWatcher->addPath(path);
-    }
-}
-
-void MusicLocalManagerWidget::resizeWindow()
-{
-    if(!m_resizeWidgets.isEmpty())
-    {
-        const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-        m_resizeWidgets[0]->setFixedWidth((width - WINDOW_WIDTH_MIN) + 540);
-    }
+    delete m_loadingLabel;
 }
 
 void MusicLocalManagerWidget::typeIndexChanged(int index)
@@ -237,14 +232,32 @@ void MusicLocalManagerWidget::typeIndexChanged(int index)
     m_searchEdit->editor()->clear();
 }
 
-void MusicLocalManagerWidget::mediaPathChanged(const QString &path)
+void MusicLocalManagerWidget::refreshItems()
 {
-//    TTKObject_cast(MusicLocalManagerSongsTableWidget*, m_tabWidget->widget(0))->
-//    updateSongsList(MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats()));
+    if(m_loadingLabel->isRunning())
+    {
+        return;
+    }
+
+    const QString &path = G_SETTING_PTR->value(MusicSettingManager::MediaLibraryPath).toString();
+    if(!path.isEmpty())
+    {
+        m_loadingLabel->run(true);
+        const QStringList &files = MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats());
+        TTKObject_cast(MusicLocalManagerSongsTableWidget*, m_tabWidget->currentWidget())->updateSongsList(files);
+
+        TTK_LOGGER_INFO(files.size());
+//        m_loadingLabel->run(false);
+    }
+}
+
+void MusicLocalManagerWidget::updateMediaLibraryPath()
+{
+
 }
 
 void MusicLocalManagerWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    resizeWindow();
+    m_loadingLabel->move((width() - m_loadingLabel->width()) / 2, (height() - m_loadingLabel->height()) / 2);
 }

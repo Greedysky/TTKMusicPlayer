@@ -2,7 +2,7 @@
 #include "musicwebmvradioquerycategorypopwidget.h"
 #include "musicwebmvradioinfowidget.h"
 #include "musicmvradiocategoryrequest.h"
-#include "musicdownloadsourcerequest.h"
+#include "musicdownloadcoverrequest.h"
 #include "musictinyuiobject.h"
 
 #define WIDTH_LABEL_SIZE   150

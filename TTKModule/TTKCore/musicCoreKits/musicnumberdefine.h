@@ -22,6 +22,7 @@
 #include <QObject>
 
 #define MT_MS           1
+#define MT_ONCE         50 * MT_MS
 
 #define MT_S            1
 #define MT_S2MS         1000

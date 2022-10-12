@@ -1,6 +1,6 @@
 #include "musicwebdjradiocategorywidget.h"
 #include "musicdjradiocategoryrequest.h"
-#include "musicdownloadsourcerequest.h"
+#include "musicdownloadcoverrequest.h"
 #include "musicwidgetheaders.h"
 
 #define WIDTH_LABEL_SIZE   60

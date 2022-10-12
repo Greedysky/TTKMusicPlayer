@@ -209,5 +209,5 @@ void MusicVideoView::pushBarrageChanged(bool on)
 
 void MusicVideoView::fullscreenButtonTrigger()
 {
-    QTimer::singleShot(100 * MT_MS, this, SIGNAL(fullscreenButtonClicked()));
+    QTimer::singleShot(MT_ONCE, this, SIGNAL(fullscreenButtonClicked()));
 }

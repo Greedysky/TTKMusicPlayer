@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADSOURCEREQUEST_H
-#define MUSICDOWNLOADSOURCEREQUEST_H
+#ifndef MUSICDOWNLOADCOVERREQUEST_H
+#define MUSICDOWNLOADCOVERREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,37 +19,11 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractnetwork.h"
+#include "musicdownloadsourcerequest.h"
 
-/*! @brief The class of source data download request.
+/*! @brief The class of source cover data download request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadSourceRequest : public MusicAbstractNetwork
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadSourceRequest)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicDownloadSourceRequest(QObject *parent = nullptr);
+using MusicDownloadCoverRequest = MusicDownloadSourceRequest;
 
-    /*!
-     * Release the network object.
-     */
-    virtual void deleteAll() override final;
-
-    /*!
-     * Start to download data.
-     */
-    void startRequest(const QString &url);
-
-public Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    virtual void downLoadFinished() override final;
-
-};
-
-#endif // MUSICDOWNLOADSOURCEREQUEST_H
+#endif // MUSICDOWNLOADCOVERREQUEST_H

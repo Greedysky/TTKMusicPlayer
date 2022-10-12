@@ -47,10 +47,6 @@ public:
      */
     virtual void updateSongsList(const MusicSongList &songs);
     /*!
-     * Update songs files in table.
-     */
-    virtual void updateSongsList(const QStringList &songs);
-    /*!
      * Select the current play row by given index.
      */
     virtual void selectRow(int index);

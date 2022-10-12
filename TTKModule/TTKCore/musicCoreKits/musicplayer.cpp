@@ -269,7 +269,7 @@ void MusicPlayer::queryCurrentDuration()
     const qint64 d = duration();
     if((d == 0 || m_duration == d) && m_durationTimes++ < 10)
     {
-        QTimer::singleShot(50 * MT_MS, this, SLOT(queryCurrentDuration()));
+        QTimer::singleShot(MT_ONCE, this, SLOT(queryCurrentDuration()));
     }
     else
     {

@@ -319,6 +319,7 @@ void MusicDownloadBatchTableWidget::removeItems()
     m_downloadOffset = 0;
     qDeleteAll(m_items);
     m_items.clear();
+
     MusicAbstractTableWidget::removeItems();
     setColumnCount(1);
 }

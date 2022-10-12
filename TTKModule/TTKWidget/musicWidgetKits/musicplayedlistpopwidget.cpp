@@ -289,7 +289,7 @@ void MusicPlayedListPopWidget::itemDoubleClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
-    QTimer::singleShot(10 * MT_MS, this, SLOT(itemDoubleClicked()));
+    QTimer::singleShot(MT_ONCE, this, SLOT(itemDoubleClicked()));
 }
 
 void MusicPlayedListPopWidget::initialize()
