@@ -31,11 +31,11 @@
 #  define TTK_LOGGER_OUTPUT qDebug().noquote()
 #endif
 
-#define TTK_LOGGER_INFO(str)  TTK_LOGGER_OUTPUT << "[" << CURRENT_DATE << " " << CURRENT_TIME << "][I][" << __FILE__ << "(" << __LINE__ << ")] " << str
-#define TTK_LOGGER_DEBUG(str) TTK_LOGGER_OUTPUT << "[" << CURRENT_DATE << " " << CURRENT_TIME << "][D][" << __FILE__ << "(" << __LINE__ << ")] " << str
-#define TTK_LOGGER_WARN(str)  TTK_LOGGER_OUTPUT << "[" << CURRENT_DATE << " " << CURRENT_TIME << "][W][" << __FILE__ << "(" << __LINE__ << ")] " << str
-#define TTK_LOGGER_TRACE(str) TTK_LOGGER_OUTPUT << "[" << CURRENT_DATE << " " << CURRENT_TIME << "][T][" << __FILE__ << "(" << __LINE__ << ")] " << str
-#define TTK_LOGGER_ERROR(str) TTK_LOGGER_OUTPUT << "[" << CURRENT_DATE << " " << CURRENT_TIME << "][E][" << __FILE__ << "(" << __LINE__ << ")] " << str
-#define TTK_LOGGER_FATAL(str) TTK_LOGGER_OUTPUT << "[" << CURRENT_DATE << " " << CURRENT_TIME << "][F][" << __FILE__ << "(" << __LINE__ << ")] " << str
+#define TTK_LOGGER_INFO(str)  TTK_LOGGER_OUTPUT << QString("[%1 %2][I][%3(%4)] ").arg(CURRENT_DATE, CURRENT_TIME, __FILE__, QString::number(__LINE__)) << str
+#define TTK_LOGGER_DEBUG(str) TTK_LOGGER_OUTPUT << QString("[%1 %2][D][%3(%4)] ").arg(CURRENT_DATE, CURRENT_TIME, __FILE__, QString::number(__LINE__)) << str
+#define TTK_LOGGER_WARN(str)  TTK_LOGGER_OUTPUT << QString("[%1 %2][W][%3(%4)] ").arg(CURRENT_DATE, CURRENT_TIME, __FILE__, QString::number(__LINE__)) << str
+#define TTK_LOGGER_TRACE(str) TTK_LOGGER_OUTPUT << QString("[%1 %2][T][%3(%4)] ").arg(CURRENT_DATE, CURRENT_TIME, __FILE__, QString::number(__LINE__)) << str
+#define TTK_LOGGER_ERROR(str) TTK_LOGGER_OUTPUT << QString("[%1 %2][E][%3(%4)] ").arg(CURRENT_DATE, CURRENT_TIME, __FILE__, QString::number(__LINE__)) << str
+#define TTK_LOGGER_FATAL(str) TTK_LOGGER_OUTPUT << QString("[%1 %2][F][%3(%4)] ").arg(CURRENT_DATE, CURRENT_TIME, __FILE__, QString::number(__LINE__)) << str
 
 #endif // TTKLOGGER_H
