@@ -46,7 +46,7 @@ public:
      */
     void addItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
     /*!
-     * Start to download data.
+     * Start to download data from net.
      */
     void startToDownload();
     /*!
@@ -103,7 +103,7 @@ public:
      */
     void addItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
     /*!
-     * Start to download music data.
+     * Start to download data from net.
      */
     void startToDownload();
 
@@ -154,7 +154,7 @@ public Q_SLOTS:
      */
     void show();
     /*!
-     * Start to download music data.
+     * Start to download data from net.
      */
     void startToDownload();
 

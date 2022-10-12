@@ -43,7 +43,7 @@ public:
     virtual void deleteAll() override final;
 
     /*!
-     * Start to download data.
+     * Start to download data from net.
      * Subclass should implement this function.
      */
     virtual void startToDownload() = 0;

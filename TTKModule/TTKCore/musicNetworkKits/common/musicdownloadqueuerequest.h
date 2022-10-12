@@ -60,7 +60,7 @@ public:
      */
     void addImageQueue(const MusicDownloadQueueDataList &datas);
     /*!
-     * Start to download data.
+     * Start to download data from net.
      */
     virtual void startToDownload() override final;
     /*!
@@ -88,7 +88,7 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Start to download data from url.
+     * Start to download data from net.
      */
     void startDownload(const QString &url);
     /*!

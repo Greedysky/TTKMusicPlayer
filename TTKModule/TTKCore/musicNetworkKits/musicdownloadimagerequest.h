@@ -42,7 +42,7 @@ public:
     virtual void deleteAll() override final;
 
     /*!
-     * Start to download artist picture from net.
+     * Start to download data from net.
      * Subclass should implement this function.
      */
     virtual void startToDownload() = 0;
@@ -51,7 +51,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
+    void downLoadDataFinished();
 
 protected:
     int m_index, m_counter;

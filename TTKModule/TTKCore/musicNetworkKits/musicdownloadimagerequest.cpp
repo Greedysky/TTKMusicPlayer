@@ -18,7 +18,7 @@ void MusicDownloadImageRequest::deleteAll()
     deleteLater();
 }
 
-void MusicDownloadImageRequest::downLoadFinished()
+void MusicDownloadImageRequest::downLoadDataFinished()
 {
     MusicAbstractNetwork::downLoadFinished();
     if(++m_index >= m_counter)

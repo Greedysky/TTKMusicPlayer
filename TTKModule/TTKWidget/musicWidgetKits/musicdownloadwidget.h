@@ -181,7 +181,7 @@ public Q_SLOTS:
      */
     void downloadDirSelected();
     /*!
-     * Start to download music data.
+     * Start to download data from net.
      */
     void startToDownload();
     /*!

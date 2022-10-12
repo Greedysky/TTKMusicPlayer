@@ -57,7 +57,7 @@ public:
     MusicTXDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 
     /*!
-     * Start to download artist picture from net.
+     * Start to download data from net.
      */
     virtual void startToDownload() override final;
 
@@ -65,7 +65,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadDataFinished();
+    virtual void downLoadFinished() override final;
     /*!
      * Download data from net finished.
      */

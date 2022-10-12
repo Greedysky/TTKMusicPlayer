@@ -28,7 +28,7 @@ void MusicBPDownloadBackgroundRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadDataFinished").arg(className()));
 
-    MusicAbstractNetwork::downLoadFinished();
+    MusicDownloadImageRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
@@ -50,7 +50,7 @@ void MusicBPDownloadBackgroundRequest::downLoadFinished()
                     {
                         const QString &url = value["url"].toString();
                         MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
-                        connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
+                        connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
                         download->startToDownload();
                     }
                 }

@@ -36,7 +36,7 @@ public:
     MusicKWDownLoadCoverRequest(const QString &url, const QString &path, QObject *parent = nullptr);
 
     /*!
-     * Start to download data.
+     * Start to download data from net.
      */
     virtual void startToDownload() override final;
 
@@ -67,7 +67,7 @@ public:
     MusicKWDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 
     /*!
-     * Start to download artist picture from net.
+     * Start to download data from net.
      */
     virtual void startToDownload() override final;
 

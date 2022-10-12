@@ -37,7 +37,7 @@ public:
     explicit MusicSourceUpdateRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download data.
+     * Start to download data from net.
      */
     void startToDownload();
 

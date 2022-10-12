@@ -35,7 +35,7 @@ public:
     explicit MusicFMRadioSongsRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download data.
+     * Start to download data from net.
      */
     virtual void startToDownload(const QString &id) override final;
 

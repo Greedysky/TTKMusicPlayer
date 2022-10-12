@@ -39,7 +39,7 @@ public:
     explicit MusicAbstractFMRadioRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download data.
+     * Start to download data from net.
      * Subclass should implement this function.
      */
     virtual void startToDownload(const QString &data) = 0;

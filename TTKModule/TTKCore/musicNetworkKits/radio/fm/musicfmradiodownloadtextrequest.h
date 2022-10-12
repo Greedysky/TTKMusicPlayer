@@ -35,7 +35,7 @@ public:
     MusicFMRadioDownLoadTextRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent = nullptr);
 
     /*!
-     * Start to download data.
+     * Start to download data from net.
      */
     virtual void startToDownload() override final;
 
