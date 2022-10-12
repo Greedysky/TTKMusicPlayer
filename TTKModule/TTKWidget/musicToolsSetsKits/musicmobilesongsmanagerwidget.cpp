@@ -85,7 +85,7 @@ void MusicMobileSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     const bool status = !m_songs->isEmpty();
     menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
-    menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));
     menu.addSeparator();
 

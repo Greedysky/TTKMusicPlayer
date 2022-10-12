@@ -137,7 +137,7 @@
     </rect>
    </property>
    <property name="pixmap">
-    <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/toolSets/lb_upgradeMain</pixmap>
+    <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/toolSets/lb_upgrade_main</pixmap>
    </property>
   </widget>
   <zorder>container</zorder>

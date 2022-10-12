@@ -95,6 +95,12 @@ bool MusicSong::operator> (const MusicSong &other) const
     return false;
 }
 
+
+bool MusicObject::playlistRowValid(int index)
+{
+    return index != MUSIC_LOVEST_LIST && index != MUSIC_NETWORK_LIST && index != MUSIC_RECENT_LIST;
+}
+
 QString MusicObject::trackRelatedPath(const QString &path)
 {
     if(!MusicFormats::songTrackValid(path))
@@ -105,6 +111,11 @@ QString MusicObject::trackRelatedPath(const QString &path)
     QString url = path.section("://", -1);
     url.remove(RegularWrapper("#\\d+$"));
     return url;
+}
+
+QString MusicObject::generateSongName(const QString &title, const QString &artist)
+{
+    return (title.isEmpty() || artist.isEmpty()) ? artist + title : artist + " - " + title;
 }
 
 MusicSongList MusicObject::generateSongList(const QString &path)
@@ -125,9 +136,7 @@ MusicSongList MusicObject::generateSongList(const QString &path)
         QString name;
         if(G_SETTING_PTR->value(MusicSettingManager::OtherReadFileInfo).toBool())
         {
-            const QString &title = meta.title();
-            const QString &artist = meta.artist();
-            name = (artist.isEmpty() || title.isEmpty()) ? artist + title : artist + " - " + title;
+            name = MusicObject::generateSongName(meta.title(), meta.artist());
         }
 
         const QString &path = meta.fileBasePath();
@@ -144,11 +153,6 @@ MusicSongList MusicObject::generateSongList(const QString &path)
         }
     }
     return songs;
-}
-
-bool MusicObject::playlistRowValid(int index)
-{
-    return index != MUSIC_LOVEST_LIST && index != MUSIC_NETWORK_LIST && index != MUSIC_RECENT_LIST;
 }
 
 QString MusicObject::generateNetworkSongTime(const QString &path)

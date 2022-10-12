@@ -100,7 +100,7 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     m_ui->normalFunTableWidget->addFunctionItems(0, items);
 
     items.clear();
-    items << MusicFunctionItem(":/contextMenu/btn_desktopLrc", tr("Desktop"))
+    items << MusicFunctionItem(":/contextMenu/btn_desktop_lrc", tr("Desktop"))
           << MusicFunctionItem(":/contextMenu/btn_lrc", tr("Interior"));
     m_ui->lrcFunTableWidget->setRowCount(items.count());
     m_ui->lrcFunTableWidget->addFunctionItems(m_ui->normalFunTableWidget->rowCount(), items);

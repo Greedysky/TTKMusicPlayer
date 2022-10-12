@@ -112,8 +112,8 @@ namespace MusicUIObject
 
     const QString MQSSBtnListLoop = " \
             QToolButton{ border:none; \
-            background-image: url(:/functions/btn_listLoop_normal); } \
-            QToolButton:hover{ background-image: url(:/functions/btn_listLoop_hover); }";
+            background-image: url(:/functions/btn_list_loop_normal); } \
+            QToolButton:hover{ background-image: url(:/functions/btn_list_loop_hover); }";
 
     const QString MQSSBtnOnce = " \
             QToolButton{ border:none; \
@@ -122,8 +122,8 @@ namespace MusicUIObject
 
     const QString MQSSBtnOneLoop = " \
             QToolButton{ border:none; \
-            background-image: url(:/functions/btn_oneLoop_normal); } \
-            QToolButton:hover{ background-image: url(:/functions/btn_oneLoop_hover); }";
+            background-image: url(:/functions/btn_one_loop_normal); } \
+            QToolButton:hover{ background-image: url(:/functions/btn_one_loop_hover); }";
 
     const QString MQSSBtnOrder = " \
             QToolButton{ border:none; \

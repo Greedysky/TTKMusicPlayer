@@ -52,8 +52,8 @@ void MusicPlayBackModePopWidget::initialize()
     m_containWidget->setFixedSize(140, 160);
     m_menu->removeAction(m_menu->actions().front());
     m_menu->addAction(QIcon(":/functions/btn_once_hover"), tr("Play Once"), MusicApplication::instance(), SLOT(musicPlayOnce()));
-    m_menu->addAction(QIcon(":/functions/btn_oneLoop_hover"), tr("Single Cycle"), MusicApplication::instance(), SLOT(musicPlayOneLoop()));
+    m_menu->addAction(QIcon(":/functions/btn_one_loop_hover"), tr("Single Cycle"), MusicApplication::instance(), SLOT(musicPlayOneLoop()));
     m_menu->addAction(QIcon(":/functions/btn_order_hover"), tr("Order Play"), MusicApplication::instance(), SLOT(musicPlayOrder()));
-    m_menu->addAction(QIcon(":/functions/btn_listLoop_hover"), tr("List Cycle"), MusicApplication::instance(), SLOT(musicPlaylistLoop()));
+    m_menu->addAction(QIcon(":/functions/btn_list_loop_hover"), tr("List Cycle"), MusicApplication::instance(), SLOT(musicPlaylistLoop()));
     m_menu->addAction(QIcon(":/functions/btn_random_hover"), tr("Random Play"), MusicApplication::instance(), SLOT(musicPlayRandom()));
 }

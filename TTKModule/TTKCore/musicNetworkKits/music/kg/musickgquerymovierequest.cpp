@@ -48,7 +48,7 @@ void MusicKGQueryMovieRequest::startToSingleSearch(const QString &value)
     deleteAll();
     m_queryValue = value.trimmed();
 
-    QTimer::singleShot(MT_MS, this, SLOT(downLoadSingleFinished()));
+    QTimer::singleShot(MT_ONCE, this, SLOT(downLoadSingleFinished()));
 }
 
 void MusicKGQueryMovieRequest::downLoadFinished()

@@ -45,10 +45,14 @@ public Q_SLOTS:
      * Remove all items.
      */
     virtual void removeItems() override final;
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
 };
 
-
+class QLabel;
 class MusicItemQueryEdit;
 class MusicGifLabelWidget;
 
@@ -86,6 +90,7 @@ private:
      */
     virtual void resizeEvent(QResizeEvent *event) override final;
 
+    QLabel *m_sizeLabel;
     QTabWidget *m_tabWidget;
     MusicItemQueryEdit *m_searchEdit;
     MusicGifLabelWidget *m_loadingLabel;

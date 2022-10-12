@@ -199,17 +199,21 @@ TTK_DECLARE_LIST(MusicSongItem);
 namespace MusicObject
 {
     /*!
+     * Check current song playlist row is valid or not.
+     */
+    TTK_MODULE_EXPORT bool playlistRowValid(int index);
+    /*!
      * Remove track info in path.
      */
     TTK_MODULE_EXPORT QString trackRelatedPath(const QString &path);
     /*!
+     * Generate music song name.
+     */
+    TTK_MODULE_EXPORT QString generateSongName(const QString &title, const QString &artist);
+    /*!
      * Generate music song playlist.
      */
     TTK_MODULE_EXPORT MusicSongList generateSongList(const QString &path);
-    /*!
-     * Check current song playlist row is valid or not.
-     */
-    TTK_MODULE_EXPORT bool playlistRowValid(int index);
 
     /*!
      * Generate network song play time.

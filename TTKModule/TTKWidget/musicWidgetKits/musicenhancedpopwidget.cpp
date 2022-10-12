@@ -199,22 +199,22 @@ void MusicEnhancedPopWidget::initialize()
 
     MusicEnhancedToolButton *button1 = new MusicEnhancedToolButton(m_containWidget);
     button1->setGeometry(15, 115, LABEL_BUTTON_WIDGET, LABEL_BUTTON_HEIGHT);
-    button1->setStyleSheet("background-image:url(':/enhance/lb_3dOff')");
+    button1->setStyleSheet("background-image:url(':/enhance/lb_3d_off')");
     button1->setCursor(Qt::PointingHandCursor);
 
     MusicEnhancedToolButton *button2 = new MusicEnhancedToolButton(m_containWidget);
     button2->setGeometry(145, 115, LABEL_BUTTON_WIDGET, LABEL_BUTTON_HEIGHT);
-    button2->setStyleSheet("background-image:url(':/enhance/lb_NICAMOff')");
+    button2->setStyleSheet("background-image:url(':/enhance/lb_nicam_off')");
     button2->setCursor(Qt::PointingHandCursor);
 
     MusicEnhancedToolButton *button3 = new MusicEnhancedToolButton(m_containWidget);
     button3->setGeometry(15, 240, LABEL_BUTTON_WIDGET, LABEL_BUTTON_HEIGHT);
-    button3->setStyleSheet("background-image:url(':/enhance/lb_subwooferOff')");
+    button3->setStyleSheet("background-image:url(':/enhance/lb_subwoofer_off')");
     button3->setCursor(Qt::PointingHandCursor);
 
     MusicEnhancedToolButton *button4 = new MusicEnhancedToolButton(m_containWidget);
     button4->setGeometry(145, 240, LABEL_BUTTON_WIDGET, LABEL_BUTTON_HEIGHT);
-    button4->setStyleSheet("background-image:url(':/enhance/lb_vocalOff')");
+    button4->setStyleSheet("background-image:url(':/enhance/lb_vocal_off')");
     button4->setCursor(Qt::PointingHandCursor);
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);

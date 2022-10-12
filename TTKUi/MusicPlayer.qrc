@@ -134,7 +134,7 @@
         <file alias="btn_ablum">../TTKResource/contextMenu/btn_ablum.png</file>
         <file alias="btn_add">../TTKResource/contextMenu/btn_add.png</file>
         <file alias="btn_download">../TTKResource/contextMenu/btn_download.png</file>
-        <file alias="btn_localFile">../TTKResource/contextMenu/btn_localFile.png</file>
+        <file alias="btn_local_file">../TTKResource/contextMenu/btn_local_file.png</file>
         <file alias="btn_mobile">../TTKResource/contextMenu/btn_mobile.png</file>
         <file alias="btn_location">../TTKResource/contextMenu/btn_location.png</file>
         <file alias="btn_mv">../TTKResource/contextMenu/btn_mv.png</file>
@@ -149,7 +149,7 @@
         <file alias="btn_quit">../TTKResource/contextMenu/btn_quit.png</file>
         <file alias="btn_equalizer">../TTKResource/contextMenu/btn_equalizer.png</file>
         <file alias="btn_keyboard">../TTKResource/contextMenu/btn_keyboard.png</file>
-        <file alias="btn_desktopLrc">../TTKResource/contextMenu/btn_desktopLrc.png</file>
+        <file alias="btn_desktop_lrc">../TTKResource/contextMenu/btn_desktop_lrc.png</file>
         <file alias="btn_network">../TTKResource/contextMenu/btn_network.png</file>
         <file alias="btn_update">../TTKResource/contextMenu/btn_update.png</file>
         <file alias="btn_selected">../TTKResource/contextMenu/btn_selected.png</file>
@@ -261,14 +261,14 @@
         <file alias="lb_right_bottom">../TTKResource/borderShadow/lb_right_bottom.png</file>
     </qresource>
     <qresource prefix="/enhance">
-        <file alias="lb_3dOff">../TTKResource/enhance/lb_enhance_3d.png</file>
-        <file alias="lb_3dOn">../TTKResource/enhance/lb_enhance_3d_on.png</file>
-        <file alias="lb_NICAMOff">../TTKResource/enhance/lb_enhance_NICAM.png</file>
-        <file alias="lb_NICAMOn">../TTKResource/enhance/lb_enhance_NICAM_on.png</file>
-        <file alias="lb_subwooferOff">../TTKResource/enhance/lb_enhance_subwoofer.png</file>
-        <file alias="lb_subwooferOn">../TTKResource/enhance/lb_enhance_subwoofer_on.png</file>
-        <file alias="lb_vocalOff">../TTKResource/enhance/lb_enhance_vocal.png</file>
-        <file alias="lb_vocalOn">../TTKResource/enhance/lb_enhance_vocal_on.png</file>
+        <file alias="lb_3d_off">../TTKResource/enhance/lb_enhance_3d.png</file>
+        <file alias="lb_3d_on">../TTKResource/enhance/lb_enhance_3d_on.png</file>
+        <file alias="lb_nicam_off">../TTKResource/enhance/lb_enhance_nicam.png</file>
+        <file alias="lb_nicam_on">../TTKResource/enhance/lb_enhance_nicam_on.png</file>
+        <file alias="lb_subwoofer_off">../TTKResource/enhance/lb_enhance_subwoofer.png</file>
+        <file alias="lb_subwoofer_on">../TTKResource/enhance/lb_enhance_subwoofer_on.png</file>
+        <file alias="lb_vocal_off">../TTKResource/enhance/lb_enhance_vocal.png</file>
+        <file alias="lb_vocal_on">../TTKResource/enhance/lb_enhance_vocal_on.png</file>
         <file alias="lb_background">../TTKResource/enhance/lb_enhance_background.png</file>
         <file alias="lb_blue">../TTKResource/enhance/lb_enhance_blue.png</file>
         <file alias="lb_selected">../TTKResource/enhance/lb_enhance_selected.png</file>
@@ -359,7 +359,7 @@
         <file alias="lb_mobile_devices">../TTKResource/toolSets/lb_mobile_devices.png</file>
         <file alias="lb_mobile_usb">../TTKResource/toolSets/lb_mobile_usb.png</file>
         <file alias="lb_mobile_computer">../TTKResource/toolSets/lb_mobile_computer.png</file>
-        <file alias="lb_upgradeMain">../TTKResource/toolSets/lb_upgradeMain.png</file>
+        <file alias="lb_upgrade_main">../TTKResource/toolSets/lb_upgrade_main.png</file>
         <file alias="btn_gain_add_file">../TTKResource/toolSets/btn_gain_add_file.png</file>
         <file alias="btn_gain_add_files">../TTKResource/toolSets/btn_gain_add_files.png</file>
         <file alias="btn_gain_rm_file">../TTKResource/toolSets/btn_gain_rm_file.png</file>
@@ -546,12 +546,12 @@
         <file alias="btn_show_hover">../TTKResource/functions/btn_show_hover.png</file>
         <file alias="btn_unshow_normal">../TTKResource/functions/btn_unshow_normal.png</file>
         <file alias="btn_unshow_hover">../TTKResource/functions/btn_unshow_hover.png</file>
-        <file alias="btn_listLoop_normal">../TTKResource/functions/btn_listLoop_normal.png</file>
-        <file alias="btn_listLoop_hover">../TTKResource/functions/btn_listLoop_hover.png</file>
+        <file alias="btn_list_loop_normal">../TTKResource/functions/btn_list_loop_normal.png</file>
+        <file alias="btn_list_loop_hover">../TTKResource/functions/btn_list_loop_hover.png</file>
         <file alias="btn_once_normal">../TTKResource/functions/btn_once_normal.png</file>
         <file alias="btn_once_hover">../TTKResource/functions/btn_once_hover.png</file>
-        <file alias="btn_oneLoop_normal">../TTKResource/functions/btn_oneLoop_normal.png</file>
-        <file alias="btn_oneLoop_hover">../TTKResource/functions/btn_oneLoop_hover.png</file>
+        <file alias="btn_one_loop_normal">../TTKResource/functions/btn_one_loop_normal.png</file>
+        <file alias="btn_one_loop_hover">../TTKResource/functions/btn_one_loop_hover.png</file>
         <file alias="btn_order_normal">../TTKResource/functions/btn_order_normal.png</file>
         <file alias="btn_order_hover">../TTKResource/functions/btn_order_hover.png</file>
         <file alias="btn_random_normal">../TTKResource/functions/btn_random_normal.png</file>
