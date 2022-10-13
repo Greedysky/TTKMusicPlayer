@@ -128,7 +128,7 @@ MusicMobileSongsManagerWidget::MusicMobileSongsManagerWidget(QWidget *parent)
 
     connect(m_ui->auditionButton, SIGNAL(clicked()), SLOT(auditionButtonClick()));
     connect(m_ui->addButton, SIGNAL(clicked()), SLOT(addButtonClick()));
-    connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchResultChanged(int,int)));
+    connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(searchResultChanged(int,int)));
 
     connect(m_ui->songlistTable, SIGNAL(cellClicked(int,int)), SLOT(itemCellOnClick(int,int)));
     connect(m_ui->songlistTable, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
@@ -211,9 +211,9 @@ void MusicMobileSongsManagerWidget::addButtonClick()
     selectedItems();
 }
 
-void MusicMobileSongsManagerWidget::itemCellOnClick(int row, int col)
+void MusicMobileSongsManagerWidget::itemCellOnClick(int row, int column)
 {
-    switch(col)
+    switch(column)
     {
         case 3:
         case 4:
@@ -257,7 +257,7 @@ void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &pat
     m_ui->loadingLabel->run(false);
 }
 
-void MusicMobileSongsManagerWidget::musicSearchResultChanged(int, int index)
+void MusicMobileSongsManagerWidget::searchResultChanged(int, int column)
 {
     TTKIntList result;
     for(int i = 0; i < m_songItems.count(); ++i)
@@ -268,7 +268,7 @@ void MusicMobileSongsManagerWidget::musicSearchResultChanged(int, int index)
         }
     }
 
-    m_searchResultCache.insert(index, result);
+    m_searchResultCache.insert(column, result);
     clearAllItems();
 
     QStringList names;

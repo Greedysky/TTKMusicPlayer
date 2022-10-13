@@ -93,9 +93,9 @@ void MusicAbstractTableWidget::removeItems()
 
 void MusicAbstractTableWidget::setRowColor(int row, const QColor &color) const
 {
-    for(int col = 0; col < columnCount(); ++col)
+    for(int i = 0; i < columnCount(); ++i)
     {
-        QTableWidgetItem *it = item(row, col);
+        QTableWidgetItem *it = item(row, i);
         if(it)
         {
             QtItemSetBackgroundColor(it, color);

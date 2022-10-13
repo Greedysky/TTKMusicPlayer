@@ -159,7 +159,7 @@ public Q_SLOTS:
     /*!
      * Search result from list.
      */
-    void musicSearchResultChanged(int row, int index);
+    void searchResultChanged(int row, int column);
 
     /*!
      * Update current play index from config file.

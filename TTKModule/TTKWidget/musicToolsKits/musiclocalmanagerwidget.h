@@ -19,9 +19,10 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include "musicsearchinterface.h"
 #include "musicabstractsongslisttablewidget.h"
 
-/*! @brief The class of the local song information.
+/*! @brief The class of the local song item information.
  * @author Greedysky <greedysky@163.com>
  */
 struct TTK_MODULE_EXPORT MusicSongInfoItem
@@ -73,7 +74,7 @@ class MusicGifLabelWidget;
 /*! @brief The class of the local manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLocalManagerWidget : public QWidget
+class TTK_MODULE_EXPORT MusicLocalManagerWidget : public QWidget, private MusicSearchInterface<MusicSongInfoItemList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLocalManagerWidget)
@@ -97,6 +98,10 @@ private Q_SLOTS:
      * Update media library path.
      */
     void updateMediaLibraryPath();
+    /*!
+     * Search result from list.
+     */
+    void searchResultChanged(int row, int column);
 
 private:
     /*!
@@ -108,8 +113,6 @@ private:
     QTabWidget *m_tabWidget;
     MusicItemQueryEdit *m_searchEdit;
     MusicGifLabelWidget *m_loadingLabel;
-    TTKIntListMap m_searchResultCache;
-    MusicSongInfoItemList m_songItems;
 
 };
 

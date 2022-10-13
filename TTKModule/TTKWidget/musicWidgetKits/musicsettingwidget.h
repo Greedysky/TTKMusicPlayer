@@ -289,7 +289,7 @@ private:
     /*!
      * Select function table index.
      */
-    void selectFunctionTableIndex(int row, int col);
+    void selectFunctionTableIndex(int row, int column);
     /*!
      * Init scroll widget page widget.
      */

@@ -575,7 +575,7 @@ void MusicSongsSummariziedWidget::musicLrcBatchDownload()
     GENERATE_SINGLE_WIDGET_CLASS(MusicLrcDownloadBatchWidget);
 }
 
-void MusicSongsSummariziedWidget::musicSearchResultChanged(int, int index)
+void MusicSongsSummariziedWidget::searchResultChanged(int, int column)
 {
     if(m_currentIndex == -1)
     {
@@ -614,13 +614,13 @@ void MusicSongsSummariziedWidget::musicSearchResultChanged(int, int index)
         }
     }
 
-    m_searchResultLevel = index;
-    m_searchResultCache.insert(index, result);
+    m_searchResultLevel = column;
+    m_searchResultCache.insert(column, result);
 
     MusicSongItem *item = &m_songItems[m_currentIndex];
     TTKObject_cast(MusicSongsListPlayTableWidget*, item->m_itemObject)->updateSearchFileName(&item->m_songs, result);
 
-    if(index == 0)
+    if(column == 0)
     {
         if(item->m_songs.isEmpty())
         {

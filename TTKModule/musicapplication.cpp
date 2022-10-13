@@ -610,7 +610,7 @@ void MusicApplication::musicPlayIndex(int row, int)
     musicStatePlay();
 }
 
-void MusicApplication::musicPlayIndexClicked(int row, int col)
+void MusicApplication::musicPlayIndexClicked(int row, int column)
 {
     if(m_currentSongTreeIndex == m_songTreeWidget->currentIndex())
     {
@@ -622,7 +622,7 @@ void MusicApplication::musicPlayIndexClicked(int row, int col)
             m_ui->musicPlayedList->append(items[index].m_songs);
         }
     }
-    musicPlayIndex(row, col);
+    musicPlayIndex(row, column);
 }
 
 void MusicApplication::musicPlayAnyTimeAt(int value)

@@ -291,6 +291,11 @@ void MusicLocalManagerWidget::updateMediaLibraryPath()
     m_sizeLabel->clear();
 }
 
+void MusicLocalManagerWidget::searchResultChanged(int, int)
+{
+
+}
+
 void MusicLocalManagerWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);

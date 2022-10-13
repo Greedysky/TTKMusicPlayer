@@ -75,7 +75,7 @@ public Q_SLOTS:
     /*!
      * Search result from list.
      */
-    void musicSearchResultChanged(int row, int col);
+    void searchResultChanged(int row, int column);
     /*!
      * Create the left button column
      */

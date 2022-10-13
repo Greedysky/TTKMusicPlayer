@@ -102,11 +102,11 @@ public Q_SLOTS:
     /*!
      * Item cell on click by row and col.
      */
-    void itemCellOnClick(int row, int col);
+    void itemCellOnClick(int row, int column);
     /*!
      * Item cell on double click by row and col.
      */
-    void itemDoubleClicked(int row, int col);
+    void itemDoubleClicked(int row, int column);
     /*!
      * Send the searched file or path.
      */
@@ -114,7 +114,7 @@ public Q_SLOTS:
     /*!
      * Search result from list.
      */
-    void musicSearchResultChanged(int row, int col);
+    void searchResultChanged(int row, int column);
 
     /*!
      * Override show function.

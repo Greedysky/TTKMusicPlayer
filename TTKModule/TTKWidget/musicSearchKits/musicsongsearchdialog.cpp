@@ -27,7 +27,7 @@ MusicSongSearchDialog::MusicSongSearchDialog(QWidget *parent)
     setLayout(layout);
 
     connect(closeButton, SIGNAL(clicked()), SLOT(close()));
-    connect(m_searchLine->editor(), SIGNAL(cursorPositionChanged(int,int)), parent, SLOT(musicSearchResultChanged(int,int)));
+    connect(m_searchLine->editor(), SIGNAL(cursorPositionChanged(int,int)), parent, SLOT(searchResultChanged(int,int)));
 }
 
 MusicSongSearchDialog::~MusicSongSearchDialog()

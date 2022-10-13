@@ -40,7 +40,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     connect(m_ui->transferUSBButton, SIGNAL(clicked()), SLOT(startToTransferFiles()));
 
     m_ui->searchLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle03);
-    connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchResultChanged(int,int)));
+    connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(searchResultChanged(int,int)));
 
     m_thread = new MusicConnectTransferThread(this);
     connect(m_thread, SIGNAL(transferFileFinished(QString)), m_ui->completeTableWidget, SLOT(addItem(QString)));
@@ -192,7 +192,7 @@ void MusicConnectTransferWidget::startToTransferFiles()
     m_thread->start();
 }
 
-void MusicConnectTransferWidget::musicSearchResultChanged(int, int index)
+void MusicConnectTransferWidget::searchResultChanged(int, int column)
 {
     TTKIntList result;
     for(int i = 0; i < m_songItems.count(); ++i)
@@ -202,7 +202,7 @@ void MusicConnectTransferWidget::musicSearchResultChanged(int, int index)
             result << i;
         }
     }
-    m_searchResultCache.insert(index, result);
+    m_searchResultCache.insert(column, result);
 
     MusicSongList songs;
     for(const int index : qAsConst(result))

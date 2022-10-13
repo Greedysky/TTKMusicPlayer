@@ -675,14 +675,14 @@ void MusicSettingWidget::scrollWidgetValueChanged(int value)
     }
 }
 
-void MusicSettingWidget::selectFunctionTableIndex(int row, int col)
+void MusicSettingWidget::selectFunctionTableIndex(int row, int column)
 {
     clearFunctionTableSelection();
     switch(row)
     {
-        case 0: m_ui->normalFunTableWidget->selectRow(col); break;
-        case 1: m_ui->lrcFunTableWidget->selectRow(col); break;
-        case 2: m_ui->supperFunTableWidget->selectRow(col); break;
+        case 0: m_ui->normalFunTableWidget->selectRow(column); break;
+        case 1: m_ui->lrcFunTableWidget->selectRow(column); break;
+        case 2: m_ui->supperFunTableWidget->selectRow(column); break;
         default: break;
     }
 }
