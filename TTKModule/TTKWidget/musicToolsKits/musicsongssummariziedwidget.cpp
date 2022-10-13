@@ -1066,7 +1066,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     item->m_itemObject = object;
     item->m_itemIndex = m_itemIndexRaise;
 
-    addItem(object, item->m_itemName);
+    addCellItem(object, item->m_itemName);
     setSongSort(object, &item->m_sort);
     object->setToolIndex(foundMappingIndex(item->m_itemIndex));
 

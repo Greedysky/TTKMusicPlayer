@@ -174,7 +174,6 @@ void MusicVideoSearchTableWidget::createSearchedItem(const MusicResultInfoItem &
     setRowCount(count + 1);
 
     QHeaderView *headerview = horizontalHeader();
-
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
     QtItemSetBackgroundColor(item, m_backgroundColor);

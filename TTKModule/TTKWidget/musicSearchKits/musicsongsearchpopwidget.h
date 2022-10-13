@@ -40,7 +40,7 @@ public:
     /*!
      * Create popup table item by index and name and time.
      */
-    void addItem(int index, const QString &name, const QString &time);
+    void addCellItem(int index, const QString &name, const QString &time);
 
 Q_SIGNALS:
     /*!

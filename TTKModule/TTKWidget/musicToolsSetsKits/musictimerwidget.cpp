@@ -4,8 +4,6 @@
 #include "musicapplicationmodule.h"
 #include "musictoolsetsuiobject.h"
 
-#include <QButtonGroup>
-
 MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicTimerWidget)

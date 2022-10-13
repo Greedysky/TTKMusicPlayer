@@ -40,7 +40,7 @@ private:
     /*!
      * Create item by index and name and size and time.
      */
-    virtual void addItem(int index, const MusicSong &record) override final;
+    virtual void addCellItem(int index, const MusicSong &record) override final;
 
 };
 

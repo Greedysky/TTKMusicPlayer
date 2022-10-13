@@ -62,7 +62,7 @@ MusicDownloadTableWidget::~MusicDownloadTableWidget()
     removeItems();
 }
 
-void MusicDownloadTableWidget::addItem(const MusicObject::MusicSongProperty &prop, const QString &type, const QString &icon)
+void MusicDownloadTableWidget::addCellItem(const MusicObject::MusicSongProperty &prop, const QString &type, const QString &icon)
 {
     const int index = rowCount();
     setRowCount(index + 1);
@@ -194,7 +194,7 @@ void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &i
     initialize();
     m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName, info.m_songName), Qt::ElideRight, 200));
 
-    addItems(info.m_songProps);
+    addCellItems(info.m_songProps);
 }
 
 void MusicDownloadWidget::show()
@@ -214,7 +214,7 @@ void MusicDownloadWidget::downLoadFinished()
     const MusicObject::MusicSongInformation info(matchMusicSongInformation());
     if(!info.m_songName.isEmpty() || !info.m_singerName.isEmpty())
     {
-        addItems(info.m_songProps);
+        addCellItems(info.m_songProps);
     }
     else
     {
@@ -247,7 +247,7 @@ MusicObject::MusicSongInformation MusicDownloadWidget::matchMusicSongInformation
     return MusicObject::MusicSongInformation();
 }
 
-void MusicDownloadWidget::addItems(const MusicObject::MusicSongPropertyList &props)
+void MusicDownloadWidget::addCellItems(const MusicObject::MusicSongPropertyList &props)
 {
     MusicObject::MusicSongPropertyList propertys = props;
     std::sort(propertys.begin(), propertys.end()); //to find out the min bitrate
@@ -257,22 +257,22 @@ void MusicDownloadWidget::addItems(const MusicObject::MusicSongPropertyList &pro
         if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
            (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
         {
-            m_ui->viewArea->addItem(prop, tr("SD"), QString(":/quality/lb_sd_quality"));
+            m_ui->viewArea->addCellItem(prop, tr("SD"), QString(":/quality/lb_sd_quality"));
         }
         else if((prop.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
         {
-            m_ui->viewArea->addItem(prop, tr("HQ"), QString(":/quality/lb_hd_quality"));
+            m_ui->viewArea->addCellItem(prop, tr("HQ"), QString(":/quality/lb_hd_quality"));
         }
         else if((prop.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
         {
-            m_ui->viewArea->addItem(prop, tr("SQ"), QString(":/quality/lb_sq_quality"));
+            m_ui->viewArea->addCellItem(prop, tr("SQ"), QString(":/quality/lb_sq_quality"));
         }
         else if((prop.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
         {
-            m_ui->viewArea->addItem(prop, tr("CD"), QString(":/quality/lb_cd_quality"));
+            m_ui->viewArea->addCellItem(prop, tr("CD"), QString(":/quality/lb_cd_quality"));
         }
         else
         {

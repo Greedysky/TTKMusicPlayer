@@ -12,7 +12,7 @@ MusicSpectrumLayoutItem::MusicSpectrumLayoutItem(QWidget *parent)
     setFixedSize(219, 123);
 }
 
-void MusicSpectrumLayoutItem::addItem(const QString &item, const QString &tip)
+void MusicSpectrumLayoutItem::addCellItem(const QString &item, const QString &tip)
 {
     setPixmap(MusicUtils::Image::pixmapToRound(item, 10, 10));
     setToolTip(tip);
@@ -111,7 +111,7 @@ void MusicSpectrumLayoutWidget::initialize()
     m_containWidget->setLayout(layout);
 }
 
-void MusicSpectrumLayoutWidget::addItems(const SpectrumInfoList &items)
+void MusicSpectrumLayoutWidget::addCellItems(const SpectrumInfoList &items)
 {
     MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SLOT(labelClicked(int)));
@@ -120,7 +120,7 @@ void MusicSpectrumLayoutWidget::addItems(const SpectrumInfoList &items)
     {
         const SpectrumInfo &info = items[i];
         MusicSpectrumLayoutItem *item = new MusicSpectrumLayoutItem(this);
-        item->addItem(info.first, info.second);
+        item->addCellItem(info.first, info.second);
 
         clickedGroup->mapped(item);
         m_containLayout->addWidget(item);
@@ -139,7 +139,7 @@ MusicSpectrumNormalLayoutWidget::MusicSpectrumNormalLayoutWidget(QWidget *parent
     items << SpectrumInfo(":/spectrum/normal_3", tr("FlowWave"));
     items << SpectrumInfo(":/spectrum/normal_4", tr("Histogram"));
     items << SpectrumInfo(":/spectrum/normal_5", tr("Line"));
-    addItems(items);
+    addCellItems(items);
 }
 
 QStringList MusicSpectrumNormalLayoutWidget::spectrumTypeList() const
@@ -156,7 +156,7 @@ MusicSpectrumPlusLayoutWidget::MusicSpectrumPlusLayoutWidget(QWidget *parent)
     items << SpectrumInfo(":/spectrum/plus_1", tr("FoldWave"));
     items << SpectrumInfo(":/spectrum/plus_2", tr("XRays"));
     items << SpectrumInfo(":/spectrum/plus_3", tr("BlurXRays"));
-    addItems(items);
+    addCellItems(items);
 }
 
 QStringList MusicSpectrumPlusLayoutWidget::spectrumTypeList() const
@@ -179,7 +179,7 @@ MusicSpectrumFlowLayoutWidget::MusicSpectrumFlowLayoutWidget(QWidget *parent)
     items << SpectrumInfo(":/spectrum/flow_5", tr("Mountain"));
     items << SpectrumInfo(":/spectrum/flow_6", tr("Matrix"));
     items << SpectrumInfo(":/spectrum/flow_7", tr("VU Meter"));
-    addItems(items);
+    addCellItems(items);
 }
 
 QStringList MusicSpectrumFlowLayoutWidget::spectrumTypeList() const
@@ -197,7 +197,7 @@ MusicSpectrumWaveLayoutWidget::MusicSpectrumWaveLayoutWidget(QWidget *parent)
     items << SpectrumInfo(":/spectrum/wave_2", tr("Crest"));
     items << SpectrumInfo(":/spectrum/wave_3", tr("Volume"));
     items << SpectrumInfo(":/spectrum/wave_4", tr("Envelope"));
-    addItems(items);
+    addCellItems(items);
 }
 
 QStringList MusicSpectrumWaveLayoutWidget::spectrumTypeList() const
@@ -220,7 +220,7 @@ MusicSpectrumFloridLayoutWidget::MusicSpectrumFloridLayoutWidget(QWidget *parent
     items << SpectrumInfo(":/spectrum/florid_5", tr("Ancient"));
     items << SpectrumInfo(":/spectrum/florid_6", tr("Electric"));
     items << SpectrumInfo(":/spectrum/florid_7", tr("Picture"));
-    addItems(items);
+    addCellItems(items);
 }
 
 QStringList MusicSpectrumFloridLayoutWidget::spectrumTypeList() const

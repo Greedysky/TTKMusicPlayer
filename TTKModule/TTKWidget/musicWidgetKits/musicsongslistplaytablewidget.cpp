@@ -84,10 +84,13 @@ void MusicSongsListPlayTableWidget::updateSongsList(const MusicSongList &songs)
 
     for(int i = count; i < songs.count(); ++i)
     {
+        const MusicSong &v = songs[i];
+
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
+
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::Widget::elidedText(font(), songs[i].name(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        item->setText(MusicUtils::Widget::elidedText(font(), v.name(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
@@ -101,7 +104,7 @@ void MusicSongsListPlayTableWidget::updateSongsList(const MusicSongList &songs)
                           item = new QTableWidgetItem;
         setItem(i, 4, item);
 
-                          item = new QTableWidgetItem(songs[i].playTime());
+                          item = new QTableWidgetItem(v.playTime());
         QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);

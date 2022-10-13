@@ -38,7 +38,7 @@ public:
     /*!
      * Create all items.
      */
-    void addItems(MusicSongItemList *items);
+    void addCellItems(MusicSongItemList *items);
     /*!
      * Get checked data items.
      */
@@ -68,7 +68,7 @@ public:
     /*!
      * Create all items.
      */
-    void addItems(MusicSongItemList *items);
+    void addCellItems(MusicSongItemList *items);
 
 Q_SIGNALS:
     /*!

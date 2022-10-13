@@ -182,7 +182,7 @@ public:
     /*!
      * Create all items.
      */
-    void addItems(const QStringList &lrcs);
+    void addCellItems(const QStringList &lrcs);
 
 Q_SIGNALS:
     /*!

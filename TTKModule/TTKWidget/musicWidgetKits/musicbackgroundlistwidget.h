@@ -177,11 +177,11 @@ public:
     /*!
      * Create item by icon.
      */
-    void addItem(const QString &icon, bool state);
+    void addCellItem(const QString &icon, bool state);
     /*!
      * Create item by name and path.
      */
-    void addItem(const QString &name, const QString &path, bool state);
+    void addCellItem(const QString &name, const QString &path, bool state);
 
     /*!
      * Update item by backgroud image.

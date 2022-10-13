@@ -184,7 +184,7 @@ void MusicBackgroundListWidget::clearAllItems()
     m_currentItem = nullptr;
 }
 
-void MusicBackgroundListWidget::addItem(const QString &icon, bool state)
+void MusicBackgroundListWidget::addCellItem(const QString &icon, bool state)
 {
     MusicBackgroundListItem *item = new MusicBackgroundListItem(this);
     item->setCloseEnabled(state);
@@ -196,7 +196,7 @@ void MusicBackgroundListWidget::addItem(const QString &icon, bool state)
     m_items << item;
 }
 
-void MusicBackgroundListWidget::addItem(const QString &name, const QString &path, bool state)
+void MusicBackgroundListWidget::addCellItem(const QString &name, const QString &path, bool state)
 {
     MusicBackgroundListItem *item = new MusicBackgroundListItem(this);
     item->setCloseEnabled(state);

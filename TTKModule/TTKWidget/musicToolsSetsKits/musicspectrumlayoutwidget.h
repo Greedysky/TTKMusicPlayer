@@ -40,7 +40,7 @@ public:
     /*!
      * Create spectrum item.
      */
-    void addItem(const QString &item, const QString &tip);
+    void addCellItem(const QString &item, const QString &tip);
     /*!
      * Set spectrum item check state.
      */
@@ -106,7 +106,7 @@ protected:
     /*!
      * Create all spectrum items.
      */
-    void addItems(const SpectrumInfoList &items);
+    void addCellItems(const SpectrumInfoList &items);
 
     bool m_exclusive;
     QVBoxLayout *m_containLayout;

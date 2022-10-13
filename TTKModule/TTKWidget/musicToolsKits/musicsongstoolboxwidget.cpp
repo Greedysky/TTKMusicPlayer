@@ -267,7 +267,7 @@ void MusicSongsToolBoxWidget::setSongSort(QWidget *item, MusicSongSort *sort)
 MusicFunctionToolBoxWidgetItem *MusicSongsToolBoxWidget::initialItem(QWidget *item, const QString &text)
 {
     MusicFunctionToolBoxWidgetItem *it = new MusicSongsToolBoxWidgetItem(m_itemIndexRaise, text, this);
-    it->addItem(item);
+    it->addCellItem(item);
     it->setItemExpand(true);
     return it;
 }

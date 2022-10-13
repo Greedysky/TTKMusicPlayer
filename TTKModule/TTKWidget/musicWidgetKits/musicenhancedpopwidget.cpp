@@ -8,7 +8,6 @@
 
 #include <QLabel>
 #include <QButtonGroup>
-#include <QPropertyAnimation>
 
 #define LABEL_ANIMAT_WIDGET 156
 #define LABEL_BUTTON_WIDGET 116

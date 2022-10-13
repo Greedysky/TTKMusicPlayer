@@ -121,7 +121,7 @@ MusicCommentsItem::~MusicCommentsItem()
     delete m_starLabel;
 }
 
-void MusicCommentsItem::addItem(const MusicResultDataItem &comments)
+void MusicCommentsItem::addCellItem(const MusicResultDataItem &comments)
 {
     m_userName->setText(comments.m_nickName + ":");
     m_userName->setFixedWidth(MusicUtils::Widget::fontTextWidth(m_userName->font(), m_userName->text()));
@@ -316,7 +316,7 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
 void MusicCommentsWidget::createCommentItem(const MusicResultDataItem &comments)
 {
     MusicCommentsItem *item = new MusicCommentsItem(m_messageComments);
-    item->addItem(comments);
+    item->addCellItem(comments);
     m_commentsItems << item;
 
     QVBoxLayout *layout = TTKObject_cast(QVBoxLayout*, m_messageComments->layout());

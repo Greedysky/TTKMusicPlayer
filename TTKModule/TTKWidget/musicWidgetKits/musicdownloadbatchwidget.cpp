@@ -35,7 +35,7 @@ MusicDownloadBatchTableItem::~MusicDownloadBatchTableItem()
     delete m_qulity;
 }
 
-void MusicDownloadBatchTableItem::addItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)
+void MusicDownloadBatchTableItem::addCellItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)
 {
     m_songName->setToolTip(info.m_songName);
     m_songName->setText(MusicUtils::Widget::elidedText(m_songName->font(), m_songName->toolTip(), Qt::ElideRight, m_songName->width() - 10));
@@ -291,7 +291,7 @@ void MusicDownloadBatchTableWidget::setParentClass(QWidget *parent)
     m_supperClass = parent;
 }
 
-void MusicDownloadBatchTableWidget::addItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)
+void MusicDownloadBatchTableWidget::addCellItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)
 {
     const int index = rowCount();
     setRowCount(index + 1);
@@ -301,7 +301,7 @@ void MusicDownloadBatchTableWidget::addItem(const MusicObject::MusicSongInformat
     setItem(index, 0,  it);
 
     MusicDownloadBatchTableItem *item = new MusicDownloadBatchTableItem(this);
-    item->addItem(info, type);
+    item->addCellItem(info, type);
     m_items << item;
     setCellWidget(index, 0, item);
 }
@@ -383,7 +383,7 @@ void MusicDownloadBatchWidget::setSongName(const MusicObject::MusicSongInformati
 {
     for(const MusicObject::MusicSongInformation &info : qAsConst(songInfos))
     {
-        m_ui->tableWidget->addItem(info, type);
+        m_ui->tableWidget->addCellItem(info, type);
     }
     m_ui->songCountLabel->setText(tr("All Songs Count %1").arg(songInfos.count()));
 }

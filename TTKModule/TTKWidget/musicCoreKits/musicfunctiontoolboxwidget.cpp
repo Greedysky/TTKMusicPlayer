@@ -207,7 +207,7 @@ QWidget *MusicFunctionToolBoxWidgetItem::item() const
     return m_item;
 }
 
-void MusicFunctionToolBoxWidgetItem::addItem(QWidget *item)
+void MusicFunctionToolBoxWidgetItem::addCellItem(QWidget *item)
 {
     m_item = item;
     m_layout->addWidget(item);
@@ -303,7 +303,7 @@ MusicFunctionToolBoxWidget::~MusicFunctionToolBoxWidget()
     delete m_scrollArea;
 }
 
-void MusicFunctionToolBoxWidget::addItem(QWidget *item, const QString &text)
+void MusicFunctionToolBoxWidget::addCellItem(QWidget *item, const QString &text)
 {
     const int count = m_layout->count();
     if(count > 1)
@@ -429,7 +429,7 @@ void MusicFunctionToolBoxWidget::setTransparent(int alpha)
 MusicFunctionToolBoxWidgetItem *MusicFunctionToolBoxWidget::initialItem(QWidget *item, const QString &text)
 {
     MusicFunctionToolBoxWidgetItem *it = new MusicFunctionToolBoxWidgetItem(m_itemIndexRaise, text, this);
-    it->addItem(item);
+    it->addCellItem(item);
     it->setItemExpand(true);
     return it;
 }

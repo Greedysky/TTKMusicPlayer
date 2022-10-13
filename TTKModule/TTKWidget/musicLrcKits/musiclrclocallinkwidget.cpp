@@ -30,7 +30,7 @@ bool MusicLrcLocalLinkTableWidget::contains(const QString &string)
     return false;
 }
 
-void MusicLrcLocalLinkTableWidget::addItems(const MusicLocalDataItemList &items)
+void MusicLrcLocalLinkTableWidget::addCellItems(const MusicLocalDataItemList &items)
 {
     const int count = rowCount();
     setRowCount(count + items.count());
@@ -38,14 +38,16 @@ void MusicLrcLocalLinkTableWidget::addItems(const MusicLocalDataItemList &items)
     QHeaderView *headerview = horizontalHeader();
     for(int i = 0; i < items.count(); ++i)
     {
+        const MusicLocalDataItem &v = items[i];
+
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setToolTip(items[i].m_name);
+        item->setToolTip(v.m_name);
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 20));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(items[i].m_path);
+        item->setToolTip(v.m_path);
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 1, item);
@@ -128,7 +130,7 @@ void MusicLrcLocalLinkWidget::searchInLocalLrc()
             items << item;
         }
     }
-    m_ui->searchedTable->addItems(items);
+    m_ui->searchedTable->addCellItems(items);
 }
 
 void MusicLrcLocalLinkWidget::fuzzyStateChanged()
@@ -149,7 +151,7 @@ void MusicLrcLocalLinkWidget::findInLocalFile()
     item.m_name = QFileInfo(path).fileName();
     item.m_path = path;
 
-    m_ui->searchedTable->addItems({item});
+    m_ui->searchedTable->addCellItems({item});
 }
 
 void MusicLrcLocalLinkWidget::deleteFoundLrc()

@@ -147,7 +147,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItemList &i
         data.m_dataItem = item;
         m_totalFileSzie += item.m_size;
 
-        addItem(data);
+        addCellItem(data);
     }
 
     Q_EMIT updateLabelMessage(tr("List update finished!"));
@@ -295,7 +295,7 @@ void MusicCloudManagerTableWidget::uploadFileDirToServer()
             item.m_dataItem.m_putTime = fin.lastModified().toString(TTK_YEAR_TIME_FORMAT);
             item.m_dataItem.m_size = fin.size();
 
-            addItem(item);
+            addCellItem(item);
         }
 
         if(!m_uploading)
@@ -384,13 +384,12 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.exec(QCursor::pos());
 }
 
-void MusicCloudManagerTableWidget::addItem(const MusicCloudDataItem &data)
+void MusicCloudManagerTableWidget::addCellItem(const MusicCloudDataItem &data)
 {
     int row = rowCount();
     setRowCount(row + 1);
 
     QHeaderView *headerview = horizontalHeader();
-
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(MUSIC_DATA_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
     setItem(row, 0, item);
@@ -445,7 +444,7 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
 
         MusicUtils::Core::sleep(MT_MS);
 
-        addItem(item);
+        addCellItem(item);
     }
 
     if(!m_uploading)

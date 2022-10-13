@@ -136,7 +136,7 @@ public:
     /*!
      * Create item by name and path.
      */
-    void addItem(QObject *object, const QString &path, int index, bool status);
+    void addCellItem(QObject *object, const QString &path, int index, bool status);
 
     /*!
      * Resize window bound by widget resize called.

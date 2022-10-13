@@ -7,6 +7,7 @@
 #include "musicformats.h"
 
 #include <QTimer>
+#include <QButtonGroup>
 
 MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)
@@ -41,54 +42,51 @@ MusicLocalManagerSongsTableWidget::~MusicLocalManagerSongsTableWidget()
     delete m_songs;
 }
 
-void MusicLocalManagerSongsTableWidget::updateSongsList(const QStringList &songs)
+void MusicLocalManagerSongsTableWidget::updateSongsList(const MusicSongInfoItemList &songs)
 {
-    MusicSongMeta meta;
     setRowCount(songs.count());
 
     for(int i = 0; i < songs.count(); ++i)
     {
-        QString check;
-        const bool state = meta.read(songs[i]);
+        const MusicSongInfoItem &v = songs[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setToolTip(state ? MusicObject::generateSongName(meta.title(), meta.artist()) : TTK_DEFAULT_STR);
+        item->setToolTip(v.m_title);
         item->setText(item->toolTip());
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 0, item);
 
                          item = new QTableWidgetItem;
-        item->setToolTip(state ? ((check = meta.artist()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+        item->setToolTip(v.m_artist);
         item->setText(item->toolTip());
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setToolTip(state ? ((check = meta.album()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+        item->setToolTip(v.m_album);
         item->setText(item->toolTip());
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
-        item->setToolTip(state ? ((check = meta.year()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+        item->setToolTip(v.m_year);
         item->setText(item->toolTip());
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 3, item);
 
                 item = new QTableWidgetItem;
-        item->setToolTip(state ? ((check = meta.genre()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+        item->setToolTip(v.m_genre);
         item->setText(item->toolTip());
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
 
                 item = new QTableWidgetItem;
-        item->setToolTip(meta.fileRelatedPath());
+        item->setToolTip(v.m_path);
         item->setText(item->toolTip());
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);
 
-        qApp->processEvents();
-        m_songs->append(MusicSong(meta.fileRelatedPath()));
+        m_songs->append(MusicSong(v.m_path));
     }
 }
 
@@ -119,10 +117,12 @@ void MusicLocalManagerSongsTableWidget::contextMenuEvent(QContextMenuEvent *even
     menu.exec(QCursor::pos());
 }
 
-
+#define TAB_BUTTON_ON   MusicUIObject::MQSSPushButtonStyle02 + "QPushButton{ background-color:#158FE1; color:white; }"
+#define TAB_BUTTON_OFF  MusicUIObject::MQSSPushButtonStyle02 + "QPushButton{ background-color:#BFBFBF; color:white; }"
 
 MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_currentIndex(0)
 {
     setStyleSheet(MusicUIObject::MQSSBackgroundStyle12 + MusicUIObject::MQSSColorStyle09);
 
@@ -176,58 +176,99 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     button->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     button->setCursor(QCursor(Qt::PointingHandCursor));
     functionWidgetLayout->addWidget(button);
-#ifdef Q_OS_UNIX
-    refresh->setFocusPolicy(Qt::NoFocus);
-    button->setFocusPolicy(Qt::NoFocus);
-#endif
+
     m_searchEdit = new MusicItemQueryEdit(this);
     m_searchEdit->setFixedHeight(33);
     topLayout->addWidget(functionWidget);
     topLayout->addWidget(m_searchEdit);
 
-    m_tabWidget = new QTabWidget(mainWidget);
-    m_tabWidget->setFocusPolicy(Qt::NoFocus);
-    m_tabWidget->setStyleSheet(MusicUIObject::MQSSTabWidgetStyle01);
-    mainLayout->addWidget(m_tabWidget);
+    QWidget *tabWidget = new QWidget(mainWidget);
+    QHBoxLayout *tabWidgetLayout = new QHBoxLayout(tabWidget);
+    tabWidgetLayout->setSpacing(0);
+    tabWidgetLayout->setContentsMargins(0, 0, 0, 0);
+    tabWidget->setLayout(tabWidgetLayout);
+    mainLayout->addWidget(tabWidget);
     //
-    QWidget *songWidget = new MusicLocalManagerSongsTableWidget(m_tabWidget);
-    m_tabWidget->addTab(songWidget, tr("Song"));
-    //
-    QWidget *artistWidget = new QWidget(m_tabWidget);
-    artistWidget->setStyleSheet("background:rgb(160,160,160)");
-    m_tabWidget->addTab(artistWidget, tr("Artist"));
-    //
-    QWidget *albumWidget = new QWidget(m_tabWidget);
-    albumWidget->setStyleSheet("background:rgb(120,120,120)");
-    m_tabWidget->addTab(albumWidget, tr("Album"));
-    //
-    QWidget *yearWidget = new QWidget(m_tabWidget);
-    yearWidget->setStyleSheet("background:rgb(80,80,80)");
-    m_tabWidget->addTab(yearWidget, tr("Year"));
-    //
-    QWidget *genreWidget = new QWidget(m_tabWidget);
-    genreWidget->setStyleSheet("background:rgb(40,40,40)");
-    m_tabWidget->addTab(genreWidget, tr("Genre"));
+    QPushButton *songButton = new QPushButton(tr("Song"), functionWidget);
+    songButton->setFixedSize(90, 30);
+    songButton->setStyleSheet(TAB_BUTTON_ON);
+    songButton->setCursor(QCursor(Qt::PointingHandCursor));
+    tabWidgetLayout->addWidget(songButton);
+
+    QPushButton *artistButton = new QPushButton(tr("Artist"), functionWidget);
+    artistButton->setFixedSize(90, 30);
+    artistButton->setStyleSheet(TAB_BUTTON_OFF);
+    artistButton->setCursor(QCursor(Qt::PointingHandCursor));
+    tabWidgetLayout->addWidget(artistButton);
+
+    QPushButton *albumButton = new QPushButton(tr("Album"), functionWidget);
+    albumButton->setFixedSize(90, 30);
+    albumButton->setStyleSheet(TAB_BUTTON_OFF);
+    albumButton->setCursor(QCursor(Qt::PointingHandCursor));
+    tabWidgetLayout->addWidget(albumButton);
+
+    QPushButton *yearButton = new QPushButton(tr("Year"), functionWidget);
+    yearButton->setFixedSize(90, 30);
+    yearButton->setStyleSheet(TAB_BUTTON_OFF);
+    yearButton->setCursor(QCursor(Qt::PointingHandCursor));
+    tabWidgetLayout->addWidget(yearButton);
+
+    QPushButton *genreButton = new QPushButton(tr("Genre"), functionWidget);
+    genreButton->setFixedSize(90, 30);
+    genreButton->setStyleSheet(TAB_BUTTON_OFF);
+    genreButton->setCursor(QCursor(Qt::PointingHandCursor));
+    tabWidgetLayout->addWidget(genreButton);
+    tabWidgetLayout->addStretch(1);
+
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->addButton(songButton, 0);
+    buttonGroup->addButton(artistButton, 1);
+    buttonGroup->addButton(albumButton, 2);
+    buttonGroup->addButton(yearButton, 3);
+    buttonGroup->addButton(genreButton, 4);
+    QtButtonGroupConnect(buttonGroup, this, typeIndexChanged);
+
+#ifdef Q_OS_UNIX
+    refresh->setFocusPolicy(Qt::NoFocus);
+    button->setFocusPolicy(Qt::NoFocus);
+    songButton->setFocusPolicy(Qt::NoFocus);
+    artistButton->setFocusPolicy(Qt::NoFocus);
+    albumButton->setFocusPolicy(Qt::NoFocus);
+    yearButton->setFocusPolicy(Qt::NoFocus);
+    genreButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
+    m_songWidget = new MusicLocalManagerSongsTableWidget(mainWidget);
+    mainLayout->addWidget(m_songWidget);
 
     m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::CicleBlue, this);
     m_loadingLabel->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words!"));
 
     QTimer::singleShot(MT_ONCE, this, SLOT(refreshItems()));
     connect(refresh, SIGNAL(clicked()), SLOT(refreshItems()));
     connect(button, SIGNAL(clicked()), SLOT(updateMediaLibraryPath()));
-    connect(m_tabWidget, SIGNAL(currentChanged(int)), SLOT(typeIndexChanged(int)));
+    connect(m_searchEdit->editor(), SIGNAL(cursorPositionChanged(int,int)), SLOT(searchResultChanged(int,int)));
 }
 
 MusicLocalManagerWidget::~MusicLocalManagerWidget()
 {
     delete m_sizeLabel;
-    delete m_tabWidget;
     delete m_searchEdit;
     delete m_loadingLabel;
+    delete m_songWidget;
 }
 
 void MusicLocalManagerWidget::typeIndexChanged(int index)
 {
+    m_currentIndex = index;
+    const QList<QAbstractButton*> &buttons = TTKObject_cast(QButtonGroup*, sender())->buttons();
+
+    for(int i = 0; i < buttons.count(); ++i)
+    {
+        buttons[i]->setStyleSheet(i == index ? TAB_BUTTON_ON : TAB_BUTTON_OFF);
+    }
+
     switch(index)
     {
         case 0:
@@ -257,6 +298,7 @@ void MusicLocalManagerWidget::typeIndexChanged(int index)
         }
         default: break;
     }
+
     m_searchEdit->editor()->clear();
 }
 
@@ -267,8 +309,8 @@ void MusicLocalManagerWidget::refreshItems()
         return;
     }
 
-    MusicLocalManagerSongsTableWidget *widget = TTKObject_cast(MusicLocalManagerSongsTableWidget*, m_tabWidget->currentWidget());
-    widget->removeItems();
+    m_songItems.clear();
+    m_songWidget->removeItems();
 
     const QString &path = G_SETTING_PTR->value(MusicSettingManager::MediaLibraryPath).toString();
     if(!path.isEmpty())
@@ -277,7 +319,25 @@ void MusicLocalManagerWidget::refreshItems()
         const QStringList &files = MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats());
         m_sizeLabel->setText(tr("   (Totol: %1)").arg(files.size()));
 
-        widget->updateSongsList(files);
+        MusicSongMeta meta;
+        for(const QString &file : files)
+        {
+            QString check;
+            const bool state = meta.read(file);
+
+            MusicSongInfoItem info;
+            info.m_title = state ? MusicObject::generateSongName(meta.title(), meta.artist()) : TTK_DEFAULT_STR;
+            info.m_artist = state ? ((check = meta.artist()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
+            info.m_album = state ? ((check = meta.album()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
+            info.m_year = state ? ((check = meta.year()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
+            info.m_genre = state ? ((check = meta.genre()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
+            info.m_path = file;
+            m_songItems << info;
+
+            qApp->processEvents();
+        }
+
+        m_songWidget->updateSongsList(m_songItems);
         m_loadingLabel->run(false);
     }
     else
@@ -291,9 +351,37 @@ void MusicLocalManagerWidget::updateMediaLibraryPath()
     m_sizeLabel->clear();
 }
 
-void MusicLocalManagerWidget::searchResultChanged(int, int)
+void MusicLocalManagerWidget::searchResultChanged(int, int column)
 {
+    TTKIntList result;
+    for(int i = 0; i < m_songItems.count(); ++i)
+    {
+        QString v;
+        switch(m_currentIndex)
+        {
+            case 0: v = m_songItems[i].m_title; break;
+            case 1: v = m_songItems[i].m_artist; break;
+            case 2: v = m_songItems[i].m_album; break;
+            case 3: v = m_songItems[i].m_year; break;
+            case 4: v = m_songItems[i].m_genre; break;
+            default: break;
+        }
 
+        if(v.contains(m_searchEdit->editor()->text().trimmed(), Qt::CaseInsensitive))
+        {
+            result << i;
+        }
+    }
+
+    MusicSongInfoItemList data;
+    for(const int index : qAsConst(result))
+    {
+        data.append(m_songItems[index]);
+    }
+
+    m_songWidget->removeItems();
+    m_searchResultCache.insert(column, result);
+    m_songWidget->updateSongsList(data);
 }
 
 void MusicLocalManagerWidget::resizeEvent(QResizeEvent *event)

@@ -39,22 +39,25 @@ void MusicSongsListPlayedTableWidget::updateSongsList(const MusicSongList &songs
     QHeaderView *headerview = horizontalHeader();
     for(int i = count; i < songs.count(); ++i)
     {
+        const MusicSong &v = songs[i];
+
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(songs[i].name());
+        item->setToolTip(v.name());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));  
         QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
-
         setItem(i, 1, item);
+
                           item = new QTableWidgetItem;
         setItem(i, 2, item);
+
                           item = new QTableWidgetItem;
         setItem(i, 3, item);
 
-                          item = new QTableWidgetItem(songs[i].playTime());
+                          item = new QTableWidgetItem(v.playTime());
         QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);

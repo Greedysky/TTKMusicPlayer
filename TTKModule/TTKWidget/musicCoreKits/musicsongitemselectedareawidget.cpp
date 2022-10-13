@@ -23,7 +23,7 @@ MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *pare
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 }
 
-void MusicSongItemSelectedTableWidget::addItems(MusicSongItemList *items)
+void MusicSongItemSelectedTableWidget::addCellItems(MusicSongItemList *items)
 {
     if(items->count() >= 4)
     {
@@ -37,14 +37,15 @@ void MusicSongItemSelectedTableWidget::addItems(MusicSongItemList *items)
 
     for(int i = 0; i < items->count(); ++i)
     {
-        const MusicSongItem &song = items->at(i);
+        const MusicSongItem &v = items->at(i);
+
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
-        item->setData(MUSIC_DATA_ROLE, song.m_itemIndex);
+        item->setData(MUSIC_DATA_ROLE, v.m_itemIndex);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.m_itemName);
+        item->setToolTip(v.m_itemName);
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 30));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
@@ -96,9 +97,9 @@ MusicSongItemSelectedDialog::~MusicSongItemSelectedDialog()
     delete m_ui;
 }
 
-void MusicSongItemSelectedDialog::addItems(MusicSongItemList *items)
+void MusicSongItemSelectedDialog::addCellItems(MusicSongItemList *items)
 {
-    m_ui->itemTableWidget->addItems(items);
+    m_ui->itemTableWidget->addCellItems(items);
 }
 
 void MusicSongItemSelectedDialog::confirmButtonClicked()
@@ -187,7 +188,7 @@ void MusicSongItemSelectedAreaWidget::modifiedItemButtonClicked()
 
     MusicSongItemSelectedDialog dialog;
     connect(&dialog, SIGNAL(itemListChanged(TTKIntList)), SLOT(itemListChanged(TTKIntList)));
-    dialog.addItems(&songs);
+    dialog.addCellItems(&songs);
     dialog.exec();
 
     Q_EMIT confirmChanged();

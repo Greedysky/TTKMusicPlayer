@@ -42,7 +42,7 @@ public:
     /*!
      * Create the current song comment.
      */
-    void addItem(const MusicResultDataItem &comments);
+    void addCellItem(const MusicResultDataItem &comments);
 
 private Q_SLOTS:
     /*!

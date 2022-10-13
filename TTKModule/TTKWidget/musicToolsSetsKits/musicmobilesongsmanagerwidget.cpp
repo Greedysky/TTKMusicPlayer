@@ -35,7 +35,7 @@ void MusicMobileSongsTableWidget::updateSongsList(const QStringList &songs)
 
     for(int i = 0; i < songs.count(); ++i)
     {
-        QFileInfo fin(songs[i]);
+        const QFileInfo fin(songs[i]);
 
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(fin.fileName());
@@ -268,16 +268,15 @@ void MusicMobileSongsManagerWidget::searchResultChanged(int, int column)
         }
     }
 
-    m_searchResultCache.insert(column, result);
-    clearAllItems();
-
-    QStringList names;
+    QStringList data;
     for(const int index : qAsConst(result))
     {
-        names.append(m_songItems[index]);
+        data.append(m_songItems[index]);
     }
 
-    m_ui->songlistTable->updateSongsList(names);
+    clearAllItems();
+    m_searchResultCache.insert(column, result);
+    m_ui->songlistTable->updateSongsList(data);
 }
 
 void MusicMobileSongsManagerWidget::show()
@@ -288,7 +287,6 @@ void MusicMobileSongsManagerWidget::show()
 
 void MusicMobileSongsManagerWidget::clearAllItems()
 {
-    ///Remove all the original item
     if(m_ui->allSelectedcheckBox->isChecked())
     {
         m_ui->allSelectedcheckBox->click();

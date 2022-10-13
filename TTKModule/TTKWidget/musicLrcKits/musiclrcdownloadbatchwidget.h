@@ -43,7 +43,7 @@ public:
     /*!
      * Create all items.
      */
-    void addItems(const MusicSongList &items);
+    void addCellItems(const MusicSongList &items);
 
 };
 

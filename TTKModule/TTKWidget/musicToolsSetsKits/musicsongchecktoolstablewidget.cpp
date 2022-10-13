@@ -24,26 +24,27 @@ MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidg
     setItemDelegateForColumn(3, new MusicPushButtonDelegate(this));
 }
 
-void MusicSongCheckToolsRenameTableWidget::addItems(const MusicSongCheckToolsRenameList &items)
+void MusicSongCheckToolsRenameTableWidget::addCellItems(const MusicSongCheckToolsRenameList &items)
 {
     setRowCount(items.count());
     QHeaderView *headerview = horizontalHeader();
 
     for(int i = 0; i < items.count(); ++i)
     {
-        const MusicSongCheckToolsRename &song = items[i];
+        const MusicSongCheckToolsRename &v = items[i];
+
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.m_locaName);
+        item->setToolTip(v.m_locaName);
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setToolTip(song.m_recommendName);
+        item->setToolTip(v.m_recommendName);
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
@@ -106,42 +107,43 @@ MusicSongCheckToolsDuplicateTableWidget::~MusicSongCheckToolsDuplicateTableWidge
     G_CONNECTION_PTR->removeValue(className());
 }
 
-void MusicSongCheckToolsDuplicateTableWidget::addItems(const MusicSongCheckToolsDuplicateList &songs)
+void MusicSongCheckToolsDuplicateTableWidget::addCellItems(const MusicSongCheckToolsDuplicateList &songs)
 {
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
 
     for(int i = 0; i < songs.count(); ++i)
     {
-        const MusicSongCheckToolsDuplicate &song = songs[i];
+        const MusicSongCheckToolsDuplicate &v = songs[i];
+
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.m_song.name());
+        item->setToolTip(v.m_song.name());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 45));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_song.playTime());
+        item->setText(v.m_song.playTime());
         QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_song.sizeStr());
+        item->setText(v.m_song.sizeStr());
         QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 3, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_bitrate);
+        item->setText(v.m_bitrate);
         QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 4, item);
 
                 item = new QTableWidgetItem;
         item->setData(MUSIC_TEXT_ROLE, tr("Play"));
-        item->setData(MUSIC_DATA_ROLE, song.m_song.path());
+        item->setData(MUSIC_DATA_ROLE, v.m_song.path());
         setItem(i, 5, item);
 
                 item = new QTableWidgetItem;
@@ -220,43 +222,44 @@ MusicSongCheckToolsQualityTableWidget::~MusicSongCheckToolsQualityTableWidget()
     G_CONNECTION_PTR->removeValue(className());
 }
 
-void MusicSongCheckToolsQualityTableWidget::addItems(const MusicSongCheckToolsQualityList &songs)
+void MusicSongCheckToolsQualityTableWidget::addCellItems(const MusicSongCheckToolsQualityList &songs)
 {
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
 
     for(int i = 0; i < songs.count(); ++i)
     {
-        const MusicSongCheckToolsQuality &song = songs[i];
+        const MusicSongCheckToolsQuality &v = songs[i];
+
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.m_song.name());
+        item->setToolTip(v.m_song.name());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_song.playTime());
+        item->setText(v.m_song.playTime());
         QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_song.sizeStr());
+        item->setText(v.m_song.sizeStr());
         QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 3, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_bitrate);
+        item->setText(v.m_bitrate);
         QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 4, item);
 
                 item = new QTableWidgetItem;
         QColor color;
         QString bitrate;
-        MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(song.m_bitrate), bitrate, color);
+        MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(v.m_bitrate), bitrate, color);
         item->setText(bitrate);
         QtItemSetTextAlignment(item, Qt::AlignCenter);
         QtItemSetForegroundColor(item, color);
@@ -264,7 +267,7 @@ void MusicSongCheckToolsQualityTableWidget::addItems(const MusicSongCheckToolsQu
 
                 item = new QTableWidgetItem;
         item->setData(MUSIC_TEXT_ROLE, tr("Play"));
-        item->setData(MUSIC_DATA_ROLE, song.m_song.path());
+        item->setData(MUSIC_DATA_ROLE, v.m_song.path());
         setItem(i, 6, item);
 
                 item = new QTableWidgetItem;

@@ -22,7 +22,6 @@
 #include <qmmp/qmmpsettings.h>
 
 #include <QFontDatabase>
-#include <QButtonGroup>
 #include <QAudioDeviceInfo>
 
 #define SCROLL_ITEM_HEIGHT 370
@@ -46,15 +45,16 @@ void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionIt
     m_listIndex = index;
     for(int i = 0; i < items.count(); ++i)
     {
-        const MusicFunctionItem &fItem = items[i];
+        const MusicFunctionItem &v = items[i];
+
         QTableWidgetItem *item = nullptr;
         setItem(i, 0, item = new QTableWidgetItem());
 
-                      item = new QTableWidgetItem(QIcon(fItem.m_icon), QString());
+                      item = new QTableWidgetItem(QIcon(v.m_icon), QString());
         QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 1, item);
 
-                      item = new QTableWidgetItem(fItem.m_name);
+                      item = new QTableWidgetItem(v.m_name);
         QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);

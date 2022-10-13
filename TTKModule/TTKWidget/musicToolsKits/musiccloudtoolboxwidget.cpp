@@ -42,7 +42,7 @@ void MusicCloudToolBoxWidget::createWidgetItem(MusicAbstractDownloadTableWidget 
     item->m_itemName = text;
     item->m_itemIndex = index;
     item->m_itemObject = w;
-    addItem(w, item->m_itemName);
+    addCellItem(w, item->m_itemName);
 
     w->setToolIndex(item->m_itemIndex);
     w->setSongsList(&item->m_songs);
@@ -53,7 +53,7 @@ void MusicCloudToolBoxWidget::createWidgetItem(MusicAbstractDownloadTableWidget 
 MusicFunctionToolBoxWidgetItem *MusicCloudToolBoxWidget::initialItem(QWidget *item, const QString &text)
 {
     MusicFunctionToolBoxWidgetItem *it = new MusicNormalToolBoxWidgetItem(m_itemIndexRaise, text, this);
-    it->addItem(item);
+    it->addCellItem(item);
     it->setItemExpand(true);
     return it;
 }

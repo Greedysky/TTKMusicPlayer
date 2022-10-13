@@ -37,7 +37,7 @@ public:
     /*!
      * Create all items.
      */
-    void addItems(const MusicSongList &songs);
+    void addCellItems(const MusicSongList &songs);
 
 };
 
@@ -59,7 +59,7 @@ public Q_SLOTS:
     /*!
      * Create all items.
      */
-    void addItem(const QString &name);
+    void addCellItem(const QString &name);
 
 };
 

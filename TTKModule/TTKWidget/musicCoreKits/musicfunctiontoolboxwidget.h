@@ -125,7 +125,7 @@ public:
     /*!
      * Add widget item.
      */
-    void addItem(QWidget *item);
+    void addCellItem(QWidget *item);
 
     /*!
      * Set title text.
@@ -217,7 +217,7 @@ public:
     /*!
      * Add widget item.
      */
-    void addItem(QWidget *item, const QString &text);
+    void addCellItem(QWidget *item, const QString &text);
     /*!
      * Remove widget item.
      */

@@ -7,13 +7,10 @@
 #include "musicsongssummariziedwidget.h"
 #include "musicconnecttransferthread.h"
 
-#include <QButtonGroup>
-
 MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicConnectTransferWidget),
       m_currentIndex(-1),
-      m_buttonGroup(nullptr),
       m_currentDeviceItem(nullptr)
 {
     m_ui->setupUi(this);
@@ -43,7 +40,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(searchResultChanged(int,int)));
 
     m_thread = new MusicConnectTransferThread(this);
-    connect(m_thread, SIGNAL(transferFileFinished(QString)), m_ui->completeTableWidget, SLOT(addItem(QString)));
+    connect(m_thread, SIGNAL(transferFileFinished(QString)), m_ui->completeTableWidget, SLOT(addCellItem(QString)));
 
 #ifdef Q_OS_UNIX
     m_ui->allSelectedcheckBox->setFocusPolicy(Qt::NoFocus);
@@ -60,7 +57,6 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 MusicConnectTransferWidget::~MusicConnectTransferWidget()
 {
     G_CONNECTION_PTR->removeValue(className());
-    delete m_buttonGroup;
     delete m_ui;
     delete m_thread;
 }
@@ -81,8 +77,8 @@ void MusicConnectTransferWidget::initialize()
     Q_EMIT queryMusicItemList(songs);
 
     m_ui->playListLayoutWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
-    m_buttonGroup = new QButtonGroup(this);
-    QtButtonGroupConnect(m_buttonGroup, this, currentPlaylistSelected);
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    QtButtonGroupConnect(buttonGroup, this, currentPlaylistSelected);
 
     for(int i = 0; i < songs.count(); ++i)
     {
@@ -94,7 +90,7 @@ void MusicConnectTransferWidget::initialize()
         button->setFocusPolicy(Qt::NoFocus);
 #endif
         m_ui->playListLayout->addWidget(button);
-        m_buttonGroup->addButton(button, i);
+        buttonGroup->addButton(button, i);
     }
 
     int count = 0;
@@ -105,15 +101,14 @@ void MusicConnectTransferWidget::initialize()
     m_ui->songCountLabel->setText(m_songCountLabel.arg(count));
 }
 
-void MusicConnectTransferWidget::addItems(const MusicSongList &songs)
+void MusicConnectTransferWidget::addCellItems(const MusicSongList &songs)
 {
     m_ui->listTableWidget->removeItems();
     if(m_ui->allSelectedcheckBox->isChecked())
     {
         m_ui->allSelectedcheckBox->click();
     }
-
-    m_ui->listTableWidget->addItems(songs);
+    m_ui->listTableWidget->addCellItems(songs);
 }
 
 QStringList MusicConnectTransferWidget::selectedFiles() const
@@ -171,7 +166,7 @@ void MusicConnectTransferWidget::currentPlaylistSelected(int index)
     m_searchResultCache.clear();
     m_ui->searchLineEdit->clear();
     m_songItems = songs[m_currentIndex = index].m_songs;
-    addItems(m_songItems);
+    addCellItems(m_songItems);
 }
 
 void MusicConnectTransferWidget::selectedAllItems(bool check)
@@ -202,14 +197,15 @@ void MusicConnectTransferWidget::searchResultChanged(int, int column)
             result << i;
         }
     }
-    m_searchResultCache.insert(column, result);
 
-    MusicSongList songs;
+    MusicSongList data;
     for(const int index : qAsConst(result))
     {
-        songs.append(m_songItems[index]);
+        data.append(m_songItems[index]);
     }
-    addItems(songs);
+
+    m_searchResultCache.insert(column, result);
+    addCellItems(data);
 }
 
 int MusicConnectTransferWidget::exec()

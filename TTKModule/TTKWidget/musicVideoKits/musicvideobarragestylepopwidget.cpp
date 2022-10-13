@@ -30,7 +30,7 @@ QColor MusicVideoBarrageStylePopWidget::barrageColor() const
 
 void MusicVideoBarrageStylePopWidget::barrageSizeButtonClicked(int index)
 {
-    QList<QAbstractButton*> buttons = m_sizeGroup->buttons();
+    const QList<QAbstractButton*> &buttons = m_sizeGroup->buttons();
     if(buttons.count() >= 3)
     {
         buttons[0]->setStyleSheet(MusicUIObject::MQSSVideoBtnSmall);
@@ -64,7 +64,7 @@ void MusicVideoBarrageStylePopWidget::barrageSizeButtonClicked(int index)
 
 void MusicVideoBarrageStylePopWidget::barrageColorButtonClicked(int index)
 {
-    QList<QAbstractButton*> buttons = m_colorGroup->buttons();
+    const QList<QAbstractButton*> &buttons = m_colorGroup->buttons();
     if(buttons.count() >= 7)
     {
         buttons[0]->setStyleSheet(MusicUIObject::MQSSVideoBtnWhite);

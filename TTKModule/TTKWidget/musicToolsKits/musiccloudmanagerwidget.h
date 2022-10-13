@@ -145,7 +145,7 @@ private:
     /*!
      * Create table item.
      */
-    void addItem(const MusicCloudDataItem &data);
+    void addCellItem(const MusicCloudDataItem &data);
     /*!
      * Upload files to server.
      */

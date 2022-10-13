@@ -41,9 +41,9 @@ void MusicAbstractDownloadTableWidget::updateSongsList(const MusicSongList &song
 
     for(int i = 0; i < m_songs->count(); ++i)
     {
-        MusicSong *song = &(*m_songs)[i];
-        addItem(i, *song);
-        G_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPairData(song->addTimeStr().toULongLong(), this, m_type));
+        MusicSong *v = &(*m_songs)[i];
+        addCellItem(i, *v);
+        G_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPairData(v->addTimeStr().toULongLong(), this, m_type));
     }
 }
 
@@ -109,9 +109,9 @@ void MusicAbstractDownloadTableWidget::downloadProgressChanged(float percent, co
 
 void MusicAbstractDownloadTableWidget::createDownloadItem(const QString &name, qint64 time)
 {
-    setRowCount(rowCount() + 1);
     QString musicName = name;
     musicName.remove(MusicUtils::String::musicDirPrefix()).chop(4);
+    setRowCount(rowCount() + 1);
 
     MusicSong record;
     record.setName(musicName);
@@ -120,7 +120,7 @@ void MusicAbstractDownloadTableWidget::createDownloadItem(const QString &name, q
     record.setAddTimeStr(QString::number(time));
     m_songs->append(record);
 
-    addItem(rowCount() - 1, record);
+    addCellItem(rowCount() - 1, record);
     Q_EMIT updateItemTitle(m_toolIndex);
 }
 

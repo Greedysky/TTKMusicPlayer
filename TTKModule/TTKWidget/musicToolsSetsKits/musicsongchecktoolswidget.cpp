@@ -99,7 +99,7 @@ void MusicSongCheckToolsWidget::renameCheckFinished(const MusicSongCheckToolsRen
         m_ui->renameSelectAllButton->setEnabled(!items.isEmpty());
 
         m_ui->renameTableWidget->removeItems();
-        m_ui->renameTableWidget->addItems(items);
+        m_ui->renameTableWidget->addCellItems(items);
     }
     else if(m_renameThread->mode() == MusicObject::CheckMode::Apply &&
            !m_ui->renameTableWidget->checkedIndexList().isEmpty())
@@ -156,7 +156,7 @@ void MusicSongCheckToolsWidget::qualityCheckFinished(const MusicSongCheckToolsQu
     m_ui->qualityReCheckButton->show();
 
     m_ui->qualityTableWidget->removeItems();
-    m_ui->qualityTableWidget->addItems(items);
+    m_ui->qualityTableWidget->addCellItems(items);
 }
 
 void MusicSongCheckToolsWidget::duplicateButtonClicked()
@@ -219,7 +219,7 @@ void MusicSongCheckToolsWidget::duplicateCheckFinished(const MusicSongCheckTools
         m_ui->duplicateSelectAllButton->setEnabled(!items.isEmpty());
 
         m_ui->duplicateTableWidget->removeItems();
-        m_ui->duplicateTableWidget->addItems(items);
+        m_ui->duplicateTableWidget->addCellItems(items);
     }
     else if(m_duplicateThread->mode() == MusicObject::CheckMode::Apply &&
            !m_ui->duplicateTableWidget->checkedIndexList().isEmpty())

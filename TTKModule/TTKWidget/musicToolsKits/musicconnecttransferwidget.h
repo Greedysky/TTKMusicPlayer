@@ -26,7 +26,6 @@
 namespace Ui {
 class MusicConnectTransferWidget;
 }
-class QButtonGroup;
 class MusicDeviceInfoItem;
 class MusicConnectTransferThread;
 
@@ -89,7 +88,7 @@ private:
     /*!
      * Create all items.
      */
-    void addItems(const MusicSongList &songs);
+    void addCellItems(const MusicSongList &songs);
     /*!
      * Get selected files.
      */
@@ -98,7 +97,6 @@ private:
     Ui::MusicConnectTransferWidget *m_ui;
 
     int m_currentIndex;
-    QButtonGroup *m_buttonGroup;
     MusicDeviceInfoItem *m_currentDeviceItem;
     QString m_songCountLabel, m_selectCountLabel;
     MusicConnectTransferThread *m_thread;

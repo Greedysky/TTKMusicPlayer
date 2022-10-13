@@ -16,26 +16,27 @@ MusicConnectTransferTableWidget::MusicConnectTransferTableWidget(QWidget *parent
     connect(m_checkBoxDelegate, SIGNAL(buttonChecked()), parent->parent(), SLOT(itemSelectedChanged()));
 }
 
-void MusicConnectTransferTableWidget::addItems(const MusicSongList &songs)
+void MusicConnectTransferTableWidget::addCellItems(const MusicSongList &songs)
 {
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
 
     for(int i = 0; i < songs.count(); ++i)
     {
-        const MusicSong &song = songs[i];
+        const MusicSong &v = songs[i];
+
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.path());
+        item->setToolTip(v.path());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setToolTip(song.playTime());
+        item->setToolTip(v.playTime());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
@@ -55,7 +56,7 @@ MusicConnectTransferCompleteTableWidget::MusicConnectTransferCompleteTableWidget
     headerview->resizeSection(1, 305);
 }
 
-void MusicConnectTransferCompleteTableWidget::addItem(const QString &name)
+void MusicConnectTransferCompleteTableWidget::addCellItem(const QString &name)
 {
     const int index = rowCount();
     setRowCount(index + 1);

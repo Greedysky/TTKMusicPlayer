@@ -152,7 +152,7 @@ MusicScreenSaverListWidget::~MusicScreenSaverListWidget()
     qDeleteAll(m_items);
 }
 
-void MusicScreenSaverListWidget::addItem(QObject *object, const QString &path, int index, bool status)
+void MusicScreenSaverListWidget::addCellItem(QObject *object, const QString &path, int index, bool status)
 {
     MusicScreenSaverListItem *item = new MusicScreenSaverListItem(object, this);
     item->setFilePath(path);
@@ -345,7 +345,7 @@ void MusicScreenSaverWidget::downLoadFinished(const QString &bytes)
         {
             return;
         }
-        m_backgroundList->addItem(this, bytes, index, statusVector[index]);
+        m_backgroundList->addCellItem(this, bytes, index, statusVector[index]);
     }
 }
 

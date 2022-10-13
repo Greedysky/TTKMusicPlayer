@@ -53,7 +53,7 @@ public:
     /*!
      * Update songs files in table.
      */
-    void updateSongsList(const QStringList &songs);
+    void updateSongsList(const MusicSongInfoItemList &songs);
 
 public Q_SLOTS:
     /*!
@@ -109,10 +109,11 @@ private:
      */
     virtual void resizeEvent(QResizeEvent *event) override final;
 
+    int m_currentIndex;
     QLabel *m_sizeLabel;
-    QTabWidget *m_tabWidget;
     MusicItemQueryEdit *m_searchEdit;
     MusicGifLabelWidget *m_loadingLabel;
+    MusicLocalManagerSongsTableWidget *m_songWidget;
 
 };
 

@@ -21,41 +21,41 @@ MusicLrcDownloadBatchTableWidget::MusicLrcDownloadBatchTableWidget(QWidget *pare
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 }
 
-void MusicLrcDownloadBatchTableWidget::addItems(const MusicSongList &items)
+void MusicLrcDownloadBatchTableWidget::addCellItems(const MusicSongList &items)
 {
     setRowCount(items.count());
     QHeaderView *headerview = horizontalHeader();
 
     for(int i = 0; i < items.count(); ++i)
     {
-        const MusicSong &song = items[i];
+        const MusicSong &v = items[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setToolTip(song.path());
+        item->setToolTip(v.path());
         item->setText(QString::number(i + 1));
         QtItemSetTextAlignment(item, Qt::AlignCenter);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.path());
-        item->setText(MusicUtils::Widget::elidedText(font(), song.artistBack(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        item->setToolTip(v.path());
+        item->setText(MusicUtils::Widget::elidedText(font(), v.artistBack(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.path());
-        item->setText(MusicUtils::Widget::elidedText(font(), song.artistFront(), Qt::ElideRight, headerview->sectionSize(2) - 10));
+        item->setToolTip(v.path());
+        item->setText(MusicUtils::Widget::elidedText(font(), v.artistFront(), Qt::ElideRight, headerview->sectionSize(2) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.path());
-        item->setText(MusicUtils::Widget::elidedText(font(), song.name(), Qt::ElideRight, headerview->sectionSize(3) - 10));
+        item->setToolTip(v.path());
+        item->setText(MusicUtils::Widget::elidedText(font(), v.name(), Qt::ElideRight, headerview->sectionSize(3) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 3, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.path());
+        item->setToolTip(v.path());
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
     }
@@ -106,7 +106,7 @@ MusicLrcDownloadBatchWidget::~MusicLrcDownloadBatchWidget()
 void MusicLrcDownloadBatchWidget::addButtonClicked()
 {
     m_localSongs = m_ui->selectedAreaWidget->selectedSongItems();
-    m_ui->tableWidget->addItems(m_localSongs);
+    m_ui->tableWidget->addCellItems(m_localSongs);
 }
 
 void MusicLrcDownloadBatchWidget::downloadButtonClicked()
