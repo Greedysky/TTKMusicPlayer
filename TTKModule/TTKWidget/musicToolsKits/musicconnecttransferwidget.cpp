@@ -126,7 +126,7 @@ QStringList MusicConnectTransferWidget::selectedFiles() const
         return paths;
     }
 
-    if(m_currentIndex == -1 || m_currentIndex > m_currentSongs.count())
+    if(m_currentIndex == -1 || m_currentIndex > m_songItems.count())
     {
         return paths;
     }
@@ -138,7 +138,7 @@ QStringList MusicConnectTransferWidget::selectedFiles() const
             const int count = m_ui->searchLineEdit->text().trimmed().count();
             index = m_searchResultCache.value(count)[index];
         }
-        paths << m_currentSongs[index].path();
+        paths << m_songItems[index].path();
     }
 
     return paths;
@@ -151,7 +151,7 @@ void MusicConnectTransferWidget::itemSelectedChanged()
 
     for(int i = 0; i < list.count(); ++i)
     {
-        size += m_currentSongs[list[i]].size();
+        size += m_songItems[list[i]].size();
     }
 
     double dSize = (size * 100 / MH_MB2B) * 1.0 / 100;
@@ -170,8 +170,8 @@ void MusicConnectTransferWidget::currentPlaylistSelected(int index)
 
     m_searchResultCache.clear();
     m_ui->searchLineEdit->clear();
-    m_currentSongs = songs[m_currentIndex = index].m_songs;
-    createAllItems(m_currentSongs);
+    m_songItems = songs[m_currentIndex = index].m_songs;
+    createAllItems(m_songItems);
 }
 
 void MusicConnectTransferWidget::selectedAllItems(bool check)
@@ -195,9 +195,9 @@ void MusicConnectTransferWidget::startToTransferFiles()
 void MusicConnectTransferWidget::musicSearchResultChanged(int, int index)
 {
     TTKIntList result;
-    for(int i = 0; i < m_currentSongs.count(); ++i)
+    for(int i = 0; i < m_songItems.count(); ++i)
     {
-        if(m_currentSongs[i].name().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
+        if(m_songItems[i].name().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {
             result << i;
         }
@@ -207,7 +207,7 @@ void MusicConnectTransferWidget::musicSearchResultChanged(int, int index)
     MusicSongList songs;
     for(const int index : qAsConst(result))
     {
-        songs.append(m_currentSongs[index]);
+        songs.append(m_songItems[index]);
     }
     createAllItems(songs);
 }

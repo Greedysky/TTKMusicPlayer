@@ -177,6 +177,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     button->setCursor(QCursor(Qt::PointingHandCursor));
     functionWidgetLayout->addWidget(button);
 #ifdef Q_OS_UNIX
+    refresh->setFocusPolicy(Qt::NoFocus);
     button->setFocusPolicy(Qt::NoFocus);
 #endif
     m_searchEdit = new MusicItemQueryEdit(this);
@@ -266,6 +267,9 @@ void MusicLocalManagerWidget::refreshItems()
         return;
     }
 
+    MusicLocalManagerSongsTableWidget *widget = TTKObject_cast(MusicLocalManagerSongsTableWidget*, m_tabWidget->currentWidget());
+    widget->removeItems();
+
     const QString &path = G_SETTING_PTR->value(MusicSettingManager::MediaLibraryPath).toString();
     if(!path.isEmpty())
     {
@@ -273,7 +277,7 @@ void MusicLocalManagerWidget::refreshItems()
         const QStringList &files = MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats());
         m_sizeLabel->setText(tr("   (Totol: %1)").arg(files.size()));
 
-        TTKObject_cast(MusicLocalManagerSongsTableWidget*, m_tabWidget->currentWidget())->updateSongsList(files);
+        widget->updateSongsList(files);
         m_loadingLabel->run(false);
     }
     else

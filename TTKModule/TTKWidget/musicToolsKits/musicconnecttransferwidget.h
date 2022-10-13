@@ -20,6 +20,7 @@
  ***************************************************************************/
 
 #include "musicsong.h"
+#include "musicsearchinterface.h"
 #include "musicabstractmovedialog.h"
 
 namespace Ui {
@@ -32,7 +33,7 @@ class MusicConnectTransferThread;
 /*! @brief The class of the transfer file to mobile widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicConnectTransferWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicConnectTransferWidget : public MusicAbstractMoveDialog, private MusicSearchInterface<MusicSongList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicConnectTransferWidget)
@@ -95,10 +96,9 @@ private:
     QStringList selectedFiles() const;
 
     Ui::MusicConnectTransferWidget *m_ui;
+
     int m_currentIndex;
-    MusicSongList m_currentSongs;
     QButtonGroup *m_buttonGroup;
-    TTKIntListMap m_searchResultCache;
     MusicDeviceInfoItem *m_currentDeviceItem;
     QString m_songCountLabel, m_selectCountLabel;
     MusicConnectTransferThread *m_thread;

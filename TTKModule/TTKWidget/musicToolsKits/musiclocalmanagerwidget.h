@@ -21,6 +21,20 @@
 
 #include "musicabstractsongslisttablewidget.h"
 
+/*! @brief The class of the local song information.
+ * @author Greedysky <greedysky@163.com>
+ */
+struct TTK_MODULE_EXPORT MusicSongInfoItem
+{
+    QString m_title;
+    QString m_artist;
+    QString m_album;
+    QString m_year;
+    QString m_genre;
+    QString m_path;
+};
+TTK_DECLARE_LIST(MusicSongInfoItem);
+
 /*! @brief The class of the local manager songs table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -94,6 +108,8 @@ private:
     QTabWidget *m_tabWidget;
     MusicItemQueryEdit *m_searchEdit;
     MusicGifLabelWidget *m_loadingLabel;
+    TTKIntListMap m_searchResultCache;
+    MusicSongInfoItemList m_songItems;
 
 };
 

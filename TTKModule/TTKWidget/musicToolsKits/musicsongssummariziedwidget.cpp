@@ -21,7 +21,6 @@
 MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     : MusicSongsToolBoxWidget(parent),
       m_playToolIndex(MUSIC_NORMAL_LIST),
-      m_searchResultLevel(0),
       m_lastSearchIndex(MUSIC_NORMAL_LIST),
       m_selectImportIndex(MUSIC_NORMAL_LIST),
       m_selectDeleteIndex(MUSIC_NORMAL_LIST),

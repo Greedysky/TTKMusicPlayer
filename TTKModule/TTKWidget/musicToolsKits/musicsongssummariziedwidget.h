@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include "musicsearchinterface.h"
 #include "musicsongstoolboxwidget.h"
 #include "musicsongsearchonlinewidget.h"
 
@@ -30,7 +31,7 @@ class MusicSongSearchDialog;
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongsSummariziedWidget : public MusicSongsToolBoxWidget
+class TTK_MODULE_EXPORT MusicSongsSummariziedWidget : public MusicSongsToolBoxWidget, private MusicSearchInterface<MusicSongItemList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsSummariziedWidget)
@@ -287,15 +288,12 @@ private:
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
     int m_playToolIndex;
-    int m_searchResultLevel;
     int m_lastSearchIndex;
     int m_selectImportIndex;
     int m_selectDeleteIndex;
     bool m_toolDeleteChanged;
 
-    MusicSongItemList m_songItems;
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
-    TTKIntListMap m_searchResultCache;
     MusicSongsListFunctionWidget *m_listFunctionWidget;
     MusicSongSearchDialog *m_songSearchWidget;
 

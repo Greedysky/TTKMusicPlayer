@@ -225,7 +225,7 @@ void MusicMobileSongsManagerWidget::itemCellOnClick(int row, int col)
                 m_ui->searchLineEdit->clear();
                 m_searchResultCache.clear();
             }
-            Q_EMIT addSongToPlaylist(QStringList(m_fileNames[row]));
+            Q_EMIT addSongToPlaylist(QStringList(m_songItems[row]));
             break;
         }
         default: break;
@@ -241,7 +241,7 @@ void MusicMobileSongsManagerWidget::itemDoubleClicked(int row, int)
         m_ui->searchLineEdit->clear();
         m_searchResultCache.clear();
     }
-    Q_EMIT addSongToPlaylist(QStringList(m_fileNames[row]));
+    Q_EMIT addSongToPlaylist(QStringList(m_songItems[row]));
 }
 
 void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &path)
@@ -252,17 +252,17 @@ void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &pat
     m_ui->searchLineEdit->clear();
     m_searchResultCache.clear();
 
-    m_fileNames = path;
-    m_ui->songlistTable->updateSongsList(m_fileNames);
+    m_songItems = path;
+    m_ui->songlistTable->updateSongsList(m_songItems);
     m_ui->loadingLabel->run(false);
 }
 
 void MusicMobileSongsManagerWidget::musicSearchResultChanged(int, int index)
 {
     TTKIntList result;
-    for(int i = 0; i < m_fileNames.count(); ++i)
+    for(int i = 0; i < m_songItems.count(); ++i)
     {
-        if(QFileInfo(m_fileNames[i]).fileName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
+        if(QFileInfo(m_songItems[i]).fileName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {
             result << i;
         }
@@ -274,7 +274,7 @@ void MusicMobileSongsManagerWidget::musicSearchResultChanged(int, int index)
     QStringList names;
     for(const int index : qAsConst(result))
     {
-        names.append(m_fileNames[index]);
+        names.append(m_songItems[index]);
     }
 
     m_ui->songlistTable->updateSongsList(names);
@@ -322,7 +322,7 @@ void MusicMobileSongsManagerWidget::selectedItems()
     QStringList names;
     for(const int index : qAsConst(indexs))
     {
-        names << m_fileNames[index];
+        names << m_songItems[index];
     }
 
     Q_EMIT addSongToPlaylist(names);

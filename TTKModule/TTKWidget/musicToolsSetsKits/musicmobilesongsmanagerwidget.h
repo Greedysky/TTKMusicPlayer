@@ -20,6 +20,7 @@
  ***************************************************************************/
 
 #include "musicwidgetheaders.h"
+#include "musicsearchinterface.h"
 #include "musicabstractmovewidget.h"
 #include "musicabstractsongslisttablewidget.h"
 
@@ -63,7 +64,7 @@ class MusicMobileSongsManagerWidget;
 /*! @brief The class of the mobile songs manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicMobileSongsManagerWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicMobileSongsManagerWidget : public MusicAbstractMoveWidget, private MusicSearchInterface<QStringList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMobileSongsManagerWidget)
@@ -132,9 +133,7 @@ private:
 
     Ui::MusicMobileSongsManagerWidget *m_ui;
 
-    QStringList m_fileNames;
     MusicSongsManagerThread *m_thread;
-    TTKIntListMap m_searchResultCache;
 
 };
 
