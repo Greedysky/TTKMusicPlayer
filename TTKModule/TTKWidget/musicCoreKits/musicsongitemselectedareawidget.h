@@ -40,15 +40,9 @@ public:
      */
     void addItems(MusicSongItemList *items);
     /*!
-     * Get selected items.
+     * Get checked data items.
      */
-    TTKIntList selectedItems() const;
-
-public Q_SLOTS:
-    /*!
-     * Select all items.
-     */
-    void selectedAllItems(bool check);
+    TTKIntList checkedDataList() const;
 
 };
 
@@ -141,7 +135,7 @@ public Q_SLOTS:
 
 private:
     bool m_selected;
-    TTKIntList m_selectedItems;
+    TTKIntList m_items;
 
     QLabel *m_label, *m_itemLabel;
     MusicClickedLabel *m_modifiedItemButton;

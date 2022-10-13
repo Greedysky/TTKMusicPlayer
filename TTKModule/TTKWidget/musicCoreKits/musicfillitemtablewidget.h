@@ -39,9 +39,9 @@ public:
     ~MusicFillItemTableWidget();
 
     /*!
-     * Get selected items.
+     * Get checked items.
      */
-    TTKIntList selectedItems() const;
+    TTKIntList checkedIndexList() const;
 
 public Q_SLOTS:
     /*!
@@ -49,9 +49,13 @@ public Q_SLOTS:
      */
     virtual void itemCellClicked(int row, int column) override;
     /*!
-     * Set select all items.
+     * Checked items state.
      */
-    void setSelectedAllItems(bool check);
+    void checkedItemsState(bool check);
+    /*!
+     * Checked items status.
+     */
+    void checkedItemsStatus(bool check);
 
 protected:
     MusicCheckBoxDelegate *m_checkBoxDelegate;

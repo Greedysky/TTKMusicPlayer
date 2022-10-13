@@ -51,7 +51,7 @@ void MusicSongItemSelectedTableWidget::addItems(MusicSongItemList *items)
     }
 }
 
-TTKIntList MusicSongItemSelectedTableWidget::selectedItems() const
+TTKIntList MusicSongItemSelectedTableWidget::checkedDataList() const
 {
     TTKIntList list;
     for(int i = 0; i < rowCount(); ++i)
@@ -63,24 +63,6 @@ TTKIntList MusicSongItemSelectedTableWidget::selectedItems() const
         }
     }
     return list;
-}
-
-void MusicSongItemSelectedTableWidget::selectedAllItems(bool check)
-{
-    for(int i = 0; i < rowCount(); ++i)
-    {
-        item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
-    }
-
-    if(!check)
-    {
-        clearSelection();
-        setCurrentIndex(QModelIndex());
-    }
-    else
-    {
-        selectAll();
-    }
 }
 
 
@@ -106,7 +88,7 @@ MusicSongItemSelectedDialog::MusicSongItemSelectedDialog(QWidget *parent)
 #endif
 
     connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
-    connect(m_ui->selectAllCheckButton, SIGNAL(clicked(bool)), m_ui->itemTableWidget, SLOT(selectedAllItems(bool)));
+    connect(m_ui->selectAllCheckButton, SIGNAL(clicked(bool)), m_ui->itemTableWidget, SLOT(checkedItemsStatus(bool)));
 }
 
 MusicSongItemSelectedDialog::~MusicSongItemSelectedDialog()
@@ -121,7 +103,7 @@ void MusicSongItemSelectedDialog::addItems(MusicSongItemList *items)
 
 void MusicSongItemSelectedDialog::confirmButtonClicked()
 {
-    Q_EMIT itemListChanged(m_ui->itemTableWidget->selectedItems());
+    Q_EMIT itemListChanged(m_ui->itemTableWidget->checkedDataList());
     accept();
 }
 
@@ -180,7 +162,7 @@ MusicSongList MusicSongItemSelectedAreaWidget::selectedSongItems()
     {
         if(m_selected)
         {
-            if(m_selectedItems.contains(item.m_itemIndex))
+            if(m_items.contains(item.m_itemIndex))
             {
                 selectedSongs << item.m_songs;
             }
@@ -213,6 +195,6 @@ void MusicSongItemSelectedAreaWidget::modifiedItemButtonClicked()
 
 void MusicSongItemSelectedAreaWidget::itemListChanged(const TTKIntList &items)
 {
-    m_selectedItems = items;
+    m_items = items;
     m_itemLabel->setText(tr("Custom List"));
 }

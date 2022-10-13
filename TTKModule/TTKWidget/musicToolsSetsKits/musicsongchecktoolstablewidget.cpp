@@ -63,24 +63,6 @@ void MusicSongCheckToolsRenameTableWidget::itemCellClicked(int row, int column)
     }
 }
 
-void MusicSongCheckToolsRenameTableWidget::selectedAllItems(bool check)
-{
-    for(int i = 0; i < rowCount(); ++i)
-    {
-        item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
-    }
-
-    if(!check)
-    {
-        clearSelection();
-        setCurrentIndex(QModelIndex());
-    }
-    else
-    {
-        selectAll();
-    }
-}
-
 void MusicSongCheckToolsRenameTableWidget::deleteCurrentRow()
 {
     if(rowCount() == 0 || currentRow() < 0)
@@ -176,24 +158,6 @@ void MusicSongCheckToolsDuplicateTableWidget::itemCellClicked(int row, int colum
         case 5: musicPlay(); break;
         case 6: deleteCurrentRow(); break;
         default: break;
-    }
-}
-
-void MusicSongCheckToolsDuplicateTableWidget::selectedAllItems(bool check)
-{
-    for(int i = 0; i < rowCount(); ++i)
-    {
-        item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
-    }
-
-    if(!check)
-    {
-        clearSelection();
-        setCurrentIndex(QModelIndex());
-    }
-    else
-    {
-        selectAll();
     }
 }
 
@@ -317,24 +281,6 @@ void MusicSongCheckToolsQualityTableWidget::itemCellClicked(int row, int column)
         case 6: musicPlay(); break;
         case 7: deleteCurrentRow(); break;
         default: break;
-    }
-}
-
-void MusicSongCheckToolsQualityTableWidget::selectedAllItems(bool check)
-{
-    for(int i = 0; i < rowCount(); ++i)
-    {
-        item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
-    }
-
-    if(!check)
-    {
-        clearSelection();
-        setCurrentIndex(QModelIndex());
-    }
-    else
-    {
-        selectAll();
     }
 }
 

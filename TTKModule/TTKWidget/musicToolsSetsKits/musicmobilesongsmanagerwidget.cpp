@@ -181,7 +181,7 @@ void MusicMobileSongsManagerWidget::auditionButtonClick()
 {
     if(m_ui->songlistTable->selectedItems().count() > 0)
     {
-        selectedItems();
+        selectedItemsToPlaylist();
         return;
     }
 
@@ -191,14 +191,14 @@ void MusicMobileSongsManagerWidget::auditionButtonClick()
         return;
     }
 
-    selectedItems();
+    selectedItemsToPlaylist();
 }
 
 void MusicMobileSongsManagerWidget::addButtonClick()
 {
     if(m_ui->songlistTable->selectedItems().count() > 0)
     {
-        selectedItems();
+        selectedItemsToPlaylist();
         return;
     }
 
@@ -208,7 +208,7 @@ void MusicMobileSongsManagerWidget::addButtonClick()
         return;
     }
 
-    selectedItems();
+    selectedItemsToPlaylist();
 }
 
 void MusicMobileSongsManagerWidget::itemCellOnClick(int row, int column)
@@ -294,10 +294,10 @@ void MusicMobileSongsManagerWidget::clearAllItems()
         m_ui->allSelectedcheckBox->click();
     }
 
-    m_ui->songlistTable->clear();
+    m_ui->songlistTable->removeItems();
 }
 
-void MusicMobileSongsManagerWidget::selectedItems()
+void MusicMobileSongsManagerWidget::selectedItemsToPlaylist()
 {
     TTKIntSet auditionRow; //if selected multi rows
     for(QTableWidgetItem *item : m_ui->songlistTable->selectedItems())

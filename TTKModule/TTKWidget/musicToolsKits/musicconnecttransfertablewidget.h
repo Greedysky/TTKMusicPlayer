@@ -38,10 +38,6 @@ public:
      * Create all items.
      */
     void addItems(const MusicSongList &songs);
-    /*!
-     * Select all items.
-     */
-    void selectedAllItems(bool check);
 
 };
 

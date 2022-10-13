@@ -85,7 +85,7 @@ void MusicAbstractItemQueryWidget::downLoadFinished(const QByteArray &bytes)
 
 void MusicAbstractItemQueryWidget::playAllButtonClicked()
 {
-    m_queryTableWidget->setSelectedAllItems(true);
+    m_queryTableWidget->checkedItemsState(true);
     m_queryTableWidget->downloadDataFrom(true);
 }
 
@@ -176,7 +176,7 @@ void MusicAbstractItemQueryWidget::initFirstWidget()
     middleFuncLayout->addWidget(playButton);
     middleFuncLayout->addWidget(addButton);
     middleFuncLayout->addWidget(downloadButton);
-    connect(allCheckBox, SIGNAL(clicked(bool)), m_queryTableWidget, SLOT(setSelectedAllItems(bool)));
+    connect(allCheckBox, SIGNAL(clicked(bool)), m_queryTableWidget, SLOT(checkedItemsState(bool)));
     connect(playButton, SIGNAL(clicked()), SLOT(playButtonClicked()));
     connect(downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
     connect(addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));

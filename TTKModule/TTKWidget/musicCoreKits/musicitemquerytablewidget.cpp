@@ -81,7 +81,7 @@ void MusicItemQueryTableWidget::itemDoubleClicked(int row, int column)
 void MusicItemQueryTableWidget::downloadDataFrom(bool play)
 {
     const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    const TTKIntList &list = selectedItems();
+    const TTKIntList &list = checkedIndexList();
     if(list.isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
@@ -100,7 +100,7 @@ void MusicItemQueryTableWidget::downloadDataFrom(bool play)
 void MusicItemQueryTableWidget::downloadBatchData(bool music)
 {
     const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    const TTKIntList &list = selectedItems();
+    const TTKIntList &list = checkedIndexList();
     if(list.isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first!"));

@@ -67,7 +67,7 @@ void MusicAbstractDownloadTableWidget::setDeleteItemAt()
        return;
     }
 
-    const TTKIntList deleteList(multiSelectedIndex());
+    const TTKIntList deleteList(multiSelectedIndexList());
     if(deleteList.isEmpty())
     {
         return;

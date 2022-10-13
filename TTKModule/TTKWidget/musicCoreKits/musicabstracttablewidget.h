@@ -40,9 +40,9 @@ public:
     ~MusicAbstractTableWidget();
 
     /*!
-     * Get multi selected index set.
+     * Get multi selected item index set.
      */
-    TTKIntList multiSelectedIndex() const;
+    TTKIntList multiSelectedIndexList() const;
 
 public Q_SLOTS:
     /*!

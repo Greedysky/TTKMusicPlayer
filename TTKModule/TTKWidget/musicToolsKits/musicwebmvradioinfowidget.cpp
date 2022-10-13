@@ -305,7 +305,7 @@ void MusicWebMVRadioInfoWidget::initThirdWidget()
     middleFuncLayout->addWidget(allCheckBox);
     middleFuncLayout->addStretch(1);
     middleFuncLayout->addWidget(downloadButton);
-    connect(allCheckBox, SIGNAL(clicked(bool)), m_queryTableWidget, SLOT(setSelectedAllItems(bool)));
+    connect(allCheckBox, SIGNAL(clicked(bool)), m_queryTableWidget, SLOT(checkedItemsState(bool)));
     connect(downloadButton, SIGNAL(clicked()), SLOT(downloadMVsButtonClicked()));
 
     vlayout->addWidget(middleFuncWidget);

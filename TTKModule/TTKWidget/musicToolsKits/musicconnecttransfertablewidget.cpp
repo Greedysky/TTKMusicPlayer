@@ -42,25 +42,6 @@ void MusicConnectTransferTableWidget::addItems(const MusicSongList &songs)
     }
 }
 
-void MusicConnectTransferTableWidget::selectedAllItems(bool check)
-{
-    for(int i = 0; i < rowCount(); ++i)
-    {
-        item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
-    }
-
-    if(!check)
-    {
-        clearSelection();
-        setCurrentIndex(QModelIndex());
-    }
-    else
-    {
-        selectAll();
-    }
-}
-
-
 
 
 MusicConnectTransferCompleteTableWidget::MusicConnectTransferCompleteTableWidget(QWidget *parent)

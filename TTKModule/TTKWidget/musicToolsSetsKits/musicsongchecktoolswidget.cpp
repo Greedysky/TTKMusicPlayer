@@ -64,7 +64,7 @@ void MusicSongCheckToolsWidget::renameButtonCheckClicked()
         m_ui->renameLoadingLabel->hide();
         m_ui->renameReCheckButton->show();
 
-        m_renameThread->setItemList(m_ui->renameTableWidget->selectedItems());
+        m_renameThread->setItemList(m_ui->renameTableWidget->checkedIndexList());
         m_renameThread->setMode(MusicObject::CheckMode::Apply);
         m_renameThread->stopAndQuitThread();
         m_renameThread->start();
@@ -79,7 +79,7 @@ void MusicSongCheckToolsWidget::renameReCheckButtonClicked()
     m_ui->renameCheckButton->setText(tr("Stop"));
     m_ui->renameSelectAllButton->setChecked(false);
 
-    m_ui->renameTableWidget->clear();
+    m_ui->renameTableWidget->removeItems();
     m_renameThread->stopAndQuitThread();
     m_localSongs = m_ui->selectedAreaWidget->selectedSongItems();
 
@@ -98,11 +98,11 @@ void MusicSongCheckToolsWidget::renameCheckFinished(const MusicSongCheckToolsRen
         m_ui->renameReCheckButton->show();
         m_ui->renameSelectAllButton->setEnabled(!items.isEmpty());
 
-        m_ui->renameTableWidget->clear();
+        m_ui->renameTableWidget->removeItems();
         m_ui->renameTableWidget->addItems(items);
     }
     else if(m_renameThread->mode() == MusicObject::CheckMode::Apply &&
-           !m_ui->renameTableWidget->selectedItems().isEmpty())
+           !m_ui->renameTableWidget->checkedIndexList().isEmpty())
     {
         MusicToastLabel::popup(tr("Rename apply finished"));
     }
@@ -155,7 +155,7 @@ void MusicSongCheckToolsWidget::qualityCheckFinished(const MusicSongCheckToolsQu
     m_ui->qualityCheckButton->setText(tr("Apply"));
     m_ui->qualityReCheckButton->show();
 
-    m_ui->qualityTableWidget->clear();
+    m_ui->qualityTableWidget->removeItems();
     m_ui->qualityTableWidget->addItems(items);
 }
 
@@ -185,7 +185,7 @@ void MusicSongCheckToolsWidget::duplicateButtonCheckClicked()
         m_ui->duplicateLoadingLabel->hide();
         m_ui->duplicateReCheckButton->show();
 
-        m_duplicateThread->setItemList(m_ui->duplicateTableWidget->selectedItems());
+        m_duplicateThread->setItemList(m_ui->duplicateTableWidget->checkedIndexList());
         m_duplicateThread->setMode(MusicObject::CheckMode::Apply);
         m_duplicateThread->stopAndQuitThread();
         m_duplicateThread->start();
@@ -218,11 +218,11 @@ void MusicSongCheckToolsWidget::duplicateCheckFinished(const MusicSongCheckTools
         m_ui->duplicateReCheckButton->show();
         m_ui->duplicateSelectAllButton->setEnabled(!items.isEmpty());
 
-        m_ui->duplicateTableWidget->clear();
+        m_ui->duplicateTableWidget->removeItems();
         m_ui->duplicateTableWidget->addItems(items);
     }
     else if(m_duplicateThread->mode() == MusicObject::CheckMode::Apply &&
-           !m_ui->duplicateTableWidget->selectedItems().isEmpty())
+           !m_ui->duplicateTableWidget->checkedIndexList().isEmpty())
     {
         MusicToastLabel::popup(tr("Duplicate apply finished"));
     }
@@ -242,7 +242,7 @@ void MusicSongCheckToolsWidget::initRenameWidget()
     connect(m_ui->renameButton, SIGNAL(clicked()), SLOT(renameButtonClicked()));
     connect(m_ui->renameCheckButton, SIGNAL(clicked()), SLOT(renameButtonCheckClicked()));
     connect(m_ui->renameReCheckButton, SIGNAL(clicked()), SLOT(renameReCheckButtonClicked()));
-    connect(m_ui->renameSelectAllButton, SIGNAL(clicked(bool)), m_ui->renameTableWidget, SLOT(selectedAllItems(bool)));
+    connect(m_ui->renameSelectAllButton, SIGNAL(clicked(bool)), m_ui->renameTableWidget, SLOT(checkedItemsStatus(bool)));
 
 #ifdef Q_OS_UNIX
     m_ui->renameCheckButton->setFocusPolicy(Qt::NoFocus);
@@ -286,7 +286,7 @@ void MusicSongCheckToolsWidget::initDuplicateWidget()
     connect(m_ui->duplicateButton, SIGNAL(clicked()), SLOT(duplicateButtonClicked()));
     connect(m_ui->duplicateCheckButton, SIGNAL(clicked()), SLOT(duplicateButtonCheckClicked()));
     connect(m_ui->duplicateReCheckButton, SIGNAL(clicked()), SLOT(duplicateReCheckButtonClicked()));
-    connect(m_ui->duplicateSelectAllButton, SIGNAL(clicked(bool)), m_ui->duplicateTableWidget, SLOT(selectedAllItems(bool)));
+    connect(m_ui->duplicateSelectAllButton, SIGNAL(clicked(bool)), m_ui->duplicateTableWidget, SLOT(checkedItemsStatus(bool)));
 
 #ifdef Q_OS_UNIX
     m_ui->duplicateSelectAllButton->setFocusPolicy(Qt::NoFocus);

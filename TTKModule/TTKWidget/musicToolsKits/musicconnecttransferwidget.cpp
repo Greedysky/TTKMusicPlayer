@@ -107,7 +107,7 @@ void MusicConnectTransferWidget::initialize()
 
 void MusicConnectTransferWidget::addItems(const MusicSongList &songs)
 {
-    m_ui->listTableWidget->clear();
+    m_ui->listTableWidget->removeItems();
     if(m_ui->allSelectedcheckBox->isChecked())
     {
         m_ui->allSelectedcheckBox->click();
@@ -119,7 +119,7 @@ void MusicConnectTransferWidget::addItems(const MusicSongList &songs)
 QStringList MusicConnectTransferWidget::selectedFiles() const
 {
     QStringList paths;
-    const TTKIntList list(m_ui->listTableWidget->selectedItems());
+    const TTKIntList &list = m_ui->listTableWidget->checkedIndexList();
     if(list.isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
@@ -146,7 +146,7 @@ QStringList MusicConnectTransferWidget::selectedFiles() const
 
 void MusicConnectTransferWidget::itemSelectedChanged()
 {
-    const TTKIntList list(m_ui->listTableWidget->selectedItems());
+    const TTKIntList &list = m_ui->listTableWidget->checkedIndexList();
     qint64 size = 0;
 
     for(int i = 0; i < list.count(); ++i)
@@ -176,7 +176,7 @@ void MusicConnectTransferWidget::currentPlaylistSelected(int index)
 
 void MusicConnectTransferWidget::selectedAllItems(bool check)
 {
-    m_ui->listTableWidget->selectedAllItems(check);
+    m_ui->listTableWidget->checkedItemsStatus(check);
     itemSelectedChanged();
 }
 

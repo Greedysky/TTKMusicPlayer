@@ -419,8 +419,9 @@ void MusicSongSearchOnlineWidget::resizeWindow()
 
 void MusicSongSearchOnlineWidget::buttonClicked(int index)
 {
-    TTKIntList list = m_searchTableWidget->selectedItems();
+    TTKIntList list = m_searchTableWidget->checkedIndexList();
     list.removeOne(m_searchTableWidget->rowCount() - 1);
+
     if(list.isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
@@ -449,7 +450,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
             return;
         }
 
-        MusicObject::MusicSongInformationList selectedItems, songInfos(d->songInfoList());
+        MusicObject::MusicSongInformationList infos, songInfos(d->songInfoList());
         for(int index : qAsConst(list))
         {
             if(index < 0 || index >= songInfos.count())
@@ -457,11 +458,11 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
                 continue;
             }
 
-            selectedItems << songInfos[index];
+            infos << songInfos[index];
         }
 
         MusicDownloadBatchWidget *w = GENERATE_SINGLE_WIDGET_CLASS(MusicDownloadBatchWidget);
-        w->setSongName(selectedItems, MusicAbstractQueryRequest::QueryType::Music);
+        w->setSongName(infos, MusicAbstractQueryRequest::QueryType::Music);
     }
 }
 
@@ -527,7 +528,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 
     QCheckBox *labelCheckBox = new QCheckBox(this);
     labelCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
-    connect(labelCheckBox, SIGNAL(clicked(bool)), m_searchTableWidget, SLOT(setSelectedAllItems(bool)));
+    connect(labelCheckBox, SIGNAL(clicked(bool)), m_searchTableWidget, SLOT(checkedItemsState(bool)));
     labelLayout->addWidget(labelCheckBox, headerview->sectionSize(0));
     m_resizeWidgets << labelCheckBox;
 

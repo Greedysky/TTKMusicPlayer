@@ -47,7 +47,7 @@ MusicAbstractTableWidget::~MusicAbstractTableWidget()
 
 }
 
-TTKIntList MusicAbstractTableWidget::multiSelectedIndex() const
+TTKIntList MusicAbstractTableWidget::multiSelectedIndexList() const
 {
     TTKIntSet rows;
     for(const QModelIndex& index : selectedIndexes())

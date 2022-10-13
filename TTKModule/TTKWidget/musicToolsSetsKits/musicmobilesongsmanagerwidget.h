@@ -129,7 +129,7 @@ private:
     /*!
      * Set current item or items selected.
      */
-    void selectedItems();
+    void selectedItemsToPlaylist();
 
     Ui::MusicMobileSongsManagerWidget *m_ui;
 

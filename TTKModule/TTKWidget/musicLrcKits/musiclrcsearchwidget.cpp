@@ -38,7 +38,7 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     connect(m_ui->lrcSearchButton, SIGNAL(clicked()), SLOT(lrcSearchButtonClicked()));
     connect(m_ui->lrcSearchDownload, SIGNAL(clicked()), SLOT(lrcSearchDownloadClicked()));
     connect(m_ui->closeButton, SIGNAL(clicked()), SLOT(close()));
-    connect(m_ui->label_checkBox, SIGNAL(clicked(bool)), m_ui->tableWidget, SLOT(setSelectedAllItems(bool)));
+    connect(m_ui->label_checkBox, SIGNAL(clicked(bool)), m_ui->tableWidget, SLOT(checkedItemsState(bool)));
     connect(m_ui->tableWidget, SIGNAL(resolvedSuccess()), SLOT(lrcSearchFinished()));
     connect(m_ui->tableWidget, SIGNAL(lrcDownloadStateChanged(QString)), SLOT(lrcDownloadStateChanged(QString)));
     connect(m_ui->tableWidget, SIGNAL(restartSearchQuery(QString)), SLOT(setCurrentSongName(QString)));
@@ -75,8 +75,9 @@ void MusicLrcSearchWidget::lrcSearchButtonClicked() const
 
 void MusicLrcSearchWidget::lrcSearchDownloadClicked()
 {
-    TTKIntList list = m_ui->tableWidget->selectedItems();
+    TTKIntList list = m_ui->tableWidget->checkedIndexList();
     list.removeOne(m_ui->tableWidget->rowCount() - 1);
+
     if(list.isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first!"));

@@ -254,7 +254,7 @@ void MusicSongsListPlayedTableWidget::removeItems()
 
 void MusicSongsListPlayedTableWidget::setDeleteItemAt()
 {
-    const TTKIntList deleteList(multiSelectedIndex());
+    const TTKIntList deleteList(multiSelectedIndexList());
     if(deleteList.isEmpty())
     {
         return;

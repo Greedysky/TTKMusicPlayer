@@ -246,7 +246,7 @@ void MusicReplayGainWidget::rmFileButtonClicked()
 void MusicReplayGainWidget::rmFilesButtonClicked()
 {
     m_paths.clear();
-    m_ui->tableWidget->clear();
+    m_ui->tableWidget->removeItems();
     m_currentIndex = -1;
 }
 

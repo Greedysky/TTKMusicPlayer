@@ -224,7 +224,7 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
     }
 
     selectAll();
-    const TTKIntList deleteList(multiSelectedIndex());
+    const TTKIntList deleteList(multiSelectedIndexList());
 
     for(int i = deleteList.count() - 1; i >= 0; --i)
     {

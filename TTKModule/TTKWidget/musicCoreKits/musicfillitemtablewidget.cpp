@@ -20,12 +20,13 @@ MusicFillItemTableWidget::~MusicFillItemTableWidget()
     delete m_checkBoxDelegate;
 }
 
-TTKIntList MusicFillItemTableWidget::selectedItems() const
+TTKIntList MusicFillItemTableWidget::checkedIndexList() const
 {
     TTKIntList list;
     for(int i = 0; i < rowCount(); ++i)
     {
-        if(item(i, 0)->data(MUSIC_CHECK_ROLE) == Qt::Checked)
+        const QTableWidgetItem *it = item(i, 0);
+        if(it && it->data(MUSIC_CHECK_ROLE) == Qt::Checked)
         {
             list << i;
         }
@@ -54,11 +55,30 @@ void MusicFillItemTableWidget::itemCellClicked(int row, int column)
     }
 }
 
-void MusicFillItemTableWidget::setSelectedAllItems(bool check)
+void MusicFillItemTableWidget::checkedItemsState(bool check)
 {
     for(int i = 0; i < rowCount(); ++i)
     {
         item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }
+
     clearSelection();
+}
+
+void MusicFillItemTableWidget::checkedItemsStatus(bool check)
+{
+    for(int i = 0; i < rowCount(); ++i)
+    {
+        item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
+    }
+
+    if(!check)
+    {
+        clearSelection();
+        setCurrentIndex(QModelIndex());
+    }
+    else
+    {
+        selectAll();
+    }
 }

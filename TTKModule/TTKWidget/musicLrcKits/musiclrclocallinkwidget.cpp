@@ -133,7 +133,7 @@ void MusicLrcLocalLinkWidget::searchInLocalLrc()
 
 void MusicLrcLocalLinkWidget::fuzzyStateChanged()
 {
-    m_ui->searchedTable->clear();
+    m_ui->searchedTable->removeItems();
     searchInLocalLrc();
 }
 
