@@ -168,7 +168,7 @@ public:
     /*!
      * Clear select state.
      */
-    void clearSelectState();
+    void clearState();
     /*!
      * Clear All Items.
      */

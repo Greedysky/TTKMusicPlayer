@@ -43,7 +43,7 @@ public:
     /*!
      * Create all items.
      */
-    void createAllItems(const MusicSongList &items);
+    void addItems(const MusicSongList &items);
 
 };
 

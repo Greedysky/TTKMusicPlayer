@@ -296,7 +296,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundListWidget 
 {
     MusicTopAreaWidget::instance()->musicBackgroundSkinChanged(name);
 
-    item->clearSelectState();
+    item->clearState();
     item->setCurrentItemName(name);
 
     QString s(name);
@@ -315,7 +315,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundRemoteWidge
         return;
     }
 
-    m_cacheBackgroundList->clearSelectState();
+    m_cacheBackgroundList->clearState();
     if(!m_stackBackgroundList->contains(image))
     {
         const int index = cpoyFileToLocalIndex();

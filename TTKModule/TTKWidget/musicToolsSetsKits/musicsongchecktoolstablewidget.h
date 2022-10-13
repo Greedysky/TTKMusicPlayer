@@ -38,7 +38,7 @@ public:
     /*!
      * Create all items.
      */
-    void createAllItems(const MusicSongCheckToolsRenameList &items);
+    void addItems(const MusicSongCheckToolsRenameList &items);
 
 public Q_SLOTS:
     /*!
@@ -77,7 +77,7 @@ public:
     /*!
      * Create all items.
      */
-    void createAllItems(const MusicSongCheckToolsDuplicateList &songs);
+    void addItems(const MusicSongCheckToolsDuplicateList &songs);
 
 Q_SIGNALS:
     /*!
@@ -126,7 +126,7 @@ public:
     /*!
      * Create all items.
      */
-    void createAllItems(const MusicSongCheckToolsQualityList &songs);
+    void addItems(const MusicSongCheckToolsQualityList &songs);
 
 Q_SIGNALS:
     /*!

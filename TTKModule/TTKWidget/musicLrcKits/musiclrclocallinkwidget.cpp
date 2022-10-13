@@ -30,7 +30,7 @@ bool MusicLrcLocalLinkTableWidget::contains(const QString &string)
     return false;
 }
 
-void MusicLrcLocalLinkTableWidget::createAllItems(const MusicLocalDataItemList &items)
+void MusicLrcLocalLinkTableWidget::addItems(const MusicLocalDataItemList &items)
 {
     const int count = rowCount();
     setRowCount(count + items.count());
@@ -128,7 +128,7 @@ void MusicLrcLocalLinkWidget::searchInLocalLrc()
             items << item;
         }
     }
-    m_ui->searchedTable->createAllItems(items);
+    m_ui->searchedTable->addItems(items);
 }
 
 void MusicLrcLocalLinkWidget::fuzzyStateChanged()
@@ -149,7 +149,7 @@ void MusicLrcLocalLinkWidget::findInLocalFile()
     item.m_name = QFileInfo(path).fileName();
     item.m_path = path;
 
-    m_ui->searchedTable->createAllItems({item});
+    m_ui->searchedTable->addItems({item});
 }
 
 void MusicLrcLocalLinkWidget::deleteFoundLrc()

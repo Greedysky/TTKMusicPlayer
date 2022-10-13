@@ -37,7 +37,7 @@ public:
     /*!
      * Create all items.
      */
-    void createAllItems(const MusicSongList &songs);
+    void addItems(const MusicSongList &songs);
     /*!
      * Select all items.
      */

@@ -52,7 +52,7 @@ public:
     /*!
      * Create all items.
      */
-    void createAllItems(const MusicLocalDataItemList &items);
+    void addItems(const MusicLocalDataItemList &items);
 
 };
 

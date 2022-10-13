@@ -194,7 +194,7 @@ void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &i
     initialize();
     m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName, info.m_songName), Qt::ElideRight, 200));
 
-    createAllItems(info.m_songProps);
+    addItems(info.m_songProps);
 }
 
 void MusicDownloadWidget::show()
@@ -214,7 +214,7 @@ void MusicDownloadWidget::downLoadFinished()
     const MusicObject::MusicSongInformation info(matchMusicSongInformation());
     if(!info.m_songName.isEmpty() || !info.m_singerName.isEmpty())
     {
-        createAllItems(info.m_songProps);
+        addItems(info.m_songProps);
     }
     else
     {
@@ -247,7 +247,7 @@ MusicObject::MusicSongInformation MusicDownloadWidget::matchMusicSongInformation
     return MusicObject::MusicSongInformation();
 }
 
-void MusicDownloadWidget::createAllItems(const MusicObject::MusicSongPropertyList &props)
+void MusicDownloadWidget::addItems(const MusicObject::MusicSongPropertyList &props)
 {
     MusicObject::MusicSongPropertyList propertys = props;
     std::sort(propertys.begin(), propertys.end()); //to find out the min bitrate

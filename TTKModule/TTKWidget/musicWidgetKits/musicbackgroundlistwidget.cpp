@@ -169,7 +169,7 @@ void MusicBackgroundListWidget::setCurrentItemName(const QString &name)
     }
 }
 
-void MusicBackgroundListWidget::clearSelectState()
+void MusicBackgroundListWidget::clearState()
 {
     for(MusicBackgroundListItem *item : qAsConst(m_items))
     {

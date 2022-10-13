@@ -38,7 +38,7 @@ public:
     /*!
      * Create all items.
      */
-    void createAllItems(MusicSongItemList *items);
+    void addItems(MusicSongItemList *items);
     /*!
      * Get selected items.
      */
@@ -74,7 +74,7 @@ public:
     /*!
      * Create all items.
      */
-    void createAllItems(MusicSongItemList *items);
+    void addItems(MusicSongItemList *items);
 
 Q_SIGNALS:
     /*!

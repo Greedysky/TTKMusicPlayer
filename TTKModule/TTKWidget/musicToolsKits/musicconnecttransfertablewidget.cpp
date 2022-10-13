@@ -16,7 +16,7 @@ MusicConnectTransferTableWidget::MusicConnectTransferTableWidget(QWidget *parent
     connect(m_checkBoxDelegate, SIGNAL(buttonChecked()), parent->parent(), SLOT(itemSelectedChanged()));
 }
 
-void MusicConnectTransferTableWidget::createAllItems(const MusicSongList &songs)
+void MusicConnectTransferTableWidget::addItems(const MusicSongList &songs)
 {
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();

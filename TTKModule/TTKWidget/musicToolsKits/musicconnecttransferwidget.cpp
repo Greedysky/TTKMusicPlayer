@@ -105,7 +105,7 @@ void MusicConnectTransferWidget::initialize()
     m_ui->songCountLabel->setText(m_songCountLabel.arg(count));
 }
 
-void MusicConnectTransferWidget::createAllItems(const MusicSongList &songs)
+void MusicConnectTransferWidget::addItems(const MusicSongList &songs)
 {
     m_ui->listTableWidget->clear();
     if(m_ui->allSelectedcheckBox->isChecked())
@@ -113,7 +113,7 @@ void MusicConnectTransferWidget::createAllItems(const MusicSongList &songs)
         m_ui->allSelectedcheckBox->click();
     }
 
-    m_ui->listTableWidget->createAllItems(songs);
+    m_ui->listTableWidget->addItems(songs);
 }
 
 QStringList MusicConnectTransferWidget::selectedFiles() const
@@ -171,7 +171,7 @@ void MusicConnectTransferWidget::currentPlaylistSelected(int index)
     m_searchResultCache.clear();
     m_ui->searchLineEdit->clear();
     m_songItems = songs[m_currentIndex = index].m_songs;
-    createAllItems(m_songItems);
+    addItems(m_songItems);
 }
 
 void MusicConnectTransferWidget::selectedAllItems(bool check)
@@ -209,7 +209,7 @@ void MusicConnectTransferWidget::searchResultChanged(int, int column)
     {
         songs.append(m_songItems[index]);
     }
-    createAllItems(songs);
+    addItems(songs);
 }
 
 int MusicConnectTransferWidget::exec()

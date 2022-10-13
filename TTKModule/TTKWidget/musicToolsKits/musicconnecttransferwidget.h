@@ -89,7 +89,7 @@ private:
     /*!
      * Create all items.
      */
-    void createAllItems(const MusicSongList &songs);
+    void addItems(const MusicSongList &songs);
     /*!
      * Get selected files.
      */

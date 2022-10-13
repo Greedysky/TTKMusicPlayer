@@ -23,7 +23,7 @@ MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *pare
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 }
 
-void MusicSongItemSelectedTableWidget::createAllItems(MusicSongItemList *items)
+void MusicSongItemSelectedTableWidget::addItems(MusicSongItemList *items)
 {
     if(items->count() >= 4)
     {
@@ -114,9 +114,9 @@ MusicSongItemSelectedDialog::~MusicSongItemSelectedDialog()
     delete m_ui;
 }
 
-void MusicSongItemSelectedDialog::createAllItems(MusicSongItemList *items)
+void MusicSongItemSelectedDialog::addItems(MusicSongItemList *items)
 {
-    m_ui->itemTableWidget->createAllItems(items);
+    m_ui->itemTableWidget->addItems(items);
 }
 
 void MusicSongItemSelectedDialog::confirmButtonClicked()
@@ -205,7 +205,7 @@ void MusicSongItemSelectedAreaWidget::modifiedItemButtonClicked()
 
     MusicSongItemSelectedDialog dialog;
     connect(&dialog, SIGNAL(itemListChanged(TTKIntList)), SLOT(itemListChanged(TTKIntList)));
-    dialog.createAllItems(&songs);
+    dialog.addItems(&songs);
     dialog.exec();
 
     Q_EMIT confirmChanged();

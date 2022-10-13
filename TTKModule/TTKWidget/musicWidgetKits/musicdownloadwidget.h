@@ -218,7 +218,7 @@ private:
     /*!
      * Create current all items.
      */
-    void createAllItems(const MusicObject::MusicSongPropertyList &props);
+    void addItems(const MusicObject::MusicSongPropertyList &props);
     /*!
      * Strat to download music.
      */

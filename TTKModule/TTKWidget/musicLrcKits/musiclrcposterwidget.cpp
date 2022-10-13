@@ -844,7 +844,7 @@ MusicLrcPosterTableWidget::MusicLrcPosterTableWidget(QWidget *parent)
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 }
 
-void MusicLrcPosterTableWidget::createAllItems(const QStringList &lrcs)
+void MusicLrcPosterTableWidget::addItems(const QStringList &lrcs)
 {
     setRowCount(lrcs.count());
     for(int i = 0; i < lrcs.count(); ++i)
@@ -1011,7 +1011,7 @@ MusicLrcPosterWidget::~MusicLrcPosterWidget()
 void MusicLrcPosterWidget::setCurrentLrcs(const QStringList &lrcs, const QString &name)
 {
     m_itemWidget->setCurrentSongName(name);
-    m_ui->lrcArea->createAllItems(lrcs);
+    m_ui->lrcArea->addItems(lrcs);
 }
 
 void MusicLrcPosterWidget::openButtonClicked()

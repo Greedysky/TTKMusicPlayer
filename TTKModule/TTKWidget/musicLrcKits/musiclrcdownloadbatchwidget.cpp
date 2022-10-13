@@ -21,7 +21,7 @@ MusicLrcDownloadBatchTableWidget::MusicLrcDownloadBatchTableWidget(QWidget *pare
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 }
 
-void MusicLrcDownloadBatchTableWidget::createAllItems(const MusicSongList &items)
+void MusicLrcDownloadBatchTableWidget::addItems(const MusicSongList &items)
 {
     setRowCount(items.count());
     QHeaderView *headerview = horizontalHeader();
@@ -106,7 +106,7 @@ MusicLrcDownloadBatchWidget::~MusicLrcDownloadBatchWidget()
 void MusicLrcDownloadBatchWidget::addButtonClicked()
 {
     m_localSongs = m_ui->selectedAreaWidget->selectedSongItems();
-    m_ui->tableWidget->createAllItems(m_localSongs);
+    m_ui->tableWidget->addItems(m_localSongs);
 }
 
 void MusicLrcDownloadBatchWidget::downloadButtonClicked()

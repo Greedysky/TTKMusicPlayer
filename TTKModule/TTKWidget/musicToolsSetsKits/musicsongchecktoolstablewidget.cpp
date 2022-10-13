@@ -24,7 +24,7 @@ MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidg
     setItemDelegateForColumn(3, new MusicPushButtonDelegate(this));
 }
 
-void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongCheckToolsRenameList &items)
+void MusicSongCheckToolsRenameTableWidget::addItems(const MusicSongCheckToolsRenameList &items)
 {
     setRowCount(items.count());
     QHeaderView *headerview = horizontalHeader();
@@ -124,7 +124,7 @@ MusicSongCheckToolsDuplicateTableWidget::~MusicSongCheckToolsDuplicateTableWidge
     G_CONNECTION_PTR->removeValue(className());
 }
 
-void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongCheckToolsDuplicateList &songs)
+void MusicSongCheckToolsDuplicateTableWidget::addItems(const MusicSongCheckToolsDuplicateList &songs)
 {
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
@@ -256,7 +256,7 @@ MusicSongCheckToolsQualityTableWidget::~MusicSongCheckToolsQualityTableWidget()
     G_CONNECTION_PTR->removeValue(className());
 }
 
-void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckToolsQualityList &songs)
+void MusicSongCheckToolsQualityTableWidget::addItems(const MusicSongCheckToolsQualityList &songs)
 {
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
