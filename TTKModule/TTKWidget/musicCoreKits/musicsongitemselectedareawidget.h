@@ -81,10 +81,6 @@ public Q_SLOTS:
      * Confirm button clicked.
      */
     void confirmButtonClicked();
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
 
 private:
     Ui::MusicSongItemSelectedDialog *m_ui;

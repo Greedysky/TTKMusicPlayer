@@ -46,12 +46,6 @@ public:
      */
     void setFileInformation(QSyncDataItem *data);
 
-public Q_SLOTS:
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
-
 private:
     Ui::MusicCloudFileInformationWidget *m_ui;
 

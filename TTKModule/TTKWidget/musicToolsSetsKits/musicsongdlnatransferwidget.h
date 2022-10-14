@@ -78,10 +78,6 @@ public Q_SLOTS:
      * Set music to next.
      */
     void musicNext();
-    /*!
-     * Override show function.
-     */
-    void show();
 
 private:
     Ui::MusicSongDlnaTransferWidget *m_ui;

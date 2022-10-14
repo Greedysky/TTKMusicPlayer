@@ -10,6 +10,7 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -272,10 +273,4 @@ void MusicTimerWidget::setEnabledThreeControl(bool enable)
     m_ui->hourComboBox3->setEnabled(enable);
     m_ui->secComboBox3->setEnabled(enable);
     m_ui->repeatComboBox3->setEnabled(enable);
-}
-
-int MusicTimerWidget::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }

@@ -233,11 +233,11 @@ void MusicHlSaturationPalette::calculateSuration()
 
 MusicColorDialog::MusicColorDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicColorDialog),
-      m_status(0)
+      m_ui(new Ui::MusicColorDialog)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -254,6 +254,7 @@ MusicColorDialog::MusicColorDialog(QWidget *parent)
     m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
     m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
 #endif
+
     connect(m_ui->wgtPalette, SIGNAL(colorChanged(QColor)), m_ui->wgtSaturationIndicator, SLOT(setBaseColor(QColor)));
     connect(m_ui->wgtPalette, SIGNAL(colorChanged(QColor)), SLOT(colorChanged(QColor)));
     connect(m_ui->wgtSaturationIndicator, SIGNAL(saturationChanged(double)), m_ui->wgtPalette, SLOT(setSaturation(double)));
@@ -288,21 +289,13 @@ void MusicColorDialog::buttonClicked(int index)
     switch(index)
     {
         case 0:
-        case 2: m_status = 0; break;
-        case 1: m_status = 1; break;
+        case 2: reject(); break;
+        case 1: accept(); break;
         default: break;
     }
-    close();
 }
 
 void MusicColorDialog::colorChanged(const QColor &color)
 {
     m_color = color;
-}
-
-int MusicColorDialog::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    MusicAbstractMoveDialog::exec();
-    return m_status;
 }

@@ -116,11 +116,6 @@ public Q_SLOTS:
      */
     void searchResultChanged(int row, int column);
 
-    /*!
-     * Override show function.
-     */
-    void show();
-
 private:
     /*!
      * Clear All Items.

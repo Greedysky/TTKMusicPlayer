@@ -60,10 +60,6 @@ public Q_SLOTS:
      * Set current song name.
      */
     void setCurrentSongName(const QString &name) const;
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
 
 private:
     Ui::MusicLrcSearchWidget *m_ui;

@@ -67,10 +67,6 @@ public Q_SLOTS:
      * Equlizer presets index changed by change index.
      */
     void equlizerTypeChanged(int index);
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
 
 private:
     /*!

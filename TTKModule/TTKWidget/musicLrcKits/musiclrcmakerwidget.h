@@ -121,10 +121,6 @@ public Q_SLOTS:
      * Create current line finished.
      */
     void currentLineFinished();
-    /*!
-     * Override show function.
-     */
-    void show();
 
 private Q_SLOTS:
     /*!

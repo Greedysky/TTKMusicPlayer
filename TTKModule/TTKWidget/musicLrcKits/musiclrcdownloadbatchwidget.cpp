@@ -70,6 +70,7 @@ MusicLrcDownloadBatchWidget::MusicLrcDownloadBatchWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
     setAttribute(Qt::WA_DeleteOnClose);
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -171,10 +172,4 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
 
     m_ui->addButton->setEnabled(true);
     m_ui->downloadButton->setEnabled(true);
-}
-
-void MusicLrcDownloadBatchWidget::show()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    MusicAbstractMoveWidget::show();
 }

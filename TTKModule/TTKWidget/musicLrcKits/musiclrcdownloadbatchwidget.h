@@ -72,10 +72,6 @@ public Q_SLOTS:
      * Download button clicked.
      */
     void downloadButtonClicked();
-    /*!
-     * Override show function.
-     */
-    void show();
 
 private:
     Ui::MusicLrcDownloadBatchWidget *m_ui;

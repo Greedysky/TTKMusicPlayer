@@ -9,6 +9,7 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -27,6 +28,9 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
     m_downloadRequest = new MusicDownloadCounterPVRequest(this);
     connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(musicGetCounterFinished(QString)));
     m_downloadRequest->startRequest();
+
+    m_ui->iconLabel->setPixmap(QPixmap(":/image/lb_logo"));
+    m_ui->textLabel->setText(QString("TTKMusicPlayer Version: %1\n").arg(TTK_VERSION_STR) + m_ui->textLabel->text());
 }
 
 MusicMessageAboutDialog::~MusicMessageAboutDialog()
@@ -38,12 +42,4 @@ MusicMessageAboutDialog::~MusicMessageAboutDialog()
 void MusicMessageAboutDialog::musicGetCounterFinished(const QString &bytes)
 {
     m_ui->counterLabel->setText(tr("Counter: %1").arg(bytes));
-}
-
-int MusicMessageAboutDialog::exec()
-{
-    m_ui->iconLabel->setPixmap(QPixmap(":/image/lb_logo"));
-    m_ui->textLabel->setText(QString("TTKMusicPlayer Version: %1\n").arg(TTK_VERSION_STR) + m_ui->textLabel->text());
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }

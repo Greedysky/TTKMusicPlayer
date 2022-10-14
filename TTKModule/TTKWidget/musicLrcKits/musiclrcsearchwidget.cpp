@@ -9,6 +9,7 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -97,10 +98,4 @@ void MusicLrcSearchWidget::lrcDownloadStateChanged(const QString &string)
     {
        m_ui->stateLabel->setText(tr("Lrc download finished!"));
     }
-}
-
-int MusicLrcSearchWidget::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }

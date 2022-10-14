@@ -17,6 +17,7 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_analysis = new MusicLrcAnalysis(this);
     m_analysis->setLineMax(9);
@@ -315,10 +316,4 @@ void MusicWebFMRadioPlayWidget::durationChanged(qint64 duration)
         return;
     }
     m_ui->durationLabel->setText(QString("/%1").arg(MusicTime::msecTime2LabelJustified(duration * MT_S2MS)));
-}
-
-void MusicWebFMRadioPlayWidget::show()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    MusicAbstractMoveWidget::show();
 }

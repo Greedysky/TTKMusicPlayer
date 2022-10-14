@@ -48,12 +48,6 @@ public:
      */
     void setPlaceholderText(const QString &text);
 
-public Q_SLOTS:
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
-
 private:
     Ui::MusicInputDialog *m_ui;
 

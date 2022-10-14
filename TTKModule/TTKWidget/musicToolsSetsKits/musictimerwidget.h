@@ -57,10 +57,6 @@ public Q_SLOTS:
      * Widget interface control enable or not.
      */
     void buttonClicked(int index);
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
 
 private:
     /*!

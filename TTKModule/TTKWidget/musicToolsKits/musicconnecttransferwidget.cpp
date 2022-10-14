@@ -15,7 +15,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
-
+    setBackgroundLabel(m_ui->background);
     setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
     m_songCountLabel = m_ui->songCountLabel->text();
@@ -206,10 +206,4 @@ void MusicConnectTransferWidget::searchResultChanged(int, int column)
 
     m_searchResultCache.insert(column, result);
     addCellItems(data);
-}
-
-int MusicConnectTransferWidget::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }

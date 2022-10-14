@@ -17,6 +17,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
     setAttribute(Qt::WA_DeleteOnClose);
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -160,10 +161,4 @@ void MusicSongDlnaTransferWidget::musicPrevious()
 void MusicSongDlnaTransferWidget::musicNext()
 {
     m_currentPlayIndex++;
-}
-
-void MusicSongDlnaTransferWidget::show()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    MusicAbstractMoveWidget::show();
 }

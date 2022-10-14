@@ -250,10 +250,6 @@ public Q_SLOTS:
      * Save button clicked.
      */
     void saveButtonClicked();
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
 
 private:
     Ui::MusicLrcPosterWidget *m_ui;

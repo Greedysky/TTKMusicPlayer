@@ -54,6 +54,14 @@ public Q_SLOTS:
      * Background image changed.
      */
     void backgroundChanged();
+    /*!
+     * Override exec function.
+     */
+    virtual int exec();
+    /*!
+     * Override show function.
+     */
+    void show();
 
 protected:
     /*!

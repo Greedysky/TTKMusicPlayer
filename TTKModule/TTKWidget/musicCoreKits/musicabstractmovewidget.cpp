@@ -28,10 +28,13 @@ MusicAbstractMoveWidget::~MusicAbstractMoveWidget()
 
 void MusicAbstractMoveWidget::backgroundChanged()
 {
-    if(m_background)
-    {
-        setBackgroundPixmap(size());
-    }
+    setBackgroundPixmap(size());
+}
+
+void MusicAbstractMoveWidget::show()
+{
+    setBackgroundPixmap(size());
+    QWidget::show();
 }
 
 void MusicAbstractMoveWidget::paintEvent(QPaintEvent *event)

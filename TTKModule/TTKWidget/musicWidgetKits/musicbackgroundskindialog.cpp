@@ -19,6 +19,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -284,12 +285,6 @@ void MusicBackgroundSkinDialog::windowTransparentChanged(bool state)
         m_ui->skinTransparentButton->setValue(0);
         MusicTopAreaWidget::instance()->musicBackgroundTransparentChanged(0);
     }
-}
-
-int MusicBackgroundSkinDialog::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }
 
 void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundListWidget *item, const QString &name)

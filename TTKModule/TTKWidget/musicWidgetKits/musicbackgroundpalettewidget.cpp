@@ -178,16 +178,16 @@ MusicBackgroundPaletteWidget::~MusicBackgroundPaletteWidget()
     delete m_ui;
 }
 
-void MusicBackgroundPaletteWidget::updateBackground(const QString &text)
+void MusicBackgroundPaletteWidget::updateBackground(const QString &path)
 {
     MusicBackgroundImage image;
-    if(MusicExtractWrapper::outputSkin(&image, text))
+    if(MusicExtractWrapper::outputSkin(&image, path))
     {
         m_ui->background->setPixmap(image.m_pix.scaled(size()));
     }
     else
     {
-        m_ui->background->setPixmap(QPixmap(text).scaled(size()));
+        m_ui->background->setPixmap(QPixmap(path).scaled(size()));
     }
 }
 
@@ -196,6 +196,7 @@ void MusicBackgroundPaletteWidget::paletteColorClicked()
     if(m_currentColor.isValid())
     {
         m_confirmButtonClicked = true;
+
         QImage image(16, 16, QImage::Format_ARGB32);
         image.fill(m_currentColor);
         if(image.save(MUSIC_COLOR_FILE))

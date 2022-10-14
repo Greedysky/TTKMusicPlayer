@@ -15,6 +15,7 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -83,12 +84,6 @@ void MusicSongSharingWidget::setData(Module type, const QVariantMap &data)
     QString path = ART_DIR_FULL + MusicUtils::String::artistName(name) + SKN_FILE;
     m_ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path) ? path : ":/image/lb_default_art").scaled(50, 50));
     m_ui->textEdit->setText(tr("I used to listen music #%1# by TTKMusicPlayer,").arg(name) + tr("and recommend it to you! (From #TTKMusicPlayer#)"));
-}
-
-int MusicSongSharingWidget::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }
 
 void MusicSongSharingWidget::confirmButtonClicked()

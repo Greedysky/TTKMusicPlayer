@@ -7,6 +7,7 @@ MusicInputDialog::MusicInputDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -35,10 +36,4 @@ QString MusicInputDialog::text() const
 void MusicInputDialog::setPlaceholderText(const QString &text)
 {
     m_ui->input->editor()->setPlaceholderText(text);
-}
-
-int MusicInputDialog::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }

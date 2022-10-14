@@ -270,10 +270,6 @@ public Q_SLOTS:
      * Save the parameter setting results.
      */
     void saveParameterSettings();
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
 
 private Q_SLOTS:
     /*!

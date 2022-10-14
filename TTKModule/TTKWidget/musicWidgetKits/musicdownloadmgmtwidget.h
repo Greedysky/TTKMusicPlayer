@@ -53,10 +53,6 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Override show function.
-     */
-    void show();
-    /*!
      * Restart to dwonload music data.
      */
     void restartRequest();

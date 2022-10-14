@@ -106,12 +106,6 @@ public:
      */
     MusicFMChannel channelInformation() const;
 
-public Q_SLOTS:
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
-
 private:
     Ui::MusicTTKFMRadioInformationWidget *m_ui;
     bool m_readOnly;
@@ -174,10 +168,6 @@ public Q_SLOTS:
      * Info button clicked.
      */
     void infoButtonClicked();
-    /*!
-     * Override show function.
-     */
-    void show();
 
 private:
     /*!

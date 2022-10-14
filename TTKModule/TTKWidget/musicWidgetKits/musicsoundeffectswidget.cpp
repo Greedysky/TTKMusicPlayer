@@ -119,6 +119,7 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -196,12 +197,6 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
             item->setPluginEnabled(false);
         }
     }
-}
-
-int MusicSoundEffectsWidget::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }
 
 void MusicSoundEffectsWidget::readSoundEffect()

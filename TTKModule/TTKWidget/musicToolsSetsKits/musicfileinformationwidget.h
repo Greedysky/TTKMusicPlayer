@@ -74,10 +74,6 @@ public Q_SLOTS:
      * Music modify tag save.
      */
     void saveTag();
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
 
 private:
     /*!

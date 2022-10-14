@@ -110,10 +110,6 @@ public Q_SLOTS:
      * State combobox index changed.
      */
     void stateComboBoxChanged(int index);
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
 
 private:
     /*!

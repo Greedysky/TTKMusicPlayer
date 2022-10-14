@@ -69,6 +69,7 @@ MusicTTKFMRadioInformationWidget::MusicTTKFMRadioInformationWidget(QWidget *pare
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -108,11 +109,6 @@ void MusicTTKFMRadioInformationWidget::setReadOnly(bool mode)
     m_ui->locationEdit->setReadOnly(mode);
 }
 
-int MusicTTKFMRadioInformationWidget::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
-}
 
 
 MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
@@ -123,6 +119,7 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -456,10 +453,4 @@ void MusicTTKFMRadioPlayWidget::infoButtonClicked()
     MusicTTKFMRadioInformationWidget w;
     w.setChannelInformation(m_items[index]);
     w.exec();
-}
-
-void MusicTTKFMRadioPlayWidget::show()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    MusicAbstractMoveWidget::show();
 }

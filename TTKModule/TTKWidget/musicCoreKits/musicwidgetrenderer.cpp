@@ -9,14 +9,13 @@ MusicWidgetRenderer::MusicWidgetRenderer()
 
 }
 
-void MusicWidgetRenderer::setBackgroundPixmap(QLabel *label, const QSize &size)
-{
-    m_background = label;
-    setBackgroundPixmap(size);
-}
-
 void MusicWidgetRenderer::setBackgroundPixmap(const QSize &size)
 {
+    if(!m_background)
+    {
+        return;
+    }
+
     MusicBackgroundImage image;
     if(MusicExtractWrapper::outputSkin(&image, G_BACKGROUND_PTR->backgroundUrl()))
     {

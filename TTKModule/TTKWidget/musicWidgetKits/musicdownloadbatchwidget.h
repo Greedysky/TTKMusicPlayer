@@ -150,10 +150,6 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Override show function.
-     */
-    void show();
-    /*!
      * Start to download data from net.
      */
     void startRequest();

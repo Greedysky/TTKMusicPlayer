@@ -52,10 +52,6 @@ public Q_SLOTS:
      * Upload button clicked.
      */
     void uploadButtonClicked();
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
 
 private:
     Ui::MusicLrcArtPhotoUploadWidget *m_ui;

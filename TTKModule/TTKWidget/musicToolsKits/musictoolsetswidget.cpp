@@ -17,6 +17,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
     setAttribute(Qt::WA_DeleteOnClose);
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -137,12 +138,6 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
         }
         default: break;
     }
-}
-
-void MusicToolSetsWidget::show()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    MusicAbstractMoveWidget::show();
 }
 
 void MusicToolSetsWidget::clear()

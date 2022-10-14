@@ -103,6 +103,7 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
     m_ui->setupUi(this);
     setFixedSize(size());
     setAttribute(Qt::WA_DeleteOnClose);
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -168,8 +169,7 @@ MusicNetworkConnectionTestWidget::~MusicNetworkConnectionTestWidget()
 void MusicNetworkConnectionTestWidget::show()
 {
     m_ui->iconLabel->timeout();
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveWidget::show();
+    MusicAbstractMoveWidget::show();
 }
 
 void MusicNetworkConnectionTestWidget::buttonStateChanged()

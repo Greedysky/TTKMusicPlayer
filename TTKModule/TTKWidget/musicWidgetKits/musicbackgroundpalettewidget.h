@@ -88,7 +88,7 @@ public:
     /*!
      * Update this background when user change the current background.
      */
-    void updateBackground(const QString &text);
+    void updateBackground(const QString &path);
 
 Q_SIGNALS:
     /*!

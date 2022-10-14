@@ -69,10 +69,6 @@ public Q_SLOTS:
      * Down button clicked.
      */
     void downButtonClicked();
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
 
 private:
     Ui::MusicLrcColorWidget *m_ui;

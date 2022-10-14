@@ -35,16 +35,18 @@ public:
      */
     explicit MusicWidgetRenderer();
 
-protected:
     /*!
-     * Set background pixmap.
+     * Set background label.
      */
-    void setBackgroundPixmap(QLabel *label, const QSize &size);
+    inline void setBackgroundLabel(QLabel *label) { m_background = label; }
+
+protected:
     /*!
      * Set background pixmap.
      */
     void setBackgroundPixmap(const QSize &size);
 
+private:
     QLabel *m_background;
 
 };

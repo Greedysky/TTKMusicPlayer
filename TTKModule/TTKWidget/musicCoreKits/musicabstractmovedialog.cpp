@@ -29,10 +29,19 @@ MusicAbstractMoveDialog::~MusicAbstractMoveDialog()
 
 void MusicAbstractMoveDialog::backgroundChanged()
 {
-    if(m_background)
-    {
-        setBackgroundPixmap(size());
-    }
+    setBackgroundPixmap(size());
+}
+
+int MusicAbstractMoveDialog::exec()
+{
+    setBackgroundPixmap(size());
+    return QDialog::exec();
+}
+
+void MusicAbstractMoveDialog::show()
+{
+    setBackgroundPixmap(size());
+    QDialog::show();
 }
 
 void MusicAbstractMoveDialog::paintEvent(QPaintEvent *event)

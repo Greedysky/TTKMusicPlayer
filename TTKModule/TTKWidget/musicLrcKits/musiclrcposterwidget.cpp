@@ -977,6 +977,7 @@ MusicLrcPosterWidget::MusicLrcPosterWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -1043,10 +1044,4 @@ void MusicLrcPosterWidget::saveButtonClicked()
         QPixmap::grabWidget(this, rect).save(path, JPG_FILE_PREFIX);
 #endif
     }
-}
-
-int MusicLrcPosterWidget::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }

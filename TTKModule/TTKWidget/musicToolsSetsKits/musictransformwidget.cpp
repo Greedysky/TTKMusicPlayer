@@ -14,6 +14,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
     
     m_process = new QProcess(this);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
@@ -275,6 +276,5 @@ int MusicTransformWidget::exec()
         return -1;
     }
 
-    setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

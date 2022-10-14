@@ -54,6 +54,10 @@ public Q_SLOTS:
      * Background image changed.
      */
     void backgroundChanged();
+    /*!
+     * Override show function.
+     */
+    void show();
 
 protected:
     /*!

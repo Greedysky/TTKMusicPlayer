@@ -82,10 +82,6 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Override exec function.
-     */
-    virtual int exec();
-    /*!
      * User custom the current share text.
      */
     void textAreaChanged();

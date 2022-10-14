@@ -120,10 +120,10 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
 
     const QString &prfix = QString("background-image:url(':/enhance/lb_%1')");
     m_caseButton->setStyleSheet(type ? MusicUIObject::MQSSEnhanceOn : MusicUIObject::MQSSEnhanceOff);
-    m_buttons[0]->setStyleSheet(prfix.arg(type == 1 ? "3dOn" : "3dOff"), type == 1);
-    m_buttons[1]->setStyleSheet(prfix.arg(type == 2 ? "NICAMOn" : "NICAMOff"), type == 2);
-    m_buttons[2]->setStyleSheet(prfix.arg(type == 3 ? "subwooferOn" : "subwooferOff"), type == 3);
-    m_buttons[3]->setStyleSheet(prfix.arg(type == 4 ? "vocalOn" : "vocalOff"), type == 4);
+    m_buttons[0]->setStyleSheet(prfix.arg(type == 1 ? "3d_on" : "3d_off"), type == 1);
+    m_buttons[1]->setStyleSheet(prfix.arg(type == 2 ? "nicam_on" : "nicam_off"), type == 2);
+    m_buttons[2]->setStyleSheet(prfix.arg(type == 3 ? "subwoofer_on" : "subwoofer_off"), type == 3);
+    m_buttons[3]->setStyleSheet(prfix.arg(type == 4 ? "vocal_on" : "vocal_off"), type == 4);
 
     m_lastSelectedIndex = (type == 0) ? m_lastSelectedIndex : type;
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicIndex, type);

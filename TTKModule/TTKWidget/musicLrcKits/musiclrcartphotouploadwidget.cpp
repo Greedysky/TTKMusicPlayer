@@ -9,6 +9,7 @@ MusicLrcArtPhotoUploadWidget::MusicLrcArtPhotoUploadWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
     
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -102,10 +103,4 @@ void MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
     m_ui->imageLabel->saveImagePath(fileName + JPG_FILE);
     QFile::rename(fileName + JPG_FILE, fileName + SKN_FILE);
     close();
-}
-
-int MusicLrcArtPhotoUploadWidget::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }

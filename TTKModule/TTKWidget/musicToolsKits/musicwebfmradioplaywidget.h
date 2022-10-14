@@ -93,10 +93,6 @@ public Q_SLOTS:
      * Current duration changed.
      */
     void durationChanged(qint64 duration);
-    /*!
-     * Override show function.
-     */
-    void show();
 
 private:
     /*!

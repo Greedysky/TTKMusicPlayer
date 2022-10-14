@@ -93,10 +93,6 @@ public Q_SLOTS:
      * Duplicate check finished.
      */
     void duplicateCheckFinished(const MusicSongCheckToolsDuplicateList &items);
-    /*!
-     * Override show function.
-     */
-    void show();
 
 private:
     /*!

@@ -74,6 +74,7 @@ MusicSongItemSelectedDialog::MusicSongItemSelectedDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -106,12 +107,6 @@ void MusicSongItemSelectedDialog::confirmButtonClicked()
 {
     Q_EMIT itemListChanged(m_ui->itemTableWidget->checkedDataList());
     accept();
-}
-
-int MusicSongItemSelectedDialog::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }
 
 

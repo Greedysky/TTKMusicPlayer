@@ -122,10 +122,6 @@ public Q_SLOTS:
      * Window transparent changed.
      */
     void windowTransparentChanged(bool state);
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
 
 private:
     /*!

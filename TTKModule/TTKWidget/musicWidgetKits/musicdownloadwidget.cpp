@@ -117,6 +117,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
     setAttribute(Qt::WA_DeleteOnClose);
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -195,12 +196,6 @@ void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &i
     m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName, info.m_songName), Qt::ElideRight, 200));
 
     addCellItems(info.m_songProps);
-}
-
-void MusicDownloadWidget::show()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveWidget::show();
 }
 
 void MusicDownloadWidget::downLoadFinished()
@@ -301,7 +296,7 @@ void MusicDownloadWidget::resizeWindow()
     setMoveWidget(m_ui->settingButton, delta);
     setMoveWidget(m_ui->downloadButton, delta);
 
-    setBackgroundPixmap(m_ui->background, size());
+    setBackgroundPixmap(size());
 }
 
 void MusicDownloadWidget::setFixedHeightWidget(QWidget *w, int height)

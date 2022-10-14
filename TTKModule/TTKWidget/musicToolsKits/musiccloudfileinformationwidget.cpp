@@ -10,6 +10,7 @@ MusicCloudFileInformationWidget::MusicCloudFileInformationWidget(QWidget *parent
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -32,10 +33,4 @@ void MusicCloudFileInformationWidget::setFileInformation(QSyncDataItem *data)
 
     const QString &suffix = FILE_SUFFIX(QFileInfo(data->m_name));
     m_ui->fileFormatEdit->setText(suffix.isEmpty() ? data->m_mimeType : suffix);
-}
-
-int MusicCloudFileInformationWidget::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }

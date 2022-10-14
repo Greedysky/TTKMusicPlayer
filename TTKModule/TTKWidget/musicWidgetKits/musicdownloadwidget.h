@@ -169,10 +169,6 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Override show function.
-     */
-    void show();
-    /*!
      * Query all quality musics is finished.
      */
     void downLoadFinished();

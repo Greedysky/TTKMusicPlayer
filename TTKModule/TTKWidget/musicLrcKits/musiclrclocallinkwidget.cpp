@@ -62,6 +62,7 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -201,10 +202,4 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
 
     Q_EMIT currentLrcChanged(DOWNLOAD_KEY_LRC);
     close();
-}
-
-int MusicLrcLocalLinkWidget::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }

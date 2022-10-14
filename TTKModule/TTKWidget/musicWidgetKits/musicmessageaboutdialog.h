@@ -45,10 +45,6 @@ public Q_SLOTS:
      * Get counter pv finished.
      */
     void musicGetCounterFinished(const QString &bytes);
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
 
 private:
     Ui::MusicMessageAboutDialog *m_ui;

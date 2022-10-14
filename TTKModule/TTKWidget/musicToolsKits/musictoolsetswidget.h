@@ -49,10 +49,6 @@ public Q_SLOTS:
      * Add tool sets list into list widget.
      */
     void addListWidgetItem();
-    /*!
-     * Override show function.
-     */
-    void show();
 
 private:
     /*!

@@ -86,10 +86,6 @@ public Q_SLOTS:
      */
     void spectrumFloridTypeChanged(bool &state, const QString &name);
     /*!
-     * Override show function.
-     */
-    void show();
-    /*!
      * Local file button clicked.
      */
     void localFileButtonClicked();

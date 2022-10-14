@@ -99,9 +99,9 @@ MusicMobileSongsManagerWidget::MusicMobileSongsManagerWidget(QWidget *parent)
       m_ui(new Ui::MusicMobileSongsManagerWidget)
 {
     m_ui->setupUi(this);
-
     setFixedSize(size());
     setAttribute(Qt::WA_DeleteOnClose);
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -277,12 +277,6 @@ void MusicMobileSongsManagerWidget::searchResultChanged(int, int column)
     clearAllItems();
     m_searchResultCache.insert(column, result);
     m_ui->songlistTable->updateSongsList(data);
-}
-
-void MusicMobileSongsManagerWidget::show()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    MusicAbstractMoveWidget::show();
 }
 
 void MusicMobileSongsManagerWidget::clearAllItems()

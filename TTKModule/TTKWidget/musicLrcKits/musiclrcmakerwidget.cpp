@@ -148,6 +148,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
     setAttribute(Qt::WA_DeleteOnClose);
+    setBackgroundLabel(m_ui->background);
 
     m_ui->stackedWidget->setFocusPolicy(Qt::StrongFocus);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
@@ -237,12 +238,6 @@ void MusicLrcMakerWidget::durationChanged(qint64 position)
 void MusicLrcMakerWidget::currentLineFinished()
 {
     createCurrentLine(Qt::Key_Down);
-}
-
-void MusicLrcMakerWidget::show()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    MusicAbstractMoveWidget::show();
 }
 
 void MusicLrcMakerWidget::timeSliderValueChanged(int value)

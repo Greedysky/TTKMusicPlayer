@@ -21,6 +21,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -113,12 +114,6 @@ void MusicEqualizerDialog::equlizerTypeChanged(int index)
         makeBlockedValue(m_ui->verticalSlider10, m_equalizeValue[index + 9]);
     }
     parameterSubmit();
-}
-
-int MusicEqualizerDialog::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }
 
 void MusicEqualizerDialog::initialize()

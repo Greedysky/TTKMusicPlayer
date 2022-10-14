@@ -1,12 +1,14 @@
 #include "musiclrccolorwidget.h"
 #include "ui_musiclrccolorwidget.h"
 #include "musiccolordialog.h"
+
 MusicLrcColorWidget::MusicLrcColorWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicLrcColorWidget)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+    setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -132,10 +134,4 @@ void MusicLrcColorWidget::downButtonClicked()
         m_ui->listWidget->insertItem(index, it);
         m_ui->listWidget->setCurrentRow(index);
     }
-}
-
-int MusicLrcColorWidget::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
 }

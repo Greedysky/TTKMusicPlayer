@@ -27,6 +27,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
     setAttribute(Qt::WA_DeleteOnClose);
+    setBackgroundLabel(m_ui->background);
     setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
@@ -125,12 +126,6 @@ void MusicSpectrumWidget::spectrumFlowTypeChanged(bool &state, const QString &na
 void MusicSpectrumWidget::spectrumFloridTypeChanged(bool &state, const QString &name)
 {
     createFloridWidget(MusicSpectrum::Module::Florid, state, name, m_ui->spectrumFloridAreaLayout);
-}
-
-void MusicSpectrumWidget::show()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    MusicAbstractMoveWidget::show();
 }
 
 void MusicSpectrumWidget::localFileButtonClicked()
@@ -380,7 +375,7 @@ void MusicSpectrumWidget::adjustWidgetLayout(int offset)
     m_ui->backgroundMask->setFixedHeight(offset + 389);
     m_ui->mainViewWidget->setFixedHeight(offset + 390);
 
-    setBackgroundPixmap(m_ui->background, size());
+    setBackgroundPixmap(size());
 }
 
 int MusicSpectrumWidget::findSpectrumWidget(const QString &name)

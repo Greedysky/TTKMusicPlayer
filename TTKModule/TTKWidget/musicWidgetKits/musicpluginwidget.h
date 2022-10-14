@@ -48,10 +48,6 @@ public Q_SLOTS:
      * Plugin item setting button click.
      */
     void pluginButtonClicked();
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
 
 private:
     /*!
