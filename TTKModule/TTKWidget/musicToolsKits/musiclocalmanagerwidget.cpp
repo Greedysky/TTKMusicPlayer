@@ -8,6 +8,11 @@
 
 #include <QTimer>
 #include <QButtonGroup>
+#if TTK_QT_VERSION_CHECK(5,0,0)
+#  include <QStandardPaths>
+#else
+#  include <QDesktopServices>
+#endif
 
 MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)
@@ -310,40 +315,45 @@ void MusicLocalManagerWidget::refreshItems()
     }
 
     m_songItems.clear();
+    m_sizeLabel->clear();
     m_songWidget->removeItems();
+    m_searchEdit->editor()->clear();
 
-    const QString &path = G_SETTING_PTR->value(MusicSettingManager::MediaLibraryPath).toString();
-    if(!path.isEmpty())
+    QString path = G_SETTING_PTR->value(MusicSettingManager::MediaLibraryPath).toString();
+    if(path.isEmpty())
     {
-        m_loadingLabel->run(true);
-        const QStringList &files = MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats());
-        m_sizeLabel->setText(tr("   (Totol: %1)").arg(files.size()));
-
-        MusicSongMeta meta;
-        for(const QString &file : files)
-        {
-            QString check;
-            const bool state = meta.read(file);
-
-            MusicSongInfoItem info;
-            info.m_title = state ? MusicObject::generateSongName(meta.title(), meta.artist()) : TTK_DEFAULT_STR;
-            info.m_artist = state ? ((check = meta.artist()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
-            info.m_album = state ? ((check = meta.album()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
-            info.m_year = state ? ((check = meta.year()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
-            info.m_genre = state ? ((check = meta.genre()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
-            info.m_path = file;
-            m_songItems << info;
-
-            qApp->processEvents();
-        }
-
-        m_songWidget->updateSongsList(m_songItems);
-        m_loadingLabel->run(false);
+#if TTK_QT_VERSION_CHECK(5,0,0)
+        path = QStandardPaths::writableLocation(QStandardPaths::MusicLocation) + TTK_SEPARATOR;
+#else
+        path = QDesktopServices::storageLocation(QDesktopServices::MusicLocation) + TTK_SEPARATOR;
+#endif
+        G_SETTING_PTR->setValue(MusicSettingManager::MediaLibraryPath, path);
     }
-    else
+
+    m_loadingLabel->run(true);
+    const QStringList &files = MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats());
+    m_sizeLabel->setText(tr("   (Totol: %1)").arg(files.size()));
+
+    MusicSongMeta meta;
+    for(const QString &file : files)
     {
-        m_sizeLabel->clear();
+        QString check;
+        const bool state = meta.read(file);
+
+        MusicSongInfoItem info;
+        info.m_title = state ? MusicObject::generateSongName(meta.title(), meta.artist()) : TTK_DEFAULT_STR;
+        info.m_artist = state ? ((check = meta.artist()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
+        info.m_album = state ? ((check = meta.album()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
+        info.m_year = state ? ((check = meta.year()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
+        info.m_genre = state ? ((check = meta.genre()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
+        info.m_path = file;
+        m_songItems << info;
+
+        qApp->processEvents();
     }
+
+    m_songWidget->updateSongsList(m_songItems);
+    m_loadingLabel->run(false);
 }
 
 void MusicLocalManagerWidget::updateMediaLibraryPath()

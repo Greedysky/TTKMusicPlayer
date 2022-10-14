@@ -262,7 +262,7 @@ void MusicMobileSongsManagerWidget::searchResultChanged(int, int column)
     TTKIntList result;
     for(int i = 0; i < m_songItems.count(); ++i)
     {
-        if(QFileInfo(m_songItems[i]).fileName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
+        if(QFileInfo(m_songItems[i]).absolutePath().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {
             result << i;
         }

@@ -183,7 +183,7 @@ void MusicConnectTransferWidget::startToTransferFiles()
         return;
     }
 
-    m_thread->setCopyFilePath(m_currentDeviceItem->m_path, names);
+    m_thread->setCopyFilePath(m_currentDeviceItem->m_path + TTK_SEPARATOR, names);
     m_thread->start();
 }
 
@@ -192,7 +192,7 @@ void MusicConnectTransferWidget::searchResultChanged(int, int column)
     TTKIntList result;
     for(int i = 0; i < m_songItems.count(); ++i)
     {
-        if(m_songItems[i].name().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
+        if(m_songItems[i].path().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {
             result << i;
         }
