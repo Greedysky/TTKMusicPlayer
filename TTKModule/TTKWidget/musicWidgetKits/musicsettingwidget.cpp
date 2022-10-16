@@ -21,6 +21,7 @@
 
 #include <qmmp/qmmpsettings.h>
 
+#include <QButtonGroup>
 #include <QFontDatabase>
 #include <QAudioDeviceInfo>
 

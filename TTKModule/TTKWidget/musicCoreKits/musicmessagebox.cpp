@@ -1,6 +1,8 @@
 #include "musicmessagebox.h"
 #include "ui_musicmessagebox.h"
 
+#include <QButtonGroup>
+
 MusicMessageBox::MusicMessageBox(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicMessageBox)

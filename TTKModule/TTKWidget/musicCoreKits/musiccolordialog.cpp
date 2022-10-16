@@ -3,6 +3,7 @@
 
 #include <QToolTip>
 #include <QMouseEvent>
+#include <QButtonGroup>
 #include <QPainterPath>
 
 MusicHlPalette::MusicHlPalette(QWidget *parent)

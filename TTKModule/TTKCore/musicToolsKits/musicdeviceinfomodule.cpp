@@ -134,8 +134,17 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
 
             MusicDeviceInfoItem item;
             item.m_path = path;
-            item.m_usedBytes = available >= total ? total : total - available;
+            item.m_usedBytes = total - available;
             item.m_totalBytes = total;
+
+            if(item.m_usedBytes < 0)
+            {
+                item.m_usedBytes = 0;
+            }
+            else if(item.m_usedBytes >= item.m_totalBytes)
+            {
+                item.m_usedBytes = item.m_totalBytes;
+            }
 
             DWORD serialNumber = 0;
             DWORD maxLength = 0;
@@ -232,7 +241,11 @@ void MusicDeviceInfoModule::handleReadyRead()
                 item.m_usedBytes = mapDriveSize(use);
                 item.m_totalBytes = mapDriveSize(total);
 
-                if(item.m_usedBytes >= item.m_totalBytes)
+                if(item.m_usedBytes < 0)
+                {
+                    item.m_usedBytes = 0;
+                }
+                else if(item.m_usedBytes >= item.m_totalBytes)
                 {
                     item.m_usedBytes = item.m_totalBytes;
                 }

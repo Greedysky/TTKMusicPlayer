@@ -122,8 +122,8 @@ void MusicLocalManagerSongsTableWidget::contextMenuEvent(QContextMenuEvent *even
     menu.exec(QCursor::pos());
 }
 
-#define TAB_BUTTON_ON   MusicUIObject::MQSSPushButtonStyle02 + "QPushButton{ background-color:#158FE1; color:white; }"
-#define TAB_BUTTON_OFF  MusicUIObject::MQSSPushButtonStyle02 + "QPushButton{ background-color:#BFBFBF; color:white; }"
+#define TAB_BUTTON_ON   "QPushButton{ border-radius:0px; background-color:#158FE1; color:white; }"
+#define TAB_BUTTON_OFF  "QPushButton{ border-radius:0px; background-color:#BFBFBF; color:white; }"
 
 MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     : QWidget(parent),
