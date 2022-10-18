@@ -11,6 +11,7 @@
 
 MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
+      MusicItemSearchInterfaceClass(),
       m_ui(new Ui::MusicConnectTransferWidget),
       m_currentIndex(-1),
       m_currentDeviceItem(nullptr)
@@ -123,7 +124,7 @@ QStringList MusicConnectTransferWidget::selectedFiles() const
         return paths;
     }
 
-    if(m_currentIndex == -1 || m_currentIndex > m_songItems.count())
+    if(m_currentIndex == -1 || m_currentIndex > m_containerItems.count())
     {
         return paths;
     }
@@ -135,7 +136,7 @@ QStringList MusicConnectTransferWidget::selectedFiles() const
             const int count = m_ui->searchLineEdit->text().trimmed().count();
             index = m_searchResultCache.value(count)[index];
         }
-        paths << m_songItems[index].path();
+        paths << m_containerItems[index].path();
     }
 
     return paths;
@@ -148,7 +149,7 @@ void MusicConnectTransferWidget::itemSelectedChanged()
 
     for(int i = 0; i < list.count(); ++i)
     {
-        size += m_songItems[list[i]].size();
+        size += m_containerItems[list[i]].size();
     }
 
     double dSize = (size * 100 / MH_MB2B) * 1.0 / 100;
@@ -167,8 +168,8 @@ void MusicConnectTransferWidget::currentPlaylistSelected(int index)
 
     m_searchResultCache.clear();
     m_ui->searchLineEdit->clear();
-    m_songItems = songs[m_currentIndex = index].m_songs;
-    addCellItems(m_songItems);
+    m_containerItems = songs[m_currentIndex = index].m_songs;
+    addCellItems(m_containerItems);
 }
 
 void MusicConnectTransferWidget::selectedAllItems(bool check)
@@ -192,9 +193,9 @@ void MusicConnectTransferWidget::startToTransferFiles()
 void MusicConnectTransferWidget::searchResultChanged(int, int column)
 {
     TTKIntList result;
-    for(int i = 0; i < m_songItems.count(); ++i)
+    for(int i = 0; i < m_containerItems.count(); ++i)
     {
-        if(m_songItems[i].path().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
+        if(m_containerItems[i].path().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {
             result << i;
         }
@@ -203,7 +204,7 @@ void MusicConnectTransferWidget::searchResultChanged(int, int column)
     MusicSongList data;
     for(const int index : qAsConst(result))
     {
-        data.append(m_songItems[index]);
+        data.append(m_containerItems[index]);
     }
 
     m_searchResultCache.insert(column, result);

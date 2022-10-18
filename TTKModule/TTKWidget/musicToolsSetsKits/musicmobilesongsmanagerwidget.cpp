@@ -96,6 +96,7 @@ void MusicMobileSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
 MusicMobileSongsManagerWidget::MusicMobileSongsManagerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
+      MusicItemSearchInterfaceClass(),
       m_ui(new Ui::MusicMobileSongsManagerWidget)
 {
     m_ui->setupUi(this);
@@ -225,7 +226,7 @@ void MusicMobileSongsManagerWidget::itemCellOnClick(int row, int column)
                 m_ui->searchLineEdit->clear();
                 m_searchResultCache.clear();
             }
-            Q_EMIT addSongToPlaylist(QStringList(m_songItems[row]));
+            Q_EMIT addSongToPlaylist(QStringList(m_containerItems[row]));
             break;
         }
         default: break;
@@ -241,7 +242,7 @@ void MusicMobileSongsManagerWidget::itemDoubleClicked(int row, int)
         m_ui->searchLineEdit->clear();
         m_searchResultCache.clear();
     }
-    Q_EMIT addSongToPlaylist(QStringList(m_songItems[row]));
+    Q_EMIT addSongToPlaylist(QStringList(m_containerItems[row]));
 }
 
 void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &path)
@@ -252,17 +253,17 @@ void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &pat
     m_ui->searchLineEdit->clear();
     m_searchResultCache.clear();
 
-    m_songItems = path;
-    m_ui->songlistTable->updateSongsList(m_songItems);
+    m_containerItems = path;
+    m_ui->songlistTable->updateSongsList(m_containerItems);
     m_ui->loadingLabel->run(false);
 }
 
 void MusicMobileSongsManagerWidget::searchResultChanged(int, int column)
 {
     TTKIntList result;
-    for(int i = 0; i < m_songItems.count(); ++i)
+    for(int i = 0; i < m_containerItems.count(); ++i)
     {
-        if(QFileInfo(m_songItems[i]).absolutePath().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
+        if(QFileInfo(m_containerItems[i]).absolutePath().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {
             result << i;
         }
@@ -271,7 +272,7 @@ void MusicMobileSongsManagerWidget::searchResultChanged(int, int column)
     QStringList data;
     for(const int index : qAsConst(result))
     {
-        data.append(m_songItems[index]);
+        data.append(m_containerItems[index]);
     }
 
     clearAllItems();
@@ -314,7 +315,7 @@ void MusicMobileSongsManagerWidget::selectedItemsToPlaylist()
     QStringList names;
     for(const int index : qAsConst(indexs))
     {
-        names << m_songItems[index];
+        names << m_containerItems[index];
     }
 
     Q_EMIT addSongToPlaylist(names);

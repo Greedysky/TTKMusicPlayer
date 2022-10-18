@@ -127,6 +127,7 @@ void MusicLocalManagerSongsTableWidget::contextMenuEvent(QContextMenuEvent *even
 
 MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     : QWidget(parent),
+      MusicItemSearchInterfaceClass(),
       m_currentIndex(0)
 {
     setStyleSheet(MusicUIObject::MQSSBackgroundStyle12 + MusicUIObject::MQSSColorStyle09);
@@ -193,7 +194,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     tabWidgetLayout->setContentsMargins(0, 0, 0, 0);
     tabWidget->setLayout(tabWidgetLayout);
     mainLayout->addWidget(tabWidget);
-    //
+
     QPushButton *songButton = new QPushButton(tr("Song"), functionWidget);
     songButton->setFixedSize(90, 30);
     songButton->setStyleSheet(TAB_BUTTON_ON);
@@ -314,7 +315,7 @@ void MusicLocalManagerWidget::refreshItems()
         return;
     }
 
-    m_songItems.clear();
+    m_containerItems.clear();
     m_sizeLabel->clear();
     m_songWidget->removeItems();
     m_searchEdit->editor()->clear();
@@ -347,12 +348,12 @@ void MusicLocalManagerWidget::refreshItems()
         info.m_year = state ? ((check = meta.year()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
         info.m_genre = state ? ((check = meta.genre()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
         info.m_path = file;
-        m_songItems << info;
+        m_containerItems << info;
 
         qApp->processEvents();
     }
 
-    m_songWidget->updateSongsList(m_songItems);
+    m_songWidget->updateSongsList(m_containerItems);
     m_loadingLabel->run(false);
 }
 
@@ -364,16 +365,16 @@ void MusicLocalManagerWidget::updateMediaLibraryPath()
 void MusicLocalManagerWidget::searchResultChanged(int, int column)
 {
     TTKIntList result;
-    for(int i = 0; i < m_songItems.count(); ++i)
+    for(int i = 0; i < m_containerItems.count(); ++i)
     {
         QString v;
         switch(m_currentIndex)
         {
-            case 0: v = m_songItems[i].m_title; break;
-            case 1: v = m_songItems[i].m_artist; break;
-            case 2: v = m_songItems[i].m_album; break;
-            case 3: v = m_songItems[i].m_year; break;
-            case 4: v = m_songItems[i].m_genre; break;
+            case 0: v = m_containerItems[i].m_title; break;
+            case 1: v = m_containerItems[i].m_artist; break;
+            case 2: v = m_containerItems[i].m_album; break;
+            case 3: v = m_containerItems[i].m_year; break;
+            case 4: v = m_containerItems[i].m_genre; break;
             default: break;
         }
 
@@ -386,7 +387,7 @@ void MusicLocalManagerWidget::searchResultChanged(int, int column)
     MusicSongInfoItemList data;
     for(const int index : qAsConst(result))
     {
-        data.append(m_songItems[index]);
+        data.append(m_containerItems[index]);
     }
 
     m_songWidget->removeItems();

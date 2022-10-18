@@ -31,7 +31,7 @@ class MusicSongSearchDialog;
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongsSummariziedWidget : public MusicSongsToolBoxWidget, private MusicSearchInterface<MusicSongItemList>
+class TTK_MODULE_EXPORT MusicSongsSummariziedWidget : public MusicSongsToolBoxWidget, private MusicItemSearchInterface<MusicSongItemList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsSummariziedWidget)
@@ -53,7 +53,7 @@ public:
     /*!
      * Query music datas from container.
      */
-    inline const MusicSongItemList& musicItemList() const { return m_songItems; }
+    inline const MusicSongItemList& musicItemList() const { return m_containerItems; }
 
     /*!
      * Input imported music datas into container.

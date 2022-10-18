@@ -64,7 +64,7 @@ class MusicMobileSongsManagerWidget;
 /*! @brief The class of the mobile songs manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicMobileSongsManagerWidget : public MusicAbstractMoveWidget, private MusicSearchInterface<QStringList>
+class TTK_MODULE_EXPORT MusicMobileSongsManagerWidget : public MusicAbstractMoveWidget, private MusicItemSearchInterface<QStringList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMobileSongsManagerWidget)

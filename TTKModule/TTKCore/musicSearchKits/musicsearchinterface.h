@@ -21,15 +21,18 @@
 
 #include "ttkglobaldefine.h"
 
-/*! @brief The class of the search interface.
+/*! @brief The class of the item search interface.
  * @author Greedysky <greedysky@163.com>
  */
 template <typename T>
-class TTK_MODULE_EXPORT MusicSearchInterface
+class TTK_MODULE_EXPORT MusicItemSearchInterface
 {
 public:
-    explicit MusicSearchInterface()
-        : m_songItems(),
+    using MusicItemSearchInterfaceClass = MusicItemSearchInterface<T>;
+
+public:
+    explicit MusicItemSearchInterface()
+        : m_containerItems(),
           m_searchResultLevel(0),
           m_searchResultCache()
     {
@@ -37,7 +40,7 @@ public:
     }
 
 protected:
-    T m_songItems;
+    T m_containerItems;
     int m_searchResultLevel;
     TTKIntListMap m_searchResultCache;
 

@@ -32,7 +32,7 @@ class MusicConnectTransferThread;
 /*! @brief The class of the transfer file to mobile widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicConnectTransferWidget : public MusicAbstractMoveDialog, private MusicSearchInterface<MusicSongList>
+class TTK_MODULE_EXPORT MusicConnectTransferWidget : public MusicAbstractMoveDialog, private MusicItemSearchInterface<MusicSongList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicConnectTransferWidget)
