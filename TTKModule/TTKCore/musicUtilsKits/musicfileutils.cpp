@@ -107,6 +107,7 @@ QString MusicUtils::File::openDirectoryDialog(QWidget *obj)
     path = QFileDialog::getExistingDirectory(obj, QObject::tr("Choose a dir to open under"), path);
     if(!path.isEmpty())
     {
+        path += TTK_SEPARATOR;
         G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, path);
     }
     return path;

@@ -353,7 +353,7 @@ void MusicSettingWidget::downloadDirSelected(int index)
     const QString &path = MusicUtils::File::openDirectoryDialog(this);
     if(!path.isEmpty())
     {
-        index == 0 ? m_ui->downloadDirEdit->setText(path + TTK_SEPARATOR) : m_ui->downloadLrcDirEdit->setText(path + TTK_SEPARATOR);
+        index == 0 ? m_ui->downloadDirEdit->setText(path) : m_ui->downloadLrcDirEdit->setText(path);
     }
 }
 

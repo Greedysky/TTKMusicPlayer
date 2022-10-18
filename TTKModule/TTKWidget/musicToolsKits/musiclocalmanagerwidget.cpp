@@ -159,7 +159,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
 
     QLabel *pLabel = new QLabel(tr("Media Library"), functionWidget);
     QFont pLabelFont = pLabel->font();
-    pLabelFont.setPixelSize(30);
+    pLabelFont.setPixelSize(33);
     pLabel->setFont(pLabelFont);
     pLabel->setStyleSheet(MusicUIObject::MQSSColorStyle11);
     functionWidgetLayout->addWidget(pLabel);
@@ -333,7 +333,7 @@ void MusicLocalManagerWidget::refreshItems()
 
     m_loadingLabel->run(true);
     const QStringList &files = MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats());
-    m_sizeLabel->setText(tr("   (Totol: %1)").arg(files.size()));
+    m_sizeLabel->setText(tr("   (Songs Totol: %1)").arg(files.size()));
 
     MusicSongMeta meta;
     for(const QString &file : files)
@@ -359,7 +359,12 @@ void MusicLocalManagerWidget::refreshItems()
 
 void MusicLocalManagerWidget::updateMediaLibraryPath()
 {
-    m_sizeLabel->clear();
+    const QString &path = MusicUtils::File::openDirectoryDialog(this);
+    if(!path.isEmpty())
+    {
+        G_SETTING_PTR->setValue(MusicSettingManager::MediaLibraryPath, path);
+        refreshItems();
+    }
 }
 
 void MusicLocalManagerWidget::searchResultChanged(int, int column)
