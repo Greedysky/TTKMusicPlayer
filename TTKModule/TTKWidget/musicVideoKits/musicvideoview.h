@@ -84,9 +84,9 @@ public:
      */
     void setMedia(const QString &data);
     /*!
-     * Resize widget size or not.
+     * Resize geometry bound by resize called.
      */
-    void resizeWindow(int width, int height);
+    void resizeGeometry(int width, int height);
     /*!
      * Create right menu.
      */

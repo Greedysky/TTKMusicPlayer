@@ -45,9 +45,9 @@ public:
      */
     void initialize(MusicObject::Program type);
     /*!
-     * Resize window bound by widget resize called.
+     * Resize section bound by resize called.
      */
-    void resizeWindow();
+    void resizeSection();
 
 Q_SIGNALS:
     /*!
@@ -98,9 +98,9 @@ public:
      */
     void initialize();
     /*!
-     * Resize window bound by widget resize called.
+     * Resize widget bound by resize called.
      */
-    void resizeWindow();
+    void resizeWidget();
 
 private:
     MusicObject::Program m_type;
@@ -128,9 +128,9 @@ public:
      */
     void initialize();
     /*!
-     * Resize window bound by widget resize called.
+     * Resize widget bound by resize called.
      */
-    void resizeWindow();
+    void resizeWidget();
 
 public Q_SLOTS:
     /*!
@@ -162,7 +162,7 @@ private:
 
     MusicWebDJRadioCategoryWidget *m_categoryWidget;
     MusicWebDJRadioProgramWidget *m_recommendWidget, *m_programWidget;
-    MusicWebDJRadioQueryWidget *m_queryTableWidget;
+    MusicWebDJRadioQueryWidget *m_queryWidget;
 
 };
 

@@ -50,9 +50,9 @@ public:
      */
     bool queryCloudKey();
     /*!
-     * Resize window bound by widget resize called.
+     * Resize section bound by resize called.
      */
-    void resizeWindow();
+    void resizeSection();
 
 Q_SIGNALS:
     /*!
@@ -198,9 +198,9 @@ public:
     ~MusicCloudManagerWidget();
 
     /*!
-     * Resize window bound by widget resize called.
+     * Resize widget bound by resize called.
      */
-    void resizeWindow();
+    void resizeWidget();
 
 public Q_SLOTS:
     /*!
@@ -227,8 +227,8 @@ private:
     virtual void resizeEvent(QResizeEvent *event) override final;
 
     QLabel *m_sizeValueLabel;
+    QWidgetList m_resizeWidgets;
     QProgressBar *m_sizeValueBar;
-    QList<QWidget*> m_resizeWidgets;
     MusicCloudManagerTableWidget *m_managerTableWidget;
 
 };

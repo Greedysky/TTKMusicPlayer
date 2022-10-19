@@ -11,7 +11,7 @@ MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)
       m_singleRadioMode(false)
 {
     setColumnCount(9);
-    resizeWindow(0);
+    resizeSection(0);
 
     MusicTime::initRandom();
 
@@ -39,6 +39,23 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Movie, text);
+}
+
+void MusicVideoSearchTableWidget::musicDownloadLocal(int row)
+{
+    if(!m_singleRadioMode)
+    {
+        if(row < 0 || (row >= rowCount() - 1))
+        {
+            MusicToastLabel::popup(tr("Please select one item first!"));
+            return;
+        }
+        downloadLocalMovie(row);
+    }
+    else
+    {
+        downloadLocalMovie(0);
+    }
 }
 
 void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
@@ -75,29 +92,12 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
     d->setSongInfoList({data.value<MusicObject::MusicSongInformation>()});
 }
 
-void MusicVideoSearchTableWidget::musicDownloadLocal(int row)
-{
-    if(!m_singleRadioMode)
-    {
-        if(row < 0 || (row >= rowCount() - 1))
-        {
-            MusicToastLabel::popup(tr("Please select one item first!"));
-            return;
-        }
-        downloadLocalMovie(row);
-    }
-    else
-    {
-        downloadLocalMovie(0);
-    }
-}
-
-void MusicVideoSearchTableWidget::resizeWindow(int delta)
+void MusicVideoSearchTableWidget::resizeSection(int delta)
 {
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 306 + delta*0.5);
-    headerview->resizeSection(2, 159 + delta*0.5);
+    headerview->resizeSection(1, 306 + delta * 0.5);
+    headerview->resizeSection(2, 159 + delta * 0.5);
     headerview->resizeSection(3, 55);
     headerview->resizeSection(4, 24);
     headerview->resizeSection(5, 24);

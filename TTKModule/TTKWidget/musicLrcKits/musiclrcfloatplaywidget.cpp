@@ -38,7 +38,7 @@ MusicLrcFloatPlayWidget::MusicLrcFloatPlayWidget(QWidget *parent)
     m_buttonPrevious->setToolTip(tr("Previous"));
     m_buttonNext->setToolTip(tr("Next"));
 
-    resizeWindow(0, 0);
+    resizeGeometry(0, 0);
     setCurrentPlayState();
 
     show();
@@ -51,7 +51,7 @@ MusicLrcFloatPlayWidget::~MusicLrcFloatPlayWidget()
     delete m_buttonKey;
 }
 
-void MusicLrcFloatPlayWidget::resizeWindow(int width, int height)
+void MusicLrcFloatPlayWidget::resizeGeometry(int width, int height)
 {
     m_rectIn = QRect((width - this->width()) / 2, height - this->height(), 145, 60);
     m_rectOut = QRect((width - this->width()) / 2, height - 5, 145, 60);

@@ -53,7 +53,7 @@ private Q_SLOTS:
     void update();
 
 private:
-    QList<QWidget*> m_container;
+    QWidgetList m_container;
 
 };
 

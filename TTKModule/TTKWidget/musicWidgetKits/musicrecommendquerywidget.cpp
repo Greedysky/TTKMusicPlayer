@@ -54,9 +54,9 @@ void MusicRecommendQueryWidget::setSongNameById(const QString &id)
     Q_UNUSED(id);
 }
 
-void MusicRecommendQueryWidget::resizeWindow()
+void MusicRecommendQueryWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeWindow();
+    m_queryTableWidget->resizeSection();
 }
 
 void MusicRecommendQueryWidget::queryAllFinished()

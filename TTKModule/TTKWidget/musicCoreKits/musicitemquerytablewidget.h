@@ -57,9 +57,9 @@ public:
      */
     void downloadBatchData(bool music);
     /*!
-     * Resize window bound by widget resize called.
+     * Resize section bound by resize called.
      */
-    void resizeWindow();
+    void resizeSection();
 
 public Q_SLOTS:
     /*!
@@ -97,7 +97,6 @@ private:
      */
     virtual void resizeEvent(QResizeEvent *event) override final;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
-
     /*!
      * Add search music to play list by index.
      */

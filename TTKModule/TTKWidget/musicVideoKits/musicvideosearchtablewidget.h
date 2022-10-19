@@ -54,6 +54,11 @@ public:
      */
     virtual void startSearchQuery(const QString &text) override final;
     /*!
+     * Data download to local file.
+     */
+    virtual void musicDownloadLocal(int row) override final;
+
+    /*!
      * Start search query by given id.
      */
     void startSearchSingleQuery(const QString &text);
@@ -62,14 +67,9 @@ public:
      */
     void startSearchSingleQuery(const QVariant &data);
     /*!
-     * Data download to local file.
+     * Resize section bound by resize called.
      */
-    virtual void musicDownloadLocal(int row) override final;
-
-    /*!
-     * Resize widget size by delta.
-     */
-    void resizeWindow(int delta);
+    void resizeSection(int delta);
 
 Q_SIGNALS:
     /*!

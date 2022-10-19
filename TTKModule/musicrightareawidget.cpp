@@ -273,48 +273,48 @@ void MusicRightAreaWidget::resizeWindow()
 
     if(TTKObject_cast(MusicSimilarQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicSimilarQueryWidget*, m_stackedWidget)->resizeWindow();
+        TTKObject_cast(MusicSimilarQueryWidget*, m_stackedWidget)->resizeWidget();
     }
     else if(TTKObject_cast(MusicAlbumQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicAlbumQueryWidget*, m_stackedWidget)->resizeWindow();
+        TTKObject_cast(MusicAlbumQueryWidget*, m_stackedWidget)->resizeWidget();
     }
     else if(TTKObject_cast(MusicArtistQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicArtistQueryWidget*, m_stackedWidget)->resizeWindow();
+        TTKObject_cast(MusicArtistQueryWidget*, m_stackedWidget)->resizeWidget();
     }
     else if(TTKObject_cast(MusicToplistQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicToplistQueryWidget*, m_stackedWidget)->resizeWindow();
+        TTKObject_cast(MusicToplistQueryWidget*, m_stackedWidget)->resizeWidget();
     }
     else if(TTKObject_cast(MusicPlaylistQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicPlaylistQueryWidget*, m_stackedWidget)->resizeWindow();
+        TTKObject_cast(MusicPlaylistQueryWidget*, m_stackedWidget)->resizeWidget();
     }
     else if(TTKObject_cast(MusicRecommendQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicRecommendQueryWidget*, m_stackedWidget)->resizeWindow();
+        TTKObject_cast(MusicRecommendQueryWidget*, m_stackedWidget)->resizeWidget();
     }
     else if(TTKObject_cast(MusicArtistListQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicArtistListQueryWidget*, m_stackedWidget)->resizeWindow();
+        TTKObject_cast(MusicArtistListQueryWidget*, m_stackedWidget)->resizeWidget();
     }
     else if(TTKObject_cast(MusicWebDJRadioWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicWebDJRadioWidget*, m_stackedWidget)->resizeWindow();
+        TTKObject_cast(MusicWebDJRadioWidget*, m_stackedWidget)->resizeWidget();
     }
     else if(TTKObject_cast(MusicWebMVRadioQueryWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicWebMVRadioQueryWidget*, m_stackedWidget)->resizeWindow();
+        TTKObject_cast(MusicWebMVRadioQueryWidget*, m_stackedWidget)->resizeWidget();
     }
     else if(TTKObject_cast(MusicScreenSaverWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicScreenSaverWidget*, m_stackedWidget)->resizeWindow();
+        TTKObject_cast(MusicScreenSaverWidget*, m_stackedWidget)->resizeWidget();
     }
 
     if(TTKObject_cast(MusicCloudManagerWidget*, m_stackedStandWidget))
     {
-        TTKObject_cast(MusicCloudManagerWidget*, m_stackedStandWidget)->resizeWindow();
+        TTKObject_cast(MusicCloudManagerWidget*, m_stackedStandWidget)->resizeWidget();
     }
 
     if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopupMode())
@@ -807,7 +807,7 @@ void MusicRightAreaWidget::musicVideoFullscreen(bool full)
         return;
     }
 
-    m_videoPlayerWidget->resizeWindow(full);
+    m_videoPlayerWidget->resizeGeometry(full);
     m_videoPlayerWidget->blockMoveOption(full);
 }
 

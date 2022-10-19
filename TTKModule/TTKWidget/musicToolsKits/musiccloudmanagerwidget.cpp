@@ -85,7 +85,7 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
     return !QSyncConfig::NAME.isEmpty() && !QSyncConfig::KEY.isEmpty();
 }
 
-void MusicCloudManagerTableWidget::resizeWindow()
+void MusicCloudManagerTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
@@ -662,9 +662,10 @@ MusicCloudManagerWidget::~MusicCloudManagerWidget()
     delete m_managerTableWidget;
 }
 
-void MusicCloudManagerWidget::resizeWindow()
+void MusicCloudManagerWidget::resizeWidget()
 {
-    m_managerTableWidget->resizeWindow();
+    m_managerTableWidget->resizeSection();
+
     if(!m_resizeWidgets.isEmpty())
     {
         const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
@@ -696,5 +697,5 @@ void MusicCloudManagerWidget::uploadFilesToServer()
 void MusicCloudManagerWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    resizeWindow();
+    resizeWidget();
 }

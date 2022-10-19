@@ -82,9 +82,9 @@ public:
      */
     void setDuration(qint64 duration);
     /*!
-     * Resize window bound by given width and height.
+     * Resize geometry bound by resize called.
      */
-    void resizeWindow(int width, int height);
+    void resizeGeometry(int width, int height);
 
 Q_SIGNALS:
     /*!

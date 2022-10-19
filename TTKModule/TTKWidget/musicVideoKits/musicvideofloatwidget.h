@@ -38,9 +38,9 @@ public:
     ~MusicVideoFloatWidget();
 
     /*!
-     * Resize window bound by given width and height.
+     * Resize geometry bound by resize called.
      */
-    void resizeWindow(int width, int height);
+    void resizeGeometry(int width, int height);
 
     /*!
      * Set the window is popup or not.

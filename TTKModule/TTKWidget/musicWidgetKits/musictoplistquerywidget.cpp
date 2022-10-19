@@ -59,9 +59,9 @@ void MusicToplistQueryWidget::setSongNameById(const QString &id)
     Q_UNUSED(id);
 }
 
-void MusicToplistQueryWidget::resizeWindow()
+void MusicToplistQueryWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeWindow();
+    m_queryTableWidget->resizeSection();
 
     if(!m_resizeWidgets.isEmpty())
     {

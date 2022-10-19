@@ -56,9 +56,10 @@ void MusicAlbumQueryWidget::setSongNameById(const QString &id)
     connect(d, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createAlbumItem(MusicResultDataItem)));
 }
 
-void MusicAlbumQueryWidget::resizeWindow()
+void MusicAlbumQueryWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeWindow();
+    m_queryTableWidget->resizeSection();
+
     if(!m_resizeWidgets.isEmpty())
     {
         int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();

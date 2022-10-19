@@ -130,7 +130,7 @@ void MusicArtistMvsQueryWidget::setSongNameById(const QString &id)
     setSongName(id);
 }
 
-void MusicArtistMvsQueryWidget::resizeWindow()
+void MusicArtistMvsQueryWidget::resizeWidget()
 {
     if(!m_resizeWidgets.isEmpty())
     {
@@ -224,7 +224,7 @@ void MusicArtistAlbumsQueryWidget::setSongNameById(const QString &id)
     m_networkRequest->startToSingleSearch(m_songNameFull);
 }
 
-void MusicArtistAlbumsQueryWidget::resizeWindow()
+void MusicArtistAlbumsQueryWidget::resizeWidget()
 {
     if(!m_resizeWidgets.isEmpty())
     {
@@ -317,9 +317,10 @@ void MusicArtistQueryWidget::setSongNameById(const QString &id)
     connect(d, SIGNAL(createArtistItem(MusicResultDataItem)), SLOT(createArtistItem(MusicResultDataItem)));
 }
 
-void MusicArtistQueryWidget::resizeWindow()
+void MusicArtistQueryWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeWindow();
+    m_queryTableWidget->resizeSection();
+
     if(!m_resizeWidgets.isEmpty())
     {
         int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
@@ -340,12 +341,12 @@ void MusicArtistQueryWidget::resizeWindow()
 
     if(m_artistAlbums)
     {
-        m_artistAlbums->resizeWindow();
+        m_artistAlbums->resizeWidget();
     }
 
     if(m_artistMvs)
     {
-        m_artistMvs->resizeWindow();
+        m_artistMvs->resizeWidget();
     }
 }
 

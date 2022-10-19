@@ -35,7 +35,7 @@ void MusicWebDJRadioProgramTableWidget::initialize(MusicObject::Program type)
     m_programThread->startRequest(type);
 }
 
-void MusicWebDJRadioProgramTableWidget::resizeWindow()
+void MusicWebDJRadioProgramTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
@@ -202,9 +202,9 @@ void MusicWebDJRadioProgramWidget::initialize()
     m_tableWidget->initialize(m_type);
 }
 
-void MusicWebDJRadioProgramWidget::resizeWindow()
+void MusicWebDJRadioProgramWidget::resizeWidget()
 {
-    m_tableWidget->resizeWindow();
+    m_tableWidget->resizeSection();
 }
 
 
@@ -213,7 +213,7 @@ MusicWebDJRadioWidget::MusicWebDJRadioWidget(QWidget *parent)
     : QStackedWidget(parent),
       m_recommendWidget(nullptr),
       m_programWidget(nullptr),
-      m_queryTableWidget(nullptr)
+      m_queryWidget(nullptr)
 {
     setObjectName("MainWindow");
     setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle12));
@@ -226,7 +226,7 @@ MusicWebDJRadioWidget::~MusicWebDJRadioWidget()
     delete m_recommendWidget;
     delete m_programWidget;
     delete m_categoryWidget;
-    delete m_queryTableWidget;
+    delete m_queryWidget;
 }
 
 void MusicWebDJRadioWidget::initialize()
@@ -234,26 +234,26 @@ void MusicWebDJRadioWidget::initialize()
     m_categoryWidget->initialize();
 }
 
-void MusicWebDJRadioWidget::resizeWindow()
+void MusicWebDJRadioWidget::resizeWidget()
 {
     if(m_categoryWidget)
     {
-        m_categoryWidget->resizeWindow();
+        m_categoryWidget->resizeWidget();
     }
 
-    if(m_queryTableWidget)
+    if(m_queryWidget)
     {
-        m_queryTableWidget->resizeWindow();
+        m_queryWidget->resizeWidget();
     }
 
     if(m_recommendWidget)
     {
-        m_recommendWidget->resizeWindow();
+        m_recommendWidget->resizeWidget();
     }
 
     if(m_programWidget)
     {
-        m_programWidget->resizeWindow();
+        m_programWidget->resizeWidget();
     }
 }
 
@@ -282,21 +282,21 @@ void MusicWebDJRadioWidget::createProgramWidget()
 
 void MusicWebDJRadioWidget::programItemClicked(const QString &rid, const QString &cid)
 {
-    delete m_queryTableWidget;
-    m_queryTableWidget = new MusicWebDJRadioQueryWidget(this);
-    connect(m_queryTableWidget, SIGNAL(backToMainMenu()), SLOT(backToMainMenu()));
+    delete m_queryWidget;
+    m_queryWidget = new MusicWebDJRadioQueryWidget(this);
+    connect(m_queryWidget, SIGNAL(backToMainMenu()), SLOT(backToMainMenu()));
 
     if(rid == "-1" && cid != "-1")
     {
-        m_queryTableWidget->setSongName(cid);
+        m_queryWidget->setSongName(cid);
     }
     else
     {
-        m_queryTableWidget->setSongNameById(rid);
+        m_queryWidget->setSongNameById(rid);
     }
 
-    addWidget(m_queryTableWidget);
-    setCurrentWidget(m_queryTableWidget);
+    addWidget(m_queryWidget);
+    setCurrentWidget(m_queryWidget);
 }
 
 void MusicWebDJRadioWidget::currentCategoryClicked(const MusicResultDataItem &item)

@@ -25,9 +25,10 @@ MusicPlaylistQueryInfoWidget::~MusicPlaylistQueryInfoWidget()
     delete m_commentsWidget;
 }
 
-void MusicPlaylistQueryInfoWidget::resizeWindow()
+void MusicPlaylistQueryInfoWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeWindow();
+    m_queryTableWidget->resizeSection();
+
     if(!m_resizeWidgets.isEmpty())
     {
         int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
@@ -236,7 +237,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     m_resizeWidgets.push_back({tagsLabel, tagsLabel->font()});
     m_resizeWidgets.push_back({updateLabel, updateLabel->font()});
 
-    resizeWindow();
+    resizeWidget();
 }
 
 void MusicPlaylistQueryInfoWidget::setQueryInput(MusicAbstractQueryRequest *query)

@@ -130,7 +130,7 @@ protected:
     bool m_isAnimation, m_showState, m_showLine;
 
     QPropertyAnimation *m_animation;
-    QList<QWidget*> m_container;
+    QWidgetList m_container;
     QButtonGroup *m_buttonGroup;
 
 };

@@ -69,7 +69,7 @@ MusicCutSliderWidget::MusicCutSliderWidget(QWidget *parent)
     connect(m_leftControl, SIGNAL(buttonRelease()), SLOT(buttonReleaseLeft()));
     connect(m_rightControl, SIGNAL(buttonRelease()), SLOT(buttonReleaseRight()));
 
-    resizeWindow(width(), height());
+    resizeGeometry(width(), height());
 }
 
 MusicCutSliderWidget::~MusicCutSliderWidget()
@@ -93,7 +93,7 @@ void MusicCutSliderWidget::setDuration(qint64 duration)
     m_duration = duration;
 }
 
-void MusicCutSliderWidget::resizeWindow(int width, int height)
+void MusicCutSliderWidget::resizeGeometry(int width, int height)
 {
     m_width = width;
     m_height = height;

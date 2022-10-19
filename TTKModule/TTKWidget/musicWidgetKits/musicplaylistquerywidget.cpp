@@ -160,11 +160,11 @@ void MusicPlaylistQueryWidget::setSongNameById(const QString &id)
     currentPlaylistClicked(result);
 }
 
-void MusicPlaylistQueryWidget::resizeWindow()
+void MusicPlaylistQueryWidget::resizeWidget()
 {
     if(m_infoWidget)
     {
-        m_infoWidget->resizeWindow();
+        m_infoWidget->resizeWidget();
     }
 
     if(!m_resizeWidgets.isEmpty() && m_gridLayout)

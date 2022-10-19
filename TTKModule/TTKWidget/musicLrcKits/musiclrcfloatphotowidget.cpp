@@ -190,7 +190,7 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
     delete m_filmBackgroundWidget;
 }
 
-void MusicLrcFloatPhotoWidget::resizeWindow(int width, int height)
+void MusicLrcFloatPhotoWidget::resizeGeometry(int width, int height)
 {
     m_rectIn = QRect(0, 555 + height, 133 + width, 105);
     m_rectOut = QRect(0, 355 + height, 680 + width, 180);

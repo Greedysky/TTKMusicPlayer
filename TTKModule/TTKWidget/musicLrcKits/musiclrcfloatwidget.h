@@ -40,9 +40,9 @@ public:
     ~MusicLrcFloatWidget();
 
     /*!
-     * Resize window bound by given width and height.
+     * Resize geometry bound by given width and height.
      */
-    void resizeWindow(int width, int height);
+    void resizeGeometry(int width, int height);
 
 public Q_SLOTS:
     /*!

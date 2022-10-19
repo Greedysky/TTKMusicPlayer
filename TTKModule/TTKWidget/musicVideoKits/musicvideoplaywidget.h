@@ -54,17 +54,17 @@ public:
      */
     bool isPopupMode() const;
     /*!
-     * Resize window bound by widget resize called.
+     * Resize window bound by resize called.
      */
     void resizeWindow();
     /*!
-     * Resize widget size or not.
+     * Resize geometry bound by resize called.
      */
-    void resizeWindow(bool resize);
+    void resizeGeometry(bool resize);
     /*!
-     * Resize widget size or not.
+     * Resize geometry bound by resize called.
      */
-    void resizeWindow(int width, int height);
+    void resizeGeometry(int width, int height);
     /*!
      * Get search text in search line.
      */

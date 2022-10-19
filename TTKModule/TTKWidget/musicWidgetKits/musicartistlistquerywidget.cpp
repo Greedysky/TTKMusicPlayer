@@ -72,7 +72,7 @@ void MusicArtistListQueryWidget::setSongNameById(const QString &id)
     setSongName(id);
 }
 
-void MusicArtistListQueryWidget::resizeWindow()
+void MusicArtistListQueryWidget::resizeWidget()
 {
     if(!m_resizeWidgets.isEmpty() && m_gridLayout)
     {

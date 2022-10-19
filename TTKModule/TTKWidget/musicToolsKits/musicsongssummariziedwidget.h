@@ -238,6 +238,11 @@ private Q_SLOTS:
 
 private:
     /*!
+     * Override the widget event.
+     */
+    virtual void resizeEvent(QResizeEvent *event) override final;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
+    /*!
      * Check current search result is empty or not.
      */
     inline bool hasSearchResult() const { return !m_searchResultCache.isEmpty(); }
@@ -274,18 +279,13 @@ private:
      */
     void setInputModule(QObject *object) const;
     /*!
-     * Resize window bound by widget resize called.
+     * Resize window bound by resize called.
      */
     void resizeWindow();
     /*!
      * Get current played list.
      */
     void resetToolIndex();
-    /*!
-     * Override the widget event.
-     */
-    virtual void resizeEvent(QResizeEvent *event) override final;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
     int m_playToolIndex;
     int m_lastSearchIndex;

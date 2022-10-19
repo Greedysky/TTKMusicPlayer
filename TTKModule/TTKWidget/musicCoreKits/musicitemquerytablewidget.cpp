@@ -122,7 +122,7 @@ void MusicItemQueryTableWidget::downloadBatchData(bool music)
     w->setSongName(items, music ? MusicAbstractQueryRequest::QueryType::Music : MusicAbstractQueryRequest::QueryType::Movie);
 }
 
-void MusicItemQueryTableWidget::resizeWindow()
+void MusicItemQueryTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
@@ -165,7 +165,7 @@ void MusicItemQueryTableWidget::menuActionChanged(QAction *action)
 void MusicItemQueryTableWidget::resizeEvent(QResizeEvent *event)
 {
     MusicQueryTableWidget::resizeEvent(event);
-    resizeWindow();
+    resizeSection();
 }
 
 void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)

@@ -41,30 +41,30 @@ public:
     ~MusicSongSearchTableWidget();
 
     /*!
-     * Set wheather query all quality of records.
-     */
-    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state; }
-    /*!
      * Start search query by text.
      */
     virtual void startSearchQuery(const QString &text) override final;
-    /*!
-     * Start search query by given id.
-     */
-    void startSearchSingleQuery(const QString &text);
     /*!
      * Data download to local file.
      */
     virtual void musicDownloadLocal(int row) override final;
 
     /*!
+     * Set wheather query all quality of records.
+     */
+    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state; }
+    /*!
+     * Start search query by given id.
+     */
+    void startSearchSingleQuery(const QString &text);
+    /*!
      * Set search data quality.
      */
     void setSearchQuality(MusicObject::QueryQuality quality);
     /*!
-     * Resize window bound by widget resize called.
+     * Resize window bound by resize called.
      */
-    void resizeWindow();
+    void resizeSection();
 
 public Q_SLOTS:
     /*!
@@ -140,7 +140,7 @@ public:
      */
     void researchQueryByQuality(const QString &name, MusicObject::QueryQuality quality);
     /*!
-     * Resize window bound by widget resize called.
+     * Resize window bound by resize called.
      */
     void resizeWindow();
 
@@ -166,7 +166,7 @@ private:
 
     QLabel *m_textLabel;
     QPushButton *m_playButton;
-    QList<QWidget*> m_resizeWidgets;
+    QWidgetList m_resizeWidgets;
     MusicSongSearchTableWidget *m_searchTableWidget;
 
 };

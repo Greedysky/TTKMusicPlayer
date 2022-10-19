@@ -127,7 +127,7 @@ void MusicVideoPlayWidget::popupMode(bool popup)
     {
         const QSize &size = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
         setGeometry((size.width() - WINDOW_WIDTH) / 2, (size.height() - WINDOW_HEIGHT) / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
-        resizeWindow(0, 0);
+        resizeGeometry(0, 0);
         setParent(nullptr);
         show();
     }
@@ -157,14 +157,14 @@ void MusicVideoPlayWidget::resizeWindow()
     {
 #ifdef Q_OS_UNIX
         const bool v = isPopupMode();
-        resizeWindow(v ? (this->width() - 680) : (width - WINDOW_WIDTH_MIN), v ? (this->height() - 508) : (height - WINDOW_HEIGHT_MIN));
+        resizeGeometry(v ? (this->width() - 680) : (width - WINDOW_WIDTH_MIN), v ? (this->height() - 508) : (height - WINDOW_HEIGHT_MIN));
 #else
-        resizeWindow(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
+        resizeGeometry(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
 #endif
     }
 }
 
-void MusicVideoPlayWidget::resizeWindow(bool resize)
+void MusicVideoPlayWidget::resizeGeometry(bool resize)
 {
     if(resize)
     {
@@ -189,15 +189,15 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
         showNormal();
     }
 #endif
-    resizeWindow(s.width() - WINDOW_WIDTH, s.height() - WINDOW_HEIGHT);
+    resizeGeometry(s.width() - WINDOW_WIDTH, s.height() - WINDOW_HEIGHT);
 }
 
-void MusicVideoPlayWidget::resizeWindow(int width, int height)
+void MusicVideoPlayWidget::resizeGeometry(int width, int height)
 {
     m_topWidget->setGeometry(0, 0, 680 + width, 35);
-    m_videoView->resizeWindow(width, height);
-    m_videoTable->resizeWindow(width);
-    m_videoFloatWidget->resizeWindow(width, height);
+    m_videoTable->resizeSection(width);
+    m_videoView->resizeGeometry(width, height);
+    m_videoFloatWidget->resizeGeometry(width, height);
 }
 
 QString MusicVideoPlayWidget::searchText() const

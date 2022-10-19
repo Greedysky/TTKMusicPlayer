@@ -128,11 +128,11 @@ void MusicWebDJRadioQueryWidget::setSongNameById(const QString &id)
     currentRadioClicked(result);
 }
 
-void MusicWebDJRadioQueryWidget::resizeWindow()
+void MusicWebDJRadioQueryWidget::resizeWidget()
 {
     if(m_infoWidget)
     {
-        m_infoWidget->resizeWindow();
+        m_infoWidget->resizeWidget();
     }
 
     if(!m_resizeWidgets.isEmpty() && m_gridLayout)

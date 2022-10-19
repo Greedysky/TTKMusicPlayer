@@ -86,9 +86,9 @@ public:
      */
     void initialize();
     /*!
-     * Resize window bound by widget resize called.
+     * Resize widget bound by resize called.
      */
-    void resizeWindow();
+    void resizeWidget();
 
 Q_SIGNALS:
     /*!
@@ -104,7 +104,7 @@ public Q_SLOTS:
 
 private:
     QGridLayout *m_gridLayout;
-    QList<QLabel*> m_resizeWidgets;
+    QWidgetList m_resizeWidgets;
     MusicDJRadioCategoryRequest *m_categoryThread;
 
 };

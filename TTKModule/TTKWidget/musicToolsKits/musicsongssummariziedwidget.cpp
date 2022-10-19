@@ -1010,6 +1010,28 @@ void MusicSongsSummariziedWidget::deleteFloatWidget()
     m_listFunctionWidget = nullptr;
 }
 
+void MusicSongsSummariziedWidget::resizeEvent(QResizeEvent *event)
+{
+    MusicSongsToolBoxWidget::resizeEvent(event);
+    resizeWindow();
+}
+
+void MusicSongsSummariziedWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicSongsToolBoxWidget::contextMenuEvent(event);
+
+    QMenu menu(this);
+    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.addAction(tr("Create Item"), this, SLOT(addNewRowItem()));
+    menu.addAction(tr("Import Item"), MusicApplication::instance(), SLOT(musicImportSongsItemList()));
+    menu.addAction(tr("Music Test Tools"), this, SLOT(musicSongsCheckTestTools()));
+    menu.addAction(tr("Lrc Batch Download"), this, SLOT(musicLrcBatchDownload()));
+    menu.addAction(tr("Delete All"), this, SLOT(deleteRowItems()))->setEnabled(m_containerItems.count() > ITEM_MIN_COUNT);
+
+    MusicUtils::Widget::adjustMenuPosition(&menu);
+    menu.exec(QCursor::pos());
+}
+
 void MusicSongsSummariziedWidget::closeSearchWidget()
 {
     if(m_songSearchWidget)
@@ -1137,26 +1159,4 @@ void MusicSongsSummariziedWidget::resetToolIndex()
         }
     }
     MusicPlayedListPopWidget::instance()->resetToolIndex(pairs);
-}
-
-void MusicSongsSummariziedWidget::resizeEvent(QResizeEvent *event)
-{
-    MusicSongsToolBoxWidget::resizeEvent(event);
-    resizeWindow();
-}
-
-void MusicSongsSummariziedWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    MusicSongsToolBoxWidget::contextMenuEvent(event);
-
-    QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-    menu.addAction(tr("Create Item"), this, SLOT(addNewRowItem()));
-    menu.addAction(tr("Import Item"), MusicApplication::instance(), SLOT(musicImportSongsItemList()));
-    menu.addAction(tr("Music Test Tools"), this, SLOT(musicSongsCheckTestTools()));
-    menu.addAction(tr("Lrc Batch Download"), this, SLOT(musicLrcBatchDownload()));
-    menu.addAction(tr("Delete All"), this, SLOT(deleteRowItems()))->setEnabled(m_containerItems.count() > ITEM_MIN_COUNT);
-
-    MusicUtils::Widget::adjustMenuPosition(&menu);
-    menu.exec(QCursor::pos());
 }

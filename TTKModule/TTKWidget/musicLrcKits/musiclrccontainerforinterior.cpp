@@ -207,7 +207,7 @@ void MusicLrcContainerForInterior::createFloatPlayWidget()
     if(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen())
     {
         m_floatPlayWidget = new MusicLrcFloatPlayWidget(this);
-        m_floatPlayWidget->resizeWindow(width(), height());
+        m_floatPlayWidget->resizeGeometry(width(), height());
     }
 }
 
@@ -899,10 +899,10 @@ void MusicLrcContainerForInterior::resizeWidth(int w, int h)
         TTKObject_cast(MusicLrcManagerForInterior*, m_lrcManagers[i])->setLrcPerWidth(w);
     }
 
-    m_lrcFloatWidget->resizeWindow(w, h);
+    m_lrcFloatWidget->resizeGeometry(w, h);
     if(m_floatPlayWidget)
     {
-        m_floatPlayWidget->resizeWindow(width(), height());
+        m_floatPlayWidget->resizeGeometry(width(), height());
     }
 
     if(m_lrcAnalysis->isEmpty())

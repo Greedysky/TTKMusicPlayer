@@ -54,9 +54,9 @@ void MusicSimilarQueryWidget::setSongNameById(const QString &id)
     Q_UNUSED(id);
 }
 
-void MusicSimilarQueryWidget::resizeWindow()
+void MusicSimilarQueryWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeWindow();
+    m_queryTableWidget->resizeSection();
 }
 
 void MusicSimilarQueryWidget::queryAllFinished()

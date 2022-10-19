@@ -52,9 +52,10 @@ void MusicWebDJRadioInfoWidget::setSongNameById(const QString &id)
     Q_UNUSED(id);
 }
 
-void MusicWebDJRadioInfoWidget::resizeWindow()
+void MusicWebDJRadioInfoWidget::resizeWidget()
 {
-    m_queryTableWidget->resizeWindow();
+    m_queryTableWidget->resizeSection();
+
     if(!m_resizeWidgets.isEmpty())
     {
         int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();

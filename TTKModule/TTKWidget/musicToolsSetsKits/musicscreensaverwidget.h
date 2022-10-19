@@ -137,9 +137,8 @@ public:
      * Create item by name and path.
      */
     void addCellItem(QObject *object, const QString &path, int index, bool status);
-
     /*!
-     * Resize window bound by widget resize called.
+     * Resize window bound by resize called.
      */
     void resizeWindow();
 
@@ -177,11 +176,10 @@ public:
      * Parse settings parameters.
      */
     static QVector<bool> parseSettingParameter();
-
     /*!
-     * Resize window bound by widget resize called.
+     * Resize widget bound by resize called.
      */
-    void resizeWindow();
+    void resizeWidget();
 
 private Q_SLOTS:
     /*!

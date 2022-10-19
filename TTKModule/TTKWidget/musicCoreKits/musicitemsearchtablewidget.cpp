@@ -100,6 +100,12 @@ void MusicItemSearchTableWidget::createFinishedItem()
     }
 }
 
+void MusicItemSearchTableWidget::resizeEvent(QResizeEvent *event)
+{
+    MusicQueryTableWidget::resizeEvent(event);
+    m_loadingLabel->move((width() - m_loadingLabel->width()) / 2, (height() - m_loadingLabel->height()) / 2);
+}
+
 void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
 {
     if(!m_networkRequest)
@@ -122,12 +128,6 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
     m_actionGroup->addAction(menu.addAction(tr("Search '%1'").arg(info.m_songName)))->setData(1);
     m_actionGroup->addAction(menu.addAction(tr("Search '%1'").arg(info.m_singerName)))->setData(2);
     m_actionGroup->addAction(menu.addAction(tr("Search '%1 - %2'").arg(info.m_singerName, info.m_songName)))->setData(3);
-}
-
-void MusicItemSearchTableWidget::resizeEvent(QResizeEvent *event)
-{
-    MusicQueryTableWidget::resizeEvent(event);
-    m_loadingLabel->move((width() - m_loadingLabel->width()) / 2, (height() - m_loadingLabel->height()) / 2);
 }
 
 QString MusicItemSearchTableWidget::randSimulation() const

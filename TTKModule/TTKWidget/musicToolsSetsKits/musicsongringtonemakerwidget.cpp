@@ -48,7 +48,7 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     m_ui->playSongButton->setEnabled(false);
     m_ui->playRingButton->setEnabled(false);
     m_ui->saveSongButton->setEnabled(false);
-    m_ui->cutSliderWidget->resizeWindow(440, 55);
+    m_ui->cutSliderWidget->resizeGeometry(440, 55);
 
     connect(m_ui->addSongButton, SIGNAL(clicked()), SLOT(initInputPath()));
     connect(m_ui->playSongButton, SIGNAL(clicked()), SLOT(playInputSong()));

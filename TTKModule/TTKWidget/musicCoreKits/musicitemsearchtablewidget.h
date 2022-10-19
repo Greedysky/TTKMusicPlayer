@@ -63,13 +63,13 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Create context menu.
-     */
-    void createContextMenu(QMenu &menu);
-    /*!
      * Override the widget event.
      */
     virtual void resizeEvent(QResizeEvent *event) override;
+    /*!
+     * Create context menu.
+     */
+    void createContextMenu(QMenu &menu);
     /*!
      * Get current random simulation.
      */

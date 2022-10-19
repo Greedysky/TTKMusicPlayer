@@ -141,7 +141,7 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
             label->setPixmap(color);
             label->setToolTip(color.name());
             layout->addWidget(label, i, j);
-            m_widgets << label;
+            m_container << label;
 
             connect(label, SIGNAL(currentColorToFileChanged(QColor)), SLOT(currentColorToFile(QColor)));
             connect(label, SIGNAL(currentColorToMemoryChanged(QString)), SLOT(currentColorToMemory(QString)));
@@ -174,7 +174,7 @@ MusicBackgroundPaletteWidget::~MusicBackgroundPaletteWidget()
         Q_EMIT currentColorToMemoryChanged(m_previousBackground);
     }
 
-    qDeleteAll(m_widgets);
+    qDeleteAll(m_container);
     delete m_ui;
 }
 

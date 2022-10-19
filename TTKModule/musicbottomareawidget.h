@@ -92,7 +92,7 @@ public:
      */
     void setWindowConcise();
     /*!
-     * Resize window bound by widget resize called.
+     * Resize window bound by resize called.
      */
     void resizeWindow();
     /*!

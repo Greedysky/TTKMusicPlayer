@@ -301,7 +301,7 @@ QVector<bool> MusicScreenSaverWidget::parseSettingParameter()
     return statusVector;
 }
 
-void MusicScreenSaverWidget::resizeWindow()
+void MusicScreenSaverWidget::resizeWidget()
 {
     m_backgroundList->resizeWindow();
 }

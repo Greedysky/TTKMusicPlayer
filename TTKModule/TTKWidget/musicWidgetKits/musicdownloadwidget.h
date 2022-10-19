@@ -195,7 +195,7 @@ private:
      */
     void controlEnabled(bool enable);
     /*!
-     * Automatically adjust the height according to searched items.
+     * Resize window bound by resize called.
      */
     void resizeWindow();
     /*!

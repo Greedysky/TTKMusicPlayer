@@ -134,11 +134,11 @@ void MusicWebMVRadioQueryWidget::setSongNameById(const QString &id)
     Q_UNUSED(id);
 }
 
-void MusicWebMVRadioQueryWidget::resizeWindow()
+void MusicWebMVRadioQueryWidget::resizeWidget()
 {
     if(m_infoWidget)
     {
-        m_infoWidget->resizeWindow();
+        m_infoWidget->resizeWidget();
     }
 
     if(!m_resizeWidgets.isEmpty() && m_gridLayout)

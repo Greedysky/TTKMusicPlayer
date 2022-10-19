@@ -87,7 +87,7 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     connect(m_player, SIGNAL(mediaChanged(QString)), SLOT(mediaChanged(QString)));
     connect(m_player, SIGNAL(finished(int)), SLOT(mediaAutionPlayError(int)));
 
-    resizeWindow(0, 0);
+    resizeGeometry(0, 0);
 }
 
 MusicVideoView::~MusicVideoView()
@@ -110,7 +110,7 @@ void MusicVideoView::setMedia(const QString &data)
     m_videoControl->setQualityActionState();
 }
 
-void MusicVideoView::resizeWindow(int width, int height)
+void MusicVideoView::resizeGeometry(int width, int height)
 {
     m_videoWidget->setGeometry(20, 20, 640 + width, 372 + height);
     m_videoControl->setGeometry(0, 413 + height, 680 + width, 60);
