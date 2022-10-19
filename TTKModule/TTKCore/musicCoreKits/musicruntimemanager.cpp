@@ -61,7 +61,7 @@ static void checkCacheSize()
     }
 }
 
-static QString languageName(int index)
+static QString languageCore(int index)
 {
     QString lan(LANGUAGE_DIR_FULL);
     switch(index)
@@ -115,7 +115,7 @@ void MusicRunTimeManager::run() const
 QStringList MusicRunTimeManager::translator() const
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt();
-    return {MusicObject::languageName(index), MusicObject::languageQmmp(index)};
+    return {MusicObject::languageCore(index), MusicObject::languageQmmp(index)};
 }
 
 bool MusicRunTimeManager::configVersionCheck() const

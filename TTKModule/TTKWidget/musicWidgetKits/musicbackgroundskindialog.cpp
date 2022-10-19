@@ -341,7 +341,7 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem(MusicBackgroundListWidget
 {
     TTKIntList data;
     findThemeListByPath(dir, data);
-    std::sort(data.begin(), data.end(), std::less<int>());
+    std::sort(data.begin(), data.end());
 
     for(const int index : qAsConst(data))
     {
