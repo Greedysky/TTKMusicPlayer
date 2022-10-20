@@ -26,7 +26,7 @@ void MusicDownLoadTextRequest::startRequest()
         else
         {
             Q_EMIT downLoadDataChanged("The text file create failed");
-            TTK_LOGGER_ERROR("The text file create failed");
+            TTK_ERROR_STREAM("The text file create failed");
             deleteAll();
         }
     }
@@ -46,11 +46,11 @@ void MusicDownLoadTextRequest::downLoadFinished()
             outstream << QString(bytes).remove("\r").toUtf8();
             QtStreamEndl(outstream);
             m_file->close();
-            TTK_LOGGER_INFO("Text download has finished");
+            TTK_INFO_STREAM("Text download has finished");
         }
         else
         {
-            TTK_LOGGER_ERROR("Text download file error");
+            TTK_ERROR_STREAM("Text download file error");
             m_file->remove();
             m_file->close();
         }

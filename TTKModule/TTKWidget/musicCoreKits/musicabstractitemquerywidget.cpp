@@ -67,7 +67,7 @@ void MusicAbstractItemQueryWidget::downLoadFinished(const QByteArray &bytes)
         QPixmap pix;
         if(bytes.isEmpty())
         {
-            TTK_LOGGER_ERROR("Input byte data is empty");
+            TTK_ERROR_STREAM("Input byte data is empty");
             pix = QPixmap(1, 1);
             pix.fill(Qt::transparent);
         }

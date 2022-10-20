@@ -158,7 +158,7 @@ MusicMobileSongsManagerWidget::~MusicMobileSongsManagerWidget()
 
 void MusicMobileSongsManagerWidget::findExtraDevicePath(const QString &dir)
 {
-    TTK_LOGGER_INFO("Start fetch result");
+    TTK_INFO_STREAM("Start fetch result");
     m_thread->setFindFilePath(dir);
     m_thread->stopAndQuitThread();
     m_thread->start();
@@ -247,7 +247,7 @@ void MusicMobileSongsManagerWidget::itemDoubleClicked(int row, int)
 
 void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &path)
 {
-    TTK_LOGGER_INFO("Stop fetch result");
+    TTK_INFO_STREAM("Stop fetch result");
 
     clearAllItems();
     m_ui->searchLineEdit->clear();

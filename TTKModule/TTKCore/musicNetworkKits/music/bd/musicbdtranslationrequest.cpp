@@ -14,7 +14,7 @@ void MusicBDTranslationRequest::startRequest(const QString &data)
 
 void MusicBDTranslationRequest::startRequest(Language from, Language to, const QString &data)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch").arg(className()));
+    TTK_INFO_STREAM(QString("%1 startToSearch").arg(className()));
 
     deleteAll();
 
@@ -91,7 +91,7 @@ void MusicBDTranslationRequest::downLoadFinished()
     }
     else
     {
-        TTK_LOGGER_ERROR("Translation source data error");
+        TTK_ERROR_STREAM("Translation source data error");
         Q_EMIT downLoadDataChanged(QString());
     }
 

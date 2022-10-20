@@ -89,7 +89,7 @@ static QString languageQmmp(int index)
 
 void MusicRunTimeManager::run() const
 {
-    TTK_LOGGER_INFO("MusicApplication Run");
+    TTK_INFO_STREAM("MusicApplication Run");
 #if !TTK_QT_VERSION_CHECK(5,0,0)
     MusicUtils::Codec::setLocalCodec();
 #endif

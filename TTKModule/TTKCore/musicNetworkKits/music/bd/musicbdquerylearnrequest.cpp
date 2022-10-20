@@ -12,7 +12,7 @@ MusicBDQueryLearnRequest::MusicBDQueryLearnRequest(QObject *parent)
 
 void MusicBDQueryLearnRequest::startToSearch(QueryType type, const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     Q_UNUSED(type);
     deleteAll();
@@ -28,7 +28,7 @@ void MusicBDQueryLearnRequest::startToSearch(QueryType type, const QString &valu
 
 void MusicBDQueryLearnRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
 
     MusicAbstractQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

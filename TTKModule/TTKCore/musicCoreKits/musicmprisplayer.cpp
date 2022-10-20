@@ -358,7 +358,7 @@ void MusicMPRISPlayerCore::SetPosition(const QDBusObjectPath &trackId, qlonglong
     }
     else
     {
-        TTK_LOGGER_WARN("SetPosition called with a invalid trackId");
+        TTK_WARN_STREAM("SetPosition called with a invalid trackId");
     }
 }
 

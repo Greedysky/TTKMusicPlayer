@@ -243,7 +243,7 @@ void MusicSoundKMicroWidget::downLoadFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {
-        TTK_LOGGER_ERROR("Input byte data is empty");
+        TTK_ERROR_STREAM("Input byte data is empty");
         return;
     }
 

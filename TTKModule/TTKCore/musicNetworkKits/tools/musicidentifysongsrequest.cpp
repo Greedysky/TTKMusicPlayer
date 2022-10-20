@@ -54,7 +54,7 @@ void MusicIdentifySongsRequest::startRequest(const QString &path)
     QFile file(path);
     if(!file.open(QFile::ReadOnly))
     {
-        TTK_LOGGER_ERROR("Load input audio wav file error");
+        TTK_ERROR_STREAM("Load input audio wav file error");
         return;
     }
 
@@ -113,7 +113,7 @@ void MusicIdentifySongsRequest::downLoadFinished()
             }
             else
             {
-                TTK_LOGGER_INFO("No result in acrcloud server");
+                TTK_INFO_STREAM("No result in acrcloud server");
             }
         }
     }
@@ -126,7 +126,7 @@ void MusicIdentifySongsRequest::downLoadFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {
-        TTK_LOGGER_ERROR("Input byte data is empty");
+        TTK_ERROR_STREAM("Input byte data is empty");
     }
     else
     {

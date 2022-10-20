@@ -20,7 +20,7 @@ void MusicWYQueryToplistRequest::startToSearch(QueryType type, const QString &va
 
 void MusicWYQueryToplistRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
 
@@ -36,7 +36,7 @@ void MusicWYQueryToplistRequest::startToSearch(const QString &value)
 
 void MusicWYQueryToplistRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
 
     MusicQueryToplistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

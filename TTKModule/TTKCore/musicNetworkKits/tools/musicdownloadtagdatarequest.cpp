@@ -25,7 +25,7 @@ void MusicDownloadTagDataRequest::startRequest()
         }
         else
         {
-            TTK_LOGGER_ERROR("The data file create failed");
+            TTK_ERROR_STREAM("The data file create failed");
             Q_EMIT downLoadDataChanged("The data file create failed");
             deleteAll();
         }
@@ -54,7 +54,7 @@ void MusicDownloadTagDataRequest::downLoadFinished()
     }
 
     Q_EMIT downLoadDataChanged(mapCurrentQueryData());
-    TTK_LOGGER_INFO("Data download has finished");
+    TTK_INFO_STREAM("Data download has finished");
 }
 
 void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &bytes)
@@ -75,7 +75,7 @@ void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &bytes)
         {
             if(bytes.isEmpty())
             {
-                TTK_LOGGER_ERROR("Input byte data is empty");
+                TTK_ERROR_STREAM("Input byte data is empty");
             }
             else
             {
@@ -83,7 +83,7 @@ void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &bytes)
             }
         }
         meta.save();
-        TTK_LOGGER_INFO("Write tag has finished");
+        TTK_INFO_STREAM("Write tag has finished");
     }
 
     Q_EMIT finished();

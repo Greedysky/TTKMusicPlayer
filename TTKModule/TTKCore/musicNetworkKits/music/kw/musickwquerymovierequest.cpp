@@ -11,7 +11,7 @@ MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
 
 void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
     m_queryType = type;
@@ -28,7 +28,7 @@ void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &valu
 
 void MusicKWQueryMovieRequest::startToPage(int offset)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -45,7 +45,7 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
 
 void MusicKWQueryMovieRequest::startToSingleSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
 
     deleteAll();
     m_queryValue = value.trimmed();
@@ -55,7 +55,7 @@ void MusicKWQueryMovieRequest::startToSingleSearch(const QString &value)
 
 void MusicKWQueryMovieRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
 
     MusicQueryMovieRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -112,7 +112,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
 
 void MusicKWQueryMovieRequest::downLoadPageFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadPageFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadPageFinished").arg(className()));
 
     MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -158,7 +158,7 @@ void MusicKWQueryMovieRequest::downLoadPageFinished()
 
 void MusicKWQueryMovieRequest::downLoadSingleFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadSingleFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadSingleFinished").arg(className()));
 
     MusicQueryMovieRequest::downLoadFinished();
 

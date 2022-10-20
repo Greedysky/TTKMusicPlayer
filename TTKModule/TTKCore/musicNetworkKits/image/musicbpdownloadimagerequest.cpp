@@ -11,7 +11,7 @@ MusicBPDownloadBackgroundRequest::MusicBPDownloadBackgroundRequest(const QString
 
 void MusicBPDownloadBackgroundRequest::startRequest()
 {
-    TTK_LOGGER_INFO(QString("%1 startRequest").arg(className()));
+    TTK_INFO_STREAM(QString("%1 startRequest").arg(className()));
 
     MusicAbstractNetwork::deleteAll();
 
@@ -26,7 +26,7 @@ void MusicBPDownloadBackgroundRequest::startRequest()
 
 void MusicBPDownloadBackgroundRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadDataFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadDataFinished").arg(className()));
 
     MusicDownloadImageRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

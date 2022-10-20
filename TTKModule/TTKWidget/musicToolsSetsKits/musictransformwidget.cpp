@@ -203,7 +203,7 @@ bool MusicTransformWidget::processTransform(const QString &para)
             m_ui->msCombo->setCurrentIndex(1);
         }
 
-        TTK_LOGGER_INFO(QString("%1%2%3%4").arg(m_ui->formatCombo->currentText(), m_ui->kbpsCombo->currentText(), m_ui->hzCombo->currentText())
+        TTK_INFO_STREAM(QString("%1%2%3%4").arg(m_ui->formatCombo->currentText(), m_ui->kbpsCombo->currentText(), m_ui->hzCombo->currentText())
                                            .arg(m_ui->msCombo->currentIndex() + 1));
 
         m_process->start(para, QStringList() << "-i" << in << "-y"
@@ -214,7 +214,7 @@ bool MusicTransformWidget::processTransform(const QString &para)
     }
     else
     {
-        TTK_LOGGER_INFO(QString("%1%2%3").arg(para, in, out));
+        TTK_INFO_STREAM(QString("%1%2%3").arg(para, in, out));
         m_process->start(para, QStringList() << in << QString("%1/%2%3").arg(out, transformSongName(), LRC_FILE));
     }
 

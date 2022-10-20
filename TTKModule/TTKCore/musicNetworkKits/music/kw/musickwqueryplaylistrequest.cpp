@@ -22,7 +22,7 @@ void MusicKWQueryPlaylistRequest::startToSearch(QueryType type, const QString &v
 
 void MusicKWQueryPlaylistRequest::startToPage(int offset)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -38,7 +38,7 @@ void MusicKWQueryPlaylistRequest::startToPage(int offset)
 
 void MusicKWQueryPlaylistRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
 
@@ -53,7 +53,7 @@ void MusicKWQueryPlaylistRequest::startToSearch(const QString &value)
 
 void MusicKWQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
 {
-    TTK_LOGGER_INFO(QString("%1 queryPlaylistInfo %2").arg(className(), item.m_id));
+    TTK_INFO_STREAM(QString("%1 queryPlaylistInfo %2").arg(className(), item.m_id));
 
     MusicPageQueryRequest::downLoadFinished();
 
@@ -87,7 +87,7 @@ void MusicKWQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
 
 void MusicKWQueryPlaylistRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
 
     MusicQueryPlaylistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -125,7 +125,7 @@ void MusicKWQueryPlaylistRequest::downLoadFinished()
 
 void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downloadDetailsFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downloadDetailsFinished").arg(className()));
 
     MusicQueryPlaylistRequest::downLoadFinished();
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, sender());
@@ -196,7 +196,7 @@ void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
 
 void MusicKWQueryPlaylistRequest::downloadMoreDetailsFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downloadMoreDetailsFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downloadMoreDetailsFinished").arg(className()));
 
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, sender());
     if(reply && reply->error() == QNetworkReply::NoError)
@@ -226,7 +226,7 @@ void MusicKWQueryPlaylistRequest::downloadMoreDetailsFinished()
 
 void MusicKWQueryPlaylistRequest::morePlaylistDetails(const QString &pid)
 {
-    TTK_LOGGER_INFO(QString("%1 morePlaylistDetails %2").arg(className(), pid));
+    TTK_INFO_STREAM(QString("%1 morePlaylistDetails %2").arg(className(), pid));
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_PLAYLIST_INFO_URL, false).arg(pid));

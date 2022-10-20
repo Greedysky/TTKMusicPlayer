@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
         QTranslator *translator = new QTranslator(&app);
         if(!translator->load(v))
         {
-            TTK_LOGGER_ERROR("Load translation error: " << v);
+            TTK_ERROR_STREAM("Load translation error: " << v);
             delete translator;
             continue;
         }

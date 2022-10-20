@@ -323,7 +323,7 @@ bool MusicExtractWrapper::inputData(const QByteArray &data, const QString &outpu
 {
     if(data.isEmpty())
     {
-        TTK_LOGGER_ERROR("Input byte data is empty");
+        TTK_ERROR_STREAM("Input byte data is empty");
         return false;
     }
 

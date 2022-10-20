@@ -181,7 +181,7 @@ LONG TTKDumperPrivate::errorHandler(EXCEPTION_POINTERS *info)
 #elif defined Q_OS_UNIX
 void TTKDumperPrivate::errorHandler(int id)
 {
-    TTK_LOGGER_INFO("App error occurred, error code " << id);
+    TTK_INFO_STREAM("App error occurred, error code " << id);
     cleanAppicationCache();
 
     char stamp[50];

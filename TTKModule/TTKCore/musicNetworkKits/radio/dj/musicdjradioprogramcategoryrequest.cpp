@@ -23,7 +23,7 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(QueryType type, const QSt
 
 void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -39,7 +39,7 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
 
 void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
 
@@ -55,7 +55,7 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
 
 void MusicDJRadioProgramCategoryRequest::queryProgramInfo(MusicResultDataItem &item)
 {
-    TTK_LOGGER_INFO(QString("%1 queryProgramInfo %2").arg(className(), item.m_id));
+    TTK_INFO_STREAM(QString("%1 queryProgramInfo %2").arg(className(), item.m_id));
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
@@ -88,7 +88,7 @@ void MusicDJRadioProgramCategoryRequest::queryProgramInfo(MusicResultDataItem &i
 
 void MusicDJRadioProgramCategoryRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
 
     MusicAbstractQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -133,7 +133,7 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
 
 void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downloadDetailsFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downloadDetailsFinished").arg(className()));
 
     MusicAbstractQueryRequest::downLoadFinished();
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, sender());

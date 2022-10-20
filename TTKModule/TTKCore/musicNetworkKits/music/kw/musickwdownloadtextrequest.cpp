@@ -26,7 +26,7 @@ void MusicKWDownLoadTextRequest::startRequest()
         else
         {
             Q_EMIT downLoadDataChanged("The kuwo text file create failed");
-            TTK_LOGGER_ERROR(QString("%1 file create failed").arg(className()));
+            TTK_ERROR_STREAM(QString("%1 file create failed").arg(className()));
             deleteAll();
         }
     }
@@ -61,11 +61,11 @@ void MusicKWDownLoadTextRequest::downLoadFinished()
             outstream << lrcData;
             QtStreamEndl(outstream);
             m_file->close();
-            TTK_LOGGER_INFO(QString("%1 download has finished").arg(className()));
+            TTK_INFO_STREAM(QString("%1 download has finished").arg(className()));
         }
         else
         {
-            TTK_LOGGER_ERROR(QString("%1 download file error").arg(className()));
+            TTK_ERROR_STREAM(QString("%1 download file error").arg(className()));
             m_file->remove();
             m_file->close();
         }

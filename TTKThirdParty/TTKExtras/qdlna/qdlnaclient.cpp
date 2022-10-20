@@ -82,7 +82,7 @@ bool QDlnaClientPrivate::connectServer()
 {
     const QString &request = QHelperDlna::MakeRequest("GET", m_smp, 0, QString(), m_serverIP, m_serverPort);
     const QString &response = QHelperDlna::makeSocketGetReply(m_serverIP, m_serverPort, request);
-    TTK_LOGGER_INFO(m_serverIP << m_serverPort << m_smp << response);
+    TTK_INFO_STREAM(m_serverIP << m_serverPort << m_smp << response);
     const int code = QHelperDlna::GetResponseCode(response);
     if(code != 200)
     {
@@ -192,7 +192,7 @@ QString QDlnaClient::uploadFileToPlay(const QString &url)
     body += "</u:SetAVTransportURI>\n";
     body += XML_FOOT + "\n";
     const QString &request = QHelperDlna::MakeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI", d->m_serverIP,d->m_serverPort) + body;
-    TTK_LOGGER_INFO(request);
+    TTK_INFO_STREAM(request);
     return QHelperDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
 }
 

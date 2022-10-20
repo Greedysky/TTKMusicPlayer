@@ -36,7 +36,7 @@ void MusicAbstractNetwork::downLoadFinished()
 
 void MusicAbstractNetwork::replyError(QNetworkReply::NetworkError)
 {
-    TTK_LOGGER_ERROR("Abnormal network connection");
+    TTK_ERROR_STREAM("Abnormal network connection");
 //    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
@@ -61,7 +61,7 @@ void MusicAbstractNetwork::sslErrorsString(QNetworkReply *reply, const QList<QSs
         errorString += error.errorString();
     }
 
-    TTK_LOGGER_ERROR(QString("SslErrors: %1").arg(errorString));
+    TTK_ERROR_STREAM(QString("SslErrors: %1").arg(errorString));
     reply->ignoreSslErrors();
 }
 #endif

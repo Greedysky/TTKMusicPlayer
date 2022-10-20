@@ -9,7 +9,7 @@ MusicKGSongCommentsRequest::MusicKGSongCommentsRequest(QObject *parent)
 
 void MusicKGSongCommentsRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     MusicSemaphoreLoop loop;
     MusicKGQueryRequest *d = new MusicKGQueryRequest(this);
@@ -29,7 +29,7 @@ void MusicKGSongCommentsRequest::startToSearch(const QString &value)
 
 void MusicKGSongCommentsRequest::startToPage(int offset)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -45,7 +45,7 @@ void MusicKGSongCommentsRequest::startToPage(int offset)
 
 void MusicKGSongCommentsRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
 
     MusicCommentsRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -97,7 +97,7 @@ MusicKGPlaylistCommentsRequest::MusicKGPlaylistCommentsRequest(QObject *parent)
 
 void MusicKGPlaylistCommentsRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     m_rawData["sid"] = value;
     startToPage(0);
@@ -105,7 +105,7 @@ void MusicKGPlaylistCommentsRequest::startToSearch(const QString &value)
 
 void MusicKGPlaylistCommentsRequest::startToPage(int offset)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -121,7 +121,7 @@ void MusicKGPlaylistCommentsRequest::startToPage(int offset)
 
 void MusicKGPlaylistCommentsRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
 
     MusicCommentsRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

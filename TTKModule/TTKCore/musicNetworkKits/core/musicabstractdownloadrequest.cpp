@@ -53,7 +53,7 @@ void MusicAbstractDownLoadRequest::downLoadFinished()
 
 void MusicAbstractDownLoadRequest::replyError(QNetworkReply::NetworkError)
 {
-    TTK_LOGGER_ERROR("Abnormal network connection");
+    TTK_ERROR_STREAM("Abnormal network connection");
 //    Q_EMIT downLoadDataChanged("The file create failed");
     deleteAll();
 }

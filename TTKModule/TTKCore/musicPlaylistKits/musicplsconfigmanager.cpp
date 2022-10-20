@@ -56,7 +56,7 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
 
         if(error)
         {
-            TTK_LOGGER_ERROR("read pls format playlist error");
+            TTK_ERROR_STREAM("read pls format playlist error");
             break;
         }
     }

@@ -82,5 +82,5 @@ void ToolsSkin::writeClicked()
     image.m_pix = m_pixmap;
     image.m_item.m_name = m_ui->nameLineEdit->text().trimmed();
     image.m_item.m_useCount = m_ui->countLineEdit->text().trimmed().toInt();
-    TTK_LOGGER_INFO("Save state " << MusicExtractWrapper::inputSkin(&image, path));
+    TTK_INFO_STREAM("Save state " << MusicExtractWrapper::inputSkin(&image, path));
 }

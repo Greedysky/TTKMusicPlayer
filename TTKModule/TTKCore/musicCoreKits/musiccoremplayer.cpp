@@ -27,7 +27,7 @@ void MusicCoreMPlayer::setMedia(Module type, const QString &data, int winId)
     closeModule();
     if(!QFile::exists(MAKE_PLAYER_FULL))
     {
-        TTK_LOGGER_ERROR("Lack of plugin file");
+        TTK_ERROR_STREAM("Lack of plugin file");
         return;
     }
 

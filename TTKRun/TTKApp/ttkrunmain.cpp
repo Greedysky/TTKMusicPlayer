@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
     if(app.isRunning())
     {
-        TTK_LOGGER_INFO("One app has already run");
+        TTK_INFO_STREAM("One app has already run");
         return -1;
     }
 

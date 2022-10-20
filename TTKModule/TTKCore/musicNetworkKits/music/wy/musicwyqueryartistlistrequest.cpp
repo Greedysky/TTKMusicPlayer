@@ -9,7 +9,7 @@ MusicWYQueryArtistListRequest::MusicWYQueryArtistListRequest(QObject *parent)
 
 void MusicWYQueryArtistListRequest::startToPage(int offset)
 {
-    TTK_LOGGER_INFO(QString("%1 startToPage %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
 
     deleteAll();
     QString catId = "1001", initial = "-1";
@@ -54,7 +54,7 @@ void MusicWYQueryArtistListRequest::startToSearch(const QString &value)
 
 void MusicWYQueryArtistListRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
 
     MusicQueryArtistListRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

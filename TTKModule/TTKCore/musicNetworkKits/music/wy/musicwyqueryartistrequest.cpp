@@ -8,7 +8,7 @@ MusicWYQueryArtistRequest::MusicWYQueryArtistRequest(QObject *parent)
 
 void MusicWYQueryArtistRequest::startToSearch(const QString &value)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
     m_queryValue = value;
@@ -25,7 +25,7 @@ void MusicWYQueryArtistRequest::startToSearch(const QString &value)
 
 void MusicWYQueryArtistRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
 
     MusicQueryArtistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

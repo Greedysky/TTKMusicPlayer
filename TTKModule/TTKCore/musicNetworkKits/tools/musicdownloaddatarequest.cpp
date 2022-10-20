@@ -21,7 +21,7 @@ void MusicDownloadDataRequest::startRequest()
         }
         else
         {
-            TTK_LOGGER_ERROR("The data file create failed");
+            TTK_ERROR_STREAM("The data file create failed");
             Q_EMIT downLoadDataChanged("The data file create failed");
             deleteAll();
         }
@@ -88,7 +88,7 @@ void MusicDownloadDataRequest::downLoadFinished()
         if(m_needUpdate)
         {
             Q_EMIT downLoadDataChanged(mapCurrentQueryData());
-            TTK_LOGGER_INFO("Data download has finished");
+            TTK_INFO_STREAM("Data download has finished");
         }
     }
     deleteAll();

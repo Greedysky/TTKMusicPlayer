@@ -34,7 +34,7 @@ void MusicFMRadioSongsRequest::downLoadFinished()
             const QVariantList &datas = value["song"].toList();
             if(datas.isEmpty())
             {
-                TTK_LOGGER_ERROR("The fm radio song is empty");
+                TTK_ERROR_STREAM("The fm radio song is empty");
                 deleteAll();
                 startRequest(m_cachedID);
                 return;

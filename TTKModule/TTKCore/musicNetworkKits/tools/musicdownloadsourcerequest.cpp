@@ -43,7 +43,7 @@ void MusicDownloadSourceRequest::downLoadFinished()
     }
     else
     {
-        TTK_LOGGER_ERROR("Download source data error");
+        TTK_ERROR_STREAM("Download source data error");
         Q_EMIT downLoadRawDataChanged(QByteArray());
         deleteAll();
     }

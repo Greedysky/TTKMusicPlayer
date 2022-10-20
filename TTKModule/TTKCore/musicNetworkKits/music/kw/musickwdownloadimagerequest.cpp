@@ -47,7 +47,7 @@ void MusicKWDownLoadCoverRequest::downLoadFinished()
     }
     else
     {
-        TTK_LOGGER_ERROR("Download kw cover data error");
+        TTK_ERROR_STREAM("Download kw cover data error");
     }
 
     downLoadDataChanged();
@@ -68,7 +68,7 @@ MusicKWDownloadBackgroundRequest::MusicKWDownloadBackgroundRequest(const QString
 
 void MusicKWDownloadBackgroundRequest::startRequest()
 {
-    TTK_LOGGER_INFO(QString("%1 startRequest").arg(className()));
+    TTK_INFO_STREAM(QString("%1 startRequest").arg(className()));
 
     MusicAbstractNetwork::deleteAll();
 
@@ -83,7 +83,7 @@ void MusicKWDownloadBackgroundRequest::startRequest()
 
 void MusicKWDownloadBackgroundRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadDataFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadDataFinished").arg(className()));
 
     MusicDownloadImageRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

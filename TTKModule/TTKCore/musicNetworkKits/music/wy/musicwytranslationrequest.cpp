@@ -10,7 +10,7 @@ MusicWYTranslationRequest::MusicWYTranslationRequest(QObject *parent)
 
 void MusicWYTranslationRequest::startRequest(const QString &data)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch").arg(className()));
+    TTK_INFO_STREAM(QString("%1 startToSearch").arg(className()));
 
     Q_UNUSED(data);
     deleteAll();
@@ -62,7 +62,7 @@ void MusicWYTranslationRequest::downLoadFinished()
     }
     else
     {
-        TTK_LOGGER_ERROR("Translation source data error");
+        TTK_ERROR_STREAM("Translation source data error");
         Q_EMIT downLoadDataChanged(QString());
     }
 
