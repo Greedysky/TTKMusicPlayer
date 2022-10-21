@@ -242,6 +242,8 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
         m_totalFileSzie -= data.m_dataItem.m_size;
         Q_EMIT updataSizeLabel(m_totalFileSzie);
     }
+
+    createUploadFileModule();
 }
 
 void MusicCloudManagerTableWidget::downloadFileToServer()
@@ -280,31 +282,12 @@ void MusicCloudManagerTableWidget::uploadFilesToServer()
 void MusicCloudManagerTableWidget::uploadFileDirToServer()
 {
     const QString &path = MusicUtils::File::openDirectoryDialog(this);
-    if(!path.isEmpty())
+    if(path.isEmpty())
     {
-        delete m_openFileWidget;
-        m_openFileWidget = nullptr;
-
-        for(const QFileInfo &fin : MusicUtils::File::fileInfoListByPath(path, MusicFormats::supportMusicInputFilterFormats()))
-        {
-            MusicCloudDataItem item;
-            item.m_id = QString::number(MusicTime::timestamp());
-            item.m_path = path;
-            item.m_state = MusicCloudDataItem::State::Waited;
-            item.m_dataItem.m_name = fin.fileName().trimmed();
-            item.m_dataItem.m_putTime = fin.lastModified().toString(TTK_YEAR_TIME_FORMAT);
-            item.m_dataItem.m_size = fin.size();
-
-            addCellItem(item);
-        }
-
-        if(!m_uploading)
-        {
-            startToUploadFile();
-        }
+        return;
     }
 
-    createUploadFileModule();
+    uploadFilesToServer(MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats()));
 }
 
 void MusicCloudManagerTableWidget::reuploadFilesToServer(const QStringList &items)
@@ -451,6 +434,8 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
     {
         startToUploadFile();
     }
+
+    createUploadFileModule();
 }
 
 void MusicCloudManagerTableWidget::createUploadFileModule()
