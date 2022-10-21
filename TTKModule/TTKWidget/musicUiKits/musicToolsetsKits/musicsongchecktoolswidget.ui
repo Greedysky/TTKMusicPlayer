@@ -31,7 +31,7 @@
     <rect>
      <x>14</x>
      <y>4</y>
-     <width>170</width>
+     <width>220</width>
      <height>25</height>
     </rect>
    </property>
@@ -273,7 +273,7 @@
        <enum>QFrame::Plain</enum>
       </property>
      </widget>
-     <widget class="MusicGifLabelWidget" name="renameLoadingLabel">
+     <widget class="MusicGifLabelWidget" name="renameLoadingLabel" native="true">
       <property name="geometry">
        <rect>
         <x>307</x>
@@ -282,7 +282,7 @@
         <height>58</height>
        </rect>
       </property>
-      <property name="text">
+      <property name="text" stdset="0">
        <string/>
       </property>
      </widget>
@@ -390,7 +390,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="MusicGifLabelWidget" name="duplicateLoadingLabel">
+     <widget class="MusicGifLabelWidget" name="duplicateLoadingLabel" native="true">
       <property name="geometry">
        <rect>
         <x>307</x>
@@ -399,7 +399,7 @@
         <height>58</height>
        </rect>
       </property>
-      <property name="text">
+      <property name="text" stdset="0">
        <string/>
       </property>
      </widget>
@@ -664,7 +664,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="MusicGifLabelWidget" name="qualityLoadingLabel">
+     <widget class="MusicGifLabelWidget" name="qualityLoadingLabel" native="true">
       <property name="geometry">
        <rect>
         <x>307</x>
@@ -673,7 +673,7 @@
         <height>58</height>
        </rect>
       </property>
-      <property name="text">
+      <property name="text" stdset="0">
        <string/>
       </property>
      </widget>
@@ -872,6 +872,12 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>MusicGifLabelWidget</class>
+   <extends>QWidget</extends>
+   <header>musicgiflabelwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>MusicClickedLabel</class>
    <extends>QLabel</extends>
    <header>musicclickedlabel.h</header>
@@ -882,11 +888,6 @@
    <extends>QWidget</extends>
    <header>musicsongitemselectedareawidget.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MusicGifLabelWidget</class>
-   <extends>QLabel</extends>
-   <header>musicgiflabelwidget.h</header>
   </customwidget>
   <customwidget>
    <class>MusicSongCheckToolsRenameTableWidget</class>

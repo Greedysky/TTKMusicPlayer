@@ -26,7 +26,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>5</y>
+      <y>4</y>
       <width>220</width>
       <height>25</height>
      </rect>
@@ -174,7 +174,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="MusicGifLabelWidget" name="gifLabel">
+   <widget class="MusicGifLabelWidget" name="gifLabel" native="true">
     <property name="geometry">
      <rect>
       <x>455</x>
@@ -183,7 +183,7 @@
       <height>30</height>
      </rect>
     </property>
-    <property name="text">
+    <property name="text" stdset="0">
      <string/>
     </property>
    </widget>
@@ -200,7 +200,7 @@
    <widget class="QWidget" name="videoPage"/>
    <widget class="MusicVLayoutAnimationWidget" name="musicPage"/>
   </widget>
-  <widget class="MusicGifLabelWidget" name="loadingLabel">
+  <widget class="MusicGifLabelWidget" name="loadingLabel" native="true">
    <property name="geometry">
     <rect>
      <x>301</x>
@@ -209,12 +209,18 @@
      <height>58</height>
     </rect>
    </property>
-   <property name="text">
+   <property name="text" stdset="0">
     <string/>
    </property>
   </widget>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>MusicGifLabelWidget</class>
+   <extends>QWidget</extends>
+   <header>musicgiflabelwidget.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>MusicVLayoutAnimationWidget</class>
    <extends>QWidget</extends>
@@ -230,11 +236,6 @@
    <class>MusicVolumePopWidget</class>
    <extends>QToolButton</extends>
    <header>musicvolumepopwidget.h</header>
-  </customwidget>
-  <customwidget>
-   <class>MusicGifLabelWidget</class>
-   <extends>QLabel</extends>
-   <header location="global">musicgiflabelwidget.h</header>
   </customwidget>
   <customwidget>
    <class>MusicSoundKMicroSettingPopWidget</class>

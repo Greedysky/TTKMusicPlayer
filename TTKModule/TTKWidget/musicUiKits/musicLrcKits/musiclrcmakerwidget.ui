@@ -30,8 +30,8 @@
    <property name="geometry">
     <rect>
      <x>14</x>
-     <y>5</y>
-     <width>71</width>
+     <y>8</y>
+     <width>220</width>
      <height>25</height>
     </rect>
    </property>
@@ -968,15 +968,15 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>MusicMovingClickedSlider</class>
+   <extends>QSlider</extends>
+   <header>musicmovingclickedslider.h</header>
+  </customwidget>
+  <customwidget>
    <class>MusicVLayoutAnimationWidget</class>
    <extends>QWidget</extends>
    <header location="global">musiclayoutanimationwidget.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MusicMovingClickedSlider</class>
-   <extends>QSlider</extends>
-   <header>musicmovingclickedslider.h</header>
   </customwidget>
  </customwidgets>
  <resources>

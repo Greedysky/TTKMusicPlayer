@@ -31,7 +31,7 @@
     <rect>
      <x>14</x>
      <y>4</y>
-     <width>180</width>
+     <width>220</width>
      <height>25</height>
     </rect>
    </property>
@@ -127,7 +127,7 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="MusicGifLabelWidget" name="loadingLabel">
+  <widget class="MusicGifLabelWidget" name="loadingLabel" native="true">
    <property name="geometry">
     <rect>
      <x>204</x>
@@ -136,7 +136,7 @@
      <height>58</height>
     </rect>
    </property>
-   <property name="text">
+   <property name="text" stdset="0">
     <string/>
    </property>
   </widget>
@@ -321,8 +321,9 @@
  <customwidgets>
   <customwidget>
    <class>MusicGifLabelWidget</class>
-   <extends>QLabel</extends>
+   <extends>QWidget</extends>
    <header>musicgiflabelwidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

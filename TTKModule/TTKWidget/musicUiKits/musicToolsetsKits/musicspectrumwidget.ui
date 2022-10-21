@@ -29,9 +29,9 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>4</y>
-     <width>171</width>
+     <x>14</x>
+     <y>3</y>
+     <width>220</width>
      <height>25</height>
     </rect>
    </property>

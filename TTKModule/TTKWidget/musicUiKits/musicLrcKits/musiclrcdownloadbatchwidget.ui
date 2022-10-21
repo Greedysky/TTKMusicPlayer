@@ -31,7 +31,7 @@
     <rect>
      <x>14</x>
      <y>4</y>
-     <width>170</width>
+     <width>220</width>
      <height>25</height>
     </rect>
    </property>
@@ -294,15 +294,15 @@ font-weight:bold;</string>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicLrcDownloadBatchTableWidget</class>
-   <extends>QWidget</extends>
-   <header>musiclrcdownloadbatchwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>MusicSongItemSelectedAreaWidget</class>
    <extends>QWidget</extends>
    <header>musicsongitemselectedareawidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicLrcDownloadBatchTableWidget</class>
+   <extends>QWidget</extends>
+   <header>musiclrcdownloadbatchwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -34,7 +34,7 @@
     <rect>
      <x>14</x>
      <y>4</y>
-     <width>181</width>
+     <width>220</width>
      <height>25</height>
     </rect>
    </property>
@@ -184,7 +184,7 @@ background:rgba(255,255,255,50)</string>
    <zorder>backgroundMask2</zorder>
    <zorder>songlistTable</zorder>
   </widget>
-  <widget class="MusicGifLabelWidget" name="loadingLabel">
+  <widget class="MusicGifLabelWidget" name="loadingLabel" native="true">
    <property name="geometry">
     <rect>
      <x>330</x>
@@ -193,7 +193,7 @@ background:rgba(255,255,255,50)</string>
      <height>58</height>
     </rect>
    </property>
-   <property name="text">
+   <property name="text" stdset="0">
     <string/>
    </property>
   </widget>
@@ -201,8 +201,9 @@ background:rgba(255,255,255,50)</string>
  <customwidgets>
   <customwidget>
    <class>MusicGifLabelWidget</class>
-   <extends>QLabel</extends>
+   <extends>QWidget</extends>
    <header>musicgiflabelwidget.h</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>MusicMobileSongsTableWidget</class>

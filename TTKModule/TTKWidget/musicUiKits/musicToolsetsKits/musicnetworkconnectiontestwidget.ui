@@ -31,7 +31,7 @@
     <rect>
      <x>14</x>
      <y>4</y>
-     <width>171</width>
+     <width>220</width>
      <height>25</height>
     </rect>
    </property>
@@ -135,7 +135,7 @@ border-radius:10px;</string>
    <zorder>widget</zorder>
    <zorder>groupBox</zorder>
   </widget>
-  <widget class="MusicGifLabelWidget" name="iconLabel">
+  <widget class="MusicGifLabelWidget" name="iconLabel" native="true">
    <property name="geometry">
     <rect>
      <x>24</x>
@@ -147,7 +147,7 @@ border-radius:10px;</string>
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <property name="text">
+   <property name="text" stdset="0">
     <string/>
    </property>
   </widget>
@@ -160,8 +160,9 @@ border-radius:10px;</string>
  <customwidgets>
   <customwidget>
    <class>MusicGifLabelWidget</class>
-   <extends>QLabel</extends>
+   <extends>QWidget</extends>
    <header>musicgiflabelwidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>
