@@ -93,15 +93,6 @@ QString MusicUtils::String::removeStringToken(const QString &value, const QStrin
     return s;
 }
 
-QString MusicUtils::String::lineWrap()
-{
-#ifdef Q_OS_WIN
-    return "\r\n";
-#else
-    return "\n";
-#endif
-}
-
 bool MusicUtils::String::isChinese(const QChar &c)
 {
 #ifdef Q_CC_MSVC

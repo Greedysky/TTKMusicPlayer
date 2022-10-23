@@ -72,10 +72,6 @@ namespace MusicUtils
         TTK_MODULE_EXPORT QString removeStringToken(const QString &value, const QString &key = " ");
 
         /*!
-         * Get new \r \n string key.
-         */
-        TTK_MODULE_EXPORT QString lineWrap();
-        /*!
          * Check the given char is or not chinese character.
          */
         TTK_MODULE_EXPORT bool isChinese(const QChar &c);
