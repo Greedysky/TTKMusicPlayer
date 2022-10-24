@@ -27,7 +27,6 @@
 
 class MusicDownloadQueueRequest;
 
-
 /*! @brief The class of the screen saver hover item.
  * @author Greedysky <greedysky@163.com>
  */
@@ -45,16 +44,14 @@ public:
      * Set item file name.
      */
     void setFilePath(const QString &path);
-
     /*!
      * Set item status.
      */
     void setStatus(int index, bool status);
-
     /*!
-     * show item.
+     * Display item.
      */
-    void showItem(const QPoint &point);
+    void display(const QPoint &point);
 
 Q_SIGNALS:
     /*!
@@ -64,9 +61,9 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     /*!
-     * Case button on and off.
+     * Switch button on and off.
      */
-    void caseButtonOnAndOff();
+    void switchButtonOnAndOff();
 
 private:
     /*!
@@ -102,11 +99,14 @@ public:
      * Set item file name.
      */
     void setFilePath(const QString &path);
-
     /*!
      * Set item status.
      */
     void setStatus(int index, bool status);
+    /*!
+     * Set item visible or not.
+     */
+    void setHoverVisible(bool v);
 
 private:
     /*!
@@ -188,9 +188,9 @@ private Q_SLOTS:
      */
     void inputDataChanged();
     /*!
-     * Case button on and off.
+     * switch button on and off.
      */
-    void caseButtonOnAndOff();
+    void switchButtonOnAndOff();
     /*!
      * Send download data from net.
      */

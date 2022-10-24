@@ -96,9 +96,9 @@ public Q_SLOTS:
      */
     void setEnhancedMusicConfig(int type);
     /*!
-     * Case button on and off.
+     * switch button on and off.
      */
-    void caseButtonOnAndOff();
+    void switchButtonOnAndOff();
     /*!
      * Button animation state changed.
      */

@@ -138,7 +138,7 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
     m_menu->close();
 }
 
-void MusicEnhancedPopWidget::caseButtonOnAndOff()
+void MusicEnhancedPopWidget::switchButtonOnAndOff()
 {
     setEnhancedMusicConfig(m_caseButton->styleSheet().contains(":/enhance/btn_magic_off_normal") ? m_lastSelectedIndex : 0);
 }
