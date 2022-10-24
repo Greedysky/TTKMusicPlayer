@@ -140,7 +140,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     QWidget *mainWidget = new QWidget(this);
     QVBoxLayout *mainLayout = new QVBoxLayout(mainWidget);
     mainLayout->setSpacing(0);
-    mainLayout->setContentsMargins(20, 20, 20, 10);
+    mainLayout->setContentsMargins(20, 10, 20, 10);
     mainWidget->setLayout(mainLayout);
     layout->addWidget(mainWidget);
 
@@ -149,12 +149,12 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
 
     QVBoxLayout *topLayout = new QVBoxLayout(topWidget);
     topLayout->setSpacing(0);
-    topLayout->setContentsMargins(0, 10, 0, 10);
+    topLayout->setContentsMargins(0, 0, 0, 10);
     topWidget->setLayout(topLayout);
 
     QWidget *functionWidget = new QWidget(topWidget);
     QHBoxLayout *functionWidgetLayout = new QHBoxLayout(functionWidget);
-    functionWidgetLayout->setContentsMargins(0, 10, 0, 10);
+    functionWidgetLayout->setContentsMargins(0, 0, 0, 10);
     functionWidget->setLayout(functionWidgetLayout);
 
     QLabel *pLabel = new QLabel(tr("Media Library"), functionWidget);
@@ -403,5 +403,5 @@ void MusicLocalManagerWidget::searchResultChanged(int, int column)
 void MusicLocalManagerWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    m_loadingLabel->move((width() - m_loadingLabel->width()) / 2, (height() + 150 - m_loadingLabel->height()) / 2);
+    m_loadingLabel->move((width() - m_loadingLabel->width()) / 2, (height() + 120 - m_loadingLabel->height()) / 2);
 }
