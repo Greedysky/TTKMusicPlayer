@@ -126,9 +126,9 @@ void MusicSongSearchTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) / 3.0 + 273);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN) / 3.0 + 105);
-    headerview->resizeSection(3, (width - WINDOW_WIDTH_MIN) / 3.0 + 105);
+    headerview->resizeSection(1, 273 + (width - WINDOW_WIDTH_MIN) / 3.0);
+    headerview->resizeSection(2, 105 + (width - WINDOW_WIDTH_MIN) / 3.0);
+    headerview->resizeSection(3, 105 + (width - WINDOW_WIDTH_MIN) / 3.0);
 
     for(int i = 0; i < rowCount(); ++i)
     {
@@ -268,12 +268,6 @@ void MusicSongSearchTableWidget::musicSongDownload(int row)
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
     download->setSongName(songInfos[row], MusicAbstractQueryRequest::QueryType::Music);
     download->show();
-}
-
-void MusicSongSearchTableWidget::resizeEvent(QResizeEvent *event)
-{
-    MusicItemSearchTableWidget::resizeEvent(event);
-    resizeSection();
 }
 
 void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -464,12 +458,6 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
         MusicDownloadBatchWidget *w = GENERATE_SINGLE_WIDGET_CLASS(MusicDownloadBatchWidget);
         w->setSongName(infos, MusicAbstractQueryRequest::QueryType::Music);
     }
-}
-
-void MusicSongSearchOnlineWidget::resizeEvent(QResizeEvent *event)
-{
-    QWidget::resizeEvent(event);
-    setResizeLabelText(m_textLabel->toolTip());
 }
 
 void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)

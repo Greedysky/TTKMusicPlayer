@@ -95,6 +95,16 @@ void MusicLocalManagerSongsTableWidget::updateSongsList(const MusicSongInfoItemL
     }
 }
 
+void MusicLocalManagerSongsTableWidget::resizeSection()
+{
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 200 + (width - WINDOW_WIDTH_MIN) / 4.0);
+    headerview->resizeSection(1, 100 + (width - WINDOW_WIDTH_MIN) / 4.0);
+    headerview->resizeSection(2, 100 + (width - WINDOW_WIDTH_MIN) / 4.0);
+    headerview->resizeSection(5, 200 + (width - WINDOW_WIDTH_MIN) / 4.0);
+}
+
 void MusicLocalManagerSongsTableWidget::removeItems()
 {
     MusicAbstractSongsListTableWidget::removeItems();
@@ -265,6 +275,12 @@ MusicLocalManagerWidget::~MusicLocalManagerWidget()
     delete m_songWidget;
 }
 
+void MusicLocalManagerWidget::resizeWidget()
+{
+    m_songWidget->resizeSection();
+    m_loadingLabel->move((width() - m_loadingLabel->width()) / 2, (height() + 120 - m_loadingLabel->height()) / 2);
+}
+
 void MusicLocalManagerWidget::typeIndexChanged(int index)
 {
     m_currentIndex = index;
@@ -403,5 +419,5 @@ void MusicLocalManagerWidget::searchResultChanged(int, int column)
 void MusicLocalManagerWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    m_loadingLabel->move((width() - m_loadingLabel->width()) / 2, (height() + 120 - m_loadingLabel->height()) / 2);
+    resizeWidget();
 }

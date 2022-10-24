@@ -518,12 +518,6 @@ void MusicLrcContainerForInterior::paintEvent(QPaintEvent *event)
     }
 }
 
-void MusicLrcContainerForInterior::resizeEvent(QResizeEvent *event)
-{
-    MusicLrcContainer::resizeEvent(event);
-    resizeWindow();
-}
-
 void MusicLrcContainerForInterior::mousePressEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)

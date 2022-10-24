@@ -12,7 +12,8 @@
 #include "musicfunctionlistuiobject.h"
 #include "musictopareawidget.h"
 
-#include "musicadvancedsearchedwidget.h"
+#include "musicwebdjradiowidget.h"
+#include "musicscreensaverwidget.h"
 #include "musicidentifysongswidget.h"
 #include "musicsimilarquerywidget.h"
 #include "musicalbumquerywidget.h"
@@ -21,10 +22,8 @@
 #include "musicplaylistquerywidget.h"
 #include "musicrecommendquerywidget.h"
 #include "musicartistlistquerywidget.h"
-#include "musicwebdjradiowidget.h"
+#include "musicadvancedsearchedwidget.h"
 #include "musicwebmvradioquerywidget.h"
-#include "musicscreensaverwidget.h"
-#include "musiccloudmanagerwidget.h"
 
 #ifdef Q_OS_WIN
 #  include "musicplatformmanager.h"
@@ -271,50 +270,16 @@ void MusicRightAreaWidget::resizeWindow()
     m_ui->songSearchWidget->resizeWindow();
     m_lrcForInterior->resizeWindow();
 
-    if(TTKObject_cast(MusicSimilarQueryWidget*, m_stackedWidget))
+    MusicAbstractResizeInterface *stackedWidget = TTKDynamic_cast(MusicAbstractResizeInterface*, m_stackedWidget);
+    if(stackedWidget)
     {
-        TTKObject_cast(MusicSimilarQueryWidget*, m_stackedWidget)->resizeWidget();
-    }
-    else if(TTKObject_cast(MusicAlbumQueryWidget*, m_stackedWidget))
-    {
-        TTKObject_cast(MusicAlbumQueryWidget*, m_stackedWidget)->resizeWidget();
-    }
-    else if(TTKObject_cast(MusicArtistQueryWidget*, m_stackedWidget))
-    {
-        TTKObject_cast(MusicArtistQueryWidget*, m_stackedWidget)->resizeWidget();
-    }
-    else if(TTKObject_cast(MusicToplistQueryWidget*, m_stackedWidget))
-    {
-        TTKObject_cast(MusicToplistQueryWidget*, m_stackedWidget)->resizeWidget();
-    }
-    else if(TTKObject_cast(MusicPlaylistQueryWidget*, m_stackedWidget))
-    {
-        TTKObject_cast(MusicPlaylistQueryWidget*, m_stackedWidget)->resizeWidget();
-    }
-    else if(TTKObject_cast(MusicRecommendQueryWidget*, m_stackedWidget))
-    {
-        TTKObject_cast(MusicRecommendQueryWidget*, m_stackedWidget)->resizeWidget();
-    }
-    else if(TTKObject_cast(MusicArtistListQueryWidget*, m_stackedWidget))
-    {
-        TTKObject_cast(MusicArtistListQueryWidget*, m_stackedWidget)->resizeWidget();
-    }
-    else if(TTKObject_cast(MusicWebDJRadioWidget*, m_stackedWidget))
-    {
-        TTKObject_cast(MusicWebDJRadioWidget*, m_stackedWidget)->resizeWidget();
-    }
-    else if(TTKObject_cast(MusicWebMVRadioQueryWidget*, m_stackedWidget))
-    {
-        TTKObject_cast(MusicWebMVRadioQueryWidget*, m_stackedWidget)->resizeWidget();
-    }
-    else if(TTKObject_cast(MusicScreenSaverWidget*, m_stackedWidget))
-    {
-        TTKObject_cast(MusicScreenSaverWidget*, m_stackedWidget)->resizeWidget();
+        stackedWidget->resizeWidget();
     }
 
-    if(TTKObject_cast(MusicCloudManagerWidget*, m_stackedStandWidget))
+    MusicAbstractResizeInterface *stackedStandWidget = TTKDynamic_cast(MusicAbstractResizeInterface*, m_stackedStandWidget);
+    if(stackedStandWidget)
     {
-        TTKObject_cast(MusicCloudManagerWidget*, m_stackedStandWidget)->resizeWidget();
+        stackedStandWidget->resizeWidget();
     }
 
     if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopupMode())

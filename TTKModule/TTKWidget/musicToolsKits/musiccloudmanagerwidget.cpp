@@ -89,7 +89,7 @@ void MusicCloudManagerTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) + 360);
+    headerview->resizeSection(1, 360 + (width - WINDOW_WIDTH_MIN));
 
     for(int i = 0; i < rowCount(); ++i)
     {

@@ -9,6 +9,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractfloatwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractitemquerywidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractsongslisttablewidget.h
+    ${MUSIC_WIDGET_CORE_DIR}/musicabstractresizeinterface.h
     ${MUSIC_WIDGET_CORE_DIR}/musicwidgetrenderer.h
     ${MUSIC_WIDGET_CORE_DIR}/musicfillitemtablewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicquerytablewidget.h

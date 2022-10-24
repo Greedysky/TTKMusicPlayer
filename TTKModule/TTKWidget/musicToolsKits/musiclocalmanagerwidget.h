@@ -54,6 +54,10 @@ public:
      * Update songs files in table.
      */
     void updateSongsList(const MusicSongInfoItemList &songs);
+    /*!
+     * Resize section bound by resize called.
+     */
+    void resizeSection();
 
 public Q_SLOTS:
     /*!
@@ -74,7 +78,7 @@ class MusicGifLabelWidget;
 /*! @brief The class of the local manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLocalManagerWidget : public QWidget, private MusicItemSearchInterface<MusicSongInfoItemList>
+class TTK_MODULE_EXPORT MusicLocalManagerWidget : public QWidget, public MusicAbstractResizeInterface, private MusicItemSearchInterface<MusicSongInfoItemList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLocalManagerWidget)
@@ -84,6 +88,11 @@ public:
      */
     explicit MusicLocalManagerWidget(QWidget *parent = nullptr);
     ~MusicLocalManagerWidget();
+
+    /*!
+     * Resize widget bound by resize called.
+     */
+    virtual void resizeWidget() override final;
 
 private Q_SLOTS:
     /*!

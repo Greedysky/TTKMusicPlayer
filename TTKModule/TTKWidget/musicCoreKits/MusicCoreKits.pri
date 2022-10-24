@@ -27,6 +27,7 @@ HEADERS += \
     $$PWD/musicabstractfloatwidget.h \
     $$PWD/musicabstractitemquerywidget.h \
     $$PWD/musicabstractsongslisttablewidget.h \
+    $$PWD/musicabstractresizeinterface.h \
     $$PWD/musicwidgetrenderer.h \
     $$PWD/musicfillitemtablewidget.h \
     $$PWD/musicquerytablewidget.h \

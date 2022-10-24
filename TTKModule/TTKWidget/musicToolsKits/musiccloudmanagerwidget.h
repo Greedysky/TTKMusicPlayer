@@ -186,7 +186,7 @@ private:
 /*! @brief The class of the cloud manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicCloudManagerWidget : public QWidget
+class TTK_MODULE_EXPORT MusicCloudManagerWidget : public QWidget, public MusicAbstractResizeInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCloudManagerWidget)
@@ -200,7 +200,7 @@ public:
     /*!
      * Resize widget bound by resize called.
      */
-    void resizeWidget();
+    virtual void resizeWidget() override final;
 
 public Q_SLOTS:
     /*!

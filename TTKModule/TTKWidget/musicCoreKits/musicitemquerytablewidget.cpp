@@ -126,8 +126,8 @@ void MusicItemQueryTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) * 0.5 + 342);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN) * 0.5 + 110);
+    headerview->resizeSection(1, 342 + (width - WINDOW_WIDTH_MIN) / 2.0);
+    headerview->resizeSection(2, 110 + (width - WINDOW_WIDTH_MIN) / 2.0);
 
     for(int i = 0; i < rowCount(); ++i)
     {

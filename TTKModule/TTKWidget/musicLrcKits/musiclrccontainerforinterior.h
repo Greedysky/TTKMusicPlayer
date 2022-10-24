@@ -199,7 +199,6 @@ private:
     virtual void mouseReleaseEvent(QMouseEvent *event) override final;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override final;
     virtual void paintEvent(QPaintEvent *event) override final;
-    virtual void resizeEvent(QResizeEvent *event) override final;
     /*!
      * Create color menu.
      */

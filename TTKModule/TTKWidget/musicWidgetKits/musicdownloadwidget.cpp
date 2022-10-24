@@ -275,11 +275,6 @@ void MusicDownloadWidget::addCellItems(const MusicObject::MusicSongPropertyList 
         }
     }
 
-    resizeWindow();
-}
-
-void MusicDownloadWidget::resizeWindow()
-{
     m_ui->loadingLabel->run(false);
 
     int delta = m_ui->viewArea->rowCount();

@@ -172,7 +172,7 @@ void MusicScreenSaverListWidget::resizeWindow()
     const int side = width() / 160;
     for(int i = 0; i < m_items.count(); ++i)
     {
-        m_gridLayout->addWidget(m_items[i],i / side, i % side, Qt::AlignLeft | Qt::AlignTop);
+        m_gridLayout->addWidget(m_items[i], i / side, i % side, Qt::AlignLeft | Qt::AlignTop);
     }
 }
 
@@ -394,6 +394,7 @@ void MusicScreenSaverWidget::initialize()
     m_downloadQueue->addImageQueue(datas);
     m_downloadQueue->startRequest();
 }
+
 
 
 MusicScreenSaverBackgroundWidget::MusicScreenSaverBackgroundWidget(QWidget *parent)

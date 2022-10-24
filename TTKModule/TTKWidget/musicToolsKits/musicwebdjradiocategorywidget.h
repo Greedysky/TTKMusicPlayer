@@ -86,9 +86,9 @@ public:
      */
     void initialize();
     /*!
-     * Resize widget bound by resize called.
+     * Resize window bound by resize called.
      */
-    void resizeWidget();
+    void resizeWindow();
 
 Q_SIGNALS:
     /*!

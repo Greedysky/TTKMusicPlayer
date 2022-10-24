@@ -99,7 +99,7 @@ void MusicWebDJRadioCategoryWidget::initialize()
     m_categoryThread->startRequest();
 }
 
-void MusicWebDJRadioCategoryWidget::resizeWidget()
+void MusicWebDJRadioCategoryWidget::resizeWindow()
 {
     if(!m_resizeWidgets.isEmpty())
     {

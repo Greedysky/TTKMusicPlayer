@@ -39,7 +39,7 @@ void MusicWebDJRadioProgramTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(2, width - WINDOW_WIDTH_MIN + 315);
+    headerview->resizeSection(2, 315 + (width - WINDOW_WIDTH_MIN));
 
     for(int i = 0; i < rowCount(); ++i)
     {
@@ -202,7 +202,7 @@ void MusicWebDJRadioProgramWidget::initialize()
     m_tableWidget->initialize(m_type);
 }
 
-void MusicWebDJRadioProgramWidget::resizeWidget()
+void MusicWebDJRadioProgramWidget::resizeWindow()
 {
     m_tableWidget->resizeSection();
 }
@@ -238,22 +238,22 @@ void MusicWebDJRadioWidget::resizeWidget()
 {
     if(m_categoryWidget)
     {
-        m_categoryWidget->resizeWidget();
+        m_categoryWidget->resizeWindow();
+    }
+
+    if(m_recommendWidget)
+    {
+        m_recommendWidget->resizeWindow();
+    }
+
+    if(m_programWidget)
+    {
+        m_programWidget->resizeWindow();
     }
 
     if(m_queryWidget)
     {
         m_queryWidget->resizeWidget();
-    }
-
-    if(m_recommendWidget)
-    {
-        m_recommendWidget->resizeWidget();
-    }
-
-    if(m_programWidget)
-    {
-        m_programWidget->resizeWidget();
     }
 }
 

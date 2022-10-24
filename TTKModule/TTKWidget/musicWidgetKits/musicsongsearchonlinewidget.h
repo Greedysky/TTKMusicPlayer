@@ -62,7 +62,7 @@ public:
      */
     void setSearchQuality(MusicObject::QueryQuality quality);
     /*!
-     * Resize window bound by resize called.
+     * Resize section bound by resize called.
      */
     void resizeSection();
 
@@ -100,7 +100,6 @@ private:
     /*!
      * Override the widget event.
      */
-    virtual void resizeEvent(QResizeEvent *event) override final;
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
     /*!
      * Add search music to play list by index.
@@ -151,10 +150,6 @@ public Q_SLOTS:
     void buttonClicked(int index);
 
 private:
-    /*!
-     * Override the widget event.
-     */
-    virtual void resizeEvent(QResizeEvent *event) override final;
     /*!
      * Create tool widget.
      */

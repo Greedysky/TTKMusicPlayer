@@ -22,6 +22,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QGridLayout>
+#include "musicabstractresizeinterface.h"
 #include "musictransitionanimationlabel.h"
 
 class MusicDownloadQueueRequest;
@@ -158,7 +159,7 @@ private:
 /*! @brief The class of the screen saver widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicScreenSaverWidget : public QWidget
+class TTK_MODULE_EXPORT MusicScreenSaverWidget : public QWidget, public MusicAbstractResizeInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicScreenSaverWidget)
@@ -179,7 +180,7 @@ public:
     /*!
      * Resize widget bound by resize called.
      */
-    void resizeWidget();
+    virtual void resizeWidget() override final;
 
 private Q_SLOTS:
     /*!

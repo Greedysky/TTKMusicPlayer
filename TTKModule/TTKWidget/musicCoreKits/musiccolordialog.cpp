@@ -73,7 +73,6 @@ void MusicHlPalette::resizeEvent(QResizeEvent *event)
     Q_UNUSED(event);
     m_ptVernierPos.setX(rect().right() * m_ptfVernierPercentPos.rx());
     m_ptVernierPos.setY(rect().bottom() * m_ptfVernierPercentPos.ry());
-
     update();
 }
 

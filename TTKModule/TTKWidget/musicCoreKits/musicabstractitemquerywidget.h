@@ -28,7 +28,7 @@
 /*! @brief The class of the item query widget base.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicAbstractItemQueryWidget : public QWidget
+class TTK_MODULE_EXPORT MusicAbstractItemQueryWidget : public QWidget, public MusicAbstractResizeInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractItemQueryWidget)

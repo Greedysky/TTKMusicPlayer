@@ -195,10 +195,6 @@ private:
      */
     void controlEnabled(bool enable);
     /*!
-     * Resize window bound by resize called.
-     */
-    void resizeWindow();
-    /*!
      * Set widget fixed height.
      */
     void setFixedHeightWidget(QWidget *w, int height);
