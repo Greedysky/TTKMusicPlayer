@@ -38,7 +38,7 @@ public:
     ~MusicSongSearchPopTableWidget();
 
     /*!
-     * Create popup table item by index and name and time.
+     * Create cell item by input data.
      */
     void addCellItem(int index, const QString &name, const QString &time);
 

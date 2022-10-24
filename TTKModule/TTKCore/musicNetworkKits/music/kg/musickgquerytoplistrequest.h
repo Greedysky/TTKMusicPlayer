@@ -36,11 +36,11 @@ public:
     explicit MusicKGQueryToplistRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to Search data from name and type.
+     * Start to search data by type and input data.
      */
     virtual void startToSearch(QueryType type, const QString &value) override final;
     /*!
-     * Start to Search data from name and type.
+     * Start to search data by input data.
      */
     virtual void startToSearch(const QString &value) override final;
 

@@ -7,17 +7,6 @@ MusicKGQueryRequest::MusicKGQueryRequest(QObject *parent)
     m_queryServer = QUERY_KG_INTERFACE;
 }
 
-void MusicKGQueryRequest::startToSearch(QueryType type, const QString &value)
-{
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
-
-    m_queryType = type;
-    m_queryValue = value.trimmed();
-    MusicAbstractQueryRequest::downLoadFinished();
-
-    startToPage(0);
-}
-
 void MusicKGQueryRequest::startToPage(int offset)
 {
     TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
@@ -33,6 +22,17 @@ void MusicKGQueryRequest::startToPage(int offset)
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError);
+}
+
+void MusicKGQueryRequest::startToSearch(QueryType type, const QString &value)
+{
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+
+    m_queryType = type;
+    m_queryValue = value.trimmed();
+    MusicAbstractQueryRequest::downLoadFinished();
+
+    startToPage(0);
 }
 
 void MusicKGQueryRequest::startToSingleSearch(const QString &value)

@@ -45,6 +45,7 @@ public:
     virtual void setSongName(const QString &name);
     /*!
      * Set current id to search founds.
+     * Subclass should implement this function.
      */
     virtual void setSongNameById(const QString &id) = 0;
 

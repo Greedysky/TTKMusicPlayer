@@ -50,7 +50,7 @@ public:
      */
     bool contains(const QString &string);
     /*!
-     * Create all items.
+     * Create cell items by input data.
      */
     void addCellItems(const MusicLocalDataItemList &items);
 

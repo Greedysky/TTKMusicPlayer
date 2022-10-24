@@ -143,7 +143,7 @@ private:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
     /*!
-     * Create table item.
+     * Create cell item by input data.
      */
     void addCellItem(const MusicCloudDataItem &data);
     /*!

@@ -123,7 +123,7 @@ public:
      */
     QWidget *item() const;
     /*!
-     * Add widget item.
+     * Create cell item by input item.
      */
     void addCellItem(QWidget *item);
 
@@ -215,7 +215,7 @@ public:
     ~MusicFunctionToolBoxWidget();
 
     /*!
-     * Add widget item.
+     * Create cell item by input item.
      */
     void addCellItem(QWidget *item, const QString &text);
     /*!

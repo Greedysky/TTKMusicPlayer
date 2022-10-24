@@ -35,11 +35,12 @@ public:
     explicit MusicQueryArtistRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to Search data from name and type.
+     * Start to search data by type and input data.
      */
     virtual void startToSearch(QueryType type, const QString &value) override final;
     /*!
-     * Start to Search data from name and type.
+     * Start to search data by input data.
+     * Subclass should implement this function.
      */
     virtual void startToSearch(const QString &value) = 0;
 

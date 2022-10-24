@@ -35,12 +35,7 @@ public:
     explicit MusicQueryMovieRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to search data from name and type.
-     * Subclass should implement this function.
-     */
-    virtual void startToSearch(QueryType type, const QString &value) = 0;
-    /*!
-     * Start to Search data from name and type.
+     * Start to search data by input data.
      */
     virtual void startToSearch(const QString &value);
 

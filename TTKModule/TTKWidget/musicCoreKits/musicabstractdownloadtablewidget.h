@@ -64,7 +64,7 @@ public Q_SLOTS:
      */
     void itemDoubleClicked(int row, int column);
     /*!
-     * Update download percent\ total time and current time progress.
+     * Update download percent total time and current time progress.
      */
     void downloadProgressChanged(float percent, const QString &total, qint64 time);
     /*!
@@ -78,7 +78,8 @@ protected:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
-     * Create item by index and name and size and time.
+     * Create cell item by input record.
+     * Subclass should implement this function.
      */
     virtual void addCellItem(int index, const MusicSong &record) = 0;
 

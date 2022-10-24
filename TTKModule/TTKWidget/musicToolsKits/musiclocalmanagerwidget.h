@@ -36,6 +36,32 @@ struct TTK_MODULE_EXPORT MusicSongInfoItem
 };
 TTK_DECLARE_LIST(MusicSongInfoItem);
 
+/*! @brief The class of the local manager statistic table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicLocalManagerStatisticTableWidget : public MusicAbstractTableWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLocalManagerStatisticTableWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicLocalManagerStatisticTableWidget(QWidget *parent = nullptr);
+    ~MusicLocalManagerStatisticTableWidget();
+
+    /*!
+     * Create cell items by input data.
+     */
+    void addCellItems(const MusicSongInfoItemList &songs);
+    /*!
+     * Resize section bound by resize called.
+     */
+    void resizeSection();
+
+};
+
+
 /*! @brief The class of the local manager songs table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -51,9 +77,9 @@ public:
     ~MusicLocalManagerSongsTableWidget();
 
     /*!
-     * Update songs files in table.
+     * Create cell items by input data.
      */
-    void updateSongsList(const MusicSongInfoItemList &songs);
+    void addCellItems(const MusicSongInfoItemList &songs);
     /*!
      * Resize section bound by resize called.
      */
@@ -123,6 +149,7 @@ private:
     MusicItemQueryEdit *m_searchEdit;
     MusicGifLabelWidget *m_loadingLabel;
     MusicLocalManagerSongsTableWidget *m_songWidget;
+    MusicLocalManagerStatisticTableWidget *m_statisticWidget;
 
 };
 

@@ -38,7 +38,7 @@ public:
 
 private:
     /*!
-     * Create item by index and name and size and time.
+     * Create cell item by input record.
      */
     virtual void addCellItem(int index, const MusicSong &record) override final;
 
@@ -81,7 +81,7 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Create item by index and name and size and time.
+     * Create cell item by input record.
      */
     virtual void addCellItem(int index, const MusicSong &record) override final;
     /*!

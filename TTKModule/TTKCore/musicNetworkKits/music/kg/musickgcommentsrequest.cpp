@@ -7,6 +7,22 @@ MusicKGSongCommentsRequest::MusicKGSongCommentsRequest(QObject *parent)
     m_pageSize = 20;
 }
 
+void MusicKGSongCommentsRequest::startToPage(int offset)
+{
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
+
+    deleteAll();
+    m_totalSize = 0;
+
+    QNetworkRequest request;
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
+    MusicKGInterface::makeRequestRawHeader(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError);
+}
+
 void MusicKGSongCommentsRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
@@ -25,22 +41,6 @@ void MusicKGSongCommentsRequest::startToSearch(const QString &value)
         m_rawData["sid"] = d->songInfoList().front().m_songId;
         startToPage(0);
     }
-}
-
-void MusicKGSongCommentsRequest::startToPage(int offset)
-{
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
-
-    deleteAll();
-    m_totalSize = 0;
-
-    QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
-    MusicKGInterface::makeRequestRawHeader(&request);
-
-    m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
 void MusicKGSongCommentsRequest::downLoadFinished()
@@ -95,14 +95,6 @@ MusicKGPlaylistCommentsRequest::MusicKGPlaylistCommentsRequest(QObject *parent)
     m_pageSize = 20;
 }
 
-void MusicKGPlaylistCommentsRequest::startToSearch(const QString &value)
-{
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
-
-    m_rawData["sid"] = value;
-    startToPage(0);
-}
-
 void MusicKGPlaylistCommentsRequest::startToPage(int offset)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
@@ -117,6 +109,14 @@ void MusicKGPlaylistCommentsRequest::startToPage(int offset)
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError);
+}
+
+void MusicKGPlaylistCommentsRequest::startToSearch(const QString &value)
+{
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+
+    m_rawData["sid"] = value;
+    startToPage(0);
 }
 
 void MusicKGPlaylistCommentsRequest::downLoadFinished()

@@ -35,7 +35,7 @@ public:
     explicit MusicDiscoverListRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to Search data from toplist.
+     * Start to search data.
      * Subclass should implement this function.
      */
     virtual void startToSearch() = 0;

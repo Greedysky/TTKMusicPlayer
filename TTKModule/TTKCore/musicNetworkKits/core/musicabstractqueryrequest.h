@@ -112,13 +112,12 @@ public:
     explicit MusicAbstractQueryRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to search data from name and type.
+     * Start to search data by type and input data.
      * Subclass should implement this function.
      */
     virtual void startToSearch(QueryType type, const QString &value) = 0;
     /*!
      * Start to search single data from id.
-     * Subclass should implement this function.
      */
     virtual void startToSingleSearch(const QString &value);
 

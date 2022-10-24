@@ -9,23 +9,6 @@ MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
     m_queryServer = QUERY_KW_INTERFACE;
 }
 
-void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &value)
-{
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
-
-    deleteAll();
-    m_queryType = type;
-    m_queryValue = value.trimmed();
-
-    QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(value).arg(0).arg(m_pageSize));
-    MusicKWInterface::makeRequestRawHeader(&request);
-
-    m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
-}
-
 void MusicKWQueryMovieRequest::startToPage(int offset)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
@@ -40,6 +23,23 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadPageFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError);
+}
+
+void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &value)
+{
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+
+    deleteAll();
+    m_queryType = type;
+    m_queryValue = value.trimmed();
+
+    QNetworkRequest request;
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(value).arg(0).arg(m_pageSize));
+    MusicKWInterface::makeRequestRawHeader(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
 

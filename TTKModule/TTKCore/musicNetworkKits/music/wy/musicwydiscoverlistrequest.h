@@ -36,7 +36,7 @@ public:
     explicit MusicWYDiscoverListRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to Search data from toplist.
+     * Start to search data.
      */
     virtual void startToSearch() override final;
 

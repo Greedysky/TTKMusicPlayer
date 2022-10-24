@@ -8,19 +8,6 @@ MusicDJRadioProgramCategoryRequest::MusicDJRadioProgramCategoryRequest(QObject *
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicDJRadioProgramCategoryRequest::startToSearch(QueryType type, const QString &value)
-{
-    if(type == QueryType::Music)
-    {
-        startToSearch(value);
-    }
-    else
-    {
-        m_queryValue = value;
-        startToPage(0);
-    }
-}
-
 void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
@@ -35,6 +22,19 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError);
+}
+
+void MusicDJRadioProgramCategoryRequest::startToSearch(QueryType type, const QString &value)
+{
+    if(type == QueryType::Music)
+    {
+        startToSearch(value);
+    }
+    else
+    {
+        m_queryValue = value;
+        startToPage(0);
+    }
 }
 
 void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)

@@ -41,7 +41,7 @@ public:
     explicit MusicLrcDownloadBatchTableWidget(QWidget *parent = nullptr);
 
     /*!
-     * Create all items.
+     * Create cell items by input data.
      */
     void addCellItems(const MusicSongList &items);
 

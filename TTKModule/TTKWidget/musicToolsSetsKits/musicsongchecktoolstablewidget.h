@@ -36,7 +36,7 @@ public:
     explicit MusicSongCheckToolsRenameTableWidget(QWidget *parent = nullptr);
 
     /*!
-     * Create all items.
+     * Create cell items by input data.
      */
     void addCellItems(const MusicSongCheckToolsRenameList &items);
 
@@ -71,7 +71,7 @@ public:
     ~MusicSongCheckToolsDuplicateTableWidget();
 
     /*!
-     * Create all items.
+     * Create cell items by input data.
      */
     void addCellItems(const MusicSongCheckToolsDuplicateList &songs);
 
@@ -116,7 +116,7 @@ public:
     ~MusicSongCheckToolsQualityTableWidget();
 
     /*!
-     * Create all items.
+     * Create cell items by input data.
      */
     void addCellItems(const MusicSongCheckToolsQualityList &songs);
 

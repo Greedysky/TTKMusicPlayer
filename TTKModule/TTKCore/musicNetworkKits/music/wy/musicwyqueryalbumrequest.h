@@ -36,7 +36,7 @@ public:
     explicit MusicWYQueryAlbumRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to Search data from name and type.
+     * Start to search data by input data.
      */
     virtual void startToSearch(const QString &value) override final;
     /*!

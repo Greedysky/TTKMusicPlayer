@@ -36,13 +36,13 @@ public:
     explicit MusicKGQueryRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to search data from name and type.
-     */
-    virtual void startToSearch(QueryType type, const QString &value) override final;
-    /*!
      * Start to search data from name and type bt page.
      */
     virtual void startToPage(int offset) override final;
+    /*!
+     * Start to search data by type and input data.
+     */
+    virtual void startToSearch(QueryType type, const QString &value) override final;
     /*!
      * Start to search data by given id.
      */

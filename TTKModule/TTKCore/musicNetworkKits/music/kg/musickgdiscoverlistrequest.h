@@ -35,7 +35,7 @@ public:
     explicit MusicKGDiscoverListRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to Search data from toplist.
+     * Start to search data.
      */
     virtual void startToSearch() override final;
 

@@ -35,13 +35,13 @@ public:
     explicit MusicKGSongCommentsRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to Search data from name.
-     */
-    virtual void startToSearch(const QString &value) override final;
-    /*!
      * Start to search data from name and type bt page.
      */
     virtual void startToPage(int offset) override final;
+    /*!
+     * Start to search data by input data.
+     */
+    virtual void startToSearch(const QString &value) override final;
 
 public Q_SLOTS:
     /*!
@@ -66,13 +66,13 @@ public:
     explicit MusicKGPlaylistCommentsRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to Search data from name.
-     */
-    virtual void startToSearch(const QString &value) override final;
-    /*!
      * Start to search data from name and type bt page.
      */
     virtual void startToPage(int offset) override final;
+    /*!
+     * Start to search data by input data.
+     */
+    virtual void startToSearch(const QString &value) override final;
 
 public Q_SLOTS:
     /*!

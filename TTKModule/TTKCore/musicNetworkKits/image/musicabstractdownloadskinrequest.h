@@ -95,6 +95,7 @@ Q_SIGNALS:
 public Q_SLOTS:
     /*!
      * Download data from net finished.
+     * Subclass should implement this function.
      */
     virtual void downLoadFinished(const QByteArray &bytes) = 0;
 

@@ -41,6 +41,7 @@ public:
     virtual void input(const QRect &region);
     /*!
      * Render data.
+     * Subclass should implement this function.
      */
     virtual QPixmap render(const QPixmap &pixmap, int value) = 0;
 

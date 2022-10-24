@@ -82,7 +82,7 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Create all items.
+     * Create cell items by input data.
      */
     void addCellItems(const MusicSongList &songs);
     /*!

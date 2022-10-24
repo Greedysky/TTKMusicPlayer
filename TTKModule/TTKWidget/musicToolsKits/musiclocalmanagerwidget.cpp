@@ -14,6 +14,59 @@
 #  include <QDesktopServices>
 #endif
 
+MusicLocalManagerStatisticTableWidget::MusicLocalManagerStatisticTableWidget(QWidget *parent)
+    : MusicAbstractTableWidget(parent)
+{
+    setColumnCount(2);
+
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 200);
+    headerview->resizeSection(1, 100);
+
+    setAlternatingRowColors(true);
+    setFrameShape(QFrame::Box);
+    setTextElideMode(Qt::ElideRight);
+    setWordWrap(false);
+    hide();
+}
+
+MusicLocalManagerStatisticTableWidget::~MusicLocalManagerStatisticTableWidget()
+{
+    removeItems();
+}
+
+void MusicLocalManagerStatisticTableWidget::addCellItems(const MusicSongInfoItemList &songs)
+{
+    setRowCount(songs.count());
+
+    for(int i = 0; i < songs.count(); ++i)
+    {
+        const MusicSongInfoItem &v = songs[i];
+
+        QTableWidgetItem *item = new QTableWidgetItem;
+        item->setToolTip(v.m_title);
+        item->setText(item->toolTip());
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 0, item);
+
+                         item = new QTableWidgetItem;
+        item->setToolTip(v.m_artist);
+        item->setText(item->toolTip());
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 1, item);
+    }
+}
+
+void MusicLocalManagerStatisticTableWidget::resizeSection()
+{
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 200 + (width - WINDOW_WIDTH_MIN) / 2.0);
+    headerview->resizeSection(1, 100 + (width - WINDOW_WIDTH_MIN) / 2.0);
+}
+
+
+
 MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)
 {
@@ -47,7 +100,7 @@ MusicLocalManagerSongsTableWidget::~MusicLocalManagerSongsTableWidget()
     delete m_songs;
 }
 
-void MusicLocalManagerSongsTableWidget::updateSongsList(const MusicSongInfoItemList &songs)
+void MusicLocalManagerSongsTableWidget::addCellItems(const MusicSongInfoItemList &songs)
 {
     setRowCount(songs.count());
 
@@ -254,8 +307,17 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     genreButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    m_songWidget = new MusicLocalManagerSongsTableWidget(mainWidget);
-    mainLayout->addWidget(m_songWidget);
+    QWidget *centerWidget = new QWidget(mainWidget);
+    QHBoxLayout *centerWidgetLayout = new QHBoxLayout(centerWidget);
+    centerWidgetLayout->setContentsMargins(0, 5, 0, 0);
+    centerWidget->setLayout(centerWidgetLayout);
+    mainLayout->addWidget(centerWidget);
+
+    m_statisticWidget = new MusicLocalManagerStatisticTableWidget(centerWidget);
+    centerWidgetLayout->addWidget(m_statisticWidget, 1);
+
+    m_songWidget = new MusicLocalManagerSongsTableWidget(centerWidget);
+    centerWidgetLayout->addWidget(m_songWidget, 3);
 
     m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::CicleBlue, this);
     m_loadingLabel->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
@@ -273,6 +335,7 @@ MusicLocalManagerWidget::~MusicLocalManagerWidget()
     delete m_searchEdit;
     delete m_loadingLabel;
     delete m_songWidget;
+    delete m_statisticWidget;
 }
 
 void MusicLocalManagerWidget::resizeWidget()
@@ -295,26 +358,31 @@ void MusicLocalManagerWidget::typeIndexChanged(int index)
     {
         case 0:
         {
+            m_statisticWidget->hide();
             m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words!"));
             break;
         }
         case 1:
         {
+            m_statisticWidget->show();
             m_searchEdit->editor()->setPlaceholderText(tr("Please input search artist words!"));
             break;
         }
         case 2:
         {
+            m_statisticWidget->show();
             m_searchEdit->editor()->setPlaceholderText(tr("Please input search album words!"));
             break;
         }
         case 3:
         {
+            m_statisticWidget->show();
             m_searchEdit->editor()->setPlaceholderText(tr("Please input search year words!"));
             break;
         }
         case 4:
         {
+            m_statisticWidget->show();
             m_searchEdit->editor()->setPlaceholderText(tr("Please input search genre words!"));
             break;
         }
@@ -369,7 +437,7 @@ void MusicLocalManagerWidget::refreshItems()
         qApp->processEvents();
     }
 
-    m_songWidget->updateSongsList(m_containerItems);
+    m_songWidget->addCellItems(m_containerItems);
     m_loadingLabel->run(false);
 }
 
@@ -413,7 +481,7 @@ void MusicLocalManagerWidget::searchResultChanged(int, int column)
 
     m_songWidget->removeItems();
     m_searchResultCache.insert(column, result);
-    m_songWidget->updateSongsList(data);
+    m_songWidget->addCellItems(data);
 }
 
 void MusicLocalManagerWidget::resizeEvent(QResizeEvent *event)

@@ -7,6 +7,22 @@ MusicKWSongCommentsRequest::MusicKWSongCommentsRequest(QObject *parent)
     m_pageSize = 20;
 }
 
+void MusicKWSongCommentsRequest::startToPage(int offset)
+{
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
+
+    deleteAll();
+    m_totalSize = 0;
+
+    QNetworkRequest request;
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
+    MusicKWInterface::makeRequestRawHeader(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError);
+}
+
 void MusicKWSongCommentsRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
@@ -25,22 +41,6 @@ void MusicKWSongCommentsRequest::startToSearch(const QString &value)
         m_rawData["sid"] = d->songInfoList().front().m_songId;
         startToPage(0);
     }
-}
-
-void MusicKWSongCommentsRequest::startToPage(int offset)
-{
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
-
-    deleteAll();
-    m_totalSize = 0;
-
-    QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
-    MusicKWInterface::makeRequestRawHeader(&request);
-
-    m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
 void MusicKWSongCommentsRequest::downLoadFinished()

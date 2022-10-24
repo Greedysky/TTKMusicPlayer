@@ -180,7 +180,7 @@ public:
     explicit MusicLrcPosterTableWidget(QWidget *parent = nullptr);
 
     /*!
-     * Create all items.
+     * Create cell items by input data.
      */
     void addCellItems(const QStringList &lrcs);
 

@@ -114,7 +114,7 @@ public:
     ~MusicDownloadTableWidget();
 
     /*!
-     * Create current item by given bitrate\type\icon.
+     * Create cell item by input data.
      */
     void addCellItem(const MusicObject::MusicSongProperty &prop, const QString &type, const QString &icon);
     /*!
@@ -208,7 +208,7 @@ private:
      */
     MusicObject::MusicSongInformation matchMusicSongInformation();
     /*!
-     * Create current all items.
+     * Create cell items by input data.
      */
     void addCellItems(const MusicObject::MusicSongPropertyList &props);
     /*!

@@ -7,19 +7,6 @@ MusicKGQueryPlaylistRequest::MusicKGQueryPlaylistRequest(QObject *parent)
     m_queryServer = QUERY_KG_INTERFACE;
 }
 
-void MusicKGQueryPlaylistRequest::startToSearch(QueryType type, const QString &value)
-{
-    if(type == QueryType::Music)
-    {
-        startToSearch(value);
-    }
-    else
-    {
-        m_queryValue = value;
-        startToPage(0);
-    }
-}
-
 void MusicKGQueryPlaylistRequest::startToPage(int offset)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
@@ -34,6 +21,19 @@ void MusicKGQueryPlaylistRequest::startToPage(int offset)
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError);
+}
+
+void MusicKGQueryPlaylistRequest::startToSearch(QueryType type, const QString &value)
+{
+    if(type == QueryType::Music)
+    {
+        startToSearch(value);
+    }
+    else
+    {
+        m_queryValue = value;
+        startToPage(0);
+    }
 }
 
 void MusicKGQueryPlaylistRequest::startToSearch(const QString &value)

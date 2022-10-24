@@ -42,7 +42,7 @@ public:
     ~MusicDownloadBatchTableItem();
 
     /*!
-     * Create current item by song info.
+     * Create cell item by input data.
      */
     void addCellItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
     /*!
@@ -99,7 +99,7 @@ public:
     void setParentClass(QWidget *parent);
 
     /*!
-     * Create current item by song info.
+     * Create cell item by input data.
      */
     void addCellItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
     /*!

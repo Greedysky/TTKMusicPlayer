@@ -48,6 +48,7 @@ public:
 
     /*!
      * Output remote skin.
+     * Subclass should implement this function.
      */
     virtual void outputRemoteSkin(MusicBackgroundImage &image, const QString &data) = 0;
 

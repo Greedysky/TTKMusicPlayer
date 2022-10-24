@@ -38,7 +38,7 @@ public:
     explicit MusicSpectrumLayoutItem(QWidget *parent = nullptr);
 
     /*!
-     * Create spectrum item.
+     * Create cell item by input data.
      */
     void addCellItem(const QString &item, const QString &tip);
     /*!
@@ -104,7 +104,7 @@ protected:
      */
     void initialize();
     /*!
-     * Create all spectrum items.
+     * Create cell items by input data.
      */
     void addCellItems(const SpectrumInfoList &items);
 

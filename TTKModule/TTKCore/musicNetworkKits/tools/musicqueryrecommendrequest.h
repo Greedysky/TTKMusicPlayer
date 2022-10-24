@@ -35,13 +35,13 @@ public:
     explicit MusicQueryRecommendRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to Search data from name and type.
+     * Start to search data by type and input data.
      */
     virtual void startToSearch(QueryType type, const QString &value) override final;
     /*!
-     * Start to Search data from name and type.
+     * Start to search data.
      */
-    virtual void startToSearch();
+    void startToSearch();
 
 public Q_SLOTS:
     /*!

@@ -36,7 +36,7 @@ public:
     explicit MusicSongItemSelectedTableWidget(QWidget *parent = nullptr);
 
     /*!
-     * Create all items.
+     * Create cell items by input data.
      */
     void addCellItems(MusicSongItemList *items);
     /*!
@@ -66,7 +66,7 @@ public:
     ~MusicSongItemSelectedDialog();
 
     /*!
-     * Create all items.
+     * Create cell items by input data.
      */
     void addCellItems(MusicSongItemList *items);
 

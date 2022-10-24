@@ -65,10 +65,12 @@ public:
 
     /*!
      * Read datas from config file.
+     * Subclass should implement this function.
      */
     virtual bool readBuffer(MusicSongItemList &items) = 0;
     /*!
      * Write datas into config file.
+     * Subclass should implement this function.
      */
     virtual bool writeBuffer(const MusicSongItemList &items, const QString &path) = 0;
 

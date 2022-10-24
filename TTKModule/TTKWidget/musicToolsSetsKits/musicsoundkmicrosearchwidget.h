@@ -120,7 +120,7 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Start to search.
+     * Start to search data by input data.
      */
     void startToSearch(const QString &text);
     /*!

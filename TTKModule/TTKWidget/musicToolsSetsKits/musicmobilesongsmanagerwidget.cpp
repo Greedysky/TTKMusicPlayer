@@ -28,7 +28,7 @@ MusicMobileSongsTableWidget::~MusicMobileSongsTableWidget()
     delete m_songs;
 }
 
-void MusicMobileSongsTableWidget::updateSongsList(const QStringList &songs)
+void MusicMobileSongsTableWidget::addCellItems(const QStringList &songs)
 {
     setRowCount(songs.count());
     QHeaderView *headerview = horizontalHeader();
@@ -254,7 +254,7 @@ void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &pat
     m_searchResultCache.clear();
 
     m_containerItems = path;
-    m_ui->songlistTable->updateSongsList(m_containerItems);
+    m_ui->songlistTable->addCellItems(m_containerItems);
     m_ui->loadingLabel->run(false);
 }
 
@@ -277,7 +277,7 @@ void MusicMobileSongsManagerWidget::searchResultChanged(int, int column)
 
     clearAllItems();
     m_searchResultCache.insert(column, result);
-    m_ui->songlistTable->updateSongsList(data);
+    m_ui->songlistTable->addCellItems(data);
 }
 
 void MusicMobileSongsManagerWidget::clearAllItems()

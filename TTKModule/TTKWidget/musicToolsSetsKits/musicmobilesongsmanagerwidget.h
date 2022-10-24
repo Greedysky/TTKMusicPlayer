@@ -39,9 +39,9 @@ public:
     ~MusicMobileSongsTableWidget();
 
     /*!
-     * Update songs files in table.
+     * Create cell items by input data.
      */
-    void updateSongsList(const QStringList &songs);
+    void addCellItems(const QStringList &songs);
 
 public Q_SLOTS:
     /*!

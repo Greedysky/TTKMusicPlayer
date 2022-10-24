@@ -135,7 +135,7 @@ public:
     ~MusicScreenSaverListWidget();
 
     /*!
-     * Create item by name and path.
+     * Create cell item by input data.
      */
     void addCellItem(QObject *object, const QString &path, int index, bool status);
     /*!

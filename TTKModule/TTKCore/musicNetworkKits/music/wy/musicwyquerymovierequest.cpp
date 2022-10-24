@@ -7,24 +7,6 @@ MusicWYQueryMovieRequest::MusicWYQueryMovieRequest(QObject *parent)
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &value)
-{
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
-
-    deleteAll();
-    m_queryType = type;
-    m_queryValue = value.trimmed();
-
-    QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryValue).arg(1014).arg(m_pageSize).arg(0).toUtf8());
-
-    m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
-}
-
 void MusicWYQueryMovieRequest::startToPage(int offset)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
@@ -40,6 +22,24 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadPageFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError);
+}
+
+void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &value)
+{
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+
+    deleteAll();
+    m_queryType = type;
+    m_queryValue = value.trimmed();
+
+    QNetworkRequest request;
+    const QByteArray &parameter = makeTokenQueryUrl(&request,
+                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryValue).arg(1014).arg(m_pageSize).arg(0).toUtf8());
+
+    m_reply = m_manager.post(request, parameter);
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
 

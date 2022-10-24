@@ -18,10 +18,12 @@ public:
 
     /*!
      * Set current status.
+     * Subclass should implement this function.
      */
     virtual void setStatus(bool status) = 0;
     /*!
      * Set current action.
+     * Subclass should implement this function.
      */
     virtual void action() = 0;
 };

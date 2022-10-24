@@ -36,15 +36,15 @@ public:
     explicit MusicWYQueryPlaylistRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to Search data from name and type.
-     */
-    virtual void startToSearch(QueryType type, const QString &value) override final;
-    /*!
      * Start to search data from name and type bt page.
      */
     virtual void startToPage(int offset) override final;
     /*!
-     * Start to Search data.
+     * Start to search data by type and input data.
+     */
+    virtual void startToSearch(QueryType type, const QString &value) override final;
+    /*!
+     * Start to search data by input data.
      */
     virtual void startToSearch(const QString &value) override final;
     /*!

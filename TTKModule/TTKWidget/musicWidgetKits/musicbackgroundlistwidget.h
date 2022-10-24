@@ -175,11 +175,11 @@ public:
     void clearAllItems();
 
     /*!
-     * Create item by icon.
+     * Create cell item by input data.
      */
     void addCellItem(const QString &icon, bool state);
     /*!
-     * Create item by name and path.
+     * Create cell item by input data.
      */
     void addCellItem(const QString &name, const QString &path, bool state);
 

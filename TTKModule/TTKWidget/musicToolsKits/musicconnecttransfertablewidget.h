@@ -35,7 +35,7 @@ public:
     explicit MusicConnectTransferTableWidget(QWidget *parent = nullptr);
 
     /*!
-     * Create all items.
+     * Create cell items by input data.
      */
     void addCellItems(const MusicSongList &songs);
 
@@ -57,7 +57,7 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Create all items.
+     * Create cell item by input data.
      */
     void addCellItem(const QString &name);
 

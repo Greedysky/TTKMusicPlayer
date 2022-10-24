@@ -35,11 +35,13 @@ public:
     explicit MusicQueryPlaylistRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to Search data.
+     * Start to search data by input data.
+     * Subclass should implement this function.
      */
     virtual void startToSearch(const QString &value) = 0;
     /*!
      * Query playlist info.
+     * Subclass should implement this function.
      */
     virtual void queryPlaylistInfo(MusicResultDataItem &item) = 0;
 

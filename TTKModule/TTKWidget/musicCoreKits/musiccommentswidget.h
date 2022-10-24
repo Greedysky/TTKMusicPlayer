@@ -40,7 +40,7 @@ public:
     ~MusicCommentsItem();
 
     /*!
-     * Create the current song comment.
+     * Create cell item by input data.
      */
     void addCellItem(const MusicResultDataItem &comments);
 

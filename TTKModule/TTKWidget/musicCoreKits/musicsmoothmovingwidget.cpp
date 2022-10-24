@@ -31,6 +31,7 @@ void MusicSmoothMovingTableWidget::setMovedScrollBar(QScrollBar *bar)
 {
     m_scrollBar = (bar == nullptr) ? verticalScrollBar() : bar;
     delete m_slowAnimation;
+
     m_slowAnimation = new QPropertyAnimation(m_scrollBar, "value", this);
     m_slowAnimation->setDuration(MT_S2MS);
     connect(m_scrollBar, SIGNAL(valueChanged(int)), SLOT(valueChanged(int)));

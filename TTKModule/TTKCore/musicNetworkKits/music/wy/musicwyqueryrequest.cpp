@@ -7,17 +7,6 @@ MusicWYQueryRequest::MusicWYQueryRequest(QObject *parent)
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicWYQueryRequest::startToSearch(QueryType type, const QString &value)
-{
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
-
-    m_queryType = type;
-    m_queryValue = value.trimmed();
-    MusicAbstractQueryRequest::downLoadFinished();
-
-    startToPage(0);
-}
-
 void MusicWYQueryRequest::startToPage(int offset)
 {
     TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
@@ -34,6 +23,17 @@ void MusicWYQueryRequest::startToPage(int offset)
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError);
+}
+
+void MusicWYQueryRequest::startToSearch(QueryType type, const QString &value)
+{
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+
+    m_queryType = type;
+    m_queryValue = value.trimmed();
+    MusicAbstractQueryRequest::downLoadFinished();
+
+    startToPage(0);
 }
 
 void MusicWYQueryRequest::startToSingleSearch(const QString &value)
