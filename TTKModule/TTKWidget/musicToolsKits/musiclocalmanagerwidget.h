@@ -36,6 +36,8 @@ struct TTK_MODULE_EXPORT MusicSongInfoItem
 };
 TTK_DECLARE_LIST(MusicSongInfoItem);
 
+using MusicSongStatisticItem = QMap<QString, int>;
+
 /*! @brief The class of the local manager statistic table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -53,7 +55,7 @@ public:
     /*!
      * Create cell items by input data.
      */
-    void addCellItems(const MusicSongInfoItemList &songs);
+    void addCellItem(const MusicSongStatisticItem &song);
     /*!
      * Resize section bound by resize called.
      */
@@ -143,6 +145,10 @@ private:
      * Override the widget event.
      */
     virtual void resizeEvent(QResizeEvent *event) override final;
+    /*!
+     * Update statistic widget.
+     */
+    void updateStatisticWidget(int index, const MusicSongInfoItemList &items);
 
     int m_currentIndex;
     QLabel *m_sizeLabel;

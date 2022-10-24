@@ -14,13 +14,37 @@
 #  include <QDesktopServices>
 #endif
 
+namespace MusicObject
+{
+    inline QString generateSongArtist(const QString &v)
+    {
+        return v.isEmpty() ? QObject::tr("Various Artist") : v;
+    }
+
+    inline QString generateSongAlbum(const QString &v)
+    {
+        return v.isEmpty() ? QObject::tr("Various Album") : v;
+    }
+
+    inline QString generateSongYear(const QString &v)
+    {
+        return v.isEmpty() ? QObject::tr("Various Year") : v;
+    }
+
+    inline QString generateSongGenre(const QString &v)
+    {
+        return v.isEmpty() ? QObject::tr("Various Genre") : v;
+    }
+}
+
 MusicLocalManagerStatisticTableWidget::MusicLocalManagerStatisticTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
     setColumnCount(2);
 
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 200);
+    headerview->setVisible(true);
+    headerview->resizeSection(0, 100);
     headerview->resizeSection(1, 100);
 
     setAlternatingRowColors(true);
@@ -28,6 +52,9 @@ MusicLocalManagerStatisticTableWidget::MusicLocalManagerStatisticTableWidget(QWi
     setTextElideMode(Qt::ElideRight);
     setWordWrap(false);
     hide();
+
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    horizontalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle04);
 }
 
 MusicLocalManagerStatisticTableWidget::~MusicLocalManagerStatisticTableWidget()
@@ -35,25 +62,24 @@ MusicLocalManagerStatisticTableWidget::~MusicLocalManagerStatisticTableWidget()
     removeItems();
 }
 
-void MusicLocalManagerStatisticTableWidget::addCellItems(const MusicSongInfoItemList &songs)
+void MusicLocalManagerStatisticTableWidget::addCellItem(const MusicSongStatisticItem &song)
 {
-    setRowCount(songs.count());
+    setRowCount(song.count());
 
-    for(int i = 0; i < songs.count(); ++i)
+    int index = 0;
+    for(auto it = song.constBegin(); it != song.constEnd(); ++it, ++index)
     {
-        const MusicSongInfoItem &v = songs[i];
-
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setToolTip(v.m_title);
+        item->setToolTip(it.key());
         item->setText(item->toolTip());
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
-        setItem(i, 0, item);
+        setItem(index, 0, item);
 
                          item = new QTableWidgetItem;
-        item->setToolTip(v.m_artist);
+        item->setToolTip(QString::number(it.value()));
         item->setText(item->toolTip());
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
-        setItem(i, 1, item);
+        setItem(index, 1, item);
     }
 }
 
@@ -61,8 +87,8 @@ void MusicLocalManagerStatisticTableWidget::resizeSection()
 {
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 200 + (width - WINDOW_WIDTH_MIN) / 2.0);
-    headerview->resizeSection(1, 100 + (width - WINDOW_WIDTH_MIN) / 2.0);
+    headerview->resizeSection(0, 100 + (width - WINDOW_WIDTH_MIN) / 2.0 / 3.0);
+    headerview->resizeSection(1, 100 + (width - WINDOW_WIDTH_MIN) / 2.0 / 3.0);
 }
 
 
@@ -309,6 +335,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
 
     QWidget *centerWidget = new QWidget(mainWidget);
     QHBoxLayout *centerWidgetLayout = new QHBoxLayout(centerWidget);
+    centerWidgetLayout->setSpacing(2);
     centerWidgetLayout->setContentsMargins(0, 5, 0, 0);
     centerWidget->setLayout(centerWidgetLayout);
     mainLayout->addWidget(centerWidget);
@@ -341,6 +368,7 @@ MusicLocalManagerWidget::~MusicLocalManagerWidget()
 void MusicLocalManagerWidget::resizeWidget()
 {
     m_songWidget->resizeSection();
+    m_statisticWidget->resizeSection();
     m_loadingLabel->move((width() - m_loadingLabel->width()) / 2, (height() + 120 - m_loadingLabel->height()) / 2);
 }
 
@@ -358,31 +386,26 @@ void MusicLocalManagerWidget::typeIndexChanged(int index)
     {
         case 0:
         {
-            m_statisticWidget->hide();
             m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words!"));
             break;
         }
         case 1:
         {
-            m_statisticWidget->show();
             m_searchEdit->editor()->setPlaceholderText(tr("Please input search artist words!"));
             break;
         }
         case 2:
         {
-            m_statisticWidget->show();
             m_searchEdit->editor()->setPlaceholderText(tr("Please input search album words!"));
             break;
         }
         case 3:
         {
-            m_statisticWidget->show();
             m_searchEdit->editor()->setPlaceholderText(tr("Please input search year words!"));
             break;
         }
         case 4:
         {
-            m_statisticWidget->show();
             m_searchEdit->editor()->setPlaceholderText(tr("Please input search genre words!"));
             break;
         }
@@ -390,6 +413,8 @@ void MusicLocalManagerWidget::typeIndexChanged(int index)
     }
 
     m_searchEdit->editor()->clear();
+    m_statisticWidget->setVisible(index != 0);
+    updateStatisticWidget(index, m_containerItems);
 }
 
 void MusicLocalManagerWidget::refreshItems()
@@ -422,15 +447,14 @@ void MusicLocalManagerWidget::refreshItems()
     MusicSongMeta meta;
     for(const QString &file : files)
     {
-        QString check;
         const bool state = meta.read(file);
 
         MusicSongInfoItem info;
         info.m_title = state ? MusicObject::generateSongName(meta.title(), meta.artist()) : TTK_DEFAULT_STR;
-        info.m_artist = state ? ((check = meta.artist()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
-        info.m_album = state ? ((check = meta.album()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
-        info.m_year = state ? ((check = meta.year()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
-        info.m_genre = state ? ((check = meta.genre()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR;
+        info.m_artist = state ? MusicObject::generateSongArtist(meta.artist()) : TTK_DEFAULT_STR;
+        info.m_album = state ? MusicObject::generateSongAlbum(meta.album()) : TTK_DEFAULT_STR;
+        info.m_year = state ? MusicObject::generateSongYear(meta.year()) : TTK_DEFAULT_STR;
+        info.m_genre = state ? MusicObject::generateSongGenre(meta.genre()) : TTK_DEFAULT_STR;
         info.m_path = file;
         m_containerItems << info;
 
@@ -438,6 +462,7 @@ void MusicLocalManagerWidget::refreshItems()
     }
 
     m_songWidget->addCellItems(m_containerItems);
+    updateStatisticWidget(m_currentIndex, m_containerItems);
     m_loadingLabel->run(false);
 }
 
@@ -482,10 +507,59 @@ void MusicLocalManagerWidget::searchResultChanged(int, int column)
     m_songWidget->removeItems();
     m_searchResultCache.insert(column, result);
     m_songWidget->addCellItems(data);
+    updateStatisticWidget(m_currentIndex, data);
 }
 
 void MusicLocalManagerWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
     resizeWidget();
+}
+
+void MusicLocalManagerWidget::updateStatisticWidget(int index, const MusicSongInfoItemList &items)
+{
+    if(index == 0)
+    {
+        return;
+    }
+
+    QString label;
+    MusicSongStatisticItem data;
+    for(const MusicSongInfoItem &item : items)
+    {
+        QString v;
+        switch(index)
+        {
+            case 0: break;
+            case 1:
+                v = item.m_artist;
+                label = tr("Artist");
+                break;
+            case 2:
+                v = item.m_album;
+                label = tr("Album");
+                break;
+            case 3:
+                v = item.m_year;
+                label = tr("Year");
+                break;
+            case 4:
+                v = item.m_genre;
+                label = tr("Genre");
+                break;
+            default: break;
+        }
+
+        if(!data.contains(v))
+        {
+            data.insert(v, 1);
+        }
+        else
+        {
+            data.insert(v, data[v] + 1);
+        }
+    }
+
+    m_statisticWidget->addCellItem(data);
+    m_statisticWidget->setHorizontalHeaderLabels({label, tr("Count")});
 }

@@ -28,8 +28,7 @@ class MusicPlaylist;
 class MusicSongsListPlayedTableWidget;
 
 #define MakePlayedItem(a, b) std::pair<int, int>(a, b);
-typedef QList< std::pair<int, int> > PlayedItemList;
-
+using PlayedItemList = QList< std::pair<int, int> >;
 
 /*! @brief The class of the played list top container widget.
  * @author Greedysky <greedysky@163.com>

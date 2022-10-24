@@ -116,6 +116,7 @@ void MusicLrcColorWidget::upButtonClicked()
         {
             index = 0;
         }
+
         m_ui->listWidget->insertItem(index, it);
         m_ui->listWidget->setCurrentRow(index);
     }
@@ -131,6 +132,7 @@ void MusicLrcColorWidget::downButtonClicked()
         {
             index = m_ui->listWidget->count();
         }
+
         m_ui->listWidget->insertItem(index, it);
         m_ui->listWidget->setCurrentRow(index);
     }

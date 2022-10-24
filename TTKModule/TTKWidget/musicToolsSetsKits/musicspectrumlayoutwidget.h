@@ -91,8 +91,8 @@ public Q_SLOTS:
     void labelClicked(int index);
 
 protected:
-    typedef QPair<QString, QString> SpectrumInfo;
-    typedef QList<SpectrumInfo> SpectrumInfoList;
+    using SpectrumInfo = QPair<QString, QString>;
+    using SpectrumInfoList = QList<SpectrumInfo>;
 
 protected:
     /*!

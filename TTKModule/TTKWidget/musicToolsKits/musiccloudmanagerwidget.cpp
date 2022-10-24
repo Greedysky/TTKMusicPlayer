@@ -452,6 +452,7 @@ void MusicCloudManagerTableWidget::createUploadFileModule()
         connect(m_openFileWidget, SIGNAL(uploadDirClicked()), SLOT(uploadFileDirToServer()));
         m_openFileWidget->adjustWidgetRect(width(), height());
     }
+
     m_openFileWidget->raise();
     m_openFileWidget->show();
 }
@@ -475,9 +476,7 @@ void MusicCloudManagerTableWidget::startToUploadFile()
         return;
     }
 
-    m_syncUploadData->uploadDataOperator(m_currentDataItem.m_id, MUSIC_BUCKET,
-                                       m_currentDataItem.m_dataItem.m_name,
-                                       m_currentDataItem.m_path);
+    m_syncUploadData->uploadDataOperator(m_currentDataItem.m_id, MUSIC_BUCKET, m_currentDataItem.m_dataItem.m_name, m_currentDataItem.m_path);
 }
 
 int MusicCloudManagerTableWidget::FindUploadItemRow(const QString &time) const
