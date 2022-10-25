@@ -51,7 +51,8 @@ include_directories(
     ${MUSIC_CORE_LRCMANAGER_DIR}
     ${MUSIC_CORE_NETWORK_DIR}
     ${MUSIC_CORE_NETWORK_DIR}/core
-    ${MUSIC_CORE_NETWORK_DIR}/image
+    ${MUSIC_CORE_NETWORK_DIR}/image/photo
+    ${MUSIC_CORE_NETWORK_DIR}/image/skin
     ${MUSIC_CORE_NETWORK_DIR}/tools
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj
     ${MUSIC_CORE_NETWORK_DIR}/radio/mv
@@ -59,7 +60,6 @@ include_directories(
     ${MUSIC_CORE_NETWORK_DIR}/music/bd
     ${MUSIC_CORE_NETWORK_DIR}/music/kg
     ${MUSIC_CORE_NETWORK_DIR}/music/kw
-    ${MUSIC_CORE_NETWORK_DIR}/music/tx
     ${MUSIC_CORE_NETWORK_DIR}/music/wy
     ${MUSIC_CORE_PLAYLIST_DIR}
     ${MUSIC_CORE_LOCALSEARCH_DIR}

@@ -1,7 +1,5 @@
 #include "musicdownloadbackgroundrequest.h"
-#include "musickwdownloadimagerequest.h"
-#include "musictxdownloadimagerequest.h"
-#include "musicbpdownloadimagerequest.h"
+#include "musicdownloadbackgroundmodule.h"
 
 MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent)
     : MusicDownloadImageRequest(name, path, parent),

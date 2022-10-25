@@ -45,7 +45,7 @@ MusicLocalManagerStatisticTableWidget::MusicLocalManagerStatisticTableWidget(QWi
     QHeaderView *headerview = horizontalHeader();
     headerview->setVisible(true);
     headerview->resizeSection(0, 100);
-    headerview->resizeSection(1, 100);
+    headerview->resizeSection(1, 55);
 
     setAlternatingRowColors(true);
     setFrameShape(QFrame::Box);
@@ -88,7 +88,7 @@ void MusicLocalManagerStatisticTableWidget::resizeSection()
     const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 100 + (width - WINDOW_WIDTH_MIN) / 2.0 / 3.0);
-    headerview->resizeSection(1, 100 + (width - WINDOW_WIDTH_MIN) / 2.0 / 3.0);
+    headerview->resizeSection(1, 55 + (width - WINDOW_WIDTH_MIN) / 2.0 / 3.0);
 }
 
 

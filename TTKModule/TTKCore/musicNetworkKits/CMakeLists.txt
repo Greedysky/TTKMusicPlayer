@@ -16,13 +16,16 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/core/musictranslationrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/core/musiccommentsrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/core/musicdiscoverlistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbackgroundrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/image/musicbpdownloadimagerequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadskin.h
-    ${MUSIC_CORE_NETWORK_DIR}/image/musicabstractdownloadskinrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbingskinrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadthunderskinrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbirdskinrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadbackgroundrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadbackgroundmodule.h
+    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicbpdownloadimagerequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musickwdownloadimagerequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musictxdownloadimagerequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadskinmodule.h
+    ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicabstractdownloadskinrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadbingskinrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadbirdskinrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadthunderskinrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicnetworkthread.h
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicnetworkproxy.h
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicnetworkoperator.h
@@ -81,15 +84,12 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwquerymovierequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwqueryartistlistrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwdownloadtextrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwdownloadimagerequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwdiscoverlistrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwcommentsrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwsongsuggestrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryinterface.h
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerylearnrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdtranslationrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/tx/musictxqueryinterface.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/tx/musictxdownloadimagerequest.h
     ${MUSIC_CORE_NETWORK_DIR}/musicnetworkdefines.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.h
 )
@@ -110,12 +110,14 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/core/musictranslationrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/core/musiccommentsrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/core/musicdiscoverlistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbackgroundrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/image/musicbpdownloadimagerequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/image/musicabstractdownloadskinrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbingskinrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadthunderskinrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbirdskinrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadbackgroundrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicbpdownloadimagerequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musickwdownloadimagerequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musictxdownloadimagerequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicabstractdownloadskinrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadbingskinrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadbirdskinrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadthunderskinrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicnetworkthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicnetworkproxy.cpp
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicnetworkoperator.cpp
@@ -173,14 +175,11 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwquerymovierequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwqueryartistlistrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwdownloadtextrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwdownloadimagerequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwdiscoverlistrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwcommentsrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwsongsuggestrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryinterface.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerylearnrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdtranslationrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/tx/musictxqueryinterface.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/tx/musictxdownloadimagerequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.cpp
 )

@@ -1,8 +1,9 @@
 #include "musictxdownloadimagerequest.h"
 #include "musicdownloaddatarequest.h"
-#include "musictxqueryinterface.h"
 
 #define ART_BACKGROUND_URL  "dGJmTlZOK1QvMDJENUxjMDk5UVhBWHVCb001eWtnQ1hKSnhsRWxLczNvRm9FV0kwbHhocTk4aml5SCs1Ym5mQU44SU05c1VZYVFzR2hLTEpGQ0hCNmM1ZUlZVnhnMm92QXNGMFN3PT0="
+#define TX_SEARCH_URL       "RVNEYVc1Z1l4Wk9Ma2QxMEl3bnNnNEJaS0hiZVlZNnBQZXlQTUIzZGFjMksyVkNPMkxaeXBnPT0="
+#define TX_SEARCH_DATA_URL  "bW8ybE03WEw1WmNmYzBuSTJWeTdPMFZNY0U2RDRYcjZla1djWmU2eU5ld2lZbytpaExzaG1MaDZ6U1FKTzVuWkZqZHJaL0gxN3ZiOTBIaFZwcmdpeU5NQllkQ1RaUzdVVmZ2UjFuWkF5SzlZSHYwajRKWEFXTUNBaGNab0V6U0UzOVdkMlpqM25CS212dEI2aU5KSUtLanJrcE5jU3JJUEEwSjhuVzFJV2xrM0FaWnFrUmladWxIUTlKUzF3RE5NR1RnUzJMNzRBTWF3Q0lLRmltZWc4QUh3b0dlZ1lxMTNXSXJLOGlWTlBEMmV4TkdlL2NzT0lqRW5UMHc9"
 
 MusicTXImageConfigManager::MusicTXImageConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
@@ -35,7 +36,7 @@ void MusicTXDownloadBackgroundRequest::startRequest()
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(TX_SEARCH_URL, false));
-    MusicTXInterface::makeRequestRawHeader(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager.post(request, MusicUtils::Algorithm::mdII(TX_SEARCH_DATA_URL, false).arg(m_artName).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -85,6 +86,7 @@ void MusicTXDownloadBackgroundRequest::downLoadFinished()
         return;
     }
 
+    TTK_INFO_STREAM(id);
     downLoadUrl(id);
 }
 
@@ -128,7 +130,7 @@ void MusicTXDownloadBackgroundRequest::downLoadUrl(const QString &id)
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(id));
-    MusicTXInterface::makeRequestRawHeader(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadUrlFinished()));

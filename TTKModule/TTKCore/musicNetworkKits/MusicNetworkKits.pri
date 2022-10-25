@@ -19,7 +19,8 @@
 INCLUDEPATH += \
     $$PWD \
     $$PWD/core \
-    $$PWD/image \
+    $$PWD/image/photo \
+    $$PWD/image/skin \
     $$PWD/tools \
     $$PWD/radio/fm \
     $$PWD/radio/dj \
@@ -27,8 +28,7 @@ INCLUDEPATH += \
     $$PWD/music/wy \
     $$PWD/music/kg \
     $$PWD/music/kw \
-    $$PWD/music/bd \
-    $$PWD/music/tx
+    $$PWD/music/bd
 
 HEADERS += \
     $$PWD/core/musicabstractqueryrequest.h \
@@ -46,13 +46,16 @@ HEADERS += \
     $$PWD/core/musictranslationrequest.h \
     $$PWD/core/musiccommentsrequest.h \
     $$PWD/core/musicdiscoverlistrequest.h \
-    $$PWD/image/musicdownloadbackgroundrequest.h \
-    $$PWD/image/musicbpdownloadimagerequest.h \
-    $$PWD/image/musicdownloadskin.h \
-    $$PWD/image/musicabstractdownloadskinrequest.h \
-    $$PWD/image/musicdownloadbingskinrequest.h \
-    $$PWD/image/musicdownloadthunderskinrequest.h \
-    $$PWD/image/musicdownloadbirdskinrequest.h \
+    $$PWD/image/photo/musicdownloadbackgroundrequest.h \
+    $$PWD/image/photo/musicdownloadbackgroundmodule.h \
+    $$PWD/image/photo/musicbpdownloadimagerequest.h \
+    $$PWD/image/photo/musickwdownloadimagerequest.h \
+    $$PWD/image/photo/musictxdownloadimagerequest.h \
+    $$PWD/image/skin/musicdownloadskinmodule.h \
+    $$PWD/image/skin/musicabstractdownloadskinrequest.h \
+    $$PWD/image/skin/musicdownloadbingskinrequest.h \
+    $$PWD/image/skin/musicdownloadbirdskinrequest.h \
+    $$PWD/image/skin/musicdownloadthunderskinrequest.h \
     $$PWD/tools/musicnetworkthread.h \
     $$PWD/tools/musicnetworkproxy.h \
     $$PWD/tools/musicnetworkoperator.h \
@@ -111,15 +114,12 @@ HEADERS += \
     $$PWD/music/kw/musickwquerymovierequest.h \
     $$PWD/music/kw/musickwqueryartistlistrequest.h \
     $$PWD/music/kw/musickwdownloadtextrequest.h \
-    $$PWD/music/kw/musickwdownloadimagerequest.h \
     $$PWD/music/kw/musickwdiscoverlistrequest.h \
     $$PWD/music/kw/musickwcommentsrequest.h \
     $$PWD/music/kw/musickwsongsuggestrequest.h \
     $$PWD/music/bd/musicbdqueryinterface.h \
     $$PWD/music/bd/musicbdquerylearnrequest.h \
     $$PWD/music/bd/musicbdtranslationrequest.h \
-    $$PWD/music/tx/musictxqueryinterface.h \
-    $$PWD/music/tx/musictxdownloadimagerequest.h \
     $$PWD/musicnetworkdefines.h \
     $$PWD/musicdownloadqueryfactory.h
 
@@ -139,12 +139,14 @@ SOURCES += \
     $$PWD/core/musictranslationrequest.cpp \
     $$PWD/core/musiccommentsrequest.cpp \
     $$PWD/core/musicdiscoverlistrequest.cpp \
-    $$PWD/image/musicdownloadbackgroundrequest.cpp \
-    $$PWD/image/musicbpdownloadimagerequest.cpp \
-    $$PWD/image/musicabstractdownloadskinrequest.cpp \
-    $$PWD/image/musicdownloadbingskinrequest.cpp \
-    $$PWD/image/musicdownloadthunderskinrequest.cpp \
-    $$PWD/image/musicdownloadbirdskinrequest.cpp \
+    $$PWD/image/photo/musicdownloadbackgroundrequest.cpp \
+    $$PWD/image/photo/musicbpdownloadimagerequest.cpp \
+    $$PWD/image/photo/musickwdownloadimagerequest.cpp \
+    $$PWD/image/photo/musictxdownloadimagerequest.cpp \
+    $$PWD/image/skin/musicabstractdownloadskinrequest.cpp \
+    $$PWD/image/skin/musicdownloadbingskinrequest.cpp \
+    $$PWD/image/skin/musicdownloadbirdskinrequest.cpp \
+    $$PWD/image/skin/musicdownloadthunderskinrequest.cpp \
     $$PWD/tools/musicnetworkthread.cpp \
     $$PWD/tools/musicnetworkproxy.cpp \
     $$PWD/tools/musicnetworkoperator.cpp \
@@ -202,13 +204,10 @@ SOURCES += \
     $$PWD/music/kw/musickwquerymovierequest.cpp \
     $$PWD/music/kw/musickwqueryartistlistrequest.cpp \
     $$PWD/music/kw/musickwdownloadtextrequest.cpp \
-    $$PWD/music/kw/musickwdownloadimagerequest.cpp \
     $$PWD/music/kw/musickwdiscoverlistrequest.cpp \
     $$PWD/music/kw/musickwcommentsrequest.cpp \
     $$PWD/music/kw/musickwsongsuggestrequest.cpp \
     $$PWD/music/bd/musicbdqueryinterface.cpp \
     $$PWD/music/bd/musicbdquerylearnrequest.cpp \
     $$PWD/music/bd/musicbdtranslationrequest.cpp \
-    $$PWD/music/tx/musictxqueryinterface.cpp \
-    $$PWD/music/tx/musictxdownloadimagerequest.cpp \
     $$PWD/musicdownloadqueryfactory.cpp

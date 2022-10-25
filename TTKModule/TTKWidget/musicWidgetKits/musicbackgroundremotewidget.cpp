@@ -1,6 +1,6 @@
 #include "musicbackgroundremotewidget.h"
 #include "musicdownloadqueuerequest.h"
-#include "musicdownloadskin.h"
+#include "musicdownloadskinmodule.h"
 #include "musicextractwrapper.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"

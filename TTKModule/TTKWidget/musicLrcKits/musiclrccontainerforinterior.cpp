@@ -487,37 +487,6 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     menu.exec(QCursor::pos());
 }
 
-void MusicLrcContainerForInterior::paintEvent(QPaintEvent *event)
-{
-    Q_UNUSED(event);
-    if(m_mouseLeftPressed)
-    {
-        QLinearGradient linearGradient(0, 0, width(), 0);
-        linearGradient.setColorAt(0.0, QColor(255, 254, 161));
-        linearGradient.setColorAt(0.3, Qt::transparent);
-        linearGradient.setColorAt(0.7, Qt::transparent);
-        linearGradient.setColorAt(1.0, QColor(255, 254, 161));
-
-        const int line = (height() - m_functionLabel->height()) / 2;
-        QPainter painter(this);
-        painter.setPen(QPen(linearGradient, 1));
-        painter.drawLine(LRC_TIME_LABEL_POSITION, line, width() - LRC_TIME_LABEL_POSITION, line);
-
-        qint64 v = m_lrcAnalysis->currentIndex() - 1;
-        if(v < 0)
-        {
-            v = 0;
-        }
-        else if(v >= m_lrcAnalysis->count())
-        {
-            v = m_lrcAnalysis->count() - m_lrcAnalysis->lineMiddle() + 2;
-        }
-
-        v = m_lrcAnalysis->findTime(v);
-        painter.drawText(LRC_TIME_LABEL_POSITION, line - LRC_TIME_LABEL_POSITION / 2, MusicTime::msecTime2LabelJustified(v));
-    }
-}
-
 void MusicLrcContainerForInterior::mousePressEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)
@@ -616,6 +585,43 @@ void MusicLrcContainerForInterior::mouseDoubleClickEvent(QMouseEvent *event)
         return; //block mouse event in function label area
     }
     MusicBottomAreaWidget::instance()->lrcWidgetShowFullScreen();
+}
+
+void MusicLrcContainerForInterior::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+    if(m_mouseLeftPressed)
+    {
+        QLinearGradient linearGradient(0, 0, width(), 0);
+        linearGradient.setColorAt(0.0, QColor(255, 254, 161));
+        linearGradient.setColorAt(0.3, Qt::transparent);
+        linearGradient.setColorAt(0.7, Qt::transparent);
+        linearGradient.setColorAt(1.0, QColor(255, 254, 161));
+
+        const int line = (height() - m_functionLabel->height()) / 2;
+        QPainter painter(this);
+        painter.setPen(QPen(linearGradient, 1));
+        painter.drawLine(LRC_TIME_LABEL_POSITION, line, width() - LRC_TIME_LABEL_POSITION, line);
+
+        qint64 v = m_lrcAnalysis->currentIndex() - 1;
+        if(v < 0)
+        {
+            v = 0;
+        }
+        else if(v >= m_lrcAnalysis->count())
+        {
+            v = m_lrcAnalysis->count() - m_lrcAnalysis->lineMiddle() + 2;
+        }
+
+        v = m_lrcAnalysis->findTime(v);
+        painter.drawText(LRC_TIME_LABEL_POSITION, line - LRC_TIME_LABEL_POSITION / 2, MusicTime::msecTime2LabelJustified(v));
+    }
+}
+
+void MusicLrcContainerForInterior::resizeEvent(QResizeEvent *event)
+{
+    MusicLrcContainer::resizeEvent(event);
+    resizeWindow();
 }
 
 void MusicLrcContainerForInterior::createColorMenu(QMenu &menu)

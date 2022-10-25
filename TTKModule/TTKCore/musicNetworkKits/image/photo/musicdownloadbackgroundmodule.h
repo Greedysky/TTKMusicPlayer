@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADSKIN_H
-#define MUSICDOWNLOADSKIN_H
+#ifndef MUSICDOWNLOADBACKGROUNDMODULE_H
+#define MUSICDOWNLOADBACKGROUNDMODULE_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicdownloadbingskinrequest.h"
-#include "musicdownloadthunderskinrequest.h"
-#include "musicdownloadbirdskinrequest.h"
+#include "musicbpdownloadimagerequest.h"
+#include "musickwdownloadimagerequest.h"
+#include "musictxdownloadimagerequest.h"
 
-#endif // MUSICDOWNLOADSKIN_H
+#endif // MUSICDOWNLOADBACKGROUNDMODULE_H
