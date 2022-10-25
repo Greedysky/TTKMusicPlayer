@@ -23,7 +23,7 @@ void MusicTXImageConfigManager::readBuffer(QStringList &items)
 
 
 MusicTXDownloadBackgroundRequest::MusicTXDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent)
-    : MusicDownloadImageRequest(name, path, parent)
+    : MusicAbstractDownloadImageRequest(name, path, parent)
 {
 
 }
@@ -47,7 +47,7 @@ void MusicTXDownloadBackgroundRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(QString("%1 downLoadDataFinished").arg(className()));
 
-    MusicDownloadImageRequest::downLoadFinished();
+    MusicAbstractDownloadImageRequest::downLoadFinished();
     QString id;
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -94,7 +94,7 @@ void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
 {
     TTK_INFO_STREAM(QString("%1 downLoadUrlFinished").arg(className()));
 
-    MusicDownloadImageRequest::downLoadFinished();
+    MusicAbstractDownloadImageRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QStringList items;

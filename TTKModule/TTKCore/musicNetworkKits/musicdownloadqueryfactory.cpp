@@ -265,7 +265,7 @@ MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeCoverRequest(const 
     return (new MusicDownloadDataRequest(url, path, MusicObject::Download::Cover, parent));
 }
 
-MusicDownloadImageRequest *MusicDownLoadQueryFactory::makeBackgroundRequest(const QString &name, const QString &path, QObject *parent)
+MusicAbstractDownloadImageRequest *MusicDownLoadQueryFactory::makeBackgroundRequest(const QString &name, const QString &path, QObject *parent)
 {
     return (new MusicDownloadBackgroundRequest(name, path, parent));
 }

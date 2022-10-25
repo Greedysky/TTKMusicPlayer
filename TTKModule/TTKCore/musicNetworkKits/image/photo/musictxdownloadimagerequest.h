@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 #include "musicabstractxml.h"
-#include "musicdownloadimagerequest.h"
+#include "musicabstractdownloadimagerequest.h"
 
 /*! @brief The class of tencent query info xml data from net.
  * @author Greedysky <greedysky@163.com>
@@ -46,7 +46,7 @@ public:
 /*! @brief The class of tencent download art background image.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicTXDownloadBackgroundRequest : public MusicDownloadImageRequest
+class TTK_MODULE_EXPORT MusicTXDownloadBackgroundRequest : public MusicAbstractDownloadImageRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTXDownloadBackgroundRequest)

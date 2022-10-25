@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicdownloadimagerequest.h"
+#include "musicabstractdownloadimagerequest.h"
 
 /*! @brief The class of birdpaper download art background image.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicBPDownloadBackgroundRequest : public MusicDownloadImageRequest
+class TTK_MODULE_EXPORT MusicBPDownloadBackgroundRequest : public MusicAbstractDownloadImageRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBPDownloadBackgroundRequest)

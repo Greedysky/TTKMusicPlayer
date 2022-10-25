@@ -38,7 +38,7 @@ HEADERS += \
     $$PWD/core/musicabstractdownloadrequest.h \
     $$PWD/core/musicpagequeryrequest.h \
     $$PWD/image/photo/musicdownloadbackgroundmodule.h \
-    $$PWD/image/photo/musicdownloadimagerequest.h \
+    $$PWD/image/photo/musicabstractdownloadimagerequest.h \
     $$PWD/image/photo/musicdownloadbackgroundrequest.h \
     $$PWD/image/photo/musicbpdownloadimagerequest.h \
     $$PWD/image/photo/musickwdownloadimagerequest.h \
@@ -62,17 +62,17 @@ HEADERS += \
     $$PWD/tools/musicdownloadcounterpvrequest.h \
     $$PWD/tools/musicdownloadmanager.h \
     $$PWD/tools/musicqueryrecommendrequest.h \
+    $$PWD/radio/fm/musicabstractfmradiorequest.h \
     $$PWD/radio/fm/musicfmradiochannelrequest.h \
     $$PWD/radio/fm/musicfmradiodownloadtextrequest.h \
     $$PWD/radio/fm/musicfmradiosongsrequest.h \
-    $$PWD/radio/fm/musicabstractfmradiorequest.h \
+    $$PWD/radio/dj/musicabstractdjradiorequest.h \
     $$PWD/radio/dj/musicdjradiocategoryrequest.h \
     $$PWD/radio/dj/musicdjradioprogramrequest.h \
     $$PWD/radio/dj/musicdjradioprogramcategoryrequest.h \
-    $$PWD/radio/dj/musicabstractdjradiorequest.h \
+    $$PWD/radio/mv/musicabstractmvradiorequest.h \
     $$PWD/radio/mv/musicmvradiocategoryrequest.h \
     $$PWD/radio/mv/musicmvradioprogramrequest.h \
-    $$PWD/radio/mv/musicabstractmvradiorequest.h \
     $$PWD/music/core/musicqueryalbumrequest.h \
     $$PWD/music/core/musicqueryartistrequest.h \
     $$PWD/music/core/musicqueryartistlistrequest.h \
@@ -130,7 +130,7 @@ SOURCES += \
     $$PWD/core/musicabstractnetwork.cpp \
     $$PWD/core/musicabstractdownloadrequest.cpp \
     $$PWD/core/musicpagequeryrequest.cpp \
-    $$PWD/image/photo/musicdownloadimagerequest.cpp \
+    $$PWD/image/photo/musicabstractdownloadimagerequest.cpp \
     $$PWD/image/photo/musicdownloadbackgroundrequest.cpp \
     $$PWD/image/photo/musicbpdownloadimagerequest.cpp \
     $$PWD/image/photo/musickwdownloadimagerequest.cpp \
@@ -152,17 +152,17 @@ SOURCES += \
     $$PWD/tools/musicdownloadcounterpvrequest.cpp \
     $$PWD/tools/musicdownloadmanager.cpp \
     $$PWD/tools/musicqueryrecommendrequest.cpp \
+    $$PWD/radio/fm/musicabstractfmradiorequest.cpp \
     $$PWD/radio/fm/musicfmradiochannelrequest.cpp \
     $$PWD/radio/fm/musicfmradiodownloadtextrequest.cpp \
     $$PWD/radio/fm/musicfmradiosongsrequest.cpp \
-    $$PWD/radio/fm/musicabstractfmradiorequest.cpp \
+    $$PWD/radio/dj/musicabstractdjradiorequest.cpp \
     $$PWD/radio/dj/musicdjradiocategoryrequest.cpp \
     $$PWD/radio/dj/musicdjradioprogramrequest.cpp \
     $$PWD/radio/dj/musicdjradioprogramcategoryrequest.cpp \
-    $$PWD/radio/dj/musicabstractdjradiorequest.cpp \
+    $$PWD/radio/mv/musicabstractmvradiorequest.cpp \
     $$PWD/radio/mv/musicmvradiocategoryrequest.cpp \
     $$PWD/radio/mv/musicmvradioprogramrequest.cpp \
-    $$PWD/radio/mv/musicabstractmvradiorequest.cpp \
     $$PWD/music/core/musicqueryalbumrequest.cpp \
     $$PWD/music/core/musicqueryartistrequest.cpp \
     $$PWD/music/core/musicqueryartistlistrequest.cpp \

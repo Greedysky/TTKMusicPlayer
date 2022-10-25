@@ -1,6 +1,5 @@
 #include "musicsongsearchonlinewidget.h"
 #include "musicsongsearchrecordconfigmanager.h"
-#include "musicdownloadimagerequest.h"
 #include "musicdownloadwidget.h"
 #include "musicitemdelegate.h"
 #include "musicsettingmanager.h"

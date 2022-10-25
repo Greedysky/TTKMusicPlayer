@@ -5,9 +5,8 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractnetwork.h
     ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractdownloadrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/core/musicpagequeryrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/core/musictranslationrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadbackgroundmodule.h
-    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadimagerequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicabstractdownloadimagerequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadbackgroundrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicbpdownloadimagerequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/photo/musickwdownloadimagerequest.h
@@ -31,17 +30,17 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadcounterpvrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadmanager.h
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicqueryrecommendrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicabstractfmradiorequest.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiochannelrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiodownloadtextrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongsrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicabstractfmradiorequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategoryrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramcategoryrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicabstractmvradiorequest.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradiocategoryrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradioprogramrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicabstractmvradiorequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/core/musicqueryalbumrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/core/musicqueryartistrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/core/musicqueryartistlistrequest.h
@@ -62,7 +61,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwydownloadtextrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwycommentsrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwysongsuggestrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwytranslationrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwydiscoverlistrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/kg/musickgqueryinterface.h
     ${MUSIC_CORE_NETWORK_DIR}/music/kg/musickgqueryrequest.h
@@ -89,7 +87,9 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwsongsuggestrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryinterface.h
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerylearnrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdtranslationrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/translation/musictranslationrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/translation/musicbdtranslationrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/translation/musicwytranslationrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/musicnetworkdefines.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.h
 )
@@ -99,8 +99,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractnetwork.cpp
     ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractdownloadrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/core/musicpagequeryrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/core/musictranslationrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadimagerequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicabstractdownloadimagerequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadbackgroundrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicbpdownloadimagerequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/image/photo/musickwdownloadimagerequest.cpp
@@ -122,17 +121,17 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadcounterpvrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadmanager.cpp
     ${MUSIC_CORE_NETWORK_DIR}/tools/musicqueryrecommendrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicabstractfmradiorequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiochannelrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiodownloadtextrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongsrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicabstractfmradiorequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategoryrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramcategoryrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicabstractmvradiorequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradiocategoryrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradioprogramrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicabstractmvradiorequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/core/musicqueryalbumrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/core/musicqueryartistrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/core/musicqueryartistlistrequest.cpp
@@ -153,7 +152,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwydownloadtextrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwycommentsrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwysongsuggestrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwytranslationrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwydiscoverlistrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/kg/musickgqueryinterface.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/kg/musickgqueryrequest.cpp
@@ -180,6 +178,8 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwsongsuggestrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryinterface.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerylearnrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdtranslationrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/translation/musictranslationrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/translation/musicbdtranslationrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/translation/musicwytranslationrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.cpp
 )

@@ -4,7 +4,7 @@
 #define ART_BACKGROUND_URL  "L2tVRE5IY2RSOVcyNysvc3RBNVNjS3pmUlNwNjlOTW8xYmlnT2sxNVJUc0VTQk1CTGtoL2Z3SG1nbDNiOWRaR1dPL1BxQ3ZOSmVUdG91TEZaUVJhNjVyb2Znd2xBYWtYYTV6bURubXFqdFFIV293cg=="
 
 MusicBPDownloadBackgroundRequest::MusicBPDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent)
-    : MusicDownloadImageRequest(name, path, parent)
+    : MusicAbstractDownloadImageRequest(name, path, parent)
 {
 
 }
@@ -28,7 +28,7 @@ void MusicBPDownloadBackgroundRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(QString("%1 downLoadDataFinished").arg(className()));
 
-    MusicDownloadImageRequest::downLoadFinished();
+    MusicAbstractDownloadImageRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;

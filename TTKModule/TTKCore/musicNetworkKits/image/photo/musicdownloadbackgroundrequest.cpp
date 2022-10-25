@@ -2,7 +2,7 @@
 #include "musicdownloadbackgroundmodule.h"
 
 MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent)
-    : MusicDownloadImageRequest(name, path, parent),
+    : MusicAbstractDownloadImageRequest(name, path, parent),
       m_pluginIndex(-1)
 {
 
@@ -33,21 +33,21 @@ void MusicDownloadBackgroundRequest::findImagePlugin()
     {
         case 0:
         {
-            MusicDownloadImageRequest *d = new MusicKWDownloadBackgroundRequest(m_artName, m_savePath, this);
+            MusicAbstractDownloadImageRequest *d = new MusicKWDownloadBackgroundRequest(m_artName, m_savePath, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
             d->startRequest();
             break;
         }
         case 1:
         {
-            MusicDownloadImageRequest *d = new MusicTXDownloadBackgroundRequest(m_artName, m_savePath, this);
+            MusicAbstractDownloadImageRequest *d = new MusicTXDownloadBackgroundRequest(m_artName, m_savePath, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
             d->startRequest();
             break;
         }
         case 2:
         {
-            MusicDownloadImageRequest *d = new MusicBPDownloadBackgroundRequest(m_artName, m_savePath, this);
+            MusicAbstractDownloadImageRequest *d = new MusicBPDownloadBackgroundRequest(m_artName, m_savePath, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
             d->startRequest();
             break;

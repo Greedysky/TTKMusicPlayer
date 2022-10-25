@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicdownloadimagerequest.h"
 #include "musicabstractdownloadrequest.h"
+#include "musicabstractdownloadimagerequest.h"
 
 /*! @brief The class of kuwo download art cover image.
  * @author Greedysky <greedysky@163.com>
@@ -56,7 +56,7 @@ public Q_SLOTS:
 /*! @brief The class of kuwo download art background image.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicKWDownloadBackgroundRequest : public MusicDownloadImageRequest
+class TTK_MODULE_EXPORT MusicKWDownloadBackgroundRequest : public MusicAbstractDownloadImageRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWDownloadBackgroundRequest)

@@ -61,7 +61,7 @@ void MusicKWDownLoadCoverRequest::downLoadDataChanged()
 
 
 MusicKWDownloadBackgroundRequest::MusicKWDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent)
-    : MusicDownloadImageRequest(name, path, parent)
+    : MusicAbstractDownloadImageRequest(name, path, parent)
 {
 
 }
@@ -85,7 +85,7 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(QString("%1 downLoadDataFinished").arg(className()));
 
-    MusicDownloadImageRequest::downLoadFinished();
+    MusicAbstractDownloadImageRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         const QByteArray &bytes = m_reply->readAll();

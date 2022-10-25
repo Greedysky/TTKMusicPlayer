@@ -26,8 +26,8 @@ class MusicSongSuggestRequest;
 class MusicCommentsRequest;
 class MusicDiscoverListRequest;
 class MusicAbstractQueryRequest;
-class MusicDownloadImageRequest;
 class MusicTranslationRequest;
+class MusicAbstractDownloadImageRequest;
 
 /*! @brief The class of produce the download query class by type.
  * @author Greedysky <greedysky@163.com>
@@ -105,7 +105,7 @@ public:
     /*!
      * Make download art background object by type.
      */
-    MusicDownloadImageRequest *makeBackgroundRequest(const QString &name, const QString &path, QObject *parent);
+    MusicAbstractDownloadImageRequest *makeBackgroundRequest(const QString &name, const QString &path, QObject *parent);
 
 private:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)

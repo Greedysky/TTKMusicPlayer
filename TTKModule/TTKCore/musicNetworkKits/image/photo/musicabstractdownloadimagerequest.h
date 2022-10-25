@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADIMAGEREQUEST_H
-#define MUSICDOWNLOADIMAGEREQUEST_H
+#ifndef MUSICABSTRACTDOWNLOADIMAGEREQUEST_H
+#define MUSICABSTRACTDOWNLOADIMAGEREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -26,15 +26,15 @@
 /*! @brief The class of download art background image.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadImageRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicAbstractDownloadImageRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadImageRequest)
+    TTK_DECLARE_MODULE(MusicAbstractDownloadImageRequest)
 public:
     /*!
      * Object contsructor provide artist name and save local path.
      */
-    MusicDownloadImageRequest(const QString &name, const QString &path, QObject *parent = nullptr);
+    MusicAbstractDownloadImageRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 
     /*!
      * Release the network object.
@@ -59,4 +59,4 @@ protected:
 
 };
 
-#endif // MUSICDOWNLOADIMAGEREQUEST_H
+#endif // MUSICABSTRACTDOWNLOADIMAGEREQUEST_H

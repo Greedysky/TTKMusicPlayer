@@ -13,31 +13,6 @@ void MusicBDTranslationRequest::startRequest(const QString &data)
     startRequest(Language::Auto, Language::Zh, data);
 }
 
-QString MusicBDTranslationRequest::mapTypeFromEnumToString(Language type) const
-{
-    switch(type)
-    {
-        case Language::Auto: return "auto";
-        case Language::Ara: return "ara";
-        case Language::De: return "de";
-        case Language::Ru: return "ru";
-        case Language::Fra: return "fra";
-        case Language::Kor: return "kor";
-        case Language::Nl: return "nl";
-        case Language::Pt: return "pt";
-        case Language::Jp: return "jp";
-        case Language::Th: return "th";
-        case Language::Wyw: return "wyw";
-        case Language::Spa: return "spa";
-        case Language::El: return "el";
-        case Language::It: return "it";
-        case Language::En: return "en";
-        case Language::Yue: return "yue";
-        case Language::Zh: return "zh";
-        default: return QString();
-    }
-}
-
 void MusicBDTranslationRequest::downLoadFinished()
 {
     MusicTranslationRequest::downLoadFinished();
@@ -82,6 +57,31 @@ void MusicBDTranslationRequest::downLoadFinished()
     }
 
     deleteAll();
+}
+
+QString MusicBDTranslationRequest::mapTypeFromEnumToString(Language type) const
+{
+    switch(type)
+    {
+        case Language::Auto: return "auto";
+        case Language::Ara: return "ara";
+        case Language::De: return "de";
+        case Language::Ru: return "ru";
+        case Language::Fra: return "fra";
+        case Language::Kor: return "kor";
+        case Language::Nl: return "nl";
+        case Language::Pt: return "pt";
+        case Language::Jp: return "jp";
+        case Language::Th: return "th";
+        case Language::Wyw: return "wyw";
+        case Language::Spa: return "spa";
+        case Language::El: return "el";
+        case Language::It: return "it";
+        case Language::En: return "en";
+        case Language::Yue: return "yue";
+        case Language::Zh: return "zh";
+        default: return QString();
+    }
 }
 
 void MusicBDTranslationRequest::startRequest(Language from, Language to, const QString &data)
