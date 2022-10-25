@@ -1,5 +1,6 @@
 #include "musicbdtranslationrequest.h"
-#include "musicbdqueryinterface.h"
+
+#define TRANSLATION_URL    "TXRkdVhlYnQzSEtZUmpJMVpDeHpaVG5DVzhId0NyVE42YXBPYkw2d25YeGJENDBONm9kSVZ2My95eHgvbVJSQjlDSE92clVkam85OG9uYjU="
 
 MusicBDTranslationRequest::MusicBDTranslationRequest(QObject *parent)
     : MusicTranslationRequest(parent)
@@ -10,21 +11,6 @@ MusicBDTranslationRequest::MusicBDTranslationRequest(QObject *parent)
 void MusicBDTranslationRequest::startRequest(const QString &data)
 {
     startRequest(Language::Auto, Language::Zh, data);
-}
-
-void MusicBDTranslationRequest::startRequest(Language from, Language to, const QString &data)
-{
-    TTK_INFO_STREAM(QString("%1 startToSearch").arg(className()));
-
-    deleteAll();
-
-    QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(BD_TRANSLATION_URL, false).arg(mapTypeFromEnumToString(from), data, mapTypeFromEnumToString(to)));
-    MusicObject::setSslConfiguration(&request);
-
-    m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
 QString MusicBDTranslationRequest::mapTypeFromEnumToString(Language type) const
@@ -96,4 +82,19 @@ void MusicBDTranslationRequest::downLoadFinished()
     }
 
     deleteAll();
+}
+
+void MusicBDTranslationRequest::startRequest(Language from, Language to, const QString &data)
+{
+    TTK_INFO_STREAM(QString("%1 startToSearch").arg(className()));
+
+    deleteAll();
+
+    QNetworkRequest request;
+    request.setUrl(MusicUtils::Algorithm::mdII(TRANSLATION_URL, false).arg(mapTypeFromEnumToString(from), data, mapTypeFromEnumToString(to)));
+    MusicObject::setSslConfiguration(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError);
 }

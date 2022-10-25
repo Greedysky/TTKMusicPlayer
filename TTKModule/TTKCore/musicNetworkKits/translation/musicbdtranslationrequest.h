@@ -60,11 +60,6 @@ public:
      */
     virtual void startRequest(const QString &data) override final;
 
-    /*!
-     * Start to translation data.
-     */
-    void startRequest(Language from, Language to, const QString &data);
-
 public Q_SLOTS:
     /*!
      * Download data from net finished.
@@ -76,6 +71,10 @@ private:
      * Map type from enum to string.
      */
     QString mapTypeFromEnumToString(Language type) const;
+    /*!
+     * Start to translation data.
+     */
+    void startRequest(Language from, Language to, const QString &data);
 
 };
 

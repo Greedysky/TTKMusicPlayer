@@ -58,9 +58,11 @@ include_directories(
     ${MUSIC_CORE_NETWORK_DIR}/radio/mv
     ${MUSIC_CORE_NETWORK_DIR}/radio/fm
     ${MUSIC_CORE_NETWORK_DIR}/music/bd
+    ${MUSIC_CORE_NETWORK_DIR}/music/core
     ${MUSIC_CORE_NETWORK_DIR}/music/kg
     ${MUSIC_CORE_NETWORK_DIR}/music/kw
     ${MUSIC_CORE_NETWORK_DIR}/music/wy
+    ${MUSIC_CORE_NETWORK_DIR}/translation
     ${MUSIC_CORE_PLAYLIST_DIR}
     ${MUSIC_CORE_LOCALSEARCH_DIR}
     ${MUSIC_CORE_TOOLSWIDGET_DIR}
