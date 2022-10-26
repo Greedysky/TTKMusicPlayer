@@ -336,10 +336,19 @@ void MusicLrcContainerForInterior::showLrcPosterWidget()
 
 void MusicLrcContainerForInterior::queryTranslatedLrcFinished(const QString &bytes)
 {
-    QString text;
-    for(const QString &var : bytes.split("\r"))
+    const QStringList &ort = m_lrcAnalysis->dataList();
+    const QStringList &trt = bytes.split("\n");
+
+    if(ort.count() > trt.count())
     {
-        text += var.trimmed() + "\r\n";
+        return;
+    }
+
+    QString text;
+    for(int i = 0; i < ort.count(); ++i)
+    {
+        text += ort[i].trimmed() + "\r\n";
+        text += trt[i].trimmed() + "\r\n";
     }
 
     delete m_translatedWidget;

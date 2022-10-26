@@ -404,9 +404,9 @@ void MusicDownloadWidget::startRequestMusic(const MusicObject::MusicSongInformat
                 }
             }
 
-            MusicDownloadTagDataRequest *downSong = new MusicDownloadTagDataRequest(prop.m_url, downloadName, MusicObject::Download::Music, this);
-            downSong->setRecordType(MusicObject::Record::NormalDownload);
-            connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
+            MusicDownloadTagDataRequest *d = new MusicDownloadTagDataRequest(prop.m_url, downloadName, MusicObject::Download::Music, this);
+            d->setRecordType(MusicObject::Record::NormalDownload);
+            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
 
             MusicSongMeta meta;
             meta.setComment(info.m_coverUrl);
@@ -416,8 +416,8 @@ void MusicDownloadWidget::startRequestMusic(const MusicObject::MusicSongInformat
             meta.setTrackNum(info.m_trackNumber);
             meta.setYear(info.m_year);
 
-            downSong->setSongMeta(meta);
-            downSong->startRequest();
+            d->setSongMeta(meta);
+            d->startRequest();
             break;
         }
     }
@@ -466,9 +466,9 @@ void MusicDownloadWidget::startRequestMovie(const MusicObject::MusicSongInformat
                 }
             }
 
-            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(prop.m_url, downloadName, MusicObject::Download::Video, this);
-            connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
-            download->startRequest();
+            MusicDownloadDataRequest *d = new MusicDownloadDataRequest(prop.m_url, downloadName, MusicObject::Download::Video, this);
+            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
+            d->startRequest();
         }
     }
 }

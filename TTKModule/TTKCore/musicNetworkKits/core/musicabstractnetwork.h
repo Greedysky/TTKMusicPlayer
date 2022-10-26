@@ -62,13 +62,13 @@ public:
 
 Q_SIGNALS:
     /*!
+     * Send download data changed.
+     */
+    void downLoadDataChanged(const QString &bytes);
+    /*!
      * Send download raw data changed.
      */
     void downLoadRawDataChanged(const QByteArray &bytes);
-    /*!
-     * Send download data from net.
-     */
-    void downLoadDataChanged(const QString &bytes);
 
 public Q_SLOTS:
     /*!

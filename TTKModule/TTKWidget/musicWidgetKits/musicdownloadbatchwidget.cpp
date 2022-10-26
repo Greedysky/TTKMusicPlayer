@@ -216,9 +216,9 @@ void MusicDownloadBatchTableItem::startRequestMusic()
         }
     }
 
-    MusicDownloadTagDataRequest *downSong = new MusicDownloadTagDataRequest(prop.m_url, downloadName, MusicObject::Download::Music, this);
-    downSong->setRecordType(MusicObject::Record::NormalDownload);
-    connect(downSong, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
+    MusicDownloadTagDataRequest *d = new MusicDownloadTagDataRequest(prop.m_url, downloadName, MusicObject::Download::Music, this);
+    d->setRecordType(MusicObject::Record::NormalDownload);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
 
     MusicSongMeta meta;
     meta.setComment(m_songInfo.m_coverUrl);
@@ -228,8 +228,8 @@ void MusicDownloadBatchTableItem::startRequestMusic()
     meta.setTrackNum(m_songInfo.m_trackNumber);
     meta.setYear(m_songInfo.m_year);
 
-    downSong->setSongMeta(meta);
-    downSong->startRequest();
+    d->setSongMeta(meta);
+    d->startRequest();
 }
 
 void MusicDownloadBatchTableItem::startRequestMovie()

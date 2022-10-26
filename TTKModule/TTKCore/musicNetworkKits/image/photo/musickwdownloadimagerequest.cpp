@@ -30,9 +30,9 @@ void MusicKWDownLoadCoverRequest::downLoadFinished()
         {
             if(MusicUtils::String::isNetworkUrl(bytes))
             {
-                MusicDownloadDataRequest *download = new MusicDownloadDataRequest(bytes, m_savePath, MusicObject::Download::Cover, this);
-                connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged()));
-                download->startRequest();
+                MusicDownloadDataRequest *d = new MusicDownloadDataRequest(bytes, m_savePath, MusicObject::Download::Cover, this);
+                connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged()));
+                d->startRequest();
             }
             else
             {
@@ -111,9 +111,9 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished()
                         }
 
                         lastUrl = url;
-                        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
-                        connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
-                        download->startRequest();
+                        MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
+                        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
+                        d->startRequest();
                     }
                 }
             }

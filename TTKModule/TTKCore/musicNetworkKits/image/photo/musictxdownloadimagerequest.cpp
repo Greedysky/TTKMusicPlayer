@@ -108,9 +108,9 @@ void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
         {
             if(m_counter < MAX_IMAGE_COUNTER)
             {
-                MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
-                connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
-                download->startRequest();
+                MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
+                connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
+                d->startRequest();
             }
         }
     }

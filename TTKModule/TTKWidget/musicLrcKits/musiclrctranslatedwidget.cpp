@@ -9,7 +9,7 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     setStyleSheet(QString("#MainWidnow{%1}").arg(MusicUIObject::MQSSBackgroundStyle14));
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
-    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->setContentsMargins(10, 0, 10, 0);
     mainLayout->setSpacing(0);
 
     QWidget *topWidget = new QWidget(this);
@@ -29,15 +29,14 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
 #ifdef Q_OS_UNIX
     closeButton->setFocusPolicy(Qt::NoFocus);
 #endif
+    connect(closeButton, SIGNAL(clicked()), SLOT(close()));
 
     topWidgetLayout->addWidget(closeButton);
     topWidget->setLayout(topWidgetLayout);
 
-    connect(closeButton, SIGNAL(clicked()), SLOT(close()));
-
     m_plainText = new QLabel(this);
     m_plainText->setWordWrap(true);
-    m_plainText->setAlignment(Qt::AlignCenter);
+//    m_plainText->setAlignment(Qt::AlignCenter);
 
     QScrollArea *scrollArea = new QScrollArea(this);
     MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, m_plainText, false);

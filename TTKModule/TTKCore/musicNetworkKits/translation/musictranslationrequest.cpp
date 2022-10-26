@@ -35,6 +35,7 @@ void MusicTranslationRequest::downLoadFinished(const QString &bytes)
 
 void MusicTranslationRequest::findAllPlugins()
 {
+    MusicAbstractTranslationRequest *d = nullptr;
     switch(++m_pluginIndex)
     {
         case 0:
@@ -46,26 +47,17 @@ void MusicTranslationRequest::findAllPlugins()
                 return;
             }
 
-            MusicAbstractTranslationRequest *d = new MusicWYTranslationRequest(this);
-            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
-            d->setHeader("name", this->header("name"));
-            d->startRequest(m_data);
+            d = new MusicWYTranslationRequest(this);
             break;
         }
         case 1:
         {
-            MusicAbstractTranslationRequest *d = new MusicYDTranslationRequest(this);
-            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
-            d->setHeader("name", this->header("name"));
-            d->startRequest(m_data);
+            d = new MusicYDTranslationRequest(this);
             break;
         }
         case 2:
         {
-            MusicAbstractTranslationRequest *d = new MusicBDTranslationRequest(this);
-            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
-            d->setHeader("name", this->header("name"));
-            d->startRequest(m_data);
+            d = new MusicBDTranslationRequest(this);
             break;
         }
         default:
@@ -73,5 +65,12 @@ void MusicTranslationRequest::findAllPlugins()
             deleteLater();
             break;
         }
+    }
+
+    if(d)
+    {
+        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+        d->setHeader("name", this->header("name"));
+        d->startRequest(m_data);
     }
 }

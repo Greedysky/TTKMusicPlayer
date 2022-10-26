@@ -306,9 +306,9 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         const QString &name = ART_DIR_FULL + m_songInfo.m_singerName + SKN_FILE;
         if(!QFile::exists(name))
         {
-            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(m_songInfo.m_coverUrl, name, MusicObject::Download::Cover, this);
-            connect(download, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            download->startRequest();
+            MusicDownloadDataRequest *d = new MusicDownloadDataRequest(m_songInfo.m_coverUrl, name, MusicObject::Download::Cover, this);
+            connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            d->startRequest();
             loop.exec();
         }
         iconLabel->setPixmap(QPixmap(name).scaled(iconLabel->size()));

@@ -33,27 +33,22 @@ void MusicDownloadBackgroundRequest::downLoadFinished(const QString &bytes)
 
 void MusicDownloadBackgroundRequest::findAllPlugins()
 {
+    MusicAbstractDownloadImageRequest *d = nullptr;
     switch(++m_pluginIndex)
     {
         case 0:
         {
-            MusicAbstractDownloadImageRequest *d = new MusicKWDownloadBackgroundRequest(m_name, m_path, this);
-            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
-            d->startRequest();
+            d = new MusicKWDownloadBackgroundRequest(m_name, m_path, this);
             break;
         }
         case 1:
         {
-            MusicAbstractDownloadImageRequest *d = new MusicTXDownloadBackgroundRequest(m_name, m_path, this);
-            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
-            d->startRequest();
+            d = new MusicTXDownloadBackgroundRequest(m_name, m_path, this);
             break;
         }
         case 2:
         {
-            MusicAbstractDownloadImageRequest *d = new MusicBPDownloadBackgroundRequest(m_name, m_path, this);
-            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
-            d->startRequest();
+            d = new MusicBPDownloadBackgroundRequest(m_name, m_path, this);
             break;
         }
         default:
@@ -61,5 +56,11 @@ void MusicDownloadBackgroundRequest::findAllPlugins()
             deleteLater();
             break;
         }
+    }
+
+    if(d)
+    {
+        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+        d->startRequest();
     }
 }

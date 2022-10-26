@@ -186,9 +186,9 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     QString name = MusicUtils::String::lrcDirPrefix() + info.m_singerName + " - " + info.m_songName + LRC_FILE;
     if(!QFile::exists(name))
     {
-        MusicFMRadioDownLoadTextRequest* lrcDownload = new MusicFMRadioDownLoadTextRequest(info.m_lrcUrl, name, MusicObject::Download::Lrc, this);
-        connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));
-        lrcDownload->startRequest();
+        MusicFMRadioDownLoadTextRequest* d = new MusicFMRadioDownLoadTextRequest(info.m_lrcUrl, name, MusicObject::Download::Lrc, this);
+        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));
+        d->startRequest();
     }
     else
     {
@@ -198,9 +198,9 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     name = ART_DIR_FULL + info.m_singerName + SKN_FILE;
     if(!QFile::exists(name))
     {
-        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(info.m_coverUrl, name, MusicObject::Download::Cover, this);
-        connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
-        download->startRequest();
+        MusicDownloadDataRequest *d = new MusicDownloadDataRequest(info.m_coverUrl, name, MusicObject::Download::Cover, this);
+        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
+        d->startRequest();
     }
     else
     {
