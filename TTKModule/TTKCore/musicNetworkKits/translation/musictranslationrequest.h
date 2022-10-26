@@ -21,7 +21,7 @@
 
 #include "musicabstractnetwork.h"
 
-/*! @brief The class of translation words request.
+/*! @brief The class of translation words manager request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicTranslationRequest : public MusicAbstractNetwork
@@ -32,13 +32,28 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicTranslationRequest(QObject *parent = nullptr);
+    explicit MusicTranslationRequest(const QString &data, QObject *parent = nullptr);
 
     /*!
      * Start to translation data.
-     * Subclass should implement this function.
      */
-    virtual void startRequest(const QString &data) = 0;
+    virtual void startRequest();
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    void downLoadFinished(const QString &bytes);
+
+private:
+    /*!
+     * Find all plugins.
+     */
+    void findAllPlugins();
+
+private:
+    QString m_data;
+    int m_pluginIndex;
 
 };
 

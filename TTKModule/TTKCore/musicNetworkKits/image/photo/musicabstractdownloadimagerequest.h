@@ -55,7 +55,7 @@ public Q_SLOTS:
 
 protected:
     int m_index, m_counter;
-    QString m_artName, m_savePath;
+    QString m_name, m_path;
 
 };
 

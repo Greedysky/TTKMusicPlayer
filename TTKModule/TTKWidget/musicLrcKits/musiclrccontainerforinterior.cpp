@@ -292,7 +292,7 @@ void MusicLrcContainerForInterior::lrcOpenFileDir() const
 void MusicLrcContainerForInterior::lrcCopyClipboard() const
 {
     QClipboard *clipBoard = QApplication::clipboard();
-    clipBoard->setText(m_lrcAnalysis->generateDataString());
+    clipBoard->setText(m_lrcAnalysis->dataString());
 }
 
 void MusicLrcContainerForInterior::showLocalLinkWidget()
@@ -330,7 +330,7 @@ void MusicLrcContainerForInterior::showSoundKMicroWidget()
 void MusicLrcContainerForInterior::showLrcPosterWidget()
 {
     MusicLrcPosterWidget poster(this);
-    poster.setCurrentLrcs(m_lrcAnalysis->generateDataList(), m_currentSongName);
+    poster.setCurrentLrcs(m_lrcAnalysis->dataList(), m_currentSongName);
     poster.exec();
 }
 
@@ -377,11 +377,10 @@ void MusicLrcContainerForInterior::updateAnimationLrc()
 
 void MusicLrcContainerForInterior::translatedLrcData()
 {
-    MusicTranslationRequest *request = G_DOWNLOAD_QUERY_PTR->makeTranslationRequest(this);
-    connect(request, SIGNAL(downLoadDataChanged(QString)), SLOT(queryTranslatedLrcFinished(QString)));
-
-    request->setHeader("name", m_lrcAnalysis->currentFilePath());
-    request->startRequest(m_lrcAnalysis->generateDataString());
+    MusicTranslationRequest *d = G_DOWNLOAD_QUERY_PTR->makeTranslationRequest(m_lrcAnalysis->dataString(), this);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryTranslatedLrcFinished(QString)));
+    d->setHeader("name", m_lrcAnalysis->currentFilePath());
+    d->startRequest();
 }
 
 void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)

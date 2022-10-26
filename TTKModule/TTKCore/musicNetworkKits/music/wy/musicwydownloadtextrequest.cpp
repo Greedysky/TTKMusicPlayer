@@ -43,7 +43,7 @@ void MusicWYDownLoadTextRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("code") && value["code"].toInt() == 200)
+            if(value["code"].toInt() == 200)
             {
                 value = value["lrc"].toMap();
                 if(!value.isEmpty())

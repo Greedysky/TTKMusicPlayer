@@ -153,7 +153,7 @@ void MusicWYQueryAlbumRequest::downLoadSingleFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("hotAlbums") && value["code"].toInt() == 200)
+            if(value["code"].toInt() == 200 && value.contains("hotAlbums"))
             {
                 const QVariantList &datas = value["hotAlbums"].toList();
                 for(const QVariant &var : qAsConst(datas))

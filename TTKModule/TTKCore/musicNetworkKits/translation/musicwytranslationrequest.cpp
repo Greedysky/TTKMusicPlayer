@@ -3,14 +3,14 @@
 #include "musicwyqueryrequest.h"
 
 MusicWYTranslationRequest::MusicWYTranslationRequest(QObject *parent)
-    : MusicTranslationRequest(parent)
+    : MusicAbstractTranslationRequest(parent)
 {
 
 }
 
 void MusicWYTranslationRequest::startRequest(const QString &data)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch").arg(className()));
+    TTK_INFO_STREAM(QString("%1 startRequest").arg(className()));
 
     Q_UNUSED(data);
     deleteAll();
@@ -40,7 +40,7 @@ void MusicWYTranslationRequest::startRequest(const QString &data)
 
 void MusicWYTranslationRequest::downLoadFinished()
 {
-    MusicTranslationRequest::downLoadFinished();
+    MusicAbstractTranslationRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
@@ -49,7 +49,7 @@ void MusicWYTranslationRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("code") && value["code"].toInt() == 200)
+            if(value["code"].toInt() == 200)
             {
                 value = value["tlyric"].toMap();
                 Q_EMIT downLoadDataChanged(value["lyric"].toString());

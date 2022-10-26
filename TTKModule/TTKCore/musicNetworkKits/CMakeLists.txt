@@ -5,13 +5,11 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractnetwork.h
     ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractdownloadrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/core/musicpagequeryrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadbackgroundmodule.h
     ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicabstractdownloadimagerequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadbackgroundrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicbpdownloadimagerequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/photo/musickwdownloadimagerequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/photo/musictxdownloadimagerequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadskinmodule.h
     ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicabstractdownloadskinrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadbingskinrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadbirdskinrequest.h
@@ -87,9 +85,11 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwsongsuggestrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryinterface.h
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerylearnrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/translation/musicabstracttranslationrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/translation/musictranslationrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/translation/musicbdtranslationrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/translation/musicwytranslationrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/translation/musicydtranslationrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/musicnetworkdefines.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.h
 )
@@ -178,8 +178,10 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwsongsuggestrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryinterface.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerylearnrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/translation/musicabstracttranslationrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/translation/musictranslationrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/translation/musicbdtranslationrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/translation/musicwytranslationrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/translation/musicydtranslationrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.cpp
 )

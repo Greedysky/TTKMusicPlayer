@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musictranslationrequest.h"
+#include "musicabstracttranslationrequest.h"
 
 /*! @brief The class of wangyi translation words request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWYTranslationRequest : public MusicTranslationRequest
+class TTK_MODULE_EXPORT MusicWYTranslationRequest : public MusicAbstractTranslationRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYTranslationRequest)

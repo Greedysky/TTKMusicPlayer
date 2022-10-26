@@ -57,7 +57,7 @@ void MusicWYSongCommentsRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value["code"].toLongLong() == 200)
+            if(value["code"].toInt() == 200)
             {
                 m_totalSize = value["total"].toLongLong();
                 const QVariantList &datas = value["comments"].toList();
@@ -134,7 +134,7 @@ void MusicWYPlaylistCommentsRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value["code"].toLongLong() == 200)
+            if(value["code"].toInt() == 200)
             {
                 m_totalSize = value["total"].toLongLong();
                 const QVariantList &datas = value["comments"].toList();

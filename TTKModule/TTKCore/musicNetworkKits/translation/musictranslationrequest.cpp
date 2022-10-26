@@ -1,7 +1,77 @@
 #include "musictranslationrequest.h"
+#include "musicsettingwidget.h"
+#include "musicabstractqueryrequest.h"
+#include "musicbdtranslationrequest.h"
+#include "musicwytranslationrequest.h"
+#include "musicydtranslationrequest.h"
 
-MusicTranslationRequest::MusicTranslationRequest(QObject *parent)
-    : MusicAbstractNetwork(parent)
+MusicTranslationRequest::MusicTranslationRequest(const QString &data, QObject *parent)
+    : MusicAbstractNetwork(parent),
+      m_data(data),
+      m_pluginIndex(-1)
 {
 
+}
+
+void MusicTranslationRequest::startRequest()
+{
+    m_pluginIndex = -1;
+    findAllPlugins();
+}
+
+void MusicTranslationRequest::downLoadFinished(const QString &bytes)
+{
+    if(bytes.isEmpty())
+    {
+        findAllPlugins();
+    }
+    else
+    {
+        emit downLoadDataChanged(bytes);
+        deleteLater();
+        return;
+    }
+}
+
+void MusicTranslationRequest::findAllPlugins()
+{
+    switch(++m_pluginIndex)
+    {
+        case 0:
+        {
+            const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
+            if(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index) != MusicAbstractQueryRequest::QueryServer::WY)
+            {
+                downLoadFinished(QString());
+                return;
+            }
+
+            MusicAbstractTranslationRequest *d = new MusicWYTranslationRequest(this);
+            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+            d->setHeader("name", this->header("name"));
+            d->startRequest(m_data);
+            break;
+        }
+        case 1:
+        {
+            MusicAbstractTranslationRequest *d = new MusicYDTranslationRequest(this);
+            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+            d->setHeader("name", this->header("name"));
+            d->startRequest(m_data);
+            break;
+        }
+        case 2:
+        {
+            MusicAbstractTranslationRequest *d = new MusicBDTranslationRequest(this);
+            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+            d->setHeader("name", this->header("name"));
+            d->startRequest(m_data);
+            break;
+        }
+        default:
+        {
+            deleteLater();
+            break;
+        }
+    }
 }

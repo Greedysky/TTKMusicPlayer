@@ -66,7 +66,7 @@ void MusicWYQueryMovieRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("code") && value["code"].toInt() == 200)
+            if(value["code"].toInt() == 200)
             {
                 value = value["result"].toMap();
                 m_totalSize = value["videoCount"].toInt();
@@ -193,7 +193,7 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
     if(ok)
     {
         QVariantMap value = data.toMap();
-        if(value.contains("code") && value["code"].toInt() == 200)
+        if(value["code"].toInt() == 200)
         {
             value = value["data"].toMap();
             MusicObject::MusicSongInformation info;
@@ -262,7 +262,7 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
     if(ok)
     {
         QVariantMap value = data.toMap();
-        if(value.contains("code") && value["code"].toInt() == 200)
+        if(value["code"].toInt() == 200)
         {
             value = value["data"].toMap();
             MusicObject::MusicSongInformation info;
@@ -343,7 +343,7 @@ void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id
     if(ok)
     {
         QVariantMap value = data.toMap();
-        if(value.contains("code") && value["code"].toInt() == 200)
+        if(value["code"].toInt() == 200)
         {
             const QVariantList &datas = value["urls"].toList();
             for(const QVariant &var : qAsConst(datas))

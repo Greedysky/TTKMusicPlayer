@@ -25,9 +25,9 @@
 class MusicSongSuggestRequest;
 class MusicCommentsRequest;
 class MusicDiscoverListRequest;
-class MusicAbstractQueryRequest;
 class MusicTranslationRequest;
-class MusicAbstractDownloadImageRequest;
+class MusicAbstractQueryRequest;
+class MusicDownloadBackgroundRequest;
 
 /*! @brief The class of produce the download query class by type.
  * @author Greedysky <greedysky@163.com>
@@ -72,7 +72,6 @@ public:
      * Make similar song query request object by type.
      */
     MusicAbstractQueryRequest *makeSimilarSongRequest(QObject *parent);
-
     /*!
      * Make suggest request object by type.
      */
@@ -89,11 +88,11 @@ public:
      * Make discover list request object by type.
      */
     MusicDiscoverListRequest *makeDiscoverListRequest(QObject *parent);
+
     /*!
      * Make translation object by type.
      */
-    MusicTranslationRequest *makeTranslationRequest(QObject *parent);
-
+    MusicTranslationRequest *makeTranslationRequest(const QString &data, QObject *parent);
     /*!
      * Make download lrc object by type.
      */
@@ -105,7 +104,7 @@ public:
     /*!
      * Make download art background object by type.
      */
-    MusicAbstractDownloadImageRequest *makeBackgroundRequest(const QString &name, const QString &path, QObject *parent);
+    MusicDownloadBackgroundRequest *makeBackgroundRequest(const QString &name, const QString &path, QObject *parent);
 
 private:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)

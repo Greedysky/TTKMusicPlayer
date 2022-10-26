@@ -518,17 +518,17 @@ qint64 MusicLrcAnalysis::findTime(const QStringList &ts) const
     return -1;
 }
 
-QString MusicLrcAnalysis::generateDataString() const
+QString MusicLrcAnalysis::dataString() const
 {
-    QString clipString;
+    QString v;
     for(const QString &s : m_lrcContainer.values())
     {
-        clipString.append(s + "\n");
+        v.append(s + "\n");
     }
-    return clipString;
+    return v;
 }
 
-QStringList MusicLrcAnalysis::generateDataList() const
+QStringList MusicLrcAnalysis::dataList() const
 {
     return m_lrcContainer.values();
 }

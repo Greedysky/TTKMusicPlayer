@@ -23,30 +23,30 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
         return false;
     }
 
-    QRegExp fileRegExp("^File(\\d+)=(.+)");
-    QRegExp lengthRegExp("^Length(\\d+)=(-{0,1}\\d+)");
+    QRegExp regx1("^File(\\d+)=(.+)");
+    QRegExp regx2("^Length(\\d+)=(-{0,1}\\d+)");
 
     int number = 0;
     bool error = false;
 
     for(const QString &line : qAsConst(data))
     {
-        if(fileRegExp.indexIn(line) > -1)
+        if(regx1.indexIn(line) > -1)
         {
-            if((number = fileRegExp.cap(1).toInt()) > 0)
+            if((number = regx1.cap(1).toInt()) > 0)
             {
-                item.m_songs << MusicSong(fileRegExp.cap(2));
+                item.m_songs << MusicSong(regx1.cap(2));
             }
             else
             {
                 error = true;
             }
         }
-        else if(lengthRegExp.indexIn(line) > -1)
+        else if(regx2.indexIn(line) > -1)
         {
-            if((number = lengthRegExp.cap(1).toInt()) > 0)
+            if((number = regx2.cap(1).toInt()) > 0)
             {
-                item.m_songs.back().setPlayTime(MusicTime::msecTime2LabelJustified(lengthRegExp.cap(2).toInt() * 1000));
+                item.m_songs.back().setPlayTime(MusicTime::msecTime2LabelJustified(regx2.cap(2).toInt() * 1000));
             }
             else
             {

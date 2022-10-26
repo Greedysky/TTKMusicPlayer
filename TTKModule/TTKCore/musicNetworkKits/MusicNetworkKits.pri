@@ -37,13 +37,11 @@ HEADERS += \
     $$PWD/core/musicabstractnetwork.h \
     $$PWD/core/musicabstractdownloadrequest.h \
     $$PWD/core/musicpagequeryrequest.h \
-    $$PWD/image/photo/musicdownloadbackgroundmodule.h \
     $$PWD/image/photo/musicabstractdownloadimagerequest.h \
     $$PWD/image/photo/musicdownloadbackgroundrequest.h \
     $$PWD/image/photo/musicbpdownloadimagerequest.h \
     $$PWD/image/photo/musickwdownloadimagerequest.h \
     $$PWD/image/photo/musictxdownloadimagerequest.h \
-    $$PWD/image/skin/musicdownloadskinmodule.h \
     $$PWD/image/skin/musicabstractdownloadskinrequest.h \
     $$PWD/image/skin/musicdownloadbingskinrequest.h \
     $$PWD/image/skin/musicdownloadbirdskinrequest.h \
@@ -119,9 +117,11 @@ HEADERS += \
     $$PWD/music/kw/musickwsongsuggestrequest.h \
     $$PWD/music/bd/musicbdqueryinterface.h \
     $$PWD/music/bd/musicbdquerylearnrequest.h \
+    $$PWD/translation/musicabstracttranslationrequest.h \
     $$PWD/translation/musictranslationrequest.h \
     $$PWD/translation/musicbdtranslationrequest.h \
     $$PWD/translation/musicwytranslationrequest.h \
+    $$PWD/translation/musicydtranslationrequest.h \
     $$PWD/musicnetworkdefines.h \
     $$PWD/musicdownloadqueryfactory.h
 
@@ -209,7 +209,9 @@ SOURCES += \
     $$PWD/music/kw/musickwsongsuggestrequest.cpp \
     $$PWD/music/bd/musicbdqueryinterface.cpp \
     $$PWD/music/bd/musicbdquerylearnrequest.cpp \
+    $$PWD/translation/musicabstracttranslationrequest.cpp \
     $$PWD/translation/musictranslationrequest.cpp \
     $$PWD/translation/musicbdtranslationrequest.cpp \
     $$PWD/translation/musicwytranslationrequest.cpp \
+    $$PWD/translation/musicydtranslationrequest.cpp \
     $$PWD/musicdownloadqueryfactory.cpp

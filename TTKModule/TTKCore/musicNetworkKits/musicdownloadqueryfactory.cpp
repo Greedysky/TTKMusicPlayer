@@ -43,8 +43,7 @@
 #include "musickgsongsuggestrequest.h"
 #include "musickwsongsuggestrequest.h"
 //
-#include "musicbdtranslationrequest.h"
-#include "musicwytranslationrequest.h"
+#include "musictranslationrequest.h"
 //
 #include "musicdownloaddatarequest.h"
 //
@@ -227,16 +226,9 @@ MusicDiscoverListRequest *MusicDownLoadQueryFactory::makeDiscoverListRequest(QOb
     return request;
 }
 
-MusicTranslationRequest *MusicDownLoadQueryFactory::makeTranslationRequest(QObject *parent)
+MusicTranslationRequest *MusicDownLoadQueryFactory::makeTranslationRequest(const QString &data, QObject *parent)
 {
-    MusicTranslationRequest *request = nullptr;
-    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
-    {
-        case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYTranslationRequest(parent); break;
-        default: request = new MusicBDTranslationRequest(parent);
-    }
-    return request;
+    return (new MusicTranslationRequest(data, parent));
 }
 
 MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeLrcRequest(const QString &url, const QString &path, QObject *parent)
@@ -265,7 +257,7 @@ MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeCoverRequest(const 
     return (new MusicDownloadDataRequest(url, path, MusicObject::Download::Cover, parent));
 }
 
-MusicAbstractDownloadImageRequest *MusicDownLoadQueryFactory::makeBackgroundRequest(const QString &name, const QString &path, QObject *parent)
+MusicDownloadBackgroundRequest *MusicDownLoadQueryFactory::makeBackgroundRequest(const QString &name, const QString &path, QObject *parent)
 {
     return (new MusicDownloadBackgroundRequest(name, path, parent));
 }

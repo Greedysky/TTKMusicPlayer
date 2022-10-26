@@ -65,7 +65,7 @@ void MusicWYQueryRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("code") && value["code"].toInt() == 200)
+            if(value["code"].toInt() == 200)
             {
                 value = value["result"].toMap();
                 m_totalSize = value["songCount"].toInt();
@@ -152,7 +152,7 @@ void MusicWYQueryRequest::downLoadSingleFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("songs") && value["code"].toInt() == 200)
+            if(value["code"].toInt() == 200 && value.contains("songs"))
             {
                 const QVariantList &datas = value["songs"].toList();
                 for(const QVariant &var : qAsConst(datas))

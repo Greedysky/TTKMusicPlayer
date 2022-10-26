@@ -36,7 +36,7 @@ void MusicWYDiscoverListRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("playlist") && value["code"].toInt() == 200)
+            if(value["code"].toInt() == 200 && value.contains("playlist"))
             {
                 value = value["playlist"].toMap();
                 const QVariantList &datas = value["tracks"].toList();

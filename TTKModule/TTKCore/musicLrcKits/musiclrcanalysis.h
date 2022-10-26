@@ -109,11 +109,11 @@ public:
     /*!
      * Set current middle index.
      */
-    void setCurrentIndex(int index) { m_currentLrcIndex = index; }
+    inline void setCurrentIndex(int index) { m_currentLrcIndex = index; }
     /*!
      * Get current middle index.
      */
-    int currentIndex() const { return m_currentLrcIndex; }
+    inline int currentIndex() const { return m_currentLrcIndex; }
     /*!
      * Set current file path.
      */
@@ -158,13 +158,13 @@ public:
     qint64 findTime(const QStringList &ts) const;
 
     /*!
-     * Get all lrcs from container.
+     * Get all lrc from container.
      */
-    QString generateDataString() const;
+    QString dataString() const;
     /*!
-     * Get all lrcs from container.
+     * Get all lrc from container.
      */
-    QStringList generateDataList() const;
+    QStringList dataList() const;
 
 private:
     /*!

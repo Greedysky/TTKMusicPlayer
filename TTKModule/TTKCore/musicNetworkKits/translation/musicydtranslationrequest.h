@@ -1,5 +1,5 @@
-#ifndef MUSICBDTRANSLATIONREQUEST_H
-#define MUSICBDTRANSLATIONREQUEST_H
+#ifndef MUSICYDTRANSLATIONREQUEST_H
+#define MUSICYDTRANSLATIONREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -21,13 +21,13 @@
 
 #include "musicabstracttranslationrequest.h"
 
-/*! @brief The class of baidu translation words request.
+/*! @brief The class of yandex translation words request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicBDTranslationRequest : public MusicAbstractTranslationRequest
+class TTK_MODULE_EXPORT MusicYDTranslationRequest : public MusicAbstractTranslationRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBDTranslationRequest)
+    TTK_DECLARE_MODULE(MusicYDTranslationRequest)
 public:
     enum class Language
     {
@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBDTranslationRequest(QObject *parent = nullptr);
+    explicit MusicYDTranslationRequest(QObject *parent = nullptr);
 
     /*!
      * Start to translation data.
@@ -59,4 +59,4 @@ private:
 
 };
 
-#endif // MUSICBDTRANSLATIONREQUEST_H
+#endif // MUSICYDTRANSLATIONREQUEST_H

@@ -1,21 +1,31 @@
 #include "musicbdtranslationrequest.h"
 
-#define TRANSLATION_URL    "TXRkdVhlYnQzSEtZUmpJMVpDeHpaVG5DVzhId0NyVE42YXBPYkw2d25YeGJENDBONm9kSVZ2My95eHgvbVJSQjlDSE92clVkam85OG9uYjU="
+#define TRANSLATION_URL    "a1ZQMG5kY2dUenpHSGhQUXV6cldhK1A1bkl2c2ROdFJLMTVteTJxeFUzSnlSQXpmRFc0MS9JdlhSMUF0SE1HR2ZYZWcxOXZDalU0SC8rVG8="
 
 MusicBDTranslationRequest::MusicBDTranslationRequest(QObject *parent)
-    : MusicTranslationRequest(parent)
+    : MusicAbstractTranslationRequest(parent)
 {
 
 }
 
 void MusicBDTranslationRequest::startRequest(const QString &data)
 {
-    startRequest(Language::Auto, Language::Zh, data);
+    TTK_INFO_STREAM(QString("%1 startRequest").arg(className()));
+
+    deleteAll();
+
+    QNetworkRequest request;
+    request.setUrl(MusicUtils::Algorithm::mdII(TRANSLATION_URL, false).arg(mapToString(Language::Auto), mapToString(Language::Chinese), data));
+    MusicObject::setSslConfiguration(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
 void MusicBDTranslationRequest::downLoadFinished()
 {
-    MusicTranslationRequest::downLoadFinished();
+    MusicAbstractTranslationRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
@@ -59,42 +69,12 @@ void MusicBDTranslationRequest::downLoadFinished()
     deleteAll();
 }
 
-QString MusicBDTranslationRequest::mapTypeFromEnumToString(Language type) const
+QString MusicBDTranslationRequest::mapToString(Language type) const
 {
     switch(type)
     {
         case Language::Auto: return "auto";
-        case Language::Ara: return "ara";
-        case Language::De: return "de";
-        case Language::Ru: return "ru";
-        case Language::Fra: return "fra";
-        case Language::Kor: return "kor";
-        case Language::Nl: return "nl";
-        case Language::Pt: return "pt";
-        case Language::Jp: return "jp";
-        case Language::Th: return "th";
-        case Language::Wyw: return "wyw";
-        case Language::Spa: return "spa";
-        case Language::El: return "el";
-        case Language::It: return "it";
-        case Language::En: return "en";
-        case Language::Yue: return "yue";
-        case Language::Zh: return "zh";
+        case Language::Chinese: return "zh";
         default: return QString();
     }
-}
-
-void MusicBDTranslationRequest::startRequest(Language from, Language to, const QString &data)
-{
-    TTK_INFO_STREAM(QString("%1 startToSearch").arg(className()));
-
-    deleteAll();
-
-    QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(TRANSLATION_URL, false).arg(mapTypeFromEnumToString(from), data, mapTypeFromEnumToString(to)));
-    MusicObject::setSslConfiguration(&request);
-
-    m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
 }

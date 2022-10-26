@@ -73,7 +73,7 @@ void MusicKWDownloadBackgroundRequest::startRequest()
     MusicAbstractNetwork::deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(m_artName));
+    request.setUrl(MusicUtils::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(m_name));
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager.get(request);
@@ -111,7 +111,7 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished()
                         }
 
                         lastUrl = url;
-                        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
+                        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
                         connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
                         download->startRequest();
                     }

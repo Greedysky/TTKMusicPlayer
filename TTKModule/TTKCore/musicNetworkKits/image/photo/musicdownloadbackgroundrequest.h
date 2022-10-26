@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractdownloadimagerequest.h"
+#include "musicabstractnetwork.h"
 
-/*! @brief The class of download art photo image.
+/*! @brief The class of download art background image manager request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadBackgroundRequest : public MusicAbstractDownloadImageRequest
+class TTK_MODULE_EXPORT MusicDownloadBackgroundRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadBackgroundRequest)
@@ -37,7 +37,7 @@ public:
     /*!
      * Start to download data from net.
      */
-    virtual void startRequest() override final;
+    virtual void startRequest();
 
 public Q_SLOTS:
     /*!
@@ -47,12 +47,13 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Find image plugin.
+     * Find all plugins.
      */
-    void findImagePlugin();
+    void findAllPlugins();
 
 private:
     int m_pluginIndex;
+    QString m_name, m_path;
 
 };
 

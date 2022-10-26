@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADBACKGROUNDMODULE_H
-#define MUSICDOWNLOADBACKGROUNDMODULE_H
+#ifndef MUSICABSTRACTTRANSLATIONREQUEST_H
+#define MUSICABSTRACTTRANSLATIONREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,8 +19,27 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicbpdownloadimagerequest.h"
-#include "musickwdownloadimagerequest.h"
-#include "musictxdownloadimagerequest.h"
+#include "musicabstractnetwork.h"
 
-#endif // MUSICDOWNLOADBACKGROUNDMODULE_H
+/*! @brief The class of translation words request.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicAbstractTranslationRequest : public MusicAbstractNetwork
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicAbstractTranslationRequest)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicAbstractTranslationRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to translation data.
+     * Subclass should implement this function.
+     */
+    virtual void startRequest(const QString &data) = 0;
+
+};
+
+#endif // MUSICABSTRACTTRANSLATIONREQUEST_H
