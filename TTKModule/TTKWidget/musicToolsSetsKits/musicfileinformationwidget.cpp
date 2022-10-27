@@ -73,7 +73,7 @@ void MusicFileInformationWidget::openFileDir()
 
 void MusicFileInformationWidget::openImageFileDir()
 {
-    m_imagePath = MusicUtils::File::openFileDialog(this);
+    m_imagePath = MusicUtils::File::getOpenFileName(this);
     if(m_imagePath.isEmpty())
     {
         return;
@@ -151,7 +151,7 @@ void MusicFileInformationWidget::saveAlbumPicture()
 
     if(!pix.isNull())
     {
-        const QString &path = MusicUtils::File::saveFileDialog(this);
+        const QString &path = MusicUtils::File::getSaveFileName(this);
         if(!path.isEmpty())
         {
             pix.save(path);

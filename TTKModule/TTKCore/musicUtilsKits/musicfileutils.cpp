@@ -101,10 +101,10 @@ bool MusicUtils::File::removeRecursively(const QString &dir, bool self)
     return success;
 }
 
-QString MusicUtils::File::openDirectoryDialog(QWidget *obj)
+QString MusicUtils::File::getExistingDirectory(QWidget *parent)
 {
     QString path = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();
-    path = QFileDialog::getExistingDirectory(obj, QObject::tr("Choose a dir to open under"), path);
+    path = QFileDialog::getExistingDirectory(parent, QObject::tr("Choose a dir to open under"), path);
     if(!path.isEmpty())
     {
         path += TTK_SEPARATOR;
@@ -113,10 +113,10 @@ QString MusicUtils::File::openDirectoryDialog(QWidget *obj)
     return path;
 }
 
-QString MusicUtils::File::openFileDialog(QWidget *obj, const QString &filter)
+QString MusicUtils::File::getOpenFileName(QWidget *parent, const QString &filter)
 {
     QString path = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();
-    path = QFileDialog::getOpenFileName(obj, QObject::tr("Choose a filename to open under"), path, filter);
+    path = QFileDialog::getOpenFileName(parent, QObject::tr("Choose a filename to open under"), path, filter);
     if(!path.isEmpty())
     {
         G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, path);
@@ -124,10 +124,10 @@ QString MusicUtils::File::openFileDialog(QWidget *obj, const QString &filter)
     return path;
 }
 
-QStringList MusicUtils::File::openFilesDialog(QWidget *obj, const QString &filter)
+QStringList MusicUtils::File::getOpenFileNames(QWidget *parent, const QString &filter)
 {
     QString path = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();
-    const QStringList &files = QFileDialog::getOpenFileNames(obj, QObject::tr("Choose a filename to open under"), path, filter);
+    const QStringList &files = QFileDialog::getOpenFileNames(parent, QObject::tr("Choose a filename to open under"), path, filter);
     if(!files.isEmpty())
     {
         const QString &v = files.front();
@@ -139,21 +139,23 @@ QStringList MusicUtils::File::openFilesDialog(QWidget *obj, const QString &filte
     return files;
 }
 
-QString MusicUtils::File::saveFileDialog(QWidget *obj, const QString &filter)
+QString MusicUtils::File::getSaveFileName(QWidget *parent, const QString &filter)
 {
     const QString &title = QObject::tr("Choose a filename to save under");
     QString path = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();
 #if defined Q_OS_WIN || defined Q_OS_MAC
-    path = QFileDialog::getSaveFileName(obj, title, path, filter);
+    path = QFileDialog::getSaveFileName(parent, title, path, filter);
     if(!path.isEmpty())
     {
         G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, path);
     }
     return path;
 #else
-    QFileDialog dialog(obj, title, path, filter);
+    path = QFileInfo(path).absolutePath();
+
+    QFileDialog dialog(parent, title, path, filter);
     dialog.setAcceptMode(QFileDialog::AcceptSave);
-    if(obj)
+    if(parent)
     {
         dialog.setWindowModality(Qt::WindowModal);
     }
@@ -165,16 +167,23 @@ QString MusicUtils::File::saveFileDialog(QWidget *obj, const QString &filter)
 
     const QString &selectFilter = dialog.selectedNameFilter();
     const QStringList &filters = filter.split(";;");
+
     if(!filters.isEmpty())
     {
-        QRegExp regex("(?:^\\*\\.(?!.*\\()|\\(\\*\\.)(\\w+)");
-        if(regex.indexIn(selectFilter) != -1)
+        QRegExp regx("(?:^\\*\\.(?!.*\\()|\\(\\*\\.)(\\w+)");
+        if(regx.indexIn(selectFilter) != -1)
         {
-            dialog.setDefaultSuffix(regex.cap(1));
+            dialog.setDefaultSuffix(regx.cap(1));
         }
     }
 
-    const QString &v = dialog.selectedFiles().front();
+    const QStringList &files = dialog.selectedFiles();
+    if(files.isEmpty())
+    {
+        return QString();
+    }
+
+    const QString &v = files.front();
     if(!v.isEmpty())
     {
         G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, v);

@@ -42,21 +42,21 @@ namespace MusicUtils
         TTK_MODULE_EXPORT bool removeRecursively(const QString &dir, bool self = true);
 
         /*!
-         * Get open dir dialog.
+         * Get open existing directory dialog.
          */
-        TTK_MODULE_EXPORT QString openDirectoryDialog(QWidget *obj);
+        TTK_MODULE_EXPORT QString getExistingDirectory(QWidget *parent);
         /*!
-         * Get open file dialog.
+         * Get open file name dialog.
          */
-        TTK_MODULE_EXPORT QString openFileDialog(QWidget *obj, const QString &filter = "Images (*.png *.bmp *.jpg)");
+        TTK_MODULE_EXPORT QString getOpenFileName(QWidget *parent, const QString &filter = "Images (*.png *.bmp *.jpg)");
         /*!
-         * Get open files dialog.
+         * Get open file names dialog.
          */
-        TTK_MODULE_EXPORT QStringList openFilesDialog(QWidget *obj, const QString &filter = "Images (*.png *.bmp *.jpg)");
+        TTK_MODULE_EXPORT QStringList getOpenFileNames(QWidget *parent, const QString &filter = "Images (*.png *.bmp *.jpg)");
         /*!
-         * Get save file dialog.
+         * Get save file name dialog.
          */
-        TTK_MODULE_EXPORT QString saveFileDialog(QWidget *obj, const QString &filter = "Images (*.png *.bmp *.jpg)");
+        TTK_MODULE_EXPORT QString getSaveFileName(QWidget *parent, const QString &filter = "Images (*.png *.bmp *.jpg)");
 
     }
 }

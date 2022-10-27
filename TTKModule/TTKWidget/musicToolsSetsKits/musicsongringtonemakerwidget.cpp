@@ -78,7 +78,7 @@ void MusicSongRingtoneMaker::initInputPath()
     }
     filter = filter.trimmed() + ")";
 
-    const QString &path = MusicUtils::File::openFileDialog(this, filter);
+    const QString &path = MusicUtils::File::getOpenFileName(this, filter);
     if(path.isEmpty())
     {
         return;
@@ -111,7 +111,7 @@ void MusicSongRingtoneMaker::initInputPath()
 void MusicSongRingtoneMaker::initOutputPath()
 {
     QString value = QString("Files (*.%1)").arg(m_ui->formatCombo->currentText().toLower());
-            value = MusicUtils::File::saveFileDialog(this, value);
+            value = MusicUtils::File::getSaveFileName(this, value);
     if(value.isEmpty())
     {
         return;

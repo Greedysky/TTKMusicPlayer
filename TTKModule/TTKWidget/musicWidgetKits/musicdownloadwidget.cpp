@@ -307,7 +307,7 @@ void MusicDownloadWidget::setMoveWidget(QWidget *w, int pos)
 
 void MusicDownloadWidget::downloadDirSelected()
 {
-    const QString &path = MusicUtils::File::openDirectoryDialog(nullptr);
+    const QString &path = MusicUtils::File::getExistingDirectory(nullptr);
     if(!path.isEmpty())
     {
         if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)

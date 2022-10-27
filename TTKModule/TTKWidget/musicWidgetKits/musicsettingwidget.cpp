@@ -350,7 +350,7 @@ void MusicSettingWidget::downloadGroupSpeedLimit(int index)
 
 void MusicSettingWidget::downloadDirSelected(int index)
 {
-    const QString &path = MusicUtils::File::openDirectoryDialog(this);
+    const QString &path = MusicUtils::File::getExistingDirectory(this);
     if(!path.isEmpty())
     {
         index == 0 ? m_ui->downloadDirEdit->setText(path) : m_ui->downloadLrcDirEdit->setText(path);

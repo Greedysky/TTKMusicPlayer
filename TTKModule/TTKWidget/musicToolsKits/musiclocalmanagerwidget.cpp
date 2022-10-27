@@ -468,7 +468,7 @@ void MusicLocalManagerWidget::refreshItems()
 
 void MusicLocalManagerWidget::updateMediaLibraryPath()
 {
-    const QString &path = MusicUtils::File::openDirectoryDialog(this);
+    const QString &path = MusicUtils::File::getExistingDirectory(this);
     if(!path.isEmpty())
     {
         G_SETTING_PTR->setValue(MusicSettingManager::MediaLibraryPath, path);

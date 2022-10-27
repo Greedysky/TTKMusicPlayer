@@ -56,7 +56,7 @@ void MusicLrcArtPhotoUploadWidget::deltaValueChanged(float v)
 
 void MusicLrcArtPhotoUploadWidget::selectButtonClicked()
 {
-    const QString &path = MusicUtils::File::openFileDialog(this);
+    const QString &path = MusicUtils::File::getOpenFileName(this);
     if(path.isEmpty())
     {
         return;

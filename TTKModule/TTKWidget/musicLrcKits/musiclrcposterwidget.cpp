@@ -1018,7 +1018,7 @@ void MusicLrcPosterWidget::setCurrentLrcs(const QStringList &lrcs, const QString
 
 void MusicLrcPosterWidget::openButtonClicked()
 {
-    const QString &path = MusicUtils::File::openFileDialog(this);
+    const QString &path = MusicUtils::File::getOpenFileName(this);
     if(path.isEmpty())
     {
         return;
@@ -1029,7 +1029,7 @@ void MusicLrcPosterWidget::openButtonClicked()
 
 void MusicLrcPosterWidget::saveButtonClicked()
 {
-    const QString &path = MusicUtils::File::saveFileDialog(this, "Jpeg(*.jpg)");
+    const QString &path = MusicUtils::File::getSaveFileName(this, "Jpeg(*.jpg)");
     if(!path.isEmpty())
     {
         QRect rect = m_itemWidget->rect();

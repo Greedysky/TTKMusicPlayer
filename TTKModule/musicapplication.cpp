@@ -496,13 +496,13 @@ void MusicApplication::musicImportSongs()
 
 void MusicApplication::musicImportSongsByFiles()
 {
-    const QStringList &files = MusicUtils::File::openFilesDialog(this, MusicFormats::supportMusicInputFormats());
+    const QStringList &files = MusicUtils::File::getOpenFileNames(this, MusicFormats::supportMusicInputFormats());
     m_songTreeWidget->importMusicSongsByPath(files);
 }
 
 void MusicApplication::musicImportSongsByDir()
 {
-    const QString &path = MusicUtils::File::openDirectoryDialog(this);
+    const QString &path = MusicUtils::File::getExistingDirectory(this);
     if(path.isEmpty())
     {
         return;
@@ -531,7 +531,7 @@ void MusicApplication::musicImportSongsByUrl()
 
 void MusicApplication::musicImportSongsItemList()
 {
-    const QStringList &files = MusicUtils::File::openFilesDialog(this, MusicFormats::supportPlaylistInputFormats());
+    const QStringList &files = MusicUtils::File::getOpenFileNames(this, MusicFormats::supportPlaylistInputFormats());
     if(files.isEmpty())
     {
         return;
@@ -545,7 +545,7 @@ void MusicApplication::musicImportSongsItemList()
 
 void MusicApplication::musicExportSongsItemList(int index)
 {
-    const QString &path = MusicUtils::File::saveFileDialog(this, MusicFormats::supportPlaylistOutputFormats());
+    const QString &path = MusicUtils::File::getSaveFileName(this, MusicFormats::supportPlaylistOutputFormats());
     if(path.isEmpty())
     {
         return;

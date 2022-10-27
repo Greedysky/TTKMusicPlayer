@@ -178,7 +178,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog(const QString &path)
 
 void MusicBackgroundSkinDialog::showCustomSkinDialog()
 {
-    const QString &path = MusicUtils::File::openFileDialog(this, "Images (*.png *.bmp *.jpg);;TKM Files(*.tkm)");
+    const QString &path = MusicUtils::File::getOpenFileName(this, "Images (*.png *.bmp *.jpg);;TKM Files(*.tkm)");
     if(path.isEmpty())
     {
         return;

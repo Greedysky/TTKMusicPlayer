@@ -275,13 +275,13 @@ void MusicCloudManagerTableWidget::cancelUploadFilesToServer()
 
 void MusicCloudManagerTableWidget::uploadFilesToServer()
 {
-    const QStringList &files = MusicUtils::File::openFilesDialog(this, MusicFormats::supportMusicInputFormats());
+    const QStringList &files = MusicUtils::File::getOpenFileNames(this, MusicFormats::supportMusicInputFormats());
     uploadFilesToServer(files);
 }
 
 void MusicCloudManagerTableWidget::uploadFileDirToServer()
 {
-    const QString &path = MusicUtils::File::openDirectoryDialog(this);
+    const QString &path = MusicUtils::File::getExistingDirectory(this);
     if(path.isEmpty())
     {
         return;

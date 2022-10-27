@@ -136,7 +136,7 @@ void MusicSpectrumWidget::localFileButtonClicked()
 
 void MusicSpectrumWidget::openFileButtonClicked()
 {
-    const QString &path = MusicUtils::File::openFileDialog(this, MusicFormats::supportSpekInputFormats());
+    const QString &path = MusicUtils::File::getOpenFileName(this, MusicFormats::supportSpekInputFormats());
     if(!path.isEmpty())
     {
         bool state = true;

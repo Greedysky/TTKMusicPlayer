@@ -95,7 +95,7 @@ void MusicTransformWidget::initInputPath()
         }
         filter = filter.trimmed() + ")";
 
-        path = MusicUtils::File::openFileDialog(this, filter);
+        path = MusicUtils::File::getOpenFileName(this, filter);
         if(path.isEmpty() || m_path.contains(path))
         {
             return;
@@ -107,7 +107,7 @@ void MusicTransformWidget::initInputPath()
     }
     else
     {
-        path = MusicUtils::File::openDirectoryDialog(this);
+        path = MusicUtils::File::getExistingDirectory(this);
         if(!path.isEmpty())
         {
             for(const QFileInfo &fin : MusicUtils::File::fileInfoListByPath(path))
@@ -130,7 +130,7 @@ void MusicTransformWidget::initInputPath()
 
 void MusicTransformWidget::initOutputPath()
 {
-    const QString &path = MusicUtils::File::openDirectoryDialog(this);
+    const QString &path = MusicUtils::File::getExistingDirectory(this);
     if(!path.isEmpty())
     {
         m_ui->outputLineEdit->setText(path);

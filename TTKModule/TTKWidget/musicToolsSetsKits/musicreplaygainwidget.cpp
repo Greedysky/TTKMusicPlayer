@@ -185,7 +185,7 @@ void MusicReplayGainWidget::setControlEnabled(bool enable)
 
 void MusicReplayGainWidget::addFileButtonClicked()
 {
-    const QStringList &files = MusicUtils::File::openFilesDialog(this, "All File(*.*);;MP3 File(*.mp3)");
+    const QStringList &files = MusicUtils::File::getOpenFileNames(this, "All File(*.*);;MP3 File(*.mp3)");
     if(!files.isEmpty())
     {
         setControlEnabled(false);
@@ -212,7 +212,7 @@ void MusicReplayGainWidget::addFileButtonClicked()
 
 void MusicReplayGainWidget::addFilesButtonClicked()
 {
-    const QString &path = MusicUtils::File::openDirectoryDialog(this);
+    const QString &path = MusicUtils::File::getExistingDirectory(this);
     if(!path.isEmpty())
     {
         setControlEnabled(false);

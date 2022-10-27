@@ -154,7 +154,7 @@ void MusicSoundKMicroWidget::playFinished()
 
         recordStateChanged(false);
 
-        const QString &path = MusicUtils::File::saveFileDialog(this, "Wav(*.wav)");
+        const QString &path = MusicUtils::File::getSaveFileName(this, "Wav(*.wav)");
         if(!path.isEmpty())
         {
             m_recordCore->addWavHeader(qPrintable(path));

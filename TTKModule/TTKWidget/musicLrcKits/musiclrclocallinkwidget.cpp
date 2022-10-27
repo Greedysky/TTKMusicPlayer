@@ -142,7 +142,7 @@ void MusicLrcLocalLinkWidget::fuzzyStateChanged()
 
 void MusicLrcLocalLinkWidget::findInLocalFile()
 {
-    const QString &path = MusicUtils::File::openFileDialog(this, "LRC (*.lrc)");
+    const QString &path = MusicUtils::File::getOpenFileName(this, "LRC (*.lrc)");
     if(path.isEmpty() || m_ui->searchedTable->contains(path))
     {
         return;
