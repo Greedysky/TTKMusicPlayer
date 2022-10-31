@@ -100,7 +100,7 @@ void MusicMPRISPlayerRoot::Raise()
 MusicMPRISPlayerCore::MusicMPRISPlayerCore(QObject *parent)
     : QDBusAbstractAdaptor(parent)
 {
-    TTKTime::initRandom();
+    TTKObject::initRandom();
 
     m_prevTrack = 0;
     m_prevPos = 0;
@@ -401,7 +401,7 @@ void MusicMPRISPlayerCore::updateTrackID()
 {
     if(m_prevTrack != m_application->m_playlist->currentIndex())
     {
-        m_trackID = QDBusObjectPath(QString("%1/Track/%2").arg("/org/qmmp/MediaPlayer2").arg(TTKTime::random()));
+        m_trackID = QDBusObjectPath(QString("%1/Track/%2").arg("/org/qmmp/MediaPlayer2").arg(TTKObject::random()));
         m_prevTrack = m_application->m_playlist->currentIndex();
     }
 }

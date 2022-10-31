@@ -78,11 +78,11 @@ public:
     /*!
      * Set current greedy mode.
      */
-    inline void setGreedy(bool mode) { m_greedyMode = mode; }
+    inline void setGreedyMode(bool mode) { m_greedyMode = mode; }
     /*!
      * Get current greedy mode.
      */
-    inline bool greedy() const { return m_greedyMode; }
+    inline bool greedyMode() const { return m_greedyMode; }
 
     /*!
      * Set current day.
@@ -152,25 +152,16 @@ public:
 //    AP or A	use AM/PM display. A/AP will be replaced by either "AM" or "PM".
 //    ap or a	use am/pm display. a/ap will be replaced by either "am" or "pm".
 //    t	the timezone (for example "CEST")
-    //
+
     /*!
      * Get all time value by type.
      */
     qint64 timestamp(Entity type) const;
-    //
     /*!
      * Transform ms time from utc since epoch.
      */
     static qint64 timestamp(bool ms = true);
-    /*!
-     * Init random value seed.
-     */
-    static void initRandom();
-    /*!
-     * Get random value.
-     */
-    static int random(int value = RAND_MAX);
-    //
+
     /*!
      * Transform string format(mm:ss) to msec time.
      */
@@ -245,5 +236,18 @@ private:
     int m_min, m_sec, m_msec;
 
 };
+
+namespace TTKObject
+{
+    /*!
+     * Init random value seed.
+     */
+    TTK_MODULE_EXPORT void initRandom();
+    /*!
+     * Get random value.
+     */
+    TTK_MODULE_EXPORT int random(int value = RAND_MAX);
+
+}
 
 #endif // TTKTIME_H

@@ -21,7 +21,7 @@
 
 #include "ttkglobaldefine.h"
 
-namespace MusicObject
+namespace TTKObject
 {
     /*!
      * Kill process by name.

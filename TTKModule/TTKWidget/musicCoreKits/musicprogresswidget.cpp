@@ -72,7 +72,7 @@ void MusicProgressWidget::paintEvent(QPaintEvent *event)
 {
     QDialog::paintEvent(event);
     QPainter painter(this);
-    MusicObject::setBorderShadow(this, &painter);
+    TTKObject::setBorderShadow(this, &painter);
 }
 
 void MusicProgressWidget::show()

@@ -26,7 +26,7 @@ void TTKAbstractMoveWidget::paintEvent(QPaintEvent *event)
     if(m_showShadow)
     {
         QPainter painter(this);
-        MusicObject::setBorderShadow(this, &painter);
+        TTKObject::setBorderShadow(this, &painter);
     }
 }
 

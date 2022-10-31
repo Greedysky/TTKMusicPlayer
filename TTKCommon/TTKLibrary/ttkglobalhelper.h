@@ -22,7 +22,7 @@
 #include <QPainter>
 #include "ttkglobaldefine.h"
 
-namespace MusicObject
+namespace TTKObject
 {
     /*!
      * Set widget border shadow.

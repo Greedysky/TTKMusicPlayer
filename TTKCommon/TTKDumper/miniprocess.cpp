@@ -77,7 +77,7 @@ static bool killProcess(LPCWSTR processName)
    return true;
 }
 
-void MusicObject::killProcessByName(const QString &process)
+void TTKObject::killProcessByName(const QString &process)
 {
     const QStringList list(processList());
     if(list.contains(process) && killProcess(process.toStdWString().c_str()))
@@ -86,7 +86,7 @@ void MusicObject::killProcessByName(const QString &process)
     }
 }
 
-void MusicObject::killProcessByName(const QStringList &processes)
+void TTKObject::killProcessByName(const QStringList &processes)
 {
     const QStringList list(processList());
     for(const QString &process : qAsConst(processes))
@@ -146,7 +146,7 @@ static bool killProcess(int pid)
     return true;
 }
 
-void MusicObject::killProcessByName(const QString &process)
+void TTKObject::killProcessByName(const QString &process)
 {
     const QList<PIDInfo> list(processList());
     for(const PIDInfo &info : qAsConst(list))
@@ -159,7 +159,7 @@ void MusicObject::killProcessByName(const QString &process)
     }
 }
 
-void MusicObject::killProcessByName(const QStringList &processes)
+void TTKObject::killProcessByName(const QStringList &processes)
 {
     const QList<PIDInfo> list(processList());
     for(const QString &process : qAsConst(processes))

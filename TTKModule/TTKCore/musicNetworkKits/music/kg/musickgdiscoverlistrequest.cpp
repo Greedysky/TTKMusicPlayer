@@ -41,7 +41,7 @@ void MusicKGDiscoverListRequest::downLoadFinished()
                 value = value["data"].toMap();
                 const QVariantList &datas = value["info"].toList();
                 int where = datas.count();
-                where = (where > 0) ? TTKTime::random(where) : 0;
+                where = (where > 0) ? TTKObject::random(where) : 0;
 
                 int counter = 0;
                 for(const QVariant &var : qAsConst(datas))

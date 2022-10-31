@@ -5,7 +5,7 @@
 #define WIDTH  4
 #define HEIGHT 4
 
-void MusicObject::setBorderShadow(QWidget *widget, QPainter *painter)
+void TTKObject::setBorderShadow(QWidget *widget, QPainter *painter)
 {
     painter->drawPixmap(0, 0, WIDTH, HEIGHT, QPixmap(":/shadow/lb_letop"));
     painter->drawPixmap(widget->width() - WIDTH, 0, WIDTH, HEIGHT, QPixmap(":/shadow/lb_right_top"));
