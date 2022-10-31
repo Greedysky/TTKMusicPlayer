@@ -21,7 +21,7 @@
 
 #include "musictoolmenuwidget.h"
 
-class MusicClickedSlider;
+class TTKClickedSlider;
 
 /*! @brief The class of the volume popup widget.
  * @author Greedysky <greedysky@163.com>
@@ -70,7 +70,7 @@ private:
     void initialize();
 
     bool m_menuShown;
-    MusicClickedSlider *m_volumeSlider;
+    TTKClickedSlider *m_volumeSlider;
 
 };
 

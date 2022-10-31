@@ -34,10 +34,6 @@ namespace MusicUtils
     namespace Widget
     {
         /*!
-         * Set widget border shadow.
-         */
-        TTK_MODULE_EXPORT void setBorderShadow(QWidget *widget, QPainter *painter);
-        /*!
          * Set widget label font.
          */
         TTK_MODULE_EXPORT void setLabelFontSize(QWidget *widget, int size);

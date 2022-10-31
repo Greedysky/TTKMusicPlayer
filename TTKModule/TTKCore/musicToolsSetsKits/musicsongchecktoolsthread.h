@@ -19,13 +19,13 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractthread.h"
+#include "ttkabstractthread.h"
 #include "musicsongchecktoolsunit.h"
 
 /*! @brief The class of the song check tools rename thread.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongCheckToolsRenameThread : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicSongCheckToolsRenameThread : public TTKAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongCheckToolsRenameThread)
@@ -76,7 +76,7 @@ private:
 /*! @brief The class of the song check tools duplicate thread.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongCheckToolsDuplicateThread : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicSongCheckToolsDuplicateThread : public TTKAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongCheckToolsDuplicateThread)
@@ -127,7 +127,7 @@ private:
 /*! @brief The class of the song check tools quality thread.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongCheckToolsQualityThread : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicSongCheckToolsQualityThread : public TTKAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongCheckToolsQualityThread)

@@ -6,6 +6,7 @@
 #include "musicimageutils.h"
 #include "musicwidgetutils.h"
 #include "ttkdesktopwrapper.h"
+#include "ttkglobalhelper.h"
 
 #include "qsync/qsyncutils.h"
 
@@ -97,7 +98,7 @@ void MusicScreenSaverHoverItem::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
-    MusicUtils::Widget::setBorderShadow(this, &painter);
+    MusicObject::setBorderShadow(this, &painter);
 
     const QPixmap &pixmap = QtLablePixmap(this);
     painter.drawPixmap(QRect(QPoint(4, 4), OS_ITEM_SIZE), pixmap.scaled(OS_ITEM_SIZE));
@@ -489,7 +490,7 @@ void MusicScreenSaverBackgroundWidget::backgroundTimeout()
 
     if(!intVector.isEmpty())
     {
-        const int index = intVector[MusicTime::random(intVector.count())];
+        const int index = intVector[TTKTime::random(intVector.count())];
         const QString &prefix = QString("%1%2/%3/").arg(CACHE_DIR_FULL, OS_SCREEN_DIR).arg(index);
         QPixmap background(prefix + OS_WALLPAPER_NAME);
         const QPixmap bar(prefix + OS_WALLBAR_NAME);

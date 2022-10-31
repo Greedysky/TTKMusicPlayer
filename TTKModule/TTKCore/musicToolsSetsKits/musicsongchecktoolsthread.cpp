@@ -2,7 +2,7 @@
 #include "musicsongmeta.h"
 
 MusicSongCheckToolsRenameThread::MusicSongCheckToolsRenameThread(QObject *parent)
-    : MusicAbstractThread(parent),
+    : TTKAbstractThread(parent),
       m_songItems(nullptr),
       m_operateMode(MusicObject::CheckMode::Check)
 {
@@ -16,7 +16,7 @@ void MusicSongCheckToolsRenameThread::setRenameSongs(MusicSongList *songs)
 
 void MusicSongCheckToolsRenameThread::run()
 {
-    MusicAbstractThread::run();
+    TTKAbstractThread::run();
 
     if(m_songItems && !m_songItems->isEmpty())
     {
@@ -65,7 +65,7 @@ void MusicSongCheckToolsRenameThread::run()
 
 
 MusicSongCheckToolsDuplicateThread::MusicSongCheckToolsDuplicateThread(QObject *parent)
-    : MusicAbstractThread(parent)
+    : TTKAbstractThread(parent)
 {
     m_songItems = nullptr;
 }
@@ -77,7 +77,7 @@ void MusicSongCheckToolsDuplicateThread::setDuplicateSongs(MusicSongList *songs)
 
 void MusicSongCheckToolsDuplicateThread::run()
 {
-    MusicAbstractThread::run();
+    TTKAbstractThread::run();
 
     if(m_songItems && !m_songItems->isEmpty())
     {
@@ -122,7 +122,7 @@ void MusicSongCheckToolsDuplicateThread::run()
 
 
 MusicSongCheckToolsQualityThread::MusicSongCheckToolsQualityThread(QObject *parent)
-    : MusicAbstractThread(parent)
+    : TTKAbstractThread(parent)
 {
     m_songItems = nullptr;
 }
@@ -134,7 +134,7 @@ void MusicSongCheckToolsQualityThread::setQualitySongs(MusicSongList *songs)
 
 void MusicSongCheckToolsQualityThread::run()
 {
-    MusicAbstractThread::run();
+    TTKAbstractThread::run();
 
     MusicSongCheckToolsQualityList items;
     if(m_songItems && !m_songItems->isEmpty())

@@ -1544,7 +1544,7 @@ font-weight:bold;</string>
       <string>透明度</string>
      </property>
     </widget>
-    <widget class="MusicClickedSlider" name="DtransparentSlider">
+    <widget class="TTKClickedSlider" name="DtransparentSlider">
      <property name="geometry">
       <rect>
        <x>75</x>
@@ -1811,7 +1811,7 @@ font-weight:bold;</string>
       <string>透明度</string>
      </property>
     </widget>
-    <widget class="MusicClickedSlider" name="transparentSlider">
+    <widget class="TTKClickedSlider" name="transparentSlider">
      <property name="geometry">
       <rect>
        <x>75</x>
@@ -2851,9 +2851,9 @@ font-weight:bold;</string>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicClickedSlider</class>
+   <class>TTKClickedSlider</class>
    <extends>QSlider</extends>
-   <header>musicclickedslider.h</header>
+   <header>ttkclickedslider.h</header>
   </customwidget>
   <customwidget>
    <class>MusicPreviewLabel</class>

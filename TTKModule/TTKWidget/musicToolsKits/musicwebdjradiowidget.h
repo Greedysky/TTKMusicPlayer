@@ -112,7 +112,7 @@ private:
 /*! @brief The class of music dj radio widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWebDJRadioWidget : public QStackedWidget, public MusicAbstractResizeInterface
+class TTK_MODULE_EXPORT MusicWebDJRadioWidget : public QStackedWidget, public TTKAbstractResizeInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebDJRadioWidget)

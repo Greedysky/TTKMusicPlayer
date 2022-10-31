@@ -22,7 +22,7 @@
 #include <QNetworkReply>
 #include <QSslConfiguration>
 
-#include "musictime.h"
+#include "ttktime.h"
 #include "musicsemaphoreloop.h"
 #include "musicnetworkthread.h"
 #include "musicnetworkdefines.h"

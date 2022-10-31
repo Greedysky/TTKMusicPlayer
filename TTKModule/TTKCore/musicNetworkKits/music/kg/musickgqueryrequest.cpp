@@ -81,7 +81,7 @@ void MusicKGQueryRequest::downLoadFinished()
                     MusicObject::MusicSongInformation info;
                     info.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
                     info.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
-                    info.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                    info.m_duration = TTKTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
                     info.m_songId = value["hash"].toString();
                     info.m_albumId = value["album_id"].toString();
@@ -145,7 +145,7 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                 info.m_songId = value["hash"].toString();
                 info.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
                 info.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
-                info.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                info.m_duration = TTKTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
                 info.m_artistId = QString::number(value["singerid"].toULongLong());
                 info.m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
                 info.m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)

@@ -20,7 +20,7 @@ TEMPLATE = lib
 
 include($$PWD/../../../TTKVersion.pri)
 
-DESTDIR = $$OUT_PWD/../../../bin/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../../../bin/$$TTKVersion
 TARGET = TTKZip
 
 CONFIG += warn_off plugin lib

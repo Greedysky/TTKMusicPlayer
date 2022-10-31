@@ -286,7 +286,7 @@
        <string/>
       </property>
      </widget>
-     <widget class="MusicClickedLabel" name="renameReCheckButton">
+     <widget class="TTKClickedLabel" name="renameReCheckButton">
       <property name="geometry">
        <rect>
         <x>560</x>
@@ -355,7 +355,7 @@
        <string>清除重复歌曲，减少硬盘空间占用。</string>
       </property>
      </widget>
-     <widget class="MusicClickedLabel" name="duplicateReCheckButton">
+     <widget class="TTKClickedLabel" name="duplicateReCheckButton">
       <property name="geometry">
        <rect>
         <x>560</x>
@@ -603,7 +603,7 @@
        <string>开始检查</string>
       </property>
      </widget>
-     <widget class="MusicClickedLabel" name="qualityReCheckButton">
+     <widget class="TTKClickedLabel" name="qualityReCheckButton">
       <property name="geometry">
        <rect>
         <x>560</x>
@@ -878,9 +878,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>MusicClickedLabel</class>
+   <class>TTKClickedLabel</class>
    <extends>QLabel</extends>
-   <header>musicclickedlabel.h</header>
+   <header>ttkclickedlabel.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

@@ -1,5 +1,5 @@
 #include "musictransitionanimationlabel.h"
-#include "musictime.h"
+#include "ttktime.h"
 #include "qalgorithm/imagewrapper.h"
 
 #include <QPainter>
@@ -14,7 +14,7 @@ MusicTransitionAnimationLabel::MusicTransitionAnimationLabel(QWidget *parent)
       m_cubeWave(nullptr),
       m_waterWave(nullptr)
 {
-    MusicTime::initRandom();
+    TTKTime::initRandom();
 
     m_animation = new QPropertyAnimation(this, QByteArray());
     m_animation->setDuration(200);
@@ -66,7 +66,7 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
     m_currentPixmap = pix;
     m_isAnimating = true;
 
-    m_type = TTKStatic_cast(Module, MusicTime::random(5));
+    m_type = TTKStatic_cast(Module, TTKTime::random(5));
     switch(m_type)
     {
         case Module::FadeEffect:

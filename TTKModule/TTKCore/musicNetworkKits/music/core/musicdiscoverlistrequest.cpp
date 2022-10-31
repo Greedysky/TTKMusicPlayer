@@ -3,5 +3,5 @@
 MusicDiscoverListRequest::MusicDiscoverListRequest(QObject *parent)
     : MusicPageQueryRequest(parent)
 {
-    MusicTime::initRandom();
+    TTKTime::initRandom();
 }

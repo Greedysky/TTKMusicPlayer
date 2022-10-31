@@ -186,7 +186,7 @@ private:
 /*! @brief The class of the cloud manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicCloudManagerWidget : public QWidget, public MusicAbstractResizeInterface
+class TTK_MODULE_EXPORT MusicCloudManagerWidget : public QWidget, public TTKAbstractResizeInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCloudManagerWidget)

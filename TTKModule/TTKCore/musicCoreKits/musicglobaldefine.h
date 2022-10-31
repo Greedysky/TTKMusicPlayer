@@ -20,8 +20,8 @@
  ***************************************************************************/
 
 #include "ttkglobaldefine.h"
+#include "ttknumberdefine.h"
 #include "musicobject.h"
 #include "musicotherdefine.h"
-#include "musicnumberdefine.h"
 
 #endif // MUSICGLOBALDEFINE_H

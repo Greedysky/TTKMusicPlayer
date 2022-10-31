@@ -93,12 +93,6 @@ MusicDownloadTableItemRole MusicDownloadTableWidget::currentItemRole() const
    return item(row, 0)->data(TABLE_ITEM_ROLE).value<MusicDownloadTableItemRole>();
 }
 
-void MusicDownloadTableWidget::itemCellClicked(int row, int column)
-{
-    Q_UNUSED(row);
-    Q_UNUSED(column);
-}
-
 void MusicDownloadTableWidget::removeItems()
 {
     qDeleteAll(m_items);

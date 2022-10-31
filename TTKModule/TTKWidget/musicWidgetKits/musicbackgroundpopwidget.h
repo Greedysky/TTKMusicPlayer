@@ -21,7 +21,7 @@
 
 #include "musictoolmenuwidget.h"
 
-class MusicClickedSlider;
+class TTKClickedSlider;
 
 /*! @brief The class of the background popup widget.
  * @author Greedysky <greedysky@163.com>
@@ -72,7 +72,7 @@ private:
      */
     void initialize();
 
-    MusicClickedSlider *m_slider;
+    TTKClickedSlider *m_slider;
 
 };
 

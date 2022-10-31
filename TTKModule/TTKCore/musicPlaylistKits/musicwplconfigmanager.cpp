@@ -2,7 +2,7 @@
 #include "ttkversion.h"
 
 MusicWPLConfigManager::MusicWPLConfigManager()
-    : MusicAbstractXml(nullptr)
+    : TTKAbstractXml(nullptr)
     , MusicPlaylistInterface()
 {
 
@@ -10,7 +10,7 @@ MusicWPLConfigManager::MusicWPLConfigManager()
 
 bool MusicWPLConfigManager::readBuffer(MusicSongItemList &items)
 {
-    MusicXmlNodeHelper helper(m_document->documentElement());
+    TTKXmlNodeHelper helper(m_document->documentElement());
     helper.load();
 
     const QDomNodeList &sepNodes = m_document->elementsByTagName(helper.nodeName("seq"));

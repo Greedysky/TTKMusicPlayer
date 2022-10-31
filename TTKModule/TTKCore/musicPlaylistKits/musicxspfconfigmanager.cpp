@@ -1,7 +1,7 @@
 #include "musicxspfconfigmanager.h"
 
 MusicXSPFConfigManager::MusicXSPFConfigManager()
-    : MusicAbstractXml(nullptr)
+    : TTKAbstractXml(nullptr)
     , MusicPlaylistInterface()
 {
 
@@ -9,7 +9,7 @@ MusicXSPFConfigManager::MusicXSPFConfigManager()
 
 bool MusicXSPFConfigManager::readBuffer(MusicSongItemList &items)
 {
-    MusicXmlNodeHelper helper(m_document->documentElement());
+    TTKXmlNodeHelper helper(m_document->documentElement());
     helper.load();
 
     const QDomNodeList &trackNodes = m_document->elementsByTagName(helper.nodeName("trackList"));

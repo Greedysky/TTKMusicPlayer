@@ -19,13 +19,13 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QDialog>
 #include "musicwidgetrenderer.h"
+#include "ttkabstractmovedialog.h"
 
 /*! @brief The class of the moving dialog base.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicAbstractMoveDialog : public QDialog, protected MusicWidgetRenderer
+class TTK_MODULE_EXPORT MusicAbstractMoveDialog : public TTKAbstractMoveDialog, protected MusicWidgetRenderer
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractMoveDialog)
@@ -40,15 +40,6 @@ public:
     explicit MusicAbstractMoveDialog(bool transparent, QWidget *parent = nullptr);
     ~MusicAbstractMoveDialog();
 
-    /*!
-     * Set or not draw window bound shadow.
-     */
-    inline void drawWindowShadow(bool show) { m_showShadow = show; }
-    /*!
-     * Set or not block widget moving.
-     */
-    inline void blockMoveOption(bool block) { m_moveOption = block; }
-
 public Q_SLOTS:
     /*!
      * Background image changed.
@@ -62,19 +53,6 @@ public Q_SLOTS:
      * Override show function.
      */
     void show();
-
-protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void paintEvent(QPaintEvent *event) override final;
-    virtual void mousePressEvent(QMouseEvent *event) override final;
-    virtual void mouseMoveEvent(QMouseEvent *event) override final;
-    virtual void mouseReleaseEvent(QMouseEvent *event) override final;
-
-    QPoint m_pressAt;
-    bool m_moveOption, m_showShadow;
-    bool m_leftButtonPress;
 
 };
 

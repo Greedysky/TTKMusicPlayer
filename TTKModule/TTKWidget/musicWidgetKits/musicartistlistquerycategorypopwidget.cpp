@@ -1,8 +1,8 @@
 #include "musicartistlistquerycategorypopwidget.h"
 #include "musicwidgetutils.h"
-#include "musicclickedlabel.h"
 #include "musicwidgetheaders.h"
-#include "musicclickedgroup.h"
+#include "ttkclickedgroup.h"
+#include "ttkclickedlabel.h"
 
 #define ITEM_MAX_COLUMN     2
 #define ITEM_LABEL_WIDTH    20
@@ -27,12 +27,12 @@ void MusicArtistListQueryCategoryItem::setCategory(const MusicResultsCategory &c
     QGridLayout *itemlayout = new QGridLayout(item);
     itemlayout->setContentsMargins(0, 0, 0, 0);
 
-    MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
+    TTKClickedGroup *clickedGroup = new TTKClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
     for(int i = 0; i < m_category.m_items.count(); ++i)
     {
-        MusicClickedLabel *l = new MusicClickedLabel(m_category.m_items[i].m_value, item);
+        TTKClickedLabel *l = new TTKClickedLabel(m_category.m_items[i].m_value, item);
         l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MQSSColorStyle08));
         l->setFixedSize(200, ITEM_LABEL_WIDTH);
 

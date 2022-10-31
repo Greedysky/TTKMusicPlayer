@@ -20,7 +20,8 @@
  ***************************************************************************/
 
 #include <QPixmap>
-#include "musicabstractxml.h"
+#include "ttkabstractxml.h"
+#include "musicglobaldefine.h"
 
 /*! @brief The class of the skin item.
  * @author Greedysky <greedysky@163.com>
@@ -62,7 +63,7 @@ struct TTK_MODULE_EXPORT MusicBackgroundImage
 /*! @brief The class of the skin XML config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSkinConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicSkinConfigManager : public TTKAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSkinConfigManager)

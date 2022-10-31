@@ -41,7 +41,7 @@ void MusicWYDiscoverListRequest::downLoadFinished()
                 value = value["playlist"].toMap();
                 const QVariantList &datas = value["tracks"].toList();
                 int where = datas.count();
-                where = (where > 0) ? MusicTime::random(where) : 0;
+                where = (where > 0) ? TTKTime::random(where) : 0;
 
                 int counter = 0;
                 for(const QVariant &var : qAsConst(datas))

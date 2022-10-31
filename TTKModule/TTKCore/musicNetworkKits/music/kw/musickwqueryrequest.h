@@ -19,14 +19,14 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractxml.h"
+#include "ttkabstractxml.h"
 #include "musickwqueryinterface.h"
 #include "musicabstractqueryrequest.h"
 
 /*! @brief The class of kuwo query music info xml data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicKWMusicInfoConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicKWMusicInfoConfigManager : public TTKAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWMusicInfoConfigManager)

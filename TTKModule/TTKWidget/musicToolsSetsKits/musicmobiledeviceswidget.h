@@ -19,14 +19,14 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicclickedlabel.h"
+#include "ttkclickedlabel.h"
 
 class QToolButton;
 
 /*! @brief The class of the mobile devices widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicMobileDevicesWidget : public MusicClickedLabel
+class TTK_MODULE_EXPORT MusicMobileDevicesWidget : public TTKClickedLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMobileDevicesWidget)

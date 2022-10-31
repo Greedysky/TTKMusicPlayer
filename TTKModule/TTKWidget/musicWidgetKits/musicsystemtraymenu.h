@@ -22,7 +22,7 @@
 #include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
 
-class MusicClickedSlider;
+class TTKClickedSlider;
 
 /*! @brief The class of the system tray menu widget.
  * @author Greedysky <greedysky@163.com>
@@ -81,7 +81,7 @@ private:
 
     QLabel *m_showText;
     QToolButton *m_playButton, *m_volumeButton;
-    MusicClickedSlider *m_volumeSlider;
+    TTKClickedSlider *m_volumeSlider;
     QAction *m_showLrcAction, *m_lockLrcAction;
 
 };

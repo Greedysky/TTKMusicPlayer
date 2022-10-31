@@ -1,13 +1,13 @@
 #include "musicnetworktestthread.h"
-#include "musictime.h"
+#include "ttktime.h"
 #include "musiccoreutils.h"
 
 #include <QHostInfo>
 
 MusicNetworkTestThread::MusicNetworkTestThread(QObject *parent)
-    : MusicAbstractThread(parent)
+    : TTKAbstractThread(parent)
 {
-    MusicTime::initRandom();
+    TTKTime::initRandom();
 }
 
 void MusicNetworkTestThread::setUrl(const QString &url)
@@ -17,10 +17,10 @@ void MusicNetworkTestThread::setUrl(const QString &url)
 
 void MusicNetworkTestThread::run()
 {
-    MusicAbstractThread::run();
+    TTKAbstractThread::run();
 
     const QHostInfo &info = QHostInfo::fromName(m_currentUrl);
-    const int rand = MusicTime::random(8) + 1;
+    const int rand = TTKTime::random(8) + 1;
 
     MusicUtils::Core::sleep(rand * MT_S2MS);
 

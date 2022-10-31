@@ -22,21 +22,16 @@ HEADERS += \
     $$PWD/musicobject.h \
     $$PWD/musicformats.h \
     $$PWD/musicpluginproperty.h \
-    $$PWD/musicnumberdefine.h \
     $$PWD/musicglobaldefine.h \
     $$PWD/musicotherdefine.h \
-    $$PWD/musictime.h \
     $$PWD/musicplayer.h \
     $$PWD/musicplaylist.h \
-    $$PWD/musicabstractxml.h \
-    $$PWD/musicabstractthread.h \
     $$PWD/musicsettingmanager.h \
     $$PWD/musicconnectionpool.h \
     $$PWD/musicplatformmanager.h \
     $$PWD/musiccoremplayer.h \
     $$PWD/musicsong.h \
     $$PWD/musicsongmeta.h \
-    $$PWD/musiccryptographichash.h \
     $$PWD/musicbackgroundmanager.h \
     $$PWD/musicsemaphoreloop.h \
     $$PWD/musiccategoryconfigmanager.h  \
@@ -52,18 +47,14 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/musicformats.cpp \
-    $$PWD/musictime.cpp \
     $$PWD/musicplayer.cpp \
     $$PWD/musicplaylist.cpp \
-    $$PWD/musicabstractxml.cpp \
-    $$PWD/musicabstractthread.cpp \
     $$PWD/musicconnectionpool.cpp \
     $$PWD/musicplatformmanager.cpp \
     $$PWD/musiccoremplayer.cpp \
     $$PWD/musicsingleton.cpp \
     $$PWD/musicsong.cpp \
     $$PWD/musicsongmeta.cpp \
-    $$PWD/musiccryptographichash.cpp \
     $$PWD/musicbackgroundmanager.cpp \
     $$PWD/musicsemaphoreloop.cpp \
     $$PWD/musiccategoryconfigmanager.cpp \

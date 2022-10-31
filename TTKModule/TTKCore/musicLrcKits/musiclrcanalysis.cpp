@@ -2,7 +2,7 @@
 #include "musiclrcfromkrc.h"
 #include "musicstringutils.h"
 #include "musicapplication.h"
-#include "musictime.h"
+#include "ttktime.h"
 
 #include <qmath.h>
 
@@ -387,7 +387,7 @@ void MusicLrcAnalysis::saveData()
 
     for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
     {
-        data.append(MusicTime::toString(it.key(), MusicTime::Entity::Millisecond, "[mm:ss.zzz]"));
+        data.append(TTKTime::toString(it.key(), TTKTime::Entity::Millisecond, "[mm:ss.zzz]"));
         data.append(it.value() + "\n");
     }
 

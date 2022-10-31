@@ -12,7 +12,7 @@ MusicDesktopWallpaperThread::MusicDesktopWallpaperThread(QObject *parent)
       m_random(false),
       m_currentImageIndex(0)
 {
-    MusicTime::initRandom();
+    TTKTime::initRandom();
 
     m_timer = new QTimer(this);
     setInterval(20 * MT_S2MS);
@@ -91,7 +91,7 @@ void MusicDesktopWallpaperThread::timeout()
     {
         if(m_random) ///random mode
         {
-            m_currentImageIndex = MusicTime::random(m_path.count());
+            m_currentImageIndex = TTKTime::random(m_path.count());
         }
         else if(++m_currentImageIndex >= m_path.count())
         {

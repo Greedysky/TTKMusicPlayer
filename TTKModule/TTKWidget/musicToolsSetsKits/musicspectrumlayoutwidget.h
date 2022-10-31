@@ -21,13 +21,13 @@
 
 #include <QCheckBox>
 #include <QBoxLayout>
-#include "musicclickedlabel.h"
 #include "musictoolmenuwidget.h"
+#include "ttkclickedlabel.h"
 
 /*! @brief The class of the music spectrum layout item.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSpectrumLayoutItem : public MusicClickedLabel
+class TTK_MODULE_EXPORT MusicSpectrumLayoutItem : public TTKClickedLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSpectrumLayoutItem)

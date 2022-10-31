@@ -7,7 +7,6 @@
 #include "musictranslationrequest.h"
 #include "musicdownloadqueryfactory.h"
 #include "musictoastlabel.h"
-#include "musicclickedlabel.h"
 #include "musiclrcanalysis.h"
 #include "musicurlutils.h"
 #include "musicinteriorlrcuiobject.h"
@@ -21,6 +20,7 @@
 #include "musictopareawidget.h"
 #include "musicbackgroundmanager.h"
 #include "musicwidgetheaders.h"
+#include "ttkclickedlabel.h"
 
 #include <QClipboard>
 #include <QApplication>
@@ -622,7 +622,7 @@ void MusicLrcContainerForInterior::paintEvent(QPaintEvent *event)
         }
 
         v = m_lrcAnalysis->findTime(v);
-        painter.drawText(LRC_TIME_LABEL_POSITION, line - LRC_TIME_LABEL_POSITION / 2, MusicTime::msecTime2LabelJustified(v));
+        painter.drawText(LRC_TIME_LABEL_POSITION, line - LRC_TIME_LABEL_POSITION / 2, TTKTime::msecTime2LabelJustified(v));
     }
 }
 
@@ -685,7 +685,7 @@ void MusicLrcContainerForInterior::revertTimeSpeed(qint64 pos)
 
 void MusicLrcContainerForInterior::createNoLrcCurrentInfo()
 {
-    m_noLrcCurrentInfo = new MusicClickedLabel(this);
+    m_noLrcCurrentInfo = new TTKClickedLabel(this);
     MusicUtils::Widget::setLabelFontSize(m_noLrcCurrentInfo, 15);
     MusicUtils::Widget::setLabelFontStyle(m_noLrcCurrentInfo, MusicObject::FontStyleMode::Underline);
     m_noLrcCurrentInfo->setStyleSheet(MusicUIObject::MQSSColorStyle06);

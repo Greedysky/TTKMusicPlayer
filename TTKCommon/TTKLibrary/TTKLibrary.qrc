@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/shadow">
+        <file alias="lb_bottom">resource/shadow/lb_bottom.png</file>
+        <file alias="lb_left">resource/shadow/lb_left.png</file>
+        <file alias="lb_right">resource/shadow/lb_right.png</file>
+        <file alias="lb_top">resource/shadow/lb_top.png</file>
+        <file alias="lb_left_top">resource/shadow/lb_left_top.png</file>
+        <file alias="lb_right_top">resource/shadow/lb_right_top.png</file>
+        <file alias="lb_left_bottom">resource/shadow/lb_left_bottom.png</file>
+        <file alias="lb_right_bottom">resource/shadow/lb_right_bottom.png</file>
+    </qresource>
+</RCC>

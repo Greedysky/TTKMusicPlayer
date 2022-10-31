@@ -80,14 +80,14 @@ MusicVideoControlWidget::~MusicVideoControlWidget()
 void MusicVideoControlWidget::setValue(qint64 position) const
 {
     m_timeSlider->setValue(position * MT_S2MS);
-    m_timeLabel->setText(QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position * MT_S2MS),
-                                              MusicTime::msecTime2LabelJustified(m_timeSlider->maximum())));
+    m_timeLabel->setText(QString("%1/%2").arg(TTKTime::msecTime2LabelJustified(position * MT_S2MS),
+                                              TTKTime::msecTime2LabelJustified(m_timeSlider->maximum())));
 }
 
 void MusicVideoControlWidget::durationChanged(qint64 duration) const
 {
     m_timeSlider->setRange(0, duration * MT_S2MS);
-    m_timeLabel->setText(QString("%1/%2").arg(MUSIC_TIME_INIT, MusicTime::msecTime2LabelJustified(duration * MT_S2MS)));
+    m_timeLabel->setText(QString("%1/%2").arg(MUSIC_TIME_INIT, TTKTime::msecTime2LabelJustified(duration * MT_S2MS)));
 }
 
 void MusicVideoControlWidget::setButtonStyle(bool style) const

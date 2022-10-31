@@ -23,7 +23,7 @@
 #include "musicwidgetheaders.h"
 #include "musicabstractmovewidget.h"
 
-class MusicClickedSlider;
+class TTKClickedSlider;
 
 /*! @brief The class of the desktop remote widget base.
  * @author Greedysky <greedysky@163.com>
@@ -126,7 +126,7 @@ protected:
     QPushButton *m_settingButton;
     QWidget *m_mainWidget, *m_volumeWidget;
     QToolButton *m_volumeButton;
-    MusicClickedSlider *m_volumeSlider;
+    TTKClickedSlider *m_volumeSlider;
 
 };
 

@@ -1,5 +1,5 @@
 #include "musicalgorithmutils.h"
-#include "musiccryptographichash.h"
+#include "ttkcryptographichash.h"
 
 #include <QCryptographicHash>
 
@@ -40,12 +40,12 @@ QByteArray MusicUtils::Algorithm::hmacSha1(const QByteArray &data, const QByteAr
 
 QString MusicUtils::Algorithm::mdII(const QString &data, bool encode)
 {
-    MusicCryptographicHash hash;
+    TTKCryptographicHash hash;
     return encode ? hash.encrypt(data, ALG_URL_KEY) : hash.decrypt(data, ALG_URL_KEY);
 }
 
 QString MusicUtils::Algorithm::mdII(const QString &data, const QString &key, bool encode)
 {
-    MusicCryptographicHash hash;
+    TTKCryptographicHash hash;
     return encode ? hash.encrypt(data, key) : hash.decrypt(data, key);
 }

@@ -58,7 +58,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
 
     MusicSearchRecord record;
     record.m_name = text;
-    record.m_timestamp = QString::number(MusicTime::timestamp());
+    record.m_timestamp = QString::number(TTKTime::timestamp());
     records.insert(0, record);
     search.writeBuffer(records);
 

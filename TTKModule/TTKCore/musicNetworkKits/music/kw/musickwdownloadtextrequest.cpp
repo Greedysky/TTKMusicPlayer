@@ -51,7 +51,7 @@ void MusicKWDownLoadTextRequest::downLoadFinished()
                 for(const QVariant &var : qAsConst(datas))
                 {
                     value = var.toMap();
-                    lrcData.append(MusicTime(value["time"].toString().toDouble(), MusicTime::Entity::Second).toString("[mm:ss.zzz]"))
+                    lrcData.append(TTKTime(value["time"].toString().toDouble(), TTKTime::Entity::Second).toString("[mm:ss.zzz]"))
                            .append(value["lineLyric"].toByteArray()).append("\n");
                 }
             }

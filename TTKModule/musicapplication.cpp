@@ -28,7 +28,7 @@
 MusicApplication *MusicApplication::m_instance = nullptr;
 
 MusicApplication::MusicApplication(QWidget *parent)
-    : MusicAbstractMoveResizeWidget(parent),
+    : TTKAbstractMoveResizeWidget(parent),
       m_ui(new Ui::MusicApplication),
       m_quitWindowClose(false),
       m_currentSongTreeIndex(DEFAULT_NORMAL_LEVEL)
@@ -272,7 +272,7 @@ void MusicApplication::positionChanged(qint64 position)
     }
     else
     {
-        m_ui->playCurrentTime->setText(MusicTime::msecTime2LabelJustified(position));
+        m_ui->playCurrentTime->setText(TTKTime::msecTime2LabelJustified(position));
     }
     //Show the current play time
     m_songTreeWidget->updateTimeLabel(m_ui->playCurrentTime->text(), m_ui->playTotalTime->text());
@@ -282,7 +282,7 @@ void MusicApplication::durationChanged(qint64 duration)
 {
     //Show the current play total time
     m_ui->musicTimeWidget->setRange(0, duration);
-    m_ui->playTotalTime->setText(TTK_SEPARATOR + MusicTime::msecTime2LabelJustified(duration));
+    m_ui->playTotalTime->setText(TTK_SEPARATOR + TTKTime::msecTime2LabelJustified(duration));
     //Loading the current song lrc
     musicLoadCurrentSongLrc();
 }
@@ -953,7 +953,7 @@ void MusicApplication::resizeEvent(QResizeEvent *event)
         m_topAreaWidget->musicBackgroundThemeChangedByResize();
         m_rightAreaWidget->resizeWindow();
         m_bottomAreaWidget->resizeWindow();
-        MusicAbstractMoveResizeWidget::resizeEvent(event);
+        TTKAbstractMoveResizeWidget::resizeEvent(event);
     }
     else
     {
@@ -965,7 +965,7 @@ void MusicApplication::resizeEvent(QResizeEvent *event)
 
 void MusicApplication::closeEvent(QCloseEvent *event)
 {
-    MusicAbstractMoveResizeWidget::closeEvent(event);
+    TTKAbstractMoveResizeWidget::closeEvent(event);
     event->ignore();
     if(!m_bottomAreaWidget->systemCloseConfig() && m_bottomAreaWidget->systemTrayIsVisible())
     {
@@ -980,21 +980,21 @@ void MusicApplication::closeEvent(QCloseEvent *event)
 
 void MusicApplication::dragEnterEvent(QDragEnterEvent *event)
 {
-    MusicAbstractMoveResizeWidget::dragEnterEvent(event);
+    TTKAbstractMoveResizeWidget::dragEnterEvent(event);
     event->setDropAction(Qt::MoveAction);
     event->accept();
 }
 
 void MusicApplication::dragMoveEvent(QDragMoveEvent *event)
 {
-    MusicAbstractMoveResizeWidget::dragMoveEvent(event);
+    TTKAbstractMoveResizeWidget::dragMoveEvent(event);
     event->setDropAction(Qt::MoveAction);
     event->accept();
 }
 
 void MusicApplication::dropEvent(QDropEvent *event)
 {
-    MusicAbstractMoveResizeWidget::dropEvent(event);
+    TTKAbstractMoveResizeWidget::dropEvent(event);
     const QMimeData *data = event->mimeData();
     QStringList files;
 
@@ -1008,31 +1008,31 @@ void MusicApplication::dropEvent(QDropEvent *event)
 
 void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicAbstractMoveResizeWidget::contextMenuEvent(event);
+    TTKAbstractMoveResizeWidget::contextMenuEvent(event);
     musicCreateRightMenu();
 }
 
 void MusicApplication::enterEvent(QtEnterEvent *event)
 {
-    MusicAbstractMoveResizeWidget::enterEvent(event);
+    TTKAbstractMoveResizeWidget::enterEvent(event);
     m_applicationObject->sideAnimationByOff();
 }
 
 void MusicApplication::leaveEvent(QEvent *event)
 {
-    MusicAbstractMoveResizeWidget::leaveEvent(event);
+    TTKAbstractMoveResizeWidget::leaveEvent(event);
     m_applicationObject->sideAnimationByOn();
 }
 
 void MusicApplication::mousePressEvent(QMouseEvent *event)
 {
-    MusicAbstractMoveResizeWidget::mousePressEvent(event);
+    TTKAbstractMoveResizeWidget::mousePressEvent(event);
     m_ui->musicSongSearchEdit->closePopWidget();
 }
 
 void MusicApplication::mouseReleaseEvent(QMouseEvent *event)
 {
-    MusicAbstractMoveResizeWidget::mouseReleaseEvent(event);
+    TTKAbstractMoveResizeWidget::mouseReleaseEvent(event);
     m_applicationObject->sideAnimationByOn();
 }
 
@@ -1040,8 +1040,12 @@ void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
 {
     if(event->pos().y() <= m_ui->topWidget->height() && !G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
-        MusicAbstractMoveResizeWidget::mouseDoubleClickEvent(event);
-    }
+        TTKAbstractMoveResizeWidget::mouseDoubleClickEvent(event);
+        if(event->buttons() == Qt::LeftButton)
+        {
+            isMaximized() ? showNormal() : showMaximized();
+        }
+}
     else
     {
         event->ignore();
@@ -1054,7 +1058,7 @@ bool MusicApplication::eventFilter(QObject *object, QEvent *event)
     {
         return true;
     }
-    return MusicAbstractMoveResizeWidget::eventFilter(object, event);
+    return TTKAbstractMoveResizeWidget::eventFilter(object, event);
 }
 
 void MusicApplication::setMusicPlayIndex()

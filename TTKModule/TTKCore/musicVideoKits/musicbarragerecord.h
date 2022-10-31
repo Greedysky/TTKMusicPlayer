@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractxml.h"
+#include "ttkabstractxml.h"
 
 /*! @brief The class of the barrage record item.
  * @author Greedysky <greedysky@163.com>

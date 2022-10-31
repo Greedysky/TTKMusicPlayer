@@ -6,8 +6,6 @@
 #include "musiccolordialog.h"
 #include "musicwidgetheaders.h"
 
-#include <QMouseEvent>
-
 #define COLOR_COL  10
 #define COLOR_ROW  6
 

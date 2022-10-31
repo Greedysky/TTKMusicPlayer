@@ -1,8 +1,8 @@
 #include "musicpagequerywidget.h"
-#include "musicclickedlabel.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
-#include "musicclickedgroup.h"
+#include "ttkclickedgroup.h"
+#include "ttkclickedlabel.h"
 
 #define PAGE_SIZE   10
 
@@ -29,14 +29,14 @@ QWidget* MusicPageQueryWidget::createPageWidget(QWidget *parent, int total)
 
     for(int i = 1; i <= PAGE_SIZE; ++i)
     {
-        m_pageItems << (new MusicClickedLabel(QString::number(i), m_pageWidget));
+        m_pageItems << (new TTKClickedLabel(QString::number(i), m_pageWidget));
     }
-    m_pageItems << (new MusicClickedLabel("<<", m_pageWidget)) << (new MusicClickedLabel(">>", m_pageWidget));
+    m_pageItems << (new TTKClickedLabel("<<", m_pageWidget)) << (new TTKClickedLabel(">>", m_pageWidget));
 
-    MusicClickedGroup *group = new MusicClickedGroup(this);
+    TTKClickedGroup *group = new TTKClickedGroup(this);
     connect(group, SIGNAL(clicked(int)), SIGNAL(clicked(int)));
 
-    for(MusicClickedLabel *w : qAsConst(m_pageItems))
+    for(TTKClickedLabel *w : qAsConst(m_pageItems))
     {
         QFont font(w->font());
         font.setPixelSize(14);
@@ -96,7 +96,7 @@ void MusicPageQueryWidget::reset(int total)
         return;
     }
 
-    for(MusicClickedLabel *label : qAsConst(m_pageItems))
+    for(TTKClickedLabel *label : qAsConst(m_pageItems))
     {
         label->hide();
     }
@@ -147,7 +147,7 @@ void MusicPageQueryWidget::page(int index, int total)
         case 10:
         {
             page -= PAGE_SIZE;
-            MusicClickedLabel *w = m_pageItems[PAGE_SIZE];
+            TTKClickedLabel *w = m_pageItems[PAGE_SIZE];
 
             if(total <= PAGE_SIZE)
             {
@@ -170,7 +170,7 @@ void MusicPageQueryWidget::page(int index, int total)
         case 11:
         {
             page += PAGE_SIZE;
-            MusicClickedLabel *w = m_pageItems[PAGE_SIZE + 1];
+            TTKClickedLabel *w = m_pageItems[PAGE_SIZE + 1];
             int boundary = total - page + 1;
                 boundary = boundary < PAGE_SIZE ? boundary : PAGE_SIZE;
 
@@ -201,11 +201,11 @@ void MusicPageQueryWidget::page(int index, int total)
 
     for(int i = 0; i < m_pageItems.count() - 2; ++i)
     {
-        MusicClickedLabel *w = m_pageItems[i];
+        TTKClickedLabel *w = m_pageItems[i];
         w->setFixedWidth(MusicUtils::Widget::fontTextWidth(w->font(), w->text()));
     }
 
-    MusicClickedLabel *w = m_pageItems[m_currentPage];
+    TTKClickedLabel *w = m_pageItems[m_currentPage];
     w->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle01);
     w->setFixedWidth(w->width() + 5);
 }

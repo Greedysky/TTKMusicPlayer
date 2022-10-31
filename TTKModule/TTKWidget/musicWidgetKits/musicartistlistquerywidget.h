@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicclickedlabel.h"
+#include "ttkclickedlabel.h"
 #include "musicabstractitemquerywidget.h"
 #include "musiccategoryconfigmanager.h"
 
@@ -30,7 +30,7 @@ class MusicArtistListQueryCategoryPopWidget;
 /*! @brief The class of the artist list music item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicArtistListQueryItemWidget : public MusicClickedLabel
+class TTK_MODULE_EXPORT MusicArtistListQueryItemWidget : public TTKClickedLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicArtistListQueryItemWidget)

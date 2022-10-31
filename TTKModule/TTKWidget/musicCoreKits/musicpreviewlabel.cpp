@@ -2,7 +2,7 @@
 #include "musicwidgetutils.h"
 
 MusicColorPreviewLabel::MusicColorPreviewLabel(QWidget *parent)
-    : MusicClickedLabel(parent)
+    : TTKClickedLabel(parent)
 {
     m_linearGradient.setStart(0, 0);
 }

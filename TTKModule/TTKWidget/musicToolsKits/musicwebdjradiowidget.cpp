@@ -323,7 +323,7 @@ void MusicWebDJRadioWidget::initFirstWidget()
     QHBoxLayout *leftTopLayout = new QHBoxLayout(leftTop);
     leftTopLayout->setSpacing(0);
     leftTopLayout->setContentsMargins(0, 0, 0, 0);
-    MusicClickedLabel *recommendLabel = new MusicClickedLabel(tr("Recommend"), leftTop);
+    TTKClickedLabel *recommendLabel = new TTKClickedLabel(tr("Recommend"), leftTop);
     QFont recommendFont = recommendLabel->font();
     recommendFont.setPixelSize(20);
     recommendFont.setBold(true);
@@ -332,7 +332,7 @@ void MusicWebDJRadioWidget::initFirstWidget()
     leftTopLayout->addStretch(1);
     connect(recommendLabel, SIGNAL(clicked()), SLOT(createRecommendWidget()));
 
-    MusicClickedLabel *recommendMoreLabel = new MusicClickedLabel(tr("More >"), leftTop);
+    TTKClickedLabel *recommendMoreLabel = new TTKClickedLabel(tr("More >"), leftTop);
     recommendMoreLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04);
     connect(recommendMoreLabel, SIGNAL(clicked()), SLOT(createRecommendWidget()));
     leftTopLayout->addWidget(recommendMoreLabel);
@@ -342,7 +342,7 @@ void MusicWebDJRadioWidget::initFirstWidget()
     QHBoxLayout *rightTopLayout = new QHBoxLayout(rightTop);
     rightTopLayout->setSpacing(0);
     rightTopLayout->setContentsMargins(0, 0, 0, 0);
-    MusicClickedLabel *programLabel = new MusicClickedLabel(tr("Program"), rightTop);
+    TTKClickedLabel *programLabel = new TTKClickedLabel(tr("Program"), rightTop);
     QFont programFont = programLabel->font();
     programFont.setPixelSize(20);
     programFont.setBold(true);
@@ -351,7 +351,7 @@ void MusicWebDJRadioWidget::initFirstWidget()
     rightTopLayout->addStretch(1);
     connect(programLabel, SIGNAL(clicked()), SLOT(createProgramWidget()));
 
-    MusicClickedLabel *programMoreLabel = new MusicClickedLabel(tr("More >"), rightTop);
+    TTKClickedLabel *programMoreLabel = new TTKClickedLabel(tr("More >"), rightTop);
     programMoreLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04);
     connect(programMoreLabel, SIGNAL(clicked()), SLOT(createProgramWidget()));
     rightTopLayout->addWidget(programMoreLabel);

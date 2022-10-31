@@ -4,6 +4,7 @@
 #include "musicextractwrapper.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
+#include "ttkglobalhelper.h"
 
 MusicProgressWidget::MusicProgressWidget(QWidget *parent)
     : QProgressDialog(parent)
@@ -71,7 +72,7 @@ void MusicProgressWidget::paintEvent(QPaintEvent *event)
 {
     QDialog::paintEvent(event);
     QPainter painter(this);
-    MusicUtils::Widget::setBorderShadow(this, &painter);
+    MusicObject::setBorderShadow(this, &painter);
 }
 
 void MusicProgressWidget::show()

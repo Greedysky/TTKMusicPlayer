@@ -23,7 +23,7 @@ include($$PWD/../../TTKVersion.pri)
 
 CONFIG += plugin lib
 
-DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../../bin/$$TTKVersion
 TARGET = TTKExtras
 
 TEMPLATE = lib
@@ -43,7 +43,8 @@ win32:msvc{
 LIBS += -L$$DESTDIR -lTTKUi
 INCLUDEPATH += $$PWD
 
-include($$PWD/../TTKExtrasDefine.pri)
+#load extra define
+include($$PWD/../TTKThirdParty.pri)
 
 include($$PWD/qalgorithm/QAlgorithm.pri)
 include($$PWD/qdlna/QDlna.pri)

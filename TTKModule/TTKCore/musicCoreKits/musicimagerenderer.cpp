@@ -4,7 +4,7 @@
 #include <QPixmap>
 
 MusicImageRenderer::MusicImageRenderer(QObject *parent)
-    : MusicAbstractThread(parent)
+    : TTKAbstractThread(parent)
 {
 
 }
@@ -23,7 +23,7 @@ void MusicImageRenderer::setInputData(const QByteArray &data, const QSize &size)
 
 void MusicImageRenderer::run()
 {
-    MusicAbstractThread::run();
+    TTKAbstractThread::run();
 #endif
     QImage image;
     image.loadFromData(m_buffer);
@@ -44,6 +44,6 @@ void MusicImageRenderer::run()
 #if !TTK_QT_VERSION_CHECK(5,0,0)
 void MusicImageRenderer::run()
 {
-    MusicAbstractThread::run();
+    TTKAbstractThread::run();
 }
 #endif

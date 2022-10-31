@@ -551,7 +551,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="MusicClickedLabel" name="advanceLabel">
+  <widget class="TTKClickedLabel" name="advanceLabel">
    <property name="geometry">
     <rect>
      <x>29</x>
@@ -761,9 +761,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicClickedLabel</class>
+   <class>TTKClickedLabel</class>
    <extends>QLabel</extends>
-   <header>musicclickedlabel.h</header>
+   <header>ttkclickedlabel.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

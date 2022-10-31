@@ -20,12 +20,13 @@
  ***************************************************************************/
 
 #include <QColor>
-#include "musicabstractxml.h"
+#include "ttkabstractxml.h"
+#include "musicglobaldefine.h"
 
 /*! @brief The class of the xml config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicConfigManager : public TTKAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicConfigManager)
@@ -38,7 +39,7 @@ public:
     /*!
      * Read datas from xml file.
      */
-    inline bool fromFile() { return MusicAbstractXml::fromFile(COFIG_PATH_FULL); }
+    inline bool fromFile() { return TTKAbstractXml::fromFile(COFIG_PATH_FULL); }
 
     /*!
      * Read datas from config file.

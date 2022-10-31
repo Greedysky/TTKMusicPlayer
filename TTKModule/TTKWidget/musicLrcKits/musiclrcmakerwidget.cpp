@@ -3,7 +3,7 @@
 #include "musicinteriorlrcuiobject.h"
 #include "musicmessagebox.h"
 #include "musictoastlabel.h"
-#include "musictime.h"
+#include "ttktime.h"
 #include "musicconnectionpool.h"
 #include "musicplayer.h"
 #include "musicapplication.h"
@@ -204,8 +204,8 @@ void MusicLrcMakerWidget::positionChanged(qint64 position)
     m_ui->timeSlider_S->blockSignals(false);
     m_ui->timeSlider_T->blockSignals(false);
 
-    const QString &t = QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position),
-                                            MusicTime::msecTime2LabelJustified(m_ui->timeSlider_F->maximum()));
+    const QString &t = QString("%1/%2").arg(TTKTime::msecTime2LabelJustified(position),
+                                            TTKTime::msecTime2LabelJustified(m_ui->timeSlider_F->maximum()));
     m_ui->labelTime_F->setText(t);
     m_ui->labelTime_S->setText(t);
     m_ui->labelTime_T->setText(t);
@@ -704,7 +704,7 @@ void MusicLrcMakerWidget::setControlEnabled(bool enable) const
 
 QString MusicLrcMakerWidget::translateTimeString(qint64 time)
 {
-    const MusicTime t(time, MusicTime::Entity::Millisecond);
+    const TTKTime t(time, TTKTime::Entity::Millisecond);
     return QString("[%1.%2]").arg(t.toString("mm:ss"), QString::number(t.millionSecond()).rightJustified(3, '0'));
 }
 

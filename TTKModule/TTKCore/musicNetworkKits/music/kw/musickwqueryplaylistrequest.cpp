@@ -153,7 +153,7 @@ void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
                     MusicObject::MusicSongInformation info;
                     info.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
                     info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                    info.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                    info.m_duration = TTKTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
                     info.m_songId = value["id"].toString();
                     info.m_artistId = value["artistid"].toString();

@@ -2,10 +2,10 @@
 #include "musicconnecttransferwidget.h"
 #include "musicanimationstackedwidget.h"
 #include "musictextsliderwidget.h"
-#include "musicclickedlabel.h"
 #include "musictoolsetsuiobject.h"
 #include "musiclocalmanagerwidget.h"
 #include "musicrightareawidget.h"
+#include "ttkclickedlabel.h"
 
 Q_DECLARE_METATYPE(MusicDeviceInfoItem)
 
@@ -108,7 +108,7 @@ void MusicConnectLocalWidget::initSecondWidget()
     topWidgetLayout->addWidget(refreshButton);
     ///////////////////////////////////////////////////////
 
-    MusicClickedLabel *pixLabel = new MusicClickedLabel(secondWidget);
+    TTKClickedLabel *pixLabel = new TTKClickedLabel(secondWidget);
     pixLabel->setPixmap(QPixmap(":/toolSets/lb_mobile_usb"));
     connect(pixLabel, SIGNAL(clicked()), SLOT(openTransferFilesToMobile()));
 

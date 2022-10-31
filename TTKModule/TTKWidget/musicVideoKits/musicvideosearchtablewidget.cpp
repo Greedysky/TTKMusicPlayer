@@ -13,7 +13,7 @@ MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)
     setColumnCount(9);
     resizeSection(0);
 
-    MusicTime::initRandom();
+    TTKTime::initRandom();
 
     G_CONNECTION_PTR->setValue(className(), this);
 }

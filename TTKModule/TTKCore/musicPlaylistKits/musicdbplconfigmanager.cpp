@@ -74,7 +74,7 @@ bool MusicDBPLConfigManager::readBuffer(MusicSongItemList &items)
         float duration = 0;
         if(m_file.read((char*)&duration, 4) != 4) return false;
 
-        item.m_songs << MusicSong(filePath, MusicTime::msecTime2LabelJustified((int)duration * MT_S2MS));
+        item.m_songs << MusicSong(filePath, TTKTime::msecTime2LabelJustified((int)duration * MT_S2MS));
         if(minorver <= 2)
         {
             // legacy filetype support

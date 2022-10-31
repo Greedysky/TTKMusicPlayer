@@ -11,6 +11,7 @@ endif(COMMAND cmake_policy)
 
 add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
+
 if(UNIX)
 add_definitions(-DCONFIG_OUT_BUILD)
 set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
@@ -18,18 +19,27 @@ set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
 endif()
 
 include_directories(${MUSIC_CONFIG_DIR})
+include_directories(${MUSIC_COMMON_APP_DIR})
+
+set(TTKAPPLICATION_HEADERS
+    ${MUSIC_COMMON_APP_DIR}/ttklocalpeer.h
+    ${MUSIC_COMMON_APP_DIR}/ttkrunapplication.h
+  )
+
+set(TTKAPPLICATION_SOURCES
+    ${MUSIC_COMMON_APP_DIR}/ttklocalpeer.cpp
+    ${MUSIC_COMMON_APP_DIR}/ttkrunapplication.cpp
+  )
 
 set(MUSIC_HEADERS
-    ttklocalpeer.h
-    ttkrunapplication.h
     ttkrunobject.h
+    ${TTKAPPLICATION_HEADERS}
   )
 
 set(MUSIC_SOURCES
-    ttklocalpeer.cpp
-    ttkrunapplication.cpp
     ttkrunobject.cpp
     ttkrunmain.cpp
+    ${TTKAPPLICATION_SOURCES}
   )
 
 if(UNIX)
@@ -68,7 +78,7 @@ else()
   QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
   
   add_executable(${TARGET_NAME} ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
-  list(APPEND QT4_LIBS ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY})
+  list(APPEND QT4_LIBS ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY})
   if(WIN32)
       list(APPEND QT4_LIBS TTKConfig)
   endif()

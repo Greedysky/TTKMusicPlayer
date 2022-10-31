@@ -1,0 +1,39 @@
+#if defined(UNDER_CE)
+    include <winbase.h>
+#else
+    #include <winver.h>
+#endif
+#include "../ttkversion.h"
+
+VS_VERSION_INFO VERSIONINFO
+    FILEVERSION TTK_RC_FILEVERSION
+    PRODUCTVERSION TTK_RC_FILEVERSION
+    FILEFLAGSMASK 0x3fL
+
+#ifdef _DEBUG
+    FILEFLAGS VS_FF_DEBUG
+#else
+    FILEFLAGS 0x0L
+#endif
+
+    FILEOS VOS__WINDOWS32
+    FILETYPE VFT_DLL
+    FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+            BEGIN
+                VALUE "CompanyName", TTK_RC_COMPANY
+                VALUE "FileDescription", "TTKDumper"
+                VALUE "FileVersion", TTK_RC_PRODUCTVERSION
+                VALUE "LegalCopyright", TTK_RC_COPYRIGHT
+                VALUE "ProductName", "TTKDumper"
+                VALUE "ProductVersion", TTK_RC_PRODUCTVERSION
+            END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END

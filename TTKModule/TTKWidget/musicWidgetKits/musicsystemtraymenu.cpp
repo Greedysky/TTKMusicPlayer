@@ -1,9 +1,9 @@
 #include "musicsystemtraymenu.h"
 #include "musiccontextuiobject.h"
 #include "musictinyuiobject.h"
-#include "musicclickedslider.h"
 #include "musicrightareawidget.h"
 #include "musicwidgetutils.h"
+#include "ttkclickedslider.h"
 
 #include <QWidgetAction>
 
@@ -175,7 +175,7 @@ void MusicSystemTrayMenu::createVolumeWidgetActions()
     m_volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumeButton->setFixedSize(16, 16);
 
-    m_volumeSlider = new MusicClickedSlider(Qt::Horizontal, widgetActionContainer);
+    m_volumeSlider = new TTKClickedSlider(Qt::Horizontal, widgetActionContainer);
     m_volumeSlider->setRange(0, 100);
     m_volumeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle08);
 

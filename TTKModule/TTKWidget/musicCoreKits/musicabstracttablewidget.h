@@ -23,7 +23,7 @@
 #include <QHeaderView>
 #include <QTableWidget>
 #include "musicwidgetutils.h"
-#include "musicabstractresizeinterface.h"
+#include "ttkabstractresizeinterface.h"
 
 /*! @brief The class of the table widget base.
  * @author Greedysky <greedysky@163.com>

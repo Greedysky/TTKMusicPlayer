@@ -13,7 +13,7 @@
 #define PHOTO_BACKGROUNDG_WIDTH  44
 
 MusicLrcFloatPhotoItem::MusicLrcFloatPhotoItem(int index, QWidget *parent)
-    : MusicClickedLabel(parent),
+    : TTKClickedLabel(parent),
       m_index(index)
 {
     resize(PHOTO_WIDTH, PHOTO_HEIGHT);
@@ -91,7 +91,7 @@ void MusicLrcFloatPhotoItem::exportArtPixmap()
 
 void MusicLrcFloatPhotoItem::enterEvent(QtEnterEvent *event)
 {
-    MusicClickedLabel::enterEvent(event);
+    TTKClickedLabel::enterEvent(event);
     const QPixmap &pixmap = QtLablePixmap(this);
     if(!pixmap.isNull())
     {
@@ -105,7 +105,7 @@ void MusicLrcFloatPhotoItem::enterEvent(QtEnterEvent *event)
 
 void MusicLrcFloatPhotoItem::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicClickedLabel::contextMenuEvent(event);
+    TTKClickedLabel::contextMenuEvent(event);
     const QPixmap &pixmap = QtLablePixmap(this);
     if(!pixmap.isNull())
     {

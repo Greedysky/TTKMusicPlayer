@@ -2,7 +2,7 @@
 #define TTKPRIVATE_H
 
 /***************************************************************************
- * This file is part of the TTK Music Player project
+ * This file is part of the TTK Library Module project
  * Copyright (C) 2015 - 2022 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
@@ -74,6 +74,7 @@ private:
     PUB* m_qptr;
 
 };
+
 
 template <typename PUB, typename PVT>
 /*! @brief The class of the ttk private interface.

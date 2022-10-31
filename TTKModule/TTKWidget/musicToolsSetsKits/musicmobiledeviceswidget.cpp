@@ -4,7 +4,7 @@
 #include "musicapplication.h"
 
 MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
-    : MusicClickedLabel(parent)
+    : TTKClickedLabel(parent)
 {
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
     setAttribute(Qt::WA_TranslucentBackground);

@@ -8,7 +8,7 @@
 #define LINE_SPACING_SIZE  105
 
 MusicWebDJRadioCategoryItemWidget::MusicWebDJRadioCategoryItemWidget(QWidget *parent)
-    : MusicClickedLabel(parent)
+    : TTKClickedLabel(parent)
 {
     setFixedSize(WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
 

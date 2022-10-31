@@ -1,7 +1,7 @@
 #include "musicasxconfigmanager.h"
 
 MusicASXConfigManager::MusicASXConfigManager()
-    : MusicAbstractXml(nullptr)
+    : TTKAbstractXml(nullptr)
     , MusicPlaylistInterface()
 {
 
@@ -12,7 +12,7 @@ bool MusicASXConfigManager::readBuffer(MusicSongItemList &items)
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
 
-    MusicXmlNodeHelper helper(m_document->documentElement());
+    TTKXmlNodeHelper helper(m_document->documentElement());
     helper.load();
 
     const QDomNodeList &itemNodes = m_document->elementsByTagName(helper.nodeName("Entry"));
@@ -56,7 +56,7 @@ bool MusicASXConfigManager::writeBuffer(const MusicSongItemList &items, const QS
         return false;
     }
 
-    QDomElement rootDom = createRoot("Asx", MusicXmlAttribute{"version ", "3.0"});
+    QDomElement rootDom = createRoot("Asx", TTKXmlAttribute{"version ", "3.0"});
 
     for(int i = 0; i < items.count(); ++i)
     {

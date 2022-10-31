@@ -16,7 +16,7 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT += core gui xml
+QT += core gui
 
 equals(QT_MAJOR_VERSION, 4){
     QT += network
@@ -29,7 +29,7 @@ equals(QT_MAJOR_VERSION, 5){
 
 include($$PWD/TTKVersion.pri)
 
-DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../bin/$$TTKVersion
 
 ##openssl lib check
 win32{
@@ -51,13 +51,13 @@ win32{
     }
 
     msvc{
-        LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip -luser32
         CONFIG += c++11
         !contains(QMAKE_TARGET.arch, x86_64){
              #support on windows XP
              QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
              QMAKE_LFLAGS_CONSOLE = /SUBSYSTEM:CONSOLE,5.01
         }
+        LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip -luser32
     }
 
     gcc{
@@ -67,7 +67,7 @@ win32{
             QMAKE_CXXFLAGS += -std=c++11
         }
         QMAKE_CXXFLAGS += -Wunused-function -Wunused-result -Wswitch
-        LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
+        LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
     }
 }
 
@@ -84,7 +84,7 @@ unix:!mac{
         QMAKE_CXXFLAGS += -std=c++11
     }
     QMAKE_CXXFLAGS += -Wunused-function -Wunused-result -Wswitch
-    LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
+    LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
 }
 
 DEFINES += TTK_LIBRARY QMMP_LIBRARY

@@ -1,5 +1,5 @@
 #include "musicmovinglabelslider.h"
-#include "musictime.h"
+#include "ttktime.h"
 
 MusicMovingLabelSlider::MusicMovingLabelSlider(QWidget *parent)
     : MusicMovingLabelSlider(Qt::Horizontal, parent)
@@ -51,12 +51,12 @@ void MusicMovingLabelSlider::mouseMoveEvent(QMouseEvent *event)
         changePos = limitLableGeometry(curPos.x(), glbPos.x(), sizePos.width());
         m_textLabel->move(changePos.x(), (glbPos - QPoint(0, m_textLabel->height())).y());
     }
-    m_textLabel->setText(MusicTime::msecTime2LabelJustified(changePos.y()));
+    m_textLabel->setText(TTKTime::msecTime2LabelJustified(changePos.y()));
 }
 
 void MusicMovingLabelSlider::enterEvent(QtEnterEvent *event)
 {
-    MusicClickedSlider::enterEvent(event);
+    MusicMovingClickedSlider::enterEvent(event);
 #ifndef Q_OS_UNIX
     m_textLabel->show();
 #endif
@@ -64,7 +64,7 @@ void MusicMovingLabelSlider::enterEvent(QtEnterEvent *event)
 
 void MusicMovingLabelSlider::leaveEvent(QEvent *event)
 {
-    MusicClickedSlider::leaveEvent(event);
+    MusicMovingClickedSlider::leaveEvent(event);
     m_textLabel->hide();
 }
 

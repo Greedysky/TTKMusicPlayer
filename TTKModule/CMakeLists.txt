@@ -14,6 +14,8 @@ add_definitions(-DQT_THREAD)
 add_subdirectory(TTKCore)
 add_subdirectory(TTKWidget)
 
+include_directories(${MUSIC_COMMON_DUMPER_DIR})
+
 get_property(MUSIC_CORE_KITS_HEADERS GLOBAL PROPERTY "MUSIC_CORE_KITS_HEADERS")
 get_property(MUSIC_CORE_LRC_KITS_HEADERS GLOBAL PROPERTY "MUSIC_CORE_LRC_KITS_HEADERS")
 get_property(MUSIC_WIDGET_LRC_KITS_HEADERS GLOBAL PROPERTY "MUSIC_WIDGET_LRC_KITS_HEADERS")
@@ -96,7 +98,6 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_VIDEO_KITS_SOURCES}
     ${MUSIC_WIDGET_CORE_KITS_SOURCES}
     ${MUSIC_WIDGET_KITS_SOURCES}
-    ${MUSIC_COMMON_DIR}/ttkdesktopwrapper.cpp
     ${MUSIC_LIB_DIR}/musicapplication.cpp
     ${MUSIC_LIB_DIR}/musicleftareawidget.cpp
     ${MUSIC_LIB_DIR}/musictopareawidget.cpp
@@ -120,7 +121,7 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   else()
     add_library(${PROJECT_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   endif()
-  list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Multimedia ${TTK_QMMP_LIBRARY} TTKUi TTKExtras TTKWatcher TTKDumper zlib TTKZip)
+  list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Multimedia ${TTK_QMMP_LIBRARY} TTKLibrary TTKUi TTKExtras TTKWatcher TTKDumper zlib TTKZip)
   if(WIN32)
     list(APPEND QT5_LIBS Qt5::WinExtras Iphlpapi Version ole32 uuid)
   else(UNIX)
@@ -145,7 +146,7 @@ else()
   else()
     add_library(${PROJECT_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   endif()
-  list(APPEND QT4_LIBS ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY} ${TTK_QMMP_LIBRARY} TTKUi TTKExtras TTKWatcher TTKDumper zlib TTKZip)
+  list(APPEND QT4_LIBS ${QT_QTCORE_LIBRARY} ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${TTK_QMMP_LIBRARY} TTKLibrary TTKUi TTKExtras TTKWatcher TTKDumper zlib TTKZip)
   if(WIN32)
     list(APPEND QT4_LIBS Iphlpapi Version ole32 uuid)
   else(UNIX)

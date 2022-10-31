@@ -19,13 +19,14 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractxml.h"
+#include "ttkabstractxml.h"
+#include "musicsong.h"
 #include "musicnetworkdefines.h"
 
 /*! @brief The class of the download record manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadRecordConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicDownloadRecordConfigManager : public TTKAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadRecordConfigManager)
@@ -47,7 +48,7 @@ public:
     /*!
      * Read datas from xml file.
      */
-    inline bool fromFile() { return MusicAbstractXml::fromFile(mappingFilePathFromEnum()); }
+    inline bool fromFile() { return TTKAbstractXml::fromFile(mappingFilePathFromEnum()); }
 
     /*!
      * Read datas from config file.

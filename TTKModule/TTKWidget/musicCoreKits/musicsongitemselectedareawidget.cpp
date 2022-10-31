@@ -2,9 +2,9 @@
 #include "ui_musicsongitemselecteddialog.h"
 #include "musicitemdelegate.h"
 #include "musicwidgetheaders.h"
-#include "musicclickedlabel.h"
 #include "musicconnectionpool.h"
 #include "musicsongssummariziedwidget.h"
+#include "ttkclickedlabel.h"
 
 MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
@@ -117,7 +117,7 @@ MusicSongItemSelectedAreaWidget::MusicSongItemSelectedAreaWidget(QWidget *parent
 {
     m_label = new QLabel(tr("Range:"));
     m_itemLabel = new QLabel(tr("All List"));
-    m_modifiedItemButton = new MusicClickedLabel(tr("Mod"));
+    m_modifiedItemButton = new TTKClickedLabel(tr("Mod"));
 
     m_label->setFixedWidth(60);
     m_itemLabel->setFixedWidth(75);

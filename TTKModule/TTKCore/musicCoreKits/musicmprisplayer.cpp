@@ -2,7 +2,7 @@
 #include "musicapplication.h"
 #include "musicplayer.h"
 #include "musicplaylist.h"
-#include "musictime.h"
+#include "ttktime.h"
 
 #include <QDBusMessage>
 #include <qmmp/soundcore.h>
@@ -100,7 +100,7 @@ void MusicMPRISPlayerRoot::Raise()
 MusicMPRISPlayerCore::MusicMPRISPlayerCore(QObject *parent)
     : QDBusAbstractAdaptor(parent)
 {
-    MusicTime::initRandom();
+    TTKTime::initRandom();
 
     m_prevTrack = 0;
     m_prevPos = 0;
@@ -401,7 +401,7 @@ void MusicMPRISPlayerCore::updateTrackID()
 {
     if(m_prevTrack != m_application->m_playlist->currentIndex())
     {
-        m_trackID = QDBusObjectPath(QString("%1/Track/%2").arg("/org/qmmp/MediaPlayer2").arg(MusicTime::random()));
+        m_trackID = QDBusObjectPath(QString("%1/Track/%2").arg("/org/qmmp/MediaPlayer2").arg(TTKTime::random()));
         m_prevTrack = m_application->m_playlist->currentIndex();
     }
 }

@@ -23,7 +23,7 @@ DEFINES += TTK_LIBRARY
 
 include($$PWD/../../TTKVersion.pri)
 
-DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../../bin/$$TTKVersion
 TARGET = TTKWatcher
 
 CONFIG += warn_off plugin lib
@@ -60,6 +60,6 @@ HEADERS += \
 SOURCES += $$PWD/qdevicewatcher.cpp
 
 #load extra define
-include($$PWD/../TTKExtrasDefine.pri)
+include($$PWD/../TTKThirdParty.pri)
 
 win32:RC_FILE = $$PWD/TTKWatcher.rc

@@ -37,7 +37,7 @@ win32:msvc{
 }
 
 win32{
-    DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
+    DESTDIR = $$OUT_PWD/../../bin/$$TTKVersion
     LIBS += -L$$DESTDIR -lTTKConfig
 }else{
     DESTDIR = $$OUT_PWD/../../bin
@@ -55,19 +55,16 @@ INCLUDEPATH += \
     $$PWD/../ \
     $$PWD/../../TTKCommon \
     $$PWD/../../TTKConfig \
-    $$PWD/../../TTKThirdParty/TTKDumper \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits
 
 HEADERS += \
-    $$PWD/ttkrunobject.h \
-    $$PWD/ttklocalpeer.h \
-    $$PWD/ttkrunapplication.h \
+    $$PWD/ttkrunobject.h
 
 SOURCES += \
-    $$PWD/ttkrunmain.cpp \
-    $$PWD/ttklocalpeer.cpp \
-    $$PWD/ttkrunapplication.cpp \
-    $$PWD/ttkrunobject.cpp
+    $$PWD/ttkrunobject.cpp \
+    $$PWD/ttkrunmain.cpp
+
+include($$PWD/../../TTKCommon/TTKApplication/TTKApplication.pri)
 
 RESOURCES += $$PWD/../../TTKUi/MusicApp.qrc
 

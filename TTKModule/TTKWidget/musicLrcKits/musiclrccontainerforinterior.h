@@ -21,9 +21,9 @@
 
 #include "musiclrccontainer.h"
 
+class TTKClickedLabel;
 class MusicLrcFloatWidget;
 class MusicLrcFloatPlayWidget;
-class MusicClickedLabel;
 class MusicLrcCommentsWidget;
 class MusicLrcTranslatedWidget;
 class MusicVLayoutAnimationWidget;
@@ -252,7 +252,7 @@ private:
     QWidget *m_functionLabel;
     MusicLrcFloatWidget *m_lrcFloatWidget;
     MusicLrcFloatPlayWidget *m_floatPlayWidget;
-    MusicClickedLabel *m_noLrcCurrentInfo;
+    TTKClickedLabel *m_noLrcCurrentInfo;
     MusicLrcCommentsWidget *m_commentsWidget;
     MusicLrcTranslatedWidget *m_translatedWidget;
     MusicVLayoutAnimationWidget *m_layoutWidget;

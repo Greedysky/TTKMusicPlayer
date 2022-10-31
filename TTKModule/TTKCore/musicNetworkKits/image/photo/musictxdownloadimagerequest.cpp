@@ -6,7 +6,7 @@
 #define TX_SEARCH_DATA_URL  "bW8ybE03WEw1WmNmYzBuSTJWeTdPMFZNY0U2RDRYcjZla1djWmU2eU5ld2lZbytpaExzaG1MaDZ6U1FKTzVuWkZqZHJaL0gxN3ZiOTBIaFZwcmdpeU5NQllkQ1RaUzdVVmZ2UjFuWkF5SzlZSHYwajRKWEFXTUNBaGNab0V6U0UzOVdkMlpqM25CS212dEI2aU5KSUtLanJrcE5jU3JJUEEwSjhuVzFJV2xrM0FaWnFrUmladWxIUTlKUzF3RE5NR1RnUzJMNzRBTWF3Q0lLRmltZWc4QUh3b0dlZ1lxMTNXSXJLOGlWTlBEMmV4TkdlL2NzT0lqRW5UMHc9"
 
 MusicTXImageConfigManager::MusicTXImageConfigManager(QObject *parent)
-    : MusicAbstractXml(parent)
+    : TTKAbstractXml(parent)
 {
 
 }

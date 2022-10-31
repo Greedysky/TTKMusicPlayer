@@ -4,12 +4,10 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicabstracttablewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractmovedialog.h
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractmovewidget.h
-    ${MUSIC_WIDGET_CORE_DIR}/musicabstractmoveresizewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractdownloadtablewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractfloatwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractitemquerywidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractsongslisttablewidget.h
-    ${MUSIC_WIDGET_CORE_DIR}/musicabstractresizeinterface.h
     ${MUSIC_WIDGET_CORE_DIR}/musicwidgetrenderer.h
     ${MUSIC_WIDGET_CORE_DIR}/musicfillitemtablewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicquerytablewidget.h
@@ -23,9 +21,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicpreviewlabel.h
     ${MUSIC_WIDGET_CORE_DIR}/musicmessagebox.h
     ${MUSIC_WIDGET_CORE_DIR}/musicprogresswidget.h
-    ${MUSIC_WIDGET_CORE_DIR}/musicclickedlabel.h
-    ${MUSIC_WIDGET_CORE_DIR}/musicclickedgroup.h
-    ${MUSIC_WIDGET_CORE_DIR}/musicclickedslider.h
     ${MUSIC_WIDGET_CORE_DIR}/musicmovingclickedslider.h
     ${MUSIC_WIDGET_CORE_DIR}/musicmovinglabelslider.h
     ${MUSIC_WIDGET_CORE_DIR}/musictoastlabel.h
@@ -53,7 +48,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicabstracttablewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractmovedialog.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractmovewidget.cpp
-    ${MUSIC_WIDGET_CORE_DIR}/musicabstractmoveresizewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractdownloadtablewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractfloatwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractitemquerywidget.cpp
@@ -71,9 +65,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicpreviewlabel.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicmessagebox.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicprogresswidget.cpp
-    ${MUSIC_WIDGET_CORE_DIR}/musicclickedlabel.cpp
-    ${MUSIC_WIDGET_CORE_DIR}/musicclickedgroup.cpp
-    ${MUSIC_WIDGET_CORE_DIR}/musicclickedslider.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicmovingclickedslider.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicmovinglabelslider.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musictoastlabel.cpp

@@ -1,9 +1,9 @@
 #include "musicemojilabelwidget.h"
 #include "musictinyuiobject.h"
-#include "musicclickedlabel.h"
 #include "musicwidgetheaders.h"
 #include "musicstringutils.h"
-#include "musicclickedgroup.h"
+#include "ttkclickedgroup.h"
+#include "ttkclickedlabel.h"
 
 #include <QFile>
 #include <QButtonGroup>
@@ -31,14 +31,14 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
     labelIconLayout->setContentsMargins(0, 0, 0, 0);
     labelIconLayout->setSpacing(3);
 
-    MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
+    TTKClickedGroup *clickedGroup = new TTKClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SLOT(labelClicked(int)));
 
     for(int i = 0; i < 3; ++i)
     {
         for(int j = 0; j < 7; ++j)
         {
-            MusicClickedLabel *l = new MusicClickedLabel(labelWidget);
+            TTKClickedLabel *l = new TTKClickedLabel(labelWidget);
             l->setAlignment(Qt::AlignCenter);
             l->setStyleSheet(QString("QLabel{%1}QLabel:hover{%2}").arg(MusicUIObject::MQSSBorderStyle03, MusicUIObject::MQSSBorderStyle04));
             l->setFixedSize(32, 32);

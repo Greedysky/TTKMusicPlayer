@@ -3,7 +3,7 @@
 #include <QFileInfo>
 
 MusicConnectTransferThread::MusicConnectTransferThread(QObject *parent)
-    : MusicAbstractThread(parent)
+    : TTKAbstractThread(parent)
 {
 
 }
@@ -16,7 +16,7 @@ void MusicConnectTransferThread::setCopyFilePath(const QString &target, const QS
 
 void MusicConnectTransferThread::run()
 {
-    MusicAbstractThread::run();
+    TTKAbstractThread::run();
 
     for(const QString &path : qAsConst(m_path))
     {

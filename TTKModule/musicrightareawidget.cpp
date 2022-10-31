@@ -270,13 +270,13 @@ void MusicRightAreaWidget::resizeWindow()
     m_ui->songSearchWidget->resizeWindow();
     m_lrcForInterior->resizeWindow();
 
-    MusicAbstractResizeInterface *stackedWidget = TTKDynamic_cast(MusicAbstractResizeInterface*, m_stackedWidget);
+    TTKAbstractResizeInterface *stackedWidget = TTKDynamic_cast(TTKAbstractResizeInterface*, m_stackedWidget);
     if(stackedWidget)
     {
         stackedWidget->resizeWidget();
     }
 
-    MusicAbstractResizeInterface *stackedStandWidget = TTKDynamic_cast(MusicAbstractResizeInterface*, m_stackedStandWidget);
+    TTKAbstractResizeInterface *stackedStandWidget = TTKDynamic_cast(TTKAbstractResizeInterface*, m_stackedStandWidget);
     if(stackedStandWidget)
     {
         stackedStandWidget->resizeWidget();

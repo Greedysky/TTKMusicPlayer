@@ -3,7 +3,7 @@
 #include "musicformats.h"
 
 MusicSongsManagerThread::MusicSongsManagerThread(QObject *parent)
-    : MusicAbstractThread(parent)
+    : TTKAbstractThread(parent)
 {
 
 }
@@ -20,7 +20,7 @@ void MusicSongsManagerThread::setFindFilePath(const QStringList &path)
 
 void MusicSongsManagerThread::run()
 {
-    MusicAbstractThread::run();
+    TTKAbstractThread::run();
 
     QStringList list;
     for(const QString &path : qAsConst(m_path))

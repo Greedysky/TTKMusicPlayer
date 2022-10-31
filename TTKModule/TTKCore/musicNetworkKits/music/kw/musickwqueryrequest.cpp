@@ -1,7 +1,7 @@
 #include "musickwqueryrequest.h"
 
 MusicKWMusicInfoConfigManager::MusicKWMusicInfoConfigManager(QObject *parent)
-    : MusicAbstractXml(parent)
+    : TTKAbstractXml(parent)
 {
 
 }
@@ -139,7 +139,7 @@ void MusicKWQueryRequest::downLoadFinished()
                     MusicObject::MusicSongInformation info;
                     info.m_singerName = MusicUtils::String::charactersReplaced(value["ARTIST"].toString());
                     info.m_songName = MusicUtils::String::charactersReplaced(value["SONGNAME"].toString());
-                    info.m_duration = MusicTime::msecTime2LabelJustified(value["DURATION"].toInt() * 1000);
+                    info.m_duration = TTKTime::msecTime2LabelJustified(value["DURATION"].toInt() * 1000);
 
                     info.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
                     info.m_artistId = value["ARTISTID"].toString();

@@ -250,16 +250,6 @@
         <file alias="lb_poster_thumb16">../TTKResource/lrc/lb_poster_thumb16.png</file>
         <file alias="lb_poster_thumb17">../TTKResource/lrc/lb_poster_thumb17.png</file>
     </qresource>
-    <qresource prefix="/shadow">
-        <file alias="lb_bottom">../TTKResource/borderShadow/lb_bottom.png</file>
-        <file alias="lb_left">../TTKResource/borderShadow/lb_left.png</file>
-        <file alias="lb_right">../TTKResource/borderShadow/lb_right.png</file>
-        <file alias="lb_top">../TTKResource/borderShadow/lb_top.png</file>
-        <file alias="lb_left_top">../TTKResource/borderShadow/lb_left_top.png</file>
-        <file alias="lb_right_top">../TTKResource/borderShadow/lb_right_top.png</file>
-        <file alias="lb_left_bottom">../TTKResource/borderShadow/lb_left_bottom.png</file>
-        <file alias="lb_right_bottom">../TTKResource/borderShadow/lb_right_bottom.png</file>
-    </qresource>
     <qresource prefix="/enhance">
         <file alias="lb_3d_off">../TTKResource/enhance/lb_enhance_3d.png</file>
         <file alias="lb_3d_on">../TTKResource/enhance/lb_enhance_3d_on.png</file>

@@ -72,7 +72,6 @@ public Q_SLOTS:
 
 private:
     Ui::MusicMessageBox *m_ui;
-    int m_status;
 
 };
 

@@ -200,7 +200,7 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
             info.m_songId = QString::number(id);
             info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
             info.m_singerName = MusicUtils::String::charactersReplaced(value["artistName"].toString());
-            info.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
+            info.m_duration = TTKTime::msecTime2LabelJustified(value["duration"].toInt());
 
             value = value["brs"].toMap();
             for(const QString &key : value.keys())
@@ -268,7 +268,7 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
             MusicObject::MusicSongInformation info;
             info.m_songId = id;
             info.m_songName = MusicUtils::String::charactersReplaced(value["title"].toString());
-            info.m_duration = MusicTime::msecTime2LabelJustified(value["durationms"].toInt());
+            info.m_duration = TTKTime::msecTime2LabelJustified(value["durationms"].toInt());
 
             const QVariantMap &artistObject = value["creator"].toMap();
             info.m_singerName = MusicUtils::String::charactersReplaced(artistObject["nickname"].toString());

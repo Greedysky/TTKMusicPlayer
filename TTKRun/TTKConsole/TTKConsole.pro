@@ -24,11 +24,11 @@ DEFINES += TTK_LIBRARY
 
 CONFIG += console
 
-DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../../bin/$$TTKVersion
 TARGET = TTKConsole
 
 LIBS += -L$$DESTDIR -lTTKCore
-unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
+unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
 
 win32:msvc{
     CONFIG += c++11
@@ -43,7 +43,7 @@ win32:msvc{
 INCLUDEPATH += \
     $$PWD/../ \
     $$PWD/../../TTKCommon \
-    $$PWD/../../TTKThirdParty/TTKDumper \
+    $$PWD/../../TTKCommon/TTKLibrary \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits \
     $$PWD/../../TTKModule/TTKCore/musicPlaylistKits \
     $$PWD/../../TTKModule/TTKCore/musicUtilsKits

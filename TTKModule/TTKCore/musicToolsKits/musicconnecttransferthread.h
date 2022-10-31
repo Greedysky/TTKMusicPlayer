@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractthread.h"
+#include "ttkabstractthread.h"
 
 /*! @brief The class of the connect transfer thread.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicConnectTransferThread : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicConnectTransferThread : public TTKAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicConnectTransferThread)

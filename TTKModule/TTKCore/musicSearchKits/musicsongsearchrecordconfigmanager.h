@@ -19,7 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractxml.h"
+#include "ttkabstractxml.h"
+#include "musicglobaldefine.h"
 
 /*! @brief The class of the searched record item.
  * @author Greedysky <greedysky@163.com>
@@ -34,7 +35,7 @@ TTK_DECLARE_LIST(MusicSearchRecord);
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongSearchRecordConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicSongSearchRecordConfigManager : public TTKAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongSearchRecordConfigManager)
@@ -47,7 +48,7 @@ public:
     /*!
      * Read datas from xml file.
      */
-    inline bool fromFile() { return MusicAbstractXml::fromFile(SEARCH_PATH_FULL); }
+    inline bool fromFile() { return TTKAbstractXml::fromFile(SEARCH_PATH_FULL); }
 
     /*!
      * Read datas from config file.

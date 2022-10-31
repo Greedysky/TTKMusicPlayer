@@ -20,6 +20,7 @@
  ***************************************************************************/
 
 #include <QLabel>
+#include "musicuiobject.h"
 #include "musicmovingclickedslider.h"
 
 /*! @brief The class of the slider that can show such as tooltip.

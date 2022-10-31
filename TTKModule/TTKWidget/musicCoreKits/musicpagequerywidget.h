@@ -21,7 +21,7 @@
 
 #include "musicglobaldefine.h"
 
-class MusicClickedLabel;
+class TTKClickedLabel;
 
 /*! @brief The class of the page query widget.
  * @author Greedysky <greedysky@163.com>
@@ -63,7 +63,7 @@ Q_SIGNALS:
 protected:
     int m_currentPage;
     QWidget *m_pageWidget;
-    QList<MusicClickedLabel*> m_pageItems;
+    QList<TTKClickedLabel*> m_pageItems;
 
 };
 

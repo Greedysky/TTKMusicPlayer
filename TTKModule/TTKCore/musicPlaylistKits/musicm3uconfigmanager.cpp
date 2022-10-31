@@ -39,7 +39,7 @@ bool MusicM3UConfigManager::readBuffer(MusicSongItemList &items)
 
         if(valid)
         {
-            item.m_songs << MusicSong(str, MusicTime::msecTime2LabelJustified(length * MT_S2MS));
+            item.m_songs << MusicSong(str, TTKTime::msecTime2LabelJustified(length * MT_S2MS));
         }
     }
 
@@ -64,7 +64,7 @@ bool MusicM3UConfigManager::writeBuffer(const MusicSongItemList &items, const QS
     data << QString("#EXTM3U");
     for(const MusicSong &song : qAsConst(item.m_songs))
     {
-        data.append(QString("#EXTINF:%1,%2 - %3").arg(MusicTime::labelJustified2MsecTime(song.playTime()) / MT_S2MS)
+        data.append(QString("#EXTINF:%1,%2 - %3").arg(TTKTime::labelJustified2MsecTime(song.playTime()) / MT_S2MS)
                                                  .arg(song.artistFront(), song.artistBack()));
         data.append(song.path());
     }

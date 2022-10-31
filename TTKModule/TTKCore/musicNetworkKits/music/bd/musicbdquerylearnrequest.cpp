@@ -91,7 +91,7 @@ void MusicBDQueryLearnRequest::downLoadFinished()
 
 void MusicBDQueryLearnRequest::parseFromSongProperty(MusicObject::MusicSongInformation *info) const
 {
-    const QString &key = MusicUtils::Algorithm::mdII(BD_LEARN_DATA_URL, false).arg(info->m_songId).arg(MusicTime::timestamp());
+    const QString &key = MusicUtils::Algorithm::mdII(BD_LEARN_DATA_URL, false).arg(info->m_songId).arg(TTKTime::timestamp());
     QString eKey = QString(QAlgorithm::Aes().encryptCBC(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
     MusicUtils::Url::urlEncode(eKey);
 

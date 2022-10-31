@@ -21,7 +21,7 @@
 
 #include "musicglobaldefine.h"
 
-/*! @brief The namespace of the utils widget.
+/*! @brief The namespace of the utils image.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils

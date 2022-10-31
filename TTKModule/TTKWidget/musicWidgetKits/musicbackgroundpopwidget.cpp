@@ -1,6 +1,6 @@
 #include "musicbackgroundpopwidget.h"
-#include "musicclickedslider.h"
 #include "musicwidgetheaders.h"
+#include "ttkclickedslider.h"
 
 MusicBackgroundPopWidget::MusicBackgroundPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
@@ -46,7 +46,7 @@ void MusicBackgroundPopWidget::initialize()
     textLabel->setStyleSheet(MusicUIObject::MQSSColorStyle02);
     textLabel->setText("100%\n\n\n\n\n50%\n\n\n\n\n0%");
 
-    m_slider = new MusicClickedSlider(Qt::Vertical, m_containWidget);
+    m_slider = new TTKClickedSlider(Qt::Vertical, m_containWidget);
     m_slider->setStyleSheet(MusicUIObject::MQSSSliderStyle03);
     connect(m_slider, SIGNAL(valueChanged(int)), SIGNAL(valueChanged(int)));
     connect(m_slider, SIGNAL(sliderPressed()), SLOT(sliderPressed()));

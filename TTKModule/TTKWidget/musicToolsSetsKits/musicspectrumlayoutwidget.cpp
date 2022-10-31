@@ -1,12 +1,12 @@
 #include "musicspectrumlayoutwidget.h"
 #include "musicwidgetutils.h"
 #include "musicimageutils.h"
-#include "musicclickedgroup.h"
+#include "ttkclickedgroup.h"
 
 #include <QScrollArea>
 
 MusicSpectrumLayoutItem::MusicSpectrumLayoutItem(QWidget *parent)
-    : MusicClickedLabel(parent),
+    : TTKClickedLabel(parent),
       m_isSelected(false)
 {
     setFixedSize(219, 123);
@@ -31,7 +31,7 @@ bool MusicSpectrumLayoutItem::isChecked() const
 
 void MusicSpectrumLayoutItem::paintEvent(QPaintEvent *event)
 {
-    MusicClickedLabel::paintEvent(event);
+    TTKClickedLabel::paintEvent(event);
     if(m_isSelected)
     {
         QPainter painter(this);
@@ -113,7 +113,7 @@ void MusicSpectrumLayoutWidget::initialize()
 
 void MusicSpectrumLayoutWidget::addCellItems(const SpectrumInfoList &items)
 {
-    MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
+    TTKClickedGroup *clickedGroup = new TTKClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SLOT(labelClicked(int)));
 
     for(int i = 0; i < items.count(); ++i)

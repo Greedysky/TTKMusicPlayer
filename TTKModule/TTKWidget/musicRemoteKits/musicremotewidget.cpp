@@ -6,9 +6,9 @@
 #include "musicremotewidgetforstrip.h"
 #include "musicremotewidgetforripple.h"
 #include "musictinyuiobject.h"
-#include "musicclickedslider.h"
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
+#include "ttkclickedslider.h"
 
 MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent)
@@ -76,7 +76,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_volumeButton = new QToolButton(m_volumeWidget);
     m_volumeButton->setFixedSize(QSize(16, 16));
 
-    m_volumeSlider = new MusicClickedSlider(Qt::Horizontal, m_volumeWidget);
+    m_volumeSlider = new TTKClickedSlider(Qt::Horizontal, m_volumeWidget);
     m_volumeSlider->setRange(0, 100);
     m_volumeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle01);
     m_volumeSlider->setFixedWidth(42);

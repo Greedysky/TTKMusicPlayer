@@ -13,6 +13,7 @@ add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
 include_directories(${MUSIC_CONFIG_DIR})
+include_directories(${MUSIC_COMMON_DUMPER_DIR})
 
 set(MUSIC_APP_SOURCES
   musicservicemain.cpp
@@ -26,7 +27,7 @@ add_executable(${TARGET_NAME} ${MUSIC_APP_SOURCES})
 add_dependencies(${TARGET_NAME} TTKCore)
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
-  target_link_libraries(${TARGET_NAME} Qt5::Core TTKCore TTKDumper TTKConfig)
+  target_link_libraries(${TARGET_NAME} Qt5::Core TTKCore TTKConfig)
 else()
-  target_link_libraries(${TARGET_NAME} ${QT_QTCORE_LIBRARY} TTKCore TTKDumper TTKConfig)
+  target_link_libraries(${TARGET_NAME} ${QT_QTCORE_LIBRARY} TTKCore TTKConfig)
 endif()

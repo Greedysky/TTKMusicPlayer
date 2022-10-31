@@ -22,7 +22,7 @@ include($$PWD/../TTKVersion.pri)
 
 CONFIG += plugin lib
 
-DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../bin/$$TTKVersion
 TARGET = TTKConfig
 
 TEMPLATE = lib
@@ -40,7 +40,6 @@ win32:msvc{
 
 INCLUDEPATH += \
     $$PWD/../TTKCommon \
-    $$PWD/../TTKThirdParty/TTKDumper \
     $$PWD/../TTKModule/TTKCore/musicCoreKits
 
 HEADERS += \

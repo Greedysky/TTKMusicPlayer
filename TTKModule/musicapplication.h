@@ -19,7 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractmoveresizewidget.h"
+#include "musicobject.h"
+#include "ttkabstractmoveresizewidget.h"
 
 class MusicPlayer;
 class MusicPlaylist;
@@ -39,7 +40,7 @@ class MusicApplication;
 /*! @brief The class of the app main widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicApplication : public MusicAbstractMoveResizeWidget
+class TTK_MODULE_EXPORT MusicApplication : public TTKAbstractMoveResizeWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicApplication)

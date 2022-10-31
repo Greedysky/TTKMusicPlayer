@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicclickedlabel.h"
+#include "ttkclickedlabel.h"
 #include "musicabstractitemquerywidget.h"
 
 class QGridLayout;
@@ -28,7 +28,7 @@ class MusicDJRadioCategoryRequest;
 /*! @brief The class of music dj radio category item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWebDJRadioCategoryItemWidget : public MusicClickedLabel
+class TTK_MODULE_EXPORT MusicWebDJRadioCategoryItemWidget : public TTKClickedLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebDJRadioCategoryItemWidget)

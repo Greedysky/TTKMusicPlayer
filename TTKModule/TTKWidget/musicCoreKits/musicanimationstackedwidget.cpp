@@ -1,6 +1,5 @@
 #include "musicanimationstackedwidget.h"
 
-#include <QPixmap>
 #include <QPainter>
 
 MusicAnimationStackedWidget::MusicAnimationStackedWidget(QWidget *parent)

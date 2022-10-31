@@ -25,6 +25,9 @@ add_definitions(-DQMMP_LIBRARY)
 
 set(MUSIC_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 set(MUSIC_COMMON_DIR "${MUSIC_DIR}/TTKCommon")
+set(MUSIC_COMMON_LIB_DIR "${MUSIC_COMMON_DIR}/TTKLibrary")
+set(MUSIC_COMMON_DUMPER_DIR "${MUSIC_COMMON_DIR}/TTKDumper")
+set(MUSIC_COMMON_APP_DIR "${MUSIC_COMMON_DIR}/TTKApplication")
 set(MUSIC_LIB_DIR "${MUSIC_DIR}/TTKModule")
 set(MUSIC_LIB_CORE_DIR "${MUSIC_LIB_DIR}/TTKCore")
 set(MUSIC_LIB_WIDGET_DIR "${MUSIC_LIB_DIR}/TTKWidget")
@@ -32,6 +35,7 @@ set(MUSIC_LIB_WIDGET_DIR "${MUSIC_LIB_DIR}/TTKWidget")
 include_directories(
     ${MUSIC_DIR}
     ${MUSIC_COMMON_DIR}
+    ${MUSIC_COMMON_LIB_DIR}
     ${MUSIC_LIB_DIR}
 )
 
@@ -107,7 +111,6 @@ include_directories(
     ${MUSIC_THIRDPARTY_DIR}
     ${MUSIC_THIRDPARTY_DIR}/Zlib
     ${MUSIC_THIRDPARTY_DIR}/TTKWatcher
-    ${MUSIC_THIRDPARTY_DIR}/TTKDumper
     ${MUSIC_THIRDPARTY_DIR}/TTKExtras
 )
 
@@ -203,7 +206,7 @@ find_library(TTK_QMMP_LIBRARY
 )
 
 # qmmp include
-include_directories(${MUSIC_DIR}/TTKExtra)
+include_directories(${MUSIC_THIRDPARTY_DIR}/TTKqmmp)
 if(NOT (TTK_QT_VERSION VERSION_GREATER "4"))
   if(UNIX)
     include_directories(
@@ -213,6 +216,7 @@ if(NOT (TTK_QT_VERSION VERSION_GREATER "4"))
   endif()
 endif()
 
+add_subdirectory(TTKCommon)
 add_subdirectory(TTKConfig)
 add_subdirectory(TTKUi)
 add_subdirectory(TTKThirdParty)

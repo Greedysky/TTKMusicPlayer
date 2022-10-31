@@ -20,7 +20,7 @@ QT += core
 
 include($$PWD/../../TTKVersion.pri)
 
-DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../../bin/$$TTKVersion
 TARGET = TTKInit
 
 TEMPLATE = app
@@ -41,7 +41,6 @@ INCLUDEPATH += \
     $$PWD/../ \
     $$PWD/../../TTKCommon \
     $$PWD/../../TTKConfig \
-    $$PWD/../../TTKThirdParty/TTKDumper \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits
 
 SOURCES += $$PWD/musicinitmain.cpp

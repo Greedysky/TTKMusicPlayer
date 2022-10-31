@@ -275,7 +275,7 @@ void MusicWebFMRadioPlayWidget::positionChanged(qint64 position)
         return;
     }
 
-    m_ui->positionLabel->setText(QString("%1").arg(MusicTime::msecTime2LabelJustified(position * MT_S2MS)));
+    m_ui->positionLabel->setText(QString("%1").arg(TTKTime::msecTime2LabelJustified(position * MT_S2MS)));
 
     if(m_analysis->isEmpty())
     {
@@ -315,5 +315,5 @@ void MusicWebFMRadioPlayWidget::durationChanged(qint64 duration)
     {
         return;
     }
-    m_ui->durationLabel->setText(QString("/%1").arg(MusicTime::msecTime2LabelJustified(duration * MT_S2MS)));
+    m_ui->durationLabel->setText(QString("/%1").arg(TTKTime::msecTime2LabelJustified(duration * MT_S2MS)));
 }

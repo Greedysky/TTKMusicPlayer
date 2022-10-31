@@ -1,7 +1,7 @@
 #include "musicvolumepopwidget.h"
 #include "musicfunctionuiobject.h"
-#include "musicclickedslider.h"
 #include "musicwidgetheaders.h"
+#include "ttkclickedslider.h"
 
 #include <QTimer>
 
@@ -81,7 +81,7 @@ void MusicVolumePopWidget::initialize()
     layout->setContentsMargins(0, 9, 0, 9);
     layout->setSpacing(0);
 
-    m_volumeSlider = new MusicClickedSlider(Qt::Vertical, this);
+    m_volumeSlider = new TTKClickedSlider(Qt::Vertical, this);
     m_volumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumeSlider->setRange(0, 100);
     m_volumeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle02);

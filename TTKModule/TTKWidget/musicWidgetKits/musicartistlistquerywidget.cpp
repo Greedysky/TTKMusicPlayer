@@ -5,7 +5,7 @@
 #include "musicartistlistquerycategorypopwidget.h"
 #include "musicpagequerywidget.h"
 #include "musicrightareawidget.h"
-#include "musicclickedgroup.h"
+#include "ttkclickedgroup.h"
 
 #include <qmath.h>
 
@@ -14,7 +14,7 @@
 #define LINE_SPACING_SIZE  150
 
 MusicArtistListQueryItemWidget::MusicArtistListQueryItemWidget(QWidget *parent)
-    : MusicClickedLabel(parent)
+    : TTKClickedLabel(parent)
 {
     setAlignment(Qt::AlignCenter);
     setStyleSheet(MusicUIObject::MQSSColorStyle09);
@@ -115,12 +115,12 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
 #ifdef Q_OS_WIN
         containNumberLayout->setSpacing(15);
 #endif
-        MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
+        TTKClickedGroup *clickedGroup = new TTKClickedGroup(this);
         connect(clickedGroup, SIGNAL(clicked(int)), SLOT(numberButtonClicked(int)));
 
         for(int i = -1; i < 27; ++i)
         {
-            MusicClickedLabel *l = new MusicClickedLabel(QString(TTKStatic_cast(char, i + 65)), containNumberWidget);
+            TTKClickedLabel *l = new TTKClickedLabel(QString(TTKStatic_cast(char, i + 65)), containNumberWidget);
             l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(MusicUIObject::MQSSColorStyle08, MusicUIObject::MQSSColorStyle10));
 
             if(i == -1)

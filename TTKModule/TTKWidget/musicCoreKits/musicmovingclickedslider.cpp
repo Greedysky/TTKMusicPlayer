@@ -9,7 +9,7 @@ MusicMovingClickedSlider::MusicMovingClickedSlider(QWidget *parent)
 }
 
 MusicMovingClickedSlider::MusicMovingClickedSlider(Qt::Orientation orientation, QWidget *parent)
-    : MusicClickedSlider(orientation, parent),
+    : TTKClickedSlider(orientation, parent),
       m_isMoving(false)
 {
     setMouseTracking(true);
@@ -19,13 +19,13 @@ void MusicMovingClickedSlider::setValue(int value)
 {
     if(!m_isMoving)
     {
-        MusicClickedSlider::setValue(value);
+        TTKClickedSlider::setValue(value);
     }
 }
 
 void MusicMovingClickedSlider::mousePressEvent(QMouseEvent *event)
 {
-    MusicClickedSlider::mousePressEvent(event);
+    TTKClickedSlider::mousePressEvent(event);
     if(event->button() == Qt::LeftButton)
     {
         m_isMoving = false;
@@ -35,7 +35,7 @@ void MusicMovingClickedSlider::mousePressEvent(QMouseEvent *event)
 
 void MusicMovingClickedSlider::mouseMoveEvent(QMouseEvent *event)
 {
-    MusicClickedSlider::mouseMoveEvent(event);
+    TTKClickedSlider::mouseMoveEvent(event);
     if(m_mousePress)
     {
         m_isMoving = true;
@@ -45,7 +45,7 @@ void MusicMovingClickedSlider::mouseMoveEvent(QMouseEvent *event)
 
 void MusicMovingClickedSlider::mouseReleaseEvent(QMouseEvent *event)
 {
-    MusicClickedSlider::mouseReleaseEvent(event);
+    TTKClickedSlider::mouseReleaseEvent(event);
     if(event->button() == Qt::LeftButton)
     {
         Q_EMIT sliderReleasedAt(m_value);

@@ -1,5 +1,5 @@
 #include "musicsongmeta.h"
-#include "musictime.h"
+#include "ttktime.h"
 #include "musicformats.h"
 #include "musicstringutils.h"
 #include "ttkversion.h"
@@ -381,7 +381,7 @@ bool MusicSongMeta::readInformation()
                 }
             }
 
-            meta->m_metaData[TagWrapper::LENGTH] = MusicTime::msecTime2LabelJustified(length);
+            meta->m_metaData[TagWrapper::LENGTH] = TTKTime::msecTime2LabelJustified(length);
 
             m_songMetas << meta;
             m_offset = m_songMetas.count() - 1;

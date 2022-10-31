@@ -20,12 +20,12 @@
  ***************************************************************************/
 
 #include <QSize>
-#include "musicabstractthread.h"
+#include "ttkabstractthread.h"
 
 /*! @brief The class of the image render thread.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicImageRenderer : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicImageRenderer : public TTKAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicImageRenderer)

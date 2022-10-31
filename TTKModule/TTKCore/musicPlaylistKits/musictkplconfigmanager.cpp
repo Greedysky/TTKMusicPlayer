@@ -1,7 +1,7 @@
 #include "musictkplconfigmanager.h"
 
 MusicTKPLConfigManager::MusicTKPLConfigManager()
-    : MusicAbstractXml(nullptr)
+    : TTKAbstractXml(nullptr)
     , MusicPlaylistInterface()
 {
 

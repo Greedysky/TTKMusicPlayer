@@ -1,7 +1,7 @@
 #include "musicopenfilewidget.h"
-#include "musicclickedlabel.h"
 #include "musicwidgetutils.h"
 #include "musicwidgetheaders.h"
+#include "ttkclickedlabel.h"
 
 MusicOpenFileWidget::MusicOpenFileWidget(QWidget *parent)
     : QWidget(parent)
@@ -11,14 +11,14 @@ MusicOpenFileWidget::MusicOpenFileWidget(QWidget *parent)
 
     QLabel *uploadFileIcon = new QLabel(this);
     uploadFileIcon->setPixmap(QPixmap(":/tiny/btn_open_file"));
-    MusicClickedLabel *uploadFile = new MusicClickedLabel(this);
+    TTKClickedLabel *uploadFile = new TTKClickedLabel(this);
     uploadFile->setText(tr("Open File"));
     MusicUtils::Widget::setLabelFontStyle(uploadFile, MusicObject::FontStyleMode::Underline);
     connect(uploadFile, SIGNAL(clicked()), SIGNAL(uploadFileClicked()));
 
     QLabel *uploadDirIcon = new QLabel(this);
     uploadDirIcon->setPixmap(QPixmap(":/tiny/btn_open_files"));
-    MusicClickedLabel *uploadDir = new MusicClickedLabel(this);
+    TTKClickedLabel *uploadDir = new TTKClickedLabel(this);
     uploadDir->setText(tr("Open Dir"));
     MusicUtils::Widget::setLabelFontStyle(uploadDir, MusicObject::FontStyleMode::Underline);
     connect(uploadDir, SIGNAL(clicked()), SIGNAL(uploadDirClicked()));

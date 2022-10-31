@@ -22,12 +22,10 @@ HEADERS += \
     $$PWD/musicabstracttablewidget.h \
     $$PWD/musicabstractmovedialog.h \
     $$PWD/musicabstractmovewidget.h \
-    $$PWD/musicabstractmoveresizewidget.h \
     $$PWD/musicabstractdownloadtablewidget.h \
     $$PWD/musicabstractfloatwidget.h \
     $$PWD/musicabstractitemquerywidget.h \
     $$PWD/musicabstractsongslisttablewidget.h \
-    $$PWD/musicabstractresizeinterface.h \
     $$PWD/musicwidgetrenderer.h \
     $$PWD/musicfillitemtablewidget.h \
     $$PWD/musicquerytablewidget.h \
@@ -41,9 +39,6 @@ HEADERS += \
     $$PWD/musicpreviewlabel.h \
     $$PWD/musicmessagebox.h \
     $$PWD/musicprogresswidget.h \
-    $$PWD/musicclickedlabel.h \
-    $$PWD/musicclickedgroup.h \
-    $$PWD/musicclickedslider.h \
     $$PWD/musicmovingclickedslider.h \
     $$PWD/musicmovinglabelslider.h \
     $$PWD/musictoastlabel.h \
@@ -70,7 +65,6 @@ SOURCES += \
     $$PWD/musicabstracttablewidget.cpp \
     $$PWD/musicabstractmovedialog.cpp \
     $$PWD/musicabstractmovewidget.cpp \
-    $$PWD/musicabstractmoveresizewidget.cpp \
     $$PWD/musicabstractdownloadtablewidget.cpp \
     $$PWD/musicabstractfloatwidget.cpp \
     $$PWD/musicabstractitemquerywidget.cpp \
@@ -88,9 +82,6 @@ SOURCES += \
     $$PWD/musicpreviewlabel.cpp \
     $$PWD/musicmessagebox.cpp \
     $$PWD/musicprogresswidget.cpp \
-    $$PWD/musicclickedlabel.cpp \
-    $$PWD/musicclickedgroup.cpp \
-    $$PWD/musicclickedslider.cpp \
     $$PWD/musicmovingclickedslider.cpp \
     $$PWD/musicmovinglabelslider.cpp \
     $$PWD/musictoastlabel.cpp \

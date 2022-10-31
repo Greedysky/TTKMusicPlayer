@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractxml.h"
+#include "ttkabstractxml.h"
 
 /*! @brief The class of the results category item.
  * @author Greedysky <greedysky@163.com>
@@ -46,7 +46,7 @@ TTK_DECLARE_LIST(MusicResultsCategory);
 /*! @brief The class of the category config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicCategoryConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicCategoryConfigManager : public TTKAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCategoryConfigManager)

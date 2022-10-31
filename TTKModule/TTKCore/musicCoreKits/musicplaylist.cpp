@@ -1,5 +1,5 @@
 #include "musicplaylist.h"
-#include "musictime.h"
+#include "ttktime.h"
 #include "musicstringutils.h"
 
 MusicPlaylist::MusicPlaylist(QObject *parent)
@@ -7,7 +7,7 @@ MusicPlaylist::MusicPlaylist(QObject *parent)
       m_currentIndex(-1),
       m_playbackMode(MusicObject::PlayMode::Order)
 {
-    MusicTime::initRandom();
+    TTKTime::initRandom();
 }
 
 MusicObject::PlayMode MusicPlaylist::playbackMode() const
@@ -217,7 +217,7 @@ void MusicPlaylist::setCurrentIndex(int index)
             }
             case MusicObject::PlayMode::Random:
             {
-                m_currentIndex = MusicTime::random() % m_mediaList.count();
+                m_currentIndex = TTKTime::random() % m_mediaList.count();
                 break;
             }
             case MusicObject::PlayMode::Once: break;

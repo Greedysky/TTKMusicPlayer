@@ -23,7 +23,7 @@ include($$PWD/../TTKVersion.pri)
 
 CONFIG += plugin lib
 
-DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../bin/$$TTKVersion
 TARGET = TTKUi
 
 RESOURCES += \

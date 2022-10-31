@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractthread.h"
+#include "ttkabstractthread.h"
 
 /*! @brief The class of thread to test input url network.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicNetworkTestThread : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicNetworkTestThread : public TTKAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicNetworkTestThread)

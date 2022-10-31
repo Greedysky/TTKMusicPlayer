@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicclickedslider.h"
+#include "ttkclickedslider.h"
 
 /*! @brief The class of the slider moving clicked slider.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicMovingClickedSlider : public MusicClickedSlider
+class TTK_MODULE_EXPORT MusicMovingClickedSlider : public TTKClickedSlider
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMovingClickedSlider)

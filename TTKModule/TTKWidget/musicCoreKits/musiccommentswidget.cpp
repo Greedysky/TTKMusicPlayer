@@ -3,10 +3,10 @@
 #include "musicemojilabelwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicinteriorlrcuiobject.h"
-#include "musicclickedlabel.h"
 #include "musicpagequerywidget.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
+#include "ttkclickedlabel.h"
 
 #include <qmath.h>
 #include <QTextEdit>
@@ -54,7 +54,7 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     m_timerLabel = new QLabel(operWidget);
     m_timerLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
 
-    MusicClickedLabel *ngReportLabel = new MusicClickedLabel(tr("Report"), operWidget);
+    TTKClickedLabel *ngReportLabel = new TTKClickedLabel(tr("Report"), operWidget);
     ngReportLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
 
     QFrame *spliteLine1 = new QFrame(operWidget);
@@ -75,7 +75,7 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     spliteLine2->setFixedWidth(1);
     spliteLine2->setFrameShape(QFrame::VLine);
     spliteLine2->setStyleSheet(MusicUIObject::MQSSColorStyle03);
-    MusicClickedLabel *ReplyLabel = new MusicClickedLabel(tr("Reply"), operWidget);
+    TTKClickedLabel *ReplyLabel = new TTKClickedLabel(tr("Reply"), operWidget);
     ReplyLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
     //
 #ifdef Q_OS_UNIX

@@ -50,7 +50,7 @@ void MusicDownloadDataRequest::startRequest(const QString &url)
     /// only download music data can that show progress
     if(m_downloadType == MusicObject::Download::Music && !m_redirection)
     {
-        m_createTime = MusicTime::timestamp();
+        m_createTime = TTKTime::timestamp();
         G_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPairData(m_createTime, this, m_recordType));
         Q_EMIT createDownloadItem(m_savePath, m_createTime);
     }

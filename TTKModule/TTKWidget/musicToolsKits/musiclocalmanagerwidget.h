@@ -106,7 +106,7 @@ class MusicGifLabelWidget;
 /*! @brief The class of the local manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLocalManagerWidget : public QWidget, public MusicAbstractResizeInterface, private MusicItemSearchInterface<MusicSongInfoItemList>
+class TTK_MODULE_EXPORT MusicLocalManagerWidget : public QWidget, public TTKAbstractResizeInterface, private MusicItemSearchInterface<MusicSongInfoItemList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLocalManagerWidget)

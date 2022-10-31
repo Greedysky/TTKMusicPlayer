@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musictime.h"
+#include "ttktime.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The class of the music song info.

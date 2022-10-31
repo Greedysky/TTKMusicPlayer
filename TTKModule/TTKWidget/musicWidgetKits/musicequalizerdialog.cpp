@@ -5,7 +5,7 @@
 #include "musicconnectionpool.h"
 #include "musicsoundeffectswidget.h"
 #include "musicplayer.h"
-#include "musicclickedgroup.h"
+#include "ttkclickedgroup.h"
 
 static void makeBlockedValue(QSlider *slider, int value)
 {
@@ -118,10 +118,10 @@ void MusicEqualizerDialog::equlizerTypeChanged(int index)
 
 void MusicEqualizerDialog::initialize()
 {
-    MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
+    TTKClickedGroup *clickedGroup = new TTKClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SLOT(sliderValueChanged()));
 
-    QList<MusicClickedSlider*> sliders;
+    QList<TTKClickedSlider*> sliders;
     sliders << m_ui->verticalSlider1;
     sliders << m_ui->verticalSlider2;
     sliders << m_ui->verticalSlider3;
@@ -136,7 +136,7 @@ void MusicEqualizerDialog::initialize()
 
     for(int i = 0; i < sliders.count(); ++i)
     {
-        MusicClickedSlider *slider = sliders[i];
+        TTKClickedSlider *slider = sliders[i];
         slider->setRange(-15, 15);
         slider->setStyleSheet(MusicUIObject::MQSSSliderStyle04);
         clickedGroup->mapped(slider);

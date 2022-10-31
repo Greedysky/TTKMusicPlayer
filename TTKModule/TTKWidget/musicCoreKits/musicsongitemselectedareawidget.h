@@ -88,7 +88,7 @@ private:
 };
 
 
-class MusicClickedLabel;
+class TTKClickedLabel;
 
 /*! @brief The class of the song item selected area widget
  * @author Greedysky <greedysky@163.com>
@@ -134,7 +134,7 @@ private:
     TTKIntList m_items;
 
     QLabel *m_label, *m_itemLabel;
-    MusicClickedLabel *m_modifiedItemButton;
+    TTKClickedLabel *m_modifiedItemButton;
 
 };
 

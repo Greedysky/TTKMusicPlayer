@@ -34,7 +34,7 @@ TARGET = TTKCore
 
 INCLUDEPATH += \
     $$PWD \
-    $$PWD/../TTKExtra
+    $$PWD/../TTKThirdParty/TTKqmmp
 
 HEADERS += \
     $$PWD/musicapplication.h \

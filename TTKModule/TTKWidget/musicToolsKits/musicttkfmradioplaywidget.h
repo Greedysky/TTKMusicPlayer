@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractxml.h"
+#include "ttkabstractxml.h"
 #include "musicabstractmovewidget.h"
 #include "musicabstractmovedialog.h"
 
@@ -57,7 +57,7 @@ TTK_DECLARE_LIST(MusicFMCategory);
 /*! @brief The class of the fm config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicFMConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicFMConfigManager : public TTKAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicFMConfigManager)

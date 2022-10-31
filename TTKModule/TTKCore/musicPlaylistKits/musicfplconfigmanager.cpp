@@ -71,7 +71,7 @@ bool MusicFPLConfigManager::readBuffer(MusicSongItemList &items)
         QString path = dataPrime + chunkRunner.file_ofz;
         path.remove("file://");
         path = fin.absolutePath() + TTK_SEPARATOR + path;
-        item.m_songs << MusicSong(path, MusicTime::msecTime2LabelJustified(duration * MT_S2MS));
+        item.m_songs << MusicSong(path, TTKTime::msecTime2LabelJustified(duration * MT_S2MS));
     }
 
     delete[] dataPrime;

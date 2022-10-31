@@ -19,13 +19,13 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractxml.h"
+#include "ttkabstractxml.h"
 #include "musicplaylistinterface.h"
 
 /*! @brief The class of the tkpl config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicTKPLConfigManager : public MusicAbstractXml, private MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicTKPLConfigManager : public TTKAbstractXml, private MusicPlaylistInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTKPLConfigManager)
@@ -38,7 +38,7 @@ public:
     /*!
      * Read datas from xml file by given name.
      */
-    inline bool fromFile(const QString &name = PLAYLIST_PATH_FULL) { return MusicAbstractXml::fromFile(name); }
+    inline bool fromFile(const QString &name = PLAYLIST_PATH_FULL) { return TTKAbstractXml::fromFile(name); }
 
     /*!
      * Read datas from config file.

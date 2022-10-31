@@ -40,13 +40,12 @@ DEFINES += TTK_LIBRARY
 
 INCLUDEPATH += \
     $$PWD/../../../TTKCommon \
-    $$PWD/../../../TTKThirdParty \
-    $$PWD/../../../TTKThirdParty/TTKDumper \
+    $$PWD/../../../TTKCommon/TTKLibrary \
     $$PWD/../../../TTKModule/TTKCore/musicCoreKits \
     $$PWD/../../../TTKModule/TTKCore/musicUtilsKits
 
-LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKCore
-unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
+LIBS += -L$$OUT_PWD/../../../bin/$$TTKVersion -lTTKCore
+unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTKVersion -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
 
 HEADERS += $$PWD/toolsurl.h
 
