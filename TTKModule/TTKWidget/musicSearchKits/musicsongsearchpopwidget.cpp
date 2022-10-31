@@ -135,7 +135,22 @@ void MusicSongSearchPopWidget::createSuggestItems(const QStringList &names)
 QString MusicSongSearchPopWidget::utcTimeToLocal(const QString &time) const
 {
     const qint64 t = (TTKTime::timestamp() - time.toLongLong()) / MT_S2MS;
-    return TTKTime::normalTime2Label(t);
+    if(t < MT_M2S)
+    {
+        return QString::number(t) + tr("ss");
+    }
+    else if(MT_M2S <= t && t < MT_H2S)
+    {
+        return QString::number(t / MT_M2S) + tr("mm");
+    }
+    else if(MT_H2S <= t && t < MT_D2S)
+    {
+        return QString::number(t / MT_H2S) + tr("hh");
+    }
+    else
+    {
+        return QString::number(t / MT_D2S) + tr("day");
+    }
 }
 
 void MusicSongSearchPopWidget::clearButtonClicked()

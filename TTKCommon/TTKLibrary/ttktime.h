@@ -174,14 +174,6 @@ public:
      * Transform msec time to string format(mm:ss).
      */
     static QString msecTime2LabelJustified(qint64 time, bool greedy = true);
-    /*!
-     * Transform msec time to string format(/ ss / mm / hh / dd).
-     */
-    QString normalTime2Label() const;
-    /*!
-     * Transform msec time to string format(/ ss / mm / hh / dd).
-     */
-    static QString normalTime2Label(qint64 time);
 
     TTKTime& operator = (const TTKTime &other);
     TTKTime& operator+= (const TTKTime &other);

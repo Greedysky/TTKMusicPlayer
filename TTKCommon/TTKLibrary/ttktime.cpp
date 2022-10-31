@@ -145,50 +145,6 @@ QString TTKTime::msecTime2LabelJustified(qint64 time, bool greedy)
     }
 }
 
-QString TTKTime::normalTime2Label() const
-{
-    if(m_day == 0 && m_hour == 0 && m_min == 0)
-    {
-        return QString::number(m_sec) + QObject::tr("ss");
-    }
-    else if(m_day == 0 && m_hour == 0 && m_min != 0)
-    {
-        return QString::number(m_min) + QObject::tr("mm");
-    }
-    else if(m_day == 0 && m_hour != 0)
-    {
-        return QString::number(m_hour) + QObject::tr("hh");
-    }
-    else if(m_day != 0)
-    {
-        return QString::number(m_day) + QObject::tr("day");
-    }
-    else
-    {
-        return QString();
-    }
-}
-
-QString TTKTime::normalTime2Label(qint64 time)
-{
-    if(time < MT_M2S)
-    {
-        return QString::number(time) + QObject::tr("ss");
-    }
-    else if(MT_M2S <= time && time < MT_H2S)
-    {
-        return QString::number(time / MT_M2S) + QObject::tr("mm");
-    }
-    else if(MT_H2S <= time && time < MT_D2S)
-    {
-        return QString::number(time / MT_H2S) + QObject::tr("hh");
-    }
-    else
-    {
-        return QString::number(time / MT_D2S) + QObject::tr("day");
-    }
-}
-
 TTKTime& TTKTime::operator= (const TTKTime &other)
 {
     copyToThis(other);
