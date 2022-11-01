@@ -21,7 +21,7 @@
 
 #include "musicabstractmvradiorequest.h"
 
-/*! @brief The class of mv radio program request.
+/*! @brief The class of the mv radio program request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicMVRadioProgramRequest : public MusicAbstractMVRadioRequest

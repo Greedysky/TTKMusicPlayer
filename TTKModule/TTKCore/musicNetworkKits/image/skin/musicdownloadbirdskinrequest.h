@@ -21,7 +21,7 @@
 
 #include "musicabstractdownloadskinrequest.h"
 
-/*! @brief The class of download bird skin background.
+/*! @brief The class of the download bird skin background.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDownloadBirdSkinRequest : public MusicAbstractDownloadSkinRequest

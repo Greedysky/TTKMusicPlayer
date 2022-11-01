@@ -21,7 +21,7 @@
 
 #include "musicsongsuggestrequest.h"
 
-/*! @brief The class of kugou query suggest download data from net.
+/*! @brief The class of the kugou query suggest download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGSongSuggestRequest : public MusicSongSuggestRequest

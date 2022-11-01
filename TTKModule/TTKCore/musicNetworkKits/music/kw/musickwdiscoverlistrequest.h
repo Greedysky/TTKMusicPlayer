@@ -21,7 +21,7 @@
 
 #include "musicdiscoverlistrequest.h"
 
-/*! @brief The class of kuwo discover toplist.
+/*! @brief The class of the kuwo discover toplist.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWDiscoverListRequest : public MusicDiscoverListRequest

@@ -83,7 +83,7 @@ TTK_DECLARE_LIST(MusicResultDataItem);
 #define QUERY_KW_INTERFACE      "KuWo"
 #define QUERY_KG_INTERFACE      "KuGou"
 
-/*! @brief The class of abstract query download data from net.
+/*! @brief The class of the abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicAbstractQueryRequest : public MusicPageQueryRequest

@@ -22,7 +22,7 @@
 #include "musickgqueryinterface.h"
 #include "musicquerymovierequest.h"
 
-/*! @brief The class of kugou mv query download data from net.
+/*! @brief The class of the kugou mv query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryMovieRequest : public MusicQueryMovieRequest

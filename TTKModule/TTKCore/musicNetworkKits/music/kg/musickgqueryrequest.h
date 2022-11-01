@@ -22,7 +22,7 @@
 #include "musickgqueryinterface.h"
 #include "musicabstractqueryrequest.h"
 
-/*! @brief The class of kugou query download data from net.
+/*! @brief The class of the kugou query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryRequest : public MusicAbstractQueryRequest, private MusicKGQueryInterface

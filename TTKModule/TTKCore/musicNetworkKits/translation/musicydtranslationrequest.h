@@ -21,7 +21,7 @@
 
 #include "musicabstracttranslationrequest.h"
 
-/*! @brief The class of yandex translation words request.
+/*! @brief The class of the yandex translation words request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicYDTranslationRequest : public MusicAbstractTranslationRequest

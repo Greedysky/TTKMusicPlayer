@@ -15,7 +15,7 @@ void MusicWYTranslationRequest::startRequest(const QString &data)
     Q_UNUSED(data);
     deleteAll();
 
-    MusicSemaphoreLoop loop;
+    TTKSemaphoreLoop loop;
     MusicWYQueryRequest *d = new MusicWYQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryLite(true);

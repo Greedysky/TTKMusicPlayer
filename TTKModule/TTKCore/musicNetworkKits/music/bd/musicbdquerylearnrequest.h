@@ -21,7 +21,7 @@
 
 #include "musicabstractqueryrequest.h"
 
-/*! @brief The class of baidu query learn download data from net.
+/*! @brief The class of the baidu query learn download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicBDQueryLearnRequest : public MusicAbstractQueryRequest

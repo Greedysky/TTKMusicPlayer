@@ -32,7 +32,7 @@ struct TTK_MODULE_EXPORT MusicDownloadQueueData
 TTK_DECLARE_LIST(MusicDownloadQueueData);
 
 
-/*! @brief The class of download data from queue request.
+/*! @brief The class of the download data from queue request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDownloadQueueRequest : public MusicAbstractDownLoadRequest

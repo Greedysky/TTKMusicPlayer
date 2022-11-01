@@ -21,7 +21,7 @@
 
 #include "ttkabstractthread.h"
 
-/*! @brief The class of thread to test input url network.
+/*! @brief The class of the thread to test input url network.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicNetworkTestThread : public TTKAbstractThread

@@ -23,7 +23,7 @@
 #include <QSslConfiguration>
 
 #include "ttktime.h"
-#include "musicsemaphoreloop.h"
+#include "ttksemaphoreloop.h"
 #include "musicnetworkthread.h"
 #include "musicnetworkdefines.h"
 #include "musicnumberutils.h"
@@ -32,7 +32,7 @@
 
 #include "qjson/parser.h"
 
-/*! @brief The class of abstract download data.
+/*! @brief The class of the abstract download data.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicAbstractNetwork : public QObject
@@ -102,6 +102,9 @@ protected:
 
 #define TTK_NETWORK_QUERY_CHECK(VALUE)   if(m_interrupt || m_stateCode != MusicObject::NetworkCode::Query) return VALUE
 
+/*! @brief The namespace of the application object.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace MusicObject
 {
     /*!

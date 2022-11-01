@@ -28,7 +28,7 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
-    MusicSemaphoreLoop loop;
+    TTKSemaphoreLoop loop;
     MusicWYQueryRequest *d = new MusicWYQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryLite(true);

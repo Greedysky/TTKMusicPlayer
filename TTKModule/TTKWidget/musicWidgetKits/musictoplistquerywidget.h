@@ -46,7 +46,7 @@ public:
 };
 
 
-/*! @brief The class of toplist music query widget.
+/*! @brief The class of the toplist music query widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicToplistQueryWidget : public MusicAbstractItemQueryWidget

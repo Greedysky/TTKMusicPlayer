@@ -65,7 +65,7 @@ struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
 TTK_DECLARE_LIST(MusicSkinRemoteGroup);
 
 
-/*! @brief The class of download skin remote background.
+/*! @brief The class of the download skin remote background.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicAbstractDownloadSkinRequest : public QObject

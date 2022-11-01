@@ -17,7 +17,7 @@ MusicIdentifySongsRequest::MusicIdentifySongsRequest(QObject *parent)
 
 bool MusicIdentifySongsRequest::queryIdentifyKey()
 {
-    MusicSemaphoreLoop loop;
+    TTKSemaphoreLoop loop;
     connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
     MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);

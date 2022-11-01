@@ -35,10 +35,12 @@ public:
 
     static QString m_name;
     static QString m_version;
+    static TTKDumperFunctor m_functor;
 };
 
 QString TTKDumperPrivate::m_name;
 QString TTKDumperPrivate::m_version;
+TTKDumperFunctor TTKDumperPrivate::m_functor;
 
 TTKDumperPrivate::TTKDumperPrivate()
 {
@@ -53,6 +55,11 @@ void TTKDumperPrivate::initialize()
 
 LONG TTKDumperPrivate::errorHandler(EXCEPTION_POINTERS *info)
 {
+    if(m_functor)
+    {
+        m_functor();
+    }
+
     LONG retval = EXCEPTION_CONTINUE_SEARCH;
 
     // firstly see if dbghelp.dll is around and has the function we need
@@ -163,6 +170,10 @@ LONG TTKDumperPrivate::errorHandler(EXCEPTION_POINTERS *info)
 void TTKDumperPrivate::errorHandler(int id)
 {
     TTK_INFO_STREAM("App error occurred, error code " << id);
+    if(m_functor)
+    {
+        m_functor();
+    }
 
     char stamp[50];
     sprintf(stamp, "%ld", time(nullptr));
@@ -195,6 +206,15 @@ TTKDumper::TTKDumper()
     TTK_D(TTKDumper);
     d->m_name = "TTK";
     d->m_version = TTK_VERSION_STR;
+}
+
+TTKDumper::TTKDumper(const TTKDumperFunctor &functor)
+{
+    TTK_INIT_PRIVATE(TTKDumper);
+    TTK_D(TTKDumper);
+    d->m_name = "TTK";
+    d->m_version = TTK_VERSION_STR;
+    d->m_functor = functor;
 }
 
 void TTKDumper::run()

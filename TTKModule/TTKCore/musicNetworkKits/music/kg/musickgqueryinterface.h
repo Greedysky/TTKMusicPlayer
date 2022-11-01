@@ -57,6 +57,9 @@ const QString KG_SUGGEST_URL            = "UUFkNUtUeXBhZ2hxbG1nY0ZDRzBxTS9GNzdZM
 class QNetworkRequest;
 class MusicResultDataItem;
 
+/*! @brief The namespace of the kugou request interface.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace MusicKGInterface
 {
     /*!
@@ -66,7 +69,7 @@ namespace MusicKGInterface
 
 }
 
-/*! @brief The class of kugou query interface.
+/*! @brief The class of the kugou query interface.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryInterface

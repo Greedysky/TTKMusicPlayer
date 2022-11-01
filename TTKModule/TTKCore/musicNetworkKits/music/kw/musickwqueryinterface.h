@@ -60,6 +60,9 @@ const QString KW_SUGGEST_URL            = "UXc5cFVXZG92VUxjeFpmR0w4OS9rUG12ZjNtd
 
 class QNetworkRequest;
 
+/*! @brief The namespace of the kuwo request interface.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace MusicKWInterface
 {
     /*!
@@ -69,7 +72,7 @@ namespace MusicKWInterface
 
 }
 
-/*! @brief The class of kuwo query interface.
+/*! @brief The class of the kuwo query interface.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryInterface

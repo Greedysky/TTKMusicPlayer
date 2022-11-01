@@ -22,7 +22,7 @@
 #include "musicsongmeta.h"
 #include "musicdownloaddatarequest.h"
 
-/*! @brief The class of download the type of data by custom tags.
+/*! @brief The class of the download the type of data by custom tags.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDownloadTagDataRequest : public MusicDownloadDataRequest

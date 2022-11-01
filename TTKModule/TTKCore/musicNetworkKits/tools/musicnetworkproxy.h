@@ -22,7 +22,7 @@
 #include <QTcpSocket>
 #include "musicglobaldefine.h"
 
-/*! @brief The class of set music network proxy.
+/*! @brief The class of the music network proxy.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicNetworkProxy : public QObject

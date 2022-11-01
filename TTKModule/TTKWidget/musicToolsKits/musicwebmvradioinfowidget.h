@@ -21,7 +21,7 @@
 
 #include "musicabstractitemquerywidget.h"
 
-/*! @brief The class of music mv info table widget.
+/*! @brief The class of the music mv info table widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWebMVRadioInfoTableWidget : public MusicItemQueryTableWidget
@@ -67,7 +67,7 @@ private:
 };
 
 
-/*! @brief The class of music mv info widget.
+/*! @brief The class of the music mv info widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWebMVRadioInfoWidget : public MusicAbstractItemQueryWidget

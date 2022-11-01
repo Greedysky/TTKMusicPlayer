@@ -51,7 +51,7 @@ public Q_SLOTS:
 
 
 
-/*! @brief The class of similar music query widget.
+/*! @brief The class of the similar music query widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicSimilarQueryWidget : public MusicAbstractItemQueryWidget

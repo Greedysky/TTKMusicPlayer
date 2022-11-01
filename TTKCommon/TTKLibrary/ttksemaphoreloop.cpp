@@ -1,24 +1,25 @@
-#include "musicsemaphoreloop.h"
+#include "ttksemaphoreloop.h"
+#include "ttknumberdefine.h"
 
-MusicSemaphoreLoop::MusicSemaphoreLoop(QObject *parent)
+TTKSemaphoreLoop::TTKSemaphoreLoop(QObject *parent)
     : QEventLoop(parent)
 {
     m_timer.setInterval(10 * MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(quit()));
 }
 
-MusicSemaphoreLoop::~MusicSemaphoreLoop()
+TTKSemaphoreLoop::~TTKSemaphoreLoop()
 {
     quit();
 }
 
-void MusicSemaphoreLoop::quit()
+void TTKSemaphoreLoop::quit()
 {
     m_timer.stop();
     return QEventLoop::quit();
 }
 
-int MusicSemaphoreLoop::exec(ProcessEventsFlags flags)
+int TTKSemaphoreLoop::exec(ProcessEventsFlags flags)
 {
     m_timer.start();
     return QEventLoop::exec(flags);

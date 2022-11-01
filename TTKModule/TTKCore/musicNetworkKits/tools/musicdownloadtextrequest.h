@@ -21,7 +21,7 @@
 
 #include "musicabstractdownloadrequest.h"
 
-/*! @brief The class of download the type of txt.
+/*! @brief The class of the download the type of txt.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDownLoadTextRequest : public MusicAbstractDownLoadRequest

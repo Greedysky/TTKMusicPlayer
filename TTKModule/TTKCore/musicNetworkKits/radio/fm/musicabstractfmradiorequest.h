@@ -25,7 +25,7 @@ const QString FM_CHANNEL_URL  = "MUs2SnhKN1FOVUFNMzJrVGF3MzM3NVg1NjkxNVUzZUNxTzN
 const QString FM_PLAYLIST_URL = "MnZrS1UwZENac2FaRVhuQ01hZFpQczdaNDMrMXc5UDJGeEVnRlpOSm1xeGFtNjBlcFRndjRmRWlKbExKUmR0NUdhTkR1WmtaL3d3TkdicVdDWHFSMlRqSDNqdmZQUXJlQ2lHTUZzRXN3cHhMek9qaWcyQUhlNWl1ZXR6MFR4VWc0R1J5YTk0N1hNUT0=";
 const QString FM_LRC_URL      = "em1WeFVSZFRVSmtZYThPYUhsZzJqVExLVnhmQXVzZmFoQkJxRldxa0dvdFRHaVQ2V2FlK3NKbzdWek16RjVQMkt3eldrZz09";
 
-/*! @brief The class of fm radio request base.
+/*! @brief The class of the fm radio request base.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicAbstractFMRadioRequest : public MusicAbstractNetwork

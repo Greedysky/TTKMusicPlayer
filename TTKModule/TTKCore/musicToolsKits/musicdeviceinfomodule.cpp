@@ -1,5 +1,5 @@
 #include "musicdeviceinfomodule.h"
-#include "musicsemaphoreloop.h"
+#include "ttksemaphoreloop.h"
 
 #ifdef Q_OS_WIN
 #  include <QDir>
@@ -169,7 +169,7 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
         }
     }
 #else
-    MusicSemaphoreLoop loop;
+    TTKSemaphoreLoop loop;
     connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
     QtProcessNoneConnect(m_process, &loop, quit);
     m_process->close();

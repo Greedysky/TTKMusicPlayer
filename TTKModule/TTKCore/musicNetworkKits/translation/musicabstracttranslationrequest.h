@@ -21,7 +21,7 @@
 
 #include "musicabstractnetwork.h"
 
-/*! @brief The class of translation words request.
+/*! @brief The class of the translation words request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicAbstractTranslationRequest : public MusicAbstractNetwork

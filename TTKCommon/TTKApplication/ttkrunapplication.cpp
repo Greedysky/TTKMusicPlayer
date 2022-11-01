@@ -30,18 +30,18 @@ TTKRunApplicationPrivate::~TTKRunApplicationPrivate()
 
 
 
-TTKRunApplication::TTKRunApplication(int &argc, char **argv, bool GUIenabled)
-    : QApplication(argc, argv, GUIenabled)
+TTKRunApplication::TTKRunApplication(int &argc, char **argv, bool enabled)
+    : QApplication(argc, argv, enabled)
 {
     TTK_INIT_PRIVATE(TTKRunApplication);
     initialize();
 }
 
-TTKRunApplication::TTKRunApplication(const QString &appId, int &argc, char **argv)
+TTKRunApplication::TTKRunApplication(const QString &id, int &argc, char **argv)
     : QApplication(argc, argv)
 {
     TTK_INIT_PRIVATE(TTKRunApplication);
-    initialize(appId);
+    initialize(id);
 }
 
 bool TTKRunApplication::isRunning() const
@@ -94,9 +94,9 @@ void TTKRunApplication::activateWindow()
     }
 }
 
-void TTKRunApplication::initialize(const QString &appId)
+void TTKRunApplication::initialize(const QString &id)
 {
     TTK_D(TTKRunApplication);
-    d->m_peer = new TTKLocalPeer(this, appId);
+    d->m_peer = new TTKLocalPeer(this, id);
     connect(d->m_peer, SIGNAL(messageReceived(QString)), SIGNAL(messageReceived(QString)));
 }

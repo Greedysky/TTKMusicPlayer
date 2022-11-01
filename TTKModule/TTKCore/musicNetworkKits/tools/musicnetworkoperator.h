@@ -21,7 +21,7 @@
 
 #include "musicglobaldefine.h"
 
-/*! @brief The class of music network operator.
+/*! @brief The class of the music network operator.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicNetworkOperator : public QObject

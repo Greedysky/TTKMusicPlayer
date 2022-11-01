@@ -147,7 +147,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
             continue;
         }
 
-        MusicSemaphoreLoop loop;
+        TTKSemaphoreLoop loop;
         MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
         d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, song->name().trimmed());

@@ -44,7 +44,7 @@ void MusicDownloadTagDataRequest::downLoadFinished()
 
     if(save)
     {
-        MusicSemaphoreLoop loop;
+        TTKSemaphoreLoop loop;
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
         MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);

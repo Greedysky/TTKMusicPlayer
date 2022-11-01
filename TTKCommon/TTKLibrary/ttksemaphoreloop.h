@@ -1,8 +1,8 @@
-#ifndef MUSICSEMAPHORELOOP_H
-#define MUSICSEMAPHORELOOP_H
+#ifndef TTKSEMAPHORELOOP_H
+#define TTKSEMAPHORELOOP_H
 
 /***************************************************************************
- * This file is part of the TTK Music Player project
+ * This file is part of the TTK Library Module project
  * Copyright (C) 2015 - 2022 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
@@ -21,21 +21,21 @@
 
 #include <QTimer>
 #include <QEventLoop>
-#include "musicglobaldefine.h"
+#include "ttkglobaldefine.h"
 
 /*! @brief The class of the semaphore event loop.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSemaphoreLoop : public QEventLoop
+class TTK_MODULE_EXPORT TTKSemaphoreLoop : public QEventLoop
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSemaphoreLoop)
+    TTK_DECLARE_MODULE(TTKSemaphoreLoop)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSemaphoreLoop(QObject *parent = nullptr);
-    ~MusicSemaphoreLoop();
+    explicit TTKSemaphoreLoop(QObject *parent = nullptr);
+    ~TTKSemaphoreLoop();
 
     /*!
      * Event loop start.
@@ -53,4 +53,4 @@ private:
 
 };
 
-#endif // MUSICSEMAPHORELOOP_H
+#endif // TTKSEMAPHORELOOP_H

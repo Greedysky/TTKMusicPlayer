@@ -21,7 +21,7 @@
 
 #include "musicpagequeryrequest.h"
 
-/*! @brief The class of download discover toplist request.
+/*! @brief The class of the download discover toplist request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDiscoverListRequest : public MusicPageQueryRequest

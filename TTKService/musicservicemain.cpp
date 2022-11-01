@@ -13,7 +13,23 @@
 
 #define TTK_DEBUG
 
-void loadAppScaledFactor(int argc, char *argv[])
+static void cleanAppicationCache()
+{
+    QFile::remove(MUSIC_COLOR_FILE);
+    QFile::remove(MUSIC_IMAGE_FILE);
+    QFile::remove(MUSIC_RECORD_FILE);
+    QFile::remove(MUSIC_RECORD_DATA_FILE);
+
+    ///clean thirdparty process
+    QStringList process;
+    process << MAKE_TRANSFORM_PREFIX
+            << MAKE_KRC2LRC_PREFIX
+            << MAKE_PLAYER_PREFIX
+            << MAKE_GAIN_PREFIX;
+    TTKObject::killProcessByName(process);
+}
+
+static void loadAppScaledFactor(int argc, char *argv[])
 {
 #if TTK_QT_VERSION_CHECK(5,4,0)
 #  if TTK_QT_VERSION_CHECK(6,0,0)
@@ -51,7 +67,7 @@ int main(int argc, char *argv[])
     MusicConfigObject config;
     config.valid();
 
-    TTKDumper dumper;
+    TTKDumper dumper(std::bind(cleanAppicationCache));
     dumper.run();
 
     MusicRunTimeManager manager;

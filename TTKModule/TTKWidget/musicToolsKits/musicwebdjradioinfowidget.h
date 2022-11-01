@@ -21,7 +21,7 @@
 
 #include "musicabstractitemquerywidget.h"
 
-/*! @brief The class of dj radio music info table widget.
+/*! @brief The class of the dj radio music info table widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWebDJRadioInfoTableWidget : public MusicItemQueryTableWidget
@@ -43,7 +43,7 @@ public:
 };
 
 
-/*! @brief The class of dj radio music info widget.
+/*! @brief The class of the dj radio music info widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWebDJRadioInfoWidget : public MusicAbstractItemQueryWidget

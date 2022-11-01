@@ -20,7 +20,7 @@ INCLUDEPATH += $$PWD
 
 HEADERS += \
     $$PWD/ttklocalpeer.h \
-    $$PWD/ttkrunapplication.h \
+    $$PWD/ttkrunapplication.h
 
 SOURCES += \
     $$PWD/ttklocalpeer.cpp \

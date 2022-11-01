@@ -26,7 +26,7 @@
 class MusicWebDJRadioCategoryWidget;
 class MusicWebDJRadioQueryWidget;
 
-/*! @brief The class of music dj radio program table widget.
+/*! @brief The class of the music dj radio program table widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWebDJRadioProgramTableWidget : public MusicAbstractTableWidget
@@ -79,7 +79,7 @@ private:
 };
 
 
-/*! @brief The class of music dj radio program widget.
+/*! @brief The class of the music dj radio program widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWebDJRadioProgramWidget : public QWidget
@@ -109,7 +109,7 @@ private:
 };
 
 
-/*! @brief The class of music dj radio widget.
+/*! @brief The class of the music dj radio widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWebDJRadioWidget : public QStackedWidget, public TTKAbstractResizeInterface

@@ -21,7 +21,7 @@
 
 #include "musicabstractdjradiorequest.h"
 
-/*! @brief The class of music dj radio category request.
+/*! @brief The class of the music dj radio category request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDJRadioCategoryRequest : public MusicAbstractDJRadioRequest

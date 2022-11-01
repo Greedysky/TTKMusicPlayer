@@ -33,6 +33,9 @@ const QString BD_LEARN_INFO_URL  = "S2srWTRQTVMwc0V1SkFxdU9VeFFSaHVtR0xCZ0lKS3NU
 
 class QNetworkRequest;
 
+/*! @brief The namespace of the baidu request interface.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace MusicBDInterface
 {
     /*!

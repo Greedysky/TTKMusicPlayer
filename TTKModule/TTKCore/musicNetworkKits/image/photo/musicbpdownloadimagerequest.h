@@ -21,7 +21,7 @@
 
 #include "musicabstractdownloadimagerequest.h"
 
-/*! @brief The class of birdpaper download art background image.
+/*! @brief The class of the birdpaper download art background image.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicBPDownloadBackgroundRequest : public MusicAbstractDownloadImageRequest

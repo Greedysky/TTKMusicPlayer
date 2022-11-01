@@ -32,7 +32,7 @@ struct TTK_MODULE_EXPORT MusicFMRadioChannelData
 };
 TTK_DECLARE_LIST(MusicFMRadioChannelData);
 
-/*! @brief The class of fm radio request of song channel.
+/*! @brief The class of the fm radio request of song channel.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicFMRadioChannelRequest : public MusicAbstractFMRadioRequest

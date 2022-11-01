@@ -20,8 +20,13 @@
  ***************************************************************************/
 
 #include "ttkprivate.h"
+#include "miniprocess.h"
+
+#include <functional>
 
 class TTKDumperPrivate;
+
+using TTKDumperFunctor = std::function<void(void)>;
 
 /*! @brief The class of the ttk dumper.
  * @author Greedysky <greedysky@163.com>
@@ -33,6 +38,7 @@ public:
      * Object contsructor.
      */
     TTKDumper();
+    TTKDumper(const TTKDumperFunctor &functor);
 
     /*!
      * Run.

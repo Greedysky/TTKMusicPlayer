@@ -50,7 +50,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of recommend music query widget.
+/*! @brief The class of the recommend music query widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicRecommendQueryWidget : public MusicAbstractItemQueryWidget

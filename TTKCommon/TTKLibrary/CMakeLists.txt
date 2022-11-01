@@ -24,6 +24,7 @@ set(MUSIC_HEADERS
     ttkcryptographichash.h
     ttkdesktopwrapper.h
     ttkglobalhelper.h
+    ttksemaphoreloop.h
     ttktime.h
   )
 
@@ -39,6 +40,7 @@ set(MUSIC_SOURCES
     ttkcryptographichash.cpp
     ttkdesktopwrapper.cpp
     ttkglobalhelper.cpp
+    ttksemaphoreloop.cpp
     ttktime.cpp
   )
   

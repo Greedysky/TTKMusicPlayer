@@ -21,7 +21,7 @@
 
 #include "musiccommentsrequest.h"
 
-/*! @brief The class of kugou query song comments download data from net.
+/*! @brief The class of the kugou query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGSongCommentsRequest : public MusicCommentsRequest
@@ -52,7 +52,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of kugou query playlist comments download data from net.
+/*! @brief The class of the kugou query playlist comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGPlaylistCommentsRequest : public MusicCommentsRequest

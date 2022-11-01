@@ -21,7 +21,7 @@
 
 #include "musicdownloadsourcerequest.h"
 
-/*! @brief The class of source cover data download request.
+/*! @brief The class of the source cover data download request.
  * @author Greedysky <greedysky@163.com>
  */
 using MusicDownloadCoverRequest = MusicDownloadSourceRequest;

@@ -75,6 +75,9 @@ const QString WY_SUGGEST_DATA_URL           = "ajU1Wm14WjV3KzhBeTdpSlNmVE5lUT09"
 
 class QNetworkRequest;
 
+/*! @brief The namespace of the wangyi request interface.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace MusicWYInterface
 {
     /*!
@@ -84,7 +87,7 @@ namespace MusicWYInterface
 
 }
 
-/*! @brief The class of wangyi query interface.
+/*! @brief The class of the wangyi query interface.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryInterface

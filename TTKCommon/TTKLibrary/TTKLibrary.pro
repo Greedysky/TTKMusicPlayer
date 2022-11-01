@@ -64,6 +64,7 @@ HEADERS += \
     $$PWD/ttkcryptographichash.h \
     $$PWD/ttkdesktopwrapper.h \
     $$PWD/ttkglobalhelper.h \
+    $$PWD/ttksemaphoreloop.h \
     $$PWD/ttktime.h
 
 SOURCES += \
@@ -78,6 +79,7 @@ SOURCES += \
     $$PWD/ttkcryptographichash.cpp \
     $$PWD/ttkdesktopwrapper.cpp \
     $$PWD/ttkglobalhelper.cpp \
+    $$PWD/ttksemaphoreloop.cpp \
     $$PWD/ttktime.cpp
 
 RESOURCES += $$PWD/TTKLibrary.qrc

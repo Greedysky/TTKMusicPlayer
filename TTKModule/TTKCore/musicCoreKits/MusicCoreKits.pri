@@ -33,7 +33,6 @@ HEADERS += \
     $$PWD/musicsong.h \
     $$PWD/musicsongmeta.h \
     $$PWD/musicbackgroundmanager.h \
-    $$PWD/musicsemaphoreloop.h \
     $$PWD/musiccategoryconfigmanager.h  \
     $$PWD/musicplaylistmanager.h \
     $$PWD/musichotkeymanager.h \
@@ -56,7 +55,6 @@ SOURCES += \
     $$PWD/musicsong.cpp \
     $$PWD/musicsongmeta.cpp \
     $$PWD/musicbackgroundmanager.cpp \
-    $$PWD/musicsemaphoreloop.cpp \
     $$PWD/musiccategoryconfigmanager.cpp \
     $$PWD/musicplaylistmanager.cpp \
     $$PWD/musichotkeymanager.cpp \

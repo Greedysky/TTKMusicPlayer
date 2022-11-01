@@ -22,7 +22,7 @@
 #include "musicwyqueryinterface.h"
 #include "musicdiscoverlistrequest.h"
 
-/*! @brief The class of wangyi discover toplist.
+/*! @brief The class of the wangyi discover toplist.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYDiscoverListRequest : public MusicDiscoverListRequest, private MusicWYQueryInterface

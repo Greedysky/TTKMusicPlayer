@@ -21,7 +21,7 @@
 
 #include "musicabstractnetwork.h"
 
-/*! @brief The class of download art background image manager request.
+/*! @brief The class of the download art background image manager request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDownloadBackgroundRequest : public MusicAbstractNetwork

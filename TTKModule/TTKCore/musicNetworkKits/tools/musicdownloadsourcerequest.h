@@ -21,7 +21,7 @@
 
 #include "musicabstractnetwork.h"
 
-/*! @brief The class of source data download request.
+/*! @brief The class of the source data download request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDownloadSourceRequest : public MusicAbstractNetwork

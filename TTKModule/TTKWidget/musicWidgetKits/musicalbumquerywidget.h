@@ -43,7 +43,7 @@ public:
 };
 
 
-/*! @brief The class of album music query widget.
+/*! @brief The class of the album music query widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicAlbumQueryWidget : public MusicAbstractItemQueryWidget

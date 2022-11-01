@@ -22,7 +22,7 @@
 #include "ttkabstractxml.h"
 #include "musicabstractdownloadimagerequest.h"
 
-/*! @brief The class of tencent query info xml data from net.
+/*! @brief The class of the tencent query info xml data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicTXImageConfigManager : public TTKAbstractXml
@@ -43,7 +43,7 @@ public:
 };
 
 
-/*! @brief The class of tencent download art background image.
+/*! @brief The class of the tencent download art background image.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicTXDownloadBackgroundRequest : public MusicAbstractDownloadImageRequest

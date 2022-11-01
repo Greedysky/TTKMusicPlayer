@@ -33,7 +33,7 @@ const QString DJ_HOT_URL               = "UklIY0duakY0L0lPcktkSU90N0huckNuRHY0ZW
 const QString DJ_HOT_DATA_URL          = "NEZ4U1hlQnQ4SW1MQnNidE9ycytIWTZLR1E0PQ==";
 
 
-/*! @brief The class of music dj radio request abstract.
+/*! @brief The class of the music dj radio request abstract.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicAbstractDJRadioRequest : public MusicAbstractNetwork, protected MusicWYQueryInterface

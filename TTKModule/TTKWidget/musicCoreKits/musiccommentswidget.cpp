@@ -302,7 +302,7 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
 {
     deleteCommentsItems();
 
-    MusicSemaphoreLoop loop;
+    TTKSemaphoreLoop loop;
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     m_networkRequest->startToSearch(name);
     loop.exec();

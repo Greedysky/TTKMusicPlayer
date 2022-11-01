@@ -21,7 +21,7 @@
 
 #include "musicabstractfmradiorequest.h"
 
-/*! @brief The class of fm radio request of song info.
+/*! @brief The class of the fm radio request of song info.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicFMRadioSongsRequest : public MusicAbstractFMRadioRequest

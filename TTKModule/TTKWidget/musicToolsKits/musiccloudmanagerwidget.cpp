@@ -73,7 +73,7 @@ MusicCloudManagerTableWidget::~MusicCloudManagerTableWidget()
 
 bool MusicCloudManagerTableWidget::queryCloudKey()
 {
-    MusicSemaphoreLoop loop;
+    TTKSemaphoreLoop loop;
     connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
     MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);

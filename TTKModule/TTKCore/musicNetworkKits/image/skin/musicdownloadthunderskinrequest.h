@@ -42,7 +42,7 @@ public:
 };
 
 
-/*! @brief The class of download thunder skin background.
+/*! @brief The class of the download thunder skin background.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDownloadThunderSkinRequest : public MusicAbstractDownloadSkinRequest

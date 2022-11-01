@@ -63,13 +63,13 @@ TTKLocalPeerPrivate::~TTKLocalPeerPrivate()
 
 
 
-TTKLocalPeer::TTKLocalPeer(QObject *parent, const QString &appId)
+TTKLocalPeer::TTKLocalPeer(QObject *parent, const QString &id)
     : QObject(parent)
 {
     TTK_INIT_PRIVATE(TTKLocalPeer);
     TTK_D(TTKLocalPeer);
 
-    QString prefix = d->m_id = appId;
+    QString prefix = d->m_id = id;
     if(prefix.isEmpty())
     {
         d->m_id = QCoreApplication::applicationFilePath();

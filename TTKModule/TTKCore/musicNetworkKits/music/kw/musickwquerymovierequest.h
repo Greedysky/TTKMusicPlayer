@@ -22,7 +22,7 @@
 #include "musickwqueryinterface.h"
 #include "musicquerymovierequest.h"
 
-/*! @brief The class of kuwo mv query download data from net.
+/*! @brief The class of the kuwo mv query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKWQueryMovieRequest : public MusicQueryMovieRequest

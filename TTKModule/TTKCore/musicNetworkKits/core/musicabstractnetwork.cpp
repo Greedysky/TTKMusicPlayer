@@ -89,7 +89,7 @@ qint64 queryFileSizeByUrl(const QString &url)
     request.setUrl(url);
     MusicObject::setSslConfiguration(&request);
 
-    MusicSemaphoreLoop loop;
+    TTKSemaphoreLoop loop;
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.head(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -114,7 +114,7 @@ qint64 queryFileSizeByUrl(const QString &url)
 
 QByteArray syncNetworkQueryForGet(QNetworkRequest *request)
 {
-    MusicSemaphoreLoop loop;
+    TTKSemaphoreLoop loop;
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.get(*request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -133,7 +133,7 @@ QByteArray syncNetworkQueryForGet(QNetworkRequest *request)
 
 QByteArray syncNetworkQueryForPost(QNetworkRequest *request, const QByteArray &data)
 {
-    MusicSemaphoreLoop loop;
+    TTKSemaphoreLoop loop;
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.post(*request, data);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));

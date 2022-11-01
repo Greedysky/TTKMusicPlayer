@@ -23,7 +23,7 @@
 
 #define MAX_IMAGE_COUNTER     5
 
-/*! @brief The class of download art background image.
+/*! @brief The class of the download art background image.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicAbstractDownloadImageRequest : public MusicAbstractNetwork

@@ -112,7 +112,7 @@ void MusicIdentifySongsWidget::detectedTimeOut()
 {
     m_recordCore->addWavHeader(MUSIC_RECORD_DATA_FILE);
 
-    MusicSemaphoreLoop loop;
+    TTKSemaphoreLoop loop;
     m_detectedThread->startRequest(MUSIC_RECORD_DATA_FILE);
     connect(m_detectedThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
@@ -280,7 +280,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     textLabel->setText(QString("%1 - %2").arg(songIdentify.m_singerName, songIdentify.m_songName));
     textLabel->setAlignment(Qt::AlignCenter);
     //
-    MusicSemaphoreLoop loop;
+    TTKSemaphoreLoop loop;
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, textLabel->text().trimmed());

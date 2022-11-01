@@ -21,7 +21,7 @@
 
 #include "musicabstractdownloadskinrequest.h"
 
-/*! @brief The class of download bing daily skin background.
+/*! @brief The class of the download bing daily skin background.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDownloadBingSkinRequest : public MusicAbstractDownloadSkinRequest

@@ -25,7 +25,7 @@
 class QGridLayout;
 class MusicDJRadioCategoryRequest;
 
-/*! @brief The class of music dj radio category item widget.
+/*! @brief The class of the music dj radio category item widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWebDJRadioCategoryItemWidget : public TTKClickedLabel
@@ -67,7 +67,7 @@ private:
 };
 
 
-/*! @brief The class of music dj radio category widget.
+/*! @brief The class of the music dj radio category widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWebDJRadioCategoryWidget : public QWidget

@@ -21,7 +21,7 @@
 
 #include "musicabstracttranslationrequest.h"
 
-/*! @brief The class of baidu translation words request.
+/*! @brief The class of the baidu translation words request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicBDTranslationRequest : public MusicAbstractTranslationRequest

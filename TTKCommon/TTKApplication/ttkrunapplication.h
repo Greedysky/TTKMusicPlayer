@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
     */
-    TTKRunApplication(int &argc, char **argv, bool GUIenabled = true);
+    TTKRunApplication(int &argc, char **argv, bool enabled = true);
     /*!
      * Object contsructor.
     */
@@ -78,7 +78,7 @@ private:
     /*!
      * Init the system parameter.
     */
-    void initialize(const QString &appId = QString());
+    void initialize(const QString &id = QString());
 
 private:
     TTK_DECLARE_PRIVATE(TTKRunApplication)

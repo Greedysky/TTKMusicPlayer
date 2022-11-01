@@ -27,7 +27,7 @@ const QString REFER_URL  = "a0RUSDNPMnFabWQwOVhVa2JFSkVtM0JCazVKRTIrbVFJWEpKd2g0
 const QString COOKIE_URL = "cWpxdUI0YmIyNDdOcWp6TWZvMy9hYkdNN25UYVdpdStSUEV6Q3ZpMzNkRjd4WjV0ZmxzYnYxejRiTVJlUG5Wdi9UazlweFJPZGJlbVVpdGltTndId3NxNFUrSHNUcUQ5OENMdENnaUFOcElvTkpVcFVsRTQvS2Z3MndLNTNBb3Q=";
 const QString RM_KEYWORD = "S3Z3ZCsxRzJTU2krRCtoeWNjMnhodjRtYk43VVRSYjhXc05vKzM3Titpc3VmcHpuSEU0SDZnPT0=";
 
-/*! @brief The class of get counter pv of player.
+/*! @brief The class of the counter pv of player.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDownloadCounterPVRequest : public MusicAbstractNetwork

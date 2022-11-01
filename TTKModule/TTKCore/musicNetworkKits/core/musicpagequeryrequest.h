@@ -21,7 +21,7 @@
 
 #include "musicabstractnetwork.h"
 
-/*! @brief The class of abstract download page query request.
+/*! @brief The class of the abstract download page query request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicPageQueryRequest : public MusicAbstractNetwork

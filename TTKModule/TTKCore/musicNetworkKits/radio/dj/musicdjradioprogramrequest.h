@@ -33,7 +33,7 @@ namespace MusicObject
     };
 }
 
-/*! @brief The class of music dj radio program request.
+/*! @brief The class of the music dj radio program request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDJRadioProgramRequest : public MusicAbstractDJRadioRequest

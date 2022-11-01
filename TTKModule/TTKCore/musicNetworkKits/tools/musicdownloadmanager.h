@@ -64,7 +64,7 @@ struct TTK_MODULE_EXPORT MusicDownLoadPairData
     }
 };
 
-/*! @brief The class of produce the download manager.
+/*! @brief The class of the produce the download manager.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDownLoadManager : public QObject

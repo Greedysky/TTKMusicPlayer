@@ -196,6 +196,9 @@ struct TTK_MODULE_EXPORT MusicSongItem
 TTK_DECLARE_LIST(MusicSongItem);
 
 
+/*! @brief The namespace of the application object.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace MusicObject
 {
     /*!

@@ -29,7 +29,7 @@ class MusicTranslationRequest;
 class MusicAbstractQueryRequest;
 class MusicDownloadBackgroundRequest;
 
-/*! @brief The class of produce the download query class by type.
+/*! @brief The class of the produce the download query class by type.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDownLoadQueryFactory

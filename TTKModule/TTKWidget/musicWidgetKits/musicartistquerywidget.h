@@ -183,7 +183,7 @@ public:
 };
 
 
-/*! @brief The class of artist music query widget.
+/*! @brief The class of the artist music query widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicArtistQueryWidget : public MusicAbstractItemQueryWidget
