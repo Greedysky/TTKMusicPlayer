@@ -18,10 +18,9 @@
 
 TEMPLATE = lib
 msvc:CONFIG += staticlib
+CONFIG += plugin lib
 
 include($$PWD/../TTKVersion.pri)
-
-CONFIG += plugin lib
 
 DESTDIR = $$OUT_PWD/../bin/$$TTKVersion
 TARGET = TTKUi

@@ -17,18 +17,16 @@
 # ***************************************************************************
 
 QT += core
-include($$PWD/../../TTKVersion.pri)
 
 TEMPLATE = app
-DEFINES += TTK_LIBRARY
-
 CONFIG += console
+
+include($$PWD/../../TTKVersion.pri)
 
 DESTDIR = $$OUT_PWD/../../bin/$$TTKVersion
 TARGET = TTKConsole
 
-LIBS += -L$$DESTDIR -lTTKCore
-unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
+DEFINES += TTK_LIBRARY
 
 win32:msvc{
     CONFIG += c++11
@@ -39,6 +37,9 @@ win32:msvc{
         QMAKE_CXXFLAGS += -std=c++11
     }
 }
+
+LIBS += -L$$DESTDIR -lTTKCore
+unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
 
 INCLUDEPATH += \
     $$PWD/../ \

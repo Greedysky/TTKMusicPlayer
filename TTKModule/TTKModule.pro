@@ -17,10 +17,10 @@
 # ***************************************************************************
 
 TEMPLATE = lib
+CONFIG += plugin lib
 
 include($$PWD/TTKModule.pri)
 include($$PWD/../TTKMusicPlayer.pri)
-CONFIG += plugin lib
 
 ##qmmp lib check
 win32{

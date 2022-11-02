@@ -17,9 +17,17 @@
 # ***************************************************************************
 
 QT += core gui
-equals(QT_MAJOR_VERSION, 5){
+greaterThan(QT_MAJOR_VERSION, 4){ #Qt5
     QT += widgets
 }
+
+TEMPLATE = app
+
+include($$PWD/../../../TTKVersion.pri)
+
+TARGET = GenerateUrl
+
+DEFINES += TTK_LIBRARY
 
 win32:msvc{
     CONFIG += c++11
@@ -31,21 +39,14 @@ win32:msvc{
     }
 }
 
-include($$PWD/../../../TTKVersion.pri)
-
-TARGET = GenerateUrl
-
-TEMPLATE = app
-DEFINES += TTK_LIBRARY
+LIBS += -L$$OUT_PWD/../../../bin/$$TTKVersion -lTTKCore
+unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTKVersion -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
 
 INCLUDEPATH += \
     $$PWD/../../../TTKCommon \
     $$PWD/../../../TTKCommon/TTKLibrary \
     $$PWD/../../../TTKModule/TTKCore/musicCoreKits \
     $$PWD/../../../TTKModule/TTKCore/musicUtilsKits
-
-LIBS += -L$$OUT_PWD/../../../bin/$$TTKVersion -lTTKCore
-unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTKVersion -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
 
 HEADERS += $$PWD/toolsurl.h
 

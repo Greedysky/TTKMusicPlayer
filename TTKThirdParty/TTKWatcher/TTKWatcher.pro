@@ -19,14 +19,14 @@
 QT += core
 
 TEMPLATE = lib
-DEFINES += TTK_LIBRARY
+CONFIG += warn_off plugin lib
 
 include($$PWD/../../TTKVersion.pri)
 
 DESTDIR = $$OUT_PWD/../../bin/$$TTKVersion
 TARGET = TTKWatcher
 
-CONFIG += warn_off plugin lib
+DEFINES += TTK_LIBRARY
 
 unix{
     macx{

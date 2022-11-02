@@ -21,23 +21,24 @@ INCLUDEPATH += \
     $$PWD/TTKLibrary \
     $$PWD/TTKDumper
 
-win32:msvc{
-QT += xml
-
-HEADERS += \
-    $$PWD/TTKLibrary/ttkabstractmovedialog.h \
-    $$PWD/TTKLibrary/ttkabstractmovedialog.h \
-    $$PWD/TTKLibrary/ttkabstractmoveresizewidget.h \
-    $$PWD/TTKLibrary/ttkabstractmovewidget.h \
-    $$PWD/TTKLibrary/ttkabstractresizeinterface.h \
-    $$PWD/TTKLibrary/ttkabstractthread.h \
-    $$PWD/TTKLibrary/ttkabstractxml.h \
-    $$PWD/TTKLibrary/ttkclickedgroup.h \
-    $$PWD/TTKLibrary/ttkclickedlabel.h \
-    $$PWD/TTKLibrary/ttkclickedslider.h \
-    $$PWD/TTKLibrary/ttkcryptographichash.h \
-    $$PWD/TTKLibrary/ttkdesktopwrapper.h \
-    $$PWD/TTKLibrary/ttkglobalhelper.h \
-    $$PWD/TTKLibrary/ttksemaphoreloop.h \
-    $$PWD/TTKLibrary/ttktime.h
+win32{
+    QT += xml
+    msvc{
+        HEADERS += \
+            $$PWD/TTKLibrary/ttkabstractmovedialog.h \
+            $$PWD/TTKLibrary/ttkabstractmovedialog.h \
+            $$PWD/TTKLibrary/ttkabstractmoveresizewidget.h \
+            $$PWD/TTKLibrary/ttkabstractmovewidget.h \
+            $$PWD/TTKLibrary/ttkabstractresizeinterface.h \
+            $$PWD/TTKLibrary/ttkabstractthread.h \
+            $$PWD/TTKLibrary/ttkabstractxml.h \
+            $$PWD/TTKLibrary/ttkclickedgroup.h \
+            $$PWD/TTKLibrary/ttkclickedlabel.h \
+            $$PWD/TTKLibrary/ttkclickedslider.h \
+            $$PWD/TTKLibrary/ttkcryptographichash.h \
+            $$PWD/TTKLibrary/ttkdesktopwrapper.h \
+            $$PWD/TTKLibrary/ttkglobalhelper.h \
+            $$PWD/TTKLibrary/ttksemaphoreloop.h \
+            $$PWD/TTKLibrary/ttktime.h
+    }
 }

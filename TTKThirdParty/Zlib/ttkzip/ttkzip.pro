@@ -17,26 +17,20 @@
 # ***************************************************************************
 
 TEMPLATE = lib
+CONFIG += warn_off plugin lib
 
 include($$PWD/../../../TTKVersion.pri)
 
 DESTDIR = $$OUT_PWD/../../../bin/$$TTKVersion
 TARGET = TTKZip
 
-CONFIG += warn_off plugin lib
-
 DEFINES += \
     ZLIB_DLL \
     ZLIB_INTERNAL
 
-INCLUDEPATH += $$PWD/../
-
-win32{
-    HEADERS += $$PWD/iowin32.h
-    SOURCES += $$PWD/iowin32.c
-}
-
 LIBS += -L$$DESTDIR -lzlib
+
+INCLUDEPATH += $$PWD/../
 
 HEADERS += \
     $$PWD/zip.h \
@@ -50,5 +44,9 @@ SOURCES += \
     $$PWD/unzip.c \
     $$PWD/mztools.c \
     $$PWD/ioapi.c
-    
-win32:RC_FILE = $$PWD/ttkzip.rc
+
+win32{
+    HEADERS += $$PWD/iowin32.h
+    SOURCES += $$PWD/iowin32.c
+    RC_FILE = $$PWD/ttkzip.rc
+}

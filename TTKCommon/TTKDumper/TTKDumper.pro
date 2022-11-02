@@ -19,16 +19,14 @@
 QT += core
 
 TEMPLATE = lib
-DEFINES += TTK_LIBRARY
+CONFIG += plugin lib
 
 include($$PWD/../../TTKVersion.pri)
 
 DESTDIR = $$OUT_PWD/../../bin/$$TTKVersion
 TARGET = TTKDumper
 
-CONFIG += plugin lib
-
-INCLUDEPATH += $$PWD/../
+DEFINES += TTK_LIBRARY
 
 win32:LIBS += -lpsapi
 win32:msvc{
@@ -40,6 +38,8 @@ win32:msvc{
         QMAKE_CXXFLAGS += -std=c++11
     }
 }
+
+INCLUDEPATH += $$PWD/../
 
 HEADERS += \
     $$PWD/miniprocess.h \

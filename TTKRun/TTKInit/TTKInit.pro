@@ -18,12 +18,12 @@
 
 QT += core
 
+TEMPLATE = app
+
 include($$PWD/../../TTKVersion.pri)
 
 DESTDIR = $$OUT_PWD/../../bin/$$TTKVersion
 TARGET = TTKInit
-
-TEMPLATE = app
 
 win32:msvc{
     CONFIG += c++11

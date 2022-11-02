@@ -17,13 +17,16 @@
 # ***************************************************************************
 
 QT += core gui network
-greaterThan(QT_MAJOR_VERSION, 4):QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4){ #Qt5
+    QT += widgets
+}
+
+TEMPLATE = app
 
 include($$PWD/../../TTKVersion.pri)
 
 TARGET = TTKMusicPlayer
 
-TEMPLATE = app
 DEFINES += TTK_LIBRARY
 
 win32:msvc{

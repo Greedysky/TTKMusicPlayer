@@ -18,14 +18,14 @@
 
 QT += core
 
-include($$PWD/../TTKVersion.pri)
-
+TEMPLATE = lib
 CONFIG += plugin lib
+
+include($$PWD/../TTKVersion.pri)
 
 DESTDIR = $$OUT_PWD/../bin/$$TTKVersion
 TARGET = TTKConfig
 
-TEMPLATE = lib
 DEFINES += TTK_LIBRARY
 
 win32:msvc{

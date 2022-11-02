@@ -16,8 +16,6 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-include($$PWD/TTKVersion.pri)
-
 TEMPLATE = subdirs
 CONFIG += ordered
 SUBDIRS = TTKCommon TTKConfig TTKUi TTKThirdParty TTKModule TTKService TTKRun
@@ -45,6 +43,8 @@ isEmpty(LRELEASE_EXECUTABLE){
 }else{
     message(Found lrelease executable: $$LRELEASE_EXECUTABLE)
 }
+
+include($$PWD/TTKVersion.pri)
 
 ##update translation
 unix{
