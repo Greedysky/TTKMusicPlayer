@@ -19,6 +19,7 @@
 QT += core
 
 TEMPLATE = app
+CONFIG += console
 
 include($$PWD/../../TTKVersion.pri)
 
