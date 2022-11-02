@@ -17,16 +17,14 @@
 # ***************************************************************************
 
 TEMPLATE = lib
+CONFIG += warn_off plugin lib
 
 include($$PWD/../../../TTKVersion.pri)
 
 DESTDIR = $$OUT_PWD/../../../bin/$$TTKVersion
 TARGET = zlib
 
-CONFIG += warn_off plugin lib
-
-DEFINES += \
-    ZLIB_DLL
+DEFINES += ZLIB_DLL
 
 HEADERS += \
     $$PWD/zconf.h \
