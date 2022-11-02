@@ -17,7 +17,7 @@
 #define ITEM_OFFSET             107
 #define ITEM_DEFAULT_COUNT      3
 #define LIGHT_SPECTRUM_MODULE   "lightspectrum"
-#define LIGHT_ENVELOPE_MODULE   "lightenvelope"
+#define LIGHT_WAVEFORM_MODULE   "lightwaveform"
 
 MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     : MusicAbstractMoveWidget(false, parent),
@@ -107,7 +107,7 @@ void MusicSpectrumWidget::spectrumPlusTypeChanged(bool &state, const QString &na
 
 void MusicSpectrumWidget::spectrumWaveTypeChanged(bool &state, const QString &name)
 {
-    if(name == LIGHT_ENVELOPE_MODULE)
+    if(name == LIGHT_WAVEFORM_MODULE)
     {
         createLightWidget(MusicSpectrum::Module::Light, state, name, m_ui->spectrumWaveAreaLayout);
     }

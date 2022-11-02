@@ -6417,8 +6417,8 @@ Copyright© 2015-2022 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="199"/>
-        <source>Envelope</source>
-        <translation>Envelope</translation>
+        <source>WaveForm</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

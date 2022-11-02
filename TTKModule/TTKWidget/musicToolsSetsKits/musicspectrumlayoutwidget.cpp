@@ -196,13 +196,13 @@ MusicSpectrumWaveLayoutWidget::MusicSpectrumWaveLayoutWidget(QWidget *parent)
     items << SpectrumInfo(":/spectrum/wave_1", tr("Voice"));
     items << SpectrumInfo(":/spectrum/wave_2", tr("Crest"));
     items << SpectrumInfo(":/spectrum/wave_3", tr("Volume"));
-    items << SpectrumInfo(":/spectrum/wave_4", tr("Envelope"));
+    items << SpectrumInfo(":/spectrum/wave_4", tr("WaveForm"));
     addCellItems(items);
 }
 
 QStringList MusicSpectrumWaveLayoutWidget::spectrumTypeList() const
 {
-    return {"wavevoice", "wavecrest", "wavevolume", "lightenvelope"};
+    return {"wavevoice", "wavecrest", "wavevolume", "lightwaveform"};
 }
 
 

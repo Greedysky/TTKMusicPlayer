@@ -296,76 +296,36 @@
         <translation>頂峰墜落</translation>
     </message>
     <message>
-        <source>Star</source>
-        <translation>星星</translation>
-    </message>
-    <message>
         <source>Color</source>
         <translation>顏色</translation>
-    </message>
-    <message>
-        <source>StarColor</source>
-        <translation>星星顏色</translation>
     </message>
 </context>
 <context>
     <name>NormalEWave</name>
     <message>
-        <source>Star</source>
-        <translation>星星</translation>
-    </message>
-    <message>
         <source>Color</source>
         <translation>顏色</translation>
-    </message>
-    <message>
-        <source>StarColor</source>
-        <translation>星星顏色</translation>
     </message>
 </context>
 <context>
     <name>NormalFlowWave</name>
     <message>
-        <source>Star</source>
-        <translation>星星</translation>
-    </message>
-    <message>
         <source>Color</source>
         <translation>顏色</translation>
-    </message>
-    <message>
-        <source>StarColor</source>
-        <translation>星星顏色</translation>
     </message>
 </context>
 <context>
     <name>NormalHistogram</name>
     <message>
-        <source>Star</source>
-        <translation>星星</translation>
-    </message>
-    <message>
         <source>Color</source>
         <translation>顏色</translation>
-    </message>
-    <message>
-        <source>StarColor</source>
-        <translation>星星顏色</translation>
     </message>
 </context>
 <context>
     <name>NormalLine</name>
     <message>
-        <source>Star</source>
-        <translation>星星</translation>
-    </message>
-    <message>
         <source>Color</source>
         <translation>顏色</translation>
-    </message>
-    <message>
-        <source>StarColor</source>
-        <translation>星星顏色</translation>
     </message>
 </context>
 <context>
@@ -378,16 +338,8 @@
 <context>
     <name>PlusFoldWave</name>
     <message>
-        <source>Star</source>
-        <translation>星星</translation>
-    </message>
-    <message>
         <source>Color</source>
         <translation>顏色</translation>
-    </message>
-    <message>
-        <source>StarColor</source>
-        <translation>星星顏色</translation>
     </message>
 </context>
 <context>
