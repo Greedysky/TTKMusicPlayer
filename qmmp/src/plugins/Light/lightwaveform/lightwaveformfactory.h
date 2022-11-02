@@ -16,15 +16,15 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef LIGHTENVELOPEFACTORY_H
-#define LIGHTENVELOPEFACTORY_H
+#ifndef WAVEFORMFACTORY_H
+#define WAVEFORMFACTORY_H
 
 #include <qmmp/lightfactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class LightEnvelopeFactory : public QObject, public LightFactory
+class LightWaveFormFactory : public QObject, public LightFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.LightFactoryInterface.1.0")

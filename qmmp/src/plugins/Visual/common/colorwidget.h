@@ -21,16 +21,6 @@
 
 #include <QDialog>
 
-/*! @brief The class of the color star point core.
- * @author Greedysky <greedysky@163.com>
- */
-struct StarPoint
-{
-    QPoint m_pt = QPoint(0, 0);
-    int m_alpha = 255;
-};
-
-
 namespace Ui {
 class ColorWidget;
 }

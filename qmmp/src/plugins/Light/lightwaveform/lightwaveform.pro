@@ -3,11 +3,11 @@ include($$PWD/../../Visual/common/common.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Light
 
-SOURCES += lightenvelope.cpp \
-           lightenvelopefactory.cpp
+SOURCES += lightwaveform.cpp \
+           lightwaveformfactory.cpp
 
-HEADERS += lightenvelope.h \
-           lightenvelopefactory.h
+HEADERS += lightwaveform.h \
+           lightwaveformfactory.h
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so

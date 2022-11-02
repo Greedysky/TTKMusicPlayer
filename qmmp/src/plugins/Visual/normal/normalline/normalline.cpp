@@ -14,26 +14,11 @@ NormalLine::NormalLine(QWidget *parent)
     setWindowTitle(tr("Normal Line Widget"));
     setMinimumSize(2 * 300 - 30, 105);
 
-    for(int i = 0; i < 50; ++i)
-    {
-        m_starPoints << new StarPoint();
-    }
-
-    m_starTimer = new QTimer(this);
-    connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
-
-    m_starAction = new QAction(tr("Star"), this);
-    m_starAction->setCheckable(true);
-    connect(m_starAction, SIGNAL(triggered(bool)), this, SLOT(changeStarState(bool)));
-
-    m_starTimer->setInterval(1000);
-
     readSettings();
 }
 
 NormalLine::~NormalLine()
 {
-    qDeleteAll(m_starPoints);
     if(m_peaks)
     {
         delete[] m_peaks;
@@ -45,37 +30,11 @@ NormalLine::~NormalLine()
     }
 }
 
-void NormalLine::start()
-{
-    Visual::start();
-    if(isVisible())
-    {
-        m_starTimer->start();
-    }
-}
-
-void NormalLine::stop()
-{
-    Visual::stop();
-    m_starTimer->stop();
-}
-
-void NormalLine::starTimeout()
-{
-    for(StarPoint *point : m_starPoints)
-    {
-        point->m_alpha = qrand() % 255;
-        point->m_pt = QPoint(qrand() % width(), qrand() % height());
-    }
-}
-
 void NormalLine::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("NormalLine");
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
-    m_starAction->setChecked(settings.value("show_star", false).toBool());
-    m_starColor = ColorWidget::readSingleColorConfig(settings.value("star_color").toString());
     settings.endGroup();
 }
 
@@ -84,8 +43,6 @@ void NormalLine::writeSettings()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("NormalLine");
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
-    settings.setValue("show_star", m_starAction->isChecked());
-    settings.setValue("star_color", ColorWidget::writeSingleColorConfig(m_starColor));
     settings.endGroup();
 }
 
@@ -99,54 +56,11 @@ void NormalLine::changeColor()
     }
 }
 
-void NormalLine::changeStarState(bool state)
-{
-    m_starAction->setChecked(state);
-    update();
-}
-
-void NormalLine::changeStarColor()
-{
-    ColorWidget c;
-    c.setSingleColorMode(true);
-    c.setColor(m_starColor);
-    if(c.exec())
-    {
-        m_starColor = c.color();
-        update();
-    }
-}
-
-void NormalLine::hideEvent(QHideEvent *e)
-{
-    Visual::hideEvent(e);
-    m_starTimer->stop();
-}
-
-void NormalLine::showEvent(QShowEvent *e)
-{
-    Visual::showEvent(e);
-    if(m_running)
-    {
-        m_starTimer->start();
-    }
-}
-
 void NormalLine::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
     painter.setRenderHints(QPainter::Antialiasing);
-
-    if(m_starAction->isChecked())
-    {
-        for(StarPoint *point : qAsConst(m_starPoints))
-        {
-            m_starColor.setAlpha(point->m_alpha);
-            painter.setPen(QPen(m_starColor, 3));
-            painter.drawPoint(point->m_pt);
-        }
-    }
 
     QLinearGradient line(0, 0, 0, height());
     for(int i = 0; i < m_colors.count(); ++i)
@@ -176,8 +90,6 @@ void NormalLine::contextMenuEvent(QContextMenuEvent *)
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
 
     menu.addAction(tr("Color"), this, SLOT(changeColor()));
-    menu.addAction(m_starAction);
-    menu.addAction(tr("StarColor"), this, SLOT(changeStarColor()));
     menu.exec(QCursor::pos());
 }
 

@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef LIGHTENVELOPE_H
-#define LIGHTENVELOPE_H
+#ifndef LIGHTWAVEFORM_H
+#define LIGHTWAVEFORM_H
 
 #include <QThread>
 #include <QMutex>
@@ -31,12 +31,12 @@ class InputSource;
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class LightEnvelopeScanner : public QThread
+class LightWaveFormScanner : public QThread
 {
     Q_OBJECT
 public:
-    explicit LightEnvelopeScanner(QObject *parent);
-    ~LightEnvelopeScanner();
+    explicit LightWaveFormScanner(QObject *parent);
+    ~LightWaveFormScanner();
 
     bool scan(const QString &path);
     void stop();
@@ -62,12 +62,12 @@ private:
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class LightEnvelope : public Light
+class LightWaveForm : public Light
 {
     Q_OBJECT
 public:
-    explicit LightEnvelope(QWidget *parent = nullptr);
-    ~LightEnvelope();
+    explicit LightWaveForm(QWidget *parent = nullptr);
+    ~LightWaveForm();
 
     virtual void open(const QString &path) override final;
     virtual void start() override final;
@@ -87,7 +87,7 @@ private:
 
     void drawWaveform();
 
-    LightEnvelopeScanner *m_scanner = nullptr;
+    LightWaveFormScanner *m_scanner = nullptr;
     QAction *m_channelsAction, *m_rmsAction;
     QList<int> m_data;
     int m_channels = 0;

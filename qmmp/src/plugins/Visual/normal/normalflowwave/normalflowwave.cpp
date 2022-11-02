@@ -13,105 +13,13 @@ NormalFlowWave::NormalFlowWave(QWidget *parent)
 {
     setWindowTitle(tr("Normal FlowWave Widget"));
     setMinimumSize(2 * 300 - 30, 105);
-
-    for(int i = 0; i < 50; ++i)
-    {
-        m_starPoints << new StarPoint();
-    }
-
-    m_starTimer = new QTimer(this);
-    connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
-
-    m_starAction = new QAction(tr("Star"), this);
-    m_starAction->setCheckable(true);
-    connect(m_starAction, SIGNAL(triggered(bool)), this, SLOT(changeStarState(bool)));
-
-    m_starTimer->setInterval(1000);
-
-    readSettings();
 }
 
 NormalFlowWave::~NormalFlowWave()
 {
-    qDeleteAll(m_starPoints);
     if(m_xscale)
     {
         delete[] m_xscale;
-    }
-}
-
-void NormalFlowWave::start()
-{
-    Visual::start();
-    if(isVisible())
-    {
-        m_starTimer->start();
-    }
-}
-
-void NormalFlowWave::stop()
-{
-    Visual::stop();
-    m_starTimer->stop();
-}
-
-void NormalFlowWave::starTimeout()
-{
-    for(StarPoint *point : qAsConst(m_starPoints))
-    {
-        point->m_alpha = qrand() % 255;
-        point->m_pt = QPoint(qrand() % width(), qrand() % height());
-    }
-}
-
-void NormalFlowWave::readSettings()
-{
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("NormalFlowWave");
-    m_starAction->setChecked(settings.value("show_star", false).toBool());
-    m_starColor = ColorWidget::readSingleColorConfig(settings.value("star_color").toString());
-    settings.endGroup();
-}
-
-void NormalFlowWave::writeSettings()
-{
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("NormalFlowWave");
-    settings.setValue("show_star", m_starAction->isChecked());
-    settings.setValue("star_color", ColorWidget::writeSingleColorConfig(m_starColor));
-    settings.endGroup();
-}
-
-void NormalFlowWave::changeStarState(bool state)
-{
-    m_starAction->setChecked(state);
-    update();
-}
-
-void NormalFlowWave::changeStarColor()
-{
-    ColorWidget c;
-    c.setSingleColorMode(true);
-    c.setColor(m_starColor);
-    if(c.exec())
-    {
-        m_starColor = c.color();
-        update();
-    }
-}
-
-void NormalFlowWave::hideEvent(QHideEvent *e)
-{
-    Visual::hideEvent(e);
-    m_starTimer->stop();
-}
-
-void NormalFlowWave::showEvent(QShowEvent *e)
-{
-    Visual::showEvent(e);
-    if(m_running)
-    {
-        m_starTimer->start();
     }
 }
 
@@ -120,16 +28,6 @@ void NormalFlowWave::paintEvent(QPaintEvent *)
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
     painter.setRenderHints(QPainter::Antialiasing);
-
-    if(m_starAction->isChecked())
-    {
-        for(StarPoint *point : qAsConst(m_starPoints))
-        {
-            m_starColor.setAlpha(point->m_alpha);
-            painter.setPen(QPen(m_starColor, 3));
-            painter.drawPoint(point->m_pt);
-        }
-    }
 
     QLinearGradient line(0, 0, width(), 0);
     line.setColorAt(1.0 * 1 / 7, QColor(72, 176, 211));
@@ -153,12 +51,7 @@ void NormalFlowWave::paintEvent(QPaintEvent *)
 void NormalFlowWave::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
-    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
-
     menu.addAction(m_screenAction);
-    menu.addSeparator();
-    menu.addAction(m_starAction);
-    menu.addAction(tr("StarColor"), this, SLOT(changeStarColor()));
     menu.exec(QCursor::pos());
 }
 

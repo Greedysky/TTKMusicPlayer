@@ -1,4 +1,4 @@
-#include "lightenvelope.h"
+#include "lightwaveform.h"
 
 #include <QMenu>
 #include <QPainter>
@@ -14,31 +14,31 @@
 
 #define NUMBER_OF_VALUES 4096
 
-LightEnvelopeScanner::LightEnvelopeScanner(QObject *parent)
+LightWaveFormScanner::LightWaveFormScanner(QObject *parent)
     : QThread(parent)
 {
 
 }
 
-LightEnvelopeScanner::~LightEnvelopeScanner()
+LightWaveFormScanner::~LightWaveFormScanner()
 {
     stop();
 }
 
-bool LightEnvelopeScanner::scan(const QString &path)
+bool LightWaveFormScanner::scan(const QString &path)
 {
     InputSource *source = InputSource::create(path, this);
     if(!source->initialize())
     {
         delete source;
-        qWarning("LightEnvelopeScanner: invalid path");
+        qWarning("LightWaveFormScanner: invalid path");
         return false;
     }
 
     if(source->ioDevice() && !source->ioDevice()->open(QIODevice::ReadOnly))
     {
         source->deleteLater();
-        qWarning("LightEnvelopeScanner: cannot open input stream, error: %s",
+        qWarning("LightWaveFormScanner: cannot open input stream, error: %s",
                  qPrintable(source->ioDevice()->errorString()));
         return false;
 
@@ -56,12 +56,12 @@ bool LightEnvelopeScanner::scan(const QString &path)
         factory = Decoder::findByProtocol(source->path().section("://",0,0));
     if(!factory)
     {
-        qWarning("LightEnvelopeScanner: unsupported file format");
+        qWarning("LightWaveFormScanner: unsupported file format");
         source->deleteLater();
         return false;
     }
 
-    qDebug("LightEnvelopeScanner: selected decoder: %s", qPrintable(factory->properties().shortName));
+    qDebug("LightWaveFormScanner: selected decoder: %s", qPrintable(factory->properties().shortName));
     if(factory->properties().noInput && source->ioDevice())
     {
         source->ioDevice()->close();
@@ -70,7 +70,7 @@ bool LightEnvelopeScanner::scan(const QString &path)
     Decoder *decoder = factory->create(source->path(), source->ioDevice());
     if(!decoder->initialize())
     {
-        qWarning("LightEnvelopeScanner: invalid file format");
+        qWarning("LightWaveFormScanner: invalid file format");
         source->deleteLater();
         delete decoder;
         return false;
@@ -89,7 +89,7 @@ bool LightEnvelopeScanner::scan(const QString &path)
     return true;
 }
 
-void LightEnvelopeScanner::stop()
+void LightWaveFormScanner::stop()
 {
     if(isRunning())
     {
@@ -112,18 +112,18 @@ void LightEnvelopeScanner::stop()
     }
 }
 
-const QList<int> &LightEnvelopeScanner::data() const
+const QList<int> &LightWaveFormScanner::data() const
 {
     QMutexLocker locker(&m_mutex);
     return m_data;
 }
 
-const AudioParameters &LightEnvelopeScanner::audioParameters() const
+const AudioParameters &LightWaveFormScanner::audioParameters() const
 {
     return m_ap;
 }
 
-void LightEnvelopeScanner::run()
+void LightWaveFormScanner::run()
 {
     m_ap = m_decoder->audioParameters();
     unsigned char in[QMMP_BLOCK_FRAMES * m_ap.frameSize() * 4];
@@ -200,10 +200,10 @@ void LightEnvelopeScanner::run()
 
 
 
-LightEnvelope::LightEnvelope(QWidget *parent) :
+LightWaveForm::LightWaveForm(QWidget *parent) :
     Light(parent)
 {
-    m_scanner = new LightEnvelopeScanner(this);
+    m_scanner = new LightWaveFormScanner(this);
     connect(m_scanner, SIGNAL(finished()), SLOT(scanFinished()));
     connect(m_scanner, SIGNAL(dataChanged()), SLOT(dataChanged()));
 
@@ -219,13 +219,13 @@ LightEnvelope::LightEnvelope(QWidget *parent) :
     readSettings();
 }
 
-LightEnvelope::~LightEnvelope()
+LightWaveForm::~LightWaveForm()
 {
     stop();
     delete m_scanner;
 }
 
-void LightEnvelope::open(const QString &path)
+void LightWaveForm::open(const QString &path)
 {
     if(m_scanner->scan(path))
     {
@@ -233,48 +233,48 @@ void LightEnvelope::open(const QString &path)
     }
     else
     {
-        qDebug("LightEnvelopeThead: init error");
+        qDebug("LightWaveFormThead: init error");
     }
 }
 
-void LightEnvelope::start()
+void LightWaveForm::start()
 {
     m_scanner->start();
 }
 
-void LightEnvelope::stop()
+void LightWaveForm::stop()
 {
     m_scanner->stop();
 }
 
-void LightEnvelope::readSettings()
+void LightWaveForm::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("LightEnvelope");
+    settings.beginGroup("LightWaveForm");
     m_channelsAction->setChecked(settings.value("show_two_channels", true).toBool());
     m_rmsAction->setChecked(settings.value("show_rms", true).toBool());
     settings.endGroup();
     drawWaveform();
 }
 
-void LightEnvelope::writeSettings()
+void LightWaveForm::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("LightEnvelope");
+    settings.beginGroup("LightWaveForm");
     settings.setValue("show_two_channels", m_channelsAction->isChecked());
     settings.setValue("show_rms", m_rmsAction->isChecked());
     settings.endGroup();
     drawWaveform();
 }
 
-void LightEnvelope::scanFinished()
+void LightWaveForm::scanFinished()
 {
     m_data = m_scanner->data();
     m_channels = m_scanner->audioParameters().channels();
     drawWaveform();
 }
 
-void LightEnvelope::dataChanged()
+void LightWaveForm::dataChanged()
 {
     if(!m_scanner->isRunning())
     {
@@ -286,13 +286,13 @@ void LightEnvelope::dataChanged()
     drawWaveform();
 }
 
-void LightEnvelope::mediaUrlChanged()
+void LightWaveForm::mediaUrlChanged()
 {
     stop();
     open(SoundCore::instance()->path());
 }
 
-void LightEnvelope::positionChanged(qint64 elapsed)
+void LightWaveForm::positionChanged(qint64 elapsed)
 {
     m_elapsed = elapsed;
     m_duration = SoundCore::instance()->duration();
@@ -302,7 +302,7 @@ void LightEnvelope::positionChanged(qint64 elapsed)
     }
 }
 
-void LightEnvelope::paintEvent(QPaintEvent *)
+void LightWaveForm::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
@@ -326,7 +326,7 @@ void LightEnvelope::paintEvent(QPaintEvent *)
     }
 }
 
-void LightEnvelope::contextMenuEvent(QContextMenuEvent *)
+void LightWaveForm::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
@@ -336,7 +336,7 @@ void LightEnvelope::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void LightEnvelope::drawWaveform()
+void LightWaveForm::drawWaveform()
 {
     if(m_data.isEmpty())
     {

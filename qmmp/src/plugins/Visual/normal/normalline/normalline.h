@@ -32,31 +32,18 @@ public:
     explicit NormalLine(QWidget *parent = nullptr);
     virtual ~NormalLine();
 
-public slots:
-    virtual void start() override final;
-    virtual void stop() override final;
-
 private slots:
-    void starTimeout();
     void readSettings();
     void writeSettings();
     void changeColor();
-    void changeStarState(bool state);
-    void changeStarColor();
 
 private:
-    virtual void hideEvent(QHideEvent *e) override final;
-    virtual void showEvent(QShowEvent *e) override final;
     virtual void paintEvent(QPaintEvent *e) override final;
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
 
     QList<QColor> m_colors;
-    QAction *m_starAction;
-    QColor m_starColor;
-    QList<StarPoint*> m_starPoints;
-    QTimer *m_starTimer;
     double *m_peaks = nullptr;
     int *m_xscale = nullptr;
     const double m_peakSize = 0.2, m_analyzerSize = 1.2;

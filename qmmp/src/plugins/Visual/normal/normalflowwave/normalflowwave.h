@@ -32,29 +32,12 @@ public:
     explicit NormalFlowWave(QWidget *parent = nullptr);
     virtual ~NormalFlowWave();
 
-public slots:
-    virtual void start() override final;
-    virtual void stop() override final;
-
-private slots:
-    void starTimeout();
-    void readSettings();
-    void writeSettings();
-    void changeStarState(bool state);
-    void changeStarColor();
-
 private:
-    virtual void hideEvent(QHideEvent *e) override final;
-    virtual void showEvent(QShowEvent *e) override final;
     virtual void paintEvent(QPaintEvent *e) override final;
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     virtual void process(float *left, float *right) override final;
 
-    QAction *m_starAction;
-    QColor m_starColor;
-    QList<StarPoint*> m_starPoints;
-    QTimer *m_starTimer;
     int *m_xscale = nullptr;
     const double m_analyzerSize = 2.2;
     const QSize m_cellSize = QSize(15, 6);
