@@ -1,7 +1,7 @@
 #include "ladspahost.h"
 
-#include <QSettings>
 #include <QDir>
+#include <QSettings>
 #include <dlfcn.h>
 #include <qmmp/audioparameters.h>
 
@@ -295,7 +295,8 @@ void LADSPAHost::activateEffect(LADSPAEffect *e)
         qWarning("LADSPAHost: unsupported plugin: %s", desc->Name);
         return;
     }
-    else if(e->in_ports.isEmpty())
+
+    if(e->in_ports.isEmpty())
     {
         if(m_chan % e->out_ports.count())
         {

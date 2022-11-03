@@ -68,7 +68,7 @@ QColor ColorWidget::readSingleColorConfig(const QString &value)
 {
     if(value.isEmpty())
     {
-        return Qt::white;
+        return QColor(0, 0xFF, 0xFF);
     }
 
     const QStringList &var = value.split(',');
@@ -88,7 +88,7 @@ QList<QColor> ColorWidget::readColorConfig(const QString &value)
 {
     if(value.isEmpty())
     {
-        return QList<QColor>() << Qt::white;
+        return QList<QColor>() << Qt::white << QColor(0, 0xFF, 0xFF);
     }
 
     QList<QColor> colors;
