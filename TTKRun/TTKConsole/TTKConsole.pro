@@ -38,8 +38,8 @@ win32:msvc{
     }
 }
 
-LIBS += -L$$DESTDIR -lTTKCore
-unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
+LIBS += -L$$DESTDIR -lTTKCore -lTTKLibrary
+unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lTTKZip -lzlib
 
 INCLUDEPATH += \
     $$PWD/../ \

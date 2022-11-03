@@ -334,9 +334,18 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::Module spectrum, bool
         }
 
         Light *light = TTKObject_cast(Light*, m_types[index].m_object);
-        if(light && LIGHT_SPECTRUM_MODULE == name)
+        if(!light)
         {
-            const QString &path = url.isEmpty() ? SoundCore::instance()->path() : url;
+            return;
+        }
+
+        const QString &path = url.isEmpty() ? SoundCore::instance()->path() : url;
+        if(LIGHT_WAVEFORM_MODULE == name)
+        {
+            light->open(path);
+        }
+        else if(LIGHT_SPECTRUM_MODULE == name)
+        {
             const QString &suffix = FILE_SUFFIX(QFileInfo(path));
             for(QString &filter : MusicFormats::supportSpekInputFilterFormats())
             {

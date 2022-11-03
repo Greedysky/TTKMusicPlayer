@@ -204,7 +204,7 @@
     </message>
 </context>
 <context>
-    <name>LightEnvelope</name>
+    <name>LightWaveForm</name>
     <message>
         <source>Double Channels</source>
         <translation>双通道</translation>
