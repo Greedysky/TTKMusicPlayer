@@ -45,9 +45,9 @@ The TTKMusicplayer plugin for run
  * stereo
  * subwoofer
 ### Light
- * lightenvelope
  * lightreplaygain
  * lightspectrum
+ * lightwaveform
 ### Transports
  * network
 ### Visual

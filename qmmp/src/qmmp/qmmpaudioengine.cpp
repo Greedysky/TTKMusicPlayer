@@ -411,7 +411,8 @@ void QmmpAudioEngine::run()
                 mutex()->unlock();
                 continue;
             }
-            else if(!m_decoders.isEmpty())
+
+            if(!m_decoders.isEmpty())
             {
                 m_inputs.take(m_decoder)->deleteLater();
                 delete m_decoder;

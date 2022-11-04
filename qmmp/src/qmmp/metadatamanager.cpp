@@ -163,7 +163,7 @@ bool MetaDataManager::supports(const QString &fileName) const
             return false;
         if(Decoder::findByFilePath(fileName))
             return true;
-        else if(AbstractEngine::findByFilePath(fileName))
+        if(AbstractEngine::findByFilePath(fileName))
             return true;
         return false;
     }
@@ -299,7 +299,6 @@ MetaDataManager *MetaDataManager::instance()
 
 void MetaDataManager::destroy()
 {
-    if(m_instance)
-        delete m_instance;
+    delete m_instance;
     m_instance = nullptr;
 }
