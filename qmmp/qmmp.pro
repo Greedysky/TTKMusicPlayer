@@ -3,4 +3,4 @@ CONFIG += ordered
 include(qmmp.pri)
 
 TEMPLATE = subdirs
-SUBDIRS = src/qmmp src/plugins src/buld
+SUBDIRS += src/qmmp src/plugins src/buld
