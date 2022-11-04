@@ -233,7 +233,7 @@ void LightWaveForm::open(const QString &path)
     }
     else
     {
-        qDebug("LightWaveFormThead: init error");
+        qDebug("LightWaveFormThread: init error");
     }
 }
 

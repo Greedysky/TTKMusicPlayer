@@ -28,7 +28,7 @@ void PlusBlurXRays::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("PlusBlurXRays");
-    m_color = ColorWidget::readSingleColorConfig(settings.value("color").toString());
+    m_colors = ColorWidget::readColorConfig(settings.value("color").toString());
     settings.endGroup();
 }
 
@@ -36,7 +36,7 @@ void PlusBlurXRays::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("PlusBlurXRays");
-    settings.setValue("color", ColorWidget::writeSingleColorConfig(m_color));
+    settings.setValue("color", ColorWidget::writeColorConfig(m_colors));
     settings.endGroup();
 }
 
@@ -44,10 +44,10 @@ void PlusBlurXRays::changeColor()
 {
     ColorWidget c;
     c.setSingleColorMode(true);
-    c.setColor(m_color);
+    c.setColors(m_colors);
     if(c.exec())
     {
-        m_color = c.color();
+        m_colors = c.colors();
     }
 }
 
@@ -168,9 +168,10 @@ void PlusBlurXRays::drawLine(int x, int y1, int y2)
     }
 
     unsigned int *p = m_corner + y * m_cols + x;
+    const QColor &color = m_colors.front();
 
     for(; h--; p += m_cols)
     {
-        *p = !m_color.isValid() ? 0xFF3F7F : m_color.rgba();
+        *p = !color.isValid() ? 0xFF3F7F : color.rgba();
     }
 }

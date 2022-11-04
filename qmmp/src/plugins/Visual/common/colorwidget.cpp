@@ -64,31 +64,11 @@ ColorWidget::~ColorWidget()
     delete m_ui;
 }
 
-QColor ColorWidget::readSingleColorConfig(const QString &value)
-{
-    if(value.isEmpty())
-    {
-        return QColor(0, 0xFF, 0xFF);
-    }
-
-    const QStringList &var = value.split(',');
-    if(var.count() != 3)
-    {
-        return QColor();
-    }
-    return QColor(var[0].toInt(), var[1].toInt(), var[2].toInt());
-}
-
-QString ColorWidget::writeSingleColorConfig(const QColor &color)
-{
-    return QString("%1,%2,%3").arg(color.red()).arg(color.green()).arg(color.blue());
-}
-
 QList<QColor> ColorWidget::readColorConfig(const QString &value)
 {
     if(value.isEmpty())
     {
-        return QList<QColor>() << Qt::white << QColor(0, 0xFF, 0xFF);
+        return QList<QColor>() << QColor(0, 0xFF, 0xFF);
     }
 
     QList<QColor> colors;
@@ -110,7 +90,7 @@ QString ColorWidget::writeColorConfig(const QList<QColor> &colors)
     QString value;
     for(const QColor &rgb : colors)
     {
-        value.append(writeSingleColorConfig(rgb) + ";");
+        value.append(QString("%1,%2,%3;").arg(rgb.red()).arg(rgb.green()).arg(rgb.blue()));
     }
     return value;
 }
@@ -138,6 +118,11 @@ void ColorWidget::setColors(const QList<QColor> &colors)
         it->setBackgroundColor(color);
         m_ui->listWidget->addItem(it);
     }
+
+    if(m_ui->listWidget->count() > 0 && m_singleColorMode)
+    {
+        m_ui->addButton->setEnabled(false);
+    }
 }
 
 QList<QColor> ColorWidget::colors() const
@@ -150,35 +135,6 @@ QList<QColor> ColorWidget::colors() const
     return colors;
 }
 
-void ColorWidget::setColor(const QColor &color)
-{
-    if(m_ui->listWidget->count() < 1)
-    {
-        QListWidgetItem *it = new QListWidgetItem(m_ui->listWidget);
-        it->setBackgroundColor(color);
-        m_ui->listWidget->addItem(it);
-
-        if(m_singleColorMode)
-        {
-            m_ui->addButton->setEnabled(false);
-        }
-    }
-    else
-    {
-        m_ui->listWidget->item(0)->setBackgroundColor(color);
-    }
-}
-
-QColor ColorWidget::color() const
-{
-    if(m_ui->listWidget->count() < 1)
-    {
-        return QColor();
-    }
-
-    return m_ui->listWidget->item(0)->backgroundColor();
-}
-
 void ColorWidget::addButtonClicked()
 {
     QColorDialog dialog(Qt::white, this);
@@ -187,17 +143,17 @@ void ColorWidget::addButtonClicked()
         QListWidgetItem *it = new QListWidgetItem(m_ui->listWidget);
         it->setBackgroundColor(dialog.selectedColor());
         m_ui->listWidget->addItem(it);
-    }
 
-    if(m_singleColorMode)
-    {
-        m_ui->addButton->setEnabled(false);
+        if(m_singleColorMode)
+        {
+            m_ui->addButton->setEnabled(false);
+        }
     }
 }
 
 void ColorWidget::deleteButtonClicked()
 {
-    int index = m_ui->listWidget->currentRow();
+    const int index = m_ui->listWidget->currentRow();
     if(index >= 0)
     {
         delete m_ui->listWidget->takeItem(index);

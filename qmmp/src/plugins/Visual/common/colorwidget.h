@@ -40,15 +40,6 @@ public:
     virtual ~ColorWidget();
 
     /*!
-     * Read single color config.
-     */
-    static QColor readSingleColorConfig(const QString &value);
-    /*!
-     * Write single color config.
-     */
-    static QString writeSingleColorConfig(const QColor &color);
-
-    /*!
      * Read color config.
      */
     static QList<QColor> readColorConfig(const QString &value);
@@ -70,15 +61,6 @@ public:
      * Get selected colors.
      */
     QList<QColor> colors() const;
-
-    /*!
-     * Set current color.
-     */
-    void setColor(const QColor &color);
-    /*!
-     * Get selected color.
-     */
-    QColor color() const;
 
 public slots:
     /*!

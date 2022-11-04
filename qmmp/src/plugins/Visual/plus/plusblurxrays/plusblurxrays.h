@@ -44,7 +44,7 @@ private:
     void blur();
     void drawLine(int x, int y1, int y2);
 
-    QColor m_color;
+    QList<QColor> m_colors;
     int m_imageSize = 0;
     unsigned int *m_image = nullptr, *m_corner = nullptr;
 

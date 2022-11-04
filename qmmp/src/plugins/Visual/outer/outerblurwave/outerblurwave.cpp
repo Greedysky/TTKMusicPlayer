@@ -68,7 +68,7 @@ void OuterBlurWave::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("OuterBlurWave");
-    m_color = ColorWidget::readSingleColorConfig(settings.value("colors").toString());
+    m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     m_opacity = settings.value("opacity").toDouble();
     settings.endGroup();
 }
@@ -107,9 +107,10 @@ void OuterBlurWave::paintEvent(QPaintEvent *)
     }
     points << viewToItemPoint(QPoint(width(), height() + HEIGHT_OFFSET));
 
+    const QColor &color = m_colors.front();
     m_view->setGeometry(0, 0, width(), height() + HEIGHT_OFFSET);
-    m_item->setBrush(m_color);
-    m_item->setPen(m_color);
+    m_item->setBrush(color);
+    m_item->setPen(color);
     m_item->setOpacity(m_opacity);
     m_item->setPolygon(points);
 }

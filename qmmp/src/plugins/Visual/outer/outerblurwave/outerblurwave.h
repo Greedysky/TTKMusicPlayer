@@ -48,7 +48,7 @@ private:
     virtual void process(float *left, float *right) override final;
     QPointF viewToItemPoint(const QPoint &pt);
 
-    QColor m_color = QColor(0x0, 0xff, 0xff);
+    QList<QColor> m_colors;
     qreal m_opacity = 1.0;
     int *m_xscale = nullptr;
     const double m_analyzerSize = 1.2;
