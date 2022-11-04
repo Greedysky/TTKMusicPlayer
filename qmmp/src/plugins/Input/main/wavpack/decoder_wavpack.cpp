@@ -46,6 +46,7 @@ bool DecoderWavPack::initialize()
             char *value = (char*)malloc(cue_len * 2 + 1);
             WavpackGetTagItem(m_context, "cuesheet", value, cue_len + 1);
             m_parser = new CueParser(value);
+            free(value);
             m_parser->setDuration((qint64)WavpackGetNumSamples(m_context) * 1000 / WavpackGetSampleRate(m_context));
             m_parser->setUrl("wvpack", p);
             m_track = m_path.section("#", -1).toInt();
