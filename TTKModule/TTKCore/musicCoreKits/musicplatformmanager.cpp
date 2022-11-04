@@ -135,7 +135,7 @@ int MusicPlatformManager::logicalDotsPerInch() const
 MusicPlatformManager::System MusicPlatformManager::systemName() const
 {
 #ifdef Q_OS_WIN
-    typedef void(__stdcall*NTPROC)(DWORD*, DWORD*, DWORD*);
+    typedef void (__stdcall *NTPROC)(DWORD*, DWORD*, DWORD*);
     HINSTANCE instance = LoadLibraryW(L"ntdll.dll");
     DWORD major, minor, buildNumber;
     NTPROC proc = TTKVoid_cast(NTPROC)GetProcAddress(instance, "MiniDumpWriteDump");

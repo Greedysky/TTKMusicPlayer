@@ -22,7 +22,7 @@
 #include "ttkglobaldefine.h"
 
 #if defined(_MSC_VER)
-typedef unsigned __int32 xxtea_uint;
+using xxtea_uint = unsigned __int32;
 #  pragma warning(disable:4267)
 #else
 #  if defined(__FreeBSD__) && __FreeBSD__ < 5
@@ -30,7 +30,7 @@ typedef unsigned __int32 xxtea_uint;
 #  else
 #    include <stdint.h>
 #  endif
-typedef uint32_t xxtea_uint;
+using xxtea_uint = uint32_t;
 #endif
 
 /*! @brief The class of the string cryptographic hash.

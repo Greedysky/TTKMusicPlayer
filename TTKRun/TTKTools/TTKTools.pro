@@ -18,4 +18,4 @@
 
 TEMPLATE = subdirs
 CONFIG += ordered
-SUBDIRS = GenerateUrl GenerateSkin
+SUBDIRS += GenerateUrl GenerateSkin

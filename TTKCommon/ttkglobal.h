@@ -212,8 +212,8 @@ public: \
 #define TTK_PP_VARIADIC_SIZE_I(e0, e1, e2, e3, e4, e5, e6, e7, size, ...) size
 
 // declare list and enum flag
-#define TTK_DECLARE_LIST(Class)        typedef QList<Class> Class##List
-#define TTK_DECLARE_FLAG(Flags, Enum)  typedef QFlags<Enum> Flags
+#define TTK_DECLARE_LIST(Class)        using Class##List = QList<Class>
+#define TTK_DECLARE_FLAG(Flags, Enum)  using Flags = QFlags<Enum>
 #define TTK_ENUM_TYPE(Enum)            std::underlying_type<Enum>::type
 #define TTK_DECLARE_OPERATORS_FOR_ENUM(Enum) \
 inline constexpr Enum operator~(const Enum lhs) { return TTKStatic_cast(Enum, ~TTKStatic_cast(TTK_ENUM_TYPE(Enum), lhs)); } \
@@ -244,31 +244,31 @@ inline const Enum& operator^=(Enum& lhs, const Enum rhs) { return lhs = (lhs ^ r
 #define TTK_NULL_STR        "null"
 
 // C style format
-typedef signed char                      TTKInt8;          /* 8 bit signed */
-typedef unsigned char                    TTKUInt8;         /* 8 bit unsigned */
-typedef short                            TTKInt16;         /* 16 bit signed */
-typedef unsigned short                   TTKUInt16;        /* 16 bit unsigned */
-typedef int                              TTKInt32;         /* 32 bit signed */
-typedef unsigned int                     TTKUInt32;        /* 32 bit unsigned */
-typedef long long                        TTKInt64;         /* 64 bit signed */
-typedef unsigned long long               TTKUInt64;        /* 64 bit unsigned */
+using TTKInt8 =             signed char;                /* 8 bit signed */
+using TTKUInt8 =            unsigned char;              /* 8 bit unsigned */
+using TTKInt16 =            short;                      /* 16 bit signed */
+using TTKUInt16 =           unsigned short;             /* 16 bit unsigned */
+using TTKInt32 =            int;                        /* 32 bit signed */
+using TTKUInt32 =           unsigned int;               /* 32 bit unsigned */
+using TTKInt64 =            long long;                  /* 64 bit signed */
+using TTKUInt64 =           unsigned long long;         /* 64 bit unsigned */
 
-typedef double                           TTKDouble;        /* double */
-typedef float                            TTKFloat;         /* float */
-typedef bool                             TTKBool;          /* bool */
+using TTKDouble =           double;                     /* double */
+using TTKFloat =            float;                      /* float */
+using TTKBool =             bool;                       /* bool */
 
 // C++ style format
-typedef std::string                      TTKString;        /* string */
-typedef std::wstring                     TTKWString;       /* wstring */
+using TTKString =           std::string;                /* string */
+using TTKWString =          std::wstring;               /* wstring */
 
 // Qt style format
-typedef QList<int>                       TTKIntList;       /* intlist */
-typedef QList<QVariant>                  TTKVariantList;   /* variantlist */
-typedef QSet<int>                        TTKIntSet;        /* intset */
-typedef QMap<QString, QVariant>          TTKVariantMap;    /* stringVariantMap */
-typedef QMap<QString, QString>           TTKStringMap;     /* stringsMap */
-typedef QMap<QString, QStringList>       TTKStringListMap; /* stringStrlistsMap */
-typedef QMap<int, TTKIntList>            TTKIntListMap;    /* intIntlistMap */
-typedef QMap<qint64, QString>            TTKIntStringMap;  /* intStrMap */
+using TTKIntList =          QList<int>;                 /* int list */
+using TTKVariantList =      QList<QVariant>;            /* variant list */
+using TTKIntSet =           QSet<int>;                  /* int set */
+using TTKVariantMap =       QMap<QString, QVariant>;    /* string variant map */
+using TTKStringMap =        QMap<QString, QString>;     /* strings map */
+using TTKStringListMap =    QMap<QString, QStringList>; /* string stringlist map */
+using TTKIntListMap =       QMap<int, TTKIntList>;      /* int int list map */
+using TTKIntStringMap =     QMap<qint64, QString>;      /* int string map */
 
 #endif // TTKGLOBAL_H

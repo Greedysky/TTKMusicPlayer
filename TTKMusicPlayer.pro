@@ -18,7 +18,7 @@
 
 TEMPLATE = subdirs
 CONFIG += ordered
-SUBDIRS = TTKCommon TTKConfig TTKUi TTKThirdParty TTKModule TTKService TTKRun
+SUBDIRS += TTKCommon TTKConfig TTKUi TTKThirdParty TTKModule TTKService TTKRun
 
 TRANSLATIONS += \
     $$PWD/TTKLanguage/cn.ts \
