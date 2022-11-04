@@ -24,12 +24,12 @@
 
 class MusicPlayer;
 class MusicPlaylist;
-class MusicSongsSummariziedWidget;
 class MusicBottomAreaWidget;
 class MusicTopAreaWidget;
 class MusicRightAreaWidget;
 class MusicLeftAreaWidget;
 class MusicApplicationModule;
+class MusicSongsSummariziedWidget;
 
 class MusicMPRISPlayerCore;
 

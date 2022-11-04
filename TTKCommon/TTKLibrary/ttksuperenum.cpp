@@ -5,14 +5,10 @@
 TTKSuperEnum::TTKSuperEnum(const QString &value)
     : m_enumValue()
 {
-    const QStringList &enums = value.split(',');
-    if(enums.isEmpty())
-    {
-        return;
-    }
-
     int enumValue = 0;
-    for(QString data : enums)
+    const QStringList &enums = value.split(',');
+
+    for(QString data : qAsConst(enums))
     {
         const int pos = data.indexOf('=');
         if(pos != TTKSuperEnum::Null)
