@@ -67,6 +67,7 @@ HEADERS += \
     $$PWD/ttkdesktopwrapper.h \
     $$PWD/ttkglobalhelper.h \
     $$PWD/ttksemaphoreloop.h \
+    $$PWD/ttksuperenum.h \
     $$PWD/ttktime.h
 
 SOURCES += \
@@ -82,6 +83,7 @@ SOURCES += \
     $$PWD/ttkdesktopwrapper.cpp \
     $$PWD/ttkglobalhelper.cpp \
     $$PWD/ttksemaphoreloop.cpp \
+    $$PWD/ttksuperenum.cpp \
     $$PWD/ttktime.cpp
 
 RESOURCES += $$PWD/TTKLibrary.qrc
