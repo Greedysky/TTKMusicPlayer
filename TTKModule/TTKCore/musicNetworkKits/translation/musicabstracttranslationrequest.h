@@ -29,6 +29,13 @@ class TTK_MODULE_EXPORT MusicAbstractTranslationRequest : public MusicAbstractNe
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractTranslationRequest)
 public:
+    enum class Language
+    {
+        Auto,
+        Chinese
+    };
+
+public:
     /*!
      * Object contsructor.
      */
