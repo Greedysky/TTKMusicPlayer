@@ -22,7 +22,7 @@ static void createGradientTable()
     int numbers = 6;
     for(int i = 0; i < GRADIENT_TABLE_SIZE; ++i)
     {
-        double position = (double)i/GRADIENT_TABLE_SIZE;
+        double position = (double)i / GRADIENT_TABLE_SIZE;
         /* if position > 1 then we have repetition of colors it maybe useful    */
         if(position > 1.0)
         {

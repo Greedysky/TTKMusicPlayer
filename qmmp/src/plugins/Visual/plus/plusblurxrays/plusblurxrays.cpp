@@ -28,7 +28,7 @@ void PlusBlurXRays::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("PlusBlurXRays");
-    m_colors = ColorWidget::readColorConfig(settings.value("color").toString());
+    m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     settings.endGroup();
 }
 
@@ -36,7 +36,7 @@ void PlusBlurXRays::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("PlusBlurXRays");
-    settings.setValue("color", ColorWidget::writeColorConfig(m_colors));
+    settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
     settings.endGroup();
 }
 
