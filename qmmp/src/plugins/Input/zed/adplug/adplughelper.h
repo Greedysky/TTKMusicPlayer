@@ -22,7 +22,6 @@
 #include <QFile>
 #include <QStringList>
 #include <adplug/adplug.h>
-#include <adplug/emuopl.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>

@@ -1,11 +1,104 @@
 #include "adplughelper.h"
 
 #include <qmmp/qmmp.h>
+#include <QSettings>
+
+#include <adplug/emuopl.h>
+#include <adplug/kemuopl.h>
+#include <adplug/nemuopl.h>
+#include <adplug/wemuopl.h>
+#include <adplug/surroundopl.h>
 
 AdplugHelper::AdplugHelper(const QString &path)
     : m_path(path)
 {
-    m_opl = new CEmuopl(sampleRate(), true, false);
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("Adplug");
+    const int type = settings.value("emulator", 0).toInt();
+    const bool surround = settings.value("use_surround", false).toBool();
+    settings.endGroup();
+
+    switch(type)
+    {
+    case 0:
+        if(surround)
+        {
+            COPLprops a;
+            a.opl = new CEmuopl(sampleRate(), true, false);
+            a.use16bit = true;
+            a.stereo = true;
+
+            COPLprops b;
+            b.opl = new CEmuopl(sampleRate(), true, false);
+            b.use16bit = true;
+            b.stereo = true;
+            m_opl = new CSurroundopl(&a, &b, true);
+        }
+        else
+        {
+            m_opl = new CEmuopl(sampleRate(), true, false);
+        }
+        break;
+    case 1:
+        if(surround)
+        {
+            COPLprops a;
+            a.opl = new CNemuopl(sampleRate());
+            a.use16bit = true;
+            a.stereo = true;
+
+            COPLprops b;
+            b.opl = new CNemuopl(sampleRate());
+            b.use16bit = true;
+            b.stereo = true;
+            m_opl = new CSurroundopl(&a, &b, true);
+        }
+        else
+        {
+            m_opl = new CNemuopl(sampleRate());
+        }
+        break;
+    case 2:
+        if(surround)
+        {
+            COPLprops a;
+            a.opl = new CWemuopl(sampleRate(), true, false);
+            a.use16bit = true;
+            a.stereo = true;
+
+            COPLprops b;
+            b.opl = new CWemuopl(sampleRate(), true, false);
+            b.use16bit = true;
+            b.stereo = true;
+            m_opl = new CSurroundopl(&a, &b, true);
+        }
+        else
+        {
+            m_opl = new CWemuopl(sampleRate(), true, false);
+        }
+        break;
+    case 3:
+        if(surround)
+        {
+            COPLprops a;
+            a.opl = new CKemuopl(sampleRate(), true, false);
+            a.use16bit = true;
+            a.stereo = true;
+
+            COPLprops b;
+            b.opl = new CKemuopl(sampleRate(), true, false);
+            b.use16bit = true;
+            b.stereo = true;
+            m_opl = new CSurroundopl(&a, &b, true);
+        }
+        else
+        {
+            m_opl = new CKemuopl(sampleRate(), true, false);
+        }
+        break;
+    default:
+        break;
+    }
     m_player = CAdPlug::factory(QmmpPrintable(path), m_opl);
 }
 

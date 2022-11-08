@@ -5,12 +5,16 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decoderadplugfactory.h \
            decoder_adplug.h \
            adplughelper.h \
-           adplugmetadatamodel.h
+           adplugmetadatamodel.h \
+           settingsdialog.h
 
 SOURCES += decoderadplugfactory.cpp \
            decoder_adplug.cpp \
            adplughelper.cpp \
-           adplugmetadatamodel.cpp
+           adplugmetadatamodel.cpp \
+           settingsdialog.cpp
+
+FORMS   += settingsdialog.ui
 
 INCLUDEPATH += $$EXTRA_PREFIX/libadplug/include \
                $$EXTRA_PREFIX/libadplug/include/libbinio

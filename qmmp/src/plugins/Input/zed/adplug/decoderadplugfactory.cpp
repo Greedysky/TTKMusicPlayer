@@ -2,6 +2,7 @@
 #include "adplughelper.h"
 #include "decoder_adplug.h"
 #include "adplugmetadatamodel.h"
+#include "settingsdialog.h"
 
 bool DecoderAdplugFactory::canDecode(QIODevice *input) const
 {
@@ -41,6 +42,7 @@ DecoderProperties DecoderAdplugFactory::properties() const
     properties.filters << "*.sci"; // (sci, name)
     properties.description = "AdLib Sound File";
     properties.protocols << "file";
+    properties.hasSettings = true;
     properties.noInput = true;
     return properties;
 }
@@ -92,7 +94,7 @@ MetaDataModel *DecoderAdplugFactory::createMetaDataModel(const QString &path, bo
 
 void DecoderAdplugFactory::showSettings(QWidget *parent)
 {
-    Q_UNUSED(parent);
+    (new SettingsDialog(parent))->show();
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
