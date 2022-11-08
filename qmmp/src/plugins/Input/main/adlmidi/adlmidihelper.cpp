@@ -48,6 +48,7 @@ void AdlMidiHelper::readSettings()
     {
         adl_openBankFile(m_input, QmmpPrintable(settings.value("conf_path").toString()));
     }
+    settings.endGroup();
     adl_reset(m_input);
 }
 

@@ -45,6 +45,7 @@ void SettingsDialog::accept()
     settings.setValue("index", m_ui.banksComboBox->currentIndex());
     settings.setValue("use_wopl", m_ui.checkBox->isChecked());
     settings.setValue("conf_path", m_ui.configPathEdit->text());
+    settings.endGroup();
 
     if(DecoderAdlMidi::instance())
     {

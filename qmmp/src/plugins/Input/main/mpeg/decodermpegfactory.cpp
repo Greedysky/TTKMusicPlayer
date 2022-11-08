@@ -93,7 +93,9 @@ Decoder *DecoderMPEGFactory::create(const QString &path, QIODevice *input)
 {
     Q_UNUSED(path);
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    bool crc = settings.value("MPEG/enable_crc", false).toBool();
+    settings.beginGroup("MPEG");
+    const bool crc = settings.value("enable_crc", false).toBool();
+    settings.endGroup();
     return new DecoderMAD(crc, input);
 }
 
