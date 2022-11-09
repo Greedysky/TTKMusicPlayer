@@ -203,9 +203,7 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     delegateName->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->treeWidget->setItemDelegateForColumn(2, delegateName);
 
-    MusicLabelDelegate *delegateSetting = new MusicLabelDelegate(this);
-    delegateSetting->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    delegateSetting->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    QItemDelegate *delegateSetting = new QItemDelegate(this);
     m_ui->treeWidget->setItemDelegateForColumn(3, delegateSetting);
 
     m_ui->treeWidget->setColumnWidth(0, 65);

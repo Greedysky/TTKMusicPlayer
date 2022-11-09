@@ -1111,6 +1111,18 @@ too high may cause clipping!</source>
         <source>Cutoff:</source>
         <translation>截斷:</translation>
     </message>
+    <message>
+        <source>AdPlug Plugin Settings</source>
+        <translation>AdPlug插件設置</translation>
+    </message>
+    <message>
+        <source>OPL Emulator:</source>
+        <translation>OPL 仿真器:</translation>
+    </message>
+    <message>
+        <source>Use surround sound</source>
+        <translation>使用環繞音效</translation>
+    </message>
 </context>
 <context>
     <name>SoniqueWidget</name>
