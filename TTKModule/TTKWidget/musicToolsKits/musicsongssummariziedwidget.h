@@ -84,7 +84,7 @@ public:
     /*!
      * Get search result index from list by given row and clear cache.
      */
-    int cleanSearchResult(int row);
+    void removeSearchResult(int &row);
 
     /*!
      * Get play tool index.
@@ -242,10 +242,6 @@ private:
      */
     virtual void resizeEvent(QResizeEvent *event) override final;
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
-    /*!
-     * Check current search result is empty or not.
-     */
-    inline bool hasSearchResult() const { return !m_searchResultCache.isEmpty(); }
     /*!
      * Current index is searched or not.
      */

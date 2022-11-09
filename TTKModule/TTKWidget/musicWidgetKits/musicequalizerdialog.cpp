@@ -49,8 +49,8 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     readInformation();
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(className(), MusicPlayer::className());
-    G_CONNECTION_PTR->poolConnect(className(), MusicSoundEffectsWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicPlayer::className());
+    G_CONNECTION_PTR->connect(className(), MusicSoundEffectsWidget::className());
 }
 
 MusicEqualizerDialog::~MusicEqualizerDialog()

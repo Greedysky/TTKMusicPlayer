@@ -17,6 +17,7 @@
 #include "musicabstractdownloadtablewidget.h"
 #include "musiccloudtablewidget.h"
 #include "musiccloudmanagerwidget.h"
+#include "musiclocalmanagerwidget.h"
 #include "musicsongdlnatransferwidget.h"
 #include "musicsongitemselectedareawidget.h"
 
@@ -25,10 +26,10 @@ MusicConnectionPool::MusicConnectionPool()
 
 }
 
-void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
+void MusicConnectionPool::connect(const QString &from, const QString &to)
 {
-    const QObject *first = m_parameter.value(from);
-    const QObject *second = m_parameter.value(to);
+    const QObject *first = m_parameters.value(from);
+    const QObject *second = m_parameters.value(to);
     if(first == nullptr || second == nullptr)
     {
         return;
@@ -43,7 +44,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(positionChanged(qint64)), second, SLOT(positionChanged(qint64)));
         QObject::connect(first, SIGNAL(durationChanged(qint64)), second, SLOT(durationChanged(qint64)));
     }
-    else if((from == MusicMobileSongsManagerWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
+    else if((from == MusicLocalManagerWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
+            (from == MusicMobileSongsManagerWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicSongCheckToolsDuplicateTableWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicSongCheckToolsQualityTableWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicAbstractDownloadTableWidget::className() && to == MusicSongsSummariziedWidget::className()))
@@ -63,8 +65,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     {
         QObject::connect(first, SIGNAL(setEqualizerConfig()), second, SLOT(setEqualizerConfig()));
     }
-    else if((from == MusicSongSearchTableWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
-            (from == MusicItemQueryTableWidget::className() && to == MusicSongsSummariziedWidget::className()))
+    else if(from == MusicQueryTableWidget::className() && to == MusicSongsSummariziedWidget::className())
     {
         QObject::connect(first, SIGNAL(songBufferToPlaylist(MusicResultDataItem)), second, SLOT(addSongBufferToPlaylist(MusicResultDataItem)));
     }
@@ -89,19 +90,19 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     }
 }
 
-void MusicConnectionPool::poolConnect(const QObject *from, const QObject *to)
+void MusicConnectionPool::connect(const QObject *from, const QObject *to)
 {
     QObject::connect(from, SIGNAL(sender()), to, SLOT(receiver()));
 }
 
 void MusicConnectionPool::removeValue(const QString &name)
 {
-    m_parameter.take(name);
+    m_parameters.take(name);
 }
 
 void MusicConnectionPool::removeValue(const QObject *object)
 {
-    QMapIterator<QString, QObject*> i(m_parameter);
+    QMapIterator<QString, QObject*> i(m_parameters);
     while(i.hasNext())
     {
         i.next();

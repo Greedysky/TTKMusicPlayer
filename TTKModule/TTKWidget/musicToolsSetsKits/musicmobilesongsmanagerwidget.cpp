@@ -1,9 +1,9 @@
 #include "musicmobilesongsmanagerwidget.h"
 #include "ui_musicmobilesongsmanagerwidget.h"
-#include "musicsongsmanagerthread.h"
 #include "musicsongssummariziedwidget.h"
-#include "musictoastlabel.h"
+#include "musicsongsmanagerthread.h"
 #include "musicconnectionpool.h"
+#include "musictoastlabel.h"
 
 MusicMobileSongsTableWidget::MusicMobileSongsTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)
@@ -62,6 +62,19 @@ void MusicMobileSongsTableWidget::addCellItems(const QStringList &songs)
         setItem(i, 4, item);
 
         m_songs->append(MusicSong(fin.absoluteFilePath()));
+    }
+}
+
+void MusicMobileSongsTableWidget::itemCellEntered(int row, int column)
+{
+    MusicAbstractSongsListTableWidget::itemCellEntered(row, column);
+    if(column == 3 || column == 4)
+    {
+        setCursor(QCursor(Qt::PointingHandCursor));
+    }
+    else
+    {
+        unsetCursor();
     }
 }
 
@@ -128,10 +141,10 @@ MusicMobileSongsManagerWidget::MusicMobileSongsManagerWidget(QWidget *parent)
     m_ui->toolWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle12);
 
     connect(m_ui->auditionButton, SIGNAL(clicked()), SLOT(auditionButtonClick()));
-    connect(m_ui->addButton, SIGNAL(clicked()), SLOT(addButtonClick()));
+    connect(m_ui->addButton, SIGNAL(clicked()), SLOT(auditionButtonClick()));
     connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(searchResultChanged(int,int)));
 
-    connect(m_ui->songlistTable, SIGNAL(cellClicked(int,int)), SLOT(itemCellOnClick(int,int)));
+    connect(m_ui->songlistTable, SIGNAL(cellClicked(int,int)), SLOT(itemCellClicked(int,int)));
     connect(m_ui->songlistTable, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
 #ifdef Q_OS_UNIX
@@ -143,7 +156,7 @@ MusicMobileSongsManagerWidget::MusicMobileSongsManagerWidget(QWidget *parent)
     connect(m_thread, SIGNAL(searchFilePathChanged(QStringList)), SLOT(searchFilePathChanged(QStringList)));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicMobileSongsManagerWidget::~MusicMobileSongsManagerWidget()
@@ -195,53 +208,24 @@ void MusicMobileSongsManagerWidget::auditionButtonClick()
     selectedItemsToPlaylist();
 }
 
-void MusicMobileSongsManagerWidget::addButtonClick()
-{
-    if(m_ui->songlistTable->selectedItems().count() > 0)
-    {
-        selectedItemsToPlaylist();
-        return;
-    }
-
-    if(m_ui->songlistTable->rowCount() <= 0 || m_ui->songlistTable->currentRow() < 0)
-    {
-        MusicToastLabel::popup(tr("Please select one item first!"));
-        return;
-    }
-
-    selectedItemsToPlaylist();
-}
-
-void MusicMobileSongsManagerWidget::itemCellOnClick(int row, int column)
+void MusicMobileSongsManagerWidget::itemCellClicked(int row, int column)
 {
     switch(column)
     {
         case 3:
         case 4:
         {
-            if(!m_searchResultCache.isEmpty())
-            {
-                const int count = m_ui->searchLineEdit->text().trimmed().count();
-                row = m_searchResultCache.value(count)[row];
-                m_ui->searchLineEdit->clear();
-                m_searchResultCache.clear();
-            }
-            Q_EMIT addSongToPlaylist(QStringList(m_containerItems[row]));
+            itemDoubleClicked(row, column);
             break;
         }
         default: break;
     }
 }
 
-void MusicMobileSongsManagerWidget::itemDoubleClicked(int row, int)
+void MusicMobileSongsManagerWidget::itemDoubleClicked(int row, int column)
 {
-    if(!m_searchResultCache.isEmpty())
-    {
-        const int count = m_ui->searchLineEdit->text().trimmed().count();
-        row = m_searchResultCache.value(count)[row];
-        m_ui->searchLineEdit->clear();
-        m_searchResultCache.clear();
-    }
+    Q_UNUSED(column);
+    mappedSearchRow(m_ui->searchLineEdit->text().length(), row);
     Q_EMIT addSongToPlaylist(QStringList(m_containerItems[row]));
 }
 
@@ -250,8 +234,8 @@ void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &pat
     TTK_INFO_STREAM("Stop fetch result");
 
     clearAllItems();
+    clearSearchResult();
     m_ui->searchLineEdit->clear();
-    m_searchResultCache.clear();
 
     m_containerItems = path;
     m_ui->songlistTable->addCellItems(m_containerItems);
@@ -263,7 +247,7 @@ void MusicMobileSongsManagerWidget::searchResultChanged(int, int column)
     TTKIntList result;
     for(int i = 0; i < m_containerItems.count(); ++i)
     {
-        if(QFileInfo(m_containerItems[i]).absolutePath().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
+        if(QFileInfo(m_containerItems[i]).fileName().contains(m_ui->searchLineEdit->text(), Qt::CaseInsensitive))
         {
             result << i;
         }
@@ -275,19 +259,20 @@ void MusicMobileSongsManagerWidget::searchResultChanged(int, int column)
         data.append(m_containerItems[index]);
     }
 
-    clearAllItems();
+    m_searchResultLevel = column;
     m_searchResultCache.insert(column, result);
+
+    clearAllItems();
     m_ui->songlistTable->addCellItems(data);
 }
 
 void MusicMobileSongsManagerWidget::clearAllItems()
 {
+    m_ui->songlistTable->removeItems();
     if(m_ui->allSelectedcheckBox->isChecked())
     {
         m_ui->allSelectedcheckBox->click();
     }
-
-    m_ui->songlistTable->removeItems();
 }
 
 void MusicMobileSongsManagerWidget::selectedItemsToPlaylist()
@@ -295,28 +280,19 @@ void MusicMobileSongsManagerWidget::selectedItemsToPlaylist()
     TTKIntSet auditionRow; //if selected multi rows
     for(QTableWidgetItem *item : m_ui->songlistTable->selectedItems())
     {
-        if(!m_searchResultCache.isEmpty())
-        {
-            const int count = m_ui->searchLineEdit->text().trimmed().count();
-            auditionRow.insert(m_searchResultCache.value(count)[item->row()]);
-        }
-        else
-        {
-            auditionRow.insert(item->row());
-        }
+        int row = item->row();
+        mappedSearchRow(m_ui->searchLineEdit->text().length(), row);
+        auditionRow.insert(row);
     }
-
-    m_ui->searchLineEdit->clear();
-    m_searchResultCache.clear();
 
     TTKIntList indexs = auditionRow.values();
     std::sort(indexs.begin(), indexs.end());
 
-    QStringList names;
+    QStringList items;
     for(const int index : qAsConst(indexs))
     {
-        names << m_containerItems[index];
+        items << m_containerItems[index];
     }
 
-    Q_EMIT addSongToPlaylist(names);
+    Q_EMIT addSongToPlaylist(items);
 }

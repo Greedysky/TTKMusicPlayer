@@ -271,7 +271,7 @@ protected:
     /*!
      * Found mapped index in container.
      */
-    int foundMappingIndex(int index);
+    int foundMappedIndex(int index);
 
     int m_currentIndex;
     int m_itemIndexRaise;

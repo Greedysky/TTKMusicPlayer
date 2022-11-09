@@ -137,7 +137,7 @@ MusicSongItemSelectedAreaWidget::MusicSongItemSelectedAreaWidget(QWidget *parent
     connect(m_modifiedItemButton, SIGNAL(clicked()), SLOT(modifiedItemButtonClicked()));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicSongItemSelectedAreaWidget::~MusicSongItemSelectedAreaWidget()

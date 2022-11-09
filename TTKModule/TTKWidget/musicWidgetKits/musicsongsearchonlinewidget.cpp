@@ -31,7 +31,7 @@ MusicSongSearchTableWidget::MusicSongSearchTableWidget(QWidget *parent)
     headerview->resizeSection(7, 26);
     headerview->resizeSection(8, 26);
 
-    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->setValue(MusicQueryTableWidget::className(), this);
 }
 
 MusicSongSearchTableWidget::~MusicSongSearchTableWidget()

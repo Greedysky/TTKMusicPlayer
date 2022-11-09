@@ -45,6 +45,10 @@ public:
 
 public Q_SLOTS:
     /*!
+     * Table widget item cell enter.
+     */
+    virtual void itemCellEntered(int row, int column) override final;
+    /*!
      * Remove all items.
      */
     virtual void removeItems() override final;
@@ -84,7 +88,7 @@ Q_SIGNALS:
     /*!
      * Add current selected song to playlist.
      */
-    void addSongToPlaylist(const QStringList &names);
+    void addSongToPlaylist(const QStringList &items);
 
 public Q_SLOTS:
     /*!
@@ -96,13 +100,9 @@ public Q_SLOTS:
      */
     void auditionButtonClick();
     /*!
-     * Add music song to play list.
-     */
-    void addButtonClick();
-    /*!
      * Item cell on click by row and col.
      */
-    void itemCellOnClick(int row, int column);
+    void itemCellClicked(int row, int column);
     /*!
      * Item cell on double click by row and col.
      */

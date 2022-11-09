@@ -202,7 +202,7 @@ void MusicVideoPlayWidget::resizeGeometry(int width, int height)
 
 QString MusicVideoPlayWidget::searchText() const
 {
-    return m_searchEdit->editor()->text().trimmed();
+    return m_searchEdit->editor()->text();
 }
 
 void MusicVideoPlayWidget::switchToSearchTable()

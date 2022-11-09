@@ -93,7 +93,7 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     connect(m_ui->commitButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(className(), MusicDownloadStatusModule::className());
+    G_CONNECTION_PTR->connect(className(), MusicDownloadStatusModule::className());
 }
 
 MusicLrcLocalLinkWidget::~MusicLrcLocalLinkWidget()

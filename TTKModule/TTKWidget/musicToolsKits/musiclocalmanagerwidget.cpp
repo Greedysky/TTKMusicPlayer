@@ -1,4 +1,6 @@
 #include "musiclocalmanagerwidget.h"
+#include "musicsongssummariziedwidget.h"
+#include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 #include "musicitemsearchedit.h"
 #include "musicgiflabelwidget.h"
@@ -353,11 +355,16 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     QTimer::singleShot(MT_ONCE, this, SLOT(refreshItems()));
     connect(refresh, SIGNAL(clicked()), SLOT(refreshItems()));
     connect(button, SIGNAL(clicked()), SLOT(updateMediaLibraryPath()));
+    connect(m_songWidget, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
     connect(m_searchEdit->editor(), SIGNAL(cursorPositionChanged(int,int)), SLOT(searchResultChanged(int,int)));
+
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicLocalManagerWidget::~MusicLocalManagerWidget()
 {
+    G_CONNECTION_PTR->removeValue(className());
     delete m_sizeLabel;
     delete m_searchEdit;
     delete m_loadingLabel;
@@ -412,6 +419,7 @@ void MusicLocalManagerWidget::typeIndexChanged(int index)
         default: break;
     }
 
+    clearSearchResult();
     m_searchEdit->editor()->clear();
     m_statisticWidget->setVisible(index != 0);
     updateStatisticWidget(index, m_containerItems);
@@ -492,7 +500,7 @@ void MusicLocalManagerWidget::searchResultChanged(int, int column)
             default: break;
         }
 
-        if(v.contains(m_searchEdit->editor()->text().trimmed(), Qt::CaseInsensitive))
+        if(v.contains(m_searchEdit->editor()->text(), Qt::CaseInsensitive))
         {
             result << i;
         }
@@ -504,10 +512,19 @@ void MusicLocalManagerWidget::searchResultChanged(int, int column)
         data.append(m_containerItems[index]);
     }
 
-    m_songWidget->removeItems();
+    m_searchResultLevel = column;
     m_searchResultCache.insert(column, result);
+
+    m_songWidget->removeItems();
     m_songWidget->addCellItems(data);
     updateStatisticWidget(m_currentIndex, data);
+}
+
+void MusicLocalManagerWidget::itemDoubleClicked(int row, int column)
+{
+    Q_UNUSED(column);
+    mappedSearchRow(m_searchEdit->editor()->text().length(), row);
+    Q_EMIT addSongToPlaylist(QStringList(m_containerItems[row].m_path));
 }
 
 void MusicLocalManagerWidget::resizeEvent(QResizeEvent *event)

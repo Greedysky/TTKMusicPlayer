@@ -134,11 +134,11 @@ QString MusicItemSearchTableWidget::randSimulation() const
 {
     switch(TTKObject::random(5))
     {
-        case 0: return QString(":/video/lb_video_1");
-        case 1: return QString(":/video/lb_video_2");
-        case 2: return QString(":/video/lb_video_3");
-        case 3: return QString(":/video/lb_video_4");
-        case 4: return QString(":/video/lb_video_5");
-        default:return QString(":/video/lb_video_5");
+        case 0:  return QString(":/video/lb_video_1");
+        case 1:  return QString(":/video/lb_video_2");
+        case 2:  return QString(":/video/lb_video_3");
+        case 3:  return QString(":/video/lb_video_4");
+        case 4:  return QString(":/video/lb_video_5");
+        default: return QString(":/video/lb_video_5");
     }
 }

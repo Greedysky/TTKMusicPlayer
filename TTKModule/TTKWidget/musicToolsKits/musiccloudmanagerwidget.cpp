@@ -56,7 +56,7 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
     connect(m_syncUploadData, SIGNAL(uploadFileFinished(QString)), SLOT(uploadFileFinished(QString)));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(className(), MusicCloudUploadTableWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicCloudUploadTableWidget::className());
 }
 
 MusicCloudManagerTableWidget::~MusicCloudManagerTableWidget()

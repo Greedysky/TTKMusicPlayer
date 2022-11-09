@@ -34,14 +34,14 @@ public:
      */
     inline void setValue(const QString &type, QObject *object)
     {
-        m_parameter[type] = object;
+        m_parameters[type] = object;
     }
     /*!
      * Get connection object by type name.
      */
     inline QObject* value(const QString &type) const
     {
-        return m_parameter[type];
+        return m_parameters[type];
     }
     /*!
      * Get connection object by type name in operator[].
@@ -55,17 +55,17 @@ public:
      */
     inline QObject* &operator[](const QString &type)
     {
-        return m_parameter[type];
+        return m_parameters[type];
     }
 
     /*!
      * Set connection by two object.
      */
-    void poolConnect(const QObject *from, const QObject *to);
+    void connect(const QObject *from, const QObject *to);
     /*!
      * Set connection by two object type name.
      */
-    void poolConnect(const QString &from, const QString &to);
+    void connect(const QString &from, const QString &to);
     /*!
      * Remove connection object by object.
      */
@@ -76,7 +76,7 @@ public:
     void removeValue(const QString &name);
 
 private:
-    QMap<QString, QObject*> m_parameter;
+    QMap<QString, QObject*> m_parameters;
 
     /*!
      * Object contsructor.

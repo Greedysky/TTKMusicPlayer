@@ -1,5 +1,5 @@
 #include "musicdownloadstatusmodule.h"
-#include "musicsongsearchonlinewidget.h"
+#include "musicabstractqueryrequest.h"
 #include "musicapplication.h"
 #include "musicbottomareawidget.h"
 #include "musicsettingmanager.h"
@@ -13,8 +13,7 @@ MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
       m_parentClass(TTKObject_cast(MusicApplication*, parent))
 {
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::className(), className());
-    G_CONNECTION_PTR->poolConnect(MusicNetworkThread::className(), className());
+    G_CONNECTION_PTR->connect(MusicNetworkThread::className(), className());
 }
 
 void MusicDownloadStatusModule::showDownLoadInfoFinished(const QString &bytes)

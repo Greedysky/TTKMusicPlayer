@@ -36,7 +36,7 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(sliderValueChanaged(int)));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::className(), className());
+    G_CONNECTION_PTR->connect(MusicQueryTableWidget::className(), className());
 }
 
 MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()
@@ -276,23 +276,24 @@ QString MusicSongsSummariziedWidget::mapFilePathBySongIndex(int toolIndex, int i
     return songs->at(index).path();
 }
 
-int MusicSongsSummariziedWidget::cleanSearchResult(int row)
+void MusicSongsSummariziedWidget::removeSearchResult(int &row)
 {
     if(!hasSearchResult() || !isSearchPlayIndex())
     {
-        return row;
+        return;
     }
 
     const TTKIntList &result = m_searchResultCache.value(m_searchResultLevel);
     if(row >= result.count() || row < 0)
     {
-        return -1;
+        row = -1;
+        return;
     }
 
-    m_searchResultCache.clear();
-    closeSearchWidget();
+    row = result[row];
 
-    return result[row];
+    clearSearchResult();
+    closeSearchWidget();
 }
 
 void MusicSongsSummariziedWidget::setCurrentMusicSongTreeIndex(int index)
@@ -352,7 +353,7 @@ void MusicSongsSummariziedWidget::addNewRowItem()
 
 void MusicSongsSummariziedWidget::deleteRowItem(int index)
 {
-    const int id = foundMappingIndex(index);
+    const int id = foundMappedIndex(index);
     if(id == -1)
     {
         return;
@@ -415,7 +416,7 @@ void MusicSongsSummariziedWidget::deleteRowItems()
 
 void MusicSongsSummariziedWidget::deleteRowItemAll(int index)
 {
-    const int id = foundMappingIndex(index);
+    const int id = foundMappedIndex(index);
     if(id == -1)
     {
         return;
@@ -442,7 +443,7 @@ void MusicSongsSummariziedWidget::deleteRowItemAll(int index)
 
 void MusicSongsSummariziedWidget::changRowItemName(int index, const QString &name)
 {
-    const int id = foundMappingIndex(index);
+    const int id = foundMappedIndex(index);
     if(id == -1)
     {
         return;
@@ -455,8 +456,8 @@ void MusicSongsSummariziedWidget::changRowItemName(int index, const QString &nam
 
 void MusicSongsSummariziedWidget::swapDragItemIndex(int before, int after)
 {
-    before = foundMappingIndex(before);
-    after = foundMappingIndex(after);
+    before = foundMappedIndex(before);
+    after = foundMappedIndex(after);
     if(before == after)
     {
         return;
@@ -495,7 +496,7 @@ void MusicSongsSummariziedWidget::swapDragItemIndex(int before, int after)
 
 void MusicSongsSummariziedWidget::addToPlayLater(int index)
 {
-    const int id = foundMappingIndex(index);
+    const int id = foundMappedIndex(index);
     if(id == -1)
     {
         return;
@@ -511,7 +512,7 @@ void MusicSongsSummariziedWidget::addToPlayLater(int index)
 
 void MusicSongsSummariziedWidget::addToPlayedList(int index)
 {
-    const int id = foundMappingIndex(index);
+    const int id = foundMappedIndex(index);
     if(id == -1)
     {
         return;
@@ -532,7 +533,7 @@ void MusicSongsSummariziedWidget::musicImportSongsByFiles(int index)
     }
     else
     {
-        const int id = foundMappingIndex(index);
+        const int id = foundMappedIndex(index);
         if(id == -1)
         {
             return;
@@ -553,7 +554,7 @@ void MusicSongsSummariziedWidget::musicImportSongsByDir(int index)
     }
     else
     {
-        const int id = foundMappingIndex(index);
+        const int id = foundMappedIndex(index);
         if(id == -1)
         {
             return;
@@ -600,7 +601,7 @@ void MusicSongsSummariziedWidget::searchResultChanged(int, int column)
             item->m_itemObject->updateSongsList(item->m_songs);
         }
 
-        m_searchResultCache.clear();
+        clearSearchResult();
         m_lastSearchIndex = m_currentIndex;
     }
 
@@ -628,8 +629,7 @@ void MusicSongsSummariziedWidget::searchResultChanged(int, int column)
             item->m_itemObject->updateSongsList(item->m_songs);
         }
 
-        m_searchResultLevel = 0;
-        m_searchResultCache.clear();
+        clearSearchResult();
     }
 }
 
@@ -932,7 +932,7 @@ void MusicSongsSummariziedWidget::showFloatWidget()
 
 void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
 {
-    const int id = foundMappingIndex(index);
+    const int id = foundMappedIndex(index);
     if(id == -1)
     {
         return;
@@ -1091,7 +1091,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
 
     addCellItem(object, item->m_itemName);
     setSongSort(object, &item->m_sort);
-    object->setToolIndex(foundMappingIndex(item->m_itemIndex));
+    object->setToolIndex(foundMappedIndex(item->m_itemIndex));
 
     connect(object, SIGNAL(isCurrentIndex(bool&)), SLOT(isCurrentIndex(bool&)));
     connect(object, SIGNAL(isSearchResultEmpty(bool&)), SLOT(isSearchResultEmpty(bool&)));
@@ -1151,7 +1151,7 @@ void MusicSongsSummariziedWidget::resetToolIndex()
     PlayedItemList pairs;
     for(const MusicSongItem &item : qAsConst(m_containerItems))
     {
-        const int mappedIndex = foundMappingIndex(item.m_itemIndex);
+        const int mappedIndex = foundMappedIndex(item.m_itemIndex);
         item.m_itemObject->setToolIndex(mappedIndex);
         if(item.m_itemIndex != mappedIndex)
         {

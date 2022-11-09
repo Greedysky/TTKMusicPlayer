@@ -402,7 +402,7 @@ void MusicFunctionToolBoxWidget::setCurrentIndex(int index)
 
 void MusicFunctionToolBoxWidget::itemIndexChanged(int index)
 {
-    m_currentIndex = foundMappingIndex(index);
+    m_currentIndex = foundMappedIndex(index);
     for(int i = 0; i < m_itemList.count(); ++i)
     {
         const bool hide = (i == m_currentIndex) ? !m_itemList[i].m_widgetItem->itemExpand() : false;
@@ -439,7 +439,7 @@ void MusicFunctionToolBoxWidget::mousePressEvent(QMouseEvent *event)
     Q_UNUSED(event);
 }
 
-int MusicFunctionToolBoxWidget::foundMappingIndex(int index)
+int MusicFunctionToolBoxWidget::foundMappedIndex(int index)
 {
     int id = -1;
     for(int i = 0; i < m_itemList.count(); ++i)

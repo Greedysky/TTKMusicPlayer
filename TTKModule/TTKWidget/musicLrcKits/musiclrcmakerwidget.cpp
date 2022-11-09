@@ -168,7 +168,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     MusicApplication::instance()->musicPlayOneLoop();
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(MusicPlayer::className(), className());
+    G_CONNECTION_PTR->connect(MusicPlayer::className(), className());
 }
 
 MusicLrcMakerWidget::~MusicLrcMakerWidget()

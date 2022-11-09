@@ -73,7 +73,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     connect(m_dlnaFinder, SIGNAL(finished()), SLOT(scanFinished()));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()

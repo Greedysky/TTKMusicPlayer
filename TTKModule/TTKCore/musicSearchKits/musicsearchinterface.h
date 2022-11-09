@@ -31,12 +31,44 @@ public:
     using MusicItemSearchInterfaceClass = MusicItemSearchInterface<T>;
 
 public:
+    /*!
+     * Object contsructor.
+     */
     explicit MusicItemSearchInterface()
         : m_containerItems(),
           m_searchResultLevel(0),
           m_searchResultCache()
     {
 
+    }
+
+    /*!
+     * Check current search result is empty or not.
+     */
+    inline bool hasSearchResult() const
+    {
+        return !m_searchResultCache.isEmpty();
+    }
+
+    /*!
+     * Clear search result.
+     */
+    inline void clearSearchResult()
+    {
+        m_searchResultLevel = 0;
+        m_searchResultCache.clear();
+    }
+
+    /*!
+     * Mapped search row.
+     */
+    inline void mappedSearchRow(int pos, int &row) const
+    {
+        if(hasSearchResult())
+        {
+            const TTKIntList &v = m_searchResultCache.value(pos);
+            row = !v.isEmpty() ? v[row] : row;
+        }
     }
 
 protected:

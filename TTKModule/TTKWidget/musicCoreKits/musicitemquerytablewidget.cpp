@@ -26,13 +26,13 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
     headerview->resizeSection(6, 26);
     headerview->resizeSection(7, 26);
 
-    G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->setValue(MusicQueryTableWidget::className(), this);
+    G_CONNECTION_PTR->connect(MusicQueryTableWidget::className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicItemQueryTableWidget::~MusicItemQueryTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(MusicQueryTableWidget::className());
     delete m_labelDelegate;
     removeItems();
 }

@@ -99,7 +99,7 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
     setItemDelegateForColumn(6, new MusicPushButtonDelegate(this));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicSongCheckToolsDuplicateTableWidget::~MusicSongCheckToolsDuplicateTableWidget()
@@ -214,7 +214,7 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
     setItemDelegateForColumn(7, new MusicPushButtonDelegate(this));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicSongCheckToolsQualityTableWidget::~MusicSongCheckToolsQualityTableWidget()

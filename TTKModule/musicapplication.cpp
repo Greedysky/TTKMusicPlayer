@@ -605,7 +605,7 @@ void MusicApplication::musicPlayIndex(int row, int)
         }
     }
 
-    row = m_songTreeWidget->cleanSearchResult(row);
+    m_songTreeWidget->removeSearchResult(row);
     m_playlist->setCurrentIndex(m_currentSongTreeIndex, m_songTreeWidget->mapFilePathBySongIndex(m_currentSongTreeIndex, row));
     musicStatePlay();
 }

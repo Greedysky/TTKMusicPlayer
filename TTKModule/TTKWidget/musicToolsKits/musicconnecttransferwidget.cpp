@@ -54,7 +54,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     QTimer::singleShot(MT_MS, this, SLOT(initialize()));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicConnectTransferWidget::~MusicConnectTransferWidget()
@@ -129,14 +129,10 @@ QStringList MusicConnectTransferWidget::selectedFiles() const
         return paths;
     }
 
-    for(int index : list)
+    for(int row : list)
     {
-        if(!m_searchResultCache.value(0).isEmpty())
-        {
-            const int count = m_ui->searchLineEdit->text().trimmed().count();
-            index = m_searchResultCache.value(count)[index];
-        }
-        paths << m_containerItems[index].path();
+        mappedSearchRow(m_ui->searchLineEdit->text().length(), row);
+        paths << m_containerItems[row].path();
     }
 
     return paths;
@@ -166,7 +162,7 @@ void MusicConnectTransferWidget::currentPlaylistSelected(int index)
         return;
     }
 
-    m_searchResultCache.clear();
+    clearSearchResult();
     m_ui->searchLineEdit->clear();
     m_containerItems = songs[m_currentIndex = index].m_songs;
     addCellItems(m_containerItems);
@@ -195,7 +191,7 @@ void MusicConnectTransferWidget::searchResultChanged(int, int column)
     TTKIntList result;
     for(int i = 0; i < m_containerItems.count(); ++i)
     {
-        if(m_containerItems[i].path().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
+        if(m_containerItems[i].path().contains(m_ui->searchLineEdit->text(), Qt::CaseInsensitive))
         {
             result << i;
         }
@@ -207,6 +203,8 @@ void MusicConnectTransferWidget::searchResultChanged(int, int column)
         data.append(m_containerItems[index]);
     }
 
+    m_searchResultLevel = column;
     m_searchResultCache.insert(column, result);
+
     addCellItems(data);
 }

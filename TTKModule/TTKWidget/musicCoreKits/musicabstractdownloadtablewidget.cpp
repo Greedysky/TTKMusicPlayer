@@ -13,7 +13,7 @@ MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *pare
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicAbstractDownloadTableWidget::~MusicAbstractDownloadTableWidget()

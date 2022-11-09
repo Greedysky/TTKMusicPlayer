@@ -122,6 +122,12 @@ public:
      */
     virtual void resizeWidget() override final;
 
+Q_SIGNALS:
+    /*!
+     * Add current selected song to playlist.
+     */
+    void addSongToPlaylist(const QStringList &items);
+
 private Q_SLOTS:
     /*!
      * Type index changed.
@@ -139,6 +145,10 @@ private Q_SLOTS:
      * Search result from list.
      */
     void searchResultChanged(int row, int column);
+    /*!
+     * Item cell on double click by row and col.
+     */
+    void itemDoubleClicked(int row, int column);
 
 private:
     /*!

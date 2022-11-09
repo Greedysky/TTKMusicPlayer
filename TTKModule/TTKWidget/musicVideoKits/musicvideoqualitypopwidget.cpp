@@ -12,7 +12,7 @@ MusicVideoQualityPopWidget::MusicVideoQualityPopWidget(QWidget *parent)
     setStyleSheet(MusicUIObject::MQSSVideoBtnSDMode);
 
     G_CONNECTION_PTR->setValue(className(), this);
-    G_CONNECTION_PTR->poolConnect(className(), MusicVideoSearchTableWidget::className());
+    G_CONNECTION_PTR->connect(className(), MusicVideoSearchTableWidget::className());
 }
 
 MusicVideoQualityPopWidget::~MusicVideoQualityPopWidget()

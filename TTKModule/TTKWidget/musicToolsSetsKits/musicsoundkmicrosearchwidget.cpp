@@ -79,10 +79,13 @@ void MusicSoundKMicroSearchTableWidget::setQueryMovieFlag(bool flag)
 void MusicSoundKMicroSearchTableWidget::itemCellEntered(int row, int column)
 {
     MusicItemSearchTableWidget::itemCellEntered(row, column);
-    QTableWidgetItem *it = item(row, 0);
-    if(it)
+    if(column == 4)
     {
-        QtItemSetBackgroundColor(it, m_backgroundColor);
+        setCursor(QCursor(Qt::PointingHandCursor));
+    }
+    else
+    {
+        unsetCursor();
     }
 }
 
