@@ -9,11 +9,11 @@
 #include <adplug/wemuopl.h>
 #include <adplug/surroundopl.h>
 
-AdplugHelper::AdplugHelper(const QString &path)
+AdPlugHelper::AdPlugHelper(const QString &path)
     : m_path(path)
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Adplug");
+    settings.beginGroup("AdPlug");
     const int type = settings.value("emulator", 0).toInt();
     const bool surround = settings.value("use_surround", false).toBool();
     settings.endGroup();
@@ -102,12 +102,12 @@ AdplugHelper::AdplugHelper(const QString &path)
     m_player = CAdPlug::factory(QmmpPrintable(path), m_opl);
 }
 
-AdplugHelper::~AdplugHelper()
+AdPlugHelper::~AdPlugHelper()
 {
     deinit();
 }
 
-AdplugHelper::Frame AdplugHelper::read()
+AdPlugHelper::Frame AdPlugHelper::read()
 {
     size_t to_write;
     const size_t bufsiz = sizeof(m_buf) / sizeof(*m_buf);
@@ -127,13 +127,13 @@ AdplugHelper::Frame AdplugHelper::read()
     return Frame(to_write * 2, reinterpret_cast<unsigned char *>(m_buf));
 }
 
-void AdplugHelper::deinit()
+void AdPlugHelper::deinit()
 {
     delete m_opl;
     delete m_player;
 }
 
-QString AdplugHelper::instruments() const
+QString AdPlugHelper::instruments() const
 {
     QString value;
     for(unsigned int i = 0; i < instrumentCount(); ++i)

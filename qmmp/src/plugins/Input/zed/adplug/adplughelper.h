@@ -26,7 +26,7 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class AdplugHelper
+class AdPlugHelper
 {
 public:
     struct Frame
@@ -42,8 +42,8 @@ public:
       unsigned char *m_buf = nullptr;
     };
 
-    explicit AdplugHelper(const QString &path);
-    ~AdplugHelper();
+    explicit AdPlugHelper(const QString &path);
+    ~AdPlugHelper();
 
     void deinit();
     inline bool initialize() { return m_player; }

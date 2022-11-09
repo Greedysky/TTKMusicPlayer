@@ -20,7 +20,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.emulator_combo->addItem("Ken Silverman (2001)");
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Adplug");
+    settings.beginGroup("AdPlug");
     m_ui.emulator_combo->setCurrentIndex(settings.value("emulator", 0).toInt());
     m_ui.surround->setChecked(settings.value("use_surround", false).toBool());
     settings.endGroup();
@@ -29,7 +29,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Adplug");
+    settings.beginGroup("AdPlug");
     settings.setValue("emulator", m_ui.emulator_combo->currentIndex());
     settings.setValue("use_surround", m_ui.surround->isChecked());
     settings.endGroup();

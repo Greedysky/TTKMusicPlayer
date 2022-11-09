@@ -21,22 +21,22 @@
 
 #include <qmmp/metadatamodel.h>
 
-class AdplugHelper;
+class AdPlugHelper;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class AdplugMetaDataModel : public MetaDataModel
+class AdPlugMetaDataModel : public MetaDataModel
 {
-    Q_DECLARE_TR_FUNCTIONS(AdplugMetaDataModel)
+    Q_DECLARE_TR_FUNCTIONS(AdPlugMetaDataModel)
 public:
-    explicit AdplugMetaDataModel(const QString &path);
+    explicit AdPlugMetaDataModel(const QString &path);
 
     virtual QList<MetaDataItem> extraProperties() const override final;
     virtual QList<MetaDataItem> descriptions() const override final;
 
 private:
-    void fillProperties(AdplugHelper *helper);
+    void fillProperties(AdPlugHelper *helper);
 
     QList<MetaDataItem> m_ep;
     QList<MetaDataItem> m_desc;

@@ -1,17 +1,17 @@
 #include "adplugmetadatamodel.h"
 #include "adplughelper.h"
 
-AdplugMetaDataModel::AdplugMetaDataModel(const QString &path)
+AdPlugMetaDataModel::AdPlugMetaDataModel(const QString &path)
     : MetaDataModel(true)
 {
-    AdplugHelper helper(path);
+    AdPlugHelper helper(path);
     if(helper.initialize())
     {
         fillProperties(&helper);
     }
 }
 
-void AdplugMetaDataModel::fillProperties(AdplugHelper *helper)
+void AdPlugMetaDataModel::fillProperties(AdPlugHelper *helper)
 {
     m_ep << MetaDataItem(tr("Format"), helper->format());
     m_ep << MetaDataItem(tr("Description"), helper->description());
@@ -21,12 +21,12 @@ void AdplugMetaDataModel::fillProperties(AdplugHelper *helper)
     m_desc << MetaDataItem(tr("Instruments"), helper->instruments());
 }
 
-QList<MetaDataItem> AdplugMetaDataModel::extraProperties() const
+QList<MetaDataItem> AdPlugMetaDataModel::extraProperties() const
 {
     return m_ep;
 }
 
-QList<MetaDataItem> AdplugMetaDataModel::descriptions() const
+QList<MetaDataItem> AdPlugMetaDataModel::descriptions() const
 {
     return m_desc;
 }

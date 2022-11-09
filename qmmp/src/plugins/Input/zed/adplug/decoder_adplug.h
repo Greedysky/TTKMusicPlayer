@@ -21,16 +21,16 @@
 
 #include <qmmp/decoder.h>
 
-class AdplugHelper;
+class AdPlugHelper;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class DecoderAdplug : public Decoder
+class DecoderAdPlug : public Decoder
 {
 public:
-    explicit DecoderAdplug(const QString &path);
-    virtual ~DecoderAdplug();
+    explicit DecoderAdPlug(const QString &path);
+    virtual ~DecoderAdPlug();
 
     virtual bool initialize() override final;
     virtual qint64 totalTime() const override final;
@@ -41,7 +41,7 @@ public:
 private:
     qint64 copy(unsigned char *data, qint64 maxSize);
 
-    AdplugHelper *m_helper = nullptr;
+    AdPlugHelper *m_helper = nullptr;
     unsigned char *m_bufptr = nullptr;
     qint64 m_buf_filled = 0;
     unsigned long m_time = 0;

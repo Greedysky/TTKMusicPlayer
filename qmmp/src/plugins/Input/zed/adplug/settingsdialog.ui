@@ -6,32 +6,32 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>360</width>
-    <height>120</height>
+    <width>350</width>
+    <height>100</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>360</width>
-    <height>120</height>
+    <width>350</width>
+    <height>100</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>360</width>
-    <height>120</height>
+    <width>350</width>
+    <height>100</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>Adplug Plugin Settings</string>
+   <string>AdPlug Plugin Settings</string>
   </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>341</width>
-     <height>101</height>
+     <x>5</x>
+     <y>5</y>
+     <width>340</width>
+     <height>95</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
