@@ -81,7 +81,7 @@ void MusicDownloadBatchTableItem::addCellItem(const MusicObject::MusicSongInform
         }
     }
 
-    m_qulity->setCurrentIndex(DEFAULT_NORMAL_LEVEL);
+    m_qulity->setCurrentIndex(TTK_NORMAL_LEVEL);
     m_qulity->setCurrentIndex(0);
 }
 

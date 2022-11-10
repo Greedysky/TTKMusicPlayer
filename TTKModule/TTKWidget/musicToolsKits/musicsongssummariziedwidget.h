@@ -143,11 +143,11 @@ public Q_SLOTS:
     /*!
      * Import music songs by files.
      */
-    void musicImportSongsByFiles(int index = DEFAULT_LOW_LEVEL);
+    void musicImportSongsByFiles(int index = TTK_LOW_LEVEL);
     /*!
      * Import music songs by dir.
      */
-    void musicImportSongsByDir(int index = DEFAULT_LOW_LEVEL);
+    void musicImportSongsByDir(int index = TTK_LOW_LEVEL);
     /*!
      * Open music songs check test tools.
      */

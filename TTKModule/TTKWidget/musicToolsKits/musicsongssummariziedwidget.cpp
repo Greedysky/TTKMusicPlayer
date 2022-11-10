@@ -376,7 +376,7 @@ void MusicSongsSummariziedWidget::deleteRowItem(int index)
     {
         setCurrentIndex(MUSIC_NORMAL_LIST);
         m_itemList.front().m_widgetItem->setItemExpand(false);
-        MusicApplication::instance()->musicPlayIndex(DEFAULT_NORMAL_LEVEL);
+        MusicApplication::instance()->musicPlayIndex(TTK_NORMAL_LEVEL);
     }
     else if(m_playToolIndex > id)
     {
@@ -403,7 +403,7 @@ void MusicSongsSummariziedWidget::deleteRowItems()
     {
         setCurrentIndex(MUSIC_NORMAL_LIST);
         m_itemList.front().m_widgetItem->setItemExpand(false);
-        MusicApplication::instance()->musicPlayIndex(DEFAULT_NORMAL_LEVEL);
+        MusicApplication::instance()->musicPlayIndex(TTK_NORMAL_LEVEL);
     }
 
     for(int i = m_containerItems.count() - 1; i > 3; --i)
@@ -437,7 +437,7 @@ void MusicSongsSummariziedWidget::deleteRowItemAll(int index)
 
     if(m_containerItems[id].m_songs.isEmpty() && m_playToolIndex == id)
     {
-        MusicApplication::instance()->musicPlayIndex(DEFAULT_NORMAL_LEVEL);
+        MusicApplication::instance()->musicPlayIndex(TTK_NORMAL_LEVEL);
     }
 }
 
@@ -527,7 +527,7 @@ void MusicSongsSummariziedWidget::addToPlayedList(int index)
 
 void MusicSongsSummariziedWidget::musicImportSongsByFiles(int index)
 {
-    if(index == DEFAULT_LOW_LEVEL)
+    if(index == TTK_LOW_LEVEL)
     {
         m_selectImportIndex = m_currentIndex;
     }
@@ -548,7 +548,7 @@ void MusicSongsSummariziedWidget::musicImportSongsByFiles(int index)
 
 void MusicSongsSummariziedWidget::musicImportSongsByDir(int index)
 {
-    if(index == DEFAULT_LOW_LEVEL)
+    if(index == TTK_LOW_LEVEL)
     {
         m_selectImportIndex = m_currentIndex;
     }
@@ -730,7 +730,7 @@ void MusicSongsSummariziedWidget::addSongBufferToPlaylist(const MusicResultDataI
         index = item->m_songs.count() - 1;
     }
 
-    if(songItem.m_tags == TTK_DOTDOT)
+    if(songItem.m_tags == MUSIC_PLAY_NOW)
     {
         ///when download finished just play it at once
         setCurrentIndex(MUSIC_NETWORK_LIST);
@@ -765,7 +765,7 @@ void MusicSongsSummariziedWidget::addSongToPlaylist(const QStringList &items)
 
 void MusicSongsSummariziedWidget::setDeleteItemAt(const TTKIntList &index, bool fileRemove)
 {
-    if(index.count() == 0 || hasSearchResult())
+    if(index.isEmpty() || hasSearchResult())
     {
         return;
     }
@@ -1082,7 +1082,7 @@ void MusicSongsSummariziedWidget::addNewRowItem(const QString &name)
 
 void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
 {
-    MusicSongsListPlayTableWidget *object = new MusicSongsListPlayTableWidget(DEFAULT_NORMAL_LEVEL, this);
+    MusicSongsListPlayTableWidget *object = new MusicSongsListPlayTableWidget(TTK_NORMAL_LEVEL, this);
     object->setMovedScrollBar(m_scrollArea->verticalScrollBar());
     object->setSongSort(&item->m_sort);
 

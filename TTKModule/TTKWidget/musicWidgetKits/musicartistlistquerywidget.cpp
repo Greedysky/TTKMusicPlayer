@@ -193,7 +193,7 @@ void MusicArtistListQueryWidget::categoryChanged(const MusicResultsCategoryItem 
         m_categoryButton->setText(category.m_value);
         m_categoryButton->closeMenu();
 
-        numberButtonClicked(DEFAULT_NORMAL_LEVEL);
+        numberButtonClicked(TTK_NORMAL_LEVEL);
     }
 }
 

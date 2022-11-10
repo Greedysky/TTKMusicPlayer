@@ -220,7 +220,7 @@ void MusicSettingWidget::initialize()
     m_ui->fontComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::LrcFamily).toInt());
     m_ui->fontSizeComboBox->setCurrentIndex(MusicLrcDefines().findInteriorLrcIndex(G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt()));
     m_ui->fontTypeComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::LrcType).toInt());
-    m_ui->fontDefaultColorComboBox->setCurrentIndex(DEFAULT_NORMAL_LEVEL);
+    m_ui->fontDefaultColorComboBox->setCurrentIndex(TTK_NORMAL_LEVEL);
     if(G_SETTING_PTR->value(MusicSettingManager::LrcColor).toInt() != -1)
     {
         m_ui->fontDefaultColorComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::LrcColor).toInt());
@@ -239,7 +239,7 @@ void MusicSettingWidget::initialize()
     m_ui->DfontComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcFamily).toInt());
     m_ui->DfontSizeComboBox->setCurrentIndex(MusicLrcDefines().findDesktopLrcIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt()));
     m_ui->DfontTypeComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcType).toInt());
-    m_ui->DfontDefaultColorComboBox->setCurrentIndex(DEFAULT_NORMAL_LEVEL);
+    m_ui->DfontDefaultColorComboBox->setCurrentIndex(TTK_NORMAL_LEVEL);
     if(G_SETTING_PTR->value(MusicSettingManager::DLrcColor).toInt() != -1)
     {
         m_ui->DfontDefaultColorComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcColor).toInt() - LRC_COLOR_OFFSET);
@@ -1055,7 +1055,7 @@ void MusicSettingWidget::initNetworkWidget()
 
 void MusicSettingWidget::lcrColorValue(Lrc key, const QString &type, QLabel *obj)
 {
-    key == Lrc::Interior ? m_ui->fontDefaultColorComboBox->setCurrentIndex(DEFAULT_NORMAL_LEVEL) : m_ui->DfontDefaultColorComboBox->setCurrentIndex(DEFAULT_NORMAL_LEVEL);
+    key == Lrc::Interior ? m_ui->fontDefaultColorComboBox->setCurrentIndex(TTK_NORMAL_LEVEL) : m_ui->DfontDefaultColorComboBox->setCurrentIndex(TTK_NORMAL_LEVEL);
 
     MusicLrcColorWidget dialog(this);
     if(type == "DLRCFRONTGROUNDGCOLOR") dialog.setColors(m_ui->DplayedPushButton->colors());

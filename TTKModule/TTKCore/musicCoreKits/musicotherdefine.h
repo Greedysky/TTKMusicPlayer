@@ -21,6 +21,21 @@
 
 #include <QObject>
 
+#define TTK_TIME_FORMAT             "hh:mm"
+#define TTK_STIME_FORMAT            "hh:mm:ss"
+#define TTK_YEAR_FORMAT             "yyyy-MM-dd"
+#define TTK_YEAR_TIME_FORMAT        "yyyy-MM-dd hh:mm"
+#define TTK_YEAR_STIME_FORMAT       "yyyy-MM-dd hh:mm:ss"
+
+#define TTK_ITEM_SIZE_S             25
+#define TTK_ITEM_SIZE_M             30
+#define TTK_ITEM_SIZE_L             40
+#define TTK_ITEM_SIZE_XL            60
+
+#define TTK_LOW_LEVEL               -999
+#define TTK_NORMAL_LEVEL            -1
+#define TTK_HIGH_LEVEL              999
+
 #define MUSIC_AUTHOR_NAME           "Greedysky"
 #define MUSIC_BING_DIR              "Bing"
 #define MUSIC_THUNDER_DIR           "Thunder"
@@ -39,20 +54,8 @@
 #  define MUSIC_OUTSIDE_LIST        "-List"
 #endif
 
-#define TTK_TIME_FORMAT             "hh:mm"
-#define TTK_STIME_FORMAT            "hh:mm:ss"
-#define TTK_YEAR_FORMAT             "yyyy-MM-dd"
-#define TTK_YEAR_TIME_FORMAT        "yyyy-MM-dd hh:mm"
-#define TTK_YEAR_STIME_FORMAT       "yyyy-MM-dd hh:mm:ss"
-
-#define TTK_ITEM_SIZE_S             25
-#define TTK_ITEM_SIZE_M             30
-#define TTK_ITEM_SIZE_L             40
-#define TTK_ITEM_SIZE_XL            60
-
-#define DEFAULT_LOW_LEVEL           -999
-#define DEFAULT_NORMAL_LEVEL        -1
-#define DEFAULT_HIGH_LEVEL          999
+#define MUSIC_PLAY_NOW              "play_now"
+#define MUSIC_PLAY_LATER            "play_later"
 
 #define MUSIC_NORMAL_LIST           0
 #define MUSIC_LOVEST_LIST           1

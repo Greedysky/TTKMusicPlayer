@@ -61,6 +61,7 @@ void MusicSoundKMicroSettingPopWidget::initialize()
     {
         m_inputComboBox->addItem(info.deviceName());
     }
+
     if(m_inputComboBox->count() == 0)
     {
         microIconLabel->setStyleSheet("background:url(':/toolSets/lb_record_off')");

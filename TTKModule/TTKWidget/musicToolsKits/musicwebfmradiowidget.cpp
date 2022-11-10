@@ -67,7 +67,7 @@ void MusicWebFMRadioWidget::itemCellClicked(int row, int column)
     Q_UNUSED(row);
     if(column == 3)
     {
-        itemDoubleClicked(row, DEFAULT_NORMAL_LEVEL);
+        itemDoubleClicked(row, TTK_NORMAL_LEVEL);
     }
 }
 
@@ -159,7 +159,7 @@ void MusicWebFMRadioWidget::musicPlayClicked()
     const int row = currentRow();
     if(row >= 0)
     {
-        itemDoubleClicked(row, DEFAULT_NORMAL_LEVEL);
+        itemDoubleClicked(row, TTK_NORMAL_LEVEL);
     }
 }
 

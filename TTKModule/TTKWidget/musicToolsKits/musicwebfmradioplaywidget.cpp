@@ -82,7 +82,7 @@ void MusicWebFMRadioPlayWidget::updateRadioSong(const QString &id)
 
 void MusicWebFMRadioPlayWidget::mediaAutionPlayError(int code)
 {
-    if(DEFAULT_LOW_LEVEL == code)
+    if(TTK_LOW_LEVEL == code)
     {
         radioNext();
     }

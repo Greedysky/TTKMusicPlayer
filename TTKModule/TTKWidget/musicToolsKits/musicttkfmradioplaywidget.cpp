@@ -218,7 +218,7 @@ void MusicTTKFMRadioPlayWidget::radioItemChanged(QTreeWidgetItem *item, int colu
 
 void MusicTTKFMRadioPlayWidget::mediaAutionPlayError(int code)
 {
-    if(DEFAULT_LOW_LEVEL == code)
+    if(TTK_LOW_LEVEL == code)
     {
         startCoreModule();
     }

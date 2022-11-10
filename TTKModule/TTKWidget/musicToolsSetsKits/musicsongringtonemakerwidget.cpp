@@ -14,7 +14,7 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
       m_ui(new Ui::MusicSongRingtoneMaker),
       m_playRingtone(false),
       m_startPos(0),
-      m_stopPos(DEFAULT_HIGH_LEVEL)
+      m_stopPos(TTK_HIGH_LEVEL)
 {
     m_ui->setupUi(this);
     setFixedSize(size());

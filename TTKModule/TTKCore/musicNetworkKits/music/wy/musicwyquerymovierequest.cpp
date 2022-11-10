@@ -368,12 +368,12 @@ void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id
 
 void MusicWYQueryMovieRequest::queryArtistMoviesCount(qint64 id)
 {
-    m_totalSize = DEFAULT_HIGH_LEVEL;
+    m_totalSize = TTK_HIGH_LEVEL;
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(id).arg(0).arg(DEFAULT_HIGH_LEVEL));
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(id).arg(0).arg(TTK_HIGH_LEVEL));
 
     const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
     if(bytes.isEmpty())

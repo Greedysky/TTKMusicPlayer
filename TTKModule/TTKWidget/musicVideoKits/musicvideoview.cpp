@@ -190,7 +190,7 @@ void MusicVideoView::mediaChanged(const QString &data)
 
 void MusicVideoView::mediaAutionPlayError(int code)
 {
-    if(DEFAULT_LOW_LEVEL == code)
+    if(TTK_LOW_LEVEL == code)
     {
         stop();
         MusicToastLabel::popup(tr("Audio play time out!"));

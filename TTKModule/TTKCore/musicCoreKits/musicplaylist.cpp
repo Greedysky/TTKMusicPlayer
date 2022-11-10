@@ -194,7 +194,7 @@ void MusicPlaylist::removeQueue()
 
 void MusicPlaylist::setCurrentIndex(int index)
 {
-    if(index == DEFAULT_LOW_LEVEL)
+    if(index == TTK_LOW_LEVEL)
     {
         switch(m_playbackMode)
         {

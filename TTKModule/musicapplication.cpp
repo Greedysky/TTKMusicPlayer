@@ -31,7 +31,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     : TTKAbstractMoveResizeWidget(parent),
       m_ui(new Ui::MusicApplication),
       m_quitWindowClose(false),
-      m_currentSongTreeIndex(DEFAULT_NORMAL_LEVEL)
+      m_currentSongTreeIndex(TTK_NORMAL_LEVEL)
 {
     m_instance = this;
 #if defined Q_OS_WIN && !TTK_QT_VERSION_CHECK(5,2,0)
@@ -149,7 +149,7 @@ QString MusicApplication::currentFilePath() const
 
 bool MusicApplication::checkMusicListCurrentIndex() const
 {
-    return m_playlist->currentIndex() == DEFAULT_NORMAL_LEVEL;
+    return m_playlist->currentIndex() == TTK_NORMAL_LEVEL;
 }
 
 void MusicApplication::musicLoadCurrentSongLrc()
@@ -187,7 +187,7 @@ QString MusicApplication::musicDownloadContains(bool &contains) const
 {
     contains = false;
     QString path;
-    if(m_songTreeWidget->playToolIndex() != DEFAULT_NORMAL_LEVEL)
+    if(m_songTreeWidget->playToolIndex() != TTK_NORMAL_LEVEL)
     {
         const MusicPlayItem &item = m_playlist->currentItem();
         if(item.isValid())
@@ -203,7 +203,7 @@ QString MusicApplication::musicDownloadContains(bool &contains) const
 
 bool MusicApplication::musicLovestContains() const
 {
-    if(m_songTreeWidget->playToolIndex() != DEFAULT_NORMAL_LEVEL)
+    if(m_songTreeWidget->playToolIndex() != TTK_NORMAL_LEVEL)
     {
         const MusicPlayItem &item = m_playlist->currentItem();
         const MusicSongItemList items(m_songTreeWidget->musicItemList());
@@ -220,7 +220,7 @@ bool MusicApplication::musicLovestContains() const
 
 bool MusicApplication::musicLovestContains(int index) const
 {
-    if(m_songTreeWidget->currentIndex() != DEFAULT_NORMAL_LEVEL && index > DEFAULT_NORMAL_LEVEL)
+    if(m_songTreeWidget->currentIndex() != TTK_NORMAL_LEVEL && index > TTK_NORMAL_LEVEL)
     {
         const MusicSongItemList items(m_songTreeWidget->musicItemList());
         if(m_songTreeWidget->currentIndex() < items.count())
@@ -304,7 +304,7 @@ void MusicApplication::showCurrentSong()
     m_currentSongTreeIndex = item.m_toolIndex;
     m_songTreeWidget->setCurrentMusicSongTreeIndex(item.m_toolIndex);
 
-    if(index > DEFAULT_NORMAL_LEVEL) //The list to end
+    if(index > TTK_NORMAL_LEVEL) //The list to end
     {
         name = currentFileName();
         ///detecting whether the file has been downloaded
@@ -387,7 +387,7 @@ void MusicApplication::musicStateStop()
         return;
     }
 
-    m_playlist->setCurrentIndex(DEFAULT_NORMAL_LEVEL);
+    m_playlist->setCurrentIndex(TTK_NORMAL_LEVEL);
 }
 
 void MusicApplication::musicPlayPrevious()
@@ -594,7 +594,7 @@ void MusicApplication::musicPlayIndex(int row)
 void MusicApplication::musicPlayIndex(int row, int)
 {
     m_player->stop();
-    if(m_currentSongTreeIndex != m_songTreeWidget->currentIndex() || m_playlist->count() == 0)
+    if(m_currentSongTreeIndex != m_songTreeWidget->currentIndex() || m_playlist->isEmpty())
     {
         setMusicPlayIndex();
         const MusicSongItemList items(m_songTreeWidget->musicItemList());
@@ -744,7 +744,7 @@ void MusicApplication::musicCreateRightMenu()
     actions << playbackMode.addAction(tr("Single Cycle"), this, SLOT(musicPlayOneLoop()));
     actions << playbackMode.addAction(tr("Play Once"), this, SLOT(musicPlayOnce()));
 
-    int index = DEFAULT_NORMAL_LEVEL;
+    int index = TTK_NORMAL_LEVEL;
     switch(mode)
     {
         case MusicObject::PlayMode::Order: index = 0; break;
@@ -755,7 +755,7 @@ void MusicApplication::musicCreateRightMenu()
         default: break;
     }
 
-    if(index > DEFAULT_NORMAL_LEVEL && index < actions.count())
+    if(index > TTK_NORMAL_LEVEL && index < actions.count())
     {
         actions[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
     }
@@ -787,7 +787,7 @@ void MusicApplication::musicCreateRightMenu()
     actions.clear();
     actions << download.addAction(tr("Full Download"), MusicRightAreaWidget::instance(), SLOT(musicChangeDownloadFulllyWidget()));
     actions << download.addAction(tr("Custom"), MusicRightAreaWidget::instance(), SLOT(musicChangeDownloadCustumWidget()));
-    if(index > DEFAULT_NORMAL_LEVEL && index < actions.count())
+    if(index > TTK_NORMAL_LEVEL && index < actions.count())
     {
         actions[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
     }
@@ -1071,7 +1071,7 @@ void MusicApplication::setMusicPlayIndex()
 
 void MusicApplication::readSystemConfigFromFile()
 {
-    int value = DEFAULT_NORMAL_LEVEL;
+    int value = TTK_NORMAL_LEVEL;
     //Path configuration song
     MusicSongItemList songs;
     MusicTKPLConfigManager manager;
@@ -1152,7 +1152,7 @@ void MusicApplication::readSystemConfigFromFile()
     //add new music file to playlist
     value = lastPlayIndex[1].toInt();
     m_playlist->add(value, m_songTreeWidget->musicSongsFilePath(value));
-    if(DEFAULT_NORMAL_LEVEL < value && value < songs.count())
+    if(TTK_NORMAL_LEVEL < value && value < songs.count())
     {
         m_ui->musicPlayedList->append(songs[value].m_songs);
     }
@@ -1161,7 +1161,7 @@ void MusicApplication::readSystemConfigFromFile()
     {
         QTimer::singleShot(MT_ONCE, m_songTreeWidget, SLOT(updateCurrentIndex()));
         const int index = lastPlayIndex[2].toInt();
-        m_currentSongTreeIndex = (index == DEFAULT_NORMAL_LEVEL) ? DEFAULT_NORMAL_LEVEL : value;
+        m_currentSongTreeIndex = (index == TTK_NORMAL_LEVEL) ? TTK_NORMAL_LEVEL : value;
         m_playlist->blockSignals(true);
         m_playlist->setCurrentIndex(m_currentSongTreeIndex, m_songTreeWidget->mapFilePathBySongIndex(m_currentSongTreeIndex, index));
         m_playlist->blockSignals(false);

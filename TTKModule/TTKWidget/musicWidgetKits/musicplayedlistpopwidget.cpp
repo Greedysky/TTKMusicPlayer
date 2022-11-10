@@ -105,7 +105,7 @@ void MusicPlayedListPopWidget::remove(int index)
 
     m_playedListWidget->adjustPlayWidgetRow();
     m_playedListWidget->removeRow(index);
-    m_playedListWidget->setPlayRowIndex(DEFAULT_NORMAL_LEVEL);
+    m_playedListWidget->setPlayRowIndex(TTK_NORMAL_LEVEL);
 
     m_playlist->remove(index);
     m_songList.removeAt(index);
@@ -126,7 +126,7 @@ void MusicPlayedListPopWidget::remove(int toolIndex, const QString &path)
             m_playedListWidget->removeRow(index);
         }
     } while(index != -1);
-    m_playedListWidget->setPlayRowIndex(DEFAULT_NORMAL_LEVEL);
+    m_playedListWidget->setPlayRowIndex(TTK_NORMAL_LEVEL);
 
     setPlaylistSongs();
 }
@@ -202,7 +202,7 @@ void MusicPlayedListPopWidget::popupMenu()
 
 void MusicPlayedListPopWidget::setDeleteItemAt(const TTKIntList &index)
 {
-    if(index.count() == 0)
+    if(index.isEmpty())
     {
         return;
     }
@@ -417,9 +417,9 @@ void MusicPlayedListPopWidget::setPlaylistCount(int count)
 
 void MusicPlayedListPopWidget::setPlaylistEmpty()
 {
-    m_playedListWidget->setPlayRowIndex(DEFAULT_NORMAL_LEVEL);
+    m_playedListWidget->setPlayRowIndex(TTK_NORMAL_LEVEL);
     m_songList.clear();
     setPlaylistCount(0);
 
-    MusicApplication::instance()->musicPlayIndex(DEFAULT_NORMAL_LEVEL);
+    MusicApplication::instance()->musicPlayIndex(TTK_NORMAL_LEVEL);
 }
