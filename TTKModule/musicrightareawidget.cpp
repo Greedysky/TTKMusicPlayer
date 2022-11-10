@@ -384,7 +384,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         }
         case LrcWidget: //insert lrc display widget
         {
-            m_ui->functionsContainer->setCurrentIndex(1);
+            m_ui->functionsContainer->setCurrentIndex(MUSIC_LRC_PAGE);
             m_ui->lrcDisplayAllButton->setStyleSheet(MusicUIObject::MQSSTinyBtnLrcCollapse);
             m_ui->lrcDisplayAllButton->setVisible(true);
             Q_EMIT updateBackgroundThemeDownload();
@@ -407,13 +407,13 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
                 break;
             }
 
-            m_ui->functionsContainer->setCurrentIndex(0);
+            m_ui->functionsContainer->setCurrentIndex(MUSIC_SEARCH_PAGE);
             Q_EMIT updateBackgroundTheme();
             break;
         }
         case SearchSingleWidget: //insert search display widget
         {
-            m_ui->functionsContainer->setCurrentIndex(0);
+            m_ui->functionsContainer->setCurrentIndex(MUSIC_SEARCH_PAGE);
             Q_EMIT updateBackgroundTheme();
             break;
         }
@@ -533,7 +533,7 @@ void MusicRightAreaWidget::musicSongCommentsWidget()
         MusicApplication::instance()->musicWindowConciseChanged();
     }
 
-    if(m_ui->functionsContainer->currentIndex() != APP_WINDOW_INDEX_1)
+    if(m_ui->functionsContainer->currentIndex() != MUSIC_LRC_PAGE)
     {
         functionClicked(MusicRightAreaWidget::LrcWidget);
     }
@@ -705,7 +705,7 @@ void MusicRightAreaWidget::researchQueryByQuality(MusicObject::QueryQuality qual
     functionInitialize();
 
     m_ui->songSearchWidget->researchQueryByQuality(text, quality);
-    m_ui->functionsContainer->setCurrentIndex(APP_WINDOW_INDEX_0);
+    m_ui->functionsContainer->setCurrentIndex(MUSIC_SEARCH_PAGE);
     Q_EMIT updateBackgroundTheme();
 }
 

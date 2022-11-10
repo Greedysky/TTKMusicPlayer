@@ -269,12 +269,12 @@ void MusicPlaylistQueryWidget::currentPlaylistClicked(const MusicResultDataItem 
     m_infoWidget->setQueryInput(d);
     m_infoWidget->setResultDataItem(it, this);
     m_container->addWidget(m_infoWidget);
-    m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_1);
+    m_container->setCurrentIndex(1);
 }
 
 void MusicPlaylistQueryWidget::backToPlaylistMenu()
 {
-    m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_0);
+    m_container->setCurrentIndex(0);
 }
 
 void MusicPlaylistQueryWidget::categoryChanged(const MusicResultsCategoryItem &category)

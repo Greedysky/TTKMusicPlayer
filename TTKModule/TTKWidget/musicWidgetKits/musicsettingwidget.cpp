@@ -391,19 +391,19 @@ void MusicSettingWidget::otherPluginManagerChanged()
 void MusicSettingWidget::changeDesktopLrcWidget()
 {
     selectFunctionTableIndex(1, 0);
-    setScrollWidgetPageIndex(SETTING_WINDOW_INDEX_4);
+    setScrollWidgetPageIndex(4);
 }
 
 void MusicSettingWidget::changeInteriorLrcWidget()
 {
     selectFunctionTableIndex(1, 1);
-    setScrollWidgetPageIndex(SETTING_WINDOW_INDEX_5);
+    setScrollWidgetPageIndex(5);
 }
 
 void MusicSettingWidget::changeDownloadWidget()
 {
     selectFunctionTableIndex(0, 2);
-    setScrollWidgetPageIndex(SETTING_WINDOW_INDEX_2);
+    setScrollWidgetPageIndex(2);
 }
 
 void MusicSettingWidget::interiorLrcFrontgroundChanged()

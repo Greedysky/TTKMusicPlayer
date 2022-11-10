@@ -213,12 +213,12 @@ void MusicWebMVRadioQueryWidget::currentRadioClicked(const MusicResultDataItem &
     m_infoWidget->setSongName(item.m_id);
 
     m_container->addWidget(m_infoWidget);
-    m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_1);
+    m_container->setCurrentIndex(1);
 }
 
 void MusicWebMVRadioQueryWidget::backToMainMenuClicked()
 {
-    m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_0);
+    m_container->setCurrentIndex(0);
 }
 
 void MusicWebMVRadioQueryWidget::categoryChanged(const MusicResultsCategoryItem &category)

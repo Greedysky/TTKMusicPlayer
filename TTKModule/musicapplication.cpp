@@ -79,7 +79,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     m_ui->musicKey->setFocus();
     m_ui->lrcDisplayAllButton->hide();
-    m_ui->functionsContainer->setCurrentIndex(APP_WINDOW_INDEX_0);
+    m_ui->functionsContainer->setCurrentIndex(MUSIC_SEARCH_PAGE);
 
     m_ui->musicTimeWidget->setInputModule(this);
     G_HOTKEY_PTR->setInputModule(this);

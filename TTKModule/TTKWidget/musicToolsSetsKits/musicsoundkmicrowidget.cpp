@@ -223,13 +223,13 @@ void MusicSoundKMicroWidget::mediaUrlChanged(bool mv, const QString &url, const 
 
     if(m_queryMovieMode = mv)
     {
-        m_ui->stackedWidget->setCurrentIndex(SOUND_KMICRO_INDEX_0);
+        m_ui->stackedWidget->setCurrentIndex(0);
         m_player->setMedia(MusicCoreMPlayer::Module::Video, url, (int)m_ui->videoPage->winId());
         m_player->play();
     }
     else
     {
-        m_ui->stackedWidget->setCurrentIndex(SOUND_KMICRO_INDEX_1);
+        m_ui->stackedWidget->setCurrentIndex(1);
         m_player->setMedia(MusicCoreMPlayer::Module::Music, url);
         m_player->play();
         //

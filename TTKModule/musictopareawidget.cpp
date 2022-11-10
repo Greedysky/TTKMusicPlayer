@@ -416,7 +416,7 @@ void MusicTopAreaWidget::backgroundTransparentChanged(int value)
 
 bool MusicTopAreaWidget::isEnableBackground() const
 {
-    return m_ui->functionsContainer->currentIndex() != APP_WINDOW_INDEX_1;
+    return m_ui->functionsContainer->currentIndex() != MUSIC_LRC_PAGE;
 }
 
 void MusicTopAreaWidget::createRemoteWidget()

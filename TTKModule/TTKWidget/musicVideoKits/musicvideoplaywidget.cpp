@@ -79,7 +79,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
 
     m_stackedWidget->addWidget(m_videoView);
     m_stackedWidget->addWidget(m_videoTable);
-    m_stackedWidget->setCurrentIndex(VIDEO_WINDOW_INDEX_0);
+    m_stackedWidget->setCurrentIndex(0);
 
     m_leaverAnimation = new QParallelAnimationGroup(this);
     QPropertyAnimation *topAnimation = new QPropertyAnimation(m_topWidget, "pos", m_leaverAnimation);
@@ -219,7 +219,7 @@ void MusicVideoPlayWidget::switchToSearchTable()
 
     m_textLabel->clear();
     m_searchEdit->show();
-    m_stackedWidget->setCurrentIndex(VIDEO_WINDOW_INDEX_1);
+    m_stackedWidget->setCurrentIndex(1);
 }
 
 void MusicVideoPlayWidget::switchToPlayView()
@@ -229,7 +229,7 @@ void MusicVideoPlayWidget::switchToPlayView()
 
     setTitleText(m_videoItem.m_name);
     m_searchEdit->hide();
-    m_stackedWidget->setCurrentIndex(VIDEO_WINDOW_INDEX_0);
+    m_stackedWidget->setCurrentIndex(0);
 }
 
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)

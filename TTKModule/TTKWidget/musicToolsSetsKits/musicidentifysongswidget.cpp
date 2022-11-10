@@ -101,7 +101,7 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
 
 void MusicIdentifySongsWidget::reDetectButtonClicked()
 {
-    m_mainWindow->setCurrentIndex(IDENTIFY_SONGS_INDEX_0);
+    m_mainWindow->setCurrentIndex(0);
     if(m_player)
     {
         m_player->stop();

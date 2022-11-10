@@ -309,12 +309,12 @@ void MusicLrcMakerWidget::thirdWidgetStateButtonClicked()
 
 void MusicLrcMakerWidget::setCurrentMainWidget()
 {
-    m_ui->stackedWidget->setCurrentIndex(LRC_MAKER_INDEX_0);
+    m_ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MusicLrcMakerWidget::setCurrentFirstWidget()
 {
-    m_ui->stackedWidget->setCurrentIndex(LRC_MAKER_INDEX_1);
+    m_ui->stackedWidget->setCurrentIndex(1);
 }
 
 void MusicLrcMakerWidget::setCurrentSecondWidget()
@@ -353,7 +353,7 @@ void MusicLrcMakerWidget::setCurrentSecondWidget()
     m_ui->makeTextEdit->setCurrentCharFormat(QTextCharFormat());
     m_lineItem->setText(cursor.block().text());
 
-    m_ui->stackedWidget->setCurrentIndex(LRC_MAKER_INDEX_2);
+    m_ui->stackedWidget->setCurrentIndex(2);
 }
 
 void MusicLrcMakerWidget::setCurrentThirdWidget()
@@ -365,7 +365,7 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
     }
 
     MusicApplication::instance()->musicPlayAnyTimeAt(0);
-    m_ui->stackedWidget->setCurrentIndex(LRC_MAKER_INDEX_3);
+    m_ui->stackedWidget->setCurrentIndex(3);
 
     if(m_times.count() == m_plainText.count())
     {
