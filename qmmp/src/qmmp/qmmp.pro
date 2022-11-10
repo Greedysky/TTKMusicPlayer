@@ -92,7 +92,7 @@ SOURCES += recycler.cpp \
     regularwrapper.cpp \
     format.cpp
 
-DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../../bin/$$TTK_VERSION
 
 TARGET = TTK$${TARGET}
 CONFIG += shared warn_off plugin lib qt thread

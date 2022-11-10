@@ -5,7 +5,7 @@ include($$PWD/../../qmmp.pri)
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = app
-DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../../bin/$$TTK_VERSION
 
 LIBS += -L$$DESTDIR -lTTKqmmp
 

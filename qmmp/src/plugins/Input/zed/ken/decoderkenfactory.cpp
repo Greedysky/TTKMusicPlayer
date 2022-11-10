@@ -23,7 +23,6 @@ DecoderProperties DecoderKenFactory::properties() const
     properties.description = "Ken Silverman's Audio File";
     properties.protocols << "file";
     properties.noInput = true;
-    properties.priority = 9;
     return properties;
 }
 
