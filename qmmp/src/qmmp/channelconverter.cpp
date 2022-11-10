@@ -10,7 +10,7 @@ ChannelConverter::~ChannelConverter()
 {
     if(m_tmp_buf)
     {
-        delete [] m_tmp_buf;
+        delete[] m_tmp_buf;
         m_tmp_buf = nullptr;
     }
 }
@@ -62,7 +62,7 @@ void ChannelConverter::applyEffect(Buffer *b)
 
     if(b->samples > m_tmp_size)
     {
-        delete [] m_tmp_buf;
+        delete[] m_tmp_buf;
         m_tmp_buf = new float[b->samples];
         m_tmp_size = b->samples;
     }
@@ -71,7 +71,7 @@ void ChannelConverter::applyEffect(Buffer *b)
     const size_t samples = b->samples * out_channels / in_channels;
     if(samples > b->size)
     {
-        delete [] b->data;
+        delete[] b->data;
         b->data = new float[samples];
         b->size = samples;
     }

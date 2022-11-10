@@ -18,7 +18,7 @@ DecoderFFmpegM4b::~DecoderFFmpegM4b()
         delete m_decoder;
     m_decoder = nullptr;
     if(m_buf)
-        delete [] m_buf;
+        delete[] m_buf;
     m_buf = nullptr;
     if(m_input)
         m_input->deleteLater();

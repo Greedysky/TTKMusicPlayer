@@ -19,7 +19,7 @@ DecoderFFmpegCue::~DecoderFFmpegCue()
         delete m_parser;
     m_parser = nullptr;
     if(m_buf)
-        delete [] m_buf;
+        delete[] m_buf;
     m_buf = nullptr;
     if(m_input)
         m_input->deleteLater();

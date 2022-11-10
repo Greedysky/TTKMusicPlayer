@@ -192,9 +192,9 @@ void LightWaveFormScanner::run()
 
         m_mutex.lock();
     }
-    delete [] min;
-    delete [] max;
-    delete [] rms;
+    delete[] min;
+    delete[] max;
+    delete[] rms;
     m_mutex.unlock();
 }
 

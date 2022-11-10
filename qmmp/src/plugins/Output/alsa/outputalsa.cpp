@@ -476,7 +476,7 @@ int VolumeALSA::setupMixer(QString card, QString device)
             QSocketNotifier* sn = new QSocketNotifier(sock, QSocketNotifier::Read, this);
             connect(sn, SIGNAL(activated(int)), SIGNAL(changed()));
         }
-        delete []fds;
+        delete[] fds;
     }
 
     qDebug("OutputALSA: setupMixer() success");
