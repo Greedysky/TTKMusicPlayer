@@ -364,7 +364,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
 
 MusicLocalManagerWidget::~MusicLocalManagerWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
     delete m_sizeLabel;
     delete m_searchEdit;
     delete m_loadingLabel;

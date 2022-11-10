@@ -29,16 +29,16 @@ void MusicDownLoadManager::connectMusicDownload(const MusicDownLoadPairData &pai
     switch(pair.m_type)
     {
         case MusicObject::Record::NormalDownload: className = MusicDownloadRecordTableWidget::className(); break;
-        case MusicObject::Record::CloudDownload: className = MusicCloudDownloadTableWidget::className(); break;
-        case MusicObject::Record::CloudUpload: className = MusicCloudUploadTableWidget::className(); break;
+        case MusicObject::Record::CloudDownload:  className = MusicCloudDownloadTableWidget::className(); break;
+        case MusicObject::Record::CloudUpload:    className = MusicCloudUploadTableWidget::className(); break;
         default: break;
     }
 
     const QObject *to = G_CONNECTION_PTR->value(className);
     if(to && pair.m_object)
     {
-        connect(pair.m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), to, SLOT(downloadProgressChanged(float, QString, qint64)));
         connect(pair.m_object, SIGNAL(createDownloadItem(QString, qint64)), to, SLOT(createDownloadItem(QString, qint64)));
+        connect(pair.m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), to, SLOT(downloadProgressChanged(float, QString, qint64)));
     }
 
     connect(pair.m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), SLOT(downloadProgressChanged(float, QString, qint64)));
@@ -51,11 +51,11 @@ void MusicDownLoadManager::reconnectMusicDownload(const MusicDownLoadPairData &p
     if(index != -1)
     {
         MusicDownLoadPairData *p = &m_pairList[index];
-        disconnect(p->m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), pair.m_object, SLOT(downloadProgressChanged(float, QString, qint64)));
         disconnect(p->m_object, SIGNAL(createDownloadItem(QString, qint64)), pair.m_object, SLOT(createDownloadItem(QString, qint64)));
+        disconnect(p->m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), pair.m_object, SLOT(downloadProgressChanged(float, QString, qint64)));
 
-        connect(p->m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), pair.m_object, SLOT(downloadProgressChanged(float, QString, qint64)));
         connect(p->m_object, SIGNAL(createDownloadItem(QString, qint64)), pair.m_object, SLOT(createDownloadItem(QString, qint64)));
+        connect(p->m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), pair.m_object, SLOT(downloadProgressChanged(float, QString, qint64)));
     }
 }
 

@@ -1,7 +1,7 @@
 #include "musicvideoqualitypopwidget.h"
 #include "musicvideouiobject.h"
-#include "musicconnectionpool.h"
 #include "musicvideosearchtablewidget.h"
+#include "musicconnectionpool.h"
 
 MusicVideoQualityPopWidget::MusicVideoQualityPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
@@ -17,7 +17,7 @@ MusicVideoQualityPopWidget::MusicVideoQualityPopWidget(QWidget *parent)
 
 MusicVideoQualityPopWidget::~MusicVideoQualityPopWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
     delete m_actionGroup;
 }
 

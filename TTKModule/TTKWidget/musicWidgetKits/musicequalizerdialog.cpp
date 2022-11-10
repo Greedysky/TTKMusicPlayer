@@ -55,7 +55,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
 
 MusicEqualizerDialog::~MusicEqualizerDialog()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
     writeInformation();
     delete m_ui;
 }

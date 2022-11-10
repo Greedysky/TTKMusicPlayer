@@ -43,37 +43,16 @@ public:
     {
         return m_parameters[type];
     }
-    /*!
-     * Get connection object by type name in operator[].
-     */
-    inline const QObject* operator[](const QString &type) const
-    {
-        return value(type);
-    }
-    /*!
-     * Set connection object and type name in operator[].
-     */
-    inline QObject* &operator[](const QString &type)
-    {
-        return m_parameters[type];
-    }
 
-    /*!
-     * Set connection by two object.
-     */
-    void connect(const QObject *from, const QObject *to);
-    /*!
-     * Set connection by two object type name.
-     */
-    void connect(const QString &from, const QString &to);
     /*!
      * Remove connection object by object.
      */
     void removeValue(const QObject *object);
+
     /*!
-     * Remove connection object by object name.
+     * Set connection by two object type name.
      */
-    void removeValue(const QString &name);
+    void connect(const QString &from, const QString &to);
 
 private:
     QMap<QString, QObject*> m_parameters;

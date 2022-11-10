@@ -78,7 +78,7 @@ public:
 	void emitDeviceRemoved(const QString& dev);
 	void emitDeviceAction(const QString& dev, const QString& action);
 
-	QList<QObject*> event_receivers;
+    QObjectList event_receivers;
 
 private Q_SLOTS:
 	void parseDeviceInfo();

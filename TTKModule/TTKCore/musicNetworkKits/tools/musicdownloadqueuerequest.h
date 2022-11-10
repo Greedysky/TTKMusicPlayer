@@ -97,7 +97,7 @@ private:
     void startOrderImageQueue();
 
     bool m_isDownload, m_isAbort;
-    QList<MusicDownloadQueueData> m_imageQueue;
+    MusicDownloadQueueDataList m_imageQueue;
     QNetworkRequest *m_request;
 
 };

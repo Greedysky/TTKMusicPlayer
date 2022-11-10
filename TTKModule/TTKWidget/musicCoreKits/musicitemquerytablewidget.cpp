@@ -1,10 +1,10 @@
 #include "musicitemquerytablewidget.h"
+#include "musicsongssummariziedwidget.h"
 #include "musicdownloadwidget.h"
 #include "musicitemdelegate.h"
 #include "musictoastlabel.h"
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
-#include "musicsongssummariziedwidget.h"
 #include "musicrightareawidget.h"
 #include "musicdownloadbatchwidget.h"
 
@@ -32,7 +32,7 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
 
 MusicItemQueryTableWidget::~MusicItemQueryTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(MusicQueryTableWidget::className());
+    G_CONNECTION_PTR->removeValue(this);
     delete m_labelDelegate;
     removeItems();
 }

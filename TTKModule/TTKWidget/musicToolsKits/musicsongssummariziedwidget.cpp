@@ -41,7 +41,7 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
 
 MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
     delete m_listMaskWidget;
     delete m_listFunctionWidget;
     delete m_songSearchWidget;

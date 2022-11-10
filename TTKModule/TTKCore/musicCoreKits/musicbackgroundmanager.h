@@ -136,7 +136,7 @@ private:
 
     int m_currentIndex;
     QStringList m_photos;
-    QList<QObject*> m_observer;
+    QObjectList m_observer;
     QString m_currentArtistName, m_background;
 
     DECLARE_SINGLETON_CLASS(MusicBackgroundManager)

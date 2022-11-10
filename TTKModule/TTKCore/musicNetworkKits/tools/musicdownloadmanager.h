@@ -101,7 +101,7 @@ private Q_SLOTS:
     void downloadProgressChanged(float percent, const QString &total, qint64 time);
 
 private:
-    QList<QObject*> m_queueList;
+    QObjectList m_queueList;
     QList<MusicDownLoadPairData> m_pairList;
 
     DECLARE_SINGLETON_CLASS(MusicDownLoadManager)

@@ -1,10 +1,10 @@
 #include "musicconnecttransferwidget.h"
 #include "ui_musicconnecttransferwidget.h"
+#include "musicsongssummariziedwidget.h"
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 #include "musictoastlabel.h"
 #include "musicdeviceinfomodule.h"
-#include "musicsongssummariziedwidget.h"
 #include "musicconnecttransferthread.h"
 
 #include <QButtonGroup>
@@ -59,7 +59,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 
 MusicConnectTransferWidget::~MusicConnectTransferWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
     delete m_ui;
     delete m_thread;
 }

@@ -20,7 +20,7 @@ MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)
 
 MusicVideoSearchTableWidget::~MusicVideoSearchTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
     removeItems();
 }
 

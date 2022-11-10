@@ -1,10 +1,10 @@
 #include "musiclrclocallinkwidget.h"
 #include "ui_musiclrclocallinkwidget.h"
+#include "musicdownloadstatusmodule.h"
 #include "musicconnectionpool.h"
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
 #include "musicnetworkdefines.h"
-#include "musicdownloadstatusmodule.h"
 
 #include <QDir>
 
@@ -98,7 +98,7 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
 
 MusicLrcLocalLinkWidget::~MusicLrcLocalLinkWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
     delete m_ui;
 }
 

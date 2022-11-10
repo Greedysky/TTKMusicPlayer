@@ -9,7 +9,7 @@
 QRect TTKDesktopWrapper::screenGeometry(int index)
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
-    const QList<QScreen *> &screens = QApplication::screens();
+    const QList<QScreen*> &screens = QApplication::screens();
     return (index < 0 || index >= screens.count()) ? QRect() : screens[index]->geometry();
 #else
     QDesktopWidget *widget = QApplication::desktop();
@@ -20,7 +20,7 @@ QRect TTKDesktopWrapper::screenGeometry(int index)
 QRect TTKDesktopWrapper::geometry()
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
-    const QList<QScreen *> &screens = QApplication::screens();
+    const QList<QScreen*> &screens = QApplication::screens();
     QRegion virtualGeometry;
     for(int i = 0; i < screens.count(); ++i)
     {

@@ -26,6 +26,18 @@ MusicConnectionPool::MusicConnectionPool()
 
 }
 
+void MusicConnectionPool::removeValue(const QObject *object)
+{
+    for(auto it = m_parameters.constBegin(); it != m_parameters.constEnd(); ++it)
+    {
+        if(it.value() == object)
+        {
+            m_parameters.take(it.key());
+            break;
+        }
+    }
+}
+
 void MusicConnectionPool::connect(const QString &from, const QString &to)
 {
     const QObject *first = m_parameters.value(from);
@@ -87,29 +99,5 @@ void MusicConnectionPool::connect(const QString &from, const QString &to)
     {
         QObject::connect(first, SIGNAL(uploadFileError(MusicCloudDataItem)), second, SLOT(uploadFileError(MusicCloudDataItem)));
         QObject::connect(second, SIGNAL(reuploadFilesToServer(QStringList)), first, SLOT(reuploadFilesToServer(QStringList)));
-    }
-}
-
-void MusicConnectionPool::connect(const QObject *from, const QObject *to)
-{
-    QObject::connect(from, SIGNAL(sender()), to, SLOT(receiver()));
-}
-
-void MusicConnectionPool::removeValue(const QString &name)
-{
-    m_parameters.take(name);
-}
-
-void MusicConnectionPool::removeValue(const QObject *object)
-{
-    QMapIterator<QString, QObject*> i(m_parameters);
-    while(i.hasNext())
-    {
-        i.next();
-        if(i.value() == object)
-        {
-            removeValue(i.key());
-            break;
-        }
     }
 }

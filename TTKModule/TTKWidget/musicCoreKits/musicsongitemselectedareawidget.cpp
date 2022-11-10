@@ -1,9 +1,9 @@
 #include "musicsongitemselectedareawidget.h"
 #include "ui_musicsongitemselecteddialog.h"
+#include "musicsongssummariziedwidget.h"
 #include "musicitemdelegate.h"
 #include "musicwidgetheaders.h"
 #include "musicconnectionpool.h"
-#include "musicsongssummariziedwidget.h"
 #include "ttkclickedlabel.h"
 
 MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *parent)
@@ -142,7 +142,7 @@ MusicSongItemSelectedAreaWidget::MusicSongItemSelectedAreaWidget(QWidget *parent
 
 MusicSongItemSelectedAreaWidget::~MusicSongItemSelectedAreaWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
     delete m_label;
     delete m_itemLabel;
     delete m_modifiedItemButton;

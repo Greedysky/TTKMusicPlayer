@@ -18,7 +18,7 @@ MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *pare
 
 MusicAbstractDownloadTableWidget::~MusicAbstractDownloadTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
     MusicDownloadRecordConfigManager xml(m_type, this);
     xml.writeBuffer(*m_songs);
     removeItems();

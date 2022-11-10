@@ -1,7 +1,7 @@
 #include "musicsongdlnatransferwidget.h"
 #include "ui_musicsongdlnatransferwidget.h"
-#include "musicconnectionpool.h"
 #include "musicsongssummariziedwidget.h"
+#include "musicconnectionpool.h"
 
 #include "qdlna/qdlnafinder.h"
 #include "qdlna/qdlnaclient.h"
@@ -78,7 +78,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
 
 MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
     G_SINGLE_MANAGER_PTR->removeObject(className());
     delete m_dlnaFinder;
     delete m_ui;

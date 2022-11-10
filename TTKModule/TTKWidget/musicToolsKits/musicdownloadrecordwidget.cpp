@@ -26,7 +26,7 @@ MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
 
 MusicDownloadRecordTableWidget::~MusicDownloadRecordTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
 }
 
 void MusicDownloadRecordTableWidget::addCellItem(int index, const MusicSong &record)

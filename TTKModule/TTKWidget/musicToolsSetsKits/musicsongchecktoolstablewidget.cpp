@@ -1,8 +1,8 @@
 #include "musicsongchecktoolstablewidget.h"
+#include "musicsongssummariziedwidget.h"
 #include "musicitemdelegate.h"
 #include "musicnumberutils.h"
 #include "musicconnectionpool.h"
-#include "musicsongssummariziedwidget.h"
 
 MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
@@ -104,7 +104,7 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
 
 MusicSongCheckToolsDuplicateTableWidget::~MusicSongCheckToolsDuplicateTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
 }
 
 void MusicSongCheckToolsDuplicateTableWidget::addCellItems(const MusicSongCheckToolsDuplicateList &songs)
@@ -219,7 +219,7 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
 
 MusicSongCheckToolsQualityTableWidget::~MusicSongCheckToolsQualityTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
 }
 
 void MusicSongCheckToolsQualityTableWidget::addCellItems(const MusicSongCheckToolsQualityList &songs)

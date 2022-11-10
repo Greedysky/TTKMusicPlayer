@@ -2,8 +2,8 @@
 #include "ui_musicsoundeffectswidget.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
-#include "musicplayer.h"
 #include "musicwidgetheaders.h"
+#include "musicplayer.h"
 
 MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const MusicPluginProperty &property, QWidget *parent)
     : QWidget(parent),
@@ -149,7 +149,7 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
 
 MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
     writeSoundEffect();
     qDeleteAll(m_items);
     delete m_ui;

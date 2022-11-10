@@ -3,7 +3,6 @@
 #include "musicinteriorlrcuiobject.h"
 #include "musicmessagebox.h"
 #include "musictoastlabel.h"
-#include "ttktime.h"
 #include "musicconnectionpool.h"
 #include "musicplayer.h"
 #include "musicapplication.h"
@@ -11,6 +10,7 @@
 #include "musiclrcmanagerforinterior.h"
 #include "musicsettingmanager.h"
 #include "musicstringutils.h"
+#include "ttktime.h"
 
 #include <QTextBlock>
 #include <QPropertyAnimation>
@@ -174,7 +174,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
 MusicLrcMakerWidget::~MusicLrcMakerWidget()
 {
     resetToOriginPlayMode();
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
     G_SINGLE_MANAGER_PTR->removeObject(className());
     qDeleteAll(m_lrcContainer);
     delete m_lineItem;

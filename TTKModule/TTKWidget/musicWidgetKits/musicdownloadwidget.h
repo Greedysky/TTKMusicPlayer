@@ -129,7 +129,7 @@ public Q_SLOTS:
     virtual void removeItems() override final;
 
 private:
-    QList<QObject*> m_items;
+    QObjectList m_items;
 
 };
 

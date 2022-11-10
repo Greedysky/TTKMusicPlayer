@@ -1,9 +1,9 @@
 #include "musiccloudmanagerwidget.h"
 #include "musicdownloadsourcerequest.h"
+#include "musiccloudfileinformationwidget.h"
 #include "musicitemdelegate.h"
 #include "musicopenfilewidget.h"
 #include "musicsettingmanager.h"
-#include "musiccloudfileinformationwidget.h"
 #include "musicdownloaddatarequest.h"
 #include "musiccoreutils.h"
 #include "musicfileutils.h"
@@ -61,7 +61,7 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
 
 MusicCloudManagerTableWidget::~MusicCloudManagerTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(className());
+    G_CONNECTION_PTR->removeValue(this);
     delete m_syncListData;
     delete m_syncDeleteData;
     delete m_syncUploadData;
