@@ -4,26 +4,26 @@ set(TARGET_NAME GenerateSkin)
 project(${TARGET_NAME})
 
 if(COMMAND cmake_policy)
-    cmake_policy(SET CMP0003 OLD)
-    cmake_policy(SET CMP0005 OLD)
-    cmake_policy(SET CMP0028 OLD)
+  cmake_policy(SET CMP0003 OLD)
+  cmake_policy(SET CMP0005 OLD)
+  cmake_policy(SET CMP0028 OLD)
 endif(COMMAND cmake_policy)
 
 add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
 set(MUSIC_HEADERS
-    toolsskin.h
-  )
+  toolsskin.h
+)
 
 set(MUSIC_SOURCES
-    toolsskin.cpp
-    main.cpp
-  )
+  toolsskin.cpp
+  main.cpp
+)
   
 set(MUSIC_UIS
-    toolsskin.ui
-  )
+  toolsskin.ui
+)
   
 if(TTK_QT_VERSION VERSION_GREATER "4")
   QT5_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})

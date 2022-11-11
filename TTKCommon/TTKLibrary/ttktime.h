@@ -195,8 +195,8 @@ public:
 
     inline friend QDataStream& operator<<(QDataStream &stream, const TTKTime &other)
     {
-        stream << other.day() << other.hour() << other.minute()
-               << other.second() << other.millionSecond();
+        stream << other.day() << " " << other.hour() << " " << other.minute() << " "
+               << other.second() << " " << other.millionSecond();
         return stream;
     }
 

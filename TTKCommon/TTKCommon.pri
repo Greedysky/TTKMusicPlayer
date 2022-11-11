@@ -26,7 +26,6 @@ win32{
     msvc{
         HEADERS += \
             $$PWD/TTKLibrary/ttkabstractmovedialog.h \
-            $$PWD/TTKLibrary/ttkabstractmovedialog.h \
             $$PWD/TTKLibrary/ttkabstractmoveresizewidget.h \
             $$PWD/TTKLibrary/ttkabstractmovewidget.h \
             $$PWD/TTKLibrary/ttkabstractresizeinterface.h \
@@ -39,6 +38,8 @@ win32{
             $$PWD/TTKLibrary/ttkdesktopwrapper.h \
             $$PWD/TTKLibrary/ttkglobalhelper.h \
             $$PWD/TTKLibrary/ttksemaphoreloop.h \
-            $$PWD/TTKLibrary/ttktime.h
+            $$PWD/TTKLibrary/ttksuperenum.h \
+            $$PWD/TTKLibrary/ttktime.h \
+            $$PWD/TTKLibrary/ttktoastlabel.h
     }
 }

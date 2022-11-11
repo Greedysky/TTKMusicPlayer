@@ -3,9 +3,9 @@ cmake_minimum_required(VERSION 2.8.11)
 project(TTKZip)
 
 if(COMMAND cmake_policy)
-    cmake_policy(SET CMP0003 OLD)
-    cmake_policy(SET CMP0005 OLD)
-    cmake_policy(SET CMP0028 OLD)
+  cmake_policy(SET CMP0003 OLD)
+  cmake_policy(SET CMP0005 OLD)
+  cmake_policy(SET CMP0028 OLD)
 endif(COMMAND cmake_policy)
 
 add_definitions(-DQT_NO_DEBUG)
@@ -14,23 +14,23 @@ add_definitions(-DZLIB_DLL)
 add_definitions(-DZLIB_INTERNAL)
 
 set(MUSIC_HEADERS
-    zip.h
-    unzip.h
-    mztools.h
-    ioapi.h
-    crypt.h
-  )
+  zip.h
+  unzip.h
+  mztools.h
+  ioapi.h
+  crypt.h
+)
 
 set(MUSIC_SOURCES
-    zip.c
-    unzip.c
-    mztools.c
-    ioapi.c
-  )
+  zip.c
+  unzip.c
+  mztools.c
+  ioapi.c
+)
 
 if(WIN32)
-    list(APPEND MUSIC_HEADERS iowin32.h)
-    list(APPEND MUSIC_SOURCES iowin32.c ${PROJECT_NAME}.rc)
+  list(APPEND MUSIC_HEADERS iowin32.h)
+  list(APPEND MUSIC_SOURCES iowin32.c ${PROJECT_NAME}.rc)
 endif()
 
 if(TTK_BUILD_SHARED)

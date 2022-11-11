@@ -68,7 +68,8 @@ HEADERS += \
     $$PWD/ttkglobalhelper.h \
     $$PWD/ttksemaphoreloop.h \
     $$PWD/ttksuperenum.h \
-    $$PWD/ttktime.h
+    $$PWD/ttktime.h \
+    $$PWD/ttktoastlabel.h
 
 SOURCES += \
     $$PWD/ttkabstractmovedialog.cpp \
@@ -84,7 +85,8 @@ SOURCES += \
     $$PWD/ttkglobalhelper.cpp \
     $$PWD/ttksemaphoreloop.cpp \
     $$PWD/ttksuperenum.cpp \
-    $$PWD/ttktime.cpp
+    $$PWD/ttktime.cpp \
+    $$PWD/ttktoastlabel.cpp
 
 RESOURCES += $$PWD/TTKLibrary.qrc
 

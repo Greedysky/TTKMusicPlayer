@@ -4,9 +4,9 @@ set(TARGET_NAME TTKService)
 project(${TARGET_NAME})
 
 if(COMMAND cmake_policy)
-    cmake_policy(SET CMP0003 OLD)
-    cmake_policy(SET CMP0005 OLD)
-    cmake_policy(SET CMP0028 OLD)
+  cmake_policy(SET CMP0003 OLD)
+  cmake_policy(SET CMP0005 OLD)
+  cmake_policy(SET CMP0028 OLD)
 endif(COMMAND cmake_policy)
 
 add_definitions(-DQT_NO_DEBUG)
@@ -20,7 +20,7 @@ set(MUSIC_APP_SOURCES
 )
 
 if(WIN32)
-    list(APPEND MUSIC_APP_SOURCES ${TARGET_NAME}.rc)
+  list(APPEND MUSIC_APP_SOURCES ${TARGET_NAME}.rc)
 endif()
 
 add_executable(${TARGET_NAME} ${MUSIC_APP_SOURCES})

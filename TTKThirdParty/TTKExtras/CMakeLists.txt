@@ -3,9 +3,9 @@ cmake_minimum_required(VERSION 2.8.11)
 project(TTKExtras)
 
 if(COMMAND cmake_policy)
-    cmake_policy(SET CMP0003 OLD)
-    cmake_policy(SET CMP0005 OLD)
-    cmake_policy(SET CMP0028 OLD)
+  cmake_policy(SET CMP0003 OLD)
+  cmake_policy(SET CMP0005 OLD)
+  cmake_policy(SET CMP0028 OLD)
 endif(COMMAND cmake_policy)
 
 add_definitions(-DQT_NO_DEBUG)
@@ -99,113 +99,111 @@ else()
 endif()
 
 set(MUSIC_HEADERS
-    qalgorithm/aes.h
-    qalgorithm/aes_locl.h
-    qalgorithm/base64.h
-    qalgorithm/cbc128.h
-    qalgorithm/random.h
-    qalgorithm/deswrapper.h
-    qalgorithm/aeswrapper.h
-    qalgorithm/imagewrapper.h
-    qdlna/qdlnaclient.h
-    qdlna/qdlnafinder.h
-    qdlna/qdlnahelper.h
-    qdlna/qdlnaservice.h
-    qdlna/qdlnaxml.h
-    qdlna/qdlnafileserver.h
-    qhttpserver/http_parser.h
-    qhttpserver/qhttpconnection.h
-    qhttpserver/qhttprequest.h
-    qhttpserver/qhttpresponse.h
-    qhttpserver/qhttpserver.h
-    qhttpserver/qhttpserverfwd.h
-    qshortcut/qglobalshortcut.h
-    qshortcut/qglobalshortcut_p.h
-    qkugou/qkugouurl.h
-    qkugou/qkugouwindow.h
-    qkugou/qkugouuiobject.h
-    qrencode/bitstream.h
-    qrencode/config.h
-    qrencode/mask.h
-    qrencode/mmask.h
-    qrencode/mqrspec.h
-    qrencode/qrencode_inner.h
-    qrencode/qrencode.h
-    qrencode/qrinput.h
-    qrencode/qrspec.h
-    qrencode/rscode.h
-    qrencode/split.h
-    qrencode/qrcodewidget.h
-    qsync/qsyncconfig.h
-    qsync/qsyncdataitem.h
-    qsync/qsyncutils.h
-    qsync/qsyncdatainterface.h
-    qsync/qsynclistdata.h
-    qsync/qsyncdeletedata.h
-    qsync/qsyncuploaddata.h
-    qsync/qsyncdownloaddata.h
-    qjson/parser.h
-    qjson/parserrunnable.h
-    qjson/qobjecthelper.h
-    qjson/serializer.h
-    qjson/serializerrunnable.h
-    
-  )
+  qalgorithm/aes.h
+  qalgorithm/aes_locl.h
+  qalgorithm/base64.h
+  qalgorithm/cbc128.h
+  qalgorithm/random.h
+  qalgorithm/deswrapper.h
+  qalgorithm/aeswrapper.h
+  qalgorithm/imagewrapper.h
+  qdlna/qdlnaclient.h
+  qdlna/qdlnafinder.h
+  qdlna/qdlnahelper.h
+  qdlna/qdlnaservice.h
+  qdlna/qdlnaxml.h
+  qdlna/qdlnafileserver.h
+  qhttpserver/http_parser.h
+  qhttpserver/qhttpconnection.h
+  qhttpserver/qhttprequest.h
+  qhttpserver/qhttpresponse.h
+  qhttpserver/qhttpserver.h
+  qhttpserver/qhttpserverfwd.h
+  qshortcut/qglobalshortcut.h
+  qshortcut/qglobalshortcut_p.h
+  qkugou/qkugouurl.h
+  qkugou/qkugouwindow.h
+  qkugou/qkugouuiobject.h
+  qrencode/bitstream.h
+  qrencode/config.h
+  qrencode/mask.h
+  qrencode/mmask.h
+  qrencode/mqrspec.h
+  qrencode/qrencode_inner.h
+  qrencode/qrencode.h
+  qrencode/qrinput.h
+  qrencode/qrspec.h
+  qrencode/rscode.h
+  qrencode/split.h
+  qrencode/qrcodewidget.h
+  qsync/qsyncconfig.h
+  qsync/qsyncdataitem.h
+  qsync/qsyncutils.h
+  qsync/qsyncdatainterface.h
+  qsync/qsynclistdata.h
+  qsync/qsyncdeletedata.h
+  qsync/qsyncuploaddata.h
+  qsync/qsyncdownloaddata.h
+  qjson/parser.h
+  qjson/parserrunnable.h
+  qjson/qobjecthelper.h
+  qjson/serializer.h
+  qjson/serializerrunnable.h
+)
 
 set(MUSIC_SOURCES
-    qalgorithm/aes_cbc.cpp
-    qalgorithm/aes_core.cpp
-    qalgorithm/aes_ecb.cpp
-    qalgorithm/base64.cpp
-    qalgorithm/cbc128.cpp
-    qalgorithm/random.cpp
-    qalgorithm/deswrapper.cpp
-    qalgorithm/aeswrapper.cpp
-    qalgorithm/imagewrapper.cpp
-    qdlna/qdlnaclient.cpp
-    qdlna/qdlnafinder.cpp
-    qdlna/qdlnahelper.cpp
-    qdlna/qdlnaxml.cpp
-    qdlna/qdlnafileserver.cpp
-    qhttpserver/http_parser.c
-    qhttpserver/qhttpconnection.cpp
-    qhttpserver/qhttprequest.cpp
-    qhttpserver/qhttpresponse.cpp
-    qhttpserver/qhttpserver.cpp
-    qshortcut/qglobalshortcut.cpp
-    qkugou/qkugouurl.cpp
-    qkugou/qkugouwindow.cpp
-    qrencode/bitstream.c
-    qrencode/mask.c
-    qrencode/mmask.c
-    qrencode/mqrspec.c
-    qrencode/qrencode.c
-    qrencode/qrinput.c
-    qrencode/qrspec.c
-    qrencode/rscode.c
-    qrencode/split.c
-    qrencode/qrcodewidget.cpp
-    qsync/qsyncconfig.cpp
-    qsync/qsyncutils.cpp
-    qsync/qsyncdatainterface.cpp
-    qsync/qsynclistdata.cpp
-    qsync/qsyncdeletedata.cpp
-    qsync/qsyncuploaddata.cpp
-    qsync/qsyncdownloaddata.cpp
-    qjson/parser.cpp
-    qjson/qobjecthelper.cpp
-    qjson/json_scanner.cpp
-    qjson/json_parser.cc
-    qjson/parserrunnable.cpp
-    qjson/serializer.cpp
-    qjson/serializerrunnable.cpp
-    
-  )
+  qalgorithm/aes_cbc.cpp
+  qalgorithm/aes_core.cpp
+  qalgorithm/aes_ecb.cpp
+  qalgorithm/base64.cpp
+  qalgorithm/cbc128.cpp
+  qalgorithm/random.cpp
+  qalgorithm/deswrapper.cpp
+  qalgorithm/aeswrapper.cpp
+  qalgorithm/imagewrapper.cpp
+  qdlna/qdlnaclient.cpp
+  qdlna/qdlnafinder.cpp
+  qdlna/qdlnahelper.cpp
+  qdlna/qdlnaxml.cpp
+  qdlna/qdlnafileserver.cpp
+  qhttpserver/http_parser.c
+  qhttpserver/qhttpconnection.cpp
+  qhttpserver/qhttprequest.cpp
+  qhttpserver/qhttpresponse.cpp
+  qhttpserver/qhttpserver.cpp
+  qshortcut/qglobalshortcut.cpp
+  qkugou/qkugouurl.cpp
+  qkugou/qkugouwindow.cpp
+  qrencode/bitstream.c
+  qrencode/mask.c
+  qrencode/mmask.c
+  qrencode/mqrspec.c
+  qrencode/qrencode.c
+  qrencode/qrinput.c
+  qrencode/qrspec.c
+  qrencode/rscode.c
+  qrencode/split.c
+  qrencode/qrcodewidget.cpp
+  qsync/qsyncconfig.cpp
+  qsync/qsyncutils.cpp
+  qsync/qsyncdatainterface.cpp
+  qsync/qsynclistdata.cpp
+  qsync/qsyncdeletedata.cpp
+  qsync/qsyncuploaddata.cpp
+  qsync/qsyncdownloaddata.cpp
+  qjson/parser.cpp
+  qjson/qobjecthelper.cpp
+  qjson/json_scanner.cpp
+  qjson/json_parser.cc
+  qjson/parserrunnable.cpp
+  qjson/serializer.cpp
+  qjson/serializerrunnable.cpp
+)
 
 if(WIN32)
-    list(APPEND MUSIC_SOURCES qshortcut/qglobalshortcut_win.cpp ${PROJECT_NAME}.rc)
+  list(APPEND MUSIC_SOURCES qshortcut/qglobalshortcut_win.cpp ${PROJECT_NAME}.rc)
 else(UNIX)
-    list(APPEND MUSIC_SOURCES qshortcut/qglobalshortcut_x11.cpp)
+  list(APPEND MUSIC_SOURCES qshortcut/qglobalshortcut_x11.cpp)
 endif()
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
@@ -236,8 +234,8 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
 
     list(APPEND QT5_LIBS Qt5::X11Extras)
   endif()
+
   target_link_libraries(${PROJECT_NAME} ${QT5_LIBS})
-  
 else()
   QT4_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
   
@@ -256,7 +254,6 @@ else()
   else()
     list(APPEND QT4_LIBS ${QT_QTWEBKIT_LIBRARY})
   endif()
-  target_link_libraries(${PROJECT_NAME} ${QT4_LIBS})
-  
-endif()
 
+  target_link_libraries(${PROJECT_NAME} ${QT4_LIBS})
+endif()
