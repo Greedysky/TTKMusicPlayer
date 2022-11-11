@@ -23,7 +23,7 @@ CONFIG += plugin lib
 
 include($$PWD/../TTKVersion.pri)
 
-DESTDIR = $$OUT_PWD/../bin/$$TTKVersion
+DESTDIR = $$OUT_PWD/../bin/$$TTK_VERSION
 TARGET = TTKConfig
 
 DEFINES += TTK_LIBRARY

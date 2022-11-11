@@ -31,7 +31,7 @@ greaterThan(QT_MAJOR_VERSION, 4){ #Qt5
 
 include($$PWD/TTKVersion.pri)
 
-DESTDIR = $$OUT_PWD/../bin/$$TTKVersion
+DESTDIR = $$OUT_PWD/../bin/$$TTK_VERSION
 
 ##openssl lib check
 win32{

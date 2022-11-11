@@ -23,7 +23,7 @@ CONFIG += console
 
 include($$PWD/../../TTKVersion.pri)
 
-DESTDIR = $$OUT_PWD/../../bin/$$TTKVersion
+DESTDIR = $$OUT_PWD/../../bin/$$TTK_VERSION
 TARGET = TTKConsole
 
 DEFINES += TTK_LIBRARY

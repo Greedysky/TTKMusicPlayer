@@ -39,8 +39,8 @@ win32:msvc{
     }
 }
 
-LIBS += -L$$OUT_PWD/../../../bin/$$TTKVersion -lTTKCore
-unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTKVersion -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lTTKZip -lzlib
+LIBS += -L$$OUT_PWD/../../../bin/$$TTK_VERSION -lTTKCore
+unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTK_VERSION -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lTTKZip -lzlib
 
 INCLUDEPATH += \
     $$PWD/../../../TTKCommon \

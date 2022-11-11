@@ -48,7 +48,7 @@ include($$PWD/TTKVersion.pri)
 
 ##update translation
 unix{
-    output = $$OUT_PWD/bin/$$TTKVersion/GLanguage
+    output = $$OUT_PWD/bin/$$TTK_VERSION/GLanguage
     !exists($$output):system(mkdir -p $$output)
 
     system(find $$PWD/TTKLanguage -name *.ts | xargs $$LRELEASE_EXECUTABLE)
@@ -57,7 +57,7 @@ unix{
 }
 
 win32{
-    output = $$OUT_PWD/bin/$$TTKVersion/GLanguage
+    output = $$OUT_PWD/bin/$$TTK_VERSION/GLanguage
     output = $$replace(output, /, \\)
     !exists($$output):system(md $$output)
 

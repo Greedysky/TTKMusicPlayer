@@ -37,7 +37,7 @@ win32:msvc{
 }
 
 win32{
-    DESTDIR = $$OUT_PWD/../../bin/$$TTKVersion
+    DESTDIR = $$OUT_PWD/../../bin/$$TTK_VERSION
     LIBS += -L$$DESTDIR -lTTKConfig
 }else{
     DESTDIR = $$OUT_PWD/../../bin
