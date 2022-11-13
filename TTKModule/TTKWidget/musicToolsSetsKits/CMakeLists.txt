@@ -12,9 +12,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_HEADERS
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongswidget.h
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.h
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolstablewidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrowidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrosettingpopwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrosearchwidget.h
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumwidget.h
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumlayoutwidget.h
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongdlnatransferwidget.h
@@ -33,9 +30,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_SOURCES
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongswidget.cpp
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.cpp
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolstablewidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrowidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrosettingpopwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrosearchwidget.cpp
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumwidget.cpp
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumlayoutwidget.cpp
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongdlnatransferwidget.cpp

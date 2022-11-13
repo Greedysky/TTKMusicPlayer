@@ -57,10 +57,6 @@ public:
      * Reset current music love icon state.
      */
     void musictLoveStateClicked(bool state);
-    /*!
-     * Create sound KMicro widget.
-     */
-    void createSoundKMicroWidget(const QString &name);
 
 Q_SIGNALS:
     /*!

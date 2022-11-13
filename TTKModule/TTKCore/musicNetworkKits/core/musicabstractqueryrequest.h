@@ -79,7 +79,6 @@ TTK_DECLARE_LIST(MusicResultDataItem);
 
 #define QUERY_WY_INTERFACE      "WangYi"
 #define QUERY_TX_INTERFACE      "Tencent"
-#define QUERY_BD_INTERFACE      "BaiDu"
 #define QUERY_KW_INTERFACE      "KuWo"
 #define QUERY_KG_INTERFACE      "KuGou"
 

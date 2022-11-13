@@ -92,22 +92,7 @@ namespace MusicUIObject
     const QString MQSSCheckTestRenameClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_rename_clicked); }";
-            
-    const QString MQSSRecord = " \
-            QToolButton{ border:none; \
-            background-image: url(:/toolSets/btn_record_normal); } \
-            QToolButton:hover{ background-image: url(:/toolSets/btn_record_hover); }";
-            
-    const QString MQSSRecordTransfer = " \
-            QToolButton{ border:none; \
-            background-image: url(:/toolSets/btn_transfer_normal); } \
-            QToolButton:hover{ background-image: url(:/toolSets/btn_transfer_hover); }";
-            
-    const QString MQSSRerecord = " \
-            QToolButton{ border:none; \
-            background-image: url(:/toolSets/btn_rerecord_normal); } \
-            QToolButton:hover{ background-image: url(:/toolSets/btn_rerecord_hover); }";
-            
+
     const QString MQSSTimeToStop = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_stop); } \

@@ -127,10 +127,6 @@ public Q_SLOTS:
      * Open music song shared widget in play widget.
      */
     void musicSongPlayedSharedWidget();
-    /*!
-     * Open music song KMicro widget in play widget.
-     */
-    void musicSongPlayedKMicroWidget();
 
 protected:
     /*!

@@ -61,7 +61,6 @@ include_directories(
   ${MUSIC_CORE_NETWORK_DIR}/radio/dj
   ${MUSIC_CORE_NETWORK_DIR}/radio/mv
   ${MUSIC_CORE_NETWORK_DIR}/radio/fm
-  ${MUSIC_CORE_NETWORK_DIR}/music/bd
   ${MUSIC_CORE_NETWORK_DIR}/music/core
   ${MUSIC_CORE_NETWORK_DIR}/music/kg
   ${MUSIC_CORE_NETWORK_DIR}/music/kw

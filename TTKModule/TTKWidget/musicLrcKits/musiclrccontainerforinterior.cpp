@@ -317,16 +317,6 @@ void MusicLrcContainerForInterior::showSongCommentsWidget()
     m_commentsWidget->setCurrentSongName(m_currentSongName);
 }
 
-void MusicLrcContainerForInterior::showSoundKMicroWidget()
-{
-    if(m_currentSongName.isEmpty())
-    {
-        return;
-    }
-
-    MusicLeftAreaWidget::instance()->createSoundKMicroWidget(m_currentSongName);
-}
-
 void MusicLrcContainerForInterior::showLrcPosterWidget()
 {
     MusicLrcPosterWidget poster(this);
@@ -725,45 +715,37 @@ void MusicLrcContainerForInterior::initFunctionLabel()
 
     QPushButton *translation = new QPushButton(this);
     QPushButton *movie = new QPushButton(this);
-    QPushButton *microphone = new QPushButton(this);
     QPushButton *message = new QPushButton(this);
 
 #ifdef Q_OS_UNIX
     translation->setFocusPolicy(Qt::NoFocus);
     movie->setFocusPolicy(Qt::NoFocus);
-    microphone->setFocusPolicy(Qt::NoFocus);
     message->setFocusPolicy(Qt::NoFocus);
 #endif
 
     translation->setFixedSize(30, 30);
     movie->setFixedSize(30, 30);
-    microphone->setFixedSize(30, 30);
     message->setFixedSize(30, 30);
 
     translation->setStyleSheet(MusicUIObject::MQSSInteriorTranslation);
     movie->setStyleSheet(MusicUIObject::MQSSInteriorMovie);
-    microphone->setStyleSheet(MusicUIObject::MQSSInteriorMicrophone);
     message->setStyleSheet(MusicUIObject::MQSSInteriorMessage);
 
     translation->setCursor(Qt::PointingHandCursor);
     movie->setCursor(Qt::PointingHandCursor);
-    microphone->setCursor(Qt::PointingHandCursor);
     message->setCursor(Qt::PointingHandCursor);
 
     translation->setToolTip(tr("Translation"));
     movie->setToolTip(tr("Movie"));
-    microphone->setToolTip(tr("KMicro"));
     message->setToolTip(tr("Message"));
 
     connect(translation, SIGNAL(clicked()), SLOT(translatedLrcData()));
     connect(movie, SIGNAL(clicked()), SLOT(musicSongMovieClicked()));
-    connect(microphone, SIGNAL(clicked()), SLOT(showSoundKMicroWidget()));
     connect(message, SIGNAL(clicked()), SLOT(showSongCommentsWidget()));
 
     functionLayout->addStretch(1);
     functionLayout->addWidget(translation);
     functionLayout->addWidget(movie);
-    functionLayout->addWidget(microphone);
     functionLayout->addWidget(message);
     functionLayout->addStretch(1);
     m_functionLabel->setLayout(functionLayout);

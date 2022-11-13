@@ -163,10 +163,6 @@ public Q_SLOTS:
      */
     void showSongCommentsWidget();
     /*!
-     * Show song KMicro widget.
-     */
-    void showSoundKMicroWidget();
-    /*!
      * Show lrc poster widget.
      */
     void showLrcPosterWidget();

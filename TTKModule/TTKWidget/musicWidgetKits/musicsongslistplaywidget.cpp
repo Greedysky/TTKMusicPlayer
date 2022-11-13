@@ -218,7 +218,6 @@ void MusicSongsListPlayWidget::createMoreMenu(QMenu *menu)
     menu->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
     menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), parent(), SLOT(musicPlayedSimilarQueryWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), parent(), SLOT(musicSongPlayedSharedWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"), parent(), SLOT(musicSongPlayedKMicroWidget()));
 }
 
 bool MusicSongsListPlayWidget::showArtistPicture(const QString &name) const

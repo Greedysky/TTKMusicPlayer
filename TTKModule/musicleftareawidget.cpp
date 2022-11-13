@@ -9,7 +9,6 @@
 #include "musicconnectlocalwidget.h"
 #include "musiccloudsharedsongwidget.h"
 #include "musicqualitychoicepopwidget.h"
-#include "musicsoundkmicrowidget.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicrightareawidget.h"
 
@@ -92,12 +91,6 @@ void MusicLeftAreaWidget::musictLoveStateClicked(bool state)
 {
     m_ui->musicBestLove->setStyleSheet(state ? MusicUIObject::MQSSBtnLove : MusicUIObject::MQSSBtnUnLove);
     Q_EMIT currentLoveStateChanged();
-}
-
-void MusicLeftAreaWidget::createSoundKMicroWidget(const QString &name)
-{
-    MusicSoundKMicroWidget *w = GENERATE_SINGLE_WIDGET_CLASS(MusicSoundKMicroWidget);
-    w->startSeachKMicro(name);
 }
 
 void MusicLeftAreaWidget::musicDownloadSongToLocal()

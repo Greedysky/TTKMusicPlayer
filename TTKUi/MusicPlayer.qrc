@@ -206,8 +206,6 @@
         <file alias="btn_translation_hover">../TTKResource/lrc/btn_translation_hover.png</file>
         <file alias="btn_message_normal">../TTKResource/lrc/btn_message_normal.png</file>
         <file alias="btn_message_hover">../TTKResource/lrc/btn_message_hover.png</file>
-        <file alias="btn_microphone_normal">../TTKResource/lrc/btn_microphone_normal.png</file>
-        <file alias="btn_microphone_hover">../TTKResource/lrc/btn_microphone_hover.png</file>
         <file alias="lb_make_background1">../TTKResource/lrc/lb_make_background1.png</file>
         <file alias="lb_make_background2">../TTKResource/lrc/lb_make_background2.png</file>
         <file alias="lb_make_background3">../TTKResource/lrc/lb_make_background3.png</file>
@@ -397,12 +395,6 @@
         <file alias="btn_rename_clicked">../TTKResource/toolSets/btn_rename_clicked.png</file>
         <file alias="btn_rename_hover">../TTKResource/toolSets/btn_rename_hover.png</file>
         <file alias="btn_rename_normal">../TTKResource/toolSets/btn_rename_normal.png</file>
-        <file alias="btn_record_hover">../TTKResource/toolSets/btn_record_hover.png</file>
-        <file alias="btn_record_normal">../TTKResource/toolSets/btn_record_normal.png</file>
-        <file alias="btn_transfer_hover">../TTKResource/toolSets/btn_transfer_hover.png</file>
-        <file alias="btn_transfer_normal">../TTKResource/toolSets/btn_transfer_normal.png</file>
-        <file alias="btn_rerecord_normal">../TTKResource/toolSets/btn_rerecord_normal.png</file>
-        <file alias="btn_rerecord_hover">../TTKResource/toolSets/btn_rerecord_hover.png</file>
         <file alias="lb_record_off">../TTKResource/toolSets/lb_record_off.png</file>
         <file alias="lb_record_on">../TTKResource/toolSets/lb_record_on.png</file>
         <file alias="btn_arrow_normal">../TTKResource/toolSets/btn_arrow_normal.png</file>
@@ -462,10 +454,6 @@
         <file alias="btn_expand_normal">../TTKResource/tiny/btn_expand_normal.png</file>
         <file alias="btn_setting_normal">../TTKResource/tiny/btn_setting_normal.png</file>
         <file alias="btn_setting_hover">../TTKResource/tiny/btn_setting_hover.png</file>
-        <file alias="btn_top_off_hover">../TTKResource/tiny/btn_top_off_hover.png</file>
-        <file alias="btn_top_off_normal">../TTKResource/tiny/btn_top_off_normal.png</file>
-        <file alias="btn_top_on_hover">../TTKResource/tiny/btn_top_on_hover.png</file>
-        <file alias="btn_top_on_normal">../TTKResource/tiny/btn_top_on_normal.png</file>
         <file alias="btn_sound">../TTKResource/tiny/btn_sound.png</file>
         <file alias="btn_open_file">../TTKResource/tiny/btn_open_file.png</file>
         <file alias="btn_open_files">../TTKResource/tiny/btn_open_files.png</file>
@@ -661,10 +649,6 @@
         <file alias="btn_search_hover">../TTKResource/video/btn_search_hover.png</file>
         <file alias="btn_share_normal">../TTKResource/video/btn_share_normal.png</file>
         <file alias="btn_share_hover">../TTKResource/video/btn_share_hover.png</file>
-        <file alias="btn_accompaniment_hover">../TTKResource/video/btn_accompaniment_hover.png</file>
-        <file alias="btn_accompaniment_normal">../TTKResource/video/btn_accompaniment_normal.png</file>
-        <file alias="btn_origin_hover">../TTKResource/video/btn_origin_hover.png</file>
-        <file alias="btn_origin_normal">../TTKResource/video/btn_origin_normal.png</file>
         <file alias="lb_video_1">../TTKResource/video/lb_video_1.png</file>
         <file alias="lb_video_2">../TTKResource/video/lb_video_2.png</file>
         <file alias="lb_video_3">../TTKResource/video/lb_video_3.png</file>

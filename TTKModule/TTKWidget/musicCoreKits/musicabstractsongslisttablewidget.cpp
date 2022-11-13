@@ -213,16 +213,6 @@ void MusicAbstractSongsListTableWidget::musicSongPlayedSharedWidget()
     shareWidget.exec();
 }
 
-void MusicAbstractSongsListTableWidget::musicSongPlayedKMicroWidget()
-{
-    if(rowCount() == 0 || currentRow() < 0)
-    {
-        return;
-    }
-
-    MusicLeftAreaWidget::instance()->createSoundKMicroWidget(songName(m_playRowIndex));
-}
-
 void MusicAbstractSongsListTableWidget::createMoreMenu(QMenu *menu)
 {
     menu->setStyleSheet(MusicUIObject::MQSSMenuStyle02);

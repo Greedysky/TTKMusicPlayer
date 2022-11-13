@@ -25,7 +25,6 @@ INCLUDEPATH += \
     $$PWD/radio/fm \
     $$PWD/radio/dj \
     $$PWD/radio/mv \
-    $$PWD/music/bd \
     $$PWD/music/core \
     $$PWD/music/kg \
     $$PWD/music/kw \
@@ -115,8 +114,6 @@ HEADERS += \
     $$PWD/music/kw/musickwdiscoverlistrequest.h \
     $$PWD/music/kw/musickwcommentsrequest.h \
     $$PWD/music/kw/musickwsongsuggestrequest.h \
-    $$PWD/music/bd/musicbdqueryinterface.h \
-    $$PWD/music/bd/musicbdquerylearnrequest.h \
     $$PWD/translation/musicabstracttranslationrequest.h \
     $$PWD/translation/musictranslationrequest.h \
     $$PWD/translation/musicbdtranslationrequest.h \
@@ -207,8 +204,6 @@ SOURCES += \
     $$PWD/music/kw/musickwdiscoverlistrequest.cpp \
     $$PWD/music/kw/musickwcommentsrequest.cpp \
     $$PWD/music/kw/musickwsongsuggestrequest.cpp \
-    $$PWD/music/bd/musicbdqueryinterface.cpp \
-    $$PWD/music/bd/musicbdquerylearnrequest.cpp \
     $$PWD/translation/musicabstracttranslationrequest.cpp \
     $$PWD/translation/musictranslationrequest.cpp \
     $$PWD/translation/musicbdtranslationrequest.cpp \

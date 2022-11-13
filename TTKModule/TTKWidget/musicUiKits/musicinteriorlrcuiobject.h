@@ -31,11 +31,6 @@ namespace MusicUIObject
             background-image: url(:/lrc/btn_translation_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_translation_hover); }";
 
-    const QString MQSSInteriorMicrophone = " \
-            QPushButton{ border:none; \
-            background-image: url(:/lrc/btn_microphone_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/btn_microphone_hover); }";
-
     const QString MQSSInteriorMessage = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_message_normal); } \

@@ -52,7 +52,6 @@ FORMS += \
     $$PWD/musicToolsetsKits/musicreplaygainwidget.ui \
     $$PWD/musicToolsetsKits/musicsongchecktoolswidget.ui \
     $$PWD/musicToolsetsKits/musicsongringtonemakerwidget.ui \
-    $$PWD/musicToolsetsKits/musicsoundkmicrowidget.ui \
     $$PWD/musicToolsetsKits/musicspectrumwidget.ui \
     $$PWD/musicToolsetsKits/musicsongdlnatransferwidget.ui \
     $$PWD/musicToolsKits/musicwebfmradioplaywidget.ui \

@@ -83,8 +83,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
   ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwdiscoverlistrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwcommentsrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwsongsuggestrequest.h
-  ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryinterface.h
-  ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerylearnrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicabstracttranslationrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/translation/musictranslationrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicbdtranslationrequest.h
@@ -176,8 +174,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
   ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwdiscoverlistrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwcommentsrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwsongsuggestrequest.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryinterface.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerylearnrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicabstracttranslationrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/translation/musictranslationrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicbdtranslationrequest.cpp

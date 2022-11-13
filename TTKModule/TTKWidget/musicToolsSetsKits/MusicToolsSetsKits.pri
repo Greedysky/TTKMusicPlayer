@@ -30,9 +30,6 @@ HEADERS += \
     $$PWD/musicnetworkconnectiontestwidget.h \
     $$PWD/musicsongchecktoolswidget.h \
     $$PWD/musicsongchecktoolstablewidget.h \
-    $$PWD/musicsoundkmicrowidget.h \
-    $$PWD/musicsoundkmicrosearchwidget.h \
-    $$PWD/musicsoundkmicrosettingpopwidget.h \
     $$PWD/musicspectrumwidget.h \
     $$PWD/musicspectrumlayoutwidget.h \
     $$PWD/musicsongdlnatransferwidget.h \
@@ -50,9 +47,6 @@ SOURCES += \
     $$PWD/musicnetworkconnectiontestwidget.cpp \
     $$PWD/musicsongchecktoolswidget.cpp \
     $$PWD/musicsongchecktoolstablewidget.cpp \
-    $$PWD/musicsoundkmicrowidget.cpp \
-    $$PWD/musicsoundkmicrosearchwidget.cpp \
-    $$PWD/musicsoundkmicrosettingpopwidget.cpp \
     $$PWD/musicspectrumwidget.cpp \
     $$PWD/musicspectrumlayoutwidget.cpp \
     $$PWD/musicsongdlnatransferwidget.cpp \

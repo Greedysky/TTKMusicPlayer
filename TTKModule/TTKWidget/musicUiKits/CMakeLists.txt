@@ -35,7 +35,6 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
   ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicreplaygainwidget.ui
   ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicsongchecktoolswidget.ui
   ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicsongringtonemakerwidget.ui
-  ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicsoundkmicrowidget.ui
   ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicspectrumwidget.ui
   ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicsongdlnatransferwidget.ui
   ${MUSIC_WIDGET_UI_DIR}/musicToolsKits/musicwebfmradioplaywidget.ui
