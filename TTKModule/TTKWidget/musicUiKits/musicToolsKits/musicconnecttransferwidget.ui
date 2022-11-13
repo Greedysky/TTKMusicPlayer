@@ -71,9 +71,9 @@ QLabel{background:transparent;}</string>
    <widget class="QWidget" name="playListLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>25</x>
       <y>150</y>
-      <width>101</width>
+      <width>120</width>
       <height>300</height>
      </rect>
     </property>

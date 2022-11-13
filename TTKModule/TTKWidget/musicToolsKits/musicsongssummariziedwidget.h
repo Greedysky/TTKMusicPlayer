@@ -208,7 +208,7 @@ public Q_SLOTS:
     /*!
      * Query music datas from container.
      */
-    void musicItemList(MusicSongItemList &songs);
+    void queryMusicItemList(MusicSongItemList &songs);
     /*!
      * Update current artist when it download finished.
      */

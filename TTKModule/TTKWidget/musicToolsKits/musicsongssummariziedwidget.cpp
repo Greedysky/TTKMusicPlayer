@@ -900,7 +900,7 @@ void MusicSongsSummariziedWidget::setRecentMusicSongs(int index)
     }
 }
 
-void MusicSongsSummariziedWidget::musicItemList(MusicSongItemList &songs)
+void MusicSongsSummariziedWidget::queryMusicItemList(MusicSongItemList &songs)
 {
     songs = m_containerItems;
 }

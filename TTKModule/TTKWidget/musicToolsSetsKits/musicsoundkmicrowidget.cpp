@@ -39,10 +39,6 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_ui->timeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle01);
     m_ui->transferButton->setStyleSheet(MusicUIObject::MQSSRecordTransfer);
 
-    recordStateChanged(false);
-    setButtonStyle(true);
-    setStateButtonStyle(true);
-
     m_ui->gifLabel->setType(MusicGifLabelWidget::Module::RecordRed);
     m_ui->loadingLabel->setType(MusicGifLabelWidget::Module::CicleBlue);
     m_ui->loadingLabel->hide();
@@ -71,6 +67,10 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
 
     m_recordCore = new MusicAudioRecorderModule(this);
     m_ui->transferButton->setAudioCore(m_recordCore);
+
+    recordStateChanged(false);
+    setButtonStyle(true);
+    setStateButtonStyle(true);
 
 #ifdef Q_OS_UNIX
     m_ui->stateButton->setFocusPolicy(Qt::NoFocus);

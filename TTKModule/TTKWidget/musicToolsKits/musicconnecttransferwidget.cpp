@@ -88,7 +88,7 @@ void MusicConnectTransferWidget::initialize()
         QPushButton *button = new QPushButton(QString("%1(%2)").arg(songs[i].m_itemName).arg(songs[i].m_songs.count()), this);
         button->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
         button->setCursor(QCursor(Qt::PointingHandCursor));
-        button->setFixedSize(90, 25);
+        button->setFixedSize(120, 25);
 #ifdef Q_OS_UNIX
         button->setFocusPolicy(Qt::NoFocus);
 #endif

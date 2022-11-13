@@ -225,5 +225,5 @@ void MusicEnhancedPopWidget::initialize()
     m_buttons << button1 << button2 << button3 << button4;
 
     m_lastSelectedIndex = G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt();
-    connect(m_caseButton, SIGNAL(clicked()), SLOT(caseButtonOnAndOff()));
+    connect(m_caseButton, SIGNAL(clicked()), SLOT(switchButtonOnAndOff()));
 }
