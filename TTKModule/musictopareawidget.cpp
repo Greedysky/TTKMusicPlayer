@@ -249,7 +249,8 @@ void MusicTopAreaWidget::musicBackgroundAnimationChanged(bool state)
 
 void MusicTopAreaWidget::musicBackgroundThemeDownloadFinished()
 {
-    if(!isEnableBackground() && m_ui->musiclrccontainerforinterior->artistBackgroundIsShow())
+    TTK_INFO_STREAM(isEnableBackground() << " " << m_ui->musiclrccontainerforinterior->isShowArtistBackground());
+    if(!isEnableBackground() && m_ui->musiclrccontainerforinterior->isShowArtistBackground())
     {
         musicBackgroundChanged();
         setBackgroundAnimation(true);

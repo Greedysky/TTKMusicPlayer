@@ -77,17 +77,17 @@ public:
     void initFunctionLabel();
 
     /*!
-     * Get state of background is artist shown.
+     * Set lrc display expand option.
      */
     inline void setLrcDisplayExpand(bool expand) { m_lrcDisplayAll = expand; }
     /*!
-     * Get state of background is artist shown.
+     * Get lrc display expand option.
      */
     inline bool lrcDisplayExpand() const { return m_lrcDisplayAll; }
     /*!
      * Get state of background is artist shown.
      */
-    inline bool artistBackgroundIsShow() const { return m_showArtistBackground; }
+    inline bool isShowArtistBackground() const { return m_showArtistBackground; }
 
     /*!
      * Set current lrc size.

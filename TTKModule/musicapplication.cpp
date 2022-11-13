@@ -154,8 +154,6 @@ bool MusicApplication::checkMusicListCurrentIndex() const
 
 void MusicApplication::musicLoadCurrentSongLrc()
 {
-    //display current ArtTheme pic
-    m_topAreaWidget->musicBackgroundThemeDownloadFinished();
     //Loading the current song lrc
     if(checkMusicListCurrentIndex())
     {

@@ -716,37 +716,45 @@ void MusicLrcContainerForInterior::initFunctionLabel()
     QPushButton *translation = new QPushButton(this);
     QPushButton *movie = new QPushButton(this);
     QPushButton *message = new QPushButton(this);
+    QPushButton *photo = new QPushButton(this);
 
 #ifdef Q_OS_UNIX
     translation->setFocusPolicy(Qt::NoFocus);
     movie->setFocusPolicy(Qt::NoFocus);
     message->setFocusPolicy(Qt::NoFocus);
+    photo->setFocusPolicy(Qt::NoFocus);
 #endif
 
     translation->setFixedSize(30, 30);
     movie->setFixedSize(30, 30);
     message->setFixedSize(30, 30);
+    photo->setFixedSize(30, 30);
 
     translation->setStyleSheet(MusicUIObject::MQSSInteriorTranslation);
     movie->setStyleSheet(MusicUIObject::MQSSInteriorMovie);
     message->setStyleSheet(MusicUIObject::MQSSInteriorMessage);
+    photo->setStyleSheet(MusicUIObject::MQSSInteriorMessage);
 
     translation->setCursor(Qt::PointingHandCursor);
     movie->setCursor(Qt::PointingHandCursor);
     message->setCursor(Qt::PointingHandCursor);
+    photo->setCursor(Qt::PointingHandCursor);
 
     translation->setToolTip(tr("Translation"));
     movie->setToolTip(tr("Movie"));
     message->setToolTip(tr("Message"));
+    photo->setToolTip(tr("Photo"));
 
     connect(translation, SIGNAL(clicked()), SLOT(translatedLrcData()));
     connect(movie, SIGNAL(clicked()), SLOT(musicSongMovieClicked()));
     connect(message, SIGNAL(clicked()), SLOT(showSongCommentsWidget()));
+    connect(photo, SIGNAL(clicked()), m_lrcFloatWidget, SLOT(showArtistPhotoWidget()));
 
     functionLayout->addStretch(1);
     functionLayout->addWidget(translation);
     functionLayout->addWidget(movie);
     functionLayout->addWidget(message);
+    functionLayout->addWidget(photo);
     functionLayout->addStretch(1);
     m_functionLabel->setLayout(functionLayout);
 

@@ -120,7 +120,7 @@ void MusicLrcFloatSettingWidget::lrcSizeLowChanged()
 void MusicLrcFloatSettingWidget::lrcMusicBackgroundChanged()
 {
     MusicLrcContainerForInterior* line = TTKObject_cast(MusicLrcContainerForInterior*, parent());
-    if(line->artistBackgroundIsShow())
+    if(line->isShowArtistBackground())
     {
         line->artistBackgroundChanged();
     }
@@ -129,7 +129,7 @@ void MusicLrcFloatSettingWidget::lrcMusicBackgroundChanged()
 void MusicLrcFloatSettingWidget::lrcArtBackgroundChanged()
 {
     MusicLrcContainerForInterior* line = TTKObject_cast(MusicLrcContainerForInterior*, parent());
-    if(!line->artistBackgroundIsShow())
+    if(!line->isShowArtistBackground())
     {
         line->artistBackgroundChanged();
     }

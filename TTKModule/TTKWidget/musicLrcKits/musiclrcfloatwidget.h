@@ -46,6 +46,10 @@ public:
 
 public Q_SLOTS:
     /*!
+     * Show artist photo widget.
+     */
+    void showArtistPhotoWidget();
+    /*!
      * Show float setting widget.
      */
     void showFloatSettingWidget();
