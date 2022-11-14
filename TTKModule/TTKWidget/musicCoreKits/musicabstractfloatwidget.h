@@ -56,14 +56,14 @@ protected:
     /*!
      * Show animation in case.
      */
-    void animationIn();
+    void animationEnter();
     /*!
      * Show animation out case.
      */
-    void animationOut();
+    void animationLeave();
 
     QPropertyAnimation *m_animation;
-    QRect m_rectIn, m_rectOut;
+    QRect m_rectEnter, m_rectLeave;
     bool m_blockAnimation;
 
 };

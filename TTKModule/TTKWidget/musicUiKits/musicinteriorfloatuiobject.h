@@ -26,6 +26,10 @@
  */
 namespace MusicUIObject
 {
+    const QString MQSSInteriorFloatSetting = " \
+            QPushButton{ border:1px solid #CCCCCC; border-radius:2px; } \
+            QPushButton:hover{ border:1px solid #FFFFFF; border-radius:2px; }";
+
     const QString MQSSInteriorFloatMore = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_more_normal); } \
@@ -55,11 +59,6 @@ namespace MusicUIObject
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_photo_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/lb_photo_hover); }";
-
-    const QString MQSSInteriorFloatSetting = " \
-            QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_border_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/lb_border_hover); }";
 
     const QString MQSSInteriorLrcBigger = " \
             QPushButton{ border:none;\

@@ -123,7 +123,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
       m_currentIndex(0)
 {
     setObjectName("MusicLrcFloatPhotoWidget");
-    setStyleSheet(QString("#MusicLrcFloatPhotoWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle08));
+    setStyleSheet(QString("#MusicLrcFloatPhotoWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle14));
 
     m_filmBackgroundWidget = new QWidget(this);
     m_filmBackgroundWidget->setGeometry(0, 0, 680, 125);
@@ -146,17 +146,17 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_checkBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 
     m_confirmButton = new QPushButton(tr("Confirm"), this);
-    m_confirmButton->setGeometry(589, 127, 60, 22);
+    m_confirmButton->setGeometry(589, 127, 50, 25);
     m_confirmButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle06);
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_previous = new QPushButton("<", m_filmBackgroundWidget);
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
-    m_previous->setGeometry(29, 38, 15, 50);
+    m_previous->setGeometry(29, 38, 25, 50);
 
     m_next = new QPushButton(">", m_filmBackgroundWidget);
     m_next->setCursor(QCursor(Qt::PointingHandCursor));
-    m_next->setGeometry(634, 38, 15, 50);
+    m_next->setGeometry(634, 38, 25, 50);
 
 #ifdef Q_OS_UNIX
     m_checkBox->setFocusPolicy(Qt::NoFocus);
@@ -192,26 +192,26 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
 
 void MusicLrcFloatPhotoWidget::resizeGeometry(int width, int height)
 {
-    m_rectIn = QRect(0, 555 + height, 133 + width, 105);
-    m_rectOut = QRect(0, 355 + height, 680 + width, 180);
+    m_rectEnter = QRect(0, 555 + height, 680 + width, 180);
+    m_rectLeave = QRect(0, 355 + height, 680 + width, 180);
 
     m_filmBackgroundWidget->move(width / 2, 0);
     m_checkBox->move(width / 2 + 20, 127);
     m_confirmButton->move(width / 2 + 580, 127);
 
-    setGeometry(m_rectOut);
+    setGeometry(m_rectLeave);
 }
 
 void MusicLrcFloatPhotoWidget::show()
 {
     QWidget::show();
-    animationOut();
+    animationLeave();
     showPhoto();
 }
 
 void MusicLrcFloatPhotoWidget::close()
 {
-    animationIn();
+    animationEnter();
     QTimer::singleShot(m_animation->duration(), this, SLOT(parentClose()));
 }
 
@@ -332,16 +332,5 @@ void MusicLrcFloatPhotoWidget::selectAllStateChanged(bool state)
             item->setBoxChecked(false);
         }
         m_selectNum.clear();
-    }
-}
-
-void MusicLrcFloatPhotoWidget::paintEvent(QPaintEvent *event)
-{
-    MusicAbstractFloatWidget::paintEvent(event);
-
-    QPainter painter(this);
-    for(int i = 0; i <= ceil(width() / PHOTO_BACKGROUNDG_WIDTH); ++i)
-    {
-        painter.drawPixmap(PHOTO_BACKGROUNDG_WIDTH * i, 0, QPixmap(":/lrc/lb_film_bg"));
     }
 }

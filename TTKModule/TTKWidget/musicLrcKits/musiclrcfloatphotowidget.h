@@ -159,7 +159,6 @@ private:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event) override final;
     virtual void enterEvent(QtEnterEvent *) override final {}
     virtual void leaveEvent(QEvent *) override final {}
     /*!

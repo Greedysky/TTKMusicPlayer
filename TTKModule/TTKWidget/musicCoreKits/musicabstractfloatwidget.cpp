@@ -13,17 +13,17 @@ MusicAbstractFloatWidget::~MusicAbstractFloatWidget()
     delete m_animation;
 }
 
-void MusicAbstractFloatWidget::animationIn()
+void MusicAbstractFloatWidget::animationEnter()
 {
-    m_animation->setStartValue(m_rectOut);
-    m_animation->setEndValue(m_rectIn);
+    m_animation->setStartValue(m_rectLeave);
+    m_animation->setEndValue(m_rectEnter);
     m_animation->start();
 }
 
-void MusicAbstractFloatWidget::animationOut()
+void MusicAbstractFloatWidget::animationLeave()
 {
-    m_animation->setStartValue(m_rectIn);
-    m_animation->setEndValue(m_rectOut);
+    m_animation->setStartValue(m_rectEnter);
+    m_animation->setEndValue(m_rectLeave);
     m_animation->start();
 }
 
@@ -32,7 +32,7 @@ void MusicAbstractFloatWidget::enterEvent(QtEnterEvent *event)
     QLabel::enterEvent(event);
     if(!m_blockAnimation)
     {
-        animationIn();
+        animationEnter();
     }
 }
 
@@ -41,6 +41,6 @@ void MusicAbstractFloatWidget::leaveEvent(QEvent *event)
     QLabel::leaveEvent(event);
     if(!m_blockAnimation)
     {
-        animationOut();
+        animationLeave();
     }
 }

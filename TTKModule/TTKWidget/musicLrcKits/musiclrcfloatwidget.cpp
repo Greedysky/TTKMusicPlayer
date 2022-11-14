@@ -74,9 +74,9 @@ MusicLrcFloatWidget::~MusicLrcFloatWidget()
 
 void MusicLrcFloatWidget::resizeGeometry(int width, int height)
 {
-    m_rectIn = QRect(566 + width, 138 + height / 2, 115, 210);
-    m_rectOut = QRect(676 + width, 189 + height / 2, 115, 105);
-    setGeometry(m_rectOut);
+    m_rectEnter = QRect(566 + width, 138 + height / 2, 115, 210);
+    m_rectLeave = QRect(676 + width, 189 + height / 2, 115, 105);
+    setGeometry(m_rectLeave);
 
     m_floatSettingWidget->resizeGeometry(width, height);
     m_floatPhotoWidget->resizeGeometry(width, height);
@@ -92,7 +92,7 @@ void MusicLrcFloatWidget::showArtistPhotoWidget()
 
 void MusicLrcFloatWidget::showFloatSettingWidget()
 {
-    animationOut();
+    animationLeave();
     m_floatSettingWidget->show();
     setBlockAnimation(true);
 }

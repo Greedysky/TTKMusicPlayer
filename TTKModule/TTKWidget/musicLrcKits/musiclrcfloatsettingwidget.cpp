@@ -75,9 +75,9 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
 
 void MusicLrcFloatSettingWidget::resizeGeometry(int width, int height)
 {
-    m_rectIn = QRect(513 + width, 120 + height / 2, 165, 210);
-    m_rectOut = QRect(673 + width, 171 + height / 2, 165, 105);
-    setGeometry(m_rectOut);
+    m_rectEnter = QRect(513 + width, 120 + height / 2, 165, 210);
+    m_rectLeave = QRect(673 + width, 171 + height / 2, 165, 105);
+    setGeometry(m_rectLeave);
 }
 
 QPushButton *MusicLrcFloatSettingWidget::createPushButton(int index)
@@ -138,11 +138,11 @@ void MusicLrcFloatSettingWidget::lrcArtBackgroundChanged()
 void MusicLrcFloatSettingWidget::show()
 {
     MusicAbstractFloatWidget::show();
-    animationIn();
+    animationEnter();
 }
 
 void MusicLrcFloatSettingWidget::leaveEvent(QEvent *)
 {
-    animationOut();
+    animationLeave();
     QTimer::singleShot(m_animation->duration(), this, SIGNAL(widgetClose()));
 }
