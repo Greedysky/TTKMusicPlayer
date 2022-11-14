@@ -733,7 +733,7 @@ void MusicLrcContainerForInterior::initFunctionLabel()
     translation->setStyleSheet(MusicUIObject::MQSSInteriorTranslation);
     movie->setStyleSheet(MusicUIObject::MQSSInteriorMovie);
     message->setStyleSheet(MusicUIObject::MQSSInteriorMessage);
-    photo->setStyleSheet(MusicUIObject::MQSSInteriorMessage);
+    photo->setStyleSheet(MusicUIObject::MQSSInteriorPhoto);
 
     translation->setCursor(Qt::PointingHandCursor);
     movie->setCursor(Qt::PointingHandCursor);

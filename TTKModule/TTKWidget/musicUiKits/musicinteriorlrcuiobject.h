@@ -40,7 +40,12 @@ namespace MusicUIObject
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_mv_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_mv_hover); }";
-            
+
+    const QString MQSSInteriorPhoto = " \
+            QPushButton{ border:none; \
+            background-image: url(:/lrc/btn_photo_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/btn_photo_hover); }";
+
     const QString MQSSInteriorStar = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_star_normal); } \
