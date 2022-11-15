@@ -189,6 +189,12 @@
         <file alias="lb_wallpaper_on_normal">../TTKResource/lrc/lb_wallpaper_on_normal.png</file>
         <file alias="lb_photo_hover">../TTKResource/lrc/lb_photo_hover.png</file>
         <file alias="lb_photo_normal">../TTKResource/lrc/lb_photo_normal.png</file>
+        <file alias="lb_photo_checked">../TTKResource/lrc/lb_photo_checked.png</file>
+        <file alias="lb_photo_unchecked">../TTKResource/lrc/lb_photo_unchecked.png</file>
+        <file alias="btn_photo_next_normal">../TTKResource/lrc/btn_photo_next_normal.png</file>
+        <file alias="btn_photo_next_hover">../TTKResource/lrc/btn_photo_next_hover.png</file>
+        <file alias="btn_photo_previous_normal">../TTKResource/lrc/btn_photo_previous_normal.png</file>
+        <file alias="btn_photo_previous_hover">../TTKResource/lrc/btn_photo_previous_hover.png</file>
         <file alias="lb_border_hover">../TTKResource/lrc/lb_border_hover.png</file>
         <file alias="lb_border_normal">../TTKResource/lrc/lb_border_normal.png</file>
         <file alias="btn_bigger_normal">../TTKResource/lrc/btn_bigger_normal.png</file>

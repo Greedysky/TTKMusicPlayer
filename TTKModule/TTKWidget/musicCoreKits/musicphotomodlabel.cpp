@@ -22,7 +22,7 @@ void MusicPhotoModLabel::setImagePath(const QString &path)
     m_width = m_showPix.width();
     m_height = m_showPix.height();
     m_originWidth = m_width;
-    m_ratio = m_width*1.0/m_height;
+    m_ratio = m_width * 1.0 / m_height;
 }
 
 void MusicPhotoModLabel::saveImagePath(const QString &path) const
@@ -73,15 +73,15 @@ void MusicPhotoModLabel::wheelEvent(QWheelEvent *event)
     if(m_width < m_height && m_width < 10)
     {
         m_width = 10;
-        m_height = m_width/m_ratio;
+        m_height = m_width / m_ratio;
     }
     else if(m_width > m_height && m_height < 10)
     {
         m_height = 10;
-        m_width = m_height*m_ratio;
+        m_width = m_height * m_ratio;
     }
 
-    dv = m_width*1.0/m_originWidth;
+    dv = m_width * 1.0 / m_originWidth;
     Q_EMIT deltaValueChanged(dv);
 
     m_showPix.scaled(m_width, m_height, Qt::KeepAspectRatio);

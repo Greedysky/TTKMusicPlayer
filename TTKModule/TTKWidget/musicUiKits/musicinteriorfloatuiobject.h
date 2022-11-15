@@ -60,6 +60,20 @@ namespace MusicUIObject
             background-image: url(:/lrc/lb_photo_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/lb_photo_hover); }";
 
+    const QString MQSSInteriorFloatPhotoItem = " \
+            QCheckBox::indicator::unchecked{ image:url(:/lrc/lb_photo_unchecked); } \
+            QCheckBox::indicator:checked{ image:url(:/lrc/lb_photo_checked); }";
+
+    const QString MQSSInteriorFloatPhotoPrevious = " \
+            QPushButton{ border:none;\
+            background-image: url(:/lrc/btn_photo_previous_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/btn_photo_previous_hover); }";
+
+    const QString MQSSInteriorFloatPhotoNext = " \
+            QPushButton{ border:none;\
+            background-image: url(:/lrc/btn_photo_next_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/btn_photo_next_hover); }";
+
     const QString MQSSInteriorLrcBigger = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/btn_bigger_normal); } \

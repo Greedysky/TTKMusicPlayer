@@ -7,20 +7,17 @@
 #include <qmath.h>
 #include <QTimer>
 
-#define PHOTO_WIDTH              110
-#define PHOTO_HEIGHT             65
-#define PHOTO_PERLINE            3
-#define PHOTO_BACKGROUNDG_WIDTH  44
+#define PHOTO_PERLINE       4
 
 MusicLrcFloatPhotoItem::MusicLrcFloatPhotoItem(int index, QWidget *parent)
     : TTKClickedLabel(parent),
       m_index(index)
 {
-    resize(PHOTO_WIDTH, PHOTO_HEIGHT);
+    setFixedSize(110, 65);
 
     m_checkBox = new QCheckBox(this);
-    m_checkBox->setGeometry(90, 45, 20, 20);
-    m_checkBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_checkBox->setGeometry(90, 45, 16, 16);
+    m_checkBox->setStyleSheet(MusicUIObject::MQSSInteriorFloatPhotoItem);
 #ifdef Q_OS_UNIX
     m_checkBox->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -125,58 +122,75 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     setObjectName("MusicLrcFloatPhotoWidget");
     setStyleSheet(QString("#MusicLrcFloatPhotoWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle14));
 
-    m_filmBackgroundWidget = new QWidget(this);
-    m_filmBackgroundWidget->setGeometry(0, 0, 680, 125);
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    setLayout(layout);
 
-    MusicLrcFloatPhotoItem *item;
-    item = new MusicLrcFloatPhotoItem(0, m_filmBackgroundWidget);
-    item->move(109, 30);
-    m_planes << item;
-    item = new MusicLrcFloatPhotoItem(1, m_filmBackgroundWidget);
-    item->move(289, 30);
-    m_planes << item;
-    item = new MusicLrcFloatPhotoItem(2, m_filmBackgroundWidget);
-    item->move(469, 30);
-    m_planes << item;
+    QWidget *areaWidget = new QWidget(this);
+    QHBoxLayout *areaLayout = new QHBoxLayout(areaWidget);
+    areaWidget->setLayout(areaLayout);
+    layout->addWidget(areaWidget);
 
-    m_checkBox = new QCheckBox(tr("All"), this);
-    m_checkBox->setGeometry(29, 127, 100, 20);
-    m_checkBox->setChecked(true);
-    m_checkBox->setCursor(QCursor(Qt::PointingHandCursor));
-    m_checkBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
-
-    m_confirmButton = new QPushButton(tr("Confirm"), this);
-    m_confirmButton->setGeometry(589, 127, 50, 25);
-    m_confirmButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle06);
-    m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
-
-    m_previous = new QPushButton("<", m_filmBackgroundWidget);
+    m_previous = new QPushButton(this);
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
-    m_previous->setGeometry(29, 38, 25, 50);
+    m_previous->setStyleSheet(MusicUIObject::MQSSInteriorFloatPhotoPrevious);
+    m_previous->setFixedSize(20, 52);
+    areaLayout->addWidget(m_previous);
 
-    m_next = new QPushButton(">", m_filmBackgroundWidget);
-    m_next->setCursor(QCursor(Qt::PointingHandCursor));
-    m_next->setGeometry(634, 38, 25, 50);
-
-#ifdef Q_OS_UNIX
-    m_checkBox->setFocusPolicy(Qt::NoFocus);
-    m_confirmButton->setFocusPolicy(Qt::NoFocus);
-    m_previous->setFocusPolicy(Qt::NoFocus);
-    m_next->setFocusPolicy(Qt::NoFocus);
-#endif
-
-    m_previous->setStyleSheet(MusicUIObject::MQSSBackgroundStyle09 + MusicUIObject::MQSSBorderStyle01);
-    m_next->setStyleSheet(MusicUIObject::MQSSBackgroundStyle09 + MusicUIObject::MQSSBorderStyle01);
-
-    connect(m_confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
-    connect(m_previous, SIGNAL(clicked()), SLOT(photoPrevious()));
-    connect(m_next, SIGNAL(clicked()), SLOT(photoNext()));
-    for(MusicLrcFloatPhotoItem *item : qAsConst(m_planes))
+    for(int i = 0; i < PHOTO_PERLINE; ++i)
     {
+        MusicLrcFloatPhotoItem *item = new MusicLrcFloatPhotoItem(i, this);
+        areaLayout->addWidget(item);
+        m_planes << item;
+
         connect(item, SIGNAL(itemClicked(int)), SLOT(sendUserSelectArtBackground(int)));
         connect(item, SIGNAL(boxClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
     }
+
+    m_next = new QPushButton(this);
+    m_next->setCursor(QCursor(Qt::PointingHandCursor));
+    m_next->setStyleSheet(MusicUIObject::MQSSInteriorFloatPhotoNext);
+    m_next->setFixedSize(20, 52);
+    areaLayout->addWidget(m_next);
+
+    QWidget *functionWidget = new QWidget(this);
+    QHBoxLayout *functionLayout = new QHBoxLayout(functionWidget);
+    functionLayout->setSpacing(15);
+    functionWidget->setLayout(functionLayout);
+    layout->addWidget(functionWidget);
+
+    m_checkBox = new QCheckBox(tr("All"), functionWidget);
+    m_checkBox->setCursor(QCursor(Qt::PointingHandCursor));
+    m_checkBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle05);
+    m_checkBox->setFixedSize(100, 20);
+    m_checkBox->setChecked(true);
+    functionLayout->addWidget(m_checkBox);
+    functionLayout->addStretch(1);
+
+    QPushButton *confirmButton = new QPushButton(tr("Confirm"), functionWidget);
+    confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
+    confirmButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle06);
+    confirmButton->setFixedSize(50, 25);
+    functionLayout->addWidget(confirmButton);
+
+    QPushButton *cancelButton = new QPushButton(tr("Cancel"), functionWidget);
+    cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
+    cancelButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle06);
+    cancelButton->setFixedSize(50, 25);
+    functionLayout->addWidget(cancelButton);
+
+#ifdef Q_OS_UNIX
+    m_previous->setFocusPolicy(Qt::NoFocus);
+    m_next->setFocusPolicy(Qt::NoFocus);
+    m_checkBox->setFocusPolicy(Qt::NoFocus);
+    confirmButton->setFocusPolicy(Qt::NoFocus);
+    cancelButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
+    connect(m_previous, SIGNAL(clicked()), SLOT(photoPrevious()));
+    connect(m_next, SIGNAL(clicked()), SLOT(photoNext()));
     connect(m_checkBox, SIGNAL(clicked(bool)), SLOT(selectAllStateChanged(bool)));
+    connect(confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
+    connect(cancelButton, SIGNAL(clicked()), SLOT(close()));
     connect(G_BACKGROUND_PTR, SIGNAL(artistNameChanged()), SLOT(artistNameChanged()));
 }
 
@@ -185,19 +199,13 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
     qDeleteAll(m_planes);
     delete m_previous;
     delete m_next;
-    delete m_confirmButton;
     delete m_checkBox;
-    delete m_filmBackgroundWidget;
 }
 
 void MusicLrcFloatPhotoWidget::resizeGeometry(int width, int height)
 {
     m_rectEnter = QRect(0, 555 + height, 680 + width, 180);
     m_rectLeave = QRect(0, 355 + height, 680 + width, 180);
-
-    m_filmBackgroundWidget->move(width / 2, 0);
-    m_checkBox->move(width / 2 + 20, 127);
-    m_confirmButton->move(width / 2 + 580, 127);
 
     setGeometry(m_rectLeave);
 }
@@ -230,7 +238,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
 void MusicLrcFloatPhotoWidget::showPhoto() const
 {
     m_previous->setEnabled(m_currentIndex != 0);
-    int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
+    int page = ceil(m_artPath.count() * 1.0 / PHOTO_PERLINE) - 1;
     if(page < 0)
     {
         page = 0;
@@ -276,7 +284,7 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
 
 void MusicLrcFloatPhotoWidget::photoNext()
 {
-    int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
+    int page = ceil(m_artPath.count() * 1.0 / PHOTO_PERLINE) - 1;
     if(page < 0)
     {
         page = 0;
