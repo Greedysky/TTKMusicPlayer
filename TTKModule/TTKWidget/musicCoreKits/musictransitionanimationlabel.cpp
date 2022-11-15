@@ -142,7 +142,6 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                 painter.fillRect(rect(), QColor(0xFF, 0xFF, 0xFF, 2.55 * m_currentValue));
                 painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
                 painter.drawPixmap(rect(), m_currentPixmap);
-                painter.end();
                 m_rendererPixmap = pix;
                 break;
             }

@@ -30,7 +30,6 @@ void MusicPhotoModLabel::saveImagePath(const QString &path) const
     QPixmap px(m_width, m_height);
     QPainter painter(&px);
     painter.drawPixmap(0, 0, m_width, m_height, m_showPix);
-    painter.end();
     px.save(path);
 }
 

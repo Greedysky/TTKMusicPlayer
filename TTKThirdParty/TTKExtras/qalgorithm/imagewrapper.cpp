@@ -264,7 +264,6 @@ QPixmap CubeWave::render(const QPixmap &pixmap, int value)
 
         painter.setCompositionMode(QPainter::CompositionMode_SourceOut);
         painter.drawPixmap(rect, pixmap.copy(rect));
-        painter.end();
     }
 
     return pix;
@@ -497,8 +496,6 @@ QPixmap WaterWave::render(const QPixmap &pixmap, int value)
     painter.fillRect(d->m_rectangle, QColor(0xFF, 0xFF, 0xFF, qMin(2.55 * 2 * value, 255.0)));
     painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
     painter.drawPixmap(d->m_rectangle, QPixmap::fromImage(image));
-    painter.end();
-
     return pix;
 }
 }
