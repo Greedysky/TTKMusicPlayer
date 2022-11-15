@@ -17,7 +17,7 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
 
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
     setAttribute(Qt::WA_DeleteOnClose);
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle12);
+    setStyleSheet(MusicUIObject::MQSSBackgroundStyle10);
     setMouseTracking(true);
     blockMoveOption(true);
 

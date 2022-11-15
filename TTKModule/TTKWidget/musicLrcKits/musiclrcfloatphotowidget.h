@@ -169,6 +169,7 @@ private:
     int m_currentIndex;
     TTKIntSet m_selectNum;
     QStringList m_photos;
+    QLabel *m_artistLabel;
     QCheckBox *m_checkBox;
     QPushButton *m_previous, *m_next;
     QList<MusicLrcFloatPhotoItem*> m_planes;

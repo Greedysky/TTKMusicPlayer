@@ -4,6 +4,7 @@
 #include "musicwidgetheaders.h"
 #include "musicimageutils.h"
 #include "musicfileutils.h"
+#include "musicwidgetutils.h"
 
 #include <qmath.h>
 #include <QTimer>
@@ -116,16 +117,21 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     : MusicAbstractFloatWidget(parent),
       m_currentIndex(0)
 {
-    setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle14));
-
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setContentsMargins(9, 14, 9, 4);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     setLayout(layout);
 
+    m_artistLabel = new QLabel(this);
+    m_artistLabel->setAlignment(Qt::AlignCenter);
+    m_artistLabel->setStyleSheet(MusicUIObject::MQSSColorStyle02 + MusicUIObject::MQSSBackgroundStyle06);
+    layout->addWidget(m_artistLabel);
+
     QWidget *areaWidget = new QWidget(this);
+    areaWidget->setObjectName("AreaWidget");
+    areaWidget->setStyleSheet(QString("#AreaWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle07));
     QHBoxLayout *areaLayout = new QHBoxLayout(areaWidget);
+    areaLayout->setContentsMargins(9, 18, 9, 9);
     areaWidget->setLayout(areaLayout);
     layout->addWidget(areaWidget);
 
@@ -152,7 +158,10 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     areaLayout->addWidget(m_next);
 
     QWidget *functionWidget = new QWidget(this);
+    functionWidget->setObjectName("FunctionWidget");
+    functionWidget->setStyleSheet(QString("#FunctionWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle07));
     QHBoxLayout *functionLayout = new QHBoxLayout(functionWidget);
+    functionLayout->setContentsMargins(18, 9, 18, 9);
     functionLayout->setSpacing(15);
     functionWidget->setLayout(functionLayout);
     layout->addWidget(functionWidget);
@@ -203,8 +212,8 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
 
 void MusicLrcFloatPhotoWidget::resizeGeometry(int width, int height)
 {
-    m_rectEnter = QRect(0, 560 + height, 680 + width, 150);
-    m_rectLeave = QRect(0, 360 + height, 680 + width, 150);
+    m_rectEnter = QRect(0, 525 + height, 680 + width, 185);
+    m_rectLeave = QRect(0, 325 + height, 680 + width, 185);
 
     setGeometry(m_rectLeave);
 }
@@ -280,6 +289,10 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
     {
         m_selectNum << i;
     }
+
+    const QString &name = G_BACKGROUND_PTR->artistName();
+    m_artistLabel->setText(name);
+    m_artistLabel->setFixedSize(MusicUtils::Widget::fontTextWidth(m_artistLabel->font(), name) + 50, 35);
 }
 
 void MusicLrcFloatPhotoWidget::photoNext()

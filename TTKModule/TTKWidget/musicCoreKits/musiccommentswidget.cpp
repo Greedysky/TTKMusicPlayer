@@ -179,7 +179,7 @@ void MusicCommentsWidget::initialize(bool isPain)
     m_isPain = isPain;
 
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle14));
+    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle07));
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);

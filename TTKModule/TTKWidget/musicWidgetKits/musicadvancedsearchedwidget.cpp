@@ -10,7 +10,7 @@
 MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle12);
+    setStyleSheet(MusicUIObject::MQSSBackgroundStyle10);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);

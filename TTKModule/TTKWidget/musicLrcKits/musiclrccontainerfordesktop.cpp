@@ -197,7 +197,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolBarLayout->addStretch(1);
 
     m_toolBarWidget->setObjectName("ToolBarWidget");
-    m_toolBarWidget->setStyleSheet(QString("#ToolBarWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle08));
+    m_toolBarWidget->setStyleSheet(QString("#ToolBarWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle05));
     m_toolBarWidget->setLayout(m_toolBarLayout);
 
     QPushButton *showMainWindow = new QPushButton(m_toolBarWidget);
@@ -369,7 +369,7 @@ void MusicLrcContainerForDesktop::enterEvent(QtEnterEvent *event)
 
     MusicLrcContainer::enterEvent(event);
     m_toolBarWidget->show();
-    setStyleSheet(QString("#DesktopWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle08));
+    setStyleSheet(QString("#DesktopWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle05));
 }
 
 void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)

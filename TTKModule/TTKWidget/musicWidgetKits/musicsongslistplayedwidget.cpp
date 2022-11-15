@@ -39,7 +39,7 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
 
     m_moreButton = new QPushButton(this);
     m_moreButton->setGeometry(270, 7, 16, 16);
-    m_moreButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle11 + MusicUIObject::MQSSTinyBtnMore);
+    m_moreButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle10 + MusicUIObject::MQSSTinyBtnMore);
     m_moreButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_moreButton->setToolTip(tr("More"));
 

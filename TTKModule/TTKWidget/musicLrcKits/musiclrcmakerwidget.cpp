@@ -20,7 +20,7 @@ MusicLrcMakerWidgetItem::MusicLrcMakerWidgetItem(QWidget *ui, QObject *parent)
     : QLabel(ui),
       m_parentClass(parent)
 {
-    setStyleSheet(MusicUIObject::MQSSBorderStyle02 + MusicUIObject::MQSSBackgroundStyle12);
+    setStyleSheet(MusicUIObject::MQSSBorderStyle02 + MusicUIObject::MQSSBackgroundStyle10);
     setFixedSize(650, TTK_ITEM_SIZE_L);
 
     reset();
@@ -157,7 +157,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->stackedWidget->setStyleSheet(QString("#stackedWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle12));
+    m_ui->stackedWidget->setStyleSheet(QString("#stackedWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle10));
 
     createMainWidget();
     createFirstWidget();

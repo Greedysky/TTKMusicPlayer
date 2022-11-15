@@ -68,14 +68,14 @@ MusicSongSearchPopWidget::MusicSongSearchPopWidget(QWidget *parent)
     m_clearButton = new QPushButton("   " + tr("Clear History"), this);
     m_clearButton->setCursor(Qt::PointingHandCursor);
     m_clearButton->setFixedHeight(35);
-    m_clearButton->setStyleSheet(MusicUIObject::MQSSCustomStyle01 + MusicUIObject::MQSSFontStyle02 + MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBorderStyle01 + MusicUIObject::MQSSBackgroundStyle12);
+    m_clearButton->setStyleSheet(MusicUIObject::MQSSCustomStyle01 + MusicUIObject::MQSSFontStyle02 + MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBorderStyle01 + MusicUIObject::MQSSBackgroundStyle10);
 #ifdef Q_OS_UNIX
     m_clearButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     QFrame *frame = new QFrame(this);
     frame->setFixedHeight(1);
-    frame->setStyleSheet(MusicUIObject::MQSSBackgroundStyle03);
+    frame->setStyleSheet(MusicUIObject::MQSSBackgroundStyle09);
     frame->setFrameShape(QFrame::HLine);
 
     layout->addWidget(m_popTableWidget);

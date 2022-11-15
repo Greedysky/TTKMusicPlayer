@@ -216,7 +216,7 @@ MusicWebDJRadioWidget::MusicWebDJRadioWidget(QWidget *parent)
       m_queryWidget(nullptr)
 {
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle12));
+    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle10));
 
     initFirstWidget();
 }

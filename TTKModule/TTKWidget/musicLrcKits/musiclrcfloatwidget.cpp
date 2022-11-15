@@ -9,7 +9,7 @@
 MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     : MusicAbstractFloatWidget(parent)
 {
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle08);
+    setStyleSheet(MusicUIObject::MQSSBackgroundStyle05);
 
     m_floatPhotoWidget = new MusicLrcFloatPhotoWidget(parent);
     m_floatPhotoWidget->hide();
@@ -107,7 +107,7 @@ void MusicLrcFloatWidget::wallpaperButtonClicked()
 {
     if(m_wallpaper->styleSheet().contains(MusicUIObject::MQSSInteriorFloatWallpaper))
     {
-        m_wallpaper->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaperOn + MusicUIObject::MQSSPushButtonStyle12 + MusicUIObject::MQSSPushButtonStyle01);
+        m_wallpaper->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaperOn + MusicUIObject::MQSSPushButtonStyle11 + MusicUIObject::MQSSPushButtonStyle01);
     }
     else
     {

@@ -25,7 +25,7 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
 
     m_mainWindow = new QStackedWidget(this);
     m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle12));
+    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle10));
     layout->addWidget(m_mainWindow);
     setLayout(layout);
 

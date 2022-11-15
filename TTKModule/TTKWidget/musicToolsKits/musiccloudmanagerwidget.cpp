@@ -522,7 +522,7 @@ MusicCloudDataItem MusicCloudManagerTableWidget::FindWaitedItemRow() const
 MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle12 + MusicUIObject::MQSSColorStyle09);
+    setStyleSheet(MusicUIObject::MQSSBackgroundStyle10 + MusicUIObject::MQSSColorStyle09);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
@@ -606,7 +606,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     connect(deleteButton, SIGNAL(clicked(bool)), SLOT(deleteFileToServer()));
     //
     QWidget *labelWidget = new QWidget(this);
-    labelWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle03);
+    labelWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle09);
     QHBoxLayout *labelWidgetLayout = new QHBoxLayout(labelWidget);
     functionWidgetLayout->setContentsMargins(10, 20, 10, 10);
 

@@ -9,14 +9,14 @@ MusicBackgroundManager::MusicBackgroundManager()
 
 void MusicBackgroundManager::setArtistName(const QString &name)
 {
-    const QString &sName = MusicUtils::String::artistName(name);
-    if(!m_currentArtistName.isEmpty() && m_currentArtistName != sName)
+    const QString &artist = MusicUtils::String::artistName(name);
+    if(!m_currentArtistName.isEmpty() && m_currentArtistName != artist)
     {
         return;
     }
 
     m_photos.clear();
-    const QString &filter = BACKGROUND_DIR_FULL + (m_currentArtistName = sName) + "%1" + SKN_FILE;
+    const QString &filter = BACKGROUND_DIR_FULL + (m_currentArtistName = artist) + "%1" + SKN_FILE;
     for(int i = 0; i < MAX_IMAGE_COUNTER; ++i)
     {
         const QString &path = filter.arg(i);
@@ -25,7 +25,13 @@ void MusicBackgroundManager::setArtistName(const QString &name)
             m_photos << path;
         }
     }
+
     Q_EMIT artistNameChanged();
+}
+
+QString MusicBackgroundManager::artistName() const
+{
+    return m_currentArtistName;
 }
 
 void MusicBackgroundManager::clearArtistName()

@@ -34,7 +34,7 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     m_ui->lrcSearchDownload->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->closeButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->functionTopLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBackgroundStyle03);
+    m_ui->functionTopLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBackgroundStyle09);
 
     connect(m_ui->lrcSearchButton, SIGNAL(clicked()), SLOT(lrcSearchButtonClicked()));
     connect(m_ui->lrcSearchDownload, SIGNAL(clicked()), SLOT(lrcSearchDownloadClicked()));

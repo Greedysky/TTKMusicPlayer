@@ -221,7 +221,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
       MusicItemSearchInterfaceClass(),
       m_currentIndex(0)
 {
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle12 + MusicUIObject::MQSSColorStyle09);
+    setStyleSheet(MusicUIObject::MQSSBackgroundStyle10 + MusicUIObject::MQSSColorStyle09);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);

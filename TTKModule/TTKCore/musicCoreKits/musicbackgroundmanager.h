@@ -35,6 +35,10 @@ public:
      */
     void setArtistName(const QString &name);
     /*!
+     * Get current artist name.
+     */
+    QString artistName() const;
+    /*!
      * Remove current artist name.
      */
     void clearArtistName();

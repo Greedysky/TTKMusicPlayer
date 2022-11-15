@@ -319,7 +319,7 @@ void MusicPlayedListPopWidget::initialize()
 
     m_scrollArea = new QScrollArea(this);
 
-    const QString &background = MusicUIObject::MQSSBackgroundStyle12;
+    const QString &background = MusicUIObject::MQSSBackgroundStyle10;
     QWidget *view = m_scrollArea->viewport();
     view->setObjectName("Viewport");
     view->setStyleSheet(QString("#Viewport{%1}").arg(background));
@@ -348,7 +348,7 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     MusicPlayedListTopContainerWidget *topWidget = new MusicPlayedListTopContainerWidget(this);
 #ifdef Q_OS_UNIX
     topWidget->setObjectName("TopWidget");
-    topWidget->setStyleSheet(QString("#TopWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle12));
+    topWidget->setStyleSheet(QString("#TopWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle10));
 #endif
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setSpacing(15);

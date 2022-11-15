@@ -10,7 +10,7 @@
 MusicVideoControlWidget::MusicVideoControlWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle06);
+    setStyleSheet(MusicUIObject::MQSSBackgroundStyle08);
 
     m_timeSlider = new MusicMovingLabelSlider(Qt::Horizontal, this);
     m_playButton = new QPushButton(this);

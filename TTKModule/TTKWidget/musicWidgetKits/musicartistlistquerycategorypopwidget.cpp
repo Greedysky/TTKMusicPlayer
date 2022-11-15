@@ -69,7 +69,7 @@ void MusicArtistListQueryCategoryPopWidget::setCategory(const QString &server, Q
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
     QWidget *containWidget = new QWidget(m_containWidget);
-    containWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle12);
+    containWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle10);
     QVBoxLayout *containLayout = new QVBoxLayout(containWidget);
     containWidget->setLayout(containLayout);
 
@@ -103,7 +103,7 @@ void MusicArtistListQueryCategoryPopWidget::initialize()
     setTranslucentBackground();
     setText(tr("All"));
 
-    QString style = MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBackgroundStyle12;
+    QString style = MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBackgroundStyle10;
     setObjectName(className());
     setStyleSheet(QString("#%1{%2}").arg(className(), style));
 

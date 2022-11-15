@@ -16,12 +16,12 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const MusicPluginProper
 
     m_textLabel = new QLabel(" " + property.m_name, this);
     m_textLabel->setObjectName("Background");
-    m_textLabel->setStyleSheet(QString("#Background{%1}").arg(MusicUIObject::MQSSBackgroundStyle08) +
+    m_textLabel->setStyleSheet(QString("#Background{%1}").arg(MusicUIObject::MQSSBackgroundStyle05) +
                                MusicUIObject::MQSSSpinBoxStyle01 +
                                MusicUIObject::MQSSSliderStyle06 +
                                MusicUIObject::MQSSCheckBoxStyle01 +
                                MusicUIObject::MQSSComboBoxStyle01 +
-                               MusicUIObject::MQSSPushButtonStyle13);
+                               MusicUIObject::MQSSPushButtonStyle12);
 
     QWidget *func = new QWidget(this);
     func->setStyleSheet(MusicUIObject::MQSSBackgroundStyle04);

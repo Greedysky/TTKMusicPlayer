@@ -123,7 +123,7 @@ MusicMobileSongsManagerWidget::MusicMobileSongsManagerWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->toolWidget->setStyleSheet(QString("#toolWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle07));
+    m_ui->toolWidget->setStyleSheet(QString("#toolWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle03));
 
     m_ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle03);
     m_ui->allSelectedcheckBox->setCursor(QCursor(Qt::PointingHandCursor));
@@ -138,7 +138,7 @@ MusicMobileSongsManagerWidget::MusicMobileSongsManagerWidget(QWidget *parent)
     m_ui->searchLineLabel->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->loadingLabel->setType(MusicGifLabelWidget::Module::CicleBlue);
-    m_ui->toolWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle12);
+    m_ui->toolWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle10);
 
     connect(m_ui->auditionButton, SIGNAL(clicked()), SLOT(auditionButtonClick()));
     connect(m_ui->addButton, SIGNAL(clicked()), SLOT(auditionButtonClick()));

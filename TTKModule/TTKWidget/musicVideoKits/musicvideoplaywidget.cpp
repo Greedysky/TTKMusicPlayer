@@ -30,7 +30,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     layout->setSpacing(0);
 
     m_topWidget = new QWidget(this);
-    m_topWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle06 + MusicUIObject::MQSSBorderStyle01);
+    m_topWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle08 + MusicUIObject::MQSSBorderStyle01);
 
     QHBoxLayout *topLayout = new QHBoxLayout(m_topWidget);
     topLayout->setContentsMargins(9, 4, 9, 4);

@@ -5,7 +5,7 @@
 MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
     : MusicAbstractFloatWidget(parent)
 {
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle06);
+    setStyleSheet(MusicUIObject::MQSSBackgroundStyle08);
 
     resizeGeometry(0, 0);
     m_search = new QPushButton(tr(" Search"), this);

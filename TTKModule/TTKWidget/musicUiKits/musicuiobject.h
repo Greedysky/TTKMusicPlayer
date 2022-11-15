@@ -74,43 +74,40 @@ namespace MusicUIObject
             QString();
 
     const QString MQSSBackgroundStyle02 = " \
-            background-color:black;";
+            background-color:rgb(0, 0, 0);";
 
     const QString MQSSBackgroundStyle03 = " \
-            background-color:rgb(240, 240, 240);";
+            background-color:rgba(0, 0, 0, 35);";
 
     const QString MQSSBackgroundStyle04 = " \
             background-color:rgba(0, 0, 0, 50);";
 
     const QString MQSSBackgroundStyle05 = " \
-            background:rgb(250, 231, 191);";
+            background-color:rgba(0, 0, 0, 100);";
 
     const QString MQSSBackgroundStyle06 = " \
-            background:rgba(41, 41, 41);";
+            background-color:rgba(0, 0, 0, 140);";
 
     const QString MQSSBackgroundStyle07 = " \
-            background:rgba(0, 0, 0, 35);";
+            background-color:rgba(0, 0, 0, 175);";
 
     const QString MQSSBackgroundStyle08 = " \
-            background:rgba(0, 0, 0, 100);";
+            background-color:rgb(41, 41, 41);";
 
     const QString MQSSBackgroundStyle09 = " \
-            background:rgba(255 ,255, 255, 50);";
+            background-color:rgb(240, 240, 240);";
 
     const QString MQSSBackgroundStyle10 = " \
-            background:rgba(255, 255, 255, 200);";
+            background-color:rgb(255, 255, 255);";
 
     const QString MQSSBackgroundStyle11 = " \
-            background:#BFBFBF;";
+            background-color:rgba(255, 255, 255, 200);";
 
     const QString MQSSBackgroundStyle12 = " \
-            background:#FFFFFF;";
+            background-color:rgb(250, 231, 191);";
 
     const QString MQSSBackgroundStyle13 = " \
-            background:rgb(254, 249, 229);";
-
-    const QString MQSSBackgroundStyle14 = " \
-            background:rgba(0, 0, 0, 175);";
+            background-color:rgb(254, 249, 229);";
 
 ///border
     const QString MQSSBorderStyle01 = " \
@@ -156,7 +153,7 @@ namespace MusicUIObject
 
 ///ToolButton
     const QString MQSSToolButtonStyle01 = " \
-            QToolButton{  background-color:transparent; " +
+            QToolButton{ background-color:transparent; " +
 #ifdef Q_OS_UNIX
             QString("border-style:falt;") +
 #endif
@@ -165,7 +162,7 @@ namespace MusicUIObject
     const QString MQSSToolButtonStyle02 = " \
             QToolButton::hover{ border:1px solid #000000; }";
 
-    const QString MQSSToolButtonStyle03= " \
+    const QString MQSSToolButtonStyle03 = " \
             QToolButton{ border:none; }";
 
     const QString MQSSToolButtonStyle04 = MQSSToolButtonStyle01 + MQSSToolButtonStyle03 + " \
@@ -209,26 +206,23 @@ namespace MusicUIObject
     const QString MQSSPushButtonStyle07 = MQSSPushButtonStyle06 + " \
             QPushButton{ text-align:right; }";
 
-    const QString MQSSPushButtonStyle08 = MQSSPushButtonStyle01 + " \
-            QPushButton::hover{ border:1px solid #000000; }";
-
-    const QString MQSSPushButtonStyle09 = " \
+    const QString MQSSPushButtonStyle08 = " \
             QPushButton{ border-radius:5px; font-size:20px; \
             background:rgba(0, 0, 0, 50); } \
             QPushButton::hover{ background:rgba(0, 0, 0, 100); }";
 
-    const QString MQSSPushButtonStyle10 = " \
+    const QString MQSSPushButtonStyle09 = " \
             QPushButton{ border-radius:2px; background:rgba(0, 0, 0, 50); }";
 
-    const QString MQSSPushButtonStyle11 = " \
+    const QString MQSSPushButtonStyle10 = " \
             QPushButton::menu-indicator{ image:none; }";
 
-    const QString MQSSPushButtonStyle12 = " \
+    const QString MQSSPushButtonStyle11 = " \
             QPushButton{ color:#E6C117; } \
             QPushButton:hover{ color:#E6E317; } \
             QPushButton{ text-align:right; }";
 
-    const QString MQSSPushButtonStyle13 = " \
+    const QString MQSSPushButtonStyle12 = " \
             QPushButton{ background-color:#DDDDDD; color:#222222; }";
 
 ///RadioButton

@@ -204,7 +204,7 @@ MusicPushButtonDelegate::MusicPushButtonDelegate(QObject *parent)
 {
     m_pushButton = new QPushButton;
     m_pushButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_pushButton->setStyleSheet(MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBorderStyle06 + MusicUIObject::MQSSBackgroundStyle12);
+    m_pushButton->setStyleSheet(MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBorderStyle06 + MusicUIObject::MQSSBackgroundStyle10);
 #ifdef Q_OS_UNIX
     m_pushButton->setFocusPolicy(Qt::NoFocus);
 #endif

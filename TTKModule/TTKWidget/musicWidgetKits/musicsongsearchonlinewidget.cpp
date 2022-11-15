@@ -511,7 +511,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     QHBoxLayout *labelLayout = new QHBoxLayout(labelWidget);
     labelLayout->setContentsMargins(7, 0, 10, 0);
     labelLayout->setSpacing(0);
-    labelWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle03);
+    labelWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle09);
 
     QCheckBox *labelCheckBox = new QCheckBox(this);
     labelCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);

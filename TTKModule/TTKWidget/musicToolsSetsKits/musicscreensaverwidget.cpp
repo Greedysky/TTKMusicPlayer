@@ -202,7 +202,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     : QWidget(parent),
       m_currentState(false)
 {
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle12 + MusicUIObject::MQSSColorStyle09);
+    setStyleSheet(MusicUIObject::MQSSBackgroundStyle10 + MusicUIObject::MQSSColorStyle09);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
