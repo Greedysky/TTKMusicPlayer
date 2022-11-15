@@ -24,7 +24,7 @@
 /*! @brief The class of the dlna helper.
  * @author Greedysky <greedysky@163.com>
  */
-namespace QHelperDlna
+namespace QDlnaHelper
 {
 TTK_MODULE_EXPORT QString MakeRequest(const QString &methord, const QString &url, int length, const QString &soapAction, const QString &ip, const QString &port);
 TTK_MODULE_EXPORT QString makeSocketGetReply(const QString &ip, const QString &port, const QString &data);

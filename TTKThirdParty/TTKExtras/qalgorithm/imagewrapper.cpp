@@ -246,7 +246,7 @@ QPixmap CubeWave::render(const QPixmap &pixmap, int value)
     pix.fill(Qt::transparent);
     for(int index = 0; index < d->count(); ++index)
     {
-        QPainter paint(&pix);
+        QPainter painter(&pix);
 
         const int row = index / 8;
         const int column = index % 8;
@@ -259,12 +259,12 @@ QPixmap CubeWave::render(const QPixmap &pixmap, int value)
 
         if(d->isValid(index, value))
         {
-            paint.fillRect(rect, QColor(0xFF, 0xFF, 0xFF, 255 - 2.55 * value));
+            painter.fillRect(rect, QColor(0xFF, 0xFF, 0xFF, 255 - 2.55 * value));
         }
 
-        paint.setCompositionMode(QPainter::CompositionMode_SourceOut);
-        paint.drawPixmap(rect, pixmap.copy(rect));
-        paint.end();
+        painter.setCompositionMode(QPainter::CompositionMode_SourceOut);
+        painter.drawPixmap(rect, pixmap.copy(rect));
+        painter.end();
     }
 
     return pix;
@@ -493,11 +493,11 @@ QPixmap WaterWave::render(const QPixmap &pixmap, int value)
 
     QPixmap pix(d->m_rectangle.size());
     pix.fill(Qt::transparent);
-    QPainter paint(&pix);
-    paint.fillRect(d->m_rectangle, QColor(0xFF, 0xFF, 0xFF, qMin(2.55 * 2 * value, 255.0)));
-    paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    paint.drawPixmap(d->m_rectangle, QPixmap::fromImage(image));
-    paint.end();
+    QPainter painter(&pix);
+    painter.fillRect(d->m_rectangle, QColor(0xFF, 0xFF, 0xFF, qMin(2.55 * 2 * value, 255.0)));
+    painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    painter.drawPixmap(d->m_rectangle, QPixmap::fromImage(image));
+    painter.end();
 
     return pix;
 }

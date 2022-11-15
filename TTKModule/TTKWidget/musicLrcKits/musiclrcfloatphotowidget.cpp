@@ -1,8 +1,9 @@
 #include "musiclrcfloatphotowidget.h"
 #include "musicbackgroundmanager.h"
 #include "musicinteriorfloatuiobject.h"
-#include "musicfileutils.h"
 #include "musicwidgetheaders.h"
+#include "musicimageutils.h"
+#include "musicfileutils.h"
 
 #include <qmath.h>
 #include <QTimer>
@@ -13,10 +14,10 @@ MusicLrcFloatPhotoItem::MusicLrcFloatPhotoItem(int index, QWidget *parent)
     : TTKClickedLabel(parent),
       m_index(index)
 {
-    setFixedSize(110, 65);
+    setFixedSize(120, 65);
 
     m_checkBox = new QCheckBox(this);
-    m_checkBox->setGeometry(90, 45, 16, 16);
+    m_checkBox->setGeometry(100, 45, 16, 16);
     m_checkBox->setStyleSheet(MusicUIObject::MQSSInteriorFloatPhotoItem);
 #ifdef Q_OS_UNIX
     m_checkBox->setFocusPolicy(Qt::NoFocus);
@@ -35,14 +36,10 @@ void MusicLrcFloatPhotoItem::setPhoto(const QString &path)
     m_pixPath = path;
 
     QPixmap pix;
-    if(m_pixPath.isEmpty())
-    {
-        pix.fill(Qt::black);
-    }
-    else
+    if(!m_pixPath.isEmpty())
     {
         pix.load(m_pixPath);
-        pix = pix.scaled(size());
+        pix = MusicUtils::Image::roundedPixmap(pix, size(), 5, 5);
     }
     setPixmap(pix);
 }
@@ -123,6 +120,8 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle14));
 
     QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->setContentsMargins(9, 14, 9, 4);
+    layout->setSpacing(0);
     setLayout(layout);
 
     QWidget *areaWidget = new QWidget(this);
@@ -204,8 +203,8 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
 
 void MusicLrcFloatPhotoWidget::resizeGeometry(int width, int height)
 {
-    m_rectEnter = QRect(0, 555 + height, 680 + width, 180);
-    m_rectLeave = QRect(0, 355 + height, 680 + width, 180);
+    m_rectEnter = QRect(0, 560 + height, 680 + width, 150);
+    m_rectLeave = QRect(0, 360 + height, 680 + width, 150);
 
     setGeometry(m_rectLeave);
 }
@@ -228,7 +227,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
     QStringList list;
     for(int i : qAsConst(m_selectNum))
     {
-       list << m_artPath[i];
+       list << m_photos[i];
     }
 
     G_BACKGROUND_PTR->setArtistPhotoPathList(list);
@@ -238,7 +237,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
 void MusicLrcFloatPhotoWidget::showPhoto() const
 {
     m_previous->setEnabled(m_currentIndex != 0);
-    int page = ceil(m_artPath.count() * 1.0 / PHOTO_PERLINE) - 1;
+    int page = ceil(m_photos.count() * 1.0 / PHOTO_PERLINE) - 1;
     if(page < 0)
     {
         page = 0;
@@ -249,10 +248,10 @@ void MusicLrcFloatPhotoWidget::showPhoto() const
     const int indexCheck = m_currentIndex * PHOTO_PERLINE;
     for(int i = 0; i < m_planes.count(); ++i)
     {
-        m_planes[i]->setPhoto((indexCheck + i) < m_artPath.count() ? m_artPath[indexCheck + i] : QString());
+        m_planes[i]->setPhoto((indexCheck + i) < m_photos.count() ? m_photos[indexCheck + i] : QString());
         //check show radio button
         m_planes[i]->setBoxChecked(m_selectNum.contains(indexCheck + i));
-        m_planes[i]->setBoxVisible((indexCheck + i) < m_artPath.count());
+        m_planes[i]->setBoxVisible((indexCheck + i) < m_photos.count());
     }
 }
 
@@ -274,9 +273,10 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
     }
 
     m_selectNum.clear();
-    m_artPath = G_BACKGROUND_PTR->artistPhotoPathList();
+    m_checkBox->setChecked(true);
+    m_photos = G_BACKGROUND_PTR->artistPhotoPathList();
 
-    for(int i = 0; i < m_artPath.count(); ++i)
+    for(int i = 0; i < m_photos.count(); ++i)
     {
         m_selectNum << i;
     }
@@ -284,7 +284,7 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
 
 void MusicLrcFloatPhotoWidget::photoNext()
 {
-    int page = ceil(m_artPath.count() * 1.0 / PHOTO_PERLINE) - 1;
+    int page = ceil(m_photos.count() * 1.0 / PHOTO_PERLINE) - 1;
     if(page < 0)
     {
         page = 0;
@@ -327,7 +327,7 @@ void MusicLrcFloatPhotoWidget::selectAllStateChanged(bool state)
 {
     if(state)
     {
-        for(int i = 0; i < m_artPath.count(); ++i)
+        for(int i = 0; i < m_photos.count(); ++i)
         {
             m_selectNum << i;
         }

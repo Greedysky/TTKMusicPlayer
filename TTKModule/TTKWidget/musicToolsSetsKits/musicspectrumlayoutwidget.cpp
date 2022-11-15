@@ -14,7 +14,7 @@ MusicSpectrumLayoutItem::MusicSpectrumLayoutItem(QWidget *parent)
 
 void MusicSpectrumLayoutItem::addCellItem(const QString &item, const QString &tip)
 {
-    setPixmap(MusicUtils::Image::pixmapToRound(item, 10, 10));
+    setPixmap(MusicUtils::Image::roundedPixmap(item, 10, 10));
     setToolTip(tip);
 }
 

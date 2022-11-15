@@ -50,7 +50,7 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_ui = ui;
 
     musicBackgroundAnimationChanged(true);
-    ui->userIcon->setPixmap(MusicUtils::Image::pixmapToRound(QPixmap(":/image/lb_app_logo"), QPixmap(":/image/lb_mask_30"), QSize(30, 30)));
+    ui->userIcon->setPixmap(MusicUtils::Image::roundedPixmap(QPixmap(":/image/lb_app_logo"), QPixmap(":/image/lb_mask_30"), QSize(30, 30)));
 
     ui->musicSongSearchEdit->initialize(MusicApplication::instance());
     ui->musicSongSearchEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle02);
@@ -477,9 +477,9 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
 
     QPixmap pixmap(size);
     pixmap.fill(Qt::transparent);
-    QPainter paint(&pixmap);
-    paint.drawPixmap(0, 0, QPixmap::fromImage(m_backgroundImage.scaled(size, Qt::KeepAspectRatioByExpanding)));
-    paint.end();
+    QPainter painter(&pixmap);
+    painter.drawPixmap(0, 0, QPixmap::fromImage(m_backgroundImage.scaled(size, Qt::KeepAspectRatioByExpanding)));
+    painter.end();
 
     backgroundTransparentChanged(m_backgroundListAlpha);
     Q_EMIT backgroundPixmapChanged(pixmap);

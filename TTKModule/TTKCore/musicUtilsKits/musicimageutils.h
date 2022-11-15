@@ -31,19 +31,19 @@ namespace MusicUtils
         /*!
          * Set pixmap to round by ratio.
          */
-        TTK_MODULE_EXPORT QPixmap pixmapToRound(const QPixmap &input, int ratioX, int ratioY);
+        TTK_MODULE_EXPORT QPixmap roundedPixmap(const QPixmap &input, int ratioX, int ratioY);
         /*!
          * Set pixmap to round by ratio.
          */
-        TTK_MODULE_EXPORT QPixmap pixmapToRound(const QPixmap &input, const QSize &size, int ratioX, int ratioY);
+        TTK_MODULE_EXPORT QPixmap roundedPixmap(const QPixmap &input, const QSize &size, int ratioX, int ratioY);
         /*!
          * Set pixmap to round by ratio.
          */
-        TTK_MODULE_EXPORT QPixmap pixmapToRound(const QPixmap &input, const QRect &rect, int ratioX, int ratioY);
+        TTK_MODULE_EXPORT QPixmap roundedPixmap(const QPixmap &input, const QRect &rect, int ratioX, int ratioY);
         /*!
          * Set pixmap to round by ratio.
          */
-        TTK_MODULE_EXPORT QPixmap pixmapToRound(const QPixmap &input, const QPixmap &mask, const QSize &size);
+        TTK_MODULE_EXPORT QPixmap roundedPixmap(const QPixmap &input, const QPixmap &mask, const QSize &size);
         /*!
          * Get bitmap mask from rect.
          */

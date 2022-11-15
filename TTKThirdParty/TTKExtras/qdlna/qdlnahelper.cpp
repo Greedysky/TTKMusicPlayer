@@ -4,7 +4,7 @@
 #include <QTcpSocket>
 #include <QStringList>
 
-namespace QHelperDlna
+namespace QDlnaHelper
 {
 QString MakeRequest(const QString &methord, const QString &url, int length, const QString &soapAction, const QString &ip, const QString &port)
 {

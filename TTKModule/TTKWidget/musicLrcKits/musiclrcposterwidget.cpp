@@ -279,7 +279,7 @@ void MusicLrcPosterItemWidget::drawTheme6(QPainter *painter)
     pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
     int offset = qMin(pix.width(), pix.height());
     const int fixedOffset = (pix.width() - offset) / 2;
-    pix = MusicUtils::Image::pixmapToRound(pix, QRect(0, 0, offset, offset), offset, offset);
+    pix = MusicUtils::Image::roundedPixmap(pix, QRect(0, 0, offset, offset), offset, offset);
     painter->drawPixmap(ITEM_BORDER + fixedOffset, ITEM_BORDER, pix);
 
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());

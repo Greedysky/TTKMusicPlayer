@@ -36,6 +36,8 @@
 #define TTK_NORMAL_LEVEL            -1
 #define TTK_HIGH_LEVEL              999
 
+#define MAX_IMAGE_COUNTER           10
+
 #define MUSIC_AUTHOR_NAME           "Greedysky"
 #define MUSIC_BING_DIR              "Bing"
 #define MUSIC_THUNDER_DIR           "Thunder"

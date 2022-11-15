@@ -138,25 +138,25 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                 painter.drawPixmap(rect(), m_previousPixmap);
                 QPixmap pix(size());
                 pix.fill(Qt::transparent);
-                QPainter paint(&pix);
-                paint.fillRect(rect(), QColor(0xFF, 0xFF, 0xFF, 2.55 * m_currentValue));
-                paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
-                paint.drawPixmap(rect(), m_currentPixmap);
-                paint.end();
+                QPainter painter(&pix);
+                painter.fillRect(rect(), QColor(0xFF, 0xFF, 0xFF, 2.55 * m_currentValue));
+                painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
+                painter.drawPixmap(rect(), m_currentPixmap);
+                painter.end();
                 m_rendererPixmap = pix;
                 break;
             }
             case Module::BlindsEffect:
             {
                 QPixmap pix(m_previousPixmap);
-                QPainter paint(&pix);
-                paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
+                QPainter painter(&pix);
+                painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
                 constexpr int number = 10;
                 const int perHeight = height() / number;
                 for(int i = 0; i < number; ++i)
                 {
                     const QRect rect(0, perHeight * i, width(), perHeight * m_currentValue / 100.0);
-                    paint.drawPixmap(rect, m_currentPixmap.copy(rect));
+                    painter.drawPixmap(rect, m_currentPixmap.copy(rect));
                 }
                 m_rendererPixmap = pix;
                 break;
@@ -176,20 +176,20 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
             case Module::LeftToRightEffect:
             {
                 QPixmap pix(m_previousPixmap);
-                QPainter paint(&pix);
-                paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
+                QPainter painter(&pix);
+                painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
                 const QRect rect(0, 0, width() * m_currentValue / 100.0, height());
-                paint.drawPixmap(rect, m_currentPixmap.copy(rect));
+                painter.drawPixmap(rect, m_currentPixmap.copy(rect));
                 m_rendererPixmap = pix;
                 break;
             }
             case Module::TopToBottomEffect:
             {
                 QPixmap pix(m_previousPixmap);
-                QPainter paint(&pix);
-                paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
+                QPainter painter(&pix);
+                painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
                 const QRect rect(0, 0, width(), height() * m_currentValue / 100.0);
-                paint.drawPixmap(rect, m_currentPixmap.copy(rect));
+                painter.drawPixmap(rect, m_currentPixmap.copy(rect));
                 m_rendererPixmap = pix;
                 break;
             }

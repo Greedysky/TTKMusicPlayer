@@ -263,7 +263,7 @@ void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
         pix.load(":/image/lb_default_art");
     }
 
-    pix = MusicUtils::Image::pixmapToRound(pix, QSize(150, 150), 100, 100);
+    pix = MusicUtils::Image::roundedPixmap(pix, QSize(150, 150), 100, 100);
     m_ui->artistLabel->setPixmap(pix);
     m_ui->artistLabel->start();
 }

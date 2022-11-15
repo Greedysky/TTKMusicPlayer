@@ -1,8 +1,6 @@
 #include "musicbackgroundmanager.h"
 #include "musicstringutils.h"
 
-#define MAX_INDEX 5
-
 MusicBackgroundManager::MusicBackgroundManager()
     : m_currentIndex(0)
 {
@@ -19,11 +17,12 @@ void MusicBackgroundManager::setArtistName(const QString &name)
 
     m_photos.clear();
     const QString &filter = BACKGROUND_DIR_FULL + (m_currentArtistName = sName) + "%1" + SKN_FILE;
-    for(int i = 0; i < MAX_INDEX; ++i)
+    for(int i = 0; i < MAX_IMAGE_COUNTER; ++i)
     {
-        if(QFile::exists(filter.arg(i)))
+        const QString &path = filter.arg(i);
+        if(QFile::exists(path))
         {
-            m_photos << filter.arg(i);
+            m_photos << path;
         }
     }
     Q_EMIT artistNameChanged();

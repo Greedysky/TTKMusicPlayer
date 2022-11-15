@@ -4,17 +4,17 @@
 #include <QBuffer>
 #include <QPainter>
 
-QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, int ratioX, int ratioY)
+QPixmap MusicUtils::Image::roundedPixmap(const QPixmap &input, int ratioX, int ratioY)
 {
-    return pixmapToRound(input, QRect(QPoint(0, 0), input.size()), ratioX, ratioY);
+    return roundedPixmap(input, QRect(QPoint(0, 0), input.size()), ratioX, ratioY);
 }
 
-QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, const QSize &size, int ratioX, int ratioY)
+QPixmap MusicUtils::Image::roundedPixmap(const QPixmap &input, const QSize &size, int ratioX, int ratioY)
 {
-    return pixmapToRound(input, QRect(QPoint(0, 0), size), ratioX, ratioY);
+    return roundedPixmap(input, QRect(QPoint(0, 0), size), ratioX, ratioY);
 }
 
-QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, const QRect &rect, int ratioX, int ratioY)
+QPixmap MusicUtils::Image::roundedPixmap(const QPixmap &input, const QRect &rect, int ratioX, int ratioY)
 {
     if(input.isNull())
     {
@@ -26,7 +26,7 @@ QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, const QRect &rect
     return image;
 }
 
-QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, const QPixmap &mask, const QSize &size)
+QPixmap MusicUtils::Image::roundedPixmap(const QPixmap &input, const QPixmap &mask, const QSize &size)
 {
     if(input.isNull() || mask.isNull())
     {
@@ -38,7 +38,6 @@ QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, const QPixmap &ma
     painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.drawPixmap(0, 0, input.scaled(size));
-
     return image;
 }
 
