@@ -105,18 +105,18 @@ MusicEnhancedPopWidget::~MusicEnhancedPopWidget()
 
 void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
 {
-    setObjectName("EnhancedWidget");
+    setObjectName(className());
     QString style = MusicUIObject::MQSSBtnMagic;
     switch(type)
     {
-        case 0: style += "#EnhancedWidget{ margin-left: 0px; }"; break;
-        case 1: style += "#EnhancedWidget{ margin-left: -48px; }"; break;
-        case 2: style += "#EnhancedWidget{ margin-left: -192px; }"; break;
-        case 3: style += "#EnhancedWidget{ margin-left: -96px; }"; break;
-        case 4: style += "#EnhancedWidget{ margin-left: -144px; }"; break;
+        case 0: style += "#%1{ margin-left: 0px; }"; break;
+        case 1: style += "#%1{ margin-left: -48px; }"; break;
+        case 2: style += "#%1{ margin-left: -192px; }"; break;
+        case 3: style += "#%1{ margin-left: -96px; }"; break;
+        case 4: style += "#%1{ margin-left: -144px; }"; break;
         default: break;
     }
-    setStyleSheet(style);
+    setStyleSheet(style.arg(className()));
 
     const QString &prfix = QString("background-image:url(':/enhance/lb_%1')");
     m_caseButton->setStyleSheet(type ? MusicUIObject::MQSSEnhanceOn : MusicUIObject::MQSSEnhanceOff);
@@ -166,8 +166,8 @@ void MusicEnhancedPopWidget::initialize()
     m_menu->setStyleSheet(MusicUIObject::MQSSMenuStyle05);
 
     m_containWidget->setFixedSize(272, 370);
-    m_containWidget->setObjectName("containWidget");
-    m_containWidget->setStyleSheet(QString("#containWidget{%1%2}").arg(MusicUIObject::MQSSBorderStyle01, "background:url(':/enhance/lb_background')"));
+    m_containWidget->setObjectName("ContainWidget");
+    m_containWidget->setStyleSheet(QString("#ContainWidget{%1%2}").arg(MusicUIObject::MQSSBorderStyle01, "background:url(':/enhance/lb_background')"));
 
     QToolButton *labelButton = new QToolButton(m_containWidget);
     labelButton->setGeometry(80, 20, 126, 40);

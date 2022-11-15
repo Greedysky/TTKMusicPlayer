@@ -66,8 +66,8 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
 MusicVideoView::MusicVideoView(QWidget *parent)
     : QAbstractScrollArea(parent)
 {
-    setObjectName("MusicVideoView");
-    setStyleSheet(QString("#MusicVideoView{%1}").arg(MusicUIObject::MQSSBackgroundStyle02));
+    setObjectName(className());
+    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle02));
 
     m_player = new MusicCoreMPlayer(this);
     m_videoWidget = new MusicViewWidget(this);

@@ -178,8 +178,8 @@ void MusicCommentsWidget::initialize(bool isPain)
 {
     m_isPain = isPain;
 
-    setObjectName("MainWidnow");
-    setStyleSheet(QString("#MainWidnow{%1}").arg(MusicUIObject::MQSSBackgroundStyle14));
+    setObjectName(className());
+    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle14));
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -279,11 +279,11 @@ void MusicCommentsWidget::initialize(bool isPain)
         QScrollArea *scrollArea = new QScrollArea(this);
         MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, contentsWidget, false);
 
-        contentsWidget->setObjectName("contentsWidget");
-        contentsWidget->setStyleSheet(QString("#contentsWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle01));
+        contentsWidget->setObjectName("ContentsWidget");
+        contentsWidget->setStyleSheet(QString("#ContentsWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle01));
         QWidget *view = scrollArea->viewport();
-        view->setObjectName("viewport");
-        view->setStyleSheet(QString("#viewport{%1}").arg(MusicUIObject::MQSSBackgroundStyle01));
+        view->setObjectName("Viewport");
+        view->setStyleSheet(QString("#Viewport{%1}").arg(MusicUIObject::MQSSBackgroundStyle01));
         //
         mainLayout->addWidget(topWidget);
         mainLayout->addWidget(scrollArea);

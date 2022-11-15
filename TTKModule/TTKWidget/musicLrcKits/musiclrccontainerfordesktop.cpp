@@ -196,8 +196,8 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolBarLayout->setContentsMargins(0, 0, 0, 0);
     m_toolBarLayout->addStretch(1);
 
-    m_toolBarWidget->setObjectName("toolBarWidget");
-    m_toolBarWidget->setStyleSheet(QString("#toolBarWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle08));
+    m_toolBarWidget->setObjectName("ToolBarWidget");
+    m_toolBarWidget->setStyleSheet(QString("#ToolBarWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle08));
     m_toolBarWidget->setLayout(m_toolBarLayout);
 
     QPushButton *showMainWindow = new QPushButton(m_toolBarWidget);
@@ -369,7 +369,7 @@ void MusicLrcContainerForDesktop::enterEvent(QtEnterEvent *event)
 
     MusicLrcContainer::enterEvent(event);
     m_toolBarWidget->show();
-    setStyleSheet(QString("#desktopWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle08));
+    setStyleSheet(QString("#DesktopWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle08));
 }
 
 void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
@@ -381,7 +381,7 @@ void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
 
     MusicLrcContainer::leaveEvent(event);
     m_toolBarWidget->hide();
-    setStyleSheet(QString("#desktopWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle01));
+    setStyleSheet(QString("#DesktopWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle01));
 }
 
 void MusicLrcContainerForDesktop::closeEvent(QCloseEvent *event)
@@ -434,9 +434,9 @@ MusicLrcContainerHorizontalDesktop::MusicLrcContainerHorizontalDesktop(QWidget *
     creatToolBarWidget();
 
     QWidget *desktopWidget = new QWidget(this);
-    desktopWidget->setObjectName("desktopWidget");
+    desktopWidget->setObjectName("DesktopWidget");
     m_lrcManagers << new MusicLrcManagerHorizontalDesktop(desktopWidget)
-                        << new MusicLrcManagerHorizontalDesktop(desktopWidget);
+                  << new MusicLrcManagerHorizontalDesktop(desktopWidget);
 
     move(200,  windowSize.height() - height() - 200);
     setFixedSize(m_geometry.x(), 2 * m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT);
@@ -515,9 +515,9 @@ MusicLrcContainerVerticalDesktop::MusicLrcContainerVerticalDesktop(QWidget *pare
     creatToolBarWidget();
 
     QWidget *desktopWidget = new QWidget(this);
-    desktopWidget->setObjectName("desktopWidget");
+    desktopWidget->setObjectName("DesktopWidget");
     m_lrcManagers << new MusicLrcManagerVerticalDesktop(desktopWidget)
-                        << new MusicLrcManagerVerticalDesktop(desktopWidget);
+                  << new MusicLrcManagerVerticalDesktop(desktopWidget);
 
     move(200, 75);
     setFixedSize(2 * m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT, m_geometry.x());

@@ -5,8 +5,8 @@
 MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     : QLabel(parent)
 {
-    setObjectName("MainWidnow");
-    setStyleSheet(QString("#MainWidnow{%1}").arg(MusicUIObject::MQSSBackgroundStyle14));
+    setObjectName(className());
+    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle14));
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(10, 0, 10, 0);
@@ -41,12 +41,12 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     QScrollArea *scrollArea = new QScrollArea(this);
     MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, m_plainText, false);
 
-    m_plainText->setObjectName("contentsWidget");
-    m_plainText->setStyleSheet(QString("#contentsWidget{%1%2%3}").arg(MusicUIObject::MQSSBackgroundStyle01, MusicUIObject::MQSSColorStyle06, MusicUIObject::MQSSFontStyle03));
+    m_plainText->setObjectName("ContentsWidget");
+    m_plainText->setStyleSheet(QString("#ContentsWidget{%1%2%3}").arg(MusicUIObject::MQSSBackgroundStyle01, MusicUIObject::MQSSColorStyle06, MusicUIObject::MQSSFontStyle03));
 
     QWidget *view = scrollArea->viewport();
-    view->setObjectName("viewport");
-    view->setStyleSheet(QString("#viewport{%1}").arg(MusicUIObject::MQSSBackgroundStyle01));
+    view->setObjectName("Viewport");
+    view->setStyleSheet(QString("#Viewport{%1}").arg(MusicUIObject::MQSSBackgroundStyle01));
 
     mainLayout->addWidget(topWidget);
     mainLayout->addWidget(scrollArea);

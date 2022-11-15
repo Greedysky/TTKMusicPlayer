@@ -119,8 +119,8 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     : MusicAbstractFloatWidget(parent),
       m_currentIndex(0)
 {
-    setObjectName("MusicLrcFloatPhotoWidget");
-    setStyleSheet(QString("#MusicLrcFloatPhotoWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle14));
+    setObjectName(className());
+    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle14));
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     setLayout(layout);

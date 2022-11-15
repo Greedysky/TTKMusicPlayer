@@ -84,12 +84,12 @@ void MusicSpectrumLayoutWidget::initialize()
     m_exclusive = false;
 
     const QString &style = MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBackgroundStyle12;
-    setObjectName("mianWidget");
-    setStyleSheet(QString("#mianWidget{%1}").arg(style));
+    setObjectName(className());
+    setStyleSheet(QString("#%1{%2}").arg(className(), style));
 
     m_containWidget->setFixedSize(240, 340);
-    m_containWidget->setObjectName("containWidget");
-    m_containWidget->setStyleSheet(QString("#containWidget{%1}").arg(style));
+    m_containWidget->setObjectName("ContainWidget");
+    m_containWidget->setStyleSheet(QString("#ContainWidget{%1}").arg(style));
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
     layout->setContentsMargins(0, 0, 0, 0);

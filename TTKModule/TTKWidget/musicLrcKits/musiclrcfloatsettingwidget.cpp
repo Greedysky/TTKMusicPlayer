@@ -8,8 +8,8 @@
 MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     : MusicAbstractFloatWidget(parent)
 {
-    setObjectName("MusicLrcFloatSettingWidget");
-    setStyleSheet(QString("#MusicLrcFloatSettingWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle08));
+    setObjectName(className());
+    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle08));
 
     QLabel *colorLabel = new QLabel(tr("Color"), this);
     QLabel *sizeLabel = new QLabel(tr("Size"), this);
