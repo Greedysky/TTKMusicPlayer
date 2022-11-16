@@ -43,6 +43,7 @@ class MusicReplayGainWidget;
 }
 class Light;
 class QProcess;
+
 /*! @brief The class of the replay gain widget.
  * @author Greedysky <greedysky@163.com>
  */

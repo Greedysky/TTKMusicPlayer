@@ -96,7 +96,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QGroupBox{border:1px solid #FFF;}</string>
+     <string notr="true">QGroupBox{border:1px solid #FFFFFF;}</string>
     </property>
     <property name="title">
      <string/>

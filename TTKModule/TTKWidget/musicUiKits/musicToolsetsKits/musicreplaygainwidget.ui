@@ -79,6 +79,54 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
+    <widget class="QWidget" name="ReplayGain">
+     <attribute name="title">
+      <string>ReplayGain</string>
+     </attribute>
+     <layout class="QVBoxLayout" name="replayGainLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>2</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>2</number>
+      </property>
+      <property name="bottomMargin">
+       <number>2</number>
+      </property>
+      <item>
+       <widget class="QWidget" name="gainFuncionts" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <widget class="MusicSongItemSelectedAreaWidget" name="selectedAreaWidget" native="true">
+         <property name="geometry">
+          <rect>
+           <x>420</x>
+           <y>5</y>
+           <width>175</width>
+           <height>25</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
     <widget class="QWidget" name="MP3Gain">
      <property name="styleSheet">
       <string notr="true">QWidget{background:white;}
@@ -399,68 +447,20 @@ QLabel{background:transparent;}</string>
      <zorder>label_7</zorder>
      <zorder>label_8</zorder>
     </widget>
-    <widget class="QWidget" name="ReplayGain">
-     <attribute name="title">
-      <string>ReplayGain</string>
-     </attribute>
-     <layout class="QVBoxLayout" name="replayGainLayout">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <property name="leftMargin">
-       <number>2</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>2</number>
-      </property>
-      <property name="bottomMargin">
-       <number>2</number>
-      </property>
-      <item>
-       <widget class="QWidget" name="gainFuncionts" native="true">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <widget class="MusicSongItemSelectedAreaWidget" name="selectedAreaWidget" native="true">
-         <property name="geometry">
-          <rect>
-           <x>420</x>
-           <y>5</y>
-           <width>175</width>
-           <height>25</height>
-          </rect>
-         </property>
-        </widget>
-       </widget>
-      </item>
-     </layout>
-    </widget>
    </widget>
   </widget>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicReplayGainTableWidget</class>
-   <extends>QTableWidget</extends>
-   <header location="global">musicreplaygainwidget.h</header>
-  </customwidget>
-  <customwidget>
    <class>MusicSongItemSelectedAreaWidget</class>
    <extends>QWidget</extends>
    <header>musicsongitemselectedareawidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicReplayGainTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header location="global">musicreplaygainwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

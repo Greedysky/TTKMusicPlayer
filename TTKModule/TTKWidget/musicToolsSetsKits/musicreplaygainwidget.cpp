@@ -124,8 +124,8 @@ void MusicReplayGainWidget::initialize()
     if(obj && (factory = TTKObject_cast(LightFactory*, obj)))
     {
         m_replayGainWidget = factory->create(this);
-        m_replayGainWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04 + MusicUIObject::MQSSCheckBoxStyle01 + \
-                                          MusicUIObject::MQSSScrollBarStyle03 + MusicUIObject::MQSSProgressBar01 + \
+        m_replayGainWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04 + MusicUIObject::MQSSCheckBoxStyle01 +
+                                          MusicUIObject::MQSSScrollBarStyle03 + MusicUIObject::MQSSProgressBar01 +
                                           MusicUIObject::MQSSHeaderView01);
         m_ui->replayGainLayout->addWidget(m_replayGainWidget);
     }
@@ -185,11 +185,12 @@ void MusicReplayGainWidget::setControlEnabled(bool enable)
 
 void MusicReplayGainWidget::addFileButtonClicked()
 {
-    const QStringList &files = MusicUtils::File::getOpenFileNames(this, "All File(*.*);;MP3 File(*.mp3)");
+    const QStringList &files = MusicUtils::File::getOpenFileNames(this, "MP3 File(*.mp3)");
     if(!files.isEmpty())
     {
         setControlEnabled(false);
         const int orcount = m_paths.count();
+
         for(const QString &path : files)
         {
             if(!m_paths.contains(path))
@@ -269,6 +270,7 @@ void MusicReplayGainWidget::applyButtonClicked()
 
     setControlEnabled(false);
     m_ui->progressBarAll->setRange(0, m_ui->tableWidget->rowCount());
+
     for(int i = 0; i < m_ui->tableWidget->rowCount(); ++i)
     {
         TTKSemaphoreLoop loop;
@@ -277,6 +279,7 @@ void MusicReplayGainWidget::applyButtonClicked()
         m_ui->progressBarAll->setValue(i + 1);
         loop.exec();
     }
+
     setControlEnabled(true);
     rmFilesButtonClicked();
 
@@ -310,6 +313,7 @@ void MusicReplayGainWidget::analysisOutput()
             data.replace("\r\n", QByteArray());
             track = QString(data.trimmed());
         }
+
         if(data.contains(GAIN_ALBUMDB))
         {
             data.replace(GAIN_ALBUMDB, QByteArray());
