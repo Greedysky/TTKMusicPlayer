@@ -2,7 +2,6 @@
 #include <QApplication>
 #include <QTimer>
 #include "metadatamanager.h"
-#include "qmmp.h"
 #include "qmmpsettings.h"
 
 QmmpSettings *QmmpSettings::m_instance = nullptr;

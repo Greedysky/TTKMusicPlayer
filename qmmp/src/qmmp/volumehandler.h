@@ -21,10 +21,8 @@
 #ifndef VOLUMEHANDLER_H
 #define VOLUMEHANDLER_H
 
-#include <QObject>
 #include <QMutex>
 #include <atomic>
-#include "qmmp.h"
 #include "volume.h"
 #include "buffer.h"
 

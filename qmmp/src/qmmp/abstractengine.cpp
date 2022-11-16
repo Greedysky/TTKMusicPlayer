@@ -6,7 +6,6 @@
 #include "qmmpaudioengine_p.h"
 #include "qmmpplugincache_p.h"
 #include "statehandler.h"
-#include "qmmp.h"
 #include "abstractengine.h"
 
 AbstractEngine::AbstractEngine(QObject *parent)

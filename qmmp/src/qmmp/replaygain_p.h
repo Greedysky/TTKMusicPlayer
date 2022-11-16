@@ -24,7 +24,6 @@
 #include <QMap>
 #include "effect.h"
 #include "qmmpsettings.h"
-#include "qmmp.h"
 
 /*! @internal
  * @author Ilya Kotov <forkotov02@ya.ru>

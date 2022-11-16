@@ -1,7 +1,6 @@
 #include <QDir>
 #include <algorithm>
 #include "qmmpplugincache_p.h"
-#include "qmmp.h"
 #include "fileinputsource_p.h"
 #include "emptyinputsource_p.h"
 #include "inputsource.h"

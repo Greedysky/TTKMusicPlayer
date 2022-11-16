@@ -22,7 +22,6 @@
 #define AUDIOPARAMETERS_H
 
 #include "channelmap.h"
-#include "qmmp.h"
 
 /*! @brief The AudioParameters class keeps information about audio settings.
  * @author Ilya Kotov <forkotov02@ya.ru>

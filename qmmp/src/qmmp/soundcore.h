@@ -25,8 +25,6 @@
 #include "decoder.h"
 #include "output.h"
 #include "visual.h"
-#include "qmmp.h"
-#include "qmmpsettings.h"
 #include "audioparameters.h"
 #include "eqsettings.h"
 #include "trackinfo.h"

@@ -3,7 +3,6 @@
 #include "qmmpsettings.h"
 #include "buffer.h"
 #include "volumehandler.h"
-#include "qmmp.h"
 #include "qmmpplugincache_p.h"
 #include "output.h"
 

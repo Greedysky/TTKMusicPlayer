@@ -24,7 +24,6 @@
 #include <QStringList>
 #include <QMap>
 #include <QIODevice>
-#include "qmmp.h"
 #include "audioparameters.h"
 #include "channelmap.h"
 #include "regularwrapper.h"
