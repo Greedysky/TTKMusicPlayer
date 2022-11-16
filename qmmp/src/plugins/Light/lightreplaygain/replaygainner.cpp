@@ -24,7 +24,6 @@ ReplayGainner::~ReplayGainner()
 
 bool ReplayGainner::prepare(const QString &url)
 {
-    m_isPending = false;
     deinit();
 
     m_url = url;
@@ -85,7 +84,6 @@ bool ReplayGainner::prepare(const QString &url)
     m_source = source;
     m_stop = false;
     m_hasValues = false;
-    m_isPending = true;
     return true;
 }
 
@@ -94,16 +92,6 @@ void ReplayGainner::stop()
     m_mutex.lock();
     m_stop = true;
     m_mutex.unlock();
-}
-
-bool ReplayGainner::isRunning() const
-{
-    return m_isRunning;
-}
-
-bool ReplayGainner::isPending() const
-{
-    return m_isPending;
 }
 
 bool ReplayGainner::hasValues() const
@@ -145,14 +133,11 @@ void ReplayGainner::run()
 {
     if(m_stop)
     {
-        m_isPending = false;
         return;
     }
 
     QString name = m_url.section("/", -1);
     qDebug("ReplayGainner: [%s] staring thread", qPrintable(name));
-    m_isRunning = true;
-    m_isPending = false;
     bool error = false;
 
     AudioParameters ap = m_decoder->audioParameters();
@@ -180,7 +165,7 @@ void ReplayGainner::run()
     {
         len = m_decoder->read(char_buf, buf_size);
 
-        if(len < 0)
+        if(len < 0 || totalSamples == 0)
         {
             error = true;
             break;
@@ -247,7 +232,6 @@ void ReplayGainner::run()
     }
 
     deinit();
-    m_isRunning = false;
     emit finished(m_url);
 }
 

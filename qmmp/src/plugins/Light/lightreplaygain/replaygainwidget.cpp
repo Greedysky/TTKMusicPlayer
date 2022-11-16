@@ -26,7 +26,8 @@ struct ReplayGainInfoItem
 };
 
 ReplayGainWidget::ReplayGainWidget(QWidget *parent)
-    : Light(parent)
+    : Light(parent),
+      m_scannerIndex(0)
 {
     m_ui.setupUi(this);
     m_ui.tableWidget->verticalHeader()->setDefaultSectionSize(fontMetrics().height() + 3);
@@ -60,7 +61,7 @@ void ReplayGainWidget::calculateButtonClicked()
     m_ui.writeButton->setEnabled(false);
     for(int i = 0; i < m_ui.tableWidget->rowCount(); ++i)
     {
-        QString url = m_ui.tableWidget->item(i, 0)->data(Qt::UserRole).toString();
+        const QString &url = m_ui.tableWidget->item(i, 0)->data(Qt::UserRole).toString();
         ReplayGainner *scanner = new ReplayGainner();
         m_ui.tableWidget->item(i, 0)->setData(FILE_SKIPPED, false);
 
@@ -75,7 +76,7 @@ void ReplayGainWidget::calculateButtonClicked()
         {
             qDebug("ReplayGainWidget: skipping scanned file..");
             m_ui.tableWidget->item(i, 0)->setData(FILE_SKIPPED, true);
-            QMap<Qmmp::ReplayGainKey, double> rg = scanner->oldReplayGainInfo();
+            const QMap<Qmmp::ReplayGainKey, double> &rg = scanner->oldReplayGainInfo();
             m_ui.tableWidget->setItem(i, 2, new QTableWidgetItem(tr("%1 dB").arg(rg.value(Qmmp::REPLAYGAIN_TRACK_GAIN))));
             m_ui.tableWidget->setItem(i, 3, new QTableWidgetItem(tr("%1 dB").arg(rg.value(Qmmp::REPLAYGAIN_ALBUM_GAIN))));
             m_ui.tableWidget->setItem(i, 4, new QTableWidgetItem(QString::number(rg.value(Qmmp::REPLAYGAIN_TRACK_PEAK))));
@@ -101,7 +102,7 @@ void ReplayGainWidget::scanFinished(const QString &url)
             continue;
         }
 
-        ReplayGainner *scanner = findScannerByUrl(url);
+        const ReplayGainner *scanner = findScannerByUrl(url);
         if(!scanner)
         {
             qFatal("ReplayGainWidget: unable to find scanner by URL!");
@@ -112,16 +113,7 @@ void ReplayGainWidget::scanFinished(const QString &url)
         break;
     }
 
-    bool stopped = true;
-    for(ReplayGainner *scanner : qAsConst(m_scanners))
-    {
-        if(scanner->isRunning() || scanner->isPending())
-        {
-            stopped = false;
-        }
-    }
-
-    if(stopped)
+    if(++m_scannerIndex == m_scanners.count())
     {
         qDebug("ReplayGainWidget: all threads are finished");
         QThreadPool::globalInstance()->waitForDone();
@@ -140,13 +132,12 @@ void ReplayGainWidget::scanFinished(const QString &url)
             item->info[Qmmp::REPLAYGAIN_TRACK_PEAK] = scanner->peak();
             item->url = scanner->url();
             item->handle = scanner->handle();
-            QString album = albumName(item->url);
-            itemGroupMap.insert(album, item);
+            itemGroupMap.insert(albumName(item->url), item);
         }
         //calculate album peak and gain
         for(const QString &album : itemGroupMap.keys())
         {
-            QList<ReplayGainInfoItem*> items = itemGroupMap.values(album);
+            const QList<ReplayGainInfoItem*> &items = itemGroupMap.values(album);
             GainHandle_t **a = (GainHandle_t **) malloc(items.count()*sizeof(GainHandle_t *));
             double album_peak = 0;
 
@@ -156,7 +147,7 @@ void ReplayGainWidget::scanFinished(const QString &url)
                 album_peak = qMax(items[i]->info[Qmmp::REPLAYGAIN_TRACK_PEAK], album_peak);
             }
 
-            double album_gain = GetAlbumGain(a, items.count());
+            const double album_gain = GetAlbumGain(a, items.count());
             free(a);
 			
             for(ReplayGainInfoItem *item : qAsConst(items))
@@ -165,6 +156,8 @@ void ReplayGainWidget::scanFinished(const QString &url)
                 item->info[Qmmp::REPLAYGAIN_ALBUM_GAIN] = album_gain;
             }
         }
+
+        m_scannerIndex = 0;
         //clear scanners
         qDeleteAll(m_scanners);
         m_scanners.clear();
@@ -173,17 +166,18 @@ void ReplayGainWidget::scanFinished(const QString &url)
         m_replayGainItemList.clear();
         //update table
         m_replayGainItemList = itemGroupMap.values();
+
         for(int i = 0; i < m_ui.tableWidget->rowCount(); ++i)
         {
-            QString url = m_ui.tableWidget->item(i, 0)->data(Qt::UserRole).toString();
+            const QString &url = m_ui.tableWidget->item(i, 0)->data(Qt::UserRole).toString();
             bool found = false;
             for(const ReplayGainInfoItem *item : qAsConst(m_replayGainItemList))
             {
                 if(item->url == url)
                 {
                     found = true;
-                    double album_gain = item->info[Qmmp::REPLAYGAIN_ALBUM_GAIN];
-                    double album_peak = item->info[Qmmp::REPLAYGAIN_ALBUM_PEAK];
+                    const double album_gain = item->info[Qmmp::REPLAYGAIN_ALBUM_GAIN];
+                    const double album_peak = item->info[Qmmp::REPLAYGAIN_ALBUM_PEAK];
                     m_ui.tableWidget->setItem(i, 3, new QTableWidgetItem(tr("%1 dB").arg(album_gain)));
                     m_ui.tableWidget->setItem(i, 5, new QTableWidgetItem(QString::number(album_peak)));
                 }
@@ -197,7 +191,6 @@ void ReplayGainWidget::scanFinished(const QString &url)
 
         //clear items
         itemGroupMap.clear();
-
         m_ui.writeButton->setEnabled(true);
     }
 }
@@ -209,6 +202,7 @@ void ReplayGainWidget::open(const QString &track)
     {
         return;
     }
+
     //skip unsupported files
     if(!MetaDataManager::instance()->supports(track))
     {
@@ -217,12 +211,12 @@ void ReplayGainWidget::open(const QString &track)
 
     const QString &ext = track.section(".", -1).toLower();
     if((ext == "mp3") || //mpeg 1 layer 3
-            ext == "flac" || //native flac
-            ext == "oga" || //ogg flac
-            ext == "ogg" ||  //ogg vorbis
-            ext == "wv" || //wavpack
-            ext == "m4a" || //aac (mp4 container)
-            ext == "opus")
+        ext == "flac" || //native flac
+        ext == "oga" || //ogg flac
+        ext == "ogg" ||  //ogg vorbis
+        ext == "wv" || //wavpack
+        ext == "m4a" || //aac (mp4 container)
+        ext == "opus")
     {
         QTableWidgetItem *item = new QTableWidgetItem(track);
         item->setData(Qt::UserRole, track);
@@ -259,6 +253,7 @@ void ReplayGainWidget::stop()
     }
 
     QThreadPool::globalInstance()->waitForDone();
+    m_scannerIndex = 0;
     qDeleteAll(m_scanners);
     m_scanners.clear();
 }
@@ -380,18 +375,14 @@ void ReplayGainWidget::writeMP4Tag(TagLib::MP4::Tag *tag, ReplayGainInfoItem *it
 {
     if(m_ui.trackCheckBox->isChecked())
     {
-        tag->setItem("----:com.apple.iTunes:replaygain_track_gain",
-                     gainToStringList(item->info[Qmmp::REPLAYGAIN_TRACK_GAIN]));
-        tag->setItem("----:com.apple.iTunes:replaygain_track_peak",
-                     gainToStringList(item->info[Qmmp::REPLAYGAIN_TRACK_PEAK]));
+        tag->setItem("----:com.apple.iTunes:replaygain_track_gain", gainToStringList(item->info[Qmmp::REPLAYGAIN_TRACK_GAIN]));
+        tag->setItem("----:com.apple.iTunes:replaygain_track_peak", gainToStringList(item->info[Qmmp::REPLAYGAIN_TRACK_PEAK]));
     }
 
     if(m_ui.albumCheckBox->isChecked())
     {
-        tag->setItem("----:com.apple.iTunes:replaygain_album_gain",
-                     gainToStringList(item->info[Qmmp::REPLAYGAIN_ALBUM_GAIN]));
-        tag->setItem("----:com.apple.iTunes:replaygain_album_peak",
-                     gainToStringList(item->info[Qmmp::REPLAYGAIN_ALBUM_PEAK]));
+        tag->setItem("----:com.apple.iTunes:replaygain_album_gain", gainToStringList(item->info[Qmmp::REPLAYGAIN_ALBUM_GAIN]));
+        tag->setItem("----:com.apple.iTunes:replaygain_album_peak", gainToStringList(item->info[Qmmp::REPLAYGAIN_ALBUM_PEAK]));
     }
 }
 

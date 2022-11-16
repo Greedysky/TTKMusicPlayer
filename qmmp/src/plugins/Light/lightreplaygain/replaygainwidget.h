@@ -83,6 +83,7 @@ private:
     void writeVorbisComment(TagLib::Ogg::XiphComment *tag, ReplayGainInfoItem *item);
     void writeMP4Tag(TagLib::MP4::Tag *tag, ReplayGainInfoItem *item);
 
+    int m_scannerIndex;
     Ui::ReplayGainWidget m_ui;
     QList<ReplayGainner *> m_scanners;
     QList<ReplayGainInfoItem*> m_replayGainItemList;

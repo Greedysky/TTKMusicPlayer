@@ -40,8 +40,6 @@ public:
     bool prepare(const QString &url);
     void stop();
 
-    bool isRunning() const;
-    bool isPending() const;
     bool hasValues() const;
 
     QMap<Qmmp::ReplayGainKey, double> oldReplayGainInfo() const;
@@ -61,7 +59,7 @@ private:
     InputSource *m_source = nullptr;
     Decoder *m_decoder = nullptr;
     QMutex m_mutex;
-    bool m_stop = false, m_isRunning = false, m_isPending = false, m_hasValues = false;
+    bool m_stop = false, m_hasValues = false;
     QString m_url;
     double m_gain = 0.0;
     double m_peak = 0.0;
