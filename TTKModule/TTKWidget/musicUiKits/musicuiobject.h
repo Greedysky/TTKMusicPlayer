@@ -225,6 +225,12 @@ namespace MusicUIObject
     const QString MQSSPushButtonStyle12 = " \
             QPushButton{ background-color:#DDDDDD; color:#222222; }";
 
+    const QString MQSSPushButtonStyle13 = " \
+            QPushButton{ border-radius:0px; background-color:#158FE1; color:white; }";
+
+    const QString MQSSPushButtonStyle14 = " \
+            QPushButton{ border-radius:0px; background-color:#BFBFBF; color:white; }";
+
 ///RadioButton
     const QString MQSSRadioButtonStyle01 = " \
             QRadioButton{ background-color:transparent; } \

@@ -23,7 +23,6 @@ static void cleanAppicationCache()
     ///clean thirdparty process
     QStringList process;
     process << MAKE_TRANSFORM_PREFIX
-            << MAKE_KRC2LRC_PREFIX
             << MAKE_PLAYER_PREFIX
             << MAKE_GAIN_PREFIX;
     TTKObject::killProcessByName(process);

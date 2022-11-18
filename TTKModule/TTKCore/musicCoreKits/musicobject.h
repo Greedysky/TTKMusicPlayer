@@ -111,14 +111,12 @@
 
 
 #define MAKE_TRANSFORM_PREFIX   TTK_STRCAT("avconv", TKX_FILE)
-#define MAKE_KRC2LRC_PREFIX     TTK_STRCAT("avk2l", TKX_FILE)
 #define MAKE_PLAYER_PREFIX      TTK_STRCAT("avplayer", TKX_FILE)
 #define MAKE_GAIN_PREFIX        TTK_STRCAT("avgain", TKX_FILE)
 
 
 #define MAKE_CONFIG_DIR         TTK_STRCAT(PLUGINS_DIR, CONFIG_DIR)
 #define MAKE_TRANSFORM          TTK_STRCAT(PLUGINS_DIR, MAKE_TRANSFORM_PREFIX)
-#define MAKE_KRC2LRC            TTK_STRCAT(PLUGINS_DIR, MAKE_KRC2LRC_PREFIX)
 #define MAKE_PLAYER             TTK_STRCAT(PLUGINS_DIR, MAKE_PLAYER_PREFIX)
 #define MAKE_GAIN               TTK_STRCAT(PLUGINS_DIR, MAKE_GAIN_PREFIX)
 
@@ -164,7 +162,6 @@
 
 #define MAKE_CONFIG_DIR_FULL    MusicObject::applicationPath() + MAKE_CONFIG_DIR
 #define MAKE_TRANSFORM_FULL     MusicObject::applicationPath() + MAKE_TRANSFORM
-#define MAKE_KRC2LRC_FULL       MusicObject::applicationPath() + MAKE_KRC2LRC
 #define MAKE_PLAYER_FULL        MusicObject::applicationPath() + MAKE_PLAYER
 #define MAKE_GAIN_FULL          MusicObject::applicationPath() + MAKE_GAIN
 

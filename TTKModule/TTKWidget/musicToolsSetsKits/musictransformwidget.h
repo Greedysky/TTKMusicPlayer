@@ -21,8 +21,6 @@
 
 #include "musicabstractmovedialog.h"
 
-#define LINE_WIDTH 380
-
 class QProcess;
 
 namespace Ui {
@@ -40,7 +38,7 @@ public:
     enum class Module
     {
         Music,  /*!< Music module*/
-        Lrc     /*!< Lrc module*/
+        Krc     /*!< Krc module*/
     };
 
     /*!
@@ -71,9 +69,9 @@ public Q_SLOTS:
      */
     void folderBoxChecked();
     /*!
-     * Transform krc file to lrc file.
+     * Set diff button clicked by index.
      */
-    void krc2lrcBoxChecked(bool check);
+    void buttonClicked(int index);
     /*!
      * Override exec function.
      */
@@ -91,11 +89,7 @@ private:
     /*!
      * Start a process to transform.
      */
-    bool processTransform(const QString &para);
-    /*!
-     * Set music control enable or false when trans lrc.
-     */
-    void setMusicCheckedControl(bool enable);
+    bool processTransform();
     /*!
      * Set control enable false when it begin.
      */

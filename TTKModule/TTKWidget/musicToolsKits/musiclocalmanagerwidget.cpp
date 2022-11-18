@@ -213,8 +213,6 @@ void MusicLocalManagerSongsTableWidget::contextMenuEvent(QContextMenuEvent *even
     menu.exec(QCursor::pos());
 }
 
-#define TAB_BUTTON_ON   "QPushButton{ border-radius:0px; background-color:#158FE1; color:white; }"
-#define TAB_BUTTON_OFF  "QPushButton{ border-radius:0px; background-color:#BFBFBF; color:white; }"
 
 MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     : QWidget(parent),
@@ -288,31 +286,31 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
 
     QPushButton *songButton = new QPushButton(tr("Song"), functionWidget);
     songButton->setFixedSize(90, 30);
-    songButton->setStyleSheet(TAB_BUTTON_ON);
+    songButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle13);
     songButton->setCursor(QCursor(Qt::PointingHandCursor));
     tabWidgetLayout->addWidget(songButton);
 
     QPushButton *artistButton = new QPushButton(tr("Artist"), functionWidget);
     artistButton->setFixedSize(90, 30);
-    artistButton->setStyleSheet(TAB_BUTTON_OFF);
+    artistButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle14);
     artistButton->setCursor(QCursor(Qt::PointingHandCursor));
     tabWidgetLayout->addWidget(artistButton);
 
     QPushButton *albumButton = new QPushButton(tr("Album"), functionWidget);
     albumButton->setFixedSize(90, 30);
-    albumButton->setStyleSheet(TAB_BUTTON_OFF);
+    albumButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle14);
     albumButton->setCursor(QCursor(Qt::PointingHandCursor));
     tabWidgetLayout->addWidget(albumButton);
 
     QPushButton *yearButton = new QPushButton(tr("Year"), functionWidget);
     yearButton->setFixedSize(90, 30);
-    yearButton->setStyleSheet(TAB_BUTTON_OFF);
+    yearButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle14);
     yearButton->setCursor(QCursor(Qt::PointingHandCursor));
     tabWidgetLayout->addWidget(yearButton);
 
     QPushButton *genreButton = new QPushButton(tr("Genre"), functionWidget);
     genreButton->setFixedSize(90, 30);
-    genreButton->setStyleSheet(TAB_BUTTON_OFF);
+    genreButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle14);
     genreButton->setCursor(QCursor(Qt::PointingHandCursor));
     tabWidgetLayout->addWidget(genreButton);
     tabWidgetLayout->addStretch(1);
@@ -386,7 +384,7 @@ void MusicLocalManagerWidget::typeIndexChanged(int index)
 
     for(int i = 0; i < buttons.count(); ++i)
     {
-        buttons[i]->setStyleSheet(i == index ? TAB_BUTTON_ON : TAB_BUTTON_OFF);
+        buttons[i]->setStyleSheet(i == index ? MusicUIObject::MQSSPushButtonStyle13 : MusicUIObject::MQSSPushButtonStyle14);
     }
 
     switch(index)
