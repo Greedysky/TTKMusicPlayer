@@ -124,7 +124,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     m_artistLabel = new QLabel(this);
     m_artistLabel->setAlignment(Qt::AlignCenter);
-    m_artistLabel->setStyleSheet(MusicUIObject::MQSSColorStyle02 + MusicUIObject::MQSSBackgroundStyle06);
+    m_artistLabel->setStyleSheet(MusicUIObject::MQSSColorStyle12 + MusicUIObject::MQSSBorderStyle07 + MusicUIObject::MQSSBackgroundStyle06);
     layout->addWidget(m_artistLabel);
 
     QWidget *areaWidget = new QWidget(this);

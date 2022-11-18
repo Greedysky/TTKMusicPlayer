@@ -65,6 +65,9 @@ namespace MusicUIObject
     const QString MQSSColorStyle11 = " \
             color:#000000;";
 
+    const QString MQSSColorStyle12 = " \
+            color:#FFF697;";
+
 ///Background
     const QString MQSSBackgroundStyle01 = " \
             background-color:transparent; " +
@@ -127,6 +130,9 @@ namespace MusicUIObject
 
     const QString MQSSBorderStyle06 = " \
             border-radius:3px;";
+
+    const QString MQSSBorderStyle07 = " \
+            border-top-left-radius:5px; border-top-right-radius:5px;";
 
 ///Font
     const QString MQSSFontStyle01 = " \

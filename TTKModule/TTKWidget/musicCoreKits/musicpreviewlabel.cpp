@@ -125,10 +125,9 @@ MusicThemeLineLabel::MusicThemeLineLabel(QWidget *parent)
 
 void MusicThemeLineLabel::paintEvent(QPaintEvent *)
 {
-    QPainter painter(this);
-
     const int w = MusicUtils::Widget::fontTextWidth(font(), text()) + 15;
 
+    QPainter painter(this);
     painter.setFont(font());
     painter.drawText(rect(), Qt::AlignLeft | Qt::AlignVCenter, text());
 
