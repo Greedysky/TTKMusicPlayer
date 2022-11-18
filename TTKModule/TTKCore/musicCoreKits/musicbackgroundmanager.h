@@ -124,11 +124,11 @@ Q_SIGNALS:
      */
     void backgroundChanged();
     /*!
-     * New artist has been set emit.
+     * New artist has been set.
      */
     void artistNameChanged();
     /*!
-     * User selected index changed emit.
+     * User selected index changed.
      */
     void selectIndexChanged();
 

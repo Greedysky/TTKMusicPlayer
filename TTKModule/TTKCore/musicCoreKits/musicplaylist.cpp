@@ -115,18 +115,6 @@ void MusicPlaylist::add(int toolIndex, const QStringList &items)
     }
 }
 
-void MusicPlaylist::add(const MusicPlayItem &item)
-{
-    clear();
-    m_mediaList << item;
-}
-
-void MusicPlaylist::add(const MusicPlayItemList &items)
-{
-    clear();
-    m_mediaList = items;
-}
-
 void MusicPlaylist::append(int toolIndex, const QString &content)
 {
     m_mediaList << MusicPlayItem(toolIndex, content);
@@ -138,16 +126,6 @@ void MusicPlaylist::append(int toolIndex, const QStringList &items)
     {
         m_mediaList << MusicPlayItem(toolIndex, path);
     }
-}
-
-void MusicPlaylist::append(const MusicPlayItem &item)
-{
-    m_mediaList << item;
-}
-
-void MusicPlaylist::append(const MusicPlayItemList &items)
-{
-    m_mediaList << items;
 }
 
 void MusicPlaylist::appendQueue(int toolIndex, const QString &content)

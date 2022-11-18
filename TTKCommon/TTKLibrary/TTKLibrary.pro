@@ -68,6 +68,7 @@ HEADERS += \
     $$PWD/ttkglobalhelper.h \
     $$PWD/ttksemaphoreloop.h \
     $$PWD/ttksuperenum.h \
+    $$PWD/ttktabbutton.h \
     $$PWD/ttktime.h \
     $$PWD/ttktoastlabel.h
 
@@ -85,6 +86,7 @@ SOURCES += \
     $$PWD/ttkglobalhelper.cpp \
     $$PWD/ttksemaphoreloop.cpp \
     $$PWD/ttksuperenum.cpp \
+    $$PWD/ttktabbutton.cpp \
     $$PWD/ttktime.cpp \
     $$PWD/ttktoastlabel.cpp
 

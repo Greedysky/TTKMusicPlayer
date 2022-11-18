@@ -43,7 +43,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Widget close it emit.
+     * Widget close it.
      */
     void widgetClose();
 

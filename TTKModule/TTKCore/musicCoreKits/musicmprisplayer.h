@@ -164,7 +164,7 @@ private Q_SLOTS:
      */
     void elapsedChanged(qint64 elapsed);
     /*!
-     * Current play mode changed emit.
+     * Current play mode changed.
      */
     void playbackModeChanged();
 

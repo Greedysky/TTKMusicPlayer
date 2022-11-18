@@ -81,7 +81,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Lock current desktop lrc state changed emit.
+     * Lock current desktop lrc state changed.
      */
     void setWindowLockedChanged(bool lock);
 

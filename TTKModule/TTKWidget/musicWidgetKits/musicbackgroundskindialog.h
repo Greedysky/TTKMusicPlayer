@@ -85,7 +85,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Update app background when user change the current background emit.
+     * Update app background when user change the current background.
      */
     void currentTextChanged(const QString &text);
 
@@ -115,7 +115,7 @@ public Q_SLOTS:
      */
     void remoteListWidgetItemClicked(int type, const QString &name);
     /*!
-     * Update app background when user change the current background emit.
+     * Update app background when user change the current background.
      */
     void currentColorChanged(const QString &path);
     /*!

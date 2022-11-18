@@ -74,13 +74,13 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Trigger the item emit.
+     * Trigger the item.
      */
     void trigger(const QString &text);
 
 private Q_SLOTS:
     /*!
-     * User input the enter key emit.
+     * User input the enter key.
      */
     void enterFinished();
 

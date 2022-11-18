@@ -26,6 +26,7 @@ set(MUSIC_HEADERS
   ttkglobalhelper.h
   ttksemaphoreloop.h
   ttksuperenum.h
+  ttktabbutton.h
   ttktime.h
   ttktoastlabel.h
 )
@@ -44,6 +45,7 @@ set(MUSIC_SOURCES
   ttkglobalhelper.cpp
   ttksemaphoreloop.cpp
   ttksuperenum.cpp
+  ttktabbutton.cpp
   ttktime.cpp
   ttktoastlabel.cpp
 )

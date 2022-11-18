@@ -42,7 +42,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Index widget click emit.
+     * Index widget click.
      */
     void clicked(int index);
 

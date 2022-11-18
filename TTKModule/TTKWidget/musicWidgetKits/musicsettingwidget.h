@@ -120,7 +120,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Parameters setting changed emit.
+     * Parameters setting changed.
      */
     void parameterSettingChanged();
 

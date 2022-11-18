@@ -125,14 +125,6 @@ public:
      * Add music media list, not append remember.
      */
     void add(int toolIndex, const QStringList &items);
-    /*!
-     * Add music media list, not append remember.
-     */
-    void add(const MusicPlayItem &item);
-    /*!
-     * Add music media list, not append remember.
-     */
-    void add(const MusicPlayItemList &items);
 
     /*!
      * Append music medias.
@@ -142,14 +134,6 @@ public:
      * Append music medias.
      */
     void append(int toolIndex, const QStringList &items);
-    /*!
-     * Append music media.
-     */
-    void append(const MusicPlayItem &item);
-    /*!
-     * Append music medias.
-     */
-    void append(const MusicPlayItemList &items);
     /*!
      * Append music media by index and content.
      */
@@ -170,11 +154,11 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Current play index changed emit.
+     * Current play index changed.
      */
     void currentIndexChanged(int index);
     /*!
-     * Current play mode changed emit.
+     * Current play mode changed.
      */
     void playbackModeChanged(MusicObject::PlayMode mode);
 

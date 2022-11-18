@@ -37,7 +37,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * User input the enter key emit.
+     * User input the enter key.
      */
     void enterFinished(const QString &text);
 

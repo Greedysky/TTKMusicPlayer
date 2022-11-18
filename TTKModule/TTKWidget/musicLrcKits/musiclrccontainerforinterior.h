@@ -113,7 +113,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * The art background state has changed emit.
+     * The art background state has changed.
      */
     void backgroundChanged();
     /*!

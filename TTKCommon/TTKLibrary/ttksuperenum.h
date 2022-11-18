@@ -28,9 +28,18 @@ public:
     static constexpr int Null = -1;
 
 public:
+    /*!
+     * Object contsructor.
+     */
     TTKSuperEnum(const QString &value);
 
+    /*!
+     * Map key int to string.
+     */
     QString keyToString(int value) const;
+    /*!
+     * Map key string to int.
+     */
     int stringToKey(const QString &name) const;
 
 private:

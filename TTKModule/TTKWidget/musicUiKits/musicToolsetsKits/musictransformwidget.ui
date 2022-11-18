@@ -316,36 +316,14 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="musicButton">
+  <widget class="TTKTabButton" name="tabButton">
    <property name="geometry">
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>100</width>
+     <width>200</width>
      <height>30</height>
     </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>ArrowCursor</cursorShape>
-   </property>
-   <property name="text">
-    <string>Music</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="krcButton">
-   <property name="geometry">
-    <rect>
-     <x>104</x>
-     <y>29</y>
-     <width>100</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>ArrowCursor</cursorShape>
-   </property>
-   <property name="text">
-    <string>Krc</string>
    </property>
   </widget>
   <zorder>background</zorder>
@@ -371,14 +349,19 @@
   <zorder>folderBox</zorder>
   <zorder>loadingLabel</zorder>
   <zorder>label_7</zorder>
-  <zorder>musicButton</zorder>
-  <zorder>krcButton</zorder>
+  <zorder>tabButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>
    <class>MusicGifLabelWidget</class>
    <extends>QWidget</extends>
    <header>musicgiflabelwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TTKTabButton</class>
+   <extends>QWidget</extends>
+   <header>ttktabbutton.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

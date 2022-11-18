@@ -33,8 +33,6 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
 
     m_ui->inputButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->outputButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->musicButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle13);
-    m_ui->krcButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle14);
 
     m_ui->transformButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->inputLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
@@ -45,19 +43,13 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     m_ui->transformButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->folderBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
-
-    QButtonGroup *buttonGroup = new QButtonGroup(this);
-    buttonGroup->addButton(m_ui->musicButton, 0);
-    buttonGroup->addButton(m_ui->krcButton, 1);
-    QtButtonGroupConnect(buttonGroup, this, buttonClicked);
+    m_ui->tabButton->addButtons(QStringList() << tr("Music") << tr("Krc"));
 
 #ifdef Q_OS_UNIX
     m_ui->inputButton->setFocusPolicy(Qt::NoFocus);
     m_ui->outputButton->setFocusPolicy(Qt::NoFocus);
     m_ui->transformButton->setFocusPolicy(Qt::NoFocus);
     m_ui->folderBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->musicButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->krcButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     initialize();
@@ -67,6 +59,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     connect(m_ui->transformButton, SIGNAL(clicked()), SLOT(startTransform()));
     connect(m_process, SIGNAL(finished(int)), SLOT(transformFinish()));
     connect(m_ui->folderBox, SIGNAL(clicked(bool)), SLOT(folderBoxChecked()));
+    connect(m_ui->tabButton, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 }
 
 MusicTransformWidget::~MusicTransformWidget()
@@ -184,9 +177,6 @@ void MusicTransformWidget::buttonClicked(int index)
     m_currentType = TTKStatic_cast(Module, index);
     const bool musicMode = Module::Music == m_currentType;
 
-    m_ui->musicButton->setStyleSheet(musicMode ? MusicUIObject::MQSSPushButtonStyle13 : MusicUIObject::MQSSPushButtonStyle14);
-    m_ui->krcButton->setStyleSheet(!musicMode ? MusicUIObject::MQSSPushButtonStyle13 : MusicUIObject::MQSSPushButtonStyle14);
-
     m_path.clear();
     m_ui->listWidget->clear();
     m_ui->inputLineEdit->clear();
@@ -284,6 +274,5 @@ void MusicTransformWidget::setCheckedControl(bool enable)
     m_ui->outputButton->setEnabled(enable);
     m_ui->folderBox->setEnabled(enable);
     m_ui->transformButton->setEnabled(enable);
-    m_ui->musicButton->setEnabled(enable);
-    m_ui->krcButton->setEnabled(enable);
+    m_ui->tabButton->setButtonEnabled(enable);
 }

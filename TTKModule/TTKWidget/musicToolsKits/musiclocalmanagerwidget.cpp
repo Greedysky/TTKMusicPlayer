@@ -7,6 +7,7 @@
 #include "musicsongmeta.h"
 #include "musicfileutils.h"
 #include "musicformats.h"
+#include "ttktabbutton.h"
 
 #include <QTimer>
 #include <QButtonGroup>
@@ -284,53 +285,14 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     tabWidget->setLayout(tabWidgetLayout);
     mainLayout->addWidget(tabWidget);
 
-    QPushButton *songButton = new QPushButton(tr("Song"), functionWidget);
-    songButton->setFixedSize(90, 30);
-    songButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle13);
-    songButton->setCursor(QCursor(Qt::PointingHandCursor));
-    tabWidgetLayout->addWidget(songButton);
-
-    QPushButton *artistButton = new QPushButton(tr("Artist"), functionWidget);
-    artistButton->setFixedSize(90, 30);
-    artistButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle14);
-    artistButton->setCursor(QCursor(Qt::PointingHandCursor));
-    tabWidgetLayout->addWidget(artistButton);
-
-    QPushButton *albumButton = new QPushButton(tr("Album"), functionWidget);
-    albumButton->setFixedSize(90, 30);
-    albumButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle14);
-    albumButton->setCursor(QCursor(Qt::PointingHandCursor));
-    tabWidgetLayout->addWidget(albumButton);
-
-    QPushButton *yearButton = new QPushButton(tr("Year"), functionWidget);
-    yearButton->setFixedSize(90, 30);
-    yearButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle14);
-    yearButton->setCursor(QCursor(Qt::PointingHandCursor));
-    tabWidgetLayout->addWidget(yearButton);
-
-    QPushButton *genreButton = new QPushButton(tr("Genre"), functionWidget);
-    genreButton->setFixedSize(90, 30);
-    genreButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle14);
-    genreButton->setCursor(QCursor(Qt::PointingHandCursor));
-    tabWidgetLayout->addWidget(genreButton);
-    tabWidgetLayout->addStretch(1);
-
-    QButtonGroup *buttonGroup = new QButtonGroup(this);
-    buttonGroup->addButton(songButton, 0);
-    buttonGroup->addButton(artistButton, 1);
-    buttonGroup->addButton(albumButton, 2);
-    buttonGroup->addButton(yearButton, 3);
-    buttonGroup->addButton(genreButton, 4);
-    QtButtonGroupConnect(buttonGroup, this, typeIndexChanged);
+    TTKTabButton *tabButton = new TTKTabButton(functionWidget);
+    tabButton->addButtons(QStringList() << tr("Song") << tr("Artist") << tr("Album") << tr("Year") << tr("Genre"));
+    tabWidgetLayout->addWidget(tabButton);
+    connect(tabButton, SIGNAL(clicked(int)), SLOT(typeIndexChanged(int)));
 
 #ifdef Q_OS_UNIX
     refresh->setFocusPolicy(Qt::NoFocus);
     button->setFocusPolicy(Qt::NoFocus);
-    songButton->setFocusPolicy(Qt::NoFocus);
-    artistButton->setFocusPolicy(Qt::NoFocus);
-    albumButton->setFocusPolicy(Qt::NoFocus);
-    yearButton->setFocusPolicy(Qt::NoFocus);
-    genreButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     QWidget *centerWidget = new QWidget(mainWidget);
@@ -380,13 +342,6 @@ void MusicLocalManagerWidget::resizeWidget()
 void MusicLocalManagerWidget::typeIndexChanged(int index)
 {
     m_currentIndex = index;
-    const QList<QAbstractButton*> &buttons = TTKObject_cast(QButtonGroup*, sender())->buttons();
-
-    for(int i = 0; i < buttons.count(); ++i)
-    {
-        buttons[i]->setStyleSheet(i == index ? MusicUIObject::MQSSPushButtonStyle13 : MusicUIObject::MQSSPushButtonStyle14);
-    }
-
     switch(index)
     {
         case 0:

@@ -73,7 +73,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Rename item artist label is finised it emit.
+     * Rename item artist label is finised it.
      */
     void renameFinished(const QString &text);
     /*!

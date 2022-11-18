@@ -49,7 +49,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Slider handle release at pos emit.
+     * Slider handle release at pos.
      */
     void sliderReleasedAt(int pos);
 

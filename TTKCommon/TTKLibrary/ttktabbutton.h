@@ -1,8 +1,8 @@
-#ifndef MUSICITEMRENAMEEIDT_H
-#define MUSICITEMRENAMEEIDT_H
+#ifndef TTKTABBUTTON_H
+#define TTKTABBUTTON_H
 
 /***************************************************************************
- * This file is part of the TTK Music Player project
+ * This file is part of the TTK Library Module project
  * Copyright (C) 2015 - 2022 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
@@ -19,51 +19,53 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QLineEdit>
-#include "musicglobaldefine.h"
+#include <QPushButton>
+#include <QButtonGroup>
+#include "ttkglobaldefine.h"
 
-/*! @brief The class of the item rename edit.
+/*! @brief The class of the tab button module.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicItemRenameEidt : public QLineEdit
+class TTK_MODULE_EXPORT TTKTabButton : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicItemRenameEidt)
+    TTK_DECLARE_MODULE(TTKTabButton)
 public:
     /*!
-     * Object contsructor by index and origin name.
+     * Object contsructor.
      */
-    explicit MusicItemRenameEidt(QWidget *parent = nullptr);
-    explicit MusicItemRenameEidt(const QString &text, QWidget *parent = nullptr);
+    explicit TTKTabButton(QWidget *parent = nullptr);
+    ~TTKTabButton();
+
+    /*!
+     * Add button by input titles.
+     */
+    void addButtons(const QStringList &titles);
+    /*!
+     * Set button enable or disable.
+     */
+    void setButtonEnabled(bool enable);
+
+    /*!
+     * Get tab buttons count.
+     */
+    inline int count() const { return m_buttonGroup->buttons().count(); }
 
 Q_SIGNALS:
     /*!
-     * Tool rename is finished it.
+     * Index button click.
      */
-    void renameFinished(const QString &text);
+    void clicked(int index);
 
-public Q_SLOTS:
+private Q_SLOTS:
     /*!
-     * Input text data changed.
+     * Set diff button clicked by index.
      */
-    void textChanged(const QString &text);
-    /*!
-     * Tool rename is finished.
-     */
-    void renameFinished();
-    /*!
-     * Animation close changed.
-     */
-    void animationCloseChanged();
+    void buttonClicked(int index);
 
 private:
-    /*!
-     * Override the widget event.
-     */
-    virtual void focusOutEvent(QFocusEvent *event) override final;
-
-    bool m_focusBlock;
+    QButtonGroup *m_buttonGroup;
 
 };
 
-#endif // MUSICITEMRENAMEEIDT_H
+#endif // TTKTABBUTTON_H

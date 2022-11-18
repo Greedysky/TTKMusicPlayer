@@ -42,11 +42,11 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Current equlizer parameters changed emit.
+     * Current equlizer parameters changed.
      */
     void setEqualizerEffect(const TTKIntList &effect);
     /*!
-     * Set equlizer enable state changed emit.
+     * Set equlizer enable state changed.
      */
     void setEnabledEffect(bool enable);
 
