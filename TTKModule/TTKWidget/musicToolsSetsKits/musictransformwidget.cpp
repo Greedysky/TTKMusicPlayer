@@ -8,7 +8,7 @@
 #include <QSound>
 #include <QProcess>
 
-#define LINE_WIDTH 380
+#define LINE_WIDTH 420
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -153,16 +153,14 @@ void MusicTransformWidget::transformFinish()
             m_ui->listWidget->setToolTip(path);
         }
 
-        if(!processTransform())
+        if(processTransform())
         {
             return;
         }
     }
-    else
-    {
-        setCheckedControl(true);
-        m_ui->loadingLabel->run(false);
-    }
+
+    setCheckedControl(true);
+    m_ui->loadingLabel->run(false);
 }
 
 void MusicTransformWidget::folderBoxChecked()
@@ -206,11 +204,7 @@ int MusicTransformWidget::exec()
 
 QString MusicTransformWidget::transformSongName() const
 {
-    if(m_path.isEmpty())
-    {
-        return QString();
-    }
-    return QFileInfo(m_path[0]).completeBaseName();
+    return m_path.isEmpty() ? QString() : QFileInfo(m_path.front()).completeBaseName();
 }
 
 void MusicTransformWidget::initialize()
@@ -235,7 +229,7 @@ bool MusicTransformWidget::processTransform()
         return false;
     }
 
-    const QString &in = m_path[0].trimmed();
+    const QString &in = m_path.front().trimmed();
     const QString &out = m_ui->outputLineEdit->text().trimmed();
 
     if(in.isEmpty() || out.isEmpty())
@@ -263,7 +257,8 @@ bool MusicTransformWidget::processTransform()
     else
     {
         MusicLrcFromKrc krc;
-        TTK_INFO_STREAM("Krc to lrc state: " << krc.decode(in, out));
+        TTK_INFO_STREAM("Krc to lrc state: " << krc.decode(in, QString("%1%2.%3").arg(out, transformSongName(), LRC_FILE_PREFIX)));
+        transformFinish();
     }
     return true;
 }
