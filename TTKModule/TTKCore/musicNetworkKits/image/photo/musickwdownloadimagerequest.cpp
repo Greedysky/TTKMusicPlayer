@@ -36,7 +36,7 @@ void MusicKWDownLoadCoverRequest::downLoadFinished()
             }
             else
             {
-                if(m_file->open(QIODevice::WriteOnly | QIODevice::Truncate))
+                if(m_file->open(QFile::WriteOnly | QFile::Truncate))
                 {
                     m_file->write(bytes);
                     m_file->close();

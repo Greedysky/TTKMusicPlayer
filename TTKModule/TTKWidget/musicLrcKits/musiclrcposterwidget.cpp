@@ -884,9 +884,9 @@ MusicLrcPosterThemeListWidget::MusicLrcPosterThemeListWidget(QWidget *parent)
 {
     setIconSize(QSize(40, 40));
     setFrameShape(QFrame::NoFrame);
-    setViewMode(QListView::IconMode);
-    setMovement(QListView::Static);
-    setFlow(QListView::TopToBottom);
+    setViewMode(QListWidget::IconMode);
+    setMovement(QListWidget::Static);
+    setFlow(QListWidget::TopToBottom);
     setSelectionMode(QListWidget::SingleSelection);
     setFocusPolicy(Qt::ClickFocus);
     setHorizontalScrollMode(QListWidget::ScrollPerPixel);

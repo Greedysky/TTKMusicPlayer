@@ -31,7 +31,7 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setFrameShape(QFrame::NoFrame);//Set No Border
     setEditTriggers(QTableWidget::NoEditTriggers);//No edit
     setSelectionBehavior(QTableWidget::SelectRows);
-    setSelectionMode(QAbstractItemView::SingleSelection);
+    setSelectionMode(QTableWidget::SingleSelection);
     setFocusPolicy(Qt::NoFocus);
 
     MusicUtils::Widget::setTransparent(this, 50);

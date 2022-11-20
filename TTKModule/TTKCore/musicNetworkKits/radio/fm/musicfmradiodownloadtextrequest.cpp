@@ -10,7 +10,7 @@ void MusicFMRadioDownLoadTextRequest::startRequest()
 {
     if(m_file && (!m_file->exists() || m_file->size() < 4))
     {
-        if(m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
+        if(m_file->open(QFile::WriteOnly | QFile::Truncate | QFile::Text))
         {
             m_speedTimer.start();
 

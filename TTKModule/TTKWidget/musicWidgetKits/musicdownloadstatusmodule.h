@@ -39,7 +39,7 @@ public:
     /*!
      * Check the current song meta data valid.
      */
-    void checkMetaDataValid();
+    void checkMetaDataValid(bool full);
 
 public Q_SLOTS:
     /*!
@@ -56,8 +56,17 @@ public Q_SLOTS:
     void networkConnectionStateChanged(bool state);
 
 private:
+    /*!
+     * Check the current lrc meta data valid.
+     */
     bool checkLrcValid() const;
+    /*!
+     * Check the current artist cover meta data valid.
+     */
     bool checkArtistCoverValid() const;
+    /*!
+     * Check the current artist background meta data valid.
+     */
     bool checkArtistBackgroundValid() const;
 
     bool m_previousState;

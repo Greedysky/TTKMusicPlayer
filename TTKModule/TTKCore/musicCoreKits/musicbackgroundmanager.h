@@ -38,10 +38,6 @@ public:
      * Get current artist name.
      */
     QString artistName() const;
-    /*!
-     * Remove current artist name.
-     */
-    void clearArtistName();
 
     /*!
      * Get artist photo current index.

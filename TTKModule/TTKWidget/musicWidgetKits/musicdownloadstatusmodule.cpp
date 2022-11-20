@@ -16,7 +16,7 @@ MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
     G_CONNECTION_PTR->connect(MusicNetworkThread::className(), className());
 }
 
-void MusicDownloadStatusModule::checkMetaDataValid()
+void MusicDownloadStatusModule::checkMetaDataValid(bool full)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -29,7 +29,7 @@ void MusicDownloadStatusModule::checkMetaDataValid()
         return;
     }
 
-    if(checkLrcValid() && checkArtistCoverValid() && checkArtistBackgroundValid())
+    if(!full && checkLrcValid() && checkArtistCoverValid() && checkArtistBackgroundValid())
     {
         return;
     }
@@ -37,6 +37,7 @@ void MusicDownloadStatusModule::checkMetaDataValid()
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     d->setQueryLite(true);
     d->setQueryAllRecords(false);
+    d->setHeader("mode", full);
     d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, m_parentClass->currentFileName());
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(currentMetaDataDownload()));
 }
@@ -71,19 +72,20 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
         }
     }
 
-    if(!checkLrcValid())
+    const bool mode = d->header("mode").toBool();
+    if(mode || !checkLrcValid())
     {
         ///download lrc
         G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE, this)->startRequest();
     }
 
-    if(!checkArtistCoverValid())
+    if(mode || !checkArtistCoverValid())
     {
         ///download art picture
         G_DOWNLOAD_QUERY_PTR->makeCoverRequest(info.m_coverUrl, ART_DIR_FULL + artistName + SKN_FILE, this)->startRequest();
     }
 
-    if(!checkArtistBackgroundValid())
+    if(mode || !checkArtistBackgroundValid())
     {
         ///download art background picture
         G_DOWNLOAD_QUERY_PTR->makeBackgroundRequest(count == 1 ? info.m_singerName : artistName, artistName, this)->startRequest();

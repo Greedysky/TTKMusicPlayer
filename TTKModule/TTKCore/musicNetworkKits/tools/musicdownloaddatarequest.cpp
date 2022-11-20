@@ -15,7 +15,7 @@ void MusicDownloadDataRequest::startRequest()
 {
     if(m_file && (!m_file->exists() || m_file->size() < 4))
     {
-        if(m_file->open(QIODevice::WriteOnly))
+        if(m_file->open(QFile::WriteOnly))
         {
             startRequest(m_url);
         }
@@ -78,7 +78,7 @@ void MusicDownloadDataRequest::downLoadFinished()
     {
         MusicAbstractNetwork::deleteAll();
         m_redirection = true;
-        m_file->open(QIODevice::WriteOnly);
+        m_file->open(QFile::WriteOnly);
         m_file->resize(0);
         startRequest(redirection.toString());
         return;

@@ -340,11 +340,10 @@ void MusicApplication::showCurrentSong()
     m_ui->showCurrentSong->setText(name);
     m_ui->musicMoreFunction->setCurrentSongName(name);
     //Show the current play song information
-    G_BACKGROUND_PTR->clearArtistName();
-    m_rightAreaWidget->checkMetaDataValid();
     m_bottomAreaWidget->setLabelText(name);
     m_topAreaWidget->setLabelText(name);
     //display current ArtTheme pic
+    m_rightAreaWidget->checkMetaDataValid(false);
     G_BACKGROUND_PTR->setArtistName(currentFileName());
     m_topAreaWidget->musicBackgroundThemeDownloadFinished();
 }
@@ -908,7 +907,7 @@ void MusicApplication::musicCurrentLrcUpdated()
     {
         file.remove();
     }
-    m_rightAreaWidget->checkMetaDataValid();
+    m_rightAreaWidget->checkMetaDataValid(true);
 }
 
 void MusicApplication::resetCurrentSongLrcIndex()

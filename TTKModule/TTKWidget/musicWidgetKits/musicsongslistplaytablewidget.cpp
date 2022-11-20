@@ -648,7 +648,7 @@ void MusicSongsListPlayTableWidget::mouseMoveEvent(QMouseEvent *event)
     {
         m_mouseMoved = true;
         setCursor(QCursor(QPixmap(":/functions/lb_drag_cursor")));
-        setSelectionMode(QAbstractItemView::SingleSelection);
+        setSelectionMode(QTableWidget::SingleSelection);
     }
 }
 
