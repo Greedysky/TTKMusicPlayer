@@ -71,7 +71,6 @@ void MusicConfigManager::readBuffer() const
     G_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnable, readXmlAttributeByTagNameValue("hotkeyEnable"));
     G_SETTING_PTR->setValue(MusicSettingManager::HotkeyValue, readXmlAttributeByTagNameValue("hotkeyValue"));
 
-    G_SETTING_PTR->setValue(MusicSettingManager::ShowInteriorLrc, readXmlAttributeByTagNameValue("showInteriorLrc").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcColor, readXmlAttributeByTagNameValue("lrcColor").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcSize, readXmlAttributeByTagNameValue("lrcSize").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcFamily, readXmlAttributeByTagNameValue("lrcFamily"));
@@ -172,7 +171,6 @@ void MusicConfigManager::writeBuffer()
     const int hotkeyEnable = G_SETTING_PTR->value(MusicSettingManager::HotkeyEnable).toInt();
     const QString &hotkeyValue = G_SETTING_PTR->value(MusicSettingManager::HotkeyValue).toString();
     //
-    const int showInteriorLrc = G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toInt();
     const int showDesktopLrc = G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toInt();
     const int lrcColor = G_SETTING_PTR->value(MusicSettingManager::LrcColor).toInt();
     const int lrcSize = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
@@ -287,7 +285,6 @@ void MusicConfigManager::writeBuffer()
     writeDomElement(hotkeySettingDom, "hotkeyEnable", {"value", hotkeyEnable});
     writeDomElement(hotkeySettingDom, "hotkeyValue", {"value", hotkeyValue});
     //
-    writeDomElement(interiorLrcSettingDom, "showInteriorLrc", {"value", showInteriorLrc});
     writeDomElement(interiorLrcSettingDom, "lrcColor", {"value", lrcColor});
     writeDomElement(interiorLrcSettingDom, "lrcSize", {"value", lrcSize});
     writeDomElement(interiorLrcSettingDom, "lrcFamily", {"value", lrcFamily});

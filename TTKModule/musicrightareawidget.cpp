@@ -105,27 +105,21 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 
 void MusicRightAreaWidget::startDrawLrc() const
 {
-    if(checkSettingParameterValue())
-    {
-       m_lrcForInterior->startDrawLrc();
-       m_lrcForDesktop->startDrawLrc();
-       if(m_lrcForWallpaper)
-       {
-           m_lrcForWallpaper->startDrawLrc();
-       }
-    }
+   m_lrcForInterior->startDrawLrc();
+   m_lrcForDesktop->startDrawLrc();
+   if(m_lrcForWallpaper)
+   {
+       m_lrcForWallpaper->startDrawLrc();
+   }
 }
 
 void MusicRightAreaWidget::stopDrawLrc() const
 {
-    if(checkSettingParameterValue())
+    m_lrcForInterior->stopDrawLrc();
+    m_lrcForDesktop->stopDrawLrc();
+    if(m_lrcForWallpaper)
     {
-       m_lrcForInterior->stopDrawLrc();
-       m_lrcForDesktop->stopDrawLrc();
-       if(m_lrcForWallpaper)
-       {
-           m_lrcForWallpaper->stopDrawLrc();
-       }
+        m_lrcForWallpaper->stopDrawLrc();
     }
 }
 
@@ -147,11 +141,6 @@ void MusicRightAreaWidget::setInteriorLrcVisible(bool status) const
 bool MusicRightAreaWidget::interiorLrcVisible() const
 {
     return m_lrcForInterior->isVisible();
-}
-
-bool MusicRightAreaWidget::checkSettingParameterValue() const
-{
-    return (G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool());
 }
 
 void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const
@@ -185,42 +174,39 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
 
 void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString &path) const
 {
-    if(checkSettingParameterValue())
+    m_lrcForInterior->stopDrawLrc();
+    m_lrcForInterior->setCurrentSongName(name);
+
+    MusicLrcAnalysis::State state;
+    if(FILE_SUFFIX(QFileInfo(path)) == KRC_FILE_PREFIX)
     {
-        m_lrcForInterior->stopDrawLrc();
-        m_lrcForInterior->setCurrentSongName(name);
+        TTK_INFO_STREAM("Current in krc parser mode");
+        state = m_lrcAnalysis->loadFromKrcFile(path);
+    }
+    else
+    {
+        TTK_INFO_STREAM("Current in lrc parser mode");
+        state = m_lrcAnalysis->loadFromLrcFile(path);
+    }
 
-        MusicLrcAnalysis::State state;
-        if(FILE_SUFFIX(QFileInfo(path)) == KRC_FILE_PREFIX)
-        {
-            TTK_INFO_STREAM("Current in krc parser mode");
-            state = m_lrcAnalysis->loadFromKrcFile(path);
-        }
-        else
-        {
-            TTK_INFO_STREAM("Current in lrc parser mode");
-            state = m_lrcAnalysis->loadFromLrcFile(path);
-        }
+    m_lrcForInterior->updateCurrentLrc(state);
+    m_lrcForDesktop->stopDrawLrc();
+    m_lrcForDesktop->setCurrentSongName(name);
 
-        m_lrcForInterior->updateCurrentLrc(state);
-        m_lrcForDesktop->stopDrawLrc();
-        m_lrcForDesktop->setCurrentSongName(name);
+    if(state == MusicLrcAnalysis::State::Failed)
+    {
+        m_lrcForDesktop->updateCurrentLrc(tr("No lrc data file found"), QString(), 0);
+    }
+
+    if(m_lrcForWallpaper)
+    {
+        m_lrcForWallpaper->stopDrawLrc();
+        m_lrcForWallpaper->setCurrentSongName(name);
+        m_lrcForWallpaper->start(true);
 
         if(state == MusicLrcAnalysis::State::Failed)
         {
-            m_lrcForDesktop->updateCurrentLrc(tr("No lrc data file found"), QString(), 0);
-        }
-
-        if(m_lrcForWallpaper)
-        {
-            m_lrcForWallpaper->stopDrawLrc();
-            m_lrcForWallpaper->setCurrentSongName(name);
-            m_lrcForWallpaper->start(true);
-
-            if(state == MusicLrcAnalysis::State::Failed)
-            {
-                m_lrcForWallpaper->updateCurrentLrc(tr("No lrc data file found"));
-            }
+            m_lrcForWallpaper->updateCurrentLrc(tr("No lrc data file found"));
         }
     }
 }
@@ -230,9 +216,9 @@ void MusicRightAreaWidget::setSongSpeedAndSlow(qint64 time) const
     m_lrcForInterior->setSongSpeedChanged(time);
 }
 
-void MusicRightAreaWidget::checkLrcValid() const
+void MusicRightAreaWidget::checkMetaDataValid() const
 {
-    m_downloadStatusObject->checkLrcValid();
+    m_downloadStatusObject->checkMetaDataValid();
 }
 
 void MusicRightAreaWidget::showSettingWidget() const
@@ -297,9 +283,7 @@ void MusicRightAreaWidget::applyParameter()
         m_lrcForWallpaper->applyParameter();
     }
 
-    bool config = G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool();
-    m_lrcForInterior->setVisible(config);
-         config = G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
+    bool config = G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
     m_lrcForDesktop->setVisible(config);
     m_ui->musicDesktopLrc->setChecked(config);
 

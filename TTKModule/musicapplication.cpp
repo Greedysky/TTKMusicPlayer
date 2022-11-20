@@ -341,7 +341,7 @@ void MusicApplication::showCurrentSong()
     m_ui->musicMoreFunction->setCurrentSongName(name);
     //Show the current play song information
     G_BACKGROUND_PTR->clearArtistName();
-    m_rightAreaWidget->checkLrcValid();
+    m_rightAreaWidget->checkMetaDataValid();
     m_bottomAreaWidget->setLabelText(name);
     m_topAreaWidget->setLabelText(name);
     //display current ArtTheme pic
@@ -908,7 +908,7 @@ void MusicApplication::musicCurrentLrcUpdated()
     {
         file.remove();
     }
-    m_rightAreaWidget->checkLrcValid();
+    m_rightAreaWidget->checkMetaDataValid();
 }
 
 void MusicApplication::resetCurrentSongLrcIndex()
@@ -1135,7 +1135,6 @@ void MusicApplication::readSystemConfigFromFile()
     G_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, false);
 #endif
     //Set interior lrc mode always on
-    G_SETTING_PTR->setValue(MusicSettingManager::ShowInteriorLrc, true);
     m_rightAreaWidget->setInteriorLrcVisible(true);
 
     //Set the desktop lrc should be shown

@@ -114,10 +114,6 @@ public:
      */
     void applyParameter();
     /*!
-     * Check the setting has open interior or desktop lrc on or not.
-     */
-    bool checkSettingParameterValue() const;
-    /*!
      * Update current lrc by current time\total time and play state.
      */
     void updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const;
@@ -130,10 +126,9 @@ public:
      */
     void setSongSpeedAndSlow(qint64 time) const;
     /*!
-     * Check the current song already has lrc or not,
-     * if not just download it.
+     * Check the current song meta data valid.
      */
-    void checkLrcValid() const;
+    void checkMetaDataValid() const;
     /*!
      * Show setting widget.
      */

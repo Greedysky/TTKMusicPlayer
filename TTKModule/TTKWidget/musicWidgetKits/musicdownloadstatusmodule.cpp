@@ -16,6 +16,80 @@ MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
     G_CONNECTION_PTR->connect(MusicNetworkThread::className(), className());
 }
 
+void MusicDownloadStatusModule::checkMetaDataValid()
+{
+    if(!G_NETWORK_PTR->isOnline())   //no network connection
+    {
+        return;
+    }
+
+    ///Check there is no opening lyrics display mode
+    if(m_parentClass->checkMusicListCurrentIndex())
+    {
+        return;
+    }
+
+    if(checkLrcValid() && checkArtistCoverValid() && checkArtistBackgroundValid())
+    {
+        return;
+    }
+
+    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
+    d->setQueryLite(true);
+    d->setQueryAllRecords(false);
+    d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, m_parentClass->currentFileName());
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(currentMetaDataDownload()));
+}
+
+void MusicDownloadStatusModule::currentMetaDataDownload()
+{
+    MusicAbstractQueryRequest *d = TTKObject_cast(MusicAbstractQueryRequest*, sender());
+    if(!G_NETWORK_PTR->isOnline() || !d)   //no network connection
+    {
+        return;
+    }
+
+    const MusicObject::MusicSongInformationList songInfos(d->songInfoList());
+    if(songInfos.isEmpty())
+    {
+        showDownLoadInfoFinished("find error");
+        return;
+    }
+
+    const QString &fileName = d->queryValue();
+    const int count = MusicUtils::String::stringSplit(fileName).count();
+    const QString &artistName = MusicUtils::String::artistName(fileName);
+    const QString &songName = MusicUtils::String::songName(fileName);
+
+    MusicObject::MusicSongInformation info = songInfos.front();
+    for(const MusicObject::MusicSongInformation &var : qAsConst(songInfos))
+    {
+        if(var.m_singerName.contains(artistName, Qt::CaseInsensitive) && var.m_songName.contains(songName, Qt::CaseInsensitive))
+        {
+            info = var;
+            break;
+        }
+    }
+
+    if(!checkLrcValid())
+    {
+        ///download lrc
+        G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE, this)->startRequest();
+    }
+
+    if(!checkArtistCoverValid())
+    {
+        ///download art picture
+        G_DOWNLOAD_QUERY_PTR->makeCoverRequest(info.m_coverUrl, ART_DIR_FULL + artistName + SKN_FILE, this)->startRequest();
+    }
+
+    if(!checkArtistBackgroundValid())
+    {
+        ///download art background picture
+        G_DOWNLOAD_QUERY_PTR->makeBackgroundRequest(count == 1 ? info.m_singerName : artistName, artistName, this)->startRequest();
+    }
+}
+
 void MusicDownloadStatusModule::showDownLoadInfoFinished(const QString &bytes)
 {
     ///If the lyrics download finished immediately loaded to display
@@ -41,77 +115,20 @@ void MusicDownloadStatusModule::networkConnectionStateChanged(bool state)
     m_previousState = state;
 }
 
-bool MusicDownloadStatusModule::checkSettingParameterValue() const
+bool MusicDownloadStatusModule::checkLrcValid() const
 {
-    return G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
+    const QString &fileName = m_parentClass->currentFileName();
+    return QFile::exists(MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE);
 }
 
-void MusicDownloadStatusModule::checkLrcValid()
+bool MusicDownloadStatusModule::checkArtistCoverValid() const
 {
-    if(!G_NETWORK_PTR->isOnline())   //no network connection
-    {
-        return;
-    }
-
-    if(checkSettingParameterValue())
-    {
-        ///Check there is no opening lyrics display mode
-       if(m_parentClass->checkMusicListCurrentIndex())
-       {
-           return;
-       }
-
-       const QString &fileName = m_parentClass->currentFileName();
-       ///Check if the file exists
-       if(QFile::exists(MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE))
-       {
-           return;
-       }
-
-       ///Start the request query
-       MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-       d->setQueryLite(true);
-       d->setQueryAllRecords(false);
-       d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, fileName);
-       connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(currentLrcDataDownload()));
-    }
+    const QString &fileName = MusicUtils::String::artistName(m_parentClass->currentFileName());
+    return QFile::exists(ART_DIR_FULL + fileName + SKN_FILE);
 }
 
-void MusicDownloadStatusModule::currentLrcDataDownload()
+bool MusicDownloadStatusModule::checkArtistBackgroundValid() const
 {
-    MusicAbstractQueryRequest *d = TTKObject_cast(MusicAbstractQueryRequest*, sender());
-    if(!G_NETWORK_PTR->isOnline() || !d)   //no network connection
-    {
-        return;
-    }
-
-    const MusicObject::MusicSongInformationList songInfos(d->songInfoList());
-    if(!songInfos.isEmpty())
-    {
-        const QString &fileName = d->queryValue();
-        const int count = MusicUtils::String::stringSplit(fileName).count();
-        const QString &artistName = MusicUtils::String::artistName(fileName);
-        const QString &songName = MusicUtils::String::songName(fileName);
-
-        MusicObject::MusicSongInformation info = songInfos.front();
-        for(const MusicObject::MusicSongInformation &var : qAsConst(songInfos))
-        {
-            if(var.m_singerName.contains(artistName, Qt::CaseInsensitive) && var.m_songName.contains(songName, Qt::CaseInsensitive))
-            {
-                info = var;
-                break;
-            }
-        }
-
-        ///download lrc
-        G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE, this)->startRequest();
-        ///download art picture
-        G_DOWNLOAD_QUERY_PTR->makeCoverRequest(info.m_coverUrl, ART_DIR_FULL + artistName + SKN_FILE, this)->startRequest();
-        ///download big picture
-        G_DOWNLOAD_QUERY_PTR->makeBackgroundRequest(count == 1 ? info.m_singerName : artistName, artistName, this)->startRequest();
-    }
-    else
-    {
-        showDownLoadInfoFinished("find error");
-    }
+    const QString &fileName = MusicUtils::String::artistName(m_parentClass->currentFileName());
+    return QFile::exists(BACKGROUND_DIR_FULL + fileName + "0" + SKN_FILE);
 }

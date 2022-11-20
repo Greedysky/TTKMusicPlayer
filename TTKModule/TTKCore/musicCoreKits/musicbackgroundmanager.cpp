@@ -15,7 +15,6 @@ void MusicBackgroundManager::setArtistName(const QString &name)
         return;
     }
 
-    m_photos.clear();
     const QString &filter = BACKGROUND_DIR_FULL + (m_currentArtistName = artist) + "%1" + SKN_FILE;
     for(int i = 0; i < MAX_IMAGE_COUNTER; ++i)
     {
@@ -36,7 +35,9 @@ QString MusicBackgroundManager::artistName() const
 
 void MusicBackgroundManager::clearArtistName()
 {
+    m_photos.clear();
     m_currentArtistName.clear();
+    m_currentIndex = 0;
 }
 
 void MusicBackgroundManager::indexIncrease()

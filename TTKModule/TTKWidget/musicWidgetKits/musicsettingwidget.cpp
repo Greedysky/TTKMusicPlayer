@@ -214,9 +214,6 @@ void MusicSettingWidget::initialize()
     G_SETTING_PTR->value(MusicSettingManager::DownloadLimitEnable).toInt() == 1 ? m_ui->downloadFullRadioBox->click() : m_ui->downloadLimitRadioBox->click();
 
     //
-    m_ui->showInteriorCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool());
-    m_ui->showInteriorCheckBox->setEnabled(false);
-
     m_ui->fontComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::LrcFamily).toInt());
     m_ui->fontSizeComboBox->setCurrentIndex(MusicLrcDefines().findInteriorLrcIndex(G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt()));
     m_ui->fontTypeComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::LrcType).toInt());
@@ -584,7 +581,6 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverEnable, m_ui->otherScreenSaverCheckBox->isChecked());
 
 
-    G_SETTING_PTR->setValue(MusicSettingManager::ShowInteriorLrc, m_ui->showInteriorCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcColor, m_ui->fontDefaultColorComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcFamily, m_ui->fontComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcSize, m_ui->fontSizeComboBox->currentText());
@@ -922,8 +918,6 @@ void MusicSettingWidget::initDesktopLrcWidget()
 
 void MusicSettingWidget::initInteriorLrcWidget()
 {
-    m_ui->showInteriorCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
-
     MusicUtils::Widget::generateComboBoxFormat(m_ui->fontComboBox);
     MusicUtils::Widget::generateComboBoxFormat(m_ui->fontSizeComboBox);
     MusicUtils::Widget::generateComboBoxFormat(m_ui->fontTypeComboBox);
@@ -950,7 +944,6 @@ void MusicSettingWidget::initInteriorLrcWidget()
     m_ui->resetPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->resetPushButton, SIGNAL(clicked()), SLOT(resetInteriorParameter()));
 #ifdef Q_OS_UNIX
-    m_ui->showInteriorCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->resetPushButton->setFocusPolicy(Qt::NoFocus);
 #endif
 

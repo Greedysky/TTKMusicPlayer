@@ -111,7 +111,7 @@ public Q_SLOTS:
      */
     void musicShowSkinChangedWindow();
     /*!
-     * Set background as artist big picture.
+     * Set background as artist background picture.
      */
     void musicSetAsArtistBackground();
     /*!

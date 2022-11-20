@@ -1827,19 +1827,6 @@ font-weight:bold;</string>
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QCheckBox" name="showInteriorCheckBox">
-     <property name="geometry">
-      <rect>
-       <x>25</x>
-       <y>325</y>
-       <width>120</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>显示内嵌歌词</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="fontTransValueLabel">
      <property name="geometry">
       <rect>

@@ -37,20 +37,15 @@ public:
     explicit MusicDownloadStatusModule(QObject *parent = nullptr);
 
     /*!
-     * Check the current song already has lrc or not,
-     * if not just download it.
+     * Check the current song meta data valid.
      */
-    void checkLrcValid();
-    /*!
-     * Check the setting has open interior or desktop lrc on or not.
-     */
-    bool checkSettingParameterValue() const;
+    void checkMetaDataValid();
 
 public Q_SLOTS:
     /*!
-     * Download current music lrc from net.
+     * Download current music meta data from net.
      */
-    void currentLrcDataDownload();
+    void currentMetaDataDownload();
     /*!
      * Show download state string type.
      */
@@ -61,6 +56,10 @@ public Q_SLOTS:
     void networkConnectionStateChanged(bool state);
 
 private:
+    bool checkLrcValid() const;
+    bool checkArtistCoverValid() const;
+    bool checkArtistBackgroundValid() const;
+
     bool m_previousState;
     MusicApplication *m_parentClass;
 
