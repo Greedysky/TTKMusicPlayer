@@ -38,7 +38,7 @@ static bool loadMDAT(TfmxState *state, const char *mdatName, const char *smplNam
 
     // first load mdat to memory
     QFile mdatFile(mdatName);
-    if(!mdatFile.open(QFile::ReadOnly))
+    if(!mdatFile.open(QIODevice::ReadOnly))
     {
         return false;
     }
@@ -49,7 +49,7 @@ static bool loadMDAT(TfmxState *state, const char *mdatName, const char *smplNam
 
     // Load sample file to memory
     QFile smplFile(smplName);
-    if(!smplFile.open(QFile::ReadOnly))
+    if(!smplFile.open(QIODevice::ReadOnly))
     {
         return false;
     }
@@ -64,7 +64,7 @@ static bool loadTFM(TfmxState *state, const char *path)
 {
     // first load mdat to memory
     QFile mdatFile(path);
-    if(!mdatFile.open(QFile::ReadOnly))
+    if(!mdatFile.open(QIODevice::ReadOnly))
     {
         return false;
     }

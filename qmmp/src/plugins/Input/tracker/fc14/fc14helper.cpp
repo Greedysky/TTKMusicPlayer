@@ -22,7 +22,7 @@ void FC14Helper::deinit()
 bool FC14Helper::initialize()
 {
     QFile file(m_path);
-    if(!file.open(QFile::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
         qWarning("FC14Helper: open file failed");
         return false;

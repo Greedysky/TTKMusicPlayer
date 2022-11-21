@@ -22,7 +22,7 @@ void SoundMonHelper::deinit()
 bool SoundMonHelper::initialize()
 {
     QFile file(m_path);
-    if(!file.open(QFile::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
         qWarning("SoundMonHelper: open file failed");
         return false;

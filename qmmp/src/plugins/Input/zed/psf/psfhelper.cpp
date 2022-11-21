@@ -27,7 +27,7 @@ void PSFHelper::deinit()
 bool PSFHelper::initialize()
 {
     QFile file(m_path);
-    if(!file.open(QFile::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
         qWarning("PSFHelper: open file failed");
         return false;

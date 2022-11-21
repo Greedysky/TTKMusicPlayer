@@ -181,7 +181,7 @@ void NetworkStreamReader::handleFinished()
     }
 
     QFile file(m_path);
-    if(file.open(QFile::WriteOnly))
+    if(file.open(QIODevice::WriteOnly))
     {
         qDebug("NetworkStreamReader: cache file to %s", QmmpPrintable(m_path));
         file.write(m_stream.buffer);

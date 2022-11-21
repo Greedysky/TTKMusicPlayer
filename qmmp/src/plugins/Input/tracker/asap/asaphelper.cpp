@@ -22,7 +22,7 @@ void AsapHelper::deinit()
 bool AsapHelper::initialize()
 {
     QFile file(m_path);
-    if(!file.open(QFile::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
         qWarning("AsapHelper: open file failed");
         return false;

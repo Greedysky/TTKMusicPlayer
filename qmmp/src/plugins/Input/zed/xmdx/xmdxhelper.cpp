@@ -175,7 +175,7 @@ MUCFileReader::~MUCFileReader()
 bool MUCFileReader::load(const QString &path)
 {
     QFile file(path);
-    if(!file.open(QFile::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
         qWarning("MUCFileReader: open file failed");
         return false;
@@ -246,7 +246,7 @@ VGSFileReader::~VGSFileReader()
 bool VGSFileReader::load(const QString &path)
 {
     QFile file(path);
-    if(!file.open(QFile::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
         qWarning("VGSFileReader: open file failed");
         return false;

@@ -22,7 +22,7 @@ void HivelyHelper::deinit()
 bool HivelyHelper::initialize()
 {
     QFile file(m_path);
-    if(!file.open(QFile::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
         qWarning("HivelyHelper: open file failed");
         return false;

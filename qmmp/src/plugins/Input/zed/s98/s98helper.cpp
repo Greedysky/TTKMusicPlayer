@@ -22,7 +22,7 @@ void S98Helper::deinit()
 bool S98Helper::initialize()
 {
     QFile file(m_path);
-    if(!file.open(QFile::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
         qWarning("S98Helper: open file failed");
         return false;

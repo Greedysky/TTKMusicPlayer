@@ -52,7 +52,7 @@ void V2MHelper::deinit()
 bool V2MHelper::initialize()
 {
     QFile file(m_path);
-    if(!file.open(QFile::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
         qWarning("V2MHelper: open file failed");
         return false;

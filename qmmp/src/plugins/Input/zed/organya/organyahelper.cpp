@@ -97,7 +97,7 @@ PxFileReader::~PxFileReader()
 bool PxFileReader::load(const QString &path)
 {
     QFile file(path);
-    if(!file.open(QFile::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
         qWarning("PxFileReader: open file failed");
         return false;

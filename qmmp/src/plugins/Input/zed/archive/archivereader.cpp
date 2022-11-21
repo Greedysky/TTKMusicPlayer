@@ -92,7 +92,7 @@ bool ArchiveReader::unpack(const QString &path)
     const QByteArray &hashSize = QByteArray::number(size);
     {
         QFile file(hash);
-        if(file.open(QFile::ReadOnly))
+        if(file.open(QIODevice::ReadOnly))
         {
             hasHashFile = true;
             if(file.readAll() == hashSize)
@@ -113,7 +113,7 @@ bool ArchiveReader::unpack(const QString &path)
         dir.mkpath(cache);
 
         QFile file(hash);
-        if(!file.open(QFile::WriteOnly))
+        if(!file.open(QIODevice::WriteOnly))
         {
             return false;
         }
