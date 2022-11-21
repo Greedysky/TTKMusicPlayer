@@ -5,7 +5,7 @@ MusicConnectTransferTableWidget::MusicConnectTransferTableWidget(QWidget *parent
     : MusicFillItemTableWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
-    setSelectionMode(QTableWidget::ExtendedSelection);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
     setColumnCount(3);
 
     QHeaderView *headerview = horizontalHeader();

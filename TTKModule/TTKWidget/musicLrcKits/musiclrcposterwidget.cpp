@@ -834,7 +834,7 @@ void MusicLrcPosterItemWidget::drawTheme17(QPainter *painter)
 MusicLrcPosterTableWidget::MusicLrcPosterTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
 {
-    setSelectionMode(QTableWidget::ExtendedSelection);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
     setColumnCount(2);
 
     QHeaderView *headerview = horizontalHeader();

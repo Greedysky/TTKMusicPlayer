@@ -19,7 +19,7 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
 
     m_type = MusicObject::Record::CloudDownload;
     setItemDelegateForColumn(2, m_progressBarDelegate);
-    setSelectionMode(QTableWidget::ExtendedSelection);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     MusicUtils::Widget::setTransparent(this, 0);
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
@@ -72,7 +72,7 @@ MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     headerview->resizeSection(2, 50);
 
     m_type = MusicObject::Record::CloudUpload;
-    setSelectionMode(QTableWidget::ExtendedSelection);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     MusicUtils::Widget::setTransparent(this, 0);
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);

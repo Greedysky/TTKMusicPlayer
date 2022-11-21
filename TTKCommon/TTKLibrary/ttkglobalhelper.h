@@ -24,11 +24,15 @@
 
 namespace TTKObject
 {
+    /*!
+     * Set application font.
+     */
     TTK_MODULE_EXPORT void setApplicationFont(QApplication* app);
     /*!
      * Set widget border shadow.
      */
     TTK_MODULE_EXPORT void setBorderShadow(QWidget *widget, QPainter *painter);
+
 }
 
 #endif // TTKHELPER_H

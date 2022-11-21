@@ -43,7 +43,7 @@ MusicSongsListPlayTableWidget::MusicSongsListPlayTableWidget(int index, QWidget 
       m_renameEditDelegate(nullptr),
       m_songSort(nullptr)
 {
-    setSelectionMode(QTableWidget::ExtendedSelection);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setColumnCount(6);
 
@@ -660,7 +660,7 @@ void MusicSongsListPlayTableWidget::mouseReleaseEvent(QMouseEvent *event)
     m_leftButtonPressed = false;
     m_mouseMoved = false;
     setCursor(QCursor(Qt::ArrowCursor));
-    setSelectionMode(QTableWidget::ExtendedSelection);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
 }
 
 void MusicSongsListPlayTableWidget::leaveEvent(QEvent *event)
