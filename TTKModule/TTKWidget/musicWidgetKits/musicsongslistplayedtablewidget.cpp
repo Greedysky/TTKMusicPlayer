@@ -10,7 +10,7 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
     : MusicAbstractSongsListTableWidget(parent),
       m_songsPlayWidget(nullptr)
 {
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setSelectionMode(QTableWidget::ExtendedSelection);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setColumnCount(5);
 

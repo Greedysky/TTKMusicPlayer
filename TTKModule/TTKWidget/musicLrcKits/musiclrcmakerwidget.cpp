@@ -18,7 +18,7 @@
 
 MusicLrcMakerWidgetItem::MusicLrcMakerWidgetItem(QWidget *ui, QObject *parent)
     : QLabel(ui),
-      m_parentClass(parent)
+      m_parent(parent)
 {
     setStyleSheet(MusicUIObject::MQSSBorderStyle02 + MusicUIObject::MQSSBackgroundStyle10);
     setFixedSize(650, TTK_ITEM_SIZE_L);
@@ -103,7 +103,7 @@ void MusicLrcMakerWidgetItem::moveRight()
     {
         m_painetLineDone = true;
         m_paintIndex = w;
-        QTimer::singleShot(MT_ONCE, m_parentClass, SLOT(currentLineFinished()));
+        QTimer::singleShot(MT_ONCE, m_parent, SLOT(currentLineFinished()));
     }
     update();
 }

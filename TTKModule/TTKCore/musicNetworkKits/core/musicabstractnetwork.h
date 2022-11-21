@@ -115,6 +115,7 @@ namespace MusicObject
      * Get download file size by url.
      */
     TTK_MODULE_EXPORT qint64 queryFileSizeByUrl(const QString &url);
+
     /*!
      * Sync network query for get.
      */

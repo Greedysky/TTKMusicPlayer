@@ -97,7 +97,7 @@ void QSyncDownloadData::receiveDataFromServer()
         if(reply->error() == QNetworkReply::NoError)
         {
             QFile file(d->m_downloadPath);
-            if(file.open(QFile::WriteOnly))
+            if(file.open(QIODevice::WriteOnly))
             {
                 file.write(reply->readAll());
                 file.close();

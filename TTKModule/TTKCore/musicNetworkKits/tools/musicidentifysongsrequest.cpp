@@ -52,7 +52,7 @@ void MusicIdentifySongsRequest::startRequest(const QString &path)
     value += start + "\r\nContent-Disposition: form-data; name=\"signature\"\r\n\r\n" + body + "\r\n";
 
     QFile file(path);
-    if(!file.open(QFile::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
         TTK_ERROR_STREAM("Load input audio wav file error");
         return;

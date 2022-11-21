@@ -16,7 +16,7 @@ MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
 
     m_type = MusicObject::Record::NormalDownload;
     setItemDelegateForColumn(2, m_progressBarDelegate);
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setSelectionMode(QTableWidget::ExtendedSelection);
 
     MusicUtils::Widget::setTransparent(this, 0);
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);

@@ -68,7 +68,7 @@ private:
     void createMoreMenu(QMenu *menu);
 
     int m_currentPlayIndex;
-    QWidget *m_parentClass;
+    QWidget *m_parent;
     QLabel *m_textLabel;
     MusicGifLabelWidget *m_gifLabel;
     QPushButton *m_deleteButton, *m_downloadButton, *m_moreButton;

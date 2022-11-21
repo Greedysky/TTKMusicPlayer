@@ -98,7 +98,7 @@ bool TTKAbstractXml::fromFile(const QString &name)
     m_file = new QFile(name);
     m_document = new QDomDocument;
 
-    if(!m_file->open(QFile::ReadOnly | QFile::Text))
+    if(!m_file->open(QIODevice::ReadOnly | QIODevice::Text))
     {
         return false;
     }
@@ -140,7 +140,7 @@ bool TTKAbstractXml::toFile(const QString &name)
 
     m_file = new QFile(name);
     m_document = new QDomDocument;
-    return m_file->open(QFile::WriteOnly | QFile::Text);
+    return m_file->open(QIODevice::WriteOnly | QIODevice::Text);
 }
 
 QString TTKAbstractXml::toString() const

@@ -17,7 +17,7 @@ void MusicDownloadTagDataRequest::startRequest()
 {
     if(m_file && (!m_file->exists() || m_file->size() < 4))
     {
-        if(m_file->open(QFile::WriteOnly))
+        if(m_file->open(QIODevice::WriteOnly))
         {
             MusicDownloadDataRequest::startRequest(m_url);
             disconnect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));

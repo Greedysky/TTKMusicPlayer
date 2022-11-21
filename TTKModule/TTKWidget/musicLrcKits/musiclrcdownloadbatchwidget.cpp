@@ -8,7 +8,7 @@ MusicLrcDownloadBatchTableWidget::MusicLrcDownloadBatchTableWidget(QWidget *pare
     : MusicAbstractTableWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setSelectionMode(QTableWidget::ExtendedSelection);
     setColumnCount(5);
 
     QHeaderView *headerview = horizontalHeader();

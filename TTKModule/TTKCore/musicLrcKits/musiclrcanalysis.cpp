@@ -107,7 +107,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::loadFromLrcFile(const QString &path)
     QFile file(m_currentFilePath = path);
 
     clear();
-    if(!file.open(QFile::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
         return State::Failed;
     }
@@ -392,7 +392,7 @@ void MusicLrcAnalysis::saveData()
     }
 
     QFile file(m_currentFilePath);
-    if(!file.open(QFile::WriteOnly))
+    if(!file.open(QIODevice::WriteOnly))
     {
         return;
     }

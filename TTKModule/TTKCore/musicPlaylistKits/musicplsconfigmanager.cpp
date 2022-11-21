@@ -92,7 +92,7 @@ bool MusicPLSConfigManager::writeBuffer(const MusicSongItemList &items, const QS
     data << "Version=2";
 
     m_file.setFileName(path);
-    if(m_file.open(QFile::WriteOnly))
+    if(m_file.open(QIODevice::WriteOnly))
     {
         m_file.write(data.join("\n").toUtf8());
         m_file.close();

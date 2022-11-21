@@ -99,7 +99,7 @@ void MusicLocalManagerStatisticTableWidget::resizeSection()
 MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)
 {
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setSelectionMode(QTableWidget::ExtendedSelection);
     setColumnCount(6);
 
     QHeaderView *headerview = horizontalHeader();

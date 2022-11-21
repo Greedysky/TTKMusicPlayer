@@ -190,7 +190,7 @@ void MusicAudioRecorderModule::onRecordStart()
 {
     if(!m_file->isOpen())
     {
-        m_file->open(QFile::WriteOnly | QFile::Truncate);
+        m_file->open(QIODevice::WriteOnly | QIODevice::Truncate);
         m_audioInputFile = new QAudioInput(m_formatFile, this);
     }
 

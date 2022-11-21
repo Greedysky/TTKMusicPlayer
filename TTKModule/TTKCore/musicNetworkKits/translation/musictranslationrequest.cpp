@@ -70,7 +70,7 @@ void MusicTranslationRequest::findAllPlugins()
     if(d)
     {
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
-        d->setHeader("name", this->header("name"));
+        d->setHeader("name", header("name"));
         d->startRequest(m_data);
     }
 }

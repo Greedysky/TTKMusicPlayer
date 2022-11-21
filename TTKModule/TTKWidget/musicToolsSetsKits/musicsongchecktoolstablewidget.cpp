@@ -8,7 +8,7 @@ MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidg
     : MusicFillItemTableWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setSelectionMode(QTableWidget::ExtendedSelection);
     setColumnCount(4);
 
     QHeaderView *headerview = horizontalHeader();
@@ -79,7 +79,7 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
     : MusicFillItemTableWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setSelectionMode(QTableWidget::ExtendedSelection);
     setColumnCount(7);
 
     QHeaderView *headerview = horizontalHeader();
@@ -193,7 +193,7 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
     : MusicFillItemTableWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setSelectionMode(QTableWidget::ExtendedSelection);
     setColumnCount(8);
 
     QHeaderView *headerview = horizontalHeader();

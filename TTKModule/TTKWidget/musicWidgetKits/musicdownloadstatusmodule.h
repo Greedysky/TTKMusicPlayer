@@ -39,7 +39,7 @@ public:
     /*!
      * Check the current song meta data valid.
      */
-    void checkMetaDataValid(bool full);
+    void checkMetaDataValid(bool mode);
 
 public Q_SLOTS:
     /*!
@@ -70,7 +70,7 @@ private:
     bool checkArtistBackgroundValid() const;
 
     bool m_previousState;
-    MusicApplication *m_parentClass;
+    MusicApplication *m_parent;
 
 };
 

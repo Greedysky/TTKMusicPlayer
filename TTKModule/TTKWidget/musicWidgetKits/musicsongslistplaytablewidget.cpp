@@ -30,7 +30,7 @@
 
 MusicSongsListPlayTableWidget::MusicSongsListPlayTableWidget(int index, QWidget *parent)
     : MusicAbstractSongsListTableWidget(index, parent),
-      m_parentClass(parent),
+      m_parent(parent),
       m_dragStartIndex(-1),
       m_mouseMoved(false),
       m_openFileWidget(nullptr),
@@ -43,7 +43,7 @@ MusicSongsListPlayTableWidget::MusicSongsListPlayTableWidget(int index, QWidget 
       m_renameEditDelegate(nullptr),
       m_songSort(nullptr)
 {
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setSelectionMode(QTableWidget::ExtendedSelection);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setColumnCount(6);
 
@@ -239,11 +239,11 @@ bool MusicSongsListPlayTableWidget::createUploadFileModule()
     if(m_songs->isEmpty() && MusicObject::playlistRowValid(m_toolIndex))
     {
         setFixedSize(LEFT_SIDE_WIDTH_MIN, 100);
-        if(m_openFileWidget == nullptr && m_parentClass)
+        if(m_openFileWidget == nullptr && m_parent)
         { 
             m_openFileWidget = new MusicOpenFileWidget(this);
-            connect(m_openFileWidget, SIGNAL(uploadFileClicked()), m_parentClass, SLOT(musicImportSongsByFiles()));
-            connect(m_openFileWidget, SIGNAL(uploadDirClicked()), m_parentClass, SLOT(musicImportSongsByDir()));
+            connect(m_openFileWidget, SIGNAL(uploadFileClicked()), m_parent, SLOT(musicImportSongsByFiles()));
+            connect(m_openFileWidget, SIGNAL(uploadDirClicked()), m_parent, SLOT(musicImportSongsByDir()));
             m_openFileWidget->adjustWidgetRect(width(), height());
         }
 
@@ -648,7 +648,7 @@ void MusicSongsListPlayTableWidget::mouseMoveEvent(QMouseEvent *event)
     {
         m_mouseMoved = true;
         setCursor(QCursor(QPixmap(":/functions/lb_drag_cursor")));
-        setSelectionMode(QTableWidget::SingleSelection);
+        setSelectionMode(QAbstractItemView::SingleSelection);
     }
 }
 
@@ -660,7 +660,7 @@ void MusicSongsListPlayTableWidget::mouseReleaseEvent(QMouseEvent *event)
     m_leftButtonPressed = false;
     m_mouseMoved = false;
     setCursor(QCursor(Qt::ArrowCursor));
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setSelectionMode(QTableWidget::ExtendedSelection);
 }
 
 void MusicSongsListPlayTableWidget::leaveEvent(QEvent *event)

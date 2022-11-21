@@ -10,7 +10,7 @@
 MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *parent)
     : QWidget(parent),
       m_currentPlayIndex(index),
-      m_parentClass(parent)
+      m_parent(parent)
 {
     QPalette plt(palette());
     plt.setBrush(QPalette::Base, QBrush(QColor(0, 0, 0, 20)));
@@ -55,7 +55,7 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
 
     connect(m_downloadButton, SIGNAL(clicked()), MusicLeftAreaWidget::instance(), SLOT(musicDownloadSongToLocal()));
     connect(m_deleteButton, SIGNAL(clicked()), SLOT(setDeleteItemAt()));
-    connect(this, SIGNAL(enterChanged(int,int)), m_parentClass, SLOT(itemCellEntered(int,int)));
+    connect(this, SIGNAL(enterChanged(int,int)), m_parent, SLOT(itemCellEntered(int,int)));
 }
 
 MusicSongsListPlayedWidget::~MusicSongsListPlayedWidget()
@@ -76,7 +76,7 @@ void MusicSongsListPlayedWidget::setParameter(const QString &name)
 
 void MusicSongsListPlayedWidget::setDeleteItemAt()
 {
-    QTimer::singleShot(MT_ONCE, m_parentClass, SLOT(setDeleteItemAt()));
+    QTimer::singleShot(MT_ONCE, m_parent, SLOT(setDeleteItemAt()));
 }
 
 void MusicSongsListPlayedWidget::enterEvent(QtEnterEvent *event)
@@ -88,6 +88,6 @@ void MusicSongsListPlayedWidget::enterEvent(QtEnterEvent *event)
 void MusicSongsListPlayedWidget::createMoreMenu(QMenu *menu)
 {
     menu->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), m_parentClass, SLOT(musicPlayedSimilarQueryWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), m_parentClass, SLOT(musicSongPlayedSharedWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), m_parent, SLOT(musicPlayedSimilarQueryWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), m_parent, SLOT(musicSongPlayedSharedWidget()));
 }

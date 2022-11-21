@@ -9,7 +9,7 @@
 MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicDownloadResetWidget),
-      m_parentClass(parent)
+      m_parent(parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -50,7 +50,7 @@ void MusicDownloadResetWidget::setSongName(const QString &name)
 
 void MusicDownloadResetWidget::restartRequest()
 {
-    MusicDownloadWidget *download = new MusicDownloadWidget(m_parentClass);
+    MusicDownloadWidget *download = new MusicDownloadWidget(m_parent);
     download->setSongName(m_currentName, MusicAbstractQueryRequest::QueryType::Music);
     download->show();
 
@@ -77,7 +77,7 @@ void MusicDownloadResetWidget::openFileLocation()
 
 MusicDownloadMgmtWidget::MusicDownloadMgmtWidget(QObject *parent)
     : QObject(parent),
-      m_parentClass(TTKObject_cast(QWidget*, parent))
+      m_parent(TTKObject_cast(QWidget*, parent))
 {
 
 }
@@ -90,14 +90,14 @@ void MusicDownloadMgmtWidget::setSongName(const QString &name, MusicAbstractQuer
         MusicApplication::instance()->musicDownloadContains(exist);
         if(exist)
         {
-            MusicDownloadResetWidget *resetWidget = new MusicDownloadResetWidget(m_parentClass);
+            MusicDownloadResetWidget *resetWidget = new MusicDownloadResetWidget(m_parent);
             resetWidget->setSongName(name);
             resetWidget->show();
             return;
         }
     }
 
-    MusicDownloadWidget *download = new MusicDownloadWidget(m_parentClass);
+    MusicDownloadWidget *download = new MusicDownloadWidget(m_parent);
     if(parent()->metaObject()->indexOfSlot("musicDownloadSongFinished()") != -1)
     {
         connect(download, SIGNAL(dataDownloadChanged()), parent(), SLOT(musicDownloadSongFinished()));

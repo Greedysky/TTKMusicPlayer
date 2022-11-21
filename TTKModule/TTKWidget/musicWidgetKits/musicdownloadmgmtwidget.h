@@ -68,7 +68,7 @@ public Q_SLOTS:
 private:
     Ui::MusicDownloadResetWidget* m_ui;
 
-    QWidget *m_parentClass;
+    QWidget *m_parent;
     QString m_currentName;
 
 };
@@ -93,7 +93,7 @@ public:
     void setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type);
 
 private:
-    QWidget *m_parentClass;
+    QWidget *m_parent;
 
 };
 

@@ -22,7 +22,7 @@
 MusicScreenSaverHoverItem::MusicScreenSaverHoverItem(QLabel *parent)
     : QLabel(parent),
       m_index(-1),
-      m_parentClass(parent)
+      m_parent(parent)
 {
     setFixedSize(OS_ITEM_SIZE + QSize(8, 8));
     setAttribute(Qt::WA_TranslucentBackground);
@@ -43,7 +43,7 @@ void MusicScreenSaverHoverItem::setFilePath(const QString &path)
 {
     m_path = path;
     QPixmap pix(m_path);
-    m_parentClass->setPixmap(pix);
+    m_parent->setPixmap(pix);
     setPixmap(pix);
 }
 
@@ -67,7 +67,7 @@ void MusicScreenSaverHoverItem::switchButtonOnAndOff()
     if(m_enableButton->styleSheet().contains(MusicUIObject::MQSSScreenItemDisable))
     {
         QPixmap pix(MusicUtils::Image::grayScalePixmap(QPixmap(m_path), 70));
-        m_parentClass->setPixmap(pix);
+        m_parent->setPixmap(pix);
         setPixmap(pix);
         m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemEnable);
         Q_EMIT itemClicked(m_index, false);
@@ -75,7 +75,7 @@ void MusicScreenSaverHoverItem::switchButtonOnAndOff()
     else
     {
         QPixmap pix(m_path);
-        m_parentClass->setPixmap(pix);
+        m_parent->setPixmap(pix);
         setPixmap(pix);
         m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemDisable);
         Q_EMIT itemClicked(m_index, true);

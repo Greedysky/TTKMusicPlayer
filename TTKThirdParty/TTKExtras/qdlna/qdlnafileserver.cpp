@@ -79,7 +79,7 @@ void QDlnaFileServer::handleRequest(QHttpRequest *request, QHttpResponse *respon
 
         const QString &name = regx.cap(1);
         QFile file(d->m_prefix + TTK_SEPARATOR + name);
-        if(file.open(QFile::ReadOnly))
+        if(file.open(QIODevice::ReadOnly))
         {
             response->writeHead(200);
             response->end(file.readAll());

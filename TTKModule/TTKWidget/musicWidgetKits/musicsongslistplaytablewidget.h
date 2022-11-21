@@ -188,7 +188,7 @@ private:
      */
     void createContextMenu(QMenu &menu);
 
-    QWidget *m_parentClass;
+    QWidget *m_parent;
     int m_dragStartIndex;
     QPoint m_dragStartPoint;
     bool m_mouseMoved;

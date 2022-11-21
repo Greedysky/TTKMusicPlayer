@@ -17,7 +17,7 @@ void MusicBackgroundManager::setArtistName(const QString &name)
     for(int i = 0; i < MAX_IMAGE_COUNTER; ++i)
     {
         QFile file(filter.arg(i));
-        if(file.open(QFile::ReadOnly))
+        if(file.open(QIODevice::ReadOnly))
         {
             if(file.exists() && file.size() > 0)
             {

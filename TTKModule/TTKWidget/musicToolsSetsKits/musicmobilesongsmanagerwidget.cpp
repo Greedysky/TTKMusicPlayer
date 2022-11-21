@@ -8,7 +8,7 @@
 MusicMobileSongsTableWidget::MusicMobileSongsTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)
 {
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setSelectionMode(QTableWidget::ExtendedSelection);
     setColumnCount(5);
 
     QHeaderView *headerview = horizontalHeader();

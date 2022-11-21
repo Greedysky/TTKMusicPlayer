@@ -52,7 +52,7 @@ void QSyncUploadData::uploadDataOperator(const QString &time, const QString &buc
     }
 
     QFile file(filePath);
-    file.open(QFile::ReadOnly);
+    file.open(QIODevice::ReadOnly);
     QByteArray fileData = file.readAll();
     file.close();
 

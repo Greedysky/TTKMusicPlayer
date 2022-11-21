@@ -127,7 +127,7 @@ private:
 
     bool m_barrageState;
     QSize m_parentSize;
-    QWidget *m_parentClass;
+    QWidget *m_parent;
     QList<QLabel*> m_labels;
     QList<MusicBarrageAnimation*> m_animations;
     MusicBarrageRecordList m_barrageRecords;

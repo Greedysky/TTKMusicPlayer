@@ -216,9 +216,9 @@ void MusicRightAreaWidget::setSongSpeedAndSlow(qint64 time) const
     m_lrcForInterior->setSongSpeedChanged(time);
 }
 
-void MusicRightAreaWidget::checkMetaDataValid(bool full) const
+void MusicRightAreaWidget::checkMetaDataValid(bool mode) const
 {
-    m_downloadStatusObject->checkMetaDataValid(full);
+    m_downloadStatusObject->checkMetaDataValid(mode);
 }
 
 void MusicRightAreaWidget::showSettingWidget() const

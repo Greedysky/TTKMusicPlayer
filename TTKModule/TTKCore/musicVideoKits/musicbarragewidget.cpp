@@ -40,7 +40,7 @@ void MusicBarrageAnimation::initialize()
 MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
     : QObject(parent)
 {
-    m_parentClass = TTKObject_cast(QWidget*, parent);
+    m_parent = TTKObject_cast(QWidget*, parent);
     m_barrageState = false;
 }
 
@@ -144,7 +144,7 @@ void MusicBarrageWidget::createLabel()
 
 QLabel *MusicBarrageWidget::createLabel(const MusicBarrageRecord &record)
 {
-    QLabel *label = new QLabel(m_parentClass);
+    QLabel *label = new QLabel(m_parent);
     label->setStyleSheet(QString("QLabel{ color:%1}").arg(record.m_color));
     label->setText(record.m_value);
 

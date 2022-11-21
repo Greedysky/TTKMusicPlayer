@@ -10,13 +10,13 @@
 MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
     : QObject(parent),
       m_previousState(true),
-      m_parentClass(TTKObject_cast(MusicApplication*, parent))
+      m_parent(TTKObject_cast(MusicApplication*, parent))
 {
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(MusicNetworkThread::className(), className());
 }
 
-void MusicDownloadStatusModule::checkMetaDataValid(bool full)
+void MusicDownloadStatusModule::checkMetaDataValid(bool mode)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -24,12 +24,12 @@ void MusicDownloadStatusModule::checkMetaDataValid(bool full)
     }
 
     ///Check there is no opening lyrics display mode
-    if(m_parentClass->checkMusicListCurrentIndex())
+    if(m_parent->checkMusicListCurrentIndex())
     {
         return;
     }
 
-    if(!full && checkLrcValid() && checkArtistCoverValid() && checkArtistBackgroundValid())
+    if(!mode && checkLrcValid() && checkArtistCoverValid() && checkArtistBackgroundValid())
     {
         return;
     }
@@ -37,8 +37,8 @@ void MusicDownloadStatusModule::checkMetaDataValid(bool full)
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     d->setQueryLite(true);
     d->setQueryAllRecords(false);
-    d->setHeader("mode", full);
-    d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, m_parentClass->currentFileName());
+    d->setHeader("mode", mode);
+    d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, m_parent->currentFileName());
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(currentMetaDataDownload()));
 }
 
@@ -97,11 +97,11 @@ void MusicDownloadStatusModule::showDownLoadInfoFinished(const QString &bytes)
     ///If the lyrics download finished immediately loaded to display
     if(bytes == DOWNLOAD_KEY_LRC)
     {
-        m_parentClass->musicLoadCurrentSongLrc();
+        m_parent->musicLoadCurrentSongLrc();
     }
     else if(bytes == DOWNLOAD_KEY_COVER)
     {
-        m_parentClass->updateCurrentArtist();
+        m_parent->updateCurrentArtist();
     }
 }
 
@@ -119,18 +119,18 @@ void MusicDownloadStatusModule::networkConnectionStateChanged(bool state)
 
 bool MusicDownloadStatusModule::checkLrcValid() const
 {
-    const QString &fileName = m_parentClass->currentFileName();
+    const QString &fileName = m_parent->currentFileName();
     return QFile::exists(MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE);
 }
 
 bool MusicDownloadStatusModule::checkArtistCoverValid() const
 {
-    const QString &fileName = MusicUtils::String::artistName(m_parentClass->currentFileName());
+    const QString &fileName = MusicUtils::String::artistName(m_parent->currentFileName());
     return QFile::exists(ART_DIR_FULL + fileName + SKN_FILE);
 }
 
 bool MusicDownloadStatusModule::checkArtistBackgroundValid() const
 {
-    const QString &fileName = MusicUtils::String::artistName(m_parentClass->currentFileName());
+    const QString &fileName = MusicUtils::String::artistName(m_parent->currentFileName());
     return QFile::exists(BACKGROUND_DIR_FULL + fileName + "0" + SKN_FILE);
 }

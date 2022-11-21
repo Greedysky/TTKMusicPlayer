@@ -116,7 +116,7 @@ bool MusicExtractWrapper::outputBinary(const QString &input, const QString &outp
         int size = 0;
 
         QFile file(output + name);
-        if(!file.open(QFile::WriteOnly))
+        if(!file.open(QIODevice::WriteOnly))
         {
             continue;
         }

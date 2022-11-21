@@ -128,7 +128,7 @@ public:
     /*!
      * Check the current song meta data valid.
      */
-    void checkMetaDataValid(bool full) const;
+    void checkMetaDataValid(bool mode) const;
     /*!
      * Show setting widget.
      */

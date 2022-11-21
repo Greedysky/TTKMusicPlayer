@@ -834,7 +834,7 @@ void MusicLrcPosterItemWidget::drawTheme17(QPainter *painter)
 MusicLrcPosterTableWidget::MusicLrcPosterTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
 {
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setSelectionMode(QTableWidget::ExtendedSelection);
     setColumnCount(2);
 
     QHeaderView *headerview = horizontalHeader();
@@ -884,12 +884,12 @@ MusicLrcPosterThemeListWidget::MusicLrcPosterThemeListWidget(QWidget *parent)
 {
     setIconSize(QSize(40, 40));
     setFrameShape(QFrame::NoFrame);
-    setViewMode(QListWidget::IconMode);
-    setMovement(QListWidget::Static);
-    setFlow(QListWidget::TopToBottom);
-    setSelectionMode(QListWidget::SingleSelection);
+    setViewMode(QListView::IconMode);
+    setMovement(QListView::Static);
+    setFlow(QListView::TopToBottom);
+    setSelectionMode(QAbstractItemView::SingleSelection);
     setFocusPolicy(Qt::ClickFocus);
-    setHorizontalScrollMode(QListWidget::ScrollPerPixel);
+    setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 

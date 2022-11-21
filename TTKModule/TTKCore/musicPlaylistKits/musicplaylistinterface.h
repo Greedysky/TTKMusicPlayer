@@ -41,7 +41,7 @@ public:
     inline bool fromFile(const QString &name)
     {
         m_file.setFileName(name);
-        return m_file.open(QFile::ReadOnly);
+        return m_file.open(QIODevice::ReadOnly);
     }
 
 protected:

@@ -178,7 +178,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
 
     const QString &path = m_ui->searchedTable->item(row, 1)->toolTip();
     QFile fileIn(path);
-    if(!fileIn.open(QFile::ReadOnly))
+    if(!fileIn.open(QIODevice::ReadOnly))
     {
         TTK_ERROR_STREAM("Lrc Input File Error");
         close();
@@ -189,7 +189,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
     fileIn.close();
 
     QFile fileOut(QString("%1%2%3").arg(MusicUtils::String::lrcDirPrefix(), m_currentName, LRC_FILE));
-    if(!fileOut.open(QFile::WriteOnly))
+    if(!fileOut.open(QIODevice::WriteOnly))
     {
         TTK_ERROR_STREAM("Lrc Output File Error");
         close();

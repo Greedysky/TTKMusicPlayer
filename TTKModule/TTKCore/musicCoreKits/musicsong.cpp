@@ -146,7 +146,7 @@ MusicSongList MusicObject::generateSongList(const QString &path)
     if(!(songs.isEmpty() || meta.lyrics().isEmpty()))
     {
         QFile file(MusicUtils::String::lrcDirPrefix() + songs.back().name() + LRC_FILE);
-        if(file.open(QFile::WriteOnly))
+        if(file.open(QIODevice::WriteOnly))
         {
             file.write(meta.lyrics().toUtf8());
             file.close();

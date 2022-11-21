@@ -10,7 +10,7 @@ MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *pare
     : MusicFillItemTableWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setSelectionMode(QTableWidget::ExtendedSelection);
     setColumnCount(2);
 
     QHeaderView *headerview = horizontalHeader();

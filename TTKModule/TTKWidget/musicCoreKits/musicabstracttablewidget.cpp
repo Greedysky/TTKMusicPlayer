@@ -29,9 +29,9 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
 
     setShowGrid(false);//Does not display the grid
     setFrameShape(QFrame::NoFrame);//Set No Border
-    setEditTriggers(QTableWidget::NoEditTriggers);//No edit
-    setSelectionBehavior(QTableWidget::SelectRows);
-    setSelectionMode(QTableWidget::SingleSelection);
+    setEditTriggers(QAbstractItemView::NoEditTriggers);//No edit
+    setSelectionBehavior(QAbstractItemView::SelectRows);
+    setSelectionMode(QAbstractItemView::SingleSelection);
     setFocusPolicy(Qt::NoFocus);
 
     MusicUtils::Widget::setTransparent(this, 50);

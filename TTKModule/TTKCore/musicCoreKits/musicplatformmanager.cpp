@@ -213,7 +213,7 @@ MusicPlatformManager::System MusicPlatformManager::systemName() const
     FreeLibrary(instance);
 #elif defined Q_OS_LINUX
     QFile file("/etc/lsb-release");
-    if(file.open(QFile::ReadOnly))
+    if(file.open(QIODevice::ReadOnly))
     {
         QRegExp regx("DISTRIB_ID=(\\w+)");
         if(QString(file.readAll()).indexOf(regx) != -1)

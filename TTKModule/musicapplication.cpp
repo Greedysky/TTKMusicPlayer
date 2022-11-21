@@ -902,11 +902,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
 void MusicApplication::musicCurrentLrcUpdated()
 {
     const QString &fileName = currentFileName();
-    QFile file(MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE);
-    if(file.exists())
-    {
-        file.remove();
-    }
+    QFile::remove(MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE);
     m_rightAreaWidget->checkMetaDataValid(true);
 }
 
