@@ -217,8 +217,7 @@ void MusicLocalManagerSongsTableWidget::contextMenuEvent(QContextMenuEvent *even
 
 MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     : QWidget(parent),
-      MusicItemSearchInterfaceClass(),
-      m_currentIndex(0)
+      MusicItemSearchInterfaceClass()
 {
     setStyleSheet(MusicUIObject::MQSSBackgroundStyle10 + MusicUIObject::MQSSColorStyle09);
 
@@ -285,10 +284,10 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     tabWidget->setLayout(tabWidgetLayout);
     mainLayout->addWidget(tabWidget);
 
-    TTKTabButton *tabButton = new TTKTabButton(functionWidget);
-    tabButton->addButtons(QStringList() << tr("Song") << tr("Artist") << tr("Album") << tr("Year") << tr("Genre"));
-    tabWidgetLayout->addWidget(tabButton);
-    connect(tabButton, SIGNAL(clicked(int)), SLOT(typeIndexChanged(int)));
+    m_tabButton = new TTKTabButton(functionWidget);
+    m_tabButton->addButtons(QStringList() << tr("Song") << tr("Artist") << tr("Album") << tr("Year") << tr("Genre"));
+    tabWidgetLayout->addWidget(m_tabButton);
+    connect(m_tabButton, SIGNAL(clicked(int)), SLOT(typeIndexChanged(int)));
 
 #ifdef Q_OS_UNIX
     refresh->setFocusPolicy(Qt::NoFocus);
@@ -341,34 +340,13 @@ void MusicLocalManagerWidget::resizeWidget()
 
 void MusicLocalManagerWidget::typeIndexChanged(int index)
 {
-    m_currentIndex = index;
     switch(index)
     {
-        case 0:
-        {
-            m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words!"));
-            break;
-        }
-        case 1:
-        {
-            m_searchEdit->editor()->setPlaceholderText(tr("Please input search artist words!"));
-            break;
-        }
-        case 2:
-        {
-            m_searchEdit->editor()->setPlaceholderText(tr("Please input search album words!"));
-            break;
-        }
-        case 3:
-        {
-            m_searchEdit->editor()->setPlaceholderText(tr("Please input search year words!"));
-            break;
-        }
-        case 4:
-        {
-            m_searchEdit->editor()->setPlaceholderText(tr("Please input search genre words!"));
-            break;
-        }
+        case 0: m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words!")); break;
+        case 1: m_searchEdit->editor()->setPlaceholderText(tr("Please input search artist words!")); break;
+        case 2: m_searchEdit->editor()->setPlaceholderText(tr("Please input search album words!")); break;
+        case 3: m_searchEdit->editor()->setPlaceholderText(tr("Please input search year words!")); break;
+        case 4: m_searchEdit->editor()->setPlaceholderText(tr("Please input search genre words!")); break;
         default: break;
     }
 
@@ -423,7 +401,7 @@ void MusicLocalManagerWidget::refreshItems()
     }
 
     m_songWidget->addCellItems(m_containerItems);
-    updateStatisticWidget(m_currentIndex, m_containerItems);
+    updateStatisticWidget(m_tabButton->currentIndex(), m_containerItems);
     m_loadingLabel->run(false);
 }
 
@@ -443,7 +421,7 @@ void MusicLocalManagerWidget::searchResultChanged(int, int column)
     for(int i = 0; i < m_containerItems.count(); ++i)
     {
         QString v;
-        switch(m_currentIndex)
+        switch(m_tabButton->currentIndex())
         {
             case 0: v = m_containerItems[i].m_title; break;
             case 1: v = m_containerItems[i].m_artist; break;
@@ -470,7 +448,7 @@ void MusicLocalManagerWidget::searchResultChanged(int, int column)
 
     m_songWidget->removeItems();
     m_songWidget->addCellItems(data);
-    updateStatisticWidget(m_currentIndex, data);
+    updateStatisticWidget(m_tabButton->currentIndex(), data);
 }
 
 void MusicLocalManagerWidget::itemDoubleClicked(int row, int column)
@@ -494,42 +472,50 @@ void MusicLocalManagerWidget::updateStatisticWidget(int index, const MusicSongIn
     }
 
     QString label;
-    MusicSongStatisticItem data;
+    MusicSongStatisticItem statistic;
     for(const MusicSongInfoItem &item : items)
     {
-        QString v;
+        QString data;
         switch(index)
         {
             case 0: break;
             case 1:
-                v = item.m_artist;
+            {
+                data = item.m_artist;
                 label = tr("Artist");
                 break;
+            }
             case 2:
-                v = item.m_album;
+            {
+                data = item.m_album;
                 label = tr("Album");
                 break;
+            }
             case 3:
-                v = item.m_year;
+            {
+                data = item.m_year;
                 label = tr("Year");
                 break;
+            }
             case 4:
-                v = item.m_genre;
+            {
+                data = item.m_genre;
                 label = tr("Genre");
                 break;
+            }
             default: break;
         }
 
-        if(!data.contains(v))
+        if(!statistic.contains(data))
         {
-            data.insert(v, 1);
+            statistic.insert(data, 1);
         }
         else
         {
-            data.insert(v, data[v] + 1);
+            statistic.insert(data, statistic[data] + 1);
         }
     }
 
-    m_statisticWidget->addCellItem(data);
+    m_statisticWidget->addCellItem(statistic);
     m_statisticWidget->setHorizontalHeaderLabels({label, tr("Count")});
 }

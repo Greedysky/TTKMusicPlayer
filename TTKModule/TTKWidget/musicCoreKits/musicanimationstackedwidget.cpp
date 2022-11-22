@@ -50,26 +50,10 @@ void MusicAnimationStackedWidget::renderPreviousWidget(QPainter &painter)
 
     switch(m_type)
     {
-        case Module::BottomToTop:
-        {
-            painter.drawPixmap(0, height() / 2, pixmap);
-            break;
-        }
-        case Module::TopToBottom:
-        {
-            painter.drawPixmap(0, -height() / 2, pixmap);
-            break;
-        }
-        case Module::LeftToRight:
-        {
-            painter.drawPixmap(width() / 2, 0, pixmap);
-            break;
-        }
-        case Module::RightToLeft:
-        {
-            painter.drawPixmap(-width() / 2, 0, pixmap);
-            break;
-        }
+        case Module::BottomToTop: painter.drawPixmap(0, height() / 2, pixmap); break;
+        case Module::TopToBottom: painter.drawPixmap(0, -height() / 2, pixmap); break;
+        case Module::LeftToRight: painter.drawPixmap(width() / 2, 0, pixmap); break;
+        case Module::RightToLeft: painter.drawPixmap(-width() / 2, 0, pixmap); break;
         default: break;
     }
 }

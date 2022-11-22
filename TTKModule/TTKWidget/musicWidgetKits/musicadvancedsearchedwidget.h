@@ -19,9 +19,10 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QTabWidget>
+#include <QLabel>
 #include "musicglobaldefine.h"
 
+class TTKTabButton;
 class MusicItemSearchEdit;
 
 /*! @brief The class of the advance search widget.
@@ -40,23 +41,23 @@ public:
 
 private Q_SLOTS:
     /*!
+     * Type index changed.
+     */
+    void typeIndexChanged(int index);
+    /*!
      * Search button clicked.
      */
     void searchButtonClicked();
 
 private:
     /*!
-     * Update placeholder text.
-     */
-    void updatePlaceholderText();
-    /*!
      * Get search key.
      */
     QString searchedKeyWork(int type, const QString &url);
 
-    QTabWidget *m_tabWidget;
-    MusicItemSearchEdit *m_songEdit, *m_artistEdit;
-    MusicItemSearchEdit *m_albumEdit, *m_playlistEdit, *m_movieEdit;
+    QLabel *m_searchLabel;
+    TTKTabButton *m_tabWidget;
+    MusicItemSearchEdit *m_searchEdit;
 
 };
 

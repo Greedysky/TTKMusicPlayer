@@ -100,6 +100,7 @@ public Q_SLOTS:
 };
 
 class QLabel;
+class TTKTabButton;
 class MusicItemQueryEdit;
 class MusicGifLabelWidget;
 
@@ -160,8 +161,8 @@ private:
      */
     void updateStatisticWidget(int index, const MusicSongInfoItemList &items);
 
-    int m_currentIndex;
     QLabel *m_sizeLabel;
+    TTKTabButton *m_tabButton;
     MusicItemQueryEdit *m_searchEdit;
     MusicGifLabelWidget *m_loadingLabel;
     MusicLocalManagerSongsTableWidget *m_songWidget;

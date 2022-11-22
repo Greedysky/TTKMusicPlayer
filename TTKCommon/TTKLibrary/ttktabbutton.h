@@ -47,6 +47,10 @@ public:
     void setButtonEnabled(bool enable);
 
     /*!
+     * Get button current index.
+     */
+    inline int currentIndex() const { return m_currentIndex; }
+    /*!
      * Get tab buttons count.
      */
     inline int count() const { return m_buttonGroup->buttons().count(); }
@@ -64,6 +68,7 @@ private Q_SLOTS:
     void buttonClicked(int index);
 
 private:
+    int m_currentIndex;
     QButtonGroup *m_buttonGroup;
 
 };

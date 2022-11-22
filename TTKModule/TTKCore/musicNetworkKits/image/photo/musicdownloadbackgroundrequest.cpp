@@ -36,26 +36,10 @@ void MusicDownloadBackgroundRequest::findAllPlugins()
     MusicAbstractDownloadImageRequest *d = nullptr;
     switch(++m_pluginIndex)
     {
-        case 0:
-        {
-            d = new MusicKWDownloadBackgroundRequest(m_name, m_path, this);
-            break;
-        }
-        case 1:
-        {
-            d = new MusicTXDownloadBackgroundRequest(m_name, m_path, this);
-            break;
-        }
-        case 2:
-        {
-            d = new MusicBPDownloadBackgroundRequest(m_name, m_path, this);
-            break;
-        }
-        default:
-        {
-            deleteLater();
-            break;
-        }
+        case 0: d = new MusicKWDownloadBackgroundRequest(m_name, m_path, this); break;
+        case 1: d = new MusicTXDownloadBackgroundRequest(m_name, m_path, this); break;
+        case 2: d = new MusicBPDownloadBackgroundRequest(m_name, m_path, this); break;
+        default: deleteLater(); break;
     }
 
     if(d)

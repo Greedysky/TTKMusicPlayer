@@ -58,6 +58,7 @@ void MusicVideoQualityPopWidget::movieQualityChoiced(QAction *action)
         case MusicObject::QueryQuality::Super: url = findMVUrlByBitrate(MB_1000); break;
         default: break;
     }
+
     setQualityText(url);
     Q_EMIT mediaUrlChanged(url);
 }

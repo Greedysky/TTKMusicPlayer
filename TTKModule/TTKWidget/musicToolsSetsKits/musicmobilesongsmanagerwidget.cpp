@@ -213,11 +213,7 @@ void MusicMobileSongsManagerWidget::itemCellClicked(int row, int column)
     switch(column)
     {
         case 3:
-        case 4:
-        {
-            itemDoubleClicked(row, column);
-            break;
-        }
+        case 4: itemDoubleClicked(row, column); break;
         default: break;
     }
 }

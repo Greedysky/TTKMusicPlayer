@@ -437,7 +437,8 @@ void MusicLrcMakerWidget::createCurrentLine(int key)
             case Qt::Key_Left:
             {
                 MusicApplication::instance()->musicPlayAnyTimeAt(m_ui->timeSlider_F->value() - 2222);
-                m_lineItem->moveLeft(); break;
+                m_lineItem->moveLeft();
+                break;
             }
             case Qt::Key_Up:
             {
@@ -448,8 +449,8 @@ void MusicLrcMakerWidget::createCurrentLine(int key)
                 {
                     m_currentLine = 0;
                 }
-                m_lineItem->moveUp();
 
+                m_lineItem->moveUp();
                 m_times[m_currentLine] = m_ui->timeSlider_S->value();
                 break;
             }
@@ -464,6 +465,7 @@ void MusicLrcMakerWidget::createCurrentLine(int key)
                 {
                     return;
                 }
+
                 cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
                 m_lineItem->setText(cursor.block().text());
 

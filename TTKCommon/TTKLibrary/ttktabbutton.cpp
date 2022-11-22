@@ -6,7 +6,8 @@
 #define TAB_BUTTON_OFF "QPushButton{ border-radius:0px; background-color:#BFBFBF; color:white; }"
 
 TTKTabButton::TTKTabButton(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_currentIndex(0)
 {
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -63,5 +64,6 @@ void TTKTabButton::buttonClicked(int index)
         m_buttonGroup->button(i)->setStyleSheet(i == index ? TAB_BUTTON_ON : TAB_BUTTON_OFF);
     }
 
+    m_currentIndex = index;
     Q_EMIT clicked(index);
 }

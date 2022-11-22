@@ -50,21 +50,9 @@ void MusicTranslationRequest::findAllPlugins()
             d = new MusicWYTranslationRequest(this);
             break;
         }
-        case 1:
-        {
-            d = new MusicYDTranslationRequest(this);
-            break;
-        }
-        case 2:
-        {
-            d = new MusicBDTranslationRequest(this);
-            break;
-        }
-        default:
-        {
-            deleteLater();
-            break;
-        }
+        case 1: d = new MusicYDTranslationRequest(this); break;
+        case 2: d = new MusicBDTranslationRequest(this); break;
+        default: deleteLater(); break;
     }
 
     if(d)

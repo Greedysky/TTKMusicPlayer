@@ -73,37 +73,37 @@ void MusicTimeSliderWidget::sliderMovedAt(int pos) const
 
 void MusicTimeSliderWidget::setSliderStyleByType(int type)
 {
-    QString rgba1 = "rgb(231, 80, 229)", rgba2 = "rgb(7, 208, 255)";
+    QString front = "rgb(231, 80, 229)", back = "rgb(7, 208, 255)";
     switch(type)
     {
         case 1:
         {
-            rgba1 = "rgb(122, 246, 231)";
-            rgba2 = "rgb(244, 247, 158)";
+            front = "rgb(122, 246, 231)";
+            back = "rgb(244, 247, 158)";
             break;
         }
         case 2:
         {
-            rgba1 = "rgb(232, 202, 189)";
-            rgba2 = "rgb(191, 252, 198)";
+            front = "rgb(232, 202, 189)";
+            back = "rgb(191, 252, 198)";
             break;
         }
         case 3:
         {
-            rgba1 = "rgb(213, 203, 255)";
-            rgba2 = "rgb(153, 236, 255)";
+            front = "rgb(213, 203, 255)";
+            back = "rgb(153, 236, 255)";
             break;
         }
         case 4:
         {
-            rgba1 = "rgb(255, 179, 249)";
-            rgba2 = "rgb(247, 246, 200)";
+            front = "rgb(255, 179, 249)";
+            back = "rgb(247, 246, 200)";
             break;
         }
         default: break;
     }
     const QString &prefix = "QSlider::sub-page:Horizontal{background-color:qlineargradient("
-                            "spread:pad,x1:0,y1:0,x2:1,y2:0,stop:0 " + rgba1 + ", stop:1 " + rgba2 + "); }";
+                            "spread:pad,x1:0,y1:0,x2:1,y2:0,stop:0 " + front + ", stop:1 " + back + "); }";
     m_slider->setStyleSheet(MusicUIObject::MQSSSliderStyle07 + prefix);
 }
 
