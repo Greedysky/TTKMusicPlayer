@@ -21,6 +21,7 @@ set(MUSIC_HEADERS
   ttkclickedgroup.h
   ttkclickedlabel.h
   ttkclickedslider.h
+  ttkcommandline.h
   ttkcryptographichash.h
   ttkdesktopwrapper.h
   ttkglobalhelper.h
@@ -40,6 +41,7 @@ set(MUSIC_SOURCES
   ttkclickedgroup.cpp
   ttkclickedlabel.cpp
   ttkclickedslider.cpp
+  ttkcommandline.cpp
   ttkcryptographichash.cpp
   ttkdesktopwrapper.cpp
   ttkglobalhelper.cpp

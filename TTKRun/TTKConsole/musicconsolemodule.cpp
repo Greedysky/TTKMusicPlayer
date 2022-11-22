@@ -6,11 +6,6 @@
 #include "musichotkeymanager.h"
 #include "musicfileutils.h"
 
-#if TTK_QT_VERSION_CHECK(5,2,0)
-#  include <QCommandLineOption>
-#  include <QCommandLineParser>
-#endif
-
 MusicConsoleModule::MusicConsoleModule(QObject *parent)
     : QObject(parent),
       m_volume(100),
@@ -66,30 +61,25 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
 
 MusicConsoleModule::~MusicConsoleModule()
 {
-    TTK_INFO_STREAM("\nRelease all");
     delete m_player;
     delete m_playlist;
 }
 
 bool MusicConsoleModule::initialize(const QCoreApplication &app)
 {
-#if TTK_QT_VERSION_CHECK(5,2,0)
-    QCommandLineOption op1("u", "", TTK_DOT);
-    QCommandLineOption op2("d", "", TTK_DOT);
-    QCommandLineOption op3("l", "", TTK_DOT);
+    TTKCommandLineOption op1("-u", "--url", "Music play url path");
+    TTKCommandLineOption op2("-d", "--dir", "Music play dir path");
+    TTKCommandLineOption op3("-l", "--playlist", "Music playlist url path");
 
-    QCommandLineParser parser;
+    TTKCommandLineParser parser;
     parser.addOption(op1);
     parser.addOption(op2);
     parser.addOption(op3);
     parser.process(app);
 
-    if(app.arguments().count() == 1)
+    if(parser.isEmpty())
     {
-        TTK_INFO_STREAM("\nOptions:");
-        TTK_INFO_STREAM("-u //Music play url path");
-        TTK_INFO_STREAM("-d //Music play dir path");
-        TTK_INFO_STREAM("-l //Music playlist url path\n");
+        parser.printHelp();
         return false;
     }
 
@@ -173,7 +163,7 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
     }
     else
     {
-        TTK_ERROR_STREAM("Options error");
+        TTK_ERROR_STREAM("Options unknown error");
         return false;
     }
 
@@ -181,10 +171,6 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
 
     m_player->play();
     m_player->setVolume(m_volume);
-#else
-    TTK_ERROR_STREAM("Qt version less than 5.2 not support commend line");
-#endif
-
     return app.exec();
 }
 

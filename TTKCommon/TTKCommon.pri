@@ -34,6 +34,7 @@ win32{
             $$PWD/TTKLibrary/ttkclickedgroup.h \
             $$PWD/TTKLibrary/ttkclickedlabel.h \
             $$PWD/TTKLibrary/ttkclickedslider.h \
+            $$PWD/TTKLibrary/ttkcommandline.h \
             $$PWD/TTKLibrary/ttkcryptographichash.h \
             $$PWD/TTKLibrary/ttkdesktopwrapper.h \
             $$PWD/TTKLibrary/ttkglobalhelper.h \

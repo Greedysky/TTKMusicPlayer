@@ -63,6 +63,7 @@ HEADERS += \
     $$PWD/ttkclickedgroup.h \
     $$PWD/ttkclickedlabel.h \
     $$PWD/ttkclickedslider.h \
+    $$PWD/ttkcommandline.h \
     $$PWD/ttkcryptographichash.h \
     $$PWD/ttkdesktopwrapper.h \
     $$PWD/ttkglobalhelper.h \
@@ -81,6 +82,7 @@ SOURCES += \
     $$PWD/ttkclickedgroup.cpp \
     $$PWD/ttkclickedlabel.cpp \
     $$PWD/ttkclickedslider.cpp \
+    $$PWD/ttkcommandline.cpp \
     $$PWD/ttkcryptographichash.cpp \
     $$PWD/ttkdesktopwrapper.cpp \
     $$PWD/ttkglobalhelper.cpp \

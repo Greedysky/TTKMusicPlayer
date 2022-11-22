@@ -19,9 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QCoreApplication>
 #include "musicobject.h"
-#include "ttkglobaldefine.h"
+#include "ttkcommandline.h"
 
 class MusicPlayer;
 class MusicPlaylist;
