@@ -271,7 +271,7 @@ public Q_SLOTS:
      */
     void setDeleteItemAt(const QStringList &path, bool remove, bool current, int toolIndex);
     /*!
-     * The current lrc should update, emit it.
+     * The current lrc should update.
      */
     void musicCurrentLrcUpdated();
     /*!

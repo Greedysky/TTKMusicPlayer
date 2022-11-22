@@ -100,7 +100,7 @@ public:
     /*!
      * Set song speed by given time, return new time.
      */
-    qint64 setSongSpeedChanged(qint64 time);
+    qint64 setSongTimeSpeed(qint64 time);
     /*!
      * Revert lrc time by pos, both + or - the same pos.
      */

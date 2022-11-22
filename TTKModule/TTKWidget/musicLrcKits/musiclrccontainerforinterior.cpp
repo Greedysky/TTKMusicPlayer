@@ -144,9 +144,9 @@ QString MusicLrcContainerForInterior::text() const
     return m_lrcManagers[m_lrcAnalysis->lineMiddle()]->text();
 }
 
-qint64 MusicLrcContainerForInterior::setSongSpeedChanged(qint64 time)
+qint64 MusicLrcContainerForInterior::setSongTimeSpeed(qint64 time)
 {
-    return m_lrcAnalysis->setSongSpeedChanged(time);
+    return m_lrcAnalysis->setSongTimeSpeed(time);
 }
 
 void MusicLrcContainerForInterior::setLrcSize(int size)
@@ -243,13 +243,13 @@ void MusicLrcContainerForInterior::lrcTimeSpeedChanged(QAction *action)
     switch(action->data().toInt())
     {
         case 0: timeValue = -0.5 * MT_S2MS; break;
-        case 1: timeValue = -MT_S2MS; break;
-        case 2: timeValue = -2 * MT_S2MS; break;
-        case 3: timeValue = -5 * MT_S2MS; break;
+        case 1: timeValue = -1.0 * MT_S2MS; break;
+        case 2: timeValue = -2.0 * MT_S2MS; break;
+        case 3: timeValue = -5.0 * MT_S2MS; break;
         case 4: timeValue = 0.5 * MT_S2MS; break;
-        case 5: timeValue = MT_S2MS; break;
-        case 6: timeValue = 2 * MT_S2MS; break;
-        case 7: timeValue = 5 * MT_S2MS; break;
+        case 5: timeValue = 1.0 * MT_S2MS; break;
+        case 6: timeValue = 2.0 * MT_S2MS; break;
+        case 7: timeValue = 5.0 * MT_S2MS; break;
         default: break;
     }
 
@@ -313,8 +313,8 @@ void MusicLrcContainerForInterior::showSongCommentsWidget()
     m_commentsWidget = new MusicLrcCommentsWidget(this);
     m_commentsWidget->initialize(true);
     m_commentsWidget->setGeometry(0, height() / 5, width(), height() * 4 / 5);
-    m_commentsWidget->show();
     m_commentsWidget->setCurrentSongName(m_currentSongName);
+    m_commentsWidget->show();
 }
 
 void MusicLrcContainerForInterior::showLrcPosterWidget()
@@ -344,7 +344,7 @@ void MusicLrcContainerForInterior::queryTranslatedLrcFinished(const QString &byt
     delete m_translatedWidget;
     m_translatedWidget = new MusicLrcTranslatedWidget(this);
     m_translatedWidget->setPlainText(m_currentSongName, text);
-    m_translatedWidget->setGeometry(0, height() / 5, width(), height() * 4 / 5);
+    m_translatedWidget->setGeometry(0, height() / 5.0, width(), height() * 4 / 5.0);
     m_translatedWidget->show();
 }
 
@@ -648,7 +648,7 @@ void MusicLrcContainerForInterior::createColorMenu(QMenu &menu)
 void MusicLrcContainerForInterior::revertTimeSpeed(qint64 pos)
 {
     m_lrcAnalysis->revertTime(pos);
-    const qint64 beforeTime = setSongSpeedChanged(m_currentTime);
+    const qint64 beforeTime = setSongTimeSpeed(m_currentTime);
     updateCurrentLrc(beforeTime);
 
     if(m_changeSpeedValue + pos == 0)

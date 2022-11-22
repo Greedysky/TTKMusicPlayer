@@ -91,7 +91,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * The current lrc should update, emit it.
+     * The current lrc should update.
      */
     void currentLrcUpdated();
     /*!

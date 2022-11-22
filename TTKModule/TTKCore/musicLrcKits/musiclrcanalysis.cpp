@@ -339,7 +339,7 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, QString cap, const Q
     m_lrcContainer.insert(totalTime, oneLine);
 }
 
-qint64 MusicLrcAnalysis::setSongSpeedChanged(qint64 time)
+qint64 MusicLrcAnalysis::setSongTimeSpeed(qint64 time)
 {
     const QList<qint64> keys(m_lrcContainer.keys());
     qint64 beforeTime = 0;

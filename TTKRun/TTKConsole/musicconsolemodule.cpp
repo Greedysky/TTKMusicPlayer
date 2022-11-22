@@ -18,7 +18,6 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
     m_player->setPlaylist(m_playlist);
 
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
-    connect(m_player, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_playlist, SIGNAL(currentIndexChanged(int)), SLOT(currentIndexChanged(int)));
 
     G_HOTKEY_PTR->addHotKey("Ctrl+B");
@@ -167,16 +166,11 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
         return false;
     }
 
-    TTK_INFO_STREAM("\nMusic Files count: " << m_playlist->count() << "\n");
+    TTK_INFO_STREAM("Music Files count: " << m_playlist->count() << "\n");
 
     m_player->play();
     m_player->setVolume(m_volume);
     return app.exec();
-}
-
-void MusicConsoleModule::durationChanged(qint64 duration)
-{
-    print(0, duration);
 }
 
 void MusicConsoleModule::positionChanged(qint64 position)
@@ -186,8 +180,14 @@ void MusicConsoleModule::positionChanged(qint64 position)
 
 void MusicConsoleModule::currentIndexChanged(int index)
 {
-    TTK_INFO_STREAM("\nCurrent Play Indedx: " << index);
+    TTK_INFO_STREAM("Current Play Indedx: " << index);
     QTimer::singleShot(MT_S2MS, this, SLOT(resetVolume()));
+    if(index == TTK_NORMAL_LEVEL)
+    {
+        m_player->stop();
+        QTimer::singleShot(MT_S2MS, qApp, SLOT(quit()));
+        TTK_INFO_STREAM("Music play end and application quit now!");
+    }
 }
 
 void MusicConsoleModule::musicStatePlay()
@@ -341,9 +341,7 @@ void MusicConsoleModule::print(qint64 position, qint64 duration) const
 {
     const MusicPlayItem &item = m_playlist->currentItem();
     TTK_INFO_STREAM(QString("Music Name: %1, Time:[%2/%3], Volume:%4, PlaybackMode:%5, Enhance:%6")
-                .arg(item.m_path,
-                     TTKTime::msecTime2LabelJustified(position),
-                     TTKTime::msecTime2LabelJustified(duration))
+                .arg(item.m_path, TTKTime::msecTime2LabelJustified(position), TTKTime::msecTime2LabelJustified(duration))
                 .arg(m_player->volume())
                 .arg(m_playbackMode, m_enhanced));
 }

@@ -77,7 +77,7 @@ Q_SIGNALS:
      */
     void renameFinished(const QString &text);
     /*!
-     * Mouse is the item geometry, emit row and column.
+     * Mouse is the item geometry.
      */
     void enterChanged(int row, int column);
 

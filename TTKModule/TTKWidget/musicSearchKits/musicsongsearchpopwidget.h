@@ -44,7 +44,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * User click the current item, emit the current text.
+     * User click the current item.
      */
     void setText(const QString &text);
 
@@ -86,7 +86,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * User click the current item, emit the current text.
+     * User click the current item.
      */
     void setText(const QString &text);
 

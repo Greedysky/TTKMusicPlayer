@@ -45,10 +45,6 @@ public:
 
 private Q_SLOTS:
     /*!
-     * Current duration changed.
-     */
-    void durationChanged(qint64 duration);
-    /*!
      * Current position changed.
      */
     void positionChanged(qint64 position);

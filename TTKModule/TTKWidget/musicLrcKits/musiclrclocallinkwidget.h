@@ -82,7 +82,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Current lrc changed by user, and emit Lrc flag.
+     * Current lrc changed by user.
      */
     void currentLrcChanged(const QString &data);
 

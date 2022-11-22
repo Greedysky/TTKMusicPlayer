@@ -243,7 +243,7 @@ void MusicLrcMakerWidget::currentLineFinished()
 void MusicLrcMakerWidget::timeSliderValueChanged(int value)
 {
     MusicApplication::instance()->musicPlayAnyTimeAt(value);
-    m_analysis->setSongSpeedChanged(value);
+    m_analysis->setSongTimeSpeed(value);
 }
 
 void MusicLrcMakerWidget::saveButtonClicked()
@@ -402,13 +402,13 @@ void MusicLrcMakerWidget::updateAnimationLrc()
 void MusicLrcMakerWidget::lrcSpeedSlower()
 {
     m_analysis->revertTime(MT_S2MS);
-    updateCurrentLrc(m_analysis->setSongSpeedChanged(m_ui->timeSlider_T->value()));
+    updateCurrentLrc(m_analysis->setSongTimeSpeed(m_ui->timeSlider_T->value()));
 }
 
 void MusicLrcMakerWidget::lrcSpeedFaster()
 {
     m_analysis->revertTime(-MT_S2MS);
-    updateCurrentLrc(m_analysis->setSongSpeedChanged(m_ui->timeSlider_T->value()));
+    updateCurrentLrc(m_analysis->setSongTimeSpeed(m_ui->timeSlider_T->value()));
 }
 
 void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)

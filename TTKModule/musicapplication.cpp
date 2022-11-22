@@ -627,7 +627,7 @@ void MusicApplication::musicPlayAnyTimeAt(int value)
     //Drag the progress indicator to rewind or fast-forward through the current song
     m_player->setPosition(value);
     //Set lrc corrent to show
-    m_rightAreaWidget->setSongSpeedAndSlow(value);
+    m_rightAreaWidget->setSongTimeSpeed(value);
 }
 
 void MusicApplication::musicActionVolumeSub()
@@ -912,7 +912,7 @@ void MusicApplication::resetCurrentSongLrcIndex()
     if(pos != -1)
     {
         //Set lrc corrent to show
-        m_rightAreaWidget->setSongSpeedAndSlow(pos);
+        m_rightAreaWidget->setSongTimeSpeed(pos);
     }
 }
 
