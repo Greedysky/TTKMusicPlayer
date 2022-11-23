@@ -2,6 +2,7 @@
 #include "musicruntimemanager.h"
 #include "musicconfigobject.h"
 #include "musicplatformmanager.h"
+#include "ttkglobalhelper.h"
 #include "ttkdumper.h"
 #ifdef Q_OS_UNIX
 #  include <malloc.h>
@@ -63,6 +64,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(APP_COME_NAME);
     QCoreApplication::setApplicationName(APP_NAME);
 
+    TTKObject::setApplicationFont(&app);
+
     MusicConfigObject config;
     config.valid();
 
@@ -76,12 +79,12 @@ int main(int argc, char *argv[])
         config.reset();
     }
 
-    for(const QString &v : manager.translator())
+    for(const QString &ts : manager.translator())
     {
         QTranslator *translator = new QTranslator(&app);
-        if(!translator->load(v))
+        if(!translator->load(ts))
         {
-            TTK_ERROR_STREAM("Load translation error: " << v);
+            TTK_ERROR_STREAM("Load translation error: " << ts);
             delete translator;
             continue;
         }
@@ -108,8 +111,7 @@ int main(int argc, char *argv[])
     // unix mpris module
     MusicMPRISPlayer mpris;
     mpris.run();
-#endif
-#ifdef Q_OS_UNIX
+    // memory free
     mallopt(M_MMAP_THRESHOLD, 1024 * 1024);   // 1MB mmap
     mallopt(M_TRIM_THRESHOLD, 2 * 1024 * 1024); // 2MB brk
 #endif

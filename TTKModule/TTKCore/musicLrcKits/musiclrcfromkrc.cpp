@@ -77,7 +77,7 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
         if(file.open(QIODevice::WriteOnly))
         {
             QTextStream outstream(&file);
-            outstream.setCodec("utf-8");
+            outstream.setCodec("UTF-8");
             outstream << m_data;
             QtStreamEndl(outstream);
             file.close();

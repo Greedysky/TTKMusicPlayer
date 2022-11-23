@@ -398,7 +398,7 @@ void MusicLrcAnalysis::saveData()
     }
 
     QTextStream outstream(&file);
-    outstream.setCodec("utf-8");
+    outstream.setCodec("UTF-8");
     outstream << data;
     QtStreamEndl(outstream);
     file.close();

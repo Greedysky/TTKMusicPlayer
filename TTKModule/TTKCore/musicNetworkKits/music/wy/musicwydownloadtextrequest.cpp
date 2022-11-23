@@ -50,7 +50,7 @@ void MusicWYDownLoadTextRequest::downLoadFinished()
                 {
                     const QString &data = value["lyric"].toString();
                     QTextStream outstream(m_file);
-                    outstream.setCodec("utf-8");
+                    outstream.setCodec("UTF-8");
                     outstream << data.toUtf8();
                     QtStreamEndl(outstream);
                     m_file->close();

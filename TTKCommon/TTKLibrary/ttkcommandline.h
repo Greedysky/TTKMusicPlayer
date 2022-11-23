@@ -25,7 +25,7 @@
 /*! @brief The class of the command line option.
  * @author Greedysky <greedysky@163.com>
  */
-class TTKCommandLineOption
+class TTK_MODULE_EXPORT TTKCommandLineOption
 {
 public:
     /*!
@@ -63,8 +63,9 @@ private:
 /*! @brief The class of the command line parser.
  * @author Greedysky <greedysky@163.com>
  */
-class TTKCommandLineParser
+class TTK_MODULE_EXPORT TTKCommandLineParser
 {
+    TTK_DECLARE_MODULE(TTKCommandLineParser)
 public:
     /*!
      * Object contsructor.

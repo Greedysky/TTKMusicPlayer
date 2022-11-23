@@ -57,7 +57,7 @@ void MusicKWDownLoadTextRequest::downLoadFinished()
             }
 
             QTextStream outstream(m_file);
-            outstream.setCodec("utf-8");
+            outstream.setCodec("UTF-8");
             outstream << lrcData;
             QtStreamEndl(outstream);
             m_file->close();

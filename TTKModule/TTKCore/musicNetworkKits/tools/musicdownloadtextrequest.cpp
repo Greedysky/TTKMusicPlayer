@@ -42,7 +42,7 @@ void MusicDownLoadTextRequest::downLoadFinished()
         if(!bytes.isEmpty())
         {
             QTextStream outstream(m_file);
-            outstream.setCodec("utf-8");
+            outstream.setCodec("UTF-8");
             outstream << QString(bytes).remove("\r").toUtf8();
             QtStreamEndl(outstream);
             m_file->close();
