@@ -25,6 +25,7 @@ TEMPLATE = app
 
 include($$PWD/../../../TTKVersion.pri)
 
+DESTDIR = $$OUT_PWD/../../../bin/$$TTK_VERSION
 TARGET = GenerateSkin
 
 DEFINES += TTK_LIBRARY
@@ -39,8 +40,8 @@ win32:msvc{
     }
 }
 
-LIBS += -L$$OUT_PWD/../../../bin/$$TTK_VERSION -lTTKCore
-unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTK_VERSION -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lTTKZip -lzlib
+LIBS += -L$$DESTDIR -lTTKCore
+unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKLibrary -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lTTKZip -lzlib
 
 INCLUDEPATH += \
     $$PWD/../../../TTKCommon \
