@@ -64,8 +64,6 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(APP_COME_NAME);
     QCoreApplication::setApplicationName(APP_NAME);
 
-    TTKObject::setApplicationFont(&app);
-
     MusicConfigObject config;
     config.valid();
 
@@ -90,6 +88,8 @@ int main(int argc, char *argv[])
         }
         app.installTranslator(translator);
     }
+
+    TTKObject::setApplicationFont(&app);
 
     MusicApplication w;
     w.show();
