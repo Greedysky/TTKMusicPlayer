@@ -33,19 +33,19 @@ void MusicUtils::Widget::setLabelFontStyle(QWidget *widget, MusicObject::FontSty
 
 QString MusicUtils::Widget::elidedText(const QFont &font, const QString &text, Qt::TextElideMode mode, int width)
 {
-    QFontMetrics ft(font);
+    const QFontMetrics ft(font);
     return ft.elidedText(text, mode, width);
 }
 
 int MusicUtils::Widget::fontTextWidth(const QFont &font, const QString &text)
 {
-    QFontMetrics ft(font);
+    const QFontMetrics ft(font);
     return QtFontWidth(ft, text);
 }
 
 int MusicUtils::Widget::fontTextHeight(const QFont &font)
 {
-    QFontMetrics ft(font);
+    const QFontMetrics ft(font);
     return ft.height();
 }
 
