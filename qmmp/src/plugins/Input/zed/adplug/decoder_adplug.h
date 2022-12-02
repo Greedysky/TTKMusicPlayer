@@ -44,8 +44,8 @@ private:
     AdPlugHelper *m_helper = nullptr;
     unsigned char *m_bufptr = nullptr;
     qint64 m_buf_filled = 0;
-    unsigned long m_time = 0;
-    unsigned long m_length = 0;
+    qint64 m_time = 0;
+    qint64 m_length = 0;
     double m_divisor = 0.0;
 
 };

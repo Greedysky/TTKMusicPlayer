@@ -55,9 +55,9 @@ private:
     sc68_t *m_input = nullptr;
     int m_track = 0;
     int m_loop = 0;
-    int m_length = 0;
-    int m_current_sample = 0;
-    int m_total_samples = 0;
+    qint64 m_length = 0;
+    qint64 m_current_sample = 0;
+    qint64 m_total_samples = 0;
 
 };
 

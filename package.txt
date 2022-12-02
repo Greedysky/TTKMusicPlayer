@@ -30,7 +30,7 @@ sunvox-2.0e	https://warmplace.ru/soft/sunvox/sunvox_lib.php
 taglib-1.13	https://github.com/taglib/taglib
 wavpack-5.5.0	https://www.wavpack.com/downloads.html
 libxmp-4.5.0.patch	https://github.com/libxmp/libxmp
-zlib-1.2.12		https://github.com/madler/zlib
+zlib-1.2.13		https://github.com/madler/zlib
 7zip-22.01		https://www.7-zip.org/download.html
 ttk-1.2.1
 (sonic-master	https://github.com/waywardgeek/sonic)
@@ -40,4 +40,4 @@ ttk-1.2.1
 (libsc68-2.2.1	https://sourceforge.net/projects/sc68)
 (libuade-3.02	https://gitlab.com/uade-music-player/uade 033140bfb17d47a3b473121fd5cbbe3e222765c8)
 (libv2m-20211104	https://github.com/jgilje/v2m-player)
-///Update time 2022-11-05
+///Update time 2022-11-29

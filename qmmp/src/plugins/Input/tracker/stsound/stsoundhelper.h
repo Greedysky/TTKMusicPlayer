@@ -53,7 +53,7 @@ public:
 private:
     QString m_path;
     CYmMusic *m_input = nullptr;
-    int m_length = 0;
+    qint64 m_length = 0;
     QString m_title;
     QString m_author;
     QString m_comment;

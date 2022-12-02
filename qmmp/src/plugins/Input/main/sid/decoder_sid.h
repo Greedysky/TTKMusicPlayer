@@ -47,7 +47,7 @@ private:
     QString m_path;
     sidplayfp *m_player;
     SidDatabase *m_db;
-    int m_length = 0;
+    qint64 m_length = 0;
     qint64 m_length_in_bytes = 0;
     qint64 m_read_bytes = 0;
     SidTune m_tune;

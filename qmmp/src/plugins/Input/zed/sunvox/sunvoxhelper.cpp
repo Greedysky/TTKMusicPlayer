@@ -233,8 +233,8 @@ bool SunVoxHelper::initialize(bool copy)
 
 void SunVoxHelper::seek(qint64 time)
 {
-    const uint32_t t = totalTime();
-    const uint32_t l = sv_get_song_length_lines(SV_SLOT);
+    const qint64 t = totalTime();
+    const qint64 l = sv_get_song_length_lines(SV_SLOT);
     if(t != 0 && l != 0)
     {
         sv_rewind(0, time * 1.0 / t * l);

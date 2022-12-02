@@ -41,7 +41,7 @@ public:
     inline int channels() const { return 2; }
 
 protected:
-    int m_length = 0;
+    qint64 m_length = 0;
 
 };
 

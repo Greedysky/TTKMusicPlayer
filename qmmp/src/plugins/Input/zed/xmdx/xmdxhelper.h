@@ -43,7 +43,7 @@ public:
 
 protected:
     int m_offset = 0;
-    int m_length = 0;
+    qint64 m_length = 0;
     QString m_title;
     QString m_author;
 

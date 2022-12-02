@@ -53,7 +53,7 @@ public:
 private:
     QString m_path;
     void *m_input = nullptr;
-    int m_length = 0;
+    qint64 m_length = 0;
 
 };
 
