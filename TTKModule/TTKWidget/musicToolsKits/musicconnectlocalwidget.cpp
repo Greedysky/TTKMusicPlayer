@@ -43,7 +43,7 @@ void MusicConnectLocalWidget::initFirstWidget()
     textLabel->setStyleSheet(MusicUIObject::MQSSFontStyle04 + MusicUIObject::MQSSColorStyle09);
 
     QPushButton *firButton = new QPushButton(tr("Mobile Media"), firstWidget);
-    firButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle08 + MusicUIObject::MQSSColorStyle09);
+    firButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle08 + MusicUIObject::MQSSPushButtonStyle13);
     firButton->setIcon(QIcon(":/toolSets/lb_wired"));
     firButton->setIconSize(QSize(50, 50));
     firButton->setFixedSize(200, 90);
@@ -51,7 +51,7 @@ void MusicConnectLocalWidget::initFirstWidget()
     connect(firButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetSecond()));
 
     QPushButton *secButton = new QPushButton(tr("Media Library"), firstWidget);
-    secButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle08 + MusicUIObject::MQSSColorStyle09);
+    secButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle08 + MusicUIObject::MQSSPushButtonStyle13);
     secButton->setIcon(QIcon(":/toolSets/lb_media"));
     secButton->setIconSize(QSize(50, 50));
     secButton->setFixedSize(200, 90);
