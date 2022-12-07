@@ -44,8 +44,6 @@ win32:msvc{
 
 LIBS += -L$$DESTDIR -lTTKUi
 
-INCLUDEPATH += $$PWD
-
 #load extra define
 include($$PWD/../TTKThirdParty.pri)
 
