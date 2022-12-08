@@ -13,7 +13,7 @@ void MusicFMRadioSongsRequest::startRequest(const QString &id)
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(FM_PLAYLIST_URL, false).arg(id));
-    MusicObject::setSslConfiguration(&request);
+    MusicFMInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
