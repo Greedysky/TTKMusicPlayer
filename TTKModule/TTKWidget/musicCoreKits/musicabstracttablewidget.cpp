@@ -23,9 +23,9 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setMouseTracking(true);  //Open the capture mouse function
     setStyleSheet(MusicUIObject::MQSSTableWidgetStyle01 + MusicUIObject::MQSSScrollBarStyle01 + MusicUIObject::MQSSLineEditStyle01);
 
-    QFont f = font();
-    f.setBold(false);
-    setFont(f);
+    QFont font = this->font();
+    font.setBold(false);
+    setFont(font);
 
     setShowGrid(false);//Does not display the grid
     setFrameShape(QFrame::NoFrame);//Set No Border

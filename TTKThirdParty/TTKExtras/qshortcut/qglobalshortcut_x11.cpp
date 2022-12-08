@@ -30,7 +30,7 @@ bool QGlobalShortcutPrivate::eventFilter(void *message)
     XEvent *event = TTKStatic_cast(XEvent*, message);
     if(event->type == KeyPress)
     {
-        XKeyEvent* key = TTKReinterpret_cast(XKeyEvent*, event);
+        XKeyEvent *key = TTKReinterpret_cast(XKeyEvent*, event);
         unsigned int keycode = key->keycode;
         unsigned int keystate = key->state;
 #else

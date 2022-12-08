@@ -25,9 +25,9 @@ MusicLrcMakerWidgetItem::MusicLrcMakerWidgetItem(QWidget *ui, QObject *parent)
 
     reset();
 
-    QFont ft = font();
-    ft.setPointSize(18);
-    setFont(ft);
+    QFont font = this->font();
+    font.setPointSize(18);
+    setFont(font);
 }
 
 bool MusicLrcMakerWidgetItem::biggerThan(int value) const

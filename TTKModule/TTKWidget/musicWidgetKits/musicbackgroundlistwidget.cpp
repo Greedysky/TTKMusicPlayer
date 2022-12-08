@@ -116,9 +116,9 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
         painter.setBrush(QColor(0, 0, 0, 155));
         painter.drawRect(rect());
 
-        QFont f = painter.font();
-        f.setPixelSize(13);
-        painter.setFont(f);
+        QFont font = painter.font();
+        font.setPixelSize(13);
+        painter.setFont(font);
 
         painter.setPen(Qt::white);
         if(m_showNameMask)

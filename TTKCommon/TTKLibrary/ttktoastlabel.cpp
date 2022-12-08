@@ -66,8 +66,8 @@ void TTKToastLabel::popup(QWidget *parent)
 
 void TTKToastLabel::setText(const QString &text)
 {
-    const QFontMetrics ft(m_font);
-    setFixedSize(QtFontWidth(ft, text) + m_margin.x(), ft.height() + m_margin.y());
+    const QFontMetrics ftm(m_font);
+    setFixedSize(QtFontWidth(ftm, text) + m_margin.x(), ftm.height() + m_margin.y());
     QLabel::setText(text);
 }
 
