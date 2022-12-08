@@ -121,7 +121,7 @@ LRESULT CALLBACK dw_internal_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM
 				}
 				if (!events.isEmpty() && !watcher->event_receivers.isEmpty()) {
                     for(QObject* obj : qAsConst(watcher->event_receivers)) {
-                        for(QDeviceChangeEvent* event : qAsConst(events)) {
+                        for(QDeviceChangeEvent *event : qAsConst(events)) {
 							QCoreApplication::postEvent(obj, event, Qt::HighEventPriority);
 						}
 					}

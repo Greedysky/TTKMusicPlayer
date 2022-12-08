@@ -93,11 +93,11 @@ private:
     /*!
      * Render previous widget.
      */
-    void renderPreviousWidget(QPainter &painter);
+    void renderPreviousWidget(QPainter *painter);
     /*!
      * Render current widget.
      */
-    void renderCurrentWidget(QPainter &painter);
+    void renderCurrentWidget(QPainter *painter);
 
     bool m_isAnimating;
     float m_currentValue;

@@ -3,9 +3,9 @@
 #include <X11/Xlib.h>
 #include <xcb/xcb.h>
 
-static int (*original_x_errhandler)(Display* display, XErrorEvent* event);
+static int (*original_x_errhandler)(Display *display, XErrorEvent *event);
 
-static int q_x_errhandler(Display* display, XErrorEvent *event)
+static int q_x_errhandler(Display *display, XErrorEvent *event)
 {
     Q_UNUSED(display);
     switch(event->error_code)
@@ -25,7 +25,7 @@ static int q_x_errhandler(Display* display, XErrorEvent *event)
 }
 
 #if !TTK_QT_VERSION_CHECK(5,0,0)
-bool QGlobalShortcutPrivate::eventFilter(void* message)
+bool QGlobalShortcutPrivate::eventFilter(void *message)
 {
     XEvent *event = TTKStatic_cast(XEvent*, message);
     if(event->type == KeyPress)
@@ -39,7 +39,7 @@ bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &type, void *mes
     xcb_key_press_event_t *kev = nullptr;
     if(type == "xcb_generic_event_t")
     {
-        xcb_generic_event_t* event = TTKStatic_cast(xcb_generic_event_t*, message);
+        xcb_generic_event_t *event = TTKStatic_cast(xcb_generic_event_t*, message);
         if((event->response_type & 127) == XCB_KEY_PRESS)
         {
             kev = TTKStatic_cast(xcb_key_press_event_t*, message);

@@ -411,12 +411,12 @@ void MusicLrcMakerWidget::lrcSpeedFaster()
     updateCurrentLrc(m_analysis->setSongTimeSpeed(m_ui->timeSlider_T->value()));
 }
 
-void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
+void MusicLrcMakerWidget::keyPressEvent(QKeyEvent *event)
 {
     MusicAbstractMoveWidget::keyPressEvent(event);
 }
 
-void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
+void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent *event)
 {
     MusicAbstractMoveWidget::keyReleaseEvent(event);
 

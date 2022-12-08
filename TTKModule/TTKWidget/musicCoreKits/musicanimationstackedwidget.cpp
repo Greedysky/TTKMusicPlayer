@@ -25,13 +25,13 @@ MusicAnimationStackedWidget::~MusicAnimationStackedWidget()
     delete m_animation;
 }
 
-void MusicAnimationStackedWidget::paintEvent(QPaintEvent * event)
+void MusicAnimationStackedWidget::paintEvent(QPaintEvent *event)
 {
     if(m_isAnimating)
     {
         QPainter painter(this);
-        renderCurrentWidget(painter);
-        renderPreviousWidget(painter);
+        renderCurrentWidget(&painter);
+        renderPreviousWidget(&painter);
     }
     else
     {
@@ -39,7 +39,7 @@ void MusicAnimationStackedWidget::paintEvent(QPaintEvent * event)
     }
 }
 
-void MusicAnimationStackedWidget::renderPreviousWidget(QPainter &painter)
+void MusicAnimationStackedWidget::renderPreviousWidget(QPainter *painter)
 {
     QWidget *w = widget(m_previousIndex);
     QPixmap pixmap(w->size());
@@ -50,15 +50,15 @@ void MusicAnimationStackedWidget::renderPreviousWidget(QPainter &painter)
 
     switch(m_type)
     {
-        case Module::BottomToTop: painter.drawPixmap(0, height() / 2, pixmap); break;
-        case Module::TopToBottom: painter.drawPixmap(0, -height() / 2, pixmap); break;
-        case Module::LeftToRight: painter.drawPixmap(width() / 2, 0, pixmap); break;
-        case Module::RightToLeft: painter.drawPixmap(-width() / 2, 0, pixmap); break;
+        case Module::BottomToTop: painter->drawPixmap(0, height() / 2, pixmap); break;
+        case Module::TopToBottom: painter->drawPixmap(0, -height() / 2, pixmap); break;
+        case Module::LeftToRight: painter->drawPixmap(width() / 2, 0, pixmap); break;
+        case Module::RightToLeft: painter->drawPixmap(-width() / 2, 0, pixmap); break;
         default: break;
     }
 }
 
-void MusicAnimationStackedWidget::renderCurrentWidget(QPainter &painter)
+void MusicAnimationStackedWidget::renderCurrentWidget(QPainter *painter)
 {
     QWidget *w = widget(m_currentIndex);
     QPixmap pixmap(w->size());
@@ -71,26 +71,26 @@ void MusicAnimationStackedWidget::renderCurrentWidget(QPainter &painter)
     {
         case Module::BottomToTop:
         {
-            painter.translate(0, m_currentValue);
-            painter.drawPixmap(0, -height() / 2, pixmap);
+            painter->translate(0, m_currentValue);
+            painter->drawPixmap(0, -height() / 2, pixmap);
             break;
         }
         case Module::TopToBottom:
         {
-            painter.translate(0, m_currentValue);
-            painter.drawPixmap(0, height() / 2, pixmap);
+            painter->translate(0, m_currentValue);
+            painter->drawPixmap(0, height() / 2, pixmap);
             break;
         }
         case Module::LeftToRight:
         {
-            painter.translate(m_currentValue, 0);
-            painter.drawPixmap(-width() / 2, 0, pixmap);
+            painter->translate(m_currentValue, 0);
+            painter->drawPixmap(-width() / 2, 0, pixmap);
             break;
         }
         case Module::RightToLeft:
         {
-            painter.translate(m_currentValue, 0);
-            painter.drawPixmap(width() / 2, 0, pixmap);
+            painter->translate(m_currentValue, 0);
+            painter->drawPixmap(width() / 2, 0, pixmap);
             break;
         }
         default: break;

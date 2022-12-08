@@ -111,7 +111,7 @@ void MusicVLayoutAnimationWidget::start()
     MusicLayoutAnimationWidget::start();
 }
 
-void MusicVLayoutAnimationWidget::paintEvent(QPaintEvent * event)
+void MusicVLayoutAnimationWidget::paintEvent(QPaintEvent *event)
 {
     if(m_isAnimating)
     {
@@ -155,7 +155,7 @@ void MusicHLayoutAnimationWidget::start()
     MusicLayoutAnimationWidget::start();
 }
 
-void MusicHLayoutAnimationWidget::paintEvent(QPaintEvent * event)
+void MusicHLayoutAnimationWidget::paintEvent(QPaintEvent *event)
 {
     if(m_isAnimating)
     {
