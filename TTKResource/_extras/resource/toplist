@@ -39,16 +39,21 @@
             <value key="6886768100" value="中文DJ榜"/>
             <value key="6939992364" value="俄罗斯top hit流行音乐榜"/>
             <value key="7095271308" value="泰语榜"/>
+            <value key="7356827205" value="BEAT排行榜"/>
+            <value key="7325478166" value="编辑推荐榜VOL.27 陈奕迅回归，以音乐刻画浮世众生相"/>
+            <value key="7603212484" value="LOOK直播歌曲榜"/>
+            <value key="7657858751" value="中文原创歌曲榜"/>
+            <value key="7775163417" value="赏音榜"/>
         </tag>
     </WangYi>
     <KuGou>
         <tag value="热门榜单">
             <value key="6666" value="酷狗飙升榜"/>
             <value key="8888" value="酷狗TOP500"/>
+            <value key="59703" value="蜂鸟流行音乐榜"/>
             <value key="52144" value="抖音热歌榜"/>
             <value key="52767" value="快手热歌榜"/>
             <value key="24971" value="DJ热歌榜"/>
-            <value key="21101" value="酷狗分享榜"/>
             <value key="31308" value="内地榜"/>
             <value key="31313" value="香港地区榜"/>
             <value key="54848" value="台湾地区榜"/>
@@ -83,37 +88,43 @@
         </tag>
     </KuGou>
     <KuWo>
-        <tag value="分类榜">
-            <value key="16" value="酷我热歌榜"/>
-            <value key="17" value="酷我新歌榜"/>
+        <tag value="官方榜">
             <value key="93" value="酷我飙升榜"/>
-            <value key="62" value="酷我华语榜"/>
-            <value key="26" value="经典怀旧榜"/>
-            <value key="76" value="夜店舞曲榜"/>
-            <value key="64" value="热门影视榜"/>
-            <value key="104" value="酷我首发榜"/>
+            <value key="17" value="酷我新歌榜"/>
+            <value key="16" value="酷我热歌榜"/>
+            <value key="158" value="抖音热歌榜"/>
+            <value key="176" value="万物DJ榜"/>
+            <value key="145" value="会员畅听榜"/>
         </tag>
         <tag value="特色榜">
-            <value key="22" value="酷我欧美榜"/>
-            <value key="23" value="酷我日韩榜"/>
-            <value key="158" value="抖音热歌榜"/>
-            <value key="157" value="快手热歌榜"/>
-            <value key="145" value="酷我单曲畅销榜"/>
+            <value key="242" value="极品电音榜"/>
+            <value key="284" value="酷我热评榜"/>
+            <value key="187" value="流行趋势榜"/>
             <value key="154" value="酷我综艺榜"/>
-            <value key="63" value="网络神曲榜"/>
             <value key="153" value="网红新歌榜"/>
-            <value key="156" value="鬼畜调教榜"/>
-            <value key="106" value="酷我真声音"/>
-            <value key="151" value="腾讯音乐人原创榜"/>
+            <value key="26" value="经典怀旧榜"/>
+            <value key="329" value="酷我说唱榜"/>
+            <value key="278" value="古风音乐榜"/>
+            <value key="185" value="最强翻唱榜"/>
+            <value key="64" value="影视金曲榜"/>
+            <value key="294" value="禅心佛乐榜"/>
+            <value key="291" value="爆笑相声榜"/>
+            <value key="290" value="ACG新歌榜"/>
+            <value key="292" value="酷我铃声榜"/>
+            <value key="332" value="播客榜"/>
+            <value key="330" value="会员新歌榜"/>
+            <value key="331" value="会员爱听排行榜"/>
         </tag>
-        <tag value="全球榜">
-            <value key="12" value="Billboard榜"/>
-            <value key="49" value="iTunes音乐榜"/>
-            <value key="13" value="英国UK榜"/>
-            <value key="4" value="台湾Hito"/>
-            <value key="14" value="韩国M-net榜"/>
-            <value key="15" value="日本公信榜"/>
-            <value key="8" value="香港音乐榜"/>
+        <tag value="场景榜">
+            <value key="279" value="冬日暖歌榜"/>
+            <value key="328" value="车载歌曲榜"/>
+            <value key="297" value="跑步健身榜"/>
+            <value key="295" value="宝宝哄睡榜"/>
+            <value key="283" value="睡前放松榜"/>
+            <value key="282" value="熬夜修仙榜"/>
+            <value key="264" value="Vlog必备榜"/>
+            <value key="255" value="KTV点唱榜"/>
+            <value key="281" value="通勤路上榜"/>
         </tag>
     </KuWo>
 <TTKMusicPlayer>
