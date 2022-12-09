@@ -12,8 +12,10 @@ void MusicWYQueryArtistListRequest::startToPage(int offset)
     TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
 
     deleteAll();
+    m_totalSize = TTK_HIGH_LEVEL;
     QString catId = "1001", initial = "-1";
     const QStringList &dds = m_queryValue.split(TTK_SPLITER);
+
     if(dds.count() == 2)
     {
         catId = dds[0];
@@ -22,19 +24,22 @@ void MusicWYQueryArtistListRequest::startToPage(int offset)
             catId = "1001";
         }
 
-        int mIdx = dds[1].toInt();
-        if(mIdx > -1 && mIdx < 26)
+        int id = dds[1].toInt();
+        if(id <= 0)
         {
-            mIdx += 65;
+            id = -1;
         }
-        else if(mIdx >= 26)
+        else if(id > 0 && id <= 26)
         {
-            mIdx = 0;
+            id += 65 - 1;
+        }
+        else if(id > 26)
+        {
+            id = 0;
         }
 
-        initial = QString::number(mIdx);
+        initial = QString::number(id);
     }
-    m_totalSize = TTK_HIGH_LEVEL;
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,

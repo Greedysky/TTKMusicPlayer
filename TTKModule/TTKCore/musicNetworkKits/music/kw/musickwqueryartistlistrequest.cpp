@@ -12,8 +12,10 @@ void MusicKWQueryArtistListRequest::startToPage(int offset)
     TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
 
     deleteAll();
+    m_totalSize = TTK_HIGH_LEVEL;
     QString catId = "0", initial;
     const QStringList &dds = m_queryValue.split(TTK_SPLITER);
+
     if(dds.count() == 2)
     {
         catId = dds[0];
@@ -22,13 +24,12 @@ void MusicKWQueryArtistListRequest::startToPage(int offset)
             catId = "0";
         }
 
-        int mIdx = dds[1].toInt();
-        if(mIdx > -1 && mIdx < 26)
+        const int id = dds[1].toInt();
+        if(id > 0 && id <= 26)
         {
-            initial = QString("&prefix=%1").arg(TTKStatic_cast(char, mIdx + 65));
+            initial = QString("&prefix=%1").arg(TTKStatic_cast(char, id + 65 - 1));
         }
     }
-    m_totalSize = 0;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_LIST_URL, false).arg(catId).arg(offset).arg(m_pageSize) + initial);
