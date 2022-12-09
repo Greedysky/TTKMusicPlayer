@@ -20,7 +20,7 @@ void MusicQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
     connect(m_networkRequest, SIGNAL(createSearchedItem(MusicResultInfoItem)), SLOT(createSearchedItem(MusicResultInfoItem)));
 }
 
-MusicAbstractQueryRequest *MusicQueryTableWidget::getQueryInput() const
+MusicAbstractQueryRequest *MusicQueryTableWidget::queryInput() const
 {
     return m_networkRequest;
 }

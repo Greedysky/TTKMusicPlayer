@@ -103,6 +103,7 @@ MusicWebDJRadioQueryWidget::MusicWebDJRadioQueryWidget(QWidget *parent)
     m_infoWidget = nullptr;
     m_gridLayout = nullptr;
     m_pageQueryWidget = nullptr;
+
     m_networkRequest = new MusicDJRadioProgramCategoryRequest(this);
     connect(m_networkRequest, SIGNAL(createProgramItem(MusicResultDataItem)), SLOT(createProgramItem(MusicResultDataItem)));
 }

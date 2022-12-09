@@ -109,6 +109,7 @@ MusicArtistMvsQueryWidget::MusicArtistMvsQueryWidget(QWidget *parent)
     m_container->show();
 
     m_shareType = MusicSongSharingWidget::Module::Artist;
+
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this);
     connect(m_networkRequest, SIGNAL(createMovieItem(MusicResultDataItem)), SLOT(createArtistMvsItem(MusicResultDataItem)));
 }
@@ -203,6 +204,7 @@ MusicArtistAlbumsQueryWidget::MusicArtistAlbumsQueryWidget(QWidget *parent)
     m_container->show();
 
     m_shareType = MusicSongSharingWidget::Module::Artist;
+
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
     connect(m_networkRequest, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createArtistAlbumsItem(MusicResultDataItem)));
 }
@@ -287,9 +289,11 @@ MusicArtistQueryWidget::MusicArtistQueryWidget(QWidget *parent)
       m_artistAlbums(nullptr),
       m_artistMvs(nullptr)
 {
-    m_shareType = MusicSongSharingWidget::Module::Artist;
     m_queryTableWidget = new MusicArtistQueryTableWidget(this);
     m_queryTableWidget->hide();
+
+    m_shareType = MusicSongSharingWidget::Module::Artist;
+
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 }
@@ -379,7 +383,7 @@ void MusicArtistQueryWidget::queryAllFinished()
 
 void MusicArtistQueryWidget::queryArtistFinished()
 {
-    const MusicAbstractQueryRequest *d = m_queryTableWidget->getQueryInput();
+    const MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
     if(!d)
     {
         return;

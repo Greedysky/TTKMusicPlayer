@@ -33,10 +33,10 @@ MusicToplistQueryWidget::MusicToplistQueryWidget(QWidget *parent)
     m_queryTableWidget = new MusicToplistQueryTableWidget(this);
     m_queryTableWidget->hide();
 
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeToplistRequest(this);
-    m_queryTableWidget->setQueryInput(m_networkRequest);
+    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeToplistRequest(this);
+    m_queryTableWidget->setQueryInput(d);
 
-    connect(m_networkRequest, SIGNAL(createToplistItem(MusicResultDataItem)), SLOT(createToplistItem(MusicResultDataItem)));
+    connect(d, SIGNAL(createToplistItem(MusicResultDataItem)), SLOT(createToplistItem(MusicResultDataItem)));
 }
 
 MusicToplistQueryWidget::~MusicToplistQueryWidget()
@@ -47,10 +47,9 @@ MusicToplistQueryWidget::~MusicToplistQueryWidget()
 void MusicToplistQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-
-    m_networkRequest->setQueryAllRecords(true);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, QString());
-
+    MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
+    d->setQueryAllRecords(true);
+    d->startToSearch(MusicAbstractQueryRequest::QueryType::Other, QString());
     createLabels();
 }
 
@@ -111,7 +110,7 @@ void MusicToplistQueryWidget::createLabels()
     QWidget *categoryWidget = new QWidget(function);
     QHBoxLayout *categoryWidgetLayout = new QHBoxLayout(categoryWidget);
     m_categoryButton = new MusicToplistQueryCategoryPopWidget(categoryWidget);
-    m_categoryButton->setCategory(m_networkRequest->queryServer(), this);
+    m_categoryButton->setCategory(m_queryTableWidget->queryInput()->queryServer(), this);
     categoryWidgetLayout->addWidget(m_categoryButton);
     categoryWidgetLayout->addStretch(1);
     categoryWidget->setLayout(categoryWidgetLayout);
@@ -224,7 +223,8 @@ void MusicToplistQueryWidget::categoryChanged(const MusicResultsCategoryItem &ca
         m_categoryButton->closeMenu();
 
         m_songButton->setText(tr("SongItems"));
-        m_networkRequest->setQueryAllRecords(true);
-        m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, category.m_key);
+        MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
+        d->setQueryAllRecords(true);
+        d->startToSearch(MusicAbstractQueryRequest::QueryType::Other, category.m_key);
     }
 }

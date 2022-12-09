@@ -437,7 +437,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
     }
     else if(index == 2)
     {
-        MusicAbstractQueryRequest *d = m_searchTableWidget->getQueryInput();
+        const MusicAbstractQueryRequest *d = m_searchTableWidget->queryInput();
         if(!d)
         {
             return;

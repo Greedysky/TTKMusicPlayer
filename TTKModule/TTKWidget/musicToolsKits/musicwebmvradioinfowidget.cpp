@@ -117,9 +117,9 @@ MusicWebMVRadioInfoWidget::MusicWebMVRadioInfoWidget(QWidget *parent)
     m_queryTableWidget = new MusicWebMVRadioInfoTableWidget(this);
     m_queryTableWidget->hide();
 
-    MusicMVRadioProgramRequest *v = new MusicMVRadioProgramRequest(this);
-    m_queryTableWidget->setQueryInput(v);
-    connect(v, SIGNAL(createMVRadioItem(MusicResultDataItem)), SLOT(createMVRadioProgramItem(MusicResultDataItem)));
+    MusicAbstractQueryRequest *d = new MusicMVRadioProgramRequest(this);
+    m_queryTableWidget->setQueryInput(d);
+    connect(d, SIGNAL(createMVRadioItem(MusicResultDataItem)), SLOT(createMVRadioProgramItem(MusicResultDataItem)));
 }
 
 void MusicWebMVRadioInfoWidget::setSongName(const QString &name)

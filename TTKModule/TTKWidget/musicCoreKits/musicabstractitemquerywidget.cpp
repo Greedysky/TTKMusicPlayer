@@ -96,10 +96,10 @@ void MusicAbstractItemQueryWidget::shareButtonClicked()
     data["songName"] = m_currentPlaylistItem.m_name;
     data["smallUrl"] = m_currentPlaylistItem.m_coverUrl;
 
-    const MusicAbstractQueryRequest *th = m_queryTableWidget->getQueryInput();
-    if(th)
+    const MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
+    if(d)
     {
-        data["queryServer"] = th->queryServer();
+        data["queryServer"] = d->queryServer();
     }
 
     MusicSongSharingWidget shareWidget(this);
@@ -208,7 +208,7 @@ void MusicAbstractItemQueryWidget::initSecondWidget()
 
 void MusicAbstractItemQueryWidget::setSongCountText()
 {
-    const MusicAbstractQueryRequest *d = m_queryTableWidget->getQueryInput();
+    const MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
     if(!d)
     {
         return;

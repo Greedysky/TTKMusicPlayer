@@ -129,10 +129,9 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-
     m_queryType = MusicAbstractQueryRequest::QueryType::Music;
     m_ui->loadingLabel->setType(MusicGifLabelWidget::Module::CicleBlue);
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
 
     connect(m_ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startRequest()));

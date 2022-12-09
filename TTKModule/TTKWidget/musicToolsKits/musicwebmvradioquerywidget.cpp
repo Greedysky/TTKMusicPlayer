@@ -112,6 +112,7 @@ MusicWebMVRadioQueryWidget::MusicWebMVRadioQueryWidget(QWidget *parent)
     m_infoWidget = nullptr;
     m_gridLayout = nullptr;
     m_categoryButton = nullptr;
+
     m_networkRequest = new MusicMVRadioCategoryRequest(this);
     connect(m_networkRequest, SIGNAL(createMVRadioItem(MusicResultDataItem)), SLOT(createMVRadioCategoryItem(MusicResultDataItem)));
 }

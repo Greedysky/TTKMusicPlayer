@@ -36,9 +36,9 @@ MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)
     m_queryTableWidget = new MusicWebDJRadioInfoTableWidget(this);
     m_queryTableWidget->hide();
 
-    MusicDJRadioProgramCategoryRequest *v = new MusicDJRadioProgramCategoryRequest(this);
-    m_queryTableWidget->setQueryInput(v);
-    connect(v, SIGNAL(createCategoryItem(MusicResultDataItem)), SLOT(createProgramCategoryItem(MusicResultDataItem)));
+    MusicAbstractQueryRequest *d = new MusicDJRadioProgramCategoryRequest(this);
+    m_queryTableWidget->setQueryInput(d);
+    connect(d, SIGNAL(createCategoryItem(MusicResultDataItem)), SLOT(createProgramCategoryItem(MusicResultDataItem)));
 }
 
 void MusicWebDJRadioInfoWidget::setSongName(const QString &name)

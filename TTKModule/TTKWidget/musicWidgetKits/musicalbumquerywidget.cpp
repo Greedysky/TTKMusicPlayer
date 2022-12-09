@@ -111,7 +111,7 @@ void MusicAlbumQueryWidget::queryAllFinished()
 
 void MusicAlbumQueryWidget::queryAlbumFinished()
 {
-    MusicAbstractQueryRequest *d = m_queryTableWidget->getQueryInput();
+    const MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
     if(!d)
     {
         return;
