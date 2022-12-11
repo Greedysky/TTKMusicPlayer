@@ -64,7 +64,8 @@ QStringList Format::supportMusicInputFilterFormats()
 
 QStringList Format::supportMusicInputFormats()
 {
-    QStringList formats("All File(*.*)");
+    QString allFilters;
+    QStringList formats;
     const QList<DecoderFactory *> factorys(Decoder::enabledFactories());
     for(DecoderFactory *factory : qAsConst(factorys))
     {
@@ -74,7 +75,10 @@ QStringList Format::supportMusicInputFormats()
             continue;
         }
 
-        formats << QString("%1(%2)").arg(factory->properties().description).arg(filters);
+        allFilters += " " + filters;
+        formats << QString("%1(%2)").arg(factory->properties().description, filters);
     }
+
+    formats.insert(0, QString("All Files(%1)").arg(allFilters));
     return formats;
 }
