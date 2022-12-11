@@ -113,7 +113,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         QWidget *containNumberWidget = new QWidget(containTopWidget);
         QHBoxLayout *containNumberLayout  = new QHBoxLayout(containNumberWidget);
 #ifdef Q_OS_WIN
-        containNumberLayout->setSpacing(15);
+        containNumberLayout->setSpacing(10);
 #endif
         TTKClickedGroup *clickedGroup = new TTKClickedGroup(this);
         connect(clickedGroup, SIGNAL(clicked(int)), SLOT(numberButtonClicked(int)));
