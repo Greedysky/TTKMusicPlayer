@@ -49,10 +49,7 @@ void QDlnaFinderPrivate::find()
 
 void QDlnaFinderPrivate::removeClients()
 {
-    while(!m_clients.isEmpty())
-    {
-        delete m_clients.takeLast();
-    }
+    qDeleteAll(m_clients);
 }
 
 bool QDlnaFinderPrivate::findClient(const QString &server)

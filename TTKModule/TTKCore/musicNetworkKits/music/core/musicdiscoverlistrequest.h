@@ -43,7 +43,7 @@ public:
     /*!
      * Get top list info.
      */
-    inline const QString &getToplistInfo() const { return m_toplistInfo; }
+    inline const QString &toplistInfo() const { return m_toplistInfo; }
 
 protected:
     QString m_toplistInfo;
