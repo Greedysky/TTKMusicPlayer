@@ -72,7 +72,7 @@ QString QDlnaFileServer::localAddress(const QString &prefix) const
 void QDlnaFileServer::handleRequest(QHttpRequest *request, QHttpResponse *response)
 {
     TTK_D(QDlnaFileServer);
-    QRegExp regx("^/music/(.*)$");
+    const QRegExp regx("^/music/(.*)$");
     if(regx.indexIn(request->path()) != -1)
     {
         response->setHeader("Content-Type", "audio/mp3");

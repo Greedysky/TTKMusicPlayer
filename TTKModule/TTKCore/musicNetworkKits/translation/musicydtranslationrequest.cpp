@@ -28,7 +28,7 @@ void MusicYDTranslationRequest::startRequest(const QString &data)
             return;
         }
 
-        QRegExp regx("sid\\:\\s\\'([0-9a-f\\.]+)");
+        const QRegExp regx("sid\\:\\s\\'([0-9a-f\\.]+)");
         sid = (bytes.indexOf(regx) != -1) ? regx.cap(1) : bytes;
     }
 

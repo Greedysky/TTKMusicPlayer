@@ -215,7 +215,7 @@ MusicPlatformManager::System MusicPlatformManager::systemName() const
     QFile file("/etc/lsb-release");
     if(file.open(QIODevice::ReadOnly))
     {
-        QRegExp regx("DISTRIB_ID=(\\w+)");
+        const QRegExp regx("DISTRIB_ID=(\\w+)");
         if(QString(file.readAll()).indexOf(regx) != -1)
         {
             const QString &system = regx.cap(1).toLower();

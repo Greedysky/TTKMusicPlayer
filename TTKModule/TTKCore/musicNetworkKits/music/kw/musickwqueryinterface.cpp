@@ -33,7 +33,7 @@ void MusicKWQueryInterface::parseFromSongHighProperty(MusicObject::MusicSongInfo
     if(!bytes.isEmpty() && !bytes.contains("res not found"))
     {
         const QString text(bytes);
-        QRegExp regx(".*url=(.*)\r\nsig=");
+        const QRegExp regx(".*url=(.*)\r\nsig=");
 
         if(text.indexOf(regx) != -1)
         {

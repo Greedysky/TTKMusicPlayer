@@ -14,7 +14,7 @@ bool MusicM3UConfigManager::readBuffer(MusicSongItemList &items)
 
     const QStringList data(QString(m_file.readAll()).split("\n"));
 
-    QRegExp regx("#EXTINF:(-{0,1}\\d+),(.*)");
+    const QRegExp regx("#EXTINF:(-{0,1}\\d+),(.*)");
     int length = 0;
     bool valid = false;
 

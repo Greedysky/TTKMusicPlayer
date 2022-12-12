@@ -237,7 +237,7 @@ void MusicKWQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInfo
     if(!bytes.isEmpty() && !bytes.contains("res not found"))
     {
         const QString text(bytes);
-        QRegExp regx(".*url=(.*)\r\nsig=");
+        const QRegExp regx(".*url=(.*)\r\nsig=");
 
         if(text.indexOf(regx) != -1)
         {
@@ -281,7 +281,7 @@ void MusicKWQueryMovieRequest::parseFromMovieInfo(MusicObject::MusicSongInformat
     }
 
     const QString text(bytes);
-    QRegExp regx("<h1 title=\"([^<]+)\">[^>]+>([^<]+)</span></h1>");
+    const QRegExp regx("<h1 title=\"([^<]+)\">[^>]+>([^<]+)</span></h1>");
 
     if(text.indexOf(regx) != -1)
     {

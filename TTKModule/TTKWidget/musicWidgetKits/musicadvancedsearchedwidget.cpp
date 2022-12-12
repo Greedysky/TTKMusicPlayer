@@ -165,7 +165,7 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
     {
         case MusicAbstractQueryRequest::QueryServer::WY:
         {
-            QRegExp regx("id=(\\d+)");
+            const QRegExp regx("id=(\\d+)");
             key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
             break;
         }

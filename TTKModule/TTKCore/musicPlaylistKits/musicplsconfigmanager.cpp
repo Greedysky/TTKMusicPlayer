@@ -23,8 +23,8 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
         return false;
     }
 
-    QRegExp regx1("^File(\\d+)=(.+)");
-    QRegExp regx2("^Length(\\d+)=(-{0,1}\\d+)");
+    const QRegExp regx1("^File(\\d+)=(.+)");
+    const QRegExp regx2("^Length(\\d+)=(-{0,1}\\d+)");
 
     int number = 0;
     bool error = false;

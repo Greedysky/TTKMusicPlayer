@@ -76,9 +76,9 @@ void QDeviceWatcherPrivate::parseDeviceInfo()
 	QByteArray data;
 #if CONFIG_SOCKETNOTIFIER
 	//socket_notifier->setEnabled(false); //for win
-    data.resize(UEVENT_BUFFER_SIZE * 2);
+	data.resize(UEVENT_BUFFER_SIZE * 2);
 	data.fill(0);
-    size_t len = read(socket_notifier->socket(), data.data(), UEVENT_BUFFER_SIZE * 2);
+	size_t len = read(socket_notifier->socket(), data.data(), UEVENT_BUFFER_SIZE * 2);
         qDebug("read fro socket %d bytes", len);
 	data.resize(len);
 	//socket_notifier->setEnabled(true); //for win
@@ -204,8 +204,8 @@ void QDeviceWatcherPrivate::parseLine(const QByteArray &line)
         qDebug("%s", line.constData());
 #define USE_REGEXP 0
 #if USE_REGEXP
-	QRegExp rx("(\\w+)(?:@/.*/block/.*/)(\\w+)\\W*");
-	//QRegExp rx("(add|remove|change)@/.*/block/.*/(\\w+)\\W*");
+	const QRegExp rx("(\\w+)(?:@/.*/block/.*/)(\\w+)\\W*");
+	//const QRegExp rx("(add|remove|change)@/.*/block/.*/(\\w+)\\W*");
 	if (rx.indexIn(line) == -1)
 		return;
 	QString action_str = rx.cap(1).toLower();

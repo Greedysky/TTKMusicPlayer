@@ -108,7 +108,7 @@ QString MusicUtils::File::getExistingDirectory(QWidget *parent)
     if(!path.isEmpty())
     {
         path += TTK_SEPARATOR;
-        G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, QFileInfo(path).absolutePath());
+        G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, path);
     }
     return path;
 }
@@ -126,7 +126,7 @@ QString MusicUtils::File::getOpenFileName(QWidget *parent, const QString &filter
 
 QStringList MusicUtils::File::getOpenFileNames(QWidget *parent, const QString &filter)
 {
-    QString path = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();
+    const QString &path = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();
     const QStringList &files = QFileDialog::getOpenFileNames(parent, QObject::tr("Choose a filename to open under"), path, filter);
     if(!files.isEmpty())
     {
@@ -151,9 +151,7 @@ QString MusicUtils::File::getSaveFileName(QWidget *parent, const QString &filter
     }
     return path;
 #else
-    path = QFileInfo(path).absolutePath();
-
-    QFileDialog dialog(parent, title, path, filter);
+    QFileDialog dialog(parent, title, QFileInfo(path).absolutePath(), filter);
     dialog.setAcceptMode(QFileDialog::AcceptSave);
     if(parent)
     {
@@ -170,7 +168,7 @@ QString MusicUtils::File::getSaveFileName(QWidget *parent, const QString &filter
 
     if(!filters.isEmpty())
     {
-        QRegExp regx("(?:^\\*\\.(?!.*\\()|\\(\\*\\.)(\\w+)");
+        const QRegExp regx("(?:^\\*\\.(?!.*\\()|\\(\\*\\.)(\\w+)");
         if(regx.indexIn(selectFilter) != -1)
         {
             dialog.setDefaultSuffix(regx.cap(1));
