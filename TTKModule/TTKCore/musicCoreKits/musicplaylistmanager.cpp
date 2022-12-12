@@ -15,35 +15,35 @@ void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSong
     const QFileInfo fin(path);
     const QString &suffix = FILE_SUFFIX(fin);
 
-    if(suffix == TPL_FILE_PREFIX)
+    if(suffix == TPL_FILE_SUFFIX)
     {
         writeTKPLConfig(path, item);
     }
-    else if(suffix == M3U_FILE_PREFIX || suffix == M3U8_FILE_PREFIX)
+    else if(suffix == M3U_FILE_SUFFIX || suffix == M3U8_FILE_SUFFIX)
     {
         writeM3UConfig(path, item);
     }
-    else if(suffix == PLS_FILE_PREFIX)
+    else if(suffix == PLS_FILE_SUFFIX)
     {
         writePLSConfig(path, item);
     }
-    else if(suffix == WPL_FILE_PREFIX)
+    else if(suffix == WPL_FILE_SUFFIX)
     {
         writeWPLConfig(path, item);
     }
-    else if(suffix == XSPF_FILE_PREFIX)
+    else if(suffix == XSPF_FILE_SUFFIX)
     {
         writeXSPFConfig(path, item);
     }
-    else if(suffix == ASX_FILE_PREFIX)
+    else if(suffix == ASX_FILE_SUFFIX)
     {
         writeASXConfig(path, item);
     }
-    else if(suffix == CSV_FILE_PREFIX)
+    else if(suffix == CSV_FILE_SUFFIX)
     {
         writeCSVConfig(path, item);
     }
-    else if(suffix == TXT_FILE_PREFIX)
+    else if(suffix == TXT_FILE_SUFFIX)
     {
         writeTXTConfig(path, item);
     }
@@ -56,43 +56,43 @@ void MusicPlaylistManager::musicSongItems(const QStringList& paths, MusicSongIte
         const QFileInfo fin(path);
         const QString & suffix = FILE_SUFFIX(fin);
 
-        if(suffix == TPL_FILE_PREFIX)
+        if(suffix == TPL_FILE_SUFFIX)
         {
             readTKPLConfig(path, items);
         }
-        else if(suffix == M3U_FILE_PREFIX || suffix == M3U8_FILE_PREFIX)
+        else if(suffix == M3U_FILE_SUFFIX || suffix == M3U8_FILE_SUFFIX)
         {
             readM3UConfig(path, items);
         }
-        else if(suffix == PLS_FILE_PREFIX)
+        else if(suffix == PLS_FILE_SUFFIX)
         {
             readPLSConfig(path, items);
         }
-        else if(suffix == WPL_FILE_PREFIX)
+        else if(suffix == WPL_FILE_SUFFIX)
         {
             readWPLConfig(path, items);
         }
-        else if(suffix == XSPF_FILE_PREFIX)
+        else if(suffix == XSPF_FILE_SUFFIX)
         {
             readXSPFConfig(path, items);
         }
-        else if(suffix == ASX_FILE_PREFIX)
+        else if(suffix == ASX_FILE_SUFFIX)
         {
             readASXConfig(path, items);
         }
-        else if(suffix == CSV_FILE_PREFIX)
+        else if(suffix == CSV_FILE_SUFFIX)
         {
             readCSVConfig(path, items);
         }
-        else if(suffix == TXT_FILE_PREFIX)
+        else if(suffix == TXT_FILE_SUFFIX)
         {
             readTXTConfig(path, items);
         }
-        else if(suffix == FPL_FILE_PREFIX)
+        else if(suffix == FPL_FILE_SUFFIX)
         {
             readFPLConfig(path, items);
         }
-        else if(suffix == DBPL_FILE_PREFIX)
+        else if(suffix == DBPL_FILE_SUFFIX)
         {
             readDBPLConfig(path, items);
         }

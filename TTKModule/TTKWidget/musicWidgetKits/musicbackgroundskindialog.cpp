@@ -184,7 +184,7 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
         return;
     }
 
-    if(FILE_SUFFIX(QFileInfo(path)) == TKM_FILE_PREFIX)
+    if(FILE_SUFFIX(QFileInfo(path)) == TKM_FILE_SUFFIX)
     {
         const int index = cpoyFileToLocalIndex();
         if(index != -1)
@@ -369,7 +369,7 @@ void MusicBackgroundSkinDialog::findThemeListByPath(const QString &dir, TTKIntLi
     for(const QString &path : qAsConst(files))
     {
         const QFileInfo fin(path);
-        if(FILE_SUFFIX(fin) != TKM_FILE_PREFIX)
+        if(FILE_SUFFIX(fin) != TKM_FILE_SUFFIX)
         {
             continue;
         }

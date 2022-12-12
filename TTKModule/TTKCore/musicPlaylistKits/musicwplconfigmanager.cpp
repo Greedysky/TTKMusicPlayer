@@ -32,7 +32,7 @@ bool MusicWPLConfigManager::writeBuffer(const MusicSongItemList &items, const QS
         return false;
     }
 
-    const QDomNode &node = m_document->createProcessingInstruction(WPL_FILE_PREFIX, "version='1.0' encoding='UTF-8'");
+    const QDomNode &node = m_document->createProcessingInstruction(WPL_FILE_SUFFIX, "version='1.0' encoding='UTF-8'");
     m_document->appendChild(node);
 
     QDomElement rootDom = createRoot("smil");

@@ -193,7 +193,7 @@ void MusicTransformWidget::buttonClicked(int index)
 
 int MusicTransformWidget::exec()
 {
-    if(!QFile::exists(MAKE_TRANSFORM_FULL))
+    if(!QFile::exists(MAKE_TRANSFORM_PATH_FULL))
     {
         MusicToastLabel::popup(tr("Lack of plugin file!"));
         return -1;
@@ -248,7 +248,7 @@ bool MusicTransformWidget::processTransform()
         TTK_INFO_STREAM(QString("%1 %2 %3 %4").arg(m_ui->formatCombo->currentText(), m_ui->kbpsCombo->currentText(), m_ui->hzCombo->currentText())
                                               .arg(m_ui->msCombo->currentIndex() + 1));
 
-        m_process->start(MAKE_TRANSFORM_FULL, QStringList() << "-i" << in << "-y"
+        m_process->start(MAKE_TRANSFORM_PATH_FULL, QStringList() << "-i" << in << "-y"
                                 << "-ab" << m_ui->kbpsCombo->currentText() + "k"
                                 << "-ar" << m_ui->hzCombo->currentText()
                                 << "-ac" << QString::number(m_ui->msCombo->currentIndex() + 1)
@@ -257,7 +257,7 @@ bool MusicTransformWidget::processTransform()
     else
     {
         MusicLrcFromKrc krc;
-        TTK_INFO_STREAM("Krc to lrc state: " << krc.decode(in, QString("%1%2.%3").arg(out, transformSongName(), LRC_FILE_PREFIX)));
+        TTK_INFO_STREAM("Krc to lrc state: " << krc.decode(in, QString("%1%2.%3").arg(out, transformSongName(), LRC_FILE_SUFFIX)));
         transformFinish();
     }
     return true;

@@ -117,7 +117,7 @@ void MusicSongRingtoneMaker::initOutputPath()
         return;
     }
 
-    QProcess::execute(MAKE_TRANSFORM_FULL, QStringList()
+    QProcess::execute(MAKE_TRANSFORM_PATH_FULL, QStringList()
         << "-i" << m_inputFilePath << "-ss" << QString::number(m_startPos)
         << "-t" << QString::number(m_stopPos) << "-acodec" << "copy"
         << "-ab" << m_ui->kbpsCombo->currentText() + "k"
@@ -177,7 +177,7 @@ void MusicSongRingtoneMaker::buttonReleaseChanged(qint64 pos)
 
 int MusicSongRingtoneMaker::exec()
 {
-    if(!QFile::exists(MAKE_TRANSFORM_FULL))
+    if(!QFile::exists(MAKE_TRANSFORM_PATH_FULL))
     {
         MusicToastLabel::popup(tr("Lack of plugin file!"));
         return -1;

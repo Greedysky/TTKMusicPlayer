@@ -117,12 +117,12 @@ void MusicQueryRecommendRequest::parseFromSongProperty(MusicObject::MusicSongInf
     prop.m_size = MusicUtils::Number::sizeByte2Label(length * 1000 * bitrate / 8);
     switch(bitrate)
     {
-        case MB_128: prop.m_format = MP3_FILE_PREFIX; break;
-        case MB_192: prop.m_format = MP3_FILE_PREFIX; break;
-        case MB_320: prop.m_format = MP3_FILE_PREFIX; break;
-        case MB_750: prop.m_format = APE_FILE_PREFIX; break;
-        case MB_1000: prop.m_format = FLAC_FILE_PREFIX; break;
-        default: prop.m_format = MP3_FILE_PREFIX; break;
+        case MB_128: prop.m_format = MP3_FILE_SUFFIX; break;
+        case MB_192: prop.m_format = MP3_FILE_SUFFIX; break;
+        case MB_320: prop.m_format = MP3_FILE_SUFFIX; break;
+        case MB_750: prop.m_format = APE_FILE_SUFFIX; break;
+        case MB_1000: prop.m_format = FLAC_FILE_SUFFIX; break;
+        default: prop.m_format = MP3_FILE_SUFFIX; break;
     }
     prop.m_bitrate = bitrate;
     info->m_songProps.append(prop);

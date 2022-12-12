@@ -25,156 +25,152 @@
 #include "ttkglobal.h"
 
 //
-#define TKF_FILE_PREFIX         "tkf"
-#define TKX_FILE_PREFIX         "tkx"
-#define TKM_FILE_PREFIX         "tkm"
+#define TKF_FILE_SUFFIX          "tkf"
+#define TKX_FILE_SUFFIX          "tkx"
+#define TKM_FILE_SUFFIX          "tkm"
 //
-#define SKN_FILE_PREFIX         "skn"
-#define JPG_FILE_PREFIX         "jpg"
-#define BMP_FILE_PREFIX         "bmp"
-#define PNG_FILE_PREFIX         "png"
-#define LRC_FILE_PREFIX         "lrc"
-#define KRC_FILE_PREFIX         "krc"
-#define EXE_FILE_PREFIX         "exe"
-#define XML_FILE_PREFIX         "xml"
-#define COM_FILE_PREFIX         "com"
+#define SKN_FILE_SUFFIX          "skn"
+#define JPG_FILE_SUFFIX          "jpg"
+#define LRC_FILE_SUFFIX          "lrc"
+#define KRC_FILE_SUFFIX          "krc"
+#define EXE_FILE_SUFFIX          "exe"
+#define XML_FILE_SUFFIX          "xml"
+#define COM_FILE_SUFFIX          "com"
 // playlist ext
-#define TPL_FILE_PREFIX         "tkpl"
-#define M3U_FILE_PREFIX         "m3u"
-#define M3U8_FILE_PREFIX        "m3u8"
-#define PLS_FILE_PREFIX         "pls"
-#define WPL_FILE_PREFIX         "wpl"
-#define XSPF_FILE_PREFIX        "xspf"
-#define ASX_FILE_PREFIX         "asx"
-#define CSV_FILE_PREFIX         "csv"
-#define TXT_FILE_PREFIX         "txt"
-#define FPL_FILE_PREFIX         "fpl"
-#define DBPL_FILE_PREFIX        "dbpl"
+#define TPL_FILE_SUFFIX          "tkpl"
+#define M3U_FILE_SUFFIX          "m3u"
+#define M3U8_FILE_SUFFIX         "m3u8"
+#define PLS_FILE_SUFFIX          "pls"
+#define WPL_FILE_SUFFIX          "wpl"
+#define XSPF_FILE_SUFFIX         "xspf"
+#define ASX_FILE_SUFFIX          "asx"
+#define CSV_FILE_SUFFIX          "csv"
+#define TXT_FILE_SUFFIX          "txt"
+#define FPL_FILE_SUFFIX          "fpl"
+#define DBPL_FILE_SUFFIX         "dbpl"
 // file ext
-#define AAC_FILE_PREFIX         "aac"
-#define WMA_FILE_PREFIX         "wma"
-#define MP3_FILE_PREFIX         "mp3"
-#define OGG_FILE_PREFIX         "ogg"
-#define APE_FILE_PREFIX         "ape"
-#define FLAC_FILE_PREFIX        "flac"
+#define AAC_FILE_SUFFIX          "aac"
+#define WMA_FILE_SUFFIX          "wma"
+#define MP3_FILE_SUFFIX          "mp3"
+#define OGG_FILE_SUFFIX          "ogg"
+#define APE_FILE_SUFFIX          "ape"
+#define FLAC_FILE_SUFFIX         "flac"
 
 
-#define TKF_FILE                TTK_STRCAT(TTK_DOT, TKF_FILE_PREFIX)
-#define TKX_FILE                TTK_STRCAT(TTK_DOT, TKX_FILE_PREFIX)
-#define TKM_FILE                TTK_STRCAT(TTK_DOT, TKM_FILE_PREFIX)
+#define TKF_FILE                 TTK_STRCAT(TTK_DOT, TKF_FILE_SUFFIX)
+#define TKX_FILE                 TTK_STRCAT(TTK_DOT, TKX_FILE_SUFFIX)
+#define TKM_FILE                 TTK_STRCAT(TTK_DOT, TKM_FILE_SUFFIX)
 //
-#define SKN_FILE                TTK_STRCAT(TTK_DOT, SKN_FILE_PREFIX)
-#define JPG_FILE                TTK_STRCAT(TTK_DOT, JPG_FILE_PREFIX)
-#define BMP_FILE                TTK_STRCAT(TTK_DOT, BMP_FILE_PREFIX)
-#define PNG_FILE                TTK_STRCAT(TTK_DOT, PNG_FILE_PREFIX)
-#define LRC_FILE                TTK_STRCAT(TTK_DOT, LRC_FILE_PREFIX)
-#define KRC_FILE                TTK_STRCAT(TTK_DOT, KRC_FILE_PREFIX)
-#define MP3_FILE                TTK_STRCAT(TTK_DOT, MP3_FILE_PREFIX)
-#define TPL_FILE                TTK_STRCAT(TTK_DOT, TPL_FILE_PREFIX)
-#define EXE_FILE                TTK_STRCAT(TTK_DOT, EXE_FILE_PREFIX)
-#define XML_FILE                TTK_STRCAT(TTK_DOT, XML_FILE_PREFIX)
-#define COM_FILE                TTK_STRCAT(TTK_DOT, COM_FILE_PREFIX)
+#define SKN_FILE                 TTK_STRCAT(TTK_DOT, SKN_FILE_SUFFIX)
+#define JPG_FILE                 TTK_STRCAT(TTK_DOT, JPG_FILE_SUFFIX)
+#define LRC_FILE                 TTK_STRCAT(TTK_DOT, LRC_FILE_SUFFIX)
+#define KRC_FILE                 TTK_STRCAT(TTK_DOT, KRC_FILE_SUFFIX)
+#define MP3_FILE                 TTK_STRCAT(TTK_DOT, MP3_FILE_SUFFIX)
+#define TPL_FILE                 TTK_STRCAT(TTK_DOT, TPL_FILE_SUFFIX)
+#define EXE_FILE                 TTK_STRCAT(TTK_DOT, EXE_FILE_SUFFIX)
+#define XML_FILE                 TTK_STRCAT(TTK_DOT, XML_FILE_SUFFIX)
+#define COM_FILE                 TTK_STRCAT(TTK_DOT, COM_FILE_SUFFIX)
 // file ext
-#define AAC_FILE                TTK_STRCAT(TTK_DOT, AAC_FILE_PREFIX)
-#define WMA_FILE                TTK_STRCAT(TTK_DOT, WMA_FILE_PREFIX)
-#define MP3_FILE                TTK_STRCAT(TTK_DOT, MP3_FILE_PREFIX)
-#define OGG_FILE                TTK_STRCAT(TTK_DOT, OGG_FILE_PREFIX)
-#define APE_FILE                TTK_STRCAT(TTK_DOT, APE_FILE_PREFIX)
-#define FLAC_FILE               TTK_STRCAT(TTK_DOT, FLAC_FILE_PREFIX)
+#define AAC_FILE                 TTK_STRCAT(TTK_DOT, AAC_FILE_SUFFIX)
+#define WMA_FILE                 TTK_STRCAT(TTK_DOT, WMA_FILE_SUFFIX)
+#define MP3_FILE                 TTK_STRCAT(TTK_DOT, MP3_FILE_SUFFIX)
+#define OGG_FILE                 TTK_STRCAT(TTK_DOT, OGG_FILE_SUFFIX)
+#define APE_FILE                 TTK_STRCAT(TTK_DOT, APE_FILE_SUFFIX)
+#define FLAC_FILE                TTK_STRCAT(TTK_DOT, FLAC_FILE_SUFFIX)
 
 
-#define APP_NAME                "TTKMusicPlayer"
-#define APP_DOT_NAME            TTK_STRCAT(APP_NAME, TTK_DOT)
-#define APP_COME_NAME           TTK_STRCAT(APP_NAME, COM_FILE)
-#define APP_EXE_NAME            TTK_STRCAT(APP_NAME, EXE_FILE)
+#define APP_NAME                 "TTKMusicPlayer"
+#define APP_DOT_NAME             TTK_STRCAT(APP_NAME, TTK_DOT)
+#define APP_COME_NAME            TTK_STRCAT(APP_NAME, COM_FILE)
+#define APP_EXE_NAME             TTK_STRCAT(APP_NAME, EXE_FILE)
 
 
-#define APPDATA_DIR             TTK_STRCAT("AppData", TTK_SEPARATOR)
-#define DOWNLOAD_DIR            TTK_STRCAT("Downloads", TTK_SEPARATOR)
-#define APPCACHE_DIR            TTK_STRCAT("AppCache", TTK_SEPARATOR)
+#define APPDATA_DIR              TTK_STRCAT("AppData", TTK_SEPARATOR)
+#define DOWNLOAD_DIR             TTK_STRCAT("Downloads", TTK_SEPARATOR)
+#define APPCACHE_DIR             TTK_STRCAT("AppCache", TTK_SEPARATOR)
 //
-#define LRC_DIR                 TTK_STRCAT("Lyric", TTK_SEPARATOR)
-#define MUSIC_DIR               TTK_STRCAT("Music", TTK_SEPARATOR)
-#define MOVIE_DIR               TTK_STRCAT("Movie", TTK_SEPARATOR)
-#define ARCHIVE_DIR             TTK_STRCAT("Archive", TTK_SEPARATOR)
+#define LRC_DIR                  TTK_STRCAT("Lyric", TTK_SEPARATOR)
+#define MUSIC_DIR                TTK_STRCAT("Music", TTK_SEPARATOR)
+#define MOVIE_DIR                TTK_STRCAT("Movie", TTK_SEPARATOR)
+#define ARCHIVE_DIR              TTK_STRCAT("Archive", TTK_SEPARATOR)
 //
-#define LANGUAGE_DIR            TTK_STRCAT("GLanguage", TTK_SEPARATOR)
-#define PLUGINS_DIR             TTK_STRCAT("GPlugins", TTK_SEPARATOR)
-#define THEME_DIR               TTK_STRCAT("GTheme", TTK_SEPARATOR)
+#define LANGUAGE_DIR             TTK_STRCAT("GLanguage", TTK_SEPARATOR)
+#define PLUGINS_DIR              TTK_STRCAT("GPlugins", TTK_SEPARATOR)
+#define THEME_DIR                TTK_STRCAT("GTheme", TTK_SEPARATOR)
 //
-#define ART_DIR                 TTK_STRCAT("Art", TTK_SEPARATOR)
-#define BACKGROUND_DIR          TTK_STRCAT("Background", TTK_SEPARATOR)
-#define CACHE_DIR               TTK_STRCAT("Cache", TTK_SEPARATOR)
+#define ART_DIR                  TTK_STRCAT("Art", TTK_SEPARATOR)
+#define BACKGROUND_DIR           TTK_STRCAT("Background", TTK_SEPARATOR)
+#define CACHE_DIR                TTK_STRCAT("Cache", TTK_SEPARATOR)
 //
-#define CONFIG_DIR              TTK_STRCAT("config", TTK_SEPARATOR)
-#define USER_THEME_DIR          TTK_STRCAT("theme", TTK_SEPARATOR)
+#define CONFIG_DIR               TTK_STRCAT("config", TTK_SEPARATOR)
+#define USER_THEME_DIR           TTK_STRCAT("theme", TTK_SEPARATOR)
 
 
-#define MAKE_TRANSFORM_PREFIX   TTK_STRCAT("avconv", TKX_FILE)
-#define MAKE_PLAYER_PREFIX      TTK_STRCAT("avplayer", TKX_FILE)
-#define MAKE_GAIN_PREFIX        TTK_STRCAT("avgain", TKX_FILE)
+#define MAKE_TRANSFORM_NAME      TTK_STRCAT("avconv", TKX_FILE)
+#define MAKE_PLAYER_NAME         TTK_STRCAT("avplayer", TKX_FILE)
+#define MAKE_GAIN_NAME           TTK_STRCAT("avgain", TKX_FILE)
 
 
-#define MAKE_CONFIG_DIR         TTK_STRCAT(PLUGINS_DIR, CONFIG_DIR)
-#define MAKE_TRANSFORM          TTK_STRCAT(PLUGINS_DIR, MAKE_TRANSFORM_PREFIX)
-#define MAKE_PLAYER             TTK_STRCAT(PLUGINS_DIR, MAKE_PLAYER_PREFIX)
-#define MAKE_GAIN               TTK_STRCAT(PLUGINS_DIR, MAKE_GAIN_PREFIX)
+#define MAKE_CONFIG_DIR          TTK_STRCAT(PLUGINS_DIR, CONFIG_DIR)
+#define MAKE_TRANSFORM_PATH      TTK_STRCAT(PLUGINS_DIR, MAKE_TRANSFORM_NAME)
+#define MAKE_PLAYER_PATH         TTK_STRCAT(PLUGINS_DIR, MAKE_PLAYER_NAME)
+#define MAKE_GAIN_PATH           TTK_STRCAT(PLUGINS_DIR, MAKE_GAIN_NAME)
 
 
-#define COFIG_PATH              TTK_STRCAT("config", XML_FILE)
-#define PLAYLIST_PATH           TTK_STRCAT("playlist", TPL_FILE)
-#define NORMAL_DOWN_PATH        TTK_STRCAT("download", TKF_FILE)
-#define CLOUD_DOWN_PATH         TTK_STRCAT("cdownload", TKF_FILE)
-#define CLOUD_UP_PATH           TTK_STRCAT("cupload", TKF_FILE)
-#define SEARCH_PATH             TTK_STRCAT("search", TKF_FILE)
-#define FMRADIO_PATH            TTK_STRCAT("fmradio", TKF_FILE)
+#define COFIG_PATH               TTK_STRCAT("config", XML_FILE)
+#define PLAYLIST_PATH            TTK_STRCAT("playlist", TPL_FILE)
+#define NORMAL_DOWN_PATH         TTK_STRCAT("download", TKF_FILE)
+#define CLOUD_DOWN_PATH          TTK_STRCAT("cdownload", TKF_FILE)
+#define CLOUD_UP_PATH            TTK_STRCAT("cupload", TKF_FILE)
+#define SEARCH_PATH              TTK_STRCAT("search", TKF_FILE)
+#define FMRADIO_PATH             TTK_STRCAT("fmradio", TKF_FILE)
 
 
-#define MAIN_DIR_FULL           MusicObject::applicationPath() + TTK_PDIR
+#define MAIN_DIR_FULL            MusicObject::applicationPath() + TTK_PDIR
 //
-#define DOWNLOAD_DIR_FULL       MAIN_DIR_FULL + DOWNLOAD_DIR
-#define APPDATA_DIR_FULL        MusicObject::configPath() + APPDATA_DIR
-#define APPCACHE_DIR_FULL       MusicObject::configPath() + APPCACHE_DIR
+#define DOWNLOAD_DIR_FULL        MAIN_DIR_FULL + DOWNLOAD_DIR
+#define APPDATA_DIR_FULL         MusicObject::configPath() + APPDATA_DIR
+#define APPCACHE_DIR_FULL        MusicObject::configPath() + APPCACHE_DIR
 //
-#define LRC_DIR_FULL            DOWNLOAD_DIR_FULL + LRC_DIR
-#define MUSIC_DIR_FULL          DOWNLOAD_DIR_FULL + MUSIC_DIR
-#define MOVIE_DIR_FULL          DOWNLOAD_DIR_FULL + MOVIE_DIR
-#define ARCHIVE_DIR_DIR_FULL    DOWNLOAD_DIR_FULL + ARCHIVE_DIR
+#define LRC_DIR_FULL             DOWNLOAD_DIR_FULL + LRC_DIR
+#define MUSIC_DIR_FULL           DOWNLOAD_DIR_FULL + MUSIC_DIR
+#define MOVIE_DIR_FULL           DOWNLOAD_DIR_FULL + MOVIE_DIR
+#define ARCHIVE_DIR_DIR_FULL     DOWNLOAD_DIR_FULL + ARCHIVE_DIR
 //
-#define CACHE_DIR_FULL          APPCACHE_DIR_FULL + CACHE_DIR
-#define ART_DIR_FULL            APPCACHE_DIR_FULL + ART_DIR
-#define BACKGROUND_DIR_FULL     APPCACHE_DIR_FULL + BACKGROUND_DIR
+#define CACHE_DIR_FULL           APPCACHE_DIR_FULL + CACHE_DIR
+#define ART_DIR_FULL             APPCACHE_DIR_FULL + ART_DIR
+#define BACKGROUND_DIR_FULL      APPCACHE_DIR_FULL + BACKGROUND_DIR
 //
-#define COFIG_PATH_FULL         APPDATA_DIR_FULL + COFIG_PATH
-#define PLAYLIST_PATH_FULL      APPDATA_DIR_FULL + PLAYLIST_PATH
-#define NORMAL_DOWN_PATH_FULL   APPDATA_DIR_FULL + NORMAL_DOWN_PATH
-#define CLOUD_DOWN_PATH_FULL    APPDATA_DIR_FULL + CLOUD_DOWN_PATH
-#define CLOUD_UP_PATH_FULL      APPDATA_DIR_FULL + CLOUD_UP_PATH
-#define SEARCH_PATH_FULL        APPDATA_DIR_FULL + SEARCH_PATH
-#define FMRADIO_PATH_FULL       APPDATA_DIR_FULL + FMRADIO_PATH
-#define USER_THEME_DIR_FULL     APPDATA_DIR_FULL + USER_THEME_DIR
+#define COFIG_PATH_FULL          APPDATA_DIR_FULL + COFIG_PATH
+#define PLAYLIST_PATH_FULL       APPDATA_DIR_FULL + PLAYLIST_PATH
+#define NORMAL_DOWN_PATH_FULL    APPDATA_DIR_FULL + NORMAL_DOWN_PATH
+#define CLOUD_DOWN_PATH_FULL     APPDATA_DIR_FULL + CLOUD_DOWN_PATH
+#define CLOUD_UP_PATH_FULL       APPDATA_DIR_FULL + CLOUD_UP_PATH
+#define SEARCH_PATH_FULL         APPDATA_DIR_FULL + SEARCH_PATH
+#define FMRADIO_PATH_FULL        APPDATA_DIR_FULL + FMRADIO_PATH
+#define USER_THEME_DIR_FULL      APPDATA_DIR_FULL + USER_THEME_DIR
 
 
-#define THEME_DIR_FULL          MusicObject::applicationPath() + THEME_DIR
-#define PLUGINS_DIR_FULL        MusicObject::applicationPath() + PLUGINS_DIR
-#define LANGUAGE_DIR_FULL       MusicObject::applicationPath() + LANGUAGE_DIR
+#define THEME_DIR_FULL           MusicObject::applicationPath() + THEME_DIR
+#define PLUGINS_DIR_FULL         MusicObject::applicationPath() + PLUGINS_DIR
+#define LANGUAGE_DIR_FULL        MusicObject::applicationPath() + LANGUAGE_DIR
 
 
-#define MAKE_CONFIG_DIR_FULL    MusicObject::applicationPath() + MAKE_CONFIG_DIR
-#define MAKE_TRANSFORM_FULL     MusicObject::applicationPath() + MAKE_TRANSFORM
-#define MAKE_PLAYER_FULL        MusicObject::applicationPath() + MAKE_PLAYER
-#define MAKE_GAIN_FULL          MusicObject::applicationPath() + MAKE_GAIN
+#define MAKE_CONFIG_DIR_FULL     MusicObject::applicationPath() + MAKE_CONFIG_DIR
+#define MAKE_TRANSFORM_PATH_FULL MusicObject::applicationPath() + MAKE_TRANSFORM_PATH
+#define MAKE_PLAYER_PATH_FULL    MusicObject::applicationPath() + MAKE_PLAYER_PATH
+#define MAKE_GAIN_PATH_FULL      MusicObject::applicationPath() + MAKE_GAIN_PATH
 
 
-#define WINDOW_WIDTH_MIN        1000
-#define WINDOW_HEIGHT_MIN       665
-#define LEFT_SIDE_WIDTH_MIN     320
-#define CONCISE_WIDTH_MIN       322
+#define WINDOW_WIDTH_MIN         1000
+#define WINDOW_HEIGHT_MIN        665
+#define LEFT_SIDE_WIDTH_MIN      320
+#define CONCISE_WIDTH_MIN        322
 
-#define HTTP_PREFIX             "http://"
-#define HTTPS_PREFIX            "https://"
+#define HTTP_PREFIX              "http://"
+#define HTTPS_PREFIX             "https://"
 
-#define FILE_SUFFIX(fin)        fin.suffix().toLower()
+#define FILE_SUFFIX(fin)         fin.suffix().toLower()
 
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>

@@ -20,7 +20,7 @@
 #ifdef Q_OS_WIN
 bool MusicPlatformManager::isFileAssociate()
 {
-    return currentNodeExist(MP3_FILE_PREFIX);
+    return currentNodeExist(MP3_FILE_SUFFIX);
 }
 
 void MusicPlatformManager::setMusicRegeditAssociateFileIcon()

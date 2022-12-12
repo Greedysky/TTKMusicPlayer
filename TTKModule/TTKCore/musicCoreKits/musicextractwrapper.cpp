@@ -238,13 +238,13 @@ bool MusicExtractWrapper::inputSkin(MusicBackgroundImage *image, const QString &
         return false;
     }
 
-    const QString &nPrefix = QFileInfo(output).baseName();
+    const QString &prefix = QFileInfo(output).baseName();
     const int level = 5;
 
     zip_fileinfo fileInfo;
     memset(&fileInfo, 0, sizeof(fileInfo));
 
-    zipOpenNewFileInZip(zFile, qPrintable(nPrefix + SKN_FILE), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
+    zipOpenNewFileInZip(zFile, qPrintable(prefix + SKN_FILE), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
     QByteArray data = MusicUtils::Image::generatePixmapData(image->m_pix);
     zipWriteInFileInZip(zFile, data.constData(), data.length());
     zipCloseFileInZip(zFile);
@@ -253,7 +253,7 @@ bool MusicExtractWrapper::inputSkin(MusicBackgroundImage *image, const QString &
     manager.writeBuffer(image->m_item, MUSIC_IMAGE_FILE);
     data = manager.toByteArray();
 
-    zipOpenNewFileInZip(zFile, qPrintable(nPrefix + XML_FILE), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
+    zipOpenNewFileInZip(zFile, qPrintable(prefix + XML_FILE), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
     zipWriteInFileInZip(zFile, data.constData(), data.length());
     zipCloseFileInZip(zFile);
     QFile::remove(MUSIC_IMAGE_FILE);
@@ -333,13 +333,13 @@ bool MusicExtractWrapper::inputData(const QByteArray &data, const QString &outpu
         return false;
     }
 
-    const QString &nPrefix = QFileInfo(output).baseName();
-    int level = 5;
+    const QString &prefix = QFileInfo(output).baseName();
+    const int level = 5;
 
     zip_fileinfo fileInfo;
     memset(&fileInfo, 0, sizeof(fileInfo));
 
-    zipOpenNewFileInZip(zFile, qPrintable(nPrefix), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
+    zipOpenNewFileInZip(zFile, qPrintable(prefix), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
     zipWriteInFileInZip(zFile, data.constData(), data.length());
     zipCloseFileInZip(zFile);
     zipClose(zFile, nullptr);

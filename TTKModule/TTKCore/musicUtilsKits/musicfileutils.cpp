@@ -108,7 +108,7 @@ QString MusicUtils::File::getExistingDirectory(QWidget *parent)
     if(!path.isEmpty())
     {
         path += TTK_SEPARATOR;
-        G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, path);
+        G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, QFileInfo(path).absolutePath());
     }
     return path;
 }
@@ -119,7 +119,7 @@ QString MusicUtils::File::getOpenFileName(QWidget *parent, const QString &filter
     path = QFileDialog::getOpenFileName(parent, QObject::tr("Choose a filename to open under"), path, filter);
     if(!path.isEmpty())
     {
-        G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, path);
+        G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, QFileInfo(path).absolutePath());
     }
     return path;
 }
@@ -133,7 +133,7 @@ QStringList MusicUtils::File::getOpenFileNames(QWidget *parent, const QString &f
         const QString &v = files.front();
         if(!v.isEmpty())
         {
-            G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, v);
+            G_SETTING_PTR->setValue(MusicSettingManager::LastFileDialogPath, QFileInfo(v).absolutePath());
         }
     }
     return files;

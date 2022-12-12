@@ -80,7 +80,7 @@ void MusicLrcFloatPhotoItem::exportArtPixmap()
     if(!path.isEmpty())
     {
         QPixmap pix(m_pixPath);
-        pix.save(path, JPG_FILE_PREFIX);
+        pix.save(path, JPG_FILE_SUFFIX);
     }
 }
 

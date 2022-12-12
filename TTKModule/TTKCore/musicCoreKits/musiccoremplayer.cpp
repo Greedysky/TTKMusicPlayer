@@ -25,7 +25,7 @@ MusicCoreMPlayer::~MusicCoreMPlayer()
 void MusicCoreMPlayer::setMedia(Module type, const QString &data, int winId)
 {
     closeModule();
-    if(!QFile::exists(MAKE_PLAYER_FULL))
+    if(!QFile::exists(MAKE_PLAYER_PATH_FULL))
     {
         TTK_ERROR_STREAM("Lack of plugin file");
         return;
@@ -62,7 +62,7 @@ void MusicCoreMPlayer::closeModule()
         m_process->kill();
         delete m_process;
         m_process = nullptr;
-        TTKObject::killProcessByName(MAKE_PLAYER_FULL);
+        TTKObject::killProcessByName(MAKE_PLAYER_PATH_FULL);
     }
 }
 
@@ -73,7 +73,7 @@ void MusicCoreMPlayer::setRadioMedia(const QString &data)
     QStringList arguments;
     arguments << "-softvol" << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
-    m_process->start(MAKE_PLAYER_FULL, arguments);
+    m_process->start(MAKE_PLAYER_PATH_FULL, arguments);
 }
 
 void MusicCoreMPlayer::setMusicMedia(const QString &data)
@@ -83,7 +83,7 @@ void MusicCoreMPlayer::setMusicMedia(const QString &data)
     QStringList arguments;
     arguments << "-cache" << "5000" << "-softvol" << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
-    m_process->start(MAKE_PLAYER_FULL, arguments);
+    m_process->start(MAKE_PLAYER_PATH_FULL, arguments);
 }
 
 void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
@@ -100,7 +100,7 @@ void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
 
     m_process->setProcessChannelMode(QProcess::MergedChannels);
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(durationRecieve()));
-    m_process->start(MAKE_PLAYER_FULL, arguments);
+    m_process->start(MAKE_PLAYER_PATH_FULL, arguments);
 }
 
 void MusicCoreMPlayer::setPosition(qint64 pos)

@@ -129,7 +129,7 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
         }
         else
         {
-            if(FILE_SUFFIX(QFileInfo(path)) != TPL_FILE_PREFIX)
+            if(FILE_SUFFIX(QFileInfo(path)) != TPL_FILE_SUFFIX)
             {
                 TTK_INFO_STREAM("Music playlist format not support");
                 return false;

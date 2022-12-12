@@ -23,7 +23,7 @@ void MusicKWMusicInfoConfigManager::readBuffer(MusicObject::MusicSongInformation
         {
             MusicObject::MusicSongProperty prop;
             prop.m_bitrate = MB_128;
-            prop.m_format = MP3_FILE_PREFIX;
+            prop.m_format = MP3_FILE_SUFFIX;
             prop.m_size = TTK_DEFAULT_STR;
             prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
             info->m_songProps.append(prop);
@@ -34,7 +34,7 @@ void MusicKWMusicInfoConfigManager::readBuffer(MusicObject::MusicSongInformation
         {
             MusicObject::MusicSongProperty prop;
             prop.m_bitrate = MB_96;
-            prop.m_format = WMA_FILE_PREFIX;
+            prop.m_format = WMA_FILE_SUFFIX;
             prop.m_size = TTK_DEFAULT_STR;
             prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
             info->m_songProps.append(prop);
@@ -49,7 +49,7 @@ void MusicKWMusicInfoConfigManager::readBuffer(MusicObject::MusicSongInformation
         {
             MusicObject::MusicSongProperty prop;
             prop.m_bitrate = MB_32;
-            prop.m_format = AAC_FILE_PREFIX;
+            prop.m_format = AAC_FILE_SUFFIX;
             prop.m_size = TTK_DEFAULT_STR;
             prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, aacUrl, v);
             info->m_songProps.append(prop);

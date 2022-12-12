@@ -63,7 +63,7 @@ QByteArray MusicUtils::Image::generatePixmapData(const QPixmap &input)
     QBuffer buffer(&data);
     if(buffer.open(QIODevice::WriteOnly))
     {
-        input.save(&buffer, JPG_FILE_PREFIX);
+        input.save(&buffer, JPG_FILE_SUFFIX);
     }
     buffer.close();
     return data;

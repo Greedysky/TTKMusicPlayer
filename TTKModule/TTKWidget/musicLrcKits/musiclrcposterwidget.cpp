@@ -1039,9 +1039,9 @@ void MusicLrcPosterWidget::saveButtonClicked()
         }
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
-        m_itemWidget->grab(rect).save(path, JPG_FILE_PREFIX);
+        m_itemWidget->grab(rect).save(path, JPG_FILE_SUFFIX);
 #else
-        QPixmap::grabWidget(this, rect).save(path, JPG_FILE_PREFIX);
+        QPixmap::grabWidget(this, rect).save(path, JPG_FILE_SUFFIX);
 #endif
     }
 }
