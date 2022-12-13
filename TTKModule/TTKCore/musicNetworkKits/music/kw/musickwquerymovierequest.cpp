@@ -123,7 +123,7 @@ void MusicKWQueryMovieRequest::downLoadPageFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            m_totalSize = value["total"].toString().toLongLong();
+            m_totalSize = value["total"].toLongLong();
             if(value.contains("mvlist"))
             {
                 const QVariantList &datas = value["mvlist"].toList();

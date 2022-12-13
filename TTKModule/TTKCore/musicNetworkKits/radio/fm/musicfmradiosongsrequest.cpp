@@ -54,9 +54,10 @@ void MusicFMRadioSongsRequest::downLoadFinished()
                 prop.m_format = value["file_ext"].toString();
 
                 const QVariantMap &formats = value["available_formats"].toMap();
-                if(formats.contains(QString::number(prop.m_bitrate)))
+                const QString &bitrate = QString::number(prop.m_bitrate);
+                if(formats.contains(bitrate))
                 {
-                    prop.m_size = MusicUtils::Number::sizeByte2Label(formats[QString::number(prop.m_bitrate)].toInt() * 1000);
+                    prop.m_size = MusicUtils::Number::sizeByte2Label(formats[bitrate].toInt() * 1000);
                 }
 
                 m_songInfo.m_songProps << prop;

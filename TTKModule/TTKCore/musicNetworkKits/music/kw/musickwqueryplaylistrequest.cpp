@@ -98,7 +98,7 @@ void MusicKWQueryPlaylistRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            m_totalSize = value["total"].toString().toLongLong();
+            m_totalSize = value["total"].toLongLong();
             if(value.contains("child"))
             {
                 m_tags = value["ninfo"].toMap()["name"].toString();
