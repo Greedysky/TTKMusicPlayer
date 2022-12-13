@@ -1,64 +1,5 @@
 #include "musickwqueryrequest.h"
 
-MusicKWMusicInfoConfigManager::MusicKWMusicInfoConfigManager(QObject *parent)
-    : TTKAbstractXml(parent)
-{
-
-}
-
-void MusicKWMusicInfoConfigManager::readBuffer(MusicObject::MusicSongInformation *info)
-{
-    info->m_singerName = readXmlTextByTagName("artist");
-    info->m_songName = readXmlTextByTagName("name");
-    info->m_songId = readXmlTextByTagName("music_id");
-    info->m_artistId = readXmlTextByTagName("albid");
-    info->m_albumId = readXmlTextByTagName("artid");
-    info->m_albumName = readXmlTextByTagName("special");
-
-    const QString &mp3Url = readXmlTextByTagName("mp3dl");
-    if(!mp3Url.isEmpty())
-    {
-        QString v = readXmlTextByTagName("mp3path");
-        if(!v.isEmpty())
-        {
-            MusicObject::MusicSongProperty prop;
-            prop.m_bitrate = MB_128;
-            prop.m_format = MP3_FILE_SUFFIX;
-            prop.m_size = TTK_DEFAULT_STR;
-            prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
-            info->m_songProps.append(prop);
-        }
-
-        v = readXmlTextByTagName("path");
-        if(!v.isEmpty())
-        {
-            MusicObject::MusicSongProperty prop;
-            prop.m_bitrate = MB_96;
-            prop.m_format = WMA_FILE_SUFFIX;
-            prop.m_size = TTK_DEFAULT_STR;
-            prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, mp3Url, v);
-            info->m_songProps.append(prop);
-        }
-    }
-
-    const QString &aacUrl = readXmlTextByTagName("aacdl");
-    if(!aacUrl.isEmpty())
-    {
-        const QString &v = readXmlTextByTagName("aacpath");
-        if(!v.isEmpty())
-        {
-            MusicObject::MusicSongProperty prop;
-            prop.m_bitrate = MB_32;
-            prop.m_format = AAC_FILE_SUFFIX;
-            prop.m_size = TTK_DEFAULT_STR;
-            prop.m_url = QString("%1%2/resource/%3").arg(HTTP_PREFIX, aacUrl, v);
-            info->m_songProps.append(prop);
-        }
-    }
-}
-
-
-
 MusicKWQueryRequest::MusicKWQueryRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
@@ -195,37 +136,53 @@ void MusicKWQueryRequest::downLoadSingleFinished()
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
-        QByteArray data = reply->readAll();
-        data.insert(0, "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n");
-        data.replace("&", "%26");
-
-        MusicKWMusicInfoConfigManager xml;
-        if(xml.fromByteArray(data))
+        QJson::Parser json;
+        bool ok;
+        const QVariant &data = json.parse(reply->readAll(), &ok);
+        if(ok)
         {
-            MusicObject::MusicSongInformation info;
-            xml.readBuffer(&info);
-
-            info.m_year = QString();
-            info.m_discNumber = "1";
-            info.m_trackNumber = "0";
-
-            info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);
-            info.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
-
-            if(!findUrlFileSize(&info.m_songProps))
+            QVariantMap value = data.toMap();
+            if(value.contains("data"))
             {
-                return;
-            }
+                value = value["data"].toMap();
 
-            if(!info.m_songProps.isEmpty())
-            {
-                MusicResultInfoItem item;
-                item.m_songName = info.m_songName;
-                item.m_singerName = info.m_singerName;
-                item.m_duration = info.m_duration;
-                item.m_type = mapQueryServerString();
-                Q_EMIT createSearchedItem(item);
-                m_songInfos << info;
+                MusicObject::MusicSongInformation info;
+                info.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
+                info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
+                info.m_duration = TTKTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+
+                info.m_songId = value["rid"].toString();
+                info.m_artistId = value["artistid"].toString();
+                info.m_albumId = value["albumid"].toString();
+
+                info.m_year = value["releaseDate"].toString();
+                info.m_discNumber = "1";
+                info.m_trackNumber = value["track"].toString();
+
+                info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);
+                info.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
+                info.m_albumName = MusicUtils::String::charactersReplaced(value["album"].toString());
+
+                TTK_NETWORK_QUERY_CHECK();
+                parseFromSongProperty(&info, "MP3128|MP3192|MP3H|ALFLAC|AL", m_queryQuality, m_queryAllRecords);
+                TTK_NETWORK_QUERY_CHECK();
+
+                if(!findUrlFileSize(&info.m_songProps))
+                {
+                    return;
+                }
+
+                if(!info.m_songProps.isEmpty())
+                {
+                    MusicResultInfoItem item;
+                    item.m_songName = info.m_songName;
+                    item.m_singerName = info.m_singerName;
+                    item.m_albumName = info.m_albumName;
+                    item.m_duration = info.m_duration;
+                    item.m_type = mapQueryServerString();
+                    Q_EMIT createSearchedItem(item);
+                    m_songInfos << info;
+                }
             }
         }
     }

@@ -202,7 +202,7 @@ void MusicKGQueryMovieRequest::parseFromMovieInfo(MusicObject::MusicSongInformat
     const QString text(bytes);
     const QRegExp regx("mv_hash = \"([^\"]+)");
 
-    if(text.indexOf(regx) != -1)
+    if(regx.indexIn(text) != -1)
     {
         info->m_songId = regx.cap(1);
     }

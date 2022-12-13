@@ -35,7 +35,7 @@ void MusicKWQueryInterface::parseFromSongHighProperty(MusicObject::MusicSongInfo
         const QString text(bytes);
         const QRegExp regx(".*url=(.*)\r\nsig=");
 
-        if(text.indexOf(regx) != -1)
+        if(regx.indexIn(text) != -1)
         {
             MusicObject::MusicSongProperty prop;
             prop.m_url = regx.cap(1);

@@ -127,7 +127,7 @@ void MusicAdvancedSearchedWidget::typeIndexChanged(int index)
             switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
             {
                 case MusicAbstractQueryRequest::QueryServer::WY: m_searchEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_UNIMP_KEY, false).arg("5343487")); break;
-                case MusicAbstractQueryRequest::QueryServer::KW: m_searchEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_MV_SHARE, ALG_UNIMP_KEY, false).arg("9812716")); break;
+                case MusicAbstractQueryRequest::QueryServer::KW: m_searchEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_MV_SHARE, ALG_UNIMP_KEY, false).arg("156505081")); break;
                 case MusicAbstractQueryRequest::QueryServer::KG: m_searchEdit->editor()->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_MV_SHARE, ALG_UNIMP_KEY, false).arg("630600")); break;
                 default: break;
             }
@@ -166,7 +166,7 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
         case MusicAbstractQueryRequest::QueryServer::WY:
         {
             const QRegExp regx("id=(\\d+)");
-            key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
+            key = (regx.indexIn(url) != -1) ? regx.cap(1) : url;
             break;
         }
         case MusicAbstractQueryRequest::QueryServer::KW:
@@ -184,7 +184,7 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
             {
                 regx.setPattern("/(\\d+)");
             }
-            key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
+            key = (regx.indexIn(url) != -1) ? regx.cap(1) : url;
             break;
         }
         case MusicAbstractQueryRequest::QueryServer::KG:
@@ -202,7 +202,7 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
             {
                 regx.setPattern("/(\\d+)");
             }
-            key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
+            key = (regx.indexIn(url) != -1) ? regx.cap(1) : url;
             break;
         }
         default: break;

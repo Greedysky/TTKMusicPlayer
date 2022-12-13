@@ -19,30 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkabstractxml.h"
 #include "musickwqueryinterface.h"
 #include "musicabstractqueryrequest.h"
-
-/*! @brief The class of the kuwo query music info xml data from net.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicKWMusicInfoConfigManager : public TTKAbstractXml
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKWMusicInfoConfigManager)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicKWMusicInfoConfigManager(QObject *parent = nullptr);
-
-    /*!
-     * Read datas from config file.
-     */
-    void readBuffer(MusicObject::MusicSongInformation *info);
-
-};
-
 
 /*! @brief The class of the kuwo query download data from net.
  * @author Greedysky <greedysky@163.com>

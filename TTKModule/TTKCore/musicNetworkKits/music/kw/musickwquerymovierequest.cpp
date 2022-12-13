@@ -239,7 +239,7 @@ void MusicKWQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInfo
         const QString text(bytes);
         const QRegExp regx(".*url=(.*)\r\nsig=");
 
-        if(text.indexOf(regx) != -1)
+        if(regx.indexIn(text) != -1)
         {
             MusicObject::MusicSongProperty prop;
             prop.m_url = regx.cap(1);
@@ -271,7 +271,7 @@ void MusicKWQueryMovieRequest::parseFromMovieInfo(MusicObject::MusicSongInformat
     info->m_singerName = "Anonymous";
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_MOVIE_HOME_URL, false).arg(info->m_songId));
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(info->m_songId));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
@@ -280,12 +280,17 @@ void MusicKWQueryMovieRequest::parseFromMovieInfo(MusicObject::MusicSongInformat
         return;
     }
 
-    const QString text(bytes);
-    const QRegExp regx("<h1 title=\"([^<]+)\">[^>]+>([^<]+)</span></h1>");
-
-    if(text.indexOf(regx) != -1)
+    QJson::Parser json;
+    bool ok;
+    const QVariant &data = json.parse(bytes, &ok);
+    if(ok)
     {
-        info->m_songName = regx.cap(1);
-        info->m_singerName = regx.cap(2);
+        QVariantMap value = data.toMap();
+        if(value.contains("data"))
+        {
+            value = value["data"].toMap();
+            info->m_songName = value["name"].toString();
+            info->m_singerName = value["artist"].toString();
+        }
     }
 }

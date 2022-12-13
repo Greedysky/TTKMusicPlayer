@@ -49,10 +49,7 @@
 #define FPL_FILE_SUFFIX          "fpl"
 #define DBPL_FILE_SUFFIX         "dbpl"
 // file ext
-#define AAC_FILE_SUFFIX          "aac"
-#define WMA_FILE_SUFFIX          "wma"
 #define MP3_FILE_SUFFIX          "mp3"
-#define OGG_FILE_SUFFIX          "ogg"
 #define APE_FILE_SUFFIX          "ape"
 #define FLAC_FILE_SUFFIX         "flac"
 
@@ -71,10 +68,7 @@
 #define XML_FILE                 TTK_STRCAT(TTK_DOT, XML_FILE_SUFFIX)
 #define COM_FILE                 TTK_STRCAT(TTK_DOT, COM_FILE_SUFFIX)
 // file ext
-#define AAC_FILE                 TTK_STRCAT(TTK_DOT, AAC_FILE_SUFFIX)
-#define WMA_FILE                 TTK_STRCAT(TTK_DOT, WMA_FILE_SUFFIX)
 #define MP3_FILE                 TTK_STRCAT(TTK_DOT, MP3_FILE_SUFFIX)
-#define OGG_FILE                 TTK_STRCAT(TTK_DOT, OGG_FILE_SUFFIX)
 #define APE_FILE                 TTK_STRCAT(TTK_DOT, APE_FILE_SUFFIX)
 #define FLAC_FILE                TTK_STRCAT(TTK_DOT, FLAC_FILE_SUFFIX)
 

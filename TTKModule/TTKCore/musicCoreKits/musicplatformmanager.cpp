@@ -216,7 +216,7 @@ MusicPlatformManager::System MusicPlatformManager::systemName() const
     if(file.open(QIODevice::ReadOnly))
     {
         const QRegExp regx("DISTRIB_ID=(\\w+)");
-        if(QString(file.readAll()).indexOf(regx) != -1)
+        if(regx.indexIn(QString(file.readAll())) != -1)
         {
             const QString &system = regx.cap(1).toLower();
             if(system == "ubuntu")
