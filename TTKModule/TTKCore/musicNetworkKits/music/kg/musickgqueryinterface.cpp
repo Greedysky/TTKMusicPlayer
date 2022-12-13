@@ -106,8 +106,7 @@ void MusicKGQueryInterface::parseFromSongLrcAndPicture(MusicObject::MusicSongInf
             value = value["data"].toMap();
             info->m_artistId = value["singerid"].toString();
             info->m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
-            info->m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(value["songname"].toString(), info->m_songId)
-                                                                                .arg(value["duration"].toInt() * 1000);
+            info->m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(value["songname"].toString(), info->m_songId).arg(value["duration"].toInt() * 1000);
         }
     }
 }

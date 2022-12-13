@@ -86,7 +86,6 @@ void MusicTXDownloadBackgroundRequest::downLoadFinished()
         return;
     }
 
-    TTK_INFO_STREAM(id);
     downLoadUrl(id);
 }
 

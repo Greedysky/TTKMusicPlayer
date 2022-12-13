@@ -247,16 +247,19 @@ void MusicKGQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInfo
             {
                 parseFromMovieProperty(info, mv);
             }
+
             mv = value["hd"].toMap();
             if(!mv.isEmpty())
             {
                 parseFromMovieProperty(info, mv);
             }
+
             mv = value["sq"].toMap();
             if(!mv.isEmpty())
             {
                 parseFromMovieProperty(info, mv);
             }
+
             mv = value["rq"].toMap();
             if(!mv.isEmpty())
             {

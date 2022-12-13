@@ -147,9 +147,8 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                 info.m_duration = TTKTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
                 info.m_artistId = value["singerid"].toString();
                 info.m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
-                info.m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
-                                                        .arg(info.m_songName, info.m_songId)
-                                                        .arg(value["duration"].toInt() * 1000);
+                info.m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(info.m_songName, info.m_songId).arg(value["duration"].toInt() * 1000);
+
                 const QVariantList &albumArray = value["album"].toList();
                 for(const QVariant &var : qAsConst(albumArray))
                 {

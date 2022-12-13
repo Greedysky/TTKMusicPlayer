@@ -19,7 +19,7 @@ void MusicKWQueryInterface::parseFromSongHighProperty(MusicObject::MusicSongInfo
 
     QAlgorithm::Des des;
     const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_DATA_URL, false).arg(info->m_songId, suffix, format).toUtf8(),
-                                              MusicUtils::Algorithm::mdII(_SIGN, ALG_UNIMP_KEY, false).toUtf8());
+                                              MusicUtils::Algorithm::mdII(_SIGN, ALG_SHR_KEY, false).toUtf8());
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_MOVIE_URL, false).arg(parameter.constData()));
     MusicKWInterface::makeRequestRawHeader(&request);
