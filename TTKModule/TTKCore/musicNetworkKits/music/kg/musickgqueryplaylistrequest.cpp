@@ -78,7 +78,7 @@ void MusicKGQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
             value = value["data"].toMap();
             item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
             item.m_name = value["specialname"].toString();
-            item.m_playCount = QString::number(value["playcount"].toLongLong());
+            item.m_playCount = value["playcount"].toString();
             item.m_description = value["intro"].toString();
             item.m_updateTime = value["publishtime"].toString();
             item.m_nickName = value["nickname"].toString();
@@ -132,7 +132,7 @@ void MusicKGQueryPlaylistRequest::downLoadFinished()
 
                     MusicResultDataItem result;
                     result.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
-                    result.m_id = QString::number(value["specialid"].toULongLong());
+                    result.m_id = value["specialid"].toString();
                     result.m_name = value["specialname"].toString();
                     result.m_playCount = value["playcount"].toString();
                     result.m_description = value["intro"].toString();
@@ -192,7 +192,6 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
                     info.m_albumId = value["album_id"].toString();
 
                     info.m_year = QString();
-                    info.m_discNumber = "1";
                     info.m_trackNumber = "0";
 
                     MusicResultDataItem albumInfo;

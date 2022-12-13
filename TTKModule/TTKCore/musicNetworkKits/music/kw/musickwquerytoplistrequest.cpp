@@ -78,7 +78,6 @@ void MusicKWQueryToplistRequest::downLoadFinished()
                     info.m_albumName = MusicUtils::String::charactersReplaced(value["album"].toString());
 
                     info.m_year = QString();
-                    info.m_discNumber = "1";
                     info.m_trackNumber = "0";
 
                     info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);

@@ -81,7 +81,7 @@ void MusicWYQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
             value = value["playlist"].toMap();
             item.m_coverUrl = value["coverImgUrl"].toString();
             item.m_name = value["name"].toString();
-            item.m_playCount = QString::number(value["playCount"].toULongLong());
+            item.m_playCount = value["playCount"].toString();
             item.m_description = value["description"].toString();
             item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["updateTime"].toULongLong()).toString(TTK_YEAR_FORMAT);
 
@@ -132,9 +132,9 @@ void MusicWYQueryPlaylistRequest::downLoadFinished()
 
                     MusicResultDataItem result;
                     result.m_coverUrl = value["coverImgUrl"].toString();
-                    result.m_id = QString::number(value["id"].toULongLong());
+                    result.m_id = value["id"].toString();
                     result.m_name = value["name"].toString();
-                    result.m_playCount = QString::number(value["playCount"].toULongLong());
+                    result.m_playCount = value["playCount"].toString();
                     result.m_description = value["description"].toString();
                     result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["updateTime"].toULongLong()).toString(TTK_YEAR_FORMAT);
 
@@ -192,12 +192,12 @@ void MusicWYQueryPlaylistRequest::downloadDetailsFinished()
                     MusicObject::MusicSongInformation info;
                     info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
                     info.m_duration = TTKTime::msecTime2LabelJustified(value["dt"].toInt());
-                    info.m_songId = QString::number(value["id"].toInt());
+                    info.m_songId = value["id"].toString();
                     info.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(info.m_songId);
 
                     const QVariantMap &albumObject = value["al"].toMap();
                     info.m_coverUrl = albumObject["picUrl"].toString();
-                    info.m_albumId = QString::number(albumObject["id"].toInt());
+                    info.m_albumId = albumObject["id"].toString();
                     info.m_albumName = MusicUtils::String::charactersReplaced(albumObject["name"].toString());
 
                     const QVariantList &artistsArray = value["ar"].toList();
@@ -209,13 +209,12 @@ void MusicWYQueryPlaylistRequest::downloadDetailsFinished()
                         }
 
                         const QVariantMap &artistObject = artistValue.toMap();
-                        info.m_artistId = QString::number(artistObject["id"].toULongLong());
+                        info.m_artistId = artistObject["id"].toString();
                         info.m_singerName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
                         break; //just find first singer
                     }
 
                     info.m_year = QString();
-                    info.m_discNumber = value["cd"].toString();
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();

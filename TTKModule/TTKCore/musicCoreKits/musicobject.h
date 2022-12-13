@@ -263,7 +263,6 @@ namespace MusicObject
         QString m_coverUrl;
         QString m_duration;
         QString m_year;
-        QString m_discNumber;
         QString m_trackNumber;
         MusicSongPropertyList m_songProps;
     };

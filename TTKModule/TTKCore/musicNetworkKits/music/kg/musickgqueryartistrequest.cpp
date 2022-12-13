@@ -66,7 +66,6 @@ void MusicKGQueryArtistRequest::downLoadFinished()
                     info.m_albumId = value["album_id"].toString();
 
                     info.m_year = QString();
-                    info.m_discNumber = "1";
                     info.m_trackNumber = "0";
 
                     MusicResultDataItem albumInfo;

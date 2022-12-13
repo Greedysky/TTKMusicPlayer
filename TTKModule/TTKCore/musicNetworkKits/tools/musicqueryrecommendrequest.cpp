@@ -77,7 +77,6 @@ void MusicQueryRecommendRequest::downLoadFinished()
                 }
 
                 info.m_year =  value["year"].toString();
-                info.m_discNumber = value["disc"].toString();
                 info.m_trackNumber = value["trackNum"].toString();
 
                 TTK_NETWORK_QUERY_CHECK();

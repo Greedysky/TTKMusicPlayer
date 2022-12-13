@@ -115,8 +115,7 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem result;
-                    result.m_id = QString::number(value["id"].toInt());
-
+                    result.m_id = value["id"].toString();
                     result.m_coverUrl = value["picUrl"].toString();
                     result.m_name = value["name"].toString();
                     value = value["dj"].toMap();
@@ -166,11 +165,11 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
 
                     const QVariantMap &radioObject = value["radio"].toMap();
                     info.m_coverUrl = radioObject["picUrl"].toString();
-                    info.m_artistId = QString::number(radioObject["id"].toInt());
+                    info.m_artistId = radioObject["id"].toString();;
                     info.m_singerName = MusicUtils::String::charactersReplaced(radioObject["name"].toString());
 
                     const QVariantMap &mainSongObject = value["mainSong"].toMap();
-                    info.m_songId = QString::number(mainSongObject["id"].toInt());
+                    info.m_songId = mainSongObject["id"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
                     parseFromSongProperty(&info, mainSongObject, m_queryQuality, true);
@@ -183,7 +182,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                         result.m_name = info.m_songName;
                         result.m_nickName = info.m_singerName;
                         result.m_coverUrl = info.m_coverUrl;
-                        result.m_playCount = QString::number(radioObject["subCount"].toInt());
+                        result.m_playCount = radioObject["subCount"].toString();
                         result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["createTime"].toULongLong()).toString(TTK_YEAR_FORMAT);
                         Q_EMIT createCategoryItem(result);
                     }

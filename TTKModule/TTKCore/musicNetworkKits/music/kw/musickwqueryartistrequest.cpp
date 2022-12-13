@@ -61,7 +61,6 @@ void MusicKWQueryArtistRequest::downLoadFinished()
                     info.m_albumName = MusicUtils::String::charactersReplaced(value["ALBUM"].toString());
 
                     info.m_year = value["RELEASEDATE"].toString();
-                    info.m_discNumber = "1";
                     info.m_trackNumber = "0";
 
                     info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);

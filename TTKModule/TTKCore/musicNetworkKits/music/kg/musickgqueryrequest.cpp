@@ -88,7 +88,6 @@ void MusicKGQueryRequest::downLoadFinished()
                     info.m_albumName = MusicUtils::String::charactersReplaced(value["album_name"].toString());
 
                     info.m_year = QString();
-                    info.m_discNumber = "1";
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
@@ -146,7 +145,7 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                 info.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
                 info.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
                 info.m_duration = TTKTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
-                info.m_artistId = QString::number(value["singerid"].toULongLong());
+                info.m_artistId = value["singerid"].toString();
                 info.m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
                 info.m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
                                                         .arg(info.m_songName, info.m_songId)
@@ -165,7 +164,6 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                 }
 
                 info.m_year = QString();
-                info.m_discNumber = "1";
                 info.m_trackNumber = "0";
 
                 TTK_NETWORK_QUERY_CHECK();

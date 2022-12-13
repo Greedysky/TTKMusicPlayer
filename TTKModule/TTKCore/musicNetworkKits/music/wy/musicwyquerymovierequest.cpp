@@ -142,7 +142,7 @@ void MusicWYQueryMovieRequest::downLoadPageFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem result;
-                    result.m_id = QString::number(value["id"].toLongLong());
+                    result.m_id = value["id"].toString();
                     result.m_coverUrl = value["imgurl"].toString();
                     result.m_name = value["name"].toString();
                     result.m_updateTime.clear();

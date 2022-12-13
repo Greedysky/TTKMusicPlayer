@@ -87,7 +87,6 @@ void MusicKWQueryRequest::downLoadFinished()
                     info.m_albumId = value["ALBUMID"].toString();
 
                     info.m_year = value["RELEASEDATE"].toString();
-                    info.m_discNumber = "1";
                     info.m_trackNumber = "0";
 
                     info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);
@@ -156,7 +155,6 @@ void MusicKWQueryRequest::downLoadSingleFinished()
                 info.m_albumId = value["albumid"].toString();
 
                 info.m_year = value["releaseDate"].toString();
-                info.m_discNumber = "1";
                 info.m_trackNumber = value["track"].toString();
 
                 info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);
