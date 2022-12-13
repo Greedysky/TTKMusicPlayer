@@ -46,7 +46,7 @@ public:
     /*!
      * Start to search data by given id.
      */
-    virtual void startToSingleSearch(const QString &value) override final;
+    virtual void startToSingleSearch(const QString &id) override final;
 
 public Q_SLOTS:
     /*!

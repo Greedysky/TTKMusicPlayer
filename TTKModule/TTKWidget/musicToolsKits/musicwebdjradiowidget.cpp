@@ -292,7 +292,7 @@ void MusicWebDJRadioWidget::programItemClicked(const QString &rid, const QString
     }
     else
     {
-        m_queryWidget->setSongNameById(rid);
+        m_queryWidget->setSongNameByID(rid);
     }
 
     addWidget(m_queryWidget);

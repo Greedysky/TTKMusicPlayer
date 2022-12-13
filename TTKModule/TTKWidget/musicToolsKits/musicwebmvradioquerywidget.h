@@ -100,7 +100,7 @@ public:
     /*!
      * Set current id to search founds.
      */
-    virtual void setSongNameById(const QString &id) override final;
+    virtual void setSongNameByID(const QString &id) override final;
     /*!
      * Resize widget bound by resize called.
      */

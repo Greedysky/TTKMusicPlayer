@@ -48,7 +48,7 @@ void MusicPlaylistQueryInfoWidget::resizeWidget()
     }
 }
 
-void MusicPlaylistQueryInfoWidget::setSongNameById(const QString &id)
+void MusicPlaylistQueryInfoWidget::setSongNameByID(const QString &id)
 {
     Q_UNUSED(id);
 }

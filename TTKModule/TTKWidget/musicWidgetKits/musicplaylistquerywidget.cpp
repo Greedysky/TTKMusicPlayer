@@ -151,7 +151,7 @@ void MusicPlaylistQueryWidget::setSongName(const QString &name)
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, QString());
 }
 
-void MusicPlaylistQueryWidget::setSongNameById(const QString &id)
+void MusicPlaylistQueryWidget::setSongNameByID(const QString &id)
 {
     setSongName(id);
 

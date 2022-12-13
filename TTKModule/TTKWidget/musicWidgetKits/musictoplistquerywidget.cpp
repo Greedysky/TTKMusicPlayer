@@ -53,7 +53,7 @@ void MusicToplistQueryWidget::setSongName(const QString &name)
     createLabels();
 }
 
-void MusicToplistQueryWidget::setSongNameById(const QString &id)
+void MusicToplistQueryWidget::setSongNameByID(const QString &id)
 {
     Q_UNUSED(id);
 }

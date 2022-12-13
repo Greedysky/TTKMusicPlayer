@@ -48,7 +48,7 @@ void MusicAlbumQueryWidget::setSongName(const QString &name)
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, MusicUtils::String::artistName(name));
 }
 
-void MusicAlbumQueryWidget::setSongNameById(const QString &id)
+void MusicAlbumQueryWidget::setSongNameByID(const QString &id)
 {
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
     m_queryTableWidget->setQueryInput(d);
@@ -97,7 +97,7 @@ void MusicAlbumQueryWidget::queryAllFinished()
             if(m_songNameFull.contains(info.m_songName))
             {
                 hasItem = true;
-                setSongNameById(info.m_albumId);
+                setSongNameByID(info.m_albumId);
                 break;
             }
         }

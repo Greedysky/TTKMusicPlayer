@@ -121,7 +121,7 @@ void MusicWebDJRadioQueryWidget::setSongName(const QString &name)
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, name);
 }
 
-void MusicWebDJRadioQueryWidget::setSongNameById(const QString &id)
+void MusicWebDJRadioQueryWidget::setSongNameByID(const QString &id)
 {
     MusicAbstractItemQueryWidget::setSongName(id);
     MusicResultDataItem result;

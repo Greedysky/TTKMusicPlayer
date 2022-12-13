@@ -22,14 +22,14 @@ void MusicKWQueryAlbumRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
-void MusicKWQueryAlbumRequest::startToSingleSearch(const QString &value)
+void MusicKWQueryAlbumRequest::startToSingleSearch(const QString &id)
 {
-    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), id));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_ALBUM_URL, false).arg(value));
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_ALBUM_URL, false).arg(id));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);

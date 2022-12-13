@@ -43,12 +43,12 @@ void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &valu
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
-void MusicWYQueryMovieRequest::startToSingleSearch(const QString &value)
+void MusicWYQueryMovieRequest::startToSingleSearch(const QString &id)
 {
-    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), id));
 
     deleteAll();
-    m_queryValue = value.trimmed();
+    m_queryValue = id.trimmed();
 
     QTimer::singleShot(MT_MS, this, SLOT(downLoadSingleFinished()));
 }

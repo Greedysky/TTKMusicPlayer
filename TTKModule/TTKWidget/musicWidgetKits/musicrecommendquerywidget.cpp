@@ -48,7 +48,7 @@ void MusicRecommendQueryWidget::setSongName(const QString &name)
     createLabels();
 }
 
-void MusicRecommendQueryWidget::setSongNameById(const QString &id)
+void MusicRecommendQueryWidget::setSongNameByID(const QString &id)
 {
     Q_UNUSED(id);
 }

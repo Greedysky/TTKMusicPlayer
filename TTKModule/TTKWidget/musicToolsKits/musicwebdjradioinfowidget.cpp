@@ -47,7 +47,7 @@ void MusicWebDJRadioInfoWidget::setSongName(const QString &name)
     m_queryTableWidget->startSearchQuery(name);
 }
 
-void MusicWebDJRadioInfoWidget::setSongNameById(const QString &id)
+void MusicWebDJRadioInfoWidget::setSongNameByID(const QString &id)
 {
     Q_UNUSED(id);
 }

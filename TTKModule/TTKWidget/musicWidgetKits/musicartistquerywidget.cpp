@@ -126,7 +126,7 @@ void MusicArtistMvsQueryWidget::setSongName(const QString &name)
     d->startToSearch(m_songNameFull);
 }
 
-void MusicArtistMvsQueryWidget::setSongNameById(const QString &id)
+void MusicArtistMvsQueryWidget::setSongNameByID(const QString &id)
 {
     setSongName(id);
 }
@@ -220,7 +220,7 @@ void MusicArtistAlbumsQueryWidget::setSongName(const QString &name)
     m_networkRequest->startToSingleSearch(m_songNameFull);
 }
 
-void MusicArtistAlbumsQueryWidget::setSongNameById(const QString &id)
+void MusicArtistAlbumsQueryWidget::setSongNameByID(const QString &id)
 {
     MusicAbstractItemQueryWidget::setSongName(id);
     m_networkRequest->startToSingleSearch(m_songNameFull);
@@ -312,7 +312,7 @@ void MusicArtistQueryWidget::setSongName(const QString &name)
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, MusicUtils::String::artistName(name));
 }
 
-void MusicArtistQueryWidget::setSongNameById(const QString &id)
+void MusicArtistQueryWidget::setSongNameByID(const QString &id)
 {
     MusicAbstractItemQueryWidget::setSongName(id);
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeArtistRequest(this);
@@ -369,7 +369,7 @@ void MusicArtistQueryWidget::queryAllFinished()
             if(m_songNameFull.contains(info.m_songName))
             {
                 hasItem = true;
-                setSongNameById(info.m_artistId);
+                setSongNameByID(info.m_artistId);
                 break;
             }
         }

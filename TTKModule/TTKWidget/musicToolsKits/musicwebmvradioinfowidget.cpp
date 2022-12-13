@@ -128,7 +128,7 @@ void MusicWebMVRadioInfoWidget::setSongName(const QString &name)
     m_queryTableWidget->startSearchQuery(name);
 }
 
-void MusicWebMVRadioInfoWidget::setSongNameById(const QString &id)
+void MusicWebMVRadioInfoWidget::setSongNameByID(const QString &id)
 {
     Q_UNUSED(id);
 }

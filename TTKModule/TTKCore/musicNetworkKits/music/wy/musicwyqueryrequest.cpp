@@ -36,16 +36,16 @@ void MusicWYQueryRequest::startToSearch(QueryType type, const QString &value)
     startToPage(0);
 }
 
-void MusicWYQueryRequest::startToSingleSearch(const QString &value)
+void MusicWYQueryRequest::startToSingleSearch(const QString &id)
 {
-    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), id));
 
     deleteAll();
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_INFO_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SONG_INFO_DATA_URL, false).arg(value));
+                      MusicUtils::Algorithm::mdII(WY_SONG_INFO_DATA_URL, false).arg(id));
 
     QNetworkReply *reply = m_manager.post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(downLoadSingleFinished()));

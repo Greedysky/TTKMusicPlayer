@@ -47,7 +47,7 @@ public:
      * Set current id to search founds.
      * Subclass should implement this function.
      */
-    virtual void setSongNameById(const QString &id) = 0;
+    virtual void setSongNameByID(const QString &id) = 0;
 
     /*!
      * Init widget interface.

@@ -35,14 +35,14 @@ void MusicKWQueryRequest::startToSearch(QueryType type, const QString &value)
     startToPage(0);
 }
 
-void MusicKWQueryRequest::startToSingleSearch(const QString &value)
+void MusicKWQueryRequest::startToSingleSearch(const QString &id)
 {
-    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), id));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(value));
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(id));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);

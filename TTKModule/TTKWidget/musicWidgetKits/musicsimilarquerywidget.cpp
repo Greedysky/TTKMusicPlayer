@@ -48,7 +48,7 @@ void MusicSimilarQueryWidget::setSongName(const QString &name)
     createLabels();
 }
 
-void MusicSimilarQueryWidget::setSongNameById(const QString &id)
+void MusicSimilarQueryWidget::setSongNameByID(const QString &id)
 {
     Q_UNUSED(id);
 }

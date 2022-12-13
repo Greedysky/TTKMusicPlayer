@@ -130,7 +130,7 @@ void MusicWebMVRadioQueryWidget::setSongName(const QString &name)
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, QString());
 }
 
-void MusicWebMVRadioQueryWidget::setSongNameById(const QString &id)
+void MusicWebMVRadioQueryWidget::setSongNameByID(const QString &id)
 {
     Q_UNUSED(id);
 }

@@ -25,15 +25,15 @@ void MusicWYQueryAlbumRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
-void MusicWYQueryAlbumRequest::startToSingleSearch(const QString &value)
+void MusicWYQueryAlbumRequest::startToSingleSearch(const QString &id)
 {
-    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), id));
 
     deleteAll();
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_URL, false).arg(value),
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_URL, false).arg(id),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_DATA_URL, false));
 
     QNetworkReply *reply = m_manager.post(request, parameter);

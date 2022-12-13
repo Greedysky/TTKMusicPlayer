@@ -117,7 +117,7 @@ public:
     /*!
      * Start to search single data from id.
      */
-    virtual void startToSingleSearch(const QString &value);
+    virtual void startToSingleSearch(const QString &id);
 
     /*!
      * Set query data quality.
