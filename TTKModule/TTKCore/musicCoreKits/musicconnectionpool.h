@@ -62,7 +62,7 @@ private:
      */
     MusicConnectionPool();
 
-    DECLARE_SINGLETON_CLASS(MusicConnectionPool)
+    TTK_DECLARE_SINGLETON_CLASS(MusicConnectionPool)
 
 };
 

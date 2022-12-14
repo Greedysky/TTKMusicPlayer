@@ -76,7 +76,7 @@ private:
      */
     MusicSingleManager();
 
-    DECLARE_SINGLETON_CLASS(MusicSingleManager)
+    TTK_DECLARE_SINGLETON_CLASS(MusicSingleManager)
 
 };
 

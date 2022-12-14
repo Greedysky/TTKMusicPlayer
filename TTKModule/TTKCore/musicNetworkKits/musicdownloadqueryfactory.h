@@ -107,7 +107,7 @@ public:
     MusicDownloadBackgroundRequest *makeBackgroundRequest(const QString &name, const QString &path, QObject *parent);
 
 private:
-    DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)
+    TTK_DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)
 
 };
 

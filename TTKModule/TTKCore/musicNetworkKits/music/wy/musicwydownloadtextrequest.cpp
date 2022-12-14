@@ -52,7 +52,7 @@ void MusicWYDownLoadTextRequest::downLoadFinished()
                     QTextStream outstream(m_file);
                     outstream.setCodec("UTF-8");
                     outstream << data.toUtf8();
-                    QtStreamEndl(outstream);
+                    QtStreamEndLine(outstream);
                     m_file->close();
                     TTK_INFO_STREAM(QString("%1 download has finished").arg(className()));
                 }

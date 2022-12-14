@@ -100,7 +100,7 @@ private:
 
     QList<QGlobalShortcut*> m_hotkeys;
 
-    DECLARE_SINGLETON_CLASS(MusicHotKeyManager)
+    TTK_DECLARE_SINGLETON_CLASS(MusicHotKeyManager)
 
 };
 

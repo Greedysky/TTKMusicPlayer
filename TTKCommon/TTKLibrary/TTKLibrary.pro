@@ -67,6 +67,7 @@ HEADERS += \
     $$PWD/ttkcryptographichash.h \
     $$PWD/ttkdesktopwrapper.h \
     $$PWD/ttkglobalhelper.h \
+    $$PWD/ttklibrary.h \
     $$PWD/ttksemaphoreloop.h \
     $$PWD/ttksuperenum.h \
     $$PWD/ttktabbutton.h \

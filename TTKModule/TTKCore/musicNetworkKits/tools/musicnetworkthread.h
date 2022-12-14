@@ -70,7 +70,7 @@ private:
     QTimer m_timer;
     bool m_networkState;
 
-    DECLARE_SINGLETON_CLASS(MusicNetworkThread)
+    TTK_DECLARE_SINGLETON_CLASS(MusicNetworkThread)
 
 };
 

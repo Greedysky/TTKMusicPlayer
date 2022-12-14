@@ -72,7 +72,7 @@ private:
     QTimer *m_timer;
     QList<MusicDispatchItem*> m_observer;
 
-    DECLARE_SINGLETON_CLASS(MusicDispatchManager)
+    TTK_DECLARE_SINGLETON_CLASS(MusicDispatchManager)
 
 };
 

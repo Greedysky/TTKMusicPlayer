@@ -208,7 +208,7 @@ private:
     QVariant m_variant;
     QMap<Config, QVariant> m_parameter;
 
-    DECLARE_SINGLETON_CLASS(MusicSettingManager)
+    TTK_DECLARE_SINGLETON_CLASS(MusicSettingManager)
 
 };
 

@@ -25,6 +25,7 @@ set(MUSIC_HEADERS
   ttkcryptographichash.h
   ttkdesktopwrapper.h
   ttkglobalhelper.h
+  ttklibrary.h
   ttksemaphoreloop.h
   ttksuperenum.h
   ttktabbutton.h

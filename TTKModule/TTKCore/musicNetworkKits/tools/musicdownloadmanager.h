@@ -104,7 +104,7 @@ private:
     QObjectList m_queueList;
     QList<MusicDownLoadPairData> m_pairList;
 
-    DECLARE_SINGLETON_CLASS(MusicDownLoadManager)
+    TTK_DECLARE_SINGLETON_CLASS(MusicDownLoadManager)
 
 };
 

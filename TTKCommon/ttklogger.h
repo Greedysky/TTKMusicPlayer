@@ -22,17 +22,17 @@
 #include <QDebug>
 #include <QDateTime>
 
-#define CURRENT_DATE QDate::currentDate().toString("yyyy-MM-dd")
-#define CURRENT_TIME QTime::currentTime().toString("hh:mm:ss:zzz")
-
 #if QT_VERSION < QT_VERSION_CHECK(5,4,0)
 #  define TTK_LOG_OUTPUT qDebug()
 #else
 #  define TTK_LOG_OUTPUT qDebug().noquote()
 #endif
 
+#define __TTK_DATE__ QDate::currentDate().toString("yyyy-MM-dd")
+#define __TTK_TIME__ QTime::currentTime().toString("hh:mm:ss:zzz")
+
 // log stream base macro
-#define TTK_LOG_STREAM(level, msg) TTK_LOG_OUTPUT << QString("[%1 %2][%3][%4(%5)] ").arg(CURRENT_DATE, CURRENT_TIME, level, __FILE__, QString::number(__LINE__)) << msg
+#define TTK_LOG_STREAM(level, msg) TTK_LOG_OUTPUT << QString("[%1 %2][%3][%4(%5)] ").arg(__TTK_DATE__, __TTK_TIME__, level, __FILE__, QString::number(__LINE__)) << msg
 // log once base macro
 #define TTK_LOG_STREAM_ONCE(level, msg) \
   static bool __hit__ = false; \

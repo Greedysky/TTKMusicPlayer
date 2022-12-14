@@ -62,7 +62,7 @@ void MusicKWDownLoadTextRequest::downLoadFinished()
             QTextStream outstream(m_file);
             outstream.setCodec("UTF-8");
             outstream << lrcData;
-            QtStreamEndl(outstream);
+            QtStreamEndLine(outstream);
             m_file->close();
             TTK_INFO_STREAM(QString("%1 download has finished").arg(className()));
         }

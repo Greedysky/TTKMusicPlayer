@@ -162,9 +162,9 @@ namespace Qt
 
 /// Stream endl
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtStreamEndl(p) p << Qt::endl
+#  define QtStreamEndLine(p) p << Qt::endl
 #else
-#  define QtStreamEndl(p) p << endl
+#  define QtStreamEndLine(p) p << endl
 #endif
 
 /// Lable pixmap

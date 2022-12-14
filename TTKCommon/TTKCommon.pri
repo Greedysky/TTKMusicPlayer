@@ -38,6 +38,7 @@ win32{
             $$PWD/TTKLibrary/ttkcryptographichash.h \
             $$PWD/TTKLibrary/ttkdesktopwrapper.h \
             $$PWD/TTKLibrary/ttkglobalhelper.h \
+            $$PWD/TTKLibrary/ttklibrary.h \
             $$PWD/TTKLibrary/ttksemaphoreloop.h \
             $$PWD/TTKLibrary/ttksuperenum.h \
             $$PWD/TTKLibrary/ttktabbutton.h \

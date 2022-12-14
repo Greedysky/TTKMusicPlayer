@@ -139,7 +139,7 @@ private:
     QObjectList m_observer;
     QString m_currentArtistName, m_background;
 
-    DECLARE_SINGLETON_CLASS(MusicBackgroundManager)
+    TTK_DECLARE_SINGLETON_CLASS(MusicBackgroundManager)
 
 };
 

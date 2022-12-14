@@ -80,7 +80,7 @@ T* TTKSingleton<T>::createInstance()
 
 ////Class that will implement the singleton mode,
 ////must use the macro in it's delare file
-#define DECLARE_SINGLETON_CLASS(Class)           \
+#define TTK_DECLARE_SINGLETON_CLASS(Class)       \
     friend class TTKSingleton<Class>;            \
     friend struct QScopedPointerDeleter<Class>;
 
