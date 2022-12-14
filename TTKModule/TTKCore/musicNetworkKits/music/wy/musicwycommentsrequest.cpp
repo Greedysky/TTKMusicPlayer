@@ -15,7 +15,7 @@ void MusicWYSongCommentsRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toInt()),
                       MusicUtils::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toInt()).arg(m_pageSize).arg(m_pageSize * offset));
 
@@ -60,6 +60,7 @@ void MusicWYSongCommentsRequest::downLoadFinished()
             if(value["code"].toInt() == 200)
             {
                 m_totalSize = value["total"].toLongLong();
+
                 const QVariantList &datas = value["comments"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -112,7 +113,7 @@ void MusicWYPlaylistCommentsRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toLongLong()),
                       MusicUtils::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toLongLong()).arg(m_pageSize).arg(m_pageSize * offset));
 
@@ -137,6 +138,7 @@ void MusicWYPlaylistCommentsRequest::downLoadFinished()
             if(value["code"].toInt() == 200)
             {
                 m_totalSize = value["total"].toLongLong();
+
                 const QVariantList &datas = value["comments"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

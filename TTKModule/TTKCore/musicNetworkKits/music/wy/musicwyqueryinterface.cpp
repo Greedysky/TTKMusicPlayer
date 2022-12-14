@@ -16,7 +16,7 @@ void MusicWYInterface::makeRequestRawHeader(QNetworkRequest *request)
 }
 
 
-QByteArray MusicWYQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type) const
+QByteArray MusicWYQueryInterface::makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &type) const
 {
     QAlgorithm::Aes aes;
     QByteArray parameter = aes.encryptCBC(type.toUtf8(), "0CoJUm6Qyw8W8jud", "0102030405060708");
@@ -151,7 +151,7 @@ void MusicWYQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformat
 void MusicWYQueryInterface::parseFromSongPropertyNew(MusicObject::MusicSongInformation *info, int bitrate) const
 {
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_PATH_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SONG_PATH_DATA_URL, false).arg(info->m_songId).arg(bitrate * 1000));
 
@@ -178,9 +178,11 @@ void MusicWYQueryInterface::parseFromSongPropertyNew(MusicObject::MusicSongInfor
                 }
 
                 value = var.toMap();
+
                 MusicObject::MusicSongProperty prop;
                 prop.m_url = value["url"].toString();
                 prop.m_bitrate = bitrate;
+
                 if(prop.m_url.isEmpty() || info->m_songProps.contains(prop))
                 {
                     break;

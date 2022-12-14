@@ -38,8 +38,8 @@ void MusicKGQueryArtistRequest::downLoadFinished()
             if(value.contains("data"))
             {
                 bool artistFound = false;
-                //
                 value = value["data"].toMap();
+
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

@@ -52,9 +52,9 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Init toplist info item.
+     * Query toplist info.
      */
-    bool initialize();
+    virtual void queryToplistInfo(const QVariantMap &input) override final;
 
 };
 

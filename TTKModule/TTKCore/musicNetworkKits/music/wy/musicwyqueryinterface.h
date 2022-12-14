@@ -94,9 +94,9 @@ class TTK_MODULE_EXPORT MusicWYQueryInterface
 {
 public:
     /*!
-     * Make token query url string.
+     * Make token query request.
      */
-    QByteArray makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type) const;
+    QByteArray makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &type) const;
 
     /*!
      * Read tags(size\bitrate\url) from query results.

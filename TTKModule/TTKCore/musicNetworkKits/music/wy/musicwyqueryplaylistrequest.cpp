@@ -15,7 +15,7 @@ void MusicWYQueryPlaylistRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_URL, false),
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_DATA_URL, false).arg(m_queryValue).arg(m_pageSize).arg(m_pageSize * offset));
 
@@ -44,7 +44,7 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &value)
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_URL, false),
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(value));
 
@@ -60,7 +60,7 @@ void MusicWYQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
     MusicPageQueryRequest::downLoadFinished();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_URL, false),
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(item.m_id));
 
@@ -119,6 +119,7 @@ void MusicWYQueryPlaylistRequest::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("playlists"))
             {
                 m_totalSize = value["total"].toLongLong();
+
                 const QVariantList &datas = value["playlists"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -178,6 +179,7 @@ void MusicWYQueryPlaylistRequest::downloadDetailsFinished()
             if(value["code"].toInt() == 200 && value.contains("playlist"))
             {
                 value = value["playlist"].toMap();
+
                 const QVariantList &datas = value["tracks"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

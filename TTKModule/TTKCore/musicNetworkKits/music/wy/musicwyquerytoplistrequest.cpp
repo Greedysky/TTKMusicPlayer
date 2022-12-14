@@ -25,7 +25,7 @@ void MusicWYQueryToplistRequest::startToSearch(const QString &value)
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_TOPLIST_URL, false),
                       MusicUtils::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(value));
 
@@ -50,13 +50,8 @@ void MusicWYQueryToplistRequest::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("playlist"))
             {
                 value = value["playlist"].toMap();
-                MusicResultDataItem result;
-                result.m_name = value["name"].toString();
-                result.m_coverUrl = value["coverImgUrl"].toString();
-                result.m_playCount = value["playCount"].toString();
-                result.m_description = value["description"].toString();
-                result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["updateTime"].toULongLong()).toString(TTK_YEAR_FORMAT);
-                Q_EMIT createToplistItem(result);
+
+                queryToplistInfo(value);
 
                 const QVariantList &datas = value["tracks"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -121,4 +116,15 @@ void MusicWYQueryToplistRequest::downLoadFinished()
 
     Q_EMIT downLoadDataChanged(QString());
     deleteAll();
+}
+
+void MusicWYQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
+{
+    MusicResultDataItem result;
+    result.m_name = input["name"].toString();
+    result.m_coverUrl = input["coverImgUrl"].toString();
+    result.m_playCount = input["playCount"].toString();
+    result.m_description = input["description"].toString();
+    result.m_updateTime = QDateTime::fromMSecsSinceEpoch(input["updateTime"].toULongLong()).toString(TTK_YEAR_FORMAT);
+    Q_EMIT createToplistItem(result);
 }

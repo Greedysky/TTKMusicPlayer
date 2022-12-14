@@ -40,12 +40,14 @@ void MusicBPDownloadBackgroundRequest::downLoadFinished()
             if(value.contains("data"))
             {
                 value = value["data"].toMap();
+
                 const QVariantList &datas = value["list"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
                     value = var.toMap();
-                    const QString &name = value["tag"].toString();
+                    TTK_NETWORK_QUERY_CHECK();
 
+                    const QString &name = value["tag"].toString();
                     if(m_counter < MAX_IMAGE_COUNTER && !name.isEmpty() && (name.contains(m_name) || m_name.contains(name)))
                     {
                         const QString &url = value["url"].toString();

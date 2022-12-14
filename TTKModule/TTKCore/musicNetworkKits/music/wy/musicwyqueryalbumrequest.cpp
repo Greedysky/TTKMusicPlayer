@@ -16,7 +16,7 @@ void MusicWYQueryAlbumRequest::startToSearch(const QString &value)
     m_queryValue = value;
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_ALBUM_URL, false).arg(value),
                       QString("{}"));
 
@@ -32,7 +32,7 @@ void MusicWYQueryAlbumRequest::startToSingleSearch(const QString &id)
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_URL, false).arg(id),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_DATA_URL, false));
 
@@ -57,7 +57,6 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("album"))
             {
                 bool albumFound = false;
-                //
                 MusicResultDataItem result;
                 const QVariantMap &albumValue = value["album"].toMap();
                 result.m_coverUrl = albumValue["picUrl"].toString();
@@ -65,6 +64,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                                        albumValue["language"].toString() + TTK_SPLITER +
                                        albumValue["company"].toString() + TTK_SPLITER +
                                        QDateTime::fromMSecsSinceEpoch(albumValue["publishTime"].toULongLong()).toString(TTK_YEAR_FORMAT);
+
                 const QVariantList &datas = value["songs"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

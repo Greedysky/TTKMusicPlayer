@@ -14,7 +14,7 @@ void MusicWYDiscoverListRequest::startToSearch()
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_TOPLIST_URL, false),
                       MusicUtils::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(19723756));
 
@@ -39,6 +39,7 @@ void MusicWYDiscoverListRequest::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("playlist"))
             {
                 value = value["playlist"].toMap();
+
                 const QVariantList &datas = value["tracks"].toList();
                 int where = datas.count();
                 where = (where > 0) ? TTKObject::random(where) : 0;

@@ -50,6 +50,13 @@ Q_SIGNALS:
      */
     void createToplistItem(const MusicResultDataItem &item);
 
+protected:
+    /*!
+     * Query toplist info.
+     * Subclass should implement this function.
+     */
+    virtual void queryToplistInfo(const QVariantMap &input) = 0;
+
 };
 
 #endif // MUSICQUERYTOPLISTREQUEST_H

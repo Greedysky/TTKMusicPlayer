@@ -245,6 +245,7 @@ void MusicKWQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInfo
             prop.m_url = regx.cap(1);
             prop.m_bitrate = bitrate;
             prop.m_format = "mp4";
+
             if(prop.m_url.isEmpty() || info->m_songProps.contains(prop))
             {
                 return;

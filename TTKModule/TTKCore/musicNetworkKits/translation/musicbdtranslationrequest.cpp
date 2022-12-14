@@ -35,6 +35,7 @@ void MusicBDTranslationRequest::downLoadFinished()
         {
             QVariantMap value = data.toMap();
             value = value["trans_result"].toMap();
+
             const QVariantList &datas = value["data"].toList();
             for(const QVariant &var : qAsConst(datas))
             {

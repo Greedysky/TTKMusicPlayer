@@ -42,6 +42,7 @@ void MusicKWQueryInterface::parseFromSongHighProperty(MusicObject::MusicSongInfo
             prop.m_bitrate = bitrate;
             prop.m_format = suffix;
             prop.m_size = TTK_DEFAULT_STR;
+
             if(prop.m_url.isEmpty() || info->m_songProps.contains(prop))
             {
                 return;

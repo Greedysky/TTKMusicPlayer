@@ -53,9 +53,9 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
             if(value.contains("data"))
             {
                 bool albumFound = false;
-                //
                 MusicResultDataItem result;
                 value = value["data"].toMap();
+
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -141,6 +141,7 @@ void MusicKGQueryAlbumRequest::downLoadSingleFinished()
             if(value["errcode"].toInt() == 0 && value.contains("data"))
             {
                 value = value["data"].toMap();
+
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

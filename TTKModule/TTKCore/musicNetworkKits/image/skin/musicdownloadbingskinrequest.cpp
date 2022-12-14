@@ -42,6 +42,7 @@ void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)
                 }
 
                 value = var.toMap();
+
                 MusicSkinRemoteItem item;
                 item.m_name = value["copyright"].toString();
                 item.m_index = value["startdate"].toInt();

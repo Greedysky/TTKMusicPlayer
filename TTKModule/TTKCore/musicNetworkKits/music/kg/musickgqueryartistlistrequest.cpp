@@ -64,6 +64,7 @@ void MusicKGQueryArtistListRequest::downLoadFinished()
             if(value.contains("data") && value["errcode"].toInt() == 0)
             {
                 value = value["data"].toMap();
+
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

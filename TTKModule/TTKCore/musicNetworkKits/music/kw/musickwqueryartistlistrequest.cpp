@@ -62,6 +62,7 @@ void MusicKWQueryArtistListRequest::downLoadFinished()
             if(value.contains("artistlist"))
             {
                 m_totalSize = value["total"].toLongLong();
+
                 const QVariantList &datas = value["artistlist"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

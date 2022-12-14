@@ -49,12 +49,10 @@ void MusicKGQueryToplistRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("data"))
             {
-                if(!initialize())
-                {
-                    return;
-                }
-
                 value = value["data"].toMap();
+
+                queryToplistInfo(value);
+
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -115,8 +113,10 @@ void MusicKGQueryToplistRequest::downLoadFinished()
     deleteAll();
 }
 
-bool MusicKGQueryToplistRequest::initialize()
+void MusicKGQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
 {
+    Q_UNUSED(input);
+
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KG_TOPLIST_INFO_URL, false));
     MusicKGInterface::makeRequestRawHeader(&request);
@@ -124,7 +124,7 @@ bool MusicKGQueryToplistRequest::initialize()
     const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
     {
-        return false;
+        return;
     }
 
     QJson::Parser json;
@@ -148,6 +148,7 @@ bool MusicKGQueryToplistRequest::initialize()
                 }
 
                 value = var.toMap();
+                TTK_NETWORK_QUERY_CHECK();
 
                 if(m_queryValue != value["rankid"])
                 {
@@ -159,9 +160,8 @@ bool MusicKGQueryToplistRequest::initialize()
                 result.m_playCount = value["play_times"].toString();
                 result.m_description = value["intro"].toString();
                 Q_EMIT createToplistItem(result);
-                return true;
+                return;
             }
         }
     }
-    return true;
 }

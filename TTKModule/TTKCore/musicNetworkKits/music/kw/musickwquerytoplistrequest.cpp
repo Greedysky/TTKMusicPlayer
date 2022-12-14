@@ -23,6 +23,7 @@ void MusicKWQueryToplistRequest::startToSearch(const QString &value)
     TTK_INFO_STREAM(QString("%1 startToSearch").arg(className()));
 
     deleteAll();
+    m_queryValue = value;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_TOPLIST_URL, false).arg(value));
@@ -48,13 +49,7 @@ void MusicKWQueryToplistRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("musiclist"))
             {
-                MusicResultDataItem result;
-                result.m_name = value["name"].toString();
-                result.m_coverUrl = value["pic"].toString();
-                result.m_playCount = TTK_DEFAULT_STR;
-                result.m_description = value["info"].toString();
-                result.m_updateTime = value["pub"].toString();
-                Q_EMIT createToplistItem(result);
+                queryToplistInfo(value);
 
                 const QVariantList &datas = value["musiclist"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -109,4 +104,67 @@ void MusicKWQueryToplistRequest::downLoadFinished()
 
     Q_EMIT downLoadDataChanged(QString());
     deleteAll();
+}
+
+void MusicKWQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
+{
+    Q_UNUSED(input);
+
+    QNetworkRequest request;
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_TOPLIST_INFO_URL, false));
+    MusicKWInterface::makeRequestRawHeader(&request);
+
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
+    {
+        return;
+    }
+
+    QJson::Parser json;
+    bool ok;
+    const QVariant &data = json.parse(bytes, &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value.contains("data"))
+        {
+            const QVariantList &datas = value["data"].toList();
+            for(const QVariant &var : qAsConst(datas))
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                value = var.toMap();
+                TTK_NETWORK_QUERY_CHECK();
+
+                const QVariantList &ranks = value["list"].toList();
+                for(const QVariant &rank : qAsConst(ranks))
+                {
+                    if(rank.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = rank.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
+                    if(m_queryValue != value["sourceid"])
+                    {
+                        continue;
+                    }
+
+                    MusicResultDataItem result;
+                    result.m_name = value["name"].toString();
+                    result.m_coverUrl = value["pic"].toString();
+                    result.m_playCount = value["id"].toString();
+                    result.m_description = value["intro"].toString();
+                    result.m_updateTime = value["pub"].toString();
+                    Q_EMIT createToplistItem(result);
+                    return;
+                }
+            }
+        }
+    }
 }

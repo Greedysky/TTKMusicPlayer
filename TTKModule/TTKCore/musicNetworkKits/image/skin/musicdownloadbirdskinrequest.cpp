@@ -45,10 +45,10 @@ void MusicDownloadBirdSkinRequest::downLoadFinished(const QByteArray &bytes)
                 }
 
                 value = var.toMap();
+
                 MusicSkinRemoteGroup group;
                 group.m_group = QString("%1/%2").arg(MUSIC_BIRD_DIR, value["category"].toString());
                 group.m_id = value["old_id"].toString();
-
                 groups << group;
             }
         }
@@ -70,6 +70,7 @@ void MusicDownloadBirdSkinRequest::downLoadItemsFinished(const QByteArray &bytes
         if(value.contains("data"))
         {
             value = value["data"].toMap();
+
             const QVariantList &datas = value["list"].toList();
             for(const QVariant &var : qAsConst(datas))
             {
@@ -79,6 +80,7 @@ void MusicDownloadBirdSkinRequest::downLoadItemsFinished(const QByteArray &bytes
                 }
 
                 value = var.toMap();
+
                 MusicSkinRemoteItem item;
                 item.m_name = value["tag"].toString();
                 item.m_index = value["id"].toInt();

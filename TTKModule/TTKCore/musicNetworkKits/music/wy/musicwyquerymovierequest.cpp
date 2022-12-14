@@ -16,7 +16,7 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
     m_pageSize = 20;
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize));
 
@@ -34,7 +34,7 @@ void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &valu
     m_queryValue = value.trimmed();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryValue).arg(1014).arg(m_pageSize).arg(0).toUtf8());
 
@@ -177,7 +177,7 @@ void MusicWYQueryMovieRequest::downLoadSingleFinished()
 void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
 {
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_MOVIE_URL, false),
                       MusicUtils::Algorithm::mdII(WY_MOVIE_DATA_URL, false).arg(id));
 
@@ -208,13 +208,21 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
                 const int bitrate = key.toInt();
                 MusicObject::MusicSongProperty prop;
                 if(bitrate <= 375)
+                {
                     prop.m_bitrate = MB_250;
+                }
                 else if(bitrate > 375 && bitrate <= 625)
+                {
                     prop.m_bitrate = MB_500;
+                }
                 else if(bitrate > 625 && bitrate <= 875)
+                {
                     prop.m_bitrate = MB_750;
+                }
                 else if(bitrate > 875)
+                {
                     prop.m_bitrate = MB_1000;
+                }
 
                 prop.m_url = value[key].toString();
                 prop.m_format = MusicUtils::String::stringSplitToken(prop.m_url);
@@ -246,7 +254,7 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
 void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
 {
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_VIDEO_INFO_URL, false),
                       MusicUtils::Algorithm::mdII(WY_VIDEO_INFO_DATA_URL, false).arg(id));
 
@@ -295,13 +303,21 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
                 }
 
                 if(bitrate <= 375)
+                {
                     prop.m_bitrate = MB_250;
+                }
                 else if(bitrate > 375 && bitrate <= 625)
+                {
                     prop.m_bitrate = MB_500;
+                }
                 else if(bitrate > 625 && bitrate <= 875)
+                {
                     prop.m_bitrate = MB_750;
+                }
                 else if(bitrate > 875)
+                {
                     prop.m_bitrate = MB_1000;
+                }
 
                 prop.m_size = MusicUtils::Number::sizeByte2Label(value["size"].toInt());
                 prop.m_format = MusicUtils::String::stringSplitToken(prop.m_url);
@@ -327,7 +343,7 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
 void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id, int bitrate) const
 {
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_VIDEO_PATH_URL, false),
                       MusicUtils::Algorithm::mdII(WY_VIDEO_PATH_DATA_URL, false).arg(id).arg(bitrate));
 
@@ -371,7 +387,7 @@ void MusicWYQueryMovieRequest::queryArtistMoviesCount(qint64 id)
     m_totalSize = TTK_HIGH_LEVEL;
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(id).arg(0).arg(TTK_HIGH_LEVEL));
 

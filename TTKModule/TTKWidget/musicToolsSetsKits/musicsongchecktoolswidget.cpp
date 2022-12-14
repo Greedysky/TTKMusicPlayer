@@ -102,8 +102,7 @@ void MusicSongCheckToolsWidget::renameCheckFinished(const MusicSongCheckToolsRen
         m_ui->renameTableWidget->removeItems();
         m_ui->renameTableWidget->addCellItems(items);
     }
-    else if(m_renameThread->mode() == MusicObject::CheckMode::Apply &&
-           !m_ui->renameTableWidget->checkedIndexList().isEmpty())
+    else if(m_renameThread->mode() == MusicObject::CheckMode::Apply && !m_ui->renameTableWidget->checkedIndexList().isEmpty())
     {
         MusicToastLabel::popup(tr("Rename apply finished"));
     }
@@ -222,8 +221,7 @@ void MusicSongCheckToolsWidget::duplicateCheckFinished(const MusicSongCheckTools
         m_ui->duplicateTableWidget->removeItems();
         m_ui->duplicateTableWidget->addCellItems(items);
     }
-    else if(m_duplicateThread->mode() == MusicObject::CheckMode::Apply &&
-           !m_ui->duplicateTableWidget->checkedIndexList().isEmpty())
+    else if(m_duplicateThread->mode() == MusicObject::CheckMode::Apply && !m_ui->duplicateTableWidget->checkedIndexList().isEmpty())
     {
         MusicToastLabel::popup(tr("Duplicate apply finished"));
     }

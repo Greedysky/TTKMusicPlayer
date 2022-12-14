@@ -14,7 +14,7 @@ void MusicWYQueryArtistRequest::startToSearch(const QString &value)
     m_queryValue = value;
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_URL, false).arg(value),
                       QString("{}"));
 
@@ -39,7 +39,6 @@ void MusicWYQueryArtistRequest::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("hotSongs"))
             {
                 bool artistFound = false;
-                //
                 const QVariantMap &artistObject = value["artist"].toMap();
                 const QString &coverUrl = artistObject["picUrl"].toString();
                 const QString &singerName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
@@ -126,7 +125,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
 void MusicWYQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) const
 {
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_INFO_URL, false),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_INFO_DATA_URL, false).arg(m_queryValue));
 
@@ -159,6 +158,8 @@ void MusicWYQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) cons
                 }
 
                 value = var.toMap();
+                TTK_NETWORK_QUERY_CHECK();
+
                 item->m_description += QString("**%1**\r\n").arg(value["ti"].toString());
                 item->m_description += value["txt"].toString() + "\r\n\r\n";
             }

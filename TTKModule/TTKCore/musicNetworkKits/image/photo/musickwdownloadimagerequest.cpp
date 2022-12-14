@@ -98,10 +98,13 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished()
             {
                 QString lastUrl;
                 QVariantMap value = data.toMap();
+
                 const QVariantList &datas = value["array"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     if(m_counter < MAX_IMAGE_COUNTER && !value.isEmpty())
                     {
                         const QString &url = value.values().front().toString();

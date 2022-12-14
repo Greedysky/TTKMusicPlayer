@@ -67,6 +67,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
             if(value.contains("data"))
             {
                 value = value["data"].toMap();
+
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -278,13 +279,21 @@ void MusicKGQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInfo
 
     const int bitrate = key["bitrate"].toInt() / 1000;
     if(bitrate <= 375)
+    {
         prop.m_bitrate = MB_250;
+    }
     else if(bitrate > 375 && bitrate <= 625)
+    {
         prop.m_bitrate = MB_500;
+    }
     else if(bitrate > 625 && bitrate <= 875)
+    {
         prop.m_bitrate = MB_750;
+    }
     else if(bitrate > 875)
+    {
         prop.m_bitrate = MB_1000;
+    }
 
     if(info->m_duration.isEmpty())
     {

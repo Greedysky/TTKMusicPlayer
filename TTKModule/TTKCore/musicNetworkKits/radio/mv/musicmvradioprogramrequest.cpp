@@ -139,16 +139,19 @@ void MusicMVRadioProgramRequest::parseFromMovieProperty(MusicObject::MusicSongIn
             {
                 parseFromMovieProperty(info, mv);
             }
+
             mv = value["hd"].toMap();
             if(!mv.isEmpty())
             {
                 parseFromMovieProperty(info, mv);
             }
+
             mv = value["sq"].toMap();
             if(!mv.isEmpty())
             {
                 parseFromMovieProperty(info, mv);
             }
+
             mv = value["rq"].toMap();
             if(!mv.isEmpty())
             {
@@ -167,13 +170,21 @@ void MusicMVRadioProgramRequest::parseFromMovieProperty(MusicObject::MusicSongIn
 
     const int bitrate = key["bitrate"].toInt() / 1000;
     if(bitrate <= 375)
+    {
         prop.m_bitrate = MB_250;
+    }
     else if(bitrate > 375 && bitrate <= 625)
+    {
         prop.m_bitrate = MB_500;
+    }
     else if(bitrate > 625 && bitrate <= 875)
+    {
         prop.m_bitrate = MB_750;
+    }
     else if(bitrate > 875)
+    {
         prop.m_bitrate = MB_1000;
+    }
 
     info->m_songProps.append(prop);
 }

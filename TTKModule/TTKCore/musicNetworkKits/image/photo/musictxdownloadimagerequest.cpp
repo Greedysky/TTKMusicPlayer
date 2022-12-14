@@ -58,11 +58,13 @@ void MusicTXDownloadBackgroundRequest::downLoadFinished()
         {
             QVariantMap value = data.toMap();
             value = value["music.search.SearchCgiService"].toMap();
+
             if(value.contains("code") && value["code"].toInt() == 0)
             {
                 value = value["data"].toMap();
                 value = value["body"].toMap();
                 value = value["song"].toMap();
+
                 const QVariantList &datas = value["list"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -73,6 +75,7 @@ void MusicTXDownloadBackgroundRequest::downLoadFinished()
 
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
+
                     id = value["id"].toString();
                     break;
                 }

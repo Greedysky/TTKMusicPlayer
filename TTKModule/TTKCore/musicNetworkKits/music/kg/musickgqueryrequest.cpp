@@ -67,6 +67,7 @@ void MusicKGQueryRequest::downLoadFinished()
             {
                 value = value["data"].toMap();
                 m_totalSize = value["total"].toInt();
+
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

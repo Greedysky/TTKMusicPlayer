@@ -82,8 +82,8 @@ void MusicKGQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
             item.m_description = value["intro"].toString();
             item.m_updateTime = value["publishtime"].toString();
             item.m_nickName = value["nickname"].toString();
-
             item.m_tags.clear();
+
             const QVariantList &tags = value["tags"].toList();
             for(const QVariant &var : qAsConst(tags))
             {
@@ -166,6 +166,7 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
             if(value["errcode"].toInt() == 0 && value.contains("data"))
             {
                 value = value["data"].toMap();
+
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

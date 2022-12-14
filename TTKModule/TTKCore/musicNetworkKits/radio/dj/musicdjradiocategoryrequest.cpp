@@ -11,7 +11,7 @@ void MusicDJRadioCategoryRequest::startRequest()
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(DJ_CATEGORY_URL, false),
                       QString("{}"));
 

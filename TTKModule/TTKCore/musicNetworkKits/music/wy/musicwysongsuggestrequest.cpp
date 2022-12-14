@@ -13,7 +13,7 @@ void MusicWYSongSuggestRequest::startToSearch(const QString &value)
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_SUGGEST_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SUGGEST_DATA_URL, false).arg(value));
 
@@ -40,6 +40,7 @@ void MusicWYSongSuggestRequest::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("result"))
             {
                 value = value["result"].toMap();
+
                 const QVariantList &datas = value["songs"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

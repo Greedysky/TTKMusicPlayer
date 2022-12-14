@@ -53,19 +53,19 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
             if(!value.isEmpty() && value.contains("musiclist"))
             {
                 bool albumFound = false;
-                //
                 MusicResultDataItem result;
-                const QString &albumName = value["name"].toString();
                 result.m_nickName = value["albumid"].toString();
                 result.m_coverUrl = value["pic"].toString();
                 if(!MusicUtils::String::isNetworkUrl(result.m_coverUrl) && !result.m_coverUrl.contains(TTK_NULL_STR))
                 {
                     result.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_PREFIX_URL, false) + result.m_coverUrl;
                 }
+                const QString &albumName = value["name"].toString();
                 result.m_description = albumName + TTK_SPLITER +
                                        value["lang"].toString() + TTK_SPLITER +
                                        value["company"].toString() + TTK_SPLITER +
                                        value["pub"].toString();
+
                 const QVariantList &datas = value["musiclist"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

@@ -50,6 +50,12 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override final;
 
+private:
+    /*!
+     * Query toplist info.
+     */
+    virtual void queryToplistInfo(const QVariantMap &input) override final;
+
 };
 
 #endif // MUSICWYQUERYTOPLISTREQUEST_H

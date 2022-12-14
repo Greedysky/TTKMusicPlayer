@@ -103,11 +103,17 @@ void MusicSongSharingWidget::confirmButtonClicked()
                 const MusicObject::MusicSongInformation info(d->songInfoList().front());
                 QString server = d->queryServer();
                 if(server == QUERY_WY_INTERFACE)
+                {
                     server = MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_SHR_KEY, false).arg(info.m_songId);
+                }
                 else if(server == QUERY_KG_INTERFACE)
+                {
                     server = MusicUtils::Algorithm::mdII(KG_SG_SHARE, ALG_SHR_KEY, false).arg(info.m_songId);
+                }
                 else if(server == QUERY_KW_INTERFACE)
+                {
                     server = MusicUtils::Algorithm::mdII(KW_SG_SHARE, ALG_SHR_KEY, false).arg(info.m_songId);
+                }
                 else
                 {
                     QTimer::singleShot(2 * MT_S2MS, this, SLOT(queryUrlTimeout()));
@@ -126,11 +132,17 @@ void MusicSongSharingWidget::confirmButtonClicked()
         {
             QString server = m_data["queryServer"].toString(), id = m_data["id"].toString();
             if(server == QUERY_WY_INTERFACE)
+            {
                 server = MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_SHR_KEY, false).arg(id);
+            }
             else if(server == QUERY_KG_INTERFACE)
+            {
                 server = MusicUtils::Algorithm::mdII(KG_MV_SHARE, ALG_SHR_KEY, false).arg(id);
+            }
             else if(server == QUERY_KW_INTERFACE)
+            {
                 server = MusicUtils::Algorithm::mdII(KW_MV_SHARE, ALG_SHR_KEY, false).arg(id);
+            }
             else
             {
                 QTimer::singleShot(2 * MT_S2MS, this, SLOT(queryUrlTimeout()));
@@ -144,11 +156,17 @@ void MusicSongSharingWidget::confirmButtonClicked()
         {
             QString server = m_data["queryServer"].toString();
             if(server == QUERY_WY_INTERFACE)
+            {
                 server = MusicUtils::Algorithm::mdII(WY_AR_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
+            }
             else if(server == QUERY_KG_INTERFACE)
+            {
                 server = MusicUtils::Algorithm::mdII(KG_AR_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
+            }
             else if(server == QUERY_KW_INTERFACE)
+            {
                 server = MusicUtils::Algorithm::mdII(KW_AR_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
+            }
             else
             {
                 QTimer::singleShot(2 * MT_S2MS, this, SLOT(queryUrlTimeout()));
@@ -162,11 +180,17 @@ void MusicSongSharingWidget::confirmButtonClicked()
         {
             QString server = m_data["queryServer"].toString();
             if(server == QUERY_WY_INTERFACE)
+            {
                 server = MusicUtils::Algorithm::mdII(WY_AL_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
+            }
             else if(server == QUERY_KG_INTERFACE)
+            {
                 server = MusicUtils::Algorithm::mdII(KG_AL_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
+            }
             else if(server == QUERY_KW_INTERFACE)
+            {
                 server = MusicUtils::Algorithm::mdII(KW_AL_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
+            }
             else
             {
                 QTimer::singleShot(2 * MT_S2MS, this, SLOT(queryUrlTimeout()));
@@ -180,11 +204,17 @@ void MusicSongSharingWidget::confirmButtonClicked()
         {
             QString server = m_data["queryServer"].toString();
             if(server == QUERY_WY_INTERFACE)
+            {
                 server = MusicUtils::Algorithm::mdII(WY_PL_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
+            }
             else if(server == QUERY_KG_INTERFACE)
+            {
                 server = MusicUtils::Algorithm::mdII(KG_PL_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
+            }
             else if(server == QUERY_KW_INTERFACE)
+            {
                 server = MusicUtils::Algorithm::mdII(KW_PL_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
+            }
             else
             {
                 QTimer::singleShot(2 * MT_S2MS, this, SLOT(queryUrlTimeout()));

@@ -39,6 +39,7 @@ void MusicKGDiscoverListRequest::downLoadFinished()
             if(value.contains("data"))
             {
                 value = value["data"].toMap();
+
                 const QVariantList &datas = value["info"].toList();
                 int where = datas.count();
                 where = (where > 0) ? TTKObject::random(where) : 0;

@@ -38,7 +38,7 @@ void MusicKWQueryArtistRequest::downLoadFinished()
             if(value.contains("abslist"))
             {
                 bool artistFound = false;
-                //
+
                 const QVariantList &datas = value["abslist"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

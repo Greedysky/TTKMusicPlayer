@@ -118,12 +118,30 @@ void MusicRemoteWidget::setVolumeValue(int index)
 
 int MusicRemoteWidget::mapRemoteTypeIndex()
 {
-    if(TTKObject_cast(MusicRemoteWidgetForSquare*, this)) return Square;
-    else if(TTKObject_cast(MusicRemoteWidgetForRectangle*, this)) return Rectangle;
-    else if(TTKObject_cast(MusicRemoteWidgetForSimpleStyle*, this)) return SimpleStyle;
-    else if(TTKObject_cast(MusicRemoteWidgetForComplexStyle*, this)) return ComplexStyle;
-    else if(TTKObject_cast(MusicRemoteWidgetForRipple*, this)) return Ripple;
-    else return Null;
+    if(TTKObject_cast(MusicRemoteWidgetForSquare*, this))
+    {
+        return Square;
+    }
+    else if(TTKObject_cast(MusicRemoteWidgetForRectangle*, this))
+    {
+        return Rectangle;
+    }
+    else if(TTKObject_cast(MusicRemoteWidgetForSimpleStyle*, this))
+    {
+        return SimpleStyle;
+    }
+    else if(TTKObject_cast(MusicRemoteWidgetForComplexStyle*, this))
+    {
+        return ComplexStyle;
+    }
+    else if(TTKObject_cast(MusicRemoteWidgetForRipple*, this))
+    {
+        return Ripple;
+    }
+    else
+    {
+        return Null;
+    }
 }
 
 void MusicRemoteWidget::setLabelText(const QString &text)

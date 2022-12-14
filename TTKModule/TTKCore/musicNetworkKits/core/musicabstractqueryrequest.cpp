@@ -19,13 +19,21 @@ QString MusicAbstractQueryRequest::mapQueryServerString() const
 {
     const QString &v = tr("Current used server from %1");
     if(m_queryServer.contains(QUERY_KG_INTERFACE))
+    {
         return v.arg(tr("KG"));
+    }
     else if(m_queryServer.contains(QUERY_KW_INTERFACE))
+    {
         return v.arg(tr("KW"));
+    }
     else if(m_queryServer.contains(QUERY_WY_INTERFACE))
+    {
         return v.arg(tr("WY"));
+    }
     else
+    {
         return QString();
+    }
 }
 
 void MusicAbstractQueryRequest::downLoadFinished()

@@ -133,15 +133,25 @@ int MusicUtils::Number::transfromBitrateToLevel(const QString &bitrate)
     {
         int bit = data.front().trimmed().toInt();
         if(bit <= 0)
+        {
             return -1;
+        }
         else if(bit > 0 && bit <= MB_96)
+        {
             return 0;
+        }
         else if(bit > MB_96 && bit < MB_192)
+        {
             return 1;
+        }
         else if(bit >= MB_192 && bit <= MB_320)
+        {
             return 2;
+        }
         else
+        {
             return 3;
+        }
     }
     return -1;
 }
@@ -149,15 +159,27 @@ int MusicUtils::Number::transfromBitrateToLevel(const QString &bitrate)
 int MusicUtils::Number::transfromBitrateToNormal(int bitrate)
 {
     if(bitrate > MB_0 && bitrate <= MB_64)
+    {
         return MB_32;
+    }
     else if(bitrate > MB_64 && bitrate < MB_128)
+    {
         return MB_128;
+    }
     else if(bitrate > MB_128 && bitrate < MB_192)
+    {
         return MB_192;
+    }
     else if(bitrate > MB_192 && bitrate < MB_320)
+    {
         return MB_320;
+    }
     else if(bitrate > MB_320)
+    {
         return MB_500;
+    }
     else
+    {
         return bitrate;
+    }
 }

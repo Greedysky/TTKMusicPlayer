@@ -31,6 +31,7 @@ void MusicFMRadioSongsRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
+
             const QVariantList &datas = value["song"].toList();
             if(datas.isEmpty())
             {
@@ -43,6 +44,8 @@ void MusicFMRadioSongsRequest::downLoadFinished()
             for(const QVariant &var : qAsConst(datas))
             {
                 value = var.toMap();
+                TTK_NETWORK_QUERY_CHECK();
+
                 if(value.isEmpty() || value["url"].toString().isEmpty())
                 {
                     continue;

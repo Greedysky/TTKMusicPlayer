@@ -32,6 +32,7 @@ void MusicThunderSkinConfigManager::readBuffer(MusicSkinRemoteGroupList &items)
 
             MusicSkinRemoteItem item;
             item.m_index = j;
+
             const QDomNodeList &packageList = node.childNodes();
             for(int k = 0; k < packageList.count(); ++k)
             {

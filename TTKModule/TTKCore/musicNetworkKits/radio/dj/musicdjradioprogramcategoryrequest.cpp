@@ -44,7 +44,7 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(DJ_DETAIL_URL, false),
                       MusicUtils::Algorithm::mdII(DJ_DETAIL_DATA_URL, false).arg(value));
 
@@ -58,7 +58,7 @@ void MusicDJRadioProgramCategoryRequest::queryProgramInfo(MusicResultDataItem &i
     TTK_INFO_STREAM(QString("%1 queryProgramInfo %2").arg(className(), item.m_id));
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_URL, false),
                       MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_DATA_URL, false).arg(item.m_id));
 
@@ -147,7 +147,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
             if(value["code"].toInt() == 200 && value.contains("programs"))
             {
                 bool categoryFound = false;
-                //
+
                 const QVariantList &datas = value["programs"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

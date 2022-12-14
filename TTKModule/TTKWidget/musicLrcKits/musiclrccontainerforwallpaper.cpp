@@ -68,12 +68,30 @@ void MusicLrcContainerForWallpaper::applyParameter()
 
     for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
-        if(i == 0 || i == 10) setItemStyleSheet(i, 25, 90);
-        else if(i == 1 || i == 9) setItemStyleSheet(i, 20, 80);
-        else if(i == 2 || i == 8) setItemStyleSheet(i, 15, 60);
-        else if(i == 3 || i == 7) setItemStyleSheet(i, 10, 40);
-        else if(i == 4 || i == 6) setItemStyleSheet(i, 5, 20);
-        else setItemStyleSheet(i, 0, 0);
+        if(i == 0 || i == 10)
+        {
+            setItemStyleSheet(i, 25, 90);
+        }
+        else if(i == 1 || i == 9)
+        {
+            setItemStyleSheet(i, 20, 80);
+        }
+        else if(i == 2 || i == 8)
+        {
+            setItemStyleSheet(i, 15, 60);
+        }
+        else if(i == 3 || i == 7)
+        {
+            setItemStyleSheet(i, 10, 40);
+        }
+        else if(i == 4 || i == 6)
+        {
+            setItemStyleSheet(i, 5, 20);
+        }
+        else
+        {
+            setItemStyleSheet(i, 0, 0);
+        }
     }
 }
 

@@ -768,50 +768,110 @@ void MusicLrcContainerForInterior::setItemStyleSheet()
     {
         for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
         {
-            if(i == 0 || i == 10) setItemStyleSheet(i, 5, 90);
-            else if(i == 1 || i == 9) setItemStyleSheet(i, 4, 80);
-            else if(i == 2 || i == 8) setItemStyleSheet(i, 3, 60);
-            else if(i == 3 || i == 7) setItemStyleSheet(i, 2, 40);
-            else if(i == 4 || i == 6) setItemStyleSheet(i, 1, 20);
-            else setItemStyleSheet(i, 0, 0);
+            if(i == 0 || i == 10)
+            {
+                setItemStyleSheet(i, 5, 90);
+            }
+            else if(i == 1 || i == 9)
+            {
+                setItemStyleSheet(i, 4, 80);
+            }
+            else if(i == 2 || i == 8)
+            {
+                setItemStyleSheet(i, 3, 60);
+            }
+            else if(i == 3 || i == 7)
+            {
+                setItemStyleSheet(i, 2, 40);
+            }
+            else if(i == 4 || i == 6)
+            {
+                setItemStyleSheet(i, 1, 20);
+            }
+            else
+            {
+                setItemStyleSheet(i, 0, 0);
+            }
         }
     }
     else if(length == 9)
     {
         for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
         {
-            if(i == 0 || i == 8) setItemStyleSheet(i, 8, 90);
-            else if(i == 1 || i == 7) setItemStyleSheet(i, 6, 75);
-            else if(i == 2 || i == 6) setItemStyleSheet(i, 4, 50);
-            else if(i == 3 || i == 5) setItemStyleSheet(i, 2, 25);
-            else setItemStyleSheet(i, 0, 0);
+            if(i == 0 || i == 8)
+            {
+                setItemStyleSheet(i, 8, 90);
+            }
+            else if(i == 1 || i == 7)
+            {
+                setItemStyleSheet(i, 6, 75);
+            }
+            else if(i == 2 || i == 6)
+            {
+                setItemStyleSheet(i, 4, 50);
+            }
+            else if(i == 3 || i == 5)
+            {
+                setItemStyleSheet(i, 2, 25);
+            }
+            else
+            {
+                setItemStyleSheet(i, 0, 0);
+            }
         }
     }
     else if(length == 7)
     {
         for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
         {
-            if(i == 0 || i == 6) setItemStyleSheet(i, 12, 90);
-            else if(i == 1 || i == 5) setItemStyleSheet(i, 8, 60);
-            else if(i == 2 || i == 4) setItemStyleSheet(i, 4, 30);
-            else setItemStyleSheet(i, 0, 0);
+            if(i == 0 || i == 6)
+            {
+                setItemStyleSheet(i, 12, 90);
+            }
+            else if(i == 1 || i == 5)
+            {
+                setItemStyleSheet(i, 8, 60);
+            }
+            else if(i == 2 || i == 4)
+            {
+                setItemStyleSheet(i, 4, 30);
+            }
+            else
+            {
+                setItemStyleSheet(i, 0, 0);
+            }
         }
     }
     else if(length == 5)
     {
         for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
         {
-            if(i == 0 || i == 4) setItemStyleSheet(i, 16, 90);
-            else if(i == 1 || i == 3) setItemStyleSheet(i, 8, 45);
-            else setItemStyleSheet(i, 0, 0);
+            if(i == 0 || i == 4)
+            {
+                setItemStyleSheet(i, 16, 90);
+            }
+            else if(i == 1 || i == 3)
+            {
+                setItemStyleSheet(i, 8, 45);
+            }
+            else
+            {
+                setItemStyleSheet(i, 0, 0);
+            }
         }
     }
     else if(length == 3)
     {
         for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
         {
-            if(i == 0 || i == 2) setItemStyleSheet(i, 20, 90);
-            else setItemStyleSheet(i, 0, 0);
+            if(i == 0 || i == 2)
+            {
+                setItemStyleSheet(i, 20, 90);
+            }
+            else
+            {
+                setItemStyleSheet(i, 0, 0);
+            }
         }
     }
 }

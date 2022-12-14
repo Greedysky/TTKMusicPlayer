@@ -94,10 +94,12 @@ void MusicIdentifySongsRequest::downLoadFinished()
             if(value.contains("metadata"))
             {
                 value = value["metadata"].toMap();
+
                 const QVariantList &datas = value["music"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
 
                     MusicSongIdentifyData song;
                     song.m_songName = value["title"].toString();

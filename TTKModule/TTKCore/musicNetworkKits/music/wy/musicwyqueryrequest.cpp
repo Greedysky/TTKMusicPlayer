@@ -16,7 +16,7 @@ void MusicWYQueryRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryValue).arg(1).arg(m_pageSize).arg(m_pageSize * offset).toUtf8());
 
@@ -43,7 +43,7 @@ void MusicWYQueryRequest::startToSingleSearch(const QString &id)
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenQueryUrl(&request,
+    const QByteArray &parameter = makeTokenRequest(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_INFO_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SONG_INFO_DATA_URL, false).arg(id));
 
@@ -69,6 +69,7 @@ void MusicWYQueryRequest::downLoadFinished()
             {
                 value = value["result"].toMap();
                 m_totalSize = value["songCount"].toInt();
+
                 const QVariantList &datas = value["songs"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

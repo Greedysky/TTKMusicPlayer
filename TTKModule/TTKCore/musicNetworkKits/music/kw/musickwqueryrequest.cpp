@@ -66,6 +66,7 @@ void MusicKWQueryRequest::downLoadFinished()
             if(value.contains("abslist"))
             {
                 m_totalSize = value["TOTAL"].toInt();
+
                 const QVariantList &datas = value["abslist"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

@@ -47,10 +47,13 @@ void MusicKWDownLoadTextRequest::downLoadFinished()
             if(value.contains("data"))
             {
                 value = value["data"].toMap();
+
                 const QVariantList &datas = value["lrclist"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     lrcData.append(TTKTime(value["time"].toDouble(), TTKTime::Entity::Second).toString("[mm:ss.zzz]"))
                            .append(value["lineLyric"].toByteArray()).append("\n");
                 }

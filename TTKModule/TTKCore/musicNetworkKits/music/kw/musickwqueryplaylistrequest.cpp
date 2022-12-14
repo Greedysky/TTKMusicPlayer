@@ -99,9 +99,11 @@ void MusicKWQueryPlaylistRequest::downLoadFinished()
         {
             QVariantMap value = data.toMap();
             m_totalSize = value["total"].toLongLong();
+
             if(value.contains("child"))
             {
                 m_tags = value["ninfo"].toMap()["name"].toString();
+
                 const QVariantList &datas = value["child"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -112,6 +114,7 @@ void MusicKWQueryPlaylistRequest::downLoadFinished()
 
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
+
                     morePlaylistDetails(value["sourceid"].toString());
                     TTK_NETWORK_QUERY_CHECK();
                 }
