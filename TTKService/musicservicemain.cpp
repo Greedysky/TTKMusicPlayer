@@ -31,17 +31,21 @@ static void cleanAppicationCache()
 
 static void loadAppScaledFactor(int argc, char *argv[])
 {
-#if TTK_QT_VERSION_CHECK(5,4,0)
-#  if TTK_QT_VERSION_CHECK(6,0,0)
-     // do nothing
-#  elif TTK_QT_VERSION_CHECK(5,12,0)
-     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#if TTK_QT_VERSION_CHECK(6,0,0)
+   // do nothing
+#elif TTK_QT_VERSION_CHECK(5,4,0)
+#  if TTK_QT_VERSION_CHECK(5,12,0)
+      QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+      QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#    if TTK_QT_VERSION_CHECK(5,14,0)
+        QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::Floor);
+#    endif
 #  elif TTK_QT_VERSION_CHECK(5,6,0)
      MusicPlatformManager platform;
      const float dpi = platform.logicalDotsPerInch() / 96.0;
      qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
 #  else
-//     qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
+//      qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
 #  endif
 #endif
     Q_UNUSED(argc);
