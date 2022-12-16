@@ -48,12 +48,24 @@ bool MusicDBPLConfigManager::readBuffer(MusicSongItemList &items)
         if(minorver <= 2)
         {
             // fname
-            if(m_file.read((char*)&v, 2) != 2) return false;
+            if(m_file.read((char*)&v, 2) != 2)
+            {
+                return false;
+            }
+
             char uri[v + 1] = {0};
-            if(m_file.read(uri, v) != v) return false;
+            if(m_file.read(uri, v) != v)
+            {
+                return false;
+            }
+
             filePath = uri;
             // decoder
-            if(m_file.read((char*)&v, 1)  != 1) return false;
+            if(m_file.read((char*)&v, 1)  != 1)
+            {
+                return false;
+            }
+
             if(v >= 20)
             {
                 return false;
@@ -65,30 +77,65 @@ bool MusicDBPLConfigManager::readBuffer(MusicSongItemList &items)
                 return false;
             }
             // tracknum
-            if(m_file.read((char*)&v, 2) != 2) return false;
+            if(m_file.read((char*)&v, 2) != 2)
+            {
+                return false;
+            }
         }
 
-        if(m_file.read((char*)&v, 4) != 4) return false;
-        if(m_file.read((char*)&v, 4) != 4) return false;
+        if(m_file.read((char*)&v, 4) != 4)
+        {
+            return false;
+        }
+
+        if(m_file.read((char*)&v, 4) != 4)
+        {
+            return false;
+        }
 
         float duration = 0;
-        if(m_file.read((char*)&duration, 4) != 4) return false;
+        if(m_file.read((char*)&duration, 4) != 4)
+        {
+            return false;
+        }
 
         item.m_songs << MusicSong(filePath, TTKTime::msecTime2LabelJustified((int)duration * MT_S2MS));
         if(minorver <= 2)
         {
             // legacy filetype support
-            if(m_file.read((char*)&v, 1) != 1) return false;
+            if(m_file.read((char*)&v, 1) != 1)
+            {
+                return false;
+            }
+
             if(v)
             {
                 char ftype[v + 1] = {0};
-                if(m_file.read(ftype, v) != v) return false;
+                if(m_file.read(ftype, v) != v)
+                {
+                    return false;
+                }
             }
 
-            if(m_file.read((char*)&v, 4) != 4) return false;
-            if(m_file.read((char*)&v, 4) != 4) return false;
-            if(m_file.read((char*)&v, 4) != 4) return false;
-            if(m_file.read((char*)&v, 4) != 4) return false;
+            if(m_file.read((char*)&v, 4) != 4)
+            {
+                return false;
+            }
+
+            if(m_file.read((char*)&v, 4) != 4)
+            {
+                return false;
+            }
+
+            if(m_file.read((char*)&v, 4) != 4)
+            {
+                return false;
+            }
+
+            if(m_file.read((char*)&v, 4) != 4)
+            {
+                return false;
+            }
         }
 
         if(minorver >= 2 && m_file.read((char*)&v, 4) != 4)
@@ -97,18 +144,33 @@ bool MusicDBPLConfigManager::readBuffer(MusicSongItemList &items)
         }
 
         TTKUInt16 nm = 0;
-        if(m_file.read((char*)&nm, 2) != 2) return false;
+        if(m_file.read((char*)&nm, 2) != 2)
+        {
+            return false;
+        }
+
         for(int j = 0; j < nm; j++)
         {
-            if(m_file.read((char*)&v, 2) != 2) return false;
+            if(m_file.read((char*)&v, 2) != 2)
+            {
+                return false;
+            }
+
             if(v >= 20000)
             {
                 return false;
             }
 
             char key[v + 1] = {0};
-            if(m_file.read(key, v) != v) return false;
-            if(m_file.read((char*)&v, 2) != 2) return false;
+            if(m_file.read(key, v) != v)
+            {
+                return false;
+            }
+
+            if(m_file.read((char*)&v, 2) != 2)
+            {
+                return false;
+            }
 
             if(v >= 20000)
             {
@@ -116,7 +178,10 @@ bool MusicDBPLConfigManager::readBuffer(MusicSongItemList &items)
             }
 
             char value[v + 1] = {0};
-            if(m_file.read((char*)&value, v) != v) return false;
+            if(m_file.read((char*)&value, v) != v)
+            {
+                return false;
+            }
         }
     }
 

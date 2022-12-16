@@ -44,12 +44,6 @@ public:
      */
     virtual bool writeBuffer(const MusicSongItemList &items, const QString &path) override final;
 
-private:
-    /*!
-     * Read Music File Path.
-     */
-    MusicSongList readMusicFilePath(const QDomNode &node) const;
-
 };
 
 #endif // MUSICXSPFCONFIGMANAGER_H

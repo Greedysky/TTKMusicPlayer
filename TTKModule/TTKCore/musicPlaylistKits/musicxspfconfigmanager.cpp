@@ -12,20 +12,44 @@ bool MusicXSPFConfigManager::readBuffer(MusicSongItemList &items)
     TTKXmlNodeHelper helper(m_document->documentElement());
     helper.load();
 
+    MusicSongItem item;
     const QDomNodeList &trackNodes = m_document->elementsByTagName(helper.nodeName("trackList"));
     for(int i = 0; i < trackNodes.count(); ++i)
     {
         const QDomNode &node = trackNodes.at(i);
-        MusicSongItem item;
-        item.m_songs = readMusicFilePath(node);
+        const QDomNodeList &nodeList = node.childNodes();
 
-        const QDomElement &element = node.toElement();
-        item.m_itemIndex = element.attribute("index").toInt();
-        item.m_itemName = element.attribute("name");
+        for(int i = 0; i < nodeList.count(); ++i)
+        {
+            const QDomNode &track = nodeList.at(i);
+            const QDomNodeList &trackList = track.childNodes();
 
-        const QString &string = element.attribute("sortIndex");
-        item.m_sort.m_type = string.isEmpty() ? -1 : string.toInt();
-        item.m_sort.m_order = TTKStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
+            QString duration, path;
+            for(int i = 0; i < trackList.count(); ++i)
+            {
+                const QDomElement &element = trackList.at(i).toElement();
+                const QString &name = element.nodeName().toLower();
+
+                if(name == "location")
+                {
+                    path = element.text();
+                    path.remove("file://");
+                }
+                else if(name == "length" || name == "duration")
+                {
+                    duration = element.text();
+                }
+            }
+
+            if(!path.isEmpty())
+            {
+                item.m_songs << MusicSong(path, duration);
+            }
+        }
+    }
+
+    if(!item.m_songs.isEmpty())
+    {
         items << item;
     }
     return true;
@@ -45,21 +69,15 @@ bool MusicXSPFConfigManager::writeBuffer(const MusicSongItemList &items, const Q
 
     for(int i = 0; i < items.count(); ++i)
     {
-        const MusicSongItem &item = items[i];
-        QDomElement trackListDom = writeDomMutilElement(rootDom, "trackList", {{"name", item.m_itemName},
-                                                                               {"index", i},
-                                                                               {"count", item.m_songs.count()},
-                                                                               {"sortIndex", item.m_sort.m_type},
-                                                                               {"sortType", item.m_sort.m_order}});
+        QDomElement trackListDom = writeDomNode(rootDom, "trackList");
         for(const MusicSong &song : qAsConst(items[i].m_songs))
         {
-            QDomElement trackDom = writeDomMutilElement(trackListDom, "track", {{"name", song.name()},
-                                                                                {"playCount", song.playCount()},
-                                                                                {"time", song.playTime()},
-                                                                                {"src", song.path()}});
+            QDomElement trackDom = writeDomNode(trackListDom, "track");
+
             writeDomText(trackDom, "location", song.path());
             writeDomText(trackDom, "title", song.artistBack());
             writeDomText(trackDom, "creator", song.artistFront());
+            writeDomText(trackDom, "duration", song.playTime());
             writeDomText(trackDom, "annotation", QString());
             writeDomText(trackDom, "album", QString());
             writeDomText(trackDom, "trackNum", QString());
@@ -70,19 +88,4 @@ bool MusicXSPFConfigManager::writeBuffer(const MusicSongItemList &items, const Q
     QTextStream out(m_file);
     m_document->save(out, 4);
     return true;
-}
-
-MusicSongList MusicXSPFConfigManager::readMusicFilePath(const QDomNode &node) const
-{
-    const QDomNodeList &nodeList = node.childNodes();
-
-    MusicSongList songs;
-    for(int i = 0; i < nodeList.count(); ++i)
-    {
-        const QDomElement &element = nodeList.at(i).toElement();
-        MusicSong song(element.attribute("src"), element.attribute("time"), element.attribute("name"));
-        song.setPlayCount(element.attribute("playCount").toInt());
-        songs << song;
-    }
-    return songs;
 }

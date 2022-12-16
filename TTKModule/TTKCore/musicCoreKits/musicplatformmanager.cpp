@@ -219,6 +219,7 @@ MusicPlatformManager::System MusicPlatformManager::systemName() const
         if(regx.indexIn(QString(file.readAll())) != -1)
         {
             const QString &system = regx.cap(1).toLower();
+
             if(system == "ubuntu")
             {
                 return System::LinuxUbuntu;

@@ -25,12 +25,14 @@ bool MusicASXConfigManager::readBuffer(MusicSongItemList &items)
         for(int j = 0; j < paramNodes.count(); ++j)
         {
             const QDomNode &paramNode = paramNodes.at(j);
-            if(paramNode.nodeName().toLower() == "duration")
+            const QString &name = paramNode.nodeName().toLower();
+
+            if(name == "duration" || name == "length")
             {
                 duration = paramNode.toElement().attribute("value");
                 duration = duration.mid(3, 5);
             }
-            else if(paramNode.nodeName().toLower() == "ref")
+            else if(name == "ref")
             {
                 path = paramNode.toElement().attribute("href");
             }
