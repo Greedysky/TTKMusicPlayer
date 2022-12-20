@@ -29,7 +29,8 @@ HEADERS += \
     $$PWD/musicwplconfigmanager.h \
     $$PWD/musicxspfconfigmanager.h \
     $$PWD/musiccsvconfigmanager.h \
-    $$PWD/musictxtconfigmanager.h
+    $$PWD/musictxtconfigmanager.h \
+    $$PWD/musicjspfconfigmanager.h
 
 SOURCES += \
     $$PWD/musicasxconfigmanager.cpp \
@@ -41,4 +42,5 @@ SOURCES += \
     $$PWD/musicwplconfigmanager.cpp \
     $$PWD/musicxspfconfigmanager.cpp \
     $$PWD/musiccsvconfigmanager.cpp \
-    $$PWD/musictxtconfigmanager.cpp
+    $$PWD/musictxtconfigmanager.cpp \
+    $$PWD/musicjspfconfigmanager.cpp

@@ -1,7 +1,7 @@
 #include "musicplsconfigmanager.h"
 
 MusicPLSConfigManager::MusicPLSConfigManager()
-    : MusicPlaylistReader()
+    : MusicPlaylistRenderer()
     , MusicPlaylistInterface()
 {
 
@@ -60,6 +60,7 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
             break;
         }
     }
+
     m_file.close();
 
     if(!item.m_songs.isEmpty())
@@ -71,31 +72,31 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
 
 bool MusicPLSConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
 {
-    if(items.isEmpty())
+    if(items.isEmpty() || !toFile(path))
     {
         return false;
     }
 
-    const MusicSongItem &item = items.front();
     QStringList data;
     data << QString("[playlist]");
 
-    int count = 1;
-    for(const MusicSong &song : qAsConst(item.m_songs))
+    int count = 0;
+    for(int i = 0; i < items.count(); ++i)
     {
-        data << QString("File%1=%2").arg(count).arg(song.path());
-        data << QString("Title%1=%2").arg(count).arg(song.name());
-        data << QString("Length%1=%2").arg(count).arg(TTKTime::TTKTime::labelJustified2MsecTime(song.playTime()) / 1000);
-        ++count;
+        const MusicSongItem &item = items[i];
+        for(const MusicSong &song : qAsConst(item.m_songs))
+        {
+            ++count;
+            data << QString("File%1=%2").arg(count).arg(song.path());
+            data << QString("Title%1=%2").arg(count).arg(song.name());
+            data << QString("Length%1=%2").arg(count).arg(TTKTime::TTKTime::labelJustified2MsecTime(song.playTime()) / 1000);
+        }
     }
-    data << "NumberOfEntries=" + QString::number(item.m_songs.count());
+
+    data << "NumberOfEntries=" + QString::number(count);
     data << "Version=2";
 
-    m_file.setFileName(path);
-    if(m_file.open(QIODevice::WriteOnly))
-    {
-        m_file.write(data.join("\n").toUtf8());
-        m_file.close();
-    }
+    m_file.write(data.join("\n").toUtf8());
+    m_file.close();
     return true;
 }

@@ -41,13 +41,14 @@ QString MusicFormats::supportSpekInputFormats()
 QString MusicFormats::supportPlaylistInputFormats()
 {
     QStringList formats;
-    formats << "Playlist File(*.tkpl *.m3u *.m3u8 *.pls *.wpl *.xspf *.asx *.fpl *.dbpl *.csv *.txt)";
+    formats << "Playlist File(*.tkpl *.m3u *.m3u8 *.pls *.wpl *.xspf *.jspf *.asx *.fpl *.dbpl *.csv *.txt)";
     formats << "TTKlist File(*.tkpl)";
     formats << "M3U File(*.m3u)";
     formats << "M3U8 File(*.m3u8)";
     formats << "Playlist File(*.pls)";
     formats << "Windows Playlist File(*.wpl)";
     formats << "XML Shareable Playlist File(*.xspf)";
+    formats << "JSON Shareable Playlist File(*.jspf)";
     formats << "Windows Media Playlist File(*.asx)";
     formats << "Foobar2k Playlist File(*.fpl)";
     formats << "Deadbeef Playlist File(*.dbpl)";
@@ -65,6 +66,7 @@ QString MusicFormats::supportPlaylistOutputFormats()
     formats << "Playlist File(*.pls)";
     formats << "Windows Playlist File(*.wpl)";
     formats << "XML Shareable Playlist File(*.xspf)";
+    formats << "JSON Shareable Playlist File(*.jspf)";
     formats << "Windows Media Playlist File(*.asx)";
     formats << "CSV Playlist File(*.csv)";
     formats << "TXT Playlist File(*.txt)";

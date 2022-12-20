@@ -1,5 +1,5 @@
-#ifndef MUSICPLSCONFIGMANAGER_H
-#define MUSICPLSCONFIGMANAGER_H
+#ifndef MUSICJSPFCONFIGMANAGER_H
+#define MUSICJSPFCONFIGMANAGER_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -21,17 +21,17 @@
 
 #include "musicplaylistinterface.h"
 
-/*! @brief The class of the pls playlist config manager.
+/*! @brief The class of the jspf playlist config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicPLSConfigManager : public MusicPlaylistRenderer, private MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicJSPFConfigManager : public MusicPlaylistRenderer, private MusicPlaylistInterface
 {
-    TTK_DECLARE_MODULE(MusicPLSConfigManager)
+    TTK_DECLARE_MODULE(MusicJSPFConfigManager)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPLSConfigManager();
+    explicit MusicJSPFConfigManager();
 
     /*!
      * Read datas from config file.
@@ -44,4 +44,4 @@ public:
 
 };
 
-#endif // MUSICPLSCONFIGMANAGER_H
+#endif // MUSICJSPFCONFIGMANAGER_H

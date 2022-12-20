@@ -1,7 +1,7 @@
 #include "musiccsvconfigmanager.h"
 
 MusicCSVConfigManager::MusicCSVConfigManager()
-    : MusicPlaylistReader()
+    : MusicPlaylistRenderer()
     , MusicPlaylistInterface()
 {
 
@@ -26,6 +26,7 @@ bool MusicCSVConfigManager::readBuffer(MusicSongItemList &items)
             item.m_songs << MusicSong(songInfo[2], songInfo[1], songInfo[0]);
         }
     }
+
     m_file.close();
 
     if(!item.m_songs.isEmpty())
@@ -37,23 +38,22 @@ bool MusicCSVConfigManager::readBuffer(MusicSongItemList &items)
 
 bool MusicCSVConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
 {
-    if(items.isEmpty())
+    if(items.isEmpty() || !toFile(path))
     {
         return false;
     }
 
-    const MusicSongItem &item = items.front();
     QStringList data;
-    for(const MusicSong &song : qAsConst(item.m_songs))
+    for(int i = 0; i < items.count(); ++i)
     {
-        data << song.name() + "," + song.playTime() + "," + song.path();
+        const MusicSongItem &item = items[i];
+        for(const MusicSong &song : qAsConst(item.m_songs))
+        {
+            data << song.name() + "," + song.playTime() + "," + song.path();
+        }
     }
 
-    m_file.setFileName(path);
-    if(m_file.open(QIODevice::WriteOnly))
-    {
-        m_file.write(data.join("\n").toUtf8());
-        m_file.close();
-    }
+    m_file.write(data.join("\n").toUtf8());
+    m_file.close();
     return true;
 }

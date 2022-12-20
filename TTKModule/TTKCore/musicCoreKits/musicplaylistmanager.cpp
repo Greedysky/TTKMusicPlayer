@@ -9,6 +9,7 @@
 #include "musicfplconfigmanager.h"
 #include "musiccsvconfigmanager.h"
 #include "musictxtconfigmanager.h"
+#include "musicjspfconfigmanager.h"
 
 void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSongItem &item)
 {
@@ -34,6 +35,10 @@ void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSong
     else if(suffix == XSPF_FILE_SUFFIX)
     {
         writeXSPFConfig(path, item);
+    }
+    else if(suffix == JSPF_FILE_SUFFIX)
+    {
+        writeJSPFConfig(path, item);
     }
     else if(suffix == ASX_FILE_SUFFIX)
     {
@@ -75,6 +80,10 @@ void MusicPlaylistManager::musicSongItems(const QStringList& paths, MusicSongIte
         else if(suffix == XSPF_FILE_SUFFIX)
         {
             readXSPFConfig(path, items);
+        }
+        else if(suffix == JSPF_FILE_SUFFIX)
+        {
+            readJSPFConfig(path, items);
         }
         else if(suffix == ASX_FILE_SUFFIX)
         {
@@ -176,6 +185,22 @@ bool MusicPlaylistManager::readXSPFConfig(const QString &path, MusicSongItemList
 bool MusicPlaylistManager::writeXSPFConfig(const QString &path, const MusicSongItem &item)
 {
     MusicXSPFConfigManager manager;
+    return manager.writeBuffer({item}, path);
+}
+
+bool MusicPlaylistManager::readJSPFConfig(const QString &path, MusicSongItemList &items)
+{
+    MusicJSPFConfigManager manager;
+    if(manager.fromFile(path))
+    {
+        return manager.readBuffer(items);
+    }
+    return false;
+}
+
+bool MusicPlaylistManager::writeJSPFConfig(const QString &path, const MusicSongItem &item)
+{
+    MusicJSPFConfigManager manager;
     return manager.writeBuffer({item}, path);
 }
 

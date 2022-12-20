@@ -23,7 +23,7 @@
 
 namespace MusicObject
 {
-    enum class CheckMode
+    enum class Mode
     {
         Check,      /*!< Song Check Mode*/
         Apply       /*!< Song Apply Mode*/

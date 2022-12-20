@@ -1,7 +1,7 @@
 #include "musictxtconfigmanager.h"
 
 MusicTXTConfigManager::MusicTXTConfigManager()
-    : MusicPlaylistReader()
+    : MusicPlaylistRenderer()
     , MusicPlaylistInterface()
 {
 
@@ -31,6 +31,7 @@ bool MusicTXTConfigManager::readBuffer(MusicSongItemList &items)
             }
         }
     }
+
     m_file.close();
 
     if(!item.m_songs.isEmpty())
@@ -42,23 +43,24 @@ bool MusicTXTConfigManager::readBuffer(MusicSongItemList &items)
 
 bool MusicTXTConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
 {
-    if(items.isEmpty())
+    if(items.isEmpty() || !toFile(path))
     {
         return false;
     }
 
-    const MusicSongItem &item = items.front();
     QStringList data;
-    for(int i = 0; i < item.m_songs.count(); ++i)
+
+    int count = 0;
+    for(int i = 0; i < items.count(); ++i)
     {
-        data << QString("%1:%2 - %3").arg(i).arg(item.m_songs[i].path(), item.m_songs[i].playTime());
+        const MusicSongItem &item = items[i];
+        for(const MusicSong &song : qAsConst(item.m_songs))
+        {
+            data << QString("%1:%2 - %3").arg(++count).arg(song.path(), song.playTime());
+        }
     }
 
-    m_file.setFileName(path);
-    if(m_file.open(QIODevice::WriteOnly))
-    {
-        m_file.write(data.join("\n").toUtf8());
-        m_file.close();
-    }
+    m_file.write(data.join("\n").toUtf8());
+    m_file.close();
     return true;
 }

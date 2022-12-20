@@ -1,7 +1,7 @@
 #include "musicm3uconfigmanager.h"
 
 MusicM3UConfigManager::MusicM3UConfigManager()
-    : MusicPlaylistReader()
+    : MusicPlaylistRenderer()
     , MusicPlaylistInterface()
 {
 
@@ -13,10 +13,14 @@ bool MusicM3UConfigManager::readBuffer(MusicSongItemList &items)
     item.m_itemName = QFileInfo(m_file.fileName()).baseName();
 
     const QStringList data(QString(m_file.readAll()).split("\n"));
+    if(data.isEmpty())
+    {
+        return false;
+    }
 
-    const QRegExp regx("#EXTINF:(-{0,1}\\d+),(.*)");
     int length = 0;
     bool valid = false;
+    const QRegExp regx("#EXTINF:(-{0,1}\\d+),(.*)");
 
     for(QString str : qAsConst(data))
     {
@@ -54,26 +58,26 @@ bool MusicM3UConfigManager::readBuffer(MusicSongItemList &items)
 
 bool MusicM3UConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
 {
-    if(items.isEmpty())
+    if(items.isEmpty() || !toFile(path))
     {
         return false;
     }
 
-    const MusicSongItem &item = items.front();
     QStringList data;
     data << QString("#EXTM3U");
-    for(const MusicSong &song : qAsConst(item.m_songs))
+
+    for(int i = 0; i < items.count(); ++i)
     {
-        data.append(QString("#EXTINF:%1,%2 - %3").arg(TTKTime::labelJustified2MsecTime(song.playTime()) / MT_S2MS)
-                                                 .arg(song.artistFront(), song.artistBack()));
-        data.append(song.path());
+        const MusicSongItem &item = items[i];
+        for(const MusicSong &song : qAsConst(item.m_songs))
+        {
+            data.append(QString("#EXTINF:%1,%2 - %3").arg(TTKTime::labelJustified2MsecTime(song.playTime()) / MT_S2MS)
+                                                     .arg(song.artistFront(), song.artistBack()));
+            data.append(song.path());
+        }
     }
 
-    m_file.setFileName(path);
-    if(m_file.open(QIODevice::WriteOnly))
-    {
-        m_file.write(data.join("\n").toUtf8());
-        m_file.close();
-    }
+    m_file.write(data.join("\n").toUtf8());
+    m_file.close();
     return true;
 }

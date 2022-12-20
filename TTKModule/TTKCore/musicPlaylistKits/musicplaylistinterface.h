@@ -21,17 +21,17 @@
 
 #include "musicsong.h"
 
-/*! @brief The class of the playlist reader.
+/*! @brief The class of the playlist renderer.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicPlaylistReader
+class TTK_MODULE_EXPORT MusicPlaylistRenderer
 {
 public:
-    explicit MusicPlaylistReader()
+    explicit MusicPlaylistRenderer()
     {
     }
 
-    virtual ~MusicPlaylistReader()
+    virtual ~MusicPlaylistRenderer()
     {
     }
 
@@ -42,6 +42,15 @@ public:
     {
         m_file.setFileName(name);
         return m_file.open(QIODevice::ReadOnly);
+    }
+
+    /*!
+     * Write datas from file by given name.
+     */
+    inline bool toFile(const QString &name)
+    {
+        m_file.setFileName(name);
+        return m_file.open(QIODevice::WriteOnly);
     }
 
 protected:

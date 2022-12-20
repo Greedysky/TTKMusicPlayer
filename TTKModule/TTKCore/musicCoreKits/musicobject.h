@@ -43,6 +43,7 @@
 #define PLS_FILE_SUFFIX          "pls"
 #define WPL_FILE_SUFFIX          "wpl"
 #define XSPF_FILE_SUFFIX         "xspf"
+#define JSPF_FILE_SUFFIX         "jspf"
 #define ASX_FILE_SUFFIX          "asx"
 #define CSV_FILE_SUFFIX          "csv"
 #define TXT_FILE_SUFFIX          "txt"

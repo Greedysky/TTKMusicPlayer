@@ -13,6 +13,8 @@ bool MusicXSPFConfigManager::readBuffer(MusicSongItemList &items)
     helper.load();
 
     MusicSongItem item;
+    item.m_itemName = QFileInfo(m_file->fileName()).baseName();
+
     const QDomNodeList &trackNodes = m_document->elementsByTagName(helper.nodeName("trackList"));
     for(int i = 0; i < trackNodes.count(); ++i)
     {

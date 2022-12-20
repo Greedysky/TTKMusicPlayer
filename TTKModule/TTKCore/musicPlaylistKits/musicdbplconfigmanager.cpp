@@ -4,7 +4,7 @@
 #define PLAYLIST_MINOR_VER 2
 
 MusicDBPLConfigManager::MusicDBPLConfigManager()
-    : MusicPlaylistReader()
+    : MusicPlaylistRenderer()
     , MusicPlaylistInterface()
 {
 

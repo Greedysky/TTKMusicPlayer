@@ -13,13 +13,18 @@ bool MusicWPLConfigManager::readBuffer(MusicSongItemList &items)
     TTKXmlNodeHelper helper(m_document->documentElement());
     helper.load();
 
+    MusicSongItem item;
+    item.m_itemName = QFileInfo(m_file->fileName()).baseName();
+
     const QDomNodeList &sepNodes = m_document->elementsByTagName(helper.nodeName("seq"));
     for(int i = 0; i < sepNodes.count(); ++i)
     {
         const QDomNode &node = sepNodes.at(i);
-        MusicSongItem item;
-        item.m_itemName = QFileInfo(m_file->fileName()).baseName();
-        item.m_songs = readMusicFilePath(node);
+        item.m_songs << readMusicFilePath(node);
+    }
+
+    if(!item.m_songs.isEmpty())
+    {
         items << item;
     }
     return true;

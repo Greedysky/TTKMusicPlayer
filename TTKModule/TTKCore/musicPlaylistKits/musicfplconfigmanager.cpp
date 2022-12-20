@@ -22,7 +22,7 @@ struct FPLTrackChunk
 
 
 MusicFPLConfigManager::MusicFPLConfigManager()
-    : MusicPlaylistReader()
+    : MusicPlaylistRenderer()
     , MusicPlaylistInterface()
 {
 

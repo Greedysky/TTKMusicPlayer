@@ -84,6 +84,15 @@ private:
     bool writeXSPFConfig(const QString &path, const MusicSongItem &item);
 
     /*!
+     * Read jspf music playlist data from file.
+     */
+    bool readJSPFConfig(const QString &path, MusicSongItemList &items);
+    /*!
+     * Write jspf music playlist data to file.
+     */
+    bool writeJSPFConfig(const QString &path, const MusicSongItem &item);
+
+    /*!
      * Read asx music playlist data from file.
      */
     bool readASXConfig(const QString &path, MusicSongItemList &items);
