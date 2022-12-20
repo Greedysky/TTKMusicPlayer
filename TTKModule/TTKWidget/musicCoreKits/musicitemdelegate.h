@@ -1,4 +1,4 @@
-#ifndef MUSICITEMDELEGATE_H
+﻿#ifndef MUSICITEMDELEGATE_H
 #define MUSICITEMDELEGATE_H
 
 /***************************************************************************
@@ -42,6 +42,15 @@ class TTK_MODULE_EXPORT MusicAbstractDelegate : public QItemDelegate
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractDelegate)
 public:
+    enum Module
+    {
+        Null = 0x0,
+        TextMode = 0x1,
+        DisplayMode = 0x2,
+        ElideMode = 0x4,
+        TreeMode = 0x8
+    };
+
     /*!
      * Object contsructor.
      */
@@ -49,27 +58,23 @@ public:
     ~MusicAbstractDelegate();
 
     /*!
-     * Set text mode.
+     * Set module mode.
      */
-    inline void setTextMode(bool mode) { m_textMode = mode; }
-    /*!
-     * Set align mode.
-     */
-    inline void setElideMode(bool mode) { m_elideMode = mode; }
-    /*!
-     * Set tree model.
-     */
-    inline void setTreeModel(bool tree) { m_treeMode = tree; }
+    inline void setModuleMode(TTKUInt8 mode) { m_mode = mode; }
 
     /*!
      * Set delegate item style.
      */
-    virtual void setStyleSheet(const QString &style) const = 0;
+    void setStyleSheet(const QString &style) const;
+
+    /*!
+     * Override size hint.
+     */
+    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override final;
 
 protected:
-    bool m_textMode;
-    bool m_elideMode;
-    bool m_treeMode;
+    TTKUInt8 m_mode;
+    QWidget *m_container;
 
 };
 
@@ -88,14 +93,6 @@ public:
     explicit MusicCheckBoxDelegate(QObject* parent = nullptr);
     ~MusicCheckBoxDelegate();
 
-    /*!
-     * Set delegate item style.
-     */
-    virtual void setStyleSheet(const QString &style) const override final;
-    /*!
-     * Override size hint.
-     */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override final;
     /*!
      * Override paint.
      */
@@ -129,14 +126,6 @@ public:
     ~MusicProgressBarDelegate();
 
     /*!
-     * Set delegate item style.
-     */
-    virtual void setStyleSheet(const QString &style) const override final;
-    /*!
-     * Override size hint.
-     */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override final;
-    /*!
      * Override paint.
      */
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
@@ -167,14 +156,6 @@ public:
     void setAlignment(Qt::Alignment alignment) const;
 
     /*!
-     * Set delegate item style.
-     */
-    virtual void setStyleSheet(const QString &style) const override final;
-    /*!
-     * Override size hint.
-     */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override final;
-    /*!
      * Override paint.
      */
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
@@ -199,14 +180,6 @@ public:
     explicit MusicPushButtonDelegate(QObject* parent = nullptr);
     ~MusicPushButtonDelegate();
 
-    /*!
-     * Set delegate item style.
-     */
-    virtual void setStyleSheet(const QString &style) const override final;
-    /*!
-     * Override size hint.
-     */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override final;
     /*!
      * Override paint.
      */

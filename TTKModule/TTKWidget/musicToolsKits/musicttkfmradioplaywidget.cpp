@@ -173,11 +173,13 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     m_ui->itemTree->setFocusPolicy(Qt::NoFocus);
 
     MusicLabelDelegate *delegateTitle = new MusicLabelDelegate(this);
+    delegateTitle->setModuleMode(MusicAbstractDelegate::DisplayMode);
     delegateTitle->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     delegateTitle->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->itemTree->setItemDelegateForColumn(0, delegateTitle);
 
     MusicLabelDelegate *delegateName = new MusicLabelDelegate(this);
+    delegateName->setModuleMode(MusicAbstractDelegate::DisplayMode);
     delegateName->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     delegateName->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->itemTree->setItemDelegateForColumn(1, delegateName);

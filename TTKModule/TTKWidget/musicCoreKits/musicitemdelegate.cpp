@@ -5,9 +5,8 @@
 
 MusicAbstractDelegate::MusicAbstractDelegate(QObject *parent)
     : QItemDelegate(parent),
-      m_textMode(false),
-      m_elideMode(false),
-      m_treeMode(false)
+      m_mode(MusicAbstractDelegate::Null),
+      m_container(nullptr)
 {
 
 }
@@ -16,6 +15,22 @@ MusicAbstractDelegate::~MusicAbstractDelegate()
 {
 
 }
+
+void MusicAbstractDelegate::setStyleSheet(const QString &style) const
+{
+    if(m_container)
+    {
+        m_container->setStyleSheet(style);
+    }
+}
+
+QSize MusicAbstractDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
+{
+    QSize size = option.rect.size();
+    size.setHeight(25);
+    return size;
+}
+
 
 
 MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
@@ -27,23 +42,12 @@ MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
 #ifdef Q_OS_UNIX
     m_checkBox->setFocusPolicy(Qt::NoFocus);
 #endif
+    m_container = m_checkBox;
 }
 
 MusicCheckBoxDelegate::~MusicCheckBoxDelegate()
 {
     delete m_checkBox;
-}
-
-void MusicCheckBoxDelegate::setStyleSheet(const QString &style) const
-{
-    m_checkBox->setStyleSheet(style);
-}
-
-QSize MusicCheckBoxDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
-{
-    QSize size = option.rect.size();
-    size.setHeight(25);
-    return size;
 }
 
 void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -54,14 +58,15 @@ void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     drawBackground(painter, option, index);
 #endif
 
-    if(m_treeMode && !index.parent().isValid())
+    if((m_mode & MusicAbstractDelegate::TreeMode) && !index.parent().isValid())
     {
         drawDisplay(painter, option, option.rect, index.data(Qt::DisplayRole).toString());
         return;
     }
 
     painter->save();
-    if(m_textMode)
+    const bool textMode = m_mode & MusicAbstractDelegate::TextMode;
+    if(textMode)
     {
         m_checkBox->resize(option.rect.size());
         m_checkBox->setText(index.data(MUSIC_TEXT_ROLE).toString());
@@ -79,7 +84,7 @@ void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     {
         Q_EMIT TTKConst_cast(MusicCheckBoxDelegate*, this)->buttonChecked();
     }
-    painter->translate(m_textMode ? 0 : (option.rect.width() - 16) / 2, 0);
+    painter->translate(textMode ? 0 : (option.rect.width() - 16) / 2, 0);
 
     m_checkBox->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
@@ -92,23 +97,12 @@ MusicProgressBarDelegate::MusicProgressBarDelegate(QObject *parent)
 {
     m_progress = new QProgressBar;
     m_progress->setStyleSheet(MusicUIObject::MQSSProgressBar01);
+    m_container = m_progress;
 }
 
 MusicProgressBarDelegate::~MusicProgressBarDelegate()
 {
     delete m_progress;
-}
-
-void MusicProgressBarDelegate::setStyleSheet(const QString &style) const
-{
-    m_progress->setStyleSheet(style);
-}
-
-QSize MusicProgressBarDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
-{
-    QSize size = option.rect.size();
-    size.setHeight(25);
-    return size;
 }
 
 void MusicProgressBarDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -119,7 +113,7 @@ void MusicProgressBarDelegate::paint(QPainter *painter, const QStyleOptionViewIt
     drawBackground(painter, option, index);
 #endif
 
-    if(m_treeMode && !index.parent().isValid())
+    if((m_mode & MusicAbstractDelegate::TreeMode) && !index.parent().isValid())
     {
         return;
     }
@@ -141,6 +135,7 @@ MusicLabelDelegate::MusicLabelDelegate(QObject *parent)
     m_label  = new QLabel;
     m_label->setAlignment(Qt::AlignCenter);
     m_label->setStyleSheet(MusicUIObject::MQSSBackgroundStyle13);
+    m_container = m_label;
 }
 
 MusicLabelDelegate::~MusicLabelDelegate()
@@ -153,18 +148,6 @@ void MusicLabelDelegate::setAlignment(Qt::Alignment alignment) const
     m_label->setAlignment(alignment);
 }
 
-void MusicLabelDelegate::setStyleSheet(const QString &style) const
-{
-    m_label->setStyleSheet(style);
-}
-
-QSize MusicLabelDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
-{
-    QSize size = option.rect.size();
-    size.setHeight(25);
-    return size;
-}
-
 void MusicLabelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
 #if !TTK_QT_VERSION_CHECK(5,7,0)
@@ -173,7 +156,7 @@ void MusicLabelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
     drawBackground(painter, option, index);
 #endif
 
-    if(m_treeMode && !index.parent().isValid())
+    if((m_mode & MusicAbstractDelegate::TreeMode) && !index.parent().isValid())
     {
         drawDisplay(painter, option, option.rect, index.data(Qt::DisplayRole).toString());
         return;
@@ -189,7 +172,7 @@ void MusicLabelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
     }
 
     const QString &text = index.data(MUSIC_TEXT_ROLE).toString();
-    m_label->setText(m_elideMode ? MusicUtils::Widget::elidedText(m_label->font(), text, Qt::ElideRight, option.rect.width() - 5) : text);
+    m_label->setText(m_mode & MusicAbstractDelegate::ElideMode ? MusicUtils::Widget::elidedText(m_label->font(), text, Qt::ElideRight, option.rect.width() - 5) : text);
     m_label->resize(option.rect.size());
     painter->translate(0, 0);
 
@@ -208,23 +191,12 @@ MusicPushButtonDelegate::MusicPushButtonDelegate(QObject *parent)
 #ifdef Q_OS_UNIX
     m_pushButton->setFocusPolicy(Qt::NoFocus);
 #endif
+    m_container = m_pushButton;
 }
 
 MusicPushButtonDelegate::~MusicPushButtonDelegate()
 {
     delete m_pushButton;
-}
-
-void MusicPushButtonDelegate::setStyleSheet(const QString &style) const
-{
-    m_pushButton->setStyleSheet(style);
-}
-
-QSize MusicPushButtonDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
-{
-    QSize size = option.rect.size();
-    size.setHeight(25);
-    return size;
 }
 
 void MusicPushButtonDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -235,7 +207,7 @@ void MusicPushButtonDelegate::paint(QPainter *painter, const QStyleOptionViewIte
     drawBackground(painter, option, index);
 #endif
 
-    if(m_treeMode && !index.parent().isValid())
+    if((m_mode & MusicAbstractDelegate::TreeMode) && !index.parent().isValid())
     {
         drawDisplay(painter, option, option.rect, index.data(Qt::DisplayRole).toString());
         return;
