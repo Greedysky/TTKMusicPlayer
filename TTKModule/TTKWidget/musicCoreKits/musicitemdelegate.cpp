@@ -69,8 +69,8 @@ void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     if(textMode)
     {
         m_checkBox->resize(option.rect.size());
-        m_checkBox->setText(index.data(MUSIC_TEXT_ROLE).toString());
-        m_checkBox->setEnabled(index.data(MUSIC_ENABLE_ROLE).toBool());
+        m_checkBox->setText(index.data(MUSIC_DISPLAY_ROLE).toString());
+        m_checkBox->setEnabled(index.data(MUSIC_ENABLED_ROLE).toBool());
     }
     else
     {
@@ -79,7 +79,7 @@ void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     }
 
     const bool state = m_checkBox->isChecked();
-    m_checkBox->setChecked(TTKStatic_cast(Qt::CheckState, index.data(MUSIC_CHECK_ROLE).toInt()) == Qt::Checked);
+    m_checkBox->setChecked(TTKStatic_cast(Qt::CheckState, index.data(MUSIC_CHECKED_ROLE).toInt()) == Qt::Checked);
     if(m_checkBox->isEnabled() && state != m_checkBox->isChecked())
     {
         Q_EMIT TTKConst_cast(MusicCheckBoxDelegate*, this)->buttonChecked();
@@ -171,7 +171,7 @@ void MusicLabelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
         m_label->setPalette(plt);
     }
 
-    const QString &text = index.data(MUSIC_TEXT_ROLE).toString();
+    const QString &text = index.data(MUSIC_DISPLAY_ROLE).toString();
     m_label->setText(m_mode & MusicAbstractDelegate::ElideMode ? MusicUtils::Widget::elidedText(m_label->font(), text, Qt::ElideRight, option.rect.width() - 5) : text);
     m_label->resize(option.rect.size());
     painter->translate(0, 0);
@@ -214,7 +214,7 @@ void MusicPushButtonDelegate::paint(QPainter *painter, const QStyleOptionViewIte
     }
 
     painter->save();
-    m_pushButton->setText(index.data(MUSIC_TEXT_ROLE).toString());
+    m_pushButton->setText(index.data(MUSIC_DISPLAY_ROLE).toString());
     m_pushButton->resize(option.rect.size() - QSize(10, 10));
     painter->translate(5, 5);
 

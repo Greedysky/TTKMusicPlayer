@@ -851,7 +851,7 @@ void MusicLrcPosterTableWidget::addCellItems(const QStringList &lrcs)
     for(int i = 0; i < lrcs.count(); ++i)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
+        item->setData(MUSIC_CHECKED_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -868,7 +868,7 @@ void MusicLrcPosterTableWidget::itemCellClicked(int row, int column)
     QStringList data;
     for(int i = 0; i < rowCount(); ++i)
     {
-        if(TTKStatic_cast(Qt::CheckState, item(i, 0)->data(MUSIC_CHECK_ROLE).toInt()) == Qt::Checked)
+        if(TTKStatic_cast(Qt::CheckState, item(i, 0)->data(MUSIC_CHECKED_ROLE).toInt()) == Qt::Checked)
         {
             data << item(i, 1)->text();
         }

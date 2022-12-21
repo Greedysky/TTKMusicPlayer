@@ -241,7 +241,7 @@ void MusicItemQueryTableWidget::createSearchedItem(const MusicResultInfoItem &so
 
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
+    item->setData(MUSIC_CHECKED_ROLE, Qt::Unchecked);
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
@@ -296,7 +296,7 @@ void MusicItemQueryTableWidget::createFinishedItem()
     QTableWidgetItem *it = item(count, 0);
     if(it)
     {
-        it->setData(MUSIC_TEXT_ROLE, tr("No more data"));
+        it->setData(MUSIC_DISPLAY_ROLE, tr("No more data"));
         setItemDelegateForRow(count, m_labelDelegate);
 
         setFixedHeight(rowHeight(0) * rowCount());

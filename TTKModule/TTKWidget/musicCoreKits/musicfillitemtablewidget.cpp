@@ -26,7 +26,7 @@ TTKIntList MusicFillItemTableWidget::checkedIndexList() const
     for(int i = 0; i < rowCount(); ++i)
     {
         const QTableWidgetItem *it = item(i, 0);
-        if(it && it->data(MUSIC_CHECK_ROLE) == Qt::Checked)
+        if(it && it->data(MUSIC_CHECKED_ROLE) == Qt::Checked)
         {
             list << i;
         }
@@ -40,18 +40,18 @@ void MusicFillItemTableWidget::itemCellClicked(int row, int column)
     if(column == 0)
     {
         it = item(row, 0);
-        const Qt::CheckState status = TTKStatic_cast(Qt::CheckState, it->data(MUSIC_CHECK_ROLE).toInt());
-        it->setData(MUSIC_CHECK_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
+        const Qt::CheckState status = TTKStatic_cast(Qt::CheckState, it->data(MUSIC_CHECKED_ROLE).toInt());
+        it->setData(MUSIC_CHECKED_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
     }
     else
     {
         if(m_previousClickRow != -1 && (it = item(m_previousClickRow, 0)))
         {
-            it->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
+            it->setData(MUSIC_CHECKED_ROLE, Qt::Unchecked);
         }
 
         m_previousClickRow = row;
-        item(row, 0)->setData(MUSIC_CHECK_ROLE, Qt::Checked);
+        item(row, 0)->setData(MUSIC_CHECKED_ROLE, Qt::Checked);
     }
 }
 
@@ -59,7 +59,7 @@ void MusicFillItemTableWidget::checkedItemsState(bool check)
 {
     for(int i = 0; i < rowCount(); ++i)
     {
-        item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
+        item(i, 0)->setData(MUSIC_CHECKED_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }
 
     clearSelection();
@@ -69,7 +69,7 @@ void MusicFillItemTableWidget::checkedItemsStatus(bool check)
 {
     for(int i = 0; i < rowCount(); ++i)
     {
-        item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
+        item(i, 0)->setData(MUSIC_CHECKED_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }
 
     if(!check)

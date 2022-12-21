@@ -34,7 +34,7 @@ void MusicSongCheckToolsRenameTableWidget::addCellItems(const MusicSongCheckTool
         const MusicSongCheckToolsRename &v = items[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
+        item->setData(MUSIC_CHECKED_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -50,7 +50,7 @@ void MusicSongCheckToolsRenameTableWidget::addCellItems(const MusicSongCheckTool
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_TEXT_ROLE, tr("Delete"));
+        item->setData(MUSIC_DISPLAY_ROLE, tr("Delete"));
         setItem(i, 3, item);
     }
 }
@@ -117,7 +117,7 @@ void MusicSongCheckToolsDuplicateTableWidget::addCellItems(const MusicSongCheckT
         const MusicSongCheckToolsDuplicate &v = songs[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
+        item->setData(MUSIC_CHECKED_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -142,12 +142,12 @@ void MusicSongCheckToolsDuplicateTableWidget::addCellItems(const MusicSongCheckT
         setItem(i, 4, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_TEXT_ROLE, tr("Play"));
+        item->setData(MUSIC_DISPLAY_ROLE, tr("Play"));
         item->setData(MUSIC_DATA_ROLE, v.m_song.path());
         setItem(i, 5, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_TEXT_ROLE, tr("Delete"));
+        item->setData(MUSIC_DISPLAY_ROLE, tr("Delete"));
         setItem(i, 6, item);
     }
 }
@@ -232,7 +232,7 @@ void MusicSongCheckToolsQualityTableWidget::addCellItems(const MusicSongCheckToo
         const MusicSongCheckToolsQuality &v = songs[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
+        item->setData(MUSIC_CHECKED_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -266,12 +266,12 @@ void MusicSongCheckToolsQualityTableWidget::addCellItems(const MusicSongCheckToo
         setItem(i, 5, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_TEXT_ROLE, tr("Play"));
+        item->setData(MUSIC_DISPLAY_ROLE, tr("Play"));
         item->setData(MUSIC_DATA_ROLE, v.m_song.path());
         setItem(i, 6, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_TEXT_ROLE, tr("Delete"));
+        item->setData(MUSIC_DISPLAY_ROLE, tr("Delete"));
         setItem(i, 7, item);
     }
 }

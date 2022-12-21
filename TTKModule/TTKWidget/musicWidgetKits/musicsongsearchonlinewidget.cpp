@@ -189,7 +189,7 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicResultInfoItem &s
 
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
+    item->setData(MUSIC_CHECKED_ROLE, Qt::Unchecked);
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;

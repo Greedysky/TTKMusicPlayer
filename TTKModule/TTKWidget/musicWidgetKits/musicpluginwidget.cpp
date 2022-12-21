@@ -135,10 +135,10 @@ public:
 
     void initialize(bool state, bool enable, const MusicPluginProperty &property)
     {
-        setData(0, MUSIC_CHECK_ROLE, state ? Qt::Checked : Qt::Unchecked);
-        setData(0, MUSIC_ENABLE_ROLE, enable);
-        setData(1, MUSIC_TEXT_ROLE, property.m_name);
-        setData(2, MUSIC_TEXT_ROLE, property.m_type.section('/', -1));
+        setData(0, MUSIC_CHECKED_ROLE, state ? Qt::Checked : Qt::Unchecked);
+        setData(0, MUSIC_ENABLED_ROLE, enable);
+        setData(1, MUSIC_DISPLAY_ROLE, property.m_name);
+        setData(2, MUSIC_DISPLAY_ROLE, property.m_type.section('/', -1));
 
         if(!property.m_description.isEmpty())
         {
@@ -239,14 +239,14 @@ void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
             for(int i = 0; i < parent->childCount(); ++i)
             {
                 QTreeWidgetItem *it = parent->child(i);
-                it->setData(column, MUSIC_CHECK_ROLE, Qt::Unchecked);
+                it->setData(column, MUSIC_CHECKED_ROLE, Qt::Unchecked);
                 it->setData(1, Qt::TextColorRole, QColor(0x00, 0x00, 0x00));
                 it->setData(2, Qt::TextColorRole, QColor(0x00, 0x00, 0x00));
             }
         }
 
-        const Qt::CheckState status = TTKStatic_cast(Qt::CheckState, item->data(column, MUSIC_CHECK_ROLE).toInt());
-        item->setData(column, MUSIC_CHECK_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
+        const Qt::CheckState status = TTKStatic_cast(Qt::CheckState, item->data(column, MUSIC_CHECKED_ROLE).toInt());
+        item->setData(column, MUSIC_CHECKED_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
         TTKDynamic_cast(MusicPluginItem*, item)->setEnabled(status != Qt::Checked);
 
         const QColor &color = (status != Qt::Checked) ? QColor(0xE6, 0x73, 0x00) : QColor(0x00, 0x00, 0x00);

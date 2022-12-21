@@ -22,12 +22,12 @@
 #include <QItemDelegate>
 #include "musicglobaldefine.h"
 
-#define MUSIC_CHECK_ROLE    Qt::UserRole + 101
-#define MUSIC_PROGRESS_ROLE Qt::UserRole + 102
-#define MUSIC_TEXT_ROLE     Qt::UserRole + 103
-#define MUSIC_TIME_ROLE     Qt::UserRole + 104
-#define MUSIC_ENABLE_ROLE   Qt::UserRole + 105
-#define MUSIC_DATA_ROLE     Qt::UserRole + 110
+#define MUSIC_DATA_ROLE     Qt::UserRole + 101
+#define MUSIC_TIME_ROLE     Qt::UserRole + 102
+#define MUSIC_CHECKED_ROLE  Qt::UserRole + 103
+#define MUSIC_DISPLAY_ROLE  Qt::UserRole + 104
+#define MUSIC_ENABLED_ROLE  Qt::UserRole + 105
+#define MUSIC_PROGRESS_ROLE Qt::UserRole + 110
 
 class QLabel;
 class QCheckBox;
