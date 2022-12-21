@@ -99,7 +99,7 @@ TTKMusicPlayer的壹些特性
  * XMDX Game Audio File(*.mdx *.pdx *.m *.mub *.muc *.vgs *.bgm *.mml)
  * Cave Story's org Audio File(*.org *.pttune *.ptcop)
  * Final Music System Tracker Module File(*.tfm *.tfmx *.mdat *.tfx)
- * 支持的播放列表格式(tkpl, m3u, m3u8, pls, wpl, xspf, asx, fpl, dbpl, csv, txt)
+ * 支持的播放列表格式(tkpl, m3u, m3u8, pls, wpl, xspf, jspf, asx, fpl, dbpl, csv, txt)
  * 華麗流星炫酷的界面設計，跨平臺有良好的性能表現。
  * 搜索和高速下載。歌曲搜索精度優化，智能節省帶寬，可以禁用網絡功能，支持多個國內音樂平臺曲庫。
  * 支持本地播放，兼容所有音頻文件，超級完美的聲音，音樂和更吸引人。

@@ -96,7 +96,7 @@
  *
  * Final Music System Tracker Module File(*.tfm *.tfmx *.mdat *.tfx)
  *
- * Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, asx, fpl, dbpl, csv, txt)
+ * Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, jspf, asx, fpl, dbpl, csv, txt)
  *
  * Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing Screenshots.
  *
