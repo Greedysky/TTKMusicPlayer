@@ -295,13 +295,16 @@ void MusicTTKFMRadioPlayWidget::initialize()
     int index = 0;
     for(const MusicFMCategory &category : categorys)
     {
-        QTreeWidgetItem *item = new QTreeWidgetItem(m_ui->itemTree, {category.m_category});
+        QTreeWidgetItem *item = new QTreeWidgetItem(m_ui->itemTree);
+        item->setData(0, MUSIC_DISPLAY_ROLE, category.m_category);
         m_ui->itemTree->addTopLevelItem(item);
 
         for(const MusicFMChannel &channel : category.m_items)
         {
-            QTreeWidgetItem *it = new QTreeWidgetItem(item, {channel.m_name, channel.m_location});
+            QTreeWidgetItem *it = new QTreeWidgetItem(item);
             it->setData(0, MUSIC_DATA_ROLE, index++);
+            it->setData(0, MUSIC_DISPLAY_ROLE, channel.m_name);
+            it->setData(1, MUSIC_DISPLAY_ROLE, channel.m_location);
         }
         m_items << category.m_items;
     }
@@ -393,8 +396,10 @@ void MusicTTKFMRadioPlayWidget::addButtonClicked()
             return;
         }
 
-        QTreeWidgetItem *it = new QTreeWidgetItem(item, {channel.m_name, channel.m_location});
+        QTreeWidgetItem *it = new QTreeWidgetItem(item);
         it->setData(0, MUSIC_DATA_ROLE, m_items.count() - 1);
+        it->setData(0, MUSIC_DISPLAY_ROLE, channel.m_name);
+        it->setData(1, MUSIC_DISPLAY_ROLE, channel.m_location);
 
         MusicFMConfigManager manager;
         manager.writeBuffer(m_favItem);
