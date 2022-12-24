@@ -190,7 +190,7 @@ void MusicCloudManagerTableWidget::deleteFileFinished(bool state)
 void MusicCloudManagerTableWidget::updateListToServer()
 {
     Q_EMIT updateLabelMessage(tr("List updating"));
-    m_syncListData->listDataOperator(MUSIC_BUCKET);
+    m_syncListData->listDataOperator(SYNC_MUSIC_BUCKET);
 }
 
 void MusicCloudManagerTableWidget::deleteFileToServer()
@@ -209,7 +209,7 @@ void MusicCloudManagerTableWidget::deleteFileToServer()
 
     const MusicCloudDataItem &data = it->data(MUSIC_DATA_ROLE).value<MusicCloudDataItem>();
     removeRow(currentRow());
-    m_syncDeleteData->deleteDataOperator(MUSIC_BUCKET, data.m_dataItem.m_name);
+    m_syncDeleteData->deleteDataOperator(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
     m_totalFileSzie -= data.m_dataItem.m_size;
     Q_EMIT updataSizeLabel(m_totalFileSzie);
 
@@ -237,7 +237,7 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
 
         const MusicCloudDataItem &data = it->data(MUSIC_DATA_ROLE).value<MusicCloudDataItem>();
         removeRow(index);
-        m_syncDeleteData->deleteDataOperator(MUSIC_BUCKET, data.m_dataItem.m_name);
+        m_syncDeleteData->deleteDataOperator(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
 
         m_totalFileSzie -= data.m_dataItem.m_size;
         Q_EMIT updataSizeLabel(m_totalFileSzie);
@@ -261,7 +261,7 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
     }
 
     const MusicCloudDataItem &data = it->data(MUSIC_DATA_ROLE).value<MusicCloudDataItem>();
-    const QString &url = m_syncDownloadData->downloadUrl(MUSIC_BUCKET, data.m_dataItem.m_name);
+    const QString &url = m_syncDownloadData->downloadUrl(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
 
     MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, MusicUtils::String::musicDirPrefix() + data.m_dataItem.m_name, MusicObject::Download::Music, this);
     download->setRecordType(MusicObject::Record::CloudDownload);
@@ -476,7 +476,7 @@ void MusicCloudManagerTableWidget::startToUploadFile()
         return;
     }
 
-    m_syncUploadData->uploadDataOperator(m_currentDataItem.m_id, MUSIC_BUCKET, m_currentDataItem.m_dataItem.m_name, m_currentDataItem.m_path);
+    m_syncUploadData->uploadDataOperator(m_currentDataItem.m_id, SYNC_MUSIC_BUCKET, m_currentDataItem.m_dataItem.m_name, m_currentDataItem.m_path);
 }
 
 int MusicCloudManagerTableWidget::FindUploadItemRow(const QString &time) const

@@ -21,8 +21,8 @@
 
 #include "ttkprivate.h"
 
-#define DATA_BUCKET     "greedysky-data"
-#define MUSIC_BUCKET    "greedysky-music"
+#define SYNC_DATA_BUCKET     "greedysky-data"
+#define SYNC_MUSIC_BUCKET    "greedysky-music"
 
 /*! @brief The class of the sync data config.
  * @author Greedysky <greedysky@163.com>

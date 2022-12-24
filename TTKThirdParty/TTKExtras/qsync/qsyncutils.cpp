@@ -90,5 +90,5 @@ QString QSyncUtils::GMT()
 
 QString QSyncUtils::makeDataBucketUrl()
 {
-    return QString("http://%1.%2/").arg(DATA_BUCKET, QSyncConfig::HOST);
+    return QString("http://%1.%2/").arg(SYNC_DATA_BUCKET, QSyncConfig::HOST);
 }
