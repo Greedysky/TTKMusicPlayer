@@ -120,7 +120,11 @@ bool TTKAbstractXml::fromString(const QString &data)
 
     m_file = nullptr;
     m_document = new QDomDocument;
+#if TTK_QT_VERSION_CHECK(6,5,0)
+    return TTKStatic_cast(bool, m_document->setContent(data));
+#else
     return m_document->setContent(data);
+#endif
 }
 
 bool TTKAbstractXml::fromByteArray(const QByteArray &data)
@@ -130,7 +134,11 @@ bool TTKAbstractXml::fromByteArray(const QByteArray &data)
 
     m_file = nullptr;
     m_document = new QDomDocument;
+#if TTK_QT_VERSION_CHECK(6,5,0)
+    return TTKStatic_cast(bool, m_document->setContent(data));
+#else
     return m_document->setContent(data);
+#endif
 }
 
 bool TTKAbstractXml::toFile(const QString &name)
