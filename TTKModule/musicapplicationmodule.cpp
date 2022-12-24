@@ -141,7 +141,8 @@ void MusicApplicationModule::windowCloseAnimation()
         m_quitAnimation->setEndValue(0);
         m_quitAnimation->start();
     }
-    QTimer::singleShot(MT_S2MS, qApp, SLOT(quit()));
+
+    QTimer::singleShot(MT_S2MS, this, SLOT(quit()));
 }
 
 void MusicApplicationModule::soureUpdateCheck()
@@ -235,6 +236,11 @@ void MusicApplicationModule::sideAnimationReset()
         const QRect &rect = TTKDesktopWrapper::screenGeometry();
         w->move(rect.width() - w->width() - MARGIN_SIDE_BY, w->y());
     }
+}
+
+void MusicApplicationModule::quit()
+{
+    qApp->exit();
 }
 
 void MusicApplicationModule::windowCloseAnimationFinished()

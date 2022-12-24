@@ -1,5 +1,6 @@
 #include "qkugouwindow.h"
 #include "qkugouuiobject.h"
+#include "ttknumberdefine.h"
 
 #ifdef Q_OS_WIN
 #  include <ActiveQt/QAxWidget>
@@ -118,7 +119,7 @@ void QKugouWindow::goBack()
 {
     TTK_D(QKugouWindow);
 #ifdef Q_OS_WIN
-    QTimer::singleShot(1, TTKObject_cast(QAxWidget*, d->m_webView), SLOT(GoBack()));
+    QTimer::singleShot(MT_MS, TTKObject_cast(QAxWidget*, d->m_webView), SLOT(GoBack()));
 #else
 #  ifdef TTK_WEBKIT
     QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
@@ -142,7 +143,7 @@ void QKugouWindow::refresh()
 {
     TTK_D(QKugouWindow);
 #ifdef Q_OS_WIN
-    QTimer::singleShot(1, TTKObject_cast(QAxWidget*, d->m_webView), SLOT(Refresh()));
+    QTimer::singleShot(MT_MS, TTKObject_cast(QAxWidget*, d->m_webView), SLOT(Refresh()));
 #else
 #  ifdef TTK_WEBKIT
     QWebView *w = TTKObject_cast(QWebView*, d->m_webView);

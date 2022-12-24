@@ -94,6 +94,10 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
+     * Application quit.
+     */
+    void quit();
+    /*!
      * Window close animation finished.
      */
     void windowCloseAnimationFinished();
