@@ -83,7 +83,7 @@ public:
     /*!
      * Set up app ui.
      */
-    void setupUi(Ui::MusicApplication* ui);
+    void setupUi(Ui::MusicApplication *ui);
 
     /*!
      * Start timer clock to draw lrc.

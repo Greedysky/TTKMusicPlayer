@@ -51,7 +51,7 @@ public:
     /*!
      * Set up app ui.
      */
-    void setupUi(Ui::MusicApplication* ui);
+    void setupUi(Ui::MusicApplication *ui);
 
     /*!
      * Reset current music love icon state.

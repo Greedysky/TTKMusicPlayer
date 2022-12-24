@@ -35,7 +35,7 @@ MusicBottomAreaWidget *MusicBottomAreaWidget::instance()
     return m_instance;
 }
 
-void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
+void MusicBottomAreaWidget::setupUi(Ui::MusicApplication *ui)
 {
     m_ui = ui;
 

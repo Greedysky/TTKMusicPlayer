@@ -74,7 +74,7 @@ MusicRightAreaWidget *MusicRightAreaWidget::instance()
     return m_instance;
 }
 
-void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
+void MusicRightAreaWidget::setupUi(Ui::MusicApplication *ui)
 {
     m_ui = ui;
     m_lrcForInterior = ui->musiclrccontainerforinterior;

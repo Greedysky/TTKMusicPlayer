@@ -52,7 +52,7 @@ public:
     /*!
      * Set up app ui.
      */
-    void setupUi(Ui::MusicApplication* ui);
+    void setupUi(Ui::MusicApplication *ui);
     /*!
      * Set destop lrc visible by string.
      */

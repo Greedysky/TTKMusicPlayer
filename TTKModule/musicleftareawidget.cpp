@@ -38,7 +38,7 @@ MusicLeftAreaWidget *MusicLeftAreaWidget::instance()
     return m_instance;
 }
 
-void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
+void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
 {
     m_ui = ui;
 

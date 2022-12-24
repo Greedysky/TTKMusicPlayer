@@ -45,7 +45,7 @@ MusicTopAreaWidget *MusicTopAreaWidget::instance()
     return m_instance;
 }
 
-void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
+void MusicTopAreaWidget::setupUi(Ui::MusicApplication *ui)
 {
     m_ui = ui;
 
