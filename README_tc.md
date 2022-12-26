@@ -162,7 +162,7 @@ TTKMusicPlayer的壹些特性
 版權
 -------
  * This file is part of the TTK Music Player project.
- * Copyright (C) 2015 - 2022 Greedysky Studio.
+ * Copyright (C) 2015 - 2023 Greedysky Studio.
  * Mail: greedysky@163.com.
 
 貢獻
