@@ -26,7 +26,7 @@ void MusicConnectTransferTableWidget::addCellItems(const MusicSongList &songs)
         const MusicSong &v = songs[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_CHECKED_ROLE, Qt::Unchecked);
+        item->setData(TTK_CHECKED_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;

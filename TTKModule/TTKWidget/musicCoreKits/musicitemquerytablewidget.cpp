@@ -14,7 +14,7 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setColumnCount(8);
 
-    m_labelDelegate = new MusicLabelDelegate(this);
+    m_labelDelegate = new TTKLabelItemDelegate(this);
     m_labelDelegate->setStyleSheet(MusicUIObject::MQSSBackgroundStyle13);
 
     QHeaderView *headerview = horizontalHeader();
@@ -242,7 +242,7 @@ void MusicItemQueryTableWidget::createSearchedItem(const MusicResultInfoItem &so
 
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(MUSIC_CHECKED_ROLE, Qt::Unchecked);
+    item->setData(TTK_CHECKED_ROLE, Qt::Unchecked);
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
@@ -297,7 +297,7 @@ void MusicItemQueryTableWidget::createFinishedItem()
     QTableWidgetItem *it = item(count, 0);
     if(it)
     {
-        it->setData(MUSIC_DISPLAY_ROLE, tr("No more data"));
+        it->setData(TTK_DISPLAY_ROLE, tr("No more data"));
         setItemDelegateForRow(count, m_labelDelegate);
 
         setFixedHeight(rowHeight(0) * rowCount());

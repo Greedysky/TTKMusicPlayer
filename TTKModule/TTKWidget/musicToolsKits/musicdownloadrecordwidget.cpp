@@ -43,13 +43,13 @@ void MusicDownloadRecordTableWidget::addCellItem(int index, const MusicSong &rec
     setItem(index, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setData(MUSIC_PROGRESS_ROLE, 100);
+    item->setData(TTK_PROGRESS_ROLE, 100);
     setItem(index, 2, item);
 
                       item = new QTableWidgetItem(record.sizeStr());
     QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
     QtItemSetTextAlignment(item, Qt::AlignRight| Qt::AlignVCenter);
-    item->setData(MUSIC_TIME_ROLE, record.addTimeStr());
+    item->setData(TTK_TIME_ROLE, record.addTimeStr());
     setItem(index, 3, item);
 
     setFixedHeight(totalHeight());

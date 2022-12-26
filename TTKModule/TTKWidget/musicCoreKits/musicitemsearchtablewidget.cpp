@@ -11,7 +11,7 @@ MusicItemSearchTableWidget::MusicItemSearchTableWidget(QWidget *parent)
     m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::CicleBlue, this);
     m_actionGroup = new QActionGroup(this);
 
-    m_labelDelegate = new MusicLabelDelegate(this);
+    m_labelDelegate = new TTKLabelItemDelegate(this);
     m_labelDelegate->setStyleSheet(MusicUIObject::MQSSBackgroundStyle13);
 
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
@@ -39,7 +39,7 @@ void MusicItemSearchTableWidget::itemCellClicked(int row, int column)
     if(rowCount() > 0 && row == rowCount() - 1)
     {
         QTableWidgetItem *it = item(row, 0);
-        if(it && it->data(MUSIC_DISPLAY_ROLE).toString() == tr("Query more data"))
+        if(it && it->data(TTK_DISPLAY_ROLE).toString() == tr("Query more data"))
         {
             setItemDelegateForRow(row, nullptr);
             clearSpans();
@@ -98,7 +98,7 @@ void MusicItemSearchTableWidget::createFinishedItem()
     {
         const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
         const bool more = (pageTotal > m_networkRequest->pageIndex() + 1);
-        it->setData(MUSIC_DISPLAY_ROLE, more ? tr("Query more data") : tr("No more data"));
+        it->setData(TTK_DISPLAY_ROLE, more ? tr("Query more data") : tr("No more data"));
         setItemDelegateForRow(count, m_labelDelegate);
     }
 }

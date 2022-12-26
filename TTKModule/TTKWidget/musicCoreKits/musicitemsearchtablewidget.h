@@ -21,8 +21,8 @@
 
 #include "musicquerytablewidget.h"
 
-class MusicLabelDelegate;
 class MusicGifLabelWidget;
+class TTKLabelItemDelegate;
 
 /*! @brief The class of the search item table widget.
  * @author Greedysky <greedysky@163.com>
@@ -77,7 +77,7 @@ protected:
 
     MusicGifLabelWidget *m_loadingLabel;
     QActionGroup *m_actionGroup;
-    MusicLabelDelegate *m_labelDelegate;
+    TTKLabelItemDelegate *m_labelDelegate;
 
 };
 

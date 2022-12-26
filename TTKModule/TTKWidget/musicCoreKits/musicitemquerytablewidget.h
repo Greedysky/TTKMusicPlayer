@@ -106,7 +106,7 @@ private:
      */
     bool downloadDataFrom(const MusicObject::MusicSongInformation &info, bool play);
 
-    MusicLabelDelegate *m_labelDelegate;
+    TTKLabelItemDelegate *m_labelDelegate;
 
 };
 

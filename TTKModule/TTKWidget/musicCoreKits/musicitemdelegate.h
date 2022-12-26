@@ -19,189 +19,20 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QItemDelegate>
-#include "musicglobaldefine.h"
-
-#define MUSIC_DATA_ROLE     Qt::UserRole + 101
-#define MUSIC_TIME_ROLE     Qt::UserRole + 102
-#define MUSIC_CHECKED_ROLE  Qt::UserRole + 103
-#define MUSIC_DISPLAY_ROLE  Qt::UserRole + 104
-#define MUSIC_ENABLED_ROLE  Qt::UserRole + 105
-#define MUSIC_PROGRESS_ROLE Qt::UserRole + 110
-
-class QLabel;
-class QCheckBox;
-class QProgressBar;
-class QPushButton;
-
-/*! @brief The class of the abstract item delegate.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicAbstractDelegate : public QItemDelegate
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractDelegate)
-public:
-    enum Module
-    {
-        Null = 0x0,
-        DisplayMode = 0x1,
-        ElideMode = 0x2,
-        TreeMode = 0x4
-    };
-
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicAbstractDelegate(QObject* parent = nullptr);
-    ~MusicAbstractDelegate();
-
-    /*!
-     * Set module mode.
-     */
-    inline void setModuleMode(TTKUInt8 mode) { m_mode = mode; }
-
-    /*!
-     * Set delegate item style.
-     */
-    void setStyleSheet(const QString &style) const;
-
-    /*!
-     * Override size hint.
-     */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override final;
-
-protected:
-    TTKUInt8 m_mode;
-    QWidget *m_container;
-
-};
-
-
-/*! @brief The class of the checkbox item delegate.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicCheckBoxDelegate : public MusicAbstractDelegate
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCheckBoxDelegate)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicCheckBoxDelegate(QObject* parent = nullptr);
-    ~MusicCheckBoxDelegate();
-
-    /*!
-     * Override paint.
-     */
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
-
-Q_SIGNALS:
-    /*!
-     * Button state changed.
-     */
-    void buttonChecked();
-
-private:
-    bool m_background;
-    QCheckBox *m_checkBox;
-
-};
-
-
-/*! @brief The class of the progress bar item delegate.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicProgressBarDelegate : public MusicAbstractDelegate
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicProgressBarDelegate)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicProgressBarDelegate(QObject* parent = nullptr);
-    ~MusicProgressBarDelegate();
-
-    /*!
-     * Override paint.
-     */
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
-
-private:
-    QProgressBar *m_progress;
-
-};
-
-
-/*! @brief The class of the label item delegate.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicLabelDelegate : public MusicAbstractDelegate
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLabelDelegate)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicLabelDelegate(QObject* parent = nullptr);
-    ~MusicLabelDelegate();
-
-    /*!
-     * Set text alignment.
-     */
-    void setAlignment(Qt::Alignment alignment) const;
-
-    /*!
-     * Override paint.
-     */
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
-
-private:
-    QLabel *m_label;
-
-};
-
-
-/*! @brief The class of the push button item delegate.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicPushButtonDelegate : public MusicAbstractDelegate
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPushButtonDelegate)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicPushButtonDelegate(QObject* parent = nullptr);
-    ~MusicPushButtonDelegate();
-
-    /*!
-     * Override paint.
-     */
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override final;
-
-private:
-    QPushButton *m_pushButton;
-
-};
-
+#include "ttkitemdelegate.h"
 
 /*! @brief The class of the lineedit item delegate.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicLineEditDelegate : public QItemDelegate
+class TTK_MODULE_EXPORT MusicLineEditItemDelegate : public QItemDelegate
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLineEditDelegate)
+    TTK_DECLARE_MODULE(MusicLineEditItemDelegate)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLineEditDelegate(QObject *parent = nullptr);
+    explicit MusicLineEditItemDelegate(QObject *parent = nullptr);
 
     /*!
      * Override createEditor.

@@ -9,7 +9,7 @@ MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *pare
     : MusicAbstractSongsListTableWidget(parent),
       m_type(MusicObject::Record::Null)
 {
-    m_progressBarDelegate = new MusicProgressBarDelegate(this);
+    m_progressBarDelegate = new TTKProgressBarItemDelegate(this);
     m_progressBarDelegate->setStyleSheet(MusicUIObject::MQSSProgressBar01);
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
@@ -97,9 +97,9 @@ void MusicAbstractDownloadTableWidget::downloadProgressChanged(float percent, co
     for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 3);
-        if(it && it->data(MUSIC_TIME_ROLE).toLongLong() == time)
+        if(it && it->data(TTK_TIME_ROLE).toLongLong() == time)
         {
-            item(i, 2)->setData(MUSIC_PROGRESS_ROLE, percent);
+            item(i, 2)->setData(TTK_PROGRESS_ROLE, percent);
             item(i, 3)->setText(total);
 
             (*m_songs)[i].setSizeStr(total);

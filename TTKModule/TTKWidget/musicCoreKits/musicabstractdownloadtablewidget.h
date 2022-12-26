@@ -22,7 +22,7 @@
 #include "musicabstractsongslisttablewidget.h"
 #include "musicdownloadrecordconfigmanager.h"
 
-class MusicProgressBarDelegate;
+class TTKProgressBarItemDelegate;
 
 /*! @brief The class of the download abstract table widget.
  * @author Greedysky <greedysky@163.com>
@@ -84,7 +84,7 @@ protected:
     virtual void addCellItem(int index, const MusicSong &record) = 0;
 
     MusicObject::Record m_type;
-    MusicProgressBarDelegate *m_progressBarDelegate;
+    TTKProgressBarItemDelegate *m_progressBarDelegate;
 
 };
 

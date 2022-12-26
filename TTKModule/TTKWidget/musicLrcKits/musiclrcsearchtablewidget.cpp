@@ -100,7 +100,7 @@ void MusicLrcSearchTableWidget::createSearchedItem(const MusicResultInfoItem &so
 
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(MUSIC_CHECKED_ROLE, Qt::Unchecked);
+    item->setData(TTK_CHECKED_ROLE, Qt::Unchecked);
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;

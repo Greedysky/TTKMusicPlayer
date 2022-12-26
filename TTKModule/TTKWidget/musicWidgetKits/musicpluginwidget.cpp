@@ -135,10 +135,10 @@ public:
 
     void initialize(bool state, bool enable, const MusicPluginProperty &property)
     {
-        setData(0, MUSIC_CHECKED_ROLE, state ? Qt::Checked : Qt::Unchecked);
-        setData(0, MUSIC_ENABLED_ROLE, enable);
-        setData(1, MUSIC_DISPLAY_ROLE, property.m_name);
-        setData(2, MUSIC_DISPLAY_ROLE, property.m_type.section('/', -1));
+        setData(0, TTK_CHECKED_ROLE, state ? Qt::Checked : Qt::Unchecked);
+        setData(0, TTK_ENABLED_ROLE, enable);
+        setData(1, TTK_DISPLAY_ROLE, property.m_name);
+        setData(2, TTK_DISPLAY_ROLE, property.m_type.section('/', -1));
 
         if(!property.m_description.isEmpty())
         {
@@ -186,19 +186,19 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
 #endif
     m_ui->treeWidget->setHeaderLabels({QString(), tr("Description"), tr("Name"), QString()});
 
-    MusicCheckBoxDelegate *delegateCheck = new MusicCheckBoxDelegate(this);
+    TTKCheckBoxItemDelegate *delegateCheck = new TTKCheckBoxItemDelegate(this);
     delegateCheck->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
-    delegateCheck->setModuleMode(MusicAbstractDelegate::DisplayMode | MusicAbstractDelegate::TreeMode);
+    delegateCheck->setModuleMode(TTKAbstractItemDelegate::DisplayMode | TTKAbstractItemDelegate::TreeMode);
     m_ui->treeWidget->setItemDelegateForColumn(0, delegateCheck);
 
-    MusicLabelDelegate *delegateTitle = new MusicLabelDelegate(this);
-    delegateTitle->setModuleMode(MusicAbstractDelegate::ElideMode);
+    TTKLabelItemDelegate *delegateTitle = new TTKLabelItemDelegate(this);
+    delegateTitle->setModuleMode(TTKAbstractItemDelegate::ElideMode);
     delegateTitle->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     delegateTitle->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->treeWidget->setItemDelegateForColumn(1, delegateTitle);
 
-    MusicLabelDelegate *delegateName = new MusicLabelDelegate(this);
-    delegateName->setModuleMode(MusicAbstractDelegate::ElideMode);
+    TTKLabelItemDelegate *delegateName = new TTKLabelItemDelegate(this);
+    delegateName->setModuleMode(TTKAbstractItemDelegate::ElideMode);
     delegateName->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     delegateName->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->treeWidget->setItemDelegateForColumn(2, delegateName);
@@ -240,14 +240,14 @@ void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
             for(int i = 0; i < parent->childCount(); ++i)
             {
                 QTreeWidgetItem *it = parent->child(i);
-                it->setData(column, MUSIC_CHECKED_ROLE, Qt::Unchecked);
+                it->setData(column, TTK_CHECKED_ROLE, Qt::Unchecked);
                 it->setData(1, Qt::TextColorRole, QColor(0x00, 0x00, 0x00));
                 it->setData(2, Qt::TextColorRole, QColor(0x00, 0x00, 0x00));
             }
         }
 
-        const Qt::CheckState status = TTKStatic_cast(Qt::CheckState, item->data(column, MUSIC_CHECKED_ROLE).toInt());
-        item->setData(column, MUSIC_CHECKED_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
+        const Qt::CheckState status = TTKStatic_cast(Qt::CheckState, item->data(column, TTK_CHECKED_ROLE).toInt());
+        item->setData(column, TTK_CHECKED_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
         TTKDynamic_cast(MusicPluginItem*, item)->setEnabled(status != Qt::Checked);
 
         const QColor &color = (status != Qt::Checked) ? QColor(0xE6, 0x73, 0x00) : QColor(0x00, 0x00, 0x00);

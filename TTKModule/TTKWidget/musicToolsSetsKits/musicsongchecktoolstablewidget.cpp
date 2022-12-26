@@ -4,9 +4,9 @@
 #include "musicnumberutils.h"
 #include "musicconnectionpool.h"
 
-static MusicPushButtonDelegate *MakeButtonDelegate(QObject *parent)
+static TTKPushButtonItemDelegate *MakeButtonItemDelegate(QObject *parent)
 {
-    MusicPushButtonDelegate *delegate = new MusicPushButtonDelegate(parent);
+    TTKPushButtonItemDelegate *delegate = new TTKPushButtonItemDelegate(parent);
     delegate->setStyleSheet(MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBorderStyle06 + MusicUIObject::MQSSBackgroundStyle10);
     return delegate;
 }
@@ -29,7 +29,7 @@ MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidg
     headerview->resizeSection(3, 54);
 #endif
 
-    setItemDelegateForColumn(3, MakeButtonDelegate(this));
+    setItemDelegateForColumn(3, MakeButtonItemDelegate(this));
 }
 
 void MusicSongCheckToolsRenameTableWidget::addCellItems(const MusicSongCheckToolsRenameList &items)
@@ -42,7 +42,7 @@ void MusicSongCheckToolsRenameTableWidget::addCellItems(const MusicSongCheckTool
         const MusicSongCheckToolsRename &v = items[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_CHECKED_ROLE, Qt::Unchecked);
+        item->setData(TTK_CHECKED_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -58,7 +58,7 @@ void MusicSongCheckToolsRenameTableWidget::addCellItems(const MusicSongCheckTool
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_DISPLAY_ROLE, tr("Delete"));
+        item->setData(TTK_DISPLAY_ROLE, tr("Delete"));
         setItem(i, 3, item);
     }
 }
@@ -103,8 +103,8 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
     headerview->resizeSection(6, 54);
 #endif
 
-    setItemDelegateForColumn(5, MakeButtonDelegate(this));
-    setItemDelegateForColumn(6, MakeButtonDelegate(this));
+    setItemDelegateForColumn(5, MakeButtonItemDelegate(this));
+    setItemDelegateForColumn(6, MakeButtonItemDelegate(this));
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
@@ -125,7 +125,7 @@ void MusicSongCheckToolsDuplicateTableWidget::addCellItems(const MusicSongCheckT
         const MusicSongCheckToolsDuplicate &v = songs[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_CHECKED_ROLE, Qt::Unchecked);
+        item->setData(TTK_CHECKED_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -150,12 +150,12 @@ void MusicSongCheckToolsDuplicateTableWidget::addCellItems(const MusicSongCheckT
         setItem(i, 4, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_DISPLAY_ROLE, tr("Play"));
-        item->setData(MUSIC_DATA_ROLE, v.m_song.path());
+        item->setData(TTK_DISPLAY_ROLE, tr("Play"));
+        item->setData(TTK_DATA_ROLE, v.m_song.path());
         setItem(i, 5, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_DISPLAY_ROLE, tr("Delete"));
+        item->setData(TTK_DISPLAY_ROLE, tr("Delete"));
         setItem(i, 6, item);
     }
 }
@@ -181,7 +181,7 @@ void MusicSongCheckToolsDuplicateTableWidget::musicPlay()
     const QTableWidgetItem *it = item(currentRow(), 5);
     if(it)
     {
-        const QString &path = it->data(MUSIC_DATA_ROLE).toString();
+        const QString &path = it->data(TTK_DATA_ROLE).toString();
         Q_EMIT addSongToPlaylist(QStringList(QFile::exists(path) ? path : QString()));
     }
 }
@@ -218,8 +218,8 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
     headerview->resizeSection(7, 54);
 #endif
 
-    setItemDelegateForColumn(6, MakeButtonDelegate(this));
-    setItemDelegateForColumn(7, MakeButtonDelegate(this));
+    setItemDelegateForColumn(6, MakeButtonItemDelegate(this));
+    setItemDelegateForColumn(7, MakeButtonItemDelegate(this));
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
@@ -240,7 +240,7 @@ void MusicSongCheckToolsQualityTableWidget::addCellItems(const MusicSongCheckToo
         const MusicSongCheckToolsQuality &v = songs[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_CHECKED_ROLE, Qt::Unchecked);
+        item->setData(TTK_CHECKED_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -274,12 +274,12 @@ void MusicSongCheckToolsQualityTableWidget::addCellItems(const MusicSongCheckToo
         setItem(i, 5, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_DISPLAY_ROLE, tr("Play"));
-        item->setData(MUSIC_DATA_ROLE, v.m_song.path());
+        item->setData(TTK_DISPLAY_ROLE, tr("Play"));
+        item->setData(TTK_DATA_ROLE, v.m_song.path());
         setItem(i, 6, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_DISPLAY_ROLE, tr("Delete"));
+        item->setData(TTK_DISPLAY_ROLE, tr("Delete"));
         setItem(i, 7, item);
     }
 }
@@ -305,7 +305,7 @@ void MusicSongCheckToolsQualityTableWidget::musicPlay()
     const QTableWidgetItem *it = item(currentRow(), 6);
     if(it)
     {
-        const QString &path = it->data(MUSIC_DATA_ROLE).toString();
+        const QString &path = it->data(TTK_DATA_ROLE).toString();
         Q_EMIT addSongToPlaylist(QStringList(QFile::exists(path) ? path : QString()));
     }
 }

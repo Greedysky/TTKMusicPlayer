@@ -521,7 +521,7 @@ void MusicSongsListPlayTableWidget::setChangSongName()
 
     //others
     delete m_renameEditDelegate;
-    m_renameEditDelegate = new MusicLineEditDelegate(this);
+    m_renameEditDelegate = new MusicLineEditItemDelegate(this);
     setItemDelegateForRow(currentRow(), m_renameEditDelegate);
 
     m_renameActived = true;

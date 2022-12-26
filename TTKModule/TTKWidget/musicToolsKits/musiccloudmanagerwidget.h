@@ -27,9 +27,9 @@ class QSyncListData;
 class QSyncDeleteData;
 class QSyncUploadData;
 class QSyncDownloadData;
-class MusicOpenFileWidget;
-class MusicProgressBarDelegate;
 class QNetworkAccessManager;
+class MusicOpenFileWidget;
+class TTKProgressBarItemDelegate;
 
 /*! @brief The class of the cloud shared song table widget.
  * @author Greedysky <greedysky@163.com>
@@ -177,7 +177,7 @@ private:
     QNetworkAccessManager *m_manager;
     MusicOpenFileWidget *m_openFileWidget;
     MusicCloudDataItem m_currentDataItem;
-    MusicProgressBarDelegate *m_progressBarDelegate;
+    TTKProgressBarItemDelegate *m_progressBarDelegate;
 
 };
 

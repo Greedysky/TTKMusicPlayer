@@ -48,13 +48,13 @@ void MusicCloudDownloadTableWidget::addCellItem(int index, const MusicSong &reco
     setItem(index, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setData(MUSIC_PROGRESS_ROLE, 100);
+    item->setData(TTK_PROGRESS_ROLE, 100);
     setItem(index, 2, item);
 
                       item = new QTableWidgetItem(record.sizeStr());
     QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
-    item->setData(MUSIC_TIME_ROLE, record.addTimeStr());
+    item->setData(TTK_TIME_ROLE, record.addTimeStr());
     setItem(index, 3, item);
 
     setFixedHeight(totalHeight());
@@ -114,7 +114,7 @@ void MusicCloudUploadTableWidget::reuploadFile()
         return;
     }
 
-    const QString data(it->data(MUSIC_DATA_ROLE).toString());
+    const QString data(it->data(TTK_DATA_ROLE).toString());
     if(!data.isEmpty())
     {
         Q_EMIT reuploadFilesToServer({data});
@@ -138,7 +138,7 @@ void MusicCloudUploadTableWidget::reuploadFiles()
             continue;
         }
 
-        const QString data(it->data(MUSIC_DATA_ROLE).toString());
+        const QString data(it->data(TTK_DATA_ROLE).toString());
         if(!data.isEmpty())
         {
             datas << data;
@@ -155,7 +155,7 @@ void MusicCloudUploadTableWidget::addCellItem(int index, const MusicSong &record
 {
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(MUSIC_DATA_ROLE, record.path());
+    item->setData(TTK_DATA_ROLE, record.path());
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
@@ -168,7 +168,7 @@ void MusicCloudUploadTableWidget::addCellItem(int index, const MusicSong &record
                       item = new QTableWidgetItem(record.sizeStr());
     QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
-    item->setData(MUSIC_TIME_ROLE, record.addTimeStr());
+    item->setData(TTK_TIME_ROLE, record.addTimeStr());
     setItem(index, 2, item);
 
     setFixedHeight(totalHeight());

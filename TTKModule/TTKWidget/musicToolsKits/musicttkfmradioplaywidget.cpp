@@ -172,14 +172,14 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     m_ui->itemTree->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
     m_ui->itemTree->setFocusPolicy(Qt::NoFocus);
 
-    MusicLabelDelegate *delegateTitle = new MusicLabelDelegate(this);
-    delegateTitle->setModuleMode(MusicAbstractDelegate::DisplayMode);
+    TTKLabelItemDelegate *delegateTitle = new TTKLabelItemDelegate(this);
+    delegateTitle->setModuleMode(TTKAbstractItemDelegate::DisplayMode);
     delegateTitle->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     delegateTitle->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->itemTree->setItemDelegateForColumn(0, delegateTitle);
 
-    MusicLabelDelegate *delegateName = new MusicLabelDelegate(this);
-    delegateName->setModuleMode(MusicAbstractDelegate::DisplayMode);
+    TTKLabelItemDelegate *delegateName = new TTKLabelItemDelegate(this);
+    delegateName->setModuleMode(TTKAbstractItemDelegate::DisplayMode);
     delegateName->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     delegateName->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->itemTree->setItemDelegateForColumn(1, delegateName);
@@ -296,15 +296,15 @@ void MusicTTKFMRadioPlayWidget::initialize()
     for(const MusicFMCategory &category : categorys)
     {
         QTreeWidgetItem *item = new QTreeWidgetItem(m_ui->itemTree);
-        item->setData(0, MUSIC_DISPLAY_ROLE, category.m_category);
+        item->setData(0, TTK_DISPLAY_ROLE, category.m_category);
         m_ui->itemTree->addTopLevelItem(item);
 
         for(const MusicFMChannel &channel : category.m_items)
         {
             QTreeWidgetItem *it = new QTreeWidgetItem(item);
-            it->setData(0, MUSIC_DATA_ROLE, index++);
-            it->setData(0, MUSIC_DISPLAY_ROLE, channel.m_name);
-            it->setData(1, MUSIC_DISPLAY_ROLE, channel.m_location);
+            it->setData(0, TTK_DATA_ROLE, index++);
+            it->setData(0, TTK_DISPLAY_ROLE, channel.m_name);
+            it->setData(1, TTK_DISPLAY_ROLE, channel.m_location);
         }
         m_items << category.m_items;
     }
@@ -361,7 +361,7 @@ int MusicTTKFMRadioPlayWidget::indexValid(QTreeWidgetItem *item) const
     }
 
     bool ok;
-    const int index = item->data(0, MUSIC_DATA_ROLE).toInt(&ok);
+    const int index = item->data(0, TTK_DATA_ROLE).toInt(&ok);
     if(!ok || index < 0 || index >= m_items.count())
     {
         return -1;
@@ -397,9 +397,9 @@ void MusicTTKFMRadioPlayWidget::addButtonClicked()
         }
 
         QTreeWidgetItem *it = new QTreeWidgetItem(item);
-        it->setData(0, MUSIC_DATA_ROLE, m_items.count() - 1);
-        it->setData(0, MUSIC_DISPLAY_ROLE, channel.m_name);
-        it->setData(1, MUSIC_DISPLAY_ROLE, channel.m_location);
+        it->setData(0, TTK_DATA_ROLE, m_items.count() - 1);
+        it->setData(0, TTK_DISPLAY_ROLE, channel.m_name);
+        it->setData(1, TTK_DISPLAY_ROLE, channel.m_location);
 
         MusicFMConfigManager manager;
         manager.writeBuffer(m_favItem);
@@ -432,7 +432,7 @@ void MusicTTKFMRadioPlayWidget::deleteButtonClicked()
 
     for(int i = index - offset + 1; i < item->parent()->childCount(); ++i)
     {
-        item->parent()->child(i)->setData(0, MUSIC_DATA_ROLE, offset + i - 1);
+        item->parent()->child(i)->setData(0, TTK_DATA_ROLE, offset + i - 1);
     }
 
     item->parent()->removeChild(item);

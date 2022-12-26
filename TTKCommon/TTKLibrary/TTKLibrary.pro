@@ -67,6 +67,7 @@ HEADERS += \
     $$PWD/ttkcryptographichash.h \
     $$PWD/ttkdesktopwrapper.h \
     $$PWD/ttkglobalhelper.h \
+    $$PWD/ttkitemdelegate.h \
     $$PWD/ttklibrary.h \
     $$PWD/ttksemaphoreloop.h \
     $$PWD/ttksuperenum.h \
@@ -87,6 +88,7 @@ SOURCES += \
     $$PWD/ttkcryptographichash.cpp \
     $$PWD/ttkdesktopwrapper.cpp \
     $$PWD/ttkglobalhelper.cpp \
+    $$PWD/ttkitemdelegate.cpp \
     $$PWD/ttksemaphoreloop.cpp \
     $$PWD/ttksuperenum.cpp \
     $$PWD/ttktabbutton.cpp \

@@ -102,7 +102,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
         setRowHeight(index, TTK_ITEM_SIZE_XL);
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_DATA_ROLE, channel.m_coverUrl);
+        item->setData(TTK_DATA_ROLE, channel.m_coverUrl);
         setItem(index, 0, item);
 
                           item = new QTableWidgetItem;

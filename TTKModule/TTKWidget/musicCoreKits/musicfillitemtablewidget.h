@@ -22,7 +22,7 @@
 #include "musicsong.h"
 #include "musicabstracttablewidget.h"
 
-class MusicCheckBoxDelegate;
+class TTKCheckBoxItemDelegate;
 
 /*! @brief The class of the fill item table widget.
  * @author Greedysky <greedysky@163.com>
@@ -58,7 +58,7 @@ public Q_SLOTS:
     void checkedItemsStatus(bool check);
 
 protected:
-    MusicCheckBoxDelegate *m_checkBoxDelegate;
+    TTKCheckBoxItemDelegate *m_checkBoxDelegate;
 
 };
 

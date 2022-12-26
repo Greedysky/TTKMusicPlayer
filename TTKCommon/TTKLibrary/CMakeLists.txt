@@ -25,6 +25,7 @@ set(MUSIC_HEADERS
   ttkcryptographichash.h
   ttkdesktopwrapper.h
   ttkglobalhelper.h
+  ttkitemdelegate.h
   ttklibrary.h
   ttksemaphoreloop.h
   ttksuperenum.h
@@ -46,6 +47,7 @@ set(MUSIC_SOURCES
   ttkcryptographichash.cpp
   ttkdesktopwrapper.cpp
   ttkglobalhelper.cpp
+  ttkitemdelegate.cpp
   ttksemaphoreloop.cpp
   ttksuperenum.cpp
   ttktabbutton.cpp
