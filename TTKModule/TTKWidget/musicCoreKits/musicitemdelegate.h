@@ -45,10 +45,9 @@ public:
     enum Module
     {
         Null = 0x0,
-        TextMode = 0x1,
-        DisplayMode = 0x2,
-        ElideMode = 0x4,
-        TreeMode = 0x8
+        DisplayMode = 0x1,
+        ElideMode = 0x2,
+        TreeMode = 0x4
     };
 
     /*!

@@ -5,7 +5,7 @@ MusicSingleManager::MusicSingleManager()
 
 }
 
-void MusicSingleManager::createObject(const QString &name, QObject *object)
+void MusicSingleManager::appendObject(const QString &name, QObject *object)
 {
     m_parameter[name] = object;
 }

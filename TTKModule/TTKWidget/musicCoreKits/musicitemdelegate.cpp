@@ -38,7 +38,6 @@ MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
       m_background(false)
 {
     m_checkBox = new QCheckBox;
-    m_checkBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_checkBox->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -65,8 +64,8 @@ void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     }
 
     painter->save();
-    const bool textMode = m_mode & MusicAbstractDelegate::TextMode;
-    if(textMode)
+    const bool displayMode = m_mode & MusicAbstractDelegate::DisplayMode;
+    if(displayMode)
     {
         m_checkBox->resize(option.rect.size());
         m_checkBox->setText(index.data(MUSIC_DISPLAY_ROLE).toString());
@@ -84,7 +83,7 @@ void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     {
         Q_EMIT TTKConst_cast(MusicCheckBoxDelegate*, this)->buttonChecked();
     }
-    painter->translate(textMode ? 0 : (option.rect.width() - 16) / 2, 0);
+    painter->translate(displayMode ? 0 : (option.rect.width() - 16) / 2, 0);
 
     m_checkBox->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
@@ -96,7 +95,6 @@ MusicProgressBarDelegate::MusicProgressBarDelegate(QObject *parent)
     : MusicAbstractDelegate(parent)
 {
     m_progress = new QProgressBar;
-    m_progress->setStyleSheet(MusicUIObject::MQSSProgressBar01);
     m_container = m_progress;
 }
 
@@ -134,7 +132,6 @@ MusicLabelDelegate::MusicLabelDelegate(QObject *parent)
 {
     m_label  = new QLabel;
     m_label->setAlignment(Qt::AlignCenter);
-    m_label->setStyleSheet(MusicUIObject::MQSSBackgroundStyle13);
     m_container = m_label;
 }
 
@@ -187,7 +184,6 @@ MusicPushButtonDelegate::MusicPushButtonDelegate(QObject *parent)
 {
     m_pushButton = new QPushButton;
     m_pushButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_pushButton->setStyleSheet(MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBorderStyle06 + MusicUIObject::MQSSBackgroundStyle10);
 #ifdef Q_OS_UNIX
     m_pushButton->setFocusPolicy(Qt::NoFocus);
 #endif

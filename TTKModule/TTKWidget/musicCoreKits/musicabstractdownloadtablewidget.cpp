@@ -10,6 +10,7 @@ MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *pare
       m_type(MusicObject::Record::Null)
 {
     m_progressBarDelegate = new MusicProgressBarDelegate(this);
+    m_progressBarDelegate->setStyleSheet(MusicUIObject::MQSSProgressBar01);
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
     G_CONNECTION_PTR->setValue(className(), this);

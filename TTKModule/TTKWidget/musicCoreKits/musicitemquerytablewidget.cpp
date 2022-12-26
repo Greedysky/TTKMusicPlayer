@@ -15,6 +15,7 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
     setColumnCount(8);
 
     m_labelDelegate = new MusicLabelDelegate(this);
+    m_labelDelegate->setStyleSheet(MusicUIObject::MQSSBackgroundStyle13);
 
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);

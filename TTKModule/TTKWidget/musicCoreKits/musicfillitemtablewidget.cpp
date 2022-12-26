@@ -11,6 +11,7 @@ MusicFillItemTableWidget::MusicFillItemTableWidget(QWidget *parent)
     MusicUtils::Widget::setTransparent(this, QColor(220, 220, 220));
 #endif
     m_checkBoxDelegate = new MusicCheckBoxDelegate(this);
+    m_checkBoxDelegate->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     setItemDelegateForColumn(0, m_checkBoxDelegate);
 }
 

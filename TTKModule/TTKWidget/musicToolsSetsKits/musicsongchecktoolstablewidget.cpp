@@ -4,6 +4,14 @@
 #include "musicnumberutils.h"
 #include "musicconnectionpool.h"
 
+static MusicPushButtonDelegate *MakeButtonDelegate(QObject *parent)
+{
+    MusicPushButtonDelegate *delegate = new MusicPushButtonDelegate(parent);
+    delegate->setStyleSheet(MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBorderStyle06 + MusicUIObject::MQSSBackgroundStyle10);
+    return delegate;
+}
+
+
 MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
 {
@@ -21,7 +29,7 @@ MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidg
     headerview->resizeSection(3, 54);
 #endif
 
-    setItemDelegateForColumn(3, new MusicPushButtonDelegate(this));
+    setItemDelegateForColumn(3, MakeButtonDelegate(this));
 }
 
 void MusicSongCheckToolsRenameTableWidget::addCellItems(const MusicSongCheckToolsRenameList &items)
@@ -95,8 +103,8 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
     headerview->resizeSection(6, 54);
 #endif
 
-    setItemDelegateForColumn(5, new MusicPushButtonDelegate(this));
-    setItemDelegateForColumn(6, new MusicPushButtonDelegate(this));
+    setItemDelegateForColumn(5, MakeButtonDelegate(this));
+    setItemDelegateForColumn(6, MakeButtonDelegate(this));
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
@@ -210,8 +218,8 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
     headerview->resizeSection(7, 54);
 #endif
 
-    setItemDelegateForColumn(6, new MusicPushButtonDelegate(this));
-    setItemDelegateForColumn(7, new MusicPushButtonDelegate(this));
+    setItemDelegateForColumn(6, MakeButtonDelegate(this));
+    setItemDelegateForColumn(7, MakeButtonDelegate(this));
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());

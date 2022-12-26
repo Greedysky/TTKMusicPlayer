@@ -33,7 +33,7 @@
     MusicSingleManager *manager = G_SINGLE_MANAGER_PTR;                    \
     if(!manager->contains(#name))                                          \
     {                                                                      \
-        manager->createObject(#name, new name(parent));                    \
+        manager->appendObject(#name, new name(parent));                    \
     }                                                                      \
     name *w = TTKObject_cast(name*, manager->object(#name));               \
     MusicUtils::Widget::positionInCenter(w);                               \
@@ -54,7 +54,7 @@ public:
     /*!
      * Add object by type name.
      */
-    void createObject(const QString &name, QObject *object);
+    void appendObject(const QString &name, QObject *object);
     /*!
      * Remove object by type name.
      */

@@ -43,6 +43,7 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
     m_progressBarDelegate = new MusicProgressBarDelegate(this);
+    m_progressBarDelegate->setStyleSheet(MusicUIObject::MQSSProgressBar01);
     setItemDelegateForColumn(2, m_progressBarDelegate);
 
     m_manager = new QNetworkAccessManager(this);
