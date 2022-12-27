@@ -1,5 +1,5 @@
-#include "outputwaveout.h"
 #include "outputwaveoutfactory.h"
+#include "outputwaveout.h"
 
 OutputProperties OutputWaveOutFactory::properties() const
 {

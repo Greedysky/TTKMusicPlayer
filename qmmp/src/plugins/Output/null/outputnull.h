@@ -30,9 +30,9 @@ class OutputNull : public Output
 {
 public:
     OutputNull();
-    ~OutputNull();
+    virtual ~OutputNull();
 
-    virtual bool initialize(quint32, ChannelMap map, Qmmp::AudioFormat format) override final;
+    virtual bool initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format) override final;
 
     virtual qint64 latency() override final;
     virtual qint64 writeAudio(unsigned char *data, qint64 maxSize) override final;

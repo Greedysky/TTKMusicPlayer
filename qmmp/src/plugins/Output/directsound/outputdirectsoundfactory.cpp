@@ -1,5 +1,5 @@
-#include "outputdirectsound.h"
 #include "outputdirectsoundfactory.h"
+#include "outputdirectsound.h"
 
 OutputProperties OutputDirectSoundFactory::properties() const
 {

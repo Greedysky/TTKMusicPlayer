@@ -38,9 +38,9 @@ class OutputALSA : public Output
 {
 public:
     OutputALSA();
-    ~OutputALSA();
+    virtual ~OutputALSA();
 
-    virtual bool initialize(quint32, ChannelMap map, Qmmp::AudioFormat format) override final;
+    virtual bool initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format) override final;
 
     virtual qint64 latency() override final;
     virtual qint64 writeAudio(unsigned char *data, qint64 maxSize) override final;
@@ -90,6 +90,7 @@ private:
     void parseMixerName(char *str, char **name, int *index);
     int getMixer(snd_mixer_t **m_mixer, QString card);
     snd_mixer_elem_t* getMixerElem(snd_mixer_t *m_mixer, char *name, int index);
+
     snd_mixer_t *m_mixer = nullptr;
     snd_mixer_elem_t *pcm_element = nullptr;
 

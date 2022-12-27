@@ -1,5 +1,5 @@
-#include "outputnull.h"
 #include "outputnullfactory.h"
+#include "outputnull.h"
 
 OutputProperties OutputNullFactory::properties() const
 {

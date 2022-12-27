@@ -8,7 +8,5 @@ win32{
 }
 
 unix{
-  contains(CONFIG, ALSA_PLUGIN){
-      SUBDIRS += alsa
-  }
+    SUBDIRS += alsa pulseaudio oss oss4
 }

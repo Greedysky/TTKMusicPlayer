@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2022 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2022 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,57 +18,77 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef OUTPUTWAVEOUT_H
-#define OUTPUTWAVEOUT_H
+#ifndef OUTPUTOSS4_H
+#define OUTPUTOSS4_H
 
-#include <stdio.h>
-#include <windows.h>
-#include <qmmp/volume.h>
+#include <fcntl.h>
+#include <unistd.h>
+
 #include <qmmp/output.h>
+#include <qmmp/volume.h>
+
+extern "C" {
+#ifdef HAVE_SYS_SOUNDCARD_H
+#  include <sys/soundcard.h>
+#else
+#  include <soundcard.h>
+#endif
+}
+
+#define DEFAULT_DEV "/dev/dsp"
+#define DEFAULT_MIXER "/dev/mixer"
+
+class VolumeOSS4;
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class OutputWaveOut : public Output
+class OutputOSS4 : public Output
 {
 public:
-    OutputWaveOut();
-    virtual ~OutputWaveOut();
+    OutputOSS4();
+    virtual ~OutputOSS4();
 
     virtual bool initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format) override final;
 
     virtual qint64 latency() override final;
-    virtual qint64 writeAudio(unsigned char *data, qint64 size) override final;
+    virtual qint64 writeAudio(unsigned char *data, qint64 maxSize) override final;
     virtual void drain() override final;
-    virtual void suspend() override final;
-    virtual void resume() override final;
     virtual void reset() override final;
 
-private:
-    // helper functions
-    void status();
-    void uninitialize();
+    int fd();
 
-    qint64 m_totalWritten = 0;
-    qint32 m_frameSize = 0;
+    static OutputOSS4 *instance();
+    static VolumeOSS4 *m_vc;
+
+private:
+    void post();
+    void sync();
+
+    QString m_audio_device;
+    int m_audio_fd = -1;
+    static OutputOSS4 *m_instance;
+    static Qmmp::ChannelPosition m_oss_pos[16];
 
 };
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class VolumeWaveOut : public Volume
+class VolumeOSS4 : public Volume
 {
 public:
-    VolumeWaveOut();
-    virtual ~VolumeWaveOut();
+    VolumeOSS4();
+    virtual ~VolumeOSS4();
 
     virtual void setVolume(const VolumeSettings &vol) override final;
     virtual VolumeSettings volume() const override final;
 
-    bool isSupported() const;
+    void restore();
+
+private:
+    int m_volume;
 
 };
-
 
 #endif

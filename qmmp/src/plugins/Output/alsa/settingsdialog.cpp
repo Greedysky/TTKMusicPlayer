@@ -1,8 +1,6 @@
 #include <QSettings>
 #include <qmmp/qmmp.h>
-extern "C" {
-#include <alsa/asoundlib.h>
-}
+
 #include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)

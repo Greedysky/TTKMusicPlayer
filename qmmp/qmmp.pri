@@ -38,8 +38,6 @@ CONFIG += USE_STATIC_LIBRARY
 
 #Comment/uncomment this if you want to change plugins list
 
-CONFIG += ALSA_PLUGIN
-
 CONFIG += BITCRUSHER_PLUGIN
 CONFIG += BS2B_PLUGIN
 CONFIG += CRYSTALIZER_PLUGIN

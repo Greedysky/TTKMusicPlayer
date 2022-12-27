@@ -1,6 +1,7 @@
 /***************************************************************************
- *   Copyright (C) 2009-2022 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
+ *   Copyright (C) 2007 by Uriy Zhuravlev stalkerg@gmail.com               *
+ *                                                                         *
+ *   Copyright (c) 2000-2001 Brad Hughes bhughes@trolltech.com             *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -18,55 +19,70 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef OUTPUTWAVEOUT_H
-#define OUTPUTWAVEOUT_H
+#ifndef OUTPUTOSS_H
+#define OUTPUTOSS_H
 
-#include <stdio.h>
-#include <windows.h>
-#include <qmmp/volume.h>
+#include <fcntl.h>
+#include <unistd.h>
+
 #include <qmmp/output.h>
+#include <qmmp/volume.h>
+
+extern "C" {
+#ifdef HAVE_SYS_SOUNDCARD_H
+#  include <sys/soundcard.h>
+#else
+#  include <soundcard.h>
+#  include <sys/ioctl.h>
+#endif
+}
 
 /**
-    @author Ilya Kotov <forkotov02@ya.ru>
+    @author Yuriy Zhuravlev <stalkerg@gmail.com>
 */
-class OutputWaveOut : public Output
+class OutputOSS : public Output
 {
 public:
-    OutputWaveOut();
-    virtual ~OutputWaveOut();
+    OutputOSS();
+    virtual ~OutputOSS();
 
     virtual bool initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format) override final;
 
     virtual qint64 latency() override final;
-    virtual qint64 writeAudio(unsigned char *data, qint64 size) override final;
+    virtual qint64 writeAudio(unsigned char *data, qint64 maxSize) override final;
     virtual void drain() override final;
-    virtual void suspend() override final;
-    virtual void resume() override final;
     virtual void reset() override final;
 
 private:
-    // helper functions
-    void status();
-    void uninitialize();
+    //oss
+    void post();
+    void sync();
 
-    qint64 m_totalWritten = 0;
-    qint32 m_frameSize = 0;
+    QString m_audio_device;
+    int m_audio_fd = -1;
 
 };
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class VolumeWaveOut : public Volume
+class VolumeOSS : public Volume
 {
 public:
-    VolumeWaveOut();
-    virtual ~VolumeWaveOut();
+    VolumeOSS();
+    virtual ~VolumeOSS();
 
     virtual void setVolume(const VolumeSettings &vol) override final;
     virtual VolumeSettings volume() const override final;
 
-    bool isSupported() const;
+private:
+    void openMixer();
+
+    //oss mixer
+    QString m_audio_device;
+    int m_mixer_fd = -1;
+    QString m_mixer_device;
+    bool m_master = true;
 
 };
 

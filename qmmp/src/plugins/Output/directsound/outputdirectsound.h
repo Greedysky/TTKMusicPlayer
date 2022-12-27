@@ -38,9 +38,9 @@ class OutputDirectSound : public Output
 {
 public:
     OutputDirectSound();
-    ~OutputDirectSound();
+    virtual ~OutputDirectSound();
 
-    virtual bool initialize(quint32, ChannelMap map,  Qmmp::AudioFormat format) override final;
+    virtual bool initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format) override final;
 
     virtual qint64 latency() override final;
     virtual qint64 writeAudio(unsigned char *data, qint64 size) override final;
@@ -49,7 +49,7 @@ public:
     virtual void resume() override final;
     virtual void reset() override final;
 
-    //volume control
+    // volume control
     static OutputDirectSound *instance;
     static VolumeDirectSound *volumeControl;
     IDirectSoundBuffer8 *secondaryBuffer();
@@ -85,10 +85,11 @@ class VolumeDirectSound : public Volume
 {
 public:
     VolumeDirectSound();
-    ~VolumeDirectSound();
+    virtual ~VolumeDirectSound();
 
     virtual void setVolume(const VolumeSettings &vol) override final;
     virtual VolumeSettings volume() const override final;
+
     void restore();
 
 private:

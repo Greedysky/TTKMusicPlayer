@@ -430,7 +430,6 @@ VolumeSettings VolumeALSA::volume() const
 
 Volume::VolumeFlags VolumeALSA::flags() const
 {
-
     return Volume::HasNotifySignal;
 }
 

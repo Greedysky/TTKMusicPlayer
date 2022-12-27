@@ -1,5 +1,5 @@
-#include "outputalsa.h"
 #include "outputalsafactory.h"
+#include "outputalsa.h"
 #include "settingsdialog.h"
 
 OutputProperties OutputALSAFactory::properties() const

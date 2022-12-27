@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2022 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2022 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,57 +18,86 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef OUTPUTWAVEOUT_H
-#define OUTPUTWAVEOUT_H
+#ifndef OUTPUTPULSEAUDIO_H
+#define OUTPUTPULSEAUDIO_H
 
-#include <stdio.h>
-#include <windows.h>
-#include <qmmp/volume.h>
+extern "C"{
+#include <pulse/pulseaudio.h>
+}
+
+#include <QHash>
 #include <qmmp/output.h>
+#include <qmmp/volume.h>
+
+class VolumePulseAudio;
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class OutputWaveOut : public Output
+class OutputPulseAudio : public Output
 {
 public:
-    OutputWaveOut();
-    virtual ~OutputWaveOut();
+    OutputPulseAudio();
+    virtual ~OutputPulseAudio();
 
     virtual bool initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format) override final;
 
     virtual qint64 latency() override final;
-    virtual qint64 writeAudio(unsigned char *data, qint64 size) override final;
+    virtual qint64 writeAudio(unsigned char *data, qint64 maxSize) override final;
     virtual void drain() override final;
+    virtual void reset() override final;
     virtual void suspend() override final;
     virtual void resume() override final;
-    virtual void reset() override final;
+
+    void setMuted(bool mute);
+    void setVolume(const VolumeSettings &v);
+
+    static OutputPulseAudio *instance;
+    static VolumePulseAudio *volumeControl;
 
 private:
     // helper functions
-    void status();
     void uninitialize();
+    bool isReady() const;
+    void poll();
+    bool process(pa_operation *op);
+    //callbacks
+    static void subscribe_cb(pa_context *ctx, pa_subscription_event_type t, uint32_t index, void *data);
+    static void info_cb(pa_context *ctx, const pa_sink_input_info * info, int, void * data);
+    static void context_success_cb(pa_context *, int success, void *data);
+    static void stream_success_cb(pa_stream *, int success, void *data);
 
-    qint64 m_totalWritten = 0;
-    qint32 m_frameSize = 0;
+    pa_mainloop *m_loop = nullptr;
+    pa_context *m_ctx = nullptr;
+    pa_stream *m_stream = nullptr;
+    QHash <Qmmp::ChannelPosition, pa_channel_position_t> m_pa_channels;
 
 };
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class VolumeWaveOut : public Volume
+class VolumePulseAudio : public Volume
 {
 public:
-    VolumeWaveOut();
-    virtual ~VolumeWaveOut();
+    VolumePulseAudio();
+    virtual ~VolumePulseAudio();
+
+    void updateVolume(const pa_cvolume &v, bool muted);
 
     virtual void setVolume(const VolumeSettings &vol) override final;
     virtual VolumeSettings volume() const override final;
+    virtual bool isMuted() const override final;
+    virtual void setMuted(bool mute) override final;
+    virtual VolumeFlags flags() const override final;
 
-    bool isSupported() const;
+    static VolumeSettings cvolumeToVolumeSettings(const pa_cvolume &v);
+    static pa_cvolume volumeSettingsToCvolume(const VolumeSettings &v, int channels);
+
+private:
+    VolumeSettings m_volume;
+    bool m_muted = false;
 
 };
-
 
 #endif

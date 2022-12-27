@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2009-2022 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
+ *   Copyright (C) 2007 by Zhuravlev Uriy                                  *
+ *   stalkerg@gmail.com                                                    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -18,57 +18,26 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef OUTPUTWAVEOUT_H
-#define OUTPUTWAVEOUT_H
+#ifndef SETTINGSDIALOG_H
+#define SETTINGSDIALOG_H
 
-#include <stdio.h>
-#include <windows.h>
-#include <qmmp/volume.h>
-#include <qmmp/output.h>
+#include "ui_settingsdialog.h"
 
 /**
-    @author Ilya Kotov <forkotov02@ya.ru>
+    @author Yuriy Zhuravlev <stalkerg@gmail.com>
 */
-class OutputWaveOut : public Output
+class SettingsDialog : public QDialog
 {
+    Q_OBJECT
 public:
-    OutputWaveOut();
-    virtual ~OutputWaveOut();
+    explicit SettingsDialog(QWidget *parent = nullptr);
 
-    virtual bool initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format) override final;
-
-    virtual qint64 latency() override final;
-    virtual qint64 writeAudio(unsigned char *data, qint64 size) override final;
-    virtual void drain() override final;
-    virtual void suspend() override final;
-    virtual void resume() override final;
-    virtual void reset() override final;
+public slots:
+    virtual void accept() override final;
 
 private:
-    // helper functions
-    void status();
-    void uninitialize();
-
-    qint64 m_totalWritten = 0;
-    qint32 m_frameSize = 0;
+    Ui::SettingsDialog m_ui;
 
 };
-
-/**
-    @author Ilya Kotov <forkotov02@ya.ru>
-*/
-class VolumeWaveOut : public Volume
-{
-public:
-    VolumeWaveOut();
-    virtual ~VolumeWaveOut();
-
-    virtual void setVolume(const VolumeSettings &vol) override final;
-    virtual VolumeSettings volume() const override final;
-
-    bool isSupported() const;
-
-};
-
 
 #endif
