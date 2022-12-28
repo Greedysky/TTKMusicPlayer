@@ -892,6 +892,22 @@ too high may cause clipping!</source>
         <translation>使用 snd_pcm_pause 功能</translation>
     </message>
     <message>
+        <source>OSS Plugin Settings</source>
+        <translation>OSS插件设置</translation>
+    </message>
+    <message>
+        <source>Mixer device</source>
+        <translation>混频设备</translation>
+    </message>
+    <message>
+        <source>PCM over Master</source>
+        <translation>PCM优先于Master</translation>
+    </message>
+    <message>
+        <source>OSS4 Plugin Settings</source>
+        <translation>OSS4插件设置</translation>
+    </message>
+    <message>
         <source>OpenMPT Plugin Settings</source>
         <translation>OpenMPT插件设置</translation>
     </message>
