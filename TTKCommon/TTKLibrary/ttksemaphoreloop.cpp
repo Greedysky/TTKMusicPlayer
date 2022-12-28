@@ -19,6 +19,12 @@ void TTKSemaphoreLoop::quit()
     return QEventLoop::quit();
 }
 
+void TTKSemaphoreLoop::exit()
+{
+    m_timer.stop();
+    return QEventLoop::exit();
+}
+
 int TTKSemaphoreLoop::exec(ProcessEventsFlags flags)
 {
     m_timer.start();

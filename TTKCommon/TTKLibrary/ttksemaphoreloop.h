@@ -47,6 +47,10 @@ public Q_SLOTS:
      * Event loop quit.
      */
     void quit();
+    /*!
+     * Event loop exit.
+     */
+    void exit();
 
 private:
     QTimer m_timer;

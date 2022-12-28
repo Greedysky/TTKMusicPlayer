@@ -5,6 +5,7 @@
 #include "musictkplconfigmanager.h"
 #include "musichotkeymanager.h"
 #include "musicfileutils.h"
+#include "ttkversion.h"
 
 MusicConsoleModule::MusicConsoleModule(QObject *parent)
     : QObject(parent),
@@ -66,6 +67,8 @@ MusicConsoleModule::~MusicConsoleModule()
 
 bool MusicConsoleModule::initialize(const QCoreApplication &app)
 {
+    TTK_LOG_STREAM("\n" APP_NAME << "Console Module" << TTK_VERSION_STR "\n");
+
     TTKCommandLineOption op1("-u", "--url", "Music play url path");
     TTKCommandLineOption op2("-d", "--dir", "Music play dir path");
     TTKCommandLineOption op3("-l", "--playlist", "Music playlist url path");
@@ -87,12 +90,12 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
         const QString &path = parser.value(op1);
         if(path.isEmpty())
         {
-            TTK_ERROR_STREAM("Music play url path is empty");
+            TTK_LOG_STREAM("Music play url path is empty");
             return false;
         }
         else
         {
-            TTK_INFO_STREAM("Add play url path: " << path);
+            TTK_LOG_STREAM("Add play url path: " << path);
             m_playlist->add(0, path);
             m_playlist->setCurrentIndex(0);
         }
@@ -102,14 +105,14 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
         const QString &path = parser.value(op2);
         if(path.isEmpty())
         {
-            TTK_ERROR_STREAM("Music play dir path is empty");
+            TTK_LOG_STREAM("Music play dir path is empty");
             return false;
         }
         else
         {
             for(const QFileInfo &fin : MusicUtils::File::fileInfoListByPath(path, MusicFormats::supportMusicInputFilterFormats()))
             {
-                TTK_INFO_STREAM("Add play url path: " << fin.absoluteFilePath());
+                TTK_LOG_STREAM("Add play url path: " << fin.absoluteFilePath());
                 m_playlist->append(0, fin.absoluteFilePath());
             }
 
@@ -124,21 +127,21 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
         const QString &path = parser.value(op3);
         if(path.isEmpty())
         {
-            TTK_ERROR_STREAM("Music playlist path is empty");
+            TTK_LOG_STREAM("Music playlist path is empty");
             return false;
         }
         else
         {
             if(FILE_SUFFIX(QFileInfo(path)) != TPL_FILE_SUFFIX)
             {
-                TTK_INFO_STREAM("Music playlist format not support");
+                TTK_LOG_STREAM("Music playlist format not support");
                 return false;
             }
 
             MusicTKPLConfigManager manager;
             if(!manager.fromFile(path))
             {
-                TTK_ERROR_STREAM("Music playlist read error");
+                TTK_LOG_STREAM("Music playlist read error");
                 return false;
             }
 
@@ -149,7 +152,7 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
             {
                 for(const MusicSong &song : qAsConst(item.m_songs))
                 {
-                    TTK_INFO_STREAM("Add play url path: " << song.path());
+                    TTK_LOG_STREAM("Add play url path: " << song.path());
                     m_playlist->append(0, song.path());
                 }
             }
@@ -162,11 +165,11 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
     }
     else
     {
-        TTK_ERROR_STREAM("Options unknown error");
+        TTK_LOG_STREAM("Options unknown error");
         return false;
     }
 
-    TTK_INFO_STREAM("Music Files count: " << m_playlist->count() << "\n");
+    TTK_LOG_STREAM("Music Files count: " << m_playlist->count() << "\n");
 
     m_player->play();
     m_player->setVolume(m_volume);
@@ -180,13 +183,13 @@ void MusicConsoleModule::positionChanged(qint64 position)
 
 void MusicConsoleModule::currentIndexChanged(int index)
 {
-    TTK_INFO_STREAM("Current Play Indedx: " << index);
+    TTK_LOG_STREAM("Current Play Indedx: " << index);
     QTimer::singleShot(MT_S2MS, this, SLOT(resetVolume()));
     if(index == TTK_NORMAL_LEVEL)
     {
         m_player->stop();
         QTimer::singleShot(MT_S2MS, qApp, SLOT(quit()));
-        TTK_INFO_STREAM("Music play end and application quit now!");
+        TTK_LOG_STREAM("Music play end and application quit now!");
     }
 }
 
@@ -340,7 +343,7 @@ void MusicConsoleModule::musicEnhancedVocal()
 void MusicConsoleModule::print(qint64 position, qint64 duration) const
 {
     const MusicPlayItem &item = m_playlist->currentItem();
-    TTK_INFO_STREAM(QString("Music Name: %1, Time:[%2/%3], Volume:%4, PlaybackMode:%5, Enhance:%6")
+    TTK_LOG_STREAM(QString("Music Name: %1, Time:[%2/%3], Volume:%4, PlaybackMode:%5, Enhance:%6")
                 .arg(item.m_path, TTKTime::msecTime2LabelJustified(position), TTKTime::msecTime2LabelJustified(duration))
                 .arg(m_player->volume())
                 .arg(m_playbackMode, m_enhanced));

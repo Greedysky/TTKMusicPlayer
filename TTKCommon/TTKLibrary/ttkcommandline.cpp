@@ -50,7 +50,7 @@ QString TTKCommandLineParser::value(const TTKCommandLineOption &option) const
 
 void TTKCommandLineParser::printHelp() const
 {
-    QString text = "\nOptions:\n";
+    QString text = "TTK Command Line Module Options:\n";
     for(const TTKCommandLineOption &option : qAsConst(m_options))
     {
         const QString &first = option.first();
@@ -58,5 +58,5 @@ void TTKCommandLineParser::printHelp() const
         const QString &line = !second.isEmpty() ? first + ", " + second : first;
         text += line.leftJustified(20) + option.description() + "\n";
     }
-    TTK_INFO_STREAM(text);
+    TTK_LOG_STREAM(text);
 }
