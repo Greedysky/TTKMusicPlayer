@@ -152,8 +152,8 @@ public:
         }
 
         const QColor &color = enable ? (state ? QColor(0xE6, 0x73, 0x00) : QColor(0x00, 0x00, 0x00)) : QColor(0xBB, 0xBB, 0xBB);
-        setData(1, Qt::TextColorRole, color);
-        setData(2, Qt::TextColorRole, color);
+        setData(1, Qt::ForegroundRole, color);
+        setData(2, Qt::ForegroundRole, color);
     }
 
 private:
@@ -241,8 +241,8 @@ void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
             {
                 QTreeWidgetItem *it = parent->child(i);
                 it->setData(column, TTK_CHECKED_ROLE, Qt::Unchecked);
-                it->setData(1, Qt::TextColorRole, QColor(0x00, 0x00, 0x00));
-                it->setData(2, Qt::TextColorRole, QColor(0x00, 0x00, 0x00));
+                it->setData(1, Qt::ForegroundRole, QColor(0x00, 0x00, 0x00));
+                it->setData(2, Qt::ForegroundRole, QColor(0x00, 0x00, 0x00));
             }
         }
 
@@ -251,8 +251,8 @@ void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
         TTKDynamic_cast(MusicPluginItem*, item)->setEnabled(status != Qt::Checked);
 
         const QColor &color = (status != Qt::Checked) ? QColor(0xE6, 0x73, 0x00) : QColor(0x00, 0x00, 0x00);
-        item->setData(1, Qt::TextColorRole, color);
-        item->setData(2, Qt::TextColorRole, color);
+        item->setData(1, Qt::ForegroundRole, color);
+        item->setData(2, Qt::ForegroundRole, color);
     }
 
     MusicPluginItem *it = TTKDynamic_cast(MusicPluginItem*, item);

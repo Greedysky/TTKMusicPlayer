@@ -163,7 +163,7 @@ void TTKLabelItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
     }
 
     painter->save();
-    const QColor &color = index.data(Qt::TextColorRole).value<QColor>();
+    const QColor &color = index.data(Qt::ForegroundRole).value<QColor>();
     if(color.isValid())
     {
         QPalette plt(m_label->palette());
