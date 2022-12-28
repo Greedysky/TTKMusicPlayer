@@ -27,7 +27,6 @@ void FlowVUMeter::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-
     painter.drawPixmap(rect(), m_pixmap);
 
     float value = 0;

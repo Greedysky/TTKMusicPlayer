@@ -19,12 +19,12 @@ OutputOSS::~OutputOSS()
     }
 }
 
-void OutputOSS::post()
+void OutputOSS::post() const
 {
     ioctl(m_audio_fd, SNDCTL_DSP_POST, 0);
 }
 
-void OutputOSS::sync()
+void OutputOSS::sync() const
 {
     ioctl(m_audio_fd, SNDCTL_DSP_SYNC, 0);
 }
@@ -63,7 +63,6 @@ bool OutputOSS::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat forma
     if(ioctl(m_audio_fd, SNDCTL_DSP_SETFMT, &p) == -1)
         qWarning("OutputOSS: ioctl SNDCTL_DSP_SETFMT failed: %s",strerror(errno));
 
-
     if(ioctl(m_audio_fd, SNDCTL_DSP_CHANNELS, &chan) == -1)
         qWarning("OutputOSS: ioctl SNDCTL_DSP_CHANNELS failed: %s", strerror(errno));
 
@@ -74,7 +73,6 @@ bool OutputOSS::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat forma
             qWarning("OutputOSS: ioctl SNDCTL_DSP_STEREO failed: %s", strerror(errno));
         chan = param + 1;
     }
-
 
     if(ioctl(m_audio_fd, SNDCTL_DSP_SPEED, &freq) < 0)
         qWarning("OutputOSS: ioctl SNDCTL_DSP_SPEED failed: %s", strerror(errno));
@@ -157,7 +155,6 @@ VolumeSettings VolumeOSS::volume() const
     ioctl(m_mixer_fd, SOUND_MIXER_READ_DEVMASK, &devs);
     if((devs & SOUND_MASK_PCM) && !m_master)
         cmd = SOUND_MIXER_READ_PCM;
-
     else if((devs & SOUND_MASK_VOLUME) && m_master)
         cmd = SOUND_MIXER_READ_VOLUME;
     else
@@ -173,6 +170,7 @@ void VolumeOSS::openMixer()
 {
     if(m_mixer_fd >= 0)
         return;
+
     m_mixer_fd = open(m_mixer_device.toLatin1().constData(), O_RDWR);
     if(m_mixer_fd < 0)
     {

@@ -44,7 +44,7 @@ OutputOSS4::~OutputOSS4()
     m_instance = nullptr;
 }
 
-int OutputOSS4::fd()
+int OutputOSS4::fd() const
 {
     return m_audio_fd;
 }
@@ -54,12 +54,12 @@ OutputOSS4 *OutputOSS4::instance()
     return m_instance;
 }
 
-void OutputOSS4::post()
+void OutputOSS4::post() const
 {
     ioctl(m_audio_fd, SNDCTL_DSP_POST, 0);
 }
 
-void OutputOSS4::sync()
+void OutputOSS4::sync() const
 {
     ioctl(m_audio_fd, SNDCTL_DSP_SYNC, 0);
 }

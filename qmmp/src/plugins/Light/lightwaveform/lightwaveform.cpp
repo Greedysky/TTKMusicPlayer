@@ -38,8 +38,7 @@ bool LightWaveFormScanner::scan(const QString &path)
     if(source->ioDevice() && !source->ioDevice()->open(QIODevice::ReadOnly))
     {
         source->deleteLater();
-        qWarning("LightWaveFormScanner: cannot open input stream, error: %s",
-                 qPrintable(source->ioDevice()->errorString()));
+        qWarning("LightWaveFormScanner: cannot open input stream, error: %s", qPrintable(source->ioDevice()->errorString()));
         return false;
 
     }
@@ -178,7 +177,10 @@ void LightWaveFormScanner::run()
                     }
 
                     if(m_data.count() / 3 / channels % (NUMBER_OF_VALUES / 64) == 0)
+                    {
                         emit dataChanged();
+                    }
+
                     m_mutex.unlock();
                     counter = 0;
                 }
@@ -306,7 +308,7 @@ void LightWaveForm::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::black);
-    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     if(!m_pixmap.isNull())
     {

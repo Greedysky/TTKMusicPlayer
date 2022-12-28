@@ -54,9 +54,8 @@ public:
     virtual void reset() override final;
 
 private:
-    //oss
-    void post();
-    void sync();
+    void post() const;
+    void sync() const;
 
     QString m_audio_device;
     int m_audio_fd = -1;
@@ -85,6 +84,5 @@ private:
     bool m_master = true;
 
 };
-
 
 #endif

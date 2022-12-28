@@ -27,6 +27,9 @@ The TTKMusicplayer plugin for run
  * alsa
  * directsound
  * null
+ * oss
+ * oss4
+ * pulseaudio
  * wasapi
  * waveout
 ### Effect

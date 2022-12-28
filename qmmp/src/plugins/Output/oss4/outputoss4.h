@@ -56,14 +56,14 @@ public:
     virtual void drain() override final;
     virtual void reset() override final;
 
-    int fd();
+    int fd() const;
 
     static OutputOSS4 *instance();
     static VolumeOSS4 *m_vc;
 
 private:
-    void post();
-    void sync();
+    void post() const;
+    void sync() const;
 
     QString m_audio_device;
     int m_audio_fd = -1;
