@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/image">
-        <file alias="lb_no_module">../TTKResource/image/lb_no_module.png</file>
-    </qresource>
-</RCC>

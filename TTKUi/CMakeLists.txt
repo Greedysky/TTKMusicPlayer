@@ -13,7 +13,6 @@ add_definitions(-DQT_THREAD)
 
 SET(MUSIC_QRC
   ${MUSIC_UI_DIR}/MusicPlayer.qrc
-  ${MUSIC_UI_DIR}/MusicThirdParty.qrc
 )
 
 if(TTK_QT_VERSION VERSION_GREATER "4")

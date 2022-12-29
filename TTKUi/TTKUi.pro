@@ -25,8 +25,6 @@ include($$PWD/../TTKVersion.pri)
 DESTDIR = $$OUT_PWD/../bin/$$TTK_VERSION
 TARGET = TTKUi
 
-RESOURCES += \
-    $$PWD/MusicPlayer.qrc \
-    $$PWD/MusicThirdParty.qrc
+RESOURCES += $$PWD/MusicPlayer.qrc
     
 win32:RC_FILE = $$PWD/TTKUi.rc

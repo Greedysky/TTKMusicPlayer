@@ -492,6 +492,7 @@ QPixmap WaterWave::render(const QPixmap &pixmap, int value)
 
     QPixmap pix(d->m_rectangle.size());
     pix.fill(Qt::transparent);
+
     QPainter painter(&pix);
     painter.fillRect(d->m_rectangle, QColor(0xFF, 0xFF, 0xFF, qMin(2.55 * 2 * value, 255.0)));
     painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
