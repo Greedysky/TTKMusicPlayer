@@ -93,7 +93,7 @@ void TTKToastLabel::paintEvent(QPaintEvent *event)
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(Qt::NoPen);
     painter.setBrush(QColor(0, 0, 0, 175));
-    QtDrawRoundedRect(&painter, rect(), 6, 6);
+    painter.drawRoundedRect(rect(), 6, 6);
 
     painter.setPen(QColor(255, 255, 255));
     painter.drawText(rect(), Qt::AlignCenter, text());

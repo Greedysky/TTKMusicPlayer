@@ -40,22 +40,22 @@ void MusicQualityChoiceTableWidget::initialize()
     setRowCount(4);
 
     QTableWidgetItem *item = new QTableWidgetItem(tr("SD"));
-    QtItemSetForegroundColor(item, PREVIOUS_COLOR);
+    item->setForeground(PREVIOUS_COLOR);
     QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(0, 0, item);
 
                       item = new QTableWidgetItem(tr("HQ"));
-    QtItemSetForegroundColor(item, PREVIOUS_COLOR);
+    item->setForeground(PREVIOUS_COLOR);
     QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(1, 0, item);
 
                       item = new QTableWidgetItem(tr("SQ"));
-    QtItemSetForegroundColor(item, PREVIOUS_COLOR);
+    item->setForeground(PREVIOUS_COLOR);
     QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(2, 0, item);
 
                       item = new QTableWidgetItem(tr("CD"));
-    QtItemSetForegroundColor(item, PREVIOUS_COLOR);
+    item->setForeground(PREVIOUS_COLOR);
     QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(3, 0, item);
 
@@ -97,7 +97,7 @@ void MusicQualityChoiceTableWidget::itemCellEntered(int row, int column)
     QTableWidgetItem *it = item(m_previousColorRow, 0);
     if(it)
     {
-        QtItemSetForegroundColor(it, PREVIOUS_COLOR);
+        it->setForeground(PREVIOUS_COLOR);
     }
 
     MusicAbstractTableWidget::itemCellEntered(row, column);
@@ -106,7 +106,7 @@ void MusicQualityChoiceTableWidget::itemCellEntered(int row, int column)
     if(it)
     {
         setRowColor(row, QColor(20, 20, 20, 200));
-        QtItemSetForegroundColor(it, HOVER_COLOR);
+        it->setForeground(HOVER_COLOR);
     }
 }
 

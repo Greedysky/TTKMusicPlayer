@@ -56,7 +56,7 @@ void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionIt
         setItem(i, 1, item);
 
                       item = new QTableWidgetItem(v.m_name);
-        QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
+        item->setForeground(QColor(MusicUIObject::MQSSColor02));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 

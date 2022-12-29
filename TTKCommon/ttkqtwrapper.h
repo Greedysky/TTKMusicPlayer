@@ -57,44 +57,11 @@ namespace Qt
 #  define QtImageBytes(p) p.byteCount()
 #endif
 
-/// Item foreground color
-#if TTK_QT_VERSION_CHECK(5,13,0)
-#  define QtItemSetForegroundColor(p, c) p->setForeground(c)
-#else
-#  define QtItemSetForegroundColor(p, c) p->setTextColor(c)
-#endif
-
-#if TTK_QT_VERSION_CHECK(5,13,0)
-#  define QtItemForegroundColor(p) p->foreground().color()
-#else
-#  define QtItemForegroundColor(p) p->textColor()
-#endif
-
-/// Item background color
-#if TTK_QT_VERSION_CHECK(5,13,0)
-#  define QtItemSetBackgroundColor(p, c) p->setBackground(c)
-#else
-#  define QtItemSetBackgroundColor(p, c) p->setBackgroundColor(c)
-#endif
-
-#if TTK_QT_VERSION_CHECK(5,13,0)
-#  define QtItemBackgroundColor(p) p->background().color()
-#else
-#  define QtItemBackgroundColor(p) p->backgroundColor()
-#endif
-
 /// Item text alignment
 #if TTK_QT_VERSION_CHECK(6,4,0)
 #  define QtItemSetTextAlignment(p, a) p->setTextAlignment(Qt::Alignment(a));
 #else
 #  define QtItemSetTextAlignment(p, a) p->setTextAlignment(a);
-#endif
-
-/// Painter
-#if TTK_QT_VERSION_CHECK(5,13,0)
-#  define QtDrawRoundedRect(p, r, x, y) (p)->drawRoundedRect(r, x, y)
-#else
-#  define QtDrawRoundedRect(p, r, x, y) (p)->drawRoundRect(r, x, y)
 #endif
 
 /// Container swap

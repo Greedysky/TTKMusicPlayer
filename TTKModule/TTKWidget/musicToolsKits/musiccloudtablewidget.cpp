@@ -43,7 +43,7 @@ void MusicCloudDownloadTableWidget::addCellItem(int index, const MusicSong &reco
                       item = new QTableWidgetItem;
     item->setToolTip(record.name());
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
+    item->setForeground(QColor(MusicUIObject::MQSSColor01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 1, item);
 
@@ -52,7 +52,7 @@ void MusicCloudDownloadTableWidget::addCellItem(int index, const MusicSong &reco
     setItem(index, 2, item);
 
                       item = new QTableWidgetItem(record.sizeStr());
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
+    item->setForeground(QColor(MusicUIObject::MQSSColor01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
     item->setData(TTK_TIME_ROLE, record.addTimeStr());
     setItem(index, 3, item);
@@ -161,12 +161,12 @@ void MusicCloudUploadTableWidget::addCellItem(int index, const MusicSong &record
                       item = new QTableWidgetItem;
     item->setToolTip(record.name());
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
+    item->setForeground(QColor(MusicUIObject::MQSSColor01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 1, item);
 
                       item = new QTableWidgetItem(record.sizeStr());
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
+    item->setForeground(QColor(MusicUIObject::MQSSColor01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
     item->setData(TTK_TIME_ROLE, record.addTimeStr());
     setItem(index, 2, item);

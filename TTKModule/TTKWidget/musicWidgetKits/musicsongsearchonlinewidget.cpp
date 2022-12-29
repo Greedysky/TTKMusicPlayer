@@ -195,23 +195,23 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicResultInfoItem &s
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_songName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
+    item->setForeground(QColor(MusicUIObject::MQSSColor02));
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 30));
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
+    item->setForeground(QColor(MusicUIObject::MQSSColor02));
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_albumName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 30));
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
+    item->setForeground(QColor(MusicUIObject::MQSSColor02));
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem(songItem.m_duration);
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor02));
+    item->setForeground(QColor(MusicUIObject::MQSSColor02));
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;

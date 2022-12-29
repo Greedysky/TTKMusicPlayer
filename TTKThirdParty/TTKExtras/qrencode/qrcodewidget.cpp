@@ -196,7 +196,7 @@ void QRCodeQWidget::paintEvent(QPaintEvent *event)
         const double wrap_x = (width () - icon_width) / 2.0;
         const double wrap_y = (width () - icon_height) / 2.0;
         const QRectF wrap(wrap_x - 5, wrap_y - 5, icon_width + 10, icon_height + 10);
-        QtDrawRoundedRect(&painter, wrap, 50, 50);
+        painter.drawRoundedRect(wrap, 10, 10);
 
         QPixmap image(d->m_iconPath);
         const QRectF target(wrap_x, wrap_y, icon_width, icon_height);

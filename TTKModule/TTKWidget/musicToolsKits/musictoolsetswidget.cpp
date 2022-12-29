@@ -75,7 +75,7 @@ void MusicToolSetsWidget::addListWidgetItem()
     for(const ToolItem &pair : qAsConst(pairs))
     {
         QListWidgetItem *item = new QListWidgetItem(QIcon(pair.m_icon), pair.m_name, m_ui->listItemWidget);
-        QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
+        item->setForeground(QColor(MusicUIObject::MQSSColor01));
         item->setSizeHint(QSize(80, 90));
         m_ui->listItemWidget->addItem(item);
     }

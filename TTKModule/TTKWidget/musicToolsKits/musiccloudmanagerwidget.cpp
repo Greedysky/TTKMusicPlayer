@@ -381,7 +381,7 @@ void MusicCloudManagerTableWidget::addCellItem(const MusicCloudDataItem &data)
                       item = new QTableWidgetItem;
     item->setToolTip(data.m_dataItem.m_name);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
+    item->setForeground(QColor(MusicUIObject::MQSSColor01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(row, 1, item);
 
@@ -392,14 +392,14 @@ void MusicCloudManagerTableWidget::addCellItem(const MusicCloudDataItem &data)
                       item = new QTableWidgetItem;
     item->setToolTip(MusicUtils::Number::sizeByte2Label(data.m_dataItem.m_size));
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 5));
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
+    item->setForeground(QColor(MusicUIObject::MQSSColor01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
     setItem(row, 3, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(data.m_dataItem.m_putTime);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(4) - 5));
-    QtItemSetForegroundColor(item, QColor(MusicUIObject::MQSSColor01));
+    item->setForeground(QColor(MusicUIObject::MQSSColor01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
     setItem(row, 4, item);
 }
