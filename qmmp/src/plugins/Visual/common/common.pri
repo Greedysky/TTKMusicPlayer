@@ -1,4 +1,4 @@
-INCLUDEPATH += $$PWD/
+INCLUDEPATH += $$PWD
 
 HEADERS += $$PWD/fft.h \
            $$PWD/inlines.h \
