@@ -1,13 +1,35 @@
+# C++ objects and libs
+*.slo
+*.lo
+*.o
+*.a
+*.la
+*.lai
+
+# QtCreator
+*.bak
+*.autosave
+
+# Qt
 *.user
 *.user.*
 *.aps
-build-*/
+*.prl
+*.moc
+*moc_*
+qrc_*.cpp
+ui_*.h
+
+# Build
+Makefile*
+*build-*
+
+# Other
 *.*-pre1
-*.autosave
 *.*~
 *.uxf
-*.bak
+
+# Windows
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-
