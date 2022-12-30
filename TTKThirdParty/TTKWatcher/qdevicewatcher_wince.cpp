@@ -19,7 +19,7 @@
 
 typedef union {
 	DEVDETAIL d;
-	char pad[sizeof(DEVDETAIL)+MAX_DEVCLASS_NAMELEN]; //BYTE pad[sizeof(DEVDETAIL) + (MAX_PATH * sizeof(TCHAR))];
+	char pad[sizeof(DEVDETAIL) + MAX_DEVCLASS_NAMELEN]; //BYTE pad[sizeof(DEVDETAIL) + (MAX_PATH * sizeof(TCHAR))];
 } Q_DEVDETAIL;
 
 
@@ -99,7 +99,7 @@ void QDeviceWatcherPrivate::run()
 					event = new QDeviceChangeEvent(QDeviceChangeEvent::Remove, dev);
 				}
 				if (event != 0 && !event_receivers.isEmpty()) {
-                    for(QObject* obj : qAsConst(event_receivers)) {
+                    for(QObject *obj : qAsConst(event_receivers)) {
 						QCoreApplication::postEvent(obj, event, Qt::HighEventPriority);
 					}
 				}

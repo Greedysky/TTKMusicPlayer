@@ -120,7 +120,7 @@ LRESULT CALLBACK dw_internal_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM
 						events.append(new QDeviceChangeEvent(action, drive));
 				}
 				if (!events.isEmpty() && !watcher->event_receivers.isEmpty()) {
-                    for(QObject* obj : qAsConst(watcher->event_receivers)) {
+                    for(QObject *obj : qAsConst(watcher->event_receivers)) {
                         for(QDeviceChangeEvent *event : qAsConst(events)) {
 							QCoreApplication::postEvent(obj, event, Qt::HighEventPriority);
 						}
@@ -179,14 +179,17 @@ static HWND dw_create_internal_window(const void* userData)
     RegisterClassW(&wc);
 
     HWND hwnd = CreateWindowW(wc.lpszClassName,	   // classname
-                              wc.lpszClassName,	   // window name
-                              0,					  // style
-                              0, 0, 0, 0,			 // geometry
-                              0,					  // parent
-                              0,					  // menu handle
-                              hi,					 // application
-                              0);					 // windows creation data.
-	if (!hwnd) {
+                             wc.lpszClassName, // window name
+                             0,                // style
+                             0,
+                             0,
+                             0,
+                             0,  // geometry
+                             0,  // parent
+                             0,  // menu handle
+                             hi, // application
+                             0); // windows creation data.
+    if (!hwnd) {
 		qWarning("QDeviceWatcherPrivate: Failed to create internal window: %d", (int)GetLastError());
 #if CONFIG_NOTIFICATION
 	} else {

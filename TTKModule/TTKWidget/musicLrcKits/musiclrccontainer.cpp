@@ -126,9 +126,9 @@ void MusicLrcContainer::showLrcMakedWidget()
 void MusicLrcContainer::linkLrcStateChanged()
 {
     m_linkLocalLrc = !m_linkLocalLrc;
-    for(MusicLrcManager *w : qAsConst(m_lrcManagers))
+    for(MusicLrcManager *manager : qAsConst(m_lrcManagers))
     {
-        w->setVisible(m_linkLocalLrc);
+        manager->setVisible(m_linkLocalLrc);
     }
 }
 

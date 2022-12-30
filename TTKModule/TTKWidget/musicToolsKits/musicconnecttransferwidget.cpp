@@ -129,7 +129,7 @@ QStringList MusicConnectTransferWidget::selectedFiles() const
         return paths;
     }
 
-    for(int row : list)
+    for(int row : qAsConst(list))
     {
         mappedSearchRow(m_ui->searchLineEdit->text().length(), row);
         paths << m_containerItems[row].path();

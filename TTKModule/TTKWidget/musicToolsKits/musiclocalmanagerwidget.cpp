@@ -384,7 +384,7 @@ void MusicLocalManagerWidget::refreshItems()
     m_sizeLabel->setText(tr("   (Songs Totol: %1)").arg(files.size()));
 
     MusicSongMeta meta;
-    for(const QString &file : files)
+    for(const QString &file : qAsConst(files))
     {
         const bool state = meta.read(file);
 
@@ -473,7 +473,7 @@ void MusicLocalManagerWidget::updateStatisticWidget(int index, const MusicSongIn
 
     QString label;
     MusicSongStatisticItem statistic;
-    for(const MusicSongInfoItem &item : items)
+    for(const MusicSongInfoItem &item : qAsConst(items))
     {
         QString data;
         switch(index)

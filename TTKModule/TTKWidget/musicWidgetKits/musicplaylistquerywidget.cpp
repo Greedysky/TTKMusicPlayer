@@ -204,8 +204,8 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
         containTopLayout->addWidget(m_categoryButton);
         containTopLayout->addStretch(1);
 
-        QStringList titles{ tr("Recommend"), tr("Top"), tr("Hot"), tr("New") };
-        for(const QString &data : titles)
+        const QStringList titles{tr("Recommend"), tr("Top"), tr("Hot"), tr("New")};
+        for(const QString &data : qAsConst(titles))
         {
             QLabel *l = new QLabel(data, containTopWidget);
             l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MQSSColorStyle08));

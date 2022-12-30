@@ -293,13 +293,13 @@ void MusicTTKFMRadioPlayWidget::initialize()
     }
 
     int index = 0;
-    for(const MusicFMCategory &category : categorys)
+    for(const MusicFMCategory &category : qAsConst(categorys))
     {
         QTreeWidgetItem *item = new QTreeWidgetItem(m_ui->itemTree);
         item->setData(0, TTK_DISPLAY_ROLE, category.m_category);
         m_ui->itemTree->addTopLevelItem(item);
 
-        for(const MusicFMChannel &channel : category.m_items)
+        for(const MusicFMChannel &channel : qAsConst(category.m_items))
         {
             QTreeWidgetItem *it = new QTreeWidgetItem(item);
             it->setData(0, TTK_DATA_ROLE, index++);

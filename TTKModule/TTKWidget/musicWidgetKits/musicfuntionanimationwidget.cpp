@@ -283,7 +283,7 @@ void MusicSkinAnimationWidget::paintEvent(QPaintEvent *event)
 
 void MusicSkinAnimationWidget::switchToSelectedItemStyle(int index)
 {
-    for(QWidget *widget : m_container)
+    for(QWidget *widget : qAsConst(m_container))
     {
         widget->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBackgroundStyle01);
     }

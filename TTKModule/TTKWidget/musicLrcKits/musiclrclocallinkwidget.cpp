@@ -121,7 +121,7 @@ void MusicLrcLocalLinkWidget::searchInLocalLrc()
     const QStringList &list = QDir(MusicUtils::String::lrcDirPrefix()).entryList(QDir::Files |  QDir::Hidden | QDir::NoDotAndDotDot);
 
     MusicLocalDataItemList items;
-    for(const QString &var : list)
+    for(const QString &var : qAsConst(list))
     {
         if(var.contains(title, m_ui->fuzzyButton->isChecked() ? Qt::CaseInsensitive : Qt::CaseSensitive))
         {

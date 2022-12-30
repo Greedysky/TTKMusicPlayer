@@ -79,7 +79,7 @@ void QDeviceWatcherPrivate::parseDeviceInfo()
 	data.resize(UEVENT_BUFFER_SIZE * 2);
 	data.fill(0);
 	size_t len = read(socket_notifier->socket(), data.data(), UEVENT_BUFFER_SIZE * 2);
-        qDebug("read fro socket %d bytes", len);
+	qDebug("read fro socket %d bytes", len);
 	data.resize(len);
 	//socket_notifier->setEnabled(true); //for win
 #elif CONFIG_TCPSOCKET
@@ -109,7 +109,7 @@ void QDeviceWatcherPrivate::run()
         data.resize(UEVENT_BUFFER_SIZE * 2);
 		data.fill(0);
 		size_t len = recv(netlink_socket, data.data(), data.length(), 0);
-                qDebug("read fro socket %d bytes", len);
+		qDebug("read fro socket %d bytes", len);
 		data.resize(len);
 		data = data.replace(0, '\n').trimmed();
 		if (buffer.isOpen())
@@ -201,7 +201,7 @@ bool QDeviceWatcherPrivate::initialize()
 
 void QDeviceWatcherPrivate::parseLine(const QByteArray &line)
 {
-        qDebug("%s", line.constData());
+	qDebug("%s", line.constData());
 #define USE_REGEXP 0
 #if USE_REGEXP
 	const QRegExp rx("(\\w+)(?:@/.*/block/.*/)(\\w+)\\W*");
@@ -229,10 +229,10 @@ void QDeviceWatcherPrivate::parseLine(const QByteArray &line)
 		event = new QDeviceChangeEvent(QDeviceChangeEvent::Change, dev);
 	}
 
-        qDebug("%s %s", qPrintable(action_str), qPrintable(dev));
+	qDebug("%s %s", qPrintable(action_str), qPrintable(dev));
 
 	if (event != 0 && !event_receivers.isEmpty()) {
-        for(QObject* obj : qAsConst(event_receivers)) {
+        for(QObject *obj : qAsConst(event_receivers)) {
 			QCoreApplication::postEvent(obj, event, Qt::HighEventPriority);
 		}
 	}

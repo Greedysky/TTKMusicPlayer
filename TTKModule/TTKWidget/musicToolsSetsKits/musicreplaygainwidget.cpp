@@ -191,7 +191,7 @@ void MusicReplayGainWidget::addFileButtonClicked()
         setControlEnabled(false);
         const int orcount = m_paths.count();
 
-        for(const QString &path : files)
+        for(const QString &path : qAsConst(files))
         {
             if(!m_paths.contains(path))
             {

@@ -192,7 +192,7 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
 
     if(index == 1)
     {
-        for(MusicSoundEffectsItemWidget *item : m_items)
+        for(MusicSoundEffectsItemWidget *item : qAsConst(m_items))
         {
             item->setPluginEnabled(false);
         }

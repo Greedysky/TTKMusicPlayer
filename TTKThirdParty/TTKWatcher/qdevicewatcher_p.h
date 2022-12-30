@@ -50,9 +50,9 @@ class QDeviceWatcher;
  */
 class TTK_MODULE_EXPORT QDeviceWatcherPrivate
 #if CONFIG_THREAD
-		: public QThread
+	: public QThread
 #else
-		: public QObject
+	: public QObject
 #endif //CONFIG_THREAD
 {
 	Q_OBJECT
@@ -112,6 +112,5 @@ private:
     DASessionRef mSession;
 #endif //Q_OS_MAC
 };
-
 
 #endif // QDEVICEWATCHER_P_H
