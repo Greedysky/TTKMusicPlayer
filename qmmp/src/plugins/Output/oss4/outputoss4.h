@@ -32,6 +32,7 @@ extern "C" {
 #  include <sys/soundcard.h>
 #else
 #  include <soundcard.h>
+#  include <sys/ioctl.h>
 #endif
 }
 
