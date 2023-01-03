@@ -11,7 +11,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 #ifdef Q_OS_WIN
-    setFixedHeight(250);
+    setFixedHeight(270);
 #elif defined Q_OS_UNIX
     for(QAbstractButton *button : m_ui.buttonBox->buttons())
     {

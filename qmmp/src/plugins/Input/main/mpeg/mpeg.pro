@@ -27,5 +27,5 @@ unix{
 
 win32{
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag \
-            -L$$EXTRA_PREFIX/libmpg123/lib -lmpg123
+            -L$$EXTRA_PREFIX/libmpg123/lib -lmpg123 -lshlwapi
 }
