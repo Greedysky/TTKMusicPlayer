@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2022 by Ilya Kotov                                 *
+ *   Copyright (C) 2011-2022 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,51 +18,35 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef TAGEXTRACTOR_H
-#define TAGEXTRACTOR_H
+#ifndef DECODER_MPG123_H
+#define DECODER_MPG123_H
 
-#include <QMap>
+#include <mpg123.h>
+#include <qmmp/decoder.h>
 
-#include <taglib/id3v1tag.h>
-#include <taglib/id3v2tag.h>
-
-#include <qmmp/qmmp.h>
-
-class QIODevice;
-class QBuffer;
-class QByteArray;
-
-/**
-    @author Ilya Kotov <forkotov02@ya.ru>
-*/
-class TagExtractor
+class DecoderMPG123 : public Decoder
 {
 public:
-    explicit TagExtractor(QIODevice *input);
-    ~TagExtractor();
+    explicit DecoderMPG123(QIODevice *input);
+    virtual ~DecoderMPG123();
 
-    const QMap<Qmmp::MetaData, QString> id3v2tag() const;
-
-private:
-    QIODevice *m_input;
-
-};
-
-/**
-    @author Ilya Kotov <forkotov02@ya.ru>
-*/
-class ID3v2Tag : public TagLib::ID3v2::Tag
-{
-public:
-    ID3v2Tag(QByteArray *array, long offset);
-    ~ID3v2Tag();
-
-protected:
-    void read();
+    // standard decoder API
+    virtual bool initialize() override final;
+    virtual qint64 totalTime() const override final;
+    virtual int bitrate() const override final;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
+    virtual void seek(qint64 time) override final;
 
 private:
-    QBuffer *m_buf;
-    long m_offset;
+    void cleanup(mpg123_handle *handle);
+    void setMPG123Format(int encoding);
+
+    mpg123_handle *m_handle = nullptr;
+    mpg123_frameinfo m_frame_info;
+    qint64 m_totalTime = 0;
+    long m_rate = 0;
+    int m_mpg123_encoding = MPG123_ENC_SIGNED_16;
+    int m_errors = 0;
 
 };
 

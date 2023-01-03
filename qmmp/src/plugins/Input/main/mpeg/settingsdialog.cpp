@@ -11,7 +11,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 #ifdef Q_OS_WIN
-    setFixedHeight(320);
+    setFixedHeight(250);
 #elif defined Q_OS_UNIX
     for(QAbstractButton *button : m_ui.buttonBox->buttons())
     {
@@ -27,8 +27,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("MPEG");
-
-    m_ui.enableCrcCheckBox->setChecked(settings.value("enable_crc", false).toBool());
 
     int pos = m_ui.id3v1EncComboBox->findText(settings.value("ID3v1_encoding", "GB18030").toString());
     m_ui.id3v1EncComboBox->setCurrentIndex(pos);
@@ -47,7 +45,6 @@ void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("MPEG");
-    settings.setValue("enable_crc", m_ui.enableCrcCheckBox->isChecked());
     settings.setValue("ID3v1_encoding", m_ui.id3v1EncComboBox->currentText());
     settings.setValue("ID3v2_encoding", m_ui.id3v2EncComboBox->currentText());
     settings.setValue("tag_1", m_ui.firstTagComboBox->currentIndex());

@@ -4,8 +4,8 @@
 #include <QSettings>
 #include <QTextCodec>
 
-TagExtractor::TagExtractor(QIODevice *d)
-    : m_input(d)
+TagExtractor::TagExtractor(QIODevice *input)
+    : m_input(input)
 {
 
 }

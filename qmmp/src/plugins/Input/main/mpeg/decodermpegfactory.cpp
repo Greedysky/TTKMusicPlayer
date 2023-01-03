@@ -2,9 +2,7 @@
 #include "mpegmetadatamodel.h"
 #include "tagextractor.h"
 #include "settingsdialog.h"
-#ifdef WITH_MAD
-#  include "decoder_mad.h"
-#endif
+#include "decoder_mpg123.h"
 
 #include <QSettings>
 #include <QTextCodec>
@@ -34,7 +32,7 @@ bool DecoderMPEGFactory::canDecode(QIODevice *input) const
         if(input->isSequential())
         {
             if(header.tagSize() >= dataSize)
-                return true;
+                return false;
 
             dataSize -= header.tagSize();
             memmove(buf, buf + header.tagSize(), dataSize);
@@ -50,31 +48,29 @@ bool DecoderMPEGFactory::canDecode(QIODevice *input) const
     if(dataSize <= 0)
         return false;
 
-    struct mad_stream stream;
-    struct mad_header header;
-    struct mad_frame frame;
-    int dec_res;
+    mpg123_init();
+    mpg123_handle *handle = mpg123_new(nullptr, nullptr);
+    if(!handle)
+        return false;
 
-    mad_stream_init(&stream);
-    mad_header_init(&header);
-    mad_frame_init(&frame);
-    mad_stream_buffer(&stream, (unsigned char *) buf, dataSize);
-    stream.error = MAD_ERROR_NONE;
-
-    while((dec_res = mad_header_decode(&header, &stream)) == -1
-           && MAD_RECOVERABLE(stream.error))
-        ;
-
-    if(dec_res == 0)
+    if(mpg123_open_feed(handle) != MPG123_OK)
     {
-        while((dec_res = mad_frame_decode(&frame, &stream)) == -1
-               && MAD_RECOVERABLE(stream.error))
-            ;
+        mpg123_delete(handle);
+        return false;
     }
 
-    mad_stream_finish(&stream);
-    mad_frame_finish(&frame);
-    return dec_res == 0;
+    if(mpg123_format(handle, 44100, MPG123_STEREO, MPG123_ENC_SIGNED_16) != MPG123_OK)
+    {
+        mpg123_close(handle);
+        mpg123_delete(handle);
+        return false;
+    }
+
+    size_t out_size = 0;
+    const int ret = mpg123_decode(handle, (unsigned char*) buf, dataSize, nullptr, 0, &out_size);
+    mpg123_close(handle);
+    mpg123_delete(handle);
+    return ret == MPG123_DONE || ret == MPG123_NEW_FORMAT;
 }
 
 DecoderProperties DecoderMPEGFactory::properties() const
@@ -92,11 +88,7 @@ DecoderProperties DecoderMPEGFactory::properties() const
 Decoder *DecoderMPEGFactory::create(const QString &path, QIODevice *input)
 {
     Q_UNUSED(path);
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("MPEG");
-    const bool crc = settings.value("enable_crc", false).toBool();
-    settings.endGroup();
-    return new DecoderMAD(crc, input);
+    return new DecoderMPG123(input);
 }
 
 QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)

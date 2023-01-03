@@ -43,7 +43,7 @@ bool OutputOSS::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat forma
 
     int p;
     int chan = map.count();
-    switch (format)
+    switch(format)
     {
     case Qmmp::PCM_S16LE:
 #ifdef AFMT_S16_NE
