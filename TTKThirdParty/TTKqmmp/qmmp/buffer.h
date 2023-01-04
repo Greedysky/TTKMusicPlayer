@@ -21,10 +21,9 @@
 #ifndef BUFFER_H
 #define BUFFER_H
 
-#include <QSharedPointer>
 #include <stddef.h>
+#include <QSharedPointer>
 #include "trackinfo.h"
-#include "qmmp.h"
 
 #define QMMP_BLOCK_FRAMES 512
 

@@ -26,7 +26,6 @@
 #include <QTextCodec>
 #include <QFileInfo>
 #include "trackinfo.h"
-#include "qmmp_export.h"
 
 /*! @brief The CueParser class provides CUE parser.
  * @author Ilya Kotov <forkotov02@ya.ru>

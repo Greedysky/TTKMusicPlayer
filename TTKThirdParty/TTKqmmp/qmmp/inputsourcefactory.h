@@ -22,7 +22,6 @@
 #define INPUTSOURCEFACTORY_H
 
 #include <QStringList>
-#include "qmmp_export.h"
 #include "regularwrapper.h"
 
 class QStringList;

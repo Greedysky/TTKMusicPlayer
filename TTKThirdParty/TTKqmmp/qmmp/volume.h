@@ -21,8 +21,8 @@
 #ifndef VOLUME_H
 #define VOLUME_H
 
-#include <QObject>
 #include <QFlags>
+#include <QObject>
 #include "qmmp_export.h"
 
 /*! @brief The VolumeSettings structure stores volume levels

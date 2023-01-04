@@ -24,7 +24,6 @@
 #include <QObject>
 #include "qmmp_export.h"
 
-class QObject;
 class QWidget;
 class Effect;
 

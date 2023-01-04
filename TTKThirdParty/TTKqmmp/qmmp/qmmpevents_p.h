@@ -25,7 +25,6 @@
 #include <QHash>
 #include <QEvent>
 #include "trackinfo.h"
-#include "qmmp.h"
 
 #define EVENT_STATE_CHANGED (QEvent::Type(QEvent::User)) /*!< @internal */
 #define EVENT_NEXT_TRACK_REQUEST (QEvent::Type(QEvent::User + 1)) /*!< @internal */

@@ -23,7 +23,6 @@
 
 #include <QMutex>
 #include <QWaitCondition>
-#include "qmmp.h"
 #include "buffer.h"
 
 /*! @internal

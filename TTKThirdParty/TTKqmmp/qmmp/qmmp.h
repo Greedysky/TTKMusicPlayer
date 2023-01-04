@@ -26,7 +26,7 @@
 
 #define QMMP_VERSION_MAJOR 1
 #define QMMP_VERSION_MINOR 6
-#define QMMP_VERSION_PATCH 1
+#define QMMP_VERSION_PATCH 2
 
 #define QMMP_VERSION_INT (QMMP_VERSION_MAJOR<<16 | QMMP_VERSION_MINOR<<8 | QMMP_VERSION_PATCH)
 
@@ -88,16 +88,16 @@ public:
     enum MetaData
     {
         UNKNOWN = -1,
-        TITLE = 0, /*!< Title */
-        ARTIST,    /*!< Artist  */
+        TITLE = 0,  /*!< Title */
+        ARTIST,     /*!< Artist  */
         ALBUMARTIST,/*!< Album artist  */
-        ALBUM,     /*!< Album */
-        COMMENT,   /*!< Comment */
-        GENRE,     /*!< Genre */
-        COMPOSER,  /*!< Composer */
-        YEAR,      /*!< Year */
-        TRACK,     /*!< Track number */
-        DISCNUMBER /*!< Disc number */
+        ALBUM,      /*!< Album */
+        COMMENT,    /*!< Comment */
+        GENRE,      /*!< Genre */
+        COMPOSER,   /*!< Composer */
+        YEAR,       /*!< Year */
+        TRACK,      /*!< Track number */
+        DISCNUMBER  /*!< Disc number */
     };
     /*!
      * Track properties

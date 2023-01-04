@@ -21,7 +21,6 @@
 #ifndef INPUTSOURCE_H
 #define INPUTSOURCE_H
 
-#include <QStringList>
 #include <QIODevice>
 #include <QMap>
 #include <QHash>
