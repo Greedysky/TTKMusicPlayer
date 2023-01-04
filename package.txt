@@ -10,7 +10,7 @@ libbs2b-3.1.0	https://sourceforge.net/projects/bs2b
 libcddb-1.3.2	https://sourceforge.net/projects/libcddb
 libcdio-paranoia-release-10.2-2.0.1	http://ftp.gnu.org/gnu/libcdio
 libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
-libmad-0.15.1b	https://sourceforge.net/projects/mad
+libmpg123-1.31.1	https://sourceforge.net/projects/mpg123
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.5	https://xiph.org/downloads
 libopenmpt-0.4.32		https://lib.openmpt.org/libopenmpt
@@ -28,7 +28,7 @@ soxr-0.1.3	https://sourceforge.net/projects/soxr
 speex-1.2.1	https://gitlab.xiph.org/xiph/speex
 sunvox-2.0e	https://warmplace.ru/soft/sunvox/sunvox_lib.php
 taglib-1.13	https://github.com/taglib/taglib
-wavpack-5.5.0	https://www.wavpack.com/downloads.html
+wavpack-5.6.0	https://www.wavpack.com/downloads.html
 libxmp-4.5.0.patch	https://github.com/libxmp/libxmp
 zlib-1.2.13		https://github.com/madler/zlib
 7zip-22.01		https://www.7-zip.org/download.html
@@ -40,4 +40,4 @@ ttk-1.2.1
 (libsc68-2.2.1	https://sourceforge.net/projects/sc68)
 (libuade-3.02	https://gitlab.com/uade-music-player/uade 033140bfb17d47a3b473121fd5cbbe3e222765c8)
 (libv2m-20211104	https://github.com/jgilje/v2m-player)
-///Update time 2022-11-29
+///Update time 2023-01-04
