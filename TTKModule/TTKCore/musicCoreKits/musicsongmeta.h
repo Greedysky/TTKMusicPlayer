@@ -88,6 +88,10 @@ public:
      */
     QString genre();
     /*!
+     * Get song rating.
+     */
+    QString rating();
+    /*!
      * Get song channel.
      */
     QString channel();
@@ -124,6 +128,10 @@ public:
      * Set song genre.
      */
     void setGenre(const QString &genre);
+    /*!
+     * Set song rating.
+     */
+    void setRating(const QString &rating);
 
 public:
     /*!

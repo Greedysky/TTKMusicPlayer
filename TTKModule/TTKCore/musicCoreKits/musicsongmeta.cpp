@@ -4,9 +4,9 @@
 #include "musicstringutils.h"
 #include "ttkversion.h"
 
-#include <qmmp/decoderfactory.h>
-#include <qmmp/metadatamodel.h>
 #include <qmmp/decoder.h>
+#include <qmmp/metadatamodel.h>
+#include <qmmp/decoderfactory.h>
 
 /*! @brief The class of the music meta.
  * @author Greedysky <greedysky@163.com>
@@ -122,6 +122,11 @@ QString MusicSongMeta::genre()
     return findLegalDataString(TagWrapper::GENRE);
 }
 
+QString MusicSongMeta::rating()
+{
+    return findLegalDataString(TagWrapper::RATING);
+}
+
 QString MusicSongMeta::channel()
 {
     return songMeta()->m_metaData[TagWrapper::CHANNEL];
@@ -165,6 +170,11 @@ void MusicSongMeta::setTrackNum(const QString &track)
 void MusicSongMeta::setGenre(const QString &genre)
 {
     songMeta()->m_metaData[TagWrapper::GENRE] = genre;
+}
+
+void MusicSongMeta::setRating(const QString &rating)
+{
+    songMeta()->m_metaData[TagWrapper::RATING] = rating;
 }
 
 void MusicSongMeta::setCover(const QPixmap &pix)
@@ -236,6 +246,7 @@ MusicSongMeta::MusicSongMeta(const MusicSongMeta &other)
 
     m_offset = other.m_offset;
     m_path = other.m_path;
+
     for(const MusicMeta *meta : m_songMetas)
     {
         m_songMetas << new MusicMeta(*meta);
@@ -264,6 +275,7 @@ MusicSongMeta& MusicSongMeta::operator= (const MusicSongMeta &other)
 
     m_offset = other.m_offset;
     m_path = other.m_path;
+
     for(const MusicMeta *meta : m_songMetas)
     {
         m_songMetas << new MusicMeta(*meta);
@@ -390,11 +402,19 @@ bool MusicSongMeta::readInformation()
 
         if(!m_songMetas.isEmpty())
         {
-            MetaDataModel *model = factory->createMetaDataModel(m_path, true);
+            const MetaDataModel *model = factory->createMetaDataModel(m_path, true);
             if(model)
             {
                 songMeta()->m_cover = model->cover();
                 songMeta()->m_lyrics = model->lyrics();
+
+                for(const MetaDataItem &item : model->extraProperties())
+                {
+                    if(item.name() == "Rating")
+                    {
+                        songMeta()->m_metaData[TagWrapper::RATING] = item.value().toString();
+                    }
+                }
                 delete model;
             }
         }

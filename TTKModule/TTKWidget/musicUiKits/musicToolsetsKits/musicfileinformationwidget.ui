@@ -361,7 +361,7 @@
     <string>轨段编号:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="TrackNumEdit">
+  <widget class="QLineEdit" name="trackNumEdit">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -390,7 +390,7 @@
     <string>通道:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="SamplingRateEdit">
+  <widget class="QLineEdit" name="samplingRateEdit">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -406,7 +406,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLineEdit" name="ChannelEdit">
+  <widget class="QLineEdit" name="channelEdit">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -464,7 +464,7 @@
     <string>比特率:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="BitrateEdit">
+  <widget class="QLineEdit" name="bitrateEdit">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -737,14 +737,14 @@
   <zorder>fileGenreEdit</zorder>
   <zorder>label_10</zorder>
   <zorder>label_11</zorder>
-  <zorder>TrackNumEdit</zorder>
+  <zorder>trackNumEdit</zorder>
   <zorder>label_12</zorder>
-  <zorder>SamplingRateEdit</zorder>
-  <zorder>ChannelEdit</zorder>
+  <zorder>samplingRateEdit</zorder>
+  <zorder>channelEdit</zorder>
   <zorder>fileYearEdit</zorder>
   <zorder>label_13</zorder>
   <zorder>label_14</zorder>
-  <zorder>BitrateEdit</zorder>
+  <zorder>bitrateEdit</zorder>
   <zorder>label_15</zorder>
   <zorder>line_3</zorder>
   <zorder>advanceLabel</zorder>
