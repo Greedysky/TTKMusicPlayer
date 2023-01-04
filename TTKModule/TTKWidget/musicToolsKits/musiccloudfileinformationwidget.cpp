@@ -27,7 +27,7 @@ MusicCloudFileInformationWidget::~MusicCloudFileInformationWidget()
 void MusicCloudFileInformationWidget::setFileInformation(QSyncDataItem *data)
 {
     m_ui->filePathEdit->setText(data->m_name);
-    m_ui->fileSizeEdit->setText(MusicUtils::Number::sizeByte2Label(data->m_size));
+    m_ui->fileSizeEdit->setText(MusicUtils::Number::sizeByteToLabel(data->m_size));
     m_ui->fileKeyEdit->setText(data->m_hash);
     m_ui->fileUpdateTimeEdit->setText(data->m_putTime);
 

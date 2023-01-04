@@ -47,7 +47,7 @@ MusicSong::MusicSong(const QString &path, const QString &playTime, const QString
     m_addTime = fin.lastModified().toMSecsSinceEpoch();
     m_playTime = playTime;
     m_addTimeStr = QString::number(m_addTime);
-    m_sizeStr = MusicUtils::Number::sizeByte2Label(m_size);
+    m_sizeStr = MusicUtils::Number::sizeByteToLabel(m_size);
 }
 
 QString MusicSong::artistFront() const

@@ -48,7 +48,7 @@ bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongProperty *
     TTK_NETWORK_QUERY_CHECK(false);
     if(prop->m_size.isEmpty() || prop->m_size == TTK_DEFAULT_STR)
     {
-        prop->m_size = MusicUtils::Number::sizeByte2Label(MusicObject::queryFileSizeByUrl(prop->m_url));
+        prop->m_size = MusicUtils::Number::sizeByteToLabel(MusicObject::queryFileSizeByUrl(prop->m_url));
     }
     TTK_NETWORK_QUERY_CHECK(false);
     return true;

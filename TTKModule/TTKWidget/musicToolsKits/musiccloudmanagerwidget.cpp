@@ -390,7 +390,7 @@ void MusicCloudManagerTableWidget::addCellItem(const MusicCloudDataItem &data)
     setItem(row, 2, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(MusicUtils::Number::sizeByte2Label(data.m_dataItem.m_size));
+    item->setToolTip(MusicUtils::Number::sizeByteToLabel(data.m_dataItem.m_size));
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 5));
     item->setForeground(QColor(MusicUIObject::MQSSColor01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
@@ -660,7 +660,7 @@ void MusicCloudManagerWidget::resizeWidget()
 
 void MusicCloudManagerWidget::updataSizeLabel(qint64 size)
 {
-    m_sizeValueLabel->setText(QString("%1/40.0G").arg(MusicUtils::Number::sizeByte2Label(size)));
+    m_sizeValueLabel->setText(QString("%1/40.0G").arg(MusicUtils::Number::sizeByteToLabel(size)));
     m_sizeValueBar->setValue(size * 100 / (10 * MH_GB2B));
 }
 

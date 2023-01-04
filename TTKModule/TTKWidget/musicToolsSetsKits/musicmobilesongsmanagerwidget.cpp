@@ -44,7 +44,7 @@ void MusicMobileSongsTableWidget::addCellItems(const QStringList &songs)
         setItem(i, 0, item);
 
                          item = new QTableWidgetItem;
-        item->setToolTip(MusicUtils::Number::sizeByte2Label(fin.size()));
+        item->setToolTip(MusicUtils::Number::sizeByteToLabel(fin.size()));
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
         QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
         setItem(i, 1, item);

@@ -70,7 +70,7 @@ void MusicWYQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformat
                 return;
             }
 
-            prop.m_size = MusicUtils::Number::sizeByte2Label(value["size"].toInt());
+            prop.m_size = MusicUtils::Number::sizeByteToLabel(value["size"].toInt());
             prop.m_format = value["type"].toString();
             info->m_songProps.append(prop);
         }
@@ -188,7 +188,7 @@ void MusicWYQueryInterface::parseFromSongPropertyNew(MusicObject::MusicSongInfor
                     break;
                 }
 
-                prop.m_size = MusicUtils::Number::sizeByte2Label(value["size"].toInt());
+                prop.m_size = MusicUtils::Number::sizeByteToLabel(value["size"].toInt());
                 prop.m_format = value["type"].toString();
                 info->m_songProps.append(prop);
             }

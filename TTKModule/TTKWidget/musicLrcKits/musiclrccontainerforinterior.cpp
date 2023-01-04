@@ -612,7 +612,7 @@ void MusicLrcContainerForInterior::paintEvent(QPaintEvent *event)
         }
 
         v = m_lrcAnalysis->findTime(v);
-        painter.drawText(LRC_TIME_LABEL_POSITION, line - LRC_TIME_LABEL_POSITION / 2, TTKTime::msecTime2LabelJustified(v));
+        painter.drawText(LRC_TIME_LABEL_POSITION, line - LRC_TIME_LABEL_POSITION / 2, TTKTime::msecTimeToLabelJustified(v));
     }
 }
 

@@ -393,7 +393,7 @@ bool MusicSongMeta::readInformation()
                 }
             }
 
-            meta->m_metaData[TagWrapper::LENGTH] = TTKTime::msecTime2LabelJustified(length);
+            meta->m_metaData[TagWrapper::LENGTH] = TTKTime::msecTimeToLabelJustified(length);
 
             m_songMetas << meta;
             m_offset = m_songMetas.count() - 1;

@@ -43,9 +43,9 @@ void MusicKGQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformat
 
             MusicObject::MusicSongProperty prop;
             prop.m_url = value["url"].toString();
-            prop.m_size = MusicUtils::Number::sizeByte2Label(value["fileSize"].toInt());
+            prop.m_size = MusicUtils::Number::sizeByteToLabel(value["fileSize"].toInt());
             prop.m_format = value["extName"].toString();
-            prop.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(bitrate / 1000);
+            prop.m_bitrate = MusicUtils::Number::bitrateToNormal(bitrate / 1000);
             info->m_songProps.append(prop);
         }
     }

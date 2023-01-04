@@ -165,15 +165,15 @@ public:
     /*!
      * Transform string format(mm:ss) to msec time.
      */
-    static qint64 labelJustified2MsecTime(const QString &time);
+    static qint64 labelJustifiedToMsecTime(const QString &time);
     /*!
      * Transform msec time to string format(mm:ss).
      */
-    QString msecTime2LabelJustified();
+    QString msecTimeToLabelJustified();
     /*!
      * Transform msec time to string format(mm:ss).
      */
-    static QString msecTime2LabelJustified(qint64 time, bool greedy = true);
+    static QString msecTimeToLabelJustified(qint64 time, bool greedy = true);
 
     TTKTime& operator = (const TTKTime &other);
     TTKTime& operator+= (const TTKTime &other);

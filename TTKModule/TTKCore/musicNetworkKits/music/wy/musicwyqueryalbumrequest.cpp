@@ -78,7 +78,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
 
                     MusicObject::MusicSongInformation info;
                     info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                    info.m_duration = TTKTime::msecTime2LabelJustified(value["dt"].toInt());
+                    info.m_duration = TTKTime::msecTimeToLabelJustified(value["dt"].toInt());
                     info.m_songId = value["id"].toString();
                     info.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(info.m_songId);
 

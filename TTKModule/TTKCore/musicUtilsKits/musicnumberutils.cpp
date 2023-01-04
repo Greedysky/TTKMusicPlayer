@@ -27,7 +27,7 @@ static QString size2Number(qint64 size)
     }
 }
 
-QString MusicUtils::Number::sizeByte2Label(qint64 size)
+QString MusicUtils::Number::sizeByteToLabel(qint64 size)
 {
     if(size < 0)
     {
@@ -57,7 +57,7 @@ QString MusicUtils::Number::sizeByte2Label(qint64 size)
     }
 }
 
-QString MusicUtils::Number::speedByte2Label(qint64 size)
+QString MusicUtils::Number::speedByteToLabel(qint64 size)
 {
     if(size < 0)
     {
@@ -87,41 +87,7 @@ QString MusicUtils::Number::speedByte2Label(qint64 size)
     }
 }
 
-void MusicUtils::Number::transfromBitrateToQuality(int level, QString &bitrate, QColor &color)
-{
-    bitrate = QObject::tr("UnKnow");
-    color = QColor(131, 131, 131);
-    switch(level)
-    {
-        case 0:
-        {
-            bitrate = QObject::tr("Low");
-            color = QColor(211, 0, 70);
-            break;
-        }
-        case 1:
-        {
-            bitrate = QObject::tr("Normal");
-            color = QColor(0, 134, 211);
-            break;
-        }
-        case 2:
-        {
-            bitrate = QObject::tr("High");
-            color = QColor(236, 138, 48);
-            break;
-        }
-        case 3:
-        {
-            bitrate = QObject::tr("LLess");
-            color = QColor(117, 0, 206);
-            break;
-        }
-        default: break;
-    }
-}
-
-int MusicUtils::Number::transfromBitrateToLevel(const QString &bitrate)
+int MusicUtils::Number::bitrateToLevel(const QString &bitrate)
 {
     if(bitrate.isEmpty())
     {
@@ -156,7 +122,7 @@ int MusicUtils::Number::transfromBitrateToLevel(const QString &bitrate)
     return -1;
 }
 
-int MusicUtils::Number::transfromBitrateToNormal(int bitrate)
+int MusicUtils::Number::bitrateToNormal(int bitrate)
 {
     if(bitrate > MB_0 && bitrate <= MB_64)
     {
@@ -181,5 +147,39 @@ int MusicUtils::Number::transfromBitrateToNormal(int bitrate)
     else
     {
         return bitrate;
+    }
+}
+
+void MusicUtils::Number::bitrateToQuality(int level, QString &bitrate, QColor &color)
+{
+    bitrate = QObject::tr("UnKnow");
+    color = QColor(131, 131, 131);
+    switch(level)
+    {
+        case 0:
+        {
+            bitrate = QObject::tr("Low");
+            color = QColor(211, 0, 70);
+            break;
+        }
+        case 1:
+        {
+            bitrate = QObject::tr("Normal");
+            color = QColor(0, 134, 211);
+            break;
+        }
+        case 2:
+        {
+            bitrate = QObject::tr("High");
+            color = QColor(236, 138, 48);
+            break;
+        }
+        case 3:
+        {
+            bitrate = QObject::tr("LLess");
+            color = QColor(117, 0, 206);
+            break;
+        }
+        default: break;
     }
 }

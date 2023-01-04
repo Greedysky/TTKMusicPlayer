@@ -75,7 +75,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                                     info.m_songName = ds.back();
                                 }
                             }
-                            info.m_duration = TTKTime::msecTime2LabelJustified(value["time"].toInt());
+                            info.m_duration = TTKTime::msecTimeToLabelJustified(value["time"].toInt());
 
                             info.m_songId = value["mvhash"].toString();
                             TTK_NETWORK_QUERY_CHECK();
@@ -165,7 +165,7 @@ void MusicMVRadioProgramRequest::parseFromMovieProperty(MusicObject::MusicSongIn
 {
     MusicObject::MusicSongProperty prop;
     prop.m_url = key["downurl"].toString();
-    prop.m_size = MusicUtils::Number::sizeByte2Label(key["filesize"].toInt());
+    prop.m_size = MusicUtils::Number::sizeByteToLabel(key["filesize"].toInt());
     prop.m_format = MusicUtils::String::stringSplitToken(prop.m_url);
 
     const int bitrate = key["bitrate"].toInt() / 1000;

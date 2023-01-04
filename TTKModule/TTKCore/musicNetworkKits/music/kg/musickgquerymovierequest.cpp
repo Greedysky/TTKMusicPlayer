@@ -82,7 +82,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
                     MusicObject::MusicSongInformation info;
                     info.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
                     info.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
-                    info.m_duration = TTKTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                    info.m_duration = TTKTime::msecTimeToLabelJustified(value["duration"].toInt() * 1000);
 
                     info.m_songId = value["mvhash"].toString();
                     TTK_NETWORK_QUERY_CHECK();
@@ -274,7 +274,7 @@ void MusicKGQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInfo
 {
     MusicObject::MusicSongProperty prop;
     prop.m_url = key["downurl"].toString();
-    prop.m_size = MusicUtils::Number::sizeByte2Label(key["filesize"].toInt());
+    prop.m_size = MusicUtils::Number::sizeByteToLabel(key["filesize"].toInt());
     prop.m_format = MusicUtils::String::stringSplitToken(prop.m_url);
 
     const int bitrate = key["bitrate"].toInt() / 1000;
@@ -297,7 +297,7 @@ void MusicKGQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInfo
 
     if(info->m_duration.isEmpty())
     {
-        info->m_duration = TTKTime::msecTime2LabelJustified(key["timelength"].toInt());
+        info->m_duration = TTKTime::msecTimeToLabelJustified(key["timelength"].toInt());
     }
     info->m_songProps.append(prop);
 }

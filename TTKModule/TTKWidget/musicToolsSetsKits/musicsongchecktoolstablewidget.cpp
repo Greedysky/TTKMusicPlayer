@@ -267,7 +267,7 @@ void MusicSongCheckToolsQualityTableWidget::addCellItems(const MusicSongCheckToo
                 item = new QTableWidgetItem;
         QColor color;
         QString bitrate;
-        MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(v.m_bitrate), bitrate, color);
+        MusicUtils::Number::bitrateToQuality(MusicUtils::Number::bitrateToLevel(v.m_bitrate), bitrate, color);
         item->setText(bitrate);
         item->setForeground(color);
         QtItemSetTextAlignment(item, Qt::AlignCenter);

@@ -112,13 +112,13 @@ qint64 TTKTime::timestamp(bool ms)
     return ms ? t : t / 1000;
 }
 
-qint64 TTKTime::labelJustified2MsecTime(const QString &time)
+qint64 TTKTime::labelJustifiedToMsecTime(const QString &time)
 {
-    TTKTime t = TTKTime::fromString(time, "mm:ss");
+    const TTKTime t = TTKTime::fromString(time, "mm:ss");
     return t.timestamp(Entity::Millisecond);
 }
 
-QString TTKTime::msecTime2LabelJustified()
+QString TTKTime::msecTimeToLabelJustified()
 {
     if(!m_greedyMode)
     {
@@ -131,9 +131,9 @@ QString TTKTime::msecTime2LabelJustified()
     }
 }
 
-QString TTKTime::msecTime2LabelJustified(qint64 time, bool greedy)
+QString TTKTime::msecTimeToLabelJustified(qint64 time, bool greedy)
 {
-    TTKTime t(time, Entity::Millisecond);
+    const TTKTime t(time, Entity::Millisecond);
     if(!greedy || time < MT_H2S * MT_S2MS)
     {
         return t.toString("mm:ss");

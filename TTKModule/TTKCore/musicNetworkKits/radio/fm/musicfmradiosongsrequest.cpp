@@ -60,7 +60,7 @@ void MusicFMRadioSongsRequest::downLoadFinished()
                 const QString &bitrate = QString::number(prop.m_bitrate);
                 if(formats.contains(bitrate))
                 {
-                    prop.m_size = MusicUtils::Number::sizeByte2Label(formats[bitrate].toInt() * 1000);
+                    prop.m_size = MusicUtils::Number::sizeByteToLabel(formats[bitrate].toInt() * 1000);
                 }
 
                 m_songInfo.m_songProps << prop;

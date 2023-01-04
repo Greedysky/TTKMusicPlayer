@@ -113,7 +113,7 @@ void MusicQueryRecommendRequest::parseFromSongProperty(MusicObject::MusicSongInf
 
     MusicObject::MusicSongProperty prop;
     prop.m_url = MusicUtils::Algorithm::mdII(LQ_BASE_URL, false) + key;
-    prop.m_size = MusicUtils::Number::sizeByte2Label(length * 1000 * bitrate / 8);
+    prop.m_size = MusicUtils::Number::sizeByteToLabel(length * 1000 * bitrate / 8);
     switch(bitrate)
     {
         case MB_128: prop.m_format = MP3_FILE_SUFFIX; break;

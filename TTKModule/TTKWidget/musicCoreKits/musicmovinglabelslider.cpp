@@ -51,7 +51,7 @@ void MusicMovingLabelSlider::mouseMoveEvent(QMouseEvent *event)
         changePos = limitLableGeometry(curPos.x(), glbPos.x(), sizePos.width());
         m_textLabel->move(changePos.x(), (glbPos - QPoint(0, m_textLabel->height())).y());
     }
-    m_textLabel->setText(TTKTime::msecTime2LabelJustified(changePos.y()));
+    m_textLabel->setText(TTKTime::msecTimeToLabelJustified(changePos.y()));
 }
 
 void MusicMovingLabelSlider::enterEvent(QtEnterEvent *event)

@@ -204,8 +204,8 @@ void MusicLrcMakerWidget::positionChanged(qint64 position)
     m_ui->timeSlider_S->blockSignals(false);
     m_ui->timeSlider_T->blockSignals(false);
 
-    const QString &t = QString("%1/%2").arg(TTKTime::msecTime2LabelJustified(position),
-                                            TTKTime::msecTime2LabelJustified(m_ui->timeSlider_F->maximum()));
+    const QString &t = QString("%1/%2").arg(TTKTime::msecTimeToLabelJustified(position),
+                                            TTKTime::msecTimeToLabelJustified(m_ui->timeSlider_F->maximum()));
     m_ui->labelTime_F->setText(t);
     m_ui->labelTime_S->setText(t);
     m_ui->labelTime_T->setText(t);

@@ -161,7 +161,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
 
                     MusicObject::MusicSongInformation info;
                     info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                    info.m_duration = TTKTime::msecTime2LabelJustified(value["duration"].toInt());
+                    info.m_duration = TTKTime::msecTimeToLabelJustified(value["duration"].toInt());
 
                     const QVariantMap &radioObject = value["radio"].toMap();
                     info.m_coverUrl = radioObject["picUrl"].toString();
