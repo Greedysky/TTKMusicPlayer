@@ -89,7 +89,7 @@ bool MusicPLSConfigManager::writeBuffer(const MusicSongItemList &items, const QS
             ++count;
             data << QString("File%1=%2").arg(count).arg(song.path());
             data << QString("Title%1=%2").arg(count).arg(song.name());
-            data << QString("Length%1=%2").arg(count).arg(TTKTime::TTKTime::labelJustifiedToMsecTime(song.playTime()) / 1000);
+            data << QString("Length%1=%2").arg(count).arg(TTKTime::labelJustifiedToMsecTime(song.playTime()) / 1000);
         }
     }
 

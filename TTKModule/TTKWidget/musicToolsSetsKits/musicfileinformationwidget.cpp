@@ -247,7 +247,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
 
     m_ui->bitrateEdit->setText(state ? ((check = (meta.bitrate())).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->channelEdit->setText(state ? ((check = meta.channel()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->samplingRateEdit->setText(state ? ((check = meta.sampleRate()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->sampleRateEdit->setText(state ? ((check = meta.sampleRate()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->trackNumEdit->setText(state ? ((check = meta.trackNum()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->decoderLabel->setText(state ? ((check = meta.decoder()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
 

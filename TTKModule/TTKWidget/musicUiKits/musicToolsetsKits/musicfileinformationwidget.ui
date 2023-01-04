@@ -62,7 +62,7 @@
    <property name="geometry">
     <rect>
      <x>79</x>
-     <y>54</y>
+     <y>49</y>
      <width>375</width>
      <height>5</height>
     </rect>
@@ -75,7 +75,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>44</y>
+     <y>39</y>
      <width>54</width>
      <height>23</height>
     </rect>
@@ -88,7 +88,7 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>74</y>
+     <y>70</y>
      <width>54</width>
      <height>23</height>
     </rect>
@@ -104,7 +104,7 @@
    <property name="geometry">
     <rect>
      <x>89</x>
-     <y>74</y>
+     <y>70</y>
      <width>300</width>
      <height>23</height>
     </rect>
@@ -120,13 +120,13 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>104</y>
+     <y>194</y>
      <width>54</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>文件大小:</string>
+    <string>大小:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="fileSizeEdit">
@@ -136,7 +136,7 @@
    <property name="geometry">
     <rect>
      <x>89</x>
-     <y>104</y>
+     <y>194</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -149,7 +149,7 @@
    <property name="geometry">
     <rect>
      <x>394</x>
-     <y>74</y>
+     <y>70</y>
      <width>61</width>
      <height>23</height>
     </rect>
@@ -168,7 +168,7 @@
    <property name="geometry">
     <rect>
      <x>314</x>
-     <y>104</y>
+     <y>194</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -181,7 +181,7 @@
    <property name="geometry">
     <rect>
      <x>254</x>
-     <y>104</y>
+     <y>194</y>
      <width>54</width>
      <height>23</height>
     </rect>
@@ -194,13 +194,13 @@
    <property name="geometry">
     <rect>
      <x>254</x>
-     <y>134</y>
+     <y>104</y>
      <width>54</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>歌手信息:</string>
+    <string>歌手:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="fileArtistEdit">
@@ -210,7 +210,7 @@
    <property name="geometry">
     <rect>
      <x>314</x>
-     <y>134</y>
+     <y>104</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -226,7 +226,7 @@
    <property name="geometry">
     <rect>
      <x>89</x>
-     <y>134</y>
+     <y>104</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -239,26 +239,26 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>134</y>
+     <y>104</y>
      <width>54</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>文件标题:</string>
+    <string>标题:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>164</y>
+     <y>134</y>
      <width>54</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>专辑信息:</string>
+    <string>专辑:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="fileAlbumEdit">
@@ -268,7 +268,7 @@
    <property name="geometry">
     <rect>
      <x>89</x>
-     <y>164</y>
+     <y>134</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -310,7 +310,7 @@
    <property name="geometry">
     <rect>
      <x>254</x>
-     <y>194</y>
+     <y>134</y>
      <width>54</width>
      <height>23</height>
     </rect>
@@ -326,7 +326,7 @@
    <property name="geometry">
     <rect>
      <x>314</x>
-     <y>194</y>
+     <y>134</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -390,7 +390,7 @@
     <string>通道:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="samplingRateEdit">
+  <widget class="QLineEdit" name="sampleRateEdit">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -429,7 +429,7 @@
    <property name="geometry">
     <rect>
      <x>89</x>
-     <y>194</y>
+     <y>164</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -442,7 +442,7 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>194</y>
+     <y>164</y>
      <width>54</width>
      <height>23</height>
     </rect>
@@ -556,7 +556,7 @@
     <rect>
      <x>29</x>
      <y>530</y>
-     <width>50</width>
+     <width>55</width>
      <height>22</height>
     </rect>
    </property>
@@ -712,6 +712,35 @@
     <string>导出图片</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_19">
+   <property name="geometry">
+    <rect>
+     <x>254</x>
+     <y>328</y>
+     <width>54</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>评级:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="ratingEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>314</x>
+     <y>328</y>
+     <width>141</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -739,7 +768,7 @@
   <zorder>label_11</zorder>
   <zorder>trackNumEdit</zorder>
   <zorder>label_12</zorder>
-  <zorder>samplingRateEdit</zorder>
+  <zorder>sampleRateEdit</zorder>
   <zorder>channelEdit</zorder>
   <zorder>fileYearEdit</zorder>
   <zorder>label_13</zorder>
@@ -758,6 +787,8 @@
   <zorder>qualityEdit</zorder>
   <zorder>deletePixButton</zorder>
   <zorder>savePixButton</zorder>
+  <zorder>label_19</zorder>
+  <zorder>ratingEdit</zorder>
  </widget>
  <customwidgets>
   <customwidget>
