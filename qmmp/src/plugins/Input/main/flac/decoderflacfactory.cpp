@@ -130,6 +130,7 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
                 for(int i = 1; i <= parser.count(); ++i)
                     parser.setMetaData(i, Qmmp::DISCNUMBER, diskNumber);
             }
+
             parser.setDuration(ap->lengthInMilliseconds());
             parser.setProperties(info->properties());
             parser.setUrl("flac", filePath);

@@ -149,7 +149,7 @@ QString VorbisCommentModel::value(Qmmp::MetaData key) const
         return QString::number(tag->year());
     case Qmmp::TRACK:
         return QString::number(tag->track());
-    case  Qmmp::DISCNUMBER:
+    case Qmmp::DISCNUMBER:
         if(tag->fieldListMap()["DISCNUMBER"].isEmpty())
             return QString();
         else

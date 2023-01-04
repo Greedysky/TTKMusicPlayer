@@ -24,6 +24,9 @@
 #include <mpg123.h>
 #include <qmmp/decoder.h>
 
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
 class DecoderMPG123 : public Decoder
 {
 public:

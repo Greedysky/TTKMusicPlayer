@@ -88,16 +88,16 @@ public:
     enum MetaData
     {
         UNKNOWN = -1,
-        TITLE = 0, /*!< Title */
-        ARTIST,    /*!< Artist  */
+        TITLE = 0,  /*!< Title */
+        ARTIST,     /*!< Artist  */
         ALBUMARTIST,/*!< Album artist  */
-        ALBUM,     /*!< Album */
-        COMMENT,   /*!< Comment */
-        GENRE,     /*!< Genre */
-        COMPOSER,  /*!< Composer */
-        YEAR,      /*!< Year */
-        TRACK,     /*!< Track number */
-        DISCNUMBER /*!< Disc number */
+        ALBUM,      /*!< Album */
+        COMMENT,    /*!< Comment */
+        GENRE,      /*!< Genre */
+        COMPOSER,   /*!< Composer */
+        YEAR,       /*!< Year */
+        TRACK,      /*!< Track number */
+        DISCNUMBER  /*!< Disc number */
     };
     /*!
      * Track properties

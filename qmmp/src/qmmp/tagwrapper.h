@@ -37,6 +37,7 @@ public:
         GENRE,       /*!< Genre */
         YEAR,        /*!< Year */
         TRACK,       /*!< Track number */
+        RATING,      /*!< Popularimeter */
         URL,         /*!< Stream url or local file path */
         LENGTH,      /*!< Length */
         FORMAT,      /*!< Format */

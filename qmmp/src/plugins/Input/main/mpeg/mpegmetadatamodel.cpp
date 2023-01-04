@@ -6,8 +6,9 @@
 #include <taglib/apetag.h>
 #include <taglib/id3v1tag.h>
 #include <taglib/id3v2tag.h>
-#include <taglib/textidentificationframe.h>
+#include <taglib/popularimeterframe.h>
 #include <taglib/attachedpictureframe.h>
+#include <taglib/textidentificationframe.h>
 
 MPEGMetaDataModel::MPEGMetaDataModel(const QString &path, bool readOnly)
     : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
@@ -50,10 +51,18 @@ QList<MetaDataItem> MPEGMetaDataModel::extraProperties() const
         ep << MetaDataItem(tr("Mode"), "Single channel");
         break;
     }
+
     ep << MetaDataItem(tr("Protection"), ap->protectionEnabled());
     ep << MetaDataItem(tr("Copyright"), ap->isCopyrighted());
     ep << MetaDataItem(tr("Original"), ap->isOriginal());
 
+    const TagLib::ID3v2::Tag *tag = m_file->ID3v2Tag();
+    if(tag && !tag->frameListMap()["POPM"].isEmpty())
+    {
+        const TagLib::ID3v2::PopularimeterFrame *popm = dynamic_cast<TagLib::ID3v2::PopularimeterFrame *>(tag->frameListMap()["POPM"].front());
+        if(popm)
+            ep << MetaDataItem(tr("Rating"), QString::number(popm->rating()));
+    }
     return ep;
 }
 
@@ -243,13 +252,11 @@ QString MpegFileTagModel::value(Qmmp::MetaData key) const
             str = m_tag->genre();
             break;
         case Qmmp::COMPOSER:
-            if(m_type == TagLib::MPEG::File::ID3v2 &&
-                    !m_file->ID3v2Tag()->frameListMap()["TCOM"].isEmpty())
+            if(m_type == TagLib::MPEG::File::ID3v2 && !m_file->ID3v2Tag()->frameListMap()["TCOM"].isEmpty())
             {
                 str = m_file->ID3v2Tag()->frameListMap()["TCOM"].front()->toString();
             }
-            else if(m_type == TagLib::MPEG::File::APE &&
-                    !m_file->APETag()->itemListMap()["COMPOSER"].isEmpty())
+            else if(m_type == TagLib::MPEG::File::APE && !m_file->APETag()->itemListMap()["COMPOSER"].isEmpty())
             {
                 str = m_file->APETag()->itemListMap()["COMPOSER"].toString();
             }
@@ -258,9 +265,10 @@ QString MpegFileTagModel::value(Qmmp::MetaData key) const
             return QString::number(m_tag->year());
         case Qmmp::TRACK:
             return QString::number(m_tag->track());
-        case  Qmmp::DISCNUMBER:
+        case Qmmp::DISCNUMBER:
             if(m_type == TagLib::MPEG::File::ID3v2 && !m_file->ID3v2Tag()->frameListMap()["TPOS"].isEmpty())
                 str = m_file->ID3v2Tag()->frameListMap()["TPOS"].front()->toString();
+            break;
         }
         return CSTR_TO_QSTR(m_codec, str, utf);
     }
@@ -299,7 +307,7 @@ void MpegFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
         else if(key == Qmmp::COMPOSER)
             id3v2_key = "TCOM"; //composer
         else if(key == Qmmp::DISCNUMBER)
-            id3v2_key = "TPOS";  //disc number
+            id3v2_key = "TPOS"; //disc number
 
         if(!id3v2_key.isEmpty())
         {
