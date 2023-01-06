@@ -102,7 +102,7 @@ void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item
 
 void MusicCloudUploadTableWidget::reuploadFile()
 {
-    if(currentRow() < 0)
+    if(!isValid())
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
         return;
@@ -123,7 +123,7 @@ void MusicCloudUploadTableWidget::reuploadFile()
 
 void MusicCloudUploadTableWidget::reuploadFiles()
 {
-    if(currentRow() < 0)
+    if(!isValid())
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
         return;

@@ -269,9 +269,11 @@ void MusicAlbumQueryWidget::createLabels()
     QLabel *numberLabel = new QLabel(topRightWidget);
     numberLabel->setAlignment(Qt::AlignCenter);
     numberLabel->setStyleSheet(MusicUIObject::MQSSFontStyle05 + MusicUIObject::MQSSColorStyle05);
-    int number = 9;
-    numberLabel->setText(QString("%1.%2").arg(number).arg(1));
+
+    const int number = 7 + TTKObject::random(3);
+    numberLabel->setText(QString("%1.%2").arg(number).arg(TTKObject::random(10)));
     topRightLayout->addWidget(numberLabel, 0, 0);
+
     for(int i = 1; i <= 5; ++i)
     {
         QLabel *label = new QLabel(topRightWidget);
@@ -281,6 +283,7 @@ void MusicAlbumQueryWidget::createLabels()
 
     QLabel *numberTextLabel = new QLabel(tr("Score:"), topRightWidget);
     topRightLayout->addWidget(numberTextLabel, 1, 0);
+
     for(int i = 1; i <= 5; ++i)
     {
         QLabel *label = new QLabel(topRightWidget);

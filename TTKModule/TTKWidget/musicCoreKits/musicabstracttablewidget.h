@@ -63,6 +63,13 @@ protected:
      * Set selected item row color.
      */
     void setRowColor(int row, const QColor &color) const;
+    /*!
+     * Check item row is valid or not.
+     */
+    inline bool isValid() const
+    {
+        return !(rowCount() == 0 || currentRow() < 0);
+    }
 
     int m_previousColorRow;
     int m_previousClickRow;

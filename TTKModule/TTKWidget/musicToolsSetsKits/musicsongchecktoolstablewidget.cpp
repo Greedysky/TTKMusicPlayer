@@ -74,10 +74,11 @@ void MusicSongCheckToolsRenameTableWidget::itemCellClicked(int row, int column)
 
 void MusicSongCheckToolsRenameTableWidget::deleteCurrentRow()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
+
     removeRow(currentRow());
 }
 
@@ -173,7 +174,7 @@ void MusicSongCheckToolsDuplicateTableWidget::itemCellClicked(int row, int colum
 
 void MusicSongCheckToolsDuplicateTableWidget::musicPlay()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -188,10 +189,11 @@ void MusicSongCheckToolsDuplicateTableWidget::musicPlay()
 
 void MusicSongCheckToolsDuplicateTableWidget::deleteCurrentRow()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
+
     removeRow(currentRow());
 }
 
@@ -297,7 +299,7 @@ void MusicSongCheckToolsQualityTableWidget::itemCellClicked(int row, int column)
 
 void MusicSongCheckToolsQualityTableWidget::musicPlay()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -312,9 +314,10 @@ void MusicSongCheckToolsQualityTableWidget::musicPlay()
 
 void MusicSongCheckToolsQualityTableWidget::deleteCurrentRow()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
+
     removeRow(currentRow());
 }

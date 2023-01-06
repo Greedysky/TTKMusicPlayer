@@ -50,7 +50,7 @@ void MusicAbstractDownloadTableWidget::updateSongsList(const MusicSongList &song
 
 void MusicAbstractDownloadTableWidget::musicPlay()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }

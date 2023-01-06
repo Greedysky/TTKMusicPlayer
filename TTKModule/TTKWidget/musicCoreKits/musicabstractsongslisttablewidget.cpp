@@ -67,7 +67,7 @@ void MusicAbstractSongsListTableWidget::setDeleteItemAt()
 
 void MusicAbstractSongsListTableWidget::musicPlayClicked()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -91,7 +91,7 @@ void MusicAbstractSongsListTableWidget::setDeleteItemAll()
 
 void MusicAbstractSongsListTableWidget::musicOpenFileDir()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -111,7 +111,7 @@ void MusicAbstractSongsListTableWidget::musicOpenFileDir()
 
 void MusicAbstractSongsListTableWidget::musicFileInformation()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -123,7 +123,7 @@ void MusicAbstractSongsListTableWidget::musicFileInformation()
 
 void MusicAbstractSongsListTableWidget::musicSongMovieFound()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -133,7 +133,7 @@ void MusicAbstractSongsListTableWidget::musicSongMovieFound()
 
 void MusicAbstractSongsListTableWidget::musicAlbumQueryWidget()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -143,7 +143,7 @@ void MusicAbstractSongsListTableWidget::musicAlbumQueryWidget()
 
 void MusicAbstractSongsListTableWidget::musicSimilarQueryWidget()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -153,7 +153,7 @@ void MusicAbstractSongsListTableWidget::musicSimilarQueryWidget()
 
 void MusicAbstractSongsListTableWidget::musicSongSharedWidget()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -168,7 +168,7 @@ void MusicAbstractSongsListTableWidget::musicSongSharedWidget()
 
 void MusicAbstractSongsListTableWidget::musicSongDownload()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -180,7 +180,7 @@ void MusicAbstractSongsListTableWidget::musicSongDownload()
 
 void MusicAbstractSongsListTableWidget::musicSongPlayedMovieFound()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -190,7 +190,7 @@ void MusicAbstractSongsListTableWidget::musicSongPlayedMovieFound()
 
 void MusicAbstractSongsListTableWidget::musicPlayedSimilarQueryWidget()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -200,7 +200,7 @@ void MusicAbstractSongsListTableWidget::musicPlayedSimilarQueryWidget()
 
 void MusicAbstractSongsListTableWidget::musicSongPlayedSharedWidget()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -222,12 +222,7 @@ void MusicAbstractSongsListTableWidget::createMoreMenu(QMenu *menu)
 
 QString MusicAbstractSongsListTableWidget::currentSongPath() const
 {
-    if(rowCount() == 0 || currentRow() < 0)
-    {
-        return QString();
-    }
-
-    return songPath(currentRow());
+    return isValid() ? songPath(currentRow()) : QString();
 }
 
 QString MusicAbstractSongsListTableWidget::songPath(int index) const
@@ -237,12 +232,7 @@ QString MusicAbstractSongsListTableWidget::songPath(int index) const
 
 QString MusicAbstractSongsListTableWidget::currentSongName() const
 {
-    if(rowCount() == 0 || currentRow() < 0)
-    {
-        return QString();
-    }
-
-    return songName(currentRow());
+    return isValid() ? songName(currentRow()) : QString();
 }
 
 QString MusicAbstractSongsListTableWidget::songName(int index) const

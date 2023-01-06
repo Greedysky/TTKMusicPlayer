@@ -196,7 +196,7 @@ void MusicCloudManagerTableWidget::updateListToServer()
 
 void MusicCloudManagerTableWidget::deleteFileToServer()
 {
-    if(currentRow() < 0 || m_uploading)
+    if(!isValid() || m_uploading)
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
         return;
@@ -249,7 +249,7 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
 
 void MusicCloudManagerTableWidget::downloadFileToServer()
 {
-    if(currentRow() < 0)
+    if(!isValid())
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
         return;
@@ -322,7 +322,7 @@ void MusicCloudManagerTableWidget::uploadDone()
 
 void MusicCloudManagerTableWidget::showFileInformationWidget()
 {
-    if(currentRow() < 0)
+    if(!isValid())
     {
         return;
     }

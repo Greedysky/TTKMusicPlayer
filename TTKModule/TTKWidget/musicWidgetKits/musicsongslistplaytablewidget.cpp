@@ -430,7 +430,7 @@ void MusicSongsListPlayTableWidget::setDeleteItemAt()
 {
     MusicMessageBox message;
     message.setText(tr("Are you sure to delete?"));
-    if(!message.exec() || rowCount() == 0 || currentRow() < 0)
+    if(!message.exec() || !isValid())
     {
         clearSelection();
         return;
@@ -507,7 +507,7 @@ void MusicSongsListPlayTableWidget::stayTimeOut()
 
 void MusicSongsListPlayTableWidget::setChangSongName()
 {
-    if(rowCount() == 0 || currentRow() < 0 /*|| currentItem()->column() != 1*/)
+    if(!isValid())
     {
         return;
     }
@@ -533,7 +533,7 @@ void MusicSongsListPlayTableWidget::setChangSongName()
 
 void MusicSongsListPlayTableWidget::musicMakeRingWidget()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
@@ -543,7 +543,7 @@ void MusicSongsListPlayTableWidget::musicMakeRingWidget()
 
 void MusicSongsListPlayTableWidget::musicTransformWidget()
 {
-    if(rowCount() == 0 || currentRow() < 0)
+    if(!isValid())
     {
         return;
     }
