@@ -154,6 +154,7 @@ void MusicUtils::Number::bitrateToQuality(int level, QString &bitrate, QColor &c
 {
     bitrate = QObject::tr("UnKnow");
     color = QColor(131, 131, 131);
+
     switch(level)
     {
         case 0:

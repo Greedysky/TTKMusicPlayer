@@ -7,8 +7,6 @@
 #include "musicmessagebox.h"
 #include "musicsong.h"
 
-#define ADVANCE_OFFSET  150
-
 MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicFileInformationWidget),
@@ -89,12 +87,12 @@ void MusicFileInformationWidget::advanceClicked()
 {
     if(m_advanceOn)
     {
-        setFixedHeight(420 + ADVANCE_OFFSET);
-        m_ui->background->setFixedHeight(412 + ADVANCE_OFFSET);
-        m_ui->backgroundMask->setFixedHeight(387 + ADVANCE_OFFSET);
-        m_ui->advanceLabel->move(29, 380 + ADVANCE_OFFSET);
-        m_ui->editButton->move(310, 345 + ADVANCE_OFFSET);
-        m_ui->saveButton->move(390, 345 + ADVANCE_OFFSET);
+        setFixedHeight(420 + 150);
+        m_ui->background->setFixedHeight(412 + 150);
+        m_ui->backgroundMask->setFixedHeight(387 + 150);
+        m_ui->advanceLabel->move(29, 380 + 150);
+        m_ui->editButton->move(360, 345 + 150);
+        m_ui->saveButton->move(440, 345 + 150);
         m_ui->pixmapLabel->setVisible(true);
         m_ui->label_17->setVisible(true);
         m_ui->decoderLabel->setVisible(true);
@@ -112,6 +110,7 @@ void MusicFileInformationWidget::advanceClicked()
             text = TTK_DEFAULT_STR;
             pix.load(":/image/lb_default_art");
         }
+
         m_ui->pixmapSizeLabel->setText(text);
         m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
     }
@@ -121,8 +120,8 @@ void MusicFileInformationWidget::advanceClicked()
         m_ui->background->setFixedHeight(412);
         m_ui->backgroundMask->setFixedHeight(387);
         m_ui->advanceLabel->move(29, 380);
-        m_ui->editButton->move(310, 345);
-        m_ui->saveButton->move(390, 345);
+        m_ui->editButton->move(360, 345);
+        m_ui->saveButton->move(440, 345);
         m_ui->pixmapLabel->setVisible(false);
         m_ui->label_17->setVisible(false);
         m_ui->decoderLabel->setVisible(false);
@@ -244,6 +243,14 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     m_ui->fileTitleEdit->setText(state ? ((check = meta.title()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->fileYearEdit->setText(state ? ((check = meta.year()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->fileTimeEdit->setText(state ? ((check = meta.duration()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+
+    const int rating = meta.rating().toInt();
+    if(rating == 0) m_ui->ratingLabel->setValue(0);
+    else if(rating < 64) m_ui->ratingLabel->setValue(1);
+    else if(rating < 128) m_ui->ratingLabel->setValue(2);
+    else if(rating < 196) m_ui->ratingLabel->setValue(3);
+    else if(rating < 255) m_ui->ratingLabel->setValue(4);
+    else m_ui->ratingLabel->setValue(5);
 
     m_ui->bitrateEdit->setText(state ? ((check = (meta.bitrate())).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->channelEdit->setText(state ? ((check = meta.channel()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);

@@ -59,7 +59,8 @@ HEADERS += \
     $$PWD/musicsongitemselectedareawidget.h \
     $$PWD/musictimesliderwidget.h \
     $$PWD/musicpagequerywidget.h \
-    $$PWD/musicinputdialog.h
+    $$PWD/musicinputdialog.h \
+    $$PWD/musicratinglabel.h
 
 SOURCES += \
     $$PWD/musicabstracttablewidget.cpp \
@@ -102,4 +103,5 @@ SOURCES += \
     $$PWD/musicsongitemselectedareawidget.cpp \
     $$PWD/musictimesliderwidget.cpp \
     $$PWD/musicpagequerywidget.cpp \
-    $$PWD/musicinputdialog.cpp
+    $$PWD/musicinputdialog.cpp \
+    $$PWD/musicratinglabel.cpp

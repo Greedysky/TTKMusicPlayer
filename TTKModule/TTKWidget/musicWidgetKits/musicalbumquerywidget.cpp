@@ -2,10 +2,9 @@
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadcoverrequest.h"
 #include "musicsettingmanager.h"
+#include "musicratinglabel.h"
 
 #include "qrencode/qrcodewidget.h"
-
-#include <qmath.h>
 
 MusicAlbumQueryTableWidget::MusicAlbumQueryTableWidget(QWidget *parent)
     : MusicItemQueryTableWidget(parent)
@@ -273,24 +272,11 @@ void MusicAlbumQueryWidget::createLabels()
     const int number = 7 + TTKObject::random(3);
     numberLabel->setText(QString("%1.%2").arg(number).arg(TTKObject::random(10)));
     topRightLayout->addWidget(numberLabel, 0, 0);
-
-    for(int i = 1; i <= 5; ++i)
-    {
-        QLabel *label = new QLabel(topRightWidget);
-        label->setPixmap(QPixmap((ceil(number / 2.0) - i) >= 0 ? ":/tiny/lb_star" : ":/tiny/lb_unstar"));
-        topRightLayout->addWidget(label, 0, i);
-    }
+    topRightLayout->addWidget(new MusicRatingLabel(ceil(number / 2.0), topRightWidget), 0, 1, 1, 6);
 
     QLabel *numberTextLabel = new QLabel(tr("Score:"), topRightWidget);
     topRightLayout->addWidget(numberTextLabel, 1, 0);
-
-    for(int i = 1; i <= 5; ++i)
-    {
-        QLabel *label = new QLabel(topRightWidget);
-        label->setFixedSize(26, 22);
-        label->setPixmap(QPixmap(":/tiny/lb_unstar"));
-        topRightLayout->addWidget(label, 1, i);
-    }
+    topRightLayout->addWidget(new MusicRatingLabel(topRightWidget), 1, 1, 1, 6);
 
     QLabel *marginBottmLabel = new QLabel(topRightWidget);
     marginBottmLabel->setFixedHeight(40);
