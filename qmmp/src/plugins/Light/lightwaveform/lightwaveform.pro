@@ -1,5 +1,5 @@
 include($$PWD/../../plugins.pri)
-include($$PWD/../../Visual/common/common.pri)
+include($$PWD/../../Visual/common/widget.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Light
 

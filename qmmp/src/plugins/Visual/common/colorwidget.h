@@ -51,7 +51,7 @@ public:
     /*!
      * Set single color mode.
      */
-    void setSingleColorMode(bool mode);
+    void setSingleMode(bool mode);
 
     /*!
      * Set current colors.
@@ -92,6 +92,11 @@ protected:
     virtual void mousePressEvent(QMouseEvent *event) override final;
     virtual void mouseMoveEvent(QMouseEvent *event) override final;
     virtual void mouseReleaseEvent(QMouseEvent *event) override final;
+
+    /*!
+     * Set delete button status.
+     */
+    void setDeleteButtonStatus();
 
     Ui::ColorWidget *m_ui;
     QPoint m_pressAt;

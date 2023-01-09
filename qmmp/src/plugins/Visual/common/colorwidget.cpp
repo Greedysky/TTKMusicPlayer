@@ -95,19 +95,11 @@ QString ColorWidget::writeColorConfig(const QList<QColor> &colors)
     return value;
 }
 
-void ColorWidget::setSingleColorMode(bool mode)
+void ColorWidget::setSingleMode(bool mode)
 {
     m_singleColorMode = mode;
-    if(mode)
-    {
-        m_ui->upButton->setEnabled(false);
-        m_ui->downButton->setEnabled(false);
-    }
-    else
-    {
-        m_ui->upButton->setEnabled(true);
-        m_ui->downButton->setEnabled(true);
-    }
+    m_ui->upButton->setEnabled(!mode);
+    m_ui->downButton->setEnabled(!mode);
 }
 
 void ColorWidget::setColors(const QList<QColor> &colors)
@@ -123,6 +115,8 @@ void ColorWidget::setColors(const QList<QColor> &colors)
     {
         m_ui->addButton->setEnabled(false);
     }
+
+    setDeleteButtonStatus();
 }
 
 QList<QColor> ColorWidget::colors() const
@@ -149,6 +143,8 @@ void ColorWidget::addButtonClicked()
             m_ui->addButton->setEnabled(false);
         }
     }
+
+    setDeleteButtonStatus();
 }
 
 void ColorWidget::deleteButtonClicked()
@@ -162,6 +158,8 @@ void ColorWidget::deleteButtonClicked()
             m_ui->addButton->setEnabled(true);
         }
     }
+
+    setDeleteButtonStatus();
 }
 
 void ColorWidget::modifyButtonClicked()
@@ -180,7 +178,7 @@ void ColorWidget::modifyButtonClicked()
 void ColorWidget::upButtonClicked()
 {
     int index = m_ui->listWidget->currentRow();
-    if(index >= 0)
+    if(index > 0)
     {
         QListWidgetItem *it = m_ui->listWidget->takeItem(index);
         if(!it)
@@ -265,4 +263,9 @@ void ColorWidget::mouseReleaseEvent(QMouseEvent *event)
     QWidget::mouseReleaseEvent(event);
     m_pressAt = event->globalPos();
     m_leftButtonPress = false;
+}
+
+void ColorWidget::setDeleteButtonStatus()
+{
+    m_ui->deleteButton->setEnabled(m_ui->listWidget->count() > 1);
 }

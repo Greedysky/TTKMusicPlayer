@@ -1,4 +1,5 @@
 #include "lightwaveform.h"
+#include "colorwidget.h"
 
 #include <QMenu>
 #include <QPainter>
@@ -12,6 +13,9 @@
 #include <qmmp/decoderfactory.h>
 #include <qmmp/audioconverter.h>
 
+#define COLOR_RMS 0
+#define COLOR_FOREGROUND 1
+#define COLOR_BACKGROUND 2
 #define NUMBER_OF_VALUES 4096
 
 LightWaveFormScanner::LightWaveFormScanner(QObject *parent)
@@ -209,6 +213,9 @@ LightWaveForm::LightWaveForm(QWidget *parent) :
     connect(m_scanner, SIGNAL(finished()), SLOT(scanFinished()));
     connect(m_scanner, SIGNAL(dataChanged()), SLOT(dataChanged()));
 
+    //: RMS\Foreground\Background
+    m_colors << QColor(0xDD, 0xDD, 0xDD) << QColor(0x33, 0xCA, 0x10) << Qt::white;
+
     m_channelsAction = new QAction(tr("Double Channels"), this);
     m_channelsAction->setCheckable(true);
     //: Root mean square
@@ -255,6 +262,7 @@ void LightWaveForm::readSettings()
     settings.beginGroup("LightWaveForm");
     m_channelsAction->setChecked(settings.value("show_two_channels", true).toBool());
     m_rmsAction->setChecked(settings.value("show_rms", true).toBool());
+    m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     settings.endGroup();
     drawWaveform();
 }
@@ -265,6 +273,7 @@ void LightWaveForm::writeSettings()
     settings.beginGroup("LightWaveForm");
     settings.setValue("show_two_channels", m_channelsAction->isChecked());
     settings.setValue("show_rms", m_rmsAction->isChecked());
+    settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
     settings.endGroup();
     drawWaveform();
 }
@@ -304,6 +313,35 @@ void LightWaveForm::positionChanged(qint64 elapsed)
     }
 }
 
+void LightWaveForm::typeChanged(QAction *action)
+{
+    int type = -1;
+    switch(action->data().toInt())
+    {
+        case 10: type = COLOR_RMS; break;
+        case 20: type = COLOR_FOREGROUND; break;
+        case 30: type = COLOR_BACKGROUND; break;
+        default: break;
+    }
+
+    if(type == -1)
+    {
+        return;
+    }
+
+    ColorWidget c;
+    c.setSingleMode(true);
+    c.setColors(QList<QColor>() << m_colors[type]);
+    if(c.exec())
+    {
+        const QList<QColor> &colors = c.colors();
+        if(!colors.isEmpty())
+        {
+            m_colors[type] = colors.front();
+        }
+    }
+}
+
 void LightWaveForm::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
@@ -318,10 +356,12 @@ void LightWaveForm::paintEvent(QPaintEvent *)
     if(m_duration > 0)
     {
         const int x = width() * m_elapsed / m_duration;
-        QColor color(0x33, 0xCA, 0x10);
+        QColor color = m_colors[COLOR_FOREGROUND];
         color.setAlpha(0x96);
+
         QBrush brush(color);
         painter.fillRect(0, 0, x, height(), brush);
+
         color.setAlpha(0xFF);
         painter.setPen(color);
         painter.drawLine(x, 0, x, height());
@@ -335,6 +375,13 @@ void LightWaveForm::contextMenuEvent(QContextMenuEvent *)
 
     menu.addAction(m_channelsAction);
     menu.addAction(m_rmsAction);
+
+    QMenu colorMenu(tr("Color"), &menu);
+    colorMenu.addAction(tr("RMS"))->setData(10);
+    colorMenu.addAction(tr("Foreground"))->setData(20);
+    colorMenu.addAction(tr("Background"))->setData(30);
+    connect(&colorMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
+    menu.addMenu(&colorMenu);
     menu.exec(QCursor::pos());
 }
 
@@ -356,8 +403,8 @@ void LightWaveForm::drawWaveform()
     const float step = float(width()) / NUMBER_OF_VALUES;
 
     QPainter painter(&m_pixmap);
-    painter.setPen(Qt::white);
-    painter.setBrush(Qt::white);
+    painter.setPen(m_colors[COLOR_BACKGROUND]);
+    painter.setBrush(m_colors[COLOR_BACKGROUND]);
 
     for(int i = 0; i < m_data.count() - m_channels * 3; i += 3)
     {
@@ -404,8 +451,8 @@ void LightWaveForm::drawWaveform()
         return;
     }
 
-    painter.setPen(QColor(0xDD, 0xDD, 0xDD));
-    painter.setBrush(QColor(0xDD, 0xDD, 0xDD));
+    painter.setPen(m_colors[COLOR_RMS]);
+    painter.setBrush(m_colors[COLOR_RMS]);
 
     for(int i = 0; i < m_data.count() - m_channels * 3; i += 3)
     {

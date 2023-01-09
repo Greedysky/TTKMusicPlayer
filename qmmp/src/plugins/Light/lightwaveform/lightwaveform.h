@@ -80,6 +80,7 @@ private slots:
     void dataChanged();
     void mediaUrlChanged();
     void positionChanged(qint64 elapsed);
+    void typeChanged(QAction *action);
 
 private:
     virtual void paintEvent(QPaintEvent *e) override final;
@@ -88,6 +89,7 @@ private:
     void drawWaveform();
 
     LightWaveFormScanner *m_scanner = nullptr;
+    QList<QColor> m_colors;
     QAction *m_channelsAction, *m_rmsAction;
     QList<int> m_data;
     int m_channels = 0;
