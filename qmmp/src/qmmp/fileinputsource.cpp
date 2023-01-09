@@ -2,7 +2,7 @@
 #include "fileinputsource_p.h"
 
 FileInputSource::FileInputSource(const QString &url, QObject *parent)
-    : InputSource(url,parent)
+    : InputSource(url, parent)
 {
     m_file = new QFile(url, this);
 }

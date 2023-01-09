@@ -206,15 +206,12 @@ void LightWaveFormScanner::run()
 
 
 
-LightWaveForm::LightWaveForm(QWidget *parent) :
-    Light(parent)
+LightWaveForm::LightWaveForm(QWidget *parent)
+    : Light(parent)
 {
     m_scanner = new LightWaveFormScanner(this);
     connect(m_scanner, SIGNAL(finished()), SLOT(scanFinished()));
     connect(m_scanner, SIGNAL(dataChanged()), SLOT(dataChanged()));
-
-    //: RMS\Foreground\Background
-    m_colors << QColor(0xDD, 0xDD, 0xDD) << QColor(0x33, 0xCA, 0x10) << Qt::white;
 
     m_channelsAction = new QAction(tr("Double Channels"), this);
     m_channelsAction->setCheckable(true);
@@ -264,6 +261,14 @@ void LightWaveForm::readSettings()
     m_rmsAction->setChecked(settings.value("show_rms", true).toBool());
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     settings.endGroup();
+
+    if(m_colors.count() < 3)
+    {
+        m_colors.clear();
+        //: RMS\Foreground\Background
+        m_colors << QColor(0xDD, 0xDD, 0xDD) << QColor(0x33, 0xCA, 0x10) << QColor(0xFF, 0xFF, 0xFF);
+    }
+
     drawWaveform();
 }
 
@@ -275,6 +280,7 @@ void LightWaveForm::writeSettings()
     settings.setValue("show_rms", m_rmsAction->isChecked());
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
     settings.endGroup();
+
     drawWaveform();
 }
 

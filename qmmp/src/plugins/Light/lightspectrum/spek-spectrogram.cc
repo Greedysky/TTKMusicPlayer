@@ -33,13 +33,13 @@ enum
 static QString trim(const QString& s, int length, bool trim_end);
 static int bits_to_bands(int bits);
 
-LightSpectrum::LightSpectrum(QWidget *parent) :
-    Light(parent),
-    m_audio(new Audio()), // TODO: refactor
-    m_fft(new FFT()),
-    m_bits(FFT_BITS),
-    m_urange(URANGE),
-    m_lrange(LRANGE)
+LightSpectrum::LightSpectrum(QWidget *parent)
+    : Light(parent),
+      m_audio(new Audio()), // TODO: refactor
+      m_fft(new FFT()),
+      m_bits(FFT_BITS),
+      m_urange(URANGE),
+      m_lrange(LRANGE)
 {
     create_palette();
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));

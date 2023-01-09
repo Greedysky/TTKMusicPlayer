@@ -1,7 +1,7 @@
 #include "emptyinputsource_p.h"
 
 EmptyInputSource::EmptyInputSource(const QString &url, QObject *parent)
-    : InputSource(url,parent)
+    : InputSource(url, parent)
 {
 
 }
