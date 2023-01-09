@@ -213,6 +213,22 @@
         <source>Root Mean Square</source>
         <translation>顯示均方根差</translation>
     </message>
+    <message>
+        <source>Color</source>
+        <translation>顏色</translation>
+    </message>
+    <message>
+        <source>RMS</source>
+        <translation>均方根差</translation>
+    </message>
+    <message>
+        <source>Foreground</source>
+        <translation>前景色</translation>
+    </message>
+    <message>
+        <source>Background</source>
+        <translation>背景色</translation>
+    </message>
 </context>
 <context>
     <name>LightSpectrum</name>
