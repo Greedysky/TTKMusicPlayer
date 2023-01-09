@@ -88,6 +88,7 @@ protected:
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override final;
     virtual void mouseMoveEvent(QMouseEvent *event) override final;
     virtual void mouseReleaseEvent(QMouseEvent *event) override final;

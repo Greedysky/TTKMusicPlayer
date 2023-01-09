@@ -1,29 +1,32 @@
 #include "colorwidget.h"
 #include "ui_colorwidget.h"
 
+#include <QPainter>
 #include <QMouseEvent>
 #include <QColorDialog>
 
-const QString MPushButtonStyle04 = " \
+const char* MPushButtonStyle04 = " \
         QPushButton{ border:1px solid #AAAAAA; background:#FFFFFF; color:#777777; } \
         QPushButton::hover{ border:1px solid #555555; color:#444444; } \
-        QPushButton::disabled{ color:#999999; }";
+        QPushButton::disabled{ color:#BBBBBB; border:1px solid #DDDDDD; }";
 
-const QString MToolButtonStyle03 = "QToolButton{ background-color:transparent; border:none; } \
+const char* MToolButtonStyle03 = "QToolButton{ background-color:transparent; border:none; } \
         QToolButton::hover{ background-color:rgba(255, 255, 255, 20); }";
 
+#define WIDTH  4
+#define HEIGHT 4
 
 ColorWidget::ColorWidget(QWidget *parent)
     : QDialog(parent),
       m_ui(new Ui::ColorWidget)
 {
     m_ui->setupUi(this);
-    m_ui->background->setStyleSheet("background:#80B7F1");
+    m_ui->background->setStyleSheet("background:#55AAFF");
 
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
 
-    m_ui->topTitleCloseButton->setIcon(style()->standardPixmap(QStyle::SP_TitleBarCloseButton));
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/image/btn_close"));
     m_ui->topTitleCloseButton->setStyleSheet(MToolButtonStyle03);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
@@ -37,7 +40,6 @@ ColorWidget::ColorWidget(QWidget *parent)
     m_ui->upButton->setStyleSheet(MPushButtonStyle04);
     m_ui->downButton->setStyleSheet(MPushButtonStyle04);
     m_ui->confirmButton->setStyleSheet(MPushButtonStyle04);
-    m_ui->cancelButton->setStyleSheet(MPushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->addButton->setFocusPolicy(Qt::NoFocus);
@@ -46,10 +48,8 @@ ColorWidget::ColorWidget(QWidget *parent)
     m_ui->upButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downButton->setFocusPolicy(Qt::NoFocus);
     m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_ui->cancelButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
     connect(m_ui->deleteButton, SIGNAL(clicked()), SLOT(deleteButtonClicked()));
@@ -217,6 +217,22 @@ void ColorWidget::downButtonClicked()
         m_ui->listWidget->insertItem(index, it);
         m_ui->listWidget->setCurrentRow(index);
     }
+}
+
+void ColorWidget::paintEvent(QPaintEvent *event)
+{
+    QWidget::paintEvent(event);
+
+    QPainter painter(this);
+    painter.drawPixmap(0, 0, WIDTH, HEIGHT, QPixmap(":/shadow/lb_left_top"));
+    painter.drawPixmap(width() - WIDTH, 0, WIDTH, HEIGHT, QPixmap(":/shadow/lb_right_top"));
+    painter.drawPixmap(0, height() - HEIGHT, WIDTH, HEIGHT, QPixmap(":/shadow/lb_left_bottom"));
+    painter.drawPixmap(width() - WIDTH, height() - HEIGHT, WIDTH, HEIGHT, QPixmap(":/shadow/lb_right_bottom"));
+
+    painter.drawPixmap(0, WIDTH, HEIGHT, height() - 2 * WIDTH, QPixmap(":/shadow/lb_left").scaled(WIDTH, height() - 2 * HEIGHT));
+    painter.drawPixmap(width() - WIDTH, WIDTH, HEIGHT, height() - 2 * HEIGHT, QPixmap(":/shadow/lb_right").scaled(WIDTH, height() - 2 * HEIGHT));
+    painter.drawPixmap(HEIGHT, 0, width() - 2 * WIDTH, HEIGHT, QPixmap(":/shadow/lb_top").scaled(width() - 2 * WIDTH, HEIGHT));
+    painter.drawPixmap(WIDTH, height() - HEIGHT, width() - 2 * WIDTH, HEIGHT, QPixmap(":/shadow/lb_bottom").scaled(width() - 2 * WIDTH, HEIGHT));
 }
 
 void ColorWidget::mousePressEvent(QMouseEvent *event)

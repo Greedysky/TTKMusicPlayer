@@ -1,4 +1,5 @@
 include($$PWD/../../Visual.pri)
+include($$PWD/../../common/widget.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Visual
 

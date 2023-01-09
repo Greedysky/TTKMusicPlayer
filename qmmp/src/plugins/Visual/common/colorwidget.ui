@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>308</width>
+    <width>323</width>
     <height>313</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>300</width>
+     <width>315</width>
      <height>305</height>
     </rect>
    </property>
@@ -30,8 +30,8 @@
    <property name="geometry">
     <rect>
      <x>14</x>
-     <y>4</y>
-     <width>91</width>
+     <y>6</y>
+     <width>90</width>
      <height>25</height>
     </rect>
    </property>
@@ -45,8 +45,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>282</x>
-     <y>6</y>
+     <x>297</x>
+     <y>8</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -59,28 +59,31 @@
    <property name="geometry">
     <rect>
      <x>4</x>
-     <y>29</y>
-     <width>300</width>
-     <height>280</height>
+     <y>33</y>
+     <width>315</width>
+     <height>276</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255,150)</string>
+    <string notr="true">background:rgb(255,255,255)</string>
    </property>
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>20</y>
-      <width>150</width>
-      <height>185</height>
+      <width>180</width>
+      <height>235</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:1px solid #AAAAAA;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="addButton">
     <property name="geometry">
      <rect>
-      <x>195</x>
+      <x>220</x>
       <y>20</y>
       <width>75</width>
       <height>25</height>
@@ -96,7 +99,7 @@
    <widget class="QPushButton" name="deleteButton">
     <property name="geometry">
      <rect>
-      <x>195</x>
+      <x>220</x>
       <y>60</y>
       <width>75</width>
       <height>25</height>
@@ -112,7 +115,7 @@
    <widget class="QPushButton" name="modifyButton">
     <property name="geometry">
      <rect>
-      <x>195</x>
+      <x>220</x>
       <y>100</y>
       <width>75</width>
       <height>25</height>
@@ -128,7 +131,7 @@
    <widget class="QPushButton" name="upButton">
     <property name="geometry">
      <rect>
-      <x>195</x>
+      <x>220</x>
       <y>140</y>
       <width>75</width>
       <height>25</height>
@@ -144,7 +147,7 @@
    <widget class="QPushButton" name="downButton">
     <property name="geometry">
      <rect>
-      <x>195</x>
+      <x>220</x>
       <y>180</y>
       <width>75</width>
       <height>25</height>
@@ -160,10 +163,10 @@
    <widget class="QPushButton" name="confirmButton">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>220</x>
       <y>230</y>
-      <width>80</width>
-      <height>30</height>
+      <width>75</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="cursor">
@@ -171,22 +174,6 @@
     </property>
     <property name="text">
      <string>Confirm</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="cancelButton">
-    <property name="geometry">
-     <rect>
-      <x>195</x>
-      <y>230</y>
-      <width>80</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="text">
-     <string>Cancel</string>
     </property>
    </widget>
   </widget>
