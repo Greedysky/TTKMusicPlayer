@@ -335,12 +335,12 @@ void LightWaveForm::typeChanged(QAction *action)
         return;
     }
 
-    ColorWidget c;
-    c.setSingleMode(true);
-    c.setColors(QList<QColor>() << m_colors[type]);
-    if(c.exec())
+    ColorWidget dialog;
+    dialog.setSingleMode(true);
+    dialog.setColors(QList<QColor>() << m_colors[type]);
+    if(dialog.exec())
     {
-        const QList<QColor> &colors = c.colors();
+        const QList<QColor> &colors = dialog.colors();
         if(!colors.isEmpty())
         {
             m_colors[type] = colors.front();

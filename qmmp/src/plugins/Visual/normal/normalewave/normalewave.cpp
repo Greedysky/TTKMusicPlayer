@@ -43,11 +43,11 @@ void NormalEWave::writeSettings()
 
 void NormalEWave::changeColor()
 {
-    ColorWidget c;
-    c.setColors(m_colors);
-    if(c.exec())
+    ColorWidget dialog;
+    dialog.setColors(m_colors);
+    if(dialog.exec())
     {
-        m_colors = c.colors();
+        m_colors = dialog.colors();
     }
 }
 

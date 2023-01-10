@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgb(255,255,255)</string>
+    <string notr="true">background:white;</string>
    </property>
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">

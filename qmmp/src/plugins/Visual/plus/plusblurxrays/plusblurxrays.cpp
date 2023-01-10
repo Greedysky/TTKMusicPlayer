@@ -42,12 +42,12 @@ void PlusBlurXRays::writeSettings()
 
 void PlusBlurXRays::changeColor()
 {
-    ColorWidget c;
-    c.setSingleMode(true);
-    c.setColors(m_colors);
-    if(c.exec())
+    ColorWidget dialog;
+    dialog.setSingleMode(true);
+    dialog.setColors(m_colors);
+    if(dialog.exec())
     {
-        m_colors = c.colors();
+        m_colors = dialog.colors();
     }
 }
 

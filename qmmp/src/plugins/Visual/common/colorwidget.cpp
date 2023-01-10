@@ -5,13 +5,14 @@
 #include <QMouseEvent>
 #include <QColorDialog>
 
-const char* MPushButtonStyle04 = " \
+const char* MToolButtonStyle01 = " \
+        QToolButton{ background-color:transparent; border:none; } \
+        QToolButton::hover{ background-color:rgba(255, 255, 255, 20); }";
+
+const char* MPushButtonStyle01 = " \
         QPushButton{ border:1px solid #AAAAAA; background:#FFFFFF; color:#777777; } \
         QPushButton::hover{ border:1px solid #555555; color:#444444; } \
         QPushButton::disabled{ color:#BBBBBB; border:1px solid #DDDDDD; }";
-
-const char* MToolButtonStyle03 = "QToolButton{ background-color:transparent; border:none; } \
-        QToolButton::hover{ background-color:rgba(255, 255, 255, 20); }";
 
 #define WIDTH  4
 #define HEIGHT 4
@@ -23,23 +24,23 @@ ColorWidget::ColorWidget(QWidget *parent)
     m_ui->setupUi(this);
     m_ui->background->setStyleSheet("background:#55AAFF");
 
-    setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/image/btn_close"));
-    m_ui->topTitleCloseButton->setStyleSheet(MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MToolButtonStyle01);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     m_ui->listWidget->setFrameShape(QFrame::NoFrame);
     m_ui->listWidget->setSpacing(1);
 
-    m_ui->addButton->setStyleSheet(MPushButtonStyle04);
-    m_ui->deleteButton->setStyleSheet(MPushButtonStyle04);
-    m_ui->modifyButton->setStyleSheet(MPushButtonStyle04);
-    m_ui->upButton->setStyleSheet(MPushButtonStyle04);
-    m_ui->downButton->setStyleSheet(MPushButtonStyle04);
-    m_ui->confirmButton->setStyleSheet(MPushButtonStyle04);
+    m_ui->addButton->setStyleSheet(MPushButtonStyle01);
+    m_ui->deleteButton->setStyleSheet(MPushButtonStyle01);
+    m_ui->modifyButton->setStyleSheet(MPushButtonStyle01);
+    m_ui->upButton->setStyleSheet(MPushButtonStyle01);
+    m_ui->downButton->setStyleSheet(MPushButtonStyle01);
+    m_ui->confirmButton->setStyleSheet(MPushButtonStyle01);
 
 #ifdef Q_OS_UNIX
     m_ui->addButton->setFocusPolicy(Qt::NoFocus);
