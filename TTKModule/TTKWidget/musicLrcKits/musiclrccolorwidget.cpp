@@ -25,7 +25,6 @@ MusicLrcColorWidget::MusicLrcColorWidget(QWidget *parent)
     m_ui->upButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->downButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->confirmButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->cancelButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->addButton->setFocusPolicy(Qt::NoFocus);
@@ -34,10 +33,8 @@ MusicLrcColorWidget::MusicLrcColorWidget(QWidget *parent)
     m_ui->upButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downButton->setFocusPolicy(Qt::NoFocus);
     m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_ui->cancelButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
     connect(m_ui->deleteButton, SIGNAL(clicked()), SLOT(deleteButtonClicked()));
     connect(m_ui->modifyButton, SIGNAL(clicked()), SLOT(modifyButtonClicked()));
@@ -97,11 +94,10 @@ void MusicLrcColorWidget::modifyButtonClicked()
     MusicColorDialog dialog(this);
     if(dialog.exec())
     {
-        const QColor &color = dialog.color();
         QListWidgetItem *it = m_ui->listWidget->currentItem();
         if(it)
         {
-            it->setBackground(color);
+            it->setBackground(dialog.color());
         }
     }
 }
@@ -109,9 +105,14 @@ void MusicLrcColorWidget::modifyButtonClicked()
 void MusicLrcColorWidget::upButtonClicked()
 {
     int index = m_ui->listWidget->currentRow();
-    if(index >= 0)
+    if(index > 0)
     {
         QListWidgetItem *it = m_ui->listWidget->takeItem(index);
+        if(!it)
+        {
+            return;
+        }
+
         if(--index < 0)
         {
             index = 0;
@@ -128,6 +129,11 @@ void MusicLrcColorWidget::downButtonClicked()
     if(index >= 0)
     {
         QListWidgetItem *it = m_ui->listWidget->takeItem(index);
+        if(!it)
+        {
+            return;
+        }
+
         if(++index >= m_ui->listWidget->count())
         {
             index = m_ui->listWidget->count();
