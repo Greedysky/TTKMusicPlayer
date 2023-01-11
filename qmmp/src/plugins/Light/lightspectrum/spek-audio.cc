@@ -54,7 +54,6 @@ private:
     int m_channel;
 
     AVPacket *m_packet;
-    int m_offset = 0;
     AVFrame *m_frame;
     int m_buffer_len = 0;
     float *m_buffer = nullptr;
@@ -238,11 +237,8 @@ AudioFileImpl::~AudioFileImpl()
     if(m_frame) {
         av_frame_free(&m_frame);
     }
-    if(m_packet->data) {
-        m_packet->data -= m_offset;
-        m_packet->size += m_offset;
-        m_offset = 0;
-        av_packet_unref(m_packet);
+    if(m_packet) {
+        av_packet_free(&m_packet);
     }
     if(m_codec_context) {
         avcodec_free_context(&m_codec_context);
@@ -270,41 +266,63 @@ void AudioFileImpl::start(int channel, int samples)
 int AudioFileImpl::read()
 {
     if(!!m_error) {
+        // Stop on error.
         return -1;
     }
 
+    // This runs a state machine to allow incremental calls to decode and return the next chunk of samples.
+    // FFmpeg docs: https://ffmpeg.org/doxygen/5.1/group__lavc__encdec.html
     for(;;) {
-        while(m_packet->size > 0) {
-            av_frame_unref(m_frame);
-            int ret = avcodec_send_packet(m_codec_context, m_packet);
-            if(ret < 0) {
-                // Error sending a packet for decoding, skip the frame.
+        if(!m_packet) {
+            // Finished decoding.
+            return 0;
+        }
+
+        // Read the next packet.
+        int ret = 0;
+        while((ret = av_read_frame(m_format_context, m_packet)) >= 0) {
+            if(m_packet->stream_index == m_audio_stream) {
                 break;
             }
-            ret = avcodec_receive_frame(m_codec_context, m_frame);
-            if(ret < 0 && ret != AVERROR(EAGAIN) && ret != AVERROR_EOF) {
-                // Error during decoding, skip the frame.
-                break;
-            }
-            const int len = m_packet->size;
-            m_packet->data += len;
-            m_packet->size -= len;
-            m_offset += len;
+            av_packet_unref(m_packet);
+        }
+
+        if(ret < 0) {
+            // End of file or error, empty the packet to flush the decoder.
+            av_packet_unref(m_packet);
+            av_packet_free(&m_packet);
+            m_packet = nullptr;
+        }
+
+        ret = avcodec_send_packet(m_codec_context, m_packet);
+        if(m_packet) {
+            av_packet_unref(m_packet);
+        }
+
+        if(ret < 0) {
+            // Skip the packet.
+            continue;
+        }
+
+        // The packet can contain multiple frames, read all of them.
+        int total_samples = 0;
+        while((ret = avcodec_receive_frame(m_codec_context, m_frame)) >= 0) {
             const int samples = m_frame->nb_samples;
-            // Occasionally the frame has no samples, move on to the next one.
             if(samples == 0) {
+                // Occasionally the frame has no samples, move on to the next one.
+                av_frame_unref(m_frame);
                 continue;
             }
-            // We have data, return it and come back for more later.
-            if(samples > m_buffer_len) {
+            // We have the data, normalise and write to the buffer.
+            if((total_samples + samples) > m_buffer_len) {
                 m_buffer = static_cast<float*>(
-                    av_realloc(m_buffer, samples * sizeof(float))
+                    av_realloc(m_buffer, (total_samples + samples) * sizeof(float))
                 );
-                m_buffer_len = samples;
+                m_buffer_len = total_samples + samples;
             }
 
             AVSampleFormat format = static_cast<AVSampleFormat>(m_frame->format);
-            int is_planar = av_sample_fmt_is_planar(format);
+            const int is_planar = av_sample_fmt_is_planar(format);
             for(int sample = 0; sample < samples; ++sample) {
                 uint8_t *data;
                 int offset;
@@ -339,27 +357,15 @@ int AudioFileImpl::read()
                     value = 0.0f;
                     break;
                 }
-                m_buffer[sample] = value;
+                m_buffer[total_samples + sample] = value;
             }
-            return samples;
-        }
-        if(m_packet->data) {
-            m_packet->data -= m_offset;
-            m_packet->size += m_offset;
-            m_offset = 0;
-            av_packet_unref(m_packet);
+            total_samples += samples;
+            av_frame_unref(m_frame);
         }
 
-        int res = 0;
-        while((res = av_read_frame(m_format_context, m_packet)) >= 0) {
-            if(m_packet->stream_index == m_audio_stream) {
-                break;
-            }
-            av_packet_unref(m_packet);
+        if(total_samples > 0) {
+            return total_samples;
         }
-        if(res < 0) {
-            // End of file or error.
-            return 0;
-        }
+        // Error during decoding or EOF, skip the packet.
     }
 }
