@@ -187,7 +187,7 @@ void MountainWidget::drawBars()
 
     for(int i = 0; i < NUM_BANDS; ++i)
     {
-        float z = -1.6f +(NUM_BANDS - i) * BAR_SPACING;
+        const float z = -1.6f +(NUM_BANDS - i) * BAR_SPACING;
         for(int j = 0; j < NUM_BANDS; ++j)
         {
             drawBar(1.6f - BAR_SPACING * j, z, m_bars[(m_offset + i) % NUM_BANDS][j] * 1.6, m_colors[i][j][0], m_colors[i][j][1], m_colors[i][j][2]);
