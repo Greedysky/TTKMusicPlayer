@@ -46,7 +46,7 @@ INCLUDEPATH += $$PWD/../
 HEADERS += \
     $$PWD/../ttkversion.h \
     $$PWD/../ttksingleton.h \
-    $$PWD/../ttkqtwrapper.h \
+    $$PWD/../ttkqtcompat.h \
     $$PWD/../ttkprivate.h \
     $$PWD/../ttklogger.h \
     $$PWD/../ttknumberdefine.h \

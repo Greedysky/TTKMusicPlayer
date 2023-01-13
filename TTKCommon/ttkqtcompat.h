@@ -1,5 +1,5 @@
-#ifndef TTKQTWRAPPER_H
-#define TTKQTWRAPPER_H
+#ifndef TTKQTCOMPAT_H
+#define TTKQTCOMPAT_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -21,7 +21,7 @@
 
 #include "ttkglobal.h"
 
-/*! @brief The class of the qt deprecated function wrapper.
+/*! @brief The class of the qt compat function wrapper.
  * @author Greedysky <greedysky@163.com>
  */
 namespace Qt
@@ -187,4 +187,4 @@ namespace Qt
 #endif
 }
 
-#endif // TTKQTWRAPPER_H
+#endif // TTKQTCOMPAT_H
