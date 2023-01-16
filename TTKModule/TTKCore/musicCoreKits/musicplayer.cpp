@@ -3,8 +3,8 @@
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 
-#include <qmmp/soundcore.h>
 #include <qmath.h>
+#include <qmmp/soundcore.h>
 
 MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent),
@@ -27,6 +27,8 @@ MusicPlayer::MusicPlayer(QObject *parent)
 
 MusicPlayer::~MusicPlayer()
 {
+    m_core->stop();
+    m_timer.stop();
     delete m_core;
 }
 
@@ -143,7 +145,6 @@ void MusicPlayer::play()
     if(m_currentMedia == mediaPath && state == Qmmp::Paused)
     {
         m_core->pause(); ///When the pause time for recovery
-        m_timer.start();
         update();
         return;
     }
@@ -167,7 +168,6 @@ void MusicPlayer::pause()
     if(m_state != MusicObject::PlayState::Paused)
     {
         m_core->pause();
-        m_timer.stop();
         setCurrentPlayState(MusicObject::PlayState::Paused);
     }
 }
@@ -192,6 +192,7 @@ void MusicPlayer::setEqualizerEffect(const TTKIntList &hz)
     EqSettings eq = m_core->eqSettings();
     eq.setPreamp(15 + hz[0]);
     eq.setEnabled(true);
+
     for(int i = 0; i < EqSettings::EQ_BANDS_10; ++i)
     {
         eq.setGain(i, hz[i + 1]);
