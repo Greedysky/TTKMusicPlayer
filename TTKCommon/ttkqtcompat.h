@@ -24,7 +24,7 @@
 /*! @brief The class of the qt compat function wrapper.
  * @author Greedysky <greedysky@163.com>
  */
-namespace Qt
+namespace QtCompat
 {
 /// Font string width
 #if TTK_QT_VERSION_CHECK(5,11,0)

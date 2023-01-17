@@ -104,11 +104,11 @@ public:
      * Xml stream data from byteArray.
      */
     bool fromByteArray(const QByteArray &data);
+
     /*!
      * Write datas into xml file by given name.
      */
     bool toFile(const QString &name);
-
     /*!
      * Xml stream data to string.
      */
