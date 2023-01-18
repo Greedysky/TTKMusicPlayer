@@ -25,6 +25,8 @@
 #include "musicsongsharingwidget.h"
 #include "musicitemquerytablewidget.h"
 
+#define QUERY_WIDGET_WIDTH  (G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - LEFT_SIDE_WIDTH_MIN)
+
 /*! @brief The class of the item query widget base.
  * @author Greedysky <greedysky@163.com>
  */

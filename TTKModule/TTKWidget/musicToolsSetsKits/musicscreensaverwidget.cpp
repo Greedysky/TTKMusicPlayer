@@ -12,6 +12,7 @@
 
 #define OS_COUNT            10
 #define OS_ITEM_SIZE        QSize(165, 110)
+#define LINE_SPACING_SIZE   160
 
 #define OS_SCREEN_DIR       "Screen"
 #define OS_SCREENSAVER_URL  "ScreenSaver"
@@ -183,10 +184,10 @@ void MusicScreenSaverListWidget::resizeWindow()
         m_gridLayout->removeWidget(item);
     }
 
-    const int side = width() / 160;
+    const int lineNumber = width() / LINE_SPACING_SIZE;
     for(int i = 0; i < m_items.count(); ++i)
     {
-        m_gridLayout->addWidget(m_items[i], i / side, i % side, Qt::AlignLeft | Qt::AlignTop);
+        m_gridLayout->addWidget(m_items[i], i / lineNumber, i % lineNumber, Qt::AlignLeft | Qt::AlignTop);
     }
 }
 

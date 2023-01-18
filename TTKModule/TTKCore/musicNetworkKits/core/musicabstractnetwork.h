@@ -29,6 +29,7 @@
 #include "musicnumberutils.h"
 #include "musicstringutils.h"
 #include "musicalgorithmutils.h"
+#include "musicsettingmanager.h"
 
 #include "qjson/parser.h"
 
