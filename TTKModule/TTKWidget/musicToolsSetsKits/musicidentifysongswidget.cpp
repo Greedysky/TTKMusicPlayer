@@ -408,6 +408,7 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
     {
         delete m_mainWindow->widget(1);
     }
+
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle04);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);

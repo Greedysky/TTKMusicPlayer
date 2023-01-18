@@ -25,11 +25,8 @@ MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueDat
 
 MusicDownloadQueueRequest::~MusicDownloadQueueRequest()
 {
-    if(m_request)
-    {
-        delete m_request;
-        m_request = nullptr;
-    }
+    delete m_request;
+    m_request = nullptr;
     deleteAll();
 }
 

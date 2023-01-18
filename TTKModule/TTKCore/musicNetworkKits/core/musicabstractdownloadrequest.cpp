@@ -37,11 +37,8 @@ MusicAbstractDownLoadRequest::~MusicAbstractDownLoadRequest()
 void MusicAbstractDownLoadRequest::deleteAll()
 {
     MusicAbstractNetwork::deleteAll();
-    if(m_file)
-    {
-        delete m_file;
-        m_file = nullptr;
-    }
+    delete m_file;
+    m_file = nullptr;
     deleteLater();
 }
 
