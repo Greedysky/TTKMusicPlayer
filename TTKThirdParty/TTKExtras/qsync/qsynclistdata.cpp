@@ -62,7 +62,7 @@ void QSyncListData::receiveDataFromServer()
                      else if(node.nodeName() == "LastModified")
                      {
                          QDateTime date = QDateTime::fromString(node.toElement().text(), "yyyy-MM-ddThh:mm:ss.zzzZ");
-                         date = date.addSecs(8*60*60);
+                         date = date.addSecs(8 * 60 * 60);
                          item.m_putTime = date.toString("yyyy-MM-dd hh:mm");
                      }
                      else if(node.nodeName() == "ETag")

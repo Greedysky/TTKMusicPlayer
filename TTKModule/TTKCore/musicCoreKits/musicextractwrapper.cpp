@@ -250,13 +250,13 @@ bool MusicExtractWrapper::inputSkin(MusicBackgroundImage *image, const QString &
     zipCloseFileInZip(zFile);
 
     MusicSkinConfigManager manager;
-    manager.writeBuffer(image->m_item, MUSIC_IMAGE_FILE);
+    manager.writeBuffer(image->m_item, TTK_IMAGE_FILE);
     data = manager.toByteArray();
 
     zipOpenNewFileInZip(zFile, qPrintable(prefix + XML_FILE), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
     zipWriteInFileInZip(zFile, data.constData(), data.length());
     zipCloseFileInZip(zFile);
-    QFile::remove(MUSIC_IMAGE_FILE);
+    QFile::remove(TTK_IMAGE_FILE);
 
     zipClose(zFile, nullptr);
     return true;

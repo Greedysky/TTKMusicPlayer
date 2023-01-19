@@ -660,7 +660,7 @@ void MusicCloudManagerWidget::resizeWidget()
 void MusicCloudManagerWidget::updataSizeLabel(qint64 size)
 {
     m_sizeValueLabel->setText(QString("%1/40.0G").arg(MusicUtils::Number::sizeByteToLabel(size)));
-    m_sizeValueBar->setValue(size * 100 / (10 * MH_GB2B));
+    m_sizeValueBar->setValue(size * MV_MAX / (10 * MH_GB2B));
 }
 
 void MusicCloudManagerWidget::downloadFileToServer()

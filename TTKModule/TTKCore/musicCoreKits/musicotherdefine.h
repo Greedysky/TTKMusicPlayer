@@ -36,6 +36,11 @@
 #define TTK_NORMAL_LEVEL            -1
 #define TTK_HIGH_LEVEL              999
 
+#define TTK_COLOR_FILE              "color.jpg"
+#define TTK_IMAGE_FILE              "image_cache"
+#define TTK_RECORD_FILE             "record.raw"
+#define TTK_RECORD_DATA_FILE        "record_data.wav"
+
 #define MAX_IMAGE_COUNTER           10
 
 #define MUSIC_AUTHOR_NAME           "Greedysky"
@@ -44,12 +49,6 @@
 #define MUSIC_BIRD_DIR              "Bird"
 #define MUSIC_TIME_INIT             "00:00"
 #define MUSIC_MOVIE_RADIO           QUERY_KG_INTERFACE
-
-#define MUSIC_COLOR_FILE            "color.jpg"
-#define MUSIC_IMAGE_FILE            "image_cache"
-
-#define MUSIC_RECORD_FILE           "record.raw"
-#define MUSIC_RECORD_DATA_FILE      "record_data.wav"
 
 #ifdef Q_OS_WIN
 #  define MUSIC_OUTSIDE_OPEN        "-Open"
@@ -64,7 +63,7 @@
 #define MUSIC_NETWORK_LIST          2
 #define MUSIC_RECENT_LIST           3
 
-#define MUSIC_SEARCH_PAGE           0
 #define MUSIC_LRC_PAGE              1
+#define MUSIC_SEARCH_PAGE           0
 
 #endif // MUSICOTHERDEFINE_H

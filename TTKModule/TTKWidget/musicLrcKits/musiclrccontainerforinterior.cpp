@@ -882,8 +882,8 @@ void MusicLrcContainerForInterior::setItemStyleSheet(int index, int size, int tr
     w->setFontSize(size);
 
     int value = G_SETTING_PTR->value("LrcColorTransparent").toInt() - transparent;
-    value = (value < 0) ? 0 : value;
-    value = (value > 100) ? 100 : value;
+    value = (value < MV_MIN) ? MV_MIN : value;
+    value = (value > MV_MAX) ? MV_MAX : value;
     w->setFontTransparent(value);
     w->setTransparent(value);
 

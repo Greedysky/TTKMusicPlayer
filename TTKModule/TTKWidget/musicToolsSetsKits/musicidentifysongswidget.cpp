@@ -110,10 +110,10 @@ void MusicIdentifySongsWidget::reDetectButtonClicked()
 
 void MusicIdentifySongsWidget::detectedTimeOut()
 {
-    m_recordCore->addWavHeader(MUSIC_RECORD_DATA_FILE);
+    m_recordCore->addWavHeader(TTK_RECORD_DATA_FILE);
 
     TTKSemaphoreLoop loop;
-    m_detectedThread->startRequest(MUSIC_RECORD_DATA_FILE);
+    m_detectedThread->startRequest(TTK_RECORD_DATA_FILE);
     connect(m_detectedThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 

@@ -43,7 +43,7 @@
 #define MT_D2M          (MT_D2H * MT_H2M)
 #define MT_D2S          qint64(MT_D2M * MT_M2S)
 #define MT_D2MS         qint64(MT_D2S * MT_S2MS)
-//
+
 
 #define MH_BS           1
 
@@ -71,7 +71,7 @@
 #define MH_TB2KB        qint64(MH_TB2MB * MH_MB2KB)
 #define MH_TB2B         qint64(MH_TB2KB * MH_KB2B)
 #define MH_TB2BS        qint64(MH_TB2B * MH_B2BS)
-//
+
 
 #define MA_0            0
 #define MA_30           30
@@ -82,7 +82,7 @@
 #define MA_180          180
 #define MA_270          270
 #define MA_360          360
-//
+
 
 #define MB_0            0
 #define MB_32           32
@@ -95,7 +95,9 @@
 #define MB_500          500
 #define MB_750          750
 #define MB_1000         1000
-//
 
+
+#define MV_MIN          0
+#define MV_MAX          100
 
 #endif // TTKNUMBERDEFINE_H

@@ -17,7 +17,7 @@ MusicBackgroundPalette::MusicBackgroundPalette(QWidget *parent)
 
 MusicBackgroundPalette::~MusicBackgroundPalette()
 {
-    QFile::remove(MUSIC_COLOR_FILE);
+    QFile::remove(TTK_COLOR_FILE);
 }
 
 void MusicBackgroundPalette::setPixmap(const QColor &color)
@@ -31,9 +31,9 @@ void MusicBackgroundPalette::copyColorToMemory(const QColor &color)
 {
     QImage image(16, 16, QImage::Format_ARGB32);
     image.fill(color);
-    if(image.save(MUSIC_COLOR_FILE))
+    if(image.save(TTK_COLOR_FILE))
     {
-        Q_EMIT currentColorToMemoryChanged(MUSIC_COLOR_FILE);
+        Q_EMIT currentColorToMemoryChanged(TTK_COLOR_FILE);
     }
 }
 
@@ -166,7 +166,7 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
 
 MusicBackgroundPaletteWidget::~MusicBackgroundPaletteWidget()
 {
-    QFile::remove(MUSIC_COLOR_FILE);
+    QFile::remove(TTK_COLOR_FILE);
     if(!m_confirmButtonClicked)
     {
         Q_EMIT currentColorToMemoryChanged(m_previousBackground);
@@ -197,9 +197,9 @@ void MusicBackgroundPaletteWidget::paletteColorClicked()
 
         QImage image(16, 16, QImage::Format_ARGB32);
         image.fill(m_currentColor);
-        if(image.save(MUSIC_COLOR_FILE))
+        if(image.save(TTK_COLOR_FILE))
         {
-            Q_EMIT currentColorToFileChanged(MUSIC_COLOR_FILE);
+            Q_EMIT currentColorToFileChanged(TTK_COLOR_FILE);
         }
     }
     close();
@@ -223,9 +223,9 @@ void MusicBackgroundPaletteWidget::currentColorToFile(const QColor &color)
 
     QImage image(16, 16, QImage::Format_ARGB32);
     image.fill(m_currentColor = color);
-    if(image.save(MUSIC_COLOR_FILE))
+    if(image.save(TTK_COLOR_FILE))
     {
-        currentColorToMemory(MUSIC_COLOR_FILE);
+        currentColorToMemory(TTK_COLOR_FILE);
     }
 }
 

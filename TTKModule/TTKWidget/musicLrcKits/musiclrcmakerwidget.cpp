@@ -738,7 +738,7 @@ void MusicLrcMakerWidget::setItemStyleSheet(int index, int size, int transparent
     MusicLrcManagerForInterior *w = m_lrcContainer[index];
     w->setFontSize(size);
 
-    const int value = qBound<int>(0, 100 - transparent, 100);
+    const int value = qBound<int>(MV_MIN, MV_MAX - transparent, MV_MAX);
     w->setFontTransparent(value);
     w->setTransparent(value);
 

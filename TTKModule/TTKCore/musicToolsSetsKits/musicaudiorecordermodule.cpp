@@ -30,7 +30,7 @@ MusicAudioRecorderModule::MusicAudioRecorderModule(QObject *parent)
       m_audioOutputFile(nullptr)
 {
     m_file = new QFile(this);
-    m_file->setFileName(MUSIC_RECORD_FILE);
+    m_file->setFileName(TTK_RECORD_FILE);
 
     m_formatFile.setChannelCount(1);
     m_formatFile.setSampleSize(16);
@@ -61,8 +61,8 @@ MusicAudioRecorderModule::MusicAudioRecorderModule(QObject *parent)
 
 MusicAudioRecorderModule::~MusicAudioRecorderModule()
 {
-    QFile::remove(MUSIC_RECORD_FILE);
-    QFile::remove(MUSIC_RECORD_DATA_FILE);
+    QFile::remove(TTK_RECORD_FILE);
+    QFile::remove(TTK_RECORD_DATA_FILE);
 
     delete m_file;
     delete m_audioInputFile;

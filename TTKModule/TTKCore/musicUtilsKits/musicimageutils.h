@@ -78,15 +78,15 @@ namespace MusicUtils
         template <typename T>
         TTK_MODULE_EXPORT T reRenderValue(const T &key, const T &alpha, const T &value)
         {
-            if(alpha < 0)
+            if(alpha < MV_MIN)
             {
-                return 0;
+                return MV_MIN;
             }
             else if(alpha > key)
             {
                 return key;
             }
-            return (key - alpha) * 1.0 / 100 * value + alpha;
+            return (key - alpha) * 1.0 / MV_MAX * value + alpha;
         }
 
         /*!

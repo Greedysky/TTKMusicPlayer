@@ -450,7 +450,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
         return;
     }
 
-    const float v = MusicUtils::Image::reRenderValue<float>(1, 0.35, 100 - m_backgroundAlpha);
+    const float v = MusicUtils::Image::reRenderValue<float>(1, 0.35, MV_MAX - m_backgroundAlpha);
     MusicApplication::instance()->setWindowOpacity(v);
 
     const QSize size(G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());

@@ -237,7 +237,7 @@ void MusicPlayer::update()
         ///3D music settings
         setEnabledEffect(false);
         m_posOnCircle += 0.5f;
-        m_core->setVolume(fabs(100 * cosf(m_posOnCircle)), fabs(100 * sinf(m_posOnCircle * 0.5f)));
+        m_core->setVolume(fabs(MV_MAX * cosf(m_posOnCircle)), fabs(MV_MAX * sinf(m_posOnCircle * 0.5f)));
     }
 
     const Qmmp::State state = m_core->state();

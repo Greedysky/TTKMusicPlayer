@@ -263,7 +263,7 @@ void MusicBackgroundSkinDialog::remoteListWidgetItemClicked(int type, const QStr
 
 void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
 {
-    if(path.contains(MUSIC_COLOR_FILE))
+    if(path.contains(TTK_COLOR_FILE))
     {
         MusicTopAreaWidget::instance()->musicBackgroundTransparentChanged(path);
     }

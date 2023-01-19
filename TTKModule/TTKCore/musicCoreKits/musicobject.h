@@ -160,12 +160,13 @@
 #define WINDOW_WIDTH_MIN         1000
 #define WINDOW_HEIGHT_MIN        665
 #define LEFT_SIDE_WIDTH_MIN      320
-#define CONCISE_WIDTH_MIN        322
+#define CONCISE_WIDTH_MIN        LEFT_SIDE_WIDTH_MIN + 2
 
 #define HTTP_PREFIX              "http://"
 #define HTTPS_PREFIX             "https://"
 
 #define FILE_SUFFIX(fin)         fin.suffix().toLower()
+
 
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>

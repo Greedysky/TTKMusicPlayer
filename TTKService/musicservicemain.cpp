@@ -16,10 +16,10 @@
 
 static void cleanAppicationCache()
 {
-    QFile::remove(MUSIC_COLOR_FILE);
-    QFile::remove(MUSIC_IMAGE_FILE);
-    QFile::remove(MUSIC_RECORD_FILE);
-    QFile::remove(MUSIC_RECORD_DATA_FILE);
+    QFile::remove(TTK_COLOR_FILE);
+    QFile::remove(TTK_IMAGE_FILE);
+    QFile::remove(TTK_RECORD_FILE);
+    QFile::remove(TTK_RECORD_DATA_FILE);
 
     ///clean thirdparty process
     QStringList process;

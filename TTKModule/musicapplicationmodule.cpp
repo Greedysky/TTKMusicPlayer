@@ -132,7 +132,7 @@ void MusicApplicationModule::windowCloseAnimation()
     else
     {
         float v = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
-              v = MusicUtils::Image::reRenderValue<float>(1, 0.35, 100 - v);
+              v = MusicUtils::Image::reRenderValue<float>(1, 0.35, MV_MAX - v);
         m_quitAnimation->stop();
         m_quitAnimation->setPropertyName("windowOpacity");
         m_quitAnimation->setDuration(MT_S2MS);

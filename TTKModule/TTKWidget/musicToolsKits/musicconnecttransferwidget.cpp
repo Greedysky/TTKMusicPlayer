@@ -147,7 +147,7 @@ void MusicConnectTransferWidget::itemSelectedChanged()
         size += m_containerItems[list[i]].size();
     }
 
-    double dSize = (size * 100 / MH_MB2B) * 1.0 / 100;
+    const double dSize = (size * MV_MAX / MH_MB2B) * 1.0 / MV_MAX;
     m_ui->selectCountLabel->setText(m_selectCountLabel.arg(list.count()).arg(dSize));
 }
 
