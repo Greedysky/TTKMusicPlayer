@@ -1,5 +1,4 @@
 #include "musicdownloadqueryfactory.h"
-#include "musicsettingmanager.h"
 //
 #include "musicwyqueryrequest.h"
 #include "musickgqueryrequest.h"

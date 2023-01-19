@@ -2,7 +2,6 @@
 #include "musicsongslistfunctionwidget.h"
 #include "musicsongslistplaytablewidget.h"
 #include "musicsongsearchdialog.h"
-#include "musicsettingmanager.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicprogresswidget.h"

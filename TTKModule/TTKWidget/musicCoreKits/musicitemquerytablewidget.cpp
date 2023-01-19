@@ -4,7 +4,6 @@
 #include "musicitemdelegate.h"
 #include "musictoastlabel.h"
 #include "musicconnectionpool.h"
-#include "musicsettingmanager.h"
 #include "musicrightareawidget.h"
 #include "musicdownloadbatchwidget.h"
 

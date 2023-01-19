@@ -2,7 +2,6 @@
 #include "musicdjradioprogramcategoryrequest.h"
 #include "musictinyuiobject.h"
 #include "musicpagequerywidget.h"
-#include "musicsettingmanager.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadcoverrequest.h"
 #include "musicwebdjradioinfowidget.h"

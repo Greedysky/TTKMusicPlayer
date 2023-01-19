@@ -6,7 +6,6 @@
 #include "musicmessagebox.h"
 #include "musictoastlabel.h"
 #include "musicequalizerdialog.h"
-#include "musicsettingmanager.h"
 #include "musicplatformmanager.h"
 #include "musicsourceupdatewidget.h"
 #include "musicsoundeffectswidget.h"

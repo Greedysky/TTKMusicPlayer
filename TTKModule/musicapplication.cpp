@@ -6,7 +6,6 @@
 #include "musicformats.h"
 #include "musicplaylist.h"
 #include "musicbackgroundmanager.h"
-#include "musicsettingmanager.h"
 #include "musicbottomareawidget.h"
 #include "musictopareawidget.h"
 #include "musicrightareawidget.h"

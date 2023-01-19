@@ -2,7 +2,6 @@
 #include "musicwebdjradiocategorywidget.h"
 #include "musicwebdjradioquerywidget.h"
 #include "musicdownloadcoverrequest.h"
-#include "musicsettingmanager.h"
 #include "musicwidgetheaders.h"
 
 MusicWebDJRadioProgramTableWidget::MusicWebDJRadioProgramTableWidget(QWidget *parent)

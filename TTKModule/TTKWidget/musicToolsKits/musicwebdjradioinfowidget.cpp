@@ -1,6 +1,5 @@
 #include "musicwebdjradioinfowidget.h"
 #include "musicdjradioprogramcategoryrequest.h"
-#include "musicsettingmanager.h"
 #include "musicdownloadcoverrequest.h"
 
 #include <qmath.h>

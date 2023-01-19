@@ -1,5 +1,4 @@
 #include "musicabstractdownloadrequest.h"
-#include "musicsettingmanager.h"
 #include "musicdownloadmanager.h"
 #include "musiccoreutils.h"
 

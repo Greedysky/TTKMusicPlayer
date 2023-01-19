@@ -3,7 +3,6 @@
 #include "musiccloudfileinformationwidget.h"
 #include "musicitemdelegate.h"
 #include "musicopenfilewidget.h"
-#include "musicsettingmanager.h"
 #include "musicdownloaddatarequest.h"
 #include "musiccoreutils.h"
 #include "musicfileutils.h"

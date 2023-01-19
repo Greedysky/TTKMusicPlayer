@@ -5,7 +5,6 @@
 #include "musicsongsharingwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
-#include "musicsettingmanager.h"
 #include "musicapplication.h"
 #include "ttkdesktopwrapper.h"
 

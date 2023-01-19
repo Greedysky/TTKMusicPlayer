@@ -1,6 +1,5 @@
 #include "musicwyqueryinterface.h"
 #include "musicurlutils.h"
-#include "musicsettingmanager.h"
 #include "musicabstractnetwork.h"
 
 #include "qalgorithm/aeswrapper.h"

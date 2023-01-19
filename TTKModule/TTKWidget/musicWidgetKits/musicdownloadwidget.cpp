@@ -1,6 +1,5 @@
 #include "musicdownloadwidget.h"
 #include "ui_musicdownloadwidget.h"
-#include "musicsettingmanager.h"
 #include "musicdownloadrecordconfigmanager.h"
 #include "musicdownloadtagdatarequest.h"
 #include "musictoastlabel.h"

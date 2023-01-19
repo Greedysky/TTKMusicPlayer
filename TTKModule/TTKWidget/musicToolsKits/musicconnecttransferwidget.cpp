@@ -2,7 +2,6 @@
 #include "ui_musicconnecttransferwidget.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicconnectionpool.h"
-#include "musicsettingmanager.h"
 #include "musictoastlabel.h"
 #include "musicdeviceinfomodule.h"
 #include "musicconnecttransferthread.h"

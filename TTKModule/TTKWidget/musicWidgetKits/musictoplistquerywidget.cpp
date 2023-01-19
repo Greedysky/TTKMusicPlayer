@@ -1,7 +1,6 @@
 #include "musictoplistquerywidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadcoverrequest.h"
-#include "musicsettingmanager.h"
 #include "musictoplistquerycategorypopwidget.h"
 
 MusicToplistQueryTableWidget::MusicToplistQueryTableWidget(QWidget *parent)

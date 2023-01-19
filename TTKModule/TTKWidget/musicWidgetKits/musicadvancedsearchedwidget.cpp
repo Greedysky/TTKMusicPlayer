@@ -1,7 +1,6 @@
 #include "musicadvancedsearchedwidget.h"
 #include "musicabstractqueryrequest.h"
 #include "musicitemsearchedit.h"
-#include "musicsettingmanager.h"
 #include "musicrightareawidget.h"
 #include "musicsongsharingwidget.h"
 #include "musictoastlabel.h"

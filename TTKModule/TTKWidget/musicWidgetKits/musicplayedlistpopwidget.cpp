@@ -1,7 +1,6 @@
 #include "musicplayedlistpopwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicsongslistplayedtablewidget.h"
-#include "musicsettingmanager.h"
 #include "musictinyuiobject.h"
 #include "musicapplication.h"
 #include "musicplaylist.h"

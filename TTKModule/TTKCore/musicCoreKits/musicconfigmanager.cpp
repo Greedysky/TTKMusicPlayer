@@ -14,7 +14,6 @@ MusicConfigManager::MusicConfigManager(QObject *parent)
 void MusicConfigManager::readBuffer() const
 {
     G_SETTING_PTR->setValue(MusicSettingManager::ConfigVersion, readXmlAttributeByTagNameValue("configVersion"));
-
     G_SETTING_PTR->setValue(MusicSettingManager::PlayMode, readXmlAttributeByTagNameValue("playMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::Volume, readXmlAttributeByTagNameValue("playVolume").toInt());
 

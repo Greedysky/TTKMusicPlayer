@@ -2,7 +2,6 @@
 #include "musicabstractqueryrequest.h"
 #include "musicapplication.h"
 #include "musicbottomareawidget.h"
-#include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadbackgroundrequest.h"

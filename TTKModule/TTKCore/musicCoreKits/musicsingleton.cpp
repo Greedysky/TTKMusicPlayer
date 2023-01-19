@@ -2,7 +2,6 @@
 #include "musicbackgroundmanager.h"
 #include "musicdispatchmanager.h"
 #include "musichotkeymanager.h"
-#include "musicsettingmanager.h"
 #include "musicsinglemanager.h"
 #include "musicdownloadmanager.h"
 #include "musicdownloadqueryfactory.h"

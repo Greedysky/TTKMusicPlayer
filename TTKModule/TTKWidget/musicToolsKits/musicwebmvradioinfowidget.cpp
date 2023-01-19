@@ -1,6 +1,5 @@
 #include "musicwebmvradioinfowidget.h"
 #include "musicmvradioprogramrequest.h"
-#include "musicsettingmanager.h"
 #include "musicdownloadcoverrequest.h"
 #include "musicdownloadwidget.h"
 #include "musicrightareawidget.h"

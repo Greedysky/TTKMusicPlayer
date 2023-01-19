@@ -2,7 +2,6 @@
 #include "musiclrcmanagerfordesktop.h"
 #include "musicfunctionuiobject.h"
 #include "musicdesktoplrcuiobject.h"
-#include "musicsettingmanager.h"
 #include "musiclrcdefines.h"
 
 #include "musicapplication.h"

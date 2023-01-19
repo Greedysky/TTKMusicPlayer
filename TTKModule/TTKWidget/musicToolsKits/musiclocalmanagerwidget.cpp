@@ -1,7 +1,6 @@
 #include "musiclocalmanagerwidget.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicconnectionpool.h"
-#include "musicsettingmanager.h"
 #include "musicitemsearchedit.h"
 #include "musicgiflabelwidget.h"
 #include "musicsongmeta.h"

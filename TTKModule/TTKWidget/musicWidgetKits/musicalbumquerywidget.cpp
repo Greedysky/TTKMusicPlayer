@@ -1,7 +1,6 @@
 #include "musicalbumquerywidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadcoverrequest.h"
-#include "musicsettingmanager.h"
 #include "musicratinglabel.h"
 
 #include "qrencode/qrcodewidget.h"

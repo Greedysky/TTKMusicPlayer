@@ -1,6 +1,5 @@
 #include "musicdownloadtagdatarequest.h"
 #include "musicdownloadcoverrequest.h"
-#include "musicsettingmanager.h"
 
 MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent)
     : MusicDownloadDataRequest(url, path, type, parent)
