@@ -14,8 +14,9 @@
 #include <qmmp/audioconverter.h>
 
 #define COLOR_RMS 0
-#define COLOR_FOREGROUND 1
+#define COLOR_WAVE 1
 #define COLOR_BACKGROUND 2
+#define COLOR_PROGRESS 3
 #define NUMBER_OF_VALUES 4096
 
 LightWaveFormScanner::LightWaveFormScanner(QObject *parent)
@@ -262,11 +263,11 @@ void LightWaveForm::readSettings()
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     settings.endGroup();
 
-    if(m_colors.count() < 3)
+    if(m_colors.count() < 4)
     {
         m_colors.clear();
-        //: RMS\Foreground\Background
-        m_colors << QColor(0xDD, 0xDD, 0xDD) << QColor(0x33, 0xCA, 0x10) << QColor(0xFF, 0xFF, 0xFF);
+        //: RMS\Wave\Background\Progress
+        m_colors << QColor(0xDD, 0xDD, 0xDD) << QColor(0xFF, 0xFF, 0xFF) << QColor(0x00, 0x00, 0x00) << QColor(0x33, 0xCA, 0x10);
     }
 
     drawWaveform();
@@ -325,8 +326,9 @@ void LightWaveForm::typeChanged(QAction *action)
     switch(action->data().toInt())
     {
         case 10: type = COLOR_RMS; break;
-        case 20: type = COLOR_FOREGROUND; break;
+        case 20: type = COLOR_WAVE; break;
         case 30: type = COLOR_BACKGROUND; break;
+        case 40: type = COLOR_PROGRESS; break;
         default: break;
     }
 
@@ -351,7 +353,7 @@ void LightWaveForm::typeChanged(QAction *action)
 void LightWaveForm::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.fillRect(rect(), Qt::black);
+    painter.fillRect(rect(), m_colors[COLOR_BACKGROUND]);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     if(!m_pixmap.isNull())
@@ -362,15 +364,13 @@ void LightWaveForm::paintEvent(QPaintEvent *)
     if(m_duration > 0)
     {
         const int x = width() * m_elapsed / m_duration;
-        QColor color = m_colors[COLOR_FOREGROUND];
+        QColor color = m_colors[COLOR_PROGRESS];
         color.setAlpha(0x96);
 
-        QBrush brush(color);
-        painter.fillRect(0, 0, x, height(), brush);
+        painter.fillRect(0, 0, x, height(), color);
 
         color.setAlpha(0xFF);
-        painter.setPen(color);
-        painter.drawLine(x, 0, x, height());
+        painter.fillRect(x - 3, 0, 3, height(), color);
     }
 }
 
@@ -381,11 +381,13 @@ void LightWaveForm::contextMenuEvent(QContextMenuEvent *)
 
     menu.addAction(m_channelsAction);
     menu.addAction(m_rmsAction);
+    menu.addSeparator();
 
     QMenu colorMenu(tr("Color"), &menu);
     colorMenu.addAction(tr("RMS"))->setData(10);
-    colorMenu.addAction(tr("Foreground"))->setData(20);
+    colorMenu.addAction(tr("Wave"))->setData(20);
     colorMenu.addAction(tr("Background"))->setData(30);
+    colorMenu.addAction(tr("Progress"))->setData(40);
     connect(&colorMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
     menu.addMenu(&colorMenu);
     menu.exec(QCursor::pos());
@@ -404,13 +406,13 @@ void LightWaveForm::drawWaveform()
     const bool showRms = m_rmsAction->isChecked();
 
     m_pixmap = QPixmap(width(), height());
-    m_pixmap.fill(Qt::black);
+    m_pixmap.fill(m_colors[COLOR_BACKGROUND]);
 
     const float step = float(width()) / NUMBER_OF_VALUES;
 
     QPainter painter(&m_pixmap);
-    painter.setPen(m_colors[COLOR_BACKGROUND]);
-    painter.setBrush(m_colors[COLOR_BACKGROUND]);
+    painter.setPen(m_colors[COLOR_WAVE]);
+    painter.setBrush(m_colors[COLOR_WAVE]);
 
     for(int i = 0; i < m_data.count() - m_channels * 3; i += 3)
     {
