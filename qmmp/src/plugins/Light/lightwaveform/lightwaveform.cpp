@@ -19,6 +19,18 @@
 #define COLOR_PROGRESS 3
 #define NUMBER_OF_VALUES 4096
 
+/* copied from ardour3 */
+static inline float logMeter(float power, double lower_db, double upper_db, double non_linearity)
+{
+    return (power < lower_db ? 0.0 : pow ((power - lower_db) / (upper_db - lower_db), non_linearity));
+}
+
+static inline float logScale(float sample)
+{
+    const int v = sample > 0.0 ? 1 : -1;
+    return v * logMeter(20.0f * log10(v * sample), -192.0, 0.0, 8.0);
+}
+
 LightWaveFormScanner::LightWaveFormScanner(QObject *parent)
     : QThread(parent)
 {
@@ -220,6 +232,9 @@ LightWaveForm::LightWaveForm(QWidget *parent)
     m_rmsAction = new QAction(tr("Root Mean Square"), this);
     m_rmsAction->setCheckable(true);
 
+    m_logScaleAction = new QAction(tr("Logarithmic Scale"), this);
+    m_logScaleAction->setCheckable(true);
+
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
     connect(SoundCore::instance(), SIGNAL(elapsedChanged(qint64)), SLOT(positionChanged(qint64)));
 
@@ -260,6 +275,7 @@ void LightWaveForm::readSettings()
     settings.beginGroup("LightWaveForm");
     m_channelsAction->setChecked(settings.value("show_two_channels", true).toBool());
     m_rmsAction->setChecked(settings.value("show_rms", true).toBool());
+    m_logScaleAction->setChecked(settings.value("logarithmic_scale", false).toBool());
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     settings.endGroup();
 
@@ -279,6 +295,7 @@ void LightWaveForm::writeSettings()
     settings.beginGroup("LightWaveForm");
     settings.setValue("show_two_channels", m_channelsAction->isChecked());
     settings.setValue("show_rms", m_rmsAction->isChecked());
+    settings.setValue("logarithmic_scale", m_logScaleAction->isChecked());
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
     settings.endGroup();
 
@@ -314,6 +331,7 @@ void LightWaveForm::positionChanged(qint64 elapsed)
 {
     m_elapsed = elapsed;
     m_duration = SoundCore::instance()->duration();
+
     if(isVisible())
     {
         update();
@@ -381,6 +399,7 @@ void LightWaveForm::contextMenuEvent(QContextMenuEvent *)
 
     menu.addAction(m_channelsAction);
     menu.addAction(m_rmsAction);
+    menu.addAction(m_logScaleAction);
     menu.addSeparator();
 
     QMenu colorMenu(tr("Color"), &menu);
@@ -404,6 +423,7 @@ void LightWaveForm::drawWaveform()
 
     const bool showTwoChannels = m_channelsAction->isChecked();
     const bool showRms = m_rmsAction->isChecked();
+    const bool logMode = m_logScaleAction->isChecked();
 
     m_pixmap = QPixmap(width(), height());
     m_pixmap.fill(m_colors[COLOR_BACKGROUND]);
@@ -425,22 +445,22 @@ void LightWaveForm::drawWaveform()
         if(ch == 0 && (m_channels == 1 || !showTwoChannels))
         {
             zeroPos = height() / 2;
-            ratio = float(height() / 4) / 1000;
+            ratio = float(height() / 4) / (logMode ? 0.05 : 1000);
             draw = true;
         }
         else if(ch == 0 || (ch == 1 && showTwoChannels))
         {
             zeroPos = ((ch == 0) ? 1 : 3) * height() / 4;
-            ratio = float(height() / 8) / 1000;
+            ratio = float(height() / 8) / (logMode ? 0.05 : 1000);
             draw = true;
         }
 
         if(draw)
         {
-            const float y1 = zeroPos - m_data[i] * ratio;
-            const float y2 = zeroPos - m_data[i + 1] * ratio;
-            const float y3 = zeroPos - m_data[i + m_channels * 3] * ratio;
-            const float y4 = zeroPos - m_data[i + m_channels * 3 + 1] * ratio;
+            const float y1 = zeroPos - (logMode ? logScale(m_data[i] * ratio) : m_data[i] * ratio);
+            const float y2 = zeroPos - (logMode ? logScale(m_data[i + 1] * ratio) : m_data[i + 1] * ratio);
+            const float y3 = zeroPos - (logMode ? logScale(m_data[i + m_channels * 3] * ratio) : m_data[i + m_channels * 3] * ratio);
+            const float y4 = zeroPos - (logMode ? logScale(m_data[i + m_channels * 3 + 1] * ratio) : m_data[i + m_channels * 3 + 1] * ratio);
 
             QPointF points[4] = {
                 { x1, y1 },
@@ -473,22 +493,22 @@ void LightWaveForm::drawWaveform()
         if(ch == 0 && (m_channels == 1 || !showTwoChannels))
         {
             zeroPos = height() / 2;
-            ratio = float(height() / 4) / 1000;
+            ratio = float(height() / 4) / (logMode ? 0.05 : 1000);
             draw = true;
         }
         else if(ch == 0 || (ch == 1 && showTwoChannels))
         {
             zeroPos = ((ch == 0) ? 1 : 3) * height() / 4;
-            ratio = float(height() / 8) / 1000;
+            ratio = float(height() / 8) / (logMode ? 0.05 : 1000);
             draw = true;
         }
 
         if(draw)
         {
-            const float y1 = zeroPos + m_data[i + 2] * ratio;
-            const float y2 = zeroPos - m_data[i + 2] * ratio;
-            const float y3 = zeroPos + m_data[i + m_channels * 3 + 2] * ratio;
-            const float y4 = zeroPos - m_data[i + m_channels * 3 + 2] * ratio;
+            const float y1 = zeroPos + (logMode ? logScale(m_data[i + 2] * ratio) : m_data[i + 2] * ratio);
+            const float y2 = zeroPos - (logMode ? logScale(m_data[i + 2] * ratio) : m_data[i + 2] * ratio);
+            const float y3 = zeroPos + (logMode ? logScale(m_data[i + m_channels * 3 + 2] * ratio) : m_data[i + m_channels * 3 + 2] * ratio);
+            const float y4 = zeroPos - (logMode ? logScale(m_data[i + m_channels * 3 + 2] * ratio) : m_data[i + m_channels * 3 + 2] * ratio);
 
             QPointF points[4] = {
                 { x1, y1 },
