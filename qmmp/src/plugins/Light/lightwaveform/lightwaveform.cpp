@@ -4,6 +4,7 @@
 #include <QMenu>
 #include <QPainter>
 #include <QSettings>
+#include <QMouseEvent>
 
 #include <math.h>
 #include <qmmp/buffer.h>
@@ -31,6 +32,28 @@ static inline float logScale(float sample)
     return v * logMeter(20.0f * log10(v * sample), -192.0, 0.0, 8.0);
 }
 
+static inline QString formatDuration(qint64 ms)
+{
+    if(ms <= 0)
+    {
+        return "00:00";
+    }
+
+    QString v;
+    qint64 seconds = ms / 1000;
+    if(seconds >= 3600)
+    {
+        v = QString("%1:%2").arg(seconds / 3600).arg(seconds % 3600 / 60, 2, 10, QChar('0'));
+    }
+    else
+    {
+        v = QString("%1").arg(seconds % 3600 / 60, 2, 10, QChar('0'));
+    }
+    v += QString(":%1").arg(seconds % 60, 2, 10, QChar('0'));
+    return v;
+}
+
+
 LightWaveFormScanner::LightWaveFormScanner(QObject *parent)
     : QThread(parent)
 {
@@ -57,7 +80,6 @@ bool LightWaveFormScanner::scan(const QString &path)
         source->deleteLater();
         qWarning("LightWaveFormScanner: cannot open input stream, error: %s", qPrintable(source->ioDevice()->errorString()));
         return false;
-
     }
 
     DecoderFactory *factory = nullptr;
@@ -383,12 +405,47 @@ void LightWaveForm::paintEvent(QPaintEvent *)
     {
         const int x = width() * m_elapsed / m_duration;
         QColor color = m_colors[COLOR_PROGRESS];
-        color.setAlpha(0x96);
-
+        color.setAlpha(0x50);
         painter.fillRect(0, 0, x, height(), color);
 
         color.setAlpha(0xFF);
         painter.fillRect(x - 3, 0, 3, height(), color);
+
+        if(m_seekPos >= 0)
+        {
+            painter.fillRect(m_seekPos - 3, 0, 3, height(), color);
+
+            QFont ft = painter.font();
+            ft.setPixelSize(18);
+            painter.setFont(ft);
+
+            const QString &text = formatDuration(m_seekPos * m_duration / width());
+            QFontMetrics ftm(ft);
+#if QT_VERSION >= QT_VERSION_CHECK(5,11,0)
+            const QSize bound(ftm.horizontalAdvance(text) + 20, ftm.height() + 4);
+#else
+            const QSize bound(ftm.width(text) + 20, ftm.height() + 4);
+#endif
+            const int left = m_seekPos - bound.width();
+            const QRect rect(QPoint(left < 0 ? 0 : left, (height() - bound.height()) / 2), bound);
+            painter.fillRect(rect, color);
+            painter.drawText(rect, Qt::AlignCenter, text);
+        }
+    }
+}
+
+void LightWaveForm::mouseMoveEvent(QMouseEvent *e)
+{
+    m_seekPos = qBound(0, e->pos().x(), width());
+    update();
+}
+
+void LightWaveForm::mouseReleaseEvent(QMouseEvent *)
+{
+    if(m_seekPos >= 0 && m_duration > 0)
+    {
+        SoundCore::instance()->seek(m_seekPos * m_duration / width());
+        m_seekPos = -1;
     }
 }
 

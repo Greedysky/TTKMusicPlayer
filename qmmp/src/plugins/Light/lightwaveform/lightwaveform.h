@@ -84,6 +84,8 @@ private slots:
 
 private:
     virtual void paintEvent(QPaintEvent *e) override final;
+    virtual void mouseMoveEvent(QMouseEvent *e) override final;
+    virtual void mouseReleaseEvent(QMouseEvent *e) override final;
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
 
     void drawWaveform();
@@ -97,6 +99,7 @@ private:
     qint64 m_elapsed = 0;
     qint64 m_duration = 0;
     QPixmap m_pixmap;
+    int m_seekPos = -1;
 
 };
 
