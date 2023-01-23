@@ -93,7 +93,7 @@ private:
     LightWaveFormScanner *m_scanner = nullptr;
     QList<QColor> m_colors;
     QAction *m_channelsAction, *m_rmsAction;
-    QAction *m_logScaleAction;
+    QAction *m_logScaleAction, *m_rulerAction;
     QList<int> m_data;
     int m_channels = 0;
     qint64 m_elapsed = 0;

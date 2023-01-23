@@ -18,6 +18,10 @@
 #define COLOR_WAVE 1
 #define COLOR_BACKGROUND 2
 #define COLOR_PROGRESS 3
+#define COLOR_RULER 4
+
+#define RULER_MAX 5
+#define RULER_HEIGHT 20
 #define NUMBER_OF_VALUES 4096
 
 /* copied from ardour3 */
@@ -257,6 +261,9 @@ LightWaveForm::LightWaveForm(QWidget *parent)
     m_logScaleAction = new QAction(tr("Logarithmic Scale"), this);
     m_logScaleAction->setCheckable(true);
 
+    m_rulerAction = new QAction(tr("Display Ruler"), this);
+    m_rulerAction->setCheckable(true);
+
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
     connect(SoundCore::instance(), SIGNAL(elapsedChanged(qint64)), SLOT(positionChanged(qint64)));
 
@@ -298,14 +305,15 @@ void LightWaveForm::readSettings()
     m_channelsAction->setChecked(settings.value("show_two_channels", true).toBool());
     m_rmsAction->setChecked(settings.value("show_rms", true).toBool());
     m_logScaleAction->setChecked(settings.value("logarithmic_scale", false).toBool());
+    m_rulerAction->setChecked(settings.value("show_ruler", false).toBool());
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     settings.endGroup();
 
-    if(m_colors.count() < 4)
+    if(m_colors.count() < 5)
     {
         m_colors.clear();
-        //: RMS\Wave\Background\Progress
-        m_colors << QColor(0xDD, 0xDD, 0xDD) << QColor(0xFF, 0xFF, 0xFF) << QColor(0x00, 0x00, 0x00) << QColor(0x33, 0xCA, 0x10);
+        //: RMS\Wave\Background\Progress\Ruler
+        m_colors << QColor(0xDD, 0xDD, 0xDD) << QColor(0xFF, 0xFF, 0xFF) << QColor(0x00, 0x00, 0x00) << QColor(0x33, 0xCA, 0x10) << QColor(0x12, 0x34, 0x56);
     }
 
     drawWaveform();
@@ -318,6 +326,7 @@ void LightWaveForm::writeSettings()
     settings.setValue("show_two_channels", m_channelsAction->isChecked());
     settings.setValue("show_rms", m_rmsAction->isChecked());
     settings.setValue("logarithmic_scale", m_logScaleAction->isChecked());
+    settings.setValue("show_ruler", m_rulerAction->isChecked());
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
     settings.endGroup();
 
@@ -369,6 +378,7 @@ void LightWaveForm::typeChanged(QAction *action)
         case 20: type = COLOR_WAVE; break;
         case 30: type = COLOR_BACKGROUND; break;
         case 40: type = COLOR_PROGRESS; break;
+        case 50: type = COLOR_RULER; break;
         default: break;
     }
 
@@ -403,17 +413,20 @@ void LightWaveForm::paintEvent(QPaintEvent *)
 
     if(m_duration > 0)
     {
+        const bool showRuler = m_rulerAction->isChecked();
+        const int height = showRuler ? this->height() - RULER_HEIGHT : this->height();
         const int x = width() * m_elapsed / m_duration;
+
         QColor color = m_colors[COLOR_PROGRESS];
         color.setAlpha(0x50);
-        painter.fillRect(0, 0, x, height(), color);
+        painter.fillRect(0, 0, x, height, color);
 
         color.setAlpha(0xFF);
-        painter.fillRect(x - 3, 0, 3, height(), color);
+        painter.fillRect(x, 0, 3, height, color);
 
         if(m_seekPos >= 0)
         {
-            painter.fillRect(m_seekPos - 3, 0, 3, height(), color);
+            painter.fillRect(m_seekPos, 0, 3, height, color);
 
             QFont ft = painter.font();
             ft.setPixelSize(18);
@@ -427,9 +440,40 @@ void LightWaveForm::paintEvent(QPaintEvent *)
             const QSize bound(ftm.width(text) + 20, ftm.height() + 4);
 #endif
             const int left = m_seekPos - bound.width();
-            const QRect rect(QPoint(left < 0 ? 0 : left, (height() - bound.height()) / 2), bound);
+            const QRect rect(QPoint(left < 0 ? 0 : left, (height - bound.height()) / 2), bound);
             painter.fillRect(rect, color);
             painter.drawText(rect, Qt::AlignCenter, text);
+        }
+
+        if(showRuler)
+        {
+            const int padding = this->height() - 3;
+            const int outWidth = width() / RULER_MAX;
+            const int inWidth = outWidth / RULER_MAX;
+            const int perTime = m_duration / RULER_MAX;
+
+            painter.setPen(m_colors[COLOR_RULER]);
+            // outside line
+            for(int i = 0; i <= RULER_MAX; ++i)
+            {
+                for(int j = 0; j < RULER_MAX; ++j)
+                {
+                    int lineHeight = height + RULER_HEIGHT * 2 / 3;
+                    if(j == 0)
+                    {
+                        lineHeight = height;
+                    }
+
+                    painter.drawLine(outWidth * i + inWidth * j + 1, lineHeight, outWidth * i + inWidth * j + 1, padding);
+                }
+
+                QFont ft = painter.font();
+                ft.setPixelSize(8);
+                painter.setFont(ft);
+                painter.drawText(outWidth * i + 1 + 3, height, outWidth, RULER_HEIGHT * 2 / 3, Qt::AlignLeft, formatDuration(perTime * i));
+            }
+            // bottom line
+            painter.drawLine(0, padding + 1, width(), padding + 1);
         }
     }
 }
@@ -457,6 +501,7 @@ void LightWaveForm::contextMenuEvent(QContextMenuEvent *)
     menu.addAction(m_channelsAction);
     menu.addAction(m_rmsAction);
     menu.addAction(m_logScaleAction);
+    menu.addAction(m_rulerAction);
     menu.addSeparator();
 
     QMenu colorMenu(tr("Color"), &menu);
@@ -464,6 +509,7 @@ void LightWaveForm::contextMenuEvent(QContextMenuEvent *)
     colorMenu.addAction(tr("Wave"))->setData(20);
     colorMenu.addAction(tr("Background"))->setData(30);
     colorMenu.addAction(tr("Progress"))->setData(40);
+    colorMenu.addAction(tr("Ruler"))->setData(50);
     connect(&colorMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
     menu.addMenu(&colorMenu);
     menu.exec(QCursor::pos());
@@ -496,6 +542,7 @@ void LightWaveForm::drawWaveform()
         const int ch = (i / 3) % m_channels;
         const float x1 = step * (i / m_channels / 3);
         const float x2 = step * (i / m_channels / 3 + 1);
+
         bool draw = false;
         float zeroPos = 0, ratio = 0;
 
@@ -544,6 +591,7 @@ void LightWaveForm::drawWaveform()
         const int ch = (i / 3) % m_channels;
         const float x1 = step * (i / m_channels / 3);
         const float x2 = step * (i / m_channels / 3 + 1);
+
         bool draw = false;
         float zeroPos = 0, ratio = 0;
 
@@ -573,6 +621,7 @@ void LightWaveForm::drawWaveform()
                 { x2, y4 },
                 { x2, y3 }
             };
+
             painter.drawPolygon(points, 4);
         }
     }
