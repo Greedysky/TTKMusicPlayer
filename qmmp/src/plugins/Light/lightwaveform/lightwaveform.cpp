@@ -36,6 +36,15 @@ static inline float logScale(float sample)
     return v * logMeter(20.0f * log10(v * sample), -192.0, 0.0, 8.0);
 }
 
+static inline QRgb colorContrast(const QRgb color)
+{
+    // Counting the perceptive luminance - human eye favors green color...
+    int v = 255 - (2.0 * qRed(color) + 3.0 * qGreen(color) + qBlue(color)) / 6.0;
+        v = v < 128 ? 0 : 255;
+    // 0, bright colors; 255, dark colors
+    return qRgb(v, v, v);
+}
+
 static inline QString formatDuration(qint64 ms)
 {
     if(ms <= 0)
@@ -259,11 +268,14 @@ LightWaveForm::LightWaveForm(QWidget *parent)
     m_rmsAction = new QAction(tr("Root Mean Square"), this);
     m_rmsAction->setCheckable(true);
 
+    m_rulerAction = new QAction(tr("Display Ruler"), this);
+    m_rulerAction->setCheckable(true);
+
     m_logScaleAction = new QAction(tr("Logarithmic Scale"), this);
     m_logScaleAction->setCheckable(true);
 
-    m_rulerAction = new QAction(tr("Display Ruler"), this);
-    m_rulerAction->setCheckable(true);
+    m_shadeAction = new QAction(tr("Shade Mode"), this);
+    m_shadeAction->setCheckable(true);
 
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
     connect(SoundCore::instance(), SIGNAL(elapsedChanged(qint64)), SLOT(positionChanged(qint64)));
@@ -305,8 +317,8 @@ void LightWaveForm::readSettings()
     settings.beginGroup("LightWaveForm");
     m_channelsAction->setChecked(settings.value("show_two_channels", true).toBool());
     m_rmsAction->setChecked(settings.value("show_rms", true).toBool());
-    m_logScaleAction->setChecked(settings.value("logarithmic_scale", false).toBool());
     m_rulerAction->setChecked(settings.value("show_ruler", false).toBool());
+    m_logScaleAction->setChecked(settings.value("logarithmic_scale", false).toBool());
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     settings.endGroup();
 
@@ -326,8 +338,8 @@ void LightWaveForm::writeSettings()
     settings.beginGroup("LightWaveForm");
     settings.setValue("show_two_channels", m_channelsAction->isChecked());
     settings.setValue("show_rms", m_rmsAction->isChecked());
-    settings.setValue("logarithmic_scale", m_logScaleAction->isChecked());
     settings.setValue("show_ruler", m_rulerAction->isChecked());
+    settings.setValue("logarithmic_scale", m_logScaleAction->isChecked());
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
     settings.endGroup();
 
@@ -407,7 +419,8 @@ void LightWaveForm::paintEvent(QPaintEvent *)
     painter.fillRect(rect(), m_colors[COLOR_BACKGROUND]);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
-    if(!m_pixmap.isNull())
+    const bool shadeMode = m_shadeAction->isChecked();
+    if(!m_pixmap.isNull() && !shadeMode)
     {
         painter.drawPixmap(0, 0, width(), height(), m_pixmap);
     }
@@ -417,10 +430,33 @@ void LightWaveForm::paintEvent(QPaintEvent *)
         const bool showRuler = m_rulerAction->isChecked();
         const int height = showRuler ? this->height() - RULER_HEIGHT : this->height();
         const int x = width() * m_elapsed / m_duration;
-
         QColor color = m_colors[COLOR_PROGRESS];
-        color.setAlpha(0x50);
-        painter.fillRect(0, 0, x, height, color);
+
+        if(!shadeMode)
+        {
+            color.setAlpha(0x96);
+            painter.fillRect(0, 0, x, height, color);
+        }
+        else
+        {
+            QImage shadeImage = m_pixmap.toImage();
+            for(int h = 0; h < shadeImage.height(); ++h)
+            {
+                for(int w = 0; w < x; ++w)
+                {
+                    if(shadeImage.pixel(w, h) == m_colors[COLOR_WAVE].rgb())
+                    {
+                        shadeImage.setPixel(w, h, m_colors[COLOR_PROGRESS].rgb());
+                    }
+                    else if(shadeImage.pixel(w, h) == m_colors[COLOR_RMS].rgb())
+                    {
+                        const QRgb rms = m_colors[COLOR_PROGRESS].rgb();
+                        shadeImage.setPixel(w, h, qRgb(qRed(rms) * 0.8, qGreen(rms) * 0.8, qBlue(rms) * 0.8));
+                    }
+                }
+            }
+            painter.drawImage(0, 0, shadeImage);
+        }
 
         color.setAlpha(0xFF);
         painter.fillRect(x, 0, 3, height, color);
@@ -443,6 +479,7 @@ void LightWaveForm::paintEvent(QPaintEvent *)
             const int left = m_seekPos - bound.width();
             const QRect rect(QPoint(left < 0 ? 0 : left, (height - bound.height()) / 2), bound);
             painter.fillRect(rect, color);
+            painter.setPen(QColor(colorContrast(m_colors[COLOR_PROGRESS].rgb())));
             painter.drawText(rect, Qt::AlignCenter, text);
         }
 
@@ -501,8 +538,9 @@ void LightWaveForm::contextMenuEvent(QContextMenuEvent *)
 
     menu.addAction(m_channelsAction);
     menu.addAction(m_rmsAction);
-    menu.addAction(m_logScaleAction);
     menu.addAction(m_rulerAction);
+    menu.addAction(m_logScaleAction);
+    menu.addAction(m_shadeAction);
     menu.addSeparator();
 
     QMenu colorMenu(tr("Color"), &menu);

@@ -144,9 +144,13 @@ void Florid::reRenderImage(QColor &avg, const QImage *input)
    }
 
    const int size = input->width() * input->height();
-   avg.setRed(r /= size);
-   avg.setGreen(g /= size);
-   avg.setBlue(b /= size);
+   r /= size;
+   g /= size;
+   b /= size;
+   //
+   avg.setRed(r);
+   avg.setGreen(g);
+   avg.setBlue(b);
 }
 
 void Florid::process(bool state)
