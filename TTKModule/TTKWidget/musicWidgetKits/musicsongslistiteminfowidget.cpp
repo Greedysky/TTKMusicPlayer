@@ -26,7 +26,7 @@ MusicSongsListItemInfoWidget::~MusicSongsListItemInfoWidget()
 
 bool MusicSongsListItemInfoWidget::showArtistPicture(const QString &name)
 {
-    QPixmap originPath(QString(ART_DIR_FULL + name + SKN_FILE));
+    const QPixmap originPath(QString(ART_DIR_FULL + name + SKN_FILE));
     if(!originPath.isNull())
     {
         m_ui->artPicture->setPixmap(originPath.scaled(60, 60));

@@ -42,7 +42,7 @@ MusicScreenSaverHoverItem::MusicScreenSaverHoverItem(QLabel *parent)
 void MusicScreenSaverHoverItem::setFilePath(const QString &path)
 {
     m_path = path;
-    QPixmap pix(m_path);
+    const QPixmap pix(m_path);
     m_parent->setPixmap(pix);
     setPixmap(pix);
 }

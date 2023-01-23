@@ -214,7 +214,7 @@ void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
     painter.setBrush(gradient);
     painter.drawRect(0, 32, width(), height());
 
-    QPixmap pix(MusicTopAreaWidget::instance()->rendererPixmap());
+    const QPixmap pix(MusicTopAreaWidget::instance()->rendererPixmap());
     painter.drawPixmap(0, 0, width(), height() - 3, pix.copy(1, 91, width(), height() - 3));
     painter.fillRect(QRect(0, 0, width(), height() - 3), QColor(255, 255, 255, alpha));
 }

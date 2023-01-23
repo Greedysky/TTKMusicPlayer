@@ -79,7 +79,7 @@ void MusicLrcFloatPhotoItem::exportArtPixmap()
     const QString &path = MusicUtils::File::getSaveFileName(this, "Jpeg(*.jpg)");
     if(!path.isEmpty())
     {
-        QPixmap pix(m_pixPath);
+        const QPixmap pix(m_pixPath);
         pix.save(path, JPG_FILE_SUFFIX);
     }
 }

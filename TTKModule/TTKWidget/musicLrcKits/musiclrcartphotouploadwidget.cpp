@@ -62,7 +62,7 @@ void MusicLrcArtPhotoUploadWidget::selectButtonClicked()
         return;
     }
 
-    QPixmap pix(path);
+    const QPixmap pix(path);
     if(pix.width() < WINDOW_WIDTH_MIN || pix.height() < WINDOW_HEIGHT_MIN)
     {
         m_ui->stateLabel->show();

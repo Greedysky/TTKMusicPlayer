@@ -28,7 +28,7 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
 
     advanceClicked();
 
-    QPixmap pix(":/image/lb_default_art");
+    const QPixmap pix(":/image/lb_default_art");
     m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
 
     m_ui->editButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
@@ -133,7 +133,7 @@ void MusicFileInformationWidget::advanceClicked()
 
 void MusicFileInformationWidget::deleteAlbumPicture()
 {
-    QPixmap pix(":/image/lb_default_art");
+    const QPixmap pix(":/image/lb_default_art");
     m_ui->pixmapSizeLabel->setText(TTK_DEFAULT_STR);
     m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
     m_deleteOn = true;

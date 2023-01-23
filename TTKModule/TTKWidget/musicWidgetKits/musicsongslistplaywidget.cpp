@@ -222,7 +222,7 @@ void MusicSongsListPlayWidget::createMoreMenu(QMenu *menu)
 
 bool MusicSongsListPlayWidget::showArtistPicture(const QString &name) const
 {
-    QPixmap originPath(QString(ART_DIR_FULL + name + SKN_FILE));
+    const QPixmap originPath(QString(ART_DIR_FULL + name + SKN_FILE));
     if(!originPath.isNull())
     {
         m_artistPictureLabel->setPixmap(originPath.scaled(60, 60));
