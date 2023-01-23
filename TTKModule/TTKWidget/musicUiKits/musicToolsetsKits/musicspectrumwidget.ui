@@ -121,13 +121,13 @@
         </property>
         <layout class="QHBoxLayout" name="spectrumNormalFunciontsLayout">
          <property name="leftMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="topMargin">
           <number>1</number>
          </property>
          <property name="rightMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="bottomMargin">
           <number>0</number>
@@ -177,10 +177,13 @@
           <number>2</number>
          </property>
          <property name="leftMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="topMargin">
           <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>5</number>
          </property>
          <property name="bottomMargin">
           <number>5</number>
@@ -229,13 +232,13 @@
         </property>
         <layout class="QHBoxLayout" name="spectrumPlusFunciontsLayout">
          <property name="leftMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="topMargin">
           <number>1</number>
          </property>
          <property name="rightMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="bottomMargin">
           <number>0</number>
@@ -285,10 +288,13 @@
           <number>2</number>
          </property>
          <property name="leftMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="topMargin">
           <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>5</number>
          </property>
          <property name="bottomMargin">
           <number>5</number>
@@ -337,13 +343,13 @@
         </property>
         <layout class="QHBoxLayout" name="spectrumWaveFunciontsLayout">
          <property name="leftMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="topMargin">
           <number>1</number>
          </property>
          <property name="rightMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="bottomMargin">
           <number>0</number>
@@ -393,10 +399,13 @@
           <number>2</number>
          </property>
          <property name="leftMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="topMargin">
           <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>5</number>
          </property>
          <property name="bottomMargin">
           <number>5</number>
@@ -445,13 +454,13 @@
         </property>
         <layout class="QHBoxLayout" name="spectrumFlowFunciontsLayout">
          <property name="leftMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="topMargin">
           <number>1</number>
          </property>
          <property name="rightMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="bottomMargin">
           <number>0</number>
@@ -501,10 +510,13 @@
           <number>2</number>
          </property>
          <property name="leftMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="topMargin">
           <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>5</number>
          </property>
          <property name="bottomMargin">
           <number>5</number>
@@ -553,13 +565,13 @@
         </property>
         <layout class="QHBoxLayout" name="spectrumFloridFunciontsLayout">
          <property name="leftMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="topMargin">
           <number>1</number>
          </property>
          <property name="rightMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="bottomMargin">
           <number>0</number>
@@ -609,10 +621,13 @@
           <number>2</number>
          </property>
          <property name="leftMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="topMargin">
           <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>5</number>
          </property>
          <property name="bottomMargin">
           <number>5</number>
@@ -661,13 +676,13 @@
         </property>
         <layout class="QHBoxLayout" name="spectrumLightFunciontsLayout">
          <property name="leftMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="topMargin">
           <number>1</number>
          </property>
          <property name="rightMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="bottomMargin">
           <number>0</number>
@@ -736,10 +751,13 @@
           <number>2</number>
          </property>
          <property name="leftMargin">
-          <number>9</number>
+          <number>5</number>
          </property>
          <property name="topMargin">
           <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>5</number>
          </property>
          <property name="bottomMargin">
           <number>5</number>

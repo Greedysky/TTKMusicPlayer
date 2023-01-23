@@ -165,7 +165,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
 
                     const QVariantMap &radioObject = value["radio"].toMap();
                     info.m_coverUrl = radioObject["picUrl"].toString();
-                    info.m_artistId = radioObject["id"].toString();;
+                    info.m_artistId = radioObject["id"].toString();
                     info.m_singerName = MusicUtils::String::charactersReplaced(radioObject["name"].toString());
 
                     const QVariantMap &mainSongObject = value["mainSong"].toMap();

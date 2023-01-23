@@ -66,7 +66,7 @@ void MusicScreenSaverHoverItem::switchButtonOnAndOff()
 {
     if(m_enableButton->styleSheet().contains(MusicUIObject::MQSSScreenItemDisable))
     {
-        QPixmap pix(MusicUtils::Image::grayScalePixmap(QPixmap(m_path), 70));
+        const QPixmap pix(MusicUtils::Image::grayScalePixmap(QPixmap(m_path), 70));
         m_parent->setPixmap(pix);
         setPixmap(pix);
         m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemEnable);
@@ -74,7 +74,7 @@ void MusicScreenSaverHoverItem::switchButtonOnAndOff()
     }
     else
     {
-        QPixmap pix(m_path);
+        const QPixmap pix(m_path);
         m_parent->setPixmap(pix);
         setPixmap(pix);
         m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemDisable);
