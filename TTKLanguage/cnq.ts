@@ -214,6 +214,18 @@
         <translation>显示均方根差</translation>
     </message>
     <message>
+        <source>Display Ruler</source>
+        <translation>显示刻度尺</translation>
+    </message>
+    <message>
+        <source>Logarithmic Scale</source>
+        <translation>对数标度</translation>
+    </message>
+    <message>
+        <source>Shade Mode</source>
+        <translation>阴影模式</translation>
+    </message>
+    <message>
         <source>Color</source>
         <translation>颜色</translation>
     </message>
@@ -222,12 +234,20 @@
         <translation>均方根差</translation>
     </message>
     <message>
-        <source>Foreground</source>
-        <translation>前景色</translation>
+        <source>Wave</source>
+        <translation>波纹</translation>
     </message>
     <message>
         <source>Background</source>
-        <translation>背景色</translation>
+        <translation>背景</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation>进度条</translation>
+    </message>
+    <message>
+        <source>Ruler</source>
+        <translation>刻度尺</translation>
     </message>
 </context>
 <context>
