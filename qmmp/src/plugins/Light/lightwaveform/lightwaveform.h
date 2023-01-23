@@ -84,6 +84,7 @@ private slots:
 
 private:
     virtual void paintEvent(QPaintEvent *e) override final;
+    virtual void resizeEvent(QResizeEvent *e) override final;
     virtual void mouseMoveEvent(QMouseEvent *e) override final;
     virtual void mouseReleaseEvent(QMouseEvent *e) override final;
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;

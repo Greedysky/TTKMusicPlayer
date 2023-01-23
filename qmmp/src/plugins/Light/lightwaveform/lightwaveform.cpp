@@ -319,6 +319,7 @@ void LightWaveForm::readSettings()
     m_rmsAction->setChecked(settings.value("show_rms", true).toBool());
     m_rulerAction->setChecked(settings.value("show_ruler", false).toBool());
     m_logScaleAction->setChecked(settings.value("logarithmic_scale", false).toBool());
+    m_shadeAction->setChecked(settings.value("shade_mode", false).toBool());
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     settings.endGroup();
 
@@ -340,6 +341,7 @@ void LightWaveForm::writeSettings()
     settings.setValue("show_rms", m_rmsAction->isChecked());
     settings.setValue("show_ruler", m_rulerAction->isChecked());
     settings.setValue("logarithmic_scale", m_logScaleAction->isChecked());
+    settings.setValue("shade_mode", m_shadeAction->isChecked());
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
     settings.endGroup();
 
@@ -510,10 +512,17 @@ void LightWaveForm::paintEvent(QPaintEvent *)
                 painter.setFont(ft);
                 painter.drawText(outWidth * i + 1 + 3, height, outWidth, RULER_HEIGHT * 2 / 3, Qt::AlignLeft, formatDuration(perTime * i));
             }
+            // right line
+            painter.drawLine(width() - 1, height, width() - 1, padding);
             // bottom line
             painter.drawLine(0, padding + 1, width(), padding + 1);
         }
     }
+}
+
+void LightWaveForm::resizeEvent(QResizeEvent *)
+{
+    drawWaveform();
 }
 
 void LightWaveForm::mouseMoveEvent(QMouseEvent *e)
@@ -588,13 +597,13 @@ void LightWaveForm::drawWaveform()
         if(ch == 0 && (m_channels == 1 || !showTwoChannels))
         {
             zeroPos = height() / 2;
-            ratio = float(height() / 4) / (logMode ? 0.05 : 1000);
+            ratio = float(height() / 4) / (logMode ? (4.0 / height() * 10) : 1000);
             draw = true;
         }
         else if(ch == 0 || (ch == 1 && showTwoChannels))
         {
             zeroPos = ((ch == 0) ? 1 : 3) * height() / 4;
-            ratio = float(height() / 8) / (logMode ? 0.05 : 1000);
+            ratio = float(height() / 8) / (logMode ? (8.0 / height() * 10) : 1000);
             draw = true;
         }
 
@@ -637,13 +646,13 @@ void LightWaveForm::drawWaveform()
         if(ch == 0 && (m_channels == 1 || !showTwoChannels))
         {
             zeroPos = height() / 2;
-            ratio = float(height() / 4) / (logMode ? 0.05 : 1000);
+            ratio = float(height() / 4) / (logMode ? (4.0 / height() * 10) : 1000);
             draw = true;
         }
         else if(ch == 0 || (ch == 1 && showTwoChannels))
         {
             zeroPos = ((ch == 0) ? 1 : 3) * height() / 4;
-            ratio = float(height() / 8) / (logMode ? 0.05 : 1000);
+            ratio = float(height() / 8) / (logMode ? (8.0 / height() * 10) : 1000);
             draw = true;
         }
 
