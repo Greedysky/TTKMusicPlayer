@@ -44,7 +44,7 @@ static inline QString formatDuration(qint64 ms)
     }
 
     QString v;
-    qint64 seconds = ms / 1000;
+    const qint64 seconds = ms / 1000;
     if(seconds >= 3600)
     {
         v = QString("%1:%2").arg(seconds / 3600).arg(seconds % 3600 / 60, 2, 10, QChar('0'));
@@ -237,6 +237,7 @@ void LightWaveFormScanner::run()
 
         m_mutex.lock();
     }
+
     delete[] min;
     delete[] max;
     delete[] rms;
@@ -529,7 +530,7 @@ void LightWaveForm::drawWaveform()
     const bool logMode = m_logScaleAction->isChecked();
 
     m_pixmap = QPixmap(width(), height());
-    m_pixmap.fill(m_colors[COLOR_BACKGROUND]);
+    m_pixmap.fill(Qt::transparent);
 
     const float step = float(width()) / NUMBER_OF_VALUES;
 
@@ -566,7 +567,7 @@ void LightWaveForm::drawWaveform()
             const float y3 = zeroPos - (logMode ? logScale(m_data[i + m_channels * 3] * ratio) : m_data[i + m_channels * 3] * ratio);
             const float y4 = zeroPos - (logMode ? logScale(m_data[i + m_channels * 3 + 1] * ratio) : m_data[i + m_channels * 3 + 1] * ratio);
 
-            QPointF points[4] = {
+            const QPointF points[4] = {
                 { x1, y1 },
                 { x1, y2 },
                 { x2, y4 },
@@ -615,7 +616,7 @@ void LightWaveForm::drawWaveform()
             const float y3 = zeroPos + (logMode ? logScale(m_data[i + m_channels * 3 + 2] * ratio) : m_data[i + m_channels * 3 + 2] * ratio);
             const float y4 = zeroPos - (logMode ? logScale(m_data[i + m_channels * 3 + 2] * ratio) : m_data[i + m_channels * 3 + 2] * ratio);
 
-            QPointF points[4] = {
+            const QPointF points[4] = {
                 { x1, y1 },
                 { x1, y2 },
                 { x2, y4 },
