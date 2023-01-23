@@ -68,9 +68,9 @@ namespace MusicUtils
          */
         TTK_MODULE_EXPORT QPixmap grayScalePixmap(const QPixmap &input, int radius = 0);
         /*!
-         * Image gray average.
+         * Counting the perceptive luminance.
          */
-        TTK_MODULE_EXPORT int grayScaleAverage(const QImage &input, int width, int height);
+        TTK_MODULE_EXPORT unsigned int colorContrast(const unsigned int color);
 
         /*!
          * Rerender the custum value.

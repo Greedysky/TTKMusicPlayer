@@ -109,17 +109,13 @@ QPixmap MusicUtils::Image::grayScalePixmap(const QPixmap &input, int radius)
     return QPixmap::fromImage(pix);
 }
 
-int MusicUtils::Image::grayScaleAverage(const QImage &input, int width, int height)
+QRgb MusicUtils::Image::colorContrast(const QRgb color)
 {
-    int average = 0;
-    for(int w = 0; w < width; ++w)
-    {
-        for(int h = 0; h < height; ++h)
-        {
-            average += qBound(0, qGray(input.pixel(w, h)), 255);
-        }
-    }
-    return average / (width * height);
+    // Counting the perceptive luminance - human eye favors green color...
+    int v = 255 - (2.0 * qRed(color) + 3.0 * qGreen(color) + qBlue(color)) / 6.0;
+        v = v < 128 ? 0 : 255;
+    // 0, bright colors; 255, dark colors
+    return qRgb(v, v, v);
 }
 
 static int colorBurnTransform(int c, int delta)
