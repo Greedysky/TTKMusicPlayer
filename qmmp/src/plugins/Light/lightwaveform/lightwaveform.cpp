@@ -429,7 +429,6 @@ void LightWaveForm::paintEvent(QPaintEvent *)
 
     if(m_duration > 0)
     {
-        const bool showRuler = m_rulerAction->isChecked();
         const int x = width() * m_elapsed / m_duration;
         QColor color = m_colors[COLOR_PROGRESS];
 
@@ -484,7 +483,7 @@ void LightWaveForm::paintEvent(QPaintEvent *)
             painter.drawText(rect, Qt::AlignCenter, text);
         }
 
-        if(showRuler)
+        if(m_rulerAction->isChecked())
         {
             const int height = this->height() - RULER_HEIGHT;
             const int padding = this->height() - 2;
