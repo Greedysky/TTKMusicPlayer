@@ -430,14 +430,13 @@ void LightWaveForm::paintEvent(QPaintEvent *)
     if(m_duration > 0)
     {
         const bool showRuler = m_rulerAction->isChecked();
-        const int height = showRuler ? this->height() - RULER_HEIGHT : this->height();
         const int x = width() * m_elapsed / m_duration;
         QColor color = m_colors[COLOR_PROGRESS];
 
         if(!shadeMode)
         {
             color.setAlpha(0x96);
-            painter.fillRect(0, 0, x, height, color);
+            painter.fillRect(0, 0, x, height(), color);
         }
         else
         {
@@ -461,11 +460,11 @@ void LightWaveForm::paintEvent(QPaintEvent *)
         }
 
         color.setAlpha(0xFF);
-        painter.fillRect(x, 0, 3, height, color);
+        painter.fillRect(x, 0, 3, height(), color);
 
         if(m_seekPos >= 0)
         {
-            painter.fillRect(m_seekPos, 0, 3, height, color);
+            painter.fillRect(m_seekPos, 0, 3, height(), color);
 
             QFont ft = painter.font();
             ft.setPixelSize(18);
@@ -479,7 +478,7 @@ void LightWaveForm::paintEvent(QPaintEvent *)
             const QSize bound(ftm.width(text) + 20, ftm.height() + 4);
 #endif
             const int left = m_seekPos - bound.width();
-            const QRect rect(QPoint(left < 0 ? 0 : left, (height - bound.height()) / 2), bound);
+            const QRect rect(QPoint(left < 0 ? 0 : left, (height() - bound.height()) / 2), bound);
             painter.fillRect(rect, color);
             painter.setPen(QColor(colorContrast(m_colors[COLOR_PROGRESS].rgb())));
             painter.drawText(rect, Qt::AlignCenter, text);
@@ -487,7 +486,8 @@ void LightWaveForm::paintEvent(QPaintEvent *)
 
         if(showRuler)
         {
-            const int padding = this->height() - 3;
+            const int height = this->height() - RULER_HEIGHT;
+            const int padding = this->height() - 2;
             const int outWidth = width() / RULER_MAX;
             const int inWidth = outWidth / RULER_MAX;
             const int perTime = m_duration / RULER_MAX;
@@ -498,12 +498,7 @@ void LightWaveForm::paintEvent(QPaintEvent *)
             {
                 for(int j = 0; j < RULER_MAX; ++j)
                 {
-                    int lineHeight = height + RULER_HEIGHT * 2 / 3;
-                    if(j == 0)
-                    {
-                        lineHeight = height;
-                    }
-
+                    const int lineHeight = height + (j == 0 ? 0 : RULER_HEIGHT * 2 / 3);
                     painter.drawLine(outWidth * i + inWidth * j + 1, lineHeight, outWidth * i + inWidth * j + 1, padding);
                 }
 
