@@ -95,7 +95,8 @@ private:
     QList<QColor> m_colors;
     QAction *m_channelsAction, *m_rmsAction;
     QAction *m_rulerAction, *m_logScaleAction;
-    QAction *m_shadeAction;
+    QAction *m_shadeAction, *m_pointsAction;
+    QAction *m_fatAction;
     QList<int> m_data;
     int m_channels = 0;
     qint64 m_elapsed = 0;

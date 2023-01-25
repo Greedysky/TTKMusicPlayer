@@ -277,6 +277,12 @@ LightWaveForm::LightWaveForm(QWidget *parent)
     m_shadeAction = new QAction(tr("Shade Mode"), this);
     m_shadeAction->setCheckable(true);
 
+    m_pointsAction = new QAction(tr("Points Mode"), this);
+    m_pointsAction->setCheckable(true);
+
+    m_fatAction = new QAction(tr("Fat Mode"), this);
+    m_fatAction->setCheckable(true);
+
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
     connect(SoundCore::instance(), SIGNAL(elapsedChanged(qint64)), SLOT(positionChanged(qint64)));
 
@@ -320,6 +326,8 @@ void LightWaveForm::readSettings()
     m_rulerAction->setChecked(settings.value("show_ruler", false).toBool());
     m_logScaleAction->setChecked(settings.value("logarithmic_scale", false).toBool());
     m_shadeAction->setChecked(settings.value("shade_mode", false).toBool());
+    m_pointsAction->setChecked(settings.value("points_mode", false).toBool());
+    m_fatAction->setChecked(settings.value("fat_mode", false).toBool());
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     settings.endGroup();
 
@@ -342,6 +350,8 @@ void LightWaveForm::writeSettings()
     settings.setValue("show_ruler", m_rulerAction->isChecked());
     settings.setValue("logarithmic_scale", m_logScaleAction->isChecked());
     settings.setValue("shade_mode", m_shadeAction->isChecked());
+    settings.setValue("points_mode", m_pointsAction->isChecked());
+    settings.setValue("fat_mode", m_fatAction->isChecked());
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
     settings.endGroup();
 
@@ -542,8 +552,12 @@ void LightWaveForm::contextMenuEvent(QContextMenuEvent *)
     menu.addAction(m_channelsAction);
     menu.addAction(m_rmsAction);
     menu.addAction(m_rulerAction);
+    menu.addSeparator();
     menu.addAction(m_logScaleAction);
+    menu.addSeparator();
     menu.addAction(m_shadeAction);
+    menu.addAction(m_pointsAction);
+    menu.addAction(m_fatAction);
     menu.addSeparator();
 
     QMenu colorMenu(tr("Color"), &menu);
@@ -566,18 +580,19 @@ void LightWaveForm::drawWaveform()
         return;
     }
 
-    const bool showTwoChannels = m_channelsAction->isChecked();
-    const bool showRms = m_rmsAction->isChecked();
-    const bool logMode = m_logScaleAction->isChecked();
-
     m_pixmap = QPixmap(width(), height());
     m_pixmap.fill(Qt::transparent);
 
-    const float step = float(width()) / NUMBER_OF_VALUES;
-
     QPainter painter(&m_pixmap);
-    painter.setPen(m_colors[COLOR_WAVE]);
+    painter.setPen(QPen(m_colors[COLOR_WAVE], m_fatAction->isChecked() ? 2 : 1));
     painter.setBrush(m_colors[COLOR_WAVE]);
+
+    const bool showTwoChannels = m_channelsAction->isChecked();
+    const bool showRms = m_rmsAction->isChecked();
+    const bool logMode = m_logScaleAction->isChecked();
+    const bool pointsMode = m_pointsAction->isChecked();
+
+    const float step = float(width()) / NUMBER_OF_VALUES;
 
     for(int i = 0; i < m_data.count() - m_channels * 3; i += 3)
     {
@@ -615,7 +630,7 @@ void LightWaveForm::drawWaveform()
                 { x2, y3 }
             };
 
-            painter.drawPolygon(points, 4);
+            pointsMode ? painter.drawPoints(points, 4) : painter.drawPolygon(points, 4);
         }
     }
 
@@ -664,8 +679,9 @@ void LightWaveForm::drawWaveform()
                 { x2, y3 }
             };
 
-            painter.drawPolygon(points, 4);
+            pointsMode ? painter.drawPoints(points, 4) : painter.drawPolygon(points, 4);
         }
     }
+
     update();
 }
