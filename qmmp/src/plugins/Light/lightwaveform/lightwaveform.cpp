@@ -549,16 +549,19 @@ void LightWaveForm::contextMenuEvent(QContextMenuEvent *)
     QMenu menu(this);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
 
-    menu.addAction(m_channelsAction);
-    menu.addAction(m_rmsAction);
-    menu.addAction(m_rulerAction);
-    menu.addSeparator();
     menu.addAction(m_logScaleAction);
-    menu.addSeparator();
-    menu.addAction(m_shadeAction);
-    menu.addAction(m_pointsAction);
-    menu.addAction(m_fatAction);
-    menu.addSeparator();
+
+    QMenu displayMenu(tr("Display"), &menu);
+    displayMenu.addAction(m_channelsAction);
+    displayMenu.addAction(m_rmsAction);
+    displayMenu.addAction(m_rulerAction);
+    menu.addMenu(&displayMenu);
+
+    QMenu modeMenu(tr("Mode"), &menu);
+    modeMenu.addAction(m_shadeAction);
+    modeMenu.addAction(m_pointsAction);
+    modeMenu.addAction(m_fatAction);
+    menu.addMenu(&modeMenu);
 
     QMenu colorMenu(tr("Color"), &menu);
     colorMenu.addAction(tr("RMS"))->setData(10);
