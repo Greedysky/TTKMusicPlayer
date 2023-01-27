@@ -16,7 +16,10 @@ static int ffmpeg_read(void *data, uint8_t *buf, int size)
         return AVERROR_EOF;
     }
 #endif
-    return static_cast<int>(d->input()->read((char*)buf, size));
+    size = static_cast<int>(d->input()->read((char*)buf, size));
+    if(size < 0)
+        return AVERROR(EPIPE);
+    return size;
 }
 
 static int64_t ffmpeg_seek(void *data, int64_t offset, int whence)
