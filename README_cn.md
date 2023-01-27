@@ -40,7 +40,7 @@ API 文档
 
 下载
 ---
-OSChina镜像下载地址: **<u>http://git.oschina.net/greedysky/Musicplayer</u>**
+OSChina镜像下载地址: **<u>https://gitee.com/greedysky/TTKMusicplayer</u>**
 
 Qmmp原版下载地址: **<u>https://qmmp.ylsoftware.com</u>**
 

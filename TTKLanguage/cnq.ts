@@ -207,7 +207,7 @@
     <name>LightWaveForm</name>
     <message>
         <source>Double Channels</source>
-        <translation>双通道</translation>
+        <translation>显示双通道</translation>
     </message>
     <message>
         <source>Root Mean Square</source>
@@ -224,6 +224,22 @@
     <message>
         <source>Shade Mode</source>
         <translation>阴影模式</translation>
+    </message>
+    <message>
+        <source>Points Mode</source>
+        <translation>点云模式</translation>
+    </message>
+    <message>
+        <source>Fat Mode</source>
+        <translation>圆润模式</translation>
+    </message>
+    <message>
+        <source>Display</source>
+        <translation>显示</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation>模式</translation>
     </message>
     <message>
         <source>Color</source>
@@ -1202,7 +1218,7 @@ too high may cause clipping!</source>
     <name>WaveVoice</name>
     <message>
         <source>Double Channels</source>
-        <translation>双通道</translation>
+        <translation>显示双通道</translation>
     </message>
     <message>
         <source>Type</source>
