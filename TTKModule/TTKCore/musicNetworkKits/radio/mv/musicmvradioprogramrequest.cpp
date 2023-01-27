@@ -75,7 +75,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                                     info.m_songName = ds.back();
                                 }
                             }
-                            info.m_duration = TTKTime::msecTimeToLabelJustified(value["time"].toInt());
+                            info.m_duration = TTKTime::formatDuration(value["time"].toInt());
 
                             info.m_songId = value["mvhash"].toString();
                             TTK_NETWORK_QUERY_CHECK();

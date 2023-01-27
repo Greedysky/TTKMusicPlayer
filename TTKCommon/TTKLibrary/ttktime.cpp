@@ -23,8 +23,7 @@ int TTKObject::random(int value)
 
 
 TTKTime::TTKTime()
-    : m_greedyMode(false),
-      m_defaultType(Entity::Millisecond)
+    : m_defaultType(Entity::Millisecond)
 {
     initialize();
 }
@@ -112,29 +111,16 @@ qint64 TTKTime::timestamp(bool ms)
     return ms ? t : t / 1000;
 }
 
-qint64 TTKTime::labelJustifiedToMsecTime(const QString &time)
+qint64 TTKTime::formatDuration(const QString &time)
 {
     const TTKTime t = TTKTime::fromString(time, "mm:ss");
     return t.timestamp(Entity::Millisecond);
 }
 
-QString TTKTime::msecTimeToLabelJustified()
-{
-    if(!m_greedyMode)
-    {
-        return toString("mm:ss");
-    }
-    else
-    {
-        const int min = m_day * MT_H2S + m_hour * MT_H + m_min;
-        return QString::number(min).rightJustified(2, '0') + ":" + QString::number(m_sec).rightJustified(2, '0');
-    }
-}
-
-QString TTKTime::msecTimeToLabelJustified(qint64 time, bool greedy)
+QString TTKTime::formatDuration(qint64 time/*, bool greedy*/)
 {
     const TTKTime t(time, Entity::Millisecond);
-    if(!greedy || time < MT_H2S * MT_S2MS)
+    if(/*!greedy || */time < MT_H2S * MT_S2MS)
     {
         return t.toString("mm:ss");
     }
@@ -250,7 +236,6 @@ void TTKTime::initialize()
 
 void TTKTime::copyToThis(const TTKTime &other)
 {
-    m_greedyMode = other.m_greedyMode;
     m_defaultType = other.m_defaultType;
     m_day = other.m_day;
     m_hour = other.m_hour;

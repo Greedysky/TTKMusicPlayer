@@ -269,7 +269,7 @@ void MusicApplication::positionChanged(qint64 position)
     }
     else
     {
-        m_ui->playCurrentTime->setText(TTKTime::msecTimeToLabelJustified(position));
+        m_ui->playCurrentTime->setText(TTKTime::formatDuration(position));
     }
     //Show the current play time
     m_songTreeWidget->updateTimeLabel(m_ui->playCurrentTime->text(), m_ui->playTotalTime->text());
@@ -279,7 +279,7 @@ void MusicApplication::durationChanged(qint64 duration)
 {
     //Show the current play total time
     m_ui->musicTimeWidget->setRange(0, duration);
-    m_ui->playTotalTime->setText(TTK_SEPARATOR + TTKTime::msecTimeToLabelJustified(duration));
+    m_ui->playTotalTime->setText(TTK_SEPARATOR + TTKTime::formatDuration(duration));
     //Loading the current song lrc
     musicLoadCurrentSongLrc();
 }

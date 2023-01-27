@@ -76,15 +76,6 @@ public:
     inline Entity type() const { return m_defaultType; }
 
     /*!
-     * Set current greedy mode.
-     */
-    inline void setGreedyMode(bool mode) { m_greedyMode = mode; }
-    /*!
-     * Get current greedy mode.
-     */
-    inline bool greedyMode() const { return m_greedyMode; }
-
-    /*!
      * Set current day.
      */
     inline void setDay(int day) { m_day = day; }
@@ -165,15 +156,11 @@ public:
     /*!
      * Transform string format(mm:ss) to msec time.
      */
-    static qint64 labelJustifiedToMsecTime(const QString &time);
+    static qint64 formatDuration(const QString &time);
     /*!
      * Transform msec time to string format(mm:ss).
      */
-    QString msecTimeToLabelJustified();
-    /*!
-     * Transform msec time to string format(mm:ss).
-     */
-    static QString msecTimeToLabelJustified(qint64 time, bool greedy = true);
+    static QString formatDuration(qint64 time/*, bool greedy = true*/);
 
     TTKTime& operator = (const TTKTime &other);
     TTKTime& operator+= (const TTKTime &other);
@@ -222,7 +209,6 @@ private:
      */
     void fromTimeStamp(qint64 value, int delta);
 
-    bool m_greedyMode;
     Entity m_defaultType;
     int m_day, m_hour;
     int m_min, m_sec, m_msec;
