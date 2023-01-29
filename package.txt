@@ -1,8 +1,8 @@
 adplug-2.3.3	https://github.com/adplug/adplug
 enca-1.19	https://cihar.com/software/enca
 faad2-2.10.1	https://github.com/knik0/faad2
-ffmpeg-3.4.12	http://ffmpeg.org/releases/
-flac-1.4.2	https://ftp.osuosl.org/pub/xiph/releases/flac/
+ffmpeg-3.4.12	http://ffmpeg.org/releases
+flac-1.4.2	https://ftp.osuosl.org/pub/xiph/releases/flac
 game-music-emu-0.6.3	https://bitbucket.org/mpyne/game-music-emu/downloads
 libADLMIDI-1.5.1.0	https://github.com/Wohlstand/libADLMIDI
 libbinio-1.5	https://github.com/adplug/libbinio
@@ -10,14 +10,14 @@ libbs2b-3.1.0	https://sourceforge.net/projects/bs2b
 libcddb-1.3.2	https://sourceforge.net/projects/libcddb
 libcdio-paranoia-release-10.2-2.0.1	http://ftp.gnu.org/gnu/libcdio
 libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
-libmpg123-1.31.1	https://sourceforge.net/projects/mpg123
+libmpg123-1.31.2	https://sourceforge.net/projects/mpg123
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.5	https://xiph.org/downloads
 libopenmpt-0.4.33		https://lib.openmpt.org/libopenmpt
 libprojectm-2.2.1		https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.2		https://github.com/libsndfile/libsamplerate
 libsidplayfp-2.3.1.patch	https://github.com/libsidplayfp/libsidplayfp
-libsndfile-1.1.0		https://github.com/libsndfile/libsndfile
+libsndfile-1.2.0		https://github.com/libsndfile/libsndfile
 libvorbis-1.3.7	https://xiph.org/downloads
 mp3gain-1_5_2	http://mp3gain.sourceforge.net/download.php
 MPlayer-1.2.1	http://mplayerhq.hu/design7/dload.html
@@ -38,6 +38,6 @@ ttk-1.2.1
 (libfc14-1.0.3	https://sourceforge.net/projects/xmms-fc)
 (libgoom-2k4	https://sourceforge.net/projects/goom)
 (libsc68-2.2.1	https://sourceforge.net/projects/sc68)
-(libuade-3.02	https://gitlab.com/uade-music-player/uade 033140bfb17d47a3b473121fd5cbbe3e222765c8)
+(libuade-3.02	https://gitlab.com/uade-music-player/uade 60998cbf7113daba81387a3e737948dc6332b1a8)
 (libv2m-20211104	https://github.com/jgilje/v2m-player)
-///Update time 2023-01-10
+///Update time 2023-01-28
