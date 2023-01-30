@@ -26,60 +26,60 @@
  */
 namespace MusicUIObject
 {
-    const QString MQSSInteriorFloatSetting = " \
+    const QString InteriorFloatSetting = " \
             QPushButton{ border:1px solid #CCCCCC; border-radius:2px; } \
             QPushButton:hover{ border:1px solid #FFFFFF; border-radius:2px; }";
 
-    const QString MQSSInteriorFloatMore = " \
+    const QString InteriorFloatMore = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_more_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/lb_more_hover); }";
 
-    const QString MQSSInteriorFloatUpdate = " \
+    const QString InteriorFloatUpdate = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_update_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/lb_update_hover); }";
 
-    const QString MQSSInteriorFloatWallpaper = " \
+    const QString InteriorFloatWallpaper = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_wallpaper_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_hover); }";
 
-    const QString MQSSInteriorFloatWallpaperOn = " \
+    const QString InteriorFloatWallpaperOn = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_wallpaper_on_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_on_hover); }";
 
-    const QString MQSSInteriorFloatSearch = " \
+    const QString InteriorFloatSearch = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_search_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/lb_search_hover); }";
 
-    const QString MQSSInteriorFloatPhoto = " \
+    const QString InteriorFloatPhoto = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_photo_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/lb_photo_hover); }";
 
-    const QString MQSSInteriorFloatPhotoItem = " \
+    const QString InteriorFloatPhotoItem = " \
             QCheckBox::indicator::unchecked{ image:url(:/lrc/lb_photo_unchecked); } \
             QCheckBox::indicator:checked{ image:url(:/lrc/lb_photo_checked); }";
 
-    const QString MQSSInteriorFloatPhotoPrevious = " \
+    const QString InteriorFloatPhotoPrevious = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/btn_photo_previous_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_photo_previous_hover); }";
 
-    const QString MQSSInteriorFloatPhotoNext = " \
+    const QString InteriorFloatPhotoNext = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/btn_photo_next_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_photo_next_hover); }";
 
-    const QString MQSSInteriorLrcBigger = " \
+    const QString InteriorLrcBigger = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/btn_bigger_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_bigger_hover); }";
 
-    const QString MQSSInteriorLrcSmaller = " \
+    const QString InteriorLrcSmaller = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/btn_smaller_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_smaller_hover); }";

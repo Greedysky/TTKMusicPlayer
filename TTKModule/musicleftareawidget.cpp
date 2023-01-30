@@ -57,14 +57,14 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
     connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget, SLOT(setSliderStyleByType(int)));
     connect(ui->userOptionWidget, SIGNAL(buttonClicked(int)), SLOT(switchToSelectedItemStyle(int)));
 
-    ui->musicPrevious->setStyleSheet(MusicUIObject::MQSSBtnPrevious);
-    ui->musicNext->setStyleSheet(MusicUIObject::MQSSBtnNext);
-    ui->musicKey->setStyleSheet(MusicUIObject::MQSSBtnPlay);
+    ui->musicPrevious->setStyleSheet(MusicUIObject::BtnPrevious);
+    ui->musicNext->setStyleSheet(MusicUIObject::BtnNext);
+    ui->musicKey->setStyleSheet(MusicUIObject::BtnPlay);
 
-    ui->musicBestLove->setStyleSheet(MusicUIObject::MQSSBtnUnLove);
-    ui->musicDesktopLrc->setStyleSheet(MusicUIObject::MQSSBtnDKLrc);
-    ui->musicDownload->setStyleSheet(MusicUIObject::MQSSBtnUnDownload);
-    ui->musicMoreFunction->setStyleSheet(MusicUIObject::MQSSBtnMore);
+    ui->musicBestLove->setStyleSheet(MusicUIObject::BtnUnLove);
+    ui->musicDesktopLrc->setStyleSheet(MusicUIObject::BtnDKLrc);
+    ui->musicDownload->setStyleSheet(MusicUIObject::BtnUnDownload);
+    ui->musicMoreFunction->setStyleSheet(MusicUIObject::BtnMore);
 
     ui->musicPrevious->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));
@@ -89,7 +89,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
 
 void MusicLeftAreaWidget::musictLoveStateClicked(bool state)
 {
-    m_ui->musicBestLove->setStyleSheet(state ? MusicUIObject::MQSSBtnLove : MusicUIObject::MQSSBtnUnLove);
+    m_ui->musicBestLove->setStyleSheet(state ? MusicUIObject::BtnLove : MusicUIObject::BtnUnLove);
     Q_EMIT currentLoveStateChanged();
 }
 
@@ -103,7 +103,7 @@ void MusicLeftAreaWidget::musicDownloadSongFinished()
 {
     bool state = false;
     MusicApplication::instance()->musicDownloadContains(state);
-    m_ui->musicDownload->setStyleSheet(state ? MusicUIObject::MQSSBtnDownload : MusicUIObject::MQSSBtnUnDownload);
+    m_ui->musicDownload->setStyleSheet(state ? MusicUIObject::BtnDownload : MusicUIObject::BtnUnDownload);
     Q_EMIT currentDownloadStateChanged();
 }
 

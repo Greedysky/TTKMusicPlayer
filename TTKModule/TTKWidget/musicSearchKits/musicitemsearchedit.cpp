@@ -9,7 +9,7 @@ MusicItemSearchEdit::MusicItemSearchEdit(QWidget *parent)
 
     QLabel *icon = new QLabel(this);
     icon->setFixedSize(16, 16);
-    icon->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01 + "border-image: url(:/tiny/btn_search_main_hover);");
+    icon->setStyleSheet(MusicUIObject::BackgroundStyle01 + "border-image: url(:/tiny/btn_search_main_hover);");
 
     m_searchEdit = new MusicSearchEdit(this);
     layout->addWidget(icon);
@@ -38,7 +38,7 @@ void MusicItemSearchEdit::paintEvent(QPaintEvent *event)
 MusicItemQueryEdit::MusicItemQueryEdit(QWidget *parent)
     : QWidget(parent)
 {
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    setStyleSheet(MusicUIObject::BackgroundStyle01);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(5, 2, 0, 0);

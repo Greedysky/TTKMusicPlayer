@@ -49,10 +49,10 @@ void MusicAbstractItemQueryWidget::initialize()
 {
     m_mainWindow = new QWidget(this);
     m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle10));
+    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::BackgroundStyle10));
 
     m_statusLabel = new QLabel(tr("Loading now ... "), m_mainWindow);
-    m_statusLabel->setStyleSheet(MusicUIObject::MQSSFontStyle04 + MusicUIObject::MQSSFontStyle01);
+    m_statusLabel->setStyleSheet(MusicUIObject::FontStyle04 + MusicUIObject::FontStyle01);
 
     QVBoxLayout *mLayout = new QVBoxLayout(m_mainWindow);
     mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
@@ -144,7 +144,7 @@ void MusicAbstractItemQueryWidget::initFirstWidget()
     vlayout->setContentsMargins(0, 0, 0, 0);
 
     QWidget *middleFuncWidget = new QWidget(songWidget);
-    middleFuncWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    middleFuncWidget->setStyleSheet(MusicUIObject::PushButtonStyle03);
     QHBoxLayout *middleFuncLayout = new QHBoxLayout(middleFuncWidget);
     middleFuncLayout->setContentsMargins(0, 5, 0, 5);
     QLabel *marginLabel = new QLabel(middleFuncWidget);
@@ -199,7 +199,7 @@ void MusicAbstractItemQueryWidget::initSecondWidget()
     m_infoLabel = new QLabel(this);
     m_infoLabel->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     m_infoLabel->setWordWrap(true);
-    m_infoLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle03);
+    m_infoLabel->setStyleSheet(MusicUIObject::ColorStyle03 + MusicUIObject::FontStyle03);
     vlayout->addWidget(m_infoLabel);
     songWidget->setLayout(vlayout);
     m_container->addWidget(songWidget);

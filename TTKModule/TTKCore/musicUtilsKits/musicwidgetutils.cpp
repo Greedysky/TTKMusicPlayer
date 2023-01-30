@@ -112,7 +112,7 @@ void MusicUtils::Widget::generateVScrollAreaFormat(QWidget *widget, QWidget *par
     QScrollArea *area = TTKObject_cast(QScrollArea*, widget);
     if(area)
     {
-        const QString &style = background ? MusicUIObject::MQSSScrollBarStyle01 : MusicUIObject::MQSSScrollBarStyle03;
+        const QString &style = background ? MusicUIObject::ScrollBarStyle01 : MusicUIObject::ScrollBarStyle03;
         area->setWidgetResizable(true);
         area->setFrameShape(QFrame::NoFrame);
         area->setFrameShadow(QFrame::Plain);
@@ -129,7 +129,7 @@ void MusicUtils::Widget::generateHScrollAreaFormat(QWidget *widget, QWidget *par
     QScrollArea *area = TTKObject_cast(QScrollArea*, widget);
     if(area)
     {
-        const QString &style = background ? MusicUIObject::MQSSScrollBarStyle02 : MusicUIObject::MQSSScrollBarStyle04;
+        const QString &style = background ? MusicUIObject::ScrollBarStyle02 : MusicUIObject::ScrollBarStyle04;
         area->setWidgetResizable(true);
         area->setFrameShape(QFrame::NoFrame);
         area->setFrameShadow(QFrame::Plain);
@@ -144,6 +144,6 @@ void MusicUtils::Widget::generateHScrollAreaFormat(QWidget *widget, QWidget *par
 void MusicUtils::Widget::generateComboBoxFormat(QComboBox *widget, const QString &style)
 {
     widget->setItemDelegate(new QStyledItemDelegate(widget));
-    widget->setStyleSheet(style.isEmpty() ? MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01 : style);
-    widget->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    widget->setStyleSheet(style.isEmpty() ? MusicUIObject::ComboBoxStyle01 + MusicUIObject::ItemView01 : style);
+    widget->view()->setStyleSheet(MusicUIObject::ScrollBarStyle01);
 }

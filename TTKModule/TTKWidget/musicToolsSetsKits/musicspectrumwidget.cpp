@@ -28,26 +28,26 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     setFixedSize(size());
     setAttribute(Qt::WA_DeleteOnClose);
     setBackgroundLabel(m_ui->background);
-    setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    setStyleSheet(MusicUIObject::MenuStyle02);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->mainViewWidget->setStyleSheet(MusicUIObject::MQSSTabWidgetStyle01);
+    m_ui->mainViewWidget->setStyleSheet(MusicUIObject::TabWidgetStyle01);
 
-    m_ui->localFileButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->localFileButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
     m_ui->localFileButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->openFileButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->openFileButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
     m_ui->openFileButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->spectrumNormalLayoutButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
-    m_ui->spectrumPlusLayoutButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
-    m_ui->spectrumWaveLayoutButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
-    m_ui->spectrumFlowLayoutButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
-    m_ui->spectrumFloridLayoutButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
+    m_ui->spectrumNormalLayoutButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
+    m_ui->spectrumPlusLayoutButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
+    m_ui->spectrumWaveLayoutButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
+    m_ui->spectrumFlowLayoutButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
+    m_ui->spectrumFloridLayoutButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
 
 #ifdef Q_OS_UNIX
     m_ui->spectrumNormalLayoutButton->setFocusPolicy(Qt::NoFocus);
@@ -221,7 +221,7 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::Module spectrum, b
             type.m_type = spectrum;
             m_types << type;
             layout->addWidget(type.m_object);
-            type.m_object->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+            type.m_object->setStyleSheet(MusicUIObject::MenuStyle02);
 
             connect(type.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
         }
@@ -289,7 +289,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
         type.m_type = spectrum;
         m_types << type;
         layout->addWidget(type.m_object);
-        type.m_object->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+        type.m_object->setStyleSheet(MusicUIObject::MenuStyle02);
 
         if(florid)
         {

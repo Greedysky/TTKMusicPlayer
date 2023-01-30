@@ -45,7 +45,7 @@ MusicPlayedListPopWidget::MusicPlayedListPopWidget(QWidget *parent)
     m_instance = this;
 
     setToolTip(tr("Played List"));
-    setStyleSheet(MusicUIObject::MQSSBtnPlayedList);
+    setStyleSheet(MusicUIObject::BtnPlayedList);
 
     initialize();
 }
@@ -318,7 +318,7 @@ void MusicPlayedListPopWidget::initialize()
 
     m_scrollArea = new QScrollArea(this);
 
-    const QString &background = MusicUIObject::MQSSBackgroundStyle10;
+    const QString &background = MusicUIObject::BackgroundStyle10;
     QWidget *view = m_scrollArea->viewport();
     view->setObjectName("Viewport");
     view->setStyleSheet(QString("#Viewport{%1}").arg(background));
@@ -347,24 +347,24 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     MusicPlayedListTopContainerWidget *topWidget = new MusicPlayedListTopContainerWidget(this);
 #ifdef Q_OS_UNIX
     topWidget->setObjectName("TopWidget");
-    topWidget->setStyleSheet(QString("#TopWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle10));
+    topWidget->setStyleSheet(QString("#TopWidget{%1}").arg(MusicUIObject::BackgroundStyle10));
 #endif
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setSpacing(15);
     QLabel *label = new QLabel(tr("Played List"), topWidget);
-    label->setStyleSheet(MusicUIObject::MQSSColorStyle10 + MusicUIObject::MQSSFontStyle01 + MusicUIObject::MQSSFontStyle03);
+    label->setStyleSheet(MusicUIObject::ColorStyle10 + MusicUIObject::FontStyle01 + MusicUIObject::FontStyle03);
 
     QPushButton *shareButton = new QPushButton(this);
     shareButton->setFixedSize(16, 16);
     shareButton->setToolTip(tr("Share List"));
     shareButton->setCursor(QCursor(Qt::PointingHandCursor));
-    shareButton->setStyleSheet(MusicUIObject::MQSSTinyBtnShare);
+    shareButton->setStyleSheet(MusicUIObject::TinyBtnShare);
 
     QPushButton *deleteButton = new QPushButton(this);
     deleteButton->setFixedSize(16, 16);
     deleteButton->setToolTip(tr("Clear List"));
     deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
-    deleteButton->setStyleSheet(MusicUIObject::MQSSTinyBtnDelete);
+    deleteButton->setStyleSheet(MusicUIObject::TinyBtnDelete);
     connect(deleteButton, SIGNAL(clicked()), SLOT(setDeleteItemAll()));
 
 #ifdef Q_OS_UNIX
@@ -376,7 +376,7 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     closeButton->setFixedSize(16, 16);
     closeButton->setToolTip(tr("Close List"));
     closeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    closeButton->setStyleSheet(MusicUIObject::MQSSTinyBtnClose);
+    closeButton->setStyleSheet(MusicUIObject::TinyBtnClose);
     connect(closeButton, SIGNAL(clicked()), m_menu, SLOT(close()));
 
     topWidgetLayout->addWidget(label);

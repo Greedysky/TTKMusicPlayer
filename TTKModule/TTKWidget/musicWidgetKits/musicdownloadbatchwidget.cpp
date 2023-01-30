@@ -15,7 +15,7 @@ MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)
     m_information->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 
     m_qulity = new QComboBox(this);
-    MusicUtils::Widget::generateComboBoxFormat(m_qulity, MusicUIObject::MQSSComboBoxStyle02 + MusicUIObject::MQSSItemView01);
+    MusicUtils::Widget::generateComboBoxFormat(m_qulity, MusicUIObject::ComboBoxStyle02 + MusicUIObject::ItemView01);
 
     m_songName->setGeometry(0, 0, 190, TTK_ITEM_SIZE_S);
     m_singer->setGeometry(180, 0, 120, TTK_ITEM_SIZE_S);
@@ -271,8 +271,8 @@ MusicDownloadBatchTableWidget::MusicDownloadBatchTableWidget(QWidget *parent)
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 530);
 
-    setStyleSheet(styleSheet() + MusicUIObject::MQSSTableWidgetStyle02);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    setStyleSheet(styleSheet() + MusicUIObject::TableWidgetStyle02);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle01);
 
     MusicUtils::Widget::setTransparent(this, 255);
 #if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
@@ -353,19 +353,19 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->qualityBox, MusicUIObject::MQSSComboBoxStyle02 + MusicUIObject::MQSSItemView01);
+    MusicUtils::Widget::generateComboBoxFormat(m_ui->qualityBox, MusicUIObject::ComboBoxStyle02 + MusicUIObject::ItemView01);
     m_ui->qualityBox->addItems({tr("Null"), tr("SD"), tr("HQ"), tr("SQ"), tr("CD")});
     connect(m_ui->qualityBox, SIGNAL(currentIndexChanged(int)), m_ui->tableWidget, SLOT(currentQualityChanged(int)));
 
     m_ui->qualityBox->setCurrentIndex(0);
 
     m_ui->tableWidget->setParentClass(this);
-    m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle05);
+    m_ui->downloadButton->setStyleSheet(MusicUIObject::PushButtonStyle05);
 #ifdef Q_OS_UNIX
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif

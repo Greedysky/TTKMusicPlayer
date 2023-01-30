@@ -194,23 +194,23 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicResultInfoItem &s
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_songName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
-    item->setForeground(QColor(MusicUIObject::MQSSColor02));
+    item->setForeground(QColor(MusicUIObject::Color02));
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 30));
-    item->setForeground(QColor(MusicUIObject::MQSSColor02));
+    item->setForeground(QColor(MusicUIObject::Color02));
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_albumName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 30));
-    item->setForeground(QColor(MusicUIObject::MQSSColor02));
+    item->setForeground(QColor(MusicUIObject::Color02));
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem(songItem.m_duration);
-    item->setForeground(QColor(MusicUIObject::MQSSColor02));
+    item->setForeground(QColor(MusicUIObject::Color02));
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
@@ -473,26 +473,26 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     m_textLabel = new QLabel(this);
     m_textLabel->setTextFormat(Qt::RichText);
     m_textLabel->setText(tr("&nbsp;Find no result"));
-    m_textLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
+    m_textLabel->setStyleSheet(MusicUIObject::ColorStyle03);
     funcLayout->addWidget(m_textLabel);
 
     m_playButton = new QPushButton(tr("Play"), this);
     m_playButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
     m_playButton->setIconSize(QSize(14, 14));
     m_playButton->setFixedSize(70, 25);
-    m_playButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    m_playButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
     funcLayout->addWidget(m_playButton);
 
     QPushButton *addButton = new QPushButton(tr("Add"), this);
     addButton->setFixedSize(70, 25);
-    addButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    addButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
     funcLayout->addWidget(addButton);
 
     QPushButton *downloadButton = new QPushButton(tr("Download"), this);
     downloadButton->setFixedSize(70, 25);
-    downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    downloadButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
     funcLayout->addWidget(downloadButton);
 
@@ -510,10 +510,10 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     QHBoxLayout *labelLayout = new QHBoxLayout(labelWidget);
     labelLayout->setContentsMargins(7, 0, 10, 0);
     labelLayout->setSpacing(0);
-    labelWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle09);
+    labelWidget->setStyleSheet(MusicUIObject::BackgroundStyle09);
 
     QCheckBox *labelCheckBox = new QCheckBox(this);
-    labelCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    labelCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
     connect(labelCheckBox, SIGNAL(clicked(bool)), m_searchTableWidget, SLOT(checkedItemsState(bool)));
     labelLayout->addWidget(labelCheckBox, headerview->sectionSize(0));
     m_resizeWidgets << labelCheckBox;
@@ -526,22 +526,22 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 #endif
 
     QLabel *label1 = new QLabel(tr("Song"), this);
-    label1->setStyleSheet(MusicUIObject::MQSSFontStyle01);
+    label1->setStyleSheet(MusicUIObject::FontStyle01);
     labelLayout->addWidget(label1, headerview->sectionSize(1));
     m_resizeWidgets << label1;
 
     QLabel *label2 = new QLabel(tr("Artist"), this);
-    label2->setStyleSheet(MusicUIObject::MQSSFontStyle01);
+    label2->setStyleSheet(MusicUIObject::FontStyle01);
     labelLayout->addWidget(label2, headerview->sectionSize(2));
     m_resizeWidgets << label2;
 
     QLabel *label3 = new QLabel(tr("Album"), this);
-    label3->setStyleSheet(MusicUIObject::MQSSFontStyle01);
+    label3->setStyleSheet(MusicUIObject::FontStyle01);
     labelLayout->addWidget(label3, headerview->sectionSize(3));
     m_resizeWidgets << label3;
 
     QLabel *label4 = new QLabel(tr("Operator"), this);
-    label4->setStyleSheet(MusicUIObject::MQSSFontStyle01);
+    label4->setStyleSheet(MusicUIObject::FontStyle01);
     labelLayout->addWidget(label4, headerview->sectionSize(4) + headerview->sectionSize(5) + headerview->sectionSize(6) * 3);
     m_resizeWidgets << label3;
 

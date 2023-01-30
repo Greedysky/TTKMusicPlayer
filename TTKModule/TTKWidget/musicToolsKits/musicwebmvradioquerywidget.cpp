@@ -17,7 +17,7 @@ MusicWebMVRadioQueryItemWidget::MusicWebMVRadioQueryItemWidget(QWidget *parent)
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry((WIDTH_LABEL_SIZE - 30) / 2, (HEIGHT_LABEL_SIZE - 30) / 2, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
-    m_playButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPlaylist);
+    m_playButton->setStyleSheet(MusicUIObject::TinyBtnPlaylist);
     connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));
 
 #ifdef Q_OS_UNIX
@@ -30,7 +30,7 @@ MusicWebMVRadioQueryItemWidget::MusicWebMVRadioQueryItemWidget(QWidget *parent)
     m_nameLabel = new QLabel(this);
     m_nameLabel->setAlignment(Qt::AlignCenter);
     m_nameLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
-    m_nameLabel->setStyleSheet(MusicUIObject::MQSSColorStyle01 + MusicUIObject::MQSSFontStyle04 + MusicUIObject::MQSSFontStyle01);
+    m_nameLabel->setStyleSheet(MusicUIObject::ColorStyle01 + MusicUIObject::FontStyle04 + MusicUIObject::FontStyle01);
     m_nameLabel->setText(" - ");
 }
 
@@ -182,7 +182,7 @@ void MusicWebMVRadioQueryWidget::createMVRadioCategoryItem(const MusicResultData
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(MusicUIObject::MQSSColorStyle06);
+        line->setStyleSheet(MusicUIObject::ColorStyle06);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

@@ -99,7 +99,7 @@ void MusicToplistQueryWidget::createLabels()
     layout()->addWidget(scrollArea);
 
     QWidget *function = new QWidget(m_mainWindow);
-    function->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01 + MusicUIObject::MQSSPushButtonStyle03);
+    function->setStyleSheet(MusicUIObject::CheckBoxStyle01 + MusicUIObject::PushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
     QLabel *firstLabel = new QLabel(function);
@@ -129,13 +129,13 @@ void MusicToplistQueryWidget::createLabels()
     QFont toplistFont = nameLabel->font();
     toplistFont.setPixelSize(20);
     nameLabel->setFont(toplistFont);
-    nameLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
+    nameLabel->setStyleSheet(MusicUIObject::FontStyle01);
     QLabel *playCountLabel = new QLabel(topLineWidget);
-    playCountLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
+    playCountLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
     QLabel *updateTimeLabel = new QLabel(topLineWidget);
-    updateTimeLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
+    updateTimeLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
     QLabel *descriptionLabel = new QLabel(topLineWidget);
-    descriptionLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
+    descriptionLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
     descriptionLabel->setWordWrap(true);
 
     topLineLayout->addWidget(nameLabel);
@@ -152,7 +152,7 @@ void MusicToplistQueryWidget::createLabels()
     //
 
     QWidget *functionWidget = new QWidget(this);
-    functionWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    functionWidget->setStyleSheet(MusicUIObject::PushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));

@@ -16,21 +16,21 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const MusicPluginProper
 
     m_textLabel = new QLabel(" " + property.m_name, this);
     m_textLabel->setObjectName("Background");
-    m_textLabel->setStyleSheet(QString("#Background{%1}").arg(MusicUIObject::MQSSBackgroundStyle05) +
-                               MusicUIObject::MQSSSpinBoxStyle01 +
-                               MusicUIObject::MQSSSliderStyle06 +
-                               MusicUIObject::MQSSCheckBoxStyle01 +
-                               MusicUIObject::MQSSComboBoxStyle01 +
-                               MusicUIObject::MQSSPushButtonStyle12);
+    m_textLabel->setStyleSheet(QString("#Background{%1}").arg(MusicUIObject::BackgroundStyle05) +
+                               MusicUIObject::SpinBoxStyle01 +
+                               MusicUIObject::SliderStyle06 +
+                               MusicUIObject::CheckBoxStyle01 +
+                               MusicUIObject::ComboBoxStyle01 +
+                               MusicUIObject::PushButtonStyle12);
 
     QWidget *func = new QWidget(this);
-    func->setStyleSheet(MusicUIObject::MQSSBackgroundStyle04);
+    func->setStyleSheet(MusicUIObject::BackgroundStyle04);
     QHBoxLayout *funcLayout = new QHBoxLayout(func);
     funcLayout->setContentsMargins(0, 5, 5, 0);
     funcLayout->setSpacing(0);
 
     m_settingButton = new QPushButton(func);
-    m_settingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01);
+    m_settingButton->setStyleSheet(MusicUIObject::PushButtonStyle01);
     m_settingButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_settingButton->setFixedWidth(40);
     m_settingButton->setText(tr("Sets"));
@@ -38,7 +38,7 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const MusicPluginProper
     connect(m_settingButton, SIGNAL(clicked()), SLOT(soundEffectValueChanged()));
 
     m_openButton = new QPushButton(func);
-    m_openButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01);
+    m_openButton->setStyleSheet(MusicUIObject::PushButtonStyle01);
     m_openButton->setIcon(QIcon(":/tiny/btn_effect_on"));
     m_openButton->setToolTip(tr("On"));
     m_openButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -51,7 +51,7 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const MusicPluginProper
 #endif
 
     QLabel *iconLabel = new QLabel(func);
-    iconLabel->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    iconLabel->setStyleSheet(MusicUIObject::BackgroundStyle01);
     iconLabel->setPixmap(QPixmap(":/tiny/lb_arrow_down_normal"));
     iconLabel->setFixedSize(16, 16);
 
@@ -122,7 +122,7 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -131,10 +131,10 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->stateComboBox->addItems({tr("OperatorAll"), tr("All Off")});
     connect(m_ui->stateComboBox, SIGNAL(currentIndexChanged(int)), SLOT(stateComboBoxChanged(int)));
 
-    m_ui->eqButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->eqButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
     m_ui->eqButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->eqEffectButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->eqEffectButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->eqEffectButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
 #ifdef Q_OS_UNIX
     m_ui->eqButton->setFocusPolicy(Qt::NoFocus);
     m_ui->eqEffectButton->setFocusPolicy(Qt::NoFocus);

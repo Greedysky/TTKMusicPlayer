@@ -17,7 +17,7 @@ MusicArtistListQueryItemWidget::MusicArtistListQueryItemWidget(QWidget *parent)
     : TTKClickedLabel(parent)
 {
     setAlignment(Qt::AlignCenter);
-    setStyleSheet(MusicUIObject::MQSSColorStyle09);
+    setStyleSheet(MusicUIObject::ColorStyle09);
     setFixedSize(WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
 
     connect(this, SIGNAL(clicked()), SLOT(currentItemClicked()));
@@ -121,7 +121,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         for(int i = -1; i < 27; ++i)
         {
             TTKClickedLabel *l = new TTKClickedLabel(QString(TTKStatic_cast(char, i + 65)), containNumberWidget);
-            l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(MusicUIObject::MQSSColorStyle08, MusicUIObject::MQSSColorStyle10));
+            l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(MusicUIObject::ColorStyle08, MusicUIObject::ColorStyle10));
 
             if(i == -1)
             {
@@ -142,7 +142,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(MusicUIObject::MQSSColorStyle06);
+        line->setStyleSheet(MusicUIObject::ColorStyle06);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

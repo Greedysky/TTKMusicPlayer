@@ -23,12 +23,12 @@ MusicPlaylistQueryItemWidget::MusicPlaylistQueryItemWidget(QWidget *parent)
     m_topListenButton->setGeometry(0, 0, WIDTH_LABEL_SIZE, 20);
     m_topListenButton->setIcon(QIcon(":/tiny/btn_listen_hover"));
     m_topListenButton->setText(" - ");
-    m_topListenButton->setStyleSheet(MusicUIObject::MQSSBorderStyle01 + MusicUIObject::MQSSBackgroundStyle04 + MusicUIObject::MQSSColorStyle01);
+    m_topListenButton->setStyleSheet(MusicUIObject::BorderStyle01 + MusicUIObject::BackgroundStyle04 + MusicUIObject::ColorStyle01);
 
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry(110, 110, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
-    m_playButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPlaylist);
+    m_playButton->setStyleSheet(MusicUIObject::TinyBtnPlaylist);
     connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));
 
 #ifdef Q_OS_UNIX
@@ -208,10 +208,10 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
         for(const QString &data : qAsConst(titles))
         {
             QLabel *l = new QLabel(data, containTopWidget);
-            l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MQSSColorStyle08));
+            l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::ColorStyle08));
             QFrame *hline = new QFrame(containTopWidget);
             hline->setFrameShape(QFrame::VLine);
-            hline->setStyleSheet(MusicUIObject::MQSSColorStyle06);
+            hline->setStyleSheet(MusicUIObject::ColorStyle06);
             containTopLayout->addWidget(l);
             containTopLayout->addWidget(hline);
         }
@@ -219,7 +219,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(MusicUIObject::MQSSColorStyle06);
+        line->setStyleSheet(MusicUIObject::ColorStyle06);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

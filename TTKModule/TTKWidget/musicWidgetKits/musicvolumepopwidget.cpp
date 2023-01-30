@@ -25,7 +25,7 @@ void MusicVolumePopWidget::setValue(int value)
     m_volumeSlider->setValue(value);
     m_volumeSlider->blockSignals(false);
 
-    QString style = MusicUIObject::MQSSBtnSound;
+    QString style = MusicUIObject::BtnSound;
     if(66 < value && value <=100)
     {
         style += "QToolButton{ margin-left:-60px; }";
@@ -84,7 +84,7 @@ void MusicVolumePopWidget::initialize()
     m_volumeSlider = new TTKClickedSlider(Qt::Vertical, this);
     m_volumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumeSlider->setRange(0, 100);
-    m_volumeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle02);
+    m_volumeSlider->setStyleSheet(MusicUIObject::SliderStyle02);
 
     connect(m_volumeSlider, SIGNAL(valueChanged(int)), SIGNAL(musicVolumeChanged(int)));
 

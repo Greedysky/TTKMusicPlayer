@@ -1020,7 +1020,7 @@ void MusicSongsSummariziedWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicSongsToolBoxWidget::contextMenuEvent(event);
 
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MenuStyle02);
     menu.addAction(tr("Create Item"), this, SLOT(addNewRowItem()));
     menu.addAction(tr("Import Item"), MusicApplication::instance(), SLOT(musicImportSongsItemList()));
     menu.addAction(tr("Music Test Tools"), this, SLOT(musicSongsCheckTestTools()));

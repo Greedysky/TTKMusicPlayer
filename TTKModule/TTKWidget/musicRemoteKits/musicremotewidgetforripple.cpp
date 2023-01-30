@@ -29,7 +29,7 @@ MusicRemoteWidgetForRipple::MusicRemoteWidgetForRipple(QWidget *parent)
     createVisualWidget();
 
     m_songNameLabel = new MusicMarqueeWidget(this);
-    m_songNameLabel->setStyleSheet(MusicUIObject::MQSSWidgetStyle01);
+    m_songNameLabel->setStyleSheet(MusicUIObject::WidgetStyle01);
 
     m_preSongButton->hide();
     m_nextSongButton->hide();
@@ -40,7 +40,7 @@ MusicRemoteWidgetForRipple::MusicRemoteWidgetForRipple(QWidget *parent)
 #endif
     m_visualModeButton->setToolTip(tr("Visual Mode"));
     m_visualModeButton->setFixedSize(26, 18);
-    m_visualModeButton->setStyleSheet(MusicUIObject::MQSSTinyBtnVisual);
+    m_visualModeButton->setStyleSheet(MusicUIObject::TinyBtnVisual);
     m_visualModeButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_visualModeButton, SIGNAL(clicked()), SLOT(visualModeChanged()));
 

@@ -18,7 +18,7 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
     setAutoFillBackground(true);
 
     m_textLabel = new QLabel(this);
-    m_textLabel->setStyleSheet(MusicUIObject::MQSSColorStyle10);
+    m_textLabel->setStyleSheet(MusicUIObject::ColorStyle10);
     m_textLabel->setGeometry(23, 0, 170, 30);
 
     m_gifLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::RadioBlue, this);
@@ -29,17 +29,17 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
     m_downloadButton->setGeometry(220, 7, 16, 16);
     m_downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_downloadButton->setToolTip(tr("Download"));
-    m_downloadButton->setStyleSheet(MusicUIObject::MQSSTinyBtnUnDownload);
+    m_downloadButton->setStyleSheet(MusicUIObject::TinyBtnUnDownload);
 
     m_deleteButton = new QPushButton(this);
     m_deleteButton->setGeometry(245, 7, 16, 16);
-    m_deleteButton->setStyleSheet(MusicUIObject::MQSSTinyBtnDelete);
+    m_deleteButton->setStyleSheet(MusicUIObject::TinyBtnDelete);
     m_deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_deleteButton->setToolTip(tr("Delete"));
 
     m_moreButton = new QPushButton(this);
     m_moreButton->setGeometry(270, 7, 16, 16);
-    m_moreButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle10 + MusicUIObject::MQSSTinyBtnMore);
+    m_moreButton->setStyleSheet(MusicUIObject::PushButtonStyle10 + MusicUIObject::TinyBtnMore);
     m_moreButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_moreButton->setToolTip(tr("More"));
 
@@ -87,7 +87,7 @@ void MusicSongsListPlayedWidget::enterEvent(QtEnterEvent *event)
 
 void MusicSongsListPlayedWidget::createMoreMenu(QMenu *menu)
 {
-    menu->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu->setStyleSheet(MusicUIObject::MenuStyle02);
     menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), m_parent, SLOT(musicPlayedSimilarQueryWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), m_parent, SLOT(musicSongPlayedSharedWidget()));
 }

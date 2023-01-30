@@ -289,7 +289,7 @@ void MusicApplication::playerStateChanged(MusicObject::PlayState state)
     if(state == MusicObject::PlayState::Stopped)
     {
         const bool concise = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
-        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSBtnPlay);
+        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::TinyBtnPlay : MusicUIObject::BtnPlay);
     }
 }
 
@@ -307,19 +307,19 @@ void MusicApplication::showCurrentSong()
         ///detecting whether the file has been downloaded
         bool exist = false;
         musicDownloadContains(exist);
-        m_ui->musicDownload->setStyleSheet(exist ? MusicUIObject::MQSSBtnDownload : MusicUIObject::MQSSBtnUnDownload);
+        m_ui->musicDownload->setStyleSheet(exist ? MusicUIObject::BtnDownload : MusicUIObject::BtnUnDownload);
         //
         exist = musicLovestContains();
-        m_ui->musicBestLove->setStyleSheet(exist ? MusicUIObject::MQSSBtnLove : MusicUIObject::MQSSBtnUnLove);
+        m_ui->musicBestLove->setStyleSheet(exist ? MusicUIObject::BtnLove : MusicUIObject::BtnUnLove);
         //
         m_songTreeWidget->selectRow(index);
     }
     else
     {
         const bool concise = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
-        m_ui->musicBestLove->setStyleSheet(MusicUIObject::MQSSBtnUnLove);
-        m_ui->musicDownload->setStyleSheet(MusicUIObject::MQSSBtnUnDownload);
-        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSBtnPlay);
+        m_ui->musicBestLove->setStyleSheet(MusicUIObject::BtnUnLove);
+        m_ui->musicDownload->setStyleSheet(MusicUIObject::BtnUnDownload);
+        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::TinyBtnPlay : MusicUIObject::BtnPlay);
         m_player->stop();
         m_rightAreaWidget->stopDrawLrc();
 
@@ -357,14 +357,14 @@ void MusicApplication::musicStatePlay()
     const bool concise = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
     if(isPlaying())
     {
-        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSBtnPlay);
+        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::TinyBtnPlay : MusicUIObject::BtnPlay);
         m_player->pause();
         m_topAreaWidget->setBackgroundAnimation(false);
         m_rightAreaWidget->stopDrawLrc();
     }
     else
     {
-        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPause : MusicUIObject::MQSSBtnPause);
+        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::TinyBtnPause : MusicUIObject::BtnPause);
         m_player->play();
         m_topAreaWidget->musicBackgroundThemeDownloadFinished();
         m_rightAreaWidget->startDrawLrc();
@@ -479,7 +479,7 @@ void MusicApplication::musicVolumeChanged(int volume)
 void MusicApplication::musicImportSongs()
 {
     QMenu menu;
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MenuStyle02);
     menu.addAction(tr("Open Files"), this, SLOT(musicImportSongsByFiles()));
     menu.addAction(tr("Open Dir"), this, SLOT(musicImportSongsByDir()));
     menu.addAction(tr("Open Url"), this, SLOT(musicImportSongsByUrl()));
@@ -720,7 +720,7 @@ void MusicApplication::musicEnhancedMusicChanged(int type)
 void MusicApplication::musicCreateRightMenu()
 {
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MenuStyle02);
 
     QMenu addNewFiles(tr("Add New Files"), &menu);
     menu.addMenu(&addNewFiles);

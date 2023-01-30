@@ -26,87 +26,87 @@
  */
 namespace MusicUIObject
 {
-    const QString MQSSDeskTopPlay = " \
+    const QString DeskTopPlay = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_play_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_play_hover); }";
 
-    const QString MQSSDeskTopPause = " \
+    const QString DeskTopPause = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_pause_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_pause_hover); }";
 
-    const QString MQSSDeskTopNext = " \
+    const QString DeskTopNext = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_next_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_next_hover); }";
 
-    const QString MQSSDeskTopPrevious = " \
+    const QString DeskTopPrevious = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_previous_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_previous_hover); }";
 
-    const QString MQSSDeskTopSizeDown = " \
+    const QString DeskTopSizeDown = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_size-_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_size-_hover); }";
 
-    const QString MQSSDeskTopSizeUp = " \
+    const QString DeskTopSizeUp = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_size+_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_size+_hover); }";
 
-    const QString MQSSDeskTopSetting = " \
+    const QString DeskTopSetting = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_setting_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_setting_hover); }";
 
-    const QString MQSSDeskTopLock = " \
+    const QString DeskTopLock = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_lock_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_lock_hover); }";
 
-    const QString MQSSDeskTopStyle= " \
+    const QString DeskTopStyle= " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_style_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_style_hover); }";
 
-    const QString MQSSDeskTopHMakeLrc = " \
+    const QString DeskTopHMakeLrc = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_hmake_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_hmake_hover); }";
 
-    const QString MQSSDeskTopHSearchLrc = " \
+    const QString DeskTopHSearchLrc = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_hsearch_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_hsearch_hover); }";
 
-    const QString MQSSDeskTopHUpdateLrc = " \
+    const QString DeskTopHUpdateLrc = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_hupdate_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_hupdate_hover); }";
 
-    const QString MQSSDeskTopVMakeLrc = " \
+    const QString DeskTopVMakeLrc = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_vmake_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_vmake_hover); }";
 
-    const QString MQSSDeskTopVSearchLrc = " \
+    const QString DeskTopVSearchLrc = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_vsearch_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_vsearch_hover); }";
 
-    const QString MQSSDeskTopVUpdateLrc = " \
+    const QString DeskTopVUpdateLrc = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_vupdate_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_vupdate_hover); }";
 
-    const QString MQSSDeskTopHorizontal = " \
+    const QString DeskTopHorizontal = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_horizontal_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_horizontal_hover); }";
 
-    const QString MQSSDeskTopVertical = " \
+    const QString DeskTopVertical = " \
             QToolButton{ border:none; \
             background-image: url(:/desktop/btn_vertical_normal); } \
             QToolButton:hover{ background-image: url(:/desktop/btn_vertical_hover); }";

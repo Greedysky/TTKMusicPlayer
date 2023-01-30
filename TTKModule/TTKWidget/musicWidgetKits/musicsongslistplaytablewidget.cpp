@@ -91,7 +91,7 @@ void MusicSongsListPlayTableWidget::updateSongsList(const MusicSongList &songs)
 
                           item = new QTableWidgetItem;
         item->setText(MusicUtils::Widget::elidedText(font(), v.name(), Qt::ElideRight, headerview->sectionSize(1) - 10));
-        item->setForeground(QColor(MusicUIObject::MQSSColor01));
+        item->setForeground(QColor(MusicUIObject::Color01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
@@ -105,7 +105,7 @@ void MusicSongsListPlayTableWidget::updateSongsList(const MusicSongList &songs)
         setItem(i, 4, item);
 
                           item = new QTableWidgetItem(v.playTime());
-        item->setForeground(QColor(MusicUIObject::MQSSColor01));
+        item->setForeground(QColor(MusicUIObject::Color01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);
     }
@@ -214,7 +214,7 @@ void MusicSongsListPlayTableWidget::adjustPlayWidgetRow()
     setItem(m_playRowIndex, 0, item);
 
     item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, headerview->sectionSize(1) - 10));
-    item->setForeground(QColor(MusicUIObject::MQSSColor01));
+    item->setForeground(QColor(MusicUIObject::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
 
     setItem(m_playRowIndex, 1, item);
@@ -223,7 +223,7 @@ void MusicSongsListPlayTableWidget::adjustPlayWidgetRow()
     setItem(m_playRowIndex, 4, new QTableWidgetItem);
 
     item = new QTableWidgetItem((*m_songs)[m_playRowIndex].playTime());
-    item->setForeground(QColor(MusicUIObject::MQSSColor01));
+    item->setForeground(QColor(MusicUIObject::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 5, item);
 
@@ -684,7 +684,7 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MenuStyle02);
     menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
     menu.addAction(tr("Play Later"), this, SLOT(musicAddToPlayLater()));
     menu.addAction(tr("Add To Playlist"), this, SLOT(musicAddToPlayedList()));

@@ -841,7 +841,7 @@ MusicLrcPosterTableWidget::MusicLrcPosterTableWidget(QWidget *parent)
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 237);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle01);
 }
 
 void MusicLrcPosterTableWidget::addCellItems(const QStringList &lrcs)
@@ -980,7 +980,7 @@ MusicLrcPosterWidget::MusicLrcPosterWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -992,8 +992,8 @@ MusicLrcPosterWidget::MusicLrcPosterWidget(QWidget *parent)
     m_themeWidget = new MusicLrcPosterThemeListWidget(this);
     MusicUtils::Widget::generateHScrollAreaFormat(m_ui->listArea, m_themeWidget);
 
-    m_ui->openButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->saveButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->openButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->saveButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
 #ifdef Q_OS_UNIX
     m_ui->openButton->setFocusPolicy(Qt::NoFocus);
     m_ui->saveButton->setFocusPolicy(Qt::NoFocus);

@@ -26,135 +26,135 @@
  */
 namespace MusicUIObject
 {
-    const QString MQSSSongsDetectStartBtn = " \
+    const QString SongsDetectStartBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_detect_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_detect_hover); }";
 
-    const QString MQSSSongsDetectStopBtn = " \
+    const QString SongsDetectStopBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_detect_stop_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_detect_stop_hover); }";
 
-    const QString MQSSSongsRedetectBtn = " \
+    const QString SongsRedetectBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_redetect_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_redetect_hover); } \
             QPushButton:disabled{ background-image: url(:/toolSets/btn_redetect_hover); }";
 
-    const QString MQSSSongsDetectDownloadBtn = " \
+    const QString SongsDetectDownloadBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_detect_download_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_detect_download_hover); } \
             QPushButton:disabled{ background-image: url(:/toolSets/btn_detect_download_disable); }";
 
-    const QString MQSSSongsDetectPlayBtn = " \
+    const QString SongsDetectPlayBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_detect_play_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_detect_play_hover); } \
             QPushButton:disabled{ background-image: url(:/toolSets/btn_detect_play_disable); }";
 
-    const QString MQSSSongsDetectShareBtn = " \
+    const QString SongsDetectShareBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_detect_share_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_detect_share_hover); } \
             QPushButton:disabled{ background-image: url(:/toolSets/btn_detect_share_disable); }";
 
-    const QString MQSSSongsDetectUnloveBtn = " \
+    const QString SongsDetectUnloveBtn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_detect_unlove_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_detect_unlove_hover); } \
             QPushButton:disabled{ background-image: url(:/toolSets/btn_detect_unlove_disable); }";
             
-    const QString MQSSCheckTestDuplicate = " \
+    const QString CheckTestDuplicate = " \
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_duplicate_normal); } \
             QToolButton:hover{ background-image: url(:/toolSets/btn_duplicate_hover); }";
 
-    const QString MQSSCheckTestDuplicateClicked = " \
+    const QString CheckTestDuplicateClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_duplicate_clicked); }";
             
-    const QString MQSSCheckTestQuality = " \
+    const QString CheckTestQuality = " \
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_quality_normal); } \
             QToolButton:hover{ background-image: url(:/toolSets/btn_quality_hover); }";
             
-    const QString MQSSCheckTestQualityClicked = " \
+    const QString CheckTestQualityClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_quality_clicked); }";
             
-    const QString MQSSCheckTestRename = " \
+    const QString CheckTestRename = " \
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_rename_normal); } \
             QToolButton:hover{ background-image: url(:/toolSets/btn_rename_hover); }";
             
-    const QString MQSSCheckTestRenameClicked = " \
+    const QString CheckTestRenameClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_rename_clicked); }";
 
-    const QString MQSSTimeToStop = " \
+    const QString TimeToStop = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_stop); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_timer_stop_hover); }";
 
-    const QString MQSSTimeToStopClicked = " \
+    const QString TimeToStopClicked = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_stop_clicked); }";
 
-    const QString MQSSTimeToPlay = " \
+    const QString TimeToPlay = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_play); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_timer_play_hover); }";
             
-    const QString MQSSTimeToPlayClicked = " \
+    const QString TimeToPlayClicked = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_play_clicked); }";
 
-    const QString MQSSTimeToDown = " \
+    const QString TimeToDown = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_down); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_timer_down_hover); }";
 
-    const QString MQSSTimeToDownClicked = " \
+    const QString TimeToDownClicked = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_down_clicked); }";
             
-    const QString MQSSTransferSong = " \
+    const QString TransferSong = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_import_song_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_import_song_hover); }";
             
-    const QString MQSSTransferRing = " \
+    const QString TransferRing = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_import_ring_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_import_ring_hover); }";
             
-    const QString MQSSTransferChangedDev = " \
+    const QString TransferChangedDev = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_change_dev_normal); } \
             QPushButton::menu-indicator{ image:none; } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_change_dev_hover); }";
             
-    const QString MQSSTransferRefreshDev = " \
+    const QString TransferRefreshDev = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_refresh_dev_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_refresh_dev_hover); }";
 
-    const QString MQSSScreenSaverOn = " \
+    const QString ScreenSaverOn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_saver_on); }";
 
-    const QString MQSSScreenSaverOff = " \
+    const QString ScreenSaverOff = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_saver_off); }";
 
-    const QString MQSSScreenItemEnable = " \
+    const QString ScreenItemEnable = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_saver_enable); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_saver_enable_hover); }";
 
-    const QString MQSSScreenItemDisable = " \
+    const QString ScreenItemDisable = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_saver_disable); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_saver_disable_hover); }";

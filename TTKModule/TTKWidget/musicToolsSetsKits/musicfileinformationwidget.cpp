@@ -18,12 +18,12 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
     
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    setStyleSheet(MusicUIObject::LineEditStyle01);
     setEditLineEnabled(false);
 
     advanceClicked();
@@ -31,12 +31,12 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     const QPixmap pix(":/image/lb_default_art");
     m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
 
-    m_ui->editButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->deletePixButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->savePixButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->saveButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->viewButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->openPixButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->editButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->deletePixButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->savePixButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->saveButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->viewButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->openPixButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->editButton->setFocusPolicy(Qt::NoFocus);

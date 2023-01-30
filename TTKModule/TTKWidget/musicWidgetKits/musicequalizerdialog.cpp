@@ -24,7 +24,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -37,7 +37,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
                               tr("Party"), tr("Rock"), tr("Oscar"), tr("Mild"), tr("SoftRock"), tr("Electronics")});
     connect(m_ui->eqChoice, SIGNAL(currentIndexChanged(int)), SLOT(equlizerTypeChanged(int)));
 
-    m_ui->showEqButton->setStyleSheet(MusicUIObject::MQSSEqualizerOff);
+    m_ui->showEqButton->setStyleSheet(MusicUIObject::EqualizerOff);
 
 #ifdef Q_OS_UNIX
     m_ui->showEqButton->setFocusPolicy(Qt::NoFocus);
@@ -64,7 +64,7 @@ void MusicEqualizerDialog::setEnable()
 {
     m_enable = !m_enable;
     Q_EMIT setEnabledEffect(m_enable);
-    m_ui->showEqButton->setStyleSheet(!m_enable ? MusicUIObject::MQSSEqualizerOff : MusicUIObject::MQSSEqualizerOn);
+    m_ui->showEqButton->setStyleSheet(!m_enable ? MusicUIObject::EqualizerOff : MusicUIObject::EqualizerOn);
 
     setControlEnabled(m_enable);
     if(m_enable)
@@ -138,14 +138,14 @@ void MusicEqualizerDialog::initialize()
     {
         TTKClickedSlider *slider = sliders[i];
         slider->setRange(-15, 15);
-        slider->setStyleSheet(MusicUIObject::MQSSSliderStyle04);
+        slider->setStyleSheet(MusicUIObject::SliderStyle04);
         clickedGroup->mapped(slider);
         connect(slider, SIGNAL(valueChanged(int)), SLOT(sliderValueChanged()));
     }
 
     connect(m_ui->showEqButton, SIGNAL(clicked()), SLOT(setEnable()));
     connect(m_ui->resetButton, SIGNAL(clicked()), SLOT(reset()));
-    m_ui->resetButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->resetButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_21, 9);

@@ -22,7 +22,7 @@ MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
     headerview->resizeSection(3, 75);
 
     MusicUtils::Widget::setTransparent(this, 0);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle03);
 
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
@@ -114,7 +114,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
         font.setBold(true);
         item->setFont(font);
         item->setText(channel.m_name);
-        item->setForeground(QColor(MusicUIObject::MQSSColor02));
+        item->setForeground(QColor(MusicUIObject::Color02));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(index, 2, item);
 
@@ -168,7 +168,7 @@ void MusicWebFMRadioWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicAbstractTableWidget::contextMenuEvent(event);
 
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MenuStyle02);
 
     menu.addAction(tr("Play"), this, SLOT(musicPlayClicked()));
     menu.addSeparator();

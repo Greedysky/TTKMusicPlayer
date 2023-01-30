@@ -12,7 +12,7 @@ MusicItemSearchTableWidget::MusicItemSearchTableWidget(QWidget *parent)
     m_actionGroup = new QActionGroup(this);
 
     m_labelDelegate = new TTKLabelItemDelegate(this);
-    m_labelDelegate->setStyleSheet(MusicUIObject::MQSSBackgroundStyle13);
+    m_labelDelegate->setStyleSheet(MusicUIObject::BackgroundStyle13);
 
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
 }
@@ -116,7 +116,7 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
         return;
     }
 
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MenuStyle02);
     m_actionGroup->addAction(menu.addAction(tr("Download")))->setData(0);
     menu.addSeparator();
 

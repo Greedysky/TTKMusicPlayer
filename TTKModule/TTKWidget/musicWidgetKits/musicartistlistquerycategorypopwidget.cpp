@@ -19,7 +19,7 @@ void MusicArtistListQueryCategoryItem::setCategory(const MusicResultsCategory &c
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     QLabel *label = new QLabel(category.m_category, this);
-    label->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle03);
+    label->setStyleSheet(MusicUIObject::ColorStyle03 + MusicUIObject::FontStyle03);
     label->setFixedSize(100, ITEM_LABEL_WIDTH);
     layout->addWidget(label, 0, Qt::AlignTop);
 
@@ -33,7 +33,7 @@ void MusicArtistListQueryCategoryItem::setCategory(const MusicResultsCategory &c
     for(int i = 0; i < m_category.m_items.count(); ++i)
     {
         TTKClickedLabel *l = new TTKClickedLabel(m_category.m_items[i].m_value, item);
-        l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MQSSColorStyle08));
+        l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::ColorStyle08));
         l->setFixedSize(200, ITEM_LABEL_WIDTH);
 
         clickedGroup->mapped(l);
@@ -69,7 +69,7 @@ void MusicArtistListQueryCategoryPopWidget::setCategory(const QString &server, Q
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
     QWidget *containWidget = new QWidget(m_containWidget);
-    containWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle10);
+    containWidget->setStyleSheet(MusicUIObject::BackgroundStyle10);
     QVBoxLayout *containLayout = new QVBoxLayout(containWidget);
     containWidget->setLayout(containLayout);
 
@@ -103,7 +103,7 @@ void MusicArtistListQueryCategoryPopWidget::initialize()
     setTranslucentBackground();
     setText(tr("All"));
 
-    QString style = MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBackgroundStyle10;
+    QString style = MusicUIObject::BorderStyle03 + MusicUIObject::BackgroundStyle10;
     setObjectName(className());
     setStyleSheet(QString("#%1{%2}").arg(className(), style));
 
@@ -111,5 +111,5 @@ void MusicArtistListQueryCategoryPopWidget::initialize()
     m_containWidget->setObjectName("ContainWidget");
     m_containWidget->setStyleSheet(QString("#ContainWidget{%1}").arg(style));
 
-    m_menu->setStyleSheet(MusicUIObject::MQSSMenuStyle05);
+    m_menu->setStyleSheet(MusicUIObject::MenuStyle05);
 }

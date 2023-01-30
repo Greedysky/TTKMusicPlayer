@@ -26,38 +26,38 @@
  */
 namespace MusicUIObject
 {
-    const QString MQSSInteriorTranslation = " \
+    const QString InteriorTranslation = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_translation_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_translation_hover); }";
 
-    const QString MQSSInteriorMessage = " \
+    const QString InteriorMessage = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_message_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_message_hover); }";
 
-    const QString MQSSInteriorMovie = " \
+    const QString InteriorMovie = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_mv_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_mv_hover); }";
 
-    const QString MQSSInteriorPhoto = " \
+    const QString InteriorPhoto = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_photo_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_photo_hover); }";
 
-    const QString MQSSInteriorStar = " \
+    const QString InteriorStar = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_star_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_star_hover); } \
             QPushButton:pressed{ background-image: url(:/lrc/btn_star_clicked); }";
             
-    const QString MQSSInteriorMakeUp = " \
+    const QString InteriorMakeUp = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/lb_make_up_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/lb_make_up_hover); }";
             
-    const QString MQSSInteriorMakeDown = " \
+    const QString InteriorMakeDown = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/lb_make_down_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/lb_make_down_hover); }";

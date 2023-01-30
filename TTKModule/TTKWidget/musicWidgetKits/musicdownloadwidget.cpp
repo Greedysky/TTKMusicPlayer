@@ -113,15 +113,15 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->downloadPathEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
-    m_ui->pathChangedButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
-    m_ui->settingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
-    m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle05);
+    m_ui->downloadPathEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
+    m_ui->pathChangedButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    m_ui->settingButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    m_ui->downloadButton->setStyleSheet(MusicUIObject::PushButtonStyle05);
 #ifdef Q_OS_UNIX
     m_ui->pathChangedButton->setFocusPolicy(Qt::NoFocus);
     m_ui->settingButton->setFocusPolicy(Qt::NoFocus);

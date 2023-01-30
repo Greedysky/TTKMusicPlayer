@@ -20,7 +20,7 @@ MusicWebDJRadioQueryItemWidget::MusicWebDJRadioQueryItemWidget(QWidget *parent)
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry(110, 110, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
-    m_playButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPlaylist);
+    m_playButton->setStyleSheet(MusicUIObject::TinyBtnPlaylist);
     connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));
 
 #ifdef Q_OS_UNIX
@@ -171,7 +171,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
 
         QPushButton *backButton = new QPushButton(tr("Back"), containTopWidget);
         backButton->setFixedSize(90, 30);
-        backButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+        backButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
         backButton->setCursor(QCursor(Qt::PointingHandCursor));
         connect(backButton, SIGNAL(clicked()), this, SIGNAL(backToMainMenu()));
         containTopLayout->addWidget(backButton);
@@ -182,7 +182,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(MusicUIObject::MQSSColorStyle06);
+        line->setStyleSheet(MusicUIObject::ColorStyle06);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

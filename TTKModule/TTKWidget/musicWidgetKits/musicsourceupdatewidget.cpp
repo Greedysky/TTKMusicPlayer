@@ -17,7 +17,7 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
 
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
     setAttribute(Qt::WA_DeleteOnClose);
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle10);
+    setStyleSheet(MusicUIObject::BackgroundStyle10);
     setMouseTracking(true);
     blockMoveOption(true);
 
@@ -27,7 +27,7 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     QVBoxLayout *vlayout = new QVBoxLayout(m_container);
     vlayout->setContentsMargins(5, 5, 5, 5);
     m_textLabel = new QLabel(this);
-    m_textLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
+    m_textLabel->setStyleSheet(MusicUIObject::ColorStyle03);
     m_textLabel->setAlignment(Qt::AlignCenter);
 
     QWidget *contain = new QWidget(this);
@@ -35,8 +35,8 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     hlayout->setContentsMargins(0, 0, 0, 0);
     QPushButton *updateButton = new QPushButton(tr("Update"), contain);
     QPushButton *nextTimeButton = new QPushButton(tr("Close"), contain);
-    updateButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    nextTimeButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    updateButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    nextTimeButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
     updateButton->setFixedSize(85, 27);
     nextTimeButton->setFixedSize(85, 27);
     hlayout->addWidget(updateButton);
@@ -100,12 +100,12 @@ MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
     setFixedSize(size());
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->upgradeButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    m_ui->upgradeButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
     m_ui->upgradeButton->setEnabled(false);
 #ifdef Q_OS_UNIX
     m_ui->upgradeButton->setFocusPolicy(Qt::NoFocus);

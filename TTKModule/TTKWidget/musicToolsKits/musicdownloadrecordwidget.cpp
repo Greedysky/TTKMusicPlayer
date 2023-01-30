@@ -19,7 +19,7 @@ MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     MusicUtils::Widget::setTransparent(this, 0);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle03);
 
     G_CONNECTION_PTR->setValue(className(), this);
 }
@@ -38,7 +38,7 @@ void MusicDownloadRecordTableWidget::addCellItem(int index, const MusicSong &rec
                       item = new QTableWidgetItem;
     item->setToolTip(record.name());
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
-    item->setForeground(QColor(MusicUIObject::MQSSColor01));
+    item->setForeground(QColor(MusicUIObject::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 1, item);
 
@@ -47,7 +47,7 @@ void MusicDownloadRecordTableWidget::addCellItem(int index, const MusicSong &rec
     setItem(index, 2, item);
 
                       item = new QTableWidgetItem(record.sizeStr());
-    item->setForeground(QColor(MusicUIObject::MQSSColor01));
+    item->setForeground(QColor(MusicUIObject::Color01));
     QtItemSetTextAlignment(item, Qt::AlignRight| Qt::AlignVCenter);
     item->setData(TTK_TIME_ROLE, record.addTimeStr());
     setItem(index, 3, item);

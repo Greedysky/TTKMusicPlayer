@@ -172,7 +172,7 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -187,20 +187,20 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     m_ui->treeWidget->setHeaderLabels({QString(), tr("Description"), tr("Name"), QString()});
 
     TTKCheckBoxItemDelegate *delegateCheck = new TTKCheckBoxItemDelegate(this);
-    delegateCheck->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    delegateCheck->setStyleSheet(MusicUIObject::CheckBoxStyle01);
     delegateCheck->setModuleMode(TTKAbstractItemDelegate::DisplayMode | TTKAbstractItemDelegate::TreeMode);
     m_ui->treeWidget->setItemDelegateForColumn(0, delegateCheck);
 
     TTKLabelItemDelegate *delegateTitle = new TTKLabelItemDelegate(this);
     delegateTitle->setModuleMode(TTKAbstractItemDelegate::ElideMode);
     delegateTitle->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    delegateTitle->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    delegateTitle->setStyleSheet(MusicUIObject::BackgroundStyle01);
     m_ui->treeWidget->setItemDelegateForColumn(1, delegateTitle);
 
     TTKLabelItemDelegate *delegateName = new TTKLabelItemDelegate(this);
     delegateName->setModuleMode(TTKAbstractItemDelegate::ElideMode);
     delegateName->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    delegateName->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    delegateName->setStyleSheet(MusicUIObject::BackgroundStyle01);
     m_ui->treeWidget->setItemDelegateForColumn(2, delegateName);
 
     QItemDelegate *delegateSetting = new QItemDelegate(this);
@@ -211,12 +211,12 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     m_ui->treeWidget->setColumnWidth(2, 120);
     m_ui->treeWidget->setColumnWidth(3, 70);
 
-    m_ui->settingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
-    m_ui->treeWidget->setStyleSheet(MusicUIObject::MQSSGroupBoxStyle01 + MusicUIObject::MQSSSpinBoxStyle01 + MusicUIObject::MQSSSliderStyle06 +
-                                    MusicUIObject::MQSSRadioButtonStyle01 + MusicUIObject::MQSSCheckBoxStyle01 + MusicUIObject::MQSSComboBoxStyle01 +
-                                    MusicUIObject::MQSSPushButtonStyle12 + MusicUIObject::MQSSLineEditStyle01);
+    m_ui->settingButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    m_ui->treeWidget->setStyleSheet(MusicUIObject::GroupBoxStyle01 + MusicUIObject::SpinBoxStyle01 + MusicUIObject::SliderStyle06 +
+                                    MusicUIObject::RadioButtonStyle01 + MusicUIObject::CheckBoxStyle01 + MusicUIObject::ComboBoxStyle01 +
+                                    MusicUIObject::PushButtonStyle12 + MusicUIObject::LineEditStyle01);
     m_ui->treeWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->treeWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
+    m_ui->treeWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle03);
     m_ui->treeWidget->setFocusPolicy(Qt::NoFocus);
 
     loadPluginsInfo();

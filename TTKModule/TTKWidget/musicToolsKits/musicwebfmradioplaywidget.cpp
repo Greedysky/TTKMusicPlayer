@@ -23,7 +23,7 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     m_analysis->setLineMax(9);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -31,11 +31,11 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
     m_ui->previousButton->setIcon(QIcon(":/functions/btn_previous_hover"));
     m_ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
-    m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSBtnUnDownload);
+    m_ui->downloadButton->setStyleSheet(MusicUIObject::BtnUnDownload);
 
-    m_ui->playButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
-    m_ui->previousButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
-    m_ui->nextButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->playButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
+    m_ui->previousButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
+    m_ui->nextButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
 
 #ifdef Q_OS_UNIX
     m_ui->playButton->setFocusPolicy(Qt::NoFocus);
@@ -52,7 +52,7 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     m_ui->nextButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->volumeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle10);
+    m_ui->volumeSlider->setStyleSheet(MusicUIObject::SliderStyle10);
     m_ui->volumeSlider->setRange(0, 100);
     m_ui->volumeSlider->setValue(100);
 

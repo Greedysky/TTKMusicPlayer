@@ -26,82 +26,82 @@
  */
 namespace MusicUIObject
 {
-    const QString MQSSFuncSongFore = " \
+    const QString FuncSongFore = " \
             QToolButton{ border:none; \
             background-image: url(:/title/song_fore_normal); } \
             QToolButton:hover{ background-image: url(:/title/song_fore_hover); }";
 
-    const QString MQSSFuncSongForeClicked = " \
+    const QString FuncSongForeClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/title/song_fore_clicked); }";
 
-    const QString MQSSFuncSongBack = " \
+    const QString FuncSongBack = " \
             QToolButton{ border:none; \
             background-image: url(:/title/song_back_normal); } \
             QToolButton:hover{ background-image: url(:/title/song_back_hover); }";
 
-    const QString MQSSFuncRadioFore = " \
+    const QString FuncRadioFore = " \
             QToolButton{ border:none; \
             background-image: url(:/title/radio_fore_normal); } \
             QToolButton:hover{ background-image: url(:/title/radio_fore_hover); }";
 
-    const QString MQSSFuncRadioForeClicked = " \
+    const QString FuncRadioForeClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/title/radio_fore_clicked); }";
 
-    const QString MQSSFuncRadioBack = " \
+    const QString FuncRadioBack = " \
             QToolButton{ border:none; \
             background-image: url(:/title/radio_back_normal); } \
             QToolButton:hover{ background-image: url(:/title/radio_back_hover); }";
 
-    const QString MQSSFuncListFore = " \
+    const QString FuncListFore = " \
             QToolButton{ border:none; \
             background-image: url(:/title/list_fore_normal); } \
             QToolButton:hover{ background-image: url(:/title/list_fore_hover); }";
 
-    const QString MQSSFuncListForeClicked = " \
+    const QString FuncListForeClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/title/list_fore_clicked); }";
 
-    const QString MQSSFuncListBack = " \
+    const QString FuncListBack = " \
             QToolButton{ border:none; \
             background-image: url(:/title/list_back_normal); } \
             QToolButton:hover{ background-image: url(:/title/list_back_hover); }";
 
-    const QString MQSSFuncMVFore = " \
+    const QString FuncMVFore = " \
             QToolButton{ border:none; \
             background-image: url(:/title/mv_fore_normal); } \
             QToolButton:hover{ background-image: url(:/title/mv_fore_hover); }";
 
-    const QString MQSSFuncMVForeClicked = " \
+    const QString FuncMVForeClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/title/mv_fore_clicked); }";
 
-    const QString MQSSFuncMVBack = " \
+    const QString FuncMVBack = " \
             QToolButton{ border:none; \
             background-image: url(:/title/mv_back_normal); } \
             QToolButton:hover{ background-image: url(:/title/mv_back_hover); }";
 
-    const QString MQSSFuncLiveFore = " \
+    const QString FuncLiveFore = " \
             QToolButton{ border:none; \
             background-image: url(:/title/live_fore_normal); } \
             QToolButton:hover{ background-image: url(:/title/live_fore_hover); }";
 
-    const QString MQSSFuncLiveForeClicked = " \
+    const QString FuncLiveForeClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/title/live_fore_clicked); }";
 
-    const QString MQSSFuncLiveBack = " \
+    const QString FuncLiveBack = " \
             QToolButton{ border:none; \
             background-image: url(:/title/live_back_normal); } \
             QToolButton:hover{ background-image: url(:/title/live_back_hover); }";
 
-    const QString MQSSFuncLrcFore = " \
+    const QString FuncLrcFore = " \
             QToolButton{ border:none; \
             background-image: url(:/title/lrc_fore_normal); } \
             QToolButton:hover{ background-image: url(:/title/lrc_fore_hover); }";
 
-    const QString MQSSFuncLrcForeClicked = " \
+    const QString FuncLrcForeClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/title/lrc_back_clicked); }";
 

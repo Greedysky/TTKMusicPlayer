@@ -15,16 +15,16 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->timerToPlay->setStyleSheet(MusicUIObject::MQSSTimeToPlay);
-    m_ui->timerToStop->setStyleSheet(MusicUIObject::MQSSTimeToStop);
-    m_ui->timerToShutdown->setStyleSheet(MusicUIObject::MQSSTimeToDown);
-    m_ui->confirm->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->cancel->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->timerToPlay->setStyleSheet(MusicUIObject::TimeToPlay);
+    m_ui->timerToStop->setStyleSheet(MusicUIObject::TimeToStop);
+    m_ui->timerToShutdown->setStyleSheet(MusicUIObject::TimeToDown);
+    m_ui->confirm->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->cancel->setStyleSheet(MusicUIObject::PushButtonStyle04);
     m_ui->timerToPlay->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->timerToStop->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->timerToShutdown->setCursor(QCursor(Qt::PointingHandCursor));
@@ -164,15 +164,15 @@ void MusicTimerWidget::initComboParameter()
 
 void MusicTimerWidget::changeWidgetIndex(int index)
 {
-    m_ui->timerToPlay->setStyleSheet(MusicUIObject::MQSSTimeToPlay);
-    m_ui->timerToStop->setStyleSheet(MusicUIObject::MQSSTimeToStop);
-    m_ui->timerToShutdown->setStyleSheet(MusicUIObject::MQSSTimeToDown);
+    m_ui->timerToPlay->setStyleSheet(MusicUIObject::TimeToPlay);
+    m_ui->timerToStop->setStyleSheet(MusicUIObject::TimeToStop);
+    m_ui->timerToShutdown->setStyleSheet(MusicUIObject::TimeToDown);
 
     switch(index)
     {
-        case 0: m_ui->timerToPlay->setStyleSheet(MusicUIObject::MQSSTimeToPlayClicked); break;
-        case 1: m_ui->timerToStop->setStyleSheet(MusicUIObject::MQSSTimeToStopClicked); break;
-        case 2: m_ui->timerToShutdown->setStyleSheet(MusicUIObject::MQSSTimeToDownClicked); break;
+        case 0: m_ui->timerToPlay->setStyleSheet(MusicUIObject::TimeToPlayClicked); break;
+        case 1: m_ui->timerToStop->setStyleSheet(MusicUIObject::TimeToStopClicked); break;
+        case 2: m_ui->timerToShutdown->setStyleSheet(MusicUIObject::TimeToDownClicked); break;
         default: break;
     }
 
@@ -185,8 +185,8 @@ void MusicTimerWidget::initFirstWidget()
     m_ui->secComboBox1->addItems(m_second);
     m_ui->repeatComboBox1->addItems(m_repeat);
     m_ui->plistComboBox->addItem(tr("Defualt"));
-    m_ui->noSetRadioButton1->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
-    m_ui->setRadioButton1->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->noSetRadioButton1->setStyleSheet(MusicUIObject::RadioButtonStyle01);
+    m_ui->setRadioButton1->setStyleSheet(MusicUIObject::RadioButtonStyle01);
 
     MusicUtils::Widget::generateComboBoxFormat(m_ui->hourComboBox1);
     MusicUtils::Widget::generateComboBoxFormat(m_ui->secComboBox1);
@@ -204,8 +204,8 @@ void MusicTimerWidget::initSecondWidget()
     m_ui->hourComboBox2->addItems(m_hour);
     m_ui->secComboBox2->addItems(m_second);
     m_ui->repeatComboBox2->addItems(m_repeat);
-    m_ui->noSetRadioButton2->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
-    m_ui->setRadioButton2->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->noSetRadioButton2->setStyleSheet(MusicUIObject::RadioButtonStyle01);
+    m_ui->setRadioButton2->setStyleSheet(MusicUIObject::RadioButtonStyle01);
 
     MusicUtils::Widget::generateComboBoxFormat(m_ui->hourComboBox2);
     MusicUtils::Widget::generateComboBoxFormat(m_ui->secComboBox2);
@@ -221,8 +221,8 @@ void MusicTimerWidget::initThreeWidget()
     m_ui->hourComboBox3->addItems(m_hour);
     m_ui->secComboBox3->addItems(m_second);
     m_ui->repeatComboBox3->addItems(m_repeat);
-    m_ui->noSetRadioButton3->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
-    m_ui->setRadioButton3->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->noSetRadioButton3->setStyleSheet(MusicUIObject::RadioButtonStyle01);
+    m_ui->setRadioButton3->setStyleSheet(MusicUIObject::RadioButtonStyle01);
 
     MusicUtils::Widget::generateComboBoxFormat(m_ui->hourComboBox3);
     MusicUtils::Widget::generateComboBoxFormat(m_ui->secComboBox3);

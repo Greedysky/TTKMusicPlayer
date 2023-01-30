@@ -13,7 +13,7 @@ MusicSmoothMovingTableWidget::MusicSmoothMovingTableWidget(QWidget *parent)
       m_scrollBar(nullptr),
       m_slowAnimation(nullptr)
 {
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle03);
 
     m_animationTimer = new QTimer(this);
     m_animationTimer->setInterval(100 * MT_MS);
@@ -98,7 +98,7 @@ MusicSmoothMovingScrollArea::MusicSmoothMovingScrollArea(QWidget *parent)
     setFrameShape(QFrame::NoFrame);
     setAlignment(Qt::AlignLeft);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle03);
 
     connect(m_animationTimer, SIGNAL(timeout()), SLOT(timeToAnimation()));
 }

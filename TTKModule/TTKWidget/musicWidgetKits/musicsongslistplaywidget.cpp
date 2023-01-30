@@ -25,7 +25,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     QPushButton *addButton = new QPushButton(this);
     addButton->setGeometry(2, 25, 16, 16);
-    addButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPlayLater);
+    addButton->setStyleSheet(MusicUIObject::TinyBtnPlayLater);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
     addButton->setToolTip(tr("Play Later"));
 
@@ -36,13 +36,13 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     m_songNameLabel = new MusicSplitItemClickedLabel(this);
     m_songNameLabel->setAttribute(Qt::WA_TranslucentBackground);
-    m_songNameLabel->setStyleSheet(MusicUIObject::MQSSColorStyle01);
+    m_songNameLabel->setStyleSheet(MusicUIObject::ColorStyle01);
     m_songNameLabel->setGeometry(85, 5, 200, 25);
 
     m_timeLabel = new QLabel(this);
     m_timeLabel->setFixedSize(100, 20);
     m_timeLabel->setAttribute(Qt::WA_TranslucentBackground);
-    m_timeLabel->setStyleSheet(MusicUIObject::MQSSColorStyle01);
+    m_timeLabel->setStyleSheet(MusicUIObject::ColorStyle01);
     m_timeLabel->setGeometry(85, 37, 100, 20);
 
     m_downloadButton = new QPushButton(this);
@@ -53,7 +53,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     m_showMVButton = new QPushButton(this);
     m_showMVButton->setGeometry(211, 39, 16, 16);
-    m_showMVButton->setStyleSheet(MusicUIObject::MQSSTinyBtnMV);
+    m_showMVButton->setStyleSheet(MusicUIObject::TinyBtnMV);
     m_showMVButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_showMVButton->setToolTip(tr("Show Movie"));
 
@@ -65,13 +65,13 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     m_deleteButton = new QPushButton(this);
     m_deleteButton->setGeometry(251, 40, 16, 16);
-    m_deleteButton->setStyleSheet(MusicUIObject::MQSSTinyBtnDelete);
+    m_deleteButton->setStyleSheet(MusicUIObject::TinyBtnDelete);
     m_deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_deleteButton->setToolTip(tr("Delete"));
 
     m_moreButton = new QPushButton(this);
     m_moreButton->setGeometry(271, 39, 16, 16);
-    m_moreButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle10 + MusicUIObject::MQSSTinyBtnMore);
+    m_moreButton->setStyleSheet(MusicUIObject::PushButtonStyle10 + MusicUIObject::TinyBtnMore);
     m_moreButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_moreButton->setToolTip(tr("More"));
 
@@ -197,14 +197,14 @@ void MusicSongsListPlayWidget::changItemName(const QString &name)
 void MusicSongsListPlayWidget::currentLoveStateClicked()
 {
     const bool state = MusicApplication::instance()->musicLovestContains();
-    m_loveButton->setStyleSheet(state ? MusicUIObject::MQSSTinyBtnLove : MusicUIObject::MQSSTinyBtnUnLove);
+    m_loveButton->setStyleSheet(state ? MusicUIObject::TinyBtnLove : MusicUIObject::TinyBtnUnLove);
 }
 
 void MusicSongsListPlayWidget::currentDownloadStateClicked()
 {
     bool state = false;
     MusicApplication::instance()->musicDownloadContains(state);
-    m_downloadButton->setStyleSheet(state ? MusicUIObject::MQSSTinyBtnDownload : MusicUIObject::MQSSTinyBtnUnDownload);
+    m_downloadButton->setStyleSheet(state ? MusicUIObject::TinyBtnDownload : MusicUIObject::TinyBtnUnDownload);
 }
 
 void MusicSongsListPlayWidget::enterEvent(QtEnterEvent *event)
@@ -215,7 +215,7 @@ void MusicSongsListPlayWidget::enterEvent(QtEnterEvent *event)
 
 void MusicSongsListPlayWidget::createMoreMenu(QMenu *menu)
 {
-    menu->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu->setStyleSheet(MusicUIObject::MenuStyle02);
     menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), parent(), SLOT(musicPlayedSimilarQueryWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), parent(), SLOT(musicSongPlayedSharedWidget()));
 }

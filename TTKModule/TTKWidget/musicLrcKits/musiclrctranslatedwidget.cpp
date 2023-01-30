@@ -6,7 +6,7 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     : QLabel(parent)
 {
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle07));
+    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::BackgroundStyle07));
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(10, 0, 10, 0);
@@ -19,12 +19,12 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
 
     m_titleName = new QLabel(topWidget);
     m_titleName->setAlignment(Qt::AlignCenter);
-    m_titleName->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle04 + MusicUIObject::MQSSFontStyle01);
+    m_titleName->setStyleSheet(MusicUIObject::ColorStyle03 + MusicUIObject::FontStyle04 + MusicUIObject::FontStyle01);
     topWidgetLayout->addWidget(m_titleName);
 
     QPushButton *closeButton = new QPushButton(this);
     closeButton->setFixedSize(14, 14);
-    closeButton->setStyleSheet(MusicUIObject::MQSSBtnPClose);
+    closeButton->setStyleSheet(MusicUIObject::BtnPClose);
     closeButton->setCursor(QCursor(Qt::PointingHandCursor));
 #ifdef Q_OS_UNIX
     closeButton->setFocusPolicy(Qt::NoFocus);
@@ -42,11 +42,11 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, m_plainText, false);
 
     m_plainText->setObjectName("ContentsWidget");
-    m_plainText->setStyleSheet(QString("#ContentsWidget{%1%2%3}").arg(MusicUIObject::MQSSBackgroundStyle01, MusicUIObject::MQSSColorStyle06, MusicUIObject::MQSSFontStyle03));
+    m_plainText->setStyleSheet(QString("#ContentsWidget{%1%2%3}").arg(MusicUIObject::BackgroundStyle01, MusicUIObject::ColorStyle06, MusicUIObject::FontStyle03));
 
     QWidget *view = scrollArea->viewport();
     view->setObjectName("Viewport");
-    view->setStyleSheet(QString("#Viewport{%1}").arg(MusicUIObject::MQSSBackgroundStyle01));
+    view->setStyleSheet(QString("#Viewport{%1}").arg(MusicUIObject::BackgroundStyle01));
 
     mainLayout->addWidget(topWidget);
     mainLayout->addWidget(scrollArea);

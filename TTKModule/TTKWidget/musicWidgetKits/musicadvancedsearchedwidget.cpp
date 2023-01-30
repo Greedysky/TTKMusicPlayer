@@ -10,7 +10,7 @@
 MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle10);
+    setStyleSheet(MusicUIObject::BackgroundStyle10);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
@@ -34,7 +34,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     containerLayout->setContentsMargins(0, 0, 0, 0);
 
     m_searchLabel = new QLabel(containerWidget);
-    m_searchLabel->setStyleSheet(MusicUIObject::MQSSFontStyle04);
+    m_searchLabel->setStyleSheet(MusicUIObject::FontStyle04);
     m_searchEdit = new MusicItemSearchEdit(containerWidget);
     m_searchEdit->setFixedHeight(40);
 
@@ -51,7 +51,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
 
     QPushButton *button = new QPushButton(tr("Search"), mainWidget);
     button->setFixedSize(100, 35);
-    button->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    button->setStyleSheet(MusicUIObject::PushButtonStyle03);
     button->setCursor(QCursor(Qt::PointingHandCursor));
     connect(button, SIGNAL(clicked()), SLOT(searchButtonClicked()));
 #ifdef Q_OS_UNIX

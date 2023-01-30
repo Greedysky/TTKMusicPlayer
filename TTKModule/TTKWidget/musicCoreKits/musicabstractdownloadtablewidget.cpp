@@ -10,7 +10,7 @@ MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *pare
       m_type(MusicObject::Record::Null)
 {
     m_progressBarDelegate = new TTKProgressBarItemDelegate(this);
-    m_progressBarDelegate->setStyleSheet(MusicUIObject::MQSSProgressBar01);
+    m_progressBarDelegate->setStyleSheet(MusicUIObject::ProgressBar01);
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
     G_CONNECTION_PTR->setValue(className(), this);
@@ -130,7 +130,7 @@ void MusicAbstractDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event
     Q_UNUSED(event);
     QMenu menu(this);
 
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MenuStyle02);
     menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
     menu.addAction(tr("Download More..."), this, SLOT(musicSongDownload()));
     menu.addSeparator();

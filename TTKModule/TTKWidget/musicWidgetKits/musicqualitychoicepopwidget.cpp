@@ -16,14 +16,14 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     headerview->resizeSection(1, 25);
     headerview->resizeSection(2, 25);
 
-    setStyleSheet(MusicUIObject::MQSSTableWidgetStyle03 + MusicUIObject::MQSSTableWidgetStyle04);
+    setStyleSheet(MusicUIObject::TableWidgetStyle03 + MusicUIObject::TableWidgetStyle04);
 
     MusicUtils::Widget::setTransparent(this, 0);
 #if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
     MusicUtils::Widget::setTransparent(this, QColor(50, 50, 50));
 #endif
     TTKCheckBoxItemDelegate *delegate = new TTKCheckBoxItemDelegate(this);
-    delegate->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle02);
+    delegate->setStyleSheet(MusicUIObject::CheckBoxStyle02);
     setItemDelegateForColumn(2, delegate);
     m_previousClickRow = 0;
 
@@ -133,13 +133,13 @@ MusicQualityChoicePopWidget::MusicQualityChoicePopWidget(QWidget *parent)
 
     initialize();
 
-    setStyleSheet(MusicUIObject::MQSSToolButtonStyle05 + MusicUIObject::MQSSBtnQuality + "QToolButton{ margin-left:-48px; }");
+    setStyleSheet(MusicUIObject::ToolButtonStyle05 + MusicUIObject::BtnQuality + "QToolButton{ margin-left:-48px; }");
 }
 
 void MusicQualityChoicePopWidget::initialize()
 {
     setTranslucentBackground();
-    m_menu->setStyleSheet(MusicUIObject::MQSSMenuStyle04);
+    m_menu->setStyleSheet(MusicUIObject::MenuStyle04);
 
     QHBoxLayout *layout = new QHBoxLayout(m_containWidget);
     layout->setContentsMargins(0, 0, 0, 0);

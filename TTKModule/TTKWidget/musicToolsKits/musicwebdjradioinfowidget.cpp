@@ -126,7 +126,7 @@ void MusicWebDJRadioInfoWidget::createLabels()
     layout()->addWidget(scrollArea);
 
     QWidget *function = new QWidget(m_mainWindow);
-    function->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01 + MusicUIObject::MQSSPushButtonStyle03);
+    function->setStyleSheet(MusicUIObject::CheckBoxStyle01 + MusicUIObject::PushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
     QWidget *firstTopFuncWidget = new QWidget(function);
@@ -135,7 +135,7 @@ void MusicWebDJRadioInfoWidget::createLabels()
     firstLabel->setText(tr("<font color=#158FE1> DJRadio > %1 </font>").arg(m_currentPlaylistItem.m_name));
     QPushButton *backButton = new QPushButton(tr("Back"));
     backButton->setFixedSize(90, 30);
-    backButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    backButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
     backButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(backButton, SIGNAL(clicked()), this, SIGNAL(backToMainMenu()));
     firstTopFuncLayout->addWidget(firstLabel);
@@ -157,15 +157,15 @@ void MusicWebDJRadioInfoWidget::createLabels()
     QFont nameFont = nameLabel->font();
     nameFont.setPixelSize(20);
     nameLabel->setFont(nameFont);
-    nameLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
+    nameLabel->setStyleSheet(MusicUIObject::FontStyle01);
     nameLabel->setText(TTK_DEFAULT_STR);
     QLabel *singerLabel = new QLabel(topLineWidget);
-    singerLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
+    singerLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
     singerLabel->setText(TTK_DEFAULT_STR);
     QLabel *playCountLabel = new QLabel(topLineWidget);
-    playCountLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
+    playCountLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
     QLabel *updateTimeLabel = new QLabel(topLineWidget);
-    updateTimeLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
+    updateTimeLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
     updateTimeLabel->setText(TTK_DEFAULT_STR);
 
     topLineLayout->addWidget(nameLabel);
@@ -181,7 +181,7 @@ void MusicWebDJRadioInfoWidget::createLabels()
 
     //
     QWidget *functionWidget = new QWidget(this);
-    functionWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    functionWidget->setStyleSheet(MusicUIObject::PushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));

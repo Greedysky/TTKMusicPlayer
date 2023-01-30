@@ -65,17 +65,17 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->fuzzyButton->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
-    m_ui->localSearchButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->commitButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->previewButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->deleteButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->titleEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->fuzzyButton->setStyleSheet(MusicUIObject::CheckBoxStyle01);
+    m_ui->localSearchButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->commitButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->previewButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->deleteButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->titleEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
 
 #ifdef Q_OS_UNIX
     m_ui->fuzzyButton->setFocusPolicy(Qt::NoFocus);

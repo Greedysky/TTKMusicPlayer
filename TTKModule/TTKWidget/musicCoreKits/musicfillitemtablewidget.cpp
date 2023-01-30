@@ -4,14 +4,14 @@
 MusicFillItemTableWidget::MusicFillItemTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
-    setStyleSheet(styleSheet() + MusicUIObject::MQSSTableWidgetStyle02);
+    setStyleSheet(styleSheet() + MusicUIObject::TableWidgetStyle02);
 
     MusicUtils::Widget::setTransparent(this, 255);
 #if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
     MusicUtils::Widget::setTransparent(this, QColor(220, 220, 220));
 #endif
     m_checkBoxDelegate = new TTKCheckBoxItemDelegate(this);
-    m_checkBoxDelegate->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_checkBoxDelegate->setStyleSheet(MusicUIObject::CheckBoxStyle01);
     setItemDelegateForColumn(0, m_checkBoxDelegate);
 }
 

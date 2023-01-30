@@ -22,13 +22,13 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->paletteButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->customSkin->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->paletteButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->customSkin->setStyleSheet(MusicUIObject::PushButtonStyle04);
     m_ui->stackedWidget->setLength(m_ui->stackedWidget->width(), MusicAnimationStackedWidget::Module::RightToLeft);
 #ifdef Q_OS_UNIX
     m_ui->paletteButton->setFocusPolicy(Qt::NoFocus);
@@ -55,13 +55,13 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     addThemeListWidgetItem();
     backgroundListWidgetChanged(0);
     //
-    m_ui->resetWindowButton->setStyleSheet(MusicUIObject::MQSSBtnResetWindow);
-    m_ui->skinTransparentButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
-    m_ui->listTransparentButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
+    m_ui->resetWindowButton->setStyleSheet(MusicUIObject::BtnResetWindow);
+    m_ui->skinTransparentButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
+    m_ui->listTransparentButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
 
     m_ui->skinTransparentButton->setEnabled(false);
-    m_ui->skinTransparentLabelBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle04);
-    m_ui->listTransparentLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
+    m_ui->skinTransparentLabelBox->setStyleSheet(MusicUIObject::CheckBoxStyle04);
+    m_ui->listTransparentLabel->setStyleSheet(MusicUIObject::ColorStyle03);
 
     connect(m_ui->skinTransparentLabelBox, SIGNAL(clicked(bool)), SLOT(windowTransparentChanged(bool)));
     connect(m_ui->skinTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(musicBackgroundTransparentChanged(int)));

@@ -18,27 +18,27 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
     setBackgroundLabel(m_ui->background);
-    setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    setStyleSheet(MusicUIObject::ScrollBarStyle01);
 
     m_songCountLabel = m_ui->songCountLabel->text();
     m_selectCountLabel = m_ui->selectCountLabel->text();
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle03);
+    m_ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle03);
     m_ui->allSelectedcheckBox->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->allSelectedcheckBox->setText(tr("All"));
     connect(m_ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
-    m_ui->transferUSBButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->transferUSBButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
     m_ui->transferUSBButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->transferUSBButton, SIGNAL(clicked()), SLOT(startToTransferFiles()));
 
-    m_ui->searchLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle03);
+    m_ui->searchLineEdit->setStyleSheet(MusicUIObject::LineEditStyle03);
     connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(searchResultChanged(int,int)));
 
     m_thread = new MusicConnectTransferThread(this);
@@ -78,14 +78,14 @@ void MusicConnectTransferWidget::initialize()
     MusicSongItemList songs;
     Q_EMIT queryMusicItemList(songs);
 
-    m_ui->playListLayoutWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->playListLayoutWidget->setStyleSheet(MusicUIObject::BackgroundStyle01);
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     QtButtonGroupConnect(buttonGroup, this, currentPlaylistSelected);
 
     for(int i = 0; i < songs.count(); ++i)
     {
         QPushButton *button = new QPushButton(QString("%1(%2)").arg(songs[i].m_itemName).arg(songs[i].m_songs.count()), this);
-        button->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+        button->setStyleSheet(MusicUIObject::PushButtonStyle04);
         button->setCursor(QCursor(Qt::PointingHandCursor));
         button->setFixedSize(120, 25);
 #ifdef Q_OS_UNIX

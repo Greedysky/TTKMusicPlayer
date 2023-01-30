@@ -40,10 +40,10 @@ void MusicConnectLocalWidget::initFirstWidget()
     QWidget *firstWidget = new QWidget(this);
     QVBoxLayout *vBox = new QVBoxLayout(firstWidget);
     QLabel *textLabel = new QLabel(tr("Please choose the way"), firstWidget);
-    textLabel->setStyleSheet(MusicUIObject::MQSSFontStyle04 + MusicUIObject::MQSSColorStyle09);
+    textLabel->setStyleSheet(MusicUIObject::FontStyle04 + MusicUIObject::ColorStyle09);
 
     QPushButton *firButton = new QPushButton(tr("Mobile Media"), firstWidget);
-    firButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle08 + MusicUIObject::MQSSPushButtonStyle13);
+    firButton->setStyleSheet(MusicUIObject::PushButtonStyle08 + MusicUIObject::PushButtonStyle13);
     firButton->setIcon(QIcon(":/toolSets/lb_wired"));
     firButton->setIconSize(QSize(50, 50));
     firButton->setFixedSize(200, 90);
@@ -51,7 +51,7 @@ void MusicConnectLocalWidget::initFirstWidget()
     connect(firButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetSecond()));
 
     QPushButton *secButton = new QPushButton(tr("Media Library"), firstWidget);
-    secButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle08 + MusicUIObject::MQSSPushButtonStyle13);
+    secButton->setStyleSheet(MusicUIObject::PushButtonStyle08 + MusicUIObject::PushButtonStyle13);
     secButton->setIcon(QIcon(":/toolSets/lb_media"));
     secButton->setIconSize(QSize(50, 50));
     secButton->setFixedSize(200, 90);
@@ -84,20 +84,20 @@ void MusicConnectLocalWidget::initSecondWidget()
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
 
     QPushButton *backButton = new QPushButton(tr("< "), topWidget);
-    backButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle09);
+    backButton->setStyleSheet(MusicUIObject::PushButtonStyle09);
     backButton->setFixedSize(45, 25);
     backButton->setCursor(Qt::PointingHandCursor);
     connect(backButton, SIGNAL(clicked()), SLOT(changeStatckedWidgetFirst()));
 
     m_deviceButton = new QPushButton(topWidget);
-    m_deviceButton->setStyleSheet(MusicUIObject::MQSSTransferChangedDev);
+    m_deviceButton->setStyleSheet(MusicUIObject::TransferChangedDev);
     m_deviceButton->setFixedSize(80, 20);
     m_deviceButton->setCursor(Qt::PointingHandCursor);
     m_deviceButton->setMenu(new QMenu(m_deviceButton));
     connect(m_deviceButton->menu(), SIGNAL(triggered(QAction*)), SLOT(deviceTypeChanged(QAction*)));
 
     QPushButton *refreshButton = new QPushButton(topWidget);
-    refreshButton->setStyleSheet(MusicUIObject::MQSSTransferRefreshDev);
+    refreshButton->setStyleSheet(MusicUIObject::TransferRefreshDev);
     refreshButton->setFixedSize(20, 20);
     refreshButton->setCursor(Qt::PointingHandCursor);
     connect(refreshButton, SIGNAL(clicked()), SLOT(updateDeviceInfo()));
@@ -113,7 +113,7 @@ void MusicConnectLocalWidget::initSecondWidget()
     connect(pixLabel, SIGNAL(clicked()), SLOT(openTransferFilesToMobile()));
 
     m_deviceInfoLabel = new QLabel(secondWidget);
-    m_deviceInfoLabel->setStyleSheet(MusicUIObject::MQSSFontStyle03);
+    m_deviceInfoLabel->setStyleSheet(MusicUIObject::FontStyle03);
 
     m_deviceSizeLabel = new MusicTextSliderWidget(secondWidget);
     m_deviceSizeLabel->setFixedSize(270, 20);
@@ -122,13 +122,13 @@ void MusicConnectLocalWidget::initSecondWidget()
     QHBoxLayout *buttonWidgetLayout = new QHBoxLayout(buttonWidget);
 
     QPushButton *importSong = new QPushButton(secondWidget);
-    importSong->setStyleSheet(MusicUIObject::MQSSTransferSong);
+    importSong->setStyleSheet(MusicUIObject::TransferSong);
     importSong->setFixedSize(130, 96);
     importSong->setCursor(Qt::PointingHandCursor);
     connect(importSong, SIGNAL(clicked()), SLOT(openTransferFilesToMobile()));
 
     QPushButton *importRing = new QPushButton(secondWidget);
-    importRing->setStyleSheet(MusicUIObject::MQSSTransferRing);
+    importRing->setStyleSheet(MusicUIObject::TransferRing);
     importRing->setFixedSize(130, 96);
     importRing->setCursor(Qt::PointingHandCursor);
     connect(importRing, SIGNAL(clicked()), SLOT(openTransferFilesToMobile()));

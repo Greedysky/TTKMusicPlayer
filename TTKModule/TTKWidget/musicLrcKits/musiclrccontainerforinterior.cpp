@@ -392,7 +392,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     QMenu changeLrcTimeSlow(tr("Time Before"), &menu);
     QMenu changeLrcLinkMenu(tr("Lrc Link"), &menu);
 
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MenuStyle02);
 
     const bool hasLrcContainer = !m_lrcAnalysis->isEmpty();
     menu.addAction(tr("Lrc Search"), this, SLOT(searchMusicLrcs()));
@@ -678,7 +678,7 @@ void MusicLrcContainerForInterior::createNoLrcCurrentInfo()
     m_noLrcCurrentInfo = new TTKClickedLabel(this);
     MusicUtils::Widget::setLabelFontSize(m_noLrcCurrentInfo, 15);
     MusicUtils::Widget::setLabelFontStyle(m_noLrcCurrentInfo, MusicObject::FontStyleMode::Underline);
-    m_noLrcCurrentInfo->setStyleSheet(MusicUIObject::MQSSColorStyle06);
+    m_noLrcCurrentInfo->setStyleSheet(MusicUIObject::ColorStyle06);
     m_noLrcCurrentInfo->setText(tr("Lrc Make"));
 
     connect(m_noLrcCurrentInfo, SIGNAL(clicked()), SLOT(showLrcMakedWidget()));
@@ -730,10 +730,10 @@ void MusicLrcContainerForInterior::initFunctionLabel()
     message->setFixedSize(30, 30);
     photo->setFixedSize(30, 30);
 
-    translation->setStyleSheet(MusicUIObject::MQSSInteriorTranslation);
-    movie->setStyleSheet(MusicUIObject::MQSSInteriorMovie);
-    message->setStyleSheet(MusicUIObject::MQSSInteriorMessage);
-    photo->setStyleSheet(MusicUIObject::MQSSInteriorPhoto);
+    translation->setStyleSheet(MusicUIObject::InteriorTranslation);
+    movie->setStyleSheet(MusicUIObject::InteriorMovie);
+    message->setStyleSheet(MusicUIObject::InteriorMessage);
+    photo->setStyleSheet(MusicUIObject::InteriorPhoto);
 
     translation->setCursor(Qt::PointingHandCursor);
     movie->setCursor(Qt::PointingHandCursor);

@@ -106,7 +106,7 @@ MusicEnhancedPopWidget::~MusicEnhancedPopWidget()
 void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
 {
     setObjectName(className());
-    QString style = MusicUIObject::MQSSBtnMagic;
+    QString style = MusicUIObject::BtnMagic;
     switch(type)
     {
         case 0: style += "#%1{ margin-left: 0px; }"; break;
@@ -119,7 +119,7 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
     setStyleSheet(style.arg(className()));
 
     const QString &prfix = QString("background-image:url(':/enhance/lb_%1')");
-    m_caseButton->setStyleSheet(type ? MusicUIObject::MQSSEnhanceOn : MusicUIObject::MQSSEnhanceOff);
+    m_caseButton->setStyleSheet(type ? MusicUIObject::EnhanceOn : MusicUIObject::EnhanceOff);
     m_buttons[0]->setStyleSheet(prfix.arg(type == 1 ? "3d_on" : "3d_off"), type == 1);
     m_buttons[1]->setStyleSheet(prfix.arg(type == 2 ? "nicam_on" : "nicam_off"), type == 2);
     m_buttons[2]->setStyleSheet(prfix.arg(type == 3 ? "subwoofer_on" : "subwoofer_off"), type == 3);
@@ -163,37 +163,37 @@ void MusicEnhancedPopWidget::helpButtonClicked()
 void MusicEnhancedPopWidget::initialize()
 {
     setTranslucentBackground();
-    m_menu->setStyleSheet(MusicUIObject::MQSSMenuStyle05);
+    m_menu->setStyleSheet(MusicUIObject::MenuStyle05);
 
     m_containWidget->setFixedSize(272, 370);
     m_containWidget->setObjectName("ContainWidget");
-    m_containWidget->setStyleSheet(QString("#ContainWidget{%1%2}").arg(MusicUIObject::MQSSBorderStyle01, "background:url(':/enhance/lb_background')"));
+    m_containWidget->setStyleSheet(QString("#ContainWidget{%1%2}").arg(MusicUIObject::BorderStyle01, "background:url(':/enhance/lb_background')"));
 
     QToolButton *labelButton = new QToolButton(m_containWidget);
     labelButton->setGeometry(80, 20, 126, 40);
-    labelButton->setStyleSheet(MusicUIObject::MQSSEnhanceTitle);
+    labelButton->setStyleSheet(MusicUIObject::EnhanceTitle);
     labelButton->setCursor(Qt::PointingHandCursor);
 
     QToolButton *helpButton = new QToolButton(m_containWidget);
     helpButton->setGeometry(205, 3, 24, 24);
-    helpButton->setStyleSheet(MusicUIObject::MQSSEnhanceHelp);
+    helpButton->setStyleSheet(MusicUIObject::EnhanceHelp);
     helpButton->setCursor(Qt::PointingHandCursor);
     connect(helpButton, SIGNAL(clicked()), SLOT(helpButtonClicked()));
 
     QToolButton *shareButton = new QToolButton(m_containWidget);
     shareButton->setGeometry(230, 3, 24, 24);
-    shareButton->setStyleSheet(MusicUIObject::MQSSEnhanceShare);
+    shareButton->setStyleSheet(MusicUIObject::EnhanceShare);
     shareButton->setCursor(Qt::PointingHandCursor);
 
     QToolButton *closeButton = new QToolButton(m_containWidget);
     closeButton->setGeometry(255, 8, 16, 16);
-    closeButton->setStyleSheet(MusicUIObject::MQSSEnhanceClose);
+    closeButton->setStyleSheet(MusicUIObject::EnhanceClose);
     closeButton->setCursor(Qt::PointingHandCursor);
     connect(closeButton, SIGNAL(clicked()), m_menu, SLOT(close()));
 
     m_caseButton = new QToolButton(m_containWidget);
     m_caseButton->setGeometry(200, 70, 62, 38);
-    m_caseButton->setStyleSheet(MusicUIObject::MQSSEnhanceOn);
+    m_caseButton->setStyleSheet(MusicUIObject::EnhanceOn);
     m_caseButton->setCursor(Qt::PointingHandCursor);
 
     MusicEnhancedToolButton *button1 = new MusicEnhancedToolButton(m_containWidget);

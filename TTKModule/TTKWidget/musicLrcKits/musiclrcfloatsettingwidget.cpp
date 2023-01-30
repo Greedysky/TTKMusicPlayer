@@ -9,13 +9,13 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     : MusicAbstractFloatWidget(parent)
 {
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle05));
+    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::BackgroundStyle05));
 
     QLabel *colorLabel = new QLabel(tr("Color"), this);
     QLabel *sizeLabel = new QLabel(tr("Size"), this);
     QLabel *backLabel = new QLabel(tr("Background"), this);
 
-    const QString &labelStyle = MusicUIObject::MQSSColorStyle01 + MusicUIObject::MQSSCustomStyle02 + "image:url(:/lrc/lb_shadow);";
+    const QString &labelStyle = MusicUIObject::ColorStyle01 + MusicUIObject::CustomStyle02 + "image:url(:/lrc/lb_shadow);";
 
     colorLabel->setStyleSheet(labelStyle);
     sizeLabel->setStyleSheet(labelStyle);
@@ -38,8 +38,8 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
 
     QPushButton *sizeBigerButton = new QPushButton(this);
     QPushButton *sizeSmallerButton = new QPushButton(this);
-    sizeBigerButton->setStyleSheet(MusicUIObject::MQSSInteriorLrcBigger);
-    sizeSmallerButton->setStyleSheet(MusicUIObject::MQSSInteriorLrcSmaller);
+    sizeBigerButton->setStyleSheet(MusicUIObject::InteriorLrcBigger);
+    sizeSmallerButton->setStyleSheet(MusicUIObject::InteriorLrcSmaller);
     sizeBigerButton->setGeometry(85, 70, 24, 24);
     sizeSmallerButton->setGeometry(125, 70, 24, 24);
     sizeBigerButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -53,15 +53,15 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     QPushButton *artBackButton = new QPushButton(tr("Art"), this);
     artBackButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(artBackButton, SIGNAL(clicked()), SLOT(lrcArtBackgroundChanged()));
-    musicBackButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle06);
-    artBackButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle06);
+    musicBackButton->setStyleSheet(MusicUIObject::InteriorFloatSetting + MusicUIObject::PushButtonStyle06);
+    artBackButton->setStyleSheet(MusicUIObject::InteriorFloatSetting + MusicUIObject::PushButtonStyle06);
     musicBackButton->setGeometry(15, 150, 60, 22);
     artBackButton->setGeometry(90, 150, 60, 22);
 
     QPushButton *settingButton = new QPushButton(tr("More"), this);
     settingButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(settingButton, SIGNAL(clicked()), parent, SIGNAL(changeCurrentLrcColorSetting()));
-    settingButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle06);
+    settingButton->setStyleSheet(MusicUIObject::InteriorFloatSetting + MusicUIObject::PushButtonStyle06);
     settingButton->setGeometry(15, 175, 60, 22);
 
 #ifdef Q_OS_UNIX

@@ -21,7 +21,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     
     m_process = new QProcess(this);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -31,18 +31,18 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     MusicUtils::Widget::generateComboBoxFormat(m_ui->hzCombo);
     MusicUtils::Widget::generateComboBoxFormat(m_ui->msCombo);
 
-    m_ui->inputButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->outputButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->inputButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->outputButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
 
-    m_ui->transformButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->inputLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
-    m_ui->outputLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->transformButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->inputLineEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
+    m_ui->outputLineEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
 
     m_ui->inputButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->outputButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->transformButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->folderBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->folderBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
     m_ui->tabButton->addButtons(QStringList() << tr("Music") << tr("Krc"));
 
 #ifdef Q_OS_UNIX

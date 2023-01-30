@@ -68,7 +68,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     layout()->addWidget(scrollArea);
 
     QWidget *function = new QWidget(m_mainWindow);
-    function->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    function->setStyleSheet(MusicUIObject::CheckBoxStyle01);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
     QWidget *firstTopFuncWidget = new QWidget(function);
@@ -77,7 +77,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     firstLabel->setText(tr("<font color=#158FE1> Playlist > %1 </font>").arg(item.m_name));
     QPushButton *backButton = new QPushButton(tr("Back"));
     backButton->setFixedSize(90, 30);
-    backButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    backButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
     backButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(backButton, SIGNAL(clicked()), obj, SLOT(backToPlaylistMenu()));
     firstTopFuncLayout->addWidget(firstLabel);
@@ -105,16 +105,16 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     QFont playlistFont = playlistLabel->font();
     playlistFont.setPixelSize(20);
     playlistLabel->setFont(playlistFont);
-    playlistLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
+    playlistLabel->setStyleSheet(MusicUIObject::FontStyle01);
     playlistLabel->setToolTip(item.m_name);
     QLabel *creatorLabel = new QLabel(topLineWidget);
-    creatorLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
+    creatorLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
     creatorLabel->setToolTip(tr("Creator: %1").arg(item.m_nickName));
     QLabel *tagsLabel = new QLabel(topLineWidget);
-    tagsLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
+    tagsLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
     tagsLabel->setToolTip(tr("Tags: %1").arg(item.m_tags));
     QLabel *updateLabel = new QLabel(topLineWidget);
-    updateLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
+    updateLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
     updateLabel->setToolTip(tr("Update: %1").arg(item.m_updateTime));
 
     topLineLayout->addWidget(playlistLabel);
@@ -124,7 +124,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     topLineWidget->setLayout(topLineLayout);
 
     QWidget *topButtonWidget = new QWidget(topFuncWidget);
-    topButtonWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    topButtonWidget->setStyleSheet(MusicUIObject::PushButtonStyle03);
     QHBoxLayout *topButtonLayout = new QHBoxLayout(topButtonWidget);
     topButtonLayout->setContentsMargins(0, 0, 0, 0);
     QPushButton *playAllButton = new QPushButton(tr("Play All"), topButtonWidget);
@@ -150,7 +150,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
 
     QLabel *numberLabel = new QLabel(topRightWidget);
     numberLabel->setAlignment(Qt::AlignCenter);
-    numberLabel->setStyleSheet(MusicUIObject::MQSSFontStyle05 + MusicUIObject::MQSSColorStyle05);
+    numberLabel->setStyleSheet(MusicUIObject::FontStyle05 + MusicUIObject::ColorStyle05);
 
     const int number = 7 + TTKObject::random(3);
     numberLabel->setText(QString("%1.%2").arg(number).arg(TTKObject::random(10)));
@@ -178,7 +178,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     grid->addWidget(topFuncWidget);
     //
     QWidget *functionWidget = new QWidget(this);
-    functionWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    functionWidget->setStyleSheet(MusicUIObject::PushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));

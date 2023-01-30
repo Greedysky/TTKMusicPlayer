@@ -42,54 +42,54 @@ MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->mainViewWidget->setStyleSheet(MusicUIObject::MQSSTabWidgetStyle01);
+    m_ui->mainViewWidget->setStyleSheet(MusicUIObject::TabWidgetStyle01);
 
     m_ui->addFileButton->setIcon(QIcon(":/toolSets/btn_gain_add_file"));
     m_ui->addFileButton->setIconSize(QSize(40, 40));
-    m_ui->addFileButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->addFileButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->addFileButton->setToolTip(tr("Add File"));
     m_ui->addFileButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->addFilesButton->setIcon(QIcon(":/toolSets/btn_gain_add_files"));
     m_ui->addFilesButton->setIconSize(QSize(40, 40));
-    m_ui->addFilesButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->addFilesButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->addFilesButton->setToolTip(tr("Add Files"));
     m_ui->addFilesButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->rmFileButton->setIcon(QIcon(":/toolSets/btn_gain_rm_file"));
     m_ui->rmFileButton->setIconSize(QSize(40, 40));
-    m_ui->rmFileButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->rmFileButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->rmFileButton->setToolTip(tr("Remove File"));
     m_ui->rmFileButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->rmFilesButton->setIcon(QIcon(":/toolSets/btn_gain_rm_files"));
     m_ui->rmFilesButton->setIconSize(QSize(40, 40));
-    m_ui->rmFilesButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->rmFilesButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->rmFilesButton->setToolTip(tr("Remove Files"));
     m_ui->rmFilesButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->analysisButton->setIcon(QIcon(":/toolSets/btn_analysis"));
     m_ui->analysisButton->setIconSize(QSize(40, 40));
-    m_ui->analysisButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->analysisButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->analysisButton->setToolTip(tr("Analysis"));
     m_ui->analysisButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->applyButton->setIcon(QIcon(":/toolSets/btn_analysis_apply"));
     m_ui->applyButton->setIconSize(QSize(50, 50));
-    m_ui->applyButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->applyButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->applyButton->setToolTip(tr("Apply"));
     m_ui->applyButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->volumeLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->volumeLineEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
     m_ui->volumeLineEdit->setValidator(new QRegExpValidator(QRegExp("-?[0-9]+$"), this));
 
-    m_ui->progressBar->setStyleSheet(MusicUIObject::MQSSProgressBar01);
-    m_ui->progressBarAll->setStyleSheet(MusicUIObject::MQSSProgressBar01);
+    m_ui->progressBar->setStyleSheet(MusicUIObject::ProgressBar01);
+    m_ui->progressBarAll->setStyleSheet(MusicUIObject::ProgressBar01);
 
     m_process = new QProcess(this);
     m_process->setProcessChannelMode(QProcess::MergedChannels);
@@ -124,9 +124,9 @@ void MusicReplayGainWidget::initialize()
     if(obj && (factory = TTKObject_cast(LightFactory*, obj)))
     {
         m_replayGainWidget = factory->create(this);
-        m_replayGainWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04 + MusicUIObject::MQSSCheckBoxStyle01 +
-                                          MusicUIObject::MQSSScrollBarStyle03 + MusicUIObject::MQSSProgressBar01 +
-                                          MusicUIObject::MQSSHeaderView01);
+        m_replayGainWidget->setStyleSheet(MusicUIObject::PushButtonStyle04 + MusicUIObject::CheckBoxStyle01 +
+                                          MusicUIObject::ScrollBarStyle03 + MusicUIObject::ProgressBar01 +
+                                          MusicUIObject::HeaderView01);
         m_ui->replayGainLayout->addWidget(m_replayGainWidget);
     }
     else

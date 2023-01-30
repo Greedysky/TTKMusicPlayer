@@ -56,7 +56,7 @@ MusicLocalManagerStatisticTableWidget::MusicLocalManagerStatisticTableWidget(QWi
     hide();
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    horizontalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle04);
+    horizontalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle04);
 }
 
 MusicLocalManagerStatisticTableWidget::~MusicLocalManagerStatisticTableWidget()
@@ -117,7 +117,7 @@ MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *pa
 
     setHorizontalHeaderLabels({tr("Title"), tr("Artist"), tr("Album"), tr("Year"), tr("Genre"), tr("Path")});
     setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    horizontalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle04);
+    horizontalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle04);
 
     m_songs = new MusicSongList;
 }
@@ -197,7 +197,7 @@ void MusicLocalManagerSongsTableWidget::contextMenuEvent(QContextMenuEvent *even
     MusicAbstractSongsListTableWidget::contextMenuEvent(event);
 
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MenuStyle02);
     menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
     menu.addAction(tr("Download More..."), this, SLOT(musicSongDownload()));
     menu.addSeparator();
@@ -218,7 +218,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     : QWidget(parent),
       MusicItemSearchInterfaceClass()
 {
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle10 + MusicUIObject::MQSSColorStyle09);
+    setStyleSheet(MusicUIObject::BackgroundStyle10 + MusicUIObject::ColorStyle09);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
@@ -249,25 +249,25 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     QFont pLabelFont = pLabel->font();
     pLabelFont.setPixelSize(33);
     pLabel->setFont(pLabelFont);
-    pLabel->setStyleSheet(MusicUIObject::MQSSColorStyle11);
+    pLabel->setStyleSheet(MusicUIObject::ColorStyle11);
     functionWidgetLayout->addWidget(pLabel);
 
     m_sizeLabel = new QLabel(functionWidget);
-    m_sizeLabel->setStyleSheet(MusicUIObject::MQSSColorStyle11);
+    m_sizeLabel->setStyleSheet(MusicUIObject::ColorStyle11);
     functionWidgetLayout->addWidget(m_sizeLabel);
     functionWidgetLayout->addStretch(1);
 
     QPushButton *refresh = new QPushButton(tr("Refresh"), functionWidget);
     refresh->setIcon(QIcon(":/functions/btn_similar_hover"));
     refresh->setFixedSize(90, 30);
-    refresh->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    refresh->setStyleSheet(MusicUIObject::PushButtonStyle03);
     refresh->setCursor(QCursor(Qt::PointingHandCursor));
     functionWidgetLayout->addWidget(refresh);
 
     QPushButton *button = new QPushButton(tr("Settings"), functionWidget);
     button->setIcon(QIcon(":/functions/btn_setting_hover"));
     button->setFixedSize(90, 30);
-    button->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    button->setStyleSheet(MusicUIObject::PushButtonStyle03);
     button->setCursor(QCursor(Qt::PointingHandCursor));
     functionWidgetLayout->addWidget(button);
 
@@ -307,7 +307,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     centerWidgetLayout->addWidget(m_songWidget, 3);
 
     m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::CicleBlue, this);
-    m_loadingLabel->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_loadingLabel->setStyleSheet(MusicUIObject::BackgroundStyle01);
     m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words!"));
 
     QTimer::singleShot(MT_ONCE, this, SLOT(refreshItems()));

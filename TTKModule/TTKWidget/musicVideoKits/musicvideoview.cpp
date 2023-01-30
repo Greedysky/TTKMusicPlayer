@@ -67,7 +67,7 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     : QAbstractScrollArea(parent)
 {
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::MQSSBackgroundStyle02));
+    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::BackgroundStyle02));
 
     m_player = new MusicCoreMPlayer(this);
     m_videoWidget = new MusicViewWidget(this);
@@ -120,7 +120,7 @@ void MusicVideoView::resizeGeometry(int width, int height)
 void MusicVideoView::createRightMenu()
 {
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MenuStyle02);
 
     menu.addAction(QString(), this, SLOT(play()))->setText(m_player->isPlaying() ? tr("Video Pause") : tr("Video Play"));
     menu.addAction(tr("Video Stop"), this, SLOT(stop()));

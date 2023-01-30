@@ -9,7 +9,7 @@ MusicVideoQualityPopWidget::MusicVideoQualityPopWidget(QWidget *parent)
     initialize();
 
     setFixedSize(44, 20);
-    setStyleSheet(MusicUIObject::MQSSVideoBtnSDMode);
+    setStyleSheet(MusicUIObject::VideoBtnSDMode);
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(className(), MusicVideoSearchTableWidget::className());
@@ -35,13 +35,13 @@ void MusicVideoQualityPopWidget::setQualityActionState()
 
 void MusicVideoQualityPopWidget::setQualityText(const QString &url)
 {
-    QString style = MusicUIObject::MQSSVideoBtnSDMode;
+    QString style = MusicUIObject::VideoBtnSDMode;
     switch(findMVBitrateByUrl(url))
     {
-        case MB_250: style = MusicUIObject::MQSSVideoBtnSTMode; break;
-        case MB_500: style = MusicUIObject::MQSSVideoBtnSDMode; break;
-        case MB_750: style = MusicUIObject::MQSSVideoBtnHDMode; break;
-        case MB_1000: style = MusicUIObject::MQSSVideoBtnSQMode; break;
+        case MB_250: style = MusicUIObject::VideoBtnSTMode; break;
+        case MB_500: style = MusicUIObject::VideoBtnSDMode; break;
+        case MB_750: style = MusicUIObject::VideoBtnHDMode; break;
+        case MB_1000: style = MusicUIObject::VideoBtnSQMode; break;
         default: break;
     }
     setStyleSheet(style);

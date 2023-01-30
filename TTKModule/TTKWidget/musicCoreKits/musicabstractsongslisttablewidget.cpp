@@ -215,7 +215,7 @@ void MusicAbstractSongsListTableWidget::musicSongPlayedSharedWidget()
 
 void MusicAbstractSongsListTableWidget::createMoreMenu(QMenu *menu)
 {
-    menu->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu->setStyleSheet(MusicUIObject::MenuStyle02);
     menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), this, SLOT(musicSimilarQueryWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), this, SLOT(musicSongSharedWidget()));
 }

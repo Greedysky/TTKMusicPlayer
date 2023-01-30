@@ -20,7 +20,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -31,10 +31,10 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
     m_ui->refreshButton->setIcon(QIcon(":/functions/btn_fresh_fore_hover"));
 
-    m_ui->playButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
-    m_ui->previousButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
-    m_ui->nextButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
-    m_ui->refreshButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->playButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
+    m_ui->previousButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
+    m_ui->nextButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
+    m_ui->refreshButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
 
 #ifdef Q_OS_UNIX
     m_ui->playButton->setFocusPolicy(Qt::NoFocus);
@@ -53,8 +53,8 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_ui->nextButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->refreshButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->deviceComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle02);
-    m_ui->timeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle10);
+    m_ui->deviceComboBox->setStyleSheet(MusicUIObject::ComboBoxStyle02);
+    m_ui->timeSlider->setStyleSheet(MusicUIObject::SliderStyle10);
     m_ui->timeSlider->setValue(0);
 
     m_ui->deviceComboBox->addItem(tr("No connections"));

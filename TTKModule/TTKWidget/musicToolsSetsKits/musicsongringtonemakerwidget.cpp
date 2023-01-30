@@ -21,15 +21,15 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->addSongButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->playSongButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->playRingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->saveSongButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->addSongButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->playSongButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->playRingButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->saveSongButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
 
     MusicUtils::Widget::generateComboBoxFormat(m_ui->formatCombo);
     MusicUtils::Widget::generateComboBoxFormat(m_ui->kbpsCombo);

@@ -82,8 +82,8 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication *ui)
     m_lrcForInterior->setLrcAnalysisModel(m_lrcAnalysis);
     m_lrcForInterior->resize(ui->functionsContainer->size());
 
-    ui->musicBackButton->setStyleSheet(MusicUIObject::MQSSBtnBackBack);
-    ui->musicRefreshButton->setStyleSheet(MusicUIObject::MQSSBtnBackFresh);
+    ui->musicBackButton->setStyleSheet(MusicUIObject::BtnBackBack);
+    ui->musicRefreshButton->setStyleSheet(MusicUIObject::BtnBackFresh);
 
     ui->lrcDisplayAllButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->lrcDisplayAllButton->setIconSize(QSize(15, 56));
@@ -353,7 +353,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             m_videoPlayerWidget->popupMode(false);
 
             QWidget *widget = new QWidget(this);
-            widget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle10);
+            widget->setStyleSheet(MusicUIObject::BackgroundStyle10);
             m_stackedWidget = widget;
             m_ui->functionsContainer->addWidget(m_videoPlayerWidget);
             m_ui->functionsContainer->setCurrentWidget(m_videoPlayerWidget);
@@ -369,7 +369,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         case LrcWidget: //insert lrc display widget
         {
             m_ui->functionsContainer->setCurrentIndex(MUSIC_LRC_PAGE);
-            m_ui->lrcDisplayAllButton->setStyleSheet(MusicUIObject::MQSSTinyBtnLrcCollapse);
+            m_ui->lrcDisplayAllButton->setStyleSheet(MusicUIObject::TinyBtnLrcCollapse);
             m_ui->lrcDisplayAllButton->setVisible(true);
             Q_EMIT updateBackgroundThemeDownload();
             break;
@@ -773,7 +773,7 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
     lrcDisplayAllAnimation->setEndValue(QPoint(0, height / 2));
     lrcDisplayAllAnimation->start();
 
-    m_ui->lrcDisplayAllButton->setStyleSheet(lrcDisplayAll ? MusicUIObject::MQSSTinyBtnLrcExpand : MusicUIObject::MQSSTinyBtnLrcCollapse);
+    m_ui->lrcDisplayAllButton->setStyleSheet(lrcDisplayAll ? MusicUIObject::TinyBtnLrcExpand : MusicUIObject::TinyBtnLrcCollapse);
     m_ui->musicWindowConcise->setEnabled(!lrcDisplayAll);
 }
 
@@ -850,7 +850,7 @@ void MusicRightAreaWidget::createkWebWindow(int type)
     {
         QLabel *label = new QLabel(this);
         label->setAlignment(Qt::AlignCenter);
-        label->setStyleSheet(MusicUIObject::MQSSBackgroundStyle10);
+        label->setStyleSheet(MusicUIObject::BackgroundStyle10);
         label->setPixmap(QPixmap(":/image/lb_no_power_mode"));
         widget = label;
     }

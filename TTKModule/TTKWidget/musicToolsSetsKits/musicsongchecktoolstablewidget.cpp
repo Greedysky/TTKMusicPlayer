@@ -7,7 +7,7 @@
 static TTKPushButtonItemDelegate *MakeButtonItemDelegate(QObject *parent)
 {
     TTKPushButtonItemDelegate *delegate = new TTKPushButtonItemDelegate(parent);
-    delegate->setStyleSheet(MusicUIObject::MQSSBorderStyle03 + MusicUIObject::MQSSBorderStyle06 + MusicUIObject::MQSSBackgroundStyle10);
+    delegate->setStyleSheet(MusicUIObject::BorderStyle03 + MusicUIObject::BorderStyle06 + MusicUIObject::BackgroundStyle10);
     return delegate;
 }
 

@@ -15,13 +15,13 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
 {
     QPushButton *shareListButton = new QPushButton(this);
     shareListButton->setToolTip(tr("Share Playlist"));
-    shareListButton->setStyleSheet(MusicUIObject::MQSSTinyBtnShare);
+    shareListButton->setStyleSheet(MusicUIObject::TinyBtnShare);
     shareListButton->setCursor(QCursor(Qt::PointingHandCursor));
     shareListButton->setGeometry(265, 12, 16, 16);
 
     QPushButton *menuButton = new QPushButton(this);
     menuButton->setToolTip(tr("Menu"));
-    menuButton->setStyleSheet(MusicUIObject::MQSSTinyBtnListMenu);
+    menuButton->setStyleSheet(MusicUIObject::TinyBtnListMenu);
     menuButton->setCursor(QCursor(Qt::PointingHandCursor));
     menuButton->setGeometry(290, 12, 16, 16);
     connect(menuButton, SIGNAL(clicked()), SLOT(showMenu()));
@@ -86,7 +86,7 @@ void MusicSongsToolBoxTopWidget::exportSongsItemList()
 void MusicSongsToolBoxTopWidget::showMenu()
 {
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MenuStyle02);
     menu.addAction(tr("Create Item"), this, SIGNAL(addNewRowItem()));
     menu.addSeparator();
 

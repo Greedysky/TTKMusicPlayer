@@ -26,42 +26,42 @@
  */
 namespace MusicUIObject
 {
-    const QString MQSSEnhanceOn = " \
+    const QString EnhanceOn = " \
             QToolButton{ border:none; \
             background-image: url(:/enhance/btn_magic_on_normal); } \
             QToolButton:hover{ background-image: url(:/enhance/btn_magic_on_hover); }";
 
-    const QString MQSSEnhanceOff = " \
+    const QString EnhanceOff = " \
             QToolButton{ border:none; \
             background-image: url(:/enhance/btn_magic_off_normal); } \
             QToolButton:hover{ background-image: url(:/enhance/btn_magic_off_hover); }";
 
-    const QString MQSSEnhanceClose = " \
+    const QString EnhanceClose = " \
             QToolButton{ border:none; \
             background-image: url(:/enhance/btn_close_normal); } \
             QToolButton:hover{ background-image: url(:/enhance/btn_close_hover); }";
 
-    const QString MQSSEnhanceHelp = " \
+    const QString EnhanceHelp = " \
             QToolButton{ border:none; \
             background-image: url(:/enhance/btn_help_normal); } \
             QToolButton:hover{ background-image: url(:/enhance/btn_help_hover); }";
 
-    const QString MQSSEnhanceShare = " \
+    const QString EnhanceShare = " \
             QToolButton{ border:none; \
             background-image: url(:/enhance/btn_share_normal); } \
             QToolButton:hover{ background-image: url(:/enhance/btn_share_hover); }";
 
-    const QString MQSSEnhanceTitle = " \
+    const QString EnhanceTitle = " \
             QToolButton{ border:none; \
             background-image: url(:/enhance/lb_title_normal); } \
             QToolButton:hover{ background-image: url(:/enhance/lb_title_hover); }";
 
-    const QString MQSSEqualizerOn = " \
+    const QString EqualizerOn = " \
             QPushButton{ border:none; \
             background-image: url(:/enhance/btn_equalizer_on_normal); } \
             QPushButton:hover{ background-image: url(:/enhance/btn_equalizer_on_hover); }";
 
-    const QString MQSSEqualizerOff = " \
+    const QString EqualizerOff = " \
             QPushButton{ border:none; \
             background-image: url(:/enhance/btn_equalizer_off_normal); } \
             QPushButton:hover{ background-image: url(:/enhance/btn_equalizer_off_hover); }";

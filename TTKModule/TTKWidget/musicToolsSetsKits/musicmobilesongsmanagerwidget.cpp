@@ -89,7 +89,7 @@ void MusicMobileSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicAbstractSongsListTableWidget::contextMenuEvent(event);
 
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MenuStyle02);
     menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
     menu.addAction(tr("Download More..."), this, SLOT(musicSongDownload()));
     menu.addSeparator();
@@ -118,27 +118,27 @@ MusicMobileSongsManagerWidget::MusicMobileSongsManagerWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->toolWidget->setStyleSheet(QString("#toolWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle03));
+    m_ui->toolWidget->setStyleSheet(QString("#toolWidget{%1}").arg(MusicUIObject::BackgroundStyle03));
 
-    m_ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle03);
+    m_ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle03);
     m_ui->allSelectedcheckBox->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->allSelectedcheckBox->setText(tr("All"));
     connect(m_ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
-    m_ui->auditionButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle01 + MusicUIObject::MQSSToolButtonStyle02 + "QToolButton{ image:url(:/contextMenu/btn_audition); }");
-    m_ui->addButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle01 + MusicUIObject::MQSSToolButtonStyle02 + "QToolButton{ image:url(:/contextMenu/btn_add); }");
+    m_ui->auditionButton->setStyleSheet(MusicUIObject::ToolButtonStyle01 + MusicUIObject::ToolButtonStyle02 + "QToolButton{ image:url(:/contextMenu/btn_audition); }");
+    m_ui->addButton->setStyleSheet(MusicUIObject::ToolButtonStyle01 + MusicUIObject::ToolButtonStyle02 + "QToolButton{ image:url(:/contextMenu/btn_add); }");
 
     m_ui->auditionButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->addButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->searchLineLabel->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->loadingLabel->setType(MusicGifLabelWidget::Module::CicleBlue);
-    m_ui->toolWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle10);
+    m_ui->toolWidget->setStyleSheet(MusicUIObject::BackgroundStyle10);
 
     connect(m_ui->auditionButton, SIGNAL(clicked()), SLOT(auditionButtonClick()));
     connect(m_ui->addButton, SIGNAL(clicked()), SLOT(auditionButtonClick()));

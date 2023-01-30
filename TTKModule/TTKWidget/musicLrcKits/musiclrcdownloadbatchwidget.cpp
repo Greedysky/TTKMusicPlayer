@@ -18,7 +18,7 @@ MusicLrcDownloadBatchTableWidget::MusicLrcDownloadBatchTableWidget(QWidget *pare
     headerview->resizeSection(3, 190);
     headerview->resizeSection(4, 60);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle01);
 }
 
 void MusicLrcDownloadBatchTableWidget::addCellItems(const MusicSongList &items)
@@ -73,14 +73,14 @@ MusicLrcDownloadBatchWidget::MusicLrcDownloadBatchWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->skipAlreadyLrcCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
-    m_ui->saveToLrcDirRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
-    m_ui->saveToCurrentDirRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->skipAlreadyLrcCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
+    m_ui->saveToLrcDirRadioBox->setStyleSheet(MusicUIObject::RadioButtonStyle01);
+    m_ui->saveToCurrentDirRadioBox->setStyleSheet(MusicUIObject::RadioButtonStyle01);
 #ifdef Q_OS_UNIX
     m_ui->skipAlreadyLrcCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->saveToLrcDirRadioBox->setFocusPolicy(Qt::NoFocus);
@@ -88,8 +88,8 @@ MusicLrcDownloadBatchWidget::MusicLrcDownloadBatchWidget(QWidget *parent)
     m_ui->addButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
-    m_ui->addButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->addButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->downloadButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
 
     connect(m_ui->addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
@@ -142,7 +142,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         const QString &path = QString("%1/%2%3").arg(prefix, song->name(), LRC_FILE);
         if(skip && QFile::exists(path))
         {
-            it->setForeground(QColor(MusicUIObject::MQSSColor02));
+            it->setForeground(QColor(MusicUIObject::Color02));
             it->setText(tr("Skip"));
             continue;
         }

@@ -31,7 +31,7 @@ MusicScreenSaverHoverItem::MusicScreenSaverHoverItem(QLabel *parent)
 
     m_enableButton = new QPushButton(this);
     m_enableButton->setCursor(Qt::PointingHandCursor);
-    m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemDisable);
+    m_enableButton->setStyleSheet(MusicUIObject::ScreenItemDisable);
     m_enableButton->setGeometry((width() - 38) / 2, (height() - 38) / 2, 38, 38);
 #ifdef Q_OS_UNIX
     m_enableButton->setFocusPolicy(Qt::NoFocus);
@@ -64,12 +64,12 @@ void MusicScreenSaverHoverItem::display(const QPoint &point)
 
 void MusicScreenSaverHoverItem::switchButtonOnAndOff()
 {
-    if(m_enableButton->styleSheet().contains(MusicUIObject::MQSSScreenItemDisable))
+    if(m_enableButton->styleSheet().contains(MusicUIObject::ScreenItemDisable))
     {
         const QPixmap pix(MusicUtils::Image::grayScalePixmap(QPixmap(m_path), 70));
         m_parent->setPixmap(pix);
         setPixmap(pix);
-        m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemEnable);
+        m_enableButton->setStyleSheet(MusicUIObject::ScreenItemEnable);
         Q_EMIT itemClicked(m_index, false);
     }
     else
@@ -77,7 +77,7 @@ void MusicScreenSaverHoverItem::switchButtonOnAndOff()
         const QPixmap pix(m_path);
         m_parent->setPixmap(pix);
         setPixmap(pix);
-        m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemDisable);
+        m_enableButton->setStyleSheet(MusicUIObject::ScreenItemDisable);
         Q_EMIT itemClicked(m_index, true);
     }
 }
@@ -202,7 +202,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     : QWidget(parent),
       m_currentState(false)
 {
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle10 + MusicUIObject::MQSSColorStyle09);
+    setStyleSheet(MusicUIObject::BackgroundStyle10 + MusicUIObject::ColorStyle09);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
@@ -225,7 +225,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     QFont pLabelFont = pLabel->font();
     pLabelFont.setPixelSize(20);
     pLabel->setFont(pLabelFont);
-    pLabel->setStyleSheet(MusicUIObject::MQSSColorStyle11);
+    pLabel->setStyleSheet(MusicUIObject::ColorStyle11);
 
     QLabel *iLabel = new QLabel(tr("Popular singers spend your leisure time with you"), topWidget);
     QFont iLabelFont = iLabel->font();
@@ -239,12 +239,12 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     m_inputEdit->setFixedWidth(50);
     m_inputEdit->setEnabled(false);
     m_inputEdit->setAlignment(Qt::AlignCenter);
-    m_inputEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_inputEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
 
     m_caseButton = new QPushButton(topWidget);
     m_caseButton->setFixedSize(44, 20);
     m_caseButton->setCursor(Qt::PointingHandCursor);
-    m_caseButton->setStyleSheet(MusicUIObject::MQSSScreenSaverOff);
+    m_caseButton->setStyleSheet(MusicUIObject::ScreenSaverOff);
 #ifdef Q_OS_UNIX
     m_caseButton->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -263,11 +263,11 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     frame->setFixedHeight(1);
     frame->setFrameShape(QFrame::HLine);
     frame->setFrameShadow(QFrame::Plain);
-    frame->setStyleSheet(MusicUIObject::MQSSColorStyle04);
+    frame->setStyleSheet(MusicUIObject::ColorStyle04);
     mainLayout->addWidget(frame);
     //
     QWidget *functionWidget = new QWidget(this);
-    functionWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    functionWidget->setStyleSheet(MusicUIObject::BackgroundStyle01);
     QHBoxLayout *functionWidgetLayout = new QHBoxLayout(functionWidget);
     functionWidgetLayout->setContentsMargins(10, 10, 10, 10);
     functionWidget->setLayout(functionWidgetLayout);
@@ -335,12 +335,12 @@ void MusicScreenSaverWidget::switchButtonOnAndOff()
     if(m_currentState)
     {
         m_currentState = false;
-        m_caseButton->setStyleSheet(MusicUIObject::MQSSScreenSaverOff);
+        m_caseButton->setStyleSheet(MusicUIObject::ScreenSaverOff);
     }
     else
     {
         m_currentState = true;
-        m_caseButton->setStyleSheet(MusicUIObject::MQSSScreenSaverOn);
+        m_caseButton->setStyleSheet(MusicUIObject::ScreenSaverOn);
         G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverTime, m_inputEdit->text().toInt());
     }
 

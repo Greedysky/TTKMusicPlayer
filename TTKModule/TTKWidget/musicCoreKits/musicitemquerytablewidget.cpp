@@ -14,7 +14,7 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
     setColumnCount(8);
 
     m_labelDelegate = new TTKLabelItemDelegate(this);
-    m_labelDelegate->setStyleSheet(MusicUIObject::MQSSBackgroundStyle13);
+    m_labelDelegate->setStyleSheet(MusicUIObject::BackgroundStyle13);
 
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
@@ -173,7 +173,7 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicQueryTableWidget::contextMenuEvent(event);
 
     QMenu menu;
-    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MenuStyle02);
 
     const int row = currentRow();
     const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
@@ -247,19 +247,19 @@ void MusicItemQueryTableWidget::createSearchedItem(const MusicResultInfoItem &so
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName + " - " + songItem.m_songName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
-    item->setForeground(QColor(MusicUIObject::MQSSColor02));
+    item->setForeground(QColor(MusicUIObject::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_albumName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
-    item->setForeground(QColor(MusicUIObject::MQSSColor02));
+    item->setForeground(QColor(MusicUIObject::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_duration);
-    item->setForeground(QColor(MusicUIObject::MQSSColor02));
+    item->setForeground(QColor(MusicUIObject::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(count, 3, item);
 

@@ -249,7 +249,7 @@ void QKugouWindow::createKugouSongWidget()
 #if defined TTK_WEBKIT || defined TTK_WEBENGINE
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
-    d->m_topWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01 + MusicUIObject::MQSSWidgetStyle01);
+    d->m_topWidget->setStyleSheet(MusicUIObject::PushButtonStyle01 + MusicUIObject::WidgetStyle01);
     QHBoxLayout *topLayout = new QHBoxLayout(d->m_topWidget);
     topLayout->setContentsMargins(0, 0, 0, 0);
     topLayout->setSpacing(25);
@@ -307,7 +307,7 @@ void QKugouWindow::createKugouRadioWidget()
 #if defined TTK_WEBKIT || defined TTK_WEBENGINE
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
-    d->m_topWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01 + MusicUIObject::MQSSWidgetStyle01);
+    d->m_topWidget->setStyleSheet(MusicUIObject::PushButtonStyle01 + MusicUIObject::WidgetStyle01);
     QHBoxLayout *topLayout = new QHBoxLayout(d->m_topWidget);
     topLayout->setContentsMargins(0, 0, 0, 0);
     topLayout->setSpacing(50);
@@ -389,7 +389,7 @@ void QKugouWindow::createKugouMovieWidget()
 #if defined TTK_WEBKIT || defined TTK_WEBENGINE
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
-    d->m_topWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01 + MusicUIObject::MQSSWidgetStyle01);
+    d->m_topWidget->setStyleSheet(MusicUIObject::PushButtonStyle01 + MusicUIObject::WidgetStyle01);
     QHBoxLayout *topLayout = new QHBoxLayout(d->m_topWidget);
     topLayout->setContentsMargins(0, 0, 0, 0);
     topLayout->setSpacing(50);
@@ -460,7 +460,7 @@ void QKugouWindow::changeClickedButtonStyle(int index)
     const QList<QAbstractButton*> &buttons = d->m_buttonGroup->buttons();
     for(int i = 0; i < buttons.count(); ++i)
     {
-        buttons[i]->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01);
+        buttons[i]->setStyleSheet(MusicUIObject::PushButtonStyle01);
     }
-    buttons[index]->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02);
+    buttons[index]->setStyleSheet(MusicUIObject::PushButtonStyle02);
 }

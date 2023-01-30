@@ -20,13 +20,13 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_ui->listItemWidget->setFrameShape(QFrame::NoFrame);
-    m_ui->listItemWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    m_ui->listItemWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle01);
 
     m_ui->listItemWidget->setIconSize(QSize(60, 60));
     m_ui->listItemWidget->setViewMode(QListView::IconMode);
@@ -75,7 +75,7 @@ void MusicToolSetsWidget::addListWidgetItem()
     for(const ToolItem &pair : qAsConst(pairs))
     {
         QListWidgetItem *item = new QListWidgetItem(QIcon(pair.m_icon), pair.m_name, m_ui->listItemWidget);
-        item->setForeground(QColor(MusicUIObject::MQSSColor01));
+        item->setForeground(QColor(MusicUIObject::Color01));
         item->setSizeHint(QSize(80, 90));
         m_ui->listItemWidget->addItem(item);
     }

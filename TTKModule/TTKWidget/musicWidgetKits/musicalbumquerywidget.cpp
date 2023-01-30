@@ -197,7 +197,7 @@ void MusicAlbumQueryWidget::createLabels()
     layout()->addWidget(scrollArea);
 
     QWidget *function = new QWidget(m_mainWindow);
-    function->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01 + MusicUIObject::MQSSPushButtonStyle03);
+    function->setStyleSheet(MusicUIObject::CheckBoxStyle01 + MusicUIObject::PushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
     QLabel *firstLabel = new QLabel(function);
@@ -218,19 +218,19 @@ void MusicAlbumQueryWidget::createLabels()
     QFont albumFont = albumLabel->font();
     albumFont.setPixelSize(20);
     albumLabel->setFont(albumFont);
-    albumLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
+    albumLabel->setStyleSheet(MusicUIObject::FontStyle01);
     albumLabel->setText(TTK_DEFAULT_STR);
     QLabel *singerLabel = new QLabel(topLineWidget);
-    singerLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
+    singerLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
     singerLabel->setText(TTK_DEFAULT_STR);
     QLabel *languageLabel = new QLabel(topLineWidget);
-    languageLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
+    languageLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
     languageLabel->setText(TTK_DEFAULT_STR);
     QLabel *companyLabel = new QLabel(topLineWidget);
-    companyLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
+    companyLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
     companyLabel->setText(TTK_DEFAULT_STR);
     QLabel *yearLabel = new QLabel(topLineWidget);
-    yearLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
+    yearLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
     yearLabel->setText(TTK_DEFAULT_STR);
 
     topLineLayout->addWidget(albumLabel);
@@ -266,7 +266,7 @@ void MusicAlbumQueryWidget::createLabels()
 
     QLabel *numberLabel = new QLabel(topRightWidget);
     numberLabel->setAlignment(Qt::AlignCenter);
-    numberLabel->setStyleSheet(MusicUIObject::MQSSFontStyle05 + MusicUIObject::MQSSColorStyle05);
+    numberLabel->setStyleSheet(MusicUIObject::FontStyle05 + MusicUIObject::ColorStyle05);
 
     const int number = 7 + TTKObject::random(3);
     numberLabel->setText(QString("%1.%2").arg(number).arg(TTKObject::random(10)));
@@ -295,7 +295,7 @@ void MusicAlbumQueryWidget::createLabels()
     //
 
     QWidget *functionWidget = new QWidget(this);
-    functionWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    functionWidget->setStyleSheet(MusicUIObject::PushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));

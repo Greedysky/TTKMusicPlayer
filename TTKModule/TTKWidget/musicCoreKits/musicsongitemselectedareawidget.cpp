@@ -20,7 +20,7 @@ MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *pare
 #else
     headerview->resizeSection(1, 222);
 #endif
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle01);
 }
 
 void MusicSongItemSelectedTableWidget::addCellItems(MusicSongItemList *items)
@@ -77,13 +77,13 @@ MusicSongItemSelectedDialog::MusicSongItemSelectedDialog(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->confirmButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->selectAllCheckButton->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->confirmButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->selectAllCheckButton->setStyleSheet(MusicUIObject::CheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
     m_ui->selectAllCheckButton->setFocusPolicy(Qt::NoFocus);
@@ -123,9 +123,9 @@ MusicSongItemSelectedAreaWidget::MusicSongItemSelectedAreaWidget(QWidget *parent
     m_itemLabel->setFixedWidth(75);
     m_modifiedItemButton->setFixedWidth(30);
 
-    m_label->setStyleSheet(MusicUIObject::MQSSFontStyle01 + MusicUIObject::MQSSColorStyle09);
-    m_itemLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04);
-    m_modifiedItemButton->setStyleSheet(MusicUIObject::MQSSColorStyle08);
+    m_label->setStyleSheet(MusicUIObject::FontStyle01 + MusicUIObject::ColorStyle09);
+    m_itemLabel->setStyleSheet(MusicUIObject::ColorStyle04);
+    m_modifiedItemButton->setStyleSheet(MusicUIObject::ColorStyle08);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);

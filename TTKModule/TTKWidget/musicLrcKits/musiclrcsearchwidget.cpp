@@ -12,16 +12,16 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->label_checkBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
-    m_ui->songSearchEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
-    m_ui->lrcSearchButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->lrcSearchDownload->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->closeButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->label_checkBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
+    m_ui->songSearchEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
+    m_ui->lrcSearchButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->lrcSearchDownload->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->closeButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->label_checkBox->setFocusPolicy(Qt::NoFocus);
@@ -34,7 +34,7 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     m_ui->lrcSearchDownload->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->closeButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->functionTopLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBackgroundStyle09);
+    m_ui->functionTopLabel->setStyleSheet(MusicUIObject::ColorStyle03 + MusicUIObject::BackgroundStyle09);
 
     connect(m_ui->lrcSearchButton, SIGNAL(clicked()), SLOT(lrcSearchButtonClicked()));
     connect(m_ui->lrcSearchDownload, SIGNAL(clicked()), SLOT(lrcSearchDownloadClicked()));

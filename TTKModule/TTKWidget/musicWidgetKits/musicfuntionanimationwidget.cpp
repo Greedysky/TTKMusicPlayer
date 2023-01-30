@@ -171,19 +171,19 @@ void MusicFuntionAnimationWidget::paintEvent(QPaintEvent *event)
 
 void MusicFuntionAnimationWidget::switchToSelectedItemStyle(int index)
 {
-    m_container[0]->setStyleSheet(MusicUIObject::MQSSItemMusic);
-    m_container[1]->setStyleSheet(MusicUIObject::MQSSItemLocal);
-    m_container[2]->setStyleSheet(MusicUIObject::MQSSItemCloud);
-    m_container[3]->setStyleSheet(MusicUIObject::MQSSItemRadio);
-    m_container[4]->setStyleSheet(MusicUIObject::MQSSItemDownload);
+    m_container[0]->setStyleSheet(MusicUIObject::ItemMusic);
+    m_container[1]->setStyleSheet(MusicUIObject::ItemLocal);
+    m_container[2]->setStyleSheet(MusicUIObject::ItemCloud);
+    m_container[3]->setStyleSheet(MusicUIObject::ItemRadio);
+    m_container[4]->setStyleSheet(MusicUIObject::ItemDownload);
 
     switch(index)
     {
-        case 0: m_container[0]->setStyleSheet(MusicUIObject::MQSSItemMusicClicked); break;
-        case 1: m_container[1]->setStyleSheet(MusicUIObject::MQSSItemLocalClicked); break;
-        case 2: m_container[2]->setStyleSheet(MusicUIObject::MQSSItemCloudClicked); break;
-        case 3: m_container[3]->setStyleSheet(MusicUIObject::MQSSItemRadioClicked); break;
-        case 4: m_container[4]->setStyleSheet(MusicUIObject::MQSSItemDownloadClicked); break;
+        case 0: m_container[0]->setStyleSheet(MusicUIObject::ItemMusicClicked); break;
+        case 1: m_container[1]->setStyleSheet(MusicUIObject::ItemLocalClicked); break;
+        case 2: m_container[2]->setStyleSheet(MusicUIObject::ItemCloudClicked); break;
+        case 3: m_container[3]->setStyleSheet(MusicUIObject::ItemRadioClicked); break;
+        case 4: m_container[4]->setStyleSheet(MusicUIObject::ItemDownloadClicked); break;
         default: break;
     }
 
@@ -216,24 +216,24 @@ MusicOptionAnimationWidget::MusicOptionAnimationWidget(QWidget *parent)
 
 void MusicOptionAnimationWidget::musicButtonStyleClear(bool fore)
 {
-    m_container[0]->setStyleSheet(fore ? MusicUIObject::MQSSFuncSongFore : MusicUIObject::MQSSFuncSongBack);
-    m_container[1]->setStyleSheet(fore ? MusicUIObject::MQSSFuncRadioFore : MusicUIObject::MQSSFuncRadioBack);
-    m_container[2]->setStyleSheet(fore ? MusicUIObject::MQSSFuncListFore : MusicUIObject::MQSSFuncListBack);
-    m_container[3]->setStyleSheet(fore ? MusicUIObject::MQSSFuncMVFore : MusicUIObject::MQSSFuncMVBack);
-    m_container[4]->setStyleSheet(fore ? MusicUIObject::MQSSFuncLiveFore : MusicUIObject::MQSSFuncLiveBack);
-    m_container[5]->setStyleSheet(MusicUIObject::MQSSFuncLrcFore);
+    m_container[0]->setStyleSheet(fore ? MusicUIObject::FuncSongFore : MusicUIObject::FuncSongBack);
+    m_container[1]->setStyleSheet(fore ? MusicUIObject::FuncRadioFore : MusicUIObject::FuncRadioBack);
+    m_container[2]->setStyleSheet(fore ? MusicUIObject::FuncListFore : MusicUIObject::FuncListBack);
+    m_container[3]->setStyleSheet(fore ? MusicUIObject::FuncMVFore : MusicUIObject::FuncMVBack);
+    m_container[4]->setStyleSheet(fore ? MusicUIObject::FuncLiveFore : MusicUIObject::FuncLiveBack);
+    m_container[5]->setStyleSheet(MusicUIObject::FuncLrcFore);
 }
 
 void MusicOptionAnimationWidget::musicButtonStyle(int index)
 {
     switch(index)
     {
-        case 0: m_container[0]->setStyleSheet(MusicUIObject::MQSSFuncSongForeClicked); break;
-        case 1: m_container[1]->setStyleSheet(MusicUIObject::MQSSFuncRadioForeClicked); break;
-        case 2: m_container[2]->setStyleSheet(MusicUIObject::MQSSFuncListForeClicked); break;
-        case 3: m_container[3]->setStyleSheet(MusicUIObject::MQSSFuncMVForeClicked); break;
-        case 4: m_container[4]->setStyleSheet(MusicUIObject::MQSSFuncLiveForeClicked); break;
-        case 5: m_container[5]->setStyleSheet(MusicUIObject::MQSSFuncLrcForeClicked); break;
+        case 0: m_container[0]->setStyleSheet(MusicUIObject::FuncSongForeClicked); break;
+        case 1: m_container[1]->setStyleSheet(MusicUIObject::FuncRadioForeClicked); break;
+        case 2: m_container[2]->setStyleSheet(MusicUIObject::FuncListForeClicked); break;
+        case 3: m_container[3]->setStyleSheet(MusicUIObject::FuncMVForeClicked); break;
+        case 4: m_container[4]->setStyleSheet(MusicUIObject::FuncLiveForeClicked); break;
+        case 5: m_container[5]->setStyleSheet(MusicUIObject::FuncLrcForeClicked); break;
         default: break;
     }
 }
@@ -285,7 +285,7 @@ void MusicSkinAnimationWidget::switchToSelectedItemStyle(int index)
 {
     for(QWidget *widget : qAsConst(m_container))
     {
-        widget->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBackgroundStyle01);
+        widget->setStyleSheet(MusicUIObject::ColorStyle03 + MusicUIObject::BackgroundStyle01);
     }
 
     if(index < 0 || index >= m_container.count())
@@ -293,6 +293,6 @@ void MusicSkinAnimationWidget::switchToSelectedItemStyle(int index)
         return;
     }
 
-    m_container[index]->setStyleSheet(MusicUIObject::MQSSColorStyle08 + MusicUIObject::MQSSBackgroundStyle01);
+    m_container[index]->setStyleSheet(MusicUIObject::ColorStyle08 + MusicUIObject::BackgroundStyle01);
     MusicAbstractAnimationWidget::switchToSelectedItemStyle(index);
 }

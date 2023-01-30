@@ -8,7 +8,7 @@ MusicItemRenameEidt::MusicItemRenameEidt(QWidget *parent)
       m_focusBlock(false)
 {
     setGeometry(1, 0, 330, 20);
-    setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    setStyleSheet(MusicUIObject::LineEditStyle01);
     setFocus(Qt::MouseFocusReason);
     setFocusPolicy(Qt::ClickFocus);
 

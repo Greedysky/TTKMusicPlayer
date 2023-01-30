@@ -26,12 +26,12 @@ void MusicSongSearchPopTableWidget::addCellItem(int index, const QString &name, 
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), "  " + name, Qt::ElideRight, headerview->sectionSize(0) - 20));
     item->setToolTip(name);
-    item->setForeground(QColor(MusicUIObject::MQSSColor02));
+    item->setForeground(QColor(MusicUIObject::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem(time);
-    item->setForeground(QColor(MusicUIObject::MQSSColor02));
+    item->setForeground(QColor(MusicUIObject::Color02));
     QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(index, 1, item);
 }
@@ -68,14 +68,14 @@ MusicSongSearchPopWidget::MusicSongSearchPopWidget(QWidget *parent)
     m_clearButton = new QPushButton("   " + tr("Clear History"), this);
     m_clearButton->setCursor(Qt::PointingHandCursor);
     m_clearButton->setFixedHeight(35);
-    m_clearButton->setStyleSheet(MusicUIObject::MQSSCustomStyle01 + MusicUIObject::MQSSFontStyle02 + MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBorderStyle01 + MusicUIObject::MQSSBackgroundStyle10);
+    m_clearButton->setStyleSheet(MusicUIObject::CustomStyle01 + MusicUIObject::FontStyle02 + MusicUIObject::ColorStyle03 + MusicUIObject::BorderStyle01 + MusicUIObject::BackgroundStyle10);
 #ifdef Q_OS_UNIX
     m_clearButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     QFrame *frame = new QFrame(this);
     frame->setFixedHeight(1);
-    frame->setStyleSheet(MusicUIObject::MQSSBackgroundStyle09);
+    frame->setStyleSheet(MusicUIObject::BackgroundStyle09);
     frame->setFrameShape(QFrame::HLine);
 
     layout->addWidget(m_popTableWidget);
