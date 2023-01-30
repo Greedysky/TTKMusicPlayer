@@ -186,7 +186,7 @@ QVariantMap MusicMPRISPlayerCore::metadata() const
 
     QVariantMap map;
     TrackInfo info = m_core->trackInfo();
-    map["mpris:length"] = qMax(m_core->duration() * 1000 , qint64(0));
+    map["mpris:length"] = qMax(m_core->duration() * MT_S2MS, qint64(0));
     if(!MetaDataManager::instance()->getCoverPath(info.path()).isEmpty())
     {
         map["mpris:artUrl"] = QUrl::fromLocalFile(MetaDataManager::instance()->getCoverPath(info.path())).toString();
@@ -267,7 +267,7 @@ QString MusicMPRISPlayerCore::playbackStatus() const
 
 qlonglong MusicMPRISPlayerCore::position() const
 {
-    return qMax(m_core->elapsed() * 1000, qint64(0));
+    return qMax(m_core->elapsed() * MT_S2MS, qint64(0));
 }
 
 double MusicMPRISPlayerCore::rate() const
@@ -385,9 +385,9 @@ void MusicMPRISPlayerCore::volumeChanged()
 
 void MusicMPRISPlayerCore::elapsedChanged(qint64 elapsed)
 {
-    if(std::abs(elapsed - m_prevPos) > 2000)
+    if(std::abs(elapsed - m_prevPos) > 2 * MT_S2MS)
     {
-        Q_EMIT Seeked(elapsed * 1000);
+        Q_EMIT Seeked(elapsed * MT_S2MS);
     }
     m_prevPos = elapsed;
 }

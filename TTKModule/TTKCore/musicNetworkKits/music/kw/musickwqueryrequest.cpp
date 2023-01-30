@@ -81,7 +81,7 @@ void MusicKWQueryRequest::downLoadFinished()
                     MusicObject::MusicSongInformation info;
                     info.m_singerName = MusicUtils::String::charactersReplaced(value["ARTIST"].toString());
                     info.m_songName = MusicUtils::String::charactersReplaced(value["SONGNAME"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * 1000);
+                    info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * MT_S2MS);
 
                     info.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
                     info.m_artistId = value["ARTISTID"].toString();
@@ -149,7 +149,7 @@ void MusicKWQueryRequest::downLoadSingleFinished()
                 MusicObject::MusicSongInformation info;
                 info.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
                 info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * 1000);
+                info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
 
                 info.m_songId = value["rid"].toString();
                 info.m_artistId = value["artistid"].toString();

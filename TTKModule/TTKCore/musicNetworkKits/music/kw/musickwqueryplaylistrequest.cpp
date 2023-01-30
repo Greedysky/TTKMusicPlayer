@@ -79,7 +79,7 @@ void MusicKWQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
             item.m_name = value["title"].toString();
             item.m_playCount = value["playnum"].toString();
             item.m_description = value["info"].toString();
-            item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong() * 1000).toString(TTK_YEAR_FORMAT);
+            item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong() * MT_S2MS).toString(TTK_YEAR_FORMAT);
             item.m_nickName = value["uname"].toString();
         }
     }
@@ -156,7 +156,7 @@ void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
                     MusicObject::MusicSongInformation info;
                     info.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
                     info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * 1000);
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
 
                     info.m_songId = value["id"].toString();
                     info.m_artistId = value["artistid"].toString();
@@ -218,7 +218,7 @@ void MusicKWQueryPlaylistRequest::downloadMoreDetailsFinished()
                 result.m_name = value["title"].toString();
                 result.m_playCount = value["playnum"].toString();
                 result.m_description = value["info"].toString();
-                result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong() * 1000).toString(TTK_YEAR_FORMAT);
+                result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong() * MT_S2MS).toString(TTK_YEAR_FORMAT);
                 result.m_nickName = value["uname"].toString();
                 Q_EMIT createPlaylistItem(result);
             }

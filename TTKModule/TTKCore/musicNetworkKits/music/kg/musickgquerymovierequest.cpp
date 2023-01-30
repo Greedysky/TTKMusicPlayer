@@ -82,7 +82,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
                     MusicObject::MusicSongInformation info;
                     info.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
                     info.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * 1000);
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
 
                     info.m_songId = value["mvhash"].toString();
                     TTK_NETWORK_QUERY_CHECK();

@@ -71,7 +71,7 @@ void MusicAbstractDownLoadRequest::downloadProgress(qint64 bytesReceived, qint64
 
 void MusicAbstractDownLoadRequest::updateDownloadSpeed()
 {
-    int delta = m_currentReceived - m_hasReceived;
+    const int delta = m_currentReceived - m_hasReceived;
     ///limit speed
     if(G_SETTING_PTR->value(MusicSettingManager::DownloadLimitEnable).toInt() == 0)
     {
@@ -79,7 +79,6 @@ void MusicAbstractDownLoadRequest::updateDownloadSpeed()
         if(limitValue != 0 && delta > limitValue * MH_KB)
         {
             MusicUtils::Core::sleep(MT_S2MS - limitValue * MH_KB * MT_S2MS / delta);
-            delta = limitValue * MH_KB;
         }
     }
     m_hasReceived = m_currentReceived;
