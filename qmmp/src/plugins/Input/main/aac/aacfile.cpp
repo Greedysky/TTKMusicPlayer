@@ -53,51 +53,68 @@ AACFile::AACFile(QIODevice *input, bool metaData, bool adts)
     }
 
     int adts_offset = 0;
+
     while(adts_offset < buf_at - 6)
     {
-        //try to determnate header type;
-        if((uchar) buf[adts_offset] == 0xff && (((uchar)buf[adts_offset+1] & 0xf6) == 0xf0))
-        {
-            unsigned int frame_length = uchar(buf[adts_offset + 3]) << 11;
-            frame_length |= uchar(buf[adts_offset + 4]) << 3;
-            frame_length |= uchar(buf[adts_offset + 5]) >> 5;
-            frame_length &= 0x1FFF;
+        int adts_pos = adts_offset;
+        int adts_frames = 0;
 
-            if(frame_length == 0 || (adts_offset + frame_length > buf_at - 6))
+        while(adts_pos < buf_at - 6)
+        {
+            //try to determnate header type;
+            if((uchar) buf[adts_pos] == 0xff && (((uchar)buf[adts_pos + 1] & 0xf6) == 0xf0))
             {
-                adts_offset++;
+                unsigned int frame_length = uchar(buf[adts_pos + 3]) << 11;
+                frame_length |= uchar(buf[adts_pos + 4]) << 3;
+                frame_length |= uchar(buf[adts_pos + 5]) >> 5;
+                frame_length &= 0x1FFF;
+
+                if(frame_length < 7)
+                {
+                    adts_frames = 0;
+                    break;
+                }
+
+                adts_pos += frame_length;
+                adts_frames++;
                 continue;
             }
 
-            //check second sync word
-            if(((uchar)buf[adts_offset + frame_length] == 0xFF) &&
-                    (((uchar)buf[adts_offset + frame_length + 1] & 0xF6) == 0xF0))
-            {
-                qDebug("AACFile: ADTS header found");
-                if(!input->isSequential() && adts)
-                    parseADTS();
-                m_isValid = true;
-                m_offset += adts_offset;
-                return;
-            }
+            adts_frames = 0;
+            break;
         }
+
+        if(adts_frames > 1)
+        {
+            qDebug("AACFile: ADTS header found");
+
+            if(!input->isSequential() && adts)
+                parseADTS();
+
+            m_isValid = true;
+            m_offset += adts_offset;
+            qDebug("ok");
+            return;
+        }
+
         adts_offset++;
     }
 
     if(memcmp(buf, "ADIF", 4) == 0)
     {
         qDebug("AACFile: ADIF header found");
-        int skip_size = (buf[4] & 0x80) ? 9 : 0;
-        m_bitrate = ((buf[4 + skip_size] & 0x0F)<<19) |
-                (buf[5 + skip_size]<<11) |
-                (buf[6 + skip_size]<<3) |
+        const int skip_size = (buf[4] & 0x80) ? 9 : 0;
+        m_bitrate = ((buf[4 + skip_size] & 0x0F) << 19) |
+                (buf[5 + skip_size] << 11) |
+                (buf[6 + skip_size] << 3) |
                 (buf[7 + skip_size] & 0xE0);
 
         if(!input->isSequential())
-            m_duration = (qint64) (((float)input->size() * 8000.f) / ((float)m_bitrate) + 1.0f);
+            m_duration = (qint64)(((float)input->size() * 8000.f) / ((float)m_bitrate) + 0.5f);
         else
             m_duration = 0;
-        m_bitrate = (int)((float)m_bitrate / 1000.0f + 1.0f);
+
+        m_bitrate = (int)((float)m_bitrate / 1000.0f + 0.5f);
         m_isValid = true;
     }
 }

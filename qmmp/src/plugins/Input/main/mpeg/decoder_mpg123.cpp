@@ -50,7 +50,7 @@ DecoderMPG123::~DecoderMPG123()
 bool DecoderMPG123::initialize()
 {
     m_errors = 0;
-    if(input()->isSequential ()) //for streams only
+    if(input()->isSequential()) //for streams only
     {
         TagExtractor extractor(input());
         if(!extractor.id3v2tag().isEmpty())
