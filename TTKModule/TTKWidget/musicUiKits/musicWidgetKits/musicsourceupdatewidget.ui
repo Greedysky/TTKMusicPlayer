@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>454</width>
-    <height>350</height>
+    <height>380</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,26 +29,34 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="QWidget" name="container">
+  <widget class="QWidget" name="container" native="true">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>90</y>
      <width>454</width>
-     <height>260</height>
+     <height>290</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background:#FCFCFC;</string>
    </property>
-   <widget class="QWidget" name="body">
+   <widget class="QWidget" name="body" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>454</width>
+      <height>290</height>
+     </rect>
+    </property>
     <widget class="QLabel" name="titleLable">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
        <width>454</width>
-       <height>215</height>
+       <height>240</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -65,7 +73,7 @@
      <property name="geometry">
       <rect>
        <x>250</x>
-       <y>223</y>
+       <y>253</y>
        <width>88</width>
        <height>28</height>
       </rect>
@@ -87,7 +95,7 @@
      <property name="geometry">
       <rect>
        <x>355</x>
-       <y>223</y>
+       <y>253</y>
        <width>88</width>
        <height>28</height>
       </rect>
@@ -109,7 +117,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>215</y>
+       <y>245</y>
        <width>454</width>
        <height>45</height>
       </rect>

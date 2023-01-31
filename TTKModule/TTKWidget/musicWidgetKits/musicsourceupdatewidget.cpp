@@ -145,7 +145,7 @@ void MusicSourceUpdateWidget::downLoadFinished(const QVariant &bytes)
         text.append(value["data"].toString());
 
         m_ui->upgradeButton->setEnabled(true);
-        m_ui->titleLable->move(50, 5);
+        m_ui->titleLable->move(50, 2);
         m_ui->titleLable->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     }
     else
