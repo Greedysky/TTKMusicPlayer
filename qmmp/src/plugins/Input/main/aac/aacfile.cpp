@@ -87,13 +87,11 @@ AACFile::AACFile(QIODevice *input, bool metaData, bool adts)
         if(adts_frames > 1)
         {
             qDebug("AACFile: ADTS header found");
-
             if(!input->isSequential() && adts)
                 parseADTS();
 
             m_isValid = true;
             m_offset += adts_offset;
-            qDebug("ok");
             return;
         }
 
