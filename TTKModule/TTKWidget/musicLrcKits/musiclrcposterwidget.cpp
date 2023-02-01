@@ -20,7 +20,7 @@ MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
     : QWidget(parent),
       m_type(Format::Type01)
 {
-    m_pixmap.load(G_BACKGROUND_PTR->artistPhotoPathNoIndex());
+    m_pixmap.load(G_BACKGROUND_PTR->artistPhotoDefaultPath());
     if(m_pixmap.isNull())
     {
         MusicBackgroundImage image;

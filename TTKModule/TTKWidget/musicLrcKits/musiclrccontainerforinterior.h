@@ -143,10 +143,6 @@ public Q_SLOTS:
      */
     void artistBackgroundChanged();
     /*!
-     * The artist background has uploaded.
-     */
-    void showArtistBackgroundUploadedWidget();
-    /*!
      * Open current lrc file location.
      */
     void lrcOpenFileDir() const;

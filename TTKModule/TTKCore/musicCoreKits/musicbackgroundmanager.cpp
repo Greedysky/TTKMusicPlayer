@@ -35,12 +35,12 @@ QString MusicBackgroundManager::artistName() const
     return m_currentArtistName;
 }
 
-void MusicBackgroundManager::indexIncrease()
+void MusicBackgroundManager::photoNext()
 {
     m_currentIndex++;
 }
 
-void MusicBackgroundManager::indexDecrease()
+void MusicBackgroundManager::photoPrevious()
 {
     m_currentIndex--;
 }
@@ -57,7 +57,7 @@ QString MusicBackgroundManager::artistPhotoPath()
     }
 }
 
-QString MusicBackgroundManager::artistPhotoPathNoIndex()
+QString MusicBackgroundManager::artistPhotoDefaultPath() const
 {
     if(m_photos.isEmpty())
     {
@@ -65,22 +65,7 @@ QString MusicBackgroundManager::artistPhotoPathNoIndex()
     }
 
     const int index = m_currentIndex - 1;
-    if(-1 < index && index < m_photos.count())
-    {
-        return m_photos[index];
-    }
-
-    return QString();
-}
-
-QString MusicBackgroundManager::artistPhotoPathByIndex(int index) const
-{
-    if((0 < index && index != -1) || index > m_photos.count() || m_photos.isEmpty())
-    {
-        TTK_ERROR_STREAM("Index out of range");
-        return QString();
-    }
-    return (index == -1) ? m_photos[m_currentIndex < m_photos.count() ? m_currentIndex : 0] : m_photos[index];
+    return (-1 < index && index < m_photos.count()) ? m_photos[index] : QString();
 }
 
 QStringList MusicBackgroundManager::artistPhotoPathList() const

@@ -169,12 +169,12 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_checkBox = new QCheckBox(tr("All"), functionWidget);
     m_checkBox->setCursor(QCursor(Qt::PointingHandCursor));
     m_checkBox->setStyleSheet(MusicUIObject::CheckBoxStyle05);
-    m_checkBox->setFixedSize(100, 20);
+    m_checkBox->setFixedSize(50, 20);
     m_checkBox->setChecked(true);
     functionLayout->addWidget(m_checkBox);
     functionLayout->addStretch(1);
 
-    QPushButton *confirmButton = new QPushButton(tr("Confirm"), functionWidget);
+    QPushButton *confirmButton = new QPushButton(tr("OK"), functionWidget);
     confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     confirmButton->setStyleSheet(MusicUIObject::InteriorFloatSetting + MusicUIObject::PushButtonStyle06);
     confirmButton->setFixedSize(50, 25);

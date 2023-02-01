@@ -21,6 +21,54 @@
 
 #include "musicabstractmovedialog.h"
 
+/*! @brief The class of the photo modify label.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicPhotoModifiedLabel : public QWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPhotoModLabel)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicPhotoModifiedLabel(QWidget *parent = nullptr);
+
+    /*!
+     * Set song image path.
+     */
+    void setImagePath(const QString &path);
+    /*!
+     * Set save song image path.
+     */
+    void saveImagePath(const QString &path) const;
+
+Q_SIGNALS:
+    /*!
+     * Delta value changed.
+     */
+    void deltaValueChanged(float v);
+
+private:
+    /*!
+     * Override the widget event.
+     */
+    virtual void paintEvent(QPaintEvent *event) override final;
+    virtual void wheelEvent(QWheelEvent *event) override final;
+    virtual void mousePressEvent(QMouseEvent *event) override final;
+    virtual void mouseMoveEvent(QMouseEvent *event) override final;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override final;
+
+    QString m_path;
+    QPixmap m_showPix;
+    float m_ratio;
+    bool m_picMoved;
+    int m_width, m_height, m_originWidth;
+    QPoint m_pressedPos, m_deltaPos, m_imagePos;
+
+};
+
+
 namespace Ui {
 class MusicLrcArtPhotoUploadWidget;
 }

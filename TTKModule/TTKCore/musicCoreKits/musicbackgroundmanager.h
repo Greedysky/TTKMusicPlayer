@@ -59,24 +59,20 @@ public:
     /*!
      * Set artist photo current index + 1.
      */
-    void indexIncrease();
+    void photoNext();
     /*!
      * Set artist photo current index - 1.
      */
-    void indexDecrease();
+    void photoPrevious();
 
     /*!
      * Get artist photo path.
      */
     QString artistPhotoPath();
     /*!
-     * Get artist photo path no index.
+     * Get artist photo path by default.
      */
-    QString artistPhotoPathNoIndex();
-    /*!
-     * Get artist photo path by given index.
-     */
-    QString artistPhotoPathByIndex(int index = -1) const;
+    QString artistPhotoDefaultPath() const;
 
     /*!
      * Get artist photo path list.

@@ -1,6 +1,5 @@
 #include "musiclrccontainerforinterior.h"
 #include "musiclrcmanagerforinterior.h"
-#include "musiclrcartphotouploadwidget.h"
 #include "musiclrcfloatwidget.h"
 #include "musiclrcfloatplaywidget.h"
 #include "musiclrclocallinkwidget.h"
@@ -277,13 +276,6 @@ void MusicLrcContainerForInterior::artistBackgroundChanged()
     Q_EMIT backgroundChanged();
 }
 
-void MusicLrcContainerForInterior::showArtistBackgroundUploadedWidget()
-{
-    MusicLrcArtPhotoUploadWidget(this).exec();
-    m_showArtistBackground = true;
-    Q_EMIT backgroundChanged();
-}
-
 void MusicLrcContainerForInterior::lrcOpenFileDir() const
 {
     MusicUtils::Url::openUrl(QFileInfo(m_lrcAnalysis->currentFilePath()).absoluteFilePath());
@@ -462,7 +454,6 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     m_showArtistBackground ? artAction->setText(tr("Art Turn Off")) : artAction->setText(tr("Art Turn On"));
     QAction *showLrc = menu.addAction(tr("Lrc Turn Off"), this, SLOT(linkLrcStateChanged()));
     m_linkLocalLrc ? showLrc->setText(tr("Lrc Turn Off")) : showLrc->setText(tr("Lrc Turn On"));
-    menu.addAction(tr("Art Background Upload"), this, SLOT(showArtistBackgroundUploadedWidget()));
     menu.addAction(tr("Set As Background"), MusicTopAreaWidget::instance(), SLOT(musicSetAsArtistBackground()))->setEnabled(!G_BACKGROUND_PTR->isEmpty());
     menu.addSeparator();
 

@@ -196,7 +196,7 @@ void MusicTopAreaWidget::musicBackgroundTransparentChanged(const QString &fileNa
 
 void MusicTopAreaWidget::musicSetAsArtistBackground()
 {
-    QString path = G_BACKGROUND_PTR->artistPhotoPathNoIndex();
+    QString path = G_BACKGROUND_PTR->artistPhotoDefaultPath();
     if(!path.isEmpty())
     {
         path = MusicBackgroundSkinDialog::cpoyArtistFileToLocal(path);
@@ -233,7 +233,7 @@ void MusicTopAreaWidget::musicBackgroundChanged()
     const QString &path = G_BACKGROUND_PTR->artistPhotoPath();
     if(!path.isEmpty())
     {
-        G_BACKGROUND_PTR->indexIncrease();
+        G_BACKGROUND_PTR->photoNext();
         drawWindowBackgroundRectString(path);
     }
     else
