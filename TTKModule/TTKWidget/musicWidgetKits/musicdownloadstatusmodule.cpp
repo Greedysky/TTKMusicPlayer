@@ -57,7 +57,6 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
     }
 
     const QString &fileName = d->queryValue();
-    const int count = MusicUtils::String::stringSplit(fileName).count();
     const QString &artistName = MusicUtils::String::artistName(fileName);
     const QString &songName = MusicUtils::String::songName(fileName);
 
@@ -87,6 +86,7 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
     if(mode || !checkArtistBackgroundValid())
     {
         ///download art background picture
+        const int count = MusicUtils::String::stringSplit(fileName).count();
         G_DOWNLOAD_QUERY_PTR->makeBackgroundRequest(count == 1 ? info.m_singerName : artistName, artistName, this)->startRequest();
     }
 }

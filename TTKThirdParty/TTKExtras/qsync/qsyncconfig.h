@@ -32,7 +32,6 @@ struct TTK_MODULE_EXPORT QSyncConfig
     static QString HOST;
     static QString NAME;
     static QByteArray KEY;
-    static QString VERSION;
 };
 
 #endif

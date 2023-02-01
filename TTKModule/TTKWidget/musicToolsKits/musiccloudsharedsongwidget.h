@@ -42,7 +42,7 @@ public:
     /*!
      * Initialize cloud main widget.
      */
-    void initialize();
+    void initialize() const;
 
 private:
     MusicCloudToolBoxWidget *m_toolBoxWidget;

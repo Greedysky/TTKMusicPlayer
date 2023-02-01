@@ -19,9 +19,9 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "qsyncdataitem.h"
 #include "qsyncutils.h"
 #include "qsyncconfig.h"
+#include "qsyncdataitem.h"
 #include <QtNetwork/QNetworkReply>
 
 class QSyncDataInterfacePrivate;

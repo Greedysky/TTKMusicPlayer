@@ -143,6 +143,10 @@ private:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
     /*!
+     * Check current sync condig is valid.
+     */
+    bool cloudConfigValid() const;
+    /*!
      * Create cell item by input data.
      */
     void addCellItem(const MusicCloudDataItem &data);
@@ -197,6 +201,10 @@ public:
     explicit MusicCloudManagerWidget(QWidget *parent = nullptr);
     ~MusicCloudManagerWidget();
 
+    /*!
+     * Initialize cloud main widget.
+     */
+    void initialize() const;
     /*!
      * Resize widget bound by resize called.
      */

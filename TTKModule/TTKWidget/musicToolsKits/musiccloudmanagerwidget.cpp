@@ -73,16 +73,24 @@ MusicCloudManagerTableWidget::~MusicCloudManagerTableWidget()
 
 bool MusicCloudManagerTableWidget::queryCloudKey()
 {
-    TTKSemaphoreLoop loop;
-    connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
+    if(!cloudConfigValid())
+    {
+        TTKSemaphoreLoop loop;
+        connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
-    MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
-    connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startRequest(QSyncUtils::makeDataBucketUrl() + OS_CLOUD_URL);
-    loop.exec();
+        MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        d->startRequest(QSyncUtils::makeDataBucketUrl() + OS_CLOUD_URL);
+        loop.exec();
+    }
+
+    if(!cloudConfigValid())
+    {
+        return false;
+    }
 
     updateListToServer();
-    return !QSyncConfig::NAME.isEmpty() && !QSyncConfig::KEY.isEmpty();
+    return true;
 }
 
 void MusicCloudManagerTableWidget::resizeSection()
@@ -367,6 +375,11 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.exec(QCursor::pos());
 }
 
+bool MusicCloudManagerTableWidget::cloudConfigValid() const
+{
+    return !QSyncConfig::NAME.isEmpty() && !QSyncConfig::KEY.isEmpty();
+}
+
 void MusicCloudManagerTableWidget::addCellItem(const MusicCloudDataItem &data)
 {
     int row = rowCount();
@@ -629,9 +642,8 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
 
     labelWidget->setLayout(labelWidgetLayout);
     mainLayout->addWidget(labelWidget);
-    //
+
     m_managerTableWidget = new MusicCloudManagerTableWidget(this);
-    m_managerTableWidget->queryCloudKey();
 
     connect(m_managerTableWidget, SIGNAL(updateLabelMessage(QString)), statusLabel, SLOT(setText(QString)));
     connect(m_managerTableWidget, SIGNAL(updataSizeLabel(qint64)), SLOT(updataSizeLabel(qint64)));
@@ -644,6 +656,11 @@ MusicCloudManagerWidget::~MusicCloudManagerWidget()
     delete m_sizeValueLabel;
     delete m_sizeValueBar;
     delete m_managerTableWidget;
+}
+
+void MusicCloudManagerWidget::initialize() const
+{
+    m_managerTableWidget->queryCloudKey();
 }
 
 void MusicCloudManagerWidget::resizeWidget()
