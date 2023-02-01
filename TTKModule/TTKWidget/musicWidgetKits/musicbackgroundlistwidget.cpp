@@ -9,12 +9,11 @@
 
 MusicBackgroundListItem::MusicBackgroundListItem(QWidget *parent)
     : QLabel(parent),
-      m_printMask(false),
       m_isSelected(false),
-      m_selectedMask(true),
-      m_closeMask(false),
-      m_closeSet(false),
-      m_showNameMask(true)
+      m_printMask(false),
+      m_selectedEnabled(true),
+      m_closeEnabled(false),
+      m_showNameEnabled(true)
 {
     setFixedSize(137, 100);
     setCursor(Qt::PointingHandCursor);
@@ -47,34 +46,34 @@ bool MusicBackgroundListItem::contains(const MusicSkinItem &item) const
     return false;
 }
 
-void MusicBackgroundListItem::setSelect(bool s)
+void MusicBackgroundListItem::setSelected(bool v)
 {
-    m_isSelected = s;
+    m_isSelected = v;
     update();
 }
 
-void MusicBackgroundListItem::setSelectEnabled(bool s)
+void MusicBackgroundListItem::setSelectEnabled(bool v)
 {
-    m_selectedMask = s;
+    m_selectedEnabled = v;
     update();
 }
 
-void MusicBackgroundListItem::setCloseEnabled(bool s)
+void MusicBackgroundListItem::setCloseEnabled(bool v)
 {
-    m_closeSet = s;
+    m_closeEnabled = v;
     update();
 }
 
-void MusicBackgroundListItem::setShowNameEnabled(bool s)
+void MusicBackgroundListItem::setShowNameEnabled(bool v)
 {
-    m_showNameMask = s;
+    m_showNameEnabled = v;
     update();
 }
 
 void MusicBackgroundListItem::mousePressEvent(QMouseEvent *event)
 {
     QLabel::mousePressEvent(event);
-    if(m_closeSet && QRect(width() - 16 - 6, 6, 16, 16).contains(event->pos()))
+    if(m_closeEnabled && QRect(width() - 16 - 6, 6, 16, 16).contains(event->pos()))
     {
         Q_EMIT closeClicked(this);
     }
@@ -88,7 +87,6 @@ void MusicBackgroundListItem::leaveEvent(QEvent *event)
 {
     QLabel::leaveEvent(event);
     m_printMask = false;
-    m_closeMask = false;
     update();
 }
 
@@ -96,7 +94,6 @@ void MusicBackgroundListItem::enterEvent(QtEnterEvent *event)
 {
     QLabel::enterEvent(event);
     m_printMask = true;
-    m_closeMask = true;
     update();
 }
 
@@ -104,7 +101,7 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
 {
     QLabel::paintEvent(event);
 
-    if(m_isSelected && m_selectedMask)
+    if(m_selectedEnabled && m_isSelected)
     {
         QPainter painter(this);
         painter.drawPixmap(width() - 17, height() - 17, 17, 17, QPixmap(":/tiny/lb_selected"));
@@ -121,7 +118,7 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
         painter.setFont(font);
 
         painter.setPen(Qt::white);
-        if(m_showNameMask)
+        if(m_showNameEnabled)
         {
             painter.drawText((width() - MusicUtils::Widget::fontTextWidth(painter.font(), m_name)) / 2, 32, m_name);
         }
@@ -130,19 +127,19 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
         painter.drawText((width() - MusicUtils::Widget::fontTextWidth(painter.font(), v)) / 2, 50, v);
                 v = m_imageInfo.m_name;
         painter.drawText((width() - MusicUtils::Widget::fontTextWidth(painter.font(), v)) / 2, 68, v);
-    }
 
-    if(m_closeSet && m_closeMask)
-    {
-        QPainter painter(this);
-        painter.drawPixmap(width() - 16 - 6, 6, 16, 16, QPixmap(":/functions/btn_close_hover"));
+        if(m_closeEnabled)
+        {
+            QPainter painter(this);
+            painter.drawPixmap(width() - 16 - 6, 6, 16, 16, QPixmap(":/functions/btn_close_hover"));
+        }
     }
 }
 
 
 MusicBackgroundListWidget::MusicBackgroundListWidget(QWidget *parent)
     : QWidget(parent),
-      m_type(First),
+      m_type(CachedModule),
       m_currentItem(nullptr)
 {
     m_gridLayout = new QGridLayout(this);
@@ -162,7 +159,7 @@ void MusicBackgroundListWidget::setCurrentItemName(const QString &name)
     {
         if(item->fileName() == name)
         {
-            item->setSelect(true);
+            item->setSelected(true);
             m_currentItem = item;
             break;
         }
@@ -173,7 +170,7 @@ void MusicBackgroundListWidget::clearState()
 {
     for(MusicBackgroundListItem *item : qAsConst(m_items))
     {
-        item->setSelect(false);
+        item->setSelected(false);
     }
 }
 
@@ -190,7 +187,7 @@ void MusicBackgroundListWidget::addCellItem(const QString &icon, bool state)
     item->setCloseEnabled(state);
     item->setPixmap(QPixmap(icon).scaled(item->size()));
 
-    connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(itemHasClicked(MusicBackgroundListItem*)));
+    connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(currentItemClicked(MusicBackgroundListItem*)));
     connect(item, SIGNAL(closeClicked(MusicBackgroundListItem*)), SLOT(itemCloseClicked(MusicBackgroundListItem*)));
     m_gridLayout->addWidget(item, m_items.count() / ITEM_COUNT, m_items.count() % ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     m_items << item;
@@ -204,7 +201,7 @@ void MusicBackgroundListWidget::addCellItem(const QString &name, const QString &
     item->setFilePath(path);
     item->updatePixImage();
 
-    connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(itemHasClicked(MusicBackgroundListItem*)));
+    connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(currentItemClicked(MusicBackgroundListItem*)));
     connect(item, SIGNAL(closeClicked(MusicBackgroundListItem*)), SLOT(itemCloseClicked(MusicBackgroundListItem*)));
     m_gridLayout->addWidget(item, m_items.count() / ITEM_COUNT, m_items.count() % ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     m_items << item;
@@ -294,7 +291,7 @@ void MusicBackgroundListWidget::updateLastedItem()
 {
     if(!m_items.isEmpty())
     {
-        itemHasClicked(m_items.back());
+        currentItemClicked(m_items.back());
     }
 }
 
@@ -317,7 +314,7 @@ void MusicBackgroundListWidget::itemCloseClicked(MusicBackgroundListItem *item)
         m_currentItem = nullptr;
         if(!m_items.isEmpty())
         {
-            itemHasClicked(m_items[index == 0 ? 0 : index - 1]);
+            currentItemClicked(m_items[index == 0 ? 0 : index - 1]);
         }
     }
 
@@ -327,14 +324,14 @@ void MusicBackgroundListWidget::itemCloseClicked(MusicBackgroundListItem *item)
     }
 }
 
-void MusicBackgroundListWidget::itemHasClicked(MusicBackgroundListItem *item)
+void MusicBackgroundListWidget::currentItemClicked(MusicBackgroundListItem *item)
 {
     if(m_currentItem)
     {
-        m_currentItem->setSelect(false);
+        m_currentItem->setSelected(false);
     }
 
     m_currentItem = item;
-    m_currentItem->setSelect(true);
+    m_currentItem->setSelected(true);
     Q_EMIT itemClicked(m_type, item->fileName());
 }

@@ -198,7 +198,7 @@ private Q_SLOTS:
     /*!
      * Current item has clicked.
      */
-    void itemHasClicked(int index, bool status);
+    void currentItemClicked(int index, bool status);
 
 private:
     /*!

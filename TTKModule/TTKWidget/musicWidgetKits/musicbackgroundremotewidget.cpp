@@ -91,7 +91,7 @@ MusicBackgroundDailyWidget::MusicBackgroundDailyWidget(QWidget *parent)
     : MusicBackgroundRemoteWidget(parent)
 {
     m_currentIndex = 0;
-    m_backgroundList->setType(MusicBackgroundListWidget::Third);
+    m_backgroundList->setType(MusicBackgroundListWidget::DailyModule);
 }
 
 void MusicBackgroundDailyWidget::initialize()
@@ -140,7 +140,7 @@ MusicBackgroundOnlineWidget::MusicBackgroundOnlineWidget(QWidget *parent)
     : MusicBackgroundRemoteWidget(parent),
       m_functionsWidget(nullptr)
 {
-    m_backgroundList->setType(MusicBackgroundListWidget::Four);
+    m_backgroundList->setType(MusicBackgroundListWidget::OnlineModule);
 }
 
 MusicBackgroundOnlineWidget::~MusicBackgroundOnlineWidget()

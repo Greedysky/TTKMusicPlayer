@@ -35,7 +35,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     m_ui->listItemWidget->setSpacing(11);
     addListWidgetItem();
 
-    connect(m_ui->listItemWidget, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(itemHasClicked(QListWidgetItem*)));
+    connect(m_ui->listItemWidget, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(currentItemClicked(QListWidgetItem*)));
 }
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
@@ -81,7 +81,7 @@ void MusicToolSetsWidget::addListWidgetItem()
     }
 }
 
-void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
+void MusicToolSetsWidget::currentItemClicked(QListWidgetItem *item)
 {
     hide();
     //
@@ -151,6 +151,6 @@ void MusicToolSetsWidget::contextMenuEvent(QContextMenuEvent *event)
     QListWidgetItem *it = m_ui->listItemWidget->currentItem();
     if(it)
     {
-        itemHasClicked(it);
+        currentItemClicked(it);
     }
 }

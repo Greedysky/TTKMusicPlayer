@@ -1,5 +1,5 @@
-#ifndef MUSICTOOLSETSWIDGET_H
-#define MUSICTOOLSETSWIDGET_H
+#ifndef MUSICLRCPHOTOMANAGERWIDGET_H
+#define MUSICLRCPHOTOMANAGERWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,49 +19,39 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractmovewidget.h"
+#include "musicabstractmovedialog.h"
 
-class QListWidgetItem;
 namespace Ui {
-class MusicToolSetsWidget;
+class MusicLrcPhotoManagerWidget;
 }
 
-/*! @brief The class of the tool sets widget.
+/*! @brief The class of the lrc art photo upload.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicToolSetsWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicLrcPhotoManagerWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicToolSetsWidget)
+    TTK_DECLARE_MODULE(MusicLrcPhotoManagerWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicToolSetsWidget(QWidget *parent = nullptr);
-    ~MusicToolSetsWidget();
+    explicit MusicLrcPhotoManagerWidget(QWidget *parent = nullptr);
+    ~MusicLrcPhotoManagerWidget();
 
 public Q_SLOTS:
     /*!
-     * Tool sets list item has clicked.
+     * Select button clicked.
      */
-    void currentItemClicked(QListWidgetItem *item);
+    void selectButtonClicked();
     /*!
-     * Add tool sets list into list widget.
+     * Upload button clicked.
      */
-    void addListWidgetItem();
+    void uploadButtonClicked();
 
 private:
-    /*!
-     * Clear All Items.
-     */
-    void clear();
-    /*!
-     * Override the widget event.
-     */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
-
-    Ui::MusicToolSetsWidget *m_ui;
+    Ui::MusicLrcPhotoManagerWidget *m_ui;
 
 };
 
-#endif // MUSICTOOLSETSWIDGET_H
+#endif // MUSICLRCPHOTOMANAGERWIDGET_H

@@ -10,7 +10,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_LRC_KITS_HEADERS
   ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforwallpaper.h
   ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcsearchwidget.h
   ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcsearchtablewidget.h
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcartphotouploadwidget.h
+  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcphotomanagerwidget.h
   ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatwidget.h
   ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.h
   ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatphotowidget.h
@@ -34,7 +34,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_LRC_KITS_SOURCES
   ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforinterior.cpp
   ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcsearchwidget.cpp
   ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcsearchtablewidget.cpp
-  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcartphotouploadwidget.cpp
+  ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcphotomanagerwidget.cpp
   ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatwidget.cpp
   ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.cpp
   ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcfloatphotowidget.cpp

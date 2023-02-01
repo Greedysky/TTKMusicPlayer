@@ -113,7 +113,7 @@ MusicScreenSaverListItem::MusicScreenSaverListItem(QObject *object, QWidget *par
 
     m_hoverItem = new MusicScreenSaverHoverItem(this);
     m_hoverItem->setParent(parent);
-    connect(m_hoverItem, SIGNAL(itemClicked(int,bool)), object, SLOT(itemHasClicked(int,bool)));
+    connect(m_hoverItem, SIGNAL(itemClicked(int,bool)), object, SLOT(currentItemClicked(int,bool)));
 }
 
 MusicScreenSaverListItem::~MusicScreenSaverListItem()
@@ -363,7 +363,7 @@ void MusicScreenSaverWidget::downLoadFinished(const QString &bytes)
     }
 }
 
-void MusicScreenSaverWidget::itemHasClicked(int index, bool status)
+void MusicScreenSaverWidget::currentItemClicked(int index, bool status)
 {
     QVector<bool> statusVector(parseSettingParameter());
     statusVector[index] = status;

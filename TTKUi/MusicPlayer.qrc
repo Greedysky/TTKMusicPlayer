@@ -202,7 +202,6 @@
         <file alias="btn_smaller_hover">../TTKResource/lrc/btn_smaller_hover.png</file>
         <file alias="btn_smaller_normal">../TTKResource/lrc/btn_smaller_normal.png</file>
         <file alias="lb_shadow">../TTKResource/lrc/lb_shadow.png</file>
-        <file alias="lb_transparent">../TTKResource/lrc/lb_transparent.png</file>
         <file alias="btn_mv_normal">../TTKResource/lrc/btn_mv_normal.png</file>
         <file alias="btn_mv_hover">../TTKResource/lrc/btn_mv_hover.png</file>
         <file alias="btn_translation_normal">../TTKResource/lrc/btn_translation_normal.png</file>

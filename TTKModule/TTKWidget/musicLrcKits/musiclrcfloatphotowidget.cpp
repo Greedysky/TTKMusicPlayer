@@ -174,6 +174,12 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     functionLayout->addWidget(m_checkBox);
     functionLayout->addStretch(1);
 
+    QPushButton *manageButton = new QPushButton(tr("Manage"), functionWidget);
+    manageButton->setCursor(QCursor(Qt::PointingHandCursor));
+    manageButton->setStyleSheet(MusicUIObject::InteriorFloatSetting + MusicUIObject::PushButtonStyle06);
+    manageButton->setFixedSize(50, 25);
+    functionLayout->addWidget(manageButton);
+
     QPushButton *confirmButton = new QPushButton(tr("OK"), functionWidget);
     confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     confirmButton->setStyleSheet(MusicUIObject::InteriorFloatSetting + MusicUIObject::PushButtonStyle06);
@@ -190,6 +196,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_previous->setFocusPolicy(Qt::NoFocus);
     m_next->setFocusPolicy(Qt::NoFocus);
     m_checkBox->setFocusPolicy(Qt::NoFocus);
+    manageButton->setFocusPolicy(Qt::NoFocus);
     confirmButton->setFocusPolicy(Qt::NoFocus);
     cancelButton->setFocusPolicy(Qt::NoFocus);
 #endif

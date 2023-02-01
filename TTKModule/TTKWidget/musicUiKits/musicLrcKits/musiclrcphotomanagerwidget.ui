@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MusicLrcPhotoManagerWidget</class>
+ <widget class="QWidget" name="MusicLrcPhotoManagerWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>468</width>
+    <height>328</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>歌手写真管理</string>
+  </property>
+  <widget class="QLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>4</y>
+     <width>460</width>
+     <height>320</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="topTitleName">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>4</y>
+     <width>220</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
+   </property>
+   <property name="text">
+    <string>歌手写真管理</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="topTitleCloseButton">
+   <property name="geometry">
+    <rect>
+     <x>442</x>
+     <y>6</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="artNameLabel">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>46</y>
+     <width>42</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>歌手：</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="artSearchEdit">
+   <property name="geometry">
+    <rect>
+     <x>66</x>
+     <y>46</y>
+     <width>170</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="backgroundMask" native="true">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>29</y>
+     <width>460</width>
+     <height>295</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:white;</string>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>artNameLabel</zorder>
+  <zorder>artSearchEdit</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

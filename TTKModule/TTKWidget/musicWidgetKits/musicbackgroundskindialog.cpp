@@ -39,11 +39,11 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     connect(m_ui->skinAnimationSiwidget, SIGNAL(buttonClicked(int)), SLOT(backgroundListWidgetChanged(int)));
 
     m_cacheBackgroundList = new MusicBackgroundListWidget(this);
-    m_cacheBackgroundList->setType(MusicBackgroundListWidget::First);
+    m_cacheBackgroundList->setType(MusicBackgroundListWidget::CachedModule);
     MusicUtils::Widget::generateVScrollAreaFormat(m_ui->recommendScrollArea, m_cacheBackgroundList);
 
     m_stackBackgroundList = new MusicBackgroundListWidget(this);
-    m_stackBackgroundList->setType(MusicBackgroundListWidget::Second);
+    m_stackBackgroundList->setType(MusicBackgroundListWidget::StackedModule);
     MusicUtils::Widget::generateVScrollAreaFormat(m_ui->userScrollArea, m_stackBackgroundList);
 
     m_dailyBackgroundList = new MusicBackgroundDailyWidget(this);
@@ -235,7 +235,7 @@ void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
 
 void MusicBackgroundSkinDialog::classicalListWidgetItemClicked(int type, const QString &name)
 {
-    if(type == MusicBackgroundListWidget::First)
+    if(type == MusicBackgroundListWidget::CachedModule)
     {
         if(!m_stackBackgroundList->contains(name))
         {
@@ -255,8 +255,8 @@ void MusicBackgroundSkinDialog::remoteListWidgetItemClicked(int type, const QStr
 {
     switch(type)
     {
-        case MusicBackgroundListWidget::Third: listWidgetItemClicked(m_dailyBackgroundList, name); break;
-        case MusicBackgroundListWidget::Four: listWidgetItemClicked(m_onlineBackgroundList, name); break;
+        case MusicBackgroundListWidget::DailyModule: listWidgetItemClicked(m_dailyBackgroundList, name); break;
+        case MusicBackgroundListWidget::OnlineModule: listWidgetItemClicked(m_onlineBackgroundList, name); break;
         default: break;
     }
 }

@@ -69,38 +69,38 @@ public:
     /*!
      * Select the current item.
      */
-    void setSelect(bool s);
+    void setSelected(bool v);
     /*!
      * Get current selected item state.
      */
-    inline bool isSelect() const { return m_isSelected; }
+    inline bool isSelected() const { return m_isSelected; }
 
     /*!
      * Select the current item enable or not.
      */
-    void setSelectEnabled(bool s);
+    void setSelectEnabled(bool v);
     /*!
      * Get current selected item state.
      */
-    inline bool isSelectEnabled() const { return m_selectedMask; }
+    inline bool isSelectEnabled() const { return m_selectedEnabled; }
 
     /*!
      * Close option set the current item.
      */
-    void setCloseEnabled(bool s);
+    void setCloseEnabled(bool v);
     /*!
      * Get close option set the current item.
      */
-    inline bool isCloseEnabled() const { return m_closeSet; }
+    inline bool isCloseEnabled() const { return m_closeEnabled; }
 
     /*!
      * Show title name set the current item.
      */
-    void setShowNameEnabled(bool s);
+    void setShowNameEnabled(bool v);
     /*!
      * Get show title name set the current item.
      */
-    inline bool isShowNameEnabled() const { return m_showNameMask; }
+    inline bool isShowNameEnabled() const { return m_showNameEnabled; }
 
 Q_SIGNALS:
     /*!
@@ -121,8 +121,8 @@ private:
     virtual void enterEvent(QtEnterEvent *event) override final;
     virtual void paintEvent(QPaintEvent *event) override final;
 
-    bool m_printMask, m_isSelected, m_selectedMask;
-    bool m_closeMask, m_closeSet, m_showNameMask;
+    bool m_isSelected, m_printMask;
+    bool m_selectedEnabled, m_closeEnabled, m_showNameEnabled;
     QString m_name, m_path;
     MusicSkinItem m_imageInfo;
 
@@ -139,10 +139,10 @@ class TTK_MODULE_EXPORT MusicBackgroundListWidget : public QWidget
 public:
     enum Module
     {
-        First,
-        Second,
-        Third,
-        Four
+        CachedModule,
+        StackedModule,
+        DailyModule,
+        OnlineModule
     };
 
     /*!
@@ -234,7 +234,7 @@ private Q_SLOTS:
     /*!
      * Current item has clicked.
      */
-    void itemHasClicked(MusicBackgroundListItem *item);
+    void currentItemClicked(MusicBackgroundListItem *item);
 
 private:
     Module m_type;
