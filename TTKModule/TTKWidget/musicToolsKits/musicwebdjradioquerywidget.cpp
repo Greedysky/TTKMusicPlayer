@@ -137,9 +137,9 @@ void MusicWebDJRadioQueryWidget::resizeWidget()
 
     if(!m_resizeWidgets.isEmpty() && m_gridLayout)
     {
-        for(int i = 0; i < m_resizeWidgets.count(); ++i)
+        for(const TTKResizeWidget &widget : qAsConst(m_resizeWidgets))
         {
-            m_gridLayout->removeWidget(m_resizeWidgets[i].m_label);
+            m_gridLayout->removeWidget(widget.m_label);
         }
 
         const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;

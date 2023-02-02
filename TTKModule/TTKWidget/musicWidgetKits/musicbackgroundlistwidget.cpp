@@ -302,10 +302,10 @@ void MusicBackgroundListWidget::itemCloseClicked(MusicBackgroundListItem *item)
         return;
     }
 
-    m_gridLayout->removeWidget(item);
     const int index = find(item);
     const int cIndex = find(m_currentItem);
     QFile::remove(item->filePath());
+    m_gridLayout->removeWidget(item);
     m_items.takeAt(index)->deleteLater();
 
     if(index == cIndex)

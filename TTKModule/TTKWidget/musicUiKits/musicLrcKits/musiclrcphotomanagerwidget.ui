@@ -59,10 +59,15 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>46</y>
+     <y>47</y>
      <width>42</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>歌手：</string>
@@ -76,6 +81,11 @@
      <width>300</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>-</string>
@@ -149,6 +159,22 @@
     </property>
     <property name="text">
      <string>Export</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="okButton">
+    <property name="geometry">
+     <rect>
+      <x>525</x>
+      <y>355</y>
+      <width>70</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>OK</string>
     </property>
    </widget>
   </widget>

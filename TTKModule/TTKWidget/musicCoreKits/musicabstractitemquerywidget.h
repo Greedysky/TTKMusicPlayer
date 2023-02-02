@@ -118,6 +118,7 @@ protected:
         QFont m_font;
     };
     QList<TTKResizeWidget> m_resizeWidgets;
+
 };
 
 #endif // MusicAbstractItemQueryWidget_H

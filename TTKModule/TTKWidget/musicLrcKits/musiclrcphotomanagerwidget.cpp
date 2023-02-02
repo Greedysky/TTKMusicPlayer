@@ -73,20 +73,7 @@ void MusicLrcPhotoWidget::addCellItem(const QString &path)
 
 void MusicLrcPhotoWidget::addButtonClicked()
 {
-    const QDir dir(BACKGROUND_DIR_FULL);
-    const QString &name = G_BACKGROUND_PTR->artistName();
-    int count = -1;
-
-    for(const QFileInfo &fin : dir.entryInfoList())
-    {
-        const QString &v = fin.fileName();
-        if(v.length() > name.length() && v.startsWith(name) && v[name.length() + 1] == '.')
-        {
-            ++count;
-        }
-    }
-
-    if(++count >= MAX_IMAGE_COUNT)
+    if(m_items.count() >= MAX_IMAGE_COUNT)
     {
         MusicToastLabel::popup(tr("Exceeded the maximum number limit"));
         return;
@@ -98,7 +85,8 @@ void MusicLrcPhotoWidget::addButtonClicked()
         return;
     }
 
-    const QString &artistPath = BACKGROUND_DIR_FULL + name + QString::number(count) + SKN_FILE;
+    const QString &name = G_BACKGROUND_PTR->artistName();
+    const QString &artistPath = BACKGROUND_DIR_FULL + name + QString::number(m_items.count()) + SKN_FILE;
     QFile::copy(path, artistPath);
     addCellItem(artistPath);
 
@@ -113,22 +101,24 @@ void MusicLrcPhotoWidget::deleteButtonClicked()
         return;
     }
 
-//    for(MusicLrcPhotoItem *item : qAsConst(m_items))
-//    {
-//        if(item->isSelected())
-//        {
-//            m_items.removeOne(item);
-//            m_gridLayout->removeWidget(item);
-//        }
-//    }
+    for(int i = 0; i < m_items.count(); ++i)
+    {
+        MusicLrcPhotoItem *item = m_items[i];
 
-//    TTK_INFO_STREAM(m_items.count());
-//    for(MusicLrcPhotoItem *item : qAsConst(m_items))
-//    {
-//        m_gridLayout->addWidget(item, m_items.count() / MIN_ITEM_COUNT, m_items.count() % MIN_ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
-//    }
+        if(item->isSelected())
+        {
+            QFile::remove(item->path());
+            m_gridLayout->removeWidget(item);
+            m_items.takeAt(i--)->deleteLater();
+        }
+    }
 
-//    G_BACKGROUND_PTR->updateArtistPhotoList();
+    for(int i = 0; i < m_items.count(); ++i)
+    {
+        m_gridLayout->addWidget(m_items[i], i / MIN_ITEM_COUNT, i % MIN_ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
+    }
+
+    G_BACKGROUND_PTR->updateArtistPhotoList();
 }
 
 void MusicLrcPhotoWidget::exportButtonClicked()
@@ -204,12 +194,15 @@ MusicLrcPhotoManagerWidget::MusicLrcPhotoManagerWidget(QWidget *parent)
     m_ui->addButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
     m_ui->deleteButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
     m_ui->exportButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->okButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
 #ifdef Q_OS_UNIX
     m_ui->addButton->setFocusPolicy(Qt::NoFocus);
     m_ui->deleteButton->setFocusPolicy(Qt::NoFocus);
     m_ui->exportButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->okButton->setFocusPolicy(Qt::NoFocus);
 #endif
     m_ui->artTextLabel->setText(G_BACKGROUND_PTR->artistName());
+    m_ui->artTextLabel->setStyleSheet(MusicUIObject::ColorStyle08);
 
     m_photoWidget = new MusicLrcPhotoWidget(this);
     MusicUtils::Widget::generateVScrollAreaFormat(m_ui->viewArea, m_photoWidget);
@@ -217,6 +210,7 @@ MusicLrcPhotoManagerWidget::MusicLrcPhotoManagerWidget(QWidget *parent)
     connect(m_ui->addButton, SIGNAL(clicked()), m_photoWidget, SLOT(addButtonClicked()));
     connect(m_ui->deleteButton, SIGNAL(clicked()), m_photoWidget, SLOT(deleteButtonClicked()));
     connect(m_ui->exportButton, SIGNAL(clicked()), m_photoWidget, SLOT(exportButtonClicked()));
+    connect(m_ui->okButton, SIGNAL(clicked()), SLOT(close()));
 }
 
 MusicLrcPhotoManagerWidget::~MusicLrcPhotoManagerWidget()

@@ -368,9 +368,15 @@ void MusicLrcContainerForInterior::updateAnimationLrc()
 
 void MusicLrcContainerForInterior::translatedLrcData()
 {
+    const QString &path = m_lrcAnalysis->currentFilePath();
+    if(path.isEmpty())
+    {
+        return;
+    }
+
     MusicTranslationRequest *d = G_DOWNLOAD_QUERY_PTR->makeTranslationRequest(m_lrcAnalysis->dataString(), this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryTranslatedLrcFinished(QString)));
-    d->setHeader("name", m_lrcAnalysis->currentFilePath());
+    d->setHeader("name", path);
     d->startRequest();
 }
 
@@ -404,7 +410,6 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("Save Mode"), this, SLOT(saveLrcTimeChanged()))->setEnabled(hasLrcContainer);
     menu.addSeparator();
 
-    //
     QActionGroup *group = new QActionGroup(this);
     group->addAction(changeLrcSize.addAction(tr("Smaller")))->setData(0);
     group->addAction(changeLrcSize.addAction(tr("Small")))->setData(1);
@@ -433,7 +438,6 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     changeLrcSize.addAction(tr("Custom"), this, SLOT(currentLrcCustom()));
     createColorMenu(changColorMenu);
 
-    //
     QActionGroup *lrcTimeFastGroup = new QActionGroup(this);
     lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("After 0.5s")))->setData(0);
     lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("After 1.0s")))->setData(1);
@@ -487,10 +491,11 @@ void MusicLrcContainerForInterior::mousePressEvent(QMouseEvent *event)
 
         m_mouseMoved = false;
         m_mouseLeftPressed = true;
-        setCursor(Qt::CrossCursor);
         m_mousePressedAt = QtMouseEventGlobalPos(event);
         m_lrcChangeState = false;
         m_lrcChangeOffset = 0;
+
+        setCursor(Qt::CrossCursor);
         update();
     }
 }
@@ -520,7 +525,7 @@ void MusicLrcContainerForInterior::mouseMoveEvent(QMouseEvent *event)
         if(m_lrcChangeOffset !=0 && m_lrcChangeOffset % LRC_CHANGED_OFFSET_LIMIT == 0)
         {
             int index = m_lrcAnalysis->currentIndex();
-            index += m_lrcChangeOffset / LRC_CHANGED_OFFSET_LIMIT;
+                index += m_lrcChangeOffset / LRC_CHANGED_OFFSET_LIMIT;
             m_lrcChangeOffset = 0;
 
             if(index < 0)
@@ -533,7 +538,7 @@ void MusicLrcContainerForInterior::mouseMoveEvent(QMouseEvent *event)
             }
 
             int value = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
-            value = (mapLrcSizeProperty(m_lrcChangeDelta) - mapLrcSizeProperty(value)) / 2;
+                value = (mapLrcSizeProperty(m_lrcChangeDelta) - mapLrcSizeProperty(value)) / 2;
 
             m_lrcAnalysis->setCurrentIndex(index);
             for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
@@ -646,7 +651,7 @@ void MusicLrcContainerForInterior::revertTimeSpeed(qint64 pos)
     {
         m_changeSpeedValue = 0;
     }
-    //
+
     QString message;
     if(m_changeSpeedValue > 0)
     {
@@ -923,11 +928,12 @@ void MusicLrcContainerForInterior::setLrcSizeProperty(int property)
 {
     const int length = MUSIC_LRC_INTERIOR_MAX_LINE - property;
     m_lrcAnalysis->setLineMax(length);
-    for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
+
+    for(MusicLrcManager *manager : qAsConst(m_lrcManagers))
     {
-        m_lrcManagers[i]->show();
-        m_lrcManagers[i]->reset();
-        m_layoutWidget->removeWidget(m_lrcManagers[i]);
+        manager->show();
+        manager->reset();
+        m_layoutWidget->removeWidget(manager);
     }
 
     for(int i = 0; i < length; ++i)

@@ -103,9 +103,9 @@ void MusicWebDJRadioCategoryWidget::resizeWindow()
 {
     if(!m_resizeWidgets.isEmpty())
     {
-        for(int i = 0; i < m_resizeWidgets.count(); ++i)
+        for(QWidget *widget : qAsConst(m_resizeWidgets))
         {
-            m_gridLayout->removeWidget(m_resizeWidgets[i]);
+            m_gridLayout->removeWidget(widget);
         }
 
         const int lineNumber = QUERY_WIDGET_WIDTH / LINE_SPACING_SIZE;
