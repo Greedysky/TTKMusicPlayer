@@ -323,9 +323,9 @@ void MusicVideoPlayWidget::shareButtonClicked()
     data["songName"] = name;
     data["queryServer"] = m_videoItem.m_server;
 
-    MusicSongSharingWidget shareWidget(this);
-    shareWidget.setData(MusicSongSharingWidget::Module::Movie, data);
-    shareWidget.exec();
+    MusicSongSharingWidget widget(this);
+    widget.setData(MusicSongSharingWidget::Module::Movie, data);
+    widget.exec();
 }
 
 void MusicVideoPlayWidget::leaveTimeout()

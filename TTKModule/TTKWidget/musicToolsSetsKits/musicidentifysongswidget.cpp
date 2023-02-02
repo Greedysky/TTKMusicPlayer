@@ -158,9 +158,9 @@ void MusicIdentifySongsWidget::musicSongShare()
         QVariantMap data;
         data["songName"] = m_songInfo.m_songName;
 
-        MusicSongSharingWidget shareWidget(this);
-        shareWidget.setData(MusicSongSharingWidget::Module::Song, data);
-        shareWidget.exec();
+        MusicSongSharingWidget widget(this);
+        widget.setData(MusicSongSharingWidget::Module::Song, data);
+        widget.exec();
     }
 }
 

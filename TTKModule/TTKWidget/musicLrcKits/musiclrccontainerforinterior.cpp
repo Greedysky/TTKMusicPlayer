@@ -289,9 +289,9 @@ void MusicLrcContainerForInterior::lrcCopyClipboard() const
 
 void MusicLrcContainerForInterior::showLocalLinkWidget()
 {
-    MusicLrcLocalLinkWidget w(this);
-    w.setCurrentSongName(m_currentSongName);
-    w.exec();
+    MusicLrcLocalLinkWidget widget(this);
+    widget.setCurrentSongName(m_currentSongName);
+    widget.exec();
 }
 
 void MusicLrcContainerForInterior::showSongCommentsWidget()
@@ -311,9 +311,9 @@ void MusicLrcContainerForInterior::showSongCommentsWidget()
 
 void MusicLrcContainerForInterior::showLrcPosterWidget()
 {
-    MusicLrcPosterWidget poster(this);
-    poster.setCurrentLrcs(m_lrcAnalysis->dataList(), m_currentSongName);
-    poster.exec();
+    MusicLrcPosterWidget widget(this);
+    widget.setCurrentLrcs(m_lrcAnalysis->dataList(), m_currentSongName);
+    widget.exec();
 }
 
 void MusicLrcContainerForInterior::queryTranslatedLrcFinished(const QString &bytes)

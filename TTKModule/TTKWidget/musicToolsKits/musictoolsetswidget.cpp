@@ -94,11 +94,11 @@ void MusicToolSetsWidget::currentItemClicked(QListWidgetItem *item)
         }
         case 1:
         {
-            MusicTimerWidget timer(this);
+            MusicTimerWidget widget(this);
             QStringList songlist;
             MusicApplication::instance()->currentPlaylist(songlist);
-            timer.setSongStringList(songlist);
-            timer.exec();
+            widget.setSongStringList(songlist);
+            widget.exec();
             break;
         }
         case 2:

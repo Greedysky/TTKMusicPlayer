@@ -9,25 +9,8 @@ MusicBackgroundManager::MusicBackgroundManager()
 
 void MusicBackgroundManager::setArtistName(const QString &name)
 {
-    m_photos.clear();
-    m_currentIndex = 0;
     m_currentArtistName = MusicUtils::String::artistName(name);
-
-    const QString &filter = BACKGROUND_DIR_FULL + m_currentArtistName + "%1" + SKN_FILE;
-    for(int i = 0; i < MAX_IMAGE_COUNT; ++i)
-    {
-        QFile file(filter.arg(i));
-        if(file.open(QIODevice::ReadOnly))
-        {
-            if(file.exists() && file.size() > 0)
-            {
-                m_photos << file.fileName();
-            }
-            file.close();
-        }
-    }
-
-    Q_EMIT artistNameChanged();
+    updateArtistPhotoList();
 }
 
 QString MusicBackgroundManager::artistName() const
@@ -68,17 +51,39 @@ QString MusicBackgroundManager::artistPhotoDefaultPath() const
     return (-1 < index && index < m_photos.count()) ? m_photos[index] : QString();
 }
 
-QStringList MusicBackgroundManager::artistPhotoPathList() const
+void MusicBackgroundManager::updateArtistPhotoList()
+{
+    m_photos.clear();
+    m_currentIndex = 0;
+
+    const QString &filter = BACKGROUND_DIR_FULL + m_currentArtistName + "%1" + SKN_FILE;
+    for(int i = 0; i < MAX_IMAGE_COUNT; ++i)
+    {
+        QFile file(filter.arg(i));
+        if(file.open(QIODevice::ReadOnly))
+        {
+            if(file.exists() && file.size() > 0)
+            {
+                m_photos << file.fileName();
+            }
+            file.close();
+        }
+    }
+
+    Q_EMIT artistChanged();
+}
+
+QStringList MusicBackgroundManager::artistPhotoList() const
 {
     return m_photos;
 }
 
-void MusicBackgroundManager::setArtistPhotoPathList(const QStringList &list)
+void MusicBackgroundManager::setArtistPhotoList(const QStringList &list)
 {
     m_photos = list;
 }
 
-void MusicBackgroundManager::setUserSelectArtistIndex(int index)
+void MusicBackgroundManager::setSelectArtistIndex(int index)
 {
     m_currentIndex = index;
     Q_EMIT selectIndexChanged();

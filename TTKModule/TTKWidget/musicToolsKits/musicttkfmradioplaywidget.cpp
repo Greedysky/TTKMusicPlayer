@@ -457,7 +457,7 @@ void MusicTTKFMRadioPlayWidget::infoButtonClicked()
         return;
     }
 
-    MusicTTKFMRadioInformationWidget w;
-    w.setChannelInformation(m_items[index]);
-    w.exec();
+    MusicTTKFMRadioInformationWidget widget;
+    widget.setChannelInformation(m_items[index]);
+    widget.exec();
 }

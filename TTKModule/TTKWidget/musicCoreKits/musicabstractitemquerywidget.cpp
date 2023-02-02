@@ -101,9 +101,9 @@ void MusicAbstractItemQueryWidget::shareButtonClicked()
         data["queryServer"] = d->queryServer();
     }
 
-    MusicSongSharingWidget shareWidget(this);
-    shareWidget.setData(m_shareType, data);
-    shareWidget.exec();
+    MusicSongSharingWidget widget(this);
+    widget.setData(m_shareType, data);
+    widget.exec();
 }
 
 void MusicAbstractItemQueryWidget::playButtonClicked()

@@ -136,7 +136,7 @@ void MusicLrcContainerForWallpaper::start(bool immediate)
 {
     if(m_wallThread)
     {
-        m_wallThread->setImagePath(G_BACKGROUND_PTR->artistPhotoPathList());
+        m_wallThread->setImagePath(G_BACKGROUND_PTR->artistPhotoList());
 
         if(!m_wallThread->isRunning())
         {

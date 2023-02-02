@@ -297,6 +297,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundListWidget 
     QString s(name);
     QString path = USER_THEME_DIR_FULL + s + TKM_FILE;
     MusicBackgroundSkinDialog::themeValidCheck(s, path);
+
     G_BACKGROUND_PTR->setBackgroundUrl(path);
     G_BACKGROUND_PTR->backgroundUrlChanged();
 }

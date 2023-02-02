@@ -105,6 +105,10 @@ private:
      * Create all widget in layout.
      */
     void initialize();
+    /*!
+     * Check current selection is valid or not.
+     */
+    bool isValid() const;
 
     QGridLayout *m_gridLayout;
     QList<MusicLrcPhotoItem*> m_items;

@@ -116,9 +116,9 @@ void MusicAbstractSongsListTableWidget::musicFileInformation()
         return;
     }
 
-    MusicFileInformationWidget file;
-    file.setFileInformation(currentSongPath());
-    file.exec();
+    MusicFileInformationWidget widget;
+    widget.setFileInformation(currentSongPath());
+    widget.exec();
 }
 
 void MusicAbstractSongsListTableWidget::musicSongMovieFound()
@@ -161,9 +161,9 @@ void MusicAbstractSongsListTableWidget::musicSongSharedWidget()
     QVariantMap data;
     data["songName"] = currentSongName();
 
-    MusicSongSharingWidget shareWidget;
-    shareWidget.setData(MusicSongSharingWidget::Module::Song, data);
-    shareWidget.exec();
+    MusicSongSharingWidget widget;
+    widget.setData(MusicSongSharingWidget::Module::Song, data);
+    widget.exec();
 }
 
 void MusicAbstractSongsListTableWidget::musicSongDownload()
@@ -208,9 +208,9 @@ void MusicAbstractSongsListTableWidget::musicSongPlayedSharedWidget()
     QVariantMap data;
     data["songName"] = songName(m_playRowIndex);
 
-    MusicSongSharingWidget shareWidget;
-    shareWidget.setData(MusicSongSharingWidget::Module::Song, data);
-    shareWidget.exec();
+    MusicSongSharingWidget widget;
+    widget.setData(MusicSongSharingWidget::Module::Song, data);
+    widget.exec();
 }
 
 void MusicAbstractSongsListTableWidget::createMoreMenu(QMenu *menu)

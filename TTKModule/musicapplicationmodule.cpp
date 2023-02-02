@@ -289,9 +289,9 @@ void MusicApplicationModule::musicTimerWidget()
     QStringList list;
     MusicApplication::instance()->currentPlaylist(list);
 
-    MusicTimerWidget timer;
-    timer.setSongStringList(list);
-    timer.exec();
+    MusicTimerWidget widget;
+    widget.setSongStringList(list);
+    widget.exec();
 }
 
 void MusicApplicationModule::musicSpectrumWidget()
@@ -365,8 +365,8 @@ void MusicApplicationModule::musicSetEqualizer()
         return;
     }
 
-    MusicEqualizerDialog equalizer;
-    equalizer.exec();
+    MusicEqualizerDialog widget;
+    widget.exec();
 }
 
 void MusicApplicationModule::musicSetSoundEffect()
@@ -376,9 +376,9 @@ void MusicApplicationModule::musicSetSoundEffect()
         return;
     }
 
-    MusicSoundEffectsWidget sound;
-    sound.setInputModule(this);
-    sound.exec();
+    MusicSoundEffectsWidget widget;
+    widget.setInputModule(this);
+    widget.exec();
 }
 
 void MusicApplicationModule::musicEffectChanged()

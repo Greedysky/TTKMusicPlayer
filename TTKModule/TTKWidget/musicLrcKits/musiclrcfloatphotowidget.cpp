@@ -4,8 +4,6 @@
 #include "musicbackgroundmanager.h"
 #include "musicwidgetheaders.h"
 #include "musicimageutils.h"
-#include "musicfileutils.h"
-#include "musicwidgetutils.h"
 
 #include <qmath.h>
 #include <QTimer>
@@ -73,16 +71,6 @@ void MusicLrcFloatPhotoItem::sendUserSelectArt()
     }
 }
 
-void MusicLrcFloatPhotoItem::exportArtPixmap()
-{
-    const QString &path = MusicUtils::File::getSaveFileName(this, "Jpeg(*.jpg)");
-    if(!path.isEmpty())
-    {
-        const QPixmap pix(m_pixPath);
-        pix.save(path, JPG_FILE_SUFFIX);
-    }
-}
-
 void MusicLrcFloatPhotoItem::enterEvent(QtEnterEvent *event)
 {
     TTKClickedLabel::enterEvent(event);
@@ -94,19 +82,6 @@ void MusicLrcFloatPhotoItem::enterEvent(QtEnterEvent *event)
     else
     {
         unsetCursor();
-    }
-}
-
-void MusicLrcFloatPhotoItem::contextMenuEvent(QContextMenuEvent *event)
-{
-    TTKClickedLabel::contextMenuEvent(event);
-    const QPixmap &pixmap = QtLablePixmap(this);
-    if(!pixmap.isNull())
-    {
-        QMenu menu(this);
-        menu.setStyleSheet(MusicUIObject::MenuStyle02);
-        menu.addAction(tr("Export"), this, SLOT(exportArtPixmap()));
-        menu.exec(QCursor::pos());
     }
 }
 
@@ -206,7 +181,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     connect(manageButton, SIGNAL(clicked()), SLOT(manageButtonClicked()));
     connect(confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
     connect(cancelButton, SIGNAL(clicked()), SLOT(close()));
-    connect(G_BACKGROUND_PTR, SIGNAL(artistNameChanged()), SLOT(artistNameChanged()));
+    connect(G_BACKGROUND_PTR, SIGNAL(artistChanged()), SLOT(artistNameChanged()));
 }
 
 MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
@@ -229,7 +204,7 @@ void MusicLrcFloatPhotoWidget::show()
 {
     QWidget::show();
     animationLeave();
-    showPhoto();
+    showArtistPhoto();
 }
 
 void MusicLrcFloatPhotoWidget::close()
@@ -240,7 +215,10 @@ void MusicLrcFloatPhotoWidget::close()
 
 void MusicLrcFloatPhotoWidget::manageButtonClicked()
 {
-    MusicLrcPhotoManagerWidget(this).exec();
+    close();
+
+    MusicLrcPhotoManagerWidget widget(this);
+    widget.exec();
 }
 
 void MusicLrcFloatPhotoWidget::confirmButtonClicked()
@@ -251,11 +229,11 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
        list << m_photos[i];
     }
 
-    G_BACKGROUND_PTR->setArtistPhotoPathList(list);
+    G_BACKGROUND_PTR->setArtistPhotoList(list);
     close();
 }
 
-void MusicLrcFloatPhotoWidget::showPhoto() const
+void MusicLrcFloatPhotoWidget::showArtistPhoto() const
 {
     m_previous->setEnabled(m_currentIndex != 0);
     int page = ceil(m_photos.count() * 1.0 / MIN_ITEM_COUNT) - 1;
@@ -282,7 +260,7 @@ void MusicLrcFloatPhotoWidget::photoPrevious()
     {
         m_currentIndex = 0;
     }
-    showPhoto();
+    showArtistPhoto();
 }
 
 void MusicLrcFloatPhotoWidget::artistNameChanged()
@@ -295,7 +273,7 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
 
     m_selectNum.clear();
     m_checkBox->setChecked(true);
-    m_photos = G_BACKGROUND_PTR->artistPhotoPathList();
+    m_photos = G_BACKGROUND_PTR->artistPhotoList();
 
     for(int i = 0; i < m_photos.count(); ++i)
     {
@@ -319,12 +297,12 @@ void MusicLrcFloatPhotoWidget::photoNext()
     {
         m_currentIndex = page;
     }
-    showPhoto();
+    showArtistPhoto();
 }
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBackground(int index)
 {
-    G_BACKGROUND_PTR->setUserSelectArtistIndex(m_currentIndex * MIN_ITEM_COUNT + index);
+    G_BACKGROUND_PTR->setSelectArtistIndex(m_currentIndex * MIN_ITEM_COUNT + index);
 }
 
 void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked(int index)
@@ -356,7 +334,7 @@ void MusicLrcFloatPhotoWidget::selectAllStateChanged(bool state)
         {
             m_selectNum << i;
         }
-        showPhoto();
+        showArtistPhoto();
     }
     else
     {

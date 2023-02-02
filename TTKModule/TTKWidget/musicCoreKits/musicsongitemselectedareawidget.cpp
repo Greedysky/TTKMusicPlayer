@@ -181,10 +181,10 @@ void MusicSongItemSelectedAreaWidget::modifiedItemButtonClicked()
 
     m_selected = true;
 
-    MusicSongItemSelectedDialog dialog;
-    connect(&dialog, SIGNAL(itemListChanged(TTKIntList)), SLOT(itemListChanged(TTKIntList)));
-    dialog.addCellItems(&songs);
-    dialog.exec();
+    MusicSongItemSelectedDialog widget;
+    connect(&widget, SIGNAL(itemListChanged(TTKIntList)), SLOT(itemListChanged(TTKIntList)));
+    widget.addCellItems(&songs);
+    widget.exec();
 
     Q_EMIT confirmChanged();
 }

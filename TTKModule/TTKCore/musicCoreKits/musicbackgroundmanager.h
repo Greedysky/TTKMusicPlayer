@@ -75,17 +75,21 @@ public:
     QString artistPhotoDefaultPath() const;
 
     /*!
+     * Update artist photo list.
+     */
+    void updateArtistPhotoList();
+    /*!
      * Get artist photo path list.
      */
-    QStringList artistPhotoPathList() const;
+    QStringList artistPhotoList() const;
     /*!
      * Set artist photo path by given path list.
      */
-    void setArtistPhotoPathList(const QStringList &list);
+    void setArtistPhotoList(const QStringList &list);
     /*!
      * Set user select current index.
      */
-    void setUserSelectArtistIndex(int index);
+    void setSelectArtistIndex(int index);
 
     /*!
      * Add observer.
@@ -112,13 +116,13 @@ public:
 
 Q_SIGNALS:
     /*!
+     * New artist has been set.
+     */
+    void artistChanged();
+    /*!
      * Background image changed.
      */
     void backgroundChanged();
-    /*!
-     * New artist has been set.
-     */
-    void artistNameChanged();
     /*!
      * User selected index changed.
      */

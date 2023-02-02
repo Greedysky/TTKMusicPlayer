@@ -340,10 +340,10 @@ void MusicCloudManagerTableWidget::showFileInformationWidget()
         return;
     }
 
-    MusicCloudFileInformationWidget w;
+    MusicCloudFileInformationWidget widget;
     MusicCloudDataItem data(it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>());
-    w.setFileInformation(&data.m_dataItem);
-    w.exec();
+    widget.setFileInformation(&data.m_dataItem);
+    widget.exec();
 }
 
 void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)

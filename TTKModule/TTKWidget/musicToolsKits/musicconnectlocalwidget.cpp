@@ -198,9 +198,9 @@ void MusicConnectLocalWidget::openTransferFilesToMobile()
         return;
     }
 
-    MusicConnectTransferWidget w(this);
-    w.setDeviceInfoItem(&m_currentDeviceItem);
-    w.exec();
+    MusicConnectTransferWidget widget(this);
+    widget.setDeviceInfoItem(&m_currentDeviceItem);
+    widget.exec();
 }
 
 void MusicConnectLocalWidget::deviceTypeChanged(QAction *action)

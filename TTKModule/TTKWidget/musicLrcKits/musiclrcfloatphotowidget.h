@@ -75,17 +75,12 @@ public Q_SLOTS:
      * User selected the plane pic.
      */
     void sendUserSelectArt();
-    /*!
-     * Export art pixmap.
-     */
-    void exportArtPixmap();
 
 private:
     /*!
      * Override the widget event.
      */
     virtual void enterEvent(QtEnterEvent *event) override final;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
     int m_index;
     QString m_pixPath;
@@ -169,7 +164,7 @@ private:
     /*!
      * Show all artist pics in displaying.
      */
-    void showPhoto() const;
+    void showArtistPhoto() const;
 
     int m_currentIndex;
     TTKIntSet m_selectNum;

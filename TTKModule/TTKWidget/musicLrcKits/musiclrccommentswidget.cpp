@@ -5,7 +5,7 @@
 MusicLrcCommentsWidget::MusicLrcCommentsWidget(QWidget *parent)
     : MusicCommentsWidget(parent)
 {
-    connect(G_BACKGROUND_PTR, SIGNAL(artistNameChanged()), SLOT(close()));
+    connect(G_BACKGROUND_PTR, SIGNAL(artistChanged()), SLOT(close()));
 }
 
 void MusicLrcCommentsWidget::initialize(bool isPain)

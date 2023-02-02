@@ -58,6 +58,7 @@ MusicLrcPhotoWidget::MusicLrcPhotoWidget(QWidget *parent)
 
 MusicLrcPhotoWidget::~MusicLrcPhotoWidget()
 {
+    qDeleteAll(m_items);
     delete m_gridLayout;
 }
 
@@ -100,10 +101,18 @@ void MusicLrcPhotoWidget::addButtonClicked()
     const QString &artistPath = BACKGROUND_DIR_FULL + name + QString::number(count) + SKN_FILE;
     QFile::copy(path, artistPath);
     addCellItem(artistPath);
+
+    G_BACKGROUND_PTR->updateArtistPhotoList();
 }
 
 void MusicLrcPhotoWidget::deleteButtonClicked()
 {
+    if(!isValid())
+    {
+        MusicToastLabel::popup(tr("Please select one item first"));
+        return;
+    }
+
 //    for(MusicLrcPhotoItem *item : qAsConst(m_items))
 //    {
 //        if(item->isSelected())
@@ -118,10 +127,18 @@ void MusicLrcPhotoWidget::deleteButtonClicked()
 //    {
 //        m_gridLayout->addWidget(item, m_items.count() / MIN_ITEM_COUNT, m_items.count() % MIN_ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
 //    }
+
+//    G_BACKGROUND_PTR->updateArtistPhotoList();
 }
 
 void MusicLrcPhotoWidget::exportButtonClicked()
 {
+    if(!isValid())
+    {
+        MusicToastLabel::popup(tr("Please select one item first"));
+        return;
+    }
+
     const QString &path = MusicUtils::File::getExistingDirectory(this);
     if(path.isEmpty())
     {
@@ -155,6 +172,18 @@ void MusicLrcPhotoWidget::initialize()
             addCellItem(BACKGROUND_DIR_FULL + name + QString::number(++count) + SKN_FILE);
         }
     }
+}
+
+bool MusicLrcPhotoWidget::isValid() const
+{
+    for(MusicLrcPhotoItem *item : qAsConst(m_items))
+    {
+        if(item->isSelected())
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 
