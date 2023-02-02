@@ -49,6 +49,11 @@ public:
      */
     inline bool isSelected() const { return m_isSelected; }
 
+    /*!
+     * Get current item apth.
+     */
+    inline QString path() const { return m_path; }
+
 private:
     /*!
      * Override the widget event.
@@ -56,6 +61,7 @@ private:
     virtual void mousePressEvent(QMouseEvent *event) override final;
     virtual void paintEvent(QPaintEvent *event) override final;
 
+    QString m_path;
     bool m_isSelected;
 
 };
@@ -80,7 +86,26 @@ public:
      */
     void addCellItem(const QString &path);
 
+public Q_SLOTS:
+    /*!
+     * Add button clicked.
+     */
+    void addButtonClicked();
+    /*!
+     * Delete button clicked.
+     */
+    void deleteButtonClicked();
+    /*!
+     * Export button clicked.
+     */
+    void exportButtonClicked();
+
 private:
+    /*!
+     * Create all widget in layout.
+     */
+    void initialize();
+
     QGridLayout *m_gridLayout;
     QList<MusicLrcPhotoItem*> m_items;
 
@@ -105,18 +130,10 @@ public:
     explicit MusicLrcPhotoManagerWidget(QWidget *parent = nullptr);
     ~MusicLrcPhotoManagerWidget();
 
-public Q_SLOTS:
-    /*!
-     * Select button clicked.
-     */
-    void selectButtonClicked();
-    /*!
-     * Upload button clicked.
-     */
-    void uploadButtonClicked();
-
 private:
     Ui::MusicLrcPhotoManagerWidget *m_ui;
+
+    MusicLrcPhotoWidget *m_photoWidget;
 
 };
 

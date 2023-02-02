@@ -146,8 +146,8 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
         areaLayout->addWidget(item);
         m_planes << item;
 
-        connect(item, SIGNAL(itemClicked(int)), SLOT(sendUserSelectArtBackground(int)));
         connect(item, SIGNAL(boxClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
+        connect(item, SIGNAL(itemClicked(int)), SLOT(sendUserSelectArtBackground(int)));
     }
 
     m_next = new QPushButton(this);

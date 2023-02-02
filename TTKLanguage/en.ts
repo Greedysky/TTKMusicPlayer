@@ -2001,45 +2001,6 @@
     </message>
 </context>
 <context>
-    <name>MusicLrcArtPhotoUploadWidget</name>
-    <message>
-        <source>上传歌手写真</source>
-        <translation type="vanished">Upload Singer Photo</translation>
-    </message>
-    <message>
-        <source>歌手：</source>
-        <translation type="vanished">Singer:</translation>
-    </message>
-    <message>
-        <source>选择的图片尺寸过小，请重新选择</source>
-        <translation type="vanished">Select image size is too small, please reselect</translation>
-    </message>
-    <message>
-        <source>确定</source>
-        <translation type="vanished">Confirm</translation>
-    </message>
-    <message>
-        <source>关闭</source>
-        <translation type="vanished">Close</translation>
-    </message>
-    <message>
-        <source>点击选择图片</source>
-        <translation type="vanished">Select</translation>
-    </message>
-    <message>
-        <source>请上传尺寸1033*660以上的图片</source>
-        <translation type="vanished">Please upload size 1033 * 660 or more images</translation>
-    </message>
-    <message>
-        <source>放缩比例</source>
-        <translation type="vanished">Ratio</translation>
-    </message>
-    <message>
-        <source>100%</source>
-        <translation type="obsolete">100%</translation>
-    </message>
-</context>
-<context>
     <name>MusicLrcColorWidget</name>
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrccolorwidget.ui" line="14"/>
@@ -2986,7 +2947,7 @@
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="14"/>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="42"/>
         <source>歌手写真管理</source>
-        <translation type="unfinished"></translation>
+        <translation>Artist Background Manager</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="55"/>
@@ -2996,7 +2957,7 @@
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="68"/>
         <source>歌手：</source>
-        <translation type="unfinished">Singer:</translation>
+        <translation>Singer:</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="81"/>
@@ -3011,7 +2972,7 @@
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="135"/>
         <source>Delete</source>
-        <translation type="unfinished">Delete</translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="151"/>

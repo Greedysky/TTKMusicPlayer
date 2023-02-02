@@ -1,7 +1,10 @@
 #include "musiclrcphotomanagerwidget.h"
 #include "ui_musiclrcphotomanagerwidget.h"
+#include "musicbackgroundmanager.h"
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
+#include "musiccoreutils.h"
+#include "ttktime.h"
 
 MusicLrcPhotoItem::MusicLrcPhotoItem(QWidget *parent)
     : QLabel(parent),
@@ -13,8 +16,8 @@ MusicLrcPhotoItem::MusicLrcPhotoItem(QWidget *parent)
 
 void MusicLrcPhotoItem::updatePixmap(const QString &path)
 {
-//    QPixmap pix(path);
-//    setPixmap(image.m_pix.scaled(size()));
+    m_path = path;
+    setPixmap(QPixmap(path).scaled(size()));
 }
 
 void MusicLrcPhotoItem::setSelected(bool v)
@@ -37,6 +40,7 @@ void MusicLrcPhotoItem::paintEvent(QPaintEvent *event)
         QPainter painter(this);
         painter.setBrush(QColor(0, 0, 0, 155));
         painter.drawRect(rect());
+        painter.drawPixmap(width() - 16 - 4, height() - 16 - 4, 16, 16, QPixmap(":/lrc/lb_photo_checked"));
     }
 }
 
@@ -49,21 +53,7 @@ MusicLrcPhotoWidget::MusicLrcPhotoWidget(QWidget *parent)
     m_gridLayout->setContentsMargins(7, 0, 7, 0);
     setLayout(m_gridLayout);
 
-    addCellItem("a");
-    addCellItem("a");
-    addCellItem("a");
-    addCellItem("a");
-    addCellItem("a");
-    addCellItem("a");
-    addCellItem("a");
-    addCellItem("a");
-    addCellItem("a");
-    addCellItem("a");
-    addCellItem("a");
-    addCellItem("a");
-    addCellItem("a");
-    addCellItem("a");
-    addCellItem("a");
+    initialize();
 }
 
 MusicLrcPhotoWidget::~MusicLrcPhotoWidget()
@@ -74,14 +64,97 @@ MusicLrcPhotoWidget::~MusicLrcPhotoWidget()
 void MusicLrcPhotoWidget::addCellItem(const QString &path)
 {
     MusicLrcPhotoItem *item = new MusicLrcPhotoItem(this);
-    item->setPixmap(QPixmap(path));
-//    item->setCloseEnabled(state);
-//    item->setFileName(name);
-//    item->setFilePath(path);
-//    item->updatePixmap();
+    item->updatePixmap(path);
 
     m_gridLayout->addWidget(item, m_items.count() / MIN_ITEM_COUNT, m_items.count() % MIN_ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     m_items << item;
+}
+
+void MusicLrcPhotoWidget::addButtonClicked()
+{
+    const QDir dir(BACKGROUND_DIR_FULL);
+    const QString &name = G_BACKGROUND_PTR->artistName();
+    int count = -1;
+
+    for(const QFileInfo &fin : dir.entryInfoList())
+    {
+        const QString &v = fin.fileName();
+        if(v.length() > name.length() && v.startsWith(name) && v[name.length() + 1] == '.')
+        {
+            ++count;
+        }
+    }
+
+    if(++count >= MAX_IMAGE_COUNT)
+    {
+        MusicToastLabel::popup(tr("Exceeded the maximum number limit!"));
+        return;
+    }
+
+    const QString &path = MusicUtils::File::getOpenFileName(this);
+    if(path.isEmpty())
+    {
+        return;
+    }
+
+    const QString &artistPath = BACKGROUND_DIR_FULL + name + QString::number(count) + SKN_FILE;
+    QFile::copy(path, artistPath);
+    addCellItem(artistPath);
+}
+
+void MusicLrcPhotoWidget::deleteButtonClicked()
+{
+//    for(MusicLrcPhotoItem *item : qAsConst(m_items))
+//    {
+//        if(item->isSelected())
+//        {
+//            m_items.removeOne(item);
+//            m_gridLayout->removeWidget(item);
+//        }
+//    }
+
+//    TTK_INFO_STREAM(m_items.count());
+//    for(MusicLrcPhotoItem *item : qAsConst(m_items))
+//    {
+//        m_gridLayout->addWidget(item, m_items.count() / MIN_ITEM_COUNT, m_items.count() % MIN_ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
+//    }
+}
+
+void MusicLrcPhotoWidget::exportButtonClicked()
+{
+    const QString &path = MusicUtils::File::getExistingDirectory(this);
+    if(path.isEmpty())
+    {
+        return;
+    }
+
+    const QString &dir = path + "/images/";
+    QDir().mkpath(dir);
+
+    for(MusicLrcPhotoItem *item : qAsConst(m_items))
+    {
+        if(item->isSelected())
+        {
+            QFile::copy(item->path(), dir + QString::number(TTKTime::timestamp()) + JPG_FILE);
+            MusicUtils::Core::sleep(MT_MS);
+        }
+    }
+}
+
+void MusicLrcPhotoWidget::initialize()
+{
+    const QDir dir(BACKGROUND_DIR_FULL);
+    const QString &name = G_BACKGROUND_PTR->artistName();
+    int count = -1;
+
+    for(const QFileInfo &fin : dir.entryInfoList())
+    {
+        const QString &v = fin.fileName();
+        if(v.length() > name.length() && v.startsWith(name) && v[name.length() + 1] == '.')
+        {
+            addCellItem(BACKGROUND_DIR_FULL + name + QString::number(++count) + SKN_FILE);
+        }
+    }
 }
 
 
@@ -107,63 +180,18 @@ MusicLrcPhotoManagerWidget::MusicLrcPhotoManagerWidget(QWidget *parent)
     m_ui->deleteButton->setFocusPolicy(Qt::NoFocus);
     m_ui->exportButton->setFocusPolicy(Qt::NoFocus);
 #endif
+    m_ui->artTextLabel->setText(G_BACKGROUND_PTR->artistName());
 
-    MusicLrcPhotoWidget *w = new MusicLrcPhotoWidget(this);
-    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->viewArea, w);
+    m_photoWidget = new MusicLrcPhotoWidget(this);
+    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->viewArea, m_photoWidget);
+
+    connect(m_ui->addButton, SIGNAL(clicked()), m_photoWidget, SLOT(addButtonClicked()));
+    connect(m_ui->deleteButton, SIGNAL(clicked()), m_photoWidget, SLOT(deleteButtonClicked()));
+    connect(m_ui->exportButton, SIGNAL(clicked()), m_photoWidget, SLOT(exportButtonClicked()));
 }
 
 MusicLrcPhotoManagerWidget::~MusicLrcPhotoManagerWidget()
 {
     delete m_ui;
-}
-
-void MusicLrcPhotoManagerWidget::selectButtonClicked()
-{
-    const QString &path = MusicUtils::File::getOpenFileName(this);
-    if(path.isEmpty())
-    {
-        return;
-    }
-
-//    const QPixmap pix(path);
-//    if(pix.width() < WINDOW_WIDTH_MIN || pix.height() < WINDOW_HEIGHT_MIN)
-//    {
-//        m_ui->stateLabel->show();
-//        m_ui->uploadButton->hide();
-//        m_ui->closeButton->hide();
-//    }
-//    else
-//    {
-//        m_ui->stateLabel->hide();
-//        m_ui->uploadButton->show();
-//        m_ui->closeButton->show();
-//        m_ui->introduceLabel->hide();
-//        m_ui->selectButton->hide();
-//        m_ui->imageLabel->setImagePath(path);
-//    }
-}
-
-void MusicLrcPhotoManagerWidget::uploadButtonClicked()
-{
-//    const QDir dir(BACKGROUND_DIR_FULL);
-//    int count = 0;
-//    const QString &name = m_ui->artSearchEdit->text().trimmed();
-//    if(name.isEmpty())
-//    {
-//        MusicToastLabel::popup(tr("The art is empty!"));
-//        return;
-//    }
-
-//    for(const QFileInfo &fin : dir.entryInfoList())
-//    {
-//        if(fin.fileName().contains(name))
-//        {
-//            ++count;
-//        }
-//    }
-
-//    const QString &fileName = QString("%1%2%3").arg(BACKGROUND_DIR_FULL, name).arg(count);
-//    m_ui->imageLabel->saveImagePath(fileName + JPG_FILE);
-//    QFile::rename(fileName + JPG_FILE, fileName + SKN_FILE);
-//    close();
+    delete m_photoWidget;
 }

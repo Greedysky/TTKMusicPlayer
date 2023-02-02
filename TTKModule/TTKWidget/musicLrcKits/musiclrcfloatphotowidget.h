@@ -58,13 +58,13 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Current plane item clicked.
-     */
-    void itemClicked(int index);
-    /*!
      * Current check box clicked.
      */
     void boxClicked(int index);
+    /*!
+     * Current plane item clicked.
+     */
+    void itemClicked(int index);
 
 public Q_SLOTS:
     /*!
