@@ -105,7 +105,7 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(m_counter < MAX_IMAGE_COUNTER && !value.isEmpty())
+                    if(m_counter < MAX_IMAGE_COUNT && !value.isEmpty())
                     {
                         const QString &url = value.values().front().toString();
                         if(url == lastUrl)

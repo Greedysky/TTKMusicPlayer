@@ -14,7 +14,7 @@ void MusicBackgroundManager::setArtistName(const QString &name)
     m_currentArtistName = MusicUtils::String::artistName(name);
 
     const QString &filter = BACKGROUND_DIR_FULL + m_currentArtistName + "%1" + SKN_FILE;
-    for(int i = 0; i < MAX_IMAGE_COUNTER; ++i)
+    for(int i = 0; i < MAX_IMAGE_COUNT; ++i)
     {
         QFile file(filter.arg(i));
         if(file.open(QIODevice::ReadOnly))

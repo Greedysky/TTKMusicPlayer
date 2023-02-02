@@ -41,7 +41,8 @@
 #define TTK_RECORD_FILE             "record.raw"
 #define TTK_RECORD_DATA_FILE        "record_data.wav"
 
-#define MAX_IMAGE_COUNTER           10
+#define MIN_ITEM_COUNT              4
+#define MAX_IMAGE_COUNT             10
 
 #define MUSIC_AUTHOR_NAME           "Greedysky"
 #define MUSIC_BING_DIR              "Bing"

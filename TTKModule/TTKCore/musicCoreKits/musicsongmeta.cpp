@@ -177,17 +177,19 @@ void MusicSongMeta::setRating(const QString &rating)
     songMeta()->m_metaData[TagWrapper::RATING] = rating;
 }
 
-void MusicSongMeta::setCover(const QPixmap &pix)
+void MusicSongMeta::setCover(const QPixmap &cover)
 {
 #if TTK_VERSION >= TTK_VERSION_CHECK(2,5,3,0)
-    QPixmap p(pix);
-    if(p.width() > 500 || p.height() > 500)
+    if(cover.width() > 500 || cover.height() > 500)
     {
-        p = p.scaled(500, 500, Qt::KeepAspectRatio);
+        songMeta()->m_cover = cover.scaled(500, 500, Qt::KeepAspectRatio);
     }
-    songMeta()->m_cover = p;
+    else
+    {
+        songMeta()->m_cover = cover;
+    }
 #else
-    Q_UNUSED(pix);
+    Q_UNUSED(cover);
 #endif
 }
 

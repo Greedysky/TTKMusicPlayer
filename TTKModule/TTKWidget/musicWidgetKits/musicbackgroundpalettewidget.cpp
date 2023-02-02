@@ -22,9 +22,9 @@ MusicBackgroundPalette::~MusicBackgroundPalette()
 
 void MusicBackgroundPalette::setPixmap(const QColor &color)
 {
-    QPixmap pixmap(90, 30);
-    pixmap.fill(m_color = color);
-    QLabel::setPixmap(pixmap);
+    QPixmap pix(90, 30);
+    pix.fill(m_color = color);
+    QLabel::setPixmap(pix);
 }
 
 void MusicBackgroundPalette::copyColorToMemory(const QColor &color)
@@ -217,9 +217,9 @@ void MusicBackgroundPaletteWidget::showPaletteDialog()
 
 void MusicBackgroundPaletteWidget::currentColorToFile(const QColor &color)
 {
-    QPixmap pixmap(90, 30);
-    pixmap.fill(color);
-    m_ui->colorLabel->setPixmap(pixmap);
+    QPixmap pix(90, 30);
+    pix.fill(color);
+    m_ui->colorLabel->setPixmap(pix);
 
     QImage image(16, 16, QImage::Format_ARGB32);
     image.fill(m_currentColor = color);

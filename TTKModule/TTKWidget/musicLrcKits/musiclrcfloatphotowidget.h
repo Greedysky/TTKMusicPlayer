@@ -126,6 +126,11 @@ public Q_SLOTS:
      * Close current widget.
      */
     inline void parentClose() { QLabel::close(); }
+
+    /*!
+     * Manage button clicked.
+     */
+    void manageButtonClicked();
     /*!
      * Confirm button clicked that show selected artist pics.
      */

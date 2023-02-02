@@ -19,7 +19,73 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include <QGridLayout>
 #include "musicabstractmovedialog.h"
+
+/*! @brief The class of the lrc photo pixmap item.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicLrcPhotoItem : public QLabel
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcPhotoItem)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicLrcPhotoItem(QWidget *parent = nullptr);
+
+    /*!
+     * Update pix image.
+     */
+    void updatePixmap(const QString &path);
+
+    /*!
+     * Select the current item.
+     */
+    void setSelected(bool v);
+    /*!
+     * Get current selected item state.
+     */
+    inline bool isSelected() const { return m_isSelected; }
+
+private:
+    /*!
+     * Override the widget event.
+     */
+    virtual void mousePressEvent(QMouseEvent *event) override final;
+    virtual void paintEvent(QPaintEvent *event) override final;
+
+    bool m_isSelected;
+
+};
+
+
+/*! @brief The class of the lrc photo widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicLrcPhotoWidget : public QWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcPhotoWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicLrcPhotoWidget(QWidget *parent = nullptr);
+    ~MusicLrcPhotoWidget();
+
+    /*!
+     * Create cell item by input data.
+     */
+    void addCellItem(const QString &path);
+
+private:
+    QGridLayout *m_gridLayout;
+    QList<MusicLrcPhotoItem*> m_items;
+
+};
+
 
 namespace Ui {
 class MusicLrcPhotoManagerWidget;

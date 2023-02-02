@@ -540,7 +540,7 @@
 <context>
     <name>MusicBackgroundListWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicbackgroundlistwidget.cpp" line="305"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicbackgroundlistwidget.cpp" line="301"/>
         <source>Last one item can not be deleted!</source>
         <translation>最後一個不能刪除哦！</translation>
     </message>
@@ -2003,65 +2003,44 @@
 <context>
     <name>MusicLrcArtPhotoUploadWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcartphotouploadwidget.ui" line="14"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcartphotouploadwidget.ui" line="42"/>
         <source>上传歌手写真</source>
-        <translation>上傳歌手寫真</translation>
+        <translation type="vanished">上傳歌手寫真</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcartphotouploadwidget.ui" line="55"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcartphotouploadwidget.ui" line="68"/>
-        <source>歌手：</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcartphotouploadwidget.ui" line="94"/>
         <source>选择的图片尺寸过小，请重新选择</source>
-        <translation>選擇的圖片尺寸過小，請重新選擇</translation>
+        <translation type="vanished">選擇的圖片尺寸過小，請重新選擇</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcartphotouploadwidget.ui" line="110"/>
         <source>确定</source>
-        <translation>確定</translation>
+        <translation type="vanished">確定</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcartphotouploadwidget.ui" line="123"/>
         <source>关闭</source>
-        <translation>關閉</translation>
+        <translation type="vanished">關閉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcartphotouploadwidget.ui" line="146"/>
         <source>点击选择图片</source>
-        <translation>點擊選擇圖片</translation>
+        <translation type="vanished">點擊選擇圖片</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcartphotouploadwidget.ui" line="159"/>
         <source>请上传尺寸1033*660以上的图片</source>
-        <translation>請上傳尺寸1033*660以上的圖片</translation>
+        <translation type="vanished">請上傳尺寸1033*660以上的圖片</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcartphotouploadwidget.ui" line="188"/>
         <source>放缩比例</source>
-        <translation>放縮比例</translation>
+        <translation type="vanished">放縮比例</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcartphotouploadwidget.ui" line="204"/>
         <source>100%</source>
-        <translation type="unfinished">100%</translation>
+        <translation type="obsolete">100%</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcartphotouploadwidget.cpp" line="128"/>
         <source>Close</source>
-        <translation>關閉</translation>
+        <translation type="vanished">關閉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcartphotouploadwidget.cpp" line="201"/>
         <source>The art is empty!</source>
-        <translation>輸入的歌手爲空!</translation>
+        <translation type="vanished">輸入的歌手爲空!</translation>
     </message>
 </context>
 <context>
@@ -2646,7 +2625,7 @@
 <context>
     <name>MusicLrcFloatPhotoItem</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcfloatphotowidget.cpp" line="109"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcfloatphotowidget.cpp" line="108"/>
         <source>Export</source>
         <translation>導出</translation>
     </message>
@@ -2654,17 +2633,22 @@
 <context>
     <name>MusicLrcFloatPhotoWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcfloatphotowidget.cpp" line="169"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcfloatphotowidget.cpp" line="168"/>
         <source>All</source>
         <translation>全選</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcfloatphotowidget.cpp" line="177"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcfloatphotowidget.cpp" line="176"/>
+        <source>Manage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcfloatphotowidget.cpp" line="182"/>
         <source>OK</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcfloatphotowidget.cpp" line="183"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcfloatphotowidget.cpp" line="188"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
@@ -2998,6 +2982,50 @@
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="687"/>
         <source>Lrc text is empty!</source>
         <translation>歌詞內容不能為空！</translation>
+    </message>
+</context>
+<context>
+    <name>MusicLrcPhotoManagerWidget</name>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="14"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="42"/>
+        <source>歌手写真管理</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="55"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="68"/>
+        <source>歌手：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="81"/>
+        <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="119"/>
+        <source>Add</source>
+        <translation type="unfinished">添加</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="135"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcphotomanagerwidget.ui" line="151"/>
+        <source>Export</source>
+        <translation type="unfinished">導出</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="88"/>
+        <source>Close</source>
+        <translation type="unfinished">關閉</translation>
     </message>
 </context>
 <context>

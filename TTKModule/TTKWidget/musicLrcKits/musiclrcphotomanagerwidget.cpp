@@ -3,6 +3,88 @@
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
 
+MusicLrcPhotoItem::MusicLrcPhotoItem(QWidget *parent)
+    : QLabel(parent),
+      m_isSelected(false)
+{
+    setFixedSize(137, 100);
+    setCursor(Qt::PointingHandCursor);
+}
+
+void MusicLrcPhotoItem::updatePixmap(const QString &path)
+{
+//    QPixmap pix(path);
+//    setPixmap(image.m_pix.scaled(size()));
+}
+
+void MusicLrcPhotoItem::setSelected(bool v)
+{
+    m_isSelected = v;
+}
+
+void MusicLrcPhotoItem::mousePressEvent(QMouseEvent *event)
+{
+    QLabel::mousePressEvent(event);
+    m_isSelected = !m_isSelected;
+    update();
+}
+
+void MusicLrcPhotoItem::paintEvent(QPaintEvent *event)
+{
+    QLabel::paintEvent(event);
+    if(m_isSelected)
+    {
+        QPainter painter(this);
+        painter.setBrush(QColor(0, 0, 0, 155));
+        painter.drawRect(rect());
+    }
+}
+
+
+MusicLrcPhotoWidget::MusicLrcPhotoWidget(QWidget *parent)
+    : QWidget(parent)
+{
+    m_gridLayout = new QGridLayout(this);
+    m_gridLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+    m_gridLayout->setContentsMargins(7, 0, 7, 0);
+    setLayout(m_gridLayout);
+
+    addCellItem("a");
+    addCellItem("a");
+    addCellItem("a");
+    addCellItem("a");
+    addCellItem("a");
+    addCellItem("a");
+    addCellItem("a");
+    addCellItem("a");
+    addCellItem("a");
+    addCellItem("a");
+    addCellItem("a");
+    addCellItem("a");
+    addCellItem("a");
+    addCellItem("a");
+    addCellItem("a");
+}
+
+MusicLrcPhotoWidget::~MusicLrcPhotoWidget()
+{
+    delete m_gridLayout;
+}
+
+void MusicLrcPhotoWidget::addCellItem(const QString &path)
+{
+    MusicLrcPhotoItem *item = new MusicLrcPhotoItem(this);
+    item->setPixmap(QPixmap(path));
+//    item->setCloseEnabled(state);
+//    item->setFileName(name);
+//    item->setFilePath(path);
+//    item->updatePixmap();
+
+    m_gridLayout->addWidget(item, m_items.count() / MIN_ITEM_COUNT, m_items.count() % MIN_ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
+    m_items << item;
+}
+
+
 MusicLrcPhotoManagerWidget::MusicLrcPhotoManagerWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicLrcPhotoManagerWidget)
@@ -17,7 +99,17 @@ MusicLrcPhotoManagerWidget::MusicLrcPhotoManagerWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->artSearchEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
+    m_ui->addButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->deleteButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->exportButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+#ifdef Q_OS_UNIX
+    m_ui->addButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->deleteButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->exportButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
+    MusicLrcPhotoWidget *w = new MusicLrcPhotoWidget(this);
+    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->viewArea, w);
 }
 
 MusicLrcPhotoManagerWidget::~MusicLrcPhotoManagerWidget()

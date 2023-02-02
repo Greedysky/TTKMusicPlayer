@@ -1,6 +1,7 @@
 #include "musiclrcfloatphotowidget.h"
-#include "musicbackgroundmanager.h"
 #include "musicinteriorfloatuiobject.h"
+#include "musiclrcphotomanagerwidget.h"
+#include "musicbackgroundmanager.h"
 #include "musicwidgetheaders.h"
 #include "musicimageutils.h"
 #include "musicfileutils.h"
@@ -8,8 +9,6 @@
 
 #include <qmath.h>
 #include <QTimer>
-
-#define PHOTO_PERLINE       4
 
 MusicLrcFloatPhotoItem::MusicLrcFloatPhotoItem(int index, QWidget *parent)
     : TTKClickedLabel(parent),
@@ -141,7 +140,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_previous->setFixedSize(20, 52);
     areaLayout->addWidget(m_previous);
 
-    for(int i = 0; i < PHOTO_PERLINE; ++i)
+    for(int i = 0; i < MIN_ITEM_COUNT; ++i)
     {
         MusicLrcFloatPhotoItem *item = new MusicLrcFloatPhotoItem(i, this);
         areaLayout->addWidget(item);
@@ -177,19 +176,19 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     QPushButton *manageButton = new QPushButton(tr("Manage"), functionWidget);
     manageButton->setCursor(QCursor(Qt::PointingHandCursor));
     manageButton->setStyleSheet(MusicUIObject::InteriorFloatSetting + MusicUIObject::PushButtonStyle06);
-    manageButton->setFixedSize(50, 25);
+    manageButton->setFixedSize(55, 25);
     functionLayout->addWidget(manageButton);
 
     QPushButton *confirmButton = new QPushButton(tr("OK"), functionWidget);
     confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     confirmButton->setStyleSheet(MusicUIObject::InteriorFloatSetting + MusicUIObject::PushButtonStyle06);
-    confirmButton->setFixedSize(50, 25);
+    confirmButton->setFixedSize(55, 25);
     functionLayout->addWidget(confirmButton);
 
     QPushButton *cancelButton = new QPushButton(tr("Cancel"), functionWidget);
     cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
     cancelButton->setStyleSheet(MusicUIObject::InteriorFloatSetting + MusicUIObject::PushButtonStyle06);
-    cancelButton->setFixedSize(50, 25);
+    cancelButton->setFixedSize(55, 25);
     functionLayout->addWidget(cancelButton);
 
 #ifdef Q_OS_UNIX
@@ -204,6 +203,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     connect(m_previous, SIGNAL(clicked()), SLOT(photoPrevious()));
     connect(m_next, SIGNAL(clicked()), SLOT(photoNext()));
     connect(m_checkBox, SIGNAL(clicked(bool)), SLOT(selectAllStateChanged(bool)));
+    connect(manageButton, SIGNAL(clicked()), SLOT(manageButtonClicked()));
     connect(confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
     connect(cancelButton, SIGNAL(clicked()), SLOT(close()));
     connect(G_BACKGROUND_PTR, SIGNAL(artistNameChanged()), SLOT(artistNameChanged()));
@@ -238,6 +238,11 @@ void MusicLrcFloatPhotoWidget::close()
     QTimer::singleShot(m_animation->duration(), this, SLOT(parentClose()));
 }
 
+void MusicLrcFloatPhotoWidget::manageButtonClicked()
+{
+    MusicLrcPhotoManagerWidget(this).exec();
+}
+
 void MusicLrcFloatPhotoWidget::confirmButtonClicked()
 {
     QStringList list;
@@ -253,7 +258,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
 void MusicLrcFloatPhotoWidget::showPhoto() const
 {
     m_previous->setEnabled(m_currentIndex != 0);
-    int page = ceil(m_photos.count() * 1.0 / PHOTO_PERLINE) - 1;
+    int page = ceil(m_photos.count() * 1.0 / MIN_ITEM_COUNT) - 1;
     if(page < 0)
     {
         page = 0;
@@ -261,7 +266,7 @@ void MusicLrcFloatPhotoWidget::showPhoto() const
 
     m_next->setEnabled(m_currentIndex != page);
 
-    const int indexCheck = m_currentIndex * PHOTO_PERLINE;
+    const int indexCheck = m_currentIndex * MIN_ITEM_COUNT;
     for(int i = 0; i < m_planes.count(); ++i)
     {
         m_planes[i]->setPhoto((indexCheck + i) < m_photos.count() ? m_photos[indexCheck + i] : QString());
@@ -304,7 +309,7 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
 
 void MusicLrcFloatPhotoWidget::photoNext()
 {
-    int page = ceil(m_photos.count() * 1.0 / PHOTO_PERLINE) - 1;
+    int page = ceil(m_photos.count() * 1.0 / MIN_ITEM_COUNT) - 1;
     if(page < 0)
     {
         page = 0;
@@ -319,7 +324,7 @@ void MusicLrcFloatPhotoWidget::photoNext()
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBackground(int index)
 {
-    G_BACKGROUND_PTR->setUserSelectArtistIndex(m_currentIndex * PHOTO_PERLINE + index);
+    G_BACKGROUND_PTR->setUserSelectArtistIndex(m_currentIndex * MIN_ITEM_COUNT + index);
 }
 
 void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked(int index)
@@ -330,7 +335,7 @@ void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked(int index)
         status = m_planes[index]->boxChecked();
     }
 
-    index = m_currentIndex * PHOTO_PERLINE + index;
+    index = m_currentIndex * MIN_ITEM_COUNT + index;
     if(status)
     {
         m_selectNum << index;

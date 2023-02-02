@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>468</width>
-    <height>328</height>
+    <width>613</width>
+    <height>428</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>460</width>
-     <height>320</height>
+     <width>605</width>
+     <height>420</height>
     </rect>
    </property>
    <property name="text">
@@ -45,7 +45,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>442</x>
+     <x>587</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -58,7 +58,7 @@
   <widget class="QLabel" name="artNameLabel">
    <property name="geometry">
     <rect>
-     <x>24</x>
+     <x>20</x>
      <y>46</y>
      <width>42</width>
      <height>20</height>
@@ -68,14 +68,17 @@
     <string>歌手：</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="artSearchEdit">
+  <widget class="QLabel" name="artTextLabel">
    <property name="geometry">
     <rect>
-     <x>66</x>
-     <y>46</y>
-     <width>170</width>
-     <height>20</height>
+     <x>70</x>
+     <y>43</y>
+     <width>300</width>
+     <height>25</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>-</string>
    </property>
   </widget>
   <widget class="QWidget" name="backgroundMask" native="true">
@@ -83,20 +86,78 @@
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>460</width>
-     <height>295</height>
+     <width>605</width>
+     <height>395</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background:white;</string>
    </property>
+   <widget class="QScrollArea" name="viewArea">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>55</y>
+      <width>585</width>
+      <height>281</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addButton">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>350</y>
+      <width>70</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="deleteButton">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>350</y>
+      <width>70</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Delete</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="exportButton">
+    <property name="geometry">
+     <rect>
+      <x>185</x>
+      <y>350</y>
+      <width>70</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Export</string>
+    </property>
+   </widget>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
   <zorder>artNameLabel</zorder>
-  <zorder>artSearchEdit</zorder>
+  <zorder>artTextLabel</zorder>
  </widget>
  <resources/>
  <connections/>

@@ -137,7 +137,7 @@ public:
     /*!
      * Set song image cover artist.
      */
-    void setCover(const QPixmap &pix);
+    void setCover(const QPixmap &cover);
     /*!
      * Set song image cover artist.
      */

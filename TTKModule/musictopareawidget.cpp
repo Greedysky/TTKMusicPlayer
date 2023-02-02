@@ -455,15 +455,15 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
 
     const QSize size(G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());
 
-    QPixmap pixmap(size);
-    pixmap.fill(Qt::transparent);
-    QPainter painter(&pixmap);
+    QPixmap pix(size);
+    pix.fill(Qt::transparent);
+    QPainter painter(&pix);
     painter.drawPixmap(0, 0, QPixmap::fromImage(m_backgroundImage.scaled(size, Qt::KeepAspectRatioByExpanding)));
 
     backgroundTransparentChanged(m_backgroundListAlpha);
-    Q_EMIT backgroundPixmapChanged(pixmap);
+    Q_EMIT backgroundPixmapChanged(pix);
 
-    m_ui->background->setPixmap(pixmap);
+    m_ui->background->setPixmap(pix);
 }
 
 void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)

@@ -13,7 +13,7 @@
 #include "musicfileutils.h"
 #include "musicformats.h"
 
-#define ITEM_MIN_COUNT             4
+#define ITEM_MIN_COUNT             MIN_ITEM_COUNT
 #define ITEM_MAX_COUNT             10
 #define RECENT_ITEM_MAX_COUNT      50
 

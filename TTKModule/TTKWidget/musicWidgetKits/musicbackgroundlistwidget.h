@@ -56,11 +56,11 @@ public:
     /*!
      * Update pix image.
      */
-    void updatePixImage();
+    void updatePixmap();
     /*!
      * Update pix image.
      */
-    void updatePixImage(const MusicBackgroundImage &image);
+    void updatePixmap(const MusicBackgroundImage &image);
     /*!
      * Current item contains or not.
      */

@@ -5,8 +5,6 @@
 
 #include <QMouseEvent>
 
-#define ITEM_COUNT      4
-
 MusicBackgroundListItem::MusicBackgroundListItem(QWidget *parent)
     : QLabel(parent),
       m_isSelected(false),
@@ -19,19 +17,19 @@ MusicBackgroundListItem::MusicBackgroundListItem(QWidget *parent)
     setCursor(Qt::PointingHandCursor);
 }
 
-void MusicBackgroundListItem::updatePixImage()
+void MusicBackgroundListItem::updatePixmap()
 {
     if(!m_path.isEmpty())
     {
         MusicBackgroundImage image;
         if(MusicExtractWrapper::outputSkin(&image, m_path))
         {
-            updatePixImage(image);
+            updatePixmap(image);
         }
     }
 }
 
-void MusicBackgroundListItem::updatePixImage(const MusicBackgroundImage &image)
+void MusicBackgroundListItem::updatePixmap(const MusicBackgroundImage &image)
 {
     m_imageInfo = image.m_item;
     setPixmap(image.m_pix.scaled(size()));
@@ -151,6 +149,7 @@ MusicBackgroundListWidget::MusicBackgroundListWidget(QWidget *parent)
 MusicBackgroundListWidget::~MusicBackgroundListWidget()
 {
     clearAllItems();
+    delete m_gridLayout;
 }
 
 void MusicBackgroundListWidget::setCurrentItemName(const QString &name)
@@ -189,7 +188,7 @@ void MusicBackgroundListWidget::addCellItem(const QString &icon, bool state)
 
     connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(currentItemClicked(MusicBackgroundListItem*)));
     connect(item, SIGNAL(closeClicked(MusicBackgroundListItem*)), SLOT(itemCloseClicked(MusicBackgroundListItem*)));
-    m_gridLayout->addWidget(item, m_items.count() / ITEM_COUNT, m_items.count() % ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
+    m_gridLayout->addWidget(item, m_items.count() / MIN_ITEM_COUNT, m_items.count() % MIN_ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     m_items << item;
 }
 
@@ -199,11 +198,11 @@ void MusicBackgroundListWidget::addCellItem(const QString &name, const QString &
     item->setCloseEnabled(state);
     item->setFileName(name);
     item->setFilePath(path);
-    item->updatePixImage();
+    item->updatePixmap();
 
     connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(currentItemClicked(MusicBackgroundListItem*)));
     connect(item, SIGNAL(closeClicked(MusicBackgroundListItem*)), SLOT(itemCloseClicked(MusicBackgroundListItem*)));
-    m_gridLayout->addWidget(item, m_items.count() / ITEM_COUNT, m_items.count() % ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
+    m_gridLayout->addWidget(item, m_items.count() / MIN_ITEM_COUNT, m_items.count() % MIN_ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     m_items << item;
 }
 
@@ -216,7 +215,7 @@ void MusicBackgroundListWidget::updateItem(const MusicBackgroundImage &image, co
             item->setShowNameEnabled(false);
             item->setSelectEnabled(false);
             item->setFileName(path);
-            item->updatePixImage(image);
+            item->updatePixmap(image);
             break;
         }
     }
@@ -320,7 +319,7 @@ void MusicBackgroundListWidget::itemCloseClicked(MusicBackgroundListItem *item)
 
     for(int i = index; i < m_items.count(); ++i)
     {
-        m_gridLayout->addWidget(m_items[i], i / ITEM_COUNT, i % ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
+        m_gridLayout->addWidget(m_items[i], i / MIN_ITEM_COUNT, i % MIN_ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     }
 }
 
