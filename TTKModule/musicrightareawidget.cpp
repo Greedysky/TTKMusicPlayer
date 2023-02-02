@@ -379,7 +379,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             QString searchedString = m_ui->musicSongSearchEdit->text().trimmed();
                     searchedString = searchedString.isEmpty() ? m_ui->musicSongSearchEdit->placeholderText() : searchedString;
             //The string searched wouldn't allow to be none
-            if(!searchedString.isEmpty() && searchedString != tr("Please input search words!"))
+            if(!searchedString.isEmpty() && searchedString != tr("Please input search words"))
             {
                 m_ui->musicSongSearchEdit->setText(searchedString);
                 m_ui->songSearchWidget->startSearchQuery(searchedString, true);
@@ -387,7 +387,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             else
             {
                 functionClicked(MusicRightAreaWidget::KugGouSongWidget);
-                MusicToastLabel::popup(tr("Please enter input search text first!"));
+                MusicToastLabel::popup(tr("Please enter input search text first"));
                 break;
             }
 

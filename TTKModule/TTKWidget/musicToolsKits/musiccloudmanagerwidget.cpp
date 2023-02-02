@@ -141,7 +141,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItemList &i
     const int count = items.count();
     if(count == 0)
     {
-        Q_EMIT updateLabelMessage(tr("List is empty!"));
+        Q_EMIT updateLabelMessage(tr("List is empty"));
         createUploadFileModule();
         return;
     }
@@ -158,7 +158,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItemList &i
         addCellItem(data);
     }
 
-    Q_EMIT updateLabelMessage(tr("List update finished!"));
+    Q_EMIT updateLabelMessage(tr("List update finished"));
     Q_EMIT updataSizeLabel(m_totalFileSzie);
 }
 
@@ -192,7 +192,7 @@ void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time)
 
 void MusicCloudManagerTableWidget::deleteFileFinished(bool state)
 {
-    Q_EMIT updateLabelMessage(state ? tr("Delete current file success!") : tr("Delete current file error!"));
+    Q_EMIT updateLabelMessage(state ? tr("Delete current file success") : tr("Delete current file error"));
 }
 
 void MusicCloudManagerTableWidget::updateListToServer()
@@ -205,7 +205,7 @@ void MusicCloudManagerTableWidget::deleteFileToServer()
 {
     if(!isValid() || m_uploading)
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 
@@ -258,7 +258,7 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
 {
     if(!isValid())
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 

@@ -201,7 +201,7 @@ void MusicMobileSongsManagerWidget::auditionButtonClick()
 
     if(m_ui->songlistTable->rowCount() <= 0 || m_ui->songlistTable->currentRow() < 0)
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 

@@ -63,12 +63,12 @@ void MusicLrcSearchWidget::setCurrentSongName(const QString &name) const
 
 void MusicLrcSearchWidget::lrcSearchFinished() const
 {
-    m_ui->stateLabel->setText(tr("Lrc search finished!"));
+    m_ui->stateLabel->setText(tr("Lrc search finished"));
 }
 
 void MusicLrcSearchWidget::lrcSearchButtonClicked() const
 {
-    m_ui->stateLabel->setText(tr("Lrc is searching now!"));
+    m_ui->stateLabel->setText(tr("Lrc is searching now"));
     const QString &text = m_ui->songSearchEdit->text().trimmed();
     m_ui->tableWidget->startSearchQuery(text);
     m_ui->functionTopLabel->setText(tr("&nbsp;find <font color=#158FE1> %1 </font> result").arg(MusicUtils::Widget::elidedText(font(), text, Qt::ElideRight, 245)));
@@ -81,7 +81,7 @@ void MusicLrcSearchWidget::lrcSearchDownloadClicked()
 
     if(list.isEmpty())
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 
@@ -89,13 +89,13 @@ void MusicLrcSearchWidget::lrcSearchDownloadClicked()
     {
         m_ui->tableWidget->musicDownloadLocal(row);
     }
-    m_ui->stateLabel->setText(tr("Lrc is downloading now!"));
+    m_ui->stateLabel->setText(tr("Lrc is downloading now"));
 }
 
 void MusicLrcSearchWidget::lrcDownloadStateChanged(const QString &string)
 {
     if(string == DOWNLOAD_KEY_LRC)
     {
-       m_ui->stateLabel->setText(tr("Lrc download finished!"));
+       m_ui->stateLabel->setText(tr("Lrc download finished"));
     }
 }

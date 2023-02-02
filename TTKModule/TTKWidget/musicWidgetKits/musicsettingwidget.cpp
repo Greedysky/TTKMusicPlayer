@@ -504,7 +504,7 @@ void MusicSettingWidget::testNetworkProxy()
 
 void MusicSettingWidget::testProxyStateChanged(bool state)
 {
-    MusicToastLabel::popup(state ? tr("Test successed!") : tr("Test failed!"));
+    MusicToastLabel::popup(state ? tr("Test successed") : tr("Test failed"));
 }
 
 void MusicSettingWidget::testNetworkConnection()

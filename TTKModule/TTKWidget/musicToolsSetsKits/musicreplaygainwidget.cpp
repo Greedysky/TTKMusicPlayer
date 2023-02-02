@@ -131,7 +131,7 @@ void MusicReplayGainWidget::initialize()
     }
     else
     {
-        MusicToastLabel::popup(tr("ReplayGain init error!"));
+        MusicToastLabel::popup(tr("ReplayGain init error"));
     }
 }
 
@@ -239,7 +239,7 @@ void MusicReplayGainWidget::rmFileButtonClicked()
     const int row = m_ui->tableWidget->currentRow();
     if(row < 0)
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
     m_ui->tableWidget->removeRow(row);
@@ -261,7 +261,7 @@ void MusicReplayGainWidget::applyButtonClicked()
 {
     if(m_paths.isEmpty())
     {
-        MusicToastLabel::popup(tr("Music gain list is empty!"));
+        MusicToastLabel::popup(tr("Music gain list is empty"));
         return;
     }
 
@@ -286,7 +286,7 @@ void MusicReplayGainWidget::applyButtonClicked()
     disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(applyOutput()));
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(analysisOutput()));
 
-    MusicToastLabel::popup(tr("Music gain finished!"));
+    MusicToastLabel::popup(tr("Music gain finished"));
 }
 
 void MusicReplayGainWidget::lineTextChanged(const QString &text)
@@ -364,7 +364,7 @@ void MusicReplayGainWidget::show()
 {
     if(!QFile::exists(MAKE_GAIN_PATH_FULL))
     {
-        MusicToastLabel::popup(tr("Lack of plugin file!"));
+        MusicToastLabel::popup(tr("Lack of plugin file"));
         return;
     }
 

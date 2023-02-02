@@ -703,7 +703,7 @@ void MusicApplication::musicAddSongToLovestList(bool state)
         m_leftAreaWidget->musictLoveStateClicked(false);
     }
 
-    MusicToastLabel::popup(!contains ? tr("Add music to lovest list done!") : tr("Remove music to lovest list done!"));
+    MusicToastLabel::popup(!contains ? tr("Add music to lovest list done") : tr("Remove music to lovest list done"));
 }
 
 void MusicApplication::musicWindowConciseChanged()

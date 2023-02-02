@@ -298,7 +298,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
 
     if(row < 0 || (row >= rowCount() - 1))
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 
@@ -416,7 +416,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
 
     if(list.isEmpty())
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 

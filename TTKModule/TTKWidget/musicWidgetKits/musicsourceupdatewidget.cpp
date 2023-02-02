@@ -150,7 +150,7 @@ void MusicSourceUpdateWidget::downLoadFinished(const QVariant &bytes)
     }
     else
     {
-        text.append(tr("Current version is updated!"));
+        text.append(tr("Current version is updated"));
         m_ui->titleLable->move(0, 0);
         m_ui->titleLable->setAlignment(Qt::AlignCenter);
     }

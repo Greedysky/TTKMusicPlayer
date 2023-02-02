@@ -119,7 +119,7 @@ QStringList MusicConnectTransferWidget::selectedFiles() const
     const TTKIntList &list = m_ui->listTableWidget->checkedIndexList();
     if(list.isEmpty())
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return paths;
     }
 

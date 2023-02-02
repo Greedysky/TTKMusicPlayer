@@ -156,7 +156,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
     setItemTitle(item);
     setCurrentIndex(m_selectImportIndex);
 
-    MusicToastLabel::popup(tr("Import music songs done!"));
+    MusicToastLabel::popup(tr("Import music songs done"));
 }
 
 void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)

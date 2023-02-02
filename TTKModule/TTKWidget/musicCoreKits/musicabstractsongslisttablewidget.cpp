@@ -105,7 +105,7 @@ void MusicAbstractSongsListTableWidget::musicOpenFileDir()
 
     if(!MusicUtils::Url::openUrl(QFileInfo(path).absoluteFilePath()))
     {
-        MusicToastLabel::popup(tr("The file has been moved or does not exist!"));
+        MusicToastLabel::popup(tr("The file has been moved or does not exist"));
     }
 }
 

@@ -104,7 +104,7 @@ void MusicCloudUploadTableWidget::reuploadFile()
 {
     if(!isValid())
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 
@@ -125,7 +125,7 @@ void MusicCloudUploadTableWidget::reuploadFiles()
 {
     if(!isValid())
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 

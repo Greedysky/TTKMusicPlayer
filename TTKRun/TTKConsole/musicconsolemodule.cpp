@@ -189,7 +189,7 @@ void MusicConsoleModule::currentIndexChanged(int index)
     {
         m_player->stop();
         QTimer::singleShot(MT_S2MS, qApp, SLOT(quit()));
-        TTK_LOG_STREAM("Music play end and application quit now!");
+        TTK_LOG_STREAM("Music play end and application quit now");
     }
 }
 

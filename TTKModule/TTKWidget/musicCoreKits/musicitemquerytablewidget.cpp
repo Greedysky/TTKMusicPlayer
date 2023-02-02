@@ -84,7 +84,7 @@ void MusicItemQueryTableWidget::downloadDataFrom(bool play)
     const TTKIntList &list = checkedIndexList();
     if(list.isEmpty())
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 
@@ -103,7 +103,7 @@ void MusicItemQueryTableWidget::downloadBatchData(bool music)
     const TTKIntList &list = checkedIndexList();
     if(list.isEmpty())
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 
@@ -307,7 +307,7 @@ void MusicItemQueryTableWidget::addSearchMusicToPlaylist(int row, bool play)
 {
     if(row < 0)
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 

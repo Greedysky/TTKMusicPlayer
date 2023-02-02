@@ -271,7 +271,7 @@ void MusicLrcMakerWidget::reMakeButtonClicked()
 void MusicLrcMakerWidget::backToMakeLrcWidget()
 {
     MusicMessageBox message;
-    message.setText(tr("Go back and lyrics will be lost!"));
+    message.setText(tr("Go back and lyrics will be lost"));
     if(message.exec())
     {
         MusicApplication::instance()->musicPlayAnyTimeAt(0);
@@ -360,7 +360,7 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
 {
     if(m_ui->stackedWidget->currentIndex() == 2 && m_plainText.count() > m_ui->makeTextEdit->textCursor().blockNumber())
     {
-        MusicToastLabel::popup(tr("Lyrics make has not been completed!"));
+        MusicToastLabel::popup(tr("Lyrics make has not been completed"));
         return;
     }
 
@@ -672,19 +672,19 @@ bool MusicLrcMakerWidget::checkInputValid()
     if(m_ui->artNameEdit->text().isEmpty())
     {
         error = true;
-        msg = tr("Art name is empty!");
+        msg = tr("Art name is empty");
     }
 
     if(m_ui->songNameEdit->text().isEmpty())
     {
         error = true;
-        msg = tr("Song name is empty!");
+        msg = tr("Song name is empty");
     }
 
     if(m_ui->lrcTextEdit->toPlainText().isEmpty())
     {
         error = true;
-        msg = tr("Lrc text is empty!");
+        msg = tr("Lrc text is empty");
     }
 
     if(error)

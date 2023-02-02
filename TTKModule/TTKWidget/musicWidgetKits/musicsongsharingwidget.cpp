@@ -230,7 +230,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
 
 void MusicSongSharingWidget::queryUrlTimeout()
 {
-    MusicToastLabel::popup(tr("Song does not support sharing!"));
+    MusicToastLabel::popup(tr("Song does not support sharing"));
 }
 
 void MusicSongSharingWidget::downLoadFinished(const QString &playUrl, const QString &imageUrl)

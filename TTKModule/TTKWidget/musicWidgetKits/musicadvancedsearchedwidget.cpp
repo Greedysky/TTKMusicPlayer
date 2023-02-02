@@ -141,7 +141,7 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
     const int server = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
     if(server > 3 || server < 0)
     {
-        MusicToastLabel::popup(tr("Current server is not support search!"));
+        MusicToastLabel::popup(tr("Current server is not support search"));
         return;
     }
 

@@ -308,7 +308,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
 
     m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::CicleBlue, this);
     m_loadingLabel->setStyleSheet(MusicUIObject::BackgroundStyle01);
-    m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words!"));
+    m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words"));
 
     QTimer::singleShot(MT_ONCE, this, SLOT(refreshItems()));
     connect(refresh, SIGNAL(clicked()), SLOT(refreshItems()));
@@ -341,11 +341,11 @@ void MusicLocalManagerWidget::typeIndexChanged(int index)
 {
     switch(index)
     {
-        case 0: m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words!")); break;
-        case 1: m_searchEdit->editor()->setPlaceholderText(tr("Please input search artist words!")); break;
-        case 2: m_searchEdit->editor()->setPlaceholderText(tr("Please input search album words!")); break;
-        case 3: m_searchEdit->editor()->setPlaceholderText(tr("Please input search year words!")); break;
-        case 4: m_searchEdit->editor()->setPlaceholderText(tr("Please input search genre words!")); break;
+        case 0: m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words")); break;
+        case 1: m_searchEdit->editor()->setPlaceholderText(tr("Please input search artist words")); break;
+        case 2: m_searchEdit->editor()->setPlaceholderText(tr("Please input search album words")); break;
+        case 3: m_searchEdit->editor()->setPlaceholderText(tr("Please input search year words")); break;
+        case 4: m_searchEdit->editor()->setPlaceholderText(tr("Please input search genre words")); break;
         default: break;
     }
 

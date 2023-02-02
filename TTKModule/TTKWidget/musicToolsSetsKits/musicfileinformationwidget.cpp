@@ -65,7 +65,7 @@ void MusicFileInformationWidget::openFileDir()
 {
     if(!MusicUtils::Url::openUrl(MusicObject::trackRelatedPath(m_path)))
     {
-        MusicToastLabel::popup(tr("The file has been moved or does not exist!"));
+        MusicToastLabel::popup(tr("The file has been moved or does not exist"));
     }
 }
 
@@ -218,7 +218,7 @@ void MusicFileInformationWidget::saveTag()
     }
 
     meta.save();
-    MusicToastLabel::popup(tr("Save successfully!"));
+    MusicToastLabel::popup(tr("Save successfully"));
 }
 
 void MusicFileInformationWidget::setFileInformation(const QString &name)

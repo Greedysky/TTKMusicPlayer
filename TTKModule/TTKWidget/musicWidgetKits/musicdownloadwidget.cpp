@@ -206,7 +206,7 @@ void MusicDownloadWidget::downLoadFinished()
     else
     {
         close();
-        MusicToastLabel::popup(tr("No resource found!"));
+        MusicToastLabel::popup(tr("No resource found"));
     }
 }
 
@@ -314,7 +314,7 @@ void MusicDownloadWidget::startRequest()
 {
     if(m_ui->viewArea->currentItemRole().isEmpty())
     {
-        MusicToastLabel::popup(tr("Please select one item first!"));
+        MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 

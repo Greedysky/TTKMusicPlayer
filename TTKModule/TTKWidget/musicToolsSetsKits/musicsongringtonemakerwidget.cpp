@@ -95,7 +95,7 @@ void MusicSongRingtoneMaker::initInputPath()
     }
     else
     {
-        m_ui->songLabelValue->setText(tr("Open file error!"));
+        m_ui->songLabelValue->setText(tr("Open file error"));
         return;
     }
 
@@ -179,7 +179,7 @@ int MusicSongRingtoneMaker::exec()
 {
     if(!QFile::exists(MAKE_TRANSFORM_PATH_FULL))
     {
-        MusicToastLabel::popup(tr("Lack of plugin file!"));
+        MusicToastLabel::popup(tr("Lack of plugin file"));
         return -1;
     }
 

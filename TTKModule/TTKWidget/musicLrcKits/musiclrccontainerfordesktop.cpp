@@ -68,7 +68,7 @@ void MusicLrcContainerForDesktop::initCurrentLrc() const
 {
     if(m_currentTime == 0)
     {
-        m_lrcManagers[0]->setText(tr("Welcome to use TTKMusicPlayer!"));
+        m_lrcManagers[0]->setText(tr("Welcome to use TTKMusicPlayer"));
     }
 }
 

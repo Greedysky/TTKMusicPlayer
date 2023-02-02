@@ -65,7 +65,7 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     initFunctionLabel();
     createNoLrcCurrentInfo();
 
-    m_lrcManagers[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(tr("No song is playing now!"));
+    m_lrcManagers[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(tr("No song is playing now"));
 }
 
 MusicLrcContainerForInterior::~MusicLrcContainerForInterior()
@@ -133,7 +133,7 @@ void MusicLrcContainerForInterior::updateCurrentLrc(MusicLrcAnalysis::State stat
     }
     else
     {
-        m_lrcManagers[m_lrcAnalysis->lineMiddle()]->setText(tr("No song is playing now!"));
+        m_lrcManagers[m_lrcAnalysis->lineMiddle()]->setText(tr("No song is playing now"));
         m_noLrcCurrentInfo->hide();
     }
 }
@@ -961,7 +961,7 @@ void MusicLrcContainerForInterior::resizeWidth(int w, int h)
     }
     else if(m_currentTime != 0 && m_lrcAnalysis->currentIndex() == 0)
     {
-        initCurrentLrc(tr("No song is playing now!"));
+        initCurrentLrc(tr("No song is playing now"));
     }
 
     if(m_commentsWidget)

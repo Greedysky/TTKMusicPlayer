@@ -87,7 +87,7 @@ void MusicLrcPhotoWidget::addButtonClicked()
 
     if(++count >= MAX_IMAGE_COUNT)
     {
-        MusicToastLabel::popup(tr("Exceeded the maximum number limit!"));
+        MusicToastLabel::popup(tr("Exceeded the maximum number limit"));
         return;
     }
 

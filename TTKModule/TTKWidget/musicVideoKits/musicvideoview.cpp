@@ -193,7 +193,7 @@ void MusicVideoView::mediaAutionPlayError(int code)
     if(TTK_LOW_LEVEL == code)
     {
         stop();
-        MusicToastLabel::popup(tr("Audio play time out!"));
+        MusicToastLabel::popup(tr("Audio play time out"));
     }
 }
 

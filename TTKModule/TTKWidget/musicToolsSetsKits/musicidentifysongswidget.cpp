@@ -64,7 +64,7 @@ void MusicIdentifySongsWidget::queryIdentifyKey()
     }
     else
     {
-        MusicToastLabel::popup(tr("Config init error!"));
+        MusicToastLabel::popup(tr("Config init error"));
     }
 }
 
@@ -80,7 +80,7 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
         m_recordCore->onRecordStart();
         if(m_recordCore->error())
         {
-            MusicToastLabel::popup(tr("Audio init error!"));
+            MusicToastLabel::popup(tr("Audio init error"));
             return;
         }
 

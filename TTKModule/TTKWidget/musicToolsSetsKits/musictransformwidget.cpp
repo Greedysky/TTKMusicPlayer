@@ -195,7 +195,7 @@ int MusicTransformWidget::exec()
 {
     if(!QFile::exists(MAKE_TRANSFORM_PATH_FULL))
     {
-        MusicToastLabel::popup(tr("Lack of plugin file!"));
+        MusicToastLabel::popup(tr("Lack of plugin file"));
         return -1;
     }
 
@@ -225,7 +225,7 @@ bool MusicTransformWidget::processTransform()
 {
     if(m_path.isEmpty())
     {
-        MusicToastLabel::popup(tr("The input file path is empty!"));
+        MusicToastLabel::popup(tr("The input file path is empty"));
         return false;
     }
 
@@ -234,7 +234,7 @@ bool MusicTransformWidget::processTransform()
 
     if(in.isEmpty() || out.isEmpty())
     {
-        MusicToastLabel::popup(tr("The output file path is empty!"));
+        MusicToastLabel::popup(tr("The output file path is empty"));
         return false;
     }
 

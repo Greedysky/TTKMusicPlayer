@@ -403,7 +403,7 @@ void MusicTTKFMRadioPlayWidget::addButtonClicked()
 
         MusicFMConfigManager manager;
         manager.writeBuffer(m_favItem);
-        MusicToastLabel::popup(tr("Add current channel success!"));
+        MusicToastLabel::popup(tr("Add current channel success"));
     }
 }
 
@@ -446,7 +446,7 @@ void MusicTTKFMRadioPlayWidget::deleteButtonClicked()
 
     MusicFMConfigManager manager;
     manager.writeBuffer(m_favItem);
-    MusicToastLabel::popup(tr("Delete current channel success!"));
+    MusicToastLabel::popup(tr("Delete current channel success"));
 }
 
 void MusicTTKFMRadioPlayWidget::infoButtonClicked()

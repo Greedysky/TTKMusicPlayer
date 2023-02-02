@@ -74,7 +74,7 @@ QWidget* MusicPageQueryWidget::createPageWidget(QWidget *parent, int total)
 
         QLabel *icon = new QLabel(func);
         icon->setPixmap(QPixmap(":/lrc/lb_no_results"));
-        QLabel *text = new QLabel(tr("There is empty!"), func);
+        QLabel *text = new QLabel(tr("There is empty"), func);
         text->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle04);
 
         text->setAlignment(Qt::AlignCenter);
