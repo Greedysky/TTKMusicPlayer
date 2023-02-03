@@ -46,7 +46,7 @@ QList<TrackInfo*> MetaDataManager::createPlayList(const QString &path, TrackInfo
     }
     else
     {
-        QString scheme = path.section("://",0,0);
+        QString scheme = path.section("://", 0, 0);
         if(InputSource::findByUrl(path))
         {
             playlist << new TrackInfo(path);
@@ -96,7 +96,7 @@ MetaDataModel* MetaDataManager::createMetaDataModel(const QString &path, bool re
     }
     else
     {
-        QString scheme = path.section("://",0,0);
+        QString scheme = path.section("://", 0, 0);
         MetaDataModel *model = nullptr;
         if((fact = Decoder::findByProtocol(scheme)))
         {

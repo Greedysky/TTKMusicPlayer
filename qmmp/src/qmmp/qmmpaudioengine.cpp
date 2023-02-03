@@ -112,7 +112,7 @@ bool QmmpAudioEngine::enqueue(InputSource *source)
     if(!factory && source->ioDevice() && source->path().contains("://")) //ignore content of local files
         factory = Decoder::findByContent(source->ioDevice());
     if(!factory && source->path().contains("://"))
-        factory = Decoder::findByProtocol(source->path().section("://",0,0));
+        factory = Decoder::findByProtocol(source->path().section("://", 0, 0));
     if(!factory)
     {
         qWarning("QmmpAudioEngine: unsupported file format");
@@ -562,7 +562,7 @@ void QmmpAudioEngine::addOffset()
 void QmmpAudioEngine::attachMetaData(Decoder *decoder, DecoderFactory *factory, InputSource *source)
 {
     QString path = source->path();
-    QString scheme = path.section("://",0,0);
+    QString scheme = path.section("://", 0, 0);
     const QFileInfo fin(path);
 
     if(fin.isFile() || factory->properties().protocols.contains(scheme))

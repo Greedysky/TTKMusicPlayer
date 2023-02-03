@@ -24,7 +24,7 @@ Qmmp::State StateChangedEvent::previousState() const
 }
 
 StreamInfoChangedEvent::StreamInfoChangedEvent(const QHash<QString, QString> &info)
-    : QEvent (EVENT_STREAM_INFO_CHANGED),
+    : QEvent(EVENT_STREAM_INFO_CHANGED),
       m_streamInfo(info)
 {
 

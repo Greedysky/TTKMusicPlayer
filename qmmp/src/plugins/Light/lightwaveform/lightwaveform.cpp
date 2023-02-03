@@ -104,7 +104,7 @@ bool LightWaveFormScanner::scan(const QString &path)
     if(!factory && source->ioDevice() && source->path().contains("://")) //ignore content of local files
         factory = Decoder::findByContent(source->ioDevice());
     if(!factory && source->path().contains("://"))
-        factory = Decoder::findByProtocol(source->path().section("://",0,0));
+        factory = Decoder::findByProtocol(source->path().section("://", 0, 0));
     if(!factory)
     {
         qWarning("LightWaveFormScanner: unsupported file format");
