@@ -555,6 +555,8 @@ void MusicApplication::musicExportSongsItemList(int index)
 
     MusicPlaylistManager manager;
     manager.setMusicSongItem(path, items[index]);
+
+    MusicToastLabel::popup(tr("Export current file success"));
 }
 
 void MusicApplication::musicPlaySort(int row)

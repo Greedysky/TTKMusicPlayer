@@ -70,7 +70,7 @@ void MusicBackgroundListItem::setShowNameEnabled(bool v)
 
 void MusicBackgroundListItem::mousePressEvent(QMouseEvent *event)
 {
-    QLabel::mousePressEvent(event);
+    Q_UNUSED(event);
     if(m_closeEnabled && QRect(width() - 16 - 6, 6, 16, 16).contains(event->pos()))
     {
         Q_EMIT closeClicked(this);

@@ -232,28 +232,28 @@
 <context>
     <name>MusicApplication</name>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="965"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="967"/>
         <source>Prompt</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="732"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="734"/>
         <source>Playback Mode</source>
         <translation>播放模式</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="965"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="967"/>
         <source>TTKMusicPlayer will run in the background</source>
         <translation>天天酷音将在后台运行</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="725"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="727"/>
         <source>Add New Files</source>
         <translation>添加歌曲</translation>
     </message>
     <message>
         <location filename="../TTKModule/musicapplication.cpp" line="485"/>
-        <location filename="../TTKModule/musicapplication.cpp" line="729"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="731"/>
         <source>Open Url</source>
         <translation>添加URL歌曲地址</translation>
     </message>
@@ -263,159 +263,164 @@
         <translation>请输入本地或网络播放地址</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="760"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="559"/>
+        <source>Export current file success</source>
+        <translation>导出文件完成</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/musicapplication.cpp" line="762"/>
         <source>Remote Control</source>
         <translation>遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="764"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="766"/>
         <source>Simple Style Remote</source>
         <translation>简约遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="765"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="767"/>
         <source>Complex Style Remote</source>
         <translation>时尚遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="770"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="772"/>
         <source>Equalizer</source>
         <translation>均衡器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="771"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="773"/>
         <source>Sound Effect</source>
         <translation>音效插件</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="772"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="774"/>
         <source>Timing Settings</source>
         <translation>定时设置</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="773"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="775"/>
         <source>Music Spectrum</source>
         <translation>音乐频谱</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="780"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="782"/>
         <source>Download</source>
         <translation>下载设置</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="784"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="786"/>
         <source>Full Download</source>
         <translation>全速下载</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="785"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="787"/>
         <source>Custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="793"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="795"/>
         <source>New Version</source>
         <translation>软件新版本</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="797"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="799"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="799"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="801"/>
         <source>Bug Report</source>
         <translation>BUG报告</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="800"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="802"/>
         <source>Version</source>
         <translation>版本</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="803"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="805"/>
         <source>Quit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="739"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="741"/>
         <source>List Cycle</source>
         <translation>列表循环</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="740"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="742"/>
         <source>Single Cycle</source>
         <translation>单曲循环</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="737"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="739"/>
         <source>Order Play</source>
         <translation>顺序播放</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="738"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="740"/>
         <source>Random Play</source>
         <translation>随机播放</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="741"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="743"/>
         <source>Play Once</source>
         <translation>单曲播放</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="795"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="797"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
         <location filename="../TTKModule/musicapplication.cpp" line="483"/>
-        <location filename="../TTKModule/musicapplication.cpp" line="727"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="729"/>
         <source>Open Files</source>
         <translation>添加本地歌曲</translation>
     </message>
     <message>
         <location filename="../TTKModule/musicapplication.cpp" line="484"/>
-        <location filename="../TTKModule/musicapplication.cpp" line="728"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="730"/>
         <source>Open Dir</source>
         <translation>添加本地歌曲文件夹</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="706"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="708"/>
         <source>Add music to lovest list done</source>
         <translation>添加到我的最爱完成！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="706"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="708"/>
         <source>Remove music to lovest list done</source>
         <translation>从我的最爱移除完成</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="762"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="764"/>
         <source>Square Remote</source>
         <translation>魔方遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="763"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="765"/>
         <source>Rectangle Remote</source>
         <translation>平行遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="766"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="768"/>
         <source>Ripple Remote</source>
         <translation>个性遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="767"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="769"/>
         <source>Delete Remote</source>
         <translation>关闭遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="776"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="778"/>
         <source>Window Top</source>
         <translation>界面总在最前面</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="778"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="780"/>
         <source>Reset Window</source>
         <translation>恢复窗口默认状态</translation>
     </message>
@@ -2977,7 +2982,7 @@
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="191"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="206"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
@@ -2990,10 +2995,20 @@
         <translation>超出了最大个数限制</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="100"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="128"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="110"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="142"/>
         <source>Please select one item first</source>
         <translation>请选择某一条记录</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="135"/>
+        <source>Delete current file success</source>
+        <translation>删除文件完成</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="164"/>
+        <source>Export current file success</source>
+        <translation>导出文件完成</translation>
     </message>
 </context>
 <context>

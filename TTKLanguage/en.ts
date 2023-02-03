@@ -232,28 +232,28 @@
 <context>
     <name>MusicApplication</name>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="965"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="967"/>
         <source>Prompt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="732"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="734"/>
         <source>Playback Mode</source>
         <translation type="unfinished">Playback Mode</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="965"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="967"/>
         <source>TTKMusicPlayer will run in the background</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="725"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="727"/>
         <source>Add New Files</source>
         <translation type="unfinished">Add New Files</translation>
     </message>
     <message>
         <location filename="../TTKModule/musicapplication.cpp" line="485"/>
-        <location filename="../TTKModule/musicapplication.cpp" line="729"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="731"/>
         <source>Open Url</source>
         <translation type="unfinished"></translation>
     </message>
@@ -263,159 +263,164 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="760"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="559"/>
+        <source>Export current file success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/musicapplication.cpp" line="762"/>
         <source>Remote Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="764"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="766"/>
         <source>Simple Style Remote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="765"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="767"/>
         <source>Complex Style Remote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="770"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="772"/>
         <source>Equalizer</source>
         <translation>Equalizer</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="771"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="773"/>
         <source>Sound Effect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="772"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="774"/>
         <source>Timing Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="773"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="775"/>
         <source>Music Spectrum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="780"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="782"/>
         <source>Download</source>
         <translation type="unfinished">Download</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="784"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="786"/>
         <source>Full Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="785"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="787"/>
         <source>Custom</source>
         <translation type="unfinished">Custom</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="793"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="795"/>
         <source>New Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="797"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="799"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="799"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="801"/>
         <source>Bug Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="800"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="802"/>
         <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="803"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="805"/>
         <source>Quit</source>
         <translation type="unfinished">Quit</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="739"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="741"/>
         <source>List Cycle</source>
         <translation type="unfinished">List Cycle</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="740"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="742"/>
         <source>Single Cycle</source>
         <translation type="unfinished">Single Cycle</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="737"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="739"/>
         <source>Order Play</source>
         <translation type="unfinished">Order Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="738"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="740"/>
         <source>Random Play</source>
         <translation type="unfinished">Random Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="741"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="743"/>
         <source>Play Once</source>
         <translation type="unfinished">Play Once</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="795"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="797"/>
         <source>Settings</source>
         <translation>Settings</translation>
     </message>
     <message>
         <location filename="../TTKModule/musicapplication.cpp" line="483"/>
-        <location filename="../TTKModule/musicapplication.cpp" line="727"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="729"/>
         <source>Open Files</source>
         <translation type="unfinished">Open Files</translation>
     </message>
     <message>
         <location filename="../TTKModule/musicapplication.cpp" line="484"/>
-        <location filename="../TTKModule/musicapplication.cpp" line="728"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="730"/>
         <source>Open Dir</source>
         <translation>Open Dir</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="706"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="708"/>
         <source>Add music to lovest list done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="706"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="708"/>
         <source>Remove music to lovest list done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="762"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="764"/>
         <source>Square Remote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="763"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="765"/>
         <source>Rectangle Remote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="766"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="768"/>
         <source>Ripple Remote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="767"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="769"/>
         <source>Delete Remote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="776"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="778"/>
         <source>Window Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="778"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="780"/>
         <source>Reset Window</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2977,7 +2982,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="191"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="206"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2990,9 +2995,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="100"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="128"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="110"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="142"/>
         <source>Please select one item first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="135"/>
+        <source>Delete current file success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcphotomanagerwidget.cpp" line="164"/>
+        <source>Export current file success</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

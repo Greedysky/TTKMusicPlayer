@@ -53,6 +53,10 @@ public:
      * Get current item apth.
      */
     inline QString path() const { return m_path; }
+    /*!
+     * Get current item apth.
+     */
+    inline QString& pathRef() { return m_path; }
 
 private:
     /*!

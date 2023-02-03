@@ -60,9 +60,9 @@ void MusicBackgroundManager::updateArtistPhotoList()
     for(int i = 0; i < MAX_IMAGE_COUNT; ++i)
     {
         QFile file(filter.arg(i));
-        if(file.open(QIODevice::ReadOnly))
+        if(file.exists() && file.open(QIODevice::ReadOnly))
         {
-            if(file.exists() && file.size() > 0)
+            if(file.size() > 0)
             {
                 m_photos << file.fileName();
             }

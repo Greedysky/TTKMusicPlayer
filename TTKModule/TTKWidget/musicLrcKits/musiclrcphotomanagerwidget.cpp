@@ -27,7 +27,7 @@ void MusicLrcPhotoItem::setSelected(bool v)
 
 void MusicLrcPhotoItem::mousePressEvent(QMouseEvent *event)
 {
-    QLabel::mousePressEvent(event);
+    Q_UNUSED(event);
     m_isSelected = !m_isSelected;
     update();
 }
@@ -79,16 +79,26 @@ void MusicLrcPhotoWidget::addButtonClicked()
         return;
     }
 
-    const QString &path = MusicUtils::File::getOpenFileName(this);
-    if(path.isEmpty())
+    const QStringList &files = MusicUtils::File::getOpenFileNames(this);
+    if(files.isEmpty())
     {
         return;
     }
 
-    const QString &name = G_BACKGROUND_PTR->artistName();
-    const QString &artistPath = BACKGROUND_DIR_FULL + name + QString::number(m_items.count()) + SKN_FILE;
-    QFile::copy(path, artistPath);
-    addCellItem(artistPath);
+    int offset = MAX_IMAGE_COUNT - m_items.count();
+    if(files.count() < offset)
+    {
+        offset = files.count();
+    }
+
+    for(int i = 0; i < offset; ++i)
+    {
+        const QString &name = G_BACKGROUND_PTR->artistName();
+        const QString &path = BACKGROUND_DIR_FULL + name + QString::number(m_items.count()) + SKN_FILE;
+        QFile::copy(files[i], path);
+
+        addCellItem(path);
+    }
 
     G_BACKGROUND_PTR->updateArtistPhotoList();
 }
@@ -104,7 +114,6 @@ void MusicLrcPhotoWidget::deleteButtonClicked()
     for(int i = 0; i < m_items.count(); ++i)
     {
         MusicLrcPhotoItem *item = m_items[i];
-
         if(item->isSelected())
         {
             QFile::remove(item->path());
@@ -115,10 +124,15 @@ void MusicLrcPhotoWidget::deleteButtonClicked()
 
     for(int i = 0; i < m_items.count(); ++i)
     {
-        m_gridLayout->addWidget(m_items[i], i / MIN_ITEM_COUNT, i % MIN_ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
+        MusicLrcPhotoItem *item = m_items[i];
+        const QString &before = item->path();
+        const QString &after = item->pathRef().replace(before.length() - 4 - 1, 1, QString::number(i));
+        QFile::rename(before, after);
+        m_gridLayout->addWidget(item, i / MIN_ITEM_COUNT, i % MIN_ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     }
 
     G_BACKGROUND_PTR->updateArtistPhotoList();
+    MusicToastLabel::popup(tr("Delete current file success"));
 }
 
 void MusicLrcPhotoWidget::exportButtonClicked()
@@ -146,20 +160,21 @@ void MusicLrcPhotoWidget::exportButtonClicked()
             MusicUtils::Core::sleep(MT_MS);
         }
     }
+
+    MusicToastLabel::popup(tr("Export current file success"));
 }
 
 void MusicLrcPhotoWidget::initialize()
 {
     const QDir dir(BACKGROUND_DIR_FULL);
     const QString &name = G_BACKGROUND_PTR->artistName();
-    int count = -1;
 
     for(const QFileInfo &fin : dir.entryInfoList())
     {
         const QString &v = fin.fileName();
         if(v.length() > name.length() && v.startsWith(name) && v[name.length() + 1] == '.')
         {
-            addCellItem(BACKGROUND_DIR_FULL + name + QString::number(++count) + SKN_FILE);
+            addCellItem(dir.filePath(v));
         }
     }
 }
