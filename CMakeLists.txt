@@ -10,7 +10,9 @@ set(CMAKE_AUTOMOC OFF)
 # Add a compiler flag
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -pthread -fopenmp -Wall")
 # Build Type
-set(CMAKE_BUILD_TYPE Release CACHE STRING "set build type to Release")  
+if(NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE STREQUAL "")
+  set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
+endif()
 set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Release Debug)
 
 option(TTK_BUILD_SHARED "TTK BUILD SHARED LIBS" ON)
