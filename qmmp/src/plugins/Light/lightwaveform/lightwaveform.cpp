@@ -277,6 +277,9 @@ LightWaveForm::LightWaveForm(QWidget *parent)
     m_shadeAction = new QAction(tr("Shade Mode"), this);
     m_shadeAction->setCheckable(true);
 
+    m_cloudAction = new QAction(tr("Cloud Mode"), this);
+    m_cloudAction->setCheckable(true);
+
     m_pointsAction = new QAction(tr("Points Mode"), this);
     m_pointsAction->setCheckable(true);
 
@@ -326,6 +329,7 @@ void LightWaveForm::readSettings()
     m_rulerAction->setChecked(settings.value("show_ruler", false).toBool());
     m_logScaleAction->setChecked(settings.value("logarithmic_scale", false).toBool());
     m_shadeAction->setChecked(settings.value("shade_mode", false).toBool());
+    m_cloudAction->setChecked(settings.value("cloud_mode", false).toBool());
     m_pointsAction->setChecked(settings.value("points_mode", false).toBool());
     m_fatAction->setChecked(settings.value("fat_mode", false).toBool());
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
@@ -350,6 +354,7 @@ void LightWaveForm::writeSettings()
     settings.setValue("show_ruler", m_rulerAction->isChecked());
     settings.setValue("logarithmic_scale", m_logScaleAction->isChecked());
     settings.setValue("shade_mode", m_shadeAction->isChecked());
+    settings.setValue("cloud_mode", m_cloudAction->isChecked());
     settings.setValue("points_mode", m_pointsAction->isChecked());
     settings.setValue("fat_mode", m_fatAction->isChecked());
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
@@ -559,6 +564,7 @@ void LightWaveForm::contextMenuEvent(QContextMenuEvent *)
 
     QMenu modeMenu(tr("Mode"), &menu);
     modeMenu.addAction(m_shadeAction);
+    modeMenu.addAction(m_cloudAction);
     modeMenu.addAction(m_pointsAction);
     modeMenu.addAction(m_fatAction);
     menu.addMenu(&modeMenu);
@@ -586,16 +592,33 @@ void LightWaveForm::drawWaveform()
     m_pixmap = QPixmap(width(), height());
     m_pixmap.fill(Qt::transparent);
 
-    QPainter painter(&m_pixmap);
-    painter.setPen(QPen(m_colors[COLOR_WAVE], m_fatAction->isChecked() ? 2 : 1));
-    painter.setBrush(m_colors[COLOR_WAVE]);
-
     const bool showTwoChannels = m_channelsAction->isChecked();
     const bool showRms = m_rmsAction->isChecked();
     const bool logMode = m_logScaleAction->isChecked();
+    const bool cloudMode = m_cloudAction->isChecked();
     const bool pointsMode = m_pointsAction->isChecked();
 
     const float step = float(width()) / NUMBER_OF_VALUES;
+
+    QBrush brush = m_colors[COLOR_WAVE];
+    if(cloudMode)
+    {
+        QColor color = brush.color();
+        QLinearGradient gradient(0, 0, 0, showTwoChannels ? height() / 2 : height());
+        color.setAlpha(0);
+        gradient.setColorAt(0.00, color);
+        color.setAlpha(40);
+        gradient.setColorAt(0.49, color);
+        color.setAlpha(10);
+        gradient.setColorAt(0.50, color);
+        gradient.setColorAt(1.00, color);
+        gradient.setSpread(QGradient::RepeatSpread);
+        brush = gradient;
+    }
+
+    QPainter painter(&m_pixmap);
+    painter.setPen(QPen(brush, m_fatAction->isChecked() ? 2 : 1));
+    painter.setBrush(brush);
 
     for(int i = 0; i < m_data.count() - m_channels * 3; i += 3)
     {
@@ -643,8 +666,13 @@ void LightWaveForm::drawWaveform()
         return;
     }
 
-    painter.setPen(m_colors[COLOR_RMS]);
-    painter.setBrush(m_colors[COLOR_RMS]);
+    if(!cloudMode)
+    {
+        brush = m_colors[COLOR_RMS];
+    }
+
+    painter.setPen(QPen(brush, 1));
+    painter.setBrush(brush);
 
     for(int i = 0; i < m_data.count() - m_channels * 3; i += 3)
     {
