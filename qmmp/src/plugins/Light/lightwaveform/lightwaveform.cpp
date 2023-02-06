@@ -544,8 +544,10 @@ void LightWaveForm::mouseReleaseEvent(QMouseEvent *)
 {
     if(m_seekPos >= 0 && m_duration > 0)
     {
-        SoundCore::instance()->seek(m_seekPos * m_duration / width());
+        m_elapsed = m_seekPos * m_duration / width();
+        SoundCore::instance()->seek(m_elapsed);
         m_seekPos = -1;
+        update();
     }
 }
 
