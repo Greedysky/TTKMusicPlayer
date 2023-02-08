@@ -226,8 +226,12 @@
         <translation>陰影模式</translation>
     </message>
     <message>
-        <source>Points Mode</source>
+        <source>Cloud Mode</source>
         <translation>點雲模式</translation>
+    </message>
+    <message>
+        <source>Points Mode</source>
+        <translation>點陣模式</translation>
     </message>
     <message>
         <source>Fat Mode</source>
