@@ -7,6 +7,8 @@
 #include "musicimageutils.h"
 #include "musicextractwrapper.h"
 #include "musicbackgroundconfigmanager.h"
+#include "ttkdesktopwrapper.h"
+
 #include "qalgorithm/imagewrapper.h"
 
 #include <qmath.h>
@@ -1038,10 +1040,6 @@ void MusicLrcPosterWidget::saveButtonClicked()
             rect.setWidth(rect.width() + ITEM_SCROLL_WIDTH);
         }
 
-#if TTK_QT_VERSION_CHECK(5,0,0)
-        m_itemWidget->grab(rect).save(path, JPG_FILE_SUFFIX);
-#else
-        QPixmap::grabWidget(this, rect).save(path, JPG_FILE_SUFFIX);
-#endif
+        TTKDesktopWrapper::grabWidget(m_itemWidget, rect).save(path, JPG_FILE_SUFFIX);
     }
 }

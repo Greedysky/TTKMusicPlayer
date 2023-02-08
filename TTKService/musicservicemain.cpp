@@ -4,6 +4,7 @@
 #include "musicplatformmanager.h"
 #include "ttkglobalhelper.h"
 #include "ttkdumper.h"
+
 #ifdef Q_OS_UNIX
 #  include <malloc.h>
 #  include "musicmprisplayer.h"

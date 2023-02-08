@@ -1,5 +1,6 @@
 #include "musicfunctiontoolboxwidget.h"
 #include "musicwidgetutils.h"
+#include "ttkdesktopwrapper.h"
 
 #include <QDrag>
 #include <QMimeData>
@@ -147,11 +148,7 @@ void MusicFunctionToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
         QDrag *drag = new QDrag(this);
         drag->setMimeData(mimeData);
         drag->setHotSpot(QPoint(0, height() / 2));
-#if TTK_QT_VERSION_CHECK(5,0,0)
-        drag->setPixmap(grab(rect()));
-#else
-        drag->setPixmap(QPixmap::grabWidget(this, rect()));
-#endif
+        drag->setPixmap(TTKDesktopWrapper::grabWidget(this, rect()));
         drag->exec(Qt::MoveAction);
     }
 }

@@ -1,5 +1,6 @@
 #include "musictransitionanimationlabel.h"
 #include "ttktime.h"
+
 #include "qalgorithm/imagewrapper.h"
 
 #include <QPainter>

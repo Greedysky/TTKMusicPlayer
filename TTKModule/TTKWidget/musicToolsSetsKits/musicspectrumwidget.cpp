@@ -16,8 +16,8 @@
 
 #define ITEM_OFFSET             107
 #define ITEM_DEFAULT_COUNT      3
-#define LIGHT_SPECTRUM_MODULE   "lightspectrum"
-#define LIGHT_WAVEFORM_MODULE   "lightwaveform"
+#define LIGHT_WAVEFORM_MODULE       "lightwaveform"
+#define LIGHT_SPECTROGRAM_MODULE    "lightspectrogram"
 
 MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     : MusicAbstractMoveWidget(false, parent),
@@ -131,7 +131,7 @@ void MusicSpectrumWidget::spectrumFloridTypeChanged(bool &state, const QString &
 void MusicSpectrumWidget::localFileButtonClicked()
 {
     bool state = true;
-    createLightWidget(MusicSpectrum::Module::Light, state, LIGHT_SPECTRUM_MODULE, m_ui->spectrumLightAreaLayout);
+    createLightWidget(MusicSpectrum::Module::Light, state, LIGHT_SPECTROGRAM_MODULE, m_ui->spectrumLightAreaLayout);
 }
 
 void MusicSpectrumWidget::openFileButtonClicked()
@@ -140,7 +140,7 @@ void MusicSpectrumWidget::openFileButtonClicked()
     if(!path.isEmpty())
     {
         bool state = true;
-        createLightWidget(MusicSpectrum::Module::Light, state, LIGHT_SPECTRUM_MODULE, m_ui->spectrumLightAreaLayout, path);
+        createLightWidget(MusicSpectrum::Module::Light, state, LIGHT_SPECTROGRAM_MODULE, m_ui->spectrumLightAreaLayout, path);
     }
 }
 
@@ -344,7 +344,7 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::Module spectrum, bool
         {
             light->open(path);
         }
-        else if(LIGHT_SPECTRUM_MODULE == name)
+        else if(LIGHT_SPECTROGRAM_MODULE == name)
         {
             const QString &suffix = FILE_SUFFIX(QFileInfo(path));
             for(QString &filter : MusicFormats::supportSpekInputFilterFormats())
