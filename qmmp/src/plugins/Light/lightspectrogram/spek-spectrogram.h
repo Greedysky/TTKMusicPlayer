@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef LIGHTSPECTRUM_H
-#define LIGHTSPECTRUM_H
+#ifndef LIGHTSPECTROGRAM_H
+#define LIGHTSPECTROGRAM_H
 
 #include <memory>
 #include <qmmp/lightfactory.h>
@@ -33,12 +33,12 @@ struct spek_pipeline;
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class LightSpectrum : public Light
+class LightSpectrogram : public Light
 {
     Q_OBJECT
 public:
-    explicit LightSpectrum(QWidget *parent = nullptr);
-    virtual ~LightSpectrum();
+    explicit LightSpectrogram(QWidget *parent = nullptr);
+    virtual ~LightSpectrogram();
 
     virtual void open(const QString &path) override final;
     virtual void start() override final;

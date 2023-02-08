@@ -16,15 +16,15 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef LIGHTSPECTRUMFACTORY_H
-#define LIGHTSPECTRUMFACTORY_H
+#ifndef LIGHTSPECTROGRAMFACTORY_H
+#define LIGHTSPECTROGRAMFACTORY_H
 
 #include <qmmp/lightfactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class LightSpectrumFactory : public QObject, public LightFactory
+class LightSpectrogramFactory : public QObject, public LightFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.LightFactoryInterface.1.0")

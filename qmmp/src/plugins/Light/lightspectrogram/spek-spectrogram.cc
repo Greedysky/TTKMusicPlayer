@@ -12,6 +12,9 @@
 #include <QKeyEvent>
 #include <QApplication>
 
+
+#include <QDebug>
+
 enum
 {
     MIN_RANGE = -140,
@@ -30,10 +33,10 @@ enum
 };
 
 // Forward declarations.
-static QString trim(const QString& s, int length, bool trim_end);
+static QString trim(QPainter *dc, const QString& s, int length, bool trim_end);
 static int bits_to_bands(int bits);
 
-LightSpectrum::LightSpectrum(QWidget *parent)
+LightSpectrogram::LightSpectrogram(QWidget *parent)
     : Light(parent),
       m_audio(new Audio()), // TODO: refactor
       m_fft(new FFT()),
@@ -41,16 +44,18 @@ LightSpectrum::LightSpectrum(QWidget *parent)
       m_urange(URANGE),
       m_lrange(LRANGE)
 {
+    setFocusPolicy(Qt::StrongFocus);
+
     create_palette();
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
 }
 
-LightSpectrum::~LightSpectrum()
+LightSpectrogram::~LightSpectrogram()
 {
     stop();
 }
 
-void LightSpectrum::open(const QString &path)
+void LightSpectrogram::open(const QString &path)
 {
     m_path = path;
     m_stream = 0;
@@ -58,7 +63,7 @@ void LightSpectrum::open(const QString &path)
     start();
 }
 
-void LightSpectrum::keyPressEvent(QKeyEvent *event)
+void LightSpectrogram::keyPressEvent(QKeyEvent *event)
 {
     switch(event->key()) {
     case Qt::Key_C:
@@ -126,20 +131,20 @@ void LightSpectrum::keyPressEvent(QKeyEvent *event)
     start();
 }
 
-void LightSpectrum::paintEvent(QPaintEvent *e)
+void LightSpectrogram::paintEvent(QPaintEvent *e)
 {
     Light::paintEvent(e);
     QPainter p(this);
     paint(&p);
 }
 
-void LightSpectrum::resizeEvent(QResizeEvent *e)
+void LightSpectrogram::resizeEvent(QResizeEvent *e)
 {
     Light::resizeEvent(e);
     start();
 }
 
-void LightSpectrum::contextMenuEvent(QContextMenuEvent *e)
+void LightSpectrogram::contextMenuEvent(QContextMenuEvent *e)
 {
     Light::contextMenuEvent(e);
 
@@ -170,10 +175,10 @@ static QString density_formatter(int unit)
     return QString("%1 dB").arg(-unit);
 }
 
-void LightSpectrum::paint(QPainter *dc)
+void LightSpectrogram::paint(QPainter *dc)
 {
-    int w = width();
-    int h = height();
+    const int w = width();
+    const int h = height();
 
     // Initialise.
     dc->setBrush(Qt::black);
@@ -183,15 +188,34 @@ void LightSpectrum::paint(QPainter *dc)
     // Border around the spectrogram.
     dc->drawRect(LPAD - 1, TPAD - 1, w - LPAD - RPAD + 2, h - TPAD - BPAD + 2);
 
+    QFont smallFont = dc->font();
+    QFont largeFont = dc->font();
+
+    smallFont.setPointSize(8);
+    largeFont.setPointSize(10);
+    largeFont.setBold(true);
+
+    const int largeHeight = QFontMetrics(largeFont).height();
+
     if(m_image.width() > 1 && m_image.height() > 1 &&
         w - LPAD - RPAD > 0 && h - TPAD - BPAD > 0) {
         // Draw the spectrogram.
         dc->drawImage(LPAD, TPAD, m_image.scaled(w - LPAD - RPAD, h - TPAD - BPAD));
+
         // File name.
+        dc->setFont(largeFont);
         dc->drawText(
             LPAD,
-            TPAD - 2 * GAP,
-            trim(m_path, w - LPAD - RPAD, false)
+            TPAD - 2 * GAP - largeHeight,
+            trim(dc, m_path, w - LPAD - RPAD, false)
+        );
+
+        // File properties.
+        dc->setFont(smallFont);
+        dc->drawText(
+            LPAD,
+            TPAD - GAP,
+            trim(dc, m_desc, w - LPAD - RPAD, true)
         );
 
         if(m_duration) {
@@ -261,7 +285,7 @@ void LightSpectrum::paint(QPainter *dc)
 
 static void pipeline(int bands, int sample, float *values, void *cb_data)
 {
-    LightSpectrum *spek = static_cast<LightSpectrum*>(cb_data);
+    LightSpectrogram *spek = static_cast<LightSpectrogram*>(cb_data);
     if(sample == -1) {
         return;
     }
@@ -277,7 +301,7 @@ static void pipeline(int bands, int sample, float *values, void *cb_data)
     spek->update();
 }
 
-void LightSpectrum::start()
+void LightSpectrogram::start()
 {
     if(m_path.isEmpty()) {
         return;
@@ -301,7 +325,8 @@ void LightSpectrum::start()
             this
         );
         spek_pipeline_start(m_pipeline);
-//        // TODO: extract conversion into a utility function.
+        // TODO: extract conversion into a utility function.
+        m_desc = spek_pipeline_desc(m_pipeline).c_str();
         m_streams = spek_pipeline_streams(m_pipeline);
         m_channels = spek_pipeline_channels(m_pipeline);
         m_duration = spek_pipeline_duration(m_pipeline);
@@ -309,7 +334,7 @@ void LightSpectrum::start()
     }
 }
 
-void LightSpectrum::stop()
+void LightSpectrogram::stop()
 {
     if(m_pipeline) {
         spek_pipeline_close(m_pipeline);
@@ -317,12 +342,12 @@ void LightSpectrum::stop()
     }
 }
 
-void LightSpectrum::mediaUrlChanged()
+void LightSpectrogram::mediaUrlChanged()
 {
     open(SoundCore::instance()->path());
 }
 
-void LightSpectrum::typeChanged(QAction *action)
+void LightSpectrogram::typeChanged(QAction *action)
 {
     switch(action->data().toInt())
     {
@@ -337,7 +362,7 @@ void LightSpectrum::typeChanged(QAction *action)
     start();
 }
 
-void LightSpectrum::create_palette()
+void LightSpectrogram::create_palette()
 {
     m_paletteImage = QImage(RULER, bits_to_bands(m_bits), QImage::Format_RGB32);
     for(int y = 0; y < bits_to_bands(m_bits); ++y) {
@@ -352,15 +377,15 @@ void LightSpectrum::create_palette()
     }
 }
 
-static QString trim(const QString& s, int length, bool trim_end)
+static QString trim(QPainter *dc, const QString& s, int length, bool trim_end)
 {
     if(length <= 0) {
         return QString();
     }
 
     // Check if the entire string fits.
-    QFontMetrics f(QApplication::font());
-    int w = f.width(s);
+    QFontMetrics ft(dc->font());
+    int w = ft.width(s);
     if(w <= length) {
         return s;
     }
@@ -371,7 +396,7 @@ static QString trim(const QString& s, int length, bool trim_end)
     int k = s.length();
     while(k - i > 1) {
         int j = (i + k) / 2;
-        w = f.width(trim_end ? s.mid(0, j) + fix : fix + s.mid(j));
+        w = ft.width(trim_end ? s.mid(0, j) + fix : fix + s.mid(j));
         if(trim_end != (w > length)) {
             i = j;
         } else {

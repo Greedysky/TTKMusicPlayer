@@ -8,7 +8,7 @@ SOURCES += spek-ruler.cc \
            spek-fft.cc \
            spek-pipeline.cc \
            spek-utils.cc \
-           lightspectrumfactory.cpp
+           lightspectrogramfactory.cpp
 
 HEADERS += spek-audio.h \
            spek-fft.h \
@@ -16,7 +16,7 @@ HEADERS += spek-audio.h \
            spek-ruler.h \
            spek-spectrogram.h \
            spek-utils.h \
-           lightspectrumfactory.h
+           lightspectrogramfactory.h
 
 INCLUDEPATH += $$EXTRA_PREFIX/libffmpeg/include
 
