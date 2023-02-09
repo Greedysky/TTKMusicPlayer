@@ -10,7 +10,7 @@ FlowVUMeter::FlowVUMeter(QWidget *parent)
     setWindowTitle(tr("Flow VU Meter Widget"));
 
     m_pixmap.load(":/data/vu");
-    setFixedSize(m_pixmap.size());
+    setMinimumSize(m_pixmap.size());
 }
 
 FlowVUMeter::~FlowVUMeter()
@@ -27,7 +27,11 @@ void FlowVUMeter::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.drawPixmap(rect(), m_pixmap);
+    painter.fillRect(rect(), Qt::black);
+
+    const int w = (width() - m_pixmap.width()) / 2;
+    const int h = (height() - m_pixmap.height()) / 2;
+    painter.drawPixmap(w, h, m_pixmap);
 
     float value = 0;
     for(int c = 0; c < m_channels; ++c)
@@ -36,8 +40,8 @@ void FlowVUMeter::paintEvent(QPaintEvent *)
     }
 
     constexpr int radius = 130;
-    const int x = m_pixmap.width() / 2;
-    const int y = m_pixmap.height() - 174 / 2;
+    const int x = w + m_pixmap.width() / 2;
+    const int y = h + m_pixmap.height() - 174 / 2;
     const float offset = M_PI * (value / (m_rangeValue * 2.5) - 0.75);
 
     painter.setPen(QPen(Qt::white, 2));
