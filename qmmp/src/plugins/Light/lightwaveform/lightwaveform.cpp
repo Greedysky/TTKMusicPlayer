@@ -485,7 +485,7 @@ void LightWaveForm::paintEvent(QPaintEvent *)
             painter.setFont(ft);
 
             const QString &text = formatDuration(m_seekPos * m_duration / width());
-            QFontMetrics ftm(ft);
+            const QFontMetrics ftm(ft);
 #if QT_VERSION >= QT_VERSION_CHECK(5,11,0)
             const QSize bound(ftm.horizontalAdvance(text) + 20, ftm.height() + 4);
 #else

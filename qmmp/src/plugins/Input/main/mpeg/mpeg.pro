@@ -16,6 +16,7 @@ FORMS += settingsdialog.ui
 
 INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
                $$EXTRA_PREFIX/libmpg123/include
+
 HEADERS += decoder_mpg123.h
 SOURCES += decoder_mpg123.cpp
 

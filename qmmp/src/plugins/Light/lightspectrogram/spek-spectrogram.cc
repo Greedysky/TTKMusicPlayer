@@ -10,10 +10,6 @@
 #include <QPainter>
 #include <QDateTime>
 #include <QKeyEvent>
-#include <QApplication>
-
-
-#include <QDebug>
 
 enum
 {
@@ -65,60 +61,60 @@ void LightSpectrogram::open(const QString &path)
 
 void LightSpectrogram::keyPressEvent(QKeyEvent *event)
 {
-    switch(event->key()) {
+    switch (event->key()) {
     case Qt::Key_C:
-        if(m_channels) {
-            if(event->modifiers() == Qt::NoModifier) {   // 'c'
+        if (m_channels) {
+            if (event->modifiers() == Qt::NoModifier) {   // 'c'
                 m_channel = (m_channel + 1) % m_channels;
-            } else if(event->modifiers() == Qt::ShiftModifier) {   // 'C'
+            } else if (event->modifiers() == Qt::ShiftModifier) {   // 'C'
                 m_channel = (m_channel - 1 + m_channels) % m_channels;
             }
         }
         break;
     case Qt::Key_F:
-        if(event->modifiers() == Qt::NoModifier) {   // 'f'
+        if (event->modifiers() == Qt::NoModifier) {   // 'f'
             m_window = (WindowFunction) ((m_window + 1) % WINDOW_COUNT);
-        } else if(event->modifiers() == Qt::ShiftModifier) {   // 'F'
+        } else if (event->modifiers() == Qt::ShiftModifier) {   // 'F'
             m_window = (WindowFunction) ((m_window - 1 + WINDOW_COUNT) % WINDOW_COUNT);
         }
         break;
     case Qt::Key_L:
-        if(event->modifiers() == Qt::NoModifier) {   // 'l'
+        if (event->modifiers() == Qt::NoModifier) {   // 'l'
             m_lrange = spek_min(m_lrange + 1, m_urange - 1);
-        } else if(event->modifiers() == Qt::ShiftModifier) {   // 'L'
+        } else if (event->modifiers() == Qt::ShiftModifier) {   // 'L'
             m_lrange = spek_max(m_lrange - 1, MIN_RANGE);
         }
         break;
     case Qt::Key_P:
-        if(event->modifiers() == Qt::NoModifier) {   // 'p'
+        if (event->modifiers() == Qt::NoModifier) {   // 'p'
             m_palette = (VisualPalette::Palette) ((m_palette + 1) % VisualPalette::PALETTE_COUNT);
             create_palette();
-        } else if(event->modifiers() == Qt::ShiftModifier) {   // 'P'
+        } else if (event->modifiers() == Qt::ShiftModifier) {   // 'P'
             m_palette = (VisualPalette::Palette) ((m_palette - 1 + VisualPalette::PALETTE_COUNT) % VisualPalette::PALETTE_COUNT);
             create_palette();
         }
         break;
     case Qt::Key_S:
-        if(m_streams) {
-            if(event->modifiers() == Qt::NoModifier) {   // 's'
+        if (m_streams) {
+            if (event->modifiers() == Qt::NoModifier) {   // 's'
                 m_stream = (m_stream + 1) % m_streams;
-            } else if(event->modifiers() == Qt::ShiftModifier) {   // 'S'
+            } else if (event->modifiers() == Qt::ShiftModifier) {   // 'S'
                 m_stream = (m_stream - 1 + m_streams) % m_streams;
             }
         }
         break;
     case Qt::Key_U:
-        if(event->modifiers() == Qt::NoModifier) {   // 'u'
+        if (event->modifiers() == Qt::NoModifier) {   // 'u'
             m_urange = spek_min(m_urange + 1, MAX_RANGE);
-        } else if(event->modifiers() == Qt::ShiftModifier) {   // 'U'
+        } else if (event->modifiers() == Qt::ShiftModifier) {   // 'U'
             m_urange = spek_max(m_urange - 1, m_lrange + 1);
         }
         break;
     case Qt::Key_W:
-        if(event->modifiers() == Qt::NoModifier) {   // 'w'
+        if (event->modifiers() == Qt::NoModifier) {   // 'w'
             m_bits = spek_min(m_bits + 1, MAX_FFT_BITS);
             this->create_palette();
-        } else if(event->modifiers() == Qt::ShiftModifier) {   // 'W'
+        } else if (event->modifiers() == Qt::ShiftModifier) {   // 'W'
             m_bits = spek_max(m_bits - 1, MIN_FFT_BITS);
             this->create_palette();
         }
@@ -197,7 +193,7 @@ void LightSpectrogram::paint(QPainter *dc)
 
     const int largeHeight = QFontMetrics(largeFont).height();
 
-    if(m_image.width() > 1 && m_image.height() > 1 &&
+    if (m_image.width() > 1 && m_image.height() > 1 &&
         w - LPAD - RPAD > 0 && h - TPAD - BPAD > 0) {
         // Draw the spectrogram.
         dc->drawImage(LPAD, TPAD, m_image.scaled(w - LPAD - RPAD, h - TPAD - BPAD));
@@ -218,7 +214,7 @@ void LightSpectrogram::paint(QPainter *dc)
             trim(dc, m_desc, w - LPAD - RPAD, true)
         );
 
-        if(m_duration) {
+        if (m_duration) {
             // Time ruler.
             int time_factors[] = {1, 2, 5, 10, 20, 30, 1 * 60, 2 * 60, 5 * 60, 10 * 60, 20 * 60, 30 * 60, 0};
             SpekRuler time_ruler(
@@ -238,7 +234,7 @@ void LightSpectrogram::paint(QPainter *dc)
             time_ruler.draw(*dc);
         }
 
-        if(m_sampleRate) {
+        if (m_sampleRate) {
             // Frequency ruler.
             int freq = m_sampleRate / 2;
             int freq_factors[] = {1000, 2000, 5000, 10000, 20000, 0};
@@ -261,17 +257,18 @@ void LightSpectrogram::paint(QPainter *dc)
     }
 
     // The palette.
-    if(h - TPAD - BPAD > 0) {
+    if (h - TPAD - BPAD > 0) {
         dc->drawImage(w - RPAD + GAP, TPAD, m_paletteImage.scaled(RULER, h - TPAD - BPAD + 1));
 
-        int factors[] = {1, 2, 5, 10, 20, 50, 0};
+        // Spectral density.
+        int density_factors[] = {1, 2, 5, 10, 20, 50, 0};
         SpekRuler density_ruler(
             w - RPAD + GAP + RULER,
             TPAD,
             SpekRuler::RIGHT,
             // TRANSLATORS: keep "-00" unchanged, it's used to calc the text width
             "-00 dB",
-            factors,
+            density_factors,
             -m_urange,
             -m_lrange,
             3.0,
@@ -286,13 +283,13 @@ void LightSpectrogram::paint(QPainter *dc)
 static void pipeline(int bands, int sample, float *values, void *cb_data)
 {
     LightSpectrogram *spek = static_cast<LightSpectrogram*>(cb_data);
-    if(sample == -1) {
+    if (sample == -1) {
         return;
     }
 
     // TODO: check image size, quit if wrong.
     const double range = spek->getURange() - spek->getLRange();
-    for(int y = 0; y < bands; ++y) {
+    for (int y = 0; y < bands; ++y) {
         const double value = fmin(spek->getURange(), fmax(spek->getLRange(), values[y]));
         const double level = (value - spek->getLRange()) / range;
         const uint32_t color = VisualPalette::renderPalette(spek->getPalette(), level);
@@ -303,7 +300,7 @@ static void pipeline(int bands, int sample, float *values, void *cb_data)
 
 void LightSpectrogram::start()
 {
-    if(m_path.isEmpty()) {
+    if (m_path.isEmpty()) {
         return;
     }
 
@@ -311,8 +308,8 @@ void LightSpectrogram::start()
     // The number of samples is the number of pixels available for the image.
     // The number of bands is fixed, FFT results are very different for
     // different values but we need some consistency.
-    int samples = width() - LPAD - RPAD;
-    if(samples > 0) {
+    const int samples = width() - LPAD - RPAD;
+    if (samples > 0) {
         m_image = QImage(samples, bits_to_bands(m_bits), QImage::Format_RGB32);
         m_pipeline = spek_pipeline_open(
             m_audio->open(std::string(m_path.toUtf8().data()), m_stream),
@@ -336,7 +333,7 @@ void LightSpectrogram::start()
 
 void LightSpectrogram::stop()
 {
-    if(m_pipeline) {
+    if (m_pipeline) {
         spek_pipeline_close(m_pipeline);
         m_pipeline = nullptr;
     }
@@ -349,7 +346,7 @@ void LightSpectrogram::mediaUrlChanged()
 
 void LightSpectrogram::typeChanged(QAction *action)
 {
-    switch(action->data().toInt())
+    switch (action->data().toInt())
     {
         case 10: m_palette = VisualPalette::PALETTE_SPECTRUM; break;
         case 20: m_palette = VisualPalette::PALETTE_SPECTROGRAM; break;
@@ -365,9 +362,9 @@ void LightSpectrogram::typeChanged(QAction *action)
 void LightSpectrogram::create_palette()
 {
     m_paletteImage = QImage(RULER, bits_to_bands(m_bits), QImage::Format_RGB32);
-    for(int y = 0; y < bits_to_bands(m_bits); ++y) {
+    for (int y = 0; y < bits_to_bands(m_bits); ++y) {
         const uint32_t color = VisualPalette::renderPalette(m_palette, y / (double)bits_to_bands(m_bits));
-        for(int j = 0; j < RULER; ++j) {
+        for (int j = 0; j < RULER; ++j) {
             m_paletteImage.setPixel(
                 j,
                 bits_to_bands(m_bits) - y - 1,
@@ -379,14 +376,14 @@ void LightSpectrogram::create_palette()
 
 static QString trim(QPainter *dc, const QString& s, int length, bool trim_end)
 {
-    if(length <= 0) {
+    if (length <= 0) {
         return QString();
     }
 
     // Check if the entire string fits.
-    QFontMetrics ft(dc->font());
-    int w = ft.width(s);
-    if(w <= length) {
+    QFontMetrics ftm(dc->font());
+    int w = QtFontWidth(ftm, s);
+    if (w <= length) {
         return s;
     }
 
@@ -394,10 +391,10 @@ static QString trim(QPainter *dc, const QString& s, int length, bool trim_end)
     QString fix("...");
     int i = 0;
     int k = s.length();
-    while(k - i > 1) {
+    while (k - i > 1) {
         int j = (i + k) / 2;
-        w = ft.width(trim_end ? s.mid(0, j) + fix : fix + s.mid(j));
-        if(trim_end != (w > length)) {
+        w = QtFontWidth(ftm, trim_end ? s.mid(0, j) + fix : fix + s.mid(j));
+        if (trim_end != (w > length)) {
             i = j;
         } else {
             k = j;

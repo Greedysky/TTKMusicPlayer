@@ -2,6 +2,15 @@ include($$PWD/../../plugins.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Light
 
+HEADERS += spek.h \
+           spek-audio.h \
+           spek-fft.h \
+           spek-pipeline.h \
+           spek-ruler.h \
+           spek-spectrogram.h \
+           spek-utils.h \
+           lightspectrogramfactory.h
+
 SOURCES += spek-ruler.cc \
            spek-spectrogram.cc \
            spek-audio.cc \
@@ -9,14 +18,6 @@ SOURCES += spek-ruler.cc \
            spek-pipeline.cc \
            spek-utils.cc \
            lightspectrogramfactory.cpp
-
-HEADERS += spek-audio.h \
-           spek-fft.h \
-           spek-pipeline.h \
-           spek-ruler.h \
-           spek-spectrogram.h \
-           spek-utils.h \
-           lightspectrogramfactory.h
 
 INCLUDEPATH += $$EXTRA_PREFIX/libffmpeg/include
 

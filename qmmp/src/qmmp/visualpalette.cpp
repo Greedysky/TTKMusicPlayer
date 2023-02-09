@@ -106,9 +106,9 @@ static uint32_t spectrum(double level)
     cf *= 255.0;
 
     // Pack RGB values into a 32-bit uint.
-    uint32_t rr = (uint32_t) (r * cf + 0.5);
-    uint32_t gg = (uint32_t) (g * cf + 0.5);
-    uint32_t bb = (uint32_t) (b * cf + 0.5);
+    const uint32_t rr = (uint32_t) (r * cf + 0.5);
+    const uint32_t gg = (uint32_t) (g * cf + 0.5);
+    const uint32_t bb = (uint32_t) (b * cf + 0.5);
     return (rr << 16) + (gg << 8) + bb;
 }
 
@@ -158,15 +158,15 @@ static uint32_t sox(double level)
     }
 
     // Pack RGB values into a 32-bit uint.
-    uint32_t rr = (uint32_t) (r * 255.0 + 0.5);
-    uint32_t gg = (uint32_t) (g * 255.0 + 0.5);
-    uint32_t bb = (uint32_t) (b * 255.0 + 0.5);
+    const uint32_t rr = (uint32_t) (r * 255.0 + 0.5);
+    const uint32_t gg = (uint32_t) (g * 255.0 + 0.5);
+    const uint32_t bb = (uint32_t) (b * 255.0 + 0.5);
     return (rr << 16) + (gg << 8) + bb;
 }
 
 static uint32_t mono(double level)
 {
-    uint32_t v = (uint32_t) (level * 255.0 + 0.5);
+    const uint32_t v = (uint32_t) (level * 255.0 + 0.5);
     return (v << 16) + (v << 8) + v;
 }
 

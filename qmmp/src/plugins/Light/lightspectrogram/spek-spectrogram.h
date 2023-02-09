@@ -23,6 +23,7 @@
 #include <qmmp/lightfactory.h>
 #include <qmmp/visualpalette.h>
 
+#include "spek.h"
 #include "spek-pipeline.h"
 
 class Audio;
