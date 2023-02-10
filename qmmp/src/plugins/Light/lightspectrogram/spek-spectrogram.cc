@@ -10,6 +10,8 @@
 #include <QPainter>
 #include <QDateTime>
 #include <QKeyEvent>
+#include <QFileInfo>
+#include <QFileDialog>
 
 enum
 {
@@ -151,7 +153,9 @@ void LightSpectrogram::contextMenuEvent(QContextMenuEvent *e)
     typeMenu.addAction(tr("Sox"))->setData(30);
     typeMenu.addAction(tr("Mono"))->setData(40);
     connect(&typeMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
+
     menu.addMenu(&typeMenu);
+    menu.addAction(tr("Screenshot"), this, SLOT(saveScreenshot()));
     menu.exec(QCursor::pos());
 }
 
@@ -357,6 +361,27 @@ void LightSpectrogram::typeChanged(QAction *action)
 
     create_palette();
     start();
+}
+
+void LightSpectrogram::saveScreenshot()
+{
+    if (m_path.isEmpty()) {
+        return;
+    }
+
+    QString name = ".";
+    const QFileInfo file(m_path);
+    name = file.exists() ? file.baseName() : tr("Untitled");
+    name += ".png";
+
+    const QString &path = QFileDialog::getSaveFileName(nullptr, tr("Screenshot"), name, "PNG images (*.png)");
+    if (!path.isEmpty()) {
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+        grab(rect()).save(path);
+#else
+        QPixmap::grabWidget(this, rect()).save(path);
+#endif
+    }
 }
 
 void LightSpectrogram::create_palette()

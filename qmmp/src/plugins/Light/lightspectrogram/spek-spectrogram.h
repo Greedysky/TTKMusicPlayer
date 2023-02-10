@@ -53,6 +53,7 @@ public:
 private slots:
     void mediaUrlChanged();
     void typeChanged(QAction *action);
+    void saveScreenshot();
 
 private:
     virtual void keyPressEvent(QKeyEvent *event) override final;
