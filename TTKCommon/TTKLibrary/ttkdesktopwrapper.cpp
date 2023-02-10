@@ -34,6 +34,15 @@ QRect TTKDesktopWrapper::geometry()
 #endif
 }
 
+QPixmap TTKDesktopWrapper::grabWidget(QWidget *widget, const QRect &rect)
+{
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    return widget->grab(rect);
+#else
+    return QPixmap::grabWidget(widget, rect);
+#endif
+}
+
 QPixmap TTKDesktopWrapper::grabWindow(int x, int y, int w, int h)
 {
     QWidget widget(nullptr, Qt::Desktop);
@@ -43,14 +52,5 @@ QPixmap TTKDesktopWrapper::grabWindow(int x, int y, int w, int h)
     return QApplication::primaryScreen()->grabWindow(widget.winId(), x, y, w, h);
 #else
     return QPixmap::grabWindow(widget.winId(), x, y, w, h);
-#endif
-}
-
-QPixmap TTKDesktopWrapper::grabWidget(QWidget *widget, const QRect &rect)
-{
-#if TTK_QT_VERSION_CHECK(5,0,0)
-    return widget->grab(rect);
-#else
-    return QPixmap::grabWidget(widget, rect);
 #endif
 }

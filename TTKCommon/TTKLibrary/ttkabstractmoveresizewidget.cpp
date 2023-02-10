@@ -5,9 +5,9 @@
 #define DISTANCE  5
 
 #if !TTK_QT_VERSION_CHECK(5,0,0) && defined(Q_OS_UNIX)
-#  define SET_GEOMETRY(x, y, w, h) move(x, y); resize(w, h);
+#  define GEOMETRY(x, y, w, h) move(x, y); resize(w, h);
 #else
-#  define SET_GEOMETRY(x, y, w, h) setGeometry(x, y, w, h);
+#  define GEOMETRY(x, y, w, h) setGeometry(x, y, w, h);
 #endif
 
 TTKAbstractMoveResizeWidget::TTKAbstractMoveResizeWidget(QWidget *parent)
@@ -153,7 +153,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
             const int wValue = point.x() - x();
             if(minimumWidth() <= wValue && wValue <= maximumWidth())
             {
-                SET_GEOMETRY(x(), y(), wValue, height());
+                GEOMETRY(x(), y(), wValue, height());
             }
             break;
         }
@@ -162,7 +162,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
             const int wValue = x() + width() - point.x();
             if(minimumWidth() <= wValue && wValue <= maximumWidth())
             {
-                SET_GEOMETRY(point.x(), y(), wValue, height());
+                GEOMETRY(point.x(), y(), wValue, height());
             }
             break;
         }
@@ -171,7 +171,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
             const int hValue = point.y() - y();
             if(minimumHeight() <= hValue && hValue <= maximumHeight())
             {
-                SET_GEOMETRY(x(), y(), width(), hValue);
+                GEOMETRY(x(), y(), width(), hValue);
             }
             break;
         }
@@ -180,7 +180,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
             const int hValue = y() - point.y() + height();
             if(minimumHeight() <= hValue && hValue <= maximumHeight())
             {
-                SET_GEOMETRY(x(), point.y(), width(), hValue);
+                GEOMETRY(x(), point.y(), width(), hValue);
             }
             break;
         }
@@ -202,7 +202,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
                 hValue = minimumHeight();
             }
 
-            SET_GEOMETRY(m_struct.m_windowPos.x(), yValue, wValue, hValue);
+            GEOMETRY(m_struct.m_windowPos.x(), yValue, wValue, hValue);
             break;
         }
         case Direction::LeftTop:
@@ -240,14 +240,14 @@ void TTKAbstractMoveResizeWidget::moveDirection()
                 hValue = minimumHeight();
             }
 
-            SET_GEOMETRY(xValue, yValue, wValue, hValue);
+            GEOMETRY(xValue, yValue, wValue, hValue);
             break;
         }
         case Direction::RightBottom:
         {
             const int wValue = point.x() - x();
             const int hValue = point.y() - y();
-            SET_GEOMETRY(m_struct.m_windowPos.x(), m_struct.m_windowPos.y(), wValue, hValue);
+            GEOMETRY(m_struct.m_windowPos.x(), m_struct.m_windowPos.y(), wValue, hValue);
             break;
         }
         case Direction::LeftBottom:
@@ -269,7 +269,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
                 wValue = minimumWidth();
             }
 
-            SET_GEOMETRY(xValue, m_struct.m_windowPos.y(), wValue, hValue);
+            GEOMETRY(xValue, m_struct.m_windowPos.y(), wValue, hValue);
             break;
         }
         default: break;
