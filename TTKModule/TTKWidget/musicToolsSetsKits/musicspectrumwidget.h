@@ -96,6 +96,11 @@ public Q_SLOTS:
 
 private:
     /*!
+     * Override the widget event.
+     */
+    virtual void mouseDoubleClickEvent(QMouseEvent *event) override final;
+
+    /*!
      * Create spectrum widget.
      */
     void createSpectrumWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout);

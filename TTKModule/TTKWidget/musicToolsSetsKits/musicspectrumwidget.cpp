@@ -181,6 +181,15 @@ void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
     }
 }
 
+void MusicSpectrumWidget::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    MusicAbstractMoveResizeContainWidget::mouseDoubleClickEvent(event);
+    if(event->buttons() == Qt::LeftButton)
+    {
+        isMaximized() ? showNormal() : showMaximized();
+    }
+}
+
 void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout)
 {
     if(state)

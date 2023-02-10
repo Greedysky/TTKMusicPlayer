@@ -1039,7 +1039,7 @@ void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
         {
             isMaximized() ? showNormal() : showMaximized();
         }
-}
+    }
     else
     {
         event->ignore();
