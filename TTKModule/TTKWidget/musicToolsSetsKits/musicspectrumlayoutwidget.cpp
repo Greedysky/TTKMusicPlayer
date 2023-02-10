@@ -87,7 +87,7 @@ void MusicSpectrumLayoutWidget::initialize()
     setObjectName(className());
     setStyleSheet(QString("#%1{%2}").arg(className(), style));
 
-    m_containWidget->setFixedSize(240, 340);
+    m_containWidget->setFixedSize(240, 440);
     m_containWidget->setObjectName("ContainWidget");
     m_containWidget->setStyleSheet(QString("#ContainWidget{%1}").arg(style));
 

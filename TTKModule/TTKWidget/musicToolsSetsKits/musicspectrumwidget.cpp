@@ -14,20 +14,20 @@
 #include <qmmp/lightfactory.h>
 #include <qmmp/soundcore.h>
 
-#define ITEM_OFFSET             107
-#define ITEM_DEFAULT_COUNT      3
 #define LIGHT_WAVEFORM_MODULE       "lightwaveform"
 #define LIGHT_SPECTROGRAM_MODULE    "lightspectrogram"
 
 MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
-    : MusicAbstractMoveWidget(false, parent),
+    : MusicAbstractMoveResizeContainWidget(parent),
       m_ui(new Ui::MusicSpectrumWidget),
       m_spectrumLayout(nullptr)
 {
     m_ui->setupUi(this);
-    setFixedSize(size());
+    setMinimumSize(750, 650);
     setAttribute(Qt::WA_DeleteOnClose);
     setBackgroundLabel(m_ui->background);
+
+    setAttribute(Qt::WA_TranslucentBackground, false);
     setStyleSheet(MusicUIObject::MenuStyle02);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
@@ -66,7 +66,6 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     connect(m_ui->spectrumWaveLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumWaveTypeChanged(bool&,QString)));
     connect(m_ui->spectrumFlowLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumFlowTypeChanged(bool&,QString)));
     connect(m_ui->spectrumFloridLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumFloridTypeChanged(bool&,QString)));
-    connect(m_ui->mainViewWidget, SIGNAL(currentChanged(int)), SLOT(tabIndexChanged(int)));
 }
 
 MusicSpectrumWidget::~MusicSpectrumWidget()
@@ -79,30 +78,14 @@ MusicSpectrumWidget::~MusicSpectrumWidget()
     delete m_ui;
 }
 
-void MusicSpectrumWidget::tabIndexChanged(int index)
-{
-    switch(index)
-    {
-        case 0: adjustWidgetLayout(m_ui->spectrumNormalAreaLayout->count() - ITEM_DEFAULT_COUNT); break;
-        case 1: adjustWidgetLayout(m_ui->spectrumPlusAreaLayout->count() - ITEM_DEFAULT_COUNT); break;
-        case 2: adjustWidgetLayout(m_ui->spectrumWaveAreaLayout->count() - ITEM_DEFAULT_COUNT); break;
-        case 3: adjustWidgetLayout(m_ui->spectrumFlowAreaLayout->count() - ITEM_DEFAULT_COUNT); break;
-        case 4: adjustWidgetLayout(m_ui->spectrumFloridAreaLayout->count() - ITEM_DEFAULT_COUNT); break;
-        case 5: adjustWidgetLayout(m_ui->spectrumLightAreaLayout->count() - ITEM_DEFAULT_COUNT); break;
-        default: break;
-    }
-}
-
 void MusicSpectrumWidget::spectrumNormalTypeChanged(bool &state, const QString &name)
 {
     createSpectrumWidget(MusicSpectrum::Module::Normal, state, name, m_ui->spectrumNormalAreaLayout);
-    adjustWidgetLayout(m_ui->spectrumNormalAreaLayout->count() - ITEM_DEFAULT_COUNT);
 }
 
 void MusicSpectrumWidget::spectrumPlusTypeChanged(bool &state, const QString &name)
 {
     createSpectrumWidget(MusicSpectrum::Module::Plus, state, name, m_ui->spectrumPlusAreaLayout);
-    adjustWidgetLayout(m_ui->spectrumPlusAreaLayout->count() - ITEM_DEFAULT_COUNT);
 }
 
 void MusicSpectrumWidget::spectrumWaveTypeChanged(bool &state, const QString &name)
@@ -115,7 +98,6 @@ void MusicSpectrumWidget::spectrumWaveTypeChanged(bool &state, const QString &na
     {
         createSpectrumWidget(MusicSpectrum::Module::Wave, state, name, m_ui->spectrumWaveAreaLayout);
     }
-    adjustWidgetLayout(m_ui->spectrumWaveAreaLayout->count() - ITEM_DEFAULT_COUNT);
 }
 
 void MusicSpectrumWidget::spectrumFlowTypeChanged(bool &state, const QString &name)
@@ -369,22 +351,6 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::Module spectrum, bool
             delete type.m_object;
         }
     }
-}
-
-void MusicSpectrumWidget::adjustWidgetLayout(int offset)
-{
-    if(offset < 0)
-    {
-        offset = 0;
-    }
-    offset *= ITEM_OFFSET;
-
-    setFixedHeight(offset + 418);
-    m_ui->background->setFixedHeight(offset + 418);
-    m_ui->backgroundMask->setFixedHeight(offset + 389);
-    m_ui->mainViewWidget->setFixedHeight(offset + 390);
-
-    setBackgroundPixmap(size());
 }
 
 int MusicSpectrumWidget::findSpectrumWidget(const QString &name)

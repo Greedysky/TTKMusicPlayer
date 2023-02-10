@@ -292,6 +292,9 @@ public Q_SLOTS:
     void currentPlaylist(QStringList &list);
 
 private:
+    /*!
+     * Override the widget event.
+     */
     virtual void resizeEvent(QResizeEvent *event) override final;
     virtual void closeEvent(QCloseEvent *event) override final;
     virtual void dragEnterEvent(QDragEnterEvent *event) override final;

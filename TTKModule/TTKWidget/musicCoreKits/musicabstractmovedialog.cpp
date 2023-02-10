@@ -26,12 +26,12 @@ void MusicAbstractMoveDialog::backgroundChanged()
 
 int MusicAbstractMoveDialog::exec()
 {
-    setBackgroundPixmap(size());
+    backgroundChanged();
     return QDialog::exec();
 }
 
 void MusicAbstractMoveDialog::show()
 {
-    setBackgroundPixmap(size());
+    backgroundChanged();
     QDialog::show();
 }

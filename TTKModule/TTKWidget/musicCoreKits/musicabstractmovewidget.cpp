@@ -28,19 +28,19 @@ void MusicAbstractMoveWidget::backgroundChanged()
 
 void MusicAbstractMoveWidget::show()
 {
-    setBackgroundPixmap(size());
+    backgroundChanged();
     QWidget::show();
 }
 
 
 
-MusicAbstractMoveSingleWidget::MusicAbstractMoveSingleWidget(QWidget *parent)
-    : MusicAbstractMoveSingleWidget(true, parent)
+MusicAbstractMoveContainWidget::MusicAbstractMoveContainWidget(QWidget *parent)
+    : MusicAbstractMoveContainWidget(true, parent)
 {
 
 }
 
-MusicAbstractMoveSingleWidget::MusicAbstractMoveSingleWidget(bool transparent, QWidget *parent)
+MusicAbstractMoveContainWidget::MusicAbstractMoveContainWidget(bool transparent, QWidget *parent)
     : MusicAbstractMoveWidget(transparent, parent)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -52,7 +52,7 @@ MusicAbstractMoveSingleWidget::MusicAbstractMoveSingleWidget(bool transparent, Q
     setLayout(layout);
 }
 
-MusicAbstractMoveSingleWidget::~MusicAbstractMoveSingleWidget()
+MusicAbstractMoveContainWidget::~MusicAbstractMoveContainWidget()
 {
     delete m_container;
 }

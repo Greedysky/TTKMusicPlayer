@@ -11,7 +11,7 @@
 #include <QBoxLayout>
 
 MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
-    : MusicAbstractMoveSingleWidget(true, parent)
+    : MusicAbstractMoveContainWidget(true, parent)
 {
     hide();
 
@@ -26,6 +26,7 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
 
     QVBoxLayout *vlayout = new QVBoxLayout(m_container);
     vlayout->setContentsMargins(5, 5, 5, 5);
+
     m_textLabel = new QLabel(this);
     m_textLabel->setStyleSheet(MusicUIObject::ColorStyle03);
     m_textLabel->setAlignment(Qt::AlignCenter);

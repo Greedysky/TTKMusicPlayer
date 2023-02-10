@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractmovewidget.h"
+#include "musicabstractmoveresizewidget.h"
 
 namespace Ui {
 class MusicSpectrumWidget;
@@ -49,7 +49,7 @@ TTK_DECLARE_LIST(MusicSpectrum);
 /*! @brief The class of the music spectrum widget all.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSpectrumWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicSpectrumWidget : public MusicAbstractMoveResizeContainWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSpectrumWidget)
@@ -61,10 +61,6 @@ public:
     ~MusicSpectrumWidget();
 
 public Q_SLOTS:
-    /*!
-     * Tab Index Changed.
-     */
-    void tabIndexChanged(int index);
     /*!
      * Spectrum Normal Type Changed.
      */
@@ -119,10 +115,6 @@ private:
      * Create light widget.
      */
     void createLightWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout, const QString &url = QString());
-    /*!
-     * Adjust widget layout.
-     */
-    void adjustWidgetLayout(int offset);
     /*!
      * Find spectrum widget index by name.
      */

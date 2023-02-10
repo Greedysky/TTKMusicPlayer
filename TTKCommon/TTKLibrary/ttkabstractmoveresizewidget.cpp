@@ -17,7 +17,7 @@ TTKAbstractMoveResizeWidget::TTKAbstractMoveResizeWidget(QWidget *parent)
     m_struct.m_mouseLeftPress = false;
     m_struct.m_isPressBorder = false;
 
-    setWindowFlags(Qt::FramelessWindowHint);
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setMouseTracking(true);

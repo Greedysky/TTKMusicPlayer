@@ -1,5 +1,5 @@
-#ifndef MUSICABSTRACTMOVEWIDGET_H
-#define MUSICABSTRACTMOVEWIDGET_H
+#ifndef MUSICABSTRACTMOVERESIZEWIDGET_H
+#define MUSICABSTRACTMOVERESIZEWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -20,25 +20,21 @@
  ***************************************************************************/
 
 #include "musicwidgetrenderer.h"
-#include "ttkabstractmovewidget.h"
+#include "ttkabstractmoveresizewidget.h"
 
-/*! @brief The class of the moving widget base.
+/*! @brief The class of the moving resize widget with container.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicAbstractMoveWidget : public TTKAbstractMoveWidget, protected MusicWidgetRenderer
+class TTK_MODULE_EXPORT MusicAbstractMoveResizeContainWidget : public TTKAbstractMoveResizeWidget, protected MusicWidgetRenderer
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractMoveWidget)
+    TTK_DECLARE_MODULE(MusicAbstractMoveResizeContainWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractMoveWidget(QWidget *parent = nullptr);
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicAbstractMoveWidget(bool transparent, QWidget *parent = nullptr);
-    ~MusicAbstractMoveWidget();
+    explicit MusicAbstractMoveResizeContainWidget(QWidget *parent = nullptr);
+    ~MusicAbstractMoveResizeContainWidget();
 
 public Q_SLOTS:
     /*!
@@ -50,30 +46,12 @@ public Q_SLOTS:
      */
     void show();
 
-};
-
-
-/*! @brief The class of the moving widget with container.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicAbstractMoveContainWidget : public MusicAbstractMoveWidget
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractMoveContainWidget)
-public:
+private:
     /*!
-     * Object contsructor.
+     * Override the widget event.
      */
-    explicit MusicAbstractMoveContainWidget(QWidget *parent = nullptr);
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicAbstractMoveContainWidget(bool transparent, QWidget *parent = nullptr);
-    ~MusicAbstractMoveContainWidget();
-
-protected:
-    QWidget *m_container;
+    virtual void resizeEvent(QResizeEvent *event) override final;
 
 };
 
-#endif // MUSICABSTRACTMOVEWIDGET_H
+#endif // MUSICABSTRACTMOVERESIZEWIDGET_H

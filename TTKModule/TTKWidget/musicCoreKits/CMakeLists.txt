@@ -4,6 +4,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
   ${MUSIC_WIDGET_CORE_DIR}/musicabstracttablewidget.h
   ${MUSIC_WIDGET_CORE_DIR}/musicabstractmovedialog.h
   ${MUSIC_WIDGET_CORE_DIR}/musicabstractmovewidget.h
+  ${MUSIC_WIDGET_CORE_DIR}/musicabstractmoveresizewidget.h
   ${MUSIC_WIDGET_CORE_DIR}/musicabstractdownloadtablewidget.h
   ${MUSIC_WIDGET_CORE_DIR}/musicabstractfloatwidget.h
   ${MUSIC_WIDGET_CORE_DIR}/musicabstractitemquerywidget.h
@@ -48,6 +49,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
   ${MUSIC_WIDGET_CORE_DIR}/musicabstracttablewidget.cpp
   ${MUSIC_WIDGET_CORE_DIR}/musicabstractmovedialog.cpp
   ${MUSIC_WIDGET_CORE_DIR}/musicabstractmovewidget.cpp
+  ${MUSIC_WIDGET_CORE_DIR}/musicabstractmoveresizewidget.cpp
   ${MUSIC_WIDGET_CORE_DIR}/musicabstractdownloadtablewidget.cpp
   ${MUSIC_WIDGET_CORE_DIR}/musicabstractfloatwidget.cpp
   ${MUSIC_WIDGET_CORE_DIR}/musicabstractitemquerywidget.cpp

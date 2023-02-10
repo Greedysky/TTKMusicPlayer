@@ -271,7 +271,7 @@
     </message>
 </context>
 <context>
-    <name>LightSpectrum</name>
+    <name>LightSpectrogram</name>
     <message>
         <source>Type</source>
         <translation>類型</translation>
