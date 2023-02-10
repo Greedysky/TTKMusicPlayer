@@ -292,6 +292,14 @@
         <source>Mono</source>
         <translation>黑白譜</translation>
     </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>頻譜截圖</translation>
+    </message>
+    <message>
+        <source>Untitled</source>
+        <translation>未命名</translation>
+    </message>
 </context>
 <context>
     <name>NormalAnalyzer</name>
