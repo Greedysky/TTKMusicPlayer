@@ -60,6 +60,10 @@ public:
      * Object contsructor.
      */
     explicit TTKAbstractMoveResizeWidget(QWidget *parent = nullptr);
+    /*!
+     * Object contsructor.
+     */
+    explicit TTKAbstractMoveResizeWidget(bool transparent, QWidget *parent = nullptr);
 
 protected:
     /*!
@@ -80,9 +84,9 @@ protected:
      */
     void moveDirection();
     /*!
-     * Get all inside widgets.
+     * set given widgets tracking.
      */
-    QObjectList foreachWidget(QObject *object);
+    void setObjectsTracking(const QWidgetList &objects);
 
     MoveResizeData m_struct;
     Direction m_direction;

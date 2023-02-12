@@ -2,7 +2,7 @@
 #include "musicbackgroundmanager.h"
 
 MusicAbstractMoveResizeContainWidget::MusicAbstractMoveResizeContainWidget(QWidget *parent)
-    : TTKAbstractMoveResizeWidget(parent)
+    : TTKAbstractMoveResizeWidget(false, parent)
 {
     G_BACKGROUND_PTR->addObserver(this);
 }

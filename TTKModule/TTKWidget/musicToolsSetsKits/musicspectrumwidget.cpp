@@ -27,7 +27,6 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
     setBackgroundLabel(m_ui->background);
 
-    setAttribute(Qt::WA_TranslucentBackground, false);
     setStyleSheet(MusicUIObject::MenuStyle02);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
@@ -58,6 +57,8 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->localFileButton->setFocusPolicy(Qt::NoFocus);
     m_ui->openFileButton->setFocusPolicy(Qt::NoFocus);
 #endif
+    /////////// Objects Mouse tracking
+    setObjectsTracking(QWidgetList() << m_ui->background);
 
     connect(m_ui->localFileButton, SIGNAL(clicked()), SLOT(localFileButtonClicked()));
     connect(m_ui->openFileButton, SIGNAL(clicked()), SLOT(openFileButtonClicked()));

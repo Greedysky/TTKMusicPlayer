@@ -27,17 +27,13 @@
 MusicApplication *MusicApplication::m_instance = nullptr;
 
 MusicApplication::MusicApplication(QWidget *parent)
-    : TTKAbstractMoveResizeWidget(parent),
+    : TTKAbstractMoveResizeWidget(false, parent),
       m_ui(new Ui::MusicApplication),
       m_quitWindowClose(false),
       m_currentSongTreeIndex(TTK_NORMAL_LEVEL)
 {
     m_instance = this;
-#if defined Q_OS_WIN && !TTK_QT_VERSION_CHECK(5,2,0)
-    setAttribute(Qt::WA_OpaquePaintEvent);
-#else
-    setAttribute(Qt::WA_TranslucentBackground, false);
-#endif
+
     m_applicationObject = new MusicApplicationModule(this);
     m_topAreaWidget = new MusicTopAreaWidget(this);
     m_bottomAreaWidget = new MusicBottomAreaWidget(this);
@@ -83,10 +79,8 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_ui->musicTimeWidget->setInputModule(this);
     G_HOTKEY_PTR->setInputModule(this);
 
-    /////////// Mouse tracking
-    m_ui->background->installEventFilter(this);
-    m_ui->background->setMouseTracking(true);
-    m_ui->centerWidget->installEventFilter(this);
+    /////////// Objects Mouse tracking;
+    setObjectsTracking(QWidgetList() << m_ui->background << m_ui->songsContainer);
 
     readSystemConfigFromFile();
     QTimer::singleShot(MT_ONCE, m_rightAreaWidget, SLOT(musicLoadSongIndexWidget()));

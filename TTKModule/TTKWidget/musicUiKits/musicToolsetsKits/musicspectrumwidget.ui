@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>频谱显示</string>
+   <string>音乐频谱显示</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -36,16 +36,16 @@
        <number>0</number>
       </property>
       <property name="leftMargin">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="topMargin">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="rightMargin">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="bottomMargin">
-       <number>0</number>
+       <number>1</number>
       </property>
       <item>
        <widget class="QWidget" name="topWidget" native="true">
@@ -99,7 +99,7 @@
             <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
            </property>
            <property name="text">
-            <string>频谱显示</string>
+            <string>音乐频谱显示</string>
            </property>
           </widget>
          </item>
@@ -172,7 +172,7 @@
            </property>
            <widget class="QWidget" name="spectrumNormalWidget">
             <attribute name="title">
-             <string>频谱显示</string>
+             <string>普通显示</string>
             </attribute>
             <layout class="QVBoxLayout" name="spectrumNormalLayout">
              <property name="spacing">

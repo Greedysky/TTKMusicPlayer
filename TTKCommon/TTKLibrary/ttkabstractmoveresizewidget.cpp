@@ -11,6 +11,12 @@
 #endif
 
 TTKAbstractMoveResizeWidget::TTKAbstractMoveResizeWidget(QWidget *parent)
+    : TTKAbstractMoveResizeWidget(true, parent)
+{
+
+}
+
+TTKAbstractMoveResizeWidget::TTKAbstractMoveResizeWidget(bool transparent, QWidget *parent)
     : QWidget(parent),
       m_direction(Direction::No)
 {
@@ -18,7 +24,7 @@ TTKAbstractMoveResizeWidget::TTKAbstractMoveResizeWidget(QWidget *parent)
     m_struct.m_isPressBorder = false;
 
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
-    setAttribute(Qt::WA_TranslucentBackground);
+    setAttribute(Qt::WA_TranslucentBackground, transparent);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setMouseTracking(true);
 }
@@ -276,16 +282,11 @@ void TTKAbstractMoveResizeWidget::moveDirection()
     }
 }
 
-QObjectList TTKAbstractMoveResizeWidget::foreachWidget(QObject *object)
+void TTKAbstractMoveResizeWidget::setObjectsTracking(const QWidgetList &objects)
 {
-    QObjectList result;
-    for(QObject *obj : object->children())
+    for(QWidget *object : objects)
     {
-        if("QWidget" == QString(obj->metaObject()->className()))
-        {
-            result.append(obj);
-        }
-        result += foreachWidget(obj);
+        object->installEventFilter(this);
+        object->setMouseTracking(true);
     }
-    return result;
 }
