@@ -52,11 +52,11 @@ public:
 
 private slots:
     void mediaUrlChanged();
-    void typeChanged(QAction *action);
     void saveScreenshot();
+    void showSettings();
+    void settingButtonClicked(int index);
 
 private:
-    virtual void keyPressEvent(QKeyEvent *event) override final;
     virtual void paintEvent(QPaintEvent *e) override final;
     virtual void resizeEvent(QResizeEvent *e) override final;
     virtual void contextMenuEvent(QContextMenuEvent *e) override final;
@@ -66,6 +66,7 @@ private:
 
     std::unique_ptr<Audio> m_audio;
     std::unique_ptr<FFT> m_fft;
+    std::unique_ptr<QWidget> m_widget;
     spek_pipeline *m_pipeline = nullptr;
     int m_streams = 0;
     int m_stream = 0;

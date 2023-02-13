@@ -7,9 +7,10 @@
 
 #include <math.h>
 #include <QMenu>
-#include <QPainter>
+#include <QGridLayout>
+#include <QPushButton>
+#include <QButtonGroup>
 #include <QDateTime>
-#include <QKeyEvent>
 #include <QFileInfo>
 #include <QFileDialog>
 
@@ -42,8 +43,6 @@ LightSpectrogram::LightSpectrogram(QWidget *parent)
       m_urange(URANGE),
       m_lrange(LRANGE)
 {
-    setFocusPolicy(Qt::StrongFocus);
-
     create_palette();
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
 }
@@ -61,74 +60,6 @@ void LightSpectrogram::open(const QString &path)
     start();
 }
 
-void LightSpectrogram::keyPressEvent(QKeyEvent *event)
-{
-    switch (event->key()) {
-    case Qt::Key_C:
-        if (m_channels) {
-            if (event->modifiers() == Qt::NoModifier) {   // 'c'
-                m_channel = (m_channel + 1) % m_channels;
-            } else if (event->modifiers() == Qt::ShiftModifier) {   // 'C'
-                m_channel = (m_channel - 1 + m_channels) % m_channels;
-            }
-        }
-        break;
-    case Qt::Key_F:
-        if (event->modifiers() == Qt::NoModifier) {   // 'f'
-            m_window = (WindowFunction) ((m_window + 1) % WINDOW_COUNT);
-        } else if (event->modifiers() == Qt::ShiftModifier) {   // 'F'
-            m_window = (WindowFunction) ((m_window - 1 + WINDOW_COUNT) % WINDOW_COUNT);
-        }
-        break;
-    case Qt::Key_L:
-        if (event->modifiers() == Qt::NoModifier) {   // 'l'
-            m_lrange = spek_min(m_lrange + 1, m_urange - 1);
-        } else if (event->modifiers() == Qt::ShiftModifier) {   // 'L'
-            m_lrange = spek_max(m_lrange - 1, MIN_RANGE);
-        }
-        break;
-    case Qt::Key_P:
-        if (event->modifiers() == Qt::NoModifier) {   // 'p'
-            m_palette = (VisualPalette::Palette) ((m_palette + 1) % VisualPalette::PALETTE_COUNT);
-            create_palette();
-        } else if (event->modifiers() == Qt::ShiftModifier) {   // 'P'
-            m_palette = (VisualPalette::Palette) ((m_palette - 1 + VisualPalette::PALETTE_COUNT) % VisualPalette::PALETTE_COUNT);
-            create_palette();
-        }
-        break;
-    case Qt::Key_S:
-        if (m_streams) {
-            if (event->modifiers() == Qt::NoModifier) {   // 's'
-                m_stream = (m_stream + 1) % m_streams;
-            } else if (event->modifiers() == Qt::ShiftModifier) {   // 'S'
-                m_stream = (m_stream - 1 + m_streams) % m_streams;
-            }
-        }
-        break;
-    case Qt::Key_U:
-        if (event->modifiers() == Qt::NoModifier) {   // 'u'
-            m_urange = spek_min(m_urange + 1, MAX_RANGE);
-        } else if (event->modifiers() == Qt::ShiftModifier) {   // 'U'
-            m_urange = spek_max(m_urange - 1, m_lrange + 1);
-        }
-        break;
-    case Qt::Key_W:
-        if (event->modifiers() == Qt::NoModifier) {   // 'w'
-            m_bits = spek_min(m_bits + 1, MAX_FFT_BITS);
-            this->create_palette();
-        } else if (event->modifiers() == Qt::ShiftModifier) {   // 'W'
-            m_bits = spek_max(m_bits - 1, MIN_FFT_BITS);
-            this->create_palette();
-        }
-        break;
-    default:
-        event->ignore();
-        return;
-    }
-
-    start();
-}
-
 void LightSpectrogram::paintEvent(QPaintEvent *e)
 {
     Light::paintEvent(e);
@@ -139,6 +70,10 @@ void LightSpectrogram::paintEvent(QPaintEvent *e)
 void LightSpectrogram::resizeEvent(QResizeEvent *e)
 {
     Light::resizeEvent(e);
+
+    if (m_widget) {
+        m_widget->move(0, (height() - m_widget->height()) / 2);
+    }
     start();
 }
 
@@ -147,14 +82,7 @@ void LightSpectrogram::contextMenuEvent(QContextMenuEvent *e)
     Light::contextMenuEvent(e);
 
     QMenu menu(this);
-    QMenu typeMenu(tr("Type"), &menu);
-    typeMenu.addAction(tr("Spectrum"))->setData(10);
-    typeMenu.addAction(tr("Spectrogram"))->setData(20);
-    typeMenu.addAction(tr("Sox"))->setData(30);
-    typeMenu.addAction(tr("Mono"))->setData(40);
-    connect(&typeMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
-
-    menu.addMenu(&typeMenu);
+    menu.addAction(tr("Settings"), this, SLOT(showSettings()));
     menu.addAction(tr("Screenshot"), this, SLOT(saveScreenshot()));
     menu.exec(QCursor::pos());
 }
@@ -348,21 +276,6 @@ void LightSpectrogram::mediaUrlChanged()
     open(SoundCore::instance()->path());
 }
 
-void LightSpectrogram::typeChanged(QAction *action)
-{
-    switch (action->data().toInt())
-    {
-        case 10: m_palette = VisualPalette::PALETTE_SPECTRUM; break;
-        case 20: m_palette = VisualPalette::PALETTE_SPECTROGRAM; break;
-        case 30: m_palette = VisualPalette::PALETTE_SOX; break;
-        case 40: m_palette = VisualPalette::PALETTE_MONO; break;
-        default: break;
-    }
-
-    create_palette();
-    start();
-}
-
 void LightSpectrogram::saveScreenshot()
 {
     if (m_path.isEmpty()) {
@@ -382,6 +295,109 @@ void LightSpectrogram::saveScreenshot()
         QPixmap::grabWidget(this, rect()).save(path);
 #endif
     }
+}
+
+static void makeSettingButtons(QButtonGroup *group, QGridLayout *layout, int index, const char *text, const QString &tips)
+{
+    const QString &title = QString(text);
+    const QString &style = "\
+        QPushButton{ color:#666666; border:1px solid #666666; border-radius:2px; } \
+        QPushButton:hover{ color:#000000; border:1px solid #000000; border-radius:2px; }";
+
+    QPushButton *button1 = new QPushButton(title.toLower(), layout->parentWidget());
+    QPushButton *button2 = new QPushButton(title.toUpper(), layout->parentWidget());
+#ifdef Q_OS_UNIX
+    button1->setFocusPolicy(Qt::NoFocus);
+    button2->setFocusPolicy(Qt::NoFocus);
+#endif
+    button1->setFixedHeight(25);
+    button2->setFixedHeight(25);
+    button1->setStyleSheet(style);
+    button2->setStyleSheet(style);
+    button1->setCursor(Qt::PointingHandCursor);
+    button2->setCursor(Qt::PointingHandCursor);
+    button1->setToolTip(tips);
+    button2->setToolTip(tips);
+
+    group->addButton(button1, 2 * index);
+    group->addButton(button2, 2 * index + 1);
+    layout->addWidget(button1, index, 0);
+    layout->addWidget(button2, index, 1);
+}
+
+void LightSpectrogram::showSettings()
+{
+    if (m_widget) {
+        m_widget->setHidden(m_widget->isVisible());
+    } else {
+        QWidget *widget = new QWidget(this);
+        widget->setFixedSize(140, 280);
+        widget->move(0, (height() - widget->height()) / 2);
+
+        QButtonGroup *group = new QButtonGroup(widget);
+        connect(group, SIGNAL(buttonClicked(int)), SLOT(settingButtonClicked(int)));
+
+        QGridLayout *layout = new QGridLayout(widget);
+        widget->setLayout(layout);
+
+        makeSettingButtons(group, layout, 0, "c", tr("Change the audio channel"));
+        makeSettingButtons(group, layout, 1, "f", tr("Change the DFT window function"));
+        makeSettingButtons(group, layout, 2, "l", tr("Change the lower limit of the dynamic range in dBFS"));
+        makeSettingButtons(group, layout, 3, "p", tr("Change the palette"));
+        makeSettingButtons(group, layout, 4, "s", tr("Change the audio stream"));
+        makeSettingButtons(group, layout, 5, "u", tr("Change the upper limit of the dynamic range in dBFS"));
+        makeSettingButtons(group, layout, 6, "w", tr("Change the DFT window size"));
+
+        widget->show();
+        m_widget.reset(widget);
+    }
+}
+
+void LightSpectrogram::settingButtonClicked(int index)
+{
+    if (index == 0) { // 'c'
+        if (m_channels) {
+            m_channel = (m_channel + 1) % m_channels;
+        }
+    } else if (index == 1) { // 'C'
+        if (m_channels) {
+            m_channel = (m_channel - 1 + m_channels) % m_channels;
+        }
+    } else if (index == 2) { // 'f'
+        m_window = (WindowFunction) ((m_window + 1) % WINDOW_COUNT);
+    } else if (index == 3) { // 'F'
+        m_window = (WindowFunction) ((m_window - 1 + WINDOW_COUNT) % WINDOW_COUNT);
+    } else if (index == 4) { // 'l'
+        m_lrange = spek_min(m_lrange + 1, m_urange - 1);
+    } else if (index == 5) { // 'L'
+        m_lrange = spek_max(m_lrange - 1, MIN_RANGE);
+    } else if (index == 6) { // 'p'
+        m_palette = (VisualPalette::Palette) ((m_palette + 1) % VisualPalette::PALETTE_COUNT);
+        create_palette();
+    } else if (index == 7) { // 'P'
+        m_palette = (VisualPalette::Palette) ((m_palette - 1 + VisualPalette::PALETTE_COUNT) % VisualPalette::PALETTE_COUNT);
+        create_palette();
+    } else if (index == 8) { // 's'
+        if (m_streams) {
+            m_stream = (m_stream + 1) % m_streams;
+        }
+    } else if (index == 9) { // 'S'
+        if (m_streams) {
+            m_stream = (m_stream - 1 + m_streams) % m_streams;
+        }
+    } else if (index == 10) { // 'u'
+        m_urange = spek_min(m_urange + 1, MAX_RANGE);
+    } else if (index == 11) { // 'U'
+        m_urange = spek_max(m_urange - 1, m_lrange + 1);
+    } else if (index == 12) { // 'w'
+        m_bits = spek_min(m_bits + 1, MAX_FFT_BITS);
+        create_palette();
+    } else if (index == 13) { // 'W'
+        m_bits = spek_max(m_bits - 1, MIN_FFT_BITS);
+        create_palette();
+    }
+
+    start();
 }
 
 void LightSpectrogram::create_palette()
