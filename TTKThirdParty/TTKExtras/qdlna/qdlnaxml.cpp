@@ -75,33 +75,29 @@ QString QDlnaXml::tagNameToLower(const QString &data) const
 QString QDlnaXml::readTagNameValue(const QString &tagName) const
 {
     TTK_D(QDlnaXml);
-    const QDomNodeList &nodeList = d->m_document->elementsByTagName(tagName);
-    if(nodeList.isEmpty())
-    {
-        return QString();
-    }
-    return nodeList.at(0).toElement().text();
+    const QDomNodeList &nodes = d->m_document->elementsByTagName(tagName);
+    return nodes.isEmpty() ? QString() : nodes.item(0).toElement().text();
 }
 
 QDlnaService QDlnaXml::readServiceTag(const QString &type, const QString &tagName) const
 {
     TTK_D(QDlnaXml);
-    const QDomNodeList &nodeList = d->m_document->elementsByTagName(tagName);
-    if(nodeList.isEmpty())
+    const QDomNodeList &nodes = d->m_document->elementsByTagName(tagName);
+    if(nodes.isEmpty())
     {
         return QDlnaService();
     }
 
     QDlnaService service;
-    for(int i = 0; i < nodeList.count(); ++i)
+    for(int i = 0; i < nodes.count(); ++i)
     {
-        const QDomNode &node = nodeList.at(i);
-        const QDomNodeList &paramNodes = node.childNodes();
+        const QDomNodeList &paramNodes = nodes.item(i).childNodes();
 
         for(int j = 0; j < paramNodes.count(); ++j)
         {
-            const QDomNode &paramNode = paramNodes.at(j);
+            const QDomNode &paramNode = paramNodes.item(j);
             QString text = paramNode.toElement().text();
+
             if(text.contains(type, Qt::CaseInsensitive))
             {
                 const QString &nodeName = paramNode.nodeName();
@@ -109,16 +105,27 @@ QDlnaService QDlnaXml::readServiceTag(const QString &type, const QString &tagNam
                 {
                     text.remove(0, 1);
                 }
+
                 if(nodeName.contains("servicetype", Qt::CaseInsensitive))
+                {
                     service.m_serviceType = text;
+                }
                 else if(nodeName.contains("serviceid", Qt::CaseInsensitive))
+                {
                     service.m_serviceID = text;
+                }
                 else if(nodeName.contains("scpdurl", Qt::CaseInsensitive))
+                {
                     service.m_scpdURL = text;
+                }
                 else if(nodeName.contains("controlurl", Qt::CaseInsensitive))
+                {
                     service.m_controlURL = text;
+                }
                 else if(nodeName.contains("eventsuburl", Qt::CaseInsensitive))
+                {
                     service.m_eventSubURL = text;
+                }
             }
         }
     }

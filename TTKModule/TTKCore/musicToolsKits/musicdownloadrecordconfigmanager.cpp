@@ -9,14 +9,16 @@ MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(MusicObject::
 
 void MusicDownloadRecordConfigManager::readBuffer(MusicSongList &items)
 {
-    const QDomNodeList &nodeList = m_document->elementsByTagName("value");
-    for(int i = 0; i < nodeList.count(); ++i)
+    const QDomNodeList &nodes = m_document->elementsByTagName("value");
+    for(int i = 0; i < nodes.count(); ++i)
     {
+        const QDomElement &element = nodes.item(i).toElement();
+
         MusicSong record;
-        record.setName(nodeList.at(i).toElement().attribute("name"));
-        record.setSizeStr(nodeList.at(i).toElement().attribute("size"));
-        record.setAddTimeStr(nodeList.at(i).toElement().attribute("time"));
-        record.setPath(nodeList.at(i).toElement().text());
+        record.setName(element.attribute("name"));
+        record.setSizeStr(element.attribute("size"));
+        record.setAddTimeStr(element.attribute("time"));
+        record.setPath(element.text());
         items << record;
     }
 }

@@ -28,6 +28,7 @@ template <typename T>
 class TTK_MODULE_EXPORT MusicItemSearchInterface
 {
 public:
+    using TTKIntListMap = QMap<int, TTKIntList>;
     using MusicItemSearchInterfaceClass = MusicItemSearchInterface<T>;
 
 public:

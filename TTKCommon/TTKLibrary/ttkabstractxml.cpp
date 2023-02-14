@@ -1,5 +1,7 @@
 #include "ttkabstractxml.h"
 
+#include <QStringList>
+
 TTKXmlNodeHelper::TTKXmlNodeHelper(const QDomNode& root)
     : m_root(root),
       m_current(root)
@@ -161,47 +163,89 @@ QByteArray TTKAbstractXml::toByteArray() const
     return m_document ? m_document->toByteArray() : QByteArray();
 }
 
-QString TTKAbstractXml::readXmlAttributeByTagNameValue(const QString &tagName) const
-{
-    return readXmlAttributeByTagName(tagName, "value");
-}
-
 QString TTKAbstractXml::readXmlAttributeByTagName(const QString &tagName, const QString &attrName) const
 {
-    const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
-    if(nodeList.isEmpty())
-    {
-        return QString();
-    }
-    return nodeList.at(0).toElement().attribute(attrName);
+    const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
+    return nodes.isEmpty() ? QString() : nodes.item(0).toElement().attribute(attrName);
 }
 
 QString TTKAbstractXml::readXmlTextByTagName(const QString &tagName) const
 {
-    const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
-    if(nodeList.isEmpty())
-    {
-        return QString();
-    }
-    return nodeList.at(0).toElement().text();
+    const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
+    return nodes.isEmpty() ? QString() : nodes.item(0).toElement().text();
 }
 
-TTKVariantMap TTKAbstractXml::readXmlAttributesByTagName(const QString &tagName) const
+TTKXmlAttributeList TTKAbstractXml::readXmlAttributesByTagName(const QString &tagName) const
 {
-    const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
-    if(nodeList.isEmpty())
+    const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
+    if(nodes.isEmpty())
     {
-        return TTKVariantMap();
+        return TTKXmlAttributeList();
     }
 
-    const QDomNamedNodeMap &nodes = nodeList.at(0).toElement().attributes();
-    TTKVariantMap maps;
+    const QDomNamedNodeMap &nodeMap = nodes.item(0).toElement().attributes();
+    TTKXmlAttributeList v;
+    for(int i = 0; i < nodeMap.count(); ++i)
+    {
+        const QDomAttr &attr = nodeMap.item(i).toAttr();
+        v << TTKXmlAttribute(attr.name(), attr.value());
+    }
+    return v;
+}
+
+QStringList TTKAbstractXml::readXmlMultiAttributeByTagName(const QString &tagName, const QString &attrName) const
+{
+    const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
+    if(nodes.isEmpty())
+    {
+        return QStringList();
+    }
+
+    QStringList v;
     for(int i = 0; i < nodes.count(); ++i)
     {
-        const QDomAttr &attr = nodes.item(i).toAttr();
-        maps[attr.name()] = attr.value();
+        v << nodes.item(i).toElement().attribute(attrName);
     }
-    return maps;
+    return v;
+}
+
+QStringList TTKAbstractXml::readXmlMultiTextByTagName(const QString &tagName) const
+{
+    const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
+    if(nodes.isEmpty())
+    {
+        return QStringList();
+    }
+
+    QStringList v;
+    for(int i = 0; i < nodes.count(); ++i)
+    {
+        v << nodes.item(i).toElement().text();
+    }
+    return v;
+}
+
+TTKXmlAttributesList TTKAbstractXml::readXmlMultiAttributesByTagName(const QString &tagName) const
+{
+    const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
+    if(nodes.isEmpty())
+    {
+        return TTKXmlAttributesList();
+    }
+
+    TTKXmlAttributesList v;
+    for(int i = 0; i < nodes.count(); ++i)
+    {
+        const QDomNamedNodeMap &nodeMap = nodes.item(i).toElement().attributes();
+        TTKXmlAttributeList attrs;
+        for(int j = 0; j < nodeMap.count(); ++j)
+        {
+            const QDomAttr &attr = nodeMap.item(j).toAttr();
+            attrs << TTKXmlAttribute(attr.name(), attr.value());
+        }
+        v << attrs;
+    }
+    return v;
 }
 
 void TTKAbstractXml::createProcessingInstruction()
@@ -265,20 +309,6 @@ QDomElement TTKAbstractXml::writeDomMutilElement(QDomElement &element, const QSt
     return domElement;
 }
 
-void TTKAbstractXml::writeAttribute(QDomElement &element, const TTKXmlAttribute &attr)
-{
-    switch(QtVariantType(attr.m_value))
-    {
-        case QVariant::Int: element.setAttribute(attr.m_key, attr.m_value.toInt()); break;
-        case QVariant::String: element.setAttribute(attr.m_key, attr.m_value.toString()); break;
-        case QVariant::LongLong: element.setAttribute(attr.m_key, attr.m_value.toLongLong()); break;
-        case QVariant::ULongLong: element.setAttribute(attr.m_key, attr.m_value.toULongLong()); break;
-        case QVariant::Double: element.setAttribute(attr.m_key, attr.m_value.toDouble()); break;
-        case QVariant::UInt: element.setAttribute(attr.m_key, attr.m_value.toUInt()); break;
-        default: break;
-    }
-}
-
 QDomElement TTKAbstractXml::writeDomElementText(QDomElement &element, const QString &node, const TTKXmlAttribute &attr, const QString &text)
 {
     QDomElement domElement = writeDomElement(element, node, attr);
@@ -306,4 +336,18 @@ QDomElement TTKAbstractXml::writeDomText(QDomElement &element, const QString &no
     const QDomText &domText = m_document->createTextNode(text);
     domElement.appendChild(domText);
     return domElement;
+}
+
+void TTKAbstractXml::writeAttribute(QDomElement &element, const TTKXmlAttribute &attr)
+{
+    switch(QtVariantType(attr.m_value))
+    {
+        case QVariant::Int: element.setAttribute(attr.m_key, attr.m_value.toInt()); break;
+        case QVariant::String: element.setAttribute(attr.m_key, attr.m_value.toString()); break;
+        case QVariant::LongLong: element.setAttribute(attr.m_key, attr.m_value.toLongLong()); break;
+        case QVariant::ULongLong: element.setAttribute(attr.m_key, attr.m_value.toULongLong()); break;
+        case QVariant::Double: element.setAttribute(attr.m_key, attr.m_value.toDouble()); break;
+        case QVariant::UInt: element.setAttribute(attr.m_key, attr.m_value.toUInt()); break;
+        default: break;
+    }
 }

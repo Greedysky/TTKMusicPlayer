@@ -16,10 +16,10 @@ bool MusicWPLConfigManager::readBuffer(MusicSongItemList &items)
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
 
-    const QDomNodeList &sepNodes = m_document->elementsByTagName(helper.nodeName("seq"));
-    for(int i = 0; i < sepNodes.count(); ++i)
+    const QDomNodeList &nodes = m_document->elementsByTagName(helper.nodeName("seq"));
+    for(int i = 0; i < nodes.count(); ++i)
     {
-        const QDomNode &node = sepNodes.at(i);
+        const QDomNode &node = nodes.item(i);
         item.m_songs << readMusicFilePath(node);
     }
 
@@ -64,12 +64,12 @@ bool MusicWPLConfigManager::writeBuffer(const MusicSongItemList &items, const QS
 
 MusicSongList MusicWPLConfigManager::readMusicFilePath(const QDomNode &node) const
 {
-    const QDomNodeList &nodeList = node.childNodes();
+    const QDomNodeList &nodes = node.childNodes();
 
     MusicSongList songs;
-    for(int i = 0; i < nodeList.count(); ++i)
+    for(int i = 0; i < nodes.count(); ++i)
     {
-        const QDomElement &element = nodeList.at(i).toElement();
+        const QDomElement &element = nodes.item(i).toElement();
         songs << MusicSong(element.attribute("src"));
     }
     return songs;

@@ -249,8 +249,6 @@ using TTKVariantList =      QList<QVariant>;            /* variant list */
 using TTKIntSet =           QSet<int>;                  /* int set */
 using TTKVariantMap =       QMap<QString, QVariant>;    /* string variant map */
 using TTKStringMap =        QMap<QString, QString>;     /* strings map */
-using TTKStringListMap =    QMap<QString, QStringList>; /* string stringlist map */
-using TTKIntListMap =       QMap<int, TTKIntList>;      /* int int list map */
 using TTKIntStringMap =     QMap<qint64, QString>;      /* int string map */
 
 #endif // TTKGLOBAL_H

@@ -8,8 +8,8 @@ MusicSkinConfigManager::MusicSkinConfigManager(QObject *parent)
 
 void MusicSkinConfigManager::readBuffer(MusicSkinItem &item)
 {
-    item.m_name = readXmlAttributeByTagNameValue("name");
-    item.m_useCount = readXmlAttributeByTagNameValue("useCount").toInt();
+    item.m_name = readXmlAttributeByTagName("name");
+    item.m_useCount = readXmlAttributeByTagName("useCount").toInt();
 }
 
 void MusicSkinConfigManager::writeBuffer(const MusicSkinItem &item, const QString &path)

@@ -43,6 +43,8 @@ struct TTK_MODULE_EXPORT TTKXmlAttribute
 };
 TTK_DECLARE_LIST(TTKXmlAttribute);
 
+using TTKXmlAttributesList = QList<TTKXmlAttributeList>;
+
 /*! @brief The class of the ttk xml node hepler.
  * @author Greedysky <greedysky@163.com>
  */
@@ -119,21 +121,31 @@ public:
     QByteArray toByteArray() const;
 
     /*!
-     * Read xml attribute by tagName and default name "value".
-     */
-    QString readXmlAttributeByTagNameValue(const QString &tagName) const;
-    /*!
      * Read xml attribute by tagName and attribute name.
      */
-    QString readXmlAttributeByTagName(const QString &tagName, const QString &attrName) const;
+    QString readXmlAttributeByTagName(const QString &tagName, const QString &attrName = "value") const;
     /*!
      * Read xml attribute's text by tagName.
      */
     QString readXmlTextByTagName(const QString &tagName) const;
     /*!
-     * Read xml attributes by tagName and default name "value".
+     * Read xml attributes by tagName.
      */
-    TTKVariantMap readXmlAttributesByTagName(const QString &tagName) const;
+    TTKXmlAttributeList readXmlAttributesByTagName(const QString &tagName) const;
+
+    /*!
+     * Read xml multi attribute by tagName and attribute name.
+     */
+    QStringList readXmlMultiAttributeByTagName(const QString &tagName, const QString &attrName = "value") const;
+    /*!
+     * Read xml multi attribute's text by multi tagName.
+     */
+    QStringList readXmlMultiTextByTagName(const QString &tagName) const;
+    /*!
+     * Read xml multi attributes by multi tagName.
+     */
+    TTKXmlAttributesList readXmlMultiAttributesByTagName(const QString &tagName) const;
+
     /*!
      * Create processing instruction in header.
      */
@@ -150,6 +162,7 @@ public:
      * Create xml node nodes by node atrrs.
      */
     QDomElement createRoot(const QString &node, const TTKXmlAttributeList &attrs);
+
     /*!
      * Append xml element nodes by node name.
      */

@@ -20,12 +20,12 @@
  ***************************************************************************/
 
 //update time 2023.02.12
-#define TTK_LIBRARY_VERSION         0x01210
-#define TTK_LIBRARY_VERSION_STR     "1.2.1.0"
+#define TTK_LIBRARY_VERSION         0x01220
+#define TTK_LIBRARY_VERSION_STR     "1.2.2.0"
 
 #define TTK_LIBRARY_MAJOR_VERSION 1
 #define TTK_LIBRARY_MIDLE_VERSION 2
-#define TTK_LIBRARY_MINOR_VERSION 1
+#define TTK_LIBRARY_MINOR_VERSION 2
 #define TTK_LIBRARY_PATCH_VERSION 0
 
 #endif // TTKLIBRARY_H

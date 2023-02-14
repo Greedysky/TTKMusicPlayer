@@ -8,12 +8,14 @@ MusicSongSearchRecordConfigManager::MusicSongSearchRecordConfigManager(QObject *
 
 void MusicSongSearchRecordConfigManager::readBuffer(MusicSearchRecordList &items)
 {
-    const QDomNodeList &nodeList = m_document->elementsByTagName("value");
-    for(int i = 0; i < nodeList.count(); ++i)
+    const QDomNodeList &nodes = m_document->elementsByTagName("value");
+    for(int i = 0; i < nodes.count(); ++i)
     {
+        const QDomElement &element = nodes.item(i).toElement();
+
         MusicSearchRecord record;
-        record.m_name = nodeList.at(i).toElement().attribute("name");
-        record.m_timestamp = nodeList.at(i).toElement().text();
+        record.m_name = element.attribute("name");
+        record.m_timestamp = element.text();
         items << record;
     }
 }

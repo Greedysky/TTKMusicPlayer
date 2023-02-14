@@ -15,21 +15,18 @@ bool MusicXSPFConfigManager::readBuffer(MusicSongItemList &items)
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
 
-    const QDomNodeList &trackNodes = m_document->elementsByTagName(helper.nodeName("trackList"));
-    for(int i = 0; i < trackNodes.count(); ++i)
+    const QDomNodeList &nodes = m_document->elementsByTagName(helper.nodeName("trackList"));
+    for(int i = 0; i < nodes.count(); ++i)
     {
-        const QDomNode &node = trackNodes.at(i);
-        const QDomNodeList &nodeList = node.childNodes();
-
-        for(int i = 0; i < nodeList.count(); ++i)
+        const QDomNodeList &trackNodes = nodes.item(i).childNodes();
+        for(int i = 0; i < trackNodes.count(); ++i)
         {
-            const QDomNode &track = nodeList.at(i);
-            const QDomNodeList &trackList = track.childNodes();
+            const QDomNodeList &trackChildNodes = trackNodes.item(i).childNodes();
 
             QString duration, path;
-            for(int i = 0; i < trackList.count(); ++i)
+            for(int i = 0; i < trackChildNodes.count(); ++i)
             {
-                const QDomElement &element = trackList.at(i).toElement();
+                const QDomElement &element = trackChildNodes.item(i).toElement();
                 const QString &name = element.nodeName().toLower();
 
                 if(name == "location")

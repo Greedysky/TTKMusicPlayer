@@ -12,31 +12,31 @@ MusicThunderSkinConfigManager::MusicThunderSkinConfigManager(QObject *parent)
 
 void MusicThunderSkinConfigManager::readBuffer(MusicSkinRemoteGroupList &items)
 {
-    const QDomNodeList &nodeList = m_document->elementsByTagName("group");
-    for(int i = 0; i < nodeList.count(); ++i)
+    const QDomNodeList &nodes = m_document->elementsByTagName("group");
+    for(int i = 0; i < nodes.count(); ++i)
     {
         MusicSkinRemoteGroup group;
-        QDomNode node = nodeList.at(i);
+        QDomNode node = nodes.item(i);
         group.m_group = QString("%1/%2").arg(MUSIC_THUNDER_DIR, node.toElement().attribute("name"));
         group.m_id = TTK_DEFAULT_STR;
 
-        const QDomNodeList &groupList = node.childNodes();
-        for(int j = 0; j < groupList.count(); ++j)
+        const QDomNodeList &groupNodes = node.childNodes();
+        for(int j = 0; j < groupNodes.count(); ++j)
         {
             if(j > MAX_SIZE)
             {
                 break;
             }
 
-            node = groupList.at(j);
-
             MusicSkinRemoteItem item;
             item.m_index = j;
 
-            const QDomNodeList &packageList = node.childNodes();
-            for(int k = 0; k < packageList.count(); ++k)
+            node = groupNodes.item(j);
+            const QDomNodeList &packageNodes = node.childNodes();
+
+            for(int k = 0; k < packageNodes.count(); ++k)
             {
-                const QDomElement &element = packageList.at(k).toElement();
+                const QDomElement &element = packageNodes.item(k).toElement();
                 if(element.nodeName() == "name")
                 {
                     item.m_name = element.text();

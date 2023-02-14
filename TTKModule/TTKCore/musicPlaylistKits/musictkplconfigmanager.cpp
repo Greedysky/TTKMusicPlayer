@@ -12,7 +12,7 @@ bool MusicTKPLConfigManager::readBuffer(MusicSongItemList &items)
     const QDomNodeList &nodes = m_document->elementsByTagName("musicList");
     for(int i = 0; i < nodes.count(); ++i)
     {
-        const QDomNode &node = nodes.at(i);
+        const QDomNode &node = nodes.item(i);
         MusicSongItem item;
         item.m_songs = readMusicFilePath(node);
 
@@ -67,12 +67,12 @@ bool MusicTKPLConfigManager::writeBuffer(const MusicSongItemList &items, const Q
 
 MusicSongList MusicTKPLConfigManager::readMusicFilePath(const QDomNode &node) const
 {
-    const QDomNodeList &nodeList = node.childNodes();
+    const QDomNodeList &nodes = node.childNodes();
 
     MusicSongList songs;
-    for(int i = 0; i < nodeList.count(); ++i)
+    for(int i = 0; i < nodes.count(); ++i)
     {
-        const QDomElement &element = nodeList.at(i).toElement();
+        const QDomElement &element = nodes.item(i).toElement();
         MusicSong song(element.text(), element.attribute("time"), element.attribute("name"), true);
         song.setPlayCount(element.attribute("playCount").toInt());
         songs << song;

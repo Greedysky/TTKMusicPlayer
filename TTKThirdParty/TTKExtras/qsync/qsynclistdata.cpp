@@ -47,39 +47,42 @@ void QSyncListData::receiveDataFromServer()
         QDomDocument docment;
         if(docment.setContent(reply->readAll()))
         {
-            const QDomNodeList &nodeList = docment.elementsByTagName("Contents");
-            for(int i = 0; i < nodeList.count(); ++i)
+            const QDomNodeList &nodes = docment.elementsByTagName("Contents");
+            for(int i = 0; i < nodes.count(); ++i)
             {
                 QSyncDataItem item;
-                const QDomNodeList &childList = nodeList.at(i).childNodes();
+                const QDomNodeList &childList = nodes.item(i).childNodes();
                 for(int j = 0; j < childList.count(); ++j)
                 {
-                     const QDomNode &node = childList.at(j);
-                     if(node.nodeName() == "Key")
+                     const QDomNode &node = childList.item(j);
+                     const QString &name = node.nodeName();
+                     const QString &text = node.toElement().text();
+
+                     if(name == "Key")
                      {
-                         item.m_name = node.toElement().text();
+                         item.m_name = text;
                      }
-                     else if(node.nodeName() == "LastModified")
+                     else if(name == "LastModified")
                      {
-                         QDateTime date = QDateTime::fromString(node.toElement().text(), "yyyy-MM-ddThh:mm:ss.zzzZ");
+                         QDateTime date = QDateTime::fromString(text, "yyyy-MM-ddThh:mm:ss.zzzZ");
                          date = date.addSecs(8 * 60 * 60);
                          item.m_putTime = date.toString("yyyy-MM-dd hh:mm");
                      }
-                     else if(node.nodeName() == "ETag")
+                     else if(name == "ETag")
                      {
-                         item.m_hash = node.toElement().text();
+                         item.m_hash = text;
                          item.m_hash.remove(0, 1);
                          item.m_hash.chop(1);
                      }
-                     else if(node.nodeName() == "Size")
+                     else if(name == "Size")
                      {
-                         item.m_size = node.toElement().text().toInt();
+                         item.m_size = text.toInt();
                      }
-                     else if(node.nodeName() == "Type")
+                     else if(name == "Type")
                      {
-                         item.m_mimeType = node.toElement().text();
+                         item.m_mimeType = text;
                      }
-                     else if(node.nodeName() == "Owner")
+                     else if(name == "Owner")
                      {
                          items << item;
                          item.clear();

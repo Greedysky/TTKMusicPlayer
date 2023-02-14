@@ -20,17 +20,18 @@ void MusicFMConfigManager::readBuffer(MusicFMCategoryList &items)
     for(int i = 0; i < nodes.count(); ++i)
     {
         MusicFMCategory category;
-        const QDomNode &node = nodes.at(i);
+        const QDomNode &node = nodes.item(i);
         category.m_category = node.toElement().attribute("value");
 
         const QDomNodeList &chnNodes = node.childNodes();
         for(int j = 0; j < chnNodes.count(); ++j)
         {
-            const QDomNode &chnNode = chnNodes.at(j);
+            const QDomElement &element = chnNodes.item(j).toElement();
+
             MusicFMChannel item;
-            item.m_name = chnNode.toElement().attribute("name");
-            item.m_location = chnNode.toElement().attribute("location");
-            item.m_url = chnNode.toElement().attribute("url");
+            item.m_name = element.attribute("name");
+            item.m_location = element.attribute("location");
+            item.m_url = element.attribute("url");
             category.m_items << item;
         }
         items.append(category);

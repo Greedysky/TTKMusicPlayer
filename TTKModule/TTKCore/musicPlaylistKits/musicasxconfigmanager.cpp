@@ -15,26 +15,26 @@ bool MusicASXConfigManager::readBuffer(MusicSongItemList &items)
     TTKXmlNodeHelper helper(m_document->documentElement());
     helper.load();
 
-    const QDomNodeList &itemNodes = m_document->elementsByTagName(helper.nodeName("Entry"));
-    for(int i = 0; i < itemNodes.count(); ++i)
+    const QDomNodeList &nodes = m_document->elementsByTagName(helper.nodeName("Entry"));
+    for(int i = 0; i < nodes.count(); ++i)
     {
-        const QDomNode &node = itemNodes.at(i);
-        const QDomNodeList &paramNodes = node.childNodes();
+        const QDomNodeList &paramNodes = nodes.item(i).childNodes();
 
         QString duration, path;
         for(int j = 0; j < paramNodes.count(); ++j)
         {
-            const QDomNode &paramNode = paramNodes.at(j);
+            const QDomNode &paramNode = paramNodes.item(j);
+            const QDomElement &element = paramNode.toElement();
             const QString &name = paramNode.nodeName().toLower();
 
             if(name == "duration" || name == "length")
             {
-                duration = paramNode.toElement().attribute("value");
+                duration = element.attribute("value");
                 duration = duration.mid(3, 5);
             }
             else if(name == "ref")
             {
-                path = paramNode.toElement().attribute("href");
+                path = element.attribute("href");
             }
         }
 
@@ -58,7 +58,7 @@ bool MusicASXConfigManager::writeBuffer(const MusicSongItemList &items, const QS
         return false;
     }
 
-    QDomElement rootDom = createRoot("Asx", TTKXmlAttribute{"version ", "3.0"});
+    QDomElement rootDom = createRoot("Asx", {"version ", "3.0"});
 
     for(int i = 0; i < items.count(); ++i)
     {
