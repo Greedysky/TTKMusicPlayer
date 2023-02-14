@@ -273,24 +273,8 @@
 <context>
     <name>LightSpectrogram</name>
     <message>
-        <source>Type</source>
-        <translation>類型</translation>
-    </message>
-    <message>
-        <source>Spectrum</source>
-        <translation>蓝譜</translation>
-    </message>
-    <message>
-        <source>Spectrogram</source>
-        <translation>光谱</translation>
-    </message>
-    <message>
-        <source>Sox</source>
-        <translation>紅譜</translation>
-    </message>
-    <message>
-        <source>Mono</source>
-        <translation>黑白譜</translation>
+        <source>Settings</source>
+        <translation>設置</translation>
     </message>
     <message>
         <source>Screenshot</source>
@@ -299,6 +283,34 @@
     <message>
         <source>Untitled</source>
         <translation>未命名</translation>
+    </message>
+    <message>
+        <source>Change the audio channel</source>
+        <translation>更改音頻通道</translation>
+    </message>
+    <message>
+        <source>Change the DFT window function</source>
+        <translation>更改DFT窗口功能</translation>
+    </message>
+    <message>
+        <source>Change the lower limit of the dynamic range in dBFS</source>
+        <translation>更改動態範圍的下限（以 dBFS 為單位）</translation>
+    </message>
+    <message>
+        <source>Change the palette</source>
+        <translation>更改調色板</translation>
+    </message>
+    <message>
+        <source>Change the audio stream</source>
+        <translation>更改音頻流</translation>
+    </message>
+    <message>
+        <source>Change the upper limit of the dynamic range in dBFS</source>
+        <translation>更改動態範圍的上限（以 dBFS 為單位）</translation>
+    </message>
+    <message>
+        <source>Change the DFT window size</source>
+        <translation>更改 DFT 窗口大小</translation>
     </message>
 </context>
 <context>
