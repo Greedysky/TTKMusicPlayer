@@ -54,7 +54,7 @@ void ToolsSkin::paletteClicked()
 
 void ToolsSkin::readClicked()
 {
-    const QString &path = MusicUtils::File::getOpenFileName(this, "TTKS Files (*.tkm)");
+    const QString &path = MusicUtils::File::getOpenFileName(this, "TKM Files (*.tkm)");
     if(path.isEmpty())
     {
         return;
@@ -72,7 +72,7 @@ void ToolsSkin::readClicked()
 
 void ToolsSkin::writeClicked()
 {
-    const QString &path = MusicUtils::File::getSaveFileName(this, "TTKS Files (*.tkm)");
+    const QString &path = MusicUtils::File::getSaveFileName(this, "TKM Files (*.tkm)");
     if(path.isEmpty())
     {
         return;

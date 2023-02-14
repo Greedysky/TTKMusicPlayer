@@ -1031,7 +1031,7 @@ void MusicLrcPosterWidget::openButtonClicked()
 
 void MusicLrcPosterWidget::saveButtonClicked()
 {
-    const QString &path = MusicUtils::File::getSaveFileName(this, "Jpeg(*.jpg)");
+    const QString &path = MusicUtils::File::getSaveFileName(this, "Jpeg Files (*.jpg)");
     if(!path.isEmpty())
     {
         QRect rect = m_itemWidget->rect();

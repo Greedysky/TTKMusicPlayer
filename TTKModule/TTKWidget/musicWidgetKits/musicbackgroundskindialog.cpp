@@ -54,7 +54,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 
     addThemeListWidgetItem();
     backgroundListWidgetChanged(0);
-    //
+
     m_ui->resetWindowButton->setStyleSheet(MusicUIObject::BtnResetWindow);
     m_ui->skinTransparentButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
     m_ui->listTransparentButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
@@ -178,7 +178,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog(const QString &path)
 
 void MusicBackgroundSkinDialog::showCustomSkinDialog()
 {
-    const QString &path = MusicUtils::File::getOpenFileName(this, "Images (*.png *.bmp *.jpg);;TKM Files(*.tkm)");
+    const QString &path = MusicUtils::File::getOpenFileName(this, "Image Files (*.png *.bmp *.jpg);;TKM Files (*.tkm)");
     if(path.isEmpty())
     {
         return;
@@ -190,7 +190,7 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
         if(index != -1)
         {
             m_stackThemeIndex = index;
-            QString des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(index + 1).arg(TKM_FILE);
+            const QString &des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(index + 1).arg(TKM_FILE);
             QFile::copy(path, des);
             m_stackBackgroundList->addCellItem(QString("theme-%1").arg(index + 1), des, true);
         }

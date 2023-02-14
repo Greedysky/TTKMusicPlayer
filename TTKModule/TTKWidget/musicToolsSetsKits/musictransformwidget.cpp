@@ -77,7 +77,7 @@ void MusicTransformWidget::initInputPath()
 
     if(!m_ui->folderBox->isChecked())
     {
-        QString filter = "Files (";
+        QString filter = "Audio Files (";
         for(int i = 0; i < supportedFormat.count(); ++i)
         {
             filter += QString("*.%1 ").arg(supportedFormat[i]);

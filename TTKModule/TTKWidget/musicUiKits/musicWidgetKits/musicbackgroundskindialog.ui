@@ -61,7 +61,7 @@
   <widget class="QPushButton" name="customSkin">
    <property name="geometry">
     <rect>
-     <x>534</x>
+     <x>535</x>
      <y>369</y>
      <width>70</width>
      <height>25</height>
@@ -103,7 +103,7 @@
    <widget class="QPushButton" name="paletteButton">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>445</x>
       <y>340</y>
       <width>70</width>
       <height>25</height>

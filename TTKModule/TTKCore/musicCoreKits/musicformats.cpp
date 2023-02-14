@@ -35,40 +35,40 @@ QStringList MusicFormats::supportSpekInputFilterFormats()
 
 QString MusicFormats::supportSpekInputFormats()
 {
-    return QString("Audio File(%1)").arg(supportSpekInputFilterFormats().join(" "));
+    return QString("Audio Files (%1)").arg(supportSpekInputFilterFormats().join(" "));
 }
 
 QString MusicFormats::supportPlaylistInputFormats()
 {
     QStringList formats;
-    formats << "Playlist File(*.tkpl *.m3u *.m3u8 *.pls *.wpl *.xspf *.jspf *.asx *.fpl *.dbpl *.csv *.txt)";
-    formats << "TTKlist File(*.tkpl)";
-    formats << "M3U File(*.m3u)";
-    formats << "M3U8 File(*.m3u8)";
-    formats << "Playlist File(*.pls)";
-    formats << "Windows Playlist File(*.wpl)";
-    formats << "XML Shareable Playlist File(*.xspf)";
-    formats << "JSON Shareable Playlist File(*.jspf)";
-    formats << "Windows Media Playlist File(*.asx)";
-    formats << "Foobar2k Playlist File(*.fpl)";
-    formats << "Deadbeef Playlist File(*.dbpl)";
-    formats << "CSV Playlist File(*.csv)";
-    formats << "TXT Playlist File(*.txt)";
+    formats << "Playlist Files (*.tkpl *.m3u *.m3u8 *.pls *.wpl *.xspf *.jspf *.asx *.fpl *.dbpl *.csv *.txt)";
+    formats << "TTKlist Files (*.tkpl)";
+    formats << "M3U Files (*.m3u)";
+    formats << "M3U8 Files (*.m3u8)";
+    formats << "Playlist Files (*.pls)";
+    formats << "Windows Playlist Files (*.wpl)";
+    formats << "XML Shareable Playlist Files (*.xspf)";
+    formats << "JSON Shareable Playlist Files (*.jspf)";
+    formats << "Windows Media Playlist Files (*.asx)";
+    formats << "Foobar2k Playlist Files (*.fpl)";
+    formats << "Deadbeef Playlist Files (*.dbpl)";
+    formats << "CSV Playlist Files (*.csv)";
+    formats << "TXT Playlist Files (*.txt)";
     return formats.join(";;");
 }
 
 QString MusicFormats::supportPlaylistOutputFormats()
 {
     QStringList formats;
-    formats << "TTKlist File(*.tkpl)";
-    formats << "M3U File(*.m3u)";
-    formats << "M3U8 File(*.m3u8)";
-    formats << "Playlist File(*.pls)";
-    formats << "Windows Playlist File(*.wpl)";
-    formats << "XML Shareable Playlist File(*.xspf)";
-    formats << "JSON Shareable Playlist File(*.jspf)";
-    formats << "Windows Media Playlist File(*.asx)";
-    formats << "CSV Playlist File(*.csv)";
-    formats << "TXT Playlist File(*.txt)";
+    formats << "TTKlist Files (*.tkpl)";
+    formats << "M3U Files (*.m3u)";
+    formats << "M3U8 Files (*.m3u8)";
+    formats << "Playlist Files (*.pls)";
+    formats << "Windows Playlist Files (*.wpl)";
+    formats << "XML Shareable Playlist Files (*.xspf)";
+    formats << "JSON Shareable Playlist Files (*.jspf)";
+    formats << "Windows Media Playlist Files (*.asx)";
+    formats << "CSV Playlist Files (*.csv)";
+    formats << "TXT Playlist Files (*.txt)";
     return formats.join(";;");
 }
