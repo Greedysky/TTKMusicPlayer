@@ -423,14 +423,6 @@ void MusicFunctionToolBoxWidget::setTransparent(int alpha)
             QScrollBar::add-page, QScrollBar::sub-page{ background:none; }");
 }
 
-MusicFunctionToolBoxWidgetItem *MusicFunctionToolBoxWidget::initialItem(QWidget *item, const QString &text)
-{
-    MusicFunctionToolBoxWidgetItem *it = new MusicFunctionToolBoxWidgetItem(m_itemIndexRaise, text, this);
-    it->addCellItem(item);
-    it->setItemExpand(true);
-    return it;
-}
-
 void MusicFunctionToolBoxWidget::mousePressEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);

@@ -1081,30 +1081,30 @@ void MusicSongsSummariziedWidget::addNewRowItem(const QString &name)
 
 void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
 {
-    MusicSongsListPlayTableWidget *object = new MusicSongsListPlayTableWidget(TTK_NORMAL_LEVEL, this);
-    object->setMovedScrollBar(m_scrollArea->verticalScrollBar());
-    object->setSongSort(&item->m_sort);
+    MusicSongsListPlayTableWidget *widget = new MusicSongsListPlayTableWidget(TTK_NORMAL_LEVEL, this);
+    widget->setMovedScrollBar(m_scrollArea->verticalScrollBar());
+    widget->setSongSort(&item->m_sort);
 
-    item->m_itemObject = object;
+    item->m_itemObject = widget;
     item->m_itemIndex = m_itemIndexRaise;
 
-    addCellItem(object, item->m_itemName);
-    setSongSort(object, &item->m_sort);
-    object->setToolIndex(foundMappedIndex(item->m_itemIndex));
+    addCellItem(widget, item->m_itemName);
+    setSongSort(widget, &item->m_sort);
+    widget->setToolIndex(foundMappedIndex(item->m_itemIndex));
 
-    connect(object, SIGNAL(isCurrentIndex(bool&)), SLOT(isCurrentIndex(bool&)));
-    connect(object, SIGNAL(isSearchResultEmpty(bool&)), SLOT(isSearchResultEmpty(bool&)));
-    connect(object, SIGNAL(deleteItemAt(TTKIntList,bool)), SLOT(setDeleteItemAt(TTKIntList,bool)));
-    connect(object, SIGNAL(queryMusicIndexSwaped(int,int,int,MusicSongList&)), SLOT(setMusicIndexSwaped(int,int,int,MusicSongList&)));
-    connect(object, SIGNAL(addSongToLovestListAt(bool,int)), SLOT(addSongToLovestListAt(bool,int)));
-    connect(object, SIGNAL(showFloatWidget()), SLOT(showFloatWidget()));
-    connect(object, SIGNAL(musicListSongSortBy(int)), SLOT(musicListSongSortBy(int)));
+    connect(widget, SIGNAL(isCurrentIndex(bool&)), SLOT(isCurrentIndex(bool&)));
+    connect(widget, SIGNAL(isSearchResultEmpty(bool&)), SLOT(isSearchResultEmpty(bool&)));
+    connect(widget, SIGNAL(deleteItemAt(TTKIntList,bool)), SLOT(setDeleteItemAt(TTKIntList,bool)));
+    connect(widget, SIGNAL(queryMusicIndexSwaped(int,int,int,MusicSongList&)), SLOT(setMusicIndexSwaped(int,int,int,MusicSongList&)));
+    connect(widget, SIGNAL(addSongToLovestListAt(bool,int)), SLOT(addSongToLovestListAt(bool,int)));
+    connect(widget, SIGNAL(showFloatWidget()), SLOT(showFloatWidget()));
+    connect(widget, SIGNAL(musicListSongSortBy(int)), SLOT(musicListSongSortBy(int)));
 
     ///connect to items
     setInputModule(m_itemList.back().m_widgetItem);
 
-    object->setSongsList(&item->m_songs);
-    setTitle(object, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+    widget->setSongsList(&item->m_songs);
+    setTitle(widget, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 
 void MusicSongsSummariziedWidget::setItemTitle(MusicSongItem *item)

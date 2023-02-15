@@ -263,7 +263,7 @@ protected:
     /*!
      * Create item.
      */
-    virtual MusicFunctionToolBoxWidgetItem* initialItem(QWidget *item, const QString &text);
+    virtual MusicFunctionToolBoxWidgetItem* initialItem(QWidget *item, const QString &text) = 0;
     /*!
      * Override the widget event.
      */
