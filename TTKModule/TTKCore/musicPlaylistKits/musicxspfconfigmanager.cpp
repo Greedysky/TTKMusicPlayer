@@ -62,8 +62,7 @@ bool MusicXSPFConfigManager::writeBuffer(const MusicSongItemList &items, const Q
     }
 
     createProcessingInstruction();
-    QDomElement rootDom = createRoot("playlist", {{"version", "1"},
-                                                  {"xmlns", "http://xspf.org/ns/0/"}});
+    QDomElement rootDom = createRoot("playlist", {{"version", "1"}, {"xmlns", "http://xspf.org/ns/0/"}});
     writeDomText(rootDom, "creator", APP_NAME);
 
     for(int i = 0; i < items.count(); ++i)
