@@ -7,15 +7,29 @@
 #include <math.h>
 #include <qmmp/qmmp.h>
 
+#define MIN_ROW     270
+#define MIN_COLUMN  300
+
 WaveVoice::WaveVoice(QWidget *parent)
     : Visual(parent)
 {
     setWindowTitle(tr("Wave Voice Widget"));
     setMinimumSize(2 * 300 - 30, 105);
 
+    m_rows = MIN_ROW;
+    m_cols = MIN_COLUMN;
+
     m_channelsAction = new QAction(tr("Double Channels"), this);
     m_channelsAction->setCheckable(true);
     connect(m_channelsAction, SIGNAL(triggered(bool)), this, SLOT(writeSettings()));
+
+    m_intern_vis_data = new int[m_rows * 2]{0};
+    m_xscale = new int[m_rows + 1]{0};
+
+    for(int i = 0; i < m_rows + 1; ++i)
+    {
+        m_xscale[i] = pow(pow(255.0, 1.0 / m_rows), i);
+    }
 
     readSettings();
 }
@@ -55,8 +69,6 @@ void WaveVoice::typeChanged(QAction *action)
         case 40: m_palette = VisualPalette::PALETTE_MONO; break;
         default: break;
     }
-
-    initialize();
 }
 
 void WaveVoice::paintEvent(QPaintEvent *)
@@ -65,14 +77,20 @@ void WaveVoice::paintEvent(QPaintEvent *)
     painter.fillRect(rect(), Qt::black);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
+    if(m_backgroundImage.isNull())
+    {
+        return;
+    }
+
     const bool showTwoChannels = m_channelsAction->isChecked();
 
     for(int i = 1; i < m_rows; ++i)
     {
-        if(m_offset >= m_cols)
+        const int w = m_backgroundImage.width();
+        if(m_offset >= w)
         {
-            m_offset = m_cols - 1;
-            m_backgroundImage = m_backgroundImage.copy(1, 0, m_cols, m_rows);
+            m_offset = w - 1;
+            m_backgroundImage = m_backgroundImage.copy(1, 0, w, m_backgroundImage.height());
         }
 
         if(!showTwoChannels)
@@ -83,18 +101,15 @@ void WaveVoice::paintEvent(QPaintEvent *)
         else
         {
             const double left = qBound(0, m_intern_vis_data[i - 1] / 2, 255) / 255.0;
-            m_backgroundImage.setPixel(m_offset, (m_rows - i) / 2, VisualPalette::renderPalette(m_palette, left));
+            m_backgroundImage.setPixel(m_offset, m_rows - i, VisualPalette::renderPalette(m_palette, left));
 
             const double right = qBound(0, m_intern_vis_data[m_rows + i - 1] / 2, 255) / 255.0;
-            m_backgroundImage.setPixel(m_offset, (2 * m_rows - i) / 2, VisualPalette::renderPalette(m_palette, right));
+            m_backgroundImage.setPixel(m_offset, (2 * m_rows - i), VisualPalette::renderPalette(m_palette, right));
         }
     }
 
     ++m_offset;
-    if(!m_backgroundImage.isNull())
-    {
-        painter.drawImage(0, 0, m_backgroundImage);
-    }
+    painter.drawImage(0, (height() - (showTwoChannels ? 2 : 1) * m_rows) / 2, m_backgroundImage);
 }
 
 void WaveVoice::contextMenuEvent(QContextMenuEvent *)
@@ -117,30 +132,19 @@ void WaveVoice::process(float *left, float *right)
     const int rows = height();
     const int cols = width();
 
-    if(m_rows != rows || m_cols != cols)
+    if(rows < 2 * MIN_ROW && m_rows != rows / 2)
     {
-        m_rows = rows;
-        m_cols = cols;
-
-        if(m_intern_vis_data)
-        {
-            delete[] m_intern_vis_data;
-        }
-
-        if(m_xscale)
-        {
-            delete[] m_xscale;
-        }
-
-        m_intern_vis_data = new int[m_rows * 2]{0};
-        m_xscale = new int[m_rows + 1]{0};
-
+        createPalette(rows / 2);
         initialize();
-
-        for(int i = 0; i < m_rows + 1; ++i)
-        {
-            m_xscale[i] = pow(pow(255.0, 1.0 / m_rows), i);
-        }
+    }
+    else if(rows >= 2 * MIN_ROW && m_rows != MIN_ROW)
+    {
+        createPalette(MIN_ROW);
+        initialize();
+    }
+    else if(m_backgroundImage.width() != cols)
+    {
+        initialize();
     }
 
     short dest_l[256];
@@ -194,12 +198,32 @@ void WaveVoice::process(float *left, float *right)
     }
 }
 
+void WaveVoice::createPalette(int row)
+{
+    m_rows = row;
+
+    if(m_intern_vis_data)
+    {
+        delete[] m_intern_vis_data;
+    }
+
+    if(m_xscale)
+    {
+        delete[] m_xscale;
+    }
+
+    m_intern_vis_data = new int[m_rows * 2]{0};
+    m_xscale = new int[m_rows + 1]{0};
+
+    for(int i = 0; i < m_rows + 1; ++i)
+    {
+        m_xscale[i] = pow(pow(255.0, 1.0 / m_rows), i);
+    }
+}
+
 void WaveVoice::initialize()
 {
-    if(m_rows != 0 && m_cols != 0)
-    {
-        m_offset = 0;
-        m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);
-        m_backgroundImage.fill(Qt::black);
-    }
+    m_offset = 0;
+    m_backgroundImage = QImage(width(), (m_channelsAction->isChecked() ? 2 : 1) * m_rows, QImage::Format_RGB32);
+    m_backgroundImage.fill(Qt::black);
 }

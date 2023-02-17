@@ -25,6 +25,11 @@ void WaveCrest::paintEvent(QPaintEvent *)
     painter.fillRect(rect(), Qt::black);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
+    if(m_backgroundImage.isNull())
+    {
+        return;
+    }
+
     if(m_cols != 0)
     {
         if(m_offset >= m_cols)
@@ -43,10 +48,7 @@ void WaveCrest::paintEvent(QPaintEvent *)
     }
 
     ++m_offset;
-    if(!m_backgroundImage.isNull())
-    {
-        painter.drawImage(0, 0, m_backgroundImage);
-    }
+    painter.drawImage(0, 0, m_backgroundImage);
 }
 
 void WaveCrest::process(float *left, float *)
