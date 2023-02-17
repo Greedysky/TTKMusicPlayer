@@ -4,6 +4,14 @@
 #include <QPainter>
 #include <qmath.h>
 
+static void actionChecked(QAction *action, int value, int data)
+{
+    action->setData(value);
+    action->setCheckable(true);
+    action->setChecked(data == value);
+}
+
+
 FlowVUMeter::FlowVUMeter(QWidget *parent)
     : Visual(parent)
 {
@@ -53,14 +61,14 @@ void FlowVUMeter::contextMenuEvent(QContextMenuEvent *)
     QMenu menu(this);
 
     QMenu rangeMenu(tr("Range"), &menu);
-    rangeMenu.addAction(tr("30 DB"))->setData(30);
-    rangeMenu.addAction(tr("50 DB"))->setData(50);
-    rangeMenu.addAction(tr("70 DB"))->setData(70);
-    rangeMenu.addAction(tr("90 DB"))->setData(90);
-    rangeMenu.addAction(tr("110 DB"))->setData(110);
-    rangeMenu.addAction(tr("130 DB"))->setData(130);
-    rangeMenu.addAction(tr("150 DB"))->setData(150);
-    rangeMenu.addAction(tr("170 DB"))->setData(170);
+    actionChecked(rangeMenu.addAction(tr("30 DB")), 30, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("50 DB")), 50, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("70 DB")), 70, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("90 DB")), 90, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("110 DB")), 110, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("130 DB")), 130, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("150 DB")), 150, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("170 DB")), 170, m_rangeValue);
     connect(&rangeMenu, SIGNAL(triggered(QAction*)), this, SLOT(rangeChanged(QAction*)));
     menu.addMenu(&rangeMenu);
     menu.exec(QCursor::pos());

@@ -36,6 +36,7 @@ private slots:
     void readSettings();
     void writeSettings();
     void typeChanged(QAction *action);
+    void rangeChanged(QAction *action);
 
 private:
     virtual void paintEvent(QPaintEvent *e) override final;
@@ -51,6 +52,7 @@ private:
     int *m_xscale = nullptr;
     const double m_analyzerSize = 2.2;
     QAction *m_channelsAction;
+    int m_rangeValue = 30;
 
 };
 

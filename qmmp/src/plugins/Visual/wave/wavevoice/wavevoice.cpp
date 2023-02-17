@@ -10,14 +10,19 @@
 #define MIN_ROW     270
 #define MIN_COLUMN  300
 
+static void actionChecked(QAction *action, int value, int data)
+{
+    action->setData(value);
+    action->setCheckable(true);
+    action->setChecked(data == value);
+}
+
+
 WaveVoice::WaveVoice(QWidget *parent)
     : Visual(parent)
 {
     setWindowTitle(tr("Wave Voice Widget"));
     setMinimumSize(2 * 300 - 30, 105);
-
-    m_rows = MIN_ROW;
-    m_cols = MIN_COLUMN;
 
     m_channelsAction = new QAction(tr("Double Channels"), this);
     m_channelsAction->setCheckable(true);
@@ -56,12 +61,17 @@ void WaveVoice::typeChanged(QAction *action)
 {
     switch(action->data().toInt())
     {
-        case 10: m_palette = VisualPalette::PALETTE_SPECTRUM; break;
-        case 20: m_palette = VisualPalette::PALETTE_SPECTROGRAM; break;
-        case 30: m_palette = VisualPalette::PALETTE_SOX; break;
-        case 40: m_palette = VisualPalette::PALETTE_MONO; break;
+        case 0: m_palette = VisualPalette::PALETTE_SPECTRUM; break;
+        case 1: m_palette = VisualPalette::PALETTE_SPECTROGRAM; break;
+        case 2: m_palette = VisualPalette::PALETTE_SOX; break;
+        case 3: m_palette = VisualPalette::PALETTE_MONO; break;
         default: break;
     }
+}
+
+void WaveVoice::rangeChanged(QAction *action)
+{
+    m_rangeValue = action->data().toInt();
 }
 
 void WaveVoice::paintEvent(QPaintEvent *)
@@ -76,6 +86,7 @@ void WaveVoice::paintEvent(QPaintEvent *)
     }
 
     const bool showTwoChannels = m_channelsAction->isChecked();
+    const int level = 255 - m_rangeValue;
 
     for(int i = 1; i < m_rows; ++i)
     {
@@ -88,16 +99,16 @@ void WaveVoice::paintEvent(QPaintEvent *)
 
         if(!showTwoChannels)
         {
-            const double left = qBound(0, m_intern_vis_data[i - 1] / 2, 255) / 255.0;
+            const double left = qBound(0, m_intern_vis_data[i - 1] / 2, level) * 1.0 / level;
             m_backgroundImage.setPixel(m_offset, m_rows - i, VisualPalette::renderPalette(m_palette, left));
         }
         else
         {
-            const double left = qBound(0, m_intern_vis_data[i - 1] / 2, 255) / 255.0;
+            const double left = qBound(0, m_intern_vis_data[i - 1] / 2, level) * 1.0 / level;
             m_backgroundImage.setPixel(m_offset, m_rows - i, VisualPalette::renderPalette(m_palette, left));
 
-            const double right = qBound(0, m_intern_vis_data[m_rows + i - 1] / 2, 255) / 255.0;
-            m_backgroundImage.setPixel(m_offset, (2 * m_rows - i), VisualPalette::renderPalette(m_palette, right));
+            const double right = qBound(0, m_intern_vis_data[m_rows + i - 1] / 2, level) * 1.0 / level;
+            m_backgroundImage.setPixel(m_offset, 2 * m_rows - i, VisualPalette::renderPalette(m_palette, right));
         }
     }
 
@@ -111,12 +122,29 @@ void WaveVoice::contextMenuEvent(QContextMenuEvent *)
     menu.addAction(m_channelsAction);
 
     QMenu typeMenu(tr("Type"), &menu);
-    typeMenu.addAction(tr("Spectrum"))->setData(10);
-    typeMenu.addAction(tr("Spectrogram"))->setData(20);
-    typeMenu.addAction(tr("Sox"))->setData(30);
-    typeMenu.addAction(tr("Mono"))->setData(40);
+    actionChecked(typeMenu.addAction(tr("Spectrum")), 0, m_palette);
+    actionChecked(typeMenu.addAction(tr("Spectrogram")), 1, m_palette);
+    actionChecked(typeMenu.addAction(tr("Sox")), 2, m_palette);
+    actionChecked(typeMenu.addAction(tr("Mono")), 3, m_palette);
     connect(&typeMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
     menu.addMenu(&typeMenu);
+
+    QMenu rangeMenu(tr("Range"), &menu);
+    actionChecked(rangeMenu.addAction(tr("0 DB")), 0, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("10 DB")), 10, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("20 DB")), 20, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("30 DB")), 30, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("40 DB")), 40, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("50 DB")), 50, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("60 DB")), 60, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("70 DB")), 70, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("80 DB")), 80, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("90 DB")), 90, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("100 DB")), 100, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("110 DB")), 110, m_rangeValue);
+    actionChecked(rangeMenu.addAction(tr("120 DB")), 120, m_rangeValue);
+    connect(&rangeMenu, SIGNAL(triggered(QAction*)), this, SLOT(rangeChanged(QAction*)));
+    menu.addMenu(&rangeMenu);
     menu.exec(QCursor::pos());
 }
 
@@ -194,6 +222,7 @@ void WaveVoice::process(float *left, float *right)
 void WaveVoice::createPalette(int row)
 {
     m_rows = row;
+    m_cols = MIN_COLUMN;
 
     if(m_intern_vis_data)
     {
