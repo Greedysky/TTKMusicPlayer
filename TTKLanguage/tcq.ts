@@ -1264,5 +1264,9 @@ too high may cause clipping!</source>
         <source>Mono</source>
         <translation>黑白譜</translation>
     </message>
+    <message>
+        <source>Range</source>
+        <translation>分貝範圍</translation>
+    </message>
 </context>
 </TS>
