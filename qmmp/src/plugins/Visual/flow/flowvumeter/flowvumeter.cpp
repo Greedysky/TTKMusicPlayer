@@ -68,7 +68,7 @@ void FlowVUMeter::contextMenuEvent(QContextMenuEvent *)
 
 void FlowVUMeter::process(float *left, float *right)
 {
-    const int channels = qBound(m_channels, 1, CHANNEL_MAX);
+    const int channels = qBound(m_channels, 1, MAX_CHANNELS);
 
     float peaks[channels];
     for(int i = 0; i < channels; ++i)

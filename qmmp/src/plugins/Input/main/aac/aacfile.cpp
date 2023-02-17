@@ -154,7 +154,7 @@ const QMap<Qmmp::MetaData, QString> &AACFile::metaData() const
 
 void AACFile::parseADTS()
 {
-    uchar buf[FAAD_MIN_STREAMSIZE*MAX_CHANNELS];
+    uchar buf[FAAD_MIN_STREAMSIZE * MAX_CHANNELS];
     qint64 buf_at = 0;
     int frames, frame_length;
     int t_framelength = 0;
@@ -162,7 +162,7 @@ void AACFile::parseADTS()
     qint64 pos = m_input->pos();
 
     m_input->seek(0);
-    buf_at = m_input->read((char *)buf, FAAD_MIN_STREAMSIZE*MAX_CHANNELS);
+    buf_at = m_input->read((char *)buf, FAAD_MIN_STREAMSIZE * MAX_CHANNELS);
 
     for(int i = 0; i < buf_at - 1; ++i)
     {
@@ -177,7 +177,7 @@ void AACFile::parseADTS()
     /* Read all frames to ensure correct time and bitrate */
     for(frames = 0; /* */; ++frames)
     {
-        buf_at += m_input->read((char *)buf + buf_at, FAAD_MIN_STREAMSIZE*MAX_CHANNELS - buf_at);
+        buf_at += m_input->read((char *)buf + buf_at, FAAD_MIN_STREAMSIZE * MAX_CHANNELS - buf_at);
 
         if(buf_at > 7)
         {
