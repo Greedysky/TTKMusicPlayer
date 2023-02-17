@@ -23,14 +23,7 @@ WaveVoice::WaveVoice(QWidget *parent)
     m_channelsAction->setCheckable(true);
     connect(m_channelsAction, SIGNAL(triggered(bool)), this, SLOT(writeSettings()));
 
-    m_intern_vis_data = new int[m_rows * 2]{0};
-    m_xscale = new int[m_rows + 1]{0};
-
-    for(int i = 0; i < m_rows + 1; ++i)
-    {
-        m_xscale[i] = pow(pow(255.0, 1.0 / m_rows), i);
-    }
-
+    createPalette(MIN_ROW);
     readSettings();
 }
 
