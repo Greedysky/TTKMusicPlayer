@@ -20,7 +20,7 @@
 #define COLOR_PROGRESS 3
 #define COLOR_RULER 4
 
-#define RULER_MAX 5
+#define RULER_COUNT 5
 #define RULER_HEIGHT 20
 #define NUMBER_OF_VALUES 4096
 
@@ -502,15 +502,15 @@ void LightWaveForm::paintEvent(QPaintEvent *)
         {
             const int height = this->height() - RULER_HEIGHT;
             const int padding = this->height() - 2;
-            const int outWidth = width() / RULER_MAX;
-            const int inWidth = outWidth / RULER_MAX;
-            const int perTime = m_duration / RULER_MAX;
+            const int outWidth = width() / RULER_COUNT;
+            const int inWidth = outWidth / RULER_COUNT;
+            const int perTime = m_duration / RULER_COUNT;
 
             painter.setPen(m_colors[COLOR_RULER]);
             // outside line
-            for(int i = 0; i <= RULER_MAX; ++i)
+            for(int i = 0; i <= RULER_COUNT; ++i)
             {
-                for(int j = 0; j < RULER_MAX; ++j)
+                for(int j = 0; j < RULER_COUNT; ++j)
                 {
                     const int lineHeight = height + (j == 0 ? 0 : RULER_HEIGHT * 2 / 3);
                     painter.drawLine(outWidth * i + inWidth * j + 1, lineHeight, outWidth * i + inWidth * j + 1, padding);
@@ -534,10 +534,22 @@ void LightWaveForm::resizeEvent(QResizeEvent *)
     drawWaveform();
 }
 
+void LightWaveForm::mousePressEvent(QMouseEvent *e)
+{
+    if(e->button() == Qt::LeftButton)
+    {
+        m_seekPos = e->pos().x();
+        update();
+    }
+}
+
 void LightWaveForm::mouseMoveEvent(QMouseEvent *e)
 {
-    m_seekPos = qBound(0, e->pos().x(), width());
-    update();
+    if(m_seekPos >= 0)
+    {
+        m_seekPos = qBound(0, e->pos().x(), width());
+        update();
+    }
 }
 
 void LightWaveForm::mouseReleaseEvent(QMouseEvent *)
