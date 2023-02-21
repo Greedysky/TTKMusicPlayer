@@ -152,7 +152,7 @@ bool ArchiveReader::removeRecursively(const QString &dir)
         const QFileInfo &fin = di.fileInfo();
         const QString &filePath = di.filePath();
 
-        bool ok;
+        bool ok = false;
         if(fin.isDir() && !fin.isSymLink())
         {
             ok = removeRecursively(filePath); // recursive

@@ -26,7 +26,7 @@ void ReplayGainReader::setValue(Qmmp::ReplayGainKey key, QString value)
     value.remove(" dB");
     if(value.isEmpty())
         return;
-    bool ok;
+    bool ok = false;
     double v = value.toDouble(&ok);
     if(ok)
         m_values[key] = v;
