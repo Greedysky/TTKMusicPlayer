@@ -17,7 +17,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
         bytes.chop(3);
 
         QJson::Parser json;
-        bool ok;
+        bool ok = false;
         const QVariant &data = json.parse(bytes, &ok);
         if(ok)
         {
@@ -126,7 +126,7 @@ void MusicMVRadioProgramRequest::parseFromMovieProperty(MusicObject::MusicSongIn
     }
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {

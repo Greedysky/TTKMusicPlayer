@@ -56,7 +56,7 @@ void SerializerRunnable::run()
 {
   TTK_D(SerializerRunnable);
   Serializer serializer;
-  bool ok;
+  bool ok = false;
   const QByteArray serialized = serializer.serialize( d->json, &ok);
   Q_EMIT parsingFinished( serialized, ok, serializer.errorMessage() );
 }

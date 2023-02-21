@@ -129,7 +129,7 @@ namespace QJson {
   * people << bob << alice;
   *
   * QJson::Serializer serializer;
-  * bool ok;
+  * bool ok = false;
   * QByteArray json = serializer.serialize(people, &ok);
   *
   * if (ok) {

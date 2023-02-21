@@ -69,7 +69,7 @@ void MusicDJRadioProgramCategoryRequest::queryProgramInfo(MusicResultDataItem &i
     }
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
@@ -96,7 +96,7 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
         m_totalSize = m_pageSize;
 
         QJson::Parser json;
-        bool ok;
+        bool ok = false;
         const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
@@ -139,7 +139,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
     if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
-        bool ok;
+        bool ok = false;
         const QVariant &data = json.parse(reply->readAll(), &ok);
         if(ok)
         {

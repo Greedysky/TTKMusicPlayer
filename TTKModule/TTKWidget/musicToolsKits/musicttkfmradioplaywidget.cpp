@@ -361,7 +361,7 @@ int MusicTTKFMRadioPlayWidget::indexValid(QTreeWidgetItem *item) const
         return -1;
     }
 
-    bool ok;
+    bool ok = false;
     const int index = item->data(0, TTK_DATA_ROLE).toInt(&ok);
     if(!ok || index < 0 || index >= m_items.count())
     {

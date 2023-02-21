@@ -61,7 +61,7 @@ void MusicWYQueryMovieRequest::downLoadFinished()
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
-        bool ok;
+        bool ok = false;
         const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
@@ -119,7 +119,7 @@ void MusicWYQueryMovieRequest::downLoadPageFinished()
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
-        bool ok;
+        bool ok = false;
         const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
@@ -188,7 +188,7 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
     }
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
@@ -265,7 +265,7 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
     }
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
@@ -354,7 +354,7 @@ void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id
     }
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
@@ -398,7 +398,7 @@ void MusicWYQueryMovieRequest::queryArtistMoviesCount(qint64 id)
     }
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {

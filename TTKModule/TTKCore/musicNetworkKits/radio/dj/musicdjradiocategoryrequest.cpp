@@ -28,7 +28,7 @@ void MusicDJRadioCategoryRequest::downLoadFinished()
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
-        bool ok;
+        bool ok = false;
         const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {

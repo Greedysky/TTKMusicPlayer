@@ -16,7 +16,7 @@ bool MusicJSPFConfigManager::readBuffer(MusicSongItemList &items)
     item.m_itemName = QFileInfo(m_file.fileName()).baseName();
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(m_file.readAll(), &ok);
     if(!ok)
     {
@@ -86,7 +86,7 @@ bool MusicJSPFConfigManager::writeBuffer(const MusicSongItemList &items, const Q
     }
 
     QJson::Serializer json;
-    bool ok;
+    bool ok = false;
     const QByteArray &output = json.serialize(datas, &ok);
     if(!ok)
     {

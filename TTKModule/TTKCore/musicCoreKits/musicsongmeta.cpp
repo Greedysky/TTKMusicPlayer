@@ -109,7 +109,7 @@ QString MusicSongMeta::year()
 QString MusicSongMeta::trackNum()
 {
     const QString &v = songMeta()->m_metaData[TagWrapper::TRACK];
-    bool ok = true;
+    bool ok = false;
     if(v.toInt(&ok) > 0)
     {
         return !ok ? TTK_DEFAULT_STR : v;

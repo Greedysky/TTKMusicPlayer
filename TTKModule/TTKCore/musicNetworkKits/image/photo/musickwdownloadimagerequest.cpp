@@ -92,7 +92,7 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished()
         if(bytes != "NO_PIC")
         {
             QJson::Parser json;
-            bool ok;
+            bool ok = false;
             const QVariant &data = json.parse(bytes, &ok);
             if(ok)
             {

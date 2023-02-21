@@ -41,7 +41,7 @@ void MusicWYQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformat
     }
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
@@ -161,7 +161,7 @@ void MusicWYQueryInterface::parseFromSongPropertyNew(MusicObject::MusicSongInfor
     }
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {

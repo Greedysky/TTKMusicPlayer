@@ -68,7 +68,7 @@ void MusicKWQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
     }
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
@@ -93,7 +93,7 @@ void MusicKWQueryPlaylistRequest::downLoadFinished()
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
-        bool ok;
+        bool ok = false;
         const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
@@ -135,7 +135,7 @@ void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
     if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
-        bool ok;
+        bool ok = false;
         const QVariant &data = json.parse(reply->readAll(), &ok);
         if(ok)
         {
@@ -204,7 +204,7 @@ void MusicKWQueryPlaylistRequest::downloadMoreDetailsFinished()
     if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
-        bool ok;
+        bool ok = false;
         const QVariant &data = json.parse(reply->readAll(), &ok);
         if(ok)
         {

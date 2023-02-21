@@ -120,7 +120,7 @@ void MusicCloudManagerTableWidget::downLoadFinished(const QByteArray &bytes)
     else
     {
         QJson::Parser json;
-        bool ok;
+        bool ok = false;
         const QVariant &data = json.parse(bytes, &ok);
         if(ok)
         {

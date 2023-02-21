@@ -53,7 +53,7 @@ void ParserRunnable::run()
 {
   TTK_D(ParserRunnable);
 
-  bool ok;
+  bool ok = false;
   Parser parser;
   QVariant result = parser.parse (d->m_data, &ok);
   if (ok) {

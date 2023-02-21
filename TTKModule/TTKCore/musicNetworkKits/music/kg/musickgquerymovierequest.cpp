@@ -59,7 +59,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
-        bool ok;
+        bool ok = false;
         const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
@@ -118,7 +118,7 @@ void MusicKGQueryMovieRequest::downLoadPageFinished()
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
-        bool ok;
+        bool ok = false;
         const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
@@ -229,7 +229,7 @@ void MusicKGQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInfo
     }
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {

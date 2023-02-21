@@ -28,7 +28,7 @@ void MusicKGQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformat
     }
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
@@ -96,7 +96,7 @@ void MusicKGQueryInterface::parseFromSongLrcAndPicture(MusicObject::MusicSongInf
     }
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
@@ -124,7 +124,7 @@ void MusicKGQueryInterface::parseFromSongAlbumInfo(MusicResultDataItem *info, co
     }
 
     QJson::Parser json;
-    bool ok;
+    bool ok = false;
     const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
