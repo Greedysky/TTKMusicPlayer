@@ -1,4 +1,5 @@
 #include "musicdownloadcounterpvrequest.h"
+#include "ttkabstractxml.h"
 
 MusicDownloadCounterPVRequest::MusicDownloadCounterPVRequest(QObject *parent)
     : MusicAbstractNetwork(parent)
@@ -10,9 +11,6 @@ void MusicDownloadCounterPVRequest::startRequest()
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QUERY_URL, false));
-    request.setRawHeader("Host", MusicUtils::Algorithm::mdII(HOST_URL, false).toUtf8());
-    request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
-    request.setRawHeader("Cookie", MusicUtils::Algorithm::mdII(COOKIE_URL, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager.get(request);
@@ -22,27 +20,24 @@ void MusicDownloadCounterPVRequest::startRequest()
 
 void MusicDownloadCounterPVRequest::downLoadFinished()
 {
+    bool ok = false;
+
     MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QString bytes(m_reply->readAll());
-        bytes.remove(MusicUtils::Algorithm::mdII(RM_KEYWORD, false));
-        bytes.remove(");}catch(e){}");
-
-        QJson::Parser json;
-        bool ok;
-        const QVariant &data = json.parse(bytes.toUtf8(), &ok);
-        if(ok)
+        TTKAbstractXml xml;
+        if(xml.fromByteArray(m_reply->readAll()))
         {
-            const QVariantMap &value = data.toMap();
-            Q_EMIT downLoadDataChanged(value["site_pv"].toString());
-        }
-        else
-        {
-            Q_EMIT downLoadDataChanged(TTK_DEFAULT_STR);
+            const QStringList &data = xml.readXmlMultiTextByTagName("tspan");
+            if(!data.isEmpty())
+            {
+                ok = true;
+                Q_EMIT downLoadDataChanged(data.join(""));
+            }
         }
     }
-    else
+
+    if(!ok)
     {
         TTK_ERROR_STREAM("Counter PV data error");
         Q_EMIT downLoadDataChanged(TTK_DEFAULT_STR);

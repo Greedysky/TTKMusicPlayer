@@ -296,7 +296,9 @@ void MusicApplicationModule::musicTimerWidget()
 
 void MusicApplicationModule::musicSpectrumWidget()
 {
-    GENERATE_SINGLE_WIDGET_CLASS(MusicSpectrumWidget);
+    MusicSpectrumWidget *w= new MusicSpectrumWidget;
+    w->show();
+//    GENERATE_SINGLE_WIDGET_CLASS(MusicSpectrumWidget);
 }
 
 void MusicApplicationModule::musicSetWindowToTop()
