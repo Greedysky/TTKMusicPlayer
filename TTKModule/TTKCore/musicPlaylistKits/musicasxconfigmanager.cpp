@@ -1,7 +1,7 @@
 #include "musicasxconfigmanager.h"
 
 MusicASXConfigManager::MusicASXConfigManager()
-    : TTKAbstractXml(nullptr)
+    : TTKXmlDocument(nullptr)
     , MusicPlaylistInterface()
 {
 

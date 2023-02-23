@@ -26,7 +26,7 @@
 /*! @brief The class of the xml config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicConfigManager : public TTKAbstractXml
+class TTK_MODULE_EXPORT MusicConfigManager : public TTKXmlDocument
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicConfigManager)
@@ -39,7 +39,7 @@ public:
     /*!
      * Read datas from xml file.
      */
-    inline bool fromFile() { return TTKAbstractXml::fromFile(COFIG_PATH_FULL); }
+    inline bool fromFile() { return TTKXmlDocument::fromFile(COFIG_PATH_FULL); }
 
     /*!
      * Read datas from config file.

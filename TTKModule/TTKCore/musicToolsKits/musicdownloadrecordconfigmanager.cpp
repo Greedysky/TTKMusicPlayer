@@ -1,7 +1,7 @@
 #include "musicdownloadrecordconfigmanager.h"
 
 MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(MusicObject::Record type, QObject *parent)
-    : TTKAbstractXml(parent),
+    : TTKXmlDocument(parent),
       m_type(type)
 {
 

@@ -46,7 +46,7 @@ TTK_DECLARE_LIST(MusicResultsCategory);
 /*! @brief The class of the category config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicCategoryConfigManager : public TTKAbstractXml
+class TTK_MODULE_EXPORT MusicCategoryConfigManager : public TTKXmlDocument
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCategoryConfigManager)

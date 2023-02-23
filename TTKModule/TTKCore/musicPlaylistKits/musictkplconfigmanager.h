@@ -25,7 +25,7 @@
 /*! @brief The class of the tkpl config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicTKPLConfigManager : public TTKAbstractXml, private MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicTKPLConfigManager : public TTKXmlDocument, private MusicPlaylistInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTKPLConfigManager)
@@ -38,7 +38,7 @@ public:
     /*!
      * Read datas from xml file by given name.
      */
-    inline bool fromFile(const QString &name = PLAYLIST_PATH_FULL) { return TTKAbstractXml::fromFile(name); }
+    inline bool fromFile(const QString &name = PLAYLIST_PATH_FULL) { return TTKXmlDocument::fromFile(name); }
 
     /*!
      * Read datas from config file.

@@ -25,7 +25,7 @@
 /*! @brief The class of the tencent query info xml data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicTXImageConfigManager : public TTKAbstractXml
+class TTK_MODULE_EXPORT MusicTXImageConfigManager : public TTKXmlDocument
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTXImageConfigManager)

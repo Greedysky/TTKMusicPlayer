@@ -35,7 +35,7 @@ TTK_DECLARE_LIST(MusicSearchRecord);
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongSearchRecordConfigManager : public TTKAbstractXml
+class TTK_MODULE_EXPORT MusicSongSearchRecordConfigManager : public TTKXmlDocument
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongSearchRecordConfigManager)
@@ -48,7 +48,7 @@ public:
     /*!
      * Read datas from xml file.
      */
-    inline bool fromFile() { return TTKAbstractXml::fromFile(SEARCH_PATH_FULL); }
+    inline bool fromFile() { return TTKXmlDocument::fromFile(SEARCH_PATH_FULL); }
 
     /*!
      * Read datas from config file.

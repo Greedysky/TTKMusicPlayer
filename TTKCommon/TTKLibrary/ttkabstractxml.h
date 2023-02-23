@@ -83,16 +83,16 @@ private:
 /*! @brief The class of the ttk xml interface.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT TTKAbstractXml : public QObject
+class TTK_MODULE_EXPORT TTKXmlDocument : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(TTKAbstractXml)
+    TTK_DECLARE_MODULE(TTKXmlDocument)
 public:
     /*!
      * Object contsructor.
      */
-    explicit TTKAbstractXml(QObject *parent = nullptr);
-    ~TTKAbstractXml();
+    explicit TTKXmlDocument(QObject *parent = nullptr);
+    ~TTKXmlDocument();
 
     /*!
      * Read datas from xml file by given name.

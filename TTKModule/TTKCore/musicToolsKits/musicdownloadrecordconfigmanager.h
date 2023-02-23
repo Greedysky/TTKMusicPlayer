@@ -26,7 +26,7 @@
 /*! @brief The class of the download record manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadRecordConfigManager : public TTKAbstractXml
+class TTK_MODULE_EXPORT MusicDownloadRecordConfigManager : public TTKXmlDocument
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadRecordConfigManager)
@@ -48,7 +48,7 @@ public:
     /*!
      * Read datas from xml file.
      */
-    inline bool fromFile() { return TTKAbstractXml::fromFile(mappingFilePathFromEnum()); }
+    inline bool fromFile() { return TTKXmlDocument::fromFile(mappingFilePathFromEnum()); }
 
     /*!
      * Read datas from config file.

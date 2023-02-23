@@ -1,7 +1,7 @@
 #include "musicbackgroundconfigmanager.h"
 
 MusicSkinConfigManager::MusicSkinConfigManager(QObject *parent)
-    : TTKAbstractXml(parent)
+    : TTKXmlDocument(parent)
 {
 
 }

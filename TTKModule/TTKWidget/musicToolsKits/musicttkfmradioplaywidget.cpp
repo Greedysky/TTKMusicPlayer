@@ -9,7 +9,7 @@
 #include <QScrollBar>
 
 MusicFMConfigManager::MusicFMConfigManager(QObject *parent)
-    : TTKAbstractXml(parent)
+    : TTKXmlDocument(parent)
 {
 
 }

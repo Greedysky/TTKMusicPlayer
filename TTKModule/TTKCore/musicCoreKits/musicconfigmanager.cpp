@@ -6,7 +6,7 @@
 #include <QRect>
 
 MusicConfigManager::MusicConfigManager(QObject *parent)
-    : TTKAbstractXml(parent)
+    : TTKXmlDocument(parent)
 {
 
 }

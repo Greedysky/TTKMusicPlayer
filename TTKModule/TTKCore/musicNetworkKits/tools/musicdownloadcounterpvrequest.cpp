@@ -25,7 +25,7 @@ void MusicDownloadCounterPVRequest::downLoadFinished()
     MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        TTKAbstractXml xml;
+        TTKXmlDocument xml;
         if(xml.fromByteArray(m_reply->readAll()))
         {
             const QStringList &data = xml.readXmlMultiTextByTagName("tspan");

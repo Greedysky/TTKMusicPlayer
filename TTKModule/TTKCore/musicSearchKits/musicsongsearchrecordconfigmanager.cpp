@@ -1,7 +1,7 @@
 #include "musicsongsearchrecordconfigmanager.h"
 
 MusicSongSearchRecordConfigManager::MusicSongSearchRecordConfigManager(QObject *parent)
-    : TTKAbstractXml(parent)
+    : TTKXmlDocument(parent)
 {
 
 }

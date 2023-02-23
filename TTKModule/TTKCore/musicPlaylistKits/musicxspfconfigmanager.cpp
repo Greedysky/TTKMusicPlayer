@@ -1,7 +1,7 @@
 #include "musicxspfconfigmanager.h"
 
 MusicXSPFConfigManager::MusicXSPFConfigManager()
-    : TTKAbstractXml(nullptr)
+    : TTKXmlDocument(nullptr)
     , MusicPlaylistInterface()
 {
 

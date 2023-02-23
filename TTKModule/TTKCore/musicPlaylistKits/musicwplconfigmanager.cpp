@@ -2,7 +2,7 @@
 #include "ttkversion.h"
 
 MusicWPLConfigManager::MusicWPLConfigManager()
-    : TTKAbstractXml(nullptr)
+    : TTKXmlDocument(nullptr)
     , MusicPlaylistInterface()
 {
 
