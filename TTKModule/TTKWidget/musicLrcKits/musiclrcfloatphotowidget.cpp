@@ -267,10 +267,10 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
 {
     if(isVisible())
     {
-        m_currentIndex = 0;
         close();
     }
 
+    m_currentIndex = 0;
     m_selectNum.clear();
     m_checkBox->setChecked(true);
     m_photos = G_BACKGROUND_PTR->artistPhotoList();
