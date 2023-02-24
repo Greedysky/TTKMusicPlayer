@@ -23,7 +23,7 @@
 #include <condition_variable>
 #include "ttkglobaldefine.h"
 
-/*! @brief The class of the string cryptographic hash.
+/*! @brief The class of the concurrent queue.
  * @author Greedysky <greedysky@163.com>
  */
 template <typename T>
@@ -90,8 +90,8 @@ public:
     }
 
 private:
-  std::queue<T>           m_queue;
-  mutable std::mutex      m_mutex;
+  std::queue<T> m_queue;
+  mutable std::mutex m_mutex;
   std::condition_variable m_condition;
 
 };
