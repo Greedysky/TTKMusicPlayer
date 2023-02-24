@@ -19,13 +19,13 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-//update time 2023.02.12
-#define TTK_LIBRARY_VERSION         0x01220
-#define TTK_LIBRARY_VERSION_STR     "1.2.2.0"
+//update time 2023.02.24
+#define TTK_LIBRARY_VERSION         0x01230
+#define TTK_LIBRARY_VERSION_STR     "1.2.3.0"
 
 #define TTK_LIBRARY_MAJOR_VERSION 1
 #define TTK_LIBRARY_MIDLE_VERSION 2
-#define TTK_LIBRARY_MINOR_VERSION 2
+#define TTK_LIBRARY_MINOR_VERSION 3
 #define TTK_LIBRARY_PATCH_VERSION 0
 
 #endif // TTKLIBRARY_H

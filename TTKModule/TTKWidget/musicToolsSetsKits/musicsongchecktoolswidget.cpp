@@ -57,7 +57,7 @@ void MusicSongCheckToolsWidget::renameButtonCheckClicked()
         m_ui->renameCheckButton->setText(tr("Start"));
 
         m_renameThread->setMode(MusicObject::Mode::Check);
-        m_renameThread->stopAndQuitThread();
+        m_renameThread->stop();
     }
     else if(m_ui->renameCheckButton->text() == tr("Apply"))
     {
@@ -67,7 +67,7 @@ void MusicSongCheckToolsWidget::renameButtonCheckClicked()
 
         m_renameThread->setItemList(m_ui->renameTableWidget->checkedIndexList());
         m_renameThread->setMode(MusicObject::Mode::Apply);
-        m_renameThread->stopAndQuitThread();
+        m_renameThread->stop();
         m_renameThread->start();
     }
 }
@@ -81,7 +81,7 @@ void MusicSongCheckToolsWidget::renameReCheckButtonClicked()
     m_ui->renameSelectAllButton->setChecked(false);
 
     m_ui->renameTableWidget->removeItems();
-    m_renameThread->stopAndQuitThread();
+    m_renameThread->stop();
     m_localSongs = m_ui->selectedAreaWidget->selectedSongItems();
 
     m_renameThread->setMode(MusicObject::Mode::Check);
@@ -124,7 +124,7 @@ void MusicSongCheckToolsWidget::qualityButtonCheckClicked()
         m_ui->qualityLoadingLabel->stop();
         m_ui->qualityLoadingLabel->hide();
         m_ui->qualityCheckButton->setText(tr("Start"));
-        m_qualityThread->stopAndQuitThread();
+        m_qualityThread->stop();
     }
     else if(m_ui->qualityCheckButton->text() == tr("Apply"))
     {
@@ -141,7 +141,7 @@ void MusicSongCheckToolsWidget::qualityReCheckButtonClicked()
     m_ui->qualityLoadingLabel->show();
     m_ui->qualityCheckButton->setText(tr("Stop"));
 
-    m_qualityThread->stopAndQuitThread();
+    m_qualityThread->stop();
     m_localSongs = m_ui->selectedAreaWidget->selectedSongItems();
 
     m_qualityThread->setQualitySongs(&m_localSongs);
@@ -177,7 +177,7 @@ void MusicSongCheckToolsWidget::duplicateButtonCheckClicked()
         m_ui->duplicateCheckButton->setText(tr("Start"));
 
         m_duplicateThread->setMode(MusicObject::Mode::Check);
-        m_duplicateThread->stopAndQuitThread();
+        m_duplicateThread->stop();
     }
     else if(m_ui->duplicateCheckButton->text() == tr("Apply"))
     {
@@ -187,7 +187,7 @@ void MusicSongCheckToolsWidget::duplicateButtonCheckClicked()
 
         m_duplicateThread->setItemList(m_ui->duplicateTableWidget->checkedIndexList());
         m_duplicateThread->setMode(MusicObject::Mode::Apply);
-        m_duplicateThread->stopAndQuitThread();
+        m_duplicateThread->stop();
         m_duplicateThread->start();
     }
 }
@@ -200,7 +200,7 @@ void MusicSongCheckToolsWidget::duplicateReCheckButtonClicked()
     m_ui->duplicateCheckButton->setText(tr("Stop"));
     m_ui->duplicateSelectAllButton->setChecked(false);
 
-    m_qualityThread->stopAndQuitThread();
+    m_qualityThread->stop();
     m_localSongs = m_ui->selectedAreaWidget->selectedSongItems();
 
     m_duplicateThread->setMode(MusicObject::Mode::Check);

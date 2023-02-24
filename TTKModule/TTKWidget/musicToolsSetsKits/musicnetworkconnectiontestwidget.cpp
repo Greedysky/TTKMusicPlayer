@@ -37,10 +37,7 @@ MusicNetworkConnectionItem::MusicNetworkConnectionItem(QWidget *parent)
 
 MusicNetworkConnectionItem::~MusicNetworkConnectionItem()
 {
-    if(m_thread->isRunning())
-    {
-        m_thread->stopAndQuitThread();
-    }
+    m_thread->stop();
     delete m_thread;
     delete m_iconLabel;
     delete m_nameText;
@@ -72,7 +69,7 @@ void MusicNetworkConnectionItem::stop()
     m_stateText->setStyleSheet(MusicUIObject::ColorStyle03);
     if(m_thread->isRunning())
     {
-        m_thread->stopAndQuitThread();
+        m_thread->stop();
     }
 }
 

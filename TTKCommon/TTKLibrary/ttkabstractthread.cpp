@@ -12,7 +12,7 @@ TTKAbstractThread::~TTKAbstractThread()
 
 }
 
-void TTKAbstractThread::stopAndQuitThread()
+void TTKAbstractThread::stop()
 {
     if(isRunning())
     {

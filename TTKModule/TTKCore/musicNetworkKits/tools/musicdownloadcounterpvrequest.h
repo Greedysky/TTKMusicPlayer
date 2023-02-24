@@ -21,8 +21,6 @@
 
 #include "musicabstractnetwork.h"
 
-const QString QUERY_URL  = "QkZ1ek5yL0gxbkV6eGU5bEttakZNT2pyNitIZVZoYlNBYlUxMEp2c2swQWdQODRNZmJmdWVqeGIrK0VsRzNwWUNDZjBkU3J6dmlwQklRRVZ6WVdsa2kwQmRhR0YrbmlZRERWSmlzazNNU21EbWRjS0sxSmtKNXZEekt5MWNwTmgvQ2hBOXo4MWlCajF3c2dXMTdTUXNIQmxCbzdCeC9HUC9MR09Sem80dVZRZmpVeDFkUXU1cVpPMUJIeXJIQTlJRHdTZjM2YWZ6ZWdTYTV1dExnUGd3OG9MekxCczJuS0RVbE1iK21DYkxENEhHQ0JwSHU1bVpuVklOY1Z6YU0walRldUxoL3pHOGpoWEVKOWNST0JZcEZoWWtLQT0=";
-
 /*! @brief The class of the counter pv of player.
  * @author Greedysky <greedysky@163.com>
  */

@@ -22,6 +22,7 @@ set(MUSIC_HEADERS
   ttkclickedlabel.h
   ttkclickedslider.h
   ttkcommandline.h
+  ttkconcurrentqueue.h
   ttkcryptographichash.h
   ttkdesktopwrapper.h
   ttkglobalhelper.h

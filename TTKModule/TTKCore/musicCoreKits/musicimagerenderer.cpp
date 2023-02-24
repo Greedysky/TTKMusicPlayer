@@ -11,7 +11,7 @@ MusicImageRenderer::MusicImageRenderer(QObject *parent)
 
 MusicImageRenderer::~MusicImageRenderer()
 {
-    stopAndQuitThread();
+    stop();
 }
 
 void MusicImageRenderer::setInputData(const QByteArray &data, const QSize &size)

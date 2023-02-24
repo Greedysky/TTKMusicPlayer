@@ -164,7 +164,7 @@ MusicMobileSongsManagerWidget::~MusicMobileSongsManagerWidget()
     G_CONNECTION_PTR->removeValue(this);
     G_SINGLE_MANAGER_PTR->removeObject(className());
     clearAllItems();
-    m_thread->stopAndQuitThread();
+    m_thread->stop();
     delete m_thread;
     delete m_ui;
 }
@@ -173,7 +173,7 @@ void MusicMobileSongsManagerWidget::findExtraDevicePath(const QString &dir)
 {
     TTK_INFO_STREAM("Start fetch result");
     m_thread->setFindFilePath(dir);
-    m_thread->stopAndQuitThread();
+    m_thread->stop();
     m_thread->start();
     m_ui->loadingLabel->run(true);
 }

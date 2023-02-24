@@ -40,7 +40,7 @@ public:
     /*!
      * Stop and quit current thread.
      */
-    void stopAndQuitThread();
+    void stop();
 
 public Q_SLOTS:
     /*!
