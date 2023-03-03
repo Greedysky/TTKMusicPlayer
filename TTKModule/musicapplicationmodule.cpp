@@ -19,12 +19,13 @@
 #include "musicdownloadcounterpvrequest.h"
 #include "musicscreensaverwidget.h"
 #include "ttkdesktopwrapper.h"
+#include "ttkglobalhelper.h"
 
 #include "qdevicewatcher.h"
 #include "qsync/qsyncconfig.h"
 
-#define MARGIN_SIDE     5
-#define MARGIN_SIDE_BY  1
+#define MARGIN_SIDE     10
+#define MARGIN_SIDE_GAP 1
 #define SYNC_HOST_URL   "VDVnYUdYMW9xNnVWSnd6L0J6NHI2MFZ5d0R3R2NiRVF4VW5WckpNcUhnUT0="
 
 MusicApplicationModule *MusicApplicationModule::m_instance = nullptr;
@@ -32,6 +33,7 @@ MusicApplicationModule *MusicApplicationModule::m_instance = nullptr;
 MusicApplicationModule::MusicApplicationModule(QObject *parent)
     : QObject(parent),
       m_setWindowToTop(false),
+      m_direction(TTKObject::Direction::No),
       m_mobileDeviceWidget(nullptr),
       m_quitContainer(nullptr),
       m_screenSaverWidget(nullptr)
@@ -41,7 +43,7 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     musicResetWindow();
 
     m_quitAnimation = new QPropertyAnimation(this);
-    m_sideAnimation = new QPropertyAnimation(parent, "geometry", this);
+    m_sideAnimation = new QPropertyAnimation(parent, "pos", this);
     m_quitAnimation->setTargetObject(parent);
     m_sideAnimation->setDuration(250 * MT_MS);
 
@@ -77,6 +79,17 @@ MusicApplicationModule::~MusicApplicationModule()
 MusicApplicationModule *MusicApplicationModule::instance()
 {
     return m_instance;
+}
+
+void MusicApplicationModule::cleanup()
+{
+    if(G_SETTING_PTR->value(MusicSettingManager::OtherSideByMode).toBool() && m_direction != TTKObject::Direction::No)
+    {
+        m_direction = TTKObject::Direction::No;
+        MusicApplication *w = MusicApplication::instance();
+        const QRect &rect = TTKDesktopWrapper::screenGeometry();
+        w->move((rect.width() - w->width()) / 2, w->y());
+    }
 }
 
 bool MusicApplicationModule::isLastedVersion() const
@@ -115,6 +128,8 @@ void MusicApplicationModule::applyParameter()
 
 void MusicApplicationModule::windowCloseAnimation()
 {
+    sideAnimationByOff();
+
     if(G_SETTING_PTR->value(MusicSettingManager::WindowQuitMode).toBool())
     {
         MusicTopAreaWidget::instance()->setBackgroundAnimation(false);
@@ -164,25 +179,24 @@ void MusicApplicationModule::sideAnimationByOn()
         return;
     }
 
-    QPoint pt = w->mapToGlobal(w->rect().topLeft());
-    if(-MARGIN_SIDE <= pt.x() && pt.x() <= MARGIN_SIDE)
+    const QPoint &point = w->mapToGlobal(w->pos());
+    const QRect &rect = TTKDesktopWrapper::screenGeometry();
+
+    if(-MARGIN_SIDE <= point.x() && point.x() <= MARGIN_SIDE)
     {
-        m_leftSideByOn = true;
+        m_direction = TTKObject::Direction::Left;
         m_sideAnimation->stop();
-        m_sideAnimation->setStartValue(w->geometry());
-        m_sideAnimation->setEndValue(QRect(-w->width() + MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
+        m_sideAnimation->setStartValue(w->pos());
+        m_sideAnimation->setEndValue(QPoint(-w->width() + MARGIN_SIDE_GAP, w->y()));
         m_sideAnimation->start();
         G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, true);
     }
-
-    const QRect &rect = TTKDesktopWrapper::screenGeometry();
-    pt = w->mapToGlobal(rect.topRight());
-    if(-MARGIN_SIDE + rect.width() <= pt.x() && pt.x() <= MARGIN_SIDE + rect.width())
+    else if(-MARGIN_SIDE + rect.width() <= point.x() && point.x() <= MARGIN_SIDE + rect.width())
     {
-        m_rightSideByOn = true;
+        m_direction = TTKObject::Direction::Right;
         m_sideAnimation->stop();
-        m_sideAnimation->setStartValue(w->geometry());
-        m_sideAnimation->setEndValue(QRect(rect.width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
+        m_sideAnimation->setStartValue(w->pos());
+        m_sideAnimation->setEndValue(QPoint(rect.width() - MARGIN_SIDE_GAP, w->y()));
         m_sideAnimation->start();
         G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, true);
     }
@@ -196,45 +210,44 @@ void MusicApplicationModule::sideAnimationByOff()
     }
 
     MusicApplication *w = MusicApplication::instance();
-    if(m_leftSideByOn)
-    {
-        m_leftSideByOn = false;
-        m_sideAnimation->stop();
-        m_sideAnimation->setStartValue(w->geometry());
-        m_sideAnimation->setEndValue(QRect(MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
-        m_sideAnimation->start();
-        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, false);
-    }
-    else if(m_rightSideByOn)
-    {
-        const QRect &rect = TTKDesktopWrapper::screenGeometry();
-        m_rightSideByOn = false;
-        m_sideAnimation->stop();
-        m_sideAnimation->setStartValue(w->geometry());
-        m_sideAnimation->setEndValue(QRect(rect.width() - w->width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
-        m_sideAnimation->start();
-        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, false);
-    }
-}
+    const QRect &rect = TTKDesktopWrapper::screenGeometry();
 
-void MusicApplicationModule::sideAnimationReset()
-{
-    if(!G_SETTING_PTR->value(MusicSettingManager::OtherSideByMode).toBool())
+    switch(m_direction)
     {
-        return;
+        case TTKObject::Direction::Left:
+        {
+            m_sideAnimation->stop();
+            m_sideAnimation->setStartValue(w->pos());
+            m_sideAnimation->setEndValue(QPoint((rect.width() - w->width()) / 2, w->y()));
+            m_sideAnimation->start();
+            G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, false);
+            break;
+        }
+        case TTKObject::Direction::Right:
+        {
+            m_sideAnimation->stop();
+            m_sideAnimation->setStartValue(w->pos());
+            m_sideAnimation->setEndValue(QPoint(rect.width() - w->width() - MARGIN_SIDE_GAP, w->y()));
+            m_sideAnimation->start();
+            G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, false);
+            break;
+        }
+        case TTKObject::Direction::Top:
+        {
+            break;
+        }
+        case TTKObject::Direction::Bottom:
+        {
+            break;
+        }
+        case TTKObject::Direction::LeftTop: break;
+        case TTKObject::Direction::RightTop: break;
+        case TTKObject::Direction::LeftBottom: break;
+        case TTKObject::Direction::RightBottom: break;
+        default: break;
     }
 
-    if(m_leftSideByOn)
-    {
-        MusicApplication *w = MusicApplication::instance();
-        w->move(MARGIN_SIDE_BY, w->y());
-    }
-    else if(m_rightSideByOn)
-    {
-        MusicApplication *w = MusicApplication::instance();
-        const QRect &rect = TTKDesktopWrapper::screenGeometry();
-        w->move(rect.width() - w->width() - MARGIN_SIDE_BY, w->y());
-    }
+    m_direction = TTKObject::Direction::No;
 }
 
 void MusicApplicationModule::quit()
@@ -309,8 +322,7 @@ void MusicApplicationModule::musicSetWindowToTop()
 
 void MusicApplicationModule::musicResetWindow()
 {
-    m_leftSideByOn = false;
-    m_rightSideByOn = false;
+    m_direction = TTKObject::Direction::No;
 
     const QRect &rect = TTKDesktopWrapper::screenGeometry();
     G_SETTING_PTR->setValue(MusicSettingManager::ScreenSize, rect.size());

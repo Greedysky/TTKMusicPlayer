@@ -35,6 +35,11 @@ struct TTK_MODULE_EXPORT MoveResizeData
     QSize m_pressedSize;
 };
 
+namespace TTKObject
+{
+enum class Direction;
+}
+
 /*! @brief The class of the moving resize widget base.
  * @author Greedysky <greedysky@163.com>
  *         Lverson   <what951006@163.com>
@@ -44,18 +49,6 @@ class TTK_MODULE_EXPORT TTKAbstractMoveResizeWidget : public QWidget
     Q_OBJECT
     TTK_DECLARE_MODULE(TTKAbstractMoveResizeWidget)
 public:
-    enum class Direction
-    {
-        No = 0,
-        Left = 1,
-        Top = 2,
-        Right = 4,
-        Bottom = 8,
-        LeftTop = Direction::Left | Direction::Top,
-        LeftBottom = Direction::Left | Direction::Bottom,
-        RightTop = Direction::Right | Direction::Top,
-        RightBottom = Direction::Right | Direction::Bottom
-    };
     /*!
      * Object contsructor.
      */
@@ -89,7 +82,7 @@ protected:
     void setObjectsTracking(const QWidgetList &objects);
 
     MoveResizeData m_struct;
-    Direction m_direction;
+    TTKObject::Direction m_direction;
 
 };
 

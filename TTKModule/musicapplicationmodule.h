@@ -29,6 +29,11 @@ class MusicSourceUpdateRequest;
 class MusicDownloadCounterPVRequest;
 class MusicScreenSaverBackgroundWidget;
 
+namespace TTKObject
+{
+enum class Direction;
+}
+
 /*! @brief The class of the app object widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -47,11 +52,16 @@ public:
      * Get class object instance.
      */
     static MusicApplicationModule *instance();
+
     /*!
      * Get current window is to top.
      */
     inline bool windowToTop() const { return m_setWindowToTop; }
 
+    /*!
+     * Clean up the system parameter.
+    */
+    void cleanup();
     /*!
      * Is lasted version.
      */
@@ -81,10 +91,6 @@ public:
      * Side animation by off.
      */
     void sideAnimationByOff();
-    /*!
-     * Side animation reset.
-     */
-    void sideAnimationReset();
 
 Q_SIGNALS:
     /*!
@@ -161,7 +167,7 @@ private:
     bool closeCurrentEqualizer();
 
     bool m_setWindowToTop;
-    bool m_leftSideByOn, m_rightSideByOn;
+    TTKObject::Direction m_direction;
     QPropertyAnimation *m_quitAnimation, *m_sideAnimation;
     MusicTimerAutoModule *m_timerAutoModule;
     MusicMobileDevicesWidget *m_mobileDeviceWidget;

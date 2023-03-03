@@ -48,6 +48,7 @@ public:
      * Get class object instance.
      */
     static MusicTopAreaWidget *instance();
+
     /*!
      * Set up app ui.
      */

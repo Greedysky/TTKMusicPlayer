@@ -1,5 +1,5 @@
-#ifndef TTKHELPER_H
-#define TTKHELPER_H
+#ifndef TTKGLOBALHELPER_H
+#define TTKGLOBALHELPER_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -24,6 +24,22 @@
 
 namespace TTKObject
 {
+    enum class Direction
+    {
+        No = 0,
+        Left = 1,
+        Top = 2,
+        Right = 4,
+        Bottom = 8,
+        LeftTop = Direction::Left | Direction::Top,
+        LeftBottom = Direction::Left | Direction::Bottom,
+        RightTop = Direction::Right | Direction::Top,
+        RightBottom = Direction::Right | Direction::Bottom
+    };
+}
+
+namespace TTKObject
+{
     /*!
      * Set application font.
      */
@@ -35,4 +51,4 @@ namespace TTKObject
 
 }
 
-#endif // TTKHELPER_H
+#endif // TTKGLOBALHELPER_H

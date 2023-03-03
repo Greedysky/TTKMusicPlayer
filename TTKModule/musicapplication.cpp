@@ -246,6 +246,7 @@ MusicObject::PlayMode MusicApplication::playMode() const
 
 void MusicApplication::quitWindowClose()
 {
+    m_applicationObject->cleanup();
     //Write configuration files
     writeSystemConfigToFile();
     m_quitWindowClose = true;
@@ -1195,7 +1196,6 @@ void MusicApplication::readSystemConfigFromFile()
 void MusicApplication::writeSystemConfigToFile()
 {
     MusicConfigManager xml;
-    m_applicationObject->sideAnimationReset();
     G_SETTING_PTR->setValue(MusicSettingManager::WidgetPosition, pos());
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicIndex, TTKStatic_cast(int, m_player->musicEnhanced()));
     G_SETTING_PTR->setValue(MusicSettingManager::PlayMode, TTKStatic_cast(int, m_playlist->playbackMode()));
