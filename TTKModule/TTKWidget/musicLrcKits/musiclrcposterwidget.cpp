@@ -279,7 +279,7 @@ void MusicLrcPosterItemWidget::drawTheme6(QPainter *painter)
 {
     QPixmap pix(m_pixmap);
     pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
-    int offset = std::min(pix.width(), pix.height());
+    int offset = qMin(pix.width(), pix.height());
     const int fixedOffset = (pix.width() - offset) / 2;
     pix = MusicUtils::Image::roundedPixmap(pix, QRect(0, 0, offset, offset), offset, offset);
     painter->drawPixmap(ITEM_BORDER + fixedOffset, ITEM_BORDER, pix);
@@ -465,7 +465,7 @@ void MusicLrcPosterItemWidget::drawTheme10(QPainter *painter)
 {
     QPixmap pix(m_pixmap);
     pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
-    int offset = std::min(pix.width(), pix.height());
+    int offset = qMin(pix.width(), pix.height());
     const int fixedOffset = (ITEM_HEIGHT - offset) / 2;
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER + fixedOffset, pix);
 
@@ -701,7 +701,7 @@ void MusicLrcPosterItemWidget::drawTheme15(QPainter *painter)
 {
     QPixmap pix(m_pixmap);
     pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
-    int offset = std::min(pix.width(), pix.height());
+    int offset = qMin(pix.width(), pix.height());
     const int fixedOffset = (ITEM_HEIGHT - offset) / 2;
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER + fixedOffset, pix);
 
@@ -752,7 +752,7 @@ void MusicLrcPosterItemWidget::drawTheme16(QPainter *painter)
     //
     QPixmap pix(m_pixmap);
     pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
-    int offset = std::min(pix.width(), pix.height());
+    int offset = qMin(pix.width(), pix.height());
     const int fixedOffset = (ITEM_HEIGHT - offset) / 2;
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER + fixedOffset, pix);
 

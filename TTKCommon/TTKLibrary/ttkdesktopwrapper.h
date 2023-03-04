@@ -22,8 +22,7 @@
 #include <QWidget>
 #include "ttkglobaldefine.h"
 
-namespace TTKObject
-{
+namespace TTKObject {
 enum class Direction;
 }
 
@@ -38,6 +37,7 @@ public:
         int m_size;
         TTKObject::Direction m_direction;
     };
+
     /*!
      * Get screen taskbar info by given screen index.
      */

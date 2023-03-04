@@ -29,8 +29,7 @@ class MusicSourceUpdateRequest;
 class MusicDownloadCounterPVRequest;
 class MusicScreenSaverBackgroundWidget;
 
-namespace TTKObject
-{
+namespace TTKObject {
 enum class Direction;
 }
 

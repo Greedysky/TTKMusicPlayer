@@ -19,7 +19,7 @@
 #include "musicdownloadcounterpvrequest.h"
 #include "musicscreensaverwidget.h"
 #include "ttkdesktopwrapper.h"
-#include "ttkglobalhelper.h"
+#include "ttklibrary.h"
 
 #include "qdevicewatcher.h"
 #include "qsync/qsyncconfig.h"

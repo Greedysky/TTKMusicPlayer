@@ -28,6 +28,7 @@ set(MUSIC_HEADERS
   ttkglobalhelper.h
   ttkitemdelegate.h
   ttklibrary.h
+  ttklibraryversion.h
   ttksemaphoreloop.h
   ttksuperenum.h
   ttktabbutton.h

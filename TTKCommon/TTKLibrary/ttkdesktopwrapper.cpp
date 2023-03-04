@@ -1,5 +1,5 @@
 #include "ttkdesktopwrapper.h"
-#include "ttkglobalhelper.h"
+#include "ttklibrary.h"
 
 #include <QScreen>
 #include <QApplication>
@@ -11,32 +11,32 @@ TTKDesktopWrapper::TaskbarInfo TTKDesktopWrapper::screenTaskbar(int index)
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
     QScreen *screen = QApplication::primaryScreen();
-    const QRect &screenRect = screenGeometry(index);
-    const QRect &deskRect = screen->availableGeometry();
+    const QRect &dr = screen->availableGeometry();
 #else
     QDesktopWidget *widget = QApplication::desktop();
-    const QRect &screenRect = screenGeometry(index);
-    const QRect &deskRect = widget->availableGeometry();
+    const QRect &dr = widget->availableGeometry();
 #endif
     TaskbarInfo info;
-    if(screenRect.left() != deskRect.left())
+    const QRect &sr = screenGeometry(index);
+
+    if(sr.left() != dr.left())
     {
-        info.m_size = std::abs(screenRect.left() - deskRect.left());
+        info.m_size = std::abs(sr.left() - dr.left());
         info.m_direction = TTKObject::Direction::Left;
     }
-    else if(screenRect.right() != deskRect.right())
+    else if(sr.right() != dr.right())
     {
-        info.m_size = std::abs(screenRect.right() - deskRect.right());
+        info.m_size = std::abs(sr.right() - dr.right());
         info.m_direction = TTKObject::Direction::Right;
     }
-    else if(screenRect.top() != deskRect.top())
+    else if(sr.top() != dr.top())
     {
-        info.m_size = std::abs(screenRect.top() - deskRect.top());
+        info.m_size = std::abs(sr.top() - dr.top());
         info.m_direction = TTKObject::Direction::Top;
     }
-    else if(screenRect.bottom() != deskRect.bottom())
+    else if(sr.bottom() != dr.bottom())
     {
-        info.m_size = std::abs(screenRect.bottom() - deskRect.bottom());
+        info.m_size = std::abs(sr.bottom() - dr.bottom());
         info.m_direction = TTKObject::Direction::Bottom;
     }
     else

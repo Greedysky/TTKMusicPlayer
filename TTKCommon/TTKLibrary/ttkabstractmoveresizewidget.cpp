@@ -1,5 +1,5 @@
 #include "ttkabstractmoveresizewidget.h"
-#include "ttkglobalhelper.h"
+#include "ttklibrary.h"
 
 #include <QApplication>
 

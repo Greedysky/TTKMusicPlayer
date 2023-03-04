@@ -1202,7 +1202,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="text">
-      <string>开启左右靠边停靠模式</string>
+      <string>开启四周靠边停靠模式</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="otherReadAlbumCoverCheckBox">

@@ -4732,7 +4732,7 @@ Copyright© 2015 - 2023 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsettingwidget.ui" line="1205"/>
-        <source>开启左右靠边停靠模式</source>
+        <source>开启四周靠边停靠模式</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

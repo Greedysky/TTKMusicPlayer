@@ -70,6 +70,7 @@ HEADERS += \
     $$PWD/ttkglobalhelper.h \
     $$PWD/ttkitemdelegate.h \
     $$PWD/ttklibrary.h \
+    $$PWD/ttklibraryversion.h \
     $$PWD/ttksemaphoreloop.h \
     $$PWD/ttksuperenum.h \
     $$PWD/ttktabbutton.h \

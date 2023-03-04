@@ -41,6 +41,7 @@ win32{
             $$PWD/TTKLibrary/ttkglobalhelper.h \
             $$PWD/TTKLibrary/ttkitemdelegate.h \
             $$PWD/TTKLibrary/ttklibrary.h \
+            $$PWD/TTKLibrary/ttklibraryversion.h \
             $$PWD/TTKLibrary/ttksemaphoreloop.h \
             $$PWD/TTKLibrary/ttksuperenum.h \
             $$PWD/TTKLibrary/ttktabbutton.h \

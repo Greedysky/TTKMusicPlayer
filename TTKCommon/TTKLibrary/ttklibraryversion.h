@@ -1,5 +1,5 @@
-#ifndef TTKLIBRARY_H
-#define TTKLIBRARY_H
+#ifndef TTKLIBRARYVERSION_H
+#define TTKLIBRARYVERSION_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -19,20 +19,13 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-namespace TTKObject
-{
-    enum class Direction
-    {
-        No = 0,
-        Left = 1,
-        Top = 2,
-        Right = 4,
-        Bottom = 8,
-        LeftTop = Direction::Left | Direction::Top,
-        LeftBottom = Direction::Left | Direction::Bottom,
-        RightTop = Direction::Right | Direction::Top,
-        RightBottom = Direction::Right | Direction::Bottom
-    };
-}
+//update time 2023.03.02
+#define TTK_LIBRARY_VERSION         0x01240
+#define TTK_LIBRARY_VERSION_STR     "1.2.4.0"
 
-#endif // TTKLIBRARY_H
+#define TTK_LIBRARY_MAJOR_VERSION 1
+#define TTK_LIBRARY_MIDLE_VERSION 2
+#define TTK_LIBRARY_MINOR_VERSION 4
+#define TTK_LIBRARY_PATCH_VERSION 0
+
+#endif // TTKLIBRARYVERSION_H

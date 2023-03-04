@@ -24,22 +24,6 @@
 
 namespace TTKObject
 {
-    enum class Direction
-    {
-        No = 0,
-        Left = 1,
-        Top = 2,
-        Right = 4,
-        Bottom = 8,
-        LeftTop = Direction::Left | Direction::Top,
-        LeftBottom = Direction::Left | Direction::Bottom,
-        RightTop = Direction::Right | Direction::Top,
-        RightBottom = Direction::Right | Direction::Bottom
-    };
-}
-
-namespace TTKObject
-{
     /*!
      * Set application font.
      */
