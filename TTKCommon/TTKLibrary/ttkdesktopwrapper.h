@@ -22,12 +22,26 @@
 #include <QWidget>
 #include "ttkglobaldefine.h"
 
+namespace TTKObject
+{
+enum class Direction;
+}
+
 /*! @brief The class of the desktop screen wrapper.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT TTKDesktopWrapper
 {
 public:
+    /*!
+     * Get screen geometry by given screen index.
+     */
+    static int screenTaskbarSize(int index = 0);
+    /*!
+     * Get screen geometry by given screen index.
+     */
+    static TTKObject::Direction screenTaskbarDirection(int index = 0);
+
     /*!
      * Get screen geometry by given screen index.
      */

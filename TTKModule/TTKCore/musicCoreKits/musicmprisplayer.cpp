@@ -385,7 +385,7 @@ void MusicMPRISPlayerCore::volumeChanged()
 
 void MusicMPRISPlayerCore::elapsedChanged(qint64 elapsed)
 {
-    if(std::abs(elapsed - m_prevPos) > 2 * MT_S2MS)
+    if(abs(elapsed - m_prevPos) > 2 * MT_S2MS)
     {
         Q_EMIT Seeked(elapsed * MT_S2MS);
     }

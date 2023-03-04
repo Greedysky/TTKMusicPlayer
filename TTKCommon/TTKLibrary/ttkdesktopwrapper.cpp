@@ -1,10 +1,77 @@
 #include "ttkdesktopwrapper.h"
+#include "ttkglobalhelper.h"
 
 #include <QScreen>
 #include <QApplication>
 #if !TTK_QT_VERSION_CHECK(5,0,0)
 #  include <QDesktopWidget>
 #endif
+
+int TTKDesktopWrapper::screenTaskbarSize(int index)
+{
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    QScreen *screen = QApplication::primaryScreen();
+    const QRect &screenRect = screenGeometry(index);
+    const QRect &deskRect = screen->availableGeometry();
+#else
+    QDesktopWidget *widget = QApplication::desktop();
+    const QRect &screenRect = screenGeometry(index);
+    const QRect &deskRect = widget->availableGeometry();
+#endif
+    if(screenRect.bottom() != deskRect.bottom())
+    {
+        return std::abs(screenRect.bottom() - deskRect.bottom());
+    }
+    else if(screenRect.top() != deskRect.top())
+    {
+        return std::abs(screenRect.top() - deskRect.top());
+    }
+    else if(screenRect.left() != deskRect.left())
+    {
+        return std::abs(screenRect.left() - deskRect.left());
+    }
+    else if(screenRect.right() != deskRect.right())
+    {
+        return std::abs(screenRect.right() - deskRect.right());
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+TTKObject::Direction TTKDesktopWrapper::screenTaskbarDirection(int index)
+{
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    QScreen *screen = QApplication::primaryScreen();
+    const QRect &screenRect = screenGeometry(index);
+    const QRect &deskRect = screen->availableGeometry();
+#else
+    QDesktopWidget *widget = QApplication::desktop();
+    const QRect &screenRect = screenGeometry(index);
+    const QRect &deskRect = widget->availableGeometry();
+#endif
+    if(screenRect.bottom() != deskRect.bottom())
+    {
+        return TTKObject::Direction::Bottom;
+    }
+    else if(screenRect.top() != deskRect.top())
+    {
+        return TTKObject::Direction::Top;
+    }
+    else if(screenRect.left() != deskRect.left())
+    {
+        return TTKObject::Direction::Left;
+    }
+    else if(screenRect.right() != deskRect.right())
+    {
+        return TTKObject::Direction::Right;
+    }
+    else
+    {
+        return TTKObject::Direction::No;
+    }
+}
 
 QRect TTKDesktopWrapper::screenGeometry(int index)
 {
