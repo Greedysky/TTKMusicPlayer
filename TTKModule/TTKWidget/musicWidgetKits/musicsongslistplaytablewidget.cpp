@@ -803,7 +803,7 @@ void MusicSongsListPlayTableWidget::startToDrag()
         }
 
         Q_EMIT queryMusicIndexSwaped(start, end, index, songs);
-        for(int i = qMin(start, end); i <= qMax(start, end); ++i)
+        for(int i = std::min(start, end); i <= qMax(start, end); ++i)
         {
             if(i == index)
             {

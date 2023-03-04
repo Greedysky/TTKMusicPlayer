@@ -184,7 +184,7 @@ void MusicApplicationModule::sideAnimationByOn()
     const int &tpy = w->y();
     const int &bpy = w->y() + w->height();
     const QRect &rect = TTKDesktopWrapper::screenGeometry();
-    const TTKObject::Direction direction = TTKDesktopWrapper::screenTaskbarDirection();
+    const TTKObject::Direction direction = TTKDesktopWrapper::screenTaskbar().m_direction;
 
     if(-MARGIN_SIDE <= lpx && lpx <= MARGIN_SIDE && direction != TTKObject::Direction::Left)
     {

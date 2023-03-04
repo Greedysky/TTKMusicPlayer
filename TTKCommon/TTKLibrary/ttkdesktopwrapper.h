@@ -33,14 +33,15 @@ enum class Direction;
 class TTK_MODULE_EXPORT TTKDesktopWrapper
 {
 public:
+    struct TaskbarInfo
+    {
+        int m_size;
+        TTKObject::Direction m_direction;
+    };
     /*!
-     * Get screen geometry by given screen index.
+     * Get screen taskbar info by given screen index.
      */
-    static int screenTaskbarSize(int index = 0);
-    /*!
-     * Get screen geometry by given screen index.
-     */
-    static TTKObject::Direction screenTaskbarDirection(int index = 0);
+    static TaskbarInfo screenTaskbar(int index = 0);
 
     /*!
      * Get screen geometry by given screen index.
