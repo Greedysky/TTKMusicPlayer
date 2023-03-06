@@ -563,6 +563,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     QFont iLabelFont = iLabel->font();
     iLabelFont.setPixelSize(15);
     iLabel->setFont(iLabelFont);
+    iLabel->setStyleSheet(MusicUIObject::ColorStyle03);
     QLabel *sLabel = new QLabel(tr("Size"), topWidget);
 
     m_sizeValueBar = new QProgressBar(topWidget);

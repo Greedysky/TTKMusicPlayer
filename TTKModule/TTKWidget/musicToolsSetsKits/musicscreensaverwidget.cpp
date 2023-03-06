@@ -231,6 +231,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     QFont iLabelFont = iLabel->font();
     iLabelFont.setPixelSize(15);
     iLabel->setFont(iLabelFont);
+    iLabel->setStyleSheet(MusicUIObject::ColorStyle03);
 
     QLabel *wLabel = new QLabel(tr("Wait"), topWidget);
     QLabel *mLabel = new QLabel(tr("Min"), topWidget);
