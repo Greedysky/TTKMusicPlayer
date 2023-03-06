@@ -18,6 +18,7 @@
 #include "musicsourceupdaterequest.h"
 #include "musicdownloadcounterpvrequest.h"
 #include "musicscreensaverwidget.h"
+#include "musicplatformmanager.h"
 #include "ttkdesktopwrapper.h"
 #include "ttklibrary.h"
 
@@ -25,7 +26,6 @@
 #include "qsync/qsyncconfig.h"
 
 #define MARGIN_SIDE     10
-#define MARGIN_SIDE_GAP 2
 #define SYNC_HOST_URL   "VDVnYUdYMW9xNnVWSnd6L0J6NHI2MFZ5d0R3R2NiRVF4VW5WckpNcUhnUT0="
 
 MusicApplicationModule *MusicApplicationModule::m_instance = nullptr;
@@ -179,46 +179,51 @@ void MusicApplicationModule::sideAnimationByOn()
         return;
     }
 
-    const int &lpx = w->x();
-    const int &rpx = w->x() + w->width();
-    const int &tpy = w->y();
-    const int &bpy = w->y() + w->height();
+    const int lpx = w->x();
+    const int rpx = w->x() + w->width();
+    const int tpy = w->y();
+    const int bpy = w->y() + w->height();
+#ifdef Q_OS_WIN
+    constexpr int gap = 2;
+#elif defined Q_OS_UNIX
+    const int gap = MusicPlatformManager().systemName() == MusicPlatformManager::System::LinuxUbuntu ? 3 : 2;
+#endif
     const QRect &rect = TTKDesktopWrapper::screenGeometry();
     const TTKObject::Direction direction = TTKDesktopWrapper::screenTaskbar().m_direction;
 
-    if(-MARGIN_SIDE <= lpx && lpx <= MARGIN_SIDE && direction != TTKObject::Direction::Left)
+    if(direction != TTKObject::Direction::Left && -MARGIN_SIDE <= lpx && lpx <= MARGIN_SIDE)
     {
         m_direction = TTKObject::Direction::Left;
         m_sideAnimation->stop();
         m_sideAnimation->setStartValue(w->pos());
-        m_sideAnimation->setEndValue(QPoint(-w->width() + MARGIN_SIDE_GAP, w->y()));
+        m_sideAnimation->setEndValue(QPoint(-w->width() + gap, w->y()));
         m_sideAnimation->start();
         G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, true);
     }
-    else if(-MARGIN_SIDE + rect.width() <= rpx && rpx <= MARGIN_SIDE + rect.width() && direction != TTKObject::Direction::Right)
+    else if(direction != TTKObject::Direction::Right && -MARGIN_SIDE + rect.width() <= rpx && rpx <= MARGIN_SIDE + rect.width())
     {
         m_direction = TTKObject::Direction::Right;
         m_sideAnimation->stop();
         m_sideAnimation->setStartValue(w->pos());
-        m_sideAnimation->setEndValue(QPoint(rect.width() - MARGIN_SIDE_GAP, w->y()));
+        m_sideAnimation->setEndValue(QPoint(rect.width() - gap, w->y()));
         m_sideAnimation->start();
         G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, true);
     }
-    else if(-MARGIN_SIDE <= tpy && tpy <= MARGIN_SIDE && direction != TTKObject::Direction::Top)
+    else if(direction != TTKObject::Direction::Top && -MARGIN_SIDE <= tpy && tpy <= MARGIN_SIDE)
     {
         m_direction = TTKObject::Direction::Top;
         m_sideAnimation->stop();
         m_sideAnimation->setStartValue(w->pos());
-        m_sideAnimation->setEndValue(QPoint(w->x(), -w->height() + MARGIN_SIDE_GAP));
+        m_sideAnimation->setEndValue(QPoint(w->x(), -w->height() + gap));
         m_sideAnimation->start();
         G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, true);
     }
-    else if(-MARGIN_SIDE + rect.height() <= bpy && bpy <= MARGIN_SIDE + rect.height() && direction != TTKObject::Direction::Bottom)
+    else if(direction != TTKObject::Direction::Bottom && -MARGIN_SIDE + rect.height() <= bpy && bpy <= MARGIN_SIDE + rect.height())
     {
         m_direction = TTKObject::Direction::Bottom;
         m_sideAnimation->stop();
         m_sideAnimation->setStartValue(w->pos());
-        m_sideAnimation->setEndValue(QPoint(w->x(), rect.height() - MARGIN_SIDE_GAP));
+        m_sideAnimation->setEndValue(QPoint(w->x(), rect.height() - gap));
         m_sideAnimation->start();
         G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, true);
     }
