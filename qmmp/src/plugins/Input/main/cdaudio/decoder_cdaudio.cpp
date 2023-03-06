@@ -449,11 +449,9 @@ qint64 DecoderCDAudio::read(unsigned char *data, qint64 maxSize)
             m_buffer_at = 0;
             return -1;
         }
-        else
-        {
-            m_buffer_at = secorts_to_read * CDIO_CD_FRAMESIZE_RAW;
-            m_current_sector += secorts_to_read;
-        }
+
+        m_buffer_at = secorts_to_read * CDIO_CD_FRAMESIZE_RAW;
+        m_current_sector += secorts_to_read;
     }
 
     if(m_buffer_at > 0)

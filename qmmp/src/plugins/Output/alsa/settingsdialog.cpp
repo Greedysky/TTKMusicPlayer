@@ -81,7 +81,7 @@ void SettingsDialog::getSoftDevices()
             char *device_desc = snd_device_name_get_hint(hints[i], "DESC");
 
             m_devices << QString(device_name);
-            m_ui.deviceComboBox->addItem(QString("%1(%2)").arg(device_desc).arg(device_name));
+            m_ui.deviceComboBox->addItem(QString("%1(%2)").arg(device_desc, device_name));
             free(device_name);
             free(device_desc);
         }

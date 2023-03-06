@@ -11,7 +11,7 @@ extern "C" {
 }
 
 OutputWriter::OutputWriter(QObject* parent)
-    : QThread (parent),
+    : QThread(parent),
       m_handler(StateHandler::instance()),
       m_settings(QmmpSettings::instance())
 {
