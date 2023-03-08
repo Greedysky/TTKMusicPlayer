@@ -33,7 +33,7 @@ MusicLrcContainerForDesktop::~MusicLrcContainerForDesktop()
 
 void MusicLrcContainerForDesktop::startDrawLrc()
 {
-    m_lrcManagers[!m_singleLineType ? !m_reverse : 0]->startDrawLrc();
+    m_lrcManagers[m_singleLineType ? 0 : !m_reverse]->startDrawLrc();
 }
 
 void MusicLrcContainerForDesktop::stopDrawLrc()
@@ -79,18 +79,18 @@ void MusicLrcContainerForDesktop::setCurrentPlayStatus(bool status) const
 
 void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first, const QString &second, qint64 time)
 {
-    if(!m_singleLineType)
+    if(m_singleLineType)
+    {
+        m_lrcManagers[0]->setText(first);
+        m_lrcManagers[0]->startDrawLrcMask(time);
+    }
+    else
     {
         m_reverse = !m_reverse;
         m_lrcManagers[m_reverse]->reset();
         m_lrcManagers[m_reverse]->setText(second);
         m_lrcManagers[!m_reverse]->setText(first);
         m_lrcManagers[!m_reverse]->startDrawLrcMask(time);
-    }
-    else
-    {
-        m_lrcManagers[0]->setText(first);
-        m_lrcManagers[0]->startDrawLrcMask(time);
     }
 
     resizeLrcSizeArea();
