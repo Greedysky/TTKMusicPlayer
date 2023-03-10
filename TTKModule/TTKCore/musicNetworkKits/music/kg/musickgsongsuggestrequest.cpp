@@ -14,7 +14,7 @@ void MusicKGSongSuggestRequest::startToSearch(const QString &value)
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_SUGGEST_URL, false).arg(value));
+    request.setUrl(TTK::Algorithm::mdII(KG_SUGGEST_URL, false).arg(value));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -63,7 +63,7 @@ void MusicKGSongSuggestRequest::downLoadFinished()
                             TTK_NETWORK_QUERY_CHECK();
 
                             MusicResultDataItem result;
-                            result.m_name = MusicUtils::String::charactersReplaced(value["HintInfo"].toString());
+                            result.m_name = TTK::String::charactersReplaced(value["HintInfo"].toString());
                             m_items << result;
                         }
                     }

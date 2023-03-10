@@ -7,7 +7,7 @@
 MusicNetworkTestThread::MusicNetworkTestThread(QObject *parent)
     : TTKAbstractThread(parent)
 {
-    TTKObject::initRandom();
+    TTK::initRandom();
 }
 
 void MusicNetworkTestThread::setUrl(const QString &url)
@@ -20,9 +20,9 @@ void MusicNetworkTestThread::run()
     TTKAbstractThread::run();
 
     const QHostInfo &info = QHostInfo::fromName(m_currentUrl);
-    const int rand = TTKObject::random(8) + 1;
+    const int rand = TTK::random(8) + 1;
 
-    MusicUtils::Core::sleep(rand * MT_S2MS);
+    TTK::Core::sleep(rand * MT_S2MS);
 
     if(m_running)
     {

@@ -18,7 +18,7 @@ MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -56,7 +56,7 @@ void MusicSongCheckToolsWidget::renameButtonCheckClicked()
         m_ui->renameLoadingLabel->hide();
         m_ui->renameCheckButton->setText(tr("Start"));
 
-        m_renameThread->setMode(MusicObject::Mode::Check);
+        m_renameThread->setMode(TTK::Mode::Check);
         m_renameThread->stop();
     }
     else if(m_ui->renameCheckButton->text() == tr("Apply"))
@@ -66,7 +66,7 @@ void MusicSongCheckToolsWidget::renameButtonCheckClicked()
         m_ui->renameReCheckButton->show();
 
         m_renameThread->setItemList(m_ui->renameTableWidget->checkedIndexList());
-        m_renameThread->setMode(MusicObject::Mode::Apply);
+        m_renameThread->setMode(TTK::Mode::Apply);
         m_renameThread->stop();
         m_renameThread->start();
     }
@@ -84,14 +84,14 @@ void MusicSongCheckToolsWidget::renameReCheckButtonClicked()
     m_renameThread->stop();
     m_localSongs = m_ui->selectedAreaWidget->selectedSongItems();
 
-    m_renameThread->setMode(MusicObject::Mode::Check);
+    m_renameThread->setMode(TTK::Mode::Check);
     m_renameThread->setRenameSongs(&m_localSongs);
     m_renameThread->start();
 }
 
 void MusicSongCheckToolsWidget::renameCheckFinished(const MusicSongCheckToolsRenameList &items)
 {
-    if(m_renameThread->mode() == MusicObject::Mode::Check || items.isEmpty())
+    if(m_renameThread->mode() == TTK::Mode::Check || items.isEmpty())
     {
         m_ui->renameLoadingLabel->stop();
         m_ui->renameLoadingLabel->hide();
@@ -102,7 +102,7 @@ void MusicSongCheckToolsWidget::renameCheckFinished(const MusicSongCheckToolsRen
         m_ui->renameTableWidget->removeItems();
         m_ui->renameTableWidget->addCellItems(items);
     }
-    else if(m_renameThread->mode() == MusicObject::Mode::Apply && !m_ui->renameTableWidget->checkedIndexList().isEmpty())
+    else if(m_renameThread->mode() == TTK::Mode::Apply && !m_ui->renameTableWidget->checkedIndexList().isEmpty())
     {
         MusicToastLabel::popup(tr("Rename apply finished"));
     }
@@ -176,7 +176,7 @@ void MusicSongCheckToolsWidget::duplicateButtonCheckClicked()
         m_ui->duplicateLoadingLabel->hide();
         m_ui->duplicateCheckButton->setText(tr("Start"));
 
-        m_duplicateThread->setMode(MusicObject::Mode::Check);
+        m_duplicateThread->setMode(TTK::Mode::Check);
         m_duplicateThread->stop();
     }
     else if(m_ui->duplicateCheckButton->text() == tr("Apply"))
@@ -186,7 +186,7 @@ void MusicSongCheckToolsWidget::duplicateButtonCheckClicked()
         m_ui->duplicateReCheckButton->show();
 
         m_duplicateThread->setItemList(m_ui->duplicateTableWidget->checkedIndexList());
-        m_duplicateThread->setMode(MusicObject::Mode::Apply);
+        m_duplicateThread->setMode(TTK::Mode::Apply);
         m_duplicateThread->stop();
         m_duplicateThread->start();
     }
@@ -203,14 +203,14 @@ void MusicSongCheckToolsWidget::duplicateReCheckButtonClicked()
     m_qualityThread->stop();
     m_localSongs = m_ui->selectedAreaWidget->selectedSongItems();
 
-    m_duplicateThread->setMode(MusicObject::Mode::Check);
+    m_duplicateThread->setMode(TTK::Mode::Check);
     m_duplicateThread->setDuplicateSongs(&m_localSongs);
     m_duplicateThread->start();
 }
 
 void MusicSongCheckToolsWidget::duplicateCheckFinished(const MusicSongCheckToolsDuplicateList &items)
 {
-    if(m_duplicateThread->mode() == MusicObject::Mode::Check || items.isEmpty())
+    if(m_duplicateThread->mode() == TTK::Mode::Check || items.isEmpty())
     {
         m_ui->duplicateLoadingLabel->stop();
         m_ui->duplicateLoadingLabel->hide();
@@ -221,7 +221,7 @@ void MusicSongCheckToolsWidget::duplicateCheckFinished(const MusicSongCheckTools
         m_ui->duplicateTableWidget->removeItems();
         m_ui->duplicateTableWidget->addCellItems(items);
     }
-    else if(m_duplicateThread->mode() == MusicObject::Mode::Apply && !m_ui->duplicateTableWidget->checkedIndexList().isEmpty())
+    else if(m_duplicateThread->mode() == TTK::Mode::Apply && !m_ui->duplicateTableWidget->checkedIndexList().isEmpty())
     {
         MusicToastLabel::popup(tr("Duplicate apply finished"));
     }
@@ -229,8 +229,8 @@ void MusicSongCheckToolsWidget::duplicateCheckFinished(const MusicSongCheckTools
 
 void MusicSongCheckToolsWidget::initRenameWidget()
 {
-    m_ui->renameSelectAllButton->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->renameCheckButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->renameSelectAllButton->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->renameCheckButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 
     connect(m_ui->renameButton, SIGNAL(clicked()), SLOT(renameButtonClicked()));
     connect(m_ui->renameCheckButton, SIGNAL(clicked()), SLOT(renameButtonCheckClicked()));
@@ -253,7 +253,7 @@ void MusicSongCheckToolsWidget::initRenameWidget()
 
 void MusicSongCheckToolsWidget::initQualityWidget()
 {
-    m_ui->qualityCheckButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->qualityCheckButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 
     connect(m_ui->qualityButton, SIGNAL(clicked()), SLOT(qualityButtonClicked()));
     connect(m_ui->qualityCheckButton, SIGNAL(clicked()), SLOT(qualityButtonCheckClicked()));
@@ -273,8 +273,8 @@ void MusicSongCheckToolsWidget::initQualityWidget()
 
 void MusicSongCheckToolsWidget::initDuplicateWidget()
 {
-    m_ui->duplicateSelectAllButton->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->duplicateCheckButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->duplicateSelectAllButton->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->duplicateCheckButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 
     connect(m_ui->duplicateButton, SIGNAL(clicked()), SLOT(duplicateButtonClicked()));
     connect(m_ui->duplicateCheckButton, SIGNAL(clicked()), SLOT(duplicateButtonCheckClicked()));
@@ -297,16 +297,16 @@ void MusicSongCheckToolsWidget::initDuplicateWidget()
 
 void MusicSongCheckToolsWidget::switchToSelectedItemStyle(int index)
 {
-    m_ui->renameButton->setStyleSheet(MusicUIObject::CheckTestRename);
-    m_ui->qualityButton->setStyleSheet(MusicUIObject::CheckTestQuality);
-    m_ui->duplicateButton->setStyleSheet(MusicUIObject::CheckTestDuplicate);
+    m_ui->renameButton->setStyleSheet(TTK::UI::CheckTestRename);
+    m_ui->qualityButton->setStyleSheet(TTK::UI::CheckTestQuality);
+    m_ui->duplicateButton->setStyleSheet(TTK::UI::CheckTestDuplicate);
 
     m_ui->stackedWidget->setCurrentIndex(index);
     switch(index)
     {
-        case 0: m_ui->renameButton->setStyleSheet(MusicUIObject::CheckTestRenameClicked); break;
-        case 1: m_ui->duplicateButton->setStyleSheet(MusicUIObject::CheckTestDuplicateClicked); break;
-        case 2: m_ui->qualityButton->setStyleSheet(MusicUIObject::CheckTestQualityClicked); break;
+        case 0: m_ui->renameButton->setStyleSheet(TTK::UI::CheckTestRenameClicked); break;
+        case 1: m_ui->duplicateButton->setStyleSheet(TTK::UI::CheckTestDuplicateClicked); break;
+        case 2: m_ui->qualityButton->setStyleSheet(TTK::UI::CheckTestQualityClicked); break;
         default: break;
     }
 }

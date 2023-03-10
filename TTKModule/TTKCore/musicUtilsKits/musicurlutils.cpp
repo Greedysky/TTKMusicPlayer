@@ -9,7 +9,7 @@
 #  include <shellapi.h>
 #endif
 
-bool MusicUtils::Url::execute(const QString &path)
+bool TTK::Url::execute(const QString &path)
 {
 #ifdef Q_OS_WIN
     ShellExecuteW(0, L"open", path.toStdWString().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
@@ -19,7 +19,7 @@ bool MusicUtils::Url::execute(const QString &path)
 #endif
 }
 
-bool MusicUtils::Url::openUrl(const QString &path, bool local)
+bool TTK::Url::openUrl(const QString &path, bool local)
 {
     if(path.isEmpty())
     {
@@ -45,35 +45,35 @@ bool MusicUtils::Url::openUrl(const QString &path, bool local)
     return QDesktopServices::openUrl(local ? QUrl::fromLocalFile(path) : QUrl(path, QUrl::TolerantMode));
 }
 
-void MusicUtils::Url::urlEncode(QString &data)
+void TTK::Url::urlEncode(QString &data)
 {
     data.replace("+", "%2B");
     data.replace("/", "%2F");
     data.replace("=", "%3D");
 }
 
-void MusicUtils::Url::urlDecode(QString &data)
+void TTK::Url::urlDecode(QString &data)
 {
     data.replace("%2B", "+");
     data.replace("%2F", "/");
     data.replace("%3D", "=");
 }
 
-void MusicUtils::Url::urlEncode(QByteArray &data)
+void TTK::Url::urlEncode(QByteArray &data)
 {
     data.replace("+", "%2B");
     data.replace("/", "%2F");
     data.replace("=", "%3D");
 }
 
-void MusicUtils::Url::urlDecode(QByteArray &data)
+void TTK::Url::urlDecode(QByteArray &data)
 {
     data.replace("%2B", "+");
     data.replace("%2F", "/");
     data.replace("%3D", "=");
 }
 
-void MusicUtils::Url::urlPrettyEncode(QString &data)
+void TTK::Url::urlPrettyEncode(QString &data)
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
     data = QUrl(data).toString(QUrl::FullyEncoded);
@@ -82,7 +82,7 @@ void MusicUtils::Url::urlPrettyEncode(QString &data)
 #endif
 }
 
-void MusicUtils::Url::urlPrettyDecode(QString &data)
+void TTK::Url::urlPrettyDecode(QString &data)
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
     data = QUrl(data).toString();
@@ -91,7 +91,7 @@ void MusicUtils::Url::urlPrettyDecode(QString &data)
 #endif
 }
 
-void MusicUtils::Url::urlPrettyEncode(QByteArray &data)
+void TTK::Url::urlPrettyEncode(QByteArray &data)
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
     data = QUrl(data).toString(QUrl::FullyEncoded).toUtf8();
@@ -100,7 +100,7 @@ void MusicUtils::Url::urlPrettyEncode(QByteArray &data)
 #endif
 }
 
-void MusicUtils::Url::urlPrettyDecode(QByteArray &data)
+void TTK::Url::urlPrettyDecode(QByteArray &data)
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
     data = QUrl::fromEncoded(data).toString(QUrl::FullyDecoded).toUtf8();

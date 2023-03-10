@@ -14,7 +14,7 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
     setColumnCount(8);
 
     m_labelDelegate = new TTKLabelItemDelegate(this);
-    m_labelDelegate->setStyleSheet(MusicUIObject::BackgroundStyle13);
+    m_labelDelegate->setStyleSheet(TTK::UI::BackgroundStyle13);
 
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
@@ -57,7 +57,7 @@ void MusicItemQueryTableWidget::startSearchQuery(const QString &text)
 
 void MusicItemQueryTableWidget::musicDownloadLocal(int row)
 {
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row < 0 || row >= songInfos.count())
     {
         return;
@@ -80,7 +80,7 @@ void MusicItemQueryTableWidget::itemDoubleClicked(int row, int column)
 
 void MusicItemQueryTableWidget::downloadDataFrom(bool play)
 {
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     const TTKIntList &list = checkedIndexList();
     if(list.isEmpty())
     {
@@ -99,7 +99,7 @@ void MusicItemQueryTableWidget::downloadDataFrom(bool play)
 
 void MusicItemQueryTableWidget::downloadBatchData(bool music)
 {
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     const TTKIntList &list = checkedIndexList();
     if(list.isEmpty())
     {
@@ -107,7 +107,7 @@ void MusicItemQueryTableWidget::downloadBatchData(bool music)
         return;
     }
 
-    MusicObject::MusicSongInformationList items;
+    TTK::MusicSongInformationList items;
     for(int index : qAsConst(list))
     {
         if(index < 0 || index >= songInfos.count())
@@ -132,23 +132,23 @@ void MusicItemQueryTableWidget::resizeSection()
     for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
 
         it = item(i, 2);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
     }
 }
 
 void MusicItemQueryTableWidget::menuActionChanged(QAction *action)
 {
     const int row = currentRow();
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row < 0 || row >= songInfos.count())
     {
         return;
     }
 
-    const MusicObject::MusicSongInformation &info = songInfos[row];
+    const TTK::MusicSongInformation &info = songInfos[row];
     switch(action->data().toInt())
     {
         case 0: addSearchMusicToPlaylist(row, true); break;
@@ -173,10 +173,10 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicQueryTableWidget::contextMenuEvent(event);
 
     QMenu menu;
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     const int row = currentRow();
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row < 0 || row >= songInfos.count())
     {
         return;
@@ -188,7 +188,7 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     menu.addSeparator();
 
-    const MusicObject::MusicSongInformation &info = songInfos[row];
+    const TTK::MusicSongInformation &info = songInfos[row];
     menu.addAction(tr("Search '%1'").arg(info.m_singerName))->setData(3);
     menu.addAction(tr("Search '%1'").arg(info.m_songName))->setData(4);
     menu.addAction(tr("Search '%1'").arg(info.m_albumName))->setData(5);
@@ -246,20 +246,20 @@ void MusicItemQueryTableWidget::createSearchedItem(const MusicResultInfoItem &so
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName + " - " + songItem.m_songName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
+    item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_albumName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
+    item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_duration);
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(count, 3, item);
 
@@ -311,7 +311,7 @@ void MusicItemQueryTableWidget::addSearchMusicToPlaylist(int row, bool play)
         return;
     }
 
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row >= songInfos.count())
     {
         return;
@@ -320,19 +320,19 @@ void MusicItemQueryTableWidget::addSearchMusicToPlaylist(int row, bool play)
     downloadDataFrom(songInfos[row], play);
 }
 
-bool MusicItemQueryTableWidget::downloadDataFrom(const MusicObject::MusicSongInformation &info, bool play)
+bool MusicItemQueryTableWidget::downloadDataFrom(const TTK::MusicSongInformation &info, bool play)
 {
     if(!G_NETWORK_PTR->isOnline())
     {
         return false;
     }
 
-    MusicObject::MusicSongPropertyList props(info.m_songProps);
+    TTK::MusicSongPropertyList props(info.m_songProps);
     std::sort(props.begin(), props.end()); //to find out the min bitrate
 
     if(!props.isEmpty())
     {
-        const MusicObject::MusicSongProperty &prop = props.front();
+        const TTK::MusicSongProperty &prop = props.front();
 
         MusicResultDataItem result;
         result.m_name = info.m_singerName + " - " + info.m_songName;

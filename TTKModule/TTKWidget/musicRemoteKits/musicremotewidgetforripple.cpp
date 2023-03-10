@@ -29,7 +29,7 @@ MusicRemoteWidgetForRipple::MusicRemoteWidgetForRipple(QWidget *parent)
     createVisualWidget();
 
     m_songNameLabel = new MusicMarqueeWidget(this);
-    m_songNameLabel->setStyleSheet(MusicUIObject::WidgetStyle01);
+    m_songNameLabel->setStyleSheet(TTK::UI::WidgetStyle01);
 
     m_preSongButton->hide();
     m_nextSongButton->hide();
@@ -40,7 +40,7 @@ MusicRemoteWidgetForRipple::MusicRemoteWidgetForRipple(QWidget *parent)
 #endif
     m_visualModeButton->setToolTip(tr("Visual Mode"));
     m_visualModeButton->setFixedSize(26, 18);
-    m_visualModeButton->setStyleSheet(MusicUIObject::TinyBtnVisual);
+    m_visualModeButton->setStyleSheet(TTK::UI::TinyBtnVisual);
     m_visualModeButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_visualModeButton, SIGNAL(clicked()), SLOT(visualModeChanged()));
 
@@ -67,7 +67,7 @@ MusicRemoteWidgetForRipple::~MusicRemoteWidgetForRipple()
 
 void MusicRemoteWidgetForRipple::setLabelText(const QString &value)
 {
-    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, width() - 20));
+    m_songNameLabel->setText(TTK::Widget::elidedText(font(), value, Qt::ElideRight, width() - 20));
 }
 
 void MusicRemoteWidgetForRipple::visualModeChanged()
@@ -79,7 +79,7 @@ void MusicRemoteWidgetForRipple::visualModeChanged()
 
 void MusicRemoteWidgetForRipple::createVisualWidget()
 {
-    MusicUtils::TTKQmmp::enabledVisualPlugin(m_mode ? "outerripples" : "outerrayswave", true);
+    TTK::TTKQmmp::enabledVisualPlugin(m_mode ? "outerripples" : "outerrayswave", true);
 
     const QList<Visual*> *vs = Visual::visuals();
     if(!vs->isEmpty() && vs->back())
@@ -96,5 +96,5 @@ void MusicRemoteWidgetForRipple::removeVisualWidget()
         m_visualLayout->removeWidget(m_visual);
         m_visual = nullptr;
     }
-    MusicUtils::TTKQmmp::enabledVisualPlugin(m_mode ? "outerripples" : "outerrayswave", false);
+    TTK::TTKQmmp::enabledVisualPlugin(m_mode ? "outerripples" : "outerrayswave", false);
 }

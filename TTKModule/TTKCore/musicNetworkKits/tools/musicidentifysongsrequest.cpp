@@ -41,7 +41,7 @@ void MusicIdentifySongsRequest::startRequest(const QString &path)
     const QString &timeStamp = QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch());
 
     const QString &sign = method + "\n" + endpoint + "\n" + m_accessKey + "\n" + type + "\n" + version + "\n" + timeStamp;
-    QByteArray body = MusicUtils::Algorithm::hmacSha1(sign.toUtf8(), m_accessSecret.toUtf8()).toBase64();
+    QByteArray body = TTK::Algorithm::hmacSha1(sign.toUtf8(), m_accessSecret.toUtf8()).toBase64();
 
     QString value;
     value += start + "\r\nContent-Disposition: form-data; name=\"access_key\"\r\n\r\n" + m_accessKey + "\r\n";
@@ -68,8 +68,8 @@ void MusicIdentifySongsRequest::startRequest(const QString &path)
     file.close();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(QUERY_URL, false));
-    MusicObject::setSslConfiguration(&request);
+    request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false));
+    TTK::setSslConfiguration(&request);
     request.setRawHeader("Content-Type", contentType.toUtf8());
 
     m_reply = m_manager.post(request, body);

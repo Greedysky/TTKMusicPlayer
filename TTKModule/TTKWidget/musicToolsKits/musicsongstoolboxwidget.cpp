@@ -15,13 +15,13 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
 {
     QPushButton *shareListButton = new QPushButton(this);
     shareListButton->setToolTip(tr("Share Playlist"));
-    shareListButton->setStyleSheet(MusicUIObject::TinyBtnShare);
+    shareListButton->setStyleSheet(TTK::UI::TinyBtnShare);
     shareListButton->setCursor(QCursor(Qt::PointingHandCursor));
     shareListButton->setGeometry(265, 12, 16, 16);
 
     QPushButton *menuButton = new QPushButton(this);
     menuButton->setToolTip(tr("Menu"));
-    menuButton->setStyleSheet(MusicUIObject::TinyBtnListMenu);
+    menuButton->setStyleSheet(TTK::UI::TinyBtnListMenu);
     menuButton->setCursor(QCursor(Qt::PointingHandCursor));
     menuButton->setGeometry(290, 12, 16, 16);
     connect(menuButton, SIGNAL(clicked()), SLOT(showMenu()));
@@ -86,16 +86,16 @@ void MusicSongsToolBoxTopWidget::exportSongsItemList()
 void MusicSongsToolBoxTopWidget::showMenu()
 {
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
     menu.addAction(tr("Create Item"), this, SIGNAL(addNewRowItem()));
     menu.addSeparator();
 
     QMenu addNewFiles(tr("Add New Files"), &menu);
-    bool disable = MusicObject::playlistRowValid(m_index);
+    bool disable = TTK::playlistRowValid(m_index);
     menu.addMenu(&addNewFiles)->setEnabled(disable);
     addNewFiles.addAction(tr("Open Files"), this, SLOT(musicAddNewFiles()));
     addNewFiles.addAction(tr("Open Dir"), this, SLOT(musicAddNewDir()));
-    MusicUtils::Widget::adjustMenuPosition(&addNewFiles);
+    TTK::Widget::adjustMenuPosition(&addNewFiles);
 
     menu.addAction(tr("Play Later"), this, SLOT(addToPlayLater()));
     menu.addAction(tr("Add To Playlist"), this, SLOT(addToPlayedList()));
@@ -107,7 +107,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
     sortFiles.addAction(tr("Sort By AddTime"))->setData(3);
     sortFiles.addAction(tr("Sort By PlayTime"))->setData(4);
     sortFiles.addAction(tr("Sort By PlayCount"))->setData(5);
-    MusicUtils::Widget::adjustMenuPosition(&sortFiles);
+    TTK::Widget::adjustMenuPosition(&sortFiles);
     connect(&sortFiles, SIGNAL(triggered(QAction*)), SLOT(musicListSongSortBy(QAction*)));
 
     if(m_songSort)
@@ -165,7 +165,7 @@ void MusicSongsToolBoxTopWidget::addToPlayedList()
 
 bool MusicSongsToolBoxTopWidget::isItemEnabled() const
 {
-    return m_index != MUSIC_NORMAL_LIST && MusicObject::playlistRowValid(m_index);
+    return m_index != MUSIC_NORMAL_LIST && TTK::playlistRowValid(m_index);
 }
 
 void MusicSongsToolBoxTopWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -200,7 +200,7 @@ MusicSongsToolBoxMaskWidget::~MusicSongsToolBoxMaskWidget()
 void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
 {
     int alpha = G_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparent).toInt();
-        alpha = MusicUtils::Image::reRenderValue<int>(0xFF, 0x1F, MV_MAX - alpha);
+        alpha = TTK::Image::reRenderValue<int>(0xFF, 0x1F, MV_MAX - alpha);
     QWidget::paintEvent(event);
     QPainter painter(this);
 

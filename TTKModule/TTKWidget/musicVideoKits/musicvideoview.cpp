@@ -67,7 +67,7 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     : QAbstractScrollArea(parent)
 {
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::BackgroundStyle02));
+    setStyleSheet(QString("#%1{%2}").arg(className(), TTK::UI::BackgroundStyle02));
 
     m_player = new MusicCoreMPlayer(this);
     m_videoWidget = new MusicViewWidget(this);
@@ -120,7 +120,7 @@ void MusicVideoView::resizeGeometry(int width, int height)
 void MusicVideoView::createRightMenu()
 {
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     menu.addAction(QString(), this, SLOT(play()))->setText(m_player->isPlaying() ? tr("Video Pause") : tr("Video Play"));
     menu.addAction(tr("Video Stop"), this, SLOT(stop()));
@@ -130,7 +130,7 @@ void MusicVideoView::createRightMenu()
     menu.addAction(tr("Fullscreen"), this, SLOT(fullscreenButtonTrigger()));
     menu.addAction(tr("Download"), this, SIGNAL(downloadButtonClicked()));
     menu.addAction(tr("Share"), this, SIGNAL(shareButtonClicked()));
-    MusicUtils::Widget::adjustMenuPosition(&menu);
+    TTK::Widget::adjustMenuPosition(&menu);
 
     menu.exec(QCursor::pos());
 }
@@ -140,13 +140,13 @@ void MusicVideoView::play()
     m_player->play();
     switch(m_player->state())
     {
-        case MusicObject::PlayState::Playing:
+        case TTK::PlayState::Playing:
         {
             m_videoControl->setButtonStyle(false);
             m_barrageCore->start();
             break;
         }
-        case MusicObject::PlayState::Paused:
+        case TTK::PlayState::Paused:
         {
             m_videoControl->setButtonStyle(true);
             m_barrageCore->pause();

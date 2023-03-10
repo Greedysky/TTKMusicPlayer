@@ -50,51 +50,51 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication *ui)
     m_ui = ui;
 
     musicBackgroundAnimationChanged(true);
-    ui->userIcon->setPixmap(MusicUtils::Image::roundedPixmap(QPixmap(":/image/lb_app_logo"), QPixmap(":/image/lb_mask_30"), QSize(30, 30)));
+    ui->userIcon->setPixmap(TTK::Image::roundedPixmap(QPixmap(":/image/lb_app_logo"), QPixmap(":/image/lb_mask_30"), QSize(30, 30)));
 
     ui->musicSongSearchEdit->initialize(MusicApplication::instance());
-    ui->musicSongSearchEdit->setStyleSheet(MusicUIObject::LineEditStyle02);
+    ui->musicSongSearchEdit->setStyleSheet(TTK::UI::LineEditStyle02);
 
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicSearchButton->setStyleSheet(MusicUIObject::TinyBtnMainSearch);
+    ui->musicSearchButton->setStyleSheet(TTK::UI::TinyBtnMainSearch);
 
     ui->musicWindowIdentify->setToolTip(tr("Identify Songs"));
     ui->musicWindowIdentify->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowIdentify->setStyleSheet(MusicUIObject::BtnIdentify);
+    ui->musicWindowIdentify->setStyleSheet(TTK::UI::BtnIdentify);
 
     ui->musicWindowTools->setToolTip(tr("Tools"));
     ui->musicWindowTools->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowTools->setStyleSheet(MusicUIObject::BtnTools);
+    ui->musicWindowTools->setStyleSheet(TTK::UI::BtnTools);
     connect(ui->musicWindowTools, SIGNAL(clicked()), SLOT(musicStackedToolsWidgetChanged()));
 
     ui->musicWindowChangeSkin->setToolTip(tr("Skin"));
     ui->musicWindowChangeSkin->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowChangeSkin->setStyleSheet(MusicUIObject::BtnSkin);
+    ui->musicWindowChangeSkin->setStyleSheet(TTK::UI::BtnSkin);
     connect(ui->musicWindowChangeSkin, SIGNAL(clicked()), SLOT(musicShowSkinChangedWindow()));
 
     ui->musicWindowSetting->setToolTip(tr("Settings"));
     ui->musicWindowSetting->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowSetting->setStyleSheet(MusicUIObject::BtnSetting);
+    ui->musicWindowSetting->setStyleSheet(TTK::UI::BtnSetting);
     connect(ui->musicWindowSetting, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicCreateRightMenu()));
 
     ui->musicWindowConcise->setToolTip(tr("Concise Mode"));
     ui->musicWindowConcise->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowConcise->setStyleSheet(MusicUIObject::BtnConciseIn);
+    ui->musicWindowConcise->setStyleSheet(TTK::UI::BtnConciseIn);
     connect(ui->musicWindowConcise, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicWindowConciseChanged()));
 
     ui->musicWindowRemote->setToolTip(tr("Open Remote"));
     ui->musicWindowRemote->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowRemote->setStyleSheet(MusicUIObject::BtnRemote);
+    ui->musicWindowRemote->setStyleSheet(TTK::UI::BtnRemote);
     connect(ui->musicWindowRemote, SIGNAL(clicked()), SLOT(musicSquareRemote()));
 
-    ui->minimization->setStyleSheet(MusicUIObject::BtnMinimum);
+    ui->minimization->setStyleSheet(TTK::UI::BtnMinimum);
     ui->minimization->setCursor(QCursor(Qt::PointingHandCursor));
     ui->minimization->setToolTip(tr("Minimization"));
     connect(ui->minimization, SIGNAL(clicked()), MusicApplication::instance(), SLOT(showMinimized()));
 
     ui->windowClose->setToolTip(tr("Close"));
     ui->windowClose->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->windowClose->setStyleSheet(MusicUIObject::BtnTClose);
+    ui->windowClose->setStyleSheet(TTK::UI::BtnTClose);
     connect(ui->windowClose, SIGNAL(clicked()), MusicApplication::instance(), SLOT(close()));
 }
 
@@ -437,7 +437,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRect(const QImage &image)
     {
         origin = origin.convertToFormat(QImage::Format_ARGB32);
     }
-    MusicUtils::Image::reRenderImage(35, &origin, &origin);
+    TTK::Image::reRenderImage(35, &origin, &origin);
 
     m_backgroundImage = origin;
     drawWindowBackgroundRectString();
@@ -450,7 +450,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
         return;
     }
 
-    const float v = MusicUtils::Image::reRenderValue<float>(1, 0.35, MV_MAX - m_backgroundAlpha);
+    const float v = TTK::Image::reRenderValue<float>(1, 0.35, MV_MAX - m_backgroundAlpha);
     MusicApplication::instance()->setWindowOpacity(v);
 
     const QSize size(G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());

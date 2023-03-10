@@ -34,10 +34,10 @@ void MusicTXDownloadBackgroundRequest::startRequest()
     MusicAbstractNetwork::deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(TX_SEARCH_URL, false));
-    MusicObject::setSslConfiguration(&request);
+    request.setUrl(TTK::Algorithm::mdII(TX_SEARCH_URL, false));
+    TTK::setSslConfiguration(&request);
 
-    m_reply = m_manager.post(request, MusicUtils::Algorithm::mdII(TX_SEARCH_DATA_URL, false).arg(m_name).toUtf8());
+    m_reply = m_manager.post(request, TTK::Algorithm::mdII(TX_SEARCH_DATA_URL, false).arg(m_name).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
@@ -109,7 +109,7 @@ void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
         {
             if(m_counter < MAX_IMAGE_COUNT)
             {
-                MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
+                MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(m_counter++).arg(SKN_FILE), TTK::Download::Background, this);
                 connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
                 d->startRequest();
             }
@@ -130,8 +130,8 @@ void MusicTXDownloadBackgroundRequest::downLoadUrl(const QString &id)
     MusicAbstractNetwork::deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(id));
-    MusicObject::setSslConfiguration(&request);
+    request.setUrl(TTK::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(id));
+    TTK::setSslConfiguration(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadUrlFinished()));

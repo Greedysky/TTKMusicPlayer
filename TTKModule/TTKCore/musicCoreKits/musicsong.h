@@ -199,7 +199,7 @@ TTK_DECLARE_LIST(MusicSongItem);
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicObject
+namespace TTK
 {
     /*!
      * Check current song playlist row is valid or not.

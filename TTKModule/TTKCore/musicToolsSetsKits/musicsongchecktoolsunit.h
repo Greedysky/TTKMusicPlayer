@@ -21,7 +21,7 @@
 
 #include "musicsong.h"
 
-namespace MusicObject
+namespace TTK
 {
     enum class Mode
     {

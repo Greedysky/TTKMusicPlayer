@@ -9,7 +9,7 @@
 MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent),
       m_playlist(nullptr),
-      m_state(MusicObject::PlayState::Stopped),
+      m_state(TTK::PlayState::Stopped),
       m_enhance(Enhance::Off),
       m_duration(0),
       m_durationTimes(0),
@@ -34,10 +34,10 @@ MusicPlayer::~MusicPlayer()
 
 bool MusicPlayer::isPlaying() const
 {
-    return m_state == MusicObject::PlayState::Playing;
+    return m_state == TTK::PlayState::Playing;
 }
 
-MusicObject::PlayState MusicPlayer::state() const
+TTK::PlayState MusicPlayer::state() const
 {
     return m_state;
 }
@@ -134,11 +134,11 @@ void MusicPlayer::play()
 {
     if(m_playlist->isEmpty())
     {
-        setCurrentPlayState(MusicObject::PlayState::Stopped);
+        setCurrentPlayState(TTK::PlayState::Stopped);
         return;
     }
 
-    setCurrentPlayState(MusicObject::PlayState::Playing);
+    setCurrentPlayState(TTK::PlayState::Playing);
     const Qmmp::State state = m_core->state(); ///Get the current state of play
 
     const QString &mediaPath = m_playlist->currentMediaPath();
@@ -153,7 +153,7 @@ void MusicPlayer::play()
     ///The current playback path
     if(!m_core->play(m_currentMedia))
     {
-        setCurrentPlayState(MusicObject::PlayState::Stopped);
+        setCurrentPlayState(TTK::PlayState::Stopped);
         return;
     }
 
@@ -165,20 +165,20 @@ void MusicPlayer::play()
 
 void MusicPlayer::pause()
 {
-    if(m_state != MusicObject::PlayState::Paused)
+    if(m_state != TTK::PlayState::Paused)
     {
         m_core->pause();
-        setCurrentPlayState(MusicObject::PlayState::Paused);
+        setCurrentPlayState(TTK::PlayState::Paused);
     }
 }
 
 void MusicPlayer::stop()
 {
-    if(m_state != MusicObject::PlayState::Stopped)
+    if(m_state != TTK::PlayState::Stopped)
     {
         m_core->stop();
         m_timer.stop();
-        setCurrentPlayState(MusicObject::PlayState::Stopped);
+        setCurrentPlayState(TTK::PlayState::Stopped);
     }
 }
 
@@ -244,20 +244,20 @@ void MusicPlayer::update()
     if(!(state == Qmmp::Playing || state == Qmmp::Paused || state == Qmmp::Buffering))
     {
         m_timer.stop();
-        if(m_playlist->playbackMode() == MusicObject::PlayMode::Once)
+        if(m_playlist->playbackMode() == TTK::PlayMode::Once)
         {
             m_core->stop();
             Q_EMIT positionChanged(0);
-            setCurrentPlayState(MusicObject::PlayState::Stopped);
+            setCurrentPlayState(TTK::PlayState::Stopped);
             return;
         }
 
         m_playlist->setCurrentIndex();
-        if(m_playlist->playbackMode() == MusicObject::PlayMode::Order && m_playlist->currentIndex() == -1)
+        if(m_playlist->playbackMode() == TTK::PlayMode::Order && m_playlist->currentIndex() == -1)
         {
             m_core->stop();
             Q_EMIT positionChanged(0);
-            setCurrentPlayState(MusicObject::PlayState::Stopped);
+            setCurrentPlayState(TTK::PlayState::Stopped);
             return;
         }
 
@@ -279,7 +279,7 @@ void MusicPlayer::queryCurrentDuration()
     }
 }
 
-void MusicPlayer::setCurrentPlayState(MusicObject::PlayState state)
+void MusicPlayer::setCurrentPlayState(TTK::PlayState state)
 {
     m_state = state;
     Q_EMIT stateChanged(m_state);

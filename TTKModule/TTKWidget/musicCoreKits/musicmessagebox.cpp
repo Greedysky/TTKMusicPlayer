@@ -12,12 +12,12 @@ MusicMessageBox::MusicMessageBox(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    m_ui->confirmButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->cancelButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->confirmButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->cancelButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
 

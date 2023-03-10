@@ -42,13 +42,13 @@ void MusicLrcLocalLinkTableWidget::addCellItems(const MusicLocalDataItemList &it
 
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(v.m_name);
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 20));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 20));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 0, item);
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.m_path);
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 1, item);
     }
@@ -65,17 +65,17 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->fuzzyButton->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->localSearchButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->commitButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->previewButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->deleteButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->titleEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
+    m_ui->fuzzyButton->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->localSearchButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->commitButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->previewButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->deleteButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->titleEdit->setStyleSheet(TTK::UI::LineEditStyle01);
 
 #ifdef Q_OS_UNIX
     m_ui->fuzzyButton->setFocusPolicy(Qt::NoFocus);
@@ -118,7 +118,7 @@ void MusicLrcLocalLinkWidget::searchInLocalLrc()
     }
 
     m_ui->fuzzyButton->isChecked();
-    const QStringList &list = QDir(MusicUtils::String::lrcDirPrefix()).entryList(QDir::Files |  QDir::Hidden | QDir::NoDotAndDotDot);
+    const QStringList &list = QDir(TTK::String::lrcDirPrefix()).entryList(QDir::Files |  QDir::Hidden | QDir::NoDotAndDotDot);
 
     MusicLocalDataItemList items;
     for(const QString &var : qAsConst(list))
@@ -127,7 +127,7 @@ void MusicLrcLocalLinkWidget::searchInLocalLrc()
         {
             MusicLocalDataItem item;
             item.m_name = var;
-            item.m_path = MusicUtils::String::lrcDirPrefix() + var;
+            item.m_path = TTK::String::lrcDirPrefix() + var;
             items << item;
         }
     }
@@ -142,7 +142,7 @@ void MusicLrcLocalLinkWidget::fuzzyStateChanged()
 
 void MusicLrcLocalLinkWidget::findInLocalFile()
 {
-    const QString &path = MusicUtils::File::getOpenFileName(this, "LRC Files (*.lrc)");
+    const QString &path = TTK::File::getOpenFileName(this, "LRC Files (*.lrc)");
     if(path.isEmpty() || m_ui->searchedTable->contains(path))
     {
         return;
@@ -188,7 +188,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
     const QByteArray data(fileIn.readAll());
     fileIn.close();
 
-    QFile fileOut(QString("%1%2%3").arg(MusicUtils::String::lrcDirPrefix(), m_currentName, LRC_FILE));
+    QFile fileOut(QString("%1%2%3").arg(TTK::String::lrcDirPrefix(), m_currentName, LRC_FILE));
     if(!fileOut.open(QIODevice::WriteOnly))
     {
         TTK_ERROR_STREAM("Lrc Output File Error");

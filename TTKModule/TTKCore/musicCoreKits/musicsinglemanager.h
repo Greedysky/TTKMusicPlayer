@@ -36,7 +36,7 @@
         manager->appendObject(#name, new name(parent));                    \
     }                                                                      \
     name *w = TTKObject_cast(name*, manager->object(#name));               \
-    MusicUtils::Widget::positionInCenter(w);                               \
+    TTK::Widget::positionInCenter(w);                               \
     w->raise();                                                            \
     w->show();                                                             \
     return w;                                                              \

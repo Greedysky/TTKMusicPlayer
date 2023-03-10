@@ -20,7 +20,7 @@ MusicWebDJRadioQueryItemWidget::MusicWebDJRadioQueryItemWidget(QWidget *parent)
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry(110, 110, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
-    m_playButton->setStyleSheet(MusicUIObject::TinyBtnPlaylist);
+    m_playButton->setStyleSheet(TTK::UI::TinyBtnPlaylist);
     connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));
 
 #ifdef Q_OS_UNIX
@@ -51,9 +51,9 @@ void MusicWebDJRadioQueryItemWidget::setResultDataItem(const MusicResultDataItem
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
-    m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
+    m_nameLabel->setText(TTK::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
     m_creatorLabel->setToolTip("by " + item.m_nickName);
-    m_creatorLabel->setText(MusicUtils::Widget::elidedText(m_creatorLabel->font(), m_creatorLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
+    m_creatorLabel->setText(TTK::Widget::elidedText(m_creatorLabel->font(), m_creatorLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
@@ -159,7 +159,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
 
         m_container->removeWidget(m_mainWindow);
         QScrollArea *scrollArea = new QScrollArea(this);
-        MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
+        TTK::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
         m_container->addWidget(scrollArea);
 
         m_initialized = true;
@@ -171,7 +171,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
 
         QPushButton *backButton = new QPushButton(tr("Back"), containTopWidget);
         backButton->setFixedSize(90, 30);
-        backButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+        backButton->setStyleSheet(TTK::UI::PushButtonStyle03);
         backButton->setCursor(QCursor(Qt::PointingHandCursor));
         connect(backButton, SIGNAL(clicked()), this, SIGNAL(backToMainMenu()));
         containTopLayout->addWidget(backButton);
@@ -182,7 +182,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(MusicUIObject::ColorStyle06);
+        line->setStyleSheet(TTK::UI::ColorStyle06);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

@@ -12,7 +12,7 @@ void MusicFMRadioChannelRequest::startRequest(const QString &id)
 {
     Q_UNUSED(id);
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(FM_CHANNEL_URL, false));
+    request.setUrl(TTK::Algorithm::mdII(FM_CHANNEL_URL, false));
     MusicFMInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);

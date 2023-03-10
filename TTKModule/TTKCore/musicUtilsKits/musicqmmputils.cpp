@@ -8,9 +8,9 @@
 #include <qmmp/effect.h>
 #include <qmmp/effectfactory.h>
 
-QString MusicUtils::TTKQmmp::pluginPath(const QString &module, const QString &format)
+QString TTK::TTKQmmp::pluginPath(const QString &module, const QString &format)
 {
-    QString path = MusicObject::applicationPath();
+    QString path = TTK::applicationPath();
 #ifdef Q_OS_WIN
     path = path + QString("plugins/%1/%2.dll").arg(module, format);
 #elif defined Q_OS_UNIX
@@ -19,7 +19,7 @@ QString MusicUtils::TTKQmmp::pluginPath(const QString &module, const QString &fo
     return path;
 }
 
-void MusicUtils::TTKQmmp::updateConfig()
+void TTK::TTKQmmp::updateConfig()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Network");
@@ -31,7 +31,7 @@ void MusicUtils::TTKQmmp::updateConfig()
     settings.endGroup();
 }
 
-void MusicUtils::TTKQmmp::enabledEffectPlugin(bool enable, const QString &name)
+void TTK::TTKQmmp::enabledEffectPlugin(bool enable, const QString &name)
 {
     for(EffectFactory *factory : Effect::factories())
     {
@@ -47,7 +47,7 @@ void MusicUtils::TTKQmmp::enabledEffectPlugin(bool enable, const QString &name)
     }
 }
 
-MusicPluginPropertyList MusicUtils::TTKQmmp::effectPlugins()
+MusicPluginPropertyList TTK::TTKQmmp::effectPlugins()
 {
     MusicPluginPropertyList properties;
     for(EffectFactory *factory : Effect::factories())
@@ -67,7 +67,7 @@ MusicPluginPropertyList MusicUtils::TTKQmmp::effectPlugins()
     return properties;
 }
 
-void MusicUtils::TTKQmmp::showEffectSetting(const QString &name, QWidget *parent)
+void TTK::TTKQmmp::showEffectSetting(const QString &name, QWidget *parent)
 {
     for(EffectFactory *factory : Effect::factories())
     {
@@ -79,7 +79,7 @@ void MusicUtils::TTKQmmp::showEffectSetting(const QString &name, QWidget *parent
     }
 }
 
-void MusicUtils::TTKQmmp::enabledVisualPlugin(const QString &name, bool enable)
+void TTK::TTKQmmp::enabledVisualPlugin(const QString &name, bool enable)
 {
     for(VisualFactory *v : Visual::factories())
     {
@@ -91,7 +91,7 @@ void MusicUtils::TTKQmmp::enabledVisualPlugin(const QString &name, bool enable)
     }
 }
 
-void MusicUtils::TTKQmmp::updateRippleConfig()
+void TTK::TTKQmmp::updateRippleConfig()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("OuterBlurWave");

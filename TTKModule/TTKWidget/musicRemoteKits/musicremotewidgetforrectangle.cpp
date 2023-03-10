@@ -18,11 +18,11 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
 
     m_songNameLabel = new MusicMarqueeWidget(this);
     mhbox->addWidget(m_songNameLabel);
-    m_songNameLabel->setStyleSheet(MusicUIObject::WidgetStyle01);
+    m_songNameLabel->setStyleSheet(TTK::UI::WidgetStyle01);
 
     m_toolWidget = new QWidget(this);
     m_toolWidget->setObjectName("ToolWidget");
-    m_toolWidget->setStyleSheet(QString("#ToolWidget{%1}").arg(MusicUIObject::BackgroundStyle04));
+    m_toolWidget->setStyleSheet(QString("#ToolWidget{%1}").arg(TTK::UI::BackgroundStyle04));
     vbox->addWidget(m_toolWidget);
 
     QHBoxLayout *hbox = new QHBoxLayout(m_toolWidget);
@@ -44,5 +44,5 @@ MusicRemoteWidgetForRectangle::~MusicRemoteWidgetForRectangle()
 
 void MusicRemoteWidgetForRectangle::setLabelText(const QString &value)
 {
-    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, width() - 20));
+    m_songNameLabel->setText(TTK::Widget::elidedText(font(), value, Qt::ElideRight, width() - 20));
 }

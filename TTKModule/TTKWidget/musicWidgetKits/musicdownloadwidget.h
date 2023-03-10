@@ -116,7 +116,7 @@ public:
     /*!
      * Create cell item by input data.
      */
-    void addCellItem(const MusicObject::MusicSongProperty &prop, const QString &type, const QString &icon);
+    void addCellItem(const TTK::MusicSongProperty &prop, const QString &type, const QString &icon);
     /*!
      * Get current bitrate from item.
      */
@@ -155,7 +155,7 @@ public:
     /*!
      * Set current name to search and download musics.
      */
-    void setSongName(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
+    void setSongName(const TTK::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
 
 Q_SIGNALS:
     /*!
@@ -202,11 +202,11 @@ private:
     /*!
      * Get match music song infomation.
      */
-    MusicObject::MusicSongInformation matchMusicSongInformation();
+    TTK::MusicSongInformation matchMusicSongInformation();
     /*!
      * Create cell items by input data.
      */
-    void addCellItems(const MusicObject::MusicSongPropertyList &props);
+    void addCellItems(const TTK::MusicSongPropertyList &props);
     /*!
      * Strat to download music.
      */
@@ -214,7 +214,7 @@ private:
     /*!
      * Strat to download music.
      */
-    void startRequestMusic(const MusicObject::MusicSongInformation &info);
+    void startRequestMusic(const TTK::MusicSongInformation &info);
     /*!
      * Strat to download movie.
      */
@@ -222,12 +222,12 @@ private:
     /*!
      * Strat to download movie.
      */
-    void startRequestMovie(const MusicObject::MusicSongInformation &info);
+    void startRequestMovie(const TTK::MusicSongInformation &info);
 
     Ui::MusicDownloadWidget *m_ui;
     bool m_querySingleInfo;
     MusicAbstractQueryRequest *m_networkRequest;
-    MusicObject::MusicSongInformation m_songInfo;
+    TTK::MusicSongInformation m_songInfo;
     MusicAbstractQueryRequest::QueryType m_queryType;
 
 };

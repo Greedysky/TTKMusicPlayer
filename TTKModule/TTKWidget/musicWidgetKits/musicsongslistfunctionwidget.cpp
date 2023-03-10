@@ -25,10 +25,10 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
 
     QToolButton *locationButton = new QToolButton(m_mainWidget);
     QToolButton *searchButton = new QToolButton(m_mainWidget);
-    locationButton->setStyleSheet(MusicUIObject::TinyBtnLocation);
+    locationButton->setStyleSheet(TTK::UI::TinyBtnLocation);
     locationButton->setCursor(QCursor(Qt::PointingHandCursor));
     locationButton->setGeometry(1, 1, 24, 24);
-    searchButton->setStyleSheet(MusicUIObject::TinyBtnLocalSearch);
+    searchButton->setStyleSheet(TTK::UI::TinyBtnLocalSearch);
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     searchButton->setGeometry(29, 1, 24, 24);
 

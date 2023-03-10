@@ -19,7 +19,7 @@ void MusicToplistQueryCategoryItem::setCategory(const MusicResultsCategory &cate
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     QLabel *label = new QLabel(category.m_category, this);
-    label->setStyleSheet(MusicUIObject::ColorStyle03 + MusicUIObject::FontStyle03);
+    label->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle03);
     label->setFixedSize(100, ITEM_LABEL_WIDTH);
     layout->addWidget(label, 0, Qt::AlignTop);
 
@@ -33,7 +33,7 @@ void MusicToplistQueryCategoryItem::setCategory(const MusicResultsCategory &cate
     for(int i = 0; i < m_category.m_items.count(); ++i)
     {
         TTKClickedLabel *l = new TTKClickedLabel(m_category.m_items[i].m_value, item);
-        l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::ColorStyle08));
+        l->setStyleSheet(QString("QLabel::hover{%1}").arg(TTK::UI::ColorStyle08));
         l->setFixedSize(200, ITEM_LABEL_WIDTH);
 
         clickedGroup->mapped(l);
@@ -69,12 +69,12 @@ void MusicToplistQueryCategoryPopWidget::setCategory(const QString &server, QObj
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
     QWidget *containWidget = new QWidget(m_containWidget);
-    containWidget->setStyleSheet(MusicUIObject::BackgroundStyle10);
+    containWidget->setStyleSheet(TTK::UI::BackgroundStyle10);
     QVBoxLayout *containLayout = new QVBoxLayout(containWidget);
     containWidget->setLayout(containLayout);
 
     QScrollArea *scrollArea = new QScrollArea(this);
-    MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, containWidget);
+    TTK::Widget::generateVScrollAreaFormat(scrollArea, containWidget);
     layout->addWidget(scrollArea);
 
     for(const MusicResultsCategory &category : qAsConst(categorys))
@@ -103,7 +103,7 @@ void MusicToplistQueryCategoryPopWidget::initialize()
     setTranslucentBackground();
     setText(tr("All"));
 
-    const QString &style = MusicUIObject::BorderStyle03 + MusicUIObject::BackgroundStyle10;
+    const QString &style = TTK::UI::BorderStyle03 + TTK::UI::BackgroundStyle10;
     setObjectName(className());
     setStyleSheet(QString("#%1{%2}").arg(className(), style));
 
@@ -111,6 +111,6 @@ void MusicToplistQueryCategoryPopWidget::initialize()
     m_containWidget->setObjectName("ContainWidget");
     m_containWidget->setStyleSheet(QString("#ContainWidget{%1}").arg(style));
 
-    m_menu->setStyleSheet(MusicUIObject::MenuStyle05);
+    m_menu->setStyleSheet(TTK::UI::MenuStyle05);
 
 }

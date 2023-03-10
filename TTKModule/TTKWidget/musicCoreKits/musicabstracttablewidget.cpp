@@ -21,7 +21,7 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     setMouseTracking(true);  //Open the capture mouse function
-    setStyleSheet(MusicUIObject::TableWidgetStyle01 + MusicUIObject::ScrollBarStyle01 + MusicUIObject::LineEditStyle01);
+    setStyleSheet(TTK::UI::TableWidgetStyle01 + TTK::UI::ScrollBarStyle01 + TTK::UI::LineEditStyle01);
 
     QFont font = this->font();
     font.setBold(false);
@@ -34,9 +34,9 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setSelectionMode(QAbstractItemView::SingleSelection);
     setFocusPolicy(Qt::NoFocus);
 
-    MusicUtils::Widget::setTransparent(this, 50);
+    TTK::Widget::setTransparent(this, 50);
 #if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
-    MusicUtils::Widget::setTransparent(this, QColor(20, 20, 20, 10));
+    TTK::Widget::setTransparent(this, QColor(20, 20, 20, 10));
 #endif
     connect(this, SIGNAL(cellEntered(int,int)), SLOT(itemCellEntered(int,int)));
     connect(this, SIGNAL(cellClicked(int,int)), SLOT(itemCellClicked(int,int)));

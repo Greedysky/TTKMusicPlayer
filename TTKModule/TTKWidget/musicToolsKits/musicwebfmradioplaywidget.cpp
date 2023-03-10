@@ -23,7 +23,7 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     m_analysis->setLineMax(9);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -31,11 +31,11 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
     m_ui->previousButton->setIcon(QIcon(":/functions/btn_previous_hover"));
     m_ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
-    m_ui->downloadButton->setStyleSheet(MusicUIObject::BtnUnDownload);
+    m_ui->downloadButton->setStyleSheet(TTK::UI::BtnUnDownload);
 
-    m_ui->playButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
-    m_ui->previousButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
-    m_ui->nextButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
+    m_ui->playButton->setStyleSheet(TTK::UI::BackgroundStyle01);
+    m_ui->previousButton->setStyleSheet(TTK::UI::BackgroundStyle01);
+    m_ui->nextButton->setStyleSheet(TTK::UI::BackgroundStyle01);
 
 #ifdef Q_OS_UNIX
     m_ui->playButton->setFocusPolicy(Qt::NoFocus);
@@ -52,12 +52,12 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     m_ui->nextButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->volumeSlider->setStyleSheet(MusicUIObject::SliderStyle10);
+    m_ui->volumeSlider->setStyleSheet(TTK::UI::SliderStyle10);
     m_ui->volumeSlider->setRange(0, 100);
     m_ui->volumeSlider->setValue(100);
 
     createCoreModule();
-    MusicUtils::Widget::positionInCenter(this);
+    TTK::Widget::positionInCenter(this);
 
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
     connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(radioPrevious()));
@@ -140,7 +140,7 @@ void MusicWebFMRadioPlayWidget::radioVolume(int num)
 
 void MusicWebFMRadioPlayWidget::radioResourceDownload()
 {
-    MusicObject::MusicSongInformation info;
+    TTK::MusicSongInformation info;
     if(m_songThread)
     {
         info = m_songThread->songInfo();
@@ -158,7 +158,7 @@ void MusicWebFMRadioPlayWidget::radioResourceDownload()
 
 void MusicWebFMRadioPlayWidget::querySongInfoFinished()
 {
-    MusicObject::MusicSongInformation info;
+    TTK::MusicSongInformation info;
     if(m_songThread)
     {
         info = m_songThread->songInfo();
@@ -183,10 +183,10 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     m_ui->volumeSlider->setValue(0);
     m_ui->volumeSlider->setValue(v);
 
-    QString name = MusicUtils::String::lrcDirPrefix() + info.m_singerName + " - " + info.m_songName + LRC_FILE;
+    QString name = TTK::String::lrcDirPrefix() + info.m_singerName + " - " + info.m_songName + LRC_FILE;
     if(!QFile::exists(name))
     {
-        MusicFMRadioDownLoadTextRequest* d = new MusicFMRadioDownLoadTextRequest(info.m_lrcUrl, name, MusicObject::Download::Lrc, this);
+        MusicFMRadioDownLoadTextRequest* d = new MusicFMRadioDownLoadTextRequest(info.m_lrcUrl, name, TTK::Download::Lrc, this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));
         d->startRequest();
     }
@@ -198,7 +198,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     name = ART_DIR_FULL + info.m_singerName + SKN_FILE;
     if(!QFile::exists(name))
     {
-        MusicDownloadDataRequest *d = new MusicDownloadDataRequest(info.m_coverUrl, name, MusicObject::Download::Cover, this);
+        MusicDownloadDataRequest *d = new MusicDownloadDataRequest(info.m_coverUrl, name, TTK::Download::Cover, this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
         d->startRequest();
     }
@@ -228,7 +228,7 @@ void MusicWebFMRadioPlayWidget::createCoreModule()
 
 void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
 {
-    MusicObject::MusicSongInformation info;
+    TTK::MusicSongInformation info;
     if(m_songThread)
     {
         info = m_songThread->songInfo();
@@ -241,12 +241,12 @@ void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
 
     const QString &name = (info.m_singerName + " - " + info.m_songName).trimmed();
     m_ui->titleWidget->setText(name);
-    m_analysis->loadFromLrcFile(MusicUtils::String::lrcDirPrefix() + name + LRC_FILE);
+    m_analysis->loadFromLrcFile(TTK::String::lrcDirPrefix() + name + LRC_FILE);
 }
 
 void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
 {
-    MusicObject::MusicSongInformation info;
+    TTK::MusicSongInformation info;
     if(m_songThread)
     {
         info = m_songThread->songInfo();
@@ -263,7 +263,7 @@ void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
         pix.load(":/image/lb_default_art");
     }
 
-    pix = MusicUtils::Image::roundedPixmap(pix, QSize(150, 150), 100, 100);
+    pix = TTK::Image::roundedPixmap(pix, QSize(150, 150), 100, 100);
     m_ui->artistLabel->setPixmap(pix);
     m_ui->artistLabel->start();
 }

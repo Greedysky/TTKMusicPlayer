@@ -107,7 +107,7 @@ public:
     /*!
      * Get current play mode.
      */
-    MusicObject::PlayMode playMode() const;
+    TTK::PlayMode playMode() const;
 
 public Q_SLOTS:
     /*!
@@ -125,7 +125,7 @@ public Q_SLOTS:
     /*!
      * Current state changed.
      */
-    void playerStateChanged(MusicObject::PlayState state);
+    void playerStateChanged(TTK::PlayState state);
     /*!
      * Show current song some information.
      */

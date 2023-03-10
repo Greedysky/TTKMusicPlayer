@@ -56,7 +56,7 @@ void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionIt
         setItem(i, 1, item);
 
                       item = new QTableWidgetItem(v.m_name);
-        item->setForeground(QColor(MusicUIObject::Color02));
+        item->setForeground(QColor(TTK::UI::Color02));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
@@ -87,7 +87,7 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -114,8 +114,8 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     m_ui->supperFunTableWidget->setRowCount(items.count());
     m_ui->supperFunTableWidget->addFunctionItems(m_ui->normalFunTableWidget->rowCount() + m_ui->lrcFunTableWidget->rowCount(), items);
 
-    m_ui->confirmButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->cancelButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->confirmButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->cancelButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
 #ifdef Q_OS_UNIX
@@ -183,7 +183,7 @@ void MusicSettingWidget::initialize()
     //
     m_ui->rippleVersionValue->setText(QString("V") + TTK_VERSION_STR);
     m_ui->rippleVersionUpdateValue->setText(TTK_VERSION_TIME_STR);
-    m_ui->rippleVersionFileValue->setText(MusicUtils::Algorithm::sha1(TTK_VERSION_TIME_STR).toHex().toUpper());
+    m_ui->rippleVersionFileValue->setText(TTK::Algorithm::sha1(TTK_VERSION_TIME_STR).toHex().toUpper());
     m_ui->rippleLowPowerModeBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool());
     m_ui->rippleSpectrumEnableBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool());
     m_ui->rippleSpectrumColorButton->setColors(MusicLrcColor::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString()));
@@ -209,8 +209,8 @@ void MusicSettingWidget::initialize()
     m_ui->downloadSpinBox->setValue(G_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt());
     G_SETTING_PTR->value(MusicSettingManager::DownloadCacheEnable).toInt() == 1 ? m_ui->downloadCacheAutoRadioBox->click() : m_ui->downloadCacheManRadioBox->click();
 
-    MusicUtils::Widget::setComboBoxText(m_ui->downloadLimitSpeedComboBox, G_SETTING_PTR->value(MusicSettingManager::DownloadDownloadLimitSize).toString());
-    MusicUtils::Widget::setComboBoxText(m_ui->uploadLimitSpeedComboBox, G_SETTING_PTR->value(MusicSettingManager::DownloadUploadLimitSize).toString());
+    TTK::Widget::setComboBoxText(m_ui->downloadLimitSpeedComboBox, G_SETTING_PTR->value(MusicSettingManager::DownloadDownloadLimitSize).toString());
+    TTK::Widget::setComboBoxText(m_ui->uploadLimitSpeedComboBox, G_SETTING_PTR->value(MusicSettingManager::DownloadUploadLimitSize).toString());
     G_SETTING_PTR->value(MusicSettingManager::DownloadLimitEnable).toInt() == 1 ? m_ui->downloadFullRadioBox->click() : m_ui->downloadLimitRadioBox->click();
 
     //
@@ -325,7 +325,7 @@ void MusicSettingWidget::downloadCacheClean()
         return;
     }
 
-    MusicUtils::File::removeRecursively(APPCACHE_DIR_FULL);
+    TTK::File::removeRecursively(APPCACHE_DIR_FULL);
     QDir dir;
     dir.mkpath(ART_DIR_FULL);
     dir.mkpath(CACHE_DIR_FULL);
@@ -347,7 +347,7 @@ void MusicSettingWidget::downloadGroupSpeedLimit(int index)
 
 void MusicSettingWidget::downloadDirSelected(int index)
 {
-    const QString &path = MusicUtils::File::getExistingDirectory(this);
+    const QString &path = TTK::File::getExistingDirectory(this);
     if(!path.isEmpty())
     {
         index == 0 ? m_ui->downloadDirEdit->setText(path) : m_ui->downloadLrcDirEdit->setText(path);
@@ -728,14 +728,14 @@ void MusicSettingWidget::initScrollWidgetPage()
 
 void MusicSettingWidget::initNormalSettingWidget()
 {
-    m_ui->autoPlayCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->backPlayCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->minimumRadioBox->setStyleSheet(MusicUIObject::RadioButtonStyle01);
-    m_ui->quitRadioBox->setStyleSheet(MusicUIObject::RadioButtonStyle01);
-    m_ui->quitOpacityRadioBox->setStyleSheet(MusicUIObject::RadioButtonStyle01);
-    m_ui->quitWindowRadioBox->setStyleSheet(MusicUIObject::RadioButtonStyle01);
-    m_ui->setDefaultPlayerCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->closeNetWorkCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
+    m_ui->autoPlayCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->backPlayCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->minimumRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
+    m_ui->quitRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
+    m_ui->quitOpacityRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
+    m_ui->quitWindowRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
+    m_ui->setDefaultPlayerCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->closeNetWorkCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 
     QButtonGroup *buttonGroup1 = new QButtonGroup(this);
     buttonGroup1->addButton(m_ui->minimumRadioBox, 0);
@@ -757,10 +757,10 @@ void MusicSettingWidget::initNormalSettingWidget()
 
     m_ui->quitWindowRadioBox->hide();
 #endif
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->languageComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->languageComboBox);
     m_ui->languageComboBox->addItems({tr("0"), tr("1"), tr("2")});
 
-    m_ui->globalHotkeyBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
+    m_ui->globalHotkeyBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_ui->globalHotkeyBox->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -769,15 +769,15 @@ void MusicSettingWidget::initNormalSettingWidget()
 
 void MusicSettingWidget::initSpectrumSettingWidget()
 {
-    m_ui->rippleLowPowerModeBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->rippleSpectrumEnableBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
+    m_ui->rippleLowPowerModeBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->rippleSpectrumEnableBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 
     m_ui->rippleSpectrumColorButton->setText(tr("Effect"));
     connect(m_ui->rippleSpectrumColorButton, SIGNAL(clicked()), SLOT(rippleSpectrumColorChanged()));
     connect(m_ui->rippleLowPowerModeBox, SIGNAL(clicked(bool)), SLOT(rippleLowPowerEnableBoxClicked(bool)));
     connect(m_ui->rippleSpectrumEnableBox, SIGNAL(clicked(bool)), SLOT(rippleSpectrumOpacityEnableClicked(bool)));
 
-    m_ui->rippleVersionUpdateButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->rippleVersionUpdateButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->rippleVersionUpdateButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->rippleVersionUpdateButton, SIGNAL(clicked()), SLOT(rippleVersionUpdateChanged()));
 #ifdef Q_OS_UNIX
@@ -789,16 +789,16 @@ void MusicSettingWidget::initSpectrumSettingWidget()
 
 void MusicSettingWidget::initOtherSettingWidget()
 {
-    m_ui->otherCheckUpdateBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->otherReadAlbumCoverCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->otherReadInfoCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->otherWriteAlbumCoverCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->otherWriteInfoCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->otherSideByCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->otherLrcKTVCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->otherScreenSaverCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
+    m_ui->otherCheckUpdateBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherReadAlbumCoverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherReadInfoCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherWriteAlbumCoverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherWriteInfoCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherSideByCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherLrcKTVCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherScreenSaverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 
-    m_ui->otherPluginManagerButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->otherPluginManagerButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->otherPluginManagerButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->otherPluginManagerButton, SIGNAL(clicked()), SLOT(otherPluginManagerChanged()));
 #ifdef Q_OS_UNIX
@@ -816,19 +816,19 @@ void MusicSettingWidget::initOtherSettingWidget()
 
 void MusicSettingWidget::initDownloadWidget()
 {
-    m_ui->downloadDirEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
-    m_ui->downloadLrcDirEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
+    m_ui->downloadDirEdit->setStyleSheet(TTK::UI::LineEditStyle01);
+    m_ui->downloadLrcDirEdit->setStyleSheet(TTK::UI::LineEditStyle01);
 
-    m_ui->downloadDirButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->downloadLrcDirButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->downloadCacheCleanButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->downloadDirButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->downloadLrcDirButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->downloadCacheCleanButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->downloadDirButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadLrcDirButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadCacheCleanButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->downloadCacheAutoRadioBox->setStyleSheet(MusicUIObject::RadioButtonStyle01);
-    m_ui->downloadCacheManRadioBox->setStyleSheet(MusicUIObject::RadioButtonStyle01);
-    m_ui->downloadFullRadioBox->setStyleSheet(MusicUIObject::RadioButtonStyle01);
-    m_ui->downloadLimitRadioBox->setStyleSheet(MusicUIObject::RadioButtonStyle01);
+    m_ui->downloadCacheAutoRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
+    m_ui->downloadCacheManRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
+    m_ui->downloadFullRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
+    m_ui->downloadLimitRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
 #ifdef Q_OS_UNIX
     m_ui->downloadDirButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadLrcDirButton->setFocusPolicy(Qt::NoFocus);
@@ -838,11 +838,11 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadFullRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadLimitRadioBox->setFocusPolicy(Qt::NoFocus);
 #endif
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->downloadServerComboBox);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->downloadLimitSpeedComboBox);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->uploadLimitSpeedComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->downloadServerComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->downloadLimitSpeedComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->uploadLimitSpeedComboBox);
 
-    m_ui->downloadSpinBox->setStyleSheet(MusicUIObject::SpinBoxStyle01);
+    m_ui->downloadSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
     m_ui->downloadSpinBox->setRange(1024, 5 * 1024);
     m_ui->downloadDirEdit->setText(MUSIC_DIR_FULL);
     m_ui->downloadLrcDirEdit->setText(LRC_DIR_FULL);
@@ -879,13 +879,13 @@ void MusicSettingWidget::initDownloadWidget()
 
 void MusicSettingWidget::initDesktopLrcWidget()
 {
-    m_ui->showDesktopCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->DSingleLineCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
+    m_ui->showDesktopCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->DSingleLineCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->DfontComboBox);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->DfontSizeComboBox);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->DfontTypeComboBox);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->DfontDefaultColorComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->DfontComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->DfontSizeComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->DfontTypeComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->DfontDefaultColorComboBox);
 
     m_ui->DfontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     m_ui->DfontSizeComboBox->addItems(MusicLrcDefines().desktopLrcSize());
@@ -897,14 +897,14 @@ void MusicSettingWidget::initDesktopLrcWidget()
     connect(m_ui->DfontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
     connect(m_ui->DfontDefaultColorComboBox, SIGNAL(currentIndexChanged(int)), SLOT(defaultDesktopLrcColorChanged(int)));
 
-    m_ui->DtransparentSlider->setStyleSheet(MusicUIObject::SliderStyle06);
+    m_ui->DtransparentSlider->setStyleSheet(TTK::UI::SliderStyle06);
     m_ui->DnoPlayedPushButton->setText(tr("No"));
     m_ui->DplayedPushButton->setText(tr("Yes"));
     connect(m_ui->DnoPlayedPushButton, SIGNAL(clicked()), SLOT(desktopBackgroundChanged()));
     connect(m_ui->DplayedPushButton, SIGNAL(clicked()), SLOT(desktopFrontgroundChanged()));
     connect(m_ui->DtransparentSlider, SIGNAL(valueChanged(int)), SLOT(desktopLrcTransChanged(int)));
 
-    m_ui->DresetPushButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->DresetPushButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->DresetPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->DresetPushButton, SIGNAL(clicked()), SLOT(resetDesktopParameter()));
 #ifdef Q_OS_UNIX
@@ -918,10 +918,10 @@ void MusicSettingWidget::initDesktopLrcWidget()
 
 void MusicSettingWidget::initInteriorLrcWidget()
 {
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->fontComboBox);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->fontSizeComboBox);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->fontTypeComboBox);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->fontDefaultColorComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->fontComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->fontSizeComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->fontTypeComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->fontDefaultColorComboBox);
 
     m_ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     m_ui->fontSizeComboBox->addItems(MusicLrcDefines().interiorLrcSize());
@@ -933,14 +933,14 @@ void MusicSettingWidget::initInteriorLrcWidget()
     connect(m_ui->fontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInteriorLrcDemo()));
     connect(m_ui->fontDefaultColorComboBox, SIGNAL(currentIndexChanged(int)), SLOT(defaultLrcColorChanged(int)));
 
-    m_ui->transparentSlider->setStyleSheet(MusicUIObject::SliderStyle06);
+    m_ui->transparentSlider->setStyleSheet(TTK::UI::SliderStyle06);
     m_ui->noPlayedPushButton->setText(tr("No"));
     m_ui->playedPushButton->setText(tr("Yes"));
     connect(m_ui->noPlayedPushButton, SIGNAL(clicked()), SLOT(interiorLrcBackgroundChanged()));
     connect(m_ui->playedPushButton, SIGNAL(clicked()), SLOT(interiorLrcFrontgroundChanged()));
     connect(m_ui->transparentSlider, SIGNAL(valueChanged(int)), SLOT(interiorLrcTransChanged(int)));
 
-    m_ui->resetPushButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->resetPushButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->resetPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->resetPushButton, SIGNAL(clicked()), SLOT(resetInteriorParameter()));
 #ifdef Q_OS_UNIX
@@ -952,27 +952,27 @@ void MusicSettingWidget::initInteriorLrcWidget()
 
 void MusicSettingWidget::initSoundEffectWidget()
 {
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->outputTypeComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->outputTypeComboBox);
     for(const QAudioDeviceInfo &info : QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
     {
         m_ui->outputTypeComboBox->addItem(info.deviceName());
     }
 
-    m_ui->fadeInAndOutCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
+    m_ui->fadeInAndOutCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->fadeInAndOutCheckBox->setEnabled(false);
 
-    m_ui->fadeInSpinBox->setStyleSheet(MusicUIObject::SpinBoxStyle01);
+    m_ui->fadeInSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
     m_ui->fadeInSpinBox->setRange(1, 10 * MT_S2MS);
     m_ui->fadeInSpinBox->setValue(600);
     m_ui->fadeInSpinBox->setEnabled(false);
 
-    m_ui->fadeOutSpinBox->setStyleSheet(MusicUIObject::SpinBoxStyle01);
+    m_ui->fadeOutSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
     m_ui->fadeOutSpinBox->setRange(1, 10 * MT_S2MS);
     m_ui->fadeOutSpinBox->setValue(600);
     m_ui->fadeOutSpinBox->setEnabled(false);
 
-    m_ui->equalizerButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->equalizerPluginsButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->equalizerButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->equalizerPluginsButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->equalizerButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->equalizerPluginsButton->setCursor(QCursor(Qt::PointingHandCursor));
 
@@ -989,17 +989,17 @@ void MusicSettingWidget::initSoundEffectWidget()
 
 void MusicSettingWidget::initAudioSettingWidget()
 {
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->replayGainModeComboBox);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->bitDepthComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->replayGainModeComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->bitDepthComboBox);
 
-    m_ui->preampSpinBox->setStyleSheet(MusicUIObject::SpinBoxStyle01);
-    m_ui->defaultGainSpinBox->setStyleSheet(MusicUIObject::SpinBoxStyle01);
-    m_ui->volumeStepSpinBox->setStyleSheet(MusicUIObject::SpinBoxStyle01);
-    m_ui->bufferSizeSpinBox->setStyleSheet(MusicUIObject::SpinBoxStyle01);
+    m_ui->preampSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
+    m_ui->defaultGainSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
+    m_ui->volumeStepSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
+    m_ui->bufferSizeSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
 
-    m_ui->clippingCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->softVolumeCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
-    m_ui->ditheringCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
+    m_ui->clippingCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->softVolumeCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->ditheringCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_ui->clippingCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->softVolumeCheckBox->setFocusPolicy(Qt::NoFocus);
@@ -1016,19 +1016,19 @@ void MusicSettingWidget::initAudioSettingWidget()
 
 void MusicSettingWidget::initNetworkWidget()
 {
-    m_ui->proxyIpEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
-    m_ui->proxyPortEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
-    m_ui->proxyPwdEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
-    m_ui->proxyUsernameEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
-    m_ui->proxyAreaEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
+    m_ui->proxyIpEdit->setStyleSheet(TTK::UI::LineEditStyle01);
+    m_ui->proxyPortEdit->setStyleSheet(TTK::UI::LineEditStyle01);
+    m_ui->proxyPwdEdit->setStyleSheet(TTK::UI::LineEditStyle01);
+    m_ui->proxyUsernameEdit->setStyleSheet(TTK::UI::LineEditStyle01);
+    m_ui->proxyAreaEdit->setStyleSheet(TTK::UI::LineEditStyle01);
 
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->proxyTypeComboBox);
+    TTK::Widget::generateComboBoxFormat(m_ui->proxyTypeComboBox);
 
-    m_ui->proxyTypeTestButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->proxyTypeTestButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->proxyTypeTestButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->netConnectionTypeButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->netConnectionTypeButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->netConnectionTypeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->netCheckTypeButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->netCheckTypeButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->netCheckTypeButton->setCursor(QCursor(Qt::PointingHandCursor));
 #ifdef Q_OS_UNIX
     m_ui->proxyTypeTestButton->setFocusPolicy(Qt::NoFocus);

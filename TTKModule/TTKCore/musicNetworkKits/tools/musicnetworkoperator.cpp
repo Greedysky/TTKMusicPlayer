@@ -13,7 +13,7 @@ void MusicNetworkOperator::startRequest()
 {
     MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startRequest(MusicUtils::Algorithm::mdII(IP_CHECK_URL, false));
+    d->startRequest(TTK::Algorithm::mdII(IP_CHECK_URL, false));
 }
 
 void MusicNetworkOperator::downLoadFinished(const QByteArray &bytes)

@@ -51,7 +51,7 @@ bool MusicTKPLConfigManager::writeBuffer(const MusicSongItemList &items, const Q
             QString playTime = song.playTime();
             if(item.m_itemIndex == MUSIC_NETWORK_LIST && playTime == TTK_DEFAULT_STR)
             {
-                playTime = MusicObject::generateNetworkSongTime(song.path());
+                playTime = TTK::generateNetworkSongTime(song.path());
             }
 
             writeDomMutilElementText(pathDom, "value", {{"name", song.name()},

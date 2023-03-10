@@ -60,7 +60,7 @@ public:
     /*!
      * Set search data quality.
      */
-    void setSearchQuality(MusicObject::QueryQuality quality);
+    void setSearchQuality(TTK::QueryQuality quality);
     /*!
      * Resize section bound by resize called.
      */
@@ -137,7 +137,7 @@ public:
     /*!
      * Research query by quality it changed.
      */
-    void researchQueryByQuality(const QString &name, MusicObject::QueryQuality quality);
+    void researchQueryByQuality(const QString &name, TTK::QueryQuality quality);
     /*!
      * Resize window bound by resize called.
      */

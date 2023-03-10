@@ -35,7 +35,7 @@ MusicSong::MusicSong(const QString &path, const QString &playTime, const QString
     m_path = path;
     m_path.replace("\\", TTK_SEPARATOR);
 
-    const QFileInfo fin(!track ? m_path : MusicObject::trackRelatedPath(m_path));
+    const QFileInfo fin(!track ? m_path : TTK::trackRelatedPath(m_path));
     m_name = name;
     if(m_name.isEmpty())
     {
@@ -47,17 +47,17 @@ MusicSong::MusicSong(const QString &path, const QString &playTime, const QString
     m_addTime = fin.lastModified().toMSecsSinceEpoch();
     m_playTime = playTime;
     m_addTimeStr = QString::number(m_addTime);
-    m_sizeStr = MusicUtils::Number::sizeByteToLabel(m_size);
+    m_sizeStr = TTK::Number::sizeByteToLabel(m_size);
 }
 
 QString MusicSong::artistFront() const
 {
-    return MusicUtils::String::artistName(m_name);
+    return TTK::String::artistName(m_name);
 }
 
 QString MusicSong::artistBack() const
 {
-    return MusicUtils::String::songName(m_name);
+    return TTK::String::songName(m_name);
 }
 
 bool MusicSong::operator== (const MusicSong &other) const
@@ -96,12 +96,12 @@ bool MusicSong::operator> (const MusicSong &other) const
 }
 
 
-bool MusicObject::playlistRowValid(int index)
+bool TTK::playlistRowValid(int index)
 {
     return index != MUSIC_LOVEST_LIST && index != MUSIC_NETWORK_LIST && index != MUSIC_RECENT_LIST;
 }
 
-QString MusicObject::trackRelatedPath(const QString &path)
+QString TTK::trackRelatedPath(const QString &path)
 {
     if(!MusicFormats::songTrackValid(path))
     {
@@ -113,12 +113,12 @@ QString MusicObject::trackRelatedPath(const QString &path)
     return url;
 }
 
-QString MusicObject::generateSongName(const QString &title, const QString &artist)
+QString TTK::generateSongName(const QString &title, const QString &artist)
 {
     return (title.isEmpty() || artist.isEmpty()) ? artist + title : artist + " - " + title;
 }
 
-MusicSongList MusicObject::generateSongList(const QString &path)
+MusicSongList TTK::generateSongList(const QString &path)
 {
     MusicSongList songs;
     MusicSongMeta meta;
@@ -136,7 +136,7 @@ MusicSongList MusicObject::generateSongList(const QString &path)
         QString name;
         if(G_SETTING_PTR->value(MusicSettingManager::OtherReadFileInfo).toBool())
         {
-            name = MusicObject::generateSongName(meta.title(), meta.artist());
+            name = TTK::generateSongName(meta.title(), meta.artist());
         }
 
         const QString &path = meta.fileBasePath();
@@ -145,7 +145,7 @@ MusicSongList MusicObject::generateSongList(const QString &path)
 
     if(!(songs.isEmpty() || meta.lyrics().isEmpty()))
     {
-        QFile file(MusicUtils::String::lrcDirPrefix() + songs.back().name() + LRC_FILE);
+        QFile file(TTK::String::lrcDirPrefix() + songs.back().name() + LRC_FILE);
         if(file.open(QIODevice::WriteOnly))
         {
             file.write(meta.lyrics().toUtf8());
@@ -155,16 +155,16 @@ MusicSongList MusicObject::generateSongList(const QString &path)
     return songs;
 }
 
-QString MusicObject::generateNetworkSongTime(const QString &path)
+QString TTK::generateNetworkSongTime(const QString &path)
 {
     MusicSongMeta meta;
-    return meta.read(MusicObject::generateNetworkSongPath(path)) ? meta.duration() : TTK_DEFAULT_STR;
+    return meta.read(TTK::generateNetworkSongPath(path)) ? meta.duration() : TTK_DEFAULT_STR;
 }
 
-QString MusicObject::generateNetworkSongPath(const QString &path)
+QString TTK::generateNetworkSongPath(const QString &path)
 {
     QString v = path;
-    if(MusicUtils::String::isNetworkUrl(path))
+    if(TTK::String::isNetworkUrl(path))
     {
         /*Replace network url path to local path*/
         const QString &id = path.section("#", -1);

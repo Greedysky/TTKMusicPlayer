@@ -100,7 +100,7 @@ void MusicMPRISPlayerRoot::Raise()
 MusicMPRISPlayerCore::MusicMPRISPlayerCore(QObject *parent)
     : QDBusAbstractAdaptor(parent)
 {
-    TTKObject::initRandom();
+    TTK::initRandom();
 
     m_prevTrack = 0;
     m_prevPos = 0;
@@ -111,7 +111,7 @@ MusicMPRISPlayerCore::MusicMPRISPlayerCore(QObject *parent)
     connect(m_core, SIGNAL(stateChanged(Qmmp::State)), SLOT(stateChanged()));
     connect(m_core, SIGNAL(volumeChanged(int)), SLOT(volumeChanged()));
     connect(m_core, SIGNAL(elapsedChanged(qint64)), SLOT(elapsedChanged(qint64)));
-    connect(m_application->m_playlist, SIGNAL(playbackModeChanged(MusicObject::PlayMode)), SLOT(playbackModeChanged()));
+    connect(m_application->m_playlist, SIGNAL(playbackModeChanged(TTK::PlayMode)), SLOT(playbackModeChanged()));
 
     updateTrackID();
     syncProperties();
@@ -150,8 +150,8 @@ QString MusicMPRISPlayerCore::loopStatus() const
 {
     switch(m_application->playMode())
     {
-        case MusicObject::PlayMode::OneLoop: return "Track";
-        case MusicObject::PlayMode::ListLoop: return "Playlist";
+        case TTK::PlayMode::OneLoop: return "Track";
+        case TTK::PlayMode::ListLoop: return "Playlist";
         default: return "None";
     }
 }
@@ -282,12 +282,12 @@ void MusicMPRISPlayerCore::setRate(double value)
 
 bool MusicMPRISPlayerCore::shuffle() const
 {
-    return m_application->playMode() == MusicObject::PlayMode::Random;
+    return m_application->playMode() == TTK::PlayMode::Random;
 }
 
 void MusicMPRISPlayerCore::setShuffle(bool value)
 {
-    m_application->m_playlist->setPlaybackMode(value ? MusicObject::PlayMode::Random : MusicObject::PlayMode::Order);
+    m_application->m_playlist->setPlaybackMode(value ? TTK::PlayMode::Random : TTK::PlayMode::Order);
 }
 
 double MusicMPRISPlayerCore::volume() const
@@ -401,7 +401,7 @@ void MusicMPRISPlayerCore::updateTrackID()
 {
     if(m_prevTrack != m_application->m_playlist->currentIndex())
     {
-        m_trackID = QDBusObjectPath(QString("%1/Track/%2").arg("/org/qmmp/MediaPlayer2").arg(TTKObject::random()));
+        m_trackID = QDBusObjectPath(QString("%1/Track/%2").arg("/org/qmmp/MediaPlayer2").arg(TTK::random()));
         m_prevTrack = m_application->m_playlist->currentIndex();
     }
 }

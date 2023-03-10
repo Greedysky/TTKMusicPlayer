@@ -45,7 +45,7 @@ MusicPlayedListPopWidget::MusicPlayedListPopWidget(QWidget *parent)
     m_instance = this;
 
     setToolTip(tr("Played List"));
-    setStyleSheet(MusicUIObject::BtnPlayedList);
+    setStyleSheet(TTK::UI::BtnPlayedList);
 
     initialize();
 }
@@ -318,7 +318,7 @@ void MusicPlayedListPopWidget::initialize()
 
     m_scrollArea = new QScrollArea(this);
 
-    const QString &background = MusicUIObject::BackgroundStyle10;
+    const QString &background = TTK::UI::BackgroundStyle10;
     QWidget *view = m_scrollArea->viewport();
     view->setObjectName("Viewport");
     view->setStyleSheet(QString("#Viewport{%1}").arg(background));
@@ -335,7 +335,7 @@ void MusicPlayedListPopWidget::initialize()
     playedListLayout->addWidget(m_playedListWidget);
     playedListContainer->setLayout(playedListLayout);
 
-    MusicUtils::Widget::generateVScrollAreaFormat(m_scrollArea, playedListContainer);
+    TTK::Widget::generateVScrollAreaFormat(m_scrollArea, playedListContainer);
     m_playedListWidget->setMovedScrollBar(m_scrollArea->verticalScrollBar());
 
     containLayout->addWidget(m_scrollArea);
@@ -347,24 +347,24 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     MusicPlayedListTopContainerWidget *topWidget = new MusicPlayedListTopContainerWidget(this);
 #ifdef Q_OS_UNIX
     topWidget->setObjectName("TopWidget");
-    topWidget->setStyleSheet(QString("#TopWidget{%1}").arg(MusicUIObject::BackgroundStyle10));
+    topWidget->setStyleSheet(QString("#TopWidget{%1}").arg(TTK::UI::BackgroundStyle10));
 #endif
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setSpacing(15);
     QLabel *label = new QLabel(tr("Played List"), topWidget);
-    label->setStyleSheet(MusicUIObject::ColorStyle10 + MusicUIObject::FontStyle01 + MusicUIObject::FontStyle03);
+    label->setStyleSheet(TTK::UI::ColorStyle10 + TTK::UI::FontStyle01 + TTK::UI::FontStyle03);
 
     QPushButton *shareButton = new QPushButton(this);
     shareButton->setFixedSize(16, 16);
     shareButton->setToolTip(tr("Share List"));
     shareButton->setCursor(QCursor(Qt::PointingHandCursor));
-    shareButton->setStyleSheet(MusicUIObject::TinyBtnShare);
+    shareButton->setStyleSheet(TTK::UI::TinyBtnShare);
 
     QPushButton *deleteButton = new QPushButton(this);
     deleteButton->setFixedSize(16, 16);
     deleteButton->setToolTip(tr("Clear List"));
     deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
-    deleteButton->setStyleSheet(MusicUIObject::TinyBtnDelete);
+    deleteButton->setStyleSheet(TTK::UI::TinyBtnDelete);
     connect(deleteButton, SIGNAL(clicked()), SLOT(setDeleteItemAll()));
 
 #ifdef Q_OS_UNIX
@@ -376,7 +376,7 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     closeButton->setFixedSize(16, 16);
     closeButton->setToolTip(tr("Close List"));
     closeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    closeButton->setStyleSheet(MusicUIObject::TinyBtnClose);
+    closeButton->setStyleSheet(TTK::UI::TinyBtnClose);
     connect(closeButton, SIGNAL(clicked()), m_menu, SLOT(close()));
 
     topWidgetLayout->addWidget(label);

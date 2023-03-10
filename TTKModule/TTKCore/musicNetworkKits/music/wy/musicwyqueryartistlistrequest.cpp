@@ -43,8 +43,8 @@ void MusicWYQueryArtistListRequest::startToPage(int offset)
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_LIST_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_LIST_DATA_URL, false).arg(catId).arg(0).arg(100).arg(initial));
+                      TTK::Algorithm::mdII(WY_ARTIST_LIST_URL, false),
+                      TTK::Algorithm::mdII(WY_ARTIST_LIST_DATA_URL, false).arg(catId).arg(0).arg(100).arg(initial));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

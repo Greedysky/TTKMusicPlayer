@@ -7,7 +7,7 @@
 static TTKPushButtonItemDelegate *makeButtonItemDelegate(QObject *parent)
 {
     TTKPushButtonItemDelegate *delegate = new TTKPushButtonItemDelegate(parent);
-    delegate->setStyleSheet(MusicUIObject::BorderStyle03 + MusicUIObject::BorderStyle06 + MusicUIObject::BackgroundStyle10);
+    delegate->setStyleSheet(TTK::UI::BorderStyle03 + TTK::UI::BorderStyle06 + TTK::UI::BackgroundStyle10);
     return delegate;
 }
 
@@ -47,13 +47,13 @@ void MusicSongCheckToolsRenameTableWidget::addCellItems(const MusicSongCheckTool
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.m_locaName);
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
         item->setToolTip(v.m_recommendName);
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 10));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
@@ -131,7 +131,7 @@ void MusicSongCheckToolsDuplicateTableWidget::addCellItems(const MusicSongCheckT
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.m_song.name());
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 45));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 45));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
@@ -247,7 +247,7 @@ void MusicSongCheckToolsQualityTableWidget::addCellItems(const MusicSongCheckToo
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.m_song.name());
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
@@ -269,7 +269,7 @@ void MusicSongCheckToolsQualityTableWidget::addCellItems(const MusicSongCheckToo
                 item = new QTableWidgetItem;
         QColor color;
         QString bitrate;
-        MusicUtils::Number::bitrateToQuality(MusicUtils::Number::bitrateToLevel(v.m_bitrate), bitrate, color);
+        TTK::Number::bitrateToQuality(TTK::Number::bitrateToLevel(v.m_bitrate), bitrate, color);
         item->setText(bitrate);
         item->setForeground(color);
         QtItemSetTextAlignment(item, Qt::AlignCenter);

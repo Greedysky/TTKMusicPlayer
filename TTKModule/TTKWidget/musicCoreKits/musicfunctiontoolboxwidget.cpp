@@ -27,9 +27,9 @@ MusicFunctionToolBoxTopWidget::MusicFunctionToolBoxTopWidget(int index, const QS
     m_labelIcon->setPixmap(QPixmap(":/tiny/lb_arrow_up_normal"));
 
     m_labelText = new QLabel(this);
-    m_labelText->setStyleSheet(MusicUIObject::ColorStyle09);
+    m_labelText->setStyleSheet(TTK::UI::ColorStyle09);
     m_labelText->setText(text);
-    MusicUtils::Widget::setLabelFontStyle(m_labelText, MusicObject::FontStyleMode::Bold);
+    TTK::Widget::setLabelFontStyle(m_labelText, TTK::FontStyleMode::Bold);
 
     topLayout->addWidget(m_labelIcon);
     topLayout->addWidget(m_labelText);
@@ -57,7 +57,7 @@ bool MusicFunctionToolBoxTopWidget::isItemExpand() const
 
 void MusicFunctionToolBoxTopWidget::setTitle(const QString &text)
 {
-    m_labelText->setText(MusicUtils::Widget::elidedText(m_labelText->font(), text, Qt::ElideRight, RENAME_WIDTH - 10));
+    m_labelText->setText(TTK::Widget::elidedText(m_labelText->font(), text, Qt::ElideRight, RENAME_WIDTH - 10));
     m_labelText->setToolTip(text);
 }
 
@@ -282,7 +282,7 @@ MusicFunctionToolBoxWidget::MusicFunctionToolBoxWidget(QWidget *parent)
     m_contentsWidget->setLayout(m_layout);
 
     m_scrollArea = new QScrollArea(this);
-    MusicUtils::Widget::generateVScrollAreaFormat(m_scrollArea, m_contentsWidget, false);
+    TTK::Widget::generateVScrollAreaFormat(m_scrollArea, m_contentsWidget, false);
 
     setTransparent(0);
 

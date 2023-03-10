@@ -74,7 +74,7 @@ void MusicLrcContainerForDesktop::initCurrentLrc() const
 
 void MusicLrcContainerForDesktop::setCurrentPlayStatus(bool status) const
 {
-    m_toolPlayButton->setStyleSheet(status ? MusicUIObject::DeskTopPause : MusicUIObject::DeskTopPlay);
+    m_toolPlayButton->setStyleSheet(status ? TTK::UI::DeskTopPause : TTK::UI::DeskTopPlay);
 }
 
 void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first, const QString &second, qint64 time)
@@ -108,7 +108,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
     if(m_windowLocked)
     {
        m_toolBarWidget->hide();
-       setStyleSheet(MusicUIObject::BackgroundStyle01);
+       setStyleSheet(TTK::UI::BackgroundStyle01);
     }
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcLockedMode,  m_windowLocked ? 1 : 0);
     MusicBottomAreaWidget::instance()->lockDesktopLrc(m_windowLocked);
@@ -135,7 +135,7 @@ void MusicLrcContainerForDesktop::setLrcSmallerChanged()
 void MusicLrcContainerForDesktop::toolStyleChanged()
 {
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
     createColorMenu(menu);
     menu.exec(QCursor::pos());
 }
@@ -196,7 +196,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolBarLayout->addStretch(1);
 
     m_toolBarWidget->setObjectName("ToolBarWidget");
-    m_toolBarWidget->setStyleSheet(QString("#ToolBarWidget{%1}").arg(MusicUIObject::BackgroundStyle05));
+    m_toolBarWidget->setStyleSheet(QString("#ToolBarWidget{%1}").arg(TTK::UI::BackgroundStyle05));
     m_toolBarWidget->setLayout(m_toolBarLayout);
 
     QPushButton *showMainWindow = new QPushButton(m_toolBarWidget);
@@ -290,21 +290,21 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     toolSettingButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_toolPlayButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    showMainWindow->setStyleSheet(MusicUIObject::PushButtonStyle02);
-    toolCloseButton->setStyleSheet(MusicUIObject::BtnTClose);
-    toolStyleButton->setStyleSheet(MusicUIObject::DeskTopStyle);
-    toolWindowLockedButton->setStyleSheet(MusicUIObject::DeskTopLock);
-    toolLrcSmallerButton->setStyleSheet(MusicUIObject::DeskTopSizeDown);
-    toolLrcBigerButton->setStyleSheet(MusicUIObject::DeskTopSizeUp);
-    toolPreSongButton->setStyleSheet(MusicUIObject::DeskTopPrevious);
-    toolNextSongButton->setStyleSheet(MusicUIObject::DeskTopNext);
-    toolSettingButton->setStyleSheet(MusicUIObject::DeskTopSetting);
-    m_toolPlayButton->setStyleSheet(MusicUIObject::DeskTopPlay);
+    showMainWindow->setStyleSheet(TTK::UI::PushButtonStyle02);
+    toolCloseButton->setStyleSheet(TTK::UI::BtnTClose);
+    toolStyleButton->setStyleSheet(TTK::UI::DeskTopStyle);
+    toolWindowLockedButton->setStyleSheet(TTK::UI::DeskTopLock);
+    toolLrcSmallerButton->setStyleSheet(TTK::UI::DeskTopSizeDown);
+    toolLrcBigerButton->setStyleSheet(TTK::UI::DeskTopSizeUp);
+    toolPreSongButton->setStyleSheet(TTK::UI::DeskTopPrevious);
+    toolNextSongButton->setStyleSheet(TTK::UI::DeskTopNext);
+    toolSettingButton->setStyleSheet(TTK::UI::DeskTopSetting);
+    m_toolPlayButton->setStyleSheet(TTK::UI::DeskTopPlay);
 
-    toolWindowTypeButton->setStyleSheet(m_verticalWindow ? MusicUIObject::DeskTopHorizontal : MusicUIObject::DeskTopVertical);
-    toolMakeLrcTextButton->setStyleSheet(m_verticalWindow ? MusicUIObject::DeskTopVMakeLrc : MusicUIObject::DeskTopHMakeLrc);
-    toolSearchLrcTextButton->setStyleSheet(m_verticalWindow ? MusicUIObject::DeskTopVSearchLrc : MusicUIObject::DeskTopHSearchLrc);
-    toolUpdateLrcTextButton->setStyleSheet(m_verticalWindow ? MusicUIObject::DeskTopVUpdateLrc : MusicUIObject::DeskTopHUpdateLrc);
+    toolWindowTypeButton->setStyleSheet(m_verticalWindow ? TTK::UI::DeskTopHorizontal : TTK::UI::DeskTopVertical);
+    toolMakeLrcTextButton->setStyleSheet(m_verticalWindow ? TTK::UI::DeskTopVMakeLrc : TTK::UI::DeskTopHMakeLrc);
+    toolSearchLrcTextButton->setStyleSheet(m_verticalWindow ? TTK::UI::DeskTopVSearchLrc : TTK::UI::DeskTopHSearchLrc);
+    toolUpdateLrcTextButton->setStyleSheet(m_verticalWindow ? TTK::UI::DeskTopVUpdateLrc : TTK::UI::DeskTopHUpdateLrc);
 
     showMainWindow->setToolTip(tr("Show MainWindow"));
     toolCloseButton->setToolTip(tr("Hide"));
@@ -368,7 +368,7 @@ void MusicLrcContainerForDesktop::enterEvent(QtEnterEvent *event)
 
     MusicLrcContainer::enterEvent(event);
     m_toolBarWidget->show();
-    setStyleSheet(QString("#DesktopWidget{%1}").arg(MusicUIObject::BackgroundStyle05));
+    setStyleSheet(QString("#DesktopWidget{%1}").arg(TTK::UI::BackgroundStyle05));
 }
 
 void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
@@ -380,7 +380,7 @@ void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
 
     MusicLrcContainer::leaveEvent(event);
     m_toolBarWidget->hide();
-    setStyleSheet(QString("#DesktopWidget{%1}").arg(MusicUIObject::BackgroundStyle01));
+    setStyleSheet(QString("#DesktopWidget{%1}").arg(TTK::UI::BackgroundStyle01));
 }
 
 void MusicLrcContainerForDesktop::closeEvent(QCloseEvent *event)
@@ -394,7 +394,7 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
     MusicLrcContainer::contextMenuEvent(event);
 
     QMenu menu;
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
     menu.addAction(tr("Lrc Search"), this, SLOT(searchMusicLrcs()));
     menu.addAction(tr("Lrc Update"), this, SIGNAL(currentLrcUpdated()));
     menu.addAction(tr("Lrc Make"), this, SLOT(showLrcMakedWidget()));

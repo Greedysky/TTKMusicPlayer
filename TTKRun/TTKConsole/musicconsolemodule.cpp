@@ -14,7 +14,7 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
       m_enhanced("Off")
 {
     m_playlist = new MusicPlaylist(this);
-    m_playlist->setPlaybackMode(MusicObject::PlayMode::Order);
+    m_playlist->setPlaybackMode(TTK::PlayMode::Order);
     m_player = new MusicPlayer(this);
     m_player->setPlaylist(m_playlist);
 
@@ -110,7 +110,7 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
         }
         else
         {
-            for(const QFileInfo &fin : MusicUtils::File::fileInfoListByPath(path, MusicFormats::supportMusicInputFilterFormats()))
+            for(const QFileInfo &fin : TTK::File::fileInfoListByPath(path, MusicFormats::supportMusicInputFilterFormats()))
             {
                 TTK_LOG_STREAM("Add play url path: " << fin.absoluteFilePath());
                 m_playlist->append(0, fin.absoluteFilePath());
@@ -218,7 +218,7 @@ void MusicConsoleModule::musicPlayPrevious()
         return;
     }
 
-    if(m_playlist->playbackMode() == MusicObject::PlayMode::Random)
+    if(m_playlist->playbackMode() == TTK::PlayMode::Random)
     {
         m_playlist->setCurrentIndex();
     }
@@ -238,7 +238,7 @@ void MusicConsoleModule::musicPlayNext()
         return;
     }
 
-    if(m_playlist->playbackMode() == MusicObject::PlayMode::Random)
+    if(m_playlist->playbackMode() == TTK::PlayMode::Random)
     {
         m_playlist->setCurrentIndex();
     }
@@ -282,31 +282,31 @@ void MusicConsoleModule::musicActionVolumePlus()
 
 void MusicConsoleModule::musicPlayOrder()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayMode::Order);
+    m_playlist->setPlaybackMode(TTK::PlayMode::Order);
     m_playbackMode = "Order";
 }
 
 void MusicConsoleModule::musicPlayRandom()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayMode::Random);
+    m_playlist->setPlaybackMode(TTK::PlayMode::Random);
     m_playbackMode = "Random";
 }
 
 void MusicConsoleModule::musicPlaylistLoop()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayMode::ListLoop);
+    m_playlist->setPlaybackMode(TTK::PlayMode::ListLoop);
     m_playbackMode = "ListLoop";
 }
 
 void MusicConsoleModule::musicPlayOneLoop()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayMode::OneLoop);
+    m_playlist->setPlaybackMode(TTK::PlayMode::OneLoop);
     m_playbackMode = "OneLoop";
 }
 
 void MusicConsoleModule::musicPlayOnce()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayMode::Once);
+    m_playlist->setPlaybackMode(TTK::PlayMode::Once);
     m_playbackMode = "Once";
 }
 

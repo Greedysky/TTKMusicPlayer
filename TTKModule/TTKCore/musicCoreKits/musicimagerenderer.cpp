@@ -32,7 +32,7 @@ void MusicImageRenderer::run()
         QImage cv(":/image/lb_album_cover");
         cv = cv.scaled(m_size);
         image = image.scaled(m_size);
-        MusicUtils::Image::fusionPixmap(image, cv, QPoint(0, 0));
+        TTK::Image::fusionPixmap(image, cv, QPoint(0, 0));
     }
 
     if(m_running)

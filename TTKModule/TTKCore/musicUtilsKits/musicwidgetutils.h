@@ -29,7 +29,7 @@ class QComboBox;
 /*! @brief The namespace of the utils widget.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicUtils
+namespace TTK
 {
     namespace Widget
     {
@@ -40,7 +40,7 @@ namespace MusicUtils
         /*!
          * Set widget label font.
          */
-        TTK_MODULE_EXPORT void setLabelFontStyle(QWidget *widget, MusicObject::FontStyleMode type);
+        TTK_MODULE_EXPORT void setLabelFontStyle(QWidget *widget, TTK::FontStyleMode type);
 
         /*!
          * Set text elided text by font.

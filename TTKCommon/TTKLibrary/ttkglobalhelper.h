@@ -22,7 +22,7 @@
 #include <QPainter>
 #include "ttkglobaldefine.h"
 
-namespace TTKObject
+namespace TTK
 {
     /*!
      * Set application font.

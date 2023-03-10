@@ -15,7 +15,7 @@ void MusicKGDiscoverListRequest::startToSearch()
     m_toplistInfo.clear();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_TOPLIST_URL, false).arg(6666));
+    request.setUrl(TTK::Algorithm::mdII(KG_TOPLIST_URL, false).arg(6666));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -42,7 +42,7 @@ void MusicKGDiscoverListRequest::downLoadFinished()
 
                 const QVariantList &datas = value["info"].toList();
                 int where = datas.count();
-                where = (where > 0) ? TTKObject::random(where) : 0;
+                where = (where > 0) ? TTK::random(where) : 0;
 
                 int counter = 0;
                 for(const QVariant &var : qAsConst(datas))

@@ -17,7 +17,7 @@ MusicWebMVRadioQueryItemWidget::MusicWebMVRadioQueryItemWidget(QWidget *parent)
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry((WIDTH_LABEL_SIZE - 30) / 2, (HEIGHT_LABEL_SIZE - 30) / 2, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
-    m_playButton->setStyleSheet(MusicUIObject::TinyBtnPlaylist);
+    m_playButton->setStyleSheet(TTK::UI::TinyBtnPlaylist);
     connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));
 
 #ifdef Q_OS_UNIX
@@ -30,7 +30,7 @@ MusicWebMVRadioQueryItemWidget::MusicWebMVRadioQueryItemWidget(QWidget *parent)
     m_nameLabel = new QLabel(this);
     m_nameLabel->setAlignment(Qt::AlignCenter);
     m_nameLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
-    m_nameLabel->setStyleSheet(MusicUIObject::ColorStyle01 + MusicUIObject::FontStyle04 + MusicUIObject::FontStyle01);
+    m_nameLabel->setStyleSheet(TTK::UI::ColorStyle01 + TTK::UI::FontStyle04 + TTK::UI::FontStyle01);
     m_nameLabel->setText(" - ");
 }
 
@@ -45,7 +45,7 @@ void MusicWebMVRadioQueryItemWidget::setResultDataItem(const MusicResultDataItem
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
-    m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
+    m_nameLabel->setText(TTK::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
@@ -166,7 +166,7 @@ void MusicWebMVRadioQueryWidget::createMVRadioCategoryItem(const MusicResultData
 
         m_container->removeWidget(m_mainWindow);
         QScrollArea *scrollArea = new QScrollArea(this);
-        MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
+        TTK::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
         m_container->addWidget(scrollArea);
 
         m_initialized = true;
@@ -182,7 +182,7 @@ void MusicWebMVRadioQueryWidget::createMVRadioCategoryItem(const MusicResultData
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(MusicUIObject::ColorStyle06);
+        line->setStyleSheet(TTK::UI::ColorStyle06);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

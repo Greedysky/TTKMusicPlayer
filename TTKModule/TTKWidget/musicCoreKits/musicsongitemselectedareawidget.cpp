@@ -20,7 +20,7 @@ MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *pare
 #else
     headerview->resizeSection(1, 222);
 #endif
-    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle01);
+    verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle01);
 }
 
 void MusicSongItemSelectedTableWidget::addCellItems(MusicSongItemList *items)
@@ -46,7 +46,7 @@ void MusicSongItemSelectedTableWidget::addCellItems(MusicSongItemList *items)
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.m_itemName);
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 30));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 30));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
     }
@@ -77,13 +77,13 @@ MusicSongItemSelectedDialog::MusicSongItemSelectedDialog(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->confirmButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->selectAllCheckButton->setStyleSheet(MusicUIObject::CheckBoxStyle01);
+    m_ui->confirmButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->selectAllCheckButton->setStyleSheet(TTK::UI::CheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
     m_ui->selectAllCheckButton->setFocusPolicy(Qt::NoFocus);
@@ -123,9 +123,9 @@ MusicSongItemSelectedAreaWidget::MusicSongItemSelectedAreaWidget(QWidget *parent
     m_itemLabel->setFixedWidth(75);
     m_modifiedItemButton->setFixedWidth(30);
 
-    m_label->setStyleSheet(MusicUIObject::FontStyle01 + MusicUIObject::ColorStyle09);
-    m_itemLabel->setStyleSheet(MusicUIObject::ColorStyle04);
-    m_modifiedItemButton->setStyleSheet(MusicUIObject::ColorStyle08);
+    m_label->setStyleSheet(TTK::UI::FontStyle01 + TTK::UI::ColorStyle09);
+    m_itemLabel->setStyleSheet(TTK::UI::ColorStyle04);
+    m_modifiedItemButton->setStyleSheet(TTK::UI::ColorStyle08);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -165,7 +165,7 @@ MusicSongList MusicSongItemSelectedAreaWidget::selectedSongItems()
         }
         else
         {
-            if(MusicObject::playlistRowValid(item.m_itemIndex))
+            if(TTK::playlistRowValid(item.m_itemIndex))
             {
                 selectedSongs << item.m_songs;
             }

@@ -22,7 +22,7 @@
 /*! @brief The namespace of the network data.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicObject
+namespace TTK
 {
     enum class NetworkCode
     {

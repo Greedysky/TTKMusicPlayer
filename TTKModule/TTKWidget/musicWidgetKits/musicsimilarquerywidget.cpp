@@ -44,7 +44,7 @@ void MusicSimilarQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
     m_queryTableWidget->setQueryInput(G_DOWNLOAD_QUERY_PTR->makeSimilarSongRequest(this));
-    m_queryTableWidget->startSearchQuery(MusicUtils::String::songName(name));
+    m_queryTableWidget->startSearchQuery(TTK::String::songName(name));
     createLabels();
 }
 
@@ -73,11 +73,11 @@ void MusicSimilarQueryWidget::createLabels()
 
     layout()->removeWidget(m_mainWindow);
     QScrollArea *scrollArea = new QScrollArea(this);
-    MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
+    TTK::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
     layout()->addWidget(scrollArea);
 
     QWidget *function = new QWidget(m_mainWindow);
-    function->setStyleSheet(MusicUIObject::CheckBoxStyle01 + MusicUIObject::PushButtonStyle03);
+    function->setStyleSheet(TTK::UI::CheckBoxStyle01 + TTK::UI::PushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
     QLabel *firstLabel = new QLabel(function);

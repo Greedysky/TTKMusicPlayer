@@ -16,8 +16,8 @@ void MusicWYSongCommentsRequest::startToPage(int offset)
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toInt()),
-                      MusicUtils::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toInt()).arg(m_pageSize).arg(m_pageSize * offset));
+                      TTK::Algorithm::mdII(WY_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toInt()),
+                      TTK::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toInt()).arg(m_pageSize).arg(m_pageSize * offset));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -114,8 +114,8 @@ void MusicWYPlaylistCommentsRequest::startToPage(int offset)
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toLongLong()),
-                      MusicUtils::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toLongLong()).arg(m_pageSize).arg(m_pageSize * offset));
+                      TTK::Algorithm::mdII(WY_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toLongLong()),
+                      TTK::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toLongLong()).arg(m_pageSize).arg(m_pageSize * offset));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

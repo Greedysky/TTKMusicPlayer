@@ -23,7 +23,7 @@ void TTKAbstractMoveDialog::paintEvent(QPaintEvent *event)
     if(m_showShadow)
     {
         QPainter painter(this);
-        TTKObject::setBorderShadow(this, &painter);
+        TTK::setBorderShadow(this, &painter);
     }
 }
 

@@ -41,11 +41,11 @@ private:
     /*!
      * Read mv tags(size\bitrate\url) from query results.
      */
-    void parseFromMovieProperty(MusicObject::MusicSongInformation *info);
+    void parseFromMovieProperty(TTK::MusicSongInformation *info);
     /*!
      * Read mv info property from query results.
      */
-    void parseFromMovieProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key);
+    void parseFromMovieProperty(TTK::MusicSongInformation *info, const QVariantMap &key);
 
 };
 

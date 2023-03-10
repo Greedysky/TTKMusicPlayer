@@ -18,12 +18,12 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
     
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    setStyleSheet(MusicUIObject::LineEditStyle01);
+    setStyleSheet(TTK::UI::LineEditStyle01);
     setEditLineEnabled(false);
 
     advanceClicked();
@@ -31,12 +31,12 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     const QPixmap pix(":/image/lb_default_art");
     m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
 
-    m_ui->editButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->deletePixButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->savePixButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->saveButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->viewButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->openPixButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->editButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->deletePixButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->savePixButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->saveButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->viewButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->openPixButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->editButton->setFocusPolicy(Qt::NoFocus);
@@ -63,7 +63,7 @@ MusicFileInformationWidget::~MusicFileInformationWidget()
 
 void MusicFileInformationWidget::openFileDir()
 {
-    if(!MusicUtils::Url::openUrl(MusicObject::trackRelatedPath(m_path)))
+    if(!TTK::Url::openUrl(TTK::trackRelatedPath(m_path)))
     {
         MusicToastLabel::popup(tr("The file has been moved or does not exist"));
     }
@@ -71,7 +71,7 @@ void MusicFileInformationWidget::openFileDir()
 
 void MusicFileInformationWidget::openImageFileDir()
 {
-    m_imagePath = MusicUtils::File::getOpenFileName(this);
+    m_imagePath = TTK::File::getOpenFileName(this);
     if(m_imagePath.isEmpty())
     {
         return;
@@ -150,7 +150,7 @@ void MusicFileInformationWidget::saveAlbumPicture()
 
     if(!pix.isNull())
     {
-        const QString &path = MusicUtils::File::getSaveFileName(this);
+        const QString &path = TTK::File::getSaveFileName(this);
         if(!path.isEmpty())
         {
             pix.save(path);
@@ -235,7 +235,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     QString check;
     m_ui->filePathEdit->setText((check = fin.filePath()).isEmpty() ? TTK_DEFAULT_STR : check);
     m_ui->fileFormatEdit->setText((check = FILE_SUFFIX(fin)).isEmpty() ? TTK_DEFAULT_STR : check);
-    m_ui->fileSizeEdit->setText((check = MusicUtils::Number::sizeByteToLabel(fin.size())).isEmpty() ? TTK_DEFAULT_STR : check);
+    m_ui->fileSizeEdit->setText((check = TTK::Number::sizeByteToLabel(fin.size())).isEmpty() ? TTK_DEFAULT_STR : check);
 
     m_ui->fileAlbumEdit->setText(state ? ((check = meta.album()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->fileArtistEdit->setText(state ? ((check = meta.artist()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
@@ -260,7 +260,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
 
     QColor color;
     QString bitrate;
-    MusicUtils::Number::bitrateToQuality(MusicUtils::Number::bitrateToLevel(m_ui->bitrateEdit->text()), bitrate, color);
+    TTK::Number::bitrateToQuality(TTK::Number::bitrateToLevel(m_ui->bitrateEdit->text()), bitrate, color);
     m_ui->qualityEdit->setText(bitrate);
 }
 

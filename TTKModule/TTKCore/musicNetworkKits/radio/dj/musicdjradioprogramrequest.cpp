@@ -8,15 +8,15 @@ MusicDJRadioProgramRequest::MusicDJRadioProgramRequest(QObject *parent)
 
 }
 
-void MusicDJRadioProgramRequest::startRequest(MusicObject::Program type)
+void MusicDJRadioProgramRequest::startRequest(TTK::Program type)
 {
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenRequest(&request, type == MusicObject::Program::Recommed ?
-                      MusicUtils::Algorithm::mdII(DJ_RECOMMEND_URL, false):
-                      MusicUtils::Algorithm::mdII(DJ_HOT_URL, false),
-                      MusicUtils::Algorithm::mdII(DJ_HOT_DATA_URL, false));
+    const QByteArray &parameter = makeTokenRequest(&request, type == TTK::Program::Recommed ?
+                      TTK::Algorithm::mdII(DJ_RECOMMEND_URL, false):
+                      TTK::Algorithm::mdII(DJ_HOT_URL, false),
+                      TTK::Algorithm::mdII(DJ_HOT_DATA_URL, false));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

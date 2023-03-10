@@ -5,17 +5,17 @@
 MusicPlaylist::MusicPlaylist(QObject *parent)
     : QObject(parent),
       m_currentIndex(-1),
-      m_playbackMode(MusicObject::PlayMode::Order)
+      m_playbackMode(TTK::PlayMode::Order)
 {
-    TTKObject::initRandom();
+    TTK::initRandom();
 }
 
-MusicObject::PlayMode MusicPlaylist::playbackMode() const
+TTK::PlayMode MusicPlaylist::playbackMode() const
 {
     return m_playbackMode;
 }
 
-void MusicPlaylist::setPlaybackMode(MusicObject::PlayMode mode)
+void MusicPlaylist::setPlaybackMode(TTK::PlayMode mode)
 {
     m_playbackMode = mode;
     Q_EMIT playbackModeChanged(m_playbackMode);
@@ -54,7 +54,7 @@ MusicPlayItem MusicPlaylist::currentItem() const
 QString MusicPlaylist::currentMediaPath() const
 {
     const MusicPlayItem &item = currentItem();
-    if(item.m_toolIndex == MUSIC_NETWORK_LIST && MusicUtils::String::isNetworkUrl(item.m_path))
+    if(item.m_toolIndex == MUSIC_NETWORK_LIST && TTK::String::isNetworkUrl(item.m_path))
     {
         /*Replace network url path to local path*/
         const QString &id = item.m_path.section("#", -1);
@@ -176,8 +176,8 @@ void MusicPlaylist::setCurrentIndex(int index)
     {
         switch(m_playbackMode)
         {
-            case MusicObject::PlayMode::OneLoop: break;
-            case MusicObject::PlayMode::Order:
+            case TTK::PlayMode::OneLoop: break;
+            case TTK::PlayMode::Order:
             {
                 if(++m_currentIndex >= m_mediaList.count())
                 {
@@ -185,7 +185,7 @@ void MusicPlaylist::setCurrentIndex(int index)
                 }
                 break;
             }
-            case MusicObject::PlayMode::ListLoop:
+            case TTK::PlayMode::ListLoop:
             {
                 if(++m_currentIndex >= m_mediaList.count())
                 {
@@ -193,12 +193,12 @@ void MusicPlaylist::setCurrentIndex(int index)
                 }
                 break;
             }
-            case MusicObject::PlayMode::Random:
+            case TTK::PlayMode::Random:
             {
-                m_currentIndex = TTKObject::random() % m_mediaList.count();
+                m_currentIndex = TTK::random() % m_mediaList.count();
                 break;
             }
-            case MusicObject::PlayMode::Once: break;
+            case TTK::PlayMode::Once: break;
             default: break;
         }
     }

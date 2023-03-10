@@ -12,8 +12,8 @@ MusicDownloadCounterPVRequest::MusicDownloadCounterPVRequest(QObject *parent)
 void MusicDownloadCounterPVRequest::startRequest()
 {
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(QUERY_URL, false));
-    MusicObject::setSslConfiguration(&request);
+    request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false));
+    TTK::setSslConfiguration(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

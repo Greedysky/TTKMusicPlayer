@@ -7,7 +7,7 @@
 MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
     : QObject(parent),
       m_process(nullptr),
-      m_playState(MusicObject::PlayState::Stopped),
+      m_playState(TTK::PlayState::Stopped),
       m_category(Module::Null)
 {
     m_timer.setInterval(MT_S2MS);
@@ -32,7 +32,7 @@ void MusicCoreMPlayer::setMedia(Module type, const QString &data, int winId)
     }
 
     m_category = type;
-    m_playState = MusicObject::PlayState::Stopped;
+    m_playState = TTK::PlayState::Stopped;
     m_process = new QProcess(this);
     connect(m_process, SIGNAL(finished(int)), SIGNAL(finished(int)));
 
@@ -62,7 +62,7 @@ void MusicCoreMPlayer::closeModule()
         m_process->kill();
         delete m_process;
         m_process = nullptr;
-        TTKObject::killProcessByName(MAKE_PLAYER_PATH_FULL);
+        TTK::killProcessByName(MAKE_PLAYER_PATH_FULL);
     }
 }
 
@@ -165,7 +165,7 @@ void MusicCoreMPlayer::setVolume(int value)
 
 bool MusicCoreMPlayer::isPlaying() const
 {
-    return m_playState == MusicObject::PlayState::Playing;
+    return m_playState == TTK::PlayState::Playing;
 }
 
 void MusicCoreMPlayer::play()
@@ -179,22 +179,22 @@ void MusicCoreMPlayer::play()
     }
 
     m_process->write("pause\n");
-    if(m_playState == MusicObject::PlayState::Stopped || m_playState == MusicObject::PlayState::Paused)
+    if(m_playState == TTK::PlayState::Stopped || m_playState == TTK::PlayState::Paused)
     {
-        m_playState = MusicObject::PlayState::Playing;
+        m_playState = TTK::PlayState::Playing;
         connect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(positionRecieve()));
         m_process->write("get_time_pos\n");
     }
     else
     {
-        m_playState = MusicObject::PlayState::Paused;
+        m_playState = TTK::PlayState::Paused;
         disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(positionRecieve()));
     }
 }
 
 void MusicCoreMPlayer::stop()
 {
-    m_playState = MusicObject::PlayState::Stopped;
+    m_playState = TTK::PlayState::Stopped;
     m_timer.stop();
     m_checkTimer.stop();
 

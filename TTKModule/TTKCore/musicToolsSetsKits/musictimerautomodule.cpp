@@ -131,11 +131,11 @@ void MusicTimerAutoModule::setShutdown()
     /* send signals to all processes  _except_ pid 1 */
     kill(-1, SIGTERM);
     sync();
-    MusicUtils::Core::sleep(3 * MT_S2MS);
+    TTK::Core::sleep(3 * MT_S2MS);
 
     kill(-1, SIGKILL);
     sync();
-    MusicUtils::Core::sleep(3 * MT_S2MS);
+    TTK::Core::sleep(3 * MT_S2MS);
     /* shutdown */
     reboot(RB_POWER_OFF);
 #endif

@@ -22,13 +22,13 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->paletteButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->customSkin->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->paletteButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->customSkin->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->stackedWidget->setLength(m_ui->stackedWidget->width(), MusicAnimationStackedWidget::Module::RightToLeft);
 #ifdef Q_OS_UNIX
     m_ui->paletteButton->setFocusPolicy(Qt::NoFocus);
@@ -40,28 +40,28 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 
     m_cacheBackgroundList = new MusicBackgroundListWidget(this);
     m_cacheBackgroundList->setType(MusicBackgroundListWidget::CachedModule);
-    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->recommendScrollArea, m_cacheBackgroundList);
+    TTK::Widget::generateVScrollAreaFormat(m_ui->recommendScrollArea, m_cacheBackgroundList);
 
     m_stackBackgroundList = new MusicBackgroundListWidget(this);
     m_stackBackgroundList->setType(MusicBackgroundListWidget::StackedModule);
-    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->userScrollArea, m_stackBackgroundList);
+    TTK::Widget::generateVScrollAreaFormat(m_ui->userScrollArea, m_stackBackgroundList);
 
     m_dailyBackgroundList = new MusicBackgroundDailyWidget(this);
-    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->dailyScrollArea, m_dailyBackgroundList);
+    TTK::Widget::generateVScrollAreaFormat(m_ui->dailyScrollArea, m_dailyBackgroundList);
 
     m_onlineBackgroundList = new MusicBackgroundOnlineWidget(this);
-    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->remoteScrollArea, m_onlineBackgroundList);
+    TTK::Widget::generateVScrollAreaFormat(m_ui->remoteScrollArea, m_onlineBackgroundList);
 
     addThemeListWidgetItem();
     backgroundListWidgetChanged(0);
 
-    m_ui->resetWindowButton->setStyleSheet(MusicUIObject::BtnResetWindow);
-    m_ui->skinTransparentButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
-    m_ui->listTransparentButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
+    m_ui->resetWindowButton->setStyleSheet(TTK::UI::BtnResetWindow);
+    m_ui->skinTransparentButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
+    m_ui->listTransparentButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
 
     m_ui->skinTransparentButton->setEnabled(false);
-    m_ui->skinTransparentLabelBox->setStyleSheet(MusicUIObject::CheckBoxStyle04);
-    m_ui->listTransparentLabel->setStyleSheet(MusicUIObject::ColorStyle03);
+    m_ui->skinTransparentLabelBox->setStyleSheet(TTK::UI::CheckBoxStyle04);
+    m_ui->listTransparentLabel->setStyleSheet(TTK::UI::ColorStyle03);
 
     connect(m_ui->skinTransparentLabelBox, SIGNAL(clicked(bool)), SLOT(windowTransparentChanged(bool)));
     connect(m_ui->skinTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(musicBackgroundTransparentChanged(int)));
@@ -178,7 +178,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog(const QString &path)
 
 void MusicBackgroundSkinDialog::showCustomSkinDialog()
 {
-    const QString &path = MusicUtils::File::getOpenFileName(this, "Image Files (*.png *.bmp *.jpg);;TKM Files (*.tkm)");
+    const QString &path = TTK::File::getOpenFileName(this, "Image Files (*.png *.bmp *.jpg);;TKM Files (*.tkm)");
     if(path.isEmpty())
     {
         return;

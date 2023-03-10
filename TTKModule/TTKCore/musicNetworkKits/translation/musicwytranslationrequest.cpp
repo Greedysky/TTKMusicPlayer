@@ -26,12 +26,12 @@ void MusicWYTranslationRequest::startRequest(const QString &data)
     QUrl url;
     if(!d->isEmpty())
     {
-        url.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(d->songInfoList().front().m_songId));
+        url.setUrl(TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(d->songInfoList().front().m_songId));
     }
 
     QNetworkRequest request;
     request.setUrl(url);
-    MusicObject::setSslConfiguration(&request);
+    TTK::setSslConfiguration(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

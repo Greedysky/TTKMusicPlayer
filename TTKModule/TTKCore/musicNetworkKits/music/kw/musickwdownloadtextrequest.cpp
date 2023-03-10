@@ -1,7 +1,7 @@
 #include "musickwdownloadtextrequest.h"
 
 MusicKWDownLoadTextRequest::MusicKWDownLoadTextRequest(const QString &url, const QString &path, QObject *parent)
-    : MusicAbstractDownLoadRequest(url, path, MusicObject::Download::Lrc, parent)
+    : MusicAbstractDownLoadRequest(url, path, TTK::Download::Lrc, parent)
 {
 
 }
@@ -16,7 +16,7 @@ void MusicKWDownLoadTextRequest::startRequest()
 
             QNetworkRequest request;
             request.setUrl(m_url);
-            MusicObject::setSslConfiguration(&request);
+            TTK::setSslConfiguration(&request);
 
             m_reply = m_manager.get(request);
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

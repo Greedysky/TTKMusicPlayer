@@ -24,44 +24,47 @@
 /*! @brief The namespace of the application ui object.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicUIObject
+namespace TTK
 {
-    const QString InteriorTranslation = " \
-            QPushButton{ border:none; \
-            background-image: url(:/lrc/btn_translation_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/btn_translation_hover); }";
+    namespace UI
+    {
+        const QString InteriorTranslation = " \
+                QPushButton{ border:none; \
+                background-image: url(:/lrc/btn_translation_normal); } \
+                QPushButton:hover{ background-image: url(:/lrc/btn_translation_hover); }";
 
-    const QString InteriorMessage = " \
-            QPushButton{ border:none; \
-            background-image: url(:/lrc/btn_message_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/btn_message_hover); }";
+        const QString InteriorMessage = " \
+                QPushButton{ border:none; \
+                background-image: url(:/lrc/btn_message_normal); } \
+                QPushButton:hover{ background-image: url(:/lrc/btn_message_hover); }";
 
-    const QString InteriorMovie = " \
-            QPushButton{ border:none; \
-            background-image: url(:/lrc/btn_mv_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/btn_mv_hover); }";
+        const QString InteriorMovie = " \
+                QPushButton{ border:none; \
+                background-image: url(:/lrc/btn_mv_normal); } \
+                QPushButton:hover{ background-image: url(:/lrc/btn_mv_hover); }";
 
-    const QString InteriorPhoto = " \
-            QPushButton{ border:none; \
-            background-image: url(:/lrc/btn_photo_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/btn_photo_hover); }";
+        const QString InteriorPhoto = " \
+                QPushButton{ border:none; \
+                background-image: url(:/lrc/btn_photo_normal); } \
+                QPushButton:hover{ background-image: url(:/lrc/btn_photo_hover); }";
 
-    const QString InteriorStar = " \
-            QPushButton{ border:none; \
-            background-image: url(:/lrc/btn_star_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/btn_star_hover); } \
-            QPushButton:pressed{ background-image: url(:/lrc/btn_star_clicked); }";
-            
-    const QString InteriorMakeUp = " \
-            QPushButton{ border:none; \
-            background-image: url(:/lrc/lb_make_up_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/lb_make_up_hover); }";
-            
-    const QString InteriorMakeDown = " \
-            QPushButton{ border:none; \
-            background-image: url(:/lrc/lb_make_down_normal); } \
-            QPushButton:hover{ background-image: url(:/lrc/lb_make_down_hover); }";
+        const QString InteriorStar = " \
+                QPushButton{ border:none; \
+                background-image: url(:/lrc/btn_star_normal); } \
+                QPushButton:hover{ background-image: url(:/lrc/btn_star_hover); } \
+                QPushButton:pressed{ background-image: url(:/lrc/btn_star_clicked); }";
 
+        const QString InteriorMakeUp = " \
+                QPushButton{ border:none; \
+                background-image: url(:/lrc/lb_make_up_normal); } \
+                QPushButton:hover{ background-image: url(:/lrc/lb_make_up_hover); }";
+
+        const QString InteriorMakeDown = " \
+                QPushButton{ border:none; \
+                background-image: url(:/lrc/lb_make_down_normal); } \
+                QPushButton:hover{ background-image: url(:/lrc/lb_make_down_hover); }";
+
+    }
 }
 
 #endif // MUSICINTERIORLRCUIOBJECT_H

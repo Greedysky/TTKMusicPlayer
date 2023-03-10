@@ -37,12 +37,12 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
     headerview->resizeSection(3, 50);
     headerview->resizeSection(4, 120);
 
-    MusicUtils::Widget::setTransparent(this, 0);
+    TTK::Widget::setTransparent(this, 0);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle03);
+    verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 
     m_progressBarDelegate = new TTKProgressBarItemDelegate(this);
-    m_progressBarDelegate->setStyleSheet(MusicUIObject::ProgressBar01);
+    m_progressBarDelegate->setStyleSheet(TTK::UI::ProgressBar01);
     setItemDelegateForColumn(2, m_progressBarDelegate);
 
     m_manager = new QNetworkAccessManager(this);
@@ -102,7 +102,7 @@ void MusicCloudManagerTableWidget::resizeSection()
     for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
     }
 
     if(m_openFileWidget)
@@ -271,8 +271,8 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
     const MusicCloudDataItem &data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
     const QString &url = m_syncDownloadData->downloadUrl(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
 
-    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, MusicUtils::String::musicDirPrefix() + data.m_dataItem.m_name, MusicObject::Download::Music, this);
-    download->setRecordType(MusicObject::Record::CloudDownload);
+    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, TTK::String::musicDirPrefix() + data.m_dataItem.m_name, TTK::Download::Music, this);
+    download->setRecordType(TTK::Record::CloudDownload);
     download->startRequest();
 }
 
@@ -283,19 +283,19 @@ void MusicCloudManagerTableWidget::cancelUploadFilesToServer()
 
 void MusicCloudManagerTableWidget::uploadFilesToServer()
 {
-    const QStringList &files = MusicUtils::File::getOpenFileNames(this, MusicFormats::supportMusicInputFormats());
+    const QStringList &files = TTK::File::getOpenFileNames(this, MusicFormats::supportMusicInputFormats());
     uploadFilesToServer(files);
 }
 
 void MusicCloudManagerTableWidget::uploadFileDirToServer()
 {
-    const QString &path = MusicUtils::File::getExistingDirectory(this);
+    const QString &path = TTK::File::getExistingDirectory(this);
     if(path.isEmpty())
     {
         return;
     }
 
-    uploadFilesToServer(MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats()));
+    uploadFilesToServer(TTK::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats()));
 }
 
 void MusicCloudManagerTableWidget::reuploadFilesToServer(const QStringList &items)
@@ -351,7 +351,7 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
     Q_UNUSED(event);
     QMenu menu(this);
     QMenu uploadMenu(tr("Upload"), &menu);
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     if(m_currentDataItem.isValid() && m_currentDataItem.m_state == MusicCloudDataItem::State::Waited)
     {
@@ -360,7 +360,7 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     uploadMenu.addAction(tr("Upload File"), this, SLOT(uploadFilesToServer()));
     uploadMenu.addAction(tr("Upload Files"), this, SLOT(uploadFileDirToServer()));
-    MusicUtils::Widget::adjustMenuPosition(&uploadMenu);
+    TTK::Widget::adjustMenuPosition(&uploadMenu);
 
     menu.addMenu(&uploadMenu);
     menu.addAction(tr("Delete File"), this, SLOT(deleteFileToServer()))->setEnabled(!m_uploading);
@@ -371,7 +371,7 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addSeparator();
     menu.addAction(tr("Song Info..."), this, SLOT(showFileInformationWidget()));
 
-    MusicUtils::Widget::adjustMenuPosition(&menu);
+    TTK::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 
@@ -392,8 +392,8 @@ void MusicCloudManagerTableWidget::addCellItem(const MusicCloudDataItem &data)
 
                       item = new QTableWidgetItem;
     item->setToolTip(data.m_dataItem.m_name);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
-    item->setForeground(QColor(MusicUIObject::Color01));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+    item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(row, 1, item);
 
@@ -402,16 +402,16 @@ void MusicCloudManagerTableWidget::addCellItem(const MusicCloudDataItem &data)
     setItem(row, 2, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(MusicUtils::Number::sizeByteToLabel(data.m_dataItem.m_size));
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 5));
-    item->setForeground(QColor(MusicUIObject::Color01));
+    item->setToolTip(TTK::Number::sizeByteToLabel(data.m_dataItem.m_size));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 5));
+    item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
     setItem(row, 3, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(data.m_dataItem.m_putTime);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(4) - 5));
-    item->setForeground(QColor(MusicUIObject::Color01));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(4) - 5));
+    item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
     setItem(row, 4, item);
 }
@@ -438,7 +438,7 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
         item.m_dataItem.m_putTime = fin.lastModified().toString(TTK_YEAR_TIME_FORMAT);
         item.m_dataItem.m_size = fin.size();
 
-        MusicUtils::Core::sleep(MT_MS);
+        TTK::Core::sleep(MT_MS);
 
         addCellItem(item);
     }
@@ -535,7 +535,7 @@ MusicCloudDataItem MusicCloudManagerTableWidget::FindWaitedItemRow() const
 MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setStyleSheet(MusicUIObject::BackgroundStyle10 + MusicUIObject::ColorStyle09);
+    setStyleSheet(TTK::UI::BackgroundStyle10 + TTK::UI::ColorStyle09);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
@@ -557,19 +557,19 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     QFont pLabelFont = pLabel->font();
     pLabelFont.setPixelSize(20);
     pLabel->setFont(pLabelFont);
-    pLabel->setStyleSheet(MusicUIObject::ColorStyle11);
+    pLabel->setStyleSheet(TTK::UI::ColorStyle11);
 
     QLabel *iLabel = new QLabel(tr("Sharing of cloud disk songs"), topWidget);
     QFont iLabelFont = iLabel->font();
     iLabelFont.setPixelSize(15);
     iLabel->setFont(iLabelFont);
-    iLabel->setStyleSheet(MusicUIObject::ColorStyle03);
+    iLabel->setStyleSheet(TTK::UI::ColorStyle03);
     QLabel *sLabel = new QLabel(tr("Size"), topWidget);
 
     m_sizeValueBar = new QProgressBar(topWidget);
     m_sizeValueBar->setRange(0, 100);
     m_sizeValueBar->setValue(0);
-    m_sizeValueBar->setStyleSheet(MusicUIObject::ProgressBar01);
+    m_sizeValueBar->setStyleSheet(TTK::UI::ProgressBar01);
 
     m_sizeValueLabel = new QLabel("0.0M/40.0G", topWidget);
 
@@ -588,17 +588,17 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
 
     QPushButton *uploadButton = new QPushButton(tr("Upload"), functionWidget);
     uploadButton->setFixedSize(70, 30);
-    uploadButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    uploadButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     uploadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QPushButton *downloadButton = new QPushButton(tr("Download"), functionWidget);
     downloadButton->setFixedSize(70, 30);
-    downloadButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    downloadButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QPushButton *deleteButton = new QPushButton(tr("Delete"), functionWidget);
     deleteButton->setFixedSize(70, 30);
-    deleteButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    deleteButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QLabel *statusLabel = new QLabel(this);
@@ -620,24 +620,24 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     connect(deleteButton, SIGNAL(clicked(bool)), SLOT(deleteFileToServer()));
     //
     QWidget *labelWidget = new QWidget(this);
-    labelWidget->setStyleSheet(MusicUIObject::BackgroundStyle09);
+    labelWidget->setStyleSheet(TTK::UI::BackgroundStyle09);
     QHBoxLayout *labelWidgetLayout = new QHBoxLayout(labelWidget);
     functionWidgetLayout->setContentsMargins(10, 20, 10, 10);
 
     QLabel *label1 = new QLabel(tr("Song"), this);
     label1->setAlignment(Qt::AlignCenter);
-    label1->setStyleSheet(MusicUIObject::FontStyle01);
+    label1->setStyleSheet(TTK::UI::FontStyle01);
     labelWidgetLayout->addWidget(label1, 100);
     m_resizeWidgets << label1;
 
     QLabel *label2 = new QLabel(tr("FileSize"), this);
     label2->setAlignment(Qt::AlignCenter);
-    label2->setStyleSheet(MusicUIObject::FontStyle01);
+    label2->setStyleSheet(TTK::UI::FontStyle01);
     labelWidgetLayout->addWidget(label2, 1);
 
     QLabel *label3 = new QLabel(tr("UploadTime"), this);
     label3->setAlignment(Qt::AlignCenter);
-    label3->setStyleSheet(MusicUIObject::FontStyle01);
+    label3->setStyleSheet(TTK::UI::FontStyle01);
     labelWidgetLayout->addWidget(label3, 1);
     labelWidgetLayout->addStretch(3);
 
@@ -677,7 +677,7 @@ void MusicCloudManagerWidget::resizeWidget()
 
 void MusicCloudManagerWidget::updataSizeLabel(qint64 size)
 {
-    m_sizeValueLabel->setText(QString("%1/40.0G").arg(MusicUtils::Number::sizeByteToLabel(size)));
+    m_sizeValueLabel->setText(QString("%1/40.0G").arg(TTK::Number::sizeByteToLabel(size)));
     m_sizeValueBar->setValue(size * MV_MAX / (10 * MH_GB2B));
 }
 

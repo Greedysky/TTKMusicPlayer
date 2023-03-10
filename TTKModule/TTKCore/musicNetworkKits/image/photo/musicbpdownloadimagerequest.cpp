@@ -16,8 +16,8 @@ void MusicBPDownloadBackgroundRequest::startRequest()
     MusicAbstractNetwork::deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(ART_BACKGROUND_URL, false));
-    MusicObject::setSslConfiguration(&request);
+    request.setUrl(TTK::Algorithm::mdII(ART_BACKGROUND_URL, false));
+    TTK::setSslConfiguration(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -51,7 +51,7 @@ void MusicBPDownloadBackgroundRequest::downLoadFinished()
                     if(m_counter < MAX_IMAGE_COUNT && !name.isEmpty() && (name.contains(m_name) || m_name.contains(name)))
                     {
                         const QString &url = value["url"].toString();
-                        MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(m_counter++).arg(SKN_FILE), MusicObject::Download::Background, this);
+                        MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(m_counter++).arg(SKN_FILE), TTK::Download::Background, this);
                         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
                         d->startRequest();
                     }

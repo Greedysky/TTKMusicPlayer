@@ -10,7 +10,7 @@
 MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     : QMenu(parent)
 {
-    setStyleSheet(MusicUIObject::MenuStyle02);
+    setStyleSheet(TTK::UI::MenuStyle02);
 
     m_showLrcAction = new QAction(QIcon(":/contextMenu/btn_lrc_label"),tr("Show Desktop Lrc"), this);
     connect(m_showLrcAction, SIGNAL(triggered()), SLOT(showDesktopLrc()));
@@ -45,7 +45,7 @@ MusicSystemTrayMenu::~MusicSystemTrayMenu()
 void MusicSystemTrayMenu::setLabelText(const QString &text) const
 {
 #ifndef Q_OS_UNIX
-    m_showText->setText(MusicUtils::Widget::elidedText(font(), text, Qt::ElideRight, 160));
+    m_showText->setText(TTK::Widget::elidedText(font(), text, Qt::ElideRight, 160));
     m_showText->setToolTip(text);
 #else
     Q_UNUSED(text);
@@ -71,7 +71,7 @@ void MusicSystemTrayMenu::setWindowLockedChanged()
 void MusicSystemTrayMenu::setCurrentPlayStatus(bool status) const
 {
 #ifndef Q_OS_UNIX
-    m_playButton->setStyleSheet(status ? MusicUIObject::ContextPause : MusicUIObject::ContextPlay);
+    m_playButton->setStyleSheet(status ? TTK::UI::ContextPause : TTK::UI::ContextPlay);
 #else
     Q_UNUSED(status);
 #endif
@@ -84,7 +84,7 @@ void MusicSystemTrayMenu::setVolumeValue(int value) const
     m_volumeSlider->setValue(value);
     m_volumeSlider->blockSignals(false);
 
-    QString style = MusicUIObject::TinyBtnSound;
+    QString style = TTK::UI::TinyBtnSound;
     if(66 < value && value <=100)
     {
         style += "QToolButton{ margin-left:-48px; }";
@@ -134,9 +134,9 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     nextPlay->setFixedSize(32, 32);
     m_playButton->setFixedSize(32, 32);
 
-    previousPlay->setStyleSheet(MusicUIObject::ContextPrevious);
-    nextPlay->setStyleSheet(MusicUIObject::ContextNext);
-    m_playButton->setStyleSheet(MusicUIObject::ContextPlay);
+    previousPlay->setStyleSheet(TTK::UI::ContextPrevious);
+    nextPlay->setStyleSheet(TTK::UI::ContextNext);
+    m_playButton->setStyleSheet(TTK::UI::ContextPlay);
 
     previousPlay->setCursor(QCursor(Qt::PointingHandCursor));
     nextPlay->setCursor(QCursor(Qt::PointingHandCursor));
@@ -152,7 +152,7 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
 
     m_showText = new QLabel(widgetActionContainer);
     m_showText->setAlignment(Qt::AlignCenter);
-    m_showText->setStyleSheet(MusicUIObject::ColorStyle03);
+    m_showText->setStyleSheet(TTK::UI::ColorStyle03);
     vbox->addWidget(widgetContainer);
     vbox->addWidget(m_showText);
     widgetActionContainer->setLayout(vbox);
@@ -177,7 +177,7 @@ void MusicSystemTrayMenu::createVolumeWidgetActions()
 
     m_volumeSlider = new TTKClickedSlider(Qt::Horizontal, widgetActionContainer);
     m_volumeSlider->setRange(0, 100);
-    m_volumeSlider->setStyleSheet(MusicUIObject::SliderStyle08);
+    m_volumeSlider->setStyleSheet(TTK::UI::SliderStyle08);
 
     vbox->addWidget(m_volumeButton);
     vbox->addWidget(m_volumeSlider);

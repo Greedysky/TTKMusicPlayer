@@ -16,14 +16,14 @@ MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->downloadButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
-    m_ui->openDetailButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
-    m_ui->openDirButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    m_ui->downloadButton->setStyleSheet(TTK::UI::PushButtonStyle03);
+    m_ui->openDetailButton->setStyleSheet(TTK::UI::PushButtonStyle03);
+    m_ui->openDirButton->setStyleSheet(TTK::UI::PushButtonStyle03);
 
 #ifdef Q_OS_UNIX
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
@@ -68,7 +68,7 @@ void MusicDownloadResetWidget::openFileLocation()
     const QString &path = MusicApplication::instance()->musicDownloadContains(exist);
     if(exist)
     {
-        MusicUtils::Url::openUrl(path);
+        TTK::Url::openUrl(path);
     }
     close();
 }

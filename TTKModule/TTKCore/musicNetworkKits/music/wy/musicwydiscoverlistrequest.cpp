@@ -15,8 +15,8 @@ void MusicWYDiscoverListRequest::startToSearch()
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_TOPLIST_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(19723756));
+                      TTK::Algorithm::mdII(WY_TOPLIST_URL, false),
+                      TTK::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(19723756));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -42,7 +42,7 @@ void MusicWYDiscoverListRequest::downLoadFinished()
 
                 const QVariantList &datas = value["tracks"].toList();
                 int where = datas.count();
-                where = (where > 0) ? TTKObject::random(where) : 0;
+                where = (where > 0) ? TTK::random(where) : 0;
 
                 int counter = 0;
                 for(const QVariant &var : qAsConst(datas))

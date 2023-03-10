@@ -255,7 +255,7 @@ void MusicLrcManager::setLrcFontSize(int size)
 void MusicLrcManager::startDrawLrcMask(qint64 intervaltime)
 {
     m_intervalCount = 0.0f;
-    m_position.setX(MusicUtils::Widget::fontTextWidth(m_font, text()));
+    m_position.setX(TTK::Widget::fontTextWidth(m_font, text()));
 
     const float count = intervaltime / m_speedLevel;
     m_lrcMaskWidthInterval = (count != 0) ? m_position.x() / count : 0;
@@ -303,6 +303,6 @@ void MusicLrcManager::setUpdateMask()
 
 void MusicLrcManager::setText(const QString &str)
 {
-    m_position.setX(MusicUtils::Widget::fontTextWidth(m_font, str));
+    m_position.setX(TTK::Widget::fontTextWidth(m_font, str));
     QLabel::setText(str);
 }

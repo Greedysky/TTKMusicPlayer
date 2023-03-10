@@ -22,27 +22,27 @@ TTKDesktopWrapper::TaskbarInfo TTKDesktopWrapper::screenTaskbar(int index)
     if(sr.left() != dr.left())
     {
         info.m_size = std::abs(sr.left() - dr.left());
-        info.m_direction = TTKObject::Direction::Left;
+        info.m_direction = TTK::Direction::Left;
     }
     else if(sr.right() != dr.right())
     {
         info.m_size = std::abs(sr.right() - dr.right());
-        info.m_direction = TTKObject::Direction::Right;
+        info.m_direction = TTK::Direction::Right;
     }
     else if(sr.top() != dr.top())
     {
         info.m_size = std::abs(sr.top() - dr.top());
-        info.m_direction = TTKObject::Direction::Top;
+        info.m_direction = TTK::Direction::Top;
     }
     else if(sr.bottom() != dr.bottom())
     {
         info.m_size = std::abs(sr.bottom() - dr.bottom());
-        info.m_direction = TTKObject::Direction::Bottom;
+        info.m_direction = TTK::Direction::Bottom;
     }
     else
     {
         info.m_size = 0;
-        info.m_direction = TTKObject::Direction::No;
+        info.m_direction = TTK::Direction::No;
     }
     return info;
 }

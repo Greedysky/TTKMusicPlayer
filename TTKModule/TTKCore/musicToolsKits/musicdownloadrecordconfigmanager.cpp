@@ -1,6 +1,6 @@
 #include "musicdownloadrecordconfigmanager.h"
 
-MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(MusicObject::Record type, QObject *parent)
+MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(TTK::Record type, QObject *parent)
     : TTKXmlDocument(parent),
       m_type(type)
 {
@@ -49,9 +49,9 @@ QString MusicDownloadRecordConfigManager::mappingFilePathFromEnum() const
 {
     switch(m_type)
     {
-        case MusicObject::Record::NormalDownload: return NORMAL_DOWN_PATH_FULL;
-        case MusicObject::Record::CloudDownload: return CLOUD_DOWN_PATH_FULL;
-        case MusicObject::Record::CloudUpload: return CLOUD_UP_PATH_FULL;
+        case TTK::Record::NormalDownload: return NORMAL_DOWN_PATH_FULL;
+        case TTK::Record::CloudDownload: return CLOUD_DOWN_PATH_FULL;
+        case TTK::Record::CloudUpload: return CLOUD_UP_PATH_FULL;
         default: return QString();
     }
 }

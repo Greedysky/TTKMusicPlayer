@@ -57,14 +57,14 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
     connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget, SLOT(setSliderStyleByType(int)));
     connect(ui->userOptionWidget, SIGNAL(buttonClicked(int)), SLOT(switchToSelectedItemStyle(int)));
 
-    ui->musicPrevious->setStyleSheet(MusicUIObject::BtnPrevious);
-    ui->musicNext->setStyleSheet(MusicUIObject::BtnNext);
-    ui->musicKey->setStyleSheet(MusicUIObject::BtnPlay);
+    ui->musicPrevious->setStyleSheet(TTK::UI::BtnPrevious);
+    ui->musicNext->setStyleSheet(TTK::UI::BtnNext);
+    ui->musicKey->setStyleSheet(TTK::UI::BtnPlay);
 
-    ui->musicBestLove->setStyleSheet(MusicUIObject::BtnUnLove);
-    ui->musicDesktopLrc->setStyleSheet(MusicUIObject::BtnDKLrc);
-    ui->musicDownload->setStyleSheet(MusicUIObject::BtnUnDownload);
-    ui->musicMoreFunction->setStyleSheet(MusicUIObject::BtnMore);
+    ui->musicBestLove->setStyleSheet(TTK::UI::BtnUnLove);
+    ui->musicDesktopLrc->setStyleSheet(TTK::UI::BtnDKLrc);
+    ui->musicDownload->setStyleSheet(TTK::UI::BtnUnDownload);
+    ui->musicMoreFunction->setStyleSheet(TTK::UI::BtnMore);
 
     ui->musicPrevious->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));
@@ -89,7 +89,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
 
 void MusicLeftAreaWidget::musictLoveStateClicked(bool state)
 {
-    m_ui->musicBestLove->setStyleSheet(state ? MusicUIObject::BtnLove : MusicUIObject::BtnUnLove);
+    m_ui->musicBestLove->setStyleSheet(state ? TTK::UI::BtnLove : TTK::UI::BtnUnLove);
     Q_EMIT currentLoveStateChanged();
 }
 
@@ -103,7 +103,7 @@ void MusicLeftAreaWidget::musicDownloadSongFinished()
 {
     bool state = false;
     MusicApplication::instance()->musicDownloadContains(state);
-    m_ui->musicDownload->setStyleSheet(state ? MusicUIObject::BtnDownload : MusicUIObject::BtnUnDownload);
+    m_ui->musicDownload->setStyleSheet(state ? TTK::UI::BtnDownload : TTK::UI::BtnUnDownload);
     Q_EMIT currentDownloadStateChanged();
 }
 

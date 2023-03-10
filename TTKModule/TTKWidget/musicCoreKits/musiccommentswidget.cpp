@@ -38,10 +38,10 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     m_userCommit = new QTextEdit(userWidget);
     m_userCommit->setReadOnly(true);
     m_userCommit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_userCommit->setStyleSheet(MusicUIObject::BorderStyle01 + MusicUIObject::BackgroundStyle01 +
-                                MusicUIObject::ColorStyle04);
-    m_userCommit->viewport()->setStyleSheet(MusicUIObject::BackgroundStyle01 + MusicUIObject::ColorStyle04);
-    m_userName->setStyleSheet(MusicUIObject::ColorStyle03);
+    m_userCommit->setStyleSheet(TTK::UI::BorderStyle01 + TTK::UI::BackgroundStyle01 +
+                                TTK::UI::ColorStyle04);
+    m_userCommit->viewport()->setStyleSheet(TTK::UI::BackgroundStyle01 + TTK::UI::ColorStyle04);
+    m_userName->setStyleSheet(TTK::UI::ColorStyle03);
     userWidgetLayout->addWidget(m_userName);
     userWidgetLayout->addWidget(m_userCommit);
     userWidget->setLayout(userWidgetLayout);
@@ -52,31 +52,31 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     operWidgetLayout->setSpacing(4);
 
     m_timerLabel = new QLabel(operWidget);
-    m_timerLabel->setStyleSheet(MusicUIObject::ColorStyle03);
+    m_timerLabel->setStyleSheet(TTK::UI::ColorStyle03);
 
     TTKClickedLabel *ngReportLabel = new TTKClickedLabel(tr("Report"), operWidget);
-    ngReportLabel->setStyleSheet(MusicUIObject::ColorStyle03);
+    ngReportLabel->setStyleSheet(TTK::UI::ColorStyle03);
 
     QFrame *spliteLine1 = new QFrame(operWidget);
     spliteLine1->setFixedWidth(1);
     spliteLine1->setFrameShape(QFrame::VLine);
-    spliteLine1->setStyleSheet(MusicUIObject::ColorStyle03);
+    spliteLine1->setStyleSheet(TTK::UI::ColorStyle03);
 
     QPushButton *starButton = new QPushButton(operWidget);
     starButton->setCursor(QCursor(Qt::PointingHandCursor));
     starButton->setFixedSize(12, 11);
-    starButton->setStyleSheet(MusicUIObject::InteriorStar);
+    starButton->setStyleSheet(TTK::UI::InteriorStar);
 
     m_starLabel = new QLabel(operWidget);
     m_starLabel->setText("(0)");
-    m_starLabel->setStyleSheet(MusicUIObject::ColorStyle03 + MusicUIObject::BackgroundStyle01);
+    m_starLabel->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::BackgroundStyle01);
 
     QFrame *spliteLine2 = new QFrame(operWidget);
     spliteLine2->setFixedWidth(1);
     spliteLine2->setFrameShape(QFrame::VLine);
-    spliteLine2->setStyleSheet(MusicUIObject::ColorStyle03);
+    spliteLine2->setStyleSheet(TTK::UI::ColorStyle03);
     TTKClickedLabel *ReplyLabel = new TTKClickedLabel(tr("Reply"), operWidget);
-    ReplyLabel->setStyleSheet(MusicUIObject::ColorStyle03);
+    ReplyLabel->setStyleSheet(TTK::UI::ColorStyle03);
     //
 #ifdef Q_OS_UNIX
     starButton->setFocusPolicy(Qt::NoFocus);
@@ -105,7 +105,7 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     //
     QFrame *solidLine = new QFrame(this);
     solidLine->setFixedHeight(1);
-    solidLine->setStyleSheet(MusicUIObject::BorderStyle05 + MusicUIObject::ColorStyle03);
+    solidLine->setStyleSheet(TTK::UI::BorderStyle05 + TTK::UI::ColorStyle03);
     //
     layout->addWidget(centerWidget);
     layout->addWidget(solidLine);
@@ -124,9 +124,9 @@ MusicCommentsItem::~MusicCommentsItem()
 void MusicCommentsItem::addCellItem(const MusicResultDataItem &comments)
 {
     m_userName->setText(comments.m_nickName + ":");
-    m_userName->setFixedWidth(MusicUtils::Widget::fontTextWidth(m_userName->font(), m_userName->text()));
+    m_userName->setFixedWidth(TTK::Widget::fontTextWidth(m_userName->font(), m_userName->text()));
     m_timerLabel->setText(QDateTime::fromMSecsSinceEpoch(comments.m_updateTime.toULongLong()).toString(TTK_YEAR_STIME_FORMAT));
-    m_timerLabel->setFixedWidth(MusicUtils::Widget::fontTextWidth(m_timerLabel->font(), m_timerLabel->text()));
+    m_timerLabel->setFixedWidth(TTK::Widget::fontTextWidth(m_timerLabel->font(), m_timerLabel->text()));
     m_starLabel->setText(QString("(%1)").arg(comments.m_playCount));
     m_userCommit->setText(comments.m_description);
 
@@ -179,7 +179,7 @@ void MusicCommentsWidget::initialize(bool isPain)
     m_isPain = isPain;
 
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::BackgroundStyle07));
+    setStyleSheet(QString("#%1{%2}").arg(className(), TTK::UI::BackgroundStyle07));
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -199,7 +199,7 @@ void MusicCommentsWidget::initialize(bool isPain)
 
         QPushButton *closeButton = new QPushButton(this);
         closeButton->setFixedSize(14, 14);
-        closeButton->setStyleSheet(MusicUIObject::BtnPClose);
+        closeButton->setStyleSheet(TTK::UI::BtnPClose);
         closeButton->setCursor(QCursor(Qt::PointingHandCursor));
 #ifdef Q_OS_UNIX
         closeButton->setFocusPolicy(Qt::NoFocus);
@@ -227,16 +227,16 @@ void MusicCommentsWidget::initialize(bool isPain)
     messageBox->setAttribute(Qt::WA_TranslucentBackground, false);
     m_messageEdit = new QTextEdit(messageBox);
     m_messageEdit->setFixedHeight(75);
-    m_messageEdit->verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle01);
-    m_messageEdit->setStyleSheet(MusicUIObject::BorderStyle02 + MusicUIObject::BackgroundStyle01 + MusicUIObject::ColorStyle04);
-    m_messageEdit->viewport()->setStyleSheet(MusicUIObject::BackgroundStyle01 + MusicUIObject::ColorStyle04);
+    m_messageEdit->verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle01);
+    m_messageEdit->setStyleSheet(TTK::UI::BorderStyle02 + TTK::UI::BackgroundStyle01 + TTK::UI::ColorStyle04);
+    m_messageEdit->viewport()->setStyleSheet(TTK::UI::BackgroundStyle01 + TTK::UI::ColorStyle04);
     messageBox->setAttribute(Qt::WA_TranslucentBackground, true);
     m_commentsLabel = new QLabel(contentsWidget);
-    m_commentsLabel->setStyleSheet(MusicUIObject::ColorStyle04);
+    m_commentsLabel->setStyleSheet(TTK::UI::ColorStyle04);
     QFrame *solidLine = new QFrame(contentsWidget);
     solidLine->setFrameShape(QFrame::HLine);
     solidLine->setFixedHeight(1);
-    solidLine->setStyleSheet(MusicUIObject::ColorStyle03);
+    solidLine->setStyleSheet(TTK::UI::ColorStyle03);
     //
     QWidget *messageMiddle = new QWidget(messageBox);
     QHBoxLayout *messageMiddleLayout = new QHBoxLayout(messageMiddle);
@@ -245,11 +245,11 @@ void MusicCommentsWidget::initialize(bool isPain)
     QPushButton *sendButton = new QPushButton(tr("Send"), messageMiddle);
     emojiButton->setIcon(QIcon(":/lrc/lb_emoji"));
     emojiButton->setCursor(QCursor(Qt::PointingHandCursor));
-    emojiButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
+    emojiButton->setStyleSheet(TTK::UI::BackgroundStyle01);
     connect(emojiButton, SIGNAL(clicked()), SLOT(createEMOJILabelWidget()));
     sendButton->setFixedSize(65, 25);
     sendButton->setCursor(QCursor(Qt::PointingHandCursor));
-    sendButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    sendButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     messageMiddleLayout->addWidget(emojiButton);
     messageMiddleLayout->addStretch(1);
     messageMiddleLayout->addWidget(sendButton);
@@ -277,13 +277,13 @@ void MusicCommentsWidget::initialize(bool isPain)
     if(isPain)
     {
         QScrollArea *scrollArea = new QScrollArea(this);
-        MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, contentsWidget, false);
+        TTK::Widget::generateVScrollAreaFormat(scrollArea, contentsWidget, false);
 
         contentsWidget->setObjectName("ContentsWidget");
-        contentsWidget->setStyleSheet(QString("#ContentsWidget{%1}").arg(MusicUIObject::BackgroundStyle01));
+        contentsWidget->setStyleSheet(QString("#ContentsWidget{%1}").arg(TTK::UI::BackgroundStyle01));
         QWidget *view = scrollArea->viewport();
         view->setObjectName("Viewport");
-        view->setStyleSheet(QString("#Viewport{%1}").arg(MusicUIObject::BackgroundStyle01));
+        view->setStyleSheet(QString("#Viewport{%1}").arg(TTK::UI::BackgroundStyle01));
         //
         mainLayout->addWidget(topWidget);
         mainLayout->addWidget(scrollArea);

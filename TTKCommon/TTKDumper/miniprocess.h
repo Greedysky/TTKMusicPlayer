@@ -21,7 +21,7 @@
 
 #include "ttkglobaldefine.h"
 
-namespace TTKObject
+namespace TTK
 {
     /*!
      * Kill process by name.

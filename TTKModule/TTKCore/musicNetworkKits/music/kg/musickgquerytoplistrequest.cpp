@@ -26,7 +26,7 @@ void MusicKGQueryToplistRequest::startToSearch(const QString &value)
     m_queryValue = value;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_TOPLIST_URL, false).arg(value));
+    request.setUrl(TTK::Algorithm::mdII(KG_TOPLIST_URL, false).arg(value));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -64,15 +64,15 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation info;
-                    info.m_songName = MusicUtils::String::charactersReplaced(value["filename"].toString());
+                    TTK::MusicSongInformation info;
+                    info.m_songName = TTK::String::charactersReplaced(value["filename"].toString());
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
 
                     if(info.m_songName.contains(TTK_DEFAULT_STR))
                     {
                         const QStringList &ll = info.m_songName.split(TTK_DEFAULT_STR);
-                        info.m_singerName = MusicUtils::String::charactersReplaced(ll.front().trimmed());
-                        info.m_songName = MusicUtils::String::charactersReplaced(ll.back().trimmed());
+                        info.m_singerName = TTK::String::charactersReplaced(ll.front().trimmed());
+                        info.m_songName = TTK::String::charactersReplaced(ll.back().trimmed());
                     }
 
                     info.m_songId = value["hash"].toString();
@@ -118,10 +118,10 @@ void MusicKGQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
     Q_UNUSED(input);
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_TOPLIST_INFO_URL, false));
+    request.setUrl(TTK::Algorithm::mdII(KG_TOPLIST_INFO_URL, false));
     MusicKGInterface::makeRequestRawHeader(&request);
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
     {
         return;

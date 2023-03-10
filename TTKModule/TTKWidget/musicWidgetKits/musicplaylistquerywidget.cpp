@@ -23,12 +23,12 @@ MusicPlaylistQueryItemWidget::MusicPlaylistQueryItemWidget(QWidget *parent)
     m_topListenButton->setGeometry(0, 0, WIDTH_LABEL_SIZE, 20);
     m_topListenButton->setIcon(QIcon(":/tiny/btn_listen_hover"));
     m_topListenButton->setText(" - ");
-    m_topListenButton->setStyleSheet(MusicUIObject::BorderStyle01 + MusicUIObject::BackgroundStyle04 + MusicUIObject::ColorStyle01);
+    m_topListenButton->setStyleSheet(TTK::UI::BorderStyle01 + TTK::UI::BackgroundStyle04 + TTK::UI::ColorStyle01);
 
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry(110, 110, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
-    m_playButton->setStyleSheet(MusicUIObject::TinyBtnPlaylist);
+    m_playButton->setStyleSheet(TTK::UI::TinyBtnPlaylist);
     connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));
 
 #ifdef Q_OS_UNIX
@@ -61,9 +61,9 @@ void MusicPlaylistQueryItemWidget::setResultDataItem(const MusicResultDataItem &
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
-    m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
+    m_nameLabel->setText(TTK::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
     m_creatorLabel->setToolTip("by " + item.m_nickName);
-    m_creatorLabel->setText(MusicUtils::Widget::elidedText(m_creatorLabel->font(), m_creatorLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
+    m_creatorLabel->setText(TTK::Widget::elidedText(m_creatorLabel->font(), m_creatorLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
     bool ok = false;
     const int count = item.m_playCount.toInt(&ok);
@@ -191,7 +191,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
 
         m_container->removeWidget(m_mainWindow);
         QScrollArea *scrollArea = new QScrollArea(this);
-        MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
+        TTK::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
         m_container->addWidget(scrollArea);
 
         m_initialized = true;
@@ -208,10 +208,10 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
         for(const QString &data : qAsConst(titles))
         {
             QLabel *l = new QLabel(data, containTopWidget);
-            l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::ColorStyle08));
+            l->setStyleSheet(QString("QLabel::hover{%1}").arg(TTK::UI::ColorStyle08));
             QFrame *hline = new QFrame(containTopWidget);
             hline->setFrameShape(QFrame::VLine);
-            hline->setStyleSheet(MusicUIObject::ColorStyle06);
+            hline->setStyleSheet(TTK::UI::ColorStyle06);
             containTopLayout->addWidget(l);
             containTopLayout->addWidget(hline);
         }
@@ -219,7 +219,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(MusicUIObject::ColorStyle06);
+        line->setStyleSheet(TTK::UI::ColorStyle06);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

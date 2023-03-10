@@ -24,9 +24,9 @@ void MusicLrcManagerForInterior::paintEvent(QPaintEvent *)
     int ttplus = font.pointSize() - m_gradientFontSize;
     font.setPointSize(ttplus = (ttplus < 0) ? 0 : ttplus);
     painter.setFont(font);
-    m_position.setX(MusicUtils::Widget::fontTextWidth(font, text()));
+    m_position.setX(TTK::Widget::fontTextWidth(font, text()));
 
-    const int fontHeight = MusicUtils::Widget::fontTextHeight(font);
+    const int fontHeight = TTK::Widget::fontTextHeight(font);
     m_linearGradient.setFinalStop(0, fontHeight);
     m_maskLinearGradient.setFinalStop(0, fontHeight);
 

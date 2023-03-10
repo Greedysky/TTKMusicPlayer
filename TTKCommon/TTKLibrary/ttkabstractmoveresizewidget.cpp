@@ -19,7 +19,7 @@ TTKAbstractMoveResizeWidget::TTKAbstractMoveResizeWidget(QWidget *parent)
 
 TTKAbstractMoveResizeWidget::TTKAbstractMoveResizeWidget(bool transparent, QWidget *parent)
     : QWidget(parent),
-      m_direction(TTKObject::Direction::No)
+      m_direction(TTK::Direction::No)
 {
     m_struct.m_mouseLeftPress = false;
     m_struct.m_isPressBorder = false;
@@ -44,7 +44,7 @@ bool TTKAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
 void TTKAbstractMoveResizeWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
-    if(m_struct.m_isPressBorder || m_direction == TTKObject::Direction::No)
+    if(m_struct.m_isPressBorder || m_direction == TTK::Direction::No)
     {
         return;
     }
@@ -53,7 +53,7 @@ void TTKAbstractMoveResizeWidget::paintEvent(QPaintEvent *event)
     if(point.y() > DISTANCE && point.y() < height() - DISTANCE && point.x() > DISTANCE && point.x() < width() - DISTANCE)
     {
         setCursor(Qt::ArrowCursor);
-        m_direction = TTKObject::Direction::No;
+        m_direction = TTK::Direction::No;
     }
 }
 
@@ -97,7 +97,7 @@ void TTKAbstractMoveResizeWidget::mouseReleaseEvent(QMouseEvent *event)
     m_struct.m_isPressBorder = false;
     m_struct.m_mouseLeftPress = false;
     setCursor(QCursor(Qt::ArrowCursor));
-    m_direction = TTKObject::Direction::No;
+    m_direction = TTK::Direction::No;
 }
 
 void TTKAbstractMoveResizeWidget::sizeDirection()
@@ -106,47 +106,47 @@ void TTKAbstractMoveResizeWidget::sizeDirection()
     if(point.x() < DISTANCE && point.y() < height() - DISTANCE && point.y() > DISTANCE)
     {
         setCursor(Qt::SizeHorCursor);
-        m_direction = TTKObject::Direction::Left;
+        m_direction = TTK::Direction::Left;
     }
     else if(point.x() > width() - DISTANCE && point.y() < height() - DISTANCE && point.y() > DISTANCE)
     {
         setCursor(Qt::SizeHorCursor);
-        m_direction = TTKObject::Direction::Right;
+        m_direction = TTK::Direction::Right;
     }
     else if(point.y() < DISTANCE && point.x() > DISTANCE && point.x() < width() - DISTANCE)
     {
         setCursor(Qt::SizeVerCursor);
-        m_direction = TTKObject::Direction::Top;
+        m_direction = TTK::Direction::Top;
     }
     else if(point.y() > height() - DISTANCE && point.x() > DISTANCE && point.x() < width() - DISTANCE)
     {
         setCursor(Qt::SizeVerCursor);
-        m_direction = TTKObject::Direction::Bottom;
+        m_direction = TTK::Direction::Bottom;
     }
     else if(point.y() < DISTANCE && point.x() < DISTANCE)
     {
         setCursor(Qt::SizeFDiagCursor);
-        m_direction = TTKObject::Direction::LeftTop;
+        m_direction = TTK::Direction::LeftTop;
     }
     else if(point.y() < DISTANCE && point.x() > width() - DISTANCE)
     {
         setCursor(Qt::SizeBDiagCursor);
-        m_direction = TTKObject::Direction::RightTop;
+        m_direction = TTK::Direction::RightTop;
     }
     else if(point.x() < DISTANCE && point.y() > height() - DISTANCE)
     {
         setCursor(Qt::SizeBDiagCursor);
-        m_direction = TTKObject::Direction::LeftBottom;
+        m_direction = TTK::Direction::LeftBottom;
     }
     else if(point.x() > DISTANCE && point.y() > height() - DISTANCE)
     {
         setCursor(Qt::SizeFDiagCursor);
-        m_direction = TTKObject::Direction::RightBottom;
+        m_direction = TTK::Direction::RightBottom;
     }
     else
     {
         setCursor(Qt::ArrowCursor);
-        m_direction = TTKObject::Direction::No;
+        m_direction = TTK::Direction::No;
     }
 }
 
@@ -155,7 +155,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
     const QPoint &point = QCursor::pos();
     switch(m_direction)
     {
-        case TTKObject::Direction::Left:
+        case TTK::Direction::Left:
         {
             const int wValue = x() + width() - point.x();
             if(minimumWidth() <= wValue && wValue <= maximumWidth())
@@ -164,7 +164,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
             }
             break;
         }
-        case TTKObject::Direction::Right:
+        case TTK::Direction::Right:
         {
             const int wValue = point.x() - x();
             if(minimumWidth() <= wValue && wValue <= maximumWidth())
@@ -173,7 +173,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
             }
             break;
         }
-        case TTKObject::Direction::Top:
+        case TTK::Direction::Top:
         {
             const int hValue = y() - point.y() + height();
             if(minimumHeight() <= hValue && hValue <= maximumHeight())
@@ -182,7 +182,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
             }
             break;
         }
-        case TTKObject::Direction::Bottom:
+        case TTK::Direction::Bottom:
         {
             const int hValue = point.y() - y();
             if(minimumHeight() <= hValue && hValue <= maximumHeight())
@@ -191,7 +191,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
             }
             break;
         }
-        case TTKObject::Direction::LeftTop:
+        case TTK::Direction::LeftTop:
         {
             int yValue = point.y();
             int xValue = point.x();
@@ -229,7 +229,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
             GEOMETRY(xValue, yValue, wValue, hValue);
             break;
         }
-        case TTKObject::Direction::RightTop:
+        case TTK::Direction::RightTop:
         {
             int hValue = y() + height() - point.y();
             const int wValue = point.x() - x();
@@ -250,7 +250,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
             GEOMETRY(m_struct.m_windowPos.x(), yValue, wValue, hValue);
             break;
         }
-        case TTKObject::Direction::LeftBottom:
+        case TTK::Direction::LeftBottom:
         {
             int wValue = x() + width() - point.x();
             const int hValue = point.y() - m_struct.m_windowPos.y();
@@ -272,7 +272,7 @@ void TTKAbstractMoveResizeWidget::moveDirection()
             GEOMETRY(xValue, m_struct.m_windowPos.y(), wValue, hValue);
             break;
         }
-        case TTKObject::Direction::RightBottom:
+        case TTK::Direction::RightBottom:
         {
             const int wValue = point.x() - x();
             const int hValue = point.y() - y();

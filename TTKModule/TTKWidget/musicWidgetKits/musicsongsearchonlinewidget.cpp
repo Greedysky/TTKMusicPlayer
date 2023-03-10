@@ -67,7 +67,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     }
     else
     {
-        const MusicObject::QueryQuality quality = m_networkRequest->queryQuality();
+        const TTK::QueryQuality quality = m_networkRequest->queryQuality();
         MusicItemSearchTableWidget::startSearchQuery(text);
         m_networkRequest->setQueryQuality(quality);
     }
@@ -79,7 +79,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
 
 void MusicSongSearchTableWidget::musicDownloadLocal(int row)
 {
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row < 0 || (row >= rowCount() - 1) || row >= songInfos.count())
     {
         return;
@@ -104,7 +104,7 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
     }
     else
     {
-        const MusicObject::QueryQuality quality = m_networkRequest->queryQuality();
+        const TTK::QueryQuality quality = m_networkRequest->queryQuality();
         MusicItemSearchTableWidget::startSearchQuery(text);
         m_networkRequest->setQueryQuality(quality);
     }
@@ -114,7 +114,7 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
     m_networkRequest->startToSingleSearch(text);
 }
 
-void MusicSongSearchTableWidget::setSearchQuality(MusicObject::QueryQuality quality)
+void MusicSongSearchTableWidget::setSearchQuality(TTK::QueryQuality quality)
 {
     MusicItemSearchTableWidget::startSearchQuery(QString());
     m_networkRequest->setQueryQuality(quality);
@@ -131,13 +131,13 @@ void MusicSongSearchTableWidget::resizeSection()
     for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
 
         it = item(i, 2);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
 
         it = item(i, 3);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 31));
     }
 }
 
@@ -193,24 +193,24 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicResultInfoItem &s
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_songName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
+    item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 30));
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 30));
+    item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_albumName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 30));
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 30));
+    item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem(songItem.m_duration);
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
@@ -239,8 +239,8 @@ void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
         return;
     }
 
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    const MusicObject::MusicSongInformation &info = songInfos[row];
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformation &info = songInfos[row];
 
     switch(action->data().toInt())
     {
@@ -262,7 +262,7 @@ void MusicSongSearchTableWidget::musicSongDownload(int row)
         return;
     }
 
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
     download->setSongName(songInfos[row], MusicAbstractQueryRequest::QueryType::Music);
     download->show();
@@ -302,14 +302,14 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
         return;
     }
 
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    const MusicObject::MusicSongInformation &info = songInfos[row];
-    MusicObject::MusicSongPropertyList props(info.m_songProps);
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformation &info = songInfos[row];
+    TTK::MusicSongPropertyList props(info.m_songProps);
     std::sort(props.begin(), props.end()); //to find out the min bitrate
 
     if(!props.isEmpty())
     {
-        const MusicObject::MusicSongProperty &prop = props.front();
+        const TTK::MusicSongProperty &prop = props.front();
 
         MusicResultDataItem result;
         result.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
@@ -397,7 +397,7 @@ void MusicSongSearchOnlineWidget::startSearchSingleQuery(const QString &name)
     m_searchTableWidget->startSearchSingleQuery(name);
 }
 
-void MusicSongSearchOnlineWidget::researchQueryByQuality(const QString &name, MusicObject::QueryQuality quality)
+void MusicSongSearchOnlineWidget::researchQueryByQuality(const QString &name, TTK::QueryQuality quality)
 {
     m_searchTableWidget->setSearchQuality(quality);
     startSearchQuery(name, false);
@@ -442,7 +442,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
             return;
         }
 
-        MusicObject::MusicSongInformationList infos, songInfos(d->songInfoList());
+        TTK::MusicSongInformationList infos, songInfos(d->songInfoList());
         for(int index : qAsConst(list))
         {
             if(index < 0 || index >= songInfos.count())
@@ -473,26 +473,26 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     m_textLabel = new QLabel(this);
     m_textLabel->setTextFormat(Qt::RichText);
     m_textLabel->setText(tr("&nbsp;Find no result"));
-    m_textLabel->setStyleSheet(MusicUIObject::ColorStyle03);
+    m_textLabel->setStyleSheet(TTK::UI::ColorStyle03);
     funcLayout->addWidget(m_textLabel);
 
     m_playButton = new QPushButton(tr("Play"), this);
     m_playButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
     m_playButton->setIconSize(QSize(14, 14));
     m_playButton->setFixedSize(70, 25);
-    m_playButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    m_playButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
     funcLayout->addWidget(m_playButton);
 
     QPushButton *addButton = new QPushButton(tr("Add"), this);
     addButton->setFixedSize(70, 25);
-    addButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    addButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
     funcLayout->addWidget(addButton);
 
     QPushButton *downloadButton = new QPushButton(tr("Download"), this);
     downloadButton->setFixedSize(70, 25);
-    downloadButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    downloadButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
     funcLayout->addWidget(downloadButton);
 
@@ -510,10 +510,10 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     QHBoxLayout *labelLayout = new QHBoxLayout(labelWidget);
     labelLayout->setContentsMargins(7, 0, 10, 0);
     labelLayout->setSpacing(0);
-    labelWidget->setStyleSheet(MusicUIObject::BackgroundStyle09);
+    labelWidget->setStyleSheet(TTK::UI::BackgroundStyle09);
 
     QCheckBox *labelCheckBox = new QCheckBox(this);
-    labelCheckBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
+    labelCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     connect(labelCheckBox, SIGNAL(clicked(bool)), m_searchTableWidget, SLOT(checkedItemsState(bool)));
     labelLayout->addWidget(labelCheckBox, headerview->sectionSize(0));
     m_resizeWidgets << labelCheckBox;
@@ -526,22 +526,22 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 #endif
 
     QLabel *label1 = new QLabel(tr("Song"), this);
-    label1->setStyleSheet(MusicUIObject::FontStyle01);
+    label1->setStyleSheet(TTK::UI::FontStyle01);
     labelLayout->addWidget(label1, headerview->sectionSize(1));
     m_resizeWidgets << label1;
 
     QLabel *label2 = new QLabel(tr("Artist"), this);
-    label2->setStyleSheet(MusicUIObject::FontStyle01);
+    label2->setStyleSheet(TTK::UI::FontStyle01);
     labelLayout->addWidget(label2, headerview->sectionSize(2));
     m_resizeWidgets << label2;
 
     QLabel *label3 = new QLabel(tr("Album"), this);
-    label3->setStyleSheet(MusicUIObject::FontStyle01);
+    label3->setStyleSheet(TTK::UI::FontStyle01);
     labelLayout->addWidget(label3, headerview->sectionSize(3));
     m_resizeWidgets << label3;
 
     QLabel *label4 = new QLabel(tr("Operator"), this);
-    label4->setStyleSheet(MusicUIObject::FontStyle01);
+    label4->setStyleSheet(TTK::UI::FontStyle01);
     labelLayout->addWidget(label4, headerview->sectionSize(4) + headerview->sectionSize(5) + headerview->sectionSize(6) * 3);
     m_resizeWidgets << label3;
 
@@ -559,6 +559,6 @@ void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
         m_resizeWidgets[3]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 105);
     }
 
-    m_textLabel->setText(tr("&nbsp;find <font color=#158FE1> %1 </font> result").arg(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, width - WINDOW_WIDTH_MIN + 240)));
+    m_textLabel->setText(tr("&nbsp;find <font color=#158FE1> %1 </font> result").arg(TTK::Widget::elidedText(font(), name, Qt::ElideRight, width - WINDOW_WIDTH_MIN + 240)));
     m_textLabel->setToolTip(name);
 }

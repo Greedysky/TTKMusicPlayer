@@ -55,7 +55,7 @@ MusicSongsListPlayTableWidget::MusicSongsListPlayTableWidget(int index, QWidget 
     headerview->resizeSection(4, 20);
     headerview->resizeSection(5, 45);
 
-    MusicUtils::Widget::setTransparent(this, 0);
+    TTK::Widget::setTransparent(this, 0);
 
     connect(&m_timerShow, SIGNAL(timeout()), SLOT(showTimeOut()));
     connect(&m_timerStay, SIGNAL(timeout()), SLOT(stayTimeOut()));
@@ -90,8 +90,8 @@ void MusicSongsListPlayTableWidget::updateSongsList(const MusicSongList &songs)
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::Widget::elidedText(font(), v.name(), Qt::ElideRight, headerview->sectionSize(1) - 10));
-        item->setForeground(QColor(MusicUIObject::Color01));
+        item->setText(TTK::Widget::elidedText(font(), v.name(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        item->setForeground(QColor(TTK::UI::Color01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
@@ -105,7 +105,7 @@ void MusicSongsListPlayTableWidget::updateSongsList(const MusicSongList &songs)
         setItem(i, 4, item);
 
                           item = new QTableWidgetItem(v.playTime());
-        item->setForeground(QColor(MusicUIObject::Color01));
+        item->setForeground(QColor(TTK::UI::Color01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);
     }
@@ -213,8 +213,8 @@ void MusicSongsListPlayTableWidget::adjustPlayWidgetRow()
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(m_playRowIndex, 0, item);
 
-    item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, headerview->sectionSize(1) - 10));
-    item->setForeground(QColor(MusicUIObject::Color01));
+    item = new QTableWidgetItem(TTK::Widget::elidedText(font(), name, Qt::ElideRight, headerview->sectionSize(1) - 10));
+    item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
 
     setItem(m_playRowIndex, 1, item);
@@ -223,7 +223,7 @@ void MusicSongsListPlayTableWidget::adjustPlayWidgetRow()
     setItem(m_playRowIndex, 4, new QTableWidgetItem);
 
     item = new QTableWidgetItem((*m_songs)[m_playRowIndex].playTime());
-    item->setForeground(QColor(MusicUIObject::Color01));
+    item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 5, item);
 
@@ -236,7 +236,7 @@ void MusicSongsListPlayTableWidget::adjustPlayWidgetRow()
 
 bool MusicSongsListPlayTableWidget::createUploadFileModule()
 {
-    if(m_songs->isEmpty() && MusicObject::playlistRowValid(m_toolIndex))
+    if(m_songs->isEmpty() && TTK::playlistRowValid(m_toolIndex))
     {
         setFixedSize(LEFT_SIDE_WIDTH_MIN, 100);
         if(m_openFileWidget == nullptr && m_parent)
@@ -559,7 +559,7 @@ void MusicSongsListPlayTableWidget::musicSearchQuery(QAction *action)
     }
 
     const QString &songName = currentSongName();
-    const QStringList names(MusicUtils::String::stringSplit(songName));
+    const QStringList names(TTK::String::stringSplit(songName));
     switch(action->data().toInt() - TTK_LOW_LEVEL)
     {
         case 0 : MusicRightAreaWidget::instance()->musicSongSearchedFound(songName); break;
@@ -684,7 +684,7 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
     menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
     menu.addAction(tr("Play Later"), this, SLOT(musicAddToPlayLater()));
     menu.addAction(tr("Add To Playlist"), this, SLOT(musicAddToPlayedList()));
@@ -698,7 +698,7 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     sortFiles.addAction(tr("Sort By AddTime"))->setData(3);
     sortFiles.addAction(tr("Sort By PlayTime"))->setData(4);
     sortFiles.addAction(tr("Sort By PlayCount"))->setData(5);
-    MusicUtils::Widget::adjustMenuPosition(&sortFiles);
+    TTK::Widget::adjustMenuPosition(&sortFiles);
     connect(&sortFiles, SIGNAL(triggered(QAction*)), SLOT(musicListSongSortBy(QAction*)));
 
     if(m_songSort)
@@ -721,7 +721,7 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     toolMenu.addAction(tr("Make Bell"), this, SLOT(musicMakeRingWidget()));
     toolMenu.addAction(tr("Make Transform"), this, SLOT(musicTransformWidget()));
     menu.addMenu(&toolMenu);
-    MusicUtils::Widget::adjustMenuPosition(&toolMenu);
+    TTK::Widget::adjustMenuPosition(&toolMenu);
 
     bool status = m_toolIndex != MUSIC_NETWORK_LIST;
     menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
@@ -760,7 +760,7 @@ void MusicSongsListPlayTableWidget::closeRenameItem()
     {
         QHeaderView *headerview = horizontalHeader();
         (*m_songs)[m_renameItem->row()].setName(m_renameItem->text());
-        m_renameItem->setText(MusicUtils::Widget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        m_renameItem->setText(TTK::Widget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, headerview->sectionSize(1) - 10));
 
         m_renameActived = false;
         setItemDelegateForRow(m_renameItem->row(), nullptr);
@@ -811,7 +811,7 @@ void MusicSongsListPlayTableWidget::startToDrag()
             }
 
             QHeaderView *headerview = horizontalHeader();
-            item(i, 1)->setText(MusicUtils::Widget::elidedText(font(), songs[i].name(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+            item(i, 1)->setText(TTK::Widget::elidedText(font(), songs[i].name(), Qt::ElideRight, headerview->sectionSize(1) - 10));
             item(i, 5)->setText(songs[i].playTime());
         }
 
@@ -827,7 +827,7 @@ void MusicSongsListPlayTableWidget::startToDrag()
 void MusicSongsListPlayTableWidget::createContextMenu(QMenu &menu)
 {
     const QString &songName = currentSongName();
-    const QStringList names(MusicUtils::String::stringSplit(songName));
+    const QStringList names(TTK::String::stringSplit(songName));
     for(int i = 1; i <= names.count(); ++i)
     {
         menu.addAction(tr("Search '%1'").arg(names[i - 1].trimmed()))->setData(i + TTK_LOW_LEVEL);

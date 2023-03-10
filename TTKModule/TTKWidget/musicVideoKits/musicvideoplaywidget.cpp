@@ -29,14 +29,14 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     layout->setSpacing(0);
 
     m_topWidget = new QWidget(this);
-    m_topWidget->setStyleSheet(MusicUIObject::BackgroundStyle08 + MusicUIObject::BorderStyle01);
+    m_topWidget->setStyleSheet(TTK::UI::BackgroundStyle08 + TTK::UI::BorderStyle01);
 
     QHBoxLayout *topLayout = new QHBoxLayout(m_topWidget);
     topLayout->setContentsMargins(9, 4, 9, 4);
 
     m_textLabel = new QLabel(m_topWidget);
     m_textLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    m_textLabel->setStyleSheet(MusicUIObject::ColorStyle01);
+    m_textLabel->setStyleSheet(TTK::UI::ColorStyle01);
 
     m_searchEdit = new MusicItemQueryEdit(m_topWidget);
     m_searchEdit->setFixedHeight(25);
@@ -48,7 +48,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_closeButton = new QPushButton(this);
     m_closeButton->setToolTip(tr("Close"));
     m_closeButton->setFixedSize(14, 14);
-    m_closeButton->setStyleSheet(MusicUIObject::BtnPClose);
+    m_closeButton->setStyleSheet(TTK::UI::BtnPClose);
     m_closeButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_closeButton, SIGNAL(clicked()), parent, SLOT(musicVideoClosed()));
     topLayout->addWidget(m_closeButton);
@@ -59,11 +59,11 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
 #endif
 
     m_stackedWidget = new QStackedWidget(this);
-    m_stackedWidget->setStyleSheet(MusicUIObject::BorderStyle01);
+    m_stackedWidget->setStyleSheet(TTK::UI::BorderStyle01);
 
     QWidget *topMaskWidget = new QWidget(this);
     topMaskWidget->setFixedHeight(35);
-    topMaskWidget->setStyleSheet(MusicUIObject::BackgroundStyle02);
+    topMaskWidget->setStyleSheet(TTK::UI::BackgroundStyle02);
 
     layout->addWidget(topMaskWidget);
     layout->addWidget(m_stackedWidget);
@@ -212,7 +212,7 @@ void MusicVideoPlayWidget::switchToSearchTable()
     m_backButton->setFixedSize(20, 20);
     m_backButton->setToolTip(tr("Back"));
     m_backButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_backButton->setStyleSheet(MusicUIObject::BtnBackBack);
+    m_backButton->setStyleSheet(TTK::UI::BtnBackBack);
     connect(m_backButton, SIGNAL(clicked()), SLOT(switchToPlayView()));
     topLayout->insertWidget(0, m_backButton);
 
@@ -241,11 +241,11 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
 {
     m_videoTable->startSearchSingleQuery(data);
-    const MusicObject::MusicSongInformation info(data.value<MusicObject::MusicSongInformation>());
-    const MusicObject::MusicSongPropertyList &props = info.m_songProps;
+    const TTK::MusicSongInformation info(data.value<TTK::MusicSongInformation>());
+    const TTK::MusicSongPropertyList &props = info.m_songProps;
     if(!props.isEmpty())
     {
-        const MusicObject::MusicSongProperty &prop = props.front();
+        const TTK::MusicSongProperty &prop = props.front();
         MusicVideoItem data;
         data.m_name = info.m_singerName + " - " + info.m_songName;
         data.m_url = prop.m_url;
@@ -368,7 +368,7 @@ void MusicVideoPlayWidget::leaveEvent(QEvent *event)
 
 void MusicVideoPlayWidget::setTitleText(const QString &text)
 {
-    m_textLabel->setText(MusicUtils::Widget::elidedText(font(), text, Qt::ElideRight, width() - 50));
+    m_textLabel->setText(TTK::Widget::elidedText(font(), text, Qt::ElideRight, width() - 50));
 }
 
 void MusicVideoPlayWidget::start(int st, int end, int ctrlst, int ctrlend)

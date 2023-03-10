@@ -43,7 +43,7 @@ public:
     /*!
      * Init widget.
      */
-    void initialize(MusicObject::Program type);
+    void initialize(TTK::Program type);
     /*!
      * Resize section bound by resize called.
      */
@@ -90,7 +90,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebDJRadioProgramWidget(MusicObject::Program type, QWidget *parent = nullptr);
+    explicit MusicWebDJRadioProgramWidget(TTK::Program type, QWidget *parent = nullptr);
     ~MusicWebDJRadioProgramWidget();
 
     /*!
@@ -103,7 +103,7 @@ public:
     void resizeWindow();
 
 private:
-    MusicObject::Program m_type;
+    TTK::Program m_type;
     MusicWebDJRadioProgramTableWidget *m_tableWidget;
 
 };

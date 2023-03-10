@@ -215,7 +215,7 @@ private:
 
 };
 
-namespace TTKObject
+namespace TTK
 {
     /*!
      * Init random value seed.

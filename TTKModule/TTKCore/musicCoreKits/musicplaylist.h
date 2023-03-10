@@ -68,11 +68,11 @@ public:
     /*!
      * Get current play mode.
      */
-    MusicObject::PlayMode playbackMode() const;
+    TTK::PlayMode playbackMode() const;
     /*!
      * Set current play mode.
      */
-    void setPlaybackMode(MusicObject::PlayMode mode);
+    void setPlaybackMode(TTK::PlayMode mode);
 
     /*!
      * Map item index at container.
@@ -160,7 +160,7 @@ Q_SIGNALS:
     /*!
      * Current play mode changed.
      */
-    void playbackModeChanged(MusicObject::PlayMode mode);
+    void playbackModeChanged(TTK::PlayMode mode);
 
 public Q_SLOTS:
     /*!
@@ -176,7 +176,7 @@ private:
     int m_currentIndex;
     MusicPlayItemList m_mediaList;
     MusicPlayItemList m_queueList;
-    MusicObject::PlayMode m_playbackMode;
+    TTK::PlayMode m_playbackMode;
 
 };
 

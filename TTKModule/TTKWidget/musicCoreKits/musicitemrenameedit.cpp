@@ -8,7 +8,7 @@ MusicItemRenameEidt::MusicItemRenameEidt(QWidget *parent)
       m_focusBlock(false)
 {
     setGeometry(1, 0, 330, 20);
-    setStyleSheet(MusicUIObject::LineEditStyle01);
+    setStyleSheet(TTK::UI::LineEditStyle01);
     setFocus(Qt::MouseFocusReason);
     setFocusPolicy(Qt::ClickFocus);
 
@@ -24,7 +24,7 @@ MusicItemRenameEidt::MusicItemRenameEidt(const QString &text, QWidget *parent)
 
 void MusicItemRenameEidt::textChanged(const QString &text)
 {
-    if(MusicUtils::String::isCharacterValid(text))
+    if(TTK::String::isCharacterValid(text))
     {
         backspace();
         m_focusBlock = true;
@@ -32,7 +32,7 @@ void MusicItemRenameEidt::textChanged(const QString &text)
         MusicToastLabel *toast = new MusicToastLabel(this);
         connect(toast, SIGNAL(finished()), SLOT(animationCloseChanged()));
 
-        toast->setText(tr("Illegal chars %1").arg(MusicUtils::String::illegalCharacters().join("")));
+        toast->setText(tr("Illegal chars %1").arg(TTK::String::illegalCharacters().join("")));
         toast->popup();
     }
 }

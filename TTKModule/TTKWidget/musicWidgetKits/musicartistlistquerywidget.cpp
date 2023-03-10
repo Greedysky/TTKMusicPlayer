@@ -17,7 +17,7 @@ MusicArtistListQueryItemWidget::MusicArtistListQueryItemWidget(QWidget *parent)
     : TTKClickedLabel(parent)
 {
     setAlignment(Qt::AlignCenter);
-    setStyleSheet(MusicUIObject::ColorStyle09);
+    setStyleSheet(TTK::UI::ColorStyle09);
     setFixedSize(WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
 
     connect(this, SIGNAL(clicked()), SLOT(currentItemClicked()));
@@ -27,7 +27,7 @@ void MusicArtistListQueryItemWidget::setResultDataItem(const MusicResultDataItem
 {
     m_itemData = item;
     setToolTip(item.m_name);
-    setText(MusicUtils::Widget::elidedText(font(), toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
+    setText(TTK::Widget::elidedText(font(), toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 }
 
 void MusicArtistListQueryItemWidget::currentItemClicked()
@@ -98,7 +98,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
 
         m_container->removeWidget(m_mainWindow);
         QScrollArea *scrollArea = new QScrollArea(this);
-        MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
+        TTK::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
         m_container->addWidget(scrollArea);
 
         m_initialized = true;
@@ -121,7 +121,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         for(int i = -1; i < 27; ++i)
         {
             TTKClickedLabel *l = new TTKClickedLabel(QString(TTKStatic_cast(char, i + 65)), containNumberWidget);
-            l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(MusicUIObject::ColorStyle08, MusicUIObject::ColorStyle10));
+            l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(TTK::UI::ColorStyle08, TTK::UI::ColorStyle10));
 
             if(i == -1)
             {
@@ -142,7 +142,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(MusicUIObject::ColorStyle06);
+        line->setStyleSheet(TTK::UI::ColorStyle06);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

@@ -1,12 +1,12 @@
 #include "musicdownloaddatarequest.h"
 #include "musicdownloadmanager.h"
 
-MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent)
+MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent)
     : MusicAbstractDownLoadRequest(url, path, type, parent),
       m_createTime(-1),
       m_redirection(false),
       m_needUpdate(true),
-      m_recordType(MusicObject::Record::Null)
+      m_recordType(TTK::Record::Null)
 {
 
 }
@@ -28,7 +28,7 @@ void MusicDownloadDataRequest::startRequest()
     }
 }
 
-void MusicDownloadDataRequest::setRecordType(MusicObject::Record type)
+void MusicDownloadDataRequest::setRecordType(TTK::Record type)
 {
     m_recordType = type;
 }
@@ -39,7 +39,7 @@ void MusicDownloadDataRequest::startRequest(const QString &url)
 
     QNetworkRequest request;
     request.setUrl(url);
-    MusicObject::setSslConfiguration(&request);
+    TTK::setSslConfiguration(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
@@ -48,7 +48,7 @@ void MusicDownloadDataRequest::startRequest(const QString &url)
     QtNetworkErrorConnect(m_reply, this, replyError);
 
     /// only download music data can that show progress
-    if(m_downloadType == MusicObject::Download::Music && !m_redirection)
+    if(m_downloadType == TTK::Download::Music && !m_redirection)
     {
         m_createTime = TTKTime::timestamp();
         G_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPairData(m_createTime, this, m_recordType));
@@ -106,9 +106,9 @@ void MusicDownloadDataRequest::downloadProgress(qint64 bytesReceived, qint64 byt
 {
     MusicAbstractDownLoadRequest::downloadProgress(bytesReceived, bytesTotal);
     /// only download music data or oather type can that show progress
-    if(m_downloadType == MusicObject::Download::Music || m_downloadType == MusicObject::Download::Other)
+    if(m_downloadType == TTK::Download::Music || m_downloadType == TTK::Download::Other)
     {
-        const QString &total = MusicUtils::Number::sizeByteToLabel(bytesTotal);
+        const QString &total = TTK::Number::sizeByteToLabel(bytesTotal);
         Q_EMIT downloadProgressChanged(bytesTotal != 0 ? bytesReceived * 100.0 / bytesTotal : 0, total, m_createTime);
     }
 }
@@ -116,7 +116,7 @@ void MusicDownloadDataRequest::downloadProgress(qint64 bytesReceived, qint64 byt
 void MusicDownloadDataRequest::updateDownloadSpeed()
 {
     const qint64 speed = m_currentReceived - m_hasReceived;
-    const QString &label = MusicUtils::Number::speedByteToLabel(speed);
+    const QString &label = TTK::Number::speedByteToLabel(speed);
     const qint64 time = (speed != 0) ? (m_totalSize - m_currentReceived) / speed : 0;
 
     Q_EMIT downloadSpeedLabelChanged(label, time);

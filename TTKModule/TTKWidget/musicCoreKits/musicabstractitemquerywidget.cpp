@@ -49,10 +49,10 @@ void MusicAbstractItemQueryWidget::initialize()
 {
     m_mainWindow = new QWidget(this);
     m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::BackgroundStyle10));
+    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(TTK::UI::BackgroundStyle10));
 
     m_statusLabel = new QLabel(tr("Loading now ... "), m_mainWindow);
-    m_statusLabel->setStyleSheet(MusicUIObject::FontStyle04 + MusicUIObject::FontStyle01);
+    m_statusLabel->setStyleSheet(TTK::UI::FontStyle04 + TTK::UI::FontStyle01);
 
     QVBoxLayout *mLayout = new QVBoxLayout(m_mainWindow);
     mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
@@ -77,7 +77,7 @@ void MusicAbstractItemQueryWidget::downLoadFinished(const QByteArray &bytes)
 
         QPixmap cv(":/image/lb_playlist_cover");
         pix = pix.scaled(QSize(180, 180));
-        MusicUtils::Image::fusionPixmap(cv, pix, QPoint(0, 0));
+        TTK::Image::fusionPixmap(cv, pix, QPoint(0, 0));
         m_iconLabel->setPixmap(cv);
     }
 }
@@ -144,7 +144,7 @@ void MusicAbstractItemQueryWidget::initFirstWidget()
     vlayout->setContentsMargins(0, 0, 0, 0);
 
     QWidget *middleFuncWidget = new QWidget(songWidget);
-    middleFuncWidget->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    middleFuncWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
     QHBoxLayout *middleFuncLayout = new QHBoxLayout(middleFuncWidget);
     middleFuncLayout->setContentsMargins(0, 5, 0, 5);
     QLabel *marginLabel = new QLabel(middleFuncWidget);
@@ -199,7 +199,7 @@ void MusicAbstractItemQueryWidget::initSecondWidget()
     m_infoLabel = new QLabel(this);
     m_infoLabel->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     m_infoLabel->setWordWrap(true);
-    m_infoLabel->setStyleSheet(MusicUIObject::ColorStyle03 + MusicUIObject::FontStyle03);
+    m_infoLabel->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle03);
     vlayout->addWidget(m_infoLabel);
     songWidget->setLayout(vlayout);
     m_container->addWidget(songWidget);
@@ -213,7 +213,7 @@ void MusicAbstractItemQueryWidget::setSongCountText()
         return;
     }
 
-    const MusicObject::MusicSongInformationList songInfos(d->songInfoList());
+    const TTK::MusicSongInformationList songInfos(d->songInfoList());
     if(m_songButton)
     {
         m_songButton->setText(tr("SongItems") + QString("(%1)").arg(songInfos.count()));

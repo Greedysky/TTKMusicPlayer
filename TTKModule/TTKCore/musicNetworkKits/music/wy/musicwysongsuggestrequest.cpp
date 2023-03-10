@@ -14,8 +14,8 @@ void MusicWYSongSuggestRequest::startToSearch(const QString &value)
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_SUGGEST_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SUGGEST_DATA_URL, false).arg(value));
+                      TTK::Algorithm::mdII(WY_SUGGEST_URL, false),
+                      TTK::Algorithm::mdII(WY_SUGGEST_DATA_URL, false).arg(value));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -53,7 +53,7 @@ void MusicWYSongSuggestRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem result;
-                    result.m_name = MusicUtils::String::charactersReplaced(value["name"].toString());
+                    result.m_name = TTK::String::charactersReplaced(value["name"].toString());
                     const QVariantList &artistsArray = value["artists"].toList();
                     for(const QVariant &artistValue : qAsConst(artistsArray))
                     {
@@ -63,7 +63,7 @@ void MusicWYSongSuggestRequest::downLoadFinished()
                         }
 
                         const QVariantMap &artistObject = artistValue.toMap();
-                        result.m_nickName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
+                        result.m_nickName = TTK::String::charactersReplaced(artistObject["name"].toString());
                     }
                     m_items << result;
                 }

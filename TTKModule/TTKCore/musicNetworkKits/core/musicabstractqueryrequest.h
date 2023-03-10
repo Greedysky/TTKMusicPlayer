@@ -122,11 +122,11 @@ public:
     /*!
      * Set query data quality.
      */
-    inline void setQueryQuality(MusicObject::QueryQuality quality) { m_queryQuality = quality; }
+    inline void setQueryQuality(TTK::QueryQuality quality) { m_queryQuality = quality; }
     /*!
      * Get query data quality.
      */
-    inline MusicObject::QueryQuality queryQuality() const { return m_queryQuality; }
+    inline TTK::QueryQuality queryQuality() const { return m_queryQuality; }
     /*!
      * Set wheather query all quality of records.
      */
@@ -162,11 +162,11 @@ public:
     /*!
      * Set the current song container.
      */
-    inline void setSongInfoList(const MusicObject::MusicSongInformationList &songInfos) { m_songInfos = songInfos; }
+    inline void setSongInfoList(const TTK::MusicSongInformationList &songInfos) { m_songInfos = songInfos; }
     /*!
      * Get the current song container.
      */
-    inline const MusicObject::MusicSongInformationList& songInfoList() const { return m_songInfos; }
+    inline const TTK::MusicSongInformationList& songInfoList() const { return m_songInfos; }
     /*!
      * Check the current song container is empty.
      */
@@ -196,18 +196,18 @@ protected:
     /*!
      * Find download file size.
      */
-    bool findUrlFileSize(MusicObject::MusicSongProperty *prop) const;
+    bool findUrlFileSize(TTK::MusicSongProperty *prop) const;
     /*!
      * Find download file size.
      */
-    bool findUrlFileSize(MusicObject::MusicSongPropertyList *props) const;
+    bool findUrlFileSize(TTK::MusicSongPropertyList *props) const;
 
     QString m_queryValue;
     QString m_queryServer;
     QueryType m_queryType;
-    MusicObject::QueryQuality m_queryQuality;
+    TTK::QueryQuality m_queryQuality;
     bool m_queryAllRecords, m_queryLite;
-    MusicObject::MusicSongInformationList m_songInfos;
+    TTK::MusicSongInformationList m_songInfos;
 
 };
 

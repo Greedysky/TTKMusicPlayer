@@ -16,8 +16,8 @@ void MusicWYQueryPlaylistRequest::startToPage(int offset)
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_DATA_URL, false).arg(m_queryValue).arg(m_pageSize).arg(m_pageSize * offset));
+                      TTK::Algorithm::mdII(WY_PLAYLIST_URL, false),
+                      TTK::Algorithm::mdII(WY_PLAYLIST_DATA_URL, false).arg(m_queryValue).arg(m_pageSize).arg(m_pageSize * offset));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -45,8 +45,8 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &value)
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(value));
+                      TTK::Algorithm::mdII(WY_PLAYLIST_INFO_URL, false),
+                      TTK::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(value));
 
     QNetworkReply *reply = m_manager.post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(downloadDetailsFinished()));
@@ -61,10 +61,10 @@ void MusicWYQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(item.m_id));
+                      TTK::Algorithm::mdII(WY_PLAYLIST_INFO_URL, false),
+                      TTK::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(item.m_id));
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
+    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
     if(bytes.isEmpty())
     {
         return;
@@ -191,16 +191,16 @@ void MusicWYQueryPlaylistRequest::downloadDetailsFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation info;
-                    info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
+                    TTK::MusicSongInformation info;
+                    info.m_songName = TTK::String::charactersReplaced(value["name"].toString());
                     info.m_duration = TTKTime::formatDuration(value["dt"].toInt());
                     info.m_songId = value["id"].toString();
-                    info.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(info.m_songId);
+                    info.m_lrcUrl = TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(info.m_songId);
 
                     const QVariantMap &albumObject = value["al"].toMap();
                     info.m_coverUrl = albumObject["picUrl"].toString();
                     info.m_albumId = albumObject["id"].toString();
-                    info.m_albumName = MusicUtils::String::charactersReplaced(albumObject["name"].toString());
+                    info.m_albumName = TTK::String::charactersReplaced(albumObject["name"].toString());
 
                     const QVariantList &artistsArray = value["ar"].toList();
                     for(const QVariant &artistValue : qAsConst(artistsArray))
@@ -212,7 +212,7 @@ void MusicWYQueryPlaylistRequest::downloadDetailsFinished()
 
                         const QVariantMap &artistObject = artistValue.toMap();
                         info.m_artistId = artistObject["id"].toString();
-                        info.m_singerName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
+                        info.m_singerName = TTK::String::charactersReplaced(artistObject["name"].toString());
                         break; //just find first singer
                     }
 

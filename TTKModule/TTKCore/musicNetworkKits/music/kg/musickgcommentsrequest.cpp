@@ -15,7 +15,7 @@ void MusicKGSongCommentsRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
+    request.setUrl(TTK::Algorithm::mdII(KG_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -103,7 +103,7 @@ void MusicKGPlaylistCommentsRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
+    request.setUrl(TTK::Algorithm::mdII(KG_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);

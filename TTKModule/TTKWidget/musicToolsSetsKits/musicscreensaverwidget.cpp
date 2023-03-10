@@ -31,7 +31,7 @@ MusicScreenSaverHoverItem::MusicScreenSaverHoverItem(QLabel *parent)
 
     m_enableButton = new QPushButton(this);
     m_enableButton->setCursor(Qt::PointingHandCursor);
-    m_enableButton->setStyleSheet(MusicUIObject::ScreenItemDisable);
+    m_enableButton->setStyleSheet(TTK::UI::ScreenItemDisable);
     m_enableButton->setGeometry((width() - 38) / 2, (height() - 38) / 2, 38, 38);
 #ifdef Q_OS_UNIX
     m_enableButton->setFocusPolicy(Qt::NoFocus);
@@ -64,12 +64,12 @@ void MusicScreenSaverHoverItem::display(const QPoint &point)
 
 void MusicScreenSaverHoverItem::switchButtonOnAndOff()
 {
-    if(m_enableButton->styleSheet().contains(MusicUIObject::ScreenItemDisable))
+    if(m_enableButton->styleSheet().contains(TTK::UI::ScreenItemDisable))
     {
-        const QPixmap pix(MusicUtils::Image::grayScalePixmap(QPixmap(m_path), 70));
+        const QPixmap pix(TTK::Image::grayScalePixmap(QPixmap(m_path), 70));
         m_parent->setPixmap(pix);
         setPixmap(pix);
-        m_enableButton->setStyleSheet(MusicUIObject::ScreenItemEnable);
+        m_enableButton->setStyleSheet(TTK::UI::ScreenItemEnable);
         Q_EMIT itemClicked(m_index, false);
     }
     else
@@ -77,7 +77,7 @@ void MusicScreenSaverHoverItem::switchButtonOnAndOff()
         const QPixmap pix(m_path);
         m_parent->setPixmap(pix);
         setPixmap(pix);
-        m_enableButton->setStyleSheet(MusicUIObject::ScreenItemDisable);
+        m_enableButton->setStyleSheet(TTK::UI::ScreenItemDisable);
         Q_EMIT itemClicked(m_index, true);
     }
 }
@@ -98,7 +98,7 @@ void MusicScreenSaverHoverItem::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
-    TTKObject::setBorderShadow(this, &painter);
+    TTK::setBorderShadow(this, &painter);
 
     const QPixmap &pixmap = QtLablePixmap(this);
     painter.drawPixmap(QRect(QPoint(4, 4), OS_ITEM_SIZE), pixmap.scaled(OS_ITEM_SIZE));
@@ -202,7 +202,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     : QWidget(parent),
       m_currentState(false)
 {
-    setStyleSheet(MusicUIObject::BackgroundStyle10 + MusicUIObject::ColorStyle09);
+    setStyleSheet(TTK::UI::BackgroundStyle10 + TTK::UI::ColorStyle09);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
@@ -225,13 +225,13 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     QFont pLabelFont = pLabel->font();
     pLabelFont.setPixelSize(20);
     pLabel->setFont(pLabelFont);
-    pLabel->setStyleSheet(MusicUIObject::ColorStyle11);
+    pLabel->setStyleSheet(TTK::UI::ColorStyle11);
 
     QLabel *iLabel = new QLabel(tr("Popular singers spend your leisure time with you"), topWidget);
     QFont iLabelFont = iLabel->font();
     iLabelFont.setPixelSize(15);
     iLabel->setFont(iLabelFont);
-    iLabel->setStyleSheet(MusicUIObject::ColorStyle03);
+    iLabel->setStyleSheet(TTK::UI::ColorStyle03);
 
     QLabel *wLabel = new QLabel(tr("Wait"), topWidget);
     QLabel *mLabel = new QLabel(tr("Min"), topWidget);
@@ -240,12 +240,12 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     m_inputEdit->setFixedWidth(50);
     m_inputEdit->setEnabled(false);
     m_inputEdit->setAlignment(Qt::AlignCenter);
-    m_inputEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
+    m_inputEdit->setStyleSheet(TTK::UI::LineEditStyle01);
 
     m_caseButton = new QPushButton(topWidget);
     m_caseButton->setFixedSize(44, 20);
     m_caseButton->setCursor(Qt::PointingHandCursor);
-    m_caseButton->setStyleSheet(MusicUIObject::ScreenSaverOff);
+    m_caseButton->setStyleSheet(TTK::UI::ScreenSaverOff);
 #ifdef Q_OS_UNIX
     m_caseButton->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -264,11 +264,11 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     frame->setFixedHeight(1);
     frame->setFrameShape(QFrame::HLine);
     frame->setFrameShadow(QFrame::Plain);
-    frame->setStyleSheet(MusicUIObject::ColorStyle04);
+    frame->setStyleSheet(TTK::UI::ColorStyle04);
     mainLayout->addWidget(frame);
     //
     QWidget *functionWidget = new QWidget(this);
-    functionWidget->setStyleSheet(MusicUIObject::BackgroundStyle01);
+    functionWidget->setStyleSheet(TTK::UI::BackgroundStyle01);
     QHBoxLayout *functionWidgetLayout = new QHBoxLayout(functionWidget);
     functionWidgetLayout->setContentsMargins(10, 10, 10, 10);
     functionWidget->setLayout(functionWidgetLayout);
@@ -336,12 +336,12 @@ void MusicScreenSaverWidget::switchButtonOnAndOff()
     if(m_currentState)
     {
         m_currentState = false;
-        m_caseButton->setStyleSheet(MusicUIObject::ScreenSaverOff);
+        m_caseButton->setStyleSheet(TTK::UI::ScreenSaverOff);
     }
     else
     {
         m_currentState = true;
-        m_caseButton->setStyleSheet(MusicUIObject::ScreenSaverOn);
+        m_caseButton->setStyleSheet(TTK::UI::ScreenSaverOn);
         G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverTime, m_inputEdit->text().toInt());
     }
 
@@ -355,7 +355,7 @@ void MusicScreenSaverWidget::downLoadFinished(const QString &bytes)
     QVector<bool> statusVector(parseSettingParameter());
     if(bytes.contains(OS_WALLNAIL_NAME))
     {
-        const int index = MusicUtils::String::stringSplitToken(bytes, OS_SCREEN_DIR, TTK_SEPARATOR).toInt();
+        const int index = TTK::String::stringSplitToken(bytes, OS_SCREEN_DIR, TTK_SEPARATOR).toInt();
         if(index < 0 || index >= statusVector.count())
         {
             return;
@@ -380,7 +380,7 @@ void MusicScreenSaverWidget::currentItemClicked(int index, bool status)
 
 void MusicScreenSaverWidget::initialize()
 {
-    m_downloadQueue = new MusicDownloadQueueRequest(MusicObject::Download::Background, this);
+    m_downloadQueue = new MusicDownloadQueueRequest(TTK::Download::Background, this);
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
 
     MusicDownloadQueueDataList datas;
@@ -491,11 +491,11 @@ void MusicScreenSaverBackgroundWidget::backgroundTimeout()
 
     if(!intVector.isEmpty())
     {
-        const int index = intVector[TTKObject::random(intVector.count())];
+        const int index = intVector[TTK::random(intVector.count())];
         const QString &prefix = QString("%1%2/%3/").arg(CACHE_DIR_FULL, OS_SCREEN_DIR).arg(index);
         QPixmap background(prefix + OS_WALLPAPER_NAME);
         const QPixmap bar(prefix + OS_WALLBAR_NAME);
-        MusicUtils::Image::fusionPixmap(background, bar, QPoint(100, 900));
+        TTK::Image::fusionPixmap(background, bar, QPoint(100, 900));
         setPixmap(QPixmap(background.scaled(size())));
     }
 }

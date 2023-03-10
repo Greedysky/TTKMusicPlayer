@@ -4,17 +4,17 @@
 #include <QBuffer>
 #include <QPainter>
 
-QPixmap MusicUtils::Image::roundedPixmap(const QPixmap &input, int ratioX, int ratioY)
+QPixmap TTK::Image::roundedPixmap(const QPixmap &input, int ratioX, int ratioY)
 {
     return roundedPixmap(input, QRect(QPoint(0, 0), input.size()), ratioX, ratioY);
 }
 
-QPixmap MusicUtils::Image::roundedPixmap(const QPixmap &input, const QSize &size, int ratioX, int ratioY)
+QPixmap TTK::Image::roundedPixmap(const QPixmap &input, const QSize &size, int ratioX, int ratioY)
 {
     return roundedPixmap(input, QRect(QPoint(0, 0), size), ratioX, ratioY);
 }
 
-QPixmap MusicUtils::Image::roundedPixmap(const QPixmap &input, const QRect &rect, int ratioX, int ratioY)
+QPixmap TTK::Image::roundedPixmap(const QPixmap &input, const QRect &rect, int ratioX, int ratioY)
 {
     if(input.isNull())
     {
@@ -26,7 +26,7 @@ QPixmap MusicUtils::Image::roundedPixmap(const QPixmap &input, const QRect &rect
     return image;
 }
 
-QPixmap MusicUtils::Image::roundedPixmap(const QPixmap &input, const QPixmap &mask, const QSize &size)
+QPixmap TTK::Image::roundedPixmap(const QPixmap &input, const QPixmap &mask, const QSize &size)
 {
     if(input.isNull() || mask.isNull())
     {
@@ -41,7 +41,7 @@ QPixmap MusicUtils::Image::roundedPixmap(const QPixmap &input, const QPixmap &ma
     return image;
 }
 
-QBitmap MusicUtils::Image::generateMask(const QRect &rect, int ratioX, int ratioY)
+QBitmap TTK::Image::generateMask(const QRect &rect, int ratioX, int ratioY)
 {
     QBitmap mask(rect.size());
     QPainter painter(&mask);
@@ -52,7 +52,7 @@ QBitmap MusicUtils::Image::generateMask(const QRect &rect, int ratioX, int ratio
     return mask;
 }
 
-QByteArray MusicUtils::Image::generatePixmapData(const QPixmap &input)
+QByteArray TTK::Image::generatePixmapData(const QPixmap &input)
 {
     if(input.isNull())
     {
@@ -69,7 +69,7 @@ QByteArray MusicUtils::Image::generatePixmapData(const QPixmap &input)
     return data;
 }
 
-void MusicUtils::Image::fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint &pt)
+void TTK::Image::fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint &pt)
 {
     if(front.isNull())
     {
@@ -81,7 +81,7 @@ void MusicUtils::Image::fusionPixmap(QPixmap &back, const QPixmap &front, const 
     painter.drawPixmap(pt.x(), pt.y(), front);
 }
 
-void MusicUtils::Image::fusionPixmap(QImage &back, const QImage &front, const QPoint &pt)
+void TTK::Image::fusionPixmap(QImage &back, const QImage &front, const QPoint &pt)
 {
     if(front.isNull())
     {
@@ -93,7 +93,7 @@ void MusicUtils::Image::fusionPixmap(QImage &back, const QImage &front, const QP
     painter.drawImage(pt.x(), pt.y(), front);
 }
 
-QPixmap MusicUtils::Image::grayScalePixmap(const QPixmap &input, int radius)
+QPixmap TTK::Image::grayScalePixmap(const QPixmap &input, int radius)
 {
     QImage pix = input.toImage();
     for(int w = 0; w < pix.width(); ++w)
@@ -109,7 +109,7 @@ QPixmap MusicUtils::Image::grayScalePixmap(const QPixmap &input, int radius)
     return QPixmap::fromImage(pix);
 }
 
-QRgb MusicUtils::Image::colorContrast(const QRgb color)
+QRgb TTK::Image::colorContrast(const QRgb color)
 {
     // Counting the perceptive luminance - human eye favors green color...
     int v = 255 - (2.0 * qRed(color) + 3.0 * qGreen(color) + qBlue(color)) / 6.0;
@@ -137,7 +137,7 @@ static int colorBurnTransform(int c, int delta)
     return result;
 }
 
-void MusicUtils::Image::reRenderImage(int delta, const QImage *input, QImage *output)
+void TTK::Image::reRenderImage(int delta, const QImage *input, QImage *output)
 {
     for(int w = 0; w < input->width(); ++w)
     {

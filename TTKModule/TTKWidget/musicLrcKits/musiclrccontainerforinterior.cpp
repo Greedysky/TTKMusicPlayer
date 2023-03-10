@@ -278,7 +278,7 @@ void MusicLrcContainerForInterior::artistBackgroundChanged()
 
 void MusicLrcContainerForInterior::lrcOpenFileDir() const
 {
-    MusicUtils::Url::openUrl(QFileInfo(m_lrcAnalysis->currentFilePath()).absoluteFilePath());
+    TTK::Url::openUrl(QFileInfo(m_lrcAnalysis->currentFilePath()).absoluteFilePath());
 }
 
 void MusicLrcContainerForInterior::lrcCopyClipboard() const
@@ -390,7 +390,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     QMenu changeLrcTimeSlow(tr("Time Before"), &menu);
     QMenu changeLrcLinkMenu(tr("Lrc Link"), &menu);
 
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     const bool hasLrcContainer = !m_lrcAnalysis->isEmpty();
     menu.addAction(tr("Lrc Search"), this, SLOT(searchMusicLrcs()));
@@ -444,7 +444,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("After 2.0s")))->setData(2);
     lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("After 5.0s")))->setData(3);
     connect(lrcTimeFastGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
-    MusicUtils::Widget::adjustMenuPosition(&changeLrcTimeFast);
+    TTK::Widget::adjustMenuPosition(&changeLrcTimeFast);
     //
     QActionGroup *lrcTimeSlowGroup = new QActionGroup(this);
     lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("Before 0.5s")))->setData(4);
@@ -452,7 +452,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("Before 2.0s")))->setData(6);
     lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("Before 5.0s")))->setData(7);
     connect(lrcTimeSlowGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
-    MusicUtils::Widget::adjustMenuPosition(&changeLrcTimeSlow);
+    TTK::Widget::adjustMenuPosition(&changeLrcTimeSlow);
     //
     QAction *artAction = menu.addAction(tr("Art Turn Off"), this, SLOT(artistBackgroundChanged()));
     m_showArtistBackground ? artAction->setText(tr("Art Turn Off")) : artAction->setText(tr("Art Turn On"));
@@ -467,7 +467,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     changeLrcLinkMenu.addAction(tr("Local Lrc Link"), this, SLOT(showLocalLinkWidget()));
     QAction *lrcLinkAc = changeLrcLinkMenu.addAction(tr("Link Off"), this, SLOT(linkLrcStateChanged()));
     m_linkLocalLrc ? lrcLinkAc->setText(tr("Link Off")) : lrcLinkAc->setText(tr("Link On"));
-    MusicUtils::Widget::adjustMenuPosition(&changeLrcLinkMenu);
+    TTK::Widget::adjustMenuPosition(&changeLrcLinkMenu);
     menu.addMenu(&changeLrcLinkMenu);
 
     menu.addAction(tr("Copy To Clip"), this, SLOT(lrcCopyClipboard()))->setEnabled(fileCheck);
@@ -476,7 +476,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     menu.addSeparator();
     menu.addAction(tr("Settings"), this, SLOT(currentLrcCustom()));
 
-    MusicUtils::Widget::adjustMenuPosition(&menu);
+    TTK::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 
@@ -672,9 +672,9 @@ void MusicLrcContainerForInterior::revertTimeSpeed(qint64 pos)
 void MusicLrcContainerForInterior::createNoLrcCurrentInfo()
 {
     m_noLrcCurrentInfo = new TTKClickedLabel(this);
-    MusicUtils::Widget::setLabelFontSize(m_noLrcCurrentInfo, 15);
-    MusicUtils::Widget::setLabelFontStyle(m_noLrcCurrentInfo, MusicObject::FontStyleMode::Underline);
-    m_noLrcCurrentInfo->setStyleSheet(MusicUIObject::ColorStyle06);
+    TTK::Widget::setLabelFontSize(m_noLrcCurrentInfo, 15);
+    TTK::Widget::setLabelFontStyle(m_noLrcCurrentInfo, TTK::FontStyleMode::Underline);
+    m_noLrcCurrentInfo->setStyleSheet(TTK::UI::ColorStyle06);
     m_noLrcCurrentInfo->setText(tr("Lrc Make"));
 
     connect(m_noLrcCurrentInfo, SIGNAL(clicked()), SLOT(showLrcMakedWidget()));
@@ -683,8 +683,8 @@ void MusicLrcContainerForInterior::createNoLrcCurrentInfo()
 
 void MusicLrcContainerForInterior::showNoLrcCurrentInfo()
 {
-    const int w = MusicUtils::Widget::fontTextWidth(m_noLrcCurrentInfo->font(), m_noLrcCurrentInfo->text());
-    const int h = MusicUtils::Widget::fontTextHeight(m_noLrcCurrentInfo->font());
+    const int w = TTK::Widget::fontTextWidth(m_noLrcCurrentInfo->font(), m_noLrcCurrentInfo->text());
+    const int h = TTK::Widget::fontTextHeight(m_noLrcCurrentInfo->font());
     const int offset = height() / m_lrcAnalysis->lineMax() * (m_lrcAnalysis->lineMiddle() + 1) - 20;
 
     m_noLrcCurrentInfo->setGeometry((width() - w) / 2, offset, w, h);
@@ -726,10 +726,10 @@ void MusicLrcContainerForInterior::initFunctionLabel()
     message->setFixedSize(30, 30);
     photo->setFixedSize(30, 30);
 
-    translation->setStyleSheet(MusicUIObject::InteriorTranslation);
-    movie->setStyleSheet(MusicUIObject::InteriorMovie);
-    message->setStyleSheet(MusicUIObject::InteriorMessage);
-    photo->setStyleSheet(MusicUIObject::InteriorPhoto);
+    translation->setStyleSheet(TTK::UI::InteriorTranslation);
+    movie->setStyleSheet(TTK::UI::InteriorMovie);
+    message->setStyleSheet(TTK::UI::InteriorMessage);
+    photo->setStyleSheet(TTK::UI::InteriorPhoto);
 
     translation->setCursor(Qt::PointingHandCursor);
     movie->setCursor(Qt::PointingHandCursor);

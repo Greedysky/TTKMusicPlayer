@@ -7,7 +7,7 @@
 #define WIDTH  4
 #define HEIGHT 4
 
-void TTKObject::setApplicationFont(QApplication* app)
+void TTK::setApplicationFont(QApplication* app)
 {
     QFont font = app->font();
     for(const QString &family : QFontDatabase().families())
@@ -22,7 +22,7 @@ void TTKObject::setApplicationFont(QApplication* app)
     }
 }
 
-void TTKObject::setBorderShadow(QWidget *widget, QPainter *painter)
+void TTK::setBorderShadow(QWidget *widget, QPainter *painter)
 {
     painter->drawPixmap(0, 0, WIDTH, HEIGHT, QPixmap(":/shadow/lb_left_top"));
     painter->drawPixmap(widget->width() - WIDTH, 0, WIDTH, HEIGHT, QPixmap(":/shadow/lb_right_top"));

@@ -8,37 +8,37 @@ MusicPlayBackModePopWidget::MusicPlayBackModePopWidget(QWidget *parent)
     initialize();
 }
 
-void MusicPlayBackModePopWidget::setPlaybackMode(MusicObject::PlayMode mode)
+void MusicPlayBackModePopWidget::setPlaybackMode(TTK::PlayMode mode)
 {
     switch(mode)
     {
-        case MusicObject::PlayMode::Order:
+        case TTK::PlayMode::Order:
         {
-            setStyleSheet(MusicUIObject::BtnOrder);
+            setStyleSheet(TTK::UI::BtnOrder);
             setToolTip(tr("Order Play"));
             break;
         }
-        case MusicObject::PlayMode::Random:
+        case TTK::PlayMode::Random:
         {
-            setStyleSheet(MusicUIObject::BtnRandom);
+            setStyleSheet(TTK::UI::BtnRandom);
             setToolTip(tr("Random Play"));
             break;
         }
-        case MusicObject::PlayMode::ListLoop:
+        case TTK::PlayMode::ListLoop:
         {
-            setStyleSheet(MusicUIObject::BtnListLoop);
+            setStyleSheet(TTK::UI::BtnListLoop);
             setToolTip(tr("List Cycle"));
             break;
         }
-        case MusicObject::PlayMode::OneLoop:
+        case TTK::PlayMode::OneLoop:
         {
-            setStyleSheet(MusicUIObject::BtnOneLoop);
+            setStyleSheet(TTK::UI::BtnOneLoop);
             setToolTip(tr("Single Cycle"));
             break;
         }
-        case MusicObject::PlayMode::Once:
+        case TTK::PlayMode::Once:
         {
-            setStyleSheet(MusicUIObject::BtnOnce);
+            setStyleSheet(TTK::UI::BtnOnce);
             setToolTip(tr("Play Once"));
             break;
         }

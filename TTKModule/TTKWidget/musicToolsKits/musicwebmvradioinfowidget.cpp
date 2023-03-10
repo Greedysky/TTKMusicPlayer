@@ -5,7 +5,7 @@
 #include "musicrightareawidget.h"
 
 #include <qmath.h>
-Q_DECLARE_METATYPE(MusicObject::MusicSongInformation)
+Q_DECLARE_METATYPE(TTK::MusicSongInformation)
 
 MusicWebMVRadioInfoTableWidget::MusicWebMVRadioInfoTableWidget(QWidget *parent)
     : MusicItemQueryTableWidget(parent)
@@ -29,7 +29,7 @@ void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *qu
 
 void MusicWebMVRadioInfoTableWidget::musicDownloadLocal(int row)
 {
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row < 0 || row >= songInfos.count())
     {
         return;
@@ -48,12 +48,12 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
         case 5:
         case 6:
         {
-            const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+            const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
             if(row < 0 || row >= songInfos.count())
             {
                 return;
             }
-            MusicRightAreaWidget::instance()->musicMovieRadioSearch(QVariant::fromValue<MusicObject::MusicSongInformation>(songInfos[row]));
+            MusicRightAreaWidget::instance()->musicMovieRadioSearch(QVariant::fromValue<TTK::MusicSongInformation>(songInfos[row]));
             break;
         }
         case 7: musicDownloadLocal(row); break;
@@ -70,7 +70,7 @@ void MusicWebMVRadioInfoTableWidget::itemDoubleClicked(int row, int column)
 void MusicWebMVRadioInfoTableWidget::actionChanged(QAction *action)
 {
     const int row = currentRow();
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row < 0 || row >= songInfos.count())
     {
         return;
@@ -89,10 +89,10 @@ void MusicWebMVRadioInfoTableWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicQueryTableWidget::contextMenuEvent(event);
 
     QMenu menu;
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     const int row = currentRow();
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row < 0 || row >= songInfos.count())
     {
         return;
@@ -142,10 +142,10 @@ void MusicWebMVRadioInfoWidget::resizeWidget()
             width = width - WINDOW_WIDTH_MIN + 390;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[1];
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
     }
 }
 
@@ -174,11 +174,11 @@ void MusicWebMVRadioInfoWidget::createMVRadioProgramItem(const MusicResultDataIt
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
         data->m_label->setToolTip(item.m_name);
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[1];
         data->m_label->setToolTip(tr("Type: %1").arg(item.m_nickName));
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
     }
 }
 
@@ -194,11 +194,11 @@ void MusicWebMVRadioInfoWidget::createLabels()
 
     layout()->removeWidget(m_mainWindow);
     QScrollArea *scrollArea = new QScrollArea(this);
-    MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
+    TTK::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
     layout()->addWidget(scrollArea);
 
     QWidget *function = new QWidget(m_mainWindow);
-    function->setStyleSheet(MusicUIObject::CheckBoxStyle01 + MusicUIObject::PushButtonStyle03);
+    function->setStyleSheet(TTK::UI::CheckBoxStyle01 + TTK::UI::PushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
     QWidget *firstTopFuncWidget = new QWidget(function);
@@ -207,7 +207,7 @@ void MusicWebMVRadioInfoWidget::createLabels()
     firstLabel->setText(tr("<font color=#158FE1> MVRadio > %1 </font>").arg(m_currentPlaylistItem.m_name));
     QPushButton *backButton = new QPushButton(tr("Back"));
     backButton->setFixedSize(90, 30);
-    backButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    backButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     backButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(backButton, SIGNAL(clicked()), this, SIGNAL(backToMainMenu()));
     firstTopFuncLayout->addWidget(firstLabel);
@@ -229,10 +229,10 @@ void MusicWebMVRadioInfoWidget::createLabels()
     QFont nameFont = nameLabel->font();
     nameFont.setPixelSize(20);
     nameLabel->setFont(nameFont);
-    nameLabel->setStyleSheet(MusicUIObject::FontStyle01);
+    nameLabel->setStyleSheet(TTK::UI::FontStyle01);
     nameLabel->setText(TTK_DEFAULT_STR);
     QLabel *typeLabel = new QLabel(topLineWidget);
-    typeLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
+    typeLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     typeLabel->setText(TTK_DEFAULT_STR);
 
     topLineLayout->addWidget(nameLabel);
@@ -248,7 +248,7 @@ void MusicWebMVRadioInfoWidget::createLabels()
     //
 
     QWidget *functionWidget = new QWidget(this);
-    functionWidget->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    functionWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));
@@ -286,7 +286,7 @@ void MusicWebMVRadioInfoWidget::initThirdWidget()
     vlayout->setContentsMargins(0, 0, 0, 0);
 
     QWidget *middleFuncWidget = new QWidget(songWidget);
-    middleFuncWidget->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    middleFuncWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
     QHBoxLayout *middleFuncLayout = new QHBoxLayout(middleFuncWidget);
     middleFuncLayout->setContentsMargins(0, 5, 0, 5);
     QLabel *marginLabel = new QLabel(middleFuncWidget);

@@ -17,12 +17,12 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     headerview->resizeSection(2, 83);
     headerview->resizeSection(3, 50);
 
-    m_type = MusicObject::Record::CloudDownload;
+    m_type = TTK::Record::CloudDownload;
     setItemDelegateForColumn(2, m_progressBarDelegate);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-    MusicUtils::Widget::setTransparent(this, 0);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle03);
+    TTK::Widget::setTransparent(this, 0);
+    verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 
     setFixedHeight(0);
 
@@ -42,8 +42,8 @@ void MusicCloudDownloadTableWidget::addCellItem(int index, const MusicSong &reco
 
                       item = new QTableWidgetItem;
     item->setToolTip(record.name());
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
-    item->setForeground(QColor(MusicUIObject::Color01));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+    item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 1, item);
 
@@ -52,7 +52,7 @@ void MusicCloudDownloadTableWidget::addCellItem(int index, const MusicSong &reco
     setItem(index, 2, item);
 
                       item = new QTableWidgetItem(record.sizeStr());
-    item->setForeground(QColor(MusicUIObject::Color01));
+    item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
     item->setData(TTK_TIME_ROLE, record.addTimeStr());
     setItem(index, 3, item);
@@ -71,11 +71,11 @@ MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     headerview->resizeSection(1, 251);
     headerview->resizeSection(2, 50);
 
-    m_type = MusicObject::Record::CloudUpload;
+    m_type = TTK::Record::CloudUpload;
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-    MusicUtils::Widget::setTransparent(this, 0);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle03);
+    TTK::Widget::setTransparent(this, 0);
+    verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 
     setFixedHeight(0);
 
@@ -95,7 +95,7 @@ void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item
     MusicSong record;
     record.setName(item.m_dataItem.m_name);
     record.setPath(item.m_path);
-    record.setSizeStr(MusicUtils::Number::sizeByteToLabel(item.m_dataItem.m_size));
+    record.setSizeStr(TTK::Number::sizeByteToLabel(item.m_dataItem.m_size));
 
     addCellItem(count - 1, record);
 }
@@ -160,13 +160,13 @@ void MusicCloudUploadTableWidget::addCellItem(int index, const MusicSong &record
 
                       item = new QTableWidgetItem;
     item->setToolTip(record.name());
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
-    item->setForeground(QColor(MusicUIObject::Color01));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+    item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 1, item);
 
                       item = new QTableWidgetItem(record.sizeStr());
-    item->setForeground(QColor(MusicUIObject::Color01));
+    item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignRight | Qt::AlignVCenter);
     item->setData(TTK_TIME_ROLE, record.addTimeStr());
     setItem(index, 2, item);
@@ -178,7 +178,7 @@ void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     const bool status = !m_songs->isEmpty();
     menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);

@@ -19,7 +19,7 @@ void MusicMarqueeWidget::setText(const QString &newText)
         width = (G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width() - WINDOW_WIDTH_MIN) / 10;
     }
 
-    int length = MusicUtils::Widget::fontTextWidth(font(), newText);
+    int length = TTK::Widget::fontTextWidth(font(), newText);
         length = (length >= this->width()) ? (45 + width) : (25 + width);
     m_text = newText.leftJustified(length, ' ');
 
@@ -41,7 +41,7 @@ void MusicMarqueeWidget::paintEvent(QPaintEvent *event)
     f.setBold(false);
     painter.setFont(f);
 
-    const int textWidth = MusicUtils::Widget::fontTextWidth(font(), m_text);
+    const int textWidth = TTK::Widget::fontTextWidth(font(), m_text);
     if(textWidth < 1)
     {
         return;
@@ -66,7 +66,7 @@ void MusicMarqueeWidget::timerEvent(QTimerEvent *event)
     if(event->timerId() == m_timerId)
     {
         ++m_offset;
-        if(m_offset >= MusicUtils::Widget::fontTextWidth(font(), m_text))
+        if(m_offset >= TTK::Widget::fontTextWidth(font(), m_text))
         {
             m_offset = 0;
         }

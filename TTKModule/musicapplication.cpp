@@ -61,14 +61,14 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     setAcceptDrops(true);
 
-    m_playlist->setPlaybackMode(MusicObject::PlayMode::Order); //The default is the order of play
+    m_playlist->setPlaybackMode(TTK::PlayMode::Order); //The default is the order of play
     m_ui->musicPlayedList->setPlaylist(m_playlist);
     m_player->setPlaylist(m_playlist);
     m_player->setVolume(100);  //The default Volume is 100
 
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_player, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
-    connect(m_player, SIGNAL(stateChanged(MusicObject::PlayState)), SLOT(playerStateChanged(MusicObject::PlayState)));
+    connect(m_player, SIGNAL(stateChanged(TTK::PlayState)), SLOT(playerStateChanged(TTK::PlayState)));
     connect(m_playlist, SIGNAL(currentIndexChanged(int)), SLOT(showCurrentSong()));
     connect(m_ui->musicDesktopLrc, SIGNAL(clicked(bool)), m_rightAreaWidget, SLOT(setDestopLrcVisible(bool)));
 
@@ -154,7 +154,7 @@ void MusicApplication::musicLoadCurrentSongLrc()
     }
 
     const QString &fileName = currentFileName();
-    const QString &path = MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE;
+    const QString &path = TTK::String::lrcDirPrefix() + fileName + LRC_FILE;
     m_rightAreaWidget->loadCurrentSongLrc(fileName, path);
     //reset current song lrc index.
     QTimer::singleShot(MT_S2MS, this, SLOT(resetCurrentSongLrcIndex()));
@@ -239,7 +239,7 @@ qint64 MusicApplication::duration() const
     return m_player->duration();
 }
 
-MusicObject::PlayMode MusicApplication::playMode() const
+TTK::PlayMode MusicApplication::playMode() const
 {
     return m_playlist->playbackMode();
 }
@@ -279,12 +279,12 @@ void MusicApplication::durationChanged(qint64 duration)
     musicLoadCurrentSongLrc();
 }
 
-void MusicApplication::playerStateChanged(MusicObject::PlayState state)
+void MusicApplication::playerStateChanged(TTK::PlayState state)
 {
-    if(state == MusicObject::PlayState::Stopped)
+    if(state == TTK::PlayState::Stopped)
     {
         const bool concise = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
-        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::TinyBtnPlay : MusicUIObject::BtnPlay);
+        m_ui->musicKey->setStyleSheet(concise ? TTK::UI::TinyBtnPlay : TTK::UI::BtnPlay);
     }
 }
 
@@ -302,19 +302,19 @@ void MusicApplication::showCurrentSong()
         ///detecting whether the file has been downloaded
         bool exist = false;
         musicDownloadContains(exist);
-        m_ui->musicDownload->setStyleSheet(exist ? MusicUIObject::BtnDownload : MusicUIObject::BtnUnDownload);
+        m_ui->musicDownload->setStyleSheet(exist ? TTK::UI::BtnDownload : TTK::UI::BtnUnDownload);
         //
         exist = musicLovestContains();
-        m_ui->musicBestLove->setStyleSheet(exist ? MusicUIObject::BtnLove : MusicUIObject::BtnUnLove);
+        m_ui->musicBestLove->setStyleSheet(exist ? TTK::UI::BtnLove : TTK::UI::BtnUnLove);
         //
         m_songTreeWidget->selectRow(index);
     }
     else
     {
         const bool concise = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
-        m_ui->musicBestLove->setStyleSheet(MusicUIObject::BtnUnLove);
-        m_ui->musicDownload->setStyleSheet(MusicUIObject::BtnUnDownload);
-        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::TinyBtnPlay : MusicUIObject::BtnPlay);
+        m_ui->musicBestLove->setStyleSheet(TTK::UI::BtnUnLove);
+        m_ui->musicDownload->setStyleSheet(TTK::UI::BtnUnDownload);
+        m_ui->musicKey->setStyleSheet(concise ? TTK::UI::TinyBtnPlay : TTK::UI::BtnPlay);
         m_player->stop();
         m_rightAreaWidget->stopDrawLrc();
 
@@ -352,14 +352,14 @@ void MusicApplication::musicStatePlay()
     const bool concise = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
     if(isPlaying())
     {
-        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::TinyBtnPlay : MusicUIObject::BtnPlay);
+        m_ui->musicKey->setStyleSheet(concise ? TTK::UI::TinyBtnPlay : TTK::UI::BtnPlay);
         m_player->pause();
         m_topAreaWidget->setBackgroundAnimation(false);
         m_rightAreaWidget->stopDrawLrc();
     }
     else
     {
-        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::TinyBtnPause : MusicUIObject::BtnPause);
+        m_ui->musicKey->setStyleSheet(concise ? TTK::UI::TinyBtnPause : TTK::UI::BtnPause);
         m_player->play();
         m_topAreaWidget->musicBackgroundThemeDownloadFinished();
         m_rightAreaWidget->startDrawLrc();
@@ -388,7 +388,7 @@ void MusicApplication::musicPlayPrevious()
         return; //The playlist is not performing space-time
     }
 
-    if(m_playlist->playbackMode() == MusicObject::PlayMode::Random)
+    if(m_playlist->playbackMode() == TTK::PlayMode::Random)
     {
         m_playlist->setCurrentIndex();
     }
@@ -408,7 +408,7 @@ void MusicApplication::musicPlayNext()
         return; //The playlist is not performing space-time
     }
 
-    if(m_playlist->playbackMode() == MusicObject::PlayMode::Random)
+    if(m_playlist->playbackMode() == TTK::PlayMode::Random)
     {
         m_playlist->setCurrentIndex();
     }
@@ -423,32 +423,32 @@ void MusicApplication::musicPlayNext()
 
 void MusicApplication::musicPlayOrder()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayMode::Order);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PlayMode::Order);
+    m_playlist->setPlaybackMode(TTK::PlayMode::Order);
+    m_ui->musicPlayMode->setPlaybackMode(TTK::PlayMode::Order);
 }
 
 void MusicApplication::musicPlayRandom()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayMode::Random);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PlayMode::Random);
+    m_playlist->setPlaybackMode(TTK::PlayMode::Random);
+    m_ui->musicPlayMode->setPlaybackMode(TTK::PlayMode::Random);
 }
 
 void MusicApplication::musicPlaylistLoop()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayMode::ListLoop);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PlayMode::ListLoop);
+    m_playlist->setPlaybackMode(TTK::PlayMode::ListLoop);
+    m_ui->musicPlayMode->setPlaybackMode(TTK::PlayMode::ListLoop);
 }
 
 void MusicApplication::musicPlayOneLoop()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayMode::OneLoop);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PlayMode::OneLoop);
+    m_playlist->setPlaybackMode(TTK::PlayMode::OneLoop);
+    m_ui->musicPlayMode->setPlaybackMode(TTK::PlayMode::OneLoop);
 }
 
 void MusicApplication::musicPlayOnce()
 {
-    m_playlist->setPlaybackMode(MusicObject::PlayMode::Once);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PlayMode::Once);
+    m_playlist->setPlaybackMode(TTK::PlayMode::Once);
+    m_ui->musicPlayMode->setPlaybackMode(TTK::PlayMode::Once);
 }
 
 void MusicApplication::musicVolumeMute()
@@ -474,26 +474,26 @@ void MusicApplication::musicVolumeChanged(int volume)
 void MusicApplication::musicImportSongs()
 {
     QMenu menu;
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
     menu.addAction(tr("Open Files"), this, SLOT(musicImportSongsByFiles()));
     menu.addAction(tr("Open Dir"), this, SLOT(musicImportSongsByDir()));
     menu.addAction(tr("Open Url"), this, SLOT(musicImportSongsByUrl()));
     menu.addSeparator();
     menu.addAction(tr("Files Drag Drop"))->setEnabled(false);
 
-    MusicUtils::Widget::adjustMenuPosition(&menu);
+    TTK::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 
 void MusicApplication::musicImportSongsByFiles()
 {
-    const QStringList &files = MusicUtils::File::getOpenFileNames(this, MusicFormats::supportMusicInputFormats());
+    const QStringList &files = TTK::File::getOpenFileNames(this, MusicFormats::supportMusicInputFormats());
     m_songTreeWidget->importMusicSongsByPath(files);
 }
 
 void MusicApplication::musicImportSongsByDir()
 {
-    const QString &path = MusicUtils::File::getExistingDirectory(this);
+    const QString &path = TTK::File::getExistingDirectory(this);
     if(path.isEmpty())
     {
         return;
@@ -522,7 +522,7 @@ void MusicApplication::musicImportSongsByUrl()
 
 void MusicApplication::musicImportSongsItemList()
 {
-    const QStringList &files = MusicUtils::File::getOpenFileNames(this, MusicFormats::supportPlaylistInputFormats());
+    const QStringList &files = TTK::File::getOpenFileNames(this, MusicFormats::supportPlaylistInputFormats());
     if(files.isEmpty())
     {
         return;
@@ -536,7 +536,7 @@ void MusicApplication::musicImportSongsItemList()
 
 void MusicApplication::musicExportSongsItemList(int index)
 {
-    const QString &path = MusicUtils::File::getSaveFileName(this, MusicFormats::supportPlaylistOutputFormats());
+    const QString &path = TTK::File::getSaveFileName(this, MusicFormats::supportPlaylistOutputFormats());
     if(path.isEmpty())
     {
         return;
@@ -717,19 +717,19 @@ void MusicApplication::musicEnhancedMusicChanged(int type)
 void MusicApplication::musicCreateRightMenu()
 {
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     QMenu addNewFiles(tr("Add New Files"), &menu);
     menu.addMenu(&addNewFiles);
     addNewFiles.addAction(tr("Open Files"), this, SLOT(musicImportSongsByFiles()));
     addNewFiles.addAction(tr("Open Dir"), this, SLOT(musicImportSongsByDir()));
     addNewFiles.addAction(tr("Open Url"), this, SLOT(musicImportSongsByUrl()));
-    MusicUtils::Widget::adjustMenuPosition(&addNewFiles);
+    TTK::Widget::adjustMenuPosition(&addNewFiles);
 
     QMenu playbackMode(tr("Playback Mode"), &menu);
     menu.addMenu(&playbackMode);
 
-    MusicObject::PlayMode mode = m_playlist->playbackMode();
+    TTK::PlayMode mode = m_playlist->playbackMode();
     QList<QAction*> actions;
     actions << playbackMode.addAction(tr("Order Play"), this, SLOT(musicPlayOrder()));
     actions << playbackMode.addAction(tr("Random Play"), this, SLOT(musicPlayRandom()));
@@ -740,11 +740,11 @@ void MusicApplication::musicCreateRightMenu()
     int index = TTK_NORMAL_LEVEL;
     switch(mode)
     {
-        case MusicObject::PlayMode::Order: index = 0; break;
-        case MusicObject::PlayMode::Random: index = 1; break;
-        case MusicObject::PlayMode::ListLoop: index = 2; break;
-        case MusicObject::PlayMode::OneLoop: index = 3; break;
-        case MusicObject::PlayMode::Once: index = 4; break;
+        case TTK::PlayMode::Order: index = 0; break;
+        case TTK::PlayMode::Random: index = 1; break;
+        case TTK::PlayMode::ListLoop: index = 2; break;
+        case TTK::PlayMode::OneLoop: index = 3; break;
+        case TTK::PlayMode::Once: index = 4; break;
         default: break;
     }
 
@@ -762,7 +762,7 @@ void MusicApplication::musicCreateRightMenu()
     remoteControl.addAction(tr("Complex Style Remote"), m_topAreaWidget, SLOT(musicComplexStyleRemote()));
     remoteControl.addAction(tr("Ripple Remote"), m_topAreaWidget, SLOT(musicRippleRemote()));
     remoteControl.addAction(tr("Delete Remote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
-    MusicUtils::Widget::adjustMenuPosition(&remoteControl);
+    TTK::Widget::adjustMenuPosition(&remoteControl);
 
     menu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), m_applicationObject, SLOT(musicSetEqualizer()));
     menu.addAction(tr("Sound Effect"), m_applicationObject, SLOT(musicSetSoundEffect()));
@@ -879,7 +879,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
             m_player->stop();
             musicStatePlay();
 
-            const QString &removeParh = toolIndex == MUSIC_NETWORK_LIST ? MusicObject::generateNetworkSongPath(item.m_path) : item.m_path;
+            const QString &removeParh = toolIndex == MUSIC_NETWORK_LIST ? TTK::generateNetworkSongPath(item.m_path) : item.m_path;
             if(remove && !QFile::remove(removeParh))
             {
                 G_DISPATCH_PTR->dispatch(MusicDispatchManager::Module::FileRemove, removeParh);
@@ -898,7 +898,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
 void MusicApplication::musicCurrentLrcUpdated()
 {
     const QString &fileName = currentFileName();
-    QFile::remove(MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE);
+    QFile::remove(TTK::String::lrcDirPrefix() + fileName + LRC_FILE);
     m_rightAreaWidget->checkMetaDataValid(true);
 }
 
@@ -1078,13 +1078,13 @@ void MusicApplication::readSystemConfigFromFile()
     xml.readBuffer();
     m_applicationObject->loadNetWorkSetting();
 
-    switch(TTKStatic_cast(MusicObject::PlayMode, G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt()))
+    switch(TTKStatic_cast(TTK::PlayMode, G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt()))
     {
-        case MusicObject::PlayMode::Order: musicPlayOrder();break;
-        case MusicObject::PlayMode::Random: musicPlayRandom();break;
-        case MusicObject::PlayMode::ListLoop: musicPlaylistLoop();break;
-        case MusicObject::PlayMode::OneLoop: musicPlayOneLoop();break;
-        case MusicObject::PlayMode::Once: musicPlayOnce();break;
+        case TTK::PlayMode::Order: musicPlayOrder();break;
+        case TTK::PlayMode::Random: musicPlayRandom();break;
+        case TTK::PlayMode::ListLoop: musicPlaylistLoop();break;
+        case TTK::PlayMode::OneLoop: musicPlayOneLoop();break;
+        case TTK::PlayMode::Once: musicPlayOnce();break;
         default:break;
     }
 

@@ -101,7 +101,7 @@ private:
     MusicLrcAnalysis *m_analysis;
     MusicAudioRecorderModule *m_recordCore;
     MusicIdentifySongsRequest *m_detectedThread;
-    MusicObject::MusicSongInformation m_songInfo;
+    TTK::MusicSongInformation m_songInfo;
 
 };
 

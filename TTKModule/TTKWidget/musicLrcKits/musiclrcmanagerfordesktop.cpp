@@ -23,7 +23,7 @@ void MusicLrcManagerHorizontalDesktop::paintEvent(QPaintEvent *)
     painter.setFont(m_font);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
-    const int fontHeight = MusicUtils::Widget::fontTextHeight(m_font);
+    const int fontHeight = TTK::Widget::fontTextHeight(m_font);
     const int begin = (rect().height() - fontHeight) / 2;
     m_linearGradient.setFinalStop(0, fontHeight);
     m_maskLinearGradient.setFinalStop(0, fontHeight);
@@ -65,7 +65,7 @@ void MusicLrcManagerVerticalDesktop::paintEvent(QPaintEvent *)
     QPainter painter(this);
     painter.setFont(m_font);
 
-    const int fontHeight = MusicUtils::Widget::fontTextHeight(m_font);
+    const int fontHeight = TTK::Widget::fontTextHeight(m_font);
     m_linearGradient.setFinalStop(0, fontHeight);
     m_maskLinearGradient.setFinalStop(0, fontHeight);
 

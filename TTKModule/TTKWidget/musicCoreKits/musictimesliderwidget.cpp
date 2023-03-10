@@ -16,7 +16,7 @@ MusicTimeSliderWidget::MusicTimeSliderWidget(QWidget *parent)
     m_slider = new MusicMovingLabelSlider(Qt::Horizontal, this);
     m_slider->setValue(0);
     m_slider->setGeometry(15, m_label->width() / 2, width() - m_label->width(), 10);
-    m_slider->setStyleSheet(MusicUIObject::SliderStyle07);
+    m_slider->setStyleSheet(TTK::UI::SliderStyle07);
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
@@ -104,7 +104,7 @@ void MusicTimeSliderWidget::setSliderStyleByType(int type)
     }
     const QString &prefix = "QSlider::sub-page:Horizontal{background-color:qlineargradient("
                             "spread:pad,x1:0,y1:0,x2:1,y2:0,stop:0 " + front + ", stop:1 " + back + "); }";
-    m_slider->setStyleSheet(MusicUIObject::SliderStyle07 + prefix);
+    m_slider->setStyleSheet(TTK::UI::SliderStyle07 + prefix);
 }
 
 void MusicTimeSliderWidget::resizeEvent(QResizeEvent *event)

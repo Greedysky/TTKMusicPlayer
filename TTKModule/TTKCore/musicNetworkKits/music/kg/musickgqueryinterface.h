@@ -78,16 +78,16 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(MusicObject::MusicSongInformation *info, const QString &hash) const;
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &hash) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const;
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const;
 
     /*!
      * Read tags(lrc\smallpic) from query results.
      */
-    void parseFromSongLrcAndPicture(MusicObject::MusicSongInformation *info) const;
+    void parseFromSongLrcAndPicture(TTK::MusicSongInformation *info) const;
     /*!
      * Read tags(album info) from query results.
      */

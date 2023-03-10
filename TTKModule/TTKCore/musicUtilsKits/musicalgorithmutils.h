@@ -29,7 +29,7 @@
 /*! @brief The namespace of the utils algorithm.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicUtils
+namespace TTK
 {
     namespace Algorithm
     {

@@ -3,23 +3,23 @@
 
 #include <QCryptographicHash>
 
-QByteArray MusicUtils::Algorithm::md5(const QByteArray &data)
+QByteArray TTK::Algorithm::md5(const QByteArray &data)
 {
     return QCryptographicHash::hash(data, QCryptographicHash::Md5).toHex().toLower();
 }
 
-QByteArray MusicUtils::Algorithm::sha1(const QByteArray &data)
+QByteArray TTK::Algorithm::sha1(const QByteArray &data)
 {
     return QCryptographicHash::hash(data, QCryptographicHash::Sha1);
 }
 
-QByteArray MusicUtils::Algorithm::hmacSha1(const QByteArray &data, const QByteArray &key)
+QByteArray TTK::Algorithm::hmacSha1(const QByteArray &data, const QByteArray &key)
 {
     const int blockSize = 64;
     QByteArray newSecretKey = key;
     if(newSecretKey.length() > blockSize)
     {
-        newSecretKey = MusicUtils::Algorithm::sha1(newSecretKey);
+        newSecretKey = TTK::Algorithm::sha1(newSecretKey);
     }
 
     QByteArray innerPadding(blockSize, char(0x36));
@@ -34,17 +34,17 @@ QByteArray MusicUtils::Algorithm::hmacSha1(const QByteArray &data, const QByteAr
     QByteArray total = outerPadding;
     QByteArray part = innerPadding;
     part.append(data);
-    total.append(MusicUtils::Algorithm::sha1(part));
-    return MusicUtils::Algorithm::sha1(total);
+    total.append(TTK::Algorithm::sha1(part));
+    return TTK::Algorithm::sha1(total);
 }
 
-QString MusicUtils::Algorithm::mdII(const QString &data, bool encode)
+QString TTK::Algorithm::mdII(const QString &data, bool encode)
 {
     TTKCryptographicHash hash;
     return encode ? hash.encrypt(data, ALG_URL_KEY) : hash.decrypt(data, ALG_URL_KEY);
 }
 
-QString MusicUtils::Algorithm::mdII(const QString &data, const QString &key, bool encode)
+QString TTK::Algorithm::mdII(const QString &data, const QString &key, bool encode)
 {
     TTKCryptographicHash hash;
     return encode ? hash.encrypt(data, key) : hash.decrypt(data, key);

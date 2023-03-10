@@ -14,7 +14,7 @@ void MusicKGQueryAlbumRequest::startToSearch(const QString &value)
     m_queryValue = value;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_ALBUM_URL, false).arg(value));
+    request.setUrl(TTK::Algorithm::mdII(KG_ALBUM_URL, false).arg(value));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -29,7 +29,7 @@ void MusicKGQueryAlbumRequest::startToSingleSearch(const QString &id)
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_ALBUM_URL, false).arg(id));
+    request.setUrl(TTK::Algorithm::mdII(KG_ARTIST_ALBUM_URL, false).arg(id));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);
@@ -67,15 +67,15 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation info;
-                    info.m_songName = MusicUtils::String::charactersReplaced(value["filename"].toString());
+                    TTK::MusicSongInformation info;
+                    info.m_songName = TTK::String::charactersReplaced(value["filename"].toString());
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
 
                     if(info.m_songName.contains(TTK_DEFAULT_STR))
                     {
                         const QStringList &ll = info.m_songName.split(TTK_DEFAULT_STR);
-                        info.m_singerName = MusicUtils::String::charactersReplaced(ll.front().trimmed());
-                        info.m_songName = MusicUtils::String::charactersReplaced(ll.back().trimmed());
+                        info.m_singerName = TTK::String::charactersReplaced(ll.front().trimmed());
+                        info.m_songName = TTK::String::charactersReplaced(ll.back().trimmed());
                     }
 
                     info.m_songId = value["hash"].toString();
@@ -86,7 +86,7 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
 
                     TTK_NETWORK_QUERY_CHECK();
                     parseFromSongAlbumInfo(&result, m_queryValue);
-                    info.m_albumName = MusicUtils::String::charactersReplaced(result.m_nickName);
+                    info.m_albumName = TTK::String::charactersReplaced(result.m_nickName);
                     TTK_NETWORK_QUERY_CHECK();
                     parseFromSongLrcAndPicture(&info);
                     TTK_NETWORK_QUERY_CHECK();
@@ -157,7 +157,7 @@ void MusicKGQueryAlbumRequest::downLoadSingleFinished()
                     result.m_id = value["albumid"].toString();
                     result.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
                     result.m_name = value["albumname"].toString();
-                    result.m_updateTime = MusicUtils::String::stringSplit(value["publishtime"].toString().replace(TTK_DEFAULT_STR, TTK_DOT), " ").front();
+                    result.m_updateTime = TTK::String::stringSplit(value["publishtime"].toString().replace(TTK_DEFAULT_STR, TTK_DOT), " ").front();
                     Q_EMIT createAlbumItem(result);
                 }
             }

@@ -24,28 +24,31 @@
 /*! @brief The namespace of the application ui object.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicUIObject
+namespace TTK
 {
-    const QString ContextPlay = " \
-            QToolButton{ border:none; \
-            background-image: url(:/contextMenu/btn_play_hover); } \
-            QToolButton:hover{ background-image: url(:/contextMenu/btn_play_normal); }";
+    namespace UI
+    {
+        const QString ContextPlay = " \
+                QToolButton{ border:none; \
+                background-image: url(:/contextMenu/btn_play_hover); } \
+                QToolButton:hover{ background-image: url(:/contextMenu/btn_play_normal); }";
 
-    const QString ContextPause = " \
-            QToolButton{ border:none; \
-            background-image: url(:/contextMenu/btn_pause_hover); } \
-            QToolButton:hover{ background-image: url(:/contextMenu/btn_pause_normal); }";
+        const QString ContextPause = " \
+                QToolButton{ border:none; \
+                background-image: url(:/contextMenu/btn_pause_hover); } \
+                QToolButton:hover{ background-image: url(:/contextMenu/btn_pause_normal); }";
 
-    const QString ContextNext = " \
-            QToolButton{ border:none; \
-            background-image: url(:/contextMenu/btn_next_hover); } \
-            QToolButton:hover{ background-image: url(:/contextMenu/btn_next_normal); }";
+        const QString ContextNext = " \
+                QToolButton{ border:none; \
+                background-image: url(:/contextMenu/btn_next_hover); } \
+                QToolButton:hover{ background-image: url(:/contextMenu/btn_next_normal); }";
 
-    const QString ContextPrevious = " \
-            QToolButton{ border:none; \
-            background-image: url(:/contextMenu/btn_previous_hover); } \
-            QToolButton:hover{ background-image: url(:/contextMenu/btn_previous_normal); }";
+        const QString ContextPrevious = " \
+                QToolButton{ border:none; \
+                background-image: url(:/contextMenu/btn_previous_hover); } \
+                QToolButton:hover{ background-image: url(:/contextMenu/btn_previous_normal); }";
 
+    }
 }
 
 #endif // MUSICCONTEXTUIOBJECT_H

@@ -12,7 +12,7 @@ MusicItemSearchTableWidget::MusicItemSearchTableWidget(QWidget *parent)
     m_actionGroup = new QActionGroup(this);
 
     m_labelDelegate = new TTKLabelItemDelegate(this);
-    m_labelDelegate->setStyleSheet(MusicUIObject::BackgroundStyle13);
+    m_labelDelegate->setStyleSheet(TTK::UI::BackgroundStyle13);
 
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
 }
@@ -116,18 +116,18 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
         return;
     }
 
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
     m_actionGroup->addAction(menu.addAction(tr("Download")))->setData(0);
     menu.addSeparator();
 
     const int row = currentRow();
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row < 0 || row >= songInfos.count())
     {
         return;
     }
 
-    const MusicObject::MusicSongInformation &info = songInfos[row];
+    const TTK::MusicSongInformation &info = songInfos[row];
     m_actionGroup->addAction(menu.addAction(tr("Search '%1'").arg(info.m_songName)))->setData(1);
     m_actionGroup->addAction(menu.addAction(tr("Search '%1'").arg(info.m_singerName)))->setData(2);
     m_actionGroup->addAction(menu.addAction(tr("Search '%1 - %2'").arg(info.m_singerName, info.m_songName)))->setData(3);
@@ -135,7 +135,7 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
 
 QString MusicItemSearchTableWidget::randSimulation() const
 {
-    switch(TTKObject::random(5))
+    switch(TTK::random(5))
     {
         case 0:  return QString(":/video/lb_video_1");
         case 1:  return QString(":/video/lb_video_2");

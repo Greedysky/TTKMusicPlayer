@@ -17,8 +17,8 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize));
+                      TTK::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
+                      TTK::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadPageFinished()));
@@ -35,8 +35,8 @@ void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &valu
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryValue).arg(1014).arg(m_pageSize).arg(0).toUtf8());
+                      TTK::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
+                      TTK::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryValue).arg(1014).arg(m_pageSize).arg(0).toUtf8());
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -178,10 +178,10 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
 {
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_MOVIE_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_MOVIE_DATA_URL, false).arg(id));
+                      TTK::Algorithm::mdII(WY_MOVIE_URL, false),
+                      TTK::Algorithm::mdII(WY_MOVIE_DATA_URL, false).arg(id));
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
+    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
     if(bytes.isEmpty())
     {
         return;
@@ -196,17 +196,17 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
         if(value["code"].toInt() == 200)
         {
             value = value["data"].toMap();
-            MusicObject::MusicSongInformation info;
+            TTK::MusicSongInformation info;
             info.m_songId = QString::number(id);
-            info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-            info.m_singerName = MusicUtils::String::charactersReplaced(value["artistName"].toString());
+            info.m_songName = TTK::String::charactersReplaced(value["name"].toString());
+            info.m_singerName = TTK::String::charactersReplaced(value["artistName"].toString());
             info.m_duration = TTKTime::formatDuration(value["duration"].toInt());
 
             value = value["brs"].toMap();
             for(const QString &key : value.keys())
             {
                 const int bitrate = key.toInt();
-                MusicObject::MusicSongProperty prop;
+                TTK::MusicSongProperty prop;
                 if(bitrate <= 375)
                 {
                     prop.m_bitrate = MB_250;
@@ -225,7 +225,7 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
                 }
 
                 prop.m_url = value[key].toString();
-                prop.m_format = MusicUtils::String::stringSplitToken(prop.m_url);
+                prop.m_format = TTK::String::stringSplitToken(prop.m_url);
 
                 if(!findUrlFileSize(&prop))
                 {
@@ -255,10 +255,10 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
 {
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_VIDEO_INFO_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_VIDEO_INFO_DATA_URL, false).arg(id));
+                      TTK::Algorithm::mdII(WY_VIDEO_INFO_URL, false),
+                      TTK::Algorithm::mdII(WY_VIDEO_INFO_DATA_URL, false).arg(id));
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
+    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
     if(bytes.isEmpty())
     {
         return;
@@ -273,13 +273,13 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
         if(value["code"].toInt() == 200)
         {
             value = value["data"].toMap();
-            MusicObject::MusicSongInformation info;
+            TTK::MusicSongInformation info;
             info.m_songId = id;
-            info.m_songName = MusicUtils::String::charactersReplaced(value["title"].toString());
+            info.m_songName = TTK::String::charactersReplaced(value["title"].toString());
             info.m_duration = TTKTime::formatDuration(value["durationms"].toInt());
 
             const QVariantMap &artistObject = value["creator"].toMap();
-            info.m_singerName = MusicUtils::String::charactersReplaced(artistObject["nickname"].toString());
+            info.m_singerName = TTK::String::charactersReplaced(artistObject["nickname"].toString());
 
             const QVariantList &datas = value["resolutions"].toList();
             for(const QVariant &var : qAsConst(datas))
@@ -293,7 +293,7 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
                 TTK_NETWORK_QUERY_CHECK();
 
                 const int bitrate = value["resolution"].toInt();
-                MusicObject::MusicSongProperty prop;
+                TTK::MusicSongProperty prop;
                 queryVideoUrlPath(prop.m_url, id, bitrate);
                 TTK_NETWORK_QUERY_CHECK();
 
@@ -319,8 +319,8 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
                     prop.m_bitrate = MB_1000;
                 }
 
-                prop.m_size = MusicUtils::Number::sizeByteToLabel(value["size"].toInt());
-                prop.m_format = MusicUtils::String::stringSplitToken(prop.m_url);
+                prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());
+                prop.m_format = TTK::String::stringSplitToken(prop.m_url);
                 info.m_songProps.append(prop);
             }
 
@@ -344,10 +344,10 @@ void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id
 {
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_VIDEO_PATH_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_VIDEO_PATH_DATA_URL, false).arg(id).arg(bitrate));
+                      TTK::Algorithm::mdII(WY_VIDEO_PATH_URL, false),
+                      TTK::Algorithm::mdII(WY_VIDEO_PATH_DATA_URL, false).arg(id).arg(bitrate));
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
+    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
     if(bytes.isEmpty())
     {
         return;
@@ -388,10 +388,10 @@ void MusicWYQueryMovieRequest::queryArtistMoviesCount(qint64 id)
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(id).arg(0).arg(TTK_HIGH_LEVEL));
+                      TTK::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
+                      TTK::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(id).arg(0).arg(TTK_HIGH_LEVEL));
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
+    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
     if(bytes.isEmpty())
     {
         return;

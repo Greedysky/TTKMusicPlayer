@@ -16,8 +16,8 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(DJ_RADIO_LIST_URL, false).arg(m_queryValue));
-    MusicObject::setSslConfiguration(&request);
+    request.setUrl(TTK::Algorithm::mdII(DJ_RADIO_LIST_URL, false).arg(m_queryValue));
+    TTK::setSslConfiguration(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -45,8 +45,8 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(DJ_DETAIL_URL, false),
-                      MusicUtils::Algorithm::mdII(DJ_DETAIL_DATA_URL, false).arg(value));
+                      TTK::Algorithm::mdII(DJ_DETAIL_URL, false),
+                      TTK::Algorithm::mdII(DJ_DETAIL_DATA_URL, false).arg(value));
 
     QNetworkReply *reply = m_manager.post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(downloadDetailsFinished()));
@@ -59,10 +59,10 @@ void MusicDJRadioProgramCategoryRequest::queryProgramInfo(MusicResultDataItem &i
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_URL, false),
-                      MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_DATA_URL, false).arg(item.m_id));
+                      TTK::Algorithm::mdII(DJ_PROGRAM_INFO_URL, false),
+                      TTK::Algorithm::mdII(DJ_PROGRAM_INFO_DATA_URL, false).arg(item.m_id));
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
+    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
     if(bytes.isEmpty())
     {
         return;
@@ -159,14 +159,14 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation info;
-                    info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
+                    TTK::MusicSongInformation info;
+                    info.m_songName = TTK::String::charactersReplaced(value["name"].toString());
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt());
 
                     const QVariantMap &radioObject = value["radio"].toMap();
                     info.m_coverUrl = radioObject["picUrl"].toString();
                     info.m_artistId = radioObject["id"].toString();
-                    info.m_singerName = MusicUtils::String::charactersReplaced(radioObject["name"].toString());
+                    info.m_singerName = TTK::String::charactersReplaced(radioObject["name"].toString());
 
                     const QVariantMap &mainSongObject = value["mainSong"].toMap();
                     info.m_songId = mainSongObject["id"].toString();

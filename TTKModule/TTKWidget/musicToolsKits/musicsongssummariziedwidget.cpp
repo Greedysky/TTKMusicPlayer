@@ -149,7 +149,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
         }
 
         progress.setValue(++i);
-        item->m_songs << MusicObject::generateSongList(path);
+        item->m_songs << TTK::generateSongList(path);
     }
 
     item->m_itemObject->updateSongsList(item->m_songs);
@@ -170,7 +170,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
     if(fin.isDir())
     {
         QStringList files;
-        for(const QFileInfo &fin : MusicUtils::File::fileInfoListByPath(path))
+        for(const QFileInfo &fin : TTK::File::fileInfoListByPath(path))
         {
             if(MusicFormats::supportMusicFormats().contains(FILE_SUFFIX(fin)))
             {
@@ -180,15 +180,15 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
 
         importMusicSongsByPath(files);
     }
-    else if(MusicUtils::String::isNetworkUrl(path))
+    else if(TTK::String::isNetworkUrl(path))
     {
         closeSearchWidgetInNeed();
 
         MusicSongItem *item = &m_containerItems[MUSIC_NETWORK_LIST];
-        const QString &prefix = MusicUtils::String::stringSplitToken(path, TTK_SEPARATOR, "?");
-        const QByteArray &md5 = MusicUtils::Algorithm::md5(path.toUtf8());
-        const MusicSong song(path + "#" + md5 + "." + MusicUtils::String::stringSplitToken(path),
-                             TTK_DEFAULT_STR, MusicUtils::String::stringPrefix(prefix));
+        const QString &prefix = TTK::String::stringSplitToken(path, TTK_SEPARATOR, "?");
+        const QByteArray &md5 = TTK::Algorithm::md5(path.toUtf8());
+        const MusicSong song(path + "#" + md5 + "." + TTK::String::stringSplitToken(path),
+                             TTK_DEFAULT_STR, TTK::String::stringPrefix(prefix));
         if(item->m_songs.contains(song))
         {
             return;
@@ -398,7 +398,7 @@ void MusicSongsSummariziedWidget::deleteRowItems()
         return;
     }
 
-    if(m_playToolIndex != MUSIC_NORMAL_LIST && MusicObject::playlistRowValid(m_playToolIndex))
+    if(m_playToolIndex != MUSIC_NORMAL_LIST && TTK::playlistRowValid(m_playToolIndex))
     {
         setCurrentIndex(MUSIC_NORMAL_LIST);
         m_itemList.front().m_widgetItem->setItemExpand(false);
@@ -715,7 +715,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
 void MusicSongsSummariziedWidget::addSongBufferToPlaylist(const MusicResultDataItem &songItem)
 {
     MusicSongItem *item = &m_containerItems[MUSIC_NETWORK_LIST];
-    const QByteArray &md5 = MusicUtils::Algorithm::md5(songItem.m_id.toUtf8());
+    const QByteArray &md5 = TTK::Algorithm::md5(songItem.m_id.toUtf8());
     MusicSong song(songItem.m_nickName + "#" + md5 + "." + songItem.m_description, songItem.m_updateTime, songItem.m_name);
     song.setFormat(songItem.m_description);
     song.setSizeStr(songItem.m_playCount);
@@ -791,7 +791,7 @@ void MusicSongsSummariziedWidget::setDeleteItemAt(const TTKIntList &index, bool 
 
         if(fileRemove)
         {
-            QFile::remove(currentIndex == MUSIC_NETWORK_LIST ? MusicObject::generateNetworkSongPath(song.path()) : song.path());
+            QFile::remove(currentIndex == MUSIC_NETWORK_LIST ? TTK::generateNetworkSongPath(song.path()) : song.path());
         }
     }
 
@@ -1020,14 +1020,14 @@ void MusicSongsSummariziedWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicSongsToolBoxWidget::contextMenuEvent(event);
 
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
     menu.addAction(tr("Create Item"), this, SLOT(addNewRowItem()));
     menu.addAction(tr("Import Item"), MusicApplication::instance(), SLOT(musicImportSongsItemList()));
     menu.addAction(tr("Music Test Tools"), this, SLOT(musicSongsCheckTestTools()));
     menu.addAction(tr("Lrc Batch Download"), this, SLOT(musicLrcBatchDownload()));
     menu.addAction(tr("Delete All"), this, SLOT(deleteRowItems()))->setEnabled(m_containerItems.count() > ITEM_MIN_COUNT);
 
-    MusicUtils::Widget::adjustMenuPosition(&menu);
+    TTK::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 

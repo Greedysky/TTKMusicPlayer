@@ -3,25 +3,25 @@
 
 void MusicKGInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
-    request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(request);
+    request->setRawHeader("User-Agent", TTK::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
+    TTK::setSslConfiguration(request);
 }
 
 
-void MusicKGQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformation *info, const QString &hash) const
+void MusicKGQueryInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &hash) const
 {
     if(hash.isEmpty())
     {
         return;
     }
 
-    const QByteArray &encodedData = MusicUtils::Algorithm::md5(QString("%1kgcloudv2").arg(hash).toUtf8());
+    const QByteArray &encodedData = TTK::Algorithm::md5(QString("%1kgcloudv2").arg(hash).toUtf8());
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_SONG_DETAIL_URL, false).arg(hash, encodedData.constData()));
+    request.setUrl(TTK::Algorithm::mdII(KG_SONG_DETAIL_URL, false).arg(hash, encodedData.constData()));
     MusicKGInterface::makeRequestRawHeader(&request);
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
     {
         return;
@@ -41,17 +41,17 @@ void MusicKGQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformat
                 return;
             }
 
-            MusicObject::MusicSongProperty prop;
+            TTK::MusicSongProperty prop;
             prop.m_url = value["url"].toString();
-            prop.m_size = MusicUtils::Number::sizeByteToLabel(value["fileSize"].toInt());
+            prop.m_size = TTK::Number::sizeByteToLabel(value["fileSize"].toInt());
             prop.m_format = value["extName"].toString();
-            prop.m_bitrate = MusicUtils::Number::bitrateToNormal(bitrate / 1000);
+            prop.m_bitrate = TTK::Number::bitrateToNormal(bitrate / 1000);
             info->m_songProps.append(prop);
         }
     }
 }
 
-void MusicKGQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
+void MusicKGQueryInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const
 {
     if(all)
     {
@@ -62,23 +62,23 @@ void MusicKGQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformat
     }
     else
     {
-        if(quality == MusicObject::QueryQuality::Standard)
+        if(quality == TTK::QueryQuality::Standard)
         {
             parseFromSongProperty(info, key["hash"].toString());
             parseFromSongProperty(info, key["128hash"].toString());
         }
-        else if(quality == MusicObject::QueryQuality::Super)
+        else if(quality == TTK::QueryQuality::Super)
         {
             parseFromSongProperty(info, key["320hash"].toString());
         }
-        else if(quality == MusicObject::QueryQuality::Lossless)
+        else if(quality == TTK::QueryQuality::Lossless)
         {
             parseFromSongProperty(info, key["sqhash"].toString());
         }
     }
 }
 
-void MusicKGQueryInterface::parseFromSongLrcAndPicture(MusicObject::MusicSongInformation *info) const
+void MusicKGQueryInterface::parseFromSongLrcAndPicture(TTK::MusicSongInformation *info) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -86,10 +86,10 @@ void MusicKGQueryInterface::parseFromSongLrcAndPicture(MusicObject::MusicSongInf
     }
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(info->m_songId));
+    request.setUrl(TTK::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(info->m_songId));
     MusicKGInterface::makeRequestRawHeader(&request);
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
     {
         return;
@@ -106,7 +106,7 @@ void MusicKGQueryInterface::parseFromSongLrcAndPicture(MusicObject::MusicSongInf
             value = value["data"].toMap();
             info->m_artistId = value["singerid"].toString();
             info->m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
-            info->m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(value["songname"].toString(), info->m_songId).arg(value["duration"].toInt() * MT_S2MS);
+            info->m_lrcUrl = TTK::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(value["songname"].toString(), info->m_songId).arg(value["duration"].toInt() * MT_S2MS);
         }
     }
 }
@@ -114,10 +114,10 @@ void MusicKGQueryInterface::parseFromSongLrcAndPicture(MusicObject::MusicSongInf
 void MusicKGQueryInterface::parseFromSongAlbumInfo(MusicResultDataItem *info, const QString &album) const
 {
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_ALBUM_INFO_URL, false).arg(album));
+    request.setUrl(TTK::Algorithm::mdII(KG_ALBUM_INFO_URL, false).arg(album));
     MusicKGInterface::makeRequestRawHeader(&request);
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
     {
         return;

@@ -33,7 +33,7 @@ void MusicWebDJRadioCategoryItemWidget::setResultDataItem(const MusicResultDataI
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
-    m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
+    m_nameLabel->setText(TTK::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
@@ -77,7 +77,7 @@ MusicWebDJRadioCategoryWidget::MusicWebDJRadioCategoryWidget(QWidget *parent)
     QWidget *mainWindow = new QWidget(this);
 
     QScrollArea *scrollArea = new QScrollArea(this);
-    MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, mainWindow);
+    TTK::Widget::generateVScrollAreaFormat(scrollArea, mainWindow);
     layout->addWidget(scrollArea);
 
     m_gridLayout = new QGridLayout(mainWindow);

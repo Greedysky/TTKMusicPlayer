@@ -29,7 +29,7 @@ class MusicSourceUpdateRequest;
 class MusicDownloadCounterPVRequest;
 class MusicScreenSaverBackgroundWidget;
 
-namespace TTKObject {
+namespace TTK {
 enum class Direction;
 }
 
@@ -166,7 +166,7 @@ private:
     bool closeCurrentEqualizer();
 
     bool m_setWindowToTop;
-    TTKObject::Direction m_direction;
+    TTK::Direction m_direction;
     QPropertyAnimation *m_quitAnimation, *m_sideAnimation;
     MusicTimerAutoModule *m_timerAutoModule;
     MusicMobileDevicesWidget *m_mobileDeviceWidget;

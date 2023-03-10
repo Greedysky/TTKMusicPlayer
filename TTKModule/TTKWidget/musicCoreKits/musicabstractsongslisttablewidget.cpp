@@ -97,13 +97,13 @@ void MusicAbstractSongsListTableWidget::musicOpenFileDir()
     }
 
     const QString &path = !m_songs->isEmpty() ? m_songs->at(currentRow()).path() : QString();
-    if(QFileInfo(path).baseName() == MusicUtils::Algorithm::mdII(currentSongName(), ALG_ARC_KEY, true))
+    if(QFileInfo(path).baseName() == TTK::Algorithm::mdII(currentSongName(), ALG_ARC_KEY, true))
     {
         //cache song should not allow open url
         return;
     }
 
-    if(!MusicUtils::Url::openUrl(QFileInfo(path).absoluteFilePath()))
+    if(!TTK::Url::openUrl(QFileInfo(path).absoluteFilePath()))
     {
         MusicToastLabel::popup(tr("The file has been moved or does not exist"));
     }
@@ -215,7 +215,7 @@ void MusicAbstractSongsListTableWidget::musicSongPlayedSharedWidget()
 
 void MusicAbstractSongsListTableWidget::createMoreMenu(QMenu *menu)
 {
-    menu->setStyleSheet(MusicUIObject::MenuStyle02);
+    menu->setStyleSheet(TTK::UI::MenuStyle02);
     menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), this, SLOT(musicSimilarQueryWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), this, SLOT(musicSongSharedWidget()));
 }

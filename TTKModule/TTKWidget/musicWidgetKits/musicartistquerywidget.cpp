@@ -21,7 +21,7 @@ MusicArtistAlbumsItemWidget::MusicArtistAlbumsItemWidget(QWidget *parent)
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry(110, 110, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
-    m_playButton->setStyleSheet(MusicUIObject::TinyBtnPlaylist + MusicUIObject::PushButtonStyle01);
+    m_playButton->setStyleSheet(TTK::UI::TinyBtnPlaylist + TTK::UI::PushButtonStyle01);
     connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));
 
 #ifdef Q_OS_UNIX
@@ -52,9 +52,9 @@ void MusicArtistAlbumsItemWidget::setResultDataItem(const MusicResultDataItem &i
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
-    m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
+    m_nameLabel->setText(TTK::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
     m_updateLabel->setToolTip(item.m_updateTime);
-    m_updateLabel->setText(MusicUtils::Widget::elidedText(m_updateLabel->font(), m_updateLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
+    m_updateLabel->setText(TTK::Widget::elidedText(m_updateLabel->font(), m_updateLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
@@ -306,7 +306,7 @@ void MusicArtistQueryWidget::setSongName(const QString &name)
     MusicAbstractItemQueryWidget::setSongName(name);
     m_networkRequest->setQueryLite(true);
     m_networkRequest->setQueryAllRecords(false);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, MusicUtils::String::artistName(name));
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, TTK::String::artistName(name));
 }
 
 void MusicArtistQueryWidget::setSongNameByID(const QString &id)
@@ -328,16 +328,16 @@ void MusicArtistQueryWidget::resizeWidget()
             width = width - WINDOW_WIDTH_MIN + 180;
 
         TTKResizeWidget *data = &m_resizeWidgets[1];
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[2];
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width - 20));
+        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width - 20));
 
         data = &m_resizeWidgets[3];
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[4];
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
     }
 
     if(m_artistAlbums)
@@ -353,7 +353,7 @@ void MusicArtistQueryWidget::resizeWidget()
 
 void MusicArtistQueryWidget::queryAllFinished()
 {
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(songInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_artist_found"));
@@ -361,7 +361,7 @@ void MusicArtistQueryWidget::queryAllFinished()
     else
     {
         bool hasItem = false;
-        for(const MusicObject::MusicSongInformation &info : qAsConst(songInfos))
+        for(const TTK::MusicSongInformation &info : qAsConst(songInfos))
         {
             if(m_songNameFull.contains(info.m_songName))
             {
@@ -386,7 +386,7 @@ void MusicArtistQueryWidget::queryArtistFinished()
         return;
     }
 
-    const MusicObject::MusicSongInformationList songInfos(d->songInfoList());
+    const TTK::MusicSongInformationList songInfos(d->songInfoList());
     if(songInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_artist_found"));
@@ -420,19 +420,19 @@ void MusicArtistQueryWidget::createArtistItem(const MusicResultDataItem &item)
 
         data = &m_resizeWidgets[1];
         data->m_label->setToolTip(item.m_name);
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[2];
         data->m_label->setToolTip(tr("NickName: %1").arg(item.m_nickName));
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width - 20));
+        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width - 20));
 
         data = &m_resizeWidgets[3];
         data->m_label->setToolTip(tr("Country: %1").arg(item.m_tags));
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[4];
         data->m_label->setToolTip(tr("Birth: %1").arg(item.m_updateTime));
-        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
+        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         m_infoLabel->setText(item.m_description);
     }
@@ -487,11 +487,11 @@ void MusicArtistQueryWidget::createLabels()
 
     layout()->removeWidget(m_mainWindow);
     QScrollArea *scrollArea = new QScrollArea(this);
-    MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
+    TTK::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
     layout()->addWidget(scrollArea);
 
     QWidget *function = new QWidget(m_mainWindow);
-    function->setStyleSheet(MusicUIObject::CheckBoxStyle01 + MusicUIObject::PushButtonStyle03);
+    function->setStyleSheet(TTK::UI::CheckBoxStyle01 + TTK::UI::PushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
     QLabel *firstLabel = new QLabel(function);
@@ -512,16 +512,16 @@ void MusicArtistQueryWidget::createLabels()
     QFont artistFont = artistLabel->font();
     artistFont.setPixelSize(20);
     artistLabel->setFont(artistFont);
-    artistLabel->setStyleSheet(MusicUIObject::FontStyle01);
+    artistLabel->setStyleSheet(TTK::UI::FontStyle01);
     artistLabel->setText(TTK_DEFAULT_STR);
     QLabel *nickNameLabel = new QLabel(topLineWidget);
-    nickNameLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
+    nickNameLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     nickNameLabel->setText(TTK_DEFAULT_STR);
     QLabel *countryLabel = new QLabel(topLineWidget);
-    countryLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
+    countryLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     countryLabel->setText(TTK_DEFAULT_STR);
     QLabel *birthLabel = new QLabel(topLineWidget);
-    birthLabel->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle03);
+    birthLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     birthLabel->setText(TTK_DEFAULT_STR);
 
     topLineLayout->addWidget(artistLabel);
@@ -531,7 +531,7 @@ void MusicArtistQueryWidget::createLabels()
     topLineWidget->setLayout(topLineLayout);
 
     QWidget *topButtonWidget = new QWidget(topFuncWidget);
-    topButtonWidget->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    topButtonWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
     QHBoxLayout *topButtonLayout = new QHBoxLayout(topButtonWidget);
     topButtonLayout->setContentsMargins(0, 0, 0, 0);
     QPushButton *playAllButton = new QPushButton(tr("Play All"), topButtonWidget);
@@ -558,10 +558,10 @@ void MusicArtistQueryWidget::createLabels()
 
     QLabel *numberLabel = new QLabel(topRightWidget);
     numberLabel->setAlignment(Qt::AlignCenter);
-    numberLabel->setStyleSheet(MusicUIObject::FontStyle05 + MusicUIObject::ColorStyle05);
+    numberLabel->setStyleSheet(TTK::UI::FontStyle05 + TTK::UI::ColorStyle05);
 
-    const int number = 7 + TTKObject::random(3);
-    numberLabel->setText(QString("%1.%2").arg(number).arg(TTKObject::random(10)));
+    const int number = 7 + TTK::random(3);
+    numberLabel->setText(QString("%1.%2").arg(number).arg(TTK::random(10)));
     topRightLayout->addWidget(numberLabel, 0, 0);
     topRightLayout->addWidget(new MusicRatingLabel(ceil(number / 2.0), topRightWidget), 0, 1, 1, 6);
 
@@ -586,7 +586,7 @@ void MusicArtistQueryWidget::createLabels()
     grid->addWidget(topFuncWidget);
     //
     QWidget *functionWidget = new QWidget(this);
-    functionWidget->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    functionWidget->setStyleSheet(TTK::UI::PushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("SongItems"));

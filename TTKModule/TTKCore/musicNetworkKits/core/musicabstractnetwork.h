@@ -95,18 +95,18 @@ public Q_SLOTS:
 protected:
     QVariantMap m_rawData;
     volatile bool m_interrupt;
-    volatile MusicObject::NetworkCode m_stateCode;
+    volatile TTK::NetworkCode m_stateCode;
     QNetworkReply *m_reply;
     QNetworkAccessManager m_manager;
 
 };
 
-#define TTK_NETWORK_QUERY_CHECK(VALUE)   if(m_interrupt || m_stateCode != MusicObject::NetworkCode::Query) return VALUE
+#define TTK_NETWORK_QUERY_CHECK(VALUE)   if(m_interrupt || m_stateCode != TTK::NetworkCode::Query) return VALUE
 
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicObject
+namespace TTK
 {
     /*!
      * Set request ssl configuration.

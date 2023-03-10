@@ -15,7 +15,7 @@ MusicBarrageAnimation::MusicBarrageAnimation(QObject *target, const QByteArray &
 
 void MusicBarrageAnimation::animationFinished()
 {
-    setDuration(TTKObject::random(10 * MT_S2MS) + MT_S2MS);
+    setDuration(TTK::random(10 * MT_S2MS) + MT_S2MS);
     setSize(m_parentSize);
     start();
 }
@@ -23,14 +23,14 @@ void MusicBarrageAnimation::animationFinished()
 void MusicBarrageAnimation::setSize(const QSize &size)
 {
     m_parentSize = size;
-    const int height = TTKObject::random(size.height());
+    const int height = TTK::random(size.height());
     setStartValue(QPoint(0, height));
     setEndValue(QPoint(size.width(), height));
 }
 
 void MusicBarrageAnimation::initialize()
 {
-    setDuration(TTKObject::random(10000) + MT_S2MS);
+    setDuration(TTK::random(10000) + MT_S2MS);
     setEasingCurve(QEasingCurve::Linear);
 
     connect(this, SIGNAL(finished()), SLOT(animationFinished()));
@@ -113,7 +113,7 @@ void MusicBarrageWidget::barrageStateChanged(bool on)
 
 void MusicBarrageWidget::addBarrage(const MusicBarrageRecord &record)
 {
-    TTKObject::initRandom();
+    TTK::initRandom();
 
     QLabel *label = createLabel(record);
     createAnimation(label);
@@ -135,7 +135,7 @@ void MusicBarrageWidget::deleteItems()
 
 void MusicBarrageWidget::createLabel()
 {
-    TTKObject::initRandom();
+    TTK::initRandom();
     for(const MusicBarrageRecord &record : qAsConst(m_barrageRecords))
     {
         createLabel(record);
@@ -148,9 +148,9 @@ QLabel *MusicBarrageWidget::createLabel(const MusicBarrageRecord &record)
     label->setStyleSheet(QString("QLabel{ color:%1}").arg(record.m_color));
     label->setText(record.m_value);
 
-    MusicUtils::Widget::setLabelFontSize(label, record.m_size);
-    label->resize(MusicUtils::Widget::fontTextWidth(label->font(), label->text()),
-                  MusicUtils::Widget::fontTextHeight(label->font()));
+    TTK::Widget::setLabelFontSize(label, record.m_size);
+    label->resize(TTK::Widget::fontTextWidth(label->font(), label->text()),
+                  TTK::Widget::fontTextHeight(label->font()));
     label->hide();
     m_labels << label;
 

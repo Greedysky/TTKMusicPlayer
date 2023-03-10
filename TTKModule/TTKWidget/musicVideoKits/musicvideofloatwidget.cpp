@@ -5,7 +5,7 @@
 MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
     : MusicAbstractFloatWidget(parent)
 {
-    setStyleSheet(MusicUIObject::BackgroundStyle08);
+    setStyleSheet(TTK::UI::BackgroundStyle08);
 
     resizeGeometry(0, 0);
     m_search = new QPushButton(tr(" Search"), this);
@@ -28,11 +28,11 @@ MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
     m_download->setGeometry(15, 130, 80, 20);
     m_share->setGeometry(15, 170, 80, 20);
 
-    m_search->setStyleSheet(MusicUIObject::VideoFloatSearch + MusicUIObject::PushButtonStyle07);
-    m_popup->setStyleSheet(MusicUIObject::VideoFloatFresh + MusicUIObject::PushButtonStyle07);
-    m_fullscreen->setStyleSheet(MusicUIObject::VideoFloatFullscreen + MusicUIObject::PushButtonStyle07);
-    m_download->setStyleSheet(MusicUIObject::VideoFloatDownload + MusicUIObject::PushButtonStyle07);
-    m_share->setStyleSheet(MusicUIObject::VideoFloatShare + MusicUIObject::PushButtonStyle07);
+    m_search->setStyleSheet(TTK::UI::VideoFloatSearch + TTK::UI::PushButtonStyle07);
+    m_popup->setStyleSheet(TTK::UI::VideoFloatFresh + TTK::UI::PushButtonStyle07);
+    m_fullscreen->setStyleSheet(TTK::UI::VideoFloatFullscreen + TTK::UI::PushButtonStyle07);
+    m_download->setStyleSheet(TTK::UI::VideoFloatDownload + TTK::UI::PushButtonStyle07);
+    m_share->setStyleSheet(TTK::UI::VideoFloatShare + TTK::UI::PushButtonStyle07);
 
     m_search->setCursor(QCursor(Qt::PointingHandCursor));
     m_popup->setCursor(QCursor(Qt::PointingHandCursor));

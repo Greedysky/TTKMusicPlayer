@@ -23,7 +23,7 @@ void MusicQueryRecommendRequest::startToSearch()
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(LQ_RECOMMEND_URL, false));
+    request.setUrl(TTK::Algorithm::mdII(LQ_RECOMMEND_URL, false));
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -53,14 +53,14 @@ void MusicQueryRecommendRequest::downLoadFinished()
                 QVariantMap value = var.toMap();
                 TTK_NETWORK_QUERY_CHECK();
 
-                MusicObject::MusicSongInformation info;
-                info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
+                TTK::MusicSongInformation info;
+                info.m_songName = TTK::String::charactersReplaced(value["name"].toString());
                 info.m_duration = value["songLength"].toString();
                 info.m_songId = value["id"].toString();
 
                 const QVariantMap &albumObject = value["albumInfo"].toMap();
                 info.m_albumId = albumObject["id"].toString();
-                info.m_albumName = MusicUtils::String::charactersReplaced(albumObject["name"].toString());
+                info.m_albumName = TTK::String::charactersReplaced(albumObject["name"].toString());
 
                 const QVariantList &artistsArray = value["artistInfo"].toList();
                 for(const QVariant &artistValue : qAsConst(artistsArray))
@@ -72,7 +72,7 @@ void MusicQueryRecommendRequest::downLoadFinished()
 
                     const QVariantMap &artistObject = artistValue.toMap();
                     info.m_artistId = artistObject["id"].toString();
-                    info.m_singerName = MusicUtils::String::charactersReplaced(artistObject["name"].toString());
+                    info.m_singerName = TTK::String::charactersReplaced(artistObject["name"].toString());
                     break; //just find first singer
                 }
 
@@ -104,16 +104,16 @@ void MusicQueryRecommendRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicQueryRecommendRequest::parseFromSongProperty(MusicObject::MusicSongInformation *info, const QString &key, int length, int bitrate) const
+void MusicQueryRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &key, int length, int bitrate) const
 {
     if(key.isEmpty())
     {
         return;
     }
 
-    MusicObject::MusicSongProperty prop;
-    prop.m_url = MusicUtils::Algorithm::mdII(LQ_BASE_URL, false) + key;
-    prop.m_size = MusicUtils::Number::sizeByteToLabel(length * 1000 * bitrate / 8);
+    TTK::MusicSongProperty prop;
+    prop.m_url = TTK::Algorithm::mdII(LQ_BASE_URL, false) + key;
+    prop.m_size = TTK::Number::sizeByteToLabel(length * 1000 * bitrate / 8);
     switch(bitrate)
     {
         case MB_128: prop.m_format = MP3_FILE_SUFFIX; break;
@@ -127,9 +127,9 @@ void MusicQueryRecommendRequest::parseFromSongProperty(MusicObject::MusicSongInf
     info->m_songProps.append(prop);
 }
 
-void MusicQueryRecommendRequest::parseFromSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
+void MusicQueryRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const
 {
-    info->m_lrcUrl = MusicUtils::Algorithm::mdII(LQ_BASE_URL, false) + key["lrcUrl"].toString();
+    info->m_lrcUrl = TTK::Algorithm::mdII(LQ_BASE_URL, false) + key["lrcUrl"].toString();
     info->m_coverUrl = key["picUrl"].toString();
     const int length = key["length"].toInt();
 
@@ -143,19 +143,19 @@ void MusicQueryRecommendRequest::parseFromSongProperty(MusicObject::MusicSongInf
     }
     else
     {
-        if(quality == MusicObject::QueryQuality::Standard)
+        if(quality == TTK::QueryQuality::Standard)
         {
             parseFromSongProperty(info, key["lqUrl"].toString(), length, MB_128);
         }
-        else if(quality == MusicObject::QueryQuality::High)
+        else if(quality == TTK::QueryQuality::High)
         {
             parseFromSongProperty(info, key["hqUrl"].toString(), length, MB_192);
         }
-        else if(quality == MusicObject::QueryQuality::Super)
+        else if(quality == TTK::QueryQuality::Super)
         {
             parseFromSongProperty(info, key["sqUrl"].toString(), length, MB_320);
         }
-        else if(quality == MusicObject::QueryQuality::Lossless)
+        else if(quality == TTK::QueryQuality::Lossless)
         {
             parseFromSongProperty(info, key["apeUrl"].toString(), length, MB_750);
             parseFromSongProperty(info, key["flacUrl"].toString(), length, MB_1000);

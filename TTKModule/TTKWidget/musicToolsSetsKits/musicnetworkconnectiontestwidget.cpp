@@ -57,7 +57,7 @@ void MusicNetworkConnectionItem::setUrl(const QString &url)
 void MusicNetworkConnectionItem::start()
 {
     m_stateText->setText(tr("Detecting"));
-    m_stateText->setStyleSheet(MusicUIObject::ColorStyle08);
+    m_stateText->setStyleSheet(TTK::UI::ColorStyle08);
     m_thread->start();
 }
 
@@ -66,7 +66,7 @@ void MusicNetworkConnectionItem::stop()
     m_iconLabel->setPixmap(QPixmap(":/tiny/lb_question"));
 
     m_stateText->setText(tr("Undetected"));
-    m_stateText->setStyleSheet(MusicUIObject::ColorStyle03);
+    m_stateText->setStyleSheet(TTK::UI::ColorStyle03);
     if(m_thread->isRunning())
     {
         m_thread->stop();
@@ -79,13 +79,13 @@ void MusicNetworkConnectionItem::testFinshed(bool state)
     {
         m_stateText->setText(tr("Detected"));
         m_iconLabel->setPixmap(QPixmap(":/tiny/lb_right"));
-        m_stateText->setStyleSheet(MusicUIObject::ColorStyle07);
+        m_stateText->setStyleSheet(TTK::UI::ColorStyle07);
     }
     else
     {
         m_stateText->setText(tr("Failed"));
         m_iconLabel->setPixmap(QPixmap(":/tiny/lb_error"));
-        m_stateText->setStyleSheet(MusicUIObject::ColorStyle05);
+        m_stateText->setStyleSheet(TTK::UI::ColorStyle05);
     }
 
     Q_EMIT networkConnectionTestChanged();
@@ -103,14 +103,14 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_ui->iconLabel->setType(MusicGifLabelWidget::Module::CheckBlue);
-    m_ui->textLabel->setStyleSheet(MusicUIObject::BackgroundStyle01);
-    m_ui->startButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->textLabel->setStyleSheet(TTK::UI::BackgroundStyle01);
+    m_ui->startButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 #ifdef Q_OS_UNIX
     m_ui->startButton->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -121,35 +121,35 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
     MusicNetworkConnectionItem *item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
     item->setText(tr("Check www visit"));
-    item->setUrl(MusicUtils::Algorithm::mdII(CHECK_WWW_VISIT, false));
+    item->setUrl(TTK::Algorithm::mdII(CHECK_WWW_VISIT, false));
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
     m_ui->verticalLayout->addWidget(item);
 
     item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
     item->setText(tr("Check normal visit"));
-    item->setUrl(MusicUtils::Algorithm::mdII(CHECK_NORMAL_VISIT, false));
+    item->setUrl(TTK::Algorithm::mdII(CHECK_NORMAL_VISIT, false));
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
     m_ui->verticalLayout->addWidget(item);
 
     item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
     item->setText(tr("Check vip visit"));
-    item->setUrl(MusicUtils::Algorithm::mdII(CHECK_VIP_VISIT, false));
+    item->setUrl(TTK::Algorithm::mdII(CHECK_VIP_VISIT, false));
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
     m_ui->verticalLayout->addWidget(item);
 
     item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
     item->setText(tr("Check download visit"));
-    item->setUrl(MusicUtils::Algorithm::mdII(CHECK_DOWNLOAD_VISIT, false));
+    item->setUrl(TTK::Algorithm::mdII(CHECK_DOWNLOAD_VISIT, false));
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
     m_ui->verticalLayout->addWidget(item);
 
     item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
     item->setText(tr("Check server visit"));
-    item->setUrl(MusicUtils::Algorithm::mdII(CHECK_SERVER_VISIT, false));
+    item->setUrl(TTK::Algorithm::mdII(CHECK_SERVER_VISIT, false));
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
     m_ui->verticalLayout->addWidget(item);
 

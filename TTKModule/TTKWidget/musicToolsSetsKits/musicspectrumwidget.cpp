@@ -27,26 +27,26 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
     setBackgroundLabel(m_ui->background);
 
-    setStyleSheet(MusicUIObject::MenuStyle02);
+    setStyleSheet(TTK::UI::MenuStyle02);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->mainViewWidget->setStyleSheet(MusicUIObject::TabWidgetStyle01);
+    m_ui->mainViewWidget->setStyleSheet(TTK::UI::TabWidgetStyle01);
 
-    m_ui->localFileButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->localFileButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->localFileButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->openFileButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->openFileButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->openFileButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->spectrumNormalLayoutButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
-    m_ui->spectrumPlusLayoutButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
-    m_ui->spectrumWaveLayoutButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
-    m_ui->spectrumFlowLayoutButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
-    m_ui->spectrumFloridLayoutButton->setStyleSheet(MusicUIObject::ToolButtonStyle06);
+    m_ui->spectrumNormalLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
+    m_ui->spectrumPlusLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
+    m_ui->spectrumWaveLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
+    m_ui->spectrumFlowLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
+    m_ui->spectrumFloridLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
 
 #ifdef Q_OS_UNIX
     m_ui->spectrumNormalLayoutButton->setFocusPolicy(Qt::NoFocus);
@@ -74,7 +74,7 @@ MusicSpectrumWidget::~MusicSpectrumWidget()
     G_SINGLE_MANAGER_PTR->removeObject(className());
     for(const MusicSpectrum &type : qAsConst(m_types))
     {
-        MusicUtils::TTKQmmp::enabledVisualPlugin(type.m_module, false);
+        TTK::TTKQmmp::enabledVisualPlugin(type.m_module, false);
     }
     delete m_ui;
 }
@@ -119,7 +119,7 @@ void MusicSpectrumWidget::localFileButtonClicked()
 
 void MusicSpectrumWidget::openFileButtonClicked()
 {
-    const QString &path = MusicUtils::File::getOpenFileName(this, MusicFormats::supportSpekInputFormats());
+    const QString &path = TTK::File::getOpenFileName(this, MusicFormats::supportSpekInputFormats());
     if(!path.isEmpty())
     {
         bool state = true;
@@ -164,7 +164,7 @@ void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
                 return;
             }
 
-            MusicUtils::TTKQmmp::enabledVisualPlugin(type.m_module, false);
+            TTK::TTKQmmp::enabledVisualPlugin(type.m_module, false);
 
             bool state = true;
             switch(type.m_type)
@@ -196,7 +196,7 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::Module spectrum, b
     if(state)
     {
         const int before = Visual::visuals()->count();
-        MusicUtils::TTKQmmp::enabledVisualPlugin(name, true);
+        TTK::TTKQmmp::enabledVisualPlugin(name, true);
         const QList<Visual*> *vs = Visual::visuals();
         if(before == vs->count())
         {
@@ -213,7 +213,7 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::Module spectrum, b
             type.m_type = spectrum;
             m_types << type;
             layout->addWidget(type.m_object);
-            type.m_object->setStyleSheet(MusicUIObject::MenuStyle02);
+            type.m_object->setStyleSheet(TTK::UI::MenuStyle02);
 
             connect(type.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
         }
@@ -230,7 +230,7 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::Module spectrum, b
         {
             const MusicSpectrum &type = m_types.takeAt(index);
             layout->removeWidget(type.m_object);
-            MusicUtils::TTKQmmp::enabledVisualPlugin(name, false);
+            TTK::TTKQmmp::enabledVisualPlugin(name, false);
         }
     }
 }
@@ -253,7 +253,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
     {
         const MusicSpectrum &type = m_types.takeAt(index);
         layout->removeWidget(type.m_object);
-        MusicUtils::TTKQmmp::enabledVisualPlugin(*module, false);
+        TTK::TTKQmmp::enabledVisualPlugin(*module, false);
     }
 
     if(!state)
@@ -263,7 +263,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
     }
 
     const int before = Visual::visuals()->count();
-    MusicUtils::TTKQmmp::enabledVisualPlugin(name, true);
+    TTK::TTKQmmp::enabledVisualPlugin(name, true);
     const QList<Visual*> *vs = Visual::visuals();
     if(before == vs->count())
     {
@@ -281,7 +281,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
         type.m_type = spectrum;
         m_types << type;
         layout->addWidget(type.m_object);
-        type.m_object->setStyleSheet(MusicUIObject::MenuStyle02);
+        type.m_object->setStyleSheet(TTK::UI::MenuStyle02);
 
         if(florid)
         {
@@ -304,7 +304,7 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::Module spectrum, bool
         if(findSpectrumWidget(name) == -1)
         {
             QPluginLoader loader;
-            loader.setFileName(MusicUtils::TTKQmmp::pluginPath("Light", name));
+            loader.setFileName(TTK::TTKQmmp::pluginPath("Light", name));
             const QObject *obj = loader.instance();
             LightFactory *factory = nullptr;
             if(obj && (factory = TTKObject_cast(LightFactory*, obj)))

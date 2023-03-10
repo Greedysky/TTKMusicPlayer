@@ -21,8 +21,8 @@ MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
     headerview->resizeSection(2, 157);
     headerview->resizeSection(3, 75);
 
-    MusicUtils::Widget::setTransparent(this, 0);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle03);
+    TTK::Widget::setTransparent(this, 0);
+    verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
@@ -106,7 +106,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
         setItem(index, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setIcon(MusicUtils::Image::roundedPixmap(QPixmap(":/image/lb_default_art"), QPixmap(":/image/lb_mask_50"), iconSize()));
+        item->setIcon(TTK::Image::roundedPixmap(QPixmap(":/image/lb_default_art"), QPixmap(":/image/lb_mask_50"), iconSize()));
         setItem(index, 1, item);
 
                           item = new QTableWidgetItem;
@@ -114,7 +114,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
         font.setBold(true);
         item->setFont(font);
         item->setText(channel.m_name);
-        item->setForeground(QColor(MusicUIObject::Color02));
+        item->setForeground(QColor(TTK::UI::Color02));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(index, 2, item);
 
@@ -150,7 +150,7 @@ void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &bytes)
     {
         QPixmap pix;
         pix.loadFromData(bytes);
-        it->setIcon(MusicUtils::Image::roundedPixmap(pix, QPixmap(":/image/lb_mask_50"), iconSize()));
+        it->setIcon(TTK::Image::roundedPixmap(pix, QPixmap(":/image/lb_mask_50"), iconSize()));
     }
 }
 
@@ -168,7 +168,7 @@ void MusicWebFMRadioWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicAbstractTableWidget::contextMenuEvent(event);
 
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     menu.addAction(tr("Play"), this, SLOT(musicPlayClicked()));
     menu.addSeparator();

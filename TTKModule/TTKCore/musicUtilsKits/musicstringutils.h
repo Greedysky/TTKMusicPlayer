@@ -24,7 +24,7 @@
 /*! @brief The namespace of the utils string.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicUtils
+namespace TTK
 {
     namespace String
     {

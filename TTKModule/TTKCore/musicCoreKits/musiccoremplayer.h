@@ -83,7 +83,7 @@ public:
     /*!
      * Get current player state.
      */
-    inline MusicObject::PlayState state() const { return m_playState; }
+    inline TTK::PlayState state() const { return m_playState; }
     /*!
      * Get current player category.
      */
@@ -162,7 +162,7 @@ private:
     void setVideoMedia(const QString &data, int winId);
 
     QProcess *m_process;
-    MusicObject::PlayState m_playState;
+    TTK::PlayState m_playState;
     Module m_category;
     QTimer m_timer, m_checkTimer;
 

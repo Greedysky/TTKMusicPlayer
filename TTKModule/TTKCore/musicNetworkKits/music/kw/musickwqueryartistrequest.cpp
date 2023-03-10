@@ -14,7 +14,7 @@ void MusicKWQueryArtistRequest::startToSearch(const QString &value)
     m_queryValue = value;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_URL, false).arg(value).arg(0).arg(50));
+    request.setUrl(TTK::Algorithm::mdII(KW_ARTIST_URL, false).arg(value).arg(0).arg(50));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -50,21 +50,21 @@ void MusicKWQueryArtistRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation info;
-                    info.m_singerName = MusicUtils::String::charactersReplaced(value["ARTIST"].toString());
-                    info.m_songName = MusicUtils::String::charactersReplaced(value["SONGNAME"].toString());
+                    TTK::MusicSongInformation info;
+                    info.m_singerName = TTK::String::charactersReplaced(value["ARTIST"].toString());
+                    info.m_songName = TTK::String::charactersReplaced(value["SONGNAME"].toString());
                     info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * MT_S2MS);
 
                     info.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
                     info.m_artistId = value["ARTISTID"].toString();
                     info.m_albumId = value["ALBUMID"].toString();
-                    info.m_albumName = MusicUtils::String::charactersReplaced(value["ALBUM"].toString());
+                    info.m_albumName = TTK::String::charactersReplaced(value["ALBUM"].toString());
 
                     info.m_year = value["RELEASEDATE"].toString();
                     info.m_trackNumber = "0";
 
-                    info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);
-                    info.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
+                    info.m_coverUrl = TTK::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);
+                    info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                     parseFromSongProperty(&info, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
 
                     if(info.m_songProps.isEmpty())
@@ -109,10 +109,10 @@ void MusicKWQueryArtistRequest::downLoadFinished()
 void MusicKWQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) const
 {
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(m_queryValue));
+    request.setUrl(TTK::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(m_queryValue));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    QByteArray bytes = MusicObject::syncNetworkQueryForGet(&request);
+    QByteArray bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
     {
         return;
@@ -128,6 +128,6 @@ void MusicKWQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) cons
         item->m_updateTime = value["birthday"].toString();
         item->m_nickName = value["aartist"].toString();
         item->m_coverUrl = value["hts_pic"].toString();
-        item->m_description = MusicUtils::String::convertHtmlToPlain(value["info"].toString());
+        item->m_description = TTK::String::convertHtmlToPlain(value["info"].toString());
     }
 }

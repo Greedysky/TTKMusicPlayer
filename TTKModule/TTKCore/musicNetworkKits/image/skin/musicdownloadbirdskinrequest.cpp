@@ -14,14 +14,14 @@ void MusicDownloadBirdSkinRequest::startRequest()
 {
     MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startRequest(MusicUtils::Algorithm::mdII(MAIN_URL, false));
+    d->startRequest(TTK::Algorithm::mdII(MAIN_URL, false));
 }
 
 void MusicDownloadBirdSkinRequest::startRequest(const QString &id)
 {
     MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadItemsFinished(QByteArray)));
-    d->startRequest(MusicUtils::Algorithm::mdII(QUERY_URL, false).arg(id));
+    d->startRequest(TTK::Algorithm::mdII(QUERY_URL, false).arg(id));
 }
 
 void MusicDownloadBirdSkinRequest::downLoadFinished(const QByteArray &bytes)

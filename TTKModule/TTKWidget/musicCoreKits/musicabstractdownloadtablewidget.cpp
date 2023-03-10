@@ -7,10 +7,10 @@
 
 MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent),
-      m_type(MusicObject::Record::Null)
+      m_type(TTK::Record::Null)
 {
     m_progressBarDelegate = new TTKProgressBarItemDelegate(this);
-    m_progressBarDelegate->setStyleSheet(MusicUIObject::ProgressBar01);
+    m_progressBarDelegate->setStyleSheet(TTK::UI::ProgressBar01);
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
     G_CONNECTION_PTR->setValue(className(), this);
@@ -111,7 +111,7 @@ void MusicAbstractDownloadTableWidget::downloadProgressChanged(float percent, co
 void MusicAbstractDownloadTableWidget::createDownloadItem(const QString &name, qint64 time)
 {
     QString musicName = name;
-    musicName.remove(MusicUtils::String::musicDirPrefix()).chop(4);
+    musicName.remove(TTK::String::musicDirPrefix()).chop(4);
     setRowCount(rowCount() + 1);
 
     MusicSong record;
@@ -130,7 +130,7 @@ void MusicAbstractDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event
     Q_UNUSED(event);
     QMenu menu(this);
 
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
     menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
     menu.addAction(tr("Download More..."), this, SLOT(musicSongDownload()));
     menu.addSeparator();

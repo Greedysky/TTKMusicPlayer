@@ -23,42 +23,42 @@ static QString makeFilePrefix(MusicSettingManager::Config type, const QString &p
     return dir;
 }
 
-QString MusicUtils::String::lrcDirPrefix()
+QString TTK::String::lrcDirPrefix()
 {
     return makeFilePrefix(MusicSettingManager::DownloadLrcDirPath, LRC_DIR_FULL);
 }
 
-QString MusicUtils::String::musicDirPrefix()
+QString TTK::String::musicDirPrefix()
 {
     return makeFilePrefix(MusicSettingManager::DownloadMusicDirPath, MUSIC_DIR_FULL);
 }
 
-QString MusicUtils::String::stringPrefix(const QString &name)
+QString TTK::String::stringPrefix(const QString &name)
 {
     return stringPrefix(name, TTK_DOT);
 }
 
-QString MusicUtils::String::stringPrefix(const QString &name, const QString &prefix)
+QString TTK::String::stringPrefix(const QString &name, const QString &prefix)
 {
     return name.left(name.indexOf(prefix));
 }
 
-QString MusicUtils::String::stringSuffix(const QString &name)
+QString TTK::String::stringSuffix(const QString &name)
 {
     return stringSuffix(name, TTK_DOT);
 }
 
-QString MusicUtils::String::stringSuffix(const QString &name, const QString &suffix)
+QString TTK::String::stringSuffix(const QString &name, const QString &suffix)
 {
     return name.right(name.length() - name.lastIndexOf(suffix) - suffix.length());
 }
 
-QString MusicUtils::String::stringSplitToken(const QString &name)
+QString TTK::String::stringSplitToken(const QString &name)
 {
     return stringSplitToken(name, TTK_DOT, "?");
 }
 
-QString MusicUtils::String::stringSplitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert)
+QString TTK::String::stringSplitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert)
 {
     if(revert)
     {
@@ -72,7 +72,7 @@ QString MusicUtils::String::stringSplitToken(const QString &name, const QString 
     }
 }
 
-QStringList MusicUtils::String::stringSplit(const QString &value, const QString &key)
+QStringList TTK::String::stringSplit(const QString &value, const QString &key)
 {
     QStringList strings = value.split(QString(" %1 ").arg(key));
     if(strings.isEmpty() || strings.count() == 1)
@@ -82,7 +82,7 @@ QStringList MusicUtils::String::stringSplit(const QString &value, const QString 
     return strings;
 }
 
-QString MusicUtils::String::removeStringToken(const QString &value, const QString &key)
+QString TTK::String::removeStringToken(const QString &value, const QString &key)
 {
     QString s = value;
     s.remove(key);
@@ -93,7 +93,7 @@ QString MusicUtils::String::removeStringToken(const QString &value, const QStrin
     return s;
 }
 
-bool MusicUtils::String::isChinese(const QChar &c)
+bool TTK::String::isChinese(const QChar &c)
 {
 #ifdef Q_CC_MSVC
     return '\xa9\x96' == c || (c.unicode() >= 0x4e00 && c.unicode() <= 0x9fa5);
@@ -102,12 +102,12 @@ bool MusicUtils::String::isChinese(const QChar &c)
 #endif
 }
 
-bool MusicUtils::String::isNetworkUrl(const QString &path)
+bool TTK::String::isNetworkUrl(const QString &path)
 {
     return path.startsWith(HTTP_PREFIX) || path.startsWith(HTTPS_PREFIX);
 }
 
-QString MusicUtils::String::artistName(const QString &value, const QString &key)
+QString TTK::String::artistName(const QString &value, const QString &key)
 {
     const QStringList &s = stringSplit(value);
     if(s.count() >= 2)
@@ -118,7 +118,7 @@ QString MusicUtils::String::artistName(const QString &value, const QString &key)
     return value;
 }
 
-QString MusicUtils::String::songName(const QString &value, const QString &key)
+QString TTK::String::songName(const QString &value, const QString &key)
 {
     const QStringList &s = stringSplit(value);
     if(s.count() >= 2)
@@ -129,21 +129,21 @@ QString MusicUtils::String::songName(const QString &value, const QString &key)
     return value;
 }
 
-QString MusicUtils::String::convertHtmlToPlain(const QString &value)
+QString TTK::String::convertHtmlToPlain(const QString &value)
 {
     QTextDocument text;
     text.setHtml(value);
     return text.toPlainText();
 }
 
-QStringList MusicUtils::String::illegalCharacters()
+QStringList TTK::String::illegalCharacters()
 {
     QStringList acs;
     acs << "\\" << "/" << "?"  << "*" << "\"" << ":" << "<" << ">" << "|";
     return acs;
 }
 
-bool MusicUtils::String::isCharacterValid(const QString &value)
+bool TTK::String::isCharacterValid(const QString &value)
 {
     const QStringList acs(illegalCharacters());
     for(const QString &ac : qAsConst(acs))
@@ -157,7 +157,7 @@ bool MusicUtils::String::isCharacterValid(const QString &value)
     return false;
 }
 
-QString MusicUtils::String::charactersReplaced(const QString &value)
+QString TTK::String::charactersReplaced(const QString &value)
 {
     QString s(convertHtmlToPlain(value));
     const QStringList acs(illegalCharacters());

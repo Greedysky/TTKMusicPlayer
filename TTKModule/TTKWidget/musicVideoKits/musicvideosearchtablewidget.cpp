@@ -13,7 +13,7 @@ MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)
     setColumnCount(9);
     resizeSection(0);
 
-    TTKObject::initRandom();
+    TTK::initRandom();
 
     G_CONNECTION_PTR->setValue(className(), this);
 }
@@ -89,7 +89,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
     setQueryInput(d);
     //
     m_singleRadioMode = true;
-    d->setSongInfoList({data.value<MusicObject::MusicSongInformation>()});
+    d->setSongInfoList({data.value<TTK::MusicSongInformation>()});
 }
 
 void MusicVideoSearchTableWidget::resizeSection(int delta)
@@ -109,10 +109,10 @@ void MusicVideoSearchTableWidget::resizeSection(int delta)
     for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 5));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 5));
 
         it = item(i, 2);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
     }
 }
 
@@ -148,11 +148,11 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
         return;
     }
 
-    const MusicObject::MusicSongInformation &info = m_networkRequest->songInfoList()[row];
-    const MusicObject::MusicSongPropertyList &props = info.m_songProps;
+    const TTK::MusicSongInformation &info = m_networkRequest->songInfoList()[row];
+    const TTK::MusicSongPropertyList &props = info.m_songProps;
     if(!props.isEmpty())
     {
-        const MusicObject::MusicSongProperty &prop = props.front();
+        const TTK::MusicSongProperty &prop = props.front();
         MusicVideoItem data;
         data.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
         data.m_url = prop.m_url;
@@ -181,18 +181,18 @@ void MusicVideoSearchTableWidget::createSearchedItem(const MusicResultInfoItem &
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_songName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 5));
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 5));
+    item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
+    item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_duration);
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;
@@ -217,7 +217,7 @@ void MusicVideoSearchTableWidget::createSearchedItem(const MusicResultInfoItem &
     setItem(count, 8, item);
 }
 
-void MusicVideoSearchTableWidget::musicMediaInfo(MusicObject::MusicSongPropertyList &props)
+void MusicVideoSearchTableWidget::musicMediaInfo(TTK::MusicSongPropertyList &props)
 {
     if(!m_networkRequest)
     {
@@ -225,8 +225,8 @@ void MusicVideoSearchTableWidget::musicMediaInfo(MusicObject::MusicSongPropertyL
     }
 
     const int row = !m_singleRadioMode ? m_previousClickRow : 0;
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    props = (!songInfos.isEmpty() && row != -1) ? songInfos[row].m_songProps : MusicObject::MusicSongPropertyList();
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    props = (!songInfos.isEmpty() && row != -1) ? songInfos[row].m_songProps : TTK::MusicSongPropertyList();
 }
 
 void MusicVideoSearchTableWidget::downloadLocalFromControl()
@@ -255,7 +255,7 @@ void MusicVideoSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicVideoSearchTableWidget::downloadLocalMovie(int row)
 {
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row < 0 || row >= songInfos.count())
     {
         return;

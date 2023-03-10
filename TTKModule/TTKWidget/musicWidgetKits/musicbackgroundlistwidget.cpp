@@ -118,13 +118,13 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
         painter.setPen(Qt::white);
         if(m_showNameEnabled)
         {
-            painter.drawText((width() - MusicUtils::Widget::fontTextWidth(painter.font(), m_name)) / 2, 32, m_name);
+            painter.drawText((width() - TTK::Widget::fontTextWidth(painter.font(), m_name)) / 2, 32, m_name);
         }
 
         QString v = QString::number(m_imageInfo.m_useCount);
-        painter.drawText((width() - MusicUtils::Widget::fontTextWidth(painter.font(), v)) / 2, 50, v);
+        painter.drawText((width() - TTK::Widget::fontTextWidth(painter.font(), v)) / 2, 50, v);
                 v = m_imageInfo.m_name;
-        painter.drawText((width() - MusicUtils::Widget::fontTextWidth(painter.font(), v)) / 2, 68, v);
+        painter.drawText((width() - TTK::Widget::fontTextWidth(painter.font(), v)) / 2, 68, v);
 
         if(m_closeEnabled)
         {

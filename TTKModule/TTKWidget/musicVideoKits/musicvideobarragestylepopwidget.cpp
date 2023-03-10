@@ -33,9 +33,9 @@ void MusicVideoBarrageStylePopWidget::barrageSizeButtonClicked(int index)
     const QList<QAbstractButton*> &buttons = m_sizeGroup->buttons();
     if(buttons.count() >= 3)
     {
-        buttons[0]->setStyleSheet(MusicUIObject::VideoBtnSmall);
-        buttons[1]->setStyleSheet(MusicUIObject::VideoBtnMiddle);
-        buttons[2]->setStyleSheet(MusicUIObject::VideoBtnBig);
+        buttons[0]->setStyleSheet(TTK::UI::VideoBtnSmall);
+        buttons[1]->setStyleSheet(TTK::UI::VideoBtnMiddle);
+        buttons[2]->setStyleSheet(TTK::UI::VideoBtnBig);
     }
 
     switch(index)
@@ -43,19 +43,19 @@ void MusicVideoBarrageStylePopWidget::barrageSizeButtonClicked(int index)
         case 0:
         {
             m_barrageSize = 15;
-            buttons[0]->setStyleSheet(MusicUIObject::VideoBtnSmallOn);
+            buttons[0]->setStyleSheet(TTK::UI::VideoBtnSmallOn);
             break;
         }
         case 1:
         {
             m_barrageSize = 20;
-            buttons[1]->setStyleSheet(MusicUIObject::VideoBtnMiddleOn);
+            buttons[1]->setStyleSheet(TTK::UI::VideoBtnMiddleOn);
             break;
         }
         case 2:
         {
             m_barrageSize = 30;
-            buttons[2]->setStyleSheet(MusicUIObject::VideoBtnBigOn);
+            buttons[2]->setStyleSheet(TTK::UI::VideoBtnBigOn);
             break;
         }
         default: break;
@@ -67,13 +67,13 @@ void MusicVideoBarrageStylePopWidget::barrageColorButtonClicked(int index)
     const QList<QAbstractButton*> &buttons = m_colorGroup->buttons();
     if(buttons.count() >= 7)
     {
-        buttons[0]->setStyleSheet(MusicUIObject::VideoBtnWhite);
-        buttons[1]->setStyleSheet(MusicUIObject::VideoBtnRed);
-        buttons[2]->setStyleSheet(MusicUIObject::VideoBtnOrange);
-        buttons[3]->setStyleSheet(MusicUIObject::VideoBtnYellow);
-        buttons[4]->setStyleSheet(MusicUIObject::VideoBtnGreen);
-        buttons[5]->setStyleSheet(MusicUIObject::VideoBtnBlue);
-        buttons[6]->setStyleSheet(MusicUIObject::VideoBtnPurple);
+        buttons[0]->setStyleSheet(TTK::UI::VideoBtnWhite);
+        buttons[1]->setStyleSheet(TTK::UI::VideoBtnRed);
+        buttons[2]->setStyleSheet(TTK::UI::VideoBtnOrange);
+        buttons[3]->setStyleSheet(TTK::UI::VideoBtnYellow);
+        buttons[4]->setStyleSheet(TTK::UI::VideoBtnGreen);
+        buttons[5]->setStyleSheet(TTK::UI::VideoBtnBlue);
+        buttons[6]->setStyleSheet(TTK::UI::VideoBtnPurple);
     }
 
     switch(index)
@@ -81,43 +81,43 @@ void MusicVideoBarrageStylePopWidget::barrageColorButtonClicked(int index)
         case 0:
         {
             m_barrageColor = QColor(255, 255, 255);
-            buttons[0]->setStyleSheet(MusicUIObject::VideoBtnWhiteOn);
+            buttons[0]->setStyleSheet(TTK::UI::VideoBtnWhiteOn);
             break;
         }
         case 1:
         {
             m_barrageColor = QColor(255, 0, 0);
-            buttons[1]->setStyleSheet(MusicUIObject::VideoBtnRedOn);
+            buttons[1]->setStyleSheet(TTK::UI::VideoBtnRedOn);
             break;
         }
         case 2:
         {
             m_barrageColor = QColor(255, 165, 0);
-            buttons[2]->setStyleSheet(MusicUIObject::VideoBtnOrangeOn);
+            buttons[2]->setStyleSheet(TTK::UI::VideoBtnOrangeOn);
             break;
         }
         case 3:
         {
             m_barrageColor = QColor(255, 255, 0);
-            buttons[3]->setStyleSheet(MusicUIObject::VideoBtnYellowOn);
+            buttons[3]->setStyleSheet(TTK::UI::VideoBtnYellowOn);
             break;
         }
         case 4:
         {
             m_barrageColor = QColor(0, 255, 0);
-            buttons[4]->setStyleSheet(MusicUIObject::VideoBtnGreenOn);
+            buttons[4]->setStyleSheet(TTK::UI::VideoBtnGreenOn);
             break;
         }
         case 5:
         {
             m_barrageColor = QColor(0, 0, 255);
-            buttons[5]->setStyleSheet(MusicUIObject::VideoBtnBlueOn);
+            buttons[5]->setStyleSheet(TTK::UI::VideoBtnBlueOn);
             break;
         }
         case 6:
         {
             m_barrageColor = QColor(160, 32, 240);
-            buttons[6]->setStyleSheet(MusicUIObject::VideoBtnPurpleOn);
+            buttons[6]->setStyleSheet(TTK::UI::VideoBtnPurpleOn);
             break;
         }
         default: break;
@@ -148,9 +148,9 @@ void MusicVideoBarrageStylePopWidget::initialize()
     middleButton->setFixedSize(16, 16);
     bigButton->setFixedSize(16, 16);
 
-    smallButton->setStyleSheet(MusicUIObject::VideoBtnSmallOn);
-    middleButton->setStyleSheet(MusicUIObject::VideoBtnMiddle);
-    bigButton->setStyleSheet(MusicUIObject::VideoBtnBig);
+    smallButton->setStyleSheet(TTK::UI::VideoBtnSmallOn);
+    middleButton->setStyleSheet(TTK::UI::VideoBtnMiddle);
+    bigButton->setStyleSheet(TTK::UI::VideoBtnBig);
 
     m_sizeGroup = new QButtonGroup(sizeWidget);
     m_sizeGroup->addButton(smallButton, 0);
@@ -198,13 +198,13 @@ void MusicVideoBarrageStylePopWidget::initialize()
     blueButton->setFixedSize(19, 26);
     purpleButton->setFixedSize(19, 26);
 
-    whiteButton->setStyleSheet(MusicUIObject::VideoBtnWhiteOn);
-    redButton->setStyleSheet(MusicUIObject::VideoBtnRed);
-    orangeButton->setStyleSheet(MusicUIObject::VideoBtnOrange);
-    yellowButton->setStyleSheet(MusicUIObject::VideoBtnYellow);
-    greenButton->setStyleSheet(MusicUIObject::VideoBtnGreen);
-    blueButton->setStyleSheet(MusicUIObject::VideoBtnBlue);
-    purpleButton->setStyleSheet(MusicUIObject::VideoBtnPurple);
+    whiteButton->setStyleSheet(TTK::UI::VideoBtnWhiteOn);
+    redButton->setStyleSheet(TTK::UI::VideoBtnRed);
+    orangeButton->setStyleSheet(TTK::UI::VideoBtnOrange);
+    yellowButton->setStyleSheet(TTK::UI::VideoBtnYellow);
+    greenButton->setStyleSheet(TTK::UI::VideoBtnGreen);
+    blueButton->setStyleSheet(TTK::UI::VideoBtnBlue);
+    purpleButton->setStyleSheet(TTK::UI::VideoBtnPurple);
 
     m_colorGroup = new QButtonGroup(this);
     m_colorGroup->addButton(whiteButton, 0);

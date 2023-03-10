@@ -24,9 +24,9 @@
 /*! @brief The namespace of the application ui object.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicUIObject
+namespace UI
 {
-///PushButton
+    ///PushButton
     const QString PushButtonStyle01 = " \
                     QPushButton{ border:none; color:rgb(135, 135, 135); font-size:14px; } \
                     QPushButton:hover{ color:rgb(104, 169, 236); } \
@@ -35,7 +35,7 @@ namespace MusicUIObject
     const QString PushButtonStyle02 = " \
                     QPushButton{ color:rgb(104, 169, 236); }";
 
-///Widget
+    ///Widget
     const QString WidgetStyle01 = " \
                     QWidget{ background:white; }";
 

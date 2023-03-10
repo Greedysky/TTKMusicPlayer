@@ -29,7 +29,7 @@ void ToolsUrl::encodeClicked()
     }
 
     QString input = m_ui->inputLineEdit->text().trimmed();
-    QString output = MusicUtils::Algorithm::mdII(input, key, true);
+    QString output = TTK::Algorithm::mdII(input, key, true);
     m_ui->outPutLineEdit->setText(output);
 }
 
@@ -42,6 +42,6 @@ void ToolsUrl::decodeClicked()
     }
 
     QString input = m_ui->inputLineEdit->text().trimmed();
-    QString output = MusicUtils::Algorithm::mdII(input, key, false);
+    QString output = TTK::Algorithm::mdII(input, key, false);
     m_ui->outPutLineEdit->setText(output);
 }

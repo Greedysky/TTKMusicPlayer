@@ -117,7 +117,7 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_ui->bottomLeftContainWidget->setMinimumWidth(con ? CONCISE_WIDTH_MIN : 220);
 
     m_ui->musicWindowConcise->setParent(con ? m_ui->background : m_ui->topRightWidget);
-    m_ui->musicWindowConcise->setStyleSheet(con ? MusicUIObject::BtnConciseOut : MusicUIObject::BtnConciseIn);
+    m_ui->musicWindowConcise->setStyleSheet(con ? TTK::UI::BtnConciseOut : TTK::UI::BtnConciseIn);
     m_ui->minimization->setParent(con ? m_ui->background : m_ui->topRightWidget);
     m_ui->windowClose->setParent(con ? m_ui->background : m_ui->topRightWidget);
 
@@ -142,9 +142,9 @@ void MusicBottomAreaWidget::setWindowConcise()
         m_ui->windowClose->move(295, 20);
         m_ui->windowClose->show();
 
-        m_ui->musicPrevious->setStyleSheet(MusicUIObject::TinyBtnPrevious);
-        m_ui->musicKey->setStyleSheet(app->isPlaying() ? MusicUIObject::TinyBtnPause : MusicUIObject::TinyBtnPlay);
-        m_ui->musicNext->setStyleSheet(MusicUIObject::TinyBtnNext);
+        m_ui->musicPrevious->setStyleSheet(TTK::UI::TinyBtnPrevious);
+        m_ui->musicKey->setStyleSheet(app->isPlaying() ? TTK::UI::TinyBtnPause : TTK::UI::TinyBtnPlay);
+        m_ui->musicNext->setStyleSheet(TTK::UI::TinyBtnNext);
         m_ui->musicPrevious->setFixedSize(28, 28);
         m_ui->musicKey->setFixedSize(28, 28);
         m_ui->musicNext->setFixedSize(28, 28);
@@ -164,9 +164,9 @@ void MusicBottomAreaWidget::setWindowConcise()
         app->setMinimumSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
         app->setMaximumSize(size.width(), size.height());
 
-        m_ui->musicPrevious->setStyleSheet(MusicUIObject::BtnPrevious);
-        m_ui->musicKey->setStyleSheet(app->isPlaying() ? MusicUIObject::BtnPause : MusicUIObject::BtnPlay);
-        m_ui->musicNext->setStyleSheet(MusicUIObject::BtnNext);
+        m_ui->musicPrevious->setStyleSheet(TTK::UI::BtnPrevious);
+        m_ui->musicKey->setStyleSheet(app->isPlaying() ? TTK::UI::BtnPause : TTK::UI::BtnPlay);
+        m_ui->musicNext->setStyleSheet(TTK::UI::BtnNext);
         m_ui->musicPrevious->setFixedSize(44, 44);
         m_ui->musicKey->setFixedSize(44, 44);
         m_ui->musicNext->setFixedSize(44, 44);

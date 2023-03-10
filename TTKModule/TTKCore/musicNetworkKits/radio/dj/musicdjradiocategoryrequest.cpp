@@ -12,7 +12,7 @@ void MusicDJRadioCategoryRequest::startRequest()
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(DJ_CATEGORY_URL, false),
+                      TTK::Algorithm::mdII(DJ_CATEGORY_URL, false),
                       QString("{}"));
 
     m_reply = m_manager.post(request, parameter);

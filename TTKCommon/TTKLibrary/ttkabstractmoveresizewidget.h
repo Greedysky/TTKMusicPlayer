@@ -35,7 +35,7 @@ struct TTK_MODULE_EXPORT MoveResizeData
     QSize m_pressedSize;
 };
 
-namespace TTKObject {
+namespace TTK {
 enum class Direction;
 }
 
@@ -81,7 +81,7 @@ protected:
     void setObjectsTracking(const QWidgetList &objects);
 
     MoveResizeData m_struct;
-    TTKObject::Direction m_direction;
+    TTK::Direction m_direction;
 
 };
 

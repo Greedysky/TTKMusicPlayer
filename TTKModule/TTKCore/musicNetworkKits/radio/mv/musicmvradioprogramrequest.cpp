@@ -63,9 +63,9 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                             value = var.toMap();
                             TTK_NETWORK_QUERY_CHECK();
 
-                            MusicObject::MusicSongInformation info;
-                            info.m_singerName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                            info.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
+                            TTK::MusicSongInformation info;
+                            info.m_singerName = TTK::String::charactersReplaced(value["name"].toString());
+                            info.m_songName = TTK::String::charactersReplaced(value["name"].toString());
                             if(info.m_singerName.contains(" - "))
                             {
                                 const QStringList &ds = info.m_singerName.split(" - ");
@@ -106,20 +106,20 @@ void MusicMVRadioProgramRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicMVRadioProgramRequest::parseFromMovieProperty(MusicObject::MusicSongInformation *info)
+void MusicMVRadioProgramRequest::parseFromMovieProperty(TTK::MusicSongInformation *info)
 {
     if(info->m_songId.isEmpty())
     {
         return;
     }
 
-    const QByteArray &encodedData = MusicUtils::Algorithm::md5(QString("%1kugoumvcloud").arg(info->m_songId).toUtf8());
+    const QByteArray &encodedData = TTK::Algorithm::md5(QString("%1kugoumvcloud").arg(info->m_songId).toUtf8());
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_MOVIE_INFO_URL, false).arg(encodedData.constData(), info->m_songId));
+    request.setUrl(TTK::Algorithm::mdII(KG_MOVIE_INFO_URL, false).arg(encodedData.constData(), info->m_songId));
     MusicKGInterface::makeRequestRawHeader(&request);
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
     {
         return;
@@ -161,12 +161,12 @@ void MusicMVRadioProgramRequest::parseFromMovieProperty(MusicObject::MusicSongIn
     }
 }
 
-void MusicMVRadioProgramRequest::parseFromMovieProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key)
+void MusicMVRadioProgramRequest::parseFromMovieProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
 {
-    MusicObject::MusicSongProperty prop;
+    TTK::MusicSongProperty prop;
     prop.m_url = key["downurl"].toString();
-    prop.m_size = MusicUtils::Number::sizeByteToLabel(key["filesize"].toInt());
-    prop.m_format = MusicUtils::String::stringSplitToken(prop.m_url);
+    prop.m_size = TTK::Number::sizeByteToLabel(key["filesize"].toInt());
+    prop.m_format = TTK::String::stringSplitToken(prop.m_url);
 
     const int bitrate = key["bitrate"].toInt() / 1000;
     if(bitrate <= 375)

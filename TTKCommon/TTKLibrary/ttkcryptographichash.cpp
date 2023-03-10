@@ -3,7 +3,7 @@
 #define XXTEA_MX (z >> 5 ^ y << 2) + (y >> 3 ^ z << 4) ^ (sum ^ y) + (k[p & 3 ^ e] ^ z)
 #define XXTEA_DELTA 0x9E3779B9
 
-namespace QAlgorithm
+namespace TTK
 {
 static const char *base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
@@ -147,7 +147,7 @@ TTKString TTKCryptographicHash::xxteaEncrypt(const TTKString &data, const TTKStr
 
     xxtea_uint s[1];
     uchar *encrypt = xxteaEncrypt(dataCopy, strlen((const char *)dataCopy), keyCopy, strlen((const char *)keyCopy), s);
-    const TTKString &encode = QAlgorithm::base64Encode(encrypt, s[0]);
+    const TTKString &encode = TTK::base64Encode(encrypt, s[0]);
     free(encrypt);
 
     return encode;
@@ -155,7 +155,7 @@ TTKString TTKCryptographicHash::xxteaEncrypt(const TTKString &data, const TTKStr
 
 TTKString TTKCryptographicHash::xxteaDecrypt(const TTKString &data, const TTKString &key)
 {
-    const TTKString &decode = QAlgorithm::base64Decode(data);
+    const TTKString &decode = TTK::base64Decode(data);
     if(decode.empty())
     {
         return TTKString("");

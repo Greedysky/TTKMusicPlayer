@@ -35,22 +35,22 @@ void MusicProgressWidget::initialize()
     m_background->setGeometry(4, 4, 360, 115);
     QWidget *backgroundMask = new QWidget(this);
     backgroundMask->setGeometry(4, 29, 360, 90);
-    backgroundMask->setStyleSheet(MusicUIObject::BackgroundStyle11);
+    backgroundMask->setStyleSheet(TTK::UI::BackgroundStyle11);
 
     QLabel *topTitleName = new QLabel(this);
     topTitleName->setText(tr("Progress Bar"));
     topTitleName->setGeometry(14, 4, 221, 25);
-    topTitleName->setStyleSheet(MusicUIObject::ColorStyle01 + MusicUIObject::FontStyle01);
+    topTitleName->setStyleSheet(TTK::UI::ColorStyle01 + TTK::UI::FontStyle01);
 
     QToolButton *topTitleCloseButton = new QToolButton(this);
     topTitleCloseButton->setGeometry(344, 6, 20, 20);
     topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     topTitleCloseButton->setEnabled(false);
 
     m_progressBar = new QProgressBar(this);
     setBar(m_progressBar);
-    m_progressBar->setStyleSheet(MusicUIObject::ProgressBar01);
+    m_progressBar->setStyleSheet(TTK::UI::ProgressBar01);
 
     m_textLabel = new QLabel(this);
     m_textLabel->setAlignment(Qt::AlignCenter);
@@ -72,7 +72,7 @@ void MusicProgressWidget::paintEvent(QPaintEvent *event)
 {
     QDialog::paintEvent(event);
     QPainter painter(this);
-    TTKObject::setBorderShadow(this, &painter);
+    TTK::setBorderShadow(this, &painter);
 }
 
 void MusicProgressWidget::show()

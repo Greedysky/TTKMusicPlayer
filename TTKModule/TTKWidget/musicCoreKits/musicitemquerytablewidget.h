@@ -104,7 +104,7 @@ private:
     /*!
      * Download data from net and just play or not.
      */
-    bool downloadDataFrom(const MusicObject::MusicSongInformation &info, bool play);
+    bool downloadDataFrom(const TTK::MusicSongInformation &info, bool play);
 
     TTKLabelItemDelegate *m_labelDelegate;
 

@@ -16,14 +16,14 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     headerview->resizeSection(1, 25);
     headerview->resizeSection(2, 25);
 
-    setStyleSheet(MusicUIObject::TableWidgetStyle03 + MusicUIObject::TableWidgetStyle04);
+    setStyleSheet(TTK::UI::TableWidgetStyle03 + TTK::UI::TableWidgetStyle04);
 
-    MusicUtils::Widget::setTransparent(this, 0);
+    TTK::Widget::setTransparent(this, 0);
 #if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
-    MusicUtils::Widget::setTransparent(this, QColor(50, 50, 50));
+    TTK::Widget::setTransparent(this, QColor(50, 50, 50));
 #endif
     TTKCheckBoxItemDelegate *delegate = new TTKCheckBoxItemDelegate(this);
-    delegate->setStyleSheet(MusicUIObject::CheckBoxStyle02);
+    delegate->setStyleSheet(TTK::UI::CheckBoxStyle02);
     setItemDelegateForColumn(2, delegate);
     m_previousClickRow = 0;
 
@@ -133,13 +133,13 @@ MusicQualityChoicePopWidget::MusicQualityChoicePopWidget(QWidget *parent)
 
     initialize();
 
-    setStyleSheet(MusicUIObject::ToolButtonStyle05 + MusicUIObject::BtnQuality + "QToolButton{ margin-left:-48px; }");
+    setStyleSheet(TTK::UI::ToolButtonStyle05 + TTK::UI::BtnQuality + "QToolButton{ margin-left:-48px; }");
 }
 
 void MusicQualityChoicePopWidget::initialize()
 {
     setTranslucentBackground();
-    m_menu->setStyleSheet(MusicUIObject::MenuStyle04);
+    m_menu->setStyleSheet(TTK::UI::MenuStyle04);
 
     QHBoxLayout *layout = new QHBoxLayout(m_containWidget);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -158,31 +158,31 @@ void MusicQualityChoicePopWidget::itemCellClicked(int row)
     m_menu->close();
 
     QString style;
-    MusicObject::QueryQuality quality = MusicObject::QueryQuality::Standard;
+    TTK::QueryQuality quality = TTK::QueryQuality::Standard;
     switch(row)
     {
         case 0:
         {
             style = "QToolButton{ margin-left:-0px; }";
-            quality = MusicObject::QueryQuality::Standard;
+            quality = TTK::QueryQuality::Standard;
             break;
         }
         case 1:
         {
             style = "QToolButton{ margin-left:-48px; }";
-            quality = MusicObject::QueryQuality::High;
+            quality = TTK::QueryQuality::High;
             break;
         }
         case 2:
         {
             style = "QToolButton{ margin-left:-96px; }";
-            quality = MusicObject::QueryQuality::Super;
+            quality = TTK::QueryQuality::Super;
             break;
         }
         case 3:
         {
             style = "QToolButton{ margin-left:-144px; }";
-            quality = MusicObject::QueryQuality::Lossless;
+            quality = TTK::QueryQuality::Lossless;
             break;
         }
         default: break;

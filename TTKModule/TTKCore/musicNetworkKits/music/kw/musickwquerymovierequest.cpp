@@ -18,7 +18,7 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
     m_pageSize = 20;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_MOVIE_URL, false).arg(m_queryValue).arg(m_pageSize).arg(offset));
+    request.setUrl(TTK::Algorithm::mdII(KW_ARTIST_MOVIE_URL, false).arg(m_queryValue).arg(m_pageSize).arg(offset));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -35,7 +35,7 @@ void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &valu
     m_queryValue = value.trimmed();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(value).arg(0).arg(m_pageSize));
+    request.setUrl(TTK::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(value).arg(0).arg(m_pageSize));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -79,9 +79,9 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation info;
-                    info.m_singerName = MusicUtils::String::charactersReplaced(value["ARTIST"].toString());
-                    info.m_songName = MusicUtils::String::charactersReplaced(value["SONGNAME"].toString());
+                    TTK::MusicSongInformation info;
+                    info.m_singerName = TTK::String::charactersReplaced(value["ARTIST"].toString());
+                    info.m_songName = TTK::String::charactersReplaced(value["SONGNAME"].toString());
                     info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * MT_S2MS);
 
                     info.m_songId = value["MUSICRID"].toString().remove("MUSIC_");
@@ -140,9 +140,9 @@ void MusicKWQueryMovieRequest::downLoadPageFinished()
                     MusicResultDataItem result;
                     result.m_id = value["musicid"].toString();
                     result.m_coverUrl = value["pic"].toString();
-                    if(!result.m_coverUrl.contains(TTK_NULL_STR) && !MusicUtils::String::isNetworkUrl(result.m_coverUrl))
+                    if(!result.m_coverUrl.contains(TTK_NULL_STR) && !TTK::String::isNetworkUrl(result.m_coverUrl))
                     {
-                        result.m_coverUrl = MusicUtils::Algorithm::mdII(KW_MOVIE_COVER_PREFIX_URL, false) + result.m_coverUrl;
+                        result.m_coverUrl = TTK::Algorithm::mdII(KW_MOVIE_COVER_PREFIX_URL, false) + result.m_coverUrl;
                     }
                     result.m_name = value["name"].toString();
                     result.m_updateTime.clear();
@@ -162,7 +162,7 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
 
     MusicQueryMovieRequest::downLoadFinished();
 
-    MusicObject::MusicSongInformation info;
+    TTK::MusicSongInformation info;
     info.m_songId = m_queryValue;
     TTK_NETWORK_QUERY_CHECK();
     parseFromMovieInfo(&info);
@@ -185,7 +185,7 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
     deleteAll();
 }
 
-void MusicKWQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInformation *info, const QString &format) const
+void MusicKWQueryMovieRequest::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &format) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -213,7 +213,7 @@ void MusicKWQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicKWQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInformation *info, const QString &format, int bitrate) const
+void MusicKWQueryMovieRequest::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &format, int bitrate) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -221,14 +221,14 @@ void MusicKWQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInfo
     }
 
     QAlgorithm::Des des;
-    const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_MOVIE_ATTR_URL, false).arg(info->m_songId, format).toUtf8(),
-                                              MusicUtils::Algorithm::mdII(_SIGN, ALG_SHR_KEY, false).toUtf8());
+    const QByteArray &parameter = des.encrypt(TTK::Algorithm::mdII(KW_MOVIE_ATTR_URL, false).arg(info->m_songId, format).toUtf8(),
+                                              TTK::Algorithm::mdII(_SIGN, ALG_SHR_KEY, false).toUtf8());
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter)));
+    request.setUrl(TTK::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter)));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
     {
         return;
@@ -241,7 +241,7 @@ void MusicKWQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInfo
 
         if(regx.indexIn(text) != -1)
         {
-            MusicObject::MusicSongProperty prop;
+            TTK::MusicSongProperty prop;
             prop.m_url = regx.cap(1);
             prop.m_bitrate = bitrate;
             prop.m_format = "mp4";
@@ -261,7 +261,7 @@ void MusicKWQueryMovieRequest::parseFromMovieProperty(MusicObject::MusicSongInfo
     }
 }
 
-void MusicKWQueryMovieRequest::parseFromMovieInfo(MusicObject::MusicSongInformation *info) const
+void MusicKWQueryMovieRequest::parseFromMovieInfo(TTK::MusicSongInformation *info) const
 {
     if(info->m_songId.isEmpty())
     {
@@ -272,10 +272,10 @@ void MusicKWQueryMovieRequest::parseFromMovieInfo(MusicObject::MusicSongInformat
     info->m_singerName = "Anonymous";
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(info->m_songId));
+    request.setUrl(TTK::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(info->m_songId));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
     {
         return;

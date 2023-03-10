@@ -34,16 +34,16 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadRecordConfigManager(MusicObject::Record type, QObject *parent = nullptr);
+    explicit MusicDownloadRecordConfigManager(TTK::Record type, QObject *parent = nullptr);
 
     /*!
      * Set config type.
      */
-    inline void setType(MusicObject::Record type) { m_type = type; }
+    inline void setType(TTK::Record type) { m_type = type; }
     /*!
      * Get config type.
      */
-    inline MusicObject::Record type() const { return m_type; }
+    inline TTK::Record type() const { return m_type; }
 
     /*!
      * Read datas from xml file.
@@ -65,7 +65,7 @@ private:
      */
     QString mappingFilePathFromEnum() const;
 
-    MusicObject::Record m_type;
+    TTK::Record m_type;
 
 };
 

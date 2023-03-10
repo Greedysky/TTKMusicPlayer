@@ -42,7 +42,7 @@ public:
     /*!
      * Set current play mode.
      */
-    void setPlaybackMode(MusicObject::PlayMode mode);
+    void setPlaybackMode(TTK::PlayMode mode);
 
 };
 

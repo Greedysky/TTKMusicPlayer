@@ -49,7 +49,7 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
         return;
     }
 
-    const MusicObject::MusicSongInformationList songInfos(d->songInfoList());
+    const TTK::MusicSongInformationList songInfos(d->songInfoList());
     if(songInfos.isEmpty())
     {
         showDownLoadInfoFinished("find error");
@@ -57,11 +57,11 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
     }
 
     const QString &fileName = d->queryValue();
-    const QString &artistName = MusicUtils::String::artistName(fileName);
-    const QString &songName = MusicUtils::String::songName(fileName);
+    const QString &artistName = TTK::String::artistName(fileName);
+    const QString &songName = TTK::String::songName(fileName);
 
-    MusicObject::MusicSongInformation info = songInfos.front();
-    for(const MusicObject::MusicSongInformation &var : qAsConst(songInfos))
+    TTK::MusicSongInformation info = songInfos.front();
+    for(const TTK::MusicSongInformation &var : qAsConst(songInfos))
     {
         if(var.m_singerName.contains(artistName, Qt::CaseInsensitive) && var.m_songName.contains(songName, Qt::CaseInsensitive))
         {
@@ -74,7 +74,7 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
     if(mode || !checkLrcValid())
     {
         ///download lrc
-        G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE, this)->startRequest();
+        G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, TTK::String::lrcDirPrefix() + fileName + LRC_FILE, this)->startRequest();
     }
 
     if(mode || !checkArtistCoverValid())
@@ -86,7 +86,7 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
     if(mode || !checkArtistBackgroundValid())
     {
         ///download art background picture
-        const int count = MusicUtils::String::stringSplit(fileName).count();
+        const int count = TTK::String::stringSplit(fileName).count();
         G_DOWNLOAD_QUERY_PTR->makeBackgroundRequest(count == 1 ? info.m_singerName : artistName, artistName, this)->startRequest();
     }
 }
@@ -119,17 +119,17 @@ void MusicDownloadStatusModule::networkConnectionStateChanged(bool state)
 bool MusicDownloadStatusModule::checkLrcValid() const
 {
     const QString &fileName = m_parent->currentFileName();
-    return QFile::exists(MusicUtils::String::lrcDirPrefix() + fileName + LRC_FILE);
+    return QFile::exists(TTK::String::lrcDirPrefix() + fileName + LRC_FILE);
 }
 
 bool MusicDownloadStatusModule::checkArtistCoverValid() const
 {
-    const QString &fileName = MusicUtils::String::artistName(m_parent->currentFileName());
+    const QString &fileName = TTK::String::artistName(m_parent->currentFileName());
     return QFile::exists(ART_DIR_FULL + fileName + SKN_FILE);
 }
 
 bool MusicDownloadStatusModule::checkArtistBackgroundValid() const
 {
-    const QString &fileName = MusicUtils::String::artistName(m_parent->currentFileName());
+    const QString &fileName = TTK::String::artistName(m_parent->currentFileName());
     return QFile::exists(BACKGROUND_DIR_FULL + fileName + "0" + SKN_FILE);
 }

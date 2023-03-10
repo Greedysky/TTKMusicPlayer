@@ -13,7 +13,7 @@ MusicCloudFileInformationWidget::MusicCloudFileInformationWidget(QWidget *parent
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -27,7 +27,7 @@ MusicCloudFileInformationWidget::~MusicCloudFileInformationWidget()
 void MusicCloudFileInformationWidget::setFileInformation(QSyncDataItem *data)
 {
     m_ui->filePathEdit->setText(data->m_name);
-    m_ui->fileSizeEdit->setText(MusicUtils::Number::sizeByteToLabel(data->m_size));
+    m_ui->fileSizeEdit->setText(TTK::Number::sizeByteToLabel(data->m_size));
     m_ui->fileKeyEdit->setText(data->m_hash);
     m_ui->fileUpdateTimeEdit->setText(data->m_putTime);
 

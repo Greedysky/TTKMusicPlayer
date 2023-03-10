@@ -24,21 +24,21 @@ MusicWebRadioView::MusicWebRadioView(QWidget *parent)
     fm->setIcon(QIcon(":/tiny/btn_fm_radio"));
     fm->setToolTip(tr("FMRadio"));
     fm->setCursor(QCursor(Qt::PointingHandCursor));
-    fm->setStyleSheet(MusicUIObject::PushButtonStyle01);
+    fm->setStyleSheet(TTK::UI::PushButtonStyle01);
     fm->setFixedWidth(40);
 
     QPushButton *dj = new QPushButton(this);
     dj->setIcon(QIcon(":/tiny/btn_dj_radio"));
     dj->setToolTip(tr("DJRadio"));
     dj->setCursor(QCursor(Qt::PointingHandCursor));
-    dj->setStyleSheet(MusicUIObject::PushButtonStyle01);
+    dj->setStyleSheet(TTK::UI::PushButtonStyle01);
     dj->setFixedWidth(40);
 
     QPushButton *mv = new QPushButton(this);
     mv->setIcon(QIcon(":/tiny/btn_mv_radio"));
     mv->setToolTip(tr("MVRadio"));
     mv->setCursor(QCursor(Qt::PointingHandCursor));
-    mv->setStyleSheet(MusicUIObject::PushButtonStyle01);
+    mv->setStyleSheet(TTK::UI::PushButtonStyle01);
     mv->setFixedWidth(40);
 #ifdef Q_OS_UNIX
     fm->setFocusPolicy(Qt::NoFocus);

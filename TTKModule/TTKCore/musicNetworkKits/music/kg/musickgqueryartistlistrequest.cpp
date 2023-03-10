@@ -33,7 +33,7 @@ void MusicKGQueryArtistListRequest::startToPage(int offset)
     }
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_LIST_URL, false).arg(catId));
+    request.setUrl(TTK::Algorithm::mdII(KG_ARTIST_LIST_URL, false).arg(catId));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);

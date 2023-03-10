@@ -1,7 +1,7 @@
 #include "musicdownloadtagdatarequest.h"
 #include "musicdownloadcoverrequest.h"
 
-MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent)
+MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent)
     : MusicDownloadDataRequest(url, path, type, parent)
 {
     m_needUpdate = false;

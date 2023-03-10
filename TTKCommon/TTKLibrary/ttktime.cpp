@@ -4,14 +4,14 @@
 #  include <QRandomGenerator>
 #endif
 
-void TTKObject::initRandom()
+void TTK::initRandom()
 {
 #if !TTK_QT_VERSION_CHECK(5,10,0)
     qsrand(QDateTime::currentMSecsSinceEpoch());
 #endif
 }
 
-int TTKObject::random(int value)
+int TTK::random(int value)
 {
 #if TTK_QT_VERSION_CHECK(5,10,0)
     return QRandomGenerator::global()->bounded(value);

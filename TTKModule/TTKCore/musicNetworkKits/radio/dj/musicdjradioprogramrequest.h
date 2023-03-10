@@ -24,7 +24,7 @@
 /*! @brief The namespace of the program type.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicObject
+namespace TTK
 {
     enum class Program
     {
@@ -49,7 +49,7 @@ public:
     /*!
      * Start to download data from net.
      */
-    void startRequest(MusicObject::Program type);
+    void startRequest(TTK::Program type);
 
 public Q_SLOTS:
     /*!

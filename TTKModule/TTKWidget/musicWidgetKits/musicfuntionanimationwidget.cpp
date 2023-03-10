@@ -17,7 +17,7 @@ MusicBackgroundWidget::MusicBackgroundWidget(QWidget *parent)
 
 void MusicBackgroundWidget::backgroundTransparent(int value)
 {
-    m_backgroundAlpha = MusicUtils::Image::reRenderValue<int>(0xFF, 0x10, MV_MAX - value);
+    m_backgroundAlpha = TTK::Image::reRenderValue<int>(0xFF, 0x10, MV_MAX - value);
     update();
 }
 
@@ -171,19 +171,19 @@ void MusicFuntionAnimationWidget::paintEvent(QPaintEvent *event)
 
 void MusicFuntionAnimationWidget::switchToSelectedItemStyle(int index)
 {
-    m_container[0]->setStyleSheet(MusicUIObject::ItemMusic);
-    m_container[1]->setStyleSheet(MusicUIObject::ItemLocal);
-    m_container[2]->setStyleSheet(MusicUIObject::ItemCloud);
-    m_container[3]->setStyleSheet(MusicUIObject::ItemRadio);
-    m_container[4]->setStyleSheet(MusicUIObject::ItemDownload);
+    m_container[0]->setStyleSheet(TTK::UI::ItemMusic);
+    m_container[1]->setStyleSheet(TTK::UI::ItemLocal);
+    m_container[2]->setStyleSheet(TTK::UI::ItemCloud);
+    m_container[3]->setStyleSheet(TTK::UI::ItemRadio);
+    m_container[4]->setStyleSheet(TTK::UI::ItemDownload);
 
     switch(index)
     {
-        case 0: m_container[0]->setStyleSheet(MusicUIObject::ItemMusicClicked); break;
-        case 1: m_container[1]->setStyleSheet(MusicUIObject::ItemLocalClicked); break;
-        case 2: m_container[2]->setStyleSheet(MusicUIObject::ItemCloudClicked); break;
-        case 3: m_container[3]->setStyleSheet(MusicUIObject::ItemRadioClicked); break;
-        case 4: m_container[4]->setStyleSheet(MusicUIObject::ItemDownloadClicked); break;
+        case 0: m_container[0]->setStyleSheet(TTK::UI::ItemMusicClicked); break;
+        case 1: m_container[1]->setStyleSheet(TTK::UI::ItemLocalClicked); break;
+        case 2: m_container[2]->setStyleSheet(TTK::UI::ItemCloudClicked); break;
+        case 3: m_container[3]->setStyleSheet(TTK::UI::ItemRadioClicked); break;
+        case 4: m_container[4]->setStyleSheet(TTK::UI::ItemDownloadClicked); break;
         default: break;
     }
 
@@ -216,24 +216,24 @@ MusicOptionAnimationWidget::MusicOptionAnimationWidget(QWidget *parent)
 
 void MusicOptionAnimationWidget::musicButtonStyleClear(bool fore)
 {
-    m_container[0]->setStyleSheet(fore ? MusicUIObject::FuncSongFore : MusicUIObject::FuncSongBack);
-    m_container[1]->setStyleSheet(fore ? MusicUIObject::FuncRadioFore : MusicUIObject::FuncRadioBack);
-    m_container[2]->setStyleSheet(fore ? MusicUIObject::FuncListFore : MusicUIObject::FuncListBack);
-    m_container[3]->setStyleSheet(fore ? MusicUIObject::FuncMVFore : MusicUIObject::FuncMVBack);
-    m_container[4]->setStyleSheet(fore ? MusicUIObject::FuncLiveFore : MusicUIObject::FuncLiveBack);
-    m_container[5]->setStyleSheet(MusicUIObject::FuncLrcFore);
+    m_container[0]->setStyleSheet(fore ? TTK::UI::FuncSongFore : TTK::UI::FuncSongBack);
+    m_container[1]->setStyleSheet(fore ? TTK::UI::FuncRadioFore : TTK::UI::FuncRadioBack);
+    m_container[2]->setStyleSheet(fore ? TTK::UI::FuncListFore : TTK::UI::FuncListBack);
+    m_container[3]->setStyleSheet(fore ? TTK::UI::FuncMVFore : TTK::UI::FuncMVBack);
+    m_container[4]->setStyleSheet(fore ? TTK::UI::FuncLiveFore : TTK::UI::FuncLiveBack);
+    m_container[5]->setStyleSheet(TTK::UI::FuncLrcFore);
 }
 
 void MusicOptionAnimationWidget::musicButtonStyle(int index)
 {
     switch(index)
     {
-        case 0: m_container[0]->setStyleSheet(MusicUIObject::FuncSongForeClicked); break;
-        case 1: m_container[1]->setStyleSheet(MusicUIObject::FuncRadioForeClicked); break;
-        case 2: m_container[2]->setStyleSheet(MusicUIObject::FuncListForeClicked); break;
-        case 3: m_container[3]->setStyleSheet(MusicUIObject::FuncMVForeClicked); break;
-        case 4: m_container[4]->setStyleSheet(MusicUIObject::FuncLiveForeClicked); break;
-        case 5: m_container[5]->setStyleSheet(MusicUIObject::FuncLrcForeClicked); break;
+        case 0: m_container[0]->setStyleSheet(TTK::UI::FuncSongForeClicked); break;
+        case 1: m_container[1]->setStyleSheet(TTK::UI::FuncRadioForeClicked); break;
+        case 2: m_container[2]->setStyleSheet(TTK::UI::FuncListForeClicked); break;
+        case 3: m_container[3]->setStyleSheet(TTK::UI::FuncMVForeClicked); break;
+        case 4: m_container[4]->setStyleSheet(TTK::UI::FuncLiveForeClicked); break;
+        case 5: m_container[5]->setStyleSheet(TTK::UI::FuncLrcForeClicked); break;
         default: break;
     }
 }
@@ -285,7 +285,7 @@ void MusicSkinAnimationWidget::switchToSelectedItemStyle(int index)
 {
     for(QWidget *widget : qAsConst(m_container))
     {
-        widget->setStyleSheet(MusicUIObject::ColorStyle03 + MusicUIObject::BackgroundStyle01);
+        widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::BackgroundStyle01);
     }
 
     if(index < 0 || index >= m_container.count())
@@ -293,6 +293,6 @@ void MusicSkinAnimationWidget::switchToSelectedItemStyle(int index)
         return;
     }
 
-    m_container[index]->setStyleSheet(MusicUIObject::ColorStyle08 + MusicUIObject::BackgroundStyle01);
+    m_container[index]->setStyleSheet(TTK::UI::ColorStyle08 + TTK::UI::BackgroundStyle01);
     MusicAbstractAnimationWidget::switchToSelectedItemStyle(index);
 }

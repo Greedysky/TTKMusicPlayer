@@ -21,28 +21,28 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     
     m_process = new QProcess(this);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->formatCombo);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->kbpsCombo);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->hzCombo);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->msCombo);
+    TTK::Widget::generateComboBoxFormat(m_ui->formatCombo);
+    TTK::Widget::generateComboBoxFormat(m_ui->kbpsCombo);
+    TTK::Widget::generateComboBoxFormat(m_ui->hzCombo);
+    TTK::Widget::generateComboBoxFormat(m_ui->msCombo);
 
-    m_ui->inputButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->outputButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->inputButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->outputButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 
-    m_ui->transformButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->inputLineEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
-    m_ui->outputLineEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
+    m_ui->transformButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->inputLineEdit->setStyleSheet(TTK::UI::LineEditStyle01);
+    m_ui->outputLineEdit->setStyleSheet(TTK::UI::LineEditStyle01);
 
     m_ui->inputButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->outputButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->transformButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->folderBox->setStyleSheet(MusicUIObject::CheckBoxStyle01);
+    m_ui->folderBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->tabButton->addButtons(QStringList() << tr("Music") << tr("Krc"));
 
 #ifdef Q_OS_UNIX
@@ -84,27 +84,27 @@ void MusicTransformWidget::initInputPath()
         }
         filter = filter.trimmed() + ")";
 
-        path = MusicUtils::File::getOpenFileName(this, filter);
+        path = TTK::File::getOpenFileName(this, filter);
         if(path.isEmpty() || m_path.contains(path))
         {
             return;
         }
 
-        m_ui->listWidget->addItem(MusicUtils::Widget::elidedText(font(), path, Qt::ElideLeft, LINE_WIDTH));
+        m_ui->listWidget->addItem(TTK::Widget::elidedText(font(), path, Qt::ElideLeft, LINE_WIDTH));
         m_ui->listWidget->setToolTip(path);
         m_path << path;
     }
     else
     {
-        path = MusicUtils::File::getExistingDirectory(this);
+        path = TTK::File::getExistingDirectory(this);
         if(!path.isEmpty())
         {
-            for(const QFileInfo &fin : MusicUtils::File::fileInfoListByPath(path))
+            for(const QFileInfo &fin : TTK::File::fileInfoListByPath(path))
             {
                 if(!m_path.contains(fin.absoluteFilePath()) && supportedFormat.contains(FILE_SUFFIX(fin)))
                 {
                     m_path << fin.absoluteFilePath();
-                    m_ui->listWidget->addItem(MusicUtils::Widget::elidedText(font(), m_path.back(), Qt::ElideLeft, LINE_WIDTH));
+                    m_ui->listWidget->addItem(TTK::Widget::elidedText(font(), m_path.back(), Qt::ElideLeft, LINE_WIDTH));
                     m_ui->listWidget->setToolTip(m_path.back());
                 }
             }
@@ -119,7 +119,7 @@ void MusicTransformWidget::initInputPath()
 
 void MusicTransformWidget::initOutputPath()
 {
-    const QString &path = MusicUtils::File::getExistingDirectory(this);
+    const QString &path = TTK::File::getExistingDirectory(this);
     if(!path.isEmpty())
     {
         m_ui->outputLineEdit->setText(path);
@@ -149,7 +149,7 @@ void MusicTransformWidget::transformFinish()
     {
         for(const QString &path : qAsConst(m_path))
         {
-            m_ui->listWidget->addItem(MusicUtils::Widget::elidedText(font(), path, Qt::ElideLeft, LINE_WIDTH));
+            m_ui->listWidget->addItem(TTK::Widget::elidedText(font(), path, Qt::ElideLeft, LINE_WIDTH));
             m_ui->listWidget->setToolTip(path);
         }
 

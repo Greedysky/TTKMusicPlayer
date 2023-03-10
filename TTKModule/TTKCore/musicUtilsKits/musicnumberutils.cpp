@@ -27,7 +27,7 @@ static QString size2Number(qint64 size)
     }
 }
 
-QString MusicUtils::Number::sizeByteToLabel(qint64 size)
+QString TTK::Number::sizeByteToLabel(qint64 size)
 {
     if(size < 0)
     {
@@ -57,7 +57,7 @@ QString MusicUtils::Number::sizeByteToLabel(qint64 size)
     }
 }
 
-QString MusicUtils::Number::speedByteToLabel(qint64 size)
+QString TTK::Number::speedByteToLabel(qint64 size)
 {
     if(size < 0)
     {
@@ -87,7 +87,7 @@ QString MusicUtils::Number::speedByteToLabel(qint64 size)
     }
 }
 
-int MusicUtils::Number::bitrateToLevel(const QString &bitrate)
+int TTK::Number::bitrateToLevel(const QString &bitrate)
 {
     if(bitrate.isEmpty())
     {
@@ -122,7 +122,7 @@ int MusicUtils::Number::bitrateToLevel(const QString &bitrate)
     return -1;
 }
 
-int MusicUtils::Number::bitrateToNormal(int bitrate)
+int TTK::Number::bitrateToNormal(int bitrate)
 {
     if(bitrate > MB_0 && bitrate <= MB_64)
     {
@@ -150,7 +150,7 @@ int MusicUtils::Number::bitrateToNormal(int bitrate)
     }
 }
 
-void MusicUtils::Number::bitrateToQuality(int level, QString &bitrate, QColor &color)
+void TTK::Number::bitrateToQuality(int level, QString &bitrate, QColor &color)
 {
     bitrate = QObject::tr("UnKnow");
     color = QColor(131, 131, 131);

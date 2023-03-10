@@ -96,7 +96,7 @@ void MusicPreviewLabel::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    const int h = MusicUtils::Widget::fontTextHeight(m_font);
+    const int h = TTK::Widget::fontTextHeight(m_font);
     const int begin = (rect().height() - h) / 2;
     m_linearGradient.setFinalStop(0, h + begin);
     m_maskLinearGradient.setFinalStop(0, h + begin);
@@ -125,7 +125,7 @@ MusicThemeLineLabel::MusicThemeLineLabel(QWidget *parent)
 
 void MusicThemeLineLabel::paintEvent(QPaintEvent *)
 {
-    const int w = MusicUtils::Widget::fontTextWidth(font(), text()) + 15;
+    const int w = TTK::Widget::fontTextWidth(font(), text()) + 15;
 
     QPainter painter(this);
     painter.setFont(font());

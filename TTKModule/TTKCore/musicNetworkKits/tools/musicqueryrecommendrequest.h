@@ -53,11 +53,11 @@ private:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(MusicObject::MusicSongInformation *info, const QString &key, int length, int bitrate) const;
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &key, int length, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const;
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const;
 
 };
 

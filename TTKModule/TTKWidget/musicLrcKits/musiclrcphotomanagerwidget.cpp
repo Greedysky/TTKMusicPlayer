@@ -79,7 +79,7 @@ void MusicLrcPhotoWidget::addButtonClicked()
         return;
     }
 
-    const QStringList &files = MusicUtils::File::getOpenFileNames(this);
+    const QStringList &files = TTK::File::getOpenFileNames(this);
     if(files.isEmpty())
     {
         return;
@@ -143,7 +143,7 @@ void MusicLrcPhotoWidget::exportButtonClicked()
         return;
     }
 
-    const QString &path = MusicUtils::File::getExistingDirectory(this);
+    const QString &path = TTK::File::getExistingDirectory(this);
     if(path.isEmpty())
     {
         return;
@@ -157,7 +157,7 @@ void MusicLrcPhotoWidget::exportButtonClicked()
         if(item->isSelected())
         {
             QFile::copy(item->path(), dir + QString::number(TTKTime::timestamp()) + JPG_FILE);
-            MusicUtils::Core::sleep(MT_MS);
+            TTK::Core::sleep(MT_MS);
         }
     }
 
@@ -201,15 +201,15 @@ MusicLrcPhotoManagerWidget::MusicLrcPhotoManagerWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
     
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->addButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->deleteButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->exportButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->okButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->addButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->deleteButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->exportButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->okButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 #ifdef Q_OS_UNIX
     m_ui->addButton->setFocusPolicy(Qt::NoFocus);
     m_ui->deleteButton->setFocusPolicy(Qt::NoFocus);
@@ -217,10 +217,10 @@ MusicLrcPhotoManagerWidget::MusicLrcPhotoManagerWidget(QWidget *parent)
     m_ui->okButton->setFocusPolicy(Qt::NoFocus);
 #endif
     m_ui->artTextLabel->setText(G_BACKGROUND_PTR->artistName());
-    m_ui->artTextLabel->setStyleSheet(MusicUIObject::ColorStyle08);
+    m_ui->artTextLabel->setStyleSheet(TTK::UI::ColorStyle08);
 
     m_photoWidget = new MusicLrcPhotoWidget(this);
-    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->viewArea, m_photoWidget);
+    TTK::Widget::generateVScrollAreaFormat(m_ui->viewArea, m_photoWidget);
 
     connect(m_ui->addButton, SIGNAL(clicked()), m_photoWidget, SLOT(addButtonClicked()));
     connect(m_ui->deleteButton, SIGNAL(clicked()), m_photoWidget, SLOT(deleteButtonClicked()));

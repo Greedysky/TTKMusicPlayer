@@ -4,7 +4,7 @@
 MusicSongCheckToolsRenameThread::MusicSongCheckToolsRenameThread(QObject *parent)
     : TTKAbstractThread(parent),
       m_songItems(nullptr),
-      m_operateMode(MusicObject::Mode::Check)
+      m_operateMode(TTK::Mode::Check)
 {
 
 }
@@ -20,7 +20,7 @@ void MusicSongCheckToolsRenameThread::run()
 
     if(m_songItems && !m_songItems->isEmpty())
     {
-        if(m_operateMode == MusicObject::Mode::Check)
+        if(m_operateMode == TTK::Mode::Check)
         {
             m_datas.clear();
             MusicSongMeta meta;
@@ -81,7 +81,7 @@ void MusicSongCheckToolsDuplicateThread::run()
 
     if(m_songItems && !m_songItems->isEmpty())
     {
-        if(m_operateMode == MusicObject::Mode::Check)
+        if(m_operateMode == TTK::Mode::Check)
         {
             m_datas.clear();
             MusicSongMeta meta;

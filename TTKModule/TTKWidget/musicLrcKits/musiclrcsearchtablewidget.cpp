@@ -46,10 +46,10 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
         return;
     }
 
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     ///download lrc
     MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(songInfos[row].m_lrcUrl,
-                                      MusicUtils::String::lrcDirPrefix() + m_networkRequest->queryValue() + LRC_FILE, this);
+                                      TTK::String::lrcDirPrefix() + m_networkRequest->queryValue() + LRC_FILE, this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SIGNAL(lrcDownloadStateChanged(QString)));
     d->startRequest();
 }
@@ -105,18 +105,18 @@ void MusicLrcSearchTableWidget::createSearchedItem(const MusicResultInfoItem &so
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_songName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+    item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 20));
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 20));
+    item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_duration);
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;

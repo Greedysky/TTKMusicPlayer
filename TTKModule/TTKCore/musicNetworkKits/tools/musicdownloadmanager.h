@@ -29,12 +29,12 @@ struct TTK_MODULE_EXPORT MusicDownLoadPairData
 {
     qint64 m_timestamp;
     QObject *m_object;
-    MusicObject::Record m_type;
+    TTK::Record m_type;
 
     MusicDownLoadPairData()
         : m_timestamp(-1),
           m_object(nullptr),
-          m_type(MusicObject::Record::NormalDownload)
+          m_type(TTK::Record::NormalDownload)
     {
 
     }
@@ -45,7 +45,7 @@ struct TTK_MODULE_EXPORT MusicDownLoadPairData
         m_timestamp = t;
     }
 
-    MusicDownLoadPairData(qint64 t, QObject *object, MusicObject::Record type)
+    MusicDownLoadPairData(qint64 t, QObject *object, TTK::Record type)
         : m_timestamp(t),
           m_object(object),
           m_type(type)

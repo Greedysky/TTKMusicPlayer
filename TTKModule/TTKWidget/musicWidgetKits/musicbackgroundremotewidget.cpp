@@ -22,7 +22,7 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     hbox->addWidget(m_backgroundList);
     setLayout(hbox);
 
-    m_downloadQueue = new MusicDownloadQueueRequest(MusicObject::Download::Background, this);
+    m_downloadQueue = new MusicDownloadQueueRequest(TTK::Download::Background, this);
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
     connect(m_backgroundList, SIGNAL(itemClicked(int,QString)), parent, SLOT(remoteListWidgetItemClicked(int,QString)));
 }
@@ -180,13 +180,13 @@ QWidget* MusicBackgroundOnlineWidget::createFunctionsWidget(bool revert, QWidget
         hbox->addStretch(1);
 
         m_typeBox = new QComboBox(m_functionsWidget);
-        MusicUtils::Widget::generateComboBoxFormat(m_typeBox);
+        TTK::Widget::generateComboBoxFormat(m_typeBox);
         m_typeBox->setFixedSize(100, 20);
         m_typeBox->addItem(tr("Select One"));
         m_typeBox->hide();
 
         m_allButton = new QPushButton(tr("All"), m_functionsWidget);
-        m_allButton->setStyleSheet(MusicUIObject::PushButtonStyle02 + QString("QPushButton{%1}").arg(MusicUIObject::ColorStyle08));
+        m_allButton->setStyleSheet(TTK::UI::PushButtonStyle02 + QString("QPushButton{%1}").arg(TTK::UI::ColorStyle08));
         m_allButton->setCursor(QCursor(Qt::PointingHandCursor));
         m_allButton->setFixedSize(35, 20);
 #ifdef Q_OS_UNIX

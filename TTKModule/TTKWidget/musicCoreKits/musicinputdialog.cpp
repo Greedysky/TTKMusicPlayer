@@ -10,13 +10,13 @@ MusicInputDialog::MusicInputDialog(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->input->setStyleSheet(MusicUIObject::LineEditStyle01);
-    m_ui->button->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->input->setStyleSheet(TTK::UI::LineEditStyle01);
+    m_ui->button->setStyleSheet(TTK::UI::PushButtonStyle04);
 #ifdef Q_OS_UNIX
     m_ui->button->setFocusPolicy(Qt::NoFocus);
 #endif

@@ -3,7 +3,7 @@
 #include "musicdownloadrecordconfigmanager.h"
 #include "musicdownloadtagdatarequest.h"
 
-Q_DECLARE_METATYPE(MusicObject::MusicSongProperty)
+Q_DECLARE_METATYPE(TTK::MusicSongProperty)
 
 MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)
     : QWidget(parent),
@@ -15,7 +15,7 @@ MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)
     m_information->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 
     m_qulity = new QComboBox(this);
-    MusicUtils::Widget::generateComboBoxFormat(m_qulity, MusicUIObject::ComboBoxStyle02 + MusicUIObject::ItemView01);
+    TTK::Widget::generateComboBoxFormat(m_qulity, TTK::UI::ComboBoxStyle02 + TTK::UI::ItemView01);
 
     m_songName->setGeometry(0, 0, 190, TTK_ITEM_SIZE_S);
     m_singer->setGeometry(180, 0, 120, TTK_ITEM_SIZE_S);
@@ -34,44 +34,44 @@ MusicDownloadBatchTableItem::~MusicDownloadBatchTableItem()
     delete m_qulity;
 }
 
-void MusicDownloadBatchTableItem::addCellItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)
+void MusicDownloadBatchTableItem::addCellItem(const TTK::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)
 {
     m_songName->setToolTip(info.m_songName);
-    m_songName->setText(MusicUtils::Widget::elidedText(m_songName->font(), m_songName->toolTip(), Qt::ElideRight, m_songName->width() - 10));
+    m_songName->setText(TTK::Widget::elidedText(m_songName->font(), m_songName->toolTip(), Qt::ElideRight, m_songName->width() - 10));
 
     m_singer->setToolTip(info.m_singerName);
-    m_singer->setText(MusicUtils::Widget::elidedText(m_singer->font(), m_singer->toolTip(), Qt::ElideRight, m_singer->width() - 10));
+    m_singer->setText(TTK::Widget::elidedText(m_singer->font(), m_singer->toolTip(), Qt::ElideRight, m_singer->width() - 10));
 
     m_queryType = type;
     m_songInfo = info;
 
-    MusicObject::MusicSongPropertyList props(info.m_songProps);
+    TTK::MusicSongPropertyList props(info.m_songProps);
     std::sort(props.begin(), props.end()); //to find out the min bitrate
 
-    for(const MusicObject::MusicSongProperty &prop : qAsConst(props))
+    for(const TTK::MusicSongProperty &prop : qAsConst(props))
     {
         if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
            (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
         {
-            m_qulity->addItem(tr("SD"), QVariant::fromValue<MusicObject::MusicSongProperty>(prop));
+            m_qulity->addItem(tr("SD"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
         else if((prop.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
         {
-            m_qulity->addItem(tr("HQ"), QVariant::fromValue<MusicObject::MusicSongProperty>(prop));
+            m_qulity->addItem(tr("HQ"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
         else if((prop.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
         {
-            m_qulity->addItem(tr("SQ"), QVariant::fromValue<MusicObject::MusicSongProperty>(prop));
+            m_qulity->addItem(tr("SQ"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
         else if((prop.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
         {
-            m_qulity->addItem(tr("CD"), QVariant::fromValue<MusicObject::MusicSongProperty>(prop));
+            m_qulity->addItem(tr("CD"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
         else
@@ -130,7 +130,7 @@ void MusicDownloadBatchTableItem::setCurrentQuality(int index)
     index = -1;
     for(int i = 0; i < m_qulity->count(); ++i)
     {
-        const MusicObject::MusicSongProperty &prop = m_qulity->itemData(i).value<MusicObject::MusicSongProperty>();
+        const TTK::MusicSongProperty &prop = m_qulity->itemData(i).value<TTK::MusicSongProperty>();
         if(prop.m_bitrate == bitrate)
         {
             index = i;
@@ -151,7 +151,7 @@ void MusicDownloadBatchTableItem::currentQualityChanged(int index)
         return;
     }
 
-    const MusicObject::MusicSongProperty &prop = m_qulity->itemData(index).value<MusicObject::MusicSongProperty>();
+    const TTK::MusicSongProperty &prop = m_qulity->itemData(index).value<TTK::MusicSongProperty>();
     if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
        (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
     {
@@ -176,12 +176,12 @@ void MusicDownloadBatchTableItem::currentQualityChanged(int index)
 
 void MusicDownloadBatchTableItem::startRequestMusic()
 {
-    const MusicObject::MusicSongProperty &prop = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongProperty>();
+    const TTK::MusicSongProperty &prop = m_qulity->itemData(m_qulity->currentIndex()).value<TTK::MusicSongProperty>();
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
     const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
     QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
 
-    MusicDownloadRecordConfigManager down(MusicObject::Record::NormalDownload, this);
+    MusicDownloadRecordConfigManager down(TTK::Record::NormalDownload, this);
     if(!down.fromFile())
     {
         return;
@@ -215,8 +215,8 @@ void MusicDownloadBatchTableItem::startRequestMusic()
         }
     }
 
-    MusicDownloadTagDataRequest *d = new MusicDownloadTagDataRequest(prop.m_url, downloadName, MusicObject::Download::Music, this);
-    d->setRecordType(MusicObject::Record::NormalDownload);
+    MusicDownloadTagDataRequest *d = new MusicDownloadTagDataRequest(prop.m_url, downloadName, TTK::Download::Music, this);
+    d->setRecordType(TTK::Record::NormalDownload);
     connect(d, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
 
     MusicSongMeta meta;
@@ -233,7 +233,7 @@ void MusicDownloadBatchTableItem::startRequestMusic()
 
 void MusicDownloadBatchTableItem::startRequestMovie()
 {
-    const MusicObject::MusicSongProperty &prop = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongProperty>();
+    const TTK::MusicSongProperty &prop = m_qulity->itemData(m_qulity->currentIndex()).value<TTK::MusicSongProperty>();
     const QString &downloadPrefix = MOVIE_DIR_FULL;
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
     //
@@ -255,7 +255,7 @@ void MusicDownloadBatchTableItem::startRequestMovie()
         }
     }
     //
-    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(prop.m_url, downloadName, MusicObject::Download::Video, this);
+    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(prop.m_url, downloadName, TTK::Download::Video, this);
     download->startRequest();
 }
 
@@ -271,12 +271,12 @@ MusicDownloadBatchTableWidget::MusicDownloadBatchTableWidget(QWidget *parent)
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 530);
 
-    setStyleSheet(styleSheet() + MusicUIObject::TableWidgetStyle02);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle01);
+    setStyleSheet(styleSheet() + TTK::UI::TableWidgetStyle02);
+    verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle01);
 
-    MusicUtils::Widget::setTransparent(this, 255);
+    TTK::Widget::setTransparent(this, 255);
 #if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
-    MusicUtils::Widget::setTransparent(this, QColor(220, 220, 220));
+    TTK::Widget::setTransparent(this, QColor(220, 220, 220));
 #endif
 }
 
@@ -290,7 +290,7 @@ void MusicDownloadBatchTableWidget::setParentClass(QWidget *parent)
     m_supperClass = parent;
 }
 
-void MusicDownloadBatchTableWidget::addCellItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)
+void MusicDownloadBatchTableWidget::addCellItem(const TTK::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)
 {
     const int index = rowCount();
     setRowCount(index + 1);
@@ -353,19 +353,19 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->qualityBox, MusicUIObject::ComboBoxStyle02 + MusicUIObject::ItemView01);
+    TTK::Widget::generateComboBoxFormat(m_ui->qualityBox, TTK::UI::ComboBoxStyle02 + TTK::UI::ItemView01);
     m_ui->qualityBox->addItems({tr("Null"), tr("SD"), tr("HQ"), tr("SQ"), tr("CD")});
     connect(m_ui->qualityBox, SIGNAL(currentIndexChanged(int)), m_ui->tableWidget, SLOT(currentQualityChanged(int)));
 
     m_ui->qualityBox->setCurrentIndex(0);
 
     m_ui->tableWidget->setParentClass(this);
-    m_ui->downloadButton->setStyleSheet(MusicUIObject::PushButtonStyle05);
+    m_ui->downloadButton->setStyleSheet(TTK::UI::PushButtonStyle05);
 #ifdef Q_OS_UNIX
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -379,9 +379,9 @@ MusicDownloadBatchWidget::~MusicDownloadBatchWidget()
     delete m_ui;
 }
 
-void MusicDownloadBatchWidget::setSongName(const MusicObject::MusicSongInformationList &songInfos, MusicAbstractQueryRequest::QueryType type)
+void MusicDownloadBatchWidget::setSongName(const TTK::MusicSongInformationList &songInfos, MusicAbstractQueryRequest::QueryType type)
 {
-    for(const MusicObject::MusicSongInformation &info : qAsConst(songInfos))
+    for(const TTK::MusicSongInformation &info : qAsConst(songInfos))
     {
         m_ui->tableWidget->addCellItem(info, type);
     }

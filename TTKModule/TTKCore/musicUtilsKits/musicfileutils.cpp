@@ -4,7 +4,7 @@
 
 #include <QDirIterator>
 
-QStringList MusicUtils::File::fileListByPath(const QString &dpath, const QStringList &filter, bool recursively)
+QStringList TTK::File::fileListByPath(const QString &dpath, const QStringList &filter, bool recursively)
 {
     QDir dir(dpath);
     if(!dir.exists())
@@ -31,7 +31,7 @@ QStringList MusicUtils::File::fileListByPath(const QString &dpath, const QString
     return fileList;
 }
 
-QFileInfoList MusicUtils::File::fileInfoListByPath(const QString &dpath, const QStringList &filter, bool recursively)
+QFileInfoList TTK::File::fileInfoListByPath(const QString &dpath, const QStringList &filter, bool recursively)
 {
     QDir dir(dpath);
     if(!dir.exists())
@@ -51,7 +51,7 @@ QFileInfoList MusicUtils::File::fileInfoListByPath(const QString &dpath, const Q
     return fileList;
 }
 
-bool MusicUtils::File::removeRecursively(const QString &dir, bool self)
+bool TTK::File::removeRecursively(const QString &dir, bool self)
 {
     QDir dr(dir);
     if(!dr.exists())
@@ -72,7 +72,7 @@ bool MusicUtils::File::removeRecursively(const QString &dir, bool self)
         bool ok = false;
         if(fin.isDir() && !fin.isSymLink())
         {
-            ok = MusicUtils::File::removeRecursively(filePath, self); // recursive
+            ok = TTK::File::removeRecursively(filePath, self); // recursive
         }
         else
         {
@@ -101,7 +101,7 @@ bool MusicUtils::File::removeRecursively(const QString &dir, bool self)
     return success;
 }
 
-QString MusicUtils::File::getExistingDirectory(QWidget *parent)
+QString TTK::File::getExistingDirectory(QWidget *parent)
 {
     QString path = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();
     path = QFileDialog::getExistingDirectory(parent, QObject::tr("Choose a dir to open under"), path);
@@ -113,7 +113,7 @@ QString MusicUtils::File::getExistingDirectory(QWidget *parent)
     return path;
 }
 
-QString MusicUtils::File::getOpenFileName(QWidget *parent, const QString &filter)
+QString TTK::File::getOpenFileName(QWidget *parent, const QString &filter)
 {
     QString path = QFileInfo(G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString()).absolutePath();
     path = QFileDialog::getOpenFileName(parent, QObject::tr("Choose a filename to open under"), path, filter);
@@ -124,7 +124,7 @@ QString MusicUtils::File::getOpenFileName(QWidget *parent, const QString &filter
     return path;
 }
 
-QStringList MusicUtils::File::getOpenFileNames(QWidget *parent, const QString &filter)
+QStringList TTK::File::getOpenFileNames(QWidget *parent, const QString &filter)
 {
     const QString &path = QFileInfo(G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString()).absolutePath();
     const QStringList &files = QFileDialog::getOpenFileNames(parent, QObject::tr("Choose a filename to open under"), path, filter);
@@ -139,7 +139,7 @@ QStringList MusicUtils::File::getOpenFileNames(QWidget *parent, const QString &f
     return files;
 }
 
-QString MusicUtils::File::getSaveFileName(QWidget *parent, const QString &filter)
+QString TTK::File::getSaveFileName(QWidget *parent, const QString &filter)
 {
     const QString &title = QObject::tr("Choose a filename to save under");
     QString path = G_SETTING_PTR->value(MusicSettingManager::LastFileDialogPath).toString();

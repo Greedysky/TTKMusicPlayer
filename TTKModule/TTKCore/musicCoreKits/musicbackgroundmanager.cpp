@@ -9,7 +9,7 @@ MusicBackgroundManager::MusicBackgroundManager()
 
 void MusicBackgroundManager::setArtistName(const QString &name)
 {
-    m_currentArtistName = MusicUtils::String::artistName(name);
+    m_currentArtistName = TTK::String::artistName(name);
     updateArtistPhotoList();
 }
 

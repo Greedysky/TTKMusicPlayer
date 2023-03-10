@@ -253,7 +253,7 @@ public Q_SLOTS:
     /*!
      * Research query by quality it changed.
      */
-    void researchQueryByQuality(MusicObject::QueryQuality quality);
+    void researchQueryByQuality(TTK::QueryQuality quality);
     /*!
      * Video button clicked by name to search.
      */

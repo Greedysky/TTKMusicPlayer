@@ -11,7 +11,7 @@
 #include <QFont>
 #include <QApplication>
 
-namespace MusicObject
+namespace TTK
 {
 static quint64 directorySize(const QString &dirName)
 {
@@ -91,8 +91,8 @@ void MusicRunTimeManager::run() const
 {
     TTK_INFO_STREAM("MusicApplication Run");
 
-    MusicUtils::Codec::setLocalCodec();
-    MusicUtils::TTKQmmp::updateConfig();
+    TTK::Codec::setLocalCodec();
+    TTK::TTKQmmp::updateConfig();
 
 #ifdef Q_OS_UNIX
     QFont font;
@@ -107,14 +107,14 @@ void MusicRunTimeManager::run() const
     xml.fromFile();
     xml.readBuffer();
 
-    MusicObject::checkCacheSize();
+    TTK::checkCacheSize();
     G_NETWORK_PTR->setBlockNetWork(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());
 }
 
 QStringList MusicRunTimeManager::translator() const
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt();
-    return {MusicObject::languageCore(index), MusicObject::languageQmmp(index)};
+    return {TTK::languageCore(index), TTK::languageQmmp(index)};
 }
 
 bool MusicRunTimeManager::configVersionCheck() const

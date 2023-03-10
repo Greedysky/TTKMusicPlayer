@@ -81,23 +81,23 @@ public:
     /*!
      * Read high info property from query results.
      */
-    void parseFromSongHighProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const;
+    void parseFromSongHighProperty(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const;
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongPropertyNew(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const;
+    void parseFromSongPropertyNew(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(MusicObject::MusicSongInformation *info, const QString &format, MusicObject::QueryQuality quality, bool all) const;
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &format, TTK::QueryQuality quality, bool all) const;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(MusicObject::MusicSongInformation *info, const QVariantList &format, MusicObject::QueryQuality quality, bool all) const;
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantList &format, TTK::QueryQuality quality, bool all) const;
 
 };
 

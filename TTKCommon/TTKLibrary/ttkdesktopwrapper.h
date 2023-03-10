@@ -22,7 +22,7 @@
 #include <QWidget>
 #include "ttkglobaldefine.h"
 
-namespace TTKObject {
+namespace TTK {
 enum class Direction;
 }
 
@@ -35,7 +35,7 @@ public:
     struct TaskbarInfo
     {
         int m_size;
-        TTKObject::Direction m_direction;
+        TTK::Direction m_direction;
     };
 
     /*!

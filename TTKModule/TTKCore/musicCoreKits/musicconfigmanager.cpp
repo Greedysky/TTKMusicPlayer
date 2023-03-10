@@ -116,9 +116,9 @@ void MusicConfigManager::readBuffer() const
     G_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdownRepeat, readXmlAttributeByTagName("timeAutoShutdownRepeat").toInt());
 
     value = readXmlAttributeByTagName("downloadMusicPath");
-    G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicDirPath, (value.isEmpty() || !QFile::exists(value)) ? MusicUtils::String::musicDirPrefix() : value);
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicDirPath, (value.isEmpty() || !QFile::exists(value)) ? TTK::String::musicDirPrefix() : value);
     value = readXmlAttributeByTagName("downloadLrcPath");
-    G_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcDirPath, (value.isEmpty() || !QFile::exists(value)) ? MusicUtils::String::lrcDirPrefix() : value);
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcDirPath, (value.isEmpty() || !QFile::exists(value)) ? TTK::String::lrcDirPrefix() : value);
 
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheEnable, readXmlAttributeByTagName("downloadCacheEnable").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSize, readXmlAttributeByTagName("downloadCacheSize").toInt());

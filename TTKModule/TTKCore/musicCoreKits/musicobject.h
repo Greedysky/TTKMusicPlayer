@@ -121,11 +121,11 @@
 #define FMRADIO_PATH             TTK_STRCAT("fmradio", TKF_FILE)
 
 
-#define MAIN_DIR_FULL            MusicObject::applicationPath() + TTK_PDIR
+#define MAIN_DIR_FULL            TTK::applicationPath() + TTK_PDIR
 //
 #define DOWNLOAD_DIR_FULL        MAIN_DIR_FULL + DOWNLOAD_DIR
-#define APPDATA_DIR_FULL         MusicObject::configPath() + APPDATA_DIR
-#define APPCACHE_DIR_FULL        MusicObject::configPath() + APPCACHE_DIR
+#define APPDATA_DIR_FULL         TTK::configPath() + APPDATA_DIR
+#define APPCACHE_DIR_FULL        TTK::configPath() + APPCACHE_DIR
 //
 #define LRC_DIR_FULL             DOWNLOAD_DIR_FULL + LRC_DIR
 #define MUSIC_DIR_FULL           DOWNLOAD_DIR_FULL + MUSIC_DIR
@@ -146,15 +146,15 @@
 #define USER_THEME_DIR_FULL      APPDATA_DIR_FULL + USER_THEME_DIR
 
 
-#define THEME_DIR_FULL           MusicObject::applicationPath() + THEME_DIR
-#define PLUGINS_DIR_FULL         MusicObject::applicationPath() + PLUGINS_DIR
-#define LANGUAGE_DIR_FULL        MusicObject::applicationPath() + LANGUAGE_DIR
+#define THEME_DIR_FULL           TTK::applicationPath() + THEME_DIR
+#define PLUGINS_DIR_FULL         TTK::applicationPath() + PLUGINS_DIR
+#define LANGUAGE_DIR_FULL        TTK::applicationPath() + LANGUAGE_DIR
 
 
-#define MAKE_CONFIG_DIR_FULL     MusicObject::applicationPath() + MAKE_CONFIG_DIR
-#define MAKE_TRANSFORM_PATH_FULL MusicObject::applicationPath() + MAKE_TRANSFORM_PATH
-#define MAKE_PLAYER_PATH_FULL    MusicObject::applicationPath() + MAKE_PLAYER_PATH
-#define MAKE_GAIN_PATH_FULL      MusicObject::applicationPath() + MAKE_GAIN_PATH
+#define MAKE_CONFIG_DIR_FULL     TTK::applicationPath() + MAKE_CONFIG_DIR
+#define MAKE_TRANSFORM_PATH_FULL TTK::applicationPath() + MAKE_TRANSFORM_PATH
+#define MAKE_PLAYER_PATH_FULL    TTK::applicationPath() + MAKE_PLAYER_PATH
+#define MAKE_GAIN_PATH_FULL      TTK::applicationPath() + MAKE_GAIN_PATH
 
 
 #define WINDOW_WIDTH_MIN         1000
@@ -171,7 +171,7 @@
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicObject
+namespace TTK
 {
     enum class PlayState
     {

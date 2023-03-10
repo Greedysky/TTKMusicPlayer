@@ -17,7 +17,7 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
 
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
     setAttribute(Qt::WA_DeleteOnClose);
-    setStyleSheet(MusicUIObject::BackgroundStyle10);
+    setStyleSheet(TTK::UI::BackgroundStyle10);
     setMouseTracking(true);
     blockMoveOption(true);
 
@@ -28,7 +28,7 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     vlayout->setContentsMargins(5, 5, 5, 5);
 
     m_textLabel = new QLabel(this);
-    m_textLabel->setStyleSheet(MusicUIObject::ColorStyle03);
+    m_textLabel->setStyleSheet(TTK::UI::ColorStyle03);
     m_textLabel->setAlignment(Qt::AlignCenter);
 
     QWidget *contain = new QWidget(this);
@@ -36,8 +36,8 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     hlayout->setContentsMargins(0, 0, 0, 0);
     QPushButton *updateButton = new QPushButton(tr("Update"), contain);
     QPushButton *nextTimeButton = new QPushButton(tr("Close"), contain);
-    updateButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    nextTimeButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    updateButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    nextTimeButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     updateButton->setFixedSize(85, 27);
     nextTimeButton->setFixedSize(85, 27);
     hlayout->addWidget(updateButton);
@@ -80,7 +80,7 @@ void MusicSourceUpdateNotifyWidget::downLoadFinished(const QVariant &bytes)
     const QVariantMap &value = bytes.toMap();
     const QString &version = value["version"].toString();
 
-    if(MusicUtils::Core::appVersionCheck(TTK_VERSION_STR, version))
+    if(TTK::Core::appVersionCheck(TTK_VERSION_STR, version))
     {
         show();
         m_textLabel->setText(tr("New version found") + "\r\n" + version);
@@ -101,12 +101,12 @@ MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
     setFixedSize(size());
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->upgradeButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    m_ui->upgradeButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     m_ui->upgradeButton->setEnabled(false);
 #ifdef Q_OS_UNIX
     m_ui->upgradeButton->setFocusPolicy(Qt::NoFocus);
@@ -130,7 +130,7 @@ void MusicSourceUpdateWidget::start()
 
 void MusicSourceUpdateWidget::upgradeButtonClicked()
 {
-    MusicUtils::Url::openUrl(MusicUtils::Algorithm::mdII(RELEASE_DATA_URL, false), false);
+    TTK::Url::openUrl(TTK::Algorithm::mdII(RELEASE_DATA_URL, false), false);
 }
 
 void MusicSourceUpdateWidget::downLoadFinished(const QVariant &bytes)
@@ -139,7 +139,7 @@ void MusicSourceUpdateWidget::downLoadFinished(const QVariant &bytes)
     const QString &version = value["version"].toString();
 
     QString text;
-    if(MusicUtils::Core::appVersionCheck(TTK_VERSION_STR, version))
+    if(TTK::Core::appVersionCheck(TTK_VERSION_STR, version))
     {
         text.append("v" + version);
         text.append("\r\n");

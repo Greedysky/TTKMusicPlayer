@@ -44,7 +44,7 @@ public:
     /*!
      * Create cell item by input data.
      */
-    void addCellItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
+    void addCellItem(const TTK::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
     /*!
      * Start to download data from net.
      */
@@ -72,7 +72,7 @@ private:
 
     QObject *m_supperClass;
     QComboBox *m_qulity;
-    MusicObject::MusicSongInformation m_songInfo;
+    TTK::MusicSongInformation m_songInfo;
     QLabel *m_songName, *m_singer, *m_information;
     MusicAbstractQueryRequest::QueryType m_queryType;
 
@@ -101,7 +101,7 @@ public:
     /*!
      * Create cell item by input data.
      */
-    void addCellItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
+    void addCellItem(const TTK::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
     /*!
      * Start to download data from net.
      */
@@ -146,7 +146,7 @@ public:
     /*!
      * Set current name to search and download musics.
      */
-    void setSongName(const MusicObject::MusicSongInformationList &songInfos, MusicAbstractQueryRequest::QueryType type);
+    void setSongName(const TTK::MusicSongInformationList &songInfos, MusicAbstractQueryRequest::QueryType type);
 
 public Q_SLOTS:
     /*!

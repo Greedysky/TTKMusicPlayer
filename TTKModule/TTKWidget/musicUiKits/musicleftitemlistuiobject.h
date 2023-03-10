@@ -24,53 +24,56 @@
 /*! @brief The namespace of the application ui object.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicUIObject
+namespace TTK
 {
-    const QString ItemMusic = " \
-            QToolButton{ border:none; \
-            background-image: url(:/navigation/item_music_normal); } \
-            QToolButton:hover{ background-image: url(:/navigation/item_music_hover); }";
+    namespace UI
+    {
+        const QString ItemMusic = " \
+                QToolButton{ border:none; \
+                background-image: url(:/navigation/item_music_normal); } \
+                QToolButton:hover{ background-image: url(:/navigation/item_music_hover); }";
 
-    const QString ItemMusicClicked = " \
-            QToolButton{ border:none; \
-            background-image: url(:/navigation/item_music_clicked); }";
+        const QString ItemMusicClicked = " \
+                QToolButton{ border:none; \
+                background-image: url(:/navigation/item_music_clicked); }";
 
-    const QString ItemLocal = " \
-            QToolButton{ border:none; \
-            background-image: url(:/navigation/item_local_normal); } \
-            QToolButton:hover{ background-image: url(:/navigation/item_local_hover); }";
+        const QString ItemLocal = " \
+                QToolButton{ border:none; \
+                background-image: url(:/navigation/item_local_normal); } \
+                QToolButton:hover{ background-image: url(:/navigation/item_local_hover); }";
 
-    const QString ItemLocalClicked = " \
-            QToolButton{ border:none; \
-            background-image: url(:/navigation/item_local_clicked); }";
+        const QString ItemLocalClicked = " \
+                QToolButton{ border:none; \
+                background-image: url(:/navigation/item_local_clicked); }";
 
-    const QString ItemCloud = " \
-            QToolButton{ border:none; \
-            background-image: url(:/navigation/item_cloud_normal); } \
-            QToolButton:hover{ background-image: url(:/navigation/item_cloud_hover); }";
+        const QString ItemCloud = " \
+                QToolButton{ border:none; \
+                background-image: url(:/navigation/item_cloud_normal); } \
+                QToolButton:hover{ background-image: url(:/navigation/item_cloud_hover); }";
 
-    const QString ItemCloudClicked = " \
-            QToolButton{ border:none; \
-            background-image: url(:/navigation/item_cloud_clicked); }";
+        const QString ItemCloudClicked = " \
+                QToolButton{ border:none; \
+                background-image: url(:/navigation/item_cloud_clicked); }";
 
-    const QString ItemRadio = " \
-            QToolButton{ border:none; \
-            background-image: url(:/navigation/item_radio_normal); } \
-            QToolButton:hover{ background-image: url(:/navigation/item_radio_hover); }";
+        const QString ItemRadio = " \
+                QToolButton{ border:none; \
+                background-image: url(:/navigation/item_radio_normal); } \
+                QToolButton:hover{ background-image: url(:/navigation/item_radio_hover); }";
 
-    const QString ItemRadioClicked = " \
-            QToolButton{ border:none; \
-            background-image: url(:/navigation/item_radio_clicked); }";
+        const QString ItemRadioClicked = " \
+                QToolButton{ border:none; \
+                background-image: url(:/navigation/item_radio_clicked); }";
 
-    const QString ItemDownload = " \
-            QToolButton{ border:none; \
-            background-image: url(:/navigation/item_download_normal); } \
-            QToolButton:hover{ background-image: url(:/navigation/item_download_hover); }";
+        const QString ItemDownload = " \
+                QToolButton{ border:none; \
+                background-image: url(:/navigation/item_download_normal); } \
+                QToolButton:hover{ background-image: url(:/navigation/item_download_hover); }";
 
-    const QString ItemDownloadClicked = " \
-            QToolButton{ border:none; \
-            background-image: url(:/navigation/item_download_clicked); }";
+        const QString ItemDownloadClicked = " \
+                QToolButton{ border:none; \
+                background-image: url(:/navigation/item_download_clicked); }";
 
+    }
 }
 
 #endif // MUSICLEFTITEMLISTUIOBJECT_H

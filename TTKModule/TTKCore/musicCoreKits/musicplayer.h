@@ -55,7 +55,7 @@ public:
     /*!
      * Get current player state.
      */
-    MusicObject::PlayState state() const;
+    TTK::PlayState state() const;
     /*!
      * Set current play list.
      */
@@ -117,7 +117,7 @@ Q_SIGNALS:
     /*!
      * Current state changed.
      */
-    void stateChanged(MusicObject::PlayState state);
+    void stateChanged(TTK::PlayState state);
     /*!
      * Current duration changed.
      */
@@ -167,10 +167,10 @@ private:
     /*!
      * set current play state.
      */
-    void setCurrentPlayState(MusicObject::PlayState state);
+    void setCurrentPlayState(TTK::PlayState state);
 
     MusicPlaylist *m_playlist;
-    MusicObject::PlayState m_state;
+    TTK::PlayState m_state;
     SoundCore *m_core;
     QTimer m_timer;
     QString m_currentMedia;

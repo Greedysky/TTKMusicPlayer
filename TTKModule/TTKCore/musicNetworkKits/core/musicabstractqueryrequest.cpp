@@ -3,7 +3,7 @@
 MusicAbstractQueryRequest::MusicAbstractQueryRequest(QObject *parent)
     : MusicPageQueryRequest(parent),
       m_queryServer("Invalid"),
-      m_queryQuality(MusicObject::QueryQuality::Standard),
+      m_queryQuality(TTK::QueryQuality::Standard),
       m_queryAllRecords(false),
       m_queryLite(false)
 {
@@ -43,18 +43,18 @@ void MusicAbstractQueryRequest::downLoadFinished()
     MusicPageQueryRequest::downLoadFinished();
 }
 
-bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongProperty *prop) const
+bool MusicAbstractQueryRequest::findUrlFileSize(TTK::MusicSongProperty *prop) const
 {
     TTK_NETWORK_QUERY_CHECK(false);
     if(prop->m_size.isEmpty() || prop->m_size == TTK_DEFAULT_STR)
     {
-        prop->m_size = MusicUtils::Number::sizeByteToLabel(MusicObject::queryFileSizeByUrl(prop->m_url));
+        prop->m_size = TTK::Number::sizeByteToLabel(TTK::queryFileSizeByUrl(prop->m_url));
     }
     TTK_NETWORK_QUERY_CHECK(false);
     return true;
 }
 
-bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongPropertyList *props) const
+bool MusicAbstractQueryRequest::findUrlFileSize(TTK::MusicSongPropertyList *props) const
 {
     for(int i = 0; i < props->count(); ++i)
     {

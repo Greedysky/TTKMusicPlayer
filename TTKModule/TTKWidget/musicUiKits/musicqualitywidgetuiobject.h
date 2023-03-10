@@ -24,13 +24,16 @@
 /*! @brief The namespace of the application ui object.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicUIObject
+namespace TTK
 {
-    const QString BtnQuality = " \
-            QToolButton{ border:none; \
-            background-image: url(:/quality/btn_quality_normal); } \
-            QToolButton:hover{ background-image: url(:/quality/btn_quality_hover); }";
+    namespace UI
+    {
+        const QString BtnQuality = " \
+                QToolButton{ border:none; \
+                background-image: url(:/quality/btn_quality_normal); } \
+                QToolButton:hover{ background-image: url(:/quality/btn_quality_hover); }";
 
+    }
 }
 
 #endif // MUSICQUALITYWIDGETUIOBJECT_H

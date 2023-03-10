@@ -53,7 +53,7 @@ MusicDownloadTableWidget::MusicDownloadTableWidget(QWidget *parent)
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 400);
 
-    MusicUtils::Widget::setTransparent(this, 255);
+    TTK::Widget::setTransparent(this, 255);
 }
 
 MusicDownloadTableWidget::~MusicDownloadTableWidget()
@@ -61,7 +61,7 @@ MusicDownloadTableWidget::~MusicDownloadTableWidget()
     removeItems();
 }
 
-void MusicDownloadTableWidget::addCellItem(const MusicObject::MusicSongProperty &prop, const QString &type, const QString &icon)
+void MusicDownloadTableWidget::addCellItem(const TTK::MusicSongProperty &prop, const QString &type, const QString &icon)
 {
     const int index = rowCount();
     setRowCount(index + 1);
@@ -113,15 +113,15 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->downloadPathEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
-    m_ui->pathChangedButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
-    m_ui->settingButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
-    m_ui->downloadButton->setStyleSheet(MusicUIObject::PushButtonStyle05);
+    m_ui->downloadPathEdit->setStyleSheet(TTK::UI::LineEditStyle01);
+    m_ui->pathChangedButton->setStyleSheet(TTK::UI::PushButtonStyle03);
+    m_ui->settingButton->setStyleSheet(TTK::UI::PushButtonStyle03);
+    m_ui->downloadButton->setStyleSheet(TTK::UI::PushButtonStyle05);
 #ifdef Q_OS_UNIX
     m_ui->pathChangedButton->setFocusPolicy(Qt::NoFocus);
     m_ui->settingButton->setFocusPolicy(Qt::NoFocus);
@@ -136,7 +136,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startRequest()));
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
 
-    MusicUtils::Widget::positionInCenter(this);
+    TTK::Widget::positionInCenter(this);
 }
 
 MusicDownloadWidget::~MusicDownloadWidget()
@@ -173,19 +173,19 @@ void MusicDownloadWidget::setSongName(const QString &name, MusicAbstractQueryReq
     m_queryType = type;
 
     initialize();
-    m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 200));
+    m_ui->downloadName->setText(TTK::Widget::elidedText(font(), name, Qt::ElideRight, 200));
     m_networkRequest->setQueryAllRecords(true);
     m_networkRequest->startToSearch(type, name);
 }
 
-void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)
+void MusicDownloadWidget::setSongName(const TTK::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)
 {
     m_songInfo = info;
     m_queryType = type;
     m_querySingleInfo = true;
 
     initialize();
-    m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName, info.m_songName), Qt::ElideRight, 200));
+    m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName, info.m_songName), Qt::ElideRight, 200));
 
     addCellItems(info.m_songProps);
 }
@@ -198,7 +198,7 @@ void MusicDownloadWidget::downLoadFinished()
     }
 
     m_ui->viewArea->removeItems();
-    const MusicObject::MusicSongInformation info(matchMusicSongInformation());
+    const TTK::MusicSongInformation info(matchMusicSongInformation());
     if(!info.m_songName.isEmpty() || !info.m_singerName.isEmpty())
     {
         addCellItems(info.m_songProps);
@@ -210,17 +210,17 @@ void MusicDownloadWidget::downLoadFinished()
     }
 }
 
-MusicObject::MusicSongInformation MusicDownloadWidget::matchMusicSongInformation()
+TTK::MusicSongInformation MusicDownloadWidget::matchMusicSongInformation()
 {
-    const MusicObject::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(!songInfos.isEmpty())
     {
         const QString &fileName = m_networkRequest->queryValue();
-        const QString &artistName = MusicUtils::String::artistName(fileName);
-        const QString &songName = MusicUtils::String::songName(fileName);
+        const QString &artistName = TTK::String::artistName(fileName);
+        const QString &songName = TTK::String::songName(fileName);
 
-        MusicObject::MusicSongInformation info;
-        for(const MusicObject::MusicSongInformation &var : qAsConst(songInfos))
+        TTK::MusicSongInformation info;
+        for(const TTK::MusicSongInformation &var : qAsConst(songInfos))
         {
             if(var.m_singerName.contains(artistName, Qt::CaseInsensitive) && var.m_songName.contains(songName, Qt::CaseInsensitive))
             {
@@ -231,15 +231,15 @@ MusicObject::MusicSongInformation MusicDownloadWidget::matchMusicSongInformation
         std::sort(info.m_songProps.begin(), info.m_songProps.end()); //to find out the min bitrate
         return info;
     }
-    return MusicObject::MusicSongInformation();
+    return TTK::MusicSongInformation();
 }
 
-void MusicDownloadWidget::addCellItems(const MusicObject::MusicSongPropertyList &props)
+void MusicDownloadWidget::addCellItems(const TTK::MusicSongPropertyList &props)
 {
-    MusicObject::MusicSongPropertyList propertys = props;
+    TTK::MusicSongPropertyList propertys = props;
     std::sort(propertys.begin(), propertys.end()); //to find out the min bitrate
 
-    for(const MusicObject::MusicSongProperty &prop : qAsConst(propertys))
+    for(const TTK::MusicSongProperty &prop : qAsConst(propertys))
     {
         if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
            (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
@@ -299,7 +299,7 @@ void MusicDownloadWidget::setMoveWidget(QWidget *w, int pos)
 
 void MusicDownloadWidget::downloadDirSelected()
 {
-    const QString &path = MusicUtils::File::getExistingDirectory(nullptr);
+    const QString &path = TTK::File::getExistingDirectory(nullptr);
     if(!path.isEmpty())
     {
         if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
@@ -338,18 +338,18 @@ void MusicDownloadWidget::dataDownloadFinished()
 
 void MusicDownloadWidget::startRequestMusic()
 {
-    const MusicObject::MusicSongInformation info(matchMusicSongInformation());
+    const TTK::MusicSongInformation info(matchMusicSongInformation());
     if(!info.m_songName.isEmpty() || !info.m_singerName.isEmpty())
     {
         startRequestMusic(info);
     }
 }
 
-void MusicDownloadWidget::startRequestMusic(const MusicObject::MusicSongInformation &info)
+void MusicDownloadWidget::startRequestMusic(const TTK::MusicSongInformation &info)
 {
     const MusicDownloadTableItemRole &role = m_ui->viewArea->currentItemRole();
-    const MusicObject::MusicSongPropertyList &props = info.m_songProps;
-    for(const MusicObject::MusicSongProperty &prop : qAsConst(props))
+    const TTK::MusicSongPropertyList &props = info.m_songProps;
+    for(const TTK::MusicSongProperty &prop : qAsConst(props))
     {
         if(role.isEqual(MusicDownloadTableItemRole(prop.m_bitrate, prop.m_format, prop.m_size)))
         {
@@ -362,7 +362,7 @@ void MusicDownloadWidget::startRequestMusic(const MusicObject::MusicSongInformat
             const QString &downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MUSIC_DIR_FULL : m_ui->downloadPathEdit->text();
             QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
 
-            MusicDownloadRecordConfigManager down(MusicObject::Record::NormalDownload, this);
+            MusicDownloadRecordConfigManager down(TTK::Record::NormalDownload, this);
             if(!down.fromFile())
             {
                 return;
@@ -396,8 +396,8 @@ void MusicDownloadWidget::startRequestMusic(const MusicObject::MusicSongInformat
                 }
             }
 
-            MusicDownloadTagDataRequest *d = new MusicDownloadTagDataRequest(prop.m_url, downloadName, MusicObject::Download::Music, this);
-            d->setRecordType(MusicObject::Record::NormalDownload);
+            MusicDownloadTagDataRequest *d = new MusicDownloadTagDataRequest(prop.m_url, downloadName, TTK::Download::Music, this);
+            d->setRecordType(TTK::Record::NormalDownload);
             connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
 
             MusicSongMeta meta;
@@ -417,18 +417,18 @@ void MusicDownloadWidget::startRequestMusic(const MusicObject::MusicSongInformat
 
 void MusicDownloadWidget::startRequestMovie()
 {
-    const MusicObject::MusicSongInformation info(matchMusicSongInformation());
+    const TTK::MusicSongInformation info(matchMusicSongInformation());
     if(!info.m_songName.isEmpty() || !info.m_singerName.isEmpty())
     {
         startRequestMovie(info);
     }
 }
 
-void MusicDownloadWidget::startRequestMovie(const MusicObject::MusicSongInformation &info)
+void MusicDownloadWidget::startRequestMovie(const TTK::MusicSongInformation &info)
 {
     const MusicDownloadTableItemRole &role = m_ui->viewArea->currentItemRole();
-    const MusicObject::MusicSongPropertyList &props = info.m_songProps;
-    for(const MusicObject::MusicSongProperty &prop : qAsConst(props))
+    const TTK::MusicSongPropertyList &props = info.m_songProps;
+    for(const TTK::MusicSongProperty &prop : qAsConst(props))
     {
         if(role.isEqual(MusicDownloadTableItemRole(prop.m_bitrate, prop.m_format, prop.m_size)))
         {
@@ -458,7 +458,7 @@ void MusicDownloadWidget::startRequestMovie(const MusicObject::MusicSongInformat
                 }
             }
 
-            MusicDownloadDataRequest *d = new MusicDownloadDataRequest(prop.m_url, downloadName, MusicObject::Download::Video, this);
+            MusicDownloadDataRequest *d = new MusicDownloadDataRequest(prop.m_url, downloadName, TTK::Download::Video, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
             d->startRequest();
         }

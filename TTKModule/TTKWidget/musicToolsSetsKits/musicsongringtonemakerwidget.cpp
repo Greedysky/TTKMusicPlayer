@@ -21,20 +21,20 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->addSongButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->playSongButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->playRingButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->saveSongButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->addSongButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->playSongButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->playRingButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->saveSongButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->formatCombo);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->kbpsCombo);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->hzCombo);
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->msCombo);
+    TTK::Widget::generateComboBoxFormat(m_ui->formatCombo);
+    TTK::Widget::generateComboBoxFormat(m_ui->kbpsCombo);
+    TTK::Widget::generateComboBoxFormat(m_ui->hzCombo);
+    TTK::Widget::generateComboBoxFormat(m_ui->msCombo);
 #ifdef Q_OS_UNIX
     m_ui->addSongButton->setFocusPolicy(Qt::NoFocus);
     m_ui->playSongButton->setFocusPolicy(Qt::NoFocus);
@@ -78,7 +78,7 @@ void MusicSongRingtoneMaker::initInputPath()
     }
     filter = filter.trimmed() + ")";
 
-    const QString &path = MusicUtils::File::getOpenFileName(this, filter);
+    const QString &path = TTK::File::getOpenFileName(this, filter);
     if(path.isEmpty())
     {
         return;
@@ -90,7 +90,7 @@ void MusicSongRingtoneMaker::initInputPath()
     {
         QString name = QFileInfo(m_inputFilePath).fileName();
         m_ui->songLabelValue->setToolTip(name);
-        name = MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 220);
+        name = TTK::Widget::elidedText(font(), name, Qt::ElideRight, 220);
         m_ui->songLabelValue->setText(tr("SongName: %1 (%2, %3, %4)").arg(name, meta.duration(), meta.sampleRate(), meta.bitrate()));
     }
     else
@@ -111,7 +111,7 @@ void MusicSongRingtoneMaker::initInputPath()
 void MusicSongRingtoneMaker::initOutputPath()
 {
     QString value = QString("Files (*.%1)").arg(m_ui->formatCombo->currentText().toLower());
-            value = MusicUtils::File::getSaveFileName(this, value);
+            value = TTK::File::getSaveFileName(this, value);
     if(value.isEmpty())
     {
         return;

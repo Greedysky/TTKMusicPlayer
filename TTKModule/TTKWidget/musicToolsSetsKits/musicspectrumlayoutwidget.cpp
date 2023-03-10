@@ -14,7 +14,7 @@ MusicSpectrumLayoutItem::MusicSpectrumLayoutItem(QWidget *parent)
 
 void MusicSpectrumLayoutItem::addCellItem(const QString &item, const QString &tip)
 {
-    setPixmap(MusicUtils::Image::roundedPixmap(item, 10, 10));
+    setPixmap(TTK::Image::roundedPixmap(item, 10, 10));
     setToolTip(tip);
 }
 
@@ -83,7 +83,7 @@ void MusicSpectrumLayoutWidget::initialize()
 {
     m_exclusive = false;
 
-    const QString &style = MusicUIObject::BorderStyle03 + MusicUIObject::BackgroundStyle10;
+    const QString &style = TTK::UI::BorderStyle03 + TTK::UI::BackgroundStyle10;
     setObjectName(className());
     setStyleSheet(QString("#%1{%2}").arg(className(), style));
 
@@ -97,15 +97,15 @@ void MusicSpectrumLayoutWidget::initialize()
 
     QScrollArea *scrollArea = new QScrollArea(m_containWidget);
     QWidget *containWidget = new QWidget(scrollArea);
-    containWidget->setStyleSheet(MusicUIObject::BackgroundStyle10);
+    containWidget->setStyleSheet(TTK::UI::BackgroundStyle10);
     m_containLayout = new QVBoxLayout(containWidget);
 
     m_containLayout->setContentsMargins(5, 0, 0, 0);
     m_containLayout->setSpacing(20);
     containWidget->setLayout(m_containLayout);
 
-    MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, containWidget);
-    scrollArea->viewport()->setStyleSheet(MusicUIObject::BackgroundStyle10);
+    TTK::Widget::generateVScrollAreaFormat(scrollArea, containWidget);
+    scrollArea->viewport()->setStyleSheet(TTK::UI::BackgroundStyle10);
     layout->addWidget(scrollArea);
 
     m_containWidget->setLayout(layout);

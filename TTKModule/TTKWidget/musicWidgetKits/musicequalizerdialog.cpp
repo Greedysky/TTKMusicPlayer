@@ -24,20 +24,20 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     initialize();
 
-    MusicUtils::Widget::generateComboBoxFormat(m_ui->eqChoice);
+    TTK::Widget::generateComboBoxFormat(m_ui->eqChoice);
     m_ui->eqChoice->addItems({tr("Custom"), tr("Default"), tr("Classical"), tr("Club"), tr("Dance"), tr("Bass"), tr("Soprano"),
                               tr("BassSoprano"), tr("Headset"), tr("Hall"), tr("Scene"), tr("Pop"), tr("Repaglinide"),
                               tr("Party"), tr("Rock"), tr("Oscar"), tr("Mild"), tr("SoftRock"), tr("Electronics")});
     connect(m_ui->eqChoice, SIGNAL(currentIndexChanged(int)), SLOT(equlizerTypeChanged(int)));
 
-    m_ui->showEqButton->setStyleSheet(MusicUIObject::EqualizerOff);
+    m_ui->showEqButton->setStyleSheet(TTK::UI::EqualizerOff);
 
 #ifdef Q_OS_UNIX
     m_ui->showEqButton->setFocusPolicy(Qt::NoFocus);
@@ -64,7 +64,7 @@ void MusicEqualizerDialog::setEnable()
 {
     m_enable = !m_enable;
     Q_EMIT setEnabledEffect(m_enable);
-    m_ui->showEqButton->setStyleSheet(!m_enable ? MusicUIObject::EqualizerOff : MusicUIObject::EqualizerOn);
+    m_ui->showEqButton->setStyleSheet(!m_enable ? TTK::UI::EqualizerOff : TTK::UI::EqualizerOn);
 
     setControlEnabled(m_enable);
     if(m_enable)
@@ -138,27 +138,27 @@ void MusicEqualizerDialog::initialize()
     {
         TTKClickedSlider *slider = sliders[i];
         slider->setRange(-15, 15);
-        slider->setStyleSheet(MusicUIObject::SliderStyle04);
+        slider->setStyleSheet(TTK::UI::SliderStyle04);
         clickedGroup->mapped(slider);
         connect(slider, SIGNAL(valueChanged(int)), SLOT(sliderValueChanged()));
     }
 
     connect(m_ui->showEqButton, SIGNAL(clicked()), SLOT(setEnable()));
     connect(m_ui->resetButton, SIGNAL(clicked()), SLOT(reset()));
-    m_ui->resetButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->resetButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 
 #ifdef Q_OS_UNIX
-    MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_21, 9);
-    MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_22, 9);
-    MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_23, 9);
-    MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_24, 9);
-    MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_25, 9);
-    MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_26, 9);
-    MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_27, 9);
-    MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_28, 9);
-    MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_29, 9);
-    MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_30, 9);
-    MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_31, 9);
+    TTK::Widget::setLabelFontSize(m_ui->showPerArea_21, 9);
+    TTK::Widget::setLabelFontSize(m_ui->showPerArea_22, 9);
+    TTK::Widget::setLabelFontSize(m_ui->showPerArea_23, 9);
+    TTK::Widget::setLabelFontSize(m_ui->showPerArea_24, 9);
+    TTK::Widget::setLabelFontSize(m_ui->showPerArea_25, 9);
+    TTK::Widget::setLabelFontSize(m_ui->showPerArea_26, 9);
+    TTK::Widget::setLabelFontSize(m_ui->showPerArea_27, 9);
+    TTK::Widget::setLabelFontSize(m_ui->showPerArea_28, 9);
+    TTK::Widget::setLabelFontSize(m_ui->showPerArea_29, 9);
+    TTK::Widget::setLabelFontSize(m_ui->showPerArea_30, 9);
+    TTK::Widget::setLabelFontSize(m_ui->showPerArea_31, 9);
 #endif
 }
 

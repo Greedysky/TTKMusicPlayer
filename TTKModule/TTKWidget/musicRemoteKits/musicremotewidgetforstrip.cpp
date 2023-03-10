@@ -38,12 +38,12 @@ MusicRemoteWidgetForStrip::MusicRemoteWidgetForStrip(QWidget *parent)
 #endif
 
     m_closeButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_songNameLabel->setStyleSheet(MusicUIObject::WidgetStyle01);
-    m_closeButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
-    m_lrcButton->setStyleSheet(MusicUIObject::TinyBtnLrcOff);
-    m_wallPaperButton->setStyleSheet(MusicUIObject::TinyBtnWallpaperOff);
-    m_listButton->setStyleSheet(MusicUIObject::TinyBtnList);
-    m_windowStateButton->setStyleSheet(MusicUIObject::TinyBtnCollapse);
+    m_songNameLabel->setStyleSheet(TTK::UI::WidgetStyle01);
+    m_closeButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
+    m_lrcButton->setStyleSheet(TTK::UI::TinyBtnLrcOff);
+    m_wallPaperButton->setStyleSheet(TTK::UI::TinyBtnWallpaperOff);
+    m_listButton->setStyleSheet(TTK::UI::TinyBtnList);
+    m_windowStateButton->setStyleSheet(TTK::UI::TinyBtnCollapse);
 
     m_lrcButton->setToolTip(tr("Lrc"));
     m_wallPaperButton->setToolTip(tr("WallPaper"));
@@ -103,7 +103,7 @@ MusicRemoteWidgetForStrip::~MusicRemoteWidgetForStrip()
 
 void MusicRemoteWidgetForStrip::setLabelText(const QString &value)
 {
-    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, width() - 20));
+    m_songNameLabel->setText(TTK::Widget::elidedText(font(), value, Qt::ElideRight, width() - 20));
 }
 
 void MusicRemoteWidgetForStrip::windowStateChanged()
@@ -111,7 +111,7 @@ void MusicRemoteWidgetForStrip::windowStateChanged()
     const bool f = m_windowStateButton->styleSheet().contains("collapse");
     setFixedHeight(f ? 50 : 80);
     m_bottomWidget->setVisible(!f);
-    m_windowStateButton->setStyleSheet(f ? MusicUIObject::TinyBtnExpand : MusicUIObject::TinyBtnCollapse);
+    m_windowStateButton->setStyleSheet(f ? TTK::UI::TinyBtnExpand : TTK::UI::TinyBtnCollapse);
     m_windowStateButton->setToolTip(f ? tr("Expand") : tr("Collapse"));
 }
 
@@ -131,7 +131,7 @@ void MusicRemoteWidgetForStrip::contextMenuEvent(QContextMenuEvent *event)
     QMenu menu(this);
     menu.setWindowFlags(menu.windowFlags() | Qt::FramelessWindowHint);
     menu.setAttribute(Qt::WA_TranslucentBackground);
-    menu.setStyleSheet(MusicUIObject::MenuStyle03);
+    menu.setStyleSheet(TTK::UI::MenuStyle03);
     menu.addAction(QIcon(":/contextMenu/btn_selected"), tr("WindowTop"))->setEnabled(false);
     menu.addAction(tr("Show MainWindow"), this, SIGNAL(musicWindowChanged()));
     menu.addAction(tr("Quit"), this, SLOT(close()));

@@ -15,7 +15,7 @@ void MusicAbstractMVRadioRequest::startToSearch(QueryType type, const QString &v
     m_queryValue = value.isEmpty() ? "1" : value;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(MV_CATEGORY_URL, false));
+    request.setUrl(TTK::Algorithm::mdII(MV_CATEGORY_URL, false));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);

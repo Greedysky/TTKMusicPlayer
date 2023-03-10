@@ -18,7 +18,7 @@ MusicWebDJRadioProgramTableWidget::MusicWebDJRadioProgramTableWidget(QWidget *pa
     headerview->resizeSection(4, 105);
     headerview->resizeSection(5, 110);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle03);
+    verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 
     m_programThread = new MusicDJRadioProgramRequest(this);
     connect(m_programThread, SIGNAL(createProgramItem(MusicResultDataItem)), SLOT(createProgramItem(MusicResultDataItem)));
@@ -29,7 +29,7 @@ MusicWebDJRadioProgramTableWidget::~MusicWebDJRadioProgramTableWidget()
     delete m_programThread;
 }
 
-void MusicWebDJRadioProgramTableWidget::initialize(MusicObject::Program type)
+void MusicWebDJRadioProgramTableWidget::initialize(TTK::Program type)
 {
     m_programThread->startRequest(type);
 }
@@ -43,7 +43,7 @@ void MusicWebDJRadioProgramTableWidget::resizeSection()
     for(int i = 0; i < rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 2);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
+        it->setText(TTK::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
     }
 }
 
@@ -94,23 +94,23 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultDataI
 
                       item = new QTableWidgetItem;
     item->setToolTip(data.m_name);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
+    item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 2, item);
 
                       item = new QTableWidgetItem(data.m_tags);
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(index, 3, item);
 
                       item = new QTableWidgetItem(tr("Played %1").arg(data.m_playCount));
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 4, item);
 
                       item = new QTableWidgetItem(data.m_updateTime);
-    item->setForeground(QColor(MusicUIObject::Color02));
+    item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(index, 5, item);
 
@@ -148,7 +148,7 @@ void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &bytes
 
 
 
-MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(MusicObject::Program type, QWidget *parent)
+MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(TTK::Program type, QWidget *parent)
     : QWidget(parent),
       m_type(type)
 {
@@ -162,7 +162,7 @@ MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(MusicObject::Program 
     topLayout->setContentsMargins(10, 20, 10, 0);
     top->setLayout(topLayout);
 
-    QLabel *label = new QLabel(type == MusicObject::Program::Recommed ? tr("Recommend") : tr("Program"), this);
+    QLabel *label = new QLabel(type == TTK::Program::Recommed ? tr("Recommend") : tr("Program"), this);
     QFont font = label->font();
     font.setPixelSize(20);
     font.setBold(true);
@@ -171,7 +171,7 @@ MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(MusicObject::Program 
 
     QPushButton *backButton = new QPushButton(tr("Back"), this);
     backButton->setFixedSize(90, 30);
-    backButton->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    backButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     backButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(backButton, SIGNAL(clicked()), parent, SLOT(backToMainMenu()));
     topLayout->addWidget(backButton);
@@ -183,7 +183,7 @@ MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(MusicObject::Program 
 
     QFrame *line = new QFrame(this);
     line->setFrameShape(QFrame::HLine);
-    line->setStyleSheet(MusicUIObject::ColorStyle05);
+    line->setStyleSheet(TTK::UI::ColorStyle05);
     layout->addWidget(line);
 
     m_tableWidget = new MusicWebDJRadioProgramTableWidget(this);
@@ -215,7 +215,7 @@ MusicWebDJRadioWidget::MusicWebDJRadioWidget(QWidget *parent)
       m_queryWidget(nullptr)
 {
     setObjectName(className());
-    setStyleSheet(QString("#%1{%2}").arg(className(), MusicUIObject::BackgroundStyle10));
+    setStyleSheet(QString("#%1{%2}").arg(className(), TTK::UI::BackgroundStyle10));
 
     initFirstWidget();
 }
@@ -264,7 +264,7 @@ void MusicWebDJRadioWidget::backToMainMenu()
 void MusicWebDJRadioWidget::createRecommendWidget()
 {
     delete m_recommendWidget;
-    m_recommendWidget = new MusicWebDJRadioProgramWidget(MusicObject::Program::Recommed, this);
+    m_recommendWidget = new MusicWebDJRadioProgramWidget(TTK::Program::Recommed, this);
     m_recommendWidget->initialize();
     addWidget(m_recommendWidget);
     setCurrentWidget(m_recommendWidget);
@@ -273,7 +273,7 @@ void MusicWebDJRadioWidget::createRecommendWidget()
 void MusicWebDJRadioWidget::createProgramWidget()
 {
     delete m_programWidget;
-    m_programWidget = new MusicWebDJRadioProgramWidget(MusicObject::Program::Rank, this);
+    m_programWidget = new MusicWebDJRadioProgramWidget(TTK::Program::Rank, this);
     m_programWidget->initialize();
     addWidget(m_programWidget);
     setCurrentWidget(m_programWidget);
@@ -332,7 +332,7 @@ void MusicWebDJRadioWidget::initFirstWidget()
     connect(recommendLabel, SIGNAL(clicked()), SLOT(createRecommendWidget()));
 
     TTKClickedLabel *recommendMoreLabel = new TTKClickedLabel(tr("More >"), leftTop);
-    recommendMoreLabel->setStyleSheet(MusicUIObject::ColorStyle04);
+    recommendMoreLabel->setStyleSheet(TTK::UI::ColorStyle04);
     connect(recommendMoreLabel, SIGNAL(clicked()), SLOT(createRecommendWidget()));
     leftTopLayout->addWidget(recommendMoreLabel);
     topLayout->addWidget(leftTop);
@@ -351,14 +351,14 @@ void MusicWebDJRadioWidget::initFirstWidget()
     connect(programLabel, SIGNAL(clicked()), SLOT(createProgramWidget()));
 
     TTKClickedLabel *programMoreLabel = new TTKClickedLabel(tr("More >"), rightTop);
-    programMoreLabel->setStyleSheet(MusicUIObject::ColorStyle04);
+    programMoreLabel->setStyleSheet(TTK::UI::ColorStyle04);
     connect(programMoreLabel, SIGNAL(clicked()), SLOT(createProgramWidget()));
     rightTopLayout->addWidget(programMoreLabel);
     topLayout->addWidget(rightTop);
     //
     QFrame *line = new QFrame(w);
     line->setFrameShape(QFrame::HLine);
-    line->setStyleSheet(MusicUIObject::ColorStyle05);
+    line->setStyleSheet(TTK::UI::ColorStyle05);
     layout->addWidget(line);
     //
     m_categoryWidget = new MusicWebDJRadioCategoryWidget(this);

@@ -16,7 +16,7 @@
 #  include <QDesktopServices>
 #endif
 
-namespace MusicObject
+namespace TTK
 {
     inline QString generateSongArtist(const QString &v)
     {
@@ -56,7 +56,7 @@ MusicLocalManagerStatisticTableWidget::MusicLocalManagerStatisticTableWidget(QWi
     hide();
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    horizontalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle04);
+    horizontalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle04);
 }
 
 MusicLocalManagerStatisticTableWidget::~MusicLocalManagerStatisticTableWidget()
@@ -117,7 +117,7 @@ MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *pa
 
     setHorizontalHeaderLabels({tr("Title"), tr("Artist"), tr("Album"), tr("Year"), tr("Genre"), tr("Path")});
     setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    horizontalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle04);
+    horizontalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle04);
 
     m_songs = new MusicSongList;
 }
@@ -197,7 +197,7 @@ void MusicLocalManagerSongsTableWidget::contextMenuEvent(QContextMenuEvent *even
     MusicAbstractSongsListTableWidget::contextMenuEvent(event);
 
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
     menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
     menu.addAction(tr("Download More..."), this, SLOT(musicSongDownload()));
     menu.addSeparator();
@@ -218,7 +218,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     : QWidget(parent),
       MusicItemSearchInterfaceClass()
 {
-    setStyleSheet(MusicUIObject::BackgroundStyle10 + MusicUIObject::ColorStyle09);
+    setStyleSheet(TTK::UI::BackgroundStyle10 + TTK::UI::ColorStyle09);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
@@ -249,25 +249,25 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     QFont pLabelFont = pLabel->font();
     pLabelFont.setPixelSize(33);
     pLabel->setFont(pLabelFont);
-    pLabel->setStyleSheet(MusicUIObject::ColorStyle11);
+    pLabel->setStyleSheet(TTK::UI::ColorStyle11);
     functionWidgetLayout->addWidget(pLabel);
 
     m_sizeLabel = new QLabel(functionWidget);
-    m_sizeLabel->setStyleSheet(MusicUIObject::ColorStyle11);
+    m_sizeLabel->setStyleSheet(TTK::UI::ColorStyle11);
     functionWidgetLayout->addWidget(m_sizeLabel);
     functionWidgetLayout->addStretch(1);
 
     QPushButton *refresh = new QPushButton(tr("Refresh"), functionWidget);
     refresh->setIcon(QIcon(":/functions/btn_similar_hover"));
     refresh->setFixedSize(90, 30);
-    refresh->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    refresh->setStyleSheet(TTK::UI::PushButtonStyle03);
     refresh->setCursor(QCursor(Qt::PointingHandCursor));
     functionWidgetLayout->addWidget(refresh);
 
     QPushButton *button = new QPushButton(tr("Settings"), functionWidget);
     button->setIcon(QIcon(":/functions/btn_setting_hover"));
     button->setFixedSize(90, 30);
-    button->setStyleSheet(MusicUIObject::PushButtonStyle03);
+    button->setStyleSheet(TTK::UI::PushButtonStyle03);
     button->setCursor(QCursor(Qt::PointingHandCursor));
     functionWidgetLayout->addWidget(button);
 
@@ -307,7 +307,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     centerWidgetLayout->addWidget(m_songWidget, 3);
 
     m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::CicleBlue, this);
-    m_loadingLabel->setStyleSheet(MusicUIObject::BackgroundStyle01);
+    m_loadingLabel->setStyleSheet(TTK::UI::BackgroundStyle01);
     m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words"));
 
     QTimer::singleShot(MT_ONCE, this, SLOT(refreshItems()));
@@ -379,7 +379,7 @@ void MusicLocalManagerWidget::refreshItems()
     }
 
     m_loadingLabel->run(true);
-    const QStringList &files = MusicUtils::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats());
+    const QStringList &files = TTK::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats());
     m_sizeLabel->setText(tr("   (Songs Totol: %1)").arg(files.size()));
 
     MusicSongMeta meta;
@@ -388,11 +388,11 @@ void MusicLocalManagerWidget::refreshItems()
         const bool state = meta.read(file);
 
         MusicSongInfoItem info;
-        info.m_title = state ? MusicObject::generateSongName(meta.title(), meta.artist()) : TTK_DEFAULT_STR;
-        info.m_artist = state ? MusicObject::generateSongArtist(meta.artist()) : TTK_DEFAULT_STR;
-        info.m_album = state ? MusicObject::generateSongAlbum(meta.album()) : TTK_DEFAULT_STR;
-        info.m_year = state ? MusicObject::generateSongYear(meta.year()) : TTK_DEFAULT_STR;
-        info.m_genre = state ? MusicObject::generateSongGenre(meta.genre()) : TTK_DEFAULT_STR;
+        info.m_title = state ? TTK::generateSongName(meta.title(), meta.artist()) : TTK_DEFAULT_STR;
+        info.m_artist = state ? TTK::generateSongArtist(meta.artist()) : TTK_DEFAULT_STR;
+        info.m_album = state ? TTK::generateSongAlbum(meta.album()) : TTK_DEFAULT_STR;
+        info.m_year = state ? TTK::generateSongYear(meta.year()) : TTK_DEFAULT_STR;
+        info.m_genre = state ? TTK::generateSongGenre(meta.genre()) : TTK_DEFAULT_STR;
         info.m_path = file;
         m_containerItems << info;
 
@@ -406,7 +406,7 @@ void MusicLocalManagerWidget::refreshItems()
 
 void MusicLocalManagerWidget::updateMediaLibraryPath()
 {
-    const QString &path = MusicUtils::File::getExistingDirectory(this);
+    const QString &path = TTK::File::getExistingDirectory(this);
     if(!path.isEmpty())
     {
         G_SETTING_PTR->setValue(MusicSettingManager::MediaLibraryPath, path);

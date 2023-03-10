@@ -25,7 +25,7 @@
 /*! @brief The namespace of the utils ttk qmmp.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicUtils
+namespace TTK
 {
     namespace TTKQmmp
     {

@@ -16,7 +16,7 @@ MusicLrcFloatPhotoItem::MusicLrcFloatPhotoItem(int index, QWidget *parent)
 
     m_checkBox = new QCheckBox(this);
     m_checkBox->setGeometry(100, 45, 16, 16);
-    m_checkBox->setStyleSheet(MusicUIObject::InteriorFloatPhotoItem);
+    m_checkBox->setStyleSheet(TTK::UI::InteriorFloatPhotoItem);
 #ifdef Q_OS_UNIX
     m_checkBox->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -37,7 +37,7 @@ void MusicLrcFloatPhotoItem::setPhoto(const QString &path)
     if(!m_pixPath.isEmpty())
     {
         pix.load(m_pixPath);
-        pix = MusicUtils::Image::roundedPixmap(pix, size(), 5, 5);
+        pix = TTK::Image::roundedPixmap(pix, size(), 5, 5);
     }
     setPixmap(pix);
 }
@@ -98,12 +98,12 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     m_artistLabel = new QLabel(this);
     m_artistLabel->setAlignment(Qt::AlignCenter);
-    m_artistLabel->setStyleSheet(MusicUIObject::ColorStyle12 + MusicUIObject::BorderStyle07 + MusicUIObject::BackgroundStyle06);
+    m_artistLabel->setStyleSheet(TTK::UI::ColorStyle12 + TTK::UI::BorderStyle07 + TTK::UI::BackgroundStyle06);
     layout->addWidget(m_artistLabel);
 
     QWidget *areaWidget = new QWidget(this);
     areaWidget->setObjectName("AreaWidget");
-    areaWidget->setStyleSheet(QString("#AreaWidget{%1}").arg(MusicUIObject::BackgroundStyle07));
+    areaWidget->setStyleSheet(QString("#AreaWidget{%1}").arg(TTK::UI::BackgroundStyle07));
     QHBoxLayout *areaLayout = new QHBoxLayout(areaWidget);
     areaLayout->setContentsMargins(9, 18, 9, 9);
     areaWidget->setLayout(areaLayout);
@@ -111,7 +111,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     m_previous = new QPushButton(this);
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
-    m_previous->setStyleSheet(MusicUIObject::InteriorFloatPhotoPrevious);
+    m_previous->setStyleSheet(TTK::UI::InteriorFloatPhotoPrevious);
     m_previous->setFixedSize(20, 52);
     areaLayout->addWidget(m_previous);
 
@@ -127,13 +127,13 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     m_next = new QPushButton(this);
     m_next->setCursor(QCursor(Qt::PointingHandCursor));
-    m_next->setStyleSheet(MusicUIObject::InteriorFloatPhotoNext);
+    m_next->setStyleSheet(TTK::UI::InteriorFloatPhotoNext);
     m_next->setFixedSize(20, 52);
     areaLayout->addWidget(m_next);
 
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setObjectName("FunctionWidget");
-    functionWidget->setStyleSheet(QString("#FunctionWidget{%1}").arg(MusicUIObject::BackgroundStyle07));
+    functionWidget->setStyleSheet(QString("#FunctionWidget{%1}").arg(TTK::UI::BackgroundStyle07));
     QHBoxLayout *functionLayout = new QHBoxLayout(functionWidget);
     functionLayout->setContentsMargins(18, 9, 18, 9);
     functionLayout->setSpacing(15);
@@ -142,7 +142,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     m_checkBox = new QCheckBox(tr("All"), functionWidget);
     m_checkBox->setCursor(QCursor(Qt::PointingHandCursor));
-    m_checkBox->setStyleSheet(MusicUIObject::CheckBoxStyle05);
+    m_checkBox->setStyleSheet(TTK::UI::CheckBoxStyle05);
     m_checkBox->setFixedSize(50, 20);
     m_checkBox->setChecked(true);
     functionLayout->addWidget(m_checkBox);
@@ -150,19 +150,19 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     QPushButton *manageButton = new QPushButton(tr("Manage"), functionWidget);
     manageButton->setCursor(QCursor(Qt::PointingHandCursor));
-    manageButton->setStyleSheet(MusicUIObject::InteriorFloatSetting + MusicUIObject::PushButtonStyle06);
+    manageButton->setStyleSheet(TTK::UI::InteriorFloatSetting + TTK::UI::PushButtonStyle06);
     manageButton->setFixedSize(55, 25);
     functionLayout->addWidget(manageButton);
 
     QPushButton *confirmButton = new QPushButton(tr("OK"), functionWidget);
     confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
-    confirmButton->setStyleSheet(MusicUIObject::InteriorFloatSetting + MusicUIObject::PushButtonStyle06);
+    confirmButton->setStyleSheet(TTK::UI::InteriorFloatSetting + TTK::UI::PushButtonStyle06);
     confirmButton->setFixedSize(55, 25);
     functionLayout->addWidget(confirmButton);
 
     QPushButton *cancelButton = new QPushButton(tr("Cancel"), functionWidget);
     cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
-    cancelButton->setStyleSheet(MusicUIObject::InteriorFloatSetting + MusicUIObject::PushButtonStyle06);
+    cancelButton->setStyleSheet(TTK::UI::InteriorFloatSetting + TTK::UI::PushButtonStyle06);
     cancelButton->setFixedSize(55, 25);
     functionLayout->addWidget(cancelButton);
 
@@ -282,7 +282,7 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
 
     const QString &name = G_BACKGROUND_PTR->artistName();
     m_artistLabel->setText(name);
-    m_artistLabel->setFixedSize(MusicUtils::Widget::fontTextWidth(m_artistLabel->font(), name) + 50, 35);
+    m_artistLabel->setFixedSize(TTK::Widget::fontTextWidth(m_artistLabel->font(), name) + 50, 35);
 }
 
 void MusicLrcFloatPhotoWidget::photoNext()

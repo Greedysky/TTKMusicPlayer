@@ -14,7 +14,7 @@ void MusicDownloadBingSkinRequest::startRequest()
 {
     MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startRequest(MusicUtils::Algorithm::mdII(QUERY_URL, false));
+    d->startRequest(TTK::Algorithm::mdII(QUERY_URL, false));
 }
 
 void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)
@@ -47,7 +47,7 @@ void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)
                 item.m_name = value["copyright"].toString();
                 item.m_index = value["startdate"].toInt();
                 item.m_useCount = item.m_index;
-                item.m_url = MusicUtils::Algorithm::mdII(PREFIX_URL, false).arg(value["urlbase"].toString());
+                item.m_url = TTK::Algorithm::mdII(PREFIX_URL, false).arg(value["urlbase"].toString());
 
                 if(item.isValid())
                 {

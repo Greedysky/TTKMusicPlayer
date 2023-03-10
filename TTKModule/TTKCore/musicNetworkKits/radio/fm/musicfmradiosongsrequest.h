@@ -42,7 +42,7 @@ public:
     /*!
      * Get music song information.
      */
-    inline const MusicObject::MusicSongInformation& songInfo() const { return m_songInfo; }
+    inline const TTK::MusicSongInformation& songInfo() const { return m_songInfo; }
 
 public Q_SLOTS:
     /*!
@@ -52,7 +52,7 @@ public Q_SLOTS:
 
 private:
     QString m_cachedID;
-    MusicObject::MusicSongInformation m_songInfo;
+    TTK::MusicSongInformation m_songInfo;
 
 };
 

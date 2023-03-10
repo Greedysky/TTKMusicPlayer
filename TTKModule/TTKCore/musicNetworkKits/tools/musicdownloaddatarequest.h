@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor provide download url save local path and download type.
      */
-    MusicDownloadDataRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent = nullptr);
+    MusicDownloadDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent = nullptr);
 
     /*!
      * Start to download data from net.
@@ -42,7 +42,7 @@ public:
     /*!
      * Set record type.
      */
-    void setRecordType(MusicObject::Record type);
+    void setRecordType(TTK::Record type);
 
 Q_SIGNALS:
     /*!
@@ -88,7 +88,7 @@ protected:
 
     qint64 m_createTime;
     bool m_redirection, m_needUpdate;
-    MusicObject::Record m_recordType;
+    TTK::Record m_recordType;
 
 };
 

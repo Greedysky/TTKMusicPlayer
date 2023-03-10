@@ -43,8 +43,8 @@ MusicRemoteWidgetForComplexStyle::MusicRemoteWidgetForComplexStyle(QWidget *pare
     mvWidget->setLayout(mvbox);
 
     m_iconLabel->setFixedSize(80, 80);
-    m_songName->setStyleSheet(MusicUIObject::WidgetStyle01);
-    m_songArtist->setStyleSheet(MusicUIObject::WidgetStyle01);
+    m_songName->setStyleSheet(TTK::UI::WidgetStyle01);
+    m_songArtist->setStyleSheet(TTK::UI::WidgetStyle01);
 }
 
 MusicRemoteWidgetForComplexStyle::~MusicRemoteWidgetForComplexStyle()
@@ -56,10 +56,10 @@ MusicRemoteWidgetForComplexStyle::~MusicRemoteWidgetForComplexStyle()
 
 void MusicRemoteWidgetForComplexStyle::setLabelText(const QString &value)
 {
-    const bool flag = (MusicUtils::String::stringSplit(value).count() == 1);
+    const bool flag = (TTK::String::stringSplit(value).count() == 1);
 
-    m_songName->setText(MusicUtils::String::songName(value));
-    m_songArtist->setText(flag ? "--" : MusicUtils::String::artistName(value));
+    m_songName->setText(TTK::String::songName(value));
+    m_songArtist->setText(flag ? "--" : TTK::String::artistName(value));
 
     if(!showArtPicture(m_songArtist->text()) && !showArtPicture(m_songName->text()))
     {

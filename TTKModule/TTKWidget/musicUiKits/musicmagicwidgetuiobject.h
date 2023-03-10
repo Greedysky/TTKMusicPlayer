@@ -24,48 +24,51 @@
 /*! @brief The namespace of the application ui object.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicUIObject
+namespace TTK
 {
-    const QString EnhanceOn = " \
-            QToolButton{ border:none; \
-            background-image: url(:/enhance/btn_magic_on_normal); } \
-            QToolButton:hover{ background-image: url(:/enhance/btn_magic_on_hover); }";
+    namespace UI
+    {
+        const QString EnhanceOn = " \
+                QToolButton{ border:none; \
+                background-image: url(:/enhance/btn_magic_on_normal); } \
+                QToolButton:hover{ background-image: url(:/enhance/btn_magic_on_hover); }";
 
-    const QString EnhanceOff = " \
-            QToolButton{ border:none; \
-            background-image: url(:/enhance/btn_magic_off_normal); } \
-            QToolButton:hover{ background-image: url(:/enhance/btn_magic_off_hover); }";
+        const QString EnhanceOff = " \
+                QToolButton{ border:none; \
+                background-image: url(:/enhance/btn_magic_off_normal); } \
+                QToolButton:hover{ background-image: url(:/enhance/btn_magic_off_hover); }";
 
-    const QString EnhanceClose = " \
-            QToolButton{ border:none; \
-            background-image: url(:/enhance/btn_close_normal); } \
-            QToolButton:hover{ background-image: url(:/enhance/btn_close_hover); }";
+        const QString EnhanceClose = " \
+                QToolButton{ border:none; \
+                background-image: url(:/enhance/btn_close_normal); } \
+                QToolButton:hover{ background-image: url(:/enhance/btn_close_hover); }";
 
-    const QString EnhanceHelp = " \
-            QToolButton{ border:none; \
-            background-image: url(:/enhance/btn_help_normal); } \
-            QToolButton:hover{ background-image: url(:/enhance/btn_help_hover); }";
+        const QString EnhanceHelp = " \
+                QToolButton{ border:none; \
+                background-image: url(:/enhance/btn_help_normal); } \
+                QToolButton:hover{ background-image: url(:/enhance/btn_help_hover); }";
 
-    const QString EnhanceShare = " \
-            QToolButton{ border:none; \
-            background-image: url(:/enhance/btn_share_normal); } \
-            QToolButton:hover{ background-image: url(:/enhance/btn_share_hover); }";
+        const QString EnhanceShare = " \
+                QToolButton{ border:none; \
+                background-image: url(:/enhance/btn_share_normal); } \
+                QToolButton:hover{ background-image: url(:/enhance/btn_share_hover); }";
 
-    const QString EnhanceTitle = " \
-            QToolButton{ border:none; \
-            background-image: url(:/enhance/lb_title_normal); } \
-            QToolButton:hover{ background-image: url(:/enhance/lb_title_hover); }";
+        const QString EnhanceTitle = " \
+                QToolButton{ border:none; \
+                background-image: url(:/enhance/lb_title_normal); } \
+                QToolButton:hover{ background-image: url(:/enhance/lb_title_hover); }";
 
-    const QString EqualizerOn = " \
-            QPushButton{ border:none; \
-            background-image: url(:/enhance/btn_equalizer_on_normal); } \
-            QPushButton:hover{ background-image: url(:/enhance/btn_equalizer_on_hover); }";
+        const QString EqualizerOn = " \
+                QPushButton{ border:none; \
+                background-image: url(:/enhance/btn_equalizer_on_normal); } \
+                QPushButton:hover{ background-image: url(:/enhance/btn_equalizer_on_hover); }";
 
-    const QString EqualizerOff = " \
-            QPushButton{ border:none; \
-            background-image: url(:/enhance/btn_equalizer_off_normal); } \
-            QPushButton:hover{ background-image: url(:/enhance/btn_equalizer_off_hover); }";
+        const QString EqualizerOff = " \
+                QPushButton{ border:none; \
+                background-image: url(:/enhance/btn_equalizer_off_normal); } \
+                QPushButton:hover{ background-image: url(:/enhance/btn_equalizer_off_hover); }";
 
+    }
 }
 
 #endif // MUSICMAGICWIDGETUIOBJECT_H

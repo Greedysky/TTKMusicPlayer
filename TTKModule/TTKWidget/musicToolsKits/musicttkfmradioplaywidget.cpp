@@ -73,12 +73,12 @@ MusicTTKFMRadioInformationWidget::MusicTTKFMRadioInformationWidget(QWidget *pare
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->button->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->button->setStyleSheet(TTK::UI::PushButtonStyle04);
 #ifdef Q_OS_UNIX
     m_ui->button->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -123,7 +123,7 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     setBackgroundLabel(m_ui->background);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -132,12 +132,12 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     m_ui->previousButton->setIcon(QIcon(":/functions/btn_previous_hover"));
     m_ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
 
-    m_ui->playButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
-    m_ui->previousButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
-    m_ui->nextButton->setStyleSheet(MusicUIObject::BackgroundStyle01);
-    m_ui->addButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->deleteButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->infoButton->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->playButton->setStyleSheet(TTK::UI::BackgroundStyle01);
+    m_ui->previousButton->setStyleSheet(TTK::UI::BackgroundStyle01);
+    m_ui->nextButton->setStyleSheet(TTK::UI::BackgroundStyle01);
+    m_ui->addButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->deleteButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->infoButton->setStyleSheet(TTK::UI::PushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->playButton->setFocusPolicy(Qt::NoFocus);
@@ -159,7 +159,7 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     m_ui->deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->infoButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->volumeSlider->setStyleSheet(MusicUIObject::SliderStyle10);
+    m_ui->volumeSlider->setStyleSheet(TTK::UI::SliderStyle10);
     m_ui->volumeSlider->setRange(0, 100);
     m_ui->volumeSlider->setValue(100);
 
@@ -168,25 +168,25 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     m_ui->itemTree->setColumnWidth(1, 100);
 
     m_ui->itemTree->header()->setVisible(false);
-    m_ui->itemTree->setStyleSheet(MusicUIObject::ColorStyle09);
+    m_ui->itemTree->setStyleSheet(TTK::UI::ColorStyle09);
     m_ui->itemTree->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->itemTree->verticalScrollBar()->setStyleSheet(MusicUIObject::ScrollBarStyle03);
+    m_ui->itemTree->verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
     m_ui->itemTree->setFocusPolicy(Qt::NoFocus);
 
     TTKLabelItemDelegate *delegateTitle = new TTKLabelItemDelegate(this);
     delegateTitle->setModuleMode(TTKAbstractItemDelegate::DisplayMode);
     delegateTitle->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    delegateTitle->setStyleSheet(MusicUIObject::BackgroundStyle01);
+    delegateTitle->setStyleSheet(TTK::UI::BackgroundStyle01);
     m_ui->itemTree->setItemDelegateForColumn(0, delegateTitle);
 
     TTKLabelItemDelegate *delegateName = new TTKLabelItemDelegate(this);
     delegateName->setModuleMode(TTKAbstractItemDelegate::DisplayMode);
     delegateName->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    delegateName->setStyleSheet(MusicUIObject::BackgroundStyle01);
+    delegateName->setStyleSheet(TTK::UI::BackgroundStyle01);
     m_ui->itemTree->setItemDelegateForColumn(1, delegateName);
 
     initialize();
-    MusicUtils::Widget::positionInCenter(this);
+    TTK::Widget::positionInCenter(this);
 
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
     connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(radioPrevious()));

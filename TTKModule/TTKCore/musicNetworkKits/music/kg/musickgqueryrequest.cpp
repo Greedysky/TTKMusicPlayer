@@ -16,7 +16,7 @@ void MusicKGQueryRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_SONG_SEARCH_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
+    request.setUrl(TTK::Algorithm::mdII(KG_SONG_SEARCH_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -42,7 +42,7 @@ void MusicKGQueryRequest::startToSingleSearch(const QString &id)
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(id));
+    request.setUrl(TTK::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(id));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);
@@ -79,14 +79,14 @@ void MusicKGQueryRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicObject::MusicSongInformation info;
-                    info.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
-                    info.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
+                    TTK::MusicSongInformation info;
+                    info.m_singerName = TTK::String::charactersReplaced(value["singername"].toString());
+                    info.m_songName = TTK::String::charactersReplaced(value["songname"].toString());
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
 
                     info.m_songId = value["hash"].toString();
                     info.m_albumId = value["album_id"].toString();
-                    info.m_albumName = MusicUtils::String::charactersReplaced(value["album_name"].toString());
+                    info.m_albumName = TTK::String::charactersReplaced(value["album_name"].toString());
 
                     info.m_year = QString();
                     info.m_trackNumber = "0";
@@ -141,14 +141,14 @@ void MusicKGQueryRequest::downLoadSingleFinished()
             if(value["errcode"].toInt() == 0 && value.contains("data"))
             {
                 value = value["data"].toMap();
-                MusicObject::MusicSongInformation info;
+                TTK::MusicSongInformation info;
                 info.m_songId = value["hash"].toString();
-                info.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
-                info.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
+                info.m_singerName = TTK::String::charactersReplaced(value["singername"].toString());
+                info.m_songName = TTK::String::charactersReplaced(value["songname"].toString());
                 info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
                 info.m_artistId = value["singerid"].toString();
                 info.m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
-                info.m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(info.m_songName, info.m_songId).arg(value["duration"].toInt() * MT_S2MS);
+                info.m_lrcUrl = TTK::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(info.m_songName, info.m_songId).arg(value["duration"].toInt() * MT_S2MS);
 
                 const QVariantList &albumArray = value["album"].toList();
                 for(const QVariant &var : qAsConst(albumArray))
@@ -160,7 +160,7 @@ void MusicKGQueryRequest::downLoadSingleFinished()
 
                     const QVariantMap &albumObject = var.toMap();
                     info.m_albumId = albumObject["album_audio_id"].toString();
-                    info.m_albumName = MusicUtils::String::charactersReplaced(albumObject["album_name"].toString());
+                    info.m_albumName = TTK::String::charactersReplaced(albumObject["album_name"].toString());
                 }
 
                 info.m_year = QString();

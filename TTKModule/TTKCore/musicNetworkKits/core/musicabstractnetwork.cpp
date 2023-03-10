@@ -3,7 +3,7 @@
 MusicAbstractNetwork::MusicAbstractNetwork(QObject *parent)
     : QObject(parent),
       m_interrupt(false),
-      m_stateCode(MusicObject::NetworkCode::Query),
+      m_stateCode(TTK::NetworkCode::Query),
       m_reply(nullptr)
 {
 #ifndef QT_NO_SSL
@@ -14,7 +14,7 @@ MusicAbstractNetwork::MusicAbstractNetwork(QObject *parent)
 MusicAbstractNetwork::~MusicAbstractNetwork()
 {
     m_interrupt = true;
-    m_stateCode = MusicObject::NetworkCode::Error;
+    m_stateCode = TTK::NetworkCode::Error;
 
     deleteAll();
 }
@@ -66,7 +66,7 @@ void MusicAbstractNetwork::sslErrorsString(QNetworkReply *reply, const QList<QSs
 }
 #endif
 
-namespace MusicObject
+namespace TTK
 {
 void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode)
 {
@@ -87,7 +87,7 @@ qint64 queryFileSizeByUrl(const QString &url)
 
     QNetworkRequest request;
     request.setUrl(url);
-    MusicObject::setSslConfiguration(&request);
+    TTK::setSslConfiguration(&request);
 
     TTKSemaphoreLoop loop;
     QNetworkAccessManager manager;

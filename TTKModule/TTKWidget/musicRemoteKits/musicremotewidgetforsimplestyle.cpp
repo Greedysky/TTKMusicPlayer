@@ -13,7 +13,7 @@ MusicRemoteWidgetForSimpleStyle::MusicRemoteWidgetForSimpleStyle(QWidget *parent
     setLayout(vbox);
 
     m_songNameLabel = new MusicMarqueeWidget(this);
-    m_songNameLabel->setStyleSheet(MusicUIObject::WidgetStyle01);
+    m_songNameLabel->setStyleSheet(TTK::UI::WidgetStyle01);
     m_preSongButton->hide();
     m_nextSongButton->hide();
 
@@ -35,5 +35,5 @@ MusicRemoteWidgetForSimpleStyle::~MusicRemoteWidgetForSimpleStyle()
 
 void MusicRemoteWidgetForSimpleStyle::setLabelText(const QString &value)
 {
-    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, width() - 20));
+    m_songNameLabel->setText(TTK::Widget::elidedText(font(), value, Qt::ElideRight, width() - 20));
 }

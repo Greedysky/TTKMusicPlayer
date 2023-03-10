@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor provide download url save local path and download type.
      */
-    MusicAbstractDownLoadRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent = nullptr);
+    MusicAbstractDownLoadRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent = nullptr);
     ~MusicAbstractDownLoadRequest();
 
     /*!
@@ -80,7 +80,7 @@ protected:
 
     QFile *m_file;
     QString m_url, m_savePath;
-    MusicObject::Download m_downloadType;
+    TTK::Download m_downloadType;
     qint64 m_hasReceived, m_currentReceived, m_totalSize;
     QTimer m_speedTimer;
 

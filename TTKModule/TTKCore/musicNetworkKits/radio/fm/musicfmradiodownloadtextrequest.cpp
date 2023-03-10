@@ -1,6 +1,6 @@
 #include "musicfmradiodownloadtextrequest.h"
 
-MusicFMRadioDownLoadTextRequest::MusicFMRadioDownLoadTextRequest(const QString &url, const QString &path, MusicObject::Download type, QObject *parent)
+MusicFMRadioDownLoadTextRequest::MusicFMRadioDownLoadTextRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent)
     : MusicAbstractDownLoadRequest(url, path, type, parent)
 {
 
@@ -16,7 +16,7 @@ void MusicFMRadioDownLoadTextRequest::startRequest()
 
             QNetworkRequest request;
             request.setUrl(m_url);
-            MusicObject::setSslConfiguration(&request);
+            TTK::setSslConfiguration(&request);
 
             m_reply = m_manager.get(request);
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

@@ -22,7 +22,7 @@
 #include "musicitemsearchtablewidget.h"
 #include "musicabstractqueryrequest.h"
 
-Q_DECLARE_METATYPE(MusicObject::MusicSongInformation)
+Q_DECLARE_METATYPE(TTK::MusicSongInformation)
 
 /*! @brief The class of the video item play data item.
  * @author Greedysky <greedysky@163.com>
@@ -101,7 +101,7 @@ public Q_SLOTS:
     /*!
      * Get music media information data.
      */
-    void musicMediaInfo(MusicObject::MusicSongPropertyList &props);
+    void musicMediaInfo(TTK::MusicSongPropertyList &props);
     /*!
      * Download current mv by controller.
      */

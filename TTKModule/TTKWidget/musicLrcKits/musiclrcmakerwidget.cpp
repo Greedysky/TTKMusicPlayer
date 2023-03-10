@@ -20,7 +20,7 @@ MusicLrcMakerWidgetItem::MusicLrcMakerWidgetItem(QWidget *ui, QObject *parent)
     : QLabel(ui),
       m_parent(parent)
 {
-    setStyleSheet(MusicUIObject::BorderStyle02 + MusicUIObject::BackgroundStyle10);
+    setStyleSheet(TTK::UI::BorderStyle02 + TTK::UI::BackgroundStyle10);
     setFixedSize(650, TTK_ITEM_SIZE_L);
 
     reset();
@@ -96,7 +96,7 @@ void MusicLrcMakerWidgetItem::moveLeft()
 void MusicLrcMakerWidgetItem::moveRight()
 {
     m_leftDirection = false;
-    const int w = MusicUtils::Widget::fontTextWidth(font(), text());
+    const int w = TTK::Widget::fontTextWidth(font(), text());
     m_paintIndex += m_itemDelta;
 
     if(m_paintIndex >= w)
@@ -112,14 +112,14 @@ void MusicLrcMakerWidgetItem::setText(const QString &string)
 {
     QLabel::setText(string);
     const int len = string.isEmpty() ? 1 : string.length();
-    m_itemDelta = MusicUtils::Widget::fontTextWidth(font(), string) / len;
+    m_itemDelta = TTK::Widget::fontTextWidth(font(), string) / len;
 }
 
 void MusicLrcMakerWidgetItem::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
 
-    const int w = MusicUtils::Widget::fontTextWidth(font(), text());
+    const int w = TTK::Widget::fontTextWidth(font(), text());
     if(!m_leftDirection && m_intervalCount + w >= width() && m_paintIndex >= width() / 2)
     {
         m_intervalCount -= m_itemDelta;
@@ -152,12 +152,12 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
 
     m_ui->stackedWidget->setFocusPolicy(Qt::StrongFocus);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::ToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->stackedWidget->setStyleSheet(QString("#stackedWidget{%1}").arg(MusicUIObject::BackgroundStyle10));
+    m_ui->stackedWidget->setStyleSheet(QString("#stackedWidget{%1}").arg(TTK::UI::BackgroundStyle10));
 
     createMainWidget();
     createFirstWidget();
@@ -185,9 +185,9 @@ MusicLrcMakerWidget::~MusicLrcMakerWidget()
 void MusicLrcMakerWidget::setCurrentSongName(const QString &name)
 {
     m_plainText.clear();
-    m_analysis->setCurrentFilePath(QString("%1%2%3").arg(MusicUtils::String::lrcDirPrefix(), name, LRC_FILE));
-    m_ui->songNameEdit->setText(MusicUtils::String::songName(name));
-    m_ui->artNameEdit->setText(MusicUtils::String::artistName(name));
+    m_analysis->setCurrentFilePath(QString("%1%2%3").arg(TTK::String::lrcDirPrefix(), name, LRC_FILE));
+    m_ui->songNameEdit->setText(TTK::String::songName(name));
+    m_ui->artNameEdit->setText(TTK::String::artistName(name));
 }
 
 void MusicLrcMakerWidget::positionChanged(qint64 position)
@@ -492,8 +492,8 @@ void MusicLrcMakerWidget::createCurrentLine(int key)
 
 void MusicLrcMakerWidget::createMainWidget()
 {
-    m_ui->nextButton_M->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->cancelButton_M->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->nextButton_M->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->cancelButton_M->setStyleSheet(TTK::UI::PushButtonStyle04);
 #ifdef Q_OS_UNIX
     m_ui->nextButton_M->setFocusPolicy(Qt::NoFocus);
     m_ui->cancelButton_M->setFocusPolicy(Qt::NoFocus);
@@ -544,13 +544,13 @@ void MusicLrcMakerWidget::createFirstWidget()
 {
     m_ui->stateButton_F->setText(!MusicApplication::instance()->isPlaying() ? tr("Play") : tr("Pause"));
 
-    m_ui->artNameEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
-    m_ui->songNameEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
-    m_ui->authorNameEdit->setStyleSheet(MusicUIObject::LineEditStyle01);
-    m_ui->introductionTextEdit->setStyleSheet(MusicUIObject::TextEditStyle01);
+    m_ui->artNameEdit->setStyleSheet(TTK::UI::LineEditStyle01);
+    m_ui->songNameEdit->setStyleSheet(TTK::UI::LineEditStyle01);
+    m_ui->authorNameEdit->setStyleSheet(TTK::UI::LineEditStyle01);
+    m_ui->introductionTextEdit->setStyleSheet(TTK::UI::TextEditStyle01);
     m_ui->lrcTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_ui->lrcTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->lrcTextEdit->setStyleSheet(MusicUIObject::TextEditStyle01 + MusicUIObject::ScrollBarStyle01);
+    m_ui->lrcTextEdit->setStyleSheet(TTK::UI::TextEditStyle01 + TTK::UI::ScrollBarStyle01);
     m_ui->lrcTextEdit->setAcceptRichText(false);
     m_ui->lrcTextEdit->setLineWrapMode(QTextEdit::NoWrap);
 
@@ -561,11 +561,11 @@ void MusicLrcMakerWidget::createFirstWidget()
     m_ui->lrcTextEdit->setTextCursor(cur);
 
     m_ui->timeSlider_F->setFocusPolicy(Qt::NoFocus);
-    m_ui->timeSlider_F->setStyleSheet(MusicUIObject::SliderStyle09);
-    m_ui->stateButton_F->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->previousButton_F->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->nextButton_F->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->cancelButton_F->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->timeSlider_F->setStyleSheet(TTK::UI::SliderStyle09);
+    m_ui->stateButton_F->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->previousButton_F->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->nextButton_F->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->cancelButton_F->setStyleSheet(TTK::UI::PushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->stateButton_F->setFocusPolicy(Qt::NoFocus);
@@ -590,7 +590,7 @@ void MusicLrcMakerWidget::createSecondWidget()
     m_ui->makeTextEdit->setLineWrapMode(QTextEdit::NoWrap);
     m_ui->makeTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_ui->makeTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->makeTextEdit->setStyleSheet(MusicUIObject::TextEditStyle01 + MusicUIObject::ScrollBarStyle01);
+    m_ui->makeTextEdit->setStyleSheet(TTK::UI::TextEditStyle01 + TTK::UI::ScrollBarStyle01);
     m_ui->makeTextEdit->setAcceptRichText(false);
     m_ui->makeTextEdit->setAutoFormatting(QTextEdit::AutoNone);
     m_ui->makeTextEdit->setEnabled(false);
@@ -600,10 +600,10 @@ void MusicLrcMakerWidget::createSecondWidget()
     m_ui->makeTextEdit->setFont(font);
 
     m_ui->timeSlider_S->setFocusPolicy(Qt::NoFocus);
-    m_ui->timeSlider_S->setStyleSheet(MusicUIObject::SliderStyle09);
-    m_ui->previousButton_S->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->nextButton_S->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->cancelButton_S->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->timeSlider_S->setStyleSheet(TTK::UI::SliderStyle09);
+    m_ui->previousButton_S->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->nextButton_S->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->cancelButton_S->setStyleSheet(TTK::UI::PushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->previousButton_S->setFocusPolicy(Qt::NoFocus);
@@ -635,18 +635,18 @@ void MusicLrcMakerWidget::createThirdWidget()
     m_ui->timeSlider_T->setFocusPolicy(Qt::NoFocus);
     m_ui->lrc_make_up_T->setToolTip(tr("Before 1.0s"));
     m_ui->lrc_make_down_T->setToolTip(tr("After 1.0s"));
-    m_ui->lrc_make_up_T->setStyleSheet(MusicUIObject::InteriorMakeUp);
-    m_ui->lrc_make_down_T->setStyleSheet(MusicUIObject::InteriorMakeDown);
+    m_ui->lrc_make_up_T->setStyleSheet(TTK::UI::InteriorMakeUp);
+    m_ui->lrc_make_down_T->setStyleSheet(TTK::UI::InteriorMakeDown);
     connect(m_ui->lrc_make_up_T, SIGNAL(clicked()), SLOT(lrcSpeedSlower()));
     connect(m_ui->lrc_make_down_T, SIGNAL(clicked()), SLOT(lrcSpeedFaster()));
 
-    m_ui->timeSlider_T->setStyleSheet(MusicUIObject::SliderStyle09);
-    m_ui->stateButton_T->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->remakeButton_T->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->uploadButton_T->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->saveButton_T->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->previousButton_T->setStyleSheet(MusicUIObject::PushButtonStyle04);
-    m_ui->cancelButton_T->setStyleSheet(MusicUIObject::PushButtonStyle04);
+    m_ui->timeSlider_T->setStyleSheet(TTK::UI::SliderStyle09);
+    m_ui->stateButton_T->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->remakeButton_T->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->uploadButton_T->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->saveButton_T->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->previousButton_T->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->cancelButton_T->setStyleSheet(TTK::UI::PushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->stateButton_T->setFocusPolicy(Qt::NoFocus);
@@ -715,11 +715,11 @@ void MusicLrcMakerWidget::resetToOriginPlayMode()
     MusicApplication *w = MusicApplication::instance();
     switch(m_playMode)
     {
-        case MusicObject::PlayMode::Order: w->musicPlayOrder(); break;
-        case MusicObject::PlayMode::Random: w->musicPlayRandom(); break;
-        case MusicObject::PlayMode::ListLoop: w->musicPlaylistLoop(); break;
-        case MusicObject::PlayMode::OneLoop: w->musicPlayOneLoop(); break;
-        case MusicObject::PlayMode::Once: w->musicPlayOnce(); break;
+        case TTK::PlayMode::Order: w->musicPlayOrder(); break;
+        case TTK::PlayMode::Random: w->musicPlayRandom(); break;
+        case TTK::PlayMode::ListLoop: w->musicPlaylistLoop(); break;
+        case TTK::PlayMode::OneLoop: w->musicPlayOneLoop(); break;
+        case TTK::PlayMode::Once: w->musicPlayOnce(); break;
         default: break;
     }
 }

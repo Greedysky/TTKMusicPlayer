@@ -9,10 +9,10 @@ MusicFMRadioSongsRequest::MusicFMRadioSongsRequest(QObject *parent)
 void MusicFMRadioSongsRequest::startRequest(const QString &id)
 {
     m_cachedID = id;
-    m_songInfo = MusicObject::MusicSongInformation();
+    m_songInfo = TTK::MusicSongInformation();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(FM_PLAYLIST_URL, false).arg(id));
+    request.setUrl(TTK::Algorithm::mdII(FM_PLAYLIST_URL, false).arg(id));
     MusicFMInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -51,7 +51,7 @@ void MusicFMRadioSongsRequest::downLoadFinished()
                     continue;
                 }
 
-                MusicObject::MusicSongProperty prop;
+                TTK::MusicSongProperty prop;
                 prop.m_url = value["url"].toString();
                 prop.m_bitrate = value["kbps"].toInt();
                 prop.m_format = value["file_ext"].toString();
@@ -60,15 +60,15 @@ void MusicFMRadioSongsRequest::downLoadFinished()
                 const QString &bitrate = QString::number(prop.m_bitrate);
                 if(formats.contains(bitrate))
                 {
-                    prop.m_size = MusicUtils::Number::sizeByteToLabel(formats[bitrate].toInt() * 1000);
+                    prop.m_size = TTK::Number::sizeByteToLabel(formats[bitrate].toInt() * 1000);
                 }
 
                 m_songInfo.m_songProps << prop;
-                m_songInfo.m_songName = MusicUtils::String::charactersReplaced(value["title"].toString());
-                m_songInfo.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
+                m_songInfo.m_songName = TTK::String::charactersReplaced(value["title"].toString());
+                m_songInfo.m_singerName = TTK::String::charactersReplaced(value["artist"].toString());
                 m_songInfo.m_coverUrl = value["picture"].toString();
-                m_songInfo.m_albumName = MusicUtils::String::charactersReplaced(value["albumtitle"].toString());
-                m_songInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(FM_LRC_URL, false).arg(value["sid"].toString(), value["ssid"].toString());
+                m_songInfo.m_albumName = TTK::String::charactersReplaced(value["albumtitle"].toString());
+                m_songInfo.m_lrcUrl = TTK::Algorithm::mdII(FM_LRC_URL, false).arg(value["sid"].toString(), value["ssid"].toString());
 
                 if(!m_songInfo.m_songProps.isEmpty())
                 {

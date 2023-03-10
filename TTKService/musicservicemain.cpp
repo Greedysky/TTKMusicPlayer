@@ -27,7 +27,7 @@ static void cleanAppicationCache()
     process << MAKE_TRANSFORM_NAME
             << MAKE_PLAYER_NAME
             << MAKE_GAIN_NAME;
-    TTKObject::killProcessByName(process);
+    TTK::killProcessByName(process);
 }
 
 static void loadAppScaledFactor(int argc, char *argv[])
@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
         app.installTranslator(translator);
     }
 
-    TTKObject::setApplicationFont(&app);
+    TTK::setApplicationFont(&app);
 
     MusicApplication w;
     w.show();

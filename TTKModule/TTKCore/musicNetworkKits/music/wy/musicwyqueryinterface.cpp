@@ -6,12 +6,12 @@
 
 void MusicWYInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
-    request->setRawHeader("Referer", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
-    request->setRawHeader("Origin", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
-    request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(WY_UA_URL, ALG_UA_KEY, false).toUtf8());
-    request->setRawHeader("Cookie", QString("MUSIC_U=%1; NMTID=%2; ").arg(MusicUtils::Algorithm::mdII(WY_COOKIE_URL, false),
-                                            MusicUtils::Algorithm::mdII(WY_NMTID_URL, ALG_UA_KEY, false)).toUtf8());
-    MusicObject::setSslConfiguration(request);
+    request->setRawHeader("Referer", TTK::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
+    request->setRawHeader("Origin", TTK::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
+    request->setRawHeader("User-Agent", TTK::Algorithm::mdII(WY_UA_URL, ALG_UA_KEY, false).toUtf8());
+    request->setRawHeader("Cookie", QString("MUSIC_U=%1; NMTID=%2; ").arg(TTK::Algorithm::mdII(WY_COOKIE_URL, false),
+                                            TTK::Algorithm::mdII(WY_NMTID_URL, ALG_UA_KEY, false)).toUtf8());
+    TTK::setSslConfiguration(request);
 }
 
 
@@ -20,7 +20,7 @@ QByteArray MusicWYQueryInterface::makeTokenRequest(QNetworkRequest *request, con
     QAlgorithm::Aes aes;
     QByteArray parameter = aes.encryptCBC(type.toUtf8(), "0CoJUm6Qyw8W8jud", "0102030405060708");
     parameter = aes.encryptCBC(parameter, "a44e542eaac91dce", "0102030405060708");
-    MusicUtils::Url::urlEncode(parameter);
+    TTK::Url::urlEncode(parameter);
 
     request->setUrl(query);
     MusicWYInterface::makeRequestRawHeader(request);
@@ -28,13 +28,13 @@ QByteArray MusicWYQueryInterface::makeTokenRequest(QNetworkRequest *request, con
     return "params=" + parameter + "&encSecKey=" + WY_SECKRY_STRING.toUtf8();
 }
 
-void MusicWYQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformation *info, int bitrate) const
+void MusicWYQueryInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate) const
 {
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate * 1000).arg(info->m_songId));
+    request.setUrl(TTK::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate * 1000).arg(info->m_songId));
     MusicWYInterface::makeRequestRawHeader(&request);
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
     {
         return;
@@ -54,7 +54,7 @@ void MusicWYQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformat
                 return;
             }
 
-            MusicObject::MusicSongProperty prop;
+            TTK::MusicSongProperty prop;
             prop.m_url = value["url"].toString();
             prop.m_bitrate = bitrate;
 
@@ -69,14 +69,14 @@ void MusicWYQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformat
                 return;
             }
 
-            prop.m_size = MusicUtils::Number::sizeByteToLabel(value["size"].toInt());
+            prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());
             prop.m_format = value["type"].toString();
             info->m_songProps.append(prop);
         }
     }
 }
 
-void MusicWYQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
+void MusicWYQueryInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const
 {
     int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
@@ -128,33 +128,33 @@ void MusicWYQueryInterface::parseFromSongProperty(MusicObject::MusicSongInformat
     }
     else
     {
-        if(quality == MusicObject::QueryQuality::Standard && maxBr >= MB_128)
+        if(quality == TTK::QueryQuality::Standard && maxBr >= MB_128)
         {
             parseFromSongProperty(info, MB_128);
         }
-        else if(quality == MusicObject::QueryQuality::High && maxBr >= MB_192)
+        else if(quality == TTK::QueryQuality::High && maxBr >= MB_192)
         {
             parseFromSongProperty(info, MB_192);
         }
-        else if(quality == MusicObject::QueryQuality::Super && maxBr >= MB_320)
+        else if(quality == TTK::QueryQuality::Super && maxBr >= MB_320)
         {
             parseFromSongProperty(info, MB_320);
         }
-        else if(quality == MusicObject::QueryQuality::Lossless && maxBr >= MB_1000)
+        else if(quality == TTK::QueryQuality::Lossless && maxBr >= MB_1000)
         {
             parseFromSongProperty(info, MB_1000);
         }
     }
 }
 
-void MusicWYQueryInterface::parseFromSongPropertyNew(MusicObject::MusicSongInformation *info, int bitrate) const
+void MusicWYQueryInterface::parseFromSongPropertyNew(TTK::MusicSongInformation *info, int bitrate) const
 {
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
-                      MusicUtils::Algorithm::mdII(WY_SONG_PATH_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SONG_PATH_DATA_URL, false).arg(info->m_songId).arg(bitrate * 1000));
+                      TTK::Algorithm::mdII(WY_SONG_PATH_URL, false),
+                      TTK::Algorithm::mdII(WY_SONG_PATH_DATA_URL, false).arg(info->m_songId).arg(bitrate * 1000));
 
-    const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
+    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
     if(bytes.isEmpty())
     {
         return;
@@ -178,7 +178,7 @@ void MusicWYQueryInterface::parseFromSongPropertyNew(MusicObject::MusicSongInfor
 
                 value = var.toMap();
 
-                MusicObject::MusicSongProperty prop;
+                TTK::MusicSongProperty prop;
                 prop.m_url = value["url"].toString();
                 prop.m_bitrate = bitrate;
 
@@ -187,7 +187,7 @@ void MusicWYQueryInterface::parseFromSongPropertyNew(MusicObject::MusicSongInfor
                     break;
                 }
 
-                prop.m_size = MusicUtils::Number::sizeByteToLabel(value["size"].toInt());
+                prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());
                 prop.m_format = value["type"].toString();
                 info->m_songProps.append(prop);
             }
@@ -195,7 +195,7 @@ void MusicWYQueryInterface::parseFromSongPropertyNew(MusicObject::MusicSongInfor
     }
 }
 
-void MusicWYQueryInterface::parseFromSongPropertyNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, MusicObject::QueryQuality quality, bool all) const
+void MusicWYQueryInterface::parseFromSongPropertyNew(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const
 {
     int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
@@ -247,19 +247,19 @@ void MusicWYQueryInterface::parseFromSongPropertyNew(MusicObject::MusicSongInfor
     }
     else
     {
-        if(quality == MusicObject::QueryQuality::Standard && maxBr >= MB_128)
+        if(quality == TTK::QueryQuality::Standard && maxBr >= MB_128)
         {
             parseFromSongProperty(info, MB_128);
         }
-        else if(quality == MusicObject::QueryQuality::High && maxBr >= MB_192)
+        else if(quality == TTK::QueryQuality::High && maxBr >= MB_192)
         {
             parseFromSongProperty(info, MB_192);
         }
-        else if(quality == MusicObject::QueryQuality::Super && maxBr >= MB_320)
+        else if(quality == TTK::QueryQuality::Super && maxBr >= MB_320)
         {
             parseFromSongProperty(info, MB_320);
         }
-        else if(quality == MusicObject::QueryQuality::Lossless && maxBr >= MB_1000)
+        else if(quality == TTK::QueryQuality::Lossless && maxBr >= MB_1000)
         {
             parseFromSongProperty(info, MB_1000);
         }

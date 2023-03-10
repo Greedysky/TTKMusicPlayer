@@ -22,7 +22,7 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
     headerview->resizeSection(4, 45);
 
     m_hasParentToolIndex = false;
-    MusicUtils::Widget::setTransparent(this, 255);
+    TTK::Widget::setTransparent(this, 255);
 }
 
 MusicSongsListPlayedTableWidget::~MusicSongsListPlayedTableWidget()
@@ -46,8 +46,8 @@ void MusicSongsListPlayedTableWidget::updateSongsList(const MusicSongList &songs
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.name());
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));  
-        item->setForeground(QColor(MusicUIObject::Color01));
+        item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));  
+        item->setForeground(QColor(TTK::UI::Color01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
@@ -58,7 +58,7 @@ void MusicSongsListPlayedTableWidget::updateSongsList(const MusicSongList &songs
         setItem(i, 3, item);
 
                           item = new QTableWidgetItem(v.playTime());
-        item->setForeground(QColor(MusicUIObject::Color01));
+        item->setForeground(QColor(TTK::UI::Color01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
     }
@@ -147,8 +147,8 @@ void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
 
     item = new QTableWidgetItem;
     item->setToolTip(name);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
-    item->setForeground(QColor(MusicUIObject::Color01));
+    item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
+    item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
 
     setItem(m_playRowIndex, 1, item);
@@ -156,7 +156,7 @@ void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
     setItem(m_playRowIndex, 3, new QTableWidgetItem);
 
     item = new QTableWidgetItem((*m_songs)[m_playRowIndex].playTime());
-    item->setForeground(QColor(MusicUIObject::Color01));
+    item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 4, item);
 
@@ -283,14 +283,14 @@ void MusicSongsListPlayedTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MenuStyle02);
+    menu.setStyleSheet(TTK::UI::MenuStyle02);
     menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
     menu.addAction(tr("Download More..."), this, SLOT(musicSongDownload()));
     menu.addSeparator();
 
     createMoreMenu(&menu);
 
-    const bool status = !MusicUtils::String::isNetworkUrl(currentSongPath());
+    const bool status = !TTK::String::isNetworkUrl(currentSongPath());
     menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));

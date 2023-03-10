@@ -232,7 +232,7 @@ private:
     QStringList m_plainText;
     QMap<int, qint64> m_times;
     int m_currentLine;
-    MusicObject::PlayMode m_playMode;
+    TTK::PlayMode m_playMode;
     qint64 m_intervalTime;
     MusicLrcMakerWidgetItem *m_lineItem;
     MusicLrcAnalysis *m_analysis;

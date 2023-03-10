@@ -25,7 +25,7 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
 
     m_mainWindow = new QStackedWidget(this);
     m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::BackgroundStyle10));
+    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(TTK::UI::BackgroundStyle10));
     layout->addWidget(m_mainWindow);
     setLayout(layout);
 
@@ -75,7 +75,7 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
         return;
     }
 
-    if(m_detectedButton->styleSheet().contains(MusicUIObject::SongsDetectStartBtn))
+    if(m_detectedButton->styleSheet().contains(TTK::UI::SongsDetectStartBtn))
     {
         m_recordCore->onRecordStart();
         if(m_recordCore->error())
@@ -86,7 +86,7 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
 
         m_detectedMovie->start();
         m_timer->start();
-        m_detectedButton->setStyleSheet(MusicUIObject::SongsDetectStopBtn);
+        m_detectedButton->setStyleSheet(TTK::UI::SongsDetectStopBtn);
         m_detectedLabel->setText(tr("Recognizing playing song"));
     }
     else
@@ -94,7 +94,7 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
         m_recordCore->onRecordStop();
         m_detectedMovie->stop();
         m_timer->stop();
-        m_detectedButton->setStyleSheet(MusicUIObject::SongsDetectStartBtn);
+        m_detectedButton->setStyleSheet(TTK::UI::SongsDetectStartBtn);
         m_detectedLabel->setText(tr("Intelligent recognition of playing song"));
     }
 }
@@ -206,7 +206,7 @@ void MusicIdentifySongsWidget::positionChanged(qint64 position)
 void MusicIdentifySongsWidget::createDetectedWidget()
 {
     QWidget *widget = new QWidget(m_mainWindow);
-    widget->setStyleSheet(MusicUIObject::ColorStyle03 + MusicUIObject::FontStyle04);
+    widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle04);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
 
     m_detectedMovie = new QMovie(":/toolSets/lb_radar", QByteArray(), widget);
@@ -217,7 +217,7 @@ void MusicIdentifySongsWidget::createDetectedWidget()
     iconLabelLayout->setContentsMargins(0, 0, 0, 0);
 
     m_detectedButton = new QPushButton(widget);
-    m_detectedButton->setStyleSheet(MusicUIObject::SongsDetectStartBtn);
+    m_detectedButton->setStyleSheet(TTK::UI::SongsDetectStartBtn);
     m_detectedButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_detectedButton->setFixedSize(162, 162);
 #ifdef Q_OS_UNIX
@@ -233,7 +233,7 @@ void MusicIdentifySongsWidget::createDetectedWidget()
     m_detectedLabel->setText(tr("Intelligent recognition of playing song"));
 
     QLabel *text = new QLabel(tr("Shortcut:") + " Shift + Ctrl + T", widget);
-    text->setStyleSheet(MusicUIObject::FontStyle03);
+    text->setStyleSheet(TTK::UI::FontStyle03);
 
     widgetLayout->addStretch(2);
     widgetLayout->addWidget(iconLabel, 0, Qt::AlignCenter);
@@ -264,7 +264,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     const MusicSongIdentifyData songIdentify(m_detectedThread->identifySongs().front());
 
     QWidget *widget = new QWidget(m_mainWindow);
-    widget->setStyleSheet(MusicUIObject::ColorStyle03 + MusicUIObject::FontStyle04);
+    widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle04);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
     //
     QWidget *infoWidget = new QWidget(widget);
@@ -288,7 +288,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
 
     if(!d->isEmpty())
     {
-        for(const MusicObject::MusicSongInformation &info : d->songInfoList())
+        for(const TTK::MusicSongInformation &info : d->songInfoList())
         {
             if(info.m_singerName.toLower().trimmed().contains(songIdentify.m_singerName.toLower().trimmed(), Qt::CaseInsensitive) &&
                info.m_songName.toLower().trimmed().contains(songIdentify.m_songName.toLower().trimmed(), Qt::CaseInsensitive))
@@ -306,7 +306,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         const QString &name = ART_DIR_FULL + m_songInfo.m_singerName + SKN_FILE;
         if(!QFile::exists(name))
         {
-            MusicDownloadDataRequest *d = new MusicDownloadDataRequest(m_songInfo.m_coverUrl, name, MusicObject::Download::Cover, this);
+            MusicDownloadDataRequest *d = new MusicDownloadDataRequest(m_songInfo.m_coverUrl, name, TTK::Download::Cover, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startRequest();
             loop.exec();
@@ -340,10 +340,10 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     downButton->setCursor(QCursor(Qt::PointingHandCursor));
     shareButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    playButton->setStyleSheet(MusicUIObject::SongsDetectPlayBtn);
-    loveButton->setStyleSheet(MusicUIObject::SongsDetectUnloveBtn);
-    downButton->setStyleSheet(MusicUIObject::SongsDetectDownloadBtn);
-    shareButton->setStyleSheet(MusicUIObject::SongsDetectShareBtn);
+    playButton->setStyleSheet(TTK::UI::SongsDetectPlayBtn);
+    loveButton->setStyleSheet(TTK::UI::SongsDetectUnloveBtn);
+    downButton->setStyleSheet(TTK::UI::SongsDetectDownloadBtn);
+    shareButton->setStyleSheet(TTK::UI::SongsDetectShareBtn);
     connect(playButton, SIGNAL(clicked()), SLOT(musicSongPlay()));
     connect(downButton, SIGNAL(clicked()), SLOT(musicSongDownload()));
     connect(shareButton, SIGNAL(clicked()), SLOT(musicSongShare()));
@@ -361,7 +361,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
 
     if(!m_songInfo.m_singerName.isEmpty())
     {
-        const QString &name = MusicUtils::String::lrcDirPrefix() + m_songInfo.m_singerName + " - " + m_songInfo.m_songName + LRC_FILE;
+        const QString &name = TTK::String::lrcDirPrefix() + m_songInfo.m_singerName + " - " + m_songInfo.m_songName + LRC_FILE;
         if(!QFile::exists(name))
         {
             MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_songInfo.m_lrcUrl, name, this);
@@ -383,12 +383,12 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     //
     QPushButton *reDetect = new QPushButton(widget);
     reDetect->setFixedSize(56, 56);
-    reDetect->setStyleSheet(MusicUIObject::SongsRedetectBtn);
+    reDetect->setStyleSheet(TTK::UI::SongsRedetectBtn);
     reDetect->setCursor(QCursor(Qt::PointingHandCursor));
     connect(reDetect, SIGNAL(clicked()), SLOT(reDetectButtonClicked()));
 
     QLabel *text3Label = new QLabel(tr("Redetect"), widget);
-    text3Label->setStyleSheet(MusicUIObject::FontStyle03);
+    text3Label->setStyleSheet(TTK::UI::FontStyle03);
 
     widgetLayout->addStretch(1);
     widgetLayout->addWidget(infoWidget, 1, Qt::AlignCenter);
@@ -410,7 +410,7 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
     }
 
     QWidget *widget = new QWidget(m_mainWindow);
-    widget->setStyleSheet(MusicUIObject::ColorStyle03 + MusicUIObject::FontStyle04);
+    widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle04);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
 
     QLabel *iconLabel = new QLabel(widget);
@@ -418,11 +418,11 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
     QLabel *text1Label = new QLabel(tr("There are no recognized songs"), widget);
     QLabel *text2Label = new QLabel(tr("Only playing songs can be recognized"), widget);
     QLabel *text3Label = new QLabel(tr("Redetect"), widget);
-    text3Label->setStyleSheet(MusicUIObject::FontStyle03);
+    text3Label->setStyleSheet(TTK::UI::FontStyle03);
     //
     QPushButton *reDetect = new QPushButton(widget);
     reDetect->setFixedSize(56, 56);
-    reDetect->setStyleSheet(MusicUIObject::SongsRedetectBtn);
+    reDetect->setStyleSheet(TTK::UI::SongsRedetectBtn);
     reDetect->setCursor(QCursor(Qt::PointingHandCursor));
     connect(reDetect, SIGNAL(clicked()), SLOT(reDetectButtonClicked()));
 #ifdef Q_OS_UNIX

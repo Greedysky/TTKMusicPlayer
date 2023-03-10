@@ -18,10 +18,10 @@ void MusicYDTranslationRequest::startRequest(const QString &data)
     QString sid;
     {
         QNetworkRequest request;
-        request.setUrl(MusicUtils::Algorithm::mdII(QUERY_URL, false));
-        MusicObject::setSslConfiguration(&request);
+        request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false));
+        TTK::setSslConfiguration(&request);
 
-        const QString &bytes = QString(MusicObject::syncNetworkQueryForGet(&request));
+        const QString &bytes = QString(TTK::syncNetworkQueryForGet(&request));
         if(bytes.isEmpty())
         {
             Q_EMIT downLoadDataChanged(QString());
@@ -39,8 +39,8 @@ void MusicYDTranslationRequest::startRequest(const QString &data)
     }
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(TRANSLATION_URL, false).arg(sid, mapToString(Language::Chinese), data));
-    MusicObject::setSslConfiguration(&request);
+    request.setUrl(TTK::Algorithm::mdII(TRANSLATION_URL, false).arg(sid, mapToString(Language::Chinese), data));
+    TTK::setSslConfiguration(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

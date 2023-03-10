@@ -83,7 +83,7 @@ protected:
      */
     virtual void addCellItem(int index, const MusicSong &record) = 0;
 
-    MusicObject::Record m_type;
+    TTK::Record m_type;
     TTKProgressBarItemDelegate *m_progressBarDelegate;
 
 };

@@ -41,8 +41,8 @@ QWidget* MusicPageQueryWidget::createPageWidget(QWidget *parent, int total)
         QFont font(w->font());
         font.setPixelSize(14);
         w->setFont(font);
-        w->setStyleSheet(MusicUIObject::ColorStyle04);
-        w->setFixedWidth(MusicUtils::Widget::fontTextWidth(font, w->text()));
+        w->setStyleSheet(TTK::UI::ColorStyle04);
+        w->setFixedWidth(TTK::Widget::fontTextWidth(font, w->text()));
         group->mapped(w);
     }
 
@@ -55,7 +55,7 @@ QWidget* MusicPageQueryWidget::createPageWidget(QWidget *parent, int total)
             m_pageItems[i]->hide();
         }
     }
-    m_pageItems[0]->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle01);
+    m_pageItems[0]->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle01);
 
     layout->addStretch(1);
     if(total != 0)
@@ -75,7 +75,7 @@ QWidget* MusicPageQueryWidget::createPageWidget(QWidget *parent, int total)
         QLabel *icon = new QLabel(func);
         icon->setPixmap(QPixmap(":/lrc/lb_no_results"));
         QLabel *text = new QLabel(tr("There is empty"), func);
-        text->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle04);
+        text->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle04);
 
         text->setAlignment(Qt::AlignCenter);
         funcLayout->addWidget(icon, 0, Qt::AlignCenter);
@@ -125,7 +125,7 @@ void MusicPageQueryWidget::page(int index, int total)
     int page = m_pageItems[0]->text().toInt();
     for(int i = 0; i < m_pageItems.count() - 2; ++i)
     {
-        m_pageItems[i]->setStyleSheet(MusicUIObject::ColorStyle04);
+        m_pageItems[i]->setStyleSheet(TTK::UI::ColorStyle04);
     }
 
     switch(index)
@@ -202,11 +202,11 @@ void MusicPageQueryWidget::page(int index, int total)
     for(int i = 0; i < m_pageItems.count() - 2; ++i)
     {
         TTKClickedLabel *w = m_pageItems[i];
-        w->setFixedWidth(MusicUtils::Widget::fontTextWidth(w->font(), w->text()));
+        w->setFixedWidth(TTK::Widget::fontTextWidth(w->font(), w->text()));
     }
 
     TTKClickedLabel *w = m_pageItems[m_currentPage];
-    w->setStyleSheet(MusicUIObject::ColorStyle04 + MusicUIObject::FontStyle01);
+    w->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle01);
     w->setFixedWidth(w->width() + 5);
 }
 
