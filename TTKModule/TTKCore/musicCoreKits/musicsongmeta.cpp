@@ -16,7 +16,7 @@ struct MusicMeta
     QString m_path;
     QPixmap m_cover;
     QString m_lyrics;
-    QMap<TagWrapper::Type, QString> m_metaData;
+    QMap<TagMeta::Type, QString> m_metaData;
 };
 
 
@@ -78,37 +78,37 @@ QString MusicSongMeta::fileBasePath()
 
 QString MusicSongMeta::fileRelatedPath()
 {
-    return songMeta()->m_metaData[TagWrapper::URL];
+    return songMeta()->m_metaData[TagMeta::URL];
 }
 
 QString MusicSongMeta::artist()
 {
-    return findLegalDataString(TagWrapper::ARTIST);
+    return findLegalDataString(TagMeta::ARTIST);
 }
 
 QString MusicSongMeta::title()
 {
-    return findLegalDataString(TagWrapper::TITLE);
+    return findLegalDataString(TagMeta::TITLE);
 }
 
 QString MusicSongMeta::album()
 {
-    return findLegalDataString(TagWrapper::ALBUM);
+    return findLegalDataString(TagMeta::ALBUM);
 }
 
 QString MusicSongMeta::comment()
 {
-    return songMeta()->m_metaData[TagWrapper::COMMENT];
+    return songMeta()->m_metaData[TagMeta::COMMENT];
 }
 
 QString MusicSongMeta::year()
 {
-    return songMeta()->m_metaData[TagWrapper::YEAR];
+    return songMeta()->m_metaData[TagMeta::YEAR];
 }
 
 QString MusicSongMeta::trackNum()
 {
-    const QString &v = songMeta()->m_metaData[TagWrapper::TRACK];
+    const QString &v = songMeta()->m_metaData[TagMeta::TRACK];
     bool ok = false;
     if(v.toInt(&ok) > 0)
     {
@@ -119,62 +119,62 @@ QString MusicSongMeta::trackNum()
 
 QString MusicSongMeta::genre()
 {
-    return findLegalDataString(TagWrapper::GENRE);
+    return findLegalDataString(TagMeta::GENRE);
 }
 
 QString MusicSongMeta::rating()
 {
-    return findLegalDataString(TagWrapper::RATING);
+    return findLegalDataString(TagMeta::RATING);
 }
 
 QString MusicSongMeta::channel()
 {
-    return songMeta()->m_metaData[TagWrapper::CHANNEL];
+    return songMeta()->m_metaData[TagMeta::CHANNEL];
 }
 
 QString MusicSongMeta::decoder()
 {
-    return songMeta()->m_metaData[TagWrapper::FORMAT];
+    return songMeta()->m_metaData[TagMeta::FORMAT];
 }
 
 void MusicSongMeta::setArtist(const QString &artist)
 {
-    songMeta()->m_metaData[TagWrapper::ARTIST] = artist;
+    songMeta()->m_metaData[TagMeta::ARTIST] = artist;
 }
 
 void MusicSongMeta::setTitle(const QString &title)
 {
-    songMeta()->m_metaData[TagWrapper::TITLE] = title;
+    songMeta()->m_metaData[TagMeta::TITLE] = title;
 }
 
 void MusicSongMeta::setAlbum(const QString &album)
 {
-    songMeta()->m_metaData[TagWrapper::ALBUM] = album;
+    songMeta()->m_metaData[TagMeta::ALBUM] = album;
 }
 
 void MusicSongMeta::setComment(const QString &comment)
 {
-    songMeta()->m_metaData[TagWrapper::COMMENT] = comment;
+    songMeta()->m_metaData[TagMeta::COMMENT] = comment;
 }
 
 void MusicSongMeta::setYear(const QString &year)
 {
-    songMeta()->m_metaData[TagWrapper::YEAR] = year;
+    songMeta()->m_metaData[TagMeta::YEAR] = year;
 }
 
 void MusicSongMeta::setTrackNum(const QString &track)
 {
-    songMeta()->m_metaData[TagWrapper::TRACK] = track;
+    songMeta()->m_metaData[TagMeta::TRACK] = track;
 }
 
 void MusicSongMeta::setGenre(const QString &genre)
 {
-    songMeta()->m_metaData[TagWrapper::GENRE] = genre;
+    songMeta()->m_metaData[TagMeta::GENRE] = genre;
 }
 
 void MusicSongMeta::setRating(const QString &rating)
 {
-    songMeta()->m_metaData[TagWrapper::RATING] = rating;
+    songMeta()->m_metaData[TagMeta::RATING] = rating;
 }
 
 void MusicSongMeta::setCover(const QPixmap &cover)
@@ -225,18 +225,18 @@ QString MusicSongMeta::lyrics()
 
 QString MusicSongMeta::sampleRate()
 {
-    return songMeta()->m_metaData[TagWrapper::SAMPLERATE];
+    return songMeta()->m_metaData[TagMeta::SAMPLERATE];
 }
 
 QString MusicSongMeta::bitrate()
 {
-    const QString &bitrate = songMeta()->m_metaData[TagWrapper::BITRATE];
+    const QString &bitrate = songMeta()->m_metaData[TagMeta::BITRATE];
     return bitrate.isEmpty() ? TTK_DEFAULT_STR : bitrate + " kbps";
 }
 
 QString MusicSongMeta::duration()
 {
-    return songMeta()->m_metaData[TagWrapper::LENGTH];
+    return songMeta()->m_metaData[TagMeta::LENGTH];
 }
 
 MusicSongMeta::MusicSongMeta(const MusicSongMeta &other)
@@ -249,23 +249,18 @@ MusicSongMeta::MusicSongMeta(const MusicSongMeta &other)
     m_offset = other.m_offset;
     m_path = other.m_path;
 
-    for(const MusicMeta *meta : m_songMetas)
+    for(const MusicMeta *meta : qAsConst(m_songMetas))
     {
         m_songMetas << new MusicMeta(*meta);
     }
 }
 
 MusicSongMeta::MusicSongMeta(MusicSongMeta &&other)
+    : m_offset(other.m_offset),
+      m_path(other.m_path),
+      m_songMetas(std::move(other.m_songMetas))
 {
-    if(this == &other)
-    {
-        return;
-    }
 
-    m_offset = other.m_offset;
-    m_path = other.m_path;
-    m_songMetas = other.m_songMetas;
-    other.m_songMetas.clear();
 }
 
 MusicSongMeta& MusicSongMeta::operator= (const MusicSongMeta &other)
@@ -278,7 +273,7 @@ MusicSongMeta& MusicSongMeta::operator= (const MusicSongMeta &other)
     m_offset = other.m_offset;
     m_path = other.m_path;
 
-    for(const MusicMeta *meta : m_songMetas)
+    for(const MusicMeta *meta : qAsConst(m_songMetas))
     {
         m_songMetas << new MusicMeta(*meta);
     }
@@ -293,11 +288,9 @@ MusicSongMeta& MusicSongMeta::operator= (MusicSongMeta &&other)
         return *this;
     }
 
-    m_offset = other.m_offset;
-    m_path = other.m_path;
-    m_songMetas = other.m_songMetas;
-    other.m_songMetas.clear();
-
+    std::swap(m_offset, other.m_offset);
+    std::swap(m_path, other.m_path);
+    std::swap(m_songMetas, other.m_songMetas);
     return *this;
 }
 
@@ -339,7 +332,7 @@ MusicMeta *MusicSongMeta::songMeta()
     return m_songMetas[m_offset];
 }
 
-QString MusicSongMeta::findLegalDataString(TagWrapper::Type type)
+QString MusicSongMeta::findLegalDataString(TagMeta::Type type)
 {
     const QString &v = songMeta()->m_metaData[type];
     return TTK::String::charactersReplaced(v);
@@ -360,29 +353,29 @@ bool MusicSongMeta::readInformation()
         {
             MusicMeta *meta = new MusicMeta;
             meta->m_path = info->path();
-            meta->m_metaData[TagWrapper::URL] = files.isEmpty() ? meta->m_path : files.front();
+            meta->m_metaData[TagMeta::URL] = files.isEmpty() ? meta->m_path : files.front();
 
-            meta->m_metaData[TagWrapper::SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
-            meta->m_metaData[TagWrapper::BITRATE] = info->value(Qmmp::BITRATE);
-            meta->m_metaData[TagWrapper::CHANNEL] = info->value(Qmmp::CHANNELS);
-            meta->m_metaData[TagWrapper::FORMAT] = info->value(Qmmp::FORMAT_NAME);
+            meta->m_metaData[TagMeta::SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
+            meta->m_metaData[TagMeta::BITRATE] = info->value(Qmmp::BITRATE);
+            meta->m_metaData[TagMeta::CHANNEL] = info->value(Qmmp::CHANNELS);
+            meta->m_metaData[TagMeta::FORMAT] = info->value(Qmmp::FORMAT_NAME);
 
-            meta->m_metaData[TagWrapper::TITLE] = info->value(Qmmp::TITLE);
-            meta->m_metaData[TagWrapper::ARTIST] = info->value(Qmmp::ARTIST);
-            meta->m_metaData[TagWrapper::ALBUM] = info->value(Qmmp::ALBUM);
-            meta->m_metaData[TagWrapper::YEAR] = info->value(Qmmp::YEAR);
-            meta->m_metaData[TagWrapper::COMMENT] = info->value(Qmmp::COMMENT);
-            meta->m_metaData[TagWrapper::TRACK] = info->value(Qmmp::TRACK);
-            meta->m_metaData[TagWrapper::GENRE] = info->value(Qmmp::GENRE);
+            meta->m_metaData[TagMeta::TITLE] = info->value(Qmmp::TITLE);
+            meta->m_metaData[TagMeta::ARTIST] = info->value(Qmmp::ARTIST);
+            meta->m_metaData[TagMeta::ALBUM] = info->value(Qmmp::ALBUM);
+            meta->m_metaData[TagMeta::YEAR] = info->value(Qmmp::YEAR);
+            meta->m_metaData[TagMeta::COMMENT] = info->value(Qmmp::COMMENT);
+            meta->m_metaData[TagMeta::TRACK] = info->value(Qmmp::TRACK);
+            meta->m_metaData[TagMeta::GENRE] = info->value(Qmmp::GENRE);
 
             length = info->duration();
             if(length == 0)
             {
-                TagWrapper wrapper;
-                if(wrapper.readFile(meta->m_metaData[TagWrapper::URL]))
+                TagMeta wrapper;
+                if(wrapper.readFile(meta->m_metaData[TagMeta::URL]))
                 {
-                    const QMap<TagWrapper::Type, QString> &data = wrapper.musicTags();
-                    length = data[TagWrapper::LENGTH].toLongLong();
+                    const QMap<TagMeta::Type, QString> &data = wrapper.musicTags();
+                    length = data[TagMeta::LENGTH].toLongLong();
                 }
             }
 
@@ -391,11 +384,11 @@ bool MusicSongMeta::readInformation()
                 const int bitrate = info->value(Qmmp::BITRATE).toInt();
                 if(bitrate > 0)
                 {
-                    length = QFileInfo(meta->m_metaData[TagWrapper::URL]).size() * 8.0f / bitrate;
+                    length = QFileInfo(meta->m_metaData[TagMeta::URL]).size() * 8.0f / bitrate;
                 }
             }
 
-            meta->m_metaData[TagWrapper::LENGTH] = TTKTime::formatDuration(length);
+            meta->m_metaData[TagMeta::LENGTH] = TTKTime::formatDuration(length);
 
             m_songMetas << meta;
             m_offset = m_songMetas.count() - 1;
@@ -414,7 +407,7 @@ bool MusicSongMeta::readInformation()
                 {
                     if(item.name() == "Rating")
                     {
-                        songMeta()->m_metaData[TagWrapper::RATING] = item.value().toString();
+                        songMeta()->m_metaData[TagMeta::RATING] = item.value().toString();
                     }
                 }
                 delete model;

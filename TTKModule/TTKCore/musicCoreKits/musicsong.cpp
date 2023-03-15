@@ -6,7 +6,7 @@
 #include "musicextractwrapper.h"
 #include "musicsettingmanager.h"
 
-#include <qmmp/regularwrapper.h>
+#include <qmmp/regularexpression.h>
 
 MusicSong::MusicSong()
     : m_sort(Sort::ByFileName),
@@ -109,7 +109,7 @@ QString TTK::trackRelatedPath(const QString &path)
     }
 
     QString url = path.section("://", -1);
-    url.remove(RegularWrapper("#\\d+$"));
+    url.remove(RegularExpression("#\\d+$"));
     return url;
 }
 

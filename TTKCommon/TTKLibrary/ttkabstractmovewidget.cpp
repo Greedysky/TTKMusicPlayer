@@ -38,7 +38,7 @@ void TTKAbstractMoveWidget::mousePressEvent(QMouseEvent *event)
         m_leftButtonPress = true;
     }
 
-    m_pressAt = QtMouseEventGlobalPos(event);
+    m_pressAt = QtMouseGlobalPos(event);
 }
 
 void TTKAbstractMoveWidget::mouseMoveEvent(QMouseEvent *event)
@@ -50,15 +50,15 @@ void TTKAbstractMoveWidget::mouseMoveEvent(QMouseEvent *event)
         return;
     }
 
-    const int xpos = QtMouseEventGlobalX(event) - m_pressAt.x();
-    const int ypos = QtMouseEventGlobalY(event) - m_pressAt.y();
-    m_pressAt = QtMouseEventGlobalPos(event);
+    const int xpos = QtMouseGlobalX(event) - m_pressAt.x();
+    const int ypos = QtMouseGlobalY(event) - m_pressAt.y();
+    m_pressAt = QtMouseGlobalPos(event);
     move(x() + xpos, y() + ypos);
 }
 
 void TTKAbstractMoveWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     QWidget::mouseReleaseEvent(event);
-    m_pressAt = QtMouseEventGlobalPos(event);
+    m_pressAt = QtMouseGlobalPos(event);
     m_leftButtonPress = false;
 }

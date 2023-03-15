@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2022 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2023 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -72,7 +72,7 @@ public:
     /*!
      * Returns a list of supported regular expressions for URL.
      */
-    QList<RegularWrapper> regExps() const;
+    QList<RegularExpression> regExps() const;
     /*!
      * Returns \b true if \b file is supported and exists, otherwise returns \b false
      */

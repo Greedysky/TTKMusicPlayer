@@ -60,6 +60,7 @@ HEADERS += \
     $$PWD/ttkabstractresizeinterface.h \
     $$PWD/ttkabstractthread.h \
     $$PWD/ttkabstractxml.h \
+    $$PWD/ttkany.h \
     $$PWD/ttkclickedgroup.h \
     $$PWD/ttkclickedlabel.h \
     $$PWD/ttkclickedslider.h \
@@ -83,6 +84,7 @@ SOURCES += \
     $$PWD/ttkabstractmovewidget.cpp \
     $$PWD/ttkabstractthread.cpp \
     $$PWD/ttkabstractxml.cpp \
+    $$PWD/ttkany.cpp \
     $$PWD/ttkclickedgroup.cpp \
     $$PWD/ttkclickedlabel.cpp \
     $$PWD/ttkclickedslider.cpp \

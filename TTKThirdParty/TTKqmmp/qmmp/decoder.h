@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2014-2022 by Ilya Kotov                                 *
+ *   Copyright (C) 2014-2023 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,7 +26,7 @@
 #include <QIODevice>
 #include "audioparameters.h"
 #include "channelmap.h"
-#include "regularwrapper.h"
+#include "regularexpression.h"
 
 class QmmpPluginCache;
 class DecoderFactory;

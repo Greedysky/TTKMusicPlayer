@@ -502,7 +502,7 @@
         <file alias="btn_download_normal">../TTKResource/functions/btn_download_normal.png</file>
         <file alias="btn_download_hover">../TTKResource/functions/btn_download_hover.png</file>
         <file alias="btn_similar_normal">../TTKResource/functions/btn_similar_normal.png</file>
-        <file alias="btn_similar_hover">../TTKResource/functions/btn_similar_hover..png</file>
+        <file alias="btn_similar_hover">../TTKResource/functions/btn_similar_hover.png</file>
         <file alias="btn_sound_normal">../TTKResource/functions/btn_sound_normal.png</file>
         <file alias="btn_sound_hover">../TTKResource/functions/btn_sound_hover.png</file>
         <file alias="btn_unloved_normal">../TTKResource/functions/btn_unloved_normal.png</file>

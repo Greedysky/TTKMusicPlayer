@@ -93,7 +93,7 @@ qint64 queryFileSizeByUrl(const QString &url)
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.head(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    QtNetworkErrorNoneConnect(reply, &loop, quit);
+    QtNetworkErrorVoidConnect(reply, &loop, quit);
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)
@@ -118,7 +118,7 @@ QByteArray syncNetworkQueryForGet(QNetworkRequest *request)
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.get(*request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    QtNetworkErrorNoneConnect(reply, &loop, quit);
+    QtNetworkErrorVoidConnect(reply, &loop, quit);
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)
@@ -137,7 +137,7 @@ QByteArray syncNetworkQueryForPost(QNetworkRequest *request, const QByteArray &d
     QNetworkAccessManager manager;
     QNetworkReply *reply = manager.post(*request, data);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    QtNetworkErrorNoneConnect(reply, &loop, quit);
+    QtNetworkErrorVoidConnect(reply, &loop, quit);
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)

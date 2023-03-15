@@ -71,13 +71,6 @@ namespace QtCompat
 #  define QtContainerSwap(p, i, j) (p)->swap(i, j)
 #endif
 
-/// Network error none connect
-#if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtNetworkErrorNoneConnect(p, q, f) QObject::connect(p, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), q, SLOT(f()))
-#else
-#  define QtNetworkErrorNoneConnect(p, q, f) QObject::connect(p, SIGNAL(error(QNetworkReply::NetworkError)), q, SLOT(f()))
-#endif
-
 /// Network error connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
 #  define QtNetworkErrorConnect(p, q, f) QObject::connect(p, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), q, SLOT(f(QNetworkReply::NetworkError)))
@@ -85,11 +78,11 @@ namespace QtCompat
 #  define QtNetworkErrorConnect(p, q, f) QObject::connect(p, SIGNAL(error(QNetworkReply::NetworkError)), q, SLOT(f(QNetworkReply::NetworkError)))
 #endif
 
-/// Socket error none connect
+/// Network error void connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtSocketErrorNoneConnect(p, q, f) QObject::connect(p, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), q, SLOT(f()))
+#  define QtNetworkErrorVoidConnect(p, q, f) QObject::connect(p, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), q, SLOT(f()))
 #else
-#  define QtSocketErrorNoneConnect(p, q, f) QObject::connect(p, SIGNAL(error(QAbstractSocket::SocketError)), q, SLOT(f()))
+#  define QtNetworkErrorVoidConnect(p, q, f) QObject::connect(p, SIGNAL(error(QNetworkReply::NetworkError)), q, SLOT(f()))
 #endif
 
 /// Socket error connect
@@ -99,11 +92,11 @@ namespace QtCompat
 #  define QtSocketErrorConnect(p, q, f) QObject::connect(p, SIGNAL(error(QAbstractSocket::SocketError)), q, SLOT(f(QAbstractSocket::SocketError)))
 #endif
 
-/// Process error none connect
+/// Socket error void connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtProcessNoneConnect(p, q, f) QObject::connect(p, SIGNAL(errorOccurred(QProcess::ProcessError)), q, SLOT(f()))
+#  define QtSocketErrorVoidConnect(p, q, f) QObject::connect(p, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), q, SLOT(f()))
 #else
-#  define QtProcessNoneConnect(p, q, f) QObject::connect(p, SIGNAL(error(QProcess::ProcessError)), q, SLOT(f()))
+#  define QtSocketErrorVoidConnect(p, q, f) QObject::connect(p, SIGNAL(error(QAbstractSocket::SocketError)), q, SLOT(f()))
 #endif
 
 /// Process error connect
@@ -113,11 +106,11 @@ namespace QtCompat
 #  define QtProcessConnect(p, q, f) QObject::connect(p, SIGNAL(error(QProcess::ProcessError)), q, SLOT(f(QProcess::ProcessError)))
 #endif
 
-/// Button group none connect
+/// Process error void connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtButtonGroupNoneConnect(p, q, f) QObject::connect(p, SIGNAL(idClicked(int)), SLOT(f()))
+#  define QtProcessVoidConnect(p, q, f) QObject::connect(p, SIGNAL(errorOccurred(QProcess::ProcessError)), q, SLOT(f()))
 #else
-#  define QtButtonGroupNoneConnect(p, q, f) QObject::connect(p, SIGNAL(buttonClicked(int)), q, SLOT(f()))
+#  define QtProcessVoidConnect(p, q, f) QObject::connect(p, SIGNAL(error(QProcess::ProcessError)), q, SLOT(f()))
 #endif
 
 /// Button group connect
@@ -125,6 +118,13 @@ namespace QtCompat
 #  define QtButtonGroupConnect(p, q, f) QObject::connect(p, SIGNAL(idClicked(int)), SLOT(f(int)))
 #else
 #  define QtButtonGroupConnect(p, q, f) QObject::connect(p, SIGNAL(buttonClicked(int)), q, SLOT(f(int)))
+#endif
+
+/// Button group void connect
+#if TTK_QT_VERSION_CHECK(5,15,0)
+#  define QtButtonGroupVoidConnect(p, q, f) QObject::connect(p, SIGNAL(idClicked(int)), SLOT(f()))
+#else
+#  define QtButtonGroupVoidConnect(p, q, f) QObject::connect(p, SIGNAL(buttonClicked(int)), q, SLOT(f()))
 #endif
 
 /// Stream endl
@@ -150,26 +150,26 @@ namespace QtCompat
 
 /// Event wheel
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtWheelEventDelta(p) p->angleDelta().y()
+#  define QtWheelDelta(p) p->angleDelta().y()
 #else
-#  define QtWheelEventDelta(p) p->delta()
+#  define QtWheelDelta(p) p->delta()
 #endif
 
 /// Event mouse
 #if TTK_QT_VERSION_CHECK(6,0,0)
-#  define QtMouseEventX(p) p->position().x()
-#  define QtMouseEventY(p) p->position().y()
-#  define QtMouseEventPos(p) p->position()
-#  define QtMouseEventGlobalX(p) p->globalPosition().x()
-#  define QtMouseEventGlobalY(p) p->globalPosition().y()
-#  define QtMouseEventGlobalPos(p) p->globalPosition().toPoint()
+#  define QtMouseX(p) p->position().x()
+#  define QtMouseY(p) p->position().y()
+#  define QtMousePos(p) p->position()
+#  define QtMouseGlobalX(p) p->globalPosition().x()
+#  define QtMouseGlobalY(p) p->globalPosition().y()
+#  define QtMouseGlobalPos(p) p->globalPosition().toPoint()
 #else
-#  define QtMouseEventX(p) p->x()
-#  define QtMouseEventY(p) p->y()
-#  define QtMouseEventPos(p) p->pos()
-#  define QtMouseEventGlobalX(p) p->globalX()
-#  define QtMouseEventGlobalY(p) p->globalY()
-#  define QtMouseEventGlobalPos(p) p->globalPos()
+#  define QtMouseX(p) p->x()
+#  define QtMouseY(p) p->y()
+#  define QtMousePos(p) p->pos()
+#  define QtMouseGlobalX(p) p->globalX()
+#  define QtMouseGlobalY(p) p->globalY()
+#  define QtMouseGlobalPos(p) p->globalPos()
 #endif
 
 /// Event enter
@@ -184,6 +184,20 @@ namespace QtCompat
 #  define QtVariantType(p) p.typeId()
 #else
 #  define QtVariantType(p) p.type()
+#endif
+
+/// KeySequence
+#if TTK_QT_VERSION_CHECK(6,0,0)
+#  define QtKeySequence(k, m) QKeySequence(QKeyCombination(m, k))
+#else
+#  define QtKeySequence(k, m) QKeySequence(k + m)
+#endif
+
+/// KeySequence data
+#if TTK_QT_VERSION_CHECK(6,0,0)
+#  define QtKeyCombine(p) p.toCombined()
+#else
+#  define QtKeyCombine(p) p
 #endif
 }
 

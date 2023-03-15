@@ -39,13 +39,8 @@ QGlobalShortcutPrivate::~QGlobalShortcutPrivate()
 bool QGlobalShortcutPrivate::setShortcut(const QKeySequence &shortcut)
 {
     Qt::KeyboardModifiers allMods = Qt::ShiftModifier | Qt::ControlModifier | Qt::AltModifier | Qt::MetaModifier;
-#if TTK_QT_VERSION_CHECK(6,0,0)
-    m_key = shortcut.isEmpty() ? Qt::Key(0) : Qt::Key((shortcut[0].toCombined() ^ allMods) & shortcut[0].toCombined());
-    m_mods = shortcut.isEmpty() ? Qt::KeyboardModifiers() : Qt::KeyboardModifiers(shortcut[0].toCombined() & allMods);
-#else
-    m_key = shortcut.isEmpty() ? Qt::Key(0) : Qt::Key((shortcut[0] ^ allMods) & shortcut[0]);
-    m_mods = shortcut.isEmpty() ? Qt::KeyboardModifiers() : Qt::KeyboardModifiers(shortcut[0] & allMods);
-#endif
+    m_key = shortcut.isEmpty() ? Qt::Key(0) : Qt::Key((QtKeyCombine(shortcut[0]) ^ allMods) & QtKeyCombine(shortcut[0]));
+    m_mods = shortcut.isEmpty() ? Qt::KeyboardModifiers() : Qt::KeyboardModifiers(QtKeyCombine(shortcut[0]) & allMods);
 
     const quint32 nativeKey = nativeKeycode(m_key);
     const quint32 nativeMods = nativeModifiers(m_mods);
@@ -54,11 +49,7 @@ bool QGlobalShortcutPrivate::setShortcut(const QKeySequence &shortcut)
 
     if(!res)
     {
-#if TTK_QT_VERSION_CHECK(6,0,0)
-        const QKeySequence sequence = QKeySequence(QKeyCombination(m_mods, m_key));
-#else
-        const QKeySequence sequence = QKeySequence(m_key + m_mods);
-#endif
+        const QKeySequence sequence = QtKeySequence(m_key, m_mods);
         qWarning() << "QGlobalShortcut failed to register:" << sequence.toString();
     }
     return res;
@@ -73,11 +64,7 @@ bool QGlobalShortcutPrivate::unsetShortcut()
 
     if(!res)
     {
-#if TTK_QT_VERSION_CHECK(6,0,0)
-        const QKeySequence sequence = QKeySequence(QKeyCombination(m_mods, m_key));
-#else
-        const QKeySequence sequence = QKeySequence(m_key + m_mods);
-#endif
+        const QKeySequence sequence = QtKeySequence(m_key, m_mods);
         qWarning() << "QGlobalShortcut failed to unregister:" << sequence.toString();
     }
 

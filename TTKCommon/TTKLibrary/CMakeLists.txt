@@ -18,6 +18,7 @@ set(MUSIC_HEADERS
   ttkabstractresizeinterface.h
   ttkabstractthread.h
   ttkabstractxml.h
+  ttkany.h
   ttkclickedgroup.h
   ttkclickedlabel.h
   ttkclickedslider.h
@@ -42,6 +43,7 @@ set(MUSIC_SOURCES
   ttkabstractmovewidget.cpp
   ttkabstractthread.cpp
   ttkabstractxml.cpp
+  ttkany.cpp
   ttkclickedgroup.cpp
   ttkclickedlabel.cpp
   ttkclickedslider.cpp

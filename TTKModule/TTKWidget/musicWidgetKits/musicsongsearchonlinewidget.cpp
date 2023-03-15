@@ -270,7 +270,8 @@ void MusicSongSearchTableWidget::musicSongDownload(int row)
 
 void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicItemSearchTableWidget::contextMenuEvent(event);
+    Q_UNUSED(event);
+//    MusicItemSearchTableWidget::contextMenuEvent(event);
 
     QMenu menu(this);
     m_actionGroup->addAction(menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play")))->setData(4);

@@ -42,8 +42,8 @@ HEADERS += \
     $$PWD/qmmp/audioconverter.h \
     $$PWD/qmmp/dithering_p.h \
     $$PWD/qmmp/visualbuffer_p.h \
-    $$PWD/qmmp/tagwrapper.h \
-    $$PWD/qmmp/regularwrapper.h \
+    $$PWD/qmmp/tagmeta.h \
+    $$PWD/qmmp/regularexpression.h \
     $$PWD/qmmp/lightfactory.h \
     $$PWD/qmmp/florid.h \
     $$PWD/qmmp/format.h \

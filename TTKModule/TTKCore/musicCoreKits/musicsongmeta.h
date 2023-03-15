@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 #include "musicglobaldefine.h"
-#include <qmmp/tagwrapper.h>
+#include <qmmp/tagmeta.h>
 
 struct MusicMeta;
 
@@ -192,7 +192,7 @@ private:
     /*!
      * Find legal data string.
      */
-    QString findLegalDataString(TagWrapper::Type type);
+    QString findLegalDataString(TagMeta::Type type);
     /*!
      * Read other taglib not by plugin.
      */

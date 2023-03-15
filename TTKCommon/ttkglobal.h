@@ -225,6 +225,12 @@ public: \
 #define TTK_NAN_STR         "NaN"
 #define TTK_NULL_STR        "null"
 
+#if TTK_QT_VERSION_CHECK(6,0,0)
+#  define qint qintptr
+#else
+#  define qint long
+#endif
+
 // C style format
 using TTKInt8 =             signed char;                /* 8 bit signed */
 using TTKUInt8 =            unsigned char;              /* 8 bit unsigned */

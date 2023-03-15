@@ -77,7 +77,7 @@ void MusicSmoothMovingTableWidget::wheelEvent(QWheelEvent *event)
         m_initialized = false;
     }
 
-    m_deltaValue += QtWheelEventDelta(event);
+    m_deltaValue += QtWheelDelta(event);
     m_animationTimer->start();
 }
 
@@ -159,6 +159,6 @@ void MusicSmoothMovingScrollArea::wheelEvent(QWheelEvent *event)
         m_initialized = false;
     }
 
-    m_deltaValue += QtWheelEventDelta(event);
+    m_deltaValue += QtWheelDelta(event);
     m_animationTimer->start();
 }

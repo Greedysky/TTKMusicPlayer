@@ -31,6 +31,7 @@ win32{
             $$PWD/TTKLibrary/ttkabstractresizeinterface.h \
             $$PWD/TTKLibrary/ttkabstractthread.h \
             $$PWD/TTKLibrary/ttkabstractxml.h \
+            $$PWD/TTKLibrary/ttkany.h \
             $$PWD/TTKLibrary/ttkclickedgroup.h \
             $$PWD/TTKLibrary/ttkclickedlabel.h \
             $$PWD/TTKLibrary/ttkclickedslider.h \

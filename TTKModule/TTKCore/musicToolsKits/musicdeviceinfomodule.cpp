@@ -171,7 +171,7 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
 #else
     TTKSemaphoreLoop loop;
     connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
-    QtProcessNoneConnect(m_process, &loop, quit);
+    QtProcessVoidConnect(m_process, &loop, quit);
     m_process->close();
     m_process->start("df -h");
     loop.exec();

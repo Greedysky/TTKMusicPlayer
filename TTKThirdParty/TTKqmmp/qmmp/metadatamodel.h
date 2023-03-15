@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2022 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2023 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,7 +26,7 @@
 #include <QVariant>
 #include <QFlags>
 #include "tagmodel.h"
-#include "regularwrapper.h"
+#include "regularexpression.h"
 
 /*! @brief Container of extra file/track property.
  * @author Ilya Kotov <forkotov02@ya.ru>
