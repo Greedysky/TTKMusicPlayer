@@ -253,7 +253,7 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
     {
         filePath.remove("ffmpeg://");
         filePath.remove("m4b://");
-        filePath.remove(RegularWrapper("#\\d+$"));
+        filePath.remove(RegularExpression("#\\d+$"));
         trackNumber = path.section("#", -1).toInt();
         parts = TrackInfo::AllParts; //extract all metadata for single  cue/m4b track
     }

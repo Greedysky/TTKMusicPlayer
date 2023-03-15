@@ -174,10 +174,10 @@ QStringList InputSource::protocols()
     return protocolList;
 }
 
-QList<RegularWrapper> InputSource::regExps()
+QList<RegularExpression> InputSource::regExps()
 {
     loadPlugins();
-    QList<RegularWrapper> regExpList;
+    QList<RegularExpression> regExpList;
 
     for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
@@ -198,7 +198,7 @@ InputSourceFactory *InputSource::findByUrl(const QString &url)
             continue;
 
         InputSourceFactory *factory = item->inputSourceFactory();
-        for(RegularWrapper &r : factory->properties().regExps)
+        for(RegularExpression &r : factory->properties().regExps)
         {
             if(r.hasMatch(url))
                 return factory;

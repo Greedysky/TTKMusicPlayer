@@ -150,7 +150,7 @@ QStringList MetaDataManager::protocols() const
     return p;
 }
 
-QList<RegularWrapper> MetaDataManager::regExps() const
+QList<RegularExpression> MetaDataManager::regExps() const
 {
     return InputSource::regExps();
 }

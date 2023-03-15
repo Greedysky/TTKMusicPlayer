@@ -26,7 +26,7 @@
 #include <QVariant>
 #include <QFlags>
 #include "tagmodel.h"
-#include "regularwrapper.h"
+#include "regularexpression.h"
 
 /*! @brief Container of extra file/track property.
  * @author Ilya Kotov <forkotov02@ya.ru>

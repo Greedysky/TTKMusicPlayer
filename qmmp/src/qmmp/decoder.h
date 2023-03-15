@@ -26,7 +26,7 @@
 #include <QIODevice>
 #include "audioparameters.h"
 #include "channelmap.h"
-#include "regularwrapper.h"
+#include "regularexpression.h"
 
 class QmmpPluginCache;
 class DecoderFactory;

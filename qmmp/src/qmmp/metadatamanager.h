@@ -72,7 +72,7 @@ public:
     /*!
      * Returns a list of supported regular expressions for URL.
      */
-    QList<RegularWrapper> regExps() const;
+    QList<RegularExpression> regExps() const;
     /*!
      * Returns \b true if \b file is supported and exists, otherwise returns \b false
      */

@@ -9,7 +9,7 @@ WavPackMetaDataModel::WavPackMetaDataModel(const QString &path, bool readOnly)
     if(m_path.contains("://"))
     {
         m_path.remove("wvpack://");
-        m_path.remove(RegularWrapper("#\\d+$"));
+        m_path.remove(RegularExpression("#\\d+$"));
         readOnly = readOnly || !QFileInfo(m_path).isWritable();
     }
 

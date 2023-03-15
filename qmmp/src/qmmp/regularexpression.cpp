@@ -1,11 +1,11 @@
-#include "regularwrapper.h"
+#include "regularexpression.h"
 
-RegularWrapper::RegularWrapper()
+RegularExpression::RegularExpression()
 {
 
 }
 
-RegularWrapper::RegularWrapper(const QString &pattern)
+RegularExpression::RegularExpression(const QString &pattern)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
     m_regular = QRegularExpression(pattern);
@@ -14,12 +14,12 @@ RegularWrapper::RegularWrapper(const QString &pattern)
 #endif
 }
 
-RegularWrapper::~RegularWrapper()
+RegularExpression::~RegularExpression()
 {
 
 }
 
-bool RegularWrapper::hasMatch(const QString &str)
+bool RegularExpression::hasMatch(const QString &str)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
     m_match = m_regular.match(str);
@@ -29,7 +29,7 @@ bool RegularWrapper::hasMatch(const QString &str)
 #endif
 }
 
-QString RegularWrapper::value(int index) const
+QString RegularExpression::value(int index) const
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
     return m_match.captured(index);
@@ -38,7 +38,7 @@ QString RegularWrapper::value(int index) const
 #endif
 }
 
-QString RegularWrapper::escape(const QString &str)
+QString RegularExpression::escape(const QString &str)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
     return QRegularExpression::escape(str);
@@ -48,12 +48,12 @@ QString RegularWrapper::escape(const QString &str)
 }
 
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
-RegularWrapper::operator QRegularExpression () const
+RegularExpression::operator QRegularExpression () const
 {
     return  m_regular;
 }
 #else
-RegularWrapper::operator QRegExp () const
+RegularExpression::operator QRegExp () const
 {
     return  m_regular;
 }

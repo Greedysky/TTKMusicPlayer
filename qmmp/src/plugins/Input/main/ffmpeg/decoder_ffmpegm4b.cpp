@@ -41,7 +41,7 @@ bool DecoderFFmpegM4b::initialize()
     }
 
     filePath.remove("m4b://");
-    filePath.remove(RegularWrapper("#\\d+$"));
+    filePath.remove(RegularExpression("#\\d+$"));
     m_track = m_path.section("#", -1).toInt();
 
     AVFormatContext *in = nullptr;

@@ -35,7 +35,7 @@ QList<TrackInfo*> DecoderTFMXFactory::createPlayList(const QString &path, TrackI
     {
         QString filePath = path;
         filePath.remove("tfmx://");
-        filePath.remove(RegularWrapper("#\\d+$"));
+        filePath.remove(RegularExpression("#\\d+$"));
 
         const int track = path.section("#", -1).toInt();
         QList<TrackInfo*> playlist = createPlayList(filePath, parts, ignoredPaths);

@@ -5,7 +5,7 @@
 #include <QSettings>
 #include <QTextCodec>
 #include <qmmp/qmmp.h>
-#include <qmmp/regularwrapper.h>
+#include <qmmp/regularexpression.h>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -64,7 +64,7 @@ void SettingsDialog::accept()
 void SettingsDialog::findCodecs()
 {
     QMap<QString, QTextCodec *> codecMap;
-    RegularWrapper iso8859RegExp("ISO[- ]8859-([0-9]+).*");
+    RegularExpression iso8859RegExp("ISO[- ]8859-([0-9]+).*");
 
     for(int mib : QTextCodec::availableMibs())
     {

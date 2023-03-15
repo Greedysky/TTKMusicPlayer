@@ -43,12 +43,12 @@ HEADERS += \
     dithering_p.h \
     visualbuffer_p.h \
     lightfactory.h \
-    tagwrapper.h \
+    tagmeta.h \
     florid.h \
     qmmp_export.h \
     trackinfo.h \
     cueparser.h \
-    regularwrapper.h \
+    regularexpression.h \
     format.h
 
 SOURCES += recycler.cpp \
@@ -85,11 +85,11 @@ SOURCES += recycler.cpp \
     volume.cpp \
     dithering.cpp \
     visualbuffer.cpp \
-    tagwrapper.cpp \
+    tagmeta.cpp \
     florid.cpp \
     trackinfo.cpp \
     cueparser.cpp \
-    regularwrapper.cpp \
+    regularexpression.cpp \
     format.cpp
 
 DESTDIR = $$OUT_PWD/../../bin/$$TTK_VERSION

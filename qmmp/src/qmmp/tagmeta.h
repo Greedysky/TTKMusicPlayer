@@ -16,16 +16,16 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef TAGWRAPPER_H
-#define TAGWRAPPER_H
+#ifndef TAGMETA_H
+#define TAGMETA_H
 
 #include <QMap>
 #include "qmmp.h"
 
-/*! @brief The class of the file tag wrapper.
+/*! @brief The class of the file tag meta.
  * @author Greedysky <greedysky@163.com>
  */
-class QMMP_EXPORT TagWrapper
+class QMMP_EXPORT TagMeta
 {
 public:
     enum Type
@@ -47,8 +47,8 @@ public:
         CHANNEL      /*!< Channel */
     };
 
-    TagWrapper();
-    explicit TagWrapper(const QString &file);
+    TagMeta();
+    explicit TagMeta(const QString &file);
 
     bool readFile();
     bool readFile(const QString &path);

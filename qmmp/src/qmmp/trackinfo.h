@@ -24,7 +24,7 @@
 #include <QMap>
 #include <QVariant>
 #include "qmmp.h"
-#include "regularwrapper.h"
+#include "regularexpression.h"
 
 /*! @brief The TrackInfo class stores metadata and other information about track.
  * @author Ilya Kotov <forkotov02@ya.ru>

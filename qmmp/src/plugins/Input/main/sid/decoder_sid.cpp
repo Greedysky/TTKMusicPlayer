@@ -33,7 +33,7 @@ bool DecoderSID::initialize()
 
     QString path = m_path;
     path.remove("sid://");
-    path.remove(RegularWrapper("#\\d+$"));
+    path.remove(RegularExpression("#\\d+$"));
     int track = m_path.section("#", -1).toInt();
 
     m_tune.load(QmmpPrintable(path));

@@ -313,7 +313,7 @@ QString TFMXHelper::cleanPath() const
     if(m_path.contains("://"))
     {
         path.remove("tfmx://");
-        path.remove(RegularWrapper("#\\d+$"));
+        path.remove(RegularExpression("#\\d+$"));
     }
     return path;
 }

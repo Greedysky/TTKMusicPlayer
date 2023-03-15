@@ -12,7 +12,7 @@ FFapMetaDataModel::FFapMetaDataModel(const QString &path, bool readOnly)
     {
         QString p = path;
         p.remove("ape://");
-        p.remove(RegularWrapper("#\\d+$"));
+        p.remove(RegularExpression("#\\d+$"));
 
         m_path = p;
         m_stream = new TagLib::FileStream(QStringToFileName(p), true);

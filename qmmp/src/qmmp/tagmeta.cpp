@@ -1,4 +1,4 @@
-#include "tagwrapper.h"
+#include "tagmeta.h"
 
 #include <taglib/fileref.h>
 #include <taglib/tpropertymap.h>
@@ -6,23 +6,23 @@
 #include <taglib/mpegfile.h>
 #include <taglib/attachedpictureframe.h>
 
-TagWrapper::TagWrapper()
+TagMeta::TagMeta()
 {
 
 }
 
-TagWrapper::TagWrapper(const QString &file)
+TagMeta::TagMeta(const QString &file)
     : m_path(file)
 {
 
 }
 
-bool TagWrapper::readFile()
+bool TagMeta::readFile()
 {
     return readFile(m_path);
 }
 
-bool TagWrapper::readFile(const QString &path)
+bool TagMeta::readFile(const QString &path)
 {
     if(path.isEmpty())
     {
@@ -77,7 +77,7 @@ bool TagWrapper::readFile(const QString &path)
     return true;
 }
 
-bool TagWrapper::writeMusicTag(Type tag, const QString &value, int id3v2Version)
+bool TagMeta::writeMusicTag(Type tag, const QString &value, int id3v2Version)
 {
     if(m_path.isEmpty())
     {

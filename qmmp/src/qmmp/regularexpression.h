@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef REGULARWRAPPER_H
-#define REGULARWRAPPER_H
+#ifndef REGULAREXPRESSION_H
+#define REGULAREXPRESSION_H
 
 #include "qmmp_export.h"
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
@@ -26,15 +26,15 @@
 #  include <QRegExp>
 #endif
 
-/*! @brief The class of the regular wrapper.
+/*! @brief The class of the regular expression.
  * @author Greedysky <greedysky@163.com>
  */
-class QMMP_EXPORT RegularWrapper
+class QMMP_EXPORT RegularExpression
 {
 public:
-    RegularWrapper();
-    explicit RegularWrapper(const QString &pattern);
-    ~RegularWrapper();
+    RegularExpression();
+    explicit RegularExpression(const QString &pattern);
+    ~RegularExpression();
 
     bool hasMatch(const QString &str);
     QString value(int index) const;

@@ -27,7 +27,7 @@ bool DecoderFFapCUE::initialize()
     }
 
     filePath.remove("ape://");
-    filePath.remove(RegularWrapper("#\\d+$"));
+    filePath.remove(RegularExpression("#\\d+$"));
     m_track = m_path.section("#", -1).toInt();
 
     TagLib::FileStream stream(QStringToFileName(filePath), true);

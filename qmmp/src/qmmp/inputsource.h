@@ -155,7 +155,7 @@ public:
     /*!
      * Returns a list of supported regular expressions for URL.
      */
-    static QList<RegularWrapper> regExps();
+    static QList<RegularExpression> regExps();
     /*!
      * Returns InputSourceFactory pointer which supports URL \b url or \b nullptr if \b URL is not supported.
      */

@@ -155,7 +155,7 @@ QString UADEHelper::cleanPath() const
     if(m_path.contains("://"))
     {
         path.remove("uade://");
-        path.remove(RegularWrapper("#\\d+$"));
+        path.remove(RegularExpression("#\\d+$"));
     }
     return path;
 }

@@ -29,7 +29,7 @@ SidTune *SIDHelper::load(const QString &path)
     if(path.contains("://"))
     {
         filePath.remove("sid://");
-        filePath.remove(RegularWrapper("#\\d+$"));
+        filePath.remove(RegularExpression("#\\d+$"));
         track = path.section("#", -1).toInt();
     }
 

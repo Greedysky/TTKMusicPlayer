@@ -347,7 +347,7 @@ bool DecoderCDAudio::initialize()
     int track = m_path.section("#", -1).toInt();
     QString device_path = m_path;
     device_path.remove("cdda://");
-    device_path.remove(RegularWrapper("#\\d+$"));
+    device_path.remove(RegularExpression("#\\d+$"));
 
     track = qMax(track, 1);
     QList<CDATrack> tracks = DecoderCDAudio::generateTrackList(device_path); //generate track list

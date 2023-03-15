@@ -27,7 +27,7 @@ Music_Emu *GMEHelper::load(const QString &path, int sample_rate)
     if(path.contains("://"))
     {
         filePath.remove("gme://");
-        filePath.remove(RegularWrapper("#\\d+$"));
+        filePath.remove(RegularExpression("#\\d+$"));
     }
 
     const char *err = nullptr;

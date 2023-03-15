@@ -14,7 +14,7 @@ CueFile::CueFile(const QString &path)
     if(path.contains("://"))
     {
         m_path.remove("cue://");
-        m_path.remove(RegularWrapper("#\\d+$"));
+        m_path.remove(RegularExpression("#\\d+$"));
     }
 
     QFile file(m_path);
@@ -164,7 +164,7 @@ QString CueFile::getDirtyPath(const QString &cue_path, const QString &path)
     int dot = cue_path.lastIndexOf('.');
     if(dot != -1)
     {
-        RegularWrapper r(RegularWrapper::escape(cue_path.left(dot)) + "\\.[^\\.]+$");
+        RegularExpression r(RegularExpression::escape(cue_path.left(dot)) + "\\.[^\\.]+$");
 
         int index = candidates.indexOf(r);
         int rindex = candidates.lastIndexOf(r);
@@ -175,7 +175,7 @@ QString CueFile::getDirtyPath(const QString &cue_path, const QString &path)
     dot = path.lastIndexOf('.');
     if(dot != -1)
     {
-        RegularWrapper r(RegularWrapper::escape(path.left(dot)) + "\\.[^\\.]+$");
+        RegularExpression r(RegularExpression::escape(path.left(dot)) + "\\.[^\\.]+$");
 
         int index = candidates.indexOf(r);
         int rindex = candidates.lastIndexOf(r);
