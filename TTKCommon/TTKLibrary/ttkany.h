@@ -58,7 +58,7 @@ public:
             throw std::bad_cast();
         }
 
-        auto ptr = dynamic_cast<_Derived<T>*>(m_ptr.get());
+        auto ptr = TTKDynamic_cast(_Derived<T>*, m_ptr.get());
         return ptr->m_value;
     }
 
@@ -70,7 +70,7 @@ public:
             throw std::bad_cast();
         }
 
-        auto ptr = dynamic_cast<_Derived<T>*>(m_ptr.get());
+        auto ptr = TTKDynamic_cast(_Derived<T>*, m_ptr.get());
         return ptr->m_value;
     }
 
@@ -112,53 +112,67 @@ private:
 
 };
 
+#ifdef TTK_CAST
+#  define TTKAny_cast(x, y) (TTK::any_cast<x>(y))
+#else
+#  define TTKAny_cast(x, y) ((x)(y))
+#endif
 
-//namespace TTK
-//{
-//    template <typename T>
-//    inline T any_cast(const TTKAny &other)
-//    {
-//        return any_cast<typename std::add_const<typename std::remove_reference<T>::type>::type>(&other);
-//    }
+namespace TTK
+{
+    template <typename T>
+    using remove_cvr = typename std::remove_cv<typename std::remove_reference<T>::type>::type;
 
-//    template <typename T>
-//    inline T any_cast(TTKAny &other)
-//    {
-//        return any_cast<typename std::remove_reference<T>::type>(&other);
-//    }
+    template <typename T>
+    inline remove_cvr<T> any_cast(const TTKAny &other)
+    {
+        using _Type = remove_cvr<T>;
+        const auto ptr = any_cast<_Type>(&other);
+        if(!ptr)
+        {
+            throw std::bad_cast();
+        }
+        return *ptr;
+    }
 
-//    template <typename T>
-//    inline T any_cast(TTKAny &&other)
-//    {
-//        return any_cast<typename std::remove_reference<T>::type>(&other);
-//    }
+    template <typename T>
+    inline remove_cvr<T> any_cast(TTKAny &other)
+    {
+        using _Type = remove_cvr<T>;
+        const auto ptr = any_cast<_Type>(TTKStatic_cast(const TTKAny*, &other));
+        if(!ptr)
+        {
+            throw std::bad_cast();
+        }
+        return *ptr;
+    }
 
-//    template <typename T>
-//    inline const T any_cast(const TTKAny *other) noexcept
-//    {
-//        if(!other || !other->isSame<T>())
-//        {
-//            return T();
-//        }
-//        else
-//        {
-//            return other->cast<T>();
-//        }
-//    }
+    template <typename T>
+    inline remove_cvr<T> any_cast(TTKAny &&other)
+    {
+        using _Type = remove_cvr<T>;
+        const auto ptr = any_cast<_Type>(TTKStatic_cast(const TTKAny*, &other));
+        if(!ptr)
+        {
+            throw std::bad_cast();
+        }
+        return std::move(*ptr);
+    }
 
-//    template <typename T>
-//    inline T any_cast(TTKAny *other) noexcept
-//    {
-//        if(!other || !other->isSame<T>())
-//        {
-//            return T();
-//        }
-//        else
-//        {
-//            return other->cast<T>();
-//        }
-//    }
+    template <typename T>
+    inline const remove_cvr<T> *any_cast(const TTKAny *const other) noexcept
+    {
+        using _Type = remove_cvr<T>;
+        return (!other || !other->isSame<_Type>()) ? nullptr : &other->cast<_Type>();
+    }
 
-//}
+    template <typename T>
+    inline remove_cvr<T> *any_cast(TTKAny *const other) noexcept
+    {
+        using _Type = remove_cvr<T>;
+        return TTKConst_cast(_Type*, any_cast<_Type>(TTKStatic_cast(const TTKAny*, other)));
+    }
+
+}
 
 #endif // TTKANY_H

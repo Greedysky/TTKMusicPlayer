@@ -101,10 +101,6 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 #  define TTKVoid_cast(x) (x)
 #endif
 
-#if defined(Q_CC_MSVC) && _MSC_VER <= 1800
-#  define constexpr const
-#endif
-
 // deprecated function
 #ifdef Q_CC_MSVC
 #  define TTK_DEPRECATED          __declspec(deprecated)
@@ -155,6 +151,10 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 #  endif
 #endif
 
+#if defined(Q_CC_MSVC) && _MSC_VER <= 1800
+#  define constexpr const
+#endif
+
 #if defined Q_COMPILER_CONSTEXPR
 #  if defined(__cpp_constexpr) && __cpp_constexpr >= 201304L
 #    define TTK_CONSTEXPR constexpr
@@ -187,22 +187,23 @@ public: \
     return #Class; \
   }
 
+// marco cat
+#define TTK_CAT(a, b) a##b
 // marco str cat
 #ifndef Q_CC_MSVC
 // gcc version less than 3.4.0
 #  if __GNUC__ <= 3 && __GNUC_MINOR__ <= 4
-#    define TTK_STRCAT(a, b)    a##b
+#    define TTK_STRCAT(a, b) a##b
 #  else
-#    define TTK_STRCAT(a, b)    a b
+#    define TTK_STRCAT(a, b) a b
 #  endif
 #else
-#  define TTK_STRCAT(a, b)      a b
+#  define TTK_STRCAT(a, b) a b
 #endif
 
 // marco preprocessor overload
 #define TTK_PP_OVERLOAD(prefix, ...) TTK_PP_CAT(prefix, TTK_PP_VARIADIC_SIZE(__VA_ARGS__))
-#define TTK_PP_CAT(a, b) TTK_PP_CAT_I(a, b)
-#define TTK_PP_CAT_I(a, b) a ## b
+#define TTK_PP_CAT(a, b) TTK_CAT(a, b)
 #define TTK_PP_EMPTY()
 #ifdef Q_CC_MSVC
 #  define TTK_PP_VARIADIC_SIZE(...) TTK_PP_CAT(TTK_PP_VARIADIC_SIZE_I(__VA_ARGS__, 8, 7, 6, 5, 4, 3, 2, 1,),)
@@ -241,6 +242,7 @@ using TTKUInt32 =           unsigned int;               /* 32 bit unsigned */
 using TTKInt64 =            long long;                  /* 64 bit signed */
 using TTKUInt64 =           unsigned long long;         /* 64 bit unsigned */
 
+using TTKReal =             double;                     /* real */
 using TTKDouble =           double;                     /* double */
 using TTKFloat =            float;                      /* float */
 using TTKBool =             bool;                       /* bool */
@@ -250,11 +252,11 @@ using TTKString =           std::string;                /* string */
 using TTKWString =          std::wstring;               /* wstring */
 
 // Qt style format
+using TTKIntSet =           QSet<int>;                  /* int set */
 using TTKIntList =          QList<int>;                 /* int list */
 using TTKVariantList =      QList<QVariant>;            /* variant list */
-using TTKIntSet =           QSet<int>;                  /* int set */
-using TTKVariantMap =       QMap<QString, QVariant>;    /* string variant map */
 using TTKStringMap =        QMap<QString, QString>;     /* strings map */
+using TTKVariantMap =       QMap<QString, QVariant>;    /* string variant map */
 using TTKIntStringMap =     QMap<qint64, QString>;      /* int string map */
 
 #endif // TTKGLOBAL_H
