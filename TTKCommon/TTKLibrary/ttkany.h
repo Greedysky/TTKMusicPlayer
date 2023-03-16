@@ -160,14 +160,14 @@ namespace TTK
     }
 
     template <typename T>
-    inline const remove_cvr<T> *any_cast(const TTKAny *const other) noexcept
+    inline const remove_cvr<T> *any_cast(const TTKAny *const other)
     {
         using _Type = remove_cvr<T>;
         return (!other || !other->isSame<_Type>()) ? nullptr : &other->cast<_Type>();
     }
 
     template <typename T>
-    inline remove_cvr<T> *any_cast(TTKAny *const other) noexcept
+    inline remove_cvr<T> *any_cast(TTKAny *const other)
     {
         using _Type = remove_cvr<T>;
         return TTKConst_cast(_Type*, any_cast<_Type>(TTKStatic_cast(const TTKAny*, other)));
