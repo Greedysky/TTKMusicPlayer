@@ -204,7 +204,7 @@ void MusicReplayGainWidget::addFileButtonClicked()
             m_currentIndex = i;
             TTKSemaphoreLoop loop;
             connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
-            m_process->start(MAKE_GAIN_PATH_FULL, QStringList() << m_paths[i]);
+            m_process->start(MAKE_GAIN_PATH_FULL, {m_paths[i]});
             loop.exec();
         }
         setControlEnabled(true);
@@ -226,7 +226,7 @@ void MusicReplayGainWidget::addFilesButtonClicked()
 
                 TTKSemaphoreLoop loop;
                 connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
-                m_process->start(MAKE_GAIN_PATH_FULL, QStringList() << m_paths.back());
+                m_process->start(MAKE_GAIN_PATH_FULL, {m_paths.back()});
                 loop.exec();
             }
         }
@@ -275,7 +275,7 @@ void MusicReplayGainWidget::applyButtonClicked()
     {
         TTKSemaphoreLoop loop;
         connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
-        m_process->start(MAKE_GAIN_PATH_FULL, QStringList() << "-g" << m_ui->tableWidget->item(i, 2)->text() << m_paths[i]);
+        m_process->start(MAKE_GAIN_PATH_FULL, {"-g", m_ui->tableWidget->item(i, 2)->text(), m_paths[i]});
         m_ui->progressBarAll->setValue(i + 1);
         loop.exec();
     }

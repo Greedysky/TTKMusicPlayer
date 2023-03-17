@@ -101,8 +101,10 @@ void MusicConfigObject::copyFile(const QString &origin, const QString &des) cons
     }
 }
 
+#ifdef Q_OS_UNIX
 void MusicConfigObject::copyLinuxShellFile(const QString &name, const QString &path) const
 {
     copyFileOverwrite(name, path);
     QProcess::execute("chmod", {"+x", path});
 }
+#endif

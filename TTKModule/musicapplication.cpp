@@ -80,7 +80,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     G_HOTKEY_PTR->setInputModule(this);
 
     /////////// Objects Mouse tracking;
-    setObjectsTracking(QWidgetList() << m_ui->background << m_ui->songsContainer);
+    setObjectsTracking({m_ui->background, m_ui->songsContainer});
 
     readSystemConfigFromFile();
     QTimer::singleShot(MT_ONCE, m_rightAreaWidget, SLOT(musicLoadSongIndexWidget()));

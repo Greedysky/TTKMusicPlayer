@@ -284,7 +284,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     mainLayout->addWidget(tabWidget);
 
     m_tabButton = new TTKTabButton(functionWidget);
-    m_tabButton->addButtons(QStringList() << tr("Song") << tr("Artist") << tr("Album") << tr("Year") << tr("Genre"));
+    m_tabButton->addButtons({tr("Song"), tr("Artist"), tr("Album"), tr("Year"), tr("Genre")});
     tabWidgetLayout->addWidget(m_tabButton);
     connect(m_tabButton, SIGNAL(clicked(int)), SLOT(typeIndexChanged(int)));
 

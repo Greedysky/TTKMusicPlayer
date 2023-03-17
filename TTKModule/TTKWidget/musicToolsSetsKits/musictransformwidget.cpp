@@ -43,7 +43,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     m_ui->transformButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->folderBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    m_ui->tabButton->addButtons(QStringList() << tr("Music") << tr("Krc"));
+    m_ui->tabButton->addButtons({tr("Music"), tr("Krc")});
 
 #ifdef Q_OS_UNIX
     m_ui->inputButton->setFocusPolicy(Qt::NoFocus);
@@ -248,11 +248,11 @@ bool MusicTransformWidget::processTransform()
         TTK_INFO_STREAM(QString("%1 %2 %3 %4").arg(m_ui->formatCombo->currentText(), m_ui->kbpsCombo->currentText(), m_ui->hzCombo->currentText())
                                               .arg(m_ui->msCombo->currentIndex() + 1));
 
-        m_process->start(MAKE_TRANSFORM_PATH_FULL, QStringList() << "-i" << in << "-y"
-                                << "-ab" << m_ui->kbpsCombo->currentText() + "k"
-                                << "-ar" << m_ui->hzCombo->currentText()
-                                << "-ac" << QString::number(m_ui->msCombo->currentIndex() + 1)
-                                << QString("%1%2-new.%3").arg(out, transformSongName(), m_ui->formatCombo->currentText().toLower()));
+        m_process->start(MAKE_TRANSFORM_PATH_FULL, {"-i", in, "-y",
+                                                    "-ab", m_ui->kbpsCombo->currentText() + "k",
+                                                    "-ar", m_ui->hzCombo->currentText(),
+                                                    "-ac", QString::number(m_ui->msCombo->currentIndex() + 1),
+                                                    QString("%1%2-new.%3").arg(out, transformSongName(), m_ui->formatCombo->currentText().toLower())});
     }
     else
     {

@@ -38,7 +38,7 @@ bool TTK::Url::openUrl(const QString &path, bool local)
         MusicPlatformManager platform;
         if(platform.systemName() == MusicPlatformManager::System::LinuxUbuntu)
         {
-            return QProcess::startDetached("nautilus", QStringList() << path);
+            return QProcess::startDetached("nautilus", {path});
         }
 #endif
     }

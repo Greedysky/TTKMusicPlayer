@@ -25,7 +25,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     setLayout(layout);
 
     m_tabWidget = new TTKTabButton(mainWidget);
-    m_tabWidget->addButtons(QStringList() << tr("Song") << tr("Artist") << tr("Album") << tr("Playlist") << tr("Movie"));
+    m_tabWidget->addButtons({tr("Song"), tr("Artist"), tr("Album"), tr("Playlist"), tr("Movie")});
     connect(m_tabWidget, SIGNAL(clicked(int)), SLOT(typeIndexChanged(int)));
 
     QWidget *containerWidget = new QWidget(mainWidget);
