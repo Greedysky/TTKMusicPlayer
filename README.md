@@ -16,10 +16,10 @@ Usage
 ### Attention: This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
 
 ## CI Status
- * Qt stable version be tested on Qt4.8.7 for windows-mingw 32bit
- * Qt stable version be tested on Qt4.8.7 for ubuntu-linux-gcc 64bit
- * Qt stable version be tested on Qt5.9.9 for ubuntu-linux-gcc 64bit
- * Qt stable version be tested on Qt5.x for windows-mingw 32bit
+ * Qt stable version is tested on Qt4.x for windows-mingw 32bit
+ * Qt stable version is tested on Qt4.x for ubuntu-linux-gcc 64bit
+ * Qt stable version is tested on Qt5.x for ubuntu-linux-gcc 64bit
+ * Qt stable version is tested on Qt5.x for windows-mingw 32bit
 
 | Platform | Qt & Compiler           | Status                                                                 |
 | :---:    | :---:                   | :---:                                                                  |

@@ -16,10 +16,10 @@
 ### 本項目代碼不用於商用，僅限研究和學習使用，資源版權歸個音樂平臺所有。
 
 ## 構建狀態
- * Qt stable version be tested on Qt4.8.7 for windows-mingw 32bit
- * Qt stable version be tested on Qt4.8.7 for ubuntu-linux-gcc 64bit
- * Qt stable version be tested on Qt5.9.9 for ubuntu-linux-gcc 64bit
- * Qt stable version be tested on Qt5.x for windows-mingw 32bit
+ * Qt stable version is tested on Qt4.x for windows-mingw 32bit
+ * Qt stable version is tested on Qt4.x for ubuntu-linux-gcc 64bit
+ * Qt stable version is tested on Qt5.x for ubuntu-linux-gcc 64bit
+ * Qt stable version is tested on Qt5.x for windows-mingw 32bit
 
 | Platform | Qt & Compiler           | Status                                                                 |
 | :---:    | :---:                   | :---:                                                                  |
