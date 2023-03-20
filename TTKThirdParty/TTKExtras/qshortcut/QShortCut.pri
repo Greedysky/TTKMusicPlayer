@@ -17,7 +17,7 @@
 # ***************************************************************************
 
 unix:!mac{
-    equals(QT_MAJOR_VERSION, 5){
+    equals(QT_MAJOR_VERSION, 5):greaterThan(QT_MINOR_VERSION, 0){
         QT += x11extras
     }
 }

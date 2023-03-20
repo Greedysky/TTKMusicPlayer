@@ -9,7 +9,7 @@ static QHash<Identifier, quint32> keyIDs;
 static quint32 hotKeySerial = 0;
 static bool q_mac_handler_installed = false;
 
-OSStatus q_mac_handle_hot_key(EventHandlerCallRef nextHandler, EventRef event, void* data)
+OSStatus q_mac_handle_hot_key(EventHandlerCallRef nextHandler, EventRef event, void *data)
 {
     // pass event to the app event filter
     Q_UNUSED(data);
@@ -18,7 +18,7 @@ OSStatus q_mac_handle_hot_key(EventHandlerCallRef nextHandler, EventRef event, v
 }
 
 #if !TTK_QT_VERSION_CHECK(5,0,0)
-bool QGlobalShortcutPrivate::eventFilter(void* message)
+bool QGlobalShortcutPrivate::eventFilter(void *message)
 //bool QGlobalShortcutPrivate::macEventFilter(EventHandlerCallRef caller, EventRef event)
 {
     EventRef event = (EventRef) message;
@@ -103,12 +103,12 @@ quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
     { // no Unicode available
         if(ch > 255) return 0;
 
-        char* data;
+        char *data;
         KLGetKeyboardLayoutProperty(layout, kKLKCHRData, TTKConst_cast(const void**, TTKReinterpret_cast(void**, &data)));
         int ct = *TTKReinterpret_cast(short*, data + 258);
         for(int i = 0; i < ct; ++i)
         {
-            char* keyTable = data + 260 + 128 * i;
+            char *keyTable = data + 260 + 128 * i;
             for(int j = 0; j < 128; ++j)
             {
                 if(keyTable[j] == ch) return j;
@@ -118,26 +118,26 @@ quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
         return 0;
     }
 
-    char* data;
+    char *data;
     KLGetKeyboardLayoutProperty(layout, kKLuchrData, TTKConst_cast(const void**, TTKReinterpret_cast(void**, &data)));
-    UCKeyboardLayout* header = TTKReinterpret_cast(UCKeyboardLayout*, data);
-    UCKeyboardTypeHeader* table = header->keyboardTypeList;
+    UCKeyboardLayout *header = TTKReinterpret_cast(UCKeyboardLayout*, data);
+    UCKeyboardTypeHeader *table = header->keyboardTypeList;
 
     for (quint32 i=0; i < header->keyboardTypeCount; i++)
     {
-        UCKeyStateRecordsIndex* stateRec = 0;
+        UCKeyStateRecordsIndex *stateRec = 0;
         if(table[i].keyStateRecordsIndexOffset != 0)
         {
             stateRec = TTKReinterpret_cast(UCKeyStateRecordsIndex*, data + table[i].keyStateRecordsIndexOffset);
             if(stateRec->keyStateRecordsIndexFormat != kUCKeyStateRecordsIndexFormat) stateRec = 0;
         }
 
-        UCKeyToCharTableIndex* charTable = TTKReinterpret_cast(UCKeyToCharTableIndex*, data + table[i].keyToCharTableIndexOffset);
+        UCKeyToCharTableIndex *charTable = TTKReinterpret_cast(UCKeyToCharTableIndex*, data + table[i].keyToCharTableIndexOffset);
         if(charTable->keyToCharTableIndexFormat != kUCKeyToCharTableIndexFormat) continue;
 
         for (quint32 j=0; j < charTable->keyToCharTableCount; j++)
         {
-            UCKeyOutput* keyToChar = TTKReinterpret_cast(UCKeyOutput*, data + charTable->keyToCharTableOffsets[j]);
+            UCKeyOutput *keyToChar = TTKReinterpret_cast(UCKeyOutput*, data + charTable->keyToCharTableOffsets[j]);
             for (quint32 k=0; k < charTable->keyToCharTableSize; k++)
             {
                 if(keyToChar[k] & kUCKeyOutputTestForIndexMask)
@@ -145,7 +145,7 @@ quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
                     long idx = keyToChar[k] & kUCKeyOutputGetIndexMask;
                     if(stateRec && idx < stateRec->keyStateRecordCount)
                     {
-                        UCKeyStateRecord* rec = TTKReinterpret_cast(UCKeyStateRecord*, data + stateRec->keyStateRecordOffsets[idx]);
+                        UCKeyStateRecord *rec = TTKReinterpret_cast(UCKeyStateRecord*, data + stateRec->keyStateRecordOffsets[idx]);
                         if(rec->stateZeroCharData == ch) return k;
                     }
                 }

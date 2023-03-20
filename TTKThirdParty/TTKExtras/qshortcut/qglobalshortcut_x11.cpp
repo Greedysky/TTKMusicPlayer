@@ -1,7 +1,29 @@
 #include "qglobalshortcut_p.h"
-#include <QX11Info>
-#include <X11/Xlib.h>
 #include <xcb/xcb.h>
+#include <X11/Xlib.h>
+#if !TTK_QT_VERSION_CHECK(6,0,0) && TTK_QT_VERSION_CHECK(5,1,0) || !TTK_QT_VERSION_CHECK(5,0,0)
+#include <QX11Info>
+static Display *X11Display()
+{
+    return QX11Info::display();
+}
+
+static Window X11RootWindow()
+{
+    return QX11Info::appRootWindow();
+}
+#else
+static Display *X11Display()
+{
+    static Display *display = XOpenDisplay(/*getenv("DISPLAY")*/NULL);
+    return display;
+}
+
+static Window X11RootWindow()
+{
+    return XRootWindow(X11Display(), -1);
+}
+#endif
 
 static int (*original_x_errhandler)(Display *display, XErrorEvent *event);
 
@@ -85,14 +107,14 @@ quint32 QGlobalShortcutPrivate::nativeModifiers(Qt::KeyboardModifiers modifiers)
 
 quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
 {
-    Display* display = QX11Info::display();
+    Display *display = X11Display();
     return XKeysymToKeycode(display, XStringToKeysym(QKeySequence(key).toString().toLatin1().data()));
 }
 
 bool QGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeMods)
 {
-    Display* display = QX11Info::display();
-    Window window = QX11Info::appRootWindow();
+    Display *display = X11Display();
+    Window window = X11RootWindow();
     Bool owner = True;
     int pointer = GrabModeAsync;
     int keyboard = GrabModeAsync;
@@ -108,8 +130,8 @@ bool QGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeM
 
 bool QGlobalShortcutPrivate::unregisterShortcut(quint32 nativeKey, quint32 nativeMods)
 {
-    Display* display = QX11Info::display();
-    Window window = QX11Info::appRootWindow();
+    Display *display = X11Display();
+    Window window = X11RootWindow();
     m_error = false;
 
     original_x_errhandler = XSetErrorHandler(q_x_errhandler);

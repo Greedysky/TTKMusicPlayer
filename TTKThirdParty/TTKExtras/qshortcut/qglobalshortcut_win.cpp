@@ -7,7 +7,7 @@ bool QGlobalShortcutPrivate::eventFilter(void* message)
 bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message, qint *)
 #endif
 {
-    MSG* msg = TTKStatic_cast(MSG*, message);
+    MSG *msg = TTKStatic_cast(MSG*, message);
     if(msg->message == WM_HOTKEY)
     {
         const quint32 keycode = HIWORD(msg->lParam);
