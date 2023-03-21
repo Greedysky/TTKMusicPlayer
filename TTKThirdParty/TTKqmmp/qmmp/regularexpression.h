@@ -45,7 +45,11 @@ public:
     operator QRegularExpression () const;
 private:
     QRegularExpression m_regular;
+#  if QT_VERSION >= QT_VERSION_CHECK(5,1,0)
     QRegularExpressionMatch m_match;
+#  else
+    QString m_match;
+#  endif
 #else
     operator QRegExp () const;
 private:

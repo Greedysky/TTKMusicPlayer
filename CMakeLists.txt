@@ -106,7 +106,7 @@ set(MUSIC_UI_DIR "${MUSIC_DIR}/TTKUi")
 set(MUSIC_THIRDPARTY_DIR "${MUSIC_DIR}/TTKThirdParty")
 set(MUSIC_TTKSERVICE_DIR "${MUSIC_DIR}/TTKService")
 
-set(MUSIC_SCRIPT_DIR "${MUSIC_DIR}/TTKScript")
+set(MUSIC_UTILS_DIR "${MUSIC_DIR}/TTKUtils")
 set(MUSIC_LANGUAGE_DIR "${MUSIC_DIR}/TTKLanguage")
 set(MUSIC_RESOURCE_DIR "${MUSIC_DIR}/TTKResource")
 
@@ -191,9 +191,9 @@ find_program(QT_LRELEASE_EXECUTABLE lrelease ${QT_INSTALL_BINS})
 if(QT_LRELEASE_EXECUTABLE)
   message(STATUS "Message Found lrelease executable: " ${QT_LRELEASE_EXECUTABLE})
   if(WIN32)
-    execute_process(COMMAND ${MUSIC_SCRIPT_DIR}/ts_win.bat ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH})
+    execute_process(COMMAND ${MUSIC_UTILS_DIR}/ts_win.bat ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH})
   else(UNIX)
-    execute_process(COMMAND ${MUSIC_SCRIPT_DIR}/ts_linux.sh ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH} ${MUSIC_DIR})
+    execute_process(COMMAND ${MUSIC_UTILS_DIR}/ts_linux.sh ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH} ${MUSIC_DIR})
   endif()
 else()
   message(FATAL_ERROR "Message Could NOT find lrelease executable")
@@ -201,7 +201,7 @@ endif()
 
 # copy run resource
 if(UNIX)
-  execute_process(COMMAND ${MUSIC_SCRIPT_DIR}/resource.sh ${MUSIC_RESOURCE_DIR} ${EXECUTABLE_OUTPUT_PATH})
+  execute_process(COMMAND ${MUSIC_UTILS_DIR}/resource.sh ${MUSIC_RESOURCE_DIR} ${EXECUTABLE_OUTPUT_PATH})
 endif()
 
 find_library(TTK_QMMP_LIBRARY
@@ -228,4 +228,4 @@ add_subdirectory(TTKModule)
 add_subdirectory(TTKService)
 add_subdirectory(TTKRun)
 
-install(FILES "${MUSIC_SCRIPT_DIR}/deploy/ttkmusicplayer.appdata.xml" DESTINATION "${MUSIC_INSTALL_DIR}/metainfo")
+install(FILES "${MUSIC_UTILS_DIR}/deploy/ttkmusicplayer.appdata.xml" DESTINATION "${MUSIC_INSTALL_DIR}/metainfo")

@@ -61,7 +61,7 @@ win32{
     output = $$replace(output, /, \\)
     !exists($$output):system(md $$output)
 
-    system(for /r $$PWD/TTKLanguage %i in (*.ts) do $$LRELEASE_EXECUTABLE %i)
-    system(for /r $$PWD/TTKLanguage %i in (*.qm) do ren %i *.ln)
-    system(for /r $$PWD/TTKLanguage %i in (*.ln) do move /y %i $$output)
+    system(for /r $$PWD/TTKLanguage %f in (*.ts) do $$LRELEASE_EXECUTABLE %f)
+    system(for /r $$PWD/TTKLanguage %f in (*.qm) do ren %f *.ln)
+    system(for /r $$PWD/TTKLanguage %f in (*.ln) do move /y %f $$output)
 }

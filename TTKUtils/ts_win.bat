@@ -1,4 +1,4 @@
-@echo off & setlocal EnableDelayedExpansion
+@echo off
 PUSHD %~dp0
 
 cd /D ../TTKLanguage
@@ -15,4 +15,5 @@ ren *.qm *.ln
 for /F %%f in ('dir /A:A /s /b *.ln') do (
   move %%f %OUTPUT%
 )
+
 POPD %~dp0
