@@ -984,6 +984,7 @@ void MusicApplication::dragMoveEvent(QDragMoveEvent *event)
 void MusicApplication::dropEvent(QDropEvent *event)
 {
     TTKAbstractMoveResizeWidget::dropEvent(event);
+
     const QMimeData *data = event->mimeData();
     QStringList files;
 
@@ -997,8 +998,16 @@ void MusicApplication::dropEvent(QDropEvent *event)
 
 void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 {
-    TTKAbstractMoveResizeWidget::contextMenuEvent(event);
-    musicCreateRightMenu();
+    const int h = event->pos().y();
+    if(h <= m_ui->topWidget->height())
+    {
+        TTKAbstractMoveResizeWidget::contextMenuEvent(event);
+        musicCreateRightMenu();
+    }
+    else
+    {
+        event->accept();
+    }
 }
 
 void MusicApplication::enterEvent(QtEnterEvent *event)

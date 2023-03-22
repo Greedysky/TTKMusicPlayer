@@ -78,12 +78,17 @@ bool MusicFunctionToolBoxTopWidget::isItemEnabled() const
     return false;
 }
 
-void MusicFunctionToolBoxTopWidget::dragLeaveEvent(QDragLeaveEvent *event)
+void MusicFunctionToolBoxTopWidget::dragEnterEvent(QDragEnterEvent *event)
 {
-    Q_UNUSED(event);
-    m_isDrawTopState = false;
-    m_isDrawMoveState = false;
-    update();
+    if(event->mimeData()->hasFormat(DRAG_FORMAT))
+    {
+        event->setDropAction(Qt::MoveAction);
+        event->accept();
+    }
+    else
+    {
+        event->ignore();
+    }
 }
 
 void MusicFunctionToolBoxTopWidget::dragMoveEvent(QDragMoveEvent *event)
@@ -96,17 +101,12 @@ void MusicFunctionToolBoxTopWidget::dragMoveEvent(QDragMoveEvent *event)
     }
 }
 
-void MusicFunctionToolBoxTopWidget::dragEnterEvent(QDragEnterEvent *event)
+void MusicFunctionToolBoxTopWidget::dragLeaveEvent(QDragLeaveEvent *event)
 {
-    if(event->mimeData()->hasFormat(DRAG_FORMAT))
-    {
-        event->setDropAction(Qt::MoveAction);
-        event->accept();
-    }
-    else
-    {
-        event->ignore();
-    }
+    Q_UNUSED(event);
+    m_isDrawTopState = false;
+    m_isDrawMoveState = false;
+    update();
 }
 
 void MusicFunctionToolBoxTopWidget::dropEvent(QDropEvent *event)

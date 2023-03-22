@@ -83,9 +83,9 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void dragLeaveEvent(QDragLeaveEvent *event) override final;
-    virtual void dragMoveEvent(QDragMoveEvent *event) override final;
     virtual void dragEnterEvent(QDragEnterEvent *event) override final;
+    virtual void dragMoveEvent(QDragMoveEvent *event) override final;
+    virtual void dragLeaveEvent(QDragLeaveEvent *event) override final;
     virtual void dropEvent(QDropEvent *event) override final;
     virtual void mousePressEvent(QMouseEvent *event) override final;
     virtual void mouseMoveEvent(QMouseEvent *event) override final;
