@@ -172,7 +172,7 @@ void MusicTransformWidget::folderBoxChecked()
 
 void MusicTransformWidget::buttonClicked(int index)
 {
-    m_currentType = TTKStatic_cast(Module, index);
+    m_currentType = TTKStaticCast(Module, index);
     const bool musicMode = Module::Music == m_currentType;
 
     m_path.clear();

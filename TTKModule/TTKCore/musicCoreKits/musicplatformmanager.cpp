@@ -138,7 +138,7 @@ MusicPlatformManager::System MusicPlatformManager::systemName() const
     typedef void (__stdcall *NTPROC)(DWORD*, DWORD*, DWORD*);
     HINSTANCE instance = LoadLibraryW(L"ntdll.dll");
     DWORD major, minor, buildNumber;
-    NTPROC proc = TTKVoid_cast(NTPROC)GetProcAddress(instance, "MiniDumpWriteDump");
+    NTPROC proc = TTKVoidCast(NTPROC)GetProcAddress(instance, "MiniDumpWriteDump");
     proc(&major, &minor, &buildNumber);
 
     if(major == 6 && minor == 3)	//win 8.1

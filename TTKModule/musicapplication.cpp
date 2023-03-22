@@ -711,7 +711,7 @@ void MusicApplication::musicWindowConciseChanged()
 
 void MusicApplication::musicEnhancedMusicChanged(int type)
 {
-    m_player->setMusicEnhanced(TTKStatic_cast(MusicPlayer::Enhance, type));
+    m_player->setMusicEnhanced(TTKStaticCast(MusicPlayer::Enhance, type));
 }
 
 void MusicApplication::musicCreateRightMenu()
@@ -1078,7 +1078,7 @@ void MusicApplication::readSystemConfigFromFile()
     xml.readBuffer();
     m_applicationObject->loadNetWorkSetting();
 
-    switch(TTKStatic_cast(TTK::PlayMode, G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt()))
+    switch(TTKStaticCast(TTK::PlayMode, G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt()))
     {
         case TTK::PlayMode::Order: musicPlayOrder();break;
         case TTK::PlayMode::Random: musicPlayRandom();break;
@@ -1197,8 +1197,8 @@ void MusicApplication::writeSystemConfigToFile()
 {
     MusicConfigManager xml;
     G_SETTING_PTR->setValue(MusicSettingManager::WidgetPosition, pos());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicIndex, TTKStatic_cast(int, m_player->musicEnhanced()));
-    G_SETTING_PTR->setValue(MusicSettingManager::PlayMode, TTKStatic_cast(int, m_playlist->playbackMode()));
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicIndex, TTKStaticCast(int, m_player->musicEnhanced()));
+    G_SETTING_PTR->setValue(MusicSettingManager::PlayMode, TTKStaticCast(int, m_playlist->playbackMode()));
     G_SETTING_PTR->setValue(MusicSettingManager::Volume, m_ui->musicSound->value());
 
     QStringList lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();

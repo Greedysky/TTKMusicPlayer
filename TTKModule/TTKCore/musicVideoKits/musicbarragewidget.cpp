@@ -40,7 +40,7 @@ void MusicBarrageAnimation::initialize()
 MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
     : QObject(parent)
 {
-    m_parent = TTKObject_cast(QWidget*, parent);
+    m_parent = TTKObjectCast(QWidget*, parent);
     m_barrageState = false;
 }
 

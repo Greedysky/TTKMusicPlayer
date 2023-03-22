@@ -49,10 +49,10 @@ static int q_x_errhandler(Display *display, XErrorEvent *event)
 #if !TTK_QT_VERSION_CHECK(5,0,0)
 bool QGlobalShortcutPrivate::eventFilter(void *message)
 {
-    XEvent *event = TTKStatic_cast(XEvent*, message);
+    XEvent *event = TTKStaticCast(XEvent*, message);
     if(event->type == KeyPress)
     {
-        XKeyEvent *key = TTKReinterpret_cast(XKeyEvent*, event);
+        XKeyEvent *key = TTKReinterpretCast(XKeyEvent*, event);
         unsigned int keycode = key->keycode;
         unsigned int keystate = key->state;
 #else
@@ -61,10 +61,10 @@ bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &type, void *mes
     xcb_key_press_event_t *kev = nullptr;
     if(type == "xcb_generic_event_t")
     {
-        xcb_generic_event_t *event = TTKStatic_cast(xcb_generic_event_t*, message);
+        xcb_generic_event_t *event = TTKStaticCast(xcb_generic_event_t*, message);
         if((event->response_type & 127) == XCB_KEY_PRESS)
         {
-            kev = TTKStatic_cast(xcb_key_press_event_t*, message);
+            kev = TTKStaticCast(xcb_key_press_event_t*, message);
         }
     }
 

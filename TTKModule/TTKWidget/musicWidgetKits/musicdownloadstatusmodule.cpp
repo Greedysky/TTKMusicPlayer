@@ -9,7 +9,7 @@
 MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
     : QObject(parent),
       m_previousState(true),
-      m_parent(TTKObject_cast(MusicApplication*, parent))
+      m_parent(TTKObjectCast(MusicApplication*, parent))
 {
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(MusicNetworkThread::className(), className());
@@ -43,7 +43,7 @@ void MusicDownloadStatusModule::checkMetaDataValid(bool mode)
 
 void MusicDownloadStatusModule::currentMetaDataDownload()
 {
-    MusicAbstractQueryRequest *d = TTKObject_cast(MusicAbstractQueryRequest*, sender());
+    MusicAbstractQueryRequest *d = TTKObjectCast(MusicAbstractQueryRequest*, sender());
     if(!G_NETWORK_PTR->isOnline() || !d)   //no network connection
     {
         return;

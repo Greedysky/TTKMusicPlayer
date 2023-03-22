@@ -102,7 +102,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         m_container->addWidget(scrollArea);
 
         m_initialized = true;
-        QVBoxLayout *mainlayout = TTKObject_cast(QVBoxLayout*, m_mainWindow->layout());
+        QVBoxLayout *mainlayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QVBoxLayout *containTopLayout  = new QVBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
@@ -120,7 +120,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
 
         for(int i = -1; i < 27; ++i)
         {
-            TTKClickedLabel *l = new TTKClickedLabel(QString(TTKStatic_cast(char, i + 65)), containNumberWidget);
+            TTKClickedLabel *l = new TTKClickedLabel(QString(TTKStaticCast(char, i + 65)), containNumberWidget);
             l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(TTK::UI::ColorStyle08, TTK::UI::ColorStyle10));
 
             if(i == -1)

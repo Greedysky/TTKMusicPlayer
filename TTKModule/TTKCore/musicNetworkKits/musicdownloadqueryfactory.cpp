@@ -58,7 +58,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeQueryRequest(QObject *
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
         case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYQueryRequest(parent); break;
         case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWQueryRequest(parent); break;
@@ -73,7 +73,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeMovieRequest(QObject *
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
         case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYQueryMovieRequest(parent); break;
         case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWQueryMovieRequest(parent); break;
@@ -88,7 +88,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeAlbumRequest(QObject *
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
         case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYQueryAlbumRequest(parent); break;
         case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWQueryAlbumRequest(parent); break;
@@ -103,7 +103,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeArtistRequest(QObject 
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
         case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYQueryArtistRequest(parent); break;
         case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWQueryArtistRequest(parent); break;
@@ -118,7 +118,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeArtistListRequest(QObj
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
         case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYQueryArtistListRequest(parent); break;
         case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWQueryArtistListRequest(parent); break;
@@ -133,7 +133,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeToplistRequest(QObject
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
         case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYQueryToplistRequest(parent); break;
         case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWQueryToplistRequest(parent); break;
@@ -148,7 +148,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makePlaylistRequest(QObjec
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
         case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYQueryPlaylistRequest(parent); break;
         case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWQueryPlaylistRequest(parent); break;
@@ -173,7 +173,7 @@ MusicSongSuggestRequest *MusicDownLoadQueryFactory::makeSuggestRequest(QObject *
 {
     MusicSongSuggestRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
         case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYSongSuggestRequest(parent); break;
         case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWSongSuggestRequest(parent); break;
@@ -187,7 +187,7 @@ MusicCommentsRequest *MusicDownLoadQueryFactory::makeSongCommentRequest(QObject 
 {
     MusicCommentsRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
         case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYSongCommentsRequest(parent); break;
         case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWSongCommentsRequest(parent); break;
@@ -201,7 +201,7 @@ MusicCommentsRequest *MusicDownLoadQueryFactory::makePlaylistCommentRequest(QObj
 {
     MusicCommentsRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
         case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYPlaylistCommentsRequest(parent); break;
         case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWPlaylistCommentsRequest(parent); break;
@@ -215,7 +215,7 @@ MusicDiscoverListRequest *MusicDownLoadQueryFactory::makeDiscoverListRequest(QOb
 {
     MusicDiscoverListRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
         case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYDiscoverListRequest(parent); break;
         case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWDiscoverListRequest(parent); break;
@@ -233,7 +233,7 @@ MusicTranslationRequest *MusicDownLoadQueryFactory::makeTranslationRequest(const
 MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeLrcRequest(const QString &url, const QString &path, QObject *parent)
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
         case MusicAbstractQueryRequest::QueryServer::WY: return (new MusicWYDownLoadTextRequest(url, path, parent));
         case MusicAbstractQueryRequest::QueryServer::KW: return (new MusicKWDownLoadTextRequest(url, path, parent));
@@ -246,7 +246,7 @@ MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeLrcRequest(const QS
 MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeCoverRequest(const QString &url, const QString &path, QObject *parent)
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, index))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
     {
         case MusicAbstractQueryRequest::QueryServer::WY: return (new MusicDownloadDataRequest(url, path, TTK::Download::Cover, parent));
         case MusicAbstractQueryRequest::QueryServer::KW: return (new MusicKWDownLoadCoverRequest(url, path, parent));

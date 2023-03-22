@@ -59,7 +59,7 @@ void MusicLrcContainerForWallpaper::applyParameter()
     const int width = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize().width() - LRC_PER_WIDTH;
     for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
-        MusicLrcManagerForInterior *w = TTKObject_cast(MusicLrcManagerForInterior*, m_lrcManagers[i]);
+        MusicLrcManagerForInterior *w = TTKObjectCast(MusicLrcManagerForInterior*, m_lrcManagers[i]);
         w->setLrcPerWidth(width);
         w->setLrcFontSize(36);
         w->setY(35 + 36);
@@ -183,7 +183,7 @@ void MusicLrcContainerForWallpaper::initCurrentLrc(const QString &str)
 
 void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int transparent)
 {
-    MusicLrcManagerForInterior *w = TTKObject_cast(MusicLrcManagerForInterior*, m_lrcManagers[index]);
+    MusicLrcManagerForInterior *w = TTKObjectCast(MusicLrcManagerForInterior*, m_lrcManagers[index]);
     w->setFontSize(size);
 
     const int value = MV_MAX - transparent;
@@ -192,7 +192,7 @@ void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int t
 
     if(G_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::Color index = TTKStatic_cast(MusicLrcColor::Color, G_SETTING_PTR->value("LrcColor").toInt());
+        const MusicLrcColor::Color index = TTKStaticCast(MusicLrcColor::Color, G_SETTING_PTR->value("LrcColor").toInt());
         setLinearGradientColor(index);
     }
     else

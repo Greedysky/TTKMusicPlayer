@@ -121,8 +121,8 @@ do {					\
 
 # define YYCDEBUG if (false) std::cerr
 # define YY_SYMBOL_PRINT(Title, Type, Value, Location) YYUSE(Type)
-# define YY_REDUCE_PRINT(Rule)        TTKStatic_cast(void, 0)
-# define YY_STACK_PRINT()             TTKStatic_cast(void, 0)
+# define YY_REDUCE_PRINT(Rule)        TTKStaticCast(void, 0)
+# define YY_STACK_PRINT()             TTKStaticCast(void, 0)
 
 #endif /* !YYDEBUG */
 

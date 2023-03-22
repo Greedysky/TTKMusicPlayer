@@ -613,13 +613,13 @@ void MusicSettingWidget::saveParameterSettings()
 
     QmmpSettings *qmmpSettings = QmmpSettings::instance();
     int index = m_ui->replayGainModeComboBox->currentIndex();
-    qmmpSettings->setReplayGainSettings(TTKStatic_cast(QmmpSettings::ReplayGainMode, m_ui->replayGainModeComboBox->itemData(index).toInt()),
+    qmmpSettings->setReplayGainSettings(TTKStaticCast(QmmpSettings::ReplayGainMode, m_ui->replayGainModeComboBox->itemData(index).toInt()),
                                         m_ui->preampSpinBox->value(),
                                         m_ui->defaultGainSpinBox->value(),
                                         m_ui->clippingCheckBox->isChecked());
     index = m_ui->bitDepthComboBox->currentIndex();
     qmmpSettings->setAudioSettings(m_ui->softVolumeCheckBox->isChecked(),
-                                   TTKStatic_cast(Qmmp::AudioFormat, m_ui->bitDepthComboBox->itemData(index).toInt()),
+                                   TTKStaticCast(Qmmp::AudioFormat, m_ui->bitDepthComboBox->itemData(index).toInt()),
                                    m_ui->ditheringCheckBox->isChecked());
     qmmpSettings->setBufferSize(m_ui->bufferSizeSpinBox->value());
     qmmpSettings->setVolumeStep(m_ui->volumeStepSpinBox->value());
@@ -1059,7 +1059,7 @@ void MusicSettingWidget::lcrColorValue(Lrc key, const QString &type, QLabel *obj
     if(dialog.exec())
     {
         const QList<QColor> &colors = dialog.colors();
-        TTKObject_cast(MusicColorPreviewLabel*, obj)->setColors(colors);
+        TTKObjectCast(MusicColorPreviewLabel*, obj)->setColors(colors);
     }
     key == Lrc::Interior ? showInteriorLrcDemo() : showDesktopLrcDemo();
 }
@@ -1073,14 +1073,14 @@ void MusicSettingWidget::lrcColorByDefault(Lrc key, int index)
 
     if(key == Lrc::Interior)
     {
-        const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(TTKStatic_cast(MusicLrcColor::Color, index));
+        const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(TTKStaticCast(MusicLrcColor::Color, index));
         m_ui->playedPushButton->setColors(cl.m_frontColor);
         m_ui->noPlayedPushButton->setColors(cl.m_backColor);
         showInteriorLrcDemo();
     }
     else
     {
-        const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(TTKStatic_cast(MusicLrcColor::Color, index + LRC_COLOR_OFFSET));
+        const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(TTKStaticCast(MusicLrcColor::Color, index + LRC_COLOR_OFFSET));
         m_ui->DplayedPushButton->setColors(cl.m_frontColor);
         m_ui->DnoPlayedPushButton->setColors(cl.m_backColor);
         showDesktopLrcDemo();

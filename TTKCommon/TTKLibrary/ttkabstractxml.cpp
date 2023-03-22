@@ -123,7 +123,7 @@ bool TTKXmlDocument::fromString(const QString &data)
     m_file = nullptr;
     m_document = new QDomDocument;
 #if TTK_QT_VERSION_CHECK(6,5,0)
-    return TTKStatic_cast(bool, m_document->setContent(data));
+    return TTKStaticCast(bool, m_document->setContent(data));
 #else
     return m_document->setContent(data);
 #endif
@@ -137,7 +137,7 @@ bool TTKXmlDocument::fromByteArray(const QByteArray &data)
     m_file = nullptr;
     m_document = new QDomDocument;
 #if TTK_QT_VERSION_CHECK(6,5,0)
-    return TTKStatic_cast(bool, m_document->setContent(data));
+    return TTKStaticCast(bool, m_document->setContent(data));
 #else
     return m_document->setContent(data);
 #endif

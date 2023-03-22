@@ -91,11 +91,11 @@ public:
     {
         switch(type())
         {
-            case PDecoder: return TTKStatic_cast(DecoderFactory*, m_factory)->properties().hasSettings;
+            case PDecoder: return TTKStaticCast(DecoderFactory*, m_factory)->properties().hasSettings;
             case PEffect: return false;
             case PVisual: return false;
-            case PTransports: return TTKStatic_cast(InputSourceFactory*, m_factory)->properties().hasSettings;
-            case POutput: return TTKStatic_cast(OutputFactory*, m_factory)->properties().hasSettings;
+            case PTransports: return TTKStaticCast(InputSourceFactory*, m_factory)->properties().hasSettings;
+            case POutput: return TTKStaticCast(OutputFactory*, m_factory)->properties().hasSettings;
             default: return false;
         }
     }
@@ -104,11 +104,11 @@ public:
     {
         switch(type())
         {
-            case PDecoder: TTKStatic_cast(DecoderFactory*, m_factory)->showSettings(treeWidget()); break;
+            case PDecoder: TTKStaticCast(DecoderFactory*, m_factory)->showSettings(treeWidget()); break;
             case PEffect: break;
             case PVisual: break;
-            case PTransports: TTKStatic_cast(InputSourceFactory*, m_factory)->showSettings(treeWidget()); break;
-            case POutput: TTKStatic_cast(OutputFactory*, m_factory)->showSettings(treeWidget()); break;
+            case PTransports: TTKStaticCast(InputSourceFactory*, m_factory)->showSettings(treeWidget()); break;
+            case POutput: TTKStaticCast(OutputFactory*, m_factory)->showSettings(treeWidget()); break;
             default: break;
         }
     }
@@ -117,15 +117,15 @@ public:
     {
         switch(type())
         {
-            case PDecoder: Decoder::setEnabled(TTKStatic_cast(DecoderFactory*, m_factory), enabled); break;
+            case PDecoder: Decoder::setEnabled(TTKStaticCast(DecoderFactory*, m_factory), enabled); break;
             case PEffect: break;
             case PVisual: break;
-            case PTransports: InputSource::setEnabled(TTKStatic_cast(InputSourceFactory*, m_factory), enabled); break;
+            case PTransports: InputSource::setEnabled(TTKStaticCast(InputSourceFactory*, m_factory), enabled); break;
             case POutput:
             {
                 if(enabled)
                 {
-                    Output::setCurrentFactory(TTKStatic_cast(OutputFactory*, m_factory));
+                    Output::setCurrentFactory(TTKStaticCast(OutputFactory*, m_factory));
                 }
                 break;
             }
@@ -246,22 +246,22 @@ void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
             }
         }
 
-        const Qt::CheckState status = TTKStatic_cast(Qt::CheckState, item->data(column, TTK_CHECKED_ROLE).toInt());
+        const Qt::CheckState status = TTKStaticCast(Qt::CheckState, item->data(column, TTK_CHECKED_ROLE).toInt());
         item->setData(column, TTK_CHECKED_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
-        TTKDynamic_cast(MusicPluginItem*, item)->setEnabled(status != Qt::Checked);
+        TTKDynamicCast(MusicPluginItem*, item)->setEnabled(status != Qt::Checked);
 
         const QColor &color = (status != Qt::Checked) ? QColor(0xE6, 0x73, 0x00) : QColor(0x00, 0x00, 0x00);
         item->setData(1, Qt::ForegroundRole, color);
         item->setData(2, Qt::ForegroundRole, color);
     }
 
-    MusicPluginItem *it = TTKDynamic_cast(MusicPluginItem*, item);
+    MusicPluginItem *it = TTKDynamicCast(MusicPluginItem*, item);
     m_ui->settingButton->setEnabled(it ? it->hasSettings() : false);
 }
 
 void MusicPluginWidget::pluginButtonClicked()
 {
-    MusicPluginItem *item = TTKDynamic_cast(MusicPluginItem*, m_ui->treeWidget->currentItem());
+    MusicPluginItem *item = TTKDynamicCast(MusicPluginItem*, m_ui->treeWidget->currentItem());
     if(item)
     {
         item->showSettingWidget();

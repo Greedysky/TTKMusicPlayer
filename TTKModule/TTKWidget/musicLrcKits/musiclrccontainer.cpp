@@ -34,7 +34,7 @@ void MusicLrcContainer::applyParameter()
 
     if(G_SETTING_PTR->value(t + "LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::Color index = TTKStatic_cast(MusicLrcColor::Color, G_SETTING_PTR->value(t + "LrcColor").toInt());
+        const MusicLrcColor::Color index = TTKStaticCast(MusicLrcColor::Color, G_SETTING_PTR->value(t + "LrcColor").toInt());
         setLinearGradientColor(index);
     }
     else
@@ -58,7 +58,7 @@ void MusicLrcContainer::setLinearGradientColor(const MusicLrcColor &color)
         manager->setLinearGradientColor(color);
     }
 
-    G_SETTING_PTR->setValue((m_containerType == LRC_DESKTOP_TPYE) ? MusicSettingManager::DLrcColor : MusicSettingManager::LrcColor, TTKStatic_cast(int, color.m_index));
+    G_SETTING_PTR->setValue((m_containerType == LRC_DESKTOP_TPYE) ? MusicSettingManager::DLrcColor : MusicSettingManager::LrcColor, TTKStaticCast(int, color.m_index));
     Q_EMIT linearGradientColorChanged();
 }
 
@@ -105,7 +105,7 @@ void MusicLrcContainer::changeCurrentLrcColor(QAction *action)
 
 void MusicLrcContainer::changeCurrentLrcColor(int index)
 {
-    setLinearGradientColor(TTKStatic_cast(MusicLrcColor::Color, index));
+    setLinearGradientColor(TTKStaticCast(MusicLrcColor::Color, index));
 }
 
 void MusicLrcContainer::searchMusicLrcs()

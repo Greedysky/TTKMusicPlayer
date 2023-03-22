@@ -185,7 +185,7 @@ void QHttpConnection::waitForBytesWritten()
 void QHttpConnection::responseDone()
 {
     TTK_D(QHttpConnection);
-    QHttpResponse *response = TTKObject_cast(QHttpResponse*, sender());
+    QHttpResponse *response = TTKObjectCast(QHttpResponse*, sender());
     if(response->isLast())
     {
         d->m_socket->disconnectFromHost();
@@ -238,7 +238,7 @@ QUrl createUrl(const char *urlData, const http_parser_url &urlInfo)
 
 int QHttpConnectionPrivate::MessageBegin(http_parser *parser)
 {
-    QHttpConnectionPrivate *theConnection = TTKStatic_cast(QHttpConnectionPrivate*, parser->data);
+    QHttpConnectionPrivate *theConnection = TTKStaticCast(QHttpConnectionPrivate*, parser->data);
     theConnection->m_currentHeaders.clear();
     theConnection->m_currentUrl.clear();
     theConnection->m_currentUrl.reserve(128);
@@ -256,11 +256,11 @@ int QHttpConnectionPrivate::MessageBegin(http_parser *parser)
 
 int QHttpConnectionPrivate::HeadersComplete(http_parser *parser)
 {
-    QHttpConnectionPrivate *theConnection = TTKStatic_cast(QHttpConnectionPrivate*, parser->data);
+    QHttpConnectionPrivate *theConnection = TTKStaticCast(QHttpConnectionPrivate*, parser->data);
     Q_ASSERT(theConnection->m_request);
 
     /** set method **/
-    theConnection->m_request->setMethod(TTKStatic_cast(QHttpRequest::HttpMethod, parser->method));
+    theConnection->m_request->setMethod(TTKStaticCast(QHttpRequest::HttpMethod, parser->method));
 
     /** set version **/
     theConnection->m_request->setVersion(QString("%1.%2").arg(parser->http_major).arg(parser->http_minor));
@@ -300,7 +300,7 @@ int QHttpConnectionPrivate::HeadersComplete(http_parser *parser)
 int QHttpConnectionPrivate::MessageComplete(http_parser *parser)
 {
     // TODO: do cleanup and prepare for next request
-    QHttpConnectionPrivate *theConnection = TTKStatic_cast(QHttpConnectionPrivate*, parser->data);
+    QHttpConnectionPrivate *theConnection = TTKStaticCast(QHttpConnectionPrivate*, parser->data);
     Q_ASSERT(theConnection->m_request);
 
     theConnection->m_request->setSuccessful(true);
@@ -310,7 +310,7 @@ int QHttpConnectionPrivate::MessageComplete(http_parser *parser)
 
 int QHttpConnectionPrivate::Url(http_parser *parser, const char *at, size_t length)
 {
-    QHttpConnectionPrivate *theConnection = TTKStatic_cast(QHttpConnectionPrivate*, parser->data);
+    QHttpConnectionPrivate *theConnection = TTKStaticCast(QHttpConnectionPrivate*, parser->data);
     Q_ASSERT(theConnection->m_request);
 
     theConnection->m_currentUrl.append(at, length);
@@ -319,7 +319,7 @@ int QHttpConnectionPrivate::Url(http_parser *parser, const char *at, size_t leng
 
 int QHttpConnectionPrivate::HeaderField(http_parser *parser, const char *at, size_t length)
 {
-    QHttpConnectionPrivate *theConnection = TTKStatic_cast(QHttpConnectionPrivate*, parser->data);
+    QHttpConnectionPrivate *theConnection = TTKStaticCast(QHttpConnectionPrivate*, parser->data);
     Q_ASSERT(theConnection->m_request);
 
     // insert the header we parsed previously
@@ -342,7 +342,7 @@ int QHttpConnectionPrivate::HeaderField(http_parser *parser, const char *at, siz
 
 int QHttpConnectionPrivate::HeaderValue(http_parser *parser, const char *at, size_t length)
 {
-    QHttpConnectionPrivate *theConnection = TTKStatic_cast(QHttpConnectionPrivate*, parser->data);
+    QHttpConnectionPrivate *theConnection = TTKStaticCast(QHttpConnectionPrivate*, parser->data);
     Q_ASSERT(theConnection->m_request);
 
     QString valueSuffix = QString::fromLatin1(at, length);
@@ -352,7 +352,7 @@ int QHttpConnectionPrivate::HeaderValue(http_parser *parser, const char *at, siz
 
 int QHttpConnectionPrivate::Body(http_parser *parser, const char *at, size_t length)
 {
-    QHttpConnectionPrivate *theConnection = TTKStatic_cast(QHttpConnectionPrivate*, parser->data);
+    QHttpConnectionPrivate *theConnection = TTKStaticCast(QHttpConnectionPrivate*, parser->data);
     Q_ASSERT(theConnection->m_request);
 
     Q_EMIT theConnection->m_request->data(QByteArray(at, length));

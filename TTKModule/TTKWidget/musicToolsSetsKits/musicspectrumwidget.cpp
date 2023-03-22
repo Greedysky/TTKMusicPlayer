@@ -131,7 +131,7 @@ void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
 {
     if(state)
     {
-        QWidget *parent = TTKObject_cast(QWidget*, widget->parent());
+        QWidget *parent = TTKObjectCast(QWidget*, widget->parent());
         if(parent)
         {
             m_spectrumLayout = parent->layout();
@@ -285,7 +285,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, boo
 
         if(florid)
         {
-            TTKObject_cast(Florid*, type.m_object)->setPixmap(MusicTopAreaWidget::instance()->rendererPixmap());
+            TTKObjectCast(Florid*, type.m_object)->setPixmap(MusicTopAreaWidget::instance()->rendererPixmap());
             connect(MusicTopAreaWidget::instance(), SIGNAL(backgroundPixmapChanged(QPixmap)), type.m_object, SLOT(setPixmap(QPixmap)));
         }
         connect(type.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
@@ -307,7 +307,7 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::Module spectrum, bool
             loader.setFileName(TTK::TTKQmmp::pluginPath("Light", name));
             const QObject *obj = loader.instance();
             LightFactory *factory = nullptr;
-            if(obj && (factory = TTKObject_cast(LightFactory*, obj)))
+            if(obj && (factory = TTKObjectCast(LightFactory*, obj)))
             {
                 Light *lightWidget = factory->create(this);
                 MusicSpectrum type;
@@ -325,7 +325,7 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::Module spectrum, bool
             return;
         }
 
-        Light *light = TTKObject_cast(Light*, m_types[index].m_object);
+        Light *light = TTKObjectCast(Light*, m_types[index].m_object);
         if(!light)
         {
             return;

@@ -90,20 +90,20 @@ void QKugouWindow::setUrl(const QString &url)
 {
     TTK_D(QKugouWindow);
 #ifdef Q_OS_WIN
-    QAxWidget *w = TTKObject_cast(QAxWidget*, d->m_webView);
+    QAxWidget *w = TTKObjectCast(QAxWidget*, d->m_webView);
     if(w)
     {
         w->dynamicCall("Navigate(const QString&)", url);
     }
 #else
 #  ifdef TTK_WEBKIT
-    QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
+    QWebView *w = TTKObjectCast(QWebView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
     }
 #  elif defined TTK_WEBENGINE
-    QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
+    QWebEngineView *w = TTKObjectCast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
@@ -119,16 +119,16 @@ void QKugouWindow::goBack()
 {
     TTK_D(QKugouWindow);
 #ifdef Q_OS_WIN
-    QTimer::singleShot(MT_MS, TTKObject_cast(QAxWidget*, d->m_webView), SLOT(GoBack()));
+    QTimer::singleShot(MT_MS, TTKObjectCast(QAxWidget*, d->m_webView), SLOT(GoBack()));
 #else
 #  ifdef TTK_WEBKIT
-    QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
+    QWebView *w = TTKObjectCast(QWebView*, d->m_webView);
     if(w)
     {
         w->back();
     }
 #  elif defined TTK_WEBENGINE
-    QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
+    QWebEngineView *w = TTKObjectCast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->back();
@@ -143,16 +143,16 @@ void QKugouWindow::refresh()
 {
     TTK_D(QKugouWindow);
 #ifdef Q_OS_WIN
-    QTimer::singleShot(MT_MS, TTKObject_cast(QAxWidget*, d->m_webView), SLOT(Refresh()));
+    QTimer::singleShot(MT_MS, TTKObjectCast(QAxWidget*, d->m_webView), SLOT(Refresh()));
 #else
 #  ifdef TTK_WEBKIT
-    QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
+    QWebView *w = TTKObjectCast(QWebView*, d->m_webView);
     if(w)
     {
         w->reload();
     }
 #  elif defined TTK_WEBENGINE
-    QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
+    QWebEngineView *w = TTKObjectCast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->reload();
@@ -361,12 +361,12 @@ void QKugouWindow::createKugouListWidget()
     createWebViewer();
     layout->addWidget(d->m_webView);
 #  ifdef Q_OS_WIN
-    TTKObject_cast(QAxWidget*, d->m_webView)->dynamicCall("Navigate(const QString&)", QKugouUrl::makeListUrl());
+    TTKObjectCast(QAxWidget*, d->m_webView)->dynamicCall("Navigate(const QString&)", QKugouUrl::makeListUrl());
 #  else
 #    ifdef TTK_WEBENGINE
-    TTKObject_cast(QWebEngineView*, d->m_webView)->setUrl(QKugouUrl::makeListUrl());
+    TTKObjectCast(QWebEngineView*, d->m_webView)->setUrl(QKugouUrl::makeListUrl());
 #    else
-    TTKObject_cast(QWebView*, d->m_webView)->setUrl(QKugouUrl::makeListUrl());
+    TTKObjectCast(QWebView*, d->m_webView)->setUrl(QKugouUrl::makeListUrl());
 #    endif
 #  endif
 #else

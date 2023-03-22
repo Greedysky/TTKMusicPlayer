@@ -42,7 +42,7 @@ void MusicSongSearchPopTableWidget::itemCellClicked(int row, int column)
 
     Q_EMIT setText(item(row, 0)->toolTip().trimmed());
 
-    QWidget *widget = TTKObject_cast(QWidget*, parent());
+    QWidget *widget = TTKObjectCast(QWidget*, parent());
     widget->lower();
     widget->hide();
 }

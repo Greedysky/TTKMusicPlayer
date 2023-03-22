@@ -86,7 +86,7 @@ LONG TTKDumperPrivate::errorHandler(EXCEPTION_POINTERS *info)
 
     if(instance)
     {
-        MINIDUMPWRITEDUMP dump = TTKVoid_cast(MINIDUMPWRITEDUMP)GetProcAddress(instance, "MiniDumpWriteDump");
+        MINIDUMPWRITEDUMP dump = TTKVoidCast(MINIDUMPWRITEDUMP)GetProcAddress(instance, "MiniDumpWriteDump");
         if(dump)
         {
             WCHAR dumpPath[_MAX_PATH];

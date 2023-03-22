@@ -202,7 +202,7 @@ private:
         const int index = staticMetaObject.indexOfEnumerator("Config");
         const QMetaEnum &metaEnum = staticMetaObject.enumerator(index);
         const int key = metaEnum.keyToValue(stype.toStdString().c_str());
-        return TTKStatic_cast(Config, key);
+        return TTKStaticCast(Config, key);
     }
 
     QVariant m_variant;

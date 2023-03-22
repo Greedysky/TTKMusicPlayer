@@ -14,7 +14,7 @@ void TTKClickedGroup::mapped(QWidget *widget)
 
 void TTKClickedGroup::update()
 {
-    QWidget *widget = TTKObject_cast(QWidget*, sender());
+    QWidget *widget = TTKObjectCast(QWidget*, sender());
     if(!widget)
     {
         return;

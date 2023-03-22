@@ -744,7 +744,7 @@ void MusicLrcMakerWidget::setItemStyleSheet(int index, int size, int transparent
 
     if(G_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::Color index = TTKStatic_cast(MusicLrcColor::Color, G_SETTING_PTR->value("LrcColor").toInt());
+        const MusicLrcColor::Color index = TTKStaticCast(MusicLrcColor::Color, G_SETTING_PTR->value("LrcColor").toInt());
         const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(index);
         w->setLinearGradientColor(cl);
     }

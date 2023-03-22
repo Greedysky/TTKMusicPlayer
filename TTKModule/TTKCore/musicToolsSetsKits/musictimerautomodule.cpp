@@ -120,7 +120,7 @@ void MusicTimerAutoModule::setShutdown()
         LookupPrivilegeValue(nullptr, SE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid);
         tkp.PrivilegeCount = 1;
         tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-        AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, TTKStatic_cast(PTOKEN_PRIVILEGES, nullptr), nullptr);
+        AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, TTKStaticCast(PTOKEN_PRIVILEGES, nullptr), nullptr);
         ExitWindowsEx(EWX_SHUTDOWN | EWX_POWEROFF, 0);
     }
 #elif defined Q_OS_UNIX

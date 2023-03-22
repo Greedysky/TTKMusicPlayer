@@ -175,7 +175,7 @@ static HWND dw_create_internal_window(const void* userData)
 	wc.hCursor = 0;
 	wc.hbrBackground = 0;
     wc.lpszMenuName = nullptr;
-    wc.lpszClassName = TTKReinterpret_cast(const wchar_t *, className.utf16());
+    wc.lpszClassName = TTKReinterpretCast(const wchar_t *, className.utf16());
     RegisterClassW(&wc);
 
     HWND hwnd = CreateWindowW(wc.lpszClassName,	   // classname
@@ -225,7 +225,7 @@ static void dw_destroy_internal_window(HWND hwnd)
 #if CONFIG_NOTIFICATION
 	UnregisterDeviceNotification(hDevNotify);
 #endif
-    UnregisterClassW(TTKReinterpret_cast(const wchar_t *, className().utf16()), qWinAppInst());
+    UnregisterClassW(TTKReinterpretCast(const wchar_t *, className().utf16()), qWinAppInst());
 }
 
 

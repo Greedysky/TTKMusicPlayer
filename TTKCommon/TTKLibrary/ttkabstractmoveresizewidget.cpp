@@ -35,7 +35,7 @@ bool TTKAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
     QWidget::eventFilter(object, event);
     if(QEvent::MouseMove == event->type())
     {
-        QMouseEvent *mouseEvent = TTKStatic_cast(QMouseEvent*, event);
+        QMouseEvent *mouseEvent = TTKStaticCast(QMouseEvent*, event);
         QApplication::sendEvent(this, mouseEvent);
     }
     return false;

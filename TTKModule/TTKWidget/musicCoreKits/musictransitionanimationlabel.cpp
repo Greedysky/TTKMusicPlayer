@@ -67,7 +67,7 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
     m_currentPixmap = pix;
     m_isAnimating = true;
 
-    m_type = TTKStatic_cast(Module, TTK::random(5));
+    m_type = TTKStaticCast(Module, TTK::random(5));
     switch(m_type)
     {
         case Module::FadeEffect:

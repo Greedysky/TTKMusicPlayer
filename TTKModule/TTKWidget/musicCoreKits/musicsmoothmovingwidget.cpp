@@ -70,6 +70,7 @@ void MusicSmoothMovingTableWidget::wheelEvent(QWheelEvent *event)
 
     m_animationTimer->stop();
     m_slowAnimation->stop();
+
     if(m_initialized)
     {
         m_deltaValue = 0;
@@ -152,6 +153,7 @@ void MusicSmoothMovingScrollArea::wheelEvent(QWheelEvent *event)
 
     m_animationTimer->stop();
     m_slowAnimation->stop();
+
     if(m_initialized)
     {
         m_deltaValue = 0;

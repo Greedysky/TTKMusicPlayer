@@ -75,7 +75,7 @@ void MusicAdvancedSearchedWidget::typeIndexChanged(int index)
         case 0:
         {
             m_searchLabel->setText(tr("Input song id or url link"));
-            switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
+            switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
             {
                 case MusicAbstractQueryRequest::QueryServer::WY: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(WY_SG_SHARE, ALG_SHR_KEY, false).arg("28830412")); break;
                 case MusicAbstractQueryRequest::QueryServer::KW: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(KW_SG_SHARE, ALG_SHR_KEY, false).arg("23983067")); break;
@@ -87,7 +87,7 @@ void MusicAdvancedSearchedWidget::typeIndexChanged(int index)
         case 1:
         {
             m_searchLabel->setText(tr("Input artist id or url link"));
-            switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
+            switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
             {
                 case MusicAbstractQueryRequest::QueryServer::WY: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(WY_AR_SHARE, ALG_SHR_KEY, false).arg("964486")); break;
                 case MusicAbstractQueryRequest::QueryServer::KW: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(KW_AR_SHARE, ALG_SHR_KEY, false).arg("373")); break;
@@ -99,7 +99,7 @@ void MusicAdvancedSearchedWidget::typeIndexChanged(int index)
         case 2:
         {
             m_searchLabel->setText(tr("Input album id or url link"));
-            switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
+            switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
             {
                 case MusicAbstractQueryRequest::QueryServer::WY: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(WY_AL_SHARE, ALG_SHR_KEY, false).arg("2901140")); break;
                 case MusicAbstractQueryRequest::QueryServer::KW: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(KW_AL_SHARE, ALG_SHR_KEY, false).arg("2698608")); break;
@@ -111,7 +111,7 @@ void MusicAdvancedSearchedWidget::typeIndexChanged(int index)
         case 3:
         {
             m_searchLabel->setText(tr("Input playlist id or url link"));
-            switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
+            switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
             {
                 case MusicAbstractQueryRequest::QueryServer::WY: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(WY_PL_SHARE, ALG_SHR_KEY, false).arg("988604820")); break;
                 case MusicAbstractQueryRequest::QueryServer::KW: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(KW_PL_SHARE, ALG_SHR_KEY, false).arg("236350390")); break;
@@ -123,7 +123,7 @@ void MusicAdvancedSearchedWidget::typeIndexChanged(int index)
         case 4:
         {
             m_searchLabel->setText(tr("Input movie id or url link"));
-            switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
+            switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
             {
                 case MusicAbstractQueryRequest::QueryServer::WY: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(WY_MV_SHARE, ALG_SHR_KEY, false).arg("5343487")); break;
                 case MusicAbstractQueryRequest::QueryServer::KW: m_searchEdit->editor()->setPlaceholderText(TTK::Algorithm::mdII(KW_MV_SHARE, ALG_SHR_KEY, false).arg("156505081")); break;
@@ -160,7 +160,7 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
 QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &url)
 {
     QString key;
-    switch(TTKStatic_cast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
     {
         case MusicAbstractQueryRequest::QueryServer::WY:
         {

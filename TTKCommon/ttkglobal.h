@@ -61,39 +61,39 @@ void qAsConst(const T &&) = delete;
 
 // cast
 #ifdef TTK_CAST
-#  define TTKConst_cast(x, y) (const_cast<x>(y))
+#  define TTKConstCast(x, y) (const_cast<x>(y))
 #else
-#  define TTKConst_cast(x, y) ((x)(y))
+#  define TTKConstCast(x, y) ((x)(y))
 #endif
 
 #ifdef TTK_CAST
-#  define TTKDynamic_cast(x, y) (dynamic_cast<x>(y))
+#  define TTKDynamicCast(x, y) (dynamic_cast<x>(y))
 #else
-#  define TTKDynamic_cast(x, y) ((x)(y))
+#  define TTKDynamicCast(x, y) ((x)(y))
 #endif
 
 #ifdef TTK_CAST
-#  define TTKReinterpret_cast(x, y) (reinterpret_cast<x>(y))
+#  define TTKReinterpretCast(x, y) (reinterpret_cast<x>(y))
 #else
-#  define TTKReinterpret_cast(x, y) ((x)(y))
+#  define TTKReinterpretCast(x, y) ((x)(y))
 #endif
 
 #ifdef TTK_CAST
-#  define TTKStatic_cast(x, y) (static_cast<x>(y))
+#  define TTKStaticCast(x, y) (static_cast<x>(y))
 #else
-#  define TTKStatic_cast(x, y) ((x)(y))
+#  define TTKStaticCast(x, y) ((x)(y))
 #endif
 
 #ifdef TTK_CAST
-#  define TTKObject_cast(x, y) (qobject_cast<x>(y))
+#  define TTKObjectCast(x, y) (qobject_cast<x>(y))
 #else
-#  define TTKObject_cast(x, y) ((x)(y))
+#  define TTKObjectCast(x, y) ((x)(y))
 #endif
 
 #if defined TTK_CAST && TTK_QT_VERSION_CHECK(5,15,0)
-#  define TTKVoid_cast(x) (x)(void*)
+#  define TTKVoidCast(x) (x)(void*)
 #else
-#  define TTKVoid_cast(x) (x)
+#  define TTKVoidCast(x) (x)
 #endif
 
 // deprecated function

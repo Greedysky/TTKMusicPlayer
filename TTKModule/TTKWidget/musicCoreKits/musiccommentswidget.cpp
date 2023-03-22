@@ -307,7 +307,7 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     m_networkRequest->startToSearch(name);
     loop.exec();
 
-    TTKObject_cast(QVBoxLayout*, m_messageComments->layout())->addStretch(1);
+    TTKObjectCast(QVBoxLayout*, m_messageComments->layout())->addStretch(1);
     createPageWidget();
 
     initLabel(name, m_networkRequest->totalSize());
@@ -319,7 +319,7 @@ void MusicCommentsWidget::createCommentItem(const MusicResultDataItem &comments)
     item->addCellItem(comments);
     m_commentsItems << item;
 
-    QVBoxLayout *layout = TTKObject_cast(QVBoxLayout*, m_messageComments->layout());
+    QVBoxLayout *layout = TTKObjectCast(QVBoxLayout*, m_messageComments->layout());
     layout->insertWidget(layout->count() - 1, item);
 
     if(!m_isPain)

@@ -143,7 +143,7 @@ void MusicWYQueryRequest::downLoadSingleFinished()
     TTK_INFO_STREAM(QString("%1 downLoadSingleFinished").arg(className()));
 
     MusicAbstractQueryRequest::downLoadFinished();
-    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, sender());
+    QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;

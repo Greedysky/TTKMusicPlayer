@@ -388,7 +388,7 @@ void WaterWavePrivate::initialize(const QImage &image, int radius)
 
 void WaterWavePrivate::setWaveSourcePower(int radius, int depth)
 {
-    m_sourceRadius = TTKStatic_cast(int, radius / m_scale);
+    m_sourceRadius = TTKStaticCast(int, radius / m_scale);
     m_sourceDepth = depth;
 
     const int value = m_sourceRadius * m_sourceRadius;
@@ -416,8 +416,8 @@ void WaterWavePrivate::setWaveSourcePower(int radius, int depth)
 
 void WaterWavePrivate::setWaveSourcePosition(int x, int y)
 {
-    const int sourceX = TTKStatic_cast(int, x / m_scale);
-    const int sourceY = TTKStatic_cast(int, y / m_scale);
+    const int sourceX = TTKStaticCast(int, x / m_scale);
+    const int sourceY = TTKStaticCast(int, y / m_scale);
     if((sourceX + m_sourceRadius) >= m_width || (sourceY + m_sourceRadius) >= m_height || (sourceX - m_sourceRadius) <= 0 || (sourceY - m_sourceRadius) <= 0)
     {
         return;
@@ -427,7 +427,7 @@ void WaterWavePrivate::setWaveSourcePosition(int x, int y)
     const int size = ((m_sourceRadius << 1) + 1) * ((m_sourceRadius << 1) + 1);
     for(int i = 0; i < size; ++i)
     {
-        m_buffer1[distance + m_sourcePosition[i]] = TTKStatic_cast(short, m_sourcePower[i]);
+        m_buffer1[distance + m_sourcePosition[i]] = TTKStaticCast(short, m_sourcePower[i]);
     }
 }
 

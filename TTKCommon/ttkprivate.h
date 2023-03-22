@@ -38,8 +38,8 @@
     ttk_d.setPrivate(&PVT); \
     ttk_d.setPublic(this);
 
-#define TTK_D(Class) Class##Private *const d = TTKStatic_cast(Class##Private*, ttk_d())
-#define TTK_Q(Class) Class *const q = TTKStatic_cast(Class*, ttk_q())
+#define TTK_D(Class) Class##Private *const d = TTKStaticCast(Class##Private*, ttk_d())
+#define TTK_Q(Class) Class *const q = TTKStaticCast(Class*, ttk_q())
 
 template <typename PUB>
 /*! @brief The class of the ttk private base.
@@ -114,7 +114,7 @@ public:
 
     inline PVT *operator()() const
     {
-        return TTKStatic_cast(PVT*, m_dptr);
+        return TTKStaticCast(PVT*, m_dptr);
     }
 
 private:

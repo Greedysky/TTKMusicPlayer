@@ -28,7 +28,7 @@ void MusicKGQueryArtistListRequest::startToPage(int offset)
         const int id = dds[1].toInt();
         if(id > 0 && id <= 26)
         {
-            m_rawData["initial"] = QString(TTKStatic_cast(char, id + 65 - 1));
+            m_rawData["initial"] = QString(TTKStaticCast(char, id + 65 - 1));
         }
     }
 

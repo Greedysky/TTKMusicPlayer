@@ -256,13 +256,13 @@ void MusicRightAreaWidget::resizeWindow()
     m_ui->songSearchWidget->resizeWindow();
     m_lrcForInterior->resizeWindow();
 
-    TTKAbstractResizeInterface *stackedWidget = TTKDynamic_cast(TTKAbstractResizeInterface*, m_stackedWidget);
+    TTKAbstractResizeInterface *stackedWidget = TTKDynamicCast(TTKAbstractResizeInterface*, m_stackedWidget);
     if(stackedWidget)
     {
         stackedWidget->resizeWidget();
     }
 
-    TTKAbstractResizeInterface *stackedStandWidget = TTKDynamic_cast(TTKAbstractResizeInterface*, m_stackedStandWidget);
+    TTKAbstractResizeInterface *stackedStandWidget = TTKDynamicCast(TTKAbstractResizeInterface*, m_stackedStandWidget);
     if(stackedStandWidget)
     {
         stackedStandWidget->resizeWidget();
@@ -297,15 +297,15 @@ void MusicRightAreaWidget::applyParameter()
         }
     }
 
-    if(TTKObject_cast(MusicScreenSaverWidget*, m_stackedWidget))
+    if(TTKObjectCast(MusicScreenSaverWidget*, m_stackedWidget))
     {
-        TTKObject_cast(MusicScreenSaverWidget*, m_stackedWidget)->applyParameter();
+        TTKObjectCast(MusicScreenSaverWidget*, m_stackedWidget)->applyParameter();
     }
 }
 
 void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
 {
-    m_funcIndex = TTKStatic_cast(FunctionModule, index);
+    m_funcIndex = TTKStaticCast(FunctionModule, index);
     functionInitialize();
 
     if(widget)
@@ -528,20 +528,20 @@ void MusicRightAreaWidget::musicSongCommentsWidget()
 void MusicRightAreaWidget::musicSimilarFound(const QString &text)
 {
     functionClicked(MusicRightAreaWidget::SimilarWidget);
-    TTKObject_cast(MusicSimilarQueryWidget*, m_stackedWidget)->setSongName(text);
+    TTKObjectCast(MusicSimilarQueryWidget*, m_stackedWidget)->setSongName(text);
 }
 
 void MusicRightAreaWidget::musicAlbumFound(const QString &text, const QString &id)
 {
     functionClicked(MusicRightAreaWidget::AlbumWidget);
-    MusicAlbumQueryWidget *w = TTKObject_cast(MusicAlbumQueryWidget*, m_stackedWidget);
+    MusicAlbumQueryWidget *w = TTKObjectCast(MusicAlbumQueryWidget*, m_stackedWidget);
     id.isEmpty() ? w->setSongName(text) : w->setSongNameByID(id);
 }
 
 void MusicRightAreaWidget::musicArtistCategoryFound()
 {
     functionClicked(MusicRightAreaWidget::ArtistCategoryWidget);
-    TTKObject_cast(MusicArtistListQueryWidget*, m_stackedWidget)->setSongName(QString());
+    TTKObjectCast(MusicArtistListQueryWidget*, m_stackedWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicArtistSearchFound()
@@ -576,27 +576,27 @@ void MusicRightAreaWidget::musicMovieSearchRadioFound()
 void MusicRightAreaWidget::musicArtistFound(const QString &text, const QString &id)
 {
     functionClicked(MusicRightAreaWidget::ArtistWidget);
-    MusicArtistQueryWidget *w = TTKObject_cast(MusicArtistQueryWidget*, m_stackedWidget);
+    MusicArtistQueryWidget *w = TTKObjectCast(MusicArtistQueryWidget*, m_stackedWidget);
     id.isEmpty() ? w->setSongName(text) : w->setSongNameByID(id);
 }
 
 void MusicRightAreaWidget::musicToplistFound()
 {
     functionClicked(MusicRightAreaWidget::ToplistWidget);
-    TTKObject_cast(MusicToplistQueryWidget*, m_stackedWidget)->setSongName(QString());
+    TTKObjectCast(MusicToplistQueryWidget*, m_stackedWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicPlaylistFound(const QString &id)
 {
     functionClicked(MusicRightAreaWidget::PlaylistWidget);
-    MusicPlaylistQueryWidget *w = TTKObject_cast(MusicPlaylistQueryWidget*, m_stackedWidget);
+    MusicPlaylistQueryWidget *w = TTKObjectCast(MusicPlaylistQueryWidget*, m_stackedWidget);
     id.isEmpty() ? w->setSongName(QString()) : w->setSongNameByID(id);
 }
 
 void MusicRightAreaWidget::musicRecommendFound()
 {
     functionClicked(MusicRightAreaWidget::RecommendWidget);
-    TTKObject_cast(MusicRecommendQueryWidget*, m_stackedWidget)->setSongName(QString());
+    TTKObjectCast(MusicRecommendQueryWidget*, m_stackedWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicAdvancedSearch()
@@ -646,7 +646,7 @@ void MusicRightAreaWidget::setWindowLockedChanged()
 
 void MusicRightAreaWidget::setWindowLrcTypeChanged()
 {
-    const bool v = m_lrcForDesktop ? m_lrcForDesktop->isVerticalWindowType() : TTKStatic_cast(bool, G_SETTING_PTR->value(MusicSettingManager::DLrcWindowMode).toInt());
+    const bool v = m_lrcForDesktop ? m_lrcForDesktop->isVerticalWindowType() : TTKStaticCast(bool, G_SETTING_PTR->value(MusicSettingManager::DLrcWindowMode).toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, QPoint());
 
     MusicLrcContainerForDesktop *desktop = m_lrcForDesktop;
@@ -856,7 +856,7 @@ void MusicRightAreaWidget::createkWebWindow(int type)
     }
     else
     {
-        widget = new QKugouWindow(TTKStatic_cast(QKugouWindow::Module, type), this);
+        widget = new QKugouWindow(TTKStaticCast(QKugouWindow::Module, type), this);
         connect(m_ui->musicBackButton, SIGNAL(clicked()), widget, SLOT(goBack()));
         connect(m_ui->musicRefreshButton, SIGNAL(clicked()), widget, SLOT(refresh()));
     }

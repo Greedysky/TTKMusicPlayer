@@ -26,7 +26,7 @@ TTKTabButton::~TTKTabButton()
 void TTKTabButton::addButtons(const QStringList &titles)
 {
     int index = count();
-    QHBoxLayout *ly = TTKObject_cast(QHBoxLayout*, layout());
+    QHBoxLayout *ly = TTKObjectCast(QHBoxLayout*, layout());
     if(ly->count() > 1)
     {
         ly->removeItem(ly->itemAt(ly->count() - 1));

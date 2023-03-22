@@ -145,7 +145,7 @@ void MusicAbstractAnimationWidget::finished()
 MusicFuntionAnimationWidget::MusicFuntionAnimationWidget(QWidget *parent)
     : MusicAbstractAnimationWidget(parent)
 {
-    QHBoxLayout *ly = TTKObject_cast(QHBoxLayout*, layout());
+    QHBoxLayout *ly = TTKObjectCast(QHBoxLayout*, layout());
 
     QStringList names;
     names << tr("Playlist") << tr("Local") << tr("Cloud") << tr("Radio") << tr("Download");
@@ -199,7 +199,7 @@ MusicOptionAnimationWidget::MusicOptionAnimationWidget(QWidget *parent)
     m_pix.fill(QColor(0x80, 0xB7, 0xF1));
     m_showLine = false;
 
-    QHBoxLayout *ly = TTKObject_cast(QHBoxLayout*, layout());
+    QHBoxLayout *ly = TTKObjectCast(QHBoxLayout*, layout());
 
     for(int i = 0; i < 6; ++i)
     {
@@ -256,7 +256,7 @@ void MusicOptionAnimationWidget::switchToSelectedItemStyle(int index)
 MusicSkinAnimationWidget::MusicSkinAnimationWidget(QWidget *parent)
     : MusicAbstractAnimationWidget(parent)
 {
-    QHBoxLayout *ly = TTKObject_cast(QHBoxLayout*, layout());
+    QHBoxLayout *ly = TTKObjectCast(QHBoxLayout*, layout());
 
     QStringList names;
     names << tr("Recommend") << tr("Stack") << tr("Daily") << tr("Online");

@@ -50,7 +50,7 @@ void MusicVideoQualityPopWidget::setQualityText(const QString &url)
 void MusicVideoQualityPopWidget::movieQualityChoiced(QAction *action)
 {
     QString url;
-    switch(TTKStatic_cast(TTK::QueryQuality, action->data().toInt()))
+    switch(TTKStaticCast(TTK::QueryQuality, action->data().toInt()))
     {
         case TTK::QueryQuality::None: url = findMVUrlByBitrate(MB_250); break;
         case TTK::QueryQuality::Standard: url = findMVUrlByBitrate(MB_500); break;
@@ -71,10 +71,10 @@ void MusicVideoQualityPopWidget::initialize()
 
     m_containWidget->setFixedSize(140, 125);
     m_menu->removeAction(m_menu->actions().front());
-    m_actionGroup->addAction(m_menu->addAction(tr("ST")))->setData(TTKStatic_cast(int, TTK::QueryQuality::None));
-    m_actionGroup->addAction(m_menu->addAction(tr("SD")))->setData(TTKStatic_cast(int, TTK::QueryQuality::Standard));
-    m_actionGroup->addAction(m_menu->addAction(tr("HD")))->setData(TTKStatic_cast(int, TTK::QueryQuality::High));
-    m_actionGroup->addAction(m_menu->addAction(tr("SQ")))->setData(TTKStatic_cast(int, TTK::QueryQuality::Super));
+    m_actionGroup->addAction(m_menu->addAction(tr("ST")))->setData(TTKStaticCast(int, TTK::QueryQuality::None));
+    m_actionGroup->addAction(m_menu->addAction(tr("SD")))->setData(TTKStaticCast(int, TTK::QueryQuality::Standard));
+    m_actionGroup->addAction(m_menu->addAction(tr("HD")))->setData(TTKStaticCast(int, TTK::QueryQuality::High));
+    m_actionGroup->addAction(m_menu->addAction(tr("SQ")))->setData(TTKStaticCast(int, TTK::QueryQuality::Super));
 
     setQualityActionState();
 }

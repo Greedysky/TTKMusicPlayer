@@ -58,7 +58,7 @@ public:
             throw std::bad_cast();
         }
 
-        auto ptr = TTKDynamic_cast(_Derived<T>*, m_ptr.get());
+        auto ptr = TTKDynamicCast(_Derived<T>*, m_ptr.get());
         return ptr->m_value;
     }
 
@@ -70,7 +70,7 @@ public:
             throw std::bad_cast();
         }
 
-        auto ptr = TTKDynamic_cast(_Derived<T>*, m_ptr.get());
+        auto ptr = TTKDynamicCast(_Derived<T>*, m_ptr.get());
         return ptr->m_value;
     }
 
@@ -113,9 +113,9 @@ private:
 };
 
 #ifdef TTK_CAST
-#  define TTKAny_cast(x, y) (TTK::any_cast<x>(y))
+#  define TTKAnyCast(x, y) (TTK::any_cast<x>(y))
 #else
-#  define TTKAny_cast(x, y) ((x)(y))
+#  define TTKAnyCast(x, y) ((x)(y))
 #endif
 
 namespace TTK
@@ -139,7 +139,7 @@ namespace TTK
     inline remove_cvr<T> any_cast(TTKAny &other)
     {
         using _Type = remove_cvr<T>;
-        const auto ptr = any_cast<_Type>(TTKStatic_cast(const TTKAny*, &other));
+        const auto ptr = any_cast<_Type>(TTKStaticCast(const TTKAny*, &other));
         if(!ptr)
         {
             throw std::bad_cast();
@@ -151,7 +151,7 @@ namespace TTK
     inline remove_cvr<T> any_cast(TTKAny &&other)
     {
         using _Type = remove_cvr<T>;
-        const auto ptr = any_cast<_Type>(TTKStatic_cast(const TTKAny*, &other));
+        const auto ptr = any_cast<_Type>(TTKStaticCast(const TTKAny*, &other));
         if(!ptr)
         {
             throw std::bad_cast();
@@ -170,7 +170,7 @@ namespace TTK
     inline remove_cvr<T> *any_cast(TTKAny *const other) noexcept
     {
         using _Type = remove_cvr<T>;
-        return TTKConst_cast(_Type*, any_cast<_Type>(TTKStatic_cast(const TTKAny*, other)));
+        return TTKConstCast(_Type*, any_cast<_Type>(TTKStaticCast(const TTKAny*, other)));
     }
 
 }

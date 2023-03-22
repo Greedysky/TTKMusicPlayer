@@ -81,10 +81,10 @@ void TTKCheckBoxItemDelegate::paint(QPainter *painter, const QStyleOptionViewIte
     }
 
     const bool state = m_checkBox->isChecked();
-    m_checkBox->setChecked(TTKStatic_cast(Qt::CheckState, index.data(TTK_CHECKED_ROLE).toInt()) == Qt::Checked);
+    m_checkBox->setChecked(TTKStaticCast(Qt::CheckState, index.data(TTK_CHECKED_ROLE).toInt()) == Qt::Checked);
     if(m_checkBox->isEnabled() && state != m_checkBox->isChecked())
     {
-        Q_EMIT TTKConst_cast(TTKCheckBoxItemDelegate*, this)->buttonChecked();
+        Q_EMIT TTKConstCast(TTKCheckBoxItemDelegate*, this)->buttonChecked();
     }
     painter->translate(displayMode ? 0 : (option.rect.width() - 16) / 2, 0);
 

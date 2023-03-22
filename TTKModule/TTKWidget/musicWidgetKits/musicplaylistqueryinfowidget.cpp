@@ -231,7 +231,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
 void MusicPlaylistQueryInfoWidget::setQueryInput(MusicAbstractQueryRequest *query)
 {
     m_queryTableWidget->setQueryInput(query);
-    TTKObject_cast(MusicPlaylistQueryTableWidget*, m_queryTableWidget)->setConnectClass(this);
+    TTKObjectCast(MusicPlaylistQueryTableWidget*, m_queryTableWidget)->setConnectClass(this);
 }
 
 void MusicPlaylistQueryInfoWidget::setCurrentIndex(int index)

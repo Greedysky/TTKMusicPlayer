@@ -55,7 +55,7 @@ void MusicLrcPosterItemWidget::textChanged(const QStringList &data)
 
 void MusicLrcPosterItemWidget::currentTypeChanged(int type)
 {
-    m_type = TTKStatic_cast(Format, type);
+    m_type = TTKStaticCast(Format, type);
     setFixedHeight(ITEM_HEIGHT);
 
     update();
@@ -516,12 +516,12 @@ void MusicLrcPosterItemWidget::drawTheme11(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_spring");
-    int h = TTKStatic_cast(int, pix.height() * width() * 1.0f / pix.width());
+    int h = TTKStaticCast(int, pix.height() * width() * 1.0f / pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w = TTKStatic_cast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
+        w = TTKStaticCast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
         h = height();
     }
 
@@ -566,12 +566,12 @@ void MusicLrcPosterItemWidget::drawTheme12(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_summer");
-    int h = TTKStatic_cast(int, pix.height() * width() * 1.0f / pix.width());
+    int h = TTKStaticCast(int, pix.height() * width() * 1.0f / pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w = TTKStatic_cast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
+        w = TTKStaticCast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
         h = height();
     }
 
@@ -616,12 +616,12 @@ void MusicLrcPosterItemWidget::drawTheme13(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_autumn");
-    int h = TTKStatic_cast(int, pix.height() * width() * 1.0f / pix.width());
+    int h = TTKStaticCast(int, pix.height() * width() * 1.0f / pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w = TTKStatic_cast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
+        w = TTKStaticCast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
         h = height();
     }
 
@@ -666,12 +666,12 @@ void MusicLrcPosterItemWidget::drawTheme14(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_winter");
-    int h = TTKStatic_cast(int, pix.height() * width() * 1.0f / pix.width());
+    int h = TTKStaticCast(int, pix.height() * width() * 1.0f / pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w = TTKStatic_cast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
+        w = TTKStaticCast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
         h = height();
     }
 
@@ -870,7 +870,7 @@ void MusicLrcPosterTableWidget::itemCellClicked(int row, int column)
     QStringList data;
     for(int i = 0; i < rowCount(); ++i)
     {
-        if(TTKStatic_cast(Qt::CheckState, item(i, 0)->data(TTK_CHECKED_ROLE).toInt()) == Qt::Checked)
+        if(TTKStaticCast(Qt::CheckState, item(i, 0)->data(TTK_CHECKED_ROLE).toInt()) == Qt::Checked)
         {
             data << item(i, 1)->text();
         }

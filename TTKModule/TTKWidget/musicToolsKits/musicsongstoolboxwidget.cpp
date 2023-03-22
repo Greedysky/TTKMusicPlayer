@@ -240,7 +240,7 @@ MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QStrin
 
 void MusicSongsToolBoxWidgetItem::setSongSort(MusicSongSort *sort)
 {
-    TTKObject_cast(MusicSongsToolBoxTopWidget*, m_topWidget)->setSongSort(sort);
+    TTKObjectCast(MusicSongsToolBoxTopWidget*, m_topWidget)->setSongSort(sort);
 }
 
 
@@ -258,7 +258,7 @@ void MusicSongsToolBoxWidget::setSongSort(QWidget *item, MusicSongSort *sort)
         MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
         if(it->item() == item)
         {
-            TTKObject_cast(MusicSongsToolBoxWidgetItem*, it)->setSongSort(sort);
+            TTKObjectCast(MusicSongsToolBoxWidgetItem*, it)->setSongSort(sort);
             return;
         }
     }

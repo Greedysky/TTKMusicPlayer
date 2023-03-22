@@ -27,7 +27,7 @@ void MusicKWQueryArtistListRequest::startToPage(int offset)
         const int id = dds[1].toInt();
         if(id > 0 && id <= 26)
         {
-            initial = QString("&prefix=%1").arg(TTKStatic_cast(char, id + 65 - 1));
+            initial = QString("&prefix=%1").arg(TTKStaticCast(char, id + 65 - 1));
         }
     }
 

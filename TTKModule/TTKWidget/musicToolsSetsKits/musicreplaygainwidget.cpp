@@ -121,7 +121,7 @@ void MusicReplayGainWidget::initialize()
     const QObject *obj = loader.instance();
 
     LightFactory *factory = nullptr;
-    if(obj && (factory = TTKObject_cast(LightFactory*, obj)))
+    if(obj && (factory = TTKObjectCast(LightFactory*, obj)))
     {
         m_replayGainWidget = factory->create(this);
         m_replayGainWidget->setStyleSheet(TTK::UI::PushButtonStyle04 + TTK::UI::CheckBoxStyle01 +

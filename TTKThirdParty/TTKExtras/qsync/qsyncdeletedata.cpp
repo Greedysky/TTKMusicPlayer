@@ -37,7 +37,7 @@ void QSyncDeleteData::deleteDataOperator(const QString &bucket, const QString &f
 
 void QSyncDeleteData::receiveDataFromServer()
 {
-    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, sender());
+    QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply)
     {
         Q_EMIT deleteFileFinished(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 204);

@@ -109,7 +109,7 @@ void TTK::Widget::widgetToRound(QWidget *widget, int ratioX, int ratioY)
 
 void TTK::Widget::generateVScrollAreaFormat(QWidget *widget, QWidget *parent, bool background)
 {
-    QScrollArea *area = TTKObject_cast(QScrollArea*, widget);
+    QScrollArea *area = TTKObjectCast(QScrollArea*, widget);
     if(area)
     {
         const QString &style = background ? TTK::UI::ScrollBarStyle01 : TTK::UI::ScrollBarStyle03;
@@ -126,7 +126,7 @@ void TTK::Widget::generateVScrollAreaFormat(QWidget *widget, QWidget *parent, bo
 
 void TTK::Widget::generateHScrollAreaFormat(QWidget *widget, QWidget *parent, bool background)
 {
-    QScrollArea *area = TTKObject_cast(QScrollArea*, widget);
+    QScrollArea *area = TTKObjectCast(QScrollArea*, widget);
     if(area)
     {
         const QString &style = background ? TTK::UI::ScrollBarStyle02 : TTK::UI::ScrollBarStyle04;

@@ -118,23 +118,23 @@ void MusicRemoteWidget::setVolumeValue(int index)
 
 int MusicRemoteWidget::mapRemoteTypeIndex()
 {
-    if(TTKObject_cast(MusicRemoteWidgetForSquare*, this))
+    if(TTKObjectCast(MusicRemoteWidgetForSquare*, this))
     {
         return Square;
     }
-    else if(TTKObject_cast(MusicRemoteWidgetForRectangle*, this))
+    else if(TTKObjectCast(MusicRemoteWidgetForRectangle*, this))
     {
         return Rectangle;
     }
-    else if(TTKObject_cast(MusicRemoteWidgetForSimpleStyle*, this))
+    else if(TTKObjectCast(MusicRemoteWidgetForSimpleStyle*, this))
     {
         return SimpleStyle;
     }
-    else if(TTKObject_cast(MusicRemoteWidgetForComplexStyle*, this))
+    else if(TTKObjectCast(MusicRemoteWidgetForComplexStyle*, this))
     {
         return ComplexStyle;
     }
-    else if(TTKObject_cast(MusicRemoteWidgetForRipple*, this))
+    else if(TTKObjectCast(MusicRemoteWidgetForRipple*, this))
     {
         return Ripple;
     }
@@ -197,19 +197,19 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addSeparator();
 
     QAction * action = menu.addAction(tr("Square Remote"));
-    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForSquare*, this));
+    action->setEnabled(!TTKObjectCast(MusicRemoteWidgetForSquare*, this));
     action->setData(Square);
     action = menu.addAction(tr("Rectangle Remote"));
-    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForRectangle*, this));
+    action->setEnabled(!TTKObjectCast(MusicRemoteWidgetForRectangle*, this));
     action->setData(Rectangle);
     action = menu.addAction(tr("Simple Style Remote"));
-    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForSimpleStyle*, this));
+    action->setEnabled(!TTKObjectCast(MusicRemoteWidgetForSimpleStyle*, this));
     action->setData(SimpleStyle);
     action = menu.addAction(tr("Complex Style Remote"));
-    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForComplexStyle*, this));
+    action->setEnabled(!TTKObjectCast(MusicRemoteWidgetForComplexStyle*, this));
     action->setData(ComplexStyle);
     action = menu.addAction(tr("Ripple Remote"));
-    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForRipple*, this));
+    action->setEnabled(!TTKObjectCast(MusicRemoteWidgetForRipple*, this));
     action->setData(Ripple);
     menu.addAction(tr("Quit"), this, SLOT(close()));
     connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(musicRemoteTypeChanged(QAction*)));

@@ -74,7 +74,7 @@ void MusicRippleSpecturmModule::update(bool up)
     TTK::TTKQmmp::updateRippleConfig();
     if(m_visualWidget)
     {
-        Visual *widget = TTKObject_cast(Visual*, m_visualWidget);
+        Visual *widget = TTKObjectCast(Visual*, m_visualWidget);
         if(widget)
         {
             widget->start();

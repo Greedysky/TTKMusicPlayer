@@ -131,7 +131,7 @@ void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &bytes
         return;
     }
 
-    MusicDownloadCoverRequest *d(TTKObject_cast(MusicDownloadCoverRequest*, sender()));
+    MusicDownloadCoverRequest *d(TTKObjectCast(MusicDownloadCoverRequest*, sender()));
     if(!d)
     {
         return;

@@ -109,8 +109,8 @@ void MusicHlPalette::mouseMoveEvent(QMouseEvent *event)
 
 void MusicHlPalette::calculateColor()
 {
-    m_ptfVernierPercentPos.setX(m_ptVernierPos.x() / TTKStatic_cast(double, rect().right()));
-    m_ptfVernierPercentPos.setY(m_ptVernierPos.y() / TTKStatic_cast(double, rect().bottom()));
+    m_ptfVernierPercentPos.setX(m_ptVernierPos.x() / TTKStaticCast(double, rect().right()));
+    m_ptfVernierPercentPos.setY(m_ptVernierPos.y() / TTKStaticCast(double, rect().bottom()));
     m_color.setHslF(m_ptfVernierPercentPos.rx(), m_dblSaturation, 1 - m_ptfVernierPercentPos.ry());
     Q_EMIT colorChanged(m_color);
 }
