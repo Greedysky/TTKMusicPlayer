@@ -999,7 +999,7 @@ void MusicApplication::dropEvent(QDropEvent *event)
 void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 {
     const int h = event->pos().y();
-    if(h <= m_ui->topWidget->height())
+    if(h < m_ui->topWidget->height() || h > height() - m_ui->bottomWidget->height())
     {
         TTKAbstractMoveResizeWidget::contextMenuEvent(event);
         musicCreateRightMenu();
