@@ -21,12 +21,12 @@
  * Qt stable version is tested on Qt5.x for ubuntu-linux-gcc 64bit
  * Qt stable version is tested on Qt5.x for windows-mingw 32bit
 
-| Platform | Qt & Compiler           | Status                                                                 |
-| :---:    | :---:                   | :---:                                                                  |
-| Linux    | 4.8.7 GCC & 5.9.9 GCC   | ![Linux](https://img.shields.io/badge/build-passing-brightgreen.svg)   |
-| Windows  | 4.8.7 GCC & 5.x GCC     | ![Windows](https://img.shields.io/badge/build-passing-brightgreen.svg) |
-| Windows  | MSVC                    | ![Windows](https://img.shields.io/badge/build-unknown-lightgrey.svg)   |
-| OS X     | Clang                   | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg)       |
+| Platform | Qt & Compiler     | Status                                                                 |
+| :---:    | :---:             | :---:                                                                  |
+| Linux    | 4.x GCC & 5.x GCC | ![Linux](https://img.shields.io/badge/build-passing-brightgreen.svg)   |
+| Windows  | 4.x GCC & 5.x GCC | ![Windows](https://img.shields.io/badge/build-passing-brightgreen.svg) |
+| Windows  | MSVC              | ![Windows](https://img.shields.io/badge/build-unknown-lightgrey.svg)   |
+| OS X     | Clang             | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg)       |
 
 # 开发者
 
