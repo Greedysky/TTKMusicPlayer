@@ -5,7 +5,7 @@
 ![Version](https://img.shields.io/badge/Version-3.2.0.0-blue.svg?style=flat-square)
 ![License](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
 
-![LOGO](https://github.com/Greedysky/Resource/blob/master/Screen/logo_pic.png?raw=true)
+![LOGO](https://github.com/Greedysky/TTKMusicPlayer/blob/master/TTKResource/logo_pic.png?raw=true)
 
 ### **|[About](https://github.com/Greedysky/TTKMusicPlayer#usage)|[License](https://github.com/Greedysky/TTKMusicPlayer#license)|[Download](https://github.com/Greedysky/TTKMusicPlayer#download)|[Features](https://github.com/Greedysky/TTKMusicPlayer#features)|[Screenshots](https://github.com/Greedysky/TTKMusicPlayer#screenshots)|[Copyright](https://github.com/Greedysky/TTKMusicPlayer#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicPlayer#how-to-contribute)|**
 
