@@ -5,7 +5,7 @@
 ![版本](https://img.shields.io/badge/Version-3.2.0.0-blue.svg?style=flat-square)
 ![許可](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
 
-![徽標](https://github.com/Greedysky/TTKMusicPlayer/blob/master/TTKResource/logo_pic.png?raw=true)
+![徽標](https://github.com/Greedysky/TTKMusicPlayer/blob/master/TTKResource/logo_banner.png?raw=true)
 
 ### **|[關於](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#使用方法)|[許可證](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#許可證)|[下載](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#下載)|[特性](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#特性)|[快照](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#快照)|[版權](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#版權)|[貢獻](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_tc.md#貢獻)|**
 

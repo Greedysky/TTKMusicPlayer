@@ -8,7 +8,7 @@
         <file alias="sound">../TTKResource/_extras/resource/sound.wav</file>
     </qresource>
     <qresource prefix="/image">
-        <file alias="lb_logo">../TTKResource/logo_pic.png</file>
+        <file alias="lb_logo">../TTKResource/logo_banner.png</file>
         <file alias="lb_app_logo">../TTKResource/lb_app_logo.ico</file>
         <file alias="lb_warning">../TTKResource/image/lb_warning.png</file>
         <file alias="lb_default_art">../TTKResource/image/lb_default_art.jpg</file>
