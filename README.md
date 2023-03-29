@@ -10,8 +10,10 @@
 ### **|[About](https://github.com/Greedysky/TTKMusicPlayer#usage)|[License](https://github.com/Greedysky/TTKMusicPlayer#license)|[Download](https://github.com/Greedysky/TTKMusicPlayer#download)|[Features](https://github.com/Greedysky/TTKMusicPlayer#features)|[Screenshots](https://github.com/Greedysky/TTKMusicPlayer#screenshots)|[Copyright](https://github.com/Greedysky/TTKMusicPlayer#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicPlayer#how-to-contribute)|**
 
 Usage
-----
-**The music player use of qmmp core library based on Qt. Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Greedysky/TTKMusicPlayer/wiki</u> )**
+--------
+**TTKMusicPlayer imitates Kugou music, uses of qmmp core library, based on Qt for windows and linux.**
+
+**Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Greedysky/TTKMusicPlayer/wiki</u> )**
 
 ### Attention: This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
 
@@ -31,15 +33,15 @@ Usage
 # For Developers
 
 License
----
+--------
 TTKMusicPlayer is free software licensed under the term of [Licence GPL v3](https://github.com/Greedysky/TTKMusicPlayer/blob/master/LICENSE). If you use TTKMusicPlayer or its constituent libraries, you must adhere to the terms of the license in question.
 
 API Document
----
+--------
 You Can See Here: **<u>https://greedysky.github.io/ttkdocs</u>**
 
 Download
----
+--------
 OSChina URL: **<u>https://gitee.com/greedysky/TTKMusicplayer</u>**
 
 Qmmp Source Player URL: **<u>https://qmmp.ylsoftware.com</u>**
@@ -59,7 +61,7 @@ Skin Download URL: **<u>http://pan.baidu.com/s/1mh7AeG4</u>**
 Executable Download URL: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
 
 Features
--------
+--------
 TTKMusicPlayer can meet your most demands
  * Support for multiple music formats.
  * SID Files(*.sid *.psid *.mus *.str *.p00 *.prg *.c64)
@@ -122,7 +124,7 @@ TTKMusicPlayer can meet your most demands
  * MMS and online fm radio supported.
 
 Screenshots
-----
+--------
 ### Index
 ![Index](https://github.com/Greedysky/Resource/blob/master/Screen/1.jpg?raw=true)
 
@@ -160,13 +162,13 @@ Screenshots
 ![Other Functions](https://github.com/Greedysky/Resource/blob/master/Screen/12.jpg?raw=true)
 
 Copyright
--------
+--------
  * This file is part of the TTK Music Player project.
  * Copyright (C) 2015 - 2023 Greedysky Studio.
  * Mail: greedysky@163.com.
 
 How To Contribute
--------
+--------
  * Fork this project on github and make a branch. Commit in that branch, and push, then create a pull request to be reviewed and merged.
  * Create an issue if you have any problem when using project or you find a bug, etc.
  * What you can do: translation, write document, wiki, find or fix bugs, give your idea for this project etc.

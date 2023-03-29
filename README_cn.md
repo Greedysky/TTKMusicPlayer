@@ -10,8 +10,10 @@
 ### **|[关于](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_cn.md#使用方法)|[许可证](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_cn.md#许可证)|[下载](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_cn.md#下载)|[特性](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_cn.md#特性)|[快照](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_cn.md#快照)|[版权](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_cn.md#版权)|[贡献](https://github.com/Greedysky/TTKMusicPlayer/blob/master/README_cn.md#贡献)|**
 
 使用方法
-----
-**音乐播放器基于qmmp和Qt库开发. 编译教程我已经写在wiki上了.(看这里<u>https://github.com/Greedysky/TTKMusicPlayer/wiki</u> )**
+--------
+**音乐播放器模仿酷狗，基于Qt和Qmmp库开发，支持Windows和Linux平台.**
+
+**编译教程我已经写在wiki上了.(看这里<u>https://github.com/Greedysky/TTKMusicPlayer/wiki</u> )**
 
 ### 本项目代码不用于商用，仅限研究和学习使用，资源版权归个音乐平台所有。
 
@@ -31,15 +33,15 @@
 # 开发者
 
 许可证
----
+--------
 TTKMusicPlayer是基于[Licence GPL v3](https://github.com/Greedysky/TTKMusicPlayer/blob/master/LICENSE)条款授权的免费软件。如果您使用TTKMusicPlayer或者它的动态库，则务必添加相关许可证到项目中。
 
 API 文档
----
+--------
 文档请看这里: **<u>https://greedysky.github.io/ttkdocs</u>**
 
 下载
----
+--------
 OSChina镜像下载地址: **<u>https://gitee.com/greedysky/TTKMusicplayer</u>**
 
 Qmmp原版下载地址: **<u>https://qmmp.ylsoftware.com</u>**
@@ -59,7 +61,7 @@ Qmmp修改版二进制库下载地址: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 播放器二进制下载地址: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
 
 特性
--------
+--------
 TTKMusicPlayer的一些特性
  * 支持绝大多数的音频播放格式。
  * SID Files(*.sid *.psid *.mus *.str *.p00 *.prg *.c64)
@@ -122,7 +124,7 @@ TTKMusicPlayer的一些特性
  * 支持MMS和在线调频收音机。
 
 快照
-----
+--------
 ### 首页
 ![首页](https://github.com/Greedysky/Resource/blob/master/Screen/1.jpg?raw=true)
 
@@ -160,13 +162,13 @@ TTKMusicPlayer的一些特性
 ![其他功能](https://github.com/Greedysky/Resource/blob/master/Screen/12.jpg?raw=true)
 
 版权
--------
+--------
  * This file is part of the TTK Music Player project.
  * Copyright (C) 2015 - 2023 Greedysky Studio.
  * Mail: greedysky@163.com.
 
 贡献
--------
+--------
  * Fork this project on github and make a branch. Commit in that branch, and push, then create a pull request to be reviewed and merged.
  * Create an issue if you have any problem when using project or you find a bug, etc.
  * What you can do: translation, write document, wiki, find or fix bugs, give your idea for this project etc.
