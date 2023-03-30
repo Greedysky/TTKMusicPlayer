@@ -14,12 +14,12 @@ TTKAbstractThread::~TTKAbstractThread()
 
 void TTKAbstractThread::stop()
 {
+    m_running = false;
     if(isRunning())
     {
         quit();
         wait();
     }
-    m_running = false;
 }
 
 void TTKAbstractThread::start()
