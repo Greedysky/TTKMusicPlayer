@@ -52,7 +52,7 @@ The TTKMusicplayer plugin for run
  * lightspectrum
  * lightwaveform
 ### Transports
- * network
+ * http
 ### Visual
  * floridancient
  * floridautism
