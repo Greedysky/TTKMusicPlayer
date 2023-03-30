@@ -16,21 +16,21 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef NETWORKINPUTSOURCE_H
-#define NETWORKINPUTSOURCE_H
+#ifndef HTTPINPUTSOURCE_H
+#define HTTPINPUTSOURCE_H
 
 #include <qmmp/inputsource.h>
 
-class NetworkStreamReader;
+class HttpStreamReader;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class NetworkInputSource : public InputSource
+class HttpInputSource : public InputSource
 {
 Q_OBJECT
 public:
-    explicit NetworkInputSource(const QString &path, QObject *parent = nullptr);
+    explicit HttpInputSource(const QString &path, QObject *parent = nullptr);
 
     virtual QIODevice *ioDevice() const override final;
     virtual bool initialize() override final;
@@ -39,7 +39,7 @@ public:
     virtual QString contentType() const override final;
 
 private:
-    NetworkStreamReader *m_reader = nullptr;
+    HttpStreamReader *m_reader = nullptr;
 
 };
 

@@ -16,15 +16,15 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef NETWORKINPUTFACTORY_H
-#define NETWORKINPUTFACTORY_H
+#ifndef HTTPINPUTFACTORY_H
+#define HTTPINPUTFACTORY_H
 
 #include <qmmp/inputsourcefactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class NetworkInputFactory : public QObject, InputSourceFactory
+class HttpInputFactory : public QObject, InputSourceFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.InputSourceFactoryInterface.1.0")

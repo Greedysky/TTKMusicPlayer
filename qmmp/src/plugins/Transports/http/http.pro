@@ -3,14 +3,14 @@ include($$PWD/../../plugins.pri)
 QT += network
 DESTDIR = $$PLUGINS_PREFIX/Transports
 
-HEADERS += networkinputfactory.h \
-           networkinputsource.h \
-           networkstreamreader.h \
+HEADERS += httpinputfactory.h \
+           httpinputsource.h \
+           httpstreamreader.h \
            settingsdialog.h
 
-SOURCES += networkinputfactory.cpp \
-           networkinputsource.cpp \
-           networkstreamreader.cpp \
+SOURCES += httpinputfactory.cpp \
+           httpinputsource.cpp \
+           httpstreamreader.cpp \
            settingsdialog.cpp
 
 FORMS += settingsdialog.ui

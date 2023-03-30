@@ -1,5 +1,5 @@
-#include "networkstreamreader.h"
-#include "networkinputsource.h"
+#include "httpstreamreader.h"
+#include "httpinputsource.h"
 
 #include <QFile>
 #include <QSettings>
@@ -7,7 +7,7 @@
 #include <QSslConfiguration>
 #include <qmmp/statehandler.h>
 
-NetworkStreamReader::NetworkStreamReader(const QString &url, QObject *parent)
+HttpStreamReader::HttpStreamReader(const QString &url, QObject *parent)
     : QIODevice(parent),
       m_url(url)
 {
@@ -18,7 +18,7 @@ NetworkStreamReader::NetworkStreamReader(const QString &url, QObject *parent)
     }
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Network");
+    settings.beginGroup("Http");
     m_bufferSize = settings.value("buffer_size", 256).toInt() * 1024;
     if(!m_path.isEmpty())
     {
@@ -27,7 +27,7 @@ NetworkStreamReader::NetworkStreamReader(const QString &url, QObject *parent)
     settings.endGroup();
 }
 
-NetworkStreamReader::~NetworkStreamReader()
+HttpStreamReader::~HttpStreamReader()
 {
     abort();
     m_stream.buffer_size = 0;
@@ -35,33 +35,33 @@ NetworkStreamReader::~NetworkStreamReader()
     m_stream.buffer.clear();
 }
 
-bool NetworkStreamReader::atEnd() const
+bool HttpStreamReader::atEnd() const
 {
     return false;
 }
 
-qint64 NetworkStreamReader::bytesAvailable() const
+qint64 HttpStreamReader::bytesAvailable() const
 {
     return QIODevice::bytesAvailable() + m_stream.buffer_size;
 }
 
-qint64 NetworkStreamReader::bytesToWrite() const
+qint64 HttpStreamReader::bytesToWrite() const
 {
     return -1;
 }
 
-void NetworkStreamReader::close()
+void HttpStreamReader::close()
 {
     abort();
     QIODevice::close();
 }
 
-bool NetworkStreamReader::isSequential() const
+bool HttpStreamReader::isSequential() const
 {
     return true;
 }
 
-bool NetworkStreamReader::open(OpenMode mode)
+bool HttpStreamReader::open(OpenMode mode)
 {
     if(m_ready && mode == QIODevice::ReadOnly)
     {
@@ -72,15 +72,15 @@ bool NetworkStreamReader::open(OpenMode mode)
     return false;
 }
 
-bool NetworkStreamReader::seek(qint64 time)
+bool HttpStreamReader::seek(qint64 time)
 {
     Q_UNUSED(time);
     return false;
 }
 
-void NetworkStreamReader::run()
+void HttpStreamReader::run()
 {
-    qDebug("NetworkStreamReader: starting download thread");
+    qDebug("HttpStreamReader: starting download thread");
     QNetworkRequest request;
     request.setUrl(m_url);
     request.setRawHeader("Icy-MetaData", "1");
@@ -96,20 +96,20 @@ void NetworkStreamReader::run()
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-QString NetworkStreamReader::contentType() const
+QString HttpStreamReader::contentType() const
 {
     return m_stream.content_type.toLower();
 }
 
-void NetworkStreamReader::replyError(QNetworkReply::NetworkError status)
+void HttpStreamReader::replyError(QNetworkReply::NetworkError status)
 {
-    qDebug("NetworkStreamReader: replyError %d", status);
+    qDebug("HttpStreamReader: replyError %d", status);
     m_path.clear();
     emit error();
     QIODevice::close();
 }
 
-void NetworkStreamReader::handleReadyRead()
+void HttpStreamReader::handleReadyRead()
 {
     const QByteArray &buffer = m_reply->readAll();
     m_mutex.lock();
@@ -125,7 +125,7 @@ void NetworkStreamReader::handleReadyRead()
     if(m_stream.buffer_size > m_bufferSize)
     {
         m_ready  = true;
-        NetworkInputSource *object = static_cast<NetworkInputSource*>(parent());
+        HttpInputSource *object = static_cast<HttpInputSource*>(parent());
 
         QHash<QString, QString> info;
         QMap<Qmmp::MetaData, QString> metaData;
@@ -154,7 +154,7 @@ void NetworkStreamReader::handleReadyRead()
         }
 
         m_stream.content_type = m_reply->header(QNetworkRequest::ContentTypeHeader).toString();
-        qDebug("NetworkStreamReader: has ready");
+        qDebug("HttpStreamReader: has ready");
         emit ready();
     }
     else
@@ -164,7 +164,7 @@ void NetworkStreamReader::handleReadyRead()
     }
 }
 
-void NetworkStreamReader::handleFinished()
+void HttpStreamReader::handleFinished()
 {
     const QVariant &redirection = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
     if(redirection.isValid())
@@ -183,13 +183,13 @@ void NetworkStreamReader::handleFinished()
     QFile file(m_path);
     if(file.open(QIODevice::WriteOnly))
     {
-        qDebug("NetworkStreamReader: cache file to %s", QmmpPrintable(m_path));
+        qDebug("HttpStreamReader: cache file to %s", QmmpPrintable(m_path));
         file.write(m_stream.buffer);
         file.close();
     }
 }
 
-qint64 NetworkStreamReader::readData(char *data, qint64 maxlen)
+qint64 HttpStreamReader::readData(char *data, qint64 maxlen)
 {
     m_mutex.lock();
     if(m_stream.buffer_size == 0)
@@ -203,12 +203,12 @@ qint64 NetworkStreamReader::readData(char *data, qint64 maxlen)
     return len;
 }
 
-qint64 NetworkStreamReader::writeData(const char *, qint64)
+qint64 HttpStreamReader::writeData(const char *, qint64)
 {
     return -1;
 }
 
-void NetworkStreamReader::abort()
+void HttpStreamReader::abort()
 {
     m_mutex.lock();
     m_ready = false;
@@ -230,7 +230,7 @@ void NetworkStreamReader::abort()
     QIODevice::close();
 }
 
-qint64 NetworkStreamReader::readBuffer(char* data, qint64 maxlen)
+qint64 HttpStreamReader::readBuffer(char* data, qint64 maxlen)
 {
     if(m_stream.buffer_size > 0 && !m_stream.aborted)
     {

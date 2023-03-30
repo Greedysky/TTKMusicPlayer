@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef NETWORKSTREAMREADER_H
-#define NETWORKSTREAMREADER_H
+#ifndef HTTPSTREAMREADER_H
+#define HTTPSTREAMREADER_H
 
 #include <QMutex>
 #include <QNetworkReply>
@@ -39,12 +39,12 @@ struct StreamData
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class NetworkStreamReader : public QIODevice
+class HttpStreamReader : public QIODevice
 {
     Q_OBJECT
 public:
-    explicit NetworkStreamReader(const QString &url, QObject *parent);
-    virtual ~NetworkStreamReader();
+    explicit HttpStreamReader(const QString &url, QObject *parent);
+    virtual ~HttpStreamReader();
 
     /**
      *  QIODevice API

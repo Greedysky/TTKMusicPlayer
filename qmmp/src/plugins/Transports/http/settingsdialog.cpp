@@ -16,7 +16,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     }
 #endif
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Network");
+    settings.beginGroup("Http");
     m_ui.bufferSizeSpinBox->setValue(settings.value("buffer_size", 256).toInt());
     settings.endGroup();
 }
@@ -24,7 +24,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Network");
+    settings.beginGroup("Http");
     settings.setValue("buffer_size", m_ui.bufferSizeSpinBox->value());
     settings.endGroup();
     QDialog::accept();
