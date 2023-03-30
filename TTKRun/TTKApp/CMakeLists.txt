@@ -3,15 +3,6 @@ cmake_minimum_required(VERSION 2.8.11)
 set(TARGET_NAME TTKMusicPlayer)
 project(${TARGET_NAME})
 
-if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 OLD)
-  cmake_policy(SET CMP0005 OLD)
-  cmake_policy(SET CMP0028 OLD)
-endif(COMMAND cmake_policy)
-
-add_definitions(-DQT_NO_DEBUG)
-add_definitions(-DQT_THREAD)
-
 if(UNIX)
 add_definitions(-DCONFIG_OUT_BUILD)
 set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
@@ -21,53 +12,53 @@ endif()
 include_directories(${MUSIC_CONFIG_DIR})
 include_directories(${MUSIC_COMMON_APP_DIR})
 
-set(TTKAPPLICATION_HEADERS
+set(TTKAPPLICATION_HEADER_FILES
   ${MUSIC_COMMON_APP_DIR}/ttklocalpeer.h
   ${MUSIC_COMMON_APP_DIR}/ttkrunapplication.h
 )
 
-set(TTKAPPLICATION_SOURCES
+set(TTKAPPLICATION_SOURCE_FILES
   ${MUSIC_COMMON_APP_DIR}/ttklocalpeer.cpp
   ${MUSIC_COMMON_APP_DIR}/ttkrunapplication.cpp
 )
 
-set(MUSIC_HEADERS
+set(HEADER_FILES
   ttkrunobject.h
-  ${TTKAPPLICATION_HEADERS}
+  ${TTKAPPLICATION_HEADER_FILES}
 )
 
-set(MUSIC_SOURCES
+set(SOURCE_FILES
   ttkrunobject.cpp
   ttkrunmain.cpp
-  ${TTKAPPLICATION_SOURCES}
+  ${TTKAPPLICATION_SOURCE_FILES}
 )
 
 if(UNIX)
-  set(MUSIC_HEADERS
+  set(HEADER_FILES
     ${MUSIC_CONFIG_DIR}/musicconfigobject.h
     ${MUSIC_CONFIG_DIR}/musicconfigdefine.h
-    ${MUSIC_HEADERS}
+    ${HEADER_FILES}
   )
 
-  set(MUSIC_SOURCES
+  set(SOURCE_FILES
     ${MUSIC_CONFIG_DIR}/musicconfigobject.cpp
-    ${MUSIC_SOURCES}
+    ${SOURCE_FILES}
   )
 endif()
 
-SET(MUSIC_QRC
+SET(QRC_FILES
   ${MUSIC_UI_DIR}/MusicApp.qrc
 )
 
 if(WIN32)
-  list(APPEND MUSIC_SOURCES TTKApp.rc)
+  list(APPEND SOURCE_FILES TTKApp.rc)
 endif()
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
-  QT5_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
-  QT5_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
-  
-  add_executable(${TARGET_NAME} ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
+  qt5_add_resources(RCC_FILES ${QRC_FILES})
+
+  add_executable(${TARGET_NAME} ${RCC_FILES} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
   list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Gui Qt5::Widgets)
   if(WIN32)
     list(APPEND QT5_LIBS TTKConfig)
@@ -75,10 +66,10 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
 
   target_link_libraries(${TARGET_NAME} ${QT5_LIBS})
 else()
-  QT4_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
-  QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
+  qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
+  qt4_add_resources(RCC_FILES ${QRC_FILES})
   
-  add_executable(${TARGET_NAME} ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  add_executable(${TARGET_NAME} ${RCC_FILES} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
   list(APPEND QT4_LIBS ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY})
   if(WIN32)
     list(APPEND QT4_LIBS TTKConfig)

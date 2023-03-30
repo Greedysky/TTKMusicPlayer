@@ -3,38 +3,29 @@ cmake_minimum_required(VERSION 2.8.11)
 set(TARGET_NAME GenerateSkin)
 project(${TARGET_NAME})
 
-if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 OLD)
-  cmake_policy(SET CMP0005 OLD)
-  cmake_policy(SET CMP0028 OLD)
-endif(COMMAND cmake_policy)
-
-add_definitions(-DQT_NO_DEBUG)
-add_definitions(-DQT_THREAD)
-
-set(MUSIC_HEADERS
+set(HEADER_FILES
   toolsskin.h
 )
 
-set(MUSIC_SOURCES
+set(SOURCE_FILES
   toolsskin.cpp
   main.cpp
 )
   
-set(MUSIC_UIS
+set(UI_FILES
   toolsskin.ui
 )
   
 if(TTK_QT_VERSION VERSION_GREATER "4")
-  QT5_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
-  QT5_WRAP_UI(MUSIC_UIS_H ${MUSIC_UIS})
+  qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
+  qt5_wrap_ui(UIC_FILES ${UI_FILES})
   
-  add_executable(${TARGET_NAME} ${MUSIC_UIS_H} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  add_executable(${TARGET_NAME} ${UIC_FILES} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
   target_link_libraries(${TARGET_NAME} Qt5::Core Qt5::Gui Qt5::Widgets TTKCore)
 else()
-  QT4_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
-  QT4_WRAP_UI(MUSIC_UIS_H ${MUSIC_UIS})
+  qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
+  qt4_wrap_ui(UIC_FILES ${UI_FILES})
   
-  add_executable(${TARGET_NAME} ${MUSIC_UIS_H} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  add_executable(${TARGET_NAME} ${UIC_FILES} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
   target_link_libraries(${TARGET_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} TTKCore)
 endif()

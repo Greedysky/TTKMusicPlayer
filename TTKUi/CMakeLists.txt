@@ -2,44 +2,35 @@ cmake_minimum_required(VERSION 2.8.11)
 
 project(TTKUi)
 
-if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 OLD)
-  cmake_policy(SET CMP0005 OLD)
-  cmake_policy(SET CMP0028 OLD)
-endif(COMMAND cmake_policy)
-
-add_definitions(-DQT_NO_DEBUG)
-add_definitions(-DQT_THREAD)
-
-SET(MUSIC_QRC
+SET(QRC_FILES
   ${MUSIC_UI_DIR}/MusicPlayer.qrc
 )
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
-  QT5_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
+  qt5_add_resources(RCC_FILES ${QRC_FILES})
   
   if(WIN32)
-    list(APPEND MUSIC_RCC_SRCS TTKUi.rc)
+    list(APPEND RCC_FILES TTKUi.rc)
   endif()
   
   if(TTK_BUILD_SHARED)
-    add_library(${PROJECT_NAME} SHARED ${MUSIC_RCC_SRCS})
+    add_library(${PROJECT_NAME} SHARED ${RCC_FILES})
   else()
-    add_library(${PROJECT_NAME} STATIC ${MUSIC_RCC_SRCS})
+    add_library(${PROJECT_NAME} STATIC ${RCC_FILES})
   endif()
 
   target_link_libraries(${PROJECT_NAME} Qt5::Core)
 else()
-  QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
+  qt4_add_resources(RCC_FILES ${QRC_FILES})
   
   if(WIN32)
-    list(APPEND MUSIC_RCC_SRCS TTKUi.rc)
+    list(APPEND RCC_FILES TTKUi.rc)
   endif()
   
   if(TTK_BUILD_SHARED)
-    add_library(${PROJECT_NAME} SHARED ${MUSIC_RCC_SRCS})
+    add_library(${PROJECT_NAME} SHARED ${RCC_FILES})
   else()
-    add_library(${PROJECT_NAME} STATIC ${MUSIC_RCC_SRCS})
+    add_library(${PROJECT_NAME} STATIC ${RCC_FILES})
   endif()
 
   target_link_libraries(${PROJECT_NAME} ${QT_QTCORE_LIBRARY})
