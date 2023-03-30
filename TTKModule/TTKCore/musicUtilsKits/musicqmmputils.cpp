@@ -22,7 +22,7 @@ QString TTK::TTKQmmp::pluginPath(const QString &module, const QString &format)
 void TTK::TTKQmmp::updateConfig()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Network");
+    settings.beginGroup("Http");
     settings.setValue("buffer_path", CACHE_DIR_FULL);
     settings.endGroup();
 
