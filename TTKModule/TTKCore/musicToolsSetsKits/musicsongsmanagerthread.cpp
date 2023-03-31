@@ -20,8 +20,6 @@ void MusicSongsManagerThread::setFindFilePath(const QStringList &path)
 
 void MusicSongsManagerThread::run()
 {
-    TTKAbstractThread::run();
-
     QStringList list;
     for(const QString &path : qAsConst(m_path))
     {

@@ -23,7 +23,6 @@ void MusicImageRenderer::setInputData(const QByteArray &data, const QSize &size)
 
 void MusicImageRenderer::run()
 {
-    TTKAbstractThread::run();
 #endif
     QImage image;
     image.loadFromData(m_buffer);
@@ -35,10 +34,7 @@ void MusicImageRenderer::run()
         TTK::Image::fusionPixmap(image, cv, QPoint(0, 0));
     }
 
-    if(m_running)
-    {
-        Q_EMIT renderFinished(QPixmap::fromImage(image));
-    }
+    Q_EMIT renderFinished(QPixmap::fromImage(image));
 }
 
 #if !TTK_QT_VERSION_CHECK(5,0,0)

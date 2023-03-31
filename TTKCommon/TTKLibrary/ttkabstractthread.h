@@ -37,16 +37,16 @@ public:
     explicit TTKAbstractThread(QObject *parent = nullptr);
     ~TTKAbstractThread();
 
-    /*!
-     * Stop and quit current thread.
-     */
-    void stop();
 
 public Q_SLOTS:
     /*!
      * Strat thread now.
      */
     void start();
+    /*!
+     * Stop and quit current thread.
+     */
+    void stop();
 
 protected:
     /*!

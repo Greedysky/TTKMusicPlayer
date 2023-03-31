@@ -16,8 +16,6 @@ void MusicConnectTransferThread::setCopyFilePath(const QString &target, const QS
 
 void MusicConnectTransferThread::run()
 {
-    TTKAbstractThread::run();
-
     for(const QString &path : qAsConst(m_path))
     {
         if(m_running && !m_target.isEmpty())

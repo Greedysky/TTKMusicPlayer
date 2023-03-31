@@ -16,8 +16,6 @@ void MusicSongCheckToolsRenameThread::setRenameSongs(MusicSongList *songs)
 
 void MusicSongCheckToolsRenameThread::run()
 {
-    TTKAbstractThread::run();
-
     if(m_songItems && !m_songItems->isEmpty())
     {
         if(m_operateMode == TTK::Mode::Check)
@@ -77,8 +75,6 @@ void MusicSongCheckToolsDuplicateThread::setDuplicateSongs(MusicSongList *songs)
 
 void MusicSongCheckToolsDuplicateThread::run()
 {
-    TTKAbstractThread::run();
-
     if(m_songItems && !m_songItems->isEmpty())
     {
         if(m_operateMode == TTK::Mode::Check)
@@ -134,8 +130,6 @@ void MusicSongCheckToolsQualityThread::setQualitySongs(MusicSongList *songs)
 
 void MusicSongCheckToolsQualityThread::run()
 {
-    TTKAbstractThread::run();
-
     MusicSongCheckToolsQualityList items;
     if(m_songItems && !m_songItems->isEmpty())
     {
