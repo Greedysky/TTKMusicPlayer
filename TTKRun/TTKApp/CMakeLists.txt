@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-set(TARGET_NAME TTKMusicPlayer)
-project(${TARGET_NAME})
+project(TTKMusicPlayer)
 
 if(UNIX)
 add_definitions(-DCONFIG_OUT_BUILD)
@@ -58,22 +57,22 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
   qt5_add_resources(RCC_FILES ${QRC_FILES})
 
-  add_executable(${TARGET_NAME} ${RCC_FILES} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
+  add_executable(${PROJECT_NAME} ${RCC_FILES} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
   list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Gui Qt5::Widgets)
   if(WIN32)
     list(APPEND QT5_LIBS TTKConfig)
   endif()
 
-  target_link_libraries(${TARGET_NAME} ${QT5_LIBS})
+  target_link_libraries(${PROJECT_NAME} ${QT5_LIBS})
 else()
   qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
   qt4_add_resources(RCC_FILES ${QRC_FILES})
   
-  add_executable(${TARGET_NAME} ${RCC_FILES} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
+  add_executable(${PROJECT_NAME} ${RCC_FILES} ${SOURCE_FILES} ${MOC_FILES} ${HEADER_FILES})
   list(APPEND QT4_LIBS ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY})
   if(WIN32)
     list(APPEND QT4_LIBS TTKConfig)
   endif()
 
-  target_link_libraries(${TARGET_NAME} ${QT4_LIBS})
+  target_link_libraries(${PROJECT_NAME} ${QT4_LIBS})
 endif()
