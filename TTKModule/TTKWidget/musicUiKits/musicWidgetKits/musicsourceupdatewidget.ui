@@ -107,7 +107,8 @@
       <enum>Qt::NoFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton{border-radius:3px;background-color:#FCFCFC;color:#888888;font-size:13px;}</string>
+      <string notr="true">QPushButton{border-radius:3px;background-color:#FCFCFC;color:#888888;font-size:13px;}
+QPushButton::hover{background-color:#DDDDDD;color:#444444;}</string>
      </property>
      <property name="text">
       <string>以后再说</string>
