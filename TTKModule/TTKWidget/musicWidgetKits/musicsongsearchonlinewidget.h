@@ -91,10 +91,6 @@ public Q_SLOTS:
      * Left context menu action group click by action.
      */
     virtual void actionGroupClick(QAction *action) override final;
-    /*!
-     * Open music song download widget.
-     */
-    void musicSongDownload(int row);
 
 private:
     /*!

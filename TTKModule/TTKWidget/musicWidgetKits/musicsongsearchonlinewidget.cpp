@@ -159,7 +159,7 @@ void MusicSongSearchTableWidget::itemCellClicked(int row, int column)
     MusicItemSearchTableWidget::itemCellClicked(row, column);
     switch(column)
     {
-        case 7: addSearchMusicToPlaylist(row, true); break;
+        case 7: addSearchMusicToPlaylist(row, false); break;
         case 8: musicDownloadLocal(row); break;
         default: break;
     }
@@ -249,23 +249,9 @@ void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
         case 2: MusicRightAreaWidget::instance()->musicArtistFound(info.m_singerName, info.m_artistId); break;
         case 3: Q_EMIT restartSearchQuery(info.m_singerName + " - " + info.m_songName); break;
         case 4: addSearchMusicToPlaylist(row, true); break;
-        case 5: musicSongDownload(row); break;
-        case 6: MusicRightAreaWidget::instance()->musicAlbumFound(info.m_albumName, info.m_albumId); break;
+        case 5: MusicRightAreaWidget::instance()->musicAlbumFound(info.m_albumName, info.m_albumId); break;
         default: break;
     }
-}
-
-void MusicSongSearchTableWidget::musicSongDownload(int row)
-{
-    if(row < 0)
-    {
-        return;
-    }
-
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(songInfos[row], MusicAbstractQueryRequest::QueryType::Music);
-    download->show();
 }
 
 void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -274,7 +260,6 @@ void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     QMenu menu(this);
     m_actionGroup->addAction(menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play")))->setData(4);
-    m_actionGroup->addAction(menu.addAction(tr("Download More...")))->setData(5);
 
     createContextMenu(menu);
 
@@ -283,7 +268,7 @@ void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
         const QString &albumName = (currentRow() != -1 && rowCount() > 0) ? item(currentRow(), 3)->toolTip() : QString();
         QAction *lastAction = m_actionGroup->actions().back();
         QAction *action = m_actionGroup->addAction(tr("Search '%1'").arg(albumName));
-        action->setData(6);
+        action->setData(5);
         menu.insertAction(lastAction, action);
     }
     menu.exec(QCursor::pos());

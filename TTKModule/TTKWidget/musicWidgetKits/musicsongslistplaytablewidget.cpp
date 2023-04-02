@@ -737,7 +737,14 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("Delete All"), this, SLOT(setDeleteItemAll()))->setEnabled(status);
     menu.addSeparator();
 
-    createContextMenu(menu);
+    const QString &songName = currentSongName();
+    const QStringList names(TTK::String::stringSplit(songName));
+    for(int i = 1; i <= names.count(); ++i)
+    {
+        menu.addAction(tr("Search '%1'").arg(names[i - 1].trimmed()))->setData(i + TTK_LOW_LEVEL);
+    }
+    menu.addAction(tr("Search '%1'").arg(songName))->setData(TTK_LOW_LEVEL);
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(musicSearchQuery(QAction*)));
 
     menu.exec(QCursor::pos());
 }
@@ -822,16 +829,4 @@ void MusicSongsListPlayTableWidget::startToDrag()
             selectRow(index);
         }
     }
-}
-
-void MusicSongsListPlayTableWidget::createContextMenu(QMenu &menu)
-{
-    const QString &songName = currentSongName();
-    const QStringList names(TTK::String::stringSplit(songName));
-    for(int i = 1; i <= names.count(); ++i)
-    {
-        menu.addAction(tr("Search '%1'").arg(names[i - 1].trimmed()))->setData(i + TTK_LOW_LEVEL);
-    }
-    menu.addAction(tr("Search '%1'").arg(songName))->setData(TTK_LOW_LEVEL);
-    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(musicSearchQuery(QAction*)));
 }

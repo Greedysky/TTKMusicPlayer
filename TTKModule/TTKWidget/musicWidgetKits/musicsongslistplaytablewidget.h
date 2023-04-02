@@ -183,10 +183,6 @@ private:
      * Start to drag to play list.
      */
     void startToDrag();
-    /*!
-     * Create context menu.
-     */
-    void createContextMenu(QMenu &menu);
 
     QWidget *m_parent;
     int m_dragStartIndex;

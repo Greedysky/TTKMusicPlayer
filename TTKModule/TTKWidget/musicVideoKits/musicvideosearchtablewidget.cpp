@@ -247,9 +247,9 @@ void MusicVideoSearchTableWidget::downloadLocalFromControl()
 void MusicVideoSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicItemSearchTableWidget::contextMenuEvent(event);
+
     QMenu menu(this);
     createContextMenu(menu);
-
     menu.exec(QCursor::pos());
 }
 
