@@ -41,7 +41,7 @@ namespace TTK
         /*!
          * Enable effect module control.
          */
-        TTK_MODULE_EXPORT void enabledEffectPlugin(bool enable, const QString &name = QString());
+        TTK_MODULE_EXPORT void enabledEffectPlugin(bool enabled, const QString &name = QString());
         /*!
          * Check effect is valid.
          */
@@ -54,7 +54,7 @@ namespace TTK
         /*!
          * Enable visual module control.
          */
-        TTK_MODULE_EXPORT void enabledVisualPlugin(const QString &name, bool enable);
+        TTK_MODULE_EXPORT void enabledVisualPlugin(const QString &name, bool enabled);
         /*!
          * Update ripple spectrum config.
          */

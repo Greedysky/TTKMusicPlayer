@@ -46,7 +46,7 @@ public:
     /*!
      * Set check box checked state.
      */
-    void setBoxChecked(bool check);
+    void setBoxChecked(bool checked);
     /*!
      * Get check box checked state.
      */

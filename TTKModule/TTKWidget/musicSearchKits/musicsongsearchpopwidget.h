@@ -80,6 +80,10 @@ public:
      */
     void initialize();
     /*!
+     * set control module enabled.
+     */
+    void setControlEnabled(bool enabled);
+    /*!
      * Create popup search suggest table items.
      */
     void createSuggestItems(const QStringList &names);
@@ -107,6 +111,7 @@ private:
      */
     QString utcTimeToLocal(const QString &time) const;
 
+    QFrame *m_frame;
     QPushButton *m_clearButton;
     MusicSongSearchPopTableWidget *m_popTableWidget;
 

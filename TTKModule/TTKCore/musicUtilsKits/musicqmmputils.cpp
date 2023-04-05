@@ -31,17 +31,17 @@ void TTK::TTKQmmp::updateConfig()
     settings.endGroup();
 }
 
-void TTK::TTKQmmp::enabledEffectPlugin(bool enable, const QString &name)
+void TTK::TTKQmmp::enabledEffectPlugin(bool enabled, const QString &name)
 {
     for(EffectFactory *factory : Effect::factories())
     {
         if(name.isEmpty())
         {
-            Effect::setEnabled(factory, enable);
+            Effect::setEnabled(factory, enabled);
         }
         else if(factory->properties().shortName == name)
         {
-            Effect::setEnabled(factory, enable);
+            Effect::setEnabled(factory, enabled);
             break;
         }
     }
@@ -79,13 +79,13 @@ void TTK::TTKQmmp::showEffectSetting(const QString &name, QWidget *parent)
     }
 }
 
-void TTK::TTKQmmp::enabledVisualPlugin(const QString &name, bool enable)
+void TTK::TTKQmmp::enabledVisualPlugin(const QString &name, bool enabled)
 {
     for(VisualFactory *v : Visual::factories())
     {
         if(v->properties().shortName == name)
         {
-            Visual::setEnabled(v, enable);
+            Visual::setEnabled(v, enabled);
             break;
         }
     }

@@ -173,14 +173,14 @@ void MusicReplayGainWidget::addItemFinished(const QString &track, const QString 
     m_ui->tableWidget->setItem(row, 4, item);
 }
 
-void MusicReplayGainWidget::setControlEnabled(bool enable)
+void MusicReplayGainWidget::setControlEnabled(bool enabled)
 {
-    m_ui->addFileButton->setEnabled(enable);
-    m_ui->addFilesButton->setEnabled(enable);
-    m_ui->rmFileButton->setEnabled(enable);
-    m_ui->rmFilesButton->setEnabled(enable);
-    m_ui->analysisButton->setEnabled(enable);
-    m_ui->applyButton->setEnabled(enable);
+    m_ui->addFileButton->setEnabled(enabled);
+    m_ui->addFilesButton->setEnabled(enabled);
+    m_ui->rmFileButton->setEnabled(enabled);
+    m_ui->rmFilesButton->setEnabled(enabled);
+    m_ui->analysisButton->setEnabled(enabled);
+    m_ui->applyButton->setEnabled(enabled);
 }
 
 void MusicReplayGainWidget::addFileButtonClicked()

@@ -200,9 +200,9 @@ void MusicPlayer::setEqualizerEffect(const TTKIntList &hz)
     m_core->setEqSettings(eq);
 }
 
-void MusicPlayer::setEnabledEffect(bool enable)
+void MusicPlayer::setEnabledEffect(bool enabled)
 {
-    if(!enable)
+    if(!enabled)
     {
         setEqualizerEffect({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
     }

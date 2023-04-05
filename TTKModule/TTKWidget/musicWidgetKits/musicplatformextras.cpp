@@ -209,8 +209,8 @@ void MusicPlatformExtras::setCurrentPlayStatus(bool status) const
     m_platformExtras->setStatus(status);
 }
 
-void MusicPlatformExtras::disableBlurBehindWindow(bool enable)
+void MusicPlatformExtras::disableBlurBehindWindow(bool enabled)
 {
-    m_disableBlurBehindWindow = enable;
+    m_disableBlurBehindWindow = enabled;
     m_platformExtras->action();
 }

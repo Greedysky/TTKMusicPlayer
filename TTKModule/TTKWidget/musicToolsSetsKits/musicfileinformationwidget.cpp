@@ -264,16 +264,16 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     m_ui->qualityEdit->setText(bitrate);
 }
 
-void MusicFileInformationWidget::setEditLineEnabled(bool enable)
+void MusicFileInformationWidget::setEditLineEnabled(bool enabled)
 {
-    m_ui->fileAlbumEdit->setEnabled(enable);
-    m_ui->fileArtistEdit->setEnabled(enable);
-    m_ui->fileGenreEdit->setEnabled(enable);
-    m_ui->fileTitleEdit->setEnabled(enable);
-    m_ui->fileYearEdit->setEnabled(enable);
+    m_ui->fileAlbumEdit->setEnabled(enabled);
+    m_ui->fileArtistEdit->setEnabled(enabled);
+    m_ui->fileGenreEdit->setEnabled(enabled);
+    m_ui->fileTitleEdit->setEnabled(enabled);
+    m_ui->fileYearEdit->setEnabled(enabled);
 
-    m_ui->saveButton->setEnabled(enable);
-    m_ui->deletePixButton->setEnabled(enable);
+    m_ui->saveButton->setEnabled(enabled);
+    m_ui->deletePixButton->setEnabled(enabled);
 
-    m_ui->openPixButton->setEnabled(enable);
+    m_ui->openPixButton->setEnabled(enabled);
 }

@@ -178,9 +178,9 @@ void MusicMobileSongsManagerWidget::findExtraDevicePath(const QString &dir)
     m_ui->loadingLabel->run(true);
 }
 
-void MusicMobileSongsManagerWidget::selectedAllItems(bool check)
+void MusicMobileSongsManagerWidget::selectedAllItems(bool checked)
 {
-    if(!check)
+    if(!checked)
     {
         m_ui->songlistTable->clearSelection();
         m_ui->songlistTable->setCurrentIndex(QModelIndex());

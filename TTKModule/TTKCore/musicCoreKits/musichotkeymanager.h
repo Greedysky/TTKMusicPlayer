@@ -64,7 +64,7 @@ public:
     /*!
      * Enable or disable the hotkey by index.
      */
-    void setEnabled(int index, bool enable);
+    void setEnabled(int index, bool enabled);
     /*!
      * check the given hotkey is enabled or not.
      */
@@ -72,7 +72,7 @@ public:
     /*!
      * Enable or disable all hotkeys.
      */
-    void enabledAll(bool enable);
+    void enabledAll(bool enabled);
 
     /*!
      * Mapping the virtual key to string key.

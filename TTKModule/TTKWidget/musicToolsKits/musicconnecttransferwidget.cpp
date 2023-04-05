@@ -167,9 +167,9 @@ void MusicConnectTransferWidget::currentPlaylistSelected(int index)
     addCellItems(m_containerItems);
 }
 
-void MusicConnectTransferWidget::selectedAllItems(bool check)
+void MusicConnectTransferWidget::selectedAllItems(bool checked)
 {
-    m_ui->listTableWidget->checkedItemsStatus(check);
+    m_ui->listTableWidget->checkedItemsStatus(checked);
     itemSelectedChanged();
 }
 

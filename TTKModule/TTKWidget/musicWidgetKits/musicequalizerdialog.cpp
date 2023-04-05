@@ -162,21 +162,21 @@ void MusicEqualizerDialog::initialize()
 #endif
 }
 
-void MusicEqualizerDialog::setControlEnabled(bool enable) const
+void MusicEqualizerDialog::setControlEnabled(bool enabled) const
 {
-    m_ui->bwVerticalSlider->setEnabled(enable);
-    m_ui->verticalSlider1->setEnabled(enable);
-    m_ui->verticalSlider2->setEnabled(enable);
-    m_ui->verticalSlider3->setEnabled(enable);
-    m_ui->verticalSlider4->setEnabled(enable);
-    m_ui->verticalSlider5->setEnabled(enable);
-    m_ui->verticalSlider6->setEnabled(enable);
-    m_ui->verticalSlider7->setEnabled(enable);
-    m_ui->verticalSlider8->setEnabled(enable);
-    m_ui->verticalSlider9->setEnabled(enable);
-    m_ui->verticalSlider10->setEnabled(enable);
-    m_ui->eqChoice->setEnabled(enable);
-    m_ui->resetButton->setEnabled(enable);
+    m_ui->bwVerticalSlider->setEnabled(enabled);
+    m_ui->verticalSlider1->setEnabled(enabled);
+    m_ui->verticalSlider2->setEnabled(enabled);
+    m_ui->verticalSlider3->setEnabled(enabled);
+    m_ui->verticalSlider4->setEnabled(enabled);
+    m_ui->verticalSlider5->setEnabled(enabled);
+    m_ui->verticalSlider6->setEnabled(enabled);
+    m_ui->verticalSlider7->setEnabled(enabled);
+    m_ui->verticalSlider8->setEnabled(enabled);
+    m_ui->verticalSlider9->setEnabled(enabled);
+    m_ui->verticalSlider10->setEnabled(enabled);
+    m_ui->eqChoice->setEnabled(enabled);
+    m_ui->resetButton->setEnabled(enabled);
 }
 
 void MusicEqualizerDialog::readInformation()

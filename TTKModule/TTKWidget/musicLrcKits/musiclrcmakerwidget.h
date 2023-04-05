@@ -210,7 +210,7 @@ private:
     /*!
      * Set controller enable or disable.
      */
-    void setControlEnabled(bool enable) const;
+    void setControlEnabled(bool enabled) const;
     /*!
      * Translate current long time to string.
      */

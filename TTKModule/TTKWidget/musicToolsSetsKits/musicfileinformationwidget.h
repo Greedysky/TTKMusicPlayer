@@ -79,7 +79,7 @@ private:
     /*!
      * Eet editLine enable.
      */
-    void setEditLineEnabled(bool enable);
+    void setEditLineEnabled(bool enabled);
 
     Ui::MusicFileInformationWidget *m_ui;
     QString m_path, m_imagePath;

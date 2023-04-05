@@ -254,25 +254,25 @@ void MusicTimerWidget::buttonClicked(int index)
     }
 }
 
-void MusicTimerWidget::setEnabledFirstControl(bool enable)
+void MusicTimerWidget::setEnabledFirstControl(bool enabled)
 {
-    m_ui->hourComboBox1->setEnabled(enable);
-    m_ui->secComboBox1->setEnabled(enable);
-    m_ui->repeatComboBox1->setEnabled(enable);
-    m_ui->plistComboBox->setEnabled(enable);
-    m_ui->psongComboBox->setEnabled(enable);
+    m_ui->hourComboBox1->setEnabled(enabled);
+    m_ui->secComboBox1->setEnabled(enabled);
+    m_ui->repeatComboBox1->setEnabled(enabled);
+    m_ui->plistComboBox->setEnabled(enabled);
+    m_ui->psongComboBox->setEnabled(enabled);
 }
 
-void MusicTimerWidget::setEnabledSecondControl(bool enable)
+void MusicTimerWidget::setEnabledSecondControl(bool enabled)
 {
-    m_ui->hourComboBox2->setEnabled(enable);
-    m_ui->secComboBox2->setEnabled(enable);
-    m_ui->repeatComboBox2->setEnabled(enable);
+    m_ui->hourComboBox2->setEnabled(enabled);
+    m_ui->secComboBox2->setEnabled(enabled);
+    m_ui->repeatComboBox2->setEnabled(enabled);
 }
 
-void MusicTimerWidget::setEnabledThreeControl(bool enable)
+void MusicTimerWidget::setEnabledThreeControl(bool enabled)
 {
-    m_ui->hourComboBox3->setEnabled(enable);
-    m_ui->secComboBox3->setEnabled(enable);
-    m_ui->repeatComboBox3->setEnabled(enable);
+    m_ui->hourComboBox3->setEnabled(enabled);
+    m_ui->secComboBox3->setEnabled(enabled);
+    m_ui->repeatComboBox3->setEnabled(enabled);
 }

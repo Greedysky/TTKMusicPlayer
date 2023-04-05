@@ -74,15 +74,15 @@ private:
     /*!
      * Init play widget control enable or not.
      */
-    void setEnabledFirstControl(bool enable);
+    void setEnabledFirstControl(bool enabled);
     /*!
      * Init stop widget control enable or not..
      */
-    void setEnabledSecondControl(bool enable);
+    void setEnabledSecondControl(bool enabled);
     /*!
      * Init shutdown widget control enable or not..
      */
-    void setEnabledThreeControl(bool enable);
+    void setEnabledThreeControl(bool enabled);
     /*!
      * Init combobox parameter.
      */

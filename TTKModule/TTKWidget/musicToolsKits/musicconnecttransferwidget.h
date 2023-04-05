@@ -66,7 +66,7 @@ public Q_SLOTS:
     /*!
      * Select all items.
      */
-    void selectedAllItems(bool check);
+    void selectedAllItems(bool checked);
     /*!
      * Start to transfer files.
      */

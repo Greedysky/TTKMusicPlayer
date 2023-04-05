@@ -93,7 +93,7 @@ private:
     /*!
      * Set control enable false when it begin.
      */
-    void setCheckedControl(bool enable);
+    void setCheckedControl(bool enabled);
 
     Ui::MusicTransformWidget *m_ui;
     QProcess *m_process;

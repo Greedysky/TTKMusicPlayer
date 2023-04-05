@@ -118,7 +118,7 @@ private:
     /*!
      * Enable or disable control state.
      */
-    void setControlEnabled(bool enable);
+    void setControlEnabled(bool enabled);
 
     Ui::MusicReplayGainWidget *m_ui;
     QProcess *m_process;

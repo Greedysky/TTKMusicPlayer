@@ -133,10 +133,10 @@ public:
         }
     }
 
-    void initialize(bool state, bool enable, const MusicPluginProperty &property)
+    void initialize(bool state, bool enabled, const MusicPluginProperty &property)
     {
         setData(0, TTK_CHECKED_ROLE, state ? Qt::Checked : Qt::Unchecked);
-        setData(0, TTK_ENABLED_ROLE, enable);
+        setData(0, TTK_ENABLED_ROLE, enabled);
         setData(1, TTK_DISPLAY_ROLE, property.m_name);
         setData(2, TTK_DISPLAY_ROLE, property.m_type.section('/', -1));
 
@@ -151,7 +151,7 @@ public:
             setIcon(3, QIcon(":/contextMenu/btn_setting"));
         }
 
-        const QColor &color = enable ? (state ? QColor(0xE6, 0x73, 0x00) : QColor(0x00, 0x00, 0x00)) : QColor(0xBB, 0xBB, 0xBB);
+        const QColor &color = enabled ? (state ? QColor(0xE6, 0x73, 0x00) : QColor(0x00, 0x00, 0x00)) : QColor(0xBB, 0xBB, 0xBB);
         setData(1, Qt::ForegroundRole, color);
         setData(2, Qt::ForegroundRole, color);
     }

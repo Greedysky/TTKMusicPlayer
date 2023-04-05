@@ -18,9 +18,9 @@ void MusicSpectrumLayoutItem::addCellItem(const QString &item, const QString &ti
     setToolTip(tip);
 }
 
-void MusicSpectrumLayoutItem::setCheck(bool check)
+void MusicSpectrumLayoutItem::setChecked(bool checked)
 {
-    m_isSelected = check;
+    m_isSelected = checked;
     update();
 }
 
@@ -63,18 +63,18 @@ void MusicSpectrumLayoutWidget::labelClicked(int index)
     {
         for(MusicSpectrumLayoutItem *item : qAsConst(m_items))
         {
-            item->setCheck(false);
+            item->setChecked(false);
         }
     }
 
     const QStringList &types = spectrumTypeList();
     bool state = !m_items[index]->isChecked();
-    m_items[index]->setCheck(state);
+    m_items[index]->setChecked(state);
 
     Q_EMIT stateChanged(state, types[index]);
     if(!state)
     {
-        m_items[index]->setCheck(false);
+        m_items[index]->setChecked(false);
     }
     m_menu->close();
 }

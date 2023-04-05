@@ -695,13 +695,13 @@ bool MusicLrcMakerWidget::checkInputValid()
     return true;
 }
 
-void MusicLrcMakerWidget::setControlEnabled(bool enable) const
+void MusicLrcMakerWidget::setControlEnabled(bool enabled) const
 {
-    m_ui->artNameEdit->setEnabled(enable);
-    m_ui->songNameEdit->setEnabled(enable);
-    m_ui->authorNameEdit->setEnabled(enable);
-    m_ui->lrcTextEdit->setEnabled(enable);
-    m_ui->introductionTextEdit->setEnabled(enable);
+    m_ui->artNameEdit->setEnabled(enabled);
+    m_ui->songNameEdit->setEnabled(enabled);
+    m_ui->authorNameEdit->setEnabled(enabled);
+    m_ui->lrcTextEdit->setEnabled(enabled);
+    m_ui->introductionTextEdit->setEnabled(enabled);
 }
 
 QString MusicLrcMakerWidget::translateTimeString(qint64 time)

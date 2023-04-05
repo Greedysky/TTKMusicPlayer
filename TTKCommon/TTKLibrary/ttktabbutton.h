@@ -44,7 +44,7 @@ public:
     /*!
      * Set button enable or disable.
      */
-    void setButtonEnabled(bool enable);
+    void setButtonEnabled(bool enabled);
 
     /*!
      * Get button current index.

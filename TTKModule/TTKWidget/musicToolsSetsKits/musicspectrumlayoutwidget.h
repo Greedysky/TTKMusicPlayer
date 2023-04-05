@@ -44,7 +44,7 @@ public:
     /*!
      * Set spectrum item check state.
      */
-    void setCheck(bool check);
+    void setChecked(bool checked);
     /*!
      * Get spectrum item check state.
      */

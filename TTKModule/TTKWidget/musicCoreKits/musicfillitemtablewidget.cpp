@@ -56,24 +56,24 @@ void MusicFillItemTableWidget::itemCellClicked(int row, int column)
     }
 }
 
-void MusicFillItemTableWidget::checkedItemsState(bool check)
+void MusicFillItemTableWidget::checkedItemsState(bool checked)
 {
     for(int i = 0; i < rowCount(); ++i)
     {
-        item(i, 0)->setData(TTK_CHECKED_ROLE, check ? Qt::Checked : Qt::Unchecked);
+        item(i, 0)->setData(TTK_CHECKED_ROLE, checked ? Qt::Checked : Qt::Unchecked);
     }
 
     clearSelection();
 }
 
-void MusicFillItemTableWidget::checkedItemsStatus(bool check)
+void MusicFillItemTableWidget::checkedItemsStatus(bool checked)
 {
     for(int i = 0; i < rowCount(); ++i)
     {
-        item(i, 0)->setData(TTK_CHECKED_ROLE, check ? Qt::Checked : Qt::Unchecked);
+        item(i, 0)->setData(TTK_CHECKED_ROLE, checked ? Qt::Checked : Qt::Unchecked);
     }
 
-    if(!check)
+    if(!checked)
     {
         clearSelection();
         setCurrentIndex(QModelIndex());

@@ -160,12 +160,12 @@ void MusicDownloadWidget::initialize()
     }
 }
 
-void MusicDownloadWidget::controlEnabled(bool enable)
+void MusicDownloadWidget::controlEnabled(bool enabled)
 {
-    m_ui->topTitleCloseButton->setEnabled(enable);
-    m_ui->downloadButton->setEnabled(enable);
-    m_ui->pathChangedButton->setEnabled(enable);
-    m_ui->settingButton->setEnabled(enable);
+    m_ui->topTitleCloseButton->setEnabled(enabled);
+    m_ui->downloadButton->setEnabled(enabled);
+    m_ui->pathChangedButton->setEnabled(enabled);
+    m_ui->settingButton->setEnabled(enabled);
 }
 
 void MusicDownloadWidget::setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type)

@@ -49,11 +49,11 @@ void TTKTabButton::addButtons(const QStringList &titles)
     buttonClicked(0);
 }
 
-void TTKTabButton::setButtonEnabled(bool enable)
+void TTKTabButton::setButtonEnabled(bool enabled)
 {
     for(QAbstractButton *button : m_buttonGroup->buttons())
     {
-        button->setEnabled(enable);
+        button->setEnabled(enabled);
     }
 }
 

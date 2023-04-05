@@ -42,9 +42,9 @@ void MusicLrcFloatPhotoItem::setPhoto(const QString &path)
     setPixmap(pix);
 }
 
-void MusicLrcFloatPhotoItem::setBoxChecked(bool check)
+void MusicLrcFloatPhotoItem::setBoxChecked(bool checked)
 {
-    m_checkBox->setChecked(check);
+    m_checkBox->setChecked(checked);
 }
 
 bool MusicLrcFloatPhotoItem::boxChecked()

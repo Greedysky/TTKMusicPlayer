@@ -189,7 +189,7 @@ private:
     /*!
      * Enable or disable control state.
      */
-    void controlEnabled(bool enable);
+    void controlEnabled(bool enabled);
     /*!
      * Set widget fixed height.
      */

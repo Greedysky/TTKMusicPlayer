@@ -78,13 +78,13 @@ void MusicHotKeyManager::addHotKey(int key)
     m_hotkeys << (new QGlobalShortcut(QKeySequence(key)));
 }
 
-void MusicHotKeyManager::setEnabled(int index, bool enable)
+void MusicHotKeyManager::setEnabled(int index, bool enabled)
 {
     if(index >= m_hotkeys.count())
     {
         return;
     }
-    m_hotkeys[index]->setEnabled(enable);
+    m_hotkeys[index]->setEnabled(enabled);
 }
 
 bool MusicHotKeyManager::enabled(int index)
@@ -96,11 +96,11 @@ bool MusicHotKeyManager::enabled(int index)
     return m_hotkeys[index]->isEnabled();
 }
 
-void MusicHotKeyManager::enabledAll(bool enable)
+void MusicHotKeyManager::enabledAll(bool enabled)
 {
     for(QGlobalShortcut *key : qAsConst(m_hotkeys))
     {
-        key->setEnabled(enable);
+        key->setEnabled(enabled);
     }
 }
 

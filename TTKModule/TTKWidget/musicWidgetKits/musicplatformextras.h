@@ -44,7 +44,7 @@ public:
     /*!
      * Enable or disable blur behind window.
      */
-    void disableBlurBehindWindow(bool enable);
+    void disableBlurBehindWindow(bool enabled);
     /*!
      * Get blur behind window state.
      */

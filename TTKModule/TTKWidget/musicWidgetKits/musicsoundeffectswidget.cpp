@@ -7,7 +7,7 @@
 
 MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const MusicPluginProperty &property, QWidget *parent)
     : QWidget(parent),
-      m_enable(false),
+      m_enabled(false),
       m_property(property)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -74,22 +74,22 @@ MusicSoundEffectsItemWidget::~MusicSoundEffectsItemWidget()
     delete m_settingButton;
 }
 
-void MusicSoundEffectsItemWidget::setPluginEnabled(bool enable)
+void MusicSoundEffectsItemWidget::setPluginEnabled(bool enabled)
 {
-    m_enable = !enable;
+    m_enabled = !enabled;
     setPluginEnabled();
 }
 
 bool MusicSoundEffectsItemWidget::pluginEnabled() const
 {
-    return m_enable;
+    return m_enabled;
 }
 
 void MusicSoundEffectsItemWidget::setPluginEnabled()
 {
-    if(!m_enable)
+    if(!m_enabled)
     {
-        m_enable = true;
+        m_enabled = true;
         m_openButton->setIcon(QIcon(":/tiny/btn_effect_off"));
         TTK::TTKQmmp::enabledEffectPlugin(true, m_property.m_type);
 
@@ -98,7 +98,7 @@ void MusicSoundEffectsItemWidget::setPluginEnabled()
     }
     else
     {
-        m_enable = false;
+        m_enabled = false;
         m_openButton->setIcon(QIcon(":/tiny/btn_effect_on"));
         TTK::TTKQmmp::enabledEffectPlugin(false, m_property.m_type);
         m_settingButton->setEnabled(false);

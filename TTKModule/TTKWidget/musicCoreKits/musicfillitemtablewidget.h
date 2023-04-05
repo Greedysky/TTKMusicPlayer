@@ -51,11 +51,11 @@ public Q_SLOTS:
     /*!
      * Checked items state.
      */
-    void checkedItemsState(bool check);
+    void checkedItemsState(bool checked);
     /*!
      * Checked items status.
      */
-    void checkedItemsStatus(bool check);
+    void checkedItemsStatus(bool checked);
 
 protected:
     TTKCheckBoxItemDelegate *m_checkBoxDelegate;

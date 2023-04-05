@@ -47,7 +47,7 @@ public:
     /*!
      * Set plugin enable or not.
      */
-    void setPluginEnabled(bool enable);
+    void setPluginEnabled(bool enabled);
     /*!
      * Get plugin enable or not.
      */
@@ -64,7 +64,7 @@ public Q_SLOTS:
     void soundEffectValueChanged();
 
 private:
-    bool m_enable;
+    bool m_enabled;
     QLabel *m_textLabel;
     QPushButton *m_settingButton, *m_openButton;
     MusicPluginProperty m_property;

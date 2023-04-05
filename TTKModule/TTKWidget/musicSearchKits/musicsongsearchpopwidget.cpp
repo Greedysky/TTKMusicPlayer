@@ -75,13 +75,13 @@ MusicSongSearchPopWidget::MusicSongSearchPopWidget(QWidget *parent)
     m_clearButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    QFrame *frame = new QFrame(this);
-    frame->setFixedHeight(1);
-    frame->setStyleSheet(TTK::UI::BackgroundStyle09);
-    frame->setFrameShape(QFrame::HLine);
+    m_frame = new QFrame(this);
+    m_frame->setFixedHeight(1);
+    m_frame->setStyleSheet(TTK::UI::BackgroundStyle09);
+    m_frame->setFrameShape(QFrame::HLine);
 
     layout->addWidget(m_popTableWidget);
-    layout->addWidget(frame);
+    layout->addWidget(m_frame);
     layout->addWidget(m_clearButton);
     setLayout(layout);
 
@@ -97,7 +97,7 @@ MusicSongSearchPopWidget::~MusicSongSearchPopWidget()
 
 void MusicSongSearchPopWidget::initialize()
 {
-    m_clearButton->show();
+    setControlEnabled(true);
     m_popTableWidget->removeItems();
 
     MusicSongSearchRecordConfigManager search(this);
@@ -119,9 +119,24 @@ void MusicSongSearchPopWidget::initialize()
     }
 }
 
+void MusicSongSearchPopWidget::setControlEnabled(bool enabled)
+{
+    if(enabled)
+    {
+        m_frame->show();
+        m_clearButton->show();
+    }
+    else
+    {
+
+        m_frame->hide();
+        m_clearButton->hide();
+    }
+}
+
 void MusicSongSearchPopWidget::createSuggestItems(const QStringList &names)
 {
-    m_clearButton->hide();
+    setControlEnabled(false);
     m_popTableWidget->removeItems();
 
     const int count = names.count();

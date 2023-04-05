@@ -263,11 +263,11 @@ bool MusicTransformWidget::processTransform()
     return true;
 }
 
-void MusicTransformWidget::setCheckedControl(bool enable)
+void MusicTransformWidget::setCheckedControl(bool enabled)
 {
-    m_ui->inputButton->setEnabled(enable);
-    m_ui->outputButton->setEnabled(enable);
-    m_ui->folderBox->setEnabled(enable);
-    m_ui->transformButton->setEnabled(enable);
-    m_ui->tabButton->setButtonEnabled(enable);
+    m_ui->inputButton->setEnabled(enabled);
+    m_ui->outputButton->setEnabled(enabled);
+    m_ui->folderBox->setEnabled(enabled);
+    m_ui->transformButton->setEnabled(enabled);
+    m_ui->tabButton->setButtonEnabled(enabled);
 }

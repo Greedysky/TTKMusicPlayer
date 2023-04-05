@@ -48,7 +48,7 @@ Q_SIGNALS:
     /*!
      * Set equlizer enable state changed.
      */
-    void setEnabledEffect(bool enable);
+    void setEnabledEffect(bool enabled);
 
 public Q_SLOTS:
     /*!
@@ -76,7 +76,7 @@ private:
     /*!
      * Enable or disable control state.
      */
-    void setControlEnabled(bool enable) const;
+    void setControlEnabled(bool enabled) const;
     /*!
      * Read equalizer info from config.
      */
