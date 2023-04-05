@@ -296,6 +296,7 @@ void MusicKWQueryMovieRequest::parseFromMovieInfo(TTK::MusicSongInformation *inf
             value = value["data"].toMap();
             info->m_songName = value["name"].toString();
             info->m_singerName = value["artist"].toString();
+            info->m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
         }
     }
 }

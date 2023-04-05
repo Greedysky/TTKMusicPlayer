@@ -9,6 +9,37 @@ void MusicKWInterface::makeRequestRawHeader(QNetworkRequest *request)
     TTK::setSslConfiguration(request);
 }
 
+void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &bitrate, QString &url)
+{
+    QNetworkRequest request;
+    request.setUrl(TTK::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(info->m_songId).arg(bitrate));
+    MusicKWInterface::makeRequestRawHeader(&request);
+
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
+    {
+        return;
+    }
+
+    QJson::Parser json;
+    bool ok = false;
+    const QVariant &data = json.parse(bytes, &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value["code"].toInt() == 200 && value.contains("data"))
+        {
+            value = value["data"].toMap();
+            if(value.isEmpty())
+            {
+                return;
+            }
+
+            url = value["url"].toString();
+        }
+    }
+}
+
 void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
 {
     if((format.contains("MP3128") || format.contains("128kmp3")) && bitrate == MB_128 && suffix == MP3_FILE_SUFFIX)
@@ -17,7 +48,7 @@ void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, co
         prop.m_bitrate = bitrate;
         prop.m_format = suffix;
         prop.m_size = TTK_DEFAULT_STR;
-        prop.m_url = TTK::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
+        parseFromSongProperty(info, "128kmp3", prop.m_url);
         info->m_songProps.append(prop);
     }
     else if((format.contains("MP3192") || format.contains("192kmp3")) && bitrate == MB_192 && suffix == MP3_FILE_SUFFIX)
@@ -26,7 +57,7 @@ void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, co
         prop.m_bitrate = bitrate;
         prop.m_format = suffix;
         prop.m_size = TTK_DEFAULT_STR;
-        prop.m_url = TTK::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
+        parseFromSongProperty(info, "192kmp3", prop.m_url);
         info->m_songProps.append(prop);
     }
     else if((format.contains("MP3H") || format.contains("320kmp3")) && bitrate == MB_320 && suffix == MP3_FILE_SUFFIX)
@@ -35,7 +66,7 @@ void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, co
         prop.m_bitrate = bitrate;
         prop.m_format = suffix;
         prop.m_size = TTK_DEFAULT_STR;
-        prop.m_url = TTK::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
+        parseFromSongProperty(info, "320kmp3", prop.m_url);
         info->m_songProps.append(prop);
     }
 }
