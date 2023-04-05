@@ -85,36 +85,28 @@ namespace MusicWYInterface
      */
     void makeRequestRawHeader(QNetworkRequest *request);
 
-}
-
-/*! @brief The class of the wangyi query interface.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicWYQueryInterface
-{
-public:
     /*!
      * Make token query request.
      */
-    QByteArray makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &type) const;
+    QByteArray makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &type);
 
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate) const;
+    void parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const;
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongPropertyNew(TTK::MusicSongInformation *info, int bitrate) const;
+    void parseFromSongPropertyNew(TTK::MusicSongInformation *info, int bitrate) ;
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongPropertyNew(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const;
+    void parseFromSongPropertyNew(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all);
 
-};
+}
 
 #endif // MUSICWYQUERYINTERFACE_H

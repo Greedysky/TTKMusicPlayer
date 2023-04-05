@@ -335,7 +335,7 @@ MusicMeta *MusicSongMeta::songMeta()
 QString MusicSongMeta::findLegalDataString(TagMeta::Type type)
 {
     const QString &v = songMeta()->m_metaData[type];
-    return TTK::String::charactersReplaced(v);
+    return TTK::String::charactersReplace(v);
 }
 
 bool MusicSongMeta::readInformation()

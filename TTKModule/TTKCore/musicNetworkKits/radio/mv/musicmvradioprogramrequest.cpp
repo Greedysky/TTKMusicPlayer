@@ -64,8 +64,8 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                             TTK_NETWORK_QUERY_CHECK();
 
                             TTK::MusicSongInformation info;
-                            info.m_singerName = TTK::String::charactersReplaced(value["name"].toString());
-                            info.m_songName = TTK::String::charactersReplaced(value["name"].toString());
+                            info.m_singerName = TTK::String::charactersReplace(value["name"].toString());
+                            info.m_songName = TTK::String::charactersReplace(value["name"].toString());
                             if(info.m_singerName.contains(" - "))
                             {
                                 const QStringList &ds = info.m_singerName.split(" - ");
@@ -166,7 +166,7 @@ void MusicMVRadioProgramRequest::parseFromMovieProperty(TTK::MusicSongInformatio
     TTK::MusicSongProperty prop;
     prop.m_url = key["downurl"].toString();
     prop.m_size = TTK::Number::sizeByteToLabel(key["filesize"].toInt());
-    prop.m_format = TTK::String::stringSplitToken(prop.m_url);
+    prop.m_format = TTK::String::slitToken(prop.m_url);
 
     const int bitrate = key["bitrate"].toInt() / 1000;
     if(bitrate <= 375)

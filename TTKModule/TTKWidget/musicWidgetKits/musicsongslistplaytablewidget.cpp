@@ -559,7 +559,7 @@ void MusicSongsListPlayTableWidget::musicSearchQuery(QAction *action)
     }
 
     const QString &songName = currentSongName();
-    const QStringList names(TTK::String::stringSplit(songName));
+    const QStringList names(TTK::String::split(songName));
     switch(action->data().toInt() - TTK_LOW_LEVEL)
     {
         case 0 : MusicRightAreaWidget::instance()->musicSongSearchedFound(songName); break;
@@ -738,7 +738,7 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addSeparator();
 
     const QString &songName = currentSongName();
-    const QStringList names(TTK::String::stringSplit(songName));
+    const QStringList names(TTK::String::split(songName));
     for(int i = 1; i <= names.count(); ++i)
     {
         menu.addAction(tr("Search '%1'").arg(names[i - 1].trimmed()))->setData(i + TTK_LOW_LEVEL);

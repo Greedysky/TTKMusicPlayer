@@ -29,7 +29,6 @@ const QString KW_UA_URL                 = "MDFXS1pubXVlbkc2QzFKKzVXTkR3Q0hRMmlvb
 const QString KW_SONG_SEARCH_URL        = "azRpTk56R3ZhTXY5dk13YzFkaHJkMzRFY3NpRkRmUGdyUnQyWVY5NXNvOE82cUE4Mmg0VklKTTQrRFV0dEZHTExUSkJvTkRXMGdQVEpaK0Z4Rkp6ZUkrUnh1T29iSG1mTUxCNkRmMlVFT25zVzhjQUs1K0VCZk9UMWpTWGovMWR0czNlN0Z0Y1kyUCtxYlZSK3R3YnU3VTZ6dlkwanJIdGN6RWdjWEhxSi96ekRNWjBMMEMrL3JCUGxRQWJ6YkltQkRGeGljR3c4TmgxaXBXcGhzcnZlZ1p5cldlNzZTc1ZlZDFvUDcxTmtDdlJqY3JU";
 const QString KW_SONG_LRC_URL           = "a2VZMjN2anovdkJJR2tmckthZmI2c1M4N0ZqOWN6WGcrbHBXbllJdnRWcS9JUnp4ZWIrTXpGODFETkVFN25QZ0lZc21HRC85bjdQWWI3b3I=";
 const QString KW_SONG_DETAIL_URL        = "TzlINnJWWWVrVHowRkZhV1NrV2R6ZGh5b2YraFJmNkV6VUhxSlBPMExXVWkxSWt4aVdZNFIwaG9EK200cFdpSzZSYUhLQlA5T0RTQ2l1M1hxNmxjQlU3YkJoZ0JtbkFXbFFlL2JhTVp0WGgxTHdiT3F5MVBDTEowUi9HMXU2R2pqVXVidVE9PQ==";
-const QString KW_SONG_DETAIL_DATA_URL   = "UTgrZGI3eFBTNkdobUIxbHBNMEh2dXpJMnlmakNuR2FyNmN3bWlDNjhTOHovV2s1V1I0VzhHVkJyZTNXTTBSbUNONXlkKzk4N2szQVBGQmplcXdoYzNSK3R6Vy9LNWdNQksxZUtWQ1p6c0NqZDk4dUtET1pJMVB2NkorV0RMb2J3a1REYjBhTTUzUTVxa1YwejRYc01GVlRTZTQ1V2JRSTFTT1ppY09zcVlxWUNYRm9mOUg3dEJwZG5FRkZuNS9tRzVPeWpMM0JaRE8vNEhISDNFNzRvb2I0UFlOTm1NVEVVc3o2RndiVldEVXNLcU1T";
 const QString KW_SONG_INFO_URL          = "TjVRY3FwbGZRUkpITGYyczVUSGZ0MG14bEs4VEsyY3VJZE80S0lhSkF6b0p5UWsxSEl5aWpUNzdHY252aEhpSDAwZHhTR3UvM2J0ZlJ2dmc5SDRDa1ZBSGhLZy9SY2UrMllkUjJpUGtmWTA9";
 ///artist url
 const QString KW_ARTIST_URL             = "YnB5eU5EYWZlV2ROblZIWllJbVJzK0ppMVJqMGxiNVcwM0RaQzVqWE9xdURua0tJWng4OEVaSit1ck5VeGh4SkZ1OGN0SHRaQWNNQS9URXRCM0FVdlZOWDkwcDgzOXZ1Q0JIcGlMMEdyZGlWTUlITE1pZmJOY1YyNmFwS2o5NE1NM3ZDY25RRERlLzEzb1U3NFpKV2lYSGhpOFNINTdDd1ZZWHV4bkUzL0JXY2ZHSkpPYitEazY2QzhiRT0=";
@@ -54,8 +53,6 @@ const QString KW_COMMENT_PLAYLIST_URL   = "b09RdlBRdzh4bjB4QXZCbXlXcE5ENEpUMzhEU
 ///playlist url
 const QString KW_PLAYLIST_URL           = "cjgyRkJaRnB2bElLbG1MS2M4TjcrWjRabU4xZkVpY1p6OTZBSTlrM3IxWWNjUTBPS3d0OFo4d0s4M29pd0h4WFZtKzhxTjVoNXcwUjRiQlE2aFZ3VXhGMlhqYURxdlZSSGR5cHJidUdndVV3Y3hEQlRBbm4yQytKMExoNTAvUUs2TE92SFQzSUVLMVJ3VFlNUUZXQkZXa2t0UmdQWTl1VTF3bGhCUT09";
 const QString KW_PLAYLIST_INFO_URL      = "a1RvK2Rxb3oza1FHZ3FNeU1ZQ1lSYTdGN0xUanZXZ09rU2RTQlF3UGxsT3dFcTBqc3FXdmdUVW1wL2RQVUJKdGEzM3Z2RUI1cUIrYmVnNmNtdEZla3VlN01ySXdNb3dVa21lSDR1b2VwZlJFWXVVbnY4bDFLSHplSHhicDY5WEFBaFZxdlpZUmxVTkhxL0hNcDI1ZW9oamtXWkZadUhNdWFOZG1iVHM0K2FmY0pLamlXZ2tGMFE9PQ==";
-///suggest url
-const QString KW_SUGGEST_URL            = "UXc5cFVXZG92VUxjeFpmR0w4OS9rUG12ZjNtdGZ6d2owb09SaXZrZmIxMEwxbEZYWVY4a0hWMVVQL2d0Y3dNbURPUE9PYWVlcjBXdW5aNjAxbnNLajl3N0ZoMG5UemFGTWFhYjFLeXhzcWJhVU04VA==";
 
 
 class QNetworkRequest;
@@ -70,35 +67,19 @@ namespace MusicKWInterface
      */
     void makeRequestRawHeader(QNetworkRequest *request);
 
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &format, TTK::QueryQuality quality, bool all);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantList &format, TTK::QueryQuality quality, bool all);
+
 }
-
-/*! @brief The class of the kuwo query interface.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicKWQueryInterface
-{
-public:
-    /*!
-     * Read high info property from query results.
-     */
-    void parseFromSongHighProperty(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const;
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const;
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void parseFromSongPropertyNew(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate) const;
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &format, TTK::QueryQuality quality, bool all) const;
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantList &format, TTK::QueryQuality quality, bool all) const;
-
-};
 
 #endif // MUSICKWQUERYINTERFACE_H

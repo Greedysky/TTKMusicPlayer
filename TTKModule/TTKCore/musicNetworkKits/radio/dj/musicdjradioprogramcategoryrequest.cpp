@@ -44,7 +44,7 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenRequest(&request,
+    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(DJ_DETAIL_URL, false),
                       TTK::Algorithm::mdII(DJ_DETAIL_DATA_URL, false).arg(value));
 
@@ -58,7 +58,7 @@ void MusicDJRadioProgramCategoryRequest::queryProgramInfo(MusicResultDataItem &i
     TTK_INFO_STREAM(QString("%1 queryProgramInfo %2").arg(className(), item.m_id));
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenRequest(&request,
+    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(DJ_PROGRAM_INFO_URL, false),
                       TTK::Algorithm::mdII(DJ_PROGRAM_INFO_DATA_URL, false).arg(item.m_id));
 
@@ -160,19 +160,19 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_songName = TTK::String::charactersReplaced(value["name"].toString());
+                    info.m_songName = TTK::String::charactersReplace(value["name"].toString());
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt());
 
                     const QVariantMap &radioObject = value["radio"].toMap();
                     info.m_coverUrl = radioObject["picUrl"].toString();
                     info.m_artistId = radioObject["id"].toString();
-                    info.m_singerName = TTK::String::charactersReplaced(radioObject["name"].toString());
+                    info.m_singerName = TTK::String::charactersReplace(radioObject["name"].toString());
 
                     const QVariantMap &mainSongObject = value["mainSong"].toMap();
                     info.m_songId = mainSongObject["id"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    parseFromSongProperty(&info, mainSongObject, m_queryQuality, true);
+                    MusicWYInterface::parseFromSongProperty(&info, mainSongObject, m_queryQuality, true);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!categoryFound)

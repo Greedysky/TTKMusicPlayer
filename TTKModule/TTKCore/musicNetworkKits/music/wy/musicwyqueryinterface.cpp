@@ -14,8 +14,7 @@ void MusicWYInterface::makeRequestRawHeader(QNetworkRequest *request)
     TTK::setSslConfiguration(request);
 }
 
-
-QByteArray MusicWYQueryInterface::makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &type) const
+QByteArray MusicWYInterface::makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &type)
 {
     QAlgorithm::Aes aes;
     QByteArray parameter = aes.encryptCBC(type.toUtf8(), "0CoJUm6Qyw8W8jud", "0102030405060708");
@@ -28,7 +27,7 @@ QByteArray MusicWYQueryInterface::makeTokenRequest(QNetworkRequest *request, con
     return "params=" + parameter + "&encSecKey=" + WY_SECKRY_STRING.toUtf8();
 }
 
-void MusicWYQueryInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate) const
+void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
 {
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate * 1000).arg(info->m_songId));
@@ -76,7 +75,7 @@ void MusicWYQueryInterface::parseFromSongProperty(TTK::MusicSongInformation *inf
     }
 }
 
-void MusicWYQueryInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const
+void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all)
 {
     int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
@@ -147,7 +146,7 @@ void MusicWYQueryInterface::parseFromSongProperty(TTK::MusicSongInformation *inf
     }
 }
 
-void MusicWYQueryInterface::parseFromSongPropertyNew(TTK::MusicSongInformation *info, int bitrate) const
+void MusicWYInterface::parseFromSongPropertyNew(TTK::MusicSongInformation *info, int bitrate)
 {
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenRequest(&request,
@@ -195,7 +194,7 @@ void MusicWYQueryInterface::parseFromSongPropertyNew(TTK::MusicSongInformation *
     }
 }
 
-void MusicWYQueryInterface::parseFromSongPropertyNew(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const
+void MusicWYInterface::parseFromSongPropertyNew(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all)
 {
     int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();

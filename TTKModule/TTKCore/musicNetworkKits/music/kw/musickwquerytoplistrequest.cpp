@@ -63,21 +63,21 @@ void MusicKWQueryToplistRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_singerName = TTK::String::charactersReplaced(value["artist"].toString());
-                    info.m_songName = TTK::String::charactersReplaced(value["name"].toString());
+                    info.m_singerName = TTK::String::charactersReplace(value["artist"].toString());
+                    info.m_songName = TTK::String::charactersReplace(value["name"].toString());
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
 
                     info.m_songId = value["id"].toString();
                     info.m_artistId = value["artistid"].toString();
                     info.m_albumId = value["albumid"].toString();
-                    info.m_albumName = TTK::String::charactersReplaced(value["album"].toString());
+                    info.m_albumName = TTK::String::charactersReplace(value["album"].toString());
 
                     info.m_year = QString();
                     info.m_trackNumber = "0";
 
                     info.m_coverUrl = TTK::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
-                    parseFromSongProperty(&info, value["formats"].toString(), m_queryQuality, m_queryAllRecords);
+                    MusicKWInterface::parseFromSongProperty(&info, value["formats"].toString(), m_queryQuality, m_queryAllRecords);
 
                     if(info.m_songProps.isEmpty())
                     {

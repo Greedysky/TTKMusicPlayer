@@ -36,14 +36,19 @@ public:
 
     /*!
      * Start to search data by input data.
-     * Subclass should implement this function.
      */
-    virtual void startToSearch(const QString &value) = 0;
+    virtual void startToSearch(const QString &value);
 
     /*!
      * Get suggest list items.
      */
     inline const MusicResultDataItemList& searchedItems() const { return m_items; }
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadFinished() override final;
 
 protected:
     MusicResultDataItemList m_items;

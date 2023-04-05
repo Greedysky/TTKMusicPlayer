@@ -54,13 +54,13 @@ void MusicQueryRecommendRequest::downLoadFinished()
                 TTK_NETWORK_QUERY_CHECK();
 
                 TTK::MusicSongInformation info;
-                info.m_songName = TTK::String::charactersReplaced(value["name"].toString());
+                info.m_songName = TTK::String::charactersReplace(value["name"].toString());
                 info.m_duration = value["songLength"].toString();
                 info.m_songId = value["id"].toString();
 
                 const QVariantMap &albumObject = value["albumInfo"].toMap();
                 info.m_albumId = albumObject["id"].toString();
-                info.m_albumName = TTK::String::charactersReplaced(albumObject["name"].toString());
+                info.m_albumName = TTK::String::charactersReplace(albumObject["name"].toString());
 
                 const QVariantList &artistsArray = value["artistInfo"].toList();
                 for(const QVariant &artistValue : qAsConst(artistsArray))
@@ -72,7 +72,7 @@ void MusicQueryRecommendRequest::downLoadFinished()
 
                     const QVariantMap &artistObject = artistValue.toMap();
                     info.m_artistId = artistObject["id"].toString();
-                    info.m_singerName = TTK::String::charactersReplaced(artistObject["name"].toString());
+                    info.m_singerName = TTK::String::charactersReplace(artistObject["name"].toString());
                     break; //just find first singer
                 }
 

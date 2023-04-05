@@ -64,10 +64,10 @@ void MusicFMRadioSongsRequest::downLoadFinished()
                 }
 
                 m_songInfo.m_songProps << prop;
-                m_songInfo.m_songName = TTK::String::charactersReplaced(value["title"].toString());
-                m_songInfo.m_singerName = TTK::String::charactersReplaced(value["artist"].toString());
+                m_songInfo.m_songName = TTK::String::charactersReplace(value["title"].toString());
+                m_songInfo.m_singerName = TTK::String::charactersReplace(value["artist"].toString());
                 m_songInfo.m_coverUrl = value["picture"].toString();
-                m_songInfo.m_albumName = TTK::String::charactersReplaced(value["albumtitle"].toString());
+                m_songInfo.m_albumName = TTK::String::charactersReplace(value["albumtitle"].toString());
                 m_songInfo.m_lrcUrl = TTK::Algorithm::mdII(FM_LRC_URL, false).arg(value["sid"].toString(), value["ssid"].toString());
 
                 if(!m_songInfo.m_songProps.isEmpty())

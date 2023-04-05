@@ -25,7 +25,7 @@
 /*! @brief The class of the kuwo query toplist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicKWQueryToplistRequest : public MusicQueryToplistRequest, private MusicKWQueryInterface
+class TTK_MODULE_EXPORT MusicKWQueryToplistRequest : public MusicQueryToplistRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWQueryToplistRequest)

@@ -86,7 +86,7 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
     if(mode || !checkArtistBackgroundValid())
     {
         ///download art background picture
-        const int count = TTK::String::stringSplit(fileName).count();
+        const int count = TTK::String::split(fileName).count();
         G_DOWNLOAD_QUERY_PTR->makeBackgroundRequest(count == 1 ? info.m_singerName : artistName, artistName, this)->startRequest();
     }
 }

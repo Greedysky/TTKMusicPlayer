@@ -14,7 +14,7 @@ void MusicWYDiscoverListRequest::startToSearch()
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenRequest(&request,
+    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_TOPLIST_URL, false),
                       TTK::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(19723756));
 

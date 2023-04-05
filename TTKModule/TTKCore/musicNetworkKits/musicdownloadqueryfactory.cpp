@@ -38,9 +38,7 @@
 #include "musickgdiscoverlistrequest.h"
 #include "musickwdiscoverlistrequest.h"
 //
-#include "musicwysongsuggestrequest.h"
-#include "musickgsongsuggestrequest.h"
-#include "musickwsongsuggestrequest.h"
+#include "musicsongsuggestrequest.h"
 //
 #include "musictranslationrequest.h"
 //
@@ -171,16 +169,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeSimilarSongRequest(QOb
 
 MusicSongSuggestRequest *MusicDownLoadQueryFactory::makeSuggestRequest(QObject *parent)
 {
-    MusicSongSuggestRequest *request = nullptr;
-    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
-    {
-        case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYSongSuggestRequest(parent); break;
-        case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWSongSuggestRequest(parent); break;
-        case MusicAbstractQueryRequest::QueryServer::KG: request = new MusicKGSongSuggestRequest(parent); break;
-        default: request = new MusicWYSongSuggestRequest(parent);
-    }
-    return request;
+    return new MusicSongSuggestRequest(parent);
 }
 
 MusicCommentsRequest *MusicDownLoadQueryFactory::makeSongCommentRequest(QObject *parent)

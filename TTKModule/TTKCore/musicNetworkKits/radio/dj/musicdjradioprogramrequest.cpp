@@ -13,7 +13,7 @@ void MusicDJRadioProgramRequest::startRequest(TTK::Program type)
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = makeTokenRequest(&request, type == TTK::Program::Recommed ?
+    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request, type == TTK::Program::Recommed ?
                       TTK::Algorithm::mdII(DJ_RECOMMEND_URL, false):
                       TTK::Algorithm::mdII(DJ_HOT_URL, false),
                       TTK::Algorithm::mdII(DJ_HOT_DATA_URL, false));

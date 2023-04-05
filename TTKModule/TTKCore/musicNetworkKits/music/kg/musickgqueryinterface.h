@@ -50,8 +50,6 @@ const QString KG_COMMENT_PLAYLIST_URL   = "TEZ4NXdPYnM4MkNJSTZMNUVjU2h5cGFvY0FzW
 const QString KG_PLAYLIST_URL           = "VXJlbFlzWElZQ25iMzhicGJIVWJqRGpMdnJJU0tlZXdUTlVpWUJkN0xxR1Qya3dud3dLY2JSaWphWTF6QUw5RDJFK3hlZWhxdGhrRWFhQkpJUFhxOGUrY1J2d1NQVGZNM29pOXVXU3h0V1hrR0RIMnhHK2JYZz09";
 const QString KG_PLAYLIST_INFO_URL      = "UnFQY3RkQVYvN0lza0dkRXowbFo2QThBcldxM2FtL2p6WmR5b1FJbjJtS3pMeDYxQk1vc3kwYjhBV1owQ3R4K2pxY2dJNXM3cWswSU8rUDlQbjFQWC9ZcjhldGMwVEtPcTFnbnpvSTdaM0JQSHM1dHFyUDI2cDRPamhUZW00T0ZYaHpBUWc9PQ==";
 const QString KG_PLAYLIST_DETAIL_URL    = "cEt0bHpiRkFKMTFZbzUyQ1prK1RCMjBqWnRRMGRKY2FqYnVSRllPZHMwcmoyVkZ3WG8vTWhMVUR0ZTdIZUszYmdybXBUdEVxOHdiSEM3Nmw=";
-///suggest url
-const QString KG_SUGGEST_URL            = "UUFkNUtUeXBhZ2hxbG1nY0ZDRzBxTS9GNzdZMDdDbmpMUDVTaFJKeHMxSFBhdEw4dGZSRWVCL0tJY2NkMUdObjVyM0dObFdaaUtqbHZhcVpFWFJDTU5JREdnVmR1RFZ0";
 
 
 class QNetworkRequest;
@@ -67,32 +65,24 @@ namespace MusicKGInterface
      */
     void makeRequestRawHeader(QNetworkRequest *request);
 
-}
-
-/*! @brief The class of the kugou query interface.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicKGQueryInterface
-{
-public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &hash) const;
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &hash);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const;
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all);
 
     /*!
      * Read tags(lrc\smallpic) from query results.
      */
-    void parseFromSongLrcAndPicture(TTK::MusicSongInformation *info) const;
+    void parseFromSongLrcAndPicture(TTK::MusicSongInformation *info);
     /*!
      * Read tags(album info) from query results.
      */
-    void parseFromSongAlbumInfo(MusicResultDataItem *info, const QString &album) const;
+    void parseFromSongAlbumInfo(MusicResultDataItem *info, const QString &album);
 
-};
+}
 
 #endif // MUSICKGQUERYINTERFACE_H

@@ -7,8 +7,7 @@ void MusicKGInterface::makeRequestRawHeader(QNetworkRequest *request)
     TTK::setSslConfiguration(request);
 }
 
-
-void MusicKGQueryInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &hash) const
+void MusicKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &hash)
 {
     if(hash.isEmpty())
     {
@@ -51,7 +50,7 @@ void MusicKGQueryInterface::parseFromSongProperty(TTK::MusicSongInformation *inf
     }
 }
 
-void MusicKGQueryInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const
+void MusicKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all)
 {
     if(all)
     {
@@ -78,7 +77,7 @@ void MusicKGQueryInterface::parseFromSongProperty(TTK::MusicSongInformation *inf
     }
 }
 
-void MusicKGQueryInterface::parseFromSongLrcAndPicture(TTK::MusicSongInformation *info) const
+void MusicKGInterface::parseFromSongLrcAndPicture(TTK::MusicSongInformation *info)
 {
     if(info->m_songId.isEmpty())
     {
@@ -111,7 +110,7 @@ void MusicKGQueryInterface::parseFromSongLrcAndPicture(TTK::MusicSongInformation
     }
 }
 
-void MusicKGQueryInterface::parseFromSongAlbumInfo(MusicResultDataItem *info, const QString &album) const
+void MusicKGInterface::parseFromSongAlbumInfo(MusicResultDataItem *info, const QString &album)
 {
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_ALBUM_INFO_URL, false).arg(album));

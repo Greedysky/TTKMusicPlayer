@@ -80,8 +80,8 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_singerName = TTK::String::charactersReplaced(value["ARTIST"].toString());
-                    info.m_songName = TTK::String::charactersReplaced(value["SONGNAME"].toString());
+                    info.m_singerName = TTK::String::charactersReplace(value["ARTIST"].toString());
+                    info.m_songName = TTK::String::charactersReplace(value["SONGNAME"].toString());
                     info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * MT_S2MS);
 
                     info.m_songId = value["MUSICRID"].toString().remove("MUSIC_");
@@ -91,7 +91,12 @@ void MusicKWQueryMovieRequest::downLoadFinished()
 
                     if(info.m_songProps.isEmpty())
                     {
-                      continue;
+                        continue;
+                    }
+
+                    if(!findUrlFileSize(&info.m_songProps))
+                    {
+                        return;
                     }
 
                     MusicResultInfoItem item;
@@ -170,6 +175,11 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
     parseFromMovieProperty(&info, QString("MP4UL|MP4L|MP4HV|MP4"));
     TTK_NETWORK_QUERY_CHECK();
 
+    if(!findUrlFileSize(&info.m_songProps))
+    {
+        return;
+    }
+
     if(!info.m_songProps.isEmpty())
     {
         MusicResultInfoItem item;
@@ -223,7 +233,6 @@ void MusicKWQueryMovieRequest::parseFromMovieProperty(TTK::MusicSongInformation 
     QAlgorithm::Des des;
     const QByteArray &parameter = des.encrypt(TTK::Algorithm::mdII(KW_MOVIE_ATTR_URL, false).arg(info->m_songId, format).toUtf8(),
                                               TTK::Algorithm::mdII(_SIGN, ALG_SHR_KEY, false).toUtf8());
-
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter)));
     MusicKWInterface::makeRequestRawHeader(&request);
@@ -247,11 +256,6 @@ void MusicKWQueryMovieRequest::parseFromMovieProperty(TTK::MusicSongInformation 
             prop.m_format = "mp4";
 
             if(prop.m_url.isEmpty() || info->m_songProps.contains(prop))
-            {
-                return;
-            }
-
-            if(!findUrlFileSize(&prop))
             {
                 return;
             }

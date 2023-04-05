@@ -80,25 +80,25 @@ void MusicKGQueryRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_singerName = TTK::String::charactersReplaced(value["singername"].toString());
-                    info.m_songName = TTK::String::charactersReplaced(value["songname"].toString());
+                    info.m_singerName = TTK::String::charactersReplace(value["singername"].toString());
+                    info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
 
                     info.m_songId = value["hash"].toString();
                     info.m_albumId = value["album_id"].toString();
-                    info.m_albumName = TTK::String::charactersReplaced(value["album_name"].toString());
+                    info.m_albumName = TTK::String::charactersReplace(value["album_name"].toString());
 
                     info.m_year = QString();
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    parseFromSongLrcAndPicture(&info);
+                    MusicKGInterface::parseFromSongLrcAndPicture(&info);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!m_queryLite)
                     {
                         TTK_NETWORK_QUERY_CHECK();
-                        parseFromSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
+                        MusicKGInterface::parseFromSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
                         TTK_NETWORK_QUERY_CHECK();
 
                         if(info.m_songProps.isEmpty())
@@ -143,8 +143,8 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                 value = value["data"].toMap();
                 TTK::MusicSongInformation info;
                 info.m_songId = value["hash"].toString();
-                info.m_singerName = TTK::String::charactersReplaced(value["singername"].toString());
-                info.m_songName = TTK::String::charactersReplaced(value["songname"].toString());
+                info.m_singerName = TTK::String::charactersReplace(value["singername"].toString());
+                info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
                 info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
                 info.m_artistId = value["singerid"].toString();
                 info.m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
@@ -160,14 +160,14 @@ void MusicKGQueryRequest::downLoadSingleFinished()
 
                     const QVariantMap &albumObject = var.toMap();
                     info.m_albumId = albumObject["album_audio_id"].toString();
-                    info.m_albumName = TTK::String::charactersReplaced(albumObject["album_name"].toString());
+                    info.m_albumName = TTK::String::charactersReplace(albumObject["album_name"].toString());
                 }
 
                 info.m_year = QString();
                 info.m_trackNumber = "0";
 
                 TTK_NETWORK_QUERY_CHECK();
-                parseFromSongProperty(&info, value["extra"].toMap(), m_queryQuality, true);
+                MusicKGInterface::parseFromSongProperty(&info, value["extra"].toMap(), m_queryQuality, true);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(!info.m_songProps.isEmpty())

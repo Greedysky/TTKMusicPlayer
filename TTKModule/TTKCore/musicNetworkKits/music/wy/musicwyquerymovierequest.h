@@ -25,7 +25,7 @@
 /*! @brief The class of the wangyi mv query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWYQueryMovieRequest : public MusicQueryMovieRequest, private MusicWYQueryInterface
+class TTK_MODULE_EXPORT MusicWYQueryMovieRequest : public MusicQueryMovieRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYQueryMovieRequest)

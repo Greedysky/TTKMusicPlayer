@@ -40,36 +40,36 @@ namespace TTK
         /*!
          * Get string prefix path.
          */
-        TTK_MODULE_EXPORT QString stringPrefix(const QString &name);
+        TTK_MODULE_EXPORT QString pefix(const QString &name);
         /*!
          * Get string prefix path.
          */
-        TTK_MODULE_EXPORT QString stringPrefix(const QString &name, const QString &prefix);
+        TTK_MODULE_EXPORT QString pefix(const QString &name, const QString &prefix);
         /*!
          * Get string suffix path.
          */
-        TTK_MODULE_EXPORT QString stringSuffix(const QString &name);
+        TTK_MODULE_EXPORT QString suffix(const QString &name);
         /*!
          * Get string suffix path.
          */
-        TTK_MODULE_EXPORT QString stringSuffix(const QString &name, const QString &suffix);
+        TTK_MODULE_EXPORT QString suffix(const QString &name, const QString &suffix);
 
         /*!
          * Get string splite path.
          */
-        TTK_MODULE_EXPORT QString stringSplitToken(const QString &name);
+        TTK_MODULE_EXPORT QString slitToken(const QString &name);
         /*!
          * Get string splite path.
          */
-        TTK_MODULE_EXPORT QString stringSplitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert = true);
+        TTK_MODULE_EXPORT QString slitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert = true);
         /*!
          * Get split string value.
          */
-        TTK_MODULE_EXPORT QStringList stringSplit(const QString &value, const QString &key = TTK_DEFAULT_STR);
+        TTK_MODULE_EXPORT QStringList split(const QString &value, const QString &key = TTK_DEFAULT_STR);
         /*!
          * Remove given key in string, default is space.
          */
-        TTK_MODULE_EXPORT QString removeStringToken(const QString &value, const QString &key = " ");
+        TTK_MODULE_EXPORT QString removeToken(const QString &value, const QString &key = " ");
 
         /*!
          * Check the given char is or not chinese character.
@@ -104,7 +104,7 @@ namespace TTK
         /*!
          * Illegal characters replaced.
          */
-        TTK_MODULE_EXPORT QString charactersReplaced(const QString &value);
+        TTK_MODULE_EXPORT QString charactersReplace(const QString &value);
 
     }
 }

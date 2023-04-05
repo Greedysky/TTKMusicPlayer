@@ -65,14 +65,14 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_songName = TTK::String::charactersReplaced(value["filename"].toString());
+                    info.m_songName = TTK::String::charactersReplace(value["filename"].toString());
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
 
                     if(info.m_songName.contains(TTK_DEFAULT_STR))
                     {
                         const QStringList &ll = info.m_songName.split(TTK_DEFAULT_STR);
-                        info.m_singerName = TTK::String::charactersReplaced(ll.front().trimmed());
-                        info.m_songName = TTK::String::charactersReplaced(ll.back().trimmed());
+                        info.m_singerName = TTK::String::charactersReplace(ll.front().trimmed());
+                        info.m_songName = TTK::String::charactersReplace(ll.back().trimmed());
                     }
 
                     info.m_songId = value["hash"].toString();
@@ -83,12 +83,12 @@ void MusicKGQueryToplistRequest::downLoadFinished()
 
                     MusicResultDataItem albumInfo;
                     TTK_NETWORK_QUERY_CHECK();
-                    parseFromSongAlbumInfo(&albumInfo, info.m_albumId);
-                    info.m_albumName = albumInfo.m_nickName;
+                    MusicKGInterface::parseFromSongAlbumInfo(&albumInfo, info.m_albumId);
+                    info.m_albumName = albumInfo.m_nickName;      
                     TTK_NETWORK_QUERY_CHECK();
-                    parseFromSongLrcAndPicture(&info);
+                    MusicKGInterface::parseFromSongLrcAndPicture(&info);
                     TTK_NETWORK_QUERY_CHECK();
-                    parseFromSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
+                    MusicKGInterface::parseFromSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(info.m_songProps.isEmpty())
