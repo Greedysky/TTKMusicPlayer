@@ -1,5 +1,7 @@
 #include "musicsongsuggestrequest.h"
-#include "musicwyqueryinterface.h"
+#include "musickgqueryinterface.h"
+
+const QString QUERY_URL = "Y1U5RUVkYWE4R205VEFEQ3pXZlNGQWNEcFlobFBMNVhMUXRxejhkbHZnaFhVbkNNdFE3T1BzdWRQTG11c3FsT2JPYi84ODFYcG9yd1phMFExQi9qVElDZmhPNlFUZDN5";
 
 MusicSongSuggestRequest::MusicSongSuggestRequest(QObject *parent)
     : MusicPageQueryRequest(parent)
@@ -14,64 +16,66 @@ void MusicSongSuggestRequest::startToSearch(const QString &value)
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_SUGGEST_URL, false),
-                      TTK::Algorithm::mdII(WY_SUGGEST_DATA_URL, false).arg(value));
+    request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false).arg(value));
+    MusicKGInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager.post(request, parameter);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
 void MusicSongSuggestRequest::downLoadFinished()
+{
+    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
+
+    m_items.clear();
+    MusicPageQueryRequest::downLoadFinished();
+
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
-
-        m_items.clear();
-        MusicSongSuggestRequest::downLoadFinished();
-
-        if(m_reply && m_reply->error() == QNetworkReply::NoError)
+        QJson::Parser json;
+        bool ok = false;
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
+        if(ok)
         {
-            QJson::Parser json;
-            bool ok = false;
-            const QVariant &data = json.parse(m_reply->readAll(), &ok);
-            if(ok)
+            QVariantMap value = data.toMap();
+
+            if(value["error_code"].toInt() == 0 && value.contains("data"))
             {
-                QVariantMap value = data.toMap();
-                if(value["code"].toInt() == 200 && value.contains("result"))
+                const QVariantList &datas = value["data"].toList();
+                for(const QVariant &var : qAsConst(datas))
                 {
-                    value = value["result"].toMap();
-
-                    const QVariantList &datas = value["songs"].toList();
-                    for(const QVariant &var : qAsConst(datas))
+                    if(var.isNull())
                     {
-                        if(var.isNull())
-                        {
-                            continue;
-                        }
+                        continue;
+                    }
 
-                        value = var.toMap();
-                        TTK_NETWORK_QUERY_CHECK();
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
 
-                        MusicResultDataItem result;
-                        result.m_name = TTK::String::charactersReplace(value["name"].toString());
-                        const QVariantList &artistsArray = value["artists"].toList();
-                        for(const QVariant &artistValue : qAsConst(artistsArray))
+                    if(value["LableName"].toString().isEmpty())
+                    {
+                        for(const QVariant &var : value["RecordDatas"].toList())
                         {
-                            if(artistValue.isNull())
+                            if(var.isNull())
                             {
                                 continue;
                             }
 
-                            const QVariantMap &artistObject = artistValue.toMap();
-                            result.m_nickName = TTK::String::charactersReplace(artistObject["name"].toString());
+                            value = var.toMap();
+                            TTK_NETWORK_QUERY_CHECK();
+
+                            MusicResultDataItem result;
+                            result.m_name = TTK::String::charactersReplace(value["HintInfo"].toString());
+                            m_items << result;
                         }
-                        m_items << result;
                     }
+                    break;
                 }
             }
         }
-
-        Q_EMIT downLoadDataChanged(QString());
-        deleteAll();
     }
+
+    Q_EMIT downLoadDataChanged(QString());
+    deleteAll();
+}

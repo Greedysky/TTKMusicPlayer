@@ -55,12 +55,7 @@ void MusicSongSearchInteriorEdit::suggestDataChanged()
     QStringList names;
     for(const MusicResultDataItem &item : m_suggestRequest->searchedItems())
     {
-        QString value = item.m_name;
-        if(!item.m_nickName.isEmpty() && item.m_nickName != TTK_DEFAULT_STR)
-        {
-            value = QString("%1 - %2").arg(item.m_nickName).arg(value);
-        }
-        names << value;
+        names << item.m_name;
     }
 
     if(m_popWidget && !text().trimmed().isEmpty())

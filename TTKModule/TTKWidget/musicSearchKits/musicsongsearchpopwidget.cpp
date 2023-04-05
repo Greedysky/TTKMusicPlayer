@@ -2,6 +2,8 @@
 #include "musicsongsearchrecordconfigmanager.h"
 #include "musicwidgetheaders.h"
 
+#define MAX_ITEM_COUNT  7
+
 MusicSongSearchPopTableWidget::MusicSongSearchPopTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
@@ -108,7 +110,7 @@ void MusicSongSearchPopWidget::initialize()
     search.readBuffer(records);
 
     const int count = records.count();
-    resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < 6 ? count * TTK_ITEM_SIZE_M + 45 : 7 * TTK_ITEM_SIZE_M + 8));
+    resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < MAX_ITEM_COUNT ? count * TTK_ITEM_SIZE_M + 45 : (MAX_ITEM_COUNT + 1) * TTK_ITEM_SIZE_M + 8));
 
     m_popTableWidget->setRowCount(count);
     for(int i = 0; i < count; ++i)
@@ -123,7 +125,7 @@ void MusicSongSearchPopWidget::createSuggestItems(const QStringList &names)
     m_popTableWidget->removeItems();
 
     const int count = names.count();
-    resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < 6 ? count * TTK_ITEM_SIZE_M + 8 : 6 * TTK_ITEM_SIZE_M + 8));
+    resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count * TTK_ITEM_SIZE_M + 8));
 
     m_popTableWidget->setRowCount(count);
     for(int i = 0; i < count; ++i)

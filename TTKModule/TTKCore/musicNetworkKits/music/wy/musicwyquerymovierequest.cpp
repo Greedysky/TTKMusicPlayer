@@ -92,14 +92,14 @@ void MusicWYQueryMovieRequest::downLoadFinished()
                         }
 
                         TTK_NETWORK_QUERY_CHECK();
-                        queryMovieList(mvid);
+                        parseFromMovieList(mvid);
                         TTK_NETWORK_QUERY_CHECK();
                     }
                     else if(type == 1)
                     {
                         const QString &vid = value["vid"].toString();
                         TTK_NETWORK_QUERY_CHECK();
-                        queryVideoList(vid);
+                        parseFromVideoList(vid);
                         TTK_NETWORK_QUERY_CHECK();
                     }
                 }
@@ -127,7 +127,7 @@ void MusicWYQueryMovieRequest::downLoadPageFinished()
             if(value["code"].toInt() == 200 && value.contains("mvs"))
             {
                 TTK_NETWORK_QUERY_CHECK();
-                queryArtistMoviesCount(m_queryValue.toLongLong());
+                parseFromArtistMoviesCount(m_queryValue.toLongLong());
                 TTK_NETWORK_QUERY_CHECK();
 
                 const QVariantList &datas = value["mvs"].toList();
@@ -166,7 +166,7 @@ void MusicWYQueryMovieRequest::downLoadSingleFinished()
     if(mvid != 0)
     {
         TTK_NETWORK_QUERY_CHECK();
-        queryMovieList(mvid);
+        parseFromMovieList(mvid);
         TTK_NETWORK_QUERY_CHECK();
     }
 
@@ -174,7 +174,7 @@ void MusicWYQueryMovieRequest::downLoadSingleFinished()
     deleteAll();
 }
 
-void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
+void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
 {
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
@@ -251,7 +251,7 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
     }
 }
 
-void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
+void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
 {
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
@@ -294,7 +294,7 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
 
                 const int bitrate = value["resolution"].toInt();
                 TTK::MusicSongProperty prop;
-                queryVideoUrlPath(prop.m_url, id, bitrate);
+                parseFromVideoUrlPath(prop.m_url, id, bitrate);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(prop.m_url.isEmpty())
@@ -340,7 +340,7 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
     }
 }
 
-void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id, int bitrate) const
+void MusicWYQueryMovieRequest::parseFromVideoUrlPath(QString &url, const QString &id, int bitrate) const
 {
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
@@ -382,7 +382,7 @@ void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id
     }
 }
 
-void MusicWYQueryMovieRequest::queryArtistMoviesCount(qint64 id)
+void MusicWYQueryMovieRequest::parseFromArtistMoviesCount(qint64 id)
 {
     m_totalSize = TTK_HIGH_LEVEL;
 

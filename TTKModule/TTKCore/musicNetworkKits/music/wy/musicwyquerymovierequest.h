@@ -66,19 +66,19 @@ private:
     /*!
      * Start to search mv list by id.
      */
-    void queryMovieList(qint64 id);
+    void parseFromMovieList(qint64 id);
     /*!
      * Start to search video list by id.
      */
-    void queryVideoList(const QString &id);
+    void parseFromVideoList(const QString &id);
     /*!
      * Start to get video url path.
      */
-    void queryVideoUrlPath(QString &url, const QString &id, int bitrate) const;
+    void parseFromVideoUrlPath(QString &url, const QString &id, int bitrate) const;
     /*!
      * Get artist mv count.
      */
-    void queryArtistMoviesCount(qint64 id);
+    void parseFromArtistMoviesCount(qint64 id);
 
 };
 
