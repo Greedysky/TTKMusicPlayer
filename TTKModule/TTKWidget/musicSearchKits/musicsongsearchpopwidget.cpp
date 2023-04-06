@@ -42,11 +42,8 @@ void MusicSongSearchPopTableWidget::itemCellClicked(int row, int column)
 {
     MusicAbstractTableWidget::itemCellClicked(row, column);
 
+    clearSelection();
     Q_EMIT setText(item(row, 0)->toolTip().trimmed());
-
-    QWidget *widget = TTKObjectCast(QWidget*, parent());
-    widget->lower();
-    widget->hide();
 }
 
 void MusicSongSearchPopTableWidget::removeItems()
@@ -86,7 +83,6 @@ MusicSongSearchPopWidget::MusicSongSearchPopWidget(QWidget *parent)
     setLayout(layout);
 
     connect(m_clearButton, SIGNAL(clicked()), SLOT(clearButtonClicked()));
-    connect(m_popTableWidget, SIGNAL(setText(QString)), SIGNAL(setText(QString)));
 }
 
 MusicSongSearchPopWidget::~MusicSongSearchPopWidget()
@@ -95,8 +91,13 @@ MusicSongSearchPopWidget::~MusicSongSearchPopWidget()
     delete m_clearButton;
 }
 
-void MusicSongSearchPopWidget::initialize()
+void MusicSongSearchPopWidget::initialize(QWidget *parent)
 {
+    if(parent)
+    {
+        connect(m_popTableWidget, SIGNAL(setText(QString)), parent, SLOT(selectedTextChanged(QString)), Qt::UniqueConnection);
+    }
+
     setControlEnabled(true);
     m_popTableWidget->removeItems();
 

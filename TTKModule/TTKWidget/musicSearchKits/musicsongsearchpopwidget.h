@@ -78,7 +78,7 @@ public:
     /*!
      * Create popup search history table items.
      */
-    void initialize();
+    void initialize(QWidget *parent);
     /*!
      * set control module enabled.
      */

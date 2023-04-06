@@ -28,8 +28,7 @@ void MusicSongSearchInteriorEdit::initialize(QWidget *parent)
     setFocusPolicy(Qt::ClickFocus);
 
     m_popWidget = new MusicSongSearchPopWidget(parent);
-    connect(m_popWidget, SIGNAL(setText(QString)), SLOT(setText(QString)));
-    m_popWidget->hide();
+    setPopWidgetVisible(false);
 }
 
 void MusicSongSearchInteriorEdit::closePopWidget()
@@ -50,6 +49,15 @@ void MusicSongSearchInteriorEdit::textChanged(const QString &text)
     popWidgetChanged(text);
 }
 
+void MusicSongSearchInteriorEdit::selectedTextChanged(const QString &text)
+{
+    blockSignals(true);
+    setText(text);
+    blockSignals(false);
+
+    setPopWidgetVisible(false);
+}
+
 void MusicSongSearchInteriorEdit::suggestDataChanged()
 {
     QStringList names;
@@ -62,8 +70,11 @@ void MusicSongSearchInteriorEdit::suggestDataChanged()
     {
         if(names.isEmpty())
         {
-            m_popWidget->lower();
-            m_popWidget->hide();
+            setPopWidgetVisible(false);
+        }
+        else if(!m_popWidget->isVisible())
+        {
+            setPopWidgetVisible(true);
         }
         m_popWidget->createSuggestItems(names);
     }
@@ -72,20 +83,6 @@ void MusicSongSearchInteriorEdit::suggestDataChanged()
 void MusicSongSearchInteriorEdit::searchToplistInfoFinished(const QString &bytes)
 {
     setPlaceholderText(bytes);
-}
-
-void MusicSongSearchInteriorEdit::popWidgetChanged(const QString &text)
-{
-    if(text.trimmed().isEmpty())
-    {
-        m_popWidget->initialize();
-    }
-
-    if(m_popWidget->height() != 0)
-    {
-        m_popWidget->raise();
-        m_popWidget->show();
-    }
 }
 
 void MusicSongSearchInteriorEdit::focusInEvent(QFocusEvent *event)
@@ -101,4 +98,31 @@ void MusicSongSearchInteriorEdit::leaveEvent(QEvent *event)
 {
     MusicSearchEdit::leaveEvent(event);
     clearFocus();
+}
+
+void MusicSongSearchInteriorEdit::popWidgetChanged(const QString &text)
+{
+    if(text.trimmed().isEmpty())
+    {
+        m_popWidget->initialize(this);
+    }
+
+    if(m_popWidget->height() != 0)
+    {
+        setPopWidgetVisible(true);
+    }
+}
+
+void MusicSongSearchInteriorEdit::setPopWidgetVisible(bool show)
+{
+    if(show)
+    {
+        m_popWidget->raise();
+        m_popWidget->show();
+    }
+    else
+    {
+        m_popWidget->lower();
+        m_popWidget->hide();
+    }
 }

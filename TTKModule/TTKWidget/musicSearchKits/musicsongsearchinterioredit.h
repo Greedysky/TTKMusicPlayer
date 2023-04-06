@@ -55,6 +55,10 @@ public Q_SLOTS:
      */
     void textChanged(const QString &text);
     /*!
+     * Selected text changed.
+     */
+    void selectedTextChanged(const QString &text);
+    /*!
      * Suggest data changed.
      */
     void suggestDataChanged();
@@ -65,14 +69,18 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Pop widget changed.
-     */
-    void popWidgetChanged(const QString &text);
-    /*!
      * Override the widget event.
      */
     virtual void focusInEvent(QFocusEvent *event) override final;
     virtual void leaveEvent(QEvent *event) override final;
+    /*!
+     * Pop widget changed.
+     */
+    void popWidgetChanged(const QString &text);
+    /*!
+     * Set pop widget visible.
+     */
+    void setPopWidgetVisible(bool show);
 
     MusicSongSearchPopWidget *m_popWidget;
     MusicDiscoverListRequest *m_discoverRequest;
