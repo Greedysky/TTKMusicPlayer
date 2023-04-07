@@ -1,5 +1,5 @@
 #include "musicdownloadbirdskinrequest.h"
-#include "musicdownloadsourcerequest.h"
+#include "musicdatasourcerequest.h"
 
 #define MAIN_URL    "Q1VDQlUvWGpxVXBjclBxZHR2MUpGaWZoeUJpUlZYRDBsYkwyV3VyRzNIY1hpWnQweTFLNWNpaCtoenp5SkR6Sg=="
 #define QUERY_URL   "MlVINmI0aGlvRXpvQVcwSklUUDRyVFVFdUExT0Rib3VuZlQ5QThRWTNyQUl4RkdlYmJLTmdrb2hVN21JZ2RZRHNYV1d3b09pcWRMcmM3d09SWWdIUlVwQ2NjSHhiSVg5V2R5ZmgyaEMyMVk9"
@@ -12,14 +12,14 @@ MusicDownloadBirdSkinRequest::MusicDownloadBirdSkinRequest(QObject *parent)
 
 void MusicDownloadBirdSkinRequest::startRequest()
 {
-    MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+    MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     d->startRequest(TTK::Algorithm::mdII(MAIN_URL, false));
 }
 
 void MusicDownloadBirdSkinRequest::startRequest(const QString &id)
 {
-    MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+    MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadItemsFinished(QByteArray)));
     d->startRequest(TTK::Algorithm::mdII(QUERY_URL, false).arg(id));
 }

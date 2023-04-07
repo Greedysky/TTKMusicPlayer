@@ -15,8 +15,8 @@
 #include "musicimageutils.h"
 #include "musicgiflabelwidget.h"
 #include "musicfileutils.h"
+#include "musiccounterpvrequest.h"
 #include "musicsourceupdaterequest.h"
-#include "musicdownloadcounterpvrequest.h"
 #include "musicscreensaverwidget.h"
 #include "musicplatformmanager.h"
 #include "ttkdesktopwrapper.h"
@@ -55,8 +55,8 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_deviceWatcher->appendEventReceiver(this);
     m_deviceWatcher->start();
 
+    m_counterPVThread = new MusicCounterPVRequest(this);
     m_sourceUpdatehread = new MusicSourceUpdateRequest(this);
-    m_counterPVThread = new MusicDownloadCounterPVRequest(this);
 
     musicToolSetsParameter();
 }
@@ -72,8 +72,8 @@ MusicApplicationModule::~MusicApplicationModule()
     delete m_deviceWatcher;
     delete m_mobileDeviceWidget;
     delete m_quitContainer;
-    delete m_sourceUpdatehread;
     delete m_counterPVThread;
+    delete m_sourceUpdatehread;
 }
 
 MusicApplicationModule *MusicApplicationModule::instance()

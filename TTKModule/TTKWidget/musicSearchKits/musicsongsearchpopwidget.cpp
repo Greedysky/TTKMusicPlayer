@@ -41,8 +41,6 @@ void MusicSongSearchPopTableWidget::addCellItem(int index, const QString &name, 
 void MusicSongSearchPopTableWidget::itemCellClicked(int row, int column)
 {
     MusicAbstractTableWidget::itemCellClicked(row, column);
-
-    clearSelection();
     Q_EMIT setText(item(row, 0)->toolTip().trimmed());
 }
 

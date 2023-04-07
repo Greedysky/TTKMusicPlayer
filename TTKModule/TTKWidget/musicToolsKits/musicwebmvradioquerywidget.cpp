@@ -2,7 +2,7 @@
 #include "musicwebmvradioquerycategorypopwidget.h"
 #include "musicwebmvradioinfowidget.h"
 #include "musicmvradiocategoryrequest.h"
-#include "musicdownloadcoverrequest.h"
+#include "musiccoversourcerequest.h"
 #include "musictinyuiobject.h"
 
 #define WIDTH_LABEL_SIZE   150
@@ -49,7 +49,7 @@ void MusicWebMVRadioQueryItemWidget::setResultDataItem(const MusicResultDataItem
 
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
-        MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
+        MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         d->startRequest(item.m_coverUrl);
     }

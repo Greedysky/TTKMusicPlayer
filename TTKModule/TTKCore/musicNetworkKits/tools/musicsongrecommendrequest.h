@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADSOURCEREQUEST_H
-#define MUSICDOWNLOADSOURCEREQUEST_H
+#ifndef MUSICSONGRECOMMENDREQUEST_H
+#define MUSICSONGRECOMMENDREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,30 +19,29 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractnetwork.h"
+#include "musicabstractqueryrequest.h"
 
-/*! @brief The class of the source data download request.
+/*! @brief The class of the song recommend data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadSourceRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicSongRecommendRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadSourceRequest)
+    TTK_DECLARE_MODULE(MusicSongRecommendRequest)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadSourceRequest(QObject *parent = nullptr);
+    explicit MusicSongRecommendRequest(QObject *parent = nullptr);
 
     /*!
-     * Release the network object.
+     * Start to search data by type and input data.
      */
-    virtual void deleteAll() override final;
-
+    virtual void startToSearch(QueryType type, const QString &value) override final;
     /*!
-     * Start to download data.
+     * Start to search data.
      */
-    void startRequest(const QString &url);
+    void startToSearch();
 
 public Q_SLOTS:
     /*!
@@ -50,6 +49,16 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override final;
 
+private:
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &key, int length, int bitrate) const;
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const;
+
 };
 
-#endif // MUSICDOWNLOADSOURCEREQUEST_H
+#endif // MUSICSONGRECOMMENDREQUEST_H

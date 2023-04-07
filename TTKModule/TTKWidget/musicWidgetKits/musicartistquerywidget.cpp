@@ -1,6 +1,6 @@
 #include "musicartistquerywidget.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicdownloadcoverrequest.h"
+#include "musiccoversourcerequest.h"
 #include "musicquerymovierequest.h"
 #include "musicrightareawidget.h"
 #include "musicpagequerywidget.h"
@@ -58,7 +58,7 @@ void MusicArtistAlbumsItemWidget::setResultDataItem(const MusicResultDataItem &i
 
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
-        MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
+        MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         d->startRequest(item.m_coverUrl);
     }
@@ -407,7 +407,7 @@ void MusicArtistQueryWidget::createArtistItem(const MusicResultDataItem &item)
     {
         if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
         {
-            MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
+            MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
             connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
             d->startRequest(item.m_coverUrl);
         }

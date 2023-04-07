@@ -1,5 +1,5 @@
-#ifndef MUSICMESSAGEABOUTDIALOG_H
-#define MUSICMESSAGEABOUTDIALOG_H
+#ifndef MUSICCOVERSOURCEREQUEST_H
+#define MUSICCOVERSOURCEREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,37 +19,11 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractmovedialog.h"
+#include "musicdatasourcerequest.h"
 
-class MusicCounterPVRequest;
-
-namespace Ui {
-    class MusicMessageAboutDialog;
-}
-/*! @brief The class of the about application info dialog.
+/*! @brief The class of the cover source data download request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicMessageAboutDialog : public MusicAbstractMoveDialog
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicMessageAboutDialog)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicMessageAboutDialog(QWidget *parent = nullptr);
-    ~MusicMessageAboutDialog();
+using MusicCoverSourceRequest = MusicDataSourceRequest;
 
-public Q_SLOTS:
-    /*!
-     * Get counter pv finished.
-     */
-    void musicGetCounterFinished(const QString &bytes);
-
-private:
-    Ui::MusicMessageAboutDialog *m_ui;
-    MusicCounterPVRequest *m_downloadRequest;
-
-};
-
-#endif // MUSICMESSAGEABOUTDIALOG_H
+#endif // MUSICCOVERSOURCEREQUEST_H

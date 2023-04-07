@@ -1,5 +1,5 @@
 #include "musicdownloadbingskinrequest.h"
-#include "musicdownloadsourcerequest.h"
+#include "musicdatasourcerequest.h"
 
 #define PREFIX_URL  "UEQvb1lxVXFnV0dqRmxzNkY0alFJUHZUSUhyZUVNY0Y2OGZ1L255cS9CMklCakk4Q1dNQkF3PT0="
 #define QUERY_URL   "bkRaMGo0WEhveVlwbEV6a0FDbEsrNmNGVHVrZTh1VmFDZTBmdElkZ0ZCYXk2dDJMaXF3MUlrV2JndmlpUWVudkF5UVVaMklvSXQydGI3cFhaTFRtaUV2VUZBcz0="
@@ -12,7 +12,7 @@ MusicDownloadBingSkinRequest::MusicDownloadBingSkinRequest(QObject *parent)
 
 void MusicDownloadBingSkinRequest::startRequest()
 {
-    MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+    MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     d->startRequest(TTK::Algorithm::mdII(QUERY_URL, false));
 }

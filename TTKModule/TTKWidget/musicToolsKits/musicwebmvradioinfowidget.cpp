@@ -1,6 +1,6 @@
 #include "musicwebmvradioinfowidget.h"
 #include "musicmvradioprogramrequest.h"
-#include "musicdownloadcoverrequest.h"
+#include "musiccoversourcerequest.h"
 #include "musicdownloadwidget.h"
 #include "musicrightareawidget.h"
 
@@ -164,7 +164,7 @@ void MusicWebMVRadioInfoWidget::createMVRadioProgramItem(const MusicResultDataIt
     {
         if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
         {
-            MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
+            MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
             connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
             d->startRequest(item.m_coverUrl);
         }

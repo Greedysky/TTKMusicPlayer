@@ -1,5 +1,5 @@
 #include "musiccommentswidget.h"
-#include "musicdownloadcoverrequest.h"
+#include "musiccoversourcerequest.h"
 #include "musicemojilabelwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicinteriorlrcuiobject.h"
@@ -130,7 +130,7 @@ void MusicCommentsItem::addCellItem(const MusicResultDataItem &comments)
     m_starLabel->setText(QString("(%1)").arg(comments.m_playCount));
     m_userCommit->setText(comments.m_description);
 
-    MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
+    MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     d->startRequest(comments.m_coverUrl);
 }

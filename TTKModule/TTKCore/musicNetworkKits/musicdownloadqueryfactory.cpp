@@ -28,7 +28,7 @@
 #include "musickgqueryplaylistrequest.h"
 #include "musickwqueryplaylistrequest.h"
 //
-#include "musicqueryrecommendrequest.h"
+#include "musicsongrecommendrequest.h"
 //
 #include "musicwycommentsrequest.h"
 #include "musickgcommentsrequest.h"
@@ -159,7 +159,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makePlaylistRequest(QObjec
 
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeRecommendRequest(QObject *parent)
 {
-    return (new MusicQueryRecommendRequest(parent));
+    return (new MusicSongRecommendRequest(parent));
 }
 
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeSimilarSongRequest(QObject *parent)
@@ -169,7 +169,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeSimilarSongRequest(QOb
 
 MusicSongSuggestRequest *MusicDownLoadQueryFactory::makeSuggestRequest(QObject *parent)
 {
-    return new MusicSongSuggestRequest(parent);
+    return (new MusicSongSuggestRequest(parent));
 }
 
 MusicCommentsRequest *MusicDownLoadQueryFactory::makeSongCommentRequest(QObject *parent)

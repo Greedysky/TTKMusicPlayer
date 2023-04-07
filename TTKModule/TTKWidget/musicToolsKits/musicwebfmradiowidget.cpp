@@ -1,7 +1,7 @@
 #include "musicwebfmradiowidget.h"
 #include "musicfmradiochannelrequest.h"
 #include "musicwebfmradioplaywidget.h"
-#include "musicdownloadcoverrequest.h"
+#include "musiccoversourcerequest.h"
 #include "musicwidgetheaders.h"
 #include "musicitemdelegate.h"
 #include "musicimageutils.h"
@@ -123,7 +123,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
 
         if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != TTK_NULL_STR)
         {
-            MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
+            MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
             connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
             d->setHeader("id", index);
             d->startRequest(channel.m_coverUrl);
@@ -139,7 +139,7 @@ void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &bytes)
         return;
     }
 
-    MusicDownloadCoverRequest *d(TTKObjectCast(MusicDownloadCoverRequest*, sender()));
+    MusicCoverSourceRequest *d(TTKObjectCast(MusicCoverSourceRequest*, sender()));
     if(!d)
     {
         return;

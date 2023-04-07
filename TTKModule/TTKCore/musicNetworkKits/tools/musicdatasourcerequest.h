@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADCOUNTERPVREQUEST_H
-#define MUSICDOWNLOADCOUNTERPVREQUEST_H
+#ifndef MUSICDATASOURCEREQUEST_H
+#define MUSICDATASOURCEREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -21,23 +21,28 @@
 
 #include "musicabstractnetwork.h"
 
-/*! @brief The class of the counter pv of player.
+/*! @brief The class of the data source download request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadCounterPVRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicDataSourceRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadCounterPVRequest)
+    TTK_DECLARE_MODULE(MusicDataSourceRequest)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadCounterPVRequest(QObject *parent = nullptr);
+    explicit MusicDataSourceRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download data from net.
+     * Release the network object.
      */
-    void startRequest();
+    virtual void deleteAll() override final;
+
+    /*!
+     * Start to download data.
+     */
+    void startRequest(const QString &url);
 
 public Q_SLOTS:
     /*!
@@ -47,4 +52,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICDOWNLOADCOUNTERPVREQUEST_H
+#endif // MUSICDATASOURCEREQUEST_H

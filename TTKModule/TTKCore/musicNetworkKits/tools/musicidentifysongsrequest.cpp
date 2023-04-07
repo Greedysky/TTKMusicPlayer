@@ -1,5 +1,5 @@
 #include "musicidentifysongsrequest.h"
-#include "musicdownloadsourcerequest.h"
+#include "musicdatasourcerequest.h"
 
 #include "qsync/qsyncutils.h"
 
@@ -19,7 +19,7 @@ bool MusicIdentifySongsRequest::queryIdentifyKey()
     TTKSemaphoreLoop loop;
     connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
-    MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+    MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     d->startRequest(QSyncUtils::makeDataBucketUrl() + OS_ACRUA_URL);
     loop.exec();

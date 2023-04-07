@@ -1,22 +1,22 @@
-#include "musicqueryrecommendrequest.h"
+#include "musicsongrecommendrequest.h"
 
 #define LQ_BASE_URL         "VzJWczlXM2hMeCtTZzhLRFJvZWxUUTVmZUVBLzlMWmo="
 #define LQ_RECOMMEND_URL    "NDhiOGZ6dUJWNTBvN3R5OHNOQmkyQVVwOXdWbDNBOG14MmVXWVJxWlVXRkxuNUxxdzdYTEpUYVZRNVE9"
 
-MusicQueryRecommendRequest::MusicQueryRecommendRequest(QObject *parent)
+MusicSongRecommendRequest::MusicSongRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
 
 }
 
-void MusicQueryRecommendRequest::startToSearch(QueryType type, const QString &value)
+void MusicSongRecommendRequest::startToSearch(QueryType type, const QString &value)
 {
     Q_UNUSED(type);
     Q_UNUSED(value);
     startToSearch();
 }
 
-void MusicQueryRecommendRequest::startToSearch()
+void MusicSongRecommendRequest::startToSearch()
 {
     TTK_INFO_STREAM(QString("%1 startToSearch").arg(className()));
 
@@ -30,7 +30,7 @@ void MusicQueryRecommendRequest::startToSearch()
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
-void MusicQueryRecommendRequest::downLoadFinished()
+void MusicSongRecommendRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
 
@@ -104,7 +104,7 @@ void MusicQueryRecommendRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicQueryRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &key, int length, int bitrate) const
+void MusicSongRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &key, int length, int bitrate) const
 {
     if(key.isEmpty())
     {
@@ -127,7 +127,7 @@ void MusicQueryRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation
     info->m_songProps.append(prop);
 }
 
-void MusicQueryRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const
+void MusicSongRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const
 {
     info->m_lrcUrl = TTK::Algorithm::mdII(LQ_BASE_URL, false) + key["lrcUrl"].toString();
     info->m_coverUrl = key["picUrl"].toString();

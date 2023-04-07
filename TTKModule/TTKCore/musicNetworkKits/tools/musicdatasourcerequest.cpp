@@ -1,18 +1,18 @@
-#include "musicdownloadsourcerequest.h"
+#include "musicdatasourcerequest.h"
 
-MusicDownloadSourceRequest::MusicDownloadSourceRequest(QObject *parent)
+MusicDataSourceRequest::MusicDataSourceRequest(QObject *parent)
     : MusicAbstractNetwork(parent)
 {
 
 }
 
-void MusicDownloadSourceRequest::deleteAll()
+void MusicDataSourceRequest::deleteAll()
 {
     MusicAbstractNetwork::deleteAll();
     deleteLater();
 }
 
-void MusicDownloadSourceRequest::startRequest(const QString &url)
+void MusicDataSourceRequest::startRequest(const QString &url)
 {
     QNetworkRequest request;
     request.setUrl(url);
@@ -23,7 +23,7 @@ void MusicDownloadSourceRequest::startRequest(const QString &url)
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
-void MusicDownloadSourceRequest::downLoadFinished()
+void MusicDataSourceRequest::downLoadFinished()
 {
     MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

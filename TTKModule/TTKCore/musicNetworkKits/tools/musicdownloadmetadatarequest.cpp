@@ -1,18 +1,18 @@
-#include "musicdownloadtagdatarequest.h"
-#include "musicdownloadcoverrequest.h"
+#include "musicdownloadmetadatarequest.h"
+#include "musiccoversourcerequest.h"
 
-MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent)
+MusicDownloadMetaDataRequest::MusicDownloadMetaDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent)
     : MusicDownloadDataRequest(url, path, type, parent)
 {
     m_needUpdate = false;
 }
 
-void MusicDownloadTagDataRequest::setSongMeta(MusicSongMeta &meta)
+void MusicDownloadMetaDataRequest::setSongMeta(MusicSongMeta &meta)
 {
     m_songMeta = std::move(meta);
 }
 
-void MusicDownloadTagDataRequest::startRequest()
+void MusicDownloadMetaDataRequest::startRequest()
 {
     if(m_file && (!m_file->exists() || m_file->size() < 4))
     {
@@ -31,7 +31,7 @@ void MusicDownloadTagDataRequest::startRequest()
     }
 }
 
-void MusicDownloadTagDataRequest::downLoadFinished()
+void MusicDownloadMetaDataRequest::downLoadFinished()
 {
     bool save = (m_file != nullptr);
     MusicDownloadDataRequest::downLoadFinished();
@@ -46,7 +46,7 @@ void MusicDownloadTagDataRequest::downLoadFinished()
         TTKSemaphoreLoop loop;
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
-        MusicDownloadCoverRequest *d = new MusicDownloadCoverRequest(this);
+        MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         d->startRequest(m_songMeta.comment());
         loop.exec();
@@ -56,7 +56,7 @@ void MusicDownloadTagDataRequest::downLoadFinished()
     TTK_INFO_STREAM("Data download has finished");
 }
 
-void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &bytes)
+void MusicDownloadMetaDataRequest::downLoadFinished(const QByteArray &bytes)
 {
     MusicSongMeta meta;
     if(meta.read(m_savePath))

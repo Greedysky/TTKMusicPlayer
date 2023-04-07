@@ -1,5 +1,5 @@
 #include "musicdownloadthunderskinrequest.h"
-#include "musicdownloadsourcerequest.h"
+#include "musicdatasourcerequest.h"
 
 #define MAX_SIZE    30
 #define QUERY_URL   "eC9KOTYxbVhvVDJNcGEwckhyMVZRdVRhOHhFRHQ2eFVNdWJxaURFSzA1ZWVmZm5HOFlzS1VCY2ZKOFRlYStBL2Y3SjNEK2gzY2QwPQ=="
@@ -73,7 +73,7 @@ MusicDownloadThunderSkinRequest::MusicDownloadThunderSkinRequest(QObject *parent
 
 void MusicDownloadThunderSkinRequest::startRequest()
 {
-    MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+    MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     d->startRequest(TTK::Algorithm::mdII(QUERY_URL, false));
 }

@@ -1,7 +1,7 @@
 #include "musicdownloadbatchwidget.h"
 #include "ui_musicdownloadbatchwidget.h"
 #include "musicdownloadrecordconfigmanager.h"
-#include "musicdownloadtagdatarequest.h"
+#include "musicdownloadmetadatarequest.h"
 
 Q_DECLARE_METATYPE(TTK::MusicSongProperty)
 
@@ -215,7 +215,7 @@ void MusicDownloadBatchTableItem::startRequestMusic()
         }
     }
 
-    MusicDownloadTagDataRequest *d = new MusicDownloadTagDataRequest(prop.m_url, downloadName, TTK::Download::Music, this);
+    MusicDownloadMetaDataRequest *d = new MusicDownloadMetaDataRequest(prop.m_url, downloadName, TTK::Download::Music, this);
     d->setRecordType(TTK::Record::NormalDownload);
     connect(d, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
 

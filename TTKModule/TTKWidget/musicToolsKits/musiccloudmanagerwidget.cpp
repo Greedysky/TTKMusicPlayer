@@ -1,8 +1,8 @@
 #include "musiccloudmanagerwidget.h"
-#include "musicdownloadsourcerequest.h"
 #include "musiccloudfileinformationwidget.h"
 #include "musicitemdelegate.h"
 #include "musicopenfilewidget.h"
+#include "musicdatasourcerequest.h"
 #include "musicdownloaddatarequest.h"
 #include "musiccoreutils.h"
 #include "musicfileutils.h"
@@ -78,7 +78,7 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
         TTKSemaphoreLoop loop;
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
-        MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+        MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         d->startRequest(QSyncUtils::makeDataBucketUrl() + OS_CLOUD_URL);
         loop.exec();

@@ -1,5 +1,5 @@
-#ifndef MusicDownloadTagDataRequest_H
-#define MusicDownloadTagDataRequest_H
+#ifndef MUSICDOWNLOADMETADATAREQUEST_H
+#define MUSICDOWNLOADMETADATAREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -25,15 +25,15 @@
 /*! @brief The class of the download the type of data by custom tags.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadTagDataRequest : public MusicDownloadDataRequest
+class TTK_MODULE_EXPORT MusicDownloadMetaDataRequest : public MusicDownloadDataRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadTagDataRequest)
+    TTK_DECLARE_MODULE(MusicDownloadMetaDataRequest)
 public:
     /*!
      * Object contsructor provide download url save local path and download type.
      */
-    MusicDownloadTagDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent = nullptr);
+    MusicDownloadMetaDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent = nullptr);
 
     /*!
      * Set custom tags.
@@ -65,4 +65,4 @@ private:
 
 };
 
-#endif // MUSICDOWNLOADTAGDATAREQUEST_H
+#endif // MUSICDOWNLOADMETADATAREQUEST_H

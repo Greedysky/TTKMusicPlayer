@@ -1,15 +1,15 @@
-#include "musicdownloadcounterpvrequest.h"
+#include "musiccounterpvrequest.h"
 #include "ttkabstractxml.h"
 
 #define QUERY_URL   "QkZ1ek5yL0gxbkV6eGU5bEttakZNT2pyNitIZVZoYlNBYlUxMEp2c2swQWdQODRNZmJmdWVqeGIrK0VsRzNwWUNDZjBkU3J6dmlwQklRRVZ6WVdsa2kwQmRhR0YrbmlZRERWSmlzazNNU21EbWRjS0sxSmtKNXZEekt5MWNwTmgvQ2hBOXo4MWlCajF3c2dXMTdTUXNIQmxCbzdCeC9HUC9MR09Sem80dVZRZmpVeDFkUXU1cVpPMUJIeXJIQTlJRHdTZjM2YWZ6ZWdTYTV1dExnUGd3OG9MekxCczJuS0RVbE1iK21DYkxENEhHQ0JwSHU1bVpuVklOY1Z6YU0walRldUxoL3pHOGpoWEVKOWNST0JZcEZoWWtLQT0="
 
-MusicDownloadCounterPVRequest::MusicDownloadCounterPVRequest(QObject *parent)
+MusicCounterPVRequest::MusicCounterPVRequest(QObject *parent)
     : MusicAbstractNetwork(parent)
 {
 
 }
 
-void MusicDownloadCounterPVRequest::startRequest()
+void MusicCounterPVRequest::startRequest()
 {
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false));
@@ -20,7 +20,7 @@ void MusicDownloadCounterPVRequest::startRequest()
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
-void MusicDownloadCounterPVRequest::downLoadFinished()
+void MusicCounterPVRequest::downLoadFinished()
 {
     bool ok = false;
 

@@ -25,8 +25,8 @@
 class QDeviceWatcher;
 class MusicTimerAutoModule;
 class MusicMobileDevicesWidget;
+class MusicCounterPVRequest;
 class MusicSourceUpdateRequest;
-class MusicDownloadCounterPVRequest;
 class MusicScreenSaverBackgroundWidget;
 
 namespace TTK {
@@ -173,8 +173,8 @@ private:
     QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;
 
+    MusicCounterPVRequest *m_counterPVThread;
     MusicSourceUpdateRequest *m_sourceUpdatehread;
-    MusicDownloadCounterPVRequest *m_counterPVThread;
     MusicScreenSaverBackgroundWidget *m_screenSaverWidget;
 
     static MusicApplicationModule *m_instance;

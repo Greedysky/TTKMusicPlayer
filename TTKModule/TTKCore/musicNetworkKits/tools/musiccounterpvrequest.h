@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADCOVERREQUEST_H
-#define MUSICDOWNLOADCOVERREQUEST_H
+#ifndef MUSICCOUNTERPVREQUEST_H
+#define MUSICCOUNTERPVREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,11 +19,32 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicdownloadsourcerequest.h"
+#include "musicabstractnetwork.h"
 
-/*! @brief The class of the source cover data download request.
+/*! @brief The class of the counter pv of player.
  * @author Greedysky <greedysky@163.com>
  */
-using MusicDownloadCoverRequest = MusicDownloadSourceRequest;
+class TTK_MODULE_EXPORT MusicCounterPVRequest : public MusicAbstractNetwork
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCounterPVRequest)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicCounterPVRequest(QObject *parent = nullptr);
 
-#endif // MUSICDOWNLOADCOVERREQUEST_H
+    /*!
+     * Start to download data from net.
+     */
+    void startRequest();
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadFinished() override final;
+
+};
+
+#endif // MUSICCOUNTERPVREQUEST_H

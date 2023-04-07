@@ -1,5 +1,5 @@
 #include "musicsourceupdaterequest.h"
-#include "musicdownloadsourcerequest.h"
+#include "musicdatasourcerequest.h"
 
 #include "qsync/qsyncutils.h"
 
@@ -13,7 +13,7 @@ MusicSourceUpdateRequest::MusicSourceUpdateRequest(QObject *parent)
 
 void MusicSourceUpdateRequest::startRequest()
 {
-    MusicDownloadSourceRequest *d = new MusicDownloadSourceRequest(this);
+    MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     d->startRequest(QSyncUtils::makeDataBucketUrl() + OS_VERSION_URL);
 }
