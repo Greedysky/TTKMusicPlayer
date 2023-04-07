@@ -42,7 +42,7 @@ void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, co
 
 void MusicKWInterface::makeCoverPixmapUrl(QString &url)
 {
-    if(!TTK::String::isNetworkUrl(url) && !url.contains(TTK_NULL_STR))
+    if(!TTK::String::isNetworkUrl(url))
     {
         url = TTK::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + url.section('/', 1);
     }

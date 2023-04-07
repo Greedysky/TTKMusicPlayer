@@ -81,13 +81,13 @@ namespace TTK
         TTK_MODULE_EXPORT bool isNetworkUrl(const QString &path);
 
         /*!
-         * Get song artist name.
-         */
-        TTK_MODULE_EXPORT QString artistName(const QString &value, const QString &key = TTK_DEFAULT_STR);
-        /*!
          * Get song name.
          */
         TTK_MODULE_EXPORT QString songName(const QString &value, const QString &key = TTK_DEFAULT_STR);
+        /*!
+         * Get song artist name.
+         */
+        TTK_MODULE_EXPORT QString artistName(const QString &value, const QString &key = TTK_DEFAULT_STR);
 
         /*!
          * Html string to plain.

@@ -145,9 +145,9 @@ void MusicKWQueryMovieRequest::downLoadPageFinished()
                     MusicResultDataItem result;
                     result.m_id = value["musicid"].toString();
                     result.m_coverUrl = value["pic"].toString();
-                    if(!result.m_coverUrl.contains(TTK_NULL_STR) && !TTK::String::isNetworkUrl(result.m_coverUrl))
+                    if(!TTK::String::isNetworkUrl(result.m_coverUrl))
                     {
-                        result.m_coverUrl = TTK::Algorithm::mdII(KW_MOVIE_COVER_PREFIX_URL, false) + result.m_coverUrl;
+                        result.m_coverUrl = TTK::Algorithm::mdII(KW_MOVIE_COVER_URL, false) + result.m_coverUrl;
                     }
                     result.m_name = value["name"].toString();
                     result.m_updateTime.clear();
