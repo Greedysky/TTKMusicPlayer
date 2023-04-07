@@ -40,6 +40,14 @@ void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, co
     }
 }
 
+void MusicKWInterface::makeCoverPixmapUrl(QString &url)
+{
+    if(!TTK::String::isNetworkUrl(url) && !url.contains(TTK_NULL_STR))
+    {
+        url = TTK::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + url.section('/', 1);
+    }
+}
+
 void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
 {
     if((format.contains("MP3128") || format.contains("128kmp3")) && bitrate == MB_128 && suffix == MP3_FILE_SUFFIX)

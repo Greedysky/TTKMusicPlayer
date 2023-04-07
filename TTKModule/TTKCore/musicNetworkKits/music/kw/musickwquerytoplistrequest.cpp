@@ -75,7 +75,8 @@ void MusicKWQueryToplistRequest::downLoadFinished()
                     info.m_year = QString();
                     info.m_trackNumber = "0";
 
-                    info.m_coverUrl = TTK::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);
+                    info.m_coverUrl = value["web_albumpic_short"].toString();
+                    MusicKWInterface::makeCoverPixmapUrl(info.m_coverUrl);
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                     MusicKWInterface::parseFromSongProperty(&info, value["formats"].toString(), m_queryQuality, m_queryAllRecords);
 

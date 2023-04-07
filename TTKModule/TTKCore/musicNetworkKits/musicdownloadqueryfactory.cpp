@@ -234,14 +234,6 @@ MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeLrcRequest(const QS
 
 MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeCoverRequest(const QString &url, const QString &path, QObject *parent)
 {
-    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
-    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
-    {
-        case MusicAbstractQueryRequest::QueryServer::WY: return (new MusicDownloadDataRequest(url, path, TTK::Download::Cover, parent));
-        case MusicAbstractQueryRequest::QueryServer::KW: return (new MusicKWDownLoadCoverRequest(url, path, parent));
-        case MusicAbstractQueryRequest::QueryServer::KG: return (new MusicDownloadDataRequest(url, path, TTK::Download::Cover, parent));
-        default: break;
-    }
     return (new MusicDownloadDataRequest(url, path, TTK::Download::Cover, parent));
 }
 

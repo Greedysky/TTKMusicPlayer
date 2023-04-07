@@ -44,10 +44,10 @@ namespace TTK
 
     enum class Record
     {
-        Null,              /*!< None File Config*/
         NormalDownload,    /*!< Local Download File Config*/
         CloudDownload,     /*!< Cloud Download File Config*/
-        CloudUpload        /*!< Cloud Upload Failed File Config*/
+        CloudUpload,       /*!< Cloud Upload Failed File Config*/
+        Null               /*!< None File Config*/
     };
 }
 

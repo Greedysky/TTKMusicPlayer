@@ -19,39 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractdownloadrequest.h"
 #include "musicabstractdownloadimagerequest.h"
-
-/*! @brief The class of the kuwo download art cover image.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicKWDownLoadCoverRequest : public MusicAbstractDownLoadRequest
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKWDownLoadCoverRequest)
-public:
-    /*!
-     * Object contsructor provide download url save local path and download type.
-     */
-    MusicKWDownLoadCoverRequest(const QString &url, const QString &path, QObject *parent = nullptr);
-
-    /*!
-     * Start to download data from net.
-     */
-    virtual void startRequest() override final;
-
-public Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    virtual void downLoadFinished() override final;
-    /*!
-     * Send download data from net.
-     */
-    void downLoadDataChanged();
-
-};
-
 
 /*! @brief The class of the kuwo download art background image.
  * @author Greedysky <greedysky@163.com>

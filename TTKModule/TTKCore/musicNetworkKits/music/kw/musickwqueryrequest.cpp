@@ -90,7 +90,8 @@ void MusicKWQueryRequest::downLoadFinished()
                     info.m_year = value["RELEASEDATE"].toString();
                     info.m_trackNumber = "0";
 
-                    info.m_coverUrl = TTK::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);
+                    info.m_coverUrl = value["web_albumpic_short"].toString();
+                    MusicKWInterface::makeCoverPixmapUrl(info.m_coverUrl);
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                     info.m_albumName = TTK::String::charactersReplace(value["ALBUM"].toString());
 
@@ -158,7 +159,7 @@ void MusicKWQueryRequest::downLoadSingleFinished()
                 info.m_year = value["releaseDate"].toString();
                 info.m_trackNumber = value["track"].toString();
 
-                info.m_coverUrl = TTK::Algorithm::mdII(KW_ALBUM_COVER_URL, false).arg(info.m_songId);
+                info.m_coverUrl = value["pic"].toString();
                 info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                 info.m_albumName = TTK::String::charactersReplace(value["album"].toString());
 
