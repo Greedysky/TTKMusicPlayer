@@ -1,7 +1,6 @@
 #include "musicstringutils.h"
 #include "musicsettingmanager.h"
 
-#include <QColor>
 #include <QTextDocument>
 
 static QString makeFilePrefix(MusicSettingManager::Config type, const QString &path)
@@ -22,6 +21,7 @@ static QString makeFilePrefix(MusicSettingManager::Config type, const QString &p
     }
     return dir;
 }
+
 
 QString TTK::String::lrcDirPrefix()
 {
@@ -104,7 +104,7 @@ bool TTK::String::isChinese(const QChar &c)
 
 bool TTK::String::isNetworkUrl(const QString &path)
 {
-    return !path.contains(TTK_NULL_STR) && (path.startsWith(HTTP_PREFIX) || path.startsWith(HTTPS_PREFIX));
+    return path.startsWith(HTTP_PREFIX) || path.startsWith(HTTPS_PREFIX);
 }
 
 QString TTK::String::songName(const QString &value, const QString &key)
@@ -139,7 +139,7 @@ QString TTK::String::convertHtmlToPlain(const QString &value)
 QStringList TTK::String::illegalCharacters()
 {
     QStringList acs;
-    acs << "\\" << "/" << "?"  << "*" << "\"" << ":" << "<" << ">" << "|";
+    acs << "\\" << "/" << "?" << "*" << "\"" << ":" << "<" << ">" << "|";
     return acs;
 }
 
@@ -153,15 +153,14 @@ bool TTK::String::isCharacterValid(const QString &value)
             return true;
         }
     }
-
     return false;
 }
 
 QString TTK::String::charactersReplace(const QString &value)
 {
     QString s(convertHtmlToPlain(value));
-    const QStringList acs(illegalCharacters());
 
+    const QStringList acs(illegalCharacters());
     for(const QString &ac : qAsConst(acs))
     {
         if(s.contains(ac))
@@ -169,6 +168,5 @@ QString TTK::String::charactersReplace(const QString &value)
             s.replace(ac, " ");
         }
     }
-
     return s;
 }
