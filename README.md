@@ -42,7 +42,9 @@ You Can See Here: **<u>https://greedysky.github.io/ttkdocs</u>**
 
 Download
 --------
-OSChina URL: **<u>https://gitee.com/greedysky/TTKMusicplayer</u>**
+Gitee URL: **<u>https://gitee.com/Greedysky/TTKMusicplayer</u>**
+
+Github URL: **<u>https://github.com/Greedysky/TTKMusicplayer</u>**
 
 Qmmp Source Player URL: **<u>https://qmmp.ylsoftware.com</u>**
 
