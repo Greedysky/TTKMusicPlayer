@@ -13,7 +13,7 @@ TTKAny::TTKAny(const TTKAny &other)
 
 }
 
-TTKAny::TTKAny(TTKAny &&other)
+TTKAny::TTKAny(TTKAny &&other) noexcept
     : m_ptr(std::move(other.m_ptr))
     , m_type(std::move(other.m_type))
 {

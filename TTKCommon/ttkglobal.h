@@ -55,7 +55,7 @@ void qAsConst(const T &&) = delete;
 #  define TTK_DEBUG
 #endif
 
-#if __cplusplus >= 201103L
+#if __cplusplus >= 201103L || _MSC_VER > 1800
 #  define TTK_CAST
 #endif
 
