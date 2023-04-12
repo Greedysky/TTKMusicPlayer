@@ -109,7 +109,7 @@ private:
 };
 
 #ifdef TTK_CAST
-#  define TTKAnyCast(x, y) TTK::any_cast<x>(y)
+#  define TTKAnyCast(x, y) (TTK::any_cast<x>(y))
 #else
 #  define TTKAnyCast(x, y) ((x)(y))
 #endif

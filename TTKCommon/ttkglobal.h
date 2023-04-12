@@ -24,6 +24,34 @@
 #include <QVariant>
 #include "ttklogger.h"
 
+// Normal definition
+#undef TTK_STD_CXX
+#define TTK_STD_CXX __cplusplus
+
+// VS2013 - 2015
+#if defined Q_CC_MSVC && _MSC_VER >= 1800
+#undef TTK_STD_CXX
+#define TTK_STD_CXX 201103L
+#endif
+
+// VS2017
+#if defined Q_CC_MSVC && _MSC_VER >= 1910
+#undef TTK_STD_CXX
+#define TTK_STD_CXX 201402L
+#endif
+
+// VS2019
+#if defined Q_CC_MSVC && _MSC_VER >= 1920
+#undef TTK_STD_CXX
+#define TTK_STD_CXX 201703L
+#endif
+
+// VS2022
+#if defined Q_CC_MSVC && _MSC_VER >= 1930
+#undef TTK_STD_CXX
+#define TTK_STD_CXX 202002L
+#endif
+
 #ifdef Q_CC_GNU
 #  pragma GCC diagnostic ignored "-Wswitch"
 #  pragma GCC diagnostic ignored "-Wparentheses"
@@ -55,7 +83,7 @@ void qAsConst(const T &&) = delete;
 #  define TTK_DEBUG
 #endif
 
-#if __cplusplus >= 201103L || _MSC_VER > 1800
+#if TTK_STD_CXX >= 201103L
 #  define TTK_CAST
 #endif
 
@@ -106,7 +134,7 @@ void qAsConst(const T &&) = delete;
 #endif
 
 #if !TTK_QT_VERSION_CHECK(5,0,0) && defined(Q_CC_GNU)
-#  if defined(__GXX_EXPERIMENTAL_CXX0X__) || __cplusplus >= 201103L
+#  if defined(__GXX_EXPERIMENTAL_CXX0X__) || TTK_STD_CXX >= 201103L
 #    define Q_COMPILER_DEFAULT_MEMBERS
 #    define Q_COMPILER_DELETE_MEMBERS
 #    define Q_COMPILER_NULLPTR
@@ -146,7 +174,7 @@ void qAsConst(const T &&) = delete;
 #  endif
 #endif
 
-#if defined(Q_CC_MSVC) && _MSC_VER <= 1800
+#if defined Q_CC_MSVC && _MSC_VER <= 1800
 #  define constexpr const
 #endif
 
