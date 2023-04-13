@@ -8,10 +8,10 @@
             <value key="3778678" value="热歌榜"/>
         </tag>
         <tag value="全球媒体榜">
-            <value key="5453912201" value="黑胶VIP爱听榜"/>
             <value key="991319590" value="云音乐说唱榜"/>
             <value key="71384707" value="云音乐古典榜"/>
             <value key="1978921795" value="云音乐电音榜"/>
+            <value key="5453912201" value="黑胶VIP爱听榜"/>
             <value key="71385702" value="云音乐ACG榜"/>
             <value key="745956260" value="云音乐韩语榜"/>
             <value key="10520166" value="云音乐国电榜"/>
@@ -29,7 +29,7 @@
             <value key="3112516681" value="中国新乡村音乐排行榜"/>
             <value key="5059644681" value="云音乐日语榜"/>
             <value key="5059633707" value="云音乐摇滚榜"/>
-            <value key="5059642708" value="云音乐古风榜"/>
+            <value key="5059642708" value="云音乐国风榜"/>
             <value key="5338990334" value="潜力爆款榜"/>
             <value key="5059661515" value="云音乐民谣榜"/>
             <value key="6688069460" value="听歌识曲榜"/>
@@ -40,10 +40,11 @@
             <value key="6939992364" value="俄罗斯top hit流行音乐榜"/>
             <value key="7095271308" value="泰语榜"/>
             <value key="7356827205" value="BEAT排行榜"/>
-            <value key="7325478166" value="编辑推荐榜VOL.27 陈奕迅回归，以音乐刻画浮世众生相"/>
             <value key="7603212484" value="LOOK直播歌曲榜"/>
-            <value key="7657858751" value="中文原创歌曲榜"/>
             <value key="7775163417" value="赏音榜"/>
+            <value key="7785123708" value="黑胶VIP新歌榜"/>
+            <value key="7785066739" value="黑胶VIP热歌榜"/>
+            <value key="7785091694" value="黑胶VIP爱搜榜"/>
         </tag>
     </WangYi>
     <KuGou>
@@ -97,26 +98,25 @@
             <value key="145" value="会员畅听榜"/>
         </tag>
         <tag value="特色榜">
+            <value key="331" value="会员爱听排行榜"/>
+            <value key="330" value="会员新歌榜"/>
             <value key="242" value="极品电音榜"/>
             <value key="284" value="酷我热评榜"/>
-            <value key="187" value="流行趋势榜"/>
-            <value key="154" value="酷我综艺榜"/>
-            <value key="153" value="网红新歌榜"/>
             <value key="26" value="经典怀旧榜"/>
-            <value key="329" value="酷我说唱榜"/>
             <value key="278" value="古风音乐榜"/>
+            <value key="153" value="网红新歌榜"/>
+            <value key="187" value="流行趋势榜"/>
             <value key="185" value="最强翻唱榜"/>
+            <value key="154" value="酷我综艺榜"/>
+            <value key="329" value="酷我说唱榜"/>
             <value key="64" value="影视金曲榜"/>
             <value key="294" value="禅心佛乐榜"/>
-            <value key="291" value="爆笑相声榜"/>
             <value key="290" value="ACG新歌榜"/>
             <value key="292" value="酷我铃声榜"/>
-            <value key="332" value="播客榜"/>
-            <value key="330" value="会员新歌榜"/>
-            <value key="331" value="会员爱听排行榜"/>
+            <value key="291" value="爆笑相声榜"/>
         </tag>
         <tag value="场景榜">
-            <value key="279" value="冬日暖歌榜"/>
+            <value key="279" value="春日温柔榜"/>
             <value key="328" value="车载歌曲榜"/>
             <value key="297" value="跑步健身榜"/>
             <value key="295" value="宝宝哄睡榜"/>
