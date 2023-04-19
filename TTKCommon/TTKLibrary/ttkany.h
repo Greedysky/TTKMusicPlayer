@@ -134,7 +134,7 @@ namespace TTK
     template <typename T, typename _TYPE = remove_cvr<T>>
     inline _TYPE any_cast(TTKAny &&other)
     {
-        return std::move(other.isSame<_TYPE>() ? other.cast<_TYPE>() : _TYPE());
+        return other.isSame<_TYPE>() ? other.cast<_TYPE>() : _TYPE();
     }
 
     template <typename T, typename _TYPE = remove_cvr<T>>
