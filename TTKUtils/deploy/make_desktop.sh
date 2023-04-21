@@ -11,7 +11,7 @@ execpath="$PWD/../TTKMusicPlayer"
 
 echo -n "[Desktop Entry]
 Type=Application
-Version=3.2.0.0
+Version=3.3.0.0
 Name=TTKMusicPlayer
 Comment=天天酷音
 Icon=$iconpath
