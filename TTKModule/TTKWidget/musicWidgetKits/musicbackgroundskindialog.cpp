@@ -10,7 +10,7 @@
 #include "musicsettingmanager.h"
 #include "musicextractwrapper.h"
 
-#define CURRENT_ITEMS_COUNT     47
+#define CURRENT_ITEMS_COUNT     58
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
