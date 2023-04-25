@@ -28,45 +28,45 @@ namespace TTK
 {
     namespace UI
     {
-        const QString EnhanceOn = " \
-                QToolButton{ border:none; \
-                background-image: url(:/enhance/btn_magic_on_normal); } \
-                QToolButton:hover{ background-image: url(:/enhance/btn_magic_on_hover); }";
+        static const QString EnhanceOn = " \
+            QToolButton{ border:none; \
+            background-image: url(:/enhance/btn_magic_on_normal); } \
+            QToolButton:hover{ background-image: url(:/enhance/btn_magic_on_hover); }";
 
-        const QString EnhanceOff = " \
-                QToolButton{ border:none; \
-                background-image: url(:/enhance/btn_magic_off_normal); } \
-                QToolButton:hover{ background-image: url(:/enhance/btn_magic_off_hover); }";
+        static const QString EnhanceOff = " \
+            QToolButton{ border:none; \
+            background-image: url(:/enhance/btn_magic_off_normal); } \
+            QToolButton:hover{ background-image: url(:/enhance/btn_magic_off_hover); }";
 
-        const QString EnhanceClose = " \
-                QToolButton{ border:none; \
-                background-image: url(:/enhance/btn_close_normal); } \
-                QToolButton:hover{ background-image: url(:/enhance/btn_close_hover); }";
+        static const QString EnhanceClose = " \
+            QToolButton{ border:none; \
+            background-image: url(:/enhance/btn_close_normal); } \
+            QToolButton:hover{ background-image: url(:/enhance/btn_close_hover); }";
 
-        const QString EnhanceHelp = " \
-                QToolButton{ border:none; \
-                background-image: url(:/enhance/btn_help_normal); } \
-                QToolButton:hover{ background-image: url(:/enhance/btn_help_hover); }";
+        static const QString EnhanceHelp = " \
+            QToolButton{ border:none; \
+            background-image: url(:/enhance/btn_help_normal); } \
+            QToolButton:hover{ background-image: url(:/enhance/btn_help_hover); }";
 
-        const QString EnhanceShare = " \
-                QToolButton{ border:none; \
-                background-image: url(:/enhance/btn_share_normal); } \
-                QToolButton:hover{ background-image: url(:/enhance/btn_share_hover); }";
+        static const QString EnhanceShare = " \
+            QToolButton{ border:none; \
+            background-image: url(:/enhance/btn_share_normal); } \
+            QToolButton:hover{ background-image: url(:/enhance/btn_share_hover); }";
 
-        const QString EnhanceTitle = " \
-                QToolButton{ border:none; \
-                background-image: url(:/enhance/lb_title_normal); } \
-                QToolButton:hover{ background-image: url(:/enhance/lb_title_hover); }";
+        static const QString EnhanceTitle = " \
+            QToolButton{ border:none; \
+            background-image: url(:/enhance/lb_title_normal); } \
+            QToolButton:hover{ background-image: url(:/enhance/lb_title_hover); }";
 
-        const QString EqualizerOn = " \
-                QPushButton{ border:none; \
-                background-image: url(:/enhance/btn_equalizer_on_normal); } \
-                QPushButton:hover{ background-image: url(:/enhance/btn_equalizer_on_hover); }";
+        static const QString EqualizerOn = " \
+            QPushButton{ border:none; \
+            background-image: url(:/enhance/btn_equalizer_on_normal); } \
+            QPushButton:hover{ background-image: url(:/enhance/btn_equalizer_on_hover); }";
 
-        const QString EqualizerOff = " \
-                QPushButton{ border:none; \
-                background-image: url(:/enhance/btn_equalizer_off_normal); } \
-                QPushButton:hover{ background-image: url(:/enhance/btn_equalizer_off_hover); }";
+        static const QString EqualizerOff = " \
+            QPushButton{ border:none; \
+            background-image: url(:/enhance/btn_equalizer_off_normal); } \
+            QPushButton:hover{ background-image: url(:/enhance/btn_equalizer_off_hover); }";
 
     }
 }

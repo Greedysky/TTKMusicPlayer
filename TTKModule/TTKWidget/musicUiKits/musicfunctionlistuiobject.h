@@ -28,84 +28,84 @@ namespace TTK
 {
     namespace UI
     {
-        const QString FuncSongFore = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/song_fore_normal); } \
-                QToolButton:hover{ background-image: url(:/title/song_fore_hover); }";
+        static const QString FuncSongFore = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/song_fore_normal); } \
+            QToolButton:hover{ background-image: url(:/title/song_fore_hover); }";
 
-        const QString FuncSongForeClicked = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/song_fore_clicked); }";
+        static const QString FuncSongForeClicked = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/song_fore_clicked); }";
 
-        const QString FuncSongBack = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/song_back_normal); } \
-                QToolButton:hover{ background-image: url(:/title/song_back_hover); }";
+        static const QString FuncSongBack = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/song_back_normal); } \
+            QToolButton:hover{ background-image: url(:/title/song_back_hover); }";
 
-        const QString FuncRadioFore = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/radio_fore_normal); } \
-                QToolButton:hover{ background-image: url(:/title/radio_fore_hover); }";
+        static const QString FuncRadioFore = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/radio_fore_normal); } \
+            QToolButton:hover{ background-image: url(:/title/radio_fore_hover); }";
 
-        const QString FuncRadioForeClicked = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/radio_fore_clicked); }";
+        static const QString FuncRadioForeClicked = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/radio_fore_clicked); }";
 
-        const QString FuncRadioBack = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/radio_back_normal); } \
-                QToolButton:hover{ background-image: url(:/title/radio_back_hover); }";
+        static const QString FuncRadioBack = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/radio_back_normal); } \
+            QToolButton:hover{ background-image: url(:/title/radio_back_hover); }";
 
-        const QString FuncListFore = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/list_fore_normal); } \
-                QToolButton:hover{ background-image: url(:/title/list_fore_hover); }";
+        static const QString FuncListFore = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/list_fore_normal); } \
+            QToolButton:hover{ background-image: url(:/title/list_fore_hover); }";
 
-        const QString FuncListForeClicked = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/list_fore_clicked); }";
+        static const QString FuncListForeClicked = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/list_fore_clicked); }";
 
-        const QString FuncListBack = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/list_back_normal); } \
-                QToolButton:hover{ background-image: url(:/title/list_back_hover); }";
+        static const QString FuncListBack = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/list_back_normal); } \
+            QToolButton:hover{ background-image: url(:/title/list_back_hover); }";
 
-        const QString FuncMVFore = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/mv_fore_normal); } \
-                QToolButton:hover{ background-image: url(:/title/mv_fore_hover); }";
+        static const QString FuncMVFore = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/mv_fore_normal); } \
+            QToolButton:hover{ background-image: url(:/title/mv_fore_hover); }";
 
-        const QString FuncMVForeClicked = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/mv_fore_clicked); }";
+        static const QString FuncMVForeClicked = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/mv_fore_clicked); }";
 
-        const QString FuncMVBack = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/mv_back_normal); } \
-                QToolButton:hover{ background-image: url(:/title/mv_back_hover); }";
+        static const QString FuncMVBack = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/mv_back_normal); } \
+            QToolButton:hover{ background-image: url(:/title/mv_back_hover); }";
 
-        const QString FuncLiveFore = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/live_fore_normal); } \
-                QToolButton:hover{ background-image: url(:/title/live_fore_hover); }";
+        static const QString FuncLiveFore = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/live_fore_normal); } \
+            QToolButton:hover{ background-image: url(:/title/live_fore_hover); }";
 
-        const QString FuncLiveForeClicked = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/live_fore_clicked); }";
+        static const QString FuncLiveForeClicked = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/live_fore_clicked); }";
 
-        const QString FuncLiveBack = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/live_back_normal); } \
-                QToolButton:hover{ background-image: url(:/title/live_back_hover); }";
+        static const QString FuncLiveBack = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/live_back_normal); } \
+            QToolButton:hover{ background-image: url(:/title/live_back_hover); }";
 
-        const QString FuncLrcFore = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/lrc_fore_normal); } \
-                QToolButton:hover{ background-image: url(:/title/lrc_fore_hover); }";
+        static const QString FuncLrcFore = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/lrc_fore_normal); } \
+            QToolButton:hover{ background-image: url(:/title/lrc_fore_hover); }";
 
-        const QString FuncLrcForeClicked = " \
-                QToolButton{ border:none; \
-                background-image: url(:/title/lrc_back_clicked); }";
+        static const QString FuncLrcForeClicked = " \
+            QToolButton{ border:none; \
+            background-image: url(:/title/lrc_back_clicked); }";
 
     }
 }

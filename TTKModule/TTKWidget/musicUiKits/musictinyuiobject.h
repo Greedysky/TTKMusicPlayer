@@ -28,153 +28,153 @@ namespace TTK
 {
     namespace UI
     {
-        const QString TinyBtnPlay = " \
-                QToolButton,QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_play_normal); } \
-                QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_play_hover); }";
+        static const QString TinyBtnPlay = " \
+            QToolButton,QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_play_normal); } \
+            QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_play_hover); }";
 
-        const QString TinyBtnPause = " \
-                QToolButton,QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_pause_normal); } \
-                QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_pause_hover); }";
+        static const QString TinyBtnPause = " \
+            QToolButton,QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_pause_normal); } \
+            QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_pause_hover); }";
 
-        const QString TinyBtnNext = " \
-                QToolButton,QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_next_normal); } \
-                QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_next_hover); }";
+        static const QString TinyBtnNext = " \
+            QToolButton,QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_next_normal); } \
+            QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_next_hover); }";
 
-        const QString TinyBtnPrevious = " \
-                QToolButton,QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_previous_normal); } \
-                QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_previous_hover); }";
+        static const QString TinyBtnPrevious = " \
+            QToolButton,QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_previous_normal); } \
+            QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_previous_hover); }";
 
-        const QString TinyBtnList = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_list_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_list_hover); }";
+        static const QString TinyBtnList = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_list_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_list_hover); }";
 
-        const QString TinyBtnSetting = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_setting_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_setting_hover); }";
+        static const QString TinyBtnSetting = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_setting_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_setting_hover); }";
 
-        const QString TinyBtnVisual = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_visual_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_visual_hover); }";
+        static const QString TinyBtnVisual = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_visual_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_visual_hover); }";
 
-        const QString TinyBtnWallpaperOff = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_wallpaper_off_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_wallpaper_off_hover); }";
+        static const QString TinyBtnWallpaperOff = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_wallpaper_off_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_wallpaper_off_hover); }";
 
-        const QString TinyBtnLrcOff = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_lrc_off_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_lrc_off_hover); }";
+        static const QString TinyBtnLrcOff = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_lrc_off_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_lrc_off_hover); }";
 
-        const QString TinyBtnCollapse = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_collapse_w_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_collapse_w_hover); }";
+        static const QString TinyBtnCollapse = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_collapse_w_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_collapse_w_hover); }";
 
-        const QString TinyBtnExpand = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_expand_w_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_expand_w_hover); }";
+        static const QString TinyBtnExpand = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_expand_w_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_expand_w_hover); }";
 
-        const QString TinyBtnUnDownload = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_download_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_download_hover); }";
+        static const QString TinyBtnUnDownload = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_download_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_download_hover); }";
 
-        const QString TinyBtnDownload = TinyBtnUnDownload + " \
-                QPushButton{ margin-left:-16px; }";
+        static const QString TinyBtnDownload = TinyBtnUnDownload + " \
+            QPushButton{ margin-left:-16px; }";
 
-        const QString TinyBtnUnLove = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_unloved_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_unloved_hover); }";
+        static const QString TinyBtnUnLove = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_unloved_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_unloved_hover); }";
 
-        const QString TinyBtnLove = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_loved_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_loved_hover); }";
+        static const QString TinyBtnLove = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_loved_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_loved_hover); }";
 
-        const QString TinyBtnDelete = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_delete_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_delete_hover); }";
+        static const QString TinyBtnDelete = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_delete_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_delete_hover); }";
 
-        const QString TinyBtnMV = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_mv_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_mv_hover); }";
+        static const QString TinyBtnMV = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_mv_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_mv_hover); }";
 
-        const QString TinyBtnPlayLater = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_play_later_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_play_later_hover); }";
+        static const QString TinyBtnPlayLater = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_play_later_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_play_later_hover); }";
 
-        const QString TinyBtnMore = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_more_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_more_hover); }";
+        static const QString TinyBtnMore = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_more_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_more_hover); }";
 
-        const QString TinyBtnLocalSearch = " \
-                QToolButton{ border:none; \
-                background-image: url(:/tiny/btn_search_normal); } \
-                QToolButton:hover{ background-image: url(:/tiny/btn_search_hover); }";
+        static const QString TinyBtnLocalSearch = " \
+            QToolButton{ border:none; \
+            background-image: url(:/tiny/btn_search_normal); } \
+            QToolButton:hover{ background-image: url(:/tiny/btn_search_hover); }";
 
-        const QString TinyBtnMainSearch = " \
-                QToolButton{ border:none; \
-                background-image: url(:/tiny/btn_search_main_normal); } \
-                QToolButton:hover{ background-image: url(:/tiny/btn_search_main_hover); }";
+        static const QString TinyBtnMainSearch = " \
+            QToolButton{ border:none; \
+            background-image: url(:/tiny/btn_search_main_normal); } \
+            QToolButton:hover{ background-image: url(:/tiny/btn_search_main_hover); }";
 
-        const QString TinyBtnLocation = " \
-                QToolButton{ border:none; \
-                background-image: url(:/tiny/btn_location_normal); } \
-                QToolButton:hover{ background-image: url(:/tiny/btn_location_hover); }";
+        static const QString TinyBtnLocation = " \
+            QToolButton{ border:none; \
+            background-image: url(:/tiny/btn_location_normal); } \
+            QToolButton:hover{ background-image: url(:/tiny/btn_location_hover); }";
 
-        const QString TinyBtnSound = " \
-                QToolButton{ border:none; \
-                background-image: url(:/tiny/btn_sound_normal); } \
-                QToolButton:hover{ background-image: url(:/tiny/btn_sound_hover); }";
+        static const QString TinyBtnSound = " \
+            QToolButton{ border:none; \
+            background-image: url(:/tiny/btn_sound_normal); } \
+            QToolButton:hover{ background-image: url(:/tiny/btn_sound_hover); }";
 
-        const QString TinyBtnSoundWhite = " \
-                QToolButton{ border:none; \
-                background-image: url(:/tiny/btn_sound); } \
-                QToolButton:hover{ background-image: url(:/tiny/btn_sound); }";
+        static const QString TinyBtnSoundWhite = " \
+            QToolButton{ border:none; \
+            background-image: url(:/tiny/btn_sound); } \
+            QToolButton:hover{ background-image: url(:/tiny/btn_sound); }";
 
-        const QString TinyBtnClose = " \
-                QToolButton{ border:none; \
-                background-image: url(:/tiny/btn_close_normal); } \
-                QToolButton:hover{ background-image: url(:/tiny/btn_close_hover); }";
+        static const QString TinyBtnClose = " \
+            QToolButton{ border:none; \
+            background-image: url(:/tiny/btn_close_normal); } \
+            QToolButton:hover{ background-image: url(:/tiny/btn_close_hover); }";
 
-        const QString TinyBtnLrcExpand = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_collapse_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_collapse_hover); }";
+        static const QString TinyBtnLrcExpand = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_collapse_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_collapse_hover); }";
 
-        const QString TinyBtnLrcCollapse = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_expand_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_expand_hover); }";
+        static const QString TinyBtnLrcCollapse = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_expand_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_expand_hover); }";
 
-        const QString TinyBtnShare = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_share_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_share_hover); }";
+        static const QString TinyBtnShare = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_share_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_share_hover); }";
 
-        const QString TinyBtnListMenu = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_list_menu_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_list_menu_hover); }";
+        static const QString TinyBtnListMenu = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_list_menu_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_list_menu_hover); }";
 
-        const QString TinyBtnPlaylist = " \
-                QPushButton{ border:none; \
-                background-image: url(:/tiny/btn_playlist_normal); } \
-                QPushButton:hover{ background-image: url(:/tiny/btn_playlist_hover); }";
+        static const QString TinyBtnPlaylist = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_playlist_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_playlist_hover); }";
 
     }
 }

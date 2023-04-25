@@ -27,17 +27,17 @@
 namespace UI
 {
     ///PushButton
-    const QString PushButtonStyle01 = " \
-                    QPushButton{ border:none; color:rgb(135, 135, 135); font-size:14px; } \
-                    QPushButton:hover{ color:rgb(104, 169, 236); } \
-                    QPushButton:checked{ color:rgb(40, 143, 231); }";
+    static const QString PushButtonStyle01 = " \
+        QPushButton{ border:none; color:rgb(135, 135, 135); font-size:14px; } \
+        QPushButton:hover{ color:rgb(104, 169, 236); } \
+        QPushButton:checked{ color:rgb(40, 143, 231); }";
 
-    const QString PushButtonStyle02 = " \
-                    QPushButton{ color:rgb(104, 169, 236); }";
+    static const QString PushButtonStyle02 = " \
+        QPushButton{ color:rgb(104, 169, 236); }";
 
     ///Widget
-    const QString WidgetStyle01 = " \
-                    QWidget{ background:white; }";
+    static const QString WidgetStyle01 = " \
+        QWidget{ background:white; }";
 
 }
 

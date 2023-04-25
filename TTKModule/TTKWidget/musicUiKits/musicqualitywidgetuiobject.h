@@ -28,10 +28,10 @@ namespace TTK
 {
     namespace UI
     {
-        const QString BtnQuality = " \
-                QToolButton{ border:none; \
-                background-image: url(:/quality/btn_quality_normal); } \
-                QToolButton:hover{ background-image: url(:/quality/btn_quality_hover); }";
+        static const QString BtnQuality = " \
+            QToolButton{ border:none; \
+            background-image: url(:/quality/btn_quality_normal); } \
+            QToolButton:hover{ background-image: url(:/quality/btn_quality_hover); }";
 
     }
 }

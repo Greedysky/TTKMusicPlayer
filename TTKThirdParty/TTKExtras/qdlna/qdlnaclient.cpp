@@ -7,10 +7,10 @@
 
 #define AVTRANSPORT "avtransport"
 
-const QString XML_HEAD = "<?xml version=\"1.0\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n<SOAP-ENV:Body>\n";
-const QString XML_FOOT = "</SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n";
-const QStringList FRIENS_NAMES = {"friendlyname", "friendlyName", "FriendlyName", "FriendlyName"};
-const QStringList AVT_NAMES = {"avtransport", "AVTransport"};
+static const QString XML_HEAD = "<?xml version=\"1.0\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n<SOAP-ENV:Body>\n";
+static const QString XML_FOOT = "</SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n";
+static const QStringList FRIENS_NAMES = {"friendlyname", "friendlyName", "FriendlyName", "FriendlyName"};
+static const QStringList AVT_NAMES = {"avtransport", "AVTransport"};
 
 /*! @brief The class of the dlna client private.
  * @author Greedysky <greedysky@163.com>
