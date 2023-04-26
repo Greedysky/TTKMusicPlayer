@@ -489,7 +489,7 @@ void MusicSongsListPlayTableWidget::showTimeOut()
         }
 
         const MusicSong &song = (*m_songs)[m_previousColorRow];
-        m_songsInfoWidget->setMusicSongInformation(song);
+        m_songsInfoWidget->setSongInformation(m_toolIndex, song);
         m_songsInfoWidget->move(mapToGlobal(QPoint(width(), 0)).x() + 8, QCursor::pos().y());
 
         bool state;

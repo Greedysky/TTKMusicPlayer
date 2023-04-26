@@ -1,6 +1,7 @@
 #include "musicplaylist.h"
-#include "ttktime.h"
 #include "musicstringutils.h"
+#include "musicsong.h"
+#include "ttktime.h"
 
 MusicPlaylist::MusicPlaylist(QObject *parent)
     : QObject(parent),
@@ -54,17 +55,9 @@ MusicPlayItem MusicPlaylist::currentItem() const
 QString MusicPlaylist::currentMediaPath() const
 {
     const MusicPlayItem &item = currentItem();
-    if(item.m_toolIndex == MUSIC_NETWORK_LIST && TTK::String::isNetworkUrl(item.m_path))
+    if(item.m_toolIndex == MUSIC_NETWORK_LIST)
     {
-        /*Replace network url path to local path*/
-        const QString &id = item.m_path.section("#", -1);
-        if(id == item.m_path)
-        {
-            return item.m_path;
-        }
-
-        const QString &cachePath = CACHE_DIR_FULL + id;
-        return QFile::exists(cachePath) ? cachePath : item.m_path;
+        return TTK::generateNetworkSongPath(item.m_path);
     }
     return item.m_path;
 }

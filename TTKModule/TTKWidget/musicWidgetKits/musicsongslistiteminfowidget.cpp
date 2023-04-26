@@ -1,6 +1,7 @@
 #include "musicsongslistiteminfowidget.h"
 #include "ui_musicsongslistiteminfowidget.h"
 #include "musicsettingmanager.h"
+#include "musicnumberutils.h"
 #include "musicsongmeta.h"
 
 MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
@@ -35,19 +36,27 @@ bool MusicSongsListItemInfoWidget::showArtistPicture(const QString &name)
     return false;
 }
 
-void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &song)
+void MusicSongsListItemInfoWidget::setSongInformation(int index, const MusicSong &song)
 {
     const QString &musicArtist = song.artistFront();
     m_ui->songNameValue->setText(song.name().isEmpty() ? TTK_DEFAULT_STR : TTK::Widget::elidedText(font(), song.name(), Qt::ElideRight, m_ui->songNameValue->width()));
     m_ui->artlistValue->setText(musicArtist.isEmpty() ? TTK_DEFAULT_STR : TTK::Widget::elidedText(font(), musicArtist, Qt::ElideRight, m_ui->artlistValue->width()));
-    m_ui->sizeValue->setText(TTK::Widget::elidedText(font(), song.sizeStr(), Qt::ElideRight, m_ui->sizeValue->width()));
     m_ui->typeValue->setText(song.format().isEmpty() ? TTK_DEFAULT_STR : TTK::Widget::elidedText(font(), song.format(), Qt::ElideRight, m_ui->typeValue->width()));
     m_ui->timeValue->setText(TTK::Widget::elidedText(font(), QString::number(song.playCount()), Qt::ElideRight, m_ui->timeValue->width()));
+
+    QString path = song.path();
+    QString fileSize = song.sizeStr();
+    if(index == MUSIC_NETWORK_LIST)
+    {
+        path = TTK::generateNetworkSongPath(path);
+        fileSize = TTK::Number::sizeByteToLabel(QFileInfo(path).size());
+    }
+    m_ui->sizeValue->setText(TTK::Widget::elidedText(font(), fileSize, Qt::ElideRight, m_ui->sizeValue->width()));
 
     if(G_SETTING_PTR->value(MusicSettingManager::OtherReadAlbumCover).toBool())
     {
         MusicSongMeta meta;
-        if(meta.read(song.path()))
+        if(meta.read(path))
         {
             const QPixmap &pix = meta.cover();
             if(!pix.isNull())

@@ -177,6 +177,5 @@ QString TTK::generateNetworkSongPath(const QString &path)
             }
         }
     }
-
     return v;
 }
