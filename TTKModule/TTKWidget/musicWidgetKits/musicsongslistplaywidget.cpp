@@ -36,7 +36,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     m_songNameLabel = new MusicSplitItemClickedLabel(this);
     m_songNameLabel->setAttribute(Qt::WA_TranslucentBackground);
-    m_songNameLabel->setStyleSheet(TTK::UI::ColorStyle01);
+    m_songNameLabel->setStyleSheet(TTK::UI::LabelStyle02);
     m_songNameLabel->setGeometry(85, 5, 200, 25);
 
     m_timeLabel = new QLabel(this);

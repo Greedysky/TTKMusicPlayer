@@ -214,7 +214,7 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     m_ui->settingButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     m_ui->treeWidget->setStyleSheet(TTK::UI::GroupBoxStyle01 + TTK::UI::SpinBoxStyle01 + TTK::UI::SliderStyle06 +
                                     TTK::UI::RadioButtonStyle01 + TTK::UI::CheckBoxStyle01 + TTK::UI::ComboBoxStyle01 +
-                                    TTK::UI::PushButtonStyle12 + TTK::UI::LineEditStyle01);
+                                    TTK::UI::PushButtonStyle12 + TTK::UI::LineEditStyle01 + TTK::UI::ScrollBarStyle01);
     m_ui->treeWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_ui->treeWidget->verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
     m_ui->treeWidget->setFocusPolicy(Qt::NoFocus);
