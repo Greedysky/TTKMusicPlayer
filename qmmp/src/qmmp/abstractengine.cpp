@@ -136,7 +136,7 @@ QStringList AbstractEngine::contentTypes()
     return types;
 }
 
-EngineFactory *AbstractEngine::findByFilePath(const QString& source)
+EngineFactory *AbstractEngine::findByFilePath(const QString &source)
 {
     loadPlugins();
     for(QmmpPluginCache *item : qAsConst(*m_cache))

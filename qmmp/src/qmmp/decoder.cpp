@@ -230,7 +230,7 @@ DecoderFactory *Decoder::findByFilePath(const QString &path, bool useContent)
     return nullptr;
 }
 
-DecoderFactory *Decoder::findByMime(const QString& type)
+DecoderFactory *Decoder::findByMime(const QString &type)
 {
     if(type.isEmpty())
         return nullptr;

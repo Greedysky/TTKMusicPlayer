@@ -32,7 +32,7 @@ enum
 };
 
 // Forward declarations.
-static QString trim(QPainter *dc, const QString& s, int length, bool trim_end);
+static QString trim(QPainter *dc, const QString &s, int length, bool trim_end);
 static int bits_to_bands(int bits);
 
 LightSpectrogram::LightSpectrogram(QWidget *parent)
@@ -415,7 +415,7 @@ void LightSpectrogram::create_palette()
     }
 }
 
-static QString trim(QPainter *dc, const QString& s, int length, bool trim_end)
+static QString trim(QPainter *dc, const QString &s, int length, bool trim_end)
 {
     if (length <= 0) {
         return QString();

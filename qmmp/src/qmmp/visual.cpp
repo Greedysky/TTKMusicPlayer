@@ -129,7 +129,7 @@ void Visual::setEnabled(VisualFactory *factory, bool enable)
     if(!m_factories->contains(factory))
         return;
 
-    QString name = factory->properties().shortName;
+    const QString &name = factory->properties().shortName;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QStringList visList = settings.value("Visualization/enabled_plugins").toStringList();
 
@@ -139,16 +139,7 @@ void Visual::setEnabled(VisualFactory *factory, bool enable)
             visList << name;
         if(!m_vis_map.value(factory) && m_parentClass)
         {
-            Visual* visual = factory->create(m_parentClass);
-            if(m_receiver && m_member)
-                connect(visual, SIGNAL(closedByUser()), m_receiver, m_member);
-            visual->setWindowFlags(Qt::Window);
-            m_vis_map.insert(factory, visual);
-            Qmmp::State st = StateHandler::instance()->state();
-            if(st == Qmmp::Playing || st == Qmmp::Buffering || st == Qmmp::Paused)
-                visual->start();
-            m_visuals.append(visual);
-//            visual->show();
+            createVisualization(factory, m_parentClass);
         }
     }
     else
@@ -167,9 +158,9 @@ void Visual::setEnabled(VisualFactory *factory, bool enable)
 bool Visual::isEnabled(const VisualFactory *factory)
 {
     checkFactories();
-    QString name = factory->properties().shortName;
+    const QString &name = factory->properties().shortName;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    QStringList visList = settings.value("Visualization/enabled_plugins").toStringList();
+    const QStringList &visList = settings.value("Visualization/enabled_plugins").toStringList();
     return visList.contains(name);
 }
 
@@ -177,7 +168,7 @@ void Visual::add(Visual *visual)
 {
     if(!m_visuals.contains(visual))
     {
-        Qmmp::State st = StateHandler::instance()->state();
+        const Qmmp::State st = StateHandler::instance() ? StateHandler::instance()->state() : Qmmp::Stopped;
         if(st == Qmmp::Playing || st == Qmmp::Buffering || st == Qmmp::Paused)
             visual->start();
         m_visuals.append(visual);
@@ -290,4 +281,18 @@ void Visual::checkFactories()
             m_files->insert(factory, filePath);
         }
     }
+}
+
+void Visual::createVisualization(VisualFactory *factory, QWidget *parent)
+{
+    Visual* visual = factory->create(parent);
+    if(m_receiver && m_member)
+        connect(visual, SIGNAL(closedByUser()), m_receiver, m_member);
+    visual->setWindowFlags(Qt::Window);
+    m_vis_map.insert(factory, visual);
+    const Qmmp::State st = StateHandler::instance()->state();
+    if(st == Qmmp::Playing || st == Qmmp::Buffering || st == Qmmp::Paused)
+        visual->start();
+    m_visuals.append(visual);
+//    visual->show();
 }

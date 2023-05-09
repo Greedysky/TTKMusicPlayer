@@ -43,11 +43,11 @@ QStringList ArchiveReader::list(const QString &path)
     const QByteArray &buffer = process.readAllStandardOutput();
     const QString &list = QString::fromLocal8Bit(buffer.constData(), buffer.length());
 #ifdef Q_OS_WIN
-    for(QString& file : list.split("\r\n"))
+    for(QString &file : list.split("\r\n"))
     {
         file.replace("\\", "/");
 #else
-    for(const QString& file : list.split('\n'))
+    for(const QString &file : list.split('\n'))
     {
 #endif
         if(file.contains("....A"))

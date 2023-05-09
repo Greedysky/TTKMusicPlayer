@@ -174,9 +174,11 @@ protected:
     QAction *m_screenAction = nullptr;
 
 private:
+    static void checkFactories();
+    static void createVisualization(VisualFactory *factory, QWidget *parent);
+
     static QList<VisualFactory*> *m_factories;
     static QHash<const VisualFactory*, QString> *m_files;
-    static void checkFactories();
     static QList<Visual*> m_visuals;
     static QHash<VisualFactory*, Visual*> m_vis_map; //internal visualization
     static QWidget *m_parentClass;
