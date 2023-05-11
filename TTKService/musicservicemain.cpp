@@ -13,8 +13,6 @@
 #include <QTranslator>
 #include <QApplication>
 
-#define TTK_DEBUG
-
 static void cleanAppicationCache()
 {
     QFile::remove(TTK_COLOR_FILE);
@@ -58,12 +56,6 @@ int main(int argc, char *argv[])
     loadAppScaledFactor(argc, argv);
 
     QApplication app(argc, argv);
-#if !defined TTK_DEBUG && !defined Q_OS_UNIX
-    if(argc <= 1 || QString(argv[1]) != APP_NAME)
-    {
-        return -1;
-    }
-#endif
 
     QCoreApplication::setOrganizationName(APP_NAME);
     QCoreApplication::setOrganizationDomain(APP_COME_NAME);
@@ -99,20 +91,30 @@ int main(int argc, char *argv[])
     MusicApplication w;
     w.show();
 
-#ifdef Q_OS_WIN
-    if(argc == 4)
+    // parse command line args
+    QStringList args;
+    for(int i = 0; i < argc; ++i)
     {
-        const QString &data = QString::fromLocal8Bit(argv[3]);
-        if(data == MUSIC_OUTSIDE_OPEN)
+        const QString &&arg = QString::fromLocal8Bit(argv[i]);
+        if(!arg.endsWith(APP_NAME) && !arg.endsWith(SERVICE_NAME))
         {
-            w.musicImportSongsPathOutside({QString::fromLocal8Bit(argv[4])}, true);
-        }
-        else if(data == MUSIC_OUTSIDE_LIST)
-        {
-            w.musicImportSongsPathOutside({QString::fromLocal8Bit(argv[4])}, false);
+            args << arg;
         }
     }
-#elif defined Q_OS_UNIX
+
+    if(args.count() == 2)
+    {
+        if(args[0] == MUSIC_OUTSIDE_OPEN)
+        {
+            w.musicImportSongsPathOutside({args[1]}, true);
+        }
+        else if(args[0] == MUSIC_OUTSIDE_LIST)
+        {
+            w.musicImportSongsPathOutside({args[1]}, false);
+        }
+    }
+
+#ifdef Q_OS_UNIX
     // unix mpris module
     MusicMPRISPlayer mpris;
     mpris.run();

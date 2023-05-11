@@ -51,10 +51,8 @@
 #define MUSIC_TIME_INIT             "00:00"
 #define MUSIC_MOVIE_RADIO           QUERY_KG_INTERFACE
 
-#ifdef Q_OS_WIN
-#  define MUSIC_OUTSIDE_OPEN        "-Open"
-#  define MUSIC_OUTSIDE_LIST        "-List"
-#endif
+#define MUSIC_OUTSIDE_OPEN          "-Open"
+#define MUSIC_OUTSIDE_LIST          "-List"
 
 #define MUSIC_PLAY_NOW              "play_now"
 #define MUSIC_PLAY_LATER            "play_later"

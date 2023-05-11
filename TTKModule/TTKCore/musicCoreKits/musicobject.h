@@ -74,6 +74,7 @@
 #define FLAC_FILE                TTK_STRCAT(TTK_DOT, FLAC_FILE_SUFFIX)
 
 
+#define SERVICE_NAME             "TTKService"
 #define APP_NAME                 "TTKMusicPlayer"
 #define APP_DOT_NAME             TTK_STRCAT(APP_NAME, TTK_DOT)
 #define APP_COME_NAME            TTK_STRCAT(APP_NAME, COM_FILE)

@@ -50,14 +50,18 @@ void TTKRunObject::run(int argc, char **argv) const
 {
     TTK_D(TTKRunObject);
 
-    QStringList list(APP_NAME);
-    if(argc == 3)
+    QStringList args;
+    for(int i = 0; i < argc; ++i)
     {
-        list << QString::fromLocal8Bit(argv[1]) << QString::fromLocal8Bit(argv[2]);
+        const QString &&arg = QString::fromLocal8Bit(argv[i]);
+        if(!arg.endsWith(APP_NAME))
+        {
+            args << arg;
+        }
     }
 
     MusicConfigObject object;
-    d->m_process->start(object.appPath(), list);
+    d->m_process->start(object.appPath(), args);
 }
 
 void TTKRunObject::finished(int code)
