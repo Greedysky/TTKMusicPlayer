@@ -160,14 +160,14 @@ void MusicApplication::musicLoadCurrentSongLrc()
     QTimer::singleShot(MT_S2MS, this, SLOT(resetCurrentSongLrcIndex()));
 }
 
-void MusicApplication::musicImportSongsPathOutside(const QStringList &files, bool play)
+void MusicApplication::musicImportSongsPathOutside(const QString &file, bool play)
 {
-    if(files.isEmpty())
+    if(file.isEmpty())
     {
         return;
     }
 
-    m_songTreeWidget->importMusicSongsByPath(files);
+    m_songTreeWidget->importMusicSongsByPath({file});
     if(play)
     {
         musicPlayIndex(m_playlist->count() - 1, 0);

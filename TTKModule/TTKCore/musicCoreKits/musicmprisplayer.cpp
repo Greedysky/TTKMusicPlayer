@@ -322,7 +322,7 @@ void MusicMPRISPlayerCore::OpenUri(const QString &uri)
         }
     }
 
-    m_application->musicImportSongsPathOutside({path}, true);
+    m_application->musicImportSongsPathOutside(path, true);
 }
 
 void MusicMPRISPlayerCore::Pause()

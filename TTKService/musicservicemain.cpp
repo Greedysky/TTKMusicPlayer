@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
     for(int i = 0; i < argc; ++i)
     {
         const QString &&arg = QString::fromLocal8Bit(argv[i]);
-        if(!arg.endsWith(APP_NAME) && !arg.endsWith(SERVICE_NAME))
+        if(!arg.endsWith(APP_EXE_NAME) && !arg.endsWith(SERVICE_EXE_NAME))
         {
             args << arg;
         }
@@ -115,11 +115,11 @@ int main(int argc, char *argv[])
 
         if(parser.isSet(op1))
         {
-            w.musicImportSongsPathOutside({parser.value(op1)}, true);
+            w.musicImportSongsPathOutside(parser.value(op1), true);
         }
         else if(parser.isSet(op2))
         {
-            w.musicImportSongsPathOutside({parser.value(op2)}, false);
+            w.musicImportSongsPathOutside(parser.value(op2), false);
         }
     }
 

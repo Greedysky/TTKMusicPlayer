@@ -54,7 +54,7 @@ void TTKRunObject::run(int argc, char **argv) const
     for(int i = 0; i < argc; ++i)
     {
         const QString &&arg = QString::fromLocal8Bit(argv[i]);
-        if(!arg.endsWith(APP_NAME))
+        if(!arg.endsWith(APP_EXE_NAME))
         {
             args << arg;
         }

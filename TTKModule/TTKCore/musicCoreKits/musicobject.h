@@ -78,7 +78,13 @@
 #define APP_NAME                 "TTKMusicPlayer"
 #define APP_DOT_NAME             TTK_STRCAT(APP_NAME, TTK_DOT)
 #define APP_COME_NAME            TTK_STRCAT(APP_NAME, COM_FILE)
-#define APP_EXE_NAME             TTK_STRCAT(APP_NAME, EXE_FILE)
+#ifdef Q_OS_WIN
+#  define APP_EXE_NAME           TTK_STRCAT(APP_NAME, EXE_FILE)
+#  define SERVICE_EXE_NAME       TTK_STRCAT(SERVICE_NAME, EXE_FILE)
+#else
+#  define APP_EXE_NAME           APP_NAME
+#  define SERVICE_EXE_NAME       SERVICE_NAME
+#endif
 
 
 #define APPDATA_DIR              TTK_STRCAT("AppData", TTK_SEPARATOR)

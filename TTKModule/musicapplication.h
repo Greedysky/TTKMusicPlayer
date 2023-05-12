@@ -77,7 +77,7 @@ public:
     /*!
      * Import outside music datas into container.
      */
-    void musicImportSongsPathOutside(const QStringList &files, bool play);
+    void musicImportSongsPathOutside(const QString &file, bool play);
 
     /*!
      * Get music current song download contains.
