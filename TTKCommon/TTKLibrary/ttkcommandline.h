@@ -31,6 +31,19 @@ public:
     /*!
      * Object contsructor.
      */
+    TTKCommandLineOption(const QString &first)
+        : m_first(first)
+    {
+
+    }
+
+    TTKCommandLineOption(const QString &first, const QString &description)
+        : m_first(first),
+          m_description(description)
+    {
+
+    }
+
     TTKCommandLineOption(const QString &first, const QString &second, const QString &description)
         : m_first(first),
           m_second(second),
@@ -96,13 +109,14 @@ public:
     QString value(const TTKCommandLineOption &option) const;
 
     /*!
-     * Print help text.
-     */
-    void printHelp() const;
-    /*!
      * Current input command is empty.
      */
     inline bool isEmpty() const { return m_commands.isEmpty(); }
+
+    /*!
+     * Print help text.
+     */
+    void printHelp() const;
 
 private:
     QHash<QString, QString> m_commands;

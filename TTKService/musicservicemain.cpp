@@ -4,6 +4,7 @@
 #include "musicplatformmanager.h"
 #include "ttkglobalhelper.h"
 #include "ttkdumper.h"
+#include "ttkcommandline.h"
 
 #ifdef Q_OS_UNIX
 #  include <malloc.h>
@@ -104,13 +105,21 @@ int main(int argc, char *argv[])
 
     if(args.count() == 2)
     {
-        if(args[0] == MUSIC_OUTSIDE_OPEN)
+        TTKCommandLineOption op1(MUSIC_OUTSIDE_OPEN);
+        TTKCommandLineOption op2(MUSIC_OUTSIDE_LIST);
+
+        TTKCommandLineParser parser;
+        parser.addOption(op1);
+        parser.addOption(op2);
+        parser.process(args);
+
+        if(parser.isSet(op1))
         {
-            w.musicImportSongsPathOutside({args[1]}, true);
+            w.musicImportSongsPathOutside({parser.value(op1)}, true);
         }
-        else if(args[0] == MUSIC_OUTSIDE_LIST)
+        else if(parser.isSet(op2))
         {
-            w.musicImportSongsPathOutside({args[1]}, false);
+            w.musicImportSongsPathOutside({parser.value(op2)}, false);
         }
     }
 
