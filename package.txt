@@ -22,7 +22,7 @@ libvorbis-1.3.7	https://xiph.org/downloads
 mp3gain-1_5_2	http://mp3gain.sourceforge.net/download.php
 MPlayer-1.2.1	http://mplayerhq.hu/design7/dload.html
 OptimFROG-5100	http://losslessaudio.org/Downloads.php
-opus-1.3.1	https://www.opus-codec.org/downloads
+opus-1.4.0	https://www.opus-codec.org/downloads
 opusfile-0.12	https://www.opus-codec.org/downloads
 soxr-0.1.3	https://sourceforge.net/projects/soxr
 speex-1.2.1	https://gitlab.xiph.org/xiph/speex
@@ -32,7 +32,7 @@ wavpack-5.6.0	https://www.wavpack.com/downloads.html
 libxmp-4.5.0.patch	https://github.com/libxmp/libxmp
 zlib-1.2.13		https://github.com/madler/zlib
 7zip-22.01		https://www.7-zip.org/download.html
-ttk-1.2.1
+ttk-1.2.2
 (sonic-master	https://github.com/waywardgeek/sonic)
 (libasap-5.3.0	https://sourceforge.net/projects/asap)
 (libfc14-1.0.3	https://sourceforge.net/projects/xmms-fc)
@@ -40,4 +40,4 @@ ttk-1.2.1
 (libsc68-2.2.1	https://sourceforge.net/projects/sc68)
 (libuade-3.02	https://gitlab.com/uade-music-player/uade 60998cbf7113daba81387a3e737948dc6332b1a8)
 (libv2m-20211104	https://github.com/jgilje/v2m-player)
-///Update time 2023-04-12
+///Update time 2023-05-15
