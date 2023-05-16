@@ -70,6 +70,10 @@ public:
      * Override size hint.
      */
     virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override final;
+    /*!
+     * Override paint.
+     */
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 protected:
     TTKUInt8 m_mode;

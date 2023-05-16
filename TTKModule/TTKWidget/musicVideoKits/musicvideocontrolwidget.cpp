@@ -70,7 +70,6 @@ MusicVideoControlWidget::~MusicVideoControlWidget()
     delete m_playButton;
     delete m_volumeButton;
     delete m_qualityButton;
-
     delete m_pushBarrage;
     delete m_barrageSend;
     delete m_menuBarrage;

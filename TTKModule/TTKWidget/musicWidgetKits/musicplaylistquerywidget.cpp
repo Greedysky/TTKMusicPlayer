@@ -259,6 +259,7 @@ void MusicPlaylistQueryWidget::currentPlaylistClicked(const MusicResultDataItem 
 {
     delete m_infoWidget;
     m_infoWidget = new MusicPlaylistQueryInfoWidget(this);
+
     MusicQueryPlaylistRequest *d = TTKObjectCast(MusicQueryPlaylistRequest*, G_DOWNLOAD_QUERY_PTR->makePlaylistRequest(this));
     MusicResultDataItem it(item);
     if(it.isEmpty())

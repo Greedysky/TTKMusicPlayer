@@ -34,6 +34,15 @@ QSize TTKAbstractItemDelegate::sizeHint(const QStyleOptionViewItem &option, cons
     return size;
 }
 
+void TTKAbstractItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+#if !TTK_QT_VERSION_CHECK(5,7,0)
+    QItemDelegate::paint(painter, option, index);
+#else
+    drawBackground(painter, option, index);
+#endif
+}
+
 
 
 TTKCheckBoxItemDelegate::TTKCheckBoxItemDelegate(QObject *parent)
@@ -54,11 +63,7 @@ TTKCheckBoxItemDelegate::~TTKCheckBoxItemDelegate()
 
 void TTKCheckBoxItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-#if !TTK_QT_VERSION_CHECK(5,7,0)
-    QItemDelegate::paint(painter, option, index);
-#else
-    drawBackground(painter, option, index);
-#endif
+    TTKAbstractItemDelegate::paint(painter, option, index);
 
     if((m_mode & TTKAbstractItemDelegate::TreeMode) && !index.parent().isValid())
     {
@@ -108,11 +113,7 @@ TTKProgressBarItemDelegate::~TTKProgressBarItemDelegate()
 
 void TTKProgressBarItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-#if !TTK_QT_VERSION_CHECK(5,7,0)
-    QItemDelegate::paint(painter, option, index);
-#else
-    drawBackground(painter, option, index);
-#endif
+    TTKAbstractItemDelegate::paint(painter, option, index);
 
     if((m_mode & TTKAbstractItemDelegate::TreeMode) && !index.parent().isValid())
     {
@@ -150,11 +151,7 @@ void TTKLabelItemDelegate::setAlignment(Qt::Alignment alignment) const
 
 void TTKLabelItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-#if !TTK_QT_VERSION_CHECK(5,7,0)
-    QItemDelegate::paint(painter, option, index);
-#else
-    drawBackground(painter, option, index);
-#endif
+    TTKAbstractItemDelegate::paint(painter, option, index);
 
     if((m_mode & TTKAbstractItemDelegate::TreeMode) && !index.parent().isValid())
     {
@@ -201,11 +198,7 @@ TTKPushButtonItemDelegate::~TTKPushButtonItemDelegate()
 
 void TTKPushButtonItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-#if !TTK_QT_VERSION_CHECK(5,7,0)
-    QItemDelegate::paint(painter, option, index);
-#else
-    drawBackground(painter, option, index);
-#endif
+    TTKAbstractItemDelegate::paint(painter, option, index);
 
     if((m_mode & TTKAbstractItemDelegate::TreeMode) && !index.parent().isValid())
     {

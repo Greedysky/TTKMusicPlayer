@@ -212,10 +212,7 @@ void QKugouWindow::kugouMVIndexChanged(int index)
 void QKugouWindow::createWebViewer()
 {
     TTK_D(QKugouWindow);
-    if(d->m_webView)
-    {
-        delete d->m_webView;
-    }
+    delete d->m_webView;
 #ifdef Q_OS_WIN
     QAxWidget *view = new QAxWidget(this);
     view->setWindowFlags(Qt::FramelessWindowHint);
