@@ -254,7 +254,7 @@ void CueParser::setMetaData(int track, Qmmp::MetaData key, const QVariant &value
 void CueParser::setUrl(const QString &scheme, const QString &path)
 {
     for(int i = 0; i < m_tracks.count(); ++i)
-        m_tracks.at(i)->info.setPath(QString("%1://%2#%3").arg(scheme).arg(path).arg(m_tracks.at(i)->info.value(Qmmp::TRACK)));
+        m_tracks.at(i)->info.setPath(QString("%1://%2#%3").arg(scheme, path, m_tracks.at(i)->info.value(Qmmp::TRACK)));
 }
 
 void CueParser::clear()

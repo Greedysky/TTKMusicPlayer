@@ -235,8 +235,8 @@ void OutputWriter::run()
                 m_mutex.unlock();
                 continue;
             }
-            else
-                m_output->resume();
+            
+            m_output->resume();
         }
         recycler()->mutex()->lock();
         done = m_user_stop || (m_finish && recycler()->empty());

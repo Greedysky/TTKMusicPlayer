@@ -137,7 +137,7 @@ const QString AudioParameters::toString() const
         }
     }
 
-    return QString("%1 Hz, {%2}, %3").arg(m_srate).arg(m_chan_map.toString()).arg(name);
+    return QString("%1 Hz, {%2}, %3").arg(m_srate).arg(m_chan_map.toString(), name);
 }
 
 int AudioParameters::sampleSize(Qmmp::AudioFormat format)

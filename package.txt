@@ -31,7 +31,7 @@ taglib-1.13	https://github.com/taglib/taglib
 wavpack-5.6.0	https://www.wavpack.com/downloads.html
 libxmp-4.5.0.patch	https://github.com/libxmp/libxmp
 zlib-1.2.13		https://github.com/madler/zlib
-7zip-22.01		https://www.7-zip.org/download.html
+7zip-23.00		https://www.7-zip.org/download.html
 ttk-1.2.2
 (sonic-master	https://github.com/waywardgeek/sonic)
 (libasap-5.3.0	https://sourceforge.net/projects/asap)

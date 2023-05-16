@@ -108,7 +108,7 @@ void FLACMetaDataModel::setCover(const QPixmap &pix)
         flacFile->addPicture(picture);
         flacFile->save();
     }
-    else if(m_tag)
+    else if(m_tag && m_file)
     {
         m_tag->addPicture(picture);
         m_file->save();
