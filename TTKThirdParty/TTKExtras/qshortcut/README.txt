@@ -1,0 +1,1 @@
+https://bitbucket.org/libqxt/libqxt/wiki/Home

@@ -50,62 +50,62 @@ class QDeviceWatcher;
  */
 class TTK_MODULE_EXPORT QDeviceWatcherPrivate
 #if CONFIG_THREAD
-	: public QThread
+    : public QThread
 #else
-	: public QObject
+    : public QObject
 #endif //CONFIG_THREAD
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	QDeviceWatcherPrivate(QObject *parent = nullptr) :
+    QDeviceWatcherPrivate(QObject *parent = nullptr) :
 #if CONFIG_THREAD
-	QThread(parent)
+    QThread(parent)
 #else
-	QObject(parent)
+    QObject(parent)
 #endif //CONFIG_THREAD
-	{
+    {
         //initialize();
-	}
-	~QDeviceWatcherPrivate();
+    }
+    ~QDeviceWatcherPrivate();
 
-	void setWatcher(QDeviceWatcher *w) {watcher=w;}
+    void setWatcher(QDeviceWatcher *w) {watcher=w;}
     bool start(); //conflict with QThread::start()
-	bool stop();
+    bool stop();
 
-	//Do not use Qt::DirectConnection. this thread is not watcher's thread!
-	void emitDeviceAdded(const QString& dev);
-	void emitDeviceChanged(const QString& dev); //Linux: when umounting the device
-	void emitDeviceRemoved(const QString& dev);
-	void emitDeviceAction(const QString& dev, const QString& action);
+    //Do not use Qt::DirectConnection. this thread is not watcher's thread!
+    void emitDeviceAdded(const QString& dev);
+    void emitDeviceChanged(const QString& dev); //Linux: when umounting the device
+    void emitDeviceRemoved(const QString& dev);
+    void emitDeviceAction(const QString& dev, const QString& action);
 
     QObjectList event_receivers;
 
 private Q_SLOTS:
-	void parseDeviceInfo();
+    void parseDeviceInfo();
 
 private:
-	QDeviceWatcher *watcher;
+    QDeviceWatcher *watcher;
 
     bool initialize();
 #if CONFIG_THREAD
-	virtual void run();
+    virtual void run();
 #endif //CONFIG_THREAD
 #if defined(Q_OS_LINUX)
-	QBuffer buffer;
-	void parseLine(const QByteArray &line);
+    QBuffer buffer;
+    void parseLine(const QByteArray &line);
 #  if CONFIG_TCPSOCKET
-	class QTcpSocket *tcp_socket;
+    class QTcpSocket *tcp_socket;
 #  elif CONFIG_SOCKETNOTIFIER
-	class QSocketNotifier *socket_notifier;
+    class QSocketNotifier *socket_notifier;
 #  endif
 
-	QString bus_name;
-	int netlink_socket;
+    QString bus_name;
+    int netlink_socket;
 #elif defined(Q_OS_WIN32)
-	HWND hwnd;
+    HWND hwnd;
 #elif defined(Q_OS_WINCE)
-	HANDLE mQueueHandle;
-	HANDLE mNotificationHandle;
+    HANDLE mQueueHandle;
+    HANDLE mNotificationHandle;
 #endif
 #ifdef Q_OS_MAC
     volatile bool mStop;

@@ -30,27 +30,27 @@ class QDeviceWatcherPrivate;
  */
 class TTK_MODULE_EXPORT QDeviceWatcher : public QObject
 {
-	Q_OBJECT
-	Q_DECLARE_PRIVATE(QDeviceWatcher)
+    Q_OBJECT
+    Q_DECLARE_PRIVATE(QDeviceWatcher)
 public:
-	explicit QDeviceWatcher(QObject *parent = nullptr);
-	~QDeviceWatcher();
+    explicit QDeviceWatcher(QObject *parent = nullptr);
+    ~QDeviceWatcher();
 
-	bool start();
-	bool stop();
-	bool isRunning() const;
+    bool start();
+    bool stop();
+    bool isRunning() const;
 
-	void appendEventReceiver(QObject* receiver);
+    void appendEventReceiver(QObject* receiver);
 
 Q_SIGNALS:
-	void deviceAdded(const QString& dev);
+    void deviceAdded(const QString& dev);
     void deviceChanged(bool state);
-	void deviceChanged(const QString& dev); //when umounting the device
-	void deviceRemoved(const QString& dev);
+    void deviceChanged(const QString& dev); //when umounting the device
+    void deviceRemoved(const QString& dev);
 
 protected:
-	bool running;
-	QDeviceWatcherPrivate *d_ptr;
+    bool running;
+    QDeviceWatcherPrivate *d_ptr;
 };
 
 /*! @brief The class of the device watcher event.
@@ -64,8 +64,9 @@ public:
 
     explicit QDeviceChangeEvent(Action action, const QString& device);
 
-    Action action() const {return m_action;}
-    QString device() const {return m_device;}
+    Action action() const { return m_action; }
+    QString device() const { return m_device; }
+
     static Type registeredType()
     {
         static Type EventType = TTKStaticCast(Type, registerEventType());

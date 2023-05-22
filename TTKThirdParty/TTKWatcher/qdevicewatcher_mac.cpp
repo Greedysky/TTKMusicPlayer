@@ -45,11 +45,9 @@ bool QDeviceWatcherPrivate::stop()
     DAUnregisterCallback(mSession, (void*)onDiskDisappear, this);
 }
 
-
 void QDeviceWatcherPrivate::parseDeviceInfo()
 {
 }
-
 
 bool QDeviceWatcherPrivate::initialize()
 {
@@ -59,7 +57,6 @@ bool QDeviceWatcherPrivate::initialize()
 
     DARegisterDiskAppearedCallback(mSession, nullptr, onDiskAppear, this);
     DARegisterDiskDisappearedCallback(mSession, nullptr, onDiskDisappear, this);
-
 }
 
 void QDeviceWatcherPrivate::run()
