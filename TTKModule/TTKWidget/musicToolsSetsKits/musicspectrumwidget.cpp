@@ -18,7 +18,7 @@
 #define LIGHT_SPECTROGRAM_MODULE    "lightspectrogram"
 
 MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
-    : MusicAbstractMoveResizeContainWidget(parent),
+    : MusicAbstractMoveResizePlainWidget(parent),
       m_ui(new Ui::MusicSpectrumWidget),
       m_spectrumLayout(nullptr)
 {
@@ -184,7 +184,7 @@ void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
 
 void MusicSpectrumWidget::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    MusicAbstractMoveResizeContainWidget::mouseDoubleClickEvent(event);
+    MusicAbstractMoveResizePlainWidget::mouseDoubleClickEvent(event);
     if(event->buttons() == Qt::LeftButton)
     {
         isMaximized() ? showNormal() : showMaximized();

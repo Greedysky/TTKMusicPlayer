@@ -34,13 +34,13 @@ void MusicAbstractMoveWidget::show()
 
 
 
-MusicAbstractMoveContainWidget::MusicAbstractMoveContainWidget(QWidget *parent)
-    : MusicAbstractMoveContainWidget(true, parent)
+MusicAbstractMovePlainWidget::MusicAbstractMovePlainWidget(QWidget *parent)
+    : MusicAbstractMovePlainWidget(true, parent)
 {
 
 }
 
-MusicAbstractMoveContainWidget::MusicAbstractMoveContainWidget(bool transparent, QWidget *parent)
+MusicAbstractMovePlainWidget::MusicAbstractMovePlainWidget(bool transparent, QWidget *parent)
     : MusicAbstractMoveWidget(transparent, parent)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -52,7 +52,7 @@ MusicAbstractMoveContainWidget::MusicAbstractMoveContainWidget(bool transparent,
     setLayout(layout);
 }
 
-MusicAbstractMoveContainWidget::~MusicAbstractMoveContainWidget()
+MusicAbstractMovePlainWidget::~MusicAbstractMovePlainWidget()
 {
     delete m_container;
 }

@@ -38,23 +38,23 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
     G_HOTKEY_PTR->addHotKey("Alt+5");
     G_HOTKEY_PTR->addHotKey("Ctrl+Q");
 
-    connect(G_HOTKEY_PTR->hotKey(0), SIGNAL(activated()), SLOT(musicStatePlay()));
-    connect(G_HOTKEY_PTR->hotKey(1), SIGNAL(activated()), SLOT(musicPlayPrevious()));
-    connect(G_HOTKEY_PTR->hotKey(2), SIGNAL(activated()), SLOT(musicPlayNext()));
-    connect(G_HOTKEY_PTR->hotKey(3), SIGNAL(activated()), SLOT(musicActionVolumePlus()));
-    connect(G_HOTKEY_PTR->hotKey(4), SIGNAL(activated()), SLOT(musicActionVolumeSub()));
+    connect(G_HOTKEY_PTR->hotKey(0), SIGNAL(activated()), SLOT(playState()));
+    connect(G_HOTKEY_PTR->hotKey(1), SIGNAL(activated()), SLOT(playPrevious()));
+    connect(G_HOTKEY_PTR->hotKey(2), SIGNAL(activated()), SLOT(playNext()));
+    connect(G_HOTKEY_PTR->hotKey(3), SIGNAL(activated()), SLOT(volumeUp()));
+    connect(G_HOTKEY_PTR->hotKey(4), SIGNAL(activated()), SLOT(volumeDown()));
 
-    connect(G_HOTKEY_PTR->hotKey(5), SIGNAL(activated()), SLOT(musicPlayOrder()));
-    connect(G_HOTKEY_PTR->hotKey(6), SIGNAL(activated()), SLOT(musicPlayRandom()));
-    connect(G_HOTKEY_PTR->hotKey(7), SIGNAL(activated()), SLOT(musicPlaylistLoop()));
-    connect(G_HOTKEY_PTR->hotKey(8), SIGNAL(activated()), SLOT(musicPlayOneLoop()));
-    connect(G_HOTKEY_PTR->hotKey(9), SIGNAL(activated()), SLOT(musicPlayOnce()));
+    connect(G_HOTKEY_PTR->hotKey(5), SIGNAL(activated()), SLOT(playOrder()));
+    connect(G_HOTKEY_PTR->hotKey(6), SIGNAL(activated()), SLOT(playRandom()));
+    connect(G_HOTKEY_PTR->hotKey(7), SIGNAL(activated()), SLOT(playlistLoop()));
+    connect(G_HOTKEY_PTR->hotKey(8), SIGNAL(activated()), SLOT(playOneLoop()));
+    connect(G_HOTKEY_PTR->hotKey(9), SIGNAL(activated()), SLOT(playOnce()));
 
-    connect(G_HOTKEY_PTR->hotKey(10), SIGNAL(activated()), SLOT(musicEnhancedOff()));
-    connect(G_HOTKEY_PTR->hotKey(11), SIGNAL(activated()), SLOT(musicEnhanced3D()));
-    connect(G_HOTKEY_PTR->hotKey(12), SIGNAL(activated()), SLOT(musicEnhancedNICAM()));
-    connect(G_HOTKEY_PTR->hotKey(13), SIGNAL(activated()), SLOT(musicEnhancedSubwoofer()));
-    connect(G_HOTKEY_PTR->hotKey(14), SIGNAL(activated()), SLOT(musicEnhancedVocal()));
+    connect(G_HOTKEY_PTR->hotKey(10), SIGNAL(activated()), SLOT(setEnhancedOff()));
+    connect(G_HOTKEY_PTR->hotKey(11), SIGNAL(activated()), SLOT(setEnhanced3D()));
+    connect(G_HOTKEY_PTR->hotKey(12), SIGNAL(activated()), SLOT(setEnhancedNICAM()));
+    connect(G_HOTKEY_PTR->hotKey(13), SIGNAL(activated()), SLOT(setEnhancedSubwoofer()));
+    connect(G_HOTKEY_PTR->hotKey(14), SIGNAL(activated()), SLOT(setEnhancedVocal()));
 
     connect(G_HOTKEY_PTR->hotKey(15), SIGNAL(activated()), qApp, SLOT(quit()));
 }
@@ -193,7 +193,7 @@ void MusicConsoleModule::currentIndexChanged(int index)
     }
 }
 
-void MusicConsoleModule::musicStatePlay()
+void MusicConsoleModule::playState()
 {
     if(m_playlist->isEmpty())
     {
@@ -211,7 +211,7 @@ void MusicConsoleModule::musicStatePlay()
     }
 }
 
-void MusicConsoleModule::musicPlayPrevious()
+void MusicConsoleModule::playPrevious()
 {
     if(m_playlist->isEmpty())
     {
@@ -231,7 +231,7 @@ void MusicConsoleModule::musicPlayPrevious()
     m_player->setVolume(m_volume);
 }
 
-void MusicConsoleModule::musicPlayNext()
+void MusicConsoleModule::playNext()
 {
     if(m_playlist->isEmpty())
     {
@@ -256,7 +256,7 @@ void MusicConsoleModule::resetVolume()
     m_player->setVolume(m_volume);
 }
 
-void MusicConsoleModule::musicActionVolumeSub()
+void MusicConsoleModule::volumeDown()
 {
     m_volume = m_player->volume();
     m_volume -= 15;
@@ -268,7 +268,7 @@ void MusicConsoleModule::musicActionVolumeSub()
     m_player->setVolume(m_volume);
 }
 
-void MusicConsoleModule::musicActionVolumePlus()
+void MusicConsoleModule::volumeUp()
 {
     m_volume = m_player->volume();
     m_volume += 15;
@@ -280,63 +280,63 @@ void MusicConsoleModule::musicActionVolumePlus()
     m_player->setVolume(m_volume);
 }
 
-void MusicConsoleModule::musicPlayOrder()
+void MusicConsoleModule::playOrder()
 {
     m_playlist->setPlaybackMode(TTK::PlayMode::Order);
     m_playbackMode = "Order";
 }
 
-void MusicConsoleModule::musicPlayRandom()
+void MusicConsoleModule::playRandom()
 {
     m_playlist->setPlaybackMode(TTK::PlayMode::Random);
     m_playbackMode = "Random";
 }
 
-void MusicConsoleModule::musicPlaylistLoop()
+void MusicConsoleModule::playlistLoop()
 {
     m_playlist->setPlaybackMode(TTK::PlayMode::ListLoop);
     m_playbackMode = "ListLoop";
 }
 
-void MusicConsoleModule::musicPlayOneLoop()
+void MusicConsoleModule::playOneLoop()
 {
     m_playlist->setPlaybackMode(TTK::PlayMode::OneLoop);
     m_playbackMode = "OneLoop";
 }
 
-void MusicConsoleModule::musicPlayOnce()
+void MusicConsoleModule::playOnce()
 {
     m_playlist->setPlaybackMode(TTK::PlayMode::Once);
     m_playbackMode = "Once";
 }
 
-void MusicConsoleModule::musicEnhancedOff()
+void MusicConsoleModule::setEnhancedOff()
 {
-    m_player->setMusicEnhanced(MusicPlayer::Enhance::Off);
+    m_player->setEnhanced(MusicPlayer::Enhance::Off);
     m_enhanced = "Off";
 }
 
-void MusicConsoleModule::musicEnhanced3D()
+void MusicConsoleModule::setEnhanced3D()
 {
-    m_player->setMusicEnhanced(MusicPlayer::Enhance::M3D);
+    m_player->setEnhanced(MusicPlayer::Enhance::M3D);
     m_enhanced = "3D";
 }
 
-void MusicConsoleModule::musicEnhancedNICAM()
+void MusicConsoleModule::setEnhancedNICAM()
 {
-    m_player->setMusicEnhanced(MusicPlayer::Enhance::NICAM);
+    m_player->setEnhanced(MusicPlayer::Enhance::NICAM);
     m_enhanced = "NICAM";
 }
 
-void MusicConsoleModule::musicEnhancedSubwoofer()
+void MusicConsoleModule::setEnhancedSubwoofer()
 {
-    m_player->setMusicEnhanced(MusicPlayer::Enhance::Subwoofer);
+    m_player->setEnhanced(MusicPlayer::Enhance::Subwoofer);
     m_enhanced = "Subwoofer";
 }
 
-void MusicConsoleModule::musicEnhancedVocal()
+void MusicConsoleModule::setEnhancedVocal()
 {
-    m_player->setMusicEnhanced(MusicPlayer::Enhance::Vocal);
+    m_player->setEnhanced(MusicPlayer::Enhance::Vocal);
     m_enhanced = "Vocal";
 }
 

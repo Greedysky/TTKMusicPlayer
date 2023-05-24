@@ -58,7 +58,7 @@ MusicVideoControlWidget::MusicVideoControlWidget(QWidget *parent)
     setLayout(controlVLayout);
 
     connect(m_timeSlider, SIGNAL(sliderReleasedAt(int)), SIGNAL(sliderValueChanged(int)));
-    connect(m_volumeButton, SIGNAL(musicVolumeChanged(int)), parent, SLOT(volumeChanged(int)));
+    connect(m_volumeButton, SIGNAL(volumeChanged(int)), parent, SLOT(volumeChanged(int)));
     connect(m_playButton, SIGNAL(clicked()), parent, SLOT(play()));
     connect(m_qualityButton, SIGNAL(mediaUrlChanged(QString)), SIGNAL(mediaUrlChanged(QString)));
 }

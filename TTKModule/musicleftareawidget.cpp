@@ -46,11 +46,11 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
     m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
     m_ui->songsContainer->setLength(LEFT_SIDE_WIDTH_MIN, MusicAnimationStackedWidget::Module::LeftToRight);
 
-    connect(ui->musicKey, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicStatePlay()));
-    connect(ui->musicPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
-    connect(ui->musicNext, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayNext()));
+    connect(ui->musicKey, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playState()));
+    connect(ui->musicPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playPrevious()));
+    connect(ui->musicNext, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playNext()));
     connect(ui->musicSound, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicVolumeMute()));
-    connect(ui->musicSound, SIGNAL(musicVolumeChanged(int)), MusicApplication::instance(), SLOT(musicVolumeChanged(int)));
+    connect(ui->musicSound, SIGNAL(volumeChanged(int)), MusicApplication::instance(), SLOT(volumeChanged(int)));
     connect(ui->musicBestLove, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicAddSongToLovestList()));
     connect(ui->musicDownload, SIGNAL(clicked()), this, SLOT(musicDownloadSongToLocal()));
     connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), MusicApplication::instance(), SLOT(musicEnhancedMusicChanged(int)));

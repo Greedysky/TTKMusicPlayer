@@ -87,7 +87,7 @@ Q_SIGNALS:
     /*!
      * Set current play volume by value.
      */
-    void musicVolumeChanged(int value);
+    void volumeChanged(int value);
     /*!
      * Show current setting widget.
      */

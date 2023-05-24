@@ -69,15 +69,15 @@ public Q_SLOTS:
     /*!
      * Set music to play.
      */
-    void musicPlay();
+    void playSong();
     /*!
      * Set music to previous.
      */
-    void musicPrevious();
+    void playPrevious();
     /*!
      * Set music to next.
      */
-    void musicNext();
+    void playNext();
 
 private:
     Ui::MusicSongDlnaTransferWidget *m_ui;

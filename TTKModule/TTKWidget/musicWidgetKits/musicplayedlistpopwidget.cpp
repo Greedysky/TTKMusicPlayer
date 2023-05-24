@@ -199,7 +199,7 @@ void MusicPlayedListPopWidget::popupMenu()
     m_menu->exec(pos);
 }
 
-void MusicPlayedListPopWidget::setDeleteItemAt(const TTKIntList &index)
+void MusicPlayedListPopWidget::removeItemAt(const TTKIntList &index)
 {
     if(index.isEmpty())
     {
@@ -225,7 +225,7 @@ void MusicPlayedListPopWidget::setDeleteItemAt(const TTKIntList &index)
         MusicApplication *w = MusicApplication::instance();
         if(w->isPlaying())
         {
-            w->musicPlayNext();
+            w->playNext();
         }
         else
         {
@@ -254,7 +254,7 @@ void MusicPlayedListPopWidget::setDeleteItemAt(const TTKIntList &index)
     setPlaylistCount(m_songList.count());
 }
 
-void MusicPlayedListPopWidget::setDeleteItemAll()
+void MusicPlayedListPopWidget::removeItemAll()
 {
     if(m_songList.isEmpty())
     {
@@ -325,7 +325,7 @@ void MusicPlayedListPopWidget::initialize()
 
     m_playedListWidget = new MusicSongsListPlayedTableWidget(this);
     m_playedListWidget->setSongsList(&m_songList);
-    connect(m_playedListWidget, SIGNAL(deleteItemAt(TTKIntList)), SLOT(setDeleteItemAt(TTKIntList)));
+    connect(m_playedListWidget, SIGNAL(deleteItemAt(TTKIntList)), SLOT(removeItemAt(TTKIntList)));
     connect(m_playedListWidget, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
     QWidget *playedListContainer = new QWidget(m_scrollArea);
@@ -365,7 +365,7 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     deleteButton->setToolTip(tr("Clear List"));
     deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     deleteButton->setStyleSheet(TTK::UI::TinyBtnDelete);
-    connect(deleteButton, SIGNAL(clicked()), SLOT(setDeleteItemAll()));
+    connect(deleteButton, SIGNAL(clicked()), SLOT(removeItemAll()));
 
 #ifdef Q_OS_UNIX
     shareButton->setFocusPolicy(Qt::NoFocus);

@@ -117,13 +117,13 @@ public Q_SLOTS:
      */
     virtual void removeItems() override final;
     /*!
-     * Delete item from list at current row.
+     * Remove item from list at current row.
      */
-    virtual void setDeleteItemAt() override final;
+    virtual void removeItemAt() override final;
     /*!
-     * Delete item or items from list with file.
+     * Remove item or items from list with file.
      */
-    void setDeleteItemWithFile();
+    void removeItemWithFile();
     /*!
      * Show play item information widget.
      */

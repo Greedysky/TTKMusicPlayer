@@ -68,11 +68,11 @@ void MusicSongCheckToolsRenameTableWidget::itemCellClicked(int row, int column)
     MusicFillItemTableWidget::itemCellClicked(row, column);
     if(column == 3)
     {
-        deleteCurrentRow();
+        removeCurrentRow();
     }
 }
 
-void MusicSongCheckToolsRenameTableWidget::deleteCurrentRow()
+void MusicSongCheckToolsRenameTableWidget::removeCurrentRow()
 {
     if(!isValid())
     {
@@ -166,13 +166,13 @@ void MusicSongCheckToolsDuplicateTableWidget::itemCellClicked(int row, int colum
     MusicFillItemTableWidget::itemCellClicked(row, column);
     switch(column)
     {
-        case 5: musicPlay(); break;
-        case 6: deleteCurrentRow(); break;
+        case 5: playSong(); break;
+        case 6: removeCurrentRow(); break;
         default: break;
     }
 }
 
-void MusicSongCheckToolsDuplicateTableWidget::musicPlay()
+void MusicSongCheckToolsDuplicateTableWidget::playSong()
 {
     if(!isValid())
     {
@@ -187,7 +187,7 @@ void MusicSongCheckToolsDuplicateTableWidget::musicPlay()
     }
 }
 
-void MusicSongCheckToolsDuplicateTableWidget::deleteCurrentRow()
+void MusicSongCheckToolsDuplicateTableWidget::removeCurrentRow()
 {
     if(!isValid())
     {
@@ -291,13 +291,13 @@ void MusicSongCheckToolsQualityTableWidget::itemCellClicked(int row, int column)
     MusicFillItemTableWidget::itemCellClicked(row, column);
     switch(column)
     {
-        case 6: musicPlay(); break;
-        case 7: deleteCurrentRow(); break;
+        case 6: playSong(); break;
+        case 7: removeCurrentRow(); break;
         default: break;
     }
 }
 
-void MusicSongCheckToolsQualityTableWidget::musicPlay()
+void MusicSongCheckToolsQualityTableWidget::playSong()
 {
     if(!isValid())
     {
@@ -312,7 +312,7 @@ void MusicSongCheckToolsQualityTableWidget::musicPlay()
     }
 }
 
-void MusicSongCheckToolsQualityTableWidget::deleteCurrentRow()
+void MusicSongCheckToolsQualityTableWidget::removeCurrentRow()
 {
     if(!isValid())
     {

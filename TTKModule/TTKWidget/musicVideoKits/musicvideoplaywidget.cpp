@@ -281,7 +281,7 @@ void MusicVideoPlayWidget::mediaUrlChanged(const QString &url)
     MusicApplication *w = MusicApplication::instance();
     if(w->isPlaying())
     {
-        w->musicStatePlay();
+        w->playState();
     }
     ///stop current media play while mv starts.
     m_videoView->setMedia(url);

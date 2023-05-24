@@ -160,15 +160,15 @@ void MusicMPRISPlayerCore::setLoopStatus(const QString &value)
 {
     if(value == "Track")
     {
-        m_application->musicPlayOneLoop();
+        m_application->playOneLoop();
     }
     else if(value == "Playlist")
     {
-        m_application->musicPlaylistLoop();
+        m_application->playlistLoop();
     }
     else
     {
-        m_application->musicPlayOrder();
+        m_application->playOrder();
     }
 }
 
@@ -302,12 +302,12 @@ void MusicMPRISPlayerCore::setVolume(double value)
 
 void MusicMPRISPlayerCore::Previous()
 {
-    m_application->musicPlayPrevious();
+    m_application->playPrevious();
 }
 
 void MusicMPRISPlayerCore::Next()
 {
-    m_application->musicPlayNext();
+    m_application->playNext();
 }
 
 void MusicMPRISPlayerCore::OpenUri(const QString &uri)
@@ -327,17 +327,17 @@ void MusicMPRISPlayerCore::OpenUri(const QString &uri)
 
 void MusicMPRISPlayerCore::Pause()
 {
-    m_application->musicStatePlay();
+    m_application->playState();
 }
 
 void MusicMPRISPlayerCore::Play()
 {
-    m_application->musicStatePlay();
+    m_application->playState();
 }
 
 void MusicMPRISPlayerCore::PlayPause()
 {
-    m_application->musicStatePlay();
+    m_application->playState();
 }
 
 void MusicMPRISPlayerCore::Stop()

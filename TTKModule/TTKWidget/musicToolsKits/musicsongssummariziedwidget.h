@@ -182,9 +182,9 @@ public Q_SLOTS:
      */
     void addSongToPlaylist(const QStringList &items);
     /*!
-     * Delete items from indexs and check remove file or not.
+     * Remove items from indexs and check remove file or not.
      */
-    void setDeleteItemAt(const TTKIntList &del, bool fileRemove);
+    void removeItemAt(const TTKIntList &del, bool fileRemove);
     /*!
      * Swap the current play index when user drag and drop.
      */

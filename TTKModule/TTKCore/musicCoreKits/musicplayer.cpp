@@ -101,7 +101,7 @@ void MusicPlayer::setMuted(bool muted)
     m_core->setMuted(muted);
 }
 
-void MusicPlayer::setMusicEnhanced(Enhance type)
+void MusicPlayer::setEnhanced(Enhance type)
 {
     m_enhance = type;
 
@@ -125,7 +125,7 @@ void MusicPlayer::setMusicEnhanced(Enhance type)
     }
 }
 
-MusicPlayer::Enhance MusicPlayer::musicEnhanced() const
+MusicPlayer::Enhance MusicPlayer::enhanced() const
 {
     return m_enhance;
 }

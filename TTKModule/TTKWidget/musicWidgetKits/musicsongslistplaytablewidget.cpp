@@ -392,7 +392,7 @@ void MusicSongsListPlayTableWidget::itemCellClicked(int row, int column)
                 return;
             }
 
-            setDeleteItemAt();
+            removeItemAt();
             break;
         }
         case 5:
@@ -426,7 +426,7 @@ void MusicSongsListPlayTableWidget::removeItems()
     setColumnCount(6);
 }
 
-void MusicSongsListPlayTableWidget::setDeleteItemAt()
+void MusicSongsListPlayTableWidget::removeItemAt()
 {
     MusicMessageBox message;
     message.setText(tr("Are you sure to delete?"));
@@ -471,10 +471,10 @@ void MusicSongsListPlayTableWidget::setDeleteItemAt()
     Q_EMIT deleteItemAt(deleteList, m_deleteItemWithFile);
 }
 
-void MusicSongsListPlayTableWidget::setDeleteItemWithFile()
+void MusicSongsListPlayTableWidget::removeItemWithFile()
 {
     m_deleteItemWithFile = true;
-    setDeleteItemAt();
+    removeItemAt();
     m_deleteItemWithFile = false;
 }
 
@@ -732,9 +732,9 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     status = false;
     Q_EMIT isSearchResultEmpty(status);
     menu.addAction(tr("Rename"), this, SLOT(setChangSongName()))->setEnabled(status);
-    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(status);
-    menu.addAction(tr("Delete With File"), this, SLOT(setDeleteItemWithFile()))->setEnabled(status);
-    menu.addAction(tr("Delete All"), this, SLOT(setDeleteItemAll()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(removeItemAt()))->setEnabled(status);
+    menu.addAction(tr("Delete With File"), this, SLOT(removeItemWithFile()))->setEnabled(status);
+    menu.addAction(tr("Delete All"), this, SLOT(removeItemAll()))->setEnabled(status);
     menu.addSeparator();
 
     const QString &songName = currentSongName();

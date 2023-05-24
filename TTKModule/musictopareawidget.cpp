@@ -410,11 +410,11 @@ void MusicTopAreaWidget::createRemoteWidget()
     m_remoteWidget->setVolumeValue(m_ui->musicSound->value());
 
     connect(m_remoteWidget, SIGNAL(musicWindowChanged()), MusicApplication::instance(), SLOT(showNormal()));
-    connect(m_remoteWidget, SIGNAL(musicPlayPreviousChanged()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
-    connect(m_remoteWidget, SIGNAL(musicPlayNextChanged()), MusicApplication::instance(), SLOT(musicPlayNext()));
-    connect(m_remoteWidget, SIGNAL(musicKeyChanged()), MusicApplication::instance(), SLOT(musicStatePlay()));
+    connect(m_remoteWidget, SIGNAL(musicPlayPreviousChanged()), MusicApplication::instance(), SLOT(playPrevious()));
+    connect(m_remoteWidget, SIGNAL(musicPlayNextChanged()), MusicApplication::instance(), SLOT(playNext()));
+    connect(m_remoteWidget, SIGNAL(musicKeyChanged()), MusicApplication::instance(), SLOT(playState()));
     connect(m_remoteWidget, SIGNAL(musicSettingChanged()), MusicApplication::instance(), SLOT(musicSetting()));
-    connect(m_remoteWidget, SIGNAL(musicVolumeChanged(int)), MusicApplication::instance(), SLOT(musicVolumeChanged(int)));
+    connect(m_remoteWidget, SIGNAL(volumeChanged(int)), MusicApplication::instance(), SLOT(volumeChanged(int)));
     connect(m_remoteWidget, SIGNAL(musicRemoteTypeChanged(QAction*)), SLOT(musicRemoteTypeChanged(QAction*)));
     m_remoteWidget->show();
 }

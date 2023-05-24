@@ -53,9 +53,9 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Delete item from list at current row.
+     * Remove item from list at current row.
      */
-    void setDeleteItemAt();
+    void removeItemAt();
 
 private:
     /*!

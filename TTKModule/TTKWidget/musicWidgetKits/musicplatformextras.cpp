@@ -98,17 +98,17 @@ private:
         m_playToolButton = new QWinThumbnailToolButton(m_thumbnailToolBar);
         m_playToolButton->setToolTip(QObject::tr("Play"));
         m_playToolButton->setIcon(parent->style()->standardIcon(QStyle::SP_MediaPlay));
-        QObject::connect(m_playToolButton, SIGNAL(clicked()), parent, SLOT(musicStatePlay()));
+        QObject::connect(m_playToolButton, SIGNAL(clicked()), parent, SLOT(playState()));
 
         m_forwardToolButton = new QWinThumbnailToolButton(m_thumbnailToolBar);
         m_forwardToolButton->setToolTip(QObject::tr("Previous"));
         m_forwardToolButton->setIcon(parent->style()->standardIcon(QStyle::SP_MediaSeekBackward));
-        QObject::connect(m_forwardToolButton, SIGNAL(clicked()), parent, SLOT(musicPlayPrevious()));
+        QObject::connect(m_forwardToolButton, SIGNAL(clicked()), parent, SLOT(playPrevious()));
 
         m_backwardToolButton = new QWinThumbnailToolButton(m_thumbnailToolBar);
         m_backwardToolButton->setToolTip(QObject::tr("Next"));
         m_backwardToolButton->setIcon(parent->style()->standardIcon(QStyle::SP_MediaSeekForward));
-        QObject::connect(m_backwardToolButton, SIGNAL(clicked()), parent, SLOT(musicPlayNext()));
+        QObject::connect(m_backwardToolButton, SIGNAL(clicked()), parent, SLOT(playNext()));
 
         m_thumbnailToolBar->addButton(m_forwardToolButton);
         m_thumbnailToolBar->addButton(m_playToolButton);

@@ -52,13 +52,13 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Delete item from list at current row.
+     * Remove item from list at current row.
      */
-    virtual void setDeleteItemAt() override final;
+    virtual void removeItemAt() override final;
     /*!
      * Add selected music song path to list.
      */
-    void musicPlay();
+    void playSong();
     /*!
      * Table widget item cell double clicked.
      */

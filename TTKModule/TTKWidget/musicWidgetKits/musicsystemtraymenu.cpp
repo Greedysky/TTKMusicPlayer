@@ -159,9 +159,9 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     widgetAction->setDefaultWidget(widgetActionContainer);
     addAction(widgetAction);
 
-    connect(previousPlay, SIGNAL(clicked()), parent(), SLOT(musicPlayPrevious()));
-    connect(nextPlay, SIGNAL(clicked()), parent(), SLOT(musicPlayNext()));
-    connect(m_playButton, SIGNAL(clicked()), parent(), SLOT(musicStatePlay()));
+    connect(previousPlay, SIGNAL(clicked()), parent(), SLOT(playPrevious()));
+    connect(nextPlay, SIGNAL(clicked()), parent(), SLOT(playNext()));
+    connect(m_playButton, SIGNAL(clicked()), parent(), SLOT(playState()));
 }
 
 void MusicSystemTrayMenu::createVolumeWidgetActions()
@@ -187,5 +187,5 @@ void MusicSystemTrayMenu::createVolumeWidgetActions()
     addAction(widgetAction);
 
     connect(m_volumeButton, SIGNAL(clicked()), parent(), SLOT(musicVolumeMute()));
-    connect(m_volumeSlider, SIGNAL(valueChanged(int)), parent(), SLOT(musicVolumeChanged(int)));
+    connect(m_volumeSlider, SIGNAL(valueChanged(int)), parent(), SLOT(volumeChanged(int)));
 }

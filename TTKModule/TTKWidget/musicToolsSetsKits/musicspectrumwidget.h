@@ -49,7 +49,7 @@ TTK_DECLARE_LIST(MusicSpectrum);
 /*! @brief The class of the music spectrum widget all.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSpectrumWidget : public MusicAbstractMoveResizeContainWidget
+class TTK_MODULE_EXPORT MusicSpectrumWidget : public MusicAbstractMoveResizePlainWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSpectrumWidget)

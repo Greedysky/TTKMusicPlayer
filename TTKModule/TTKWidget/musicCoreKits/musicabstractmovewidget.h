@@ -53,23 +53,23 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the moving widget with container.
+/*! @brief The class of the moving widget with plain.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicAbstractMoveContainWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicAbstractMovePlainWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractMoveContainWidget)
+    TTK_DECLARE_MODULE(MusicAbstractMovePlainWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractMoveContainWidget(QWidget *parent = nullptr);
+    explicit MusicAbstractMovePlainWidget(QWidget *parent = nullptr);
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractMoveContainWidget(bool transparent, QWidget *parent = nullptr);
-    ~MusicAbstractMoveContainWidget();
+    explicit MusicAbstractMovePlainWidget(bool transparent, QWidget *parent = nullptr);
+    ~MusicAbstractMovePlainWidget();
 
 protected:
     QWidget *m_container;

@@ -31,11 +31,11 @@ public:
     /*!
      * Write music playlist data to file.
      */
-    void setMusicSongItem(const QString &path, const MusicSongItem &item);
+    void writeSongItem(const QString &path, const MusicSongItem &item);
     /*!
      * Read music playlist data from file.
      */
-    void musicSongItems(const QStringList &paths, MusicSongItemList &items);
+    void readSongItems(const QStringList &paths, MusicSongItemList &items);
 
 private:
     /*!

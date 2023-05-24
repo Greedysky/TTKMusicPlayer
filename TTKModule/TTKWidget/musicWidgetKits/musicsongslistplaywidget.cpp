@@ -90,7 +90,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     connect(m_loveButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicAddSongToLovestList()));
     connect(m_downloadButton, SIGNAL(clicked()), MusicLeftAreaWidget::instance(), SLOT(musicDownloadSongToLocal()));
-    connect(m_deleteButton, SIGNAL(clicked()), parent, SLOT(setDeleteItemAt()));
+    connect(m_deleteButton, SIGNAL(clicked()), parent, SLOT(removeItemAt()));
     connect(this, SIGNAL(renameFinished(QString)), parent, SLOT(setItemRenameFinished(QString)));
     connect(this, SIGNAL(enterChanged(int,int)), parent, SLOT(itemCellEntered(int,int)));
     connect(m_showMVButton, SIGNAL(clicked()), parent, SLOT(musicSongPlayedMovieFound()));

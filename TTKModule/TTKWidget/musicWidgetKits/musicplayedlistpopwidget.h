@@ -135,13 +135,13 @@ public Q_SLOTS:
      */
     virtual void popupMenu() override final;
     /*!
-     * Delete items from indexs.
+     * Remove items from indexs.
      */
-    void setDeleteItemAt(const TTKIntList &index);
+    void removeItemAt(const TTKIntList &index);
     /*!
-     * Delete all items from list.
+     * Remove all items from list.
      */
-    void setDeleteItemAll();
+    void removeItemAll();
     /*!
      * List cell item double clicked.
      */

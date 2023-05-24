@@ -48,9 +48,9 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Delete current selected row.
+     * Remove current selected row.
      */
-    void deleteCurrentRow();
+    void removeCurrentRow();
 
 };
 
@@ -91,11 +91,11 @@ private:
     /*!
      * Add selected music song path to list.
      */
-    void musicPlay();
+    void playSong();
     /*!
-     * Delete current selected row.
+     * Remove current selected row.
      */
-    void deleteCurrentRow();
+    void removeCurrentRow();
 
 };
 
@@ -136,11 +136,11 @@ private:
     /*!
      * Add selected music song path to list.
      */
-    void musicPlay();
+    void playSong();
     /*!
-     * Delete current selected row.
+     * Remove current selected row.
      */
-    void deleteCurrentRow();
+    void removeCurrentRow();
 
 };
 

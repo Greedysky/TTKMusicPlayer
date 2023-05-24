@@ -1,29 +1,29 @@
 #include "musicabstractmoveresizewidget.h"
 #include "musicbackgroundmanager.h"
 
-MusicAbstractMoveResizeContainWidget::MusicAbstractMoveResizeContainWidget(QWidget *parent)
+MusicAbstractMoveResizePlainWidget::MusicAbstractMoveResizePlainWidget(QWidget *parent)
     : TTKAbstractMoveResizeWidget(false, parent)
 {
     G_BACKGROUND_PTR->addObserver(this);
 }
 
-MusicAbstractMoveResizeContainWidget::~MusicAbstractMoveResizeContainWidget()
+MusicAbstractMoveResizePlainWidget::~MusicAbstractMoveResizePlainWidget()
 {
     G_BACKGROUND_PTR->removeObserver(this);
 }
 
-void MusicAbstractMoveResizeContainWidget::backgroundChanged()
+void MusicAbstractMoveResizePlainWidget::backgroundChanged()
 {
     setBackgroundPixmap(size());
 }
 
-void MusicAbstractMoveResizeContainWidget::show()
+void MusicAbstractMoveResizePlainWidget::show()
 {
     backgroundChanged();
     QWidget::show();
 }
 
-void MusicAbstractMoveResizeContainWidget::resizeEvent(QResizeEvent *event)
+void MusicAbstractMoveResizePlainWidget::resizeEvent(QResizeEvent *event)
 {
     TTKAbstractMoveResizeWidget::resizeEvent(event);
     backgroundChanged();

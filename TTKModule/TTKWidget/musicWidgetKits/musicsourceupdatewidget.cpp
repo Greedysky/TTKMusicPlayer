@@ -11,7 +11,7 @@
 #include <QBoxLayout>
 
 MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
-    : MusicAbstractMoveContainWidget(true, parent)
+    : MusicAbstractMovePlainWidget(parent)
 {
     hide();
 

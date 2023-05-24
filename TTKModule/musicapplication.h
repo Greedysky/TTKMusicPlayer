@@ -133,7 +133,7 @@ public Q_SLOTS:
     /*!
      * Set current player to play or not.
      */
-    void musicStatePlay();
+    void playState();
     /*!
      * Set current player to stop.
      */
@@ -141,31 +141,32 @@ public Q_SLOTS:
     /*!
      * Set current player to play previous.
      */
-    void musicPlayPrevious();
+    void playPrevious();
     /*!
      * Set current player to play next.
      */
-    void musicPlayNext();
+    void playNext();
     /*!
      * Set current play mdoe to order.
      */
-    void musicPlayOrder();
+    void playOrder();
     /*!
      * Set current play mdoe to random.
      */
-    void musicPlayRandom();
+    void playRandom();
     /*!
      * Set current play mdoe to list loop.
      */
-    void musicPlaylistLoop();
+    void playlistLoop();
     /*!
      * Set current play mdoe to single loop.
      */
-    void musicPlayOneLoop();
+    void playOneLoop();
     /*!
      * Set current play mdoe to just once.
      */
-    void musicPlayOnce();
+    void playOnce();
+
     /*!
      * Set current play volume to 0.
      */
@@ -173,7 +174,7 @@ public Q_SLOTS:
     /*!
      * Current play volume changed.
      */
-    void musicVolumeChanged(int volume);
+    void volumeChanged(int volume);
     /*!
      * Import music songs.
      */
@@ -225,11 +226,11 @@ public Q_SLOTS:
     /*!
      * Set current player volume down.
      */
-    void musicActionVolumeSub();
+    void volumeDown();
     /*!
      * Set current player volume up.
      */
-    void musicActionVolumePlus();
+    void volumeUp();
     /*!
      * Show setting widget.
      */
@@ -263,13 +264,13 @@ public Q_SLOTS:
      */
     void applyParameter();
     /*!
-     * Delete love item from indexs.
+     * Remove love item from indexs.
      */
-    void setLoveDeleteItemAt(const QString &path, bool current);
+    void removeLoveItemAt(const QString &path, bool current);
     /*!
      * Delete items from indexs.
      */
-    void setDeleteItemAt(const QStringList &path, bool remove, bool current, int toolIndex);
+    void removeItemAt(const QStringList &path, bool remove, bool current, int toolIndex);
     /*!
      * The current lrc should update.
      */

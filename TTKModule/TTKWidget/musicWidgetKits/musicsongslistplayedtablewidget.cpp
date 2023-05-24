@@ -224,7 +224,7 @@ void MusicSongsListPlayedTableWidget::itemCellClicked(int row, int column)
     switch(column)
     {
         case 2: musicSongDownload(); break;
-        case 3: setDeleteItemAt(); break;
+        case 3: removeItemAt(); break;
         case 4:
         {
             QMenu menu(this);
@@ -255,7 +255,7 @@ void MusicSongsListPlayedTableWidget::removeItems()
     setColumnCount(5);
 }
 
-void MusicSongsListPlayedTableWidget::setDeleteItemAt()
+void MusicSongsListPlayedTableWidget::removeItemAt()
 {
     const TTKIntList deleteList(multiSelectedIndexList());
     if(deleteList.isEmpty())
@@ -296,7 +296,7 @@ void MusicSongsListPlayedTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));
     menu.addSeparator();
 
-    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()));
+    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(removeItemAt()));
     menu.addSeparator();
 
     menu.exec(QCursor::pos());

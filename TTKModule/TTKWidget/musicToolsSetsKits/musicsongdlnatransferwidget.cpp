@@ -66,9 +66,9 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     startToScan();
     m_dlnaFileServer->start();
 
-    connect(m_ui->playButton, SIGNAL(clicked()), SLOT(musicPlay()));
-    connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(musicPrevious()));
-    connect(m_ui->nextButton, SIGNAL(clicked()), SLOT(musicNext()));
+    connect(m_ui->playButton, SIGNAL(clicked()), SLOT(playSong()));
+    connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(playPrevious()));
+    connect(m_ui->nextButton, SIGNAL(clicked()), SLOT(playNext()));
     connect(m_ui->refreshButton, SIGNAL(clicked()), SLOT(startToScan()));
     connect(m_dlnaFinder, SIGNAL(finished()), SLOT(scanFinished()));
 
@@ -117,7 +117,7 @@ void MusicSongDlnaTransferWidget::durationChanged(qint64 duration)
     m_ui->timeSlider->setRange(0, duration);
 }
 
-void MusicSongDlnaTransferWidget::musicPlay()
+void MusicSongDlnaTransferWidget::playSong()
 {
     if(m_ui->deviceComboBox->currentText() == tr("No connections"))
     {
@@ -153,12 +153,12 @@ void MusicSongDlnaTransferWidget::musicPlay()
     client->tryToPlayFile(m_dlnaFileServer->localAddress(client->server()) + fin.fileName());
 }
 
-void MusicSongDlnaTransferWidget::musicPrevious()
+void MusicSongDlnaTransferWidget::playPrevious()
 {
     m_currentPlayIndex--;
 }
 
-void MusicSongDlnaTransferWidget::musicNext()
+void MusicSongDlnaTransferWidget::playNext()
 {
     m_currentPlayIndex++;
 }

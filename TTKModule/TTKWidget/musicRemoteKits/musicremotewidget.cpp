@@ -112,7 +112,7 @@ void MusicRemoteWidget::setVolumeValue(int index)
 {
     blockSignals(true);
     m_volumeSlider->setValue(index);
-    musicVolumeChanged(index);
+    volumeChanged(index);
     blockSignals(false);
 }
 
@@ -151,7 +151,7 @@ void MusicRemoteWidget::setLabelText(const QString &text)
 
 void MusicRemoteWidget::musicVolumeSliderChanged(int value)
 {
-    Q_EMIT musicVolumeChanged(value);
+    Q_EMIT volumeChanged(value);
 
     QString style = TTK::UI::TinyBtnSoundWhite;
     if(66 < value && value <=100)

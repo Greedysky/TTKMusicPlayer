@@ -56,15 +56,15 @@ private Q_SLOTS:
     /*!
      * Set current player to play or not.
      */
-    void musicStatePlay();
+    void playState();
     /*!
      * Set current player to play previous.
      */
-    void musicPlayPrevious();
+    void playPrevious();
     /*!
      * Set current player to play next.
      */
-    void musicPlayNext();
+    void playNext();
 
     /*!
      * Reset player volume.
@@ -73,53 +73,53 @@ private Q_SLOTS:
     /*!
      * Set current player volume down.
      */
-    void musicActionVolumeSub();
+    void volumeDown();
     /*!
      * Set current player volume up.
      */
-    void musicActionVolumePlus();
+    void volumeUp();
 
     /*!
      * Set current play mdoe to order.
      */
-    void musicPlayOrder();
+    void playOrder();
     /*!
      * Set current play mdoe to random.
      */
-    void musicPlayRandom();
+    void playRandom();
     /*!
      * Set current play mdoe to list loop.
      */
-    void musicPlaylistLoop();
+    void playlistLoop();
     /*!
      * Set current play mdoe to single loop.
      */
-    void musicPlayOneLoop();
+    void playOneLoop();
     /*!
      * Set current play mdoe to just once.
      */
-    void musicPlayOnce();
+    void playOnce();
 
     /*!
      * Set current music enhanced off, no any effect.
      */
-    void musicEnhancedOff();
+    void setEnhancedOff();
     /*!
      * Set current music 3d music effect.
      */
-    void musicEnhanced3D();
+    void setEnhanced3D();
     /*!
      * Set current music nicam music effect.
      */
-    void musicEnhancedNICAM();
+    void setEnhancedNICAM();
     /*!
      * Set current music subwoofer music effect.
      */
-    void musicEnhancedSubwoofer();
+    void setEnhancedSubwoofer();
     /*!
      * Set current music vocal music effect.
      */
-    void musicEnhancedVocal();
+    void setEnhancedVocal();
 
 private:
     /*!

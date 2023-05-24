@@ -54,7 +54,7 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
     m_moreButton->setMenu(menu);
 
     connect(m_downloadButton, SIGNAL(clicked()), MusicLeftAreaWidget::instance(), SLOT(musicDownloadSongToLocal()));
-    connect(m_deleteButton, SIGNAL(clicked()), SLOT(setDeleteItemAt()));
+    connect(m_deleteButton, SIGNAL(clicked()), SLOT(removeItemAt()));
     connect(this, SIGNAL(enterChanged(int,int)), m_parent, SLOT(itemCellEntered(int,int)));
 }
 
@@ -74,9 +74,9 @@ void MusicSongsListPlayedWidget::setParameter(const QString &name)
     m_gifLabel->start();
 }
 
-void MusicSongsListPlayedWidget::setDeleteItemAt()
+void MusicSongsListPlayedWidget::removeItemAt()
 {
-    QTimer::singleShot(MT_ONCE, m_parent, SLOT(setDeleteItemAt()));
+    QTimer::singleShot(MT_ONCE, m_parent, SLOT(removeItemAt()));
 }
 
 void MusicSongsListPlayedWidget::enterEvent(QtEnterEvent *event)

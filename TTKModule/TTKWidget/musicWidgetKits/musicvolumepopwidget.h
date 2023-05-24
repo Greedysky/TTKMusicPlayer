@@ -50,7 +50,7 @@ Q_SIGNALS:
     /*!
      * Current play volume changed.
      */
-    void musicVolumeChanged(int volume);
+    void volumeChanged(int volume);
 
 public Q_SLOTS:
     /*!

@@ -430,7 +430,7 @@ void MusicSongsSummariziedWidget::deleteRowItemAll(int index)
     if(widget->rowCount() > 0)
     {
         widget->setCurrentCell(0, 1);
-        widget->setDeleteItemAll();
+        widget->removeItemAll();
     }
     m_toolDeleteChanged = false;
 
@@ -679,7 +679,7 @@ void MusicSongsSummariziedWidget::addSongToLovestListAt(bool state, int row)
             widget->removeItems();
             widget->updateSongsList(item->m_songs);
             setItemTitle(item);
-            MusicApplication::instance()->setLoveDeleteItemAt(song.path(), m_playToolIndex == MUSIC_LOVEST_LIST);
+            MusicApplication::instance()->removeLoveItemAt(song.path(), m_playToolIndex == MUSIC_LOVEST_LIST);
         }
     }
 }
@@ -707,7 +707,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
             widget->removeItems();
             widget->updateSongsList(item->m_songs);
             setItemTitle(item);
-            MusicApplication::instance()->setLoveDeleteItemAt(song.path(), m_playToolIndex == MUSIC_LOVEST_LIST);
+            MusicApplication::instance()->removeLoveItemAt(song.path(), m_playToolIndex == MUSIC_LOVEST_LIST);
         }
     }
 }
@@ -762,7 +762,7 @@ void MusicSongsSummariziedWidget::addSongToPlaylist(const QStringList &items)
     MusicApplication::instance()->musicPlayIndexClicked(index, 0);
 }
 
-void MusicSongsSummariziedWidget::setDeleteItemAt(const TTKIntList &index, bool fileRemove)
+void MusicSongsSummariziedWidget::removeItemAt(const TTKIntList &index, bool fileRemove)
 {
     if(index.isEmpty() || hasSearchResult())
     {
@@ -795,7 +795,7 @@ void MusicSongsSummariziedWidget::setDeleteItemAt(const TTKIntList &index, bool 
         }
     }
 
-    MusicApplication::instance()->setDeleteItemAt(deleteFiles, fileRemove, currentIndex == m_playToolIndex, currentIndex);
+    MusicApplication::instance()->removeItemAt(deleteFiles, fileRemove, currentIndex == m_playToolIndex, currentIndex);
 
     setItemTitle(item);
     //create upload file widget if current items is all been deleted
@@ -1094,7 +1094,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
 
     connect(widget, SIGNAL(isCurrentIndex(bool&)), SLOT(isCurrentIndex(bool&)));
     connect(widget, SIGNAL(isSearchResultEmpty(bool&)), SLOT(isSearchResultEmpty(bool&)));
-    connect(widget, SIGNAL(deleteItemAt(TTKIntList,bool)), SLOT(setDeleteItemAt(TTKIntList,bool)));
+    connect(widget, SIGNAL(deleteItemAt(TTKIntList,bool)), SLOT(removeItemAt(TTKIntList,bool)));
     connect(widget, SIGNAL(queryMusicIndexSwaped(int,int,int,MusicSongList&)), SLOT(setMusicIndexSwaped(int,int,int,MusicSongList&)));
     connect(widget, SIGNAL(addSongToLovestListAt(bool,int)), SLOT(addSongToLovestListAt(bool,int)));
     connect(widget, SIGNAL(showFloatWidget()), SLOT(showFloatWidget()));

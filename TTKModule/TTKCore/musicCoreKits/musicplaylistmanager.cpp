@@ -11,7 +11,7 @@
 #include "musictxtconfigmanager.h"
 #include "musicjspfconfigmanager.h"
 
-void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSongItem &item)
+void MusicPlaylistManager::writeSongItem(const QString &path, const MusicSongItem &item)
 {
     const QFileInfo fin(path);
     const QString &suffix = FILE_SUFFIX(fin);
@@ -54,7 +54,7 @@ void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSong
     }
 }
 
-void MusicPlaylistManager::musicSongItems(const QStringList& paths, MusicSongItemList &items)
+void MusicPlaylistManager::readSongItems(const QStringList& paths, MusicSongItemList &items)
 {
     for(const QString &path : qAsConst(paths))
     {

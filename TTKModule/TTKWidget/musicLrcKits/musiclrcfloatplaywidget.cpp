@@ -30,9 +30,9 @@ MusicLrcFloatPlayWidget::MusicLrcFloatPlayWidget(QWidget *parent)
     m_buttonNext->setFixedSize(44, 44);
     m_buttonKey->setFixedSize(44, 44);
 
-    connect(m_buttonKey, SIGNAL(clicked()), SLOT(musicStatePlay()));
-    connect(m_buttonPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
-    connect(m_buttonNext, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayNext()));
+    connect(m_buttonKey, SIGNAL(clicked()), SLOT(playState()));
+    connect(m_buttonPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playPrevious()));
+    connect(m_buttonNext, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playNext()));
 
     m_buttonKey->setToolTip(tr("Play"));
     m_buttonPrevious->setToolTip(tr("Previous"));
@@ -64,9 +64,9 @@ void MusicLrcFloatPlayWidget::resizeGeometry(int width, int height)
     }
 }
 
-void MusicLrcFloatPlayWidget::musicStatePlay()
+void MusicLrcFloatPlayWidget::playState()
 {
-    MusicApplication::instance()->musicStatePlay();
+    MusicApplication::instance()->playState();
     setCurrentPlayState();
 }
 

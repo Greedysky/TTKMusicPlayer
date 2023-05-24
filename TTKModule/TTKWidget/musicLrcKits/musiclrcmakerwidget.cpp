@@ -165,7 +165,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     createThirdWidget();
 
     m_playMode = MusicApplication::instance()->playMode();
-    MusicApplication::instance()->musicPlayOneLoop();
+    MusicApplication::instance()->playOneLoop();
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(MusicPlayer::className(), className());
@@ -285,7 +285,7 @@ void MusicLrcMakerWidget::firstWidgetStateButtonClicked()
     m_ui->stateButton_F->setText(text);
     m_ui->stateButton_T->setText(text);
 
-    MusicApplication::instance()->musicStatePlay();
+    MusicApplication::instance()->playState();
 }
 
 void MusicLrcMakerWidget::thirdWidgetStateButtonClicked()
@@ -295,7 +295,7 @@ void MusicLrcMakerWidget::thirdWidgetStateButtonClicked()
     m_ui->stateButton_F->setText(text);
     m_ui->stateButton_T->setText(text);
 
-    MusicApplication::instance()->musicStatePlay();
+    MusicApplication::instance()->playState();
     if(state)
     {
         m_lrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
@@ -715,11 +715,11 @@ void MusicLrcMakerWidget::resetToOriginPlayMode()
     MusicApplication *w = MusicApplication::instance();
     switch(m_playMode)
     {
-        case TTK::PlayMode::Order: w->musicPlayOrder(); break;
-        case TTK::PlayMode::Random: w->musicPlayRandom(); break;
-        case TTK::PlayMode::ListLoop: w->musicPlaylistLoop(); break;
-        case TTK::PlayMode::OneLoop: w->musicPlayOneLoop(); break;
-        case TTK::PlayMode::Once: w->musicPlayOnce(); break;
+        case TTK::PlayMode::Order: w->playOrder(); break;
+        case TTK::PlayMode::Random: w->playRandom(); break;
+        case TTK::PlayMode::ListLoop: w->playlistLoop(); break;
+        case TTK::PlayMode::OneLoop: w->playOneLoop(); break;
+        case TTK::PlayMode::Once: w->playOnce(); break;
         default: break;
     }
 }

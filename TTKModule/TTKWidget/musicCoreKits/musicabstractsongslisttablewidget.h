@@ -76,17 +76,17 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Delete item from list at current row.
+     * Remove item from list at current row.
      */
-    virtual void setDeleteItemAt();
+    virtual void removeItemAt();
     /*!
      * Music item has been clicked.
      */
     void musicPlayClicked();
     /*!
-     * Delete all items from list.
+     * Remove all items from list.
      */
-    void setDeleteItemAll();
+    void removeItemAll();
     /*!
      * Open the music at local path.
      */

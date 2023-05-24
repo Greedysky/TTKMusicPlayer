@@ -46,7 +46,7 @@ public Q_SLOTS:
     /*!
      * Set current player to play or not.
      */
-    void musicStatePlay();
+    void playState();
 
 private:
     /*!

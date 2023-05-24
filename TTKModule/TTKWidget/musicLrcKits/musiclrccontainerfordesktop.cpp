@@ -215,17 +215,17 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     QToolButton *toolPreSongButton = new QToolButton(m_toolBarWidget);
     toolPreSongButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
     m_toolBarLayout->addWidget(toolPreSongButton, 0, Qt::AlignCenter);
-    connect(toolPreSongButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
+    connect(toolPreSongButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playPrevious()));
 
     m_toolPlayButton = new QToolButton(m_toolBarWidget);
     m_toolPlayButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
     m_toolBarLayout->addWidget(m_toolPlayButton, 0, Qt::AlignCenter);
-    connect(m_toolPlayButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicStatePlay()));
+    connect(m_toolPlayButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playState()));
 
     QToolButton *toolNextSongButton = new QToolButton(m_toolBarWidget);
     toolNextSongButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
     m_toolBarLayout->addWidget(toolNextSongButton, 0, Qt::AlignCenter);
-    connect(toolNextSongButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayNext()));
+    connect(toolNextSongButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playNext()));
 
     QToolButton *toolSettingButton = new QToolButton(m_toolBarWidget);
     toolSettingButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);

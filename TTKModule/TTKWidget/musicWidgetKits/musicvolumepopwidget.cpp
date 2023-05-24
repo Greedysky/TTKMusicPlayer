@@ -86,7 +86,7 @@ void MusicVolumePopWidget::initialize()
     m_volumeSlider->setRange(0, 100);
     m_volumeSlider->setStyleSheet(TTK::UI::SliderStyle02);
 
-    connect(m_volumeSlider, SIGNAL(valueChanged(int)), SIGNAL(musicVolumeChanged(int)));
+    connect(m_volumeSlider, SIGNAL(valueChanged(int)), SIGNAL(volumeChanged(int)));
 
     layout->addWidget(m_volumeSlider);
     m_containWidget->setLayout(layout);

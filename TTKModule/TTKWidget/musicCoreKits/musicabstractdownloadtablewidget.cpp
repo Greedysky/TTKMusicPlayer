@@ -48,7 +48,7 @@ void MusicAbstractDownloadTableWidget::updateSongsList(const MusicSongList &song
     }
 }
 
-void MusicAbstractDownloadTableWidget::musicPlay()
+void MusicAbstractDownloadTableWidget::playSong()
 {
     if(!isValid())
     {
@@ -59,7 +59,7 @@ void MusicAbstractDownloadTableWidget::musicPlay()
     Q_EMIT addSongToPlaylist(QStringList(QFile::exists(path) ? path : QString()));
 }
 
-void MusicAbstractDownloadTableWidget::setDeleteItemAt()
+void MusicAbstractDownloadTableWidget::removeItemAt()
 {
     MusicMessageBox message;
     message.setText(tr("Are you sure to delete?"));
@@ -89,7 +89,7 @@ void MusicAbstractDownloadTableWidget::itemDoubleClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
-    musicPlay();
+    playSong();
 }
 
 void MusicAbstractDownloadTableWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)
@@ -143,8 +143,8 @@ void MusicAbstractDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));
     menu.addSeparator();
 
-    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(status);
-    menu.addAction(tr("Delete All"), this, SLOT(setDeleteItemAll()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(removeItemAt()))->setEnabled(status);
+    menu.addAction(tr("Delete All"), this, SLOT(removeItemAll()))->setEnabled(status);
 
     menu.exec(QCursor::pos());
 }

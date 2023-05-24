@@ -342,7 +342,7 @@ void MusicApplication::showCurrentSong()
     m_topAreaWidget->musicBackgroundThemeDownloadFinished();
 }
 
-void MusicApplication::musicStatePlay()
+void MusicApplication::playState()
 {
     if(m_playlist->isEmpty())
     {
@@ -381,7 +381,7 @@ void MusicApplication::musicStateStop()
     m_playlist->setCurrentIndex(TTK_NORMAL_LEVEL);
 }
 
-void MusicApplication::musicPlayPrevious()
+void MusicApplication::playPrevious()
 {
     if(m_playlist->isEmpty())
     {
@@ -398,10 +398,10 @@ void MusicApplication::musicPlayPrevious()
     }
 
     m_player->stop();
-    musicStatePlay();
+    playState();
 }
 
-void MusicApplication::musicPlayNext()
+void MusicApplication::playNext()
 {
     if(m_playlist->isEmpty())
     {
@@ -418,34 +418,34 @@ void MusicApplication::musicPlayNext()
     }
 
     m_player->stop();
-    musicStatePlay();
+    playState();
 }
 
-void MusicApplication::musicPlayOrder()
+void MusicApplication::playOrder()
 {
     m_playlist->setPlaybackMode(TTK::PlayMode::Order);
     m_ui->musicPlayMode->setPlaybackMode(TTK::PlayMode::Order);
 }
 
-void MusicApplication::musicPlayRandom()
+void MusicApplication::playRandom()
 {
     m_playlist->setPlaybackMode(TTK::PlayMode::Random);
     m_ui->musicPlayMode->setPlaybackMode(TTK::PlayMode::Random);
 }
 
-void MusicApplication::musicPlaylistLoop()
+void MusicApplication::playlistLoop()
 {
     m_playlist->setPlaybackMode(TTK::PlayMode::ListLoop);
     m_ui->musicPlayMode->setPlaybackMode(TTK::PlayMode::ListLoop);
 }
 
-void MusicApplication::musicPlayOneLoop()
+void MusicApplication::playOneLoop()
 {
     m_playlist->setPlaybackMode(TTK::PlayMode::OneLoop);
     m_ui->musicPlayMode->setPlaybackMode(TTK::PlayMode::OneLoop);
 }
 
-void MusicApplication::musicPlayOnce()
+void MusicApplication::playOnce()
 {
     m_playlist->setPlaybackMode(TTK::PlayMode::Once);
     m_ui->musicPlayMode->setPlaybackMode(TTK::PlayMode::Once);
@@ -462,7 +462,7 @@ void MusicApplication::musicVolumeMute()
     G_SETTING_PTR->setValue(MusicSettingManager::Volume, volume);
 }
 
-void MusicApplication::musicVolumeChanged(int volume)
+void MusicApplication::volumeChanged(int volume)
 {
     m_topAreaWidget->setVolumeValue(volume);
     m_bottomAreaWidget->setVolumeValue(volume);
@@ -530,7 +530,7 @@ void MusicApplication::musicImportSongsItemList()
 
     MusicPlaylistManager manager;
     MusicSongItemList items;
-    manager.musicSongItems(files, items);
+    manager.readSongItems(files, items);
     m_songTreeWidget->appendMusicItemList(items);
 }
 
@@ -549,7 +549,7 @@ void MusicApplication::musicExportSongsItemList(int index)
     }
 
     MusicPlaylistManager manager;
-    manager.setMusicSongItem(path, items[index]);
+    manager.writeSongItem(path, items[index]);
 
     MusicToastLabel::popup(tr("Export current file success"));
 }
@@ -564,7 +564,7 @@ void MusicApplication::musicPlayedIndex(int row)
 {
     m_playlist->setCurrentIndex(row);
     m_player->stop();
-    musicStatePlay();
+    playState();
 }
 
 void MusicApplication::musicPlayIndex(int row)
@@ -600,7 +600,7 @@ void MusicApplication::musicPlayIndex(int row, int)
 
     m_songTreeWidget->removeSearchResult(row);
     m_playlist->setCurrentIndex(m_currentSongTreeIndex, m_songTreeWidget->mapFilePathBySongIndex(m_currentSongTreeIndex, row));
-    musicStatePlay();
+    playState();
 }
 
 void MusicApplication::musicPlayIndexClicked(int row, int column)
@@ -626,7 +626,7 @@ void MusicApplication::musicPlayAnyTimeAt(int value)
     m_rightAreaWidget->setSongTimeSpeed(value);
 }
 
-void MusicApplication::musicActionVolumeSub()
+void MusicApplication::volumeDown()
 {
     int currentVol = m_player->volume();
     currentVol -= 15;
@@ -634,10 +634,10 @@ void MusicApplication::musicActionVolumeSub()
     {
         currentVol = 0;   //reset music volume
     }
-    musicVolumeChanged(currentVol);
+    volumeChanged(currentVol);
 }
 
-void MusicApplication::musicActionVolumePlus()
+void MusicApplication::volumeUp()
 {
     int currentVol = m_player->volume();
     currentVol += 15;
@@ -645,7 +645,7 @@ void MusicApplication::musicActionVolumePlus()
     {
         currentVol = 100;   //reset music volume
     }
-    musicVolumeChanged(currentVol);
+    volumeChanged(currentVol);
 }
 
 void MusicApplication::musicSetting()
@@ -711,7 +711,7 @@ void MusicApplication::musicWindowConciseChanged()
 
 void MusicApplication::musicEnhancedMusicChanged(int type)
 {
-    m_player->setMusicEnhanced(TTKStaticCast(MusicPlayer::Enhance, type));
+    m_player->setEnhanced(TTKStaticCast(MusicPlayer::Enhance, type));
 }
 
 void MusicApplication::musicCreateRightMenu()
@@ -731,11 +731,11 @@ void MusicApplication::musicCreateRightMenu()
 
     TTK::PlayMode mode = m_playlist->playbackMode();
     QList<QAction*> actions;
-    actions << playbackMode.addAction(tr("Order Play"), this, SLOT(musicPlayOrder()));
-    actions << playbackMode.addAction(tr("Random Play"), this, SLOT(musicPlayRandom()));
-    actions << playbackMode.addAction(tr("List Cycle"), this, SLOT(musicPlaylistLoop()));
-    actions << playbackMode.addAction(tr("Single Cycle"), this, SLOT(musicPlayOneLoop()));
-    actions << playbackMode.addAction(tr("Play Once"), this, SLOT(musicPlayOnce()));
+    actions << playbackMode.addAction(tr("Order Play"), this, SLOT(playOrder()));
+    actions << playbackMode.addAction(tr("Random Play"), this, SLOT(playRandom()));
+    actions << playbackMode.addAction(tr("List Cycle"), this, SLOT(playlistLoop()));
+    actions << playbackMode.addAction(tr("Single Cycle"), this, SLOT(playOneLoop()));
+    actions << playbackMode.addAction(tr("Play Once"), this, SLOT(playOnce()));
 
     int index = TTK_NORMAL_LEVEL;
     switch(mode)
@@ -809,12 +809,12 @@ void MusicApplication::applyParameter()
     m_bottomAreaWidget->applyParameter();
 }
 
-void MusicApplication::setLoveDeleteItemAt(const QString &path, bool current)
+void MusicApplication::removeLoveItemAt(const QString &path, bool current)
 {
-    setDeleteItemAt({path}, false, current, MUSIC_LOVEST_LIST);
+    removeItemAt({path}, false, current, MUSIC_LOVEST_LIST);
 }
 
-void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, bool current, int toolIndex)
+void MusicApplication::removeItemAt(const QStringList &path, bool remove, bool current, int toolIndex)
 {
     if(path.isEmpty())
     {
@@ -877,7 +877,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
         {
             //The corresponding item is deleted from the Playlist
             m_player->stop();
-            musicStatePlay();
+            playState();
 
             const QString &removeParh = toolIndex == MUSIC_NETWORK_LIST ? TTK::generateNetworkSongPath(item.m_path) : item.m_path;
             if(remove && !QFile::remove(removeParh))
@@ -1089,11 +1089,11 @@ void MusicApplication::readSystemConfigFromFile()
 
     switch(TTKStaticCast(TTK::PlayMode, G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt()))
     {
-        case TTK::PlayMode::Order: musicPlayOrder();break;
-        case TTK::PlayMode::Random: musicPlayRandom();break;
-        case TTK::PlayMode::ListLoop: musicPlaylistLoop();break;
-        case TTK::PlayMode::OneLoop: musicPlayOneLoop();break;
-        case TTK::PlayMode::Once: musicPlayOnce();break;
+        case TTK::PlayMode::Order: playOrder();break;
+        case TTK::PlayMode::Random: playRandom();break;
+        case TTK::PlayMode::ListLoop: playlistLoop();break;
+        case TTK::PlayMode::OneLoop: playOneLoop();break;
+        case TTK::PlayMode::Once: playOnce();break;
         default:break;
     }
 
@@ -1104,7 +1104,7 @@ void MusicApplication::readSystemConfigFromFile()
     }
 
     //The size of the volume of the allocation of songs
-    musicVolumeChanged(G_SETTING_PTR->value(MusicSettingManager::Volume).toInt());
+    volumeChanged(G_SETTING_PTR->value(MusicSettingManager::Volume).toInt());
 
     //Configure playback mode
     m_ui->musicEnhancedButton->setEnhancedMusicConfig(G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt());
@@ -1168,8 +1168,9 @@ void MusicApplication::readSystemConfigFromFile()
     //Configure automatic playback
     if(G_SETTING_PTR->value(MusicSettingManager::AutoPlayMode).toInt() == 1)
     {
-        musicStatePlay();
+        playState();
     }
+
     m_bottomAreaWidget->setCurrentPlayStatus(isPlaying());
     m_rightAreaWidget->setCurrentPlayStatus(isPlaying());
     m_topAreaWidget->setCurrentPlayStatus(isPlaying());
@@ -1206,7 +1207,7 @@ void MusicApplication::writeSystemConfigToFile()
 {
     MusicConfigManager xml;
     G_SETTING_PTR->setValue(MusicSettingManager::WidgetPosition, pos());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicIndex, TTKStaticCast(int, m_player->musicEnhanced()));
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicIndex, TTKStaticCast(int, m_player->enhanced()));
     G_SETTING_PTR->setValue(MusicSettingManager::PlayMode, TTKStaticCast(int, m_playlist->playbackMode()));
     G_SETTING_PTR->setValue(MusicSettingManager::Volume, m_ui->musicSound->value());
 

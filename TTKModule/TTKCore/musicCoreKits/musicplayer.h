@@ -107,11 +107,11 @@ public:
     /*!
      * Set current music enhanced effect.
      */
-    void setMusicEnhanced(Enhance type);
+    void setEnhanced(Enhance type);
     /*!
      * Get current music enhanced effect.
      */
-    Enhance musicEnhanced() const;
+    Enhance enhanced() const;
 
 Q_SIGNALS:
     /*!

@@ -22,19 +22,19 @@
 #include "musicwidgetrenderer.h"
 #include "ttkabstractmoveresizewidget.h"
 
-/*! @brief The class of the moving resize widget with container.
+/*! @brief The class of the moving resize widget with plain.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicAbstractMoveResizeContainWidget : public TTKAbstractMoveResizeWidget, protected MusicWidgetRenderer
+class TTK_MODULE_EXPORT MusicAbstractMoveResizePlainWidget : public TTKAbstractMoveResizeWidget, protected MusicWidgetRenderer
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAbstractMoveResizeContainWidget)
+    TTK_DECLARE_MODULE(MusicAbstractMoveResizePlainWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractMoveResizeContainWidget(QWidget *parent = nullptr);
-    ~MusicAbstractMoveResizeContainWidget();
+    explicit MusicAbstractMoveResizePlainWidget(QWidget *parent = nullptr);
+    ~MusicAbstractMoveResizePlainWidget();
 
 public Q_SLOTS:
     /*!

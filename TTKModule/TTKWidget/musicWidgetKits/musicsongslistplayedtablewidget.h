@@ -84,9 +84,9 @@ public Q_SLOTS:
      */
     virtual void removeItems() override final;
     /*!
-     * Delete item from list at current row.
+     * Remove item from list at current row.
      */
-    virtual void setDeleteItemAt() override final;
+    virtual void removeItemAt() override final;
 
 private:
     /*!
