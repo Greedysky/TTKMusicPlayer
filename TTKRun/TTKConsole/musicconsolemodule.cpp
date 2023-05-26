@@ -38,7 +38,7 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
     G_HOTKEY_PTR->addHotKey("Alt+5");
     G_HOTKEY_PTR->addHotKey("Ctrl+Q");
 
-    connect(G_HOTKEY_PTR->hotKey(0), SIGNAL(activated()), SLOT(playState()));
+    connect(G_HOTKEY_PTR->hotKey(0), SIGNAL(activated()), SLOT(switchPlayState()));
     connect(G_HOTKEY_PTR->hotKey(1), SIGNAL(activated()), SLOT(playPrevious()));
     connect(G_HOTKEY_PTR->hotKey(2), SIGNAL(activated()), SLOT(playNext()));
     connect(G_HOTKEY_PTR->hotKey(3), SIGNAL(activated()), SLOT(volumeUp()));
@@ -193,7 +193,7 @@ void MusicConsoleModule::currentIndexChanged(int index)
     }
 }
 
-void MusicConsoleModule::playState()
+void MusicConsoleModule::switchPlayState()
 {
     if(m_playlist->isEmpty())
     {

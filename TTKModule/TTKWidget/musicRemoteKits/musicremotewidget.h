@@ -71,19 +71,19 @@ Q_SIGNALS:
     /*!
      * Set show application normal.
      */
-    void musicWindowChanged();
+    void showMainWindow();
     /*!
      * Set current play state.
      */
-    void musicKeyChanged();
+    void playStateChanged();
     /*!
      * Set current play to previous.
      */
-    void musicPlayPreviousChanged();
+    void playPreviousChanged();
     /*!
      * Set current play to next.
      */
-    void musicPlayNextChanged();
+    void playNextChanged();
     /*!
      * Set current play volume by value.
      */
@@ -91,17 +91,17 @@ Q_SIGNALS:
     /*!
      * Show current setting widget.
      */
-    void musicSettingChanged();
+    void settingChanged();
     /*!
      * Change diff remote style by type.
      */
-    void musicRemoteTypeChanged(QAction *type);
+    void remoteTypeChanged(QAction *type);
 
 public Q_SLOTS:
     /*!
      * Set current play volume change by value.
      */
-    void musicVolumeSliderChanged(int value);
+    void volumeSliderChanged(int value);
     /*!
      * Override show function.
      */

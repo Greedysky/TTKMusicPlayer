@@ -40,7 +40,7 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
 {
     m_instance = this;
 
-    musicResetWindow();
+    resetWindowGeometry();
 
     m_quitAnimation = new QPropertyAnimation(this);
     m_sideAnimation = new QPropertyAnimation(parent, "pos", this);
@@ -50,15 +50,15 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_timerAutoModule = new MusicTimerAutoModule(this);
 
     m_deviceWatcher = new QDeviceWatcher(this);
-    connect(m_deviceWatcher, SIGNAL(deviceChanged(bool)), SLOT(musicDeviceChanged(bool)));
-    connect(m_deviceWatcher, SIGNAL(deviceAdded(QString)), SLOT(musicDeviceNameChanged(QString)));
+    connect(m_deviceWatcher, SIGNAL(deviceChanged(bool)), SLOT(deviceChanged(bool)));
+    connect(m_deviceWatcher, SIGNAL(deviceAdded(QString)), SLOT(deviceNameChanged(QString)));
     m_deviceWatcher->appendEventReceiver(this);
     m_deviceWatcher->start();
 
     m_counterPVThread = new MusicCounterPVRequest(this);
     m_sourceUpdatehread = new MusicSourceUpdateRequest(this);
 
-    musicToolSetsParameter();
+    runToolSetsParameter();
 }
 
 MusicApplicationModule::~MusicApplicationModule()
@@ -303,22 +303,22 @@ void MusicApplicationModule::windowCloseAnimationFinished()
     }
 }
 
-void MusicApplicationModule::musicAbout()
+void MusicApplicationModule::showAboutWidget()
 {
     MusicMessageAboutDialog().exec();
 }
 
-void MusicApplicationModule::musicBugReportView()
+void MusicApplicationModule::showBugReportView()
 {
     TTK::Url::openUrl(TTK::Algorithm::mdII(REPORT_BUG_URL, false), false);
 }
 
-void MusicApplicationModule::musicVersionUpdate()
+void MusicApplicationModule::showVersionWidget()
 {
     MusicSourceUpdateWidget(MusicApplication::instance()).exec();
 }
 
-void MusicApplicationModule::musicTimerWidget()
+void MusicApplicationModule::showTimerWidget()
 {
     QStringList list;
     MusicApplication::instance()->currentPlaylist(list);
@@ -328,12 +328,12 @@ void MusicApplicationModule::musicTimerWidget()
     widget.exec();
 }
 
-void MusicApplicationModule::musicSpectrumWidget()
+void MusicApplicationModule::showSpectrumWidget()
 {
     GENERATE_SINGLE_WIDGET_CLASS(MusicSpectrumWidget);
 }
 
-void MusicApplicationModule::musicSetWindowToTop()
+void MusicApplicationModule::setWindowToTop()
 {
     m_setWindowToTop = !m_setWindowToTop;
     Qt::WindowFlags flags = MusicApplication::instance()->windowFlags();
@@ -341,7 +341,7 @@ void MusicApplicationModule::musicSetWindowToTop()
     MusicApplication::instance()->show();
 }
 
-void MusicApplicationModule::musicResetWindow()
+void MusicApplicationModule::resetWindowGeometry()
 {
     m_direction = TTK::Direction::No;
 
@@ -357,7 +357,7 @@ void MusicApplicationModule::musicResetWindow()
     w->setGeometry((rect.width() - WINDOW_WIDTH_MIN) / 2, (rect.height() - WINDOW_HEIGHT_MIN) / 2, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 }
 
-void MusicApplicationModule::musicToolSetsParameter()
+void MusicApplicationModule::runToolSetsParameter()
 {
     m_timerAutoModule->runTimerAutoConfig();
 #ifdef Q_OS_WIN
@@ -370,12 +370,12 @@ void MusicApplicationModule::musicToolSetsParameter()
 #endif
 }
 
-void MusicApplicationModule::musicDeviceNameChanged(const QString &name)
+void MusicApplicationModule::deviceNameChanged(const QString &name)
 {
     G_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePath, name);
 }
 
-void MusicApplicationModule::musicDeviceChanged(bool state)
+void MusicApplicationModule::deviceChanged(bool state)
 {
     delete m_mobileDeviceWidget;
     m_mobileDeviceWidget = nullptr;
@@ -391,7 +391,7 @@ void MusicApplicationModule::musicDeviceChanged(bool state)
     }
 }
 
-void MusicApplicationModule::musicSetEqualizer()
+void MusicApplicationModule::showEqualizerWidget()
 {
     if(!closeCurrentEqualizer())
     {
@@ -402,7 +402,7 @@ void MusicApplicationModule::musicSetEqualizer()
     widget.exec();
 }
 
-void MusicApplicationModule::musicSetSoundEffect()
+void MusicApplicationModule::showSoundEffectWidget()
 {
     if(!closeCurrentEqualizer())
     {
@@ -414,7 +414,7 @@ void MusicApplicationModule::musicSetSoundEffect()
     widget.exec();
 }
 
-void MusicApplicationModule::musicEffectChanged()
+void MusicApplicationModule::soundEffectChanged()
 {
     const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
     const QStringList &effects = value.split(";", QtSkipEmptyParts);

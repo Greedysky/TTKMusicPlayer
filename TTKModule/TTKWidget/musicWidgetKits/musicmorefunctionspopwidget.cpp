@@ -16,15 +16,15 @@ void MusicMoreFunctionsPopWidget::functionClicked(QAction *index)
 {
     switch(index->data().toInt())
     {
-        case 0: MusicRightAreaWidget::instance()->musicSongCommentsWidget(); break;
-        case 1: MusicRightAreaWidget::instance()->musicSimilarFound(m_currentSongName); break;
-        case 2: MusicRightAreaWidget::instance()->musicAlbumFound(m_currentSongName, QString()); break;
-        case 3: MusicRightAreaWidget::instance()->musicArtistFound(m_currentSongName, QString()); break;
-        case 4: MusicRightAreaWidget::instance()->musicToplistFound(); break;
-        case 5: MusicRightAreaWidget::instance()->musicPlaylistFound(QString()); break;
-        case 6: MusicRightAreaWidget::instance()->musicRecommendFound(); break;
-        case 7: MusicRightAreaWidget::instance()->musicAdvancedSearch(); break;
-        case 8: MusicRightAreaWidget::instance()->musicArtistCategoryFound(); break;
+        case 0: MusicRightAreaWidget::instance()->showSongCommentsWidget(); break;
+        case 1: MusicRightAreaWidget::instance()->showSimilarFound(m_currentSongName); break;
+        case 2: MusicRightAreaWidget::instance()->showAlbumFound(m_currentSongName, QString()); break;
+        case 3: MusicRightAreaWidget::instance()->showArtistFound(m_currentSongName, QString()); break;
+        case 4: MusicRightAreaWidget::instance()->showToplistFound(); break;
+        case 5: MusicRightAreaWidget::instance()->showPlaylistFound(QString()); break;
+        case 6: MusicRightAreaWidget::instance()->showRecommendFound(); break;
+        case 7: MusicRightAreaWidget::instance()->showAdvancedSearchFound(); break;
+        case 8: MusicRightAreaWidget::instance()->showArtistCategoryFound(); break;
         default: break;
     }
 }

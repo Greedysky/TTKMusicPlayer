@@ -264,7 +264,7 @@ public Q_SLOTS:
     /*!
      * Music fade in and out changed.
      */
-    void musicFadeInAndOutClicked(bool state);
+    void fadeInAndOutClicked(bool state);
 
     /*!
      * Save the parameter setting results.

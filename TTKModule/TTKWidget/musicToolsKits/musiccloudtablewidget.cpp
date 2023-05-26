@@ -181,8 +181,8 @@ void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     const bool status = !m_songs->isEmpty();
-    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
-    menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
+    menu.addAction(tr("Song Info..."), this, SLOT(showFileInformation()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(openFileDir()))->setEnabled(status);
     menu.addSeparator();
 
     menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(removeItemAt()))->setEnabled(status);

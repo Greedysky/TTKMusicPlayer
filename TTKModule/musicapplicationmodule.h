@@ -109,55 +109,55 @@ public Q_SLOTS:
     /*!
      * Show about widget.
      */
-    void musicAbout();
+    void showAboutWidget();
     /*!
      * Show bug report view.
      */
-    void musicBugReportView();
+    void showBugReportView();
     /*!
      * Show version update widget.
      */
-    void musicVersionUpdate();
+    void showVersionWidget();
     /*!
      * Show timer widget.
      */
-    void musicTimerWidget();
+    void showTimerWidget();
     /*!
      * Show spectrum widget.
      */
-    void musicSpectrumWidget();
+    void showSpectrumWidget();
     /*!
      * Set current window to top.
      */
-    void musicSetWindowToTop();
+    void setWindowToTop();
     /*!
      * Reset current window geometry.
      */
-    void musicResetWindow();
+    void resetWindowGeometry();
     /*!
      * Tools sets parameter changed.
      */
-    void musicToolSetsParameter();
+    void runToolSetsParameter();
     /*!
      * Detect mobile devices name changed.
      */
-    void musicDeviceNameChanged(const QString &name);
+    void deviceNameChanged(const QString &name);
     /*!
      * Detect mobile devices changed.
      */
-    void musicDeviceChanged(bool state);
+    void deviceChanged(bool state);
     /*!
      * Show set equalizer widget.
      */
-    void musicSetEqualizer();
+    void showEqualizerWidget();
     /*!
      * Show set sound effect widget.
      */
-    void musicSetSoundEffect();
+    void showSoundEffectWidget();
     /*!
      * Sound effect changed.
      */
-    void musicEffectChanged();
+    void soundEffectChanged();
 
 private:
     /*!

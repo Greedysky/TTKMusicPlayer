@@ -131,16 +131,16 @@ void MusicAbstractDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event
     QMenu menu(this);
 
     menu.setStyleSheet(TTK::UI::MenuStyle02);
-    menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
-    menu.addAction(tr("Download More..."), this, SLOT(musicSongDownload()));
+    menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(playClicked()));
+    menu.addAction(tr("Download More..."), this, SLOT(showDownloadWidget()));
     menu.addSeparator();
 
     createMoreMenu(&menu);
 
     const bool status = !m_songs->isEmpty();
-    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
-    menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
-    menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));
+    menu.addAction(tr("Song Info..."), this, SLOT(showFileInformation()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(openFileDir()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(showAlbumQueryWidget()));
     menu.addSeparator();
 
     menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(removeItemAt()))->setEnabled(status);

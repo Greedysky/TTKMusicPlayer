@@ -101,7 +101,7 @@ Q_SIGNALS:
     /*!
      * Music list songs sort by type.
      */
-    void musicListSongSortBy(int index);
+    void songListSortBy(int index);
 
 public Q_SLOTS:
     /*!
@@ -139,23 +139,23 @@ public Q_SLOTS:
     /*!
      * Open music make ring widget.
      */
-    void musicMakeRingWidget();
+    void showMakeRingWidget();
     /*!
      * Open music transform widget.
      */
-    void musicTransformWidget();
+    void showTransformWidget();
     /*!
      * Open music song search query.
      */
-    void musicSearchQuery(QAction *action);
+    void searchQueryByName(QAction *action);
     /*!
      * Add music to played list and play later.
      */
-    void musicAddToPlayLater();
+    void addToPlayLater();
     /*!
      * Add music to played list.
      */
-    void musicAddToPlayedList();
+    void addToPlayedList();
     /*!
      * Rename item artist label is finised.
      */
@@ -163,7 +163,7 @@ public Q_SLOTS:
     /*!
      * Music list songs sort by type.
      */
-    void musicListSongSortBy(QAction *action);
+    void songListSortBy(QAction *action);
 
 private:
     /*!

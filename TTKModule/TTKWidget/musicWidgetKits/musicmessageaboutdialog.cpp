@@ -26,7 +26,7 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
     connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(close()));
 
     m_downloadRequest = new MusicCounterPVRequest(this);
-    connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(musicGetCounterFinished(QString)));
+    connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadFinished(QString)));
     m_downloadRequest->startRequest();
 
     m_ui->iconLabel->setPixmap(QPixmap(":/image/lb_logo"));
@@ -39,7 +39,7 @@ MusicMessageAboutDialog::~MusicMessageAboutDialog()
     delete m_ui;
 }
 
-void MusicMessageAboutDialog::musicGetCounterFinished(const QString &bytes)
+void MusicMessageAboutDialog::downloadFinished(const QString &bytes)
 {
     m_ui->counterLabel->setText(tr("Counter: %1").arg(bytes));
 }

@@ -10,14 +10,14 @@ void MusicHotKeyManager::setInputModule(QObject *object)
         m_hotkeys << (new QGlobalShortcut(object));
     }
 
-    connect(m_hotkeys[0], SIGNAL(activated()), object, SLOT(playState()));
+    connect(m_hotkeys[0], SIGNAL(activated()), object, SLOT(switchPlayState()));
     connect(m_hotkeys[1], SIGNAL(activated()), object, SLOT(playPrevious()));
     connect(m_hotkeys[2], SIGNAL(activated()), object, SLOT(playNext()));
     connect(m_hotkeys[3], SIGNAL(activated()), object, SLOT(volumeUp()));
     connect(m_hotkeys[4], SIGNAL(activated()), object, SLOT(volumeDown()));
-    connect(m_hotkeys[5], SIGNAL(activated()), object, SLOT(musicSetting()));
-    connect(m_hotkeys[6], SIGNAL(activated()), object, SLOT(musicImportSongs()));
-    connect(m_hotkeys[7], SIGNAL(activated()), object, SLOT(musicVolumeMute()));
+    connect(m_hotkeys[5], SIGNAL(activated()), object, SLOT(showSettingWidget()));
+    connect(m_hotkeys[6], SIGNAL(activated()), object, SLOT(importSongsPopup()));
+    connect(m_hotkeys[7], SIGNAL(activated()), object, SLOT(volumeMute()));
 
     setDefaultKey();
 }

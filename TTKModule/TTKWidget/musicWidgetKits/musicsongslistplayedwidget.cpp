@@ -53,7 +53,7 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
     createMoreMenu(menu);
     m_moreButton->setMenu(menu);
 
-    connect(m_downloadButton, SIGNAL(clicked()), MusicLeftAreaWidget::instance(), SLOT(musicDownloadSongToLocal()));
+    connect(m_downloadButton, SIGNAL(clicked()), MusicLeftAreaWidget::instance(), SLOT(downloadSongToLocal()));
     connect(m_deleteButton, SIGNAL(clicked()), SLOT(removeItemAt()));
     connect(this, SIGNAL(enterChanged(int,int)), m_parent, SLOT(itemCellEntered(int,int)));
 }
@@ -88,6 +88,6 @@ void MusicSongsListPlayedWidget::enterEvent(QtEnterEvent *event)
 void MusicSongsListPlayedWidget::createMoreMenu(QMenu *menu)
 {
     menu->setStyleSheet(TTK::UI::MenuStyle02);
-    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), m_parent, SLOT(musicPlayedSimilarQueryWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), m_parent, SLOT(musicSongPlayedSharedWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), m_parent, SLOT(showPlayedSimilarQueryWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), m_parent, SLOT(showPlayedSongSharedWidget()));
 }

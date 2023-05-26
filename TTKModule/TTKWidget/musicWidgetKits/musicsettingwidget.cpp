@@ -525,7 +525,7 @@ void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)
     m_ui->netConnectionWayValue->setText(!name.isEmpty() ? "TCP" : tr("Unknown"));
 }
 
-void MusicSettingWidget::musicFadeInAndOutClicked(bool state)
+void MusicSettingWidget::fadeInAndOutClicked(bool state)
 {
     m_ui->fadeInSpinBox->setEnabled(state);
     m_ui->fadeOutSpinBox->setEnabled(state);
@@ -982,9 +982,9 @@ void MusicSettingWidget::initSoundEffectWidget()
     m_ui->equalizerPluginsButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_ui->equalizerButton, SIGNAL(clicked()), MusicApplicationModule::instance(), SLOT(musicSetEqualizer()));
-    connect(m_ui->equalizerPluginsButton, SIGNAL(clicked()), MusicApplicationModule::instance(), SLOT(musicSetSoundEffect()));
-    connect(m_ui->fadeInAndOutCheckBox, SIGNAL(clicked(bool)), SLOT(musicFadeInAndOutClicked(bool)));
+    connect(m_ui->equalizerButton, SIGNAL(clicked()), MusicApplicationModule::instance(), SLOT(showEqualizerWidget()));
+    connect(m_ui->equalizerPluginsButton, SIGNAL(clicked()), MusicApplicationModule::instance(), SLOT(showSoundEffectWidget()));
+    connect(m_ui->fadeInAndOutCheckBox, SIGNAL(clicked(bool)), SLOT(fadeInAndOutClicked(bool)));
 }
 
 void MusicSettingWidget::initAudioSettingWidget()

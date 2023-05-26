@@ -65,7 +65,7 @@ void MusicAbstractSongsListTableWidget::removeItemAt()
 
 }
 
-void MusicAbstractSongsListTableWidget::musicPlayClicked()
+void MusicAbstractSongsListTableWidget::playClicked()
 {
     if(!isValid())
     {
@@ -85,11 +85,11 @@ void MusicAbstractSongsListTableWidget::removeItemAll()
 
     if(rowCount() == 0 && state)
     {
-        MusicApplication::instance()->musicPlayIndex(TTK_NORMAL_LEVEL);
+        MusicApplication::instance()->playIndexBy(TTK_NORMAL_LEVEL);
     }
 }
 
-void MusicAbstractSongsListTableWidget::musicOpenFileDir()
+void MusicAbstractSongsListTableWidget::openFileDir()
 {
     if(!isValid())
     {
@@ -109,7 +109,7 @@ void MusicAbstractSongsListTableWidget::musicOpenFileDir()
     }
 }
 
-void MusicAbstractSongsListTableWidget::musicFileInformation()
+void MusicAbstractSongsListTableWidget::showFileInformation()
 {
     if(!isValid())
     {
@@ -121,37 +121,37 @@ void MusicAbstractSongsListTableWidget::musicFileInformation()
     widget.exec();
 }
 
-void MusicAbstractSongsListTableWidget::musicSongMovieFound()
+void MusicAbstractSongsListTableWidget::showMovieQueryWidget()
 {
     if(!isValid())
     {
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicVideoButtonSearched(currentSongName(), QString());
+    MusicRightAreaWidget::instance()->showVideoSearchedFound(currentSongName(), QString());
 }
 
-void MusicAbstractSongsListTableWidget::musicAlbumQueryWidget()
+void MusicAbstractSongsListTableWidget::showAlbumQueryWidget()
 {
     if(!isValid())
     {
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicAlbumFound(currentSongName(), QString());
+    MusicRightAreaWidget::instance()->showAlbumFound(currentSongName(), QString());
 }
 
-void MusicAbstractSongsListTableWidget::musicSimilarQueryWidget()
+void MusicAbstractSongsListTableWidget::showSimilarQueryWidget()
 {
     if(!isValid())
     {
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicSimilarFound(currentSongName());
+    MusicRightAreaWidget::instance()->showSimilarFound(currentSongName());
 }
 
-void MusicAbstractSongsListTableWidget::musicSongSharedWidget()
+void MusicAbstractSongsListTableWidget::showSongSharedWidget()
 {
     if(!isValid())
     {
@@ -166,7 +166,7 @@ void MusicAbstractSongsListTableWidget::musicSongSharedWidget()
     widget.exec();
 }
 
-void MusicAbstractSongsListTableWidget::musicSongDownload()
+void MusicAbstractSongsListTableWidget::showDownloadWidget()
 {
     if(!isValid())
     {
@@ -178,27 +178,27 @@ void MusicAbstractSongsListTableWidget::musicSongDownload()
     download->show();
 }
 
-void MusicAbstractSongsListTableWidget::musicSongPlayedMovieFound()
+void MusicAbstractSongsListTableWidget::showPlayedMovieQueryWidget()
 {
     if(!isValid())
     {
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicVideoButtonSearched(songName(m_playRowIndex), QString());
+    MusicRightAreaWidget::instance()->showVideoSearchedFound(songName(m_playRowIndex), QString());
 }
 
-void MusicAbstractSongsListTableWidget::musicPlayedSimilarQueryWidget()
+void MusicAbstractSongsListTableWidget::showPlayedSimilarQueryWidget()
 {
     if(!isValid())
     {
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicSimilarFound(songName(m_playRowIndex));
+    MusicRightAreaWidget::instance()->showSimilarFound(songName(m_playRowIndex));
 }
 
-void MusicAbstractSongsListTableWidget::musicSongPlayedSharedWidget()
+void MusicAbstractSongsListTableWidget::showPlayedSongSharedWidget()
 {
     if(!isValid())
     {
@@ -216,8 +216,8 @@ void MusicAbstractSongsListTableWidget::musicSongPlayedSharedWidget()
 void MusicAbstractSongsListTableWidget::createMoreMenu(QMenu *menu)
 {
     menu->setStyleSheet(TTK::UI::MenuStyle02);
-    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), this, SLOT(musicSimilarQueryWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), this, SLOT(musicSongSharedWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), this, SLOT(showSimilarQueryWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), this, SLOT(showSongSharedWidget()));
 }
 
 QString MusicAbstractSongsListTableWidget::currentSongPath() const

@@ -64,12 +64,12 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     m_ui->listTransparentLabel->setStyleSheet(TTK::UI::ColorStyle03);
 
     connect(m_ui->skinTransparentLabelBox, SIGNAL(clicked(bool)), SLOT(windowTransparentChanged(bool)));
-    connect(m_ui->skinTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(musicBackgroundTransparentChanged(int)));
-    connect(m_ui->skinTransparentButton, SIGNAL(sliderStateChanged(bool)), MusicTopAreaWidget::instance(), SLOT(musicBackgroundAnimationChanged(bool)));
-    connect(m_ui->listTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(musicPlaylistTransparent(int)));
+    connect(m_ui->skinTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(backgroundTransparentChanged(int)));
+    connect(m_ui->skinTransparentButton, SIGNAL(sliderStateChanged(bool)), MusicTopAreaWidget::instance(), SLOT(backgroundAnimationChanged(bool)));
+    connect(m_ui->listTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(playlistTransparent(int)));
     connect(m_ui->paletteButton, SIGNAL(clicked()), SLOT(showPaletteDialog()));
     connect(m_ui->customSkin, SIGNAL(clicked()) ,SLOT(showCustomSkinDialog()));
-    connect(m_ui->resetWindowButton, SIGNAL(clicked()), MusicApplicationModule::instance(), SLOT(musicResetWindow()));
+    connect(m_ui->resetWindowButton, SIGNAL(clicked()), MusicApplicationModule::instance(), SLOT(resetWindowGeometry()));
 
     connect(m_cacheBackgroundList, SIGNAL(itemClicked(int,QString)), SLOT(classicalListWidgetItemClicked(int,QString)));
     connect(m_stackBackgroundList, SIGNAL(itemClicked(int,QString)), SLOT(classicalListWidgetItemClicked(int,QString)));
@@ -265,11 +265,11 @@ void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
 {
     if(path.contains(TTK_COLOR_FILE))
     {
-        MusicTopAreaWidget::instance()->musicBackgroundTransparentChanged(path);
+        MusicTopAreaWidget::instance()->backgroundTransparentChanged(path);
     }
     else
     {
-        MusicTopAreaWidget::instance()->musicBackgroundSkinChanged(QFileInfo(path).baseName());
+        MusicTopAreaWidget::instance()->backgroundSkinChanged(QFileInfo(path).baseName());
     }
 
     G_BACKGROUND_PTR->setBackgroundUrl(path);
@@ -283,13 +283,13 @@ void MusicBackgroundSkinDialog::windowTransparentChanged(bool state)
     if(!state)
     {
         m_ui->skinTransparentButton->setValue(0);
-        MusicTopAreaWidget::instance()->musicBackgroundTransparentChanged(0);
+        MusicTopAreaWidget::instance()->backgroundTransparentChanged(0);
     }
 }
 
 void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundListWidget *item, const QString &name)
 {
-    MusicTopAreaWidget::instance()->musicBackgroundSkinChanged(name);
+    MusicTopAreaWidget::instance()->backgroundSkinChanged(name);
 
     item->clearState();
     item->setCurrentItemName(name);

@@ -56,7 +56,7 @@ private Q_SLOTS:
     /*!
      * Set current player to play or not.
      */
-    void playState();
+    void switchPlayState();
     /*!
      * Set current player to play previous.
      */

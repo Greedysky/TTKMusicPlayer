@@ -115,11 +115,11 @@ int main(int argc, char *argv[])
 
         if(parser.isSet(op1))
         {
-            w.musicImportSongsPathOutside(parser.value(op1), true);
+            w.importSongsOutsideMode(parser.value(op1), true);
         }
         else if(parser.isSet(op2))
         {
-            w.musicImportSongsPathOutside(parser.value(op2), false);
+            w.importSongsOutsideMode(parser.value(op2), false);
         }
     }
 

@@ -72,25 +72,25 @@ public:
     /*!
      * Load current song lrc.
      */
-    void musicLoadCurrentSongLrc();
+    void loadCurrentSongLrc();
 
     /*!
      * Import outside music datas into container.
      */
-    void musicImportSongsPathOutside(const QString &file, bool play);
+    void importSongsOutsideMode(const QString &file, bool play);
 
     /*!
      * Get music current song download contains.
      */
-    QString musicDownloadContains(bool &contains) const;
+    QString downloadContains(bool &contains) const;
     /*!
      * Get music current song lovest contains.
      */
-    bool musicLovestContains() const;
+    bool lovestContains() const;
     /*!
      * Get music list current song lovest contains.
      */
-    bool musicLovestContains(int index) const;
+    bool lovestContains(int index) const;
     /*!
      * Update current artist when it download finished.
      */
@@ -113,7 +113,7 @@ public Q_SLOTS:
     /*!
      * Application window close.
      */
-    void quitWindowClose();
+    void quitWindow();
     /*!
      * Set current player position.
      */
@@ -133,11 +133,11 @@ public Q_SLOTS:
     /*!
      * Set current player to play or not.
      */
-    void playState();
+    void switchPlayState();
     /*!
      * Set current player to stop.
      */
-    void musicStateStop();
+    void switchStopState();
     /*!
      * Set current player to play previous.
      */
@@ -170,7 +170,7 @@ public Q_SLOTS:
     /*!
      * Set current play volume to 0.
      */
-    void musicVolumeMute();
+    void volumeMute();
     /*!
      * Current play volume changed.
      */
@@ -178,51 +178,51 @@ public Q_SLOTS:
     /*!
      * Import music songs.
      */
-    void musicImportSongs();
+    void importSongsPopup();
     /*!
      * Import music songs by files.
      */
-    void musicImportSongsByFiles();
+    void importSongsByFiles();
     /*!
      * Import music songs by dir.
      */
-    void musicImportSongsByDir();
+    void importSongsByDir();
     /*!
      * Import music songs by url.
      */
-    void musicImportSongsByUrl();
+    void importSongsByUrl();
     /*!
      * Import music songs by item list.
      */
-    void musicImportSongsItemList();
+    void importSongsItemList();
     /*!
      * Export music songs by item list.
      */
-    void musicExportSongsItemList(int index);
+    void exportSongsItemList(int index);
     /*!
      * Set current music play list sort.
      */
-    void musicPlaySort(int row);
+    void playSortBy(int row);
     /*!
      * Set played list row index music to play.
      */
-    void musicPlayedIndex(int row);
+    void playedIndexBy(int row);
     /*!
      * Set current row index music to play.
      */
-    void musicPlayIndex(int row);
+    void playIndexBy(int row);
     /*!
      * Set current row index music to play.
      */
-    void musicPlayIndex(int row, int column);
+    void playIndexBy(int row, int column);
     /*!
      * Set current row index music to play.
      */
-    void musicPlayIndexClicked(int row, int column);
+    void playIndexClicked(int row, int column);
     /*!
      * Set song speed and slow by given pos.
      */
-    void musicPlayAnyTimeAt(int value);
+    void playAnyTimeAt(int time);
     /*!
      * Set current player volume down.
      */
@@ -234,31 +234,31 @@ public Q_SLOTS:
     /*!
      * Show setting widget.
      */
-    void musicSetting();
+    void showSettingWidget();
     /*!
      * Show current play index.
      */
-    void musicCurrentPlayLocation();
+    void currentPlayLocation();
     /*!
      * Add music song to lovest list.
      */
-    void musicAddSongToLovestList();
+    void addSongToLovestList();
     /*!
      * Add music song to lovest list.
      */
-    void musicAddSongToLovestList(bool state);
+    void addSongToLovestList(bool state);
     /*!
      * Set window concise.
      */
-    void musicWindowConciseChanged();
+    void windowConciseChanged();
     /*!
      * Set current music enhanced effect by type.
      */
-    void musicEnhancedMusicChanged(int type);
+    void enhancedMusicChanged(int type);
     /*!
      * Create right menu.
      */
-    void musicCreateRightMenu();
+    void createRightMenu();
     /*!
      * Apply settings parameters.
      */
@@ -274,7 +274,7 @@ public Q_SLOTS:
     /*!
      * The current lrc should update.
      */
-    void musicCurrentLrcUpdated();
+    void currentLrcUpdated();
     /*!
      * Reset current song lrc index.
      */
@@ -312,7 +312,7 @@ private:
     /*!
      * Set music current play index.
      */
-    void setMusicPlayIndex();
+    void setPlayIndex();
     /*!
      * Read system config from file.
      */

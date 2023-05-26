@@ -38,17 +38,17 @@ MusicSongsToolBoxTopWidget::~MusicSongsToolBoxTopWidget()
     delete m_renameEdit;
 }
 
-void MusicSongsToolBoxTopWidget::deleteRowItem()
+void MusicSongsToolBoxTopWidget::deleteRowItemChanged()
 {
     Q_EMIT deleteRowItem(m_index);
 }
 
-void MusicSongsToolBoxTopWidget::deleteRowItemAll()
+void MusicSongsToolBoxTopWidget::deleteRowItemAllChanged()
 {
     Q_EMIT deleteRowItemAll(m_index);
 }
 
-void MusicSongsToolBoxTopWidget::changRowItemName()
+void MusicSongsToolBoxTopWidget::changRowItemNameChanged()
 {
     if(!m_renameEdit)
     {
@@ -68,19 +68,19 @@ void MusicSongsToolBoxTopWidget::changItemName(const QString &name)
     m_renameEdit = nullptr;
 }
 
-void MusicSongsToolBoxTopWidget::musicAddNewFiles()
+void MusicSongsToolBoxTopWidget::addNewFilesChanged()
 {
-    Q_EMIT musicAddNewFiles(m_index);
+    Q_EMIT addNewFiles(m_index);
 }
 
-void MusicSongsToolBoxTopWidget::musicAddNewDir()
+void MusicSongsToolBoxTopWidget::addNewDirChanged()
 {
-    Q_EMIT musicAddNewDir(m_index);
+    Q_EMIT addNewDir(m_index);
 }
 
 void MusicSongsToolBoxTopWidget::exportSongsItemList()
 {
-   MusicApplication::instance()->musicExportSongsItemList(m_index);
+   MusicApplication::instance()->exportSongsItemList(m_index);
 }
 
 void MusicSongsToolBoxTopWidget::showMenu()
@@ -93,8 +93,8 @@ void MusicSongsToolBoxTopWidget::showMenu()
     QMenu addNewFiles(tr("Add New Files"), &menu);
     bool disable = TTK::playlistRowValid(m_index);
     menu.addMenu(&addNewFiles)->setEnabled(disable);
-    addNewFiles.addAction(tr("Open Files"), this, SLOT(musicAddNewFiles()));
-    addNewFiles.addAction(tr("Open Dir"), this, SLOT(musicAddNewDir()));
+    addNewFiles.addAction(tr("Open Files"), this, SLOT(addNewFilesChanged()));
+    addNewFiles.addAction(tr("Open Dir"), this, SLOT(addNewDirChanged()));
     TTK::Widget::adjustMenuPosition(&addNewFiles);
 
     menu.addAction(tr("Play Later"), this, SLOT(addToPlayLater()));
@@ -108,7 +108,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
     sortFiles.addAction(tr("Sort By PlayTime"))->setData(4);
     sortFiles.addAction(tr("Sort By PlayCount"))->setData(5);
     TTK::Widget::adjustMenuPosition(&sortFiles);
-    connect(&sortFiles, SIGNAL(triggered(QAction*)), SLOT(musicListSongSortBy(QAction*)));
+    connect(&sortFiles, SIGNAL(triggered(QAction*)), SLOT(songListSortBy(QAction*)));
 
     if(m_songSort)
     {
@@ -125,14 +125,14 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addSeparator();
 
     disable = isItemEnabled();
-    menu.addAction(tr("Delete All"), this, SLOT(deleteRowItemAll()));
-    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete Item"), this, SLOT(deleteRowItem()))->setEnabled(disable);
-    menu.addAction(tr("Rename"), this, SLOT(changRowItemName()))->setEnabled(disable);
+    menu.addAction(tr("Delete All"), this, SLOT(deleteRowItemAllChanged()));
+    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete Item"), this, SLOT(deleteRowItemChanged()))->setEnabled(disable);
+    menu.addAction(tr("Rename"), this, SLOT(changRowItemNameChanged()))->setEnabled(disable);
 
     menu.exec(QCursor::pos());
 }
 
-void MusicSongsToolBoxTopWidget::musicListSongSortBy(QAction *action)
+void MusicSongsToolBoxTopWidget::songListSortBy(QAction *action)
 {
     if(m_songSort)
     {
@@ -149,7 +149,7 @@ void MusicSongsToolBoxTopWidget::musicListSongSortBy(QAction *action)
         {
             m_songSort->m_order = Qt::AscendingOrder;
         }
-        Q_EMIT musicListSongSortBy(m_index);
+        Q_EMIT songListSortBy(m_index);
     }
 }
 
@@ -229,9 +229,9 @@ MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QStrin
     connect(m_topWidget, SIGNAL(deleteRowItem(int)), SIGNAL(deleteRowItem(int)));
     connect(m_topWidget, SIGNAL(deleteRowItemAll(int)), SIGNAL(deleteRowItemAll(int)));
     connect(m_topWidget, SIGNAL(changRowItemName(int,QString)), SIGNAL(changRowItemName(int,QString)));
-    connect(m_topWidget, SIGNAL(musicAddNewFiles(int)), SIGNAL(musicAddNewFiles(int)));
-    connect(m_topWidget, SIGNAL(musicAddNewDir(int)), SIGNAL(musicAddNewDir(int)));
-    connect(m_topWidget, SIGNAL(musicListSongSortBy(int)), SIGNAL(musicListSongSortBy(int)));
+    connect(m_topWidget, SIGNAL(addNewFiles(int)), SIGNAL(addNewFiles(int)));
+    connect(m_topWidget, SIGNAL(addNewDir(int)), SIGNAL(addNewDir(int)));
+    connect(m_topWidget, SIGNAL(songListSortBy(int)), SIGNAL(songListSortBy(int)));
     connect(m_topWidget, SIGNAL(addToPlayLater(int)), SIGNAL(addToPlayLater(int)));
     connect(m_topWidget, SIGNAL(addToPlayedList(int)), SIGNAL(addToPlayedList(int)));
 

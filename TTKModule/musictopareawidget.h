@@ -98,10 +98,6 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Search current music song from net.
-     */
-    void musicSearchButtonClicked();
-    /*!
      * Background pixmap data changed.
      */
     void backgroundPixmapChanged(const QPixmap &pix);
@@ -110,93 +106,93 @@ public Q_SLOTS:
     /*!
      * Show change background skin dialog.
      */
-    void musicShowSkinChangedWindow();
+    void showSkinManagerWidget();
     /*!
      * Set background as artist background picture.
      */
-    void musicSetAsArtistBackground();
+    void setAsArtistBackground();
     /*!
      * Current background transparent changed.
      */
-    void musicBackgroundTransparentChanged();
+    void backgroundTransparentChanged();
     /*!
      * Current background transparent changed by value.
      */
-    void musicBackgroundTransparentChanged(int value);
+    void backgroundTransparentChanged(int value);
     /*!
      * Current background transparent changed by string.
      */
-    void musicBackgroundTransparentChanged(const QString &fileName);
+    void backgroundTransparentChanged(const QString &fileName);
     /*!
      * Current background skin changed by new path.
      */
-    void musicBackgroundSkinChanged(const QString &fileName);
+    void backgroundSkinChanged(const QString &fileName);
     /*!
      * Changed current background skin.
      */
-    void musicBackgroundChanged();
+    void backgroundChanged();
     /*!
      * Current slider state changed.
      */
-    void musicBackgroundAnimationChanged(bool state);
+    void backgroundAnimationChanged(bool state);
     /*!
      * Current background skin download is finished.
      */
-    void musicBackgroundThemeDownloadFinished();
+    void backgroundThemeDownloadFinished();
     /*!
      * Resize current background skin when geometry changed.
      */
-    void musicBackgroundThemeChangedByResize();
+    void backgroundThemeChangedByResize();
     /*!
      * Current list background transparent changed.
      */
-    void musicPlaylistTransparent(int index);
+    void playlistTransparent(int index);
     /*!
      * Changed current remote to square mode.
      */
-    void musicSquareRemote();
+    void showSquareRemote();
     /*!
      * Changed current remote to rectangle mode.
      */
-    void musicRectangleRemote();
+    void showRectangleRemote();
     /*!
      * Changed current remote to simple style mode.
      */
-    void musicSimpleStyleRemote();
+    void showSimpleStyleRemote();
     /*!
      * Changed current remote to complex style mode.
      */
-    void musicComplexStyleRemote();
-    /*!
-     * Changed current remote to wallpaper mode.
-     */
-    void musicWallpaperRemote(bool create);
+    void showComplexStyleRemote();
     /*!
      * Changed current remote to ripple mode.
      */
-    void musicRippleRemote();
+    void showRippleRemote();
+    /*!
+     * Changed current remote to wallpaper mode.
+     */
+    void showWallpaperRemote(bool create);
     /*!
      * Delete current remote.
      */
-    void musicDeleteRemote();
+    void deleteCurrentRemote();
     /*!
      * Switch to diff remote type.
      */
-    void musicRemoteTypeChanged(QAction *type);
+    void remoteTypeChanged(QAction *type);
     /*!
      * Switch to diff remote type.
      */
-    void musicRemoteTypeChanged(int type);
+    void remoteTypeChanged(int type);
     /*!
      * Change to tool sets widget.
      */
-    void musicStackedToolsWidgetChanged();
+    void showToolSetsWidget();
 
 private:
     /*!
-     * Set list background skin transparent changed.
+     * Set list background skin transparent.
      */
-    void backgroundTransparentChanged(int value);
+    void backgroundTransparent(int value);
     /*!
      * Check background draw enable.
      */

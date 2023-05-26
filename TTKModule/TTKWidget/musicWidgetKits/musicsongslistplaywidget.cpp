@@ -88,13 +88,13 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     createMoreMenu(menu);
     m_moreButton->setMenu(menu);
 
-    connect(m_loveButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicAddSongToLovestList()));
-    connect(m_downloadButton, SIGNAL(clicked()), MusicLeftAreaWidget::instance(), SLOT(musicDownloadSongToLocal()));
+    connect(m_loveButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(addSongToLovestList()));
+    connect(m_downloadButton, SIGNAL(clicked()), MusicLeftAreaWidget::instance(), SLOT(downloadSongToLocal()));
     connect(m_deleteButton, SIGNAL(clicked()), parent, SLOT(removeItemAt()));
     connect(this, SIGNAL(renameFinished(QString)), parent, SLOT(setItemRenameFinished(QString)));
     connect(this, SIGNAL(enterChanged(int,int)), parent, SLOT(itemCellEntered(int,int)));
-    connect(m_showMVButton, SIGNAL(clicked()), parent, SLOT(musicSongPlayedMovieFound()));
-    connect(addButton, SIGNAL(clicked()), parent, SLOT(musicAddToPlayLater()));
+    connect(m_showMVButton, SIGNAL(clicked()), parent, SLOT(showPlayedMovieQueryWidget()));
+    connect(addButton, SIGNAL(clicked()), parent, SLOT(addToPlayLater()));
 
     connect(MusicLeftAreaWidget::instance(), SIGNAL(currentLoveStateChanged()), SLOT(currentLoveStateClicked()));
     connect(MusicLeftAreaWidget::instance(), SIGNAL(currentDownloadStateChanged()), SLOT(currentDownloadStateClicked()));
@@ -196,14 +196,14 @@ void MusicSongsListPlayWidget::changItemName(const QString &name)
 
 void MusicSongsListPlayWidget::currentLoveStateClicked()
 {
-    const bool state = MusicApplication::instance()->musicLovestContains();
+    const bool state = MusicApplication::instance()->lovestContains();
     m_loveButton->setStyleSheet(state ? TTK::UI::TinyBtnLove : TTK::UI::TinyBtnUnLove);
 }
 
 void MusicSongsListPlayWidget::currentDownloadStateClicked()
 {
     bool state = false;
-    MusicApplication::instance()->musicDownloadContains(state);
+    MusicApplication::instance()->downloadContains(state);
     m_downloadButton->setStyleSheet(state ? TTK::UI::TinyBtnDownload : TTK::UI::TinyBtnUnDownload);
 }
 
@@ -216,8 +216,8 @@ void MusicSongsListPlayWidget::enterEvent(QtEnterEvent *event)
 void MusicSongsListPlayWidget::createMoreMenu(QMenu *menu)
 {
     menu->setStyleSheet(TTK::UI::MenuStyle02);
-    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), parent(), SLOT(musicPlayedSimilarQueryWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), parent(), SLOT(musicSongPlayedSharedWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), parent(), SLOT(showPlayedSimilarQueryWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), parent(), SLOT(showPlayedSongSharedWidget()));
 }
 
 bool MusicSongsListPlayWidget::showArtistPicture(const QString &name) const

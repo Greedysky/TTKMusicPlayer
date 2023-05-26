@@ -375,7 +375,7 @@ void MusicSongsSummariziedWidget::deleteRowItem(int index)
     {
         setCurrentIndex(MUSIC_NORMAL_LIST);
         m_itemList.front().m_widgetItem->setItemExpand(false);
-        MusicApplication::instance()->musicPlayIndex(TTK_NORMAL_LEVEL);
+        MusicApplication::instance()->playIndexBy(TTK_NORMAL_LEVEL);
     }
     else if(m_playToolIndex > id)
     {
@@ -402,7 +402,7 @@ void MusicSongsSummariziedWidget::deleteRowItems()
     {
         setCurrentIndex(MUSIC_NORMAL_LIST);
         m_itemList.front().m_widgetItem->setItemExpand(false);
-        MusicApplication::instance()->musicPlayIndex(TTK_NORMAL_LEVEL);
+        MusicApplication::instance()->playIndexBy(TTK_NORMAL_LEVEL);
     }
 
     for(int i = m_containerItems.count() - 1; i > 3; --i)
@@ -436,7 +436,7 @@ void MusicSongsSummariziedWidget::deleteRowItemAll(int index)
 
     if(m_containerItems[id].m_songs.isEmpty() && m_playToolIndex == id)
     {
-        MusicApplication::instance()->musicPlayIndex(TTK_NORMAL_LEVEL);
+        MusicApplication::instance()->playIndexBy(TTK_NORMAL_LEVEL);
     }
 }
 
@@ -524,7 +524,7 @@ void MusicSongsSummariziedWidget::addToPlayedList(int index)
     }
 }
 
-void MusicSongsSummariziedWidget::musicImportSongsByFiles(int index)
+void MusicSongsSummariziedWidget::importSongsByFiles(int index)
 {
     if(index == TTK_LOW_LEVEL)
     {
@@ -541,11 +541,11 @@ void MusicSongsSummariziedWidget::musicImportSongsByFiles(int index)
         m_selectImportIndex = id;
     }
 
-    MusicApplication::instance()->musicImportSongsByFiles();
+    MusicApplication::instance()->importSongsByFiles();
     m_selectImportIndex = MUSIC_NORMAL_LIST;
 }
 
-void MusicSongsSummariziedWidget::musicImportSongsByDir(int index)
+void MusicSongsSummariziedWidget::importSongsByDir(int index)
 {
     if(index == TTK_LOW_LEVEL)
     {
@@ -562,16 +562,16 @@ void MusicSongsSummariziedWidget::musicImportSongsByDir(int index)
         m_selectImportIndex = id;
     }
 
-    MusicApplication::instance()->musicImportSongsByDir();
+    MusicApplication::instance()->importSongsByDir();
     m_selectImportIndex = MUSIC_NORMAL_LIST;
 }
 
-void MusicSongsSummariziedWidget::musicSongsCheckTestTools()
+void MusicSongsSummariziedWidget::showSongCheckToolsWidget()
 {
     GENERATE_SINGLE_WIDGET_CLASS(MusicSongCheckToolsWidget);
 }
 
-void MusicSongsSummariziedWidget::musicLrcBatchDownload()
+void MusicSongsSummariziedWidget::showLrcDownloadBatchWidget()
 {
     GENERATE_SINGLE_WIDGET_CLASS(MusicLrcDownloadBatchWidget);
 }
@@ -648,23 +648,15 @@ void MusicSongsSummariziedWidget::updateCurrentIndex()
     MusicApplication::instance()->showCurrentSong();
 }
 
-void MusicSongsSummariziedWidget::addSongToLovestListAt(bool state, int row)
+void MusicSongsSummariziedWidget::songToLovestListAt(bool state, int row)
 {
-    if(m_currentIndex < 0 || m_currentIndex >= m_containerItems.count() || hasSearchResult())
+    if(m_playToolIndex < 0 || m_playToolIndex >= m_containerItems.count())
     {
         return;
     }
 
-    const MusicSong &song = m_containerItems[m_currentIndex].m_songs[row];
+    const MusicSong &song = m_containerItems[m_playToolIndex].m_songs[row];
     MusicSongItem *item = &m_containerItems[MUSIC_LOVEST_LIST];
-
-    ///if current play list contains, call main add and remove function
-    if(MusicSong(MusicApplication::instance()->currentFilePath()) == song)
-    {
-        MusicApplication::instance()->musicAddSongToLovestList(state);
-        return;
-    }
-
     MusicSongsListPlayTableWidget *widget = TTKObjectCast(MusicSongsListPlayTableWidget*, item->m_itemObject);
     if(state)    ///Add to lovest list
     {
@@ -684,15 +676,23 @@ void MusicSongsSummariziedWidget::addSongToLovestListAt(bool state, int row)
     }
 }
 
-void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
+void MusicSongsSummariziedWidget::addSongToLovestListAt(bool state, int row)
 {
-    if(m_playToolIndex < 0 || m_playToolIndex >= m_containerItems.count())
+    if(m_currentIndex < 0 || m_currentIndex >= m_containerItems.count() || hasSearchResult())
     {
         return;
     }
 
-    const MusicSong &song = m_containerItems[m_playToolIndex].m_songs[row];
+    const MusicSong &song = m_containerItems[m_currentIndex].m_songs[row];
     MusicSongItem *item = &m_containerItems[MUSIC_LOVEST_LIST];
+
+    ///if current play list contains, call main add and remove function
+    if(MusicSong(MusicApplication::instance()->currentFilePath()) == song)
+    {
+        MusicApplication::instance()->addSongToLovestList(state);
+        return;
+    }
+
     MusicSongsListPlayTableWidget *widget = TTKObjectCast(MusicSongsListPlayTableWidget*, item->m_itemObject);
     if(state)    ///Add to lovest list
     {
@@ -733,7 +733,7 @@ void MusicSongsSummariziedWidget::addSongBufferToPlaylist(const MusicResultDataI
     {
         ///when download finished just play it at once
         setCurrentIndex(MUSIC_NETWORK_LIST);
-        MusicApplication::instance()->musicPlayIndexClicked(index, 0);
+        MusicApplication::instance()->playIndexClicked(index, 0);
     }
 }
 
@@ -759,7 +759,7 @@ void MusicSongsSummariziedWidget::addSongToPlaylist(const QStringList &items)
 
     /// just play it at once
     setCurrentIndex(MUSIC_NORMAL_LIST);
-    MusicApplication::instance()->musicPlayIndexClicked(index, 0);
+    MusicApplication::instance()->playIndexClicked(index, 0);
 }
 
 void MusicSongsSummariziedWidget::removeItemAt(const TTKIntList &index, bool fileRemove)
@@ -784,7 +784,7 @@ void MusicSongsSummariziedWidget::removeItemAt(const TTKIntList &index, bool fil
             {
                 if(songs[playIndex] == song)
                 {
-                    MusicApplication::instance()->musicAddSongToLovestList(false);
+                    MusicApplication::instance()->addSongToLovestList(false);
                 }
             }
         }
@@ -929,7 +929,7 @@ void MusicSongsSummariziedWidget::showFloatWidget()
     }
 }
 
-void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
+void MusicSongsSummariziedWidget::songListSortBy(int index)
 {
     const int id = foundMappedIndex(index);
     if(id == -1)
@@ -970,7 +970,7 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
     index = songs->indexOf(song);
     if(m_currentIndex == m_playToolIndex)
     {
-        MusicApplication::instance()->musicPlaySort(index);
+        MusicApplication::instance()->playSortBy(index);
     }
 }
 
@@ -1022,9 +1022,9 @@ void MusicSongsSummariziedWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu menu(this);
     menu.setStyleSheet(TTK::UI::MenuStyle02);
     menu.addAction(tr("Create Item"), this, SLOT(addNewRowItem()));
-    menu.addAction(tr("Import Item"), MusicApplication::instance(), SLOT(musicImportSongsItemList()));
-    menu.addAction(tr("Music Test Tools"), this, SLOT(musicSongsCheckTestTools()));
-    menu.addAction(tr("Lrc Batch Download"), this, SLOT(musicLrcBatchDownload()));
+    menu.addAction(tr("Import Item"), MusicApplication::instance(), SLOT(importSongsItemList()));
+    menu.addAction(tr("Music Test Tools"), this, SLOT(showSongCheckToolsWidget()));
+    menu.addAction(tr("Lrc Batch Download"), this, SLOT(showLrcDownloadBatchWidget()));
     menu.addAction(tr("Delete All"), this, SLOT(deleteRowItems()))->setEnabled(m_containerItems.count() > ITEM_MIN_COUNT);
 
     TTK::Widget::adjustMenuPosition(&menu);
@@ -1098,7 +1098,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     connect(widget, SIGNAL(queryMusicIndexSwaped(int,int,int,MusicSongList&)), SLOT(setMusicIndexSwaped(int,int,int,MusicSongList&)));
     connect(widget, SIGNAL(addSongToLovestListAt(bool,int)), SLOT(addSongToLovestListAt(bool,int)));
     connect(widget, SIGNAL(showFloatWidget()), SLOT(showFloatWidget()));
-    connect(widget, SIGNAL(musicListSongSortBy(int)), SLOT(musicListSongSortBy(int)));
+    connect(widget, SIGNAL(songListSortBy(int)), SLOT(songListSortBy(int)));
 
     ///connect to items
     setInputModule(m_itemList.back().m_widgetItem);
@@ -1124,9 +1124,9 @@ void MusicSongsSummariziedWidget::setInputModule(QObject *object) const
     connect(object, SIGNAL(deleteRowItemAll(int)), SLOT(deleteRowItemAll(int)));
     connect(object, SIGNAL(deleteRowItem(int)), SLOT(deleteRowItem(int)));
     connect(object, SIGNAL(changRowItemName(int,QString)), SLOT(changRowItemName(int,QString)));
-    connect(object, SIGNAL(musicAddNewFiles(int)), SLOT(musicImportSongsByFiles(int)));
-    connect(object, SIGNAL(musicAddNewDir(int)), SLOT(musicImportSongsByDir(int)));
-    connect(object, SIGNAL(musicListSongSortBy(int)), SLOT(musicListSongSortBy(int)));
+    connect(object, SIGNAL(addNewFiles(int)), SLOT(importSongsByFiles(int)));
+    connect(object, SIGNAL(addNewDir(int)), SLOT(importSongsByDir(int)));
+    connect(object, SIGNAL(songListSortBy(int)), SLOT(songListSortBy(int)));
     connect(object, SIGNAL(swapDragItemIndex(int,int)), SLOT(swapDragItemIndex(int,int)));
     connect(object, SIGNAL(addToPlayLater(int)), SLOT(addToPlayLater(int)));
     connect(object, SIGNAL(addToPlayedList(int)), SLOT(addToPlayedList(int)));

@@ -62,7 +62,7 @@ public Q_SLOTS:
     /*!
      * Music item has been clicked.
      */
-    void musicPlayClicked();
+    void playClicked();
 
 private:
     /*!

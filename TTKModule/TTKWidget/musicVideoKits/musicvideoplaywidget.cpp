@@ -50,7 +50,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_closeButton->setFixedSize(14, 14);
     m_closeButton->setStyleSheet(TTK::UI::BtnPClose);
     m_closeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_closeButton, SIGNAL(clicked()), parent, SLOT(musicVideoClosed()));
+    connect(m_closeButton, SIGNAL(clicked()), parent, SLOT(videoClosed()));
     topLayout->addWidget(m_closeButton);
     m_topWidget->setLayout(topLayout);
 
@@ -281,7 +281,7 @@ void MusicVideoPlayWidget::mediaUrlChanged(const QString &url)
     MusicApplication *w = MusicApplication::instance();
     if(w->isPlaying())
     {
-        w->playState();
+        w->switchPlayState();
     }
     ///stop current media play while mv starts.
     m_videoView->setMedia(url);

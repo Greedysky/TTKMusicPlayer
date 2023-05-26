@@ -73,7 +73,7 @@ void MusicItemSearchTableWidget::actionGroupClick(QAction *action)
 
     switch(action->data().toInt())
     {
-        case 0: musicDownloadLocal(row); break;
+        case 0: downloadQuery(row); break;
         case 1: Q_EMIT restartSearchQuery(songName); break;
         case 2: Q_EMIT restartSearchQuery(artistName); break;
         case 3: Q_EMIT restartSearchQuery(artistName + " - " + songName); break;

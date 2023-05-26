@@ -148,11 +148,11 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
     const QString &key = !m_searchEdit->editor()->text().isEmpty() ? m_searchEdit->editor()->text() : m_searchEdit->editor()->placeholderText();
     switch(m_tabWidget->currentIndex())
     {
-        case 0: MusicRightAreaWidget::instance()->musicSingleSearchedFound(searchedKeyWork(0, key)); break;
-        case 1: MusicRightAreaWidget::instance()->musicArtistFound(QString(), searchedKeyWork(1, key)); break;
-        case 2: MusicRightAreaWidget::instance()->musicAlbumFound(QString(), searchedKeyWork(2, key)); break;
-        case 3: MusicRightAreaWidget::instance()->musicPlaylistFound(searchedKeyWork(3, key)); break;
-        case 4: MusicRightAreaWidget::instance()->musicVideoButtonSearched(QString(), searchedKeyWork(4, key)); break;
+        case 0: MusicRightAreaWidget::instance()->showSingleSearchedFound(searchedKeyWork(0, key)); break;
+        case 1: MusicRightAreaWidget::instance()->showArtistFound(QString(), searchedKeyWork(1, key)); break;
+        case 2: MusicRightAreaWidget::instance()->showAlbumFound(QString(), searchedKeyWork(2, key)); break;
+        case 3: MusicRightAreaWidget::instance()->showPlaylistFound(searchedKeyWork(3, key)); break;
+        case 4: MusicRightAreaWidget::instance()->showVideoSearchedFound(QString(), searchedKeyWork(4, key)); break;
         default: break;
     }
 }

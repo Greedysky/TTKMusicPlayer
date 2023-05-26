@@ -55,7 +55,7 @@ public:
      * Data download to local file.
      * Subclass should implement this function.
      */
-    virtual void musicDownloadLocal(int row) = 0;
+    virtual void downloadQuery(int row) = 0;
 
 Q_SIGNALS:
     /*!

@@ -77,7 +77,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, text);
 }
 
-void MusicSongSearchTableWidget::musicDownloadLocal(int row)
+void MusicSongSearchTableWidget::downloadQuery(int row)
 {
     const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row < 0 || (row >= rowCount() - 1) || row >= songInfos.count())
@@ -160,7 +160,7 @@ void MusicSongSearchTableWidget::itemCellClicked(int row, int column)
     switch(column)
     {
         case 7: addSearchMusicToPlaylist(row, false); break;
-        case 8: musicDownloadLocal(row); break;
+        case 8: downloadQuery(row); break;
         default: break;
     }
 }
@@ -244,12 +244,12 @@ void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
 
     switch(action->data().toInt())
     {
-        case 0: musicDownloadLocal(row); break;
+        case 0: downloadQuery(row); break;
         case 1: Q_EMIT restartSearchQuery(info.m_songName); break;
-        case 2: MusicRightAreaWidget::instance()->musicArtistFound(info.m_singerName, info.m_artistId); break;
+        case 2: MusicRightAreaWidget::instance()->showArtistFound(info.m_singerName, info.m_artistId); break;
         case 3: Q_EMIT restartSearchQuery(info.m_singerName + " - " + info.m_songName); break;
         case 4: addSearchMusicToPlaylist(row, true); break;
-        case 5: MusicRightAreaWidget::instance()->musicAlbumFound(info.m_albumName, info.m_albumId); break;
+        case 5: MusicRightAreaWidget::instance()->showAlbumFound(info.m_albumName, info.m_albumId); break;
         default: break;
     }
 }
@@ -348,7 +348,7 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
     setLayout(boxLayout);
 
     createToolWidget(toolWidget);
-    connect(m_searchTableWidget, SIGNAL(restartSearchQuery(QString)), MusicRightAreaWidget::instance(), SLOT(musicSongSearchedFound(QString)));
+    connect(m_searchTableWidget, SIGNAL(restartSearchQuery(QString)), MusicRightAreaWidget::instance(), SLOT(showSongSearchedFound(QString)));
 }
 
 MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()

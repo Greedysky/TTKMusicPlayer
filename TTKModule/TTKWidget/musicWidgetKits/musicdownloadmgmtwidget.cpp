@@ -34,7 +34,7 @@ MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(restartRequest()));
     connect(m_ui->openDetailButton, SIGNAL(clicked()), SLOT(openDetailInfo()));
     connect(m_ui->openDirButton, SIGNAL(clicked()), SLOT(openFileLocation()));
-    connect(this, SIGNAL(openStackedDownloadWidget()), MusicLeftAreaWidget::instance(), SLOT(musicStackedMyDownWidgetChanged()));
+    connect(this, SIGNAL(openStackedDownloadWidget()), MusicLeftAreaWidget::instance(), SLOT(stackedMyDownWidgetChanged()));
 }
 
 MusicDownloadResetWidget::~MusicDownloadResetWidget()
@@ -65,7 +65,7 @@ void MusicDownloadResetWidget::openDetailInfo()
 void MusicDownloadResetWidget::openFileLocation()
 {
     bool exist = false;
-    const QString &path = MusicApplication::instance()->musicDownloadContains(exist);
+    const QString &path = MusicApplication::instance()->downloadContains(exist);
     if(exist)
     {
         TTK::Url::openUrl(path);
@@ -86,7 +86,7 @@ void MusicDownloadMgmtWidget::setSongName(const QString &name, MusicAbstractQuer
     if(type == MusicAbstractQueryRequest::QueryType::Music)
     {
         bool exist = false;
-        MusicApplication::instance()->musicDownloadContains(exist);
+        MusicApplication::instance()->downloadContains(exist);
         if(exist)
         {
             MusicDownloadResetWidget *resetWidget = new MusicDownloadResetWidget(m_parent);
@@ -97,9 +97,9 @@ void MusicDownloadMgmtWidget::setSongName(const QString &name, MusicAbstractQuer
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(m_parent);
-    if(parent()->metaObject()->indexOfSlot("musicDownloadSongFinished()") != -1)
+    if(parent()->metaObject()->indexOfSlot("downloadSongFinished()") != -1)
     {
-        connect(download, SIGNAL(dataDownloadChanged()), parent(), SLOT(musicDownloadSongFinished()));
+        connect(download, SIGNAL(dataDownloadChanged()), parent(), SLOT(downloadSongFinished()));
     }
     download->setSongName(name, type);
     download->show();

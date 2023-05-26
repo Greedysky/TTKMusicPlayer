@@ -44,7 +44,7 @@ public Q_SLOTS:
     /*!
      * Get counter pv finished.
      */
-    void musicGetCounterFinished(const QString &bytes);
+    void downloadFinished(const QString &bytes);
 
 private:
     Ui::MusicMessageAboutDialog *m_ui;

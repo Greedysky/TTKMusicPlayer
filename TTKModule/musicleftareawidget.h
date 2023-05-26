@@ -57,7 +57,7 @@ public:
     /*!
      * Reset current music love icon state.
      */
-    void musictLoveStateClicked(bool state);
+    void setLoveState(bool state);
 
 Q_SIGNALS:
     /*!
@@ -73,11 +73,11 @@ public Q_SLOTS:
     /*!
      * To download music data from net to load.
      */
-    void musicDownloadSongToLocal();
+    void downloadSongToLocal();
     /*!
      * To download music data from net finished.
      */
-    void musicDownloadSongFinished();
+    void downloadSongFinished();
     /*!
      * Switch to selected item style.
      */
@@ -85,23 +85,23 @@ public Q_SLOTS:
     /*!
      * Change to song list widget.
      */
-    void musicStackedSongListWidgetChanged();
+    void stackedSongListWidgetChanged();
     /*!
      * Change to shared local widget.
      */
-    void musicStackedLocalWidgetChanged();
+    void stackedLocalWidgetChanged();
     /*!
      * Change to shared cloud widget.
      */
-    void musicStackedCloudWidgetChanged();
+    void stackedCloudWidgetChanged();
     /*!
      * Change to radio widget.
      */
-    void musicStackedRadioWidgetChanged();
+    void stackedRadioWidgetChanged();
     /*!
      * Change to my download widget.
      */
-    void musicStackedMyDownWidgetChanged();
+    void stackedMyDownWidgetChanged();
 
 private:
     Ui::MusicApplication *m_ui;

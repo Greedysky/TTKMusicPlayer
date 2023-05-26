@@ -171,7 +171,7 @@ private Q_SLOTS:
     /*!
      * Video button clicked.
      */
-    void musicSongMovieClicked();
+    void showSongMovieClicked();
     /*!
      * Animation finished.
      */

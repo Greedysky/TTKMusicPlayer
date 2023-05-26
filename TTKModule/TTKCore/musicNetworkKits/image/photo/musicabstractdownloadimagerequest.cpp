@@ -24,7 +24,7 @@ void MusicAbstractDownloadImageRequest::downLoadDataFinished()
     if(++m_index >= m_counter)
     {
         G_BACKGROUND_PTR->setArtistName(m_name);
-        MusicTopAreaWidget::instance()->musicBackgroundThemeDownloadFinished();
+        MusicTopAreaWidget::instance()->backgroundThemeDownloadFinished();
         Q_EMIT downLoadDataChanged(TTK_DEFAULT_STR);
         deleteAll();
     }

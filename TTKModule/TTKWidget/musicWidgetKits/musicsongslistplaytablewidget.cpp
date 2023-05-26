@@ -17,14 +17,14 @@
 #include <qmath.h>
 #include <QAction>
 
-#define SEARCH_ITEM_DEFINED(index, names)                                                   \
-    case index:                                                                             \
-    {                                                                                       \
-        if(names.count() >= index)                                                          \
-        {                                                                                   \
-            MusicRightAreaWidget::instance()->musicSongSearchedFound(names[index - 1]);     \
-        }                                                                                   \
-        break;                                                                              \
+#define SEARCH_ITEM_DEFINED(index, names)                                                  \
+    case index:                                                                            \
+    {                                                                                      \
+        if(names.count() >= index)                                                         \
+        {                                                                                  \
+            MusicRightAreaWidget::instance()->showSongSearchedFound(names[index - 1]);     \
+        }                                                                                  \
+        break;                                                                             \
     }
 
 
@@ -59,7 +59,7 @@ MusicSongsListPlayTableWidget::MusicSongsListPlayTableWidget(int index, QWidget 
 
     connect(&m_timerShow, SIGNAL(timeout()), SLOT(showTimeOut()));
     connect(&m_timerStay, SIGNAL(timeout()), SLOT(stayTimeOut()));
-    connect(this, SIGNAL(cellDoubleClicked(int,int)), MusicApplication::instance(), SLOT(musicPlayIndexClicked(int,int)));
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), MusicApplication::instance(), SLOT(playIndexClicked(int,int)));
 }
 
 MusicSongsListPlayTableWidget::~MusicSongsListPlayTableWidget()
@@ -242,8 +242,8 @@ bool MusicSongsListPlayTableWidget::createUploadFileModule()
         if(m_openFileWidget == nullptr && m_parent)
         { 
             m_openFileWidget = new MusicOpenFileWidget(this);
-            connect(m_openFileWidget, SIGNAL(uploadFileClicked()), m_parent, SLOT(musicImportSongsByFiles()));
-            connect(m_openFileWidget, SIGNAL(uploadDirClicked()), m_parent, SLOT(musicImportSongsByDir()));
+            connect(m_openFileWidget, SIGNAL(uploadFileClicked()), m_parent, SLOT(importSongsByFiles()));
+            connect(m_openFileWidget, SIGNAL(uploadDirClicked()), m_parent, SLOT(importSongsByDir()));
             m_openFileWidget->adjustWidgetRect(width(), height());
         }
 
@@ -308,7 +308,7 @@ void MusicSongsListPlayTableWidget::itemCellEntered(int row, int column)
 
     if((it = item(row, 3)))
     {
-        const bool contains = MusicApplication::instance()->musicLovestContains(row);
+        const bool contains = MusicApplication::instance()->lovestContains(row);
         it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
     }
 
@@ -357,12 +357,12 @@ void MusicSongsListPlayTableWidget::itemCellClicked(int row, int column)
     {
         case 0:
         {
-            musicAddToPlayLater();
+            addToPlayLater();
             break;
         }
         case 2:
         {
-            musicSongMovieFound();
+            showMovieQueryWidget();
             break;
         }
         case 3:
@@ -374,7 +374,7 @@ void MusicSongsListPlayTableWidget::itemCellClicked(int row, int column)
                 return;
             }
 
-            const bool contains = !MusicApplication::instance()->musicLovestContains(row);
+            const bool contains = !MusicApplication::instance()->lovestContains(row);
             QTableWidgetItem *it = item(row, 3);
             if(it)
             {
@@ -531,7 +531,7 @@ void MusicSongsListPlayTableWidget::setChangSongName()
     editItem(m_renameItem);
 }
 
-void MusicSongsListPlayTableWidget::musicMakeRingWidget()
+void MusicSongsListPlayTableWidget::showMakeRingWidget()
 {
     if(!isValid())
     {
@@ -541,7 +541,7 @@ void MusicSongsListPlayTableWidget::musicMakeRingWidget()
     MusicSongRingtoneMaker(this).exec();
 }
 
-void MusicSongsListPlayTableWidget::musicTransformWidget()
+void MusicSongsListPlayTableWidget::showTransformWidget()
 {
     if(!isValid())
     {
@@ -551,7 +551,7 @@ void MusicSongsListPlayTableWidget::musicTransformWidget()
     MusicTransformWidget(this).exec();
 }
 
-void MusicSongsListPlayTableWidget::musicSearchQuery(QAction *action)
+void MusicSongsListPlayTableWidget::searchQueryByName(QAction *action)
 {
     if(action->data().isNull())
     {
@@ -562,7 +562,7 @@ void MusicSongsListPlayTableWidget::musicSearchQuery(QAction *action)
     const QStringList names(TTK::String::split(songName));
     switch(action->data().toInt() - TTK_LOW_LEVEL)
     {
-        case 0 : MusicRightAreaWidget::instance()->musicSongSearchedFound(songName); break;
+        case 0 : MusicRightAreaWidget::instance()->showSongSearchedFound(songName); break;
         SEARCH_ITEM_DEFINED(1, names);
         SEARCH_ITEM_DEFINED(2, names);
         SEARCH_ITEM_DEFINED(3, names);
@@ -570,7 +570,7 @@ void MusicSongsListPlayTableWidget::musicSearchQuery(QAction *action)
     }
 }
 
-void MusicSongsListPlayTableWidget::musicAddToPlayLater()
+void MusicSongsListPlayTableWidget::addToPlayLater()
 {
     const int row = currentRow();
     if(rowCount() == 0 || row < 0)
@@ -581,7 +581,7 @@ void MusicSongsListPlayTableWidget::musicAddToPlayLater()
     MusicPlayedListPopWidget::instance()->insert(m_toolIndex, (*m_songs)[row]);
 }
 
-void MusicSongsListPlayTableWidget::musicAddToPlayedList()
+void MusicSongsListPlayTableWidget::addToPlayedList()
 {
     const int row = currentRow();
     if(rowCount() == 0 || row < 0)
@@ -602,7 +602,7 @@ void MusicSongsListPlayTableWidget::setItemRenameFinished(const QString &name)
     (*m_songs)[m_playRowIndex].setName(name);
 }
 
-void MusicSongsListPlayTableWidget::musicListSongSortBy(QAction *action)
+void MusicSongsListPlayTableWidget::songListSortBy(QAction *action)
 {
     const int newType = action->data().toInt();
     if(newType < 0 || newType > 5)
@@ -624,7 +624,7 @@ void MusicSongsListPlayTableWidget::musicListSongSortBy(QAction *action)
         {
             m_songSort->m_order = Qt::AscendingOrder;
         }
-        Q_EMIT musicListSongSortBy(m_toolIndex);
+        Q_EMIT songListSortBy(m_toolIndex);
     }
 }
 
@@ -685,10 +685,10 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     Q_UNUSED(event);
     QMenu menu(this);
     menu.setStyleSheet(TTK::UI::MenuStyle02);
-    menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
-    menu.addAction(tr("Play Later"), this, SLOT(musicAddToPlayLater()));
-    menu.addAction(tr("Add To Playlist"), this, SLOT(musicAddToPlayedList()));
-    menu.addAction(tr("Download More..."), this, SLOT(musicSongDownload()));
+    menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(playClicked()));
+    menu.addAction(tr("Play Later"), this, SLOT(addToPlayLater()));
+    menu.addAction(tr("Add To Playlist"), this, SLOT(addToPlayedList()));
+    menu.addAction(tr("Download More..."), this, SLOT(showDownloadWidget()));
     menu.addSeparator();
 
     QMenu sortFiles(tr("Sort"), &menu);
@@ -699,7 +699,7 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     sortFiles.addAction(tr("Sort By PlayTime"))->setData(4);
     sortFiles.addAction(tr("Sort By PlayCount"))->setData(5);
     TTK::Widget::adjustMenuPosition(&sortFiles);
-    connect(&sortFiles, SIGNAL(triggered(QAction*)), SLOT(musicListSongSortBy(QAction*)));
+    connect(&sortFiles, SIGNAL(triggered(QAction*)), SLOT(songListSortBy(QAction*)));
 
     if(m_songSort)
     {
@@ -712,21 +712,21 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     }
     menu.addMenu(&sortFiles);
 
-    menu.addAction(tr("Found Movie"), this, SLOT(musicSongMovieFound()));
+    menu.addAction(tr("Found Movie"), this, SLOT(showMovieQueryWidget()));
     menu.addSeparator();
 
     createMoreMenu(&menu);
 
     QMenu toolMenu(tr("Tools"), &menu);
-    toolMenu.addAction(tr("Make Bell"), this, SLOT(musicMakeRingWidget()));
-    toolMenu.addAction(tr("Make Transform"), this, SLOT(musicTransformWidget()));
+    toolMenu.addAction(tr("Make Bell"), this, SLOT(showMakeRingWidget()));
+    toolMenu.addAction(tr("Make Transform"), this, SLOT(showTransformWidget()));
     menu.addMenu(&toolMenu);
     TTK::Widget::adjustMenuPosition(&toolMenu);
 
     bool status = m_toolIndex != MUSIC_NETWORK_LIST;
-    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(status);
-    menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(status);
-    menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));
+    menu.addAction(tr("Song Info..."), this, SLOT(showFileInformation()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(openFileDir()))->setEnabled(status);
+    menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(showAlbumQueryWidget()));
     menu.addSeparator();
 
     status = false;
@@ -744,7 +744,7 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
         menu.addAction(tr("Search '%1'").arg(names[i - 1].trimmed()))->setData(i + TTK_LOW_LEVEL);
     }
     menu.addAction(tr("Search '%1'").arg(songName))->setData(TTK_LOW_LEVEL);
-    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(musicSearchQuery(QAction*)));
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(searchQueryByName(QAction*)));
 
     menu.exec(QCursor::pos());
 }

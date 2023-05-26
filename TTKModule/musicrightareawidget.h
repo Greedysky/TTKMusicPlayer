@@ -137,19 +137,19 @@ public:
     /*!
      * Music artist search function.
      */
-    void musicArtistSearch(const QString &id);
+    void artistSearchBy(const QString &id);
     /*!
      * Music album search function.
      */
-    void musicAlbumSearch(const QString &id);
+    void albumSearchBy(const QString &id);
     /*!
      * Music movie search function.
      */
-    void musicMovieSearch(const QString &id);
+    void movieSearchBy(const QString &id);
     /*!
      * Music movie radio search function.
      */
-    void musicMovieRadioSearch(const QVariant &data);
+    void movieRadioSearchBy(const QVariant &data);
     /*!
      * Resize window bound by resize called.
      */
@@ -173,67 +173,71 @@ public Q_SLOTS:
     /*!
      * Music song comments widget.
      */
-    void musicSongCommentsWidget();
+    void showSongCommentsWidget();
     /*!
      * Music similar function that by string.
      */
-    void musicSimilarFound(const QString &text);
+    void showSimilarFound(const QString &text);
     /*!
      * Music album function that by string.
      */
-    void musicAlbumFound(const QString &text, const QString &id);
+    void showAlbumFound(const QString &text, const QString &id);
     /*!
      * Music artist category function.
      */
-    void musicArtistCategoryFound();
+    void showArtistCategoryFound();
     /*!
      * Music artist search function.
      */
-    void musicArtistSearchFound();
+    void showArtistSearchFound();
     /*!
      * Music album search function.
      */
-    void musicAlbumSearchFound();
+    void showAlbumSearchFound();
     /*!
      * Music movie search function.
      */
-    void musicMovieSearchFound();
+    void showMovieSearchFound();
     /*!
      * Music movie search radio function.
      */
-    void musicMovieSearchRadioFound();
+    void showMovieSearchRadioFound();
     /*!
      * Music artist function that by string.
      */
-    void musicArtistFound(const QString &text, const QString &id);
+    void showArtistFound(const QString &text, const QString &id);
     /*!
      * Music toplist function.
      */
-    void musicToplistFound();
+    void showToplistFound();
     /*!
      * Music playlist function.
      */
-    void musicPlaylistFound(const QString &id);
+    void showPlaylistFound(const QString &id);
     /*!
      * Music recommend function.
      */
-    void musicRecommendFound();
+    void showRecommendFound();
     /*!
      * Music advanced search function.
      */
-    void musicAdvancedSearch();
+    void showAdvancedSearchFound();
     /*!
      * Music song research button searched by name.
      */
-    void musicSongSearchedFound(const QString &text);
+    void showSongSearchedFound(const QString &text);
     /*!
      * Music song search by given id.
      */
-    void musicSingleSearchedFound(const QString &id);
+    void showSingleSearchedFound(const QString &id);
+    /*!
+     * Video button clicked by name to search.
+     */
+    void showVideoSearchedFound(const QString &name, const QString &id);
     /*!
      * Music load song index widget.
      */
-    void musicLoadSongIndexWidget();
+    void showSongMainWidget();
     /*!
      * Delete current stacked widget.
      */
@@ -255,41 +259,37 @@ public Q_SLOTS:
      */
     void researchQueryByQuality(TTK::QueryQuality quality);
     /*!
-     * Video button clicked by name to search.
-     */
-    void musicVideoButtonSearched(const QString &name, const QString &id);
-    /*!
      * Set video widget popop or not.
      */
-    void musicVideoSetPopup(bool popup);
+    void videoSetPopup(bool popup);
     /*!
      * Set video widget actived window.
      */
-    void musicVideoActiveWindow();
+    void videoActiveWindow();
     /*!
      * Set video widget close and delete.
      */
-    void musicVideoClosed();
+    void videoClosed();
     /*!
      * Set video widget fullScreen or not.
      */
-    void musicVideoFullscreen(bool full);
+    void videoFullscreen(bool full);
     /*!
      * Lrc display all button clicked.
      */
-    void musicLrcDisplayAllButtonClicked();
+    void lrcDisplayAllClicked();
     /*!
      * Lrc desktop wallpaper button clicked.
      */
-    void musicContainerForWallpaperClicked();
+    void containerForWallpaperClicked();
     /*!
      * Change to download fully widget.
      */
-    void musicChangeDownloadFulllyWidget();
+    void changeDownloadFulllyWidget();
     /*!
      * Change to download custum widget.
      */
-    void musicChangeDownloadCustumWidget();
+    void changeDownloadCustumWidget();
 
 private:
     /*!

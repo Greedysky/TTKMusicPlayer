@@ -167,7 +167,7 @@ void MusicSoundEffectsWidget::setInputModule(QObject *object)
     }
 
     connect(m_ui->eqButton, SIGNAL(clicked()), SLOT(equalizerButtonChanged()));
-    connect(m_ui->eqEffectButton, SIGNAL(clicked()), object, SLOT(musicSetEqualizer()));
+    connect(m_ui->eqEffectButton, SIGNAL(clicked()), object, SLOT(showEqualizerWidget()));
 }
 
 void MusicSoundEffectsWidget::equalizerButtonChanged(bool state)

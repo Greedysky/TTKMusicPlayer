@@ -23,7 +23,7 @@ MusicTimeSliderWidget::MusicTimeSliderWidget(QWidget *parent)
 void MusicTimeSliderWidget::setInputModule(QObject *object) const
 {
     connect(m_slider, SIGNAL(sliderMoved(int)), SLOT(sliderMovedAt(int)));
-    connect(m_slider, SIGNAL(sliderReleasedAt(int)), object, SLOT(musicPlayAnyTimeAt(int)));
+    connect(m_slider, SIGNAL(sliderReleasedAt(int)), object, SLOT(playAnyTimeAt(int)));
 }
 
 MusicTimeSliderWidget::~MusicTimeSliderWidget()

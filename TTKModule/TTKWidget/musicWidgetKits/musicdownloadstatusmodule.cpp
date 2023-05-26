@@ -96,7 +96,7 @@ void MusicDownloadStatusModule::showDownLoadInfoFinished(const QString &bytes)
     ///If the lyrics download finished immediately loaded to display
     if(bytes == DOWNLOAD_KEY_LRC)
     {
-        m_parent->musicLoadCurrentSongLrc();
+        m_parent->loadCurrentSongLrc();
     }
     else if(bytes == DOWNLOAD_KEY_COVER)
     {

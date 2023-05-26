@@ -143,19 +143,19 @@ public Q_SLOTS:
     /*!
      * Import music songs by files.
      */
-    void musicImportSongsByFiles(int index = TTK_LOW_LEVEL);
+    void importSongsByFiles(int index = TTK_LOW_LEVEL);
     /*!
      * Import music songs by dir.
      */
-    void musicImportSongsByDir(int index = TTK_LOW_LEVEL);
+    void importSongsByDir(int index = TTK_LOW_LEVEL);
     /*!
      * Open music songs check test tools.
      */
-    void musicSongsCheckTestTools();
+    void showSongCheckToolsWidget();
     /*!
      * Open lrc batch download.
      */
-    void musicLrcBatchDownload();
+    void showLrcDownloadBatchWidget();
     /*!
      * Search result from list.
      */
@@ -166,13 +166,13 @@ public Q_SLOTS:
      */
     void updateCurrentIndex();
     /*!
+     * Add or remove music song to lovest list by row.
+     */
+    void songToLovestListAt(bool state, int row);
+    /*!
      * Add or remove music list song to lovest list by row.
      */
     void addSongToLovestListAt(bool state, int row);
-    /*!
-     * Add or remove music song to lovest list by row.
-     */
-    void musicSongToLovestListAt(bool state, int row);
     /*!
      * Add current network music buffer to playlist.
      */
@@ -220,7 +220,7 @@ public Q_SLOTS:
     /*!
      * Music list songs sort by type.
      */
-    void musicListSongSortBy(int index);
+    void songListSortBy(int index);
 
 private Q_SLOTS:
     /*!

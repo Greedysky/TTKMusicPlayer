@@ -118,5 +118,5 @@ void MusicLrcFloatWidget::wallpaperButtonClicked()
     {
         MusicBottomAreaWidget::instance()->lrcWidgetShowFullScreen();
     }
-    MusicRightAreaWidget::instance()->musicContainerForWallpaperClicked();
+    MusicRightAreaWidget::instance()->containerForWallpaperClicked();
 }

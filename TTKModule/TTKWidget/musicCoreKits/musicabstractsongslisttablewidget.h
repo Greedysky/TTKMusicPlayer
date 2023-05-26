@@ -82,7 +82,7 @@ public Q_SLOTS:
     /*!
      * Music item has been clicked.
      */
-    void musicPlayClicked();
+    void playClicked();
     /*!
      * Remove all items from list.
      */
@@ -90,43 +90,43 @@ public Q_SLOTS:
     /*!
      * Open the music at local path.
      */
-    void musicOpenFileDir();
+    void openFileDir();
     /*!
      * Open music file information widget.
      */
-    void musicFileInformation();
+    void showFileInformation();
     /*!
      * To search song mv by song name.
      */
-    void musicSongMovieFound();
+    void showMovieQueryWidget();
     /*!
      * Open music album query widget.
      */
-    void musicAlbumQueryWidget();
+    void showAlbumQueryWidget();
     /*!
      * Open music similar query widget.
      */
-    void musicSimilarQueryWidget();
+    void showSimilarQueryWidget();
     /*!
      * Open music song shared widget.
      */
-    void musicSongSharedWidget();
+    void showSongSharedWidget();
     /*!
      * Open music song download widget.
      */
-    void musicSongDownload();
+    void showDownloadWidget();
     /*!
      * To search song mv by song name in play widget.
      */
-    void musicSongPlayedMovieFound();
+    void showPlayedMovieQueryWidget();
     /*!
      * Open music similar query widget in play widget.
      */
-    void musicPlayedSimilarQueryWidget();
+    void showPlayedSimilarQueryWidget();
     /*!
      * Open music song shared widget in play widget.
      */
-    void musicSongPlayedSharedWidget();
+    void showPlayedSongSharedWidget();
 
 protected:
     /*!

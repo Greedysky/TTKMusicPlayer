@@ -154,7 +154,7 @@ void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &bytes)
     }
 }
 
-void MusicWebFMRadioWidget::musicPlayClicked()
+void MusicWebFMRadioWidget::playClicked()
 {
     const int row = currentRow();
     if(row >= 0)
@@ -170,7 +170,7 @@ void MusicWebFMRadioWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu menu(this);
     menu.setStyleSheet(TTK::UI::MenuStyle02);
 
-    menu.addAction(tr("Play"), this, SLOT(musicPlayClicked()));
+    menu.addAction(tr("Play"), this, SLOT(playClicked()));
     menu.addSeparator();
     menu.addAction(QIcon(":/contextMenu/btn_mobile"), tr("Song To Mobile"));
 

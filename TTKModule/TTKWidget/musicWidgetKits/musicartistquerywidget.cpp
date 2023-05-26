@@ -169,7 +169,7 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultDataItem &i
 
 void MusicArtistMvsQueryWidget::currentItemClicked(const QString &id)
 {
-    MusicRightAreaWidget::instance()->musicMovieSearch(id);
+    MusicRightAreaWidget::instance()->movieSearchBy(id);
 }
 
 void MusicArtistMvsQueryWidget::buttonClicked(int index)
@@ -254,7 +254,7 @@ void MusicArtistAlbumsQueryWidget::createArtistAlbumsItem(const MusicResultDataI
 
 void MusicArtistAlbumsQueryWidget::currentItemClicked(const QString &id)
 {
-    MusicRightAreaWidget::instance()->musicAlbumSearch(id);
+    MusicRightAreaWidget::instance()->albumSearchBy(id);
 }
 
 

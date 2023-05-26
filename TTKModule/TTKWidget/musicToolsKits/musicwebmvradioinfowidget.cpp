@@ -27,7 +27,7 @@ void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *qu
     }
 }
 
-void MusicWebMVRadioInfoTableWidget::musicDownloadLocal(int row)
+void MusicWebMVRadioInfoTableWidget::downloadQuery(int row)
 {
     const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row < 0 || row >= songInfos.count())
@@ -53,10 +53,10 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
             {
                 return;
             }
-            MusicRightAreaWidget::instance()->musicMovieRadioSearch(QVariant::fromValue<TTK::MusicSongInformation>(songInfos[row]));
+            MusicRightAreaWidget::instance()->movieRadioSearchBy(QVariant::fromValue<TTK::MusicSongInformation>(songInfos[row]));
             break;
         }
-        case 7: musicDownloadLocal(row); break;
+        case 7: downloadQuery(row); break;
         default: break;
     }
 }

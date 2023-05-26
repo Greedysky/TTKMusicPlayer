@@ -55,7 +55,7 @@ void MusicItemQueryTableWidget::startSearchQuery(const QString &text)
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, text);
 }
 
-void MusicItemQueryTableWidget::musicDownloadLocal(int row)
+void MusicItemQueryTableWidget::downloadQuery(int row)
 {
     const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row < 0 || row >= songInfos.count())
@@ -153,11 +153,11 @@ void MusicItemQueryTableWidget::menuActionChanged(QAction *action)
     {
         case 0: addSearchMusicToPlaylist(row, true); break;
         case 1: addSearchMusicToPlaylist(row, false); break;
-        case 2: musicDownloadLocal(row); break;
-        case 3: MusicRightAreaWidget::instance()->musicArtistFound(info.m_singerName, info.m_artistId); break;
-        case 4: MusicRightAreaWidget::instance()->musicSongSearchedFound(info.m_songName); break;
-        case 5: MusicRightAreaWidget::instance()->musicAlbumFound(info.m_albumName, info.m_albumId); break;
-        case 6: MusicRightAreaWidget::instance()->musicSongSearchedFound(item(row, 1)->toolTip()); break;
+        case 2: downloadQuery(row); break;
+        case 3: MusicRightAreaWidget::instance()->showArtistFound(info.m_singerName, info.m_artistId); break;
+        case 4: MusicRightAreaWidget::instance()->showSongSearchedFound(info.m_songName); break;
+        case 5: MusicRightAreaWidget::instance()->showAlbumFound(info.m_albumName, info.m_albumId); break;
+        case 6: MusicRightAreaWidget::instance()->showSongSearchedFound(item(row, 1)->toolTip()); break;
         default: break;
     }
 }
@@ -218,7 +218,7 @@ void MusicItemQueryTableWidget::itemCellClicked(int row, int column)
     {
         case 5: addSearchMusicToPlaylist(row, true); break;
         case 6: addSearchMusicToPlaylist(row, false); break;
-        case 7: musicDownloadLocal(row); break;
+        case 7: downloadQuery(row); break;
         default: break;
     }
 }

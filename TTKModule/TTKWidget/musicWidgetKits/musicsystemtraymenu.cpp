@@ -25,9 +25,9 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     addAction(m_showLrcAction);
     addAction(m_lockLrcAction);
     addSeparator();
-    addAction(QIcon(":/contextMenu/btn_setting"), tr("Settings"), parent, SLOT(musicSetting()));
+    addAction(QIcon(":/contextMenu/btn_setting"), tr("Settings"), parent, SLOT(showSettingWidget()));
     addSeparator();
-    addAction(tr("Quit"), parent, SLOT(quitWindowClose()));
+    addAction(tr("Quit"), parent, SLOT(quitWindow()));
 }
 
 MusicSystemTrayMenu::~MusicSystemTrayMenu()
@@ -161,7 +161,7 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
 
     connect(previousPlay, SIGNAL(clicked()), parent(), SLOT(playPrevious()));
     connect(nextPlay, SIGNAL(clicked()), parent(), SLOT(playNext()));
-    connect(m_playButton, SIGNAL(clicked()), parent(), SLOT(playState()));
+    connect(m_playButton, SIGNAL(clicked()), parent(), SLOT(switchPlayState()));
 }
 
 void MusicSystemTrayMenu::createVolumeWidgetActions()
@@ -186,6 +186,6 @@ void MusicSystemTrayMenu::createVolumeWidgetActions()
     widgetAction->setDefaultWidget(widgetActionContainer);
     addAction(widgetAction);
 
-    connect(m_volumeButton, SIGNAL(clicked()), parent(), SLOT(musicVolumeMute()));
+    connect(m_volumeButton, SIGNAL(clicked()), parent(), SLOT(volumeMute()));
     connect(m_volumeSlider, SIGNAL(valueChanged(int)), parent(), SLOT(volumeChanged(int)));
 }

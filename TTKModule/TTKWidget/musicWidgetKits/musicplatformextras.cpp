@@ -98,7 +98,7 @@ private:
         m_playToolButton = new QWinThumbnailToolButton(m_thumbnailToolBar);
         m_playToolButton->setToolTip(QObject::tr("Play"));
         m_playToolButton->setIcon(parent->style()->standardIcon(QStyle::SP_MediaPlay));
-        QObject::connect(m_playToolButton, SIGNAL(clicked()), parent, SLOT(playState()));
+        QObject::connect(m_playToolButton, SIGNAL(clicked()), parent, SLOT(switchPlayState()));
 
         m_forwardToolButton = new QWinThumbnailToolButton(m_thumbnailToolBar);
         m_forwardToolButton->setToolTip(QObject::tr("Previous"));

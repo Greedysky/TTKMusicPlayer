@@ -225,7 +225,7 @@ void MusicBottomAreaWidget::lrcWidgetShowFullScreen()
 
     if(m_ui->musiclrccontainerforinterior->lrcDisplayExpand())
     {
-        MusicRightAreaWidget::instance()->musicLrcDisplayAllButtonClicked();
+        MusicRightAreaWidget::instance()->lrcDisplayAllClicked();
     }
 
     m_lrcWidgetShowFullScreen = !m_lrcWidgetShowFullScreen;

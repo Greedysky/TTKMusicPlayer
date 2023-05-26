@@ -242,7 +242,7 @@ void MusicLrcMakerWidget::currentLineFinished()
 
 void MusicLrcMakerWidget::timeSliderValueChanged(int value)
 {
-    MusicApplication::instance()->musicPlayAnyTimeAt(value);
+    MusicApplication::instance()->playAnyTimeAt(value);
     m_analysis->setSongTimeSpeed(value);
 }
 
@@ -263,7 +263,7 @@ void MusicLrcMakerWidget::reMakeButtonClicked()
     message.setText(tr("Are you sure that you want to remake lyrics?"));
     if(message.exec())
     {
-        MusicApplication::instance()->musicPlayAnyTimeAt(0);
+        MusicApplication::instance()->playAnyTimeAt(0);
         setCurrentFirstWidget();
     }
 }
@@ -274,7 +274,7 @@ void MusicLrcMakerWidget::backToMakeLrcWidget()
     message.setText(tr("Go back and lyrics will be lost"));
     if(message.exec())
     {
-        MusicApplication::instance()->musicPlayAnyTimeAt(0);
+        MusicApplication::instance()->playAnyTimeAt(0);
         setCurrentSecondWidget();
     }
 }
@@ -285,7 +285,7 @@ void MusicLrcMakerWidget::firstWidgetStateButtonClicked()
     m_ui->stateButton_F->setText(text);
     m_ui->stateButton_T->setText(text);
 
-    MusicApplication::instance()->playState();
+    MusicApplication::instance()->switchPlayState();
 }
 
 void MusicLrcMakerWidget::thirdWidgetStateButtonClicked()
@@ -295,7 +295,7 @@ void MusicLrcMakerWidget::thirdWidgetStateButtonClicked()
     m_ui->stateButton_F->setText(text);
     m_ui->stateButton_T->setText(text);
 
-    MusicApplication::instance()->playState();
+    MusicApplication::instance()->switchPlayState();
     if(state)
     {
         m_lrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
@@ -330,7 +330,7 @@ void MusicLrcMakerWidget::setCurrentSecondWidget()
     }
     else
     {
-        MusicApplication::instance()->musicPlayAnyTimeAt(0);
+        MusicApplication::instance()->playAnyTimeAt(0);
     }
 
     m_plainText = m_ui->lrcTextEdit->toPlainText().trimmed().split("\n");
@@ -364,7 +364,7 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
         return;
     }
 
-    MusicApplication::instance()->musicPlayAnyTimeAt(0);
+    MusicApplication::instance()->playAnyTimeAt(0);
     m_ui->stackedWidget->setCurrentIndex(3);
 
     if(m_times.count() == m_plainText.count())
@@ -436,7 +436,7 @@ void MusicLrcMakerWidget::createCurrentLine(int key)
         {
             case Qt::Key_Left:
             {
-                MusicApplication::instance()->musicPlayAnyTimeAt(m_ui->timeSlider_F->value() - 2222);
+                MusicApplication::instance()->playAnyTimeAt(m_ui->timeSlider_F->value() - 2222);
                 m_lineItem->moveLeft();
                 break;
             }

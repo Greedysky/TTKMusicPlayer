@@ -63,15 +63,15 @@ Q_SIGNALS:
     /*!
      * Add new music file or files to list.
      */
-    void musicAddNewFiles(int index);
+    void addNewFiles(int index);
     /*!
      * Add new music dir to list.
      */
-    void musicAddNewDir(int index);
+    void addNewDir(int index);
     /*!
      * Music list songs sort by type.
      */
-    void musicListSongSortBy(int index);
+    void songListSortBy(int index);
     /*!
      * Add music to played list and play later.
      */
@@ -85,15 +85,15 @@ public Q_SLOTS:
     /*!
      * Delete selected play list item.
      */
-    void deleteRowItem();
+    void deleteRowItemChanged();
     /*!
      * Delete all items in play list item.
      */
-    void deleteRowItemAll();
+    void deleteRowItemAllChanged();
     /*!
      * Open rename selected play list item widget.
      */
-    void changRowItemName();
+    void changRowItemNameChanged();
     /*!
      * Rename item artist label is finised.
      */
@@ -101,11 +101,11 @@ public Q_SLOTS:
     /*!
      * Add new music file or files to list.
      */
-    void musicAddNewFiles();
+    void addNewFilesChanged();
     /*!
      * Add new music dir to list.
      */
-    void musicAddNewDir();
+    void addNewDirChanged();
     /*!
      * Export music songs by item list.
      */
@@ -117,7 +117,7 @@ public Q_SLOTS:
     /*!
      * Music list songs sort by type.
      */
-    void musicListSongSortBy(QAction *action);
+    void songListSortBy(QAction *action);
     /*!
      * Add music to played list and play later.
      */
@@ -206,15 +206,15 @@ Q_SIGNALS:
     /*!
      * Add new music file or files to list.
      */
-    void musicAddNewFiles(int index);
+    void addNewFiles(int index);
     /*!
      * Add new music dir to list.
      */
-    void musicAddNewDir(int index);
+    void addNewDir(int index);
     /*!
      * Music list songs sort by type.
      */
-    void musicListSongSortBy(int index);
+    void songListSortBy(int index);
     /*!
      * Add music to played list and play later.
      */

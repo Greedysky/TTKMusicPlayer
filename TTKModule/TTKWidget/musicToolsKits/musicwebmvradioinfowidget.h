@@ -42,7 +42,7 @@ public:
     /*!
      * Data download to local file.
      */
-    virtual void musicDownloadLocal(int row) override final;
+    virtual void downloadQuery(int row) override final;
 
 public Q_SLOTS:
     /*!

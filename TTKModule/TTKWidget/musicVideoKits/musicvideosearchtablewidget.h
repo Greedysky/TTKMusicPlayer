@@ -56,7 +56,7 @@ public:
     /*!
      * Data download to local file.
      */
-    virtual void musicDownloadLocal(int row) override final;
+    virtual void downloadQuery(int row) override final;
 
     /*!
      * Start search query by given id.
@@ -101,7 +101,7 @@ public Q_SLOTS:
     /*!
      * Get music media information data.
      */
-    void musicMediaInfo(TTK::MusicSongPropertyList &props);
+    void queryMusicMediaInfo(TTK::MusicSongPropertyList &props);
     /*!
      * Download current mv by controller.
      */

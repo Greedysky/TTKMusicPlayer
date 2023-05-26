@@ -46,14 +46,14 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
     m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
     m_ui->songsContainer->setLength(LEFT_SIDE_WIDTH_MIN, MusicAnimationStackedWidget::Module::LeftToRight);
 
-    connect(ui->musicKey, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playState()));
+    connect(ui->musicKey, SIGNAL(clicked()), MusicApplication::instance(), SLOT(switchPlayState()));
     connect(ui->musicPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playPrevious()));
     connect(ui->musicNext, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playNext()));
-    connect(ui->musicSound, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicVolumeMute()));
+    connect(ui->musicSound, SIGNAL(clicked()), MusicApplication::instance(), SLOT(volumeMute()));
     connect(ui->musicSound, SIGNAL(volumeChanged(int)), MusicApplication::instance(), SLOT(volumeChanged(int)));
-    connect(ui->musicBestLove, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicAddSongToLovestList()));
-    connect(ui->musicDownload, SIGNAL(clicked()), this, SLOT(musicDownloadSongToLocal()));
-    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), MusicApplication::instance(), SLOT(musicEnhancedMusicChanged(int)));
+    connect(ui->musicBestLove, SIGNAL(clicked()), MusicApplication::instance(), SLOT(addSongToLovestList()));
+    connect(ui->musicDownload, SIGNAL(clicked()), this, SLOT(downloadSongToLocal()));
+    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), MusicApplication::instance(), SLOT(enhancedMusicChanged(int)));
     connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget, SLOT(setSliderStyleByType(int)));
     connect(ui->userOptionWidget, SIGNAL(buttonClicked(int)), SLOT(switchToSelectedItemStyle(int)));
 
@@ -87,27 +87,27 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
     ui->musicPlayMode->setToolTip(tr("Play Mode"));
 }
 
-void MusicLeftAreaWidget::musictLoveStateClicked(bool state)
+void MusicLeftAreaWidget::setLoveState(bool state)
 {
     m_ui->musicBestLove->setStyleSheet(state ? TTK::UI::BtnLove : TTK::UI::BtnUnLove);
     Q_EMIT currentLoveStateChanged();
 }
 
-void MusicLeftAreaWidget::musicDownloadSongToLocal()
+void MusicLeftAreaWidget::downloadSongToLocal()
 {
     MusicDownloadMgmtWidget mgmt(this);
     mgmt.setSongName(m_ui->showCurrentSong->text(), MusicAbstractQueryRequest::QueryType::Music);
 }
 
-void MusicLeftAreaWidget::musicDownloadSongFinished()
+void MusicLeftAreaWidget::downloadSongFinished()
 {
     bool state = false;
-    MusicApplication::instance()->musicDownloadContains(state);
+    MusicApplication::instance()->downloadContains(state);
     m_ui->musicDownload->setStyleSheet(state ? TTK::UI::BtnDownload : TTK::UI::BtnUnDownload);
     Q_EMIT currentDownloadStateChanged();
 }
 
-void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
+void MusicLeftAreaWidget::stackedSongListWidgetChanged()
 {
     if(m_currentIndex == 0)
     {
@@ -122,7 +122,7 @@ void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
     m_currentIndex = 0;
 }
 
-void MusicLeftAreaWidget::musicStackedLocalWidgetChanged()
+void MusicLeftAreaWidget::stackedLocalWidgetChanged()
 {
     if(m_currentIndex == 1)
     {
@@ -150,7 +150,7 @@ void MusicLeftAreaWidget::musicStackedLocalWidgetChanged()
     m_currentIndex = 1;
 }
 
-void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
+void MusicLeftAreaWidget::stackedCloudWidgetChanged()
 {
     if(m_currentIndex == 2)
     {
@@ -179,7 +179,7 @@ void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
     m_currentIndex = 2;
 }
 
-void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
+void MusicLeftAreaWidget::stackedRadioWidgetChanged()
 {
     if(m_currentIndex == 3)
     {
@@ -195,7 +195,7 @@ void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
     m_currentIndex = 3;
 }
 
-void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
+void MusicLeftAreaWidget::stackedMyDownWidgetChanged()
 {
     if(m_currentIndex == 4)
     {
@@ -215,16 +215,16 @@ void MusicLeftAreaWidget::switchToSelectedItemStyle(int index)
 {
     switch(index)
     {
-        case 0: musicStackedSongListWidgetChanged(); break;
-        case 1: musicStackedLocalWidgetChanged(); break;
-        case 2: musicStackedCloudWidgetChanged(); break;
-        case 3: musicStackedRadioWidgetChanged(); break;
-        case 4: musicStackedMyDownWidgetChanged(); break;
+        case 0: stackedSongListWidgetChanged(); break;
+        case 1: stackedLocalWidgetChanged(); break;
+        case 2: stackedCloudWidgetChanged(); break;
+        case 3: stackedRadioWidgetChanged(); break;
+        case 4: stackedMyDownWidgetChanged(); break;
         default: break;
     }
 
     if(m_ui->musiclrccontainerforinterior->lrcDisplayExpand())
     {
-        MusicRightAreaWidget::instance()->musicLrcDisplayAllButtonClicked();
+        MusicRightAreaWidget::instance()->lrcDisplayAllClicked();
     }
 }

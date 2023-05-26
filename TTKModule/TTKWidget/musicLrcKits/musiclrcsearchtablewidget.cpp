@@ -38,7 +38,7 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Lrc, text);
 }
 
-void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
+void MusicLrcSearchTableWidget::downloadQuery(int row)
 {
     if(row < 0 || (row >= rowCount() - 1))
     {
@@ -72,7 +72,7 @@ void MusicLrcSearchTableWidget::itemCellClicked(int row, int column)
     MusicItemSearchTableWidget::itemCellClicked(row, column);
     switch(column)
     {
-        case 6: musicDownloadLocal(row); break;
+        case 6: downloadQuery(row); break;
         default: break;
     }
 }
@@ -84,7 +84,7 @@ void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int column)
         return;
     }
 
-    musicDownloadLocal(row);
+    downloadQuery(row);
 }
 
 void MusicLrcSearchTableWidget::removeItems()

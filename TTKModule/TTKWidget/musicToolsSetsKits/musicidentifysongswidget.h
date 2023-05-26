@@ -64,15 +64,15 @@ public Q_SLOTS:
     /*!
      * Set music song to play.
      */
-    void musicSongPlay();
+    void playSong();
     /*!
      * Set music song to download.
      */
-    void musicSongDownload();
+    void showDownloadWidget();
     /*!
      * Set music song to share.
      */
-    void musicSongShare();
+    void showSongShareWidget();
     /*!
      * Current position changed.
      */

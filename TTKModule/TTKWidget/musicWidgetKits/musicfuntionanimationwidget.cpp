@@ -214,7 +214,7 @@ MusicOptionAnimationWidget::MusicOptionAnimationWidget(QWidget *parent)
     switchToSelectedItemStyle(0);
 }
 
-void MusicOptionAnimationWidget::musicButtonStyleClear(bool fore)
+void MusicOptionAnimationWidget::buttonStyleClear(bool fore)
 {
     m_container[0]->setStyleSheet(fore ? TTK::UI::FuncSongFore : TTK::UI::FuncSongBack);
     m_container[1]->setStyleSheet(fore ? TTK::UI::FuncRadioFore : TTK::UI::FuncRadioBack);
@@ -224,7 +224,7 @@ void MusicOptionAnimationWidget::musicButtonStyleClear(bool fore)
     m_container[5]->setStyleSheet(TTK::UI::FuncLrcFore);
 }
 
-void MusicOptionAnimationWidget::musicButtonStyle(int index)
+void MusicOptionAnimationWidget::buttonStyleSwitch(int index)
 {
     switch(index)
     {

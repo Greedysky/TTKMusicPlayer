@@ -47,7 +47,7 @@ public:
     /*!
      * Data download to local file.
      */
-    virtual void musicDownloadLocal(int row) override final;
+    virtual void downloadQuery(int row) override final;
 
     /*!
      * Set wheather query all quality of records.

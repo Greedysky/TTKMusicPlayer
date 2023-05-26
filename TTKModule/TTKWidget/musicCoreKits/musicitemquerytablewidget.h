@@ -46,7 +46,7 @@ public:
     /*!
      * Data download to local file.
      */
-    virtual void musicDownloadLocal(int row) override;
+    virtual void downloadQuery(int row) override;
 
     /*!
      * Download data from net and just play or not.

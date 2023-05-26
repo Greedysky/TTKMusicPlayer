@@ -128,7 +128,7 @@ void MusicIdentifySongsWidget::detectedTimeOut()
     }
 }
 
-void MusicIdentifySongsWidget::musicSongPlay()
+void MusicIdentifySongsWidget::playSong()
 {
     if(!m_player)
     {
@@ -141,7 +141,7 @@ void MusicIdentifySongsWidget::musicSongPlay()
     }
 }
 
-void MusicIdentifySongsWidget::musicSongDownload()
+void MusicIdentifySongsWidget::showDownloadWidget()
 {
     if(!m_songInfo.m_singerName.isEmpty())
     {
@@ -151,7 +151,7 @@ void MusicIdentifySongsWidget::musicSongDownload()
     }
 }
 
-void MusicIdentifySongsWidget::musicSongShare()
+void MusicIdentifySongsWidget::showSongShareWidget()
 {
     if(!m_songInfo.m_singerName.isEmpty())
     {
@@ -344,9 +344,9 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     loveButton->setStyleSheet(TTK::UI::SongsDetectUnloveBtn);
     downButton->setStyleSheet(TTK::UI::SongsDetectDownloadBtn);
     shareButton->setStyleSheet(TTK::UI::SongsDetectShareBtn);
-    connect(playButton, SIGNAL(clicked()), SLOT(musicSongPlay()));
-    connect(downButton, SIGNAL(clicked()), SLOT(musicSongDownload()));
-    connect(shareButton, SIGNAL(clicked()), SLOT(musicSongShare()));
+    connect(playButton, SIGNAL(clicked()), SLOT(playSong()));
+    connect(downButton, SIGNAL(clicked()), SLOT(showDownloadWidget()));
+    connect(shareButton, SIGNAL(clicked()), SLOT(showSongShareWidget()));
 
     infoFuncWidgetLayout->addWidget(textLabel, 0, 0, 1, 4);
     infoFuncWidgetLayout->addWidget(iconLabel, 1, 0, 1, 4);

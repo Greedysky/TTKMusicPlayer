@@ -87,7 +87,7 @@ QStringList MusicMPRISPlayerRoot::supportedUriSchemes() const
 
 void MusicMPRISPlayerRoot::Quit()
 {
-    MusicApplication::instance()->quitWindowClose();
+    MusicApplication::instance()->quitWindow();
 }
 
 void MusicMPRISPlayerRoot::Raise()
@@ -322,27 +322,27 @@ void MusicMPRISPlayerCore::OpenUri(const QString &uri)
         }
     }
 
-    m_application->musicImportSongsPathOutside(path, true);
+    m_application->importSongsOutsideMode(path, true);
 }
 
 void MusicMPRISPlayerCore::Pause()
 {
-    m_application->playState();
+    m_application->switchPlayState();
 }
 
 void MusicMPRISPlayerCore::Play()
 {
-    m_application->playState();
+    m_application->switchPlayState();
 }
 
 void MusicMPRISPlayerCore::PlayPause()
 {
-    m_application->playState();
+    m_application->switchPlayState();
 }
 
 void MusicMPRISPlayerCore::Stop()
 {
-    m_application->musicStateStop();
+    m_application->switchStopState();
 }
 
 void MusicMPRISPlayerCore::Seek(qlonglong offset)

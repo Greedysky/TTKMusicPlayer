@@ -62,11 +62,11 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_settingButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    connect(m_showMainWindowButton, SIGNAL(clicked()), SIGNAL(musicWindowChanged()));
-    connect(m_playButton, SIGNAL(clicked()), SIGNAL(musicKeyChanged()));
-    connect(m_preSongButton, SIGNAL(clicked()), SIGNAL(musicPlayPreviousChanged()));
-    connect(m_nextSongButton, SIGNAL(clicked()), SIGNAL(musicPlayNextChanged()));
-    connect(m_settingButton, SIGNAL(clicked()), SIGNAL(musicSettingChanged()));
+    connect(m_showMainWindowButton, SIGNAL(clicked()), SIGNAL(showMainWindow()));
+    connect(m_playButton, SIGNAL(clicked()), SIGNAL(playStateChanged()));
+    connect(m_preSongButton, SIGNAL(clicked()), SIGNAL(playPreviousChanged()));
+    connect(m_nextSongButton, SIGNAL(clicked()), SIGNAL(playNextChanged()));
+    connect(m_settingButton, SIGNAL(clicked()), SIGNAL(settingChanged()));
 
     m_volumeWidget = new QWidget(m_mainWidget);
     QHBoxLayout *volumeLayout = new QHBoxLayout(m_volumeWidget);
@@ -86,8 +86,8 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
 
-    connect(m_volumeButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicVolumeMute()));
-    connect(m_volumeSlider, SIGNAL(valueChanged(int)), SLOT(musicVolumeSliderChanged(int)));
+    connect(m_volumeButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(volumeMute()));
+    connect(m_volumeSlider, SIGNAL(valueChanged(int)), SLOT(volumeSliderChanged(int)));
 }
 
 MusicRemoteWidget::~MusicRemoteWidget()
@@ -149,10 +149,8 @@ void MusicRemoteWidget::setLabelText(const QString &text)
     Q_UNUSED(text);
 }
 
-void MusicRemoteWidget::musicVolumeSliderChanged(int value)
+void MusicRemoteWidget::volumeSliderChanged(int value)
 {
-    Q_EMIT volumeChanged(value);
-
     QString style = TTK::UI::TinyBtnSoundWhite;
     if(66 < value && value <=100)
     {
@@ -170,7 +168,9 @@ void MusicRemoteWidget::musicVolumeSliderChanged(int value)
     {
         style += "QToolButton{ margin-left:-64px; }";
     }
+
     m_volumeButton->setStyleSheet(style);
+    Q_EMIT volumeChanged(value);
 }
 
 void MusicRemoteWidget::show()
@@ -193,7 +193,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setAttribute(Qt::WA_TranslucentBackground);
     menu.setStyleSheet(TTK::UI::MenuStyle03);
     menu.addAction(QIcon(":/contextMenu/btn_selected"), tr("WindowTop"))->setEnabled(false);
-    menu.addAction(tr("Show MainWindow"), this, SIGNAL(musicWindowChanged()));
+    menu.addAction(tr("Show MainWindow"), this, SIGNAL(showMainWindow()));
     menu.addSeparator();
 
     QAction * action = menu.addAction(tr("Square Remote"));
@@ -212,7 +212,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     action->setEnabled(!TTKObjectCast(MusicRemoteWidgetForRipple*, this));
     action->setData(Ripple);
     menu.addAction(tr("Quit"), this, SLOT(close()));
-    connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(musicRemoteTypeChanged(QAction*)));
+    connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(remoteTypeChanged(QAction*)));
 
     menu.exec(QCursor::pos());
 }

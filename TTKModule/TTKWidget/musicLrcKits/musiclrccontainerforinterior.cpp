@@ -340,7 +340,7 @@ void MusicLrcContainerForInterior::queryTranslatedLrcFinished(const QString &byt
     m_translatedWidget->show();
 }
 
-void MusicLrcContainerForInterior::musicSongMovieClicked()
+void MusicLrcContainerForInterior::showSongMovieClicked()
 {
     if(m_currentSongName.isEmpty())
     {
@@ -351,7 +351,7 @@ void MusicLrcContainerForInterior::musicSongMovieClicked()
     {
         MusicBottomAreaWidget::instance()->lrcWidgetShowFullScreen();
     }
-    MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName, QString());
+    MusicRightAreaWidget::instance()->showVideoSearchedFound(m_currentSongName, QString());
 }
 
 void MusicLrcContainerForInterior::updateAnimationLrc()
@@ -458,7 +458,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     m_showArtistBackground ? artAction->setText(tr("Art Turn Off")) : artAction->setText(tr("Art Turn On"));
     QAction *showLrc = menu.addAction(tr("Lrc Turn Off"), this, SLOT(linkLrcStateChanged()));
     m_linkLocalLrc ? showLrc->setText(tr("Lrc Turn Off")) : showLrc->setText(tr("Lrc Turn On"));
-    menu.addAction(tr("Set As Background"), MusicTopAreaWidget::instance(), SLOT(musicSetAsArtistBackground()))->setEnabled(!G_BACKGROUND_PTR->isEmpty());
+    menu.addAction(tr("Set As Background"), MusicTopAreaWidget::instance(), SLOT(setAsArtistBackground()))->setEnabled(!G_BACKGROUND_PTR->isEmpty());
     menu.addSeparator();
 
     const QString &filePath = m_lrcAnalysis->currentFilePath();
@@ -742,7 +742,7 @@ void MusicLrcContainerForInterior::initFunctionLabel()
     photo->setToolTip(tr("Photo"));
 
     connect(translation, SIGNAL(clicked()), SLOT(translatedLrcData()));
-    connect(movie, SIGNAL(clicked()), SLOT(musicSongMovieClicked()));
+    connect(movie, SIGNAL(clicked()), SLOT(showSongMovieClicked()));
     connect(message, SIGNAL(clicked()), SLOT(showSongCommentsWidget()));
     connect(photo, SIGNAL(clicked()), m_lrcFloatWidget, SLOT(showArtistPhotoWidget()));
 

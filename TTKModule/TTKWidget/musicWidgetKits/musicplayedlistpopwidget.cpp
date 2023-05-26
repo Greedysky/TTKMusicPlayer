@@ -281,7 +281,7 @@ void MusicPlayedListPopWidget::itemDoubleClicked()
 
     m_playlist->removeQueue();
     m_playedListWidget->clearPlayQueueState();
-    MusicApplication::instance()->musicPlayedIndex(row);
+    MusicApplication::instance()->playedIndexBy(row);
 }
 
 void MusicPlayedListPopWidget::itemDoubleClicked(int row, int column)
@@ -420,5 +420,5 @@ void MusicPlayedListPopWidget::setPlaylistEmpty()
     m_songList.clear();
     setPlaylistCount(0);
 
-    MusicApplication::instance()->musicPlayIndex(TTK_NORMAL_LEVEL);
+    MusicApplication::instance()->playIndexBy(TTK_NORMAL_LEVEL);
 }
