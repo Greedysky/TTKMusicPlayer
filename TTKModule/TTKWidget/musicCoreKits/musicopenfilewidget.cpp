@@ -13,6 +13,7 @@ MusicOpenFileWidget::MusicOpenFileWidget(QWidget *parent)
     uploadFileIcon->setPixmap(QPixmap(":/tiny/btn_open_file"));
     TTKClickedLabel *uploadFile = new TTKClickedLabel(this);
     uploadFile->setText(tr("Open File"));
+    uploadFile->setStyleSheet(TTK::UI::ColorStyle09);
     TTK::Widget::setLabelFontStyle(uploadFile, TTK::FontStyleMode::Underline);
     connect(uploadFile, SIGNAL(clicked()), SIGNAL(uploadFileClicked()));
 
@@ -20,6 +21,7 @@ MusicOpenFileWidget::MusicOpenFileWidget(QWidget *parent)
     uploadDirIcon->setPixmap(QPixmap(":/tiny/btn_open_files"));
     TTKClickedLabel *uploadDir = new TTKClickedLabel(this);
     uploadDir->setText(tr("Open Dir"));
+    uploadDir->setStyleSheet(TTK::UI::ColorStyle09);
     TTK::Widget::setLabelFontStyle(uploadDir, TTK::FontStyleMode::Underline);
     connect(uploadDir, SIGNAL(clicked()), SIGNAL(uploadDirClicked()));
 

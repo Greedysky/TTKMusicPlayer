@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractmovedialog.h"
+#include "ttkabstractmovedialog.h"
 #include "musicabstractmovewidget.h"
 
 #define REPORT_BUG_URL      "V0pTNkY2K1pRdVdzVDBrWFZGWnJiWHhVcHNTd2xlSE1FZUlQbytlN0tDK3ZUSVRqQ1ViZTFxQlpCVkR4akVhSk44cnMrVDhzWU5jPQ=="
@@ -68,7 +68,7 @@ private:
 /*! @brief The class of the application upgrade widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSourceUpdateWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicSourceUpdateWidget : public TTKAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSourceUpdateWidget)

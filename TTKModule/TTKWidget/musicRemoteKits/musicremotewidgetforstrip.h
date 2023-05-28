@@ -47,14 +47,6 @@ private Q_SLOTS:
      * Window statec hanged.
      */
     void windowStateChanged();
-    /*!
-     * Override show function.
-     */
-    void show();
-    /*!
-     * Override close function.
-     */
-    bool close();
 
 private:
     /*!

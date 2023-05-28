@@ -14,7 +14,7 @@
 #define WINDOW_WIDTH    678
 
 MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
-    : MusicAbstractMoveWidget(false, parent),
+    : TTKAbstractMoveWidget(false, parent),
       m_backButton(nullptr)
 {
     setWindowTitle(tr("TTKMovie"));
@@ -350,7 +350,7 @@ void MusicVideoPlayWidget::leaveTimeout()
 
 void MusicVideoPlayWidget::resizeEvent(QResizeEvent *event)
 {
-    MusicAbstractMoveWidget::resizeEvent(event);
+    TTKAbstractMoveWidget::resizeEvent(event);
     resizeWindow();
 
     m_leaverTimer->stop();
@@ -359,7 +359,7 @@ void MusicVideoPlayWidget::resizeEvent(QResizeEvent *event)
 
 void MusicVideoPlayWidget::enterEvent(QtEnterEvent *event)
 {
-    MusicAbstractMoveWidget::enterEvent(event);
+    TTKAbstractMoveWidget::enterEvent(event);
     m_leaverTimer->stop();
 
     QWidget *w(m_videoView->controlBarWidget());
@@ -372,7 +372,7 @@ void MusicVideoPlayWidget::enterEvent(QtEnterEvent *event)
 
 void MusicVideoPlayWidget::leaveEvent(QEvent *event)
 {
-    MusicAbstractMoveWidget::leaveEvent(event);
+    TTKAbstractMoveWidget::leaveEvent(event);
     m_leaverTimer->start();
 }
 

@@ -11,7 +11,7 @@
 #include "ttkclickedslider.h"
 
 MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
-    : MusicAbstractMoveWidget(parent)
+    : TTKAbstractMoveWidget(parent)
 {
     setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint | Qt::Tool);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -175,19 +175,19 @@ void MusicRemoteWidget::volumeSliderChanged(int value)
 
 void MusicRemoteWidget::show()
 {
-    MusicAbstractMoveWidget::show();
+    TTKAbstractMoveWidget::show();
     G_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetMode, mapRemoteTypeIndex());
 }
 
 bool MusicRemoteWidget::close()
 {
     G_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetMode, Null);
-    return MusicAbstractMoveWidget::close();
+    return TTKAbstractMoveWidget::close();
 }
 
 void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicAbstractMoveWidget::contextMenuEvent(event);
+    TTKAbstractMoveWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setWindowFlags(menu.windowFlags() | Qt::FramelessWindowHint);
     menu.setAttribute(Qt::WA_TranslucentBackground);

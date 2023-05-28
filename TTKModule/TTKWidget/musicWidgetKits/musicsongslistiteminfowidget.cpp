@@ -1,11 +1,12 @@
 #include "musicsongslistiteminfowidget.h"
 #include "ui_musicsongslistiteminfowidget.h"
 #include "musicsettingmanager.h"
+#include "musicwidgetutils.h"
 #include "musicnumberutils.h"
 #include "musicsongmeta.h"
 
 MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
-    : MusicAbstractMoveWidget(parent),
+    : TTKAbstractMoveWidget(parent),
       m_ui(new Ui::MusicSongsListItemInfoWidget)
 {
     m_ui->setupUi(this);

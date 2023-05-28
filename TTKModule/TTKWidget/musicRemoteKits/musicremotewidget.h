@@ -20,15 +20,16 @@
  ***************************************************************************/
 
 #include <QTimer>
+#include "musicwidgetutils.h"
 #include "musicwidgetheaders.h"
-#include "musicabstractmovewidget.h"
+#include "ttkabstractmovewidget.h"
 
 class TTKClickedSlider;
 
 /*! @brief The class of the desktop remote widget base.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicRemoteWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicRemoteWidget : public TTKAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRemoteWidget)

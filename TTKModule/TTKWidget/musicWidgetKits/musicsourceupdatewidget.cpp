@@ -94,7 +94,7 @@ void MusicSourceUpdateNotifyWidget::downLoadFinished(const QVariant &bytes)
 
 
 MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
-    : MusicAbstractMoveDialog(parent),
+    : TTKAbstractMoveDialog(parent),
       m_ui(new Ui::MusicSourceUpdateWidget)
 {
     m_ui->setupUi(this);
@@ -161,5 +161,5 @@ void MusicSourceUpdateWidget::downLoadFinished(const QVariant &bytes)
 int MusicSourceUpdateWidget::exec()
 {
     start();
-    return MusicAbstractMoveDialog::exec();
+    return TTKAbstractMoveDialog::exec();
 }

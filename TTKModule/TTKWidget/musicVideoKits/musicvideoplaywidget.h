@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractmovewidget.h"
+#include "ttkabstractmovewidget.h"
 #include "musicvideosearchtablewidget.h"
 
 class QLabel;
@@ -34,7 +34,7 @@ class MusicItemQueryEdit;
 /*! @brief The class of the video play widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicVideoPlayWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicVideoPlayWidget : public TTKAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicVideoPlayWidget)

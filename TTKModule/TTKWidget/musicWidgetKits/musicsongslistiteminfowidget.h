@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 #include "musicsong.h"
-#include "musicabstractmovewidget.h"
+#include "ttkabstractmovewidget.h"
 
 namespace Ui {
 class MusicSongsListItemInfoWidget;
@@ -29,7 +29,7 @@ class MusicSongsListItemInfoWidget;
 /*! @brief The class of the song list item info widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongsListItemInfoWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicSongsListItemInfoWidget : public TTKAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsListItemInfoWidget)

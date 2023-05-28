@@ -115,19 +115,9 @@ void MusicRemoteWidgetForStrip::windowStateChanged()
     m_windowStateButton->setToolTip(f ? tr("Expand") : tr("Collapse"));
 }
 
-void MusicRemoteWidgetForStrip::show()
-{
-    MusicAbstractMoveWidget::show();
-}
-
-bool MusicRemoteWidgetForStrip::close()
-{
-    return MusicAbstractMoveWidget::close();
-}
-
 void MusicRemoteWidgetForStrip::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicAbstractMoveWidget::contextMenuEvent(event);
+    TTKAbstractMoveWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setWindowFlags(menu.windowFlags() | Qt::FramelessWindowHint);
     menu.setAttribute(Qt::WA_TranslucentBackground);
