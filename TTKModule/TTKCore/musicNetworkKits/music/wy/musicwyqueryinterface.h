@@ -99,10 +99,6 @@ namespace MusicWYInterface
      * Read tags(size\bitrate\url) from query results.
      */
     void parseFromSongPropertyNew(TTK::MusicSongInformation *info, int bitrate) ;
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void parseFromSongPropertyNew(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all);
 
 }
 

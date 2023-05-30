@@ -198,7 +198,7 @@
   <widget class="QToolButton" name="downloadButton">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>445</x>
      <y>305</y>
      <width>20</width>
      <height>20</height>

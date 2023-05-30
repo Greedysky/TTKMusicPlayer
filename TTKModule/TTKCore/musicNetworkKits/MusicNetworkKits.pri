@@ -54,16 +54,13 @@ HEADERS += \
     $$PWD/tools/musicdownloadtextrequest.h \
     $$PWD/tools/musicdownloadmetadatarequest.h \
     $$PWD/tools/musicdownloadqueuerequest.h \
-    $$PWD/tools/musicidentifysongsrequest.h \
+    $$PWD/tools/musicidentifysongrequest.h \
     $$PWD/tools/musicsourceupdaterequest.h \
     $$PWD/tools/musiccounterpvrequest.h \
     $$PWD/tools/musicdownloadmanager.h \
     $$PWD/tools/musicsongrecommendrequest.h \
     $$PWD/tools/musicsongsuggestrequest.h \
-    $$PWD/radio/fm/musicabstractfmradiorequest.h \
-    $$PWD/radio/fm/musicfmradiochannelrequest.h \
-    $$PWD/radio/fm/musicfmradiodownloadtextrequest.h \
-    $$PWD/radio/fm/musicfmradiosongsrequest.h \
+    $$PWD/radio/fm/musicfmradiosongrequest.h \
     $$PWD/radio/dj/musicabstractdjradiorequest.h \
     $$PWD/radio/dj/musicdjradiocategoryrequest.h \
     $$PWD/radio/dj/musicdjradioprogramrequest.h \
@@ -141,16 +138,13 @@ SOURCES += \
     $$PWD/tools/musicdownloadtextrequest.cpp \
     $$PWD/tools/musicdownloadmetadatarequest.cpp \
     $$PWD/tools/musicdownloadqueuerequest.cpp \
-    $$PWD/tools/musicidentifysongsrequest.cpp \
+    $$PWD/tools/musicidentifysongrequest.cpp \
     $$PWD/tools/musicsourceupdaterequest.cpp \
     $$PWD/tools/musiccounterpvrequest.cpp \
     $$PWD/tools/musicdownloadmanager.cpp \
     $$PWD/tools/musicsongrecommendrequest.cpp \
     $$PWD/tools/musicsongsuggestrequest.cpp \
-    $$PWD/radio/fm/musicabstractfmradiorequest.cpp \
-    $$PWD/radio/fm/musicfmradiochannelrequest.cpp \
-    $$PWD/radio/fm/musicfmradiodownloadtextrequest.cpp \
-    $$PWD/radio/fm/musicfmradiosongsrequest.cpp \
+    $$PWD/radio/fm/musicfmradiosongrequest.cpp \
     $$PWD/radio/dj/musicabstractdjradiorequest.cpp \
     $$PWD/radio/dj/musicdjradiocategoryrequest.cpp \
     $$PWD/radio/dj/musicdjradioprogramrequest.cpp \

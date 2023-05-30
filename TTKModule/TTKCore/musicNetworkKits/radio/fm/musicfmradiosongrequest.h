@@ -1,5 +1,5 @@
-#ifndef MUSICFMRADIOSONGSREQUEST_H
-#define MUSICFMRADIOSONGSREQUEST_H
+#ifndef MUSICFMRADIOSONGREQUEST_H
+#define MUSICFMRADIOSONGREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,25 +19,25 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractfmradiorequest.h"
+#include "musicwydownloadtextrequest.h"
 
 /*! @brief The class of the fm radio request of song info.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicFMRadioSongsRequest : public MusicAbstractFMRadioRequest
+class TTK_MODULE_EXPORT MusicFMRadioSongRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicFMRadioSongsRequest)
+    TTK_DECLARE_MODULE(MusicFMRadioSongRequest)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicFMRadioSongsRequest(QObject *parent = nullptr);
+    explicit MusicFMRadioSongRequest(QObject *parent = nullptr);
 
     /*!
      * Start to download data from net.
      */
-    virtual void startRequest(const QString &id) override final;
+    void startRequest();
 
     /*!
      * Get music song information.
@@ -51,9 +51,8 @@ public Q_SLOTS:
     virtual void downLoadFinished() override final;
 
 private:
-    QString m_cachedID;
     TTK::MusicSongInformation m_songInfo;
 
 };
 
-#endif // MUSICFMRADIOSONGSREQUEST_H
+#endif // MUSICFMRADIOSONGREQUEST_H

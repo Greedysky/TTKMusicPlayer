@@ -26,7 +26,7 @@ HEADERS += \
     $$PWD/musicfileinformationwidget.h \
     $$PWD/musicreplaygainwidget.h \
     $$PWD/musicsongringtonemakerwidget.h \
-    $$PWD/musicidentifysongswidget.h \
+    $$PWD/musicidentifysongwidget.h \
     $$PWD/musicnetworkconnectiontestwidget.h \
     $$PWD/musicsongchecktoolswidget.h \
     $$PWD/musicsongchecktoolstablewidget.h \
@@ -43,7 +43,7 @@ SOURCES += \
     $$PWD/musicfileinformationwidget.cpp \
     $$PWD/musicreplaygainwidget.cpp \
     $$PWD/musicsongringtonemakerwidget.cpp \
-    $$PWD/musicidentifysongswidget.cpp \
+    $$PWD/musicidentifysongwidget.cpp \
     $$PWD/musicnetworkconnectiontestwidget.cpp \
     $$PWD/musicsongchecktoolswidget.cpp \
     $$PWD/musicsongchecktoolstablewidget.cpp \

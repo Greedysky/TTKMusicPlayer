@@ -136,7 +136,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startRequest()));
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
 
-    TTK::Widget::positionInCenter(this);
+    TTK::Widget::adjustWidgetPosition(this);
 }
 
 MusicDownloadWidget::~MusicDownloadWidget()

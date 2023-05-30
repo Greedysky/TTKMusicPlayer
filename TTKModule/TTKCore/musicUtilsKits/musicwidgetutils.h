@@ -63,7 +63,7 @@ namespace TTK
         /*!
          * Adjust the widget in screen center.
          */
-        TTK_MODULE_EXPORT void positionInCenter(QWidget *widget);
+        TTK_MODULE_EXPORT void adjustWidgetPosition(QWidget *widget);
 
         /*!
          * Set widget transparent.

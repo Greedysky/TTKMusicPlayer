@@ -23,7 +23,7 @@
 
 class MusicLrcAnalysis;
 class MusicCoreMPlayer;
-class MusicFMRadioSongsRequest;
+class MusicFMRadioSongRequest;
 
 namespace Ui {
 class MusicWebFMRadioPlayWidget;
@@ -43,16 +43,10 @@ public:
     explicit MusicWebFMRadioPlayWidget(QWidget *parent = nullptr);
     ~MusicWebFMRadioPlayWidget();
 
-    /*!
-     * Update radio song by given id.
+public Q_SLOTS:    /*!
+     * Override show function.
      */
-    void updateRadioSong(const QString &id);
-
-public Q_SLOTS:
-    /*!
-     * Media aution play error.
-     */
-    void mediaAutionPlayError(int code);
+    void show();
     /*!
      * Set radio to play.
      */
@@ -99,17 +93,18 @@ private:
      * Override the widget event.
      */
     virtual void closeEvent(QCloseEvent *event) override final;
+
     /*!
-     * Create core module.
+     * Init parameters.
      */
-    void createCoreModule();
+    void initialize();
 
     Ui::MusicWebFMRadioPlayWidget *m_ui;
     bool m_isPlaying;
     QString m_currentIndex;
     MusicLrcAnalysis *m_analysis;
     MusicCoreMPlayer *m_player;
-    MusicFMRadioSongsRequest *m_songThread;
+    MusicFMRadioSongRequest *m_songThread;
 
 };
 

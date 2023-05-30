@@ -1,24 +1,16 @@
 #include "musicwebradioview.h"
-#include "musicwebfmradiowidget.h"
-#include "musicrightareawidget.h"
 #include "musicwidgetheaders.h"
+#include "musicrightareawidget.h"
+#include "musicwebfmradioplaywidget.h"
 #include "musicttkfmradioplaywidget.h"
 
 MusicWebRadioView::MusicWebRadioView(QWidget *parent)
     : QWidget(parent),
-      m_ttkRadio(nullptr)
+      m_radio(nullptr)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-
-    m_radio = new MusicWebFMRadioWidget(this);
-
-    QWidget *bottomWidget = new QWidget(this);
-    bottomWidget->setFixedHeight(40);
-    QHBoxLayout *bottomLayout = new QHBoxLayout(bottomWidget);
-    bottomLayout->setSpacing(0);
-    bottomLayout->setContentsMargins(5, 0, 0, 0);
 
     QPushButton *fm = new QPushButton(this);
     fm->setIcon(QIcon(":/tiny/btn_fm_radio"));
@@ -26,6 +18,13 @@ MusicWebRadioView::MusicWebRadioView(QWidget *parent)
     fm->setCursor(QCursor(Qt::PointingHandCursor));
     fm->setStyleSheet(TTK::UI::PushButtonStyle01);
     fm->setFixedWidth(40);
+
+    QPushButton *tk = new QPushButton(this);
+    tk->setIcon(QIcon(":/tiny/btn_fm_radio"));
+    tk->setToolTip(tr("FMRadio"));
+    tk->setCursor(QCursor(Qt::PointingHandCursor));
+    tk->setStyleSheet(TTK::UI::PushButtonStyle01);
+    tk->setFixedWidth(40);
 
     QPushButton *dj = new QPushButton(this);
     dj->setIcon(QIcon(":/tiny/btn_dj_radio"));
@@ -42,21 +41,19 @@ MusicWebRadioView::MusicWebRadioView(QWidget *parent)
     mv->setFixedWidth(40);
 #ifdef Q_OS_UNIX
     fm->setFocusPolicy(Qt::NoFocus);
+    tk->setFocusPolicy(Qt::NoFocus);
     dj->setFocusPolicy(Qt::NoFocus);
     mv->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    bottomLayout->addStretch(1);
-    bottomLayout->addWidget(fm);
-    bottomLayout->addWidget(dj);
-    bottomLayout->addWidget(mv);
-    bottomWidget->setLayout(bottomLayout);
-
-    layout->addWidget(m_radio);
-    layout->addWidget(bottomWidget);
+    layout->addWidget(fm);
+    layout->addWidget(tk);
+    layout->addWidget(dj);
+    layout->addWidget(mv);
     setLayout(layout);
 
     connect(fm, SIGNAL(clicked()), SLOT(openFMRadioWindow()));
+    connect(tk, SIGNAL(clicked()), SLOT(openTKRadioWindow()));
     connect(dj, SIGNAL(clicked()), SLOT(openDJRadioWindow()));
     connect(mv, SIGNAL(clicked()), SLOT(openMVRadioWindow()));
 }
@@ -64,16 +61,22 @@ MusicWebRadioView::MusicWebRadioView(QWidget *parent)
 MusicWebRadioView::~MusicWebRadioView()
 {
     delete m_radio;
-    delete m_ttkRadio;
 }
 
 void MusicWebRadioView::openFMRadioWindow()
 {
-    if(!m_ttkRadio)
-    {
-        m_ttkRadio = new MusicTTKFMRadioPlayWidget(this);
-    }
-    m_ttkRadio->show();
+    delete m_radio;
+    MusicWebFMRadioPlayWidget *w = new MusicWebFMRadioPlayWidget(this);
+    m_radio = w;
+    w->show();
+}
+
+void MusicWebRadioView::openTKRadioWindow()
+{
+    delete m_radio;
+    MusicTTKFMRadioPlayWidget *w = new MusicTTKFMRadioPlayWidget(this);
+    m_radio = w;
+    w->show();
 }
 
 void MusicWebRadioView::openDJRadioWindow()

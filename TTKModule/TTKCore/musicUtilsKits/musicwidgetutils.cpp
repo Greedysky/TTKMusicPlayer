@@ -66,7 +66,7 @@ void TTK::Widget::adjustMenuPosition(QMenu *menu)
 #endif
 }
 
-void TTK::Widget::positionInCenter(QWidget *widget)
+void TTK::Widget::adjustWidgetPosition(QWidget *widget)
 {
     const QRect &rect = TTKDesktopWrapper::screenGeometry();
     widget->move((rect.width() - widget->width()) / 2, (rect.height() - widget->height()) / 2);

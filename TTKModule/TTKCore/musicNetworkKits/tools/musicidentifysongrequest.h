@@ -1,5 +1,5 @@
-#ifndef MUSICIDENTIFYSONGSREQUEST_H
-#define MUSICIDENTIFYSONGSREQUEST_H
+#ifndef MUSICIDENTIFYSONGREQUEST_H
+#define MUSICIDENTIFYSONGREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -34,15 +34,15 @@ TTK_DECLARE_LIST(MusicSongIdentifyData);
 /*! @brief The class of the song identify query request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicIdentifySongsRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicIdentifySongRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicIdentifySongsRequest)
+    TTK_DECLARE_MODULE(MusicIdentifySongRequest)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicIdentifySongsRequest(QObject *parent = nullptr);
+    explicit MusicIdentifySongRequest(QObject *parent = nullptr);
 
     /*!
      * Get query song id keys.
@@ -79,4 +79,4 @@ private:
 
 };
 
-#endif // MUSICIDENTIFYSONGSREQUEST_H
+#endif // MUSICIDENTIFYSONGREQUEST_H

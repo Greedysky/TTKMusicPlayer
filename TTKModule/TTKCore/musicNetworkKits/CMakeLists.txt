@@ -23,16 +23,13 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadtextrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadmetadatarequest.h
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadqueuerequest.h
-  ${MUSIC_CORE_NETWORK_DIR}/tools/musicidentifysongsrequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/tools/musicidentifysongrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicsourceupdaterequest.h
   ${MUSIC_CORE_NETWORK_DIR}/tools/musiccounterpvrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadmanager.h
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicsongrecommendrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicsongsuggestrequest.h
-  ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicabstractfmradiorequest.h
-  ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiochannelrequest.h
-  ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiodownloadtextrequest.h
-  ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongsrequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.h
   ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategoryrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramrequest.h
@@ -111,16 +108,13 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadtextrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadmetadatarequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadqueuerequest.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/tools/musicidentifysongsrequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/tools/musicidentifysongrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicsourceupdaterequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/tools/musiccounterpvrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicdownloadmanager.cpp
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicsongrecommendrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/tools/musicsongsuggestrequest.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicabstractfmradiorequest.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiochannelrequest.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiodownloadtextrequest.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongsrequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicabstractdjradiorequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategoryrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramrequest.cpp

@@ -9,7 +9,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_HEADERS
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicfileinformationwidget.h
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.h
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongringtonemakerwidget.h
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongswidget.h
+  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongwidget.h
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.h
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolstablewidget.h
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumwidget.h
@@ -27,7 +27,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_SOURCES
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicfileinformationwidget.cpp
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.cpp
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongringtonemakerwidget.cpp
-  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongswidget.cpp
+  ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongwidget.cpp
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.cpp
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolstablewidget.cpp
   ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumwidget.cpp

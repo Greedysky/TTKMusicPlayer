@@ -10,7 +10,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_HEADERS
   ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiclocalmanagerwidget.h
   ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicttkfmradioplaywidget.h
   ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebfmradioplaywidget.h
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebfmradiowidget.h
   ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiocategorywidget.h
   ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiowidget.h
   ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioquerywidget.h
@@ -37,7 +36,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_SOURCES
   ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiclocalmanagerwidget.cpp
   ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicttkfmradioplaywidget.cpp
   ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebfmradioplaywidget.cpp
-  ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebfmradiowidget.cpp
   ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiocategorywidget.cpp
   ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiowidget.cpp
   ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioquerywidget.cpp

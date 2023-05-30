@@ -22,9 +22,6 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
-class MusicWebFMRadioWidget;
-class MusicTTKFMRadioPlayWidget;
-
 /*! @brief The class of the web radio widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -45,6 +42,10 @@ public Q_SLOTS:
      */
     void openFMRadioWindow();
     /*!
+     * Open TK Radio window has clicked.
+     */
+    void openTKRadioWindow();
+    /*!
      * Open DJ Radio window has clicked.
      */
     void openDJRadioWindow();
@@ -54,8 +55,7 @@ public Q_SLOTS:
     void openMVRadioWindow();
 
 private:
-    MusicWebFMRadioWidget *m_radio;
-    MusicTTKFMRadioPlayWidget *m_ttkRadio;
+    QWidget *m_radio;
 
 };
 

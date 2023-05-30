@@ -14,7 +14,7 @@
 
 #include "musicwebdjradiowidget.h"
 #include "musicscreensaverwidget.h"
-#include "musicidentifysongswidget.h"
+#include "musicidentifysongwidget.h"
 #include "musicsimilarquerywidget.h"
 #include "musicalbumquerywidget.h"
 #include "musicartistquerywidget.h"
@@ -467,7 +467,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
         }
         case IndentifyWidget: //insert indentify songs widget
         {
-            MusicIdentifySongsWidget *widget = new MusicIdentifySongsWidget(this);
+            MusicIdentifySongWidget *widget = new MusicIdentifySongWidget(this);
             m_ui->functionsContainer->addWidget(m_stackedWidget = widget);
             m_ui->functionsContainer->setCurrentWidget(widget);
             widget->queryIdentifyKey();

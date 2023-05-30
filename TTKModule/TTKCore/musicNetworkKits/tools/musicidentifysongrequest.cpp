@@ -1,4 +1,4 @@
-#include "musicidentifysongsrequest.h"
+#include "musicidentifysongrequest.h"
 #include "musicdatasourcerequest.h"
 
 #include "qsync/qsyncutils.h"
@@ -8,13 +8,13 @@
 #define OS_ACRUA_URL  "acrcloud"
 #define QUERY_URL     "VzBxZCtBUDBKK1R6aHNiTGxMdy84SzlIUVA5a3cvbjdKQ1ZIVGdYRThBS0hZMTlZSnhRQ0Y5N0lZdi9QQ3VveVEyVDdXbll3ZUZvPQ=="
 
-MusicIdentifySongsRequest::MusicIdentifySongsRequest(QObject *parent)
+MusicIdentifySongRequest::MusicIdentifySongRequest(QObject *parent)
     : MusicAbstractNetwork(parent)
 {
 
 }
 
-bool MusicIdentifySongsRequest::queryIdentifyKey()
+bool MusicIdentifySongRequest::queryIdentifyKey()
 {
     TTKSemaphoreLoop loop;
     connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -27,7 +27,7 @@ bool MusicIdentifySongsRequest::queryIdentifyKey()
     return !m_accessKey.isEmpty() && !m_accessSecret.isEmpty();
 }
 
-void MusicIdentifySongsRequest::startRequest(const QString &path)
+void MusicIdentifySongRequest::startRequest(const QString &path)
 {
     const QString &boundary = "----";
     const QString &start = "--" + boundary;
@@ -77,7 +77,7 @@ void MusicIdentifySongsRequest::startRequest(const QString &path)
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
-void MusicIdentifySongsRequest::downLoadFinished()
+void MusicIdentifySongRequest::downLoadFinished()
 {
     MusicAbstractNetwork::downLoadFinished();
     m_songIdentifys.clear();
@@ -123,7 +123,7 @@ void MusicIdentifySongsRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicIdentifySongsRequest::downLoadFinished(const QByteArray &bytes)
+void MusicIdentifySongRequest::downLoadFinished(const QByteArray &bytes)
 {
     if(bytes.isEmpty())
     {

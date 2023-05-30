@@ -186,7 +186,7 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     m_ui->itemTree->setItemDelegateForColumn(1, delegateName);
 
     initialize();
-    TTK::Widget::positionInCenter(this);
+    TTK::Widget::adjustWidgetPosition(this);
 
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
     connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(radioPrevious()));

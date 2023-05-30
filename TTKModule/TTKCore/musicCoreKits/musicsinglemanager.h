@@ -35,8 +35,8 @@
     {                                                                      \
         manager->appendObject(#name, new name(parent));                    \
     }                                                                      \
-    name *w = TTKObjectCast(name*, manager->object(#name));               \
-    TTK::Widget::positionInCenter(w);                               \
+    name *w = TTKObjectCast(name*, manager->object(#name));                \
+    TTK::Widget::adjustWidgetPosition(w);                                  \
     w->raise();                                                            \
     w->show();                                                             \
     return w;                                                              \
