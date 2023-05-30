@@ -35,17 +35,25 @@
 #define TTK_LOG_STREAM(msg) TTK_LOG_OUTPUT << msg
 // log stream base macro
 #define TTK_BASE_STREAM(level, msg) TTK_LOG_OUTPUT << QString("[%1 %2][%3][%4(%5)] ").arg(__TTK_DATE__, __TTK_TIME__, level, __FILE__, QString::number(__LINE__)) << msg
-// log once base macro
-#define TTK_BASE_STREAM_ONCE(level, msg) \
+// log stream once base macro
+#define TTK_ONCE_STREAM(level, msg) \
   static bool __hit__ = false; \
   if(!__hit__) \
   { \
     __hit__ = true; \
     TTK_BASE_STREAM(level, msg); \
   }
-// log stream throttle base macro
-#define TTK_BASE_STREAM_THROTTLE(period, level, msg) \
-  static qint64 __last__ = 0.0; \
+// log stream count base macro
+#define TTK_COUNT_STREAM(count, level, msg) \
+  static  __last__ = 1; \
+  if(count > 0 && ++__last__ > count) \
+  { \
+    __last__ = 1; \
+    TTK_BASE_STREAM(level, msg); \
+  }
+// log stream period base macro
+#define TTK_PERIOD_STREAM(period, level, msg) \
+  static qint64 __last__ = 0; \
   const qint64 __now__ = QDateTime::currentMSecsSinceEpoch(); \
   if(__last__ + period * 1000 <= __now__ || __now__ < __last__) \
   { \
@@ -60,18 +68,25 @@
 #define TTK_ERROR_STREAM(msg) { TTK_BASE_STREAM("E", msg); }
 #define TTK_FATAL_STREAM(msg) { TTK_BASE_STREAM("F", msg); }
 
-#define TTK_TRACE_STREAM_ONCE(msg) { TTK_BASE_STREAM_ONCE("I", msg) }
-#define TTK_DEBUG_STREAM_ONCE(msg) { TTK_BASE_STREAM_ONCE("D", msg) }
-#define TTK_INFO_STREAM_ONCE(msg)  { TTK_BASE_STREAM_ONCE("W", msg) }
-#define TTK_WARN_STREAM_ONCE(msg)  { TTK_BASE_STREAM_ONCE("T", msg) }
-#define TTK_ERROR_STREAM_ONCE(msg) { TTK_BASE_STREAM_ONCE("E", msg) }
-#define TTK_FATAL_STREAM_ONCE(msg) { TTK_BASE_STREAM_ONCE("F", msg) }
+#define TTK_TRACE_STREAM_ONCE(msg) { TTK_ONCE_STREAM("I", msg) }
+#define TTK_DEBUG_STREAM_ONCE(msg) { TTK_ONCE_STREAM("D", msg) }
+#define TTK_INFO_STREAM_ONCE(msg)  { TTK_ONCE_STREAM("W", msg) }
+#define TTK_WARN_STREAM_ONCE(msg)  { TTK_ONCE_STREAM("T", msg) }
+#define TTK_ERROR_STREAM_ONCE(msg) { TTK_ONCE_STREAM("E", msg) }
+#define TTK_FATAL_STREAM_ONCE(msg) { TTK_ONCE_STREAM("F", msg) }
 
-#define TTK_TRACE_STREAM_THROTTLE(period, msg) { TTK_BASE_STREAM_THROTTLE(period, "I", msg) }
-#define TTK_DEBUG_STREAM_THROTTLE(period, msg) { TTK_BASE_STREAM_THROTTLE(period, "D", msg) }
-#define TTK_INFO_STREAM_THROTTLE(period, msg)  { TTK_BASE_STREAM_THROTTLE(period, "W", msg) }
-#define TTK_WARN_STREAM_THROTTLE(period, msg)  { TTK_BASE_STREAM_THROTTLE(period, "T", msg) }
-#define TTK_ERROR_STREAM_THROTTLE(period, msg) { TTK_BASE_STREAM_THROTTLE(period, "E", msg) }
-#define TTK_FATAL_STREAM_THROTTLE(period, msg) { TTK_BASE_STREAM_THROTTLE(period, "F", msg) }
+#define TTK_TRACE_STREAM_COUNT(count, msg) { TTK_COUNT_STREAM(count, "I", msg) }
+#define TTK_DEBUG_STREAM_COUNT(count, msg) { TTK_COUNT_STREAM(count, "D", msg) }
+#define TTK_INFO_STREAM_COUNT(count, msg)  { TTK_COUNT_STREAM(count, "W", msg) }
+#define TTK_WARN_STREAM_COUNT(count, msg)  { TTK_COUNT_STREAM(count, "T", msg) }
+#define TTK_ERROR_STREAM_COUNT(count, msg) { TTK_COUNT_STREAM(count, "E", msg) }
+#define TTK_FATAL_STREAM_COUNT(count, msg) { TTK_COUNT_STREAM(count, "F", msg) }
+
+#define TTK_TRACE_STREAM_PERIOD(period, msg) { TTK_PERIOD_STREAM(period, "I", msg) }
+#define TTK_DEBUG_STREAM_PERIOD(period, msg) { TTK_PERIOD_STREAM(period, "D", msg) }
+#define TTK_INFO_STREAM_PERIOD(period, msg)  { TTK_PERIOD_STREAM(period, "W", msg) }
+#define TTK_WARN_STREAM_PERIOD(period, msg)  { TTK_PERIOD_STREAM(period, "T", msg) }
+#define TTK_ERROR_STREAM_PERIOD(period, msg) { TTK_PERIOD_STREAM(period, "E", msg) }
+#define TTK_FATAL_STREAM_PERIOD(period, msg) { TTK_PERIOD_STREAM(period, "F", msg) }
 
 #endif // TTKLOGGER_H
