@@ -52,7 +52,7 @@ void MusicToolSetsWidget::addListWidgetItem()
         QString m_icon;
         QString m_name;
 
-        ToolItem() { }
+        ToolItem() = default;
         ToolItem(const QString &icon, const QString &name)
         {
             m_icon = icon;

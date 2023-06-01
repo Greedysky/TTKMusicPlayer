@@ -493,9 +493,6 @@
         <file alias="btn_expand_w_normal">../TTKResource/tiny/btn_expand_w_normal.png</file>
         <file alias="btn_expand_w_hover">../TTKResource/tiny/btn_expand_w_hover.png</file>
         <file alias="lb_playlater">../TTKResource/tiny/lb_playlater.png</file>
-        <file alias="btn_fm_radio">../TTKResource/tiny/btn_fm_radio.png</file>
-        <file alias="btn_dj_radio">../TTKResource/tiny/btn_dj_radio.png</file>
-        <file alias="btn_mv_radio">../TTKResource/tiny/btn_mv_radio.png</file>
     </qresource>
     <qresource prefix="/functions">
         <file alias="lb_drag_cursor">../TTKResource/functions/lb_drag_cursor.png</file>

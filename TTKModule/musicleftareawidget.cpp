@@ -187,7 +187,7 @@ void MusicLeftAreaWidget::stackedRadioWidgetChanged()
     }
 
     delete m_stackedWidget;
-    m_stackedWidget = new MusicWebRadioView(this);
+    m_stackedWidget = new MusicWebFMRadioWidget(this);
 
     m_ui->songsContainer->insertWidget(1, m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);

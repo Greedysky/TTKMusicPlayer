@@ -188,15 +188,17 @@ void MusicSongsListPlayedTableWidget::itemCellEntered(int row, int column)
     }
 
     ///draw new table item state
-    if((it = item(row, 2)))
+    if(it = item(row, 2))
     {
         it->setIcon(QIcon(":/contextMenu/btn_download"));
     }
-    if((it = item(row, 3)))
+
+    if(it = item(row, 3))
     {
         it->setIcon(QIcon(":/tiny/btn_delete_normal"));
     }
-    if((it = item(row, 4)))
+
+    if(it = item(row, 4))
     {
         it->setText(QString());
         it->setIcon(QIcon(":/tiny/btn_more_normal"));

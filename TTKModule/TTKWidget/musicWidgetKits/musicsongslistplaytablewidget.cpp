@@ -296,28 +296,28 @@ void MusicSongsListPlayTableWidget::itemCellEntered(int row, int column)
     }
 
     ///draw new table item state
-    if((it = item(row, 0)))
+    if(it = item(row, 0))
     {
         it->setIcon(QIcon(":/tiny/btn_play_later_normal"));
     }
 
-    if((it = item(row, 2)))
+    if(it = item(row, 2))
     {
         it->setIcon(QIcon(":/tiny/btn_mv_normal"));
     }
 
-    if((it = item(row, 3)))
+    if(it = item(row, 3))
     {
         const bool contains = MusicApplication::instance()->lovestContains(row);
         it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
     }
 
-    if((it = item(row, 4)))
+    if(it = item(row, 4))
     {
         it->setIcon(QIcon(":/tiny/btn_delete_normal"));
     }
 
-    if((it = item(row, 5)))
+    if(it = item(row, 5))
     {
         it->setText(QString());
         it->setIcon(QIcon(":/tiny/btn_more_normal"));

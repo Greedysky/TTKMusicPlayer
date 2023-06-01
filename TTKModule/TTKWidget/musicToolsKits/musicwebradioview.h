@@ -19,42 +19,42 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QWidget>
-#include "musicglobaldefine.h"
+#include "musicabstracttablewidget.h"
 
-/*! @brief The class of the web radio widget.
+/*! @brief The class of the web music radio list widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWebRadioView : public QWidget
+class TTK_MODULE_EXPORT MusicWebFMRadioWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebRadioView)
+    TTK_DECLARE_MODULE(MusicWebFMRadioWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebRadioView(QWidget *parent = nullptr);
-    ~MusicWebRadioView();
+    explicit MusicWebFMRadioWidget(QWidget *parent = nullptr);
+    ~MusicWebFMRadioWidget();
 
 public Q_SLOTS:
     /*!
-     * Open FM Radio window has clicked.
+     * Table widget item cell enter.
      */
-    void openFMRadioWindow();
+    virtual void itemCellEntered(int row, int column) override final;
     /*!
-     * Open TK Radio window has clicked.
+     * Table widget item cell click.
      */
-    void openTKRadioWindow();
+    virtual void itemCellClicked(int row, int column) override final;
     /*!
-     * Open DJ Radio window has clicked.
+     * Table widget item cell double clicked.
      */
-    void openDJRadioWindow();
-    /*!
-     * Open MV Radio window has clicked.
-     */
-    void openMVRadioWindow();
+    void itemDoubleClicked(int row, int column);
 
 private:
+    /*!
+     * Add radio list into list widget.
+     */
+    void addListWidgetItem();
+
     QWidget *m_radio;
 
 };

@@ -18,9 +18,6 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     setFixedSize(size());
     setBackgroundLabel(m_ui->background);
 
-    m_analysis = new MusicLrcAnalysis(this);
-    m_analysis->setLineMax(9);
-
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(TTK::UI::ToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -57,6 +54,9 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
 
     initialize();
     TTK::Widget::adjustWidgetPosition(this);
+
+    m_analysis = new MusicLrcAnalysis(this);
+    m_analysis->setLineMax(9);
 
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
     connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(radioPrevious()));
@@ -215,7 +215,7 @@ void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
         pix.load(":/image/lb_default_art");
     }
 
-    pix = TTK::Image::roundedPixmap(pix, QSize(150, 150), 100, 100);
+    pix = TTK::Image::roundedPixmap(pix, QSize(150, 150), 150, 150);
     m_ui->artistLabel->setPixmap(pix);
     m_ui->artistLabel->start();
 }

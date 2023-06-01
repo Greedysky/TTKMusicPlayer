@@ -1,90 +1,148 @@
 #include "musicwebradioview.h"
-#include "musicwidgetheaders.h"
 #include "musicrightareawidget.h"
 #include "musicwebfmradioplaywidget.h"
 #include "musicttkfmradioplaywidget.h"
+#include "musicimageutils.h"
 
-MusicWebRadioView::MusicWebRadioView(QWidget *parent)
-    : QWidget(parent),
+#define ICON_SIZE       50
+
+MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
+    : MusicAbstractTableWidget(parent),
       m_radio(nullptr)
 {
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setSpacing(0);
-    layout->setContentsMargins(0, 0, 0, 0);
+    setIconSize(QSize(ICON_SIZE, ICON_SIZE));
+    setColumnCount(4);
 
-    QPushButton *fm = new QPushButton(this);
-    fm->setIcon(QIcon(":/tiny/btn_fm_radio"));
-    fm->setToolTip(tr("FMRadio"));
-    fm->setCursor(QCursor(Qt::PointingHandCursor));
-    fm->setStyleSheet(TTK::UI::PushButtonStyle01);
-    fm->setFixedWidth(40);
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 10);
+    headerview->resizeSection(1, ICON_SIZE + 20);
+    headerview->resizeSection(2, 157);
+    headerview->resizeSection(3, 82);
 
-    QPushButton *tk = new QPushButton(this);
-    tk->setIcon(QIcon(":/tiny/btn_fm_radio"));
-    tk->setToolTip(tr("FMRadio"));
-    tk->setCursor(QCursor(Qt::PointingHandCursor));
-    tk->setStyleSheet(TTK::UI::PushButtonStyle01);
-    tk->setFixedWidth(40);
+    TTK::Widget::setTransparent(this, 0);
+    verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 
-    QPushButton *dj = new QPushButton(this);
-    dj->setIcon(QIcon(":/tiny/btn_dj_radio"));
-    dj->setToolTip(tr("DJRadio"));
-    dj->setCursor(QCursor(Qt::PointingHandCursor));
-    dj->setStyleSheet(TTK::UI::PushButtonStyle01);
-    dj->setFixedWidth(40);
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 
-    QPushButton *mv = new QPushButton(this);
-    mv->setIcon(QIcon(":/tiny/btn_mv_radio"));
-    mv->setToolTip(tr("MVRadio"));
-    mv->setCursor(QCursor(Qt::PointingHandCursor));
-    mv->setStyleSheet(TTK::UI::PushButtonStyle01);
-    mv->setFixedWidth(40);
-#ifdef Q_OS_UNIX
-    fm->setFocusPolicy(Qt::NoFocus);
-    tk->setFocusPolicy(Qt::NoFocus);
-    dj->setFocusPolicy(Qt::NoFocus);
-    mv->setFocusPolicy(Qt::NoFocus);
-#endif
-
-    layout->addWidget(fm);
-    layout->addWidget(tk);
-    layout->addWidget(dj);
-    layout->addWidget(mv);
-    setLayout(layout);
-
-    connect(fm, SIGNAL(clicked()), SLOT(openFMRadioWindow()));
-    connect(tk, SIGNAL(clicked()), SLOT(openTKRadioWindow()));
-    connect(dj, SIGNAL(clicked()), SLOT(openDJRadioWindow()));
-    connect(mv, SIGNAL(clicked()), SLOT(openMVRadioWindow()));
+    addListWidgetItem();
 }
 
-MusicWebRadioView::~MusicWebRadioView()
+MusicWebFMRadioWidget::~MusicWebFMRadioWidget()
 {
     delete m_radio;
 }
 
-void MusicWebRadioView::openFMRadioWindow()
+void MusicWebFMRadioWidget::itemCellEntered(int row, int column)
 {
-    delete m_radio;
-    MusicWebFMRadioPlayWidget *w = new MusicWebFMRadioPlayWidget(this);
-    m_radio = w;
-    w->show();
+    QTableWidgetItem *it = item(m_previousColorRow, 3);
+    if(it)
+    {
+        it->setIcon(QIcon());
+    }
+
+    if(it = item(row, 3))
+    {
+        it->setIcon(QIcon(":/contextMenu/btn_play"));
+    }
+
+    if(column == 3)
+    {
+        setCursor(QCursor(Qt::PointingHandCursor));
+    }
+    else
+    {
+        unsetCursor();
+    }
+
+    MusicAbstractTableWidget::itemCellEntered(row, column);
 }
 
-void MusicWebRadioView::openTKRadioWindow()
+void MusicWebFMRadioWidget::itemCellClicked(int row, int column)
 {
-    delete m_radio;
-    MusicTTKFMRadioPlayWidget *w = new MusicTTKFMRadioPlayWidget(this);
-    m_radio = w;
-    w->show();
+    Q_UNUSED(row);
+    if(column == 3)
+    {
+        itemDoubleClicked(row, TTK_NORMAL_LEVEL);
+    }
 }
 
-void MusicWebRadioView::openDJRadioWindow()
+void MusicWebFMRadioWidget::itemDoubleClicked(int row, int column)
 {
-    MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::WebDJRadioWidget);
+    Q_UNUSED(column);
+    switch(row)
+    {
+        case 0:
+        {
+            delete m_radio;
+            MusicWebFMRadioPlayWidget *w = new MusicWebFMRadioPlayWidget(this);
+            m_radio = w;
+            w->show();
+            break;
+        }
+        case 1:
+        {
+            delete m_radio;
+            MusicTTKFMRadioPlayWidget *w = new MusicTTKFMRadioPlayWidget(this);
+            m_radio = w;
+            w->show();
+            break;
+        }
+        case 2:
+        {
+            MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::WebDJRadioWidget);
+            break;
+        }
+        case 3:
+        {
+            MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::WebMVRadioWidget);
+            break;
+        }
+        default: break;
+    }
 }
 
-void MusicWebRadioView::openMVRadioWindow()
+void MusicWebFMRadioWidget::addListWidgetItem()
 {
-    MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::WebMVRadioWidget);
+    struct ToolItem
+    {
+        QString m_icon;
+        QString m_name;
+
+        ToolItem() = default;
+        ToolItem(const QString &icon, const QString &name)
+        {
+            m_icon = icon;
+            m_name = name;
+        }
+    };
+    TTK_DECLARE_LIST(ToolItem);
+
+    ToolItemList pairs;
+    pairs << ToolItem(":/tools/lb_bell", tr("FMRadio"))
+          << ToolItem(":/tools/lb_timer", tr("TKRadio"))
+          << ToolItem(":/tools/lb_transform", tr("DJRadio"))
+          << ToolItem(":/tools/lb_spectrum", tr("MVRadio"));
+
+    for(const ToolItem &pair : qAsConst(pairs))
+    {
+        const int index = rowCount();
+        setRowCount(index + 1);
+        setRowHeight(index, TTK_ITEM_SIZE_XL);
+
+        QTableWidgetItem *item = new QTableWidgetItem;
+        setItem(index, 0, item);
+
+                          item = new QTableWidgetItem;
+        item->setIcon(TTK::Image::roundedPixmap(QPixmap(pair.m_icon), QPixmap(":/image/lb_mask_50"), iconSize()));
+        setItem(index, 1, item);
+
+                          item = new QTableWidgetItem;
+        item->setText(pair.m_name);
+        item->setForeground(QColor(TTK::UI::Color02));
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(index, 2, item);
+
+                          item = new QTableWidgetItem;
+        setItem(index, 3, item);
+    }
 }
