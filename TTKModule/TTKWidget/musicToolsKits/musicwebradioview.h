@@ -21,7 +21,7 @@
 
 #include "musicabstracttablewidget.h"
 
-/*! @brief The class of the web music radio list widget.
+/*! @brief The class of the web music radio widget.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWebFMRadioWidget : public MusicAbstractTableWidget
