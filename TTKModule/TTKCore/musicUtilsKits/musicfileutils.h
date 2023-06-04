@@ -37,6 +37,10 @@ namespace TTK
          */
         TTK_MODULE_EXPORT QFileInfoList fileInfoListByPath(const QString &dpath, const QStringList &filter = QStringList(), bool recursively = true);
         /*!
+         * Copy path from srcPath to dstPath.
+         */
+        TTK_MODULE_EXPORT bool copyPath(const QString &srcPath, const QString &dstPath, bool overwrite);
+        /*!
          * Dir remove recursively.
          */
         TTK_MODULE_EXPORT bool removeRecursively(const QString &dir, bool self = true);

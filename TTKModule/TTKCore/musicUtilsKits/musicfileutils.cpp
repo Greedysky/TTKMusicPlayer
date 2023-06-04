@@ -51,6 +51,61 @@ QFileInfoList TTK::File::fileInfoListByPath(const QString &dpath, const QStringL
     return fileList;
 }
 
+bool TTK::File::copyPath(const QString &srcPath, const QString &dstPath, bool overwrite)
+{
+    if (QFileInfo(srcPath).isFile())
+    {
+        if (QFileInfo(dstPath).isFile())
+        {
+            if (overwrite && QFile::exists(dstPath))
+            {
+                QFile::remove(dstPath);
+            }
+            return QFile::copy(srcPath, dstPath);
+        }
+        return false;
+    }
+
+    QDir dstDir(dstPath);
+    if (!dstDir.exists())
+    {
+        if (!dstDir.mkdir(dstDir.absolutePath()))
+        {
+            return false;
+        }
+    }
+
+    for (const QFileInfo &fileInfo : QDir(srcPath).entryInfoList())
+    {
+        const QString &fileName = fileInfo.fileName();
+        if (fileName == "." || fileName == "..")
+        {
+            continue;
+        }
+
+        if (fileInfo.isDir())
+        {
+            if (!copyPath(fileInfo.filePath(), dstDir.filePath(fileName), overwrite))
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if (overwrite && dstDir.exists(fileName))
+            {
+                dstDir.remove(fileName);
+            }
+
+            if (!QFile::copy(fileInfo.filePath(), dstDir.filePath(fileName)))
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 bool TTK::File::removeRecursively(const QString &dir, bool self)
 {
     QDir dr(dir);
