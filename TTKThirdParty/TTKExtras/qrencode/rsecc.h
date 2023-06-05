@@ -1,8 +1,12 @@
 /*
  * qrencode - QR Code encoder
  *
- * Masking for Micro QR Code.
- * Copyright (C) 2006-2017 Kentaro Fukuchi <kentaro@fukuchi.org>
+ * Reed solomon error correction code encoder specialized for QR code.
+ * This code is rewritten by Kentaro Fukuchi, referring to the FEC library
+ * developed by Phil Karn (KA9Q).
+ *
+ * Copyright (C) 2002, 2003, 2004, 2006 Phil Karn, KA9Q
+ * Copyright (C) 2014-2017 Kentaro Fukuchi <kentaro@fukuchi.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,16 +23,9 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef MMASK_H
-#define MMASK_H
+#ifndef RSECC_H
+#define RSECC_H
 
-extern unsigned char *MMask_makeMask(int version, unsigned char *frame, int mask, QRecLevel level);
-extern unsigned char *MMask_mask(int version, unsigned char *frame, QRecLevel level);
+extern int RSECC_encode(size_t data_length, size_t ecc_length, const unsigned char *data, unsigned char *ecc);
 
-#ifdef WITH_TESTS
-extern int MMask_evaluateSymbol(int width, unsigned char *frame);
-extern void MMask_writeFormatInformation(int version, int width, unsigned char *frame, int mask, QRecLevel level);
-extern unsigned char *MMask_makeMaskedFrame(int width, unsigned char *frame, int mask);
-#endif
-
-#endif /* MMASK_H */
+#endif /* RSECC_H */

@@ -2,7 +2,7 @@
  * qrencode - QR Code encoder
  *
  * Input data chunk class
- * Copyright (C) 2006-2011 Kentaro Fukuchi <kentaro@fukuchi.org>
+ * Copyright (C) 2006-2017 Kentaro Fukuchi <kentaro@fukuchi.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef __QRINPUT_H__
-#define __QRINPUT_H__
+#ifndef QRINPUT_H
+#define QRINPUT_H
 
 #include "qrencode.h"
 #include "bitstream.h"
@@ -33,24 +33,24 @@ int QRinput_isSplittableMode(QRencodeMode mode);
 typedef struct _QRinput_List QRinput_List;
 
 struct _QRinput_List {
-	QRencodeMode mode;
-	int size;				///< Size of data chunk (byte).
-	unsigned char *data;	///< Data chunk.
-	BitStream *bstream;
-	QRinput_List *next;
+    QRencodeMode mode;
+    int size;            ///< Size of data chunk (byte).
+    unsigned char *data; ///< Data chunk.
+    BitStream *bstream;
+    QRinput_List *next;
 };
 
 /******************************************************************************
  * Input Data
  *****************************************************************************/
 struct _QRinput {
-	int version;
-	QRecLevel level;
-	QRinput_List *head;
-	QRinput_List *tail;
-	int mqr;
-	int fnc1;
-	unsigned char appid;
+    int version;
+    QRecLevel level;
+    QRinput_List *head;
+    QRinput_List *tail;
+    int mqr;
+    int fnc1;
+    unsigned char appid;
 };
 
 /******************************************************************************
@@ -59,15 +59,15 @@ struct _QRinput {
 typedef struct _QRinput_InputList QRinput_InputList;
 
 struct _QRinput_InputList {
-	QRinput *input;
-	QRinput_InputList *next;
+    QRinput *input;
+    QRinput_InputList *next;
 };
 
 struct _QRinput_Struct {
-	int size;					///< number of structured symbols
-	int parity;
-	QRinput_InputList *head;
-	QRinput_InputList *tail;
+    int size; ///< number of structured symbols
+    int parity;
+    QRinput_InputList *head;
+    QRinput_InputList *tail;
 };
 
 /**
@@ -93,7 +93,7 @@ extern const signed char QRinput_anTable[128];
  * @return value
  */
 #define QRinput_lookAnTable(__c__) \
-	((__c__ & 0x80)?-1:QRinput_anTable[(int)__c__])
+    ((__c__ & 0x80)?-1:QRinput_anTable[(int)__c__])
 
 /**
  * Length of a standard mode indicator in bits.
@@ -112,12 +112,13 @@ extern const signed char QRinput_anTable[128];
 #define MAX_STRUCTURED_SYMBOLS 16
 
 #ifdef WITH_TESTS
-extern BitStream *QRinput_mergeBitStream(QRinput *input);
-extern BitStream *QRinput_getBitStream(QRinput *input);
+extern int QRinput_mergeBitStream(QRinput *input, BitStream *bstream);
+extern int QRinput_getBitStream(QRinput *input, BitStream *bstream);
 extern int QRinput_estimateBitStreamSize(QRinput *input, int version);
 extern int QRinput_splitEntry(QRinput_List *entry, int bytes);
+extern int QRinput_estimateVersion(QRinput *input);
 extern int QRinput_lengthOfCode(QRencodeMode mode, int version, int bits);
 extern int QRinput_insertStructuredAppendHeader(QRinput *input, int size, int index, unsigned char parity);
 #endif
 
-#endif /* __QRINPUT_H__ */
+#endif /* QRINPUT_H */

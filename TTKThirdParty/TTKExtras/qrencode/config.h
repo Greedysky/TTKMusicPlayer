@@ -47,13 +47,13 @@
 // #define LT_OBJDIR ".libs/"
 
 /* Major version number */
-#define MAJOR_VERSION 3
+#define MAJOR_VERSION 4
 
 /* Micro version number */
-#define MICRO_VERSION 3
+#define MICRO_VERSION 1
 
 /* Minor version number */
-#define MINOR_VERSION 4
+#define MINOR_VERSION 1
 
 /* Define to 1 if your C compiler doesn't accept -c and -o together. */
 /* #undef NO_MINUS_C_MINUS_O */
@@ -77,13 +77,10 @@
 // #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-// #define PACKAGE_VERSION ""
+#define VERSION "4.1.1"
 
 /* Define to 1 if you have the ANSI C header files. */
 // #define STDC_HEADERS 1
-
-/* Version number of package */
-#define VERSION "3.4.3"
 
 /* Define to empty if `const' does not conform to ANSI C. */
 /* #undef const */
@@ -95,6 +92,6 @@
 #endif
 
 /* Define to 'static' if no test programs will be compiled. */
-#define __STATIC static
+#define STATIC_IN_RELEASE static
 /* #undef WITH_TESTS */
-
+   

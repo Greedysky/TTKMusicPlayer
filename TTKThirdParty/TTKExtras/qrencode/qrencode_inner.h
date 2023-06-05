@@ -2,7 +2,7 @@
  * qrencode - QR Code encoder
  *
  * Header for test use
- * Copyright (C) 2006-2011 Kentaro Fukuchi <kentaro@fukuchi.org>
+ * Copyright (C) 2006-2017 Kentaro Fukuchi <kentaro@fukuchi.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef __QRENCODE_INNER_H__
-#define __QRENCODE_INNER_H__
+#ifndef QRENCODE_INNER_H
+#define QRENCODE_INNER_H
 
 /**
  * This header file includes definitions for test use.
@@ -31,22 +31,22 @@
  *****************************************************************************/
 
 typedef struct {
-	int dataLength;
-	unsigned char *data;
-	int eccLength;
-	unsigned char *ecc;
+    int dataLength;
+    int eccLength;
+    unsigned char *data;
+    unsigned char *ecc;
 } RSblock;
 
 typedef struct {
-	int version;
-	int dataLength;
-	int eccLength;
-	unsigned char *datacode;
-	unsigned char *ecccode;
-	int b1;
-	int blocks;
-	RSblock *rsblock;
-	int count;
+    int version;
+    int dataLength;
+    int eccLength;
+    unsigned char *datacode;
+    unsigned char *ecccode;
+    int b1;
+    int blocks;
+    RSblock *rsblock;
+    int count;
 } QRRawCode;
 
 extern QRRawCode *QRraw_new(QRinput *input);
@@ -58,14 +58,14 @@ extern void QRraw_free(QRRawCode *raw);
  *****************************************************************************/
 
 typedef struct {
-	int version;
-	int dataLength;
-	int eccLength;
-	unsigned char *datacode;
-	unsigned char *ecccode;
-	RSblock *rsblock;
-	int oddbits;
-	int count;
+    int version;
+    int dataLength;
+    int eccLength;
+    unsigned char *datacode;
+    unsigned char *ecccode;
+    RSblock *rsblock;
+    int oddbits;
+    int count;
 } MQRRawCode;
 
 extern MQRRawCode *MQRraw_new(QRinput *input);
@@ -85,4 +85,4 @@ extern QRcode *QRcode_encodeMask(QRinput *input, int mask);
 extern QRcode *QRcode_encodeMaskMQR(QRinput *input, int mask);
 extern QRcode *QRcode_new(int version, int width, unsigned char *data);
 
-#endif /* __QRENCODE_INNER_H__ */
+#endif /* QRENCODE_INNER_H */

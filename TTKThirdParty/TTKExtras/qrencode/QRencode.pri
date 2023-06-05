@@ -19,6 +19,7 @@
 INCLUDEPATH += $$PWD
 
 HEADERS += \
+    $$PWD/qrcodewidget.h \
     $$PWD/bitstream.h \
     $$PWD/config.h \
     $$PWD/mask.h \
@@ -29,10 +30,11 @@ HEADERS += \
     $$PWD/qrinput.h \
     $$PWD/qrspec.h \
     $$PWD/rscode.h \
-    $$PWD/split.h \
-    $$PWD/qrcodewidget.h
+    $$PWD/rsecc.h \
+    $$PWD/split.h
 
 SOURCES += \
+    $$PWD/qrcodewidget.cpp \
     $$PWD/bitstream.c \
     $$PWD/mask.c \
     $$PWD/mmask.c \
@@ -41,5 +43,5 @@ SOURCES += \
     $$PWD/qrinput.c \
     $$PWD/qrspec.c \
     $$PWD/rscode.c \
-    $$PWD/split.c \
-    $$PWD/qrcodewidget.cpp
+    $$PWD/rsecc.c \
+    $$PWD/split.c

@@ -125,6 +125,7 @@ set(HEADER_FILES
   qrencode/qrinput.h
   qrencode/qrspec.h
   qrencode/rscode.h
+  qrencode/rsecc.h
   qrencode/split.h
   qrencode/qrcodewidget.h
   qsync/qsyncconfig.h
@@ -173,6 +174,7 @@ set(SOURCE_FILES
   qrencode/qrinput.c
   qrencode/qrspec.c
   qrencode/rscode.c
+  qrencode/rsecc.c
   qrencode/split.c
   qrencode/qrcodewidget.cpp
   qsync/qsyncconfig.cpp

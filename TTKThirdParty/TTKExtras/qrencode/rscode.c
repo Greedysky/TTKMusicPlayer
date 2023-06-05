@@ -27,9 +27,6 @@
 #include "config.h"
 #include <stdlib.h>
 #include <string.h>
-#ifdef HAVE_LIBPTHREAD
-#  include <pthread.h>
-#endif
 
 #include "rscode.h"
 
@@ -43,31 +40,25 @@ typedef unsigned char data_t;
  * Reed-Solomon codec control block
  */
 struct _RS {
-	int mm;              /* Bits per symbol */
-	int nn;              /* Symbols per block (= (1<<mm)-1) */
-	data_t *alpha_to;     /* log lookup table */
-	data_t *index_of;     /* Antilog lookup table */
-	data_t *genpoly;      /* Generator polynomial */
-	int nroots;     /* Number of generator roots = number of parity symbols */
-	int fcr;        /* First consecutive root, index form */
-	int prim;       /* Primitive element, index form */
-	int iprim;      /* prim-th root of 1, index form */
-	int pad;        /* Padding bytes in shortened block */
-	int gfpoly;
-	struct _RS *next;
+    int mm;              /* Bits per symbol */
+    int nn;              /* Symbols per block (= (1<<mm)-1) */
+    data_t *alpha_to;     /* log lookup table */
+    data_t *index_of;     /* Antilog lookup table */
+    data_t *genpoly;      /* Generator polynomial */
+    int nroots;     /* Number of generator roots = number of parity symbols */
+    int fcr;        /* First consecutive root, index form */
+    int prim;       /* Primitive element, index form */
+    int iprim;      /* prim-th root of 1, index form */
+    int pad;        /* Padding bytes in shortened block */
+    int gfpoly;
 };
 
-static RS *rslist = NULL;
-#ifdef HAVE_LIBPTHREAD
-static pthread_mutex_t rslist_mutex = PTHREAD_MUTEX_INITIALIZER;
-#endif
-
-static int modnn(RS *rs, int x){
-	while (x >= rs->nn) {
-		x -= rs->nn;
-		x = (x >> rs->mm) + (x & rs->nn);
-	}
-	return x;
+static inline int modnn(RS *rs, int x){
+    while (x >= rs->nn) {
+        x -= rs->nn;
+        x = (x >> rs->mm) + (x & rs->nn);
+    }
+    return x;
 }
 
 
@@ -75,7 +66,7 @@ static int modnn(RS *rs, int x){
 
 #define MM (rs->mm)
 #define NN (rs->nn)
-#define ALPHA_TO (rs->alpha_to) 
+#define ALPHA_TO (rs->alpha_to)
 #define INDEX_OF (rs->index_of)
 #define GENPOLY (rs->genpoly)
 #define NROOTS (rs->nroots)
@@ -192,9 +183,9 @@ static RS *init_rs_char(int symsize, int gfpoly, int fcr, int prim, int nroots, 
     /* Multiply rs->genpoly[] by  @**(root + x) */
     for (j = i; j > 0; j--){
       if (rs->genpoly[j] != 0)
-	rs->genpoly[j] = rs->genpoly[j-1] ^ rs->alpha_to[modnn(rs,rs->index_of[rs->genpoly[j]] + root)];
+    rs->genpoly[j] = rs->genpoly[j-1] ^ rs->alpha_to[modnn(rs,rs->index_of[rs->genpoly[j]] + root)];
       else
-	rs->genpoly[j] = rs->genpoly[j-1];
+    rs->genpoly[j] = rs->genpoly[j-1];
     }
     /* rs->genpoly[0] can never be zero */
     rs->genpoly[0] = rs->alpha_to[modnn(rs,rs->index_of[rs->genpoly[0]] + root)];
@@ -209,60 +200,16 @@ static RS *init_rs_char(int symsize, int gfpoly, int fcr, int prim, int nroots, 
 
 RS *init_rs(int symsize, int gfpoly, int fcr, int prim, int nroots, int pad)
 {
-	RS *rs;
-
-#ifdef HAVE_LIBPTHREAD
-	pthread_mutex_lock(&rslist_mutex);
-#endif
-	for(rs = rslist; rs != NULL; rs = rs->next) {
-		if(rs->pad != pad) continue;
-		if(rs->nroots != nroots) continue;
-		if(rs->mm != symsize) continue;
-		if(rs->gfpoly != gfpoly) continue;
-		if(rs->fcr != fcr) continue;
-		if(rs->prim != prim) continue;
-
-		goto DONE;
-	}
-
-	rs = init_rs_char(symsize, gfpoly, fcr, prim, nroots, pad);
-	if(rs == NULL) goto DONE;
-	rs->next = rslist;
-	rslist = rs;
-
-DONE:
-#ifdef HAVE_LIBPTHREAD
-	pthread_mutex_unlock(&rslist_mutex);
-#endif
-	return rs;
+    return init_rs_char(symsize, gfpoly, fcr, prim, nroots, pad);
 }
 
 
 void free_rs_char(RS *rs)
 {
-	free(rs->alpha_to);
-	free(rs->index_of);
-	free(rs->genpoly);
-	free(rs);
-}
-
-void free_rs_cache(void)
-{
-	RS *rs, *next;
-
-#ifdef HAVE_LIBPTHREAD
-	pthread_mutex_lock(&rslist_mutex);
-#endif
-	rs = rslist;
-	while(rs != NULL) {
-		next = rs->next;
-		free_rs_char(rs);
-		rs = next;
-	}
-	rslist = NULL;
-#ifdef HAVE_LIBPTHREAD
-	pthread_mutex_unlock(&rslist_mutex);
-#endif
+    free(rs->alpha_to);
+    free(rs->index_of);
+    free(rs->genpoly);
+    free(rs);
 }
 
 /* The guts of the Reed-Solomon encoder, meant to be #included
@@ -275,7 +222,7 @@ void free_rs_cache(void)
  * NROOTS - the number of roots in the RS code generator polynomial,
  *          which is the same as the number of parity symbols in a block.
             Integer variable or literal.
-	    * 
+        *
  * NN - the total number of symbols in a RS block. Integer variable or literal.
  * PAD - the number of pad symbols in a block. Integer variable or literal.
  * ALPHA_TO - The address of an array of NN elements to convert Galois field
@@ -313,7 +260,7 @@ void encode_rs_char(RS *rs, const data_t *data, data_t *parity)
       feedback = MODNN(NN - GENPOLY[NROOTS] + feedback);
 #endif
       for(j=1;j<NROOTS;j++)
-	parity[j] ^= ALPHA_TO[MODNN(feedback + GENPOLY[NROOTS-j])];
+    parity[j] ^= ALPHA_TO[MODNN(feedback + GENPOLY[NROOTS-j])];
     }
     /* Shift */
     memmove(&parity[0],&parity[1],sizeof(data_t)*(NROOTS-1));

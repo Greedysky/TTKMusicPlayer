@@ -2,7 +2,7 @@
  * qrencode - QR Code encoder
  *
  * Binary sequence class.
- * Copyright (C) 2006-2011 Kentaro Fukuchi <kentaro@fukuchi.org>
+ * Copyright (C) 2006-2017 Kentaro Fukuchi <kentaro@fukuchi.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,20 +19,25 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef __BITSTREAM_H__
-#define __BITSTREAM_H__
+#ifndef BITSTREAM_H
+#define BITSTREAM_H
 
 typedef struct {
-	int length;
-	unsigned char *data;
+    size_t length;
+    size_t datasize;
+    unsigned char *data;
 } BitStream;
 
 extern BitStream *BitStream_new(void);
+#ifdef WITH_TESTS
+extern BitStream *BitStream_newWithBits(size_t size, unsigned char *bits);
+#endif
 extern int BitStream_append(BitStream *bstream, BitStream *arg);
-extern int BitStream_appendNum(BitStream *bstream, int bits, unsigned int num);
-extern int BitStream_appendBytes(BitStream *bstream, int size, unsigned char *data);
+extern int BitStream_appendNum(BitStream *bstream, size_t bits, unsigned int num);
+extern int BitStream_appendBytes(BitStream *bstream, size_t size, unsigned char *data);
 #define BitStream_size(__bstream__) (__bstream__->length)
+#define BitStream_reset(__bstream__) (__bstream__->length = 0)
 extern unsigned char *BitStream_toByte(BitStream *bstream);
 extern void BitStream_free(BitStream *bstream);
 
-#endif /* __BITSTREAM_H__ */
+#endif /* BITSTREAM_H */
