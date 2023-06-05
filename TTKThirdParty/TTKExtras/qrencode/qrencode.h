@@ -99,11 +99,7 @@
 #ifndef QRENCODE_H
 #define QRENCODE_H
 
-#ifdef _WIN32
-#define EXTRAS_EXPORT __declspec(dllexport)
-#else
-#define EXTRAS_EXPORT
-#endif
+#include "global.h"
 
 #if defined(__cplusplus)
 extern "C" {
