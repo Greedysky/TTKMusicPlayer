@@ -16,6 +16,7 @@ set(HEADER_FILES
   ttkcommandline.h
   ttkconcurrentqueue.h
   ttkcryptographichash.h
+  ttkdefer.h
   ttkdesktopwrapper.h
   ttkglobalhelper.h
   ttkitemdelegate.h

@@ -67,6 +67,7 @@ HEADERS += \
     $$PWD/ttkcommandline.h \
     $$PWD/ttkconcurrentqueue.h \
     $$PWD/ttkcryptographichash.h \
+    $$PWD/ttkdefer.h \
     $$PWD/ttkdesktopwrapper.h \
     $$PWD/ttkglobalhelper.h \
     $$PWD/ttkitemdelegate.h \

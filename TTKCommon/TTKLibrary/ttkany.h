@@ -23,7 +23,7 @@
 #include <typeindex>
 #include "ttkglobaldefine.h"
 
-/*! @brief The class of the ttk any model.
+/*! @brief The class of the ttk any module.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT TTKAny
