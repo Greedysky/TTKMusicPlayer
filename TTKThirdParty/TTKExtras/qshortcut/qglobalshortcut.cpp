@@ -112,11 +112,17 @@ QKeySequence QGlobalShortcut::shortcut() const
 bool QGlobalShortcut::setShortcut(const QKeySequence& shortcut)
 {
     TTK_D(QGlobalShortcut);
+    unsetShortcut();
+    return d->setShortcut(shortcut);
+}
+
+void QGlobalShortcut::unsetShortcut()
+{
+    TTK_D(QGlobalShortcut);
     if(d->m_key != 0)
     {
         d->unsetShortcut();
     }
-    return d->setShortcut(shortcut);
 }
 
 bool QGlobalShortcut::isEnabled() const

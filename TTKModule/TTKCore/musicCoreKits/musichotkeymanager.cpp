@@ -18,18 +18,26 @@ void MusicHotKeyManager::setInputModule(QObject *object)
     connect(m_hotkeys[5], SIGNAL(activated()), object, SLOT(showSettingWidget()));
     connect(m_hotkeys[6], SIGNAL(activated()), object, SLOT(importSongsPopup()));
     connect(m_hotkeys[7], SIGNAL(activated()), object, SLOT(volumeMute()));
-
-    setDefaultKey();
 }
 
-void MusicHotKeyManager::setDefaultKey()
+void MusicHotKeyManager::setHotKey(int index, const QString &key)
 {
-    const QStringList &keys = defaultKeys();
-    for(int i = 0; i < m_hotkeys.count(); ++i)
+    if(index >= m_hotkeys.count())
     {
-        setHotKey(i, keys[i]);
-        setEnabled(i, false);
+        return;
     }
+
+    m_hotkeys[index]->setShortcut(QKeySequence(key));
+}
+
+void MusicHotKeyManager::setHotKey(int index, int key)
+{
+    if(index >= m_hotkeys.count())
+    {
+        return;
+    }
+
+    m_hotkeys[index]->setShortcut(QKeySequence(key));
 }
 
 void MusicHotKeyManager::setHotKeys(const QStringList &keys)
@@ -41,22 +49,14 @@ void MusicHotKeyManager::setHotKeys(const QStringList &keys)
     }
 }
 
-void MusicHotKeyManager::setHotKey(int index, const QString &key)
+void MusicHotKeyManager::addHotKey(int key)
 {
-    if(index >= m_hotkeys.count())
-    {
-        return;
-    }
-    m_hotkeys[index]->setShortcut(QKeySequence(key));
+    m_hotkeys << (new QGlobalShortcut(QKeySequence(key)));
 }
 
-void MusicHotKeyManager::setHotKey(int index, int key)
+void MusicHotKeyManager::addHotKey(const QString &key)
 {
-    if(index >= m_hotkeys.count())
-    {
-        return;
-    }
-    m_hotkeys[index]->setShortcut(QKeySequence(key));
+    m_hotkeys << (new QGlobalShortcut(QKeySequence(key)));
 }
 
 QObject* MusicHotKeyManager::hotKey(int index)
@@ -65,17 +65,25 @@ QObject* MusicHotKeyManager::hotKey(int index)
     {
         return nullptr;
     }
+
     return m_hotkeys[index];
 }
 
-void MusicHotKeyManager::addHotKey(const QString &key)
+void MusicHotKeyManager::unsetShortcut()
 {
-    m_hotkeys << (new QGlobalShortcut(QKeySequence(key)));
+    for(QGlobalShortcut *key : qAsConst(m_hotkeys))
+    {
+        key->unsetShortcut();
+        key->setEnabled(false);
+    }
 }
 
-void MusicHotKeyManager::addHotKey(int key)
+void MusicHotKeyManager::setEnabled(bool enabled)
 {
-    m_hotkeys << (new QGlobalShortcut(QKeySequence(key)));
+    for(QGlobalShortcut *key : qAsConst(m_hotkeys))
+    {
+        key->setEnabled(enabled);
+    }
 }
 
 void MusicHotKeyManager::setEnabled(int index, bool enabled)
@@ -84,24 +92,18 @@ void MusicHotKeyManager::setEnabled(int index, bool enabled)
     {
         return;
     }
+
     m_hotkeys[index]->setEnabled(enabled);
 }
 
-bool MusicHotKeyManager::enabled(int index)
+bool MusicHotKeyManager::isEnabled(int index)
 {
     if(index >= m_hotkeys.count())
     {
         return false;
     }
-    return m_hotkeys[index]->isEnabled();
-}
 
-void MusicHotKeyManager::enabledAll(bool enabled)
-{
-    for(QGlobalShortcut *key : qAsConst(m_hotkeys))
-    {
-        key->setEnabled(enabled);
-    }
+    return m_hotkeys[index]->isEnabled();
 }
 
 QString MusicHotKeyManager::toString(int key, int modifiers)

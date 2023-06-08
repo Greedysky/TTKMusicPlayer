@@ -35,10 +35,7 @@ public:
      * Set input connection.
      */
     void setInputModule(QObject *object);
-    /*!
-     * Set hotKey by given string list keys.
-     */
-    void setHotKeys(const QStringList &keys);
+
     /*!
      * Set hotKey by given index and string key.
      */
@@ -47,20 +44,33 @@ public:
      * Set hotKey by given index and virtual key.
      */
     void setHotKey(int index, int key);
+    /*!
+     * Set hotKey by given string list keys.
+     */
+    void setHotKeys(const QStringList &keys);
 
     /*!
-     * Get the object key by given hotKey index.
+     * Set hotKey by given index and virtual key.
      */
-    QObject* hotKey(int index);
+    void addHotKey(int key);
     /*!
      * Add hotKey by given index and string key.
      */
     void addHotKey(const QString &key);
     /*!
-     * Set hotKey by given index and virtual key.
+     * Get the object key by given hotKey index.
      */
-    void addHotKey(int key);
+    QObject* hotKey(int index);
 
+    /*!
+     * Unset registered hotKeys.
+     */
+    void unsetShortcut();
+
+    /*!
+     * Enable or disable all hotkeys.
+     */
+    void setEnabled(bool enabled);
     /*!
      * Enable or disable the hotkey by index.
      */
@@ -68,11 +78,7 @@ public:
     /*!
      * check the given hotkey is enabled or not.
      */
-    bool enabled(int index);
-    /*!
-     * Enable or disable all hotkeys.
-     */
-    void enabledAll(bool enabled);
+    bool isEnabled(int index);
 
     /*!
      * Mapping the virtual key to string key.
@@ -93,11 +99,6 @@ public:
     QStringList keys() const;
 
 private:
-    /*!
-     * Set default key.
-     */
-    void setDefaultKey();
-
     QList<QGlobalShortcut*> m_hotkeys;
 
     TTK_DECLARE_SINGLETON_CLASS(MusicHotKeyManager)

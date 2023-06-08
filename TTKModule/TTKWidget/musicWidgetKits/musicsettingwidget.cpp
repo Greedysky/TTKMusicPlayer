@@ -49,7 +49,7 @@ void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionIt
         const MusicFunctionItem &v = items[i];
 
         QTableWidgetItem *item = nullptr;
-        setItem(i, 0, item = new QTableWidgetItem());
+        setItem(i, 0, item = new QTableWidgetItem);
 
                       item = new QTableWidgetItem(QIcon(v.m_icon), QString());
         QtItemSetTextAlignment(item, Qt::AlignCenter);
@@ -141,7 +141,6 @@ MusicSettingWidget::~MusicSettingWidget()
 
 void MusicSettingWidget::initialize()
 {
-    //
     m_ui->autoPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::AutoPlayMode).toBool());
     m_ui->backPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList().front().toInt());
     if(!G_SETTING_PTR->value(MusicSettingManager::CloseEventMode).toBool())
@@ -187,7 +186,9 @@ void MusicSettingWidget::initialize()
     m_ui->rippleLowPowerModeBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool());
     m_ui->rippleSpectrumEnableBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool());
     m_ui->rippleSpectrumColorButton->setColors(MusicLrcColor::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString()));
+
     rippleSpectrumOpacityEnableClicked(m_ui->rippleSpectrumEnableBox->isChecked());
+
     if(m_ui->rippleLowPowerModeBox->isChecked())
     {
         rippleLowPowerEnableBoxClicked(true);
@@ -218,6 +219,7 @@ void MusicSettingWidget::initialize()
     m_ui->fontSizeComboBox->setCurrentIndex(MusicLrcDefines().findInteriorLrcIndex(G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt()));
     m_ui->fontTypeComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::LrcType).toInt());
     m_ui->fontDefaultColorComboBox->setCurrentIndex(TTK_NORMAL_LEVEL);
+
     if(G_SETTING_PTR->value(MusicSettingManager::LrcColor).toInt() != -1)
     {
         m_ui->fontDefaultColorComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::LrcColor).toInt());
@@ -237,6 +239,7 @@ void MusicSettingWidget::initialize()
     m_ui->DfontSizeComboBox->setCurrentIndex(MusicLrcDefines().findDesktopLrcIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt()));
     m_ui->DfontTypeComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcType).toInt());
     m_ui->DfontDefaultColorComboBox->setCurrentIndex(TTK_NORMAL_LEVEL);
+
     if(G_SETTING_PTR->value(MusicSettingManager::DLrcColor).toInt() != -1)
     {
         m_ui->DfontDefaultColorComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::DLrcColor).toInt() - LRC_COLOR_OFFSET);
@@ -266,6 +269,7 @@ void MusicSettingWidget::initialize()
     //
     m_ui->fadeInSpinBox->setValue(G_SETTING_PTR->value(MusicSettingManager::EnhancedFadeInValue).toInt());
     m_ui->fadeOutSpinBox->setValue(G_SETTING_PTR->value(MusicSettingManager::EnhancedFadeOutValue).toInt());
+
     if(G_SETTING_PTR->value(MusicSettingManager::EnhancedFadeEnable).toInt())
     {
         m_ui->fadeInAndOutCheckBox->click();
@@ -550,7 +554,10 @@ void MusicSettingWidget::saveParameterSettings()
         m_ui->setDefaultPlayerCheckBox->setEnabled(false);
     }
 
-    if(m_ui->globalHotkeyBox->isChecked())
+    const bool hotkeyEnabled = m_ui->globalHotkeyBox->isChecked();
+    G_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnable, hotkeyEnabled);
+
+    if(hotkeyEnabled)
     {
         G_HOTKEY_PTR->setHotKey(0, m_ui->item_S02->text());
         G_HOTKEY_PTR->setHotKey(1, m_ui->item_S04->text());
@@ -560,10 +567,14 @@ void MusicSettingWidget::saveParameterSettings()
         G_HOTKEY_PTR->setHotKey(5, m_ui->item_S12->text());
         G_HOTKEY_PTR->setHotKey(6, m_ui->item_S14->text());
         G_HOTKEY_PTR->setHotKey(7, m_ui->item_S16->text());
+
+        G_HOTKEY_PTR->setEnabled(true);
         G_SETTING_PTR->setValue(MusicSettingManager::HotkeyValue, G_HOTKEY_PTR->keys().join(TTK_SPLITER));
     }
-    G_HOTKEY_PTR->enabledAll(m_ui->globalHotkeyBox->isChecked());
-    G_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnable, m_ui->globalHotkeyBox->isChecked());
+    else
+    {
+        G_HOTKEY_PTR->unsetShortcut();
+    }
 
 
     G_SETTING_PTR->setValue(MusicSettingManager::RippleLowPowerMode, m_ui->rippleLowPowerModeBox->isChecked());

@@ -324,7 +324,7 @@ private:
 
 private:
     Ui::MusicApplication *m_ui;
-    bool m_quitWindowClose;
+    bool m_quitWindowMode;
     int m_currentSongTreeIndex;
     MusicPlayer* m_player;
     MusicPlaylist* m_playlist;

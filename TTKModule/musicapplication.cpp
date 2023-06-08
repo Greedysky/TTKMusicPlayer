@@ -29,7 +29,7 @@ MusicApplication *MusicApplication::m_instance = nullptr;
 MusicApplication::MusicApplication(QWidget *parent)
     : TTKAbstractMoveResizeWidget(false, parent),
       m_ui(new Ui::MusicApplication),
-      m_quitWindowClose(false),
+      m_quitWindowMode(false),
       m_currentSongTreeIndex(TTK_NORMAL_LEVEL)
 {
     m_instance = this;
@@ -249,7 +249,7 @@ void MusicApplication::quitWindow()
     m_applicationObject->cleanup();
     //Write configuration files
     writeSystemConfigToFile();
-    m_quitWindowClose = true;
+    m_quitWindowMode = true;
     m_applicationObject->windowCloseAnimation();
 }
 
@@ -938,7 +938,7 @@ void MusicApplication::currentPlaylist(QStringList &list)
 
 void MusicApplication::resizeEvent(QResizeEvent *event)
 {
-    if(!m_quitWindowClose)
+    if(!m_quitWindowMode)
     {
         G_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, size());
         m_topAreaWidget->backgroundThemeChangedByResize();
@@ -1124,8 +1124,9 @@ void MusicApplication::readSystemConfigFromFile()
         {
             hotkeys = G_HOTKEY_PTR->defaultKeys();
         }
+
         G_HOTKEY_PTR->setHotKeys(hotkeys);
-        G_HOTKEY_PTR->enabledAll(true);
+        G_HOTKEY_PTR->setEnabled(true);
     }
 
     //musicSetting
