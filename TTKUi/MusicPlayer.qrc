@@ -122,7 +122,6 @@
         <file alias="lb_screen_saver">../TTKResource/tools/lb_screensaver.png</file>
     </qresource>
     <qresource prefix="/contextMenu">
-        <file alias="btn_transparent">../TTKResource/contextMenu/btn_transparent.png</file>
         <file alias="btn_next_normal">../TTKResource/contextMenu/btn_next_normal.png</file>
         <file alias="btn_next_hover">../TTKResource/contextMenu/btn_next_hover.png</file>
         <file alias="btn_pause_normal">../TTKResource/contextMenu/btn_pause_normal.png</file>

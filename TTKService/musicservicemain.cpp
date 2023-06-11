@@ -2,8 +2,8 @@
 #include "musicruntimemanager.h"
 #include "musicconfigobject.h"
 #include "musicplatformmanager.h"
-#include "ttkglobalhelper.h"
 #include "ttkdumper.h"
+#include "ttkglobalhelper.h"
 #include "ttkcommandline.h"
 
 #ifdef Q_OS_UNIX
@@ -70,6 +70,7 @@ int main(int argc, char *argv[])
 
     MusicRunTimeManager manager;
     manager.run();
+
     if(!manager.configVersionCheck())
     {
         config.reset();

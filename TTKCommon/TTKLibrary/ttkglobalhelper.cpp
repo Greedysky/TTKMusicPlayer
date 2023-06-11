@@ -12,7 +12,10 @@ void TTK::setApplicationFont(QApplication* app)
     QFont font = app->font();
     for(const QString &family : QFontDatabase().families())
     {
-        if(family == QString::fromLocal8Bit("微软雅黑") || family == "Microsoft YaHei")
+        if(family == "微软雅黑" ||
+           family == QString::fromUtf8("微软雅黑") ||
+           family == QString::fromLocal8Bit("微软雅黑") ||
+           family == "Microsoft YaHei")
         {
             font.setFamily(family);
             app->setFont(font);

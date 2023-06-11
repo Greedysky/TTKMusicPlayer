@@ -71,7 +71,7 @@
     <number>0</number>
    </property>
    <widget class="QWidget" name="first">
-    <widget class="MusicThemeLineLabel" name="baseSetShowInfoWidget">
+    <widget class="TTKThemeLineLabel" name="baseSetShowInfoWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -141,7 +141,7 @@ font-weight:bold;</string>
       <string>直接退出程序</string>
      </property>
     </widget>
-    <widget class="MusicThemeLineLabel" name="multiLanguageChoiceWidget">
+    <widget class="TTKThemeLineLabel" name="multiLanguageChoiceWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -227,7 +227,7 @@ font-weight:bold;</string>
       <string>将天天酷音作为默认播放器</string>
      </property>
     </widget>
-    <widget class="MusicThemeLineLabel" name="otherShowInfoWidget">
+    <widget class="TTKThemeLineLabel" name="otherShowInfoWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -245,7 +245,7 @@ font-weight:bold;</string>
       <string>其他设置</string>
      </property>
     </widget>
-    <widget class="MusicThemeLineLabel" name="closeSetShowInfoWidget">
+    <widget class="TTKThemeLineLabel" name="closeSetShowInfoWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -291,7 +291,7 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="second">
-    <widget class="MusicThemeLineLabel" name="baseSetShotKeyWidget">
+    <widget class="TTKThemeLineLabel" name="baseSetShotKeyWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -628,7 +628,7 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="third">
-    <widget class="MusicThemeLineLabel" name="baseSetDownloadWidget">
+    <widget class="TTKThemeLineLabel" name="baseSetDownloadWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -763,7 +763,7 @@ font-weight:bold;</string>
       <string>手动</string>
      </property>
     </widget>
-    <widget class="MusicThemeLineLabel" name="downloadOtherWidget">
+    <widget class="TTKThemeLineLabel" name="downloadOtherWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -938,7 +938,7 @@ font-weight:bold;</string>
       </rect>
      </property>
     </widget>
-    <widget class="MusicThemeLineLabel" name="downloadSpeedWidget">
+    <widget class="TTKThemeLineLabel" name="downloadSpeedWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -971,7 +971,7 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="four">
-    <widget class="MusicThemeLineLabel" name="rippleVersionWidget">
+    <widget class="TTKThemeLineLabel" name="rippleVersionWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -1018,7 +1018,7 @@ font-weight:bold;</string>
       <string>手动检查更新</string>
      </property>
     </widget>
-    <widget class="MusicThemeLineLabel" name="setRippleSpectrumWidget">
+    <widget class="TTKThemeLineLabel" name="setRippleSpectrumWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -1161,7 +1161,7 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="five">
-    <widget class="MusicThemeLineLabel" name="baseSetOtherWidget">
+    <widget class="TTKThemeLineLabel" name="baseSetOtherWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -1231,7 +1231,7 @@ font-weight:bold;</string>
       <string>从文件中读取歌曲信息</string>
      </property>
     </widget>
-    <widget class="MusicThemeLineLabel" name="otherShowInfoOtherWidget">
+    <widget class="TTKThemeLineLabel" name="otherShowInfoOtherWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -1301,7 +1301,7 @@ font-weight:bold;</string>
       <string>开启精彩写真屏保</string>
      </property>
     </widget>
-    <widget class="MusicThemeLineLabel" name="otherPluginWidget">
+    <widget class="TTKThemeLineLabel" name="otherPluginWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -1334,7 +1334,7 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="six">
-    <widget class="MusicThemeLineLabel" name="DbaseSetSongWordWidget">
+    <widget class="TTKThemeLineLabel" name="DbaseSetSongWordWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -1352,7 +1352,7 @@ font-weight:bold;</string>
       <string>样式设置</string>
      </property>
     </widget>
-    <widget class="MusicThemeLineLabel" name="DSetColorSongWordWidget">
+    <widget class="TTKThemeLineLabel" name="DSetColorSongWordWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -1601,7 +1601,7 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="seven">
-    <widget class="MusicThemeLineLabel" name="baseSetSongWordWidget">
+    <widget class="TTKThemeLineLabel" name="baseSetSongWordWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -1619,7 +1619,7 @@ font-weight:bold;</string>
       <string>样式设置</string>
      </property>
     </widget>
-    <widget class="MusicThemeLineLabel" name="setColorSongWordWidget">
+    <widget class="TTKThemeLineLabel" name="setColorSongWordWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -1842,7 +1842,7 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="eight">
-    <widget class="MusicThemeLineLabel" name="setSoundOutWidget">
+    <widget class="TTKThemeLineLabel" name="setSoundOutWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -1905,7 +1905,7 @@ font-weight:bold;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="MusicThemeLineLabel" name="setEffectWidget">
+    <widget class="TTKThemeLineLabel" name="setEffectWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -2036,7 +2036,7 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="nine">
-    <widget class="MusicThemeLineLabel" name="setAudioGainWidget">
+    <widget class="TTKThemeLineLabel" name="setAudioGainWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -2054,7 +2054,7 @@ font-weight:bold;</string>
       <string>回放增益</string>
      </property>
     </widget>
-    <widget class="MusicThemeLineLabel" name="setAudioWidget">
+    <widget class="TTKThemeLineLabel" name="setAudioWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -2364,7 +2364,7 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="ten">
-    <widget class="MusicThemeLineLabel" name="setProxyWidget">
+    <widget class="TTKThemeLineLabel" name="setProxyWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -2525,7 +2525,7 @@ font-weight:bold;</string>
       </rect>
      </property>
     </widget>
-    <widget class="MusicThemeLineLabel" name="netConnectionWidget">
+    <widget class="TTKThemeLineLabel" name="netConnectionWidget">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -2872,9 +2872,9 @@ font-weight:bold;</string>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>MusicThemeLineLabel</class>
+   <class>TTKThemeLineLabel</class>
    <extends>QLabel</extends>
-   <header>musicpreviewlabel.h</header>
+   <header>ttkthemelinelabel.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

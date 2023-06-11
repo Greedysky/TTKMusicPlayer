@@ -25,6 +25,7 @@ set(HEADER_FILES
   ttksemaphoreloop.h
   ttksuperenum.h
   ttktabbutton.h
+  ttkthemelinelabel.h
   ttktime.h
   ttktoastlabel.h
 )
@@ -47,6 +48,7 @@ set(SOURCE_FILES
   ttksemaphoreloop.cpp
   ttksuperenum.cpp
   ttktabbutton.cpp
+  ttkthemelinelabel.cpp
   ttktime.cpp
   ttktoastlabel.cpp
 )

@@ -47,6 +47,7 @@ win32{
             $$PWD/TTKLibrary/ttksemaphoreloop.h \
             $$PWD/TTKLibrary/ttksuperenum.h \
             $$PWD/TTKLibrary/ttktabbutton.h \
+            $$PWD/TTKLibrary/ttkthemelinelabel.h \
             $$PWD/TTKLibrary/ttktime.h \
             $$PWD/TTKLibrary/ttktoastlabel.h
     }
