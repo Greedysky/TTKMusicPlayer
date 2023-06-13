@@ -133,7 +133,6 @@ public Q_SLOTS:
      * Set global hotkey box changed.
      */
     void globalHotkeyBoxChanged(bool state);
-
     /*!
      * Set clean download cache.
      */

@@ -21,42 +21,22 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_playlist, SIGNAL(currentIndexChanged(int)), SLOT(currentIndexChanged(int)));
 
-    G_HOTKEY_PTR->addHotKey("Ctrl+B");
-    G_HOTKEY_PTR->addHotKey("Ctrl+Left");
-    G_HOTKEY_PTR->addHotKey("Ctrl+Right");
-    G_HOTKEY_PTR->addHotKey("Ctrl+Up");
-    G_HOTKEY_PTR->addHotKey("Ctrl+Down");
-    G_HOTKEY_PTR->addHotKey("Ctrl+1");
-    G_HOTKEY_PTR->addHotKey("Ctrl+2");
-    G_HOTKEY_PTR->addHotKey("Ctrl+3");
-    G_HOTKEY_PTR->addHotKey("Ctrl+4");
-    G_HOTKEY_PTR->addHotKey("Ctrl+5");
-    G_HOTKEY_PTR->addHotKey("Alt+1");
-    G_HOTKEY_PTR->addHotKey("Alt+2");
-    G_HOTKEY_PTR->addHotKey("Alt+3");
-    G_HOTKEY_PTR->addHotKey("Alt+4");
-    G_HOTKEY_PTR->addHotKey("Alt+5");
-    G_HOTKEY_PTR->addHotKey("Ctrl+Q");
-
-    connect(G_HOTKEY_PTR->hotKey(0), SIGNAL(activated()), SLOT(switchPlayState()));
-    connect(G_HOTKEY_PTR->hotKey(1), SIGNAL(activated()), SLOT(playPrevious()));
-    connect(G_HOTKEY_PTR->hotKey(2), SIGNAL(activated()), SLOT(playNext()));
-    connect(G_HOTKEY_PTR->hotKey(3), SIGNAL(activated()), SLOT(volumeUp()));
-    connect(G_HOTKEY_PTR->hotKey(4), SIGNAL(activated()), SLOT(volumeDown()));
-
-    connect(G_HOTKEY_PTR->hotKey(5), SIGNAL(activated()), SLOT(playOrder()));
-    connect(G_HOTKEY_PTR->hotKey(6), SIGNAL(activated()), SLOT(playRandom()));
-    connect(G_HOTKEY_PTR->hotKey(7), SIGNAL(activated()), SLOT(playlistLoop()));
-    connect(G_HOTKEY_PTR->hotKey(8), SIGNAL(activated()), SLOT(playOneLoop()));
-    connect(G_HOTKEY_PTR->hotKey(9), SIGNAL(activated()), SLOT(playOnce()));
-
-    connect(G_HOTKEY_PTR->hotKey(10), SIGNAL(activated()), SLOT(setEnhancedOff()));
-    connect(G_HOTKEY_PTR->hotKey(11), SIGNAL(activated()), SLOT(setEnhanced3D()));
-    connect(G_HOTKEY_PTR->hotKey(12), SIGNAL(activated()), SLOT(setEnhancedNICAM()));
-    connect(G_HOTKEY_PTR->hotKey(13), SIGNAL(activated()), SLOT(setEnhancedSubwoofer()));
-    connect(G_HOTKEY_PTR->hotKey(14), SIGNAL(activated()), SLOT(setEnhancedVocal()));
-
-    connect(G_HOTKEY_PTR->hotKey(15), SIGNAL(activated()), qApp, SLOT(quit()));
+    G_HOTKEY_PTR->addHotKey(this, "Ctrl+B", SLOT(switchPlayState()));
+    G_HOTKEY_PTR->addHotKey(this, "Ctrl+Left", SLOT(playPrevious()));
+    G_HOTKEY_PTR->addHotKey(this, "Ctrl+Right", SLOT(playNext()));
+    G_HOTKEY_PTR->addHotKey(this, "Ctrl+Up", SLOT(volumeUp()));
+    G_HOTKEY_PTR->addHotKey(this, "Ctrl+Down", SLOT(volumeDown()));
+    G_HOTKEY_PTR->addHotKey(this, "Ctrl+1", SLOT(playOrder()));
+    G_HOTKEY_PTR->addHotKey(this, "Ctrl+2", SLOT(playRandom()));
+    G_HOTKEY_PTR->addHotKey(this, "Ctrl+3", SLOT(playlistLoop()));
+    G_HOTKEY_PTR->addHotKey(this, "Ctrl+4", SLOT(playOneLoop()));
+    G_HOTKEY_PTR->addHotKey(this, "Ctrl+5", SLOT(playOnce()));
+    G_HOTKEY_PTR->addHotKey(this, "Alt+1", SLOT(setEnhancedOff()));
+    G_HOTKEY_PTR->addHotKey(this, "Alt+2", SLOT(setEnhanced3D()));
+    G_HOTKEY_PTR->addHotKey(this, "Alt+3", SLOT(setEnhancedNICAM()));
+    G_HOTKEY_PTR->addHotKey(this, "Alt+4", SLOT(setEnhancedSubwoofer()));
+    G_HOTKEY_PTR->addHotKey(this, "Alt+5", SLOT(setEnhancedVocal()));
+    G_HOTKEY_PTR->addHotKey(qApp, "Ctrl+Q", SLOT(quit()));
 }
 
 MusicConsoleModule::~MusicConsoleModule()

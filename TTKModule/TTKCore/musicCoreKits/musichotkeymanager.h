@@ -32,31 +32,22 @@ class TTK_MODULE_EXPORT MusicHotKeyManager : public QObject
     TTK_DECLARE_MODULE(MusicHotKeyManager)
 public:
     /*!
-     * Set input connection.
+     * Add hotKey by given object.
      */
-    void setInputModule(QObject *object);
+    void addHotKey(QObject *object);
+    /*!
+     * Add hotKey by given object and slot.
+     */
+    void addHotKey(QObject *object, const char *slot);
+    /*!
+     * Add hotKey by given object key and slot.
+     */
+    void addHotKey(QObject *object, const QString &key, const char *slot);
 
     /*!
      * Set hotKey by given index and string key.
      */
     void setHotKey(int index, const QString &key);
-    /*!
-     * Set hotKey by given index and virtual key.
-     */
-    void setHotKey(int index, int key);
-    /*!
-     * Set hotKey by given string list keys.
-     */
-    void setHotKeys(const QStringList &keys);
-
-    /*!
-     * Set hotKey by given index and virtual key.
-     */
-    void addHotKey(int key);
-    /*!
-     * Add hotKey by given index and string key.
-     */
-    void addHotKey(const QString &key);
     /*!
      * Get the object key by given hotKey index.
      */

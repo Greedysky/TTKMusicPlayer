@@ -3,21 +3,26 @@
 
 #include <QStringList>
 
-void MusicHotKeyManager::setInputModule(QObject *object)
+void MusicHotKeyManager::addHotKey(QObject *object)
 {
-    for(int i = 0; i < 8; ++i)
-    {
-        m_hotkeys << (new QGlobalShortcut(object));
-    }
+    QGlobalShortcut *shortcut = new QGlobalShortcut(object);
+    m_hotkeys << shortcut;
+}
 
-    connect(m_hotkeys[0], SIGNAL(activated()), object, SLOT(switchPlayState()));
-    connect(m_hotkeys[1], SIGNAL(activated()), object, SLOT(playPrevious()));
-    connect(m_hotkeys[2], SIGNAL(activated()), object, SLOT(playNext()));
-    connect(m_hotkeys[3], SIGNAL(activated()), object, SLOT(volumeUp()));
-    connect(m_hotkeys[4], SIGNAL(activated()), object, SLOT(volumeDown()));
-    connect(m_hotkeys[5], SIGNAL(activated()), object, SLOT(showSettingWidget()));
-    connect(m_hotkeys[6], SIGNAL(activated()), object, SLOT(importSongsPopup()));
-    connect(m_hotkeys[7], SIGNAL(activated()), object, SLOT(volumeMute()));
+void MusicHotKeyManager::addHotKey(QObject *object, const char *slot)
+{
+    QGlobalShortcut *shortcut = new QGlobalShortcut(object);
+    m_hotkeys << shortcut;
+
+    connect(shortcut, SIGNAL(activated()), object, slot);
+}
+
+void MusicHotKeyManager::addHotKey(QObject *object, const QString &key, const char *slot)
+{
+    QGlobalShortcut *shortcut = new QGlobalShortcut(key, object);
+    m_hotkeys << shortcut;
+
+    connect(shortcut, SIGNAL(activated()), object, slot);
 }
 
 void MusicHotKeyManager::setHotKey(int index, const QString &key)
@@ -28,35 +33,6 @@ void MusicHotKeyManager::setHotKey(int index, const QString &key)
     }
 
     m_hotkeys[index]->setShortcut(QKeySequence(key));
-}
-
-void MusicHotKeyManager::setHotKey(int index, int key)
-{
-    if(index >= m_hotkeys.count())
-    {
-        return;
-    }
-
-    m_hotkeys[index]->setShortcut(QKeySequence(key));
-}
-
-void MusicHotKeyManager::setHotKeys(const QStringList &keys)
-{
-    for(int i = 0; i < m_hotkeys.count(); ++i)
-    {
-        setHotKey(i, keys[i]);
-        setEnabled(i, false);
-    }
-}
-
-void MusicHotKeyManager::addHotKey(int key)
-{
-    m_hotkeys << (new QGlobalShortcut(QKeySequence(key)));
-}
-
-void MusicHotKeyManager::addHotKey(const QString &key)
-{
-    m_hotkeys << (new QGlobalShortcut(QKeySequence(key)));
 }
 
 QObject* MusicHotKeyManager::hotKey(int index)

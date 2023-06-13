@@ -77,7 +77,15 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_ui->functionsContainer->setCurrentIndex(MUSIC_SEARCH_PAGE);
 
     m_ui->musicTimeWidget->setInputModule(this);
-    G_HOTKEY_PTR->setInputModule(this);
+
+    G_HOTKEY_PTR->addHotKey(this, SLOT(switchPlayState()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(playPrevious()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(playNext()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(volumeUp()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(volumeDown()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(showSettingWidget()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(importSongsPopup()));
+    G_HOTKEY_PTR->addHotKey(this, SLOT(volumeMute()));
 
     /////////// Objects Mouse tracking;
     setObjectsTracking({m_ui->background, m_ui->songsContainer});
@@ -1125,7 +1133,11 @@ void MusicApplication::readSystemConfigFromFile()
             hotkeys = G_HOTKEY_PTR->defaultKeys();
         }
 
-        G_HOTKEY_PTR->setHotKeys(hotkeys);
+        for(int i = 0; i < hotkeys.count(); ++i)
+        {
+            G_HOTKEY_PTR->setHotKey(i, hotkeys[i]);
+        }
+        //
         G_HOTKEY_PTR->setEnabled(true);
     }
 

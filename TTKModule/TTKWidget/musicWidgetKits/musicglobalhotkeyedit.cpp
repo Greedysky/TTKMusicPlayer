@@ -1,6 +1,5 @@
 #include "musicglobalhotkeyedit.h"
 #include "musichotkeymanager.h"
-#include "musicuiobject.h"
 
 #include <QKeyEvent>
 
@@ -14,7 +13,6 @@ void MusicGlobalHotKeyEdit::setHotKeyEnabled(bool state)
 {
     setEnabled(state);
     setReadOnly(!state);
-    setStyleSheet(TTK::UI::ColorStyle09);
 }
 
 void MusicGlobalHotKeyEdit::keyPressEvent(QKeyEvent *event)

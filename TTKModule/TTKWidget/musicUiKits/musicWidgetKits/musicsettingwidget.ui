@@ -328,7 +328,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="MusicGlobalHotKeyEdit" name="item_S02">
+    <widget class="MusicGlobalHotKeyEdit" name="item_S01">
      <property name="geometry">
       <rect>
        <x>205</x>
@@ -338,7 +338,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
+      <string notr="true">background:white;</string>
      </property>
      <property name="text">
       <string>Ctrl+B</string>
@@ -347,7 +347,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_S3">
+    <widget class="QLabel" name="item_S2">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -366,7 +366,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="MusicGlobalHotKeyEdit" name="item_S04">
+    <widget class="MusicGlobalHotKeyEdit" name="item_S02">
      <property name="geometry">
       <rect>
        <x>205</x>
@@ -376,7 +376,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
+      <string notr="true">background:white;</string>
      </property>
      <property name="text">
       <string>Ctrl+Left</string>
@@ -385,7 +385,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_S5">
+    <widget class="QLabel" name="item_S3">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -404,7 +404,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_S7">
+    <widget class="QLabel" name="item_S4">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -423,7 +423,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_S9">
+    <widget class="QLabel" name="item_S5">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -442,7 +442,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_S11">
+    <widget class="QLabel" name="item_S7">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -461,7 +461,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="MusicGlobalHotKeyEdit" name="item_S06">
+    <widget class="MusicGlobalHotKeyEdit" name="item_S03">
      <property name="geometry">
       <rect>
        <x>205</x>
@@ -471,7 +471,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
+      <string notr="true">background:white;</string>
      </property>
      <property name="text">
       <string>Ctrl+Right</string>
@@ -480,7 +480,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="MusicGlobalHotKeyEdit" name="item_S08">
+    <widget class="MusicGlobalHotKeyEdit" name="item_S04">
      <property name="geometry">
       <rect>
        <x>205</x>
@@ -490,7 +490,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
+      <string notr="true">background:white;</string>
      </property>
      <property name="text">
       <string>Ctrl+Up</string>
@@ -499,7 +499,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="MusicGlobalHotKeyEdit" name="item_S10">
+    <widget class="MusicGlobalHotKeyEdit" name="item_S05">
      <property name="geometry">
       <rect>
        <x>205</x>
@@ -509,7 +509,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
+      <string notr="true">background:white;</string>
      </property>
      <property name="text">
       <string>Ctrl+Down</string>
@@ -518,7 +518,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="MusicGlobalHotKeyEdit" name="item_S12">
+    <widget class="MusicGlobalHotKeyEdit" name="item_S07">
      <property name="geometry">
       <rect>
        <x>205</x>
@@ -528,7 +528,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
+      <string notr="true">background:white;</string>
      </property>
      <property name="text">
       <string>Ctrl+S</string>
@@ -537,7 +537,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="MusicGlobalHotKeyEdit" name="item_S14">
+    <widget class="MusicGlobalHotKeyEdit" name="item_S08">
      <property name="geometry">
       <rect>
        <x>205</x>
@@ -547,7 +547,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
+      <string notr="true">background:white;</string>
      </property>
      <property name="text">
       <string>Ctrl+I</string>
@@ -556,7 +556,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_S13">
+    <widget class="QLabel" name="item_S8">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -588,7 +588,7 @@ font-weight:bold;</string>
       <string>启用全局快捷键</string>
      </property>
     </widget>
-    <widget class="QLabel" name="item_S15">
+    <widget class="QLabel" name="item_S6">
      <property name="geometry">
       <rect>
        <x>25</x>
@@ -607,7 +607,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="MusicGlobalHotKeyEdit" name="item_S16">
+    <widget class="MusicGlobalHotKeyEdit" name="item_S06">
      <property name="geometry">
       <rect>
        <x>205</x>
@@ -617,7 +617,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
+      <string notr="true">background:white;</string>
      </property>
      <property name="text">
       <string>Ctrl+M</string>
@@ -2838,6 +2838,11 @@ font-weight:bold;</string>
  </widget>
  <customwidgets>
   <customwidget>
+   <class>TTKThemeLineLabel</class>
+   <extends>QLabel</extends>
+   <header>ttkthemelinelabel.h</header>
+  </customwidget>
+  <customwidget>
    <class>TTKClickedSlider</class>
    <extends>QSlider</extends>
    <header>ttkclickedslider.h</header>
@@ -2870,11 +2875,6 @@ font-weight:bold;</string>
    <extends>QScrollArea</extends>
    <header>musicsmoothmovingwidget.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>TTKThemeLineLabel</class>
-   <extends>QLabel</extends>
-   <header>ttkthemelinelabel.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
