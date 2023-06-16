@@ -67,12 +67,9 @@ bool TTK::File::copyPath(const QString &srcPath, const QString &dstPath, bool ov
     }
 
     QDir dstDir(dstPath);
-    if (!dstDir.exists())
+    if (!dstDir.exists() && !dstDir.mkpath(dstDir.absolutePath()))
     {
-        if (!dstDir.mkdir(dstDir.absolutePath()))
-        {
-            return false;
-        }
+        return false;
     }
 
     for (const QFileInfo &fileInfo : QDir(srcPath).entryInfoList())
