@@ -138,17 +138,26 @@ MusicPlatformManager::System MusicPlatformManager::systemName() const
     typedef void (__stdcall *NTPROC)(DWORD*, DWORD*, DWORD*);
     HINSTANCE instance = LoadLibraryW(L"ntdll.dll");
     DWORD major, minor, buildNumber;
-    NTPROC proc = TTKVoidCast(NTPROC)GetProcAddress(instance, "MiniDumpWriteDump");
+    NTPROC proc = TTKVoidCast(NTPROC)GetProcAddress(instance, "RtlGetNtVersionNumbers");
     proc(&major, &minor, &buildNumber);
 
-    if(major == 6 && minor == 3)	//win 8.1
+    if(major == 6 && minor == 1)	//win 7
+    {
+        return System::Win7;
+    }
+    else if(major == 6 && minor == 2)	//win 8
+    {
+        return System::Win8;
+    }
+    else if(major == 6 && minor == 3)	//win 8.1
     {
         return System::Win81;
     }
-    if(major == 10 && minor == 0)	//win 10
+    else if(major == 10 && minor == 0)	//win 10 or win 11
     {
-        return System::Win10;
+        return buildNumber < (0xF0000000 | 22000) ? System::Win10 : System::Win11;
     }
+    FreeLibrary(instance);
 
     SYSTEM_INFO info;
     GetSystemInfo(&info);
@@ -210,7 +219,6 @@ MusicPlatformManager::System MusicPlatformManager::systemName() const
             default: return System::Unkown;
         }
     }
-    FreeLibrary(instance);
 #elif defined Q_OS_LINUX
     QFile file("/etc/lsb-release");
     if(file.open(QIODevice::ReadOnly))

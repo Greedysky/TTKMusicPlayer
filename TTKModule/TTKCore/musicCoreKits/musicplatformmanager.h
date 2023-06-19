@@ -30,6 +30,7 @@ class TTK_MODULE_EXPORT MusicPlatformManager
 public:
     enum class System
     {
+        Win11,
         Win10,
         Win81,
         Win8,
