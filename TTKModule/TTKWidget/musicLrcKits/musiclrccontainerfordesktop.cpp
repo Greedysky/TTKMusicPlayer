@@ -3,8 +3,8 @@
 #include "musicfunctionuiobject.h"
 #include "musicdesktoplrcuiobject.h"
 #include "musiclrcdefines.h"
-
 #include "musicapplication.h"
+#include "musicrightareawidget.h"
 #include "musicbottomareawidget.h"
 
 MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
@@ -110,6 +110,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
        m_toolBarWidget->hide();
        setStyleSheet(TTK::UI::BackgroundStyle01);
     }
+
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcLockedMode,  m_windowLocked ? 1 : 0);
     MusicBottomAreaWidget::instance()->lockDesktopLrc(m_windowLocked);
 }
@@ -210,7 +211,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     QToolButton *toolWindowTypeButton = new QToolButton(m_toolBarWidget);
     toolWindowTypeButton->setFixedSize(m_verticalWindow ? TOOLBAR_HEIGHT : TOOLBAR_WIDTH, m_verticalWindow ? TOOLBAR_WIDTH : TOOLBAR_HEIGHT);
     m_toolBarLayout->addWidget(toolWindowTypeButton, 0, Qt::AlignCenter);
-    connect(toolWindowTypeButton, SIGNAL(clicked()), parent(), SLOT(setWindowLrcTypeChanged()));
+    connect(toolWindowTypeButton, SIGNAL(clicked()), MusicRightAreaWidget::instance(), SLOT(setWindowLrcTypeChanged()));
 
     QToolButton *toolPreSongButton = new QToolButton(m_toolBarWidget);
     toolPreSongButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
