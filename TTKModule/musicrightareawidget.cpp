@@ -660,17 +660,17 @@ void MusicRightAreaWidget::setWindowLockedChanged()
 
 void MusicRightAreaWidget::setWindowLrcTypeChanged()
 {
-    const bool v = m_lrcForDesktop ? m_lrcForDesktop->isVerticalWindowType() : TTKStaticCast(bool, G_SETTING_PTR->value(MusicSettingManager::DLrcWindowMode).toInt());
+    const bool type = m_lrcForDesktop ? m_lrcForDesktop->isVerticalWindowType() : TTKStaticCast(bool, G_SETTING_PTR->value(MusicSettingManager::DLrcWindowMode).toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, QPoint());
 
     MusicLrcContainerForDesktop *desktop = m_lrcForDesktop;
-    if(v)
+    if(type)
     {
-        m_lrcForDesktop = new MusicLrcContainerHorizontalDesktop(this);
+        m_lrcForDesktop = new MusicLrcContainerHorizontalDesktop;
     }
     else
     {
-        m_lrcForDesktop = new MusicLrcContainerVerticalDesktop(this);
+        m_lrcForDesktop = new MusicLrcContainerVerticalDesktop;
     }
     m_lrcForDesktop->setLrcAnalysisModel(m_lrcAnalysis);
 
@@ -688,7 +688,7 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
     connect(m_lrcForDesktop, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(), SLOT(showSettingWidget()));
     connect(m_lrcForDesktop, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeDesktopLrcWidget()));
 
-    G_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowMode, v);
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowMode, type);
 }
 
 void MusicRightAreaWidget::researchQueryByQuality(TTK::QueryQuality quality)
