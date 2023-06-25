@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef PROJECTMWIDGET_H
-#define PROJECTMWIDGET_H
+#ifndef PROJECTM4WIDGET_H
+#define PROJECTM4WIDGET_H
 
 #include <QGLWidget>
 #include <QListWidget>
@@ -27,29 +27,8 @@
 #    define QT_OPENGL_WIDGET
 #  endif
 #endif
-#include <libprojectM/projectM.hpp>
-
-class ProjectMWrapper : public QObject, public projectM
-{
-    Q_OBJECT
-public:
-    explicit ProjectMWrapper(const Settings &settings, int flags, QObject *parent = nullptr);
-
-signals:
-    void currentPresetChanged(int index) const;
-
-public slots:
-    void selectPreset(int index);
-
-private:
-#ifdef PROJECTM_31
-    virtual void presetSwitchedEvent(bool isHardCut, size_t index) const override final;
-#else
-    virtual void presetSwitchedEvent(bool isHardCut, unsigned int index) const override final;
-#endif
-
-};
-
+#include <projectM-4/types.h>
+#include <projectM-4/playlist_core.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -62,8 +41,8 @@ class ProjectMWidget : public QGLWidget
 {
     Q_OBJECT
 public:
-    explicit ProjectMWidget(QListWidget *widget, QWidget *parent = nullptr);
-    virtual ~ProjectMWidget();
+    explicit ProjectM4Widget(QListWidget *widget, QWidget *parent = nullptr);
+    virtual ~ProjectM4Widget();
 
     void addPCM(float *left, float *right);
 
@@ -73,18 +52,18 @@ protected:
     virtual void paintGL() override final;
 
 public slots:
-    void showHelp();
-    void showPresetName();
-    void showTitle();
     void nextPreset();
     void previousPreset();
-    void randomPreset();
+    void setShuffle(bool enabled);
     void lockPreset(bool lock);
-    void setCurrentRow(int row);
+    void selectPreset(int index);
 
 private:
+    static void presetSwitchedEvent(bool isHardCut, unsigned int index, void *data);
+
+    projectm_handle m_handle = nullptr;
+    projectm_playlist_handle m_playlistHandle = nullptr;
     QListWidget *m_itemWidget;
-    ProjectMWrapper *m_projectM = nullptr;
 
 };
 

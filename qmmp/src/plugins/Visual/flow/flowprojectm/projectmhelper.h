@@ -16,42 +16,21 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef PROJECTMPLUGIN_H
-#define PROJECTMPLUGIN_H
+#ifndef PROJECTMHELPER_H
+#define PROJECTMHELPER_H
 
-#include <QSplitter>
+#include <QDir>
+#include <qmmp/qmmp.h>
 #include <qmmp/visual.h>
 
-class QMenu;
-class QListWidget;
-#ifdef PROJECTM_4
-class ProjectM4Widget;
-#else
-class ProjectMWidget;
+#ifndef PROJECTM_PRESET_PATH
+#define PROJECTM_PRESET_PATH Qmmp::ttkPluginPath() + "/config/presets"
 #endif
 
-/*!
- * @author Greedysky <greedysky@163.com>
- */
-class ProjectMPlugin : public Visual
-{
-    Q_OBJECT
-public:
-    explicit ProjectMPlugin(QWidget *parent = nullptr);
-
-private:
-    virtual void contextMenuEvent(QContextMenuEvent *) override final;
-    virtual void process(float *left, float *right) override final;
-
-    QMenu *m_menu;
-    QSplitter *m_splitter;
-    QListWidget *m_itemWidget;
-#ifdef PROJECTM_4
-    ProjectM4Widget *m_projectMWidget;
-#else
-    ProjectMWidget *m_projectMWidget;
+#ifndef PROJECTM_TEXTURE_PATH
+#define PROJECTM_TEXTURE_PATH Qmmp::ttkPluginPath() + "/config/textures"
 #endif
 
-};
+QFileInfoList fileListByPath(const QString &dpath, const QStringList &filter);
 
 #endif

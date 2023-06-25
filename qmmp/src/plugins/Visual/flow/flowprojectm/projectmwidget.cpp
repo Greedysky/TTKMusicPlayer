@@ -1,33 +1,14 @@
 #include "projectmwidget.h"
-
-#include <QDir>
-#include <qmmp/qmmp.h>
-
-static QFileInfoList fileListByPath(const QString &dpath, const QStringList &filter)
-{
-    QDir dir(dpath);
-    if(!dir.exists())
-    {
-        return QFileInfoList();
-    }
-
-    QFileInfoList fileList = dir.entryInfoList(filter, QDir::Files | QDir::Hidden);
-    const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-    for(const QFileInfo &fin : folderList)
-    {
-        fileList.append(fileListByPath(fin.absoluteFilePath(), filter));
-    }
-
-    return fileList;
-}
-
+#include "projectmhelper.h"
 
 ProjectMWrapper::ProjectMWrapper(const projectM::Settings &settings, int flags, QObject *parent)
-    : QObject(parent), projectM(settings, flags)
+    : QObject(parent),
+      projectM(settings, flags)
 {
+
 }
 
-void ProjectMWrapper::setCurrentPreset(int index)
+void ProjectMWrapper::selectPreset(int index)
 {
     if(index >= 0)
     {
@@ -35,7 +16,11 @@ void ProjectMWrapper::setCurrentPreset(int index)
     }
 }
 
+#ifdef PROJECTM_31
+void ProjectMWrapper::presetSwitchedEvent(bool isHardCut, size_t index) const
+#else
 void ProjectMWrapper::presetSwitchedEvent(bool isHardCut, unsigned int index) const
+#endif
 {
     Q_UNUSED(isHardCut);
     emit currentPresetChanged(index);
@@ -58,9 +43,16 @@ ProjectMWidget::~ProjectMWidget()
     delete m_projectM;
 }
 
-projectM *ProjectMWidget::projectMInstance()
+void ProjectMWidget::addPCM(float *left, float *right)
 {
-    return m_projectM;
+    short buf[2][QMMP_VISUAL_NODE_SIZE];
+    for(size_t i = 0; i < QMMP_VISUAL_NODE_SIZE; ++i)
+    {
+        buf[0][i] = left[i] * 32767.0;
+        buf[1][i] = right[i] * 32767.0;
+    }
+
+    m_projectM->pcm()->addPCM16(buf);
 }
 
 void ProjectMWidget::initializeGL()
@@ -94,7 +86,7 @@ void ProjectMWidget::initializeGL()
         settings.textureSize = 1024;
         settings.windowWidth = 512;
         settings.windowHeight = 512;
-        settings.presetURL = qPrintable(Qmmp::ttkPluginPath() + "/config/presets");
+        settings.presetURL = qPrintable(PROJECTM_PRESET_PATH);
         settings.titleFontURL = qPrintable(Qmmp::ttkPluginPath() + "/config/fonts/Vera.ttf");
         settings.menuFontURL = qPrintable(Qmmp::ttkPluginPath() + "/config/fonts/VeraMono.ttf");
         settings.smoothPresetDuration = 5;
@@ -107,8 +99,7 @@ void ProjectMWidget::initializeGL()
         m_projectM = new ProjectMWrapper(settings, projectM::FLAG_DISABLE_PLAYLIST_LOAD);
 
         const RatingList list = {3, 3};
-        const QString &path = QString::fromLocal8Bit(settings.presetURL.c_str());
-        const QFileInfoList folderList(fileListByPath(path, QStringList() << "*.prjm" << "*.milk"));
+        const QFileInfoList folderList(fileListByPath(PROJECTM_PRESET_PATH, QStringList() << "*.prjm" << "*.milk"));
         for(const QFileInfo &fin : folderList)
         {
             m_projectM->addPresetURL(fin.absoluteFilePath().toStdString(), fin.fileName().toStdString(), list);
@@ -116,7 +107,7 @@ void ProjectMWidget::initializeGL()
             m_itemWidget->setCurrentRow(0, QItemSelectionModel::Select);
         }
 
-        connect(m_itemWidget, SIGNAL(currentRowChanged(int)), m_projectM, SLOT(setCurrentPreset(int)));
+        connect(m_itemWidget, SIGNAL(currentRowChanged(int)), m_projectM, SLOT(selectPreset(int)));
         connect(m_projectM, SIGNAL(currentPresetChanged(int)), SLOT(setCurrentRow(int)));
         randomPreset();
     }
@@ -137,6 +128,21 @@ void ProjectMWidget::paintGL()
     {
         m_projectM->renderFrame();
     }
+}
+
+void ProjectMWidget::showHelp()
+{
+    m_projectM->key_handler(PROJECTM_KEYDOWN, PROJECTM_K_F1, PROJECTM_KMOD_LSHIFT);
+}
+
+void ProjectMWidget::showPresetName()
+{
+    m_projectM->key_handler(PROJECTM_KEYDOWN, PROJECTM_K_F3, PROJECTM_KMOD_LSHIFT);
+}
+
+void ProjectMWidget::showTitle()
+{
+    m_projectM->key_handler(PROJECTM_KEYDOWN, PROJECTM_K_F2, PROJECTM_KMOD_LSHIFT);
 }
 
 void ProjectMWidget::nextPreset()

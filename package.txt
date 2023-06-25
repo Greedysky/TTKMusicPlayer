@@ -1,7 +1,7 @@
 adplug-2.3.3	https://github.com/adplug/adplug
 enca-1.19	https://cihar.com/software/enca
 faad2-2.10.1	https://github.com/knik0/faad2
-ffmpeg-3.4.12	http://ffmpeg.org/releases
+ffmpeg-3.4.13	http://ffmpeg.org/releases
 flac-1.4.2	https://ftp.osuosl.org/pub/xiph/releases/flac
 game-music-emu-0.6.3	https://bitbucket.org/mpyne/game-music-emu/downloads
 libADLMIDI-1.5.1.0	https://github.com/Wohlstand/libADLMIDI
@@ -13,7 +13,7 @@ libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
 libmpg123-1.31.3	https://sourceforge.net/projects/mpg123
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.5	https://xiph.org/downloads
-libopenmpt-0.4.36		https://lib.openmpt.org/libopenmpt
+libopenmpt-0.4.37		https://lib.openmpt.org/libopenmpt
 libprojectm-2.2.1		https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.2		https://github.com/libsndfile/libsamplerate
 libsidplayfp-2.3.1.patch	https://github.com/libsidplayfp/libsidplayfp
