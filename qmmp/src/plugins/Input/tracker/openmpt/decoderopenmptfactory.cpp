@@ -22,7 +22,7 @@ DecoderProperties DecoderOpenMPTFactory::properties() const
     properties.filters << "*.ams" << "*.amf";
     properties.filters << "*.c67";
     properties.filters << "*.dsm" << "*.dmf" << "*.dbm" << "*.digi" << "*.dtm";
-    properties.filters << "*.far" << "*.fmt";
+    properties.filters << "*.far";
     properties.filters << "*.gdm";
     properties.filters << "*.it" << "*.ice" << "*.imf";
     properties.filters << "*.j2b";
