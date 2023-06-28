@@ -209,10 +209,7 @@ void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
     gradient.setFinalStop(0, height());
     gradient.setColorAt(0.1, QColor(150, 150, 150, 150));
     gradient.setColorAt(0.9, QColor(180, 180, 180, 50));
-
-    painter.setPen(Qt::transparent);
-    painter.setBrush(gradient);
-    painter.drawRect(0, 32, width(), height());
+    painter.fillRect(0, 32, width(), height(), gradient);
 
     const QPixmap pix(MusicTopAreaWidget::instance()->rendererPixmap());
     painter.drawPixmap(0, 0, width(), height() - 3, pix.copy(1, 91, width(), height() - 3));

@@ -38,8 +38,7 @@ void MusicLrcPhotoItem::paintEvent(QPaintEvent *event)
     if(m_isSelected)
     {
         QPainter painter(this);
-        painter.setBrush(QColor(0, 0, 0, 155));
-        painter.drawRect(rect());
+        painter.fillRect(rect(), QColor(0, 0, 0, 155));
         painter.drawPixmap(width() - 16 - 4, height() - 16 - 4, 16, 16, QPixmap(":/lrc/lb_photo_checked"));
     }
 }

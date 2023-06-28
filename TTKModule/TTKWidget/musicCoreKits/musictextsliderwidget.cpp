@@ -39,15 +39,11 @@ void MusicTextSliderWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
     QPainter painter(this);
 
-    painter.setPen(QColor(200, 200, 200, 70));
-    painter.setBrush(QColor(200, 200, 200, 70));
-    painter.drawRect(0, 0, width(), 25);
+    painter.fillRect(0, 0, width(), 25, QColor(200, 200, 200, 70));
 
     if(m_currentValue != 0)
     {
-        painter.setPen(QColor(100, 100, 100, 70));
-        painter.setBrush(QColor(100, 100, 100, 70));
-        painter.drawRect(0, 0, m_currentValue * 1.0 / m_maxValue * width(), 20);
+        painter.fillRect(0, 0, m_currentValue * 1.0 / m_maxValue * width(), 20, QColor(100, 100, 100, 70));
     }
 
     painter.setPen(QColor(50, 50, 50));

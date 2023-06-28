@@ -168,8 +168,7 @@ void QRCodeQWidget::paintEvent(QPaintEvent *event)
     {
         unsigned char *point = qrcode->data;
         painter.setPen(Qt::NoPen);
-        painter.setBrush(d->m_background);
-        painter.drawRect(0, 0, width(), height());
+        painter.fillRect(0, 0, width(), height(), d->m_background);
 
         const double scale = (width () - 2.0 * d->m_margin) / qrcode->width;
         painter.setBrush(d->m_foreground);
