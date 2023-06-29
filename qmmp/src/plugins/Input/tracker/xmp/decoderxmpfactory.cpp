@@ -38,6 +38,7 @@ DecoderProperties DecoderXMPFactory::properties() const
     properties.filters << "*.mfp" << "*.mgt";
     properties.filters << "*.rtm";
     properties.filters << "*.tcb";
+    properties.filters << "*.xmf";
     properties.description = "XMP Module File";
     properties.protocols << "file";
     properties.hasSettings = true;
