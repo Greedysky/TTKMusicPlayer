@@ -2,7 +2,7 @@ adplug-2.3.3	https://github.com/adplug/adplug
 enca-1.19	https://cihar.com/software/enca
 faad2-2.10.1	https://github.com/knik0/faad2
 ffmpeg-3.4.13	http://ffmpeg.org/releases
-flac-1.4.2	https://ftp.osuosl.org/pub/xiph/releases/flac
+flac-1.4.3	https://ftp.osuosl.org/pub/xiph/releases/flac
 game-music-emu-0.6.3	https://bitbucket.org/mpyne/game-music-emu/downloads
 libADLMIDI-1.5.1.0	https://github.com/Wohlstand/libADLMIDI
 libbinio-1.5	https://github.com/adplug/libbinio
@@ -29,9 +29,9 @@ speex-1.2.1	https://gitlab.xiph.org/xiph/speex
 sunvox-2.0e	https://warmplace.ru/soft/sunvox/sunvox_lib.php
 taglib-1.13	https://github.com/taglib/taglib
 wavpack-5.6.0	https://www.wavpack.com/downloads.html
-libxmp-4.5.0.patch	https://github.com/libxmp/libxmp
+libxmp-4.6.0.patch	https://github.com/libxmp/libxmp
 zlib-1.2.13		https://github.com/madler/zlib
-7zip-23.00		https://www.7-zip.org/download.html
+7zip-23.01		https://www.7-zip.org/download.html
 ttk-1.2.2
 (sonic-master	https://github.com/waywardgeek/sonic)
 (libasap-5.3.0	https://sourceforge.net/projects/asap)
@@ -40,4 +40,4 @@ ttk-1.2.2
 (libsc68-2.2.1	https://sourceforge.net/projects/sc68)
 (libuade-3.02	https://gitlab.com/uade-music-player/uade 60998cbf7113daba81387a3e737948dc6332b1a8)
 (libv2m-20211104	https://github.com/jgilje/v2m-player)
-///Update time 2023-05-26
+///Update time 2023-06-26
