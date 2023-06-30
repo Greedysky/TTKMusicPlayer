@@ -5,7 +5,7 @@
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = TTKMusicPlayer
-PROJECT_NUMBER         = 3.3.0.0
+PROJECT_NUMBER         = 3.4.0.0
 PROJECT_BRIEF          = "TTKMusicPlayer that imitation Kugou music, the music player use of qmmp core library based on Qt for windows and linux"
 PROJECT_LOGO           = TTKResource/lb_app_logo.png
 OUTPUT_DIRECTORY       = TTKDocs
