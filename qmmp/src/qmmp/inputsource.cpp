@@ -64,9 +64,9 @@ void InputSource::setProperty(Qmmp::TrackProperty key, const QVariant &value)
 
 void InputSource::setProperties(const QMap<Qmmp::TrackProperty, QString> &properties)
 {
-    for(const Qmmp::TrackProperty &key : properties.keys())
+    for(auto it = properties.begin(); it != properties.end(); ++it)
     {
-        setProperty(key, properties.value(key));
+        setProperty(it.key(), it.value());
     }
 }
 

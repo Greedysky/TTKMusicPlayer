@@ -221,7 +221,7 @@ QString SoundCore::metaData(Qmmp::MetaData key) const
     return m_info.value(key);
 }
 
-QHash<QString, QString> SoundCore::streamInfo() const
+const QHash<QString, QString> &SoundCore::streamInfo() const
 {
     return m_streamInfo;
 }

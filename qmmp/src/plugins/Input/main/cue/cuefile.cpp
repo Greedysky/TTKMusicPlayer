@@ -71,7 +71,7 @@ CueFile::CueFile(const QString &path)
         }
     }
 
-    for(const QString &p : m_dataFiles.values())
+    for(const QString &p : qAsConst(m_dataFiles))
     {
         if(!QFile::exists(p))
         {

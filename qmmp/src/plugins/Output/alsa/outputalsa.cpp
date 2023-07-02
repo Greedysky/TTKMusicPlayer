@@ -206,7 +206,7 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
 
         for(uint i = 0; i < chmap->channels; ++i)
         {
-            if(m_alsa_channels.keys().contains(chmap->pos[i]))
+            if(m_alsa_channels.contains(chmap->pos[i]))
                 out_map.append(m_alsa_channels.value(chmap->pos[i]));
             else
                 out_map.append(Qmmp::CHAN_NULL);

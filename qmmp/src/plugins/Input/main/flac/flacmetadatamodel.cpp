@@ -118,27 +118,30 @@ void FLACMetaDataModel::setCover(const QPixmap &pix)
 void FLACMetaDataModel::removeCover()
 {
     TagLib::FLAC::File *flacFile = dynamic_cast<TagLib::FLAC::File *>(m_file);
-    TagLib::List<TagLib::FLAC::Picture *> list;
+    bool save = false;
 
     if(flacFile)
     {
-        list = flacFile->pictureList(); //native flac
+        const TagLib::List<TagLib::FLAC::Picture *> list = flacFile->pictureList(); //native flac
+        for(TagLib::FLAC::Picture *p : qAsConst(list))
+        {
+            if(p->type() == TagLib::FLAC::Picture::FrontCover)
+            {
+                flacFile->removePicture(p, false);
+                save = true;
+            }
+        }
     }
     else if(m_tag && !m_tag->isEmpty())
     {
-        list = m_tag->pictureList(); //ogg flac
-    }
-
-    bool save = false;
-    for(uint i = 0; i < list.size(); ++i)
-    {
-        if(list[i]->type() == TagLib::FLAC::Picture::FrontCover)
+        const TagLib::List<TagLib::FLAC::Picture *> list = m_tag->pictureList(); //ogg flac
+        for(TagLib::FLAC::Picture *p : qAsConst(list))
         {
-            if(flacFile)
-                flacFile->removePicture(list[i], false);
-            else
-                m_tag->removePicture(list[i], false);
-            save = true;
+            if(p->type() == TagLib::FLAC::Picture::FrontCover)
+            {
+                m_tag->removePicture(p, false);
+                save = true;
+            }
         }
     }
 

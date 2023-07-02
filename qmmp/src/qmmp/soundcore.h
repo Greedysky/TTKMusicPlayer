@@ -109,7 +109,7 @@ public:
     /*!
      * Returns a hash of stream information if available
      */
-    QHash<QString, QString> streamInfo() const;
+    const QHash<QString, QString> &streamInfo() const;
     /*!
      * Returns current track information.
      */
