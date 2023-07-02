@@ -58,7 +58,7 @@
  *
  * AdLib Sound File(*.a2m *.adl *.adlib *.agd *.amd *.as3m *.bam *.bmf *.cff *.cmf *.d00 *.dfm *.dmo *.dro *.dtm *.got *.ha2 *.hsc *.hsq *.hsp *.imf *.ims *.jbm *.laa *.lds *.m *.mad *.mdi *.mkj *.msc *.mtk *.mus *.rac *.rad *.raw *.rix *.s3m *.sa2 *.sat *.sdb *.sng *.sop *.sqx *.xad *.xms *.xsm *.vgm *.vgz *.wlf *.ksm *.rol *.sci)
  *
- * XMP File(*.abk *.dsym *.emod *.fnk *.gtk *.ims *.liq *.mfp *.mgt *.rtm *.tcb)
+ * XMP File(*.abk *.dsym *.emod *.fnk *.gtk *.ims *.liq *.mfp *.mgt *.rtm *.tcb *.xmf)
  *
  * Another Slight Atari File(*.cm3 *.cmc *.cmr *.cms *.dlt *.dmc *.fc *.mpd *.mpt *.rmt *.sap *.tm2 *.tm8 *.tmc)
  *
