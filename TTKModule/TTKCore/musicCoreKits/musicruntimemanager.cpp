@@ -91,7 +91,7 @@ void MusicRunTimeManager::run() const
 {
     TTK_INFO_STREAM("MusicApplication Run");
 
-    TTK::Codec::setLocalCodec();
+//    TTK::Codec::setLocalCodec();
     TTK::TTKQmmp::updateConfig();
 
 #ifdef Q_OS_UNIX
