@@ -30,8 +30,8 @@ TTKRunApplicationPrivate::~TTKRunApplicationPrivate()
 
 
 
-TTKRunApplication::TTKRunApplication(int &argc, char **argv, bool enabled)
-    : QApplication(argc, argv, enabled)
+TTKRunApplication::TTKRunApplication(int &argc, char **argv)
+    : QApplication(argc, argv)
 {
     TTK_INIT_PRIVATE(TTKRunApplication);
     initialize();

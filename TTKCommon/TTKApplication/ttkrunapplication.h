@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
     */
-    TTKRunApplication(int &argc, char **argv, bool enabled = true);
+    TTKRunApplication(int &argc, char **argv);
     /*!
      * Object contsructor.
     */
