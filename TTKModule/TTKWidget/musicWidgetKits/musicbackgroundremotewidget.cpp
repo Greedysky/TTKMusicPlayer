@@ -53,6 +53,7 @@ void MusicBackgroundRemoteWidget::downLoadFinished(const QString &bytes)
     {
         image.m_pix = QPixmap(":/image/lb_none_image");
     }
+
     m_backgroundList->updateItem(image, bytes);
 }
 
@@ -70,6 +71,8 @@ void MusicBackgroundRemoteWidget::startRequest(const QString &prefix)
 
     const QString &path = QString("%1%2").arg(CACHE_DIR_FULL, m_groups[m_currentIndex].m_group);
     QDir().mkpath(path);
+
+    m_backgroundList->clearAllItems();
 
     MusicDownloadQueueDataList datas;
     for(const MusicSkinRemoteItem &item : qAsConst(m_groups[m_currentIndex].m_items))
@@ -104,7 +107,6 @@ void MusicBackgroundDailyWidget::initialize()
     }
     else
     {
-        m_backgroundList->clearAllItems();
         startRequest(TKM_FILE);
     }
 }
