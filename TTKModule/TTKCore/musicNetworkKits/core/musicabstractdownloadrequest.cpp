@@ -2,8 +2,6 @@
 #include "musicdownloadmanager.h"
 #include "musiccoreutils.h"
 
-#include <QSslError>
-
 MusicAbstractDownLoadRequest::MusicAbstractDownLoadRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent)
     : MusicAbstractNetwork(parent),
       m_url(url),
@@ -46,22 +44,6 @@ void MusicAbstractDownLoadRequest::downLoadFinished()
     MusicAbstractNetwork::downLoadFinished();
     m_speedTimer.stop();
 }
-
-void MusicAbstractDownLoadRequest::replyError(QNetworkReply::NetworkError)
-{
-    TTK_ERROR_STREAM("Abnormal network connection");
-//    Q_EMIT downLoadDataChanged("The file create failed");
-    deleteAll();
-}
-
-#ifndef QT_NO_SSL
-void MusicAbstractDownLoadRequest::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
-{
-    sslErrorsString(reply, errors);
-//    Q_EMIT downLoadDataChanged("The file create failed");
-    deleteAll();
-}
-#endif
 
 void MusicAbstractDownLoadRequest::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {

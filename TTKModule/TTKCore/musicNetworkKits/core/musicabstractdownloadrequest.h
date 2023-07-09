@@ -58,16 +58,6 @@ public Q_SLOTS:
      */
     virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
     /*!
-     * Download reply error.
-     */
-    virtual void replyError(QNetworkReply::NetworkError error) override final;
-#ifndef QT_NO_SSL
-    /*!
-     * Download ssl reply error.
-     */
-    virtual void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors) override final;
-#endif
-    /*!
      * Updata download speed due the user mod the net speed limited.
      */
     virtual void updateDownloadSpeed();
