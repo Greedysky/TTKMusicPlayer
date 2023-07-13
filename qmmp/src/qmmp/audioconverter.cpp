@@ -3,11 +3,32 @@
 #include <QtEndian>
 #include "audioconverter.h"
 
+#define SAMPLES_PER_CHUNCK 64
+
 #define INT_TO_FLOAT(TYPE,SWAP,in,out,samples,offset,max) \
 { \
     TYPE *in_ref = (TYPE *) (in); \
-    for(size_t i = 0; i < samples; ++i) \
-        out[i] = (float) (SWAP(in_ref[i]) - offset) / max; \
+    for(size_t i = 0, left = samples; i < samples;) \
+    { \
+        /* Vectorized path */ \
+        if (left >= SAMPLES_PER_CHUNCK) \
+        { \
+            for(size_t j = 0; j < SAMPLES_PER_CHUNCK; ++j) \
+            { \
+                size_t k = i + j; \
+                out[k] = (float) (SWAP(in_ref[k]) - offset) / max; \
+            } \
+            i += SAMPLES_PER_CHUNCK; \
+            left -= SAMPLES_PER_CHUNCK; \
+        } \
+        /* Scalar path */ \
+        else \
+        { \
+            out[i] = (float) (SWAP(in_ref[i]) - offset) / max; \
+            ++i; \
+            --left; \
+        } \
+    } \
 }
 
 #define FLOAT_TO_INT(TYPE,SWAP,in,out,samples,offset,min,max) \
