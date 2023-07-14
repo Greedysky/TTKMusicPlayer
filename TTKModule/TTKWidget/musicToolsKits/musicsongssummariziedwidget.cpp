@@ -172,7 +172,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
         QStringList files;
         for(const QFileInfo &fin : TTK::File::fileInfoListByPath(path))
         {
-            if(MusicFormats::supportMusicFormats().contains(FILE_SUFFIX(fin)))
+            if(MusicFormats::supportMusicFormats().contains(TTK_FILE_SUFFIX(fin)))
             {
                files << fin.absoluteFilePath();
             }
@@ -201,7 +201,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
     else
     {
         QStringList files;
-        if(MusicFormats::supportMusicFormats().contains(FILE_SUFFIX(fin)))
+        if(MusicFormats::supportMusicFormats().contains(TTK_FILE_SUFFIX(fin)))
         {
            files << fin.absoluteFilePath();
         }

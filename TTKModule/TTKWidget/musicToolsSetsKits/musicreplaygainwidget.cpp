@@ -219,7 +219,7 @@ void MusicReplayGainWidget::addFilesButtonClicked()
         setControlEnabled(false);
         for(const QFileInfo &fin : TTK::File::fileInfoListByPath(path))
         {
-            if(FILE_SUFFIX(fin) == MP3_FILE_SUFFIX && !m_paths.contains(fin.absoluteFilePath()))
+            if(TTK_FILE_SUFFIX(fin) == MP3_FILE_SUFFIX && !m_paths.contains(fin.absoluteFilePath()))
             {
                 m_currentIndex = m_paths.count();
                 m_paths << fin.absoluteFilePath();

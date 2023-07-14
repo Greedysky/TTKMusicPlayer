@@ -65,6 +65,7 @@ public:
      * Select current item by name\alpha\listAlpha when the widget show.
      */
     void setCurrentBackgroundTheme(const QString &theme, int skin, int list);
+
     /*!
      * Get list background skin alpha.
      */

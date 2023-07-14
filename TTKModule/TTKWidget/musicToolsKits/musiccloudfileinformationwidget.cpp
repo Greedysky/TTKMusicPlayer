@@ -31,6 +31,6 @@ void MusicCloudFileInformationWidget::setFileInformation(QSyncDataItem *data)
     m_ui->fileKeyEdit->setText(data->m_hash);
     m_ui->fileUpdateTimeEdit->setText(data->m_putTime);
 
-    const QString &suffix = FILE_SUFFIX(QFileInfo(data->m_name));
+    const QString &suffix = TTK_FILE_SUFFIX(QFileInfo(data->m_name));
     m_ui->fileFormatEdit->setText(suffix.isEmpty() ? data->m_mimeType : suffix);
 }

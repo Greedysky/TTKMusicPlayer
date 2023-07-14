@@ -16,12 +16,11 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT += core
-
 TEMPLATE = app
 
 include($$PWD/../../TTKVersion.pri)
 
+DESTDIR = $$OUT_PWD/../../bin
 TARGET = TTKMusicPlayer
 
 DEFINES += TTK_LIBRARY
@@ -37,25 +36,20 @@ win32:msvc{
 }
 
 win32{
-    DESTDIR = $$OUT_PWD/../../bin/$$TTK_VERSION
-    LIBS += -L$$DESTDIR -lTTKConfig
+    QMAKE_LFLAGS_CONSOLE = -mwindows
 }else{
-    DESTDIR = $$OUT_PWD/../../bin
-    DEFINES += CONFIG_OUT_BUILD
-    HEADERS += \
-        $$PWD/../../TTKConfig/musicconfigobject.h \
-        $$PWD/../../TTKConfig/musicconfigdefine.h
-    SOURCES += $$PWD/../../TTKConfig/musicconfigobject.cpp
+#    DEFINES += CONFIG_OUT_BUILD
+#    HEADERS += \
+#        $$PWD/../../TTKConfig/musicconfigobject.h \
+#        $$PWD/../../TTKConfig/musicconfigdefine.h
+#    SOURCES += $$PWD/../../TTKConfig/musicconfigobject.cpp
 
     appdata.path = $$PWD/../../TTKUtils/deploy/share/appdata/ttkmusicplayer.appdata.xml
     appdata.files = $$PWD/../../TTKUtils/deploy/share/appdata/ttkmusicplayer.appdata.xml
 }
 
 INCLUDEPATH += \
-    $$PWD/../ \
-    $$PWD/../../TTKCommon \
-    $$PWD/../../TTKConfig \
-    $$PWD/../../TTKModule/TTKCore/musicCoreKits
+    $$PWD/../../TTKCommon
 
 HEADERS += \
     $$PWD/ttkrunobject.h
@@ -63,9 +57,5 @@ HEADERS += \
 SOURCES += \
     $$PWD/ttkrunobject.cpp \
     $$PWD/ttkrunmain.cpp
-
-include($$PWD/../../TTKCommon/TTKApplication/TTKApplication.pri)
-
-RESOURCES += $$PWD/../../TTKUi/MusicApp.qrc
 
 win32:RC_FILE = $$PWD/TTKApp.rc

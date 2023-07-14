@@ -19,39 +19,20 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkprivate.h"
-
-class TTKRunObjectPrivate;
+#include "ttkconfig.h"
 
 /*! @brief The class of the ttk run object.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT TTKRunObject : public QObject
+class TTKRunObject
 {
-    Q_OBJECT
 public:
-    /*!
-     * Object contsructor.
-     */
-    explicit TTKRunObject(QObject *parent = nullptr);
+    TTKRunObject() = default;
 
-    /*!
-     * Check current setting file's validation.
-     */
-    void valid() const;
     /*!
      * To run main window.
      */
     void run(int argc, char **argv) const;
-
-private Q_SLOTS:
-    /*!
-     * Run finished.
-     */
-    void finished(int code);
-
-private:
-    TTK_DECLARE_PRIVATE(TTKRunObject)
 
 };
 

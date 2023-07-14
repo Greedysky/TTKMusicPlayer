@@ -33,4 +33,6 @@ INCLUDEPATH += \
 
 SOURCES += $$PWD/musicservicemain.cpp
 
+include($$PWD/../TTKCommon/TTKApplication/TTKApplication.pri)
+
 win32:RC_FILE = $$PWD/TTKService.rc

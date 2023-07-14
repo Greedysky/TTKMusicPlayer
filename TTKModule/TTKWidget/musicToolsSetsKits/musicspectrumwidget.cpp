@@ -338,7 +338,7 @@ void MusicSpectrumWidget::createLightWidget(MusicSpectrum::Module spectrum, bool
         }
         else if(LIGHT_SPECTROGRAM_MODULE == name)
         {
-            const QString &suffix = FILE_SUFFIX(QFileInfo(path));
+            const QString &suffix = TTK_FILE_SUFFIX(QFileInfo(path));
             for(QString &filter : MusicFormats::supportSpekInputFilterFormats())
             {
                 if(filter.remove(0, 2) == suffix)   // remove *.

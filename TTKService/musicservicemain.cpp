@@ -1,3 +1,4 @@
+#include "ttkrunapplication.h"
 #include "musicapplication.h"
 #include "musicruntimemanager.h"
 #include "musicconfigobject.h"
@@ -56,11 +57,17 @@ int main(int argc, char *argv[])
 {
     loadAppScaledFactor(argc, argv);
 
-    QApplication app(argc, argv);
+    TTKRunApplication app(argc, argv);
 
     QCoreApplication::setOrganizationName(APP_NAME);
     QCoreApplication::setOrganizationDomain(APP_COME_NAME);
     QCoreApplication::setApplicationName(APP_NAME);
+
+    if(app.isRunning())
+    {
+        TTK_INFO_STREAM("One app has already run");
+        return -1;
+    }
 
     MusicConfigObject config;
     config.valid();

@@ -128,7 +128,7 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
         if(m_closeEnabled)
         {
             QPainter painter(this);
-            painter.drawPixmap(width() - 16 - 6, 6, 16, 16, QPixmap(":/functions/btn_close_hover"));
+            painter.drawPixmap(width() - 18 - 4, 4, 18, 18, QPixmap(":/functions/btn_close_hover"));
         }
     }
 }

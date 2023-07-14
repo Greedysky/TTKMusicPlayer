@@ -33,9 +33,7 @@
 #define JPG_FILE_SUFFIX          "jpg"
 #define LRC_FILE_SUFFIX          "lrc"
 #define KRC_FILE_SUFFIX          "krc"
-#define EXE_FILE_SUFFIX          "exe"
 #define XML_FILE_SUFFIX          "xml"
-#define COM_FILE_SUFFIX          "com"
 // playlist ext
 #define TPL_FILE_SUFFIX          "tkpl"
 #define M3U_FILE_SUFFIX          "m3u"
@@ -65,26 +63,11 @@
 #define KRC_FILE                 TTK_STRCAT(TTK_DOT, KRC_FILE_SUFFIX)
 #define MP3_FILE                 TTK_STRCAT(TTK_DOT, MP3_FILE_SUFFIX)
 #define TPL_FILE                 TTK_STRCAT(TTK_DOT, TPL_FILE_SUFFIX)
-#define EXE_FILE                 TTK_STRCAT(TTK_DOT, EXE_FILE_SUFFIX)
 #define XML_FILE                 TTK_STRCAT(TTK_DOT, XML_FILE_SUFFIX)
-#define COM_FILE                 TTK_STRCAT(TTK_DOT, COM_FILE_SUFFIX)
 // file ext
 #define MP3_FILE                 TTK_STRCAT(TTK_DOT, MP3_FILE_SUFFIX)
 #define APE_FILE                 TTK_STRCAT(TTK_DOT, APE_FILE_SUFFIX)
 #define FLAC_FILE                TTK_STRCAT(TTK_DOT, FLAC_FILE_SUFFIX)
-
-
-#define SERVICE_NAME             "TTKService"
-#define APP_NAME                 "TTKMusicPlayer"
-#define APP_DOT_NAME             TTK_STRCAT(APP_NAME, TTK_DOT)
-#define APP_COME_NAME            TTK_STRCAT(APP_NAME, COM_FILE)
-#ifdef Q_OS_WIN
-#  define APP_EXE_NAME           TTK_STRCAT(APP_NAME, EXE_FILE)
-#  define SERVICE_EXE_NAME       TTK_STRCAT(SERVICE_NAME, EXE_FILE)
-#else
-#  define APP_EXE_NAME           APP_NAME
-#  define SERVICE_EXE_NAME       SERVICE_NAME
-#endif
 
 
 #define APPDATA_DIR              TTK_STRCAT("AppData", TTK_SEPARATOR)
@@ -168,11 +151,6 @@
 #define WINDOW_HEIGHT_MIN        665
 #define LEFT_SIDE_WIDTH_MIN      320
 #define CONCISE_WIDTH_MIN        LEFT_SIDE_WIDTH_MIN + 2
-
-#define HTTP_PREFIX              "http://"
-#define HTTPS_PREFIX             "https://"
-
-#define FILE_SUFFIX(fin)         fin.suffix().toLower()
 
 
 /*! @brief The namespace of the application object.

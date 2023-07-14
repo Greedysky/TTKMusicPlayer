@@ -14,7 +14,7 @@
 void MusicPlaylistManager::writeSongItem(const QString &path, const MusicSongItem &item)
 {
     const QFileInfo fin(path);
-    const QString &suffix = FILE_SUFFIX(fin);
+    const QString &suffix = TTK_FILE_SUFFIX(fin);
 
     if(suffix == TPL_FILE_SUFFIX)
     {
@@ -59,7 +59,7 @@ void MusicPlaylistManager::readSongItems(const QStringList& paths, MusicSongItem
     for(const QString &path : qAsConst(paths))
     {
         const QFileInfo fin(path);
-        const QString & suffix = FILE_SUFFIX(fin);
+        const QString & suffix = TTK_FILE_SUFFIX(fin);
 
         if(suffix == TPL_FILE_SUFFIX)
         {

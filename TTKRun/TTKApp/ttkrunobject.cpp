@@ -1,79 +1,51 @@
 #include "ttkrunobject.h"
-#include "musicconfigobject.h"
+#include "ttkversion.h"
+#ifdef _WIN32
+#  include <windows.h>
+#  include <shellapi.h>
+#else
+#  include <unistd.h>
+#endif
 
-#include <QProcess>
-#include <QCoreApplication>
+#ifdef _MSC_VER
+#  pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
+#endif
 
-/*! @brief The class of the ttk run object private.
- * @author Greedysky <greedysky@163.com>
- */
-class TTKRunObjectPrivate : public TTKPrivate<TTKRunObject>
+static bool strEndWidth(const TTKString &in, const TTKString &out)
 {
-public:
-    TTKRunObjectPrivate();
-    ~TTKRunObjectPrivate();
+    if(in.empty() || out.empty() || in.size() < out.size())
+    {
+        return false;
+    }
 
-    QProcess *m_process;
-
-};
-
-TTKRunObjectPrivate::TTKRunObjectPrivate()
-    : m_process(nullptr)
-{
-
+   return in.compare(in.length() - out.size(), out.size(), out) == 0;
 }
 
-TTKRunObjectPrivate::~TTKRunObjectPrivate()
-{
-    delete m_process;
-}
-
-
-
-TTKRunObject::TTKRunObject(QObject *parent)
-    : QObject(parent)
-{
-    TTK_INIT_PRIVATE(TTKRunObject);
-    TTK_D(TTKRunObject);
-
-    d->m_process = new QProcess(this);
-    connect(d->m_process, SIGNAL(finished(int)), SLOT(finished(int)));
-}
-
-void TTKRunObject::valid() const
-{
-    MusicConfigObject object;
-    object.valid();
-}
 
 void TTKRunObject::run(int argc, char **argv) const
 {
-    TTK_D(TTKRunObject);
-
-    QStringList args;
+    TTKString args;
     for(int i = 0; i < argc; ++i)
     {
-        const QString &&arg = QString::fromLocal8Bit(argv[i]);
-        if(!arg.endsWith(APP_EXE_NAME))
+        TTKString arg(argv[i]);
+        if(!strEndWidth(arg, APP_EXE_NAME))
         {
-            args << arg;
+            const size_t pos = arg.find('\"');
+            if(pos != TTKString::npos)
+            {
+               arg.insert(arg.begin() + pos, '\\');
+            }
+
+            args.append("\"" + arg + "\"");
+            args.append(" ");
         }
     }
 
-    MusicConfigObject object;
-    d->m_process->start(object.appPath(), args);
-}
-
-void TTKRunObject::finished(int code)
-{
-    if(code == 0)
-    {
-        TTK_INFO_STREAM("Application exit success");
-    }
-    else
-    {
-        TTK_INFO_STREAM("Application run error, please run TTKService instead");
-    }
-
-    qApp->quit();
+#ifdef _WIN32
+    const char * const path = TTK_STRCAT(TTK_VERSION_STR, TTK_RSEPARATOR) SERVICE_EXE_NAME;
+    ShellExecuteA(nullptr, "open", path, args.c_str(), nullptr, SW_HIDE);
+#else
+    const TTKString &path = get_current_dir_name();
+    system((path + "/" + "main1 " + args).c_str());
+#endif
 }

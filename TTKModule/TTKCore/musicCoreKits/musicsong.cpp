@@ -43,7 +43,7 @@ MusicSong::MusicSong(const QString &path, const QString &playTime, const QString
     }
 
     m_size = fin.size();
-    m_format = FILE_SUFFIX(fin);
+    m_format = TTK_FILE_SUFFIX(fin);
     m_addTime = fin.lastModified().toMSecsSinceEpoch();
     m_playTime = playTime;
     m_addTimeStr = QString::number(m_addTime);

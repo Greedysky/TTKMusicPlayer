@@ -22,41 +22,11 @@
 #include <QMap>
 #include <QSet>
 #include <QVariant>
+#include "ttkconfig.h"
 #include "ttklogger.h"
 
-// Normal definition
-#undef TTK_STD_CXX
-#define TTK_STD_CXX __cplusplus
-
-// VS2013 - 2015
-#if defined Q_CC_MSVC && _MSC_VER >= 1800
-#undef TTK_STD_CXX
-#define TTK_STD_CXX 201103L
-#endif
-
-// VS2017
-#if defined Q_CC_MSVC && _MSC_VER >= 1910
-#undef TTK_STD_CXX
-#define TTK_STD_CXX 201402L
-#endif
-
-// VS2019
-#if defined Q_CC_MSVC && _MSC_VER >= 1920
-#undef TTK_STD_CXX
-#define TTK_STD_CXX 201703L
-#endif
-
-// VS2022
-#if defined Q_CC_MSVC && _MSC_VER >= 1930
-#undef TTK_STD_CXX
-#define TTK_STD_CXX 202002L
-#endif
-
-#ifdef Q_CC_GNU
-#  pragma GCC diagnostic ignored "-Wswitch"
-#  pragma GCC diagnostic ignored "-Wparentheses"
-#  pragma GCC diagnostic ignored "-Wunused-result"
-#  pragma GCC diagnostic ignored "-Wunused-function"
+#ifdef QT_DEBUG
+#  define TTK_DEBUG
 #endif
 
 #define TTK_QT_VERSION_CHECK(major, minor, patch) (QT_VERSION >= QT_VERSION_CHECK(major, minor, patch))
@@ -77,39 +47,6 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) noexcept { ret
 // prevent rvalue arguments:
 template <typename T>
 void qAsConst(const T &&) = delete;
-#endif
-
-#ifdef QT_DEBUG
-#  define TTK_DEBUG
-#endif
-
-#if TTK_STD_CXX >= 201103L
-#  define TTK_CAST
-#endif
-
-// cast
-#ifdef TTK_CAST
-#  define TTKConstCast(x, y) (const_cast<x>(y))
-#else
-#  define TTKConstCast(x, y) ((x)(y))
-#endif
-
-#ifdef TTK_CAST
-#  define TTKDynamicCast(x, y) (dynamic_cast<x>(y))
-#else
-#  define TTKDynamicCast(x, y) ((x)(y))
-#endif
-
-#ifdef TTK_CAST
-#  define TTKReinterpretCast(x, y) (reinterpret_cast<x>(y))
-#else
-#  define TTKReinterpretCast(x, y) ((x)(y))
-#endif
-
-#ifdef TTK_CAST
-#  define TTKStaticCast(x, y) (static_cast<x>(y))
-#else
-#  define TTKStaticCast(x, y) ((x)(y))
 #endif
 
 #ifdef TTK_CAST
@@ -210,44 +147,9 @@ public: \
     return #Class; \
   }
 
-// marco cat
-#define TTK_CAT(a, b) a##b
-// marco str cat
-#ifndef Q_CC_MSVC
-// gcc version less than 3.4.0
-#  if __GNUC__ <= 3 && __GNUC_MINOR__ <= 4
-#    define TTK_STRCAT(a, b) a##b
-#  else
-#    define TTK_STRCAT(a, b) a b
-#  endif
-#else
-#  define TTK_STRCAT(a, b) a b
-#endif
-
-// marco preprocessor overload
-#define TTK_PP_OVERLOAD(prefix, ...) TTK_PP_CAT(prefix, TTK_PP_VARIADIC_SIZE(__VA_ARGS__))
-#define TTK_PP_CAT(a, b) TTK_CAT(a, b)
-#define TTK_PP_EMPTY()
-#ifdef Q_CC_MSVC
-#  define TTK_PP_VARIADIC_SIZE(...) TTK_PP_CAT(TTK_PP_VARIADIC_SIZE_I(__VA_ARGS__, 8, 7, 6, 5, 4, 3, 2, 1,),)
-#else
-#  define TTK_PP_VARIADIC_SIZE(...) TTK_PP_VARIADIC_SIZE_I(__VA_ARGS__, 8, 7, 6, 5, 4, 3, 2, 1,)
-#endif
-#define TTK_PP_VARIADIC_SIZE_I(e0, e1, e2, e3, e4, e5, e6, e7, size, ...) size
-
 // declare list and enum flag
 #define TTK_DECLARE_LIST(Class)        using Class##List = QList<Class>
 #define TTK_DECLARE_FLAG(Flags, Enum)  using Flags = QFlags<Enum>
-
-#define TTK_DOT             "."
-#define TTK_DOTDOT          ".."
-#define TTK_SEPARATOR       "/"
-#define TTK_PDIR            TTK_STRCAT(TTK_DOTDOT, TTK_SEPARATOR)
-
-#define TTK_SPLITER         "*|||*"
-#define TTK_DEFAULT_STR     "-"
-#define TTK_NAN_STR         "NaN"
-#define TTK_NULL_STR        "null"
 
 #if TTK_QT_VERSION_CHECK(6,0,0)
 #  define qint qintptr
@@ -255,24 +157,7 @@ public: \
 #  define qint long
 #endif
 
-// C style format
-using TTKInt8 =             signed char;                /* 8 bit signed */
-using TTKUInt8 =            unsigned char;              /* 8 bit unsigned */
-using TTKInt16 =            short;                      /* 16 bit signed */
-using TTKUInt16 =           unsigned short;             /* 16 bit unsigned */
-using TTKInt32 =            int;                        /* 32 bit signed */
-using TTKUInt32 =           unsigned int;               /* 32 bit unsigned */
-using TTKInt64 =            long long;                  /* 64 bit signed */
-using TTKUInt64 =           unsigned long long;         /* 64 bit unsigned */
-
-using TTKReal =             double;                     /* real */
-using TTKDouble =           double;                     /* double */
-using TTKFloat =            float;                      /* float */
-using TTKBool =             bool;                       /* bool */
-
-// C++ style format
-using TTKString =           std::string;                /* string */
-using TTKWString =          std::wstring;               /* wstring */
+#define TTK_FILE_SUFFIX(fin)  fin.suffix().toLower()
 
 // Qt style format
 using TTKIntSet =           QSet<int>;                  /* int set */

@@ -101,7 +101,7 @@ void MusicTransformWidget::initInputPath()
         {
             for(const QFileInfo &fin : TTK::File::fileInfoListByPath(path))
             {
-                if(!m_path.contains(fin.absoluteFilePath()) && supportedFormat.contains(FILE_SUFFIX(fin)))
+                if(!m_path.contains(fin.absoluteFilePath()) && supportedFormat.contains(TTK_FILE_SUFFIX(fin)))
                 {
                     m_path << fin.absoluteFilePath();
                     m_ui->listWidget->addItem(TTK::Widget::elidedText(font(), m_path.back(), Qt::ElideLeft, LINE_WIDTH));
