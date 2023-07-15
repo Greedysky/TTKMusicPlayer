@@ -29,8 +29,6 @@ if(WIN32)
   list(APPEND SOURCE_FILES ${PROJECT_NAME}.rc)
 endif()
 
-
-
 if(TTK_QT_VERSION VERSION_GREATER "4")
   qt5_wrap_cpp(MOC_FILES ${HEADER_FILES})
   

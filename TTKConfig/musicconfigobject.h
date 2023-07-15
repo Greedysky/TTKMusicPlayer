@@ -38,10 +38,6 @@ public:
      */
     void valid() const;
     /*!
-     * Get app path.
-     */
-    QString appPath() const;
-    /*!
      * Init parameters.
      */
     void initialize() const;

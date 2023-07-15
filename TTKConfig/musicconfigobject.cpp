@@ -14,14 +14,9 @@ void MusicConfigObject::valid() const
     checkFileNeededExist();
 }
 
-QString MusicConfigObject::appPath() const
-{
-    return TTK_SERVICE_FULL;
-}
-
 void MusicConfigObject::initialize() const
 {
-    checkFileNeededExist();
+    valid();
 
     copyFileOverwrite(":/data/config.xml", TTK_COFIG_PATH_FULL);
     copyFileOverwrite(":/data/playlist.tkpl", TTK_PLAYLIST_PATH_FULL);

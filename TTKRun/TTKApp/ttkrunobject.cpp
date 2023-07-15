@@ -45,7 +45,8 @@ void TTKRunObject::run(int argc, char **argv) const
     const char * const path = TTK_STRCAT(TTK_VERSION_STR, TTK_RSEPARATOR) SERVICE_EXE_NAME;
     ShellExecuteA(nullptr, "open", path, args.c_str(), nullptr, SW_HIDE);
 #else
-    const TTKString &path = get_current_dir_name();
-    system((path + "/" + "main1 " + args).c_str());
+    const char * const path = TTK_STRCAT(TTK_VERSION_STR, TTK_SEPARATOR) SERVICE_SHL_NAME;
+    const TTKString &dir = get_current_dir_name();
+    system((dir + "/" + path + args).c_str());
 #endif
 }

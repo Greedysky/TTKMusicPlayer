@@ -38,12 +38,6 @@ win32:msvc{
 win32{
     QMAKE_LFLAGS_CONSOLE = -mwindows
 }else{
-#    DEFINES += CONFIG_OUT_BUILD
-#    HEADERS += \
-#        $$PWD/../../TTKConfig/musicconfigobject.h \
-#        $$PWD/../../TTKConfig/musicconfigdefine.h
-#    SOURCES += $$PWD/../../TTKConfig/musicconfigobject.cpp
-
     appdata.path = $$PWD/../../TTKUtils/deploy/share/appdata/ttkmusicplayer.appdata.xml
     appdata.files = $$PWD/../../TTKUtils/deploy/share/appdata/ttkmusicplayer.appdata.xml
 }

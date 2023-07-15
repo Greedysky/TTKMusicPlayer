@@ -31,6 +31,7 @@
 
 #define TTK_QT_VERSION_CHECK(major, minor, patch) (QT_VERSION >= QT_VERSION_CHECK(major, minor, patch))
 
+
 #ifndef qPrintable
 #  define qPrintable(s) QString(s).toLocal8Bit().constData()
 #endif
@@ -38,6 +39,7 @@
 #ifndef qUtf8Printable
 #  define qUtf8Printable(s) QString(s).toUtf8().constData()
 #endif
+
 
 #if !TTK_QT_VERSION_CHECK(5,7,0)
 #  define TTK_AS_CONST
@@ -48,6 +50,7 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) noexcept { ret
 template <typename T>
 void qAsConst(const T &&) = delete;
 #endif
+
 
 #ifdef TTK_CAST
 #  define TTKObjectCast(x, y) (qobject_cast<x>(y))
@@ -61,6 +64,7 @@ void qAsConst(const T &&) = delete;
 #  define TTKVoidCast(x) (x)
 #endif
 
+
 // deprecated function
 #ifdef Q_CC_MSVC
 #  define TTK_DEPRECATED          __declspec(deprecated)
@@ -69,6 +73,7 @@ void qAsConst(const T &&) = delete;
 #  define TTK_DEPRECATED          __attribute__((__deprecated__))
 #  define TTK_DEPRECATED_X(text)  __attribute__((__deprecated__(text)))
 #endif
+
 
 #if !TTK_QT_VERSION_CHECK(5,0,0) && defined(Q_CC_GNU)
 #  if defined(__GXX_EXPERIMENTAL_CXX0X__) || TTK_STD_CXX >= 201103L
@@ -79,6 +84,7 @@ void qAsConst(const T &&) = delete;
 #    define Q_COMPILER_CONSTEXPR
 #  endif
 #endif
+
 
 // C++11 keywords and expressions
 #ifdef Q_COMPILER_NULLPTR
@@ -128,6 +134,7 @@ void qAsConst(const T &&) = delete;
 #  define TTK_RCONSTEXPR const
 #endif
 
+
 // disable copy
 #define TTK_DISABLE_COPY(Class) \
 private: \
@@ -147,6 +154,7 @@ public: \
     return #Class; \
   }
 
+
 // declare list and enum flag
 #define TTK_DECLARE_LIST(Class)        using Class##List = QList<Class>
 #define TTK_DECLARE_FLAG(Flags, Enum)  using Flags = QFlags<Enum>
@@ -158,6 +166,7 @@ public: \
 #endif
 
 #define TTK_FILE_SUFFIX(fin)  fin.suffix().toLower()
+
 
 // Qt style format
 using TTKIntSet =           QSet<int>;                  /* int set */
