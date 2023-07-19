@@ -24,7 +24,7 @@
 #include <QtXml/QDomDocument>
 
 #include "ttktime.h"
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the ttk xml attribute.
  * @author Greedysky <greedysky@163.com>

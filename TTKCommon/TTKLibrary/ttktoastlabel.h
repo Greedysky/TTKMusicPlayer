@@ -21,7 +21,7 @@
 
 #include <QLabel>
 #include <QTimer>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the toast widget.
  * @author Greedysky <greedysky@163.com>

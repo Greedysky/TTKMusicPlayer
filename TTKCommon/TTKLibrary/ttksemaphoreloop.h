@@ -21,7 +21,7 @@
 
 #include <QTimer>
 #include <QEventLoop>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the semaphore event loop.
  * @author Greedysky <greedysky@163.com>

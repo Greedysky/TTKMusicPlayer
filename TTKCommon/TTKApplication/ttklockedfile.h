@@ -23,7 +23,7 @@
 #ifdef Q_OS_WIN
 #include <QVector>
 #endif
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The namespace of locked private.
  * @author Greedysky <greedysky@163.com>

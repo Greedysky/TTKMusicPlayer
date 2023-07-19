@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 #include <type_traits>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the ttk defer module.
  * @author Greedysky <greedysky@163.com>

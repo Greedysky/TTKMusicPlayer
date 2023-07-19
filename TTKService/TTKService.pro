@@ -19,20 +19,18 @@
 TEMPLATE = app
 
 include($$PWD/../TTKMusicPlayer.pri)
+include($$PWD/../TTKCommon/TTKApplication/TTKApplication.pri)
 
 TARGET = TTKService
 
 LIBS += -L$$DESTDIR -lTTKCore -lTTKConfig
 
 INCLUDEPATH += \
+    $$PWD/../TTKConfig \
     $$PWD/../TTKModule \
     $$PWD/../TTKModule/TTKCore/musicCoreKits \
-    $$PWD/../TTKModule/TTKWidget/musicCoreKits \
-    $$PWD/../TTKRun \
-    $$PWD/../TTKConfig
+    $$PWD/../TTKModule/TTKWidget/musicCoreKits
 
 SOURCES += $$PWD/musicservicemain.cpp
-
-include($$PWD/../TTKCommon/TTKApplication/TTKApplication.pri)
 
 win32:RC_FILE = $$PWD/TTKService.rc

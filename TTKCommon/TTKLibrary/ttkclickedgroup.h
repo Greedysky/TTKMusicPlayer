@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 #include <QWidget>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the label widget click group mapper.
  * @author Greedysky <greedysky@163.com>

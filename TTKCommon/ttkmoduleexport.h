@@ -1,5 +1,5 @@
-#ifndef TTKGLOBALDEFINE_H
-#define TTKGLOBALDEFINE_H
+#ifndef TTKMODULEEXPORT_H
+#define TTKMODULEEXPORT_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -27,4 +27,4 @@
 #  define TTK_MODULE_EXPORT Q_DECL_IMPORT
 #endif
 
-#endif // TTKGLOBALDEFINE_H
+#endif // TTKMODULEEXPORT_H

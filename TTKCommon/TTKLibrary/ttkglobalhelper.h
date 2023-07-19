@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 #include <QPainter>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 namespace TTK
 {

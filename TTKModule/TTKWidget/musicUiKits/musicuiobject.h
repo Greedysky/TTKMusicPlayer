@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkglobal.h"
+#include "ttkqtglobal.h"
 
 /*! @brief The namespace of the application ui object.
  * @author Greedysky <greedysky@163.com>

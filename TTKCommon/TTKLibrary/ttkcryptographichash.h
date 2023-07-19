@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 #if defined(_MSC_VER)
 using xxtea_uint = unsigned __int32;

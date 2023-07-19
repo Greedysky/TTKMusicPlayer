@@ -42,11 +42,9 @@ win32{
     appdata.files = $$PWD/../../TTKUtils/deploy/share/appdata/ttkmusicplayer.appdata.xml
 }
 
-INCLUDEPATH += \
-    $$PWD/../../TTKCommon
+INCLUDEPATH += $$PWD/../../TTKCommon
 
-HEADERS += \
-    $$PWD/ttkrunobject.h
+HEADERS += $$PWD/ttkrunobject.h
 
 SOURCES += \
     $$PWD/ttkrunobject.cpp \

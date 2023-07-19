@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkglobal.h"
+#include "ttkqtglobal.h"
 
 /*! @brief The class of the qt compat function wrapper.
  * @author Greedysky <greedysky@163.com>

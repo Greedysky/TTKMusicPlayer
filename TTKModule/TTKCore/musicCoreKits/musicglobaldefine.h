@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 #include "ttknumberdefine.h"
 #include "musicobject.h"
 #include "musicotherdefine.h"

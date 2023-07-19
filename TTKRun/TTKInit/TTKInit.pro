@@ -39,7 +39,6 @@ win32:msvc{
 LIBS += -L$$DESTDIR -lTTKConfig
 
 INCLUDEPATH += \
-    $$PWD/../ \
     $$PWD/../../TTKCommon \
     $$PWD/../../TTKConfig \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits

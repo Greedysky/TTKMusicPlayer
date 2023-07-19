@@ -30,4 +30,3 @@ HEADERS += \
 SOURCES += \
     $$PWD/ttklocalpeer.cpp \
     $$PWD/ttkrunapplication.cpp
-

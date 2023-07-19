@@ -67,11 +67,13 @@ private:
      * Copy file.
      */
     void copyFile(const QString &origin, const QString &des) const;
+#ifdef Q_OS_UNIX
     /*!
      * Copy linux shell file.
      */
     void copyLinuxShellFile(const QString &name, const QString &path) const;
+#endif
 
 };
 
-#endif
+#endif // MUSICCONFIGOBJECT_H

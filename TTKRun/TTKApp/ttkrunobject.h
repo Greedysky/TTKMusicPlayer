@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkconfig.h"
+#include "ttkglobal.h"
 
 /*! @brief The class of the ttk run object.
  * @author Greedysky <greedysky@163.com>

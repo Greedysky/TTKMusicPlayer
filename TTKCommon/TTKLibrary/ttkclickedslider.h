@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 #include <QSlider>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the slider that can clicked any position.
  * @author Greedysky <greedysky@163.com>

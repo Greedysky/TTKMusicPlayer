@@ -21,7 +21,7 @@
 
 #include <queue>
 #include <condition_variable>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the concurrent queue.
  * @author Greedysky <greedysky@163.com>

@@ -21,7 +21,7 @@
 
 #include <QDialog>
 #include <QMouseEvent>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the moving dialog base.
  * @author Greedysky <greedysky@163.com>

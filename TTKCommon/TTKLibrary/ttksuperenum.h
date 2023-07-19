@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 #include <unordered_map>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 class TTK_MODULE_EXPORT TTKSuperEnum
 {

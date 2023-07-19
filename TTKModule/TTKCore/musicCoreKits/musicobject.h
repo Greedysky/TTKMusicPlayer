@@ -22,7 +22,7 @@
 #include <QDir>
 #include <QCoreApplication>
 
-#include "ttkglobal.h"
+#include "ttkqtglobal.h"
 
 //
 #define TKF_FILE_SUFFIX          "tkf"
@@ -71,8 +71,8 @@
 
 
 #define APPDATA_DIR              TTK_STRCAT("AppData", TTK_SEPARATOR)
-#define DOWNLOAD_DIR             TTK_STRCAT("Downloads", TTK_SEPARATOR)
 #define APPCACHE_DIR             TTK_STRCAT("AppCache", TTK_SEPARATOR)
+#define DOWNLOAD_DIR             TTK_STRCAT("Downloads", TTK_SEPARATOR)
 //
 #define LRC_DIR                  TTK_STRCAT("Lyric", TTK_SEPARATOR)
 #define MUSIC_DIR                TTK_STRCAT("Music", TTK_SEPARATOR)

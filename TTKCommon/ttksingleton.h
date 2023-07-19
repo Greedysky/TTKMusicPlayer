@@ -21,7 +21,7 @@
 
 #include <QMutex>
 #include <QScopedPointer>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 template <typename T>
 /*! @brief The class of the singleton base.

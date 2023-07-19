@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 #include <QLabel>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the theme line label.
  * @author Greedysky <greedysky@163.com>

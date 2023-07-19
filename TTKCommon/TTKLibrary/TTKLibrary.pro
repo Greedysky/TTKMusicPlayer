@@ -44,14 +44,15 @@ win32:msvc{
 INCLUDEPATH += $$PWD/../
 
 HEADERS += \
-    $$PWD/../ttkversion.h \
-    $$PWD/../ttksingleton.h \
-    $$PWD/../ttkqtcompat.h \
-    $$PWD/../ttkprivate.h \
+    $$PWD/../ttkglobal.h \
     $$PWD/../ttklogger.h \
+    $$PWD/../ttkmoduleexport.h \
     $$PWD/../ttknumberdefine.h \
-    $$PWD/../ttkglobaldefine.h \
-    $$PWD/../ttkglobal.h
+    $$PWD/../ttkprivate.h \
+    $$PWD/../ttkqtcompat.h \
+    $$PWD/../ttkqtglobal.h \
+    $$PWD/../ttksingleton.h \
+    $$PWD/../ttkversion.h
 
 HEADERS += \
     $$PWD/ttkabstractmovedialog.h \

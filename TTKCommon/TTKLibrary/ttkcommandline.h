@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 #include <QCoreApplication>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the command line option.
  * @author Greedysky <greedysky@163.com>

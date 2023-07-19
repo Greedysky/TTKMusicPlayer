@@ -21,7 +21,7 @@
 
 #include <QLabel>
 #include <qmath.h>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the rating label.
  * @author Greedysky <greedysky@163.com>

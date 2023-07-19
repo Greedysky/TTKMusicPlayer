@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 #include <QItemDelegate>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 #define TTK_DATA_ROLE     Qt::UserRole + 101
 #define TTK_TIME_ROLE     Qt::UserRole + 102

@@ -21,7 +21,7 @@
 
 #include <QThread>
 #include <QStringList>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the ttk abstract thread.
  * @author Greedysky <greedysky@163.com>

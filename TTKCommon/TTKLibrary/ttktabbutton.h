@@ -21,7 +21,7 @@
 
 #include <QPushButton>
 #include <QButtonGroup>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the tab button module.
  * @author Greedysky <greedysky@163.com>

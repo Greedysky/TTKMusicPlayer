@@ -13,7 +13,6 @@
 #endif
 
 #include <QTranslator>
-#include <QApplication>
 
 static void cleanAppicationCache()
 {

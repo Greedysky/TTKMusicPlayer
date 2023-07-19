@@ -19,161 +19,159 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QMap>
-#include <QSet>
-#include <QVariant>
-#include "ttkconfig.h"
-#include "ttklogger.h"
+#include <string>
 
-#ifdef QT_DEBUG
-#  define TTK_DEBUG
+// Normal definition
+#undef TTK_STD_CXX
+#define TTK_STD_CXX __cplusplus
+
+// VS2013 - 2015
+#if defined _MSC_VER && _MSC_VER >= 1800
+#  undef TTK_STD_CXX
+#  define TTK_STD_CXX 201103L
 #endif
 
-#define TTK_QT_VERSION_CHECK(major, minor, patch) (QT_VERSION >= QT_VERSION_CHECK(major, minor, patch))
-
-
-#ifndef qPrintable
-#  define qPrintable(s) QString(s).toLocal8Bit().constData()
+// VS2017
+#if defined _MSC_VER && _MSC_VER >= 1910
+#  undef TTK_STD_CXX
+#  define TTK_STD_CXX 201402L
 #endif
 
-#ifndef qUtf8Printable
-#  define qUtf8Printable(s) QString(s).toUtf8().constData()
+// VS2019
+#if defined _MSC_VER && _MSC_VER >= 1920
+#  undef TTK_STD_CXX
+#  define TTK_STD_CXX 201703L
+#endif
+
+// VS2022
+#if defined _MSC_VER && _MSC_VER >= 1930
+#  undef TTK_STD_CXX
+#  define TTK_STD_CXX 202002L
 #endif
 
 
-#if !TTK_QT_VERSION_CHECK(5,7,0)
-#  define TTK_AS_CONST
-// this adds const to non-const objects (like std::as_const)
-template <typename T>
-Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) noexcept { return t; }
-// prevent rvalue arguments:
-template <typename T>
-void qAsConst(const T &&) = delete;
+#ifdef __GNUC__
+#  pragma GCC diagnostic ignored "-Wswitch"
+#  pragma GCC diagnostic ignored "-Wparentheses"
+#  pragma GCC diagnostic ignored "-Wunused-result"
+#  pragma GCC diagnostic ignored "-Wunused-function"
 #endif
 
+
+#if TTK_STD_CXX >= 201103L
+#  define TTK_CAST
+#endif
+
+// cast
+#ifdef TTK_CAST
+#  define TTKConstCast(x, y) (const_cast<x>(y))
+#else
+#  define TTKConstCast(x, y) ((x)(y))
+#endif
 
 #ifdef TTK_CAST
-#  define TTKObjectCast(x, y) (qobject_cast<x>(y))
+#  define TTKDynamicCast(x, y) (dynamic_cast<x>(y))
 #else
-#  define TTKObjectCast(x, y) ((x)(y))
+#  define TTKDynamicCast(x, y) ((x)(y))
 #endif
 
-#if defined TTK_CAST && TTK_QT_VERSION_CHECK(5,15,0)
-#  define TTKVoidCast(x) (x)(void*)
+#ifdef TTK_CAST
+#  define TTKReinterpretCast(x, y) (reinterpret_cast<x>(y))
 #else
-#  define TTKVoidCast(x) (x)
+#  define TTKReinterpretCast(x, y) ((x)(y))
 #endif
 
-
-// deprecated function
-#ifdef Q_CC_MSVC
-#  define TTK_DEPRECATED          __declspec(deprecated)
-#  define TTK_DEPRECATED_X(text)  __declspec(deprecated(text))
+#ifdef TTK_CAST
+#  define TTKStaticCast(x, y) (static_cast<x>(y))
 #else
-#  define TTK_DEPRECATED          __attribute__((__deprecated__))
-#  define TTK_DEPRECATED_X(text)  __attribute__((__deprecated__(text)))
+#  define TTKStaticCast(x, y) ((x)(y))
 #endif
 
 
-#if !TTK_QT_VERSION_CHECK(5,0,0) && defined(Q_CC_GNU)
-#  if defined(__GXX_EXPERIMENTAL_CXX0X__) || TTK_STD_CXX >= 201103L
-#    define Q_COMPILER_DEFAULT_MEMBERS
-#    define Q_COMPILER_DELETE_MEMBERS
-#    define Q_COMPILER_NULLPTR
-#    define Q_COMPILER_EXPLICIT_OVERRIDES
-#    define Q_COMPILER_CONSTEXPR
-#  endif
-#endif
-
-
-// C++11 keywords and expressions
-#ifdef Q_COMPILER_NULLPTR
-#  define TTK_NULLPTR  nullptr
-#else
-#  define TTK_NULLPTR  NULL
-#endif
-
-#ifdef Q_COMPILER_DEFAULT_MEMBERS
-#  define TTK_DEFAULT = default
-#else
-#  define TTK_DEFAULT
-#endif
-
-#ifdef Q_COMPILER_DELETE_MEMBERS
-#  define TTK_DELETE = delete
-#else
-#  define TTK_DELETE
-#endif
-
-#ifdef Q_COMPILER_EXPLICIT_OVERRIDES
-#  define TTK_OVERRIDE override
-#  define TTK_FINAL final
-#else
-#  ifndef TTK_OVERRIDE
-#    define TTK_OVERRIDE
-#  endif
-#  ifndef TTK_FINAL
-#    define TTK_FINAL
-#  endif
-#endif
-
-#if defined Q_CC_MSVC && _MSC_VER <= 1800
-#  define constexpr const
-#endif
-
-#if defined Q_COMPILER_CONSTEXPR
-#  if defined(__cpp_constexpr) && __cpp_constexpr >= 201304L
-#    define TTK_CONSTEXPR constexpr
-#    define TTK_RCONSTEXPR constexpr
+// marco cat
+#define TTK_CAT(a, b) a##b
+// marco str cat
+#ifndef _MSC_VER
+// gcc version less than 3.4.0
+#  if __GNUC__ <= 3 && __GNUC_MINOR__ <= 4
+#    define TTK_STRCAT(a, b) a##b
 #  else
-#    define TTK_CONSTEXPR constexpr
-#    define TTK_RCONSTEXPR const
+#    define TTK_STRCAT(a, b) a b
 #  endif
 #else
-#  define TTK_CONSTEXPR const
-#  define TTK_RCONSTEXPR const
+#  define TTK_STRCAT(a, b) a b
 #endif
 
 
-// disable copy
-#define TTK_DISABLE_COPY(Class) \
-private: \
-  Class(const Class &) TTK_DELETE; \
-  Class &operator=(const Class &) TTK_DELETE;
-
-// disable init and copy
-#define TTK_DISABLE_INIT_COPY(Class) \
-  TTK_DISABLE_COPY(Class) \
-  Class() TTK_DELETE;
-
-// make class name
-#define TTK_DECLARE_MODULE(Class) \
-public: \
-  inline static QString className() \
-  { \
-    return #Class; \
-  }
-
-
-// declare list and enum flag
-#define TTK_DECLARE_LIST(Class)        using Class##List = QList<Class>
-#define TTK_DECLARE_FLAG(Flags, Enum)  using Flags = QFlags<Enum>
-
-#if TTK_QT_VERSION_CHECK(6,0,0)
-#  define qint qintptr
+// marco preprocessor overload
+#define TTK_PP_OVERLOAD(prefix, ...) TTK_PP_CAT(prefix, TTK_PP_VARIADIC_SIZE(__VA_ARGS__))
+#define TTK_PP_CAT(a, b) TTK_CAT(a, b)
+#define TTK_PP_EMPTY()
+#ifdef _MSC_VER
+#  define TTK_PP_VARIADIC_SIZE(...) TTK_PP_CAT(TTK_PP_VARIADIC_SIZE_I(__VA_ARGS__, 8, 7, 6, 5, 4, 3, 2, 1,),)
 #else
-#  define qint long
+#  define TTK_PP_VARIADIC_SIZE(...) TTK_PP_VARIADIC_SIZE_I(__VA_ARGS__, 8, 7, 6, 5, 4, 3, 2, 1,)
+#endif
+#define TTK_PP_VARIADIC_SIZE_I(e0, e1, e2, e3, e4, e5, e6, e7, size, ...) size
+
+
+#define TTK_DOT             "."
+#define TTK_DOTDOT          ".."
+#define TTK_SEPARATOR       "/"
+#define TTK_RSEPARATOR      "\\"
+#define TTK_PDIR            TTK_STRCAT(TTK_DOTDOT, TTK_SEPARATOR)
+
+#define TTK_SPLITER         "*|||*"
+#define TTK_DEFAULT_STR     "-"
+#define TTK_NAN_STR         "NaN"
+#define TTK_NULL_STR        "null"
+
+
+#define HTTP_PREFIX         "http://"
+#define HTTPS_PREFIX        "https://"
+
+#define SHL_FILE_SUFFIX     "sh"
+#define EXE_FILE_SUFFIX     "exe"
+#define COM_FILE_SUFFIX     "com"
+
+#define SHL_FILE            TTK_STRCAT(TTK_DOT, SHL_FILE_SUFFIX)
+#define EXE_FILE            TTK_STRCAT(TTK_DOT, EXE_FILE_SUFFIX)
+#define COM_FILE            TTK_STRCAT(TTK_DOT, COM_FILE_SUFFIX)
+
+#define SERVICE_NAME        "TTKService"
+#define APP_NAME            "TTKMusicPlayer"
+#define APP_DOT_NAME        TTK_STRCAT(APP_NAME, TTK_DOT)
+#define APP_COME_NAME       TTK_STRCAT(APP_NAME, COM_FILE)
+#ifdef _WIN32
+#  define APP_EXE_NAME      TTK_STRCAT(APP_NAME, EXE_FILE)
+#  define SERVICE_EXE_NAME  TTK_STRCAT(SERVICE_NAME, EXE_FILE)
+#  define APP_SHL_NAME      APP_EXE_NAME
+#  define SERVICE_SHL_NAME  SERVICE_EXE_NAME
+#else
+#  define APP_EXE_NAME      APP_NAME
+#  define SERVICE_EXE_NAME  SERVICE_NAME
+#  define APP_SHL_NAME      TTK_STRCAT(APP_NAME, SHL_FILE)
+#  define SERVICE_SHL_NAME  TTK_STRCAT(SERVICE_NAME, SHL_FILE)
 #endif
 
-#define TTK_FILE_SUFFIX(fin)  fin.suffix().toLower()
 
+// C style format
+using TTKInt8 =             signed char;                /* 8 bit signed */
+using TTKUInt8 =            unsigned char;              /* 8 bit unsigned */
+using TTKInt16 =            short;                      /* 16 bit signed */
+using TTKUInt16 =           unsigned short;             /* 16 bit unsigned */
+using TTKInt32 =            int;                        /* 32 bit signed */
+using TTKUInt32 =           unsigned int;               /* 32 bit unsigned */
+using TTKInt64 =            long long;                  /* 64 bit signed */
+using TTKUInt64 =           unsigned long long;         /* 64 bit unsigned */
 
-// Qt style format
-using TTKIntSet =           QSet<int>;                  /* int set */
-using TTKIntList =          QList<int>;                 /* int list */
-using TTKVariantList =      QList<QVariant>;            /* variant list */
-using TTKStringMap =        QMap<QString, QString>;     /* strings map */
-using TTKVariantMap =       QMap<QString, QVariant>;    /* string variant map */
-using TTKIntStringMap =     QMap<qint64, QString>;      /* int string map */
+using TTKReal =             double;                     /* real */
+using TTKDouble =           double;                     /* double */
+using TTKFloat =            float;                      /* float */
+using TTKBool =             bool;                       /* bool */
+
+// C++ style format
+using TTKString =           std::string;                /* string */
+using TTKWString =          std::wstring;               /* wstring */
 
 #endif // TTKGLOBAL_H

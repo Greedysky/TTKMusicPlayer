@@ -21,7 +21,7 @@
 
 #include <QWidget>
 #include <QMouseEvent>
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 /*! @brief The class of the moving widget base.
  * @author Greedysky <greedysky@163.com>

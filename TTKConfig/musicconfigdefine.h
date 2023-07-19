@@ -20,41 +20,40 @@
  ***************************************************************************/
 
 #include "musicobject.h"
-#include "ttkversion.h"
-#include "ttkglobaldefine.h"
+#include "ttkmoduleexport.h"
 
 //
-#define TTK_DOWNLOAD_DIR_FULL       TTK::applicationPath() + TTK_PDIR + DOWNLOAD_DIR
-#define TTK_LRC_DIR_FULL            TTK_DOWNLOAD_DIR_FULL + LRC_DIR
-#define TTK_MUSIC_DIR_FULL          TTK_DOWNLOAD_DIR_FULL + MUSIC_DIR
-#define TTK_MOVIE_DIR_FULL          TTK_DOWNLOAD_DIR_FULL + MOVIE_DIR
+#define TTK_DOWNLOAD_DIR_FULL      TTK::applicationPath() + TTK_PDIR + DOWNLOAD_DIR
+#define TTK_LRC_DIR_FULL           TTK_DOWNLOAD_DIR_FULL + LRC_DIR
+#define TTK_MUSIC_DIR_FULL         TTK_DOWNLOAD_DIR_FULL + MUSIC_DIR
+#define TTK_MOVIE_DIR_FULL         TTK_DOWNLOAD_DIR_FULL + MOVIE_DIR
 //
-#define TTK_CACHE_DIR_FULL          CACHE_DIR_FULL
-#define TTK_ART_DIR_FULL            ART_DIR_FULL
-#define TTK_BACKGROUND_DIR_FULL     BACKGROUND_DIR_FULL
+#define TTK_CACHE_DIR_FULL         CACHE_DIR_FULL
+#define TTK_ART_DIR_FULL           ART_DIR_FULL
+#define TTK_BACKGROUND_DIR_FULL    BACKGROUND_DIR_FULL
 //
-#define TTK_COFIG_PATH_FULL         COFIG_PATH_FULL
-#define TTK_PLAYLIST_PATH_FULL      PLAYLIST_PATH_FULL
-#define TTK_NORMAL_DOWN_PATH_FULL   NORMAL_DOWN_PATH_FULL
-#define TTK_CLOUD_DOWN_PATH_FULL    CLOUD_DOWN_PATH_FULL
-#define TTK_CLOUD_UP_PATH_FULL      CLOUD_UP_PATH_FULL
-#define TTK_SEARCH_PATH_FULL        SEARCH_PATH_FULL
-#define TTK_USER_THEME_DIR_FULL     USER_THEME_DIR_FULL
+#define TTK_COFIG_PATH_FULL        COFIG_PATH_FULL
+#define TTK_PLAYLIST_PATH_FULL     PLAYLIST_PATH_FULL
+#define TTK_NORMAL_DOWN_PATH_FULL  NORMAL_DOWN_PATH_FULL
+#define TTK_CLOUD_DOWN_PATH_FULL   CLOUD_DOWN_PATH_FULL
+#define TTK_CLOUD_UP_PATH_FULL     CLOUD_UP_PATH_FULL
+#define TTK_SEARCH_PATH_FULL       SEARCH_PATH_FULL
+#define TTK_USER_THEME_DIR_FULL    USER_THEME_DIR_FULL
 //
-#define TTK_THEME_DIR_FULL          TTK::applicationPath() + THEME_DIR
-#define TTK_PLUGINS_DIR_FULL        TTK::applicationPath() + PLUGINS_DIR
-#define TTK_LANGUAGE_DIR_FULL       TTK::applicationPath() + LANGUAGE_DIR
+#define TTK_THEME_DIR_FULL         TTK::applicationPath() + THEME_DIR
+#define TTK_PLUGINS_DIR_FULL       TTK::applicationPath() + PLUGINS_DIR
+#define TTK_LANGUAGE_DIR_FULL      TTK::applicationPath() + LANGUAGE_DIR
 
 
 #ifdef Q_OS_WIN
-#  define TTK_SERVICE_FULL          TTK::applicationPath() + SERVICE_EXE_NAME
+#  define TTK_SERVICE_FULL         TTK::applicationPath() + SERVICE_EXE_NAME
 #else
-#  define TTK_ROUTINE_FULL          TTK::applicationPath() + TTK_PDIR + "TTKRoutine.sh"
-#  define TTK_MUSICPLAYER_FULL      TTK::applicationPath() + TTK_PDIR + APP_SHL_NAME
-#  define TTK_INIT_FULL             TTK::applicationPath() + "TTKInit.sh"
-#  define TTK_CONSOLE_FULL          TTK::applicationPath() + "TTKConsole.sh"
-#  define TTK_SERVICE_FULL          TTK::applicationPath() + SERVICE_SHL_NAME
-#  define TTK_ROUTINECOPY_FULL      TTK::applicationPath() + "TTKRoutineCopy.sh"
+#  define TTK_ROUTINE_FULL         TTK::applicationPath() + TTK_PDIR + "TTKRoutine.sh"
+#  define TTK_MUSICPLAYER_FULL     TTK::applicationPath() + TTK_PDIR + APP_SHL_NAME
+#  define TTK_INIT_FULL            TTK::applicationPath() + "TTKInit.sh"
+#  define TTK_CONSOLE_FULL         TTK::applicationPath() + "TTKConsole.sh"
+#  define TTK_SERVICE_FULL         TTK::applicationPath() + SERVICE_SHL_NAME
+#  define TTK_ROUTINECOPY_FULL     TTK::applicationPath() + "TTKRoutineCopy.sh"
 #endif
 
-#endif
+#endif // MUSICCONFIGDEFINE_H
