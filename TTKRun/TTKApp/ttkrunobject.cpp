@@ -7,10 +7,6 @@
 #  include <unistd.h>
 #endif
 
-#ifdef _MSC_VER
-#  pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
-#endif
-
 static bool strEndWidth(const TTKString &in, const TTKString &out)
 {
     if(in.empty() || out.empty() || in.size() < out.size())

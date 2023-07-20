@@ -31,6 +31,12 @@ INCLUDEPATH += \
     $$PWD/../TTKModule/TTKCore/musicCoreKits \
     $$PWD/../TTKModule/TTKWidget/musicCoreKits
 
+win32:msvc{
+HEADERS += \
+    $$PWD/../TTKConfig/musicconfigobject.h \
+    $$PWD/../TTKModule/musicapplication.h
+}
+
 SOURCES += $$PWD/musicservicemain.cpp
 
 win32:RC_FILE = $$PWD/TTKService.rc

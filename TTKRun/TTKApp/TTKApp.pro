@@ -36,7 +36,7 @@ win32:msvc{
 }
 
 win32{
-    QMAKE_LFLAGS_CONSOLE = -mwindows
+    !msvc:QMAKE_LFLAGS_CONSOLE = -mwindows
 }else{
     appdata.path = $$PWD/../../TTKUtils/deploy/share/appdata/ttkmusicplayer.appdata.xml
     appdata.files = $$PWD/../../TTKUtils/deploy/share/appdata/ttkmusicplayer.appdata.xml

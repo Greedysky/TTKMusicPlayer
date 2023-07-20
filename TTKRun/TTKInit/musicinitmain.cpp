@@ -1,6 +1,10 @@
 #include <QCoreApplication>
 #include "musicconfigobject.h"
 
+#ifdef _MSC_VER
+#  pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
+#endif
+
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
