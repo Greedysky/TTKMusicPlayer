@@ -2,7 +2,7 @@
 #define TTKRUNOBJECT_H
 
 /***************************************************************************
- * This file is part of the TTK Music Player project
+ * This file is part of the TTK Library Module project
  * Copyright (C) 2015 - 2023 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
@@ -20,6 +20,10 @@
  ***************************************************************************/
 
 #include "ttkglobal.h"
+
+#ifdef _MSC_VER
+#  pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
+#endif
 
 /*! @brief The class of the ttk run object.
  * @author Greedysky <greedysky@163.com>
