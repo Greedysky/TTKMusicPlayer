@@ -26,6 +26,8 @@ include($$PWD/../../TTKVersion.pri)
 DESTDIR = $$OUT_PWD/../../bin/$$TTK_VERSION
 TARGET = TTKInit
 
+DEFINES += TTK_LIBRARY
+
 win32:msvc{
     CONFIG += c++11
 }else{
@@ -40,7 +42,7 @@ win32{
     msvc{
         HEADERS += $$PWD/../../TTKConfig/musicconfigobject.h
     }else{
-        QMAKE_LFLAGS_CONSOLE = -mwindows
+        QMAKE_LFLAGS_CONSOLE += -mwindows
     }
 }
 
