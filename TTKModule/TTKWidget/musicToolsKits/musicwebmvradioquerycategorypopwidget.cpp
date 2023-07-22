@@ -33,7 +33,7 @@ void MusicWebMVRadioQueryCategoryItem::setCategory(const MusicResultsCategory &c
     for(int i = 0; i < m_category.m_items.count(); ++i)
     {
         TTKClickedLabel *l = new TTKClickedLabel(m_category.m_items[i].m_value, item);
-        l->setStyleSheet(QString("QLabel::hover{%1}").arg(TTK::UI::ColorStyle08));
+        l->setStyleSheet(QString("QLabel::hover{%1}").arg(TTK::UI::ColorStyle07));
         l->setFixedSize(200, ITEM_LABEL_WIDTH);
 
         itemlayout->addWidget(l, i / ITEM_MAX_COLUMN, i % ITEM_MAX_COLUMN, Qt::AlignLeft);

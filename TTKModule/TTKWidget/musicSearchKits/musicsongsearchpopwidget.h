@@ -38,6 +38,11 @@ public:
     ~MusicSongSearchPopTableWidget();
 
     /*!
+     * Select search history table items.
+     */
+    void selectRow(bool up);
+
+    /*!
      * Create cell item by input data.
      */
     void addCellItem(int index, const QString &name, const QString &time);
@@ -46,7 +51,7 @@ Q_SIGNALS:
     /*!
      * User click the current item.
      */
-    void setText(const QString &text);
+    void setText(const QString &text, bool update);
 
 public Q_SLOTS:
     /*!
@@ -79,6 +84,12 @@ public:
      * Create popup search history table items.
      */
     void initialize(QWidget *parent);
+
+    /*!
+     * Select search history table items.
+     */
+    void selectRow(bool up);
+
     /*!
      * set control module enabled.
      */
@@ -105,7 +116,7 @@ private:
      * Override the widget event.
      */
     virtual void paintEvent(QPaintEvent *event) override final;
-    virtual void leaveEvent(QEvent *event) override final;
+
     /*!
      * Transform utc time to local time before.
      */

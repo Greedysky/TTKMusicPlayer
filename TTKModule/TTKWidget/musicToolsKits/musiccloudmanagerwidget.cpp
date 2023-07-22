@@ -535,7 +535,7 @@ MusicCloudDataItem MusicCloudManagerTableWidget::FindWaitedItemRow() const
 MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setStyleSheet(TTK::UI::BackgroundStyle10 + TTK::UI::ColorStyle09);
+    setStyleSheet(TTK::UI::BackgroundStyle10 + TTK::UI::ColorStyle02);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
@@ -557,7 +557,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     QFont pLabelFont = pLabel->font();
     pLabelFont.setPixelSize(20);
     pLabel->setFont(pLabelFont);
-    pLabel->setStyleSheet(TTK::UI::ColorStyle11);
+    pLabel->setStyleSheet(TTK::UI::ColorStyle01);
 
     QLabel *iLabel = new QLabel(tr("Sharing of cloud disk songs"), topWidget);
     QFont iLabelFont = iLabel->font();

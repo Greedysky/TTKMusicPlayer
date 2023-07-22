@@ -266,7 +266,7 @@ void MusicAlbumQueryWidget::createLabels()
 
     QLabel *numberLabel = new QLabel(topRightWidget);
     numberLabel->setAlignment(Qt::AlignCenter);
-    numberLabel->setStyleSheet(TTK::UI::FontStyle05 + TTK::UI::ColorStyle05);
+    numberLabel->setStyleSheet(TTK::UI::FontStyle05 + TTK::UI::ColorStyle11);
 
     const int number = 7 + TTK::random(3);
     numberLabel->setText(QString("%1.%2").arg(number).arg(TTK::random(10)));

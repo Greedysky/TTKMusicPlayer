@@ -123,9 +123,9 @@ MusicSongItemSelectedAreaWidget::MusicSongItemSelectedAreaWidget(QWidget *parent
     m_itemLabel->setFixedWidth(75);
     m_modifiedItemButton->setFixedWidth(30);
 
-    m_label->setStyleSheet(TTK::UI::FontStyle01 + TTK::UI::ColorStyle09);
+    m_label->setStyleSheet(TTK::UI::FontStyle01 + TTK::UI::ColorStyle02);
     m_itemLabel->setStyleSheet(TTK::UI::ColorStyle04);
-    m_modifiedItemButton->setStyleSheet(TTK::UI::ColorStyle08);
+    m_modifiedItemButton->setStyleSheet(TTK::UI::ColorStyle07);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);

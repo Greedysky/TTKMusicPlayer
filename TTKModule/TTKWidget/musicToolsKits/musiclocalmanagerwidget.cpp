@@ -218,7 +218,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     : QWidget(parent),
       MusicItemSearchInterfaceClass()
 {
-    setStyleSheet(TTK::UI::BackgroundStyle10 + TTK::UI::ColorStyle09);
+    setStyleSheet(TTK::UI::BackgroundStyle10 + TTK::UI::ColorStyle02);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
@@ -249,11 +249,11 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     QFont pLabelFont = pLabel->font();
     pLabelFont.setPixelSize(33);
     pLabel->setFont(pLabelFont);
-    pLabel->setStyleSheet(TTK::UI::ColorStyle11);
+    pLabel->setStyleSheet(TTK::UI::ColorStyle01);
     functionWidgetLayout->addWidget(pLabel);
 
     m_sizeLabel = new QLabel(functionWidget);
-    m_sizeLabel->setStyleSheet(TTK::UI::ColorStyle11);
+    m_sizeLabel->setStyleSheet(TTK::UI::ColorStyle01);
     functionWidgetLayout->addWidget(m_sizeLabel);
     functionWidgetLayout->addStretch(1);
 

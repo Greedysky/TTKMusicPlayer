@@ -33,12 +33,14 @@ namespace TTK
 
         static const QString Color02 = "#646464";
 
+        static const QString Color03 = "#AAAAAA";
+
         ///Color
         static const QString ColorStyle01 = " \
-            color:#FFFFFF;";
+            color:#000000;";
 
         static const QString ColorStyle02 = " \
-            color:#E67300;";
+            color:#444444;";
 
         static const QString ColorStyle03 = " \
             color:#888888;";
@@ -47,27 +49,30 @@ namespace TTK
             color:#AAAAAA;";
 
         static const QString ColorStyle05 = " \
-            color:#FF0000;";
+            color:#EEEEEE;";
 
         static const QString ColorStyle06 = " \
-            color:#F4F4F4;";
+            color:#FFFFFF;";
 
         static const QString ColorStyle07 = " \
-            color:#A0630B;";
-
-        static const QString ColorStyle08 = " \
             color:#158FE1;";
 
-        static const QString ColorStyle09 = " \
-            color:#444444;";
-
-        static const QString ColorStyle10 = " \
+        static const QString ColorStyle08 = " \
             color:#169AF3;";
 
+        static const QString ColorStyle09 = " \
+            color:#A0630B;";
+
+        static const QString ColorStyle10 = " \
+            color:#E67300;";
+
         static const QString ColorStyle11 = " \
-            color:#000000;";
+            color:#FF0000;";
 
         static const QString ColorStyle12 = " \
+            color:#F4F4F4;";
+
+        static const QString ColorStyle13 = " \
             color:#FFF697;";
 
         ///Background

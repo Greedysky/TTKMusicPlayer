@@ -36,7 +36,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
 
     m_textLabel = new QLabel(m_topWidget);
     m_textLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    m_textLabel->setStyleSheet(TTK::UI::ColorStyle01);
+    m_textLabel->setStyleSheet(TTK::UI::ColorStyle06);
 
     m_searchEdit = new MusicItemQueryEdit(m_topWidget);
     m_searchEdit->setFixedHeight(25);

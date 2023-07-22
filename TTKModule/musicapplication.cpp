@@ -1032,12 +1032,6 @@ void MusicApplication::leaveEvent(QEvent *event)
     m_applicationObject->sideAnimationByOn();
 }
 
-void MusicApplication::mousePressEvent(QMouseEvent *event)
-{
-    TTKAbstractMoveResizeWidget::mousePressEvent(event);
-    m_ui->musicSongSearchEdit->closePopWidget();
-}
-
 void MusicApplication::mouseReleaseEvent(QMouseEvent *event)
 {
     TTKAbstractMoveResizeWidget::mouseReleaseEvent(event);

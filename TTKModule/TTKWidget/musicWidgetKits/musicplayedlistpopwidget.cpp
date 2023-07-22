@@ -349,7 +349,7 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setSpacing(15);
     QLabel *label = new QLabel(tr("Played List"), topWidget);
-    label->setStyleSheet(TTK::UI::ColorStyle10 + TTK::UI::FontStyle01 + TTK::UI::FontStyle03);
+    label->setStyleSheet(TTK::UI::ColorStyle08 + TTK::UI::FontStyle01 + TTK::UI::FontStyle03);
 
     QPushButton *shareButton = new QPushButton(this);
     shareButton->setFixedSize(16, 16);

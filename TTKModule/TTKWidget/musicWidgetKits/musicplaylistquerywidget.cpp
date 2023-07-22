@@ -23,7 +23,7 @@ MusicPlaylistQueryItemWidget::MusicPlaylistQueryItemWidget(QWidget *parent)
     m_topListenButton->setGeometry(0, 0, WIDTH_LABEL_SIZE, 20);
     m_topListenButton->setIcon(QIcon(":/tiny/btn_listen_hover"));
     m_topListenButton->setText(" - ");
-    m_topListenButton->setStyleSheet(TTK::UI::BorderStyle01 + TTK::UI::BackgroundStyle04 + TTK::UI::ColorStyle01);
+    m_topListenButton->setStyleSheet(TTK::UI::BorderStyle01 + TTK::UI::BackgroundStyle04 + TTK::UI::ColorStyle06);
 
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry(110, 110, 30, 30);
@@ -208,10 +208,10 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
         for(const QString &data : qAsConst(titles))
         {
             QLabel *l = new QLabel(data, containTopWidget);
-            l->setStyleSheet(QString("QLabel::hover{%1}").arg(TTK::UI::ColorStyle08));
+            l->setStyleSheet(QString("QLabel::hover{%1}").arg(TTK::UI::ColorStyle07));
             QFrame *hline = new QFrame(containTopWidget);
             hline->setFrameShape(QFrame::VLine);
-            hline->setStyleSheet(TTK::UI::ColorStyle06);
+            hline->setStyleSheet(TTK::UI::ColorStyle12);
             containTopLayout->addWidget(l);
             containTopLayout->addWidget(hline);
         }
@@ -219,7 +219,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(TTK::UI::ColorStyle06);
+        line->setStyleSheet(TTK::UI::ColorStyle12);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

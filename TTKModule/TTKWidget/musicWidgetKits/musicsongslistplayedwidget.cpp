@@ -18,7 +18,7 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
     setAutoFillBackground(true);
 
     m_textLabel = new QLabel(this);
-    m_textLabel->setStyleSheet(TTK::UI::ColorStyle10);
+    m_textLabel->setStyleSheet(TTK::UI::ColorStyle08);
     m_textLabel->setGeometry(23, 0, 170, 30);
 
     m_gifLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::RadioBlue, this);

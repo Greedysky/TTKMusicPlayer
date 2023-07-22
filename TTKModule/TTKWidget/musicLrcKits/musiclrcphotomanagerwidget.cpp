@@ -216,7 +216,7 @@ MusicLrcPhotoManagerWidget::MusicLrcPhotoManagerWidget(QWidget *parent)
     m_ui->okButton->setFocusPolicy(Qt::NoFocus);
 #endif
     m_ui->artTextLabel->setText(G_BACKGROUND_PTR->artistName());
-    m_ui->artTextLabel->setStyleSheet(TTK::UI::ColorStyle08);
+    m_ui->artTextLabel->setStyleSheet(TTK::UI::ColorStyle07);
 
     m_photoWidget = new MusicLrcPhotoWidget(this);
     TTK::Widget::generateVScrollAreaFormat(m_ui->viewArea, m_photoWidget);

@@ -30,7 +30,7 @@ MusicWebMVRadioQueryItemWidget::MusicWebMVRadioQueryItemWidget(QWidget *parent)
     m_nameLabel = new QLabel(this);
     m_nameLabel->setAlignment(Qt::AlignCenter);
     m_nameLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
-    m_nameLabel->setStyleSheet(TTK::UI::ColorStyle01 + TTK::UI::FontStyle04 + TTK::UI::FontStyle01);
+    m_nameLabel->setStyleSheet(TTK::UI::ColorStyle06 + TTK::UI::FontStyle04 + TTK::UI::FontStyle01);
     m_nameLabel->setText(" - ");
 }
 
@@ -182,7 +182,7 @@ void MusicWebMVRadioQueryWidget::createMVRadioCategoryItem(const MusicResultData
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(TTK::UI::ColorStyle06);
+        line->setStyleSheet(TTK::UI::ColorStyle12);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

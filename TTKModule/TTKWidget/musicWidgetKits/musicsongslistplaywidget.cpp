@@ -42,7 +42,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_timeLabel = new QLabel(this);
     m_timeLabel->setFixedSize(100, 20);
     m_timeLabel->setAttribute(Qt::WA_TranslucentBackground);
-    m_timeLabel->setStyleSheet(TTK::UI::ColorStyle01);
+    m_timeLabel->setStyleSheet(TTK::UI::ColorStyle06);
     m_timeLabel->setGeometry(85, 37, 100, 20);
 
     m_downloadButton = new QPushButton(this);

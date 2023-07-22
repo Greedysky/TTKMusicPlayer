@@ -15,7 +15,7 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     QLabel *sizeLabel = new QLabel(tr("Size"), this);
     QLabel *backLabel = new QLabel(tr("Background"), this);
 
-    const QString &labelStyle = TTK::UI::ColorStyle01 + TTK::UI::CustomStyle02 + "image:url(:/lrc/lb_shadow);";
+    const QString &labelStyle = TTK::UI::ColorStyle06 + TTK::UI::CustomStyle02 + "image:url(:/lrc/lb_shadow);";
 
     colorLabel->setStyleSheet(labelStyle);
     sizeLabel->setStyleSheet(labelStyle);

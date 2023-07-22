@@ -202,7 +202,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     : QWidget(parent),
       m_currentState(false)
 {
-    setStyleSheet(TTK::UI::BackgroundStyle10 + TTK::UI::ColorStyle09);
+    setStyleSheet(TTK::UI::BackgroundStyle10 + TTK::UI::ColorStyle02);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
@@ -225,7 +225,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     QFont pLabelFont = pLabel->font();
     pLabelFont.setPixelSize(20);
     pLabel->setFont(pLabelFont);
-    pLabel->setStyleSheet(TTK::UI::ColorStyle11);
+    pLabel->setStyleSheet(TTK::UI::ColorStyle01);
 
     QLabel *iLabel = new QLabel(tr("Popular singers spend your leisure time with you"), topWidget);
     QFont iLabelFont = iLabel->font();

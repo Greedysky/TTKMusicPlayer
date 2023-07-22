@@ -31,12 +31,13 @@ void MusicSongSearchInteriorEdit::initialize(QWidget *parent)
     setPopWidgetVisible(false);
 }
 
-void MusicSongSearchInteriorEdit::closePopWidget()
+void MusicSongSearchInteriorEdit::setText(const QString &text)
 {
-    if(m_popWidget && m_popWidget->isVisible())
-    {
-        m_popWidget->close();
-    }
+    blockSignals(true);
+    MusicSearchEdit::setText(text);
+    blockSignals(false);
+
+    setPopWidgetVisible(false);
 }
 
 void MusicSongSearchInteriorEdit::textChanged(const QString &text)
@@ -46,16 +47,29 @@ void MusicSongSearchInteriorEdit::textChanged(const QString &text)
     connect(m_suggestRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(suggestDataChanged()));
     m_suggestRequest->startToSearch(text);
 
-    popWidgetChanged(text);
+    if(text.trimmed().isEmpty())
+    {
+        m_popWidget->initialize(this);
+    }
+
+    if(m_popWidget->height() != 0)
+    {
+        setPopWidgetVisible(true);
+    }
 }
 
-void MusicSongSearchInteriorEdit::selectedTextChanged(const QString &text)
+void MusicSongSearchInteriorEdit::selectedTextChanged(const QString &text, bool update)
 {
-    blockSignals(true);
-    setText(text);
-    blockSignals(false);
-
-    setPopWidgetVisible(false);
+    if(update)
+    {
+        setText(text);
+    }
+    else
+    {
+        blockSignals(true);
+        MusicSearchEdit::setText(text);
+        blockSignals(false);
+    }
 }
 
 void MusicSongSearchInteriorEdit::suggestDataChanged()
@@ -76,6 +90,7 @@ void MusicSongSearchInteriorEdit::suggestDataChanged()
         {
             setPopWidgetVisible(true);
         }
+
         m_popWidget->createSuggestItems(names);
     }
 }
@@ -85,31 +100,47 @@ void MusicSongSearchInteriorEdit::searchToplistInfoFinished(const QString &bytes
     setPlaceholderText(bytes);
 }
 
-void MusicSongSearchInteriorEdit::focusInEvent(QFocusEvent *event)
+void MusicSongSearchInteriorEdit::keyReleaseEvent(QKeyEvent *event)
 {
-    MusicSearchEdit::focusInEvent(event);
+    switch(event->key())
+    {
+        case Qt::Key_Return:
+        case Qt::Key_Enter:
+        {
+            clearFocus();
+            break;
+        }
+        case Qt::Key_Up:
+        {
+            m_popWidget->selectRow(true);
+            break;
+        }
+        case Qt::Key_Down:
+        {
+            m_popWidget->selectRow(false);
+            break;
+        }
+        default: break;
+    }
+
+    MusicSearchEdit::keyReleaseEvent(event);
+}
+
+void MusicSongSearchInteriorEdit::mousePressEvent(QMouseEvent *event)
+{
+    MusicSearchEdit::mousePressEvent(event);
     if(m_popWidget && !m_popWidget->isVisible())
     {
-        popWidgetChanged(text());
+        textChanged(text());
     }
 }
 
-void MusicSongSearchInteriorEdit::leaveEvent(QEvent *event)
+void MusicSongSearchInteriorEdit::focusOutEvent(QFocusEvent *event)
 {
-    MusicSearchEdit::leaveEvent(event);
-    clearFocus();
-}
-
-void MusicSongSearchInteriorEdit::popWidgetChanged(const QString &text)
-{
-    if(text.trimmed().isEmpty())
+    MusicSearchEdit::focusOutEvent(event);
+    if(m_popWidget && m_popWidget->isVisible())
     {
-        m_popWidget->initialize(this);
-    }
-
-    if(m_popWidget->height() != 0)
-    {
-        setPopWidgetVisible(true);
+        m_popWidget->close();
     }
 }
 

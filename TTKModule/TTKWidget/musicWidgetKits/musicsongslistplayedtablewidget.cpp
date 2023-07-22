@@ -68,7 +68,7 @@ void MusicSongsListPlayedTableWidget::updateSongsList(const MusicSongList &songs
 
 void MusicSongsListPlayedTableWidget::selectRow(int index)
 {
-    if(index < 0 || rowCount() < 0)
+    if(index < 0 || rowCount() <= 0)
     {
         return;
     }

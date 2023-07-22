@@ -21,6 +21,36 @@ MusicSongSearchPopTableWidget::~MusicSongSearchPopTableWidget()
     removeItems();
 }
 
+void MusicSongSearchPopTableWidget::selectRow(bool up)
+{
+    const int row = rowCount();
+    if(row <= 0)
+    {
+        return;
+    }
+
+    int index = currentRow();
+    if(up)
+    {
+        --index;
+        if(index < 0)
+        {
+            index = 0;
+        }
+    }
+    else
+    {
+        ++index;
+        if(index >= row)
+        {
+            index = row - 1;
+        }
+    }
+
+    MusicAbstractTableWidget::selectRow(index);
+    Q_EMIT setText(item(index, 0)->toolTip().trimmed(), false);
+}
+
 void MusicSongSearchPopTableWidget::addCellItem(int index, const QString &name, const QString &time)
 {
     setRowHeight(index, TTK_ITEM_SIZE_M);
@@ -33,7 +63,7 @@ void MusicSongSearchPopTableWidget::addCellItem(int index, const QString &name, 
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem(time);
-    item->setForeground(QColor(TTK::UI::Color02));
+    item->setForeground(QColor(TTK::UI::Color03));
     QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(index, 1, item);
 }
@@ -41,7 +71,7 @@ void MusicSongSearchPopTableWidget::addCellItem(int index, const QString &name, 
 void MusicSongSearchPopTableWidget::itemCellClicked(int row, int column)
 {
     MusicAbstractTableWidget::itemCellClicked(row, column);
-    Q_EMIT setText(item(row, 0)->toolTip().trimmed());
+    Q_EMIT setText(item(row, 0)->toolTip().trimmed(), true);
 }
 
 void MusicSongSearchPopTableWidget::removeItems()
@@ -72,7 +102,7 @@ MusicSongSearchPopWidget::MusicSongSearchPopWidget(QWidget *parent)
 
     m_frame = new QFrame(this);
     m_frame->setFixedHeight(1);
-    m_frame->setStyleSheet(TTK::UI::BackgroundStyle09);
+    m_frame->setStyleSheet(TTK::UI::ColorStyle05);
     m_frame->setFrameShape(QFrame::HLine);
 
     layout->addWidget(m_popTableWidget);
@@ -93,7 +123,7 @@ void MusicSongSearchPopWidget::initialize(QWidget *parent)
 {
     if(parent)
     {
-        connect(m_popTableWidget, SIGNAL(setText(QString)), parent, SLOT(selectedTextChanged(QString)), Qt::UniqueConnection);
+        connect(m_popTableWidget, SIGNAL(setText(QString,bool)), parent, SLOT(selectedTextChanged(QString,bool)), Qt::UniqueConnection);
     }
 
     setControlEnabled(true);
@@ -116,6 +146,11 @@ void MusicSongSearchPopWidget::initialize(QWidget *parent)
     {
         m_popTableWidget->addCellItem(i, records[i].m_name, utcTimeToLocal(records[i].m_timestamp));
     }
+}
+
+void MusicSongSearchPopWidget::selectRow(bool up)
+{
+    m_popTableWidget->selectRow(up);
 }
 
 void MusicSongSearchPopWidget::setControlEnabled(bool enabled)
@@ -188,11 +223,4 @@ void MusicSongSearchPopWidget::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.setPen(Qt::gray);
     painter.drawRect(QRect(0, 0, width() - 1, height() - 1));
-}
-
-void MusicSongSearchPopWidget::leaveEvent(QEvent *event)
-{
-    QWidget::leaveEvent(event);
-    lower();
-    hide();
 }

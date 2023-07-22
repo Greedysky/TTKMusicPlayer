@@ -1,8 +1,6 @@
 #include "musicsearchedit.h"
 #include "musicwidgetutils.h"
 
-#include <QKeyEvent>
-
 MusicSearchEdit::MusicSearchEdit(QWidget *parent)
     : QLineEdit(parent)
 {
@@ -32,11 +30,6 @@ void MusicSearchEdit::contextMenuEvent(QContextMenuEvent *event)
 
     TTK::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
-}
-
-void MusicSearchEdit::keyPressEvent(QKeyEvent *event)
-{
-    QLineEdit::keyPressEvent(event);
 }
 
 void MusicSearchEdit::keyReleaseEvent(QKeyEvent *event)

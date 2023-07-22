@@ -19,6 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include <QKeyEvent>
+
 #include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
 
@@ -41,13 +43,12 @@ Q_SIGNALS:
      */
     void enterFinished(const QString &text);
 
-private:
+protected:
     /*!
      * Override the widget event.
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
-    virtual void keyPressEvent(QKeyEvent *event) override final;
-    virtual void keyReleaseEvent(QKeyEvent *event) override final;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
 
 };
 

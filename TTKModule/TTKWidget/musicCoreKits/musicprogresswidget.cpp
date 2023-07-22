@@ -40,7 +40,7 @@ void MusicProgressWidget::initialize()
     QLabel *topTitleName = new QLabel(this);
     topTitleName->setText(tr("Progress Bar"));
     topTitleName->setGeometry(14, 4, 221, 25);
-    topTitleName->setStyleSheet(TTK::UI::ColorStyle01 + TTK::UI::FontStyle01);
+    topTitleName->setStyleSheet(TTK::UI::ColorStyle06 + TTK::UI::FontStyle01);
 
     QToolButton *topTitleCloseButton = new QToolButton(this);
     topTitleCloseButton->setGeometry(344, 6, 20, 20);

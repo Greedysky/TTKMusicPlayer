@@ -674,7 +674,7 @@ void MusicLrcContainerForInterior::createNoLrcCurrentInfo()
     m_noLrcCurrentInfo = new TTKClickedLabel(this);
     TTK::Widget::setLabelFontSize(m_noLrcCurrentInfo, 15);
     TTK::Widget::setLabelFontStyle(m_noLrcCurrentInfo, TTK::FontStyleMode::Underline);
-    m_noLrcCurrentInfo->setStyleSheet(TTK::UI::ColorStyle06);
+    m_noLrcCurrentInfo->setStyleSheet(TTK::UI::ColorStyle12);
     m_noLrcCurrentInfo->setText(tr("Lrc Make"));
 
     connect(m_noLrcCurrentInfo, SIGNAL(clicked()), SLOT(showLrcMakedWidget()));

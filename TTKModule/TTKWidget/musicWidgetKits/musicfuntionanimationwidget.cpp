@@ -293,6 +293,6 @@ void MusicSkinAnimationWidget::switchToSelectedItemStyle(int index)
         return;
     }
 
-    m_container[index]->setStyleSheet(TTK::UI::ColorStyle08 + TTK::UI::BackgroundStyle01);
+    m_container[index]->setStyleSheet(TTK::UI::ColorStyle07 + TTK::UI::BackgroundStyle01);
     MusicAbstractAnimationWidget::switchToSelectedItemStyle(index);
 }

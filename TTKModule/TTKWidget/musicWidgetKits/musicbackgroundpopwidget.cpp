@@ -43,7 +43,7 @@ void MusicBackgroundPopWidget::initialize()
     hbox->setSpacing(0);
 
     QLabel *textLabel = new QLabel(m_containWidget);
-    textLabel->setStyleSheet(TTK::UI::ColorStyle02);
+    textLabel->setStyleSheet(TTK::UI::ColorStyle10);
     textLabel->setText("100%\n\n\n\n\n50%\n\n\n\n\n0%");
 
     m_slider = new TTKClickedSlider(Qt::Vertical, m_containWidget);

@@ -44,20 +44,19 @@ public:
      */
     void initialize(QWidget *parent);
 
-    /*!
-     * Close pop widget possible.
-     */
-    void closePopWidget();
-
 public Q_SLOTS:
+    /*!
+     * Selected text changed.
+     */
+    void setText(const QString &text);
     /*!
      * Input changed text changed.
      */
     void textChanged(const QString &text);
     /*!
-     * Selected text changed.
+     * Selected row text changed.
      */
-    void selectedTextChanged(const QString &text);
+    void selectedTextChanged(const QString &text, bool update);
     /*!
      * Suggest data changed.
      */
@@ -71,12 +70,10 @@ private:
     /*!
      * Override the widget event.
      */
-    virtual void focusInEvent(QFocusEvent *event) override final;
-    virtual void leaveEvent(QEvent *event) override final;
-    /*!
-     * Pop widget changed.
-     */
-    void popWidgetChanged(const QString &text);
+    virtual void keyReleaseEvent(QKeyEvent *event) override final;
+    virtual void mousePressEvent(QMouseEvent *event) override final;
+    virtual void focusOutEvent(QFocusEvent *event) override final;
+
     /*!
      * Set pop widget visible.
      */

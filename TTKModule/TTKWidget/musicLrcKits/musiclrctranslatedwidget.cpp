@@ -42,7 +42,7 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     TTK::Widget::generateVScrollAreaFormat(scrollArea, m_plainText, false);
 
     m_plainText->setObjectName("ContentsWidget");
-    m_plainText->setStyleSheet(QString("#ContentsWidget{%1%2%3}").arg(TTK::UI::BackgroundStyle01, TTK::UI::ColorStyle06, TTK::UI::FontStyle03));
+    m_plainText->setStyleSheet(QString("#ContentsWidget{%1%2%3}").arg(TTK::UI::BackgroundStyle01, TTK::UI::ColorStyle12, TTK::UI::FontStyle03));
 
     QWidget *view = scrollArea->viewport();
     view->setObjectName("Viewport");

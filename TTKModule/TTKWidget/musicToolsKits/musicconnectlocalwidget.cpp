@@ -40,7 +40,7 @@ void MusicConnectLocalWidget::initFirstWidget()
     QWidget *firstWidget = new QWidget(this);
     QVBoxLayout *vBox = new QVBoxLayout(firstWidget);
     QLabel *textLabel = new QLabel(tr("Please choose the way"), firstWidget);
-    textLabel->setStyleSheet(TTK::UI::FontStyle04 + TTK::UI::ColorStyle09);
+    textLabel->setStyleSheet(TTK::UI::FontStyle04 + TTK::UI::ColorStyle02);
 
     QPushButton *firButton = new QPushButton(tr("Mobile Media"), firstWidget);
     firButton->setStyleSheet(TTK::UI::PushButtonStyle08 + TTK::UI::PushButtonStyle13);

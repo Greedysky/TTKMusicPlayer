@@ -182,7 +182,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(TTK::UI::ColorStyle06);
+        line->setStyleSheet(TTK::UI::ColorStyle12);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

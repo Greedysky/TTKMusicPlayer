@@ -57,7 +57,7 @@ void MusicNetworkConnectionItem::setUrl(const QString &url)
 void MusicNetworkConnectionItem::start()
 {
     m_stateText->setText(tr("Detecting"));
-    m_stateText->setStyleSheet(TTK::UI::ColorStyle08);
+    m_stateText->setStyleSheet(TTK::UI::ColorStyle07);
     m_thread->start();
 }
 
@@ -79,13 +79,13 @@ void MusicNetworkConnectionItem::testFinshed(bool state)
     {
         m_stateText->setText(tr("Detected"));
         m_iconLabel->setPixmap(QPixmap(":/tiny/lb_right"));
-        m_stateText->setStyleSheet(TTK::UI::ColorStyle07);
+        m_stateText->setStyleSheet(TTK::UI::ColorStyle09);
     }
     else
     {
         m_stateText->setText(tr("Failed"));
         m_iconLabel->setPixmap(QPixmap(":/tiny/lb_error"));
-        m_stateText->setStyleSheet(TTK::UI::ColorStyle05);
+        m_stateText->setStyleSheet(TTK::UI::ColorStyle11);
     }
 
     Q_EMIT networkConnectionTestChanged();

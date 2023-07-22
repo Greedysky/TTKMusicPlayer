@@ -188,7 +188,7 @@ QWidget* MusicBackgroundOnlineWidget::createFunctionsWidget(bool revert, QWidget
         m_typeBox->hide();
 
         m_allButton = new QPushButton(tr("All"), m_functionsWidget);
-        m_allButton->setStyleSheet(TTK::UI::PushButtonStyle02 + QString("QPushButton{%1}").arg(TTK::UI::ColorStyle08));
+        m_allButton->setStyleSheet(TTK::UI::PushButtonStyle02 + QString("QPushButton{%1}").arg(TTK::UI::ColorStyle07));
         m_allButton->setCursor(QCursor(Qt::PointingHandCursor));
         m_allButton->setFixedSize(35, 20);
 #ifdef Q_OS_UNIX
