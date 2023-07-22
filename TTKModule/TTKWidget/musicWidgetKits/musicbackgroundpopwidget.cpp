@@ -36,28 +36,39 @@ void MusicBackgroundPopWidget::sliderReleased()
 void MusicBackgroundPopWidget::initialize()
 {
     m_menu->setStyleSheet(TTK::UI::MenuStyle02);
-    m_containWidget->setFixedSize(60, 160);
+    m_containWidget->setFixedSize(54, 160);
 
-    QBoxLayout *hbox = new QHBoxLayout(m_containWidget);
-    hbox->setContentsMargins(0, 0, 0, 0);
-    hbox->setSpacing(0);
-
-    QLabel *textLabel = new QLabel(m_containWidget);
-    textLabel->setStyleSheet(TTK::UI::ColorStyle10);
-    textLabel->setText("100%\n\n\n\n\n50%\n\n\n\n\n0%");
+    QGridLayout *layout = new QGridLayout(m_containWidget);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
 
     m_slider = new TTKClickedSlider(Qt::Vertical, m_containWidget);
     m_slider->setStyleSheet(TTK::UI::SliderStyle03);
-    connect(m_slider, SIGNAL(valueChanged(int)), SIGNAL(valueChanged(int)));
-    connect(m_slider, SIGNAL(sliderPressed()), SLOT(sliderPressed()));
-    connect(m_slider, SIGNAL(sliderReleased()), SLOT(sliderReleased()));
-
     m_slider->setRange(0, 100);
     m_slider->setValue(100);
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));
 
-    hbox->addWidget(textLabel);
-    hbox->addWidget(m_slider);
+    connect(m_slider, SIGNAL(valueChanged(int)), SIGNAL(valueChanged(int)));
+    connect(m_slider, SIGNAL(sliderPressed()), SLOT(sliderPressed()));
+    connect(m_slider, SIGNAL(sliderReleased()), SLOT(sliderReleased()));
 
-    m_containWidget->setLayout(hbox);
+    QLabel *textLabel = nullptr;
+    textLabel = new QLabel("100%", m_containWidget);
+    textLabel->setAlignment(Qt::AlignTop);
+    textLabel->setStyleSheet(TTK::UI::ColorStyle10);
+    layout->addWidget(textLabel, 0, 0);
+
+    textLabel = new QLabel("50%", m_containWidget);
+    textLabel->setAlignment(Qt::AlignVCenter);
+    textLabel->setStyleSheet(TTK::UI::ColorStyle10);
+    layout->addWidget(textLabel, 1, 0);
+
+    textLabel = new QLabel("0%", m_containWidget);
+    textLabel->setAlignment(Qt::AlignBottom);
+    textLabel->setStyleSheet(TTK::UI::ColorStyle10);
+    layout->addWidget(textLabel, 2, 0);
+
+    layout->addWidget(m_slider, 0, 1, 3, 1);
+
+    m_containWidget->setLayout(layout);
 }
