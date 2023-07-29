@@ -302,6 +302,11 @@ void MusicSettingWidget::initialize()
 #endif
 }
 
+void MusicSettingWidget::close()
+{
+    setVisible(false);
+}
+
 void MusicSettingWidget::clearFunctionTableSelection()
 {
     m_ui->normalFunTableWidget->clearSelection();

@@ -126,6 +126,11 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
+     * Override close function.
+     */
+    void close();
+
+    /*!
      * Clear all function tables selection.
      */
     void clearFunctionTableSelection();

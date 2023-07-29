@@ -17,7 +17,10 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
 
     m_lockLrcAction = new QAction(QIcon(":/contextMenu/btn_lock"), tr("Lock Lrc"), this);
     connect(m_lockLrcAction, SIGNAL(triggered()), SLOT(setWindowLockedChanged()));
-#ifndef Q_OS_UNIX
+#ifdef Q_OS_UNIX
+    addAction(QIcon(":/image/lb_app_logo"), tr("Show MainWindow"), parent, SLOT(showNormal()));
+    addSeparator();
+#else
     createPlayWidgetActions();
     addSeparator();
     createVolumeWidgetActions();
@@ -153,6 +156,7 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     m_showText = new QLabel(widgetActionContainer);
     m_showText->setAlignment(Qt::AlignCenter);
     m_showText->setStyleSheet(TTK::UI::ColorStyle03);
+
     vbox->addWidget(widgetContainer);
     vbox->addWidget(m_showText);
     widgetActionContainer->setLayout(vbox);
