@@ -222,7 +222,11 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
         case TagLib::MPEG::Header::Version2_5:
             info->setValue(Qmmp::FORMAT_NAME, QString("MPEG-2.5 layer %1").arg(fileRef.audioProperties()->layer()));
         }
+#if TAGLIB_MAJOR_VERSION > 1 || (TAGLIB_MAJOR_VERSION == 1 && TAGLIB_MINOR_VERSION >= 10)
         info->setDuration(fileRef.audioProperties()->lengthInMilliseconds());
+#else
+        info->setDuration(fileRef.audioProperties()->length() * 1000);
+#endif
     }
 
     if(parts & TrackInfo::ReplayGainInfo)
