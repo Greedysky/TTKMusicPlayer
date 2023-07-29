@@ -44,6 +44,10 @@ public:
     static TaskbarInfo screenTaskbar(int index = 0);
 
     /*!
+     * Get available geometry by given screen index.
+     */
+    static QRect availableGeometry(int index = 0);
+    /*!
      * Get screen geometry by given screen index.
      */
     static QRect screenGeometry(int index = 0);

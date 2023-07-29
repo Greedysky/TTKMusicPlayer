@@ -9,16 +9,10 @@
 
 TTKDesktopWrapper::TaskbarInfo TTKDesktopWrapper::screenTaskbar(int index)
 {
-#if TTK_QT_VERSION_CHECK(5,0,0)
-    QScreen *screen = QApplication::primaryScreen();
-    const QRect &dr = screen->availableGeometry();
-#else
-    QDesktopWidget *widget = QApplication::desktop();
-    const QRect &dr = widget->availableGeometry();
-#endif
-    TaskbarInfo info;
     const QRect &sr = screenGeometry(index);
+    const QRect &dr = availableGeometry(index);
 
+    TaskbarInfo info;
     if(sr.left() != dr.left())
     {
         info.m_size = std::abs(sr.left() - dr.left());
@@ -45,6 +39,18 @@ TTKDesktopWrapper::TaskbarInfo TTKDesktopWrapper::screenTaskbar(int index)
         info.m_direction = TTK::Direction::No;
     }
     return info;
+}
+
+QRect TTKDesktopWrapper::availableGeometry(int index)
+{
+#if TTK_QT_VERSION_CHECK(5,0,0)
+    Q_UNUSED(index);
+    QScreen *screen = QApplication::primaryScreen();
+    return screen->availableGeometry();
+#else
+    QDesktopWidget *widget = QApplication::desktop();
+    return widget->availableGeometry(index);
+#endif
 }
 
 QRect TTKDesktopWrapper::screenGeometry(int index)
