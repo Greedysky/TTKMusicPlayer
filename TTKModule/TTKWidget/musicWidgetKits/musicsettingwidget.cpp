@@ -141,8 +141,8 @@ MusicSettingWidget::~MusicSettingWidget()
 
 void MusicSettingWidget::initialize()
 {
-    m_ui->autoPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::AutoPlayMode).toBool());
-    m_ui->backPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList().front().toInt());
+    m_ui->autoPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::StartUpPlayMode).toBool());
+    m_ui->lastPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList().front().toInt());
 
     if(!G_SETTING_PTR->value(MusicSettingManager::CloseEventMode).toBool())
     {
@@ -545,10 +545,11 @@ void MusicSettingWidget::saveParameterSettings()
 {
     const bool languageChanged = G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt() != m_ui->languageComboBox->currentIndex();
     QStringList lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
-    lastPlayIndex[0] = QString::number(m_ui->backPlayCheckBox->isChecked());
+    lastPlayIndex[0] = QString::number(m_ui->lastPlayCheckBox->isChecked());
 
     G_SETTING_PTR->setValue(MusicSettingManager::LanguageIndex, m_ui->languageComboBox->currentIndex());
-    G_SETTING_PTR->setValue(MusicSettingManager::AutoPlayMode, m_ui->autoPlayCheckBox->isChecked());
+    G_SETTING_PTR->setValue(MusicSettingManager::StartUpMode, m_ui->autoStartCheckBox->isChecked());
+    G_SETTING_PTR->setValue(MusicSettingManager::StartUpPlayMode, m_ui->autoPlayCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndex, lastPlayIndex);
     G_SETTING_PTR->setValue(MusicSettingManager::CloseEventMode, m_ui->quitRadioBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, m_ui->quitWindowRadioBox->isChecked());
@@ -746,12 +747,13 @@ void MusicSettingWidget::initScrollWidgetPage()
 void MusicSettingWidget::initNormalSettingWidget()
 {
     m_ui->autoPlayCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    m_ui->backPlayCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->lastPlayCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->minimumRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
     m_ui->quitRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
     m_ui->quitOpacityRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
     m_ui->quitWindowRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
     m_ui->setDefaultPlayerCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->autoStartCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->closeNetWorkCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 
     QButtonGroup *buttonGroup1 = new QButtonGroup(this);
@@ -764,12 +766,13 @@ void MusicSettingWidget::initNormalSettingWidget()
 
 #ifdef Q_OS_UNIX
     m_ui->autoPlayCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->backPlayCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->lastPlayCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->minimumRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->quitRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->quitOpacityRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->quitWindowRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->setDefaultPlayerCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->autoStartCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->closeNetWorkCheckBox->setFocusPolicy(Qt::NoFocus);
 
     m_ui->quitWindowRadioBox->hide();

@@ -45,7 +45,7 @@ unix:!mac{
 }
 
 win32{
-    LIBS += -lIphlpapi -lVersion -lole32 -luuid
+    LIBS += -lIphlpapi -lVersion
     greaterThan(QT_MAJOR_VERSION, 4){
          greaterThan(QT_MINOR_VERSION, 1):QT += winextras
     }else{

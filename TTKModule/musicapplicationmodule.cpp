@@ -113,9 +113,11 @@ void MusicApplicationModule::loadNetWorkSetting()
 void MusicApplicationModule::applyParameter()
 {
 #ifdef Q_OS_WIN
-    if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toInt())
+    MusicPlatformManager platform;
+//    platform.windowsStartUp(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
+
+    if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool())
     {
-        MusicPlatformManager platform;
         platform.setMusicRegeditAssociateFileIcon();
     }
 #endif

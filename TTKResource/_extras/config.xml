@@ -8,7 +8,8 @@
     <plusSetting>
         <geometry value="242,84,1000,665"/>
         <language value="0"/>
-        <autoPlayMode value="0"/>
+        <StartUpMode value="0"/>
+        <startUpPlayMode value="0"/>
         <closeEventMode value="1"/>
         <closeNetworkMode value="0"/>
         <fileAssociationMode value="0"/>

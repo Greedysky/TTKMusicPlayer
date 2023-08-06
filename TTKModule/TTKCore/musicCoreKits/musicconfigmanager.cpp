@@ -37,7 +37,8 @@ void MusicConfigManager::readBuffer() const
     }
 
     G_SETTING_PTR->setValue(MusicSettingManager::LanguageIndex, readXmlAttributeByTagName("language").toInt());
-    G_SETTING_PTR->setValue(MusicSettingManager::AutoPlayMode, readXmlAttributeByTagName("autoPlayMode").toInt());
+    G_SETTING_PTR->setValue(MusicSettingManager::StartUpMode, readXmlAttributeByTagName("startUpMode").toInt());
+    G_SETTING_PTR->setValue(MusicSettingManager::StartUpPlayMode, readXmlAttributeByTagName("startUpPlayMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::CloseEventMode, readXmlAttributeByTagName("closeEventMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::CloseNetWorkMode, readXmlAttributeByTagName("closeNetworkMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::FileAssociationMode, readXmlAttributeByTagName("fileAssociationMode").toInt());
@@ -136,7 +137,8 @@ void MusicConfigManager::writeBuffer()
     //
     const QPoint &widgetPosition = G_SETTING_PTR->value(MusicSettingManager::WidgetPosition).toPoint();
     const QSize &widgetSize = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize();
-    const int autoPlayMode = G_SETTING_PTR->value(MusicSettingManager::AutoPlayMode).toInt();
+    const int startUpMode = G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toInt();
+    const int startUpPlayMode = G_SETTING_PTR->value(MusicSettingManager::StartUpPlayMode).toInt();
     const int languageIndex = G_SETTING_PTR->value(MusicSettingManager::LanguageIndex).toInt();
     const int closeEventMode = G_SETTING_PTR->value(MusicSettingManager::CloseEventMode).toInt();
     const int closeNetWorkMode = G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt();
@@ -251,7 +253,8 @@ void MusicConfigManager::writeBuffer()
     //
     writeDomElement(plusSettingDom, "geometry", {"value", QString("%1,%2,%3,%4").arg(widgetPosition.x()).arg(widgetPosition.y()).arg(widgetSize.width()).arg(widgetSize.height())});
     writeDomElement(plusSettingDom, "language", {"value", languageIndex});
-    writeDomElement(plusSettingDom, "autoPlayMode", {"value", autoPlayMode});
+    writeDomElement(plusSettingDom, "startUpMode", {"value", startUpMode});
+    writeDomElement(plusSettingDom, "startUpPlayMode", {"value", startUpPlayMode});
     writeDomElement(plusSettingDom, "closeEventMode", {"value", closeEventMode});
     writeDomElement(plusSettingDom, "closeNetworkMode", {"value", closeNetWorkMode});
     writeDomElement(plusSettingDom, "fileAssociationMode", {"value", fileAssociationMode});

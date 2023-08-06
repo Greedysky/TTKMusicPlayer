@@ -1175,7 +1175,7 @@ void MusicApplication::readSystemConfigFromFile()
     }
 
     //Configure automatic playback
-    if(G_SETTING_PTR->value(MusicSettingManager::AutoPlayMode).toInt() == 1)
+    if(G_SETTING_PTR->value(MusicSettingManager::StartUpPlayMode).toInt() == 1)
     {
         switchPlayState();
     }

@@ -102,7 +102,7 @@ font-weight:bold;</string>
       <string>自动播放歌曲</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="backPlayCheckBox">
+    <widget class="QCheckBox" name="lastPlayCheckBox">
      <property name="geometry">
       <rect>
        <x>185</x>
@@ -205,7 +205,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>199</y>
+       <y>229</y>
        <width>330</width>
        <height>20</height>
       </rect>
@@ -218,8 +218,8 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>229</y>
-       <width>330</width>
+       <y>199</y>
+       <width>211</width>
        <height>20</height>
       </rect>
      </property>
@@ -287,6 +287,19 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>窗口方式退出模式</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="autoStartCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>199</y>
+       <width>180</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>开机时自动启动应用</string>
      </property>
     </widget>
    </widget>

@@ -9,9 +9,6 @@
 
 #ifdef Q_OS_WIN
 #  include <qt_windows.h>
-#  include <ole2.h>
-#  include <shobjidl.h>
-#  include <shlobj.h>
 #elif defined Q_OS_UNIX
 #  include <X11/Xlib.h>
 #endif
@@ -72,6 +69,52 @@ int MusicPlatformManager::windowsIEVersion() const
 
     delete[] data;
     return HIWORD(fixedFileInfo->dwProductVersionMS);
+}
+
+static constexpr const char *GetAutoStartRegKeyPath()
+{
+    return "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run";
+}
+
+static constexpr const char *GetAutoStartWowRegKeyPath()
+{
+    return "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+}
+
+void MusicPlatformManager::windowsStartUp(bool v) const
+{
+    const QString &name = QApplication::applicationName();
+    const QString &path = QApplication::applicationFilePath().replace("/", "\\");
+
+    QSettings reg(GetAutoStartRegKeyPath(), QSettings::NativeFormat);
+    QSettings regWOW(GetAutoStartWowRegKeyPath(), QSettings::NativeFormat);
+
+    if (v)
+    {
+        if (reg.value(name).toString() != path)
+        {
+            reg.setValue(name, path);
+        }
+
+        if (regWOW.value(name).toString() != path)
+        {
+            regWOW.setValue(name, path);
+        }
+    }
+    else
+    {
+        if (reg.contains(name))
+        {
+            reg.remove(name);
+            reg.sync();
+        }
+
+        if (regWOW.contains(name))
+        {
+            regWOW.remove(name);
+            regWOW.sync();
+        }
+    }
 }
 #endif
 
@@ -252,56 +295,6 @@ MusicPlatformManager::System MusicPlatformManager::systemName() const
     return System::Mac;
 #endif
     return System::Unkown;
-}
-
-void MusicPlatformManager::setFileLink(const QString &src, const QString &des, const QString &ico, const QString &args, const QString &description)
-{
-#ifdef Q_OS_WIN
-    HRESULT hres = CoInitialize(nullptr);
-    if(SUCCEEDED(hres))
-    {
-        IShellLinkW *psl = nullptr;
-        hres = CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER, IID_IShellLink, (LPVOID*)&psl);
-
-        if(SUCCEEDED(hres))
-        {
-            IPersistFile *ppf = nullptr;
-            if(!src.isEmpty())
-            {
-                psl->SetPath(src.toStdWString().c_str());
-            }
-
-            if(!ico.isEmpty())
-            {
-                psl->SetIconLocation(ico.toStdWString().c_str(), 0);
-            }
-
-            if(!args.isEmpty())
-            {
-                psl->SetArguments(args.toStdWString().c_str());
-            }
-
-            if(!description.isEmpty())
-            {
-                psl->SetDescription(description.toStdWString().c_str());
-            }
-
-            hres = psl->QueryInterface(IID_IPersistFile, (void**)&ppf);
-            if(SUCCEEDED(hres))
-            {
-                ppf->Save(des.toStdWString().c_str(), FALSE);
-                ppf->Release();
-            }
-            psl->Release();
-        }
-    }
-#else
-    Q_UNUSED(src);
-    Q_UNUSED(des);
-    Q_UNUSED(ico);
-    Q_UNUSED(args);
-    Q_UNUSED(description);
-#endif
 }
 
 #ifdef Q_OS_WIN

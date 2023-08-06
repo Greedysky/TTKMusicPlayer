@@ -75,6 +75,10 @@ public:
      * Get local IE version.
      */
     int windowsIEVersion() const;
+    /*!
+     * Windows start up.
+     */
+    void windowsStartUp(bool v) const;
 #endif
 
     /*!
@@ -94,10 +98,6 @@ public:
      * Get system name.
      */
     System systemName() const;
-    /*!
-     * Set file link.
-     */
-    void setFileLink(const QString &src, const QString &des, const QString &ico, const QString &args, const QString &description);
 
 private:
 #ifdef Q_OS_WIN

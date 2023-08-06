@@ -181,7 +181,7 @@ void MusicEqualizerDialog::setControlEnabled(bool enabled) const
 
 void MusicEqualizerDialog::readInformation()
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
+    if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toBool())
     {
         m_ui->showEqButton->click();
     }

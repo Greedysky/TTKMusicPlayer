@@ -45,7 +45,8 @@ public:
         LastPlayIndex,                   /*!< Last Play Index Parameter*/
         //
         LanguageIndex,                   /*!< Language Index Parameter*/
-        AutoPlayMode,                    /*!< Auto Play Parameter*/
+        StartUpMode,                     /*!< Start Up Mode Parameter*/
+        StartUpPlayMode,                 /*!< Start Up Play Mode Parameter*/
         CloseEventMode,                  /*!< Close Event Parameter*/
         CloseNetWorkMode,                /*!< Close NetWork Parameter*/
         FileAssociationMode,             /*!< File Association Parameter*/
