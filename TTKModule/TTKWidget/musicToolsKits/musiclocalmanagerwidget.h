@@ -30,6 +30,7 @@ struct TTK_MODULE_EXPORT MusicSongInfoItem
     QString m_title;
     QString m_artist;
     QString m_album;
+    QString m_track;
     QString m_year;
     QString m_genre;
     QString m_path;
@@ -102,7 +103,7 @@ public Q_SLOTS:
 class QLabel;
 class TTKTabButton;
 class MusicItemQueryEdit;
-class MusicGifLabelWidget;
+class MusicGifLabelValueWidget;
 
 /*! @brief The class of the local manager widget.
  * @author Greedysky <greedysky@163.com>
@@ -164,7 +165,7 @@ private:
     QLabel *m_sizeLabel;
     TTKTabButton *m_tabButton;
     MusicItemQueryEdit *m_searchEdit;
-    MusicGifLabelWidget *m_loadingLabel;
+    MusicGifLabelValueWidget *m_loadingLabel;
     MusicLocalManagerSongsTableWidget *m_songWidget;
     MusicLocalManagerStatisticTableWidget *m_statisticWidget;
 

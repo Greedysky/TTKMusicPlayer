@@ -141,18 +141,46 @@ public:
     ~MusicGifLabelMaskWidget();
 
     /*!
-     * Set the gif type.
-     */
-    void setType(MusicGifLabelWidget::Module type);
-    /*!
-     * Get the gif type.
-     */
-    MusicGifLabelWidget::Module type() const;
-
-    /*!
      * Run the gif.
      */
     void run(bool run);
+    /*!
+     * Get current running state.
+     */
+    bool isRunning() const;
+
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void paintEvent(QPaintEvent *event) override;
+
+    MusicGifLabelWidget *m_loadingLabel;
+
+};
+
+
+/*! @brief The class of the float gif label value widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicGifLabelValueWidget : public MusicGifLabelMaskWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicGifLabelValueWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicGifLabelValueWidget(QWidget *parent = nullptr);
+
+    /*!
+     * Set percent value.
+     */
+    inline void setValue(int value)  { m_value = value; }
+    /*!
+     * Get percent value.
+     */
+    inline int value() const { return m_value; }
 
 private:
     /*!
@@ -160,7 +188,7 @@ private:
      */
     virtual void paintEvent(QPaintEvent *event) override final;
 
-    MusicGifLabelWidget *m_gifLabel;
+    int m_value;
 
 };
 

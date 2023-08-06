@@ -261,42 +261,34 @@ MusicGifLabelMaskWidget::MusicGifLabelMaskWidget(QWidget *parent)
     layout->setSpacing(0);
     setLayout(layout);
 
-    m_gifLabel = new MusicGifLabelWidget(this);
-    layout->addWidget(m_gifLabel, 0, Qt::AlignCenter);
+    m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::CicleBlue, this);
+    layout->addWidget(m_loadingLabel, 0, Qt::AlignCenter);
 }
 
 MusicGifLabelMaskWidget::~MusicGifLabelMaskWidget()
 {
-    delete m_gifLabel;
-}
-
-void MusicGifLabelMaskWidget::setType(MusicGifLabelWidget::Module type)
-{
-    m_gifLabel->setType(type);
-}
-
-MusicGifLabelWidget::Module MusicGifLabelMaskWidget::type() const
-{
-    return m_gifLabel->type();
+    delete m_loadingLabel;
 }
 
 void MusicGifLabelMaskWidget::run(bool run)
 {
     if(run)
     {
-        m_gifLabel->run(true);
+        m_loadingLabel->run(true);
         raise();
         show();
     }
-    else
+    else if(m_loadingLabel->isRunning())
     {
-        if(m_gifLabel->isRunning())
-        {
-            m_gifLabel->run(false);
-            lower();
-            hide();
-        }
+        m_loadingLabel->run(false);
+        lower();
+        hide();
     }
+}
+
+bool MusicGifLabelMaskWidget::isRunning() const
+{
+    return m_loadingLabel->isRunning();
 }
 
 void MusicGifLabelMaskWidget::paintEvent(QPaintEvent *event)
@@ -305,4 +297,22 @@ void MusicGifLabelMaskWidget::paintEvent(QPaintEvent *event)
 
     QPainter painter(this);
     painter.fillRect(rect(), QColor(50, 50, 50, 150));
+}
+
+
+
+MusicGifLabelValueWidget::MusicGifLabelValueWidget(QWidget *parent)
+    : MusicGifLabelMaskWidget(parent)
+    , m_value(0)
+{
+    setMinimumSize(m_loadingLabel->size());
+}
+
+void MusicGifLabelValueWidget::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+
+    QPainter painter(this);
+    painter.setPen(QPen(QColor(0x15, 0x8F, 0xE1), 1));
+    painter.drawText(rect(), Qt::AlignCenter, QString::number(m_value));
 }

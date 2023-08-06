@@ -99,23 +99,24 @@ MusicLocalManagerSongsTableWidget::MusicLocalManagerSongsTableWidget(QWidget *pa
     : MusicAbstractSongsListTableWidget(parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-    setColumnCount(6);
+    setColumnCount(7);
 
     QHeaderView *headerview = horizontalHeader();
     headerview->setVisible(true);
     headerview->resizeSection(0, 200);
     headerview->resizeSection(1, 100);
     headerview->resizeSection(2, 100);
-    headerview->resizeSection(3, 100);
+    headerview->resizeSection(3, 40);
     headerview->resizeSection(4, 100);
-    headerview->resizeSection(5, 200);
+    headerview->resizeSection(5, 100);
+    headerview->resizeSection(6, 200);
 
     setAlternatingRowColors(true);
     setFrameShape(QFrame::Box);
     setTextElideMode(Qt::ElideRight);
     setWordWrap(false);
 
-    setHorizontalHeaderLabels({tr("Title"), tr("Artist"), tr("Album"), tr("Year"), tr("Genre"), tr("Path")});
+    setHorizontalHeaderLabels({tr("Title"), tr("Artist"), tr("Album"), tr("Track"), tr("Year"), tr("Genre"), tr("Path")});
     setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     horizontalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle04);
 
@@ -155,22 +156,28 @@ void MusicLocalManagerSongsTableWidget::addCellItems(const MusicSongInfoItemList
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
-        item->setToolTip(v.m_year);
+        item->setToolTip(v.m_track);
         item->setText(item->toolTip());
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 3, item);
 
                 item = new QTableWidgetItem;
-        item->setToolTip(v.m_genre);
+        item->setToolTip(v.m_year);
         item->setText(item->toolTip());
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
 
                 item = new QTableWidgetItem;
-        item->setToolTip(v.m_path);
+        item->setToolTip(v.m_genre);
         item->setText(item->toolTip());
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);
+
+                item = new QTableWidgetItem;
+        item->setToolTip(v.m_path);
+        item->setText(item->toolTip());
+        QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 6, item);
 
         m_songs->append(MusicSong(v.m_path));
     }
@@ -183,7 +190,7 @@ void MusicLocalManagerSongsTableWidget::resizeSection()
     headerview->resizeSection(0, 200 + (width - WINDOW_WIDTH_MIN) / 4.0);
     headerview->resizeSection(1, 100 + (width - WINDOW_WIDTH_MIN) / 4.0);
     headerview->resizeSection(2, 100 + (width - WINDOW_WIDTH_MIN) / 4.0);
-    headerview->resizeSection(5, 200 + (width - WINDOW_WIDTH_MIN) / 4.0);
+    headerview->resizeSection(6, 200 + (width - WINDOW_WIDTH_MIN) / 4.0);
 }
 
 void MusicLocalManagerSongsTableWidget::removeItems()
@@ -306,7 +313,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     m_songWidget = new MusicLocalManagerSongsTableWidget(centerWidget);
     centerWidgetLayout->addWidget(m_songWidget, 3);
 
-    m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::CicleBlue, this);
+    m_loadingLabel = new MusicGifLabelValueWidget(this);
     m_loadingLabel->setStyleSheet(TTK::UI::BackgroundStyle01);
     m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words"));
 
@@ -382,6 +389,7 @@ void MusicLocalManagerWidget::refreshItems()
     const QStringList &files = TTK::File::fileListByPath(path, MusicFormats::supportMusicInputFilterFormats());
     m_sizeLabel->setText(tr("   (Songs Totol: %1)").arg(files.size()));
 
+    int count = 0;
     MusicSongMeta meta;
     for(const QString &file : qAsConst(files))
     {
@@ -391,11 +399,13 @@ void MusicLocalManagerWidget::refreshItems()
         info.m_title = state ? TTK::generateSongName(meta.title(), meta.artist()) : TTK_DEFAULT_STR;
         info.m_artist = state ? TTK::generateSongArtist(meta.artist()) : TTK_DEFAULT_STR;
         info.m_album = state ? TTK::generateSongAlbum(meta.album()) : TTK_DEFAULT_STR;
+        info.m_track = state ? meta.trackNum() : TTK_DEFAULT_STR;
         info.m_year = state ? TTK::generateSongYear(meta.year()) : TTK_DEFAULT_STR;
         info.m_genre = state ? TTK::generateSongGenre(meta.genre()) : TTK_DEFAULT_STR;
         info.m_path = file;
         m_containerItems << info;
 
+        m_loadingLabel->setValue(++count * 100.0f / files.size());
         qApp->processEvents();
     }
 
