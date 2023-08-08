@@ -48,7 +48,7 @@ void MusicFMConfigManager::writeBuffer(const MusicFMCategoryList &items)
     const MusicFMCategory &item = items.back();
 
     createProcessingInstruction();
-    QDomElement rootDom = createRoot(APP_NAME);
+    QDomElement rootDom = createRoot(TTK_APP_NAME);
     QDomElement categoryDom = writeDomElement(rootDom, "category", {"value", item.m_category});
 
     for(const MusicFMChannel &channel : qAsConst(item.m_items))

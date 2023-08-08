@@ -45,7 +45,7 @@ bool MusicWPLConfigManager::writeBuffer(const MusicSongItemList &items, const QS
     QDomElement bodyDom = writeDomNode(rootDom, "body");
 
     writeDomMutilElement(headDom, "meta", {{"name", "Generator"},
-                                           {"content", QString("%1 %2").arg(APP_NAME, TTK_VERSION_STR)}});
+                                           {"content", QString("%1 %2").arg(TTK_APP_NAME, TTK_VERSION_STR)}});
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];

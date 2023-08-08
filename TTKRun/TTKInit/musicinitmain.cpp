@@ -9,9 +9,9 @@ int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
 
-    QCoreApplication::setOrganizationName(APP_NAME);
-    QCoreApplication::setOrganizationDomain(APP_COME_NAME);
-    QCoreApplication::setApplicationName(APP_NAME);
+    QCoreApplication::setOrganizationName(TTK_APP_NAME);
+    QCoreApplication::setOrganizationDomain(TTK_APP_COME_NAME);
+    QCoreApplication::setApplicationName(TTK_APP_NAME);
 
     MusicConfigObject object;
     object.initialize();

@@ -165,7 +165,7 @@ MusicNetworkConnectionTestWidget::~MusicNetworkConnectionTestWidget()
 
 void MusicNetworkConnectionTestWidget::show()
 {
-    m_ui->iconLabel->timeout();
+    m_ui->iconLabel->updateRender();
     MusicAbstractMoveWidget::show();
 }
 

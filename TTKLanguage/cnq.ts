@@ -1040,7 +1040,7 @@ too high may cause clipping!</source>
         <translation>取样率：</translation>
     </message>
     <message>
-        <source> Amplification factor:</source>
+        <source>Amplification factor:</source>
         <translation>扩音比率：</translation>
     </message>
     <message>
@@ -1048,7 +1048,7 @@ too high may cause clipping!</source>
         <translation>立体声混合：</translation>
     </message>
     <message>
-        <source> Interpolation type:</source>
+        <source>Interpolation type:</source>
         <translation>插音类型：</translation>
     </message>
     <message>

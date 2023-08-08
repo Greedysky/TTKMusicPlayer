@@ -1,5 +1,5 @@
-#ifndef TTKRUNOBJECT_H
-#define TTKRUNOBJECT_H
+#ifndef TTKQTOBJECT_H
+#define TTKQTOBJECT_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -20,24 +20,32 @@
  ***************************************************************************/
 
 #include "ttkobject.h"
+#include <QCoreApplication>
 
-#ifdef _MSC_VER
-#  pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
+#ifdef Q_OS_WIN
+#  define TTK_SERVICE_FULL      TTK::applicationPath() + TTK_SERVICE_EXE_NAME
+#else
+#  define TTK_ROUTINE_FULL      TTK::applicationPath() + TTK_PDIR + "TTKRoutine.sh"
+#  define TTK_APP_MAIN_FULL     TTK::applicationPath() + TTK_PDIR + TTK_APP_SHL_NAME
+#  define TTK_INIT_FULL         TTK::applicationPath() + "TTKInit.sh"
+#  define TTK_CONSOLE_FULL      TTK::applicationPath() + "TTKConsole.sh"
+#  define TTK_SERVICE_FULL      TTK::applicationPath() + TTK_SERVICE_SHL_NAME
+#  define TTK_ROUTINECOPY_FULL  TTK::applicationPath() + "TTKRoutineCopy.sh"
 #endif
 
-/*! @brief The class of the ttk run object.
+
+/*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>
  */
-class TTKRunObject
+namespace TTK
 {
-public:
-    TTKRunObject() = default;
-
     /*!
-     * To run main window.
+     * Get application work dir.
      */
-    void run(int argc, char **argv) const;
+    static QString applicationPath()
+    {
+        return QCoreApplication::applicationDirPath() + TTK_SEPARATOR;
+    }
+}
 
-};
-
-#endif // TTKRUNOBJECT_H
+#endif // TTKQTOBJECT_H

@@ -2,10 +2,10 @@
 #include "musicapplication.h"
 #include "musicruntimemanager.h"
 #include "musicconfigobject.h"
-#include "musicplatformmanager.h"
 #include "ttkdumper.h"
 #include "ttkglobalhelper.h"
 #include "ttkcommandline.h"
+#include "ttkplatformsystem.h"
 
 #ifdef Q_OS_UNIX
 #  include <malloc.h>
@@ -41,7 +41,7 @@ static void loadAppScaledFactor(int argc, char *argv[])
         QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::Floor);
 #    endif
 #  elif TTK_QT_VERSION_CHECK(5,6,0)
-     MusicPlatformManager platform;
+     TTKPlatformSystem platform;
      const float dpi = platform.logicalDotsPerInch() / 96.0;
      qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
 #  else
@@ -58,9 +58,9 @@ int main(int argc, char *argv[])
 
     TTKRunApplication app(argc, argv);
 
-    QCoreApplication::setOrganizationName(APP_NAME);
-    QCoreApplication::setOrganizationDomain(APP_COME_NAME);
-    QCoreApplication::setApplicationName(APP_NAME);
+    QCoreApplication::setOrganizationName(TTK_APP_NAME);
+    QCoreApplication::setOrganizationDomain(TTK_APP_COME_NAME);
+    QCoreApplication::setApplicationName(TTK_APP_NAME);
 
     if(app.isRunning())
     {
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     for(int i = 0; i < argc; ++i)
     {
         const QString &&arg = QString::fromLocal8Bit(argv[i]);
-        if(!arg.endsWith(APP_EXE_NAME) && !arg.endsWith(SERVICE_EXE_NAME))
+        if(!arg.endsWith(TTK_APP_EXE_NAME) && !arg.endsWith(TTK_SERVICE_EXE_NAME))
         {
             args << arg;
         }

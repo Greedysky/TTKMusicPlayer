@@ -384,7 +384,7 @@ void MusicLrcAnalysis::revertTime(qint64 pos)
 void MusicLrcAnalysis::saveData()
 {
     QString data;
-    data.append(QString("[by: %1]\n[offset:0]\n").arg(APP_NAME));
+    data.append(QString("[by: %1]\n[offset:0]\n").arg(TTK_APP_NAME));
 
     for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
     {

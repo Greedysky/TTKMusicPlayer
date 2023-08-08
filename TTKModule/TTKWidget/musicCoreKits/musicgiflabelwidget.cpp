@@ -26,7 +26,7 @@ MusicGifLabelWidget::MusicGifLabelWidget(QWidget *parent)
 
     m_timer = new QTimer(this);
     m_timer->setInterval(100);
-    connect(m_timer, SIGNAL(timeout()), SLOT(timeout()));
+    connect(m_timer, SIGNAL(timeout()), SLOT(updateRender()));
 }
 
 MusicGifLabelWidget::MusicGifLabelWidget(Module type, QWidget *parent)
@@ -110,7 +110,7 @@ void MusicGifLabelWidget::stop()
     m_isRunning = false;
 }
 
-void MusicGifLabelWidget::timeout()
+void MusicGifLabelWidget::updateRender()
 {
     ++m_index;
     switch(m_type)

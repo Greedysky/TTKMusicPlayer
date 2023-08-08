@@ -9,7 +9,6 @@
 #include "musicapplicationmodule.h"
 #include "musiclrccolorwidget.h"
 #include "musiclrcdefines.h"
-#include "musicplatformmanager.h"
 #include "musiclrcmanager.h"
 #include "musicsourceupdatewidget.h"
 #include "musiccolordialog.h"
@@ -18,6 +17,7 @@
 #include "musicfileutils.h"
 #include "musicmessagebox.h"
 #include "ttkversion.h"
+#include "ttkfileassocation.h"
 
 #include <qmmp/qmmpsettings.h>
 
@@ -280,8 +280,8 @@ void MusicSettingWidget::initialize()
     m_ui->downloadServerComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt());
     m_ui->closeNetWorkCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());
 #ifdef Q_OS_WIN
-    MusicPlatformManager platform;
-    if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toInt() && platform.isFileAssociate())
+    TTKFileAssocation assocation;
+    if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toInt() && assocation.exist(MP3_FILE_SUFFIX))
     {
         m_ui->setDefaultPlayerCheckBox->setChecked(true);
         if(m_ui->setDefaultPlayerCheckBox->isChecked())

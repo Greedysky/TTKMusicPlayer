@@ -18,10 +18,12 @@ set(HEADER_FILES
   ttkcryptographichash.h
   ttkdefer.h
   ttkdesktopwrapper.h
+  ttkfileassocation.h
   ttkglobalhelper.h
   ttkitemdelegate.h
   ttklibrary.h
   ttklibraryversion.h
+  ttkplatformsystem.h
   ttksemaphoreloop.h
   ttksuperenum.h
   ttktabbutton.h
@@ -43,8 +45,10 @@ set(SOURCE_FILES
   ttkcommandline.cpp
   ttkcryptographichash.cpp
   ttkdesktopwrapper.cpp
+  ttkfileassocation.cpp
   ttkglobalhelper.cpp
   ttkitemdelegate.cpp
+  ttkplatformsystem.cpp
   ttksemaphoreloop.cpp
   ttksuperenum.cpp
   ttktabbutton.cpp

@@ -48,9 +48,11 @@ HEADERS += \
     $$PWD/../ttklogger.h \
     $$PWD/../ttkmoduleexport.h \
     $$PWD/../ttknumberdefine.h \
+    $$PWD/../ttkobject.h \
     $$PWD/../ttkprivate.h \
     $$PWD/../ttkqtcompat.h \
     $$PWD/../ttkqtglobal.h \
+    $$PWD/../ttkqtobject.h \
     $$PWD/../ttksingleton.h \
     $$PWD/../ttkversion.h
 
@@ -70,10 +72,12 @@ HEADERS += \
     $$PWD/ttkcryptographichash.h \
     $$PWD/ttkdefer.h \
     $$PWD/ttkdesktopwrapper.h \
+    $$PWD/ttkfileassocation.h \
     $$PWD/ttkglobalhelper.h \
     $$PWD/ttkitemdelegate.h \
     $$PWD/ttklibrary.h \
     $$PWD/ttklibraryversion.h \
+    $$PWD/ttkplatformsystem.h \
     $$PWD/ttksemaphoreloop.h \
     $$PWD/ttksuperenum.h \
     $$PWD/ttktabbutton.h \
@@ -94,8 +98,10 @@ SOURCES += \
     $$PWD/ttkcommandline.cpp \
     $$PWD/ttkcryptographichash.cpp \
     $$PWD/ttkdesktopwrapper.cpp \
+    $$PWD/ttkfileassocation.cpp \
     $$PWD/ttkglobalhelper.cpp \
     $$PWD/ttkitemdelegate.cpp \
+    $$PWD/ttkplatformsystem.cpp \
     $$PWD/ttksemaphoreloop.cpp \
     $$PWD/ttksuperenum.cpp \
     $$PWD/ttktabbutton.cpp \

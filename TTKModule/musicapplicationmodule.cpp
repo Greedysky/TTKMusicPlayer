@@ -19,8 +19,10 @@
 #include "musicsourceupdaterequest.h"
 #include "musicscreensaverwidget.h"
 #include "musicplatformmanager.h"
-#include "ttkdesktopwrapper.h"
+#include "musicformats.h"
 #include "ttklibrary.h"
+#include "ttkdesktopwrapper.h"
+#include "ttkfileassocation.h"
 
 #include "qdevicewatcher.h"
 #include "qsync/qsyncconfig.h"
@@ -114,11 +116,31 @@ void MusicApplicationModule::applyParameter()
 {
 #ifdef Q_OS_WIN
     MusicPlatformManager platform;
-//    platform.windowsStartUp(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
+    platform.windowsStartUpMode(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
 
-    if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool())
+    TTKFileAssocation assocation;
+    for(const QString &format : MusicFormats::supportMusicFormats())
     {
-        platform.setMusicRegeditAssociateFileIcon();
+        if(assocation.exist(MP3_FILE_SUFFIX))
+        {
+            if(!G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool())
+            {
+                if(!assocation.exist(format))
+                {
+                    assocation.remove(format);
+                }
+            }
+        }
+        else
+        {
+            if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool())
+            {
+                if(assocation.exist(format))
+                {
+                    assocation.append(format);
+                }
+            }
+        }
     }
 #endif
     if(!m_screenSaverWidget)

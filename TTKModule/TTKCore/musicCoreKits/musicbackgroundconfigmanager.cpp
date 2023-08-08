@@ -22,7 +22,7 @@ void MusicSkinConfigManager::writeBuffer(const MusicSkinItem &item, const QStrin
     createProcessingInstruction();
     QDomElement rootDom = createRoot("TTKSkin");
 
-    writeDomElement(rootDom, "creator", {"value", APP_NAME});
+    writeDomElement(rootDom, "creator", {"value", TTK_APP_NAME});
     writeDomElement(rootDom, "name", {"value", item.m_name});
     writeDomElement(rootDom, "useCount", {"value", item.m_useCount});
 

@@ -17,13 +17,13 @@ MusicMPRISPlayer::MusicMPRISPlayer(QObject *parent)
     m_root = new MusicMPRISPlayerRoot(this);
     m_player = new MusicMPRISPlayerCore(this);
     //
-    connection.registerService("org.mpris.MediaPlayer2." APP_NAME);
+    connection.registerService("org.mpris.MediaPlayer2." TTK_APP_NAME);
     connection.registerObject("/org/mpris/MediaPlayer2", this);
 }
 
 MusicMPRISPlayer::~MusicMPRISPlayer()
 {
-    QDBusConnection::sessionBus().unregisterService("org.mpris.MediaPlayer2." APP_NAME);
+    QDBusConnection::sessionBus().unregisterService("org.mpris.MediaPlayer2." TTK_APP_NAME);
     delete m_root;
     delete m_player;
 }
@@ -53,7 +53,7 @@ bool MusicMPRISPlayerRoot::canRaise() const
 
 QString MusicMPRISPlayerRoot::desktopEntry() const
 {
-    return APP_NAME;
+    return TTK_APP_NAME;
 }
 
 bool MusicMPRISPlayerRoot::hasTrackList() const
@@ -63,7 +63,7 @@ bool MusicMPRISPlayerRoot::hasTrackList() const
 
 QString MusicMPRISPlayerRoot::identity() const
 {
-    return APP_NAME;
+    return TTK_APP_NAME;
 }
 
 QStringList MusicMPRISPlayerRoot::supportedMimeTypes() const

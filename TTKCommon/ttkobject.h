@@ -1,5 +1,5 @@
-#ifndef TTKRUNOBJECT_H
-#define TTKRUNOBJECT_H
+#ifndef TTKOBJECT_H
+#define TTKOBJECT_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -19,25 +19,22 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkobject.h"
+#include "ttkglobal.h"
 
-#ifdef _MSC_VER
-#  pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
+#define TTK_SERVICE_NAME        "TTKService"
+#define TTK_APP_NAME            "TTKMusicPlayer"
+#define TTK_APP_COME_NAME       TTK_STRCAT(TTK_APP_NAME, COM_FILE)
+
+#ifdef _WIN32
+#  define TTK_APP_EXE_NAME      TTK_STRCAT(TTK_APP_NAME, EXE_FILE)
+#  define TTK_SERVICE_EXE_NAME  TTK_STRCAT(TTK_SERVICE_NAME, EXE_FILE)
+#  define TTK_APP_SHL_NAME      TTK_APP_EXE_NAME
+#  define TTK_SERVICE_SHL_NAME  TTK_SERVICE_EXE_NAME
+#else
+#  define TTK_APP_EXE_NAME      TTK_APP_NAME
+#  define TTK_SERVICE_EXE_NAME  TTK_SERVICE_NAME
+#  define TTK_APP_SHL_NAME      TTK_STRCAT(TTK_APP_NAME, SHL_FILE)
+#  define TTK_SERVICE_SHL_NAME  TTK_STRCAT(TTK_SERVICE_NAME, SHL_FILE)
 #endif
 
-/*! @brief The class of the ttk run object.
- * @author Greedysky <greedysky@163.com>
- */
-class TTKRunObject
-{
-public:
-    TTKRunObject() = default;
-
-    /*!
-     * To run main window.
-     */
-    void run(int argc, char **argv) const;
-
-};
-
-#endif // TTKRUNOBJECT_H
+#endif // TTKOBJECT_H

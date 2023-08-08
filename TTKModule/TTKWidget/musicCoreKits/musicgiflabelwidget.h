@@ -105,7 +105,7 @@ public Q_SLOTS:
     /*!
      * Change the current gif index.
      */
-    void timeout();
+    void updateRender();
 
 private:
     /*!

@@ -721,7 +721,7 @@ void MusicRightAreaWidget::videoSetPopup(bool popup)
         m_ui->functionsContainer->setCurrentWidget(m_stackedWidget);
 #ifdef Q_OS_WIN
         MusicPlatformManager platform;
-        platform.enabledLeftWinMode();
+        platform.windowsEnableLeftMode();
 #endif
         QTimer::singleShot(MT_ONCE, this, SLOT(videoActiveWindow()));
     }
@@ -789,7 +789,7 @@ void MusicRightAreaWidget::containerForWallpaperClicked()
     {
 #ifdef Q_OS_WIN
         MusicPlatformManager platform;
-        platform.enabledLeftWinMode();
+        platform.windowsEnableLeftMode();
 #endif
         m_lrcForWallpaper = new MusicLrcContainerForWallpaper;
         m_lrcForWallpaper->setLrcAnalysisModel(m_lrcAnalysis);

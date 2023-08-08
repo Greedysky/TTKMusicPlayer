@@ -138,22 +138,6 @@
 #define EXE_FILE            TTK_STRCAT(TTK_DOT, EXE_FILE_SUFFIX)
 #define COM_FILE            TTK_STRCAT(TTK_DOT, COM_FILE_SUFFIX)
 
-#define SERVICE_NAME        "TTKService"
-#define APP_NAME            "TTKMusicPlayer"
-#define APP_DOT_NAME        TTK_STRCAT(APP_NAME, TTK_DOT)
-#define APP_COME_NAME       TTK_STRCAT(APP_NAME, COM_FILE)
-#ifdef _WIN32
-#  define APP_EXE_NAME      TTK_STRCAT(APP_NAME, EXE_FILE)
-#  define SERVICE_EXE_NAME  TTK_STRCAT(SERVICE_NAME, EXE_FILE)
-#  define APP_SHL_NAME      APP_EXE_NAME
-#  define SERVICE_SHL_NAME  SERVICE_EXE_NAME
-#else
-#  define APP_EXE_NAME      APP_NAME
-#  define SERVICE_EXE_NAME  SERVICE_NAME
-#  define APP_SHL_NAME      TTK_STRCAT(APP_NAME, SHL_FILE)
-#  define SERVICE_SHL_NAME  TTK_STRCAT(SERVICE_NAME, SHL_FILE)
-#endif
-
 
 // C style format
 using TTKInt8 =             signed char;                /* 8 bit signed */

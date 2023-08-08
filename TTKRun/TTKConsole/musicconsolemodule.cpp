@@ -47,7 +47,7 @@ MusicConsoleModule::~MusicConsoleModule()
 
 bool MusicConsoleModule::initialize(const QCoreApplication &app)
 {
-    TTK_LOG_STREAM("\n" APP_NAME << "Console Module" << TTK_VERSION_STR "\n");
+    TTK_LOG_STREAM("\n" TTK_APP_NAME << "Console Module" << TTK_VERSION_STR "\n");
 
     TTKCommandLineOption op1("-u", "--url", "Music play url path");
     TTKCommandLineOption op2("-d", "--dir", "Music play dir path");

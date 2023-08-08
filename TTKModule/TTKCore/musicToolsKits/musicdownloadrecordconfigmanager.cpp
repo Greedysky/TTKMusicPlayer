@@ -31,7 +31,7 @@ void MusicDownloadRecordConfigManager::writeBuffer(const MusicSongList &items)
     }
 
     createProcessingInstruction();
-    QDomElement rootDom = createRoot(APP_NAME);
+    QDomElement rootDom = createRoot(TTK_APP_NAME);
     QDomElement recordDom = writeDomNode(rootDom, "record");
 
     for(const MusicSong &record : qAsConst(items))

@@ -68,7 +68,7 @@ void MusicConfigObject::checkFileNeededExist() const
 
 #ifdef Q_OS_UNIX
     copyLinuxShellFile(":/data/TTKRoutine.sh", TTK_ROUTINE_FULL);
-    copyLinuxShellFile(":/data/TTKMusicPlayer.sh", TTK_MUSICPLAYER_FULL);
+    copyLinuxShellFile(":/data/TTKMusicPlayer.sh", TTK_APP_MAIN_FULL);
     copyLinuxShellFile(":/data/TTKRoutineCopy.sh", TTK_ROUTINECOPY_FULL);
     copyLinuxShellFile(":/data/TTKInit.sh", TTK_INIT_FULL);
     copyLinuxShellFile(":/data/TTKConsole.sh", TTK_CONSOLE_FULL);

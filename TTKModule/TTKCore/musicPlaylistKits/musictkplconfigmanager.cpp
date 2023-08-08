@@ -36,7 +36,7 @@ bool MusicTKPLConfigManager::writeBuffer(const MusicSongItemList &items, const Q
     }
 
     createProcessingInstruction();
-    QDomElement rootDom = createRoot(APP_NAME);
+    QDomElement rootDom = createRoot(TTK_APP_NAME);
 
     for(int i = 0; i < items.count(); ++i)
     {

@@ -90,9 +90,9 @@ public:
     }
 
 private:
-  std::queue<T> m_queue;
-  mutable std::mutex m_mutex;
-  std::condition_variable m_condition;
+    std::queue<T> m_queue;
+    mutable std::mutex m_mutex;
+    std::condition_variable m_condition;
 
 };
 

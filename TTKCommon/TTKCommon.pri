@@ -40,10 +40,12 @@ win32{
             $$PWD/TTKLibrary/ttkcryptographichash.h \
             $$PWD/TTKLibrary/ttkdesktopwrapper.h \
             $$PWD/TTKLibrary/ttkdefer.h \
+            $$PWD/TTKLibrary/ttkfileassocation.h \
             $$PWD/TTKLibrary/ttkglobalhelper.h \
             $$PWD/TTKLibrary/ttkitemdelegate.h \
             $$PWD/TTKLibrary/ttklibrary.h \
             $$PWD/TTKLibrary/ttklibraryversion.h \
+            $$PWD/TTKLibrary/ttkplatformsystem.h \
             $$PWD/TTKLibrary/ttksemaphoreloop.h \
             $$PWD/TTKLibrary/ttksuperenum.h \
             $$PWD/TTKLibrary/ttktabbutton.h \
