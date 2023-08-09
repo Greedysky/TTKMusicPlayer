@@ -56,12 +56,12 @@ void MusicPlatformManager::windowsStartUpMode(bool v) const
     {
         if (reg.value(appName).toString() != appPath)
         {
-            reg.setValue(appName, appPath);
+            reg.setValue(appName, QString("\"%1\"").arg(appPath));
         }
 
         if (regWOW.value(appName).toString() != appPath)
         {
-            regWOW.setValue(appName, appPath);
+            regWOW.setValue(appName, QString("\"%1\"").arg(appPath));
         }
     }
     else

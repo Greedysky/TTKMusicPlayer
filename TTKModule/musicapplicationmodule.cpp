@@ -121,28 +121,23 @@ void MusicApplicationModule::applyParameter()
     TTKFileAssocation assocation;
     for(const QString &format : MusicFormats::supportMusicFormats())
     {
-        if(assocation.exist(MP3_FILE_SUFFIX))
+        if(assocation.exist(format))
         {
             if(!G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool())
             {
-                if(!assocation.exist(format))
-                {
-                    assocation.remove(format);
-                }
+                assocation.remove(format);
             }
         }
         else
         {
             if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool())
             {
-                if(assocation.exist(format))
-                {
-                    assocation.append(format);
-                }
+                assocation.append(format);
             }
         }
     }
 #endif
+
     if(!m_screenSaverWidget)
     {
         m_screenSaverWidget = new MusicScreenSaverBackgroundWidget;

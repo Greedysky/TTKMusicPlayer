@@ -141,6 +141,7 @@ MusicSettingWidget::~MusicSettingWidget()
 
 void MusicSettingWidget::initialize()
 {
+    m_ui->autoStartCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
     m_ui->autoPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::StartUpPlayMode).toBool());
     m_ui->lastPlayCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList().front().toInt());
 
@@ -152,6 +153,7 @@ void MusicSettingWidget::initialize()
     {
         m_ui->quitRadioBox->setChecked(true);
     }
+
     if(!G_SETTING_PTR->value(MusicSettingManager::WindowQuitMode).toBool())
     {
         m_ui->quitOpacityRadioBox->setChecked(true);
@@ -281,21 +283,20 @@ void MusicSettingWidget::initialize()
     m_ui->closeNetWorkCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());
 #ifdef Q_OS_WIN
     TTKFileAssocation assocation;
-    if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toInt() && assocation.exist(MP3_FILE_SUFFIX))
+    if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool() && assocation.exist(MP3_FILE_SUFFIX))
     {
         m_ui->setDefaultPlayerCheckBox->setChecked(true);
-        if(m_ui->setDefaultPlayerCheckBox->isChecked())
-        {
-            m_ui->setDefaultPlayerCheckBox->setEnabled(false);
-        }
     }
     else
     {
-        m_ui->setDefaultPlayerCheckBox->setEnabled(true);
         m_ui->setDefaultPlayerCheckBox->setChecked(false);
         G_SETTING_PTR->setValue(MusicSettingManager::FileAssociationMode, false);
     }
 #else
+    m_ui->autoStartCheckBox->setEnabled(false);
+    m_ui->autoStartCheckBox->setChecked(false);
+    G_SETTING_PTR->setValue(MusicSettingManager::StartUpMode, false);
+
     m_ui->setDefaultPlayerCheckBox->setEnabled(false);
     m_ui->setDefaultPlayerCheckBox->setChecked(false);
     G_SETTING_PTR->setValue(MusicSettingManager::FileAssociationMode, false);
@@ -555,11 +556,6 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, m_ui->quitWindowRadioBox->isChecked());
     G_NETWORK_PTR->setBlockNetWork(m_ui->closeNetWorkCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::FileAssociationMode, m_ui->setDefaultPlayerCheckBox->isChecked());
-
-    if(m_ui->setDefaultPlayerCheckBox->isChecked())
-    {
-        m_ui->setDefaultPlayerCheckBox->setEnabled(false);
-    }
 
     const bool hotkeyEnabled = m_ui->globalHotkeyBox->isChecked();
     G_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnable, hotkeyEnabled);

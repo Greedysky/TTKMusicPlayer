@@ -68,22 +68,22 @@ void TTKFileAssocation::appendSoftware(const QString& suffix)
     appPath.replace("/", "\\");
 
     QSettings reg1Setting(mainString, QSettings::NativeFormat);
-    reg1Setting.setValue("Default", suffix + QObject::tr("File"));
+    reg1Setting.setValue("Default", suffix.toUpper() + QObject::tr("File"));
 
     QSettings reg2Setting(mainString + "\\DefaultIcon", QSettings::NativeFormat);
     reg2Setting.setValue("Default", QString("%1,%2").arg(appPath).arg(1));
 
     QSettings reg3Setting(mainString + "\\Shell\\Open", QSettings::NativeFormat);
-    reg3Setting.setValue("Default", QObject::tr("Use GIVS play"));
+    reg3Setting.setValue("Default", QObject::tr("Use Module Play"));
 
     QSettings reg4Setting(mainString + "\\Shell\\Open\\Command", QSettings::NativeFormat);
-    reg4Setting.setValue("Default", QString("\"%1\"").arg(appPath) + QString(" %1 ").arg("-Open") + QString("\"%1\""));
+    reg4Setting.setValue("Default", QString("\"%1\" -Open ").arg(appPath) + QString("\"%1\""));
 
     QSettings reg5Setting(mainString + "\\Shell\\PlayList", QSettings::NativeFormat);
-    reg5Setting.setValue("Default", QObject::tr("Add to GIVS Playlist"));
+    reg5Setting.setValue("Default", QObject::tr("Add To Module Playlist"));
 
     QSettings reg6Setting(mainString + "\\Shell\\PlayList\\Command", QSettings::NativeFormat);
-    reg6Setting.setValue("Default", QString("\"%1\"").arg(appPath) + QString(" %1 ").arg("-List") + QString("\"%1\""));
+    reg6Setting.setValue("Default", QString("\"%1\" -List ").arg(appPath) + QString("\"%1\""));
 }
 
 void TTKFileAssocation::appendFileExts(const QString& suffix)

@@ -73,7 +73,7 @@ bool MusicDeviceInfoModule::disksProperty(const QString &drive) const
     }
 
     PSTORAGE_DEVICE_DESCRIPTOR pDev = (STORAGE_DEVICE_DESCRIPTOR *)malloc(pHeader->Size);
-    bResult = DeviceIoControl(
+    DeviceIoControl(
         hDevice,
         IOCTL_STORAGE_QUERY_PROPERTY,
         &query,
@@ -85,7 +85,8 @@ bool MusicDeviceInfoModule::disksProperty(const QString &drive) const
 
     free(pHeader);
     CloseHandle(hDevice);
-    if(pDev->BusType==BusTypeUsb)
+
+    if(pDev->BusType == BusTypeUsb)
     {
         free(pDev);
         return true;
