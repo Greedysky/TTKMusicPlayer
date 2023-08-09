@@ -432,6 +432,18 @@
 <context>
     <name>ProjectMPlugin</name>
     <message>
+        <source>&amp;Help</source>
+        <translation>幫助</translation>
+    </message>
+    <message>
+        <source>&amp;Show Song Title</source>
+        <translation>顯示歌曲名稱</translation>
+    </message>
+        <message>
+        <source>&amp;Show Preset Name</source>
+        <translation>顯示頻譜名稱</translation>
+    </message>
+    <message>
         <source>&amp;Show Menu</source>
         <translation>頻譜菜單列表</translation>
     </message>
