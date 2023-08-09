@@ -8,7 +8,7 @@
 class OrgFileReader : public AbstractReader
 {
 public:
-    OrgFileReader();
+    OrgFileReader() = default;
     virtual ~OrgFileReader();
 
     virtual bool load(const QString &path) override final;
@@ -20,11 +20,6 @@ private:
     org_decoder_t *m_input = nullptr;
 
 };
-
-OrgFileReader::OrgFileReader()
-{
-
-}
 
 OrgFileReader::~OrgFileReader()
 {
@@ -65,7 +60,7 @@ qint64 OrgFileReader::read(unsigned char *data, qint64 maxSize)
 class PxFileReader : public AbstractReader
 {
 public:
-    PxFileReader();
+    PxFileReader() = default;
     virtual ~PxFileReader();
 
     virtual bool load(const QString &path) override final;
@@ -78,11 +73,6 @@ private:
     pxtnDescriptor *m_pxd = nullptr;
 
 };
-
-PxFileReader::PxFileReader()
-{
-
-}
 
 PxFileReader::~PxFileReader()
 {

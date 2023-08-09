@@ -14,7 +14,7 @@ extern "C" {
 class MDXFileReader : public AbstractReader
 {
 public:
-    MDXFileReader();
+    MDXFileReader() = default;
     virtual ~MDXFileReader();
 
     virtual bool load(const QString &path) override final;
@@ -25,11 +25,6 @@ private:
     MDXMini *m_input = nullptr;
 
 };
-
-MDXFileReader::MDXFileReader()
-{
-
-}
 
 MDXFileReader::~MDXFileReader()
 {
@@ -82,7 +77,7 @@ qint64 MDXFileReader::read(unsigned char *data, qint64)
 class PMDFileReader : public AbstractReader
 {
 public:
-    PMDFileReader();
+    PMDFileReader() = default;
     virtual ~PMDFileReader();
 
     virtual bool load(const QString &path) override final;
@@ -93,11 +88,6 @@ private:
     PMDMini *m_input = nullptr;
 
 };
-
-PMDFileReader::PMDFileReader()
-{
-
-}
 
 PMDFileReader::~PMDFileReader()
 {
@@ -150,7 +140,7 @@ qint64 PMDFileReader::read(unsigned char *data, qint64)
 class MUCFileReader : public AbstractReader
 {
 public:
-    MUCFileReader();
+    MUCFileReader() = default;
     virtual ~MUCFileReader();
 
     virtual bool load(const QString &path) override final;
@@ -161,11 +151,6 @@ private:
     MucomModule *m_input = nullptr;
 
 };
-
-MUCFileReader::MUCFileReader()
-{
-
-}
 
 MUCFileReader::~MUCFileReader()
 {
@@ -216,7 +201,7 @@ qint64 MUCFileReader::read(unsigned char *data, qint64)
 class VGSFileReader : public AbstractReader
 {
 public:
-    VGSFileReader();
+    VGSFileReader() = default;
     virtual ~VGSFileReader();
 
     virtual bool load(const QString &path) override final;
@@ -229,11 +214,6 @@ private:
     void *m_input = nullptr;
 
 };
-
-VGSFileReader::VGSFileReader()
-{
-
-}
 
 VGSFileReader::~VGSFileReader()
 {

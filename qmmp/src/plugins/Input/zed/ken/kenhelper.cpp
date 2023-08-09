@@ -7,7 +7,7 @@
 class KDMFileReader : public AbstractReader
 {
 public:
-    KDMFileReader();
+    KDMFileReader() = default;
     virtual ~KDMFileReader();
 
     virtual bool load(const QString &path) override final;
@@ -18,11 +18,6 @@ private:
     KDMDecoder *m_input = nullptr;
 
 };
-
-KDMFileReader::KDMFileReader()
-{
-
-}
 
 KDMFileReader::~KDMFileReader()
 {
@@ -69,7 +64,7 @@ qint64 KDMFileReader::read(unsigned char *data)
 class KSMFileReader : public AbstractReader
 {
 public:
-    KSMFileReader();
+    KSMFileReader() = default;
     virtual ~KSMFileReader();
 
     virtual bool load(const QString &path) override final;
@@ -80,11 +75,6 @@ private:
     KSMDecoder *m_input = nullptr;
 
 };
-
-KSMFileReader::KSMFileReader()
-{
-
-}
 
 KSMFileReader::~KSMFileReader()
 {
@@ -129,7 +119,7 @@ qint64 KSMFileReader::read(unsigned char *data)
 class SMFileReader : public AbstractReader
 {
 public:
-    SMFileReader();
+    SMFileReader() = default;
     virtual ~SMFileReader();
 
     virtual bool load(const QString &path) override final;
@@ -140,11 +130,6 @@ private:
     SMDecoder *m_input = nullptr;
 
 };
-
-SMFileReader::SMFileReader()
-{
-
-}
 
 SMFileReader::~SMFileReader()
 {

@@ -20,15 +20,9 @@
 #define SUNVOXHELPER_H
 
 #include <QFile>
+#include <QLibrary>
 #include <QStringList>
 #include <qmmp/qmmp.h>
-#if defined Q_OS_WIN && defined __GNUC__
-#  include <qt_windows.h>
-#else
-#  include <dlfcn.h>
-#  define FARPROC void *
-#  define HINSTANCE void *
-#endif
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -63,11 +57,9 @@ public:
     inline QString patterns() const { return m_patterns; }
 
 private:
-    FARPROC GetSymbolAddress(const char *name) const;
-
     QString m_path;
     bool m_copyMode = false;
-    HINSTANCE m_instance = nullptr;
+    QLibrary *m_instance = nullptr;
     QString m_title;
     int m_beatsPerMinute = 0, m_ticksPerLine = 0;
     int m_moduleCount = 0, m_patternCount = 0;

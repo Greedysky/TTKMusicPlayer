@@ -71,14 +71,19 @@ static inline QString formatDuration(qint64 ms)
 
 namespace std
 {
-    int gcd(int m, int n)
-    {
-        return n == 0 ? m : gcd(n, m % n);
-    }
+//    static int gcd(int m, int n)
+//    {
+//        return n == 0 ? m : gcd(n, m % n);
+//    }
 
-    int lcm(int m, int n)
+//    static int lcm(int m, int n)
+//    {
+//        return abs(m) / gcd(m, n) * abs(n);
+//    }
+
+    static int lcm(int a, int b)
     {
-        return abs(m) / gcd(m, n) * abs(n);
+        return b ? lcm(b, a % b) : a;
     }
 }
 

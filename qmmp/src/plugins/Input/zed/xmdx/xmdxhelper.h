@@ -29,8 +29,8 @@
 class AbstractReader
 {
 public:
-    AbstractReader() { }
-    virtual ~AbstractReader() { }
+    AbstractReader() = default;
+    virtual ~AbstractReader() = default;
 
     virtual bool load(const QString &path) = 0;
     virtual qint64 totalTime() const = 0;

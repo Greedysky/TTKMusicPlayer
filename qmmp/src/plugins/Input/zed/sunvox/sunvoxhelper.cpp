@@ -72,7 +72,7 @@ typedef int (SUNVOX_CALL *_sv_get_pattern_y)(int slot, int pat_num);
 typedef int (SUNVOX_CALL *_sv_get_pattern_tracks)(int slot, int pat_num);
 typedef int (SUNVOX_CALL *_sv_get_pattern_lines)(int slot, int pat_num);
 //
-#define CREATE_SV_MODULE(Module) ((_##Module)GetSymbolAddress(#Module))
+#define CREATE_SV_MODULE(Module) ((_##Module)m_instance->resolve(#Module))
 //
 #define sv_audio_callback            CREATE_SV_MODULE(sv_audio_callback)
 #define sv_init                      CREATE_SV_MODULE(sv_init)
@@ -112,17 +112,18 @@ typedef int (SUNVOX_CALL *_sv_get_pattern_lines)(int slot, int pat_num);
 SunVoxHelper::SunVoxHelper(const QString &path)
    : m_path(path)
 {
-
+    m_instance = new QLibrary;
 }
 
 SunVoxHelper::~SunVoxHelper()
 {
     deinit();
+    delete m_instance;
 }
 
 void SunVoxHelper::deinit()
 {
-    if(!m_instance)
+    if(!m_instance->isLoaded())
     {
         return;
     }
@@ -132,10 +133,9 @@ void SunVoxHelper::deinit()
 
 #if defined Q_OS_WIN && defined __GNUC__
     sv_deinit();
-    FreeLibrary(m_instance);
-#else
-    dlclose(m_instance);
 #endif
+    m_instance->unload();
+
     if(m_copyMode)
     {
         QFile::remove(LIBRARY_CNAME);
@@ -156,12 +156,10 @@ bool SunVoxHelper::initialize(bool copy)
         library = LIBRARY_CNAME;
     }
 
-#if defined Q_OS_WIN && defined __GNUC__
-    m_instance = LoadLibraryA(QmmpPrintable(library));
-#else
-    m_instance = dlopen(QmmpPrintable(library), RTLD_LAZY);
-#endif
-    if(!m_instance)
+    m_instance->setFileName(library);
+    m_instance->load();
+
+    if(!m_instance->isLoaded())
     {
         qWarning("SunVoxHelper: load plugin failed");
         return false;
@@ -244,21 +242,6 @@ void SunVoxHelper::seek(qint64 time)
 qint64 SunVoxHelper::totalTime() const
 {
     return sv_get_song_length_frames(SV_SLOT) / sampleRate() * 1000;
-}
-
-FARPROC SunVoxHelper::GetSymbolAddress(const char *name) const
-{
-    FARPROC func = nullptr;
-    if(m_instance)
-    {
-#if defined Q_OS_WIN && defined __GNUC__
-
-        func = GetProcAddress(m_instance, name);
-#else
-        func = dlsym(m_instance, name);
-#endif
-    }
-    return func;
 }
 
 qint64 SunVoxHelper::read(unsigned char *data, qint64)

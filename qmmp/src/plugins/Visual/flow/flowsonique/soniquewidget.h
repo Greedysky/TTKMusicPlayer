@@ -21,6 +21,7 @@
 
 #include "visual.h"
 #include "kiss_fft.h"
+#include <QLibrary>
 #include <qmmp/visual.h>
 
 /*!
@@ -49,20 +50,16 @@ protected:
     void generatePreset();
 
     VisInfo *m_sonique = nullptr;
-    VisData *m_visData;
+    VisData *m_visData = nullptr;
     unsigned int *m_texture = nullptr;
     unsigned int *m_visProc = nullptr;
-#ifdef Q_OS_UNIX
-    void *m_instance = nullptr;
-#else
-    HINSTANCE m_instance = nullptr;
-#endif
+    QLibrary *m_instance = nullptr;
     int m_currentIndex = -1;
     QStringList m_presetList;
 
     kiss_fft_cfg m_kiss_cfg;
-    kiss_fft_cpx *m_in_freq_data;
-    kiss_fft_cpx *m_out_freq_data;
+    kiss_fft_cpx *m_in_freq_data = nullptr;
+    kiss_fft_cpx *m_out_freq_data = nullptr;
 
 };
 

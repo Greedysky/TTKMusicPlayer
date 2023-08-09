@@ -12,7 +12,7 @@ typedef sInt32_t (*_OptimFROG_read)(void*, void*, uInt32_t, condition_t);
 typedef condition_t (*_OptimFROG_seekable)(void*);
 typedef condition_t (*_OptimFROG_seekTime)(void*, sInt64_t);
 //
-#define CREATE_OFR_MODULE(Module) ((_##Module)GetSymbolAddress(#Module))
+#define CREATE_OFR_MODULE(Module) ((_##Module)m_instance->resolve(#Module))
 //
 #define OptimFROG_createInstance  CREATE_OFR_MODULE(OptimFROG_createInstance)
 #define OptimFROG_openExt         CREATE_OFR_MODULE(OptimFROG_openExt)
@@ -29,12 +29,15 @@ typedef condition_t (*_OptimFROG_seekTime)(void*, sInt64_t);
 OptimFROGHelper::OptimFROGHelper(QIODevice *input)
    : m_input(input)
 {
-
+#if defined Q_OS_WIN && defined __GNUC__
+    m_instance = new QLibrary;
+#endif
 }
 
 OptimFROGHelper::~OptimFROGHelper()
 {
     deinit();
+    delete m_instance;
 }
 
 void OptimFROGHelper::deinit()
@@ -51,8 +54,10 @@ void OptimFROGHelper::deinit()
 bool OptimFROGHelper::initialize()
 {
 #if defined Q_OS_WIN && defined __GNUC__
-    m_instance = LoadLibraryA("libOptimFROG.dll");
-    if(!m_instance)
+    m_instance->setFileName("libOptimFROG.dll");
+    m_instance->load();
+
+    if(!m_instance->isLoaded())
     {
         qWarning("OptimFROGHelper: load plugin failed");
         return false;
@@ -128,18 +133,6 @@ qint64 OptimFROGHelper::totalTime() const
     return m_info.length_ms;
 #endif
 }
-
-#if defined Q_OS_WIN && defined __GNUC__
-FARPROC OptimFROGHelper::GetSymbolAddress(const char *name) const
-{
-    FARPROC func = nullptr;
-    if(m_instance)
-    {
-        func = GetProcAddress(m_instance, name);
-    }
-    return func;
-}
-#endif
 
 qint64 OptimFROGHelper::read(unsigned char *data, qint64 maxSize)
 {

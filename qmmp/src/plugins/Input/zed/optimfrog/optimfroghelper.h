@@ -21,10 +21,8 @@
 
 #include <QMap>
 #include <QFile>
+#include <QLibrary>
 #include <OptimFROG/OptimFROG.h>
-#if defined Q_OS_WIN && defined __GNUC__
-#  include <qt_windows.h>
-#endif
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -55,12 +53,9 @@ public:
     inline QString tag(const char *key) const { return m_tags[key]; }
 
 private:
-#if defined Q_OS_WIN && defined __GNUC__
-    FARPROC GetSymbolAddress(const char *name) const;
-    HINSTANCE m_instance = nullptr;
-#endif
     void *m_input = nullptr;
     void *m_decoder = nullptr;
+    QLibrary *m_instance = nullptr;
     OptimFROG_Info m_info;
     bool m_signed = false;
 
