@@ -1,5 +1,5 @@
 #include "musicurlutils.h"
-#include "musicplatformmanager.h"
+#include "ttkplatformsystem.h"
 
 #include <QUrl>
 #include <QProcess>
@@ -35,8 +35,8 @@ bool TTK::Url::openUrl(const QString &path, bool local)
         ShellExecuteW(0, L"open", L"explorer.exe", p.toStdWString().c_str(), nullptr, SW_SHOWNORMAL);
         return true;
 #elif defined Q_OS_UNIX
-        MusicPlatformManager platform;
-        if(platform.systemName() == MusicPlatformManager::System::LinuxUbuntu)
+        TTKPlatformSystem platform;
+        if(platform.systemName() == TTKPlatformSystem::System::LinuxUbuntu)
         {
             return QProcess::startDetached("nautilus", {path});
         }

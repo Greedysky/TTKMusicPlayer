@@ -2,11 +2,14 @@
 
 #ifdef Q_OS_WIN
 #  include <qt_windows.h>
+#  include <QScreen>
+#  include <QApplication>
 #elif defined Q_OS_UNIX
 #  include <X11/Xlib.h>
 #endif
-#include <QScreen>
-#include <QApplication>
+#include <QSize>
+#include <QFile>
+#include <QRegExp>
 
 #define DEFAULT_DPI 96
 

@@ -23,6 +23,7 @@
 #include "ttklibrary.h"
 #include "ttkdesktopwrapper.h"
 #include "ttkfileassocation.h"
+#include "ttkplatformsystem.h"
 
 #include "qdevicewatcher.h"
 #include "qsync/qsyncconfig.h"
@@ -115,8 +116,8 @@ void MusicApplicationModule::loadNetWorkSetting()
 void MusicApplicationModule::applyParameter()
 {
 #ifdef Q_OS_WIN
-    MusicPlatformManager platform;
-    platform.windowsStartUpMode(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
+    MusicPlatformManager manager;
+    manager.windowsStartUpMode(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
 
     TTKFileAssocation assocation;
     for(const QString &format : MusicFormats::supportMusicFormats())
@@ -205,7 +206,7 @@ void MusicApplicationModule::sideAnimationByOn()
 #ifdef Q_OS_WIN
     constexpr int gap = 2;
 #elif defined Q_OS_UNIX
-    const int gap = MusicPlatformManager().systemName() == MusicPlatformManager::System::LinuxUbuntu ? 3 : 2;
+    const int gap = TTKPlatformSystem().systemName() == TTKPlatformSystem::System::LinuxUbuntu ? 3 : 2;
 #endif
     const QRect &rect = TTKDesktopWrapper::screenGeometry();
     const TTK::Direction direction = TTKDesktopWrapper::screenTaskbar().m_direction;
@@ -380,8 +381,8 @@ void MusicApplicationModule::runToolSetsParameter()
 {
     m_timerAutoModule->runTimerAutoConfig();
 #ifdef Q_OS_WIN
-    MusicPlatformManager platform;
-    const int version = platform.windowsIEVersion();
+    MusicPlatformManager manager;
+    const int version = manager.windowsIEVersion();
     if(version == -1 || version < 8)
     {
         MusicToastLabel::popup(version == -1 ? QObject::tr("No ie core version detected") : QObject::tr("IE core version less than 8"));
