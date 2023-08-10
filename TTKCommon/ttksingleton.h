@@ -37,9 +37,12 @@ public:
 
 private:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     TTKSingleton() = default;
+    /*!
+     * Object destructor.
+     */
     ~TTKSingleton() = default;
 
     static QMutex m_mutex;

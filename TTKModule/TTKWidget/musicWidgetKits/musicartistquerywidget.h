@@ -30,9 +30,12 @@ class TTK_MODULE_EXPORT MusicArtistAlbumsItemWidget : public QLabel
     TTK_DECLARE_MODULE(MusicArtistAlbumsItemWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicArtistAlbumsItemWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicArtistAlbumsItemWidget();
 
     /*!
@@ -78,9 +81,12 @@ class TTK_MODULE_EXPORT MusicArtistMvsQueryWidget : public MusicAbstractItemQuer
     TTK_DECLARE_MODULE(MusicArtistMvsQueryWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicArtistMvsQueryWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicArtistMvsQueryWidget();
 
     /*!
@@ -127,9 +133,12 @@ class TTK_MODULE_EXPORT MusicArtistAlbumsQueryWidget : public MusicAbstractItemQ
     TTK_DECLARE_MODULE(MusicArtistAlbumsQueryWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicArtistAlbumsQueryWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicArtistAlbumsQueryWidget();
 
     /*!
@@ -170,9 +179,12 @@ class TTK_MODULE_EXPORT MusicArtistQueryTableWidget : public MusicItemQueryTable
     TTK_DECLARE_MODULE(MusicArtistQueryTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicArtistQueryTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicArtistQueryTableWidget();
 
     /*!
@@ -192,9 +204,12 @@ class TTK_MODULE_EXPORT MusicArtistQueryWidget : public MusicAbstractItemQueryWi
     TTK_DECLARE_MODULE(MusicArtistQueryWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicArtistQueryWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicArtistQueryWidget();
 
     /*!

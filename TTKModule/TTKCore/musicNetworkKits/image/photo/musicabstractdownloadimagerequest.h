@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicAbstractDownloadImageRequest : public MusicAbstract
     TTK_DECLARE_MODULE(MusicAbstractDownloadImageRequest)
 public:
     /*!
-     * Object contsructor provide artist name and save local path.
+     * Object constructor provide artist name and save local path.
      */
     MusicAbstractDownloadImageRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 

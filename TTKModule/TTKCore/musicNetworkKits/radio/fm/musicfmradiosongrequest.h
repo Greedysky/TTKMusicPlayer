@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicFMRadioSongRequest : public MusicAbstractNetwork
     TTK_DECLARE_MODULE(MusicFMRadioSongRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicFMRadioSongRequest(QObject *parent = nullptr);
 

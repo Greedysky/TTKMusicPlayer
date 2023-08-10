@@ -32,12 +32,9 @@ class TTK_MODULE_EXPORT TTKRunApplication : public QApplication
     Q_OBJECT
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
     */
     TTKRunApplication(int &argc, char **argv);
-    /*!
-     * Object contsructor.
-    */
     TTKRunApplication(const QString &id, int &argc, char **argv);
 
     /*!

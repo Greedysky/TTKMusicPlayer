@@ -27,6 +27,9 @@
 class TTK_MODULE_EXPORT TTKAbstractResizeInterface
 {
 public:
+    /*!
+     * Object constructor.
+     */
     TTKAbstractResizeInterface() = default;
 
     /*!

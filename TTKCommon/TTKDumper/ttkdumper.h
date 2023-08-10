@@ -35,7 +35,7 @@ class TTK_MODULE_EXPORT TTKDumper
 {
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     TTKDumper();
     TTKDumper(const TTKDumperFunctor &functor);

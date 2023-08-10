@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicArtistListQueryCategoryItem : public QWidget
     TTK_DECLARE_MODULE(MusicArtistListQueryCategoryItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicArtistListQueryCategoryItem(QWidget *parent = nullptr);
 
@@ -68,7 +68,7 @@ class TTK_MODULE_EXPORT MusicArtistListQueryCategoryPopWidget : public MusicTool
     TTK_DECLARE_MODULE(MusicArtistListQueryCategoryPopWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicArtistListQueryCategoryPopWidget(QWidget *parent = nullptr);
 
@@ -94,6 +94,5 @@ private:
     void initialize();
 
 };
-
 
 #endif // MUSICARTISTLISTQUERYCATEGORYPOPWIDGET_H

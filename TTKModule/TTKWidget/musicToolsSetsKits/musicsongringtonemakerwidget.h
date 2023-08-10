@@ -36,9 +36,12 @@ class TTK_MODULE_EXPORT MusicSongRingtoneMaker : public MusicAbstractMoveDialog
     TTK_DECLARE_MODULE(MusicSongRingtoneMaker)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongRingtoneMaker(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongRingtoneMaker();
 
 public Q_SLOTS:

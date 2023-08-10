@@ -122,19 +122,16 @@ void MusicApplicationModule::applyParameter()
     TTKFileAssocation assocation;
     for(const QString &format : MusicFormats::supportMusicFormats())
     {
-        if(assocation.exist(format))
+        const bool exist = assocation.exist(format);
+        const bool enable = G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool();
+
+        if(exist && !enable)
         {
-            if(!G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool())
-            {
-                assocation.remove(format);
-            }
+            assocation.remove(format);
         }
-        else
+        else if(!exist && enable)
         {
-            if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool())
-            {
-                assocation.append(format);
-            }
+            assocation.append(format);
         }
     }
 #endif

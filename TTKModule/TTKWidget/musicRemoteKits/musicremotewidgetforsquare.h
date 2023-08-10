@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT MusicRemoteWidgetForSquare : public MusicRemoteWidget
     TTK_DECLARE_MODULE(MusicRemoteWidgetForSquare)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicRemoteWidgetForSquare(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicRemoteWidgetForSquare();
 
 public Q_SLOTS:

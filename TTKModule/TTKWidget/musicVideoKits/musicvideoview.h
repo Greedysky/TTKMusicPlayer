@@ -35,9 +35,12 @@ class TTK_MODULE_EXPORT MusicViewWidget : public QWidget
     TTK_DECLARE_MODULE(MusicViewWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicViewWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicViewWidget();
 
 Q_SIGNALS:
@@ -74,9 +77,12 @@ class TTK_MODULE_EXPORT MusicVideoView : public QAbstractScrollArea
     TTK_DECLARE_MODULE(MusicVideoView)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicVideoView(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicVideoView();
 
     /*!

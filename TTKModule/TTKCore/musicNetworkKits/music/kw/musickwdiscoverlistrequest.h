@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicKWDiscoverListRequest : public MusicDiscoverListReq
     TTK_DECLARE_MODULE(MusicKWDiscoverListRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicKWDiscoverListRequest(QObject *parent = nullptr);
 

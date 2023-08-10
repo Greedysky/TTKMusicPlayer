@@ -39,9 +39,12 @@ class TTK_MODULE_EXPORT MusicDesktopWallpaperThread : public QObject
     TTK_DECLARE_MODULE(MusicDesktopWallpaperThread)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDesktopWallpaperThread(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicDesktopWallpaperThread();
 
     /*!

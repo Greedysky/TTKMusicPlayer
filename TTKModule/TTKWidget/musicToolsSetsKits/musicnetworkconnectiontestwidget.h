@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT MusicNetworkConnectionItem : public QWidget
     TTK_DECLARE_MODULE(MusicNetworkConnectionItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicNetworkConnectionItem(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicNetworkConnectionItem();
 
     /*!
@@ -87,9 +90,12 @@ class TTK_MODULE_EXPORT MusicNetworkConnectionTestWidget : public MusicAbstractM
     TTK_DECLARE_MODULE(MusicNetworkConnectionTestWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicNetworkConnectionTestWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicNetworkConnectionTestWidget();
 
 public Q_SLOTS:

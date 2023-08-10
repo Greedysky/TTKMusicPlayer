@@ -27,13 +27,14 @@
 class TTK_MODULE_EXPORT MusicPlaylistRenderer
 {
 public:
-    explicit MusicPlaylistRenderer()
-    {
-    }
-
-    virtual ~MusicPlaylistRenderer()
-    {
-    }
+    /*!
+     * Object constructor.
+     */
+    MusicPlaylistRenderer() = default;
+    /*!
+     * Object destructor.
+     */
+    virtual ~MusicPlaylistRenderer() = default;
 
     /*!
      * Read datas from file by given name.
@@ -64,13 +65,14 @@ protected:
 class TTK_MODULE_EXPORT MusicPlaylistInterface
 {
 public:
-    explicit MusicPlaylistInterface()
-    {
-    }
-
-    virtual ~MusicPlaylistInterface()
-    {
-    }
+    /*!
+     * Object constructor.
+     */
+    MusicPlaylistInterface() = default;
+    /*!
+     * Object destructor.
+     */
+    virtual ~MusicPlaylistInterface() = default;
 
     /*!
      * Read datas from config file.

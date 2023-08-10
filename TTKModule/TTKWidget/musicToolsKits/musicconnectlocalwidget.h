@@ -35,9 +35,12 @@ class TTK_MODULE_EXPORT MusicConnectLocalWidget : public QWidget
     TTK_DECLARE_MODULE(MusicConnectLocalWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicConnectLocalWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicConnectLocalWidget();
 
 private Q_SLOTS:

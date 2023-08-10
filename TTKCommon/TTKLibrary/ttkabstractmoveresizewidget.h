@@ -49,12 +49,9 @@ class TTK_MODULE_EXPORT TTKAbstractMoveResizeWidget : public QWidget
     TTK_DECLARE_MODULE(TTKAbstractMoveResizeWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKAbstractMoveResizeWidget(QWidget *parent = nullptr);
-    /*!
-     * Object contsructor.
-     */
     explicit TTKAbstractMoveResizeWidget(bool transparent, QWidget *parent = nullptr);
 
 protected:

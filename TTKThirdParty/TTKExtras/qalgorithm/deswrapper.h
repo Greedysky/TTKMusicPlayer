@@ -36,8 +36,9 @@ public:
         Encrypt = 0,
         Decrypt = 1
     };
+    
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     Des();
 

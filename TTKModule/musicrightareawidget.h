@@ -71,9 +71,12 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicRightAreaWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicRightAreaWidget();
 
     /*!

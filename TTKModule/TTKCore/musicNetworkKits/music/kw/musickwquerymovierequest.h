@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicKWQueryMovieRequest : public MusicQueryMovieRequest
     TTK_DECLARE_MODULE(MusicKWQueryMovieRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicKWQueryMovieRequest(QObject *parent = nullptr);
 

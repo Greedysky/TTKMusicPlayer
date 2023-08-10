@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicDownloadBingSkinRequest : public MusicAbstractDownl
     TTK_DECLARE_MODULE(MusicDownloadBingSkinRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadBingSkinRequest(QObject *parent = nullptr);
 

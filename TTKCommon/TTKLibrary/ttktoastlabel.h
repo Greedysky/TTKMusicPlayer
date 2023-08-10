@@ -32,13 +32,13 @@ class TTK_MODULE_EXPORT TTKToastLabel : public QLabel
     TTK_DECLARE_MODULE(TTKToastLabel)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKToastLabel(QWidget *parent = nullptr);
-    /*!
-     * Object contsructor by context text.
-     */
     explicit TTKToastLabel(const QString &text, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~TTKToastLabel();
 
     /*!

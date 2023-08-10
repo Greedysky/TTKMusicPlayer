@@ -32,11 +32,13 @@ class TTK_MODULE_EXPORT TTKAbstractThread : public QThread
     TTK_DECLARE_MODULE(TTKAbstractThread)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKAbstractThread(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~TTKAbstractThread();
-
 
 public Q_SLOTS:
     /*!

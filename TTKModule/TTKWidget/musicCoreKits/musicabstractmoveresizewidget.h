@@ -31,9 +31,12 @@ class TTK_MODULE_EXPORT MusicAbstractMoveResizePlainWidget : public TTKAbstractM
     TTK_DECLARE_MODULE(MusicAbstractMoveResizePlainWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicAbstractMoveResizePlainWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicAbstractMoveResizePlainWidget();
 
 public Q_SLOTS:

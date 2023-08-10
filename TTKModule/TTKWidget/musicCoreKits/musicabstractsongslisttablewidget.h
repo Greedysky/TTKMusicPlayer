@@ -32,10 +32,13 @@ class TTK_MODULE_EXPORT MusicAbstractSongsListTableWidget : public MusicSmoothMo
     TTK_DECLARE_MODULE(MusicAbstractSongsListTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicAbstractSongsListTableWidget(QWidget *parent = nullptr);
     explicit MusicAbstractSongsListTableWidget(int index, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicAbstractSongsListTableWidget();
 
     /*!

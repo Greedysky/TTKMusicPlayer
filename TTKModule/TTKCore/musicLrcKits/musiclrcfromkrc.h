@@ -29,9 +29,12 @@ class TTK_MODULE_EXPORT MusicLrcFromKrc
     TTK_DECLARE_MODULE(MusicLrcFromKrc)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     MusicLrcFromKrc();
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcFromKrc();
 
     /*!

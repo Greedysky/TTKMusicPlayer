@@ -33,7 +33,7 @@ class TTK_MODULE_EXPORT QRCodeQWidget : public QWidget
     Q_OBJECT
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget *parent = nullptr);
 

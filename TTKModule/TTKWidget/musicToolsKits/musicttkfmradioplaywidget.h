@@ -63,7 +63,7 @@ class TTK_MODULE_EXPORT MusicFMConfigManager : public TTKXmlDocument
     TTK_DECLARE_MODULE(MusicFMConfigManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicFMConfigManager(QObject *parent = nullptr);
 
@@ -88,9 +88,12 @@ class TTK_MODULE_EXPORT MusicTTKFMRadioInformationWidget : public MusicAbstractM
     TTK_DECLARE_MODULE(MusicTTKFMRadioInformationWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicTTKFMRadioInformationWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicTTKFMRadioInformationWidget();
 
     /*!
@@ -122,9 +125,12 @@ class TTK_MODULE_EXPORT MusicTTKFMRadioPlayWidget : public MusicAbstractMoveWidg
     TTK_DECLARE_MODULE(MusicTTKFMRadioPlayWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicTTKFMRadioPlayWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicTTKFMRadioPlayWidget();
 
 public Q_SLOTS:

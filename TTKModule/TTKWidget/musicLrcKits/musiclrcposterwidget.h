@@ -57,7 +57,7 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcPosterItemWidget(QWidget *parent = nullptr);
 
@@ -175,7 +175,7 @@ class TTK_MODULE_EXPORT MusicLrcPosterTableWidget : public MusicFillItemTableWid
     TTK_DECLARE_MODULE(MusicLrcPosterTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcPosterTableWidget(QWidget *parent = nullptr);
 
@@ -208,7 +208,7 @@ class TTK_MODULE_EXPORT MusicLrcPosterThemeListWidget : public QListWidget
     TTK_DECLARE_MODULE(MusicLrcPosterThemeListWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcPosterThemeListWidget(QWidget *parent = nullptr);
 
@@ -230,9 +230,12 @@ class TTK_MODULE_EXPORT MusicLrcPosterWidget : public MusicAbstractMoveDialog
     TTK_DECLARE_MODULE(MusicLrcPosterWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcPosterWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcPosterWidget();
 
     /*!

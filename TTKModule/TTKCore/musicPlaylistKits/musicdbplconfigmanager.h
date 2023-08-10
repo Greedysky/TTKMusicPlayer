@@ -29,9 +29,9 @@ class TTK_MODULE_EXPORT MusicDBPLConfigManager : public MusicPlaylistRenderer, p
     TTK_DECLARE_MODULE(MusicDBPLConfigManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
-    explicit MusicDBPLConfigManager();
+    MusicDBPLConfigManager();
 
     /*!
      * Read datas from config file.

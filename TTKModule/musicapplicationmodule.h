@@ -42,9 +42,12 @@ class TTK_MODULE_EXPORT MusicApplicationModule : public QObject
     TTK_DECLARE_MODULE(MusicApplicationModule)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicApplicationModule(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicApplicationModule();
 
     /*!

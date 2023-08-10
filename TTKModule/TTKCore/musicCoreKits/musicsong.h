@@ -40,16 +40,10 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     MusicSong();
-    /*!
-     * Object contsructor by music path and name.
-     */
     explicit MusicSong(const QString &path, bool track = false);
-    /*!
-     * Object contsructor by music path and name and playcout and time.
-     */
     MusicSong(const QString &path, const QString &playTime, const QString &name = QString(), bool track = false);
 
     /*!

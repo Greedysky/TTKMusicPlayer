@@ -36,7 +36,7 @@ class TTK_MODULE_EXPORT MusicScreenSaverHoverItem : public QLabel
     TTK_DECLARE_MODULE(MusicScreenSaverHoverItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicScreenSaverHoverItem(QLabel *parent = nullptr);
 
@@ -90,9 +90,12 @@ class TTK_MODULE_EXPORT MusicScreenSaverListItem : public QLabel
     TTK_DECLARE_MODULE(MusicScreenSaverListItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicScreenSaverListItem(QObject *object, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicScreenSaverListItem();
 
     /*!
@@ -129,9 +132,12 @@ class TTK_MODULE_EXPORT MusicScreenSaverListWidget : public QWidget
     TTK_DECLARE_MODULE(MusicScreenSaverListWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicScreenSaverListWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicScreenSaverListWidget();
 
     /*!
@@ -165,7 +171,7 @@ class TTK_MODULE_EXPORT MusicScreenSaverWidget : public QWidget, public TTKAbstr
     TTK_DECLARE_MODULE(MusicScreenSaverWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicScreenSaverWidget(QWidget *parent = nullptr);
 
@@ -224,9 +230,12 @@ class TTK_MODULE_EXPORT MusicScreenSaverBackgroundWidget : public MusicTransitio
     TTK_DECLARE_MODULE(MusicScreenSaverBackgroundWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicScreenSaverBackgroundWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicScreenSaverBackgroundWidget();
 
     /*!

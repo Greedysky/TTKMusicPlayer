@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicColorPreviewLabel : public TTKClickedLabel
     TTK_DECLARE_MODULE(MusicColorPreviewLabel)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicColorPreviewLabel(QWidget *parent = nullptr);
 
@@ -79,7 +79,7 @@ class TTK_MODULE_EXPORT MusicPreviewLabel : public QLabel
     TTK_DECLARE_MODULE(MusicPreviewLabel)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicPreviewLabel(QWidget *parent = nullptr);
 

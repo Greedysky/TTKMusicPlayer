@@ -31,9 +31,12 @@ class TTK_MODULE_EXPORT MusicRecommendQueryTableWidget : public MusicItemQueryTa
     TTK_DECLARE_MODULE(MusicRecommendQueryTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicRecommendQueryTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicRecommendQueryTableWidget();
 
     /*!
@@ -59,7 +62,7 @@ class TTK_MODULE_EXPORT MusicRecommendQueryWidget : public MusicAbstractItemQuer
     TTK_DECLARE_MODULE(MusicRecommendQueryWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicRecommendQueryWidget(QWidget *parent = nullptr);
 
@@ -89,6 +92,5 @@ private:
     void createLabels();
 
 };
-
 
 #endif // MUSICRECOMMENDQUERYWIDGET_H

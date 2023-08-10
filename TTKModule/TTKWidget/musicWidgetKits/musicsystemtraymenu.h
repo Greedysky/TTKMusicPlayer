@@ -33,9 +33,12 @@ class TTK_MODULE_EXPORT MusicSystemTrayMenu : public QMenu
     TTK_DECLARE_MODULE(MusicSystemTrayMenu)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSystemTrayMenu(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSystemTrayMenu();
 
     /*!

@@ -31,9 +31,12 @@ class TTK_MODULE_EXPORT MusicCloudDownloadTableWidget : public MusicAbstractDown
     TTK_DECLARE_MODULE(MusicCloudDownloadTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicCloudDownloadTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicCloudDownloadTableWidget();
 
 private:
@@ -54,9 +57,12 @@ class TTK_MODULE_EXPORT MusicCloudUploadTableWidget : public MusicAbstractDownlo
     TTK_DECLARE_MODULE(MusicCloudUploadTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicCloudUploadTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicCloudUploadTableWidget();
 
 Q_SIGNALS:

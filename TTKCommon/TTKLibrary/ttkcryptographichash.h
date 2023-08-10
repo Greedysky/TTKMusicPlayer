@@ -41,7 +41,7 @@ class TTK_MODULE_EXPORT TTKCryptographicHash
     TTK_DECLARE_MODULE(TTKCryptographicHash)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     TTKCryptographicHash();
 

@@ -55,7 +55,7 @@ class TTK_MODULE_EXPORT MusicFunctionTableWidget : public MusicAbstractTableWidg
     TTK_DECLARE_MODULE(MusicFunctionTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicFunctionTableWidget(QWidget *parent = nullptr);
 
@@ -108,9 +108,12 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSettingWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSettingWidget();
 
     /*!

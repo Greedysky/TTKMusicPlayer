@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicWYQueryToplistRequest : public MusicQueryToplistReq
     TTK_DECLARE_MODULE(MusicWYQueryToplistRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicWYQueryToplistRequest(QObject *parent = nullptr);
 

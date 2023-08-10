@@ -41,7 +41,7 @@ class TTK_MODULE_EXPORT MusicLrcLocalLinkTableWidget : public MusicAbstractTable
     TTK_DECLARE_MODULE(MusicLrcLocalLinkTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcLocalLinkTableWidget(QWidget *parent = nullptr);
 
@@ -70,9 +70,12 @@ class TTK_MODULE_EXPORT MusicLrcLocalLinkWidget : public MusicAbstractMoveDialog
     TTK_DECLARE_MODULE(MusicLrcLocalLinkWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcLocalLinkWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcLocalLinkWidget();
 
     /*!

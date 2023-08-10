@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT TTKTabButton : public QWidget
     TTK_DECLARE_MODULE(TTKTabButton)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKTabButton(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~TTKTabButton();
 
     /*!

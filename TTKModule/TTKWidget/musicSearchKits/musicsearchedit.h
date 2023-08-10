@@ -33,7 +33,7 @@ class TTK_MODULE_EXPORT MusicSearchEdit : public QLineEdit
     TTK_DECLARE_MODULE(MusicSearchEdit)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSearchEdit(QWidget *parent = nullptr);
 

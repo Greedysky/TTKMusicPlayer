@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicMarqueeWidget : public QWidget
     TTK_DECLARE_MODULE(MusicMarqueeWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicMarqueeWidget(QWidget *parent = nullptr);
 

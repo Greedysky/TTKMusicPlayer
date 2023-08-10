@@ -29,9 +29,10 @@ class TTK_MODULE_EXPORT QSyncDeleteData : public QSyncDataInterface
     Q_OBJECT
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit QSyncDeleteData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
+    
     /*!
      * Delete data operater.
      */

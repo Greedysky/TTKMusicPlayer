@@ -38,9 +38,12 @@ class TTK_MODULE_EXPORT MusicIdentifySongWidget : public QWidget
     TTK_DECLARE_MODULE(MusicIdentifySongRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicIdentifySongWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicIdentifySongWidget();
 
     /*!

@@ -39,9 +39,12 @@ class TTK_MODULE_EXPORT MusicBackgroundSkinDialog : public MusicAbstractMoveDial
     TTK_DECLARE_MODULE(MusicBackgroundSkinDialog)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBackgroundSkinDialog(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicBackgroundSkinDialog();
 
     /*!

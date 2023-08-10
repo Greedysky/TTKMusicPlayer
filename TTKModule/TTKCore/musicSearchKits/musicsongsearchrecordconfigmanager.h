@@ -41,7 +41,7 @@ class TTK_MODULE_EXPORT MusicSongSearchRecordConfigManager : public TTKXmlDocume
     TTK_DECLARE_MODULE(MusicSongSearchRecordConfigManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongSearchRecordConfigManager(QObject *parent = nullptr);
 

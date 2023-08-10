@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicCommentsRequest : public MusicPageQueryRequest
     TTK_DECLARE_MODULE(MusicCommentsRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicCommentsRequest(QObject *parent = nullptr);
 

@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT MusicPageQueryWidget : public QObject
     TTK_DECLARE_MODULE(MusicPageQueryWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicPageQueryWidget(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicPageQueryWidget();
 
     /*!

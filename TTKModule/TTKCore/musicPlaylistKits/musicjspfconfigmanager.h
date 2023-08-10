@@ -29,9 +29,9 @@ class TTK_MODULE_EXPORT MusicJSPFConfigManager : public MusicPlaylistRenderer, p
     TTK_DECLARE_MODULE(MusicJSPFConfigManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
-    explicit MusicJSPFConfigManager();
+    MusicJSPFConfigManager();
 
     /*!
      * Read datas from config file.

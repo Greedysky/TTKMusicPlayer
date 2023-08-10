@@ -30,9 +30,12 @@ class TTK_MODULE_EXPORT MusicVideoBarrageStylePopWidget : public MusicToolMenuWi
     TTK_DECLARE_MODULE(MusicVideoBarrageStylePopWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicVideoBarrageStylePopWidget(QWidget *MusicToolMenuWidget = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicVideoBarrageStylePopWidget();
 
     /*!

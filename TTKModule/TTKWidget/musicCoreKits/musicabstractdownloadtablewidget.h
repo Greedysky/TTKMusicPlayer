@@ -32,7 +32,13 @@ class TTK_MODULE_EXPORT MusicAbstractDownloadTableWidget : public MusicAbstractS
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractDownloadTableWidget)
 public:
+    /*!
+     * Object constructor.
+     */
     explicit MusicAbstractDownloadTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicAbstractDownloadTableWidget();
 
     /*!

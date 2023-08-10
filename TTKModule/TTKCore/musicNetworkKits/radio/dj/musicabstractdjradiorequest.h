@@ -42,7 +42,7 @@ class TTK_MODULE_EXPORT MusicAbstractDJRadioRequest : public MusicAbstractNetwor
     TTK_DECLARE_MODULE(MusicAbstractDJRadioRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicAbstractDJRadioRequest(QObject *parent = nullptr);
 

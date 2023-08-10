@@ -42,9 +42,12 @@ class TTK_MODULE_EXPORT MusicAbstractNetwork : public QObject
     TTK_DECLARE_MODULE(MusicAbstractNetwork)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicAbstractNetwork(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicAbstractNetwork();
 
     /*!

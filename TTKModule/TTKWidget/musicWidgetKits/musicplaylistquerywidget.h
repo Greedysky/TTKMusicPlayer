@@ -36,9 +36,12 @@ class TTK_MODULE_EXPORT MusicPlaylistQueryItemWidget : public QLabel
     TTK_DECLARE_MODULE(MusicPlaylistQueryItemWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicPlaylistQueryItemWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicPlaylistQueryItemWidget();
 
     /*!
@@ -84,9 +87,12 @@ class TTK_MODULE_EXPORT MusicPlaylistQueryWidget : public MusicAbstractItemQuery
     TTK_DECLARE_MODULE(MusicPlaylistQueryWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicPlaylistQueryWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicPlaylistQueryWidget();
 
     /*!

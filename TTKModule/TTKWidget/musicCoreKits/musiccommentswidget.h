@@ -34,9 +34,12 @@ class TTK_MODULE_EXPORT MusicCommentsItem : public QWidget
     TTK_DECLARE_MODULE(MusicCommentsItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicCommentsItem(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicCommentsItem();
 
     /*!
@@ -67,9 +70,12 @@ class TTK_MODULE_EXPORT MusicCommentsWidget : public QLabel
     TTK_DECLARE_MODULE(MusicCommentsWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicCommentsWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicCommentsWidget();
 
     /*!

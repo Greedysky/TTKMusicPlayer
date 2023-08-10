@@ -35,9 +35,12 @@ class TTK_MODULE_EXPORT MusicDownloadResetWidget : public MusicAbstractMoveWidge
     TTK_DECLARE_MODULE(MusicDownloadResetWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadResetWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicDownloadResetWidget();
 
     /*!
@@ -83,7 +86,7 @@ class TTK_MODULE_EXPORT MusicDownloadMgmtWidget : public QObject
     TTK_DECLARE_MODULE(MusicDownloadMgmtWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadMgmtWidget(QObject *parent = nullptr);
 

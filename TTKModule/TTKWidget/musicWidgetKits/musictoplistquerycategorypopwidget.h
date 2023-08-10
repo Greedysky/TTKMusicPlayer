@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicToplistQueryCategoryItem : public QWidget
     TTK_DECLARE_MODULE(MusicToplistQueryCategoryItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicToplistQueryCategoryItem(QWidget *parent = nullptr);
 
@@ -68,7 +68,7 @@ class TTK_MODULE_EXPORT MusicToplistQueryCategoryPopWidget : public MusicToolMen
     TTK_DECLARE_MODULE(MusicToplistQueryCategoryPopWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicToplistQueryCategoryPopWidget(QWidget *parent = nullptr);
 

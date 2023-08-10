@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicDownloadDataRequest : public MusicAbstractDownLoadR
     TTK_DECLARE_MODULE(MusicDownloadDataRequest)
 public:
     /*!
-     * Object contsructor provide download url save local path and download type.
+     * Object constructor provide download url save local path and download type.
      */
     MusicDownloadDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent = nullptr);
 

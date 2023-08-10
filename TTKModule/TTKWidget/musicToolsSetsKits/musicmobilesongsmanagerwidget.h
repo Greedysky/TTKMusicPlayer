@@ -33,9 +33,12 @@ class TTK_MODULE_EXPORT MusicMobileSongsTableWidget : public MusicAbstractSongsL
     TTK_DECLARE_MODULE(MusicMobileSongsTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicMobileSongsTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicMobileSongsTableWidget();
 
     /*!
@@ -74,9 +77,12 @@ class TTK_MODULE_EXPORT MusicMobileSongsManagerWidget : public MusicAbstractMove
     TTK_DECLARE_MODULE(MusicMobileSongsManagerWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicMobileSongsManagerWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicMobileSongsManagerWidget();
 
     /*!

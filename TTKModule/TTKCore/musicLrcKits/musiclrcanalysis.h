@@ -57,9 +57,12 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcAnalysis(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcAnalysis();
 
     /*!

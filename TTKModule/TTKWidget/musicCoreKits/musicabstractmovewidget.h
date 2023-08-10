@@ -31,13 +31,13 @@ class TTK_MODULE_EXPORT MusicAbstractMoveWidget : public TTKAbstractMoveWidget, 
     TTK_DECLARE_MODULE(MusicAbstractMoveWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicAbstractMoveWidget(QWidget *parent = nullptr);
-    /*!
-     * Object contsructor.
-     */
     explicit MusicAbstractMoveWidget(bool transparent, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicAbstractMoveWidget();
 
 public Q_SLOTS:
@@ -62,13 +62,13 @@ class TTK_MODULE_EXPORT MusicAbstractMovePlainWidget : public MusicAbstractMoveW
     TTK_DECLARE_MODULE(MusicAbstractMovePlainWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicAbstractMovePlainWidget(QWidget *parent = nullptr);
-    /*!
-     * Object contsructor.
-     */
     explicit MusicAbstractMovePlainWidget(bool transparent, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicAbstractMovePlainWidget();
 
 protected:

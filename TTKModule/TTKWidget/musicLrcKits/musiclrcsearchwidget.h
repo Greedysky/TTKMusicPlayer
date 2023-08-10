@@ -34,9 +34,12 @@ class TTK_MODULE_EXPORT MusicLrcSearchWidget : public MusicAbstractMoveDialog
     TTK_DECLARE_MODULE(MusicLrcSearchWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcSearchWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcSearchWidget();
 
 public Q_SLOTS:

@@ -48,23 +48,32 @@ template <typename PUB>
 class TTK_MODULE_EXPORT TTKPrivate
 {
 public:
+    /*!
+     * Object constructor.
+     */
     TTKPrivate()
         : m_qptr(nullptr)
     {
 
     }
 
-    virtual ~TTKPrivate()
-    {
+    /*!
+     * Object destructor.
+     */
+    virtual ~TTKPrivate() = default;
 
-    }
-
+    /*!
+     *  Set public pointer.
+     */
     inline void setPublic(PUB* pub)
     {
         m_qptr = pub;
     }
 
 protected:
+    /*!
+     *  Get public pointer.
+     */
     inline PUB *ttk_q() const
     {
         return m_qptr;
@@ -84,6 +93,9 @@ class TTK_MODULE_EXPORT TTKPrivateInterface
 {
     friend class TTKPrivate<PUB>;
 public:
+    /*!
+     * Object constructor.
+     */
     TTKPrivateInterface()
         : m_dptr(nullptr)
     {
@@ -96,22 +108,34 @@ public:
 
     }
 
+    /*!
+     * Object destructor.
+     */
     ~TTKPrivateInterface()
     {
         delete m_dptr;
     }
 
+    /*!
+     *  Set private pointer.
+     */
     inline void setPrivate(PVT* pvt)
     {
         delete m_dptr;
         m_dptr = pvt;
     }
 
+    /*!
+     *  Set public pointer.
+     */
     inline void setPublic(PUB* pub)
     {
         m_dptr->setPublic(pub);
     }
 
+    /*!
+     *  Get private pointer.
+     */
     inline PVT *operator()() const
     {
         return TTKStaticCast(PVT*, m_dptr);

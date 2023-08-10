@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicTXImageConfigManager : public TTKXmlDocument
     TTK_DECLARE_MODULE(MusicTXImageConfigManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicTXImageConfigManager(QObject *parent = nullptr);
 
@@ -52,7 +52,7 @@ class TTK_MODULE_EXPORT MusicTXDownloadBackgroundRequest : public MusicAbstractD
     TTK_DECLARE_MODULE(MusicTXDownloadBackgroundRequest)
 public:
     /*!
-     * Object contsructor provide artist name and save local path.
+     * Object constructor provide artist name and save local path.
      */
     MusicTXDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 

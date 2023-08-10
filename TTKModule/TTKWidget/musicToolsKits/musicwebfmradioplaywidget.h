@@ -38,9 +38,12 @@ class TTK_MODULE_EXPORT MusicWebFMRadioPlayWidget : public MusicAbstractMoveWidg
     TTK_DECLARE_MODULE(MusicWebFMRadioPlayWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicWebFMRadioPlayWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicWebFMRadioPlayWidget();
 
 public Q_SLOTS:    /*!

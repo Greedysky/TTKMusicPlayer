@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicNetworkTestThread : public TTKAbstractThread
     TTK_DECLARE_MODULE(MusicNetworkTestThread)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicNetworkTestThread(QObject *parent = nullptr);
 

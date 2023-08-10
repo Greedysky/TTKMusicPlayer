@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT MusicRemoteWidgetForStrip : public MusicRemoteWidget
     TTK_DECLARE_MODULE(MusicRemoteWidgetForStrip)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicRemoteWidgetForStrip(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicRemoteWidgetForStrip();
 
     /*!

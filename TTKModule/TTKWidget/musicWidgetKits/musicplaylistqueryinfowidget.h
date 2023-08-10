@@ -36,9 +36,12 @@ class TTK_MODULE_EXPORT MusicPlaylistQueryInfoWidget : public MusicAbstractItemQ
     TTK_DECLARE_MODULE(MusicPlaylistQueryInfoWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicPlaylistQueryInfoWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicPlaylistQueryInfoWidget();
 
     /*!

@@ -39,9 +39,12 @@ class TTK_MODULE_EXPORT MusicLrcContainer : public QWidget
     TTK_DECLARE_MODULE(MusicLrcContainer)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcContainer(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcContainer();
 
     /*!

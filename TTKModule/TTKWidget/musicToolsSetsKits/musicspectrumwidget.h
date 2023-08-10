@@ -55,9 +55,12 @@ class TTK_MODULE_EXPORT MusicSpectrumWidget : public MusicAbstractMoveResizePlai
     TTK_DECLARE_MODULE(MusicSpectrumWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSpectrumWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSpectrumWidget();
 
 public Q_SLOTS:

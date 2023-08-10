@@ -30,9 +30,12 @@ class TTK_MODULE_EXPORT MusicItemSearchEdit : public QWidget
     TTK_DECLARE_MODULE(MusicItemSearchEdit)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicItemSearchEdit(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicItemSearchEdit();
 
     /*!
@@ -61,9 +64,12 @@ class TTK_MODULE_EXPORT MusicItemQueryEdit : public QWidget
     TTK_DECLARE_MODULE(MusicItemQueryEdit)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicItemQueryEdit(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicItemQueryEdit();
 
     /*!

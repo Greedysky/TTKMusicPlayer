@@ -31,9 +31,12 @@ class TTK_MODULE_EXPORT MusicDownloadRecordTableWidget : public MusicAbstractDow
     TTK_DECLARE_MODULE(MusicDownloadRecordTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadRecordTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicDownloadRecordTableWidget();
 
 private:
@@ -53,9 +56,12 @@ class TTK_MODULE_EXPORT MusicDownloadToolBoxWidget : public MusicFunctionToolBox
     TTK_DECLARE_MODULE(MusicDownloadToolBoxWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadToolBoxWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicDownloadToolBoxWidget();
 
 public Q_SLOTS:

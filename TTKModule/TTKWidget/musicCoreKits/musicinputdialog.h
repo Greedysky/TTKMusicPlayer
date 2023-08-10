@@ -34,9 +34,12 @@ class TTK_MODULE_EXPORT MusicInputDialog : public MusicAbstractMoveDialog
     TTK_DECLARE_MODULE(MusicInputDialog)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicInputDialog(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicInputDialog();
 
     /*!

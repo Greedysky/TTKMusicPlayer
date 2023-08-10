@@ -31,6 +31,9 @@
 class TTKRunObject
 {
 public:
+    /*!
+     * Object constructor.
+     */
     TTKRunObject() = default;
 
     /*!

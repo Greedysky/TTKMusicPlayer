@@ -45,9 +45,12 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicRemoteWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicRemoteWidget();
 
     /*!

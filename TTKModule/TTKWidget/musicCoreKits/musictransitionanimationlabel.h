@@ -47,9 +47,12 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicTransitionAnimationLabel(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicTransitionAnimationLabel();
 
     /*!

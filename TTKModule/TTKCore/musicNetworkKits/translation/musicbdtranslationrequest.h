@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicBDTranslationRequest : public MusicAbstractTranslat
     TTK_DECLARE_MODULE(MusicBDTranslationRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBDTranslationRequest(QObject *parent = nullptr);
 

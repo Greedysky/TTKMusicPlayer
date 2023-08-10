@@ -33,9 +33,12 @@ class TTK_MODULE_EXPORT MusicSongsToolBoxTopWidget : public MusicFunctionToolBox
     TTK_DECLARE_MODULE(MusicSongsToolBoxTopWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongsToolBoxTopWidget();
 
     /*!
@@ -152,9 +155,12 @@ class TTK_MODULE_EXPORT MusicSongsToolBoxMaskWidget : public MusicSongsToolBoxTo
     TTK_DECLARE_MODULE(MusicSongsToolBoxMaskWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongsToolBoxMaskWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongsToolBoxMaskWidget();
 
 private:
@@ -177,7 +183,7 @@ class TTK_MODULE_EXPORT MusicSongsToolBoxWidgetItem : public MusicFunctionToolBo
     TTK_DECLARE_MODULE(MusicSongsToolBoxWidgetItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongsToolBoxWidgetItem(int index, const QString &text, QWidget *parent = nullptr);
 
@@ -236,7 +242,7 @@ class TTK_MODULE_EXPORT MusicSongsToolBoxWidget : public MusicFunctionToolBoxWid
     TTK_DECLARE_MODULE(MusicSongsToolBoxWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongsToolBoxWidget(QWidget *parent = nullptr);
 

@@ -39,9 +39,12 @@ class TTK_MODULE_EXPORT MusicLeftAreaWidget : public QWidget
     TTK_DECLARE_MODULE(MusicLeftAreaWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLeftAreaWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLeftAreaWidget();
 
     /*!

@@ -37,7 +37,7 @@ public:
 
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicAbstractTranslationRequest(QObject *parent = nullptr);
 

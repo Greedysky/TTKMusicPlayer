@@ -31,13 +31,13 @@ class TTK_MODULE_EXPORT MusicAbstractMoveDialog : public TTKAbstractMoveDialog, 
     TTK_DECLARE_MODULE(MusicAbstractMoveDialog)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicAbstractMoveDialog(QWidget *parent = nullptr);
-    /*!
-     * Object contsructor.
-     */
     explicit MusicAbstractMoveDialog(bool transparent, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicAbstractMoveDialog();
 
 public Q_SLOTS:

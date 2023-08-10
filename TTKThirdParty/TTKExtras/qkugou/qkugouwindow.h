@@ -41,7 +41,7 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit QKugouWindow(Module type, QWidget *parent = nullptr);
 

@@ -51,9 +51,12 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKAbstractItemDelegate(QObject* parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~TTKAbstractItemDelegate();
 
     /*!
@@ -91,9 +94,12 @@ class TTK_MODULE_EXPORT TTKCheckBoxItemDelegate : public TTKAbstractItemDelegate
     TTK_DECLARE_MODULE(TTKCheckBoxItemDelegate)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKCheckBoxItemDelegate(QObject* parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~TTKCheckBoxItemDelegate();
 
     /*!
@@ -123,9 +129,12 @@ class TTK_MODULE_EXPORT TTKProgressBarItemDelegate : public TTKAbstractItemDeleg
     TTK_DECLARE_MODULE(TTKProgressBarItemDelegate)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKProgressBarItemDelegate(QObject* parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~TTKProgressBarItemDelegate();
 
     /*!
@@ -148,9 +157,12 @@ class TTK_MODULE_EXPORT TTKLabelItemDelegate : public TTKAbstractItemDelegate
     TTK_DECLARE_MODULE(TTKLabelItemDelegate)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKLabelItemDelegate(QObject* parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~TTKLabelItemDelegate();
 
     /*!
@@ -178,9 +190,12 @@ class TTK_MODULE_EXPORT TTKPushButtonItemDelegate : public TTKAbstractItemDelega
     TTK_DECLARE_MODULE(TTKPushButtonItemDelegate)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKPushButtonItemDelegate(QObject* parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~TTKPushButtonItemDelegate();
 
     /*!

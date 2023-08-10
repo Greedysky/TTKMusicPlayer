@@ -48,9 +48,12 @@ class TTK_MODULE_EXPORT MusicLocalManagerStatisticTableWidget : public MusicAbst
     TTK_DECLARE_MODULE(MusicLocalManagerStatisticTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLocalManagerStatisticTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLocalManagerStatisticTableWidget();
 
     /*!
@@ -74,9 +77,12 @@ class TTK_MODULE_EXPORT MusicLocalManagerSongsTableWidget : public MusicAbstract
     TTK_DECLARE_MODULE(MusicLocalManagerSongsTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLocalManagerSongsTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLocalManagerSongsTableWidget();
 
     /*!
@@ -114,9 +120,12 @@ class TTK_MODULE_EXPORT MusicLocalManagerWidget : public QWidget, public TTKAbst
     TTK_DECLARE_MODULE(MusicLocalManagerWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLocalManagerWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLocalManagerWidget();
 
     /*!

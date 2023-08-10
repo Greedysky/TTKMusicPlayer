@@ -33,9 +33,12 @@ class TTK_MODULE_EXPORT MusicAbstractFloatWidget : public QLabel
     TTK_DECLARE_MODULE(MusicAbstractFloatWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicAbstractFloatWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicAbstractFloatWidget();
 
     /*!

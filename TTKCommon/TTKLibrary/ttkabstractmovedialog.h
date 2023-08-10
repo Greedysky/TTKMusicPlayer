@@ -32,12 +32,9 @@ class TTK_MODULE_EXPORT TTKAbstractMoveDialog : public QDialog
     TTK_DECLARE_MODULE(TTKAbstractMoveDialog)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKAbstractMoveDialog(QWidget *parent = nullptr);
-    /*!
-     * Object contsructor.
-     */
     explicit TTKAbstractMoveDialog(bool transparent, QWidget *parent = nullptr);
 
     /*!

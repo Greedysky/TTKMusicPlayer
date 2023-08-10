@@ -31,9 +31,9 @@ class TTK_MODULE_EXPORT MusicTKPLConfigManager : public TTKXmlDocument, private 
     TTK_DECLARE_MODULE(MusicTKPLConfigManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
-    explicit MusicTKPLConfigManager();
+    MusicTKPLConfigManager();
 
     /*!
      * Read datas from xml file by given name.

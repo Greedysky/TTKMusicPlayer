@@ -30,12 +30,9 @@ class TTK_MODULE_EXPORT MusicMovingClickedSlider : public TTKClickedSlider
     TTK_DECLARE_MODULE(MusicMovingClickedSlider)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicMovingClickedSlider(QWidget *parent = nullptr);
-    /*!
-     * Object contsructor by slider orientation.
-     */
     explicit MusicMovingClickedSlider(Qt::Orientation orientation, QWidget *parent = nullptr);
 
     /*!

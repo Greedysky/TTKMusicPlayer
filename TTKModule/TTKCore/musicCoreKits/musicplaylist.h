@@ -63,6 +63,9 @@ class TTK_MODULE_EXPORT MusicPlaylist : public QObject
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlaylist)
 public:
+    /*!
+     * Object constructor.
+     */
     explicit MusicPlaylist(QObject *parent = nullptr);
 
     /*!

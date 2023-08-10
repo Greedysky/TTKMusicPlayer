@@ -44,9 +44,12 @@ class TTK_MODULE_EXPORT MusicVideoSearchTableWidget : public MusicItemSearchTabl
     TTK_DECLARE_MODULE(MusicVideoSearchTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicVideoSearchTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicVideoSearchTableWidget();
 
     /*!

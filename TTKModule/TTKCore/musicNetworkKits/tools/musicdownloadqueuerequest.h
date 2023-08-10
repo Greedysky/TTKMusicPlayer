@@ -41,18 +41,14 @@ class TTK_MODULE_EXPORT MusicDownloadQueueRequest : public MusicAbstractDownLoad
     TTK_DECLARE_MODULE(MusicDownloadQueueRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadQueueRequest(TTK::Download type, QObject *parent = nullptr);
-
-    /*!
-     * Object contsructor.
-     */
     MusicDownloadQueueRequest(const MusicDownloadQueueData &data, TTK::Download type, QObject *parent = nullptr);
-    /*!
-     * Object contsructor.
-     */
     MusicDownloadQueueRequest(const MusicDownloadQueueDataList &datas, TTK::Download type, QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicDownloadQueueRequest();
 
     /*!

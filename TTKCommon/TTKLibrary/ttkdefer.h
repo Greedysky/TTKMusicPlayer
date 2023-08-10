@@ -29,6 +29,9 @@ template <typename Function>
 class _ScopeGuard
 {
 public:
+    /*!
+     * Object constructor.
+     */
     _ScopeGuard(Function &&f)
         : m_fun(std::forward<Function>(f))
     {
@@ -41,6 +44,9 @@ public:
 
     }
 
+    /*!
+     * Object destructor.
+     */
     ~_ScopeGuard()
     {
         m_fun();
@@ -55,10 +61,7 @@ private:
 
 namespace TTK
 {
-enum class ScopeGuardOnExit
-{
-
-};
+enum class ScopeGuardOnExit { };
 }
 
 template <typename Function>

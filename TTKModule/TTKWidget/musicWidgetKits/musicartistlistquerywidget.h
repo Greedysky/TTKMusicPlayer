@@ -36,7 +36,7 @@ class TTK_MODULE_EXPORT MusicArtistListQueryItemWidget : public TTKClickedLabel
     TTK_DECLARE_MODULE(MusicArtistListQueryItemWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicArtistListQueryItemWidget(QWidget *parent = nullptr);
 
@@ -73,9 +73,12 @@ class TTK_MODULE_EXPORT MusicArtistListQueryWidget : public MusicAbstractItemQue
     TTK_DECLARE_MODULE(MusicArtistListQueryWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicArtistListQueryWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicArtistListQueryWidget();
 
     /*!

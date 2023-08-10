@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicMoveButton : public QPushButton
     TTK_DECLARE_MODULE(MusicMoveButton)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicMoveButton(QWidget *parent = nullptr);
 
@@ -68,9 +68,12 @@ class TTK_MODULE_EXPORT MusicCutSliderWidget : public QWidget
     TTK_DECLARE_MODULE(MusicCutSliderWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicCutSliderWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicCutSliderWidget();
 
     /*!

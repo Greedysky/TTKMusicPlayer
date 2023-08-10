@@ -33,9 +33,12 @@ class TTK_MODULE_EXPORT MusicProgressWidget : public QProgressDialog
     TTK_DECLARE_MODULE(MusicProgressWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicProgressWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicProgressWidget();
 
     /*!

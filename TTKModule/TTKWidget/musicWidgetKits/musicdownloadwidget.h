@@ -75,9 +75,12 @@ class TTK_MODULE_EXPORT MusicDownloadTableItem : public QWidget
     TTK_DECLARE_MODULE(MusicDownloadTableItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadTableItem(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicDownloadTableItem();
 
     /*!
@@ -108,9 +111,12 @@ class TTK_MODULE_EXPORT MusicDownloadTableWidget : public MusicAbstractTableWidg
     TTK_DECLARE_MODULE(MusicDownloadTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicDownloadTableWidget();
 
     /*!
@@ -143,9 +149,12 @@ class TTK_MODULE_EXPORT MusicDownloadWidget : public MusicAbstractMoveWidget
     TTK_DECLARE_MODULE(MusicDownloadWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicDownloadWidget();
 
     /*!

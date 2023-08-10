@@ -39,9 +39,12 @@ class TTK_MODULE_EXPORT MusicSongCheckToolsWidget : public MusicAbstractMoveWidg
     TTK_DECLARE_MODULE(MusicSongCheckToolsWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongCheckToolsWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongCheckToolsWidget();
 
 public Q_SLOTS:

@@ -33,9 +33,12 @@ class TTK_MODULE_EXPORT MusicFillItemTableWidget : public MusicAbstractTableWidg
     TTK_DECLARE_MODULE(MusicFillItemTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicFillItemTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicFillItemTableWidget();
 
     /*!

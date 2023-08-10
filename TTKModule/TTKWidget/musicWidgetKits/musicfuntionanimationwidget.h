@@ -35,7 +35,7 @@ class TTK_MODULE_EXPORT MusicBackgroundWidget : public QWidget
     TTK_DECLARE_MODULE(MusicBackgroundWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBackgroundWidget(QWidget *parent = nullptr);
 
@@ -64,7 +64,7 @@ class TTK_MODULE_EXPORT MusicLineBackgroundWidget : public QWidget
     TTK_DECLARE_MODULE(MusicLineBackgroundWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLineBackgroundWidget(QWidget *parent = nullptr);
 
@@ -93,9 +93,12 @@ class TTK_MODULE_EXPORT MusicAbstractAnimationWidget : public QWidget
     TTK_DECLARE_MODULE(MusicAbstractAnimationWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicAbstractAnimationWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicAbstractAnimationWidget();
 
 Q_SIGNALS:
@@ -145,7 +148,7 @@ class TTK_MODULE_EXPORT MusicFuntionAnimationWidget : public MusicAbstractAnimat
     TTK_DECLARE_MODULE(MusicFuntionAnimationWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicFuntionAnimationWidget(QWidget *parent = nullptr);
 
@@ -173,7 +176,7 @@ class TTK_MODULE_EXPORT MusicOptionAnimationWidget : public MusicAbstractAnimati
     TTK_DECLARE_MODULE(MusicOptionAnimationWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicOptionAnimationWidget(QWidget *parent = nullptr);
 
@@ -210,7 +213,7 @@ class TTK_MODULE_EXPORT MusicSkinAnimationWidget : public MusicAbstractAnimation
     TTK_DECLARE_MODULE(MusicSkinAnimationWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSkinAnimationWidget(QWidget *parent = nullptr);
 

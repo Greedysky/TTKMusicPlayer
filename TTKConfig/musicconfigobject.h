@@ -29,7 +29,7 @@ class TTK_MODULE_EXPORT MusicConfigObject : public QObject
     Q_OBJECT
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicConfigObject(QObject *parent = nullptr);
 

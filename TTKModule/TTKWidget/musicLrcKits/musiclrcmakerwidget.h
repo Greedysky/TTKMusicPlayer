@@ -36,7 +36,7 @@ class TTK_MODULE_EXPORT MusicLrcMakerWidgetItem : public QLabel
     TTK_DECLARE_MODULE(MusicLrcMakerWidgetItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcMakerWidgetItem(QWidget *ui = nullptr, QObject *parent = nullptr);
 
@@ -98,9 +98,12 @@ class TTK_MODULE_EXPORT MusicLrcMakerWidget : public MusicAbstractMoveWidget
     TTK_DECLARE_MODULE(MusicLrcMakerWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcMakerWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcMakerWidget();
 
     /*!

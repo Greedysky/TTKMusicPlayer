@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT MusicRemoteWidgetForRectangle : public MusicRemoteWidget
     TTK_DECLARE_MODULE(MusicRemoteWidgetForRectangle)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicRemoteWidgetForRectangle(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicRemoteWidgetForRectangle();
 
     /*!

@@ -47,13 +47,13 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicGifLabelWidget(QWidget *parent = nullptr);
-    /*!
-     * Object contsructor.
-     */
     explicit MusicGifLabelWidget(Module type, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicGifLabelWidget();
 
     /*!
@@ -135,9 +135,12 @@ class TTK_MODULE_EXPORT MusicGifLabelMaskWidget : public QWidget
     TTK_DECLARE_MODULE(MusicGifLabelMaskWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicGifLabelMaskWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicGifLabelMaskWidget();
 
     /*!
@@ -169,7 +172,7 @@ class TTK_MODULE_EXPORT MusicGifLabelValueWidget : public MusicGifLabelMaskWidge
     TTK_DECLARE_MODULE(MusicGifLabelValueWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicGifLabelValueWidget(QWidget *parent = nullptr);
 

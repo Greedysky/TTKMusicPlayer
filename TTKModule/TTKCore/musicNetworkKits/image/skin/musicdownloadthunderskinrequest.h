@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicThunderSkinConfigManager : public TTKXmlDocument
     TTK_DECLARE_MODULE(MusicThunderSkinConfigManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicThunderSkinConfigManager(QObject *parent = nullptr);
 
@@ -51,7 +51,7 @@ class TTK_MODULE_EXPORT MusicDownloadThunderSkinRequest : public MusicAbstractDo
     TTK_DECLARE_MODULE(MusicDownloadThunderSkinRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadThunderSkinRequest(QObject *parent = nullptr);
 

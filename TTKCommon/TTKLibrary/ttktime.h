@@ -37,20 +37,11 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     TTKTime();
-    /*!
-     * Object contsructor.
-     */
     TTKTime(const TTKTime &other);
-    /*!
-     * Object contsructor by value and type.
-     */
     TTKTime(qint64 value, Entity type);
-    /*!
-     * Object contsructor by day and hour and min and sec and msec.
-     */
     TTKTime(int day, int hour, int min, int sec, int msec);
 
     /*!

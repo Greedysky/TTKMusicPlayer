@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicCounterPVRequest : public MusicAbstractNetwork
     TTK_DECLARE_MODULE(MusicCounterPVRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicCounterPVRequest(QObject *parent = nullptr);
 

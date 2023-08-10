@@ -32,7 +32,7 @@ class TTK_MODULE_EXPORT MusicConfigManager : public TTKXmlDocument
     TTK_DECLARE_MODULE(MusicConfigManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicConfigManager(QObject *parent = nullptr);
 

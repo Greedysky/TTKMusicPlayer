@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicNetworkOperator : public QObject
     TTK_DECLARE_MODULE(MusicNetworkOperator)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicNetworkOperator(QObject *parent = nullptr);
 

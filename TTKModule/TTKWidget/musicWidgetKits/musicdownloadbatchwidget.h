@@ -36,9 +36,12 @@ class TTK_MODULE_EXPORT MusicDownloadBatchTableItem : public QWidget
     TTK_DECLARE_MODULE(MusicDownloadBatchTableItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadBatchTableItem(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicDownloadBatchTableItem();
 
     /*!
@@ -88,9 +91,12 @@ class TTK_MODULE_EXPORT MusicDownloadBatchTableWidget : public MusicAbstractTabl
     TTK_DECLARE_MODULE(MusicDownloadBatchTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadBatchTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicDownloadBatchTableWidget();
 
     /*!
@@ -138,9 +144,12 @@ class TTK_MODULE_EXPORT MusicDownloadBatchWidget : public MusicAbstractMoveWidge
     TTK_DECLARE_MODULE(MusicDownloadBatchWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadBatchWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicDownloadBatchWidget();
 
     /*!

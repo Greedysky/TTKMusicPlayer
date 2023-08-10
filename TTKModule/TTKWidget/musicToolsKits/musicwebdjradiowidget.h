@@ -35,9 +35,12 @@ class TTK_MODULE_EXPORT MusicWebDJRadioProgramTableWidget : public MusicAbstract
     TTK_DECLARE_MODULE(MusicWebDJRadioProgramTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicWebDJRadioProgramTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicWebDJRadioProgramTableWidget();
 
     /*!
@@ -88,9 +91,12 @@ class TTK_MODULE_EXPORT MusicWebDJRadioProgramWidget : public QWidget
     TTK_DECLARE_MODULE(MusicWebDJRadioProgramWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicWebDJRadioProgramWidget(TTK::Program type, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicWebDJRadioProgramWidget();
 
     /*!
@@ -118,9 +124,12 @@ class TTK_MODULE_EXPORT MusicWebDJRadioWidget : public QStackedWidget, public TT
     TTK_DECLARE_MODULE(MusicWebDJRadioWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicWebDJRadioWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicWebDJRadioWidget();
 
     /*!

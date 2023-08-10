@@ -33,7 +33,7 @@ public:
 
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicItemSearchInterface()
         : m_containerItems(),

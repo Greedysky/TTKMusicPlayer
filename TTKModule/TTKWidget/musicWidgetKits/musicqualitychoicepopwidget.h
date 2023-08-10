@@ -31,9 +31,12 @@ class TTK_MODULE_EXPORT MusicQualityChoiceTableWidget : public MusicAbstractTabl
     TTK_DECLARE_MODULE(MusicQualityChoiceTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicQualityChoiceTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicQualityChoiceTableWidget();
 
 public Q_SLOTS:
@@ -62,7 +65,7 @@ class TTK_MODULE_EXPORT MusicQualityChoicePopWidget : public MusicToolMenuWidget
     TTK_DECLARE_MODULE(MusicQualityChoicePopWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicQualityChoicePopWidget(QWidget *parent = nullptr);
 

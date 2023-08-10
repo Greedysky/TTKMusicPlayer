@@ -35,9 +35,12 @@ class TTK_MODULE_EXPORT MusicEqualizerDialog : public MusicAbstractMoveDialog
     TTK_DECLARE_MODULE(MusicEqualizerDialog)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicEqualizerDialog(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicEqualizerDialog();
 
 Q_SIGNALS:

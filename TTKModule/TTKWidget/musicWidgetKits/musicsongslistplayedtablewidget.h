@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT MusicSongsListPlayedTableWidget : public MusicAbstractSo
     TTK_DECLARE_MODULE(MusicSongsListPlayedTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongsListPlayedTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongsListPlayedTableWidget();
 
     /*!

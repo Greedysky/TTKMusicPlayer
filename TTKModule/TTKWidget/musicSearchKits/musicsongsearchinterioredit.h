@@ -34,9 +34,12 @@ class TTK_MODULE_EXPORT MusicSongSearchInteriorEdit : public MusicSearchEdit
     TTK_DECLARE_MODULE(MusicSongSearchInteriorEdit)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongSearchInteriorEdit(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongSearchInteriorEdit();
 
     /*!

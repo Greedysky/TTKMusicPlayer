@@ -34,7 +34,7 @@ class TTK_MODULE_EXPORT MusicToolMenu : public QMenu
     TTK_DECLARE_MODULE(MusicToolMenu)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicToolMenu(QWidget *parent = nullptr);
 
@@ -63,9 +63,12 @@ class TTK_MODULE_EXPORT MusicToolMenuWidget : public QToolButton
     TTK_DECLARE_MODULE(MusicToolMenuWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicToolMenuWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicToolMenuWidget();
 
     /*!

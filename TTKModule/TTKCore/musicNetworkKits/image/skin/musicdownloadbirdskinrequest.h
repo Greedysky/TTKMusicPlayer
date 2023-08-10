@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicDownloadBirdSkinRequest : public MusicAbstractDownl
     TTK_DECLARE_MODULE(MusicDownloadBirdSkinRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadBirdSkinRequest(QObject *parent = nullptr);
 

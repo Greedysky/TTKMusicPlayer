@@ -29,7 +29,7 @@ class TTK_MODULE_EXPORT TTKCommandLineOption
 {
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     TTKCommandLineOption(const QString &first)
         : m_first(first)
@@ -81,7 +81,7 @@ class TTK_MODULE_EXPORT TTKCommandLineParser
     TTK_DECLARE_MODULE(TTKCommandLineParser)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     TTKCommandLineParser() = default;
 

@@ -43,9 +43,12 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicPlayer(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicPlayer();
 
     /*!

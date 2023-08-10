@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicConnectTransferThread : public TTKAbstractThread
     TTK_DECLARE_MODULE(MusicConnectTransferThread)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicConnectTransferThread(QObject *parent = nullptr);
 

@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicSplitItemClickedLabel : public QLabel
     TTK_DECLARE_MODULE(MusicSplitItemClickedLabel)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSplitItemClickedLabel(QWidget *parent = nullptr);
 

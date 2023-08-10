@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicPlaylistQueryCommentsWidget : public MusicCommentsW
     TTK_DECLARE_MODULE(MusicPlaylistQueryCommentsWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicPlaylistQueryCommentsWidget(QWidget *parent = nullptr);
 

@@ -30,9 +30,12 @@ class TTK_MODULE_EXPORT MusicRemoteWidgetForComplexStyle : public MusicRemoteWid
     TTK_DECLARE_MODULE(MusicRemoteWidgetForComplexStyle)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicRemoteWidgetForComplexStyle(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicRemoteWidgetForComplexStyle();
 
     /*!

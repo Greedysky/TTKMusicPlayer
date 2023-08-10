@@ -36,9 +36,12 @@ class TTK_MODULE_EXPORT MusicBackgroundRemoteWidget : public QWidget
     TTK_DECLARE_MODULE(MusicBackgroundRemoteWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBackgroundRemoteWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicBackgroundRemoteWidget();
 
     /*!
@@ -87,7 +90,7 @@ class TTK_MODULE_EXPORT MusicBackgroundDailyWidget : public MusicBackgroundRemot
     TTK_DECLARE_MODULE(MusicBackgroundDailyWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBackgroundDailyWidget(QWidget *parent = nullptr);
 
@@ -120,9 +123,12 @@ class TTK_MODULE_EXPORT MusicBackgroundOnlineWidget : public MusicBackgroundRemo
     TTK_DECLARE_MODULE(MusicBackgroundOnlineWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBackgroundOnlineWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicBackgroundOnlineWidget();
 
     /*!

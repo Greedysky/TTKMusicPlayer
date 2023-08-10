@@ -31,9 +31,9 @@ class TTK_MODULE_EXPORT MusicWPLConfigManager : public TTKXmlDocument, private M
     TTK_DECLARE_MODULE(MusicWPLConfigManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
-    explicit MusicWPLConfigManager();
+    MusicWPLConfigManager();
 
     /*!
      * Read datas from config file.

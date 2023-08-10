@@ -33,9 +33,12 @@ class TTK_MODULE_EXPORT MusicEnhancedToolButton : public QToolButton
     TTK_DECLARE_MODULE(MusicEnhancedToolButton)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicEnhancedToolButton(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicEnhancedToolButton();
 
     /*!
@@ -79,9 +82,12 @@ class TTK_MODULE_EXPORT MusicEnhancedPopWidget : public MusicToolMenuWidget
     TTK_DECLARE_MODULE(MusicEnhancedPopWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicEnhancedPopWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicEnhancedPopWidget();
 
 Q_SIGNALS:

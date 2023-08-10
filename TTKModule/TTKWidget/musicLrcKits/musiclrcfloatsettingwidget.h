@@ -32,7 +32,7 @@ class TTK_MODULE_EXPORT MusicLrcFloatSettingWidget : public MusicAbstractFloatWi
     TTK_DECLARE_MODULE(MusicLrcFloatSettingWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcFloatSettingWidget(QWidget *parent = nullptr);
 

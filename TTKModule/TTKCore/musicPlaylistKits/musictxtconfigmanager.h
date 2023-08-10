@@ -29,9 +29,9 @@ class TTK_MODULE_EXPORT MusicTXTConfigManager : public MusicPlaylistRenderer, pr
     TTK_DECLARE_MODULE(MusicTXTConfigManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
-    explicit MusicTXTConfigManager();
+    MusicTXTConfigManager();
 
     /*!
      * Read datas from config file.

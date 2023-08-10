@@ -36,7 +36,7 @@ class TTK_MODULE_EXPORT MusicLrcDownloadBatchTableWidget : public MusicAbstractT
     TTK_DECLARE_MODULE(MusicLrcDownloadBatchTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcDownloadBatchTableWidget(QWidget *parent = nullptr);
 
@@ -58,9 +58,12 @@ class TTK_MODULE_EXPORT MusicLrcDownloadBatchWidget : public MusicAbstractMoveWi
     TTK_DECLARE_MODULE(MusicLrcDownloadBatchWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcDownloadBatchWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcDownloadBatchWidget();
 
 public Q_SLOTS:

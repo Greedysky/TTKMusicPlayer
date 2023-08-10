@@ -39,9 +39,12 @@ class TTK_MODULE_EXPORT MusicSourceUpdateNotifyWidget : public MusicAbstractMove
     TTK_DECLARE_MODULE(MusicSourceUpdateNotifyWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSourceUpdateNotifyWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSourceUpdateNotifyWidget();
 
     /*!
@@ -74,9 +77,12 @@ class TTK_MODULE_EXPORT MusicSourceUpdateWidget : public TTKAbstractMoveDialog
     TTK_DECLARE_MODULE(MusicSourceUpdateWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSourceUpdateWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSourceUpdateWidget();
 
     /*!

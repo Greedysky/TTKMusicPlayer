@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicDJRadioProgramCategoryRequest : public MusicAbstrac
     TTK_DECLARE_MODULE(MusicDJRadioProgramCategoryRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDJRadioProgramCategoryRequest(QObject *parent = nullptr);
 

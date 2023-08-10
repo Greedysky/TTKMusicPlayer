@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT TTKThemeLineLabel : public QLabel
     TTK_DECLARE_MODULE(TTKThemeLineLabel)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKThemeLineLabel(QWidget *parent = nullptr);
 

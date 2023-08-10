@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT MusicPlatformExtras : public QObject
     TTK_DECLARE_MODULE(MusicPlatformExtras)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicPlatformExtras(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicPlatformExtras();
 
     /*!

@@ -40,9 +40,12 @@ class TTK_MODULE_EXPORT MusicBottomAreaWidget : public QWidget
     TTK_DECLARE_MODULE(MusicBottomAreaWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBottomAreaWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicBottomAreaWidget();
 
     /*!

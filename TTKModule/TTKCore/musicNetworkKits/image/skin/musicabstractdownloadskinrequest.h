@@ -74,7 +74,7 @@ class TTK_MODULE_EXPORT MusicAbstractDownloadSkinRequest : public QObject
     TTK_DECLARE_MODULE(MusicAbstractDownloadSkinRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicAbstractDownloadSkinRequest(QObject *parent = nullptr);
 

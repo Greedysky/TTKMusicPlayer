@@ -38,9 +38,12 @@ class TTK_MODULE_EXPORT MusicSongDlnaTransferWidget : public MusicAbstractMoveWi
     TTK_DECLARE_MODULE(MusicSongDlnaTransferWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongDlnaTransferWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongDlnaTransferWidget();
 
 Q_SIGNALS:

@@ -33,7 +33,7 @@ class TTK_MODULE_EXPORT MusicSpectrumLayoutItem : public TTKClickedLabel
     TTK_DECLARE_MODULE(MusicSpectrumLayoutItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSpectrumLayoutItem(QWidget *parent = nullptr);
 
@@ -69,9 +69,12 @@ class TTK_MODULE_EXPORT MusicSpectrumLayoutWidget : public MusicToolMenuWidget
     TTK_DECLARE_MODULE(MusicSpectrumLayoutWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSpectrumLayoutWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSpectrumLayoutWidget();
 
 Q_SIGNALS:
@@ -124,7 +127,7 @@ class TTK_MODULE_EXPORT MusicSpectrumNormalLayoutWidget : public MusicSpectrumLa
     TTK_DECLARE_MODULE(MusicSpectrumNormalLayoutWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSpectrumNormalLayoutWidget(QWidget *parent = nullptr);
 
@@ -146,7 +149,7 @@ class TTK_MODULE_EXPORT MusicSpectrumPlusLayoutWidget : public MusicSpectrumLayo
     TTK_DECLARE_MODULE(MusicSpectrumPlusLayoutWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSpectrumPlusLayoutWidget(QWidget *parent = nullptr);
 
@@ -168,7 +171,7 @@ class TTK_MODULE_EXPORT MusicSpectrumFlowLayoutWidget : public MusicSpectrumLayo
     TTK_DECLARE_MODULE(MusicSpectrumFlowLayoutWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSpectrumFlowLayoutWidget(QWidget *parent = nullptr);
 
@@ -190,7 +193,7 @@ class TTK_MODULE_EXPORT MusicSpectrumWaveLayoutWidget : public MusicSpectrumLayo
     TTK_DECLARE_MODULE(MusicSpectrumWaveLayoutWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSpectrumWaveLayoutWidget(QWidget *parent = nullptr);
 
@@ -212,7 +215,7 @@ class TTK_MODULE_EXPORT MusicSpectrumFloridLayoutWidget : public MusicSpectrumLa
     TTK_DECLARE_MODULE(MusicSpectrumFloridLayoutWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSpectrumFloridLayoutWidget(QWidget *parent = nullptr);
 

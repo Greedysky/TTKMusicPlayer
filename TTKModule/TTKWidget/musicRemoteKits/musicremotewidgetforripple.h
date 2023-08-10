@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT MusicRemoteWidgetForRipple : public MusicRemoteWidget
     TTK_DECLARE_MODULE(MusicRemoteWidgetForRipple)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicRemoteWidgetForRipple(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicRemoteWidgetForRipple();
 
     /*!

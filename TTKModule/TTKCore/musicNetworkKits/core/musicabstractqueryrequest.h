@@ -105,7 +105,7 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicAbstractQueryRequest(QObject *parent = nullptr);
 

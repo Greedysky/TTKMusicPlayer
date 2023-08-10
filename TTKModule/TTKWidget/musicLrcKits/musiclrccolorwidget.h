@@ -34,9 +34,12 @@ class TTK_MODULE_EXPORT MusicLrcColorWidget : public MusicAbstractMoveDialog
     TTK_DECLARE_MODULE(MusicLrcColorWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcColorWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcColorWidget();
 
     /*!

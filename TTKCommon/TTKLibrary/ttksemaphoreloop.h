@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT TTKSemaphoreLoop : public QEventLoop
     TTK_DECLARE_MODULE(TTKSemaphoreLoop)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKSemaphoreLoop(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~TTKSemaphoreLoop();
 
     /*!

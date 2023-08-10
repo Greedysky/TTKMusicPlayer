@@ -40,7 +40,7 @@ class TTK_MODULE_EXPORT MusicIdentifySongRequest : public MusicAbstractNetwork
     TTK_DECLARE_MODULE(MusicIdentifySongRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicIdentifySongRequest(QObject *parent = nullptr);
 

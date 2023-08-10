@@ -32,7 +32,7 @@ class TTK_MODULE_EXPORT MusicDownloadRecordConfigManager : public TTKXmlDocument
     TTK_DECLARE_MODULE(MusicDownloadRecordConfigManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadRecordConfigManager(TTK::Record type, QObject *parent = nullptr);
 

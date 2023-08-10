@@ -34,9 +34,12 @@ class TTK_MODULE_EXPORT MusicLrcContainerForWallpaper : public MusicLrcContainer
     TTK_DECLARE_MODULE(MusicLrcContainerForWallpaper)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcContainerForWallpaper(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcContainerForWallpaper();
 
     /*!

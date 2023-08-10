@@ -33,9 +33,12 @@ class TTK_MODULE_EXPORT MusicEMOJILabelWidget : public QLabel
     TTK_DECLARE_MODULE(MusicEMOJILabelWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicEMOJILabelWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicEMOJILabelWidget();
 
 Q_SIGNALS:

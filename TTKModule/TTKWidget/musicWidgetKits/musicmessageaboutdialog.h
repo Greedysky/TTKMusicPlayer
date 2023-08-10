@@ -35,9 +35,12 @@ class TTK_MODULE_EXPORT MusicMessageAboutDialog : public MusicAbstractMoveDialog
     TTK_DECLARE_MODULE(MusicMessageAboutDialog)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicMessageAboutDialog(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicMessageAboutDialog();
 
 public Q_SLOTS:

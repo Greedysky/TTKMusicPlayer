@@ -30,9 +30,12 @@ class TTK_MODULE_EXPORT MusicWebDJRadioInfoTableWidget : public MusicItemQueryTa
     TTK_DECLARE_MODULE(MusicWebDJRadioInfoTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicWebDJRadioInfoTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicWebDJRadioInfoTableWidget();
 
     /*!
@@ -52,7 +55,7 @@ class TTK_MODULE_EXPORT MusicWebDJRadioInfoWidget : public MusicAbstractItemQuer
     TTK_DECLARE_MODULE(MusicWebDJRadioInfoWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicWebDJRadioInfoWidget(QWidget *parent = nullptr);
 

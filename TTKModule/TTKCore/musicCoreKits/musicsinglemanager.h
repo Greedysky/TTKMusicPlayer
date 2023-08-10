@@ -69,12 +69,12 @@ public:
     bool contains(const QString &name) const;
 
 private:
-    QMap<QString, QObject*> m_parameter;
-
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     MusicSingleManager();
+    
+    QMap<QString, QObject*> m_parameter;
 
     TTK_DECLARE_SINGLETON_CLASS(MusicSingleManager)
 

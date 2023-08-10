@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicConnectTransferTableWidget : public MusicFillItemTa
     TTK_DECLARE_MODULE(MusicConnectTransferTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicConnectTransferTableWidget(QWidget *parent = nullptr);
 
@@ -51,7 +51,7 @@ class TTK_MODULE_EXPORT MusicConnectTransferCompleteTableWidget : public MusicAb
     TTK_DECLARE_MODULE(MusicConnectTransferCompleteTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicConnectTransferCompleteTableWidget(QWidget *parent = nullptr);
 

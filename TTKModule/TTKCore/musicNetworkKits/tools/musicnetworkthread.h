@@ -62,9 +62,12 @@ public Q_SLOTS:
 
 private:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     MusicNetworkThread();
+    /*!
+     * Object destructor.
+     */
     ~MusicNetworkThread();
 
     QTimer m_timer;

@@ -55,12 +55,12 @@ public:
     void connect(const QString &from, const QString &to);
 
 private:
-    QMap<QString, QObject*> m_parameters;
-
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     MusicConnectionPool();
+    
+    QMap<QString, QObject*> m_parameters;
 
     TTK_DECLARE_SINGLETON_CLASS(MusicConnectionPool)
 

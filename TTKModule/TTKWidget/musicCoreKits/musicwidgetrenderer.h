@@ -31,9 +31,9 @@ class TTK_MODULE_EXPORT MusicWidgetRenderer
     TTK_DECLARE_MODULE(MusicWidgetRenderer)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
-    explicit MusicWidgetRenderer();
+    MusicWidgetRenderer();
 
     /*!
      * Set background label.

@@ -57,13 +57,9 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     MusicLrcColor();
-
-    /*!
-     * Object contsructor.
-     */
     MusicLrcColor(const QList<QColor> &front, const QList<QColor> &back, Color index = Color::Null);
 
     /*!
@@ -95,9 +91,12 @@ class TTK_MODULE_EXPORT MusicLrcManager : public QLabel
     TTK_DECLARE_MODULE(MusicLrcManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcManager(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcManager();
 
     /*!

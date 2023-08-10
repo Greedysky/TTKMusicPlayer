@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicGlobalHotKeyEdit : public QLineEdit
     TTK_DECLARE_MODULE(MusicGlobalHotKeyEdit)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicGlobalHotKeyEdit(QWidget *parent = nullptr);
 

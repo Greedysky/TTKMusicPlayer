@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicLrcDefines
     TTK_DECLARE_MODULE(MusicLrcDefines)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     MusicLrcDefines();
 

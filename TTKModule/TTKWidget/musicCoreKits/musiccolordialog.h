@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicHlPalette : public QWidget
     TTK_DECLARE_MODULE(MusicHlPalette)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicHlPalette(QWidget *parent = nullptr);
 
@@ -85,7 +85,7 @@ class TTK_MODULE_EXPORT MusicHlSaturationPalette : public QWidget
     TTK_DECLARE_MODULE(MusicHlSaturationPalette)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicHlSaturationPalette(QWidget *parent = nullptr);
 
@@ -138,9 +138,12 @@ class TTK_MODULE_EXPORT MusicColorDialog : public MusicAbstractMoveDialog
     TTK_DECLARE_MODULE(MusicColorDialog)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicColorDialog(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicColorDialog();
 
     /*!

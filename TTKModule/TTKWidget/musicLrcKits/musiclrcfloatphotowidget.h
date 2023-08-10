@@ -34,9 +34,12 @@ class TTK_MODULE_EXPORT MusicLrcFloatPhotoItem : public TTKClickedLabel
     TTK_DECLARE_MODULE(MusicLrcFloatPhotoItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcFloatPhotoItem(int index, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcFloatPhotoItem();
 
     /*!
@@ -98,9 +101,12 @@ class TTK_MODULE_EXPORT MusicLrcFloatPhotoWidget : public MusicAbstractFloatWidg
     TTK_DECLARE_MODULE(MusicLrcFloatPhotoWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcFloatPhotoWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcFloatPhotoWidget();
 
     /*!

@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicReplayGainTableWidget : public MusicAbstractTableWi
     TTK_DECLARE_MODULE(MusicReplayGainTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicReplayGainTableWidget(QWidget *parent = nullptr);
 
@@ -53,9 +53,12 @@ class TTK_MODULE_EXPORT MusicReplayGainWidget : public MusicAbstractMoveWidget
     TTK_DECLARE_MODULE(MusicReplayGainWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicReplayGainWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicReplayGainWidget();
 
 public Q_SLOTS:

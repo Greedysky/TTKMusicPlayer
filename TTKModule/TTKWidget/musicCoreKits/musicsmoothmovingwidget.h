@@ -33,9 +33,12 @@ class TTK_MODULE_EXPORT MusicSmoothMovingTableWidget : public MusicAbstractTable
     TTK_DECLARE_MODULE(MusicSmoothMovingTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSmoothMovingTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSmoothMovingTableWidget();
 
     /*!
@@ -77,9 +80,12 @@ class TTK_MODULE_EXPORT MusicSmoothMovingScrollArea : public QScrollArea
     TTK_DECLARE_MODULE(MusicSmoothMovingScrollArea)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSmoothMovingScrollArea(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSmoothMovingScrollArea();
 
     /*!

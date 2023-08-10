@@ -42,9 +42,12 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicTransformWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicTransformWidget();
 
 public Q_SLOTS:

@@ -32,7 +32,7 @@ class TTK_MODULE_EXPORT MusicDownloadStatusModule : public QObject
     TTK_DECLARE_MODULE(MusicDownloadStatusModule)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDownloadStatusModule(QObject *parent = nullptr);
 

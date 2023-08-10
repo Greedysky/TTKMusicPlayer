@@ -35,9 +35,12 @@ class TTK_MODULE_EXPORT MusicSoundEffectsItemWidget : public QWidget
     TTK_DECLARE_MODULE(MusicSoundEffectsItemWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSoundEffectsItemWidget(const MusicPluginProperty &property, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSoundEffectsItemWidget();
 
     /*!
@@ -81,9 +84,12 @@ class TTK_MODULE_EXPORT MusicSoundEffectsWidget : public MusicAbstractMoveDialog
     TTK_DECLARE_MODULE(MusicSoundEffectsWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSoundEffectsWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSoundEffectsWidget();
 
     /*!

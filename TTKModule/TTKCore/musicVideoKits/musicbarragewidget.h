@@ -33,12 +33,9 @@ class TTK_MODULE_EXPORT MusicBarrageAnimation : public QPropertyAnimation
     TTK_DECLARE_MODULE(MusicBarrageAnimation)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBarrageAnimation(QObject *parent = nullptr);
-    /*!
-     * Object contsructor by tagrget and name.
-     */
     MusicBarrageAnimation(QObject *target, const QByteArray &name, QObject *parent = nullptr);
 
     /*!
@@ -72,9 +69,12 @@ class TTK_MODULE_EXPORT MusicBarrageWidget : public QObject
     TTK_DECLARE_MODULE(MusicBarrageWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBarrageWidget(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicBarrageWidget();
 
     /*!

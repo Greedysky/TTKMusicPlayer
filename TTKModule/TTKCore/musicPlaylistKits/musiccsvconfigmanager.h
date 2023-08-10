@@ -29,9 +29,9 @@ class TTK_MODULE_EXPORT MusicCSVConfigManager : public MusicPlaylistRenderer, pr
     TTK_DECLARE_MODULE(MusicCSVConfigManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
-    explicit MusicCSVConfigManager();
+    MusicCSVConfigManager();
 
     /*!
      * Read datas from config file.

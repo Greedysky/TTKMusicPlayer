@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicLineEditItemDelegate : public QItemDelegate
     TTK_DECLARE_MODULE(MusicLineEditItemDelegate)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLineEditItemDelegate(QObject *parent = nullptr);
 

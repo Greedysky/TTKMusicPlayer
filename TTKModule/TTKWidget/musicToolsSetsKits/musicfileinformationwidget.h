@@ -35,9 +35,12 @@ class TTK_MODULE_EXPORT MusicFileInformationWidget : public MusicAbstractMoveDia
     TTK_DECLARE_MODULE(MusicFileInformationWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicFileInformationWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicFileInformationWidget();
 
     /*!

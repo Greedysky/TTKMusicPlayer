@@ -34,9 +34,12 @@ class TTK_MODULE_EXPORT MusicAdvancedSearchedWidget : public QWidget
     TTK_DECLARE_MODULE(MusicAdvancedSearchedWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicAdvancedSearchedWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicAdvancedSearchedWidget();
 
 private Q_SLOTS:

@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicLrcManagerForDesktop : public MusicLrcManager
     TTK_DECLARE_MODULE(MusicLrcManagerForDesktop)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcManagerForDesktop(QWidget *parent = nullptr);
 
@@ -46,7 +46,7 @@ class TTK_MODULE_EXPORT MusicLrcManagerHorizontalDesktop : public MusicLrcManage
     TTK_DECLARE_MODULE(MusicLrcManagerHorizontalDesktop)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcManagerHorizontalDesktop(QWidget *parent = nullptr);
 
@@ -68,7 +68,7 @@ class TTK_MODULE_EXPORT MusicLrcManagerVerticalDesktop : public MusicLrcManagerF
     TTK_DECLARE_MODULE(MusicLrcManagerVerticalDesktop)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcManagerVerticalDesktop(QWidget *parent = nullptr);
 

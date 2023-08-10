@@ -46,9 +46,12 @@ class TTK_MODULE_EXPORT MusicApplication : public TTKAbstractMoveResizeWidget
     TTK_DECLARE_MODULE(MusicApplication)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicApplication(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicApplication();
 
     /*!

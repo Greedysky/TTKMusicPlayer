@@ -30,9 +30,12 @@ class TTK_MODULE_EXPORT MusicLrcSearchTableWidget : public MusicItemSearchTableW
     TTK_DECLARE_MODULE(MusicLrcSearchTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcSearchTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcSearchTableWidget();
 
     /*!

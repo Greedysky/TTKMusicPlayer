@@ -32,13 +32,13 @@ class TTK_MODULE_EXPORT MusicMovingLabelSlider : public MusicMovingClickedSlider
     TTK_DECLARE_MODULE(MusicMovingLabelSlider)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicMovingLabelSlider(QWidget *parent = nullptr);
-    /*!
-     * Object contsructor by slider orientation.
-     */
     explicit MusicMovingLabelSlider(Qt::Orientation orientation, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicMovingLabelSlider();
 
 private:

@@ -37,9 +37,12 @@ class TTK_MODULE_EXPORT MusicSongsSummariziedWidget : public MusicSongsToolBoxWi
     TTK_DECLARE_MODULE(MusicSongsSummariziedWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongsSummariziedWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongsSummariziedWidget();
 
     /*!

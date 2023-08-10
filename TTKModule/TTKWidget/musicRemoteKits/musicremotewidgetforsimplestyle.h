@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT MusicRemoteWidgetForSimpleStyle : public MusicRemoteWidg
     TTK_DECLARE_MODULE(MusicRemoteWidgetForSimpleStyle)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicRemoteWidgetForSimpleStyle(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicRemoteWidgetForSimpleStyle();
 
     /*!

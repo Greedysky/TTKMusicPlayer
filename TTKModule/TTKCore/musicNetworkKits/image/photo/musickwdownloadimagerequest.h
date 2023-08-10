@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicKWDownloadBackgroundRequest : public MusicAbstractD
     TTK_DECLARE_MODULE(MusicKWDownloadBackgroundRequest)
 public:
     /*!
-     * Object contsructor provide artist name and save local path.
+     * Object constructor provide artist name and save local path.
      */
     MusicKWDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 

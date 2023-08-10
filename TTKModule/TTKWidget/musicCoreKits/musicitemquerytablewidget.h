@@ -30,9 +30,12 @@ class TTK_MODULE_EXPORT MusicItemQueryTableWidget : public MusicQueryTableWidget
     TTK_DECLARE_MODULE(MusicItemQueryTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicItemQueryTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicItemQueryTableWidget();
 
     /*!

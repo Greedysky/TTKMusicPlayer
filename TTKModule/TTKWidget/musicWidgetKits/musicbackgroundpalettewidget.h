@@ -35,9 +35,12 @@ class TTK_MODULE_EXPORT MusicBackgroundPalette : public QLabel
     TTK_DECLARE_MODULE(MusicBackgroundPalette)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBackgroundPalette(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicBackgroundPalette();
 
     /*!
@@ -80,9 +83,12 @@ class TTK_MODULE_EXPORT MusicBackgroundPaletteWidget : public MusicAbstractMoveD
     TTK_DECLARE_MODULE(MusicBackgroundPaletteWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBackgroundPaletteWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicBackgroundPaletteWidget();
 
     /*!

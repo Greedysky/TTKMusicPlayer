@@ -35,9 +35,12 @@ class TTK_MODULE_EXPORT MusicToolSetsWidget : public MusicAbstractMoveWidget
     TTK_DECLARE_MODULE(MusicToolSetsWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicToolSetsWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicToolSetsWidget();
 
 public Q_SLOTS:

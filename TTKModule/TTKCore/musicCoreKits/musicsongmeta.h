@@ -32,7 +32,7 @@ class TTK_MODULE_EXPORT MusicSongMeta
     TTK_DECLARE_MODULE(MusicSongMeta)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     MusicSongMeta();
     ~MusicSongMeta();

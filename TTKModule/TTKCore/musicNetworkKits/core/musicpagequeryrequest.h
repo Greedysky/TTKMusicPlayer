@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicPageQueryRequest : public MusicAbstractNetwork
     TTK_DECLARE_MODULE(MusicPageQueryRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicPageQueryRequest(QObject *parent = nullptr);
 

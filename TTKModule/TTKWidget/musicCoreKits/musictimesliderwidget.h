@@ -34,9 +34,12 @@ class TTK_MODULE_EXPORT MusicTimeSliderWidget : public QWidget
     TTK_DECLARE_MODULE(MusicTimeSliderWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicTimeSliderWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicTimeSliderWidget();
 
     /*!

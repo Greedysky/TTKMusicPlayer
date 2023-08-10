@@ -54,9 +54,12 @@ class TTK_MODULE_EXPORT MusicTimerAutoModule : public QObject
     TTK_DECLARE_MODULE(MusicTimerAutoModule)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicTimerAutoModule(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicTimerAutoModule();
 
     /*!

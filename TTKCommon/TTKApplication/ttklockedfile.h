@@ -48,7 +48,7 @@ namespace TTKLockedPrivate {
         */
         explicit TTKLockedFile(const QString &name);
         /*!
-         * Object contsructor.
+         * Object destructor.
         */
         ~TTKLockedFile();
 

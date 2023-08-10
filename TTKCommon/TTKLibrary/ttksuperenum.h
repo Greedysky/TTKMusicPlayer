@@ -22,6 +22,9 @@
 #include <unordered_map>
 #include "ttkmoduleexport.h"
 
+/*! @brief The class of the super enum.
+ * @author Greedysky <greedysky@163.com>
+ */
 class TTK_MODULE_EXPORT TTKSuperEnum
 {
 public:
@@ -29,7 +32,7 @@ public:
 
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     TTKSuperEnum(const QString &value);
 

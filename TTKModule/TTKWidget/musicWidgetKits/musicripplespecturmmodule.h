@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT MusicRippleSpecturmModule : public QObject
     TTK_DECLARE_MODULE(MusicRippleSpecturmModule)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicRippleSpecturmModule(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicRippleSpecturmModule();
 
     /*!
@@ -66,6 +69,7 @@ private:
 
     QVBoxLayout *m_topAreaLayout;
     QWidget *m_topAreaWidget, *m_visualWidget;
+
 };
 
 #endif // MUSICRIPPLESPECTURMMODULE_H

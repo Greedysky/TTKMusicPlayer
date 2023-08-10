@@ -37,9 +37,12 @@ class TTK_MODULE_EXPORT MusicLrcContainerForInterior : public MusicLrcContainer
     TTK_DECLARE_MODULE(MusicLrcContainerForInterior)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcContainerForInterior(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcContainerForInterior();
 
     /*!

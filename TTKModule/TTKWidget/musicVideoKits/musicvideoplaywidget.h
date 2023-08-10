@@ -40,9 +40,12 @@ class TTK_MODULE_EXPORT MusicVideoPlayWidget : public TTKAbstractMoveWidget
     TTK_DECLARE_MODULE(MusicVideoPlayWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicVideoPlayWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicVideoPlayWidget();
 
     /*!

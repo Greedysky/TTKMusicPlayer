@@ -35,7 +35,7 @@ class TTK_MODULE_EXPORT MusicPluginWidget : public MusicAbstractMoveDialog
     TTK_DECLARE_MODULE(MusicPluginWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicPluginWidget(QWidget *parent = nullptr);
 

@@ -52,7 +52,7 @@ class TTK_MODULE_EXPORT TTKXmlNodeHelper
 {
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKXmlNodeHelper(const QDomNode &root);
 
@@ -80,6 +80,7 @@ private:
 
 };
 
+
 /*! @brief The class of the ttk xml interface.
  * @author Greedysky <greedysky@163.com>
  */
@@ -89,9 +90,12 @@ class TTK_MODULE_EXPORT TTKXmlDocument : public QObject
     TTK_DECLARE_MODULE(TTKXmlDocument)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKXmlDocument(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~TTKXmlDocument();
 
     /*!

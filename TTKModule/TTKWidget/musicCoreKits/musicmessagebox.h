@@ -34,17 +34,14 @@ class TTK_MODULE_EXPORT MusicMessageBox : public MusicAbstractMoveDialog
     TTK_DECLARE_MODULE(MusicMessageBox)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicMessageBox(QWidget *parent = nullptr);
-    /*!
-     * Object contsructor by context text.
-     */
     explicit MusicMessageBox(const QString &text, QWidget *parent = nullptr);
-    /*!
-     * Object contsructor by context text and title.
-     */
     MusicMessageBox(const QString &title, const QString &text, QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicMessageBox();
 
     /*!

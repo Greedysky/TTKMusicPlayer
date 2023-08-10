@@ -32,7 +32,7 @@ class TTK_MODULE_EXPORT MusicRatingLabel : public QLabel
     TTK_DECLARE_MODULE(MusicRatingLabel)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicRatingLabel(QWidget *parent = nullptr);
     explicit MusicRatingLabel(int value, QWidget *parent = nullptr);

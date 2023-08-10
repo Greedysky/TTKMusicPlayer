@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicSongsManagerThread : public TTKAbstractThread
     TTK_DECLARE_MODULE(MusicSongsManagerThread)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongsManagerThread(QObject *parent = nullptr);
 

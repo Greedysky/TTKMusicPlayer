@@ -58,8 +58,9 @@ public:
         ArtistList,      /*!< ArtistList Category*/
         MovieList,       /*!< MovieList Category*/
     };
+
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicCategoryConfigManager(QObject *parent = nullptr);
 

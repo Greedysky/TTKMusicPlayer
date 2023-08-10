@@ -32,7 +32,7 @@ class TTK_MODULE_EXPORT MusicBackgroundListItem : public QLabel
     TTK_DECLARE_MODULE(MusicBackgroundListItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBackgroundListItem(QWidget *parent = nullptr);
 
@@ -146,9 +146,12 @@ public:
     };
 
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBackgroundListWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicBackgroundListWidget();
 
     /*!

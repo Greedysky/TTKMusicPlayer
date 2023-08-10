@@ -57,9 +57,12 @@ class TTK_MODULE_EXPORT MusicDeviceInfoModule : public QObject
     TTK_DECLARE_MODULE(MusicDeviceInfoModule)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicDeviceInfoModule(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicDeviceInfoModule();
 
     /*!

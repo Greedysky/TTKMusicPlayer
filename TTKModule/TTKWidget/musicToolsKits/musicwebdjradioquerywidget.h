@@ -34,9 +34,12 @@ class TTK_MODULE_EXPORT MusicWebDJRadioQueryItemWidget : public QLabel
     TTK_DECLARE_MODULE(MusicWebDJRadioQueryItemWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicWebDJRadioQueryItemWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicWebDJRadioQueryItemWidget();
 
     /*!
@@ -82,9 +85,12 @@ class TTK_MODULE_EXPORT MusicWebDJRadioQueryWidget : public MusicAbstractItemQue
     TTK_DECLARE_MODULE(MusicWebDJRadioQueryWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicWebDJRadioQueryWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicWebDJRadioQueryWidget();
 
     /*!

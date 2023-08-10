@@ -36,9 +36,12 @@ class TTK_MODULE_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMo
     TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicCloudFileInformationWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicCloudFileInformationWidget();
 
     /*!

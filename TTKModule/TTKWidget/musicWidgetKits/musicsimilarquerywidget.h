@@ -31,9 +31,12 @@ class TTK_MODULE_EXPORT MusicSimilarQueryTableWidget : public MusicItemQueryTabl
     TTK_DECLARE_MODULE(MusicSimilarQueryTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSimilarQueryTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSimilarQueryTableWidget();
 
     /*!
@@ -60,7 +63,7 @@ class TTK_MODULE_EXPORT MusicSimilarQueryWidget : public MusicAbstractItemQueryW
     TTK_DECLARE_MODULE(MusicSimilarQueryWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSimilarQueryWidget(QWidget *parent = nullptr);
 

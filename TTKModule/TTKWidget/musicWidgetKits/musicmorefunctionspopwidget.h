@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicMoreFunctionsPopWidget : public MusicToolMenuWidget
     TTK_DECLARE_MODULE(MusicMoreFunctionsPopWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicMoreFunctionsPopWidget(QWidget *parent = nullptr);
 

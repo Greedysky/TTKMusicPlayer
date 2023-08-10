@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT MusicBackgroundPopWidget : public MusicToolMenuWidget
     TTK_DECLARE_MODULE(MusicBackgroundPopWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicBackgroundPopWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicBackgroundPopWidget();
 
     /*!

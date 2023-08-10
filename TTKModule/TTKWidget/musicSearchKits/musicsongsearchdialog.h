@@ -33,9 +33,12 @@ class TTK_MODULE_EXPORT MusicSongSearchDialog : public QDialog
     TTK_DECLARE_MODULE(MusicSongSearchDialog)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongSearchDialog(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongSearchDialog();
 
     /*!

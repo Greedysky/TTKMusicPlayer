@@ -35,9 +35,12 @@ class TTK_MODULE_EXPORT MusicSongSearchTableWidget : public MusicItemSearchTable
     TTK_DECLARE_MODULE(MusicSongSearchTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongSearchTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongSearchTableWidget();
 
     /*!
@@ -117,9 +120,12 @@ class TTK_MODULE_EXPORT MusicSongSearchOnlineWidget : public QWidget
     TTK_DECLARE_MODULE(MusicSongSearchOnlineWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongSearchOnlineWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongSearchOnlineWidget();
 
     /*!

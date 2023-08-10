@@ -32,9 +32,12 @@ class TTK_MODULE_EXPORT MusicMobileDevicesWidget : public TTKClickedLabel
     TTK_DECLARE_MODULE(MusicMobileDevicesWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicMobileDevicesWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicMobileDevicesWidget();
 
 public Q_SLOTS:

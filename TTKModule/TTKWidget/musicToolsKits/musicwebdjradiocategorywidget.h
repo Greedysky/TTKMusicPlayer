@@ -34,9 +34,12 @@ class TTK_MODULE_EXPORT MusicWebDJRadioCategoryItemWidget : public TTKClickedLab
     TTK_DECLARE_MODULE(MusicWebDJRadioCategoryItemWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicWebDJRadioCategoryItemWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicWebDJRadioCategoryItemWidget();
 
     /*!
@@ -76,9 +79,12 @@ class TTK_MODULE_EXPORT MusicWebDJRadioCategoryWidget : public QWidget
     TTK_DECLARE_MODULE(MusicWebDJRadioCategoryWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicWebDJRadioCategoryWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicWebDJRadioCategoryWidget();
 
     /*!

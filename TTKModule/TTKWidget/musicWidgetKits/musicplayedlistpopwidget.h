@@ -39,7 +39,7 @@ class TTK_MODULE_EXPORT MusicPlayedListTopContainerWidget : public QFrame
     TTK_DECLARE_MODULE(MusicPlayedListTopContainerWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicPlayedListTopContainerWidget(QWidget *parent = nullptr);
 
@@ -61,9 +61,12 @@ class TTK_MODULE_EXPORT MusicPlayedListPopWidget : public MusicToolMenuWidget
     TTK_DECLARE_MODULE(MusicPlayedListPopWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicPlayedListPopWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicPlayedListPopWidget();
 
     /*!

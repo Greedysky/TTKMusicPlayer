@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT TTKClickedGroup : public QObject
     TTK_DECLARE_MODULE(TTKClickedGroup)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKClickedGroup(QObject *parent = nullptr);
 

@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicItemRenameEidt : public QLineEdit
     TTK_DECLARE_MODULE(MusicItemRenameEidt)
 public:
     /*!
-     * Object contsructor by index and origin name.
+     * Object constructor by index and origin name.
      */
     explicit MusicItemRenameEidt(QWidget *parent = nullptr);
     explicit MusicItemRenameEidt(const QString &text, QWidget *parent = nullptr);

@@ -29,6 +29,9 @@
 class TTK_MODULE_EXPORT TTKAny
 {
 public:
+    /*!
+     * Object constructor.
+     */
     TTKAny();
     TTKAny(const TTKAny &other);
     TTKAny(TTKAny &&other) noexcept;
@@ -42,20 +45,32 @@ public:
 
     }
 
+    /*!
+     * Current container is null or not.
+     */
     bool isNull() const;
 
+    /*!
+     * Current container is same or not by type T.
+     */
     template <typename T>
     bool isSame() const
     {
         return m_type == std::type_index(typeid(T));
     }
 
+    /*!
+     * Cast value by type T.
+     */
     template <typename T>
     T &cast()
     {
         return TTKConstCast(T&, TTKStaticCast(const TTKAny*, this)->cast<T>());
     }
 
+    /*!
+     * Cast value by type T.
+     */
     template <typename T>
     const T &cast() const
     {
@@ -68,6 +83,9 @@ public:
         return ptr->m_value;
     }
 
+    /*!
+     * Copy object from other.
+     */
     TTKAny &operator=(const TTKAny &other);
 
 private:
@@ -98,6 +116,9 @@ private:
         T m_value;
     };
 
+    /*!
+     * Clone data from this.
+     */
     _BasePtr clone() const
     {
         return m_ptr ? m_ptr->clone() : nullptr;
@@ -108,11 +129,13 @@ private:
 
 };
 
+
 #ifdef TTK_CAST
 #  define TTKAnyCast(x, y) (TTK::any_cast<x>(y))
 #else
 #  define TTKAnyCast(x, y) ((x)(y))
 #endif
+
 
 namespace TTK
 {

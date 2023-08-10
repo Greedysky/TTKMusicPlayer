@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT TTKClickedLabel : public QLabel
     TTK_DECLARE_MODULE(TTKClickedLabel)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKClickedLabel(QWidget *parent = nullptr);
     explicit TTKClickedLabel(const QString &text, QWidget *parent = nullptr);

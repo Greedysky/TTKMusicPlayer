@@ -38,7 +38,13 @@ class TTK_MODULE_EXPORT MusicMPRISPlayer : public QObject
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMPRISPlayer)
 public:
+    /*!
+     * Object constructor.
+     */
     MusicMPRISPlayer(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicMPRISPlayer();
 
     /*!
@@ -69,6 +75,9 @@ class TTK_MODULE_EXPORT MusicMPRISPlayerRoot : public QDBusAbstractAdaptor
     Q_PROPERTY(QStringList SupportedUriSchemes READ supportedUriSchemes)
 
 public:
+    /*!
+     * Object constructor.
+     */
     MusicMPRISPlayerRoot(QObject *parent = nullptr);
 
     bool canQuit() const;
@@ -110,6 +119,9 @@ class TTK_MODULE_EXPORT MusicMPRISPlayerCore : public QDBusAbstractAdaptor
     Q_PROPERTY(double Volume READ volume WRITE setVolume)
 
 public:
+    /*!
+     * Object constructor.
+     */
     MusicMPRISPlayerCore(QObject *parent = nullptr);
 
     bool canControl() const;

@@ -69,7 +69,7 @@ class TTK_MODULE_EXPORT MusicSkinConfigManager : public TTKXmlDocument
     TTK_DECLARE_MODULE(MusicSkinConfigManager)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSkinConfigManager(QObject *parent = nullptr);
 

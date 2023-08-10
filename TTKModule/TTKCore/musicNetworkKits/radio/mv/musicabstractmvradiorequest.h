@@ -32,6 +32,9 @@ class TTK_MODULE_EXPORT MusicAbstractMVRadioRequest : public MusicAbstractQueryR
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractMVRadioRequest)
 public:
+    /*!
+     * Object constructor.
+     */
     explicit MusicAbstractMVRadioRequest(QObject *parent = nullptr);
 
     /*!

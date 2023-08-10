@@ -30,7 +30,7 @@ class TTK_MODULE_EXPORT MusicKGSongCommentsRequest : public MusicCommentsRequest
     TTK_DECLARE_MODULE(MusicKGSongCommentsRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicKGSongCommentsRequest(QObject *parent = nullptr);
 
@@ -61,7 +61,7 @@ class TTK_MODULE_EXPORT MusicKGPlaylistCommentsRequest : public MusicCommentsReq
     TTK_DECLARE_MODULE(MusicKGPlaylistCommentsRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicKGPlaylistCommentsRequest(QObject *parent = nullptr);
 

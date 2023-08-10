@@ -35,9 +35,12 @@ class TTK_MODULE_EXPORT MusicCloudToolBoxWidget : public MusicFunctionToolBoxWid
     TTK_DECLARE_MODULE(MusicCloudToolBoxWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicCloudToolBoxWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicCloudToolBoxWidget();
 
 public Q_SLOTS:

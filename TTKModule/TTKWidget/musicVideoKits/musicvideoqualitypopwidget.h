@@ -30,9 +30,12 @@ class TTK_MODULE_EXPORT MusicVideoQualityPopWidget : public MusicToolMenuWidget
     TTK_DECLARE_MODULE(MusicVideoQualityPopWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicVideoQualityPopWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicVideoQualityPopWidget();
 
     /*!

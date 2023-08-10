@@ -32,7 +32,13 @@ class SharpeImagePrivate;
 class TTK_MODULE_EXPORT SharpeImage
 {
 public:
+    /*!
+     * Object constructor.
+     */
     SharpeImage();
+    /*!
+     * Object destructor.
+     */
     virtual ~SharpeImage();
 
     /*!
@@ -60,6 +66,9 @@ protected:
 class TTK_MODULE_EXPORT GaussBlur : public SharpeImage
 {
 public:
+    /*!
+     * Object constructor.
+     */
     GaussBlur();
 
     /*!
@@ -76,6 +85,9 @@ public:
 class TTK_MODULE_EXPORT CubeWave : public SharpeImage
 {
 public:
+    /*!
+     * Object constructor.
+     */
     CubeWave();
 
     /*!
@@ -96,6 +108,9 @@ public:
 class TTK_MODULE_EXPORT WaterWave : public SharpeImage
 {
 public:
+    /*!
+     * Object constructor.
+     */
     WaterWave(const QImage &image, int radius);
 
     /*!

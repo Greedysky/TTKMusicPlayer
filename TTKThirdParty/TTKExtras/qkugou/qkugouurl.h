@@ -28,7 +28,7 @@ class TTK_MODULE_EXPORT QKugouUrl
 {
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     QKugouUrl();
 

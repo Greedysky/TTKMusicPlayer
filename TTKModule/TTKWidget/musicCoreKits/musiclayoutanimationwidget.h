@@ -34,9 +34,12 @@ class TTK_MODULE_EXPORT MusicLayoutAnimationWidget : public QWidget
     TTK_DECLARE_MODULE(MusicLayoutAnimationWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLayoutAnimationWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLayoutAnimationWidget();
 
     /*!
@@ -94,7 +97,7 @@ class TTK_MODULE_EXPORT MusicVLayoutAnimationWidget : public MusicLayoutAnimatio
     TTK_DECLARE_MODULE(MusicVLayoutAnimationWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicVLayoutAnimationWidget(QWidget *parent = nullptr);
 
@@ -121,7 +124,7 @@ class TTK_MODULE_EXPORT MusicHLayoutAnimationWidget : public MusicLayoutAnimatio
     TTK_DECLARE_MODULE(MusicHLayoutAnimationWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicHLayoutAnimationWidget(QWidget *parent = nullptr);
 

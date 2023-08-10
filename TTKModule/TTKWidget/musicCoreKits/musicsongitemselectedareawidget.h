@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicSongItemSelectedTableWidget : public MusicFillItemT
     TTK_DECLARE_MODULE(MusicSongItemSelectedTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongItemSelectedTableWidget(QWidget *parent = nullptr);
 
@@ -60,9 +60,12 @@ class TTK_MODULE_EXPORT MusicSongItemSelectedDialog : public MusicAbstractMoveDi
     TTK_DECLARE_MODULE(MusicSongItemSelectedDialog)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongItemSelectedDialog(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongItemSelectedDialog();
 
     /*!
@@ -99,9 +102,12 @@ class TTK_MODULE_EXPORT MusicSongItemSelectedAreaWidget : public QWidget
     TTK_DECLARE_MODULE(MusicSongItemSelectedAreaWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongItemSelectedAreaWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongItemSelectedAreaWidget();
 
     /*!

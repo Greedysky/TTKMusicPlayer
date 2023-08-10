@@ -40,9 +40,12 @@ class TTK_MODULE_EXPORT MusicCloudManagerTableWidget : public MusicAbstractTable
     TTK_DECLARE_MODULE(MusicCloudManagerTableWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicCloudManagerTableWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicCloudManagerTableWidget();
 
     /*!
@@ -196,9 +199,12 @@ class TTK_MODULE_EXPORT MusicCloudManagerWidget : public QWidget, public TTKAbst
     TTK_DECLARE_MODULE(MusicCloudManagerWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicCloudManagerWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicCloudManagerWidget();
 
     /*!

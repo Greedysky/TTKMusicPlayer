@@ -39,9 +39,12 @@ class TTK_MODULE_EXPORT MusicVideoControlWidget : public QWidget
     TTK_DECLARE_MODULE(MusicVideoControlWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicVideoControlWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicVideoControlWidget();
 
     /*!

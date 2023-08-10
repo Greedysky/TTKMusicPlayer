@@ -34,9 +34,12 @@ class TTK_MODULE_EXPORT MusicSongsListFunctionWidget : public QLabel
     TTK_DECLARE_MODULE(MusicSongsListFunctionWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSongsListFunctionWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicSongsListFunctionWidget();
 
     /*!

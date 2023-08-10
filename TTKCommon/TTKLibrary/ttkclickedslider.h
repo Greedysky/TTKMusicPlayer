@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT TTKClickedSlider : public QSlider
     TTK_DECLARE_MODULE(TTKClickedSlider)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit TTKClickedSlider(QWidget *parent = nullptr);
     explicit TTKClickedSlider(Qt::Orientation orientation, QWidget *parent = nullptr);

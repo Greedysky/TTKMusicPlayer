@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicLrcPhotoItem : public QLabel
     TTK_DECLARE_MODULE(MusicLrcPhotoItem)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcPhotoItem(QWidget *parent = nullptr);
 
@@ -80,9 +80,12 @@ class TTK_MODULE_EXPORT MusicLrcPhotoWidget : public QWidget
     TTK_DECLARE_MODULE(MusicLrcPhotoWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcPhotoWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcPhotoWidget();
 
     /*!
@@ -133,9 +136,12 @@ class TTK_MODULE_EXPORT MusicLrcPhotoManagerWidget : public MusicAbstractMoveDia
     TTK_DECLARE_MODULE(MusicLrcPhotoManagerWidget)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcPhotoManagerWidget(QWidget *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicLrcPhotoManagerWidget();
 
 private:

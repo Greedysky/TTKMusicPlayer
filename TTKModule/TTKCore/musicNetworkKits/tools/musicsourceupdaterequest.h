@@ -32,7 +32,7 @@ class TTK_MODULE_EXPORT MusicSourceUpdateRequest : public QObject
     TTK_DECLARE_MODULE(MusicSourceUpdateRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicSourceUpdateRequest(QObject *parent = nullptr);
 

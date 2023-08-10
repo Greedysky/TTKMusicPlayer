@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT MusicKGQueryArtistListRequest : public MusicQueryArtistL
     TTK_DECLARE_MODULE(MusicKGQueryArtistListRequest)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicKGQueryArtistListRequest(QObject *parent = nullptr);
 

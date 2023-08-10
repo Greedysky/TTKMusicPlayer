@@ -32,7 +32,7 @@ class TTK_MODULE_EXPORT MusicLrcManagerForInterior : public MusicLrcManager
     TTK_DECLARE_MODULE(MusicLrcManagerForInterior)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicLrcManagerForInterior(QWidget *parent = nullptr);
 

@@ -63,9 +63,12 @@ private Q_SLOTS:
 
 private:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     MusicDispatchManager();
+    /*!
+     * Object destructor.
+     */
     ~MusicDispatchManager();
 
     QMutex m_mutex;

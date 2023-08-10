@@ -31,9 +31,12 @@ class TTK_MODULE_EXPORT MusicNetworkProxy : public QObject
     TTK_DECLARE_MODULE(MusicNetworkProxy)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicNetworkProxy(QObject *parent = nullptr);
+    /*!
+     * Object destructor.
+     */
     ~MusicNetworkProxy();
 
     /*!

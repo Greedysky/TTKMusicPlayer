@@ -31,7 +31,7 @@ class TTK_MODULE_EXPORT TTKLocalPeer : public QObject
     Q_OBJECT
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
     */
     explicit TTKLocalPeer(QObject *parent = nullptr, const QString &id = QString());
 

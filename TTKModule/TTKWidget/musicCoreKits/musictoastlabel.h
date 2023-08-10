@@ -30,12 +30,9 @@ class TTK_MODULE_EXPORT MusicToastLabel : public TTKToastLabel
     TTK_DECLARE_MODULE(MusicToastLabel)
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      */
     explicit MusicToastLabel(QWidget *parent = nullptr);
-    /*!
-     * Object contsructor by context text.
-     */
     explicit MusicToastLabel(const QString &text, QWidget *parent = nullptr);
 
     /*!

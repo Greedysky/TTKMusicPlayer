@@ -31,6 +31,9 @@ class TTK_MODULE_EXPORT TTKConcurrentQueue
 {
     TTK_DECLARE_MODULE(TTKConcurrentQueue)
 public:
+    /*!
+     * Object constructor.
+     */
     TTKConcurrentQueue()
         : m_queue(),
           m_mutex(),
@@ -39,6 +42,9 @@ public:
 
     }
 
+    /*!
+     * Push data into container.
+     */
     inline void push(const T &record)
     {
         std::lock_guard<std::mutex> lock(m_mutex);
@@ -46,6 +52,9 @@ public:
         m_condition.notify_one();
     }
 
+    /*!
+     * Pop data into container.
+     */
     inline bool pop(T &record, bool is_blocked = true)
     {
         // If user wants to retrieve data in non-blocking mode
@@ -71,18 +80,27 @@ public:
         return true;
     }
 
+    /*!
+     * Get container data size.
+     */
     inline size_t size() const
     {
         std::lock_guard<std::mutex> lock(m_mutex);
         return m_queue.size();
     }
 
+    /*!
+     * Check container data is empty or not.
+     */
     inline bool empty() const
     {
         std::lock_guard<std::mutex> lock(m_mutex);
         return m_queue.empty();
     }
 
+    /*!
+     * Clear container data.
+     */
     inline void clear()
     {
         std::queue<T> empty;
