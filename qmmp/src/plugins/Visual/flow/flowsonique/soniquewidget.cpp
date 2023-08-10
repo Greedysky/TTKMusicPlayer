@@ -290,9 +290,7 @@ void SoniqueWidget::generatePreset()
     qDebug("[SoniqueWidget] url is %s", qPrintable(module_path));
 
     m_instance->setFileName(module_path);
-    m_instance->load();
-
-    if(!m_instance->isLoaded())
+    if(!m_instance->load())
     {
         qDebug("Could not load the svp file");
         return;

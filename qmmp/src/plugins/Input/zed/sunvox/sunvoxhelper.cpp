@@ -157,9 +157,7 @@ bool SunVoxHelper::initialize(bool copy)
     }
 
     m_instance->setFileName(library);
-    m_instance->load();
-
-    if(!m_instance->isLoaded())
+    if(!m_instance->load())
     {
         qWarning("SunVoxHelper: load plugin failed");
         return false;

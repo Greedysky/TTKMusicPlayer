@@ -55,9 +55,7 @@ bool OptimFROGHelper::initialize()
 {
 #if defined Q_OS_WIN && defined __GNUC__
     m_instance->setFileName("libOptimFROG.dll");
-    m_instance->load();
-
-    if(!m_instance->isLoaded())
+    if(!m_instance->load())
     {
         qWarning("OptimFROGHelper: load plugin failed");
         return false;
