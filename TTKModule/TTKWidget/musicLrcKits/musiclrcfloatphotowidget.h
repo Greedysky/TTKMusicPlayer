@@ -182,5 +182,4 @@ private:
 
 };
 
-
 #endif // MUSICLRCFLOATPHOTOWIDGET_H

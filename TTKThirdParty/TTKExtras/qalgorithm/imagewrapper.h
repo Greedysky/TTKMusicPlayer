@@ -39,7 +39,7 @@ public:
     /*!
      * Object destructor.
      */
-    virtual ~SharpeImage();
+    virtual ~SharpeImage() = default;
 
     /*!
      * Init item data.

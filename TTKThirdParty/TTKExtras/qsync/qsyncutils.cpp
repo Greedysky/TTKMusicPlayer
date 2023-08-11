@@ -76,8 +76,7 @@ QString QSyncUtils::authorizationCode(const QString &key, const QString &method,
     return hmacSha1(key.toUtf8(), sign.toUtf8());
 }
 
-QString QSyncUtils::createSignForNormalAuth(const QString &method,  const QString &access, const QString &secret,
-                                            const TTKStringMap &headers, const QString &resource)
+QString QSyncUtils::createSignForNormalAuth(const QString &method,  const QString &access, const QString &secret, const TTKStringMap &headers, const QString &resource)
 {
     return QString("OSS ") + access + ":" + authorizationCode(secret,  method, headers, resource);
 }

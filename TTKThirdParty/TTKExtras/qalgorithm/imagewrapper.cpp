@@ -40,11 +40,6 @@ SharpeImage::SharpeImage(SharpeImagePrivate &pvt)
     TTK_INIT_PRIVATE_D(pvt);
 }
 
-SharpeImage::~SharpeImage()
-{
-
-}
-
 void SharpeImage::input(const QRect &region)
 {
     TTK_D(SharpeImage);

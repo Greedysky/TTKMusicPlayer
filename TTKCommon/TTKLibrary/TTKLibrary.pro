@@ -33,6 +33,7 @@ DEFINES += TTK_LIBRARY
 
 win32:msvc{
     CONFIG += c++11
+    LIBS += -luser32
 }else{
     equals(QT_MAJOR_VERSION, 6){ #Qt6
         QMAKE_CXXFLAGS += -std=c++17

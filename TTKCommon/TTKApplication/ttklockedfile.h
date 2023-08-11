@@ -42,10 +42,10 @@ namespace TTKLockedPrivate {
             WriteLock
         };
 
-        TTKLockedFile();
        /*!
          * Object contsructor.
         */
+        TTKLockedFile();
         explicit TTKLockedFile(const QString &name);
         /*!
          * Object destructor.
