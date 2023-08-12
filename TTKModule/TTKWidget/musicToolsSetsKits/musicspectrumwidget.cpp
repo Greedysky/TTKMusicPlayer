@@ -248,6 +248,12 @@ void MusicSpectrumWidget::createFloridWidget(MusicSpectrum::Module spectrum, boo
 void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout, bool florid)
 {
     QString *module = florid ? &m_lastFloridName : &m_lastFlowName;
+    if(*module == name)
+    {
+        state = true;
+        return;
+    }
+
     const int index = findSpectrumWidget(*module);
     if(index != -1)
     {

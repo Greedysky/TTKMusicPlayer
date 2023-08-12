@@ -6,13 +6,14 @@ set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
 
 include_directories(${MUSIC_COMMON_DIR})
+include_directories(${MUSIC_COMMON_RUN_DIR})
 
 set(HEADER_FILES
-  ttkrunobject.h
+  ${MUSIC_COMMON_RUN_DIR}/ttkrunobject.h
 )
 
 set(SOURCE_FILES
-  ttkrunobject.cpp
+  ${MUSIC_COMMON_RUN_DIR}/ttkrunobject.cpp
   ttkrunmain.cpp
 )
 
