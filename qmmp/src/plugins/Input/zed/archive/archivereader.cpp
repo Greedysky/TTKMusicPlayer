@@ -1,5 +1,5 @@
 #include "archivereader.h"
-#if defined Q_OS_UNIX || defined Q_CC_MINGW
+#if defined Q_OS_UNIX || defined Q_CC_GNU
 #  include <unistd.h>
 #endif
 #include <qmmp/qmmp.h>
