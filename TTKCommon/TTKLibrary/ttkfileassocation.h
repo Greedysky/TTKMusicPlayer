@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include <QStringList>
 #include "ttkmoduleexport.h"
 
 #ifdef Q_OS_WIN
@@ -37,10 +38,16 @@ public:
      * Remove file assocation by suffix.
      */
     void remove(const QString& suffix);
+
     /*!
      * Check current suffix is or not file assocated.
      */
     bool exist(const QString& suffix) const;
+
+    /*!
+     * Return current file assocation keys.
+     */
+    QStringList keys() const;
 
 private:
     /*!

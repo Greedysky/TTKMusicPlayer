@@ -31,6 +31,12 @@
 #define MARGIN_SIDE     10
 #define SYNC_HOST_URL   "VDVnYUdYMW9xNnVWSnd6L0J6NHI2MFZ5d0R3R2NiRVF4VW5WckpNcUhnUT0="
 
+#if TTK_QT_VERSION_CHECK(5,0,0)
+#  include <QtConcurrent/QtConcurrent>
+#else
+#  include <QtConcurrentRun>
+#endif
+
 MusicApplicationModule *MusicApplicationModule::m_instance = nullptr;
 
 MusicApplicationModule::MusicApplicationModule(QObject *parent)
@@ -119,21 +125,26 @@ void MusicApplicationModule::applyParameter()
     MusicPlatformManager manager;
     manager.windowsStartUpMode(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
 
-    TTKFileAssocation assocation;
-    for(const QString &format : MusicFormats::supportMusicFormats())
+    const auto status = QtConcurrent::run([&]()
     {
-        const bool exist = assocation.exist(format);
-        const bool enable = G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool();
+        TTKFileAssocation assocation;
+        const QStringList& keys = assocation.keys();
 
-        if(exist && !enable)
+        for(const QString &format : MusicFormats::supportMusicFormats())
         {
-            assocation.remove(format);
+            const bool exist = keys.contains(format) && assocation.exist(format);
+            const bool enable = G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool();
+
+            if(exist && !enable)
+            {
+                 assocation.remove(format);
+            }
+            else if(!exist && enable)
+            {
+                 assocation.append(format);
+            }
         }
-        else if(!exist && enable)
-        {
-            assocation.append(format);
-        }
-    }
+    });
 #endif
 
     if(!m_screenSaverWidget)

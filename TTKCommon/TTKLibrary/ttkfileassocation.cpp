@@ -20,20 +20,26 @@ void TTKFileAssocation::remove(const QString& suffix)
 
 bool TTKFileAssocation::exist(const QString& suffix) const
 {
-    bool state = false;
     const QString& key = "." + suffix;
     const QString& mainName = TTK_APP_NAME + key;
-//    const QString& mainString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + key;
 
     QSettings reg1Setting("HKEY_CURRENT_USER\\Software\\Classes\\" + key, QSettings::NativeFormat);
-    state = (reg1Setting.value("Default").toString() == mainName);
+    return reg1Setting.value("Default").toString() == mainName;
+}
 
-//    QSettings reg2Setting(mainString, QSettings::NativeFormat);
-//    state &= (reg2Setting.value("Progid").toString() == mainName);
+QStringList TTKFileAssocation::keys() const
+{
+    QStringList keys;
+    QSettings reg1Setting("HKEY_CURRENT_USER\\Software\\Classes\\", QSettings::NativeFormat);
 
-//    QSettings reg3Setting(mainString + "\\UserChoice", QSettings::NativeFormat);
-//    state &= (reg3Setting.value("Progid").toString() == mainName);
-    return state;
+    for(const QString& key : reg1Setting.childGroups())
+    {
+        if(!key.isEmpty() && key[0] == '.')
+        {
+            keys.push_back(key.toLower().remove(0, 1));
+        }
+    }
+    return keys;
 }
 
 void TTKFileAssocation::appendClass(const QString& suffix)
@@ -44,9 +50,9 @@ void TTKFileAssocation::appendClass(const QString& suffix)
 
     QSettings reg1Setting(mainString, QSettings::NativeFormat);
     const QString& reg1Value = reg1Setting.value("Default").toString();
-    if (reg1Value != mainName)
+    if(reg1Value != mainName)
     {
-        if (!reg1Value.isEmpty())
+        if(!reg1Value.isEmpty())
         {
             // do backup
             reg1Setting.setValue("TTKBackup", reg1Value);
@@ -95,17 +101,17 @@ void TTKFileAssocation::appendFileExts(const QString& suffix)
     QSettings reg1Setting(mainString + "\\OpenWithProgids", QSettings::NativeFormat);
     reg1Setting.setValue(mainName, QString());
 
-//    QSettings reg2Setting(mainString + "\\UserChoice", QSettings::NativeFormat);
-//    const QString& reg2Value = reg2Setting.value("Progid").toString();
-//    if (reg2Value != mainName)
-//    {
-//        if (!reg2Value.isEmpty())
-//        {
-//            // do backup
-//            reg2Setting.setValue("TTKBackup", reg2Value);
-//        }
-//        reg2Setting.setValue("Progid", mainName);
-//    }
+    QSettings reg2Setting(mainString + "\\UserChoice", QSettings::NativeFormat);
+    const QString& reg2Value = reg2Setting.value("Progid").toString();
+    if(reg2Value != mainName)
+    {
+        if(!reg2Value.isEmpty())
+        {
+            // do backup
+            reg2Setting.setValue("TTKBackup", reg2Value);
+        }
+        reg2Setting.setValue("Progid", mainName);
+    }
 }
 
 void TTKFileAssocation::removeClass(const QString& suffix)
@@ -116,7 +122,7 @@ void TTKFileAssocation::removeClass(const QString& suffix)
 
     QSettings reg1Setting(mainString, QSettings::NativeFormat);
     const QString& reg1Value = reg1Setting.value("Default").toString();
-    if (reg1Value == mainName)
+    if(reg1Value == mainName)
     {
         reg1Setting.setValue("Default", reg1Setting.value("TTKBackup", QString()));
         reg1Setting.remove("TTKBackup");
@@ -138,18 +144,30 @@ void TTKFileAssocation::removeSoftware(const QString& suffix)
 void TTKFileAssocation::removeFileExts(const QString& suffix)
 {
     const QString& key = "." + suffix;
-//    const QString& mainName = TTK_APP_NAME + key;
+    const QString& mainName = TTK_APP_NAME + key;
     const QString& mainString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + key;
 
     QSettings reg1Setting(mainString, QSettings::NativeFormat);
     reg1Setting.remove("OpenWithProgids");
 
-//    QSettings reg2Setting(mainString + "\\UserChoice", QSettings::NativeFormat);
-//    const QString& reg2Value = reg2Setting.value("Progid").toString();
-//    if (reg2Value == mainName)
-//    {
-//        reg2Setting.setValue("Progid", reg2Setting.value("TTKBackup", QString()));
-//        reg2Setting.remove("TTKBackup");
-//    }
+    bool empty = true;
+    QSettings reg2Setting(mainString + "\\UserChoice", QSettings::NativeFormat);
+    const QString& reg2Value = reg2Setting.value("Progid").toString();
+    if(reg2Value == mainName)
+    {
+        const QString& backup = reg2Setting.value("TTKBackup").toString();
+        if(!backup.isEmpty())
+        {
+            empty = false;
+            reg2Setting.setValue("Progid", backup);
+        }
+
+        reg2Setting.remove("TTKBackup");
+    }
+
+    if(empty)
+    {
+        reg1Setting.remove("UserChoice");
+    }
 }
 #endif

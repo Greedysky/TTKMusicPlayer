@@ -2,7 +2,7 @@
 
 #ifdef Q_CC_MSVC
 #  include <qt_windows.h>
-#elif defined Q_OS_UNIX || defined Q_CC_MINGW
+#elif defined Q_OS_UNIX || defined Q_CC_GNU
 #  include <unistd.h>
 #endif
 
@@ -34,7 +34,7 @@ void TTK::Core::sleep(int ms)
 {
 #ifdef Q_CC_MSVC
     ::Sleep(ms);
-#elif defined Q_OS_UNIX || defined Q_CC_MINGW
+#elif defined Q_OS_UNIX || defined Q_CC_GNU
     usleep(ms * MT_MS2US);
 #endif
 }

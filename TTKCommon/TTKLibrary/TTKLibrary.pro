@@ -36,6 +36,7 @@ win32:msvc{
     LIBS += -luser32
 }else{
     equals(QT_MAJOR_VERSION, 6){ #Qt6
+        QT += core5compat
         QMAKE_CXXFLAGS += -std=c++17
     }else{
         QMAKE_CXXFLAGS += -std=c++11

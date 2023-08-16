@@ -52,27 +52,27 @@ void MusicPlatformManager::windowsStartUpMode(bool v) const
     QSettings reg("HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     QSettings regWOW("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
 
-    if (v)
+    if(v)
     {
-        if (reg.value(appName).toString() != appPath)
+        if(reg.value(appName).toString() != appPath)
         {
             reg.setValue(appName, QString("\"%1\"").arg(appPath));
         }
 
-        if (regWOW.value(appName).toString() != appPath)
+        if(regWOW.value(appName).toString() != appPath)
         {
             regWOW.setValue(appName, QString("\"%1\"").arg(appPath));
         }
     }
     else
     {
-        if (reg.contains(appName))
+        if(reg.contains(appName))
         {
             reg.remove(appName);
             reg.sync();
         }
 
-        if (regWOW.contains(appName))
+        if(regWOW.contains(appName))
         {
             regWOW.remove(appName);
             regWOW.sync();

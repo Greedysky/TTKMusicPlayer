@@ -107,7 +107,7 @@ bool MusicExtractWrapper::outputBinary(const QString &input, const QString &outp
             break;
         }
 
-        if (fInfo.external_fa == FILE_ATTRIBUTE_DIRECTORY)
+        if(fInfo.external_fa == FILE_ATTRIBUTE_DIRECTORY)
         {
             dir.mkpath(QFileInfo(name).path());
         }
