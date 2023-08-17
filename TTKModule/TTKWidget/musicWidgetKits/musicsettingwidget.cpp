@@ -527,7 +527,7 @@ void MusicSettingWidget::testNetworkConnection()
 
 void MusicSettingWidget::checkNetworkConnection()
 {
-    GENERATE_SINGLE_WIDGET_PARENT(MusicNetworkConnectionTestWidget, this);
+    GENERATE_SINGLE_WIDGET(MusicNetworkConnectionTestWidget, this);
 }
 
 void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)

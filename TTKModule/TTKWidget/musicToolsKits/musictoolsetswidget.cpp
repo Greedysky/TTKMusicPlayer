@@ -108,22 +108,22 @@ void MusicToolSetsWidget::currentItemClicked(QListWidgetItem *item)
         }
         case 3:
         {
-            GENERATE_SINGLE_WIDGET_CLASS(MusicSpectrumWidget);
+            GENERATE_SINGLE_WIDGET(MusicSpectrumWidget);
             break;
         }
         case 4:
         {
-            GENERATE_SINGLE_WIDGET_CLASS(MusicNetworkConnectionTestWidget);
+            GENERATE_SINGLE_WIDGET(MusicNetworkConnectionTestWidget);
             break;
         }
         case 5:
         {
-            GENERATE_SINGLE_WIDGET_CLASS(MusicReplayGainWidget);
+            GENERATE_SINGLE_WIDGET(MusicReplayGainWidget);
             break;
         }
         case 6:
         {
-            GENERATE_SINGLE_WIDGET_CLASS(MusicSongDlnaTransferWidget);
+            GENERATE_SINGLE_WIDGET(MusicSongDlnaTransferWidget);
             break;
         }
         case 7:

@@ -6,6 +6,11 @@
 #include "musicdownloadmanager.h"
 #include "musicdownloadqueryfactory.h"
 
+TTKDispatchManager* makeMusicDispatchManager()
+{
+    return TTKSingleton<TTKDispatchManager>::createInstance();
+}
+
 MusicConnectionPool* makeMusicConnectionPool()
 {
     return TTKSingleton<MusicConnectionPool>::createInstance();
@@ -14,11 +19,6 @@ MusicConnectionPool* makeMusicConnectionPool()
 MusicBackgroundManager* makeMusicBackgroundManager()
 {
     return TTKSingleton<MusicBackgroundManager>::createInstance();
-}
-
-MusicDispatchManager* makeMusicDispatchManager()
-{
-    return TTKSingleton<MusicDispatchManager>::createInstance();
 }
 
 MusicHotKeyManager* makeMusicHotKeyManager()

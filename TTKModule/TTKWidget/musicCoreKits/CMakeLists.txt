@@ -43,6 +43,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
   ${MUSIC_WIDGET_CORE_DIR}/musicpagequerywidget.h
   ${MUSIC_WIDGET_CORE_DIR}/musicinputdialog.h
   ${MUSIC_WIDGET_CORE_DIR}/musicratinglabel.h
+  ${MUSIC_WIDGET_CORE_DIR}/musicsinglemanager.h
 )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
@@ -88,4 +89,5 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
   ${MUSIC_WIDGET_CORE_DIR}/musicpagequerywidget.cpp
   ${MUSIC_WIDGET_CORE_DIR}/musicinputdialog.cpp
   ${MUSIC_WIDGET_CORE_DIR}/musicratinglabel.cpp
+  ${MUSIC_WIDGET_CORE_DIR}/musicsinglemanager.cpp
 )

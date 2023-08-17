@@ -21,6 +21,7 @@
 #include "musicplatformmanager.h"
 #include "musicformats.h"
 #include "ttklibrary.h"
+#include "ttkconcurrent.h"
 #include "ttkdesktopwrapper.h"
 #include "ttkfileassocation.h"
 #include "ttkplatformsystem.h"
@@ -125,7 +126,7 @@ void MusicApplicationModule::applyParameter()
     MusicPlatformManager manager;
     manager.windowsStartUpMode(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
 
-    const auto status = QtConcurrent::run([&]()
+    TTKConcurrent(
     {
         TTKFileAssocation assocation;
         const QStringList& keys = assocation.keys();
@@ -358,7 +359,7 @@ void MusicApplicationModule::showTimerWidget()
 
 void MusicApplicationModule::showSpectrumWidget()
 {
-    GENERATE_SINGLE_WIDGET_CLASS(MusicSpectrumWidget);
+    GENERATE_SINGLE_WIDGET(MusicSpectrumWidget);
 }
 
 void MusicApplicationModule::setWindowToTop()

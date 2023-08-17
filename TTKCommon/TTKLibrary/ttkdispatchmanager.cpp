@@ -1,9 +1,9 @@
-#include "musicdispatchmanager.h"
+#include "ttkdispatchmanager.h"
 
 #include <QFile>
 #include <QTimer>
 
-MusicDispatchManager::MusicDispatchManager()
+TTKDispatchManager::TTKDispatchManager()
     : QObject(nullptr)
 {
     m_timer = new QTimer(this);
@@ -13,69 +13,69 @@ MusicDispatchManager::MusicDispatchManager()
     m_timer->start();
 }
 
-MusicDispatchManager::~MusicDispatchManager()
+TTKDispatchManager::~TTKDispatchManager()
 {
     m_timer->stop();
     delete m_timer;
     qDeleteAll(m_observer);
 }
 
-void MusicDispatchManager::dispatch(Module type)
+void TTKDispatchManager::dispatch(Module type)
 {
-    MusicDispatchItem *item = new MusicDispatchItem;
+    TTKDispatchItem *item = new TTKDispatchItem;
     item->m_type = type;
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(Module type, const TTKVariantList &args)
+void TTKDispatchManager::dispatch(Module type, const TTKVariantList &args)
 {
-    MusicDispatchItem *item = new MusicDispatchItem;
+    TTKDispatchItem *item = new TTKDispatchItem;
     item->m_type = type;
     item->m_args << args;
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(Module type, void *funcs)
+void TTKDispatchManager::dispatch(Module type, void *funcs)
 {
-    MusicDispatchItem *item = new MusicDispatchItem;
+    TTKDispatchItem *item = new TTKDispatchItem;
     item->m_type = type;
     item->m_args << QVariant::fromValue<void*>(funcs);
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(Module type, const QVariant &arg1)
+void TTKDispatchManager::dispatch(Module type, const QVariant &arg1)
 {
-    MusicDispatchItem *item = new MusicDispatchItem;
+    TTKDispatchItem *item = new TTKDispatchItem;
     item->m_type = type;
     item->m_args << arg1;
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(Module type, const QVariant &arg1, const QVariant &arg2)
+void TTKDispatchManager::dispatch(Module type, const QVariant &arg1, const QVariant &arg2)
 {
-    MusicDispatchItem *item = new MusicDispatchItem;
+    TTKDispatchItem *item = new TTKDispatchItem;
     item->m_type = type;
     item->m_args << arg1 << arg2;
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(Module type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3)
+void TTKDispatchManager::dispatch(Module type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3)
 {
-    MusicDispatchItem *item = new MusicDispatchItem;
+    TTKDispatchItem *item = new TTKDispatchItem;
     item->m_type = type;
     item->m_args << arg1 << arg2 << arg3;
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(Module type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3, const QVariant &arg4)
+void TTKDispatchManager::dispatch(Module type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3, const QVariant &arg4)
 {
-    MusicDispatchItem *item = new MusicDispatchItem;
+    TTKDispatchItem *item = new TTKDispatchItem;
     item->m_type = type;
     item->m_args << arg1 << arg2 << arg3 << arg4;
     m_observer << item;
 }
 
-void MusicDispatchManager::activeFunctions()
+void TTKDispatchManager::activeFunctions()
 {
     m_mutex.lock();
     if(m_observer.isEmpty())
@@ -84,7 +84,7 @@ void MusicDispatchManager::activeFunctions()
         return;
     }
 
-    MusicDispatchItem *item = m_observer.takeLast();
+    TTKDispatchItem *item = m_observer.takeLast();
     bool state = true;
     switch(item->m_type)
     {

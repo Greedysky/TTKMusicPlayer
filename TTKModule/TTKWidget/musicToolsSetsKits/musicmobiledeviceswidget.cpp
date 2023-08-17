@@ -33,6 +33,6 @@ void MusicMobileDevicesWidget::showMobileManager()
 {
     hide();
     //
-    MusicMobileSongsManagerWidget *w = GENERATE_SINGLE_WIDGET_CLASS(MusicMobileSongsManagerWidget);
+    MusicMobileSongsManagerWidget *w = GENERATE_SINGLE_WIDGET(MusicMobileSongsManagerWidget);
     w->findExtraDevicePath(G_SETTING_PTR->value(MusicSettingManager::ExtraDevicePath).toString());
 }

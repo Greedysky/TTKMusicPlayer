@@ -891,7 +891,7 @@ void MusicApplication::removeItemAt(const QStringList &path, bool remove, bool c
             const QString &removeParh = toolIndex == MUSIC_NETWORK_LIST ? TTK::generateNetworkSongPath(item.m_path) : item.m_path;
             if(remove && !QFile::remove(removeParh))
             {
-                G_DISPATCH_PTR->dispatch(MusicDispatchManager::Module::FileRemove, removeParh);
+                G_DISPATCH_PTR->dispatch(TTKDispatchManager::Module::FileRemove, removeParh);
             }
         }
     }

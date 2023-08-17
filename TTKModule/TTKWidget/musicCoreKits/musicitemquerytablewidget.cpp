@@ -118,7 +118,7 @@ void MusicItemQueryTableWidget::downloadBatchData(bool music)
         items << songInfos[index];
     }
 
-    MusicDownloadBatchWidget *w = GENERATE_SINGLE_WIDGET_PARENT(MusicDownloadBatchWidget, this);
+    MusicDownloadBatchWidget *w = GENERATE_SINGLE_WIDGET(MusicDownloadBatchWidget, this);
     w->setSongName(items, music ? MusicAbstractQueryRequest::QueryType::Music : MusicAbstractQueryRequest::QueryType::Movie);
 }
 

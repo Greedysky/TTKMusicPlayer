@@ -14,10 +14,12 @@ set(HEADER_FILES
   ttkclickedlabel.h
   ttkclickedslider.h
   ttkcommandline.h
+  ttkconcurrent.h
   ttkconcurrentqueue.h
   ttkcryptographichash.h
   ttkdefer.h
   ttkdesktopwrapper.h
+  ttkdispatchmanager.h
   ttkfileassocation.h
   ttkglobalhelper.h
   ttkitemdelegate.h
@@ -45,6 +47,7 @@ set(SOURCE_FILES
   ttkcommandline.cpp
   ttkcryptographichash.cpp
   ttkdesktopwrapper.cpp
+  ttkdispatchmanager.cpp
   ttkfileassocation.cpp
   ttkglobalhelper.cpp
   ttkitemdelegate.cpp

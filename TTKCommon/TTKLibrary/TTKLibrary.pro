@@ -70,10 +70,12 @@ HEADERS += \
     $$PWD/ttkclickedlabel.h \
     $$PWD/ttkclickedslider.h \
     $$PWD/ttkcommandline.h \
+    $$PWD/ttkconcurrent.h \
     $$PWD/ttkconcurrentqueue.h \
     $$PWD/ttkcryptographichash.h \
     $$PWD/ttkdefer.h \
     $$PWD/ttkdesktopwrapper.h \
+    $$PWD/ttkdispatchmanager.h \
     $$PWD/ttkfileassocation.h \
     $$PWD/ttkglobalhelper.h \
     $$PWD/ttkitemdelegate.h \
@@ -100,6 +102,7 @@ SOURCES += \
     $$PWD/ttkcommandline.cpp \
     $$PWD/ttkcryptographichash.cpp \
     $$PWD/ttkdesktopwrapper.cpp \
+    $$PWD/ttkdispatchmanager.cpp \
     $$PWD/ttkfileassocation.cpp \
     $$PWD/ttkglobalhelper.cpp \
     $$PWD/ttkitemdelegate.cpp \

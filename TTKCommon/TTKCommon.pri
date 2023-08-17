@@ -36,10 +36,12 @@ win32{
             $$PWD/TTKLibrary/ttkclickedlabel.h \
             $$PWD/TTKLibrary/ttkclickedslider.h \
             $$PWD/TTKLibrary/ttkcommandline.h \
+            $$PWD/TTKLibrary/ttkconcurrent.h \
             $$PWD/TTKLibrary/ttkconcurrentqueue.h \
             $$PWD/TTKLibrary/ttkcryptographichash.h \
             $$PWD/TTKLibrary/ttkdesktopwrapper.h \
             $$PWD/TTKLibrary/ttkdefer.h \
+            $$PWD/TTKLibrary/ttkdispatchmanager.h \
             $$PWD/TTKLibrary/ttkfileassocation.h \
             $$PWD/TTKLibrary/ttkglobalhelper.h \
             $$PWD/TTKLibrary/ttkitemdelegate.h \

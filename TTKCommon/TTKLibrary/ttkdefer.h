@@ -71,6 +71,6 @@ inline _ScopeGuard<Function> operator+(TTK::ScopeGuardOnExit, Function &&fn)
 }
 
 // Helper macro
-#define defer auto TTK_CAT(ext_exitBlock_, __LINE__) = TTK::ScopeGuardOnExit() + [&]()
+#define defer const auto TTK_CAT(ext_exitBlock_, __LINE__) = TTK::ScopeGuardOnExit() + [&]()
 
 #endif // TTKDEFER_H

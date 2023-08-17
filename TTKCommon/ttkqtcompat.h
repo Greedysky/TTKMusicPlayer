@@ -33,23 +33,6 @@ namespace QtCompat
 #  define QtFontWidth(p, t) p.width(t)
 #endif
 
-/// Font init
-//#if TTK_QT_VERSION_CHECK(6,2,0)
-//#  define QtFontInit_1(f) QFont(QStringList() << f)
-//#  define QtFontInit_2(f, p) QFont(QStringList() << f, p)
-//#  define QtFontInit_3(f, p, w) QFont(QStringList() << f, p, w)
-//#else
-//#  define QtFontInit_1(f) QFont(f)
-//#  define QtFontInit_2(f, p) QFont(f, p)
-//#  define QtFontInit_3(f, p, w) QFont(f, p, w)
-//#endif
-
-//#ifndef Q_CC_MSVC
-//#  define QtFontInit(...) TTK_PP_OVERLOAD(QtFontInit_, __VA_ARGS__)(__VA_ARGS__)
-//#else
-//#  define QtFontInit(...) TTK_PP_CAT(TTK_PP_OVERLOAD(QtFontInit_, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
-//#endif
-
 /// Image byte count
 #if TTK_QT_VERSION_CHECK(5,10,0)
 #  define QtImageBytes(p) p.sizeInBytes()

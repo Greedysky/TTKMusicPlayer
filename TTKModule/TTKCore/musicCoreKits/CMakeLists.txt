@@ -22,7 +22,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
   ${MUSIC_CORE_DIR}/musicruntimemanager.h
   ${MUSIC_CORE_DIR}/musicdispatchmanager.h
   ${MUSIC_CORE_DIR}/musicbackgroundconfigmanager.h
-  ${MUSIC_CORE_DIR}/musicsinglemanager.h
   ${MUSIC_CORE_DIR}/musicimagerenderer.h
 )
 
@@ -43,9 +42,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
   ${MUSIC_CORE_DIR}/musicplaylistmanager.cpp
   ${MUSIC_CORE_DIR}/musicextractwrapper.cpp
   ${MUSIC_CORE_DIR}/musicruntimemanager.cpp
-  ${MUSIC_CORE_DIR}/musicdispatchmanager.cpp
   ${MUSIC_CORE_DIR}/musicbackgroundconfigmanager.cpp
-  ${MUSIC_CORE_DIR}/musicsinglemanager.cpp
   ${MUSIC_CORE_DIR}/musicimagerenderer.cpp
 )
   
