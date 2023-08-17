@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
         app.installTranslator(translator);
     }
 
-    TTK::setApplicationFont(&app);
+    TTK::setApplicationFont();
 
     MusicApplication w;
     w.show();

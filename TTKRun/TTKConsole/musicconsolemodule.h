@@ -44,7 +44,7 @@ public:
     /*!
      * Init all parameter.
      */
-    bool initialize(const QCoreApplication &app);
+    bool initialize();
 
 private Q_SLOTS:
     /*!

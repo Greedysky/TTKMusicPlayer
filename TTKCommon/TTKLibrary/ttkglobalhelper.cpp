@@ -7,9 +7,9 @@
 #define WIDTH  4
 #define HEIGHT 4
 
-void TTK::setApplicationFont(QApplication* app)
+void TTK::setApplicationFont()
 {
-    QFont font = app->font();
+    QFont font = QApplication::font();
     for(const QString &family : QFontDatabase().families())
     {
         if(family == "微软雅黑" ||
@@ -18,7 +18,7 @@ void TTK::setApplicationFont(QApplication* app)
            family == "Microsoft YaHei")
         {
             font.setFamily(family);
-            app->setFont(font);
+            QApplication::setFont(font);
             TTK_INFO_STREAM("TTK application use 'Microsoft YaHei' font");
             break;
         }

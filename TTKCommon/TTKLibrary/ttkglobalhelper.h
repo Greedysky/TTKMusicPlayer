@@ -27,7 +27,7 @@ namespace TTK
     /*!
      * Set application font.
      */
-    TTK_MODULE_EXPORT void setApplicationFont(QApplication* app);
+    TTK_MODULE_EXPORT void setApplicationFont();
     /*!
      * Set widget border shadow.
      */

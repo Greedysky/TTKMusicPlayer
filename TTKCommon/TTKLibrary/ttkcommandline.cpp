@@ -12,6 +12,11 @@ void TTKCommandLineParser::addOption(const TTKCommandLineOption &option)
     m_options << option;
 }
 
+void TTKCommandLineParser::process()
+{
+    process(QCoreApplication::arguments().mid(1));
+}
+
 void TTKCommandLineParser::process(const QStringList &arguments)
 {
     QString lastCommand;
@@ -28,11 +33,6 @@ void TTKCommandLineParser::process(const QStringList &arguments)
             m_commands[lastCommand] = arg;
         }
     }
-}
-
-void TTKCommandLineParser::process(const QCoreApplication &app)
-{
-    process(app.arguments().mid(1));
 }
 
 bool TTKCommandLineParser::isSet(const TTKCommandLineOption &option) const

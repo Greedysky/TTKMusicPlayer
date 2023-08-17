@@ -31,6 +31,7 @@ DEFINES += TTK_LIBRARY
 win32:LIBS += -lpsapi
 win32:msvc{
     CONFIG += c++11
+    DEFINES += _CRT_SECURE_NO_WARNINGS
 }else{
     equals(QT_MAJOR_VERSION, 6){ #Qt6
         QMAKE_CXXFLAGS += -std=c++17

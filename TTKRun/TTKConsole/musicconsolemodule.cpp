@@ -45,7 +45,7 @@ MusicConsoleModule::~MusicConsoleModule()
     delete m_playlist;
 }
 
-bool MusicConsoleModule::initialize(const QCoreApplication &app)
+bool MusicConsoleModule::initialize()
 {
     TTK_LOG_STREAM("\n" TTK_APP_NAME << "Console Module" << TTK_VERSION_STR "\n");
 
@@ -57,7 +57,7 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
     parser.addOption(op1);
     parser.addOption(op2);
     parser.addOption(op3);
-    parser.process(app);
+    parser.process();
 
     if(parser.isEmpty())
     {
@@ -153,7 +153,7 @@ bool MusicConsoleModule::initialize(const QCoreApplication &app)
 
     m_player->play();
     m_player->setVolume(m_volume);
-    return app.exec();
+    return QCoreApplication::exec();
 }
 
 void MusicConsoleModule::positionChanged(qint64 position)

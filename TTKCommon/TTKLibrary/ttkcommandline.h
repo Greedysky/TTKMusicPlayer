@@ -93,11 +93,11 @@ public:
     /*!
      * Process command line by input.
      */
-    void process(const QStringList &arguments);
+    void process();
     /*!
      * Process command line by input.
      */
-    void process(const QCoreApplication &app);
+    void process(const QStringList &arguments);
 
     /*!
      * Check current option is set.
