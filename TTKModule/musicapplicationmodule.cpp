@@ -126,26 +126,26 @@ void MusicApplicationModule::applyParameter()
     MusicPlatformManager manager;
     manager.windowsStartUpMode(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
 
-    TTKConcurrent(
-    {
-        TTKFileAssocation assocation;
-        const QStringList& keys = assocation.keys();
+//    TTKConcurrent(
+//    {
+//        TTKFileAssocation assocation;
+//        const QStringList& keys = assocation.keys();
 
-        for(const QString &format : MusicFormats::supportMusicFormats())
-        {
-            const bool exist = keys.contains(format) && assocation.exist(format);
-            const bool enable = G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool();
+//        for(const QString &format : MusicFormats::supportMusicFormats())
+//        {
+//            const bool exist = keys.contains(format) && assocation.exist(format);
+//            const bool enable = G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool();
 
-            if(exist && !enable)
-            {
-                 assocation.remove(format);
-            }
-            else if(!exist && enable)
-            {
-                 assocation.append(format);
-            }
-        }
-    });
+//            if(exist && !enable)
+//            {
+//                 assocation.remove(format);
+//            }
+//            else if(!exist && enable)
+//            {
+//                 assocation.append(format);
+//            }
+//        }
+//    });
 #endif
 
     if(!m_screenSaverWidget)
@@ -359,7 +359,7 @@ void MusicApplicationModule::showTimerWidget()
 
 void MusicApplicationModule::showSpectrumWidget()
 {
-    GENERATE_SINGLE_WIDGET(MusicSpectrumWidget);
+    GenerateSingleWidget(MusicSpectrumWidget);
 }
 
 void MusicApplicationModule::setWindowToTop()

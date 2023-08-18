@@ -568,12 +568,12 @@ void MusicSongsSummariziedWidget::importSongsByDir(int index)
 
 void MusicSongsSummariziedWidget::showSongCheckToolsWidget()
 {
-    GENERATE_SINGLE_WIDGET(MusicSongCheckToolsWidget);
+    GenerateSingleWidget(MusicSongCheckToolsWidget);
 }
 
 void MusicSongsSummariziedWidget::showLrcDownloadBatchWidget()
 {
-    GENERATE_SINGLE_WIDGET(MusicLrcDownloadBatchWidget);
+    GenerateSingleWidget(MusicLrcDownloadBatchWidget);
 }
 
 void MusicSongsSummariziedWidget::searchResultChanged(int, int column)

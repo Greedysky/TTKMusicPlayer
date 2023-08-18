@@ -50,6 +50,7 @@ public:
         CloseEventMode,                  /*!< Close Event Parameter*/
         CloseNetWorkMode,                /*!< Close NetWork Parameter*/
         FileAssociationMode,             /*!< File Association Parameter*/
+        FileAssociationValue,            /*!< File Association Value Parameter*/
         WindowConciseMode,               /*!< Window Concise Parameter*/
         RemoteWidgetMode,                /*!< Remote Widget Mode Parameter*/
         WindowQuitMode,                  /*!< Window Quit Mode Parameter*/

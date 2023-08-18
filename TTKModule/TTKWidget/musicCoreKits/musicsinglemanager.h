@@ -23,28 +23,28 @@
 #include "ttksingleton.h"
 #include "musicwidgetutils.h"
 
-#define GENERATE_SINGLE_WIDGET_1(name)                               \
-    GENERATE_SINGLE_WIDGET_2(name, MusicApplication::instance())
+#define GenerateSingleWidget_1(name)                               \
+    GenerateSingleWidget_2(name, MusicApplication::instance())
 
-#define GENERATE_SINGLE_WIDGET_2(name, widget)                       \
-    [](QWidget *parent)                                              \
-    {                                                                \
-        MusicSingleManager *manager = G_SINGLE_MANAGER_PTR;          \
-        if(!manager->contains(#name))                                \
-        {                                                            \
-            manager->appendObject(#name, new name(parent));          \
-        }                                                            \
-        name *w = TTKObjectCast(name*, manager->object(#name));      \
-        TTK::Widget::adjustWidgetPosition(w);                        \
-        w->raise();                                                  \
-        w->show();                                                   \
-        return w;                                                    \
+#define GenerateSingleWidget_2(name, widget)                       \
+    [](QWidget *parent)                                            \
+    {                                                              \
+        MusicSingleManager *manager = G_SINGLE_MANAGER_PTR;        \
+        if(!manager->contains(#name))                              \
+        {                                                          \
+            manager->appendObject(#name, new name(parent));        \
+        }                                                          \
+        name *w = TTKObjectCast(name*, manager->object(#name));    \
+        TTK::Widget::adjustWidgetPosition(w);                      \
+        w->raise();                                                \
+        w->show();                                                 \
+        return w;                                                  \
     }(widget)
 
 #ifndef Q_CC_MSVC
-#  define GENERATE_SINGLE_WIDGET(...) TTK_PP_OVERLOAD(GENERATE_SINGLE_WIDGET_, __VA_ARGS__)(__VA_ARGS__)
+#  define GenerateSingleWidget(...) TTK_PP_OVERLOAD(GenerateSingleWidget_, __VA_ARGS__)(__VA_ARGS__)
 #else
-#  define GENERATE_SINGLE_WIDGET(...) TTK_PP_CAT(TTK_PP_OVERLOAD(GENERATE_SINGLE_WIDGET_, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
+#  define GenerateSingleWidget(...) TTK_PP_CAT(TTK_PP_OVERLOAD(GenerateSingleWidget_, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
 #endif
 
 
@@ -76,7 +76,7 @@ private:
     /*!
      * Object constructor.
      */
-    MusicSingleManager();
+    MusicSingleManager() = default;
     
     QMap<QString, QObject*> m_parameter;
 

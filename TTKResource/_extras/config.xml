@@ -13,6 +13,7 @@
         <closeEventMode value="1"/>
         <closeNetworkMode value="0"/>
         <fileAssociationMode value="0"/>
+        <fileAssociationValue value=""/>
         <windowConciseMode value="0"/>
         <remoteWidgetMode value="0"/>
         <windowQuitMode value="0"/>

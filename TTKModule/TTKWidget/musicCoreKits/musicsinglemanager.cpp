@@ -1,10 +1,5 @@
 #include "musicsinglemanager.h"
 
-MusicSingleManager::MusicSingleManager()
-{
-
-}
-
 void MusicSingleManager::appendObject(const QString &name, QObject *object)
 {
     m_parameter[name] = object;

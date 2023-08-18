@@ -385,7 +385,7 @@ void MusicTopAreaWidget::remoteTypeChanged(int type)
 
 void MusicTopAreaWidget::showToolSetsWidget()
 {
-    GENERATE_SINGLE_WIDGET(MusicToolSetsWidget);
+    GenerateSingleWidget(MusicToolSetsWidget);
 }
 
 void MusicTopAreaWidget::backgroundTransparent(int value)

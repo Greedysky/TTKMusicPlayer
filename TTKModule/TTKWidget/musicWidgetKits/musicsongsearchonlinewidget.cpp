@@ -438,7 +438,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
             infos << songInfos[index];
         }
 
-        MusicDownloadBatchWidget *w = GENERATE_SINGLE_WIDGET(MusicDownloadBatchWidget);
+        MusicDownloadBatchWidget *w = GenerateSingleWidget(MusicDownloadBatchWidget);
         w->setSongName(infos, MusicAbstractQueryRequest::QueryType::Music);
     }
 }

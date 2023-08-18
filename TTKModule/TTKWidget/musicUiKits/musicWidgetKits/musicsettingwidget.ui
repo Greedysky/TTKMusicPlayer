@@ -219,7 +219,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>199</y>
-       <width>211</width>
+       <width>180</width>
        <height>20</height>
       </rect>
      </property>
@@ -300,6 +300,20 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>开机时自动启动应用</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="defaultPlayerSettingButton">
+     <property name="geometry">
+      <rect>
+       <x>205</x>
+       <y>199</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../../TTKUi/MusicPlayer.qrc">
+       <normaloff>:/contextMenu/btn_setting</normaloff>:/contextMenu/btn_setting</iconset>
      </property>
     </widget>
    </widget>
@@ -2890,6 +2904,8 @@ font-weight:bold;</string>
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../../../../TTKUi/MusicPlayer.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -282,8 +282,7 @@ void MusicSettingWidget::initialize()
     m_ui->downloadServerComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt());
     m_ui->closeNetWorkCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());
 #ifdef Q_OS_WIN
-    TTKFileAssocation assocation;
-    if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool() && assocation.exist(MP3_FILE_SUFFIX))
+    if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool())
     {
         m_ui->setDefaultPlayerCheckBox->setChecked(true);
     }
@@ -292,9 +291,11 @@ void MusicSettingWidget::initialize()
         m_ui->setDefaultPlayerCheckBox->setChecked(false);
         G_SETTING_PTR->setValue(MusicSettingManager::FileAssociationMode, false);
     }
+    m_ui->defaultPlayerSettingButton->setVisible(m_ui->setDefaultPlayerCheckBox->isChecked());
 #else
     m_ui->autoStartCheckBox->setEnabled(false);
     m_ui->autoStartCheckBox->setChecked(false);
+    m_ui->defaultPlayerSettingButton->setVisible(false);
     G_SETTING_PTR->setValue(MusicSettingManager::StartUpMode, false);
 
     m_ui->setDefaultPlayerCheckBox->setEnabled(false);
@@ -313,6 +314,11 @@ void MusicSettingWidget::clearFunctionTableSelection()
     m_ui->normalFunTableWidget->clearSelection();
     m_ui->lrcFunTableWidget->clearSelection();
     m_ui->supperFunTableWidget->clearSelection();
+}
+
+void MusicSettingWidget::fileAssocationChanged()
+{
+
 }
 
 void MusicSettingWidget::globalHotkeyBoxChanged(bool state)
@@ -527,7 +533,7 @@ void MusicSettingWidget::testNetworkConnection()
 
 void MusicSettingWidget::checkNetworkConnection()
 {
-    GENERATE_SINGLE_WIDGET(MusicNetworkConnectionTestWidget, this);
+    GenerateSingleWidget(MusicNetworkConnectionTestWidget, this);
 }
 
 void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)
@@ -752,6 +758,12 @@ void MusicSettingWidget::initNormalSettingWidget()
     m_ui->autoStartCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->closeNetWorkCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 
+    m_ui->defaultPlayerSettingButton->hide();
+    m_ui->defaultPlayerSettingButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->defaultPlayerSettingButton->setStyleSheet(TTK::UI::PushButtonStyle02);
+
+    m_ui->globalHotkeyBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+
     QButtonGroup *buttonGroup1 = new QButtonGroup(this);
     buttonGroup1->addButton(m_ui->minimumRadioBox, 0);
     buttonGroup1->addButton(m_ui->quitRadioBox, 1);
@@ -771,16 +783,16 @@ void MusicSettingWidget::initNormalSettingWidget()
     m_ui->autoStartCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->closeNetWorkCheckBox->setFocusPolicy(Qt::NoFocus);
 
+    m_ui->globalHotkeyBox->setFocusPolicy(Qt::NoFocus);
+
     m_ui->quitWindowRadioBox->hide();
 #endif
     TTK::Widget::generateComboBoxFormat(m_ui->languageComboBox);
     m_ui->languageComboBox->addItems({tr("0"), tr("1"), tr("2")});
 
-    m_ui->globalHotkeyBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-#ifdef Q_OS_UNIX
-    m_ui->globalHotkeyBox->setFocusPolicy(Qt::NoFocus);
-#endif
     connect(m_ui->globalHotkeyBox, SIGNAL(clicked(bool)), SLOT(globalHotkeyBoxChanged(bool)));
+    connect(m_ui->defaultPlayerSettingButton, SIGNAL(clicked()), SLOT(fileAssocationChanged()));
+    connect(m_ui->setDefaultPlayerCheckBox, SIGNAL(clicked(bool)), m_ui->defaultPlayerSettingButton, SLOT(setVisible(bool)));
 }
 
 void MusicSettingWidget::initSpectrumSettingWidget()
