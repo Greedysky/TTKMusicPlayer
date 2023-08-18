@@ -66,7 +66,7 @@ public:
     inline int channels() const { return m_input->channels(); }
     inline int depth() const { return 16; }
 
-    inline qint64 read(unsigned char *data, qint64 ) { return m_input->read(data); }
+    inline qint64 read(unsigned char *data, qint64) { return m_input->read(data); }
 
 private:
     QString m_path;

@@ -48,6 +48,8 @@ QStringList Format::supportMusicFormats()
             }
         }
     }
+
+    formats.removeDuplicates();
     return formats;
 }
 
@@ -59,6 +61,8 @@ QStringList Format::supportMusicInputFilterFormats()
     {
         formats << factory->properties().filters;
     }
+
+    formats.removeDuplicates();
     return formats;
 }
 
