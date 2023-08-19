@@ -33,16 +33,16 @@ public:
     /*!
      * Add file assocation by suffix.
      */
-    void append(const QString& suffix);
+    void append(const QString &suffix);
     /*!
      * Remove file assocation by suffix.
      */
-    void remove(const QString& suffix);
+    void remove(const QString &suffix);
 
     /*!
      * Check current suffix is or not file assocated.
      */
-    bool exist(const QString& suffix) const;
+    bool exist(const QString &suffix) const;
 
     /*!
      * Return current file assocation keys.
@@ -53,28 +53,28 @@ private:
     /*!
      * Add class level file assocation by suffix.
      */
-    void appendClass(const QString& suffix);
+    void appendClass(const QString &suffix);
     /*!
      * Add software level file assocation by suffix.
      */
-    void appendSoftware(const QString& suffix);
+    void appendSoftware(const QString &suffix);
     /*!
      * Add exts level file assocation by suffix.
      */
-    void appendFileExts(const QString& suffix);
+    void appendFileExts(const QString &suffix);
 
     /*!
      * Remove class level file assocation by suffix.
      */
-    void removeClass(const QString& suffix);
+    void removeClass(const QString &suffix);
     /*!
      * Remove software level file assocation by suffix.
      */
-    void removeSoftware(const QString& suffix);
+    void removeSoftware(const QString &suffix);
     /*!
      * Remove exts level file assocation by suffix.
      */
-    void removeFileExts(const QString& suffix);
+    void removeFileExts(const QString &suffix);
 
 };
 #endif

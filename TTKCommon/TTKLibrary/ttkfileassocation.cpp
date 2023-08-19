@@ -4,24 +4,24 @@
 #ifdef Q_OS_WIN
 #include <QSettings>
 
-void TTKFileAssocation::append(const QString& suffix)
+void TTKFileAssocation::append(const QString &suffix)
 {
     appendClass(suffix);
     appendSoftware(suffix);
     appendFileExts(suffix);
 }
 
-void TTKFileAssocation::remove(const QString& suffix)
+void TTKFileAssocation::remove(const QString &suffix)
 {
     removeClass(suffix);
     removeSoftware(suffix);
     removeFileExts(suffix);
 }
 
-bool TTKFileAssocation::exist(const QString& suffix) const
+bool TTKFileAssocation::exist(const QString &suffix) const
 {
-    const QString& key = "." + suffix;
-    const QString& mainName = TTK_APP_NAME + key;
+    const QString &key = "." + suffix;
+    const QString &mainName = TTK_APP_NAME + key;
 
     QSettings reg1Setting("HKEY_CURRENT_USER\\Software\\Classes\\" + key, QSettings::NativeFormat);
     return reg1Setting.value("Default").toString() == mainName;
@@ -32,7 +32,7 @@ QStringList TTKFileAssocation::keys() const
     QStringList keys;
     QSettings reg1Setting("HKEY_CURRENT_USER\\Software\\Classes\\", QSettings::NativeFormat);
 
-    for(const QString& key : reg1Setting.childGroups())
+    for(const QString &key : reg1Setting.childGroups())
     {
         if(!key.isEmpty() && key[0] == '.')
         {
@@ -42,14 +42,14 @@ QStringList TTKFileAssocation::keys() const
     return keys;
 }
 
-void TTKFileAssocation::appendClass(const QString& suffix)
+void TTKFileAssocation::appendClass(const QString &suffix)
 {
-    const QString& key = "." + suffix;
-    const QString& mainName = TTK_APP_NAME + key;
-    const QString& mainString = "HKEY_CURRENT_USER\\Software\\Classes\\" + key;
+    const QString &key = "." + suffix;
+    const QString &mainName = TTK_APP_NAME + key;
+    const QString &mainString = "HKEY_CURRENT_USER\\Software\\Classes\\" + key;
 
     QSettings reg1Setting(mainString, QSettings::NativeFormat);
-    const QString& reg1Value = reg1Setting.value("Default").toString();
+    const QString &reg1Value = reg1Setting.value("Default").toString();
     if(reg1Value != mainName)
     {
         if(!reg1Value.isEmpty())
@@ -64,11 +64,11 @@ void TTKFileAssocation::appendClass(const QString& suffix)
     reg2Setting.setValue(mainName, QString());
 }
 
-void TTKFileAssocation::appendSoftware(const QString& suffix)
+void TTKFileAssocation::appendSoftware(const QString &suffix)
 {
-    const QString& key = "." + suffix;
-    const QString& mainName = TTK_APP_NAME + key;
-    const QString& mainString = "HKEY_CURRENT_USER\\Software\\Classes\\" + mainName;
+    const QString &key = "." + suffix;
+    const QString &mainName = TTK_APP_NAME + key;
+    const QString &mainString = "HKEY_CURRENT_USER\\Software\\Classes\\" + mainName;
 
     QString appPath = TTK_SERVICE_FULL;
     appPath.replace("/", "\\");
@@ -92,17 +92,17 @@ void TTKFileAssocation::appendSoftware(const QString& suffix)
     reg6Setting.setValue("Default", QString("\"%1\" -List ").arg(appPath) + QString("\"%1\""));
 }
 
-void TTKFileAssocation::appendFileExts(const QString& suffix)
+void TTKFileAssocation::appendFileExts(const QString &suffix)
 {
-    const QString& key = "." + suffix;
-    const QString& mainName = TTK_APP_NAME + key;
-    const QString& mainString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + key;
+    const QString &key = "." + suffix;
+    const QString &mainName = TTK_APP_NAME + key;
+    const QString &mainString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + key;
 
     QSettings reg1Setting(mainString + "\\OpenWithProgids", QSettings::NativeFormat);
     reg1Setting.setValue(mainName, QString());
 
     QSettings reg2Setting(mainString + "\\UserChoice", QSettings::NativeFormat);
-    const QString& reg2Value = reg2Setting.value("Progid").toString();
+    const QString &reg2Value = reg2Setting.value("Progid").toString();
     if(reg2Value != mainName)
     {
         if(!reg2Value.isEmpty())
@@ -114,14 +114,14 @@ void TTKFileAssocation::appendFileExts(const QString& suffix)
     }
 }
 
-void TTKFileAssocation::removeClass(const QString& suffix)
+void TTKFileAssocation::removeClass(const QString &suffix)
 {
-    const QString& key = "." + suffix;
-    const QString& mainName = TTK_APP_NAME + key;
-    const QString& mainString = "HKEY_CURRENT_USER\\Software\\Classes\\" + key;
+    const QString &key = "." + suffix;
+    const QString &mainName = TTK_APP_NAME + key;
+    const QString &mainString = "HKEY_CURRENT_USER\\Software\\Classes\\" + key;
 
     QSettings reg1Setting(mainString, QSettings::NativeFormat);
-    const QString& reg1Value = reg1Setting.value("Default").toString();
+    const QString &reg1Value = reg1Setting.value("Default").toString();
     if(reg1Value == mainName)
     {
         reg1Setting.setValue("Default", reg1Setting.value("TTKBackup", QString()));
@@ -131,31 +131,31 @@ void TTKFileAssocation::removeClass(const QString& suffix)
     reg1Setting.remove("OpenWithProgids");
 }
 
-void TTKFileAssocation::removeSoftware(const QString& suffix)
+void TTKFileAssocation::removeSoftware(const QString &suffix)
 {
-    const QString& key = "." + suffix;
-    const QString& mainName = TTK_APP_NAME + key;
-    const QString& mainString = "HKEY_CURRENT_USER\\Software\\Classes\\";
+    const QString &key = "." + suffix;
+    const QString &mainName = TTK_APP_NAME + key;
+    const QString &mainString = "HKEY_CURRENT_USER\\Software\\Classes\\";
 
     QSettings reg1Setting(mainString, QSettings::NativeFormat);
     reg1Setting.remove(mainName);
 }
 
-void TTKFileAssocation::removeFileExts(const QString& suffix)
+void TTKFileAssocation::removeFileExts(const QString &suffix)
 {
-    const QString& key = "." + suffix;
-    const QString& mainName = TTK_APP_NAME + key;
-    const QString& mainString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + key;
+    const QString &key = "." + suffix;
+    const QString &mainName = TTK_APP_NAME + key;
+    const QString &mainString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + key;
 
     QSettings reg1Setting(mainString, QSettings::NativeFormat);
     reg1Setting.remove("OpenWithProgids");
 
     bool empty = true;
     QSettings reg2Setting(mainString + "\\UserChoice", QSettings::NativeFormat);
-    const QString& reg2Value = reg2Setting.value("Progid").toString();
+    const QString &reg2Value = reg2Setting.value("Progid").toString();
     if(reg2Value == mainName)
     {
-        const QString& backup = reg2Setting.value("TTKBackup").toString();
+        const QString &backup = reg2Setting.value("TTKBackup").toString();
         if(!backup.isEmpty())
         {
             empty = false;
