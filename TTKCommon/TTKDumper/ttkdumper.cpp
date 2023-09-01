@@ -12,6 +12,9 @@
 #  include <fcntl.h>
 #endif
 
+/*! @brief The class of the ttk dumper private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class TTKDumperPrivate : public TTKPrivate<TTKDumper>
 {
 public:
@@ -203,18 +206,18 @@ void TTKDumperPrivate::initialize()
 TTKDumper::TTKDumper()
 {
     TTK_INIT_PRIVATE(TTKDumper);
-    TTK_D(TTKDumper);
-    d->m_name = "TTK";
-    d->m_version = TTK_VERSION_STR;
+
+    TTKDumperPrivate::m_name = "TTK";
+    TTKDumperPrivate::m_version = TTK_VERSION_STR;
 }
 
 TTKDumper::TTKDumper(const TTKDumperFunctor &functor)
 {
     TTK_INIT_PRIVATE(TTKDumper);
-    TTK_D(TTKDumper);
-    d->m_name = "TTK";
-    d->m_version = TTK_VERSION_STR;
-    d->m_functor = functor;
+
+    TTKDumperPrivate::m_name = "TTK";
+    TTKDumperPrivate::m_version = TTK_VERSION_STR;
+    TTKDumperPrivate::m_functor = functor;
 }
 
 void TTKDumper::run()
