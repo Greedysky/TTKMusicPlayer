@@ -1,6 +1,5 @@
 #include "musiccloudmanagerwidget.h"
 #include "musiccloudfileinformationwidget.h"
-#include "musicitemdelegate.h"
 #include "musicopenfilewidget.h"
 #include "musicdatasourcerequest.h"
 #include "musicdownloaddatarequest.h"

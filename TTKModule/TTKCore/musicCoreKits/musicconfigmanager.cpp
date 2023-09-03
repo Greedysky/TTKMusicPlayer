@@ -42,6 +42,7 @@ void MusicConfigManager::readBuffer() const
     G_SETTING_PTR->setValue(MusicSettingManager::CloseEventMode, readXmlAttributeByTagName("closeEventMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::CloseNetWorkMode, readXmlAttributeByTagName("closeNetworkMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::FileAssociationMode, readXmlAttributeByTagName("fileAssociationMode").toInt());
+    G_SETTING_PTR->setValue(MusicSettingManager::FileAssociationValue, readXmlAttributeByTagName("fileAssociationValue"));
     G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, readXmlAttributeByTagName("windowConciseMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetMode, readXmlAttributeByTagName("remoteWidgetMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, readXmlAttributeByTagName("windowQuitMode").toInt());
@@ -143,6 +144,8 @@ void MusicConfigManager::writeBuffer()
     const int closeEventMode = G_SETTING_PTR->value(MusicSettingManager::CloseEventMode).toInt();
     const int closeNetWorkMode = G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt();
     const int fileAssociationMode = G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toInt();
+    const QString &fileAssociationValue = G_SETTING_PTR->value(MusicSettingManager::FileAssociationValue).toString();
+
     const int windowConciseMode = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toInt();
     const int remoteWidgetMode = G_SETTING_PTR->value(MusicSettingManager::RemoteWidgetMode).toInt();
     const int windowQuitMode = G_SETTING_PTR->value(MusicSettingManager::WindowQuitMode).toInt();
@@ -258,6 +261,7 @@ void MusicConfigManager::writeBuffer()
     writeDomElement(plusSettingDom, "closeEventMode", {"value", closeEventMode});
     writeDomElement(plusSettingDom, "closeNetworkMode", {"value", closeNetWorkMode});
     writeDomElement(plusSettingDom, "fileAssociationMode", {"value", fileAssociationMode});
+    writeDomElement(plusSettingDom, "fileAssociationValue", {"value", fileAssociationValue});
     writeDomElement(plusSettingDom, "windowConciseMode", {"value", windowConciseMode});
     writeDomElement(plusSettingDom, "remoteWidgetMode", {"value", remoteWidgetMode});
     writeDomElement(plusSettingDom, "windowQuitMode", {"value", windowQuitMode});

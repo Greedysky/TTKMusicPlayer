@@ -1,7 +1,6 @@
 #include "musicsongitemselectedareawidget.h"
 #include "ui_musicsongitemselecteddialog.h"
 #include "musicsongssummariziedwidget.h"
-#include "musicitemdelegate.h"
 #include "musicwidgetheaders.h"
 #include "musicconnectionpool.h"
 #include "ttkclickedlabel.h"

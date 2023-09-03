@@ -33,7 +33,7 @@
 
 #include "qjson/parser.h"
 
-/*! @brief The class of the abstract download data.
+/*! @brief The class of the abstract network.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicAbstractNetwork : public QObject

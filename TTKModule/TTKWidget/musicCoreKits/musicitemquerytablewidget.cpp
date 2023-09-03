@@ -1,7 +1,6 @@
 #include "musicitemquerytablewidget.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicdownloadwidget.h"
-#include "musicitemdelegate.h"
 #include "musictoastlabel.h"
 #include "musicconnectionpool.h"
 #include "musicrightareawidget.h"

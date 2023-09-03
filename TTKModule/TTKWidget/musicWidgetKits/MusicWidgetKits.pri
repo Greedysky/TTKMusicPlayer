@@ -66,7 +66,8 @@ HEADERS += \
     $$PWD/musicartistlistquerywidget.h \
     $$PWD/musicartistlistquerycategorypopwidget.h \
     $$PWD/musicripplespecturmmodule.h \
-    $$PWD/musicpluginwidget.h
+    $$PWD/musicpluginwidget.h \
+    $$PWD/musicfileassocationwidget.h
 
 SOURCES += \
     $$PWD/musicsettingwidget.cpp \
@@ -116,4 +117,5 @@ SOURCES += \
     $$PWD/musicartistlistquerywidget.cpp \
     $$PWD/musicartistlistquerycategorypopwidget.cpp \
     $$PWD/musicripplespecturmmodule.cpp \
-    $$PWD/musicpluginwidget.cpp
+    $$PWD/musicpluginwidget.cpp \
+    $$PWD/musicfileassocationwidget.cpp

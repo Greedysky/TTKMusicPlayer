@@ -1,6 +1,5 @@
 #include "musiclrcsearchtablewidget.h"
 #include "musictoastlabel.h"
-#include "musicitemdelegate.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicgiflabelwidget.h"
 

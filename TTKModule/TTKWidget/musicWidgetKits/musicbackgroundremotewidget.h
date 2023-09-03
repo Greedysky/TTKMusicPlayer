@@ -24,7 +24,6 @@
 #include "musicabstractdownloadskinrequest.h"
 
 class QPushButton;
-class QListWidgetItem;
 class MusicDownloadQueueRequest;
 
 /*! @brief The class of the remote background widget.

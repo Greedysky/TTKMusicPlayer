@@ -2,9 +2,9 @@
 #include "ui_musicttkfmradioplaywidget.h"
 #include "ui_musicttkfmradioinformationwidget.h"
 #include "musiccoremplayer.h"
-#include "musicitemdelegate.h"
 #include "musictoastlabel.h"
 #include "musicmessagebox.h"
+#include "ttkitemdelegate.h"
 
 #include <QScrollBar>
 

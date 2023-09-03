@@ -3,6 +3,9 @@
 
 #include <QStyle>
 
+/*! @brief The class of the abstract platform extras.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MusicAbstractPlatformExtras
 {
 public:
@@ -33,6 +36,9 @@ public:
 #  include <QtWinExtras/QtWinExtras>
 #endif
 
+/*! @brief The class of the windows platform extras.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MusicWindowsExtras : public MusicAbstractPlatformExtras
 {
 public:
@@ -122,6 +128,9 @@ private:
 #endif
 };
 #elif defined Q_OS_LINUX
+/*! @brief The class of the linux platform extras.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MusicLinuxExtras : public MusicAbstractPlatformExtras
 {
 public:
@@ -153,6 +162,9 @@ public:
     }
 };
 #else
+/*! @brief The class of the mac platform extras.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MusicMacExtras : public MusicAbstractPlatformExtras
 {
 public:
@@ -184,7 +196,6 @@ public:
     }
 };
 #endif
-
 
 MusicPlatformExtras::MusicPlatformExtras(QObject *parent)
     : QObject(parent),

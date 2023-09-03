@@ -1,5 +1,4 @@
 #include "musicconnecttransfertablewidget.h"
-#include "musicitemdelegate.h"
 
 MusicConnectTransferTableWidget::MusicConnectTransferTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)

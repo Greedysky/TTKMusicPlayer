@@ -1,5 +1,4 @@
 #include "musicdownloadrecordwidget.h"
-#include "musicitemdelegate.h"
 #include "musicwidgetheaders.h"
 #include "musicconnectionpool.h"
 

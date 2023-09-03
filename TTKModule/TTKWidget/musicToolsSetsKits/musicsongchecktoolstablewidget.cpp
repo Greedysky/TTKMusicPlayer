@@ -1,6 +1,5 @@
 #include "musicsongchecktoolstablewidget.h"
 #include "musicsongssummariziedwidget.h"
-#include "musicitemdelegate.h"
 #include "musicnumberutils.h"
 #include "musicconnectionpool.h"
 

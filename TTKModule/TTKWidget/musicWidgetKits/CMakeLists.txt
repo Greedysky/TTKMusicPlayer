@@ -49,6 +49,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
   ${MUSIC_WIDGET_DIR}/musicartistlistquerycategorypopwidget.h
   ${MUSIC_WIDGET_DIR}/musicripplespecturmmodule.h
   ${MUSIC_WIDGET_DIR}/musicpluginwidget.h
+  ${MUSIC_WIDGET_DIR}/musicfileassocationwidget.h
 )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
@@ -100,4 +101,5 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
   ${MUSIC_WIDGET_DIR}/musicartistlistquerycategorypopwidget.cpp
   ${MUSIC_WIDGET_DIR}/musicripplespecturmmodule.cpp
   ${MUSIC_WIDGET_DIR}/musicpluginwidget.cpp
+  ${MUSIC_WIDGET_DIR}/musicfileassocationwidget.cpp
 )

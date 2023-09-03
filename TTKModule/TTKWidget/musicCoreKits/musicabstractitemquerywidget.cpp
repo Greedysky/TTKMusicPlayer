@@ -175,6 +175,7 @@ void MusicAbstractItemQueryWidget::initFirstWidget()
     middleFuncLayout->addWidget(playButton);
     middleFuncLayout->addWidget(addButton);
     middleFuncLayout->addWidget(downloadButton);
+
     connect(allCheckBox, SIGNAL(clicked(bool)), m_queryTableWidget, SLOT(checkedItemsState(bool)));
     connect(playButton, SIGNAL(clicked()), SLOT(playButtonClicked()));
     connect(downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));

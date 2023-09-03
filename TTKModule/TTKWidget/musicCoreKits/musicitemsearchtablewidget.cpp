@@ -1,6 +1,5 @@
 #include "musicitemsearchtablewidget.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicitemdelegate.h"
 #include "musicgiflabelwidget.h"
 
 #include <qmath.h>

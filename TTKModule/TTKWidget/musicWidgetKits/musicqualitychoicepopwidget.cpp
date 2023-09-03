@@ -1,6 +1,5 @@
 #include "musicqualitychoicepopwidget.h"
 #include "musicqualitywidgetuiobject.h"
-#include "musicitemdelegate.h"
 #include "musicrightareawidget.h"
 
 #include <QBoxLayout>

@@ -3,7 +3,6 @@
 #include "musictoastlabel.h"
 #include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
-#include "musicitemdelegate.h"
 #include "musicgiflabelwidget.h"
 
 MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)

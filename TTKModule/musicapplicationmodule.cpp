@@ -19,7 +19,6 @@
 #include "musicsourceupdaterequest.h"
 #include "musicscreensaverwidget.h"
 #include "musicplatformmanager.h"
-#include "musicformats.h"
 #include "ttklibrary.h"
 #include "ttkconcurrent.h"
 #include "ttkdesktopwrapper.h"

@@ -1,5 +1,4 @@
 #include "musicfillitemtablewidget.h"
-#include "musicitemdelegate.h"
 
 MusicFillItemTableWidget::MusicFillItemTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
@@ -28,6 +27,20 @@ TTKIntList MusicFillItemTableWidget::checkedIndexList() const
     {
         const QTableWidgetItem *it = item(i, 0);
         if(it && it->data(TTK_CHECKED_ROLE) == Qt::Checked)
+        {
+            list << i;
+        }
+    }
+    return list;
+}
+
+TTKIntList MusicFillItemTableWidget::uncheckedIndexList() const
+{
+    TTKIntList list;
+    for(int i = 0; i < rowCount(); ++i)
+    {
+        const QTableWidgetItem *it = item(i, 0);
+        if(it && it->data(TTK_CHECKED_ROLE) == Qt::Unchecked)
         {
             list << i;
         }

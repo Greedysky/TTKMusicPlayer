@@ -11,6 +11,7 @@
 #include "musiclrcdefines.h"
 #include "musiclrcmanager.h"
 #include "musicsourceupdatewidget.h"
+#include "musicfileassocationwidget.h"
 #include "musiccolordialog.h"
 #include "musicalgorithmutils.h"
 #include "musicpluginwidget.h"
@@ -318,7 +319,7 @@ void MusicSettingWidget::clearFunctionTableSelection()
 
 void MusicSettingWidget::fileAssocationChanged()
 {
-
+    MusicFileAssocationWidget().exec();
 }
 
 void MusicSettingWidget::globalHotkeyBoxChanged(bool state)
@@ -782,10 +783,9 @@ void MusicSettingWidget::initNormalSettingWidget()
     m_ui->setDefaultPlayerCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->autoStartCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->closeNetWorkCheckBox->setFocusPolicy(Qt::NoFocus);
-
     m_ui->globalHotkeyBox->setFocusPolicy(Qt::NoFocus);
 
-    m_ui->quitWindowRadioBox->hide();
+    m_ui->quitWindowRadioBox->setEnabled(false);
 #endif
     TTK::Widget::generateComboBoxFormat(m_ui->languageComboBox);
     m_ui->languageComboBox->addItems({tr("0"), tr("1"), tr("2")});

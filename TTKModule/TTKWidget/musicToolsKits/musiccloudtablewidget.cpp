@@ -1,5 +1,4 @@
 #include "musiccloudtablewidget.h"
-#include "musicitemdelegate.h"
 #include "musicconnectionpool.h"
 #include "musicnumberutils.h"
 #include "musictoastlabel.h"

@@ -45,6 +45,10 @@ public:
      * Get checked items.
      */
     TTKIntList checkedIndexList() const;
+    /*!
+     * Get unchecked items.
+     */
+    TTKIntList uncheckedIndexList() const;
 
 public Q_SLOTS:
     /*!

@@ -1,6 +1,5 @@
 #include "musiclrcposterwidget.h"
 #include "ui_musiclrcposterwidget.h"
-#include "musicitemdelegate.h"
 #include "musicbackgroundmanager.h"
 #include "musicstringutils.h"
 #include "musicfileutils.h"
