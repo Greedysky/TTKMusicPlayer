@@ -45,6 +45,16 @@ public:
      */
     void uncheckedDataList() const;
 
+public Q_SLOTS:
+    /*!
+     * Table widget item cell click.
+     */
+    virtual void itemCellClicked(int row, int column) override;
+    /*!
+     * Checked items status.
+     */
+    void checkedItemsStatus(bool checked);
+
 private:
     /*!
      * Create cell items by input data.
@@ -77,5 +87,19 @@ private:
     Ui::MusicFileAssociationWidget *m_ui;
 
 };
+
+
+namespace TTK
+{
+    /*!
+     * Get current support association files.
+     */
+    TTK_MODULE_EXPORT QStringList supportAssociations();
+    /*!
+     * Get current unsupport association files.
+     */
+    TTK_MODULE_EXPORT QStringList unsupportAssociations();
+}
+
 
 #endif // MUSICFILEASSOCIATIONWIDGET_H

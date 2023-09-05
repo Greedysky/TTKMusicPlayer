@@ -39,6 +39,29 @@ void MusicFileAssociationTableWidget::uncheckedDataList() const
     G_SETTING_PTR->setValue(MusicSettingManager::FileAssociationValue, formats.join(","));
 }
 
+void MusicFileAssociationTableWidget::itemCellClicked(int row, int column)
+{
+    Q_UNUSED(column);
+    QTableWidgetItem *it = nullptr;
+
+    it = item(row, 0);
+    const Qt::CheckState status = TTKStaticCast(Qt::CheckState, it->data(TTK_CHECKED_ROLE).toInt());
+    it->setData(TTK_CHECKED_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
+
+    it = item(row, 1);
+    it->setForeground(status == Qt::Checked ? Qt::gray : QColor(0xE6, 0x73, 0x00));
+}
+
+void MusicFileAssociationTableWidget::checkedItemsStatus(bool checked)
+{
+    MusicFillItemTableWidget::checkedItemsStatus(checked);
+
+    for(int i = 0; i < rowCount(); ++i)
+    {
+        item(i, 1)->setForeground(!checked ? Qt::gray : QColor(0xE6, 0x73, 0x00));
+    }
+}
+
 void MusicFileAssociationTableWidget::addCellItems()
 {
     QStringList formats = MusicFormats::supportMusicFormats();
@@ -50,13 +73,15 @@ void MusicFileAssociationTableWidget::addCellItems()
 
     for(int i = 0; i < formats.count(); ++i)
     {
+        const bool v = unsupports.contains(formats[i]);
+
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(TTK_CHECKED_ROLE, unsupports.contains(formats[i]) ? Qt::Unchecked : Qt::Checked);
+        item->setData(TTK_CHECKED_ROLE, v ? Qt::Unchecked : Qt::Checked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
         item->setText(formats[i]);
-//        item->setForeground(QColor(0xE6, 0x73, 0x00));
+        item->setForeground(v ? Qt::gray : QColor(0xE6, 0x73, 0x00));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
     }
@@ -93,4 +118,25 @@ void MusicFileAssociationWidget::confirmButtonClicked()
 {
     m_ui->itemTableWidget->uncheckedDataList();
     accept();
+}
+
+
+
+QStringList TTK::supportAssociations()
+{
+    QStringList formats = MusicFormats::supportMusicFormats();
+
+    for(const QString &unsupport : TTK::unsupportAssociations())
+    {
+        if(formats.contains(unsupport))
+        {
+            formats.removeOne(unsupport);
+        }
+    }
+    return formats;
+}
+
+QStringList TTK::unsupportAssociations()
+{
+    return G_SETTING_PTR->value(MusicSettingManager::FileAssociationValue).toString().split(",");
 }

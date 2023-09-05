@@ -1,5 +1,6 @@
 #include "musicapplicationmodule.h"
 #include "musicmobiledeviceswidget.h"
+#include "musicfileassociationwidget.h"
 #include "musictimerwidget.h"
 #include "musicspectrumwidget.h"
 #include "musictimerautomodule.h"
@@ -125,26 +126,35 @@ void MusicApplicationModule::applyParameter()
     MusicPlatformManager manager;
     manager.windowsStartUpMode(G_SETTING_PTR->value(MusicSettingManager::StartUpMode).toBool());
 
-//    TTKConcurrent(
-//    {
-//        TTKFileAssociation association;
-//        const QStringList& keys = association.keys();
+    TTKConcurrent(
+    {
+        TTKFileAssociation association;
+        const QStringList& keys = association.keys();
 
-//        for(const QString &format : MusicFormats::supportMusicFormats())
-//        {
-//            const bool exist = keys.contains(format) && association.exist(format);
-//            const bool enable = G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool();
+        for(const QString &format : TTK::unsupportAssociations())
+        {
+            const bool exist = keys.contains(format) && association.exist(format);
+            if(exist)
+            {
+                 association.remove(format);
+            }
+        }
 
-//            if(exist && !enable)
-//            {
-//                 association.remove(format);
-//            }
-//            else if(!exist && enable)
-//            {
-//                 association.append(format);
-//            }
-//        }
-//    });
+        for(const QString &format : TTK::supportAssociations())
+        {
+            const bool exist = keys.contains(format) && association.exist(format);
+            const bool enable = G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool();
+
+            if(exist && !enable)
+            {
+                 association.remove(format);
+            }
+            else if(!exist && enable)
+            {
+                 association.append(format);
+            }
+        }
+    });
 #endif
 
     if(!m_screenSaverWidget)
