@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MusicFileAssocationWidget</class>
- <widget class="QDialog" name="MusicFileAssocationWidget">
+ <class>MusicFileAssociationWidget</class>
+ <widget class="QDialog" name="MusicFileAssociationWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>插件管理</string>
+   <string>关联文件管理</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
@@ -70,7 +70,7 @@
    <property name="styleSheet">
     <string notr="true">background:white;</string>
    </property>
-   <widget class="MusicFileAssocationTableWidget" name="itemTableWidget">
+   <widget class="MusicFileAssociationTableWidget" name="itemTableWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -123,9 +123,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicFileAssocationTableWidget</class>
+   <class>MusicFileAssociationTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>musicfileassocationwidget.h</header>
+   <header>musicfileassociationwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -11,14 +11,14 @@
 #include "musiclrcdefines.h"
 #include "musiclrcmanager.h"
 #include "musicsourceupdatewidget.h"
-#include "musicfileassocationwidget.h"
+#include "musicfileassociationwidget.h"
 #include "musiccolordialog.h"
 #include "musicalgorithmutils.h"
 #include "musicpluginwidget.h"
 #include "musicfileutils.h"
 #include "musicmessagebox.h"
 #include "ttkversion.h"
-#include "ttkfileassocation.h"
+#include "ttkfileassociation.h"
 
 #include <qmmp/qmmpsettings.h>
 
@@ -317,9 +317,9 @@ void MusicSettingWidget::clearFunctionTableSelection()
     m_ui->supperFunTableWidget->clearSelection();
 }
 
-void MusicSettingWidget::fileAssocationChanged()
+void MusicSettingWidget::fileAssociationChanged()
 {
-    MusicFileAssocationWidget().exec();
+    MusicFileAssociationWidget().exec();
 }
 
 void MusicSettingWidget::globalHotkeyBoxChanged(bool state)
@@ -791,7 +791,7 @@ void MusicSettingWidget::initNormalSettingWidget()
     m_ui->languageComboBox->addItems({tr("0"), tr("1"), tr("2")});
 
     connect(m_ui->globalHotkeyBox, SIGNAL(clicked(bool)), SLOT(globalHotkeyBoxChanged(bool)));
-    connect(m_ui->defaultPlayerSettingButton, SIGNAL(clicked()), SLOT(fileAssocationChanged()));
+    connect(m_ui->defaultPlayerSettingButton, SIGNAL(clicked()), SLOT(fileAssociationChanged()));
     connect(m_ui->setDefaultPlayerCheckBox, SIGNAL(clicked(bool)), m_ui->defaultPlayerSettingButton, SLOT(setVisible(bool)));
 }
 

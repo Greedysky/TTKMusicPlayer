@@ -138,9 +138,9 @@ public Q_SLOTS:
      */
     void clearFunctionTableSelection();
     /*!
-     * File assocation changed.
+     * File association changed.
      */
-    void fileAssocationChanged();
+    void fileAssociationChanged();
     /*!
      * Set global hotkey box changed.
      */

@@ -22,7 +22,7 @@
 #include "ttklibrary.h"
 #include "ttkconcurrent.h"
 #include "ttkdesktopwrapper.h"
-#include "ttkfileassocation.h"
+#include "ttkfileassociation.h"
 #include "ttkplatformsystem.h"
 
 #include "qdevicewatcher.h"
@@ -127,21 +127,21 @@ void MusicApplicationModule::applyParameter()
 
 //    TTKConcurrent(
 //    {
-//        TTKFileAssocation assocation;
-//        const QStringList& keys = assocation.keys();
+//        TTKFileAssociation association;
+//        const QStringList& keys = association.keys();
 
 //        for(const QString &format : MusicFormats::supportMusicFormats())
 //        {
-//            const bool exist = keys.contains(format) && assocation.exist(format);
+//            const bool exist = keys.contains(format) && association.exist(format);
 //            const bool enable = G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toBool();
 
 //            if(exist && !enable)
 //            {
-//                 assocation.remove(format);
+//                 association.remove(format);
 //            }
 //            else if(!exist && enable)
 //            {
-//                 assocation.append(format);
+//                 association.append(format);
 //            }
 //        }
 //    });

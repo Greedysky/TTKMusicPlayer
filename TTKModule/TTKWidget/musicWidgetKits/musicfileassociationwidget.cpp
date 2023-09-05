@@ -1,9 +1,9 @@
-#include "musicfileassocationwidget.h"
-#include "ui_musicfileassocationwidget.h"
+#include "musicfileassociationwidget.h"
+#include "ui_musicfileassociationwidget.h"
 #include "musicsettingwidget.h"
 #include "musicformats.h"
 
-MusicFileAssocationTableWidget::MusicFileAssocationTableWidget(QWidget *parent)
+MusicFileAssociationTableWidget::MusicFileAssociationTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
@@ -22,7 +22,7 @@ MusicFileAssocationTableWidget::MusicFileAssocationTableWidget(QWidget *parent)
     addCellItems();
 }
 
-void MusicFileAssocationTableWidget::uncheckedDataList() const
+void MusicFileAssociationTableWidget::uncheckedDataList() const
 {
     QStringList formats;
     const TTKIntList &unsupports = uncheckedIndexList();
@@ -39,7 +39,7 @@ void MusicFileAssocationTableWidget::uncheckedDataList() const
     G_SETTING_PTR->setValue(MusicSettingManager::FileAssociationValue, formats.join(","));
 }
 
-void MusicFileAssocationTableWidget::addCellItems()
+void MusicFileAssociationTableWidget::addCellItems()
 {
     QStringList formats = MusicFormats::supportMusicFormats();
     setRowCount(formats.count());
@@ -64,9 +64,9 @@ void MusicFileAssocationTableWidget::addCellItems()
 
 
 
-MusicFileAssocationWidget::MusicFileAssocationWidget(QWidget *parent)
+MusicFileAssociationWidget::MusicFileAssociationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicFileAssocationWidget)
+      m_ui(new Ui::MusicFileAssociationWidget)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -89,7 +89,7 @@ MusicFileAssocationWidget::MusicFileAssocationWidget(QWidget *parent)
     connect(m_ui->selectAllCheckButton, SIGNAL(clicked(bool)), m_ui->itemTableWidget, SLOT(checkedItemsStatus(bool)));
 }
 
-void MusicFileAssocationWidget::confirmButtonClicked()
+void MusicFileAssociationWidget::confirmButtonClicked()
 {
     m_ui->itemTableWidget->uncheckedDataList();
     accept();

@@ -1,5 +1,5 @@
-#ifndef TTKFILEASSOCATION_H
-#define TTKFILEASSOCATION_H
+#ifndef TTKFILEASSOCIATION_H
+#define TTKFILEASSOCIATION_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -23,19 +23,19 @@
 #include "ttkmoduleexport.h"
 
 #ifdef Q_OS_WIN
-/*! @brief The class of the file assocation.
+/*! @brief The class of the file association.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT TTKFileAssocation
+class TTK_MODULE_EXPORT TTKFileAssociation
 {
-    TTK_DECLARE_MODULE(TTKFileAssocation)
+    TTK_DECLARE_MODULE(TTKFileAssociation)
 public:
     /*!
-     * Add file assocation by suffix.
+     * Add file association by suffix.
      */
     void append(const QString &suffix);
     /*!
-     * Remove file assocation by suffix.
+     * Remove file association by suffix.
      */
     void remove(const QString &suffix);
 
@@ -45,38 +45,38 @@ public:
     bool exist(const QString &suffix) const;
 
     /*!
-     * Return current file assocation keys.
+     * Return current file association keys.
      */
     QStringList keys() const;
 
 private:
     /*!
-     * Add class level file assocation by suffix.
+     * Add class level file association by suffix.
      */
     void appendClass(const QString &suffix);
     /*!
-     * Add software level file assocation by suffix.
+     * Add software level file association by suffix.
      */
     void appendSoftware(const QString &suffix);
     /*!
-     * Add exts level file assocation by suffix.
+     * Add exts level file association by suffix.
      */
     void appendFileExts(const QString &suffix);
 
     /*!
-     * Remove class level file assocation by suffix.
+     * Remove class level file association by suffix.
      */
     void removeClass(const QString &suffix);
     /*!
-     * Remove software level file assocation by suffix.
+     * Remove software level file association by suffix.
      */
     void removeSoftware(const QString &suffix);
     /*!
-     * Remove exts level file assocation by suffix.
+     * Remove exts level file association by suffix.
      */
     void removeFileExts(const QString &suffix);
 
 };
 #endif
 
-#endif // TTKFILEASSOCATION_H
+#endif // TTKFILEASSOCIATION_H

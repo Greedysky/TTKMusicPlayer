@@ -76,7 +76,7 @@ HEADERS += \
     $$PWD/ttkdefer.h \
     $$PWD/ttkdesktopwrapper.h \
     $$PWD/ttkdispatchmanager.h \
-    $$PWD/ttkfileassocation.h \
+    $$PWD/ttkfileassociation.h \
     $$PWD/ttkglobalhelper.h \
     $$PWD/ttkitemdelegate.h \
     $$PWD/ttklibrary.h \
@@ -103,7 +103,7 @@ SOURCES += \
     $$PWD/ttkcryptographichash.cpp \
     $$PWD/ttkdesktopwrapper.cpp \
     $$PWD/ttkdispatchmanager.cpp \
-    $$PWD/ttkfileassocation.cpp \
+    $$PWD/ttkfileassociation.cpp \
     $$PWD/ttkglobalhelper.cpp \
     $$PWD/ttkitemdelegate.cpp \
     $$PWD/ttkplatformsystem.cpp \

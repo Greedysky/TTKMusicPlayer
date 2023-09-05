@@ -1,5 +1,5 @@
-#ifndef MUSICFILEASSOCATIONWIDGET_H
-#define MUSICFILEASSOCATIONWIDGET_H
+#ifndef MUSICFILEASSOCIATIONWIDGET_H
+#define MUSICFILEASSOCIATIONWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -23,22 +23,22 @@
 #include "musicfillitemtablewidget.h"
 
 namespace Ui {
-class MusicFileAssocationWidget;
+class MusicFileAssociationWidget;
 }
 
 
 /*! @brief The class of the song item selected table widget
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicFileAssocationTableWidget : public MusicFillItemTableWidget
+class TTK_MODULE_EXPORT MusicFileAssociationTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicFileAssocationTableWidget)
+    TTK_DECLARE_MODULE(MusicFileAssociationTableWidget)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicFileAssocationTableWidget(QWidget *parent = nullptr);
+    explicit MusicFileAssociationTableWidget(QWidget *parent = nullptr);
 
     /*!
      * Get unchecked data items.
@@ -54,18 +54,18 @@ private:
 };
 
 
-/*! @brief The class of the file assocation widget.
+/*! @brief The class of the file association widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicFileAssocationWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicFileAssociationWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicFileAssocationWidget)
+    TTK_DECLARE_MODULE(MusicFileAssociationWidget)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicFileAssocationWidget(QWidget *parent = nullptr);
+    explicit MusicFileAssociationWidget(QWidget *parent = nullptr);
 
 public Q_SLOTS:
     /*!
@@ -74,8 +74,8 @@ public Q_SLOTS:
     void confirmButtonClicked();
 
 private:
-    Ui::MusicFileAssocationWidget *m_ui;
+    Ui::MusicFileAssociationWidget *m_ui;
 
 };
 
-#endif // MUSICFILEASSOCATIONWIDGET_H
+#endif // MUSICFILEASSOCIATIONWIDGET_H

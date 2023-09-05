@@ -20,7 +20,7 @@ set(HEADER_FILES
   ttkdefer.h
   ttkdesktopwrapper.h
   ttkdispatchmanager.h
-  ttkfileassocation.h
+  ttkfileassociation.h
   ttkglobalhelper.h
   ttkitemdelegate.h
   ttklibrary.h
@@ -48,7 +48,7 @@ set(SOURCE_FILES
   ttkcryptographichash.cpp
   ttkdesktopwrapper.cpp
   ttkdispatchmanager.cpp
-  ttkfileassocation.cpp
+  ttkfileassociation.cpp
   ttkglobalhelper.cpp
   ttkitemdelegate.cpp
   ttkplatformsystem.cpp

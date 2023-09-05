@@ -42,7 +42,7 @@ win32{
             $$PWD/TTKLibrary/ttkdesktopwrapper.h \
             $$PWD/TTKLibrary/ttkdefer.h \
             $$PWD/TTKLibrary/ttkdispatchmanager.h \
-            $$PWD/TTKLibrary/ttkfileassocation.h \
+            $$PWD/TTKLibrary/ttkfileassociation.h \
             $$PWD/TTKLibrary/ttkglobalhelper.h \
             $$PWD/TTKLibrary/ttkitemdelegate.h \
             $$PWD/TTKLibrary/ttklibrary.h \

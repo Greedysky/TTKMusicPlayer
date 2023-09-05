@@ -1,24 +1,24 @@
-#include "ttkfileassocation.h"
+#include "ttkfileassociation.h"
 #include "ttkqtobject.h"
 
 #ifdef Q_OS_WIN
 #include <QSettings>
 
-void TTKFileAssocation::append(const QString &suffix)
+void TTKFileAssociation::append(const QString &suffix)
 {
     appendClass(suffix);
     appendSoftware(suffix);
     appendFileExts(suffix);
 }
 
-void TTKFileAssocation::remove(const QString &suffix)
+void TTKFileAssociation::remove(const QString &suffix)
 {
     removeClass(suffix);
     removeSoftware(suffix);
     removeFileExts(suffix);
 }
 
-bool TTKFileAssocation::exist(const QString &suffix) const
+bool TTKFileAssociation::exist(const QString &suffix) const
 {
     const QString &key = "." + suffix;
     const QString &mainName = TTK_APP_NAME + key;
@@ -27,7 +27,7 @@ bool TTKFileAssocation::exist(const QString &suffix) const
     return reg1Setting.value("Default").toString() == mainName;
 }
 
-QStringList TTKFileAssocation::keys() const
+QStringList TTKFileAssociation::keys() const
 {
     QStringList keys;
     QSettings reg1Setting("HKEY_CURRENT_USER\\Software\\Classes\\", QSettings::NativeFormat);
@@ -42,7 +42,7 @@ QStringList TTKFileAssocation::keys() const
     return keys;
 }
 
-void TTKFileAssocation::appendClass(const QString &suffix)
+void TTKFileAssociation::appendClass(const QString &suffix)
 {
     const QString &key = "." + suffix;
     const QString &mainName = TTK_APP_NAME + key;
@@ -64,7 +64,7 @@ void TTKFileAssocation::appendClass(const QString &suffix)
     reg2Setting.setValue(mainName, QString());
 }
 
-void TTKFileAssocation::appendSoftware(const QString &suffix)
+void TTKFileAssociation::appendSoftware(const QString &suffix)
 {
     const QString &key = "." + suffix;
     const QString &mainName = TTK_APP_NAME + key;
@@ -92,7 +92,7 @@ void TTKFileAssocation::appendSoftware(const QString &suffix)
     reg6Setting.setValue("Default", QString("\"%1\" -List ").arg(appPath) + QString("\"%1\""));
 }
 
-void TTKFileAssocation::appendFileExts(const QString &suffix)
+void TTKFileAssociation::appendFileExts(const QString &suffix)
 {
     const QString &key = "." + suffix;
     const QString &mainName = TTK_APP_NAME + key;
@@ -114,7 +114,7 @@ void TTKFileAssocation::appendFileExts(const QString &suffix)
     }
 }
 
-void TTKFileAssocation::removeClass(const QString &suffix)
+void TTKFileAssociation::removeClass(const QString &suffix)
 {
     const QString &key = "." + suffix;
     const QString &mainName = TTK_APP_NAME + key;
@@ -131,7 +131,7 @@ void TTKFileAssocation::removeClass(const QString &suffix)
     reg1Setting.remove("OpenWithProgids");
 }
 
-void TTKFileAssocation::removeSoftware(const QString &suffix)
+void TTKFileAssociation::removeSoftware(const QString &suffix)
 {
     const QString &key = "." + suffix;
     const QString &mainName = TTK_APP_NAME + key;
@@ -141,7 +141,7 @@ void TTKFileAssocation::removeSoftware(const QString &suffix)
     reg1Setting.remove(mainName);
 }
 
-void TTKFileAssocation::removeFileExts(const QString &suffix)
+void TTKFileAssociation::removeFileExts(const QString &suffix)
 {
     const QString &key = "." + suffix;
     const QString &mainName = TTK_APP_NAME + key;
