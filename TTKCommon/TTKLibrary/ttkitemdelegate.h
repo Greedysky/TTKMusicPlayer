@@ -54,10 +54,6 @@ public:
      * Object constructor.
      */
     explicit TTKAbstractItemDelegate(QObject* parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~TTKAbstractItemDelegate();
 
     /*!
      * Set module mode.

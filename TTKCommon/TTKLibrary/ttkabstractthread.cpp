@@ -7,11 +7,6 @@ TTKAbstractThread::TTKAbstractThread(QObject *parent)
 
 }
 
-TTKAbstractThread::~TTKAbstractThread()
-{
-
-}
-
 void TTKAbstractThread::stop()
 {
     m_running = false;

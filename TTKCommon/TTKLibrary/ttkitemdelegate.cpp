@@ -14,11 +14,6 @@ TTKAbstractItemDelegate::TTKAbstractItemDelegate(QObject *parent)
 
 }
 
-TTKAbstractItemDelegate::~TTKAbstractItemDelegate()
-{
-
-}
-
 void TTKAbstractItemDelegate::setStyleSheet(const QString &style) const
 {
     if(m_container)

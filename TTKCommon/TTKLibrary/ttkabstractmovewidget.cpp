@@ -1,8 +1,6 @@
 #include "ttkabstractmovewidget.h"
 #include "ttkglobalhelper.h"
 
-#include <QBoxLayout>
-
 TTKAbstractMoveWidget::TTKAbstractMoveWidget(QWidget *parent)
     : TTKAbstractMoveWidget(true, parent)
 {

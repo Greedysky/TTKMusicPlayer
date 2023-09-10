@@ -35,10 +35,6 @@ public:
      * Object constructor.
      */
     explicit TTKAbstractThread(QObject *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~TTKAbstractThread();
 
 public Q_SLOTS:
     /*!
