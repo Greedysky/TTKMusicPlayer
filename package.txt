@@ -13,7 +13,7 @@ libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
 libmpg123-1.31.3	https://sourceforge.net/projects/mpg123
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.5	https://xiph.org/downloads
-libopenmpt-0.4.37		https://lib.openmpt.org/libopenmpt
+libopenmpt-0.4.38		https://lib.openmpt.org/libopenmpt
 libprojectm-2.2.1		https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.2		https://github.com/libsndfile/libsamplerate
 libsidplayfp-2.3.1.patch	https://github.com/libsidplayfp/libsidplayfp
