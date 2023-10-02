@@ -19,11 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QNetworkReply>
-#include <QSslConfiguration>
-
-#include "ttktime.h"
-#include "ttksemaphoreloop.h"
+#include "ttkabstractnetwork.h"
 #include "musicnetworkthread.h"
 #include "musicnetworkdefines.h"
 #include "musicnumberutils.h"
@@ -36,7 +32,7 @@
 /*! @brief The class of the abstract network.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicAbstractNetwork : public QObject
+class TTK_MODULE_EXPORT MusicAbstractNetwork : public TTKAbstractNetwork
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractNetwork)
@@ -45,90 +41,19 @@ public:
      * Object constructor.
      */
     explicit MusicAbstractNetwork(QObject *parent = nullptr);
-    /*!
-     * Object destructor.
-     */
-    ~MusicAbstractNetwork();
-
-    /*!
-     * Release the network object.
-     */
-    virtual void deleteAll();
-
-    /*!
-     * Set the current raw data.
-     */
-    inline void setHeader(const QString &key, const QVariant &value) { m_rawData[key] = value; }
-    /*!
-     * Get the current raw data.
-     */
-    inline const QVariant header(const QString &key) const { return m_rawData[key]; }
-
-Q_SIGNALS:
-    /*!
-     * Send download data changed.
-     */
-    void downLoadDataChanged(const QString &bytes);
-    /*!
-     * Send download raw data changed.
-     */
-    void downLoadRawDataChanged(const QByteArray &bytes);
 
 public Q_SLOTS:
     /*!
-     * Download data from net finished.
-     * Subclass should implement this function.
-     */
-    virtual void downLoadFinished();
-    /*!
      * Download reply error.
      */
-    virtual void replyError(QNetworkReply::NetworkError error);
+    virtual void replyError(QNetworkReply::NetworkError error) override;
 #ifndef QT_NO_SSL
     /*!
      * Download ssl reply error.
      */
-    virtual void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
-    /*!
-     * Download ssl reply error strings.
-     */
-    void sslErrorsString(QNetworkReply *reply, const QList<QSslError> &errors);
+    virtual void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors) override;
 #endif
 
-protected:
-    QVariantMap m_rawData;
-    volatile bool m_interrupt;
-    volatile TTK::NetworkCode m_stateCode;
-    QNetworkReply *m_reply;
-    QNetworkAccessManager m_manager;
-
 };
-
-#define TTK_NETWORK_QUERY_CHECK(VALUE)   if(m_interrupt || m_stateCode != TTK::NetworkCode::Query) return VALUE
-
-/*! @brief The namespace of the application object.
- * @author Greedysky <greedysky@163.com>
- */
-namespace TTK
-{
-    /*!
-     * Set request ssl configuration.
-     */
-    TTK_MODULE_EXPORT void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode = QSslSocket::VerifyNone);
-    /*!
-     * Get download file size by url.
-     */
-    TTK_MODULE_EXPORT qint64 queryFileSizeByUrl(const QString &url);
-
-    /*!
-     * Sync network query for get.
-     */
-    TTK_MODULE_EXPORT QByteArray syncNetworkQueryForGet(QNetworkRequest *request);
-    /*!
-     * Sync network query for post.
-     */
-    TTK_MODULE_EXPORT QByteArray syncNetworkQueryForPost(QNetworkRequest *request, const QByteArray &data);
-
-}
 
 #endif // MUSICABSTRACTNETWORK_H

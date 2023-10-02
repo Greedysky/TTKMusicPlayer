@@ -18,6 +18,7 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(DJ_RADIO_LIST_URL, false).arg(m_queryValue));
     TTK::setSslConfiguration(&request);
+    TTK::makeContentTypeHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

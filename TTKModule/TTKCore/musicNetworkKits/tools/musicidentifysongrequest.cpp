@@ -70,7 +70,7 @@ void MusicIdentifySongRequest::startRequest(const QString &path)
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false));
     TTK::setSslConfiguration(&request);
-    request.setRawHeader("Content-Type", contentType.toUtf8());
+    TTK::makeContentTypeHeader(&request, contentType.toUtf8());
 
     m_reply = m_manager.post(request, body);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

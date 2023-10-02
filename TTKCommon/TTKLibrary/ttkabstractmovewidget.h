@@ -23,7 +23,7 @@
 #include <QMouseEvent>
 #include "ttkmoduleexport.h"
 
-/*! @brief The class of the moving widget base.
+/*! @brief The class of the ttk moving widget base.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT TTKAbstractMoveWidget : public QWidget

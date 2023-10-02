@@ -17,6 +17,7 @@ void MusicWYDownLoadTextRequest::startRequest()
             QNetworkRequest request;
             request.setUrl(m_url);
             TTK::setSslConfiguration(&request);
+            TTK::makeContentTypeHeader(&request);
 
             m_reply = m_manager.get(request);
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

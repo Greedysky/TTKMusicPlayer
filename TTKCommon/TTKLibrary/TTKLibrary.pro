@@ -16,7 +16,7 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-QT += xml
+QT += xml network
 greaterThan(QT_MAJOR_VERSION, 4){ #Qt5
     QT += widgets
 }
@@ -62,7 +62,9 @@ HEADERS += \
     $$PWD/ttkabstractmovedialog.h \
     $$PWD/ttkabstractmoveresizewidget.h \
     $$PWD/ttkabstractmovewidget.h \
+    $$PWD/ttkabstractnetwork.h \
     $$PWD/ttkabstractresizeinterface.h \
+    $$PWD/ttkabstracttablewidget.h \
     $$PWD/ttkabstractthread.h \
     $$PWD/ttkabstractxml.h \
     $$PWD/ttkany.h \
@@ -93,6 +95,8 @@ SOURCES += \
     $$PWD/ttkabstractmovedialog.cpp \
     $$PWD/ttkabstractmoveresizewidget.cpp \
     $$PWD/ttkabstractmovewidget.cpp \
+    $$PWD/ttkabstractnetwork.cpp \
+    $$PWD/ttkabstracttablewidget.cpp \
     $$PWD/ttkabstractthread.cpp \
     $$PWD/ttkabstractxml.cpp \
     $$PWD/ttkany.cpp \

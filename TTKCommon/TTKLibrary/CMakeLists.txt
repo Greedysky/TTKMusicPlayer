@@ -6,7 +6,9 @@ set(HEADER_FILES
   ttkabstractmovedialog.h
   ttkabstractmoveresizewidget.h
   ttkabstractmovewidget.h
+  ttkabstractnetwork.h
   ttkabstractresizeinterface.h
+  ttkabstracttablewidget.h
   ttkabstractthread.h
   ttkabstractxml.h
   ttkany.h
@@ -38,6 +40,8 @@ set(SOURCE_FILES
   ttkabstractmovedialog.cpp
   ttkabstractmoveresizewidget.cpp
   ttkabstractmovewidget.cpp
+  ttkabstractnetwork.cpp
+  ttkabstracttablewidget.cpp
   ttkabstractthread.cpp
   ttkabstractxml.cpp
   ttkany.cpp
@@ -78,7 +82,7 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
     add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES}  ${MOC_FILES} ${HEADER_FILES})
   endif()
   
-  set(QT5_LIBS Qt5::Core Qt5::Xml Qt5::Gui Qt5::Widgets)
+  set(QT5_LIBS Qt5::Core Qt5::Xml Qt5::Network Qt5::Gui Qt5::Widgets)
   target_link_libraries(${PROJECT_NAME} ${QT5_LIBS})
 else()
   qt4_wrap_cpp(MOC_FILES ${HEADER_FILES})
@@ -90,6 +94,6 @@ else()
     add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES} ${MOC_FILES} ${RCC_FILES} ${HEADER_FILES})
   endif()
   
-  set(QT4_LIBS ${QT_QTCORE_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY})
+  set(QT4_LIBS ${QT_QTCORE_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTGUI_LIBRARY})
   target_link_libraries(${PROJECT_NAME} ${QT4_LIBS})
 endif()

@@ -39,7 +39,7 @@ namespace TTK {
 enum class Direction;
 }
 
-/*! @brief The class of the moving resize widget base.
+/*! @brief The class of the ttk moving resize widget base.
  * @author Greedysky <greedysky@163.com>
  *         Lverson   <what951006@163.com>
  */

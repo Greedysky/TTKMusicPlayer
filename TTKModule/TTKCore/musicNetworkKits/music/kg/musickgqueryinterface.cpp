@@ -5,6 +5,7 @@ void MusicKGInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
     request->setRawHeader("User-Agent", TTK::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
     TTK::setSslConfiguration(request);
+    TTK::makeContentTypeHeader(request);
 }
 
 void MusicKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &hash)

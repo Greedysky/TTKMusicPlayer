@@ -23,7 +23,7 @@
 #include <QMouseEvent>
 #include "ttkmoduleexport.h"
 
-/*! @brief The class of the moving dialog base.
+/*! @brief The class of the ttk moving dialog base.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT TTKAbstractMoveDialog : public QDialog

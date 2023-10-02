@@ -28,7 +28,9 @@ win32{
             $$PWD/TTKLibrary/ttkabstractmovedialog.h \
             $$PWD/TTKLibrary/ttkabstractmoveresizewidget.h \
             $$PWD/TTKLibrary/ttkabstractmovewidget.h \
+            $$PWD/TTKLibrary/ttkabstractnetwork.h \
             $$PWD/TTKLibrary/ttkabstractresizeinterface.h \
+            $$PWD/TTKLibrary/ttkabstracttablewidget.h \
             $$PWD/TTKLibrary/ttkabstractthread.h \
             $$PWD/TTKLibrary/ttkabstractxml.h \
             $$PWD/TTKLibrary/ttkany.h \
