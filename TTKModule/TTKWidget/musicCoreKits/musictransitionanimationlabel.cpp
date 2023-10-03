@@ -17,7 +17,7 @@ MusicTransitionAnimationLabel::MusicTransitionAnimationLabel(QWidget *parent)
 {
     TTK::initRandom();
 
-    m_animation = new QPropertyAnimation(this, QByteArray());
+    m_animation = new QPropertyAnimation(this, {});
     m_animation->setDuration(200);
     m_animation->setEasingCurve(QEasingCurve::Linear);
     m_animation->setStartValue(0);

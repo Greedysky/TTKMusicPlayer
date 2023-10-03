@@ -33,7 +33,7 @@ public:
     /*!
      * Object constructor.
     */
-    explicit TTKLocalPeer(QObject *parent = nullptr, const QString &id = QString());
+    explicit TTKLocalPeer(QObject *parent = nullptr, const QString &id = {});
 
     /*!
      * Current client is running or not.

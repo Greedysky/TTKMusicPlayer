@@ -295,7 +295,7 @@ void MusicCommentsWidget::initialize(bool isPain)
     }
     setLayout(mainLayout);
 
-    initLabel(QString(), 0);
+    initLabel({}, 0);
 }
 
 void MusicCommentsWidget::setCurrentSongName(const QString &name)

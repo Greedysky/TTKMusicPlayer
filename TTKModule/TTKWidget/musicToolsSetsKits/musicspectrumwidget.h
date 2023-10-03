@@ -122,7 +122,7 @@ private:
     /*!
      * Create light widget.
      */
-    void createLightWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout, const QString &url = QString());
+    void createLightWidget(MusicSpectrum::Module spectrum, bool &state, const QString &name, QLayout *layout, const QString &url = {});
     /*!
      * Find spectrum widget index by name.
      */

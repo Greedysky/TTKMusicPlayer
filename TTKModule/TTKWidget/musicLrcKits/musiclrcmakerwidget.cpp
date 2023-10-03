@@ -378,7 +378,7 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
 
         for(int i = 0; i < m_analysis->lineMax(); ++i)
         {
-            m_lrcContainer[i]->setText(QString());
+            m_lrcContainer[i]->setText({});
         }
         setItemStyleSheet(0, -3, 90);
         setItemStyleSheet(1, -6, 35);

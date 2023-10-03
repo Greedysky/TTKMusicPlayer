@@ -117,12 +117,12 @@ void MusicSongRingtoneMaker::initOutputPath()
         return;
     }
 
-    QProcess::execute(MAKE_TRANSFORM_PATH_FULL, QStringList()
-        << "-i" << m_inputFilePath << "-ss" << QString::number(m_startPos)
-        << "-t" << QString::number(m_stopPos) << "-acodec" << "copy"
-        << "-ab" << m_ui->kbpsCombo->currentText() + "k"
-        << "-ar" << m_ui->hzCombo->currentText()
-        << "-ac" << QString::number(m_ui->msCombo->currentIndex() + 1) << value);
+    QProcess::execute(MAKE_TRANSFORM_PATH_FULL, {
+        "-i", m_inputFilePath, "-ss", QString::number(m_startPos),
+        "-t", QString::number(m_stopPos), "-acodec", "copy",
+        "-ab", m_ui->kbpsCombo->currentText() + "k",
+        "-ar", m_ui->hzCombo->currentText(),
+        "-ac", QString::number(m_ui->msCombo->currentIndex() + 1), value});
 }
 
 void MusicSongRingtoneMaker::playInputSong()

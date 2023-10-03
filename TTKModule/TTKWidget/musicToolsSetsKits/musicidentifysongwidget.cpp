@@ -209,7 +209,7 @@ void MusicIdentifySongWidget::createDetectedWidget()
     widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle04);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
 
-    m_detectedMovie = new QMovie(":/toolSets/lb_radar", QByteArray(), widget);
+    m_detectedMovie = new QMovie(":/toolSets/lb_radar", {}, widget);
     QLabel *iconLabel = new QLabel(widget);
     iconLabel->setFixedSize(200, 200);
     QVBoxLayout *iconLabelLayout = new QVBoxLayout(iconLabel);

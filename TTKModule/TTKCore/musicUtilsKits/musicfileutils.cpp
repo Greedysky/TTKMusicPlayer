@@ -9,7 +9,7 @@ QStringList TTK::File::fileListByPath(const QString &dpath, const QStringList &f
     QDir dir(dpath);
     if(!dir.exists())
     {
-        return QStringList();
+        return {};
     }
 
     const QString &spr = dpath.endsWith(TTK_SEPARATOR) ? QString() : TTK_SEPARATOR;
@@ -212,7 +212,7 @@ QString TTK::File::getSaveFileName(QWidget *parent, const QString &filter)
 
     if(dialog.exec() != QDialog::Accepted)
     {
-        return QString();
+        return {};
     }
 
     const QString &selectFilter = dialog.selectedNameFilter();
@@ -230,7 +230,7 @@ QString TTK::File::getSaveFileName(QWidget *parent, const QString &filter)
     const QStringList &files = dialog.selectedFiles();
     if(files.isEmpty())
     {
-        return QString();
+        return {};
     }
 
     const QString &v = files.front();

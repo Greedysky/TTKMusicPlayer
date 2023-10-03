@@ -69,7 +69,7 @@ static QString languageCore(int index)
         case 0: return lan.append("cn.ln");
         case 1: return lan.append("tc.ln");
         case 2: return lan.append("en.ln");
-        default: return QString();
+        default: return {};
     }
 }
 
@@ -81,7 +81,7 @@ static QString languageQmmp(int index)
         case 0: return lan.append("cnq.ln");
         case 1: return lan.append("tcq.ln");
         case 2: return lan.append("enq.ln");
-        default: return QString();
+        default: return {};
     }
 }
 }

@@ -184,7 +184,7 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     m_ui->treeWidget->header()->setMovable(false);
     m_ui->treeWidget->header()->setResizeMode(0, QHeaderView::Fixed);
 #endif
-    m_ui->treeWidget->setHeaderLabels({QString(), tr("Description"), tr("Name"), QString()});
+    m_ui->treeWidget->setHeaderLabels({{}, tr("Description"), tr("Name"), {}});
 
     TTKCheckBoxItemDelegate *delegateCheck = new TTKCheckBoxItemDelegate(this);
     delegateCheck->setStyleSheet(TTK::UI::CheckBoxStyle01);

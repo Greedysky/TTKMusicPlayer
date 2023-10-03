@@ -40,7 +40,7 @@ public:
     /*!
      * Decode krc file to lrc by input file and output file.
      */
-    bool decode(const QString &input, const QString &output = QString());
+    bool decode(const QString &input, const QString &output = {});
     /*!
      * Get decode string.
      */

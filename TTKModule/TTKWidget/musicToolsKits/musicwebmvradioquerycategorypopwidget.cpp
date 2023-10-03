@@ -10,7 +10,7 @@
 MusicWebMVRadioQueryCategoryItem::MusicWebMVRadioQueryCategoryItem(QWidget *parent)
     : QWidget(parent)
 {
-    setStyleSheet(QString());
+    setStyleSheet({});
 }
 
 void MusicWebMVRadioQueryCategoryItem::setCategory(const MusicResultsCategory &category)

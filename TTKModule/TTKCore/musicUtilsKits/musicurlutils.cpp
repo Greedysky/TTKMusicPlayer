@@ -15,7 +15,7 @@ bool TTK::Url::execute(const QString &path)
     ShellExecuteW(0, L"open", path.toStdWString().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
     return true;
 #else
-    return QProcess::startDetached(path, QStringList());
+    return QProcess::startDetached(path, {});
 #endif
 }
 

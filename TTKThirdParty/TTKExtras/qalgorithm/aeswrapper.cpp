@@ -25,7 +25,7 @@ QByteArray Aes::encryptECB(const QByteArray &in, const QByteArray &key)
     if(AES_set_encrypt_key((const unsigned char *)key.data(), 128, &aes) < 0)
     {
         delete[] encStr;
-        return QByteArray();
+        return {};
     }
 
     AES_ecb_encrypt((const unsigned char *)encStr, (unsigned char *)encryptString, &aes, AES_ENCRYPT);
@@ -43,7 +43,7 @@ QByteArray Aes::decryptECB(const QByteArray &in, const QByteArray &key)
 
     if(AES_set_decrypt_key((const unsigned char *)key.data(), 128, &aes) < 0)
     {
-        return QByteArray();
+        return {};
     }
     AES_ecb_encrypt((const unsigned char *)str.data(), (unsigned char *)decryptString, &aes, AES_DECRYPT);
 
@@ -67,7 +67,7 @@ QByteArray Aes::encryptCBC(const QByteArray &in, const QByteArray &key, const QB
     if(AES_set_encrypt_key((const unsigned char *)key.data(), 128, &aes) < 0)
     {
         delete[] encStr;
-        return QByteArray();
+        return {};
     }
 
     AES_cbc_encrypt((const unsigned char *)encStr, (unsigned char *)encryptString, total, &aes, (unsigned char *)iv.data(), AES_ENCRYPT);
@@ -85,7 +85,7 @@ QByteArray Aes::decryptCBC(const QByteArray &in, const QByteArray &key, const QB
 
     if(AES_set_decrypt_key((const unsigned char *)key.data(), 128, &aes) < 0)
     {
-        return QByteArray();
+        return {};
     }
     AES_cbc_encrypt((const unsigned char *)str.data(), (unsigned char *)decryptString, str.length(), &aes, (unsigned char *)iv.data(), AES_DECRYPT);
 

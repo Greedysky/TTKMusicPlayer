@@ -84,7 +84,7 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                     info.m_albumId = result.m_nickName;
                     info.m_albumName = TTK::String::charactersReplace(albumName);
 
-                    info.m_year = QString();
+                    info.m_year.clear();
                     info.m_trackNumber = "0";
 
                     info.m_coverUrl = value["web_albumpic_short"].toString();
@@ -123,7 +123,7 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 
@@ -166,6 +166,6 @@ void MusicKWQueryAlbumRequest::downLoadSingleFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }

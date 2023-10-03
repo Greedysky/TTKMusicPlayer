@@ -73,7 +73,7 @@ void MusicFMRadioSongRequest::downLoadFinished()
                         break; //just find first singer
                     }
 
-                    info.m_year = QString();
+                    info.m_year.clear();
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
@@ -90,6 +90,6 @@ void MusicFMRadioSongRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }

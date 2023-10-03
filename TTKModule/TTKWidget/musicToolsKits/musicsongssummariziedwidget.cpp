@@ -263,13 +263,13 @@ QString MusicSongsSummariziedWidget::mapFilePathBySongIndex(int toolIndex, int i
 {
     if(toolIndex < 0 || toolIndex >= m_containerItems.count())
     {
-        return QString();
+        return {};
     }
 
     const MusicSongList *songs = &m_containerItems[toolIndex].m_songs;
     if(index < 0 || index >= songs->count())
     {
-        return QString();
+        return {};
     }
 
     return songs->at(index).path();

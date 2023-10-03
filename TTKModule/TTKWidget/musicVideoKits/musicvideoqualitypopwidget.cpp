@@ -91,7 +91,7 @@ QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)
             return prop.m_url;
         }
     }
-    return QString();
+    return {};
 }
 
 int MusicVideoQualityPopWidget::findMVBitrateByUrl(const QString &url)

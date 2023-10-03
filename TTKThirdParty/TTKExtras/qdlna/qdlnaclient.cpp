@@ -80,7 +80,7 @@ void QDlnaClientPrivate::initialize(const QString &data)
 
 bool QDlnaClientPrivate::connectServer()
 {
-    const QString &request = QDlnaHelper::MakeRequest("GET", m_smp, 0, QString(), m_serverIP, m_serverPort);
+    const QString &request = QDlnaHelper::MakeRequest("GET", m_smp, 0, {}, m_serverIP, m_serverPort);
     const QString &response = QDlnaHelper::makeSocketGetReply(m_serverIP, m_serverPort, request);
     TTK_INFO_STREAM(m_serverIP << m_serverPort << m_smp << response);
     const int code = QDlnaHelper::GetResponseCode(response);

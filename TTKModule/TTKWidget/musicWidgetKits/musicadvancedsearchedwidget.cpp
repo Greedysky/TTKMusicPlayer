@@ -149,10 +149,10 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
     switch(m_tabWidget->currentIndex())
     {
         case 0: MusicRightAreaWidget::instance()->showSingleSearchedFound(searchedKeyWork(0, key)); break;
-        case 1: MusicRightAreaWidget::instance()->showArtistFound(QString(), searchedKeyWork(1, key)); break;
-        case 2: MusicRightAreaWidget::instance()->showAlbumFound(QString(), searchedKeyWork(2, key)); break;
+        case 1: MusicRightAreaWidget::instance()->showArtistFound({}, searchedKeyWork(1, key)); break;
+        case 2: MusicRightAreaWidget::instance()->showAlbumFound({}, searchedKeyWork(2, key)); break;
         case 3: MusicRightAreaWidget::instance()->showPlaylistFound(searchedKeyWork(3, key)); break;
-        case 4: MusicRightAreaWidget::instance()->showVideoSearchedFound(QString(), searchedKeyWork(4, key)); break;
+        case 4: MusicRightAreaWidget::instance()->showVideoSearchedFound({}, searchedKeyWork(4, key)); break;
         default: break;
     }
 }

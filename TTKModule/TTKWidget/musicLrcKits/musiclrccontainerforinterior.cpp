@@ -56,7 +56,7 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
        MusicLrcManager *w = new MusicLrcManagerForInterior(this);
-       w->setText(QString());
+       w->setText({});
        m_layoutWidget->addWidget(w);
        m_lrcManagers.append(w);
     }
@@ -123,7 +123,7 @@ void MusicLrcContainerForInterior::updateCurrentLrc(MusicLrcAnalysis::State stat
 
     for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
     {
-        m_lrcManagers[i]->setText(QString());
+        m_lrcManagers[i]->setText({});
     }
 
     if(state == MusicLrcAnalysis::State::Failed)
@@ -351,7 +351,7 @@ void MusicLrcContainerForInterior::showSongMovieClicked()
     {
         MusicBottomAreaWidget::instance()->lrcWidgetShowFullScreen();
     }
-    MusicRightAreaWidget::instance()->showVideoSearchedFound(m_currentSongName, QString());
+    MusicRightAreaWidget::instance()->showVideoSearchedFound(m_currentSongName, {});
 }
 
 void MusicLrcContainerForInterior::updateAnimationLrc()
@@ -695,7 +695,7 @@ void MusicLrcContainerForInterior::initCurrentLrc(const QString &str)
 {
     for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
     {
-        m_lrcManagers[i]->setText(QString());
+        m_lrcManagers[i]->setText({});
     }
     m_lrcManagers[m_lrcAnalysis->lineMiddle()]->setText(str);
 }

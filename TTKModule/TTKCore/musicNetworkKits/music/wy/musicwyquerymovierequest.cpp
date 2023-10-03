@@ -107,7 +107,7 @@ void MusicWYQueryMovieRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 
@@ -152,7 +152,7 @@ void MusicWYQueryMovieRequest::downLoadPageFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 
@@ -170,7 +170,7 @@ void MusicWYQueryMovieRequest::downLoadSingleFinished()
         TTK_NETWORK_QUERY_CHECK();
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 

@@ -9,7 +9,7 @@ MusicAbstractNetwork::MusicAbstractNetwork(QObject *parent)
 void MusicAbstractNetwork::replyError(QNetworkReply::NetworkError)
 {
     TTK_ERROR_STREAM("Abnormal network connection");
-//    Q_EMIT downLoadDataChanged(QString());
+//    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 
@@ -17,7 +17,7 @@ void MusicAbstractNetwork::replyError(QNetworkReply::NetworkError)
 void MusicAbstractNetwork::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
     sslErrorsString(reply, errors);
-//    Q_EMIT downLoadDataChanged(QString());
+//    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 #endif

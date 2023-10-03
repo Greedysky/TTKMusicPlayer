@@ -127,7 +127,7 @@ void MusicLrcContainerForWallpaper::updateCurrentLrc(const QString &text)
 {
     for(int i = 0; i < MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
-        m_lrcManagers[i]->setText(QString());
+        m_lrcManagers[i]->setText({});
     }
     m_lrcManagers[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(text);
 }
@@ -176,7 +176,7 @@ void MusicLrcContainerForWallpaper::initCurrentLrc(const QString &str)
 {
     for(int i = 0; i < m_lrcAnalysis->lineMax(); ++i)
     {
-        m_lrcManagers[i]->setText(QString());
+        m_lrcManagers[i]->setText({});
     }
     m_lrcManagers[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(str);
 }

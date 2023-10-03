@@ -59,13 +59,13 @@ void MusicBDTranslationRequest::downLoadFinished()
         }
         else
         {
-            Q_EMIT downLoadDataChanged(QString());
+            Q_EMIT downLoadDataChanged({});
         }
     }
     else
     {
         TTK_ERROR_STREAM("Translation source data error");
-        Q_EMIT downLoadDataChanged(QString());
+        Q_EMIT downLoadDataChanged({});
     }
 
     deleteAll();
@@ -77,6 +77,6 @@ QString MusicBDTranslationRequest::mapToString(Language type) const
     {
         case Language::Auto: return "auto";
         case Language::Chinese: return "zh";
-        default: return QString();
+        default: return {};
     }
 }

@@ -127,7 +127,7 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
         }
     }
 
-//    Q_EMIT downLoadDataChanged(QString());
+//    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 
@@ -206,5 +206,5 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
 }

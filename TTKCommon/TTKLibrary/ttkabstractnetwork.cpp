@@ -37,7 +37,7 @@ void TTKAbstractNetwork::downLoadFinished()
 void TTKAbstractNetwork::replyError(QNetworkReply::NetworkError)
 {
     TTK_ERROR_STREAM("Abnormal network connection");
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 
@@ -45,7 +45,7 @@ void TTKAbstractNetwork::replyError(QNetworkReply::NetworkError)
 void TTKAbstractNetwork::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
     sslErrorsString(reply, errors);
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 
@@ -133,7 +133,7 @@ QByteArray syncNetworkQueryForGet(QNetworkRequest *request)
 
     if(!reply || reply->error() != QNetworkReply::NoError)
     {
-        return QByteArray();
+        return {};
     }
 
     const QByteArray bytes(reply->readAll());
@@ -152,7 +152,7 @@ QByteArray syncNetworkQueryForPost(QNetworkRequest *request, const QByteArray &d
 
     if(!reply || reply->error() != QNetworkReply::NoError)
     {
-        return QByteArray();
+        return {};
     }
 
     const QByteArray bytes(reply->readAll());

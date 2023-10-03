@@ -58,13 +58,13 @@ void MusicWYTranslationRequest::downLoadFinished()
         }
         else
         {
-            Q_EMIT downLoadDataChanged(QString());
+            Q_EMIT downLoadDataChanged({});
         }
     }
     else
     {
         TTK_ERROR_STREAM("Translation source data error");
-        Q_EMIT downLoadDataChanged(QString());
+        Q_EMIT downLoadDataChanged({});
     }
 
     deleteAll();

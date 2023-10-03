@@ -25,7 +25,7 @@ void TTKCommandLineParser::process(const QStringList &arguments)
         const QString &cmd = arg.trimmed();
         if(cmd.startsWith("-") || cmd.startsWith("--"))
         {
-            m_commands.insert(cmd, QString());
+            m_commands.insert(cmd, {});
             lastCommand = cmd;
         }
         else if(!m_commands.isEmpty() && !lastCommand.isEmpty())

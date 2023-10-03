@@ -116,7 +116,7 @@ QString MusicApplication::currentFileName() const
 {
     if(m_playlist->currentIndex() < 0 || m_currentSongTreeIndex < 0)
     {
-        return QString();
+        return {};
     }
 
     const MusicPlayItem &item = m_playlist->currentItem();
@@ -127,14 +127,14 @@ QString MusicApplication::currentFileName() const
         const int index = m_songTreeWidget->mapSongIndexByFilePath(m_currentSongTreeIndex, item.m_path);
         return (index != -1) ? songs[index].name() : QString();
     }
-    return QString();
+    return {};
 }
 
 QString MusicApplication::currentFilePath() const
 {
     if(m_playlist->currentIndex() < 0 || m_currentSongTreeIndex < 0)
     {
-        return QString();
+        return {};
     }
 
     const MusicPlayItem &item = m_playlist->currentItem();
@@ -145,7 +145,7 @@ QString MusicApplication::currentFilePath() const
         const int index = m_songTreeWidget->mapSongIndexByFilePath(m_currentSongTreeIndex, item.m_path);
         return (index != -1) ? songs[index].path() : QString();
     }
-    return QString();
+    return {};
 }
 
 bool MusicApplication::checkMusicListCurrentIndex() const

@@ -125,7 +125,7 @@ void MusicKWQueryRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 
@@ -187,6 +187,6 @@ void MusicKWQueryRequest::downLoadSingleFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }

@@ -115,7 +115,7 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
 
 void MusicSongSearchTableWidget::setSearchQuality(TTK::QueryQuality quality)
 {
-    MusicItemSearchTableWidget::startSearchQuery(QString());
+    MusicItemSearchTableWidget::startSearchQuery({});
     m_networkRequest->setQueryQuality(quality);
 }
 

@@ -120,7 +120,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         QTableWidgetItem *it = m_ui->tableWidget->item(i, 4);
         if(it)
         {
-            it->setText(QString());
+            it->setText({});
         }
     }
 

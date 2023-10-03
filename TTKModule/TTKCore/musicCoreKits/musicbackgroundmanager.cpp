@@ -36,7 +36,7 @@ QString MusicBackgroundManager::artistPhotoPath()
     }
     else
     {
-        return QString();
+        return {};
     }
 }
 
@@ -44,7 +44,7 @@ QString MusicBackgroundManager::artistPhotoDefaultPath() const
 {
     if(m_photos.isEmpty())
     {
-        return QString();
+        return {};
     }
 
     const int index = m_currentIndex - 1;

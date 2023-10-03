@@ -88,7 +88,7 @@ void MusicKGQueryRequest::downLoadFinished()
                     info.m_albumId = value["album_id"].toString();
                     info.m_albumName = TTK::String::charactersReplace(value["album_name"].toString());
 
-                    info.m_year = QString();
+                    info.m_year.clear();
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
@@ -120,7 +120,7 @@ void MusicKGQueryRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 
@@ -163,7 +163,7 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                     info.m_albumName = TTK::String::charactersReplace(albumObject["album_name"].toString());
                 }
 
-                info.m_year = QString();
+                info.m_year.clear();
                 info.m_trackNumber = "0";
 
                 TTK_NETWORK_QUERY_CHECK();
@@ -185,6 +185,6 @@ void MusicKGQueryRequest::downLoadSingleFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }

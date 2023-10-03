@@ -24,7 +24,7 @@ MusicSong::MusicSong()
 }
 
 MusicSong::MusicSong(const QString &path, bool track)
-    : MusicSong(path, QString(), QString(), track)
+    : MusicSong(path, {}, {}, track)
 {
 
 }

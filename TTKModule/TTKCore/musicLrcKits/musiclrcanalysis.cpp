@@ -53,7 +53,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setData(const QByteArray &data)
 
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
     {
-        m_lrcContainer.insert(0, QString());
+        m_lrcContainer.insert(0, {});
     }
 
     for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
@@ -86,7 +86,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setData(const TTKIntStringMap &data)
 
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
     {
-        m_lrcContainer.insert(0, QString());
+        m_lrcContainer.insert(0, {});
     }
 
     for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
@@ -149,7 +149,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::loadFromKrcFile(const QString &path)
 
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
     {
-        m_lrcContainer.insert(0, QString());
+        m_lrcContainer.insert(0, {});
     }
 
     for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
@@ -256,7 +256,7 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
     }
 
     QString temp = oneLine;
-    temp.replace(regx, QString());
+    temp.replace(regx, {});
     int pos = regx.indexIn(oneLine);
     while(pos != -1)
     {
@@ -437,7 +437,7 @@ QString MusicLrcAnalysis::text(int index) const
 
     if(index <0 || index >= m_currentShowLrcContainer.count())
     {
-        return QString();
+        return {};
     }
     return m_currentShowLrcContainer[index];
 }

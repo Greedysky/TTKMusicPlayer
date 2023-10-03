@@ -26,7 +26,7 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     m_ui->qqButton->setChecked(true);
     m_ui->textEdit->setStyleSheet(TTK::UI::TextEditStyle01);
 
-    m_qrCodeWidget = new QRCodeQWidget(QByteArray(), QSize(90, 90), this);
+    m_qrCodeWidget = new QRCodeQWidget({}, QSize(90, 90), this);
     m_qrCodeWidget->setMargin(2);
     m_qrCodeWidget->setIcon(":/image/lb_app_logo", 0.23);
     m_ui->QRCodeIconWidgetLayout->addWidget(m_qrCodeWidget);
@@ -149,7 +149,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
                 break;
             }
 
-            downLoadFinished(server, QString());
+            downLoadFinished(server, {});
             break;
         }
         case Module::Artist:

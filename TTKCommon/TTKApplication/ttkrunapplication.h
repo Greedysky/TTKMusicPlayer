@@ -75,7 +75,7 @@ private:
     /*!
      * Init the system parameter.
     */
-    void initialize(const QString &id = QString());
+    void initialize(const QString &id = {});
 
 private:
     TTK_DECLARE_PRIVATE(TTKRunApplication)

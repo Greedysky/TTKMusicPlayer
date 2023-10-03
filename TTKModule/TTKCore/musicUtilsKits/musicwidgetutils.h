@@ -94,7 +94,7 @@ namespace TTK
         /*!
          * Generate combobox format style.
          */
-        TTK_MODULE_EXPORT void generateComboBoxFormat(QComboBox *widget, const QString &style = QString());
+        TTK_MODULE_EXPORT void generateComboBoxFormat(QComboBox *widget, const QString &style = {});
 
     }
 }

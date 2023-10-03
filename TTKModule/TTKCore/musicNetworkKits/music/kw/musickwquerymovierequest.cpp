@@ -111,7 +111,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 
@@ -157,7 +157,7 @@ void MusicKWQueryMovieRequest::downLoadPageFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 
@@ -191,7 +191,7 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
         m_songInfos << info;
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 

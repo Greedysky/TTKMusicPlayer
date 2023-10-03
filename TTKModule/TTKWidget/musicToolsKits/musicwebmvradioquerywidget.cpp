@@ -127,7 +127,7 @@ MusicWebMVRadioQueryWidget::~MusicWebMVRadioQueryWidget()
 void MusicWebMVRadioQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, QString());
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, {});
 }
 
 void MusicWebMVRadioQueryWidget::setSongNameByID(const QString &id)

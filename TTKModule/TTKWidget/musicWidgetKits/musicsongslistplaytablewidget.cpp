@@ -319,7 +319,7 @@ void MusicSongsListPlayTableWidget::itemCellEntered(int row, int column)
 
     if(it = item(row, 5))
     {
-        it->setText(QString());
+        it->setText({});
         it->setIcon(QIcon(":/tiny/btn_more_normal"));
     }
 

@@ -92,6 +92,6 @@ void MusicWYQueryArtistListRequest::downLoadFinished()
         }
     }
 
-//    Q_EMIT downLoadDataChanged(QString());
+//    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }

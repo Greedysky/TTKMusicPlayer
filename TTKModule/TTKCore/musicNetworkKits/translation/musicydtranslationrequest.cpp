@@ -25,7 +25,7 @@ void MusicYDTranslationRequest::startRequest(const QString &data)
         const QString &bytes = QString(TTK::syncNetworkQueryForGet(&request));
         if(bytes.isEmpty())
         {
-            Q_EMIT downLoadDataChanged(QString());
+            Q_EMIT downLoadDataChanged({});
             return;
         }
 
@@ -35,7 +35,7 @@ void MusicYDTranslationRequest::startRequest(const QString &data)
 
     if(sid.isEmpty())
     {
-        Q_EMIT downLoadDataChanged(QString());
+        Q_EMIT downLoadDataChanged({});
         return;
     }
 
@@ -77,13 +77,13 @@ void MusicYDTranslationRequest::downLoadFinished()
         }
         else
         {
-            Q_EMIT downLoadDataChanged(QString());
+            Q_EMIT downLoadDataChanged({});
         }
     }
     else
     {
         TTK_ERROR_STREAM("Translation source data error");
-        Q_EMIT downLoadDataChanged(QString());
+        Q_EMIT downLoadDataChanged({});
     }
 
     deleteAll();
@@ -95,6 +95,6 @@ QString MusicYDTranslationRequest::mapToString(Language type) const
     {
         case Language::Auto: return "auto";
         case Language::Chinese: return "zh";
-        default: return QString();
+        default: return {};
     }
 }

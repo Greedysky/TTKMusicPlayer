@@ -198,7 +198,7 @@ QStringList TTKXmlDocument::readXmlMultiAttributeByTagName(const QString &tagNam
     const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
     if(nodes.isEmpty())
     {
-        return QStringList();
+        return {};
     }
 
     QStringList v;
@@ -214,7 +214,7 @@ QStringList TTKXmlDocument::readXmlMultiTextByTagName(const QString &tagName) co
     const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
     if(nodes.isEmpty())
     {
-        return QStringList();
+        return {};
     }
 
     QStringList v;

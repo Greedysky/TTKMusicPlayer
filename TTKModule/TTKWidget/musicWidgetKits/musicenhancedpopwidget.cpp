@@ -52,7 +52,7 @@ void MusicEnhancedToolButton::setStyleSheet(const QString &styleSheet, bool stat
     else
     {
         m_animation->setDuration(500);
-        m_foreLabel->setStyleSheet(QString());
+        m_foreLabel->setStyleSheet({});
         m_animationLabel->setStyleSheet("background-image:url(':/enhance/lb_enter')");
         QToolButton::setStyleSheet(QString("QToolButton{%1}").arg(styleSheet));
     }

@@ -43,7 +43,7 @@ void MusicTranslationRequest::findAllPlugins()
             const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
             if(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index) != MusicAbstractQueryRequest::QueryServer::WY)
             {
-                downLoadFinished(QString());
+                downLoadFinished({});
                 return;
             }
 

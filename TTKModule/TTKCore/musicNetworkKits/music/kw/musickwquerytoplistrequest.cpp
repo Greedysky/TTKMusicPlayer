@@ -72,7 +72,7 @@ void MusicKWQueryToplistRequest::downLoadFinished()
                     info.m_albumId = value["albumid"].toString();
                     info.m_albumName = TTK::String::charactersReplace(value["album"].toString());
 
-                    info.m_year = QString();
+                    info.m_year.clear();
                     info.m_trackNumber = "0";
 
                     info.m_coverUrl = value["web_albumpic_short"].toString();
@@ -103,7 +103,7 @@ void MusicKWQueryToplistRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 

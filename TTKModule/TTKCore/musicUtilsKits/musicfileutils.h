@@ -31,11 +31,11 @@ namespace TTK
         /*!
          * Get all files in given dir.
          */
-        TTK_MODULE_EXPORT QStringList fileListByPath(const QString &dpath, const QStringList &filter = QStringList(), bool recursively = true);
+        TTK_MODULE_EXPORT QStringList fileListByPath(const QString &dpath, const QStringList &filter = {}, bool recursively = true);
         /*!
          * Get all files infos in given dir.
          */
-        TTK_MODULE_EXPORT QFileInfoList fileInfoListByPath(const QString &dpath, const QStringList &filter = QStringList(), bool recursively = true);
+        TTK_MODULE_EXPORT QFileInfoList fileInfoListByPath(const QString &dpath, const QStringList &filter = {}, bool recursively = true);
         /*!
          * Copy path from srcPath to dstPath.
          */

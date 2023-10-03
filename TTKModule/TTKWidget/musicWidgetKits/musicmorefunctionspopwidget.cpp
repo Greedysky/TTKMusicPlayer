@@ -18,10 +18,10 @@ void MusicMoreFunctionsPopWidget::functionClicked(QAction *index)
     {
         case 0: MusicRightAreaWidget::instance()->showSongCommentsWidget(); break;
         case 1: MusicRightAreaWidget::instance()->showSimilarFound(m_currentSongName); break;
-        case 2: MusicRightAreaWidget::instance()->showAlbumFound(m_currentSongName, QString()); break;
-        case 3: MusicRightAreaWidget::instance()->showArtistFound(m_currentSongName, QString()); break;
+        case 2: MusicRightAreaWidget::instance()->showAlbumFound(m_currentSongName, {}); break;
+        case 3: MusicRightAreaWidget::instance()->showArtistFound(m_currentSongName, {}); break;
         case 4: MusicRightAreaWidget::instance()->showToplistFound(); break;
-        case 5: MusicRightAreaWidget::instance()->showPlaylistFound(QString()); break;
+        case 5: MusicRightAreaWidget::instance()->showPlaylistFound({}); break;
         case 6: MusicRightAreaWidget::instance()->showRecommendFound(); break;
         case 7: MusicRightAreaWidget::instance()->showAdvancedSearchFound(); break;
         case 8: MusicRightAreaWidget::instance()->showArtistCategoryFound(); break;

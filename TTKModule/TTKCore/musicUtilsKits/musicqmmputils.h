@@ -41,7 +41,7 @@ namespace TTK
         /*!
          * Enable effect module control.
          */
-        TTK_MODULE_EXPORT void enabledEffectPlugin(bool enabled, const QString &name = QString());
+        TTK_MODULE_EXPORT void enabledEffectPlugin(bool enabled, const QString &name = {});
         /*!
          * Check effect is valid.
          */

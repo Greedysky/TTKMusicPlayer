@@ -64,7 +64,7 @@ MusicArtistListQueryWidget::~MusicArtistListQueryWidget()
 void MusicArtistListQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, QString());
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, {});
 }
 
 void MusicArtistListQueryWidget::setSongNameByID(const QString &id)

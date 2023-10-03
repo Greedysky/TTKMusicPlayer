@@ -163,7 +163,7 @@ MusicTTKFMRadioPlayWidget::MusicTTKFMRadioPlayWidget(QWidget *parent)
     m_ui->volumeSlider->setRange(0, 100);
     m_ui->volumeSlider->setValue(100);
 
-    m_ui->itemTree->setHeaderLabels({QString(), QString()});
+    m_ui->itemTree->setHeaderLabels({{}, {}});
     m_ui->itemTree->setColumnWidth(0, 220);
     m_ui->itemTree->setColumnWidth(1, 100);
 

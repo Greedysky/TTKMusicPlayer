@@ -10,7 +10,7 @@
 MusicArtistListQueryCategoryItem::MusicArtistListQueryCategoryItem(QWidget *parent)
     : QWidget(parent)
 {
-    setStyleSheet(QString());
+    setStyleSheet({});
 }
 
 void MusicArtistListQueryCategoryItem::setCategory(const MusicResultsCategory &category)

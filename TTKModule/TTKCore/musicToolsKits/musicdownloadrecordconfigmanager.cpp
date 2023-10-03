@@ -52,6 +52,6 @@ QString MusicDownloadRecordConfigManager::mappingFilePathFromEnum() const
         case TTK::Record::NormalDownload: return NORMAL_DOWN_PATH_FULL;
         case TTK::Record::CloudDownload: return CLOUD_DOWN_PATH_FULL;
         case TTK::Record::CloudUpload: return CLOUD_UP_PATH_FULL;
-        default: return QString();
+        default: return {};
     }
 }

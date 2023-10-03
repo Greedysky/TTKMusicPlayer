@@ -179,7 +179,7 @@ void MusicSongSearchPopWidget::createSuggestItems(const QStringList &names)
     m_popTableWidget->setRowCount(count);
     for(int i = 0; i < count; ++i)
     {
-        m_popTableWidget->addCellItem(i, names[i], QString());
+        m_popTableWidget->addCellItem(i, names[i], {});
     }
 }
 

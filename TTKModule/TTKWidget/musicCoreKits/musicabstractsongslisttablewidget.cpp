@@ -128,7 +128,7 @@ void MusicAbstractSongsListTableWidget::showMovieQueryWidget()
         return;
     }
 
-    MusicRightAreaWidget::instance()->showVideoSearchedFound(currentSongName(), QString());
+    MusicRightAreaWidget::instance()->showVideoSearchedFound(currentSongName(), {});
 }
 
 void MusicAbstractSongsListTableWidget::showAlbumQueryWidget()
@@ -138,7 +138,7 @@ void MusicAbstractSongsListTableWidget::showAlbumQueryWidget()
         return;
     }
 
-    MusicRightAreaWidget::instance()->showAlbumFound(currentSongName(), QString());
+    MusicRightAreaWidget::instance()->showAlbumFound(currentSongName(), {});
 }
 
 void MusicAbstractSongsListTableWidget::showSimilarQueryWidget()
@@ -185,7 +185,7 @@ void MusicAbstractSongsListTableWidget::showPlayedMovieQueryWidget()
         return;
     }
 
-    MusicRightAreaWidget::instance()->showVideoSearchedFound(songName(m_playRowIndex), QString());
+    MusicRightAreaWidget::instance()->showVideoSearchedFound(songName(m_playRowIndex), {});
 }
 
 void MusicAbstractSongsListTableWidget::showPlayedSimilarQueryWidget()
@@ -239,7 +239,7 @@ QString MusicAbstractSongsListTableWidget::songName(int index) const
 {
     if(rowCount() == 0 || index < 0)
     {
-        return QString();
+        return {};
     }
 
     return !m_songs->isEmpty() ? m_songs->at(index).name().trimmed() : QString();

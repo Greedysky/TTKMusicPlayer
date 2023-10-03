@@ -44,7 +44,7 @@ public:
      */
     MusicSong();
     explicit MusicSong(const QString &path, bool track = false);
-    MusicSong(const QString &path, const QString &playTime, const QString &name = QString(), bool track = false);
+    MusicSong(const QString &path, const QString &playTime, const QString &name = {}, bool track = false);
 
     /*!
      * Get music artist name.

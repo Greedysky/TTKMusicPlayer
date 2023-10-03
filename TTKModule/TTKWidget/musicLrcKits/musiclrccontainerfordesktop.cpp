@@ -159,7 +159,7 @@ void MusicLrcContainerForDesktop::setSingleLineTypeChanged()
     {
         m_lrcManagers[1]->show();
     }
-    m_lrcManagers[1]->setText(QString());
+    m_lrcManagers[1]->setText({});
 }
 
 void MusicLrcContainerForDesktop::createColorMenu(QMenu &menu)

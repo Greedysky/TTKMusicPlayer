@@ -48,7 +48,7 @@ QString QDlnaXml::toString() const
     TTK_D(QDlnaXml);
     if(!d->m_document)
     {
-        return QString();
+        return {};
     }
     return d->m_document->toString();
 }

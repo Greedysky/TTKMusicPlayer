@@ -78,7 +78,7 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                     info.m_songId = value["hash"].toString();
                     info.m_albumId = value["album_id"].toString();
 
-                    info.m_year = QString();
+                    info.m_year.clear();
                     info.m_trackNumber = "0";
 
                     MusicResultDataItem albumInfo;
@@ -109,7 +109,7 @@ void MusicKGQueryToplistRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 

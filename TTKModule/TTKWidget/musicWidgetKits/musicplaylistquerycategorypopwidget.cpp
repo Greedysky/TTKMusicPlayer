@@ -10,7 +10,7 @@
 MusicPlaylistQueryCategoryItem::MusicPlaylistQueryCategoryItem(QWidget *parent)
     : QWidget(parent)
 {
-    setStyleSheet(QString());
+    setStyleSheet({});
 }
 
 void MusicPlaylistQueryCategoryItem::setCategory(const MusicResultsCategory &category)

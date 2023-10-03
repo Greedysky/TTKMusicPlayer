@@ -122,7 +122,7 @@ void MusicVideoView::createRightMenu()
     QMenu menu(this);
     menu.setStyleSheet(TTK::UI::MenuStyle02);
 
-    menu.addAction(QString(), this, SLOT(play()))->setText(m_player->isPlaying() ? tr("Video Pause") : tr("Video Play"));
+    menu.addAction({}, this, SLOT(play()))->setText(m_player->isPlaying() ? tr("Video Pause") : tr("Video Play"));
     menu.addAction(tr("Video Stop"), this, SLOT(stop()));
     menu.addSeparator();
     menu.addAction(tr("Search"), this, SIGNAL(searchButtonClicked()));

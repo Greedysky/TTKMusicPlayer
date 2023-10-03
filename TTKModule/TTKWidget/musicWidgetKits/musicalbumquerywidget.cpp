@@ -282,7 +282,7 @@ void MusicAlbumQueryWidget::createLabels()
     topRightLayout->addWidget(marginBottmLabel, 2, 0);
     topRightWidget->setLayout(topRightLayout);
 
-    QRCodeQWidget *code = new QRCodeQWidget(QByteArray(), QSize(90, 90), topRightWidget);
+    QRCodeQWidget *code = new QRCodeQWidget({}, QSize(90, 90), topRightWidget);
     code->setMargin(2);
     code->setIcon(":/image/lb_app_logo", 0.23);
     topRightLayout->addWidget(code, 3, 2, 1, 6);

@@ -32,7 +32,7 @@ QString MusicAbstractQueryRequest::mapQueryServerString() const
     }
     else
     {
-        return QString();
+        return {};
     }
 }
 

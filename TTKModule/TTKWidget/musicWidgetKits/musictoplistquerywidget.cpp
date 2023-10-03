@@ -48,7 +48,7 @@ void MusicToplistQueryWidget::setSongName(const QString &name)
     MusicAbstractItemQueryWidget::setSongName(name);
     MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
     d->setQueryAllRecords(true);
-    d->startToSearch(MusicAbstractQueryRequest::QueryType::Other, QString());
+    d->startToSearch(MusicAbstractQueryRequest::QueryType::Other, {});
     createLabels();
 }
 

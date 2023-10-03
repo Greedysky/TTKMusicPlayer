@@ -309,15 +309,15 @@ void MusicReplayGainWidget::analysisOutput()
         QByteArray data = m_process->readLine();
         if(data.contains(GAIN_TRACKDB))
         {
-            data.replace(GAIN_TRACKDB, QByteArray());
-            data.replace("\r\n", QByteArray());
+            data.replace(GAIN_TRACKDB, {});
+            data.replace("\r\n", {});
             track = QString(data.trimmed());
         }
 
         if(data.contains(GAIN_ALBUMDB))
         {
-            data.replace(GAIN_ALBUMDB, QByteArray());
-            data.replace("\r\n", QByteArray());
+            data.replace(GAIN_ALBUMDB, {});
+            data.replace("\r\n", {});
             album = QString(data.trimmed());
         }
     }

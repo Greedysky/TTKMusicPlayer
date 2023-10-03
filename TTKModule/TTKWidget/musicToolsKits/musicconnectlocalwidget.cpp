@@ -225,7 +225,7 @@ void MusicConnectLocalWidget::updateDeviceInfo()
     {
         m_deviceButton->setEnabled(false);
         m_currentDeviceItem.clear();
-        updateDeviceDisplay(QString());
+        updateDeviceDisplay({});
     }
     else
     {
