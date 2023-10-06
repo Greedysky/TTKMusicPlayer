@@ -43,7 +43,7 @@ namespace TTKLockedPrivate {
         };
 
        /*!
-         * Object contsructor.
+         * Object constructor.
         */
         TTKLockedFile();
         explicit TTKLockedFile(const QString &name);
