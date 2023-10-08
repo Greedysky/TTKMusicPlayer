@@ -82,7 +82,7 @@ struct wavfmt_t
 static int64_t dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
 {
     char riff[4];
-    if(stdio_read(&riff, 1, sizeof(riff), fp) != sizeof(riff))
+    if(stdio_read(fp, &riff, 1, sizeof(riff)) != sizeof(riff))
     {
         return -1;
     }
@@ -93,14 +93,14 @@ static int64_t dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
     }
 
     uint32_t size;
-    if(stdio_read(&size, 1, sizeof(size), fp) != sizeof(size))
+    if(stdio_read(fp, &size, 1, sizeof(size)) != sizeof(size))
     {
         return -1;
     }
     size = u32_LE(size);
 
     char type[4];
-    if(stdio_read(type, 1, sizeof(type), fp) != sizeof(type))
+    if(stdio_read(fp, type, 1, sizeof(type)) != sizeof(type))
     {
         return -1;
     }
@@ -112,7 +112,7 @@ static int64_t dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
 
     // fmt subchunk
     char fmtid[4];
-    if(stdio_read(fmtid, 1, sizeof(fmtid), fp) != sizeof(fmtid))
+    if(stdio_read(fp, fmtid, 1, sizeof(fmtid)) != sizeof(fmtid))
     {
         return -1;
     }
@@ -123,13 +123,13 @@ static int64_t dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
     }
 
     uint32_t fmtsize;
-    if(stdio_read(&fmtsize, 1, sizeof(fmtsize), fp) != sizeof(fmtsize))
+    if(stdio_read(fp, &fmtsize, 1, sizeof(fmtsize)) != sizeof(fmtsize))
     {
         return -1;
     }
     fmtsize = u32_LE(fmtsize);
 
-    if(stdio_read(fmt, 1, sizeof(wavfmt_t), fp) != sizeof(wavfmt_t))
+    if(stdio_read(fp, fmt, 1, sizeof(wavfmt_t)) != sizeof(wavfmt_t))
     {
         return -1;
     }
@@ -150,7 +150,7 @@ static int64_t dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
     stdio_seek(fp, (int)fmtsize - (int)sizeof(wavfmt_t), SEEK_CUR);
     // data subchunk
     char data[4];
-    if(stdio_read(data, 1, sizeof(data), fp) != sizeof(data))
+    if(stdio_read(fp, data, 1, sizeof(data)) != sizeof(data))
     {
         return -1;
     }
@@ -161,7 +161,7 @@ static int64_t dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
     }
 
     uint32_t datasize;
-    if(stdio_read(&datasize, 1, sizeof(datasize), fp) != sizeof(datasize))
+    if(stdio_read(fp, &datasize, 1, sizeof(datasize)) != sizeof(datasize))
     {
         return -1;
     }
@@ -350,7 +350,7 @@ bool DCAHelper::initialize()
     }
 
     // prebuffer 1st piece, and get decoded samplerate and nchannels
-    const size_t rd = stdio_read(m_info->inbuf, 1, BUFFER_SIZE, m_info->file);
+    const size_t rd = stdio_read(m_info->file, m_info->inbuf, 1, BUFFER_SIZE);
     const int len = dca_decode_data(m_info, m_info->inbuf, rd, 1);
     if(!len)
     {
@@ -506,7 +506,7 @@ qint64 DCAHelper::read(unsigned char *data, qint64 maxSize)
 
         if(maxSize > 0 && !m_info->remaining)
         {
-            const size_t rd = stdio_read(m_info->inbuf, 1, BUFFER_SIZE, m_info->file);
+            const size_t rd = stdio_read(m_info->file, m_info->inbuf, 1, BUFFER_SIZE);
             if(!dca_decode_data(m_info, m_info->inbuf, rd, 0))
             {
                 break;

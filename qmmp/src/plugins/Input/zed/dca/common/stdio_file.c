@@ -26,7 +26,7 @@ void stdio_close(FILE *stream)
     fclose(stream);
 }
 
-size_t stdio_read(void *ptr, size_t size, size_t nmemb, FILE *stream)
+size_t stdio_read(FILE *stream, void *ptr, size_t size, size_t nmemb)
 {
     return fread(ptr, size, nmemb, stream);
 }
