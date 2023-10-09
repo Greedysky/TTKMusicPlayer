@@ -49,6 +49,8 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) noexcept { ret
 // prevent rvalue arguments:
 template <typename T>
 void qAsConst(const T &&) = delete;
+#elif TTK_QT_VERSION_CHECK(6,6,0)
+#define qAsConst std::as_const
 #endif
 
 
