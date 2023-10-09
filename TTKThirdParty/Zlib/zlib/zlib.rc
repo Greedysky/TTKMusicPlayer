@@ -30,7 +30,6 @@ BEGIN
                 VALUE "CompanyName", TTK_RC_COMPANY
                 VALUE "FileDescription", "zlib"
                 VALUE "FileVersion", TTK_PRODUCTVERSION
-                VALUE "LegalCopyright", TTK_RC_COPYRIGHT
                 VALUE "ProductName", "zlib"
                 VALUE "ProductVersion", TTK_PRODUCTVERSION
             END
