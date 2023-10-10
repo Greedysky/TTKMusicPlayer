@@ -105,9 +105,9 @@ void MusicRunTimeManager::run() const
     //detect the current network state
     G_NETWORK_PTR->start();
 
-    MusicConfigManager xml;
-    xml.fromFile();
-    xml.readBuffer();
+    MusicConfigManager manager;
+    manager.fromFile(COFIG_PATH_FULL);
+    manager.readBuffer();
 
     TTK::checkCacheSize();
     G_NETWORK_PTR->setBlockNetWork(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());

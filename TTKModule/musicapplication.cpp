@@ -1076,19 +1076,22 @@ void MusicApplication::readSystemConfigFromFile()
     int value = TTK_NORMAL_LEVEL;
     //Path configuration song
     MusicSongItemList songs;
-    MusicTKPLConfigManager manager;
-    if(manager.fromFile())
     {
-        manager.readBuffer(songs);
+        MusicTKPLConfigManager manager;
+        if(manager.fromFile(PLAYLIST_PATH_FULL))
+        {
+            manager.readBuffer(songs);
+        }
     }
     const bool success = m_songTreeWidget->addMusicItemList(songs);
 
-    MusicConfigManager xml;
-    if(!xml.fromFile())
+    MusicConfigManager manager;
+    if(!manager.fromFile(COFIG_PATH_FULL))
     {
         return;
     }
-    xml.readBuffer();
+
+    manager.readBuffer();
     m_applicationObject->loadNetWorkSetting();
 
     switch(TTKStaticCast(TTK::PlayMode, G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt()))
@@ -1148,7 +1151,7 @@ void MusicApplication::readSystemConfigFromFile()
 
     //Set the desktop lrc should be shown
     m_rightAreaWidget->setWindowLrcTypeChanged();
-    G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, xml.readShowDesktopLrcGeometry());
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, manager.readShowDesktopLrcGeometry());
 
     //Set the current background color and alpha value
     m_topAreaWidget->setBackgroundParameter();
@@ -1193,7 +1196,7 @@ void MusicApplication::readSystemConfigFromFile()
     m_rightAreaWidget->setDestopLrcVisible(value);
 
     //Reset geometry
-    setGeometry(xml.readWindowGeometry());
+    setGeometry(manager.readWindowGeometry());
 
     //Reset window concise
     if(G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
@@ -1214,7 +1217,12 @@ void MusicApplication::readSystemConfigFromFile()
 
 void MusicApplication::writeSystemConfigToFile()
 {
-    MusicConfigManager xml;
+    MusicConfigManager manager;
+    if(!manager.load(COFIG_PATH_FULL))
+    {
+        return;
+    }
+
     G_SETTING_PTR->setValue(MusicSettingManager::WidgetPosition, pos());
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicIndex, TTKStaticCast(int, m_player->enhanced()));
     G_SETTING_PTR->setValue(MusicSettingManager::PlayMode, TTKStaticCast(int, m_playlist->playbackMode()));
@@ -1238,8 +1246,15 @@ void MusicApplication::writeSystemConfigToFile()
     G_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparent, m_topAreaWidget->backgroundListAlpha());
     G_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentEnable, m_topAreaWidget->backgroundTransparentEnable());
     G_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, m_rightAreaWidget->destopLrcVisible());
-    xml.writeBuffer();
+    manager.writeBuffer();
 
-    MusicTKPLConfigManager manager;
-    manager.writeBuffer(m_songTreeWidget->musicItemList(), PLAYLIST_PATH_FULL);
+    {
+        MusicTKPLConfigManager manager;
+        if(!manager.load(PLAYLIST_PATH_FULL))
+        {
+            return;
+        }
+
+        manager.writeBuffer(m_songTreeWidget->musicItemList());
+    }
 }

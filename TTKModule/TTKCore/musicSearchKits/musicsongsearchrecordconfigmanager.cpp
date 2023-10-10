@@ -22,11 +22,6 @@ void MusicSongSearchRecordConfigManager::readBuffer(MusicSearchRecordList &items
 
 void MusicSongSearchRecordConfigManager::writeBuffer(const MusicSearchRecordList &items)
 {
-    if(!toFile(SEARCH_PATH_FULL))
-    {
-        return;
-    }
-
     createProcessingInstruction();
     QDomElement rootDom = createRoot(TTK_APP_NAME);
     QDomElement recordDom = writeDomNode(rootDom, "record");
@@ -36,6 +31,5 @@ void MusicSongSearchRecordConfigManager::writeBuffer(const MusicSearchRecordList
         writeDomElementText(recordDom, "value", {"name", record.m_name}, record.m_timestamp);
     }
 
-    QTextStream out(m_file);
-    m_document->save(out, 4);
+    save();
 }

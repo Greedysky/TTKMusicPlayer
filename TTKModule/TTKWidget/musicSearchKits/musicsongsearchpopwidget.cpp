@@ -129,14 +129,14 @@ void MusicSongSearchPopWidget::initialize(QWidget *parent)
     setControlEnabled(true);
     m_popTableWidget->removeItems();
 
-    MusicSongSearchRecordConfigManager search(this);
-    if(!search.fromFile())
+    MusicSongSearchRecordConfigManager manager(this);
+    if(!manager.fromFile(SEARCH_PATH_FULL))
     {
         return;
     }
 
     MusicSearchRecordList records;
-    search.readBuffer(records);
+    manager.readBuffer(records);
 
     const int count = records.count();
     resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < MAX_ITEM_COUNT ? count * TTK_ITEM_SIZE_M + 45 : (MAX_ITEM_COUNT + 1) * TTK_ITEM_SIZE_M + 8));
@@ -206,13 +206,13 @@ QString MusicSongSearchPopWidget::utcTimeToLocal(const QString &time) const
 
 void MusicSongSearchPopWidget::clearButtonClicked()
 {
-    MusicSongSearchRecordConfigManager search(this);
-    if(!search.fromFile())
+    MusicSongSearchRecordConfigManager manager(this);
+    if(!manager.load(SEARCH_PATH_FULL))
     {
         return;
     }
 
-    search.writeBuffer(MusicSearchRecordList());
+    manager.writeBuffer(MusicSearchRecordList());
     close();
 }
 

@@ -12,13 +12,8 @@ void MusicSkinConfigManager::readBuffer(MusicSkinItem &item)
     item.m_useCount = readXmlAttributeByTagName("useCount").toInt();
 }
 
-void MusicSkinConfigManager::writeBuffer(const MusicSkinItem &item, const QString &path)
+void MusicSkinConfigManager::writeBuffer(const MusicSkinItem &item)
 {
-    if(!toFile(path))
-    {
-        return;
-    }
-
     createProcessingInstruction();
     QDomElement rootDom = createRoot("TTKSkin");
 
@@ -26,6 +21,5 @@ void MusicSkinConfigManager::writeBuffer(const MusicSkinItem &item, const QStrin
     writeDomElement(rootDom, "name", {"value", item.m_name});
     writeDomElement(rootDom, "useCount", {"value", item.m_useCount});
 
-    QTextStream out(m_file);
-    m_document->save(out, 4);
+    save();
 }

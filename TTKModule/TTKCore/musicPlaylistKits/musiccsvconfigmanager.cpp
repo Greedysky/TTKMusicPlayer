@@ -36,9 +36,9 @@ bool MusicCSVConfigManager::readBuffer(MusicSongItemList &items)
     return true;
 }
 
-bool MusicCSVConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
+bool MusicCSVConfigManager::writeBuffer(const MusicSongItemList &items)
 {
-    if(items.isEmpty() || !toFile(path))
+    if(items.isEmpty())
     {
         return false;
     }

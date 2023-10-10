@@ -70,9 +70,9 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
     return true;
 }
 
-bool MusicPLSConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
+bool MusicPLSConfigManager::writeBuffer(const MusicSongItemList &items)
 {
-    if(items.isEmpty() || !toFile(path))
+    if(items.isEmpty())
     {
         return false;
     }

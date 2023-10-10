@@ -23,6 +23,15 @@
 #include "musicsong.h"
 #include "musicnetworkdefines.h"
 
+namespace TTK
+{
+    /*!
+     * Mapping file path from enum type.
+     */
+    TTK_MODULE_EXPORT QString toString(Record type);
+}
+
+
 /*! @brief The class of the download record manager.
  * @author Greedysky <greedysky@163.com>
  */
@@ -34,21 +43,7 @@ public:
     /*!
      * Object constructor.
      */
-    explicit MusicDownloadRecordConfigManager(TTK::Record type, QObject *parent = nullptr);
-
-    /*!
-     * Set config type.
-     */
-    inline void setType(TTK::Record type) { m_type = type; }
-    /*!
-     * Get config type.
-     */
-    inline TTK::Record type() const { return m_type; }
-
-    /*!
-     * Read datas from xml file.
-     */
-    inline bool fromFile() { return TTKXmlDocument::fromFile(mappingFilePathFromEnum()); }
+    explicit MusicDownloadRecordConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read datas from config file.
@@ -58,14 +53,6 @@ public:
      * Write datas into config file.
      */
     void writeBuffer(const MusicSongList &items);
-
-private:
-    /*!
-     * Mapping file path from enum type.
-     */
-    QString mappingFilePathFromEnum() const;
-
-    TTK::Record m_type;
 
 };
 

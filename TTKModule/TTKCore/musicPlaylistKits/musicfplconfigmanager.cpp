@@ -84,9 +84,8 @@ bool MusicFPLConfigManager::readBuffer(MusicSongItemList &items)
     return true;
 }
 
-bool MusicFPLConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
+bool MusicFPLConfigManager::writeBuffer(const MusicSongItemList &items)
 {
     Q_UNUSED(items);
-    Q_UNUSED(path);
     return false;
 }

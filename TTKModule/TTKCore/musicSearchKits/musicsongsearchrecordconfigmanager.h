@@ -46,11 +46,6 @@ public:
     explicit MusicSongSearchRecordConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read datas from xml file.
-     */
-    inline bool fromFile() { return TTKXmlDocument::fromFile(SEARCH_PATH_FULL); }
-
-    /*!
      * Read datas from config file.
      */
     void readBuffer(MusicSearchRecordList &items);

@@ -41,9 +41,9 @@ bool MusicTXTConfigManager::readBuffer(MusicSongItemList &items)
     return true;
 }
 
-bool MusicTXTConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
+bool MusicTXTConfigManager::writeBuffer(const MusicSongItemList &items)
 {
-    if(items.isEmpty() || !toFile(path))
+    if(items.isEmpty())
     {
         return false;
     }

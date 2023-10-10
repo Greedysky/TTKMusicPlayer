@@ -54,9 +54,9 @@ bool MusicXSPFConfigManager::readBuffer(MusicSongItemList &items)
     return true;
 }
 
-bool MusicXSPFConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
+bool MusicXSPFConfigManager::writeBuffer(const MusicSongItemList &items)
 {
-    if(items.isEmpty() || !toFile(path))
+    if(items.isEmpty())
     {
         return false;
     }
@@ -83,7 +83,6 @@ bool MusicXSPFConfigManager::writeBuffer(const MusicSongItemList &items, const Q
         }
     }
 
-    QTextStream out(m_file);
-    m_document->save(out, 4);
+    save();
     return true;
 }

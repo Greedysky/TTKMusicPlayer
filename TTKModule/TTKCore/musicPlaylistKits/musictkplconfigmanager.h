@@ -36,18 +36,13 @@ public:
     MusicTKPLConfigManager();
 
     /*!
-     * Read datas from xml file by given name.
-     */
-    inline bool fromFile(const QString &name = PLAYLIST_PATH_FULL) { return TTKXmlDocument::fromFile(name); }
-
-    /*!
      * Read datas from config file.
      */
     virtual bool readBuffer(MusicSongItemList &items) override final;
     /*!
      * Write datas into config file.
      */
-    virtual bool writeBuffer(const MusicSongItemList &items, const QString &path) override final;
+    virtual bool writeBuffer(const MusicSongItemList &items) override final;
 
 private:
     /*!

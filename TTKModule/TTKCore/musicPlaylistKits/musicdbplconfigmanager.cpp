@@ -192,9 +192,8 @@ bool MusicDBPLConfigManager::readBuffer(MusicSongItemList &items)
     return true;
 }
 
-bool MusicDBPLConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
+bool MusicDBPLConfigManager::writeBuffer(const MusicSongItemList &items)
 {
     Q_UNUSED(items);
-    Q_UNUSED(path);
     return false;
 }

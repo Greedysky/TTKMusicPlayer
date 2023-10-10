@@ -45,20 +45,22 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
         return;
     }
 
-    MusicSongSearchRecordConfigManager search(this);
-    if(!search.fromFile())
+    MusicSongSearchRecordConfigManager manager(this);
+    if(!manager.fromFile(SEARCH_PATH_FULL))
     {
         return;
     }
 
     MusicSearchRecordList records;
-    search.readBuffer(records);
+    manager.readBuffer(records);
 
     MusicSearchRecord record;
     record.m_name = text;
     record.m_timestamp = QString::number(TTKTime::timestamp());
     records.insert(0, record);
-    search.writeBuffer(records);
+
+    manager.load(SEARCH_PATH_FULL);
+    manager.writeBuffer(records);
 
     if(!m_networkRequest)
     {

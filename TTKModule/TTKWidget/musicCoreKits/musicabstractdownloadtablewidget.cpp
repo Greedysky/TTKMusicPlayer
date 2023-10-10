@@ -19,8 +19,13 @@ MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *pare
 MusicAbstractDownloadTableWidget::~MusicAbstractDownloadTableWidget()
 {
     G_CONNECTION_PTR->removeValue(this);
-    MusicDownloadRecordConfigManager xml(m_type, this);
-    xml.writeBuffer(*m_songs);
+    MusicDownloadRecordConfigManager manager(this);
+    if(!manager.load(TTK::toString(m_type)))
+    {
+        return;
+    }
+
+    manager.writeBuffer(*m_songs);
     removeItems();
 
     delete m_progressBarDelegate;
@@ -30,13 +35,13 @@ void MusicAbstractDownloadTableWidget::updateSongsList(const MusicSongList &song
 {
     Q_UNUSED(songs);
 
-    MusicDownloadRecordConfigManager xml(m_type, this);
-    if(!xml.fromFile())
+    MusicDownloadRecordConfigManager manager(this);
+    if(!manager.fromFile(TTK::toString(m_type)))
     {
         return;
     }
-    xml.readBuffer(*m_songs);
 
+    manager.readBuffer(*m_songs);
     setRowCount(m_songs->count()); //reset row count
 
     for(int i = 0; i < m_songs->count(); ++i)

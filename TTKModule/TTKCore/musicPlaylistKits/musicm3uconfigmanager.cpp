@@ -56,9 +56,9 @@ bool MusicM3UConfigManager::readBuffer(MusicSongItemList &items)
     return true;
 }
 
-bool MusicM3UConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
+bool MusicM3UConfigManager::writeBuffer(const MusicSongItemList &items)
 {
-    if(items.isEmpty() || !toFile(path))
+    if(items.isEmpty())
     {
         return false;
     }

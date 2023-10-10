@@ -42,7 +42,7 @@ public:
     /*!
      * Write datas into config file.
      */
-    virtual bool writeBuffer(const MusicSongItemList &items, const QString &path) override final;
+    virtual bool writeBuffer(const MusicSongItemList &items) override final;
 
 private:
     /*!

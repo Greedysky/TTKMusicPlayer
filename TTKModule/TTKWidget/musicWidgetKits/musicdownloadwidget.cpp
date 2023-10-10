@@ -361,14 +361,14 @@ void MusicDownloadWidget::startRequestMusic(const TTK::MusicSongInformation &inf
             const QString &downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MUSIC_DIR_FULL : m_ui->downloadPathEdit->text();
             QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
 
-            MusicDownloadRecordConfigManager down(TTK::Record::NormalDownload, this);
-            if(!down.fromFile())
+            MusicDownloadRecordConfigManager manager(this);
+            if(!manager.fromFile(TTK::toString(TTK::Record::NormalDownload)))
             {
                 return;
             }
 
             MusicSongList records;
-            down.readBuffer(records);
+            manager.readBuffer(records);
 
             MusicSong record;
             record.setName(musicSong);
@@ -376,7 +376,9 @@ void MusicDownloadWidget::startRequestMusic(const TTK::MusicSongInformation &inf
             record.setSizeStr(prop.m_size);
             record.setAddTimeStr("-1");
             records << record;
-            down.writeBuffer(records);
+
+            manager.load(TTK::toString(TTK::Record::NormalDownload));
+            manager.writeBuffer(records);
 
             if(QFile::exists(downloadName))
             {

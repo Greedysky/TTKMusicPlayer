@@ -48,7 +48,7 @@ public:
     /*!
      * Write datas from file by given name.
      */
-    inline bool toFile(const QString &name)
+    inline bool load(const QString &name)
     {
         m_file.setFileName(name);
         return m_file.open(QIODevice::WriteOnly);
@@ -83,7 +83,7 @@ public:
      * Write datas into config file.
      * Subclass should implement this function.
      */
-    virtual bool writeBuffer(const MusicSongItemList &items, const QString &path) = 0;
+    virtual bool writeBuffer(const MusicSongItemList &items) = 0;
 
 };
 

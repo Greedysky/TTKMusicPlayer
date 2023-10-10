@@ -30,9 +30,9 @@ bool MusicWPLConfigManager::readBuffer(MusicSongItemList &items)
     return true;
 }
 
-bool MusicWPLConfigManager::writeBuffer(const MusicSongItemList &items, const QString &path)
+bool MusicWPLConfigManager::writeBuffer(const MusicSongItemList &items)
 {
-    if(items.isEmpty() || !toFile(path))
+    if(items.isEmpty())
     {
         return false;
     }
@@ -57,8 +57,7 @@ bool MusicWPLConfigManager::writeBuffer(const MusicSongItemList &items, const QS
         }
     }
 
-    QTextStream out(m_file);
-    m_document->save(out, 4);
+    save();
     return true;
 }
 

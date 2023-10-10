@@ -40,7 +40,7 @@ void MusicFMConfigManager::readBuffer(MusicFMCategoryList &items)
 
 void MusicFMConfigManager::writeBuffer(const MusicFMCategoryList &items)
 {
-    if(!toFile(FMRADIO_PATH_FULL) || items.isEmpty())
+    if(items.isEmpty())
     {
         return;
     }
@@ -58,8 +58,7 @@ void MusicFMConfigManager::writeBuffer(const MusicFMCategoryList &items)
                                                       {"url", channel.m_url}});
     }
 
-    QTextStream out(m_file);
-    m_document->save(out, 4);
+    save();
 }
 
 
@@ -279,8 +278,10 @@ void MusicTTKFMRadioPlayWidget::initialize()
     MusicFMCategoryList categorys;
     {
         MusicFMConfigManager manager;
-        manager.fromFile(":/data/fmlist");
-        manager.readBuffer(categorys);
+        if(manager.fromFile(":/data/fmlist"))
+        {
+            manager.readBuffer(categorys);
+        }
     }
 
     {
@@ -403,8 +404,11 @@ void MusicTTKFMRadioPlayWidget::addButtonClicked()
         it->setData(1, TTK_DISPLAY_ROLE, channel.m_location);
 
         MusicFMConfigManager manager;
-        manager.writeBuffer(m_favItem);
-        MusicToastLabel::popup(tr("Add current channel success"));
+        if(manager.load(FMRADIO_PATH_FULL))
+        {
+            manager.writeBuffer(m_favItem);
+            MusicToastLabel::popup(tr("Add current channel success"));
+        }
     }
 }
 
@@ -446,8 +450,11 @@ void MusicTTKFMRadioPlayWidget::deleteButtonClicked()
     }
 
     MusicFMConfigManager manager;
-    manager.writeBuffer(m_favItem);
-    MusicToastLabel::popup(tr("Delete current channel success"));
+    if(manager.load(FMRADIO_PATH_FULL))
+    {
+        manager.writeBuffer(m_favItem);
+        MusicToastLabel::popup(tr("Delete current channel success"));
+    }
 }
 
 void MusicTTKFMRadioPlayWidget::infoButtonClicked()

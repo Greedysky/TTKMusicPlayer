@@ -80,7 +80,7 @@ public:
     /*!
      * Write datas into config file.
      */
-    void writeBuffer(const MusicSkinItem &item, const QString &path);
+    void writeBuffer(const MusicSkinItem &item);
 
 };
 

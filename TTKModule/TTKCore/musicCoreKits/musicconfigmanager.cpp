@@ -229,11 +229,6 @@ void MusicConfigManager::writeBuffer()
     const int downloadServerIndex = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
     const QString &downloadDownloadLimitSize = G_SETTING_PTR->value(MusicSettingManager::DownloadDownloadLimitSize).toString();
     const QString &downloadUploadLimitSize = G_SETTING_PTR->value(MusicSettingManager::DownloadUploadLimitSize).toString();
-    //
-    if(!toFile(COFIG_PATH_FULL))
-    {
-        return;
-    }
 
     createProcessingInstruction();
     QDomElement rootDom = createRoot(TTK_APP_NAME);
@@ -346,8 +341,7 @@ void MusicConfigManager::writeBuffer()
     writeDomElement(downloadSettingDom, "downloadDownloadLimitSize", {"value", downloadDownloadLimitSize});
     writeDomElement(downloadSettingDom, "downloadUploadLimitSize", {"value", downloadUploadLimitSize});
 
-    QTextStream out(m_file);
-    m_document->save(out, 4);
+    save();
 }
 
 QRect MusicConfigManager::readWindowGeometry() const

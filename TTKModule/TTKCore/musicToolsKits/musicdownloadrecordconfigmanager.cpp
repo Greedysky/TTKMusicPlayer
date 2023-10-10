@@ -1,8 +1,22 @@
 #include "musicdownloadrecordconfigmanager.h"
 
-MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(TTK::Record type, QObject *parent)
-    : TTKXmlDocument(parent),
-      m_type(type)
+namespace TTK
+{
+QString toString(Record type)
+{
+    switch(type)
+    {
+        case TTK::Record::NormalDownload: return NORMAL_DOWN_PATH_FULL;
+        case TTK::Record::CloudDownload: return CLOUD_DOWN_PATH_FULL;
+        case TTK::Record::CloudUpload: return CLOUD_UP_PATH_FULL;
+        default: return {};
+    }
+}
+}
+
+
+MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(QObject *parent)
+    : TTKXmlDocument(parent)
 {
 
 }
@@ -25,11 +39,6 @@ void MusicDownloadRecordConfigManager::readBuffer(MusicSongList &items)
 
 void MusicDownloadRecordConfigManager::writeBuffer(const MusicSongList &items)
 {
-    if(!toFile(mappingFilePathFromEnum()))
-    {
-        return;
-    }
-
     createProcessingInstruction();
     QDomElement rootDom = createRoot(TTK_APP_NAME);
     QDomElement recordDom = writeDomNode(rootDom, "record");
@@ -41,17 +50,5 @@ void MusicDownloadRecordConfigManager::writeBuffer(const MusicSongList &items)
                                                       {"time", record.addTimeStr()}}, record.path());
     }
 
-    QTextStream out(m_file);
-    m_document->save(out, 4);
-}
-
-QString MusicDownloadRecordConfigManager::mappingFilePathFromEnum() const
-{
-    switch(m_type)
-    {
-        case TTK::Record::NormalDownload: return NORMAL_DOWN_PATH_FULL;
-        case TTK::Record::CloudDownload: return CLOUD_DOWN_PATH_FULL;
-        case TTK::Record::CloudUpload: return CLOUD_UP_PATH_FULL;
-        default: return {};
-    }
+    save();
 }
