@@ -20,6 +20,7 @@
  ***************************************************************************/
 
 #include "musicsong.h"
+#include "ttkabstractbufferinterface.h"
 
 /*! @brief The class of the playlist renderer.
  * @author Greedysky <greedysky@163.com>
@@ -37,15 +38,6 @@ public:
     virtual ~MusicPlaylistRenderer() = default;
 
     /*!
-     * Read datas from file by given name.
-     */
-    inline bool fromFile(const QString &name)
-    {
-        m_file.setFileName(name);
-        return m_file.open(QIODevice::ReadOnly);
-    }
-
-    /*!
      * Write datas from file by given name.
      */
     inline bool load(const QString &name)
@@ -54,37 +46,20 @@ public:
         return m_file.open(QIODevice::WriteOnly);
     }
 
+    /*!
+     * Read datas from file by given name.
+     */
+    inline bool fromFile(const QString &name)
+    {
+        m_file.setFileName(name);
+        return m_file.open(QIODevice::ReadOnly);
+    }
+
 protected:
     QFile m_file;
 
 };
 
-/*! @brief The class of the playlist interface.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicPlaylistInterface
-{
-public:
-    /*!
-     * Object constructor.
-     */
-    MusicPlaylistInterface() = default;
-    /*!
-     * Object destructor.
-     */
-    virtual ~MusicPlaylistInterface() = default;
-
-    /*!
-     * Read datas from config file.
-     * Subclass should implement this function.
-     */
-    virtual bool readBuffer(MusicSongItemList &items) = 0;
-    /*!
-     * Write datas into config file.
-     * Subclass should implement this function.
-     */
-    virtual bool writeBuffer(const MusicSongItemList &items) = 0;
-
-};
+using MusicPlaylistInterface = TTKAbstractReadWriteInterface<MusicSongItemList>;
 
 #endif // MUSICPLAYLISTINTERFACE_H

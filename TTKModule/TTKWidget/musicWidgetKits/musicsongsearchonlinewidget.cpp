@@ -59,7 +59,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     record.m_timestamp = QString::number(TTKTime::timestamp());
     records.insert(0, record);
 
-    manager.load(SEARCH_PATH_FULL);
+    manager.reset();
     manager.writeBuffer(records);
 
     if(!m_networkRequest)

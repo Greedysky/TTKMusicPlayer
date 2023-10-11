@@ -11,8 +11,22 @@ MusicConfigManager::MusicConfigManager(QObject *parent)
 
 }
 
-void MusicConfigManager::readBuffer() const
+bool MusicConfigManager::readBuffer()
 {
+    int items = 0;
+    return readBuffer(items);
+}
+
+bool MusicConfigManager::writeBuffer()
+{
+    int items = 0;
+    return writeBuffer(items);
+}
+
+bool MusicConfigManager::readBuffer(int &items)
+{
+    Q_UNUSED(items);
+
     G_SETTING_PTR->setValue(MusicSettingManager::ConfigVersion, readXmlAttributeByTagName("configVersion"));
     G_SETTING_PTR->setValue(MusicSettingManager::PlayMode, readXmlAttributeByTagName("playMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::Volume, readXmlAttributeByTagName("playVolume").toInt());
@@ -128,10 +142,14 @@ void MusicConfigManager::readBuffer() const
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadServerIndex, readXmlAttributeByTagName("downloadServerIndex").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadDownloadLimitSize, readXmlAttributeByTagName("downloadDownloadLimitSize"));
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadUploadLimitSize, readXmlAttributeByTagName("downloadUploadLimitSize"));
+
+    return true;
 }
 
-void MusicConfigManager::writeBuffer()
+bool MusicConfigManager::writeBuffer(const int &items)
 {
+    Q_UNUSED(items);
+
     const int playMode = G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt();
     const int volume = G_SETTING_PTR->value(MusicSettingManager::Volume).toInt();
     const QStringList &lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
@@ -342,6 +360,7 @@ void MusicConfigManager::writeBuffer()
     writeDomElement(downloadSettingDom, "downloadUploadLimitSize", {"value", downloadUploadLimitSize});
 
     save();
+    return true;
 }
 
 QRect MusicConfigManager::readWindowGeometry() const

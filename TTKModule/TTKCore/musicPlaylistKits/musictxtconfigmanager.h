@@ -24,7 +24,7 @@
 /*! @brief The class of the txt playlist config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicTXTConfigManager : public MusicPlaylistRenderer, private MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicTXTConfigManager : public MusicPlaylistRenderer, public MusicPlaylistInterface
 {
     TTK_DECLARE_MODULE(MusicTXTConfigManager)
 public:
@@ -34,11 +34,11 @@ public:
     MusicTXTConfigManager();
 
     /*!
-     * Read datas from config file.
+     * Read datas from buffer.
      */
     virtual bool readBuffer(MusicSongItemList &items) override final;
     /*!
-     * Write datas into config file.
+     * Write datas into buffer.
      */
     virtual bool writeBuffer(const MusicSongItemList &items) override final;
 

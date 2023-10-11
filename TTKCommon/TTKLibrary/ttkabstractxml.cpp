@@ -113,6 +113,16 @@ void TTKXmlDocument::save() const
     m_document->save(out, 4);
 }
 
+bool TTKXmlDocument::reset()
+{
+    if(!m_file || !m_document)
+    {
+        return false;
+    }
+
+    return load(m_file->fileName());
+}
+
 bool TTKXmlDocument::fromFile(const QString &name)
 {
     delete m_file;

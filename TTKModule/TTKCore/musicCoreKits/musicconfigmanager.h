@@ -26,7 +26,7 @@
 /*! @brief The class of the xml config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicConfigManager : public TTKXmlDocument
+class TTK_MODULE_EXPORT MusicConfigManager : public TTKXmlDocument, public TTKAbstractReadWriteInterface<int>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicConfigManager)
@@ -37,13 +37,13 @@ public:
     explicit MusicConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read datas from config file.
+     * Read datas from buffer.
      */
-    void readBuffer() const;
+    bool readBuffer();
     /*!
-     * Write datas into config file.
+     * Write datas into buffer.
      */
-    void writeBuffer();
+    bool writeBuffer();
 
     /*!
      * Read window widget Geometry Config.
@@ -53,6 +53,16 @@ public:
      * Read Show Desktop Lrc Geometry Config.
      */
     QPoint readShowDesktopLrcGeometry() const;
+
+private:
+    /*!
+     * Read datas from buffer.
+     */
+    virtual bool readBuffer(int &items) override final;
+    /*!
+     * Write datas into buffer.
+     */
+    virtual bool writeBuffer(const int &items) override final;
 
 };
 

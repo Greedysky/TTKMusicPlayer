@@ -35,7 +35,7 @@ TTK_DECLARE_LIST(MusicSearchRecord);
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSongSearchRecordConfigManager : public TTKXmlDocument
+class TTK_MODULE_EXPORT MusicSongSearchRecordConfigManager : public TTKXmlDocument, public TTKAbstractReadWriteInterface<MusicSearchRecordList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongSearchRecordConfigManager)
@@ -46,13 +46,13 @@ public:
     explicit MusicSongSearchRecordConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read datas from config file.
+     * Read datas from buffer.
      */
-    void readBuffer(MusicSearchRecordList &items);
+    virtual bool readBuffer(MusicSearchRecordList &items) override final;
     /*!
-     * Write datas into config file.
+     * Write datas into buffer.
      */
-    void writeBuffer(const MusicSearchRecordList &items);
+    virtual bool writeBuffer(const MusicSearchRecordList &items) override final;
 
 };
 

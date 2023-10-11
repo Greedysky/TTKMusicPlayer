@@ -25,7 +25,7 @@
 /*! @brief The class of the asx playlist config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicASXConfigManager : public TTKXmlDocument, private MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicASXConfigManager : public TTKXmlDocument, public MusicPlaylistInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicASXConfigManager)
@@ -36,11 +36,11 @@ public:
     MusicASXConfigManager();
 
     /*!
-     * Read datas from config file.
+     * Read datas from buffer.
      */
     virtual bool readBuffer(MusicSongItemList &items) override final;
     /*!
-     * Write datas into config file.
+     * Write datas into buffer.
      */
     virtual bool writeBuffer(const MusicSongItemList &items) override final;
 

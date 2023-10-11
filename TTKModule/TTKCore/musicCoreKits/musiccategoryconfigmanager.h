@@ -46,7 +46,7 @@ TTK_DECLARE_LIST(MusicResultsCategory);
 /*! @brief The class of the category config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicCategoryConfigManager : public TTKXmlDocument
+class TTK_MODULE_EXPORT MusicCategoryConfigManager : public TTKXmlDocument, public TTKAbstractReadInterface<MusicResultsCategoryList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCategoryConfigManager)
@@ -62,7 +62,7 @@ public:
     /*!
      * Object constructor.
      */
-    explicit MusicCategoryConfigManager(QObject *parent = nullptr);
+    explicit MusicCategoryConfigManager(const QString &key, QObject *parent = nullptr);
 
     /*!
      * Read datas from xml file by given name.
@@ -70,9 +70,12 @@ public:
     bool fromFile(Category type);
 
     /*!
-     * Read datas from config file.
+     * Read datas from buffer.
      */
-    void readBuffer(MusicResultsCategoryList &items, const QString &key);
+    virtual bool readBuffer(MusicResultsCategoryList &items) override final;
+
+private:
+    QString m_type;
 
 };
 

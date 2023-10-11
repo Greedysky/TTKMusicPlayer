@@ -25,6 +25,7 @@ win32{
     QT += xml
     msvc{
         HEADERS += \
+            $$PWD/TTKLibrary/ttkabstractbufferinterface.h \
             $$PWD/TTKLibrary/ttkabstractmovedialog.h \
             $$PWD/TTKLibrary/ttkabstractmoveresizewidget.h \
             $$PWD/TTKLibrary/ttkabstractmovewidget.h \

@@ -59,6 +59,7 @@ HEADERS += \
     $$PWD/../ttkversion.h
 
 HEADERS += \
+    $$PWD/ttkabstractbufferinterface.h \
     $$PWD/ttkabstractmovedialog.h \
     $$PWD/ttkabstractmoveresizewidget.h \
     $$PWD/ttkabstractmovewidget.h \

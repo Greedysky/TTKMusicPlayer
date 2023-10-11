@@ -6,7 +6,7 @@ MusicSongSearchRecordConfigManager::MusicSongSearchRecordConfigManager(QObject *
 
 }
 
-void MusicSongSearchRecordConfigManager::readBuffer(MusicSearchRecordList &items)
+bool MusicSongSearchRecordConfigManager::readBuffer(MusicSearchRecordList &items)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName("value");
     for(int i = 0; i < nodes.count(); ++i)
@@ -18,9 +18,11 @@ void MusicSongSearchRecordConfigManager::readBuffer(MusicSearchRecordList &items
         record.m_timestamp = element.text();
         items << record;
     }
+
+    return true;
 }
 
-void MusicSongSearchRecordConfigManager::writeBuffer(const MusicSearchRecordList &items)
+bool MusicSongSearchRecordConfigManager::writeBuffer(const MusicSearchRecordList &items)
 {
     createProcessingInstruction();
     QDomElement rootDom = createRoot(TTK_APP_NAME);
@@ -32,4 +34,5 @@ void MusicSongSearchRecordConfigManager::writeBuffer(const MusicSearchRecordList
     }
 
     save();
+    return true;
 }

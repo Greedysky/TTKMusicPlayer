@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8.11)
 project(TTKLibrary)
 
 set(HEADER_FILES
+  ttkabstractbufferinterface.h
   ttkabstractmovedialog.h
   ttkabstractmoveresizewidget.h
   ttkabstractmovewidget.h

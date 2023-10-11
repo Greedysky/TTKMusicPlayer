@@ -25,7 +25,7 @@
 /*! @brief The class of the tencent query info xml data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicTXImageConfigManager : public TTKXmlDocument
+class TTK_MODULE_EXPORT MusicTXImageConfigManager : public TTKXmlDocument, public TTKAbstractReadInterface<QStringList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTXImageConfigManager)
@@ -36,9 +36,9 @@ public:
     explicit MusicTXImageConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read datas from config file.
+     * Read datas from buffer.
      */
-    void readBuffer(QStringList &items);
+    virtual bool readBuffer(QStringList &items) override final;
 
 };
 

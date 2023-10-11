@@ -57,7 +57,7 @@ TTK_DECLARE_LIST(MusicFMCategory);
 /*! @brief The class of the fm config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicFMConfigManager : public TTKXmlDocument
+class TTK_MODULE_EXPORT MusicFMConfigManager : public TTKXmlDocument, public TTKAbstractReadWriteInterface<MusicFMCategoryList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicFMConfigManager)
@@ -68,13 +68,13 @@ public:
     explicit MusicFMConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read datas from config file.
+     * Read datas from buffer.
      */
-    void readBuffer(MusicFMCategoryList &items);
+    virtual bool readBuffer(MusicFMCategoryList &items) override final;
     /*!
-     * Write datas from config file.
+     * Write datas into buffer.
      */
-    void writeBuffer(const MusicFMCategoryList &items);
+    virtual bool writeBuffer(const MusicFMCategoryList &items) override final;
 
 };
 

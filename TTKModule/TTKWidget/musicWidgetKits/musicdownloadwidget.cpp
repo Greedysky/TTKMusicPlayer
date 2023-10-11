@@ -377,7 +377,7 @@ void MusicDownloadWidget::startRequestMusic(const TTK::MusicSongInformation &inf
             record.setAddTimeStr("-1");
             records << record;
 
-            manager.load(TTK::toString(TTK::Record::NormalDownload));
+            manager.reset();
             manager.writeBuffer(records);
 
             if(QFile::exists(downloadName))

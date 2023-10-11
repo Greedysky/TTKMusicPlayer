@@ -28,9 +28,9 @@ class TTK_MODULE_EXPORT TTKAbstractResizeInterface
 {
 public:
     /*!
-     * Object constructor.
+     * Object destructor.
      */
-    TTKAbstractResizeInterface() = default;
+    virtual ~TTKAbstractResizeInterface() = default;
 
     /*!
      * Resize widget bound by resize called.

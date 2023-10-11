@@ -24,7 +24,7 @@
 #include <QtXml/QDomDocument>
 
 #include "ttktime.h"
-#include "ttkmoduleexport.h"
+#include "ttkabstractbufferinterface.h"
 
 /*! @brief The class of the ttk xml attribute.
  * @author Greedysky <greedysky@163.com>
@@ -106,6 +106,10 @@ public:
      * Save xml stream data to local.
      */
     void save() const;
+    /*!
+     * Reset xml stream data.
+     */
+    bool reset();
 
     /*!
      * Read datas from xml file by given name.

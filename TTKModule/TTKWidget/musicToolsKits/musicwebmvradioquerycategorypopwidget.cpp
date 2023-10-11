@@ -64,9 +64,9 @@ MusicWebMVRadioQueryCategoryPopWidget::MusicWebMVRadioQueryCategoryPopWidget(QWi
 void MusicWebMVRadioQueryCategoryPopWidget::setCategory(const QString &server, QObject *obj)
 {
     MusicResultsCategoryList categorys;
-    MusicCategoryConfigManager manager;
+    MusicCategoryConfigManager manager(server);
     manager.fromFile(MusicCategoryConfigManager::Category::MovieList);
-    manager.readBuffer(categorys, server);
+    manager.readBuffer(categorys);
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
     QWidget *containWidget = new QWidget(m_containWidget);

@@ -6,20 +6,22 @@ MusicSkinConfigManager::MusicSkinConfigManager(QObject *parent)
 
 }
 
-void MusicSkinConfigManager::readBuffer(MusicSkinItem &item)
+bool MusicSkinConfigManager::readBuffer(MusicSkinItem &items)
 {
-    item.m_name = readXmlAttributeByTagName("name");
-    item.m_useCount = readXmlAttributeByTagName("useCount").toInt();
+    items.m_name = readXmlAttributeByTagName("name");
+    items.m_useCount = readXmlAttributeByTagName("useCount").toInt();
+    return true;
 }
 
-void MusicSkinConfigManager::writeBuffer(const MusicSkinItem &item)
+bool MusicSkinConfigManager::writeBuffer(const MusicSkinItem &items)
 {
     createProcessingInstruction();
     QDomElement rootDom = createRoot("TTKSkin");
 
     writeDomElement(rootDom, "creator", {"value", TTK_APP_NAME});
-    writeDomElement(rootDom, "name", {"value", item.m_name});
-    writeDomElement(rootDom, "useCount", {"value", item.m_useCount});
+    writeDomElement(rootDom, "name", {"value", items.m_name});
+    writeDomElement(rootDom, "useCount", {"value", items.m_useCount});
 
     save();
+    return true;
 }

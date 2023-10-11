@@ -11,13 +11,15 @@ MusicTXImageConfigManager::MusicTXImageConfigManager(QObject *parent)
 
 }
 
-void MusicTXImageConfigManager::readBuffer(QStringList &items)
+bool MusicTXImageConfigManager::readBuffer(QStringList &items)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName("url");
     for(int i = 0; i < nodes.count(); ++i)
     {
         items << nodes.item(i).toElement().text();
     }
+
+    return true;
 }
 
 

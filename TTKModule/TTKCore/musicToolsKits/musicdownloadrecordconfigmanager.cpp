@@ -21,7 +21,7 @@ MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(QObject *pare
 
 }
 
-void MusicDownloadRecordConfigManager::readBuffer(MusicSongList &items)
+bool MusicDownloadRecordConfigManager::readBuffer(MusicSongList &items)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName("value");
     for(int i = 0; i < nodes.count(); ++i)
@@ -35,9 +35,11 @@ void MusicDownloadRecordConfigManager::readBuffer(MusicSongList &items)
         record.setPath(element.text());
         items << record;
     }
+
+    return true;
 }
 
-void MusicDownloadRecordConfigManager::writeBuffer(const MusicSongList &items)
+bool MusicDownloadRecordConfigManager::writeBuffer(const MusicSongList &items)
 {
     createProcessingInstruction();
     QDomElement rootDom = createRoot(TTK_APP_NAME);
@@ -51,4 +53,5 @@ void MusicDownloadRecordConfigManager::writeBuffer(const MusicSongList &items)
     }
 
     save();
+    return true;
 }

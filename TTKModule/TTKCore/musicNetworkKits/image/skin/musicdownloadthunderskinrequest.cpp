@@ -10,7 +10,7 @@ MusicThunderSkinConfigManager::MusicThunderSkinConfigManager(QObject *parent)
 
 }
 
-void MusicThunderSkinConfigManager::readBuffer(MusicSkinRemoteGroupList &items)
+bool MusicThunderSkinConfigManager::readBuffer(MusicSkinRemoteGroupList &items)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName("group");
     for(int i = 0; i < nodes.count(); ++i)
@@ -62,6 +62,8 @@ void MusicThunderSkinConfigManager::readBuffer(MusicSkinRemoteGroupList &items)
             items << group;
         }
     }
+
+    return true;
 }
 
 

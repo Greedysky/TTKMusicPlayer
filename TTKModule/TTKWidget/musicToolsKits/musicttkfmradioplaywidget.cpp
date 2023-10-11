@@ -14,7 +14,7 @@ MusicFMConfigManager::MusicFMConfigManager(QObject *parent)
 
 }
 
-void MusicFMConfigManager::readBuffer(MusicFMCategoryList &items)
+bool MusicFMConfigManager::readBuffer(MusicFMCategoryList &items)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName("category");
     for(int i = 0; i < nodes.count(); ++i)
@@ -36,13 +36,15 @@ void MusicFMConfigManager::readBuffer(MusicFMCategoryList &items)
         }
         items.append(category);
     }
+
+    return true;
 }
 
-void MusicFMConfigManager::writeBuffer(const MusicFMCategoryList &items)
+bool MusicFMConfigManager::writeBuffer(const MusicFMCategoryList &items)
 {
     if(items.isEmpty())
     {
-        return;
+        return false;
     }
 
     const MusicFMCategory &item = items.back();
@@ -59,6 +61,7 @@ void MusicFMConfigManager::writeBuffer(const MusicFMCategoryList &items)
     }
 
     save();
+    return true;
 }
 
 

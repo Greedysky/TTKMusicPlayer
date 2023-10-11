@@ -1,7 +1,8 @@
 #include "musiccategoryconfigmanager.h"
 
-MusicCategoryConfigManager::MusicCategoryConfigManager(QObject *parent)
-    : TTKXmlDocument(parent)
+MusicCategoryConfigManager::MusicCategoryConfigManager(const QString &key, QObject *parent)
+    : TTKXmlDocument(parent),
+      m_type(key)
 {
 
 }
@@ -21,9 +22,9 @@ bool MusicCategoryConfigManager::fromFile(Category type)
     return TTKXmlDocument::fromFile(v);
 }
 
-void MusicCategoryConfigManager::readBuffer(MusicResultsCategoryList &items, const QString &key)
+bool MusicCategoryConfigManager::readBuffer(MusicResultsCategoryList &items)
 {
-    const QDomNodeList &nodes = m_document->elementsByTagName(key);
+    const QDomNodeList &nodes = m_document->elementsByTagName(m_type);
     for(int i = 0; i < nodes.count(); ++i)
     {
         const QDomNodeList &tagNodes = nodes.item(i).childNodes();
@@ -46,4 +47,6 @@ void MusicCategoryConfigManager::readBuffer(MusicResultsCategoryList &items, con
             items.append(category);
         }
     }
+
+    return true;
 }

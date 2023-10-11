@@ -35,7 +35,7 @@ namespace TTK
 /*! @brief The class of the download record manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadRecordConfigManager : public TTKXmlDocument
+class TTK_MODULE_EXPORT MusicDownloadRecordConfigManager : public TTKXmlDocument, public TTKAbstractReadWriteInterface<MusicSongList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadRecordConfigManager)
@@ -46,13 +46,13 @@ public:
     explicit MusicDownloadRecordConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read datas from config file.
+     * Read datas from buffer.
      */
-    void readBuffer(MusicSongList &items);
+    virtual bool readBuffer(MusicSongList &items) override final;
     /*!
-     * Write datas into config file.
+     * Write datas into buffer.
      */
-    void writeBuffer(const MusicSongList &items);
+    virtual bool writeBuffer(const MusicSongList &items) override final;
 
 };
 

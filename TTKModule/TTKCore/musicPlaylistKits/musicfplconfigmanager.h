@@ -24,7 +24,7 @@
 /*! @brief The class of the foobar2k playlist config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicFPLConfigManager : public MusicPlaylistRenderer, private MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicFPLConfigManager : public MusicPlaylistRenderer, public MusicPlaylistInterface
 {
     TTK_DECLARE_MODULE(MusicFPLConfigManager)
 public:
@@ -34,11 +34,11 @@ public:
     MusicFPLConfigManager();
 
     /*!
-     * Read datas from config file.
+     * Read datas from buffer.
      */
     virtual bool readBuffer(MusicSongItemList &items) override final;
     /*!
-     * Write datas into config file.
+     * Write datas into buffer.
      */
     virtual bool writeBuffer(const MusicSongItemList &items) override final;
 
