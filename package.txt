@@ -10,22 +10,22 @@ libbs2b-3.1.0	https://sourceforge.net/projects/bs2b
 libcddb-1.3.2	https://sourceforge.net/projects/libcddb
 libcdio-paranoia-release-10.2-2.0.1	http://ftp.gnu.org/gnu/libcdio
 libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
-libmpg123-1.31.3	https://sourceforge.net/projects/mpg123
+libmpg123-1.32.3	https://sourceforge.net/projects/mpg123
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
-libogg-1.3.5	https://xiph.org/downloads
+libogg-1.3.5	https://ftp.osuosl.org/pub/xiph/releases/ogg
 libopenmpt-0.4.38		https://lib.openmpt.org/libopenmpt
 libprojectm-2.2.1		https://github.com/projectM-visualizer/projectm
 libsamplerate-0.2.2		https://github.com/libsndfile/libsamplerate
 libsidplayfp-2.3.1.patch	https://github.com/libsidplayfp/libsidplayfp
 libsndfile-1.2.2		https://github.com/libsndfile/libsndfile
-libvorbis-1.3.7	https://xiph.org/downloads
+libvorbis-1.3.7	https://ftp.osuosl.org/pub/xiph/releases/vorbis
 mp3gain-1_5_2	http://mp3gain.sourceforge.net/download.php
 MPlayer-1.2.1	http://mplayerhq.hu/design7/dload.html
 OptimFROG-5100	http://losslessaudio.org/Downloads.php
 opus-1.4.0	https://www.opus-codec.org/downloads
 opusfile-0.12	https://www.opus-codec.org/downloads
 soxr-0.1.3	https://sourceforge.net/projects/soxr
-speex-1.2.1	https://gitlab.xiph.org/xiph/speex
+speex-1.2.1	https://ftp.osuosl.org/pub/xiph/releases/speex
 sunvox-2.1c	https://warmplace.ru/soft/sunvox/sunvox_lib.php
 taglib-1.13.1	https://github.com/taglib/taglib
 wavpack-5.6.0	https://www.wavpack.com/downloads.html
@@ -34,7 +34,7 @@ zlib-1.3.0		https://github.com/madler/zlib
 7zip-23.01		https://www.7-zip.org/download.html
 ttk-1.2.3
 (sonic-master	https://github.com/waywardgeek/sonic)
-(libasap-5.3.0	https://sourceforge.net/projects/asap)
+(libasap-6.0.0	https://sourceforge.net/projects/asap)
 (libfc14-1.0.3	https://sourceforge.net/projects/xmms-fc)
 (libgoom-2k4	https://sourceforge.net/projects/goom)
 (libsc68-2.2.1	https://sourceforge.net/projects/sc68)
