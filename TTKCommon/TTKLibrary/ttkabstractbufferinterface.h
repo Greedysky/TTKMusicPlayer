@@ -67,7 +67,7 @@ public:
  * @author Greedysky <greedysky@163.com>
  */
 template <typename T>
-class TTK_MODULE_EXPORT TTKAbstractReadWriteInterface : public TTKAbstractReadInterface<T>, public TTKAbstractWriteInterface<T>
+class TTK_MODULE_EXPORT TTKAbstractReadWriteInterface : private TTKAbstractReadInterface<T>, private TTKAbstractWriteInterface<T>
 {
 public:
     /*!

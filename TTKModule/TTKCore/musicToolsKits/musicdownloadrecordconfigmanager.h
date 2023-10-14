@@ -35,7 +35,7 @@ namespace TTK
 /*! @brief The class of the download record manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadRecordConfigManager : public TTKXmlDocument, public TTKAbstractReadWriteInterface<MusicSongList>
+class TTK_MODULE_EXPORT MusicDownloadRecordConfigManager : public TTKXmlDocument, private TTKAbstractReadWriteInterface<MusicSongList>
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadRecordConfigManager)

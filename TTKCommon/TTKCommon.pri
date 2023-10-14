@@ -22,7 +22,7 @@ INCLUDEPATH += \
     $$PWD/TTKDumper
 
 win32{
-    QT += xml
+    QT += xml network
     msvc{
         HEADERS += \
             $$PWD/TTKLibrary/ttkabstractbufferinterface.h \

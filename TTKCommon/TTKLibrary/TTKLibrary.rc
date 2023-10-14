@@ -3,7 +3,7 @@
 #else
     #include <winver.h>
 #endif
-#include "../ttkversion.h"
+#include "ttklibraryversion.h"
 
 VS_VERSION_INFO VERSIONINFO
     FILEVERSION TTK_RC_FILEVERSION
