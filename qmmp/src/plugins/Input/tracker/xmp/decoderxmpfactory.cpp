@@ -14,11 +14,12 @@ bool DecoderXMPFactory::canDecode(QIODevice *input) const
     }
 
     xmp_context ctx = xmp_create_context();
-    const bool v = file ? xmp_load_module(ctx, QmmpPrintable(file->fileName())) != 0 : false;
+    const bool v = file ? xmp_load_module(ctx, QmmpPrintable(file->fileName())) == 0 : false;
     if(v)
     {
       xmp_release_module(ctx);
     }
+
     xmp_free_context(ctx);
     return v;
 }
