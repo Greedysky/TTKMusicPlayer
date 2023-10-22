@@ -9,7 +9,7 @@
   <summary>The music player that imitation Kugou</summary>
   <description>
     <p>
-      TTKMusicPlayer that imitation Kugou music, the music player uses of qmmp core library based on Qt for windows and linux.
+      TTKMusicPlayer imitates Kugou UI, the music player uses of qmmp core library based on Qt for windows and linux.
     </p>
   </description>
   <categories>

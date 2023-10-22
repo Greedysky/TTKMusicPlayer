@@ -6,7 +6,7 @@
  *
  * opyright (c) 2015 - 2023 Greedysky Studio <greedysky@163.com>
  *
- * TTKMusicPlayer that imitation Kugou music, the music player use
+ * TTKMusicPlayer imitates Kugou UI, the music player uses 
  * of qmmp core library based on Qt for windows and linux
  */
 
