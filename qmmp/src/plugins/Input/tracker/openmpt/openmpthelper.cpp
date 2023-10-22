@@ -132,7 +132,7 @@ QMap<QString, int> OpenMPTHelper::interpolators()
     return interpolators;
 }
 
-bool OpenMPTHelper::isValidInterpolator(int value)
+bool OpenMPTHelper::isValidInterpolator(int value) const
 {
     return interpolators().values().contains(value);
 }
@@ -145,9 +145,9 @@ void OpenMPTHelper::setInterpolator(int value)
     }
 }
 
-bool OpenMPTHelper::isValidStereoSeparation(int separation)
+bool OpenMPTHelper::isValidStereoSeparation(int separation) const
 {
-    return separation >= 0 && separation <= 100;
+    return separation >= 0 && separation <= 200;
 }
 
 void OpenMPTHelper::setStereoSeparation(int separation)

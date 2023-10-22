@@ -43,9 +43,9 @@ public:
     bool initialize();
 
     static QMap<QString, int> interpolators();
-    bool isValidInterpolator(int value);
+    bool isValidInterpolator(int value) const;
     void setInterpolator(int value);
-    bool isValidStereoSeparation(int separation);
+    bool isValidStereoSeparation(int separation) const;
     void setStereoSeparation(int separation);
 
     inline void seek(qint64 time) { openmpt_module_set_position_seconds(m_mod, time / 1000.0); }

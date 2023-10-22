@@ -44,7 +44,7 @@ void SettingsDialog::restoreDefaults()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("OpenMPT");
     setInterpolator(settings.value("interpolator", INTERP_WINDOWED).toInt());
-    m_ui.stereo_separation->setSliderPosition(settings.value("stereo_separation", 70).toInt());
+    m_ui.stereo_separation->setSliderPosition(settings.value("stereo_separation", 100).toInt());
     m_ui.use_filename->setChecked(settings.value("use_file_name", 0).toBool());
     settings.endGroup();
 }

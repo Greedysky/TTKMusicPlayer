@@ -58,7 +58,7 @@
        <number>0</number>
       </property>
       <property name="maximum">
-       <number>100</number>
+       <number>200</number>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -68,7 +68,7 @@
     <item row="1" column="3">
      <widget class="QSpinBox" name="stereo_separation_spin">
       <property name="maximum">
-       <number>100</number>
+       <number>200</number>
       </property>
      </widget>
     </item>
