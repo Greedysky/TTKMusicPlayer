@@ -62,7 +62,7 @@ void MusicCoreMPlayer::closeModule()
         m_process->kill();
         delete m_process;
         m_process = nullptr;
-        TTK::killProcessByName(MAKE_PLAYER_PATH_FULL);
+        TTK::killProcessByName(MAKE_PLAYER_NAME);
     }
 }
 
