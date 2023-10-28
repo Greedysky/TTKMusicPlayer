@@ -324,7 +324,6 @@ void QKugouWindow::createKugouRadioWidget()
 #ifdef Q_OS_UNIX
     d->m_buttonGroup->button(0)->setFocusPolicy(Qt::NoFocus);
     d->m_buttonGroup->button(1)->setFocusPolicy(Qt::NoFocus);
-    d->m_buttonGroup->button(2)->setFocusPolicy(Qt::NoFocus);
 #endif
 
     createWebViewer();
@@ -402,7 +401,6 @@ void QKugouWindow::createKugouMovieWidget()
 #ifdef Q_OS_UNIX
     d->m_buttonGroup->button(0)->setFocusPolicy(Qt::NoFocus);
     d->m_buttonGroup->button(1)->setFocusPolicy(Qt::NoFocus);
-    d->m_buttonGroup->button(2)->setFocusPolicy(Qt::NoFocus);
 #endif
 
     createWebViewer();
