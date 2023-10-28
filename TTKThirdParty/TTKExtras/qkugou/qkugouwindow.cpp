@@ -187,7 +187,6 @@ void QKugouWindow::kugouRadioIndexChanged(int index)
     {
         case 0: url = QKugouUrl::makeRadioPublicUrl(); break;
         case 1: url = QKugouUrl::makeRadioHighFmUrl(); break;
-        case 2: url = QKugouUrl::makeRadioFxUrl(); break;
         default: break;
     }
 
@@ -202,7 +201,6 @@ void QKugouWindow::kugouMVIndexChanged(int index)
     {
         case 0: url = QKugouUrl::makeMVRadioUrl(); break;
         case 1: url = QKugouUrl::makeMVRecommendUrl(); break;
-        case 2: url = QKugouUrl::makeMVFanxingUrl(); break;
         default: break;
     }
 
@@ -316,15 +314,11 @@ void QKugouWindow::createKugouRadioWidget()
     bt = new QPushButton(tr(" RadioHigh "), d->m_topWidget);
     bt->setCursor(QCursor(Qt::PointingHandCursor));
     d->m_buttonGroup->addButton(bt, 1);
-    bt = new QPushButton(tr(" RadioFx "), d->m_topWidget);
-    bt->setCursor(QCursor(Qt::PointingHandCursor));
-    d->m_buttonGroup->addButton(bt, 2);
     QtButtonGroupConnect(d->m_buttonGroup, this, kugouRadioIndexChanged);
 
     topLayout->addStretch(1);
     topLayout->addWidget(d->m_buttonGroup->button(0));
     topLayout->addWidget(d->m_buttonGroup->button(1));
-    topLayout->addWidget(d->m_buttonGroup->button(2));
     topLayout->addStretch(1);
 
 #ifdef Q_OS_UNIX
@@ -398,15 +392,11 @@ void QKugouWindow::createKugouMovieWidget()
     bt = new QPushButton(tr(" MVRecommend "), d->m_topWidget);
     bt->setCursor(QCursor(Qt::PointingHandCursor));
     d->m_buttonGroup->addButton(bt, 1);
-    bt = new QPushButton(tr(" MVFanxing "), d->m_topWidget);
-    bt->setCursor(QCursor(Qt::PointingHandCursor));
-    d->m_buttonGroup->addButton(bt, 2);
     QtButtonGroupConnect(d->m_buttonGroup, this, kugouMVIndexChanged);
 
     topLayout->addStretch(1);
     topLayout->addWidget(d->m_buttonGroup->button(0));
     topLayout->addWidget(d->m_buttonGroup->button(1));
-    topLayout->addWidget(d->m_buttonGroup->button(2));
     topLayout->addStretch(1);
 
 #ifdef Q_OS_UNIX

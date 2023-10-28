@@ -40,11 +40,6 @@ QString QKugouUrl::makeRadioHighFmUrl()
     return "http://www2.kugou.kugou.com/fm2/html/highFm.html?ver=10053";
 }
 
-QString QKugouUrl::makeRadioFxUrl()
-{
-    return "http://fanxing.kugou.com";
-}
-
 QString QKugouUrl::makeListUrl()
 {
     return "http://www2.kugou.kugou.com/yueku/v9/special/index/getData.js?cdn=cdn&t=5&c=&ver=10053";
@@ -58,11 +53,6 @@ QString QKugouUrl::makeMVRadioUrl()
 QString QKugouUrl::makeMVRecommendUrl()
 {
     return "http://www2.kugou.kugou.com/mv/v9/mtv/index/getData.js?cdn=cdn&ver=10053";
-}
-
-QString QKugouUrl::makeMVFanxingUrl()
-{
-    return "http://fanxing.kugou.com/index.php?action=embedPageMv&ver=10053";
 }
 
 QString QKugouUrl::makeWebPlayerUrl()

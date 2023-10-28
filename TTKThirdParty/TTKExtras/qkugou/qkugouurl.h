@@ -62,10 +62,6 @@ public:
      Make Radio High Fm Url.
      */
     static QString makeRadioHighFmUrl();
-    /*!
-     Make Radio Fx Url.
-     */
-    static QString makeRadioFxUrl();
 
 
     /*!
@@ -82,11 +78,6 @@ public:
      Make MV Recommend Url.
      */
     static QString makeMVRecommendUrl();
-    /*!
-     Make MV Fanxing Url.
-     */
-    static QString makeMVFanxingUrl();
-
 
     /*!
      Make Web Player Url.
