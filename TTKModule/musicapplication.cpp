@@ -112,6 +112,12 @@ MusicApplication *MusicApplication::instance()
     return m_instance;
 }
 
+void MusicApplication::deinit()
+{
+    //Write configuration files
+    writeSystemConfigToFile();
+}
+
 QString MusicApplication::currentFileName() const
 {
     if(m_playlist->currentIndex() < 0 || m_currentSongTreeIndex < 0)
@@ -254,10 +260,8 @@ TTK::PlayMode MusicApplication::playMode() const
 
 void MusicApplication::quitWindow()
 {
-    m_applicationObject->cleanup();
-    //Write configuration files
-    writeSystemConfigToFile();
     m_quitWindowMode = true;
+    m_applicationObject->cleanup();
     m_applicationObject->windowCloseAnimation();
 }
 

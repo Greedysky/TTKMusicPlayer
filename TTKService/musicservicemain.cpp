@@ -27,6 +27,9 @@ static void cleanupCache()
             << MAKE_PLAYER_NAME
             << MAKE_GAIN_NAME;
     TTK::killProcessByName(process);
+
+    ///deinit application data
+    MusicApplication::instance()->deinit();
 }
 
 static void loadAppScaledFactor(int argc, char *argv[])

@@ -60,6 +60,11 @@ public:
     static MusicApplication *instance();
 
     /*!
+     * Deinit application data.
+     */
+    void deinit();
+
+    /*!
      * Get current file name.
      */
     QString currentFileName() const;
