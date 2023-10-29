@@ -29,7 +29,7 @@ static void cleanupCache()
     TTK::killProcessByName(process);
 
     ///deinit application data
-    MusicApplication::instance()->deinit();
+    MusicApplication::instance()->cleanup();
 }
 
 static void loadAppScaledFactor(int argc, char *argv[])

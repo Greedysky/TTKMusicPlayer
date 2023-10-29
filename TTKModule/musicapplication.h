@@ -60,9 +60,9 @@ public:
     static MusicApplication *instance();
 
     /*!
-     * Deinit application data.
+     * Application data cleanup.
      */
-    void deinit();
+    void cleanup();
 
     /*!
      * Get current file name.

@@ -112,7 +112,7 @@ MusicApplication *MusicApplication::instance()
     return m_instance;
 }
 
-void MusicApplication::deinit()
+void MusicApplication::cleanup()
 {
     //Write configuration files
     writeSystemConfigToFile();
