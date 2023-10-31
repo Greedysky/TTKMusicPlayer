@@ -177,7 +177,7 @@ QStringList UADEHelper::filters()
     filters << "*.lion" << "*.lme";
     filters << "*.ma" << "*.mc" << "*.mcmd" << "*.mco" << "*.md" << "*.mii" << "*.mk2" << "*.mkii" << "*.ml" << "*.mm8" << "*.mmdc" << "*.mok" << "*.mon" << "*.mosh" << "*.mso" << "*.mug" << "*.mug2" << "*.mw";
     filters << "*.ntp";
-    filters << "*.pap" << "*.pn" << "*.ps" << "*.psa" << "*.psf" << "*.pt" << "*.puma" << "*.pvp";
+    filters << "*.pap" << "*.pn" << "*.ps" << "*.psa" << "*.psf" << "*.pt" << "*.ptm" << "*.puma" << "*.pvp";
     filters << "*.rh" << "*.rho" << "*.riff" << "*.rmc";
     filters << "*.s7g" << "*.sa" << "*.sas"  << "*.sb" << "*.sc" << "*.scn" << "*.scr" << "*.sct" << "*.scumm" << "*.sdr" << "*.sg" << "*.sid1" << "*.sid2" << "*.sm" << "*.sm3" << "*.smn" << "*.smpro" << "*.sng" << "*.snk" << "*.soc" << "*.sog" << "*.spl" << "*.sqt" << "*.ss" << "*.sun" << "*.syn" << "*.synmod";
     filters << "*.tcb" << "*.tf" << "*.tfmx" << "*.thx" << "*.tits" << "*.tme" << "*.tro" << "*.tronic" << "*.tw";

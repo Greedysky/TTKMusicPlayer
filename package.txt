@@ -26,18 +26,18 @@ opus-1.4.0	https://www.opus-codec.org/downloads
 opusfile-0.12	https://www.opus-codec.org/downloads
 soxr-0.1.3	https://sourceforge.net/projects/soxr
 speex-1.2.1	https://ftp.osuosl.org/pub/xiph/releases/speex
-sunvox-2.1c	https://warmplace.ru/soft/sunvox/sunvox_lib.php
+sunvox-2.1.1	https://warmplace.ru/soft/sunvox/sunvox_lib.php
 taglib-1.13.1	https://github.com/taglib/taglib
 wavpack-5.6.0	https://www.wavpack.com/downloads.html
 libxmp-4.6.0.patch	https://github.com/libxmp/libxmp
 zlib-1.3.0		https://github.com/madler/zlib
 7zip-23.01		https://www.7-zip.org/download.html
 ttk-1.2.3
-(sonic-master	https://github.com/waywardgeek/sonic)
+(sonic-master	https://github.com/waywardgeek/sonic 8694c596378c24e340c09ff2cd47c065494233f1)
 (libasap-6.0.0	https://sourceforge.net/projects/asap)
 (libfc14-1.0.3	https://sourceforge.net/projects/xmms-fc)
 (libgoom-2k4	https://sourceforge.net/projects/goom)
 (libsc68-2.2.1	https://sourceforge.net/projects/sc68)
-(libuade-3.02	https://gitlab.com/uade-music-player/uade b883c2fffdd2aec8039d76ca7303f45692ac7bea)
+(libuade-3.02	https://gitlab.com/uade-music-player/uade fc22380cba4a8815f53b373808a1138742de020b)
 (libv2m-20211104	https://github.com/jgilje/v2m-player)
-///Update time 2023-10-18
+///Update time 2023-10-31
