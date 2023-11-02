@@ -107,6 +107,20 @@ public:
         Apply   /*!< proxy apply type*/
     };
 
+    enum SettingType
+    {
+        Normal,        /*!< Normal Setting Type*/
+        Hotkey,        /*!< Hotkey Setting Type*/
+        Download,      /*!< Download Setting Type*/
+        Spectrum,      /*!< Spectrum Setting Type*/
+        Other,         /*!< Other Setting Type*/
+        DesktopLrc,    /*!< DesktopLrc Setting Type*/
+        InteriorLrc,   /*!< InteriorLrc Setting Type*/
+        SoundEffect,   /*!< SoundEffect Setting Type*/
+        Audio,         /*!< Audio Setting Type*/
+        Network,       /*!< Network Setting Type*/
+    };
+
     /*!
      * Object constructor.
      */
@@ -295,10 +309,6 @@ private Q_SLOTS:
 
 private:
     /*!
-     * Select function table index.
-     */
-    void selectFunctionTableIndex(int row, int column);
-    /*!
      * Init scroll widget page widget.
      */
     void initScrollWidgetPage();
@@ -307,6 +317,10 @@ private:
      */
     void initNormalSettingWidget();
     /*!
+     * Init download stack widget.
+     */
+    void initDownloadWidget();
+    /*!
      * Init spectrum setting stack widget.
      */
     void initSpectrumSettingWidget();
@@ -314,10 +328,6 @@ private:
      * Init other setting stack widget.
      */
     void initOtherSettingWidget();
-    /*!
-     * Init download stack widget.
-     */
-    void initDownloadWidget();
     /*!
      * Init desktop lrc stack widget.
      */
@@ -338,6 +348,12 @@ private:
      * Init network stack widget.
      */
     void initNetworkWidget();
+
+private:
+    /*!
+     * Select function table index.
+     */
+    void selectFunctionTableIndex(int row, int column);
     /*!
      * Set lrc color value by type and value type.
      */

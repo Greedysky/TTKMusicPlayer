@@ -406,19 +406,19 @@ void MusicSettingWidget::otherPluginManagerChanged()
 void MusicSettingWidget::changeDesktopLrcWidget()
 {
     selectFunctionTableIndex(1, 0);
-    setScrollWidgetPageIndex(4);
+    setScrollWidgetPageIndex(SettingType::DesktopLrc);
 }
 
 void MusicSettingWidget::changeInteriorLrcWidget()
 {
     selectFunctionTableIndex(1, 1);
-    setScrollWidgetPageIndex(5);
+    setScrollWidgetPageIndex(SettingType::InteriorLrc);
 }
 
 void MusicSettingWidget::changeDownloadWidget()
 {
     selectFunctionTableIndex(0, 2);
-    setScrollWidgetPageIndex(2);
+    setScrollWidgetPageIndex(SettingType::Download);
 }
 
 void MusicSettingWidget::interiorLrcFrontgroundChanged()
@@ -688,18 +688,6 @@ void MusicSettingWidget::scrollWidgetValueChanged(int value)
     }
 }
 
-void MusicSettingWidget::selectFunctionTableIndex(int row, int column)
-{
-    clearFunctionTableSelection();
-    switch(row)
-    {
-        case 0: m_ui->normalFunTableWidget->selectRow(column); break;
-        case 1: m_ui->lrcFunTableWidget->selectRow(column); break;
-        case 2: m_ui->supperFunTableWidget->selectRow(column); break;
-        default: break;
-    }
-}
-
 void MusicSettingWidget::initScrollWidgetPage()
 {
     initNormalSettingWidget();
@@ -795,53 +783,6 @@ void MusicSettingWidget::initNormalSettingWidget()
     connect(m_ui->setDefaultPlayerCheckBox, SIGNAL(clicked(bool)), m_ui->defaultPlayerSettingButton, SLOT(setVisible(bool)));
 }
 
-void MusicSettingWidget::initSpectrumSettingWidget()
-{
-    m_ui->rippleLowPowerModeBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    m_ui->rippleSpectrumEnableBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-
-    m_ui->rippleSpectrumColorButton->setText(tr("Effect"));
-    connect(m_ui->rippleSpectrumColorButton, SIGNAL(clicked()), SLOT(rippleSpectrumColorChanged()));
-    connect(m_ui->rippleLowPowerModeBox, SIGNAL(clicked(bool)), SLOT(rippleLowPowerEnableBoxClicked(bool)));
-    connect(m_ui->rippleSpectrumEnableBox, SIGNAL(clicked(bool)), SLOT(rippleSpectrumOpacityEnableClicked(bool)));
-
-    m_ui->rippleVersionUpdateButton->setStyleSheet(TTK::UI::PushButtonStyle04);
-    m_ui->rippleVersionUpdateButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_ui->rippleVersionUpdateButton, SIGNAL(clicked()), SLOT(rippleVersionUpdateChanged()));
-#ifdef Q_OS_UNIX
-    m_ui->rippleLowPowerModeBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->rippleSpectrumEnableBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->rippleVersionUpdateButton->setFocusPolicy(Qt::NoFocus);
-#endif
-}
-
-void MusicSettingWidget::initOtherSettingWidget()
-{
-    m_ui->otherCheckUpdateBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    m_ui->otherReadAlbumCoverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    m_ui->otherReadInfoCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    m_ui->otherWriteAlbumCoverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    m_ui->otherWriteInfoCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    m_ui->otherSideByCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    m_ui->otherLrcKTVCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-    m_ui->otherScreenSaverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
-
-    m_ui->otherPluginManagerButton->setStyleSheet(TTK::UI::PushButtonStyle04);
-    m_ui->otherPluginManagerButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_ui->otherPluginManagerButton, SIGNAL(clicked()), SLOT(otherPluginManagerChanged()));
-#ifdef Q_OS_UNIX
-    m_ui->otherCheckUpdateBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherReadAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherReadInfoCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherWriteAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherWriteInfoCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherLrcKTVCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherScreenSaverCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherPluginManagerButton->setFocusPolicy(Qt::NoFocus);
-#endif
-}
-
 void MusicSettingWidget::initDownloadWidget()
 {
     m_ui->downloadDirEdit->setStyleSheet(TTK::UI::LineEditStyle01);
@@ -903,6 +844,53 @@ void MusicSettingWidget::initDownloadWidget()
 
     m_ui->downloadCacheAutoRadioBox->click();
     m_ui->downloadFullRadioBox->click();
+}
+
+void MusicSettingWidget::initSpectrumSettingWidget()
+{
+    m_ui->rippleLowPowerModeBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->rippleSpectrumEnableBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+
+    m_ui->rippleSpectrumColorButton->setText(tr("Effect"));
+    connect(m_ui->rippleSpectrumColorButton, SIGNAL(clicked()), SLOT(rippleSpectrumColorChanged()));
+    connect(m_ui->rippleLowPowerModeBox, SIGNAL(clicked(bool)), SLOT(rippleLowPowerEnableBoxClicked(bool)));
+    connect(m_ui->rippleSpectrumEnableBox, SIGNAL(clicked(bool)), SLOT(rippleSpectrumOpacityEnableClicked(bool)));
+
+    m_ui->rippleVersionUpdateButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->rippleVersionUpdateButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(m_ui->rippleVersionUpdateButton, SIGNAL(clicked()), SLOT(rippleVersionUpdateChanged()));
+#ifdef Q_OS_UNIX
+    m_ui->rippleLowPowerModeBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->rippleSpectrumEnableBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->rippleVersionUpdateButton->setFocusPolicy(Qt::NoFocus);
+#endif
+}
+
+void MusicSettingWidget::initOtherSettingWidget()
+{
+    m_ui->otherCheckUpdateBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherReadAlbumCoverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherReadInfoCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherWriteAlbumCoverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherWriteInfoCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherSideByCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherLrcKTVCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherScreenSaverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+
+    m_ui->otherPluginManagerButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->otherPluginManagerButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(m_ui->otherPluginManagerButton, SIGNAL(clicked()), SLOT(otherPluginManagerChanged()));
+#ifdef Q_OS_UNIX
+    m_ui->otherCheckUpdateBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherReadAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherReadInfoCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherWriteAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherWriteInfoCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherLrcKTVCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherScreenSaverCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherPluginManagerButton->setFocusPolicy(Qt::NoFocus);
+#endif
 }
 
 void MusicSettingWidget::initDesktopLrcWidget()
@@ -1072,6 +1060,18 @@ void MusicSettingWidget::initNetworkWidget()
     connect(m_ui->proxyTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(setNetworkProxyControl(int)));
     setNetworkProxyControl(2);
     m_ui->proxyTypeComboBox->setCurrentIndex(2);
+}
+
+void MusicSettingWidget::selectFunctionTableIndex(int row, int column)
+{
+    clearFunctionTableSelection();
+    switch(row)
+    {
+        case 0: m_ui->normalFunTableWidget->selectRow(column); break;
+        case 1: m_ui->lrcFunTableWidget->selectRow(column); break;
+        case 2: m_ui->supperFunTableWidget->selectRow(column); break;
+        default: break;
+    }
 }
 
 void MusicSettingWidget::lcrColorValue(Lrc key, const QString &type, QLabel *obj)
