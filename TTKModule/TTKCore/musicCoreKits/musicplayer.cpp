@@ -67,18 +67,6 @@ void MusicPlayer::setPosition(qint64 position)
     m_core->seek(position);
 }
 
-void MusicPlayer::playNext()
-{
-    int index = m_playlist->currentIndex();
-    m_playlist->setCurrentIndex((++index >= m_playlist->count()) ? 0 : index);
-}
-
-void MusicPlayer::playPrevious()
-{
-    int index = m_playlist->currentIndex();
-    m_playlist->setCurrentIndex((--index < 0) ? 0 : index);
-}
-
 int MusicPlayer::volume() const
 {
     return isMuted() ? 0 : m_core->volume();

@@ -204,7 +204,8 @@ void MusicConsoleModule::playPrevious()
     }
     else
     {
-        m_player->playPrevious();
+        int index = m_playlist->currentIndex();
+        m_playlist->setCurrentIndex((--index < 0) ? 0 : index);
     }
 
     m_player->play();
@@ -224,7 +225,8 @@ void MusicConsoleModule::playNext()
     }
     else
     {
-        m_player->playNext();
+        int index = m_playlist->currentIndex();
+        m_playlist->setCurrentIndex((++index >= m_playlist->count()) ? 0 : index);
     }
 
     m_player->play();

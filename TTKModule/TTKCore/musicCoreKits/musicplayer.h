@@ -82,15 +82,6 @@ public:
     void setPosition(qint64 position);
 
     /*!
-     * Set current player to next music.
-     */
-    void playNext();
-    /*!
-     * Set current player to previous music.
-     */
-    void playPrevious();
-
-    /*!
      * Get current player volume.
      */
     int volume() const;
