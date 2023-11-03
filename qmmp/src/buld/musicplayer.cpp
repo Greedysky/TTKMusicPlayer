@@ -8,9 +8,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
     m_playlist = nullptr;
     m_music = nullptr;
     m_state = StoppedState;
-    m_musicEnhanced = EnhancedOff;
     m_music = new SoundCore(this);
-    m_posOnCircle = 0;
 
     connect(&m_timer, SIGNAL(timeout()), SLOT(setTimeOut()));
 }
@@ -79,18 +77,6 @@ void MusicPlayer::play()
     ///Every second emits a signal change information
     emit positionChanged(0);
     emit durationChanged(duration());
-}
-
-void MusicPlayer::playNext()
-{
-    int index = m_playlist->currentIndex();
-    m_playlist->setCurrentIndex((++index >= m_playlist->mediaCount()) ? 0 : index);
-}
-
-void MusicPlayer::playPrivious()
-{
-    int index = m_playlist->currentIndex();
-    m_playlist->setCurrentIndex((--index < 0) ? 0 : index );
 }
 
 void MusicPlayer::pause()

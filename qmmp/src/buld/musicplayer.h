@@ -42,15 +42,6 @@ public:
         PausedState
     };
 
-    enum Enhanced
-    {
-        EnhancedOff,
-        Music3D,
-        MusicVocal,
-        MusicNICAM,
-        MusicSubwoofer
-    };
-
     explicit MusicPlayer(QObject *parent = nullptr);
     ~MusicPlayer();
 
@@ -60,9 +51,6 @@ public:
 
     qint64 duration() const;
     qint64 position() const;
-
-    void playNext();
-    void playPrivious();
 
     int volume() const;
     void setVolume(int volume);
@@ -96,9 +84,6 @@ protected:
     SoundCore *m_music;
     QTimer m_timer;
     QString m_currentMedia;
-    Enhanced m_musicEnhanced;
-
-    float m_posOnCircle;
 
 };
 
