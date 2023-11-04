@@ -308,7 +308,7 @@ void MusicSongsListPlayTableWidget::itemCellEntered(int row, int column)
 
     if(it = item(row, 3))
     {
-        const bool contains = MusicApplication::instance()->lovestContains(row);
+        const bool contains = MusicApplication::instance()->containsLovestItem(row);
         it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
     }
 
@@ -340,8 +340,10 @@ void MusicSongsListPlayTableWidget::itemCellEntered(int row, int column)
         m_songsInfoWidget = new MusicSongsListItemInfoWidget;
         m_songsInfoWidget->hide();
     }
+
     m_timerShow.stop();
     m_timerShow.start(0.5 * MT_S2MS);
+
     m_timerStay.stop();
     m_timerStay.start(3 * MT_S2MS);
 }
@@ -374,7 +376,7 @@ void MusicSongsListPlayTableWidget::itemCellClicked(int row, int column)
                 return;
             }
 
-            const bool contains = !MusicApplication::instance()->lovestContains(row);
+            const bool contains = !MusicApplication::instance()->containsLovestItem(row);
             QTableWidgetItem *it = item(row, 3);
             if(it)
             {
@@ -572,7 +574,7 @@ void MusicSongsListPlayTableWidget::searchQueryByName(QAction *action)
 
 void MusicSongsListPlayTableWidget::addToPlayLater()
 {
-    const int row = currentRow();
+    const int row = TTKObjectCast(QPushButton*, sender()) ? m_playRowIndex : currentRow();
     if(rowCount() == 0 || row < 0)
     {
         return;

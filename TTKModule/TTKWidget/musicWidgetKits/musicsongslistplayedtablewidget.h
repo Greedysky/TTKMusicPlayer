@@ -50,13 +50,13 @@ public:
     virtual void selectRow(int index) override final;
 
     /*!
-     * Clear play queue state.
-     */
-    void clearPlayQueueState();
-    /*!
      * Set play queue state.
      */
-    void setPlayQueueState(int row);
+    void setQueueState(int row) const;
+    /*!
+     * Clear play queue state.
+     */
+    void clearQueueState();
 
     /*!
      * Select the current played row.

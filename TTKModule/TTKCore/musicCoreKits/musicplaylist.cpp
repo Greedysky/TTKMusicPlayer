@@ -218,6 +218,8 @@ void MusicPlaylist::setCurrentIndex(int index)
             int index = m_currentIndex;
             m_currentIndex = (--index < 0) ? 0 : index;
         }
+
+        m_queueList.clear();
     }
     else
     {

@@ -75,6 +75,11 @@ void MusicPlayedListPopWidget::clear()
     setPlaylistCount(0);
 }
 
+void MusicPlayedListPopWidget::clearQueueState()
+{
+    m_playedListWidget->clearQueueState();
+}
+
 void MusicPlayedListPopWidget::resetToolIndex(const PlayedItemList &indexs)
 {
     MusicPlayItemList *items = m_playlist->mediaList();
@@ -170,7 +175,7 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
 
     for(const MusicPlayItem &item : qAsConst(*m_playlist->queueList()))
     {
-        m_playedListWidget->setPlayQueueState(item.m_toolIndex);
+        m_playedListWidget->setQueueState(item.m_toolIndex);
     }
 }
 
@@ -203,7 +208,8 @@ void MusicPlayedListPopWidget::removeItemAt(const TTKIntList &index)
         return;
     }
 
-    m_playedListWidget->clearPlayQueueState();
+    clearQueueState();
+
     const int id = m_playedListWidget->playRowIndex();
     bool contains = false;
 
@@ -231,7 +237,7 @@ void MusicPlayedListPopWidget::removeItemAt(const TTKIntList &index)
 
         if(m_playlist->isEmpty())
         {
-            setPlaylistEmpty();
+            clearPlaylist();
         }
     }
     else
@@ -265,7 +271,7 @@ void MusicPlayedListPopWidget::removeItemAll()
         m_playedListWidget->removeRow(0);
     }
 
-    setPlaylistEmpty();
+    clearPlaylist();
 }
 
 void MusicPlayedListPopWidget::itemDoubleClicked()
@@ -276,8 +282,8 @@ void MusicPlayedListPopWidget::itemDoubleClicked()
         return;
     }
 
+    clearQueueState();
     m_playlist->removeQueue();
-    m_playedListWidget->clearPlayQueueState();
     MusicApplication::instance()->playedIndexBy(row);
 }
 
@@ -411,7 +417,7 @@ void MusicPlayedListPopWidget::setPlaylistCount(int count)
     }
 }
 
-void MusicPlayedListPopWidget::setPlaylistEmpty()
+void MusicPlayedListPopWidget::clearPlaylist()
 {
     m_playedListWidget->setPlayRowIndex(TTK_NORMAL_LEVEL);
     m_songList.clear();

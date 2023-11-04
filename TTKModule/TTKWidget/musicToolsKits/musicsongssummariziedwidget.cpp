@@ -910,6 +910,7 @@ void MusicSongsSummariziedWidget::updateCurrentArtist()
     {
         return;
     }
+
     TTKObjectCast(MusicSongsListPlayTableWidget*, m_containerItems[m_playToolIndex].m_itemObject)->updateCurrentArtist();
 }
 

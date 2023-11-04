@@ -88,17 +88,17 @@ public:
     void importSongsOutsideMode(const QString &file, bool play);
 
     /*!
-     * Get music current song download contains.
+     * Get music current song item download contains.
      */
-    QString downloadContains(bool &contains) const;
+    QString containsDownloadItem(bool &contains) const;
     /*!
-     * Get music current song lovest contains.
+     * Get music current song lovest item contains.
      */
-    bool lovestContains() const;
+    bool containsLovestItem() const;
     /*!
-     * Get music list current song lovest contains.
+     * Get music list current song lovest item contains.
      */
-    bool lovestContains(int index) const;
+    bool containsLovestItem(int index) const;
     /*!
      * Update current artist when it download finished.
      */

@@ -1,5 +1,6 @@
 #include "musicapplication.h"
 #include "ui_musicapplication.h"
+#include "musicplayedlistpopwidget.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicconfigmanager.h"
 #include "musicplayer.h"
@@ -188,7 +189,7 @@ void MusicApplication::importSongsOutsideMode(const QString &file, bool play)
     }
 }
 
-QString MusicApplication::downloadContains(bool &contains) const
+QString MusicApplication::containsDownloadItem(bool &contains) const
 {
     contains = false;
     QString path;
@@ -206,7 +207,7 @@ QString MusicApplication::downloadContains(bool &contains) const
     return path;
 }
 
-bool MusicApplication::lovestContains() const
+bool MusicApplication::containsLovestItem() const
 {
     if(m_songTreeWidget->playToolIndex() != TTK_NORMAL_LEVEL)
     {
@@ -223,7 +224,7 @@ bool MusicApplication::lovestContains() const
     return false;
 }
 
-bool MusicApplication::lovestContains(int index) const
+bool MusicApplication::containsLovestItem(int index) const
 {
     if(m_songTreeWidget->currentIndex() != TTK_NORMAL_LEVEL && index > TTK_NORMAL_LEVEL)
     {
@@ -313,10 +314,10 @@ void MusicApplication::showCurrentSong()
         name = currentFileName();
         ///detecting whether the file has been downloaded
         bool exist = false;
-        downloadContains(exist);
+        containsDownloadItem(exist);
         m_ui->musicDownload->setStyleSheet(exist ? TTK::UI::BtnDownload : TTK::UI::BtnUnDownload);
         //
-        exist = lovestContains();
+        exist = containsLovestItem();
         m_ui->musicBestLove->setStyleSheet(exist ? TTK::UI::BtnLove : TTK::UI::BtnUnLove);
         //
         m_songTreeWidget->selectRow(index);
@@ -400,6 +401,7 @@ void MusicApplication::playPrevious()
         return; //The playlist is not performing space-time
     }
 
+    MusicPlayedListPopWidget::instance()->clearQueueState();
     m_playlist->setCurrentIndex(PLAY_PREVIOUS_LEVEL);
 
     m_player->stop();
@@ -681,7 +683,7 @@ void MusicApplication::addSongToLovestList(bool state)
     bool contains = true;
     if(state)
     {
-        contains = lovestContains();
+        contains = containsLovestItem();
         if(contains)
         {
             m_songTreeWidget->songToLovestListAt(false, index);

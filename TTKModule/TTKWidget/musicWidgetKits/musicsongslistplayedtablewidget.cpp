@@ -97,19 +97,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
     }
 }
 
-void MusicSongsListPlayedTableWidget::clearPlayQueueState()
-{
-    for(int i = 0; i < rowCount(); ++i)
-    {
-        QTableWidgetItem *it = item(i, 0);
-        if(it)
-        {
-            it->setIcon(QIcon());
-        }
-    }
-}
-
-void MusicSongsListPlayedTableWidget::setPlayQueueState(int row)
+void MusicSongsListPlayedTableWidget::setQueueState(int row) const
 {
     if(row < 0 || row >= rowCount())
     {
@@ -120,6 +108,18 @@ void MusicSongsListPlayedTableWidget::setPlayQueueState(int row)
     if(it)
     {
         it->setIcon(QIcon(":/tiny/lb_playlater"));
+    }
+}
+
+void MusicSongsListPlayedTableWidget::clearQueueState()
+{
+    for(int i = 0; i < rowCount(); ++i)
+    {
+        QTableWidgetItem *it = item(i, 0);
+        if(it)
+        {
+            it->setIcon(QIcon());
+        }
     }
 }
 

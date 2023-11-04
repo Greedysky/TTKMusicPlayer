@@ -88,6 +88,10 @@ public:
      */
     void clear();
     /*!
+     * Clear play queue state.
+     */
+    void clearQueueState();
+    /*!
      * Get current played item list.
      */
     void resetToolIndex(const PlayedItemList &indexs);
@@ -174,7 +178,7 @@ private:
     /*!
      * Set play state to pause or stop.
      */
-    void setPlaylistEmpty();
+    void clearPlaylist();
 
     QList<QLabel*> m_labels;
     MusicPlaylist *m_playlist;

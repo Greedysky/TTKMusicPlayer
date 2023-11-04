@@ -20,10 +20,10 @@
  ***************************************************************************/
 
 #include <QLabel>
+#include <QPushButton>
 #include "musicglobaldefine.h"
 
 class QMenu;
-class QPushButton;
 class MusicSplitItemClickedLabel;
 class MusicItemRenameEidt;
 
