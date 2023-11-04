@@ -400,15 +400,7 @@ void MusicApplication::playPrevious()
         return; //The playlist is not performing space-time
     }
 
-    if(m_playlist->playbackMode() == TTK::PlayMode::Random)
-    {
-        m_playlist->setCurrentIndex();
-    }
-    else
-    {
-        int index = m_playlist->currentIndex();
-        m_playlist->setCurrentIndex((--index < 0) ? 0 : index);
-    }
+    m_playlist->setCurrentIndex(PLAY_PREVIOUS_LEVEL);
 
     m_player->stop();
     switchPlayState();
@@ -421,15 +413,7 @@ void MusicApplication::playNext()
         return; //The playlist is not performing space-time
     }
 
-    if(m_playlist->playbackMode() == TTK::PlayMode::Random)
-    {
-        m_playlist->setCurrentIndex();
-    }
-    else
-    {
-        int index = m_playlist->currentIndex();
-        m_playlist->setCurrentIndex((++index >= m_playlist->count()) ? 0 : index);
-    }
+    m_playlist->setCurrentIndex(PLAY_NEXT_LEVEL);
 
     m_player->stop();
     switchPlayState();

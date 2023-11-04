@@ -54,7 +54,10 @@ struct TTK_MODULE_EXPORT MusicPlayItem
 };
 TTK_DECLARE_LIST(MusicPlayItem);
 
+#define PLAY_NEXT_LEVEL               -123
+#define PLAY_PREVIOUS_LEVEL           -321
 
+void playNext();
 /*! @brief The class of the music play list.
  * @author Greedysky <greedysky@163.com>
  */

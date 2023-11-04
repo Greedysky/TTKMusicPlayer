@@ -195,6 +195,30 @@ void MusicPlaylist::setCurrentIndex(int index)
             default: break;
         }
     }
+    else if(index == PLAY_NEXT_LEVEL)
+    {
+        if(m_playbackMode == TTK::PlayMode::Random)
+        {
+            m_currentIndex = TTK::random() % m_mediaList.count();
+        }
+        else
+        {
+            int index = m_currentIndex;
+            m_currentIndex = (++index >= count()) ? 0 : index;
+        }
+    }
+    else if(index == PLAY_PREVIOUS_LEVEL)
+    {
+        if(m_playbackMode == TTK::PlayMode::Random)
+        {
+            m_currentIndex = TTK::random() % m_mediaList.count();
+        }
+        else
+        {
+            int index = m_currentIndex;
+            m_currentIndex = (--index < 0) ? 0 : index;
+        }
+    }
     else
     {
         m_currentIndex = index;
