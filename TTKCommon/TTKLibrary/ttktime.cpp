@@ -98,14 +98,14 @@ QString TTKTime::toString(const QString &format) const
     return QTime(m_hour, m_min, m_sec, m_msec).toString(format);
 }
 
-qint64 TTKTime::timestamp(Entity type) const
+qint64 TTKTime::currentTimestamp(Entity type) const
 {
     qint64 delta = (type == Entity::Second) ? MT_S : MT_S2MS;
            delta = (m_day * MT_D2S + m_hour * MT_H2S + m_min * MT_M2S + m_sec) * delta;
     return (type == Entity::Second) ? delta : (delta + m_msec);
 }
 
-qint64 TTKTime::timestamp(bool ms)
+qint64 TTKTime::currentTimestamp(bool ms)
 {
     const qint64 t = QDateTime::currentMSecsSinceEpoch();
     return ms ? t : t / 1000;
@@ -114,7 +114,7 @@ qint64 TTKTime::timestamp(bool ms)
 qint64 TTKTime::formatDuration(const QString &time)
 {
     const TTKTime t = TTKTime::fromString(time, "mm:ss");
-    return t.timestamp(Entity::Millisecond);
+    return t.currentTimestamp(Entity::Millisecond);
 }
 
 QString TTKTime::formatDuration(qint64 time/*, bool greedy*/)
@@ -139,90 +139,90 @@ TTKTime& TTKTime::operator= (const TTKTime &other)
 
 TTKTime& TTKTime::operator+= (const TTKTime &other)
 {
-    const qint64 t = timestamp(Entity::Millisecond) + other.timestamp(Entity::Millisecond);
+    const qint64 t = currentTimestamp(Entity::Millisecond) + other.currentTimestamp(Entity::Millisecond);
     fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 TTKTime& TTKTime::operator+= (const int other)
 {
-    const qint64 t = timestamp(Entity::Millisecond) + other;
+    const qint64 t = currentTimestamp(Entity::Millisecond) + other;
     fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 TTKTime& TTKTime::operator-= (const TTKTime &other)
 {
-    const qint64 t = timestamp(Entity::Millisecond) - other.timestamp(Entity::Millisecond);
+    const qint64 t = currentTimestamp(Entity::Millisecond) - other.currentTimestamp(Entity::Millisecond);
     fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 TTKTime& TTKTime::operator-= (const int other)
 {
-    const qint64 t = timestamp(Entity::Millisecond) - other;
+    const qint64 t = currentTimestamp(Entity::Millisecond) - other;
     fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 TTKTime& TTKTime::operator*= (const int other)
 {
-    const qint64 t = timestamp(Entity::Millisecond) * other;
+    const qint64 t = currentTimestamp(Entity::Millisecond) * other;
     fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 TTKTime& TTKTime::operator/= (const int other)
 {
-    const qint64 t = timestamp(Entity::Millisecond) / other;
+    const qint64 t = currentTimestamp(Entity::Millisecond) / other;
     fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 TTKTime TTKTime::operator+ (const TTKTime &other)
 {
-    const qint64 t = timestamp(Entity::Millisecond) + other.timestamp(Entity::Millisecond);
+    const qint64 t = currentTimestamp(Entity::Millisecond) + other.currentTimestamp(Entity::Millisecond);
     return TTKTime(t, m_defaultType);
 }
 
 TTKTime TTKTime::operator+ (const int other)
 {
-    const qint64 t = timestamp(Entity::Millisecond) + other;
+    const qint64 t = currentTimestamp(Entity::Millisecond) + other;
     return TTKTime(t, m_defaultType);
 }
 
 TTKTime TTKTime::operator- (const TTKTime &other)
 {
-    const qint64 t = timestamp(Entity::Millisecond) - other.timestamp(Entity::Millisecond);
+    const qint64 t = currentTimestamp(Entity::Millisecond) - other.currentTimestamp(Entity::Millisecond);
     return TTKTime(t, m_defaultType);
 }
 
 TTKTime TTKTime::operator- (const int other)
 {
-    const qint64 t = timestamp(Entity::Millisecond) - other;
+    const qint64 t = currentTimestamp(Entity::Millisecond) - other;
     return TTKTime(t, m_defaultType);
 }
 
 TTKTime TTKTime::operator* (const int other)
 {
-    const qint64 t = timestamp(Entity::Millisecond) * other;
+    const qint64 t = currentTimestamp(Entity::Millisecond) * other;
     return TTKTime(t, m_defaultType);
 }
 
 TTKTime TTKTime::operator/ (const int other)
 {
-    const qint64 t = timestamp(Entity::Millisecond) / other;
+    const qint64 t = currentTimestamp(Entity::Millisecond) / other;
     return TTKTime(t, m_defaultType);
 }
 
 bool TTKTime::operator== (const TTKTime &other) const
 {
-    return timestamp(Entity::Millisecond) == other.timestamp(Entity::Millisecond);
+    return currentTimestamp(Entity::Millisecond) == other.currentTimestamp(Entity::Millisecond);
 }
 
 bool TTKTime::operator!= (const TTKTime &other) const
 {
-    return timestamp(Entity::Millisecond) != other.timestamp(Entity::Millisecond);
+    return currentTimestamp(Entity::Millisecond) != other.currentTimestamp(Entity::Millisecond);
 }
 
 void TTKTime::initialize()

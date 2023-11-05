@@ -136,13 +136,13 @@ public:
 //    t	the timezone (for example "CEST")
 
     /*!
-     * Get all time value by type.
+     * Transform ms time from utc since epoch.
      */
-    qint64 timestamp(Entity type) const;
+    qint64 currentTimestamp(Entity type) const;
     /*!
      * Transform ms time from utc since epoch.
      */
-    static qint64 timestamp(bool ms = true);
+    static qint64 currentTimestamp(bool ms = true);
 
     /*!
      * Transform string format(mm:ss) to msec time.
