@@ -23,8 +23,8 @@
 #include "musicglobaldefine.h"
 
 class QDeviceWatcher;
-class MusicTimerAutoModule;
 class MusicBackupModule;
+class MusicTimerAutoModule;
 class MusicMobileDevicesWidget;
 class MusicCounterPVRequest;
 class MusicSourceUpdateRequest;
@@ -172,8 +172,8 @@ private:
     bool m_setWindowToTop;
     TTK::Direction m_direction;
     QPropertyAnimation *m_quitAnimation, *m_sideAnimation;
-    MusicTimerAutoModule *m_timerAutoModule;
     MusicBackupModule *m_backupModule;
+    MusicTimerAutoModule *m_timerAutoModule;
     MusicMobileDevicesWidget *m_mobileDeviceWidget;
     QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;

@@ -32,6 +32,7 @@ class MusicApplicationModule;
 class MusicSongsSummariziedWidget;
 
 class MusicMPRISPlayerCore;
+class MusicPlaylistBackupModule;
 
 namespace Ui {
 class MusicApplication;
@@ -343,6 +344,7 @@ private:
     MusicApplicationModule *m_applicationObject;
 
     friend class MusicMPRISPlayerCore;
+    friend class MusicPlaylistBackupModule;
     static MusicApplication *m_instance;
 
 };

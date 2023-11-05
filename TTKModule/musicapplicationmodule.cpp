@@ -58,8 +58,8 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_quitAnimation->setTargetObject(parent);
     m_sideAnimation->setDuration(250 * MT_MS);
 
+    m_backupModule = new MusicBackupModule;
     m_timerAutoModule = new MusicTimerAutoModule(this);
-    m_backupModule = new MusicBackupModule(this);
 
     m_deviceWatcher = new QDeviceWatcher(this);
     connect(m_deviceWatcher, SIGNAL(deviceChanged(bool)), SLOT(deviceChanged(bool)));
@@ -86,8 +86,8 @@ MusicApplicationModule::~MusicApplicationModule()
 {
     Q_CLEANUP_RESOURCE(MusicPlayer);
 
-    delete m_timerAutoModule;
     delete m_backupModule;
+    delete m_timerAutoModule;
     delete m_screenSaverWidget;
     delete m_quitAnimation;
     delete m_sideAnimation;
