@@ -16,10 +16,9 @@ MusicAbstractSongsListTableWidget::MusicAbstractSongsListTableWidget(QWidget *pa
 
 MusicAbstractSongsListTableWidget::MusicAbstractSongsListTableWidget(int index, QWidget *parent)
     : MusicSmoothMovingTableWidget(parent),
-      m_toolIndex(index),
+      m_playlistRow(index),
       m_playRowIndex(-1),
-      m_songs(nullptr),
-      m_hasParentToolIndex(true)
+      m_songs(nullptr)
 {
 
 }
@@ -55,9 +54,9 @@ int MusicAbstractSongsListTableWidget::totalHeight() const
     return height;
 }
 
-void MusicAbstractSongsListTableWidget::setToolIndex(int index)
+void MusicAbstractSongsListTableWidget::setPlaylistRow(int index)
 {
-    m_toolIndex = index;
+    m_playlistRow = index;
 }
 
 void MusicAbstractSongsListTableWidget::removeItemAt()

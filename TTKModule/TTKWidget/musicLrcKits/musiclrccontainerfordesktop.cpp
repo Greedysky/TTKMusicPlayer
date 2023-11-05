@@ -221,7 +221,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolPlayButton = new QToolButton(m_toolBarWidget);
     m_toolPlayButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
     m_toolBarLayout->addWidget(m_toolPlayButton, 0, Qt::AlignCenter);
-    connect(m_toolPlayButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(switchPlayState()));
+    connect(m_toolPlayButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(switchToPlayState()));
 
     QToolButton *toolNextSongButton = new QToolButton(m_toolBarWidget);
     toolNextSongButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);

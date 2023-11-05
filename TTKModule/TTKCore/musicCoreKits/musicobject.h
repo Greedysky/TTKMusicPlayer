@@ -72,6 +72,7 @@
 
 #define APPDATA_DIR              TTK_STRCAT("AppData", TTK_SEPARATOR)
 #define APPCACHE_DIR             TTK_STRCAT("AppCache", TTK_SEPARATOR)
+#define APPBACKUP_DIR            TTK_STRCAT("AppBackup", TTK_SEPARATOR)
 #define DOWNLOAD_DIR             TTK_STRCAT("Downloads", TTK_SEPARATOR)
 //
 #define LRC_DIR                  TTK_STRCAT("Lyric", TTK_SEPARATOR)
@@ -116,6 +117,7 @@
 #define DOWNLOAD_DIR_FULL        MAIN_DIR_FULL + DOWNLOAD_DIR
 #define APPDATA_DIR_FULL         TTK::configPath() + APPDATA_DIR
 #define APPCACHE_DIR_FULL        TTK::configPath() + APPCACHE_DIR
+#define APPBACKUP_DIR_FULL       TTK::configPath() + APPBACKUP_DIR
 //
 #define LRC_DIR_FULL             DOWNLOAD_DIR_FULL + LRC_DIR
 #define MUSIC_DIR_FULL           DOWNLOAD_DIR_FULL + MUSIC_DIR

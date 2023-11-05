@@ -73,6 +73,8 @@ bool MusicConfigManager::readBuffer(int &items)
     G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverEnable, readXmlAttributeByTagName("otherScreenSaverEnable").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverTime, readXmlAttributeByTagName("otherScreenSaverTime").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverIndex, readXmlAttributeByTagName("otherScreenSaverIndex"));
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherPlaylistAutoSaveEnable, readXmlAttributeByTagName("otherPlaylistAutoSaveEnable"));
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherRandomShuffleMode, readXmlAttributeByTagName("otherRandomShuffleMode"));
 
     G_SETTING_PTR->setValue(MusicSettingManager::RippleLowPowerMode, readXmlAttributeByTagName("rippleLowPowerMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable, readXmlAttributeByTagName("rippleSpectrumEnable").toInt());
@@ -180,6 +182,8 @@ bool MusicConfigManager::writeBuffer(const int &items)
     const int otherScreenSaverEnable = G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toInt();
     const int otherScreenSaverTime = G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toInt();
     const QString &otherScreenSaverIndex = G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverIndex).toString();
+    const int otherPlaylistAutoSaveEnable = G_SETTING_PTR->value(MusicSettingManager::OtherPlaylistAutoSaveEnable).toInt();
+    const int otherRandomShuffleMode = G_SETTING_PTR->value(MusicSettingManager::OtherRandomShuffleMode).toInt();
     //
     const int rippleLowPowerMode = G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toInt();
     const int rippleSpectrumEnable = G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toInt();
@@ -291,6 +295,8 @@ bool MusicConfigManager::writeBuffer(const int &items)
     writeDomElement(otherSettingDom, "otherScreenSaverEnable", {"value", otherScreenSaverEnable});
     writeDomElement(otherSettingDom, "otherScreenSaverTime", {"value", otherScreenSaverTime});
     writeDomElement(otherSettingDom, "otherScreenSaverIndex", {"value", otherScreenSaverIndex});
+    writeDomElement(otherSettingDom, "otherPlaylistAutoSaveEnable", {"value", otherPlaylistAutoSaveEnable});
+    writeDomElement(otherSettingDom, "otherRandomShuffleMode", {"value", otherRandomShuffleMode});
     //
     writeDomElement(rippleSettingDom, "rippleLowPowerMode", {"value", rippleLowPowerMode});
     writeDomElement(rippleSettingDom, "rippleSpectrumEnable", {"value", rippleSpectrumEnable});

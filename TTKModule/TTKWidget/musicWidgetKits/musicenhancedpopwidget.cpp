@@ -138,7 +138,7 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
     m_menu->close();
 }
 
-void MusicEnhancedPopWidget::switchButtonOnAndOff()
+void MusicEnhancedPopWidget::switchButtonState()
 {
     setEnhancedMusicConfig(m_caseButton->styleSheet().contains(":/enhance/btn_magic_off_normal") ? m_lastSelectedIndex : 0);
 }
@@ -225,5 +225,5 @@ void MusicEnhancedPopWidget::initialize()
     m_buttons << button1 << button2 << button3 << button4;
 
     m_lastSelectedIndex = G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt();
-    connect(m_caseButton, SIGNAL(clicked()), SLOT(switchButtonOnAndOff()));
+    connect(m_caseButton, SIGNAL(clicked()), SLOT(switchButtonState()));
 }

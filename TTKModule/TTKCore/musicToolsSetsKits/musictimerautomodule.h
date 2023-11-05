@@ -63,9 +63,9 @@ public:
     ~MusicTimerAutoModule();
 
     /*!
-     * Run time auto from local file config.
+     * Run module.
      */
-    void runTimerAutoConfig();
+    void run();
 
 private Q_SLOTS:
     /*!

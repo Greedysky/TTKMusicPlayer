@@ -61,9 +61,9 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     /*!
-     * Switch button on and off.
+     * Switch button on or off.
      */
-    void switchButtonOnAndOff();
+    void switchButtonState();
 
 private:
     /*!
@@ -194,9 +194,9 @@ private Q_SLOTS:
      */
     void inputDataChanged();
     /*!
-     * switch button on and off.
+     * switch button on or off.
      */
-    void switchButtonOnAndOff();
+    void switchButtonState();
     /*!
      * Send download data from net.
      */
@@ -239,9 +239,9 @@ public:
     ~MusicScreenSaverBackgroundWidget();
 
     /*!
-     * Apply settings parameters.
+     * Run module.
      */
-    void applyParameter();
+    void run();
 
 private Q_SLOTS:
     /*!

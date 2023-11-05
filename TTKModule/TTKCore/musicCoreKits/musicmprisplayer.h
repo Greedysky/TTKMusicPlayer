@@ -48,7 +48,7 @@ public:
     ~MusicMPRISPlayer();
 
     /*!
-     * Run.
+     * Run module.
      */
     void run();
 

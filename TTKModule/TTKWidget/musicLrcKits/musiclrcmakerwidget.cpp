@@ -285,7 +285,7 @@ void MusicLrcMakerWidget::firstWidgetStateButtonClicked()
     m_ui->stateButton_F->setText(text);
     m_ui->stateButton_T->setText(text);
 
-    MusicApplication::instance()->switchPlayState();
+    MusicApplication::instance()->switchToPlayState();
 }
 
 void MusicLrcMakerWidget::thirdWidgetStateButtonClicked()
@@ -295,7 +295,7 @@ void MusicLrcMakerWidget::thirdWidgetStateButtonClicked()
     m_ui->stateButton_F->setText(text);
     m_ui->stateButton_T->setText(text);
 
-    MusicApplication::instance()->switchPlayState();
+    MusicApplication::instance()->switchToPlayState();
     if(state)
     {
         m_lrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);

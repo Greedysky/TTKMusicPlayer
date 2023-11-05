@@ -21,7 +21,7 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_playlist, SIGNAL(currentIndexChanged(int)), SLOT(currentIndexChanged(int)));
 
-    G_HOTKEY_PTR->addHotKey(this, "Ctrl+B", SLOT(switchPlayState()));
+    G_HOTKEY_PTR->addHotKey(this, "Ctrl+B", SLOT(switchToPlayState()));
     G_HOTKEY_PTR->addHotKey(this, "Ctrl+Left", SLOT(playPrevious()));
     G_HOTKEY_PTR->addHotKey(this, "Ctrl+Right", SLOT(playNext()));
     G_HOTKEY_PTR->addHotKey(this, "Ctrl+Up", SLOT(volumeUp()));
@@ -173,7 +173,7 @@ void MusicConsoleModule::currentIndexChanged(int index)
     }
 }
 
-void MusicConsoleModule::switchPlayState()
+void MusicConsoleModule::switchToPlayState()
 {
     if(m_playlist->isEmpty())
     {

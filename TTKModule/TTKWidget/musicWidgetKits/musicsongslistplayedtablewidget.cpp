@@ -21,7 +21,6 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
     headerview->resizeSection(3, 25);
     headerview->resizeSection(4, 45);
 
-    m_hasParentToolIndex = false;
     TTK::Widget::setTransparent(this, 255);
 }
 

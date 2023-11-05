@@ -207,6 +207,8 @@ void MusicSettingWidget::initialize()
     m_ui->otherSideByCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherSideByMode).toBool());
     m_ui->otherLrcKTVCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool());
     m_ui->otherScreenSaverCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool());
+    m_ui->otherPlaylistAutoSaveCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherPlaylistAutoSaveEnable).toBool());
+    m_ui->otherRandomModeCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherRandomShuffleMode).toBool());
 
     //
     m_ui->downloadDirEdit->setText(G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString());
@@ -600,6 +602,8 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByMode, m_ui->otherSideByCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVMode, m_ui->otherLrcKTVCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverEnable, m_ui->otherScreenSaverCheckBox->isChecked());
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherPlaylistAutoSaveEnable, m_ui->otherPlaylistAutoSaveCheckBox->isChecked());
+    G_SETTING_PTR->setValue(MusicSettingManager::OtherRandomShuffleMode, m_ui->otherRandomModeCheckBox->isChecked());
 
 
     G_SETTING_PTR->setValue(MusicSettingManager::LrcColor, m_ui->fontDefaultColorComboBox->currentIndex());
@@ -876,6 +880,8 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherSideByCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->otherLrcKTVCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
     m_ui->otherScreenSaverCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherPlaylistAutoSaveCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
+    m_ui->otherRandomModeCheckBox->setStyleSheet(TTK::UI::CheckBoxStyle01);
 
     m_ui->otherPluginManagerButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->otherPluginManagerButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -889,6 +895,8 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherLrcKTVCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherScreenSaverCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherPlaylistAutoSaveCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherRandomModeCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherPluginManagerButton->setFocusPolicy(Qt::NoFocus);
 #endif
 }

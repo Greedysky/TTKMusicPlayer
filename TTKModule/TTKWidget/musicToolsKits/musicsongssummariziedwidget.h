@@ -78,11 +78,11 @@ public:
     /*!
      * Map music song index by file path.
      */
-    int mapSongIndexByFilePath(int toolIndex, const QString &path) const;
+    int mapSongIndexByFilePath(int playlistRow, const QString &path) const;
     /*!
      * Map music file path by song index.
      */
-    QString mapFilePathBySongIndex(int toolIndex, int index) const;
+    QString mapFilePathBySongIndex(int playlistRow, int index) const;
 
     /*!
      * Get search result index from list by given row and clear cache.
@@ -90,13 +90,14 @@ public:
     void removeSearchResult(int &row);
 
     /*!
-     * Get play tool index.
+     * Get current play row index.
      */
-    inline int playToolIndex() const { return m_playToolIndex; }
+    inline int playRowIndex() const { return m_playRowIndex; }
     /*!
-     * Set current music song tree index.
+     * Set current song tree index.
      */
-    void setCurrentMusicSongTreeIndex(int index);
+    void setCurrentSongTreeIndex(int index);
+
     /*!
      * Show current play index.
      */
@@ -282,11 +283,11 @@ private:
      */
     void resizeWindow();
     /*!
-     * Get current played list.
+     * Update current played list.
      */
-    void resetToolIndex();
+    void updatePlayedList();
 
-    int m_playToolIndex;
+    int m_playRowIndex;
     int m_lastSearchIndex;
     int m_selectImportIndex;
     int m_selectDeleteIndex;

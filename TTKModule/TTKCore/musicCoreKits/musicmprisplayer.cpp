@@ -327,22 +327,22 @@ void MusicMPRISPlayerCore::OpenUri(const QString &uri)
 
 void MusicMPRISPlayerCore::Pause()
 {
-    m_application->switchPlayState();
+    m_application->switchToPlayState();
 }
 
 void MusicMPRISPlayerCore::Play()
 {
-    m_application->switchPlayState();
+    m_application->switchToPlayState();
 }
 
 void MusicMPRISPlayerCore::PlayPause()
 {
-    m_application->switchPlayState();
+    m_application->switchToPlayState();
 }
 
 void MusicMPRISPlayerCore::Stop()
 {
-    m_application->switchStopState();
+    m_application->switchToStopState();
 }
 
 void MusicMPRISPlayerCore::Seek(qlonglong offset)

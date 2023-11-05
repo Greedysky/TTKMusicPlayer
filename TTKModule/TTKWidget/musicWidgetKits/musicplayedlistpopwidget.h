@@ -27,8 +27,8 @@ class QScrollArea;
 class MusicPlaylist;
 class MusicSongsListPlayedTableWidget;
 
-#define MakePlayedItem(a, b) std::pair<int, int>(a, b);
-using PlayedItemList = QList< std::pair<int, int> >;
+using MusicPlayedItem = std::pair<int, int>;
+using MusicPlayedItemList = QList<MusicPlayedItem>;
 
 /*! @brief The class of the played list top container widget.
  * @author Greedysky <greedysky@163.com>
@@ -92,9 +92,9 @@ public:
      */
     void clearQueueState();
     /*!
-     * Get current played item list.
+     * Update current played item list.
      */
-    void resetToolIndex(const PlayedItemList &indexs);
+    void updatePlayedList(const MusicPlayedItemList &indexs);
 
     /*!
      * Remove music from data list.
@@ -103,16 +103,16 @@ public:
     /*!
      * Remove music from data list.
      */
-    void remove(int toolIndex, const QString &path);
+    void remove(int playlistRow, const QString &path);
     /*!
      * Remove music from data list.
      */
-    void remove(int toolIndex, const MusicSong &song);
+    void remove(int playlistRow, const MusicSong &song);
 
     /*!
      * Append music to data list.
      */
-    void append(int toolIndex, const MusicSong &song);
+    void append(int playlistRow, const MusicSong &song);
     /*!
      * Append music to data list.
      */
@@ -121,11 +121,11 @@ public:
     /*!
      * Insert music after played music index.
      */
-    void insert(int toolIndex, const MusicSong &song);
+    void insert(int playlistRow, const MusicSong &song);
     /*!
      * Insert music by given index.
      */
-    void insert(int toolIndex, int index, const MusicSong &song);
+    void insert(int playlistRow, int index, const MusicSong &song);
 
     /*!
      * Set current select played music index.
@@ -134,7 +134,7 @@ public:
     /*!
      * Set current select played music index.
      */
-    void setCurrentIndex(int toolIndex, const MusicSong &song);
+    void setCurrentIndex(int playlistRow, const MusicSong &song);
 
 public Q_SLOTS:
     /*!

@@ -26,17 +26,17 @@
  */
 struct TTK_MODULE_EXPORT MusicPlayItem
 {
-    int m_toolIndex;
+    int m_playlistRow;
     QString m_path;
 
     MusicPlayItem()
-        : m_toolIndex(-1)
+        : m_playlistRow(-1)
     {
 
     }
 
     MusicPlayItem(int index, const QString &path)
-        : m_toolIndex(index),
+        : m_playlistRow(index),
           m_path(path)
     {
 
@@ -44,12 +44,12 @@ struct TTK_MODULE_EXPORT MusicPlayItem
 
     inline bool isValid() const
     {
-        return m_toolIndex != -1 && !m_path.isEmpty();
+        return m_playlistRow != -1 && !m_path.isEmpty();
     }
 
     inline bool operator== (const MusicPlayItem &other) const
     {
-        return m_toolIndex == other.m_toolIndex && m_path == other.m_path;
+        return m_playlistRow == other.m_playlistRow && m_path == other.m_path;
     }
 };
 TTK_DECLARE_LIST(MusicPlayItem);
@@ -57,7 +57,6 @@ TTK_DECLARE_LIST(MusicPlayItem);
 #define PLAY_NEXT_LEVEL               -123
 #define PLAY_PREVIOUS_LEVEL           -321
 
-void playNext();
 /*! @brief The class of the music play list.
  * @author Greedysky <greedysky@163.com>
  */
@@ -70,6 +69,11 @@ public:
      * Object constructor.
      */
     explicit MusicPlaylist(QObject *parent = nullptr);
+
+    /*!
+     * Set shulle mode.
+     */
+    void setShuffleMode(bool shuffle);
 
     /*!
      * Get current play mode.
@@ -100,11 +104,11 @@ public:
     /*!
      * Get all music media path.
      */
-    MusicPlayItemList *mediaList();
+    const MusicPlayItemList& mediaList() const;
     /*!
      * Get queue music media path.
      */
-    MusicPlayItemList *queueList();
+    const MusicPlayItemList& queueList() const;
 
     /*!
      * Get current medias count.
@@ -118,32 +122,37 @@ public:
      * Clear current medias.
      */
     void clear();
+
+    /*!
+     * Update item playlist row by index.
+     */
+    void update(int pos, int playlistRow);
     /*!
      * Find item by index and content.
      */
-    int find(int toolIndex, const QString &content, int from = 0);
+    int find(int playlistRow, const QString &content, int from = 0);
 
     /*!
      * Add music media, not append remember.
      */
-    void add(int toolIndex, const QString &content);
+    void add(int playlistRow, const QString &content);
     /*!
      * Add music media list, not append remember.
      */
-    void add(int toolIndex, const QStringList &items);
+    void add(int playlistRow, const QStringList &items);
 
     /*!
      * Append music medias.
      */
-    void append(int toolIndex, const QString &content);
+    void append(int playlistRow, const QString &content);
     /*!
      * Append music medias.
      */
-    void append(int toolIndex, const QStringList &items);
+    void append(int playlistRow, const QStringList &items);
     /*!
      * Append music media by index and content.
      */
-    void appendQueue(int toolIndex, const QString &content);
+    void appendQueue(int playlistRow, const QString &content);
 
     /*!
      * Remove music media from current medias by index pos.
@@ -152,7 +161,7 @@ public:
     /*!
      * Remove music media from current medias by index pos.
      */
-    int remove(int toolIndex, const QString &content);
+    int remove(int playlistRow, const QString &content);
     /*!
      * Remove music all queue media.
      */
@@ -176,13 +185,16 @@ public Q_SLOTS:
     /*!
      * Set current play index.
      */
-    void setCurrentIndex(int toolIndex, const QString &path);
+    void setCurrentIndex(int playlistRow, const QString &path);
 
 private:
     int m_currentIndex;
     MusicPlayItemList m_mediaList;
     MusicPlayItemList m_queueList;
     TTK::PlayMode m_playbackMode;
+
+    bool m_shuffleMode;
+    TTKIntSet m_shuffleList;
 
 };
 

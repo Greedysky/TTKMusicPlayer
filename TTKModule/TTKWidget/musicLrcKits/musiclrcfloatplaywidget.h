@@ -49,7 +49,7 @@ public Q_SLOTS:
     /*!
      * Set current player to play or not.
      */
-    void switchPlayState();
+    void switchToPlayState();
 
 private:
     /*!

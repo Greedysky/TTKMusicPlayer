@@ -141,11 +141,11 @@ public Q_SLOTS:
     /*!
      * Set current player to play or not.
      */
-    void switchPlayState();
+    void switchToPlayState();
     /*!
      * Set current player to stop.
      */
-    void switchStopState();
+    void switchToStopState();
     /*!
      * Set current player to play previous.
      */
@@ -278,7 +278,7 @@ public Q_SLOTS:
     /*!
      * Delete items from indexs.
      */
-    void removeItemAt(const QStringList &path, bool remove, bool current, int toolIndex);
+    void removeItemAt(const QStringList &path, bool remove, bool current, int playlistRow);
     /*!
      * The current lrc should update.
      */

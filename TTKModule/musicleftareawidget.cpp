@@ -46,7 +46,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
     m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
     m_ui->songsContainer->setLength(LEFT_SIDE_WIDTH_MIN, MusicAnimationStackedWidget::Module::LeftToRight);
 
-    connect(ui->musicKey, SIGNAL(clicked()), MusicApplication::instance(), SLOT(switchPlayState()));
+    connect(ui->musicKey, SIGNAL(clicked()), MusicApplication::instance(), SLOT(switchToPlayState()));
     connect(ui->musicPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playPrevious()));
     connect(ui->musicNext, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playNext()));
     connect(ui->musicSound, SIGNAL(clicked()), MusicApplication::instance(), SLOT(volumeMute()));

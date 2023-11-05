@@ -165,7 +165,7 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
 
     connect(previousPlay, SIGNAL(clicked()), parent(), SLOT(playPrevious()));
     connect(nextPlay, SIGNAL(clicked()), parent(), SLOT(playNext()));
-    connect(m_playButton, SIGNAL(clicked()), parent(), SLOT(switchPlayState()));
+    connect(m_playButton, SIGNAL(clicked()), parent(), SLOT(switchToPlayState()));
 }
 
 void MusicSystemTrayMenu::createVolumeWidgetActions()

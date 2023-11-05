@@ -102,9 +102,9 @@ public Q_SLOTS:
      */
     void setEnhancedMusicConfig(int type);
     /*!
-     * switch button on and off.
+     * switch button on or off.
      */
-    void switchButtonOnAndOff();
+    void switchButtonState();
     /*!
      * Button animation state changed.
      */

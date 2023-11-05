@@ -4,6 +4,7 @@
 #include "musictimerwidget.h"
 #include "musicspectrumwidget.h"
 #include "musictimerautomodule.h"
+#include "musicbackupmodule.h"
 #include "musicmessagebox.h"
 #include "musictoastlabel.h"
 #include "musicequalizerdialog.h"
@@ -58,6 +59,7 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_sideAnimation->setDuration(250 * MT_MS);
 
     m_timerAutoModule = new MusicTimerAutoModule(this);
+    m_backupModule = new MusicBackupModule(this);
 
     m_deviceWatcher = new QDeviceWatcher(this);
     connect(m_deviceWatcher, SIGNAL(deviceChanged(bool)), SLOT(deviceChanged(bool)));
@@ -68,7 +70,16 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_counterPVThread = new MusicCounterPVRequest(this);
     m_sourceUpdatehread = new MusicSourceUpdateRequest(this);
 
-    runToolSetsParameter();
+    runTimerAutoModule();
+
+#ifdef Q_OS_WIN
+    MusicPlatformManager manager;
+    const int version = manager.windowsIEVersion();
+    if(version == -1 || version < 8)
+    {
+        MusicToastLabel::popup(version == -1 ? QObject::tr("No ie core version detected") : QObject::tr("IE core version less than 8"));
+    }
+#endif
 }
 
 MusicApplicationModule::~MusicApplicationModule()
@@ -76,6 +87,7 @@ MusicApplicationModule::~MusicApplicationModule()
     Q_CLEANUP_RESOURCE(MusicPlayer);
 
     delete m_timerAutoModule;
+    delete m_backupModule;
     delete m_screenSaverWidget;
     delete m_quitAnimation;
     delete m_sideAnimation;
@@ -156,12 +168,14 @@ void MusicApplicationModule::applyParameter()
         }
     });
 #endif
-
+    //
     if(!m_screenSaverWidget)
     {
         m_screenSaverWidget = new MusicScreenSaverBackgroundWidget;
     }
-    m_screenSaverWidget->applyParameter();
+    m_screenSaverWidget->run();
+    //
+    m_backupModule->run();
 }
 
 void MusicApplicationModule::windowCloseAnimation()
@@ -395,17 +409,9 @@ void MusicApplicationModule::resetWindowGeometry()
     w->setGeometry((rect.width() - WINDOW_WIDTH_MIN) / 2, (rect.height() - WINDOW_HEIGHT_MIN) / 2, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 }
 
-void MusicApplicationModule::runToolSetsParameter()
+void MusicApplicationModule::runTimerAutoModule()
 {
-    m_timerAutoModule->runTimerAutoConfig();
-#ifdef Q_OS_WIN
-    MusicPlatformManager manager;
-    const int version = manager.windowsIEVersion();
-    if(version == -1 || version < 8)
-    {
-        MusicToastLabel::popup(version == -1 ? QObject::tr("No ie core version detected") : QObject::tr("IE core version less than 8"));
-    }
-#endif
+    m_timerAutoModule->run();
 }
 
 void MusicApplicationModule::deviceNameChanged(const QString &name)

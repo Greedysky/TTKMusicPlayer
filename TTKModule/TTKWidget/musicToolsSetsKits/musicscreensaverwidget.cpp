@@ -36,7 +36,7 @@ MusicScreenSaverHoverItem::MusicScreenSaverHoverItem(QLabel *parent)
 #ifdef Q_OS_UNIX
     m_enableButton->setFocusPolicy(Qt::NoFocus);
 #endif
-    connect(m_enableButton, SIGNAL(clicked()), SLOT(switchButtonOnAndOff()));
+    connect(m_enableButton, SIGNAL(clicked()), SLOT(switchButtonState()));
 }
 
 void MusicScreenSaverHoverItem::setFilePath(const QString &path)
@@ -52,7 +52,7 @@ void MusicScreenSaverHoverItem::setStatus(int index, bool status)
     m_index = index;
     if(!status)
     {
-        switchButtonOnAndOff();
+        switchButtonState();
     }
 }
 
@@ -62,7 +62,7 @@ void MusicScreenSaverHoverItem::display(const QPoint &point)
     show();
 }
 
-void MusicScreenSaverHoverItem::switchButtonOnAndOff()
+void MusicScreenSaverHoverItem::switchButtonState()
 {
     if(m_enableButton->styleSheet().contains(TTK::UI::ScreenItemDisable))
     {
@@ -278,7 +278,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     functionWidgetLayout->addWidget(m_backgroundList);
 
     connect(m_inputEdit, SIGNAL(textChanged(QString)), SLOT(inputDataChanged()));
-    connect(m_caseButton, SIGNAL(clicked()), SLOT(switchButtonOnAndOff()));
+    connect(m_caseButton, SIGNAL(clicked()), SLOT(switchButtonState()));
 
     initialize();
     applyParameter();
@@ -292,7 +292,7 @@ void MusicScreenSaverWidget::applyParameter()
     m_inputEdit->setText(QString::number(value));
     if(state != m_currentState)
     {
-        switchButtonOnAndOff();
+        switchButtonState();
     }
 }
 
@@ -331,7 +331,7 @@ void MusicScreenSaverWidget::inputDataChanged()
     }
 }
 
-void MusicScreenSaverWidget::switchButtonOnAndOff()
+void MusicScreenSaverWidget::switchButtonState()
 {
     if(m_currentState)
     {
@@ -445,7 +445,7 @@ MusicScreenSaverBackgroundWidget::~MusicScreenSaverBackgroundWidget()
     delete m_backgroundTimer;
 }
 
-void MusicScreenSaverBackgroundWidget::applyParameter()
+void MusicScreenSaverBackgroundWidget::run()
 {
     if(m_runningTimer->isActive())
     {
@@ -456,6 +456,7 @@ void MusicScreenSaverBackgroundWidget::applyParameter()
     m_state = G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool();
     const int value = G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toInt();
     m_state = (m_state && (value > 0));
+
     if(m_state)
     {
         m_runningTimer->setInterval(value * MT_M2MS);

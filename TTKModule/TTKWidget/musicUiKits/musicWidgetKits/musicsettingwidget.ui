@@ -1210,7 +1210,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>150</y>
+       <y>145</y>
        <width>210</width>
        <height>20</height>
       </rect>
@@ -1223,7 +1223,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>180</y>
+       <y>175</y>
        <width>210</width>
        <height>20</height>
       </rect>
@@ -1262,7 +1262,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>120</y>
+       <y>115</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -1280,7 +1280,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>150</y>
+       <y>145</y>
        <width>200</width>
        <height>20</height>
       </rect>
@@ -1319,7 +1319,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>180</y>
+       <y>175</y>
        <width>200</width>
        <height>20</height>
       </rect>
@@ -1332,7 +1332,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>220</y>
+       <y>240</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -1350,13 +1350,39 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>250</y>
+       <y>270</y>
        <width>100</width>
        <height>25</height>
       </rect>
      </property>
      <property name="text">
       <string>插件管理</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="otherPlaylistAutoSaveCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>205</y>
+       <width>210</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>开启播放列表自动备份</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="otherRandomModeCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>205</y>
+       <width>210</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>随机播放模式为洗牌模式</string>
      </property>
     </widget>
    </widget>

@@ -80,17 +80,17 @@ void MusicPlayedListPopWidget::clearQueueState()
     m_playedListWidget->clearQueueState();
 }
 
-void MusicPlayedListPopWidget::resetToolIndex(const PlayedItemList &indexs)
+void MusicPlayedListPopWidget::updatePlayedList(const MusicPlayedItemList &indexs)
 {
-    MusicPlayItemList *items = m_playlist->mediaList();
-    for(int s = 0; s < items->count(); ++s)
+    const MusicPlayItemList &items = m_playlist->mediaList();
+    for(int s = 0; s < items.count(); ++s)
     {
         for(int i = 0; i < indexs.count(); ++i)
         {
-            const std::pair<int, int> &index = indexs[i];
-            if(items->at(s).m_toolIndex == index.first)
+            const MusicPlayedItem &index = indexs[i];
+            if(items[s].m_playlistRow == index.first)
             {
-                (*items)[s].m_toolIndex = index.second;
+                m_playlist->update(s, index.second);
                 break;
             }
         }
@@ -114,13 +114,13 @@ void MusicPlayedListPopWidget::remove(int index)
     setPlaylistSongs();
 }
 
-void MusicPlayedListPopWidget::remove(int toolIndex, const QString &path)
+void MusicPlayedListPopWidget::remove(int playlistRow, const QString &path)
 {
     int index = -1;
     m_playedListWidget->adjustPlayWidgetRow();
     do
     {
-        index = m_playlist->remove(toolIndex, path);
+        index = m_playlist->remove(playlistRow, path);
         if(index != -1)
         {
             m_songList.removeAt(index);
@@ -132,14 +132,14 @@ void MusicPlayedListPopWidget::remove(int toolIndex, const QString &path)
     setPlaylistSongs();
 }
 
-void MusicPlayedListPopWidget::remove(int toolIndex, const MusicSong &song)
+void MusicPlayedListPopWidget::remove(int playlistRow, const MusicSong &song)
 {
-    remove(toolIndex, song.path());
+    remove(playlistRow, song.path());
 }
 
-void MusicPlayedListPopWidget::append(int toolIndex, const MusicSong &song)
+void MusicPlayedListPopWidget::append(int playlistRow, const MusicSong &song)
 {
-    m_playlist->append(toolIndex, song.path());
+    m_playlist->append(playlistRow, song.path());
     m_songList << song;
     setPlaylistSongs();
 }
@@ -151,12 +151,12 @@ void MusicPlayedListPopWidget::append(const MusicSongList &song)
     setPlaylistSongs();
 }
 
-void MusicPlayedListPopWidget::insert(int toolIndex, const MusicSong &song)
+void MusicPlayedListPopWidget::insert(int playlistRow, const MusicSong &song)
 {
-    insert(toolIndex, m_playedListWidget->playRowIndex() + 1, song);
+    insert(playlistRow, m_playedListWidget->playRowIndex() + 1, song);
 }
 
-void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong &song)
+void MusicPlayedListPopWidget::insert(int playlistRow, int index, const MusicSong &song)
 {
     if(index < 0 || index > m_songList.count())
     {
@@ -164,7 +164,7 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
     }
 
     (index != m_songList.count()) ? m_songList.insert(index, song) : m_songList.append(song);
-    m_playlist->appendQueue(toolIndex, song.path());
+    m_playlist->appendQueue(playlistRow, song.path());
 
     const int row = m_playedListWidget->playRowIndex();
     m_playedListWidget->removeItems();
@@ -173,9 +173,9 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
     m_playedListWidget->setPlayRowIndex(row);
     m_playedListWidget->selectPlayedRow();
 
-    for(const MusicPlayItem &item : qAsConst(*m_playlist->queueList()))
+    for(const MusicPlayItem &item : qAsConst(m_playlist->queueList()))
     {
-        m_playedListWidget->setQueueState(item.m_toolIndex);
+        m_playedListWidget->setQueueState(item.m_playlistRow);
     }
 }
 
@@ -185,9 +185,9 @@ void MusicPlayedListPopWidget::setCurrentIndex()
     m_playedListWidget->selectRow(index);
 }
 
-void MusicPlayedListPopWidget::setCurrentIndex(int toolIndex, const MusicSong &song)
+void MusicPlayedListPopWidget::setCurrentIndex(int playlistRow, const MusicSong &song)
 {
-    m_playlist->setCurrentIndex(toolIndex, song.path());
+    m_playlist->setCurrentIndex(playlistRow, song.path());
     setCurrentIndex();
 }
 

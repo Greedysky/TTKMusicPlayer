@@ -77,6 +77,8 @@ public:
         OtherScreenSaverEnable = 0x6008,          /*!< Other Screen Saver Enable Parameter*/
         OtherScreenSaverTime = 0x6009,            /*!< Other Screen Saver Time Parameter*/
         OtherScreenSaverIndex = 0x600A,           /*!< Other Screen Saver Index Parameter*/
+        OtherPlaylistAutoSaveEnable = 0x600B,     /*!< Other Playlist Auto Save Parameter*/
+        OtherRandomShuffleMode = 0x600C,          /*!< Other Random Shuffle Mode Parameter*/
         //
         RippleLowPowerMode = 0x7000,              /*!< Ripple Low Power Mode Parameter*/
         RippleSpectrumEnable = 0x7001,            /*!< Ripple Spectrum Enable Parameter*/

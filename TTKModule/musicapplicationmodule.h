@@ -24,6 +24,7 @@
 
 class QDeviceWatcher;
 class MusicTimerAutoModule;
+class MusicBackupModule;
 class MusicMobileDevicesWidget;
 class MusicCounterPVRequest;
 class MusicSourceUpdateRequest;
@@ -138,9 +139,9 @@ public Q_SLOTS:
      */
     void resetWindowGeometry();
     /*!
-     * Tools sets parameter changed.
+     * Run timer auto module.
      */
-    void runToolSetsParameter();
+    void runTimerAutoModule();
     /*!
      * Detect mobile devices name changed.
      */
@@ -172,6 +173,7 @@ private:
     TTK::Direction m_direction;
     QPropertyAnimation *m_quitAnimation, *m_sideAnimation;
     MusicTimerAutoModule *m_timerAutoModule;
+    MusicBackupModule *m_backupModule;
     MusicMobileDevicesWidget *m_mobileDeviceWidget;
     QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;

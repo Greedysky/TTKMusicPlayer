@@ -412,7 +412,7 @@ void MusicTopAreaWidget::createRemoteWidget()
     connect(m_remoteWidget, SIGNAL(showMainWindow()), MusicApplication::instance(), SLOT(showNormal()));
     connect(m_remoteWidget, SIGNAL(playPreviousChanged()), MusicApplication::instance(), SLOT(playPrevious()));
     connect(m_remoteWidget, SIGNAL(playNextChanged()), MusicApplication::instance(), SLOT(playNext()));
-    connect(m_remoteWidget, SIGNAL(playStateChanged()), MusicApplication::instance(), SLOT(switchPlayState()));
+    connect(m_remoteWidget, SIGNAL(playStateChanged()), MusicApplication::instance(), SLOT(switchToPlayState()));
     connect(m_remoteWidget, SIGNAL(settingChanged()), MusicApplication::instance(), SLOT(showSettingWidget()));
     connect(m_remoteWidget, SIGNAL(volumeChanged(int)), MusicApplication::instance(), SLOT(volumeChanged(int)));
     connect(m_remoteWidget, SIGNAL(remoteTypeChanged(QAction*)), SLOT(remoteTypeChanged(QAction*)));

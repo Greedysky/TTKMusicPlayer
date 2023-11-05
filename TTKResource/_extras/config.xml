@@ -31,6 +31,8 @@
         <otherScreenSaverEnable value="0"/>
         <otherScreenSaverTime value="10"/>
         <otherScreenSaverIndex value=""/>
+        <otherPlaylistAutoSaveEnable value="0"/>
+        <otherRandomShuffleMode value="0"/>
     </otherSetting>
     <rippleSetting>
         <rippleLowPowerMode value="0"/>

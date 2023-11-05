@@ -44,7 +44,7 @@ void MusicCloudToolBoxWidget::createWidgetItem(MusicAbstractDownloadTableWidget 
     item->m_itemObject = widget;
     addCellItem(widget, item->m_itemName);
 
-    widget->setToolIndex(item->m_itemIndex);
+    widget->setPlaylistRow(item->m_itemIndex);
     widget->setSongsList(&item->m_songs);
 
     setTitle(widget, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));

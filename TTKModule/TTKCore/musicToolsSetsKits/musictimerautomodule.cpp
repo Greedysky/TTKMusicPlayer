@@ -29,7 +29,7 @@ MusicTimerAutoModule::~MusicTimerAutoModule()
     m_timer.stop();
 }
 
-void MusicTimerAutoModule::runTimerAutoConfig()
+void MusicTimerAutoModule::run()
 {
     m_timer.start(MT_S2MS);
 
@@ -91,7 +91,7 @@ void MusicTimerAutoModule::timeout()
                         pair->m_state = false;
                         G_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStopMode, 1);
                     }
-                    MusicApplication::instance()->switchStopState();
+                    MusicApplication::instance()->switchToStopState();
                     break;
                 }
                 case 2:

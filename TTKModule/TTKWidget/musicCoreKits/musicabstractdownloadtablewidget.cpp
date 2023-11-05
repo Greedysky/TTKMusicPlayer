@@ -86,7 +86,7 @@ void MusicAbstractDownloadTableWidget::removeItemAt()
     }
 
     setFixedHeight(totalHeight());
-    Q_EMIT updateItemTitle(m_toolIndex);
+    Q_EMIT updateItemTitle(m_playlistRow);
 }
 
 void MusicAbstractDownloadTableWidget::itemDoubleClicked(int row, int column)
@@ -126,7 +126,7 @@ void MusicAbstractDownloadTableWidget::createDownloadItem(const QString &name, q
     m_songs->append(record);
 
     addCellItem(rowCount() - 1, record);
-    Q_EMIT updateItemTitle(m_toolIndex);
+    Q_EMIT updateItemTitle(m_playlistRow);
 }
 
 void MusicAbstractDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event)

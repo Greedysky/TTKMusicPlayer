@@ -59,9 +59,10 @@ public:
      */
     int totalHeight() const;
     /*!
-     * Set tool index.
+     * Set playlist row index.
      */
-    void setToolIndex(int index);
+    void setPlaylistRow(int index);
+
     /*!
      * Get the current play row.
      */
@@ -153,10 +154,9 @@ protected:
      */
     QString songName(int index) const;
 
-    int m_toolIndex;
+    int m_playlistRow;
     int m_playRowIndex;
     MusicSongList *m_songs;
-    bool m_hasParentToolIndex;
 
 };
 

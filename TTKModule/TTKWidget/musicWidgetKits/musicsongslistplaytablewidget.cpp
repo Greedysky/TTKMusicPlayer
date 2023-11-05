@@ -236,7 +236,7 @@ void MusicSongsListPlayTableWidget::adjustPlayWidgetRow()
 
 bool MusicSongsListPlayTableWidget::createUploadFileModule()
 {
-    if(m_songs->isEmpty() && TTK::playlistRowValid(m_toolIndex))
+    if(m_songs->isEmpty() && TTK::playlistRowValid(m_playlistRow))
     {
         setFixedSize(LEFT_SIDE_WIDTH_MIN, 100);
         if(m_openFileWidget == nullptr && m_parent)
@@ -491,7 +491,7 @@ void MusicSongsListPlayTableWidget::showTimeOut()
         }
 
         const MusicSong &song = (*m_songs)[m_previousColorRow];
-        m_songsInfoWidget->setSongInformation(m_toolIndex, song);
+        m_songsInfoWidget->setSongInformation(m_playlistRow, song);
         m_songsInfoWidget->move(mapToGlobal(QPoint(width(), 0)).x() + 8, QCursor::pos().y());
 
         bool state;
@@ -580,7 +580,7 @@ void MusicSongsListPlayTableWidget::addToPlayLater()
         return;
     }
 
-    MusicPlayedListPopWidget::instance()->insert(m_toolIndex, (*m_songs)[row]);
+    MusicPlayedListPopWidget::instance()->insert(m_playlistRow, (*m_songs)[row]);
 }
 
 void MusicSongsListPlayTableWidget::addToPlayedList()
@@ -591,7 +591,7 @@ void MusicSongsListPlayTableWidget::addToPlayedList()
         return;
     }
 
-    MusicPlayedListPopWidget::instance()->append(m_toolIndex, (*m_songs)[row]);
+    MusicPlayedListPopWidget::instance()->append(m_playlistRow, (*m_songs)[row]);
 }
 
 void MusicSongsListPlayTableWidget::setItemRenameFinished(const QString &name)
@@ -626,7 +626,7 @@ void MusicSongsListPlayTableWidget::songListSortBy(QAction *action)
         {
             m_songSort->m_order = Qt::AscendingOrder;
         }
-        Q_EMIT songListSortBy(m_toolIndex);
+        Q_EMIT songListSortBy(m_playlistRow);
     }
 }
 
@@ -725,7 +725,7 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addMenu(&toolMenu);
     TTK::Widget::adjustMenuPosition(&toolMenu);
 
-    bool status = m_toolIndex != MUSIC_NETWORK_LIST;
+    bool status = m_playlistRow != MUSIC_NETWORK_LIST;
     menu.addAction(tr("Song Info..."), this, SLOT(showFileInformation()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_local_file"), tr("Open File Dir"), this, SLOT(openFileDir()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(showAlbumQueryWidget()));
