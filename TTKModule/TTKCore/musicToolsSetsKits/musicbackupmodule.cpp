@@ -34,7 +34,7 @@ void MusicPlaylistBackupModule::runBackup()
     QDir().mkpath(path);
 
     MusicTKPLConfigManager manager;
-    if(!manager.load(QString("%1/%2%3").arg(path).arg(TTKTime::timestamp()).arg(TKF_FILE)))
+    if(!manager.load(QString("%1/%2%3").arg(path).arg(TTKTime::currentTimestamp()).arg(TKF_FILE)))
     {
         return;
     }

@@ -22,6 +22,11 @@
 #include "ttkprivate.h"
 #include "miniprocess.h"
 
+#if defined(_MSC_VER)
+#  pragma warning(disable:4091)
+#  pragma warning(disable:4100)
+#endif
+
 #include <functional>
 
 class TTKDumperPrivate;

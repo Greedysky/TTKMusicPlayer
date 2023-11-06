@@ -155,7 +155,7 @@ void MusicLrcPhotoWidget::exportButtonClicked()
     {
         if(item->isSelected())
         {
-            QFile::copy(item->path(), dir + QString::number(TTKTime::timestamp()) + JPG_FILE);
+            QFile::copy(item->path(), dir + QString::number(TTKTime::currentTimestamp()) + JPG_FILE);
             TTK::Core::sleep(MT_MS);
         }
     }
