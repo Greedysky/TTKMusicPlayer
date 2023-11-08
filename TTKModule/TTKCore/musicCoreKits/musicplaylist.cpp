@@ -28,22 +28,6 @@ void MusicPlaylist::setPlaybackMode(TTK::PlayMode mode)
     Q_EMIT playbackModeChanged(m_playbackMode);
 }
 
-int MusicPlaylist::mapItemIndex(const MusicPlayItem &item) const
-{
-    int playIndex = -1;
-    for(int i = 0; i < m_mediaList.count(); ++i)
-    {
-        const MusicPlayItem &it = m_mediaList[i];
-        if(item == it)
-        {
-            playIndex = i;
-            break;
-        }
-    }
-
-    return playIndex;
-}
-
 int MusicPlaylist::currentIndex() const
 {
     return m_currentIndex;
@@ -95,14 +79,32 @@ void MusicPlaylist::clear()
     removeQueue();
 }
 
-void MusicPlaylist::update(int pos, int playlistRow)
+static void updatePlayItems(const MusicPairItemList &indexs, MusicPlayItemList &items)
 {
-    if(pos < 0 || pos >= m_mediaList.count())
+    for(MusicPlayItem &item : items)
     {
-        return;
-    }
+        for(const MusicPairItem &index : indexs)
+        {
+            if(item.m_playlistRow != index.first)
+            {
+                continue;
+            }
 
-    m_mediaList[pos].m_playlistRow = playlistRow;
+            item.m_playlistRow = index.second;
+            break;
+        }
+    }
+}
+
+void MusicPlaylist::update(const MusicPairItemList &indexs)
+{
+    updatePlayItems(indexs, m_mediaList);
+    updatePlayItems(indexs, m_queueList);
+}
+
+int MusicPlaylist::find(const MusicPlayItem &item) const
+{
+    return m_mediaList.indexOf(item);
 }
 
 int MusicPlaylist::find(int playlistRow, const QString &content, int from)
@@ -258,6 +260,6 @@ void MusicPlaylist::setCurrentIndex(int index)
 
 void MusicPlaylist::setCurrentIndex(int playlistRow, const QString &path)
 {
-    const int playIndex = mapItemIndex({playlistRow, path});
+    const int playIndex = find({playlistRow, path});
     setCurrentIndex(playIndex);
 }

@@ -80,21 +80,9 @@ void MusicPlayedListPopWidget::clearQueueState()
     m_playedListWidget->clearQueueState();
 }
 
-void MusicPlayedListPopWidget::updatePlayedList(const MusicPlayedItemList &indexs)
+void MusicPlayedListPopWidget::updatePlayedList(const MusicPairItemList &indexs)
 {
-    const MusicPlayItemList &items = m_playlist->mediaList();
-    for(int s = 0; s < items.count(); ++s)
-    {
-        for(int i = 0; i < indexs.count(); ++i)
-        {
-            const MusicPlayedItem &index = indexs[i];
-            if(items[s].m_playlistRow == index.first)
-            {
-                m_playlist->update(s, index.second);
-                break;
-            }
-        }
-    }
+    m_playlist->update(indexs);
 }
 
 void MusicPlayedListPopWidget::remove(int index)

@@ -76,7 +76,7 @@ Q_SIGNALS:
     /*!
      * Swap the item index by drag adn drop.
      */
-    void swapDragItemIndex(int before, int after);
+    void swapDragItemIndex(int start, int end);
 
 protected:
     /*!
@@ -151,7 +151,7 @@ Q_SIGNALS:
     /*!
      * Swap the item index by drag adn drop.
      */
-    void swapDragItemIndex(int before, int after);
+    void swapDragItemIndex(int start, int end);
 
 protected:
     /*!
@@ -234,7 +234,7 @@ public:
     /*!
      * Swap widget item.
      */
-    void swapItem(int before, int after);
+    void swapItem(int start, int end);
 
     /*!
      * Set title text.

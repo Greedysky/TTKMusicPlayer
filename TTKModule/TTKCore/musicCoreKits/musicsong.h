@@ -144,6 +144,10 @@ private:
 };
 TTK_DECLARE_LIST(MusicSong);
 
+#ifndef MusicPairItem
+#define MusicPairItem std::pair<int, int>
+using MusicPairItemList = QList<MusicPairItem>;
+#endif
 
 /*! @brief The class of the music song sort tag.
  * @author Greedysky <greedysky@163.com>

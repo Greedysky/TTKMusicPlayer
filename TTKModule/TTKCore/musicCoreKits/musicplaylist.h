@@ -54,6 +54,11 @@ struct TTK_MODULE_EXPORT MusicPlayItem
 };
 TTK_DECLARE_LIST(MusicPlayItem);
 
+#ifndef MusicPairItem
+#define MusicPairItem std::pair<int, int>
+using MusicPairItemList = QList<MusicPairItem>;
+#endif
+
 #define PLAY_NEXT_LEVEL               -123
 #define PLAY_PREVIOUS_LEVEL           -321
 
@@ -71,7 +76,7 @@ public:
     explicit MusicPlaylist(QObject *parent = nullptr);
 
     /*!
-     * Set shulle mode.
+     * Set shuffle mode.
      */
     void setShuffleMode(bool shuffle);
 
@@ -84,10 +89,6 @@ public:
      */
     void setPlaybackMode(TTK::PlayMode mode);
 
-    /*!
-     * Map item index at container.
-     */
-    int mapItemIndex(const MusicPlayItem &item) const;
     /*!
      * Get current play index.
      */
@@ -124,9 +125,14 @@ public:
     void clear();
 
     /*!
-     * Update item playlist row by index.
+     * Update item playlist row.
      */
-    void update(int pos, int playlistRow);
+    void update(const MusicPairItemList &indexs);
+
+    /*!
+     * Find item index at container.
+     */
+    int find(const MusicPlayItem &item) const;
     /*!
      * Find item by index and content.
      */

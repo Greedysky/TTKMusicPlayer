@@ -27,9 +27,6 @@ class QScrollArea;
 class MusicPlaylist;
 class MusicSongsListPlayedTableWidget;
 
-using MusicPlayedItem = std::pair<int, int>;
-using MusicPlayedItemList = QList<MusicPlayedItem>;
-
 /*! @brief The class of the played list top container widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -94,7 +91,7 @@ public:
     /*!
      * Update current played item list.
      */
-    void updatePlayedList(const MusicPlayedItemList &indexs);
+    void updatePlayedList(const MusicPairItemList &indexs);
 
     /*!
      * Remove music from data list.

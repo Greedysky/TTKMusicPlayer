@@ -382,11 +382,11 @@ void MusicSongsSummariziedWidget::deleteRowItem(int index)
         setCurrentIndex(--m_playRowIndex);
     }
 
-    item = m_containerItems.takeAt(id);
+    m_containerItems.takeAt(id);
     removeItem(item.m_itemObject);
     delete item.m_itemObject;
 
-    updatePlayedList();
+    updatePlayedList(id, -1);
 }
 
 void MusicSongsSummariziedWidget::deleteRowItems()
@@ -453,44 +453,44 @@ void MusicSongsSummariziedWidget::changRowItemName(int index, const QString &nam
     setItemTitle(item);
 }
 
-void MusicSongsSummariziedWidget::swapDragItemIndex(int before, int after)
+void MusicSongsSummariziedWidget::swapDragItemIndex(int start, int end)
 {
-    before = foundMappedIndex(before);
-    after = foundMappedIndex(after);
-    if(before == after)
+    start = foundMappedIndex(start);
+    end = foundMappedIndex(end);
+    if(start == end)
     {
         return;
     }
 
     //adjust the m_playRowIndex while the item has dragged and dropped
-    if(before < after)
+    if(start < end)
     {
-        if((before < m_playRowIndex && m_playRowIndex < after) || m_playRowIndex == after)
+        if((start < m_playRowIndex && m_playRowIndex < end) || m_playRowIndex == end)
         {
             m_currentIndex = --m_playRowIndex;
         }
-        else if(m_playRowIndex == before)
+        else if(m_playRowIndex == start)
         {
-            m_currentIndex = m_playRowIndex = after;
+            m_currentIndex = m_playRowIndex = end;
         }
     }
     else
     {
-        if((after < m_playRowIndex && m_playRowIndex < before) || m_playRowIndex == after)
+        if((end < m_playRowIndex && m_playRowIndex < start) || m_playRowIndex == end)
         {
             m_currentIndex = ++m_playRowIndex;
         }
-        else if(m_playRowIndex == before)
+        else if(m_playRowIndex == start)
         {
-            m_currentIndex = m_playRowIndex = after;
+            m_currentIndex = m_playRowIndex = end;
         }
     }
 
-    swapItem(before, after);
-    const MusicSongItem &item = m_containerItems.takeAt(before);
-    m_containerItems.insert(after, item);
+    swapItem(start, end);
+    const MusicSongItem &item = m_containerItems.takeAt(start);
+    m_containerItems.insert(end, item);
 
-    updatePlayedList();
+    updatePlayedList(start, end);
 }
 
 void MusicSongsSummariziedWidget::addToPlayLater(int index)
@@ -802,19 +802,19 @@ void MusicSongsSummariziedWidget::removeItemAt(const TTKIntList &index, bool fil
     TTKObjectCast(MusicSongsListPlayTableWidget*, item->m_itemObject)->createUploadFileModule();
 }
 
-void MusicSongsSummariziedWidget::setMusicIndexSwaped(int before, int after, int play, MusicSongList &songs)
+void MusicSongsSummariziedWidget::setMusicIndexSwaped(int start, int end, int play, MusicSongList &songs)
 {
     MusicSongList *names = &m_containerItems[m_currentIndex].m_songs;
-    if(before > after)
+    if(start > end)
     {
-        for(int i = before; i > after; --i)
+        for(int i = start; i > end; --i)
         {
             QtContainerSwap(names, i, i - 1);
         }
     }
     else
     {
-        for(int i = before; i < after; ++i)
+        for(int i = start; i < end; ++i)
         {
             QtContainerSwap(names, i, i + 1);
         }
@@ -1146,18 +1146,47 @@ void MusicSongsSummariziedWidget::resizeWindow()
     }
 }
 
-void MusicSongsSummariziedWidget::updatePlayedList()
+void MusicSongsSummariziedWidget::updatePlayedList(int begin, int end)
 {
-    MusicPlayedItemList items;
     for(const MusicSongItem &item : qAsConst(m_containerItems))
     {
-        const int mappedIndex = foundMappedIndex(item.m_itemIndex);
-        item.m_itemObject->setPlaylistRow(mappedIndex);
-        if(item.m_itemIndex != mappedIndex)
+        const int index = foundMappedIndex(item.m_itemIndex);
+        item.m_itemObject->setPlaylistRow(index);
+    }
+
+    MusicPairItemList items;
+    if(end = -1)
+    {
+        for(int i = begin + 1; i < m_containerItems.count(); ++i)
         {
-            items << MusicPlayedItem(item.m_itemIndex, mappedIndex);
+            items << MusicPairItem(i + 1, i);
         }
+    }
+    else
+    {
+        items << MusicPairItem(begin, end);
+
+        if(begin > end)
+        {
+            for(int i = begin; i < end; ++i)
+            {
+                items << MusicPairItem(i + 1, i);
+            }
+        }
+        else
+        {
+            for(int i = end; i < begin; ++i)
+            {
+                items << MusicPairItem(i, i + 1);
+            }
+        }
+    }
+
+    for( auto && item : items)
+    {
+        qDebug() << item.first << item.second;
     }
 
     MusicPlayedListPopWidget::instance()->updatePlayedList(items);
 }
+

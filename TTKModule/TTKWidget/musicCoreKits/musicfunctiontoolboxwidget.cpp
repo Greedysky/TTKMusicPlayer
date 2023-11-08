@@ -341,10 +341,10 @@ void MusicFunctionToolBoxWidget::removeItem(QWidget *item)
     }
 }
 
-void MusicFunctionToolBoxWidget::swapItem(int before, int after)
+void MusicFunctionToolBoxWidget::swapItem(int start, int end)
 {
-    const MusicToolBoxWidgetItem &widgetItem = m_itemList.takeAt(before);
-    m_itemList.insert(after, widgetItem);
+    const MusicToolBoxWidgetItem &widgetItem = m_itemList.takeAt(start);
+    m_itemList.insert(end, widgetItem);
 
     m_layout->removeWidget(widgetItem.m_widgetItem);
     const int count = m_layout->count();
@@ -352,7 +352,7 @@ void MusicFunctionToolBoxWidget::swapItem(int before, int after)
     {
         m_layout->removeItem(m_layout->itemAt(count - 1));
     }
-    m_layout->insertWidget(after, widgetItem.m_widgetItem);
+    m_layout->insertWidget(end, widgetItem.m_widgetItem);
     m_layout->addStretch(5);
 }
 

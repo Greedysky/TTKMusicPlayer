@@ -135,7 +135,7 @@ public Q_SLOTS:
     /*!
      * Swap the item index by drag adn drop.
      */
-    void swapDragItemIndex(int before, int after);
+    void swapDragItemIndex(int start, int end);
     /*!
      * Add music to played list and play later.
      */
@@ -192,7 +192,7 @@ public Q_SLOTS:
     /*!
      * Swap the current play index when user drag and drop.
      */
-    void setMusicIndexSwaped(int before, int after, int play, MusicSongList &songs);
+    void setMusicIndexSwaped(int start, int end, int play, MusicSongList &songs);
     /*!
      * Check is current play stack widget.
      */
@@ -285,7 +285,7 @@ private:
     /*!
      * Update current played list.
      */
-    void updatePlayedList();
+    void updatePlayedList(int start, int end);
 
     int m_playRowIndex;
     int m_lastSearchIndex;
