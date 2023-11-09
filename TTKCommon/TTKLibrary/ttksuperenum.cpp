@@ -40,11 +40,11 @@ int TTKSuperEnum::stringToKey(const QString &name) const
         return TTKSuperEnum::Null;
     }
 
-    for(auto it = m_enumValue.begin(); it != m_enumValue.end(); ++it)
+    for(auto &&item : qAsConst(m_enumValue))
     {
-        if(it->second == name)
+        if(item.second == name)
         {
-            return it->first;
+            return item.first;
         }
     }
     return TTKSuperEnum::Null;

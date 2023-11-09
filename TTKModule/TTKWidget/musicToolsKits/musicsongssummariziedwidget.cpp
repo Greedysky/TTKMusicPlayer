@@ -845,11 +845,11 @@ void MusicSongsSummariziedWidget::setMusicPlayCount(int index)
         return;
     }
 
-    MusicSongList *songs = &m_containerItems[m_playRowIndex].m_songs;
-    if(!songs->isEmpty() && index < songs->count())
+    MusicSongList &songs = m_containerItems[m_playRowIndex].m_songs;
+    if(!songs.isEmpty() && index < songs.count())
     {
-        MusicSong *song = &(*songs)[index];
-        song->setPlayCount(song->playCount() + 1);
+        MusicSong &song = songs[index];
+        song.setPlayCount(song.playCount() + 1);
     }
 }
 
@@ -887,12 +887,11 @@ void MusicSongsSummariziedWidget::setRecentMusicSongs(int index)
     }
     else
     {
-        for(int i = 0; i < recentSongs->count(); ++i)
+        for(MusicSong &song : *recentSongs)
         {
-            MusicSong *song = &(*recentSongs)[i];
-            if(recentSong == *song)
+            if(recentSong == song)
             {
-                song->setPlayCount(song->playCount() + 1);
+                song.setPlayCount(song.playCount() + 1);
                 break;
             }
         }
@@ -1155,7 +1154,7 @@ void MusicSongsSummariziedWidget::updatePlayedList(int begin, int end)
     }
 
     MusicPairItemList items;
-    if(end = -1)
+    if(end == -1)
     {
         for(int i = begin + 1; i < m_containerItems.count(); ++i)
         {
@@ -1175,16 +1174,11 @@ void MusicSongsSummariziedWidget::updatePlayedList(int begin, int end)
         }
         else
         {
-            for(int i = end; i < begin; ++i)
+            for(int i = end; i > begin; --i)
             {
-                items << MusicPairItem(i, i + 1);
+                items << MusicPairItem(i, i - 1);
             }
         }
-    }
-
-    for( auto && item : items)
-    {
-        qDebug() << item.first << item.second;
     }
 
     MusicPlayedListPopWidget::instance()->updatePlayedList(items);

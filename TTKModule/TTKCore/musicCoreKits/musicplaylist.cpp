@@ -83,7 +83,7 @@ static void updatePlayItems(const MusicPairItemList &indexs, MusicPlayItemList &
 {
     for(MusicPlayItem &item : items)
     {
-        for(const MusicPairItem &index : indexs)
+        for(const MusicPairItem &index : qAsConst(indexs))
         {
             if(item.m_playlistRow != index.first)
             {

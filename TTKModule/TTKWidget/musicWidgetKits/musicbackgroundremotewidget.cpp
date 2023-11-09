@@ -227,12 +227,12 @@ void MusicBackgroundOnlineWidget::outputRemoteSkin(MusicBackgroundImage &image, 
     }
 
     const int index = QFileInfo(data).baseName().toInt();
-    MusicSkinRemoteItemList *items = &m_groups[m_currentIndex].m_items;
-    if(index >= 0 || index < items->count())
+    MusicSkinRemoteItemList &items = m_groups[m_currentIndex].m_items;
+    if(index >= 0 || index < items.count())
     {
-        MusicSkinRemoteItem *item = &(*items)[index];
-        image.m_item.m_name = item->m_name;
-        image.m_item.m_useCount = item->m_useCount;
+        MusicSkinRemoteItem &item = items[index];
+        image.m_item.m_name = item.m_name;
+        image.m_item.m_useCount = item.m_useCount;
         MusicExtractWrapper::outputThunderSkin(image.m_pix, data);
     }
 }

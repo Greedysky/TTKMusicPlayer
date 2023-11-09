@@ -163,7 +163,7 @@ void MusicSongsListPlayTableWidget::updateSearchFileName(MusicSongList *songs, c
         m_songs = &m_searchedSongs;
         for(int index : qAsConst(result))
         {
-            m_songs->append((*songs)[index]);
+            m_songs->append(songs->at(index));
         }
     }
 

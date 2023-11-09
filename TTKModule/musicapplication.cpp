@@ -113,12 +113,6 @@ MusicApplication *MusicApplication::instance()
     return m_instance;
 }
 
-void MusicApplication::cleanup()
-{
-    //Write configuration files
-    writeSystemConfigToFile();
-}
-
 QString MusicApplication::currentFileName() const
 {
     if(m_playlist->currentIndex() < 0 || m_currentSongTreeIndex < 0)
@@ -264,6 +258,8 @@ void MusicApplication::quitWindow()
     m_quitWindowMode = true;
     m_applicationObject->cleanup();
     m_applicationObject->windowCloseAnimation();
+    //Write configuration files
+    writeSystemConfigToFile();
 }
 
 void MusicApplication::positionChanged(qint64 position)

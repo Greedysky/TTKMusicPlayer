@@ -69,9 +69,8 @@ QRect TTKDesktopWrapper::geometry()
 #if TTK_QT_VERSION_CHECK(5,0,0)
     const QList<QScreen*> &screens = QApplication::screens();
     QRegion virtualGeometry;
-    for(int i = 0; i < screens.count(); ++i)
+    for(QScreen *screen : screens)
     {
-        QScreen *screen = screens[i];
         virtualGeometry += screen->geometry();
     }
     return virtualGeometry.boundingRect();

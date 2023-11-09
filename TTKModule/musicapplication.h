@@ -61,11 +61,6 @@ public:
     static MusicApplication *instance();
 
     /*!
-     * Application data cleanup.
-     */
-    void cleanup();
-
-    /*!
      * Get current file name.
      */
     QString currentFileName() const;

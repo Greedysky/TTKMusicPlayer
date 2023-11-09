@@ -72,7 +72,7 @@ bool TTK::File::copyPath(const QString &srcPath, const QString &dstPath, bool ov
         return false;
     }
 
-    for (const QFileInfo &fileInfo : QDir(srcPath).entryInfoList())
+    for(const QFileInfo &fileInfo : QDir(srcPath).entryInfoList())
     {
         const QString &fileName = fileInfo.fileName();
         if(fileName == "." || fileName == "..")
