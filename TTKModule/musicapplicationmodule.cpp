@@ -382,7 +382,7 @@ void MusicApplicationModule::showTimerWidget()
 
 void MusicApplicationModule::showSpectrumWidget()
 {
-    GenerateSingleWidget(MusicSpectrumWidget);
+    TTKGenerateSingleWidget(MusicSpectrumWidget);
 }
 
 void MusicApplicationModule::setWindowToTop()

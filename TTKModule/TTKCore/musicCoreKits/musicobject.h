@@ -53,63 +53,63 @@
 #define FLAC_FILE_SUFFIX         "flac"
 
 
-#define TKF_FILE                 TTK_STRCAT(TTK_DOT, TKF_FILE_SUFFIX)
-#define TKX_FILE                 TTK_STRCAT(TTK_DOT, TKX_FILE_SUFFIX)
-#define TKM_FILE                 TTK_STRCAT(TTK_DOT, TKM_FILE_SUFFIX)
+#define TKF_FILE                 TTK_STR_CAT(TTK_DOT, TKF_FILE_SUFFIX)
+#define TKX_FILE                 TTK_STR_CAT(TTK_DOT, TKX_FILE_SUFFIX)
+#define TKM_FILE                 TTK_STR_CAT(TTK_DOT, TKM_FILE_SUFFIX)
 //
-#define SKN_FILE                 TTK_STRCAT(TTK_DOT, SKN_FILE_SUFFIX)
-#define JPG_FILE                 TTK_STRCAT(TTK_DOT, JPG_FILE_SUFFIX)
-#define LRC_FILE                 TTK_STRCAT(TTK_DOT, LRC_FILE_SUFFIX)
-#define KRC_FILE                 TTK_STRCAT(TTK_DOT, KRC_FILE_SUFFIX)
-#define MP3_FILE                 TTK_STRCAT(TTK_DOT, MP3_FILE_SUFFIX)
-#define TPL_FILE                 TTK_STRCAT(TTK_DOT, TPL_FILE_SUFFIX)
-#define XML_FILE                 TTK_STRCAT(TTK_DOT, XML_FILE_SUFFIX)
+#define SKN_FILE                 TTK_STR_CAT(TTK_DOT, SKN_FILE_SUFFIX)
+#define JPG_FILE                 TTK_STR_CAT(TTK_DOT, JPG_FILE_SUFFIX)
+#define LRC_FILE                 TTK_STR_CAT(TTK_DOT, LRC_FILE_SUFFIX)
+#define KRC_FILE                 TTK_STR_CAT(TTK_DOT, KRC_FILE_SUFFIX)
+#define MP3_FILE                 TTK_STR_CAT(TTK_DOT, MP3_FILE_SUFFIX)
+#define TPL_FILE                 TTK_STR_CAT(TTK_DOT, TPL_FILE_SUFFIX)
+#define XML_FILE                 TTK_STR_CAT(TTK_DOT, XML_FILE_SUFFIX)
 // file ext
-#define MP3_FILE                 TTK_STRCAT(TTK_DOT, MP3_FILE_SUFFIX)
-#define APE_FILE                 TTK_STRCAT(TTK_DOT, APE_FILE_SUFFIX)
-#define FLAC_FILE                TTK_STRCAT(TTK_DOT, FLAC_FILE_SUFFIX)
+#define MP3_FILE                 TTK_STR_CAT(TTK_DOT, MP3_FILE_SUFFIX)
+#define APE_FILE                 TTK_STR_CAT(TTK_DOT, APE_FILE_SUFFIX)
+#define FLAC_FILE                TTK_STR_CAT(TTK_DOT, FLAC_FILE_SUFFIX)
 
 
-#define APPDATA_DIR              TTK_STRCAT("AppData", TTK_SEPARATOR)
-#define APPCACHE_DIR             TTK_STRCAT("AppCache", TTK_SEPARATOR)
-#define APPBACKUP_DIR            TTK_STRCAT("AppBackup", TTK_SEPARATOR)
-#define DOWNLOAD_DIR             TTK_STRCAT("Downloads", TTK_SEPARATOR)
+#define APPDATA_DIR              TTK_STR_CAT("AppData", TTK_SEPARATOR)
+#define APPCACHE_DIR             TTK_STR_CAT("AppCache", TTK_SEPARATOR)
+#define APPBACKUP_DIR            TTK_STR_CAT("AppBackup", TTK_SEPARATOR)
+#define DOWNLOAD_DIR             TTK_STR_CAT("Downloads", TTK_SEPARATOR)
 //
-#define LRC_DIR                  TTK_STRCAT("Lyric", TTK_SEPARATOR)
-#define MUSIC_DIR                TTK_STRCAT("Music", TTK_SEPARATOR)
-#define MOVIE_DIR                TTK_STRCAT("Movie", TTK_SEPARATOR)
-#define ARCHIVE_DIR              TTK_STRCAT("Archive", TTK_SEPARATOR)
+#define LRC_DIR                  TTK_STR_CAT("Lyric", TTK_SEPARATOR)
+#define MUSIC_DIR                TTK_STR_CAT("Music", TTK_SEPARATOR)
+#define MOVIE_DIR                TTK_STR_CAT("Movie", TTK_SEPARATOR)
+#define ARCHIVE_DIR              TTK_STR_CAT("Archive", TTK_SEPARATOR)
 //
-#define LANGUAGE_DIR             TTK_STRCAT("GLanguage", TTK_SEPARATOR)
-#define PLUGINS_DIR              TTK_STRCAT("GPlugins", TTK_SEPARATOR)
-#define THEME_DIR                TTK_STRCAT("GTheme", TTK_SEPARATOR)
+#define LANGUAGE_DIR             TTK_STR_CAT("GLanguage", TTK_SEPARATOR)
+#define PLUGINS_DIR              TTK_STR_CAT("GPlugins", TTK_SEPARATOR)
+#define THEME_DIR                TTK_STR_CAT("GTheme", TTK_SEPARATOR)
 //
-#define ART_DIR                  TTK_STRCAT("Art", TTK_SEPARATOR)
-#define BACKGROUND_DIR           TTK_STRCAT("Background", TTK_SEPARATOR)
-#define CACHE_DIR                TTK_STRCAT("Cache", TTK_SEPARATOR)
+#define ART_DIR                  TTK_STR_CAT("Art", TTK_SEPARATOR)
+#define BACKGROUND_DIR           TTK_STR_CAT("Background", TTK_SEPARATOR)
+#define CACHE_DIR                TTK_STR_CAT("Cache", TTK_SEPARATOR)
 //
-#define CONFIG_DIR               TTK_STRCAT("config", TTK_SEPARATOR)
-#define USER_THEME_DIR           TTK_STRCAT("theme", TTK_SEPARATOR)
+#define CONFIG_DIR               TTK_STR_CAT("config", TTK_SEPARATOR)
+#define USER_THEME_DIR           TTK_STR_CAT("theme", TTK_SEPARATOR)
 
 
-#define MAKE_TRANSFORM_NAME      TTK_STRCAT("avconv", TKX_FILE)
-#define MAKE_PLAYER_NAME         TTK_STRCAT("avplayer", TKX_FILE)
-#define MAKE_GAIN_NAME           TTK_STRCAT("avgain", TKX_FILE)
+#define MAKE_TRANSFORM_NAME      TTK_STR_CAT("avconv", TKX_FILE)
+#define MAKE_PLAYER_NAME         TTK_STR_CAT("avplayer", TKX_FILE)
+#define MAKE_GAIN_NAME           TTK_STR_CAT("avgain", TKX_FILE)
 
 
-#define MAKE_CONFIG_DIR          TTK_STRCAT(PLUGINS_DIR, CONFIG_DIR)
-#define MAKE_TRANSFORM_PATH      TTK_STRCAT(PLUGINS_DIR, MAKE_TRANSFORM_NAME)
-#define MAKE_PLAYER_PATH         TTK_STRCAT(PLUGINS_DIR, MAKE_PLAYER_NAME)
-#define MAKE_GAIN_PATH           TTK_STRCAT(PLUGINS_DIR, MAKE_GAIN_NAME)
+#define MAKE_CONFIG_DIR          TTK_STR_CAT(PLUGINS_DIR, CONFIG_DIR)
+#define MAKE_TRANSFORM_PATH      TTK_STR_CAT(PLUGINS_DIR, MAKE_TRANSFORM_NAME)
+#define MAKE_PLAYER_PATH         TTK_STR_CAT(PLUGINS_DIR, MAKE_PLAYER_NAME)
+#define MAKE_GAIN_PATH           TTK_STR_CAT(PLUGINS_DIR, MAKE_GAIN_NAME)
 
 
-#define COFIG_PATH               TTK_STRCAT("config", XML_FILE)
-#define PLAYLIST_PATH            TTK_STRCAT("playlist", TPL_FILE)
-#define NORMAL_DOWN_PATH         TTK_STRCAT("download", TKF_FILE)
-#define CLOUD_DOWN_PATH          TTK_STRCAT("cdownload", TKF_FILE)
-#define CLOUD_UP_PATH            TTK_STRCAT("cupload", TKF_FILE)
-#define SEARCH_PATH              TTK_STRCAT("search", TKF_FILE)
-#define FMRADIO_PATH             TTK_STRCAT("fmradio", TKF_FILE)
+#define COFIG_PATH               TTK_STR_CAT("config", XML_FILE)
+#define PLAYLIST_PATH            TTK_STR_CAT("playlist", TPL_FILE)
+#define NORMAL_DOWN_PATH         TTK_STR_CAT("download", TKF_FILE)
+#define CLOUD_DOWN_PATH          TTK_STR_CAT("cdownload", TKF_FILE)
+#define CLOUD_UP_PATH            TTK_STR_CAT("cupload", TKF_FILE)
+#define SEARCH_PATH              TTK_STR_CAT("search", TKF_FILE)
+#define FMRADIO_PATH             TTK_STR_CAT("fmradio", TKF_FILE)
 
 
 #define MAIN_DIR_FULL            TTK::applicationPath() + TTK_PDIR

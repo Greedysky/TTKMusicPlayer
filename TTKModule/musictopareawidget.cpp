@@ -385,7 +385,7 @@ void MusicTopAreaWidget::remoteTypeChanged(int type)
 
 void MusicTopAreaWidget::showToolSetsWidget()
 {
-    GenerateSingleWidget(MusicToolSetsWidget);
+    TTKGenerateSingleWidget(MusicToolSetsWidget);
 }
 
 void MusicTopAreaWidget::backgroundTransparent(int value)

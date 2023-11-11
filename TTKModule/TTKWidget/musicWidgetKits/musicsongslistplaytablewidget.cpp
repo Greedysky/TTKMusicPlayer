@@ -17,7 +17,7 @@
 #include <qmath.h>
 #include <QAction>
 
-#define SEARCH_ITEM_DEFINED(index, names)                                                  \
+#define GENERATE_SEARCH_ITEM(index, names)                                                 \
     case index:                                                                            \
     {                                                                                      \
         if(names.count() >= index)                                                         \
@@ -137,7 +137,7 @@ void MusicSongsListPlayTableWidget::selectRow(int index)
     if(!m_songs->isEmpty())
     {
         MusicSong *song = &(*m_songs)[index];
-        if(song->playTime().isEmpty() || song->playTime() == MUSIC_TIME_INIT)
+        if(song->playTime().isEmpty() || song->playTime() == TTK_TIME_INIT)
         {
             song->setPlayTime(timeLabel);
         }
@@ -565,9 +565,9 @@ void MusicSongsListPlayTableWidget::searchQueryByName(QAction *action)
     switch(action->data().toInt() - TTK_LOW_LEVEL)
     {
         case 0 : MusicRightAreaWidget::instance()->showSongSearchedFound(songName); break;
-        SEARCH_ITEM_DEFINED(1, names);
-        SEARCH_ITEM_DEFINED(2, names);
-        SEARCH_ITEM_DEFINED(3, names);
+        GENERATE_SEARCH_ITEM(1, names);
+        GENERATE_SEARCH_ITEM(2, names);
+        GENERATE_SEARCH_ITEM(3, names);
         default: break;
     }
 }

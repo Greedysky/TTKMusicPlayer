@@ -137,7 +137,7 @@ void MusicIdentifySongRequest::downLoadFinished(const QByteArray &bytes)
         if(ok)
         {
             const QVariantMap &value = data.toMap();
-            if(QDateTime::fromString(value["time"].toString(), TTK_YEAR_STIME_FORMAT) > QDateTime::currentDateTime())
+            if(QDateTime::fromString(value["time"].toString(), TTK_YEAR_TIMES_FORMAT) > QDateTime::currentDateTime())
             {
                 m_accessKey = value["key"].toString();
                 m_accessSecret = value["secret"].toString();

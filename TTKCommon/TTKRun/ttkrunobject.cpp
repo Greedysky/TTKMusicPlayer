@@ -38,10 +38,10 @@ void TTKRunObject::run(int argc, char **argv) const
     }
 
 #ifdef _WIN32
-    const char * const path = TTK_STRCAT(TTK_VERSION_STR, TTK_RSEPARATOR) TTK_SERVICE_EXE_NAME;
+    const char * const path = TTK_STR_CAT(TTK_VERSION_STR, TTK_RSEPARATOR, TTK_SERVICE_EXE_NAME);
     ShellExecuteA(nullptr, "open", path, args.c_str(), nullptr, SW_HIDE);
 #else
-    const char * const path = TTK_STRCAT(TTK_VERSION_STR, TTK_SEPARATOR) TTK_SERVICE_SHL_NAME;
+    const char * const path = TTK_STR_CAT(TTK_VERSION_STR, TTK_SEPARATOR, TTK_SERVICE_SHL_NAME);
     const TTKString &dir = get_current_dir_name();
     system((dir + "/" + path + args).c_str());
 #endif

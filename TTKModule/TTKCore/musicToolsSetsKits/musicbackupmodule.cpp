@@ -30,7 +30,7 @@ MusicPlaylistBackupModule::MusicPlaylistBackupModule(QObject *parent)
 
 void MusicPlaylistBackupModule::runBackup()
 {
-    const QString &path = TTK_STRCAT(APPBACKUP_DIR_FULL, "playlist");
+    const QString &path = TTK_STR_CAT(APPBACKUP_DIR_FULL, "playlist");
     QDir().mkpath(path);
 
     MusicTKPLConfigManager manager;

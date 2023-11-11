@@ -117,7 +117,7 @@ void MusicItemQueryTableWidget::downloadBatchData(bool music)
         items << songInfos[index];
     }
 
-    MusicDownloadBatchWidget *w = GenerateSingleWidget(MusicDownloadBatchWidget, this);
+    MusicDownloadBatchWidget *w = TTKGenerateSingleWidget(MusicDownloadBatchWidget, this);
     w->setSongName(items, music ? MusicAbstractQueryRequest::QueryType::Music : MusicAbstractQueryRequest::QueryType::Movie);
 }
 

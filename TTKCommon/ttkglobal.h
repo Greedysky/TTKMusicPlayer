@@ -92,15 +92,16 @@
 #define TTK_CAT(a, b) a##b
 // marco str cat
 #ifndef _MSC_VER
-// gcc version less than 3.4.0
-#  if __GNUC__ <= 3 && __GNUC_MINOR__ <= 4
-#    define TTK_STRCAT(a, b) a##b
-#  else
-#    define TTK_STRCAT(a, b) a b
-#  endif
+#  define TTK_STR_CAT(...) TTK_PP_OVERLOAD(__TTK_STR_CAT__, __VA_ARGS__)(__VA_ARGS__)
 #else
-#  define TTK_STRCAT(a, b) a b
+#  define TTK_STR_CAT(...) TTK_PP_CAT(TTK_PP_OVERLOAD(__TTK_STR_CAT__, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
 #endif
+#define __TTK_STR_CAT__1(a) a
+#define __TTK_STR_CAT__2(a, b) a b
+#define __TTK_STR_CAT__3(a, b, c) a b c
+#define __TTK_STR_CAT__4(a, b, c, d) a b c d
+#define __TTK_STR_CAT__5(a, b, c, d, e) a b c d e
+#define __TTK_STR_CAT__6(a, b, c, d, e, f) a b c d e f
 
 
 // marco preprocessor overload
@@ -119,7 +120,7 @@
 #define TTK_DOTDOT          ".."
 #define TTK_SEPARATOR       "/"
 #define TTK_RSEPARATOR      "\\"
-#define TTK_PDIR            TTK_STRCAT(TTK_DOTDOT, TTK_SEPARATOR)
+#define TTK_PDIR            TTK_STR_CAT(TTK_DOTDOT, TTK_SEPARATOR)
 
 #define TTK_SPLITER         "*|||*"
 #define TTK_DEFAULT_STR     "-"
@@ -134,9 +135,9 @@
 #define EXE_FILE_SUFFIX     "exe"
 #define COM_FILE_SUFFIX     "com"
 
-#define SHL_FILE            TTK_STRCAT(TTK_DOT, SHL_FILE_SUFFIX)
-#define EXE_FILE            TTK_STRCAT(TTK_DOT, EXE_FILE_SUFFIX)
-#define COM_FILE            TTK_STRCAT(TTK_DOT, COM_FILE_SUFFIX)
+#define SHL_FILE            TTK_STR_CAT(TTK_DOT, SHL_FILE_SUFFIX)
+#define EXE_FILE            TTK_STR_CAT(TTK_DOT, EXE_FILE_SUFFIX)
+#define COM_FILE            TTK_STR_CAT(TTK_DOT, COM_FILE_SUFFIX)
 
 
 // C style format

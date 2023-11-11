@@ -125,7 +125,7 @@ void MusicCommentsItem::addCellItem(const MusicResultDataItem &comments)
 {
     m_userName->setText(comments.m_nickName + ":");
     m_userName->setFixedWidth(TTK::Widget::fontTextWidth(m_userName->font(), m_userName->text()));
-    m_timerLabel->setText(QDateTime::fromMSecsSinceEpoch(comments.m_updateTime.toULongLong()).toString(TTK_YEAR_STIME_FORMAT));
+    m_timerLabel->setText(QDateTime::fromMSecsSinceEpoch(comments.m_updateTime.toULongLong()).toString(TTK_YEAR_TIMES_FORMAT));
     m_timerLabel->setFixedWidth(TTK::Widget::fontTextWidth(m_timerLabel->font(), m_timerLabel->text()));
     m_starLabel->setText(QString("(%1)").arg(comments.m_playCount));
     m_userCommit->setText(comments.m_description);

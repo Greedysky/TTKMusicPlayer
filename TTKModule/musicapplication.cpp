@@ -269,7 +269,7 @@ void MusicApplication::positionChanged(qint64 position)
 
     if(m_playlist->isEmpty())
     {
-        m_ui->playCurrentTime->setText(MUSIC_TIME_INIT);
+        m_ui->playCurrentTime->setText(TTK_TIME_INIT);
     }
     else
     {

@@ -536,7 +536,7 @@ void MusicSettingWidget::testNetworkConnection()
 
 void MusicSettingWidget::checkNetworkConnection()
 {
-    GenerateSingleWidget(MusicNetworkConnectionTestWidget, this);
+    TTKGenerateSingleWidget(MusicNetworkConnectionTestWidget, this);
 }
 
 void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)

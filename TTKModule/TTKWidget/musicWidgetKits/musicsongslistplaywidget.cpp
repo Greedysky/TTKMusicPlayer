@@ -145,11 +145,11 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
     }
     else
     {
-        time = MUSIC_TIME_INIT;
+        time = TTK_TIME_INIT;
         m_noCover = true;
     }
 
-    m_timeLabel->setText(TTK_STRCAT(MUSIC_TIME_INIT, TTK_SEPARATOR) + time);
+    m_timeLabel->setText(TTK_STR_CAT(TTK_TIME_INIT, TTK_SEPARATOR) + time);
 
     if(state && G_SETTING_PTR->value(MusicSettingManager::OtherReadAlbumCover).toBool())
     {

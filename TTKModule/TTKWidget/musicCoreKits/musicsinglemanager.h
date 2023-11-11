@@ -23,10 +23,10 @@
 #include "ttksingleton.h"
 #include "musicwidgetutils.h"
 
-#define GenerateSingleWidget_1(name)                               \
-    GenerateSingleWidget_2(name, MusicApplication::instance())
+#define __SingleWidget__1(name)                                    \
+    __SingleWidget__2(name, MusicApplication::instance())
 
-#define GenerateSingleWidget_2(name, widget)                       \
+#define __SingleWidget__2(name, widget)                            \
     [](QWidget *parent)                                            \
     {                                                              \
         MusicSingleManager *manager = G_SINGLE_MANAGER_PTR;        \
@@ -42,9 +42,9 @@
     }(widget)
 
 #ifndef Q_CC_MSVC
-#  define GenerateSingleWidget(...) TTK_PP_OVERLOAD(GenerateSingleWidget_, __VA_ARGS__)(__VA_ARGS__)
+#  define TTKGenerateSingleWidget(...) TTK_PP_OVERLOAD(__SingleWidget__, __VA_ARGS__)(__VA_ARGS__)
 #else
-#  define GenerateSingleWidget(...) TTK_PP_CAT(TTK_PP_OVERLOAD(GenerateSingleWidget_, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
+#  define TTKGenerateSingleWidget(...) TTK_PP_CAT(TTK_PP_OVERLOAD(__SingleWidget__, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
 #endif
 
 

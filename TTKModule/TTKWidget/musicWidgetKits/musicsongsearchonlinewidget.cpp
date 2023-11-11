@@ -439,7 +439,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
             infos << songInfos[index];
         }
 
-        MusicDownloadBatchWidget *w = GenerateSingleWidget(MusicDownloadBatchWidget);
+        MusicDownloadBatchWidget *w = TTKGenerateSingleWidget(MusicDownloadBatchWidget);
         w->setSongName(infos, MusicAbstractQueryRequest::QueryType::Music);
     }
 }
