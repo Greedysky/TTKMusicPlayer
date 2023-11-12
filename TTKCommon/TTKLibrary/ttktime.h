@@ -111,11 +111,11 @@ public:
     /*!
      * Transform time from string by time format.
      */
-    static TTKTime fromString(const QString &s, const QString &format);
+    static TTKTime fromString(const QString &time, const QString &format);
     /*!
      * Transform time from value to string time format.
      */
-    static QString toString(qint64 value, Entity type, const QString &format);
+    static QString toString(qint64 time, Entity type, const QString &format);
 
     /*!
      * Transform time to string time format.
@@ -139,10 +139,6 @@ public:
      * Transform ms time from utc since epoch.
      */
     qint64 currentTimestamp(Entity type) const;
-    /*!
-     * Transform ms time from utc since epoch.
-     */
-    static qint64 currentTimestamp(bool ms = true);
 
     /*!
      * Transform string format(mm:ss) to msec time.
@@ -198,13 +194,36 @@ private:
     /*!
      * Transform time value by different time type;
      */
-    void fromTimeStamp(qint64 value, int delta);
+    void fromTimestamp(qint64 value, int delta);
 
     Entity m_defaultType;
     int m_day, m_hour;
     int m_min, m_sec, m_msec;
 
 };
+
+
+/*! @brief The class of the ttk date time object.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT TTKDateTime
+{
+public:
+    /*!
+     * Get current timestamp(ms).
+     */
+    static qint64 currentTimestamp();
+    /*!
+     * Transform string time format to timestamp(ms) string.
+     */
+    static QString format(const QString &time, const QString &format);
+    /*!
+     * Transform timestamp(ms) to string time format.
+     */
+    static QString format(qint64 time, const QString &format);
+
+};
+
 
 namespace TTK
 {

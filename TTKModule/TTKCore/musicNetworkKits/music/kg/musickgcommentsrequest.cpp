@@ -73,7 +73,7 @@ void MusicKGSongCommentsRequest::downLoadFinished()
 
                     MusicResultDataItem result;
                     result.m_playCount = value["like"].toMap()["count"].toString();
-                    result.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(), TTK_YEAR_TIMES_FORMAT).toMSecsSinceEpoch());
+                    result.m_updateTime = TTKDateTime::format(value["addtime"].toString(), TTK_YEAR_TIMEZ_FORMAT);
                     result.m_description = value["content"].toString();
                     result.m_nickName = value["user_name"].toString();
                     result.m_coverUrl = value["user_pic"].toString();
@@ -149,7 +149,7 @@ void MusicKGPlaylistCommentsRequest::downLoadFinished()
 
                     MusicResultDataItem result;
                     result.m_playCount = value["like"].toMap()["count"].toString();
-                    result.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(), TTK_YEAR_TIMES_FORMAT).toMSecsSinceEpoch());
+                    result.m_updateTime = TTKDateTime::format(value["addtime"].toString(), TTK_YEAR_TIMEZ_FORMAT);
                     result.m_description = value["content"].toString();
                     result.m_nickName = value["user_name"].toString();
                     result.m_coverUrl = value["user_pic"].toString();

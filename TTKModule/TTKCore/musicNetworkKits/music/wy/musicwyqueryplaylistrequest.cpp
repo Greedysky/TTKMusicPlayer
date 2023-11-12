@@ -83,7 +83,7 @@ void MusicWYQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
             item.m_name = value["name"].toString();
             item.m_playCount = value["playCount"].toString();
             item.m_description = value["description"].toString();
-            item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["updateTime"].toULongLong()).toString(TTK_YEAR_FORMAT);
+            item.m_updateTime = TTKDateTime::format(value["updateTime"].toULongLong(), TTK_YEAR_FORMAT);
 
             item.m_tags.clear();
             const QVariantList &tags = value["tags"].toList();
@@ -137,7 +137,7 @@ void MusicWYQueryPlaylistRequest::downLoadFinished()
                     result.m_name = value["name"].toString();
                     result.m_playCount = value["playCount"].toString();
                     result.m_description = value["description"].toString();
-                    result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["updateTime"].toULongLong()).toString(TTK_YEAR_FORMAT);
+                    result.m_updateTime = TTKDateTime::format(value["updateTime"].toULongLong(), TTK_YEAR_FORMAT);
 
                     result.m_tags.clear();
                     const QVariantList &tags = value["tags"].toList();

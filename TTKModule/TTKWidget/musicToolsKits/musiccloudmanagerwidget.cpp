@@ -148,7 +148,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItemList &i
     for(const QSyncDataItem &item : qAsConst(items))
     {
         MusicCloudDataItem data;
-        data.m_id = QString::number(TTKTime::currentTimestamp());
+        data.m_id = QString::number(TTKDateTime::currentTimestamp());
         data.m_path = item.m_name.trimmed();
         data.m_state = MusicCloudDataItem::State::Successed;
         data.m_dataItem = item;
@@ -430,7 +430,7 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
     {
         MusicCloudDataItem item;
         const QFileInfo fin(path);
-        item.m_id = QString::number(TTKTime::currentTimestamp());
+        item.m_id = QString::number(TTKDateTime::currentTimestamp());
         item.m_path = path;
         item.m_state = MusicCloudDataItem::State::Waited;
         item.m_dataItem.m_name = fin.fileName().trimmed();

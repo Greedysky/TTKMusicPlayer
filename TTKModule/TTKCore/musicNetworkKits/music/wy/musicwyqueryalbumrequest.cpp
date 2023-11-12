@@ -1,7 +1,5 @@
 #include "musicwyqueryalbumrequest.h"
 
-#include <QDateTime>
-
 MusicWYQueryAlbumRequest::MusicWYQueryAlbumRequest(QObject *parent)
     : MusicQueryAlbumRequest(parent)
 {
@@ -63,7 +61,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                 result.m_description = albumValue["name"].toString() + TTK_SPLITER +
                                        albumValue["language"].toString() + TTK_SPLITER +
                                        albumValue["company"].toString() + TTK_SPLITER +
-                                       QDateTime::fromMSecsSinceEpoch(albumValue["publishTime"].toULongLong()).toString(TTK_YEAR_FORMAT);
+                                       TTKDateTime::format(albumValue["publishTime"].toULongLong(), TTK_YEAR_FORMAT);
 
                 const QVariantList &datas = value["songs"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -169,7 +167,7 @@ void MusicWYQueryAlbumRequest::downLoadSingleFinished()
                     result.m_id = value["id"].toString();
                     result.m_coverUrl = value["picUrl"].toString();
                     result.m_name = value["name"].toString();
-                    result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["publishTime"].toULongLong()).toString("yyyy.MM.dd");
+                    result.m_updateTime = TTKDateTime::format(value["publishTime"].toULongLong(), TTK_YEARD_FORMAT);
                     Q_EMIT createAlbumItem(result);
                 }
             }

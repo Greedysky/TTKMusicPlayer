@@ -37,7 +37,7 @@ TTKTime::TTKTime(qint64 value, Entity type)
     : TTKTime()
 {
     m_defaultType = type;
-    fromTimeStamp(value, type == Entity::Second ? MT_S : MT_S2MS);
+    fromTimestamp(value, type == Entity::Second ? MT_S : MT_S2MS);
 }
 
 TTKTime::TTKTime(int day, int hour, int min, int sec, int msec)
@@ -80,17 +80,17 @@ bool TTKTime::isValid() const
     return !isNull();
 }
 
-TTKTime TTKTime::fromString(const QString &s, const QString &format)
+TTKTime TTKTime::fromString(const QString &time, const QString &format)
 {
-    TTKTime time;
-    const QTime &t = QTime::fromString(s, format);
-    time.setHMSM(0, t.hour(), t.minute(), t.second(), t.msec());
-    return time;
+    TTKTime t;
+    const QTime &qtime = QTime::fromString(time, format);
+    t.setHMSM(0, qtime.hour(), qtime.minute(), qtime.second(), qtime.msec());
+    return t;
 }
 
-QString TTKTime::toString(qint64 value, Entity type, const QString &format)
+QString TTKTime::toString(qint64 time, Entity type, const QString &format)
 {
-    return TTKTime(value, type).toString(format);
+    return TTKTime(time, type).toString(format);
 }
 
 QString TTKTime::toString(const QString &format) const
@@ -103,12 +103,6 @@ qint64 TTKTime::currentTimestamp(Entity type) const
     qint64 delta = (type == Entity::Second) ? MT_S : MT_S2MS;
            delta = (m_day * MT_D2S + m_hour * MT_H2S + m_min * MT_M2S + m_sec) * delta;
     return (type == Entity::Second) ? delta : (delta + m_msec);
-}
-
-qint64 TTKTime::currentTimestamp(bool ms)
-{
-    const qint64 t = QDateTime::currentMSecsSinceEpoch();
-    return ms ? t : t / 1000;
 }
 
 qint64 TTKTime::formatDuration(const QString &time)
@@ -140,42 +134,42 @@ TTKTime& TTKTime::operator= (const TTKTime &other)
 TTKTime& TTKTime::operator+= (const TTKTime &other)
 {
     const qint64 t = currentTimestamp(Entity::Millisecond) + other.currentTimestamp(Entity::Millisecond);
-    fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
+    fromTimestamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 TTKTime& TTKTime::operator+= (const int other)
 {
     const qint64 t = currentTimestamp(Entity::Millisecond) + other;
-    fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
+    fromTimestamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 TTKTime& TTKTime::operator-= (const TTKTime &other)
 {
     const qint64 t = currentTimestamp(Entity::Millisecond) - other.currentTimestamp(Entity::Millisecond);
-    fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
+    fromTimestamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 TTKTime& TTKTime::operator-= (const int other)
 {
     const qint64 t = currentTimestamp(Entity::Millisecond) - other;
-    fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
+    fromTimestamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 TTKTime& TTKTime::operator*= (const int other)
 {
     const qint64 t = currentTimestamp(Entity::Millisecond) * other;
-    fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
+    fromTimestamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
 TTKTime& TTKTime::operator/= (const int other)
 {
     const qint64 t = currentTimestamp(Entity::Millisecond) / other;
-    fromTimeStamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
+    fromTimestamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
     return *this;
 }
 
@@ -244,7 +238,7 @@ void TTKTime::copyToThis(const TTKTime &other)
     m_msec = other.m_msec;
 }
 
-void TTKTime::fromTimeStamp(qint64 value, int delta)
+void TTKTime::fromTimestamp(qint64 value, int delta)
 {
     if(value < 0)
     {
@@ -267,4 +261,20 @@ void TTKTime::fromTimeStamp(qint64 value, int delta)
         value -= (m_sec * delta);
         m_msec = value;
     }
+}
+
+
+qint64 TTKDateTime::currentTimestamp()
+{
+    return QDateTime::currentMSecsSinceEpoch();
+}
+
+QString TTKDateTime::format(const QString &time, const QString &format)
+{
+    return QString::number(QDateTime::fromString(time, format).toMSecsSinceEpoch());
+}
+
+QString TTKDateTime::format(qint64 time, const QString &format)
+{
+    return QDateTime::fromMSecsSinceEpoch(time).toString(format);
 }

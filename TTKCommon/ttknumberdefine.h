@@ -23,10 +23,11 @@
 
 #define TTK_TIME_INIT               "00:00"
 #define TTK_TIME_FORMAT             "hh:mm"
-#define TTK_TIMES_FORMAT            "hh:mm:ss"
+#define TTK_TIMEZ_FORMAT            "hh:mm:ss"
 #define TTK_YEAR_FORMAT             "yyyy-MM-dd"
+#define TTK_YEARD_FORMAT            "yyyy.MM.dd"
 #define TTK_YEAR_TIME_FORMAT        "yyyy-MM-dd hh:mm"
-#define TTK_YEAR_TIMES_FORMAT       "yyyy-MM-dd hh:mm:ss"
+#define TTK_YEAR_TIMEZ_FORMAT       "yyyy-MM-dd hh:mm:ss"
 
 #define TTK_ITEM_SIZE_S             25
 #define TTK_ITEM_SIZE_M             30

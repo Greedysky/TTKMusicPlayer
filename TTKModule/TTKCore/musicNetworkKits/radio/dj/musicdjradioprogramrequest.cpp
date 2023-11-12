@@ -1,7 +1,5 @@
 #include "musicdjradioprogramrequest.h"
 
-#include <QDateTime>
-
 MusicDJRadioProgramRequest::MusicDJRadioProgramRequest(QObject *parent)
     : MusicAbstractDJRadioRequest(parent)
 {
@@ -55,7 +53,7 @@ void MusicDJRadioProgramRequest::downLoadFinished()
                     result.m_coverUrl = value["picUrl"].toString();
                     result.m_tags = value["category"].toString();
                     result.m_nickName = value["categoryId"].toString();
-                    result.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["createTime"].toULongLong()).toString(TTK_YEAR_FORMAT);
+                    result.m_updateTime = TTKDateTime::format(value["createTime"].toULongLong(), TTK_YEAR_FORMAT);
                     result.m_playCount = value["subCount"].toString();
                     Q_EMIT createProgramItem(result);
                     m_items << result;

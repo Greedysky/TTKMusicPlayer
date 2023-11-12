@@ -38,7 +38,7 @@ void MusicIdentifySongRequest::startRequest(const QString &path)
     const QString &endpoint = "/v1/identify";
     const QString &type = "fingerprint";
     const QString &version = "1";
-    const QString &timeStamp = QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch());
+    const QString &timeStamp = QString::number(TTKDateTime::currentTimestamp());
 
     const QString &sign = method + "\n" + endpoint + "\n" + m_accessKey + "\n" + type + "\n" + version + "\n" + timeStamp;
     QByteArray body = TTK::Algorithm::hmacSha1(sign.toUtf8(), m_accessSecret.toUtf8()).toBase64();
@@ -137,7 +137,7 @@ void MusicIdentifySongRequest::downLoadFinished(const QByteArray &bytes)
         if(ok)
         {
             const QVariantMap &value = data.toMap();
-            if(QDateTime::fromString(value["time"].toString(), TTK_YEAR_TIMES_FORMAT) > QDateTime::currentDateTime())
+            if(QDateTime::fromString(value["time"].toString(), TTK_YEAR_TIMEZ_FORMAT) > QDateTime::currentDateTime())
             {
                 m_accessKey = value["key"].toString();
                 m_accessSecret = value["secret"].toString();
