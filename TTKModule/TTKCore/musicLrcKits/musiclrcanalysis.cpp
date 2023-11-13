@@ -388,7 +388,7 @@ void MusicLrcAnalysis::saveData()
 
     for(auto it = m_lrcContainer.constBegin(); it != m_lrcContainer.constEnd(); ++it)
     {
-        data.append(TTKTime::toString(it.key(), TTKTime::Entity::Millisecond, "[mm:ss.zzz]"));
+        data.append(TTKTime::toString(it.key(), "[mm:ss.zzz]"));
         data.append(it.value() + "\n");
     }
 

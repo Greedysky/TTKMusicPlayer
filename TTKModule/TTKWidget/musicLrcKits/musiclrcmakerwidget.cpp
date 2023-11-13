@@ -706,7 +706,7 @@ void MusicLrcMakerWidget::setControlEnabled(bool enabled) const
 
 QString MusicLrcMakerWidget::translateTimeString(qint64 time)
 {
-    const TTKTime t(time, TTKTime::Entity::Millisecond);
+    const TTKTime t(time);
     return QString("[%1.%2]").arg(t.toString("mm:ss"), QString::number(t.millionSecond()).rightJustified(3, '0'));
 }
 

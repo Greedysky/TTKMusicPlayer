@@ -23,9 +23,22 @@ int TTK::random(int value)
 
 
 TTKTime::TTKTime()
-    : m_defaultType(Entity::Millisecond)
 {
     initialize();
+}
+
+TTKTime::TTKTime(qint64 value)
+    : TTKTime()
+{
+    initialize();
+    fromValue(value);
+}
+
+TTKTime::TTKTime(int day, int hour, int min, int sec, int msec)
+    : TTKTime()
+{
+    initialize();
+    fromValue(day, hour, min, sec, msec);
 }
 
 TTKTime::TTKTime(const TTKTime &other)
@@ -33,46 +46,14 @@ TTKTime::TTKTime(const TTKTime &other)
     copyToThis(other);
 }
 
-TTKTime::TTKTime(qint64 value, Entity type)
-    : TTKTime()
+TTKTime::TTKTime(TTKTime &&other)
 {
-    m_defaultType = type;
-    fromTimestamp(value, type == Entity::Second ? MT_S : MT_S2MS);
-}
-
-TTKTime::TTKTime(int day, int hour, int min, int sec, int msec)
-    : TTKTime()
-{
-    m_defaultType = Entity::Millisecond;
-    setHMSM(day, hour, min, sec, msec);
-}
-
-void TTKTime::setHMSM(int day, int hour, int min, int sec, int msec)
-{
-    initialize();
-
-    int delta = 0;
-    delta = msec >= MT_S2MS ? msec / MT_S2MS : 0;
-    m_msec = msec % MT_S2MS;
-
-    sec += delta;
-    delta = sec >= MT_M2S ? sec / MT_M2S : 0;
-    m_sec = sec % MT_M2S;
-
-    min += delta;
-    delta = min >= MT_H2M ? min / MT_H2M : 0;
-    m_min = min % MT_H2M;
-
-    hour += delta;
-    m_day = hour >= MT_D2H ? hour / MT_D2H : 0;
-    m_hour = hour % MT_D2H;
-
-    m_day += day;
+    copyToThis(other);
 }
 
 bool TTKTime::isNull() const
 {
-    return (m_hour == 0 && m_min == 0 && m_sec == 0 && m_msec == 0);
+    return m_hour == 0 && m_minute == 0 && m_second == 0 && m_msecond == 0;
 }
 
 bool TTKTime::isValid() const
@@ -84,36 +65,69 @@ TTKTime TTKTime::fromString(const QString &time, const QString &format)
 {
     TTKTime t;
     const QTime &qtime = QTime::fromString(time, format);
-    t.setHMSM(0, qtime.hour(), qtime.minute(), qtime.second(), qtime.msec());
+    t.fromValue(0, qtime.hour(), qtime.minute(), qtime.second(), qtime.msec());
     return t;
 }
 
-QString TTKTime::toString(qint64 time, Entity type, const QString &format)
+QString TTKTime::toString(qint64 time, const QString &format)
 {
-    return TTKTime(time, type).toString(format);
+    return TTKTime(time).toString(format);
 }
 
 QString TTKTime::toString(const QString &format) const
 {
-    return QTime(m_hour, m_min, m_sec, m_msec).toString(format);
+    return QTime(m_hour, m_minute, m_second, m_msecond).toString(format);
 }
 
-qint64 TTKTime::currentTimestamp(Entity type) const
+void TTKTime::fromValue(int day, int hour, int min, int sec, int msec)
 {
-    qint64 delta = (type == Entity::Second) ? MT_S : MT_S2MS;
-           delta = (m_day * MT_D2S + m_hour * MT_H2S + m_min * MT_M2S + m_sec) * delta;
-    return (type == Entity::Second) ? delta : (delta + m_msec);
+    if(day < 0 || hour < 0 || hour > 24 || min < 0 || min > 60 || sec < 0 || sec > 60 || msec < 0 || msec > 1000)
+    {
+        return;
+    }
+
+    m_day = day;
+    m_hour = hour;
+    m_minute = min;
+    m_second = sec;
+    m_msecond = msec;
+}
+
+void TTKTime::fromValue(qint64 value)
+{
+    if(value < 0)
+    {
+        return;
+    }
+
+    m_msecond = value % MT_S2MS;
+    value /= MT_S2MS;
+
+    m_day = value / MT_D2S;
+    value %= MT_D2S;
+
+    m_hour = value / MT_H2S;
+    value %= MT_H2S;
+
+    m_minute = value / MT_M2S;
+    value %= MT_M2S;
+
+    m_second = value;
+}
+
+qint64 TTKTime::toValue() const
+{
+    return (m_day * MT_D2S + m_hour * MT_H2S + m_minute * MT_M2S + m_second) * MT_S2MS + m_msecond;
 }
 
 qint64 TTKTime::formatDuration(const QString &time)
 {
-    const TTKTime t = TTKTime::fromString(time, "mm:ss");
-    return t.currentTimestamp(Entity::Millisecond);
+    return TTKTime::fromString(time, "mm:ss").toValue();
 }
 
 QString TTKTime::formatDuration(qint64 time/*, bool greedy*/)
 {
-    const TTKTime t(time, Entity::Millisecond);
+    const TTKTime t(time);
     if(/*!greedy || */time < MT_H2S * MT_S2MS)
     {
         return t.toString("mm:ss");
@@ -131,136 +145,104 @@ TTKTime& TTKTime::operator= (const TTKTime &other)
     return *this;
 }
 
+TTKTime& TTKTime::operator= (TTKTime &&other)
+{
+    copyToThis(other);
+    return *this;
+}
+
 TTKTime& TTKTime::operator+= (const TTKTime &other)
 {
-    const qint64 t = currentTimestamp(Entity::Millisecond) + other.currentTimestamp(Entity::Millisecond);
-    fromTimestamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
+    fromValue(toValue() + other.toValue());
     return *this;
 }
 
 TTKTime& TTKTime::operator+= (const int other)
 {
-    const qint64 t = currentTimestamp(Entity::Millisecond) + other;
-    fromTimestamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
+    fromValue(toValue() + other);
     return *this;
 }
 
 TTKTime& TTKTime::operator-= (const TTKTime &other)
 {
-    const qint64 t = currentTimestamp(Entity::Millisecond) - other.currentTimestamp(Entity::Millisecond);
-    fromTimestamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
+    fromValue(toValue() - other.toValue());
     return *this;
 }
 
 TTKTime& TTKTime::operator-= (const int other)
 {
-    const qint64 t = currentTimestamp(Entity::Millisecond) - other;
-    fromTimestamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
+    fromValue(toValue() - other);
     return *this;
 }
 
 TTKTime& TTKTime::operator*= (const int other)
 {
-    const qint64 t = currentTimestamp(Entity::Millisecond) * other;
-    fromTimestamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
+    fromValue(toValue() * other);
     return *this;
 }
 
 TTKTime& TTKTime::operator/= (const int other)
 {
-    const qint64 t = currentTimestamp(Entity::Millisecond) / other;
-    fromTimestamp(t, m_defaultType == Entity::Second ? MT_S : MT_S2MS);
+    fromValue(toValue() / other);
     return *this;
 }
 
 TTKTime TTKTime::operator+ (const TTKTime &other)
 {
-    const qint64 t = currentTimestamp(Entity::Millisecond) + other.currentTimestamp(Entity::Millisecond);
-    return TTKTime(t, m_defaultType);
+    return TTKTime(toValue() + other.toValue());
 }
 
 TTKTime TTKTime::operator+ (const int other)
 {
-    const qint64 t = currentTimestamp(Entity::Millisecond) + other;
-    return TTKTime(t, m_defaultType);
+    return TTKTime(toValue() + other);
 }
 
 TTKTime TTKTime::operator- (const TTKTime &other)
 {
-    const qint64 t = currentTimestamp(Entity::Millisecond) - other.currentTimestamp(Entity::Millisecond);
-    return TTKTime(t, m_defaultType);
+    return TTKTime(toValue() - other.toValue());
 }
 
 TTKTime TTKTime::operator- (const int other)
 {
-    const qint64 t = currentTimestamp(Entity::Millisecond) - other;
-    return TTKTime(t, m_defaultType);
+    return TTKTime(toValue() - other);
 }
 
 TTKTime TTKTime::operator* (const int other)
 {
-    const qint64 t = currentTimestamp(Entity::Millisecond) * other;
-    return TTKTime(t, m_defaultType);
+    return TTKTime(toValue() * other);
 }
 
 TTKTime TTKTime::operator/ (const int other)
 {
-    const qint64 t = currentTimestamp(Entity::Millisecond) / other;
-    return TTKTime(t, m_defaultType);
+    return TTKTime(toValue() / other);
 }
 
 bool TTKTime::operator== (const TTKTime &other) const
 {
-    return currentTimestamp(Entity::Millisecond) == other.currentTimestamp(Entity::Millisecond);
+    return toValue() == other.toValue();
 }
 
 bool TTKTime::operator!= (const TTKTime &other) const
 {
-    return currentTimestamp(Entity::Millisecond) != other.currentTimestamp(Entity::Millisecond);
+    return toValue() != other.toValue();
 }
 
 void TTKTime::initialize()
 {
     m_day = 0;
     m_hour = 0;
-    m_min = 0;
-    m_sec = 0;
-    m_msec = 0;
+    m_minute = 0;
+    m_second = 0;
+    m_msecond = 0;
 }
 
 void TTKTime::copyToThis(const TTKTime &other)
 {
-    m_defaultType = other.m_defaultType;
     m_day = other.m_day;
     m_hour = other.m_hour;
-    m_min = other.m_min;
-    m_sec = other.m_sec;
-    m_msec = other.m_msec;
-}
-
-void TTKTime::fromTimestamp(qint64 value, int delta)
-{
-    if(value < 0)
-    {
-        initialize();
-        return;
-    }
-
-    m_day = value / MT_D2S / delta;
-    value -= m_day * MT_D2S * delta;
-
-    m_hour = value / MT_H2S / delta;
-    value -= m_hour * MT_H2S * delta;
-
-    m_min = value / MT_M2S / delta;
-    value -= m_min * MT_M2S * delta;
-
-    m_sec = value / delta;
-    if(delta == MT_S2MS)
-    {
-        value -= (m_sec * delta);
-        m_msec = value;
-    }
+    m_minute = other.m_minute;
+    m_second = other.m_second;
+    m_msecond = other.m_msecond;
 }
 
 

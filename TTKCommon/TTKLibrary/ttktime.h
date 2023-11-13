@@ -30,24 +30,15 @@ class TTK_MODULE_EXPORT TTKTime
 {
     TTK_DECLARE_MODULE(TTKTime)
 public:
-    enum class Entity
-    {
-        Second,         /*!< Current time entity is sec*/
-        Millisecond     /*!< Current time entity is msec*/
-    };
-
     /*!
      * Object constructor.
      */
     TTKTime();
-    TTKTime(const TTKTime &other);
-    TTKTime(qint64 value, Entity type);
+    TTKTime(qint64 value);
     TTKTime(int day, int hour, int min, int sec, int msec);
+    TTKTime(const TTKTime &other);
+    TTKTime(TTKTime &&other);
 
-    /*!
-     * Set current day and hour and min and sec and msec.
-     */
-    void setHMSM(int day, int hour, int min, int sec, int msec = 0);
     /*!
      * Check current time is null.
      */
@@ -56,15 +47,6 @@ public:
      * Check current time is valid.
      */
     bool isValid() const;
-
-    /*!
-     * Set current time type, see Type.
-     */
-    inline void setType(Entity type) { m_defaultType = type; }
-    /*!
-     * Get current time type, see Type.
-     */
-    inline Entity type() const { return m_defaultType; }
 
     /*!
      * Set current day.
@@ -77,15 +59,15 @@ public:
     /*!
      * Set current minute.
      */
-    inline void setMinute(int min) { m_min = min; }
+    inline void setMinute(int min) { m_minute = min; }
     /*!
      * Set current second.
      */
-    inline void setSecond(int sec) { m_sec = sec; }
+    inline void setSecond(int sec) { m_second = sec; }
     /*!
      * Set current millionSecond.
      */
-    inline void setMillionSecond(int msec) { m_msec = msec; }
+    inline void setMillionSecond(int msec) { m_msecond = msec; }
 
     /*!
      * Get current day.
@@ -98,15 +80,15 @@ public:
     /*!
      * Get current second.
      */
-    inline int minute() const { return m_min; }
+    inline int minute() const { return m_minute; }
     /*!
      * Get current second.
      */
-    inline int second() const { return m_sec; }
+    inline int second() const { return m_second; }
     /*!
      * Get current millionSecond.
      */
-    inline int millionSecond() const { return m_msec; }
+    inline int millionSecond() const { return m_msecond; }
 
     /*!
      * Transform time from string by time format.
@@ -115,7 +97,7 @@ public:
     /*!
      * Transform time from value to string time format.
      */
-    static QString toString(qint64 time, Entity type, const QString &format);
+    static QString toString(qint64 time, const QString &format);
 
     /*!
      * Transform time to string time format.
@@ -136,9 +118,17 @@ public:
 //    t	the timezone (for example "CEST")
 
     /*!
-     * Transform ms time from utc since epoch.
+     * Set current day and hour and min and sec and msec.
      */
-    qint64 currentTimestamp(Entity type) const;
+    void fromValue(int day, int hour, int min, int sec, int msec = 0);
+    /*!
+     * Transform from all ms time value.
+     */
+    void fromValue(qint64 value);
+    /*!
+     * Transform to all ms time value.
+     */
+    qint64 toValue() const;
 
     /*!
      * Transform string format(mm:ss) to msec time.
@@ -150,6 +140,7 @@ public:
     static QString formatDuration(qint64 time/*, bool greedy = true*/);
 
     TTKTime& operator = (const TTKTime &other);
+    TTKTime& operator = (TTKTime &&other);
     TTKTime& operator+= (const TTKTime &other);
     TTKTime& operator+= (const int other);
     TTKTime& operator-= (const TTKTime &other);
@@ -178,7 +169,7 @@ public:
     {
         int x[5];
         stream >> x[0] >> x[1] >> x[2] >> x[3] >> x[4];
-        other.setHMSM(x[0], x[1], x[2], x[3], x[4]);
+        other.fromValue(x[0], x[1], x[2], x[3], x[4]);
         return stream;
     }
 
@@ -191,14 +182,9 @@ private:
      * Copy other time data to this obejct;
      */
     void copyToThis(const TTKTime &other);
-    /*!
-     * Transform time value by different time type;
-     */
-    void fromTimestamp(qint64 value, int delta);
 
-    Entity m_defaultType;
     int m_day, m_hour;
-    int m_min, m_sec, m_msec;
+    int m_minute, m_second, m_msecond;
 
 };
 
