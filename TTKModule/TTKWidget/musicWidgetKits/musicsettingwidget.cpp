@@ -346,6 +346,7 @@ void MusicSettingWidget::downloadCacheClean()
     }
 
     TTK::File::removeRecursively(APPCACHE_DIR_FULL);
+
     QDir dir;
     dir.mkpath(ART_DIR_FULL);
     dir.mkpath(CACHE_DIR_FULL);
