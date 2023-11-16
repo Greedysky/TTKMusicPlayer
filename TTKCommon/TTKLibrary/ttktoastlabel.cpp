@@ -17,7 +17,7 @@ TTKToastLabel::TTKToastLabel(QWidget *parent)
     setFontMargin(20, 20);
 
     connect(&m_timer, SIGNAL(timeout()), SLOT(closeAnimation()));
-    m_timer.setInterval(MT_S2MS);
+    m_timer.setInterval(TTK_DN_S2MS);
     m_timer.start();
 }
 
@@ -76,7 +76,7 @@ void TTKToastLabel::closeAnimation()
     m_timer.stop();
 
     QPropertyAnimation *animation = new QPropertyAnimation(this, "windowOpacity", this);
-    animation->setDuration(MT_S2MS);
+    animation->setDuration(TTK_DN_S2MS);
     animation->setStartValue(1);
     animation->setEndValue(0);
     animation->start();

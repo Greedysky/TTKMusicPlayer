@@ -130,8 +130,8 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
 
         if(GetDiskFreeSpaceExW(path.toStdWString().c_str(), &freeAvailable, &totalNumberOfBytes, &totalNumberOfFreeBytes))
         {
-            const qint64 available = freeAvailable.QuadPart / MH_GB2B;
-            const qint64 total = totalNumberOfBytes.QuadPart / MH_GB2B;
+            const qint64 available = freeAvailable.QuadPart / TTK_SN_GB2B;
+            const qint64 total = totalNumberOfBytes.QuadPart / TTK_SN_GB2B;
 
             MusicDeviceInfoItem item;
             item.m_path = path;

@@ -230,25 +230,25 @@ void MusicRightAreaWidget::showSettingWidget() const
 void MusicRightAreaWidget::artistSearchBy(const QString &id)
 {
     m_rawData = id;
-    QTimer::singleShot(MT_ONCE, this, SLOT(showArtistSearchFound()));
+    QTimer::singleShot(TTK_DN_ONCE, this, SLOT(showArtistSearchFound()));
 }
 
 void MusicRightAreaWidget::albumSearchBy(const QString &id)
 {
     m_rawData = id;
-    QTimer::singleShot(MT_ONCE, this, SLOT(showAlbumSearchFound()));
+    QTimer::singleShot(TTK_DN_ONCE, this, SLOT(showAlbumSearchFound()));
 }
 
 void MusicRightAreaWidget::movieSearchBy(const QString &id)
 {
     m_rawData = id;
-    QTimer::singleShot(MT_ONCE, this, SLOT(showMovieSearchFound()));
+    QTimer::singleShot(TTK_DN_ONCE, this, SLOT(showMovieSearchFound()));
 }
 
 void MusicRightAreaWidget::movieRadioSearchBy(const QVariant &data)
 {
     m_rawData = data;
-    QTimer::singleShot(MT_ONCE, this, SLOT(showMovieSearchRadioFound()));
+    QTimer::singleShot(TTK_DN_ONCE, this, SLOT(showMovieSearchRadioFound()));
 }
 
 void MusicRightAreaWidget::resizeWindow()
@@ -723,7 +723,7 @@ void MusicRightAreaWidget::videoSetPopup(bool popup)
         MusicPlatformManager manager;
         manager.windowsEnableLeftMode();
 #endif
-        QTimer::singleShot(MT_ONCE, this, SLOT(videoActiveWindow()));
+        QTimer::singleShot(TTK_DN_ONCE, this, SLOT(videoActiveWindow()));
     }
     else
     {

@@ -56,7 +56,7 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_quitAnimation = new QPropertyAnimation(this);
     m_sideAnimation = new QPropertyAnimation(parent, "pos", this);
     m_quitAnimation->setTargetObject(parent);
-    m_sideAnimation->setDuration(250 * MT_MS);
+    m_sideAnimation->setDuration(250);
 
     m_backupModule = new MusicBackupModule;
     m_timerAutoModule = new MusicTimerAutoModule(this);
@@ -190,7 +190,7 @@ void MusicApplicationModule::windowCloseAnimation()
 
         m_quitAnimation->stop();
         m_quitAnimation->setPropertyName("geometry");
-        m_quitAnimation->setDuration(250 * MT_MS);
+        m_quitAnimation->setDuration(250);
         m_quitAnimation->setStartValue(w->geometry());
         m_quitAnimation->setEndValue(QRect(w->x(), w->geometry().center().y(), w->width(), 0));
         m_quitAnimation->start();
@@ -199,16 +199,16 @@ void MusicApplicationModule::windowCloseAnimation()
     else
     {
         float v = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
-              v = TTK::Image::reRenderValue<float>(1, 0.35, MV_MAX - v);
+              v = TTK::Image::reRenderValue<float>(1, 0.35, TTK_RN_MAX - v);
         m_quitAnimation->stop();
         m_quitAnimation->setPropertyName("windowOpacity");
-        m_quitAnimation->setDuration(MT_S2MS);
+        m_quitAnimation->setDuration(TTK_DN_S2MS);
         m_quitAnimation->setStartValue(v);
         m_quitAnimation->setEndValue(0);
         m_quitAnimation->start();
     }
 
-    QTimer::singleShot(MT_S2MS, this, SLOT(quit()));
+    QTimer::singleShot(TTK_DN_S2MS, this, SLOT(quit()));
 }
 
 void MusicApplicationModule::soureUpdateCheck()
@@ -341,7 +341,7 @@ void MusicApplicationModule::windowCloseAnimationFinished()
 
         MusicGifLabelWidget *gifWidget = new MusicGifLabelWidget(m_quitContainer);
         gifWidget->setType(MusicGifLabelWidget::Module::CloseWhite);
-        gifWidget->setInterval(25 * MT_MS);
+        gifWidget->setInterval(25);
         gifWidget->setInfinited(false);
         m_quitContainer->resize(gifWidget->size());
 

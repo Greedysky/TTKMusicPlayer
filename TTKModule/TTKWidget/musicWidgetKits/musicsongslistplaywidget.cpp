@@ -191,7 +191,7 @@ void MusicSongsListPlayWidget::changItemName(const QString &name)
     m_songNameLabel->setText(TTK::Widget::elidedText(font(), name, Qt::ElideRight, 198));
     m_songNameLabel->setToolTip(name);
     Q_EMIT renameFinished(name);
-    QTimer::singleShot(MT_MS, this, SLOT(deleteRenameItem()));
+    QTimer::singleShot(TTK_DN_MS, this, SLOT(deleteRenameItem()));
 }
 
 void MusicSongsListPlayWidget::currentLoveStateClicked()

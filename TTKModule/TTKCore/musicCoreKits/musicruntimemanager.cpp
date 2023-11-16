@@ -43,7 +43,7 @@ static void checkCacheSize()
         return;
     }
 
-    const quint64 cacheSize = G_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt() * MH_MB2B;
+    const quint64 cacheSize = G_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt() * TTK_SN_MB2B;
     const QString &path = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
     quint64 size = directorySize(path);
     if(size > cacheSize)

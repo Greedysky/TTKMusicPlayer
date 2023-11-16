@@ -118,11 +118,11 @@ void MusicSongRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation 
     prop.m_size = TTK::Number::sizeByteToLabel(length * 1000 * bitrate / 8);
     switch(bitrate)
     {
-        case MB_128: prop.m_format = MP3_FILE_SUFFIX; break;
-        case MB_192: prop.m_format = MP3_FILE_SUFFIX; break;
-        case MB_320: prop.m_format = MP3_FILE_SUFFIX; break;
-        case MB_750: prop.m_format = APE_FILE_SUFFIX; break;
-        case MB_1000: prop.m_format = FLAC_FILE_SUFFIX; break;
+        case TTK_BN_128: prop.m_format = MP3_FILE_SUFFIX; break;
+        case TTK_BN_192: prop.m_format = MP3_FILE_SUFFIX; break;
+        case TTK_BN_320: prop.m_format = MP3_FILE_SUFFIX; break;
+        case TTK_BN_750: prop.m_format = APE_FILE_SUFFIX; break;
+        case TTK_BN_1000: prop.m_format = FLAC_FILE_SUFFIX; break;
         default: prop.m_format = MP3_FILE_SUFFIX; break;
     }
     prop.m_bitrate = bitrate;
@@ -137,35 +137,35 @@ void MusicSongRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation 
 
     if(all)
     {
-        parseFromSongProperty(info, key["lqUrl"].toString(), length, MB_128);
-        parseFromSongProperty(info, key["hqUrl"].toString(), length, MB_192);
-        parseFromSongProperty(info, key["sqUrl"].toString(), length, MB_320);
-        parseFromSongProperty(info, key["apeUrl"].toString(), length, MB_750);
-        parseFromSongProperty(info, key["flacUrl"].toString(), length, MB_1000);
+        parseFromSongProperty(info, key["lqUrl"].toString(), length, TTK_BN_128);
+        parseFromSongProperty(info, key["hqUrl"].toString(), length, TTK_BN_192);
+        parseFromSongProperty(info, key["sqUrl"].toString(), length, TTK_BN_320);
+        parseFromSongProperty(info, key["apeUrl"].toString(), length, TTK_BN_750);
+        parseFromSongProperty(info, key["flacUrl"].toString(), length, TTK_BN_1000);
     }
     else
     {
         if(quality == TTK::QueryQuality::Standard)
         {
-            parseFromSongProperty(info, key["lqUrl"].toString(), length, MB_128);
+            parseFromSongProperty(info, key["lqUrl"].toString(), length, TTK_BN_128);
         }
         else if(quality == TTK::QueryQuality::High)
         {
-            parseFromSongProperty(info, key["hqUrl"].toString(), length, MB_192);
+            parseFromSongProperty(info, key["hqUrl"].toString(), length, TTK_BN_192);
         }
         else if(quality == TTK::QueryQuality::Super)
         {
-            parseFromSongProperty(info, key["sqUrl"].toString(), length, MB_320);
+            parseFromSongProperty(info, key["sqUrl"].toString(), length, TTK_BN_320);
         }
         else if(quality == TTK::QueryQuality::Lossless)
         {
-            parseFromSongProperty(info, key["apeUrl"].toString(), length, MB_750);
-            parseFromSongProperty(info, key["flacUrl"].toString(), length, MB_1000);
+            parseFromSongProperty(info, key["apeUrl"].toString(), length, TTK_BN_750);
+            parseFromSongProperty(info, key["flacUrl"].toString(), length, TTK_BN_1000);
         }
     }
 
     if(info->m_songProps.isEmpty())
     {
-        parseFromSongProperty(info, key["copyUrl"].toString(), length, MB_128);
+        parseFromSongProperty(info, key["copyUrl"].toString(), length, TTK_BN_128);
     }
 }

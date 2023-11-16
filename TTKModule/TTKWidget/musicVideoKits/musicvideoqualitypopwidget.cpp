@@ -26,10 +26,10 @@ void MusicVideoQualityPopWidget::setQualityActionState()
     QList<QAction*> actions = m_actionGroup->actions();
     if(actions.count() >= 4)
     {
-        actions[0]->setEnabled(findExistByBitrate(MB_250));
-        actions[1]->setEnabled(findExistByBitrate(MB_500));
-        actions[2]->setEnabled(findExistByBitrate(MB_750));
-        actions[3]->setEnabled(findExistByBitrate(MB_1000));
+        actions[0]->setEnabled(findExistByBitrate(TTK_BN_250));
+        actions[1]->setEnabled(findExistByBitrate(TTK_BN_500));
+        actions[2]->setEnabled(findExistByBitrate(TTK_BN_750));
+        actions[3]->setEnabled(findExistByBitrate(TTK_BN_1000));
     }
 }
 
@@ -38,10 +38,10 @@ void MusicVideoQualityPopWidget::setQualityText(const QString &url)
     QString style = TTK::UI::VideoBtnSDMode;
     switch(findMVBitrateByUrl(url))
     {
-        case MB_250: style = TTK::UI::VideoBtnSTMode; break;
-        case MB_500: style = TTK::UI::VideoBtnSDMode; break;
-        case MB_750: style = TTK::UI::VideoBtnHDMode; break;
-        case MB_1000: style = TTK::UI::VideoBtnSQMode; break;
+        case TTK_BN_250: style = TTK::UI::VideoBtnSTMode; break;
+        case TTK_BN_500: style = TTK::UI::VideoBtnSDMode; break;
+        case TTK_BN_750: style = TTK::UI::VideoBtnHDMode; break;
+        case TTK_BN_1000: style = TTK::UI::VideoBtnSQMode; break;
         default: break;
     }
     setStyleSheet(style);
@@ -52,10 +52,10 @@ void MusicVideoQualityPopWidget::movieQualityChoiced(QAction *action)
     QString url;
     switch(TTKStaticCast(TTK::QueryQuality, action->data().toInt()))
     {
-        case TTK::QueryQuality::None: url = findMVUrlByBitrate(MB_250); break;
-        case TTK::QueryQuality::Standard: url = findMVUrlByBitrate(MB_500); break;
-        case TTK::QueryQuality::High: url = findMVUrlByBitrate(MB_750); break;
-        case TTK::QueryQuality::Super: url = findMVUrlByBitrate(MB_1000); break;
+        case TTK::QueryQuality::None: url = findMVUrlByBitrate(TTK_BN_250); break;
+        case TTK::QueryQuality::Standard: url = findMVUrlByBitrate(TTK_BN_500); break;
+        case TTK::QueryQuality::High: url = findMVUrlByBitrate(TTK_BN_750); break;
+        case TTK::QueryQuality::Super: url = findMVUrlByBitrate(TTK_BN_1000); break;
         default: break;
     }
 

@@ -15,7 +15,7 @@ static constexpr wchar_t key[] = {
 
 MusicLrcFromKrc::MusicLrcFromKrc()
 {
-    m_resultBytes = new uchar[MH_MB2B * MH_B2BS];
+    m_resultBytes = new uchar[TTK_SN_MB2BT];
 }
 
 MusicLrcFromKrc::~MusicLrcFromKrc()
@@ -118,7 +118,7 @@ int MusicLrcFromKrc::sncasecmp(char *s1, char *s2, size_t n)
 
 int MusicLrcFromKrc::decompression(uchar *src, size_t srcsize, size_t *dstsize)
 {
-    *dstsize = MH_MB2B * MH_B2BS;
+    *dstsize = TTK_SN_MB2BT;
     if(Z_OK != uncompress(m_resultBytes, (uLongf*)dstsize, src, srcsize))
     {
         return -1;
@@ -198,7 +198,7 @@ void MusicLrcFromKrc::createLrc(uchar *lrc, int lrclen)
                             char ftime[14];
                             lrc[i + j] = 0;
                             ms = atoi((char*)&lrc[i + 1]);
-                            sprintf(ftime, "[%.2d:%.2d.%.2d]", (ms % MT_H2MS) / MT_M2MS, (ms % MT_M2MS) / MT_S2MS, (ms % MT_M2MS) % 100);
+                            sprintf(ftime, "[%.2d:%.2d.%.2d]", (ms % TTK_DN_H2MS) / TTK_DN_M2MS, (ms % TTK_DN_M2MS) / TTK_DN_S2MS, (ms % TTK_DN_M2MS) % 100);
 
                             for(j = 0; j < 10; ++j)
                             {

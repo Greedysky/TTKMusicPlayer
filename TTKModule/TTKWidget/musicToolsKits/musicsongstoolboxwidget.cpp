@@ -186,7 +186,7 @@ MusicSongsToolBoxMaskWidget::MusicSongsToolBoxMaskWidget(QWidget *parent)
     hide();
 
     m_updateTimer = new QTimer(this);
-    m_updateTimer->setInterval(MT_S * 200);
+    m_updateTimer->setInterval(200);
     connect(m_updateTimer, SIGNAL(timeout()), SLOT(update()));
     m_updateTimer->start();
 }
@@ -200,7 +200,7 @@ MusicSongsToolBoxMaskWidget::~MusicSongsToolBoxMaskWidget()
 void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
 {
     int alpha = G_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparent).toInt();
-        alpha = TTK::Image::reRenderValue<int>(0xFF, 0x1F, MV_MAX - alpha);
+        alpha = TTK::Image::reRenderValue<int>(0xFF, 0x1F, TTK_RN_MAX - alpha);
     QWidget::paintEvent(event);
     QPainter painter(this);
 

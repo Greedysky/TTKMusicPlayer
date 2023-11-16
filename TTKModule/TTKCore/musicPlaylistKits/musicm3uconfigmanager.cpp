@@ -43,7 +43,7 @@ bool MusicM3UConfigManager::readBuffer(MusicSongItemList &items)
 
         if(valid)
         {
-            item.m_songs << MusicSong(str, TTKTime::formatDuration(length * MT_S2MS));
+            item.m_songs << MusicSong(str, TTKTime::formatDuration(length * TTK_DN_S2MS));
         }
     }
 
@@ -71,7 +71,7 @@ bool MusicM3UConfigManager::writeBuffer(const MusicSongItemList &items)
         const MusicSongItem &item = items[i];
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
-            data.append(QString("#EXTINF:%1,%2 - %3").arg(TTKTime::formatDuration(song.playTime()) / MT_S2MS)
+            data.append(QString("#EXTINF:%1,%2 - %3").arg(TTKTime::formatDuration(song.playTime()) / TTK_DN_S2MS)
                                                      .arg(song.artistFront(), song.artistBack()));
             data.append(song.path());
         }

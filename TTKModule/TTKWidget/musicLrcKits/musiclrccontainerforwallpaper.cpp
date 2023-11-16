@@ -186,7 +186,7 @@ void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int t
     MusicLrcManagerForInterior *w = TTKObjectCast(MusicLrcManagerForInterior*, m_lrcManagers[index]);
     w->setFontSize(size);
 
-    const int value = MV_MAX - transparent;
+    const int value = TTK_RN_MAX - transparent;
     w->setFontTransparent(value);
     w->setTransparent(value);
 

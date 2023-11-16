@@ -103,7 +103,7 @@ void MusicLrcMakerWidgetItem::moveRight()
     {
         m_painetLineDone = true;
         m_paintIndex = w;
-        QTimer::singleShot(MT_ONCE, m_parent, SLOT(currentLineFinished()));
+        QTimer::singleShot(TTK_DN_ONCE, m_parent, SLOT(currentLineFinished()));
     }
     update();
 }
@@ -401,13 +401,13 @@ void MusicLrcMakerWidget::updateAnimationLrc()
 
 void MusicLrcMakerWidget::lrcSpeedSlower()
 {
-    m_analysis->revertTime(MT_S2MS);
+    m_analysis->revertTime(TTK_DN_S2MS);
     updateCurrentLrc(m_analysis->setSongTimeSpeed(m_ui->timeSlider_T->value()));
 }
 
 void MusicLrcMakerWidget::lrcSpeedFaster()
 {
-    m_analysis->revertTime(-MT_S2MS);
+    m_analysis->revertTime(-TTK_DN_S2MS);
     updateCurrentLrc(m_analysis->setSongTimeSpeed(m_ui->timeSlider_T->value()));
 }
 
@@ -738,7 +738,7 @@ void MusicLrcMakerWidget::setItemStyleSheet(int index, int size, int transparent
     MusicLrcManagerForInterior *w = m_lrcContainer[index];
     w->setFontSize(size);
 
-    const int value = qBound<int>(MV_MIN, MV_MAX - transparent, MV_MAX);
+    const int value = qBound<int>(TTK_RN_MIN, TTK_RN_MAX - transparent, TTK_RN_MAX);
     w->setFontTransparent(value);
     w->setTransparent(value);
 

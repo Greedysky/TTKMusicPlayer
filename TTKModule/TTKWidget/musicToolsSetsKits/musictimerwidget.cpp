@@ -150,12 +150,12 @@ void MusicTimerWidget::setSongStringList(const QStringList &list)
 
 void MusicTimerWidget::initComboParameter()
 {
-    for(int i = 0; i < MT_D; ++i)
+    for(int i = 0; i < TTK_DN_D2H; ++i)
     {
         m_hour << tr("%1H").arg(i).rightJustified(3, '0');
     }
 
-    for(int i = 0; i < MT_H; ++i)
+    for(int i = 0; i < TTK_DN_H2M; ++i)
     {
         m_second << tr("%1S").arg(i).rightJustified(3, '0');
     }

@@ -65,7 +65,7 @@ void MusicKWQueryToplistRequest::downLoadFinished()
                     TTK::MusicSongInformation info;
                     info.m_singerName = TTK::String::charactersReplace(value["artist"].toString());
                     info.m_songName = TTK::String::charactersReplace(value["name"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
 
                     info.m_songId = value["id"].toString();
                     info.m_artistId = value["artistid"].toString();

@@ -30,7 +30,7 @@ MusicIdentifySongWidget::MusicIdentifySongWidget(QWidget *parent)
     setLayout(layout);
 
     m_timer = new QTimer(this);
-    m_timer->setInterval(10 * MT_S2MS);
+    m_timer->setInterval(10 * TTK_DN_S2MS);
     connect(m_timer, SIGNAL(timeout()), SLOT(detectedTimeOut()));
 
     m_recordCore = new MusicAudioRecorderModule(this);
@@ -181,7 +181,7 @@ void MusicIdentifySongWidget::positionChanged(qint64 position)
     const int index = m_analysis->currentIndex();
     const qint64 time = m_analysis->findTime(index);
 
-    if(time < position * MT_S2MS && time != -1)
+    if(time < position * TTK_DN_S2MS && time != -1)
     {
         QString lrc;
         for(int i = 0; i < m_analysis->lineMax(); ++i)

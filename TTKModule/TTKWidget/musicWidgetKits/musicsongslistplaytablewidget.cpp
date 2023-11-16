@@ -342,10 +342,10 @@ void MusicSongsListPlayTableWidget::itemCellEntered(int row, int column)
     }
 
     m_timerShow.stop();
-    m_timerShow.start(0.5 * MT_S2MS);
+    m_timerShow.start(0.5 * TTK_DN_S2MS);
 
     m_timerStay.stop();
-    m_timerStay.start(3 * MT_S2MS);
+    m_timerStay.start(3 * TTK_DN_S2MS);
 }
 
 void MusicSongsListPlayTableWidget::itemCellClicked(int row, int column)

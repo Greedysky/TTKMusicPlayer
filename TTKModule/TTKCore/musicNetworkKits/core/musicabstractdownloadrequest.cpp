@@ -18,7 +18,7 @@ MusicAbstractDownLoadRequest::MusicAbstractDownLoadRequest(const QString &url, c
 
     G_DOWNLOAD_MANAGER_PTR->connectNetworkMultiValue(this);
 
-    m_speedTimer.setInterval(MT_S2MS);
+    m_speedTimer.setInterval(TTK_DN_S2MS);
     connect(&m_speedTimer, SIGNAL(timeout()), SLOT(updateDownloadSpeed()));
 }
 
@@ -58,9 +58,9 @@ void MusicAbstractDownLoadRequest::updateDownloadSpeed()
     if(G_SETTING_PTR->value(MusicSettingManager::DownloadLimitEnable).toInt() == 0)
     {
         const int limitValue = G_SETTING_PTR->value(MusicSettingManager::DownloadDownloadLimitSize).toInt();
-        if(limitValue != 0 && delta > limitValue * MH_KB)
+        if(limitValue != 0 && delta > limitValue * TTK_SN_MB2KB)
         {
-            TTK::Core::sleep(MT_S2MS - limitValue * MH_KB * MT_S2MS / delta);
+            TTK::Core::sleep(TTK_DN_S2MS - limitValue * TTK_SN_MB2KB * TTK_DN_S2MS / delta);
         }
     }
     m_hasReceived = m_currentReceived;

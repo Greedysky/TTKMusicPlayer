@@ -50,7 +50,7 @@ void MusicWYQueryMovieRequest::startToSingleSearch(const QString &id)
     deleteAll();
     m_queryValue = id.trimmed();
 
-    QTimer::singleShot(MT_MS, this, SLOT(downLoadSingleFinished()));
+    QTimer::singleShot(TTK_DN_MS, this, SLOT(downLoadSingleFinished()));
 }
 
 void MusicWYQueryMovieRequest::downLoadFinished()
@@ -209,19 +209,19 @@ void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
                 TTK::MusicSongProperty prop;
                 if(bitrate <= 375)
                 {
-                    prop.m_bitrate = MB_250;
+                    prop.m_bitrate = TTK_BN_250;
                 }
                 else if(bitrate > 375 && bitrate <= 625)
                 {
-                    prop.m_bitrate = MB_500;
+                    prop.m_bitrate = TTK_BN_500;
                 }
                 else if(bitrate > 625 && bitrate <= 875)
                 {
-                    prop.m_bitrate = MB_750;
+                    prop.m_bitrate = TTK_BN_750;
                 }
                 else if(bitrate > 875)
                 {
-                    prop.m_bitrate = MB_1000;
+                    prop.m_bitrate = TTK_BN_1000;
                 }
 
                 prop.m_url = value[key].toString();
@@ -304,19 +304,19 @@ void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
 
                 if(bitrate <= 375)
                 {
-                    prop.m_bitrate = MB_250;
+                    prop.m_bitrate = TTK_BN_250;
                 }
                 else if(bitrate > 375 && bitrate <= 625)
                 {
-                    prop.m_bitrate = MB_500;
+                    prop.m_bitrate = TTK_BN_500;
                 }
                 else if(bitrate > 625 && bitrate <= 875)
                 {
-                    prop.m_bitrate = MB_750;
+                    prop.m_bitrate = TTK_BN_750;
                 }
                 else if(bitrate > 875)
                 {
-                    prop.m_bitrate = MB_1000;
+                    prop.m_bitrate = TTK_BN_1000;
                 }
 
                 prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());

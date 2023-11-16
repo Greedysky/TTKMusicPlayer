@@ -17,7 +17,7 @@ MusicBackgroundWidget::MusicBackgroundWidget(QWidget *parent)
 
 void MusicBackgroundWidget::backgroundTransparent(int value)
 {
-    m_backgroundAlpha = TTK::Image::reRenderValue<int>(0xFF, 0x10, MV_MAX - value);
+    m_backgroundAlpha = TTK::Image::reRenderValue<int>(0xFF, 0x10, TTK_RN_MAX - value);
     update();
 }
 

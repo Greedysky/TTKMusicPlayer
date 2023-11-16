@@ -35,11 +35,11 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     connect(locationButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(currentPlayLocation()));
     connect(searchButton, SIGNAL(clicked()), parent, SLOT(showSearchWidget()));
 
-    m_timer.setInterval(3 * MT_S2MS);
+    m_timer.setInterval(3 * TTK_DN_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(leaveTimeout()));
 
     m_animation = new QPropertyAnimation(this, "windowOpacity", this);
-    m_animation->setDuration(MT_S2MS);
+    m_animation->setDuration(TTK_DN_S2MS);
     connect(m_animation, SIGNAL(finished()), SLOT(animationFinished()));
 
     m_timer.start();
@@ -82,7 +82,7 @@ void MusicSongsListFunctionWidget::animationFinished()
     m_currentAnimationValue = m_animation->currentValue().toFloat();
     if(m_currentAnimationValue == 0)
     {
-        QTimer::singleShot(MT_ONCE, this, SIGNAL(deleteObject()));
+        QTimer::singleShot(TTK_DN_ONCE, this, SIGNAL(deleteObject()));
     }
 }
 

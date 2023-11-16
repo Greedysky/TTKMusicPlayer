@@ -75,7 +75,7 @@ void MusicLrcManagerVerticalDesktop::paintEvent(QPaintEvent *)
     }
 
     painter.translate(m_position.y(), 0);
-    painter.rotate(MA_90);
+    painter.rotate(TTK_AN_90);
 
     //Draw the underlying text, such as shadow, will make the effect more clearly,
     //and more texture

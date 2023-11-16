@@ -50,7 +50,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     m_ui->searchLineLabel->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    QTimer::singleShot(MT_MS, this, SLOT(initialize()));
+    QTimer::singleShot(TTK_DN_MS, this, SLOT(initialize()));
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
@@ -147,7 +147,7 @@ void MusicConnectTransferWidget::itemSelectedChanged()
         size += m_containerItems[list[i]].size();
     }
 
-    const double dSize = (size * MV_MAX / MH_MB2B) * 1.0 / MV_MAX;
+    const double dSize = (size * TTK_RN_MAX / TTK_SN_MB2B) * 1.0 / TTK_RN_MAX;
     m_ui->selectCountLabel->setText(m_selectCountLabel.arg(list.count()).arg(dSize));
 }
 

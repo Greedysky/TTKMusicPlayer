@@ -240,23 +240,23 @@ void MusicDownloadWidget::addCellItems(const TTK::MusicSongPropertyList &props)
 
     for(const TTK::MusicSongProperty &prop : qAsConst(propertys))
     {
-        if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
-           (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
+        if((prop.m_bitrate == TTK_BN_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+           (prop.m_bitrate <= TTK_BN_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
         {
             m_ui->viewArea->addCellItem(prop, tr("SD"), QString(":/quality/lb_sd_quality"));
         }
-        else if((prop.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
-                (prop.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
+        else if((prop.m_bitrate == TTK_BN_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+                (prop.m_bitrate == TTK_BN_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
         {
             m_ui->viewArea->addCellItem(prop, tr("HQ"), QString(":/quality/lb_hd_quality"));
         }
-        else if((prop.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
-                (prop.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
+        else if((prop.m_bitrate == TTK_BN_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+                (prop.m_bitrate == TTK_BN_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
         {
             m_ui->viewArea->addCellItem(prop, tr("SQ"), QString(":/quality/lb_sq_quality"));
         }
-        else if((prop.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
-                (prop.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
+        else if((prop.m_bitrate > TTK_BN_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+                (prop.m_bitrate >= TTK_BN_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
         {
             m_ui->viewArea->addCellItem(prop, tr("CD"), QString(":/quality/lb_cd_quality"));
         }

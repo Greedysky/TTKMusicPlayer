@@ -987,12 +987,12 @@ void MusicSettingWidget::initSoundEffectWidget()
     m_ui->fadeInAndOutCheckBox->setEnabled(false);
 
     m_ui->fadeInSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
-    m_ui->fadeInSpinBox->setRange(1, 10 * MT_S2MS);
+    m_ui->fadeInSpinBox->setRange(1, 10 * TTK_DN_S2MS);
     m_ui->fadeInSpinBox->setValue(600);
     m_ui->fadeInSpinBox->setEnabled(false);
 
     m_ui->fadeOutSpinBox->setStyleSheet(TTK::UI::SpinBoxStyle01);
-    m_ui->fadeOutSpinBox->setRange(1, 10 * MT_S2MS);
+    m_ui->fadeOutSpinBox->setRange(1, 10 * TTK_DN_S2MS);
     m_ui->fadeOutSpinBox->setValue(600);
     m_ui->fadeOutSpinBox->setEnabled(false);
 

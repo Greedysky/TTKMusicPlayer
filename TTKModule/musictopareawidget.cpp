@@ -27,7 +27,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
 {
     m_instance = this;
 
-    m_pictureCarouselTimer.setInterval(10 * MT_S2MS);
+    m_pictureCarouselTimer.setInterval(10 * TTK_DN_S2MS);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(backgroundChanged()));
     connect(G_BACKGROUND_PTR, SIGNAL(selectIndexChanged()), SLOT(backgroundChanged()));
 
@@ -450,7 +450,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
         return;
     }
 
-    const float v = TTK::Image::reRenderValue<float>(1, 0.35, MV_MAX - m_backgroundAlpha);
+    const float v = TTK::Image::reRenderValue<float>(1, 0.35, TTK_RN_MAX - m_backgroundAlpha);
     MusicApplication::instance()->setWindowOpacity(v);
 
     const QSize size(G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());

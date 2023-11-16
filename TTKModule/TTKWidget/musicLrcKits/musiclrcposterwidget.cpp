@@ -176,7 +176,7 @@ void MusicLrcPosterItemWidget::drawTheme3(QPainter *painter)
     //
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     painter->translate(2 * ITEM_BORDER, pix.height());
-    painter->rotate(MA_90);
+    painter->rotate(TTK_AN_90);
     const QString &title = QString("--- %1 ● %2").arg(TTK::String::artistName(m_title), TTK::String::songName(m_title));
 
     list << TTK::Widget::fontTextWidth(font(), title);
@@ -209,7 +209,7 @@ void MusicLrcPosterItemWidget::drawTheme4(QPainter *painter)
     //
     painter->setPen(QColor(0x66, 0x66, 0x66));
     painter->translate(2 * ITEM_BORDER, 0);
-    painter->rotate(MA_90);
+    painter->rotate(TTK_AN_90);
     //
     for(int i = 0; i < m_data.count(); ++i)
     {
@@ -234,7 +234,7 @@ void MusicLrcPosterItemWidget::drawTheme4(QPainter *painter)
     painter->drawText(3 * ITEM_BORDER, -offset, title);
     //
     std::sort(list.begin(), list.end());
-    painter->rotate(-MA_90);
+    painter->rotate(-TTK_AN_90);
     painter->translate(-2 * ITEM_BORDER, 0);
 
     QPixmap pix(m_pixmap);
@@ -290,7 +290,7 @@ void MusicLrcPosterItemWidget::drawTheme6(QPainter *painter)
     //
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     painter->translate(2 * ITEM_BORDER, pix.height());
-    painter->rotate(MA_90);
+    painter->rotate(TTK_AN_90);
     const QString &title = QString("--- %1 ● %2").arg(TTK::String::artistName(m_title), TTK::String::songName(m_title));
 
     list << TTK::Widget::fontTextWidth(font(), title);
@@ -378,13 +378,13 @@ void MusicLrcPosterItemWidget::drawTheme8(QPainter *painter)
         painter->drawPixmap(borer.width() * i, offset - borer.height(), borer.width(), borer.height(), borer);
     }
     painter->translate(borer.height(), 0);
-    painter->rotate(MA_90);
+    painter->rotate(TTK_AN_90);
     for(int i = 0; i <= ceil(offset/borer.width()); ++i)
     {
         painter->drawPixmap(borer.width() * i, 0, borer.width(), borer.height(), borer);
         painter->drawPixmap(borer.width() * i, borer.height() - ITEM_WIDTH, borer.width(), borer.height(), borer);
     }
-    painter->rotate(-MA_90);
+    painter->rotate(-TTK_AN_90);
     painter->translate(0, 0);
     //
     setFixedHeight(offset);
@@ -435,13 +435,13 @@ void MusicLrcPosterItemWidget::drawTheme9(QPainter *painter)
         painter->drawPixmap(borer.width() * i, offset - borer.height(), borer.width(), borer.height(), borer);
     }
     painter->translate(borer.height(), 0);
-    painter->rotate(MA_90);
+    painter->rotate(TTK_AN_90);
     for(int i = 0; i <= ceil(offset/borer.width()); ++i)
     {
         painter->drawPixmap(borer.width() * i, 0, borer.width(), borer.height(), borer);
         painter->drawPixmap(borer.width() * i, borer.height() - ITEM_WIDTH, borer.width(), borer.height(), borer);
     }
-    painter->rotate(-MA_90);
+    painter->rotate(-TTK_AN_90);
     painter->translate(0, 0);
     //
     QPixmap background(":/lrc/lb_poster_letter_background");
@@ -789,7 +789,7 @@ void MusicLrcPosterItemWidget::drawTheme17(QPainter *painter)
     TTKIntList list;
     //
     painter->translate(2 * ITEM_BORDER, 0);
-    painter->rotate(MA_90);
+    painter->rotate(TTK_AN_90);
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     const QString &title = QString("%1 ● %2").arg(TTK::String::artistName(m_title), TTK::String::songName(m_title));
 
@@ -809,7 +809,7 @@ void MusicLrcPosterItemWidget::drawTheme17(QPainter *painter)
         painter->drawText(12 * ITEM_BORDER, lineHeight - offset, m_data[i]);
     }
     std::sort(list.begin(), list.end());
-    painter->rotate(-MA_90);
+    painter->rotate(-TTK_AN_90);
     painter->translate(-2 * ITEM_BORDER, 0);
     //
     offset = list.back() + 2 * (5 + 7) * ITEM_BORDER;

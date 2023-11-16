@@ -20,7 +20,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     setWindowTitle(tr("TTKMovie"));
 
     m_leaverTimer = new QTimer(this);
-    m_leaverTimer->setInterval(4 * MT_S2MS);
+    m_leaverTimer->setInterval(4 * TTK_DN_S2MS);
     m_leaverTimer->setSingleShot(true);
     connect(m_leaverTimer, SIGNAL(timeout()), SLOT(leaveTimeout()));
 
@@ -92,9 +92,9 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
 
     m_leaverAnimation = new QParallelAnimationGroup(this);
     QPropertyAnimation *topAnimation = new QPropertyAnimation(m_topWidget, "pos", m_leaverAnimation);
-    topAnimation->setDuration(MT_S2MS / 2);
+    topAnimation->setDuration(TTK_DN_S2MS / 2);
     QPropertyAnimation *ctrlAnimation = new QPropertyAnimation(m_videoView->controlBarWidget(), "pos", m_leaverAnimation);
-    ctrlAnimation->setDuration(MT_S2MS / 2);
+    ctrlAnimation->setDuration(TTK_DN_S2MS / 2);
     m_leaverAnimation->addAnimation(topAnimation);
     m_leaverAnimation->addAnimation(ctrlAnimation);
 

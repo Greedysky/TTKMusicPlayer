@@ -241,14 +241,14 @@ void MusicLrcContainerForInterior::lrcTimeSpeedChanged(QAction *action)
     int timeValue = 0;
     switch(action->data().toInt())
     {
-        case 0: timeValue = -0.5 * MT_S2MS; break;
-        case 1: timeValue = -1.0 * MT_S2MS; break;
-        case 2: timeValue = -2.0 * MT_S2MS; break;
-        case 3: timeValue = -5.0 * MT_S2MS; break;
-        case 4: timeValue = 0.5 * MT_S2MS; break;
-        case 5: timeValue = 1.0 * MT_S2MS; break;
-        case 6: timeValue = 2.0 * MT_S2MS; break;
-        case 7: timeValue = 5.0 * MT_S2MS; break;
+        case 0: timeValue = -0.5 * TTK_DN_S2MS; break;
+        case 1: timeValue = -1.0 * TTK_DN_S2MS; break;
+        case 2: timeValue = -2.0 * TTK_DN_S2MS; break;
+        case 3: timeValue = -5.0 * TTK_DN_S2MS; break;
+        case 4: timeValue = 0.5 * TTK_DN_S2MS; break;
+        case 5: timeValue = 1.0 * TTK_DN_S2MS; break;
+        case 6: timeValue = 2.0 * TTK_DN_S2MS; break;
+        case 7: timeValue = 5.0 * TTK_DN_S2MS; break;
         default: break;
     }
 
@@ -655,11 +655,11 @@ void MusicLrcContainerForInterior::revertTimeSpeed(qint64 pos)
     QString message;
     if(m_changeSpeedValue > 0)
     {
-        message = tr("After %1s").arg(m_changeSpeedValue * 1.0 / MT_S2MS);
+        message = tr("After %1s").arg(m_changeSpeedValue * 1.0 / TTK_DN_S2MS);
     }
     else if(m_changeSpeedValue < 0)
     {
-        message = tr("Before %1s").arg(-m_changeSpeedValue * 1.0 / MT_S2MS);
+        message = tr("Before %1s").arg(-m_changeSpeedValue * 1.0 / TTK_DN_S2MS);
     }
     else
     {
@@ -878,8 +878,8 @@ void MusicLrcContainerForInterior::setItemStyleSheet(int index, int size, int tr
     w->setFontSize(size);
 
     int value = G_SETTING_PTR->value("LrcColorTransparent").toInt() - transparent;
-    value = (value < MV_MIN) ? MV_MIN : value;
-    value = (value > MV_MAX) ? MV_MAX : value;
+    value = (value < TTK_RN_MIN) ? TTK_RN_MIN : value;
+    value = (value > TTK_RN_MAX) ? TTK_RN_MAX : value;
     w->setFontTransparent(value);
     w->setTransparent(value);
 

@@ -116,7 +116,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
                 }
                 else
                 {
-                    QTimer::singleShot(2 * MT_S2MS, this, SLOT(queryUrlTimeout()));
+                    QTimer::singleShot(2 * TTK_DN_S2MS, this, SLOT(queryUrlTimeout()));
                     break;
                 }
 
@@ -124,7 +124,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             }
             else
             {
-                QTimer::singleShot(2 * MT_S2MS, this, SLOT(queryUrlTimeout()));
+                QTimer::singleShot(2 * TTK_DN_S2MS, this, SLOT(queryUrlTimeout()));
             }
             break;
         }
@@ -145,7 +145,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             }
             else
             {
-                QTimer::singleShot(2 * MT_S2MS, this, SLOT(queryUrlTimeout()));
+                QTimer::singleShot(2 * TTK_DN_S2MS, this, SLOT(queryUrlTimeout()));
                 break;
             }
 
@@ -169,7 +169,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             }
             else
             {
-                QTimer::singleShot(2 * MT_S2MS, this, SLOT(queryUrlTimeout()));
+                QTimer::singleShot(2 * TTK_DN_S2MS, this, SLOT(queryUrlTimeout()));
                 break;
             }
 
@@ -193,7 +193,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             }
             else
             {
-                QTimer::singleShot(2 * MT_S2MS, this, SLOT(queryUrlTimeout()));
+                QTimer::singleShot(2 * TTK_DN_S2MS, this, SLOT(queryUrlTimeout()));
                 break;
             }
 
@@ -217,7 +217,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             }
             else
             {
-                QTimer::singleShot(2 * MT_S2MS, this, SLOT(queryUrlTimeout()));
+                QTimer::singleShot(2 * TTK_DN_S2MS, this, SLOT(queryUrlTimeout()));
                 break;
             }
 
@@ -262,7 +262,7 @@ void MusicSongSharingWidget::downLoadFinished(const QString &playUrl, const QStr
     url.replace('#', "%23");
 
     TTK::Url::openUrl(url, false);
-    QTimer::singleShot(MT_S2MS, this, SLOT(close()));
+    QTimer::singleShot(TTK_DN_S2MS, this, SLOT(close()));
 }
 
 void MusicSongSharingWidget::textAreaChanged()

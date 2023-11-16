@@ -171,19 +171,19 @@ void MusicMVRadioProgramRequest::parseFromMovieProperty(TTK::MusicSongInformatio
     const int bitrate = key["bitrate"].toInt() / 1000;
     if(bitrate <= 375)
     {
-        prop.m_bitrate = MB_250;
+        prop.m_bitrate = TTK_BN_250;
     }
     else if(bitrate > 375 && bitrate <= 625)
     {
-        prop.m_bitrate = MB_500;
+        prop.m_bitrate = TTK_BN_500;
     }
     else if(bitrate > 625 && bitrate <= 875)
     {
-        prop.m_bitrate = MB_750;
+        prop.m_bitrate = TTK_BN_750;
     }
     else if(bitrate > 875)
     {
-        prop.m_bitrate = MB_1000;
+        prop.m_bitrate = TTK_BN_1000;
     }
 
     info->m_songProps.append(prop);

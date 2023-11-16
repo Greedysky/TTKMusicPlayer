@@ -78,15 +78,15 @@ namespace TTK
         template <typename T>
         TTK_MODULE_EXPORT T reRenderValue(const T &key, const T &alpha, const T &value)
         {
-            if(alpha < MV_MIN)
+            if(alpha < TTK_RN_MIN)
             {
-                return MV_MIN;
+                return TTK_RN_MIN;
             }
             else if(alpha > key)
             {
                 return key;
             }
-            return (key - alpha) * 1.0 / MV_MAX * value + alpha;
+            return (key - alpha) * 1.0 / TTK_RN_MAX * value + alpha;
         }
 
         /*!

@@ -19,7 +19,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
     m_core = new SoundCore(this);
     setEnabledEffect(false);
 
-    m_timer.setInterval(MT_S2MS);
+    m_timer.setInterval(TTK_DN_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(update()));
 
     G_CONNECTION_PTR->setValue(className(), this);
@@ -225,7 +225,7 @@ void MusicPlayer::update()
         ///3D music settings
         setEnabledEffect(false);
         m_posOnCircle += 0.5f;
-        m_core->setVolume(fabs(MV_MAX * cosf(m_posOnCircle)), fabs(MV_MAX * sinf(m_posOnCircle * 0.5f)));
+        m_core->setVolume(fabs(TTK_RN_MAX * cosf(m_posOnCircle)), fabs(TTK_RN_MAX * sinf(m_posOnCircle * 0.5f)));
     }
 
     const Qmmp::State state = m_core->state();
@@ -258,7 +258,7 @@ void MusicPlayer::queryCurrentDuration()
     const qint64 d = duration();
     if((d == 0 || m_duration == d) && m_durationTimes++ < 10)
     {
-        QTimer::singleShot(MT_ONCE, this, SLOT(queryCurrentDuration()));
+        QTimer::singleShot(TTK_DN_ONCE, this, SLOT(queryCurrentDuration()));
     }
     else
     {

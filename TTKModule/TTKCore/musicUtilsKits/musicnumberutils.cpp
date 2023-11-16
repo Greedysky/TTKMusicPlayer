@@ -5,25 +5,25 @@
 
 static QString size2Number(qint64 size)
 {
-    if(size < MH_KB2B)
+    if(size < TTK_SN_KB2B)
     {
         return QString::number(size * 1.0, 'f', 1);
     }
-    else if(MH_KB2B <= size && size < MH_MB2B)
+    else if(TTK_SN_KB2B <= size && size < TTK_SN_MB2B)
     {
-        return QString::number(size * 1.0 / MH_KB2B, 'f', 1);
+        return QString::number(size * 1.0 / TTK_SN_KB2B, 'f', 1);
     }
-    else if(MH_MB2B <= size && size < MH_GB2B)
+    else if(TTK_SN_MB2B <= size && size < TTK_SN_GB2B)
     {
-        return QString::number(size * 1.0 / MH_MB2B, 'f', 1);
+        return QString::number(size * 1.0 / TTK_SN_MB2B, 'f', 1);
     }
-    else if(MH_GB2B <= size && size < MH_TB2B)
+    else if(TTK_SN_GB2B <= size && size < TTK_SN_TB2B)
     {
-        return QString::number(size * 1.0 / MH_GB2B, 'f', 1);
+        return QString::number(size * 1.0 / TTK_SN_GB2B, 'f', 1);
     }
     else
     {
-        return QString::number(size * 1.0 / MH_TB2B, 'f', 1);
+        return QString::number(size * 1.0 / TTK_SN_TB2B, 'f', 1);
     }
 }
 
@@ -35,19 +35,19 @@ QString TTK::Number::sizeByteToLabel(qint64 size)
     }
 
     const QString &label = size2Number(size);
-    if(size < MH_KB2B)
+    if(size < TTK_SN_KB2B)
     {
         return QString("%1B").arg(label);
     }
-    else if(MH_KB2B <= size && size < MH_MB2B)
+    else if(TTK_SN_KB2B <= size && size < TTK_SN_MB2B)
     {
         return QString("%1K").arg(label);
     }
-    else if(MH_MB2B <= size && size < MH_GB2B)
+    else if(TTK_SN_MB2B <= size && size < TTK_SN_GB2B)
     {
         return QString("%1M").arg(label);
     }
-    else if(MH_GB2B <= size && size < MH_TB2B)
+    else if(TTK_SN_GB2B <= size && size < TTK_SN_TB2B)
     {
         return QString("%1G").arg(label);
     }
@@ -65,19 +65,19 @@ QString TTK::Number::speedByteToLabel(qint64 size)
     }
 
     const QString &label = size2Number(size);
-    if(size < MH_KB2B)
+    if(size < TTK_SN_KB2B)
     {
         return QString("%1B/s").arg(label);
     }
-    else if(MH_KB2B <= size && size < MH_MB2B)
+    else if(TTK_SN_KB2B <= size && size < TTK_SN_MB2B)
     {
         return QString("%1K/s").arg(label);
     }
-    else if(MH_MB2B <= size && size < MH_GB2B)
+    else if(TTK_SN_MB2B <= size && size < TTK_SN_GB2B)
     {
         return QString("%1M/s").arg(label);
     }
-    else if(MH_GB2B <= size && size < MH_TB2B)
+    else if(TTK_SN_GB2B <= size && size < TTK_SN_TB2B)
     {
         return QString("%1G/s").arg(label);
     }
@@ -102,15 +102,15 @@ int TTK::Number::bitrateToLevel(const QString &bitrate)
         {
             return -1;
         }
-        else if(bit > 0 && bit <= MB_96)
+        else if(bit > 0 && bit <= TTK_BN_96)
         {
             return 0;
         }
-        else if(bit > MB_96 && bit < MB_192)
+        else if(bit > TTK_BN_96 && bit < TTK_BN_192)
         {
             return 1;
         }
-        else if(bit >= MB_192 && bit <= MB_320)
+        else if(bit >= TTK_BN_192 && bit <= TTK_BN_320)
         {
             return 2;
         }
@@ -124,25 +124,25 @@ int TTK::Number::bitrateToLevel(const QString &bitrate)
 
 int TTK::Number::bitrateToNormal(int bitrate)
 {
-    if(bitrate > MB_0 && bitrate <= MB_64)
+    if(bitrate > TTK_BN_0 && bitrate <= TTK_BN_64)
     {
-        return MB_32;
+        return TTK_BN_32;
     }
-    else if(bitrate > MB_64 && bitrate < MB_128)
+    else if(bitrate > TTK_BN_64 && bitrate < TTK_BN_128)
     {
-        return MB_128;
+        return TTK_BN_128;
     }
-    else if(bitrate > MB_128 && bitrate < MB_192)
+    else if(bitrate > TTK_BN_128 && bitrate < TTK_BN_192)
     {
-        return MB_192;
+        return TTK_BN_192;
     }
-    else if(bitrate > MB_192 && bitrate < MB_320)
+    else if(bitrate > TTK_BN_192 && bitrate < TTK_BN_320)
     {
-        return MB_320;
+        return TTK_BN_320;
     }
-    else if(bitrate > MB_320)
+    else if(bitrate > TTK_BN_320)
     {
-        return MB_500;
+        return TTK_BN_500;
     }
     else
     {

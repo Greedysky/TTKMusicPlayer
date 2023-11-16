@@ -48,7 +48,7 @@ void MusicKGQueryMovieRequest::startToSingleSearch(const QString &id)
     deleteAll();
     m_queryValue = id.trimmed();
 
-    QTimer::singleShot(MT_ONCE, this, SLOT(downLoadSingleFinished()));
+    QTimer::singleShot(TTK_DN_ONCE, this, SLOT(downLoadSingleFinished()));
 }
 
 void MusicKGQueryMovieRequest::downLoadFinished()
@@ -82,7 +82,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
                     TTK::MusicSongInformation info;
                     info.m_singerName = TTK::String::charactersReplace(value["singername"].toString());
                     info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
 
                     info.m_songId = value["mvhash"].toString();
                     TTK_NETWORK_QUERY_CHECK();
@@ -280,19 +280,19 @@ void MusicKGQueryMovieRequest::parseFromMovieProperty(TTK::MusicSongInformation 
     const int bitrate = key["bitrate"].toInt() / 1000;
     if(bitrate <= 375)
     {
-        prop.m_bitrate = MB_250;
+        prop.m_bitrate = TTK_BN_250;
     }
     else if(bitrate > 375 && bitrate <= 625)
     {
-        prop.m_bitrate = MB_500;
+        prop.m_bitrate = TTK_BN_500;
     }
     else if(bitrate > 625 && bitrate <= 875)
     {
-        prop.m_bitrate = MB_750;
+        prop.m_bitrate = TTK_BN_750;
     }
     else if(bitrate > 875)
     {
-        prop.m_bitrate = MB_1000;
+        prop.m_bitrate = TTK_BN_1000;
     }
 
     if(info->m_duration.isEmpty())

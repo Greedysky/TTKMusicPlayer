@@ -66,7 +66,7 @@ void MusicKGQueryToplistRequest::downLoadFinished()
 
                     TTK::MusicSongInformation info;
                     info.m_songName = TTK::String::charactersReplace(value["filename"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
 
                     if(info.m_songName.contains(TTK_DEFAULT_STR))
                     {
@@ -137,7 +137,7 @@ void MusicKGQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
         {
             value = value["data"].toMap();
             MusicResultDataItem result;
-            result.m_updateTime = TTKDateTime::format(value["timestamp"].toLongLong() * MT_S2MS, TTK_YEAR_FORMAT);
+            result.m_updateTime = TTKDateTime::format(value["timestamp"].toLongLong() * TTK_DN_S2MS, TTK_YEAR_FORMAT);
 
             const QVariantList &datas = value["info"].toList();
             for(const QVariant &var : qAsConst(datas))

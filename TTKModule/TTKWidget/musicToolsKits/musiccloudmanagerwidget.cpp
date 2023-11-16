@@ -437,7 +437,7 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
         item.m_dataItem.m_putTime = fin.lastModified().toString(TTK_YEAR_TIME_FORMAT);
         item.m_dataItem.m_size = fin.size();
 
-        TTK::Core::sleep(MT_MS);
+        TTK::Core::sleep(TTK_DN_MS);
 
         addCellItem(item);
     }
@@ -677,7 +677,7 @@ void MusicCloudManagerWidget::resizeWidget()
 void MusicCloudManagerWidget::updataSizeLabel(qint64 size)
 {
     m_sizeValueLabel->setText(QString("%1/40.0G").arg(TTK::Number::sizeByteToLabel(size)));
-    m_sizeValueBar->setValue(size * MV_MAX / (10 * MH_GB2B));
+    m_sizeValueBar->setValue(size * TTK_RN_MAX / (10 * TTK_SN_GB2B));
 }
 
 void MusicCloudManagerWidget::downloadFileToServer()

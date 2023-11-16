@@ -27,7 +27,7 @@ void MusicViewWidget::mousePressEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton)
     {
         m_leftPressed = true;
-        m_clickedTimer->start(300 * MT_MS);
+        m_clickedTimer->start(300);
     }
 }
 
@@ -175,7 +175,7 @@ void MusicVideoView::durationChanged(qint64 duration)
 
 void MusicVideoView::setPosition(int position)
 {
-    m_player->setPosition(position / MT_S2MS);
+    m_player->setPosition(position / TTK_DN_S2MS);
 }
 
 void MusicVideoView::volumeChanged(int volume)
@@ -209,5 +209,5 @@ void MusicVideoView::pushBarrageChanged(bool on)
 
 void MusicVideoView::fullscreenButtonTrigger()
 {
-    QTimer::singleShot(MT_ONCE, this, SIGNAL(fullscreenButtonClicked()));
+    QTimer::singleShot(TTK_DN_ONCE, this, SIGNAL(fullscreenButtonClicked()));
 }

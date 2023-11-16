@@ -4,7 +4,7 @@
 TTKSemaphoreLoop::TTKSemaphoreLoop(QObject *parent)
     : QEventLoop(parent)
 {
-    m_timer.setInterval(10 * MT_S2MS);
+    m_timer.setInterval(10 * TTK_DN_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(quit()));
 }
 

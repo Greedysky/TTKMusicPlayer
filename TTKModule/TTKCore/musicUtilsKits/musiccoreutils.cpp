@@ -35,7 +35,7 @@ void TTK::Core::sleep(int ms)
 #ifdef Q_CC_MSVC
     ::Sleep(ms);
 #elif defined Q_OS_UNIX || defined Q_CC_GNU
-    usleep(ms * MT_MS2US);
+    usleep(ms * TTK_DN_MS2US);
 #endif
 }
 

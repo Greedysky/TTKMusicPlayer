@@ -11,7 +11,7 @@ MusicAnimationStackedWidget::MusicAnimationStackedWidget(QWidget *parent)
       m_type(Module::LeftToRight)
 {
     m_animation = new QPropertyAnimation(this, {}, this);
-    m_animation->setDuration(120 * MT_MS);
+    m_animation->setDuration(120);
     m_animation->setEasingCurve(QEasingCurve::Linear);
     m_animation->setStartValue(0);
     m_animation->setEndValue(0);

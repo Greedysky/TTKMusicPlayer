@@ -303,7 +303,7 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, const QString &cap, 
 
     const int milliseconds = regx.cap(0).toInt();
     const int length = QString::number(milliseconds).length();
-    const qint64 totalTime = minutes * MT_M2MS + seconds * MT_S2MS + milliseconds * pow(10, 3 - length);
+    const qint64 totalTime = minutes * TTK_DN_M2MS + seconds * TTK_DN_S2MS + milliseconds * pow(10, 3 - length);
     m_lrcContainer.insert(totalTime, oneLine);
 }
 
@@ -318,7 +318,7 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, const QString &cap, 
     regx.indexIn(cap);
 
     const int seconds = regx.cap(0).toInt();
-    const qint64 totalTime = minutes * MT_M2MS + seconds * MT_S2MS;
+    const qint64 totalTime = minutes * TTK_DN_M2MS + seconds * TTK_DN_S2MS;
     m_lrcContainer.insert(totalTime, oneLine);
 }
 
@@ -336,7 +336,7 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, QString cap, const Q
     const int seconds = list[1].toInt();
     const int milliseconds = list[2].toInt();
     const int length = QString::number(milliseconds).length();
-    const qint64 totalTime = minutes * MT_M2MS + seconds * MT_S2MS + milliseconds * pow(10, 3 - length);
+    const qint64 totalTime = minutes * TTK_DN_M2MS + seconds * TTK_DN_S2MS + milliseconds * pow(10, 3 - length);
     m_lrcContainer.insert(totalTime, oneLine);
 }
 

@@ -31,7 +31,7 @@ MusicTimerAutoModule::~MusicTimerAutoModule()
 
 void MusicTimerAutoModule::run()
 {
-    m_timer.start(MT_S2MS);
+    m_timer.start(TTK_DN_S2MS);
 
     if(G_SETTING_PTR->value(MusicSettingManager::TimerAutoPlayMode).toInt() == 0)
     {
@@ -131,11 +131,11 @@ void MusicTimerAutoModule::setShutdown()
     /* send signals to all processes  _except_ pid 1 */
     kill(-1, SIGTERM);
     sync();
-    TTK::Core::sleep(3 * MT_S2MS);
+    TTK::Core::sleep(3 * TTK_DN_S2MS);
 
     kill(-1, SIGKILL);
     sync();
-    TTK::Core::sleep(3 * MT_S2MS);
+    TTK::Core::sleep(3 * TTK_DN_S2MS);
     /* shutdown */
     reboot(RB_POWER_OFF);
 #endif

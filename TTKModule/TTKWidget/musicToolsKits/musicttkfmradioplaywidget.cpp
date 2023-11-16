@@ -382,7 +382,7 @@ void MusicTTKFMRadioPlayWidget::positionChanged(qint64 position)
         return;
     }
 
-    m_ui->positionLabel->setText(QString("%1").arg(TTKTime::formatDuration(position * MT_S2MS)));
+    m_ui->positionLabel->setText(QString("%1").arg(TTKTime::formatDuration(position * TTK_DN_S2MS)));
 }
 
 void MusicTTKFMRadioPlayWidget::addButtonClicked()

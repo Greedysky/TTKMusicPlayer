@@ -19,104 +19,128 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QObject>
+#include "ttkglobal.h"
 
-#define TTK_TIME_INIT               "00:00"
-#define TTK_TIME_FORMAT             "hh:mm"
-#define TTK_TIMEZ_FORMAT            "hh:mm:ss"
-#define TTK_YEAR_FORMAT             "yyyy-MM-dd"
-#define TTK_YEARD_FORMAT            "yyyy.MM.dd"
-#define TTK_YEAR_TIME_FORMAT        "yyyy-MM-dd hh:mm"
-#define TTK_YEAR_TIMEZ_FORMAT       "yyyy-MM-dd hh:mm:ss"
-
-#define TTK_ITEM_SIZE_S             25
-#define TTK_ITEM_SIZE_M             30
-#define TTK_ITEM_SIZE_L             40
-#define TTK_ITEM_SIZE_XL            60
-
-#define TTK_NONE_LEVEL              -3
-#define TTK_LOW_LEVEL               -2
-#define TTK_NORMAL_LEVEL            -1
-#define TTK_HIGH_LEVEL              999
+ // ttk date time format define
+#define TTK_TIME_INIT           "00:00"
+#define TTK_TIME_FORMAT         "hh:mm"
+#define TTK_TIMEZ_FORMAT        "hh:mm:ss"
+#define TTK_YEAR_FORMAT         "yyyy-MM-dd"
+#define TTK_YEARD_FORMAT        "yyyy.MM.dd"
+#define TTK_YEAR_TIME_FORMAT    "yyyy-MM-dd hh:mm"
+#define TTK_YEAR_TIMEZ_FORMAT   "yyyy-MM-dd hh:mm:ss"
 
 
-#define MT_MS           1
-#define MT_ONCE         50 * MT_MS
-
-#define MT_S            1
-#define MT_S2MS         1000
-#define MT_MS2US        1000
-#define MT_S2US         (MT_S2MS * MT_MS2US)
-
-#define MT_M            60
-#define MT_M2S          MT_M
-#define MT_M2MS         (MT_M2S * MT_S2MS)
-
-#define MT_H            60
-#define MT_H2M          MT_H
-#define MT_H2S          (MT_H2M * MT_M2S)
-#define MT_H2MS         (MT_H2S * MT_S2MS)
-
-#define MT_D            24
-#define MT_D2H          MT_D
-#define MT_D2M          (MT_D2H * MT_H2M)
-#define MT_D2S          qint64(MT_D2M * MT_M2S)
-#define MT_D2MS         qint64(MT_D2S * MT_S2MS)
+ // ttk item size define
+#define TTK_ITEM_SIZE_S         25
+#define TTK_ITEM_SIZE_M         30
+#define TTK_ITEM_SIZE_L         40
+#define TTK_ITEM_SIZE_XL        60
 
 
-#define MH_BS           1
-
-#define MH_B            1
-#define MH_B2BS         8
-
-#define MH_KB           1024
-#define MH_KB2B         MH_KB
-#define MH_KB2BS        (MH_KB2B * MH_B2BS)
-
-#define MH_MB           1024
-#define MH_MB2KB        MH_MB
-#define MH_MB2B         (MH_MB2KB * MH_KB2B)
-#define MH_MB2BS        (MH_MB2B * MH_B2BS)
-
-#define MH_GB           1024
-#define MH_GB2MB        MH_GB
-#define MH_GB2KB        qint64(MH_GB2MB * MH_MB2KB)
-#define MH_GB2B         qint64(MH_GB2KB * MH_KB2B)
-#define MH_GB2BS        qint64(MH_GB2B * MH_B2BS)
-
-#define MH_TB           1024
-#define MH_TB2GB        MH_TB
-#define MH_TB2MB        qint64(MH_TB2GB * MH_GB2MB)
-#define MH_TB2KB        qint64(MH_TB2MB * MH_MB2KB)
-#define MH_TB2B         qint64(MH_TB2KB * MH_KB2B)
-#define MH_TB2BS        qint64(MH_TB2B * MH_B2BS)
+ // ttk level define
+#define TTK_NONE_LEVEL          -3
+#define TTK_LOW_LEVEL           -2
+#define TTK_NORMAL_LEVEL        -1
+#define TTK_HIGH_LEVEL          999
 
 
-#define MA_0            0
-#define MA_30           30
-#define MA_45           45
-#define MA_60           60
-#define MA_90           90
-#define MA_120          120
-#define MA_180          180
-#define MA_270          270
-#define MA_360          360
+ // ttk date time number define
+#define TTK_DN_NS           1
+
+#define TTK_DN_US           1
+#define TTK_DN_US2NS        1000
+
+#define TTK_DN_MS           1
+#define TTK_DN_MS2US        1000
+#define TTK_DN_MS2NS        (TTK_DN_MS2US * TTK_DN_US2NS)
+#define TTK_DN_ONCE         (50 * TTK_DN_MS)
+
+#define TTK_DN_S            1
+#define TTK_DN_S2MS         1000
+#define TTK_DN_S2US         (TTK_DN_S2MS * TTK_DN_MS2US)
+#define TTK_DN_S2NS         (TTK_DN_S2US * TTK_DN_US2NS)
+
+#define TTK_DN_M            1
+#define TTK_DN_M2S          60
+#define TTK_DN_M2MS         (TTK_DN_M2S * TTK_DN_S2MS)
+#define TTK_DN_M2US         TTKInt64(TTK_DN_M2MS * TTK_DN_MS2US)
+#define TTK_DN_M2NS         TTKInt64(TTK_DN_M2US * TTK_DN_US2NS)
+
+#define TTK_DN_H            1
+#define TTK_DN_H2M          60
+#define TTK_DN_H2S          (TTK_DN_H2M * TTK_DN_M2S)
+#define TTK_DN_H2MS         (TTK_DN_H2S * TTK_DN_S2MS)
+#define TTK_DN_H2US         TTKInt64(TTK_DN_H2MS * TTK_DN_MS2US)
+#define TTK_DN_H2NS         TTKInt64(TTK_DN_H2US * TTK_DN_US2NS)
+
+#define TTK_DN_D            1
+#define TTK_DN_D2H          24
+#define TTK_DN_D2M          (TTK_DN_D2H * TTK_DN_H2M)
+#define TTK_DN_D2S          (TTK_DN_D2M * TTK_DN_M2S)
+#define TTK_DN_D2MS         TTKInt64(TTK_DN_D2S * TTK_DN_S2MS)
+#define TTK_DN_D2US         TTKInt64(TTK_DN_D2MS * TTK_DN_MS2US)
+#define TTK_DN_D2NS         TTKInt64(TTK_DN_D2US * TTK_DN_US2NS)
 
 
-#define MB_0            0
-#define MB_32           32
-#define MB_64           64
-#define MB_96           96
-#define MB_128          128
-#define MB_192          192
-#define MB_250          250
-#define MB_320          320
-#define MB_500          500
-#define MB_750          750
-#define MB_1000         1000
+ // ttk size number define
+#define TTK_SN_BT           1
+
+#define TTK_SN_B            1
+#define TTK_SN_B2BT         8
+
+#define TTK_SN_KB           1
+#define TTK_SN_KB2B         1024
+#define TTK_SN_KB2BS        (TTK_SN_KB2B * TTK_SN_B2BT)
+
+#define TTK_SN_MB           1
+#define TTK_SN_MB2KB        1024
+#define TTK_SN_MB2B         (TTK_SN_MB2KB * TTK_SN_KB2B)
+#define TTK_SN_MB2BT        (TTK_SN_MB2B * TTK_SN_B2BT)
+
+#define TTK_SN_GB           1
+#define TTK_SN_GB2MB        1024
+#define TTK_SN_GB2KB        (TTK_SN_GB2MB * TTK_SN_MB2KB)
+#define TTK_SN_GB2B         TTKInt64(TTK_SN_GB2KB * TTK_SN_KB2B)
+#define TTK_SN_GB2BT        TTKInt64(TTK_SN_GB2B * TTK_SN_B2BT)
+
+#define TTK_SN_TB           1
+#define TTK_SN_TB2GB        1024
+#define TTK_SN_TB2MB        (TTK_SN_TB2GB * TTK_SN_GB2MB)
+#define TTK_SN_TB2KB        TTKInt64(TTK_SN_TB2MB * TTK_SN_MB2KB)
+#define TTK_SN_TB2B         TTKInt64(TTK_SN_TB2KB * TTK_SN_KB2B)
+#define TTK_SN_TB2BT        TTKInt64(TTK_SN_TB2B * TTK_SN_B2BT)
 
 
-#define MV_MIN          0
-#define MV_MAX          100
+ // ttk angle number define
+#define TTK_AN_0            0
+#define TTK_AN_30           30
+#define TTK_AN_45           45
+#define TTK_AN_60           60
+#define TTK_AN_90           90
+#define TTK_AN_120          120
+#define TTK_AN_180          180
+#define TTK_AN_270          270
+#define TTK_AN_360          360
+
+
+ // ttk bitrate number define
+#define TTK_BN_0            0
+#define TTK_BN_32           32
+#define TTK_BN_64           64
+#define TTK_BN_96           96
+#define TTK_BN_128          128
+#define TTK_BN_192          192
+#define TTK_BN_250          250
+#define TTK_BN_320          320
+#define TTK_BN_500          500
+#define TTK_BN_750          750
+#define TTK_BN_1000         1000
+
+
+ // ttk range number define
+#define TTK_RN_MIN          0
+#define TTK_RN_MAX          100
+
 
 #endif // TTKNUMBERDEFINE_H

@@ -50,7 +50,7 @@ void MusicKWQueryMovieRequest::startToSingleSearch(const QString &id)
     deleteAll();
     m_queryValue = id.trimmed();
 
-    QTimer::singleShot(MT_MS, this, SLOT(downLoadSingleFinished()));
+    QTimer::singleShot(TTK_DN_MS, this, SLOT(downLoadSingleFinished()));
 }
 
 void MusicKWQueryMovieRequest::downLoadFinished()
@@ -82,7 +82,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                     TTK::MusicSongInformation info;
                     info.m_singerName = TTK::String::charactersReplace(value["ARTIST"].toString());
                     info.m_songName = TTK::String::charactersReplace(value["SONGNAME"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * MT_S2MS);
+                    info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * TTK_DN_S2MS);
 
                     info.m_songId = value["MUSICRID"].toString().remove("MUSIC_");
                     TTK_NETWORK_QUERY_CHECK();
@@ -206,19 +206,19 @@ void MusicKWQueryMovieRequest::parseFromMovieProperty(TTK::MusicSongInformation 
     {
         if(v.contains("MP4L"))
         {
-            parseFromMovieProperty(info, "MP4L", MB_250);
+            parseFromMovieProperty(info, "MP4L", TTK_BN_250);
         }
         else if(v.contains("MP4HV"))
         {
-            parseFromMovieProperty(info, "MP4HV", MB_750);
+            parseFromMovieProperty(info, "MP4HV", TTK_BN_750);
         }
         else if(v.contains("MP4UL"))
         {
-            parseFromMovieProperty(info, "MP4UL", MB_1000);
+            parseFromMovieProperty(info, "MP4UL", TTK_BN_1000);
         }
         else if(v.contains("MP4"))
         {
-            parseFromMovieProperty(info, "MP4", MB_500);
+            parseFromMovieProperty(info, "MP4", TTK_BN_500);
         }
     }
 }
@@ -296,7 +296,7 @@ void MusicKWQueryMovieRequest::parseFromMovieInfo(TTK::MusicSongInformation *inf
             value = value["data"].toMap();
             info->m_songName = value["name"].toString();
             info->m_singerName = value["artist"].toString();
-            info->m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
+            info->m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
         }
     }
 }

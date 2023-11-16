@@ -45,9 +45,9 @@ void MusicRoundAnimationLabel::paintEvent(QPaintEvent *event)
     const int cx = self.width() / 2;
     const int cy = self.height() / 2;
 
-    if(++m_rotateAngle >= MA_360)
+    if(++m_rotateAngle >= TTK_AN_360)
     {
-        m_rotateAngle -= MA_360;
+        m_rotateAngle -= TTK_AN_360;
     }
 
     painter.save();

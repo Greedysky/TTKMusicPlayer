@@ -100,24 +100,24 @@ void TTKTime::fromValue(qint64 value)
         return;
     }
 
-    m_msecond = value % MT_S2MS;
-    value /= MT_S2MS;
+    m_msecond = value % TTK_DN_S2MS;
+    value /= TTK_DN_S2MS;
 
-    m_day = value / MT_D2S;
-    value %= MT_D2S;
+    m_day = value / TTK_DN_D2S;
+    value %= TTK_DN_D2S;
 
-    m_hour = value / MT_H2S;
-    value %= MT_H2S;
+    m_hour = value / TTK_DN_H2S;
+    value %= TTK_DN_H2S;
 
-    m_minute = value / MT_M2S;
-    value %= MT_M2S;
+    m_minute = value / TTK_DN_M2S;
+    value %= TTK_DN_M2S;
 
     m_second = value;
 }
 
 qint64 TTKTime::toValue() const
 {
-    return (m_day * MT_D2S + m_hour * MT_H2S + m_minute * MT_M2S + m_second) * MT_S2MS + m_msecond;
+    return (m_day * TTK_DN_D2S + m_hour * TTK_DN_H2S + m_minute * TTK_DN_M2S + m_second) * TTK_DN_S2MS + m_msecond;
 }
 
 qint64 TTKTime::formatDuration(const QString &time)
@@ -128,13 +128,13 @@ qint64 TTKTime::formatDuration(const QString &time)
 QString TTKTime::formatDuration(qint64 time/*, bool greedy*/)
 {
     const TTKTime t(time);
-    if(/*!greedy || */time < MT_H2S * MT_S2MS)
+    if(/*!greedy || */time < TTK_DN_H2S * TTK_DN_S2MS)
     {
         return t.toString("mm:ss");
     }
     else
     {
-        const int min = t.day() * MT_H2S + t.hour() * MT_H + t.minute();
+        const int min = t.day() * TTK_DN_H2S + t.hour() * TTK_DN_H + t.minute();
         return QString::number(min).rightJustified(2, '0') + ":" + QString::number(t.second()).rightJustified(2, '0');
     }
 }

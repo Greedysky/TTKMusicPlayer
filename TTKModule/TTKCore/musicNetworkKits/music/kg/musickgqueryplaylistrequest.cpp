@@ -180,7 +180,7 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
 
                     TTK::MusicSongInformation info;
                     info.m_songName = TTK::String::charactersReplace(value["filename"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * MT_S2MS);
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
 
                     if(info.m_songName.contains(TTK_DEFAULT_STR))
                     {

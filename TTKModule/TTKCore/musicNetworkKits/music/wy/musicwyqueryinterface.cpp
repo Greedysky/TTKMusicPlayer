@@ -78,71 +78,71 @@ void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, in
 
 void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all)
 {
-    int maxBr = MB_1000;
+    int maxBr = TTK_BN_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
     if(!privilege.isEmpty())
     {
         const QString &brStr = privilege["maxbr"].toString();
         if(brStr == "999000")
         {
-            maxBr = MB_1000;
+            maxBr = TTK_BN_1000;
         }
         else if(brStr == "320000" || brStr == "192000" || brStr == "190000")
         {
-            maxBr = MB_320;
+            maxBr = TTK_BN_320;
         }
         else if(brStr == "160000")
         {
-            maxBr = MB_192;
+            maxBr = TTK_BN_192;
         }
         else
         {
-            maxBr = MB_128;
+            maxBr = TTK_BN_128;
         }
     }
 
     if(all)
     {
-        if(maxBr == MB_1000)
+        if(maxBr == TTK_BN_1000)
         {
-            parseFromSongProperty(info, MB_128);
-            parseFromSongProperty(info, MB_192);
-            parseFromSongProperty(info, MB_320);
-            parseFromSongProperty(info, MB_1000);
+            parseFromSongProperty(info, TTK_BN_128);
+            parseFromSongProperty(info, TTK_BN_192);
+            parseFromSongProperty(info, TTK_BN_320);
+            parseFromSongProperty(info, TTK_BN_1000);
         }
-        else if(maxBr == MB_320)
+        else if(maxBr == TTK_BN_320)
         {
-            parseFromSongProperty(info, MB_128);
-            parseFromSongProperty(info, MB_192);
-            parseFromSongProperty(info, MB_320);
+            parseFromSongProperty(info, TTK_BN_128);
+            parseFromSongProperty(info, TTK_BN_192);
+            parseFromSongProperty(info, TTK_BN_320);
         }
-        else if(maxBr == MB_192)
+        else if(maxBr == TTK_BN_192)
         {
-            parseFromSongProperty(info, MB_128);
-            parseFromSongProperty(info, MB_192);
+            parseFromSongProperty(info, TTK_BN_128);
+            parseFromSongProperty(info, TTK_BN_192);
         }
         else
         {
-            parseFromSongProperty(info, MB_128);
+            parseFromSongProperty(info, TTK_BN_128);
         }
     }
     else
     {
-        if(quality == TTK::QueryQuality::Standard && maxBr >= MB_128)
+        if(quality == TTK::QueryQuality::Standard && maxBr >= TTK_BN_128)
         {
-            parseFromSongProperty(info, MB_128);
+            parseFromSongProperty(info, TTK_BN_128);
         }
-        else if(quality == TTK::QueryQuality::High && maxBr >= MB_192)
+        else if(quality == TTK::QueryQuality::High && maxBr >= TTK_BN_192)
         {
-            parseFromSongProperty(info, MB_192);
+            parseFromSongProperty(info, TTK_BN_192);
         }
-        else if(quality == TTK::QueryQuality::Super && maxBr >= MB_320)
+        else if(quality == TTK::QueryQuality::Super && maxBr >= TTK_BN_320)
         {
-            parseFromSongProperty(info, MB_320);
+            parseFromSongProperty(info, TTK_BN_320);
         }
-        else if(quality == TTK::QueryQuality::Lossless && maxBr >= MB_1000)
+        else if(quality == TTK::QueryQuality::Lossless && maxBr >= TTK_BN_1000)
         {
-            parseFromSongProperty(info, MB_1000);
+            parseFromSongProperty(info, TTK_BN_1000);
         }
     }
 }

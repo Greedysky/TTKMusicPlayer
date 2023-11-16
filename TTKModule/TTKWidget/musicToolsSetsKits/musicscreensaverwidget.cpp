@@ -424,7 +424,7 @@ MusicScreenSaverBackgroundWidget::MusicScreenSaverBackgroundWidget(QWidget *pare
     connect(m_runningTimer, SIGNAL(timeout()), SLOT(runningTimeout()));
 
     m_backgroundTimer = new QTimer(this);
-    m_backgroundTimer->setInterval(15 * MT_S2MS);
+    m_backgroundTimer->setInterval(15 * TTK_DN_S2MS);
     connect(m_backgroundTimer, SIGNAL(timeout()), SLOT(backgroundTimeout()));
 
     hide();
@@ -460,7 +460,7 @@ void MusicScreenSaverBackgroundWidget::run()
 
     if(m_state)
     {
-        m_runningTimer->setInterval(value * MT_M2MS);
+        m_runningTimer->setInterval(value * TTK_DN_M2MS);
         m_runningTimer->start();
     }
 }

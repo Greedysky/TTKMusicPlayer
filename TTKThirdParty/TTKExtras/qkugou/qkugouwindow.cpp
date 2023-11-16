@@ -119,7 +119,7 @@ void QKugouWindow::goBack()
 {
     TTK_D(QKugouWindow);
 #ifdef Q_OS_WIN
-    QTimer::singleShot(MT_MS, TTKObjectCast(QAxWidget*, d->m_webView), SLOT(GoBack()));
+    QTimer::singleShot(TTK_DN_MS, TTKObjectCast(QAxWidget*, d->m_webView), SLOT(GoBack()));
 #else
 #  ifdef TTK_WEBKIT
     QWebView *w = TTKObjectCast(QWebView*, d->m_webView);
@@ -143,7 +143,7 @@ void QKugouWindow::refresh()
 {
     TTK_D(QKugouWindow);
 #ifdef Q_OS_WIN
-    QTimer::singleShot(MT_MS, TTKObjectCast(QAxWidget*, d->m_webView), SLOT(Refresh()));
+    QTimer::singleShot(TTK_DN_MS, TTKObjectCast(QAxWidget*, d->m_webView), SLOT(Refresh()));
 #else
 #  ifdef TTK_WEBKIT
     QWebView *w = TTKObjectCast(QWebView*, d->m_webView);

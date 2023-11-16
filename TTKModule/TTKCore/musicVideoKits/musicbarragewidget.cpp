@@ -15,7 +15,7 @@ MusicBarrageAnimation::MusicBarrageAnimation(QObject *target, const QByteArray &
 
 void MusicBarrageAnimation::animationFinished()
 {
-    setDuration(TTK::random(10 * MT_S2MS) + MT_S2MS);
+    setDuration(TTK::random(10 * TTK_DN_S2MS) + TTK_DN_S2MS);
     setSize(m_parentSize);
     start();
 }
@@ -30,7 +30,7 @@ void MusicBarrageAnimation::setSize(const QSize &size)
 
 void MusicBarrageAnimation::initialize()
 {
-    setDuration(TTK::random(10000) + MT_S2MS);
+    setDuration(TTK::random(10000) + TTK_DN_S2MS);
     setEasingCurve(QEasingCurve::Linear);
 
     connect(this, SIGNAL(finished()), SLOT(animationFinished()));

@@ -20,7 +20,7 @@ void MusicNetworkTestThread::run()
     const QHostInfo &info = QHostInfo::fromName(m_currentUrl);
     const int rand = TTK::random(8) + 1;
 
-    TTK::Core::sleep(rand * MT_S2MS);
+    TTK::Core::sleep(rand * TTK_DN_S2MS);
 
     Q_EMIT networkConnectionTestChanged(!info.addresses().isEmpty());
 }

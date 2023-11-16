@@ -50,26 +50,26 @@ void MusicDownloadBatchTableItem::addCellItem(const TTK::MusicSongInformation &i
 
     for(const TTK::MusicSongProperty &prop : qAsConst(props))
     {
-        if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
-           (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
+        if((prop.m_bitrate == TTK_BN_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+           (prop.m_bitrate <= TTK_BN_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
         {
             m_qulity->addItem(tr("SD"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
-        else if((prop.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
-                (prop.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
+        else if((prop.m_bitrate == TTK_BN_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+                (prop.m_bitrate == TTK_BN_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
         {
             m_qulity->addItem(tr("HQ"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
-        else if((prop.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
-                (prop.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
+        else if((prop.m_bitrate == TTK_BN_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+                (prop.m_bitrate == TTK_BN_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
         {
             m_qulity->addItem(tr("SQ"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
-        else if((prop.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
-                (prop.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
+        else if((prop.m_bitrate > TTK_BN_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+                (prop.m_bitrate >= TTK_BN_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
         {
             m_qulity->addItem(tr("CD"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
@@ -108,10 +108,10 @@ void MusicDownloadBatchTableItem::setCurrentQuality(int index)
     {
         switch(index)
         {
-            case 1: bitrate = MB_128; break;
-            case 2: bitrate = MB_192; break;
-            case 3: bitrate = MB_320; break;
-            case 4: bitrate = MB_1000; break;
+            case 1: bitrate = TTK_BN_128; break;
+            case 2: bitrate = TTK_BN_192; break;
+            case 3: bitrate = TTK_BN_320; break;
+            case 4: bitrate = TTK_BN_1000; break;
             default: break;
         }
     }
@@ -119,10 +119,10 @@ void MusicDownloadBatchTableItem::setCurrentQuality(int index)
     {
         switch(index)
         {
-            case 1: bitrate = MB_250; break;
-            case 2: bitrate = MB_500; break;
-            case 3: bitrate = MB_750; break;
-            case 4: bitrate = MB_1000; break;
+            case 1: bitrate = TTK_BN_250; break;
+            case 2: bitrate = TTK_BN_500; break;
+            case 3: bitrate = TTK_BN_750; break;
+            case 4: bitrate = TTK_BN_1000; break;
             default: break;
         }
     }
@@ -152,23 +152,23 @@ void MusicDownloadBatchTableItem::currentQualityChanged(int index)
     }
 
     const TTK::MusicSongProperty &prop = m_qulity->itemData(index).value<TTK::MusicSongProperty>();
-    if((prop.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
-       (prop.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
+    if((prop.m_bitrate == TTK_BN_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+       (prop.m_bitrate <= TTK_BN_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
     {
         m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
     }
-    else if((prop.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
-            (prop.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
+    else if((prop.m_bitrate == TTK_BN_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+            (prop.m_bitrate == TTK_BN_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
     {
         m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
     }
-    else if((prop.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
-            (prop.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
+    else if((prop.m_bitrate == TTK_BN_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+            (prop.m_bitrate == TTK_BN_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
     {
         m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
     }
-    else if((prop.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
-            (prop.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
+    else if((prop.m_bitrate > TTK_BN_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
+            (prop.m_bitrate >= TTK_BN_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
     {
         m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
     }
@@ -330,7 +330,7 @@ void MusicDownloadBatchTableWidget::dataDownloadFinished()
     ++m_downloadOffset;
     if(m_downloadOffset >= rowCount())
     {
-        QTimer::singleShot(MT_S2MS, m_supperClass, SLOT(close()));
+        QTimer::singleShot(TTK_DN_S2MS, m_supperClass, SLOT(close()));
     }
 }
 
