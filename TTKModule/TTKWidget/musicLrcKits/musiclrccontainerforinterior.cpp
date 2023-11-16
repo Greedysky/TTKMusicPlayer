@@ -25,8 +25,8 @@
 #include <QApplication>
 #include <QActionGroup>
 
-#define LRC_CHANGED_OFFSET_LIMIT    20
-#define LRC_TIME_LABEL_POSITION     20
+static constexpr int LRC_CHANGED_OFFSET_LIMIT = 20;
+static constexpr int LRC_TIME_LABEL_POSITION = 20;
 
 MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     : MusicLrcContainer(parent),

@@ -25,8 +25,8 @@
 #include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
 
-#define LRC_PER_TIME        30
-#define LRC_COLOR_OFFSET    9
+static constexpr int LRC_PER_TIME = 30;
+static constexpr int LRC_COLOR_OFFSET = 9;
 
 /*! @brief The class of the lrc color.
  * @author Greedysky <greedysky@163.com>

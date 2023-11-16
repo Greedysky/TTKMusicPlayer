@@ -77,9 +77,9 @@ struct TTK_MODULE_EXPORT MusicResultDataItem
 };
 TTK_DECLARE_LIST(MusicResultDataItem);
 
-#define QUERY_WY_INTERFACE      "WangYi"
-#define QUERY_KW_INTERFACE      "KuWo"
-#define QUERY_KG_INTERFACE      "KuGou"
+static constexpr const char *QUERY_WY_INTERFACE = "WangYi";
+static constexpr const char *QUERY_KW_INTERFACE = "KuWo";
+static constexpr const char *QUERY_KG_INTERFACE = "KuGou";
 
 /*! @brief The class of the abstract query download data from net.
  * @author Greedysky <greedysky@163.com>

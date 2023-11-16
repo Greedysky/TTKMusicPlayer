@@ -25,10 +25,10 @@
 
 class MusicLrcSearchWidget;
 
-#define LRC_WALLPAPER_TPYE     "WALLPAPER"
-#define LRC_INTERIOR_TPYE      "INTERIOR"
-#define LRC_DESKTOP_TPYE       "DESKTOP"
-#define LRC_DESKTOP_PREFIX     "D"
+static constexpr const char *LRC_WALLPAPER_TPYE = "WALLPAPER";
+static constexpr const char *LRC_INTERIOR_TPYE = "INTERIOR";
+static constexpr const char *LRC_DESKTOP_TPYE = "DESKTOP";
+static constexpr const char *LRC_DESKTOP_PREFIX = "D";
 
 /*! @brief The class of the lrc container base.
  * @author Greedysky <greedysky@163.com>

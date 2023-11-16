@@ -12,10 +12,10 @@
 
 #include <qmath.h>
 
-#define ITEM_WIDTH          275
-#define ITEM_HEIGHT         330
-#define ITEM_BORDER         3
-#define ITEM_SCROLL_WIDTH   8
+static constexpr int ITEM_WIDTH = 275;
+static constexpr int ITEM_HEIGHT = 330;
+static constexpr int ITEM_BORDER = 3;
+static constexpr int ITEM_SCROLL_WIDTH = 8;
 
 MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
     : QWidget(parent),

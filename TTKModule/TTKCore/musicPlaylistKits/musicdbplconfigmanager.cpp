@@ -1,7 +1,7 @@
 #include "musicdbplconfigmanager.h"
 
-#define PLAYLIST_MAJOR_VER 1
-#define PLAYLIST_MINOR_VER 2
+static constexpr int PLAYLIST_MAJOR_VER = 1;
+static constexpr int PLAYLIST_MINOR_VER = 2;
 
 MusicDBPLConfigManager::MusicDBPLConfigManager()
     : MusicPlaylistRenderer()

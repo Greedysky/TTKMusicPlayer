@@ -5,8 +5,8 @@
 
 #include <QHostInfo>
 
-#define NETWORK_DETECT_INTERVAL     5000             // second
-#define NETWORK_REQUEST_ADDRESS     "www.baidu.com"  // ip
+static constexpr int NETWORK_DETECT_INTERVAL = 5000; // second
+static constexpr const char *NETWORK_REQUEST_ADDRESS = "www.baidu.com"; // ip
 
 MusicNetworkThread::MusicNetworkThread()
     : QObject(nullptr),

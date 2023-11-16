@@ -4,8 +4,8 @@
 #include <QApplication>
 #include <QFontDatabase>
 
-#define WIDTH  4
-#define HEIGHT 4
+static constexpr int WIDTH = 4;
+static constexpr int HEIGHT = 4;
 
 void TTK::setApplicationFont()
 {

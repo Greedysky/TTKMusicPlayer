@@ -8,7 +8,7 @@
 
 #include <QTimer>
 
-#define MAX_SIZE    3
+static constexpr int MAX_SIZE = 3;
 
 MusicPlayedListTopContainerWidget::MusicPlayedListTopContainerWidget(QWidget *parent)
     : QFrame(parent)

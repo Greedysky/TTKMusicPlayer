@@ -3,7 +3,7 @@
 
 #include "qsync/qsyncutils.h"
 
-#define OS_VERSION_URL       "version"
+static constexpr const char *OS_VERSION_URL = "version";
 
 MusicSourceUpdateRequest::MusicSourceUpdateRequest(QObject *parent)
     : QObject(parent)

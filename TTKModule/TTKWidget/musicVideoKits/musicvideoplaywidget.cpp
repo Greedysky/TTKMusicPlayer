@@ -10,8 +10,8 @@
 
 #include <QParallelAnimationGroup>
 
-#define WINDOW_HEIGHT   508
-#define WINDOW_WIDTH    678
+static constexpr int WINDOW_HEIGHT = 508;
+static constexpr int WINDOW_WIDTH = 678;
 
 MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     : TTKAbstractMoveWidget(false, parent),

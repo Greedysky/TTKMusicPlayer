@@ -1,7 +1,7 @@
 #include "musicfmradiosongrequest.h"
 #include "musicwyqueryinterface.h"
 
-#define FM_DETAIL_URL "M1htRHNMTFJzSGJPVzFUbUV5MFQxM3E1NDhUalAzdkNUUnNNVm5UVGt6YUtMbWUwZlhwRFV5TnZUdVE9"
+static constexpr const char *FM_DETAIL_URL = "M1htRHNMTFJzSGJPVzFUbUV5MFQxM3E1NDhUalAzdkNUUnNNVm5UVGt6YUtMbWUwZlhwRFV5TnZUdVE9";
 
 MusicFMRadioSongRequest::MusicFMRadioSongRequest(QObject *parent)
     : MusicAbstractNetwork(parent)

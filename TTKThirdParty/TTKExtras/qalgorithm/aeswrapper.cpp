@@ -4,7 +4,7 @@ extern "C" {
 #include "aes.h"
 }
 
-#define DATA_CACHE_SIZE      1024
+static constexpr int DATA_CACHE_SIZE = 1024;
 
 namespace QAlgorithm
 {

@@ -22,11 +22,10 @@
 #include "musiclrccontainer.h"
 #include "musicwidgetheaders.h"
 
-#define TOOLBAR_MAIN_HEIGHT     35
-#define TOOLBAR_HEIGHT          23
-#define TOOLBAR_WIDTH           31
-#define TOOLBAR_TEXT_LENGTH     58
-
+static constexpr int TOOLBAR_MAIN_HEIGHT = 35;
+static constexpr int TOOLBAR_HEIGHT = 23;
+static constexpr int TOOLBAR_WIDTH = 31;
+static constexpr int TOOLBAR_TEXT_LENGTH = 58;
 
 class MusicLRCManagerForDesktop;
 

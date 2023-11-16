@@ -30,8 +30,8 @@
 #include "qdevicewatcher.h"
 #include "qsync/qsyncconfig.h"
 
-#define MARGIN_SIDE     10
-#define SYNC_HOST_URL   "VDVnYUdYMW9xNnVWSnd6L0J6NHI2MFZ5d0R3R2NiRVF4VW5WckpNcUhnUT0="
+static constexpr int MARGIN_SIDE = 10;
+static constexpr const char *SYNC_HOST_URL = "VDVnYUdYMW9xNnVWSnd6L0J6NHI2MFZ5d0R3R2NiRVF4VW5WckpNcUhnUT0=";
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
 #  include <QtConcurrent/QtConcurrent>

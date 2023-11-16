@@ -2,7 +2,7 @@
 #include "musicsongsearchrecordconfigmanager.h"
 #include "musicwidgetheaders.h"
 
-#define MAX_ITEM_COUNT  7
+static constexpr int MAX_ITEM_COUNT = 7;
 
 MusicSongSearchPopTableWidget::MusicSongSearchPopTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)

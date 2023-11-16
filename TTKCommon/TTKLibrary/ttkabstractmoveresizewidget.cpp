@@ -3,7 +3,7 @@
 
 #include <QApplication>
 
-#define DISTANCE  5
+static constexpr int DISTANCE = 5;
 
 #if !TTK_QT_VERSION_CHECK(5,0,0) && defined(Q_OS_UNIX)
 #  define GEOMETRY(x, y, w, h) move(x, y); resize(w, h);

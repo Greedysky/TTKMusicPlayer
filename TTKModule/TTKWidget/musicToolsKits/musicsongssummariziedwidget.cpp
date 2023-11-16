@@ -13,9 +13,9 @@
 #include "musicfileutils.h"
 #include "musicformats.h"
 
-#define ITEM_MIN_COUNT             MIN_ITEM_COUNT
-#define ITEM_MAX_COUNT             10
-#define RECENT_ITEM_MAX_COUNT      50
+static constexpr int ITEM_MIN_COUNT = MIN_ITEM_COUNT;
+static constexpr int ITEM_MAX_COUNT = 10;
+static constexpr int RECENT_ITEM_MAX_COUNT = 50;
 
 MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     : MusicSongsToolBoxWidget(parent),

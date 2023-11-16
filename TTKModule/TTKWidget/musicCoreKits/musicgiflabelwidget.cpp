@@ -3,17 +3,17 @@
 
 #include <QTimer>
 
-#define GIF_BALLON_WHITE        35
-#define GIF_CICLE_BLUE          58
-#define GIF_RICE_FONT_WHITE     26
-#define GIF_RICE_FONT_BLACK_BIG 42
-#define GIF_RICE_FONT_BLACK     16
-#define GIF_HOURGLASS_WHITE     38
-#define GIF_RADIO_BLUE          14
-#define GIF_CHECK_BLUE          93
-#define GIF_RECORD_RED          30
-#define GIF_CLOSE_WHITE_WIDTH   350
-#define GIF_CLOSE_WHITE_HEIGHT  50
+static constexpr int GIF_BALLON_WHITE = 35;
+static constexpr int GIF_CICLE_BLUE = 58;
+static constexpr int GIF_RICE_FONT_WHITE = 26;
+static constexpr int GIF_RICE_FONT_BLACK_BIG = 42;
+static constexpr int GIF_RICE_FONT_BLACK = 16;
+static constexpr int GIF_HOURGLASS_WHITE = 38;
+static constexpr int GIF_RADIO_BLUE = 14;
+static constexpr int GIF_CHECK_BLUE = 93;
+static constexpr int GIF_RECORD_RED = 30;
+static constexpr int GIF_CLOSE_WHITE_WIDTH = 350;
+static constexpr int GIF_CLOSE_WHITE_HEIGHT = 50;
 
 MusicGifLabelWidget::MusicGifLabelWidget(QWidget *parent)
     : QLabel(parent),

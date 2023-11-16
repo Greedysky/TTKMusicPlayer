@@ -6,7 +6,7 @@
 #  include <QFileInfoList>
 #  include <qt_windows.h>
 #endif
-#define BUFFER_SIZE 255
+static constexpr int BUFFER_SIZE = 255;
 
 MusicDeviceInfoModule::MusicDeviceInfoModule(QObject *parent)
     : QObject(parent)

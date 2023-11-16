@@ -1,9 +1,9 @@
 #include "musicaudiorecordermodule.h"
 
-#define OPEN_FILE_ERROR     -1
-#define SAVE_FILE_ERROR     -2
-#define WRITE_FILE_ERROR    -3
-#define REWRITE_FILE_ERROR  -4
+static constexpr int OPEN_FILE_ERROR = -1;
+static constexpr int SAVE_FILE_ERROR = -2;
+static constexpr int WRITE_FILE_ERROR = -3;
+static constexpr int REWRITE_FILE_ERROR = -4;
 
 struct WavHeader
 {

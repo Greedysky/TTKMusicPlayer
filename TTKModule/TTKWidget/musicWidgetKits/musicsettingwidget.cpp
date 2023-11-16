@@ -26,7 +26,7 @@
 #include <QFontDatabase>
 #include <QAudioDeviceInfo>
 
-#define SCROLL_ITEM_HEIGHT 370
+static constexpr int SCROLL_ITEM_HEIGHT = 370;
 
 MusicFunctionTableWidget::MusicFunctionTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent),

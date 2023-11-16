@@ -21,7 +21,7 @@
 
 #include "musicglobaldefine.h"
 
-#define _SIGN                                  "OGlVTjJWOEdlMkkzSkZIeg=="
+static constexpr const char *_SIGN           = "OGlVTjJWOEdlMkkzSkZIeg==";
 
 ///song url
 static const QString KW_SONG_SEARCH_URL      = "azRpTk56R3ZhTXY5dk13YzFkaHJkMzRFY3NpRkRmUGdyUnQyWVY5NXNvOE82cUE4Mmg0VklKTTQrRFV0dEZHTExUSkJvTkRXMGdQVEpaK0Z4Rkp6ZUkrUnh1T29iSG1mTUxCNkRmMlVFT25zVzhjQUs1K0VCZk9UMWpTWGovMWR0czNlN0Z0Y1kyUCtxYlZSK3R3YnU3VTZ6dlkwanJIdGN6RWdjWEhxSi96ekRNWjBMMEMrL3JCUGxRQWJ6YkltQkRGeGljR3c4TmgxaXBXcGhzcnZlZ1p5cldlNzZTc1ZlZDFvUDcxTmtDdlJqY3JU";

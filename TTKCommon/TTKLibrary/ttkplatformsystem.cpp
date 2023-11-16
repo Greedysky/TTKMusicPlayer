@@ -11,7 +11,7 @@
 #include <QFile>
 #include <QRegExp>
 
-#define DEFAULT_DPI 96
+static constexpr int DEFAULT_DPI = 96;
 
 static QSize generateDPIValue()
 {

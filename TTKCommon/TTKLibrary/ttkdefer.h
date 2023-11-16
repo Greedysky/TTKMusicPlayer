@@ -49,7 +49,10 @@ public:
      */
     ~_ScopeGuard()
     {
-        m_fun();
+        if(m_fun)
+        {
+            m_fun();
+        }
     }
 
     TTK_DISABLE_INIT_COPY(_ScopeGuard)

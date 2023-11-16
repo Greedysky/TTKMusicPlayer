@@ -8,7 +8,7 @@
 #include <QSound>
 #include <QProcess>
 
-#define LINE_WIDTH 420
+static constexpr int LINE_WIDTH = 420;
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),

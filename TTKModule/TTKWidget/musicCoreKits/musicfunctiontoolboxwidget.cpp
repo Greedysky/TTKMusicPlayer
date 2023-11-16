@@ -7,7 +7,7 @@
 #include <QScrollArea>
 #include <QMouseEvent>
 
-#define DRAG_FORMAT     "Swap Item"
+static constexpr const char *DRAG_FORMAT = "Swap Item";
 
 MusicFunctionToolBoxTopWidget::MusicFunctionToolBoxTopWidget(int index, const QString &text, QWidget *parent)
     : QWidget(parent),

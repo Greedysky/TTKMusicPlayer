@@ -21,7 +21,7 @@
 
 #include "musiclrcmanager.h"
 
-#define LRC_PER_WIDTH 670
+static constexpr int LRC_PER_WIDTH = 670;
 
 /*! @brief The class of the interior lrc manager.
  * @author Greedysky <greedysky@163.com>

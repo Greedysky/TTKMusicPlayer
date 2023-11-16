@@ -43,11 +43,11 @@ namespace TTK
     };
 }
 
-#define DOWNLOAD_KEY_MUSIC      "DownloadMusic"
-#define DOWNLOAD_KEY_LRC        "DownloadLrc"
-#define DOWNLOAD_KEY_COVER      "DownloadCover"
-#define DOWNLOAD_KEY_BACKGROUND "DownloadBackground"
-#define DOWNLOAD_KEY_VIDEO      "DownloadVideo"
-#define DOWNLOAD_KEY_OTHER      "DownloadOther"
+static constexpr const char *DOWNLOAD_KEY_MUSIC = "DownloadMusic";
+static constexpr const char *DOWNLOAD_KEY_LRC = "DownloadLrc";
+static constexpr const char *DOWNLOAD_KEY_COVER = "DownloadCover";
+static constexpr const char *DOWNLOAD_KEY_BACKGROUND = "DownloadBackground";
+static constexpr const char *DOWNLOAD_KEY_VIDEO = "DownloadVideo";
+static constexpr const char *DOWNLOAD_KEY_OTHER = "DownloadOther";
 
 #endif // MUSICNETWORKDEFINES_H

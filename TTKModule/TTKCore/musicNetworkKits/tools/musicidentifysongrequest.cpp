@@ -5,8 +5,8 @@
 
 #include <QFile>
 
-#define OS_ACRUA_URL  "acrcloud"
-#define QUERY_URL     "VzBxZCtBUDBKK1R6aHNiTGxMdy84SzlIUVA5a3cvbjdKQ1ZIVGdYRThBS0hZMTlZSnhRQ0Y5N0lZdi9QQ3VveVEyVDdXbll3ZUZvPQ=="
+static constexpr const char *OS_ACRUA_URL = "acrcloud";
+static constexpr const char *QUERY_URL = "VzBxZCtBUDBKK1R6aHNiTGxMdy84SzlIUVA5a3cvbjdKQ1ZIVGdYRThBS0hZMTlZSnhRQ0Y5N0lZdi9QQ3VveVEyVDdXbll3ZUZvPQ==";
 
 MusicIdentifySongRequest::MusicIdentifySongRequest(QObject *parent)
     : MusicAbstractNetwork(parent)

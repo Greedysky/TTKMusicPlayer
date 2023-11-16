@@ -3,9 +3,9 @@
 #include "musiccoversourcerequest.h"
 #include "musicwidgetheaders.h"
 
-#define WIDTH_LABEL_SIZE   60
-#define HEIGHT_LABEL_SIZE  105
-#define LINE_SPACING_SIZE  105
+static constexpr int WIDTH_LABEL_SIZE = 60;
+static constexpr int HEIGHT_LABEL_SIZE = 105;
+static constexpr int LINE_SPACING_SIZE = 105;
 
 MusicWebDJRadioCategoryItemWidget::MusicWebDJRadioCategoryItemWidget(QWidget *parent)
     : TTKClickedLabel(parent)

@@ -5,10 +5,10 @@
 #include <QPainter>
 #include <QMouseEvent>
 
-#define PAINT_BUTTON_WIDTH  20
-#define PAINT_BUTTON_HEIGHT 20
-#define PAINT_SLIDER_HEIGHT 10
-#define PAINT_HANDER        6
+static constexpr int PAINT_BUTTON_WIDTH = 20;
+static constexpr int PAINT_BUTTON_HEIGHT = 20;
+static constexpr int PAINT_SLIDER_HEIGHT = 10;
+static constexpr int PAINT_HANDER = 6;
 
 MusicMoveButton::MusicMoveButton(QWidget *parent)
     : QPushButton(parent)

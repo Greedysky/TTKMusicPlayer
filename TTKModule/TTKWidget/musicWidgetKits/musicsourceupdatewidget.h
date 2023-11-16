@@ -22,8 +22,8 @@
 #include "ttkabstractmovedialog.h"
 #include "musicabstractmovewidget.h"
 
-#define REPORT_BUG_URL      "V0pTNkY2K1pRdVdzVDBrWFZGWnJiWHhVcHNTd2xlSE1FZUlQbytlN0tDK3ZUSVRqQ1ViZTFxQlpCVkR4akVhSk44cnMrVDhzWU5jPQ=="
-#define RELEASE_DATA_URL    "OGk2YzFYT2NubTYxYkVDZG9aczB5NlNoeHVwRDZDeEttcEMxSGhScUVWcGRJNXdBK3IzZ0p2aWpiVnF4VjV3aEtHNlNERkhmN2pNPQ=="
+static constexpr const char *REPORT_BUG_URL = "V0pTNkY2K1pRdVdzVDBrWFZGWnJiWHhVcHNTd2xlSE1FZUlQbytlN0tDK3ZUSVRqQ1ViZTFxQlpCVkR4akVhSk44cnMrVDhzWU5jPQ==";
+static constexpr const char *RELEASE_DATA_URL = "OGk2YzFYT2NubTYxYkVDZG9aczB5NlNoeHVwRDZDeEttcEMxSGhScUVWcGRJNXdBK3IzZ0p2aWpiVnF4VjV3aEtHNlNERkhmN2pNPQ==";
 
 namespace Ui {
 class MusicSourceUpdateWidget;

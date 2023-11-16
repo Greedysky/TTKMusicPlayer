@@ -14,8 +14,8 @@
 #include <qmmp/lightfactory.h>
 #include <qmmp/soundcore.h>
 
-#define LIGHT_WAVEFORM_MODULE       "lightwaveform"
-#define LIGHT_SPECTROGRAM_MODULE    "lightspectrogram"
+static constexpr const char *LIGHT_WAVEFORM_MODULE = "lightwaveform";
+static constexpr const char *LIGHT_SPECTROGRAM_MODULE = "lightspectrogram";
 
 MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     : MusicAbstractMoveResizePlainWidget(parent),

@@ -4,8 +4,8 @@
 #include "ttkclickedgroup.h"
 #include "ttkclickedlabel.h"
 
-#define ITEM_MAX_COLUMN     2
-#define ITEM_LABEL_WIDTH    20
+static constexpr int ITEM_MAX_COLUMN = 2;
+static constexpr int ITEM_LABEL_WIDTH = 20;
 
 MusicWebMVRadioQueryCategoryItem::MusicWebMVRadioQueryCategoryItem(QWidget *parent)
     : QWidget(parent)

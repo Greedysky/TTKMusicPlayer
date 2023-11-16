@@ -59,8 +59,8 @@ TTK_DECLARE_LIST(MusicPlayItem);
 using MusicPairItemList = QList<MusicPairItem>;
 #endif
 
-#define PLAY_NEXT_LEVEL               -123
-#define PLAY_PREVIOUS_LEVEL           -321
+static constexpr int PLAY_NEXT_LEVEL = -123;
+static constexpr int PLAY_PREVIOUS_LEVEL = -321;
 
 /*! @brief The class of the music play list.
  * @author Greedysky <greedysky@163.com>

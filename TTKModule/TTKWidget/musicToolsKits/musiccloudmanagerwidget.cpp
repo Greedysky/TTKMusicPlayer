@@ -16,7 +16,7 @@
 #include "qsync/qsyncdeletedata.h"
 #include "qsync/qsyncdownloaddata.h"
 
-#define OS_CLOUD_URL        "cloud"
+static constexpr const char *OS_CLOUD_URL = "cloud";
 
 Q_DECLARE_METATYPE(MusicCloudDataItem)
 

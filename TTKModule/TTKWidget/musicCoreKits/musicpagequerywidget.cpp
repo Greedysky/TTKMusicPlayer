@@ -4,7 +4,7 @@
 #include "ttkclickedgroup.h"
 #include "ttkclickedlabel.h"
 
-#define PAGE_SIZE   10
+static constexpr int PAGE_SIZE = 10;
 
 MusicPageQueryWidget::MusicPageQueryWidget(QObject *parent)
     : QObject(parent),

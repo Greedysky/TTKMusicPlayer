@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <QStringList>
 
-#define AVTRANSPORT "avtransport"
+static constexpr const char *AVTRANSPORT = "avtransport";
 
 static const QString XML_HEAD = "<?xml version=\"1.0\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n<SOAP-ENV:Body>\n";
 static const QString XML_FOOT = "</SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n";

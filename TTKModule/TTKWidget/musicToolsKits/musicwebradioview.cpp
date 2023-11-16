@@ -4,7 +4,7 @@
 #include "musicttkfmradioplaywidget.h"
 #include "musicimageutils.h"
 
-#define ICON_SIZE       50
+static constexpr int ICON_SIZE = 50;
 
 MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent),

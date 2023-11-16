@@ -9,9 +9,9 @@
 
 #include "qrencode/qrcodewidget.h"
 
-#define WIDTH_LABEL_SIZE   150
-#define HEIGHT_LABEL_SIZE  200
-#define LINE_SPACING_SIZE  200
+static constexpr int WIDTH_LABEL_SIZE = 150;
+static constexpr int HEIGHT_LABEL_SIZE = 200;
+static constexpr int LINE_SPACING_SIZE = 200;
 
 MusicArtistAlbumsItemWidget::MusicArtistAlbumsItemWidget(QWidget *parent)
     : QLabel(parent)

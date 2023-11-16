@@ -1,6 +1,6 @@
 #include "musicbdtranslationrequest.h"
 
-#define TRANSLATION_URL    "a1ZQMG5kY2dUenpHSGhQUXV6cldhK1A1bkl2c2ROdFJLMTVteTJxeFUzSnlSQXpmRFc0MS9JdlhSMUF0SE1HR2ZYZWcxOXZDalU0SC8rVG8="
+static constexpr const char *TRANSLATION_URL = "a1ZQMG5kY2dUenpHSGhQUXV6cldhK1A1bkl2c2ROdFJLMTVteTJxeFUzSnlSQXpmRFc0MS9JdlhSMUF0SE1HR2ZYZWcxOXZDalU0SC8rVG8=";
 
 MusicBDTranslationRequest::MusicBDTranslationRequest(QObject *parent)
     : MusicAbstractTranslationRequest(parent)

@@ -21,10 +21,10 @@
 
 #include "musicglobaldefine.h"
 
-#define ALG_UA_KEY   "ua11.25.17"
-#define ALG_ARC_KEY  "5024FRSDF40"
-#define ALG_URL_KEY  "GREEDYSKY"
-#define ALG_SHR_KEY  "123asd"
+static constexpr const char *ALG_UA_KEY = "ua11.25.17";
+static constexpr const char *ALG_ARC_KEY = "5024FRSDF40";
+static constexpr const char *ALG_URL_KEY = "GREEDYSKY";
+static constexpr const char *ALG_SHR_KEY = "123asd";
 
 /*! @brief The namespace of the utils algorithm.
  * @author Greedysky <greedysky@163.com>

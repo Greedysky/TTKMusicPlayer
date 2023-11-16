@@ -4,7 +4,7 @@
 #include <QUdpSocket>
 #include <QApplication>
 
-#define DEFAULT_ROUTER_IP   "192.168.0.1"
+static constexpr const char *DEFAULT_ROUTER_IP = "192.168.0.1";
 
 /*! @brief The class of the dlna finder private.
  * @author Greedysky <greedysky@163.com>

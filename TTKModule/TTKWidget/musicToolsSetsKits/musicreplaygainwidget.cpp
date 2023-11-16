@@ -11,9 +11,9 @@
 
 #include <qmmp/lightfactory.h>
 
-#define GAIN_DEFAULT 89
-#define GAIN_TRACKDB "Recommended \"Track\" dB change:"
-#define GAIN_ALBUMDB "Recommended \"Album\" dB change for all files:"
+static constexpr int GAIN_DEFAULT = 89;
+static constexpr const char *GAIN_TRACKDB = "Recommended \"Track\" dB change:";
+static constexpr const char *GAIN_ALBUMDB = "Recommended \"Album\" dB change for all files:";
 
 MusicReplayGainTableWidget::MusicReplayGainTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)

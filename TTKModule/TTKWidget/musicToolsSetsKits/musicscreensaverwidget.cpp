@@ -9,15 +9,16 @@
 
 #include "qsync/qsyncutils.h"
 
-#define OS_COUNT            10
-#define OS_ITEM_SIZE        QSize(165, 110)
-#define LINE_SPACING_SIZE   160
+#define OS_ITEM_SIZE QSize(165, 110)
 
-#define OS_SCREEN_DIR       "Screen"
-#define OS_SCREENSAVER_URL  "ScreenSaver"
-#define OS_WALLPAPER_NAME   "wallpaper.png"
-#define OS_WALLBAR_NAME     "wallbar.png"
-#define OS_WALLNAIL_NAME    "thumbnail.png"
+static constexpr int OS_COUNT = 10;
+static constexpr int LINE_SPACING_SIZE = 160;
+
+static constexpr const char *OS_SCREEN_DIR = "Screen";
+static constexpr const char *OS_SCREENSAVER_URL = "ScreenSaver";
+static constexpr const char *OS_WALLPAPER_NAME = "wallpaper.png";
+static constexpr const char *OS_WALLBAR_NAME = "wallbar.png";
+static constexpr const char *OS_WALLNAIL_NAME = "thumbnail.png";
 
 MusicScreenSaverHoverItem::MusicScreenSaverHoverItem(QLabel *parent)
     : QLabel(parent),

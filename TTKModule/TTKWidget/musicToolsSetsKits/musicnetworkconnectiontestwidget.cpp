@@ -3,11 +3,11 @@
 #include "musicnetworktestthread.h"
 #include "musicalgorithmutils.h"
 
-#define CHECK_WWW_VISIT       "dm81Smp4VzI3eHFVNzV4aHgyU2RYN2paNDhJPQ=="
-#define CHECK_NORMAL_VISIT    "aGEvbU52TkJVMzQ0Z0hoSllOd2wwZz09"
-#define CHECK_VIP_VISIT       "ZjlBQUFxY25KM1BKd2h3VzZVZ1F5dVJHMThEYlFkTWU="
-#define CHECK_DOWNLOAD_VISIT  "bkIwTS9NZE9wSUZyLythbm5YQVJVeDBtQStBPQ=="
-#define CHECK_SERVER_VISIT    "T2tjRlYvUVUvVUVORDg4dHI1NlorOUR0SHVvZ3RUQ1g="
+static constexpr const char *CHECK_WWW_VISIT = "dm81Smp4VzI3eHFVNzV4aHgyU2RYN2paNDhJPQ==";
+static constexpr const char *CHECK_NORMAL_VISIT = "aGEvbU52TkJVMzQ0Z0hoSllOd2wwZz09";
+static constexpr const char *CHECK_VIP_VISIT = "ZjlBQUFxY25KM1BKd2h3VzZVZ1F5dVJHMThEYlFkTWU=";
+static constexpr const char *CHECK_DOWNLOAD_VISIT = "bkIwTS9NZE9wSUZyLythbm5YQVJVeDBtQStBPQ==";
+static constexpr const char *CHECK_SERVER_VISIT = "T2tjRlYvUVUvVUVORDg4dHI1NlorOUR0SHVvZ3RUQ1g=";
 
 MusicNetworkConnectionItem::MusicNetworkConnectionItem(QWidget *parent)
     : QWidget(parent)

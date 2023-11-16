@@ -26,8 +26,8 @@ public:
                                              CONST PMINIDUMP_USER_STREAM_INFORMATION UserStreamParam,
                                              CONST PMINIDUMP_CALLBACK_INFORMATION CallbackParam);
 
-    #define MAX_WARNING_MESSAGE_PATH 1024
-    #define MAX_DUMP_FILE_NUMBER 9999
+    static constexpr int MAX_WARNING_MESSAGE_PATH = 1024;
+    static constexpr int MAX_DUMP_FILE_NUMBER = 9999;
 
     static LONG WINAPI errorHandler(EXCEPTION_POINTERS *info);
 #elif defined Q_OS_UNIX

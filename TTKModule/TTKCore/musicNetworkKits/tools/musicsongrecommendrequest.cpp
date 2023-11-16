@@ -1,7 +1,7 @@
 #include "musicsongrecommendrequest.h"
 
-#define LQ_BASE_URL         "VzJWczlXM2hMeCtTZzhLRFJvZWxUUTVmZUVBLzlMWmo="
-#define LQ_RECOMMEND_URL    "NDhiOGZ6dUJWNTBvN3R5OHNOQmkyQVVwOXdWbDNBOG14MmVXWVJxWlVXRkxuNUxxdzdYTEpUYVZRNVE9"
+static constexpr const char *LQ_BASE_URL = "VzJWczlXM2hMeCtTZzhLRFJvZWxUUTVmZUVBLzlMWmo=";
+static constexpr const char *LQ_RECOMMEND_URL = "NDhiOGZ6dUJWNTBvN3R5OHNOQmkyQVVwOXdWbDNBOG14MmVXWVJxWlVXRkxuNUxxdzdYTEpUYVZRNVE9";
 
 MusicSongRecommendRequest::MusicSongRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)

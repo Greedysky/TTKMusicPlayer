@@ -6,8 +6,8 @@
 #include "musiccolordialog.h"
 #include "musicwidgetheaders.h"
 
-#define COLOR_COL  10
-#define COLOR_ROW  6
+static constexpr int COLOR_COL = 10;
+static constexpr int COLOR_ROW = 6;
 
 MusicBackgroundPalette::MusicBackgroundPalette(QWidget *parent)
     : QLabel(parent)

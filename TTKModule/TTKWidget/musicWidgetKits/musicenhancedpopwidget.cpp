@@ -9,9 +9,9 @@
 #include <QLabel>
 #include <QButtonGroup>
 
-#define LABEL_ANIMAT_WIDGET 156
-#define LABEL_BUTTON_WIDGET 116
-#define LABEL_BUTTON_HEIGHT 111
+static constexpr int LABEL_ANIMAT_WIDGET = 156;
+static constexpr int LABEL_BUTTON_WIDGET = 116;
+static constexpr int LABEL_BUTTON_HEIGHT = 111;
 
 MusicEnhancedToolButton::MusicEnhancedToolButton(QWidget *parent)
     : QToolButton(parent),
