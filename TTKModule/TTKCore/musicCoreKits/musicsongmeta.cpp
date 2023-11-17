@@ -20,13 +20,13 @@ struct MusicMeta
 };
 
 
-MusicSongMeta::MusicSongMeta()
+MusicSongMeta::MusicSongMeta() noexcept
     : m_offset(-1)
 {
 
 }
 
-MusicSongMeta::~MusicSongMeta()
+MusicSongMeta::~MusicSongMeta() noexcept
 {
     clearSongMeta();
 }
@@ -66,47 +66,47 @@ bool MusicSongMeta::save()
     return saveInformation();
 }
 
-QString MusicSongMeta::filePath() const
+QString MusicSongMeta::filePath() const noexcept
 {
     return m_path;
 }
 
-QString MusicSongMeta::fileBasePath()
+QString MusicSongMeta::fileBasePath() noexcept
 {
     return songMeta()->m_path;
 }
 
-QString MusicSongMeta::fileRelatedPath()
+QString MusicSongMeta::fileRelatedPath() noexcept
 {
     return songMeta()->m_metaData[TagMeta::URL];
 }
 
-QString MusicSongMeta::artist()
+QString MusicSongMeta::artist() noexcept
 {
     return findLegalDataString(TagMeta::ARTIST);
 }
 
-QString MusicSongMeta::title()
+QString MusicSongMeta::title() noexcept
 {
     return findLegalDataString(TagMeta::TITLE);
 }
 
-QString MusicSongMeta::album()
+QString MusicSongMeta::album() noexcept
 {
     return findLegalDataString(TagMeta::ALBUM);
 }
 
-QString MusicSongMeta::comment()
+QString MusicSongMeta::comment() noexcept
 {
     return songMeta()->m_metaData[TagMeta::COMMENT];
 }
 
-QString MusicSongMeta::year()
+QString MusicSongMeta::year() noexcept
 {
     return songMeta()->m_metaData[TagMeta::YEAR];
 }
 
-QString MusicSongMeta::trackNum()
+QString MusicSongMeta::trackNum() noexcept
 {
     const QString &v = songMeta()->m_metaData[TagMeta::TRACK];
     bool ok = false;
@@ -117,67 +117,67 @@ QString MusicSongMeta::trackNum()
     return TTK_DEFAULT_STR;
 }
 
-QString MusicSongMeta::genre()
+QString MusicSongMeta::genre() noexcept
 {
     return findLegalDataString(TagMeta::GENRE);
 }
 
-QString MusicSongMeta::rating()
+QString MusicSongMeta::rating() noexcept
 {
     return findLegalDataString(TagMeta::RATING);
 }
 
-QString MusicSongMeta::channel()
+QString MusicSongMeta::channel() noexcept
 {
     return songMeta()->m_metaData[TagMeta::CHANNEL];
 }
 
-QString MusicSongMeta::decoder()
+QString MusicSongMeta::decoder() noexcept
 {
     return songMeta()->m_metaData[TagMeta::FORMAT];
 }
 
-void MusicSongMeta::setArtist(const QString &artist)
+void MusicSongMeta::setArtist(const QString &artist) noexcept
 {
     songMeta()->m_metaData[TagMeta::ARTIST] = artist;
 }
 
-void MusicSongMeta::setTitle(const QString &title)
+void MusicSongMeta::setTitle(const QString &title) noexcept
 {
     songMeta()->m_metaData[TagMeta::TITLE] = title;
 }
 
-void MusicSongMeta::setAlbum(const QString &album)
+void MusicSongMeta::setAlbum(const QString &album) noexcept
 {
     songMeta()->m_metaData[TagMeta::ALBUM] = album;
 }
 
-void MusicSongMeta::setComment(const QString &comment)
+void MusicSongMeta::setComment(const QString &comment) noexcept
 {
     songMeta()->m_metaData[TagMeta::COMMENT] = comment;
 }
 
-void MusicSongMeta::setYear(const QString &year)
+void MusicSongMeta::setYear(const QString &year) noexcept
 {
     songMeta()->m_metaData[TagMeta::YEAR] = year;
 }
 
-void MusicSongMeta::setTrackNum(const QString &track)
+void MusicSongMeta::setTrackNum(const QString &track) noexcept
 {
     songMeta()->m_metaData[TagMeta::TRACK] = track;
 }
 
-void MusicSongMeta::setGenre(const QString &genre)
+void MusicSongMeta::setGenre(const QString &genre) noexcept
 {
     songMeta()->m_metaData[TagMeta::GENRE] = genre;
 }
 
-void MusicSongMeta::setRating(const QString &rating)
+void MusicSongMeta::setRating(const QString &rating) noexcept
 {
     songMeta()->m_metaData[TagMeta::RATING] = rating;
 }
 
-void MusicSongMeta::setCover(const QPixmap &cover)
+void MusicSongMeta::setCover(const QPixmap &cover) noexcept
 {
 #if TTK_VERSION >= TTK_VERSION_CHECK(2,5,3,0)
     if(cover.width() > 500 || cover.height() > 500)
@@ -193,7 +193,7 @@ void MusicSongMeta::setCover(const QPixmap &cover)
 #endif
 }
 
-void MusicSongMeta::setCover(const QByteArray &data)
+void MusicSongMeta::setCover(const QByteArray &data) noexcept
 {
     if(data.isEmpty())
     {
@@ -209,7 +209,7 @@ void MusicSongMeta::setCover(const QByteArray &data)
 #endif
 }
 
-QPixmap MusicSongMeta::cover()
+QPixmap MusicSongMeta::cover() noexcept
 {
 #if TTK_VERSION >= TTK_VERSION_CHECK(2,5,3,0)
     return songMeta()->m_cover;
@@ -218,28 +218,28 @@ QPixmap MusicSongMeta::cover()
 #endif
 }
 
-QString MusicSongMeta::lyrics()
+QString MusicSongMeta::lyrics() noexcept
 {
     return songMeta()->m_lyrics;
 }
 
-QString MusicSongMeta::sampleRate()
+QString MusicSongMeta::sampleRate() noexcept
 {
     return songMeta()->m_metaData[TagMeta::SAMPLERATE];
 }
 
-QString MusicSongMeta::bitrate()
+QString MusicSongMeta::bitrate() noexcept
 {
     const QString &bitrate = songMeta()->m_metaData[TagMeta::BITRATE];
     return bitrate.isEmpty() ? TTK_DEFAULT_STR : bitrate + " kbps";
 }
 
-QString MusicSongMeta::duration()
+QString MusicSongMeta::duration() noexcept
 {
     return songMeta()->m_metaData[TagMeta::LENGTH];
 }
 
-MusicSongMeta::MusicSongMeta(const MusicSongMeta &other)
+MusicSongMeta::MusicSongMeta(const MusicSongMeta &other) noexcept
 {
     if(this == &other)
     {
@@ -255,7 +255,7 @@ MusicSongMeta::MusicSongMeta(const MusicSongMeta &other)
     }
 }
 
-MusicSongMeta::MusicSongMeta(MusicSongMeta &&other)
+MusicSongMeta::MusicSongMeta(MusicSongMeta &&other) noexcept
     : m_offset(other.m_offset),
       m_path(other.m_path),
       m_songMetas(std::move(other.m_songMetas))
@@ -263,7 +263,7 @@ MusicSongMeta::MusicSongMeta(MusicSongMeta &&other)
 
 }
 
-MusicSongMeta& MusicSongMeta::operator= (const MusicSongMeta &other)
+MusicSongMeta& MusicSongMeta::operator= (const MusicSongMeta &other) noexcept
 {
     if(this == &other)
     {
@@ -281,7 +281,7 @@ MusicSongMeta& MusicSongMeta::operator= (const MusicSongMeta &other)
     return *this;
 }
 
-MusicSongMeta& MusicSongMeta::operator= (MusicSongMeta &&other)
+MusicSongMeta& MusicSongMeta::operator= (MusicSongMeta &&other) noexcept
 {
     if(this == &other)
     {
@@ -294,7 +294,7 @@ MusicSongMeta& MusicSongMeta::operator= (MusicSongMeta &&other)
     return *this;
 }
 
-void MusicSongMeta::setSongMetaIndex(int index)
+void MusicSongMeta::setSongMetaIndex(int index) noexcept
 {
     if(index < 0 || index >= songMetaCount())
     {
@@ -304,19 +304,19 @@ void MusicSongMeta::setSongMetaIndex(int index)
     m_offset = index;
 }
 
-int MusicSongMeta::songMetaCount() const
+int MusicSongMeta::songMetaCount() const noexcept
 {
     return m_songMetas.count();
 }
 
-void MusicSongMeta::clearSongMeta()
+void MusicSongMeta::clearSongMeta() noexcept
 {
     qDeleteAll(m_songMetas);
     m_songMetas.clear();
     m_offset = -1;
 }
 
-MusicMeta *MusicSongMeta::songMeta()
+MusicMeta *MusicSongMeta::songMeta() noexcept
 {
     if(m_songMetas.isEmpty())
     {
@@ -332,7 +332,7 @@ MusicMeta *MusicSongMeta::songMeta()
     return m_songMetas[m_offset];
 }
 
-QString MusicSongMeta::findLegalDataString(TagMeta::Type type)
+QString MusicSongMeta::findLegalDataString(TagMeta::Type type) noexcept
 {
     const QString &v = songMeta()->m_metaData[type];
     return TTK::String::charactersReplace(v);

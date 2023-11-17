@@ -33,76 +33,76 @@ public:
     /*!
      * Object constructor.
      */
-    TTKTime();
-    TTKTime(qint64 value);
-    TTKTime(int day, int hour, int min, int sec, int msec);
-    TTKTime(const TTKTime &other);
-    TTKTime(TTKTime &&other);
+    TTKTime() noexcept;
+    TTKTime(qint64 value) noexcept;
+    TTKTime(int day, int hour, int min, int sec, int msec) noexcept;
+    TTKTime(const TTKTime &other) noexcept;
+    TTKTime(TTKTime &&other) noexcept;
 
     /*!
      * Check current time is null.
      */
-    bool isNull() const;
+    bool isNull() const noexcept;
     /*!
      * Check current time is valid.
      */
-    bool isValid() const;
+    bool isValid() const noexcept;
 
     /*!
      * Set current day.
      */
-    inline void setDay(int day) { m_day = day; }
+    inline void setDay(int day) noexcept { m_day = day; }
     /*!
      * Set current hour.
      */
-    inline void setHour(int hour) { m_hour = hour; }
+    inline void setHour(int hour) noexcept { m_hour = hour; }
     /*!
      * Set current minute.
      */
-    inline void setMinute(int min) { m_minute = min; }
+    inline void setMinute(int min) noexcept { m_minute = min; }
     /*!
      * Set current second.
      */
-    inline void setSecond(int sec) { m_second = sec; }
+    inline void setSecond(int sec) noexcept { m_second = sec; }
     /*!
      * Set current millionSecond.
      */
-    inline void setMillionSecond(int msec) { m_msecond = msec; }
+    inline void setMillionSecond(int msec) noexcept { m_msecond = msec; }
 
     /*!
      * Get current day.
      */
-    inline int day() const { return m_day; }
+    inline int day() const noexcept { return m_day; }
     /*!
      * Get current hour.
      */
-    inline int hour() const { return m_hour; }
+    inline int hour() const noexcept { return m_hour; }
     /*!
      * Get current second.
      */
-    inline int minute() const { return m_minute; }
+    inline int minute() const noexcept { return m_minute; }
     /*!
      * Get current second.
      */
-    inline int second() const { return m_second; }
+    inline int second() const noexcept { return m_second; }
     /*!
      * Get current millionSecond.
      */
-    inline int millionSecond() const { return m_msecond; }
+    inline int millionSecond() const noexcept { return m_msecond; }
 
     /*!
      * Transform time from string by time format.
      */
-    static TTKTime fromString(const QString &time, const QString &format);
+    static TTKTime fromString(const QString &time, const QString &format) noexcept;
     /*!
      * Transform time from value to string time format.
      */
-    static QString toString(qint64 time, const QString &format);
+    static QString toString(qint64 time, const QString &format) noexcept;
 
     /*!
      * Transform time to string time format.
      */
-    QString toString(const QString &format) const;
+    QString toString(const QString &format) const noexcept;
 //    h	the hour without a leading zero (0 to 23 or 1 to 12 if AM/PM display)
 //    hh	the hour with a leading zero (00 to 23 or 01 to 12 if AM/PM display)
 //    H	the hour without a leading zero (0 to 23, even with AM/PM display)
@@ -120,52 +120,52 @@ public:
     /*!
      * Set current day and hour and min and sec and msec.
      */
-    void fromValue(int day, int hour, int min, int sec, int msec = 0);
+    void fromValue(int day, int hour, int min, int sec, int msec = 0) noexcept;
     /*!
      * Transform from all ms time value.
      */
-    void fromValue(qint64 value);
+    void fromValue(qint64 value) noexcept;
     /*!
      * Transform to all ms time value.
      */
-    qint64 toValue() const;
+    qint64 toValue() const noexcept;
 
     /*!
      * Transform string format(mm:ss) to msec time.
      */
-    static qint64 formatDuration(const QString &time);
+    static qint64 formatDuration(const QString &time) noexcept;
     /*!
      * Transform msec time to string format(mm:ss).
      */
-    static QString formatDuration(qint64 time/*, bool greedy = true*/);
+    static QString formatDuration(qint64 time/*, bool greedy = true*/) noexcept;
 
-    TTKTime& operator = (const TTKTime &other);
-    TTKTime& operator = (TTKTime &&other);
-    TTKTime& operator+= (const TTKTime &other);
-    TTKTime& operator+= (const int other);
-    TTKTime& operator-= (const TTKTime &other);
-    TTKTime& operator-= (const int other);
-    TTKTime& operator*= (const int other);
-    TTKTime& operator/= (const int other);
+    TTKTime& operator = (const TTKTime &other) noexcept;
+    TTKTime& operator = (TTKTime &&other) noexcept;
+    TTKTime& operator+= (const TTKTime &other) noexcept;
+    TTKTime& operator+= (const int other) noexcept;
+    TTKTime& operator-= (const TTKTime &other) noexcept;
+    TTKTime& operator-= (const int other) noexcept;
+    TTKTime& operator*= (const int other) noexcept;
+    TTKTime& operator/= (const int other) noexcept;
 
-    TTKTime  operator+ (const TTKTime &other);
-    TTKTime  operator+ (const int other);
-    TTKTime  operator- (const TTKTime &other);
-    TTKTime  operator- (const int other);
-    TTKTime  operator* (const int other);
-    TTKTime  operator/ (const int other);
+    TTKTime  operator+ (const TTKTime &other) noexcept;
+    TTKTime  operator+ (const int other) noexcept;
+    TTKTime  operator- (const TTKTime &other) noexcept;
+    TTKTime  operator- (const int other) noexcept;
+    TTKTime  operator* (const int other) noexcept;
+    TTKTime  operator/ (const int other) noexcept;
 
-    bool operator== (const TTKTime &other) const;
-    bool operator!= (const TTKTime &other) const;
+    bool operator== (const TTKTime &other) const noexcept;
+    bool operator!= (const TTKTime &other) const noexcept;
 
-    inline friend QDataStream& operator<<(QDataStream &stream, const TTKTime &other)
+    inline friend QDataStream& operator<<(QDataStream &stream, const TTKTime &other) noexcept
     {
         stream << other.day() << " " << other.hour() << " " << other.minute() << " "
                << other.second() << " " << other.millionSecond();
         return stream;
     }
 
-    inline friend QDataStream& operator>>(QDataStream &stream, TTKTime &other)
+    inline friend QDataStream& operator>>(QDataStream &stream, TTKTime &other) noexcept
     {
         int x[5];
         stream >> x[0] >> x[1] >> x[2] >> x[3] >> x[4];
@@ -177,11 +177,11 @@ private:
     /*!
      * Init parameters;
      */
-    void initialize();
+    void initialize() noexcept;
     /*!
      * Copy other time data to this obejct;
      */
-    void copyToThis(const TTKTime &other);
+    void copyToThis(const TTKTime &other) noexcept;
 
     int m_day, m_hour;
     int m_minute, m_second, m_msecond;

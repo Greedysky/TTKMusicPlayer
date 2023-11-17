@@ -32,13 +32,13 @@ public:
     /*!
      * Object constructor.
      */
-    TTKAny();
-    TTKAny(const TTKAny &other);
+    TTKAny() noexcept;
+    TTKAny(const TTKAny &other) noexcept;
     TTKAny(TTKAny &&other) noexcept;
 
     template <typename T,
               typename = typename std::enable_if<!std::is_same<typename std::decay<T>::type, TTKAny>::value, T>::type>
-    TTKAny(T &&t)
+    TTKAny(T &&t) noexcept
         : m_ptr(new _Derived<typename std::decay<T>::type>(std::forward<T>(t))),
           m_type(typeid(typename std::decay<T>::type))
     {
@@ -48,13 +48,13 @@ public:
     /*!
      * Current container is null or not.
      */
-    bool isNull() const;
+    bool isNull() const noexcept;
 
     /*!
      * Current container is same or not by type T.
      */
     template <typename T>
-    bool isSame() const
+    bool isSame() const noexcept
     {
         return m_type == std::type_index(typeid(T));
     }
@@ -86,7 +86,7 @@ public:
     /*!
      * Copy object from other.
      */
-    TTKAny &operator=(const TTKAny &other);
+    TTKAny &operator=(const TTKAny &other) noexcept;
 
 private:
     struct _Base;
@@ -94,21 +94,21 @@ private:
 
     struct _Base
     {
-        virtual ~_Base() = default;
+        virtual ~_Base() noexcept = default;
 
-        virtual _BasePtr clone() const = 0;
+        virtual _BasePtr clone() const noexcept = 0;
     };
 
     template <typename T>
     struct _Derived : public _Base
     {
         template <typename... Args>
-        _Derived(Args &&...args)
+        _Derived(Args &&...args)  noexcept
             : m_value(std::forward<Args>(args)...)
         {
         }
 
-        virtual _BasePtr clone() const override final
+        virtual _BasePtr clone() const noexcept override final
         {
             return _BasePtr(new _Derived<T>(m_value));
         }
@@ -119,7 +119,7 @@ private:
     /*!
      * Clone data from this.
      */
-    _BasePtr clone() const
+    _BasePtr clone() const noexcept
     {
         return m_ptr ? m_ptr->clone() : nullptr;
     }

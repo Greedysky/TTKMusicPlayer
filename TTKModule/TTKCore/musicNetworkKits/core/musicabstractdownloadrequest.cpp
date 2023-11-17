@@ -58,9 +58,9 @@ void MusicAbstractDownLoadRequest::updateDownloadSpeed()
     if(G_SETTING_PTR->value(MusicSettingManager::DownloadLimitEnable).toInt() == 0)
     {
         const int limitValue = G_SETTING_PTR->value(MusicSettingManager::DownloadDownloadLimitSize).toInt();
-        if(limitValue != 0 && delta > limitValue * TTK_SN_MB2KB)
+        if(limitValue != 0 && delta > limitValue * TTK_SN_KB2B)
         {
-            TTK::Core::sleep(TTK_DN_S2MS - limitValue * TTK_SN_MB2KB * TTK_DN_S2MS / delta);
+            TTK::Core::sleep(TTK_DN_S2MS - limitValue * TTK_SN_KB2B * TTK_DN_S2MS / delta);
         }
     }
     m_hasReceived = m_currentReceived;

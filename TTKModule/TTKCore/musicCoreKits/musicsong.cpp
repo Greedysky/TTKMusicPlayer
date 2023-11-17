@@ -8,7 +8,7 @@
 
 #include <qmmp/regularexpression.h>
 
-MusicSong::MusicSong()
+MusicSong::MusicSong() noexcept
     : m_sort(Sort::ByFileName),
       m_size(0),
       m_addTime(-1),
@@ -23,13 +23,13 @@ MusicSong::MusicSong()
 
 }
 
-MusicSong::MusicSong(const QString &path, bool track)
+MusicSong::MusicSong(const QString &path, bool track) noexcept
     : MusicSong(path, {}, {}, track)
 {
 
 }
 
-MusicSong::MusicSong(const QString &path, const QString &playTime, const QString &name, bool track)
+MusicSong::MusicSong(const QString &path, const QString &playTime, const QString &name, bool track) noexcept
     : MusicSong()
 {
     m_path = path;
@@ -50,22 +50,22 @@ MusicSong::MusicSong(const QString &path, const QString &playTime, const QString
     m_sizeStr = TTK::Number::sizeByteToLabel(m_size);
 }
 
-QString MusicSong::artistFront() const
+QString MusicSong::artistFront() const noexcept
 {
     return TTK::String::artistName(m_name);
 }
 
-QString MusicSong::artistBack() const
+QString MusicSong::artistBack() const noexcept
 {
     return TTK::String::songName(m_name);
 }
 
-bool MusicSong::operator== (const MusicSong &other) const
+bool MusicSong::operator== (const MusicSong &other) const noexcept
 {
     return m_path == other.m_path;
 }
 
-bool MusicSong::operator< (const MusicSong &other) const
+bool MusicSong::operator< (const MusicSong &other) const noexcept
 {
     switch(m_sort)
     {
@@ -80,7 +80,7 @@ bool MusicSong::operator< (const MusicSong &other) const
     return false;
 }
 
-bool MusicSong::operator> (const MusicSong &other) const
+bool MusicSong::operator> (const MusicSong &other) const noexcept
 {
     switch(m_sort)
     {

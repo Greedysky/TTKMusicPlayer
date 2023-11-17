@@ -1,12 +1,12 @@
 #include "ttkany.h"
 
-TTKAny::TTKAny()
+TTKAny::TTKAny() noexcept
     : m_type(std::type_index(typeid(void)))
 {
 
 }
 
-TTKAny::TTKAny(const TTKAny &other)
+TTKAny::TTKAny(const TTKAny &other) noexcept
     : m_ptr(other.clone())
     , m_type(other.m_type)
 {
@@ -20,12 +20,12 @@ TTKAny::TTKAny(TTKAny &&other) noexcept
 
 }
 
-bool TTKAny::isNull() const
+bool TTKAny::isNull() const noexcept
 {
     return !bool(m_ptr);
 }
 
-TTKAny &TTKAny::operator=(const TTKAny &other)
+TTKAny &TTKAny::operator=(const TTKAny &other) noexcept
 {
     if(m_ptr == other.m_ptr)
     {

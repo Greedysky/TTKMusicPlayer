@@ -42,97 +42,97 @@ public:
     /*!
      * Object constructor.
      */
-    MusicSong();
-    explicit MusicSong(const QString &path, bool track = false);
-    MusicSong(const QString &path, const QString &playTime, const QString &name = {}, bool track = false);
+    MusicSong() noexcept;
+    explicit MusicSong(const QString &path, bool track = false) noexcept;
+    MusicSong(const QString &path, const QString &playTime, const QString &name = {}, bool track = false) noexcept;
 
     /*!
      * Get music artist name.
      */
-    QString artistFront() const;
+    QString artistFront() const noexcept;
     /*!
      * Get music song name.
      */
-    QString artistBack() const;
+    QString artistBack() const noexcept;
 
     /*!
      * Set music add time string.
      */
-    inline void setAddTimeStr(const QString &t) { m_addTimeStr = t; }
+    inline void setAddTimeStr(const QString &t) noexcept { m_addTimeStr = t; }
     /*!
      * Get music add time string.
      */
-    inline QString addTimeStr() const { return m_addTimeStr; }
+    inline QString addTimeStr() const noexcept { return m_addTimeStr; }
     /*!
      * Set music size string.
      */
-    inline void setSizeStr(const QString &s) { m_sizeStr = s; }
+    inline void setSizeStr(const QString &s) noexcept { m_sizeStr = s; }
     /*!
      * Get music size string.
      */
-    inline QString sizeStr() const { return m_sizeStr; }
+    inline QString sizeStr() const noexcept { return m_sizeStr; }
 
     /*!
      * Set music name.
      */
-    inline void setName(const QString &n) { m_name = n; }
+    inline void setName(const QString &n) noexcept { m_name = n; }
     /*!
      * Get music name.
      */
-    inline QString name() const { return m_name; }
+    inline QString name() const noexcept { return m_name; }
     /*!
      * Set music path.
      */
-    inline void setPath(const QString &p) { m_path = p; }
+    inline void setPath(const QString &p) noexcept { m_path = p; }
     /*!
      * Get music path.
      */
-    inline QString path() const { return m_path; }
+    inline QString path() const noexcept { return m_path; }
     /*!
      * Set music format.
      */
-    inline void setFormat(const QString &t) { m_format = t; }
+    inline void setFormat(const QString &t) noexcept { m_format = t; }
     /*!
      * Get music format.
      */
-    inline QString format() const { return m_format; }
+    inline QString format() const noexcept { return m_format; }
     /*!
      * Set music time.
      */
-    inline void setPlayTime(const QString &t) { m_playTime = t; }
+    inline void setPlayTime(const QString &t) noexcept { m_playTime = t; }
     /*!
      * Get music time.
      */
-    inline QString playTime() const { return m_playTime; }
+    inline QString playTime() const noexcept { return m_playTime; }
     /*!
      * Get music size.
      */
-    inline qint64 size() const { return m_size; }
+    inline qint64 size() const noexcept { return m_size; }
     /*!
      * Set music play count.
      */
-    inline void setPlayCount(const int c) { m_playCount = c; }
+    inline void setPlayCount(const int c) noexcept { m_playCount = c; }
     /*!
      * Get music play count.
      */
-    inline int playCount() const { return m_playCount; }
+    inline int playCount() const noexcept { return m_playCount; }
     /*!
      * Set music sort type.
      */
-    inline void setSort(const Sort s) { m_sort = s; }
+    inline void setSort(const Sort s) noexcept { m_sort = s; }
 
     /*!
      * Operator == function.
      */
-    bool operator== (const MusicSong &other) const;
+    bool operator== (const MusicSong &other) const noexcept;
     /*!
      * Operator < function.
      */
-    bool operator< (const MusicSong &other) const;
+    bool operator< (const MusicSong &other) const noexcept;
     /*!
      * Operator > function.
      */
-    bool operator> (const MusicSong &other) const;
+    bool operator> (const MusicSong &other) const noexcept;
 
 private:
     Sort m_sort;

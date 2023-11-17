@@ -22,46 +22,46 @@ int TTK::random(int value)
 
 
 
-TTKTime::TTKTime()
+TTKTime::TTKTime()  noexcept
 {
     initialize();
 }
 
-TTKTime::TTKTime(qint64 value)
+TTKTime::TTKTime(qint64 value)  noexcept
     : TTKTime()
 {
     initialize();
     fromValue(value);
 }
 
-TTKTime::TTKTime(int day, int hour, int min, int sec, int msec)
+TTKTime::TTKTime(int day, int hour, int min, int sec, int msec)  noexcept
     : TTKTime()
 {
     initialize();
     fromValue(day, hour, min, sec, msec);
 }
 
-TTKTime::TTKTime(const TTKTime &other)
+TTKTime::TTKTime(const TTKTime &other) noexcept
 {
     copyToThis(other);
 }
 
-TTKTime::TTKTime(TTKTime &&other)
+TTKTime::TTKTime(TTKTime &&other) noexcept
 {
     copyToThis(other);
 }
 
-bool TTKTime::isNull() const
+bool TTKTime::isNull() const noexcept
 {
     return m_hour == 0 && m_minute == 0 && m_second == 0 && m_msecond == 0;
 }
 
-bool TTKTime::isValid() const
+bool TTKTime::isValid() const noexcept
 {
     return !isNull();
 }
 
-TTKTime TTKTime::fromString(const QString &time, const QString &format)
+TTKTime TTKTime::fromString(const QString &time, const QString &format) noexcept
 {
     TTKTime t;
     const QTime &qtime = QTime::fromString(time, format);
@@ -69,17 +69,17 @@ TTKTime TTKTime::fromString(const QString &time, const QString &format)
     return t;
 }
 
-QString TTKTime::toString(qint64 time, const QString &format)
+QString TTKTime::toString(qint64 time, const QString &format) noexcept
 {
     return TTKTime(time).toString(format);
 }
 
-QString TTKTime::toString(const QString &format) const
+QString TTKTime::toString(const QString &format) const noexcept
 {
     return QTime(m_hour, m_minute, m_second, m_msecond).toString(format);
 }
 
-void TTKTime::fromValue(int day, int hour, int min, int sec, int msec)
+void TTKTime::fromValue(int day, int hour, int min, int sec, int msec) noexcept
 {
     if(day < 0 || hour < 0 || hour > 24 || min < 0 || min > 60 || sec < 0 || sec > 60 || msec < 0 || msec > 1000)
     {
@@ -93,7 +93,7 @@ void TTKTime::fromValue(int day, int hour, int min, int sec, int msec)
     m_msecond = msec;
 }
 
-void TTKTime::fromValue(qint64 value)
+void TTKTime::fromValue(qint64 value) noexcept
 {
     if(value < 0)
     {
@@ -115,119 +115,119 @@ void TTKTime::fromValue(qint64 value)
     m_second = value;
 }
 
-qint64 TTKTime::toValue() const
+qint64 TTKTime::toValue() const noexcept
 {
     return (m_day * TTK_DN_D2S + m_hour * TTK_DN_H2S + m_minute * TTK_DN_M2S + m_second) * TTK_DN_S2MS + m_msecond;
 }
 
-qint64 TTKTime::formatDuration(const QString &time)
+qint64 TTKTime::formatDuration(const QString &time) noexcept
 {
     return TTKTime::fromString(time, "mm:ss").toValue();
 }
 
-QString TTKTime::formatDuration(qint64 time/*, bool greedy*/)
+QString TTKTime::formatDuration(qint64 time/*, bool greedy*/) noexcept
 {
     const TTKTime t(time);
-    if(/*!greedy || */time < TTK_DN_H2S * TTK_DN_S2MS)
+    if(/*!greedy || */time < TTK_DN_H2MS)
     {
         return t.toString("mm:ss");
     }
     else
     {
-        const int min = t.day() * TTK_DN_H2S + t.hour() * TTK_DN_H + t.minute();
+        const int min = t.day() * TTK_DN_D2M + t.hour() * TTK_DN_H2M + t.minute();
         return QString::number(min).rightJustified(2, '0') + ":" + QString::number(t.second()).rightJustified(2, '0');
     }
 }
 
-TTKTime& TTKTime::operator= (const TTKTime &other)
+TTKTime& TTKTime::operator= (const TTKTime &other)  noexcept
 {
     copyToThis(other);
     return *this;
 }
 
-TTKTime& TTKTime::operator= (TTKTime &&other)
+TTKTime& TTKTime::operator= (TTKTime &&other)  noexcept
 {
     copyToThis(other);
     return *this;
 }
 
-TTKTime& TTKTime::operator+= (const TTKTime &other)
+TTKTime& TTKTime::operator+= (const TTKTime &other)  noexcept
 {
     fromValue(toValue() + other.toValue());
     return *this;
 }
 
-TTKTime& TTKTime::operator+= (const int other)
+TTKTime& TTKTime::operator+= (const int other)  noexcept
 {
     fromValue(toValue() + other);
     return *this;
 }
 
-TTKTime& TTKTime::operator-= (const TTKTime &other)
+TTKTime& TTKTime::operator-= (const TTKTime &other)  noexcept
 {
     fromValue(toValue() - other.toValue());
     return *this;
 }
 
-TTKTime& TTKTime::operator-= (const int other)
+TTKTime& TTKTime::operator-= (const int other)  noexcept
 {
     fromValue(toValue() - other);
     return *this;
 }
 
-TTKTime& TTKTime::operator*= (const int other)
+TTKTime& TTKTime::operator*= (const int other)  noexcept
 {
     fromValue(toValue() * other);
     return *this;
 }
 
-TTKTime& TTKTime::operator/= (const int other)
+TTKTime& TTKTime::operator/= (const int other)  noexcept
 {
     fromValue(toValue() / other);
     return *this;
 }
 
-TTKTime TTKTime::operator+ (const TTKTime &other)
+TTKTime TTKTime::operator+ (const TTKTime &other)  noexcept
 {
     return TTKTime(toValue() + other.toValue());
 }
 
-TTKTime TTKTime::operator+ (const int other)
+TTKTime TTKTime::operator+ (const int other)  noexcept
 {
     return TTKTime(toValue() + other);
 }
 
-TTKTime TTKTime::operator- (const TTKTime &other)
+TTKTime TTKTime::operator- (const TTKTime &other)  noexcept
 {
     return TTKTime(toValue() - other.toValue());
 }
 
-TTKTime TTKTime::operator- (const int other)
+TTKTime TTKTime::operator- (const int other)  noexcept
 {
     return TTKTime(toValue() - other);
 }
 
-TTKTime TTKTime::operator* (const int other)
+TTKTime TTKTime::operator* (const int other)  noexcept
 {
     return TTKTime(toValue() * other);
 }
 
-TTKTime TTKTime::operator/ (const int other)
+TTKTime TTKTime::operator/ (const int other)  noexcept
 {
     return TTKTime(toValue() / other);
 }
 
-bool TTKTime::operator== (const TTKTime &other) const
+bool TTKTime::operator== (const TTKTime &other) const  noexcept
 {
     return toValue() == other.toValue();
 }
 
-bool TTKTime::operator!= (const TTKTime &other) const
+bool TTKTime::operator!= (const TTKTime &other) const  noexcept
 {
     return toValue() != other.toValue();
 }
 
-void TTKTime::initialize()
+void TTKTime::initialize() noexcept
 {
     m_day = 0;
     m_hour = 0;
@@ -236,7 +236,7 @@ void TTKTime::initialize()
     m_msecond = 0;
 }
 
-void TTKTime::copyToThis(const TTKTime &other)
+void TTKTime::copyToThis(const TTKTime &other) noexcept
 {
     m_day = other.m_day;
     m_hour = other.m_hour;

@@ -34,11 +34,11 @@ public:
     /*!
      * Object constructor.
      */
-    MusicSongMeta();
+    MusicSongMeta() noexcept;
     /*!
      * Object destructor.
      */
-    ~MusicSongMeta();
+    ~MusicSongMeta() noexcept;
 
     /*!
      * Read music file to anaylsis.
@@ -52,150 +52,150 @@ public:
     /*!
      * Read music file path.
      */
-    QString filePath() const;
+    QString filePath() const noexcept;
     /*!
      * Get file url.
      */
-    QString fileBasePath();
+    QString fileBasePath() noexcept;
     /*!
      * Get file related path.
      */
-    QString fileRelatedPath();
+    QString fileRelatedPath() noexcept;
 
     /*!
      * Get artist name.
      */
-    QString artist();
+    QString artist() noexcept;
     /*!
      * Get song title.
      */
-    QString title();
+    QString title() noexcept;
     /*!
      * Get song album.
      */
-    QString album();
+    QString album() noexcept;
     /*!
      * Get song comment.
      */
-    QString comment();
+    QString comment() noexcept;
     /*!
      * Get song year.
      */
-    QString year();
+    QString year() noexcept;
     /*!
      * Get song track number.
      */
-    QString trackNum();
+    QString trackNum() noexcept;
     /*!
      * Get song genre.
      */
-    QString genre();
+    QString genre() noexcept;
     /*!
      * Get song rating.
      */
-    QString rating();
+    QString rating() noexcept;
     /*!
      * Get song channel.
      */
-    QString channel();
+    QString channel() noexcept;
     /*!
      * Read music decoder name.
      */
-    QString decoder();
+    QString decoder() noexcept;
 
     /*!
      * Set artist name.
      */
-    void setArtist(const QString &artist);
+    void setArtist(const QString &artist) noexcept;
     /*!
      * Set song title.
      */
-    void setTitle(const QString &title);
+    void setTitle(const QString &title) noexcept;
     /*!
      * Set song album.
      */
-    void setAlbum(const QString &album);
+    void setAlbum(const QString &album) noexcept;
     /*!
      * Set song comment.
      */
-    void setComment(const QString &comment);
+    void setComment(const QString &comment) noexcept;
     /*!
      * Set song year.
      */
-    void setYear(const QString &year);
+    void setYear(const QString &year) noexcept;
     /*!
      * Set song track number.
      */
-    void setTrackNum(const QString &track);
+    void setTrackNum(const QString &track) noexcept;
     /*!
      * Set song genre.
      */
-    void setGenre(const QString &genre);
+    void setGenre(const QString &genre) noexcept;
     /*!
      * Set song rating.
      */
-    void setRating(const QString &rating);
+    void setRating(const QString &rating) noexcept;
 
 public:
     /*!
      * Set song image cover artist.
      */
-    void setCover(const QPixmap &cover);
+    void setCover(const QPixmap &cover) noexcept;
     /*!
      * Set song image cover artist.
      */
-    void setCover(const QByteArray &data);
+    void setCover(const QByteArray &data) noexcept;
     /*!
      * Get song image cover artist.
      */
-    QPixmap cover();
+    QPixmap cover() noexcept;
     /*!
      * Get song lyrics buffer data.
      */
-    QString lyrics();
+    QString lyrics() noexcept;
     /*!
      * Get song sample rate.
      */
-    QString sampleRate();
+    QString sampleRate() noexcept;
     /*!
      * Get song bitrate.
      */
-    QString bitrate();
+    QString bitrate() noexcept;
     /*!
      * Get song time duration.
      */
-    QString duration();
+    QString duration() noexcept;
 
 public:
-    MusicSongMeta(const MusicSongMeta &other);
-    MusicSongMeta(MusicSongMeta &&other);
+    MusicSongMeta(const MusicSongMeta &other) noexcept;
+    MusicSongMeta(MusicSongMeta &&other) noexcept;
 
-    MusicSongMeta& operator= (const MusicSongMeta &other);
-    MusicSongMeta& operator= (MusicSongMeta &&other);
+    MusicSongMeta& operator= (const MusicSongMeta &other) noexcept;
+    MusicSongMeta& operator= (MusicSongMeta &&other) noexcept;
 
 public:
     /*!
      * Set music song meta index offset.
      */
-    void setSongMetaIndex(int index);
+    void setSongMetaIndex(int index) noexcept;
     /*!
      * Get music song meta count.
      */
-    int songMetaCount() const;
+    int songMetaCount() const noexcept;
 
 private:
     /*!
      * Clear music song meta.
      */
-    void clearSongMeta();
+    void clearSongMeta() noexcept;
     /*!
      * Get music song meta pointer.
      */
-    MusicMeta *songMeta();
+    MusicMeta *songMeta() noexcept;
     /*!
      * Find legal data string.
      */
-    QString findLegalDataString(TagMeta::Type type);
+    QString findLegalDataString(TagMeta::Type type) noexcept;
     /*!
      * Read other taglib not by plugin.
      */

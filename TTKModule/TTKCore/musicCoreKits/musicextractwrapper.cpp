@@ -7,7 +7,7 @@
 
 #include <QFile>
 
-#define WIN_NAME_MAX_LENGTH 256
+#define WIN_NAME_MAX_LENGTH TTK_LOW_BUFFER
 #ifndef FILE_ATTRIBUTE_DIRECTORY
 #define FILE_ATTRIBUTE_DIRECTORY 0x00000010
 #endif
@@ -33,18 +33,18 @@ bool MusicExtractWrapper::outputThunderSkin(QPixmap &image, const QString &input
 
     for(ZPOS64_T i = 0; i < gInfo.number_entry; ++i)
     {
-        char com[TTK_SN_KB2B] = {0};
+        char com[TTK_HIGH_BUFFER] = {0};
         char name[WIN_NAME_MAX_LENGTH] = {0};
         char ext[WIN_NAME_MAX_LENGTH] = {0};
 
-        if(unzGetCurrentFileInfo64(zFile, &fInfo, name, sizeof(name), ext, WIN_NAME_MAX_LENGTH, com, TTK_SN_KB2B) != UNZ_OK ||
+        if(unzGetCurrentFileInfo64(zFile, &fInfo, name, sizeof(name), ext, WIN_NAME_MAX_LENGTH, com, TTK_HIGH_BUFFER) != UNZ_OK ||
            unzOpenCurrentFile(zFile) != UNZ_OK)
         {
             break;
         }
 
         int size = 0;
-        char dt[TTK_SN_KB2B] = {0};
+        char dt[TTK_HIGH_BUFFER] = {0};
 
         const QString &module = name;
         if(module.toLower().contains("image/bkg"))
@@ -97,11 +97,11 @@ bool MusicExtractWrapper::outputBinary(const QString &input, const QString &outp
 
     for(ZPOS64_T i = 0; i < gInfo.number_entry; ++i)
     {
-        char com[TTK_SN_KB2B] = {0};
+        char com[TTK_HIGH_BUFFER] = {0};
         char name[WIN_NAME_MAX_LENGTH] = {0};
         char ext[WIN_NAME_MAX_LENGTH] = {0};
 
-        if(unzGetCurrentFileInfo64(zFile, &fInfo, name, sizeof(name), ext, WIN_NAME_MAX_LENGTH, com, TTK_SN_KB2B) != UNZ_OK ||
+        if(unzGetCurrentFileInfo64(zFile, &fInfo, name, sizeof(name), ext, WIN_NAME_MAX_LENGTH, com, TTK_HIGH_BUFFER) != UNZ_OK ||
            unzOpenCurrentFile(zFile) != UNZ_OK)
         {
             break;
@@ -114,7 +114,7 @@ bool MusicExtractWrapper::outputBinary(const QString &input, const QString &outp
         else
         {
             int size = 0;
-            char dt[TTK_SN_KB2B] = {0};
+            char dt[TTK_HIGH_BUFFER] = {0};
 
             QFile file(output + name);
             if(file.open(QIODevice::WriteOnly))
@@ -164,18 +164,18 @@ bool MusicExtractWrapper::outputSkin(MusicBackgroundImage *image, const QString 
 
     for(ZPOS64_T i = 0; i < gInfo.number_entry; ++i)
     {
-        char com[TTK_SN_KB2B] = {0};
+        char com[TTK_HIGH_BUFFER] = {0};
         char name[WIN_NAME_MAX_LENGTH] = {0};
         char ext[WIN_NAME_MAX_LENGTH] = {0};
 
-        if(unzGetCurrentFileInfo64(zFile, &fInfo, name, sizeof(name), ext, WIN_NAME_MAX_LENGTH, com, TTK_SN_KB2B) != UNZ_OK ||
+        if(unzGetCurrentFileInfo64(zFile, &fInfo, name, sizeof(name), ext, WIN_NAME_MAX_LENGTH, com, TTK_HIGH_BUFFER) != UNZ_OK ||
            unzOpenCurrentFile(zFile) != UNZ_OK)
         {
             break;
         }
 
         int size = 0;
-        char dt[TTK_SN_KB2B] = {0};
+        char dt[TTK_HIGH_BUFFER] = {0};
 
         QByteArray buffer;
         const QString &module = name;
@@ -281,18 +281,18 @@ bool MusicExtractWrapper::outputData(QByteArray &data, const QString &input)
 
     for(ZPOS64_T i = 0; i < gInfo.number_entry; ++i)
     {
-        char com[TTK_SN_KB2B] = {0};
+        char com[TTK_HIGH_BUFFER] = {0};
         char name[WIN_NAME_MAX_LENGTH] = {0};
         char ext[WIN_NAME_MAX_LENGTH] = {0};
 
-        if(unzGetCurrentFileInfo64(zFile, &fInfo, name, sizeof(name), ext, WIN_NAME_MAX_LENGTH, com, TTK_SN_KB2B) != UNZ_OK ||
+        if(unzGetCurrentFileInfo64(zFile, &fInfo, name, sizeof(name), ext, WIN_NAME_MAX_LENGTH, com, TTK_HIGH_BUFFER) != UNZ_OK ||
            unzOpenCurrentFile(zFile) != UNZ_OK)
         {
             break;
         }
 
         int size = 0;
-        char dt[TTK_SN_KB2B] = {0};
+        char dt[TTK_HIGH_BUFFER] = {0};
 
         while(true)
         {

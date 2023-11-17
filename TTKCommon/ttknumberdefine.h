@@ -21,7 +21,7 @@
 
 #include "ttkglobal.h"
 
- // ttk date time format define
+// ttk date time format define
 #define TTK_TIME_INIT           "00:00"
 #define TTK_TIME_FORMAT         "hh:mm"
 #define TTK_TIMEZ_FORMAT        "hh:mm:ss"
@@ -31,21 +31,27 @@
 #define TTK_YEAR_TIMEZ_FORMAT   "yyyy-MM-dd hh:mm:ss"
 
 
- // ttk item size define
+// ttk item size define
 #define TTK_ITEM_SIZE_S         25
 #define TTK_ITEM_SIZE_M         30
 #define TTK_ITEM_SIZE_L         40
 #define TTK_ITEM_SIZE_XL        60
 
 
- // ttk level define
+// ttk level define
 #define TTK_NONE_LEVEL          -3
 #define TTK_LOW_LEVEL           -2
 #define TTK_NORMAL_LEVEL        -1
 #define TTK_HIGH_LEVEL          999
 
 
- // ttk date time number define
+// ttk buffer define
+#define TTK_LOW_BUFFER          256
+#define TTK_NORMAL_BUFFER       512
+#define TTK_HIGH_BUFFER         1024
+
+
+// ttk date time number define
 #define TTK_DN_NS           1
 
 #define TTK_DN_US           1
@@ -83,7 +89,7 @@
 #define TTK_DN_D2NS         TTKInt64(TTK_DN_D2US * TTK_DN_US2NS)
 
 
- // ttk size number define
+// ttk size number define
 #define TTK_SN_BT           1
 
 #define TTK_SN_B            1
@@ -112,7 +118,7 @@
 #define TTK_SN_TB2BT        TTKInt64(TTK_SN_TB2B * TTK_SN_B2BT)
 
 
- // ttk angle number define
+// ttk angle number define
 #define TTK_AN_0            0
 #define TTK_AN_30           30
 #define TTK_AN_45           45
@@ -124,7 +130,7 @@
 #define TTK_AN_360          360
 
 
- // ttk bitrate number define
+// ttk bitrate number define
 #define TTK_BN_0            0
 #define TTK_BN_32           32
 #define TTK_BN_64           64
@@ -138,7 +144,7 @@
 #define TTK_BN_1000         1000
 
 
- // ttk range number define
+// ttk range number define
 #define TTK_RN_MIN          0
 #define TTK_RN_MAX          100
 
