@@ -33,11 +33,11 @@ public:
     virtual ~AbstractReader() = default;
 
     virtual bool load(const QString &path) = 0;
-    virtual qint64 totalTime() const = 0;
     virtual qint64 read(unsigned char *data, qint64 maxSize) = 0;
 
     inline virtual int sampleRate() const { return 44100; }
 
+    inline qint64 totalTime() const { return m_length; }
     inline QString title() const { return m_title; }
     inline QString author() const { return m_author; }
 

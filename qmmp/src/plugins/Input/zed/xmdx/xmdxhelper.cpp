@@ -18,7 +18,6 @@ public:
     virtual ~MDXFileReader();
 
     virtual bool load(const QString &path) override final;
-    virtual qint64 totalTime() const override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
 
 private:
@@ -56,11 +55,6 @@ bool MDXFileReader::load(const QString &path)
     return true;
 }
 
-qint64 MDXFileReader::totalTime() const
-{
-    return m_length;
-}
-
 qint64 MDXFileReader::read(unsigned char *data, qint64)
 {
     if(m_length > 0 && m_offset >= m_length)
@@ -81,7 +75,6 @@ public:
     virtual ~PMDFileReader();
 
     virtual bool load(const QString &path) override final;
-    virtual qint64 totalTime() const override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
 
 private:
@@ -119,11 +112,6 @@ bool PMDFileReader::load(const QString &path)
     return true;
 }
 
-qint64 PMDFileReader::totalTime() const
-{
-    return m_length;
-}
-
 qint64 PMDFileReader::read(unsigned char *data, qint64)
 {
     if(m_length > 0 && m_offset >= m_length)
@@ -144,7 +132,6 @@ public:
     virtual ~MUCFileReader();
 
     virtual bool load(const QString &path) override final;
-    virtual qint64 totalTime() const override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
 
 private:
@@ -181,11 +168,6 @@ bool MUCFileReader::load(const QString &path)
     return true;
 }
 
-qint64 MUCFileReader::totalTime() const
-{
-    return m_length;
-}
-
 qint64 MUCFileReader::read(unsigned char *data, qint64)
 {
     if(m_length > 0 && m_input->IsEnd())
@@ -205,7 +187,6 @@ public:
     virtual ~VGSFileReader();
 
     virtual bool load(const QString &path) override final;
-    virtual qint64 totalTime() const override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
 
     virtual int sampleRate() const override final { return 22050 / 2; }
@@ -277,11 +258,6 @@ bool VGSFileReader::load(const QString &path)
 
     m_length = vgsdec_get_value(m_input, VGSDEC_REG_TIME_LENGTH) * 1.0 / 22050 * 1000 + 5000;
     return true;
-}
-
-qint64 VGSFileReader::totalTime() const
-{
-    return m_length;
 }
 
 qint64 VGSFileReader::read(unsigned char *data, qint64)
