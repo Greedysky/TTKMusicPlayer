@@ -199,8 +199,41 @@ private:
     MusicPlayItemList m_queueList;
     TTK::PlayMode m_playbackMode;
 
-    bool m_shuffleMode;
-    TTKIntSet m_shuffleList;
+    class Shuffle
+    {
+    public:
+        /*!
+         * Object constructor.
+         */
+        Shuffle();
+
+        /*!
+         * Set shuffle enable or disable.
+         */
+        void setEnabled(bool enable);
+        /*!
+         * Get shuffle enable or disable.
+         */
+        bool isEnabled() const;
+        /*!
+         * Init parameter.
+        */
+        void initialize(const MusicPlayItemList &items);
+        /*!
+         * Set current play index.
+         */
+        void setCurrentIndex(const MusicPlayItem &item);
+        /*!
+         * Set current play index.
+         */
+        MusicPlayItem setCurrentIndex(int index);
+
+    private:
+        int m_index;
+        bool m_enable;
+        MusicPlayItemList m_data;
+
+    } m_shuffle;
 
 };
 

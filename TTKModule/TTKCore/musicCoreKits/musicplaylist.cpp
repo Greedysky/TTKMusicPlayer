@@ -3,18 +3,77 @@
 #include "musicsong.h"
 #include "ttktime.h"
 
+MusicPlaylist::Shuffle::Shuffle()
+    : m_index(-1),
+      m_enable(false)
+{
+}
+
+void MusicPlaylist::Shuffle::setEnabled(bool enable)
+{
+    m_enable = enable;
+}
+
+bool MusicPlaylist::Shuffle::isEnabled() const
+{
+    return m_enable;
+}
+
+void MusicPlaylist::Shuffle::initialize(const MusicPlayItemList &items)
+{
+    if(m_enable && items.count() != m_data.count())
+    {
+        m_index = -1;
+        m_data = items;
+        std::shuffle(m_data.begin(), m_data.end(), std::default_random_engine(std::random_device()()));
+    }
+}
+
+void MusicPlaylist::Shuffle::setCurrentIndex(const MusicPlayItem &item)
+{
+    m_index = m_data.indexOf(item);
+}
+
+MusicPlayItem MusicPlaylist::Shuffle::setCurrentIndex(int index)
+{
+    if(m_data.isEmpty())
+    {
+        return {};
+    }
+
+    if(index == TTK_LOW_LEVEL|| index == PLAY_NEXT_LEVEL)
+    {
+        if(++m_index >= m_data.count())
+        {
+            m_index = 0;
+        }
+    }
+    else if(index == PLAY_PREVIOUS_LEVEL)
+    {
+        if(--m_index < 0)
+        {
+            m_index =  m_data.count() - 1;
+        }
+    }
+    else
+    {
+        m_index = index;
+    }
+    return m_data[m_index];
+}
+
+
 MusicPlaylist::MusicPlaylist(QObject *parent)
     : QObject(parent),
       m_currentIndex(-1),
-      m_playbackMode(TTK::PlayMode::Order),
-      m_shuffleMode(false)
+      m_playbackMode(TTK::PlayMode::Order)
 {
     TTK::initRandom();
 }
 
 void MusicPlaylist::setShuffleMode(bool shuffle)
 {
-    m_shuffleMode = shuffle;
+    m_shuffle.setEnabled(shuffle);
 }
 
 TTK::PlayMode MusicPlaylist::playbackMode() const
@@ -75,7 +134,6 @@ bool MusicPlaylist::isEmpty() const
 void MusicPlaylist::clear()
 {
     m_mediaList.clear();
-    m_shuffleList.clear();
     removeQueue();
 }
 
@@ -184,6 +242,8 @@ void MusicPlaylist::removeQueue()
 
 void MusicPlaylist::setCurrentIndex(int index)
 {
+    m_shuffle.initialize(m_mediaList);
+
     if(index == TTK_LOW_LEVEL)
     {
         switch(m_playbackMode)
@@ -207,7 +267,7 @@ void MusicPlaylist::setCurrentIndex(int index)
             }
             case TTK::PlayMode::Random:
             {
-                m_currentIndex = TTK::random() % m_mediaList.count();
+                m_currentIndex = m_shuffle.isEnabled() ? find(m_shuffle.setCurrentIndex(index)) : (TTK::random() % m_mediaList.count());
                 break;
             }
             case TTK::PlayMode::Once: break;
@@ -218,7 +278,7 @@ void MusicPlaylist::setCurrentIndex(int index)
     {
         if(m_playbackMode == TTK::PlayMode::Random)
         {
-            m_currentIndex = TTK::random() % m_mediaList.count();
+            m_currentIndex = m_shuffle.isEnabled() ? find(m_shuffle.setCurrentIndex(index)) : (TTK::random() % m_mediaList.count());
         }
         else
         {
@@ -230,7 +290,7 @@ void MusicPlaylist::setCurrentIndex(int index)
     {
         if(m_playbackMode == TTK::PlayMode::Random)
         {
-            m_currentIndex = TTK::random() % m_mediaList.count();
+            m_currentIndex = m_shuffle.isEnabled() ? find(m_shuffle.setCurrentIndex(index)) : (TTK::random() % m_mediaList.count());
         }
         else
         {
@@ -243,6 +303,11 @@ void MusicPlaylist::setCurrentIndex(int index)
     else
     {
         m_currentIndex = index;
+        //
+        if(m_playbackMode == TTK::PlayMode::Random && m_shuffle.isEnabled())
+        {
+            m_shuffle.setCurrentIndex(currentItem());
+        }
     }
 
     if(!m_queueList.isEmpty())

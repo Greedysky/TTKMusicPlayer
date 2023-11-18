@@ -802,6 +802,8 @@ void MusicApplication::createRightMenu()
 void MusicApplication::applyParameter()
 {
     //This attribute is effective immediately.
+    m_playlist->setShuffleMode(G_SETTING_PTR->value(MusicSettingManager::OtherRandomShuffleMode).toBool());
+    //
     m_applicationObject->applyParameter();
     m_rightAreaWidget->applyParameter();
     m_bottomAreaWidget->applyParameter();
@@ -1154,6 +1156,8 @@ void MusicApplication::readSystemConfigFromFile()
         m_ui->musicPlayedList->append(songs[value].m_songs);
     }
 
+    applyParameter();
+
     if(success && lastPlayIndex[0] == "1")
     {
         QTimer::singleShot(TTK_DN_ONCE, m_songTreeWidget, SLOT(updateCurrentIndex()));
@@ -1197,10 +1201,6 @@ void MusicApplication::readSystemConfigFromFile()
     {
         m_applicationObject->soureUpdateCheck();
     }
-
-    m_rightAreaWidget->applyParameter();
-    m_bottomAreaWidget->applyParameter();
-    m_applicationObject->applyParameter();
 }
 
 void MusicApplication::writeSystemConfigToFile()

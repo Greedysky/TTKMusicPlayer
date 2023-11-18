@@ -195,15 +195,12 @@ void MusicBottomAreaWidget::resizeWindow()
 
 void MusicBottomAreaWidget::applyParameter()
 {
-    bool config = G_SETTING_PTR->value(MusicSettingManager::CloseEventMode).toBool();
-    setSystemCloseConfig(config);
-         config = G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
-    setDestopLrcVisible(config);
+    setSystemCloseConfig(G_SETTING_PTR->value(MusicSettingManager::CloseEventMode).toBool());
+    setDestopLrcVisible(G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool());
 
     if(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool())
     {
-        config = G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool();
-        m_rippleModule->update(!config);
+        m_rippleModule->update(!G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool());
     }
     else
     {
