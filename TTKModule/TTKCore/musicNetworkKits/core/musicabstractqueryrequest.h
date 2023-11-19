@@ -180,7 +180,7 @@ Q_SIGNALS:
     /*!
      * Clear all items before the new query start.
      */
-    void clearAllItems();
+    void clearItems();
     /*!
      * Create the current items by song name\ artist name and time.
      */

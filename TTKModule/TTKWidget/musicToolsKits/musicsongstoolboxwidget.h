@@ -255,7 +255,7 @@ public:
     /*!
      * Get current valid index.
      */
-    int validIndex() const;
+    int makeValidIndex() const;
 
 private:
     /*!

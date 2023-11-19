@@ -136,7 +136,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path, int
 
     if(playlistRow < 0)
     {
-        playlistRow = validIndex();
+        playlistRow = makeValidIndex();
     }
 
     const QFileInfo fin(path);
@@ -192,7 +192,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
 
     if(playlistRow < 0)
     {
-        playlistRow = validIndex();
+        playlistRow = makeValidIndex();
     }
 
     closeSearchWidgetInNeed();
@@ -443,7 +443,7 @@ void MusicSongsSummariziedWidget::deleteRowItemAll(int index)
     if(widget->rowCount() > 0)
     {
         widget->setCurrentCell(0, 1);
-        widget->removeItemAll();
+        widget->clearItems();
     }
     m_toolDeleteChanged = false;
 
@@ -756,7 +756,7 @@ void MusicSongsSummariziedWidget::addSongToPlaylist(const QStringList &items)
     }
 
     QStringList files(items);
-    const int row = validIndex();
+    const int row = makeValidIndex();
     importMusicSongsByPath(files, row);
 
     const MusicSongItem *item = &m_containerItems[row];
@@ -814,7 +814,7 @@ void MusicSongsSummariziedWidget::removeItemAt(const TTKIntList &index, bool fil
     TTKObjectCast(MusicSongsListPlayTableWidget*, item->m_itemObject)->createUploadFileModule();
 }
 
-void MusicSongsSummariziedWidget::setMusicIndexSwaped(int start, int end, int play, MusicSongList &songs)
+void MusicSongsSummariziedWidget::itemIndexSwaped(int start, int end, int play, MusicSongList &songs)
 {
     MusicSongList *names = &m_containerItems[m_currentIndex].m_songs;
     if(start > end)
@@ -839,13 +839,13 @@ void MusicSongsSummariziedWidget::setMusicIndexSwaped(int start, int end, int pl
     }
 }
 
-void MusicSongsSummariziedWidget::isCurrentIndex(bool &state)
+void MusicSongsSummariziedWidget::isCurrentPlaylistRow(bool &state)
 {
     const int cIndex = m_toolDeleteChanged ? m_selectDeleteIndex : m_currentIndex;
     state = (cIndex == m_playRowIndex);
 }
 
-void MusicSongsSummariziedWidget::isSearchResultEmpty(bool &empty)
+void MusicSongsSummariziedWidget::isSearchedResultEmpty(bool &empty)
 {
     empty = !hasSearchResult();
 }
@@ -1162,10 +1162,10 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     setSongSort(widget, &item->m_sort);
     widget->setPlaylistRow(foundMappedIndex(item->m_itemIndex));
 
-    connect(widget, SIGNAL(isCurrentIndex(bool&)), SLOT(isCurrentIndex(bool&)));
-    connect(widget, SIGNAL(isSearchResultEmpty(bool&)), SLOT(isSearchResultEmpty(bool&)));
+    connect(widget, SIGNAL(isCurrentPlaylistRow(bool&)), SLOT(isCurrentPlaylistRow(bool&)));
+    connect(widget, SIGNAL(isSearchedResultEmpty(bool&)), SLOT(isSearchedResultEmpty(bool&)));
     connect(widget, SIGNAL(deleteItemAt(TTKIntList,bool)), SLOT(removeItemAt(TTKIntList,bool)));
-    connect(widget, SIGNAL(queryMusicIndexSwaped(int,int,int,MusicSongList&)), SLOT(setMusicIndexSwaped(int,int,int,MusicSongList&)));
+    connect(widget, SIGNAL(itemIndexSwaped(int,int,int,MusicSongList&)), SLOT(itemIndexSwaped(int,int,int,MusicSongList&)));
     connect(widget, SIGNAL(addSongToLovestListAt(bool,int)), SLOT(addSongToLovestListAt(bool,int)));
     connect(widget, SIGNAL(showFloatWidget()), SLOT(showFloatWidget()));
     connect(widget, SIGNAL(songListSortBy(int)), SLOT(songListSortBy(int)));

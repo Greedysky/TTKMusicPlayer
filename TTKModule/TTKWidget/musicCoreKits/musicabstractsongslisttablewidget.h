@@ -74,9 +74,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Check is current play stack widget.
+     * Check is current play list row.
      */
-    void isCurrentIndex(bool &state);
+    void isCurrentPlaylistRow(bool &state);
 
 public Q_SLOTS:
     /*!
@@ -90,7 +90,7 @@ public Q_SLOTS:
     /*!
      * Remove all items from list.
      */
-    void removeItemAll();
+    void clearItems();
     /*!
      * Open the music at local path.
      */

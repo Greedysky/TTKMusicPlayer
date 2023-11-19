@@ -107,7 +107,7 @@ private:
     /*!
      * Clear all items.
      */
-    void deleteItems();
+    void clearItems();
     /*!
      * Create barrage item label.
      */

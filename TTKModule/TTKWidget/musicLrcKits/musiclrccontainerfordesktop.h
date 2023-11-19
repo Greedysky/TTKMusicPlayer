@@ -79,7 +79,7 @@ public:
     /*!
      * Make object status copy.
      */
-    void makeStatusCopy(MusicLrcContainerForDesktop *other);
+    void statusCopyFrom(MusicLrcContainerForDesktop *other);
 
 Q_SIGNALS:
     /*!

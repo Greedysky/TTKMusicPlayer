@@ -126,7 +126,7 @@ private:
     /*!
      * Clear All Items.
      */
-    void clearAllItems();
+    void clearItems();
     /*!
      * Set current item or items selected.
      */

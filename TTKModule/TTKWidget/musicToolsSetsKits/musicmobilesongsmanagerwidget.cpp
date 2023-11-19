@@ -163,7 +163,7 @@ MusicMobileSongsManagerWidget::~MusicMobileSongsManagerWidget()
 {
     G_CONNECTION_PTR->removeValue(this);
     G_SINGLE_MANAGER_PTR->removeObject(className());
-    clearAllItems();
+    clearItems();
     m_thread->stop();
     delete m_thread;
     delete m_ui;
@@ -229,7 +229,7 @@ void MusicMobileSongsManagerWidget::searchFilePathChanged(const QStringList &pat
 {
     TTK_INFO_STREAM("Stop fetch result");
 
-    clearAllItems();
+    clearItems();
     clearSearchResult();
     m_ui->searchLineEdit->clear();
 
@@ -258,11 +258,11 @@ void MusicMobileSongsManagerWidget::searchResultChanged(int, int column)
     m_searchResultLevel = column;
     m_searchResultCache.insert(column, result);
 
-    clearAllItems();
+    clearItems();
     m_ui->songlistTable->addCellItems(data);
 }
 
-void MusicMobileSongsManagerWidget::clearAllItems()
+void MusicMobileSongsManagerWidget::clearItems()
 {
     m_ui->songlistTable->removeItems();
     if(m_ui->allSelectedcheckBox->isChecked())

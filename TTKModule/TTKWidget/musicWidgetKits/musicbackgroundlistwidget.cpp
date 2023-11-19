@@ -147,7 +147,7 @@ MusicBackgroundListWidget::MusicBackgroundListWidget(QWidget *parent)
 
 MusicBackgroundListWidget::~MusicBackgroundListWidget()
 {
-    clearAllItems();
+    clearItems();
     delete m_gridLayout;
 }
 
@@ -172,7 +172,7 @@ void MusicBackgroundListWidget::clearState()
     }
 }
 
-void MusicBackgroundListWidget::clearAllItems()
+void MusicBackgroundListWidget::clearItems()
 {
     qDeleteAll(m_items);
     m_items.clear();

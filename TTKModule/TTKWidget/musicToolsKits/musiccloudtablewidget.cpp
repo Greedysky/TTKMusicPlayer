@@ -185,7 +185,7 @@ void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addSeparator();
 
     menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(removeItemAt()))->setEnabled(status);
-    menu.addAction(tr("Delete All"), this, SLOT(removeItemAll()))->setEnabled(status);
+    menu.addAction(tr("Delete All"), this, SLOT(clearItems()))->setEnabled(status);
     menu.addSeparator();
 
     menu.addAction(tr("Reupload"), this, SLOT(reuploadFile()))->setEnabled(status);

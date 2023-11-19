@@ -74,13 +74,13 @@ void MusicAbstractSongsListTableWidget::playClicked()
     Q_EMIT cellDoubleClicked(currentRow(), 0);
 }
 
-void MusicAbstractSongsListTableWidget::removeItemAll()
+void MusicAbstractSongsListTableWidget::clearItems()
 {
     selectAll();
     removeItemAt();
 
     bool state = false;
-    Q_EMIT isCurrentIndex(state);
+    Q_EMIT isCurrentPlaylistRow(state);
 
     if(rowCount() == 0 && state)
     {

@@ -51,13 +51,9 @@ public:
     inline int index() const { return m_index; }
 
     /*!
-     * Set active.
-     */
-    inline void setActive(bool active) { m_isActive = active; }
-    /*!
      * Get active.
      */
-    inline int active() const { return m_isActive; }
+    bool isActive();
 
     /*!
      * Set expand.

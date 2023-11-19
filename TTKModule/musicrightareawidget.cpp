@@ -676,7 +676,7 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
 
     if(desktop)
     {
-        m_lrcForDesktop->makeStatusCopy(desktop);
+        m_lrcForDesktop->statusCopyFrom(desktop);
         desktop->deleteLater();
     }
 

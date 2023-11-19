@@ -245,7 +245,7 @@ void MusicPlayedListPopWidget::removeItemAt(const TTKIntList &index)
     setPlaylistCount(m_songList.count());
 }
 
-void MusicPlayedListPopWidget::removeItemAll()
+void MusicPlayedListPopWidget::clearItems()
 {
     if(m_songList.isEmpty())
     {
@@ -356,7 +356,7 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     deleteButton->setToolTip(tr("Clear List"));
     deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     deleteButton->setStyleSheet(TTK::UI::TinyBtnDelete);
-    connect(deleteButton, SIGNAL(clicked()), SLOT(removeItemAll()));
+    connect(deleteButton, SIGNAL(clicked()), SLOT(clearItems()));
 
 #ifdef Q_OS_UNIX
     shareButton->setFocusPolicy(Qt::NoFocus);

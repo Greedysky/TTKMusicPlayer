@@ -275,7 +275,7 @@ void MusicSongsToolBoxWidget::setSongSort(QWidget *item, MusicSongSort *sort)
     }
 }
 
-int MusicSongsToolBoxWidget::validIndex() const
+int MusicSongsToolBoxWidget::makeValidIndex() const
 {
     int index = MUSIC_NORMAL_LIST;
     for(int i = 0; i < m_itemList.count(); ++i)

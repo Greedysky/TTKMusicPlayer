@@ -192,15 +192,15 @@ public Q_SLOTS:
     /*!
      * Swap the current play index when user drag and drop.
      */
-    void setMusicIndexSwaped(int start, int end, int play, MusicSongList &songs);
+    void itemIndexSwaped(int start, int end, int play, MusicSongList &songs);
     /*!
      * Check is current play stack widget.
      */
-    void isCurrentIndex(bool &state);
+    void isCurrentPlaylistRow(bool &state);
     /*!
      * Check current list is searched or not.
      */
-    void isSearchResultEmpty(bool &empty);
+    void isSearchedResultEmpty(bool &empty);
     /*!
      * Set current music song play count by given song index.
      */

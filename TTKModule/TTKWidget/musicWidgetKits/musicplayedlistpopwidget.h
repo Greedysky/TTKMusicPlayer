@@ -145,7 +145,7 @@ public Q_SLOTS:
     /*!
      * Remove all items from list.
      */
-    void removeItemAll();
+    void clearItems();
     /*!
      * List cell item double clicked.
      */

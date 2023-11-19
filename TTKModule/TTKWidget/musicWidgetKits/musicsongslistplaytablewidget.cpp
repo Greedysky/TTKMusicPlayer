@@ -370,7 +370,7 @@ void MusicSongsListPlayTableWidget::itemCellClicked(int row, int column)
         case 3:
         {
             bool empty;
-            Q_EMIT isSearchResultEmpty(empty);
+            Q_EMIT isSearchedResultEmpty(empty);
             if(!empty)
             {
                 return;
@@ -388,7 +388,7 @@ void MusicSongsListPlayTableWidget::itemCellClicked(int row, int column)
         case 4:
         {
             bool empty;
-            Q_EMIT isSearchResultEmpty(empty);
+            Q_EMIT isSearchedResultEmpty(empty);
             if(!empty)
             {
                 return;
@@ -495,7 +495,7 @@ void MusicSongsListPlayTableWidget::showTimeOut()
         m_songsInfoWidget->move(mapToGlobal(QPoint(width(), 0)).x() + 8, QCursor::pos().y());
 
         bool state;
-        Q_EMIT isCurrentIndex(state);
+        Q_EMIT isCurrentPlaylistRow(state);
         m_songsInfoWidget->setVisible(state ? (m_songsPlayWidget && !m_songsPlayWidget->itemRenameState()) : true);
     }
 }
@@ -732,11 +732,11 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addSeparator();
 
     status = false;
-    Q_EMIT isSearchResultEmpty(status);
+    Q_EMIT isSearchedResultEmpty(status);
     menu.addAction(tr("Rename"), this, SLOT(setChangSongName()))->setEnabled(status);
     menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(removeItemAt()))->setEnabled(status);
     menu.addAction(tr("Delete With File"), this, SLOT(removeItemWithFile()))->setEnabled(status);
-    menu.addAction(tr("Delete All"), this, SLOT(removeItemAll()))->setEnabled(status);
+    menu.addAction(tr("Delete All"), this, SLOT(clearItems()))->setEnabled(status);
     menu.addSeparator();
 
     const QString &songName = currentSongName();
@@ -783,7 +783,8 @@ void MusicSongsListPlayTableWidget::closeRenameItem()
 void MusicSongsListPlayTableWidget::startToDrag()
 {
     bool empty;
-    Q_EMIT isSearchResultEmpty(empty);
+    Q_EMIT isSearchedResultEmpty(empty);
+
     if(empty && m_dragStartIndex > -1 && m_leftButtonPressed && m_mouseMoved)
     {
         MusicSongList songs;
@@ -811,7 +812,7 @@ void MusicSongsListPlayTableWidget::startToDrag()
             }
         }
 
-        Q_EMIT queryMusicIndexSwaped(start, end, index, songs);
+        Q_EMIT itemIndexSwaped(start, end, index, songs);
         for(int i = qMin(start, end); i <= qMax(start, end); ++i)
         {
             if(i == index)
@@ -825,7 +826,7 @@ void MusicSongsListPlayTableWidget::startToDrag()
         }
 
         bool state;
-        Q_EMIT isCurrentIndex(state);
+        Q_EMIT isCurrentPlaylistRow(state);
         if(state)
         {
             selectRow(index);

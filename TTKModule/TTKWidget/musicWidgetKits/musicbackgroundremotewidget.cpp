@@ -72,7 +72,7 @@ void MusicBackgroundRemoteWidget::startRequest(const QString &prefix)
     const QString &path = QString("%1%2").arg(CACHE_DIR_FULL, m_groups[m_currentIndex].m_group);
     QDir().mkpath(path);
 
-    m_backgroundList->clearAllItems();
+    m_backgroundList->clearItems();
 
     MusicDownloadQueueDataList datas;
     for(const MusicSkinRemoteItem &item : qAsConst(m_groups[m_currentIndex].m_items))
@@ -165,7 +165,7 @@ void MusicBackgroundOnlineWidget::initialize()
     }
     else
     {
-        m_backgroundList->clearAllItems();
+        m_backgroundList->clearItems();
     }
 }
 

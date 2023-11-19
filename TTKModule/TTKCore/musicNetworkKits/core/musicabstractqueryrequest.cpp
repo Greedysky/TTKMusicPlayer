@@ -38,7 +38,7 @@ QString MusicAbstractQueryRequest::mapQueryServerString() const
 
 void MusicAbstractQueryRequest::downLoadFinished()
 {
-    Q_EMIT clearAllItems();
+    Q_EMIT clearItems();
     m_songInfos.clear();
     MusicPageQueryRequest::downLoadFinished();
 }

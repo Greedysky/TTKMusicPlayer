@@ -175,7 +175,7 @@ public:
     /*!
      * Clear All Items.
      */
-    void clearAllItems();
+    void clearItems();
 
     /*!
      * Create cell item by input data.

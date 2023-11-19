@@ -96,7 +96,7 @@ void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first, const Q
     resizeLrcSizeArea();
 }
 
-void MusicLrcContainerForDesktop::makeStatusCopy(MusicLrcContainerForDesktop *other)
+void MusicLrcContainerForDesktop::statusCopyFrom(MusicLrcContainerForDesktop *other)
 {
     m_currentSongName = other->m_currentSongName;
     m_toolPlayButton->setStyleSheet(other->m_toolPlayButton->styleSheet());

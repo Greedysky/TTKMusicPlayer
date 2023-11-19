@@ -84,7 +84,7 @@ Q_SIGNALS:
     /*!
      * Check current list is searched or not.
      */
-    void isSearchResultEmpty(bool &empty);
+    void isSearchedResultEmpty(bool &empty);
     /*!
      * Delete items from indexs and check remove file or not.
      */
@@ -92,7 +92,7 @@ Q_SIGNALS:
     /*!
      * Swap the current play index when user drag and drop.
      */
-    void queryMusicIndexSwaped(int start, int end, int play, MusicSongList &songs);
+    void itemIndexSwaped(int start, int end, int play, MusicSongList &songs);
     /*!
      * Add or remove music list song to lovest list by row.
      */

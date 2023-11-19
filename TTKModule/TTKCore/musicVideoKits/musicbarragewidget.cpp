@@ -46,7 +46,7 @@ MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
 
 MusicBarrageWidget::~MusicBarrageWidget()
 {
-    deleteItems();
+    clearItems();
 }
 
 void MusicBarrageWidget::start()
@@ -100,7 +100,7 @@ void MusicBarrageWidget::barrageStateChanged(bool on)
     m_barrageState = on;
     if(m_barrageState && !m_barrageRecords.isEmpty())
     {
-        deleteItems();
+        clearItems();
         createLabel();
         createAnimation();
         start();
@@ -125,7 +125,7 @@ void MusicBarrageWidget::addBarrage(const MusicBarrageRecord &record)
     }
 }
 
-void MusicBarrageWidget::deleteItems()
+void MusicBarrageWidget::clearItems()
 {
     qDeleteAll(m_labels);
     qDeleteAll(m_animations);

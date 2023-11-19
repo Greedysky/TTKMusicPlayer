@@ -45,6 +45,13 @@ MusicFunctionToolBoxTopWidget::~MusicFunctionToolBoxTopWidget()
     delete m_labelText;
 }
 
+bool MusicFunctionToolBoxTopWidget::isActive()
+{
+    m_isActive = geometry().contains(mapFromGlobal(QCursor::pos()));
+    update();
+    return m_isActive;
+}
+
 void MusicFunctionToolBoxTopWidget::setExpand(bool expand)
 {
     m_labelIcon->setPixmap(QPixmap(expand ? ":/tiny/lb_arrow_down_normal" : ":/tiny/lb_arrow_up_normal"));
@@ -232,10 +239,7 @@ bool MusicFunctionToolBoxWidgetItem::isExpand() const
 
 bool MusicFunctionToolBoxWidgetItem::isActive() const
 {
-    const bool v = m_topWidget->geometry().contains(m_topWidget->mapFromGlobal(QCursor::pos()));
-    m_topWidget->setActive(v);
-    m_topWidget->update();
-    return v;
+    return m_topWidget->isActive();
 }
 
 void MusicFunctionToolBoxWidgetItem::initialize()
