@@ -14,7 +14,8 @@ MusicFunctionToolBoxTopWidget::MusicFunctionToolBoxTopWidget(int index, const QS
       m_index(index),
       m_isDrawTopState(false),
       m_isDrawMoveState(false),
-      m_isBlockMoveExpand(false)
+      m_isBlockMoveExpand(false),
+      m_isActive(false)
 {
     setAcceptDrops(true);
     setFixedHeight(40);
@@ -44,12 +45,12 @@ MusicFunctionToolBoxTopWidget::~MusicFunctionToolBoxTopWidget()
     delete m_labelText;
 }
 
-void MusicFunctionToolBoxTopWidget::setItemExpand(bool expand)
+void MusicFunctionToolBoxTopWidget::setExpand(bool expand)
 {
     m_labelIcon->setPixmap(QPixmap(expand ? ":/tiny/lb_arrow_down_normal" : ":/tiny/lb_arrow_up_normal"));
 }
 
-bool MusicFunctionToolBoxTopWidget::isItemExpand() const
+bool MusicFunctionToolBoxTopWidget::isExpand() const
 {
     const QPixmap &pixmap = QtLablePixmap(m_labelIcon);
     return pixmap.cacheKey() == QPixmap(":/tiny/lb_arrow_down_normal").cacheKey();
@@ -126,17 +127,17 @@ void MusicFunctionToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton)
     {
         Q_EMIT itemIndexChanged(m_index);
-        m_pressPosAt = event->pos();
+        m_pressAt = event->pos();
     }
 }
 
 void MusicFunctionToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);
-    QRect itemRect(m_pressPosAt.x() - 2, m_pressPosAt.y() - 2, m_pressPosAt.x() + 2, m_pressPosAt.y() + 2);
+    QRect itemRect(m_pressAt.x() - 2, m_pressAt.y() - 2, m_pressAt.x() + 2, m_pressAt.y() + 2);
     if(!itemRect.contains(event->pos()) && isItemEnabled())
     {
-        if(!m_isBlockMoveExpand && isItemExpand())
+        if(!m_isBlockMoveExpand && isExpand())
         {
             Q_EMIT itemIndexChanged(m_index);
         }
@@ -215,22 +216,26 @@ void MusicFunctionToolBoxWidgetItem::setTitle(const QString &text)
     m_topWidget->setTitle(text);
 }
 
-void MusicFunctionToolBoxWidgetItem::setItemExpand(bool expand)
+void MusicFunctionToolBoxWidgetItem::setExpand(bool expand)
 {
-    m_topWidget->setItemExpand(expand);
+    m_topWidget->setExpand(expand);
     if(m_item)
     {
         m_item->setVisible(expand);
     }
 }
 
-bool MusicFunctionToolBoxWidgetItem::itemExpand() const
+bool MusicFunctionToolBoxWidgetItem::isExpand() const
 {
-    if(m_item)
-    {
-        return m_item->isVisible();
-    }
-    return false;
+    return m_item ? m_item->isVisible() : false;
+}
+
+bool MusicFunctionToolBoxWidgetItem::isActive() const
+{
+    const bool v = m_topWidget->geometry().contains(m_topWidget->mapFromGlobal(QCursor::pos()));
+    m_topWidget->setActive(v);
+    m_topWidget->update();
+    return v;
 }
 
 void MusicFunctionToolBoxWidgetItem::initialize()
@@ -311,7 +316,7 @@ void MusicFunctionToolBoxWidget::addCellItem(QWidget *item, const QString &text)
     //hide before widget
     for(int i = 0; i < m_itemList.count(); ++i)
     {
-        m_itemList[i].m_widgetItem->setItemExpand(false);
+        m_itemList[i].m_widgetItem->setExpand(false);
     }
 
     // Add item and make sure it stretches the remaining space.
@@ -393,7 +398,7 @@ void MusicFunctionToolBoxWidget::setCurrentIndex(int index)
     m_currentIndex = index;
     for(int i = 0; i < m_itemList.count(); ++i)
     {
-        m_itemList[i].m_widgetItem->setItemExpand(i == index);
+        m_itemList[i].m_widgetItem->setExpand(i == index);
     }
 }
 
@@ -402,8 +407,8 @@ void MusicFunctionToolBoxWidget::itemIndexChanged(int index)
     m_currentIndex = foundMappedIndex(index);
     for(int i = 0; i < m_itemList.count(); ++i)
     {
-        const bool hide = (i == m_currentIndex) ? !m_itemList[i].m_widgetItem->itemExpand() : false;
-        m_itemList[i].m_widgetItem->setItemExpand(hide);
+        const bool hide = (i == m_currentIndex) ? !m_itemList[i].m_widgetItem->isExpand() : false;
+        m_itemList[i].m_widgetItem->setExpand(hide);
     }
 }
 

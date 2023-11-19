@@ -13,6 +13,8 @@
 #include "musicfileutils.h"
 #include "musicformats.h"
 
+#include <QMimeData>
+
 static constexpr int ITEM_MIN_COUNT = MIN_ITEM_COUNT;
 static constexpr int ITEM_MAX_COUNT = 10;
 static constexpr int RECENT_ITEM_MAX_COUNT = 50;
@@ -22,12 +24,13 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
       MusicItemSearchInterfaceClass(),
       m_playRowIndex(MUSIC_NORMAL_LIST),
       m_lastSearchIndex(MUSIC_NORMAL_LIST),
-      m_selectImportIndex(MUSIC_NORMAL_LIST),
       m_selectDeleteIndex(MUSIC_NORMAL_LIST),
       m_toolDeleteChanged(false),
       m_listFunctionWidget(nullptr),
       m_songSearchWidget(nullptr)
 {
+    setAcceptDrops(true);
+
     m_listMaskWidget = new MusicSongsToolBoxMaskWidget(this);
     setInputModule(m_listMaskWidget);
 
@@ -124,46 +127,16 @@ void MusicSongsSummariziedWidget::appendMusicItemList(const MusicSongItemList &i
     }
 }
 
-void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &files)
-{
-    if(files.isEmpty())
-    {
-        return;
-    }
-
-    closeSearchWidgetInNeed();
-
-    MusicProgressWidget progress;
-    progress.setTitle(tr("Import file mode"));
-    progress.setRange(0, files.count());
-    progress.show();
-
-    MusicSongItem *item = &m_containerItems[m_selectImportIndex];
-
-    int i = 0;
-    for(const QString &path : qAsConst(files))
-    {
-        if(item->m_songs.contains(MusicSong(path)))
-        {
-            continue;
-        }
-
-        progress.setValue(++i);
-        item->m_songs << TTK::generateSongList(path);
-    }
-
-    item->m_itemObject->updateSongsList(item->m_songs);
-    setItemTitle(item);
-    setCurrentIndex(m_selectImportIndex);
-
-    MusicToastLabel::popup(tr("Import music songs done"));
-}
-
-void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
+void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path, int playlistRow)
 {
     if(path.isEmpty())
     {
         return;
+    }
+
+    if(playlistRow < 0)
+    {
+        playlistRow = validIndex();
     }
 
     const QFileInfo fin(path);
@@ -178,7 +151,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
             }
         }
 
-        importMusicSongsByPath(files);
+        importMusicSongsByPath(files, playlistRow);
     }
     else if(TTK::String::isNetworkUrl(path))
     {
@@ -206,8 +179,48 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path)
            files << fin.absoluteFilePath();
         }
 
-        importMusicSongsByPath(files);
+        importMusicSongsByPath(files, playlistRow);
     }
+}
+
+void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &files, int playlistRow)
+{
+    if(files.isEmpty())
+    {
+        return;
+    }
+
+    if(playlistRow < 0)
+    {
+        playlistRow = validIndex();
+    }
+
+    closeSearchWidgetInNeed();
+
+    MusicProgressWidget progress;
+    progress.setTitle(tr("Import file mode"));
+    progress.setRange(0, files.count());
+    progress.show();
+
+    MusicSongItem *item = &m_containerItems[playlistRow];
+
+    int i = 0;
+    for(const QString &path : qAsConst(files))
+    {
+        if(item->m_songs.contains(MusicSong(path)))
+        {
+            continue;
+        }
+
+        progress.setValue(++i);
+        item->m_songs << TTK::generateSongList(path);
+    }
+
+    item->m_itemObject->updateSongsList(item->m_songs);
+    setItemTitle(item);
+    setCurrentIndex(playlistRow);
+
+    MusicToastLabel::popup(tr("Import music songs done"));
 }
 
 QStringList MusicSongsSummariziedWidget::musicSongsFileName(int index) const
@@ -374,7 +387,7 @@ void MusicSongsSummariziedWidget::deleteRowItem(int index)
     if(m_playRowIndex == id)
     {
         setCurrentIndex(MUSIC_NORMAL_LIST);
-        m_itemList.front().m_widgetItem->setItemExpand(false);
+        m_itemList.front().m_widgetItem->setExpand(false);
         MusicApplication::instance()->playIndexBy(TTK_NORMAL_LEVEL);
     }
     else if(m_playRowIndex > id)
@@ -401,7 +414,7 @@ void MusicSongsSummariziedWidget::deleteRowItems()
     if(m_playRowIndex != MUSIC_NORMAL_LIST && TTK::playlistRowValid(m_playRowIndex))
     {
         setCurrentIndex(MUSIC_NORMAL_LIST);
-        m_itemList.front().m_widgetItem->setItemExpand(false);
+        m_itemList.front().m_widgetItem->setExpand(false);
         MusicApplication::instance()->playIndexBy(TTK_NORMAL_LEVEL);
     }
 
@@ -528,7 +541,7 @@ void MusicSongsSummariziedWidget::importSongsByFiles(int index)
 {
     if(index == TTK_LOW_LEVEL)
     {
-        m_selectImportIndex = m_currentIndex;
+        index = m_currentIndex;
     }
     else
     {
@@ -538,18 +551,17 @@ void MusicSongsSummariziedWidget::importSongsByFiles(int index)
             return;
         }
 
-        m_selectImportIndex = id;
+        index = id;
     }
 
-    MusicApplication::instance()->importSongsByFiles();
-    m_selectImportIndex = MUSIC_NORMAL_LIST;
+    MusicApplication::instance()->importSongsByFiles(index);
 }
 
 void MusicSongsSummariziedWidget::importSongsByDir(int index)
 {
     if(index == TTK_LOW_LEVEL)
     {
-        m_selectImportIndex = m_currentIndex;
+        index = m_currentIndex;
     }
     else
     {
@@ -559,11 +571,10 @@ void MusicSongsSummariziedWidget::importSongsByDir(int index)
             return;
         }
 
-        m_selectImportIndex = id;
+        index = id;
     }
 
-    MusicApplication::instance()->importSongsByDir();
-    m_selectImportIndex = MUSIC_NORMAL_LIST;
+    MusicApplication::instance()->importSongsByDir(index);
 }
 
 void MusicSongsSummariziedWidget::showSongCheckToolsWidget()
@@ -745,9 +756,10 @@ void MusicSongsSummariziedWidget::addSongToPlaylist(const QStringList &items)
     }
 
     QStringList files(items);
-    importMusicSongsByPath(files);
+    const int row = validIndex();
+    importMusicSongsByPath(files, row);
 
-    const MusicSongItem *item = &m_containerItems[MUSIC_NORMAL_LIST];
+    const MusicSongItem *item = &m_containerItems[row];
     const MusicSongList *musicSongs = &item->m_songs;
     const MusicSong &song = MusicSong(items.back());
 
@@ -990,10 +1002,10 @@ void MusicSongsSummariziedWidget::sliderValueChanaged(int value)
     if(value >= 40 * (m_currentIndex + 1) && m_currentIndex > -1 && m_currentIndex < m_containerItems.count())
     {
         MusicSongItem *item = &m_containerItems[m_currentIndex];
-        m_listMaskWidget->setItemIndex(item->m_itemIndex);
+        m_listMaskWidget->setIndex(item->m_itemIndex);
         m_listMaskWidget->setSongSort(&item->m_sort);
         m_listMaskWidget->setTitle(QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
-        m_listMaskWidget->setItemExpand(true);
+        m_listMaskWidget->setExpand(true);
         m_listMaskWidget->raise();
         m_listMaskWidget->show();
     }
@@ -1013,6 +1025,64 @@ void MusicSongsSummariziedWidget::resizeEvent(QResizeEvent *event)
 {
     MusicSongsToolBoxWidget::resizeEvent(event);
     resizeWindow();
+}
+
+void MusicSongsSummariziedWidget::dragEnterEvent(QDragEnterEvent *event)
+{
+    MusicSongsToolBoxWidget::dragEnterEvent(event);
+    event->setDropAction(Qt::IgnoreAction);
+    event->accept();
+}
+
+void MusicSongsSummariziedWidget::dragMoveEvent(QDragMoveEvent *event)
+{
+    MusicSongsToolBoxWidget::dragMoveEvent(event);
+
+    bool contains = false;
+    for(const MusicToolBoxWidgetItem &item : qAsConst(m_itemList))
+    {
+        if(!TTK::playlistRowValid(item.m_itemIndex))
+        {
+            continue;
+        }
+
+        QWidget *container = item.m_widgetItem->item();
+        if(item.m_widgetItem->isActive() || (container && container->isVisible()))
+        {
+            contains = true;
+        }
+    }
+
+    event->setDropAction(contains ? Qt::CopyAction : Qt::IgnoreAction);
+    event->accept();
+}
+
+void MusicSongsSummariziedWidget::dropEvent(QDropEvent *event)
+{
+    MusicSongsToolBoxWidget::dropEvent(event);
+
+    for(const MusicToolBoxWidgetItem &item : qAsConst(m_itemList))
+    {
+        if(!TTK::playlistRowValid(item.m_itemIndex))
+        {
+            continue;
+        }
+
+        QWidget *container = item.m_widgetItem->item();
+        if(item.m_widgetItem->isActive() || (container && container->isVisible()))
+        {
+            QStringList files;
+            const QMimeData *data = event->mimeData();
+
+            for(const QUrl &url : data->urls())
+            {
+                files << url.toLocalFile();
+            }
+
+            importMusicSongsByPath(files, foundMappedIndex(item.m_itemIndex));
+            break;
+        }
+    }
 }
 
 void MusicSongsSummariziedWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -1112,7 +1182,7 @@ void MusicSongsSummariziedWidget::setItemTitle(MusicSongItem *item)
     const QString title(QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
     setTitle(item->m_itemObject, title);
 
-    if(m_listMaskWidget->isVisible() && m_listMaskWidget->itemIndex() == item->m_itemIndex)
+    if(m_listMaskWidget->isVisible() && m_listMaskWidget->index() == item->m_itemIndex)
     {
         m_listMaskWidget->setTitle(title);
     }

@@ -102,6 +102,6 @@ MusicFunctionToolBoxWidgetItem *MusicDownloadToolBoxWidget::initialItem(QWidget 
 {
     MusicFunctionToolBoxWidgetItem *it = new MusicNormalToolBoxWidgetItem(m_itemIndexRaise, text, this);
     it->addCellItem(item);
-    it->setItemExpand(true);
+    it->setExpand(true);
     return it;
 }

@@ -42,22 +42,31 @@ public:
     ~MusicFunctionToolBoxTopWidget();
 
     /*!
-     * Set Item index.
+     * Set index.
      */
-    inline void setItemIndex(int index) { m_index = index; }
+    inline void setIndex(int index) { m_index = index; }
     /*!
-     * Get Item index.
+     * Get index.
      */
-    inline int itemIndex() const { return m_index; }
+    inline int index() const { return m_index; }
 
     /*!
-     * Set Item expand.
+     * Set active.
      */
-    void setItemExpand(bool expand);
+    inline void setActive(bool active) { m_isActive = active; }
     /*!
-     * Get Item expand.
+     * Get active.
      */
-    bool isItemExpand() const;
+    inline int active() const { return m_isActive; }
+
+    /*!
+     * Set expand.
+     */
+    void setExpand(bool expand);
+    /*!
+     * Get expand.
+     */
+    bool isExpand() const;
 
     /*!
      * Set top label title.
@@ -99,8 +108,8 @@ protected:
     QLabel *m_labelIcon, *m_labelText;
 
     bool m_isDrawTopState, m_isDrawMoveState;
-    bool m_isBlockMoveExpand;
-    QPoint m_pressPosAt;
+    bool m_isBlockMoveExpand, m_isActive;
+    QPoint m_pressAt;
 
 };
 
@@ -141,11 +150,16 @@ public:
     /*!
      * Set item widget to hide or not.
      */
-    void setItemExpand(bool expand);
+    void setExpand(bool expand);
     /*!
      * Get item widget expand state.
      */
-    bool itemExpand() const;
+    bool isExpand() const;
+
+    /*!
+     * Get item widget is in active state.
+     */
+    bool isActive() const;
 
 Q_SIGNALS:
     /*!
@@ -245,6 +259,7 @@ public:
      * Reset scroll index by given position.
      */
     void resizeScrollIndex(int index) const;
+
     /*!
      * Get current index.
      */

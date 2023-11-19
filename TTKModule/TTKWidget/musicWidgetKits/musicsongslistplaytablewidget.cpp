@@ -240,7 +240,7 @@ bool MusicSongsListPlayTableWidget::createUploadFileModule()
     {
         setFixedSize(LEFT_SIDE_WIDTH_MIN, 100);
         if(m_openFileWidget == nullptr && m_parent)
-        { 
+        {
             m_openFileWidget = new MusicOpenFileWidget(this);
             connect(m_openFileWidget, SIGNAL(uploadFileClicked()), m_parent, SLOT(importSongsByFiles()));
             connect(m_openFileWidget, SIGNAL(uploadDirClicked()), m_parent, SLOT(importSongsByDir()));

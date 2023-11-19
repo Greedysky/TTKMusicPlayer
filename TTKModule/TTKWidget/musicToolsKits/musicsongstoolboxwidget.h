@@ -139,7 +139,8 @@ private:
      * Override the widget event.
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
-    
+    virtual void paintEvent(QPaintEvent *event) override;
+
     MusicSongSort *m_songSort;
     MusicItemRenameEidt *m_renameEdit;
 
@@ -250,6 +251,11 @@ public:
      * Set music sort.
      */
     void setSongSort(QWidget *item, MusicSongSort *sort);
+
+    /*!
+     * Get current valid index.
+     */
+    int validIndex() const;
 
 private:
     /*!

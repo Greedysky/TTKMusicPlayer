@@ -59,13 +59,13 @@ public:
     inline const MusicSongItemList& musicItemList() const { return m_containerItems; }
 
     /*!
-     * Input imported music datas into container.
-     */
-    void importMusicSongsByPath(const QStringList &files);
-    /*!
      * Input imported music urls into container.
      */
-    void importMusicSongsByUrl(const QString &path);
+    void importMusicSongsByUrl(const QString &path, int playlistRow);
+    /*!
+     * Input imported music datas into container.
+     */
+    void importMusicSongsByPath(const QStringList &files, int playlistRow);
 
     /*!
      * Get music songs file name by index.
@@ -246,6 +246,9 @@ private:
      */
     virtual void resizeEvent(QResizeEvent *event) override final;
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
+    virtual void dragEnterEvent(QDragEnterEvent *event) override final;
+    virtual void dragMoveEvent(QDragMoveEvent *event) override final;
+    virtual void dropEvent(QDropEvent *event) override final;
     /*!
      * Current index is searched or not.
      */
@@ -289,7 +292,6 @@ private:
 
     int m_playRowIndex;
     int m_lastSearchIndex;
-    int m_selectImportIndex;
     int m_selectDeleteIndex;
     bool m_toolDeleteChanged;
 

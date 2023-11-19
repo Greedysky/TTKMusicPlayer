@@ -20,6 +20,7 @@
  ***************************************************************************/
 
 #include "musicobject.h"
+#include "ttknumberdefine.h"
 #include "ttkabstractmoveresizewidget.h"
 
 class MusicPlayer;
@@ -186,11 +187,11 @@ public Q_SLOTS:
     /*!
      * Import music songs by files.
      */
-    void importSongsByFiles();
+    void importSongsByFiles(int index = TTK_LOW_LEVEL);
     /*!
      * Import music songs by dir.
      */
-    void importSongsByDir();
+    void importSongsByDir(int index = TTK_LOW_LEVEL);
     /*!
      * Import music songs by url.
      */
@@ -302,9 +303,6 @@ private:
      */
     virtual void resizeEvent(QResizeEvent *event) override final;
     virtual void closeEvent(QCloseEvent *event) override final;
-    virtual void dragEnterEvent(QDragEnterEvent *event) override final;
-    virtual void dragMoveEvent(QDragMoveEvent *event) override final;
-    virtual void dropEvent(QDropEvent *event) override final;
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
     virtual void enterEvent(QtEnterEvent *event) override final;
     virtual void leaveEvent(QEvent *event) override final;

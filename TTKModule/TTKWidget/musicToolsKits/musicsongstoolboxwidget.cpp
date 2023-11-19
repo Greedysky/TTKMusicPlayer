@@ -30,7 +30,6 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     shareListButton->setFocusPolicy(Qt::NoFocus);
     menuButton->setFocusPolicy(Qt::NoFocus);
 #endif
-
 }
 
 MusicSongsToolBoxTopWidget::~MusicSongsToolBoxTopWidget()
@@ -174,6 +173,20 @@ void MusicSongsToolBoxTopWidget::contextMenuEvent(QContextMenuEvent *event)
     showMenu();
 }
 
+void MusicSongsToolBoxTopWidget::paintEvent(QPaintEvent *event)
+{
+    MusicFunctionToolBoxTopWidget::paintEvent(event);
+
+    QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing);
+
+    if(m_isActive && TTK::playlistRowValid(m_index))
+    {
+        m_isActive = false;
+        painter.fillRect(0, 1, width(), height() - 2, QColor(0, 0, 0, 50));
+    }
+}
+
 
 
 MusicSongsToolBoxMaskWidget::MusicSongsToolBoxMaskWidget(QWidget *parent)
@@ -201,6 +214,7 @@ void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
 {
     int alpha = G_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparent).toInt();
         alpha = TTK::Image::reRenderValue<int>(0xFF, 0x1F, TTK_RN_MAX - alpha);
+
     QWidget::paintEvent(event);
     QPainter painter(this);
 
@@ -261,10 +275,24 @@ void MusicSongsToolBoxWidget::setSongSort(QWidget *item, MusicSongSort *sort)
     }
 }
 
+int MusicSongsToolBoxWidget::validIndex() const
+{
+    int index = MUSIC_NORMAL_LIST;
+    for(int i = 0; i < m_itemList.count(); ++i)
+    {
+        if(TTK::playlistRowValid(i) && m_itemList[i].m_widgetItem->isExpand())
+        {
+            index = i;
+            break;
+        }
+    }
+    return index;
+}
+
 MusicFunctionToolBoxWidgetItem *MusicSongsToolBoxWidget::initialItem(QWidget *item, const QString &text)
 {
     MusicFunctionToolBoxWidgetItem *it = new MusicSongsToolBoxWidgetItem(m_itemIndexRaise, text, this);
     it->addCellItem(item);
-    it->setItemExpand(true);
+    it->setExpand(true);
     return it;
 }

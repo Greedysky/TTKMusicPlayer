@@ -23,8 +23,6 @@
 #include "musicinputdialog.h"
 #include "ttkversion.h"
 
-#include <QMimeData>
-
 MusicApplication *MusicApplication::m_instance = nullptr;
 
 MusicApplication::MusicApplication(QWidget *parent)
@@ -59,8 +57,6 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     connect(m_rightAreaWidget, SIGNAL(updateBackgroundTheme()), m_topAreaWidget, SLOT(backgroundTransparentChanged()));
     connect(m_rightAreaWidget, SIGNAL(updateBackgroundThemeDownload()), m_topAreaWidget, SLOT(backgroundThemeDownloadFinished()));
-
-    setAcceptDrops(true);
 
     m_playlist->setPlaybackMode(TTK::PlayMode::Order); //The default is the order of play
     m_ui->musicPlayedList->setPlaylist(m_playlist);
@@ -176,7 +172,7 @@ void MusicApplication::importSongsOutsideMode(const QString &file, bool play)
         return;
     }
 
-    m_songTreeWidget->importMusicSongsByPath({file});
+    m_songTreeWidget->importMusicSongsByPath({file}, MUSIC_NORMAL_LIST);
     if(play)
     {
         playIndexBy(m_playlist->count() - 1, 0);
@@ -481,13 +477,13 @@ void MusicApplication::importSongsPopup()
     menu.exec(QCursor::pos());
 }
 
-void MusicApplication::importSongsByFiles()
+void MusicApplication::importSongsByFiles(int index)
 {
     const QStringList &files = TTK::File::getOpenFileNames(this, MusicFormats::supportMusicInputFormats());
-    m_songTreeWidget->importMusicSongsByPath(files);
+    m_songTreeWidget->importMusicSongsByPath(files, index);
 }
 
-void MusicApplication::importSongsByDir()
+void MusicApplication::importSongsByDir(int index)
 {
     const QString &path = TTK::File::getExistingDirectory(this);
     if(path.isEmpty())
@@ -495,7 +491,7 @@ void MusicApplication::importSongsByDir()
         return;
     }
 
-    m_songTreeWidget->importMusicSongsByUrl(path);
+    m_songTreeWidget->importMusicSongsByUrl(path, index);
 }
 
 void MusicApplication::importSongsByUrl()
@@ -513,7 +509,7 @@ void MusicApplication::importSongsByUrl()
         return;
     }
 
-    m_songTreeWidget->importMusicSongsByUrl(path);
+    m_songTreeWidget->importMusicSongsByUrl(path, TTK_LOW_LEVEL);
 }
 
 void MusicApplication::importSongsItemList()
@@ -966,35 +962,6 @@ void MusicApplication::closeEvent(QCloseEvent *event)
     {
         quitWindow();
     }
-}
-
-void MusicApplication::dragEnterEvent(QDragEnterEvent *event)
-{
-    TTKAbstractMoveResizeWidget::dragEnterEvent(event);
-    event->setDropAction(Qt::MoveAction);
-    event->accept();
-}
-
-void MusicApplication::dragMoveEvent(QDragMoveEvent *event)
-{
-    TTKAbstractMoveResizeWidget::dragMoveEvent(event);
-    event->setDropAction(Qt::MoveAction);
-    event->accept();
-}
-
-void MusicApplication::dropEvent(QDropEvent *event)
-{
-    TTKAbstractMoveResizeWidget::dropEvent(event);
-
-    const QMimeData *data = event->mimeData();
-    QStringList files;
-
-    for(const QUrl &url : data->urls())
-    {
-        files << url.toLocalFile();
-    }
-
-    m_songTreeWidget->importMusicSongsByPath(files);
 }
 
 void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
