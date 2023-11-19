@@ -96,7 +96,7 @@ Q_SIGNALS:
     /*!
      * Add or remove music list song to lovest list by row.
      */
-    void addSongToLovestListAt(bool state, int row);
+    void addSongToLovestList(bool state, int row);
     /*!
      * Show the float function widget.
      */

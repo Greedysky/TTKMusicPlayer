@@ -660,11 +660,6 @@ void MusicApplication::currentPlayLocation()
     m_songTreeWidget->playLocation(index);
 }
 
-void MusicApplication::addSongToLovestList()
-{
-    addSongToLovestList(true);
-}
-
 void MusicApplication::addSongToLovestList(bool state)
 {
     const MusicPlayItem &item = m_playlist->currentItem();

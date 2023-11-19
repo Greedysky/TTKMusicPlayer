@@ -247,11 +247,7 @@ public Q_SLOTS:
     /*!
      * Add music song to lovest list.
      */
-    void addSongToLovestList();
-    /*!
-     * Add music song to lovest list.
-     */
-    void addSongToLovestList(bool state);
+    void addSongToLovestList(bool state = true);
     /*!
      * Set window concise.
      */

@@ -176,7 +176,7 @@ public Q_SLOTS:
     /*!
      * Add or remove music list song to lovest list by row.
      */
-    void addSongToLovestListAt(bool state, int row);
+    void addSongToLovestList(bool state, int row);
     /*!
      * Add current network music buffer to playlist.
      */

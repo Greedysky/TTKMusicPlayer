@@ -668,6 +668,7 @@ void MusicSongsSummariziedWidget::songToLovestListAt(bool state, int row)
 
     const MusicSong &song = m_containerItems[m_playRowIndex].m_songs[row];
     MusicSongItem *item = &m_containerItems[MUSIC_LOVEST_LIST];
+
     MusicSongsListPlayTableWidget *widget = TTKObjectCast(MusicSongsListPlayTableWidget*, item->m_itemObject);
     if(state)    ///Add to lovest list
     {
@@ -687,7 +688,7 @@ void MusicSongsSummariziedWidget::songToLovestListAt(bool state, int row)
     }
 }
 
-void MusicSongsSummariziedWidget::addSongToLovestListAt(bool state, int row)
+void MusicSongsSummariziedWidget::addSongToLovestList(bool state, int row)
 {
     if(m_currentIndex < 0 || m_currentIndex >= m_containerItems.count() || hasSearchResult())
     {
@@ -770,7 +771,7 @@ void MusicSongsSummariziedWidget::addSongToPlaylist(const QStringList &items)
     }
 
     /// just play it at once
-    setCurrentIndex(MUSIC_NORMAL_LIST);
+    setCurrentIndex(row);
     MusicApplication::instance()->playIndexClicked(index, 0);
 }
 
@@ -1166,7 +1167,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     connect(widget, SIGNAL(isSearchedResultEmpty(bool&)), SLOT(isSearchedResultEmpty(bool&)));
     connect(widget, SIGNAL(deleteItemAt(TTKIntList,bool)), SLOT(removeItemAt(TTKIntList,bool)));
     connect(widget, SIGNAL(itemIndexSwaped(int,int,int,MusicSongList&)), SLOT(itemIndexSwaped(int,int,int,MusicSongList&)));
-    connect(widget, SIGNAL(addSongToLovestListAt(bool,int)), SLOT(addSongToLovestListAt(bool,int)));
+    connect(widget, SIGNAL(addSongToLovestList(bool,int)), SLOT(addSongToLovestList(bool,int)));
     connect(widget, SIGNAL(showFloatWidget()), SLOT(showFloatWidget()));
     connect(widget, SIGNAL(songListSortBy(int)), SLOT(songListSortBy(int)));
 

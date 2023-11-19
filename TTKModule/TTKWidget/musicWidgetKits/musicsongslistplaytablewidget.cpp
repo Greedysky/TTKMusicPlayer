@@ -371,30 +371,28 @@ void MusicSongsListPlayTableWidget::itemCellClicked(int row, int column)
         {
             bool empty;
             Q_EMIT isSearchedResultEmpty(empty);
-            if(!empty)
-            {
-                return;
-            }
 
-            const bool contains = !MusicApplication::instance()->containsLovestItem(row);
-            QTableWidgetItem *it = item(row, 3);
-            if(it)
+            if(empty)
             {
-                it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
+                const bool contains = !MusicApplication::instance()->containsLovestItem(row);
+                QTableWidgetItem *it = item(row, 3);
+                if(it)
+                {
+                    it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
+                }
+                Q_EMIT addSongToLovestList(contains, row);
             }
-            Q_EMIT addSongToLovestListAt(contains, row);
             break;
         }
         case 4:
         {
             bool empty;
             Q_EMIT isSearchedResultEmpty(empty);
-            if(!empty)
-            {
-                return;
-            }
 
-            removeItemAt();
+            if(empty)
+            {
+                removeItemAt();
+            }
             break;
         }
         case 5:
@@ -650,7 +648,6 @@ void MusicSongsListPlayTableWidget::mouseMoveEvent(QMouseEvent *event)
     {
         m_mouseMoved = true;
         setCursor(QCursor(QPixmap(":/functions/lb_drag_cursor")));
-        setSelectionMode(QAbstractItemView::SingleSelection);
     }
 }
 
@@ -662,7 +659,6 @@ void MusicSongsListPlayTableWidget::mouseReleaseEvent(QMouseEvent *event)
     m_leftButtonPressed = false;
     m_mouseMoved = false;
     setCursor(QCursor(Qt::ArrowCursor));
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
 }
 
 void MusicSongsListPlayTableWidget::leaveEvent(QEvent *event)
@@ -827,6 +823,7 @@ void MusicSongsListPlayTableWidget::startToDrag()
 
         bool state;
         Q_EMIT isCurrentPlaylistRow(state);
+
         if(state)
         {
             selectRow(index);
