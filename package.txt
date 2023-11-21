@@ -1,6 +1,6 @@
 adplug-2.3.3	https://github.com/adplug/adplug
 enca-1.19	https://cihar.com/software/enca
-faad2-2.10.1	https://github.com/knik0/faad2
+faad2-2.11.1	https://github.com/knik0/faad2
 ffmpeg-3.4.13	http://ffmpeg.org/releases
 flac-1.4.3	https://ftp.osuosl.org/pub/xiph/releases/flac
 game-music-emu-0.6.3	https://bitbucket.org/mpyne/game-music-emu/downloads
@@ -34,10 +34,10 @@ zlib-1.3.0		https://github.com/madler/zlib
 7zip-23.01		https://www.7-zip.org/download.html
 ttk-1.2.3
 (sonic-master	https://github.com/waywardgeek/sonic 8694c596378c24e340c09ff2cd47c065494233f1)
-(libasap-6.0.0	https://sourceforge.net/projects/asap)
+(libasap-6.0.1	https://sourceforge.net/projects/asap)
 (libfc14-1.0.3	https://sourceforge.net/projects/xmms-fc)
 (libgoom-2k4	https://sourceforge.net/projects/goom)
 (libsc68-2.2.1	https://sourceforge.net/projects/sc68)
 (libuade-3.02	https://gitlab.com/uade-music-player/uade fc22380cba4a8815f53b373808a1138742de020b)
 (libv2m-20211104	https://github.com/jgilje/v2m-player)
-///Update time 2023-10-31
+///Update time 2023-11-21
