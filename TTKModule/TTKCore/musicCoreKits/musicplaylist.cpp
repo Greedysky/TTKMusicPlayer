@@ -3,6 +3,8 @@
 #include "musicsong.h"
 #include "ttktime.h"
 
+#include <random>
+
 MusicPlaylist::Shuffle::Shuffle()
     : m_index(-1),
       m_enable(false)
