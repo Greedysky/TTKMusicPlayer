@@ -25,9 +25,8 @@
 /*! @brief The class of the wpl playlist config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWPLConfigManager : public TTKXmlDocument, private MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicWPLConfigManager : public TTKAbstractXml, private MusicPlaylistInterface
 {
-    Q_OBJECT
     TTK_DECLARE_MODULE(MusicWPLConfigManager)
 public:
     /*!

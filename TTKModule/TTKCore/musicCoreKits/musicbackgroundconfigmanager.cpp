@@ -1,15 +1,15 @@
 #include "musicbackgroundconfigmanager.h"
 
-MusicSkinConfigManager::MusicSkinConfigManager(QObject *parent)
-    : TTKXmlDocument(parent)
+MusicSkinConfigManager::MusicSkinConfigManager()
+    : TTKAbstractXml()
 {
 
 }
 
 bool MusicSkinConfigManager::readBuffer(MusicSkinItem &items)
 {
-    items.m_name = readXmlAttributeByTagName("name");
-    items.m_useCount = readXmlAttributeByTagName("useCount").toInt();
+    items.m_name = readAttributeByTagName("name");
+    items.m_useCount = readAttributeByTagName("useCount").toInt();
     return true;
 }
 

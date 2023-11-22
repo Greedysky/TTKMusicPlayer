@@ -24,6 +24,7 @@ set(HEADER_FILES
   ttkdesktopwrapper.h
   ttkdispatchmanager.h
   ttkfileassociation.h
+  ttkfileinterface.h
   ttkglobalhelper.h
   ttkitemdelegate.h
   ttklibrary.h

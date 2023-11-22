@@ -1,7 +1,7 @@
 #include "musictkplconfigmanager.h"
 
 MusicTKPLConfigManager::MusicTKPLConfigManager()
-    : TTKXmlDocument(nullptr)
+    : TTKAbstractXml()
     , MusicPlaylistInterface()
 {
 
@@ -41,7 +41,7 @@ bool MusicTKPLConfigManager::writeBuffer(const MusicSongItemList &items)
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-        QDomElement pathDom = writeDomMutilElement(rootDom, "musicList", {{"name", item.m_itemName},
+        QDomElement pathDom = writeDomMultiElement(rootDom, "musicList", {{"name", item.m_itemName},
                                                                           {"index", i},
                                                                           {"count", item.m_songs.count()},
                                                                           {"sortIndex", item.m_sort.m_type},
@@ -54,9 +54,9 @@ bool MusicTKPLConfigManager::writeBuffer(const MusicSongItemList &items)
                 playTime = TTK::generateNetworkSongTime(song.path());
             }
 
-            writeDomMutilElementText(pathDom, "value", {{"name", song.name()},
-                                                        {"playCount", song.playCount()},
-                                                        {"time", playTime}}, song.path());
+            writeDomMultiElement(pathDom, "value", {{"name", song.name()},
+                                                    {"playCount", song.playCount()},
+                                                    {"time", playTime}}, song.path());
         }
     }
 

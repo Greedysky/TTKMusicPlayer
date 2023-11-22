@@ -8,8 +8,8 @@
 
 #include <QScrollBar>
 
-MusicFMConfigManager::MusicFMConfigManager(QObject *parent)
-    : TTKXmlDocument(parent)
+MusicFMConfigManager::MusicFMConfigManager()
+    : TTKAbstractXml()
 {
 
 }
@@ -55,7 +55,7 @@ bool MusicFMConfigManager::writeBuffer(const MusicFMCategoryList &items)
 
     for(const MusicFMChannel &channel : qAsConst(item.m_items))
     {
-        writeDomMutilElement(categoryDom, "channel", {{"name", channel.m_name},
+        writeDomMultiElement(categoryDom, "channel", {{"name", channel.m_name},
                                                       {"location", channel.m_location},
                                                       {"url", channel.m_url}});
     }

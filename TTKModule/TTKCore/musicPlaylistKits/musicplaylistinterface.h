@@ -20,46 +20,10 @@
  ***************************************************************************/
 
 #include "musicsong.h"
+#include "ttkfileinterface.h"
 #include "ttkabstractbufferinterface.h"
 
-/*! @brief The class of the playlist renderer.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicPlaylistRenderer
-{
-public:
-    /*!
-     * Object constructor.
-     */
-    MusicPlaylistRenderer() = default;
-    /*!
-     * Object destructor.
-     */
-    virtual ~MusicPlaylistRenderer() = default;
-
-    /*!
-     * Write datas from file by given name.
-     */
-    inline bool load(const QString &name)
-    {
-        m_file.setFileName(name);
-        return m_file.open(QIODevice::WriteOnly);
-    }
-
-    /*!
-     * Read datas from file by given name.
-     */
-    inline bool fromFile(const QString &name)
-    {
-        m_file.setFileName(name);
-        return m_file.open(QIODevice::ReadOnly);
-    }
-
-protected:
-    QFile m_file;
-
-};
-
+using MusicPlaylistRenderer = TTKFileInterface;
 using MusicPlaylistInterface = TTKAbstractReadWriteInterface<MusicSongItemList>;
 
 #endif // MUSICPLAYLISTINTERFACE_H

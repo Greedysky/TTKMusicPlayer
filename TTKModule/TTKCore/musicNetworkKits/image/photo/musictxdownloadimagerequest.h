@@ -25,15 +25,14 @@
 /*! @brief The class of the tencent query info xml data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicTXImageConfigManager : public TTKXmlDocument, private TTKAbstractReadInterface<QStringList>
+class TTK_MODULE_EXPORT MusicTXImageConfigManager : public TTKAbstractXml, private TTKAbstractReadInterface<QStringList>
 {
-    Q_OBJECT
     TTK_DECLARE_MODULE(MusicTXImageConfigManager)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicTXImageConfigManager(QObject *parent = nullptr);
+    MusicTXImageConfigManager();
 
     /*!
      * Read datas from buffer.

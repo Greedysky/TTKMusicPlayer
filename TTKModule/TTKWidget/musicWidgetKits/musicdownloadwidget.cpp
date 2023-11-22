@@ -361,7 +361,7 @@ void MusicDownloadWidget::startRequestMusic(const TTK::MusicSongInformation &inf
             const QString &downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MUSIC_DIR_FULL : m_ui->downloadPathEdit->text();
             QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
 
-            MusicDownloadRecordConfigManager manager(this);
+            MusicDownloadRecordConfigManager manager;
             if(!manager.fromFile(TTK::toString(TTK::Record::NormalDownload)))
             {
                 return;

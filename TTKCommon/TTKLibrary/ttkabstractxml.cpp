@@ -78,21 +78,20 @@ QString TTKXmlNodeHelper::nodeName(const QString &name) const
 
 
 
-TTKXmlDocument::TTKXmlDocument(QObject *parent)
-    : QObject(parent),
-      m_file(nullptr),
+TTKAbstractXml::TTKAbstractXml()
+    : m_file(nullptr),
       m_document(nullptr)
 {
 
 }
 
-TTKXmlDocument::~TTKXmlDocument()
+TTKAbstractXml::~TTKAbstractXml()
 {
     delete m_file;
     delete m_document;
 }
 
-bool TTKXmlDocument::load(const QString &name)
+bool TTKAbstractXml::load(const QString &name)
 {
     delete m_file;
     delete m_document;
@@ -102,7 +101,7 @@ bool TTKXmlDocument::load(const QString &name)
     return m_file->open(QIODevice::WriteOnly | QIODevice::Text);
 }
 
-void TTKXmlDocument::save() const
+void TTKAbstractXml::save() const
 {
     if(!m_file || !m_document)
     {
@@ -113,7 +112,7 @@ void TTKXmlDocument::save() const
     m_document->save(out, 4);
 }
 
-bool TTKXmlDocument::reset()
+bool TTKAbstractXml::reset()
 {
     if(!m_file || !m_document)
     {
@@ -123,7 +122,7 @@ bool TTKXmlDocument::reset()
     return load(m_file->fileName());
 }
 
-bool TTKXmlDocument::fromFile(const QString &name)
+bool TTKAbstractXml::fromFile(const QString &name)
 {
     delete m_file;
     delete m_document;
@@ -146,7 +145,7 @@ bool TTKXmlDocument::fromFile(const QString &name)
     return true;
 }
 
-bool TTKXmlDocument::fromString(const QString &data)
+bool TTKAbstractXml::fromString(const QString &data)
 {
     delete m_file;
     delete m_document;
@@ -160,7 +159,7 @@ bool TTKXmlDocument::fromString(const QString &data)
 #endif
 }
 
-bool TTKXmlDocument::fromByteArray(const QByteArray &data)
+bool TTKAbstractXml::fromByteArray(const QByteArray &data)
 {
     delete m_file;
     delete m_document;
@@ -174,40 +173,40 @@ bool TTKXmlDocument::fromByteArray(const QByteArray &data)
 #endif
 }
 
-QString TTKXmlDocument::toString() const
+QString TTKAbstractXml::toString() const
 {
     return m_document ? m_document->toString() : QString();
 }
 
-QByteArray TTKXmlDocument::toByteArray() const
+QByteArray TTKAbstractXml::toByteArray() const
 {
     return m_document ? m_document->toByteArray() : QByteArray();
 }
 
-void TTKXmlDocument::createProcessingInstruction() const
+void TTKAbstractXml::createProcessingInstruction() const
 {
     const QDomNode &node = m_document->createProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
     m_document->appendChild(node);
 }
 
-QString TTKXmlDocument::readXmlAttributeByTagName(const QString &tagName, const QString &attrName) const
+QString TTKAbstractXml::readAttributeByTagName(const QString &tagName, const QString &attrName) const
 {
     const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
     return nodes.isEmpty() ? QString() : nodes.item(0).toElement().attribute(attrName);
 }
 
-QString TTKXmlDocument::readXmlTextByTagName(const QString &tagName) const
+QString TTKAbstractXml::readTextByTagName(const QString &tagName) const
 {
     const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
     return nodes.isEmpty() ? QString() : nodes.item(0).toElement().text();
 }
 
-TTKXmlAttributeList TTKXmlDocument::readXmlAttributesByTagName(const QString &tagName) const
+TTKXmlAttributeList TTKAbstractXml::readAttributesByTagName(const QString &tagName) const
 {
     const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
     if(nodes.isEmpty())
     {
-        return TTKXmlAttributeList();
+        return {};
     }
 
     const QDomNamedNodeMap &nodeMap = nodes.item(0).toElement().attributes();
@@ -220,7 +219,7 @@ TTKXmlAttributeList TTKXmlDocument::readXmlAttributesByTagName(const QString &ta
     return v;
 }
 
-QStringList TTKXmlDocument::readXmlMultiAttributeByTagName(const QString &tagName, const QString &attrName) const
+QStringList TTKAbstractXml::readMultiAttributeByTagName(const QString &tagName, const QString &attrName) const
 {
     const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
     if(nodes.isEmpty())
@@ -236,7 +235,7 @@ QStringList TTKXmlDocument::readXmlMultiAttributeByTagName(const QString &tagNam
     return v;
 }
 
-QStringList TTKXmlDocument::readXmlMultiTextByTagName(const QString &tagName) const
+QStringList TTKAbstractXml::readMultiTextByTagName(const QString &tagName) const
 {
     const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
     if(nodes.isEmpty())
@@ -252,12 +251,12 @@ QStringList TTKXmlDocument::readXmlMultiTextByTagName(const QString &tagName) co
     return v;
 }
 
-TTKXmlAttributesList TTKXmlDocument::readXmlMultiAttributesByTagName(const QString &tagName) const
+TTKXmlAttributesList TTKAbstractXml::readMultiAttributesByTagName(const QString &tagName) const
 {
     const QDomNodeList &nodes = m_document->elementsByTagName(tagName);
     if(nodes.isEmpty())
     {
-        return TTKXmlAttributesList();
+        return {};
     }
 
     TTKXmlAttributesList v;
@@ -275,14 +274,14 @@ TTKXmlAttributesList TTKXmlDocument::readXmlMultiAttributesByTagName(const QStri
     return v;
 }
 
-QDomElement TTKXmlDocument::createRoot(const QString &node) const
+QDomElement TTKAbstractXml::createRoot(const QString &node) const
 {
     const QDomElement &domElement = m_document->createElement(node);
     m_document->appendChild(domElement);
     return domElement;
 }
 
-QDomElement TTKXmlDocument::createRoot(const QString &node, const TTKXmlAttribute &attr) const
+QDomElement TTKAbstractXml::createRoot(const QString &node, const TTKXmlAttribute &attr) const
 {
     QDomElement domElement = m_document->createElement(node);
     writeAttribute(domElement, attr);
@@ -290,47 +289,37 @@ QDomElement TTKXmlDocument::createRoot(const QString &node, const TTKXmlAttribut
     return domElement;
 }
 
-QDomElement TTKXmlDocument::createRoot(const QString &node, const TTKXmlAttributeList &attrs) const
+QDomElement TTKAbstractXml::createRoot(const QString &node, const TTKXmlAttributeList &attrs) const
 {
     QDomElement domElement = m_document->createElement(node);
-    for(const TTKXmlAttribute &attr : qAsConst(attrs))
-    {
-        writeAttribute(domElement, attr);
-    }
+    writeAttribute(domElement, attrs);
     m_document->appendChild(domElement);
     return domElement;
 }
 
-QDomElement TTKXmlDocument::writeDomNode(QDomElement &element, const QString &node) const
+QDomElement TTKAbstractXml::writeDomElement(QDomElement &element, const QString &node) const
 {
     const QDomElement &domElement = m_document->createElement(node);
     element.appendChild(domElement);
     return domElement;
 }
 
-QDomElement TTKXmlDocument::writeDomElement(QDomElement &element, const QString &node, const TTKXmlAttribute &attr) const
+QDomElement TTKAbstractXml::writeDomElement(QDomElement &element, const QString &node, const QString &text) const
 {
-    QDomElement domElement = writeDomNode(element, node);
+    QDomElement domElement = writeDomElement(element, node);
+    const QDomText &domText = m_document->createTextNode(text);
+    domElement.appendChild(domText);
+    return domElement;
+}
+
+QDomElement TTKAbstractXml::writeDomElement(QDomElement &element, const QString &node, const TTKXmlAttribute &attr) const
+{
+    QDomElement domElement = writeDomElement(element, node);
     writeAttribute(domElement, attr);
     return domElement;
 }
 
-QDomElement TTKXmlDocument::writeDomMutilElement(QDomElement &element, const QString &node, const TTKXmlAttributeList &attrs) const
-{
-    if(attrs.isEmpty())
-    {
-        QDomElement();
-    }
-
-    QDomElement domElement = writeDomElement(element, node, attrs.front());
-    for(int i = 1; i < attrs.count(); ++i)
-    {
-        writeAttribute(domElement, attrs[i]);
-    }
-    return domElement;
-}
-
-QDomElement TTKXmlDocument::writeDomElementText(QDomElement &element, const QString &node, const TTKXmlAttribute &attr, const QString &text) const
+QDomElement TTKAbstractXml::writeDomElement(QDomElement &element, const QString &node, const TTKXmlAttribute &attr, const QString &text) const
 {
     QDomElement domElement = writeDomElement(element, node, attr);
     const QDomText &domText = m_document->createTextNode(text);
@@ -338,30 +327,34 @@ QDomElement TTKXmlDocument::writeDomElementText(QDomElement &element, const QStr
     return domElement;
 }
 
-QDomElement TTKXmlDocument::writeDomMutilElementText(QDomElement &element, const QString &node, const TTKXmlAttributeList &attrs, const QString &text) const
+QDomElement TTKAbstractXml::writeDomMultiElement(QDomElement &element, const QString &node, const TTKXmlAttributeList &attrs) const
 {
     if(attrs.isEmpty())
     {
-        QDomElement();
+        return {};
     }
 
-    QDomElement domElement = writeDomMutilElement(element, node, attrs);
+    QDomElement domElement = writeDomElement(element, node);
+    writeAttribute(domElement, attrs);
+    return domElement;
+}
+
+QDomElement TTKAbstractXml::writeDomMultiElement(QDomElement &element, const QString &node, const TTKXmlAttributeList &attrs, const QString &text) const
+{
+    if(attrs.isEmpty())
+    {
+        return {};
+    }
+
+    QDomElement domElement = writeDomMultiElement(element, node, attrs);
     const QDomText &domText = m_document->createTextNode(text);
     domElement.appendChild(domText);
     return domElement;
 }
 
-QDomElement TTKXmlDocument::writeDomText(QDomElement &element, const QString &node, const QString &text) const
+void TTKAbstractXml::writeAttribute(QDomElement &element, const TTKXmlAttribute &attr) const
 {
-    QDomElement domElement = writeDomNode(element, node);
-    const QDomText &domText = m_document->createTextNode(text);
-    domElement.appendChild(domText);
-    return domElement;
-}
-
-void TTKXmlDocument::writeAttribute(QDomElement &element, const TTKXmlAttribute &attr) const
-{
-    switch(QtVariantType(attr.m_value))
+    switch (QtVariantType(attr.m_value))
     {
         case QVariant::Int: element.setAttribute(attr.m_key, attr.m_value.toInt()); break;
         case QVariant::String: element.setAttribute(attr.m_key, attr.m_value.toString()); break;
@@ -370,5 +363,13 @@ void TTKXmlDocument::writeAttribute(QDomElement &element, const TTKXmlAttribute 
         case QVariant::Double: element.setAttribute(attr.m_key, attr.m_value.toDouble()); break;
         case QVariant::UInt: element.setAttribute(attr.m_key, attr.m_value.toUInt()); break;
         default: break;
+    }
+}
+
+void TTKAbstractXml::writeAttribute(QDomElement &element, const TTKXmlAttributeList &attrs) const
+{
+    for (const TTKXmlAttribute &attr : qAsConst(attrs))
+    {
+        writeAttribute(element, attr);
     }
 }

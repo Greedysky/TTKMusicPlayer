@@ -63,15 +63,14 @@ struct TTK_MODULE_EXPORT MusicBackgroundImage
 /*! @brief The class of the skin XML config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSkinConfigManager : public TTKXmlDocument, private TTKAbstractReadWriteInterface<MusicSkinItem>
+class TTK_MODULE_EXPORT MusicSkinConfigManager : public TTKAbstractXml, private TTKAbstractReadWriteInterface<MusicSkinItem>
 {
-    Q_OBJECT
     TTK_DECLARE_MODULE(MusicSkinConfigManager)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicSkinConfigManager(QObject *parent = nullptr);
+    MusicSkinConfigManager();
 
     /*!
      * Read datas from buffer.

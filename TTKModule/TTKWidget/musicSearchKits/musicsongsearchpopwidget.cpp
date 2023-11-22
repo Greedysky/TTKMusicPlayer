@@ -129,7 +129,7 @@ void MusicSongSearchPopWidget::initialize(QWidget *parent)
     setControlEnabled(true);
     m_popTableWidget->removeItems();
 
-    MusicSongSearchRecordConfigManager manager(this);
+    MusicSongSearchRecordConfigManager manager;
     if(!manager.fromFile(SEARCH_PATH_FULL))
     {
         return;
@@ -206,7 +206,7 @@ QString MusicSongSearchPopWidget::utcTimeToLocal(const QString &time) const
 
 void MusicSongSearchPopWidget::clearButtonClicked()
 {
-    MusicSongSearchRecordConfigManager manager(this);
+    MusicSongSearchRecordConfigManager manager;
     if(!manager.load(SEARCH_PATH_FULL))
     {
         return;

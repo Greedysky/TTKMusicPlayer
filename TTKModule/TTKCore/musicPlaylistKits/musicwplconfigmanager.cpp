@@ -2,7 +2,7 @@
 #include "ttkversion.h"
 
 MusicWPLConfigManager::MusicWPLConfigManager()
-    : TTKXmlDocument(nullptr)
+    : TTKAbstractXml()
     , MusicPlaylistInterface()
 {
 
@@ -41,15 +41,15 @@ bool MusicWPLConfigManager::writeBuffer(const MusicSongItemList &items)
     m_document->appendChild(node);
 
     QDomElement rootDom = createRoot("smil");
-    QDomElement headDom = writeDomNode(rootDom, "head");
-    QDomElement bodyDom = writeDomNode(rootDom, "body");
+    QDomElement headDom = writeDomElement(rootDom, "head");
+    QDomElement bodyDom = writeDomElement(rootDom, "body");
 
-    writeDomMutilElement(headDom, "meta", {{"name", "Generator"},
-                                           {"content", QString("%1 %2").arg(TTK_APP_NAME, TTK_VERSION_STR)}});
+    writeDomMultiElement(headDom, "meta", {{"name", "Generator"}, {"content", QString("%1 %2").arg(TTK_APP_NAME, TTK_VERSION_STR)}});
+
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-        QDomElement seqDom = writeDomNode(bodyDom, "seq");
+        QDomElement seqDom = writeDomElement(bodyDom, "seq");
 
         for(const MusicSong &song : qAsConst(item.m_songs))
         {

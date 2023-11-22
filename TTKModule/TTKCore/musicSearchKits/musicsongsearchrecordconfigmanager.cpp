@@ -1,7 +1,7 @@
 #include "musicsongsearchrecordconfigmanager.h"
 
-MusicSongSearchRecordConfigManager::MusicSongSearchRecordConfigManager(QObject *parent)
-    : TTKXmlDocument(parent)
+MusicSongSearchRecordConfigManager::MusicSongSearchRecordConfigManager()
+    : TTKAbstractXml()
 {
 
 }
@@ -26,11 +26,11 @@ bool MusicSongSearchRecordConfigManager::writeBuffer(const MusicSearchRecordList
 {
     createProcessingInstruction();
     QDomElement rootDom = createRoot(TTK_APP_NAME);
-    QDomElement recordDom = writeDomNode(rootDom, "record");
+    QDomElement recordDom = writeDomElement(rootDom, "record");
 
     for(const MusicSearchRecord &record : qAsConst(items))
     {
-        writeDomElementText(recordDom, "value", {"name", record.m_name}, record.m_timestamp);
+        writeDomElement(recordDom, "value", {"name", record.m_name}, record.m_timestamp);
     }
 
     save();

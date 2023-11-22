@@ -4,8 +4,8 @@
 static constexpr int MAX_SIZE = 30;
 static constexpr const char *QUERY_URL = "eC9KOTYxbVhvVDJNcGEwckhyMVZRdVRhOHhFRHQ2eFVNdWJxaURFSzA1ZWVmZm5HOFlzS1VCY2ZKOFRlYStBL2Y3SjNEK2gzY2QwPQ==";
 
-MusicThunderSkinConfigManager::MusicThunderSkinConfigManager(QObject *parent)
-    : TTKXmlDocument(parent)
+MusicThunderSkinConfigManager::MusicThunderSkinConfigManager()
+    : TTKAbstractXml()
 {
 
 }

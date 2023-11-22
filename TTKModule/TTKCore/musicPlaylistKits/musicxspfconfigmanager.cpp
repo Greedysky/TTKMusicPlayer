@@ -1,7 +1,7 @@
 #include "musicxspfconfigmanager.h"
 
 MusicXSPFConfigManager::MusicXSPFConfigManager()
-    : TTKXmlDocument(nullptr)
+    : TTKAbstractXml()
     , MusicPlaylistInterface()
 {
 
@@ -63,23 +63,23 @@ bool MusicXSPFConfigManager::writeBuffer(const MusicSongItemList &items)
 
     createProcessingInstruction();
     QDomElement rootDom = createRoot("playlist", {{"version", "1"}, {"xmlns", "http://xspf.org/ns/0/"}});
-    writeDomText(rootDom, "creator", TTK_APP_NAME);
+    writeDomElement(rootDom, "creator", TTK_APP_NAME);
 
     for(int i = 0; i < items.count(); ++i)
     {
-        QDomElement trackListDom = writeDomNode(rootDom, "trackList");
+        QDomElement trackListDom = writeDomElement(rootDom, "trackList");
         for(const MusicSong &song : qAsConst(items[i].m_songs))
         {
-            QDomElement trackDom = writeDomNode(trackListDom, "track");
+            QDomElement trackDom = writeDomElement(trackListDom, "track");
 
-            writeDomText(trackDom, "location", song.path());
-            writeDomText(trackDom, "title", song.artistBack());
-            writeDomText(trackDom, "creator", song.artistFront());
-            writeDomText(trackDom, "duration", song.playTime());
-            writeDomText(trackDom, "annotation", {});
-            writeDomText(trackDom, "album", {});
-            writeDomText(trackDom, "trackNum", {});
-            writeDomElementText(trackDom, "meta", {"rel", "year"}, {});
+            writeDomElement(trackDom, "location", song.path());
+            writeDomElement(trackDom, "title", song.artistBack());
+            writeDomElement(trackDom, "creator", song.artistFront());
+            writeDomElement(trackDom, "duration", song.playTime());
+            writeDomElement(trackDom, "annotation", QString());
+            writeDomElement(trackDom, "album", QString());
+            writeDomElement(trackDom, "trackNum", QString());
+            writeDomElement(trackDom, "meta", {"rel", "year"}, {});
         }
     }
 

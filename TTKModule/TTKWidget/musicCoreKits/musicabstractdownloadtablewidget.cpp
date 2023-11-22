@@ -19,7 +19,7 @@ MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *pare
 MusicAbstractDownloadTableWidget::~MusicAbstractDownloadTableWidget()
 {
     G_CONNECTION_PTR->removeValue(this);
-    MusicDownloadRecordConfigManager manager(this);
+    MusicDownloadRecordConfigManager manager;
     if(!manager.load(TTK::toString(m_type)))
     {
         return;
@@ -35,7 +35,7 @@ void MusicAbstractDownloadTableWidget::updateSongsList(const MusicSongList &song
 {
     Q_UNUSED(songs);
 
-    MusicDownloadRecordConfigManager manager(this);
+    MusicDownloadRecordConfigManager manager;
     if(!manager.fromFile(TTK::toString(m_type)))
     {
         return;

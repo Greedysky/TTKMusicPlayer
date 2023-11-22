@@ -24,15 +24,14 @@
 /*! @brief The class of the thunder skin XML config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicThunderSkinConfigManager : public TTKXmlDocument, private TTKAbstractReadInterface<MusicSkinRemoteGroupList>
+class TTK_MODULE_EXPORT MusicThunderSkinConfigManager : public TTKAbstractXml, private TTKAbstractReadInterface<MusicSkinRemoteGroupList>
 {
-    Q_OBJECT
     TTK_DECLARE_MODULE(MusicThunderSkinConfigManager)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicThunderSkinConfigManager(QObject *parent = nullptr);
+    MusicThunderSkinConfigManager();
 
     /*!
      * Read datas from buffer.

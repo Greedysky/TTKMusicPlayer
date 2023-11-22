@@ -1,7 +1,7 @@
 #include "musiccategoryconfigmanager.h"
 
-MusicCategoryConfigManager::MusicCategoryConfigManager(const QString &key, QObject *parent)
-    : TTKXmlDocument(parent),
+MusicCategoryConfigManager::MusicCategoryConfigManager(const QString &key)
+    : TTKAbstractXml(),
       m_type(key)
 {
 
@@ -19,7 +19,7 @@ bool MusicCategoryConfigManager::fromFile(Category type)
         default: break;
     }
 
-    return TTKXmlDocument::fromFile(v);
+    return TTKAbstractXml::fromFile(v);
 }
 
 bool MusicCategoryConfigManager::readBuffer(MusicResultsCategoryList &items)

@@ -26,15 +26,14 @@
 /*! @brief The class of the xml config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicConfigManager : public TTKXmlDocument, private TTKAbstractReadWriteInterface<int>
+class TTK_MODULE_EXPORT MusicConfigManager : public TTKAbstractXml, private TTKAbstractReadWriteInterface<int>
 {
-    Q_OBJECT
     TTK_DECLARE_MODULE(MusicConfigManager)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicConfigManager(QObject *parent = nullptr);
+    MusicConfigManager();
 
     /*!
      * Read datas from buffer.

@@ -1,7 +1,7 @@
 #include "musicasxconfigmanager.h"
 
 MusicASXConfigManager::MusicASXConfigManager()
-    : TTKXmlDocument(nullptr)
+    : TTKAbstractXml()
     , MusicPlaylistInterface()
 {
 
@@ -63,16 +63,16 @@ bool MusicASXConfigManager::writeBuffer(const MusicSongItemList &items)
     for(int i = 0; i < items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-        writeDomText(rootDom, "Title", item.m_itemName);
+        writeDomElement(rootDom, "Title", item.m_itemName);
 
         for(const MusicSong &song : qAsConst(items[i].m_songs))
         {
-            QDomElement trackDom = writeDomNode(rootDom, "Entry");
+            QDomElement trackDom = writeDomElement(rootDom, "Entry");
 
-            writeDomText(trackDom, "Title", song.artistBack());
+            writeDomElement(trackDom, "Title", song.artistBack());
             writeDomElement(trackDom, "Ref", {"href", song.path()});
             writeDomElement(trackDom, "Duration", {"value", "00:" + song.playTime() + ".000"});
-            writeDomText(trackDom, "Author", TTK_APP_NAME);
+            writeDomElement(trackDom, "Author", TTK_APP_NAME);
         }
     }
 

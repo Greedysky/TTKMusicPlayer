@@ -57,15 +57,14 @@ TTK_DECLARE_LIST(MusicFMCategory);
 /*! @brief The class of the fm config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicFMConfigManager : public TTKXmlDocument, private TTKAbstractReadWriteInterface<MusicFMCategoryList>
+class TTK_MODULE_EXPORT MusicFMConfigManager : public TTKAbstractXml, private TTKAbstractReadWriteInterface<MusicFMCategoryList>
 {
-    Q_OBJECT
     TTK_DECLARE_MODULE(MusicFMConfigManager)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicFMConfigManager(QObject *parent = nullptr);
+    MusicFMConfigManager();
 
     /*!
      * Read datas from buffer.

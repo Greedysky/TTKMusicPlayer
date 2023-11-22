@@ -15,8 +15,8 @@ QString toString(Record type)
 }
 
 
-MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(QObject *parent)
-    : TTKXmlDocument(parent)
+MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager()
+    : TTKAbstractXml()
 {
 
 }
@@ -43,13 +43,13 @@ bool MusicDownloadRecordConfigManager::writeBuffer(const MusicSongList &items)
 {
     createProcessingInstruction();
     QDomElement rootDom = createRoot(TTK_APP_NAME);
-    QDomElement recordDom = writeDomNode(rootDom, "record");
+    QDomElement recordDom = writeDomElement(rootDom, "record");
 
     for(const MusicSong &record : qAsConst(items))
     {
-        writeDomMutilElementText(recordDom, "value", {{"name", record.name()},
-                                                      {"size", record.sizeStr()},
-                                                      {"time", record.addTimeStr()}}, record.path());
+        writeDomMultiElement(recordDom, "value", {{"name", record.name()},
+                                                  {"size", record.sizeStr()},
+                                                  {"time", record.addTimeStr()}}, record.path());
     }
 
     save();

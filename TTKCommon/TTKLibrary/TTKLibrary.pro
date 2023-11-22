@@ -80,6 +80,7 @@ HEADERS += \
     $$PWD/ttkdesktopwrapper.h \
     $$PWD/ttkdispatchmanager.h \
     $$PWD/ttkfileassociation.h \
+    $$PWD/ttkfileinterface.h \
     $$PWD/ttkglobalhelper.h \
     $$PWD/ttkitemdelegate.h \
     $$PWD/ttklibrary.h \

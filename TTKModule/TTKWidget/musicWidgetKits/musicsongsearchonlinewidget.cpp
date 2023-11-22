@@ -45,7 +45,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
         return;
     }
 
-    MusicSongSearchRecordConfigManager manager(this);
+    MusicSongSearchRecordConfigManager manager;
     if(!manager.fromFile(SEARCH_PATH_FULL))
     {
         return;

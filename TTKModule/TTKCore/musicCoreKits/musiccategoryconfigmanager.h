@@ -46,9 +46,8 @@ TTK_DECLARE_LIST(MusicResultsCategory);
 /*! @brief The class of the category config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicCategoryConfigManager : public TTKXmlDocument, private TTKAbstractReadInterface<MusicResultsCategoryList>
+class TTK_MODULE_EXPORT MusicCategoryConfigManager : public TTKAbstractXml, private TTKAbstractReadInterface<MusicResultsCategoryList>
 {
-    Q_OBJECT
     TTK_DECLARE_MODULE(MusicCategoryConfigManager)
 public:
     enum class Category
@@ -62,7 +61,7 @@ public:
     /*!
      * Object constructor.
      */
-    explicit MusicCategoryConfigManager(const QString &key, QObject *parent = nullptr);
+    explicit MusicCategoryConfigManager(const QString &key);
 
     /*!
      * Read datas from xml file by given name.

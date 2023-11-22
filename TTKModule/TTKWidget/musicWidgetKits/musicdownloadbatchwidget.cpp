@@ -181,7 +181,7 @@ void MusicDownloadBatchTableItem::startRequestMusic()
     const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
     QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
 
-    MusicDownloadRecordConfigManager manager(this);
+    MusicDownloadRecordConfigManager manager;
     if(!manager.fromFile(TTK::toString(TTK::Record::NormalDownload)))
     {
         return;
