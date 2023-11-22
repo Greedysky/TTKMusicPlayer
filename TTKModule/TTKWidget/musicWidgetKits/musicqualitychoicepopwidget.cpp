@@ -162,25 +162,25 @@ void MusicQualityChoicePopWidget::itemCellClicked(int row)
     {
         case 0:
         {
-            style = "QToolButton{ margin-left:-0px; }";
+            style = "QToolButton{ margin-left:-48px; }";
             quality = TTK::QueryQuality::Standard;
             break;
         }
         case 1:
         {
-            style = "QToolButton{ margin-left:-48px; }";
+            style = "QToolButton{ margin-left:-96px; }";
             quality = TTK::QueryQuality::High;
             break;
         }
         case 2:
         {
-            style = "QToolButton{ margin-left:-96px; }";
+            style = "QToolButton{ margin-left:-144px; }";
             quality = TTK::QueryQuality::Super;
             break;
         }
         case 3:
         {
-            style = "QToolButton{ margin-left:-144px; }";
+            style = "QToolButton{ margin-left:-192px; }";
             quality = TTK::QueryQuality::Lossless;
             break;
         }
