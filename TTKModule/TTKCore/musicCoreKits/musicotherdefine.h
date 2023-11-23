@@ -41,6 +41,7 @@
 #define MUSIC_PLAY_NOW              "play_now"
 #define MUSIC_PLAY_LATER            "play_later"
 
+#define MUSIC_NONE_LIST             -1
 #define MUSIC_NORMAL_LIST           0
 #define MUSIC_LOVEST_LIST           1
 #define MUSIC_NETWORK_LIST          2

@@ -24,8 +24,7 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
       MusicItemSearchInterfaceClass(),
       m_playRowIndex(MUSIC_NORMAL_LIST),
       m_lastSearchIndex(MUSIC_NORMAL_LIST),
-      m_selectDeleteIndex(MUSIC_NORMAL_LIST),
-      m_toolDeleteChanged(false),
+      m_selectDeleteIndex(MUSIC_NONE_LIST),
       m_listFunctionWidget(nullptr),
       m_songSearchWidget(nullptr)
 {
@@ -437,15 +436,15 @@ void MusicSongsSummariziedWidget::deleteRowItemAll(int index)
     closeSearchWidgetInNeed();
 
     m_selectDeleteIndex = id;
-    m_toolDeleteChanged = true;
-
+    //
     MusicSongsListPlayTableWidget *widget = TTKObjectCast(MusicSongsListPlayTableWidget*, m_containerItems[id].m_itemObject);
     if(widget->rowCount() > 0)
     {
         widget->setCurrentCell(0, 1);
         widget->clearItems();
     }
-    m_toolDeleteChanged = false;
+    //
+    m_selectDeleteIndex = MUSIC_NONE_LIST;
 
     if(m_containerItems[id].m_songs.isEmpty() && m_playRowIndex == id)
     {
@@ -782,7 +781,7 @@ void MusicSongsSummariziedWidget::removeItemAt(const TTKIntList &index, bool fil
         return;
     }
 
-    const int currentIndex = m_toolDeleteChanged ? m_selectDeleteIndex : m_currentIndex;
+    const int currentIndex = m_selectDeleteIndex != MUSIC_NONE_LIST ? m_selectDeleteIndex : m_currentIndex;
     MusicSongItem *item = &m_containerItems[currentIndex];
     QStringList deleteFiles;
     for(int i = index.count() - 1; i >= 0; --i)
@@ -842,8 +841,8 @@ void MusicSongsSummariziedWidget::itemIndexSwaped(int start, int end, int play, 
 
 void MusicSongsSummariziedWidget::isCurrentPlaylistRow(bool &state)
 {
-    const int cIndex = m_toolDeleteChanged ? m_selectDeleteIndex : m_currentIndex;
-    state = (cIndex == m_playRowIndex);
+    const int currentIndex = m_selectDeleteIndex != MUSIC_NONE_LIST ? m_selectDeleteIndex : m_currentIndex;
+    state = (currentIndex == m_playRowIndex);
 }
 
 void MusicSongsSummariziedWidget::isSearchedResultEmpty(bool &empty)

@@ -293,7 +293,6 @@ private:
     int m_playRowIndex;
     int m_lastSearchIndex;
     int m_selectDeleteIndex;
-    bool m_toolDeleteChanged;
 
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
     MusicSongsListFunctionWidget *m_listFunctionWidget;
