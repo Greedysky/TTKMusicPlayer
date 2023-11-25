@@ -24,7 +24,7 @@ void TTKRunObject::run(int argc, char **argv) const
     for(int i = 0; i < argc; ++i)
     {
         TTKString arg(argv[i]);
-        if(!strEndWidth(arg, TTK_APP_EXE_NAME))
+        if(!strEndWidth(arg, TTK_APP_FILE_NAME))
         {
             const size_t pos = arg.find('\"');
             if(pos != TTKString::npos)
@@ -37,11 +37,10 @@ void TTKRunObject::run(int argc, char **argv) const
         }
     }
 
+    const char * const path = TTK_STR_CAT(TTK_VERSION_STR, TTK_SEPARATOR, TTK_SERVICE_RUN_NAME);
 #ifdef _WIN32
-    const char * const path = TTK_STR_CAT(TTK_VERSION_STR, TTK_RSEPARATOR, TTK_SERVICE_EXE_NAME);
     ShellExecuteA(nullptr, "open", path, args.c_str(), nullptr, SW_HIDE);
 #else
-    const char * const path = TTK_STR_CAT(TTK_VERSION_STR, TTK_SEPARATOR, TTK_SERVICE_SHL_NAME);
     const TTKString &dir = get_current_dir_name();
     system((dir + "/" + path + args).c_str());
 #endif
