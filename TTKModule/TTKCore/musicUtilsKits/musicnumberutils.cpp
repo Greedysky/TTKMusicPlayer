@@ -97,7 +97,7 @@ int TTK::Number::bitrateToLevel(const QString &bitrate)
     const QStringList &data(bitrate.split(" "));
     if(data.count() >= 2)
     {
-        int bit = data.front().trimmed().toInt();
+        const int bit = data.front().trimmed().toInt();
         if(bit <= 0)
         {
             return -1;

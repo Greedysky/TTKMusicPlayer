@@ -10,8 +10,7 @@
 MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicFileInformationWidget),
-      m_advanceOn(false),
-      m_deleteOn(false)
+      m_deleteImage(false)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -26,10 +25,11 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     setStyleSheet(TTK::UI::LineEditStyle01);
     setEditLineEnabled(false);
 
-    advanceClicked();
-
     const QPixmap pix(":/image/lb_default_art");
     m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
+    m_ui->mainViewWidget->setStyleSheet(TTK::UI::TabWidgetStyle01);
+    m_ui->descriptionPlainEdit->setReadOnly(true);
+    m_ui->descriptionPlainEdit->verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 
     m_ui->editButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->deletePixButton->setStyleSheet(TTK::UI::PushButtonStyle04);
@@ -48,11 +48,10 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
 #endif
 
     connect(m_ui->editButton, SIGNAL(clicked()), SLOT(editTag()));
-    connect(m_ui->deletePixButton, SIGNAL(clicked()), SLOT(deleteAlbumPicture()));
-    connect(m_ui->savePixButton, SIGNAL(clicked()), SLOT(saveAlbumPicture()));
+    connect(m_ui->deletePixButton, SIGNAL(clicked()), SLOT(deleteAlbumImage()));
+    connect(m_ui->savePixButton, SIGNAL(clicked()), SLOT(saveAlbumImage()));
     connect(m_ui->saveButton, SIGNAL(clicked()), SLOT(saveTag()));
     connect(m_ui->viewButton, SIGNAL(clicked()), SLOT(openFileDir()));
-    connect(m_ui->advanceLabel, SIGNAL(clicked()), SLOT(advanceClicked()));
     connect(m_ui->openPixButton, SIGNAL(clicked()), SLOT(openImageFileDir()));
 }
 
@@ -69,6 +68,21 @@ void MusicFileInformationWidget::openFileDir()
     }
 }
 
+static void rendererPixmap(Ui::MusicFileInformationWidget *ui, const QPixmap &pixmap)
+{
+    if(pixmap.isNull())
+    {
+        ui->pixmapWidthLabel->setText(TTK_DEFAULT_STR);
+        ui->pixmapHeightLabel->setText(TTK_DEFAULT_STR);
+    }
+    else
+    {
+        ui->pixmapWidthLabel->setText(QString("%1px").arg(pixmap.width()));
+        ui->pixmapHeightLabel->setText(QString("%1px").arg(pixmap.height()));
+        ui->pixmapLabel->setPixmap(pixmap.scaled(ui->pixmapLabel->size()));
+    }
+}
+
 void MusicFileInformationWidget::openImageFileDir()
 {
     m_imagePath = TTK::File::getOpenFileName(this);
@@ -79,67 +93,16 @@ void MusicFileInformationWidget::openImageFileDir()
 
     QPixmap pix;
     pix.load(m_imagePath);
-    m_ui->pixmapSizeLabel->setText(QString("%1x%2").arg(pix.width()).arg(pix.height()));
-    m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
+    rendererPixmap(m_ui, pix);
 }
 
-void MusicFileInformationWidget::advanceClicked()
+void MusicFileInformationWidget::deleteAlbumImage()
 {
-    if(m_advanceOn)
-    {
-        setFixedHeight(420 + 150);
-        m_ui->background->setFixedHeight(412 + 150);
-        m_ui->backgroundMask->setFixedHeight(387 + 150);
-        m_ui->advanceLabel->move(29, 380 + 150);
-        m_ui->editButton->move(360, 345 + 150);
-        m_ui->saveButton->move(440, 345 + 150);
-        m_ui->pixmapLabel->setVisible(true);
-        m_ui->label_17->setVisible(true);
-        m_ui->decoderLabel->setVisible(true);
-
-        QPixmap pix;
-        MusicSongMeta meta;
-        if(meta.read(m_path))
-        {
-            pix = meta.cover();
-        }
-
-        QString text = QString("%1x%2").arg(pix.width()).arg(pix.height());
-        if(pix.isNull())
-        {
-            text = TTK_DEFAULT_STR;
-            pix.load(":/image/lb_default_art");
-        }
-
-        m_ui->pixmapSizeLabel->setText(text);
-        m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
-    }
-    else
-    {
-        setFixedHeight(420);
-        m_ui->background->setFixedHeight(412);
-        m_ui->backgroundMask->setFixedHeight(387);
-        m_ui->advanceLabel->move(29, 380);
-        m_ui->editButton->move(360, 345);
-        m_ui->saveButton->move(440, 345);
-        m_ui->pixmapLabel->setVisible(false);
-        m_ui->label_17->setVisible(false);
-        m_ui->decoderLabel->setVisible(false);
-    }
-
-    m_advanceOn = !m_advanceOn;
-    setBackgroundPixmap(size());
+    m_deleteImage = true;
+    rendererPixmap(m_ui, QPixmap(":/image/lb_default_art"));
 }
 
-void MusicFileInformationWidget::deleteAlbumPicture()
-{
-    const QPixmap pix(":/image/lb_default_art");
-    m_ui->pixmapSizeLabel->setText(TTK_DEFAULT_STR);
-    m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
-    m_deleteOn = true;
-}
-
-void MusicFileInformationWidget::saveAlbumPicture()
+void MusicFileInformationWidget::saveAlbumImage()
 {
     QPixmap pix;
     MusicSongMeta meta;
@@ -208,7 +171,7 @@ void MusicFileInformationWidget::saveTag()
         meta.setYear(value);
     }
 
-    if(m_deleteOn)
+    if(m_deleteImage)
     {
         meta.setCover(QPixmap());
     }
@@ -221,7 +184,7 @@ void MusicFileInformationWidget::saveTag()
     MusicToastLabel::popup(tr("Save successfully"));
 }
 
-void MusicFileInformationWidget::setFileInformation(const QString &name)
+void MusicFileInformationWidget::initialize(const QString &name)
 {
     if(name.contains(CACHE_DIR_FULL)) //cache song should not allow open url
     {
@@ -256,12 +219,15 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     m_ui->channelEdit->setText(state ? ((check = meta.channel()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->sampleRateEdit->setText(state ? ((check = meta.sampleRate()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
     m_ui->trackNumEdit->setText(state ? ((check = meta.trackNum()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->decoderLabel->setText(state ? ((check = meta.decoder()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
 
     QColor color;
     QString bitrate;
     TTK::Number::bitrateToQuality(TTK::Number::bitrateToLevel(m_ui->bitrateEdit->text()), bitrate, color);
     m_ui->qualityEdit->setText(bitrate);
+
+    m_ui->descriptionPlainEdit->setPlainText(meta.description());
+
+    rendererPixmap(m_ui, meta.cover());
 }
 
 void MusicFileInformationWidget::setEditLineEnabled(bool enabled)
@@ -272,8 +238,7 @@ void MusicFileInformationWidget::setEditLineEnabled(bool enabled)
     m_ui->fileTitleEdit->setEnabled(enabled);
     m_ui->fileYearEdit->setEnabled(enabled);
 
-    m_ui->saveButton->setEnabled(enabled);
-    m_ui->deletePixButton->setEnabled(enabled);
-
     m_ui->openPixButton->setEnabled(enabled);
+    m_ui->deletePixButton->setEnabled(enabled);
+    m_ui->saveButton->setEnabled(enabled);
 }

@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     for(int i = 0; i < argc; ++i)
     {
         const QString &&arg = QString::fromLocal8Bit(argv[i]);
-        if(!arg.endsWith(TTK_APP_EXE_NAME) && !arg.endsWith(TTK_SERVICE_EXE_NAME))
+        if(!arg.endsWith(TTK_APP_RUN_NAME) && !arg.endsWith(TTK_SERVICE_RUN_NAME))
         {
             args << arg;
         }

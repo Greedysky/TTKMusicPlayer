@@ -132,9 +132,9 @@ QString MusicSongMeta::channel() noexcept
     return songMeta()->m_metaData[TagMeta::CHANNEL];
 }
 
-QString MusicSongMeta::decoder() noexcept
+QString MusicSongMeta::description() noexcept
 {
-    return songMeta()->m_metaData[TagMeta::FORMAT];
+    return songMeta()->m_metaData[TagMeta::DESCRIPTION];
 }
 
 void MusicSongMeta::setArtist(const QString &artist) noexcept
@@ -358,7 +358,6 @@ bool MusicSongMeta::readInformation()
             meta->m_metaData[TagMeta::SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
             meta->m_metaData[TagMeta::BITRATE] = info->value(Qmmp::BITRATE);
             meta->m_metaData[TagMeta::CHANNEL] = info->value(Qmmp::CHANNELS);
-            meta->m_metaData[TagMeta::FORMAT] = info->value(Qmmp::FORMAT_NAME);
 
             meta->m_metaData[TagMeta::TITLE] = info->value(Qmmp::TITLE);
             meta->m_metaData[TagMeta::ARTIST] = info->value(Qmmp::ARTIST);
@@ -395,24 +394,44 @@ bool MusicSongMeta::readInformation()
         }
         qDeleteAll(infos);
 
-        if(!m_songMetas.isEmpty())
+        if(m_songMetas.isEmpty())
         {
-            const MetaDataModel *model = factory->createMetaDataModel(m_path, true);
-            if(model)
-            {
-                songMeta()->m_cover = model->cover();
-                songMeta()->m_lyrics = model->lyrics();
-
-                for(const MetaDataItem &item : model->extraProperties())
-                {
-                    if(item.name() == "Rating")
-                    {
-                        songMeta()->m_metaData[TagMeta::RATING] = item.value().toString();
-                    }
-                }
-                delete model;
-            }
+            return false;
         }
+
+        QString description;
+        const DecoderProperties &properties = factory->properties();
+
+        description += "ShortName: " + properties.shortName + "\n";
+        description += "DecoderName: " + properties.name + "\n";
+        description += "Description: " + properties.description + "\n";
+        description += "\n";
+
+        const MetaDataModel *model = factory->createMetaDataModel(m_path, true);
+        if(model)
+        {
+            songMeta()->m_cover = model->cover();
+            songMeta()->m_lyrics = model->lyrics();
+
+            for(const MetaDataItem &item : model->extraProperties())
+            {
+                if(item.name() == "Rating")
+                {
+                    songMeta()->m_metaData[TagMeta::RATING] = item.value().toString();
+                }
+
+                description += item.name() + ": " + item.value().toString() + "\n";
+            }
+
+            for(const MetaDataItem &item : model->descriptions())
+            {
+                description += item.name() + ": " + item.value().toString() + "\n";
+            }
+
+            delete model;
+        }
+
+        songMeta()->m_metaData[TagMeta::DESCRIPTION] = description;
     }
 
     return !m_songMetas.isEmpty();

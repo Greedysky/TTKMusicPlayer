@@ -99,9 +99,9 @@ public:
      */
     QString channel() noexcept;
     /*!
-     * Read music decoder name.
+     * Read music description.
      */
-    QString decoder() noexcept;
+    QString description() noexcept;
 
     /*!
      * Set artist name.

@@ -46,7 +46,7 @@ public:
     /*!
      * Set music file song information.
      */
-    void setFileInformation(const QString &name);
+    void initialize(const QString &name);
 
 public Q_SLOTS:
     /*!
@@ -58,17 +58,13 @@ public Q_SLOTS:
      */
     void openImageFileDir();
     /*!
-     * Music advance clicked.
+     * Delete album image.
      */
-    void advanceClicked();
+    void deleteAlbumImage();
     /*!
-     * Delete album picture.
+     * Save album image.
      */
-    void deleteAlbumPicture();
-    /*!
-     * Save album picture.
-     */
-    void saveAlbumPicture();
+    void saveAlbumImage();
     /*!
      * Music modify tag start.
      */
@@ -86,8 +82,7 @@ private:
 
     Ui::MusicFileInformationWidget *m_ui;
     QString m_path, m_imagePath;
-    bool m_advanceOn;
-    bool m_deleteOn;
+    bool m_deleteImage;
 
 };
 

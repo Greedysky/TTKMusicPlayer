@@ -44,7 +44,8 @@ public:
         SAMPLERATE,  /*!< Sample rate */
         MODE,        /*!< Mode */
         BITRATE,     /*!< Bitrate */
-        CHANNEL      /*!< Channel */
+        CHANNEL,     /*!< Channel */
+        DESCRIPTION  /*!< Description */
     };
 
     TagMeta();

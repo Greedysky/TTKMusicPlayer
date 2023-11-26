@@ -116,7 +116,7 @@ void MusicAbstractSongsListTableWidget::showFileInformation()
     }
 
     MusicFileInformationWidget widget;
-    widget.setFileInformation(currentSongPath());
+    widget.initialize(currentSongPath());
     widget.exec();
 }
 

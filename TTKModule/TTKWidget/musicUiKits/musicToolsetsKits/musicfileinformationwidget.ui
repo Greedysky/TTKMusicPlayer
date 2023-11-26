@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>532</width>
-    <height>570</height>
+    <height>510</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>4</x>
      <y>4</y>
      <width>525</width>
-     <height>527</height>
+     <height>502</height>
     </rect>
    </property>
    <property name="text">
@@ -58,461 +58,13 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="Line" name="line_2">
-   <property name="geometry">
-    <rect>
-     <x>79</x>
-     <y>49</y>
-     <width>425</width>
-     <height>5</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>39</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>文件信息</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>70</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>文件名:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="filePathEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>89</x>
-     <y>70</y>
-     <width>350</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>194</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>大小:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="fileSizeEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>89</x>
-     <y>194</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="viewButton">
-   <property name="geometry">
-    <rect>
-     <x>444</x>
-     <y>70</y>
-     <width>61</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="text">
-    <string>浏览</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="fileFormatEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>339</x>
-     <y>194</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>279</x>
-     <y>194</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>格式:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>279</x>
-     <y>104</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>歌手:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="fileArtistEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>339</x>
-     <y>104</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="fileTitleEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>89</x>
-     <y>104</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>104</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>标题:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>134</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>专辑:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="fileAlbumEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>89</x>
-     <y>134</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_8">
-   <property name="geometry">
-    <rect>
-     <x>279</x>
-     <y>164</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>长度:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="fileTimeEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>339</x>
-     <y>164</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_9">
-   <property name="geometry">
-    <rect>
-     <x>279</x>
-     <y>134</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>流派:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="fileGenreEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>339</x>
-     <y>134</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_10">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>259</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>采样速率:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_11">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>294</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>轨段编号:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="trackNumEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>89</x>
-     <y>294</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_12">
-   <property name="geometry">
-    <rect>
-     <x>279</x>
-     <y>294</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>通道:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="sampleRateEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>89</x>
-     <y>259</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="channelEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>339</x>
-     <y>294</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="fileYearEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>89</x>
-     <y>164</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_13">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>164</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>年份:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_14">
-   <property name="geometry">
-    <rect>
-     <x>279</x>
-     <y>259</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>比特率:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="bitrateEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>339</x>
-     <y>259</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_15">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>227</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>其他信息</string>
-   </property>
-  </widget>
-  <widget class="Line" name="line_3">
-   <property name="geometry">
-    <rect>
-     <x>79</x>
-     <y>237</y>
-     <width>425</width>
-     <height>5</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
      <x>4</x>
      <y>29</y>
      <width>525</width>
-     <height>537</height>
+     <height>477</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -521,10 +73,10 @@
    <widget class="QPushButton" name="editButton">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>495</y>
-      <width>61</width>
-      <height>23</height>
+      <x>325</x>
+      <y>430</y>
+      <width>80</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="cursor">
@@ -537,10 +89,10 @@
    <widget class="QPushButton" name="saveButton">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>495</y>
-      <width>61</width>
-      <height>23</height>
+      <x>420</x>
+      <y>430</y>
+      <width>80</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="cursor">
@@ -550,250 +102,686 @@
      <string>保存</string>
     </property>
    </widget>
+   <widget class="QTabWidget" name="mainViewWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>525</width>
+      <height>420</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="baseWidget">
+     <attribute name="title">
+      <string>基本信息</string>
+     </attribute>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>275</x>
+        <y>274</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>比特率:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="channelEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>335</x>
+        <y>309</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>275</x>
+        <y>194</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>格式:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>275</x>
+        <y>89</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>歌手:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>89</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>标题:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>50</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>文件名:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>275</x>
+        <y>309</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>通道:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>159</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>年份:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="fileSizeEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>85</x>
+        <y>194</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>16</x>
+        <y>14</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>文件信息</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="bitrateEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>335</x>
+        <y>274</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>274</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>采样速率:</string>
+      </property>
+     </widget>
+     <widget class="Line" name="line_3">
+      <property name="geometry">
+       <rect>
+        <x>75</x>
+        <y>247</y>
+        <width>425</width>
+        <height>5</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="fileTitleEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>85</x>
+        <y>89</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="fileFormatEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>335</x>
+        <y>194</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>194</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>大小:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="qualityEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>85</x>
+        <y>343</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="filePathEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>85</x>
+        <y>50</y>
+        <width>350</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="trackNumEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>85</x>
+        <y>309</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_17">
+      <property name="geometry">
+       <rect>
+        <x>275</x>
+        <y>343</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>评级:</string>
+      </property>
+     </widget>
+     <widget class="MusicRatingLabel" name="ratingLabel">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>335</x>
+        <y>343</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>275</x>
+        <y>124</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>流派:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="fileArtistEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>335</x>
+        <y>89</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="fileAlbumEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>85</x>
+        <y>124</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="viewButton">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>50</y>
+        <width>61</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>浏览</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="sampleRateEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>85</x>
+        <y>274</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="fileYearEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>85</x>
+        <y>159</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="fileTimeEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>335</x>
+        <y>159</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>16</x>
+        <y>237</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>其他信息</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>275</x>
+        <y>159</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>长度:</string>
+      </property>
+     </widget>
+     <widget class="Line" name="line_2">
+      <property name="geometry">
+       <rect>
+        <x>75</x>
+        <y>24</y>
+        <width>425</width>
+        <height>5</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="fileGenreEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>335</x>
+        <y>124</y>
+        <width>166</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>309</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>轨段编号:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_16">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>343</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>音质:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>124</y>
+        <width>54</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>专辑:</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="imageWidget">
+     <attribute name="title">
+      <string>图片信息</string>
+     </attribute>
+     <widget class="QPushButton" name="deletePixButton">
+      <property name="geometry">
+       <rect>
+        <x>325</x>
+        <y>350</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>删除图片</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_18">
+      <property name="geometry">
+       <rect>
+        <x>375</x>
+        <y>310</y>
+        <width>54</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>图片高度:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="pixmapHeightLabel">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>310</y>
+        <width>60</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="openPixButton">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>350</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>选择图片</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="savePixButton">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>350</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>导出图片</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="pixmapLabel">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>30</y>
+        <width>300</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:Rerd</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_19">
+      <property name="geometry">
+       <rect>
+        <x>375</x>
+        <y>285</y>
+        <width>54</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>图片宽度:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="pixmapWidthLabel">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>285</y>
+        <width>60</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="extraWidget">
+     <attribute name="title">
+      <string>其他信息</string>
+     </attribute>
+     <widget class="QPlainTextEdit" name="descriptionPlainEdit">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>480</width>
+        <height>350</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPlainTextEdit{ border:1px solid gray; color:#888888; font-size:14px; }</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="backgroudGray" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>525</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgba(50,50,50,50);</string>
+    </property>
+   </widget>
+   <zorder>editButton</zorder>
+   <zorder>saveButton</zorder>
+   <zorder>backgroudGray</zorder>
+   <zorder>mainViewWidget</zorder>
   </widget>
-  <widget class="TTKClickedLabel" name="advanceLabel">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>530</y>
-     <width>55</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;高级&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="pixmapLabel">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>405</y>
-     <width>110</width>
-     <height>110</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:Rerd</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_17">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>410</y>
-     <width>54</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>解码器:</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="openPixButton">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>490</y>
-     <width>61</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="text">
-    <string>选择图片</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_18">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>445</y>
-     <width>54</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>图片大小:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="pixmapSizeLabel">
-   <property name="geometry">
-    <rect>
-     <x>245</x>
-     <y>445</y>
-     <width>150</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>-</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="decoderLabel">
-   <property name="geometry">
-    <rect>
-     <x>245</x>
-     <y>410</y>
-     <width>220</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>-</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_16">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>328</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>音质:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="qualityEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>89</x>
-     <y>328</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="deletePixButton">
-   <property name="geometry">
-    <rect>
-     <x>250</x>
-     <y>490</y>
-     <width>61</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="text">
-    <string>删除图片</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="savePixButton">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>490</y>
-     <width>61</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="text">
-    <string>导出图片</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_19">
-   <property name="geometry">
-    <rect>
-     <x>279</x>
-     <y>328</y>
-     <width>54</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>评级:</string>
-   </property>
-  </widget>
-  <widget class="MusicRatingLabel" name="ratingLabel">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>339</x>
-     <y>328</y>
-     <width>166</width>
-     <height>23</height>
-    </rect>
-   </property>
-  </widget>
-  <zorder>background</zorder>
-  <zorder>backgroundMask</zorder>
-  <zorder>topTitleName</zorder>
-  <zorder>topTitleCloseButton</zorder>
-  <zorder>line_2</zorder>
-  <zorder>label</zorder>
-  <zorder>label_2</zorder>
-  <zorder>filePathEdit</zorder>
-  <zorder>label_3</zorder>
-  <zorder>fileSizeEdit</zorder>
-  <zorder>viewButton</zorder>
-  <zorder>fileFormatEdit</zorder>
-  <zorder>label_4</zorder>
-  <zorder>label_5</zorder>
-  <zorder>fileArtistEdit</zorder>
-  <zorder>fileTitleEdit</zorder>
-  <zorder>label_6</zorder>
-  <zorder>label_7</zorder>
-  <zorder>fileAlbumEdit</zorder>
-  <zorder>label_8</zorder>
-  <zorder>fileTimeEdit</zorder>
-  <zorder>label_9</zorder>
-  <zorder>fileGenreEdit</zorder>
-  <zorder>label_10</zorder>
-  <zorder>label_11</zorder>
-  <zorder>trackNumEdit</zorder>
-  <zorder>label_12</zorder>
-  <zorder>sampleRateEdit</zorder>
-  <zorder>channelEdit</zorder>
-  <zorder>fileYearEdit</zorder>
-  <zorder>label_13</zorder>
-  <zorder>label_14</zorder>
-  <zorder>bitrateEdit</zorder>
-  <zorder>label_15</zorder>
-  <zorder>line_3</zorder>
-  <zorder>advanceLabel</zorder>
-  <zorder>pixmapLabel</zorder>
-  <zorder>openPixButton</zorder>
-  <zorder>label_17</zorder>
-  <zorder>label_18</zorder>
-  <zorder>pixmapSizeLabel</zorder>
-  <zorder>decoderLabel</zorder>
-  <zorder>label_16</zorder>
-  <zorder>qualityEdit</zorder>
-  <zorder>deletePixButton</zorder>
-  <zorder>savePixButton</zorder>
-  <zorder>label_19</zorder>
-  <zorder>ratingLabel</zorder>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>TTKClickedLabel</class>
-   <extends>QLabel</extends>
-   <header>ttkclickedlabel.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>MusicRatingLabel</class>
    <extends>QLabel</extends>
