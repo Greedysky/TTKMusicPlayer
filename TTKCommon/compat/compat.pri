@@ -16,26 +16,12 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-DEFINES += TTK_LIBRARY
-
-include($$PWD/../compat/compat.pri)
-
-win32:msvc{
-    CONFIG += c++11
-}else{
-    equals(QT_MAJOR_VERSION, 6){ #Qt6
-        QMAKE_CXXFLAGS += -std=c++17
-    }else{
-        QMAKE_CXXFLAGS += -std=c++11
-    }
-}
-
-win32:!msvc:QMAKE_LFLAGS_CONSOLE += -mwindows
-
 INCLUDEPATH += \
     $$PWD \
     $$PWD/../
 
-HEADERS += $$PWD/ttkrunobject.h
+HEADERS += $$PWD/compat.h
 
-SOURCES += $$PWD/ttkrunobject.cpp
+SOURCES += \
+    $$PWD/strlcat.c \
+    $$PWD/strlcpy.c
