@@ -25,14 +25,14 @@
 #define strlcat _strlcat
 #define strlcpy _strlcpy
 
-# ifdef  __cplusplus
+#ifdef __cplusplus
 extern "C" {
-# endif
+#endif
 // implementation
 size_t _strlcat(char *dst, const char *src, size_t dsize);
 size_t _strlcpy(char *dst, const char *src, size_t dsize);
-# ifdef  __cplusplus
+#ifdef __cplusplus
 }
-# endif
+#endif
 
 #endif // COMPAT_H

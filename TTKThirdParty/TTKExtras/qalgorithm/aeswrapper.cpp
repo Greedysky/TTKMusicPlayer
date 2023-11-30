@@ -1,8 +1,6 @@
 #include "aeswrapper.h"
 #include "base64.h"
-extern "C" {
 #include "aes.h"
-}
 
 static constexpr int DATA_CACHE_SIZE = 1024;
 
