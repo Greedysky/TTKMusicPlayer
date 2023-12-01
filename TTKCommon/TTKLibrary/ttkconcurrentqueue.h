@@ -21,15 +21,13 @@
 
 #include <queue>
 #include <condition_variable>
-#include "ttkmoduleexport.h"
 
 /*! @brief The class of the concurrent queue.
  * @author Greedysky <greedysky@163.com>
  */
 template <typename T>
-class TTK_MODULE_EXPORT TTKConcurrentQueue
+class TTKConcurrentQueue
 {
-    TTK_DECLARE_MODULE(TTKConcurrentQueue)
 public:
     /*!
      * Object constructor.

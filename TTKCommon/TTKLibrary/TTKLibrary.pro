@@ -91,7 +91,8 @@ HEADERS += \
     $$PWD/ttktabbutton.h \
     $$PWD/ttkthemelinelabel.h \
     $$PWD/ttktime.h \
-    $$PWD/ttktoastlabel.h
+    $$PWD/ttktoastlabel.h \
+    $$PWD/ttkunsortedmap.h
 
 SOURCES += \
     $$PWD/ttkabstractmovedialog.cpp \

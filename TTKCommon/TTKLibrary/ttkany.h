@@ -21,6 +21,7 @@
 
 #include <memory>
 #include <typeindex>
+#include "ttkglobal.h"
 #include "ttkmoduleexport.h"
 
 /*! @brief The class of the ttk any module.
@@ -173,5 +174,15 @@ namespace TTK
     }
 
 }
+
+
+#if TTK_STD_CXX < 201703L
+// compatiblity for std any
+namespace std
+{
+using any = TTKAny;
+using namespace::TTK;
+}
+#endif
 
 #endif // TTKANY_H

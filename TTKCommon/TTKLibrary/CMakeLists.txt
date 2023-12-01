@@ -36,6 +36,7 @@ set(HEADER_FILES
   ttkthemelinelabel.h
   ttktime.h
   ttktoastlabel.h
+  ttkunsortedmap.h
 )
 
 set(SOURCE_FILES
