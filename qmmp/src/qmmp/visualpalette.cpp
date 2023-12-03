@@ -19,7 +19,7 @@ static QVector<QColor> globalGolors = { QColor(0, 0, 0),
 
 static void createGradientTable()
 {
-    int numbers = 6;
+    constexpr int numbers = 6;
     for(int i = 0; i < GRADIENT_TABLE_SIZE; ++i)
     {
         double position = (double)i / GRADIENT_TABLE_SIZE;
@@ -119,7 +119,7 @@ static uint32_t rainbow(double level)
         createGradientTable();
         globalTableInit = true;
     }
-    
+
     const int index = qBound(0, int(level * GRADIENT_TABLE_SIZE), GRADIENT_TABLE_SIZE - 1);
     return globalTableGolors[index];
 }
