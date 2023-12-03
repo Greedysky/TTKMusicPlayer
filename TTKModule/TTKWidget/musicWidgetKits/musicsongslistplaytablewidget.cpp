@@ -17,17 +17,6 @@
 #include <qmath.h>
 #include <QAction>
 
-#define GENERATE_SEARCH_ITEM(index, names)                                                 \
-    case index:                                                                            \
-    {                                                                                      \
-        if(names.count() >= index)                                                         \
-        {                                                                                  \
-            MusicRightAreaWidget::instance()->showSongSearchedFound(names[index - 1]);     \
-        }                                                                                  \
-        break;                                                                             \
-    }
-
-
 MusicSongsListPlayTableWidget::MusicSongsListPlayTableWidget(int index, QWidget *parent)
     : MusicAbstractSongsListTableWidget(index, parent),
       m_parent(parent),
@@ -558,6 +547,16 @@ void MusicSongsListPlayTableWidget::searchQueryByName(QAction *action)
         return;
     }
 
+#define GENERATE_SEARCH_ITEM(index, names)                                                 \
+    case index:                                                                            \
+    {                                                                                      \
+        if(names.count() >= index)                                                         \
+        {                                                                                  \
+            MusicRightAreaWidget::instance()->showSongSearchedFound(names[index - 1]);     \
+        }                                                                                  \
+        break;                                                                             \
+    }
+
     const QString &songName = currentSongName();
     const QStringList names(TTK::String::split(songName));
     switch(action->data().toInt() - TTK_LOW_LEVEL)
@@ -567,7 +566,8 @@ void MusicSongsListPlayTableWidget::searchQueryByName(QAction *action)
         GENERATE_SEARCH_ITEM(2, names);
         GENERATE_SEARCH_ITEM(3, names);
         default: break;
-    }
+    } 
+#undef GENERATE_SEARCH_ITEM
 }
 
 void MusicSongsListPlayTableWidget::addToPlayLater()
