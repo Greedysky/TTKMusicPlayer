@@ -422,6 +422,13 @@ private:
 // compatiblity for std any
 namespace std
 {
+// Non-member functions [any.nonmembers]
+template <class _Key, class _Value>
+inline void swap(TTKUnsortedMap<_Key, _Value>& left, TTKUnsortedMap<_Key, _Value>& right) noexcept
+{
+    left.swap(right);
+}
+
 template <class _Key, class _Value>
 using unsorted_map = TTKUnsortedMap<_Key, _Value>;
 }

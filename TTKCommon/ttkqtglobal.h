@@ -78,7 +78,7 @@ void qAsConst(const T &&) = delete;
 
 
 #if !TTK_QT_VERSION_CHECK(5,0,0) && defined(Q_CC_GNU)
-#  if defined(__GXX_EXPERIMENTAL_CXX0X__) || TTK_STD_CXX >= 201103L
+#  if defined(__GXX_EXPERIMENTAL_CXX0X__) || TTK_HAS_CXX11
 #    define Q_COMPILER_DEFAULT_MEMBERS
 #    define Q_COMPILER_DELETE_MEMBERS
 #    define Q_COMPILER_NULLPTR

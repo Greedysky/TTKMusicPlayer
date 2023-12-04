@@ -50,6 +50,45 @@
 #endif
 
 
+#if TTK_STD_CXX >= 202302L  // c++2b
+#  define TTK_HAS_CXX11 1
+#  define TTK_HAS_CXX14 1
+#  define TTK_HAS_CXX17 1
+#  define TTK_HAS_CXX20 1
+#  define TTK_HAS_CXX23 1
+#elif TTK_STD_CXX >= 202002L // c++2a
+#  define TTK_HAS_CXX11 1
+#  define TTK_HAS_CXX14 1
+#  define TTK_HAS_CXX17 1
+#  define TTK_HAS_CXX20 1
+#  define TTK_HAS_CXX23 0
+#elif TTK_STD_CXX >= 201703L // c++1z
+#  define TTK_HAS_CXX11 1
+#  define TTK_HAS_CXX14 1
+#  define TTK_HAS_CXX17 1
+#  define TTK_HAS_CXX20 0
+#  define TTK_HAS_CXX23 0
+#elif TTK_STD_CXX >= 201402L // c++1y
+#  define TTK_HAS_CXX11 1
+#  define TTK_HAS_CXX14 1
+#  define TTK_HAS_CXX17 0
+#  define TTK_HAS_CXX20 0
+#  define TTK_HAS_CXX23 0
+#elif TTK_STD_CXX >= 201103L // c++1x
+#  define TTK_HAS_CXX11 1
+#  define TTK_HAS_CXX14 0
+#  define TTK_HAS_CXX17 0
+#  define TTK_HAS_CXX20 0
+#  define TTK_HAS_CXX23 0
+#else
+#  define TTK_HAS_CXX11 0
+#  define TTK_HAS_CXX14 0
+#  define TTK_HAS_CXX17 0
+#  define TTK_HAS_CXX20 0
+#  define TTK_HAS_CXX23 0
+#endif
+
+
 #ifdef __GNUC__
 #  pragma GCC diagnostic ignored "-Wswitch"
 #  pragma GCC diagnostic ignored "-Wparentheses"
@@ -58,7 +97,7 @@
 #endif
 
 
-#if TTK_STD_CXX >= 201103L
+#if TTK_HAS_CXX11
 #  define TTK_CAST
 #endif
 

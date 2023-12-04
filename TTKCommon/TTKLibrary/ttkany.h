@@ -21,7 +21,7 @@
 
 #include <memory>
 #include <typeindex>
-#include "ttkglobal.h"
+#include "ttkcompat.h"
 #include "ttkmoduleexport.h"
 
 /*! @brief The class of the ttk any module.
@@ -89,6 +89,14 @@ public:
      */
     TTKAny &operator=(const TTKAny &other) noexcept;
 
+    /*!
+     * Swap object from other.
+     */
+    void swap(TTKAny& other) noexcept
+    {
+        other = std::exchange(*this, std::move(other));
+    }
+
 private:
     struct _Base;
     using _BasePtr = std::unique_ptr<_Base>;
@@ -103,9 +111,9 @@ private:
     template <typename T>
     struct _Derived : public _Base
     {
-        template <typename... Args>
-        _Derived(Args &&...args)  noexcept
-            : m_value(std::forward<Args>(args)...)
+        template <typename U>
+        _Derived(U &&value)  noexcept
+            : m_value(std::forward<U>(value))
         {
         }
 
@@ -140,6 +148,12 @@ private:
 
 namespace TTK
 {
+    template <typename T, typename... Args>
+    inline TTKAny make_any(Args &&...args)
+    {
+        return TTKAny(T(std::forward<Args>(args)...));
+    }
+
     template <typename T>
     using remove_cvr = typename std::remove_cv<typename std::remove_reference<T>::type>::type;
 
@@ -176,13 +190,19 @@ namespace TTK
 }
 
 
-#if TTK_STD_CXX < 201703L
-// compatiblity for std any
 namespace std
 {
+// Non-member functions [any.nonmembers]
+inline void swap(TTKAny& left, TTKAny& right) noexcept
+{
+    left.swap(right);
+}
+
+#if !TTK_HAS_CXX17
+// compatiblity for std any
 using any = TTKAny;
 using namespace::TTK;
-}
 #endif
+}
 
 #endif // TTKANY_H

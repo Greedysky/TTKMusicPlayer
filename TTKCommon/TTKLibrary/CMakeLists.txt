@@ -17,6 +17,7 @@ set(HEADER_FILES
   ttkclickedlabel.h
   ttkclickedslider.h
   ttkcommandline.h
+  ttkcompat.h
   ttkconcurrent.h
   ttkconcurrentqueue.h
   ttkcryptographichash.h

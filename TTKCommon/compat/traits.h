@@ -1,5 +1,5 @@
-#ifndef PROCESSOR_H
-#define PROCESSOR_H
+#ifndef TRAITS_H
+#define TRAITS_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -51,4 +51,4 @@
     template <class Obj, class Func> \
     using __trait_name__##Check = __trait_name__<void, Obj, Func>;
 
-#endif // PROCESSOR_H
+#endif // TRAITS_H

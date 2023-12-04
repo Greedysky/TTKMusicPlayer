@@ -28,6 +28,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+#include <cmath>
 #include <iostream>
 #include <cinttypes>
 #include <type_traits>
@@ -54,6 +55,10 @@ SOFTWARE.
 #  endif
 #else
 #  error "I don't know what architecture this is!"
+#endif
+
+#if (defined(__SIZEOF_INT128__) && __SIZEOF_INT128__ == 16) || defined(_GLIBCXX_USE_INT128)
+#  define USE_BUILTIN_INT128
 #endif
 
 #ifdef _MSC_VER
@@ -104,6 +109,7 @@ namespace large_int {
     struct half_mask : std::integral_constant<_Tp, (_Tp(1) << (4 * sizeof(_Tp))) - _Tp(1)> {
     };
 
+    template<bool= true>
     struct detail_delegate;
 
     constexpr bool operator<(int128_t, int128_t);
@@ -134,6 +140,7 @@ namespace large_int {
     class alignas(sizeof(_Hi) * 2) int128_base final {
         static_assert(sizeof(_Hi) == sizeof(_Low), "low type, high type should have same size");
 
+    public:
 #ifdef __LITTLE_ENDIAN__
         _Low low_{};
         _Hi high_{};
@@ -150,6 +157,7 @@ namespace large_int {
 #error endian not support
 #endif
 
+    private:
         struct integral_tag {
         };
         struct signed_integral_tag : integral_tag {
@@ -162,7 +170,6 @@ namespace large_int {
         struct size_constant {
         };
 
-    private:
         template<class _Tp>
         constexpr int128_base(_Tp value_, signed_integral_tag, size_constant<8>) :
                 int128_base(-(value_ < 0), value_) {}
@@ -244,12 +251,34 @@ namespace large_int {
 
         constexpr explicit operator char32_t() const { return char32_t(low_); }
 
+#if USE_BUILTIN_INT128
+
+        constexpr explicit int128_base(__int128 val_) :
+                int128_base(val_, signed_integral_tag(), size_constant<sizeof(val_)>()) {}
+
+        constexpr explicit int128_base(unsigned __int128 val_) :
+                int128_base(val_, unsigned_integral_tag(), size_constant<sizeof(val_)>()) {}
+
+        constexpr explicit operator unsigned __int128() const {
+            return static_cast<unsigned __int128>(high_) << 64U | static_cast<unsigned __int128>(low_);
+        }
+
+        constexpr explicit operator __int128() const {
+            return static_cast<__int128>(static_cast<unsigned __int128>(*this));
+        }
+
+#endif
+
+    private:
+        template<class _Tp>
+        constexpr _Tp cast_to_float() const;
+
     public:
-        constexpr explicit operator float() const { return detail_delegate::cast_to_float<float>(*this); }
+        constexpr explicit operator float() const { return cast_to_float<float>(); }
 
-        constexpr explicit operator double() const { return detail_delegate::cast_to_float<double>(*this); }
+        constexpr explicit operator double() const { return cast_to_float<double>(); }
 
-        constexpr explicit operator long double() const { return detail_delegate::cast_to_float<long double>(*this);}
+        constexpr explicit operator long double() const { return cast_to_float<long double>(); }
 
         constexpr int128_base operator+() const { return *this; }
 
@@ -338,12 +367,16 @@ namespace large_int {
         int128_base &operator^=(int128_base rhs_) &{ return *this = *this ^ rhs_; }
 
         template<class, class>
-        friend class int128_base;
+        friend
+        class int128_base;
 
         template<class>
-        friend struct clz_helper;
+        friend
+        struct clz_helper;
 
-        friend struct detail_delegate;
+        template<bool>
+        friend
+        struct detail_delegate;
     };
 
     inline namespace literals {
@@ -371,9 +404,9 @@ namespace large_int {
                 int128_literal_radix<_Tp, _Rad, _Ch> _Cur;
                 int128_literal_radix<_Tp, _Rad, _Args...> _Tgt;
 
-                constexpr operator _Tp() const { return _Tgt(_Cur); }; // NOLINT explicit
+                constexpr operator _Tp() const { return _Tgt(_Cur); } // NOLINT explicit
 
-                constexpr _Tp operator()(_Tp v) const { return _Tgt(_Cur(v)); };
+                constexpr _Tp operator()(_Tp v) const { return _Tgt(_Cur(v)); }
             };
 
             template<class _Tp, char ..._Args>
@@ -432,6 +465,7 @@ namespace large_int {
         }
     };
 
+    template<bool>
     struct detail_delegate {
         template<class _Hi, class _Low>
         static constexpr bool cmp(int128_base<_Hi, _Low> lhs_, int128_base<_Hi, _Low> rhs_) {
@@ -531,37 +565,109 @@ namespace large_int {
         }
     };
 
-    constexpr bool operator<(int128_t lhs_, int128_t rhs_) { return detail_delegate::cmp(lhs_, rhs_); }
+#if USE_BUILTIN_INT128
 
-    constexpr bool operator<(uint128_t lhs_, uint128_t rhs_) { return detail_delegate::cmp(lhs_, rhs_); }
+    template<>
+    struct detail_delegate<true> {
+        typedef __int128 ti_int_;
+        typedef unsigned __int128 tu_int_;
+
+        static constexpr ti_int_ to_native(int128_t val_) { return static_cast<ti_int_>(val_); }
+
+        static constexpr tu_int_ to_native(uint128_t val_) { return static_cast<tu_int_>(val_); }
+
+        static constexpr int128_t from_native(ti_int_ val_) { return int128_t(val_); }
+
+        static constexpr uint128_t from_native(tu_int_ val_) { return uint128_t(val_); }
+
+        template<class _Hi, class _Low>
+        static constexpr bool cmp(int128_base<_Hi, _Low> lhs_, int128_base<_Hi, _Low> rhs_) {
+            return to_native(lhs_) < to_native(rhs_);
+        }
+
+        static constexpr uint128_t shr(uint128_t lhs_, unsigned rhs_) {
+            return from_native(to_native(lhs_) >> static_cast<decltype(to_native(lhs_))>(rhs_));
+        }
+
+        static constexpr int128_t sar(int128_t lhs_, unsigned rhs_) {
+            return from_native(to_native(lhs_) >> static_cast<decltype(to_native(lhs_))>(rhs_)); // NOLINT signed shift
+        }
+
+        template<class _Hi, class _Low>
+        static constexpr int128_base<_Hi, _Low> imul(int128_base<_Hi, _Low> lhs_, int128_base<_Hi, _Low> rhs_) {
+            return from_native(to_native(lhs_) * to_native(rhs_));
+        }
+
+        template<class _Hi, class _Low>
+        static constexpr int128_base<_Hi, _Low> shl(int128_base<_Hi, _Low> lhs_, unsigned rhs_) {
+            return from_native(to_native(lhs_) << static_cast<decltype(to_native(lhs_))>(rhs_)); // NOLINT signed shift
+        }
+
+        template<class _Hi, class _Low>
+        static constexpr int128_base<_Hi, _Low> div(int128_base<_Hi, _Low> lhs_, int128_base<_Hi, _Low> rhs_) {
+            return from_native(to_native(lhs_) / to_native(rhs_));
+        }
+
+        template<class _Hi, class _Low>
+        static constexpr int128_base<_Hi, _Low> mod(int128_base<_Hi, _Low> lhs_, int128_base<_Hi, _Low> rhs_) {
+            return from_native(to_native(lhs_) % to_native(rhs_));
+        }
+
+        static void part_div(uint128_t value_, uint64_t div_, uint64_t &high_, uint64_t &mid_, uint64_t &low_) {
+            // on some cpu, compiler won't do optimize for us
+            auto vv_ = to_native(value_);
+            auto rest_ = vv_ / div_;
+            low_ = static_cast<uint64_t>(vv_) - div_ * static_cast<uint64_t>(rest_);
+            high_ = static_cast<uint64_t>(rest_ / div_);
+            mid_ = static_cast<uint64_t>(rest_) - div_ * high_;
+        }
+
+        template<class _Tp, class _Hi, class _Low>
+        static constexpr _Tp cast_to_float(int128_base<_Hi, _Low> value_) {
+            return static_cast<_Tp>(to_native(value_));
+        }
+
+    };
+
+#endif
+
+    constexpr bool operator<(int128_t lhs_, int128_t rhs_) { return detail_delegate<>::cmp(lhs_, rhs_); }
+
+    constexpr bool operator<(uint128_t lhs_, uint128_t rhs_) { return detail_delegate<>::cmp(lhs_, rhs_); }
 
     constexpr uint128_t operator>>(uint128_t lhs_, int rhs_) {
-        return detail_delegate::shr(lhs_, static_cast<unsigned>(rhs_));
+        return detail_delegate<>::shr(lhs_, static_cast<unsigned>(rhs_));
     }
 
     constexpr int128_t operator>>(int128_t lhs_, int rhs_) {
-        return detail_delegate::sar(lhs_, static_cast<unsigned>(rhs_));
+        return detail_delegate<>::sar(lhs_, static_cast<unsigned>(rhs_));
     }
 
-    constexpr int128_t operator*(int128_t lhs_, int128_t rhs_) { return detail_delegate::imul(lhs_, rhs_); }
+    constexpr int128_t operator*(int128_t lhs_, int128_t rhs_) { return detail_delegate<>::imul(lhs_, rhs_); }
 
-    constexpr uint128_t operator*(uint128_t lhs_, uint128_t rhs_) { return detail_delegate::imul(lhs_, rhs_); }
+    constexpr uint128_t operator*(uint128_t lhs_, uint128_t rhs_) { return detail_delegate<>::imul(lhs_, rhs_); }
 
     constexpr uint128_t operator<<(uint128_t lhs_, int rhs_) {
-        return detail_delegate::shl(lhs_, static_cast<unsigned>(rhs_));
+        return detail_delegate<>::shl(lhs_, static_cast<unsigned>(rhs_));
     }
 
     constexpr int128_t operator<<(int128_t lhs_, int rhs_) {
-        return detail_delegate::shl(lhs_, static_cast<unsigned>(rhs_));
+        return detail_delegate<>::shl(lhs_, static_cast<unsigned>(rhs_));
     }
 
-    inline uint128_t operator/(uint128_t lhs_, uint128_t rhs_) { return detail_delegate::div(lhs_, rhs_); };
+    inline uint128_t operator/(uint128_t lhs_, uint128_t rhs_) { return detail_delegate<>::div(lhs_, rhs_); }
 
-    inline int128_t operator/(int128_t lhs_, int128_t rhs_) { return detail_delegate::div(lhs_, rhs_); };
+    inline int128_t operator/(int128_t lhs_, int128_t rhs_) { return detail_delegate<>::div(lhs_, rhs_); }
 
-    inline uint128_t operator%(uint128_t lhs_, uint128_t rhs_) { return detail_delegate::mod(lhs_, rhs_); };
+    inline uint128_t operator%(uint128_t lhs_, uint128_t rhs_) { return detail_delegate<>::mod(lhs_, rhs_); }
 
-    inline int128_t operator%(int128_t lhs_, int128_t rhs_) { return detail_delegate::mod(lhs_, rhs_); }
+    inline int128_t operator%(int128_t lhs_, int128_t rhs_) { return detail_delegate<>::mod(lhs_, rhs_); }
+
+    template<class _Hi, class _Low>
+    template<class _Tp>
+    constexpr _Tp int128_base<_Hi, _Low>::cast_to_float() const {
+        return detail_delegate<>::cast_to_float<_Tp>(*this);
+    }
 
     template<class _CharT, class _Traits>
     inline std::basic_ostream<_CharT, _Traits> &
@@ -621,7 +727,7 @@ namespace large_int {
                     }
                 }
                 uint64_t high_, mid_, low_;
-                detail_delegate::part_div(value_, UINT64_C(10000000000000000000), high_, mid_, low_);
+                detail_delegate<>::part_div(value_, UINT64_C(10000000000000000000), high_, mid_, low_);
                 if (high_) {
                     offset_ = snprintf(buf_, buf_size_, "%" PRIu64 "%019" PRIu64 "%019" PRIu64,
                                        high_, mid_, low_);
