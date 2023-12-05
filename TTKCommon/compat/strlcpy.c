@@ -24,7 +24,8 @@
 
 #include "compat.h"
 
-size_t _strlcpy(char *dst, const char *src, size_t dsize)
+#ifndef HAVE_STRLCPY
+size_t strlcpy(char *dst, const char *src, size_t dsize)
 {
     const char *osrc = src;
     size_t nleft = dsize;
@@ -47,3 +48,4 @@ size_t _strlcpy(char *dst, const char *src, size_t dsize)
 
     return(src - osrc - 1);    /* count does not include NUL */
 }
+#endif

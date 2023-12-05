@@ -1,5 +1,5 @@
-#ifndef COMPAT_H
-#define COMPAT_H
+#ifndef TTKCONFIG_H
+#define TTKCONFIG_H
 
 /***************************************************************************
  * This file is part of the TTK Library Module project
@@ -19,23 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <string.h>
-#include "ttkconfig.h"
-
-#ifdef __cplusplus
-extern "C" {
+#if @HAVE_STRLCAT@
+#  define HAVE_STRLCAT
 #endif
 
-#ifndef HAVE_STRLCAT
-size_t strlcat(char *dst, const char *src, size_t dsize);
+#if @HAVE_STRLCPY@
+#  define HAVE_STRLCPY
 #endif
 
-#ifndef HAVE_STRLCPY
-size_t strlcpy(char *dst, const char *src, size_t dsize);
-#endif
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif // COMPAT_H
+#endif // TTKCONFIG_H

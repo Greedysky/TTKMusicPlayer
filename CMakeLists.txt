@@ -1,4 +1,22 @@
-cmake_minimum_required(VERSION 2.8.11)
+# ***************************************************************************
+# * This file is part of the TTK Music Player project
+# * Copyright (C) 2015 - 2023 Greedysky Studio
+#
+# * This program is free software; you can redistribute it and/or modify
+# * it under the terms of the GNU General Public License as published by
+# * the Free Software Foundation; either version 3 of the License, or
+# * (at your option) any later version.
+#
+# * This program is distributed in the hope that it will be useful,
+# * but WITHOUT ANY WARRANTY; without even the implied warranty of
+# * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# * GNU General Public License for more details.
+#
+# * You should have received a copy of the GNU General Public License along
+# * with this program; If not, see <http://www.gnu.org/licenses/>.
+# ***************************************************************************
+
+cmake_minimum_required(VERSION 3.0.0)
 
 project(TTKMusicPlayer)
 
@@ -118,11 +136,11 @@ include_directories(
   ${MUSIC_WIDGET_VIDEOKITS_DIR}
 )
 
+
 set(MUSIC_CONFIG_DIR "${MUSIC_DIR}/TTKConfig")
 set(MUSIC_UI_DIR "${MUSIC_DIR}/TTKUi")
 set(MUSIC_THIRDPARTY_DIR "${MUSIC_DIR}/TTKThirdParty")
 set(MUSIC_TTKSERVICE_DIR "${MUSIC_DIR}/TTKService")
-
 set(MUSIC_UTILS_DIR "${MUSIC_DIR}/TTKUtils")
 set(MUSIC_LANGUAGE_DIR "${MUSIC_DIR}/TTKLanguage")
 set(MUSIC_RESOURCE_DIR "${MUSIC_DIR}/TTKResource")
@@ -134,11 +152,16 @@ include_directories(
   ${MUSIC_THIRDPARTY_DIR}/TTKExtras
 )
 
-set(MUSIC_INSTALL_DIR "${CMAKE_CACHEFILE_DIR}/bin")  
-set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR}/${TTK_VERSION})
-set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR}/${TTK_VERSION}) 
 
-set(OPENSSL_DIR "" CACHE PATH "Openssl install path")  
+set(MUSIC_INSTALL_DIR "${CMAKE_CACHEFILE_DIR}/bin")
+set(MUSIC_GENERATE_DIR "${CMAKE_CACHEFILE_DIR}/Generate")
+
+include_directories(${MUSIC_GENERATE_DIR})
+
+set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR}/${TTK_VERSION})
+set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR}/${TTK_VERSION})
+
+set(OPENSSL_DIR "" CACHE PATH "Openssl install path")
 
 set(TTK_QT_VERSION "0" CACHE STRING "Expected Qt version")
 set_property(CACHE TTK_QT_VERSION PROPERTY STRINGS 4 5)
@@ -208,7 +231,7 @@ find_program(QT_LRELEASE_EXECUTABLE lrelease ${QT_INSTALL_BINS})
 if(QT_LRELEASE_EXECUTABLE)
   message(STATUS "Message Found lrelease executable: " ${QT_LRELEASE_EXECUTABLE})
   if(WIN32)
-    execute_process(COMMAND ${MUSIC_UTILS_DIR}/ts_win.bat ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH})
+    execute_process(COMMAND ${MUSIC_UTILS_DIR}/ts_win.bat ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH} ${MUSIC_DIR})
   else(UNIX)
     execute_process(COMMAND ${MUSIC_UTILS_DIR}/ts_linux.sh ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH} ${MUSIC_DIR})
   endif()
@@ -237,6 +260,7 @@ if(NOT (TTK_QT_VERSION VERSION_GREATER "4"))
   endif()
 endif()
 
+
 add_subdirectory(TTKCommon)
 add_subdirectory(TTKConfig)
 add_subdirectory(TTKUi)
@@ -244,5 +268,6 @@ add_subdirectory(TTKThirdParty)
 add_subdirectory(TTKModule)
 add_subdirectory(TTKService)
 add_subdirectory(TTKRun)
+
 
 install(FILES "${MUSIC_UTILS_DIR}/deploy/ttkmusicplayer.appdata.xml" DESTINATION "${MUSIC_INSTALL_DIR}/metainfo")

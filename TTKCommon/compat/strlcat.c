@@ -26,7 +26,8 @@
 
 #include "compat.h"
 
-size_t _strlcat(char *dst, const char *src, size_t dsize)
+#ifndef HAVE_STRLCAT
+size_t strlcat(char *dst, const char *src, size_t dsize)
 {
     const char *odst = dst;
     const char *osrc = src;
@@ -52,3 +53,4 @@ size_t _strlcat(char *dst, const char *src, size_t dsize)
 
     return(dlen + (src - osrc));    /* count does not include NUL */
 }
+#endif

@@ -1,19 +1,20 @@
 @echo off
 PUSHD %~dp0
 
-cd /D ../TTKLanguage
 set LCEXE="%1"
 set OUTPUT="%2/GLanguage"
-md %OUTPUT%
+set SOURCE="%3/TTKLanguage"
+
+::make output dir
+if not exist %OUTPUT% md %OUTPUT%
+
 ::make
-for /F %%f in ('dir /A:A /s /b *.ts') do (
-  %LCEXE% %%f -silent -nounfinished
-)
+for /r %SOURCE% %%f in (*.ts) do %LCEXE% %%f
+
 ::rename
-ren *.qm *.ln
+for /r %SOURCE% %%f in (*.qm) do ren %%f *.ln
+
 ::move
-for /F %%f in ('dir /A:A /s /b *.ln') do (
-  move %%f %OUTPUT%
-)
+for /r %SOURCE% %%f in (*.ln) do move /y %%f %OUTPUT%
 
 POPD %~dp0

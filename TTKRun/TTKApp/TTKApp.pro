@@ -28,6 +28,8 @@ unix{
     appdata.files = $$PWD/../../TTKUtils/deploy/share/appdata/ttkmusicplayer.appdata.xml
 }
 
+INCLUDEPATH += $$OUT_PWD/../../Generate
+
 SOURCES += $$PWD/ttkrunmain.cpp
 
 win32:RC_FILE = $$PWD/TTKApp.rc

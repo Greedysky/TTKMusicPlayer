@@ -20,9 +20,8 @@
  ***************************************************************************/
 
 #include "ttkglobal.h"
-#include <utility>
 
-#if !TTK_HAS_CXX14
+#if !defined(_MSC_VER) && !TTK_HAS_CXX14
 namespace std
 {
 /// Assign @p __new_val to @p __obj and return its previous value.
