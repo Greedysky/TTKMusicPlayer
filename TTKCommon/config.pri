@@ -16,14 +16,8 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # ***************************************************************************
 
-include($$PWD/../config.pri)
+GENERATE_PWD = $$DESTDIR/../Generate
 
-INCLUDEPATH += \
-    $$PWD \
-    $$PWD/../
+INCLUDEPATH += $$GENERATE_PWD
 
-HEADERS += $$PWD/compat.h
-
-SOURCES += \
-    $$PWD/strlcat.c \
-    $$PWD/strlcpy.c
+HEADERS += $$GENERATE_PWD/ttkconfig.h
