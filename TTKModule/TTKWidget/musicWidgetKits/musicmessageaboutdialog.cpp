@@ -30,7 +30,14 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
     m_downloadRequest->startRequest();
 
     m_ui->iconLabel->setPixmap(QPixmap(":/image/lb_logo"));
-    m_ui->textLabel->setText(QString("TTKMusicPlayer Version: %1\n").arg(TTK_VERSION_STR) + m_ui->textLabel->text());
+    m_ui->versionLabel->setText(QString("Version: %1\n").arg(TTK_VERSION_STR) +
+                                QString("Hash: %1\n").arg(TTK::Algorithm::sha1(TTK_VERSION_STR).toHex().constData()) +
+                                QString("Based on Qt %1(%2)\n").arg(QT_VERSION_STR,
+#ifdef Q_OS_WIN
+                                "MinGW 32bit"));
+#else
+                                "GCC X86_64"));
+#endif
 }
 
 MusicMessageAboutDialog::~MusicMessageAboutDialog()

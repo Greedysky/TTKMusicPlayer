@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>508</width>
-    <height>403</height>
+    <height>418</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>4</x>
      <y>4</y>
      <width>500</width>
-     <height>395</height>
+     <height>410</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -67,7 +67,7 @@
      <x>4</x>
      <y>29</y>
      <width>500</width>
-     <height>370</height>
+     <height>385</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -90,29 +90,24 @@ QLabel{background:transparent;}</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="textLabel">
+   <widget class="QLabel" name="versionLabel">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>205</y>
+      <y>210</y>
       <width>480</width>
-      <height>115</height>
+      <height>60</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size:15px</string>
-    </property>
-    <property name="text">
-     <string>Mail:Greedysky@163.com greedyskyplus@google.com
-Copyright© 2015 - 2023 Greedysky All Rights Reserved
-本软件仅供学习交流，不可用于商业用途，否则后果自负。</string>
     </property>
    </widget>
    <widget class="QPushButton" name="confirmButton">
     <property name="geometry">
      <rect>
       <x>420</x>
-      <y>330</y>
+      <y>345</y>
       <width>70</width>
       <height>30</height>
      </rect>
@@ -125,7 +120,7 @@ Copyright© 2015 - 2023 Greedysky All Rights Reserved
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>330</y>
+      <y>345</y>
       <width>200</width>
       <height>25</height>
      </rect>
@@ -135,6 +130,24 @@ Copyright© 2015 - 2023 Greedysky All Rights Reserved
     </property>
     <property name="textFormat">
      <enum>Qt::PlainText</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="textLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
+      <width>480</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:15px</string>
+    </property>
+    <property name="text">
+     <string>Mail:Greedysky@163.com greedyskyplus@google.com
+Copyright© 2015 - 2023 Greedysky All Rights Reserved
+本软件仅供学习交流，不可用于商业用途，否则后果自负。</string>
     </property>
    </widget>
   </widget>
