@@ -93,23 +93,23 @@ QLabel{background:transparent;}</string>
    <widget class="QLabel" name="versionLabel">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>210</y>
-      <width>480</width>
-      <height>60</height>
+      <x>15</x>
+      <y>213</y>
+      <width>455</width>
+      <height>70</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font-size:15px</string>
+     <string notr="true">font-size:15px;font-weight:bold;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="confirmButton">
     <property name="geometry">
      <rect>
       <x>420</x>
-      <y>345</y>
+      <y>348</y>
       <width>70</width>
-      <height>30</height>
+      <height>25</height>
      </rect>
     </property>
     <property name="text">
@@ -119,7 +119,7 @@ QLabel{background:transparent;}</string>
    <widget class="QLabel" name="counterLabel">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>15</x>
       <y>345</y>
       <width>200</width>
       <height>25</height>
@@ -135,10 +135,10 @@ QLabel{background:transparent;}</string>
    <widget class="QLabel" name="textLabel">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>270</y>
-      <width>480</width>
-      <height>70</height>
+      <x>15</x>
+      <y>277</y>
+      <width>455</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="styleSheet">
