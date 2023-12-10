@@ -98,13 +98,13 @@ Q_SIGNALS:
      */
     void currentLrcUpdated();
     /*!
-     * Change current setting widget to color setting widget.
+     * Show current setting widget to setting widget.
      */
-    void changeCurrentLrcColorCustom();
+    void showCurrentLrcSetting();
     /*!
-     * Change current setting widget to setting widget.
+     * Show current setting widget to color setting widget.
      */
-    void changeCurrentLrcColorSetting();
+    void showCurrentLrcColorSetting();
     /*!
      * Mask linear gradient color changed.
      */

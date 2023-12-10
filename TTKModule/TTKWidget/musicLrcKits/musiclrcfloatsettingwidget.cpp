@@ -60,7 +60,7 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
 
     QPushButton *settingButton = new QPushButton(tr("More"), this);
     settingButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(settingButton, SIGNAL(clicked()), parent, SIGNAL(changeCurrentLrcColorSetting()));
+    connect(settingButton, SIGNAL(clicked()), parent, SIGNAL(showCurrentLrcSetting()));
     settingButton->setStyleSheet(TTK::UI::InteriorFloatSetting + TTK::UI::PushButtonStyle06);
     settingButton->setGeometry(15, 175, 60, 22);
 

@@ -75,8 +75,8 @@ qint64 MusicLrcContainer::totalTime() const
 
 void MusicLrcContainer::currentLrcCustom()
 {
-    Q_EMIT changeCurrentLrcColorCustom();
-    Q_EMIT changeCurrentLrcColorSetting();
+    Q_EMIT showCurrentLrcSetting();
+    Q_EMIT showCurrentLrcColorSetting();
 }
 
 void MusicLrcContainer::changeCurrentLrcColor(QAction *action)

@@ -340,7 +340,11 @@ namespace TTK
             QMenu::separator{ height:1px; background:#DDDDDD; margin-top:5px; margin-bottom:5px; }" +
 #if TTK_QT_VERSION_CHECK(5,12,0)
             QString("QMenu::item{ padding:6px 30px 6px 10px; } "
+#  ifdef Q_OS_UNIX
+                    "QMenu::item::icon{ padding:6px 40px 6px 10px; }") +
+#  else
                     "QMenu::item::icon{ padding:6px 30px 6px 10px; }") +
+#  endif
 #endif
             QString();
 
