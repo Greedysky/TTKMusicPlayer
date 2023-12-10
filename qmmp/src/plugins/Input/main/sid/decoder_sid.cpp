@@ -73,12 +73,17 @@ bool DecoderSID::initialize()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("SID");
 
-    char md5[SidTune::MD5_LENGTH + 1];
-    m_tune.createMD5(md5);
-    m_length = m_db->length(md5, track) * 1000;
+    if(settings.value("use_hvsc", false).toBool())
+    {
+        char md5[SidTune::MD5_LENGTH + 1];
+        m_tune.createMD5(md5);
+        m_length = m_db->length(md5, track) * 1000;
+    }
 
     if(m_length <= 0)
-        m_length = QFileInfo(path).size() * 8.0 / bitrate();
+    {
+        m_length = settings.value("use_length", false).toBool() ? settings.value("song_length", 180).toInt() : (QFileInfo(path).size() * 8.0 / bitrate());
+    }
 
     qDebug("DecoderSID: song length: %d", m_length);
 
