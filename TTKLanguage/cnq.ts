@@ -892,6 +892,26 @@ too high may cause clipping!</source>
         <translation>SID插件设置</translation>
     </message>
     <message>
+        <source>Enable HVSC song length database</source>
+        <translation>开启HVSC歌曲长度数据库</translation>
+    </message>
+    <message>
+        <source>HVSC database file:</source>
+        <translation>HVSC数据库文件：</translation>
+    </message>
+    <message>
+        <source>Enable default song length</source>
+        <translation>开启默认歌曲长度</translation>
+    </message>
+    <message>
+        <source>Default song length:</source>
+        <translation>默认歌曲长度：</translation>
+    </message>
+    <message>
+        <source>(second)</source>
+        <translation>(秒)</translation>
+    </message>
+    <message>
         <source>Emulation:</source>
         <translation>模拟：</translation>
     </message>

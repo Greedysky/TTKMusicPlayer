@@ -98,14 +98,14 @@ namespace QtCompat
 
 /// Button group connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtButtonGroupConnect(p, q, f) QObject::connect(p, SIGNAL(idClicked(int)), SLOT(f(int)))
+#  define QtButtonGroupConnect(p, q, f) QObject::connect(p, SIGNAL(idClicked(int)), q, SLOT(f(int)))
 #else
 #  define QtButtonGroupConnect(p, q, f) QObject::connect(p, SIGNAL(buttonClicked(int)), q, SLOT(f(int)))
 #endif
 
 /// Button group void connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtButtonGroupVoidConnect(p, q, f) QObject::connect(p, SIGNAL(idClicked(int)), SLOT(f()))
+#  define QtButtonGroupVoidConnect(p, q, f) QObject::connect(p, SIGNAL(idClicked(int)), q, SLOT(f()))
 #else
 #  define QtButtonGroupVoidConnect(p, q, f) QObject::connect(p, SIGNAL(buttonClicked(int)), q, SLOT(f()))
 #endif
