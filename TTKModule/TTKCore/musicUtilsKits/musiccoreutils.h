@@ -32,10 +32,24 @@ namespace TTK
          * Sleep by millisecond.
          */
         TTK_MODULE_EXPORT void sleep(int ms);
+
         /*!
          * App version check.
          */
         TTK_MODULE_EXPORT bool appVersionCheck(const QString &o, const QString &d);
+
+        /*!
+         * Reset break point.
+         */
+        TTK_MODULE_EXPORT void resetBreakPoint();
+        /*!
+         * Enable break point.
+         */
+        TTK_MODULE_EXPORT void enableBreakPoint(bool enable);
+        /*!
+         * Break point enabled or not.
+         */
+        TTK_MODULE_EXPORT bool isBreakPointEnabled();
 
     }
 }

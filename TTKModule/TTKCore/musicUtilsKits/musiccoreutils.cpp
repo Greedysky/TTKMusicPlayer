@@ -1,11 +1,14 @@
 #include "musiccoreutils.h"
 
+#include <QStringList>
+
 #ifdef Q_CC_MSVC
 #  include <qt_windows.h>
 #elif defined Q_OS_UNIX || defined Q_CC_GNU
 #  include <unistd.h>
 #endif
 
+static bool __BreakPoint__ = false;
 static bool versionCheck(const QStringList &ol, const QStringList &dl, int depth)
 {
     if(depth >= ol.count())
@@ -50,4 +53,19 @@ bool TTK::Core::appVersionCheck(const QString &o, const QString &d)
     }
 
     return versionCheck(ol, dl, 0);
+}
+
+void TTK::Core::resetBreakPoint()
+{
+    __BreakPoint__ = false;
+}
+
+void TTK::Core::enableBreakPoint(bool enable)
+{
+    __BreakPoint__ = enable;
+}
+
+bool TTK::Core::isBreakPointEnabled()
+{
+    return __BreakPoint__;
 }
