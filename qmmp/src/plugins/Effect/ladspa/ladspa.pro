@@ -9,7 +9,7 @@ HEADERS += ladspahost.h \
            ladspa.h \
            ladspahelper.h \
            ladspabutton.h
-    
+
 SOURCES += ladspahost.cpp \
            effectladspafactory.cpp \
            settingsdialog.cpp \

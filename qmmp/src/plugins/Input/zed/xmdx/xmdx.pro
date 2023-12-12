@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decoderxmdxfactory.h \
            decoder_xmdx.h \
            xmdxhelper.h
-    
+
 SOURCES += decoderxmdxfactory.cpp \
            decoder_xmdx.cpp \
            xmdxhelper.cpp

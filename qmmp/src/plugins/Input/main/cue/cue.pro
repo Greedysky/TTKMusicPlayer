@@ -7,7 +7,7 @@ HEADERS += decodercuefactory.h \
            cuefile.h \
            cuemetadatamodel.h \
            settingsdialog.h
-    
+
 SOURCES += decodercuefactory.cpp \
            decoder_cue.cpp \
            cuefile.cpp \

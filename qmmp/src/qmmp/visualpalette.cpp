@@ -137,9 +137,9 @@ static uint32_t perceptual(double level)
     G = I - S * cos(H) * 0.201424 - S * sin(H) * 0.612372;
     B = I + S * cos(H) * 0.402848 + S * sin(H) * 0.0;
 
-    if(R < 0) R = 0; if(R >= 256) R = 255;
-    if(G < 0) G = 0; if(G >= 256) G = 255;
-    if(B < 0) B = 0; if(B >= 256) B = 255;
+    if(R < 0) R = 0; else if(R >= 256) R = 255;
+    if(G < 0) G = 0; else if(G >= 256) G = 255;
+    if(B < 0) B = 0; else if(B >= 256) B = 255;
 
     const uint32_t rr = (uint32_t) (R);
     const uint32_t gg = (uint32_t) (G);

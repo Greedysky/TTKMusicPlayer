@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decoderorganyafactory.h \
            decoder_organya.h \
            organyahelper.h
-    
+
 SOURCES += decoderorganyafactory.cpp \
            decoder_organya.cpp \
            organyahelper.cpp

@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decodersc68factory.h \
            decoder_sc68.h \
            sc68helper.h
-    
+
 SOURCES += decodersc68factory.cpp \
            decoder_sc68.cpp \
            sc68helper.cpp

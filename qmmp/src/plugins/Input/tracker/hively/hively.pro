@@ -6,7 +6,7 @@ HEADERS += decoderhivelyfactory.h \
            decoder_hively.h \
            hivelyhelper.h \
            hivelymetadatamodel.h
-    
+
 SOURCES += decoderhivelyfactory.cpp \
            decoder_hively.cpp \
            hivelyhelper.cpp \

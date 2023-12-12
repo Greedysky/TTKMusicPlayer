@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decodersndfilefactory.h \
            decoder_sndfile.h \
            sndfilemetadatamodel.h
-           
+
 SOURCES += decodersndfilefactory.cpp \
            decoder_sndfile.cpp \
            sndfilemetadatamodel.cpp

@@ -4,7 +4,7 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 
 HEADERS += floridreverb.h \
            visualfloridreverbfactory.h
-           
+
 SOURCES += floridreverb.cpp \
            visualfloridreverbfactory.cpp
 

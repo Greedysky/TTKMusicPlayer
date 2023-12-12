@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decoderwavpackfactory.h \
            decoder_wavpack.h \
            wavpackmetadatamodel.h
-    
+
 SOURCES += decoderwavpackfactory.cpp \
            decoder_wavpack.cpp \
            wavpackmetadatamodel.cpp

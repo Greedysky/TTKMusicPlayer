@@ -4,7 +4,7 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 
 HEADERS += outerrayswave.h \
            visualouterrayswavefactory.h
-           
+
 SOURCES += outerrayswave.cpp \
            visualouterrayswavefactory.cpp
 

@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decoderopusfactory.h \
            decoder_opus.h \
            opusmetadatamodel.h
-    
+
 SOURCES += decoderopusfactory.cpp \
            decoder_opus.cpp \
            opusmetadatamodel.cpp

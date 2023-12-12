@@ -10,6 +10,7 @@ HEADERS += mountainplugin.h \
 SOURCES += mountainplugin.cpp \
            mountainwidget.cpp \
            visualflowmountainfactory.cpp
+
 win32{
     LIBS += -lglu32 -lopengl32
 }

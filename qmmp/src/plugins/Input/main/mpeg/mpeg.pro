@@ -3,14 +3,14 @@ include($$PWD/../../Input.pri)
 DESTDIR = $$PLUGINS_PREFIX/Input
 
 HEADERS += decodermpegfactory.h \
-	   tagextractor.h \
-	   mpegmetadatamodel.h \
-	   settingsdialog.h
+           tagextractor.h \
+           mpegmetadatamodel.h \
+           settingsdialog.h
 
 SOURCES += decodermpegfactory.cpp \
-	   tagextractor.cpp \
-	   mpegmetadatamodel.cpp \
-	   settingsdialog.cpp
+           tagextractor.cpp \
+           mpegmetadatamodel.cpp \
+           settingsdialog.cpp
 
 FORMS += settingsdialog.ui
 

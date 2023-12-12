@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decoderflacfactory.h \
            decoder_flac.h \
            flacmetadatamodel.h
-    
+
 SOURCES += decoderflacfactory.cpp \
            decoder_flac.cpp \
            flacmetadatamodel.cpp

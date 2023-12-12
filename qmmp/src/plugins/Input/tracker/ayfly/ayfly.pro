@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decoderayflyfactory.h \
            decoder_ayfly.h \
            ayflyhelper.h
-    
+
 SOURCES += decoderayflyfactory.cpp \
            decoder_ayfly.cpp \
            ayflyhelper.cpp

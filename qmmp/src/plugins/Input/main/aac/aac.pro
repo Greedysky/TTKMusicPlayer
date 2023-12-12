@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decoderaacfactory.h \
            decoder_aac.h \
            aacfile.h
-          
+
 SOURCES += decoderaacfactory.cpp \
            decoder_aac.cpp \
            aacfile.cpp

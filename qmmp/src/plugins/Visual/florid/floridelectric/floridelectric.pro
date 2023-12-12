@@ -4,7 +4,7 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 
 HEADERS += floridelectric.h \
            visualfloridelectricfactory.h
-           
+
 SOURCES += floridelectric.cpp \
            visualfloridelectricfactory.cpp
 

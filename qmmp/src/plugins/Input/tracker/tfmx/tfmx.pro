@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decodertfmxfactory.h \
            decoder_tfmx.h \
            tfmxhelper.h
-    
+
 SOURCES += decodertfmxfactory.cpp \
            decoder_tfmx.cpp \
            tfmxhelper.cpp

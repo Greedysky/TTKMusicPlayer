@@ -6,7 +6,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decoderdcafactory.h \
            decoder_dca.h \
            dcahelper.h
-    
+
 SOURCES += decoderdcafactory.cpp \
            decoder_dca.cpp \
            dcahelper.cpp

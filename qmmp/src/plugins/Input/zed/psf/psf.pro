@@ -6,7 +6,7 @@ HEADERS += decoderpsffactory.h \
            decoder_psf.h \
            psfhelper.h \
            psfmetadatamodel.h
-    
+
 SOURCES += decoderpsffactory.cpp \
            decoder_psf.cpp \
            psfhelper.cpp \

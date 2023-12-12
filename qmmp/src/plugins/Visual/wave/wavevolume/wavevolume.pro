@@ -4,7 +4,7 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 
 HEADERS += wavevolume.h \
            visualwavevolumefactory.h
-           
+
 SOURCES += wavevolume.cpp \
            visualwavevolumefactory.cpp
 

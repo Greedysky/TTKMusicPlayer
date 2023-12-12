@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 
 HEADERS += normalanalyzer.h \
            visualnormalanalyzerfactory.h
-           
+
 SOURCES += normalanalyzer.cpp \
            visualnormalanalyzerfactory.cpp
 

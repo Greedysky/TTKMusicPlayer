@@ -24,7 +24,7 @@
 #include <sidplayfp/SidDatabase.h>
 #include "ui_settingsdialog.h"
 
-#define HVSC_PATH Qmmp::configDir() + "Songlengths.txt"
+#define HVSC_PATH "Songlengths.txt"
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>

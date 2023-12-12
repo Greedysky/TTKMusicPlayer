@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 
 HEADERS += plusblurxrays.h \
            visualplusblurxraysfactory.h
-           
+
 SOURCES += plusblurxrays.cpp \
            visualplusblurxraysfactory.cpp
 

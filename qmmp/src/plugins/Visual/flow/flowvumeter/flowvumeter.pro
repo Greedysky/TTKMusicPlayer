@@ -4,7 +4,7 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 
 HEADERS += flowvumeter.h \
            visualflowvumeterfactory.h
-           
+
 SOURCES += flowvumeter.cpp \
            visualflowvumeterfactory.cpp
 

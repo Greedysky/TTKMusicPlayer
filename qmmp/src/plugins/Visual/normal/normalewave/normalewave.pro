@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 
 HEADERS += normalewave.h \
            visualnormalewavefactory.h
-           
+
 SOURCES += normalewave.cpp \
            visualnormalewavefactory.cpp
 

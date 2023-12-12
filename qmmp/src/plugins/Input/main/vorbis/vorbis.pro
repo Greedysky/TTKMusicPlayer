@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decodervorbisfactory.h \
            decoder_vorbis.h \
            vorbismetadatamodel.h
-    
+
 SOURCES += decodervorbisfactory.cpp \
            decoder_vorbis.cpp \
            vorbismetadatamodel.cpp

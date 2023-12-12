@@ -6,7 +6,7 @@ HEADERS += decodersidfactory.h \
            decoder_sid.h \
            sidhelper.h \
            settingsdialog.h
-    
+
 SOURCES += decodersidfactory.cpp \
            decoder_sid.cpp \
            sidhelper.cpp \

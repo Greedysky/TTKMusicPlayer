@@ -6,7 +6,7 @@ HEADERS += decodergmefactory.h \
            decoder_gme.h \
            gmehelper.h \
            settingsdialog.h
-    
+
 SOURCES += decodergmefactory.cpp \
            decoder_gme.cpp \
            gmehelper.cpp \

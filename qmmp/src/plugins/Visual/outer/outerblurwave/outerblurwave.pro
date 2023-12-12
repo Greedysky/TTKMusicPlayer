@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 
 HEADERS += outerblurwave.h \
            visualouterblurwavefactory.h
-           
+
 SOURCES += outerblurwave.cpp \
            visualouterblurwavefactory.cpp
 

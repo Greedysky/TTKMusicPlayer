@@ -1,7 +1,7 @@
 INCLUDEPATH += $$PWD
 
 HEADERS += $$PWD/colorwidget.h
-           
+
 SOURCES += $$PWD/colorwidget.cpp
 
 FORMS += $$PWD/colorwidget.ui

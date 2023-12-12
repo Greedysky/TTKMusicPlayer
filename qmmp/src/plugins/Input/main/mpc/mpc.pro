@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 HEADERS += decodermpcfactory.h \
            decoder_mpc.h \
            mpcmetadatamodel.h
-    
+
 SOURCES += decodermpcfactory.cpp \
            decoder_mpc.cpp \
            mpcmetadatamodel.cpp

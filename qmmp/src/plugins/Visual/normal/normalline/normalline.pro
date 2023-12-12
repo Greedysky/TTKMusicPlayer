@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 
 HEADERS += normalline.h \
            visualnormallinefactory.h
-           
+
 SOURCES += normalline.cpp \
            visualnormallinefactory.cpp
 

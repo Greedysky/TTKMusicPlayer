@@ -5,7 +5,7 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 
 HEADERS += plusfoldwave.h \
            visualplusfoldwavefactory.h
-           
+
 SOURCES += plusfoldwave.cpp \
            visualplusfoldwavefactory.cpp
 
