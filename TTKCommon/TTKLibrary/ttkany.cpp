@@ -25,7 +25,7 @@ bool TTKAny::isNull() const noexcept
     return !bool(m_ptr);
 }
 
-TTKAny &TTKAny::operator=(const TTKAny &other) noexcept
+TTKAny& TTKAny::operator=(const TTKAny &other) noexcept
 {
     if(m_ptr == other.m_ptr)
     {

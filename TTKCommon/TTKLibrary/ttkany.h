@@ -64,7 +64,7 @@ public:
      * Cast value by type T.
      */
     template <typename T>
-    T &cast()
+    T& cast()
     {
         return TTKConstCast(T&, TTKStaticCast(const TTKAny*, this)->cast<T>());
     }
@@ -73,7 +73,7 @@ public:
      * Cast value by type T.
      */
     template <typename T>
-    const T &cast() const
+    const T& cast() const
     {
         if(!isSame<T>())
         {
@@ -87,12 +87,12 @@ public:
     /*!
      * Copy object from other.
      */
-    TTKAny &operator=(const TTKAny &other) noexcept;
+    TTKAny& operator=(const TTKAny &other) noexcept;
 
     /*!
      * Swap object from other.
      */
-    void swap(TTKAny& other) noexcept
+    void swap(TTKAny &other) noexcept
     {
         other = std::exchange(*this, std::move(other));
     }
@@ -193,7 +193,7 @@ namespace TTK
 namespace std
 {
 // Non-member functions [any.nonmembers]
-inline void swap(TTKAny& left, TTKAny& right) noexcept
+inline void swap(TTKAny &left, TTKAny &right) noexcept
 {
     left.swap(right);
 }

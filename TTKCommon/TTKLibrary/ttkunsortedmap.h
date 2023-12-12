@@ -53,8 +53,8 @@ public:
 
 public:
     _CONSTEXPR_CONTAINER TTKUnsortedMap() noexcept : m_conatiner() {}
-    _CONSTEXPR_CONTAINER TTKUnsortedMap(const TTKUnsortedMap& _Right) noexcept : m_conatiner(_Right.m_conatiner) {}
-    _CONSTEXPR_CONTAINER TTKUnsortedMap(TTKUnsortedMap&& _Right) noexcept : m_conatiner(std::move(_Right.m_conatiner)) {}
+    _CONSTEXPR_CONTAINER TTKUnsortedMap(const TTKUnsortedMap &_Right) noexcept : m_conatiner(_Right.m_conatiner) {}
+    _CONSTEXPR_CONTAINER TTKUnsortedMap(TTKUnsortedMap &&_Right) noexcept : m_conatiner(std::move(_Right.m_conatiner)) {}
 
     template <class _Iter>
     _CONSTEXPR_CONTAINER TTKUnsortedMap(_Iter _First, _Iter _Last) noexcept : TTKUnsortedMap()
@@ -62,19 +62,19 @@ public:
         insert(_First, _Last);
     }
 
-    _CONSTEXPR_CONTAINER TTKUnsortedMap& operator=(const TTKUnsortedMap& _Right) noexcept
+    _CONSTEXPR_CONTAINER TTKUnsortedMap& operator=(const TTKUnsortedMap &_Right) noexcept
     {
         m_conatiner = _Right.m_conatiner;
         return *this;
     }
 
-    _CONSTEXPR_CONTAINER TTKUnsortedMap& operator=(TTKUnsortedMap&& _Right) noexcept
+    _CONSTEXPR_CONTAINER TTKUnsortedMap& operator=(TTKUnsortedMap &&_Right) noexcept
     {
         m_conatiner = std::move(_Right.m_conatiner);
         return *this;
     }
 
-    _CONSTEXPR_CONTAINER void swap(TTKUnsortedMap& _Right) noexcept
+    _CONSTEXPR_CONTAINER void swap(TTKUnsortedMap &_Right) noexcept
     {
         m_conatiner.swap(_Right.m_conatiner);
     }
@@ -111,9 +111,9 @@ public:
         return m_conatiner.erase(_First, _Last);
     }
 
-    _CONSTEXPR_CONTAINER size_type erase(const key_type& _Keyval) noexcept
+    _CONSTEXPR_CONTAINER size_type erase(const key_type &_Keyval) noexcept
     {
-        const auto& iter = find(_Keyval);
+        const auto &iter = find(_Keyval);
         if (iter == end())
         {
             return 0;
@@ -185,9 +185,9 @@ public:
     }
 
 public:
-    _CONSTEXPR_CONTAINER reference operator[](const key_type& _Keyval)
+    _CONSTEXPR_CONTAINER reference operator[](const key_type &_Keyval)
     {
-        for (auto&& item : m_conatiner)
+        for (auto &&item : m_conatiner)
         {
             if (item.first == _Keyval)
             {
@@ -199,14 +199,14 @@ public:
         return m_conatiner.back().second;
     }
 
-    _CONSTEXPR_CONTAINER reference at(const key_type& _Keyval)
+    _CONSTEXPR_CONTAINER reference at(const key_type &_Keyval)
     {
         return const_cast<reference>(static_cast<const TTKUnsortedMap*>(this)->at(_Keyval));
     }
 
-    _CONSTEXPR_CONTAINER const_reference at(const key_type& _Keyval) const
+    _CONSTEXPR_CONTAINER const_reference at(const key_type &_Keyval) const
     {
-        for (auto&& item : m_conatiner)
+        for (auto &&item : m_conatiner)
         {
             if (item.first == _Keyval)
             {
@@ -218,7 +218,7 @@ public:
         return m_conatiner.end()->second;
     }
 
-    _CONSTEXPR_CONTAINER iterator find(const key_type& _Keyval) noexcept
+    _CONSTEXPR_CONTAINER iterator find(const key_type &_Keyval) noexcept
     {
         for (auto itr = begin(); itr != end(); ++itr)
         {
@@ -231,7 +231,7 @@ public:
         return end();
     }
 
-    _CONSTEXPR_CONTAINER const_iterator find(const key_type& _Keyval) const noexcept
+    _CONSTEXPR_CONTAINER const_iterator find(const key_type &_Keyval) const noexcept
     {
         for (auto itr = begin(); itr != end(); ++itr)
         {
@@ -244,46 +244,46 @@ public:
         return end();
     }
 
-    _CONSTEXPR_CONTAINER size_type count(const key_type& _Keyval) const noexcept
+    _CONSTEXPR_CONTAINER size_type count(const key_type &_Keyval) const noexcept
     {
         return find(_Keyval) != end() ? 1 : 0;
     }
 
 #if _HAS_CXX20
-    _CONSTEXPR_CONTAINER bool contains(const key_type& _Keyval) const noexcept
+    _CONSTEXPR_CONTAINER bool contains(const key_type &_Keyval) const noexcept
     {
         return find(_Keyval) != end();
     }
 #endif
 
-    _CONSTEXPR_CONTAINER iterator lower_bound(const key_type& _Keyval) noexcept
+    _CONSTEXPR_CONTAINER iterator lower_bound(const key_type &_Keyval) noexcept
     {
         return find(_Keyval);
     }
 
-    _CONSTEXPR_CONTAINER const_iterator lower_bound(const key_type& _Keyval) const noexcept
+    _CONSTEXPR_CONTAINER const_iterator lower_bound(const key_type &_Keyval) const noexcept
     {
         return find(_Keyval);
     }
 
-    _CONSTEXPR_CONTAINER iterator upper_bound(const key_type& _Keyval) noexcept
+    _CONSTEXPR_CONTAINER iterator upper_bound(const key_type &_Keyval) noexcept
     {
         auto iter = find(_Keyval);
         return iter != end() ? (++iter != end() ? iter : end()) : end();
     }
 
-    _CONSTEXPR_CONTAINER const_iterator upper_bound(const key_type& _Keyval) const noexcept
+    _CONSTEXPR_CONTAINER const_iterator upper_bound(const key_type &_Keyval) const noexcept
     {
         auto iter = find(_Keyval);
         return iter != end() ? (++iter != end() ? iter : end()) : end();
     }
 
-    _CONSTEXPR_CONTAINER std::pair<iterator, iterator> equal_range(const key_type& _Keyval) noexcept
+    _CONSTEXPR_CONTAINER std::pair<iterator, iterator> equal_range(const key_type &_Keyval) noexcept
     {
-        const auto& iter = find(_Keyval);
+        const auto &iter = find(_Keyval);
         if (iter != end())
         {
-            const auto& next = std::next(iter);
+            const auto &next = std::next(iter);
             if (next != end())
             {
                 return { iter, next };
@@ -297,12 +297,12 @@ public:
         return { end(), end() };
     }
 
-    _CONSTEXPR_CONTAINER std::pair<const_iterator, const_iterator> equal_range(const key_type& _Keyval) const noexcept
+    _CONSTEXPR_CONTAINER std::pair<const_iterator, const_iterator> equal_range(const key_type &_Keyval) const noexcept
     {
-        const auto& iter = find(_Keyval);
+        const auto &iter = find(_Keyval);
         if (iter != end())
         {
-            const auto& next = std::next(iter);
+            const auto &next = std::next(iter);
             if (next != end())
             {
                 return { iter, next };
@@ -318,12 +318,12 @@ public:
 
 public:
     template <class... _Valtys>
-    _CONSTEXPR_CONTAINER std::pair<iterator, bool> emplace(_Valtys&&... _Vals)
+    _CONSTEXPR_CONTAINER std::pair<iterator, bool> emplace(_Valtys &&..._Vals)
     {
         _Container _container;
         _container.emplace_back(std::forward<_Valtys>(_Vals)...);
 
-        const auto& iter = find(_container.begin()->first);
+        const auto &iter = find(_container.begin()->first);
         if (iter != end())
         {
             return { iter, false };
@@ -334,12 +334,12 @@ public:
     }
 
     template <class... _Valtys>
-    _CONSTEXPR_CONTAINER iterator emplace_hint(const_iterator _Where, _Valtys&&... _Vals) // insert value_type(_Val...) at _Where
+    _CONSTEXPR_CONTAINER iterator emplace_hint(const_iterator _Where, _Valtys &&..._Vals) // insert value_type(_Val...) at _Where
     {
         _Container _container;
         _container.emplace_back(std::forward<_Valtys>(_Vals)...);
 
-        const auto& iter = find(_container.begin()->first);
+        const auto &iter = find(_container.begin()->first);
         if (iter != end())
         {
             return iter;
@@ -349,7 +349,7 @@ public:
     }
 
 public:
-    _CONSTEXPR_CONTAINER iterator insert(const value_type& _Val)
+    _CONSTEXPR_CONTAINER iterator insert(const value_type &_Val)
     {
         auto iter = find(_Val.first);
         if (iter != end())
@@ -361,7 +361,7 @@ public:
         return m_conatiner.end() - 1;
     }
 
-    _CONSTEXPR_CONTAINER iterator insert(value_type&& _Val)
+    _CONSTEXPR_CONTAINER iterator insert(value_type &&_Val)
     {
         auto iter = find(_Val.first);
         if (iter != end())
@@ -373,7 +373,7 @@ public:
         return m_conatiner.end() - 1;
     }
 
-    _CONSTEXPR_CONTAINER iterator insert(const_iterator _Where, const value_type& _Val)
+    _CONSTEXPR_CONTAINER iterator insert(const_iterator _Where, const value_type &_Val)
     {
         auto iter = find(_Val.first);
         if (iter != end())
@@ -384,7 +384,7 @@ public:
         return m_conatiner.emplace(_Where, _Val);
     }
 
-    _CONSTEXPR_CONTAINER iterator insert(const_iterator _Where, value_type&& _Val)
+    _CONSTEXPR_CONTAINER iterator insert(const_iterator _Where, value_type &&_Val)
     {
         auto iter = find(_Val.first);
         if (iter != end())
@@ -424,7 +424,7 @@ namespace std
 {
 // Non-member functions [unsorted_map.nonmembers]
 template <class _Key, class _Value>
-inline void swap(TTKUnsortedMap<_Key, _Value>& left, TTKUnsortedMap<_Key, _Value>& right) noexcept
+inline void swap(TTKUnsortedMap<_Key, _Value> &left, TTKUnsortedMap<_Key, _Value> &right) noexcept
 {
     left.swap(right);
 }

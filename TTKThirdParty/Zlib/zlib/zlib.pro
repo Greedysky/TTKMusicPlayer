@@ -55,5 +55,5 @@ SOURCES += \
     $$PWD/trees.c \
     $$PWD/uncompr.c \
     $$PWD/zutil.c
-    
+
 win32:RC_FILE = $$PWD/zlib.rc
