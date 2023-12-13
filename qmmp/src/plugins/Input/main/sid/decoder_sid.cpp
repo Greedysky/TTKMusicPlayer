@@ -82,7 +82,7 @@ bool DecoderSID::initialize()
 
     if(m_length <= 0)
     {
-        m_length = settings.value("use_length", false).toBool() ? settings.value("song_length", 180).toInt() : (QFileInfo(path).size() * 8.0 / bitrate());
+        m_length = settings.value("use_length", false).toBool() ? (settings.value("song_length", 180).toInt() * 1000) : (QFileInfo(path).size() * 8.0 / bitrate());
     }
 
     qDebug("DecoderSID: song length: %d", m_length);
