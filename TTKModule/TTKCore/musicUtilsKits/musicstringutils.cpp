@@ -35,7 +35,7 @@ QString TTK::String::musicDirPrefix()
 
 QString TTK::String::pefix(const QString &name)
 {
-    return pefix(name, TTK_DOT);
+    return TTK::String::pefix(name, TTK_DOT);
 }
 
 QString TTK::String::pefix(const QString &name, const QString &prefix)
@@ -45,7 +45,7 @@ QString TTK::String::pefix(const QString &name, const QString &prefix)
 
 QString TTK::String::suffix(const QString &name)
 {
-    return suffix(name, TTK_DOT);
+    return TTK::String::suffix(name, TTK_DOT);
 }
 
 QString TTK::String::suffix(const QString &name, const QString &suffix)
@@ -55,7 +55,7 @@ QString TTK::String::suffix(const QString &name, const QString &suffix)
 
 QString TTK::String::slitToken(const QString &name)
 {
-    return slitToken(name, TTK_DOT, "?");
+    return TTK::String::slitToken(name, TTK_DOT, "?");
 }
 
 QString TTK::String::slitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert)
@@ -88,7 +88,7 @@ QString TTK::String::removeToken(const QString &value, const QString &key)
     s.remove(key);
     if(s.contains(key))
     {
-        s = removeToken(key);
+        s = TTK::String::removeToken(key);
     }
     return s;
 }
@@ -145,7 +145,7 @@ QStringList TTK::String::illegalCharacters()
 
 bool TTK::String::isCharacterValid(const QString &value)
 {
-    const QStringList acs(illegalCharacters());
+    const QStringList acs(TTK::String::illegalCharacters());
     for(const QString &ac : qAsConst(acs))
     {
         if(value.contains(ac))
@@ -158,9 +158,9 @@ bool TTK::String::isCharacterValid(const QString &value)
 
 QString TTK::String::charactersReplace(const QString &value)
 {
-    QString s(convertHtmlToPlain(value));
+    QString s(TTK::String::convertHtmlToPlain(value));
 
-    const QStringList acs(illegalCharacters());
+    const QStringList acs(TTK::String::illegalCharacters());
     for(const QString &ac : qAsConst(acs))
     {
         if(s.contains(ac))

@@ -1,13 +1,14 @@
 ﻿#include "musicfileutils.h"
 #include "musicwidgetheaders.h"
 #include "musicsettingmanager.h"
+#include "musiccoreutils.h"
 
 #include <QDirIterator>
 
 QStringList TTK::File::fileListByPath(const QString &dpath, const QStringList &filter, bool recursively)
 {
     QDir dir(dpath);
-    if(!dir.exists())
+    if(TTK::Core::isBreakPointEnabled() || !dir.exists())
     {
         return {};
     }
@@ -25,7 +26,7 @@ QStringList TTK::File::fileListByPath(const QString &dpath, const QStringList &f
         const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
         for(const QFileInfo &fin : qAsConst(folderList))
         {
-            fileList.append(fileListByPath(fin.absoluteFilePath(), filter, recursively));
+            fileList.append(TTK::File::fileListByPath(fin.absoluteFilePath(), filter, recursively));
         }
     }
     return fileList;
@@ -34,9 +35,9 @@ QStringList TTK::File::fileListByPath(const QString &dpath, const QStringList &f
 QFileInfoList TTK::File::fileInfoListByPath(const QString &dpath, const QStringList &filter, bool recursively)
 {
     QDir dir(dpath);
-    if(!dir.exists())
+    if(TTK::Core::isBreakPointEnabled() || !dir.exists())
     {
-        return QFileInfoList();
+        return {};
     }
 
     QFileInfoList fileList = dir.entryInfoList(filter, QDir::Files | QDir::Hidden);
@@ -45,7 +46,7 @@ QFileInfoList TTK::File::fileInfoListByPath(const QString &dpath, const QStringL
         const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
         for(const QFileInfo &fin : qAsConst(folderList))
         {
-            fileList.append(fileInfoListByPath(fin.absoluteFilePath(), filter, recursively));
+            fileList.append(TTK::File::fileInfoListByPath(fin.absoluteFilePath(), filter, recursively));
         }
     }
     return fileList;
@@ -53,6 +54,11 @@ QFileInfoList TTK::File::fileInfoListByPath(const QString &dpath, const QStringL
 
 bool TTK::File::copyPath(const QString &srcPath, const QString &dstPath, bool overwrite)
 {
+    if(TTK::Core::isBreakPointEnabled())
+    {
+        return false;
+    }
+
     if(QFileInfo(srcPath).isFile())
     {
         if(QFileInfo(dstPath).isFile())
@@ -82,7 +88,7 @@ bool TTK::File::copyPath(const QString &srcPath, const QString &dstPath, bool ov
 
         if(fileInfo.isDir())
         {
-            if(!copyPath(fileInfo.filePath(), dstDir.filePath(fileName), overwrite))
+            if(!TTK::File::copyPath(fileInfo.filePath(), dstDir.filePath(fileName), overwrite))
             {
                 return false;
             }
@@ -106,7 +112,7 @@ bool TTK::File::copyPath(const QString &srcPath, const QString &dstPath, bool ov
 bool TTK::File::removeRecursively(const QString &dir, bool self)
 {
     QDir dr(dir);
-    if(!dr.exists())
+    if(TTK::Core::isBreakPointEnabled() || !dr.exists())
     {
         return true;
     }
