@@ -1285,16 +1285,16 @@ too high may cause clipping!</source>
         <translation>蓝谱</translation>
     </message>
     <message>
-        <source>Rainbow</source>
+        <source>Perceptual</source>
         <translation>光谱</translation>
     </message>
     <message>
-        <source>Perceptual</source>
-        <translation>红谱</translation>
+        <source>Rainbow</source>
+        <translation>彩虹谱</translation>
     </message>
     <message>
         <source>Sox</source>
-        <translation>彩虹谱</translation>
+        <translation>红谱</translation>
     </message>
     <message>
         <source>Mono</source>
