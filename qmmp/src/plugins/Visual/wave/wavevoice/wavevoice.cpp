@@ -62,8 +62,8 @@ void WaveVoice::typeChanged(QAction *action)
     switch(action->data().toInt())
     {
         case 0: m_palette = VisualPalette::PALETTE_SPECTRUM; break;
-        case 1: m_palette = VisualPalette::PALETTE_RAINBOW; break;
-        case 2: m_palette = VisualPalette::PALETTE_PERCEPTUAL; break;
+        case 1: m_palette = VisualPalette::PALETTE_PERCEPTUAL; break;
+        case 2: m_palette = VisualPalette::PALETTE_RAINBOW; break;
         case 3: m_palette = VisualPalette::PALETTE_SOX; break;
         case 4: m_palette = VisualPalette::PALETTE_MONO; break;
         default: break;
@@ -124,8 +124,8 @@ void WaveVoice::contextMenuEvent(QContextMenuEvent *)
 
     QMenu typeMenu(tr("Type"), &menu);
     actionChecked(typeMenu.addAction(tr("Spectrum")), 0, m_palette);
-    actionChecked(typeMenu.addAction(tr("Rainbow")), 1, m_palette);
-    actionChecked(typeMenu.addAction(tr("Perceptual")), 2, m_palette);
+    actionChecked(typeMenu.addAction(tr("Perceptual")), 1, m_palette);
+    actionChecked(typeMenu.addAction(tr("Rainbow")), 2, m_palette);
     actionChecked(typeMenu.addAction(tr("Sox")), 3, m_palette);
     actionChecked(typeMenu.addAction(tr("Mono")), 4, m_palette);
     connect(&typeMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
