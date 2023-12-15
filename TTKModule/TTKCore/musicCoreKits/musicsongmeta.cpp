@@ -338,6 +338,8 @@ QString MusicSongMeta::findLegalDataString(TagMeta::Type type) noexcept
     return TTK::String::charactersReplace(v);
 }
 
+static constexpr const char *SPLITER = "************************************************************************\n";
+
 bool MusicSongMeta::readInformation()
 {
     clearSongMeta();
@@ -405,7 +407,7 @@ bool MusicSongMeta::readInformation()
         description += "ShortName: " + properties.shortName + "\n";
         description += "DecoderName: " + properties.name + "\n";
         description += "Description: " + properties.description + "\n";
-        description += "\n";
+        description += SPLITER;
 
         const MetaDataModel *model = factory->createMetaDataModel(m_path, true);
         if(model)
@@ -420,12 +422,26 @@ bool MusicSongMeta::readInformation()
                     songMeta()->m_metaData[TagMeta::RATING] = item.value().toString();
                 }
 
-                description += item.name() + ": " + item.value().toString() + "\n";
+                QString value = item.value().toString();
+                if(value.contains("\n"))
+                {
+                    value = "\n" + value;
+                }
+
+                description += item.name() + ": " + value + "\n";
+                description += SPLITER;
             }
 
             for(const MetaDataItem &item : model->descriptions())
             {
-                description += item.name() + ": " + item.value().toString() + "\n";
+                QString value = item.value().toString();
+                if(value.contains("\n"))
+                {
+                    value = "\n" + value;
+                }
+
+                description += item.name() + ": " + value + "\n";
+                description += SPLITER;
             }
 
             delete model;
