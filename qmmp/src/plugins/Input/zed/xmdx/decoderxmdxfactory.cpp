@@ -19,7 +19,10 @@ DecoderProperties DecoderXMDXFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("XMDX Plugin");
     properties.shortName = "xmdx";
-    properties.filters << "*.mdx" << "*.pdx" << "*.m" << "*.mub" << "*.muc" << "*.vgs" << "*.bgm" << "*.mml";
+    properties.filters << "*.mdx" << "*.pdx";
+    properties.filters << "*.m";
+    properties.filters << "*.mub" << "*.muc";
+    properties.filters << "*.vgs" << "*.bgm" << "*.mml";
     properties.description = "XMDX Game Audio File";
     properties.protocols << "file";
     properties.noInput = true;
