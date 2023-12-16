@@ -89,6 +89,9 @@ private:
 };
 
 
+/*! @brief The namespace of the association helper.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace TTK
 {
     /*!

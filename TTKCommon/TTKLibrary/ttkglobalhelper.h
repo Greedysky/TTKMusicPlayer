@@ -22,6 +22,9 @@
 #include <QPainter>
 #include "ttkmoduleexport.h"
 
+/*! @brief The namespace of the global helper.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace TTK
 {
     /*!

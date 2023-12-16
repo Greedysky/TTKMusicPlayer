@@ -21,6 +21,9 @@
 
 #include "musicsong.h"
 
+/*! @brief The namespace of the mode type data.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace TTK
 {
     enum class Mode

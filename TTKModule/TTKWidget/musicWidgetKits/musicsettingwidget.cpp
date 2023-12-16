@@ -189,7 +189,7 @@ void MusicSettingWidget::initialize()
     m_ui->rippleVersionFileValue->setText(TTK::Algorithm::sha1(TTK_VERSION_STR).toHex());
     m_ui->rippleLowPowerModeBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool());
     m_ui->rippleSpectrumEnableBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool());
-    m_ui->rippleSpectrumColorButton->setColors(MusicLrcColor::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString()));
+    m_ui->rippleSpectrumColorButton->setColors(TTK::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString()));
 
     rippleSpectrumOpacityEnableClicked(m_ui->rippleSpectrumEnableBox->isChecked());
 
@@ -232,8 +232,8 @@ void MusicSettingWidget::initialize()
     }
     else
     {
-        m_ui->playedPushButton->setColors(MusicLrcColor::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::LrcFrontgroundColor).toString()));
-        m_ui->noPlayedPushButton->setColors(MusicLrcColor::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::LrcBackgroundColor).toString()));
+        m_ui->playedPushButton->setColors(TTK::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::LrcFrontgroundColor).toString()));
+        m_ui->noPlayedPushButton->setColors(TTK::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::LrcBackgroundColor).toString()));
         showInteriorLrcDemo();
     }
     m_ui->transparentSlider->setValue(G_SETTING_PTR->value(MusicSettingManager::LrcColorTransparent).toInt());
@@ -252,8 +252,8 @@ void MusicSettingWidget::initialize()
     }
     else
     {
-        m_ui->DplayedPushButton->setColors(MusicLrcColor::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::DLrcFrontgroundColor).toString()));
-        m_ui->DnoPlayedPushButton->setColors(MusicLrcColor::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::DLrcBackgroundColor).toString()));
+        m_ui->DplayedPushButton->setColors(TTK::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::DLrcFrontgroundColor).toString()));
+        m_ui->DnoPlayedPushButton->setColors(TTK::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::DLrcBackgroundColor).toString()));
         showDesktopLrcDemo();
     }
     m_ui->DtransparentSlider->setValue(G_SETTING_PTR->value(MusicSettingManager::DLrcColorTransparent).toInt());
@@ -592,7 +592,7 @@ void MusicSettingWidget::saveParameterSettings()
 
     G_SETTING_PTR->setValue(MusicSettingManager::RippleLowPowerMode, m_ui->rippleLowPowerModeBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable, m_ui->rippleSpectrumEnableBox->isChecked());
-    G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumColor, MusicLrcColor::writeColorConfig(m_ui->rippleSpectrumColorButton->colors()));
+    G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumColor, TTK::writeColorConfig(m_ui->rippleSpectrumColorButton->colors()));
 
 
     G_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateEnable, m_ui->otherCheckUpdateBox->isChecked());
@@ -612,8 +612,8 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::LrcSize, m_ui->fontSizeComboBox->currentText());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcType, m_ui->fontTypeComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcColorTransparent, m_ui->transparentSlider->value());
-    G_SETTING_PTR->setValue(MusicSettingManager::LrcFrontgroundColor, MusicLrcColor::writeColorConfig(m_ui->playedPushButton->colors()));
-    G_SETTING_PTR->setValue(MusicSettingManager::LrcBackgroundColor, MusicLrcColor::writeColorConfig(m_ui->noPlayedPushButton->colors()));
+    G_SETTING_PTR->setValue(MusicSettingManager::LrcFrontgroundColor, TTK::writeColorConfig(m_ui->playedPushButton->colors()));
+    G_SETTING_PTR->setValue(MusicSettingManager::LrcBackgroundColor, TTK::writeColorConfig(m_ui->noPlayedPushButton->colors()));
 
 
     G_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, m_ui->showDesktopCheckBox->isChecked());
@@ -623,8 +623,8 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcSize, m_ui->DfontSizeComboBox->currentText());
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcType, m_ui->DfontTypeComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcColorTransparent, m_ui->DtransparentSlider->value());
-    G_SETTING_PTR->setValue(MusicSettingManager::DLrcFrontgroundColor, MusicLrcColor::writeColorConfig(m_ui->DplayedPushButton->colors()));
-    G_SETTING_PTR->setValue(MusicSettingManager::DLrcBackgroundColor, MusicLrcColor::writeColorConfig(m_ui->DnoPlayedPushButton->colors()));
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcFrontgroundColor, TTK::writeColorConfig(m_ui->DplayedPushButton->colors()));
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcBackgroundColor, TTK::writeColorConfig(m_ui->DnoPlayedPushButton->colors()));
 
 
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicDirPath, m_ui->downloadDirEdit->text());
@@ -1110,14 +1110,14 @@ void MusicSettingWidget::lrcColorByDefault(Lrc key, int index)
 
     if(key == Lrc::Interior)
     {
-        const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(TTKStaticCast(MusicLrcColor::Color, index));
+        const MusicLrcColor &cl = TTK::mapIndexToColor(TTKStaticCast(MusicLrcColor::Color, index));
         m_ui->playedPushButton->setColors(cl.m_frontColor);
         m_ui->noPlayedPushButton->setColors(cl.m_backColor);
         showInteriorLrcDemo();
     }
     else
     {
-        const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(TTKStaticCast(MusicLrcColor::Color, index + LRC_COLOR_OFFSET));
+        const MusicLrcColor &cl = TTK::mapIndexToColor(TTKStaticCast(MusicLrcColor::Color, index + LRC_COLOR_OFFSET));
         m_ui->DplayedPushButton->setColors(cl.m_frontColor);
         m_ui->DnoPlayedPushButton->setColors(cl.m_backColor);
         showDesktopLrcDemo();

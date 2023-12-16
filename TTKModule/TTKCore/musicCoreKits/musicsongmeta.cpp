@@ -338,7 +338,12 @@ QString MusicSongMeta::findLegalDataString(TagMeta::Type type) noexcept
     return TTK::String::charactersReplace(v);
 }
 
+
+#ifdef Q_OS_UNIX
+static constexpr const char *SPLITER = "*******************************************************************\n";
+#else
 static constexpr const char *SPLITER = "************************************************************************\n";
+#endif
 
 bool MusicSongMeta::readInformation()
 {

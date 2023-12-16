@@ -112,7 +112,7 @@ protected:
 
 #define TTK_NETWORK_QUERY_CHECK(VALUE)   if(m_interrupt || m_stateCode != TTK::NetworkCode::Query) return VALUE
 
-/*! @brief The namespace of the network helpers.
+/*! @brief The namespace of the network helper.
  * @author Greedysky <greedysky@163.com>
  */
 namespace TTK

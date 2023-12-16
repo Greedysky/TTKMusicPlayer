@@ -211,6 +211,9 @@ public:
 };
 
 
+/*! @brief The namespace of the random helper.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace TTK
 {
     /*!

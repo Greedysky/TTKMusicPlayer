@@ -23,6 +23,9 @@
 #include "musicsong.h"
 #include "musicnetworkdefines.h"
 
+/*! @brief The namespace of the record type helper.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace TTK
 {
     /*!

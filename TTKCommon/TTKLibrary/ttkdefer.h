@@ -62,10 +62,15 @@ private:
 
 };
 
+
+/*! @brief The namespace of the defer helper.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace TTK
 {
 enum class ScopeGuardOnExit { };
 }
+
 
 template <typename Function>
 inline _ScopeGuard<Function> operator+(TTK::ScopeGuardOnExit, Function &&fn)

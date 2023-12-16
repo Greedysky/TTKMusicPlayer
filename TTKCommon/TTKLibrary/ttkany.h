@@ -146,6 +146,9 @@ private:
 #endif
 
 
+/*! @brief The namespace of the any helper.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace TTK
 {
     template <typename T, typename... Args>

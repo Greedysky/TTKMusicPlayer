@@ -39,6 +39,7 @@ namespace TTK
     }
 }
 
+
 MusicLocalManagerStatisticTableWidget::MusicLocalManagerStatisticTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {

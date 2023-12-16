@@ -154,7 +154,7 @@ public:
      */
     inline void setValue(const QString &stype, const QVariant &var)
     {
-        m_parameter[typeStringToEnum(stype)] = var;
+        m_parameter[stringToEnum(stype)] = var;
     }
 
     /*!
@@ -170,7 +170,7 @@ public:
      */
     inline QVariant value(const QString &stype) const
     {
-        return m_parameter[typeStringToEnum(stype)];
+        return m_parameter[stringToEnum(stype)];
     }
 
     /*!
@@ -201,7 +201,7 @@ private:
     /*!
      * Convert String type to Config Type.
      */
-    inline Config typeStringToEnum(const QString &stype) const
+    inline Config stringToEnum(const QString &stype) const
     {
         const int index = staticMetaObject.indexOfEnumerator("Config");
         const QMetaEnum &metaEnum = staticMetaObject.enumerator(index);

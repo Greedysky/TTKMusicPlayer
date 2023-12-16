@@ -21,6 +21,9 @@
 
 #include "ttkmoduleexport.h"
 
+/*! @brief The namespace of the process utils.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace TTK
 {
     /*!

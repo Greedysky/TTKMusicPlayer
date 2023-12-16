@@ -37,23 +37,23 @@ public:
     enum class Color
     {
         Null = -1,   /*!< color null */
-        IYellow,     /*!< color yellow */
-        IBlue,       /*!< color blue */
-        IGray,       /*!< color gray */
-        IPink,       /*!< color pink */
-        IGreen,      /*!< color green */
-        IRed,        /*!< color red */
-        IPurple,     /*!< color purple */
-        IOrange,     /*!< color orange */
-        IIndigo,     /*!< color indigo */
+        IYellow,     /*!< interior color yellow */
+        IBlue,       /*!< interior color blue */
+        IGray,       /*!< interior color gray */
+        IPink,       /*!< interior color pink */
+        IGreen,      /*!< interior color green */
+        IRed,        /*!< interior color red */
+        IPurple,     /*!< interior color purple */
+        IOrange,     /*!< interior color orange */
+        IIndigo,     /*!< interior color indigo */
 
-        DWhite,      /*!< color white */
-        DBlue,       /*!< color blue */
-        DRed,        /*!< color red */
-        DBlack,      /*!< color black */
-        DYellow,     /*!< color yellow */
-        DPurple,     /*!< color purple */
-        DGreen       /*!< color green */
+        DWhite,      /*!< desktop color white */
+        DBlue,       /*!< desktop color blue */
+        DRed,        /*!< desktop color red */
+        DBlack,      /*!< desktop color black */
+        DYellow,     /*!< desktop color yellow */
+        DPurple,     /*!< desktop color purple */
+        DGreen       /*!< desktop color green */
     };
 
     /*!
@@ -62,24 +62,32 @@ public:
     MusicLrcColor();
     MusicLrcColor(const QList<QColor> &front, const QList<QColor> &back, Color index = Color::Null);
 
-    /*!
-     * Map index to color.
-     */
-    static MusicLrcColor mapIndexToColor(Color index);
-    /*!
-     * Transform colors string to color list.
-     */
-    static QList<QColor> readColorConfig(const QString &value);
-    /*!
-     * Transform color list to colors string.
-     */
-    static QString writeColorConfig(const QList<QColor> &colors);
-
     QList<QColor> m_frontColor;
     QList<QColor> m_backColor;
     MusicLrcColor::Color m_index;
 
 };
+
+
+/*! @brief The namespace of the lrc color helper.
+ * @author Greedysky <greedysky@163.com>
+ */
+namespace TTK
+{
+    /*!
+     * Map index to color.
+     */
+    MusicLrcColor mapIndexToColor(MusicLrcColor::Color index);
+    /*!
+     * Transform colors string to color list.
+     */
+    QList<QColor> readColorConfig(const QString &value);
+    /*!
+     * Transform color list to colors string.
+     */
+    QString writeColorConfig(const QList<QColor> &colors);
+}
+
 
 
 /*! @brief The class of the lrc manager base.
@@ -113,10 +121,6 @@ public:
     void stopDrawLrc();
 
     /*!
-     * Set linear gradient color.
-     */
-    void setLinearGradientColor(const MusicLrcColor &color);
-    /*!
      * Set lrc font family by given type.
      */
     void setFontFamily(int index);
@@ -125,22 +129,28 @@ public:
      */
     void setFontType(int type);
     /*!
-     * Set lrc font transparent by given value.
+     * Set linear gradient color.
      */
-    inline void setFontTransparent(int t) { m_transparent = t; }
+    void setLinearGradientColor(const MusicLrcColor &color);
+
     /*!
      * Set lrc font speed level by given value.
      */
     inline void setSpeedLevel(int l) { m_speedLevel = l; }
-
     /*!
-     * Set self position by point.
+     * Set lrc font transparent by given value.
      */
-    void setSelfPosition(const QPoint &point);
+    inline void setFontTransparent(int t) { m_transparent = t; }
+
     /*!
      * Set self position by x and y.
      */
     void setSelfPosition(int x, int y);
+    /*!
+     * Set self position by point.
+     */
+    void setSelfPosition(const QPoint &point);
+
     /*!
      * Get self position x.
      */
@@ -157,10 +167,12 @@ public:
      * Set self position y.
      */
     void setY(int y);
+
     /*!
      * Reset to origin state.
      */
     void reset();
+
     /*!
      * Set adjust font szie by value.
      */
@@ -174,7 +186,7 @@ public Q_SLOTS:
     /*!
      * Time out to calculate lrc mask line length.
      */
-    void setUpdateMask();
+    void updateMask();
     /*!
      * Override the setTtext function.
      */

@@ -1,8 +1,6 @@
 #include "musicdownloadrecordconfigmanager.h"
 
-namespace TTK
-{
-QString toString(Record type)
+QString TTK::toString(Record type)
 {
     switch(type)
     {
@@ -11,7 +9,6 @@ QString toString(Record type)
         case TTK::Record::CloudUpload: return CLOUD_UP_PATH_FULL;
         default: return {};
     }
-}
 }
 
 

@@ -39,16 +39,15 @@ void MusicLrcContainer::applyParameter()
     }
     else
     {
-        const MusicLrcColor cl(MusicLrcColor::readColorConfig(G_SETTING_PTR->value(t + "LrcFrontgroundColor").toString()),
-                               MusicLrcColor::readColorConfig(G_SETTING_PTR->value(t + "LrcBackgroundColor").toString()));
+        const MusicLrcColor cl(TTK::readColorConfig(G_SETTING_PTR->value(t + "LrcFrontgroundColor").toString()),
+                               TTK::readColorConfig(G_SETTING_PTR->value(t + "LrcBackgroundColor").toString()));
         setLinearGradientColor(cl);
     }
 }
 
 void MusicLrcContainer::setLinearGradientColor(MusicLrcColor::Color color)
 {
-    const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(color);
-    setLinearGradientColor(cl);
+    setLinearGradientColor(TTK::mapIndexToColor(color));
 }
 
 void MusicLrcContainer::setLinearGradientColor(const MusicLrcColor &color)
@@ -75,8 +74,8 @@ qint64 MusicLrcContainer::totalTime() const
 
 void MusicLrcContainer::currentLrcCustom()
 {
-    Q_EMIT showCurrentLrcSetting();
     Q_EMIT showCurrentLrcColorSetting();
+    Q_EMIT showCurrentLrcSetting();
 }
 
 void MusicLrcContainer::changeCurrentLrcColor(QAction *action)

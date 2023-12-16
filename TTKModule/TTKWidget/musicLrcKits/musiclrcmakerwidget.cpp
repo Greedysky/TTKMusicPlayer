@@ -745,13 +745,12 @@ void MusicLrcMakerWidget::setItemStyleSheet(int index, int size, int transparent
     if(G_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
         const MusicLrcColor::Color index = TTKStaticCast(MusicLrcColor::Color, G_SETTING_PTR->value("LrcColor").toInt());
-        const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(index);
-        w->setLinearGradientColor(cl);
+        w->setLinearGradientColor(TTK::mapIndexToColor(index));
     }
     else
     {
-        const MusicLrcColor cl(MusicLrcColor::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
-                               MusicLrcColor::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
+        const MusicLrcColor cl(TTK::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
+                               TTK::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
         w->setLinearGradientColor(cl);
     }
 }

@@ -197,8 +197,8 @@ void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int t
     }
     else
     {
-        const MusicLrcColor cl(MusicLrcColor::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
-                               MusicLrcColor::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
+        const MusicLrcColor cl(TTK::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
+                               TTK::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
         setLinearGradientColor(cl);
     }
 }

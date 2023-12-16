@@ -66,19 +66,17 @@ void TTKAbstractNetwork::sslErrorsString(QNetworkReply *reply, const QList<QSslE
 }
 #endif
 
-namespace TTK
-{
-void makeContentTypeHeader(QNetworkRequest *request, const QByteArray &data)
+void TTK::makeContentTypeHeader(QNetworkRequest *request, const QByteArray &data)
 {
     request->setRawHeader("Content-Type", data.isEmpty() ? "application/x-www-form-urlencoded" : data);
 }
 
-void makeUserAgentHeader(QNetworkRequest *request, const QByteArray &data)
+void TTK::makeUserAgentHeader(QNetworkRequest *request, const QByteArray &data)
 {
     request->setRawHeader("User-Agent", data.isEmpty() ? "Mozilla/5.0 (X11; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0" : data);
 }
 
-void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode)
+void TTK::setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode)
 {
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request->sslConfiguration();
@@ -90,7 +88,7 @@ void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mo
 #endif
 }
 
-qint64 queryFileSizeByUrl(const QString &url)
+qint64 TTK::queryFileSizeByUrl(const QString &url)
 {
     qint64 size = -1;
 
@@ -122,7 +120,7 @@ qint64 queryFileSizeByUrl(const QString &url)
     return size;
 }
 
-QByteArray syncNetworkQueryForGet(QNetworkRequest *request)
+QByteArray TTK::syncNetworkQueryForGet(QNetworkRequest *request)
 {
     TTKSemaphoreLoop loop;
     QNetworkAccessManager manager;
@@ -141,7 +139,7 @@ QByteArray syncNetworkQueryForGet(QNetworkRequest *request)
     return bytes;
 }
 
-QByteArray syncNetworkQueryForPost(QNetworkRequest *request, const QByteArray &data)
+QByteArray TTK::syncNetworkQueryForPost(QNetworkRequest *request, const QByteArray &data)
 {
     TTKSemaphoreLoop loop;
     QNetworkAccessManager manager;
@@ -158,5 +156,4 @@ QByteArray syncNetworkQueryForPost(QNetworkRequest *request, const QByteArray &d
     const QByteArray bytes(reply->readAll());
     reply->deleteLater();
     return bytes;
-}
 }
