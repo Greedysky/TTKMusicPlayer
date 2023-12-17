@@ -8,19 +8,19 @@ SOURCE="$3/TTKLanguage"
 mkdir -p "$OUTPUT"
 
 #make
-for i in $SOURCE/*.ts
+for i in "$SOURCE"/*.ts
 do
   $LCEXE "$i"
 done
 
 #rename
-for i in $SOURCE/*.qm
+for i in "$SOURCE"/*.qm
 do
   rename -v -f 's/.qm/.ln/' "$i"
 done
 
 #move
-for i in $SOURCE/*.ln
+for i in "$SOURCE"/*.ln
 do
   mv "$i" "$OUTPUT"
 done
