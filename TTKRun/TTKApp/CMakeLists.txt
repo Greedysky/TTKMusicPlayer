@@ -20,8 +20,8 @@ cmake_minimum_required(VERSION 3.0.0)
 
 project(TTKMusicPlayer)
 
-set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
-set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
+set(LIBRARY_OUTPUT_PATH ${MUSIC_BUILD_DIR})
+set(EXECUTABLE_OUTPUT_PATH ${MUSIC_BUILD_DIR})
 
 include_directories(${MUSIC_COMMON_DIR})
 include_directories(${MUSIC_COMMON_RUN_DIR})

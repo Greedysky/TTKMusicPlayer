@@ -153,13 +153,13 @@ include_directories(
 )
 
 
-set(MUSIC_INSTALL_DIR "${CMAKE_CACHEFILE_DIR}/bin")
+set(MUSIC_BUILD_DIR "${CMAKE_CACHEFILE_DIR}/bin")
 set(MUSIC_GENERATE_DIR "${CMAKE_CACHEFILE_DIR}/Generate")
 
 include_directories(${MUSIC_GENERATE_DIR})
 
-set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR}/${TTK_VERSION})
-set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR}/${TTK_VERSION})
+set(LIBRARY_OUTPUT_PATH ${MUSIC_BUILD_DIR}/${TTK_VERSION})
+set(EXECUTABLE_OUTPUT_PATH ${MUSIC_BUILD_DIR}/${TTK_VERSION})
 
 set(OPENSSL_DIR "" CACHE PATH "Openssl install path")
 
@@ -230,19 +230,10 @@ endif()
 find_program(QT_LRELEASE_EXECUTABLE lrelease ${QT_INSTALL_BINS})
 if(QT_LRELEASE_EXECUTABLE)
   message(STATUS "Message Found lrelease executable: " ${QT_LRELEASE_EXECUTABLE})
-  if(WIN32)
-    execute_process(COMMAND ${MUSIC_UTILS_DIR}/ts_win.bat ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH} ${MUSIC_DIR})
-  else(UNIX)
-    execute_process(COMMAND ${MUSIC_UTILS_DIR}/ts_linux.sh ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH} ${MUSIC_DIR})
-  endif()
 else()
   message(FATAL_ERROR "Message Could NOT find lrelease executable")
 endif()
 
-# copy run resource
-if(UNIX)
-  execute_process(COMMAND ${MUSIC_UTILS_DIR}/resource.sh ${MUSIC_RESOURCE_DIR} ${EXECUTABLE_OUTPUT_PATH})
-endif()
 
 find_library(TTK_QMMP_LIBRARY
   NAMES TTKqmmp
@@ -270,4 +261,29 @@ add_subdirectory(TTKService)
 add_subdirectory(TTKRun)
 
 
-install(FILES "${MUSIC_UTILS_DIR}/deploy/ttkmusicplayer.appdata.xml" DESTINATION "${MUSIC_INSTALL_DIR}/metainfo")
+set(MUSIC_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}")
+set(MUSIC_INSTALL_BIN_DIR "${MUSIC_INSTALL_DIR}/bin/${TTK_VERSION}")
+
+install(DIRECTORY "${MUSIC_BUILD_DIR}" DESTINATION "${MUSIC_INSTALL_DIR}" USE_SOURCE_PERMISSIONS)
+install(FILES "${MUSIC_DIR}/ChangeLog"
+              "${MUSIC_DIR}/LICENSE"
+              "${MUSIC_DIR}/LICENSE.LGPLv3"
+              "${MUSIC_DIR}/README.md"
+              "${MUSIC_DIR}/README_cn.md"
+              "${MUSIC_DIR}/README_tc.md"
+              "${MUSIC_DIR}/.github/FUNDING.yml"
+        DESTINATION "${MUSIC_INSTALL_DIR}/doc")
+if(UNIX)
+  install(DIRECTORY "${MUSIC_UTILS_DIR}/deploy" DESTINATION "${MUSIC_INSTALL_DIR}")
+  install(FILES "${MUSIC_UTILS_DIR}/deploy/share/appdata/ttkmusicplayer.appdata.xml" DESTINATION "${MUSIC_INSTALL_DIR}/share/metainfo")
+endif()
+# copy run resource
+if(UNIX)
+  install(CODE "execute_process(COMMAND \"${MUSIC_UTILS_DIR}/resource.sh\" \"${MUSIC_RESOURCE_DIR}\" \"${MUSIC_INSTALL_BIN_DIR}\")")
+endif()
+# update and release translations
+if(WIN32)
+  install(CODE "execute_process(COMMAND \"${MUSIC_UTILS_DIR}/ts_win.bat\" \"${QT_LRELEASE_EXECUTABLE}\" \"${MUSIC_INSTALL_BIN_DIR}\" \"${MUSIC_DIR}\")")
+else(UNIX)
+  install(CODE "execute_process(COMMAND \"${MUSIC_UTILS_DIR}/ts_linux.sh\" \"${QT_LRELEASE_EXECUTABLE}\" \"${MUSIC_INSTALL_BIN_DIR}\" \"${MUSIC_DIR}\")")
+endif()
