@@ -272,8 +272,12 @@ install(FILES "${MUSIC_DIR}/ChangeLog"
               "${MUSIC_DIR}/README_cn.md"
               "${MUSIC_DIR}/README_tc.md"
               "${MUSIC_DIR}/.github/FUNDING.yml"
+              "${MUSIC_UTILS_DIR}/resource/LICENSE.QT-LICENSE-AGREEMENT"
         DESTINATION "${MUSIC_INSTALL_DIR}/doc")
-if(UNIX)
+install(FILES "${MUSIC_UTILS_DIR}/resource/README.txt" DESTINATION "${MUSIC_INSTALL_DIR}")
+if(WIN32)
+  install(FILES "${MUSIC_UTILS_DIR}/resource/qicon.dll" DESTINATION "${MUSIC_INSTALL_DIR}")
+else(UNIX)
   install(DIRECTORY "${MUSIC_UTILS_DIR}/deploy" DESTINATION "${MUSIC_INSTALL_DIR}")
   install(FILES "${MUSIC_UTILS_DIR}/deploy/share/appdata/ttkmusicplayer.appdata.xml" DESTINATION "${MUSIC_INSTALL_DIR}/share/metainfo")
 endif()
