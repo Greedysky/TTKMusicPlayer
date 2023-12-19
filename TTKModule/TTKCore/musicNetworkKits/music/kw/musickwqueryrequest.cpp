@@ -106,7 +106,7 @@ void MusicKWQueryRequest::downLoadFinished()
                             continue;
                         }
 
-                        if(!findUrlFileSize(&info.m_songProps))
+                        if(!findUrlFileSize(&info.m_songProps, info.m_duration))
                         {
                             return;
                         }
@@ -167,7 +167,7 @@ void MusicKWQueryRequest::downLoadSingleFinished()
                 MusicKWInterface::parseFromSongProperty(&info, "MP3128|MP3192|MP3H", m_queryQuality, m_queryAllRecords);
                 TTK_NETWORK_QUERY_CHECK();
 
-                if(!findUrlFileSize(&info.m_songProps))
+                if(!findUrlFileSize(&info.m_songProps, info.m_duration))
                 {
                     return;
                 }

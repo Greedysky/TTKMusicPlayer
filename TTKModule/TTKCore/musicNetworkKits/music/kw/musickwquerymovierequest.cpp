@@ -94,7 +94,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                         continue;
                     }
 
-                    if(!findUrlFileSize(&info.m_songProps))
+                    if(!findUrlFileSize(&info.m_songProps, info.m_duration))
                     {
                         return;
                     }
@@ -175,7 +175,7 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
     parseFromMovieProperty(&info, QString("MP4UL|MP4L|MP4HV|MP4"));
     TTK_NETWORK_QUERY_CHECK();
 
-    if(!findUrlFileSize(&info.m_songProps))
+    if(!findUrlFileSize(&info.m_songProps, info.m_duration))
     {
         return;
     }

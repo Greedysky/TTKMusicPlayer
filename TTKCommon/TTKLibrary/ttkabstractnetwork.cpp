@@ -76,18 +76,6 @@ void TTK::makeUserAgentHeader(QNetworkRequest *request, const QByteArray &data)
     request->setRawHeader("User-Agent", data.isEmpty() ? "Mozilla/5.0 (X11; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0" : data);
 }
 
-void TTK::setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode)
-{
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request->sslConfiguration();
-    sslConfig.setPeerVerifyMode(mode);
-    request->setSslConfiguration(sslConfig);
-#else
-    Q_UNUSED(request);
-    Q_UNUSED(mode);
-#endif
-}
-
 qint64 TTK::queryFileSizeByUrl(const QString &url)
 {
     qint64 size = -1;
@@ -118,6 +106,18 @@ qint64 TTK::queryFileSizeByUrl(const QString &url)
 
     reply->deleteLater();
     return size;
+}
+
+void TTK::setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode)
+{
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request->sslConfiguration();
+    sslConfig.setPeerVerifyMode(mode);
+    request->setSslConfiguration(sslConfig);
+#else
+    Q_UNUSED(request);
+    Q_UNUSED(mode);
+#endif
 }
 
 QByteArray TTK::syncNetworkQueryForGet(QNetworkRequest *request)

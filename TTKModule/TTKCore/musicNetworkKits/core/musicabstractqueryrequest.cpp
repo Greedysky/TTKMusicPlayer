@@ -43,22 +43,31 @@ void MusicAbstractQueryRequest::downLoadFinished()
     MusicPageQueryRequest::downLoadFinished();
 }
 
-bool MusicAbstractQueryRequest::findUrlFileSize(TTK::MusicSongProperty *prop) const
+bool MusicAbstractQueryRequest::findUrlFileSize(TTK::MusicSongProperty *prop, const QString &duration) const
 {
-    TTK_NETWORK_QUERY_CHECK(false);
-    if(prop->m_size.isEmpty() || prop->m_size == TTK_DEFAULT_STR)
+    if(!prop->m_size.isEmpty() && prop->m_size != TTK_DEFAULT_STR)
     {
-        prop->m_size = TTK::Number::sizeByteToLabel(TTK::queryFileSizeByUrl(prop->m_url));
+        return false;
     }
-    TTK_NETWORK_QUERY_CHECK(false);
+
+    if(prop->m_bitrate != -1 && !duration.isEmpty() && duration != TTK_DEFAULT_STR)
+    {
+        prop->m_size = TTK::Number::sizeByteToLabel(TTKTime::formatDuration(duration) * prop->m_bitrate / 8.0);
+    }
+    else
+    {
+        TTK_NETWORK_QUERY_CHECK(false);
+        prop->m_size = TTK::Number::sizeByteToLabel(TTK::queryFileSizeByUrl(prop->m_url));
+        TTK_NETWORK_QUERY_CHECK(false);
+    }
     return true;
 }
 
-bool MusicAbstractQueryRequest::findUrlFileSize(TTK::MusicSongPropertyList *props) const
+bool MusicAbstractQueryRequest::findUrlFileSize(TTK::MusicSongPropertyList *props, const QString &duration) const
 {
     for(int i = 0; i < props->count(); ++i)
     {
-        if(!findUrlFileSize(&(*props)[i]))
+        if(!findUrlFileSize(&(*props)[i], duration))
         {
             return false;
         }

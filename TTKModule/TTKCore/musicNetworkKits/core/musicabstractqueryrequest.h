@@ -196,11 +196,11 @@ protected:
     /*!
      * Find download file size.
      */
-    bool findUrlFileSize(TTK::MusicSongProperty *prop) const;
+    bool findUrlFileSize(TTK::MusicSongProperty *prop, const QString &duration) const;
     /*!
      * Find download file size.
      */
-    bool findUrlFileSize(TTK::MusicSongPropertyList *props) const;
+    bool findUrlFileSize(TTK::MusicSongPropertyList *props, const QString &duration) const;
 
     QString m_queryValue;
     QString m_queryServer;

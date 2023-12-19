@@ -127,13 +127,13 @@ namespace TTK
     TTK_MODULE_EXPORT void makeUserAgentHeader(QNetworkRequest *request, const QByteArray &data = {});
 
     /*!
-     * Set request ssl configuration.
-     */
-    TTK_MODULE_EXPORT void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode = QSslSocket::VerifyNone);
-    /*!
      * Get download file size by url.
      */
     TTK_MODULE_EXPORT qint64 queryFileSizeByUrl(const QString &url);
+    /*!
+     * Set request ssl configuration.
+     */
+    TTK_MODULE_EXPORT void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode = QSslSocket::VerifyNone);
 
     /*!
      * Sync network query for get.

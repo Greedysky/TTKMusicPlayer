@@ -73,7 +73,7 @@ void MusicKWQueryArtistRequest::downLoadFinished()
                         continue;
                     }
 
-                    if(!findUrlFileSize(&info.m_songProps))
+                    if(!findUrlFileSize(&info.m_songProps, info.m_duration))
                     {
                         return;
                     }
