@@ -29,6 +29,7 @@ static const QString WY_NMTID_URL              = "V0Zsb2tGREU1R0thR29GYjRYdk5jbm
 static const QString WY_BASE_URL               = "MVNVTXo4bW9WdHhXR1dXeTZmU3k5dmFOcGlua1VOMlE=";
 static const QString WY_SECKRY_STRING          = "411571dca16717d9af5ef1ac97a8d21cb740329890560688b1b624de43f49fdd7702493835141b06ae45f1326e264c98c24ce87199c1a776315e5f25c11056b02dd92791fcc012bff8dd4fc86e37888d5ccc060f7837b836607dbb28bddc703308a0ba67c24c6420dd08eec2b8111067486c907b6e53c027ae1e56c188bc568e";
 ///song url
+//MnBiMVlsRXJML2c5V2FFaHNOM05hVWtVYUpBc0VrbjdNUDZhOGx5OTR2cz0=
 static const QString WY_SONG_SEARCH_URL        = "STg2eHNFN0FLWnRzeDNlQXRlaHIvVlJ6b2k5a2s3Y2JmMG9lUEQzTytuNG5JenowY3ZleC9SbXFyak1ta29pYzA3dytZZz09";
 static const QString WY_SONG_SEARCH_DATA_URL   = "UUlpSjlhZzFoVnExMDRudE5PWlFva25EWCt1d09CbGVYdlNpVVhvUWVna29JVU9sa3cxK2N0bUU0eW1VMENTTjlhR3JnQT09";
 static const QString WY_SONG_LRC_OLD_URL       = "eEZRWnA5eWZZZWFvakpnQ2F2Sml1aTZQa1crekFlZUJoTXUwRUgwekRtOXFsU2l2S1BKZFdwTUVaNGRzWUJ2ZTNpdlRDNnVuTUt2M0xtUTRsaWh2NTZBQ0JacnNTbXp6";
@@ -37,6 +38,7 @@ static const QString WY_SONG_PATH_DATA_URL     = "ei9SdFJqZWlHWlh3eXBsWHJTS09FbU
 static const QString WY_SONG_INFO_OLD_URL      = "N2NkQWg4V3o0NXYvMlFHamVOWVZ5Y2NnTDk2cTNFdFVROVNwTndJV2REYXM0K01Yd2NIT1pwaGcyTGJ0QVVsNHVxT0lTZHFKNTI2QnlWMnVBWFNDdWYrb09Waz0=";
 static const QString WY_SONG_INFO_URL          = "S3paVUxRY3hZVDVweWhJZFU0K0FpakhJc3R5YW1hbmpmRUVsL3JTRUdwcnlDdDlMWFJSR0ludFFPZ1MycWExVVlLNjg5Njh3VmV2cGxpQzE=";
 static const QString WY_SONG_INFO_DATA_URL     = "Zmh6cVNyd2REdlVlZ3JQVUZpNjd5YlBaYVR0SEQrWFAydVpzOWc9PQ==";
+static const QString WY_SONG_DETAIL_CGG_URL    = "SnVoVFlqZ1dSa1BRYkVpQnA1SmtYL0toMUJyOWg3c0w4Snd5UVBMR0ptMU5PN3AzNkg3L2xDTEZpNUNEd1VjNi85WHYvQWRPc0RnY01Ba2o=";
 ///artist url
 static const QString WY_ARTIST_URL             = "YmhRbVZDYy8rbytiRWc5cXc2MUVUdEFKRmw2eFhTVmhqWTZ6MmRVNEMzbVg0Q3BFQVF4d0VYUktBMk1aVUNVb3ZaNk5VL3BYRjBZPQ==";
 static const QString WY_ARTIST_INFO_URL        = "RnJtNVNTT01ncFI2cDJMRTMrSFFwWFBWVEEzQnZNYmg4TEJrRjZCeHorTE13aVNCNUxScGo2QzNzVUNKNzhKbkI2VjNKUT09";
@@ -94,7 +96,7 @@ namespace MusicWYInterface
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all);
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */

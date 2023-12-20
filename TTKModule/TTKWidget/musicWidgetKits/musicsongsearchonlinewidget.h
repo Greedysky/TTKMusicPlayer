@@ -53,17 +53,9 @@ public:
     virtual void downloadQuery(int row) override final;
 
     /*!
-     * Set wheather query all quality of records.
-     */
-    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state; }
-    /*!
      * Start search query by given id.
      */
     void startSearchSingleQuery(const QString &text);
-    /*!
-     * Set search data quality.
-     */
-    void setSearchQuality(TTK::QueryQuality quality);
     /*!
      * Resize section bound by resize called.
      */
@@ -105,7 +97,6 @@ private:
      */
     void addSearchMusicToPlaylist(int row, bool play);
 
-    bool m_queryAllRecords;
     friend class MusicSongSearchOnlineWidget;
 };
 
@@ -131,15 +122,11 @@ public:
     /*!
      * Start search query by text.
      */
-    void startSearchQuery(const QString &name, bool all);
+    void startSearchQuery(const QString &name);
     /*!
      * Start search query by given id.
      */
     void startSearchSingleQuery(const QString &name);
-    /*!
-     * Research query by quality it changed.
-     */
-    void researchQueryByQuality(const QString &name, TTK::QueryQuality quality);
     /*!
      * Resize window bound by resize called.
      */

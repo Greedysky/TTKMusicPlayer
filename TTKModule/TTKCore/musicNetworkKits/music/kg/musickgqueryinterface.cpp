@@ -51,7 +51,7 @@ void MusicKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, co
     }
 }
 
-void MusicKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all)
+void MusicKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, bool all)
 {
     if(all)
     {
@@ -62,19 +62,8 @@ void MusicKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, co
     }
     else
     {
-        if(quality == TTK::QueryQuality::Standard)
-        {
-            parseFromSongProperty(info, key["hash"].toString());
-            parseFromSongProperty(info, key["128hash"].toString());
-        }
-        else if(quality == TTK::QueryQuality::Super)
-        {
-            parseFromSongProperty(info, key["320hash"].toString());
-        }
-        else if(quality == TTK::QueryQuality::Lossless)
-        {
-            parseFromSongProperty(info, key["sqhash"].toString());
-        }
+        parseFromSongProperty(info, key["hash"].toString());
+        parseFromSongProperty(info, key["128hash"].toString());
     }
 }
 

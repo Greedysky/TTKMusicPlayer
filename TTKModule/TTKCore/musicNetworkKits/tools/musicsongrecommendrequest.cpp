@@ -82,7 +82,7 @@ void MusicSongRecommendRequest::downLoadFinished()
                 info.m_trackNumber = value["trackNum"].toString();
 
                 TTK_NETWORK_QUERY_CHECK();
-                parseFromSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
+                parseFromSongProperty(&info, value);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(info.m_songProps.isEmpty())
@@ -129,40 +129,17 @@ void MusicSongRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation 
     info->m_songProps.append(prop);
 }
 
-void MusicSongRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all) const
+void MusicSongRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key) const
 {
     info->m_lrcUrl = TTK::Algorithm::mdII(LQ_BASE_URL, false) + key["lrcUrl"].toString();
     info->m_coverUrl = key["picUrl"].toString();
     const int length = key["length"].toInt();
 
-    if(all)
-    {
-        parseFromSongProperty(info, key["lqUrl"].toString(), length, TTK_BN_128);
-        parseFromSongProperty(info, key["hqUrl"].toString(), length, TTK_BN_192);
-        parseFromSongProperty(info, key["sqUrl"].toString(), length, TTK_BN_320);
-        parseFromSongProperty(info, key["apeUrl"].toString(), length, TTK_BN_750);
-        parseFromSongProperty(info, key["flacUrl"].toString(), length, TTK_BN_1000);
-    }
-    else
-    {
-        if(quality == TTK::QueryQuality::Standard)
-        {
-            parseFromSongProperty(info, key["lqUrl"].toString(), length, TTK_BN_128);
-        }
-        else if(quality == TTK::QueryQuality::High)
-        {
-            parseFromSongProperty(info, key["hqUrl"].toString(), length, TTK_BN_192);
-        }
-        else if(quality == TTK::QueryQuality::Super)
-        {
-            parseFromSongProperty(info, key["sqUrl"].toString(), length, TTK_BN_320);
-        }
-        else if(quality == TTK::QueryQuality::Lossless)
-        {
-            parseFromSongProperty(info, key["apeUrl"].toString(), length, TTK_BN_750);
-            parseFromSongProperty(info, key["flacUrl"].toString(), length, TTK_BN_1000);
-        }
-    }
+    parseFromSongProperty(info, key["lqUrl"].toString(), length, TTK_BN_128);
+    parseFromSongProperty(info, key["hqUrl"].toString(), length, TTK_BN_192);
+    parseFromSongProperty(info, key["sqUrl"].toString(), length, TTK_BN_320);
+    parseFromSongProperty(info, key["apeUrl"].toString(), length, TTK_BN_750);
+    parseFromSongProperty(info, key["flacUrl"].toString(), length, TTK_BN_1000);
 
     if(info->m_songProps.isEmpty())
     {

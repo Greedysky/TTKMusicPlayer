@@ -32,6 +32,7 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
     m_ui->iconLabel->setPixmap(QPixmap(":/image/lb_logo"));
     m_ui->versionLabel->setText(QString("Version: %1\n").arg(TTK_VERSION_STR) +
                                 QString("Hash: %1\n").arg(TTK::Algorithm::sha1(TTK_VERSION_STR).toHex().constData()) +
+                                QString("Built on %1\n").arg(QDateTime::currentDateTime().toString(TTK_YEAR_TIMEZ_FORMAT)) +
                                 QString("Based on Qt %1(%2)\n").arg(QT_VERSION_STR,
 #ifdef Q_OS_WIN
                                 "MinGW 32bit"));

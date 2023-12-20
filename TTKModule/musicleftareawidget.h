@@ -24,7 +24,6 @@
 
 class MusicConnectLocalWidget;
 class MusicCloudSharedSongWidget;
-class MusicQualityChoicePopWidget;
 
 namespace Ui {
     class MusicApplication;
@@ -112,7 +111,6 @@ private:
     QWidget *m_stackedWidget;
     MusicConnectLocalWidget *m_localSharedSongWidget;
     MusicCloudSharedSongWidget *m_cloudSharedSongWidget;
-    MusicQualityChoicePopWidget *m_qualityChoiceWidget;
 
     static MusicLeftAreaWidget *m_instance;
 

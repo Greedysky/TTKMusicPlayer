@@ -95,20 +95,23 @@ void MusicKWQueryRequest::downLoadFinished()
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                     info.m_albumName = TTK::String::charactersReplace(value["ALBUM"].toString());
 
-                    if(!m_queryLite)
+                    if(m_queryMode != QueryMode::None)
                     {
-                        TTK_NETWORK_QUERY_CHECK();
-                        MusicKWInterface::parseFromSongProperty(&info, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
-                        TTK_NETWORK_QUERY_CHECK();
-
-                        if(info.m_songProps.isEmpty())
+                        if(m_queryMode != QueryMode::List)
                         {
-                            continue;
-                        }
+                            TTK_NETWORK_QUERY_CHECK();
+                            MusicKWInterface::parseFromSongProperty(&info, value["FORMATS"].toString(), true);
+                            TTK_NETWORK_QUERY_CHECK();
 
-                        if(!findUrlFileSize(&info.m_songProps, info.m_duration))
-                        {
-                            return;
+                            if(info.m_songProps.isEmpty())
+                            {
+                                continue;
+                            }
+
+                            if(!findUrlFileSize(&info.m_songProps, info.m_duration))
+                            {
+                                return;
+                            }
                         }
 
                         MusicResultInfoItem item;
@@ -164,7 +167,7 @@ void MusicKWQueryRequest::downLoadSingleFinished()
                 info.m_albumName = TTK::String::charactersReplace(value["album"].toString());
 
                 TTK_NETWORK_QUERY_CHECK();
-                MusicKWInterface::parseFromSongProperty(&info, "MP3128|MP3192|MP3H", m_queryQuality, m_queryAllRecords);
+                MusicKWInterface::parseFromSongProperty(&info, "MP3128|MP3192|MP3H", true);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(!findUrlFileSize(&info.m_songProps, info.m_duration))

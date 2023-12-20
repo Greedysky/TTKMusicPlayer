@@ -24,9 +24,12 @@
 static constexpr const char *_SIGN           = "OGlVTjJWOEdlMkkzSkZIeg==";
 
 ///song url
+//TG5KazFERHlYc3hzS1JQd29ldXVEOWVRdGh2dmx0RWxma3I5cnRxekptRjdKM0NvQXo1bzV5c1ZpRDB2WGZ1UQ==
+//MnBiMVlsRXJML2c5V2FFaHNOM05hVWtVYUpBc0VrbjdNUDZhOGx5OTR2cz0=
 static const QString KW_SONG_SEARCH_URL      = "azRpTk56R3ZhTXY5dk13YzFkaHJkMzRFY3NpRkRmUGdyUnQyWVY5NXNvOE82cUE4Mmg0VklKTTQrRFV0dEZHTExUSkJvTkRXMGdQVEpaK0Z4Rkp6ZUkrUnh1T29iSG1mTUxCNkRmMlVFT25zVzhjQUs1K0VCZk9UMWpTWGovMWR0czNlN0Z0Y1kyUCtxYlZSK3R3YnU3VTZ6dlkwanJIdGN6RWdjWEhxSi96ekRNWjBMMEMrL3JCUGxRQWJ6YkltQkRGeGljR3c4TmgxaXBXcGhzcnZlZ1p5cldlNzZTc1ZlZDFvUDcxTmtDdlJqY3JU";
 static const QString KW_SONG_LRC_URL         = "a2VZMjN2anovdkJJR2tmckthZmI2c1M4N0ZqOWN6WGcrbHBXbllJdnRWcS9JUnp4ZWIrTXpGODFETkVFN25QZ0lZc21HRC85bjdQWWI3b3I=";
-static const QString KW_SONG_DETAIL_URL      = "cG9Mbk9QVklpdGJ1U080TkRKM0JnMWkwbnhrN2UzaWIyNzU4VTM5Y0wzbFRhT1UyczVqVFM1VkdUUDEya0NJaCtpS1R0eUphb1JSeURjZHBoQ3hXS1BGN2NMY2dna0VGVGg3ZkhwY3JYOW89";
+static const QString KW_SONG_DETAIL_URL      = "akMvL0pwQk8ybDBRczJqSnVtbG16MG15b2NpR280SGNOQW9nLzV3aGlqWWl6L1liU2NhRUNYZURhYWVCT0s4Qzgyd3V3R3FJZElqZ3ZZT2d4OElYLzZKeGk1RlBjSEQ3R2toaCtKSTI1czdxWS9ZeXVHR3ByT0ZKSzdnQlRQUGVadk1iNDRteFhodkZTaFFxUldiUXRycmNSSTQ9";
+static const QString KW_SONG_DETAIL_CGG_URL  = "Sy9PQjM5WTkvUlkwTnR0WkVlWWIwMnB6SW5aeEJua1h1UTdvQWlzd2daT25iVUlIdzFuaDQzb1FTV1VrODAxYg==";
 static const QString KW_SONG_INFO_URL        = "TjVRY3FwbGZRUkpITGYyczVUSGZ0MG14bEs4VEsyY3VJZE80S0lhSkF6b0p5UWsxSEl5aWpUNzdHY252aEhpSDAwZHhTR3UvM2J0ZlJ2dmc5SDRDa1ZBSGhLZy9SY2UrMllkUjJpUGtmWTA9";
 ///artist url
 static const QString KW_ARTIST_URL           = "YnB5eU5EYWZlV2ROblZIWllJbVJzK0ppMVJqMGxiNVcwM0RaQzVqWE9xdURua0tJWng4OEVaSit1ck5VeGh4SkZ1OGN0SHRaQWNNQS9URXRCM0FVdlZOWDkwcDgzOXZ1Q0JIcGlMMEdyZGlWTUlITE1pZmJOY1YyNmFwS2o5NE1NM3ZDY25RRERlLzEzb1U3NFpKV2lYSGhpOFNINTdDd1ZZWHV4bkUzL0JXY2ZHSkpPYitEazY2QzhiRT0=";
@@ -72,7 +75,11 @@ namespace MusicKWInterface
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &bitrate, QString &url);
+    void parseFromSongProperty(TTK::MusicSongInformation *info);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &suffix, const QString &bitrate, QString &url);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
@@ -80,11 +87,11 @@ namespace MusicKWInterface
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &format, TTK::QueryQuality quality, bool all);
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &format, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantList &format, TTK::QueryQuality quality, bool all);
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantList &format, bool all);
 
 }
 

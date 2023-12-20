@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>508</width>
-    <height>418</height>
+    <height>438</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>4</x>
      <y>4</y>
      <width>500</width>
-     <height>410</height>
+     <height>430</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -67,7 +67,7 @@
      <x>4</x>
      <y>29</y>
      <width>500</width>
-     <height>385</height>
+     <height>405</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -96,7 +96,7 @@ QLabel{background:transparent;}</string>
       <x>15</x>
       <y>213</y>
       <width>455</width>
-      <height>70</height>
+      <height>90</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -107,7 +107,7 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>420</x>
-      <y>348</y>
+      <y>368</y>
       <width>70</width>
       <height>25</height>
      </rect>
@@ -120,7 +120,7 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>15</x>
-      <y>345</y>
+      <y>365</y>
       <width>200</width>
       <height>25</height>
      </rect>
@@ -136,7 +136,7 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>15</x>
-      <y>277</y>
+      <y>297</y>
       <width>455</width>
       <height>60</height>
      </rect>

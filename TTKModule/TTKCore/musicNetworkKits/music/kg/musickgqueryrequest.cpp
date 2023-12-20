@@ -95,15 +95,18 @@ void MusicKGQueryRequest::downLoadFinished()
                     MusicKGInterface::parseFromSongLrcAndPicture(&info);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(!m_queryLite)
+                    if(m_queryMode != QueryMode::None)
                     {
-                        TTK_NETWORK_QUERY_CHECK();
-                        MusicKGInterface::parseFromSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
-                        TTK_NETWORK_QUERY_CHECK();
-
-                        if(info.m_songProps.isEmpty())
+                        if(m_queryMode != QueryMode::List)
                         {
-                            continue;
+                            TTK_NETWORK_QUERY_CHECK();
+                            MusicKGInterface::parseFromSongProperty(&info, value, true);
+                            TTK_NETWORK_QUERY_CHECK();
+
+                            if(info.m_songProps.isEmpty())
+                            {
+                                continue;
+                            }
                         }
 
                         MusicResultInfoItem item;
@@ -167,7 +170,7 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                 info.m_trackNumber = "0";
 
                 TTK_NETWORK_QUERY_CHECK();
-                MusicKGInterface::parseFromSongProperty(&info, value["extra"].toMap(), m_queryQuality, true);
+                MusicKGInterface::parseFromSongProperty(&info, value["extra"].toMap(), true);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(!info.m_songProps.isEmpty())

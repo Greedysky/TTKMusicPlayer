@@ -13,8 +13,7 @@
 #include <QButtonGroup>
 
 MusicSongSearchTableWidget::MusicSongSearchTableWidget(QWidget *parent)
-    : MusicItemSearchTableWidget(parent),
-      m_queryAllRecords(true)
+    : MusicItemSearchTableWidget(parent)
 {
     setColumnCount(9);
 
@@ -62,19 +61,9 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     manager.reset();
     manager.writeBuffer(records);
 
-    if(!m_networkRequest)
-    {
-        MusicItemSearchTableWidget::startSearchQuery(text);
-    }
-    else
-    {
-        const TTK::QueryQuality quality = m_networkRequest->queryQuality();
-        MusicItemSearchTableWidget::startSearchQuery(text);
-        m_networkRequest->setQueryQuality(quality);
-    }
+    MusicItemSearchTableWidget::startSearchQuery(text);
 
     m_loadingLabel->run(true);
-    m_networkRequest->setQueryAllRecords(m_queryAllRecords);
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, text);
 }
 
@@ -99,26 +88,10 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
         return;
     }
     //
-    if(!m_networkRequest)
-    {
-        MusicItemSearchTableWidget::startSearchQuery(text);
-    }
-    else
-    {
-        const TTK::QueryQuality quality = m_networkRequest->queryQuality();
-        MusicItemSearchTableWidget::startSearchQuery(text);
-        m_networkRequest->setQueryQuality(quality);
-    }
+    MusicItemSearchTableWidget::startSearchQuery(text);
     //
     m_loadingLabel->run(true);
-    m_networkRequest->setQueryAllRecords(m_queryAllRecords);
     m_networkRequest->startToSingleSearch(text);
-}
-
-void MusicSongSearchTableWidget::setSearchQuality(TTK::QueryQuality quality)
-{
-    MusicItemSearchTableWidget::startSearchQuery({});
-    m_networkRequest->setQueryQuality(quality);
 }
 
 void MusicSongSearchTableWidget::resizeSection()
@@ -359,7 +332,7 @@ MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
     delete m_searchTableWidget;
 }
 
-void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name, bool all)
+void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name)
 {
     setResizeLabelText(name);
     if(!m_resizeWidgets.isEmpty())
@@ -367,7 +340,6 @@ void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name, bool all
         TTKObjectCast(QCheckBox*, m_resizeWidgets[0])->setChecked(false);
     }
 
-    m_searchTableWidget->setQueryAllRecords(all);
     m_searchTableWidget->startSearchQuery(name);
 }
 
@@ -379,14 +351,7 @@ void MusicSongSearchOnlineWidget::startSearchSingleQuery(const QString &name)
         TTKObjectCast(QCheckBox*, m_resizeWidgets[0])->setChecked(false);
     }
 
-    m_searchTableWidget->setQueryAllRecords(true);
     m_searchTableWidget->startSearchSingleQuery(name);
-}
-
-void MusicSongSearchOnlineWidget::researchQueryByQuality(const QString &name, TTK::QueryQuality quality)
-{
-    m_searchTableWidget->setSearchQuality(quality);
-    startSearchQuery(name, false);
 }
 
 void MusicSongSearchOnlineWidget::resizeWindow()

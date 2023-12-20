@@ -1009,11 +1009,7 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <layout class="QVBoxLayout" name="musicQualityWindow">
-              <property name="spacing">
-               <number>6</number>
-              </property>
-             </layout>
+             <widget class="MusicQualityWidget" name="musicQualityLabel"/>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="leftMargin">
@@ -1429,6 +1425,11 @@
    <extends>QWidget</extends>
    <header>musictimesliderwidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicQualityWidget</class>
+   <extends>QWidget</extends>
+   <header>musicqualitywidget.h</header>
   </customwidget>
  </customwidgets>
  <resources>

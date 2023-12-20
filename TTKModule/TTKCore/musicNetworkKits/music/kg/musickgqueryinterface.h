@@ -72,7 +72,7 @@ namespace MusicKGInterface
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all);
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, bool all);
 
     /*!
      * Read tags(lrc\smallpic) from query results.

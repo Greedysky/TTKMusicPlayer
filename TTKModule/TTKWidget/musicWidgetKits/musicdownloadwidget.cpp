@@ -173,7 +173,6 @@ void MusicDownloadWidget::setSongName(const QString &name, MusicAbstractQueryReq
 
     initialize();
     m_ui->downloadName->setText(TTK::Widget::elidedText(font(), name, Qt::ElideRight, 200));
-    m_networkRequest->setQueryAllRecords(true);
     m_networkRequest->startToSearch(type, name);
 }
 
@@ -243,22 +242,22 @@ void MusicDownloadWidget::addCellItems(const TTK::MusicSongPropertyList &props)
         if((prop.m_bitrate == TTK_BN_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
            (prop.m_bitrate <= TTK_BN_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
         {
-            m_ui->viewArea->addCellItem(prop, tr("SD"), QString(":/quality/lb_sd_quality"));
+            m_ui->viewArea->addCellItem(prop, QObject::tr("SD"), QString(":/quality/lb_sd_quality"));
         }
         else if((prop.m_bitrate == TTK_BN_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate == TTK_BN_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
         {
-            m_ui->viewArea->addCellItem(prop, tr("HQ"), QString(":/quality/lb_hd_quality"));
+            m_ui->viewArea->addCellItem(prop, QObject::tr("HQ"), QString(":/quality/lb_hd_quality"));
         }
         else if((prop.m_bitrate == TTK_BN_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate == TTK_BN_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
         {
-            m_ui->viewArea->addCellItem(prop, tr("SQ"), QString(":/quality/lb_sq_quality"));
+            m_ui->viewArea->addCellItem(prop, QObject::tr("SQ"), QString(":/quality/lb_sq_quality"));
         }
         else if((prop.m_bitrate > TTK_BN_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate >= TTK_BN_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
         {
-            m_ui->viewArea->addCellItem(prop, tr("CD"), QString(":/quality/lb_cd_quality"));
+            m_ui->viewArea->addCellItem(prop, QObject::tr("CD"), QString(":/quality/lb_cd_quality"));
         }
         else
         {

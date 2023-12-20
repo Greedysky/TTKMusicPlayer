@@ -173,7 +173,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                     info.m_songId = mainSongObject["id"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicWYInterface::parseFromSongProperty(&info, mainSongObject, m_queryQuality, true);
+                    MusicWYInterface::parseFromSongProperty(&info, mainSongObject, true);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!categoryFound)

@@ -78,7 +78,7 @@ void MusicKWQueryToplistRequest::downLoadFinished()
                     info.m_coverUrl = value["web_albumpic_short"].toString();
                     MusicKWInterface::makeCoverPixmapUrl(info.m_coverUrl);
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
-                    MusicKWInterface::parseFromSongProperty(&info, value["formats"].toString(), m_queryQuality, m_queryAllRecords);
+                    MusicKWInterface::parseFromSongProperty(&info, value["formats"].toString(), true);
 
                     if(info.m_songProps.isEmpty())
                     {

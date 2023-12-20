@@ -50,7 +50,6 @@ void MusicItemQueryTableWidget::startSearchQuery(const QString &text)
         return;
     }
 
-    m_networkRequest->setQueryAllRecords(true);
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, text);
 }
 

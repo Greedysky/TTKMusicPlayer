@@ -58,10 +58,37 @@ void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, in
             prop.m_url = value["url"].toString();
             prop.m_bitrate = bitrate;
 
+            const int oCount = info->m_songProps.count();
             if(prop.m_url.isEmpty())
             {
                 parseFromSongPropertyNew(info, bitrate);
-                return;
+                if(info->m_songProps.count() != oCount)
+                {
+                    return;
+                }
+
+                QString format;
+                if(bitrate == TTK_BN_128)
+                {
+                    format = TTK::Algorithm::mdII("QXMyZkZJc2dIb1FOenJlTg==", false);
+                    prop.m_format = MP3_FILE_SUFFIX;
+                }
+                else if(bitrate == TTK_BN_320)
+                {
+                    format = TTK::Algorithm::mdII("UThNR09kcDRXNG9qbG45Ng==", false);
+                    prop.m_format = MP3_FILE_SUFFIX;
+                }
+                else if(bitrate == TTK_BN_1000)
+                {
+                    format = TTK::Algorithm::mdII("VGF0djlKc01mL1QxM1pyNQ==", false);
+                    prop.m_format = FLAC_FILE_SUFFIX;
+                }
+                else
+                {
+                    return;
+                }
+
+                prop.m_url = TTK::Algorithm::mdII(WY_SONG_DETAIL_CGG_URL, false).arg(info->m_songId, format);
             }
 
             if(info->m_songProps.contains(prop))
@@ -76,7 +103,7 @@ void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, in
     }
 }
 
-void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, TTK::QueryQuality quality, bool all)
+void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, bool all)
 {
     int maxBr = TTK_BN_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
@@ -128,22 +155,7 @@ void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, co
     }
     else
     {
-        if(quality == TTK::QueryQuality::Standard && maxBr >= TTK_BN_128)
-        {
-            parseFromSongProperty(info, TTK_BN_128);
-        }
-        else if(quality == TTK::QueryQuality::High && maxBr >= TTK_BN_192)
-        {
-            parseFromSongProperty(info, TTK_BN_192);
-        }
-        else if(quality == TTK::QueryQuality::Super && maxBr >= TTK_BN_320)
-        {
-            parseFromSongProperty(info, TTK_BN_320);
-        }
-        else if(quality == TTK::QueryQuality::Lossless && maxBr >= TTK_BN_1000)
-        {
-            parseFromSongProperty(info, TTK_BN_1000);
-        }
+        parseFromSongProperty(info, TTK_BN_128);
     }
 }
 

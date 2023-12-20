@@ -258,10 +258,6 @@ public Q_SLOTS:
      */
     void setWindowLrcTypeChanged();
     /*!
-     * Research query by quality it changed.
-     */
-    void researchQueryByQuality(TTK::QueryQuality quality);
-    /*!
      * Set video widget popop or not.
      */
     void videoSetPopup(bool popup);

@@ -1,5 +1,5 @@
-#ifndef MUSICQUALITYWIDGETUIOBJECT_H
-#define MUSICQUALITYWIDGETUIOBJECT_H
+#ifndef MUSICQUALITYWIDGET_H
+#define MUSICQUALITYWIDGET_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,20 +19,27 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include <QObject>
+#include <QLabel>
+#include "ttkmoduleexport.h"
 
-/*! @brief The namespace of the application ui object.
+/*! @brief The class of the quality widget.
  * @author Greedysky <greedysky@163.com>
  */
-namespace TTK
+class TTK_MODULE_EXPORT MusicQualityWidget : public QLabel
 {
-    namespace UI
-    {
-        static const QString LabelQuality = " \
-            border:none; \
-            background-image: url(:/quality/btn_quality_normal);";
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicQualityWidget)
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicQualityWidget(QWidget *parent = nullptr);
 
-    }
-}
+    /*!
+     * Update quality by song bitrate.
+     */
+    void updateQuality();
 
-#endif // MUSICQUALITYWIDGETUIOBJECT_H
+};
+
+#endif // MUSICQUALITYWIDGET_H

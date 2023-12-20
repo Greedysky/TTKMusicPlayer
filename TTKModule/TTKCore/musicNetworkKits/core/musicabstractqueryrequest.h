@@ -101,7 +101,14 @@ public:
         Music,  /*!< query music*/
         Movie,  /*!< query movie*/
         Lrc,    /*!< query lrc*/
-        Other,  /*!< query external*/
+        Other   /*!< query external*/
+    };
+
+    enum class QueryMode
+    {
+        None,   /*!< query none*/
+        Normal, /*!< query normal*/
+        List    /*!< query show list without tags*/
     };
 
     /*!
@@ -120,29 +127,13 @@ public:
     virtual void startToSingleSearch(const QString &id);
 
     /*!
-     * Set query data quality.
+     * Set query mode.
      */
-    inline void setQueryQuality(TTK::QueryQuality quality) { m_queryQuality = quality; }
-    /*!
-     * Get query data quality.
-     */
-    inline TTK::QueryQuality queryQuality() const { return m_queryQuality; }
-    /*!
-     * Set wheather query all quality of records.
-     */
-    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state; }
-    /*!
-     * Get query all records flag.
-     */
-    inline bool queryAllRecords() const { return m_queryAllRecords; }
-    /*!
-     * Set query lite mode.
-     */
-    inline void setQueryLite(bool state) { m_queryLite = state; }
+    inline void setQueryMode(QueryMode mode) { m_queryMode = mode; }
     /*!
      * Get query lite flag.
      */
-    inline bool queryLite() const { return m_queryLite; }
+    inline QueryMode queryMode() const { return m_queryMode; }
     /*!
      * Return the current song query type.
      */
@@ -205,8 +196,7 @@ protected:
     QString m_queryValue;
     QString m_queryServer;
     QueryType m_queryType;
-    TTK::QueryQuality m_queryQuality;
-    bool m_queryAllRecords, m_queryLite;
+    QueryMode m_queryMode;
     TTK::MusicSongInformationList m_songInfos;
 
 };

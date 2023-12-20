@@ -34,6 +34,7 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
     MusicItemSearchTableWidget::startSearchQuery(text);
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SIGNAL(resolvedSuccess()));
     m_loadingLabel->run(true);
+    m_networkRequest->setQueryMode(MusicAbstractQueryRequest::QueryMode::List);
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Lrc, text);
 }
 

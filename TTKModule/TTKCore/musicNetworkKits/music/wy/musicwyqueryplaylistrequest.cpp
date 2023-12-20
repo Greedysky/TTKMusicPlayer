@@ -220,7 +220,7 @@ void MusicWYQueryPlaylistRequest::downloadDetailsFinished()
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicWYInterface::parseFromSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
+                    MusicWYInterface::parseFromSongProperty(&info, value, true);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(info.m_songProps.isEmpty())

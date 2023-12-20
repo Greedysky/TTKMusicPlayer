@@ -382,7 +382,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             if(!searchedString.isEmpty() && searchedString != tr("Please input search words"))
             {
                 m_ui->musicSongSearchEdit->setText(searchedString);
-                m_ui->songSearchWidget->startSearchQuery(searchedString, true);
+                m_ui->songSearchWidget->startSearchQuery(searchedString);
             }
             else
             {
@@ -689,22 +689,6 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
     connect(m_lrcForDesktop, SIGNAL(showCurrentLrcColorSetting()), m_settingWidget, SLOT(changeDesktopLrcWidget()));
 
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowMode, type);
-}
-
-void MusicRightAreaWidget::researchQueryByQuality(TTK::QueryQuality quality)
-{
-    const QString &text = m_ui->showCurrentSong->text().trimmed();
-    if(text.isEmpty())
-    {
-        return;
-    }
-
-    m_funcIndex = MusicRightAreaWidget::SearchWidget;
-    functionInitialize();
-
-    m_ui->songSearchWidget->researchQueryByQuality(text, quality);
-    m_ui->functionsContainer->setCurrentIndex(MUSIC_SEARCH_PAGE);
-    Q_EMIT updateBackgroundTheme();
 }
 
 void MusicRightAreaWidget::videoSetPopup(bool popup)

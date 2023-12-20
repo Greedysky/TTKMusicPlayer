@@ -8,7 +8,6 @@
 #include "musicwebradioview.h"
 #include "musicconnectlocalwidget.h"
 #include "musiccloudsharedsongwidget.h"
-#include "musicqualitychoicepopwidget.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicrightareawidget.h"
 
@@ -19,8 +18,7 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
       m_currentIndex(0),
       m_stackedWidget(nullptr),
       m_localSharedSongWidget(nullptr),
-      m_cloudSharedSongWidget(nullptr),
-      m_qualityChoiceWidget(nullptr)
+      m_cloudSharedSongWidget(nullptr)
 {
     m_instance = this;
 }
@@ -29,7 +27,6 @@ MusicLeftAreaWidget::~MusicLeftAreaWidget()
 {
     delete m_localSharedSongWidget;
     delete m_cloudSharedSongWidget;
-    delete m_qualityChoiceWidget;
     delete m_stackedWidget;
 }
 
@@ -42,8 +39,6 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
 {
     m_ui = ui;
 
-    m_qualityChoiceWidget = new MusicQualityChoicePopWidget(this);
-    m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
     m_ui->songsContainer->setLength(LEFT_SIDE_WIDTH_MIN, MusicAnimationStackedWidget::Module::LeftToRight);
 
     connect(ui->musicKey, SIGNAL(clicked()), MusicApplication::instance(), SLOT(switchToPlayState()));

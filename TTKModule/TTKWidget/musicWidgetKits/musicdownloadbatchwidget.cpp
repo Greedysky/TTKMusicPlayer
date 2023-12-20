@@ -53,25 +53,25 @@ void MusicDownloadBatchTableItem::addCellItem(const TTK::MusicSongInformation &i
         if((prop.m_bitrate == TTK_BN_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
            (prop.m_bitrate <= TTK_BN_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd
         {
-            m_qulity->addItem(tr("SD"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
+            m_qulity->addItem(QObject::tr("SD"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
         else if((prop.m_bitrate == TTK_BN_192 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate == TTK_BN_500 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///hd
         {
-            m_qulity->addItem(tr("HQ"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
+            m_qulity->addItem(QObject::tr("HQ"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
         else if((prop.m_bitrate == TTK_BN_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate == TTK_BN_750 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))  ///sq
         {
-            m_qulity->addItem(tr("SQ"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
+            m_qulity->addItem(QObject::tr("SQ"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
         else if((prop.m_bitrate > TTK_BN_320 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
                 (prop.m_bitrate >= TTK_BN_1000 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie)) ///cd
         {
-            m_qulity->addItem(tr("CD"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
+            m_qulity->addItem(QObject::tr("CD"), QVariant::fromValue<TTK::MusicSongProperty>(prop));
             m_information->setText(QString("%1/%2KBPS/%3").arg(prop.m_size).arg(prop.m_bitrate).arg(prop.m_format.toUpper()));
         }
         else
@@ -361,7 +361,7 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     TTK::Widget::generateComboBoxFormat(m_ui->qualityBox, TTK::UI::ComboBoxStyle02 + TTK::UI::ItemView01);
-    m_ui->qualityBox->addItems({tr("Null"), tr("SD"), tr("HQ"), tr("SQ"), tr("CD")});
+    m_ui->qualityBox->addItems({tr("Null"), QObject::tr("SD"), QObject::tr("HQ"), QObject::tr("SQ"), QObject::tr("CD")});
     connect(m_ui->qualityBox, SIGNAL(currentIndexChanged(int)), m_ui->tableWidget, SLOT(currentQualityChanged(int)));
 
     m_ui->qualityBox->setCurrentIndex(0);

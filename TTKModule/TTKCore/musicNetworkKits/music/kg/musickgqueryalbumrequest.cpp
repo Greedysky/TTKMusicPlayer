@@ -90,7 +90,7 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
                     MusicKGInterface::parseFromSongLrcAndPicture(&info);
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongProperty(&info, value, m_queryQuality, m_queryAllRecords);
+                    MusicKGInterface::parseFromSongProperty(&info, value, true);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(info.m_songProps.isEmpty())

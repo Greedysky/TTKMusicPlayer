@@ -87,41 +87,6 @@ QString TTK::Number::speedByteToLabel(qint64 size)
     }
 }
 
-int TTK::Number::bitrateToLevel(const QString &bitrate)
-{
-    if(bitrate.isEmpty())
-    {
-        return -1;
-    }
-
-    const QStringList &data(bitrate.split(" "));
-    if(data.count() >= 2)
-    {
-        const int bit = data.front().trimmed().toInt();
-        if(bit <= 0)
-        {
-            return -1;
-        }
-        else if(bit > 0 && bit <= TTK_BN_96)
-        {
-            return 0;
-        }
-        else if(bit > TTK_BN_96 && bit < TTK_BN_192)
-        {
-            return 1;
-        }
-        else if(bit >= TTK_BN_192 && bit <= TTK_BN_320)
-        {
-            return 2;
-        }
-        else
-        {
-            return 3;
-        }
-    }
-    return -1;
-}
-
 int TTK::Number::bitrateToNormal(int bitrate)
 {
     if(bitrate > TTK_BN_0 && bitrate <= TTK_BN_64)
@@ -150,34 +115,74 @@ int TTK::Number::bitrateToNormal(int bitrate)
     }
 }
 
-void TTK::Number::bitrateToQuality(int level, QString &bitrate, QColor &color)
+TTK::QueryQuality TTK::Number::bitrateToLevel(int bitrate)
+{
+    if(bitrate <= 0)
+    {
+        return QueryQuality::None;
+    }
+    else if(bitrate > 0 && bitrate <= TTK_BN_128)
+    {
+        return QueryQuality::Standard;
+    }
+    else if(bitrate > TTK_BN_128 && bitrate <= TTK_BN_192)
+    {
+        return QueryQuality::High;
+    }
+    else if(bitrate > TTK_BN_192 && bitrate <= TTK_BN_320)
+    {
+        return QueryQuality::Super;
+    }
+    else
+    {
+        return QueryQuality::Lossless;
+    }
+}
+
+TTK::QueryQuality TTK::Number::bitrateToLevel(const QString &bitrate)
+{
+    if(bitrate.isEmpty())
+    {
+        return QueryQuality::None;
+    }
+
+    const QStringList &data(bitrate.split(" "));
+    if(data.count() >= 2)
+    {
+        const int rate = data.front().trimmed().toInt();
+        return TTK::Number::bitrateToLevel(rate);
+    }
+    return QueryQuality::None;
+}
+
+void TTK::Number::bitrateToQuality(TTK::QueryQuality level, QString &bitrate, QColor &color)
 {
     bitrate = QObject::tr("UnKnow");
     color = QColor(131, 131, 131);
 
     switch(level)
     {
-        case 0:
+        case QueryQuality::Standard:
         {
-            bitrate = QObject::tr("Low");
+            bitrate = QObject::tr("SD");
             color = QColor(211, 0, 70);
             break;
         }
-        case 1:
+        case QueryQuality::High:
         {
-            bitrate = QObject::tr("Normal");
+            bitrate = QObject::tr("HQ");
             color = QColor(0, 134, 211);
             break;
         }
-        case 2:
+        case QueryQuality::Super:
         {
-            bitrate = QObject::tr("High");
+            bitrate = QObject::tr("SQ");
             color = QColor(236, 138, 48);
             break;
         }
-        case 3:
+        case QueryQuality::Lossless:
         {
-            bitrate = QObject::tr("LLess");
+            bitrate = QObject::tr("CD");
             color = QColor(117, 0, 206);
             break;
         }
