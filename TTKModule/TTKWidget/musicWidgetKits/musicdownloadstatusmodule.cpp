@@ -34,8 +34,8 @@ void MusicDownloadStatusModule::checkMetaDataValid(bool mode)
     }
 
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
-    d->setQueryMode(MusicAbstractQueryRequest::QueryMode::None);
     d->setHeader("mode", mode);
+    d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, m_parent->currentFileName());
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(currentMetaDataDownload()));
 }
@@ -92,7 +92,7 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
 
 void MusicDownloadStatusModule::showDownLoadInfoFinished(const QString &bytes)
 {
-    ///If the lyrics download finished immediately loaded to display
+    ///lyrics download finished immediately loaded to display
     if(bytes == DOWNLOAD_KEY_LRC)
     {
         m_parent->loadCurrentSongLrc();

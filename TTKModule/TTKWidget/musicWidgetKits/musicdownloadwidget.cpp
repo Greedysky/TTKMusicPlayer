@@ -226,6 +226,7 @@ TTK::MusicSongInformation MusicDownloadWidget::matchMusicSongInformation()
                 break;
             }
         }
+
         std::sort(info.m_songProps.begin(), info.m_songProps.end()); //to find out the min bitrate
         return info;
     }
@@ -291,7 +292,7 @@ void MusicDownloadWidget::setFixedHeightWidget(QWidget *w, int height)
 
 void MusicDownloadWidget::setMoveWidget(QWidget *w, int pos)
 {
-    QRect rect = w->geometry();
+    const QRect &rect = w->geometry();
     w->move(rect.x(), rect.y() + pos);
 }
 
@@ -317,6 +318,7 @@ void MusicDownloadWidget::startRequest()
     }
 
     hide(); ///hide download widget
+
     if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
     {
         m_querySingleInfo ? startRequestMusic(m_songInfo) : startRequestMusic();

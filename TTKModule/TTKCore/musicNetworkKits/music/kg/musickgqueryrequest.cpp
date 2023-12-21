@@ -95,9 +95,9 @@ void MusicKGQueryRequest::downLoadFinished()
                     MusicKGInterface::parseFromSongLrcAndPicture(&info);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(m_queryMode != QueryMode::None)
+                    if(m_queryMode != QueryMode::Meta)
                     {
-                        if(m_queryMode != QueryMode::List)
+                        if(m_queryMode != QueryMode::MetaItem)
                         {
                             TTK_NETWORK_QUERY_CHECK();
                             MusicKGInterface::parseFromSongProperty(&info, value, true);

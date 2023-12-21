@@ -43,9 +43,9 @@ public:
      */
     virtual void setQueryInput(MusicAbstractQueryRequest *query) override final;
     /*!
-     * Data download to local file.
+     * Download query result data.
      */
-    virtual void downloadQuery(int row) override final;
+    virtual void downloadQueryResult(int row) override final;
 
 public Q_SLOTS:
     /*!

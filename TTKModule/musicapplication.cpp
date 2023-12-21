@@ -345,7 +345,6 @@ void MusicApplication::showCurrentSong()
     m_rightAreaWidget->checkMetaDataValid(false);
     G_BACKGROUND_PTR->setArtistName(currentFileName());
     m_topAreaWidget->backgroundThemeDownloadFinished();
-    m_ui->musicQualityLabel->updateQuality();
 }
 
 void MusicApplication::switchToPlayState()

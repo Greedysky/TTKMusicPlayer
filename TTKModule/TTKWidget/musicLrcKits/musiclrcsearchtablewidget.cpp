@@ -34,11 +34,11 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
     MusicItemSearchTableWidget::startSearchQuery(text);
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SIGNAL(resolvedSuccess()));
     m_loadingLabel->run(true);
-    m_networkRequest->setQueryMode(MusicAbstractQueryRequest::QueryMode::List);
+    m_networkRequest->setQueryMode(MusicAbstractQueryRequest::QueryMode::MetaItem);
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Lrc, text);
 }
 
-void MusicLrcSearchTableWidget::downloadQuery(int row)
+void MusicLrcSearchTableWidget::downloadQueryResult(int row)
 {
     if(row < 0 || (row >= rowCount() - 1))
     {
@@ -48,8 +48,7 @@ void MusicLrcSearchTableWidget::downloadQuery(int row)
 
     const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     ///download lrc
-    MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(songInfos[row].m_lrcUrl,
-                                      TTK::String::lrcDirPrefix() + m_networkRequest->queryValue() + LRC_FILE, this);
+    MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(songInfos[row].m_lrcUrl, TTK::String::lrcDirPrefix() + m_networkRequest->queryValue() + LRC_FILE, this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SIGNAL(lrcDownloadStateChanged(QString)));
     d->startRequest();
 }
@@ -72,7 +71,7 @@ void MusicLrcSearchTableWidget::itemCellClicked(int row, int column)
     MusicItemSearchTableWidget::itemCellClicked(row, column);
     switch(column)
     {
-        case 6: downloadQuery(row); break;
+        case 6: downloadQueryResult(row); break;
         default: break;
     }
 }
@@ -84,7 +83,7 @@ void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int column)
         return;
     }
 
-    downloadQuery(row);
+    downloadQueryResult(row);
 }
 
 void MusicLrcSearchTableWidget::removeItems()

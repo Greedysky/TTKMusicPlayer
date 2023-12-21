@@ -109,9 +109,9 @@ void MusicWYQueryRequest::downLoadFinished()
                     info.m_year.clear();
                     info.m_trackNumber = value["no"].toString();
 
-                    if(m_queryMode != QueryMode::None)
+                    if(m_queryMode != QueryMode::Meta)
                     {
-                        if(m_queryMode != QueryMode::List)
+                        if(m_queryMode != QueryMode::MetaItem)
                         {
                             TTK_NETWORK_QUERY_CHECK();
                             MusicWYInterface::parseFromSongProperty(&info, value, true);
@@ -137,7 +137,7 @@ void MusicWYQueryRequest::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged({});;
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 

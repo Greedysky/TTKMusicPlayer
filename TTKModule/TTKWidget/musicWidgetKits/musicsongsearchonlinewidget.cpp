@@ -67,7 +67,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, text);
 }
 
-void MusicSongSearchTableWidget::downloadQuery(int row)
+void MusicSongSearchTableWidget::downloadQueryResult(int row)
 {
     const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     if(row < 0 || (row >= rowCount() - 1) || row >= songInfos.count())
@@ -134,7 +134,7 @@ void MusicSongSearchTableWidget::itemCellClicked(int row, int column)
     switch(column)
     {
         case 7: addSearchMusicToPlaylist(row, false); break;
-        case 8: downloadQuery(row); break;
+        case 8: downloadQueryResult(row); break;
         default: break;
     }
 }
@@ -218,7 +218,7 @@ void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
 
     switch(action->data().toInt())
     {
-        case 0: downloadQuery(row); break;
+        case 0: downloadQueryResult(row); break;
         case 1: Q_EMIT restartSearchQuery(info.m_songName); break;
         case 2: MusicRightAreaWidget::instance()->showArtistFound(info.m_singerName, info.m_artistId); break;
         case 3: Q_EMIT restartSearchQuery(info.m_singerName + " - " + info.m_songName); break;
@@ -263,6 +263,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
 
     const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     const TTK::MusicSongInformation &info = songInfos[row];
+
     TTK::MusicSongPropertyList props(info.m_songProps);
     std::sort(props.begin(), props.end()); //to find out the min bitrate
 
@@ -375,7 +376,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
     {
         for(int i = 0; i < list.count(); ++i)
         {
-            m_searchTableWidget->addSearchMusicToPlaylist(list[i], true && (i == 0));
+            m_searchTableWidget->addSearchMusicToPlaylist(list[i], i == 0);
         }
     }
     else if(index == 1)

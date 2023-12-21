@@ -30,7 +30,7 @@ void MusicKGSongCommentsRequest::startToSearch(const QString &value)
     TTKSemaphoreLoop loop;
     MusicKGQueryRequest *d = new MusicKGQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    d->setQueryMode(MusicAbstractQueryRequest::QueryMode::None);
+    d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, value);
     loop.exec();
 

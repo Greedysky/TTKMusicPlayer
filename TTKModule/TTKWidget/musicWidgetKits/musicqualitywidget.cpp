@@ -2,7 +2,7 @@
 #include "musicqualitywidgetuiobject.h"
 #include "musicnumberutils.h"
 
-#include <qmmp/soundcore.h>
+#include <qmmp/statehandler.h>
 
 MusicQualityWidget::MusicQualityWidget(QWidget *parent)
     : QLabel(parent)
@@ -10,12 +10,14 @@ MusicQualityWidget::MusicQualityWidget(QWidget *parent)
     setToolTip(tr("Quality"));
     setFixedSize(48, 20);
     setStyleSheet(TTK::UI::LabelQuality + "margin-left:-48px;");
+
+    connect(StateHandler::instance(), SIGNAL(bitrateChanged(int)), SLOT(updateQuality(int)));
 }
 
-void MusicQualityWidget::updateQuality()
+void MusicQualityWidget::updateQuality(int bitrate)
 {
     QString style;
-    switch(TTK::Number::bitrateToLevel(SoundCore::instance()->bitrate()))
+    switch(TTK::Number::bitrateToLevel(bitrate))
     {
         case TTK::QueryQuality::Standard:
         {

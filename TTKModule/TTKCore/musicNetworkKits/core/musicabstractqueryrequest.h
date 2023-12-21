@@ -106,9 +106,9 @@ public:
 
     enum class QueryMode
     {
-        None,   /*!< query none*/
-        Normal, /*!< query normal*/
-        List    /*!< query show list without tags*/
+        Normal,     /*!< query normal*/
+        Meta,       /*!< query meta*/
+        MetaItem    /*!< query meta item*/
     };
 
     /*!

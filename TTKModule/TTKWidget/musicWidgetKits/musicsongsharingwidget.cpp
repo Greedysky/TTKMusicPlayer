@@ -95,6 +95,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             TTKSemaphoreLoop loop;
             MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
             d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, m_ui->sharedName->text().trimmed());
             loop.exec();
 

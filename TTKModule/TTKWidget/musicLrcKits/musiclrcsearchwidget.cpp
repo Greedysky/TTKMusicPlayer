@@ -87,7 +87,7 @@ void MusicLrcSearchWidget::lrcSearchDownloadClicked()
 
     for(const int row : qAsConst(list))
     {
-        m_ui->tableWidget->downloadQuery(row);
+        m_ui->tableWidget->downloadQueryResult(row);
     }
     m_ui->stateLabel->setText(tr("Lrc is downloading now"));
 }

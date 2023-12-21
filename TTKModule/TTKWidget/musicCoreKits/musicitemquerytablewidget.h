@@ -47,9 +47,9 @@ public:
      */
     virtual void startSearchQuery(const QString &text) override final;
     /*!
-     * Data download to local file.
+     * Download query result data.
      */
-    virtual void downloadQuery(int row) override;
+    virtual void downloadQueryResult(int row) override;
 
     /*!
      * Download data from net and just play or not.

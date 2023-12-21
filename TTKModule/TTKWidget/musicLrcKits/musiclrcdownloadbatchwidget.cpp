@@ -150,6 +150,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         TTKSemaphoreLoop loop;
         MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
         d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, song->name().trimmed());
         loop.exec();
 
@@ -160,6 +161,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startRequest();
             loop.exec();
+
             it->setForeground(QColor(0, 0xFF, 0));
             it->setText(tr("Finish"));
         }

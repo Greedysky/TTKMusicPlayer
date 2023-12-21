@@ -18,7 +18,7 @@ void MusicWYTranslationRequest::startRequest(const QString &data)
     TTKSemaphoreLoop loop;
     MusicWYQueryRequest *d = new MusicWYQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    d->setQueryMode(MusicAbstractQueryRequest::QueryMode::None);
+    d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, QFileInfo(m_rawData["name"].toString()).baseName());
     loop.exec();
 

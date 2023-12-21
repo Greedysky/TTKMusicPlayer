@@ -40,7 +40,7 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Movie, text);
 }
 
-void MusicVideoSearchTableWidget::downloadQuery(int row)
+void MusicVideoSearchTableWidget::downloadQueryResult(int row)
 {
     if(!m_singleRadioMode)
     {
@@ -135,7 +135,7 @@ void MusicVideoSearchTableWidget::itemCellClicked(int row, int column)
     {
         case 6:
         case 7: itemDoubleClicked(row, TTK_HIGH_LEVEL); break;
-        case 8: downloadQuery(row); break;
+        case 8: downloadQueryResult(row); break;
         default:break;
     }
 }

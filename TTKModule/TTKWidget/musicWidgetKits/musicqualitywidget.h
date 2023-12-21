@@ -35,10 +35,11 @@ public:
      */
     explicit MusicQualityWidget(QWidget *parent = nullptr);
 
+private Q_SLOTS:
     /*!
      * Update quality by song bitrate.
      */
-    void updateQuality();
+    void updateQuality(int bitrate);
 
 };
 

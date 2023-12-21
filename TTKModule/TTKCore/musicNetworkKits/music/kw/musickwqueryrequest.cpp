@@ -95,9 +95,9 @@ void MusicKWQueryRequest::downLoadFinished()
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                     info.m_albumName = TTK::String::charactersReplace(value["ALBUM"].toString());
 
-                    if(m_queryMode != QueryMode::None)
+                    if(m_queryMode != QueryMode::Meta)
                     {
-                        if(m_queryMode != QueryMode::List)
+                        if(m_queryMode != QueryMode::MetaItem)
                         {
                             TTK_NETWORK_QUERY_CHECK();
                             MusicKWInterface::parseFromSongProperty(&info, value["FORMATS"].toString(), true);

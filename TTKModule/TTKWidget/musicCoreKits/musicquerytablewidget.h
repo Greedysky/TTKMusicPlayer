@@ -49,16 +49,17 @@ public:
      * Get network query input.
      */
     MusicAbstractQueryRequest *queryInput() const;
+
     /*!
      * Start search query by text.
      * Subclass should implement this function.
      */
     virtual void startSearchQuery(const QString &text) = 0;
     /*!
-     * Data download to local file.
+     * Download query result data.
      * Subclass should implement this function.
      */
-    virtual void downloadQuery(int row) = 0;
+    virtual void downloadQueryResult(int row) = 0;
 
 Q_SIGNALS:
     /*!
