@@ -135,11 +135,11 @@
 #else
 #  define TTK_STR_CAT(...) TTK_PP_CAT(TTK_PP_OVERLOAD(__TTK_STR_CAT__, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
 #endif
-#define __TTK_STR_CAT__1(a) a
-#define __TTK_STR_CAT__2(a, b) a b
-#define __TTK_STR_CAT__3(a, b, c) a b c
-#define __TTK_STR_CAT__4(a, b, c, d) a b c d
-#define __TTK_STR_CAT__5(a, b, c, d, e) a b c d e
+#define __TTK_STR_CAT__1(a)                a
+#define __TTK_STR_CAT__2(a, b)             a b
+#define __TTK_STR_CAT__3(a, b, c)          a b c
+#define __TTK_STR_CAT__4(a, b, c, d)       a b c d
+#define __TTK_STR_CAT__5(a, b, c, d, e)    a b c d e
 #define __TTK_STR_CAT__6(a, b, c, d, e, f) a b c d e f
 
 

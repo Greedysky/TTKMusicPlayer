@@ -5,14 +5,19 @@
 
 namespace TTK
 {
-static const char *base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    static const char *base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-static bool isBase64(unsigned char c)
-{
-    return (isalnum(c) || (c == '+') || (c == '/'));
+    inline static bool isBase64(unsigned char c)
+    {
+        return isalnum(c) || (c == '+') || (c == '/');
+    }
+
+    static TTKString base64Encode(const unsigned char *bytes, unsigned int length);
+    static TTKString base64Decode(const TTKString &bytes);
+
 }
 
-TTKString base64Encode(const unsigned char *bytes, unsigned int length)
+TTKString TTK::base64Encode(const unsigned char *bytes, unsigned int length)
 {
     TTKString ret;
     int i = 0, j = 0;
@@ -62,7 +67,7 @@ TTKString base64Encode(const unsigned char *bytes, unsigned int length)
     return ret;
 }
 
-TTKString base64Decode(const TTKString &bytes)
+TTKString TTK::base64Decode(const TTKString &bytes)
 {
     int length = bytes.length();
     int i = 0, j = 0, in = 0;
@@ -116,7 +121,6 @@ TTKString base64Decode(const TTKString &bytes)
     }
 
     return ret;
-}
 }
 
 

@@ -27,9 +27,8 @@
 #  include <QtConcurrentRun>
 #endif
 
-
-#define TTKConcurrent_1(data) \
-    const auto TTK_CAT(ext_status_, __LINE__) = QtConcurrent::run([&]() data );
+// marco concurrent
+#define TTKConcurrent_1(data) const auto TTK_CAT(ext_status_, __LINE__) = QtConcurrent::run([&]() data );
 
 #ifndef Q_CC_MSVC
 #  define TTKConcurrent(...) TTK_PP_OVERLOAD(TTKConcurrent_, __VA_ARGS__)(__VA_ARGS__)

@@ -169,6 +169,17 @@ public: \
 
 #define TTK_FILE_SUFFIX(fin)  fin.suffix().toLower()
 
+// marco timer single shot
+#ifndef _MSC_VER
+#  define TTK_SIGNLE_SHOT(...) TTK_PP_OVERLOAD(__TTK_SIGNLE_SHOT__, __VA_ARGS__)(__VA_ARGS__)
+#else
+#  define TTK_SIGNLE_SHOT(...) TTK_PP_CAT(TTK_PP_OVERLOAD(__TTK_SIGNLE_SHOT__, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
+#endif
+#define __TTK_SIGNLE_SHOT__1(a)          QTimer::singleShot(TTK_DN_ONCE, this, SLOT(a()));
+#define __TTK_SIGNLE_SHOT__2(a, b)       QTimer::singleShot(TTK_DN_ONCE, a, SLOT(b()));
+#define __TTK_SIGNLE_SHOT__3(a, b, c)    QTimer::singleShot(a, b, SLOT(c()));
+#define __TTK_SIGNLE_SHOT__4(a, b, c, d) QTimer::singleShot(a, b, SIGNAL(c()));
+
 
 // Qt style format
 using TTKIntSet =           QSet<int>;                  /* int set */
