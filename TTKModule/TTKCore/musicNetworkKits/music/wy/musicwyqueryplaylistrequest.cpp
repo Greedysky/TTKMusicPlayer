@@ -53,6 +53,18 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(reply, this, replyError);
 }
 
+void MusicWYQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+{
+    MusicPageQueryRequest::downLoadFinished();
+    TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
+
+    TTK_NETWORK_QUERY_CHECK();
+    MusicWYInterface::parseFromSongProperty(info, bitrate);
+    TTK_NETWORK_QUERY_CHECK();
+
+    MusicQueryPlaylistRequest::startToQueryResult(info, bitrate);
+}
+
 void MusicWYQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
 {
     TTK_INFO_STREAM(QString("%1 queryPlaylistInfo %2").arg(className(), item.m_id));
@@ -220,13 +232,8 @@ void MusicWYQueryPlaylistRequest::downloadDetailsFinished()
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicWYInterface::parseFromSongProperty(&info, value, true);
+                    MusicWYInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
-
-                    if(info.m_songProps.isEmpty())
-                    {
-                        continue;
-                    }
 
                     MusicResultInfoItem item;
                     item.m_songName = info.m_songName;

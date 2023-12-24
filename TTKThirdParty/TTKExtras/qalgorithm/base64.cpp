@@ -2,14 +2,15 @@
 
 namespace QAlgorithm
 {
-static const char *base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    static const char *base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-static bool isBase64(unsigned char c)
-{
-    return (isalnum(c) || (c == '+') || (c == '/'));
+    inline static bool isBase64(unsigned char c)
+    {
+        return isalnum(c) || (c == '+') || (c == '/');
+    }
 }
 
-TTKString base64Encode(const unsigned char *bytes, unsigned int length)
+TTKString QAlgorithm::base64Encode(const unsigned char *bytes, unsigned int length)
 {
     TTKString ret;
     int i = 0, j = 0;
@@ -59,7 +60,7 @@ TTKString base64Encode(const unsigned char *bytes, unsigned int length)
     return ret;
 }
 
-TTKString base64Decode(const TTKString &bytes)
+TTKString QAlgorithm::base64Decode(const TTKString &bytes)
 {
     int length = bytes.length();
     int i = 0, j = 0, in = 0;
@@ -113,5 +114,4 @@ TTKString base64Decode(const TTKString &bytes)
     }
 
     return ret;
-}
 }

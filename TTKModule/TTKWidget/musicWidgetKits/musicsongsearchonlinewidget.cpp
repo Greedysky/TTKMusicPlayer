@@ -69,14 +69,13 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
 
 void MusicSongSearchTableWidget::downloadQueryResult(int row)
 {
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    if(row < 0 || (row >= rowCount() - 1) || row >= songInfos.count())
+    if(!isValid(row))
     {
         return;
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(songInfos[row], MusicAbstractQueryRequest::QueryType::Music);
+    download->setSongName(m_networkRequest, row);
     download->show();
 }
 
@@ -141,7 +140,7 @@ void MusicSongSearchTableWidget::itemCellClicked(int row, int column)
 
 void MusicSongSearchTableWidget::itemDoubleClicked(int row, int column)
 {
-    if(column <= 0 || row < 0 || (row >= rowCount() - 1))
+    if(column <= 0 || row < 0 || row >= rowCount() - 1)
     {
         return;
     }
@@ -208,7 +207,7 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicResultInfoItem &s
 void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
 {
     const int row = currentRow();
-    if(!m_networkRequest || row < 0 || (row >= rowCount() - 1))
+    if(!m_networkRequest || row < 0 || row >= rowCount() - 1)
     {
         return;
     }
@@ -255,26 +254,24 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
         return;
     }
 
-    if(row < 0 || (row >= rowCount() - 1))
+    if(!isValid(row))
     {
         MusicToastLabel::popup(tr("Please select one item first"));
         return;
     }
 
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    const TTK::MusicSongInformation &info = songInfos[row];
+    TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    TTK::MusicSongInformation &songInfo = songInfos[row];
+    m_networkRequest->startToQueryResult(&songInfo, TTK_BN_128);
 
-    TTK::MusicSongPropertyList props(info.m_songProps);
-    std::sort(props.begin(), props.end()); //to find out the min bitrate
-
-    if(!props.isEmpty())
+    if(!songInfo.m_songProps.isEmpty())
     {
-        const TTK::MusicSongProperty &prop = props.front();
+        const TTK::MusicSongProperty &prop = songInfo.m_songProps.front();
 
         MusicResultDataItem result;
         result.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
-        result.m_updateTime = info.m_duration;
-        result.m_id = info.m_songId;
+        result.m_updateTime = songInfo.m_duration;
+        result.m_id = songInfo.m_songId;
         result.m_nickName = prop.m_url;
         result.m_description = prop.m_format;
         result.m_playCount = prop.m_size;
@@ -388,25 +385,15 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
     }
     else if(index == 2)
     {
-        const MusicAbstractQueryRequest *d = m_searchTableWidget->queryInput();
+        MusicAbstractQueryRequest *d = m_searchTableWidget->queryInput();
         if(!d)
         {
             return;
         }
 
-        TTK::MusicSongInformationList infos, songInfos(d->songInfoList());
-        for(int index : qAsConst(list))
-        {
-            if(index < 0 || index >= songInfos.count())
-            {
-                continue;
-            }
-
-            infos << songInfos[index];
-        }
-
-        MusicDownloadBatchWidget *w = TTKGenerateSingleWidget(MusicDownloadBatchWidget);
-        w->setSongName(infos, MusicAbstractQueryRequest::QueryType::Music);
+        MusicDownloadBatchWidget w;
+        w.setSongName(d, list);
+        w.exec();
     }
 }
 

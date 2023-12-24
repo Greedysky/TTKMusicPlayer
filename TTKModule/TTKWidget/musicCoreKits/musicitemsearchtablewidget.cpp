@@ -62,7 +62,7 @@ void MusicItemSearchTableWidget::removeItems()
 void MusicItemSearchTableWidget::actionGroupClick(QAction *action)
 {
     const int row = currentRow();
-    if(row < 0 || (row >= rowCount() - 1))
+    if(!isValid(row))
     {
         return;
     }
@@ -121,7 +121,7 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
 
     const int row = currentRow();
     const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    if(row < 0 || row >= songInfos.count())
+    if(!isValid(row) || row >= songInfos.count())
     {
         return;
     }

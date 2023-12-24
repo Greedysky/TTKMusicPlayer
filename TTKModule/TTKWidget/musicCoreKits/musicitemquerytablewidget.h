@@ -58,7 +58,7 @@ public:
     /*!
      * Download batch data from net.
      */
-    void downloadBatchData(bool music);
+    void downloadBatchData();
     /*!
      * Resize section bound by resize called.
      */

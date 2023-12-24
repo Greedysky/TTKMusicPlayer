@@ -66,15 +66,6 @@ namespace MusicKGInterface
     void makeRequestRawHeader(QNetworkRequest *request);
 
     /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &hash);
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key, bool all);
-
-    /*!
      * Read tags(lrc\smallpic) from query results.
      */
     void parseFromSongLrcAndPicture(TTK::MusicSongInformation *info);
@@ -82,6 +73,15 @@ namespace MusicKGInterface
      * Read tags(album info) from query results.
      */
     void parseFromSongAlbumInfo(MusicResultDataItem *info, const QString &album);
+
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key);
 
 }
 

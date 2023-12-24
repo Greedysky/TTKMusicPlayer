@@ -23,6 +23,18 @@ void MusicWYQueryArtistRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(m_reply, this, replyError);
 }
 
+void MusicWYQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+{
+    MusicPageQueryRequest::downLoadFinished();
+    TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
+
+    TTK_NETWORK_QUERY_CHECK();
+    MusicWYInterface::parseFromSongProperty(info, bitrate);
+    TTK_NETWORK_QUERY_CHECK();
+
+    MusicQueryArtistRequest::startToQueryResult(info, bitrate);
+}
+
 void MusicWYQueryArtistRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
@@ -83,13 +95,8 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicWYInterface::parseFromSongProperty(&info, value, true);
+                    MusicWYInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
-
-                    if(info.m_songProps.isEmpty())
-                    {
-                        continue;
-                    }
 
                     if(!artistFound)
                     {

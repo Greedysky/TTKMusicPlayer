@@ -125,6 +125,10 @@ public:
      * Start to search single data from id.
      */
     virtual void startToSingleSearch(const QString &id);
+    /*!
+     * Start to download query result data.
+     */
+    virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate);
 
     /*!
      * Set query mode.

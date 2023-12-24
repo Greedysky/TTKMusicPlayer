@@ -38,6 +38,18 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(QueryType type, const QSt
     }
 }
 
+void MusicDJRadioProgramCategoryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+{
+    MusicPageQueryRequest::downLoadFinished();
+    TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
+
+    TTK_NETWORK_QUERY_CHECK();
+    MusicWYInterface::parseFromSongProperty(info, bitrate);
+    TTK_NETWORK_QUERY_CHECK();
+
+    MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
+}
+
 void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
@@ -173,7 +185,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                     info.m_songId = mainSongObject["id"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicWYInterface::parseFromSongProperty(&info, mainSongObject, true);
+                    MusicWYInterface::parseFromSongProperty(&info, mainSongObject);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!categoryFound)
@@ -186,11 +198,6 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                         result.m_playCount = radioObject["subCount"].toString();
                         result.m_updateTime = TTKDateTime::format(value["createTime"].toULongLong(), TTK_YEAR_FORMAT);
                         Q_EMIT createCategoryItem(result);
-                    }
-
-                    if(info.m_songProps.isEmpty())
-                    {
-                        continue;
                     }
 
                     MusicResultInfoItem item;

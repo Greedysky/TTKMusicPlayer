@@ -3,6 +3,62 @@
 static constexpr const char *LQ_BASE_URL = "VzJWczlXM2hMeCtTZzhLRFJvZWxUUTVmZUVBLzlMWmo=";
 static constexpr const char *LQ_RECOMMEND_URL = "NDhiOGZ6dUJWNTBvN3R5OHNOQmkyQVVwOXdWbDNBOG14MmVXWVJxWlVXRkxuNUxxdzdYTEpUYVZRNVE9";
 
+namespace MusicLQInterface
+{
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    static void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    static void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &key, int length, int bitrate);
+
+}
+
+void MusicLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
+{
+    info->m_lrcUrl = TTK::Algorithm::mdII(LQ_BASE_URL, false) + key["lrcUrl"].toString();
+    info->m_coverUrl = key["picUrl"].toString();
+    const int length = key["length"].toInt();
+
+    parseFromSongProperty(info, key["lqUrl"].toString(), length, TTK_BN_128);
+    parseFromSongProperty(info, key["hqUrl"].toString(), length, TTK_BN_192);
+    parseFromSongProperty(info, key["sqUrl"].toString(), length, TTK_BN_320);
+    parseFromSongProperty(info, key["apeUrl"].toString(), length, TTK_BN_750);
+    parseFromSongProperty(info, key["flacUrl"].toString(), length, TTK_BN_1000);
+
+    if(info->m_songProps.isEmpty())
+    {
+        parseFromSongProperty(info, key["copyUrl"].toString(), length, TTK_BN_128);
+    }
+}
+
+void MusicLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &key, int length, int bitrate)
+{
+    if(key.isEmpty())
+    {
+        return;
+    }
+
+    TTK::MusicSongProperty prop;
+    prop.m_url = TTK::Algorithm::mdII(LQ_BASE_URL, false) + key;
+    prop.m_size = TTK::Number::sizeByteToLabel(length * 1000 * bitrate / 8);
+    prop.m_bitrate = bitrate;
+
+    switch(bitrate)
+    {
+        case TTK_BN_128: prop.m_format = MP3_FILE_SUFFIX; break;
+        case TTK_BN_192: prop.m_format = MP3_FILE_SUFFIX; break;
+        case TTK_BN_320: prop.m_format = MP3_FILE_SUFFIX; break;
+        case TTK_BN_750: prop.m_format = APE_FILE_SUFFIX; break;
+        case TTK_BN_1000: prop.m_format = FLAC_FILE_SUFFIX; break;
+        default: prop.m_format = MP3_FILE_SUFFIX; break;
+    }
+    info->m_songProps.append(prop);
+}
+
+
 MusicSongRecommendRequest::MusicSongRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
@@ -82,7 +138,7 @@ void MusicSongRecommendRequest::downLoadFinished()
                 info.m_trackNumber = value["trackNum"].toString();
 
                 TTK_NETWORK_QUERY_CHECK();
-                parseFromSongProperty(&info, value);
+                MusicLQInterface::parseFromSongProperty(&info, value);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(info.m_songProps.isEmpty())
@@ -104,45 +160,4 @@ void MusicSongRecommendRequest::downLoadFinished()
 
     Q_EMIT downLoadDataChanged({});
     deleteAll();
-}
-
-void MusicSongRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &key, int length, int bitrate) const
-{
-    if(key.isEmpty())
-    {
-        return;
-    }
-
-    TTK::MusicSongProperty prop;
-    prop.m_url = TTK::Algorithm::mdII(LQ_BASE_URL, false) + key;
-    prop.m_size = TTK::Number::sizeByteToLabel(length * 1000 * bitrate / 8);
-    switch(bitrate)
-    {
-        case TTK_BN_128: prop.m_format = MP3_FILE_SUFFIX; break;
-        case TTK_BN_192: prop.m_format = MP3_FILE_SUFFIX; break;
-        case TTK_BN_320: prop.m_format = MP3_FILE_SUFFIX; break;
-        case TTK_BN_750: prop.m_format = APE_FILE_SUFFIX; break;
-        case TTK_BN_1000: prop.m_format = FLAC_FILE_SUFFIX; break;
-        default: prop.m_format = MP3_FILE_SUFFIX; break;
-    }
-    prop.m_bitrate = bitrate;
-    info->m_songProps.append(prop);
-}
-
-void MusicSongRecommendRequest::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key) const
-{
-    info->m_lrcUrl = TTK::Algorithm::mdII(LQ_BASE_URL, false) + key["lrcUrl"].toString();
-    info->m_coverUrl = key["picUrl"].toString();
-    const int length = key["length"].toInt();
-
-    parseFromSongProperty(info, key["lqUrl"].toString(), length, TTK_BN_128);
-    parseFromSongProperty(info, key["hqUrl"].toString(), length, TTK_BN_192);
-    parseFromSongProperty(info, key["sqUrl"].toString(), length, TTK_BN_320);
-    parseFromSongProperty(info, key["apeUrl"].toString(), length, TTK_BN_750);
-    parseFromSongProperty(info, key["flacUrl"].toString(), length, TTK_BN_1000);
-
-    if(info->m_songProps.isEmpty())
-    {
-        parseFromSongProperty(info, key["copyUrl"].toString(), length, TTK_BN_128);
-    }
 }

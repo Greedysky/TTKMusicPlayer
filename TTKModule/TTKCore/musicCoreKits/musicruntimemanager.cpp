@@ -13,7 +13,13 @@
 
 namespace TTK
 {
-static quint64 directorySize(const QString &dirName)
+    static quint64 directorySize(const QString &dirName);
+    static void checkCacheSize();
+    static QString languageCore(int index);
+    static QString languageQmmp(int index);
+}
+
+quint64 TTK::directorySize(const QString &dirName)
 {
     quint64 size = 0;
     if(QFileInfo(dirName).isDir())
@@ -35,7 +41,7 @@ static quint64 directorySize(const QString &dirName)
     return size;
 }
 
-static void checkCacheSize()
+void TTK::checkCacheSize()
 {
     const bool disabled = G_SETTING_PTR->value(MusicSettingManager::DownloadCacheEnable).toInt();
     if(!disabled)
@@ -61,7 +67,7 @@ static void checkCacheSize()
     }
 }
 
-static QString languageCore(int index)
+QString TTK::languageCore(int index)
 {
     QString lan(LANGUAGE_DIR_FULL);
     switch(index)
@@ -73,7 +79,7 @@ static QString languageCore(int index)
     }
 }
 
-static QString languageQmmp(int index)
+QString TTK::languageQmmp(int index)
 {
     QString lan(LANGUAGE_DIR_FULL);
     switch(index)
@@ -83,7 +89,6 @@ static QString languageQmmp(int index)
         case 2: return lan.append("enq.ln");
         default: return {};
     }
-}
 }
 
 

@@ -72,10 +72,6 @@ private:
      */
     void parseFromVideoList(const QString &id);
     /*!
-     * Start to get video url path.
-     */
-    void parseFromVideoUrlPath(QString &url, const QString &id, int bitrate) const;
-    /*!
      * Get artist mv count.
      */
     void parseFromArtistMoviesCount(qint64 id);

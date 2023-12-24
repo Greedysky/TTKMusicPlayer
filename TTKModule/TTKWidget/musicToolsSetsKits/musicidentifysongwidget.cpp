@@ -369,8 +369,10 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
             d->startRequest();
             loop.exec();
         }
+
         m_analysis->loadFromLrcFile(name);
 
+        d->startToQueryResult(&m_songInfo, TTK_BN_128);
         if(!m_songInfo.m_songProps.isEmpty())
         {
             m_player->setMedia(MusicCoreMPlayer::Module::Music, m_songInfo.m_songProps.front().m_url);

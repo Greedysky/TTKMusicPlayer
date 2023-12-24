@@ -52,6 +52,18 @@ void MusicWYQueryRequest::startToSingleSearch(const QString &id)
     QtNetworkErrorConnect(reply, this, replyError);
 }
 
+void MusicWYQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+{
+    MusicPageQueryRequest::downLoadFinished();
+    TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
+
+    TTK_NETWORK_QUERY_CHECK();
+    MusicWYInterface::parseFromSongProperty(info, bitrate);
+    TTK_NETWORK_QUERY_CHECK();
+
+    MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
+}
+
 void MusicWYQueryRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
@@ -111,17 +123,9 @@ void MusicWYQueryRequest::downLoadFinished()
 
                     if(m_queryMode != QueryMode::Meta)
                     {
-                        if(m_queryMode != QueryMode::MetaItem)
-                        {
-                            TTK_NETWORK_QUERY_CHECK();
-                            MusicWYInterface::parseFromSongProperty(&info, value, true);
-                            TTK_NETWORK_QUERY_CHECK();
-
-                            if(info.m_songProps.isEmpty())
-                            {
-                                continue;
-                            }
-                        }
+                        TTK_NETWORK_QUERY_CHECK();
+                        MusicWYInterface::parseFromSongProperty(&info, value);
+                        TTK_NETWORK_QUERY_CHECK();
 
                         MusicResultInfoItem item;
                         item.m_songName = info.m_songName;
@@ -197,20 +201,17 @@ void MusicWYQueryRequest::downLoadSingleFinished()
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicWYInterface::parseFromSongProperty(&info, value, true);
+                    MusicWYInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(!info.m_songProps.isEmpty())
-                    {
-                        MusicResultInfoItem item;
-                        item.m_songName = info.m_songName;
-                        item.m_singerName = info.m_singerName;
-                        item.m_albumName = info.m_albumName;
-                        item.m_duration = info.m_duration;
-                        item.m_type = mapQueryServerString();
-                        Q_EMIT createSearchedItem(item);
-                        m_songInfos << info;
-                    }
+                    MusicResultInfoItem item;
+                    item.m_songName = info.m_songName;
+                    item.m_singerName = info.m_singerName;
+                    item.m_albumName = info.m_albumName;
+                    item.m_duration = info.m_duration;
+                    item.m_type = mapQueryServerString();
+                    Q_EMIT createSearchedItem(item);
+                    m_songInfos << info;
                 }
             }
         }

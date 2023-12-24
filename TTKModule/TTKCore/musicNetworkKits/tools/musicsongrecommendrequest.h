@@ -49,16 +49,6 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override final;
 
-private:
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &key, int length, int bitrate) const;
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key) const;
-
 };
 
 #endif // MUSICSONGRECOMMENDREQUEST_H

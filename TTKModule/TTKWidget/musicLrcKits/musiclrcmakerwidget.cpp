@@ -103,7 +103,7 @@ void MusicLrcMakerWidgetItem::moveRight()
     {
         m_painetLineDone = true;
         m_paintIndex = w;
-        QTimer::singleShot(TTK_DN_ONCE, m_parent, SLOT(currentLineFinished()));
+        TTK_SIGNLE_SHOT(m_parent, currentLineFinished);
     }
     update();
 }
@@ -175,7 +175,7 @@ MusicLrcMakerWidget::~MusicLrcMakerWidget()
 {
     resetToOriginPlayMode();
     G_CONNECTION_PTR->removeValue(this);
-    G_SINGLE_MANAGER_PTR->removeObject(className());
+    TTKRemoveSingleWidget(className());
     qDeleteAll(m_lrcContainer);
     delete m_lineItem;
     delete m_analysis;

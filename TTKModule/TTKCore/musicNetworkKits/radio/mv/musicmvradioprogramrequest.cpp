@@ -1,6 +1,104 @@
 #include "musicmvradioprogramrequest.h"
 #include "musickgqueryinterface.h"
 
+namespace MusicKGInterface
+{
+    /*!
+     * Read mv tags(size\bitrate\url) from query results.
+     */
+    static void parseFromMovieProperty(TTK::MusicSongInformation *info);
+    /*!
+     * Read mv tags(size\bitrate\url) from query results.
+     */
+    static void parseFromMovieProperty(TTK::MusicSongInformation *info, const QVariantMap &key);
+
+}
+
+void MusicKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info)
+{
+    if(info->m_songId.isEmpty())
+    {
+        return;
+    }
+
+    const QByteArray &encodedData = TTK::Algorithm::md5(QString("%1kugoumvcloud").arg(info->m_songId).toUtf8());
+
+    QNetworkRequest request;
+    request.setUrl(TTK::Algorithm::mdII(KG_MOVIE_INFO_URL, false).arg(encodedData.constData(), info->m_songId));
+    MusicKGInterface::makeRequestRawHeader(&request);
+
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
+    {
+        return;
+    }
+
+    QJson::Parser json;
+    bool ok = false;
+    const QVariant &data = json.parse(bytes, &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(!value.isEmpty() && value.contains("mvdata"))
+        {
+            value = value["mvdata"].toMap();
+
+            QVariantMap mv = value["sd"].toMap();
+            if(!mv.isEmpty())
+            {
+                parseFromMovieProperty(info, mv);
+            }
+
+            mv = value["hd"].toMap();
+            if(!mv.isEmpty())
+            {
+                parseFromMovieProperty(info, mv);
+            }
+
+            mv = value["sq"].toMap();
+            if(!mv.isEmpty())
+            {
+                parseFromMovieProperty(info, mv);
+            }
+
+            mv = value["rq"].toMap();
+            if(!mv.isEmpty())
+            {
+                parseFromMovieProperty(info, mv);
+            }
+        }
+    }
+}
+
+void MusicKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
+{
+    TTK::MusicSongProperty prop;
+    prop.m_url = key["downurl"].toString();
+    prop.m_size = TTK::Number::sizeByteToLabel(key["filesize"].toInt());
+    prop.m_format = TTK::String::slitToken(prop.m_url);
+
+    const int bitrate = key["bitrate"].toInt() / 1000;
+    if(bitrate <= 375)
+    {
+        prop.m_bitrate = TTK_BN_250;
+    }
+    else if(bitrate > 375 && bitrate <= 625)
+    {
+        prop.m_bitrate = TTK_BN_500;
+    }
+    else if(bitrate > 625 && bitrate <= 875)
+    {
+        prop.m_bitrate = TTK_BN_750;
+    }
+    else if(bitrate > 875)
+    {
+        prop.m_bitrate = TTK_BN_1000;
+    }
+
+    info->m_songProps.append(prop);
+}
+
+
 MusicMVRadioProgramRequest::MusicMVRadioProgramRequest(QObject *parent)
     : MusicAbstractMVRadioRequest(parent)
 {
@@ -79,7 +177,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
 
                             info.m_songId = value["mvhash"].toString();
                             TTK_NETWORK_QUERY_CHECK();
-                            parseFromMovieProperty(&info);
+                            MusicKGInterface::parseFromMovieProperty(&info);
                             TTK_NETWORK_QUERY_CHECK();
 
                             if(info.m_songProps.isEmpty())
@@ -104,87 +202,4 @@ void MusicMVRadioProgramRequest::downLoadFinished()
 
     Q_EMIT downLoadDataChanged({});
     deleteAll();
-}
-
-void MusicMVRadioProgramRequest::parseFromMovieProperty(TTK::MusicSongInformation *info)
-{
-    if(info->m_songId.isEmpty())
-    {
-        return;
-    }
-
-    const QByteArray &encodedData = TTK::Algorithm::md5(QString("%1kugoumvcloud").arg(info->m_songId).toUtf8());
-
-    QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KG_MOVIE_INFO_URL, false).arg(encodedData.constData(), info->m_songId));
-    MusicKGInterface::makeRequestRawHeader(&request);
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
-    if(bytes.isEmpty())
-    {
-        return;
-    }
-
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
-    {
-        QVariantMap value = data.toMap();
-        if(!value.isEmpty() && value.contains("mvdata"))
-        {
-            value = value["mvdata"].toMap();
-            QVariantMap mv = value["sd"].toMap();
-            if(!mv.isEmpty())
-            {
-                parseFromMovieProperty(info, mv);
-            }
-
-            mv = value["hd"].toMap();
-            if(!mv.isEmpty())
-            {
-                parseFromMovieProperty(info, mv);
-            }
-
-            mv = value["sq"].toMap();
-            if(!mv.isEmpty())
-            {
-                parseFromMovieProperty(info, mv);
-            }
-
-            mv = value["rq"].toMap();
-            if(!mv.isEmpty())
-            {
-                parseFromMovieProperty(info, mv);
-            }
-        }
-    }
-}
-
-void MusicMVRadioProgramRequest::parseFromMovieProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
-{
-    TTK::MusicSongProperty prop;
-    prop.m_url = key["downurl"].toString();
-    prop.m_size = TTK::Number::sizeByteToLabel(key["filesize"].toInt());
-    prop.m_format = TTK::String::slitToken(prop.m_url);
-
-    const int bitrate = key["bitrate"].toInt() / 1000;
-    if(bitrate <= 375)
-    {
-        prop.m_bitrate = TTK_BN_250;
-    }
-    else if(bitrate > 375 && bitrate <= 625)
-    {
-        prop.m_bitrate = TTK_BN_500;
-    }
-    else if(bitrate > 625 && bitrate <= 875)
-    {
-        prop.m_bitrate = TTK_BN_750;
-    }
-    else if(bitrate > 875)
-    {
-        prop.m_bitrate = TTK_BN_1000;
-    }
-
-    info->m_songProps.append(prop);
 }

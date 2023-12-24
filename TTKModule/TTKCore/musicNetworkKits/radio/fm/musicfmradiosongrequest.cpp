@@ -77,7 +77,7 @@ void MusicFMRadioSongRequest::downLoadFinished()
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicWYInterface::parseFromSongProperty(&info, value, false);
+                    MusicWYInterface::parseFromSongProperty(&info, TTK_BN_128);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!info.m_songProps.isEmpty())

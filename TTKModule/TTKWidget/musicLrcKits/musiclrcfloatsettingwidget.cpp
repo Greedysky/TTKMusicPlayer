@@ -144,5 +144,5 @@ void MusicLrcFloatSettingWidget::show()
 void MusicLrcFloatSettingWidget::leaveEvent(QEvent *)
 {
     animationLeave();
-    QTimer::singleShot(m_animation->duration(), this, SIGNAL(widgetClose()));
+    TTK_SIGNLE_SHOT(m_animation->duration(), this, widgetClose, nullptr);
 }

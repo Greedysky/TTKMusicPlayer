@@ -113,7 +113,7 @@ void MusicAbstractItemQueryWidget::playButtonClicked()
 
 void MusicAbstractItemQueryWidget::downloadButtonClicked()
 {
-    m_queryTableWidget->downloadBatchData(true);
+    m_queryTableWidget->downloadBatchData();
 }
 
 void MusicAbstractItemQueryWidget::addButtonClicked()

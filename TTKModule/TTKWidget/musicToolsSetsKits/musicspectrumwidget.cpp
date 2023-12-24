@@ -71,7 +71,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
 
 MusicSpectrumWidget::~MusicSpectrumWidget()
 {
-    G_SINGLE_MANAGER_PTR->removeObject(className());
+    TTKRemoveSingleWidget(className());
     for(const MusicSpectrum &type : qAsConst(m_types))
     {
         TTK::TTKQmmp::enabledVisualPlugin(type.m_module, false);

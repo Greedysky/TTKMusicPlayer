@@ -84,6 +84,15 @@ public Q_SLOTS:
     virtual void createSearchedItem(const MusicResultInfoItem &songItem) = 0;
 
 protected:
+    using MusicFillItemTableWidget::isValid;
+    /*!
+     * Check item row is valid or not.
+     */
+    inline bool isValid(int row) const
+    {
+        return !(row < 0 || row >= rowCount() - 1);
+    }
+
     MusicAbstractQueryRequest *m_networkRequest;
 
 };

@@ -88,7 +88,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     setObjectsTracking({m_ui->background, m_ui->songsContainer});
 
     readSystemConfigFromFile();
-    QTimer::singleShot(TTK_DN_ONCE, m_rightAreaWidget, SLOT(showSongMainWidget()));
+    TTK_SIGNLE_SHOT(m_rightAreaWidget, showSongMainWidget);
 }
 
 MusicApplication::~MusicApplication()
@@ -162,7 +162,7 @@ void MusicApplication::loadCurrentSongLrc()
     const QString &path = TTK::String::lrcDirPrefix() + fileName + LRC_FILE;
     m_rightAreaWidget->loadCurrentSongLrc(fileName, path);
     //reset current song lrc index.
-    QTimer::singleShot(TTK_DN_S2MS, this, SLOT(resetCurrentSongLrcIndex()));
+    TTK_SIGNLE_SHOT(resetCurrentSongLrcIndex);
 }
 
 void MusicApplication::importSongsOutsideMode(const QString &file, bool play)
@@ -1122,7 +1122,7 @@ void MusicApplication::readSystemConfigFromFile()
 
     if(success && lastPlayIndex[0] == "1")
     {
-        QTimer::singleShot(TTK_DN_ONCE, m_songTreeWidget, SLOT(updateCurrentIndex()));
+        TTK_SIGNLE_SHOT(m_songTreeWidget, updateCurrentIndex);
         const int index = lastPlayIndex[2].toInt();
         m_currentSongTreeIndex = (index == TTK_NORMAL_LEVEL) ? TTK_NORMAL_LEVEL : value;
         m_playlist->blockSignals(true);

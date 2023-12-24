@@ -9,5 +9,4 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
 #if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
     TTK::Widget::setTransparent(this, QColor(20, 20, 20, 10));
 #endif
-
 }

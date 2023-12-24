@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractmovewidget.h"
+#include "musicabstractmovedialog.h"
 #include "musicabstracttablewidget.h"
 #include "musicabstractqueryrequest.h"
 
@@ -47,7 +47,8 @@ public:
     /*!
      * Create cell item by input data.
      */
-    void addCellItem(const TTK::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
+    void addCellItem(MusicAbstractQueryRequest *request, const TTK::MusicSongInformation &info);
+
     /*!
      * Start to download data from net.
      */
@@ -62,8 +63,13 @@ public Q_SLOTS:
      * Table widget item cell click.
      */
     void currentQualityChanged(int index);
+    /*!
+     * Data download is finished.
+     */
+    void dataDownloadFinished();
 
 private:
+    int currentBitrate(int index);
     /*!
      * Start to download music data.
      */
@@ -73,10 +79,11 @@ private:
      */
     void startRequestMovie();
 
-    QObject *m_supperClass;
     QComboBox *m_qulity;
     TTK::MusicSongInformation m_songInfo;
-    QLabel *m_songName, *m_singer, *m_information;
+    QLabel *m_songName, *m_singer;
+    QLabel *m_information, *m_status;
+    MusicAbstractQueryRequest *m_networkRequest;
     MusicAbstractQueryRequest::QueryType m_queryType;
 
 };
@@ -100,14 +107,10 @@ public:
     ~MusicDownloadBatchTableWidget();
 
     /*!
-     * Set parent class.
-     */
-    void setParentClass(QWidget *parent);
-
-    /*!
      * Create cell item by input data.
      */
-    void addCellItem(const TTK::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
+    void addCellItem(MusicAbstractQueryRequest *request, const TTK::MusicSongInformation &info);
+
     /*!
      * Start to download data from net.
      */
@@ -119,17 +122,11 @@ public Q_SLOTS:
      */
     virtual void removeItems() override final;
     /*!
-     * Data download is finished.
-     */
-    void dataDownloadFinished();
-    /*!
      * Table widget item cell click.
      */
     void currentQualityChanged(int index);
 
 private:
-    QObject *m_supperClass;
-    int m_downloadOffset;
     QList<MusicDownloadBatchTableItem*> m_items;
 
 };
@@ -138,7 +135,7 @@ private:
 /*! @brief The class of the download batch widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadBatchWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicDownloadBatchWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadBatchWidget)
@@ -153,9 +150,9 @@ public:
     ~MusicDownloadBatchWidget();
 
     /*!
-     * Set current name to search and download musics.
+     * Set current name to search and download data.
      */
-    void setSongName(const TTK::MusicSongInformationList &songInfos, MusicAbstractQueryRequest::QueryType type);
+    void setSongName(MusicAbstractQueryRequest *request, const TTKIntList &items);
 
 public Q_SLOTS:
     /*!

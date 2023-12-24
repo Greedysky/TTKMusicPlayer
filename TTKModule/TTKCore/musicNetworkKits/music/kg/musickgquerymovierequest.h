@@ -62,20 +62,6 @@ public Q_SLOTS:
      */
     void downLoadSingleFinished();
 
-private:
-    /*!
-     * Read mv infos from query results.
-     */
-    void parseFromMovieInfo(TTK::MusicSongInformation *info);
-    /*!
-     * Read mv tags(size\bitrate\url) from query results.
-     */
-    void parseFromMovieProperty(TTK::MusicSongInformation *info, bool more);
-    /*!
-     * Read mv info property from query results.
-     */
-    void parseFromMovieProperty(TTK::MusicSongInformation *info, const QVariantMap &key);
-
 };
 
 #endif // MUSICKGQUERYMOVIEREQUEST_H

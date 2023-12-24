@@ -1,4 +1,5 @@
 #include "musicnumberutils.h"
+#include "ttktime.h"
 
 #include <QColor>
 #include <QStringList>
@@ -55,6 +56,11 @@ QString TTK::Number::sizeByteToLabel(qint64 size)
     {
         return QString("%1T").arg(label);
     }
+}
+
+QString TTK::Number::sizeByteToLabel(const QString &duration, int bitrate)
+{
+    return TTK::Number::sizeByteToLabel(TTKTime::formatDuration(duration) * bitrate / 8.0);
 }
 
 QString TTK::Number::speedByteToLabel(qint64 size)

@@ -158,11 +158,15 @@ public:
     ~MusicDownloadWidget();
 
     /*!
-     * Set current name to search and download musics.
+     * Set current name to search and download data.
+     */
+    void setSongName(MusicAbstractQueryRequest *request, int row);
+    /*!
+     * Set current name to search and download data.
      */
     void setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type);
     /*!
-     * Set current name to search and download musics.
+     * Set current name to search and download data.
      */
     void setSongName(const TTK::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
 
@@ -174,9 +178,13 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Query all quality musics is finished.
+     * Query selected quality music finished.
      */
-    void downLoadFinished();
+    void downLoadNormalFinished();
+    /*!
+     * Query request data from net finished.
+     */
+    void downLoadRequestFinished();
     /*!
      * Change data download save path.
      */

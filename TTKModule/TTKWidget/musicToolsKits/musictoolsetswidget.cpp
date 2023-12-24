@@ -40,7 +40,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
-    G_SINGLE_MANAGER_PTR->removeObject(className());
+    TTKRemoveSingleWidget(className());
     clear();
     delete m_ui;
 }

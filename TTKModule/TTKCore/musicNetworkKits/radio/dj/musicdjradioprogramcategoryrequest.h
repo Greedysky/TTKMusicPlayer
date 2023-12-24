@@ -43,6 +43,10 @@ public:
      * Start to search data by type and input data.
      */
     virtual void startToSearch(QueryType type, const QString &value) override final;
+    /*!
+     * Start to download query result data.
+     */
+    virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate) override final;
 
     /*!
      * Start to search data by input data.

@@ -44,7 +44,7 @@ void MusicVideoSearchTableWidget::downloadQueryResult(int row)
 {
     if(!m_singleRadioMode)
     {
-        if(row < 0 || (row >= rowCount() - 1))
+        if(!isValid(row))
         {
             MusicToastLabel::popup(tr("Please select one item first"));
             return;
@@ -142,7 +142,7 @@ void MusicVideoSearchTableWidget::itemCellClicked(int row, int column)
 
 void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
 {
-    if(column <= 0 || row < 0 || (row >= rowCount() - 1))
+    if(column <= 0 || row < 0 || row >= rowCount() - 1)
     {
         return;
     }
@@ -254,13 +254,12 @@ void MusicVideoSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicVideoSearchTableWidget::downloadLocalMovie(int row)
 {
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    if(row < 0 || row >= songInfos.count())
+    if(!isValid(row))
     {
         return;
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(songInfos[row], MusicAbstractQueryRequest::QueryType::Movie);
+    download->setSongName(m_networkRequest, row);
     download->show();
 }

@@ -50,7 +50,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     m_ui->searchLineLabel->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    QTimer::singleShot(TTK_DN_MS, this, SLOT(initialize()));
+    TTK_SIGNLE_SHOT(initialize);
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());

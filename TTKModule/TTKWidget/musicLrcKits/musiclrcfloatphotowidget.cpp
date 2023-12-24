@@ -210,7 +210,7 @@ void MusicLrcFloatPhotoWidget::show()
 void MusicLrcFloatPhotoWidget::close()
 {
     animationEnter();
-    QTimer::singleShot(m_animation->duration(), this, SLOT(parentClose()));
+    TTK_SIGNLE_SHOT(m_animation->duration(), this, parentClose);
 }
 
 void MusicLrcFloatPhotoWidget::manageButtonClicked()

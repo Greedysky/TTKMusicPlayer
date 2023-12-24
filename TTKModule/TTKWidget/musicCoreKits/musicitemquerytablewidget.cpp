@@ -55,20 +55,19 @@ void MusicItemQueryTableWidget::startSearchQuery(const QString &text)
 
 void MusicItemQueryTableWidget::downloadQueryResult(int row)
 {
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    if(row < 0 || row >= songInfos.count())
+    if(!isValid(row))
     {
         return;
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(songInfos[row], MusicAbstractQueryRequest::QueryType::Music);
+    download->setSongName(m_networkRequest, row);
     download->show();
 }
 
 void MusicItemQueryTableWidget::itemDoubleClicked(int row, int column)
 {
-    if(column <= 0 || row < 0 || (row >= rowCount() - 1))
+    if(column <= 0 || row < 0 || row >= rowCount() - 1)
     {
         return;
     }
@@ -95,9 +94,8 @@ void MusicItemQueryTableWidget::downloadDataFrom(bool play)
     }
 }
 
-void MusicItemQueryTableWidget::downloadBatchData(bool music)
+void MusicItemQueryTableWidget::downloadBatchData()
 {
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
     const TTKIntList &list = checkedIndexList();
     if(list.isEmpty())
     {
@@ -105,19 +103,9 @@ void MusicItemQueryTableWidget::downloadBatchData(bool music)
         return;
     }
 
-    TTK::MusicSongInformationList items;
-    for(int index : qAsConst(list))
-    {
-        if(index < 0 || index >= songInfos.count())
-        {
-            continue;
-        }
-
-        items << songInfos[index];
-    }
-
-    MusicDownloadBatchWidget *w = TTKGenerateSingleWidget(MusicDownloadBatchWidget, this);
-    w->setSongName(items, music ? MusicAbstractQueryRequest::QueryType::Music : MusicAbstractQueryRequest::QueryType::Movie);
+    MusicDownloadBatchWidget w;
+    w.setSongName(m_networkRequest, list);
+    w.exec();
 }
 
 void MusicItemQueryTableWidget::resizeSection()
@@ -141,7 +129,7 @@ void MusicItemQueryTableWidget::menuActionChanged(QAction *action)
 {
     const int row = currentRow();
     const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    if(row < 0 || row >= songInfos.count())
+    if(!isValid(row) || row >= songInfos.count())
     {
         return;
     }
@@ -175,7 +163,7 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     const int row = currentRow();
     const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    if(row < 0 || row >= songInfos.count())
+    if(!isValid(row) || row >= songInfos.count())
     {
         return;
     }
@@ -303,7 +291,7 @@ void MusicItemQueryTableWidget::createFinishedItem()
 
 void MusicItemQueryTableWidget::addSearchMusicToPlaylist(int row, bool play)
 {
-    if(row < 0)
+    if(!isValid(row))
     {
         MusicToastLabel::popup(tr("Please select one item first"));
         return;
@@ -325,12 +313,13 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const TTK::MusicSongInformation
         return false;
     }
 
-    TTK::MusicSongPropertyList props(info.m_songProps);
-    std::sort(props.begin(), props.end()); //to find out the min bitrate
+    TTK::MusicSongInformation songInfo;
+    songInfo.m_songId = info.m_songId;
+    m_networkRequest->startToQueryResult(&songInfo, TTK_BN_128);
 
-    if(!props.isEmpty())
+    if(!songInfo.m_songProps.isEmpty())
     {
-        const TTK::MusicSongProperty &prop = props.front();
+        const TTK::MusicSongProperty &prop = songInfo.m_songProps.front();
 
         MusicResultDataItem result;
         result.m_name = info.m_singerName + " - " + info.m_songName;

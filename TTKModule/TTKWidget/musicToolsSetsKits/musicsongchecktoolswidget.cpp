@@ -32,7 +32,7 @@ MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
 
 MusicSongCheckToolsWidget::~MusicSongCheckToolsWidget()
 {
-    G_SINGLE_MANAGER_PTR->removeObject(className());
+    TTKRemoveSingleWidget(className());
     delete m_renameThread;
     delete m_duplicateThread;
     delete m_qualityThread;

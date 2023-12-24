@@ -43,6 +43,10 @@ public:
      * Start to search data by given id.
      */
     virtual void startToSingleSearch(const QString &id) override final;
+    /*!
+     * Start to download query result data.
+     */
+    virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate) override final;
 
 public Q_SLOTS:
     /*!

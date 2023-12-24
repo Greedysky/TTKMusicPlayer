@@ -50,6 +50,19 @@ void MusicKWQueryRequest::startToSingleSearch(const QString &id)
     QtNetworkErrorConnect(reply, this, replyError);
 }
 
+void MusicKWQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+{
+    MusicPageQueryRequest::downLoadFinished();
+    TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
+
+    TTK_NETWORK_QUERY_CHECK();
+    MusicKWInterface::parseFromSongProperty(info, bitrate);
+    TTK_NETWORK_QUERY_CHECK();
+
+    findUrlFileSize(&info->m_songProps, info->m_duration);
+    MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
+}
+
 void MusicKWQueryRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
@@ -97,22 +110,9 @@ void MusicKWQueryRequest::downLoadFinished()
 
                     if(m_queryMode != QueryMode::Meta)
                     {
-                        if(m_queryMode != QueryMode::MetaItem)
-                        {
-                            TTK_NETWORK_QUERY_CHECK();
-                            MusicKWInterface::parseFromSongProperty(&info, value["FORMATS"].toString(), true);
-                            TTK_NETWORK_QUERY_CHECK();
-
-                            if(info.m_songProps.isEmpty())
-                            {
-                                continue;
-                            }
-
-                            if(!findUrlFileSize(&info.m_songProps, info.m_duration))
-                            {
-                                return;
-                            }
-                        }
+                        TTK_NETWORK_QUERY_CHECK();
+                        MusicKWInterface::parseFromSongProperty(&info, value["FORMATS"].toString());
+                        TTK_NETWORK_QUERY_CHECK();
 
                         MusicResultInfoItem item;
                         item.m_songName = info.m_songName;
@@ -167,25 +167,17 @@ void MusicKWQueryRequest::downLoadSingleFinished()
                 info.m_albumName = TTK::String::charactersReplace(value["album"].toString());
 
                 TTK_NETWORK_QUERY_CHECK();
-                MusicKWInterface::parseFromSongProperty(&info, "MP3128|MP3192|MP3H", true);
+                MusicKWInterface::parseFromSongProperty(&info, "MP3128|MP3192|MP3H");
                 TTK_NETWORK_QUERY_CHECK();
 
-                if(!findUrlFileSize(&info.m_songProps, info.m_duration))
-                {
-                    return;
-                }
-
-                if(!info.m_songProps.isEmpty())
-                {
-                    MusicResultInfoItem item;
-                    item.m_songName = info.m_songName;
-                    item.m_singerName = info.m_singerName;
-                    item.m_albumName = info.m_albumName;
-                    item.m_duration = info.m_duration;
-                    item.m_type = mapQueryServerString();
-                    Q_EMIT createSearchedItem(item);
-                    m_songInfos << info;
-                }
+                MusicResultInfoItem item;
+                item.m_songName = info.m_songName;
+                item.m_singerName = info.m_singerName;
+                item.m_albumName = info.m_albumName;
+                item.m_duration = info.m_duration;
+                item.m_type = mapQueryServerString();
+                Q_EMIT createSearchedItem(item);
+                m_songInfos << info;
             }
         }
     }

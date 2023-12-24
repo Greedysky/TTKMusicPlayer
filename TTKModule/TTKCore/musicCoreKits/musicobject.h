@@ -51,6 +51,8 @@
 #define MP3_FILE_SUFFIX          "mp3"
 #define APE_FILE_SUFFIX          "ape"
 #define FLAC_FILE_SUFFIX         "flac"
+#define MP4_FILE_SUFFIX          "mp4"
+#define FLV_FILE_SUFFIX          "flv"
 
 
 #define TKF_FILE                 TTK_STR_CAT(TTK_DOT, TKF_FILE_SUFFIX)
@@ -68,6 +70,8 @@
 #define MP3_FILE                 TTK_STR_CAT(TTK_DOT, MP3_FILE_SUFFIX)
 #define APE_FILE                 TTK_STR_CAT(TTK_DOT, APE_FILE_SUFFIX)
 #define FLAC_FILE                TTK_STR_CAT(TTK_DOT, FLAC_FILE_SUFFIX)
+#define MP4_FILE                 TTK_STR_CAT(TTK_DOT, MP4_FILE_SUFFIX)
+#define FLV_FILE                 TTK_STR_CAT(TTK_DOT, FLV_FILE_SUFFIX)
 
 
 #define APPDATA_DIR              TTK_STR_CAT("AppData", TTK_SEPARATOR)
@@ -213,6 +217,11 @@ namespace TTK
 
         }
 
+        inline bool isEmpty() const
+        {
+            return m_url.isEmpty();
+        }
+
         inline bool operator< (const MusicSongProperty &other) const
         {
             return m_bitrate < other.m_bitrate;
@@ -253,6 +262,7 @@ namespace TTK
         QString m_duration;
         QString m_year;
         QString m_trackNumber;
+        QString m_formats;
         MusicSongPropertyList m_songProps;
     };
     TTK_DECLARE_LIST(MusicSongInformation);

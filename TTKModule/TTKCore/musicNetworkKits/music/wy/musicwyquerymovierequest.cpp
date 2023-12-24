@@ -1,5 +1,56 @@
 #include "musicwyquerymovierequest.h"
 
+namespace MusicWYInterface
+{
+    /*!
+     * Start to get video url path.
+     */
+    static void parseFromMovieProperty(QString &url, const QString &id, int bitrate);
+
+}
+
+void MusicWYInterface::parseFromMovieProperty(QString &url, const QString &id, int bitrate)
+{
+    QNetworkRequest request;
+    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+                      TTK::Algorithm::mdII(WY_VIDEO_PATH_URL, false),
+                      TTK::Algorithm::mdII(WY_VIDEO_PATH_DATA_URL, false).arg(id).arg(bitrate));
+
+    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
+    if(bytes.isEmpty())
+    {
+        return;
+    }
+
+    QJson::Parser json;
+    bool ok = false;
+    const QVariant &data = json.parse(bytes, &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value["code"].toInt() == 200)
+        {
+            const QVariantList &datas = value["urls"].toList();
+            for(const QVariant &var : qAsConst(datas))
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                value = var.toMap();
+                url = value["url"].toString();
+
+                if(!url.isEmpty())
+                {
+                    return;
+                }
+            }
+        }
+    }
+}
+
+
 MusicWYQueryMovieRequest::MusicWYQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent)
 {
@@ -50,7 +101,7 @@ void MusicWYQueryMovieRequest::startToSingleSearch(const QString &id)
     deleteAll();
     m_queryValue = id.trimmed();
 
-    QTimer::singleShot(TTK_DN_MS, this, SLOT(downLoadSingleFinished()));
+    TTK_SIGNLE_SHOT(downLoadSingleFinished);
 }
 
 void MusicWYQueryMovieRequest::downLoadFinished()
@@ -294,10 +345,10 @@ void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
 
                 const int bitrate = value["resolution"].toInt();
                 TTK::MusicSongProperty prop;
-                parseFromVideoUrlPath(prop.m_url, id, bitrate);
+                MusicWYInterface::parseFromMovieProperty(prop.m_url, id, bitrate);
                 TTK_NETWORK_QUERY_CHECK();
 
-                if(prop.m_url.isEmpty())
+                if(prop.isEmpty())
                 {
                     continue;
                 }
@@ -336,48 +387,6 @@ void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
             item.m_type = mapQueryServerString();
             Q_EMIT createSearchedItem(item);
             m_songInfos << info;
-        }
-    }
-}
-
-void MusicWYQueryMovieRequest::parseFromVideoUrlPath(QString &url, const QString &id, int bitrate) const
-{
-    QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_VIDEO_PATH_URL, false),
-                      TTK::Algorithm::mdII(WY_VIDEO_PATH_DATA_URL, false).arg(id).arg(bitrate));
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
-    if(bytes.isEmpty())
-    {
-        return;
-    }
-
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
-    {
-        QVariantMap value = data.toMap();
-        if(value["code"].toInt() == 200)
-        {
-            const QVariantList &datas = value["urls"].toList();
-            for(const QVariant &var : qAsConst(datas))
-            {
-                if(var.isNull())
-                {
-                    continue;
-                }
-
-                value = var.toMap();
-                TTK_NETWORK_QUERY_CHECK();
-
-                url = value["url"].toString();
-                if(!url.isEmpty())
-                {
-                    return;
-                }
-            }
         }
     }
 }

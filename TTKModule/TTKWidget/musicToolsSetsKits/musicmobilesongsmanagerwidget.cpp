@@ -162,7 +162,7 @@ MusicMobileSongsManagerWidget::MusicMobileSongsManagerWidget(QWidget *parent)
 MusicMobileSongsManagerWidget::~MusicMobileSongsManagerWidget()
 {
     G_CONNECTION_PTR->removeValue(this);
-    G_SINGLE_MANAGER_PTR->removeObject(className());
+    TTKRemoveSingleWidget(className());
     clearItems();
     m_thread->stop();
     delete m_thread;

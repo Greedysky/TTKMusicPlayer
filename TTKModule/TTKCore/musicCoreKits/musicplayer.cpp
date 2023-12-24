@@ -258,7 +258,7 @@ void MusicPlayer::queryCurrentDuration()
     const qint64 d = duration();
     if((d == 0 || m_duration == d) && m_durationTimes++ < 10)
     {
-        QTimer::singleShot(TTK_DN_ONCE, this, SLOT(queryCurrentDuration()));
+        TTK_SIGNLE_SHOT(queryCurrentDuration);
     }
     else
     {

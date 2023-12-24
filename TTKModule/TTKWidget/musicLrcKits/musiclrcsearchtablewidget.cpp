@@ -34,13 +34,12 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
     MusicItemSearchTableWidget::startSearchQuery(text);
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SIGNAL(resolvedSuccess()));
     m_loadingLabel->run(true);
-    m_networkRequest->setQueryMode(MusicAbstractQueryRequest::QueryMode::MetaItem);
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Lrc, text);
 }
 
 void MusicLrcSearchTableWidget::downloadQueryResult(int row)
 {
-    if(row < 0 || (row >= rowCount() - 1))
+    if(!isValid(row))
     {
         MusicToastLabel::popup(tr("Please select one item first"));
         return;

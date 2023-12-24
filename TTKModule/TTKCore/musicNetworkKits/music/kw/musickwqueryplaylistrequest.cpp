@@ -51,6 +51,19 @@ void MusicKWQueryPlaylistRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(reply, this, replyError);
 }
 
+void MusicKWQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+{
+    MusicPageQueryRequest::downLoadFinished();
+    TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
+
+    TTK_NETWORK_QUERY_CHECK();
+    MusicKWInterface::parseFromSongProperty(info, bitrate);
+    TTK_NETWORK_QUERY_CHECK();
+
+    findUrlFileSize(&info->m_songProps, info->m_duration);
+    MusicQueryPlaylistRequest::startToQueryResult(info, bitrate);
+}
+
 void MusicKWQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
 {
     TTK_INFO_STREAM(QString("%1 queryPlaylistInfo %2").arg(className(), item.m_id));
@@ -169,17 +182,10 @@ void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
                     info.m_coverUrl = value["web_albumpic_short"].toString();
                     MusicKWInterface::makeCoverPixmapUrl(info.m_coverUrl);
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
-                    MusicKWInterface::parseFromSongProperty(&info, value["formats"].toString(), true);
 
-                    if(info.m_songProps.isEmpty())
-                    {
-                        continue;
-                    }
-
-                    if(!findUrlFileSize(&info.m_songProps, info.m_duration))
-                    {
-                        return;
-                    }
+                    TTK_NETWORK_QUERY_CHECK();
+                    MusicKWInterface::parseFromSongProperty(&info, value["formats"].toString());
+                    TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultInfoItem item;
                     item.m_songName = info.m_songName;

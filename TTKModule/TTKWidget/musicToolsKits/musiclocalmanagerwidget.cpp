@@ -18,22 +18,22 @@
 
 namespace TTK
 {
-    inline QString generateSongArtist(const QString &v)
+    inline static QString generateSongArtist(const QString &v)
     {
         return v.isEmpty() ? QObject::tr("Various Artist") : v;
     }
 
-    inline QString generateSongAlbum(const QString &v)
+    inline static QString generateSongAlbum(const QString &v)
     {
         return v.isEmpty() ? QObject::tr("Various Album") : v;
     }
 
-    inline QString generateSongYear(const QString &v)
+    inline static QString generateSongYear(const QString &v)
     {
         return v.isEmpty() ? QObject::tr("Various Year") : v;
     }
 
-    inline QString generateSongGenre(const QString &v)
+    inline static QString generateSongGenre(const QString &v)
     {
         return v.isEmpty() ? QObject::tr("Various Genre") : v;
     }
@@ -318,7 +318,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     m_loadingLabel->setStyleSheet(TTK::UI::BackgroundStyle01);
     m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words"));
 
-    QTimer::singleShot(TTK_DN_ONCE, this, SLOT(refreshItems()));
+    TTK_SIGNLE_SHOT(refreshItems);
     connect(refresh, SIGNAL(clicked()), SLOT(refreshItems()));
     connect(button, SIGNAL(clicked()), SLOT(updateMediaLibraryPath()));
     connect(m_songWidget, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));

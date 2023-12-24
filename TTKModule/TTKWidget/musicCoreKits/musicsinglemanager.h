@@ -41,11 +41,14 @@
         return w;                                                  \
     }(widget)
 
+// marco generate single widget
 #ifndef Q_CC_MSVC
 #  define TTKGenerateSingleWidget(...) TTK_PP_OVERLOAD(__SingleWidget__, __VA_ARGS__)(__VA_ARGS__)
 #else
 #  define TTKGenerateSingleWidget(...) TTK_PP_CAT(TTK_PP_OVERLOAD(__SingleWidget__, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
 #endif
+
+#define TTKRemoveSingleWidget(name) G_SINGLE_MANAGER_PTR->removeObject(name);
 
 
 /*! @brief The class of the single object manager.

@@ -79,7 +79,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
 MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()
 {
     G_CONNECTION_PTR->removeValue(this);
-    G_SINGLE_MANAGER_PTR->removeObject(className());
+    TTKRemoveSingleWidget(className());
     delete m_dlnaFinder;
     delete m_ui;
 }

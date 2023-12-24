@@ -48,6 +48,10 @@ public:
      */
     virtual void startToSearch(const QString &value) override final;
     /*!
+     * Start to download query result data.
+     */
+    virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate) override final;
+    /*!
      * Query playlist info.
      */
     virtual void queryPlaylistInfo(MusicResultDataItem &item) override final;

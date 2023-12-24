@@ -76,7 +76,7 @@ void MusicSongsListPlayedWidget::setParameter(const QString &name)
 
 void MusicSongsListPlayedWidget::removeItemAt()
 {
-    QTimer::singleShot(TTK_DN_ONCE, m_parent, SLOT(removeItemAt()));
+    TTK_SIGNLE_SHOT(m_parent, removeItemAt);
 }
 
 void MusicSongsListPlayedWidget::enterEvent(QtEnterEvent *event)

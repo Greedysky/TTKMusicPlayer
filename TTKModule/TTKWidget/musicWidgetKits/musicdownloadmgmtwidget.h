@@ -44,7 +44,7 @@ public:
     ~MusicDownloadResetWidget();
 
     /*!
-     * Set current name to search and download musics.
+     * Set current name to search and download data.
      */
     void setSongName(const QString &name);
 
@@ -91,7 +91,7 @@ public:
     explicit MusicDownloadMgmtWidget(QObject *parent = nullptr);
 
     /*!
-     * Set current name to search and download musics.
+     * Set current name to search and download data.
      */
     void setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type);
 

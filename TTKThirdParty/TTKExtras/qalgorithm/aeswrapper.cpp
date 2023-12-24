@@ -4,9 +4,7 @@
 
 static constexpr int DATA_CACHE_SIZE = 1024;
 
-namespace QAlgorithm
-{
-QByteArray Aes::encryptECB(const QByteArray &in, const QByteArray &key)
+QByteArray QAlgorithm::Aes::encryptECB(const QByteArray &in, const QByteArray &key)
 {
     AES_KEY aes;
     char encryptString[DATA_CACHE_SIZE] = {0};
@@ -33,7 +31,7 @@ QByteArray Aes::encryptECB(const QByteArray &in, const QByteArray &key)
     return QByteArray(str.data(), str.length());
 }
 
-QByteArray Aes::decryptECB(const QByteArray &in, const QByteArray &key)
+QByteArray QAlgorithm::Aes::decryptECB(const QByteArray &in, const QByteArray &key)
 {
     AES_KEY aes;
     char decryptString[DATA_CACHE_SIZE] = {0};
@@ -48,7 +46,7 @@ QByteArray Aes::decryptECB(const QByteArray &in, const QByteArray &key)
     return QByteArray(QString(decryptString).remove("\x0F").toUtf8());
 }
 
-QByteArray Aes::encryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
+QByteArray QAlgorithm::Aes::encryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
 {
     AES_KEY aes;
     char encryptString[DATA_CACHE_SIZE] = {0};
@@ -75,7 +73,7 @@ QByteArray Aes::encryptCBC(const QByteArray &in, const QByteArray &key, const QB
     return QByteArray(str.data(), str.length());
 }
 
-QByteArray Aes::decryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
+QByteArray QAlgorithm::Aes::decryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
 {
     AES_KEY aes;
     char decryptString[DATA_CACHE_SIZE] = {0};
@@ -88,5 +86,4 @@ QByteArray Aes::decryptCBC(const QByteArray &in, const QByteArray &key, const QB
     AES_cbc_encrypt((const unsigned char *)str.data(), (unsigned char *)decryptString, str.length(), &aes, (unsigned char *)iv.data(), AES_DECRYPT);
 
     return QByteArray(QString(decryptString).remove("\x0F").toUtf8());
-}
 }

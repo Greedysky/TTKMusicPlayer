@@ -29,14 +29,13 @@ void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *qu
 
 void MusicWebMVRadioInfoTableWidget::downloadQueryResult(int row)
 {
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    if(row < 0 || row >= songInfos.count())
+    if(!isValid(row))
     {
         return;
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(songInfos[row], MusicAbstractQueryRequest::QueryType::Movie);
+    download->setSongName(m_networkRequest, row);
     download->show();
 }
 
@@ -49,7 +48,7 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
         case 6:
         {
             const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-            if(row < 0 || row >= songInfos.count())
+            if(!isValid(row) || row >= songInfos.count())
             {
                 return;
             }
@@ -71,7 +70,7 @@ void MusicWebMVRadioInfoTableWidget::actionChanged(QAction *action)
 {
     const int row = currentRow();
     const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    if(row < 0 || row >= songInfos.count())
+    if(!isValid(row) || row >= songInfos.count())
     {
         return;
     }
@@ -93,7 +92,7 @@ void MusicWebMVRadioInfoTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     const int row = currentRow();
     const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
-    if(row < 0 || row >= songInfos.count())
+    if(!isValid(row) || row >= songInfos.count())
     {
         return;
     }
@@ -184,7 +183,7 @@ void MusicWebMVRadioInfoWidget::createMVRadioProgramItem(const MusicResultDataIt
 
 void MusicWebMVRadioInfoWidget::downloadMVsButtonClicked()
 {
-    m_queryTableWidget->downloadBatchData(false);
+    m_queryTableWidget->downloadBatchData();
 }
 
 void MusicWebMVRadioInfoWidget::createLabels()

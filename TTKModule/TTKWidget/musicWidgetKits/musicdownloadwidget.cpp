@@ -128,12 +128,11 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
+    m_networkRequest = nullptr;
     m_queryType = MusicAbstractQueryRequest::QueryType::Music;
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
 
     connect(m_ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startRequest()));
-    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
 
     TTK::Widget::adjustWidgetPosition(this);
 }
@@ -167,12 +166,38 @@ void MusicDownloadWidget::controlEnabled(bool enabled)
     m_ui->settingButton->setEnabled(enabled);
 }
 
+void MusicDownloadWidget::setSongName(MusicAbstractQueryRequest *request, int row)
+{
+    const TTK::MusicSongInformationList songInfos(request->songInfoList());
+    if(row >= songInfos.count())
+    {
+        return;
+    }
+
+    m_querySingleInfo = true;
+    m_songInfo = songInfos[row];
+    m_queryType = request->queryType();
+    m_networkRequest = request;
+
+    initialize();
+    m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(m_songInfo.m_singerName, m_songInfo.m_songName), Qt::ElideRight, 200));
+
+    TTK_SIGNLE_SHOT(downLoadRequestFinished);
+}
+
 void MusicDownloadWidget::setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type)
 {
     m_queryType = type;
 
+    if(!m_networkRequest)
+    {
+        m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
+        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadNormalFinished()));
+    }
+
     initialize();
     m_ui->downloadName->setText(TTK::Widget::elidedText(font(), name, Qt::ElideRight, 200));
+
     m_networkRequest->startToSearch(type, name);
 }
 
@@ -185,10 +210,19 @@ void MusicDownloadWidget::setSongName(const TTK::MusicSongInformation &info, Mus
     initialize();
     m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName, info.m_songName), Qt::ElideRight, 200));
 
-    addCellItems(info.m_songProps);
+    if(!m_songInfo.m_songProps.isEmpty())
+    {
+        std::sort(m_songInfo.m_songProps.begin(), m_songInfo.m_songProps.end()); //to find out the min bitrate
+        addCellItems(m_songInfo.m_songProps);
+    }
+    else
+    {
+        close();
+        MusicToastLabel::popup(tr("No resource found"));
+    }
 }
 
-void MusicDownloadWidget::downLoadFinished()
+void MusicDownloadWidget::downLoadNormalFinished()
 {
     if(!G_NETWORK_PTR->isOnline())
     {
@@ -197,9 +231,27 @@ void MusicDownloadWidget::downLoadFinished()
 
     m_ui->viewArea->removeItems();
     const TTK::MusicSongInformation info(matchMusicSongInformation());
+
     if(!info.m_songName.isEmpty() || !info.m_singerName.isEmpty())
     {
         addCellItems(info.m_songProps);
+    }
+    else
+    {
+        close();
+        MusicToastLabel::popup(tr("No resource found"));
+    }
+}
+
+void MusicDownloadWidget::downLoadRequestFinished()
+{
+    m_networkRequest->startToQueryResult(&m_songInfo, TTK_BN_0);
+    m_networkRequest = nullptr;
+
+    if(!m_songInfo.m_songProps.isEmpty())
+    {
+        std::sort(m_songInfo.m_songProps.begin(), m_songInfo.m_songProps.end()); //to find out the min bitrate
+        addCellItems(m_songInfo.m_songProps);
     }
     else
     {
@@ -227,6 +279,7 @@ TTK::MusicSongInformation MusicDownloadWidget::matchMusicSongInformation()
             }
         }
 
+        m_networkRequest->startToQueryResult(&info, TTK_BN_0);
         std::sort(info.m_songProps.begin(), info.m_songProps.end()); //to find out the min bitrate
         return info;
     }
@@ -235,10 +288,7 @@ TTK::MusicSongInformation MusicDownloadWidget::matchMusicSongInformation()
 
 void MusicDownloadWidget::addCellItems(const TTK::MusicSongPropertyList &props)
 {
-    TTK::MusicSongPropertyList propertys = props;
-    std::sort(propertys.begin(), propertys.end()); //to find out the min bitrate
-
-    for(const TTK::MusicSongProperty &prop : qAsConst(propertys))
+    for(const TTK::MusicSongProperty &prop : qAsConst(props))
     {
         if((prop.m_bitrate == TTK_BN_128 && m_queryType == MusicAbstractQueryRequest::QueryType::Music) ||
            (prop.m_bitrate <= TTK_BN_250 && m_queryType == MusicAbstractQueryRequest::QueryType::Movie))       ///sd

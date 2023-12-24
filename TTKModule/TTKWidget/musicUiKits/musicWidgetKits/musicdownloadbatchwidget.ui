@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>564</width>
+    <width>589</width>
     <height>398</height>
    </rect>
   </property>
@@ -21,7 +21,7 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>556</width>
+     <width>581</width>
      <height>390</height>
     </rect>
    </property>
@@ -51,7 +51,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>538</x>
+     <x>563</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -66,7 +66,7 @@
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>556</width>
+     <width>581</width>
      <height>365</height>
     </rect>
    </property>
@@ -134,7 +134,7 @@ QLabel{background:transparent;}</string>
      <rect>
       <x>9</x>
       <y>35</y>
-      <width>540</width>
+      <width>565</width>
       <height>250</height>
      </rect>
     </property>
@@ -158,7 +158,7 @@ QLabel{background:transparent;}</string>
    <widget class="QComboBox" name="qualityBox">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>475</x>
       <y>7</y>
       <width>80</width>
       <height>25</height>

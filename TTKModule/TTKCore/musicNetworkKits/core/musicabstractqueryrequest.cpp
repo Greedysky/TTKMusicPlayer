@@ -3,6 +3,7 @@
 MusicAbstractQueryRequest::MusicAbstractQueryRequest(QObject *parent)
     : MusicPageQueryRequest(parent),
       m_queryServer("Invalid"),
+      m_queryType(QueryType::Music),
       m_queryMode(QueryMode::Normal)
 {
 
@@ -11,6 +12,20 @@ MusicAbstractQueryRequest::MusicAbstractQueryRequest(QObject *parent)
 void MusicAbstractQueryRequest::startToSingleSearch(const QString &id)
 {
     Q_UNUSED(id);
+}
+
+void MusicAbstractQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+{
+    for(TTK::MusicSongInformation &var : m_songInfos)
+    {
+        if(var.m_songId == info->m_songId)
+        {
+            var.m_songProps = info->m_songProps;
+            break;
+        }
+    }
+
+    Q_UNUSED(bitrate);
 }
 
 QString MusicAbstractQueryRequest::mapQueryServerString() const
@@ -50,7 +65,7 @@ bool MusicAbstractQueryRequest::findUrlFileSize(TTK::MusicSongProperty *prop, co
 
     if(prop->m_bitrate != -1 && !duration.isEmpty() && duration != TTK_DEFAULT_STR)
     {
-        prop->m_size = TTK::Number::sizeByteToLabel(TTKTime::formatDuration(duration) * prop->m_bitrate / 8.0);
+        prop->m_size = TTK::Number::sizeByteToLabel(duration, prop->m_bitrate);
     }
     else
     {

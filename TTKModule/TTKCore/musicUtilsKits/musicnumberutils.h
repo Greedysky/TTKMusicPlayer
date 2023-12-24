@@ -29,11 +29,15 @@ namespace TTK
     namespace Number
     {
         /*!
-         * Transform value to cp float value.
+         * Transform value to size label value.
          */
         TTK_MODULE_EXPORT QString sizeByteToLabel(qint64 size);
         /*!
-         * Transform value to speed float value.
+         * Transform value to size label value.
+         */
+        TTK_MODULE_EXPORT QString sizeByteToLabel(const QString &duration, int bitrate);
+        /*!
+         * Transform value to speed label value.
          */
         TTK_MODULE_EXPORT QString speedByteToLabel(qint64 size);
 

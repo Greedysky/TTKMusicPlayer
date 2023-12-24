@@ -2,6 +2,130 @@
 
 #include "qalgorithm/deswrapper.h"
 
+namespace MusicKWInterface
+{
+    /*!
+     * Read mv info property from query results.
+     */
+    static void parseFromMovieInfo(TTK::MusicSongInformation *info);
+    /*!
+     * Read mv tags(size\bitrate\url) from query results.
+     */
+    static void parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &format);
+    /*!
+     * Read mv tags(size\bitrate\url) from query results.
+     */
+    static void parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &format, int bitrate);
+
+}
+
+void MusicKWInterface::parseFromMovieInfo(TTK::MusicSongInformation *info)
+{
+    if(info->m_songId.isEmpty())
+    {
+        return;
+    }
+
+    info->m_songName = "Not Found";
+    info->m_singerName = "Anonymous";
+
+    QNetworkRequest request;
+    request.setUrl(TTK::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(info->m_songId));
+    MusicKWInterface::makeRequestRawHeader(&request);
+
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
+    {
+        return;
+    }
+
+    QJson::Parser json;
+    bool ok = false;
+    const QVariant &data = json.parse(bytes, &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value.contains("data"))
+        {
+            value = value["data"].toMap();
+            info->m_songName = value["name"].toString();
+            info->m_singerName = value["artist"].toString();
+            info->m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
+        }
+    }
+}
+
+void MusicKWInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &format)
+{
+    if(info->m_songId.isEmpty())
+    {
+        return;
+    }
+
+    for(const QString &v : format.split("|"))
+    {
+        if(v.contains("MP4L"))
+        {
+            parseFromMovieProperty(info, "MP4L", TTK_BN_250);
+        }
+        else if(v.contains("MP4HV"))
+        {
+            parseFromMovieProperty(info, "MP4HV", TTK_BN_750);
+        }
+        else if(v.contains("MP4UL"))
+        {
+            parseFromMovieProperty(info, "MP4UL", TTK_BN_1000);
+        }
+        else if(v.contains("MP4"))
+        {
+            parseFromMovieProperty(info, "MP4", TTK_BN_500);
+        }
+    }
+}
+
+void MusicKWInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &format, int bitrate)
+{
+    if(info->m_songId.isEmpty())
+    {
+        return;
+    }
+
+    QAlgorithm::Des des;
+    const QByteArray &parameter = des.encrypt(TTK::Algorithm::mdII(KW_MOVIE_ATTR_URL, false).arg(info->m_songId, format).toUtf8(),
+                                              TTK::Algorithm::mdII(_SIGN, ALG_SHR_KEY, false).toUtf8());
+    QNetworkRequest request;
+    request.setUrl(TTK::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter)));
+    MusicKWInterface::makeRequestRawHeader(&request);
+
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
+    {
+        return;
+    }
+
+    if(!bytes.isEmpty() && !bytes.contains("res not found"))
+    {
+        const QString text(bytes);
+        const QRegExp regx(".*url=(.*)\r\nsig=");
+
+        if(regx.indexIn(text) != -1)
+        {
+            TTK::MusicSongProperty prop;
+            prop.m_url = regx.cap(1);
+            prop.m_bitrate = bitrate;
+            prop.m_format = MP4_FILE_SUFFIX;
+
+            if(prop.isEmpty() || info->m_songProps.contains(prop))
+            {
+                return;
+            }
+
+            info->m_songProps.append(prop);
+        }
+    }
+}
+
+
 MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent)
 {
@@ -50,7 +174,7 @@ void MusicKWQueryMovieRequest::startToSingleSearch(const QString &id)
     deleteAll();
     m_queryValue = id.trimmed();
 
-    QTimer::singleShot(TTK_DN_MS, this, SLOT(downLoadSingleFinished()));
+    TTK_SIGNLE_SHOT(downLoadSingleFinished);
 }
 
 void MusicKWQueryMovieRequest::downLoadFinished()
@@ -86,7 +210,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
 
                     info.m_songId = value["MUSICRID"].toString().remove("MUSIC_");
                     TTK_NETWORK_QUERY_CHECK();
-                    parseFromMovieProperty(&info, value["FORMATS"].toString());
+                    MusicKWInterface::parseFromMovieProperty(&info, value["FORMATS"].toString());
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(info.m_songProps.isEmpty())
@@ -170,9 +294,9 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
     TTK::MusicSongInformation info;
     info.m_songId = m_queryValue;
     TTK_NETWORK_QUERY_CHECK();
-    parseFromMovieInfo(&info);
+    MusicKWInterface::parseFromMovieInfo(&info);
     TTK_NETWORK_QUERY_CHECK();
-    parseFromMovieProperty(&info, QString("MP4UL|MP4L|MP4HV|MP4"));
+    MusicKWInterface::parseFromMovieProperty(&info, QString("MP4UL|MP4L|MP4HV|MP4"));
     TTK_NETWORK_QUERY_CHECK();
 
     if(!findUrlFileSize(&info.m_songProps, info.m_duration))
@@ -193,110 +317,4 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
 
     Q_EMIT downLoadDataChanged({});
     deleteAll();
-}
-
-void MusicKWQueryMovieRequest::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &format) const
-{
-    if(info->m_songId.isEmpty())
-    {
-        return;
-    }
-
-    for(const QString &v : format.split("|"))
-    {
-        if(v.contains("MP4L"))
-        {
-            parseFromMovieProperty(info, "MP4L", TTK_BN_250);
-        }
-        else if(v.contains("MP4HV"))
-        {
-            parseFromMovieProperty(info, "MP4HV", TTK_BN_750);
-        }
-        else if(v.contains("MP4UL"))
-        {
-            parseFromMovieProperty(info, "MP4UL", TTK_BN_1000);
-        }
-        else if(v.contains("MP4"))
-        {
-            parseFromMovieProperty(info, "MP4", TTK_BN_500);
-        }
-    }
-}
-
-void MusicKWQueryMovieRequest::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &format, int bitrate) const
-{
-    if(info->m_songId.isEmpty())
-    {
-        return;
-    }
-
-    QAlgorithm::Des des;
-    const QByteArray &parameter = des.encrypt(TTK::Algorithm::mdII(KW_MOVIE_ATTR_URL, false).arg(info->m_songId, format).toUtf8(),
-                                              TTK::Algorithm::mdII(_SIGN, ALG_SHR_KEY, false).toUtf8());
-    QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter)));
-    MusicKWInterface::makeRequestRawHeader(&request);
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
-    if(bytes.isEmpty())
-    {
-        return;
-    }
-
-    if(!bytes.isEmpty() && !bytes.contains("res not found"))
-    {
-        const QString text(bytes);
-        const QRegExp regx(".*url=(.*)\r\nsig=");
-
-        if(regx.indexIn(text) != -1)
-        {
-            TTK::MusicSongProperty prop;
-            prop.m_url = regx.cap(1);
-            prop.m_bitrate = bitrate;
-            prop.m_format = "mp4";
-
-            if(prop.m_url.isEmpty() || info->m_songProps.contains(prop))
-            {
-                return;
-            }
-
-            info->m_songProps.append(prop);
-        }
-    }
-}
-
-void MusicKWQueryMovieRequest::parseFromMovieInfo(TTK::MusicSongInformation *info) const
-{
-    if(info->m_songId.isEmpty())
-    {
-        return;
-    }
-
-    info->m_songName = "Not Found";
-    info->m_singerName = "Anonymous";
-
-    QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(info->m_songId));
-    MusicKWInterface::makeRequestRawHeader(&request);
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
-    if(bytes.isEmpty())
-    {
-        return;
-    }
-
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
-    {
-        QVariantMap value = data.toMap();
-        if(value.contains("data"))
-        {
-            value = value["data"].toMap();
-            info->m_songName = value["name"].toString();
-            info->m_singerName = value["artist"].toString();
-            info->m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-        }
-    }
 }

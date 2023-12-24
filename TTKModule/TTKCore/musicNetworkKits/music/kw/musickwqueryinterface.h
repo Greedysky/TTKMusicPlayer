@@ -75,23 +75,11 @@ namespace MusicKWInterface
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(TTK::MusicSongInformation *info);
+    void parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &suffix, const QString &bitrate, QString &url);
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate);
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &format, bool all);
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantList &format, bool all);
+    void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &format);
 
 }
 
