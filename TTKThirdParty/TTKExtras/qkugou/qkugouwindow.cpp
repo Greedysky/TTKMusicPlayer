@@ -119,7 +119,7 @@ void QKugouWindow::goBack()
 {
     TTK_D(QKugouWindow);
 #ifdef Q_OS_WIN
-    TTK_SIGNLE_SHOT(TTKObjectCast(QAxWidget*, d->m_webView), GoBack);
+    TTK_SIGNLE_SHOT(TTKObjectCast(QAxWidget*, d->m_webView), GoBack, TTK_SLOT);
 #else
 #  ifdef TTK_WEBKIT
     QWebView *w = TTKObjectCast(QWebView*, d->m_webView);
@@ -143,7 +143,7 @@ void QKugouWindow::refresh()
 {
     TTK_D(QKugouWindow);
 #ifdef Q_OS_WIN
-    TTK_SIGNLE_SHOT(TTKObjectCast(QAxWidget*, d->m_webView), Refresh);
+    TTK_SIGNLE_SHOT(TTKObjectCast(QAxWidget*, d->m_webView), Refresh, TTK_SLOT);
 #else
 #  ifdef TTK_WEBKIT
     QWebView *w = TTKObjectCast(QWebView*, d->m_webView);
@@ -262,7 +262,7 @@ void QKugouWindow::createKugouSongWidget()
     bt = new QPushButton(tr(" SongCategory "), d->m_topWidget);
     bt->setCursor(QCursor(Qt::PointingHandCursor));
     d->m_buttonGroup->addButton(bt, 3);
-    QtButtonGroupConnect(d->m_buttonGroup, this, kugouSongIndexChanged);
+    QtButtonGroupConnect(d->m_buttonGroup, this, kugouSongIndexChanged, TTK_SLOT);
 
     topLayout->addStretch(1);
     topLayout->addWidget(d->m_buttonGroup->button(0));
@@ -314,7 +314,7 @@ void QKugouWindow::createKugouRadioWidget()
     bt = new QPushButton(tr(" RadioHigh "), d->m_topWidget);
     bt->setCursor(QCursor(Qt::PointingHandCursor));
     d->m_buttonGroup->addButton(bt, 1);
-    QtButtonGroupConnect(d->m_buttonGroup, this, kugouRadioIndexChanged);
+    QtButtonGroupConnect(d->m_buttonGroup, this, kugouRadioIndexChanged, TTK_SLOT);
 
     topLayout->addStretch(1);
     topLayout->addWidget(d->m_buttonGroup->button(0));
@@ -391,7 +391,7 @@ void QKugouWindow::createKugouMovieWidget()
     bt = new QPushButton(tr(" MVRecommend "), d->m_topWidget);
     bt->setCursor(QCursor(Qt::PointingHandCursor));
     d->m_buttonGroup->addButton(bt, 1);
-    QtButtonGroupConnect(d->m_buttonGroup, this, kugouMVIndexChanged);
+    QtButtonGroupConnect(d->m_buttonGroup, this, kugouMVIndexChanged, TTK_SLOT);
 
     topLayout->addStretch(1);
     topLayout->addWidget(d->m_buttonGroup->button(0));

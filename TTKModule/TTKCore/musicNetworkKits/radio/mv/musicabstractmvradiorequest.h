@@ -38,9 +38,9 @@ public:
     explicit MusicAbstractMVRadioRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to search data by type and input data.
+     * Start to search data by input data.
      */
-    virtual void startToSearch(QueryType type, const QString &value) override final;
+    virtual void startToSearch(const QString &value) override final;
 
 Q_SIGNALS:
     /*!

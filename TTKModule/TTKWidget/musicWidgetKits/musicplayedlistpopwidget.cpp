@@ -279,7 +279,7 @@ void MusicPlayedListPopWidget::itemDoubleClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
-    TTK_SIGNLE_SHOT(itemDoubleClicked);
+    TTK_SIGNLE_SHOT(itemDoubleClicked, TTK_SLOT);
 }
 
 void MusicPlayedListPopWidget::initialize()

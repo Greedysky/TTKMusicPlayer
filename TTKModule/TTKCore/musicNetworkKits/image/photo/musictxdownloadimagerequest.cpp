@@ -42,7 +42,7 @@ void MusicTXDownloadBackgroundRequest::startRequest()
 
     m_reply = m_manager.post(request, TTK::Algorithm::mdII(TX_SEARCH_DATA_URL, false).arg(m_name).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicTXDownloadBackgroundRequest::downLoadFinished()
@@ -139,5 +139,5 @@ void MusicTXDownloadBackgroundRequest::downLoadUrl(const QString &id)
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadUrlFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }

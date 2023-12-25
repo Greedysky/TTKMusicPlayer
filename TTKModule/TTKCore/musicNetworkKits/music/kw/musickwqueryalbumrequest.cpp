@@ -19,22 +19,22 @@ void MusicKWQueryAlbumRequest::startToSearch(const QString &value)
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKWQueryAlbumRequest::startToSingleSearch(const QString &id)
+void MusicKWQueryAlbumRequest::startToSingleSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), id));
+    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_ARTIST_ALBUM_URL, false).arg(id));
+    request.setUrl(TTK::Algorithm::mdII(KW_ARTIST_ALBUM_URL, false).arg(value));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);
     connect(reply, SIGNAL(finished()), SLOT(downLoadSingleFinished()));
-    QtNetworkErrorConnect(reply, this, replyError);
+    QtNetworkErrorConnect(reply, this, replyError, TTK_SLOT);
 }
 
 void MusicKWQueryAlbumRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)

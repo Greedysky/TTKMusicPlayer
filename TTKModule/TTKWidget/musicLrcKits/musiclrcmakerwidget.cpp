@@ -103,7 +103,7 @@ void MusicLrcMakerWidgetItem::moveRight()
     {
         m_painetLineDone = true;
         m_paintIndex = w;
-        TTK_SIGNLE_SHOT(m_parent, currentLineFinished);
+        TTK_SIGNLE_SHOT(m_parent, currentLineFinished, TTK_SLOT);
     }
     update();
 }

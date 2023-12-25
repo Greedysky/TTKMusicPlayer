@@ -50,7 +50,8 @@ void MusicItemQueryTableWidget::startSearchQuery(const QString &text)
         return;
     }
 
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, text);
+    m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
+    m_networkRequest->startToSearch(text);
 }
 
 void MusicItemQueryTableWidget::downloadQueryResult(int row)

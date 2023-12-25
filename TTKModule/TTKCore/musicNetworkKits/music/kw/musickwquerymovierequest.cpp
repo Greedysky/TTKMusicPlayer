@@ -135,7 +135,7 @@ MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
 
 void MusicKWQueryMovieRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -147,15 +147,14 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadPageFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &value)
+void MusicKWQueryMovieRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
-    m_queryType = type;
     m_queryValue = value.trimmed();
 
     QNetworkRequest request;
@@ -164,17 +163,17 @@ void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &valu
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKWQueryMovieRequest::startToSingleSearch(const QString &id)
+void MusicKWQueryMovieRequest::startToSingleSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), id));
+    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
 
     deleteAll();
-    m_queryValue = id.trimmed();
+    m_queryValue = value.trimmed();
 
-    TTK_SIGNLE_SHOT(downLoadSingleFinished);
+    TTK_SIGNLE_SHOT(downLoadSingleFinished, TTK_SLOT);
 }
 
 void MusicKWQueryMovieRequest::downLoadFinished()
@@ -296,16 +295,16 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
     TTK_NETWORK_QUERY_CHECK();
     MusicKWInterface::parseFromMovieInfo(&info);
     TTK_NETWORK_QUERY_CHECK();
-    MusicKWInterface::parseFromMovieProperty(&info, QString("MP4UL|MP4L|MP4HV|MP4"));
+    MusicKWInterface::parseFromMovieProperty(&info, "MP4UL|MP4L|MP4HV|MP4");
     TTK_NETWORK_QUERY_CHECK();
-
-    if(!findUrlFileSize(&info.m_songProps, info.m_duration))
-    {
-        return;
-    }
 
     if(!info.m_songProps.isEmpty())
     {
+        if(!findUrlFileSize(&info.m_songProps, info.m_duration))
+        {
+            return;
+        }
+
         MusicResultInfoItem item;
         item.m_songName = info.m_songName;
         item.m_singerName = info.m_singerName;

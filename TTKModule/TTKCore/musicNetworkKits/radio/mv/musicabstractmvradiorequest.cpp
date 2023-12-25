@@ -7,10 +7,8 @@ MusicAbstractMVRadioRequest::MusicAbstractMVRadioRequest(QObject *parent)
     m_queryValue = "1";
 }
 
-void MusicAbstractMVRadioRequest::startToSearch(QueryType type, const QString &value)
+void MusicAbstractMVRadioRequest::startToSearch(const QString &value)
 {
-    Q_UNUSED(type);
-
     deleteAll();
     m_queryValue = value.isEmpty() ? "1" : value;
 
@@ -20,5 +18,5 @@ void MusicAbstractMVRadioRequest::startToSearch(QueryType type, const QString &v
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }

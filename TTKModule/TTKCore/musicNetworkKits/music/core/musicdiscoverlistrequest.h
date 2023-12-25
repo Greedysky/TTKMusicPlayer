@@ -21,7 +21,7 @@
 
 #include "musicpagequeryrequest.h"
 
-/*! @brief The class of the download discover toplist request.
+/*! @brief The class of the download discover list request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicDiscoverListRequest : public MusicPageQueryRequest
@@ -41,12 +41,12 @@ public:
     virtual void startToSearch() = 0;
 
     /*!
-     * Get top list info.
+     * Get discover list info.
      */
-    inline const QString &toplistInfo() const { return m_toplistInfo; }
+    inline const QString &discoverInfo() const { return m_discoverInfo; }
 
 protected:
-    QString m_toplistInfo;
+    QString m_discoverInfo;
 
 };
 

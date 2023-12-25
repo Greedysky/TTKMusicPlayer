@@ -56,7 +56,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
     buttonWidgetLayout->addStretch(1);
 
     QButtonGroup *buttonGroup = new QButtonGroup(buttonWidget);
-    QtButtonGroupConnect(buttonGroup, this, buttonClicked);
+    QtButtonGroupConnect(buttonGroup, this, buttonClicked, TTK_SLOT);
 
     for(int i = 0; i < 5; ++i)
     {

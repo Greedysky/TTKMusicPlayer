@@ -1,5 +1,4 @@
 #include "musicartistlistquerywidget.h"
-#include "musicqueryplaylistrequest.h"
 #include "musicdownloadqueryfactory.h"
 #include "musictinyuiobject.h"
 #include "musicartistlistquerycategorypopwidget.h"
@@ -64,7 +63,7 @@ MusicArtistListQueryWidget::~MusicArtistListQueryWidget()
 void MusicArtistListQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, {});
+    m_networkRequest->startToSearch({});
 }
 
 void MusicArtistListQueryWidget::setSongNameByID(const QString &id)
@@ -188,7 +187,7 @@ void MusicArtistListQueryWidget::categoryChanged(const MusicResultsCategoryItem 
     if(m_categoryButton)
     {
         m_categoryId = category.m_key;
-        m_songNameFull.clear();
+        m_value.clear();
 
         m_categoryButton->setText(category.m_value);
         m_categoryButton->closeMenu();
@@ -222,5 +221,5 @@ void MusicArtistListQueryWidget::numberButtonClicked(int index)
     m_categoryChanged = true;
 
     const QString &v = QString("%1%2%3").arg(m_categoryId, TTK_SPLITER).arg(index);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Other, v);
+    m_networkRequest->startToSearch(v);
 }

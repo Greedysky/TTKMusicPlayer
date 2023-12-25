@@ -52,22 +52,22 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     buttonGroup0->addButton(m_ui->timerToPlay, 0);
     buttonGroup0->addButton(m_ui->timerToStop, 1);
     buttonGroup0->addButton(m_ui->timerToShutdown, 2);
-    QtButtonGroupConnect(buttonGroup0, this, changeWidgetIndex);
+    QtButtonGroupConnect(buttonGroup0, this, changeWidgetIndex, TTK_SLOT);
 
     QButtonGroup *buttonGroup1 = new QButtonGroup(this);
     buttonGroup1->addButton(m_ui->noSetRadioButton1, 0);
     buttonGroup1->addButton(m_ui->setRadioButton1, 1);
-    QtButtonGroupConnect(buttonGroup1, this, buttonClicked);
+    QtButtonGroupConnect(buttonGroup1, this, buttonClicked, TTK_SLOT);
 
     QButtonGroup *buttonGroup2 = new QButtonGroup(this);
     buttonGroup2->addButton(m_ui->noSetRadioButton2, 2);
     buttonGroup2->addButton(m_ui->setRadioButton2, 3);
-    QtButtonGroupConnect(buttonGroup2, this, buttonClicked);
+    QtButtonGroupConnect(buttonGroup2, this, buttonClicked, TTK_SLOT);
 
     QButtonGroup *buttonGroup3 = new QButtonGroup(this);
     buttonGroup3->addButton(m_ui->noSetRadioButton3, 4);
     buttonGroup3->addButton(m_ui->setRadioButton3, 5);
-    QtButtonGroupConnect(buttonGroup3, this, buttonClicked);
+    QtButtonGroupConnect(buttonGroup3, this, buttonClicked, TTK_SLOT);
 
     changeWidgetIndex(0);
 }

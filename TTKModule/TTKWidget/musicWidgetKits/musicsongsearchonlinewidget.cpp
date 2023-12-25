@@ -64,7 +64,8 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     MusicItemSearchTableWidget::startSearchQuery(text);
 
     m_loadingLabel->run(true);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, text);
+    m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
+    m_networkRequest->startToSearch(text);
 }
 
 void MusicSongSearchTableWidget::downloadQueryResult(int row)
@@ -439,7 +440,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     buttonGroup->addButton(m_playButton, 0);
     buttonGroup->addButton(addButton, 1);
     buttonGroup->addButton(downloadButton, 2);
-    QtButtonGroupConnect(buttonGroup, this, buttonClicked);
+    QtButtonGroupConnect(buttonGroup, this, buttonClicked, TTK_SLOT);
     funcWidget->setLayout(funcLayout);
     wLayout->addWidget(funcWidget);
 

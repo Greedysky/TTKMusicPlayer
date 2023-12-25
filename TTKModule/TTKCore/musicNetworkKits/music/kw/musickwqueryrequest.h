@@ -40,13 +40,13 @@ public:
      */
     virtual void startToPage(int offset) override final;
     /*!
-     * Start to search data by type and input data.
+     * Start to search data by input data.
      */
-    virtual void startToSearch(QueryType type, const QString &value) override final;
+    virtual void startToSearch(const QString &value) override final;
     /*!
-     * Start to search data by given id.
+     * Start to search data by given value.
      */
-    virtual void startToSingleSearch(const QString &id) override final;
+    virtual void startToSingleSearch(const QString &value) override final;
     /*!
      * Start to download query result data.
      */

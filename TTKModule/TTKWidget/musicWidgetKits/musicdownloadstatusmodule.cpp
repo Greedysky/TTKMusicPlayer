@@ -36,7 +36,8 @@ void MusicDownloadStatusModule::checkMetaDataValid(bool mode)
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     d->setHeader("mode", mode);
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-    d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, m_parent->currentFileName());
+    d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
+    d->startToSearch(m_parent->currentFileName());
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(currentMetaDataDownload()));
 }
 

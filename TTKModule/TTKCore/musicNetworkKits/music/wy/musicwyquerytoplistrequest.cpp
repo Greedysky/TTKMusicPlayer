@@ -6,32 +6,21 @@ MusicWYQueryToplistRequest::MusicWYQueryToplistRequest(QObject *parent)
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicWYQueryToplistRequest::startToSearch(QueryType type, const QString &value)
-{
-    if(type == QueryType::Music)
-    {
-        startToSearch(value);
-    }
-    else
-    {
-        startToSearch(value.isEmpty() ? "19723756" : value);
-    }
-}
-
 void MusicWYQueryToplistRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
+    m_queryValue = value.isEmpty() ? "19723756" : value;
 
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_TOPLIST_URL, false),
-                      TTK::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(value));
+                      TTK::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(m_queryValue));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicWYQueryToplistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)

@@ -12,7 +12,7 @@ void MusicKWDiscoverListRequest::startToSearch()
     TTK_INFO_STREAM(QString("%1 startToSearch").arg(className()));
 
     deleteAll();
-    m_toplistInfo.clear();
+    m_discoverInfo.clear();
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_TOPLIST_URL, false).arg(16));
@@ -20,7 +20,7 @@ void MusicKWDiscoverListRequest::startToSearch()
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicKWDiscoverListRequest::downLoadFinished()
@@ -53,13 +53,13 @@ void MusicKWDiscoverListRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    m_toplistInfo = QString("%1 - %2").arg(value["artist"].toString(), value["name"].toString());
+                    m_discoverInfo = QString("%1 - %2").arg(value["artist"].toString(), value["name"].toString());
                     break;
                 }
             }
         }
     }
 
-    Q_EMIT downLoadDataChanged(m_toplistInfo);
+    Q_EMIT downLoadDataChanged(m_discoverInfo);
     deleteAll();
 }

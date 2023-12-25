@@ -248,14 +248,6 @@ private:
      * Create init interface lables.
      */
     void createLabels();
-    /*!
-     * Init the third widget.
-     */
-    void initThirdWidget();
-    /*!
-     * Init the fourth widget.
-     */
-    void initFourthWidget();
 
     MusicArtistAlbumsQueryWidget *m_artistAlbums;
     MusicArtistMvsQueryWidget *m_artistMvs;

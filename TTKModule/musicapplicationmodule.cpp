@@ -194,7 +194,7 @@ void MusicApplicationModule::windowCloseAnimation()
         m_quitAnimation->setStartValue(w->geometry());
         m_quitAnimation->setEndValue(QRect(w->x(), w->geometry().center().y(), w->width(), 0));
         m_quitAnimation->start();
-        TTK_SIGNLE_SHOT(m_quitAnimation->duration(), this, windowCloseAnimationFinished);
+        TTK_SIGNLE_SHOT(m_quitAnimation->duration(), this, windowCloseAnimationFinished, TTK_SLOT);
     }
     else
     {
@@ -208,7 +208,7 @@ void MusicApplicationModule::windowCloseAnimation()
         m_quitAnimation->start();
     }
 
-    TTK_SIGNLE_SHOT(TTK_DN_S2MS, this, quit);
+    TTK_SIGNLE_SHOT(TTK_DN_S2MS, this, quit, TTK_SLOT);
 }
 
 void MusicApplicationModule::soureUpdateCheck()

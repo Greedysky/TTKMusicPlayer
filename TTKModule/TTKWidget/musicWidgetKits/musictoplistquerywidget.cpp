@@ -47,7 +47,7 @@ void MusicToplistQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
     MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
-    d->startToSearch(MusicAbstractQueryRequest::QueryType::Other, {});
+    d->startToSearch({});
     createLabels();
 }
 
@@ -162,7 +162,7 @@ void MusicToplistQueryWidget::createLabels()
     functionWidget->setLayout(hlayout);
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_songButton, 0);
-    QtButtonGroupConnect(buttonGroup, m_container, setCurrentIndex);
+    QtButtonGroupConnect(buttonGroup, m_container, setCurrentIndex, TTK_SLOT);
 
 #ifdef Q_OS_UNIX
     m_songButton->setFocusPolicy(Qt::NoFocus);
@@ -222,6 +222,6 @@ void MusicToplistQueryWidget::categoryChanged(const MusicResultsCategoryItem &ca
 
         m_songButton->setText(tr("SongItems"));
         MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
-        d->startToSearch(MusicAbstractQueryRequest::QueryType::Other, category.m_key);
+        d->startToSearch(category.m_key);
     }
 }

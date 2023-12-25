@@ -73,11 +73,6 @@ public Q_SLOTS:
     void queryAllFinished();
 
 private:
-    /*!
-     * Init the third widget.
-     */
-    void initThirdWidget();
-
     MusicPlaylistQueryCommentsWidget *m_commentsWidget;
 
 };

@@ -120,7 +120,7 @@ void MusicArtistMvsQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
     MusicQueryMovieRequest *d = TTKObjectCast(MusicQueryMovieRequest*, m_networkRequest);
-    d->startToSearch(m_songNameFull);
+    d->MusicQueryMovieRequest::startToSearch(name);
 }
 
 void MusicArtistMvsQueryWidget::setSongNameByID(const QString &id)
@@ -214,13 +214,12 @@ MusicArtistAlbumsQueryWidget::~MusicArtistAlbumsQueryWidget()
 void MusicArtistAlbumsQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    m_networkRequest->startToSingleSearch(m_songNameFull);
+    m_networkRequest->startToSingleSearch(name);
 }
 
 void MusicArtistAlbumsQueryWidget::setSongNameByID(const QString &id)
 {
-    MusicAbstractItemQueryWidget::setSongName(id);
-    m_networkRequest->startToSingleSearch(m_songNameFull);
+    setSongName(id);
 }
 
 void MusicArtistAlbumsQueryWidget::resizeWidget()
@@ -305,7 +304,8 @@ void MusicArtistQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
     m_networkRequest->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, TTK::String::artistName(name));
+    m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
+    m_networkRequest->startToSearch(TTK::String::artistName(name));
 }
 
 void MusicArtistQueryWidget::setSongNameByID(const QString &id)
@@ -362,7 +362,7 @@ void MusicArtistQueryWidget::queryAllFinished()
         bool hasItem = false;
         for(const TTK::MusicSongInformation &info : qAsConst(songInfos))
         {
-            if(m_songNameFull.contains(info.m_songName))
+            if(m_value.contains(info.m_songName))
             {
                 hasItem = true;
                 setSongNameByID(info.m_artistId);
@@ -465,11 +465,15 @@ void MusicArtistQueryWidget::setCurrentIndex(int index)
     }
     else if(index == 2)
     {
-        initThirdWidget();
+        m_artistAlbums = new MusicArtistAlbumsQueryWidget(m_container);
+        m_container->addWidget(m_artistAlbums);
+        m_artistAlbums->setSongName(m_value);
     }
     else if(index == 3)
     {
-        initFourthWidget();
+        m_artistMvs = new MusicArtistMvsQueryWidget(m_container);
+        m_container->addWidget(m_artistMvs);
+        m_artistMvs->setSongName(m_value);
     }
 
     m_container->setCurrentIndex(index > 2 ? 2 : index);
@@ -615,7 +619,7 @@ void MusicArtistQueryWidget::createLabels()
     buttonGroup->addButton(infoButton, 1);
     buttonGroup->addButton(albumsButton, 2);
     buttonGroup->addButton(mvsButton, 3);
-    QtButtonGroupConnect(buttonGroup, this, setCurrentIndex);
+    QtButtonGroupConnect(buttonGroup, this, setCurrentIndex, TTK_SLOT);
 
 #ifdef Q_OS_UNIX
     playAllButton->setFocusPolicy(Qt::NoFocus);
@@ -638,18 +642,4 @@ void MusicArtistQueryWidget::createLabels()
     m_resizeWidgets.push_back({nickNameLabel, nickNameLabel->font()});
     m_resizeWidgets.push_back({countryLabel, countryLabel->font()});
     m_resizeWidgets.push_back({birthLabel, birthLabel->font()});
-}
-
-void MusicArtistQueryWidget::initThirdWidget()
-{
-    m_artistAlbums = new MusicArtistAlbumsQueryWidget(m_container);
-    m_container->addWidget(m_artistAlbums);
-    m_artistAlbums->setSongName(m_songNameFull);
-}
-
-void MusicArtistQueryWidget::initFourthWidget()
-{
-    m_artistMvs = new MusicArtistMvsQueryWidget(m_container);
-    m_container->addWidget(m_artistMvs);
-    m_artistMvs->setSongName(m_songNameFull);
 }

@@ -221,7 +221,7 @@ void MusicEnhancedPopWidget::initialize()
     buttonGroup->addButton(button2, 2);
     buttonGroup->addButton(button3, 3);
     buttonGroup->addButton(button4, 4);
-    QtButtonGroupConnect(buttonGroup, this, setEnhancedMusicConfig);
+    QtButtonGroupConnect(buttonGroup, this, setEnhancedMusicConfig, TTK_SLOT);
     m_buttons << button1 << button2 << button3 << button4;
 
     m_lastSelectedIndex = G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt();

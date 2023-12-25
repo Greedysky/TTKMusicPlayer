@@ -21,7 +21,7 @@ void MusicWYSongCommentsRequest::startToPage(int offset)
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicWYSongCommentsRequest::startToSearch(const QString &value)
@@ -32,7 +32,8 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &value)
     MusicWYQueryRequest *d = new MusicWYQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-    d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, value);
+    d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
+    d->startToSearch(value);
     loop.exec();
 
     m_rawData["sid"] = 0;
@@ -118,7 +119,7 @@ void MusicWYPlaylistCommentsRequest::startToPage(int offset)
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicWYPlaylistCommentsRequest::downLoadFinished()

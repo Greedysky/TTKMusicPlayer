@@ -18,7 +18,7 @@ void MusicDJRadioProgramRequest::startRequest(TTK::Program type)
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicDJRadioProgramRequest::downLoadFinished()

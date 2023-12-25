@@ -22,7 +22,7 @@ void MusicKWDownloadBackgroundRequest::startRequest()
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicKWDownloadBackgroundRequest::downLoadFinished()

@@ -40,9 +40,9 @@ public:
      */
     virtual void startToSearch(const QString &value) override final;
     /*!
-     * Start to search data by given id.
+     * Start to search data by given value.
      */
-    virtual void startToSingleSearch(const QString &id) override final;
+    virtual void startToSingleSearch(const QString &value) override final;
     /*!
      * Start to download query result data.
      */

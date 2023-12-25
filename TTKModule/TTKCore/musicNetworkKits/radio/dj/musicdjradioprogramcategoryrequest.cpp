@@ -10,7 +10,7 @@ MusicDJRadioProgramCategoryRequest::MusicDJRadioProgramCategoryRequest(QObject *
 
 void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -22,32 +22,7 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
-}
-
-void MusicDJRadioProgramCategoryRequest::startToSearch(QueryType type, const QString &value)
-{
-    if(type == QueryType::Music)
-    {
-        startToSearch(value);
-    }
-    else
-    {
-        m_queryValue = value;
-        startToPage(0);
-    }
-}
-
-void MusicDJRadioProgramCategoryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
-{
-    MusicPageQueryRequest::downLoadFinished();
-    TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
-
-    TTK_NETWORK_QUERY_CHECK();
-    MusicWYInterface::parseFromSongProperty(info, bitrate);
-    TTK_NETWORK_QUERY_CHECK();
-
-    MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
@@ -63,40 +38,27 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
 
     QNetworkReply *reply = m_manager.post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(downloadDetailsFinished()));
-    QtNetworkErrorConnect(reply, this, replyError);
+    QtNetworkErrorConnect(reply, this, replyError, TTK_SLOT);
 }
 
-void MusicDJRadioProgramCategoryRequest::queryProgramInfo(MusicResultDataItem &item)
+void MusicDJRadioProgramCategoryRequest::startToSingleSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 queryProgramInfo %2").arg(className(), item.m_id));
+    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
 
-    QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(DJ_PROGRAM_INFO_URL, false),
-                      TTK::Algorithm::mdII(DJ_PROGRAM_INFO_DATA_URL, false).arg(item.m_id));
+    m_queryValue = value;
+    startToPage(0);
+}
 
-    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
-    if(bytes.isEmpty())
-    {
-        return;
-    }
+void MusicDJRadioProgramCategoryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
+{
+    MusicPageQueryRequest::downLoadFinished();
+    TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
 
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
-    {
-        QVariantMap value = data.toMap();
-        if(value["code"].toInt() == 200 && value.contains("djRadio"))
-        {
-            value = value["djRadio"].toMap();
-            item.m_coverUrl = value["picUrl"].toString();
-            item.m_name = value["name"].toString();
+    TTK_NETWORK_QUERY_CHECK();
+    MusicWYInterface::parseFromSongProperty(info, bitrate);
+    TTK_NETWORK_QUERY_CHECK();
 
-            value = value["dj"].toMap();
-            item.m_nickName = value["nickname"].toString();
-        }
-    }
+    MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
 }
 
 void MusicDJRadioProgramCategoryRequest::downLoadFinished()
@@ -215,3 +177,36 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
 
     Q_EMIT downLoadDataChanged({});
 }
+
+//void MusicDJRadioProgramCategoryRequest::queryProgramInfo(MusicResultDataItem &item)
+//{
+//    TTK_INFO_STREAM(QString("%1 queryProgramInfo %2").arg(className(), item.m_id));
+
+//    QNetworkRequest request;
+//    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+//                      TTK::Algorithm::mdII(DJ_PROGRAM_INFO_URL, false),
+//                      TTK::Algorithm::mdII(DJ_PROGRAM_INFO_DATA_URL, false).arg(item.m_id));
+
+//    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
+//    if(bytes.isEmpty())
+//    {
+//        return;
+//    }
+
+//    QJson::Parser json;
+//    bool ok = false;
+//    const QVariant &data = json.parse(bytes, &ok);
+//    if(ok)
+//    {
+//        QVariantMap value = data.toMap();
+//        if(value["code"].toInt() == 200 && value.contains("djRadio"))
+//        {
+//            value = value["djRadio"].toMap();
+//            item.m_coverUrl = value["picUrl"].toString();
+//            item.m_name = value["name"].toString();
+
+//            value = value["dj"].toMap();
+//            item.m_nickName = value["nickname"].toString();
+//        }
+//    }
+//}

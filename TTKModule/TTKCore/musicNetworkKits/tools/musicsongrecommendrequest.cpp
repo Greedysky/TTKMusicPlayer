@@ -65,16 +65,9 @@ MusicSongRecommendRequest::MusicSongRecommendRequest(QObject *parent)
 
 }
 
-void MusicSongRecommendRequest::startToSearch(QueryType type, const QString &value)
+void MusicSongRecommendRequest::startToSearch(const QString &value)
 {
-    Q_UNUSED(type);
-    Q_UNUSED(value);
-    startToSearch();
-}
-
-void MusicSongRecommendRequest::startToSearch()
-{
-    TTK_INFO_STREAM(QString("%1 startToSearch").arg(className()));
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
 
@@ -85,7 +78,7 @@ void MusicSongRecommendRequest::startToSearch()
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicSongRecommendRequest::downLoadFinished()

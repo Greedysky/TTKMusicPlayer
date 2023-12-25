@@ -40,22 +40,17 @@ public:
      */
     virtual void startToPage(int offset) override final;
     /*!
-     * Start to search data by type and input data.
+     * Start to search data by input data.
      */
-    virtual void startToSearch(QueryType type, const QString &value) override final;
+    virtual void startToSearch(const QString &value) override final;
+    /*!
+     * Start to search data by given value.
+     */
+    virtual void startToSingleSearch(const QString &value) override final;
     /*!
      * Start to download query result data.
      */
     virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate) override final;
-
-    /*!
-     * Start to search data by input data.
-     */
-    void startToSearch(const QString &value);
-    /*!
-     * Query category info.
-     */
-    void queryProgramInfo(MusicResultDataItem &item);
 
 Q_SIGNALS:
     /*!
@@ -76,6 +71,12 @@ public Q_SLOTS:
      * Download details data from net finished.
      */
     void downloadDetailsFinished();
+
+private:
+    /*!
+     * Query category info.
+     */
+//    void queryProgramInfo(MusicResultDataItem &item);
 
 };
 

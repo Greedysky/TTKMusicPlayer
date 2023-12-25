@@ -34,7 +34,7 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     buttonGroup->addButton(createPushButton(1), 8);
     buttonGroup->addButton(createPushButton(2), 1);
     buttonGroup->addButton(createPushButton(3), 7);
-    QtButtonGroupConnect(buttonGroup, parent, changeCurrentLrcColor);
+    QtButtonGroupConnect(buttonGroup, parent, changeCurrentLrcColor, TTK_SLOT);
 
     QPushButton *sizeBigerButton = new QPushButton(this);
     QPushButton *sizeSmallerButton = new QPushButton(this);
@@ -144,5 +144,5 @@ void MusicLrcFloatSettingWidget::show()
 void MusicLrcFloatSettingWidget::leaveEvent(QEvent *)
 {
     animationLeave();
-    TTK_SIGNLE_SHOT(m_animation->duration(), this, widgetClose, nullptr);
+    TTK_SIGNLE_SHOT(m_animation->duration(), this, widgetClose, TTK_SIGNAL);
 }

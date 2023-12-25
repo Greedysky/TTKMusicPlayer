@@ -42,7 +42,7 @@ MusicAbstractItemQueryWidget::~MusicAbstractItemQueryWidget()
 
 void MusicAbstractItemQueryWidget::setSongName(const QString &name)
 {
-    m_songNameFull = name;
+    m_value = name;
 }
 
 void MusicAbstractItemQueryWidget::initialize()

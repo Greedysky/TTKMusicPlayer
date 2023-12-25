@@ -264,7 +264,7 @@ MusicColorDialog::MusicColorDialog(QWidget *parent)
     buttonGroup->addButton(m_ui->topTitleCloseButton, 0);
     buttonGroup->addButton(m_ui->confirmButton, 1);
     buttonGroup->addButton(m_ui->cancelButton, 2);
-    QtButtonGroupConnect(buttonGroup, this, buttonClicked);
+    QtButtonGroupConnect(buttonGroup, this, buttonClicked, TTK_SLOT);
 }
 
 MusicColorDialog::~MusicColorDialog()

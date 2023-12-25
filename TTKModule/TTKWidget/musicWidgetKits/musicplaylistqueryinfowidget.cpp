@@ -203,7 +203,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     buttonGroup->addButton(m_songButton, 0);
     buttonGroup->addButton(infoButton, 1);
     buttonGroup->addButton(commentsButton, 2);
-    QtButtonGroupConnect(buttonGroup, this, setCurrentIndex);
+    QtButtonGroupConnect(buttonGroup, this, setCurrentIndex, TTK_SLOT);
 
     grid->addWidget(functionWidget);
 #ifdef Q_OS_UNIX
@@ -249,17 +249,20 @@ void MusicPlaylistQueryInfoWidget::setCurrentIndex(int index)
     delete m_commentsWidget;
     m_commentsWidget = nullptr;
 
-    if(index == 0)
+    if(index == 0 && m_queryTableWidget)
     {
         m_queryTableWidget->show();
     }
-    else if(index == 1)
+    else if(index == 1 && m_infoLabel)
     {
         m_infoLabel->show();
     }
     else if(index == 2)
     {
-        initThirdWidget();
+        m_commentsWidget = new MusicPlaylistQueryCommentsWidget(this);
+        m_commentsWidget->initialize(false);
+        m_container->addWidget(m_commentsWidget);
+        m_commentsWidget->setCurrentSongName(m_value);
     }
 
     m_container->setCurrentIndex(index);
@@ -268,12 +271,4 @@ void MusicPlaylistQueryInfoWidget::setCurrentIndex(int index)
 void MusicPlaylistQueryInfoWidget::queryAllFinished()
 {
     setSongCountText();
-}
-
-void MusicPlaylistQueryInfoWidget::initThirdWidget()
-{
-    m_commentsWidget = new MusicPlaylistQueryCommentsWidget(this);
-    m_commentsWidget->initialize(false);
-    m_container->addWidget(m_commentsWidget);
-    m_commentsWidget->setCurrentSongName(m_songNameFull);
 }

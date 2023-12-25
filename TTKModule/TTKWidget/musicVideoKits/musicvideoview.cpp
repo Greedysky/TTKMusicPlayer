@@ -209,5 +209,5 @@ void MusicVideoView::pushBarrageChanged(bool on)
 
 void MusicVideoView::fullscreenButtonTrigger()
 {
-    TTK_SIGNLE_SHOT(TTK_DN_ONCE, this, fullscreenButtonClicked, nullptr);
+    TTK_SIGNLE_SHOT(fullscreenButtonClicked, TTK_SIGNAL);
 }

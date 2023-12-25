@@ -60,7 +60,7 @@ MusicWYQueryMovieRequest::MusicWYQueryMovieRequest(QObject *parent)
 
 void MusicWYQueryMovieRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -73,15 +73,14 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadPageFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &value)
+void MusicWYQueryMovieRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
-    m_queryType = type;
     m_queryValue = value.trimmed();
 
     QNetworkRequest request;
@@ -91,17 +90,17 @@ void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &valu
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicWYQueryMovieRequest::startToSingleSearch(const QString &id)
+void MusicWYQueryMovieRequest::startToSingleSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), id));
+    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
 
     deleteAll();
-    m_queryValue = id.trimmed();
+    m_queryValue = value.trimmed();
 
-    TTK_SIGNLE_SHOT(downLoadSingleFinished);
+    TTK_SIGNLE_SHOT(downLoadSingleFinished, TTK_SLOT);
 }
 
 void MusicWYQueryMovieRequest::downLoadFinished()
@@ -136,14 +135,14 @@ void MusicWYQueryMovieRequest::downLoadFinished()
                     const int type = value["type"].toInt();
                     if(type == 0)
                     {
-                        const qint64 mvid = value["vid"].toLongLong();
-                        if(mvid == 0)
+                        const qint64 vid = value["vid"].toLongLong();
+                        if(vid == 0)
                         {
                             continue;
                         }
 
                         TTK_NETWORK_QUERY_CHECK();
-                        parseFromMovieList(mvid);
+                        parseFromMovieList(vid);
                         TTK_NETWORK_QUERY_CHECK();
                     }
                     else if(type == 1)
@@ -213,11 +212,11 @@ void MusicWYQueryMovieRequest::downLoadSingleFinished()
 
     MusicQueryMovieRequest::downLoadFinished();
 
-    const qint64 mvid = m_queryValue.toLongLong();
-    if(mvid != 0)
+    const qint64 vid = m_queryValue.toLongLong();
+    if(vid != 0)
     {
         TTK_NETWORK_QUERY_CHECK();
-        parseFromMovieList(mvid);
+        parseFromMovieList(vid);
         TTK_NETWORK_QUERY_CHECK();
     }
 

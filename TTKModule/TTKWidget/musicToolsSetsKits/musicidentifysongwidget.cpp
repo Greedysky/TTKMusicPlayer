@@ -283,7 +283,8 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     TTKSemaphoreLoop loop;
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, textLabel->text().trimmed());
+    d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
+    d->startToSearch(textLabel->text().trimmed());
     loop.exec();
 
     if(!d->isEmpty())

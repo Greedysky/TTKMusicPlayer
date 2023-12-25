@@ -35,7 +35,7 @@ void QSyncListData::listDataOperator(const QString &bucket)
 
     QNetworkReply *reply = d->m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
-    QtNetworkErrorConnect(reply, this, replyError);
+    QtNetworkErrorConnect(reply, this, replyError, TTK_SLOT);
 }
 
 void QSyncListData::receiveDataFromServer()

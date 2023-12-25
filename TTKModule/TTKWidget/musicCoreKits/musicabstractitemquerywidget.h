@@ -105,7 +105,7 @@ protected:
      */
     void setSongCountText();
 
-    QString m_songNameFull;
+    QString m_value;
     QWidget *m_mainWindow;
     QPushButton *m_songButton;
     QLabel *m_iconLabel, *m_statusLabel, *m_infoLabel;

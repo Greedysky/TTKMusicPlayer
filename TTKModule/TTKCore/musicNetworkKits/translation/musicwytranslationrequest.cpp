@@ -19,7 +19,8 @@ void MusicWYTranslationRequest::startRequest(const QString &data)
     MusicWYQueryRequest *d = new MusicWYQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-    d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, QFileInfo(m_rawData["name"].toString()).baseName());
+    d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
+    d->startToSearch(QFileInfo(m_rawData["name"].toString()).baseName());
     loop.exec();
 
     QUrl url;
@@ -35,7 +36,7 @@ void MusicWYTranslationRequest::startRequest(const QString &data)
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicWYTranslationRequest::downLoadFinished()

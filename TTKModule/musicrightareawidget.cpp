@@ -92,7 +92,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication *ui)
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(ui->musicSearchButton, MusicRightAreaWidget::SearchWidget);
     buttonGroup->addButton(ui->musicWindowIdentify, MusicRightAreaWidget::IndentifyWidget);
-    QtButtonGroupConnect(buttonGroup, this, functionClicked);
+    QtButtonGroupConnect(buttonGroup, this, functionClicked, TTK_SLOT);
     //
     connect(ui->functionOptionWidget, SIGNAL(buttonClicked(int)), SLOT(functionClicked(int)));
     connect(m_lrcForInterior, SIGNAL(showCurrentLrcColorSetting()), m_settingWidget, SLOT(changeInteriorLrcWidget()));
@@ -230,25 +230,25 @@ void MusicRightAreaWidget::showSettingWidget() const
 void MusicRightAreaWidget::artistSearchBy(const QString &id)
 {
     m_rawData = id;
-    TTK_SIGNLE_SHOT(showArtistSearchFound);
+    TTK_SIGNLE_SHOT(showArtistSearchFound, TTK_SLOT);
 }
 
 void MusicRightAreaWidget::albumSearchBy(const QString &id)
 {
     m_rawData = id;
-    TTK_SIGNLE_SHOT(showAlbumSearchFound);
+    TTK_SIGNLE_SHOT(showAlbumSearchFound, TTK_SLOT);
 }
 
 void MusicRightAreaWidget::movieSearchBy(const QString &id)
 {
     m_rawData = id;
-    TTK_SIGNLE_SHOT(showMovieSearchFound);
+    TTK_SIGNLE_SHOT(showMovieSearchFound, TTK_SLOT);
 }
 
 void MusicRightAreaWidget::movieRadioSearchBy(const QVariant &data)
 {
     m_rawData = data;
-    TTK_SIGNLE_SHOT(showMovieSearchRadioFound);
+    TTK_SIGNLE_SHOT(showMovieSearchRadioFound, TTK_SLOT);
 }
 
 void MusicRightAreaWidget::resizeWindow()
@@ -707,7 +707,7 @@ void MusicRightAreaWidget::videoSetPopup(bool popup)
         MusicPlatformManager manager;
         manager.windowsEnableLeftMode();
 #endif
-        TTK_SIGNLE_SHOT(videoActiveWindow);
+        TTK_SIGNLE_SHOT(videoActiveWindow, TTK_SLOT);
     }
     else
     {

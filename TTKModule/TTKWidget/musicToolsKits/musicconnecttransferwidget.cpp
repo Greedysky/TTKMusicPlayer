@@ -50,7 +50,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     m_ui->searchLineLabel->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    TTK_SIGNLE_SHOT(initialize);
+    TTK_SIGNLE_SHOT(initialize, TTK_SLOT);
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(className(), MusicSongsSummariziedWidget::className());
@@ -80,7 +80,7 @@ void MusicConnectTransferWidget::initialize()
 
     m_ui->playListLayoutWidget->setStyleSheet(TTK::UI::BackgroundStyle01);
     QButtonGroup *buttonGroup = new QButtonGroup(this);
-    QtButtonGroupConnect(buttonGroup, this, currentPlaylistSelected);
+    QtButtonGroupConnect(buttonGroup, this, currentPlaylistSelected, TTK_SLOT);
 
     for(int i = 0; i < songs.count(); ++i)
     {

@@ -147,7 +147,7 @@ MusicKGQueryMovieRequest::MusicKGQueryMovieRequest(QObject *parent)
 
 void MusicKGQueryMovieRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -159,15 +159,14 @@ void MusicKGQueryMovieRequest::startToPage(int offset)
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadPageFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKGQueryMovieRequest::startToSearch(QueryType type, const QString &value)
+void MusicKGQueryMovieRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     deleteAll();
-    m_queryType = type;
     m_queryValue = value.trimmed();
 
     QNetworkRequest request;
@@ -176,17 +175,17 @@ void MusicKGQueryMovieRequest::startToSearch(QueryType type, const QString &valu
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKGQueryMovieRequest::startToSingleSearch(const QString &id)
+void MusicKGQueryMovieRequest::startToSingleSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), id));
+    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
 
     deleteAll();
-    m_queryValue = id.trimmed();
+    m_queryValue = value.trimmed();
 
-    TTK_SIGNLE_SHOT(downLoadSingleFinished);
+    TTK_SIGNLE_SHOT(downLoadSingleFinished, TTK_SLOT);
 }
 
 void MusicKGQueryMovieRequest::downLoadFinished()

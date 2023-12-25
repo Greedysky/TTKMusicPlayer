@@ -182,7 +182,7 @@ void MusicDownloadWidget::setSongName(MusicAbstractQueryRequest *request, int ro
     initialize();
     m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(m_songInfo.m_singerName, m_songInfo.m_songName), Qt::ElideRight, 200));
 
-    TTK_SIGNLE_SHOT(downLoadRequestFinished);
+    TTK_SIGNLE_SHOT(downLoadRequestFinished, TTK_SLOT);
 }
 
 void MusicDownloadWidget::setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type)
@@ -198,7 +198,8 @@ void MusicDownloadWidget::setSongName(const QString &name, MusicAbstractQueryReq
     initialize();
     m_ui->downloadName->setText(TTK::Widget::elidedText(font(), name, Qt::ElideRight, 200));
 
-    m_networkRequest->startToSearch(type, name);
+    m_networkRequest->setQueryType(type);
+    m_networkRequest->startToSearch(name);
 }
 
 void MusicDownloadWidget::setSongName(const TTK::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)

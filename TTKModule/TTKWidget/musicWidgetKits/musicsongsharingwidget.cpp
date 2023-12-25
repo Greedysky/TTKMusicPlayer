@@ -96,7 +96,8 @@ void MusicSongSharingWidget::confirmButtonClicked()
             MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-            d->startToSearch(MusicAbstractQueryRequest::QueryType::Music, m_ui->sharedName->text().trimmed());
+            d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
+            d->startToSearch(m_ui->sharedName->text().trimmed());
             loop.exec();
 
             if(!d->isEmpty())
@@ -117,7 +118,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
                 }
                 else
                 {
-                    TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout);
+                    TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout, TTK_SLOT);
                     break;
                 }
 
@@ -125,7 +126,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             }
             else
             {
-                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout);
+                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout, TTK_SLOT);
             }
             break;
         }
@@ -146,7 +147,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             }
             else
             {
-                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout);
+                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout, TTK_SLOT);
                 break;
             }
 
@@ -170,7 +171,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             }
             else
             {
-                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout);
+                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout, TTK_SLOT);
                 break;
             }
 
@@ -194,7 +195,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             }
             else
             {
-                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout);
+                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout, TTK_SLOT);
                 break;
             }
 
@@ -218,7 +219,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
             }
             else
             {
-                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout);
+                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout, TTK_SLOT);
                 break;
             }
 
@@ -263,7 +264,7 @@ void MusicSongSharingWidget::downLoadFinished(const QString &playUrl, const QStr
     url.replace('#', "%23");
 
     TTK::Url::openUrl(url, false);
-    TTK_SIGNLE_SHOT(TTK_DN_S2MS, this, close);
+    TTK_SIGNLE_SHOT(TTK_DN_S2MS, this, close, TTK_SLOT);
 }
 
 void MusicSongSharingWidget::textAreaChanged()

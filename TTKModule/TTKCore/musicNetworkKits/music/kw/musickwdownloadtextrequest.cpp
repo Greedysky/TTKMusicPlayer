@@ -22,7 +22,7 @@ void MusicKWDownLoadTextRequest::startRequest()
             m_reply = m_manager.get(request);
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
             connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
-            QtNetworkErrorConnect(m_reply, this, replyError);
+            QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
         }
         else
         {

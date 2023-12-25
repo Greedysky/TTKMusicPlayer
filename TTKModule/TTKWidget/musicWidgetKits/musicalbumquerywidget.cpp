@@ -42,7 +42,8 @@ void MusicAlbumQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
     m_networkRequest->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Music, TTK::String::artistName(name));
+    m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
+    m_networkRequest->startToSearch(TTK::String::artistName(name));
 }
 
 void MusicAlbumQueryWidget::setSongNameByID(const QString &id)
@@ -91,7 +92,7 @@ void MusicAlbumQueryWidget::queryAllFinished()
         bool hasItem = false;
         for(const TTK::MusicSongInformation &info : qAsConst(songInfos))
         {
-            if(m_songNameFull.contains(info.m_songName))
+            if(m_value.contains(info.m_songName))
             {
                 hasItem = true;
                 setSongNameByID(info.m_albumId);
@@ -306,7 +307,7 @@ void MusicAlbumQueryWidget::createLabels()
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_songButton, 0);
-    QtButtonGroupConnect(buttonGroup, m_container, setCurrentIndex);
+    QtButtonGroupConnect(buttonGroup, m_container, setCurrentIndex, TTK_SLOT);
 
 #ifdef Q_OS_UNIX
     playAllButton->setFocusPolicy(Qt::NoFocus);

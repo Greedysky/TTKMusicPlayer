@@ -60,6 +60,10 @@ QString TTK::Number::sizeByteToLabel(qint64 size)
 
 QString TTK::Number::sizeByteToLabel(const QString &duration, int bitrate)
 {
+    if(duration.isEmpty() || duration == TTK_DEFAULT_STR)
+    {
+        return "0.0B";
+    }
     return TTK::Number::sizeByteToLabel(TTKTime::formatDuration(duration) * bitrate / 8.0);
 }
 

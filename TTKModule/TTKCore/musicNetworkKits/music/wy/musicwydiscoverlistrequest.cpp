@@ -12,6 +12,7 @@ void MusicWYDiscoverListRequest::startToSearch()
     TTK_INFO_STREAM(QString("%1 startToSearch").arg(className()));
 
     deleteAll();
+    m_discoverInfo.clear();
 
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
@@ -20,7 +21,7 @@ void MusicWYDiscoverListRequest::startToSearch()
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicWYDiscoverListRequest::downLoadFinished()
@@ -64,16 +65,16 @@ void MusicWYDiscoverListRequest::downLoadFinished()
                         }
 
                         const QVariantMap &artistObject = artistValue.toMap();
-                        m_toplistInfo = artistObject["name"].toString();
+                        m_discoverInfo = artistObject["name"].toString();
                     }
 
-                    m_toplistInfo += " - " + value["name"].toString();
+                    m_discoverInfo += " - " + value["name"].toString();
                     break;
                 }
             }
         }
     }
 
-    Q_EMIT downLoadDataChanged(m_toplistInfo);
+    Q_EMIT downLoadDataChanged(m_discoverInfo);
     deleteAll();
 }

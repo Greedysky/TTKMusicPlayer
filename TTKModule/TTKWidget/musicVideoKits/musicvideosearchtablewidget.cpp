@@ -37,7 +37,9 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
     //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
-    m_networkRequest->startToSearch(MusicAbstractQueryRequest::QueryType::Movie, text);
+
+    m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Movie);
+    m_networkRequest->startToSearch(text);
 }
 
 void MusicVideoSearchTableWidget::downloadQueryResult(int row)

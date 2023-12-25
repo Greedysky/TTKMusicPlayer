@@ -318,7 +318,7 @@ MusicLocalManagerWidget::MusicLocalManagerWidget(QWidget *parent)
     m_loadingLabel->setStyleSheet(TTK::UI::BackgroundStyle01);
     m_searchEdit->editor()->setPlaceholderText(tr("Please input search song words"));
 
-    TTK_SIGNLE_SHOT(refreshItems);
+    TTK_SIGNLE_SHOT(refreshItems, TTK_SLOT);
     connect(refresh, SIGNAL(clicked()), SLOT(refreshItems()));
     connect(button, SIGNAL(clicked()), SLOT(updateMediaLibraryPath()));
     connect(m_songWidget, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));

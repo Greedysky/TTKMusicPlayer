@@ -164,12 +164,12 @@ void MusicConsoleModule::positionChanged(qint64 position)
 void MusicConsoleModule::currentIndexChanged(int index)
 {
     TTK_LOG_STREAM("Current Play Indedx: " << index);
-    TTK_SIGNLE_SHOT(TTK_DN_S2MS, this, resetVolume);
+    TTK_SIGNLE_SHOT(TTK_DN_S2MS, this, resetVolume, TTK_SLOT);
 
     if(index == TTK_NORMAL_LEVEL)
     {
         m_player->stop();
-        TTK_SIGNLE_SHOT(TTK_DN_S2MS, qApp, quit);
+        TTK_SIGNLE_SHOT(TTK_DN_S2MS, qApp, quit, TTK_SLOT);
         TTK_LOG_STREAM("Music play end and application quit now");
     }
 }

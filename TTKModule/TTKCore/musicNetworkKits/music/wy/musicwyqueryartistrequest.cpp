@@ -20,7 +20,7 @@ void MusicWYQueryArtistRequest::startToSearch(const QString &value)
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicWYQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)

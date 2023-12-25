@@ -56,7 +56,7 @@ void QSyncDownloadData::downloadDataOperator(const QString &time, const QString 
 
     QNetworkReply *reply = d->m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
-    QtNetworkErrorConnect(reply, this, replyError);
+    QtNetworkErrorConnect(reply, this, replyError, TTK_SLOT);
 
     if(parent()->metaObject()->indexOfSlot("downloadProgress(QString,qint64,qint64)") != -1)
     {

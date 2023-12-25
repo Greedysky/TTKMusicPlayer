@@ -21,20 +21,7 @@ void MusicWYQueryPlaylistRequest::startToPage(int offset)
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
-}
-
-void MusicWYQueryPlaylistRequest::startToSearch(QueryType type, const QString &value)
-{
-    if(type == QueryType::Music)
-    {
-        startToSearch(value);
-    }
-    else
-    {
-        m_queryValue = value.isEmpty() ? "all" : value;
-        startToPage(0);
-    }
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicWYQueryPlaylistRequest::startToSearch(const QString &value)
@@ -50,7 +37,15 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &value)
 
     QNetworkReply *reply = m_manager.post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(downloadDetailsFinished()));
-    QtNetworkErrorConnect(reply, this, replyError);
+    QtNetworkErrorConnect(reply, this, replyError, TTK_SLOT);
+}
+
+void MusicWYQueryPlaylistRequest::startToSingleSearch(const QString &value)
+{
+    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
+
+    m_queryValue = value.isEmpty() ? "all" : value;
+    startToPage(0);
 }
 
 void MusicWYQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)

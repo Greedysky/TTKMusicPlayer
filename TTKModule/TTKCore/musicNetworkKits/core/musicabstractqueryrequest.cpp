@@ -9,9 +9,9 @@ MusicAbstractQueryRequest::MusicAbstractQueryRequest(QObject *parent)
 
 }
 
-void MusicAbstractQueryRequest::startToSingleSearch(const QString &id)
+void MusicAbstractQueryRequest::startToSingleSearch(const QString &value)
 {
-    Q_UNUSED(id);
+    Q_UNUSED(value);
 }
 
 void MusicAbstractQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)

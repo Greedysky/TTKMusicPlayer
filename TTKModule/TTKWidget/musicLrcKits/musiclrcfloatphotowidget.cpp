@@ -210,7 +210,7 @@ void MusicLrcFloatPhotoWidget::show()
 void MusicLrcFloatPhotoWidget::close()
 {
     animationEnter();
-    TTK_SIGNLE_SHOT(m_animation->duration(), this, parentClose);
+    TTK_SIGNLE_SHOT(m_animation->duration(), this, parentClose, TTK_SLOT);
 }
 
 void MusicLrcFloatPhotoWidget::manageButtonClicked()

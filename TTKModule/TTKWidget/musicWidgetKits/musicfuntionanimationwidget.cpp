@@ -84,7 +84,7 @@ MusicAbstractAnimationWidget::MusicAbstractAnimationWidget(QWidget *parent)
     setLayout(layout);
 
     m_buttonGroup = new QButtonGroup(this);
-    QtButtonGroupConnect(m_buttonGroup, this, switchToSelectedItemStyle);
+    QtButtonGroupConnect(m_buttonGroup, this, switchToSelectedItemStyle, TTK_SLOT);
 }
 
 MusicAbstractAnimationWidget::~MusicAbstractAnimationWidget()

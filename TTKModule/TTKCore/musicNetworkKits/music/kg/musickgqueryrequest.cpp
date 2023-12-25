@@ -21,33 +21,32 @@ void MusicKGQueryRequest::startToPage(int offset)
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError);
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKGQueryRequest::startToSearch(QueryType type, const QString &value)
+void MusicKGQueryRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
-    m_queryType = type;
     m_queryValue = value.trimmed();
     MusicAbstractQueryRequest::downLoadFinished();
 
     startToPage(0);
 }
 
-void MusicKGQueryRequest::startToSingleSearch(const QString &id)
+void MusicKGQueryRequest::startToSingleSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), id));
+    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(id));
+    request.setUrl(TTK::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(value));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);
     connect(reply, SIGNAL(finished()), SLOT(downLoadSingleFinished()));
-    QtNetworkErrorConnect(reply, this, replyError);
+    QtNetworkErrorConnect(reply, this, replyError, TTK_SLOT);
 }
 
 void MusicKGQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)

@@ -835,17 +835,17 @@ void MusicSettingWidget::initDownloadWidget()
     QButtonGroup *buttonGroup1 = new QButtonGroup(this);
     buttonGroup1->addButton(m_ui->downloadCacheAutoRadioBox, 0);
     buttonGroup1->addButton(m_ui->downloadCacheManRadioBox, 1);
-    QtButtonGroupConnect(buttonGroup1, this, downloadGroupCached);
+    QtButtonGroupConnect(buttonGroup1, this, downloadGroupCached, TTK_SLOT);
 
     QButtonGroup *buttonGroup2 = new QButtonGroup(this);
     buttonGroup2->addButton(m_ui->downloadFullRadioBox, 0);
     buttonGroup2->addButton(m_ui->downloadLimitRadioBox, 1);
-    QtButtonGroupConnect(buttonGroup2, this, downloadGroupSpeedLimit);
+    QtButtonGroupConnect(buttonGroup2, this, downloadGroupSpeedLimit, TTK_SLOT);
 
     QButtonGroup *buttonGroup3 = new QButtonGroup(this);
     buttonGroup3->addButton(m_ui->downloadDirButton, 0);
     buttonGroup3->addButton(m_ui->downloadLrcDirButton, 1);
-    QtButtonGroupConnect(buttonGroup3, this, downloadDirSelected);
+    QtButtonGroupConnect(buttonGroup3, this, downloadDirSelected, TTK_SLOT);
 
     m_ui->downloadCacheAutoRadioBox->click();
     m_ui->downloadFullRadioBox->click();

@@ -156,7 +156,7 @@ void MusicVideoBarrageStylePopWidget::initialize()
     m_sizeGroup->addButton(smallButton, 0);
     m_sizeGroup->addButton(middleButton, 1);
     m_sizeGroup->addButton(bigButton, 2);
-    QtButtonGroupConnect(m_sizeGroup, this, barrageSizeButtonClicked);
+    QtButtonGroupConnect(m_sizeGroup, this, barrageSizeButtonClicked, TTK_SLOT);
 
     sizeLayout->addWidget(sizeLabel, 1, Qt::AlignCenter);
     sizeLayout->addWidget(smallButton);
@@ -214,7 +214,7 @@ void MusicVideoBarrageStylePopWidget::initialize()
     m_colorGroup->addButton(greenButton, 4);
     m_colorGroup->addButton(blueButton, 5);
     m_colorGroup->addButton(purpleButton, 6);
-    QtButtonGroupConnect(m_colorGroup, this, barrageColorButtonClicked);
+    QtButtonGroupConnect(m_colorGroup, this, barrageColorButtonClicked, TTK_SLOT);
 
     colorLayout->addWidget(colorLabel, 0, Qt::AlignCenter);
     colorLayout->addWidget(whiteButton);

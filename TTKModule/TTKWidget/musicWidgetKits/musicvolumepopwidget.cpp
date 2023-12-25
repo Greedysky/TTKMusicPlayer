@@ -54,7 +54,7 @@ int MusicVolumePopWidget::value() const
 void MusicVolumePopWidget::leaveEvent(QEvent *event)
 {
     MusicToolMenuWidget::leaveEvent(event);
-    TTK_SIGNLE_SHOT(TTK_DN_S2MS / 2, m_menu, close);
+    TTK_SIGNLE_SHOT(TTK_DN_S2MS / 2, m_menu, close, TTK_SLOT);
 }
 
 void MusicVolumePopWidget::enterEvent(QtEnterEvent *event)
@@ -64,7 +64,7 @@ void MusicVolumePopWidget::enterEvent(QtEnterEvent *event)
     {
         m_menuShown = true;
         popupMenu();
-        TTK_SIGNLE_SHOT(TTK_DN_S2MS / 2, this, timeToReset);
+        TTK_SIGNLE_SHOT(TTK_DN_S2MS / 2, this, timeToReset, TTK_SLOT);
     }
 }
 

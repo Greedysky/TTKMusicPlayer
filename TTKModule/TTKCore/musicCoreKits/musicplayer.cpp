@@ -258,7 +258,7 @@ void MusicPlayer::queryCurrentDuration()
     const qint64 d = duration();
     if((d == 0 || m_duration == d) && m_durationTimes++ < 10)
     {
-        TTK_SIGNLE_SHOT(queryCurrentDuration);
+        TTK_SIGNLE_SHOT(queryCurrentDuration, TTK_SLOT);
     }
     else
     {

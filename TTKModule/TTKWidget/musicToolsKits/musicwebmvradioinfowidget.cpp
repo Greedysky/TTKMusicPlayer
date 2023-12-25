@@ -259,7 +259,7 @@ void MusicWebMVRadioInfoWidget::createLabels()
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_songButton, 0);
-    QtButtonGroupConnect(buttonGroup, m_container, setCurrentIndex);
+    QtButtonGroupConnect(buttonGroup, m_container, setCurrentIndex, TTK_SLOT);
 
 #ifdef Q_OS_UNIX
     backButton->setFocusPolicy(Qt::NoFocus);
