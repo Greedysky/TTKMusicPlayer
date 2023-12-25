@@ -161,6 +161,9 @@ public: \
 #define TTK_DECLARE_LIST(Class)        using Class##List = QList<Class>
 #define TTK_DECLARE_FLAG(Flags, Enum)  using Flags = QFlags<Enum>
 
+#define TTK_SIGNAL SIGNAL
+#define TTK_SLOT SLOT
+
 #if TTK_QT_VERSION_CHECK(6,0,0)
 #  define qint qintptr
 #else
@@ -175,10 +178,9 @@ public: \
 #else
 #  define TTK_SIGNLE_SHOT(...) TTK_PP_CAT(TTK_PP_OVERLOAD(__TTK_SIGNLE_SHOT__, __VA_ARGS__)(__VA_ARGS__), TTK_PP_EMPTY())
 #endif
-#define __TTK_SIGNLE_SHOT__1(a)          QTimer::singleShot(TTK_DN_ONCE, this, SLOT(a()));
-#define __TTK_SIGNLE_SHOT__2(a, b)       QTimer::singleShot(TTK_DN_ONCE, a, SLOT(b()));
-#define __TTK_SIGNLE_SHOT__3(a, b, c)    QTimer::singleShot(a, b, SLOT(c()));
-#define __TTK_SIGNLE_SHOT__4(a, b, c, d) QTimer::singleShot(a, b, SIGNAL(c()));
+#define __TTK_SIGNLE_SHOT__2(a, s)       QTimer::singleShot(TTK_DN_ONCE, this, s(a()));
+#define __TTK_SIGNLE_SHOT__3(a, b, s)    QTimer::singleShot(TTK_DN_ONCE, a, s(b()));
+#define __TTK_SIGNLE_SHOT__4(a, b, c, s) QTimer::singleShot(a, b, s(c()));
 
 
 // Qt style format

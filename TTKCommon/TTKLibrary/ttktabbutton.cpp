@@ -15,7 +15,7 @@ TTKTabButton::TTKTabButton(QWidget *parent)
     setLayout(layout);
 
     m_buttonGroup = new QButtonGroup(this);
-    QtButtonGroupConnect(m_buttonGroup, this, buttonClicked);
+    QtButtonGroupConnect(m_buttonGroup, this, buttonClicked, TTK_SLOT);
 }
 
 TTKTabButton::~TTKTabButton()

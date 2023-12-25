@@ -56,58 +56,58 @@ namespace QtCompat
 
 /// Network error connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtNetworkErrorConnect(p, q, f) QObject::connect(p, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), q, SLOT(f(QNetworkReply::NetworkError)))
+#  define QtNetworkErrorConnect(p, q, f, s) QObject::connect(p, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), q, s(f(QNetworkReply::NetworkError)))
 #else
-#  define QtNetworkErrorConnect(p, q, f) QObject::connect(p, SIGNAL(error(QNetworkReply::NetworkError)), q, SLOT(f(QNetworkReply::NetworkError)))
+#  define QtNetworkErrorConnect(p, q, f, s) QObject::connect(p, SIGNAL(error(QNetworkReply::NetworkError)), q, s(f(QNetworkReply::NetworkError)))
 #endif
 
 /// Network error void connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtNetworkErrorVoidConnect(p, q, f) QObject::connect(p, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), q, SLOT(f()))
+#  define QtNetworkErrorVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), q, s(f()))
 #else
-#  define QtNetworkErrorVoidConnect(p, q, f) QObject::connect(p, SIGNAL(error(QNetworkReply::NetworkError)), q, SLOT(f()))
+#  define QtNetworkErrorVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(error(QNetworkReply::NetworkError)), q, s(f()))
 #endif
 
 /// Socket error connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtSocketErrorConnect(p, q, f) QObject::connect(p, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), q, SLOT(f(QAbstractSocket::SocketError)))
+#  define QtSocketErrorConnect(p, q, f, s) QObject::connect(p, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), q, s(f(QAbstractSocket::SocketError)))
 #else
-#  define QtSocketErrorConnect(p, q, f) QObject::connect(p, SIGNAL(error(QAbstractSocket::SocketError)), q, SLOT(f(QAbstractSocket::SocketError)))
+#  define QtSocketErrorConnect(p, q, f, s) QObject::connect(p, SIGNAL(error(QAbstractSocket::SocketError)), q, s(f(QAbstractSocket::SocketError)))
 #endif
 
 /// Socket error void connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtSocketErrorVoidConnect(p, q, f) QObject::connect(p, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), q, SLOT(f()))
+#  define QtSocketErrorVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), q, s(f()))
 #else
-#  define QtSocketErrorVoidConnect(p, q, f) QObject::connect(p, SIGNAL(error(QAbstractSocket::SocketError)), q, SLOT(f()))
+#  define QtSocketErrorVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(error(QAbstractSocket::SocketError)), q, s(f()))
 #endif
 
 /// Process error connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtProcessConnect(p, q, f) QObject::connect(p, SIGNAL(errorOccurred(QProcess::ProcessError)), q, SLOT(f(QProcess::ProcessError)))
+#  define QtProcessConnect(p, q, f, s) QObject::connect(p, SIGNAL(errorOccurred(QProcess::ProcessError)), q, s(f(QProcess::ProcessError)))
 #else
-#  define QtProcessConnect(p, q, f) QObject::connect(p, SIGNAL(error(QProcess::ProcessError)), q, SLOT(f(QProcess::ProcessError)))
+#  define QtProcessConnect(p, q, f, s) QObject::connect(p, SIGNAL(error(QProcess::ProcessError)), q, s(f(QProcess::ProcessError)))
 #endif
 
 /// Process error void connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtProcessVoidConnect(p, q, f) QObject::connect(p, SIGNAL(errorOccurred(QProcess::ProcessError)), q, SLOT(f()))
+#  define QtProcessVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(errorOccurred(QProcess::ProcessError)), q, s(f()))
 #else
-#  define QtProcessVoidConnect(p, q, f) QObject::connect(p, SIGNAL(error(QProcess::ProcessError)), q, SLOT(f()))
+#  define QtProcessVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(error(QProcess::ProcessError)), q, s(f()))
 #endif
 
 /// Button group connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtButtonGroupConnect(p, q, f) QObject::connect(p, SIGNAL(idClicked(int)), q, SLOT(f(int)))
+#  define QtButtonGroupConnect(p, q, f, s) QObject::connect(p, SIGNAL(idClicked(int)), q, s(f(int)))
 #else
-#  define QtButtonGroupConnect(p, q, f) QObject::connect(p, SIGNAL(buttonClicked(int)), q, SLOT(f(int)))
+#  define QtButtonGroupConnect(p, q, f, s) QObject::connect(p, SIGNAL(buttonClicked(int)), q, s(f(int)))
 #endif
 
 /// Button group void connect
 #if TTK_QT_VERSION_CHECK(5,15,0)
-#  define QtButtonGroupVoidConnect(p, q, f) QObject::connect(p, SIGNAL(idClicked(int)), q, SLOT(f()))
+#  define QtButtonGroupVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(idClicked(int)), q, s(f()))
 #else
-#  define QtButtonGroupVoidConnect(p, q, f) QObject::connect(p, SIGNAL(buttonClicked(int)), q, SLOT(f()))
+#  define QtButtonGroupVoidConnect(p, q, f, s) QObject::connect(p, SIGNAL(buttonClicked(int)), q, s(f()))
 #endif
 
 /// Stream endl
