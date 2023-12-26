@@ -81,6 +81,7 @@ static constexpr const char *QUERY_WY_INTERFACE = "WangYi";
 static constexpr const char *QUERY_KW_INTERFACE = "KuWo";
 static constexpr const char *QUERY_KG_INTERFACE = "KuGou";
 
+
 /*! @brief The class of the abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */

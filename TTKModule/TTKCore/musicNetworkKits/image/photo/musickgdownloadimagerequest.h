@@ -1,5 +1,5 @@
-#ifndef MUSICQUERYPLAYLISTREQUEST_H
-#define MUSICQUERYPLAYLISTREQUEST_H
+#ifndef MUSICKGDOWNLOADIMAGEREQUEST_H
+#define MUSICKGDOWNLOADIMAGEREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,33 +19,32 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractqueryrequest.h"
+#include "musicabstractdownloadimagerequest.h"
 
-/*! @brief The class of the query playlist download data from net.
+/*! @brief The class of the kugou download art background image.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicQueryPlaylistRequest : public MusicAbstractQueryRequest
+class TTK_MODULE_EXPORT MusicKGDownloadBackgroundRequest : public MusicAbstractDownloadImageRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicQueryPlaylistRequest)
+    TTK_DECLARE_MODULE(MusicKGDownloadBackgroundRequest)
 public:
     /*!
-     * Object constructor.
+     * Object constructor provide artist name and save local path.
      */
-    explicit MusicQueryPlaylistRequest(QObject *parent = nullptr);
+    MusicKGDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 
     /*!
-     * Start to query playlist info.
-     * Subclass should implement this function.
+     * Start to download data from net.
      */
-    virtual void startToQueryInfo(MusicResultDataItem &item) = 0;
+    virtual void startRequest() override final;
 
-Q_SIGNALS:
+public Q_SLOTS:
     /*!
-     * Create the current playlist item.
+     * Download data from net finished.
      */
-    void createPlaylistItem(const MusicResultDataItem &item);
+    virtual void downLoadFinished() override final;
 
 };
 
-#endif // MUSICQUERYPLAYLISTREQUEST_H
+#endif // MUSICKGDOWNLOADIMAGEREQUEST_H

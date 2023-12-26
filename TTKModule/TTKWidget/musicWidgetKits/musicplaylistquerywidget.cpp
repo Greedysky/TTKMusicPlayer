@@ -145,15 +145,15 @@ MusicPlaylistQueryWidget::~MusicPlaylistQueryWidget()
     delete m_pageQueryWidget;
 }
 
-void MusicPlaylistQueryWidget::setSongName(const QString &name)
+void MusicPlaylistQueryWidget::setCurrentValue(const QString &value)
 {
-    MusicAbstractItemQueryWidget::setSongName(name);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
     m_networkRequest->startToSingleSearch({});
 }
 
-void MusicPlaylistQueryWidget::setSongNameByID(const QString &id)
+void MusicPlaylistQueryWidget::setCurrentID(const QString &id)
 {
-    setSongName(id);
+    setCurrentValue(id);
 
     MusicResultDataItem result;
     result.m_id = id;
@@ -261,14 +261,14 @@ void MusicPlaylistQueryWidget::currentPlaylistClicked(const MusicResultDataItem 
     m_infoWidget = new MusicPlaylistQueryInfoWidget(this);
 
     MusicQueryPlaylistRequest *d = TTKObjectCast(MusicQueryPlaylistRequest*, G_DOWNLOAD_QUERY_PTR->makePlaylistRequest(this));
-    MusicResultDataItem it(item);
-    if(it.isEmpty())
+    MusicResultDataItem info(item);
+    if(info.isEmpty())
     {
-        d->queryPlaylistInfo(it);
+        d->startToQueryInfo(info);
     }
 
     m_infoWidget->setQueryInput(d);
-    m_infoWidget->setResultDataItem(it, this);
+    m_infoWidget->setResultDataItem(info, this);
     m_container->addWidget(m_infoWidget);
     m_container->setCurrentIndex(1);
 }

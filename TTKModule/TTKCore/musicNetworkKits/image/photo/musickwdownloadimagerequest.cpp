@@ -27,7 +27,7 @@ void MusicKWDownloadBackgroundRequest::startRequest()
 
 void MusicKWDownloadBackgroundRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadDataFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
 
     MusicAbstractDownloadImageRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -46,13 +46,18 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished()
                 const QVariantList &datas = value["array"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(m_counter < MAX_IMAGE_COUNT && !value.isEmpty())
                     {
                         const QString &url = value.values().front().toString();
-                        if(url == lastUrl)
+                        if(url.isEmpty() || url == lastUrl)
                         {
                             continue;
                         }

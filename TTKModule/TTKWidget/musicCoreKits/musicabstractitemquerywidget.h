@@ -45,14 +45,13 @@ public:
     ~MusicAbstractItemQueryWidget();
 
     /*!
-     * Set current name to search founds.
+     * Set current value to search founds.
      */
-    virtual void setSongName(const QString &name);
+    virtual void setCurrentValue(const QString &value);
     /*!
      * Set current id to search founds.
-     * Subclass should implement this function.
      */
-    virtual void setSongNameByID(const QString &id) = 0;
+    virtual void setCurrentID(const QString &id);
 
     /*!
      * Init widget interface.

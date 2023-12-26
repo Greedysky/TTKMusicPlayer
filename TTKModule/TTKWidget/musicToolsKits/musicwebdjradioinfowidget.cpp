@@ -40,15 +40,10 @@ MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)
     connect(d, SIGNAL(createCategoryItem(MusicResultDataItem)), SLOT(createProgramCategoryItem(MusicResultDataItem)));
 }
 
-void MusicWebDJRadioInfoWidget::setSongName(const QString &name)
+void MusicWebDJRadioInfoWidget::setCurrentValue(const QString &value)
 {
-    MusicAbstractItemQueryWidget::setSongName(name);
-    m_queryTableWidget->startSearchQuery(name);
-}
-
-void MusicWebDJRadioInfoWidget::setSongNameByID(const QString &id)
-{
-    Q_UNUSED(id);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
+    m_queryTableWidget->startSearchQuery(value);
 }
 
 void MusicWebDJRadioInfoWidget::resizeWidget()

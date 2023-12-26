@@ -38,15 +38,15 @@ MusicAlbumQueryWidget::MusicAlbumQueryWidget(QWidget *parent)
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
-void MusicAlbumQueryWidget::setSongName(const QString &name)
+void MusicAlbumQueryWidget::setCurrentValue(const QString &value)
 {
-    MusicAbstractItemQueryWidget::setSongName(name);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
     m_networkRequest->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
-    m_networkRequest->startToSearch(TTK::String::artistName(name));
+    m_networkRequest->startToSearch(TTK::String::artistName(value));
 }
 
-void MusicAlbumQueryWidget::setSongNameByID(const QString &id)
+void MusicAlbumQueryWidget::setCurrentID(const QString &id)
 {
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
     m_queryTableWidget->setQueryInput(d);
@@ -95,7 +95,7 @@ void MusicAlbumQueryWidget::queryAllFinished()
             if(m_value.contains(info.m_songName))
             {
                 hasItem = true;
-                setSongNameByID(info.m_albumId);
+                setCurrentID(info.m_albumId);
                 break;
             }
         }

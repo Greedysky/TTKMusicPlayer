@@ -43,17 +43,12 @@ MusicToplistQueryWidget::~MusicToplistQueryWidget()
     delete m_categoryButton;
 }
 
-void MusicToplistQueryWidget::setSongName(const QString &name)
+void MusicToplistQueryWidget::setCurrentValue(const QString &value)
 {
-    MusicAbstractItemQueryWidget::setSongName(name);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
     MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
     d->startToSearch({});
     createLabels();
-}
-
-void MusicToplistQueryWidget::setSongNameByID(const QString &id)
-{
-    Q_UNUSED(id);
 }
 
 void MusicToplistQueryWidget::resizeWidget()

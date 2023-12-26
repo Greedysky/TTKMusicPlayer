@@ -52,9 +52,9 @@ public:
      */
     virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate) override final;
     /*!
-     * Query playlist info.
+     * Start to query playlist info.
      */
-    virtual void queryPlaylistInfo(MusicResultDataItem &item) override final;
+    virtual void startToQueryInfo(MusicResultDataItem &item) override final;
 
 public Q_SLOTS:
     /*!

@@ -120,15 +120,10 @@ MusicWebMVRadioInfoWidget::MusicWebMVRadioInfoWidget(QWidget *parent)
     connect(d, SIGNAL(createMVRadioItem(MusicResultDataItem)), SLOT(createMVRadioProgramItem(MusicResultDataItem)));
 }
 
-void MusicWebMVRadioInfoWidget::setSongName(const QString &name)
+void MusicWebMVRadioInfoWidget::setCurrentValue(const QString &value)
 {
-    MusicAbstractItemQueryWidget::setSongName(name);
-    m_queryTableWidget->startSearchQuery(name);
-}
-
-void MusicWebMVRadioInfoWidget::setSongNameByID(const QString &id)
-{
-    Q_UNUSED(id);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
+    m_queryTableWidget->startSearchQuery(value);
 }
 
 void MusicWebMVRadioInfoWidget::resizeWidget()

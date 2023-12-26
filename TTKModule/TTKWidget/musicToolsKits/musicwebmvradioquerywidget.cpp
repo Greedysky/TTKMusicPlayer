@@ -124,15 +124,10 @@ MusicWebMVRadioQueryWidget::~MusicWebMVRadioQueryWidget()
     delete m_categoryButton;
 }
 
-void MusicWebMVRadioQueryWidget::setSongName(const QString &name)
+void MusicWebMVRadioQueryWidget::setCurrentValue(const QString &value)
 {
-    MusicAbstractItemQueryWidget::setSongName(name);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
     m_networkRequest->startToSearch({});
-}
-
-void MusicWebMVRadioQueryWidget::setSongNameByID(const QString &id)
-{
-    Q_UNUSED(id);
 }
 
 void MusicWebMVRadioQueryWidget::resizeWidget()
@@ -211,7 +206,7 @@ void MusicWebMVRadioQueryWidget::currentRadioClicked(const MusicResultDataItem &
     delete m_infoWidget;
     m_infoWidget = new MusicWebMVRadioInfoWidget(this);
     connect(m_infoWidget, SIGNAL(backToMainMenu()), SLOT(backToMainMenuClicked()));
-    m_infoWidget->setSongName(item.m_id);
+    m_infoWidget->setCurrentValue(item.m_id);
 
     m_container->addWidget(m_infoWidget);
     m_container->setCurrentIndex(1);

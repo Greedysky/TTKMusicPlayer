@@ -9,7 +9,7 @@ MusicKGQueryPlaylistRequest::MusicKGQueryPlaylistRequest(QObject *parent)
 
 void MusicKGQueryPlaylistRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -48,8 +48,8 @@ void MusicKGQueryPlaylistRequest::startToSingleSearch(const QString &value)
 
 void MusicKGQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
-    MusicPageQueryRequest::downLoadFinished();
     TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
+    MusicPageQueryRequest::downLoadFinished();
 
     TTK_NETWORK_QUERY_CHECK();
     MusicKGInterface::parseFromSongProperty(info, bitrate);
@@ -58,9 +58,9 @@ void MusicKGQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *
     MusicQueryPlaylistRequest::startToQueryResult(info, bitrate);
 }
 
-void MusicKGQueryPlaylistRequest::queryPlaylistInfo(MusicResultDataItem &item)
+void MusicKGQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
 {
-    TTK_INFO_STREAM(QString("%1 queryPlaylistInfo %2").arg(className(), item.m_id));
+    TTK_INFO_STREAM(QString("%1 startToQueryInfo %2").arg(className(), item.m_id));
 
     MusicPageQueryRequest::downLoadFinished();
 

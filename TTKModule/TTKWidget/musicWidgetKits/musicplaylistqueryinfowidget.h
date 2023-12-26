@@ -45,10 +45,6 @@ public:
     ~MusicPlaylistQueryInfoWidget();
 
     /*!
-     * Set current id to search founds.
-     */
-    virtual void setSongNameByID(const QString &id) override final;
-    /*!
      * Resize widget bound by resize called.
      */
     virtual void resizeWidget() override final;

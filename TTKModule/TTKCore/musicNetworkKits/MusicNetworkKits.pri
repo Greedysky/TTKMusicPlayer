@@ -39,6 +39,7 @@ HEADERS += \
     $$PWD/image/photo/musicabstractdownloadimagerequest.h \
     $$PWD/image/photo/musicdownloadbackgroundrequest.h \
     $$PWD/image/photo/musicbpdownloadimagerequest.h \
+    $$PWD/image/photo/musickgdownloadimagerequest.h \
     $$PWD/image/photo/musickwdownloadimagerequest.h \
     $$PWD/image/photo/musictxdownloadimagerequest.h \
     $$PWD/image/skin/musicabstractdownloadskinrequest.h \
@@ -124,6 +125,7 @@ SOURCES += \
     $$PWD/image/photo/musicabstractdownloadimagerequest.cpp \
     $$PWD/image/photo/musicdownloadbackgroundrequest.cpp \
     $$PWD/image/photo/musicbpdownloadimagerequest.cpp \
+    $$PWD/image/photo/musickgdownloadimagerequest.cpp \
     $$PWD/image/photo/musickwdownloadimagerequest.cpp \
     $$PWD/image/photo/musictxdownloadimagerequest.cpp \
     $$PWD/image/skin/musicabstractdownloadskinrequest.cpp \

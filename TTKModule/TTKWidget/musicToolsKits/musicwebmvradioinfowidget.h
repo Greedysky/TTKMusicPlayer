@@ -84,13 +84,9 @@ public:
     explicit MusicWebMVRadioInfoWidget(QWidget *parent = nullptr);
 
     /*!
-     * Set current name to search founds.
+     * Set current value to search founds.
      */
-    virtual void setSongName(const QString &name) override final;
-    /*!
-     * Set current id to search founds.
-     */
-    virtual void setSongNameByID(const QString &id) override final;
+    virtual void setCurrentValue(const QString &value) override final;
     /*!
      * Resize widget bound by resize called.
      */

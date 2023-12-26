@@ -114,15 +114,15 @@ MusicWebDJRadioQueryWidget::~MusicWebDJRadioQueryWidget()
     delete m_pageQueryWidget;
 }
 
-void MusicWebDJRadioQueryWidget::setSongName(const QString &name)
+void MusicWebDJRadioQueryWidget::setCurrentValue(const QString &value)
 {
-    MusicAbstractItemQueryWidget::setSongName(name);
-    m_networkRequest->startToSingleSearch(name);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
+    m_networkRequest->startToSingleSearch(value);
 }
 
-void MusicWebDJRadioQueryWidget::setSongNameByID(const QString &id)
+void MusicWebDJRadioQueryWidget::setCurrentID(const QString &id)
 {
-    MusicAbstractItemQueryWidget::setSongName(id);
+    MusicAbstractItemQueryWidget::setCurrentValue(id);
     MusicResultDataItem result;
     result.m_id = id;
     currentRadioClicked(result);
@@ -222,7 +222,7 @@ void MusicWebDJRadioQueryWidget::currentRadioClicked(const MusicResultDataItem &
     delete m_infoWidget;
     m_infoWidget = new MusicWebDJRadioInfoWidget(this);
     connect(m_infoWidget, SIGNAL(backToMainMenu()), SLOT(backToMainMenuClicked()));
-    m_infoWidget->setSongName(item.m_id);
+    m_infoWidget->setCurrentValue(item.m_id);
 
     m_container->addWidget(m_infoWidget);
     m_container->setCurrentIndex(1);

@@ -25,8 +25,8 @@ void MusicWYQueryArtistRequest::startToSearch(const QString &value)
 
 void MusicWYQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
-    MusicPageQueryRequest::downLoadFinished();
     TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
+    MusicPageQueryRequest::downLoadFinished();
 
     TTK_NETWORK_QUERY_CHECK();
     MusicWYInterface::parseFromSongProperty(info, bitrate);
@@ -105,9 +105,26 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                         TTK_NETWORK_QUERY_CHECK();
                         queryArtistIntro(&result);
                         TTK_NETWORK_QUERY_CHECK();
+
+                        result.m_nickName.clear();
+                        const QVariantList &aliasArray = artistObject["alias"].toList();
+                        for(const QVariant &aliasValue : qAsConst(aliasArray))
+                        {
+                            if(aliasValue.isNull())
+                            {
+                                continue;
+                            }
+
+                            result.m_nickName += aliasValue.toString() + ",";
+                        }
+
+                        if(!result.m_nickName.isEmpty())
+                        {
+                            result.m_nickName.chop(1);
+                        }
+
                         result.m_id = m_queryValue;
                         result.m_name = info.m_singerName;
-                        result.m_nickName = artistObject["trans"].toString();
                         result.m_coverUrl = info.m_coverUrl;
                         Q_EMIT createArtistItem(result);
                     }

@@ -9,7 +9,7 @@ MusicWYSongCommentsRequest::MusicWYSongCommentsRequest(QObject *parent)
 
 void MusicWYSongCommentsRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -29,7 +29,7 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &value)
     TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
 
     TTKSemaphoreLoop loop;
-    MusicWYQueryRequest *d = new MusicWYQueryRequest(this);
+    MusicWYQueryRequest query(this), *d = &query;
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
@@ -97,17 +97,9 @@ MusicWYPlaylistCommentsRequest::MusicWYPlaylistCommentsRequest(QObject *parent)
     m_pageSize = 20;
 }
 
-void MusicWYPlaylistCommentsRequest::startToSearch(const QString &value)
-{
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
-
-    m_rawData["sid"] = value;
-    startToPage(0);
-}
-
 void MusicWYPlaylistCommentsRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -120,6 +112,14 @@ void MusicWYPlaylistCommentsRequest::startToPage(int offset)
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicWYPlaylistCommentsRequest::startToSearch(const QString &value)
+{
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+
+    m_rawData["sid"] = value;
+    startToPage(0);
 }
 
 void MusicWYPlaylistCommentsRequest::downLoadFinished()

@@ -39,13 +39,11 @@ void MusicLrcManagerForInterior::paintEvent(QPaintEvent *)
     painter.setPen(QColor(0, 0, 0, value));
 
     value = (m_lrcPerWidth - m_position.x()) / 2.0;
-    painter.drawText((value < 0 ? m_intervalCount : value) + 1, 1,
-                     m_position.x(), m_position.y(), Qt::AlignLeft | Qt::AlignVCenter, text());
+    painter.drawText((value < 0 ? m_intervalCount : value) + 1, 1, m_position.x(), m_position.y(), Qt::AlignLeft | Qt::AlignVCenter, text());
 
     //Then draw a gradient in the above
     painter.setPen(QPen(m_linearGradient, 0));
-    painter.drawText(value < 0 ? m_intervalCount : value, 0,
-                     m_position.x(), m_position.y(), Qt::AlignLeft | Qt::AlignVCenter, text());
+    painter.drawText(value < 0 ? m_intervalCount : value, 0, m_position.x(), m_position.y(), Qt::AlignLeft | Qt::AlignVCenter, text());
 
     int offsetValue = m_lrcMaskWidth;
     if(!G_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool())
@@ -55,6 +53,5 @@ void MusicLrcManagerForInterior::paintEvent(QPaintEvent *)
 
     //Set lyrics mask
     painter.setPen(QPen(m_maskLinearGradient, 0));
-    painter.drawText(value < 0 ? m_intervalCount : value, 0,
-                     offsetValue, m_position.y(), Qt::AlignLeft | Qt::AlignVCenter, text());
+    painter.drawText(value < 0 ? m_intervalCount : value, 0, offsetValue, m_position.y(), Qt::AlignLeft | Qt::AlignVCenter, text());
 }

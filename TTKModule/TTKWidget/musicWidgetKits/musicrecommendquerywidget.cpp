@@ -40,17 +40,12 @@ MusicRecommendQueryWidget::MusicRecommendQueryWidget(QWidget *parent)
     m_queryTableWidget->hide();
 }
 
-void MusicRecommendQueryWidget::setSongName(const QString &name)
+void MusicRecommendQueryWidget::setCurrentValue(const QString &value)
 {
-    MusicAbstractItemQueryWidget::setSongName(name);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
     m_queryTableWidget->setQueryInput(G_DOWNLOAD_QUERY_PTR->makeRecommendRequest(this));
-    m_queryTableWidget->startSearchQuery(TTK::String::songName(name));
+    m_queryTableWidget->startSearchQuery(TTK::String::songName(value));
     createLabels();
-}
-
-void MusicRecommendQueryWidget::setSongNameByID(const QString &id)
-{
-    Q_UNUSED(id);
 }
 
 void MusicRecommendQueryWidget::resizeWidget()

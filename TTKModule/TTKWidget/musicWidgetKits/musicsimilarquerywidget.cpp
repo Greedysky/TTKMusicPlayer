@@ -40,17 +40,12 @@ MusicSimilarQueryWidget::MusicSimilarQueryWidget(QWidget *parent)
     m_queryTableWidget->hide();
 }
 
-void MusicSimilarQueryWidget::setSongName(const QString &name)
+void MusicSimilarQueryWidget::setCurrentValue(const QString &value)
 {
-    MusicAbstractItemQueryWidget::setSongName(name);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
     m_queryTableWidget->setQueryInput(G_DOWNLOAD_QUERY_PTR->makeSimilarSongRequest(this));
-    m_queryTableWidget->startSearchQuery(TTK::String::songName(name));
+    m_queryTableWidget->startSearchQuery(TTK::String::songName(value));
     createLabels();
-}
-
-void MusicSimilarQueryWidget::setSongNameByID(const QString &id)
-{
-    Q_UNUSED(id);
 }
 
 void MusicSimilarQueryWidget::resizeWidget()

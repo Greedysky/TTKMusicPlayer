@@ -6,8 +6,10 @@ MusicQueryMovieRequest::MusicQueryMovieRequest(QObject *parent)
 
 }
 
-void MusicQueryMovieRequest::startToSearch(const QString &value)
+void MusicQueryMovieRequest::startToQueryInfo(const QString &value)
 {
+    TTK_INFO_STREAM(QString("%1 startToQueryInfo %2").arg(className(), value));
+
     m_queryValue = value;
     startToPage(0);
 }

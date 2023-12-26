@@ -1,5 +1,6 @@
 #include "musicdownloadbackgroundrequest.h"
 #include "musicbpdownloadimagerequest.h"
+#include "musickgdownloadimagerequest.h"
 #include "musickwdownloadimagerequest.h"
 #include "musictxdownloadimagerequest.h"
 
@@ -36,9 +37,10 @@ void MusicDownloadBackgroundRequest::findAllPlugins()
     MusicAbstractDownloadImageRequest *d = nullptr;
     switch(++m_pluginIndex)
     {
-        case 0: d = new MusicKWDownloadBackgroundRequest(m_name, m_path, this); break;
-        case 1: d = new MusicTXDownloadBackgroundRequest(m_name, m_path, this); break;
-        case 2: d = new MusicBPDownloadBackgroundRequest(m_name, m_path, this); break;
+        case 0: d = new MusicKGDownloadBackgroundRequest(m_name, m_path, this); break;
+        case 1: d = new MusicKWDownloadBackgroundRequest(m_name, m_path, this); break;
+        case 2: d = new MusicTXDownloadBackgroundRequest(m_name, m_path, this); break;
+        case 3: d = new MusicBPDownloadBackgroundRequest(m_name, m_path, this); break;
         default: deleteLater(); break;
     }
 

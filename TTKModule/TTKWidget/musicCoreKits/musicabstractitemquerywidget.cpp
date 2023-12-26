@@ -40,9 +40,14 @@ MusicAbstractItemQueryWidget::~MusicAbstractItemQueryWidget()
     delete m_networkRequest;
 }
 
-void MusicAbstractItemQueryWidget::setSongName(const QString &name)
+void MusicAbstractItemQueryWidget::setCurrentValue(const QString &value)
 {
-    m_value = name;
+    m_value = value;
+}
+
+void MusicAbstractItemQueryWidget::setCurrentID(const QString &id)
+{
+    Q_UNUSED(id);
 }
 
 void MusicAbstractItemQueryWidget::initialize()

@@ -46,19 +46,14 @@ void MusicPlaylistQueryInfoWidget::resizeWidget()
     }
 }
 
-void MusicPlaylistQueryInfoWidget::setSongNameByID(const QString &id)
-{
-    Q_UNUSED(id);
-}
-
 void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &item, QObject *obj)
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
 
     m_currentPlaylistItem = item;
+    setCurrentValue(item.m_id);
 
-    setSongName(item.m_id);
     m_infoLabel->setText(item.m_description);
     m_queryTableWidget->startSearchQuery(item.m_id);
 

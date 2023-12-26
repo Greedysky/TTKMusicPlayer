@@ -287,11 +287,11 @@ void MusicWebDJRadioWidget::programItemClicked(const QString &rid, const QString
 
     if(rid == "-1" && cid != "-1")
     {
-        m_queryWidget->setSongName(cid);
+        m_queryWidget->setCurrentValue(cid);
     }
     else
     {
-        m_queryWidget->setSongNameByID(rid);
+        m_queryWidget->setCurrentID(rid);
     }
 
     addWidget(m_queryWidget);

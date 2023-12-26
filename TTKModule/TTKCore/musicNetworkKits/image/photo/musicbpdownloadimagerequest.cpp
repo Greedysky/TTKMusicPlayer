@@ -27,7 +27,7 @@ void MusicBPDownloadBackgroundRequest::startRequest()
 
 void MusicBPDownloadBackgroundRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadDataFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
 
     MusicAbstractDownloadImageRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -45,6 +45,11 @@ void MusicBPDownloadBackgroundRequest::downLoadFinished()
                 const QVariantList &datas = value["list"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
@@ -52,6 +57,11 @@ void MusicBPDownloadBackgroundRequest::downLoadFinished()
                     if(m_counter < MAX_IMAGE_COUNT && !name.isEmpty() && (name.contains(m_name) || m_name.contains(name)))
                     {
                         const QString &url = value["url"].toString();
+                        if(url.isEmpty())
+                        {
+                            continue;
+                        }
+
                         MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(m_counter++).arg(SKN_FILE), TTK::Download::Background, this);
                         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
                         d->startRequest();

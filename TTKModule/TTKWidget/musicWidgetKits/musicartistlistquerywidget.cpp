@@ -60,15 +60,15 @@ MusicArtistListQueryWidget::~MusicArtistListQueryWidget()
     delete m_pageQueryWidget;
 }
 
-void MusicArtistListQueryWidget::setSongName(const QString &name)
+void MusicArtistListQueryWidget::setCurrentValue(const QString &value)
 {
-    MusicAbstractItemQueryWidget::setSongName(name);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
     m_networkRequest->startToSearch({});
 }
 
-void MusicArtistListQueryWidget::setSongNameByID(const QString &id)
+void MusicArtistListQueryWidget::setCurrentID(const QString &id)
 {
-    setSongName(id);
+    setCurrentValue(id);
 }
 
 void MusicArtistListQueryWidget::resizeWidget()

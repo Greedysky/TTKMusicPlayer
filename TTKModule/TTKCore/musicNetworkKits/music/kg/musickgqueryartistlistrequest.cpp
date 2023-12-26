@@ -43,6 +43,8 @@ void MusicKGQueryArtistListRequest::startToPage(int offset)
 
 void MusicKGQueryArtistListRequest::startToSearch(const QString &value)
 {
+    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(value));
+
     m_queryValue = value;
     m_queryValue.replace("n", "&");
     startToPage(0);

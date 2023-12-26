@@ -47,7 +47,7 @@ void MusicTXDownloadBackgroundRequest::startRequest()
 
 void MusicTXDownloadBackgroundRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadDataFinished").arg(className()));
+    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
 
     MusicAbstractDownloadImageRequest::downLoadFinished();
     QString id;
@@ -110,7 +110,7 @@ void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
 
         for(const QString &url : qAsConst(items))
         {
-            if(m_counter < MAX_IMAGE_COUNT)
+            if(m_counter < MAX_IMAGE_COUNT && !url.isEmpty())
             {
                 MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(m_counter++).arg(SKN_FILE), TTK::Download::Background, this);
                 connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));

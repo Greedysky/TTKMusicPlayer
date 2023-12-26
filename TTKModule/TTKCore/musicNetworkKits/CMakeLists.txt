@@ -26,6 +26,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
   ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicabstractdownloadimagerequest.h
   ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadbackgroundrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicbpdownloadimagerequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musickgdownloadimagerequest.h
   ${MUSIC_CORE_NETWORK_DIR}/image/photo/musickwdownloadimagerequest.h
   ${MUSIC_CORE_NETWORK_DIR}/image/photo/musictxdownloadimagerequest.h
   ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicabstractdownloadskinrequest.h
@@ -112,6 +113,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
   ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicabstractdownloadimagerequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadbackgroundrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicbpdownloadimagerequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musickgdownloadimagerequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/image/photo/musickwdownloadimagerequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/image/photo/musictxdownloadimagerequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicabstractdownloadskinrequest.cpp

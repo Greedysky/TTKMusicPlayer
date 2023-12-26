@@ -24,8 +24,8 @@ void MusicKWQueryArtistRequest::startToSearch(const QString &value)
 
 void MusicKWQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
-    MusicPageQueryRequest::downLoadFinished();
     TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
+    MusicPageQueryRequest::downLoadFinished();
 
     TTK_NETWORK_QUERY_CHECK();
     MusicKWInterface::parseFromSongProperty(info, bitrate);

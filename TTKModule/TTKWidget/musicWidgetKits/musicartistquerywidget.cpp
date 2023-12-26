@@ -116,16 +116,16 @@ MusicArtistMvsQueryWidget::~MusicArtistMvsQueryWidget()
     delete m_gridLayout;
 }
 
-void MusicArtistMvsQueryWidget::setSongName(const QString &name)
+void MusicArtistMvsQueryWidget::setCurrentValue(const QString &value)
 {
-    MusicAbstractItemQueryWidget::setSongName(name);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
     MusicQueryMovieRequest *d = TTKObjectCast(MusicQueryMovieRequest*, m_networkRequest);
-    d->MusicQueryMovieRequest::startToSearch(name);
+    d->startToQueryInfo(value);
 }
 
-void MusicArtistMvsQueryWidget::setSongNameByID(const QString &id)
+void MusicArtistMvsQueryWidget::setCurrentID(const QString &id)
 {
-    setSongName(id);
+    setCurrentValue(id);
 }
 
 void MusicArtistMvsQueryWidget::resizeWidget()
@@ -211,15 +211,15 @@ MusicArtistAlbumsQueryWidget::~MusicArtistAlbumsQueryWidget()
     delete m_gridLayout;
 }
 
-void MusicArtistAlbumsQueryWidget::setSongName(const QString &name)
+void MusicArtistAlbumsQueryWidget::setCurrentValue(const QString &value)
 {
-    MusicAbstractItemQueryWidget::setSongName(name);
-    m_networkRequest->startToSingleSearch(name);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
+    m_networkRequest->startToSingleSearch(value);
 }
 
-void MusicArtistAlbumsQueryWidget::setSongNameByID(const QString &id)
+void MusicArtistAlbumsQueryWidget::setCurrentID(const QString &id)
 {
-    setSongName(id);
+    setCurrentValue(id);
 }
 
 void MusicArtistAlbumsQueryWidget::resizeWidget()
@@ -300,17 +300,17 @@ MusicArtistQueryWidget::~MusicArtistQueryWidget()
     delete m_artistMvs;
 }
 
-void MusicArtistQueryWidget::setSongName(const QString &name)
+void MusicArtistQueryWidget::setCurrentValue(const QString &value)
 {
-    MusicAbstractItemQueryWidget::setSongName(name);
+    MusicAbstractItemQueryWidget::setCurrentValue(value);
     m_networkRequest->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
-    m_networkRequest->startToSearch(TTK::String::artistName(name));
+    m_networkRequest->startToSearch(TTK::String::artistName(value));
 }
 
-void MusicArtistQueryWidget::setSongNameByID(const QString &id)
+void MusicArtistQueryWidget::setCurrentID(const QString &id)
 {
-    MusicAbstractItemQueryWidget::setSongName(id);
+    MusicAbstractItemQueryWidget::setCurrentValue(id);
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeArtistRequest(this);
     m_queryTableWidget->setQueryInput(d);
     m_queryTableWidget->startSearchQuery(id);
@@ -365,7 +365,7 @@ void MusicArtistQueryWidget::queryAllFinished()
             if(m_value.contains(info.m_songName))
             {
                 hasItem = true;
-                setSongNameByID(info.m_artistId);
+                setCurrentID(info.m_artistId);
                 break;
             }
         }
@@ -467,13 +467,13 @@ void MusicArtistQueryWidget::setCurrentIndex(int index)
     {
         m_artistAlbums = new MusicArtistAlbumsQueryWidget(m_container);
         m_container->addWidget(m_artistAlbums);
-        m_artistAlbums->setSongName(m_value);
+        m_artistAlbums->setCurrentValue(m_value);
     }
     else if(index == 3)
     {
         m_artistMvs = new MusicArtistMvsQueryWidget(m_container);
         m_container->addWidget(m_artistMvs);
-        m_artistMvs->setSongName(m_value);
+        m_artistMvs->setCurrentValue(m_value);
     }
 
     m_container->setCurrentIndex(index > 2 ? 2 : index);
