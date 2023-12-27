@@ -4,6 +4,7 @@
 
 MusicAbstractDownloadImageRequest::MusicAbstractDownloadImageRequest(const QString &name, const QString &path, QObject *parent)
     : MusicAbstractNetwork(parent),
+      m_remainCount(0),
       m_index(0),
       m_counter(0),
       m_name(name),

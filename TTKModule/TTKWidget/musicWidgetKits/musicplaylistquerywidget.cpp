@@ -83,7 +83,7 @@ void MusicPlaylistQueryItemWidget::setResultDataItem(const MusicResultDataItem &
         m_topListenButton->setText(item.m_playCount);
     }
 
-    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
+    if(TTK::isCoverValid(item.m_coverUrl))
     {
         MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));

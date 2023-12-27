@@ -67,7 +67,7 @@ void MusicSongSharingWidget::setData(Module type, const QVariantMap &data)
         case Module::Playlist:
         {
             const QString &cover = data["smallUrl"].toString();
-            if(!cover.isEmpty() && cover != TTK_NULL_STR)
+            if(TTK::isCoverValid(cover))
             {
                 MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
                 connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));

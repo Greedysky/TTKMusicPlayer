@@ -86,8 +86,8 @@ namespace TTK
      * Transform color list to colors string.
      */
     QString writeColorConfig(const QList<QColor> &colors);
-}
 
+}
 
 
 /*! @brief The class of the lrc manager base.

@@ -5,7 +5,8 @@
 #include "musictxdownloadimagerequest.h"
 
 MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent)
-    : MusicAbstractNetwork(parent),
+    : QObject(parent),
+      m_findCount(0),
       m_pluginIndex(-1),
       m_name(name),
       m_path(path)
@@ -15,7 +16,9 @@ MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &na
 
 void MusicDownloadBackgroundRequest::startRequest()
 {
+    m_findCount = 0;
     m_pluginIndex = -1;
+
     findAllPlugins();
 }
 
@@ -26,9 +29,16 @@ void MusicDownloadBackgroundRequest::downLoadFinished(const QString &bytes)
         deleteLater();
         return;
     }
-    else if(bytes.toInt() == 0)
+
+    bool ok = false;
+    const int value = bytes.toInt(&ok);
+    if(ok)
     {
-        findAllPlugins();
+        m_findCount += value;
+        if(m_findCount < MAX_IMAGE_COUNT)
+        {
+            findAllPlugins();
+        }
     }
 }
 
@@ -47,6 +57,8 @@ void MusicDownloadBackgroundRequest::findAllPlugins()
     if(d)
     {
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+        //
+        d->setRemainCount(MAX_IMAGE_COUNT - m_findCount);
         d->startRequest();
     }
 }

@@ -59,6 +59,7 @@ namespace TTK
          * Update ripple spectrum config.
          */
         TTK_MODULE_EXPORT void updateRippleConfig();
+
     }
 }
 

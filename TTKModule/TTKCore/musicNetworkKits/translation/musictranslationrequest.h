@@ -35,9 +35,9 @@ public:
     explicit MusicTranslationRequest(const QString &data, QObject *parent = nullptr);
 
     /*!
-     * Start to translation data.
+     * Start to download translation data.
      */
-    virtual void startRequest();
+    void startRequest();
 
 public Q_SLOTS:
     /*!

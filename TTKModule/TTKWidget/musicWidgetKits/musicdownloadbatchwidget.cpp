@@ -294,14 +294,6 @@ void MusicDownloadBatchTableWidget::addCellItem(MusicAbstractQueryRequest *reque
     m_items << item;
 }
 
-void MusicDownloadBatchTableWidget::startRequest()
-{
-    for(MusicDownloadBatchTableItem *item : qAsConst(m_items))
-    {
-        item->startRequest();
-    }
-}
-
 void MusicDownloadBatchTableWidget::removeItems()
 {
     qDeleteAll(m_items);
@@ -317,6 +309,14 @@ void MusicDownloadBatchTableWidget::currentQualityChanged(int index)
     {
         ///Remove first null item object
         item->setCurrentQuality(index);
+    }
+}
+
+void MusicDownloadBatchTableWidget::startRequest()
+{
+    for(MusicDownloadBatchTableItem *item : qAsConst(m_items))
+    {
+        item->startRequest();
     }
 }
 
@@ -347,7 +347,7 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startRequest()));
+    connect(m_ui->downloadButton, SIGNAL(clicked()), m_ui->tableWidget, SLOT(startRequest()));
 }
 
 MusicDownloadBatchWidget::~MusicDownloadBatchWidget()
@@ -373,9 +373,4 @@ void MusicDownloadBatchWidget::setSongName(MusicAbstractQueryRequest *request, c
         m_ui->tableWidget->addCellItem(request, info);
     }
     m_ui->songCountLabel->setText(tr("All Songs Count %1").arg(infos.count()));
-}
-
-void MusicDownloadBatchWidget::startRequest()
-{
-    m_ui->tableWidget->startRequest();
 }

@@ -35,7 +35,7 @@ public:
     MusicDownloadDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent = nullptr);
 
     /*!
-     * Start to download data from net.
+     * Start to download data.
      */
     virtual void startRequest() override;
 
@@ -82,7 +82,7 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Start to download data from net.
+     * Start to download data by url.
      */
     void startRequest(const QString &url);
 

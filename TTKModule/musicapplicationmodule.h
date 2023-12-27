@@ -30,7 +30,8 @@ class MusicCounterPVRequest;
 class MusicSourceUpdateRequest;
 class MusicScreenSaverBackgroundWidget;
 
-namespace TTK {
+namespace TTK
+{
 enum class Direction;
 }
 

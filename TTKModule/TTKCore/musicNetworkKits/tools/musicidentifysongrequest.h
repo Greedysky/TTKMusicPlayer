@@ -49,9 +49,10 @@ public:
      */
     bool queryIdentifyKey();
     /*!
-     * To query song by input path.
+     * Start to download identify data.
      */
     void startRequest(const QString &path);
+
     /*!
      * Get identify songs.
      */

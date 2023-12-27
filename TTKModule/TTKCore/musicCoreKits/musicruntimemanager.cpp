@@ -13,10 +13,23 @@
 
 namespace TTK
 {
+    /*!
+     * Generate input directory size.
+     */
     static quint64 directorySize(const QString &dirName);
+    /*!
+     * Check download cachce size.
+     */
     static void checkCacheSize();
+    /*!
+     * Generate core language resource.
+     */
     static QString languageCore(int index);
+    /*!
+     * Generate qmmp language resource.
+     */
     static QString languageQmmp(int index);
+
 }
 
 quint64 TTK::directorySize(const QString &dirName)

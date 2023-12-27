@@ -114,7 +114,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultDataI
     QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(index, 5, item);
 
-    if(!data.m_coverUrl.isEmpty() && data.m_coverUrl != TTK_NULL_STR)
+    if(TTK::isCoverValid(data.m_coverUrl))
     {
         MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));

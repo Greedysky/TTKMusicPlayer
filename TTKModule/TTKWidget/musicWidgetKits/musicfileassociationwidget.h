@@ -102,6 +102,7 @@ namespace TTK
      * Get current unsupport association files.
      */
     TTK_MODULE_EXPORT QStringList unsupportAssociations();
+
 }
 
 

@@ -40,7 +40,7 @@ public:
      */
     void setSongMeta(MusicSongMeta &meta);
     /*!
-     * Start to download data from net.
+     * Start to download meta data.
      */
     virtual void startRequest() override final;
 

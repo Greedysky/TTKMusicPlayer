@@ -79,11 +79,11 @@ public:
     explicit MusicAbstractDownloadSkinRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download data from net.
+     * Start to download skin data.
      */
     virtual void startRequest();
     /*!
-     * Start to download data from net.
+     * Start to download skin data.
      */
     virtual void startRequest(const QString &id);
 

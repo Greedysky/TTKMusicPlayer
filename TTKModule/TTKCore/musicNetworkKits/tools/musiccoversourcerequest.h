@@ -26,4 +26,18 @@
  */
 using MusicCoverSourceRequest = MusicDataSourceRequest;
 
+/*! @brief The namespace of the cover helper.
+ * @author Greedysky <greedysky@163.com>
+ */
+namespace TTK
+{
+    /*!
+     * Check current url is valid or not.
+     */
+    inline static bool isCoverValid(const QString &url)
+    {
+        return !(url.isEmpty() || url == TTK_NULL_STR || url == TTK_DEFAULT_STR);
+    }
+}
+
 #endif // MUSICCOVERSOURCEREQUEST_H

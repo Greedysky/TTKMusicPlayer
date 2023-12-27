@@ -35,7 +35,7 @@ public:
     explicit MusicDJRadioCategoryRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download data from net.
+     * Start to download category data.
      */
     void startRequest();
 

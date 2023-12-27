@@ -7,12 +7,21 @@ namespace TTK
 {
     static const char *base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
+    /*!
+     * Char is base64 or not.
+     */
     inline static bool isBase64(unsigned char c)
     {
         return isalnum(c) || (c == '+') || (c == '/');
     }
 
+    /*!
+     * Bse64 encode.
+     */
     static TTKString base64Encode(const unsigned char *bytes, unsigned int length);
+    /*!
+     * Bse64 decode.
+     */
     static TTKString base64Decode(const TTKString &bytes);
 
 }

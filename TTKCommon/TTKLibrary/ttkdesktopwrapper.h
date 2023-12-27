@@ -22,7 +22,8 @@
 #include <QWidget>
 #include "ttkmoduleexport.h"
 
-namespace TTK {
+namespace TTK
+{
 enum class Direction;
 }
 

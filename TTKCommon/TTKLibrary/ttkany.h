@@ -151,6 +151,9 @@ private:
  */
 namespace TTK
 {
+    /*!
+     * Make any helper.
+     */
     template <typename T, typename... Args>
     inline TTKAny make_any(Args &&...args)
     {
@@ -160,36 +163,46 @@ namespace TTK
     template <typename T>
     using remove_cvr = typename std::remove_cv<typename std::remove_reference<T>::type>::type;
 
+    /*!
+     * Make any cast helper.
+     */
     template <typename T, typename _TYPE = remove_cvr<T>>
     inline _TYPE any_cast(const TTKAny &other)
     {
         return other.isSame<_TYPE>() ? other.cast<_TYPE>() : _TYPE();
     }
-
+    /*!
+     * Make any cast helper.
+     */
     template <typename T, typename _TYPE = remove_cvr<T>>
     inline _TYPE any_cast(TTKAny &other)
     {
         return other.isSame<_TYPE>() ? other.cast<_TYPE>() : _TYPE();
     }
-
+    /*!
+     * Make any cast helper.
+     */
     template <typename T, typename _TYPE = remove_cvr<T>>
     inline _TYPE any_cast(TTKAny &&other)
     {
         return other.isSame<_TYPE>() ? other.cast<_TYPE>() : _TYPE();
     }
-
+    /*!
+     * Make any cast helper.
+     */
     template <typename T, typename _TYPE = remove_cvr<T>>
     inline _TYPE any_cast(const TTKAny *const other) noexcept
     {
         return other->isSame<_TYPE>() ? other->cast<_TYPE>() : _TYPE();
     }
-
+    /*!
+     * Make any cast helper.
+     */
     template <typename T, typename _TYPE = remove_cvr<T>>
     inline _TYPE any_cast(TTKAny *const other) noexcept
     {
         return other->isSame<_TYPE>() ? other->cast<_TYPE>() : _TYPE();
     }
-
 }
 
 

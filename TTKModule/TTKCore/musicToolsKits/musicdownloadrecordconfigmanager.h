@@ -32,6 +32,7 @@ namespace TTK
      * Mapping file path from enum type.
      */
     TTK_MODULE_EXPORT QString toString(Record type);
+
 }
 
 

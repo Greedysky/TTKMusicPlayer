@@ -42,7 +42,7 @@ public:
     explicit MusicAbstractTranslationRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to translation data.
+     * Start to download translation data.
      * Subclass should implement this function.
      */
     virtual void startRequest(const QString &data) = 0;

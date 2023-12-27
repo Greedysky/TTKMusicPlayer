@@ -18,21 +18,30 @@
 
 namespace TTK
 {
+    /*!
+     * Generate song artist.
+    */
     inline static QString generateSongArtist(const QString &v)
     {
         return v.isEmpty() ? QObject::tr("Various Artist") : v;
     }
-
+    /*!
+     * Generate song album.
+    */
     inline static QString generateSongAlbum(const QString &v)
     {
         return v.isEmpty() ? QObject::tr("Various Album") : v;
     }
-
+    /*!
+     * Generate song year.
+    */
     inline static QString generateSongYear(const QString &v)
     {
         return v.isEmpty() ? QObject::tr("Various Year") : v;
     }
-
+    /*!
+     * Generate song genre.
+    */
     inline static QString generateSongGenre(const QString &v)
     {
         return v.isEmpty() ? QObject::tr("Various Genre") : v;

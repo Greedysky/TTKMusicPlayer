@@ -29,10 +29,13 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
     connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadFinished(QString)));
     m_downloadRequest->startRequest();
 
+    const QString &buildTime = QDateTime::currentDateTime().toString(TTK_YEAR_TIMEZ_FORMAT);
+    const QByteArray &md5 = TTK::Algorithm::md5(buildTime.toUtf8()).mid(8, 16);
+
     m_ui->iconLabel->setPixmap(QPixmap(":/image/lb_logo"));
     m_ui->versionLabel->setText(QString("Version: %1\n").arg(TTK_VERSION_STR) +
                                 QString("Hash: %1\n").arg(TTK::Algorithm::sha1(TTK_VERSION_STR).toHex().constData()) +
-                                QString("Built on %1\n").arg(QDateTime::currentDateTime().toString(TTK_YEAR_TIMEZ_FORMAT)) +
+                                QString("Built on %1 (%2)\n").arg(buildTime, md5.constData()) +
                                 QString("Based on Qt %1(%2)\n").arg(QT_VERSION_STR,
 #ifdef Q_OS_WIN
                                 "MinGW 32bit"));

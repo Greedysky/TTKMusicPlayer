@@ -55,7 +55,7 @@ public:
     explicit MusicDownloadThunderSkinRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download data from net.
+     * Start to download skin data.
      */
     virtual void startRequest() override final;
 

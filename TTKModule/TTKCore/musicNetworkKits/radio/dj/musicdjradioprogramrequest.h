@@ -47,7 +47,7 @@ public:
     explicit MusicDJRadioProgramRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download data from net.
+     * Start to download program data.
      */
     void startRequest(TTK::Program type);
 

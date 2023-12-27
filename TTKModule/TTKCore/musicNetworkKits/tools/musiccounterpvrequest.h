@@ -35,7 +35,7 @@ public:
     explicit MusicCounterPVRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download data from net.
+     * Start to download counte data.
      */
     void startRequest();
 

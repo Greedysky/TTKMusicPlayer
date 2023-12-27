@@ -190,7 +190,7 @@ public Q_SLOTS:
      */
     void downloadDirSelected();
     /*!
-     * Start to download data from net.
+     * Start to download data.
      */
     void startRequest();
     /*!

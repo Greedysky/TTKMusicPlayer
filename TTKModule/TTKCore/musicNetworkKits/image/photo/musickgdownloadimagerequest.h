@@ -35,7 +35,7 @@ public:
     MusicKGDownloadBackgroundRequest(const QString &name, const QString &path, QObject *parent = nullptr);
 
     /*!
-     * Start to download data from net.
+     * Start to download background data.
      */
     virtual void startRequest() override final;
 

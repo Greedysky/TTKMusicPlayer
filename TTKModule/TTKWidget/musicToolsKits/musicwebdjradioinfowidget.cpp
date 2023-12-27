@@ -82,7 +82,7 @@ void MusicWebDJRadioInfoWidget::createProgramCategoryItem(const MusicResultDataI
 
     if(!m_resizeWidgets.isEmpty())
     {
-        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
+        if(TTK::isCoverValid(item.m_coverUrl))
         {
             MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
             connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));

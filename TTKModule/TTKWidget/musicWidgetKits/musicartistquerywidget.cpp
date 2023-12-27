@@ -56,7 +56,7 @@ void MusicArtistAlbumsItemWidget::setResultDataItem(const MusicResultDataItem &i
     m_updateLabel->setToolTip(item.m_updateTime);
     m_updateLabel->setText(TTK::Widget::elidedText(m_updateLabel->font(), m_updateLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
-    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
+    if(TTK::isCoverValid(item.m_coverUrl))
     {
         MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
@@ -404,7 +404,7 @@ void MusicArtistQueryWidget::createArtistItem(const MusicResultDataItem &item)
 
     if(!m_resizeWidgets.isEmpty())
     {
-        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
+        if(TTK::isCoverValid(item.m_coverUrl))
         {
             MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
             connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));

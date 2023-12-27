@@ -40,10 +40,19 @@ public:
     virtual void deleteAll() override final;
 
     /*!
-     * Start to download data from net.
+     * Start to download background data.
      * Subclass should implement this function.
      */
     virtual void startRequest() = 0;
+
+    /*!
+     * Set the remain count.
+     */
+    inline void setRemainCount(int count) { m_remainCount = count; }
+    /*!
+     * get the found count.
+     */
+    inline int foundCount() { return MAX_IMAGE_COUNT - m_remainCount + m_counter++; }
 
 public Q_SLOTS:
     /*!
@@ -52,6 +61,7 @@ public Q_SLOTS:
     void downLoadDataFinished();
 
 protected:
+    int m_remainCount;
     int m_index, m_counter;
     QString m_name, m_path;
 

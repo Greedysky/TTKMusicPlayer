@@ -26,10 +26,23 @@
  */
 namespace QDlnaHelper
 {
-TTK_MODULE_EXPORT QString MakeRequest(const QString &methord, const QString &url, int length, const QString &soapAction, const QString &ip, const QString &port);
-TTK_MODULE_EXPORT QString makeSocketGetReply(const QString &ip, const QString &port, const QString &data);
-TTK_MODULE_EXPORT QString removeHttpHeader(const QString &data);
-TTK_MODULE_EXPORT int     GetResponseCode(const QString &data);
+    /*!
+     * Make request.
+     */
+    TTK_MODULE_EXPORT QString MakeRequest(const QString &methord, const QString &url, int length, const QString &soapAction, const QString &ip, const QString &port);
+    /*!
+     * Make socket get reply.
+     */
+    TTK_MODULE_EXPORT QString makeSocketGetReply(const QString &ip, const QString &port, const QString &data);
+    /*!
+     * Remove http header.
+     */
+    TTK_MODULE_EXPORT QString removeHttpHeader(const QString &data);
+    /*!
+     * Get response code.
+     */
+    TTK_MODULE_EXPORT int GetResponseCode(const QString &data);
+
 }
 
 #endif // QDLNAHELPER_H

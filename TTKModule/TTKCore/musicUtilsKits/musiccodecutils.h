@@ -44,6 +44,7 @@ namespace TTK
          * Set local codec by format.
          */
         TTK_MODULE_EXPORT void setLocalCodec(const char *format = "UTF-8");
+
     }
 }
 

@@ -23,7 +23,7 @@
 #include "ttkversion.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the source data query pdate request.
+/*! @brief The class of the source data query update request.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicSourceUpdateRequest : public QObject
@@ -37,7 +37,7 @@ public:
     explicit MusicSourceUpdateRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download data from net.
+     * Start to download update data.
      */
     void startRequest();
 

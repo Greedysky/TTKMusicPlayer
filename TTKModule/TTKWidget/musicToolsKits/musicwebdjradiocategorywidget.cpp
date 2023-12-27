@@ -35,7 +35,7 @@ void MusicWebDJRadioCategoryItemWidget::setResultDataItem(const MusicResultDataI
     m_nameLabel->setToolTip(item.m_name);
     m_nameLabel->setText(TTK::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
-    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
+    if(TTK::isCoverValid(item.m_coverUrl))
     {
         MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));

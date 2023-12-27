@@ -50,7 +50,7 @@ public:
     void addCellItem(MusicAbstractQueryRequest *request, const TTK::MusicSongInformation &info);
 
     /*!
-     * Start to download data from net.
+     * Start to download data by type.
      */
     void startRequest();
     /*!
@@ -111,11 +111,6 @@ public:
      */
     void addCellItem(MusicAbstractQueryRequest *request, const TTK::MusicSongInformation &info);
 
-    /*!
-     * Start to download data from net.
-     */
-    void startRequest();
-
 public Q_SLOTS:
     /*!
      * Remove all items.
@@ -125,6 +120,10 @@ public Q_SLOTS:
      * Table widget item cell click.
      */
     void currentQualityChanged(int index);
+    /*!
+     * Start to download data.
+     */
+    void startRequest();
 
 private:
     QList<MusicDownloadBatchTableItem*> m_items;
@@ -153,12 +152,6 @@ public:
      * Set current name to search and download data.
      */
     void setSongName(MusicAbstractQueryRequest *request, const TTKIntList &items);
-
-public Q_SLOTS:
-    /*!
-     * Start to download data from net.
-     */
-    void startRequest();
 
 private:
     Ui::MusicDownloadBatchWidget *m_ui;

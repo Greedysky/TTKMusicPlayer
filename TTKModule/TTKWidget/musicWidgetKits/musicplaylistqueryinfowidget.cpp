@@ -86,7 +86,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     m_iconLabel->setPixmap(QPixmap(":/image/lb_warning").scaled(180, 180));
     m_iconLabel->setFixedSize(210, 180);
 
-    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
+    if(TTK::isCoverValid(item.m_coverUrl))
     {
         MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));

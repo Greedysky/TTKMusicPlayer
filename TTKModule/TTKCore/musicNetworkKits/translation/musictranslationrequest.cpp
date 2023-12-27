@@ -29,7 +29,6 @@ void MusicTranslationRequest::downLoadFinished(const QString &bytes)
     {
         Q_EMIT downLoadDataChanged(bytes);
         deleteLater();
-        return;
     }
 }
 

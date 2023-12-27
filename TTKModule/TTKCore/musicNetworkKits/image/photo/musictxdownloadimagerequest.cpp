@@ -110,9 +110,9 @@ void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
 
         for(const QString &url : qAsConst(items))
         {
-            if(m_counter < MAX_IMAGE_COUNT && !url.isEmpty())
+            if(m_counter < m_remainCount && !url.isEmpty())
             {
-                MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(m_counter++).arg(SKN_FILE), TTK::Download::Background, this);
+                MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(foundCount()).arg(SKN_FILE), TTK::Download::Background, this);
                 connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
                 d->startRequest();
             }
@@ -120,6 +120,7 @@ void MusicTXDownloadBackgroundRequest::downLoadUrlFinished()
     }
 
     Q_EMIT downLoadDataChanged(QString::number(m_counter));
+    //
     if(m_counter == 0)
     {
         deleteAll();

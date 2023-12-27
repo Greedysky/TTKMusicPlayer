@@ -35,7 +35,7 @@ public:
     explicit MusicFMRadioSongRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download data from net.
+     * Start to download radio data.
      */
     void startRequest();
 

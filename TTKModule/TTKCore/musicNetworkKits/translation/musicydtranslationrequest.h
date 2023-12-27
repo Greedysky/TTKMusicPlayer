@@ -35,7 +35,7 @@ public:
     explicit MusicYDTranslationRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to translation data.
+     * Start to download translation data.
      */
     virtual void startRequest(const QString &data) override final;
 

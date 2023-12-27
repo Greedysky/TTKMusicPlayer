@@ -35,7 +35,7 @@ public:
     explicit MusicNetworkOperator(QObject *parent = nullptr);
 
     /*!
-     * Start to download data from net.
+     * Start to download operator data.
      */
     void startRequest();
 

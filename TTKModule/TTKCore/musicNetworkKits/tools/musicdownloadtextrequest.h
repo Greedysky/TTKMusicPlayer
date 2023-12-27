@@ -35,7 +35,7 @@ public:
     MusicDownLoadTextRequest(const QString &url, const QString &path, QObject *parent = nullptr);
 
     /*!
-     * Start to download data from net.
+     * Start to download text data.
      */
     virtual void startRequest() override final;
 

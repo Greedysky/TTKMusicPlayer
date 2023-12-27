@@ -66,7 +66,7 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Start to download data from net.
+     * Start to download background data by suffix.
      */
     void startRequest(const QString &suffix);
 

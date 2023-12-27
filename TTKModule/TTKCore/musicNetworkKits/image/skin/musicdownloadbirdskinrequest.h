@@ -35,11 +35,11 @@ public:
     explicit MusicDownloadBirdSkinRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download data from net.
+     * Start to download skin data.
      */
     virtual void startRequest() override final;
     /*!
-     * Start to download data from net.
+     * Start to download skin data.
      */
     virtual void startRequest(const QString &id) override final;
 

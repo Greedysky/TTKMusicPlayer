@@ -31,6 +31,7 @@ namespace QAlgorithm
      * Get random value.
      */
     TTK_MODULE_EXPORT int random(int value);
+
 }
 
 #endif // RANDOM_H

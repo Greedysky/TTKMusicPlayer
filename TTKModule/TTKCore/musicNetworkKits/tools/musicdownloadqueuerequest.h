@@ -56,9 +56,10 @@ public:
      */
     void addImageQueue(const MusicDownloadQueueDataList &datas);
     /*!
-     * Start to download data from net.
+     * Start to download queue data.
      */
     virtual void startRequest() override final;
+
     /*!
      * Abort current download request.
      */

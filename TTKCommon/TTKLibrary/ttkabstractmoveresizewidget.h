@@ -35,7 +35,8 @@ struct TTK_MODULE_EXPORT MoveResizeData
     QSize m_pressedSize;
 };
 
-namespace TTK {
+namespace TTK
+{
 enum class Direction;
 }
 
