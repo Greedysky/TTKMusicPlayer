@@ -4,7 +4,7 @@
 #define MyAppNameEN "TTKMusicPlayer"
 #define MyAppVersion "3.4.0.0"
 #define MyAppPublisher "Greedysky Studio"
-#define MyAppCopyright "Copyright (C) 2015 - 2023 Greedysky Studio"
+#define MyAppCopyright "Copyright (C) 2015 - 2024 Greedysky Studio"
 #define MyAppURL "http://download.csdn.net/album/detail/3094"
 #define MyAppExeName MyAppNameEN + ".exe"
 

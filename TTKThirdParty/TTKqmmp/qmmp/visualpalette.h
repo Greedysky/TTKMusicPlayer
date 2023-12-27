@@ -1,6 +1,6 @@
 /***************************************************************************
  * This file is part of the TTK qmmp plugin project
- * Copyright (C) 2015 - 2023 Greedysky Studio
+ * Copyright (C) 2015 - 2024 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,12 +25,12 @@ namespace VisualPalette {
 enum Palette
 {
     PALETTE_SPECTRUM,
-    PALETTE_RAINBOW,
     PALETTE_PERCEPTUAL,
+    PALETTE_RAINBOW,
     PALETTE_SOX,
     PALETTE_MONO,
     PALETTE_COUNT,
-    PALETTE_DEFAULT = PALETTE_RAINBOW,
+    PALETTE_DEFAULT = PALETTE_PERCEPTUAL,
 };
 
 /*!
