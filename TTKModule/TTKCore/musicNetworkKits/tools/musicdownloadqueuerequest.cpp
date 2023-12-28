@@ -144,7 +144,7 @@ void MusicDownloadQueueRequest::handleError(QNetworkReply::NetworkError code)
 #ifndef TTK_DEBUG
     Q_UNUSED(code);
 #endif
-    TTK_ERROR_STREAM(QString("QNetworkReply::NetworkError : %1 %2").arg(code).arg(m_reply->errorString()));
+    TTK_ERROR_STREAM("QNetworkReply::NetworkError:" << code << m_reply->errorString());
     m_file->flush();
     if(!m_isAbort)
     {

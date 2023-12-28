@@ -9,7 +9,7 @@ MusicKWSongCommentsRequest::MusicKWSongCommentsRequest(QObject *parent)
 
 void MusicKWSongCommentsRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(className() << "startToPage" << offset);
 
     deleteAll();
     m_totalSize = 0;
@@ -25,7 +25,7 @@ void MusicKWSongCommentsRequest::startToPage(int offset)
 
 void MusicKWSongCommentsRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(className() << "startToSearch" << value);
 
     TTKSemaphoreLoop loop;
     MusicKWQueryRequest query(this), *d = &query;
@@ -45,7 +45,7 @@ void MusicKWSongCommentsRequest::startToSearch(const QString &value)
 
 void MusicKWSongCommentsRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downLoadFinished");
 
     MusicCommentsRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -97,7 +97,7 @@ MusicKWPlaylistCommentsRequest::MusicKWPlaylistCommentsRequest(QObject *parent)
 
 void MusicKWPlaylistCommentsRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(className() << "startToPage" << offset);
 
     deleteAll();
     m_totalSize = 0;
@@ -113,7 +113,7 @@ void MusicKWPlaylistCommentsRequest::startToPage(int offset)
 
 void MusicKWPlaylistCommentsRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(className() << "startToSearch" << value);
 
     m_rawData["sid"] = value;
     startToPage(0);
@@ -121,7 +121,7 @@ void MusicKWPlaylistCommentsRequest::startToSearch(const QString &value)
 
 void MusicKWPlaylistCommentsRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downLoadFinished");
 
     MusicCommentsRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

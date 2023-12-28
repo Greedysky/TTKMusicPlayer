@@ -67,7 +67,7 @@ MusicSongRecommendRequest::MusicSongRecommendRequest(QObject *parent)
 
 void MusicSongRecommendRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(className() << "startToSearch" << value);
 
     deleteAll();
 
@@ -83,7 +83,7 @@ void MusicSongRecommendRequest::startToSearch(const QString &value)
 
 void MusicSongRecommendRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downLoadFinished");
 
     MusicAbstractQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

@@ -9,7 +9,7 @@ MusicKGQueryArtistListRequest::MusicKGQueryArtistListRequest(QObject *parent)
 
 void MusicKGQueryArtistListRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(className() << "startToPage" << offset);
 
     deleteAll();
     m_totalSize = TTK_HIGH_LEVEL;
@@ -43,7 +43,7 @@ void MusicKGQueryArtistListRequest::startToPage(int offset)
 
 void MusicKGQueryArtistListRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className()).arg(value));
+    TTK_INFO_STREAM(className() << "startToSearch" << value);
 
     m_queryValue = value;
     m_queryValue.replace("n", "&");
@@ -52,7 +52,7 @@ void MusicKGQueryArtistListRequest::startToSearch(const QString &value)
 
 void MusicKGQueryArtistListRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downLoadFinished");
 
     MusicQueryArtistListRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

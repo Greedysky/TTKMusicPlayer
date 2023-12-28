@@ -42,6 +42,11 @@ public:
     explicit MusicAbstractTranslationRequest(QObject *parent = nullptr);
 
     /*!
+     * Release the network object.
+     */
+    virtual void deleteAll() override final;
+
+    /*!
      * Start to download translation data.
      * Subclass should implement this function.
      */

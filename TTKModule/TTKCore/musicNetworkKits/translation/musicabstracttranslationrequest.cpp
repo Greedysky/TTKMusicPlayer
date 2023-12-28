@@ -5,3 +5,9 @@ MusicAbstractTranslationRequest::MusicAbstractTranslationRequest(QObject *parent
 {
 
 }
+
+void MusicAbstractTranslationRequest::deleteAll()
+{
+    MusicAbstractNetwork::deleteAll();
+    deleteLater();
+}

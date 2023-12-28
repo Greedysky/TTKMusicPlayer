@@ -92,7 +92,7 @@ public:
     /*!
      * Make translation object by type.
      */
-    MusicTranslationRequest *makeTranslationRequest(const QString &data, QObject *parent);
+    MusicTranslationRequest *makeTranslationRequest(QObject *parent);
     /*!
      * Make download lrc object by type.
      */

@@ -9,7 +9,7 @@ MusicWYQueryRequest::MusicWYQueryRequest(QObject *parent)
 
 void MusicWYQueryRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(className() << "startToPage" << offset);
 
     deleteAll();
     m_totalSize = 0;
@@ -27,7 +27,7 @@ void MusicWYQueryRequest::startToPage(int offset)
 
 void MusicWYQueryRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(className() << "startToSearch" << value);
 
     m_queryValue = value.trimmed();
     MusicAbstractQueryRequest::downLoadFinished();
@@ -37,7 +37,7 @@ void MusicWYQueryRequest::startToSearch(const QString &value)
 
 void MusicWYQueryRequest::startToSingleSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(className() << "startToSingleSearch" << value);
 
     deleteAll();
 
@@ -53,7 +53,7 @@ void MusicWYQueryRequest::startToSingleSearch(const QString &value)
 
 void MusicWYQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
-    TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
+    TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
     MusicPageQueryRequest::downLoadFinished();
 
     TTK_NETWORK_QUERY_CHECK();
@@ -65,7 +65,7 @@ void MusicWYQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, in
 
 void MusicWYQueryRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downLoadFinished");
 
     MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -146,7 +146,7 @@ void MusicWYQueryRequest::downLoadFinished()
 
 void MusicWYQueryRequest::downLoadSingleFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadSingleFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downLoadSingleFinished");
 
     MusicAbstractQueryRequest::downLoadFinished();
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());

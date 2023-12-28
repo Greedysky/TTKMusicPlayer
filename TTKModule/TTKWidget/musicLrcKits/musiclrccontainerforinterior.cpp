@@ -374,9 +374,10 @@ void MusicLrcContainerForInterior::translatedLrcData()
         return;
     }
 
-    MusicTranslationRequest *d = G_DOWNLOAD_QUERY_PTR->makeTranslationRequest(m_lrcAnalysis->dataString(), this);
+    MusicTranslationRequest *d = G_DOWNLOAD_QUERY_PTR->makeTranslationRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryTranslatedLrcFinished(QString)));
     d->setHeader("name", path);
+    d->setHeader("data", m_lrcAnalysis->dataString());
     d->startRequest();
 }
 

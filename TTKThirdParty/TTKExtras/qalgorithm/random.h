@@ -19,18 +19,16 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkmoduleexport.h"
-
 namespace QAlgorithm
 {
     /*!
      * Init random value seed.
      */
-    TTK_MODULE_EXPORT void initRandom();
+    void initRandom();
     /*!
      * Get random value.
      */
-    TTK_MODULE_EXPORT int random(int value);
+    int random(int value);
 
 }
 

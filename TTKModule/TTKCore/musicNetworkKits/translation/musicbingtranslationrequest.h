@@ -1,5 +1,5 @@
-#ifndef MUSICTRANSLATIONREQUEST_H
-#define MUSICTRANSLATIONREQUEST_H
+#ifndef MUSICBINGTRANSLATIONREQUEST_H
+#define MUSICBINGTRANSLATIONREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,41 +19,38 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractnetwork.h"
+#include "musicabstracttranslationrequest.h"
 
-/*! @brief The class of the translation words manager request.
+/*! @brief The class of the bing translation words request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicTranslationRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicBingTranslationRequest : public MusicAbstractTranslationRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicTranslationRequest)
+    TTK_DECLARE_MODULE(MusicBingTranslationRequest)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicTranslationRequest(QObject *parent = nullptr);
+    explicit MusicBingTranslationRequest(QObject *parent = nullptr);
 
     /*!
      * Start to download translation data.
      */
-    void startRequest();
+    virtual void startRequest(const QString &data) override final;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished(const QString &bytes);
+    virtual void downLoadFinished() override final;
 
 private:
     /*!
-     * Find all plugins.
+     * Map type from enum to string.
      */
-    void findAllPlugins();
-
-private:
-    int m_pluginIndex;
+    QString mapToString(Language type) const;
 
 };
 
-#endif // MUSICTRANSLATIONREQUEST_H
+#endif // MUSICBINGTRANSLATIONREQUEST_H

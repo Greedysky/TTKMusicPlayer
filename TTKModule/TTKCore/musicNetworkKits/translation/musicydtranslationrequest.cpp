@@ -11,9 +11,9 @@ MusicYDTranslationRequest::MusicYDTranslationRequest(QObject *parent)
 
 void MusicYDTranslationRequest::startRequest(const QString &data)
 {
-    TTK_INFO_STREAM(QString("%1 startRequest").arg(className()));
+    TTK_INFO_STREAM(className() << "startRequest");
 
-    deleteAll();
+    MusicAbstractNetwork::deleteAll();
 
     QString sid;
     {
@@ -23,19 +23,18 @@ void MusicYDTranslationRequest::startRequest(const QString &data)
         TTK::makeContentTypeHeader(&request);
 
         const QString &bytes = QString(TTK::syncNetworkQueryForGet(&request));
-        if(bytes.isEmpty())
+        if(!bytes.isEmpty())
         {
-            Q_EMIT downLoadDataChanged({});
-            return;
+            const QRegExp regx("sid\\:\\s\\'([0-9a-f\\.]+)");
+            sid = (regx.indexIn(bytes) != -1) ? regx.cap(1) : bytes;
         }
-
-        const QRegExp regx("sid\\:\\s\\'([0-9a-f\\.]+)");
-        sid = (regx.indexIn(bytes) != -1) ? regx.cap(1) : bytes;
     }
 
     if(sid.isEmpty())
     {
+        TTK_INFO_STREAM(className() << "downLoadFinished");
         Q_EMIT downLoadDataChanged({});
+        deleteAll();
         return;
     }
 
@@ -51,6 +50,8 @@ void MusicYDTranslationRequest::startRequest(const QString &data)
 
 void MusicYDTranslationRequest::downLoadFinished()
 {
+    TTK_INFO_STREAM(className() << "downLoadFinished");
+
     MusicAbstractTranslationRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -71,21 +72,15 @@ void MusicYDTranslationRequest::downLoadFinished()
                     }
 
                     Q_EMIT downLoadDataChanged(var.toString());
-                    break;
+                    deleteAll();
+                    return;
                 }
             }
         }
-        else
-        {
-            Q_EMIT downLoadDataChanged({});
-        }
-    }
-    else
-    {
-        TTK_ERROR_STREAM("Translation source data error");
-        Q_EMIT downLoadDataChanged({});
     }
 
+    TTK_ERROR_STREAM("Translation source data error");
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 

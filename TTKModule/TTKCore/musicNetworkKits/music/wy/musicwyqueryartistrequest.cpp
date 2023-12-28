@@ -8,7 +8,7 @@ MusicWYQueryArtistRequest::MusicWYQueryArtistRequest(QObject *parent)
 
 void MusicWYQueryArtistRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(className() << "startToSearch" << value);
 
     deleteAll();
     m_queryValue = value;
@@ -25,7 +25,7 @@ void MusicWYQueryArtistRequest::startToSearch(const QString &value)
 
 void MusicWYQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
-    TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
+    TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
     MusicPageQueryRequest::downLoadFinished();
 
     TTK_NETWORK_QUERY_CHECK();
@@ -37,7 +37,7 @@ void MusicWYQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *in
 
 void MusicWYQueryArtistRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downLoadFinished");
 
     MusicQueryArtistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

@@ -10,9 +10,9 @@ MusicBDTranslationRequest::MusicBDTranslationRequest(QObject *parent)
 
 void MusicBDTranslationRequest::startRequest(const QString &data)
 {
-    TTK_INFO_STREAM(QString("%1 startRequest").arg(className()));
+    TTK_INFO_STREAM(className() << "startRequest");
 
-    deleteAll();
+    MusicAbstractNetwork::deleteAll();
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(TRANSLATION_URL, false).arg(mapToString(Language::Auto), mapToString(Language::Chinese), data));
@@ -26,6 +26,8 @@ void MusicBDTranslationRequest::startRequest(const QString &data)
 
 void MusicBDTranslationRequest::downLoadFinished()
 {
+    TTK_INFO_STREAM(className() << "downLoadFinished");
+
     MusicAbstractTranslationRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -54,20 +56,14 @@ void MusicBDTranslationRequest::downLoadFinished()
                 }
 
                 Q_EMIT downLoadDataChanged(value["dst"].toString());
-                break;
+                deleteAll();
+                return;
             }
         }
-        else
-        {
-            Q_EMIT downLoadDataChanged({});
-        }
-    }
-    else
-    {
-        TTK_ERROR_STREAM("Translation source data error");
-        Q_EMIT downLoadDataChanged({});
     }
 
+    TTK_ERROR_STREAM("Translation source data error");
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }
 

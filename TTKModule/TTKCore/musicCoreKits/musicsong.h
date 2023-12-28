@@ -208,11 +208,11 @@ namespace TTK
      */
     TTK_MODULE_EXPORT QString trackRelatedPath(const QString &path);
     /*!
-     * Generate music song name.
+     * Generate song name.
      */
     TTK_MODULE_EXPORT QString generateSongName(const QString &title, const QString &artist);
     /*!
-     * Generate music song playlist.
+     * Generate song playlist.
      */
     TTK_MODULE_EXPORT MusicSongList generateSongList(const QString &path);
 

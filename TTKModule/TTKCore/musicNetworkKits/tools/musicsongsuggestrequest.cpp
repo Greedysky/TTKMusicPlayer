@@ -11,7 +11,7 @@ MusicSongSuggestRequest::MusicSongSuggestRequest(QObject *parent)
 
 void MusicSongSuggestRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(className() << "startToSearch" << value);
 
     deleteAll();
 
@@ -26,7 +26,7 @@ void MusicSongSuggestRequest::startToSearch(const QString &value)
 
 void MusicSongSuggestRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downLoadFinished");
 
     m_items.clear();
     MusicPageQueryRequest::downLoadFinished();

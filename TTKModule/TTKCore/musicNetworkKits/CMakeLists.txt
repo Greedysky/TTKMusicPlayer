@@ -99,6 +99,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicabstracttranslationrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/translation/musictranslationrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicbdtranslationrequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/translation/musicbingtranslationrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicwytranslationrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicydtranslationrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/musicnetworkdefines.h
@@ -185,6 +186,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicabstracttranslationrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/translation/musictranslationrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicbdtranslationrequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/translation/musicbingtranslationrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicwytranslationrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/translation/musicydtranslationrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.cpp

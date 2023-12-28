@@ -18,15 +18,14 @@ void MusicDownloadBackgroundRequest::startRequest()
 {
     m_findCount = 0;
     m_pluginIndex = -1;
-
     findAllPlugins();
 }
 
 void MusicDownloadBackgroundRequest::downLoadFinished(const QString &bytes)
 {
-    if(bytes == TTK_DEFAULT_STR)
+    if(bytes.isEmpty())
     {
-        deleteLater();
+        findAllPlugins();
         return;
     }
 

@@ -10,27 +10,29 @@ MusicWYTranslationRequest::MusicWYTranslationRequest(QObject *parent)
 
 void MusicWYTranslationRequest::startRequest(const QString &data)
 {
-    TTK_INFO_STREAM(QString("%1 startRequest").arg(className()));
+    TTK_INFO_STREAM(className() << "startRequest");
 
     Q_UNUSED(data);
-    deleteAll();
+    MusicAbstractNetwork::deleteAll();
 
     TTKSemaphoreLoop loop;
     MusicWYQueryRequest query(this), *d = &query;
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
-    d->startToSearch(QFileInfo(m_rawData["name"].toString()).baseName());
+    d->startToSearch(QFileInfo(header("name").toString()).baseName());
     loop.exec();
 
-    QUrl url;
-    if(!d->isEmpty())
+    if(d->isEmpty())
     {
-        url.setUrl(TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(d->songInfoList().front().m_songId));
+        TTK_INFO_STREAM(className() << "downLoadFinished");
+        Q_EMIT downLoadDataChanged({});
+        deleteAll();
+        return;
     }
 
     QNetworkRequest request;
-    request.setUrl(url);
+    request.setUrl(TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(d->songInfoList().front().m_songId));
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
 
@@ -41,6 +43,8 @@ void MusicWYTranslationRequest::startRequest(const QString &data)
 
 void MusicWYTranslationRequest::downLoadFinished()
 {
+    TTK_INFO_STREAM(className() << "downLoadFinished");
+
     MusicAbstractTranslationRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -54,18 +58,13 @@ void MusicWYTranslationRequest::downLoadFinished()
             {
                 value = value["tlyric"].toMap();
                 Q_EMIT downLoadDataChanged(value["lyric"].toString());
+                deleteAll();
+                return;
             }
         }
-        else
-        {
-            Q_EMIT downLoadDataChanged({});
-        }
-    }
-    else
-    {
-        TTK_ERROR_STREAM("Translation source data error");
-        Q_EMIT downLoadDataChanged({});
     }
 
+    TTK_ERROR_STREAM("Translation source data error");
+    Q_EMIT downLoadDataChanged({});
     deleteAll();
 }

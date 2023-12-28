@@ -9,7 +9,7 @@ MusicKWQueryPlaylistRequest::MusicKWQueryPlaylistRequest(QObject *parent)
 
 void MusicKWQueryPlaylistRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(className() << "startToPage" << offset);
 
     deleteAll();
     m_totalSize = 0;
@@ -25,7 +25,7 @@ void MusicKWQueryPlaylistRequest::startToPage(int offset)
 
 void MusicKWQueryPlaylistRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(className() << "startToSearch" << value);
 
     deleteAll();
 
@@ -40,7 +40,7 @@ void MusicKWQueryPlaylistRequest::startToSearch(const QString &value)
 
 void MusicKWQueryPlaylistRequest::startToSingleSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(className() << "startToSingleSearch" << value);
 
     m_queryValue = value.isEmpty() ? "167" : value;
     startToPage(0);
@@ -48,7 +48,7 @@ void MusicKWQueryPlaylistRequest::startToSingleSearch(const QString &value)
 
 void MusicKWQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
-    TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
+    TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
     MusicPageQueryRequest::downLoadFinished();
 
     TTK_NETWORK_QUERY_CHECK();
@@ -61,7 +61,7 @@ void MusicKWQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *
 
 void MusicKWQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
 {
-    TTK_INFO_STREAM(QString("%1 startToQueryInfo %2").arg(className(), item.m_id));
+    TTK_INFO_STREAM(className() << "startToQueryInfo" << item.m_id);
 
     MusicPageQueryRequest::downLoadFinished();
 
@@ -95,7 +95,7 @@ void MusicKWQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
 
 void MusicKWQueryPlaylistRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downLoadFinished");
 
     MusicQueryPlaylistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -136,7 +136,7 @@ void MusicKWQueryPlaylistRequest::downLoadFinished()
 
 void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downloadDetailsFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downloadDetailsFinished");
 
     MusicQueryPlaylistRequest::downLoadFinished();
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
@@ -200,7 +200,7 @@ void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
 
 void MusicKWQueryPlaylistRequest::downloadMoreDetailsFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downloadMoreDetailsFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downloadMoreDetailsFinished");
 
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply && reply->error() == QNetworkReply::NoError)
@@ -230,7 +230,7 @@ void MusicKWQueryPlaylistRequest::downloadMoreDetailsFinished()
 
 void MusicKWQueryPlaylistRequest::morePlaylistDetails(const QString &pid)
 {
-    TTK_INFO_STREAM(QString("%1 morePlaylistDetails %2").arg(className(), pid));
+    TTK_INFO_STREAM(className() << "morePlaylistDetails" << pid);
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_PLAYLIST_INFO_URL, false).arg(pid));

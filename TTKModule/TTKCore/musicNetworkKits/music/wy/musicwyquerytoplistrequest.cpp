@@ -8,7 +8,7 @@ MusicWYQueryToplistRequest::MusicWYQueryToplistRequest(QObject *parent)
 
 void MusicWYQueryToplistRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(className() << "startToSearch" << value);
 
     deleteAll();
     m_queryValue = value.isEmpty() ? "19723756" : value;
@@ -25,7 +25,7 @@ void MusicWYQueryToplistRequest::startToSearch(const QString &value)
 
 void MusicWYQueryToplistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
-    TTK_INFO_STREAM(QString("%1 startToQueryResult %2 %3kbps").arg(className(), info->m_songId).arg(bitrate));
+    TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
     MusicPageQueryRequest::downLoadFinished();
 
     TTK_NETWORK_QUERY_CHECK();
@@ -37,7 +37,7 @@ void MusicWYQueryToplistRequest::startToQueryResult(TTK::MusicSongInformation *i
 
 void MusicWYQueryToplistRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downLoadFinished");
 
     MusicQueryToplistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

@@ -19,18 +19,18 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "ttkmoduleexport.h"
+#include "ttkglobal.h"
 
 namespace QAlgorithm
 {
     /*!
      * Base64 encode.
      */
-    TTK_MODULE_EXPORT TTKString base64Encode(const unsigned char *bytes, unsigned int len);
+    TTKString base64Encode(const unsigned char *bytes, unsigned int len);
     /*!
      * Base64 dncode.
      */
-    TTK_MODULE_EXPORT TTKString base64Decode(const TTKString &bytes);
+    TTKString base64Decode(const TTKString &bytes);
 
 }
 

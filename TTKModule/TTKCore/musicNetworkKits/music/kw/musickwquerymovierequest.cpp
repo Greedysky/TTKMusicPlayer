@@ -135,7 +135,7 @@ MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
 
 void MusicKWQueryMovieRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(QString("%1 startToPage %2").arg(className()).arg(offset));
+    TTK_INFO_STREAM(className() << "startToPage" << offset);
 
     deleteAll();
     m_totalSize = 0;
@@ -152,7 +152,7 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
 
 void MusicKWQueryMovieRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(className() << "startToSearch" << value);
 
     deleteAll();
     m_queryValue = value.trimmed();
@@ -168,7 +168,7 @@ void MusicKWQueryMovieRequest::startToSearch(const QString &value)
 
 void MusicKWQueryMovieRequest::startToSingleSearch(const QString &value)
 {
-    TTK_INFO_STREAM(QString("%1 startToSingleSearch %2").arg(className(), value));
+    TTK_INFO_STREAM(className() << "startToSingleSearch" << value);
 
     deleteAll();
     m_queryValue = value.trimmed();
@@ -178,7 +178,7 @@ void MusicKWQueryMovieRequest::startToSingleSearch(const QString &value)
 
 void MusicKWQueryMovieRequest::downLoadFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downLoadFinished");
 
     MusicQueryMovieRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -240,7 +240,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
 
 void MusicKWQueryMovieRequest::downLoadPageFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadPageFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downLoadPageFinished");
 
     MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -286,7 +286,7 @@ void MusicKWQueryMovieRequest::downLoadPageFinished()
 
 void MusicKWQueryMovieRequest::downLoadSingleFinished()
 {
-    TTK_INFO_STREAM(QString("%1 downLoadSingleFinished").arg(className()));
+    TTK_INFO_STREAM(className() << "downLoadSingleFinished");
 
     MusicQueryMovieRequest::downLoadFinished();
 

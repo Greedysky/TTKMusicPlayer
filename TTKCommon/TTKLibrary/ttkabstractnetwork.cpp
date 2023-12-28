@@ -61,7 +61,7 @@ void TTKAbstractNetwork::sslErrorsString(QNetworkReply *reply, const QList<QSslE
         errorString += error.errorString();
     }
 
-    TTK_ERROR_STREAM(QString("SslErrors: %1").arg(errorString));
+    TTK_ERROR_STREAM("SslErrors:" << errorString);
     reply->ignoreSslErrors();
 }
 #endif

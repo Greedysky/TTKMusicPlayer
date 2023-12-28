@@ -112,6 +112,7 @@ HEADERS += \
     $$PWD/translation/musicabstracttranslationrequest.h \
     $$PWD/translation/musictranslationrequest.h \
     $$PWD/translation/musicbdtranslationrequest.h \
+    $$PWD/translation/musicbingtranslationrequest.h \
     $$PWD/translation/musicwytranslationrequest.h \
     $$PWD/translation/musicydtranslationrequest.h \
     $$PWD/musicnetworkdefines.h \
@@ -197,6 +198,7 @@ SOURCES += \
     $$PWD/translation/musicabstracttranslationrequest.cpp \
     $$PWD/translation/musictranslationrequest.cpp \
     $$PWD/translation/musicbdtranslationrequest.cpp \
+    $$PWD/translation/musicbingtranslationrequest.cpp \
     $$PWD/translation/musicwytranslationrequest.cpp \
     $$PWD/translation/musicydtranslationrequest.cpp \
     $$PWD/musicdownloadqueryfactory.cpp
