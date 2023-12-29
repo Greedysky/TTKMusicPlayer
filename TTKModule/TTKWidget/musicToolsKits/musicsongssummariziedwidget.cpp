@@ -159,8 +159,8 @@ void MusicSongsSummariziedWidget::importMusicSongsByUrl(const QString &path, int
         MusicSongItem *item = &m_containerItems[MUSIC_NETWORK_LIST];
         const QString &prefix = TTK::String::slitToken(path, TTK_SEPARATOR, "?");
         const QByteArray &md5 = TTK::Algorithm::md5(path.toUtf8());
-        const MusicSong song(path + "#" + md5 + "." + TTK::String::slitToken(path),
-                             TTK_DEFAULT_STR, TTK::String::pefix(prefix));
+        const MusicSong song(path + "#" + md5 + "." + TTK::String::slitToken(path), TTK_DEFAULT_STR, TTK::String::pefix(prefix));
+
         if(item->m_songs.contains(song))
         {
             return;

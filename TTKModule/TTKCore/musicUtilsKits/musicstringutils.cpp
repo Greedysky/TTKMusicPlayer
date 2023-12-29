@@ -109,7 +109,7 @@ bool TTK::String::isNetworkUrl(const QString &path)
 
 QString TTK::String::songName(const QString &value, const QString &key)
 {
-    const QStringList &s = split(value);
+    const QStringList &s = TTK::String::split(value);
     if(s.count() >= 2)
     {
         const int index = value.indexOf(key) + 1;
@@ -120,7 +120,7 @@ QString TTK::String::songName(const QString &value, const QString &key)
 
 QString TTK::String::artistName(const QString &value, const QString &key)
 {
-    const QStringList &s = split(value);
+    const QStringList &s = TTK::String::split(value);
     if(s.count() >= 2)
     {
         const int index = value.indexOf(key);
@@ -138,15 +138,13 @@ QString TTK::String::convertHtmlToPlain(const QString &value)
 
 QStringList TTK::String::illegalCharacters()
 {
-    QStringList acs;
-    acs << "\\" << "/" << "?" << "*" << "\"" << ":" << "<" << ">" << "|";
+    static QStringList acs{"\\", "/", "?", "*", "\"", ":", "<", ">", "|"};
     return acs;
 }
 
 bool TTK::String::isCharacterValid(const QString &value)
 {
-    const QStringList acs(TTK::String::illegalCharacters());
-    for(const QString &ac : qAsConst(acs))
+    for(const QString &ac : TTK::String::illegalCharacters())
     {
         if(value.contains(ac))
         {
@@ -160,8 +158,7 @@ QString TTK::String::charactersReplace(const QString &value)
 {
     QString s(TTK::String::convertHtmlToPlain(value));
 
-    const QStringList acs(TTK::String::illegalCharacters());
-    for(const QString &ac : qAsConst(acs))
+    for(const QString &ac : TTK::String::illegalCharacters())
     {
         if(s.contains(ac))
         {

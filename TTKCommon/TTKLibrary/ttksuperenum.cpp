@@ -29,7 +29,7 @@ QString TTKSuperEnum::keyToString(int value) const
         return "Null";
     }
 
-    const auto& it = m_enumValue.find(value);
+    const auto &it = m_enumValue.find(value);
     return it != m_enumValue.end() ? it->second : "Invalid";
 }
 

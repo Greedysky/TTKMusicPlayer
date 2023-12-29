@@ -54,7 +54,7 @@ void MusicPlaylistManager::writeSongItem(const QString &path, const MusicSongIte
     }
 }
 
-void MusicPlaylistManager::readSongItems(const QStringList& paths, MusicSongItemList &items)
+void MusicPlaylistManager::readSongItems(const QStringList &paths, MusicSongItemList &items)
 {
     for(const QString &path : qAsConst(paths))
     {

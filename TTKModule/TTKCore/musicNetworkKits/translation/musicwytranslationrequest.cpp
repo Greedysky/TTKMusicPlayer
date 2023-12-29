@@ -1,6 +1,7 @@
 #include "musicwytranslationrequest.h"
 #include "musicwyqueryinterface.h"
 #include "musicwyqueryrequest.h"
+#include "musicotherdefine.h"
 
 MusicWYTranslationRequest::MusicWYTranslationRequest(QObject *parent)
     : MusicAbstractTranslationRequest(parent)
@@ -56,10 +57,44 @@ void MusicWYTranslationRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200)
             {
-                value = value["tlyric"].toMap();
-                Q_EMIT downLoadDataChanged(value["lyric"].toString());
-                deleteAll();
-                return;
+                const QVariantMap &lValue = value["lrc"].toMap();
+                const QString &lrc = lValue["lyric"].toString();
+
+                const QVariantMap &tValue = value["tlyric"].toMap();
+                const QString &tlrc = tValue["lyric"].toString();
+
+                if(!lrc.isEmpty() && !tlrc.isEmpty())
+                {
+                    QString text;
+                    QStringList orts = lrc.split("\n");
+                    QStringList trts = tlrc.split("\n");
+
+                    for(QString &ort : orts)
+                    {
+                        const QRegExp regx("\\[.+\\]");
+                        const QString &prefix = (regx.indexIn(ort) != -1) ? regx.cap(0) : QString();
+
+                        if(prefix.isEmpty())
+                        {
+                            continue;
+                        }
+
+                        text += ort.remove(prefix) + "\r\n";
+
+                        for(QString &trt : trts)
+                        {
+                            if(trt.startsWith(prefix))
+                            {
+                                text += trt.remove(prefix) + "\r\n";
+                                break;
+                            }
+                        }
+                    }
+
+                    Q_EMIT downLoadDataChanged(MUSIC_AUTHOR_NAME + text);
+                    deleteAll();
+                    return;
+                }
             }
         }
     }

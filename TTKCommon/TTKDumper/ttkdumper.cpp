@@ -180,7 +180,7 @@ void TTKDumperPrivate::errorHandler(int id)
 
     char stamp[50];
     sprintf(stamp, "%ld", time(nullptr));
-    const TTKString& file_name = (m_name + '_' + m_version).toStdString() + "." + stamp + ".dmp";
+    const TTKString &file_name = (m_name + '_' + m_version).toStdString() + "." + stamp + ".dmp";
 
     constexpr int size = 512;
     void* array[size];

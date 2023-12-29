@@ -39,7 +39,7 @@ bool MusicSongsListItemInfoWidget::showArtistPicture(const QString &name)
 
 void MusicSongsListItemInfoWidget::setSongInformation(int index, const MusicSong &song)
 {
-    const QString &musicArtist = song.artistFront();
+    const QString &musicArtist = song.artist();
     m_ui->songNameValue->setText(song.name().isEmpty() ? TTK_DEFAULT_STR : TTK::Widget::elidedText(font(), song.name(), Qt::ElideRight, m_ui->songNameValue->width()));
     m_ui->artlistValue->setText(musicArtist.isEmpty() ? TTK_DEFAULT_STR : TTK::Widget::elidedText(font(), musicArtist, Qt::ElideRight, m_ui->artlistValue->width()));
     m_ui->typeValue->setText(song.format().isEmpty() ? TTK_DEFAULT_STR : TTK::Widget::elidedText(font(), song.format(), Qt::ElideRight, m_ui->typeValue->width()));
@@ -68,7 +68,7 @@ void MusicSongsListItemInfoWidget::setSongInformation(int index, const MusicSong
         }
     }
 
-    if(!showArtistPicture(musicArtist) && !showArtistPicture(song.artistBack()))
+    if(!showArtistPicture(musicArtist) && !showArtistPicture(song.title()))
     {
         m_ui->artPicture->setPixmap(QPixmap(":/image/lb_default_art").scaled(60, 60));
     }

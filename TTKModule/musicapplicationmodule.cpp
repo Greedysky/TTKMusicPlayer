@@ -141,7 +141,7 @@ void MusicApplicationModule::applyParameter()
     TTKConcurrent(
     {
         TTKFileAssociation association;
-        const QStringList& keys = association.keys();
+        const QStringList &keys = association.keys();
 
         for(const QString &format : TTK::unsupportAssociations())
         {

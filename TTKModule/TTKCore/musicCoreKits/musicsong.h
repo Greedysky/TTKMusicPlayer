@@ -49,11 +49,11 @@ public:
     /*!
      * Get music artist name.
      */
-    QString artistFront() const noexcept;
+    QString artist() const noexcept;
     /*!
-     * Get music song name.
+     * Get music title name.
      */
-    QString artistBack() const noexcept;
+    QString title() const noexcept;
 
     /*!
      * Set music add time string.
@@ -186,7 +186,7 @@ struct TTK_MODULE_EXPORT MusicSongItem
 
     }
 
-    inline bool operator<(const MusicSongItem &other) const
+    inline bool operator<(const MusicSongItem &other) const noexcept
     {
         return m_itemIndex < other.m_itemIndex;
     }

@@ -35,7 +35,7 @@ void MusicSongCheckToolsRenameThread::run()
                     continue;
                 }
 
-                if((!meta.artist().isEmpty() && !meta.title().isEmpty()) && (meta.artist() != song.artistFront() || meta.title() != song.artistBack()))
+                if((!meta.artist().isEmpty() && !meta.title().isEmpty()) && (meta.artist() != song.artist() || meta.title() != song.title()))
                 {
                     m_datas << MusicSongCheckToolsRename(song.name(), meta.artist() + " - " + meta.title(), song.path());
                 }

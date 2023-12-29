@@ -31,14 +31,14 @@ MusicPlaylistBackupModule::MusicPlaylistBackupModule(QObject *parent)
 
 void MusicPlaylistBackupModule::runBackup()
 {
-    const QString& root = TTK_STR_CAT(APPBACKUP_DIR_FULL, "playlist");
-    const QString& child = QDate::currentDate().toString(TTK_YEAR_FORMAT);
+    const QString &root = TTK_STR_CAT(APPBACKUP_DIR_FULL, "playlist");
+    const QString &child = QDate::currentDate().toString(TTK_YEAR_FORMAT);
 
     QDir dir(root);
     dir.mkpath(child);
 
-    const QFileInfoList& dirList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Time | QDir::Reversed);
-    if (dirList.count() > 7)
+    const QFileInfoList &dirList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Time | QDir::Reversed);
+    if(dirList.count() > 7)
     {
         TTK::File::removeRecursively(dirList.front().absoluteFilePath());
     }
@@ -53,8 +53,8 @@ void MusicPlaylistBackupModule::runBackup()
 
     manager.writeBuffer(MusicApplication::instance()->m_songTreeWidget->musicItemList());
 
-    const QFileInfoList& fileList = dir.entryInfoList(QDir::Files, QDir::Time | QDir::Reversed);
-    if (fileList.count() > 7)
+    const QFileInfoList &fileList = dir.entryInfoList(QDir::Files, QDir::Time | QDir::Reversed);
+    if(fileList.count() > 7)
     {
         QFile::remove(fileList.front().absoluteFilePath());
     }

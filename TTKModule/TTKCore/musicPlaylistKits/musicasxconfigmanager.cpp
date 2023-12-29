@@ -69,7 +69,7 @@ bool MusicASXConfigManager::writeBuffer(const MusicSongItemList &items)
         {
             QDomElement trackDom = writeDomElement(rootDom, "Entry");
 
-            writeDomElement(trackDom, "Title", song.artistBack());
+            writeDomElement(trackDom, "Title", song.title());
             writeDomElement(trackDom, "Ref", {"href", song.path()});
             writeDomElement(trackDom, "Duration", {"value", "00:" + song.playTime() + ".000"});
             writeDomElement(trackDom, "Author", TTK_APP_NAME);

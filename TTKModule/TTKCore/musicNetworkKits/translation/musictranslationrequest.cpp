@@ -34,7 +34,7 @@ void MusicTranslationRequest::findAllPlugins()
     MusicAbstractTranslationRequest *d = nullptr;
     switch(++m_pluginIndex)
     {
-        case 0: d = new MusicWYTranslationRequest(this); break;
+        case 0: d = new MusicBingTranslationRequest(this); break;
         case 1: d = new MusicBingTranslationRequest(this); break;
         case 2: d = new MusicYDTranslationRequest(this); break;
         case 3: d = new MusicBDTranslationRequest(this); break;

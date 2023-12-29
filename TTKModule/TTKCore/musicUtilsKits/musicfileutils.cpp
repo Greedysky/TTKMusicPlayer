@@ -23,7 +23,7 @@ QStringList TTK::File::fileListByPath(const QString &dpath, const QStringList &f
 
     if(recursively)
     {
-        const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+        const QFileInfoList &folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
         for(const QFileInfo &fin : qAsConst(folderList))
         {
             fileList.append(TTK::File::fileListByPath(fin.absoluteFilePath(), filter, recursively));
@@ -43,7 +43,7 @@ QFileInfoList TTK::File::fileInfoListByPath(const QString &dpath, const QStringL
     QFileInfoList fileList = dir.entryInfoList(filter, QDir::Files | QDir::Hidden);
     if(recursively)
     {
-        const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+        const QFileInfoList &folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
         for(const QFileInfo &fin : qAsConst(folderList))
         {
             fileList.append(TTK::File::fileInfoListByPath(fin.absoluteFilePath(), filter, recursively));

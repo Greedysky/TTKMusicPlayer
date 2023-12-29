@@ -2,7 +2,7 @@
 
 #include <QStringList>
 
-TTKXmlNodeHelper::TTKXmlNodeHelper(const QDomNode& root)
+TTKXmlNodeHelper::TTKXmlNodeHelper(const QDomNode &root)
     : m_root(root),
       m_current(root)
 {
@@ -354,7 +354,7 @@ QDomElement TTKAbstractXml::writeDomMultiElement(QDomElement &element, const QSt
 
 void TTKAbstractXml::writeAttribute(QDomElement &element, const TTKXmlAttribute &attr) const
 {
-    switch (QtVariantType(attr.m_value))
+    switch(QtVariantType(attr.m_value))
     {
         case QVariant::Int: element.setAttribute(attr.m_key, attr.m_value.toInt()); break;
         case QVariant::String: element.setAttribute(attr.m_key, attr.m_value.toString()); break;
@@ -368,7 +368,7 @@ void TTKAbstractXml::writeAttribute(QDomElement &element, const TTKXmlAttribute 
 
 void TTKAbstractXml::writeAttribute(QDomElement &element, const TTKXmlAttributeList &attrs) const
 {
-    for (const TTKXmlAttribute &attr : qAsConst(attrs))
+    for(const TTKXmlAttribute &attr : qAsConst(attrs))
     {
         writeAttribute(element, attr);
     }

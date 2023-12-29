@@ -114,7 +114,7 @@ public:
     _CONSTEXPR_CONTAINER size_type erase(const key_type &_Keyval) noexcept
     {
         const auto &iter = find(_Keyval);
-        if (iter == end())
+        if(iter == end())
         {
             return 0;
         }
@@ -187,9 +187,9 @@ public:
 public:
     _CONSTEXPR_CONTAINER reference operator[](const key_type &_Keyval)
     {
-        for (auto &&item : m_conatiner)
+        for(auto &&item : m_conatiner)
         {
-            if (item.first == _Keyval)
+            if(item.first == _Keyval)
             {
                 return item.second;
             }
@@ -206,9 +206,9 @@ public:
 
     _CONSTEXPR_CONTAINER const_reference at(const key_type &_Keyval) const
     {
-        for (auto &&item : m_conatiner)
+        for(auto &&item : m_conatiner)
         {
-            if (item.first == _Keyval)
+            if(item.first == _Keyval)
             {
                 return item.second;
             }
@@ -220,9 +220,9 @@ public:
 
     _CONSTEXPR_CONTAINER iterator find(const key_type &_Keyval) noexcept
     {
-        for (auto itr = begin(); itr != end(); ++itr)
+        for(auto itr = begin(); itr != end(); ++itr)
         {
-            if (itr->first == _Keyval)
+            if(itr->first == _Keyval)
             {
                 return itr;
             }
@@ -233,9 +233,9 @@ public:
 
     _CONSTEXPR_CONTAINER const_iterator find(const key_type &_Keyval) const noexcept
     {
-        for (auto itr = begin(); itr != end(); ++itr)
+        for(auto itr = begin(); itr != end(); ++itr)
         {
-            if (itr->first == _Keyval)
+            if(itr->first == _Keyval)
             {
                 return itr;
             }
@@ -281,10 +281,10 @@ public:
     _CONSTEXPR_CONTAINER std::pair<iterator, iterator> equal_range(const key_type &_Keyval) noexcept
     {
         const auto &iter = find(_Keyval);
-        if (iter != end())
+        if(iter != end())
         {
             const auto &next = std::next(iter);
-            if (next != end())
+            if(next != end())
             {
                 return { iter, next };
             }
@@ -300,10 +300,10 @@ public:
     _CONSTEXPR_CONTAINER std::pair<const_iterator, const_iterator> equal_range(const key_type &_Keyval) const noexcept
     {
         const auto &iter = find(_Keyval);
-        if (iter != end())
+        if(iter != end())
         {
             const auto &next = std::next(iter);
-            if (next != end())
+            if(next != end())
             {
                 return { iter, next };
             }
@@ -324,7 +324,7 @@ public:
         _container.emplace_back(std::forward<_Valtys>(_Vals)...);
 
         const auto &iter = find(_container.begin()->first);
-        if (iter != end())
+        if(iter != end())
         {
             return { iter, false };
         }
@@ -340,7 +340,7 @@ public:
         _container.emplace_back(std::forward<_Valtys>(_Vals)...);
 
         const auto &iter = find(_container.begin()->first);
-        if (iter != end())
+        if(iter != end())
         {
             return iter;
         }
@@ -352,7 +352,7 @@ public:
     _CONSTEXPR_CONTAINER iterator insert(const value_type &_Val)
     {
         auto iter = find(_Val.first);
-        if (iter != end())
+        if(iter != end())
         {
             return iter;
         }
@@ -364,7 +364,7 @@ public:
     _CONSTEXPR_CONTAINER iterator insert(value_type &&_Val)
     {
         auto iter = find(_Val.first);
-        if (iter != end())
+        if(iter != end())
         {
             return iter;
         }
@@ -376,7 +376,7 @@ public:
     _CONSTEXPR_CONTAINER iterator insert(const_iterator _Where, const value_type &_Val)
     {
         auto iter = find(_Val.first);
-        if (iter != end())
+        if(iter != end())
         {
             return iter;
         }
@@ -387,7 +387,7 @@ public:
     _CONSTEXPR_CONTAINER iterator insert(const_iterator _Where, value_type &&_Val)
     {
         auto iter = find(_Val.first);
-        if (iter != end())
+        if(iter != end())
         {
             return iter;
         }
@@ -402,7 +402,7 @@ public:
         auto _UFirst = _Get_unwrapped(_First);
         const auto _ULast = _Get_unwrapped(_Last);
 
-        for (; _UFirst != _ULast; ++_UFirst)
+        for(; _UFirst != _ULast; ++_UFirst)
         {
             insert(*_UFirst);
         }

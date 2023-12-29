@@ -41,36 +41,36 @@ namespace TTK
         /*!
          * Encode the data into url.
          */
-        TTK_MODULE_EXPORT void urlEncode(QString &data);
+        TTK_MODULE_EXPORT QString urlEncode(QString &data);
         /*!
          * Decode the data into url.
          */
-        TTK_MODULE_EXPORT void urlDecode(QString &data);
+        TTK_MODULE_EXPORT QString urlDecode(QString &data);
         /*!
          * Encode the data into url.
          */
-        TTK_MODULE_EXPORT void urlEncode(QByteArray &data);
+        TTK_MODULE_EXPORT QByteArray urlEncode(QByteArray &data);
         /*!
          * Decode the data into url.
          */
-        TTK_MODULE_EXPORT void urlDecode(QByteArray &data);
+        TTK_MODULE_EXPORT QByteArray urlDecode(QByteArray &data);
 
         /*!
          * Pretty encode the data into url.
          */
-        TTK_MODULE_EXPORT void urlPrettyEncode(QString &data);
+        TTK_MODULE_EXPORT QString urlPrettyEncode(QString &data);
         /*!
          * Pretty decode the data into url.
          */
-        TTK_MODULE_EXPORT void urlPrettyDecode(QString &data);
+        TTK_MODULE_EXPORT QString urlPrettyDecode(QString &data);
         /*!
          * Pretty encode the data into url.
          */
-        TTK_MODULE_EXPORT void urlPrettyEncode(QByteArray &data);
+        TTK_MODULE_EXPORT QByteArray urlPrettyEncode(QByteArray &data);
         /*!
          * Pretty decode the data into url.
          */
-        TTK_MODULE_EXPORT void urlPrettyDecode(QByteArray &data);
+        TTK_MODULE_EXPORT QByteArray urlPrettyDecode(QByteArray &data);
 
     }
 }

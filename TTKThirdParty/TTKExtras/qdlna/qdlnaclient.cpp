@@ -48,7 +48,7 @@ QDlnaClientPrivate::~QDlnaClientPrivate()
 
 void QDlnaClientPrivate::initialize(const QString &data)
 {
-    const QStringList& list = data.split("\r\n");
+    const QStringList &list = data.split("\r\n");
     for(QString str : qAsConst(list))
     {
         QStringList data_list;
@@ -68,7 +68,8 @@ void QDlnaClientPrivate::initialize(const QString &data)
         if(data_list.count() >= 2)
         {
             m_serverIP = data_list[0];
-            const QStringList& info_list = data_list[1].split(TTK_SEPARATOR);
+            const QStringList &info_list = data_list[1].split(TTK_SEPARATOR);
+
             if(info_list.count() >= 2)
             {
                 m_serverPort = info_list[0];
@@ -241,10 +242,10 @@ QString QDlnaClient::position()
 int QDlnaClient::totalSeconds(const QString &value)
 {
     //Convert the time left for the track to play back to seconds
-    const QStringList& data_list = value.split(TTK_DOT);
+    const QStringList &data_list = value.split(TTK_DOT);
     if(data_list.count() >= 2)
     {
-        const QStringList& info_list = data_list[1].split(":");
+        const QStringList &info_list = data_list[1].split(":");
         if(info_list.count() >= 2)
         {
             const int mins = info_list[0].toInt();

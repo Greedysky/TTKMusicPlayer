@@ -39,7 +39,7 @@ QDlnaFinderPrivate::~QDlnaFinderPrivate()
 void QDlnaFinderPrivate::find()
 {
     removeClients();
-    const QByteArray& data = "M-SEARCH * HTTP/1.1\r\n"
+    const QByteArray &data = "M-SEARCH * HTTP/1.1\r\n"
                              "HOST:239.255.255.250:1900\r\n"
                              "MAN:\"ssdp:discover\"\r\n"
                              "ST:ssdp:all\r\n"

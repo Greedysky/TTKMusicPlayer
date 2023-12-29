@@ -50,12 +50,12 @@ MusicSong::MusicSong(const QString &path, const QString &playTime, const QString
     m_sizeStr = TTK::Number::sizeByteToLabel(m_size);
 }
 
-QString MusicSong::artistFront() const noexcept
+QString MusicSong::artist() const noexcept
 {
     return TTK::String::artistName(m_name);
 }
 
-QString MusicSong::artistBack() const noexcept
+QString MusicSong::title() const noexcept
 {
     return TTK::String::songName(m_name);
 }
@@ -70,7 +70,7 @@ bool MusicSong::operator< (const MusicSong &other) const noexcept
     switch(m_sort)
     {
         case Sort::ByFileName: return m_name < other.m_name;
-        case Sort::BySinger: return artistFront() < other.artistFront();
+        case Sort::BySinger: return artist() < other.artist();
         case Sort::ByFileSize: return m_size < other.m_size;
         case Sort::ByAddTime: return m_addTime < other.m_addTime;
         case Sort::ByPlayTime: return m_playTime < other.m_playTime;
@@ -85,7 +85,7 @@ bool MusicSong::operator> (const MusicSong &other) const noexcept
     switch(m_sort)
     {
         case Sort::ByFileName: return m_name > other.m_name;
-        case Sort::BySinger: return artistFront() > other.artistFront();
+        case Sort::BySinger: return artist() > other.artist();
         case Sort::ByFileSize: return m_size > other.m_size;
         case Sort::ByAddTime: return m_addTime > other.m_addTime;
         case Sort::ByPlayTime: return m_playTime > other.m_playTime;

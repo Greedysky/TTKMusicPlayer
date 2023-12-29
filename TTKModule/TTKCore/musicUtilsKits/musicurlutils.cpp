@@ -45,66 +45,74 @@ bool TTK::Url::openUrl(const QString &path, bool local)
     return QDesktopServices::openUrl(local ? QUrl::fromLocalFile(path) : QUrl(path, QUrl::TolerantMode));
 }
 
-void TTK::Url::urlEncode(QString &data)
+QString TTK::Url::urlEncode(QString &data)
 {
     data.replace("+", "%2B");
     data.replace("/", "%2F");
     data.replace("=", "%3D");
+    return data;
 }
 
-void TTK::Url::urlDecode(QString &data)
+QString TTK::Url::urlDecode(QString &data)
 {
     data.replace("%2B", "+");
     data.replace("%2F", "/");
     data.replace("%3D", "=");
+    return data;
 }
 
-void TTK::Url::urlEncode(QByteArray &data)
+QByteArray TTK::Url::urlEncode(QByteArray &data)
 {
     data.replace("+", "%2B");
     data.replace("/", "%2F");
     data.replace("=", "%3D");
+    return data;
 }
 
-void TTK::Url::urlDecode(QByteArray &data)
+QByteArray TTK::Url::urlDecode(QByteArray &data)
 {
     data.replace("%2B", "+");
     data.replace("%2F", "/");
     data.replace("%3D", "=");
+    return data;
 }
 
-void TTK::Url::urlPrettyEncode(QString &data)
+QString TTK::Url::urlPrettyEncode(QString &data)
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
     data = QUrl(data).toString(QUrl::FullyEncoded);
 #else
     data = QUrl(data).toEncoded();
 #endif
+    return data;
 }
 
-void TTK::Url::urlPrettyDecode(QString &data)
+QString TTK::Url::urlPrettyDecode(QString &data)
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
     data = QUrl(data).toString();
 #else
     data = QByteArray::fromPercentEncoding(data.toUtf8());
 #endif
+    return data;
 }
 
-void TTK::Url::urlPrettyEncode(QByteArray &data)
+QByteArray TTK::Url::urlPrettyEncode(QByteArray &data)
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
     data = QUrl(data).toString(QUrl::FullyEncoded).toUtf8();
 #else
     data = QUrl(data).toEncoded();
 #endif
+    return data;
 }
 
-void TTK::Url::urlPrettyDecode(QByteArray &data)
+QByteArray TTK::Url::urlPrettyDecode(QByteArray &data)
 {
 #if TTK_QT_VERSION_CHECK(5,0,0)
     data = QUrl::fromEncoded(data).toString(QUrl::FullyDecoded).toUtf8();
 #else
     data = QByteArray::fromPercentEncoding(data);
 #endif
+    return data;
 }

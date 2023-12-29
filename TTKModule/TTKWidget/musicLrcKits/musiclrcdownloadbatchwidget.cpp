@@ -38,13 +38,13 @@ void MusicLrcDownloadBatchTableWidget::addCellItems(const MusicSongList &items)
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.path());
-        item->setText(TTK::Widget::elidedText(font(), v.artistBack(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        item->setText(TTK::Widget::elidedText(font(), v.title(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                           item = new QTableWidgetItem;
         item->setToolTip(v.path());
-        item->setText(TTK::Widget::elidedText(font(), v.artistFront(), Qt::ElideRight, headerview->sectionSize(2) - 10));
+        item->setText(TTK::Widget::elidedText(font(), v.artist(), Qt::ElideRight, headerview->sectionSize(2) - 10));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 

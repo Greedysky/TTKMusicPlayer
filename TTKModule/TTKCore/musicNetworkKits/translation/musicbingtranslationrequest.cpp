@@ -1,7 +1,8 @@
 #include "musicbingtranslationrequest.h"
+#include "musicurlutils.h"
 
 static constexpr const char *QUERY_URL = "SUVwbklrTjVFYXdsSUJ3MHRZb21KVDRXL1ZwU1RtSVRNWURYdDZwczMxZnVXenhr";
-static constexpr const char *TRANSLATION_URL = "SlgycFg5OXhONncvYjdmQ3RoNHE2NDB0VC92bWsxZEN2dDhlQUQzRjRiSEw3bG8xWFdHRU9JQzlDWWdLU0lLYUtVcWx4VlRXZW1vVTZHQWljcDZmS0tDaDZORWhKK3hVY2l4MThBPT0=";
+static constexpr const char *TRANSLATION_URL = "Rm9rVXJIeFNOTDlrV2l5Yld0UGsweGd1V0JZbTFBMVZvQmpKaGhLUmtIT1VhOGtzM0RhVCthdnRhUVNMUGRLYU5LWkJLbVRWQjZoQ2QzYW1wUVIxWkxibnN6VDJ4Q05RNWV6V0NnPT0=";
 static constexpr const char *PARAM_URL = "cmFWcURkeGhWb2thdWJIMG5JS3BGQmVseW9XeFU5b0Era3V6V1JMa2IxRmRqY2lFRnpUbkM3TDlsUFVjbUNWdA==";
 
 MusicBingTranslationRequest::MusicBingTranslationRequest(QObject *parent)
@@ -63,9 +64,11 @@ void MusicBingTranslationRequest::startRequest(const QString &data)
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(TRANSLATION_URL, false).arg(ig));
     TTK::setSslConfiguration(&request);
+    TTK::makeUserAgentHeader(&request);
     TTK::makeContentTypeHeader(&request);
 
-    m_reply = m_manager.post(request, TTK::Algorithm::mdII(PARAM_URL, false).arg(key, token, mapToString(Language::Auto), mapToString(Language::Chinese), data).toUtf8());
+    auto vvv = TTK::Algorithm::mdII(PARAM_URL, false).arg(key, token, mapToString(Language::Auto), mapToString(Language::Chinese), data).toUtf8();
+    m_reply = m_manager.post(request, TTK::Url::urlPrettyEncode(vvv));
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
@@ -82,28 +85,27 @@ void MusicBingTranslationRequest::downLoadFinished()
         const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
-//            const QVariantList &datas = data["text"].toList();
-//            for(const QVariant &var : qAsConst(datas))
-//            {
-//                if(var.isNull())
-//                {
-//                    continue;
-//                }
+            for(const QVariant &var : data.toList())
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
 
-//                QVariantMap value = var.toMap();
-//                for(const QVariant &var : qAsConst(value["translations"].toList()))
-//                {
-//                    if(var.isNull())
-//                    {
-//                        continue;
-//                    }
+                QVariantMap value = var.toMap();
+                for(const QVariant &var : value["translations"].toList())
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
 
-//                    value = var.toMap();
-//                    Q_EMIT downLoadDataChanged(value["text"].toString());
-//                    deleteAll();
-//                    return;
-//                }
-//            }
+                    value = var.toMap();
+                    Q_EMIT downLoadDataChanged(value["text"].toString());
+                    deleteAll();
+                    return;
+                }
+            }
         }
     }
 

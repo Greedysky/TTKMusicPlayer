@@ -67,8 +67,8 @@ bool MusicJSPFConfigManager::writeBuffer(const MusicSongItemList &items)
         {
             QVariantMap meta;
             meta["location"] = song.path();
-            meta["title"] = song.artistBack();
-            meta["creator"] = song.artistFront();
+            meta["title"] = song.title();
+            meta["creator"] = song.artist();
             meta["duration"] = song.playTime();
             meta["album"] = QString();
             meta["trackNum"] = QString();

@@ -71,8 +71,7 @@ bool MusicM3UConfigManager::writeBuffer(const MusicSongItemList &items)
         const MusicSongItem &item = items[i];
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
-            data.append(QString("#EXTINF:%1,%2 - %3").arg(TTKTime::formatDuration(song.playTime()) / TTK_DN_S2MS)
-                                                     .arg(song.artistFront(), song.artistBack()));
+            data.append(QString("#EXTINF:%1,%2 - %3").arg(TTKTime::formatDuration(song.playTime()) / TTK_DN_S2MS).arg(song.artist(), song.title()));
             data.append(song.path());
         }
     }
