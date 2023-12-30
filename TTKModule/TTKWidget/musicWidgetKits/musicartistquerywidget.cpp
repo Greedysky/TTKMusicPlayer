@@ -334,9 +334,6 @@ void MusicArtistQueryWidget::resizeWidget()
 
         data = &m_resizeWidgets[3];
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[4];
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
     }
 
     if(m_artistAlbums)
@@ -426,10 +423,6 @@ void MusicArtistQueryWidget::createArtistItem(const MusicResultDataItem &item)
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width - 20));
 
         data = &m_resizeWidgets[3];
-        data->m_label->setToolTip(tr("Country: %1").arg(item.m_tags));
-        data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
-
-        data = &m_resizeWidgets[4];
         data->m_label->setToolTip(tr("Birth: %1").arg(item.m_updateTime));
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
@@ -520,16 +513,12 @@ void MusicArtistQueryWidget::createLabels()
     QLabel *nickNameLabel = new QLabel(topLineWidget);
     nickNameLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     nickNameLabel->setText(TTK_DEFAULT_STR);
-    QLabel *countryLabel = new QLabel(topLineWidget);
-    countryLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
-    countryLabel->setText(TTK_DEFAULT_STR);
     QLabel *birthLabel = new QLabel(topLineWidget);
     birthLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     birthLabel->setText(TTK_DEFAULT_STR);
 
     topLineLayout->addWidget(artistLabel);
     topLineLayout->addWidget(nickNameLabel);
-    topLineLayout->addWidget(countryLabel);
     topLineLayout->addWidget(birthLabel);
     topLineWidget->setLayout(topLineLayout);
 
@@ -640,6 +629,5 @@ void MusicArtistQueryWidget::createLabels()
     m_resizeWidgets.push_back({firstLabel, firstLabel->font()});
     m_resizeWidgets.push_back({artistLabel, artistLabel->font()});
     m_resizeWidgets.push_back({nickNameLabel, nickNameLabel->font()});
-    m_resizeWidgets.push_back({countryLabel, countryLabel->font()});
     m_resizeWidgets.push_back({birthLabel, birthLabel->font()});
 }

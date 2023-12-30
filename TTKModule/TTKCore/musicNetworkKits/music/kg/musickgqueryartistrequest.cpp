@@ -143,7 +143,14 @@ void MusicKGQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) cons
         if(value["errcode"].toInt() == 0)
         {
             value = value["data"].toMap();
+
+            item->m_nickName = value["alias"].toString();
             item->m_description = value["intro"].toString();
+
+            if(item->m_nickName.isEmpty())
+            {
+                item->m_nickName = TTK_DEFAULT_STR;
+            }
         }
     }
 }

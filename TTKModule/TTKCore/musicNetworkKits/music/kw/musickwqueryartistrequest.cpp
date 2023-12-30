@@ -91,6 +91,7 @@ void MusicKWQueryArtistRequest::downLoadFinished()
                         TTK_NETWORK_QUERY_CHECK();
                         queryArtistIntro(&result);
                         TTK_NETWORK_QUERY_CHECK();
+
                         result.m_id = info.m_artistId;
                         result.m_name = info.m_singerName;
                         Q_EMIT createArtistItem(result);
@@ -131,10 +132,14 @@ void MusicKWQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) cons
     if(ok)
     {
         const QVariantMap &value = data.toMap();
-        item->m_tags = value["country"].toString();
         item->m_updateTime = value["birthday"].toString();
         item->m_nickName = value["aartist"].toString();
         item->m_coverUrl = value["hts_pic"].toString();
         item->m_description = TTK::String::convertHtmlToPlain(value["info"].toString());
+
+        if(item->m_nickName.isEmpty())
+        {
+            item->m_nickName = TTK_DEFAULT_STR;
+        }
     }
 }

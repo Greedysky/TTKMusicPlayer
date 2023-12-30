@@ -122,10 +122,15 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                         {
                             result.m_nickName.chop(1);
                         }
+                        else
+                        {
+                            result.m_nickName = TTK_DEFAULT_STR;
+                        }
 
                         result.m_id = m_queryValue;
                         result.m_name = info.m_singerName;
                         result.m_coverUrl = info.m_coverUrl;
+                        result.m_updateTime = TTKDateTime::format(artistObject["publishTime"].toLongLong(), TTK_YEAR_FORMAT);
                         Q_EMIT createArtistItem(result);
                     }
 
