@@ -282,6 +282,8 @@ void MusicApplication::durationChanged(qint64 duration)
     m_ui->playTotalTime->setText(TTK_SEPARATOR + TTKTime::formatDuration(duration));
     //Loading the current song lrc
     loadCurrentSongLrc();
+    //Update song quality label
+    m_ui->musicQualityLabel->updateQuality();
 }
 
 void MusicApplication::playerStateChanged(TTK::PlayState state)
