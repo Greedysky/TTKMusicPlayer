@@ -66,6 +66,7 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
             {
                 bool albumFound = false;
                 MusicResultDataItem result;
+
                 value = value["data"].toMap();
 
                 const QVariantList &datas = value["info"].toList();

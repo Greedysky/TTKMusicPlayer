@@ -134,12 +134,6 @@ void MusicAlbumQueryWidget::createAlbumItem(const MusicResultDataItem &item)
 
     if(!m_resizeWidgets.isEmpty())
     {
-        QStringList list = item.m_description.split(TTK_SPLITER);
-        if(list.count() < 4)
-        {
-            return;
-        }
-
         if(TTK::isCoverValid(item.m_coverUrl))
         {
             MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
@@ -147,6 +141,7 @@ void MusicAlbumQueryWidget::createAlbumItem(const MusicResultDataItem &item)
             d->startRequest(item.m_coverUrl);
         }
 
+        QStringList list{item.m_tags, item.m_description, item.m_playCount, item.m_updateTime};
         for(int i = 0; i < list.count(); ++i)
         {
             if(list[i].isEmpty())

@@ -63,10 +63,10 @@ void MusicKGInterface::parseFromSongAlbumInfo(MusicResultDataItem *info, const Q
         {
             value = value["data"].toMap();
             info->m_nickName = value["albumname"].toString();
-            info->m_description = info->m_nickName + TTK_SPLITER +
-                                  value["language"].toString() + TTK_SPLITER +
-                                  value["company"].toString() + TTK_SPLITER +
-                                  value["publishtime"].toString().left(10);
+            info->m_playCount = value["company"].toString();
+            info->m_description = value["language"].toString();
+            info->m_updateTime = value["publishtime"].toString().left(10);
+            info->m_tags = info->m_nickName;
 //            info->m_coverUrl = value["imgurl"].toString();
         }
     }
