@@ -78,19 +78,19 @@ void MusicKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, c
     prop.m_format = TTK::String::slitToken(prop.m_url);
 
     const int bitrate = key["bitrate"].toInt() / 1000;
-    if(bitrate <= 375)
+    if(bitrate <= 1000)
     {
         prop.m_bitrate = TTK_BN_250;
     }
-    else if(bitrate > 375 && bitrate <= 625)
+    else if(bitrate > 1000 && bitrate <= 2000)
     {
         prop.m_bitrate = TTK_BN_500;
     }
-    else if(bitrate > 625 && bitrate <= 875)
+    else if(bitrate > 2000 && bitrate <= 3000)
     {
         prop.m_bitrate = TTK_BN_750;
     }
-    else if(bitrate > 875)
+    else if(bitrate > 3000)
     {
         prop.m_bitrate = TTK_BN_1000;
     }

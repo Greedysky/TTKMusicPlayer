@@ -82,7 +82,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultDataI
 {
     const int index = rowCount();
     setRowCount(index + 1);
-    setRowHeight(index, TTK_ITEM_SIZE_L);
+    setRowHeight(index, TTK_ITEM_SIZE_2XL);
 
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;

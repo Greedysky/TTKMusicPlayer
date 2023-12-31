@@ -32,10 +32,17 @@
 
 
 // ttk item size define
+#define TTK_ITEM_SIZE_3XS       5
+#define TTK_ITEM_SIZE_2XS       10
+#define TTK_ITEM_SIZE_XS        18
 #define TTK_ITEM_SIZE_S         25
 #define TTK_ITEM_SIZE_M         30
 #define TTK_ITEM_SIZE_L         40
-#define TTK_ITEM_SIZE_XL        60
+#define TTK_ITEM_SIZE_XL        50
+#define TTK_ITEM_SIZE_2XL       60
+#define TTK_ITEM_SIZE_3XL       75
+#define TTK_ITEM_SIZE_4XL       90
+#define TTK_ITEM_SIZE_5XL       105
 
 
 // ttk level define

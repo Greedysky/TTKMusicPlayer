@@ -34,6 +34,8 @@ void MusicWebMVRadioInfoTableWidget::downloadQueryResult(int row)
         return;
     }
 
+    m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Movie);
+
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
     download->setSongName(m_networkRequest, row);
     download->show();

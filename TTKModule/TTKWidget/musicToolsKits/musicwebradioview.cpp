@@ -4,18 +4,16 @@
 #include "musicttkfmradioplaywidget.h"
 #include "musicimageutils.h"
 
-static constexpr int ICON_SIZE = 50;
-
 MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent),
       m_radio(nullptr)
 {
-    setIconSize(QSize(ICON_SIZE, ICON_SIZE));
+    setIconSize(QSize(TTK_ITEM_SIZE_XL, TTK_ITEM_SIZE_XL));
     setColumnCount(4);
 
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
-    headerview->resizeSection(1, ICON_SIZE + 20);
+    headerview->resizeSection(1, TTK_ITEM_SIZE_XL + 20);
     headerview->resizeSection(2, 157);
     headerview->resizeSection(3, 82);
 
@@ -127,7 +125,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
     {
         const int index = rowCount();
         setRowCount(index + 1);
-        setRowHeight(index, TTK_ITEM_SIZE_XL);
+        setRowHeight(index, TTK_ITEM_SIZE_2XL);
 
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(index, 0, item);

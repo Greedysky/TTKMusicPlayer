@@ -134,7 +134,7 @@ void MusicSongsListPlayTableWidget::selectRow(int index)
 
     setSpan(index, 0, 1, 6);
     setCellWidget(index, 0, m_songsPlayWidget);
-    setRowHeight(index, TTK_ITEM_SIZE_XL);
+    setRowHeight(index, TTK_ITEM_SIZE_2XL);
     m_playRowIndex = index;
 
     setFixedHeight(totalHeight());
