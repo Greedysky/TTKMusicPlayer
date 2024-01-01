@@ -1,7 +1,8 @@
 #include "musicwebdjradiowidget.h"
 #include "musicwebdjradiocategorywidget.h"
 #include "musicwebdjradioquerywidget.h"
-#include "musiccoversourcerequest.h"
+#include "musicdownloadqueryfactory.h"
+#include "musiccoverrequest.h"
 #include "musicwidgetheaders.h"
 
 MusicWebDJRadioProgramTableWidget::MusicWebDJRadioProgramTableWidget(QWidget *parent)
@@ -116,7 +117,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultDataI
 
     if(TTK::isCoverValid(data.m_coverUrl))
     {
-        MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
+        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         d->setHeader("id", index);
         d->startRequest(data.m_coverUrl);
@@ -131,7 +132,7 @@ void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &bytes
         return;
     }
 
-    MusicCoverSourceRequest *d(TTKObjectCast(MusicCoverSourceRequest*, sender()));
+    MusicCoverRequest *d(TTKObjectCast(MusicCoverRequest*, sender()));
     if(!d)
     {
         return;

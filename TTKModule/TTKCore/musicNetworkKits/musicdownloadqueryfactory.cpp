@@ -42,6 +42,9 @@
 //
 #include "musictranslationrequest.h"
 //
+#include "musickwcoverrequest.h"
+#include "musiccoversourcerequest.h"
+//
 #include "musicdownloaddatarequest.h"
 //
 #include "musicdownloadtextrequest.h"
@@ -217,6 +220,18 @@ MusicDiscoverListRequest *MusicDownLoadQueryFactory::makeDiscoverListRequest(QOb
 MusicTranslationRequest *MusicDownLoadQueryFactory::makeTranslationRequest(QObject *parent)
 {
     return (new MusicTranslationRequest(parent));
+}
+
+MusicCoverRequest *MusicDownLoadQueryFactory::makeCoverRequest(QObject *parent)
+{
+    MusicCoverRequest *request = nullptr;
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
+    {
+        case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWCoverSourceRequest(parent); break;
+        default: request = new MusicCoverSourceRequest(parent);
+    }
+    return request;
 }
 
 MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeLrcRequest(const QString &url, const QString &path, QObject *parent)

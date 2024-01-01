@@ -1,5 +1,6 @@
 #include "musicdownloadmetadatarequest.h"
-#include "musiccoversourcerequest.h"
+#include "musicdownloadqueryfactory.h"
+#include "musiccoverrequest.h"
 
 MusicDownloadMetaDataRequest::MusicDownloadMetaDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent)
     : MusicDownloadDataRequest(url, path, type, parent)
@@ -46,7 +47,7 @@ void MusicDownloadMetaDataRequest::downLoadFinished()
         TTKSemaphoreLoop loop;
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
-        MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
+        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         d->startRequest(m_songMeta.comment());
         loop.exec();

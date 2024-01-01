@@ -3,7 +3,7 @@
 #include "musictinyuiobject.h"
 #include "musicpagequerywidget.h"
 #include "musicdownloadqueryfactory.h"
-#include "musiccoversourcerequest.h"
+#include "musiccoverrequest.h"
 #include "musicwebdjradioinfowidget.h"
 
 #include <qmath.h>
@@ -57,7 +57,7 @@ void MusicWebDJRadioQueryItemWidget::setResultDataItem(const MusicResultDataItem
 
     if(TTK::isCoverValid(item.m_coverUrl))
     {
-        MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
+        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         d->startRequest(item.m_coverUrl);
     }

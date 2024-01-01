@@ -4,7 +4,7 @@
 #include "musicdownloadqueryfactory.h"
 #include "musictoastlabel.h"
 #include "musicurlutils.h"
-#include "musiccoversourcerequest.h"
+#include "musiccoverrequest.h"
 
 #include "qrencode/qrcodewidget.h"
 
@@ -69,7 +69,7 @@ void MusicSongSharingWidget::setData(Module type, const QVariantMap &data)
             const QString &cover = data["smallUrl"].toString();
             if(TTK::isCoverValid(cover))
             {
-                MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
+                MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
                 connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
                 d->startRequest(cover);
             }

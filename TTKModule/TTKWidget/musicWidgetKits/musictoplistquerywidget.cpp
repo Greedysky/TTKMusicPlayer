@@ -1,6 +1,6 @@
 #include "musictoplistquerywidget.h"
 #include "musicdownloadqueryfactory.h"
-#include "musiccoversourcerequest.h"
+#include "musiccoverrequest.h"
 #include "musictoplistquerycategorypopwidget.h"
 
 MusicToplistQueryTableWidget::MusicToplistQueryTableWidget(QWidget *parent)
@@ -202,7 +202,7 @@ void MusicToplistQueryWidget::createToplistItem(const MusicResultDataItem &item)
 
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
-        MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
+        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         d->startRequest(item.m_coverUrl);
     }

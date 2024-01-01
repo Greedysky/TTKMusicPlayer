@@ -1,5 +1,5 @@
 #include "musicplaylistquerywidget.h"
-#include "musiccoversourcerequest.h"
+#include "musiccoverrequest.h"
 #include "musicqueryplaylistrequest.h"
 #include "musicplaylistqueryinfowidget.h"
 #include "musicdownloadqueryfactory.h"
@@ -85,7 +85,7 @@ void MusicPlaylistQueryItemWidget::setResultDataItem(const MusicResultDataItem &
 
     if(TTK::isCoverValid(item.m_coverUrl))
     {
-        MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
+        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         d->startRequest(item.m_coverUrl);
     }

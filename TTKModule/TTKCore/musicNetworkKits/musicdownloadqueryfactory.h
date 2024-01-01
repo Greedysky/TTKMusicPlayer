@@ -22,6 +22,7 @@
 #include "ttksingleton.h"
 #include "musicabstractdownloadrequest.h"
 
+class MusicCoverRequest;
 class MusicSongSuggestRequest;
 class MusicCommentsRequest;
 class MusicDiscoverListRequest;
@@ -88,11 +89,15 @@ public:
      * Make discover list request object by type.
      */
     MusicDiscoverListRequest *makeDiscoverListRequest(QObject *parent);
-
     /*!
      * Make translation object by type.
      */
     MusicTranslationRequest *makeTranslationRequest(QObject *parent);
+    /*!
+     * Make cover object by type.
+     */
+    MusicCoverRequest *makeCoverRequest(QObject *parent);
+
     /*!
      * Make download lrc object by type.
      */

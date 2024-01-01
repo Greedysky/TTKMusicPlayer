@@ -1,6 +1,7 @@
 #include "musicwebdjradiocategorywidget.h"
 #include "musicdjradiocategoryrequest.h"
-#include "musiccoversourcerequest.h"
+#include "musicdownloadqueryfactory.h"
+#include "musiccoverrequest.h"
 #include "musicwidgetheaders.h"
 
 static constexpr int WIDTH_LABEL_SIZE = 60;
@@ -37,7 +38,7 @@ void MusicWebDJRadioCategoryItemWidget::setResultDataItem(const MusicResultDataI
 
     if(TTK::isCoverValid(item.m_coverUrl))
     {
-        MusicCoverSourceRequest *d = new MusicCoverSourceRequest(this);
+        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         d->startRequest(item.m_coverUrl);
     }

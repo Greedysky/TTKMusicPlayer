@@ -1,5 +1,5 @@
-#ifndef MUSICCOVERSOURCEREQUEST_H
-#define MUSICCOVERSOURCEREQUEST_H
+#ifndef MUSICCOVERREQUEST_H
+#define MUSICCOVERREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,36 +19,42 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musiccoverrequest.h"
+#include "musicabstractnetwork.h"
 
-/*! @brief The class of the cover source data download request.
+/*! @brief The class of the cover data download request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicCoverSourceRequest : public MusicCoverRequest
+class TTK_MODULE_EXPORT MusicCoverRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCoverSourceRequest)
+    TTK_DECLARE_MODULE(MusicCoverRequest)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicCoverSourceRequest(QObject *parent = nullptr);
+    explicit MusicCoverRequest(QObject *parent = nullptr);
 
     /*!
      * Start to download data.
+     * Subclass should implement this function.
      */
-    virtual void startRequest(const QString &url) override final;
-
-private Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    virtual void downLoadFinished() override final;
-    /*!
-     * Download data from net finished.
-     */
-    void downLoadFinished(const QByteArray &bytes);
+    virtual void startRequest(const QString &url) = 0;
 
 };
 
-#endif // MUSICCOVERSOURCEREQUEST_H
+
+/*! @brief The namespace of the cover helper.
+ * @author Greedysky <greedysky@163.com>
+ */
+namespace TTK
+{
+    /*!
+     * Check current url is valid or not.
+     */
+    inline static bool isCoverValid(const QString &url)
+    {
+        return !(url.isEmpty() || url == TTK_NULL_STR || url == TTK_DEFAULT_STR);
+    }
+}
+
+#endif // MUSICCOVERREQUEST_H

@@ -1,5 +1,5 @@
-#ifndef MUSICCOVERSOURCEREQUEST_H
-#define MUSICCOVERSOURCEREQUEST_H
+#ifndef MUSICKWCOVERREQUEST_H
+#define MUSICKWCOVERREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -21,18 +21,18 @@
 
 #include "musiccoverrequest.h"
 
-/*! @brief The class of the cover source data download request.
+/*! @brief The class of the kuwo cover source data download request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicCoverSourceRequest : public MusicCoverRequest
+class TTK_MODULE_EXPORT MusicKWCoverSourceRequest : public MusicCoverRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCoverSourceRequest)
+    TTK_DECLARE_MODULE(MusicKWCoverSourceRequest)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicCoverSourceRequest(QObject *parent = nullptr);
+    explicit MusicKWCoverSourceRequest(QObject *parent = nullptr);
 
     /*!
      * Start to download data.
@@ -49,6 +49,9 @@ private Q_SLOTS:
      */
     void downLoadFinished(const QByteArray &bytes);
 
+private:
+    bool m_decode;
+
 };
 
-#endif // MUSICCOVERSOURCEREQUEST_H
+#endif // MUSICKWCOVERREQUEST_H

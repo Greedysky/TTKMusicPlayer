@@ -10,9 +10,13 @@ void MusicKWInterface::makeRequestRawHeader(QNetworkRequest *request)
     TTK::makeContentTypeHeader(request);
 }
 
-void MusicKWInterface::makeCoverPixmapUrl(QString &url)
+void MusicKWInterface::makeCoverPixmapUrl(QString &url, const QString &id)
 {
-    if(!TTK::String::isNetworkUrl(url))
+    if(url.isEmpty() && !id.isEmpty())
+    {
+        url = TTK::Algorithm::mdII(KW_ALBUM_COVER_OLD_URL, false).arg(id);
+    }
+    else if(!TTK::String::isNetworkUrl(url))
     {
         url = TTK::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + url.section('/', 1);
     }
