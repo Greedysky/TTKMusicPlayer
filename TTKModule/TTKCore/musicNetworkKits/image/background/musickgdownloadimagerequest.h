@@ -45,6 +45,9 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override final;
 
+private:
+    void parseFromBackgroundProperty(const QVariant &data);
+
 };
 
 #endif // MUSICKGDOWNLOADIMAGEREQUEST_H

@@ -19,7 +19,7 @@
 INCLUDEPATH += \
     $$PWD \
     $$PWD/core \
-    $$PWD/image/photo \
+    $$PWD/image/background \
     $$PWD/image/skin \
     $$PWD/tools \
     $$PWD/radio/fm \
@@ -36,12 +36,12 @@ HEADERS += \
     $$PWD/core/musicabstractnetwork.h \
     $$PWD/core/musicabstractdownloadrequest.h \
     $$PWD/core/musicpagequeryrequest.h \
-    $$PWD/image/photo/musicabstractdownloadimagerequest.h \
-    $$PWD/image/photo/musicdownloadbackgroundrequest.h \
-    $$PWD/image/photo/musicbpdownloadimagerequest.h \
-    $$PWD/image/photo/musickgdownloadimagerequest.h \
-    $$PWD/image/photo/musickwdownloadimagerequest.h \
-    $$PWD/image/photo/musictxdownloadimagerequest.h \
+    $$PWD/image/background/musicabstractdownloadimagerequest.h \
+    $$PWD/image/background/musicdownloadbackgroundrequest.h \
+    $$PWD/image/background/musicbpdownloadimagerequest.h \
+    $$PWD/image/background/musickgdownloadimagerequest.h \
+    $$PWD/image/background/musickwdownloadimagerequest.h \
+    $$PWD/image/background/musictxdownloadimagerequest.h \
     $$PWD/image/skin/musicabstractdownloadskinrequest.h \
     $$PWD/image/skin/musicdownloadbingskinrequest.h \
     $$PWD/image/skin/musicdownloadbirdskinrequest.h \
@@ -123,12 +123,12 @@ SOURCES += \
     $$PWD/core/musicabstractnetwork.cpp \
     $$PWD/core/musicabstractdownloadrequest.cpp \
     $$PWD/core/musicpagequeryrequest.cpp \
-    $$PWD/image/photo/musicabstractdownloadimagerequest.cpp \
-    $$PWD/image/photo/musicdownloadbackgroundrequest.cpp \
-    $$PWD/image/photo/musicbpdownloadimagerequest.cpp \
-    $$PWD/image/photo/musickgdownloadimagerequest.cpp \
-    $$PWD/image/photo/musickwdownloadimagerequest.cpp \
-    $$PWD/image/photo/musictxdownloadimagerequest.cpp \
+    $$PWD/image/background/musicabstractdownloadimagerequest.cpp \
+    $$PWD/image/background/musicdownloadbackgroundrequest.cpp \
+    $$PWD/image/background/musicbpdownloadimagerequest.cpp \
+    $$PWD/image/background/musickgdownloadimagerequest.cpp \
+    $$PWD/image/background/musickwdownloadimagerequest.cpp \
+    $$PWD/image/background/musictxdownloadimagerequest.cpp \
     $$PWD/image/skin/musicabstractdownloadskinrequest.cpp \
     $$PWD/image/skin/musicdownloadbingskinrequest.cpp \
     $$PWD/image/skin/musicdownloadbirdskinrequest.cpp \

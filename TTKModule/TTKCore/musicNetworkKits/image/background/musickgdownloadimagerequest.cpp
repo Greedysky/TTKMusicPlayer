@@ -64,34 +64,10 @@ void MusicKGDownloadBackgroundRequest::downLoadFinished()
                     if(!datas.isEmpty())
                     {
                         value = datas.front().toMap();
-                        TTK_NETWORK_QUERY_CHECK();
-
                         value = value["imgs"].toMap();
-                        datas = value["3"].toList();
 
-                        for(const QVariant &var : qAsConst(datas))
-                        {
-                            if(var.isNull())
-                            {
-                                continue;
-                            }
-
-                            value = var.toMap();
-                            TTK_NETWORK_QUERY_CHECK();
-
-                            if(m_counter < m_remainCount && !value.isEmpty())
-                            {
-                                const QString &url = value["sizable_portrait"].toString();
-                                if(url.isEmpty())
-                                {
-                                    continue;
-                                }
-
-                                MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(foundCount()).arg(SKN_FILE), TTK::Download::Background, this);
-                                connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
-                                d->startRequest();
-                            }
-                        }
+                        parseFromBackgroundProperty(value["3"]);
+                        parseFromBackgroundProperty(value["2"]);
                     }
                 }
             }
@@ -104,5 +80,33 @@ void MusicKGDownloadBackgroundRequest::downLoadFinished()
     if(m_counter == 0)
     {
         deleteAll();
+    }
+}
+
+void MusicKGDownloadBackgroundRequest::parseFromBackgroundProperty(const QVariant &data)
+{
+    QVariantMap value;
+    for(const QVariant &var : data.toList())
+    {
+        if(var.isNull())
+        {
+            continue;
+        }
+
+        value = var.toMap();
+        TTK_NETWORK_QUERY_CHECK();
+
+        if(m_counter < m_remainCount && !value.isEmpty())
+        {
+            const QString &url = value["sizable_portrait"].toString();
+            if(url.isEmpty())
+            {
+                continue;
+            }
+
+            MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL, m_path).arg(foundCount()).arg(SKN_FILE), TTK::Download::Background, this);
+            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataFinished()));
+            d->startRequest();
+        }
     }
 }

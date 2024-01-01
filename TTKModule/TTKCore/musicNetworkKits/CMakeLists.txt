@@ -23,12 +23,12 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
   ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractnetwork.h
   ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractdownloadrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/core/musicpagequeryrequest.h
-  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicabstractdownloadimagerequest.h
-  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadbackgroundrequest.h
-  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicbpdownloadimagerequest.h
-  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musickgdownloadimagerequest.h
-  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musickwdownloadimagerequest.h
-  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musictxdownloadimagerequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/image/background/musicabstractdownloadimagerequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/image/background/musicdownloadbackgroundrequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/image/background/musicbpdownloadimagerequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/image/background/musickgdownloadimagerequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/image/background/musickwdownloadimagerequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/image/background/musictxdownloadimagerequest.h
   ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicabstractdownloadskinrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadbingskinrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadbirdskinrequest.h
@@ -111,12 +111,12 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
   ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractnetwork.cpp
   ${MUSIC_CORE_NETWORK_DIR}/core/musicabstractdownloadrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/core/musicpagequeryrequest.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicabstractdownloadimagerequest.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicdownloadbackgroundrequest.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musicbpdownloadimagerequest.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musickgdownloadimagerequest.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musickwdownloadimagerequest.cpp
-  ${MUSIC_CORE_NETWORK_DIR}/image/photo/musictxdownloadimagerequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/image/background/musicabstractdownloadimagerequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/image/background/musicdownloadbackgroundrequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/image/background/musicbpdownloadimagerequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/image/background/musickgdownloadimagerequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/image/background/musickwdownloadimagerequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/image/background/musictxdownloadimagerequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicabstractdownloadskinrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadbingskinrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/image/skin/musicdownloadbirdskinrequest.cpp

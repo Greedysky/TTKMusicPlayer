@@ -94,7 +94,7 @@ include_directories(
   ${MUSIC_CORE_LRCMANAGER_DIR}
   ${MUSIC_CORE_NETWORK_DIR}
   ${MUSIC_CORE_NETWORK_DIR}/core
-  ${MUSIC_CORE_NETWORK_DIR}/image/photo
+  ${MUSIC_CORE_NETWORK_DIR}/image/background
   ${MUSIC_CORE_NETWORK_DIR}/image/skin
   ${MUSIC_CORE_NETWORK_DIR}/tools
   ${MUSIC_CORE_NETWORK_DIR}/radio/dj
