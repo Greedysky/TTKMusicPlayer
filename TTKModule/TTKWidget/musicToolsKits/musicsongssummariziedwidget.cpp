@@ -729,7 +729,7 @@ void MusicSongsSummariziedWidget::addSongBufferToPlaylist(const MusicResultDataI
     const QByteArray &md5 = TTK::Algorithm::md5(songItem.m_id.toUtf8());
     MusicSong song(songItem.m_nickName + "#" + md5 + "." + songItem.m_description, songItem.m_updateTime, songItem.m_name);
     song.setFormat(songItem.m_description);
-    song.setSizeStr(songItem.m_playCount);
+    song.setSizeStr(songItem.m_count);
 
     int index = item->m_songs.indexOf(song);
     if(index == -1)
@@ -740,7 +740,7 @@ void MusicSongsSummariziedWidget::addSongBufferToPlaylist(const MusicResultDataI
         index = item->m_songs.count() - 1;
     }
 
-    if(songItem.m_tags == MUSIC_PLAY_NOW)
+    if(songItem.m_category == MUSIC_PLAY_NOW)
     {
         ///when download finished just play it at once
         setCurrentIndex(MUSIC_NETWORK_LIST);

@@ -23,7 +23,7 @@ void MusicDownLoadManager::removeNetworkMultiValue(QObject *object)
     }
 }
 
-void MusicDownLoadManager::connectMusicDownload(const MusicDownLoadPairData &pair)
+void MusicDownLoadManager::connectDownload(const MusicDownLoadPairData &pair)
 {
     QString className;
     switch(pair.m_type)
@@ -45,7 +45,7 @@ void MusicDownLoadManager::connectMusicDownload(const MusicDownLoadPairData &pai
     m_pairList << pair;
 }
 
-void MusicDownLoadManager::reconnectMusicDownload(const MusicDownLoadPairData &pair)
+void MusicDownLoadManager::reconnectDownload(const MusicDownLoadPairData &pair)
 {
     const int index = m_pairList.indexOf(pair);
     if(index != -1)
@@ -59,7 +59,7 @@ void MusicDownLoadManager::reconnectMusicDownload(const MusicDownLoadPairData &p
     }
 }
 
-void MusicDownLoadManager::removeMusicDownload(const MusicDownLoadPairData &pair)
+void MusicDownLoadManager::removeDownload(const MusicDownLoadPairData &pair)
 {
     const int index = m_pairList.indexOf(pair);
     if(index != -1)
@@ -73,6 +73,6 @@ void MusicDownLoadManager::downloadProgressChanged(float percent, const QString 
     Q_UNUSED(total);
     if(percent >= 100)
     {
-        removeMusicDownload(MusicDownLoadPairData(time));
+        removeDownload(MusicDownLoadPairData(time));
     }
 }

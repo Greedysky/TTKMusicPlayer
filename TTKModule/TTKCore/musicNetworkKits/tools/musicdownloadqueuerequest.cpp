@@ -66,17 +66,19 @@ void MusicDownloadQueueRequest::addImageQueue(const MusicDownloadQueueDataList &
 
 void MusicDownloadQueueRequest::startOrderImageQueue()
 {
-    if(!m_imageQueue.isEmpty())
+    if(m_imageQueue.isEmpty())
     {
-        if(QFile::exists(m_imageQueue.front().m_path))
-        {
-            Q_EMIT downLoadDataChanged(m_imageQueue.takeFirst().m_path);
-            startOrderImageQueue();
-        }
-        else if(G_NETWORK_PTR->isOnline())
-        {
-            startDownload(m_imageQueue.front().m_url);
-        }
+        return;
+    }
+
+    if(QFile::exists(m_imageQueue.front().m_path))
+    {
+        Q_EMIT downLoadDataChanged(m_imageQueue.takeFirst().m_path);
+        startOrderImageQueue();
+    }
+    else if(G_NETWORK_PTR->isOnline())
+    {
+        startDownload(m_imageQueue.front().m_url);
     }
 }
 
@@ -93,7 +95,7 @@ void MusicDownloadQueueRequest::startDownload(const QString &url)
         return;
     }
 
-    if(!m_request)
+    if(!m_request || url.isEmpty())
     {
         return;
     }

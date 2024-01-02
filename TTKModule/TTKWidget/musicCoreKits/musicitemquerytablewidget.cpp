@@ -328,8 +328,8 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const TTK::MusicSongInformation
         result.m_id = info.m_songId;
         result.m_nickName = prop.m_url;
         result.m_description = prop.m_format;
-        result.m_playCount = prop.m_size;
-        result.m_tags = play ? MUSIC_PLAY_NOW : MUSIC_PLAY_LATER;
+        result.m_count = prop.m_size;
+        result.m_category = play ? MUSIC_PLAY_NOW : MUSIC_PLAY_LATER;
 
         if(m_networkRequest)
         {

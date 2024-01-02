@@ -100,12 +100,12 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultDataI
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 2, item);
 
-                      item = new QTableWidgetItem(data.m_tags);
+                      item = new QTableWidgetItem(data.m_category);
     item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignCenter);
     setItem(index, 3, item);
 
-                      item = new QTableWidgetItem(tr("Played %1").arg(data.m_playCount));
+                      item = new QTableWidgetItem(tr("Played %1").arg(data.m_count));
     item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 4, item);

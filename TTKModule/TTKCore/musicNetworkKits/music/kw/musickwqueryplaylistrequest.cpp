@@ -85,7 +85,7 @@ void MusicKWQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
         {
             item.m_coverUrl = value["pic"].toString();
             item.m_name = value["title"].toString();
-            item.m_playCount = value["playnum"].toString();
+            item.m_count = value["playnum"].toString();
             item.m_description = value["info"].toString();
             item.m_updateTime = TTKDateTime::format(value["ctime"].toULongLong() * TTK_DN_S2MS, TTK_YEAR_FORMAT);
             item.m_nickName = value["uname"].toString();
@@ -214,11 +214,11 @@ void MusicKWQueryPlaylistRequest::downloadMoreDetailsFinished()
             if(value["result"].toString() == "ok")
             {
                 MusicResultDataItem result;
-                result.m_tags = m_tags;
+                result.m_category = m_tags;
                 result.m_coverUrl = value["pic"].toString();
                 result.m_id = value["id"].toString();
                 result.m_name = value["title"].toString();
-                result.m_playCount = value["playnum"].toString();
+                result.m_count = value["playnum"].toString();
                 result.m_description = value["info"].toString();
                 result.m_updateTime = TTKDateTime::format(value["ctime"].toULongLong() * TTK_DN_S2MS, TTK_YEAR_FORMAT);
                 result.m_nickName = value["uname"].toString();

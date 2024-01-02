@@ -8,29 +8,25 @@ MusicKWDownLoadTextRequest::MusicKWDownLoadTextRequest(const QString &url, const
 
 void MusicKWDownLoadTextRequest::startRequest()
 {
-    if(m_file && (!m_file->exists() || m_file->size() < 4))
+    if(!m_file || (m_file->exists() && m_file->size() >= 4) || !m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) || m_url.isEmpty())
     {
-        if(m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
-        {
-            m_speedTimer.start();
-
-            QNetworkRequest request;
-            request.setUrl(m_url);
-            TTK::setSslConfiguration(&request);
-            TTK::makeContentTypeHeader(&request);
-
-            m_reply = m_manager.get(request);
-            connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-            connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
-            QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
-        }
-        else
-        {
-            Q_EMIT downLoadDataChanged("The kuwo text file create failed");
-            TTK_ERROR_STREAM(className() << "file create failed");
-            deleteAll();
-        }
+        Q_EMIT downLoadDataChanged("The kuwo text file create failed");
+        TTK_ERROR_STREAM(className() << "file create failed");
+        deleteAll();
+        return;
     }
+
+    m_speedTimer.start();
+
+    QNetworkRequest request;
+    request.setUrl(m_url);
+    TTK::setSslConfiguration(&request);
+    TTK::makeContentTypeHeader(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
 void MusicKWDownLoadTextRequest::downLoadFinished()

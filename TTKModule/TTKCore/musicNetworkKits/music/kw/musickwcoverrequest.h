@@ -20,6 +20,7 @@
  ***************************************************************************/
 
 #include "musiccoverrequest.h"
+#include "musicabstractdownloadrequest.h"
 
 /*! @brief The class of the kuwo cover source data download request.
  * @author Greedysky <greedysky@163.com>
@@ -50,7 +51,34 @@ private Q_SLOTS:
     void downLoadFinished(const QByteArray &bytes);
 
 private:
-    bool m_decode;
+    bool m_decodeUrl;
+
+};
+
+
+/*! @brief The class of the kuwo cover data download request.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicKWDownLoadCoverRequest : public MusicAbstractDownLoadRequest
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicKWDownLoadCoverRequest)
+public:
+    /*!
+     * Object constructor provide download url save local path and download type.
+     */
+    MusicKWDownLoadCoverRequest(const QString &url, const QString &path, QObject *parent = nullptr);
+
+    /*!
+     * Start to download text data.
+     */
+    virtual void startRequest() override final;
+
+private Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadFinished() override final;
 
 };
 

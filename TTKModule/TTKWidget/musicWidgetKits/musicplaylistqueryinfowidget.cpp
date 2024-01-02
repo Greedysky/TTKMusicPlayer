@@ -108,7 +108,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     creatorLabel->setToolTip(tr("Creator: %1").arg(item.m_nickName));
     QLabel *tagsLabel = new QLabel(topLineWidget);
     tagsLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
-    tagsLabel->setToolTip(tr("Tags: %1").arg(item.m_tags));
+    tagsLabel->setToolTip(tr("Tags: %1").arg(item.m_category));
     QLabel *updateLabel = new QLabel(topLineWidget);
     updateLabel->setStyleSheet(TTK::UI::ColorStyle04 + TTK::UI::FontStyle03);
     updateLabel->setToolTip(tr("Update: %1").arg(item.m_updateTime));

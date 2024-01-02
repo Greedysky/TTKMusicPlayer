@@ -127,7 +127,7 @@ void MusicCommentsItem::addCellItem(const MusicResultDataItem &comments)
     m_userName->setFixedWidth(TTK::Widget::fontTextWidth(m_userName->font(), m_userName->text()));
     m_timerLabel->setText(TTKDateTime::format(comments.m_updateTime.toULongLong(), TTK_YEAR_TIMEZ_FORMAT));
     m_timerLabel->setFixedWidth(TTK::Widget::fontTextWidth(m_timerLabel->font(), m_timerLabel->text()));
-    m_starLabel->setText(QString("(%1)").arg(comments.m_playCount));
+    m_starLabel->setText(QString("(%1)").arg(comments.m_count));
     m_userCommit->setText(comments.m_description);
 
     MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);

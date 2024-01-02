@@ -70,10 +70,10 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                 MusicResultDataItem result;
                 const QVariantMap &albumValue = value["album"].toMap();
                 result.m_coverUrl = albumValue["picUrl"].toString();
-                result.m_playCount = albumValue["company"].toString();
-                result.m_description = albumValue["language"].toString();
+                result.m_count = albumValue["name"].toString();
+                result.m_description = albumValue["company"].toString();
                 result.m_updateTime = TTKDateTime::format(albumValue["publishTime"].toULongLong(), TTK_YEAR_FORMAT);
-                result.m_tags = albumValue["name"].toString();
+                result.m_category = albumValue["language"].toString();
 
                 const QVariantList &datas = value["songs"].toList();
                 for(const QVariant &var : qAsConst(datas))

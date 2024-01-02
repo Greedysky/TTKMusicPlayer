@@ -82,17 +82,17 @@ public:
     void removeNetworkMultiValue(QObject *object);
 
     /*!
-     * Set music data network connection object.
+     * Set data network connection object.
      */
-    void connectMusicDownload(const MusicDownLoadPairData &pair);
+    void connectDownload(const MusicDownLoadPairData &pair);
     /*!
-     * Reset music data network connection object.
+     * Reset data network connection object.
      */
-    void reconnectMusicDownload(const MusicDownLoadPairData &pair);
+    void reconnectDownload(const MusicDownLoadPairData &pair);
     /*!
-     * Remove music data network connection object.
+     * Remove data network connection object.
      */
-    void removeMusicDownload(const MusicDownLoadPairData &pair);
+    void removeDownload(const MusicDownLoadPairData &pair);
 
 private Q_SLOTS:
     /*!

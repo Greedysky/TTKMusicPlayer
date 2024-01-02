@@ -66,7 +66,7 @@ void MusicPlaylistQueryItemWidget::setResultDataItem(const MusicResultDataItem &
     m_creatorLabel->setText(TTK::Widget::elidedText(m_creatorLabel->font(), m_creatorLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
     bool ok = false;
-    const int count = item.m_playCount.toInt(&ok);
+    const int count = item.m_count.toInt(&ok);
     if(ok)
     {
         if(count >= 10000)
@@ -80,7 +80,7 @@ void MusicPlaylistQueryItemWidget::setResultDataItem(const MusicResultDataItem &
     }
     else
     {
-        m_topListenButton->setText(item.m_playCount);
+        m_topListenButton->setText(item.m_count);
     }
 
     if(TTK::isCoverValid(item.m_coverUrl))

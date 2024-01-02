@@ -72,7 +72,7 @@ void MusicKGSongCommentsRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem result;
-                    result.m_playCount = value["like"].toMap()["count"].toString();
+                    result.m_count = value["like"].toMap()["count"].toString();
                     result.m_updateTime = TTKDateTime::format(value["addtime"].toString(), TTK_YEAR_TIMEZ_FORMAT);
                     result.m_description = value["content"].toString();
                     result.m_nickName = value["user_name"].toString();
@@ -148,7 +148,7 @@ void MusicKGPlaylistCommentsRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultDataItem result;
-                    result.m_playCount = value["like"].toMap()["count"].toString();
+                    result.m_count = value["like"].toMap()["count"].toString();
                     result.m_updateTime = TTKDateTime::format(value["addtime"].toString(), TTK_YEAR_TIMEZ_FORMAT);
                     result.m_description = value["content"].toString();
                     result.m_nickName = value["user_name"].toString();

@@ -449,7 +449,7 @@ void MusicDownloadWidget::startRequestMusic(const TTK::MusicSongInformation &inf
                 }
             }
 
-            MusicDownloadMetaDataRequest *d = new MusicDownloadMetaDataRequest(prop.m_url, downloadName, TTK::Download::Music, this);
+            MusicDownloadMetaDataRequest *d = new MusicDownloadMetaDataRequest(prop.m_url, downloadName, this);
             d->setRecordType(TTK::Record::NormalDownload);
             connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
 

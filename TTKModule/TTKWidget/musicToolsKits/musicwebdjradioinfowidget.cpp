@@ -102,7 +102,7 @@ void MusicWebDJRadioInfoWidget::createProgramCategoryItem(const MusicResultDataI
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[2];
-        data->m_label->setToolTip(tr("PlayCount: %1").arg(item.m_playCount));
+        data->m_label->setToolTip(tr("PlayCount: %1").arg(item.m_count));
         data->m_label->setText(TTK::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
         data = &m_resizeWidgets[3];

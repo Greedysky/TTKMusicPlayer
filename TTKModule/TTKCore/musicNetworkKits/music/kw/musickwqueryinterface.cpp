@@ -14,7 +14,7 @@ void MusicKWInterface::makeCoverPixmapUrl(QString &url, const QString &id)
 {
     if(url.isEmpty() && !id.isEmpty())
     {
-        url = TTK::Algorithm::mdII(KW_ALBUM_COVER_OLD_URL, false).arg(id);
+        url = TTK::Algorithm::mdII(KW_ALBUM_COVER_INFO_URL, false).arg(id);
     }
     else if(!TTK::String::isNetworkUrl(url))
     {

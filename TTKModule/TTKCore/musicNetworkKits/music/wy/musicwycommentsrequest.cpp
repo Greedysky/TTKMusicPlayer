@@ -76,7 +76,7 @@ void MusicWYSongCommentsRequest::downLoadFinished()
                     const QVariantMap &user = value["user"].toMap();
                     result.m_nickName = user["nickname"].toString();
                     result.m_coverUrl = user["avatarUrl"].toString();
-                    result.m_playCount = value["likedCount"].toString();
+                    result.m_count = value["likedCount"].toString();
                     result.m_updateTime = value["time"].toString();
                     result.m_description = value["content"].toString();
                     Q_EMIT createCommentItem(result);
@@ -154,7 +154,7 @@ void MusicWYPlaylistCommentsRequest::downLoadFinished()
                     const QVariantMap &user = value["user"].toMap();
                     result.m_nickName = user["nickname"].toString();
                     result.m_coverUrl = user["avatarUrl"].toString();
-                    result.m_playCount = value["likedCount"].toString();
+                    result.m_count = value["likedCount"].toString();
                     result.m_updateTime = value["time"].toString();
                     result.m_description = value["content"].toString();
                     Q_EMIT createCommentItem(result);

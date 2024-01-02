@@ -153,7 +153,7 @@ void MusicKWQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
                     MusicResultDataItem result;
                     result.m_name = value["name"].toString();
                     result.m_coverUrl = value["pic"].toString();
-                    result.m_playCount = value["id"].toString();
+                    result.m_count = value["id"].toString();
                     result.m_description = value["intro"].toString();
                     result.m_updateTime = value["pub"].toString();
                     Q_EMIT createToplistItem(result);

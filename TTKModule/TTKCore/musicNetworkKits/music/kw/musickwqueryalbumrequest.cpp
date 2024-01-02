@@ -71,10 +71,10 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                 result.m_coverUrl = value["pic"].toString();
                 MusicKWInterface::makeCoverPixmapUrl(result.m_coverUrl, {});
                 const QString &albumName = value["name"].toString();
-                result.m_playCount = value["company"].toString();
-                result.m_description = value["lang"].toString();
+                result.m_count = albumName;
+                result.m_description = value["company"].toString();
                 result.m_updateTime = value["pub"].toString();
-                result.m_tags = albumName;
+                result.m_category = value["lang"].toString();
 
                 const QVariantList &datas = value["musiclist"].toList();
                 for(const QVariant &var : qAsConst(datas))

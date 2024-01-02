@@ -2,8 +2,8 @@
 #include "musicdownloadqueryfactory.h"
 #include "musiccoverrequest.h"
 
-MusicDownloadMetaDataRequest::MusicDownloadMetaDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent)
-    : MusicDownloadDataRequest(url, path, type, parent)
+MusicDownloadMetaDataRequest::MusicDownloadMetaDataRequest(const QString &url, const QString &path, QObject *parent)
+    : MusicDownloadDataRequest(url, path, TTK::Download::Music, parent)
 {
     m_needUpdate = false;
 }
@@ -15,21 +15,17 @@ void MusicDownloadMetaDataRequest::setSongMeta(MusicSongMeta &meta)
 
 void MusicDownloadMetaDataRequest::startRequest()
 {
-    if(m_file && (!m_file->exists() || m_file->size() < 4))
+    if(!m_file || (m_file->exists() && m_file->size() >= 4) || !m_file->open(QIODevice::WriteOnly))
     {
-        if(m_file->open(QIODevice::WriteOnly))
-        {
-            MusicDownloadDataRequest::startRequest(m_url);
-            disconnect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
-            connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
-        }
-        else
-        {
-            TTK_ERROR_STREAM("The data file create failed");
-            Q_EMIT downLoadDataChanged("The data file create failed");
-            deleteAll();
-        }
+        TTK_ERROR_STREAM("The data file create failed");
+        Q_EMIT downLoadDataChanged("The data file create failed");
+        deleteAll();
+        return;
     }
+
+    MusicDownloadDataRequest::startRequest(m_url);
+    disconnect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
 }
 
 void MusicDownloadMetaDataRequest::downLoadFinished()

@@ -33,7 +33,7 @@ public:
     /*!
      * Object constructor provide download url save local path and download type.
      */
-    MusicDownloadMetaDataRequest(const QString &url, const QString &path, TTK::Download type, QObject *parent = nullptr);
+    MusicDownloadMetaDataRequest(const QString &url, const QString &path, QObject *parent = nullptr);
 
     /*!
      * Set custom tags.

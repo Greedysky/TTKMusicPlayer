@@ -157,7 +157,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                         result.m_name = info.m_songName;
                         result.m_nickName = info.m_singerName;
                         result.m_coverUrl = info.m_coverUrl;
-                        result.m_playCount = radioObject["subCount"].toString();
+                        result.m_count = radioObject["subCount"].toString();
                         result.m_updateTime = TTKDateTime::format(value["createTime"].toULongLong(), TTK_YEAR_FORMAT);
                         Q_EMIT createCategoryItem(result);
                     }

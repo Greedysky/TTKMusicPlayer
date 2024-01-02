@@ -152,7 +152,7 @@ void MusicKGQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
 
                 result.m_name = value["rankname"].toString();
                 result.m_coverUrl = value["banner7url"].toString().replace("{size}", "400");
-                result.m_playCount = value["play_times"].toString();
+                result.m_count = value["play_times"].toString();
                 result.m_description = value["intro"].toString();
                 Q_EMIT createToplistItem(result);
                 return;

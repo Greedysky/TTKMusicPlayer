@@ -52,27 +52,27 @@ struct TTK_MODULE_EXPORT MusicResultDataItem
     QString m_name;
     QString m_nickName;
     QString m_coverUrl;
-    QString m_playCount;
+    QString m_count;
     QString m_description;
     QString m_updateTime;
-    QString m_tags;
+    QString m_category;
 
     MusicResultDataItem()
         : m_id(TTK_DEFAULT_STR),
           m_name(TTK_DEFAULT_STR),
           m_nickName(TTK_DEFAULT_STR),
           m_coverUrl(TTK_DEFAULT_STR),
-          m_playCount(TTK_DEFAULT_STR),
+          m_count(TTK_DEFAULT_STR),
           m_description(TTK_DEFAULT_STR),
           m_updateTime(TTK_DEFAULT_STR),
-          m_tags(TTK_DEFAULT_STR)
+          m_category(TTK_DEFAULT_STR)
     {
 
     }
 
     inline bool isEmpty() const
     {
-        return m_name == TTK_DEFAULT_STR || m_nickName == TTK_DEFAULT_STR || m_coverUrl == TTK_DEFAULT_STR || m_description == TTK_DEFAULT_STR || m_tags == TTK_DEFAULT_STR;
+        return m_name == TTK_DEFAULT_STR || m_nickName == TTK_DEFAULT_STR || m_coverUrl == TTK_DEFAULT_STR || m_description == TTK_DEFAULT_STR || m_category == TTK_DEFAULT_STR;
     }
 };
 TTK_DECLARE_LIST(MusicResultDataItem);

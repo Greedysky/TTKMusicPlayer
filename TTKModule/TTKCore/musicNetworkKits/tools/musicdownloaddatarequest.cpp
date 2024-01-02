@@ -13,19 +13,15 @@ MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QSt
 
 void MusicDownloadDataRequest::startRequest()
 {
-    if(m_file && (!m_file->exists() || m_file->size() < 4))
+    if(!m_file || (m_file->exists() && m_file->size() >= 4) || !m_file->open(QIODevice::WriteOnly) || m_url.isEmpty())
     {
-        if(m_file->open(QIODevice::WriteOnly))
-        {
-            startRequest(m_url);
-        }
-        else
-        {
-            TTK_ERROR_STREAM("The data file create failed");
-            Q_EMIT downLoadDataChanged("The data file create failed");
-            deleteAll();
-        }
+        TTK_ERROR_STREAM("The data file create failed");
+        Q_EMIT downLoadDataChanged("The data file create failed");
+        deleteAll();
+        return;
     }
+
+    startRequest(m_url);
 }
 
 void MusicDownloadDataRequest::setRecordType(TTK::Record type)
@@ -52,7 +48,7 @@ void MusicDownloadDataRequest::startRequest(const QString &url)
     if(m_downloadType == TTK::Download::Music && !m_redirection)
     {
         m_createTime = TTKDateTime::currentTimestamp();
-        G_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPairData(m_createTime, this, m_recordType));
+        G_DOWNLOAD_MANAGER_PTR->connectDownload(MusicDownLoadPairData(m_createTime, this, m_recordType));
         Q_EMIT createDownloadItem(m_savePath, m_createTime);
     }
 }
@@ -106,7 +102,7 @@ void MusicDownloadDataRequest::handleReadyRead()
 void MusicDownloadDataRequest::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
     MusicAbstractDownLoadRequest::downloadProgress(bytesReceived, bytesTotal);
-    /// only download music data or oather type can that show progress
+    /// only download music data or other type can that show progress
     if(m_downloadType == TTK::Download::Music || m_downloadType == TTK::Download::Other)
     {
         const QString &total = TTK::Number::sizeByteToLabel(bytesTotal);

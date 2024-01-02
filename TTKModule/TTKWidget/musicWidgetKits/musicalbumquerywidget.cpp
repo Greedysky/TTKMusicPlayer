@@ -141,7 +141,7 @@ void MusicAlbumQueryWidget::createAlbumItem(const MusicResultDataItem &item)
             d->startRequest(item.m_coverUrl);
         }
 
-        QStringList list{item.m_tags, item.m_description, item.m_playCount, item.m_updateTime};
+        QStringList list{item.m_count, item.m_category, item.m_description, item.m_updateTime};
         for(int i = 0; i < list.count(); ++i)
         {
             if(list[i].isEmpty())
