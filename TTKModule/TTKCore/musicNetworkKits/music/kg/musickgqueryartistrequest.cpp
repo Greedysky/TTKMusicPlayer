@@ -76,16 +76,13 @@ void MusicKGQueryArtistRequest::downLoadFinished()
 
                     info.m_songId = value["hash"].toString();
                     info.m_albumId = value["album_id"].toString();
+                    info.m_albumName = value["album_name"].toString();
 
                     info.m_year.clear();
                     info.m_trackNumber = "0";
 
-                    MusicResultDataItem albumInfo;
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongAlbumInfo(&albumInfo, info.m_albumId);
-                    info.m_albumName = albumInfo.m_nickName;
-                    TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongLrcAndPicture(&info);
+                    MusicKGInterface::parseFromSongAlbumLrc(&info);
                     TTK_NETWORK_QUERY_CHECK();
                     MusicKGInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();

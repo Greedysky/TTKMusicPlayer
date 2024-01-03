@@ -34,7 +34,7 @@ MusicIdentifySongWidget::MusicIdentifySongWidget(QWidget *parent)
     connect(m_timer, SIGNAL(timeout()), SLOT(detectedTimeOut()));
 
     m_recordCore = new MusicAudioRecorderModule(this);
-    m_detectedThread = new MusicIdentifySongRequest(this);
+    m_detectedRequest = new MusicIdentifySongRequest(this);
 
     QShortcut *cut = new QShortcut(Qt::SHIFT + Qt::CTRL + Qt::Key_T, this);
     connect(cut, SIGNAL(activated()), SLOT(detectedButtonClicked()));
@@ -49,7 +49,7 @@ MusicIdentifySongWidget::~MusicIdentifySongWidget()
     delete m_player;
     delete m_analysis;
     delete m_recordCore;
-    delete m_detectedThread;
+    delete m_detectedRequest;
     delete m_detectedButton;
     delete m_detectedLabel;
     delete m_detectedMovie;
@@ -58,7 +58,7 @@ MusicIdentifySongWidget::~MusicIdentifySongWidget()
 
 void MusicIdentifySongWidget::queryIdentifyKey()
 {
-    if(m_detectedThread->queryIdentifyKey())
+    if(m_detectedRequest->queryIdentifyKey())
     {
         m_detectedButton->setEnabled(true);
     }
@@ -113,12 +113,13 @@ void MusicIdentifySongWidget::detectedTimeOut()
     m_recordCore->addWavHeader(TTK_RECORD_DATA_FILE);
 
     TTKSemaphoreLoop loop;
-    m_detectedThread->startRequest(TTK_RECORD_DATA_FILE);
-    connect(m_detectedThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    connect(m_detectedRequest, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    QtNetworkErrorVoidConnect(m_detectedRequest, &loop, quit, TTK_SLOT);
+    m_detectedRequest->startRequest(TTK_RECORD_DATA_FILE);
     loop.exec();
 
     detectedButtonClicked();
-    if(m_detectedThread->identifySongs().isEmpty())
+    if(m_detectedRequest->identifySongs().isEmpty())
     {
         createDetectedFailedWidget();
     }
@@ -261,7 +262,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
         m_analysis->setLineMax(11);
         connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     }
-    const MusicSongIdentifyData songIdentify(m_detectedThread->identifySongs().front());
+    const MusicSongIdentifyData songIdentify(m_detectedRequest->identifySongs().front());
 
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle04);
@@ -283,6 +284,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     TTKSemaphoreLoop loop;
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    QtNetworkErrorVoidConnect(d, &loop, quit, TTK_SLOT);
     d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     d->startToSearch(textLabel->text().trimmed());
     loop.exec();

@@ -76,6 +76,7 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
     {
         TTKSemaphoreLoop loop;
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
+        QtNetworkErrorVoidConnect(this, &loop, quit, TTK_SLOT);
 
         MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));

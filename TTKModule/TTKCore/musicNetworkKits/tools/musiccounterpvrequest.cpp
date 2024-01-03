@@ -1,7 +1,9 @@
 #include "musiccounterpvrequest.h"
 #include "ttkabstractxml.h"
 
-static constexpr const char *QUERY_URL = "QkZ1ek5yL0gxbkV6eGU5bEttakZNT2pyNitIZVZoYlNBYlUxMEp2c2swQWdQODRNZmJmdWVqeGIrK0VsRzNwWUNDZjBkU3J6dmlwQklRRVZ6WVdsa2kwQmRhR0YrbmlZRERWSmlzazNNU21EbWRjS0sxSmtKNXZEekt5MWNwTmgvQ2hBOXo4MWlCajF3c2dXMTdTUXNIQmxCbzdCeC9HUC9MR09Sem80dVZRZmpVeDFkUXU1cVpPMUJIeXJIQTlJRHdTZjM2YWZ6ZWdTYTV1dExnUGd3OG9MekxCczJuS0RVbE1iK21DYkxENEhHQ0JwSHU1bVpuVklOY1Z6YU0walRldUxoL3pHOGpoWEVKOWNST0JZcEZoWWtLQT0=";
+#include "qsync/qsyncutils.h"
+
+static constexpr const char *OS_COUNTER_URL = "counter";
 
 MusicCounterPVRequest::MusicCounterPVRequest(QObject *parent)
     : MusicAbstractNetwork(parent)
@@ -12,7 +14,17 @@ MusicCounterPVRequest::MusicCounterPVRequest(QObject *parent)
 void MusicCounterPVRequest::startRequest()
 {
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false));
+    request.setUrl(QSyncUtils::makeDataBucketUrl() + OS_COUNTER_URL);
+
+    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
+    {
+        TTK_ERROR_STREAM("Counter PV data error");
+        Q_EMIT downLoadDataChanged(TTK_DEFAULT_STR);
+        return;
+    }
+
+    request.setUrl(QString::fromUtf8(bytes));
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
 

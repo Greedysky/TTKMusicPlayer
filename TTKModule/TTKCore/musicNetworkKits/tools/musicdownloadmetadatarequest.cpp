@@ -42,6 +42,7 @@ void MusicDownloadMetaDataRequest::downLoadFinished()
     {
         TTKSemaphoreLoop loop;
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
+        QtNetworkErrorVoidConnect(this, &loop, quit, TTK_SLOT);
 
         MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));

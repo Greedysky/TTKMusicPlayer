@@ -24,11 +24,6 @@ void MusicKWInterface::makeCoverPixmapUrl(QString &url, const QString &id)
 
 static void parseSongProperty(TTK::MusicSongInformation *info)
 {
-    if(!info->m_songProps.isEmpty())
-    {
-        return;
-    }
-
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_SONG_DETAIL_CGG_URL, false).arg(info->m_songId));
     MusicKWInterface::makeRequestRawHeader(&request);
@@ -124,12 +119,14 @@ void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, in
 {
     if(info->m_formats.isEmpty())
     {
+        parseSongProperty(info); //find 128kmp3 first
         parseSongProperty(info, MP3_FILE_SUFFIX, "128kmp3", TTK_BN_128);
         return;
     }
 
     if(bitrate == TTK_BN_0)
     {
+        parseSongProperty(info); //find 128kmp3 first
         parseSongProperty(info, MP3_FILE_SUFFIX, info->m_formats, TTK_BN_128);
         parseSongProperty(info, MP3_FILE_SUFFIX, info->m_formats, TTK_BN_192);
         parseSongProperty(info, MP3_FILE_SUFFIX, info->m_formats, TTK_BN_320);
@@ -137,10 +134,12 @@ void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, in
     }
     else
     {
+        if(bitrate == TTK_BN_128)
+        {
+            parseSongProperty(info); //find 128kmp3 first
+        }
         parseSongProperty(info, bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX, info->m_formats, bitrate);
     }
-
-    parseSongProperty(info);
 }
 
 void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &format)

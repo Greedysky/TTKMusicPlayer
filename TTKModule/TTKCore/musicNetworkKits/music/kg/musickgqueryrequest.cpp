@@ -103,7 +103,7 @@ void MusicKGQueryRequest::downLoadFinished()
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongLrcAndPicture(&info);
+                    MusicKGInterface::parseFromSongAlbumLrc(&info);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(m_queryMode != QueryMode::Meta)
@@ -147,11 +147,13 @@ void MusicKGQueryRequest::downLoadSingleFinished()
             if(value["errcode"].toInt() == 0 && value.contains("data"))
             {
                 value = value["data"].toMap();
+
                 TTK::MusicSongInformation info;
-                info.m_songId = value["hash"].toString();
                 info.m_singerName = TTK::String::charactersReplace(value["singername"].toString());
                 info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
                 info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
+
+                info.m_songId = value["hash"].toString();
                 info.m_artistId = value["singerid"].toString();
                 info.m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
                 info.m_lrcUrl = TTK::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(info.m_songName, info.m_songId).arg(value["duration"].toInt() * TTK_DN_S2MS);
@@ -165,8 +167,9 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                     }
 
                     const QVariantMap &albumObject = var.toMap();
-                    info.m_albumId = albumObject["album_audio_id"].toString();
-                    info.m_albumName = TTK::String::charactersReplace(albumObject["album_name"].toString());
+                    TTK_NETWORK_QUERY_CHECK();
+                    MusicKGInterface::parseFromSongAlbumInfo(&info, albumObject["album_audio_id"].toString());
+                    TTK_NETWORK_QUERY_CHECK();
                 }
 
                 info.m_year.clear();

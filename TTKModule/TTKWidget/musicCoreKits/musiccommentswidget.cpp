@@ -304,6 +304,7 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
 
     TTKSemaphoreLoop loop;
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    QtNetworkErrorVoidConnect(m_networkRequest, &loop, quit, TTK_SLOT);
     m_networkRequest->startToSearch(name);
     loop.exec();
 

@@ -98,10 +98,7 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongAlbumInfo(&result, m_queryValue);
-                    info.m_albumName = TTK::String::charactersReplace(result.m_nickName);
-                    TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongLrcAndPicture(&info);
+                    MusicKGInterface::parseFromSongAlbumLrc(&info);
                     TTK_NETWORK_QUERY_CHECK();
                     MusicKGInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
@@ -109,6 +106,12 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
                     if(!albumFound)
                     {
                         albumFound = true;
+                        MusicResultDataItem result;
+                        TTK_NETWORK_QUERY_CHECK();
+                        MusicKGInterface::parseFromSongAlbumInfo(&result, info.m_songId, value["album_audio_id"].toString());
+                        TTK_NETWORK_QUERY_CHECK();
+
+                        result.m_count = result.m_name;
                         result.m_id = info.m_albumId;
                         result.m_name = info.m_singerName;
                         result.m_coverUrl = info.m_coverUrl;

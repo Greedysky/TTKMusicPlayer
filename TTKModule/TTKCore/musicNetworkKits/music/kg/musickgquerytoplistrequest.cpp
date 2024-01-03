@@ -81,12 +81,10 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                     info.m_year.clear();
                     info.m_trackNumber = "0";
 
-                    MusicResultDataItem albumInfo;
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongAlbumInfo(&albumInfo, info.m_albumId);
-                    info.m_albumName = albumInfo.m_nickName;      
+                    MusicKGInterface::parseFromSongAlbumLrc(&info);
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongLrcAndPicture(&info);
+                    MusicKGInterface::parseFromSongAlbumInfo(&info, value["album_audio_id"].toString());
                     TTK_NETWORK_QUERY_CHECK();
                     MusicKGInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();

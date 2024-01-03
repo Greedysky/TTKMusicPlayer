@@ -21,8 +21,6 @@
 
 #include "musicglobaldefine.h"
 
-static constexpr const char *_SIGN           = "OGlVTjJWOEdlMkkzSkZIeg==";
-
 ///song url
 //TG5KazFERHlYc3hzS1JQd29ldXVEOWVRdGh2dmx0RWxma3I5cnRxekptRjdKM0NvQXo1bzV5c1ZpRDB2WGZ1UQ==
 //MnBiMVlsRXJML2c5V2FFaHNOM05hVWtVYUpBc0VrbjdNUDZhOGx5OTR2cz0=

@@ -31,6 +31,7 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &value)
     TTKSemaphoreLoop loop;
     MusicWYQueryRequest query(this), *d = &query;
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    QtNetworkErrorVoidConnect(d, &loop, quit, TTK_SLOT);
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     d->startToSearch(value);

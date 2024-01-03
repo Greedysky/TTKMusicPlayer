@@ -63,7 +63,7 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(!value.isEmpty() && value.contains("musiclist"))
+            if(value.contains("musiclist"))
             {
                 bool albumFound = false;
                 MusicResultDataItem result;

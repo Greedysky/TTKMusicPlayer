@@ -148,7 +148,7 @@ void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(!value.isEmpty() && value.contains("musiclist"))
+            if(value.contains("musiclist"))
             {
                 const QVariantList &datas = value["musiclist"].toList();
                 for(const QVariant &var : qAsConst(datas))

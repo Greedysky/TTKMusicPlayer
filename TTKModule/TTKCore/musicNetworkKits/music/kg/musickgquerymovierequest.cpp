@@ -68,7 +68,7 @@ void MusicKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, b
     if(ok)
     {
         QVariantMap value = data.toMap();
-        if(!value.isEmpty() && value.contains("mvdata"))
+        if(value.contains("mvdata"))
         {
             if(more)
             {
