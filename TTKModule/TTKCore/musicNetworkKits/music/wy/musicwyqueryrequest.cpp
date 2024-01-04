@@ -3,7 +3,7 @@
 MusicWYQueryRequest::MusicWYQueryRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_pageSize = 40;
+    m_pageSize = 30;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -18,7 +18,7 @@ void MusicWYQueryRequest::startToPage(int offset)
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
-                      TTK::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryValue).arg(1).arg(m_pageSize).arg(m_pageSize * offset).toUtf8());
+                      TTK::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(1).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize).toUtf8());
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -29,9 +29,8 @@ void MusicWYQueryRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(className() << "startToSearch" << value);
 
-    m_queryValue = value.trimmed();
     MusicAbstractQueryRequest::downLoadFinished();
-
+    m_queryValue = value.trimmed();
     startToPage(0);
 }
 
@@ -54,12 +53,11 @@ void MusicWYQueryRequest::startToSingleSearch(const QString &value)
 void MusicWYQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
     TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
-    MusicPageQueryRequest::downLoadFinished();
 
+    MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
     MusicWYInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
-
     MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
 }
 
@@ -131,7 +129,7 @@ void MusicWYQueryRequest::downLoadFinished()
                         item.m_singerName = info.m_singerName;
                         item.m_albumName = info.m_albumName;
                         item.m_duration = info.m_duration;
-                        item.m_type = mapQueryServerString();
+                        item.m_type = serverToString();
                         Q_EMIT createSearchedItem(item);
                     }
                     m_songInfos << info;
@@ -208,7 +206,7 @@ void MusicWYQueryRequest::downLoadSingleFinished()
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;
                     item.m_duration = info.m_duration;
-                    item.m_type = mapQueryServerString();
+                    item.m_type = serverToString();
                     Q_EMIT createSearchedItem(item);
                     m_songInfos << info;
                 }

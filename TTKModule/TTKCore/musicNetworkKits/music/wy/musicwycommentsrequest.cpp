@@ -13,11 +13,12 @@ void MusicWYSongCommentsRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toInt()),
-                      TTK::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toInt()).arg(m_pageSize).arg(m_pageSize * offset));
+                      TTK::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toInt()).arg(m_pageSize * offset).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -60,7 +61,7 @@ void MusicWYSongCommentsRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200)
             {
-                m_totalSize = value["total"].toLongLong();
+                m_totalSize = value["total"].toInt();
 
                 const QVariantList &datas = value["comments"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -104,11 +105,12 @@ void MusicWYPlaylistCommentsRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toLongLong()),
-                      TTK::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toLongLong()).arg(m_pageSize).arg(m_pageSize * offset));
+                      TTK::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toLongLong()).arg(m_pageSize * offset).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -138,7 +140,7 @@ void MusicWYPlaylistCommentsRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200)
             {
-                m_totalSize = value["total"].toLongLong();
+                m_totalSize = value["total"].toInt();
 
                 const QVariantList &datas = value["comments"].toList();
                 for(const QVariant &var : qAsConst(datas))

@@ -71,7 +71,7 @@ void MusicSongSharingWidget::setData(Module type, const QVariantMap &data)
             {
                 MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
                 connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-                d->startRequest(cover);
+                d->startToRequest(cover);
             }
             break;
         }

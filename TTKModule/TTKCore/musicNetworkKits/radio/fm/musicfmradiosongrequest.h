@@ -37,7 +37,7 @@ public:
     /*!
      * Start to download radio data.
      */
-    void startRequest();
+    void startToRequest();
 
     /*!
      * Get music song information.

@@ -13,6 +13,7 @@ void MusicKGSongCommentsRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
@@ -59,7 +60,7 @@ void MusicKGSongCommentsRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["err_code"].toInt() == 0)
             {
-                m_totalSize = value["count"].toLongLong();
+                m_totalSize = value["count"].toInt();
 
                 const QVariantList &datas = value["list"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -102,6 +103,7 @@ void MusicKGPlaylistCommentsRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
@@ -135,7 +137,7 @@ void MusicKGPlaylistCommentsRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["err_code"].toInt() == 0)
             {
-                m_totalSize = value["count"].toLongLong();
+                m_totalSize = value["count"].toInt();
 
                 const QVariantList &datas = value["list"].toList();
                 for(const QVariant &var : qAsConst(datas))

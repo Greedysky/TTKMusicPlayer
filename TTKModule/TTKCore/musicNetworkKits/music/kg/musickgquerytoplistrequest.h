@@ -36,6 +36,10 @@ public:
     explicit MusicKGQueryToplistRequest(QObject *parent = nullptr);
 
     /*!
+     * Start to search data by offset page.
+     */
+    virtual void startToPage(int offset) override final;
+    /*!
      * Start to search data by input data.
      */
     virtual void startToSearch(const QString &value) override final;

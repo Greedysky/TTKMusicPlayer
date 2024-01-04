@@ -46,10 +46,10 @@ public:
     virtual void deleteAll() override final;
 
     /*!
-     * Start to download data from net.
+     * Start to request data from net.
      * Subclass should implement this function.
      */
-    virtual void startRequest() = 0;
+    virtual void startToRequest() = 0;
 
 public Q_SLOTS:
     /*!

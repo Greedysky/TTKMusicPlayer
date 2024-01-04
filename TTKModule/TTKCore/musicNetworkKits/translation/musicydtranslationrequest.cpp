@@ -9,9 +9,9 @@ MusicYDTranslationRequest::MusicYDTranslationRequest(QObject *parent)
 
 }
 
-void MusicYDTranslationRequest::startRequest(const QString &data)
+void MusicYDTranslationRequest::startToRequest(const QString &data)
 {
-    TTK_INFO_STREAM(className() << "startRequest");
+    TTK_INFO_STREAM(className() << "startToRequest");
 
     MusicAbstractNetwork::deleteAll();
 

@@ -35,6 +35,8 @@ void MusicKGInterface::parseFromSongAlbumLrc(TTK::MusicSongInformation *info)
         {
             value = value["data"].toMap();
             info->m_artistId = value["singerid"].toString();
+            info->m_songName = TTK::String::charactersReplace(value["songname"].toString());
+            info->m_singerName = TTK::String::charactersReplace(value["singername"].toString());
             info->m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
             info->m_lrcUrl = TTK::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(value["songname"].toString(), info->m_songId).arg(value["duration"].toInt() * TTK_DN_S2MS);
         }
@@ -88,14 +90,14 @@ void MusicKGInterface::parseFromSongAlbumInfo(MusicResultDataItem *info, const Q
                     continue;
                 }
 
-                for(const QVariant &album : var.toList())
+                for(const QVariant &al : var.toList())
                 {
-                    if(album.isNull())
+                    if(al.isNull())
                     {
                         continue;
                     }
 
-                    value = album.toMap();
+                    value = al.toMap();
                     info->m_id = value["album_id"].toString();
                     info->m_name = TTK::String::charactersReplace(value["album_name"].toString());
                     info->m_description = value["publish_company"].toString();

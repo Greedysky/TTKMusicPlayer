@@ -167,10 +167,6 @@ public:
      * Check the current song container is empty.
      */
     inline bool isEmpty() const { return m_songInfos.isEmpty(); }
-    /*!
-     * Map query server string.
-     */
-    QString mapQueryServerString() const;
 
 Q_SIGNALS:
     /*!
@@ -189,6 +185,10 @@ public Q_SLOTS:
     virtual void downLoadFinished() override;
 
 protected:
+    /*!
+     * Map query server string.
+     */
+    QString serverToString() const;
     /*!
      * Find download file size.
      */

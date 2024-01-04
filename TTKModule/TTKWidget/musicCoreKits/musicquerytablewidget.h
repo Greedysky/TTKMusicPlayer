@@ -24,6 +24,8 @@
 #include "musicfillitemtablewidget.h"
 #include "musicabstractqueryrequest.h"
 
+class MusicGifLabelWidget;
+
 /*! @brief The class of the query table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -73,6 +75,10 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
+     * Table widget item cell click.
+     */
+    virtual void itemCellClicked(int row, int column) override;
+    /*!
      * Table widget item cell double clicked.
      * Subclass should implement this function.
      */
@@ -82,8 +88,17 @@ public Q_SLOTS:
      * Subclass should implement this function.
      */
     virtual void createSearchedItem(const MusicResultInfoItem &songItem) = 0;
+    /*!
+     * Create the search finished item.
+     */
+    void createFinishedItem();
 
 protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void resizeEvent(QResizeEvent *event) override;
+
     using MusicFillItemTableWidget::isValid;
     /*!
      * Check item row is valid or not.
@@ -93,6 +108,8 @@ protected:
         return !(row < 0 || row >= rowCount() - 1);
     }
 
+    MusicGifLabelWidget *m_loadingLabel;
+    TTKLabelItemDelegate *m_labelDelegate;
     MusicAbstractQueryRequest *m_networkRequest;
 
 };

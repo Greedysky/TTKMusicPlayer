@@ -132,7 +132,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_queryType = MusicAbstractQueryRequest::QueryType::Music;
 
     connect(m_ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
-    connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startRequest()));
+    connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startToRequest()));
 
     TTK::Widget::adjustWidgetPosition(this);
 }
@@ -360,7 +360,7 @@ void MusicDownloadWidget::downloadDirSelected()
     }
 }
 
-void MusicDownloadWidget::startRequest()
+void MusicDownloadWidget::startToRequest()
 {
     if(m_ui->viewArea->currentItemRole().isEmpty())
     {
@@ -462,7 +462,7 @@ void MusicDownloadWidget::startRequestMusic(const TTK::MusicSongInformation &inf
             meta.setYear(info.m_year);
 
             d->setSongMeta(meta);
-            d->startRequest();
+            d->startToRequest();
             break;
         }
     }
@@ -513,7 +513,7 @@ void MusicDownloadWidget::startRequestMovie(const TTK::MusicSongInformation &inf
 
             MusicDownloadDataRequest *d = new MusicDownloadDataRequest(prop.m_url, downloadName, TTK::Download::Video, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
-            d->startRequest();
+            d->startToRequest();
         }
     }
 }

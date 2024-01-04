@@ -42,7 +42,7 @@ public:
     /*!
      * Start to download data.
      */
-    void startRequest(const QString &url);
+    void startToRequest(const QString &url);
 
 public Q_SLOTS:
     /*!

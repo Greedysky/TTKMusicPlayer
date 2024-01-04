@@ -50,7 +50,7 @@ public:
      * Start to download translation data.
      * Subclass should implement this function.
      */
-    virtual void startRequest(const QString &data) = 0;
+    virtual void startToRequest(const QString &data) = 0;
 
 };
 

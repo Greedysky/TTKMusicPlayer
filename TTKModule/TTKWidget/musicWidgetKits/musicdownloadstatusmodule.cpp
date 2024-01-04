@@ -74,20 +74,20 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
     if(mode || !checkLrcValid())
     {
         ///download lrc
-        G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, TTK::String::lrcDirPrefix() + fileName + LRC_FILE, this)->startRequest();
+        G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, TTK::String::lrcDirPrefix() + fileName + LRC_FILE, this)->startToRequest();
     }
 
     if(mode || !checkArtistCoverValid())
     {
         ///download art picture
-        G_DOWNLOAD_QUERY_PTR->makeCoverRequest(info.m_coverUrl, ART_DIR_FULL + artistName + SKN_FILE, this)->startRequest();
+        G_DOWNLOAD_QUERY_PTR->makeCoverRequest(info.m_coverUrl, ART_DIR_FULL + artistName + SKN_FILE, this)->startToRequest();
     }
 
     if(mode || !checkArtistBackgroundValid())
     {
         ///download art background picture
         const int count = TTK::String::split(fileName).count();
-        G_DOWNLOAD_QUERY_PTR->makeBackgroundRequest(count == 1 ? info.m_singerName : artistName, artistName, this)->startRequest();
+        G_DOWNLOAD_QUERY_PTR->makeBackgroundRequest(count == 1 ? info.m_singerName : artistName, artistName, this)->startToRequest();
     }
 }
 

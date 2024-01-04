@@ -530,9 +530,9 @@ void MusicSettingWidget::testProxyStateChanged(bool state)
 
 void MusicSettingWidget::testNetworkConnection()
 {
-    MusicNetworkOperator *network = new MusicNetworkOperator(this);
-    connect(network, SIGNAL(queryNetworkOperatorFinished(QString)), SLOT(testNetworkConnectionStateChanged(QString)));
-    network->startRequest();
+    MusicNetworkOperator *d = new MusicNetworkOperator(this);
+    connect(d, SIGNAL(queryNetworkOperatorFinished(QString)), SLOT(testNetworkConnectionStateChanged(QString)));
+    d->startToRequest();
 }
 
 void MusicSettingWidget::checkNetworkConnection()

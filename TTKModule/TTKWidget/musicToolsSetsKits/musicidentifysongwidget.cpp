@@ -115,7 +115,7 @@ void MusicIdentifySongWidget::detectedTimeOut()
     TTKSemaphoreLoop loop;
     connect(m_detectedRequest, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     QtNetworkErrorVoidConnect(m_detectedRequest, &loop, quit, TTK_SLOT);
-    m_detectedRequest->startRequest(TTK_RECORD_DATA_FILE);
+    m_detectedRequest->startToRequest(TTK_RECORD_DATA_FILE);
     loop.exec();
 
     detectedButtonClicked();
@@ -311,7 +311,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
         {
             MusicDownloadDataRequest *d = new MusicDownloadDataRequest(m_songInfo.m_coverUrl, name, TTK::Download::Cover, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            d->startRequest();
+            d->startToRequest();
             loop.exec();
         }
         iconLabel->setPixmap(QPixmap(name).scaled(iconLabel->size()));
@@ -369,7 +369,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
         {
             MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_songInfo.m_lrcUrl, name, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            d->startRequest();
+            d->startToRequest();
             loop.exec();
         }
 

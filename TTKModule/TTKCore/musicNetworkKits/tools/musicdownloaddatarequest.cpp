@@ -11,7 +11,7 @@ MusicDownloadDataRequest::MusicDownloadDataRequest(const QString &url, const QSt
 
 }
 
-void MusicDownloadDataRequest::startRequest()
+void MusicDownloadDataRequest::startToRequest()
 {
     if(!m_file || (m_file->exists() && m_file->size() >= 4) || !m_file->open(QIODevice::WriteOnly) || m_url.isEmpty())
     {
@@ -21,7 +21,7 @@ void MusicDownloadDataRequest::startRequest()
         return;
     }
 
-    startRequest(m_url);
+    startToRequest(m_url);
 }
 
 void MusicDownloadDataRequest::setRecordType(TTK::Record type)
@@ -29,7 +29,7 @@ void MusicDownloadDataRequest::setRecordType(TTK::Record type)
     m_recordType = type;
 }
 
-void MusicDownloadDataRequest::startRequest(const QString &url)
+void MusicDownloadDataRequest::startToRequest(const QString &url)
 {
     m_speedTimer.start();
 
@@ -77,7 +77,7 @@ void MusicDownloadDataRequest::downLoadFinished()
         m_redirection = true;
         m_file->open(QIODevice::WriteOnly);
         m_file->resize(0);
-        startRequest(redirection.toString());
+        startToRequest(redirection.toString());
         return;
     }
     else

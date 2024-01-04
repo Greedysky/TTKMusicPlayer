@@ -3,35 +3,45 @@
 MusicWYQueryToplistRequest::MusicWYQueryToplistRequest(QObject *parent)
     : MusicQueryToplistRequest(parent)
 {
+    m_pageSize = 30;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicWYQueryToplistRequest::startToSearch(const QString &value)
+void MusicWYQueryToplistRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
+    TTK_INFO_STREAM(className() << "startToPage" << offset);
 
     deleteAll();
-    m_queryValue = value.isEmpty() ? "19723756" : value;
+    m_totalSize = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_TOPLIST_URL, false),
-                      TTK::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(m_queryValue));
+                      TTK::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
+void MusicWYQueryToplistRequest::startToSearch(const QString &value)
+{
+    TTK_INFO_STREAM(className() << "startToSearch" << value);
+
+    MusicQueryToplistRequest::downLoadFinished();
+    m_queryValue = value.isEmpty() ? "19723756" : value;
+    startToPage(0);
+}
+
 void MusicWYQueryToplistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
     TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
-    MusicPageQueryRequest::downLoadFinished();
 
+    MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
     MusicWYInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
-
     MusicQueryToplistRequest::startToQueryResult(info, bitrate);
 }
 
@@ -39,7 +49,7 @@ void MusicWYQueryToplistRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(className() << "downLoadFinished");
 
-    MusicQueryToplistRequest::downLoadFinished();
+    MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
@@ -53,6 +63,8 @@ void MusicWYQueryToplistRequest::downLoadFinished()
                 value = value["playlist"].toMap();
 
                 queryToplistInfo(value);
+                m_pageSize = value["trackCount"].toInt();
+                m_totalSize = m_pageSize;
 
                 const QVariantList &datas = value["tracks"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -102,7 +114,7 @@ void MusicWYQueryToplistRequest::downLoadFinished()
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;
                     item.m_duration = info.m_duration;
-                    item.m_type = mapQueryServerString();
+                    item.m_type = serverToString();
                     Q_EMIT createSearchedItem(item);
                     m_songInfos << info;
                 }

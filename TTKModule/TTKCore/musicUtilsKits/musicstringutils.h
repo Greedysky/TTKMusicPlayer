@@ -55,13 +55,13 @@ namespace TTK
         TTK_MODULE_EXPORT QString suffix(const QString &name, const QString &suffix);
 
         /*!
-         * Get string splite path.
+         * Get string split path.
          */
-        TTK_MODULE_EXPORT QString slitToken(const QString &name);
+        TTK_MODULE_EXPORT QString splitToken(const QString &name);
         /*!
-         * Get string splite path.
+         * Get string split path.
          */
-        TTK_MODULE_EXPORT QString slitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert = true);
+        TTK_MODULE_EXPORT QString splitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert = true);
         /*!
          * Get split string value.
          */

@@ -37,7 +37,7 @@ public:
     /*!
      * Start to download data.
      */
-    virtual void startRequest(const QString &url) override final;
+    virtual void startToRequest(const QString &url) override final;
 
 private Q_SLOTS:
     /*!

@@ -13,7 +13,7 @@ void MusicDownloadMetaDataRequest::setSongMeta(MusicSongMeta &meta)
     m_songMeta = std::move(meta);
 }
 
-void MusicDownloadMetaDataRequest::startRequest()
+void MusicDownloadMetaDataRequest::startToRequest()
 {
     if(!m_file || (m_file->exists() && m_file->size() >= 4) || !m_file->open(QIODevice::WriteOnly))
     {
@@ -23,7 +23,7 @@ void MusicDownloadMetaDataRequest::startRequest()
         return;
     }
 
-    MusicDownloadDataRequest::startRequest(m_url);
+    MusicDownloadDataRequest::startToRequest(m_url);
     disconnect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
 }
@@ -46,7 +46,7 @@ void MusicDownloadMetaDataRequest::downLoadFinished()
 
         MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startRequest(m_songMeta.comment());
+        d->startToRequest(m_songMeta.comment());
         loop.exec();
     }
 

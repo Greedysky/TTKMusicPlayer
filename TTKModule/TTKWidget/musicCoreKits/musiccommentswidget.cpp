@@ -9,7 +9,6 @@
 #include "musicwidgetutils.h"
 #include "ttkclickedlabel.h"
 
-#include <qmath.h>
 #include <QTextEdit>
 
 MusicCommentsItem::MusicCommentsItem(QWidget *parent)
@@ -132,7 +131,7 @@ void MusicCommentsItem::addCellItem(const MusicResultDataItem &comments)
 
     MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startRequest(comments.m_coverUrl);
+    d->startToRequest(comments.m_coverUrl);
 }
 
 void MusicCommentsItem::downLoadFinished(const QByteArray &bytes)
@@ -333,8 +332,7 @@ void MusicCommentsWidget::buttonClicked(int index)
 {
     deleteCommentsItems();
 
-    const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
-    m_pageQueryWidget->page(index, pageTotal);
+    m_pageQueryWidget->page(index, m_networkRequest->pageTotalSize());
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }
 
@@ -389,7 +387,6 @@ void MusicCommentsWidget::createPageWidget()
     m_pageQueryWidget = new MusicPageQueryWidget(this);
     connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-    const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
-    QWidget *w = m_pageQueryWidget->createPageWidget(m_messageComments, pageTotal);
+    QWidget *w = m_pageQueryWidget->createPageWidget(m_messageComments, m_networkRequest->pageTotalSize());
     m_messageComments->layout()->addWidget(w);
 }

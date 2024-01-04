@@ -35,10 +35,14 @@ public:
     explicit MusicPageQueryRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to search data from name and type bt page.
+     * Start to search data by offset page.
      */
     virtual void startToPage(int offset);
 
+    /*!
+     * Return the page total size.
+     */
+    int pageTotalSize() const;
     /*!
      * Return the each page max size.
      */

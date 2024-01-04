@@ -11,7 +11,7 @@ MusicCounterPVRequest::MusicCounterPVRequest(QObject *parent)
 
 }
 
-void MusicCounterPVRequest::startRequest()
+void MusicCounterPVRequest::startToRequest()
 {
     QNetworkRequest request;
     request.setUrl(QSyncUtils::makeDataBucketUrl() + OS_COUNTER_URL);

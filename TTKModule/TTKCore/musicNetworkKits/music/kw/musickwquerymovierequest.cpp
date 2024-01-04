@@ -129,7 +129,7 @@ void MusicKWInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, c
 MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent)
 {
-    m_pageSize = 40;
+    m_pageSize = 30;
     m_queryServer = QUERY_KW_INTERFACE;
 }
 
@@ -139,10 +139,10 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = 0;
-    m_pageSize = 20;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_ARTIST_MOVIE_URL, false).arg(m_queryValue).arg(m_pageSize).arg(offset));
+    request.setUrl(TTK::Algorithm::mdII(KW_ARTIST_MOVIE_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -206,8 +206,8 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                     info.m_singerName = TTK::String::charactersReplace(value["ARTIST"].toString());
                     info.m_songName = TTK::String::charactersReplace(value["SONGNAME"].toString());
                     info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * TTK_DN_S2MS);
-
                     info.m_songId = value["MUSICRID"].toString().remove("MUSIC_");
+
                     TTK_NETWORK_QUERY_CHECK();
                     MusicKWInterface::parseFromMovieProperty(&info, value["FORMATS"].toString());
                     TTK_NETWORK_QUERY_CHECK();
@@ -226,7 +226,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_duration = info.m_duration;
-                    item.m_type = mapQueryServerString();
+                    item.m_type = serverToString();
                     Q_EMIT createSearchedItem(item);
                     m_songInfos << info;
                 }
@@ -251,9 +251,10 @@ void MusicKWQueryMovieRequest::downLoadPageFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            m_totalSize = value["total"].toLongLong();
             if(value.contains("mvlist"))
             {
+                m_totalSize = value["total"].toInt();
+
                 const QVariantList &datas = value["mvlist"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -309,7 +310,7 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
         item.m_songName = info.m_songName;
         item.m_singerName = info.m_singerName;
         item.m_duration = info.m_duration;
-        item.m_type = mapQueryServerString();
+        item.m_type = serverToString();
         Q_EMIT createSearchedItem(item);
         m_songInfos << info;
     }

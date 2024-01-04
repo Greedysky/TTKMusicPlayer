@@ -37,7 +37,7 @@ public:
     /*!
      * Start to download translation data.
      */
-    virtual void startRequest(const QString &data) override final;
+    virtual void startToRequest(const QString &data) override final;
 
 public Q_SLOTS:
     /*!

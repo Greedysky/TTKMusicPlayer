@@ -60,7 +60,7 @@ void MusicArtistAlbumsItemWidget::setResultDataItem(const MusicResultDataItem &i
     {
         MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startRequest(item.m_coverUrl);
+        d->startToRequest(item.m_coverUrl);
     }
 }
 
@@ -153,8 +153,7 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultDataItem &i
         m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
         connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-        const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
-        m_mainWindow->layout()->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, pageTotal));
+        m_mainWindow->layout()->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, m_networkRequest->pageTotalSize()));
     }
 
     MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
@@ -181,8 +180,7 @@ void MusicArtistMvsQueryWidget::buttonClicked(int index)
         delete w;
     }
 
-    const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
-    m_pageQueryWidget->page(index, pageTotal);
+    m_pageQueryWidget->page(index, m_networkRequest->pageTotalSize());
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }
 
@@ -405,7 +403,7 @@ void MusicArtistQueryWidget::createArtistItem(const MusicResultDataItem &item)
         {
             MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
             connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-            d->startRequest(item.m_coverUrl);
+            d->startToRequest(item.m_coverUrl);
         }
 
         int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();

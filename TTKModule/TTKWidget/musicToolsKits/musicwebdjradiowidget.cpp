@@ -32,7 +32,7 @@ MusicWebDJRadioProgramTableWidget::~MusicWebDJRadioProgramTableWidget()
 
 void MusicWebDJRadioProgramTableWidget::initialize(TTK::Program type)
 {
-    m_programThread->startRequest(type);
+    m_programThread->startToRequest(type);
 }
 
 void MusicWebDJRadioProgramTableWidget::resizeSection()
@@ -120,7 +120,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultDataI
         MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         d->setHeader("id", index);
-        d->startRequest(data.m_coverUrl);
+        d->startToRequest(data.m_coverUrl);
     }
 }
 

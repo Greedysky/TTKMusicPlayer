@@ -3,7 +3,7 @@
 MusicKWQueryArtistListRequest::MusicKWQueryArtistListRequest(QObject *parent)
     : MusicQueryArtistListRequest(parent)
 {
-    m_pageSize = 100;
+    m_pageSize = TTK_HIGH_LEVEL;
     m_queryServer = QUERY_KW_INTERFACE;
 }
 
@@ -13,6 +13,8 @@ void MusicKWQueryArtistListRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = TTK_HIGH_LEVEL;
+    m_pageIndex = offset;
+
     QString catId = "0", initial;
     const QStringList &dds = m_queryValue.split(TTK_SPLITER);
 
@@ -63,7 +65,7 @@ void MusicKWQueryArtistListRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("artistlist"))
             {
-                m_totalSize = value["total"].toLongLong();
+                m_totalSize = value["total"].toInt();
 
                 const QVariantList &datas = value["artistlist"].toList();
                 for(const QVariant &var : qAsConst(datas))

@@ -53,12 +53,12 @@ QString TTK::String::suffix(const QString &name, const QString &suffix)
     return name.right(name.length() - name.lastIndexOf(suffix) - suffix.length());
 }
 
-QString TTK::String::slitToken(const QString &name)
+QString TTK::String::splitToken(const QString &name)
 {
-    return TTK::String::slitToken(name, TTK_DOT, "?");
+    return TTK::String::splitToken(name, TTK_DOT, "?");
 }
 
-QString TTK::String::slitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert)
+QString TTK::String::splitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert)
 {
     if(revert)
     {

@@ -14,6 +14,7 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(DJ_RADIO_LIST_URL, false).arg(m_queryValue));
@@ -52,12 +53,11 @@ void MusicDJRadioProgramCategoryRequest::startToSingleSearch(const QString &valu
 void MusicDJRadioProgramCategoryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
     TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
-    MusicPageQueryRequest::downLoadFinished();
 
+    MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
     MusicWYInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
-
     MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
 }
 
@@ -167,7 +167,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                     item.m_singerName = info.m_singerName;
                     item.m_albumName.clear();
                     item.m_duration = info.m_duration;
-                    item.m_type = mapQueryServerString();
+                    item.m_type = serverToString();
                     Q_EMIT createSearchedItem(item);
                     m_songInfos << info;
                 }

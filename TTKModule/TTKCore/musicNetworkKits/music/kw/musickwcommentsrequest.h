@@ -35,7 +35,7 @@ public:
     explicit MusicKWSongCommentsRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to search data from name and type bt page.
+     * Start to search data by offset page.
      */
     virtual void startToPage(int offset) override final;
     /*!
@@ -66,7 +66,7 @@ public:
     explicit MusicKWPlaylistCommentsRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to search data from name and type bt page.
+     * Start to search data by offset page.
      */
     virtual void startToPage(int offset) override final;
     /*!

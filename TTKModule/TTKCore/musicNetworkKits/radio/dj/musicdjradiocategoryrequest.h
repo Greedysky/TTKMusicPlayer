@@ -37,7 +37,7 @@ public:
     /*!
      * Start to download category data.
      */
-    void startRequest();
+    void startToRequest();
 
 public Q_SLOTS:
     /*!

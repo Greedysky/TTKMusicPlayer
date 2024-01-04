@@ -51,7 +51,7 @@ public:
     /*!
      * Start to download identify data.
      */
-    void startRequest(const QString &path);
+    void startToRequest(const QString &path);
 
     /*!
      * Get identify songs.

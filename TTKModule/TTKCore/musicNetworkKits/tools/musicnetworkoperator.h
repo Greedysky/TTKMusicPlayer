@@ -37,7 +37,7 @@ public:
     /*!
      * Start to download operator data.
      */
-    void startRequest();
+    void startToRequest();
 
 Q_SIGNALS:
     /*!

@@ -38,7 +38,7 @@ public:
      * Start to download data.
      * Subclass should implement this function.
      */
-    virtual void startRequest(const QString &url) = 0;
+    virtual void startToRequest(const QString &url) = 0;
 
 };
 

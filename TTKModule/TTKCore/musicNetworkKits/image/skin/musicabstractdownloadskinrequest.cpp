@@ -6,12 +6,12 @@ MusicAbstractDownloadSkinRequest::MusicAbstractDownloadSkinRequest(QObject *pare
 
 }
 
-void MusicAbstractDownloadSkinRequest::startRequest()
+void MusicAbstractDownloadSkinRequest::startToRequest()
 {
 
 }
 
-void MusicAbstractDownloadSkinRequest::startRequest(const QString &id)
+void MusicAbstractDownloadSkinRequest::startToRequest(const QString &id)
 {
     Q_UNUSED(id);
 }

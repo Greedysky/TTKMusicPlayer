@@ -31,9 +31,7 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
         return;
     }
     //
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
-    setQueryInput(d);
+    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
     //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
@@ -67,9 +65,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
         return;
     }
     //
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
-    setQueryInput(d);
+    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
     //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
@@ -85,12 +81,10 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
         return;
     }
     //
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
-    setQueryInput(d);
+    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
     //
     m_singleRadioMode = true;
-    d->setSongInfoList({data.value<TTK::MusicSongInformation>()});
+    m_networkRequest->setSongInfoList({data.value<TTK::MusicSongInformation>()});
 }
 
 void MusicVideoSearchTableWidget::resizeSection(int delta)

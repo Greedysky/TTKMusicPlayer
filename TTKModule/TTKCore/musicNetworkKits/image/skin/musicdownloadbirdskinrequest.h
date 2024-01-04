@@ -37,11 +37,11 @@ public:
     /*!
      * Start to download skin data.
      */
-    virtual void startRequest() override final;
+    virtual void startToRequest() override final;
     /*!
      * Start to download skin data.
      */
-    virtual void startRequest(const QString &id) override final;
+    virtual void startToRequest(const QString &id) override final;
 
 Q_SIGNALS:
     /*!

@@ -12,7 +12,7 @@ void MusicDataSourceRequest::deleteAll()
     deleteLater();
 }
 
-void MusicDataSourceRequest::startRequest(const QString &url)
+void MusicDataSourceRequest::startToRequest(const QString &url)
 {
     QNetworkRequest request;
     request.setUrl(url);
@@ -35,7 +35,7 @@ void MusicDataSourceRequest::downLoadFinished()
         {
             const QString &url = redirection.toString();
             MusicAbstractNetwork::deleteAll();
-            startRequest(url);
+            startToRequest(url);
         }
         else
         {

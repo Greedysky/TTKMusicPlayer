@@ -87,7 +87,7 @@ void MusicWebDJRadioInfoWidget::createProgramCategoryItem(const MusicResultDataI
         {
             MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
             connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-            d->startRequest(item.m_coverUrl);
+            d->startToRequest(item.m_coverUrl);
         }
 
         int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();

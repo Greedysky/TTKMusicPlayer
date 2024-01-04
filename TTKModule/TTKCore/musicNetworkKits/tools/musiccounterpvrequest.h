@@ -37,7 +37,7 @@ public:
     /*!
      * Start to download counte data.
      */
-    void startRequest();
+    void startToRequest();
 
 public Q_SLOTS:
     /*!

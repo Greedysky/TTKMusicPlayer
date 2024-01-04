@@ -81,11 +81,11 @@ public:
     /*!
      * Start to download skin data.
      */
-    virtual void startRequest();
+    virtual void startToRequest();
     /*!
      * Start to download skin data.
      */
-    virtual void startRequest(const QString &id);
+    virtual void startToRequest(const QString &id);
 
 Q_SIGNALS:
     /*!

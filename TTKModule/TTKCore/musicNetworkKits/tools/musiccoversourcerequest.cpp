@@ -7,11 +7,11 @@ MusicCoverSourceRequest::MusicCoverSourceRequest(QObject *parent)
 
 }
 
-void MusicCoverSourceRequest::startRequest(const QString &url)
+void MusicCoverSourceRequest::startToRequest(const QString &url)
 {
     MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startRequest(url);
+    d->startToRequest(url);
 }
 
 void MusicCoverSourceRequest::downLoadFinished()

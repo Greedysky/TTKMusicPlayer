@@ -11,9 +11,9 @@ MusicBingTranslationRequest::MusicBingTranslationRequest(QObject *parent)
 
 }
 
-void MusicBingTranslationRequest::startRequest(const QString &data)
+void MusicBingTranslationRequest::startToRequest(const QString &data)
 {
-    TTK_INFO_STREAM(className() << "startRequest");
+    TTK_INFO_STREAM(className() << "startToRequest");
 
     MusicAbstractNetwork::deleteAll();
 

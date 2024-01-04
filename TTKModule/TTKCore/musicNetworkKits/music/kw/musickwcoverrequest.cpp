@@ -9,7 +9,7 @@ MusicKWCoverSourceRequest::MusicKWCoverSourceRequest(QObject *parent)
 
 }
 
-void MusicKWCoverSourceRequest::startRequest(const QString &url)
+void MusicKWCoverSourceRequest::startToRequest(const QString &url)
 {
     if(url.isEmpty() || url == "NO_PIC")
     {
@@ -21,7 +21,7 @@ void MusicKWCoverSourceRequest::startRequest(const QString &url)
 
     MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startRequest(url);
+    d->startToRequest(url);
 }
 
 void MusicKWCoverSourceRequest::downLoadFinished()
@@ -35,7 +35,7 @@ void MusicKWCoverSourceRequest::downLoadFinished(const QByteArray &bytes)
 
     if(m_decodeUrl)
     {
-        startRequest(bytes);
+        startToRequest(bytes);
         m_decodeUrl = false;
     }
     else
@@ -52,7 +52,7 @@ MusicKWDownLoadCoverRequest::MusicKWDownLoadCoverRequest(const QString &url, con
 
 }
 
-void MusicKWDownLoadCoverRequest::startRequest()
+void MusicKWDownLoadCoverRequest::startToRequest()
 {
     if(!m_file || (m_file->exists() && m_file->size() >= 4) || !m_file->open(QIODevice::WriteOnly) || m_url.isEmpty())
     {

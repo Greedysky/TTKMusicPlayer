@@ -6,8 +6,6 @@
 #include "musiccoverrequest.h"
 #include "musicwebdjradioinfowidget.h"
 
-#include <qmath.h>
-
 static constexpr int WIDTH_LABEL_SIZE = 150;
 static constexpr int HEIGHT_LABEL_SIZE = 200;
 static constexpr int LINE_SPACING_SIZE = 200;
@@ -59,7 +57,7 @@ void MusicWebDJRadioQueryItemWidget::setResultDataItem(const MusicResultDataItem
     {
         MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startRequest(item.m_coverUrl);
+        d->startToRequest(item.m_coverUrl);
     }
 }
 
@@ -196,15 +194,13 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
         m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
         connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-        const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
-        mainlayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, pageTotal));
+        mainlayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, m_networkRequest->pageTotalSize()));
         mainlayout->addStretch(1);
     }
 
     if(m_pageQueryWidget)
     {
-        const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
-        m_pageQueryWidget->reset(pageTotal);
+        m_pageQueryWidget->reset(m_networkRequest->pageTotalSize());
     }
 
     MusicWebDJRadioQueryItemWidget *label = new MusicWebDJRadioQueryItemWidget(this);
@@ -247,7 +243,6 @@ void MusicWebDJRadioQueryWidget::buttonClicked(int index)
         delete w;
     }
 
-    const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
-    m_pageQueryWidget->page(index, pageTotal);
+    m_pageQueryWidget->page(index, m_networkRequest->pageTotalSize());
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }

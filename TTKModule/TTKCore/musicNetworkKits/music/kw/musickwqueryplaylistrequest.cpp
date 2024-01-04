@@ -13,6 +13,7 @@ void MusicKWQueryPlaylistRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_PLAYLIST_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
@@ -49,8 +50,8 @@ void MusicKWQueryPlaylistRequest::startToSingleSearch(const QString &value)
 void MusicKWQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
     TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
-    MusicPageQueryRequest::downLoadFinished();
 
+    MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
     MusicKWInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
@@ -106,10 +107,9 @@ void MusicKWQueryPlaylistRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            m_totalSize = value["total"].toLongLong();
-
             if(value.contains("child"))
             {
+                m_totalSize = value["total"].toInt();
                 m_tags = value["ninfo"].toMap()["name"].toString();
 
                 const QVariantList &datas = value["child"].toList();
@@ -187,7 +187,7 @@ void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;
                     item.m_duration = info.m_duration;
-                    item.m_type = mapQueryServerString();
+                    item.m_type = serverToString();
                     Q_EMIT createSearchedItem(item);
                     m_songInfos << info;
                 }

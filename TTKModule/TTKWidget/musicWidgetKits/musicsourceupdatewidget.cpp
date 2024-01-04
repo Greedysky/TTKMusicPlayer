@@ -66,7 +66,7 @@ void MusicSourceUpdateNotifyWidget::start()
 {
     MusicSourceUpdateRequest *d = new MusicSourceUpdateRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QVariant)), SLOT(downLoadFinished(QVariant)));
-    d->startRequest();
+    d->startToRequest();
 }
 
 void MusicSourceUpdateNotifyWidget::updateSourceClicked()
@@ -125,7 +125,7 @@ void MusicSourceUpdateWidget::start()
 {
     MusicSourceUpdateRequest *d = new MusicSourceUpdateRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QVariant)), SLOT(downLoadFinished(QVariant)));
-    d->startRequest();
+    d->startToRequest();
 }
 
 void MusicSourceUpdateWidget::upgradeButtonClicked()

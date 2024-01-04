@@ -6,7 +6,7 @@ MusicKWDownLoadTextRequest::MusicKWDownLoadTextRequest(const QString &url, const
 
 }
 
-void MusicKWDownLoadTextRequest::startRequest()
+void MusicKWDownLoadTextRequest::startToRequest()
 {
     if(!m_file || (m_file->exists() && m_file->size() >= 4) || !m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) || m_url.isEmpty())
     {

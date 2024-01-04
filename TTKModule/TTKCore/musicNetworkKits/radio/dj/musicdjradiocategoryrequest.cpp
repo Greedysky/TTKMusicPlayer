@@ -6,7 +6,7 @@ MusicDJRadioCategoryRequest::MusicDJRadioCategoryRequest(QObject *parent)
 
 }
 
-void MusicDJRadioCategoryRequest::startRequest()
+void MusicDJRadioCategoryRequest::startToRequest()
 {
     deleteAll();
 

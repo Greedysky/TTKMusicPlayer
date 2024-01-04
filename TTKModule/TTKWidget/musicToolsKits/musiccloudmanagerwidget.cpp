@@ -80,7 +80,7 @@ bool MusicCloudManagerTableWidget::queryCloudKey()
 
         MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startRequest(QSyncUtils::makeDataBucketUrl() + OS_CLOUD_URL);
+        d->startToRequest(QSyncUtils::makeDataBucketUrl() + OS_CLOUD_URL);
         loop.exec();
     }
 
@@ -271,9 +271,9 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
     const MusicCloudDataItem &data = it->data(TTK_DATA_ROLE).value<MusicCloudDataItem>();
     const QString &url = m_syncDownloadData->downloadUrl(SYNC_MUSIC_BUCKET, data.m_dataItem.m_name);
 
-    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, TTK::String::musicDirPrefix() + data.m_dataItem.m_name, TTK::Download::Music, this);
-    download->setRecordType(TTK::Record::CloudDownload);
-    download->startRequest();
+    MusicDownloadDataRequest *d = new MusicDownloadDataRequest(url, TTK::String::musicDirPrefix() + data.m_dataItem.m_name, TTK::Download::Music, this);
+    d->setRecordType(TTK::Record::CloudDownload);
+    d->startToRequest();
 }
 
 void MusicCloudManagerTableWidget::cancelUploadFilesToServer()

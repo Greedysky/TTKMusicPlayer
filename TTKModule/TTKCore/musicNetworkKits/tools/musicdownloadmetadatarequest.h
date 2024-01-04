@@ -42,7 +42,7 @@ public:
     /*!
      * Start to download meta data.
      */
-    virtual void startRequest() override final;
+    virtual void startToRequest() override final;
 
 Q_SIGNALS:
     /*!

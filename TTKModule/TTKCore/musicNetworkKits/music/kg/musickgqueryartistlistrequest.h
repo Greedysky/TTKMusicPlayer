@@ -36,7 +36,7 @@ public:
     explicit MusicKGQueryArtistListRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to search data from name and type bt page.
+     * Start to search data by offset page.
      */
     virtual void startToPage(int offset) override final;
     /*!

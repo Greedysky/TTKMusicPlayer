@@ -25,12 +25,11 @@ void MusicKGQueryArtistRequest::startToSearch(const QString &value)
 void MusicKGQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
     TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
-    MusicPageQueryRequest::downLoadFinished();
 
+    MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
     MusicKGInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
-
     MusicQueryArtistRequest::startToQueryResult(info, bitrate);
 }
 
@@ -64,19 +63,10 @@ void MusicKGQueryArtistRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_songName = TTK::String::charactersReplace(value["filename"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-
-                    if(info.m_songName.contains(TTK_DEFAULT_STR))
-                    {
-                        const QStringList &ll = info.m_songName.split(TTK_DEFAULT_STR);
-                        info.m_singerName = TTK::String::charactersReplace(ll.front().trimmed());
-                        info.m_songName = TTK::String::charactersReplace(ll.back().trimmed());
-                    }
-
                     info.m_songId = value["hash"].toString();
                     info.m_albumId = value["album_id"].toString();
-                    info.m_albumName = value["album_name"].toString();
+                    info.m_albumName = TTK::String::charactersReplace(value["album_name"].toString());
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
 
                     info.m_year.clear();
                     info.m_trackNumber = "0";
@@ -86,7 +76,6 @@ void MusicKGQueryArtistRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
                     MusicKGInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
-
 
                     if(!artistFound)
                     {
@@ -107,7 +96,7 @@ void MusicKGQueryArtistRequest::downLoadFinished()
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;
                     item.m_duration = info.m_duration;
-                    item.m_type = mapQueryServerString();
+                    item.m_type = serverToString();
                     Q_EMIT createSearchedItem(item);
                     m_songInfos << info;
                 }

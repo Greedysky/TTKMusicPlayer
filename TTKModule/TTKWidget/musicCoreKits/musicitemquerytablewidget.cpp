@@ -12,9 +12,6 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setColumnCount(8);
 
-    m_labelDelegate = new TTKLabelItemDelegate(this);
-    m_labelDelegate->setStyleSheet(TTK::UI::BackgroundStyle13);
-
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 342);
@@ -32,14 +29,7 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
 MusicItemQueryTableWidget::~MusicItemQueryTableWidget()
 {
     G_CONNECTION_PTR->removeValue(this);
-    delete m_labelDelegate;
     removeItems();
-}
-
-void MusicItemQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
-{
-    MusicQueryTableWidget::setQueryInput(query);
-    connect(query, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
 }
 
 void MusicItemQueryTableWidget::startSearchQuery(const QString &text)
@@ -201,6 +191,7 @@ void MusicItemQueryTableWidget::itemCellEntered(int row, int column)
 void MusicItemQueryTableWidget::itemCellClicked(int row, int column)
 {
     MusicQueryTableWidget::itemCellClicked(row, column);
+
     switch(column)
     {
         case 5: addSearchMusicToPlaylist(row, true); break;
@@ -268,26 +259,6 @@ void MusicItemQueryTableWidget::createSearchedItem(const MusicResultInfoItem &so
     setItem(count, 7, item);
 
     setFixedHeight(rowHeight(0) * rowCount());
-}
-
-void MusicItemQueryTableWidget::createFinishedItem()
-{
-    setRowCount(rowCount() + 1);
-    const int count = rowCount() - 1;
-    for(int i = 0; i < columnCount(); ++i)
-    {
-        setItem(count, i, new QTableWidgetItem);
-    }
-    setSpan(count, 0, 1, columnCount());
-
-    QTableWidgetItem *it = item(count, 0);
-    if(it)
-    {
-        it->setData(TTK_DISPLAY_ROLE, tr("No more data"));
-        setItemDelegateForRow(count, m_labelDelegate);
-
-        setFixedHeight(rowHeight(0) * rowCount());
-    }
 }
 
 void MusicItemQueryTableWidget::addSearchMusicToPlaylist(int row, bool play)

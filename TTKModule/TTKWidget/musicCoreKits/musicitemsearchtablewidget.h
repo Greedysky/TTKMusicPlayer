@@ -21,9 +21,6 @@
 
 #include "musicquerytablewidget.h"
 
-class MusicGifLabelWidget;
-class TTKLabelItemDelegate;
-
 /*! @brief The class of the search item table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -48,10 +45,6 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Table widget item cell click.
-     */
-    virtual void itemCellClicked(int row, int column) override;
-    /*!
      * Remove all items.
      */
     virtual void removeItems() override;
@@ -59,16 +52,8 @@ public Q_SLOTS:
      * Left context menu action group click by action.
      */
     virtual void actionGroupClick(QAction *action);
-    /*!
-     * Create the search finished item.
-     */
-    void createFinishedItem();
 
 protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Create context menu.
      */
@@ -78,9 +63,7 @@ protected:
      */
     QString randSimulation() const;
 
-    MusicGifLabelWidget *m_loadingLabel;
     QActionGroup *m_actionGroup;
-    TTKLabelItemDelegate *m_labelDelegate;
 
 };
 

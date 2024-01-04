@@ -13,11 +13,12 @@ void MusicWYQueryPlaylistRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_PLAYLIST_URL, false),
-                      TTK::Algorithm::mdII(WY_PLAYLIST_DATA_URL, false).arg(m_queryValue).arg(m_pageSize).arg(m_pageSize * offset));
+                      TTK::Algorithm::mdII(WY_PLAYLIST_DATA_URL, false).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -51,12 +52,11 @@ void MusicWYQueryPlaylistRequest::startToSingleSearch(const QString &value)
 void MusicWYQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
     TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
-    MusicPageQueryRequest::downLoadFinished();
 
+    MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
     MusicWYInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
-
     MusicQueryPlaylistRequest::startToQueryResult(info, bitrate);
 }
 
@@ -125,7 +125,7 @@ void MusicWYQueryPlaylistRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200 && value.contains("playlists"))
             {
-                m_totalSize = value["total"].toLongLong();
+                m_totalSize = value["total"].toInt();
 
                 const QVariantList &datas = value["playlists"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -235,7 +235,7 @@ void MusicWYQueryPlaylistRequest::downloadDetailsFinished()
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;
                     item.m_duration = info.m_duration;
-                    item.m_type = mapQueryServerString();
+                    item.m_type = serverToString();
                     Q_EMIT createSearchedItem(item);
                     m_songInfos << info;
                 }

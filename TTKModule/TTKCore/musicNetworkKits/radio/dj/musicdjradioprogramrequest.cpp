@@ -6,7 +6,7 @@ MusicDJRadioProgramRequest::MusicDJRadioProgramRequest(QObject *parent)
 
 }
 
-void MusicDJRadioProgramRequest::startRequest(TTK::Program type)
+void MusicDJRadioProgramRequest::startToRequest(TTK::Program type)
 {
     deleteAll();
 

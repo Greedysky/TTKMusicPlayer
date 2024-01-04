@@ -128,8 +128,8 @@ void MusicApplicationModule::loadNetWorkSetting()
     // sync host init
     QSyncConfig::HOST = TTK::Algorithm::mdII(SYNC_HOST_URL, false);
     //
-    m_sourceUpdatehread->startRequest();
-    m_counterPVThread->startRequest();
+    m_sourceUpdatehread->startToRequest();
+    m_counterPVThread->startToRequest();
 }
 
 void MusicApplicationModule::applyParameter()

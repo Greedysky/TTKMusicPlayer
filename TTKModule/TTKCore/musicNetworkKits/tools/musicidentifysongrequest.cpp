@@ -22,13 +22,13 @@ bool MusicIdentifySongRequest::queryIdentifyKey()
 
     MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startRequest(QSyncUtils::makeDataBucketUrl() + OS_ACRUA_URL);
+    d->startToRequest(QSyncUtils::makeDataBucketUrl() + OS_ACRUA_URL);
     loop.exec();
 
     return !m_accessKey.isEmpty() && !m_accessSecret.isEmpty();
 }
 
-void MusicIdentifySongRequest::startRequest(const QString &path)
+void MusicIdentifySongRequest::startToRequest(const QString &path)
 {
     const QString &boundary = "----";
     const QString &start = "--" + boundary;

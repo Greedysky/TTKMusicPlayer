@@ -27,7 +27,7 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
 
     m_downloadRequest = new MusicCounterPVRequest(this);
     connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadFinished(QString)));
-    m_downloadRequest->startRequest();
+    m_downloadRequest->startToRequest();
 
     const QString &buildTime = QDateTime::currentDateTime().toString(TTK_YEAR_TIMEZ_FORMAT);
     const QByteArray &md5 = TTK::Algorithm::md5(buildTime.toUtf8()).mid(8, 16);

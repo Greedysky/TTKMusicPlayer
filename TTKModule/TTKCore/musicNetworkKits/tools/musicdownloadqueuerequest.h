@@ -58,7 +58,7 @@ public:
     /*!
      * Start to download queue data.
      */
-    virtual void startRequest() override final;
+    virtual void startToRequest() override final;
 
     /*!
      * Abort current download request.

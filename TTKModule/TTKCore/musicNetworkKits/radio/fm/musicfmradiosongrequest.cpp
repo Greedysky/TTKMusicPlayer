@@ -9,7 +9,7 @@ MusicFMRadioSongRequest::MusicFMRadioSongRequest(QObject *parent)
 
 }
 
-void MusicFMRadioSongRequest::startRequest()
+void MusicFMRadioSongRequest::startToRequest()
 {
     deleteAll();
     m_songInfo = TTK::MusicSongInformation();

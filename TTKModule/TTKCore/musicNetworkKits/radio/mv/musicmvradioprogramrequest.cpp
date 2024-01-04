@@ -75,7 +75,7 @@ void MusicKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, c
     TTK::MusicSongProperty prop;
     prop.m_url = key["downurl"].toString();
     prop.m_size = TTK::Number::sizeByteToLabel(key["filesize"].toInt());
-    prop.m_format = TTK::String::slitToken(prop.m_url);
+    prop.m_format = TTK::String::splitToken(prop.m_url);
 
     const int bitrate = key["bitrate"].toInt() / 1000;
     if(bitrate <= 1000)

@@ -8,7 +8,7 @@ MusicBDTranslationRequest::MusicBDTranslationRequest(QObject *parent)
 
 }
 
-void MusicBDTranslationRequest::startRequest(const QString &data)
+void MusicBDTranslationRequest::startToRequest(const QString &data)
 {
     TTK_INFO_STREAM(className() << "startRequest");
 

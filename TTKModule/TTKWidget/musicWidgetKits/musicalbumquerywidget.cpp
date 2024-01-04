@@ -138,7 +138,7 @@ void MusicAlbumQueryWidget::createAlbumItem(const MusicResultDataItem &item)
         {
             MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
             connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-            d->startRequest(item.m_coverUrl);
+            d->startToRequest(item.m_coverUrl);
         }
 
         QStringList list{item.m_count, item.m_category, item.m_description, item.m_updateTime};

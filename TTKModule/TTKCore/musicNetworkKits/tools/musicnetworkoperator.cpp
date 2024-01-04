@@ -9,11 +9,11 @@ MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
 
 }
 
-void MusicNetworkOperator::startRequest()
+void MusicNetworkOperator::startToRequest()
 {
     MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startRequest(TTK::Algorithm::mdII(IP_CHECK_URL, false));
+    d->startToRequest(TTK::Algorithm::mdII(IP_CHECK_URL, false));
 }
 
 void MusicNetworkOperator::downLoadFinished(const QByteArray &bytes)

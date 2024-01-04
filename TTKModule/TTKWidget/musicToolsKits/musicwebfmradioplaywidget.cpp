@@ -75,7 +75,7 @@ MusicWebFMRadioPlayWidget::~MusicWebFMRadioPlayWidget()
 
 void MusicWebFMRadioPlayWidget::show()
 {
-    m_songThread->startRequest();
+    m_songThread->startToRequest();
     MusicAbstractMoveWidget::show();
 }
 
@@ -88,7 +88,7 @@ void MusicWebFMRadioPlayWidget::radioPlay()
 
 void MusicWebFMRadioPlayWidget::radioPrevious()
 {
-    m_songThread->startRequest();
+    m_songThread->startToRequest();
 
     if(!m_isPlaying)
     {
@@ -98,7 +98,7 @@ void MusicWebFMRadioPlayWidget::radioPrevious()
 
 void MusicWebFMRadioPlayWidget::radioNext()
 {
-    m_songThread->startRequest();
+    m_songThread->startToRequest();
 
     if(!m_isPlaying)
     {
@@ -151,7 +151,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     {
         MusicWYDownLoadTextRequest* d = new MusicWYDownLoadTextRequest(info.m_lrcUrl, name, this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));
-        d->startRequest();
+        d->startToRequest();
     }
     else
     {
@@ -163,7 +163,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     {
         MusicDownloadDataRequest *d = new MusicDownloadDataRequest(info.m_coverUrl, name, TTK::Download::Cover, this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
-        d->startRequest();
+        d->startToRequest();
     }
     else
     {

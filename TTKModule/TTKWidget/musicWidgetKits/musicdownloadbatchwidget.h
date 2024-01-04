@@ -52,7 +52,7 @@ public:
     /*!
      * Start to download data by type.
      */
-    void startRequest();
+    void startToRequest();
     /*!
      * Set current quality by index.
      */
@@ -123,7 +123,7 @@ public Q_SLOTS:
     /*!
      * Start to download data.
      */
-    void startRequest();
+    void startToRequest();
 
 private:
     QList<MusicDownloadBatchTableItem*> m_items;

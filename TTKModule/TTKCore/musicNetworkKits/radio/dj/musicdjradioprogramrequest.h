@@ -49,7 +49,7 @@ public:
     /*!
      * Start to download program data.
      */
-    void startRequest(TTK::Program type);
+    void startToRequest(TTK::Program type);
 
 public Q_SLOTS:
     /*!

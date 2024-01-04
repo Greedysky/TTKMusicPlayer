@@ -7,7 +7,6 @@
 #include "musicplaylistquerycategorypopwidget.h"
 #include "musicpagequerywidget.h"
 
-#include <qmath.h>
 #include <QGridLayout>
 
 static constexpr int WIDTH_LABEL_SIZE = 150;
@@ -87,7 +86,7 @@ void MusicPlaylistQueryItemWidget::setResultDataItem(const MusicResultDataItem &
     {
         MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startRequest(item.m_coverUrl);
+        d->startToRequest(item.m_coverUrl);
     }
 }
 
@@ -233,16 +232,14 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultDataItem &ite
         m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
         connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-        const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
-        mainlayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, pageTotal));
+        mainlayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, m_networkRequest->pageTotalSize()));
         mainlayout->addStretch(1);
     }
 
     if(m_categoryChanged && m_pageQueryWidget)
     {
         m_categoryChanged = false;
-        const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
-        m_pageQueryWidget->reset(pageTotal);
+        m_pageQueryWidget->reset(m_networkRequest->pageTotalSize());
     }
 
     MusicPlaylistQueryItemWidget *label = new MusicPlaylistQueryItemWidget(this);
@@ -306,7 +303,6 @@ void MusicPlaylistQueryWidget::buttonClicked(int index)
         delete w;
     }
 
-    const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
-    m_pageQueryWidget->page(index, pageTotal);
+    m_pageQueryWidget->page(index, m_networkRequest->pageTotalSize());
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }

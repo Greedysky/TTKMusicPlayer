@@ -40,10 +40,10 @@ public:
     virtual void deleteAll() override final;
 
     /*!
-     * Start to download background data.
+     * Start to request background data.
      * Subclass should implement this function.
      */
-    virtual void startRequest() = 0;
+    virtual void startToRequest() = 0;
 
     /*!
      * Set the remain count.

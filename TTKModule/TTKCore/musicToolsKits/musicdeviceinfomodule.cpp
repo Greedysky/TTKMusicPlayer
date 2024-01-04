@@ -181,7 +181,7 @@ MusicDeviceInfoItemList MusicDeviceInfoModule::removableDrive()
 }
 
 #ifdef Q_OS_UNIX
-static int mapDriveSize(QString &v)
+static int driveSizeToNumber(QString &v)
 {
     if(v.endsWith("G"))
     {
@@ -239,8 +239,8 @@ void MusicDeviceInfoModule::handleReadyRead()
                 MusicDeviceInfoItem item;
                 item.m_name = dev;
                 item.m_path = path;
-                item.m_usedBytes = mapDriveSize(use);
-                item.m_totalBytes = mapDriveSize(total);
+                item.m_usedBytes = driveSizeToNumber(use);
+                item.m_totalBytes = driveSizeToNumber(total);
 
                 if(item.m_usedBytes < 0)
                 {

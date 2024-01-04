@@ -62,7 +62,7 @@ void MusicBackgroundRemoteWidget::downLoadFinished(const MusicSkinRemoteGroupLis
     m_groups = bytes;
 }
 
-void MusicBackgroundRemoteWidget::startRequest(const QString &prefix)
+void MusicBackgroundRemoteWidget::startToRequest(const QString &prefix)
 {
     if(m_groups.isEmpty())
     {
@@ -85,7 +85,7 @@ void MusicBackgroundRemoteWidget::startRequest(const QString &prefix)
     }
 
     m_downloadQueue->addImageQueue(datas);
-    m_downloadQueue->startRequest();
+    m_downloadQueue->startToRequest();
 }
 
 
@@ -103,11 +103,11 @@ void MusicBackgroundDailyWidget::initialize()
     {
         m_downloadRequest = new MusicDownloadBingSkinRequest(this);
         connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroupList)), SLOT(downLoadFinished(MusicSkinRemoteGroupList)));
-        m_downloadRequest->startRequest();
+        m_downloadRequest->startToRequest();
     }
     else
     {
-        startRequest(TKM_FILE);
+        startToRequest(TKM_FILE);
     }
 }
 
@@ -133,7 +133,7 @@ void MusicBackgroundDailyWidget::outputRemoteSkin(MusicBackgroundImage &image, c
 void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroupList &bytes)
 {
     MusicBackgroundRemoteWidget::downLoadFinished(bytes);
-    startRequest(TKM_FILE);
+    startToRequest(TKM_FILE);
 }
 
 
@@ -161,7 +161,7 @@ void MusicBackgroundOnlineWidget::initialize()
     {
         m_downloadRequest = new MusicDownloadThunderSkinRequest(this);
         connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroupList)), SLOT(downLoadFinished(MusicSkinRemoteGroupList)));
-        m_downloadRequest->startRequest();
+        m_downloadRequest->startToRequest();
     }
     else
     {
@@ -251,7 +251,7 @@ void MusicBackgroundOnlineWidget::currentTypeChanged(int index)
     }
 
     m_currentIndex = index;
-    startRequest(TKM_FILE);
+    startToRequest(TKM_FILE);
 }
 
 void MusicBackgroundOnlineWidget::downLoadFinished(const MusicSkinRemoteGroupList &bytes)

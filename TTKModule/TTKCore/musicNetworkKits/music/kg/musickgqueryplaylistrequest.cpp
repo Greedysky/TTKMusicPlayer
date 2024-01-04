@@ -13,6 +13,7 @@ void MusicKGQueryPlaylistRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_PLAYLIST_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
@@ -49,12 +50,11 @@ void MusicKGQueryPlaylistRequest::startToSingleSearch(const QString &value)
 void MusicKGQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
     TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");
-    MusicPageQueryRequest::downLoadFinished();
 
+    MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
     MusicKGInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
-
     MusicQueryPlaylistRequest::startToQueryResult(info, bitrate);
 }
 
@@ -124,7 +124,7 @@ void MusicKGQueryPlaylistRequest::downLoadFinished()
             if(value["errcode"].toInt() == 0)
             {
                 value = value["data"].toMap();
-                m_totalSize = value["total"].toLongLong();
+                m_totalSize = value["total"].toInt();
 
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -185,18 +185,9 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_songName = TTK::String::charactersReplace(value["filename"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-
-                    if(info.m_songName.contains(TTK_DEFAULT_STR))
-                    {
-                        const QStringList &ll = info.m_songName.split(TTK_DEFAULT_STR);
-                        info.m_singerName = TTK::String::charactersReplace(ll.front().trimmed());
-                        info.m_songName = TTK::String::charactersReplace(ll.back().trimmed());
-                    }
-
                     info.m_songId = value["hash"].toString();
                     info.m_albumId = value["album_id"].toString();
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
 
                     info.m_year.clear();
                     info.m_trackNumber = "0";
@@ -214,7 +205,7 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
                     item.m_singerName = info.m_singerName;
                     item.m_albumName = info.m_albumName;
                     item.m_duration = info.m_duration;
-                    item.m_type = mapQueryServerString();
+                    item.m_type = serverToString();
                     Q_EMIT createSearchedItem(item);
                     m_songInfos << info;
                 }

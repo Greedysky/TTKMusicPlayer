@@ -37,7 +37,7 @@ public:
     /*!
      * Start to download background data.
      */
-    virtual void startRequest() override final;
+    virtual void startToRequest() override final;
 
 public Q_SLOTS:
     /*!

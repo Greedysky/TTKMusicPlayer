@@ -192,7 +192,7 @@ public Q_SLOTS:
     /*!
      * Start to download data.
      */
-    void startRequest();
+    void startToRequest();
     /*!
      * Data download is finished.
      */

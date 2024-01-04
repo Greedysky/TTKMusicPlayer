@@ -28,7 +28,14 @@ void MusicAbstractQueryRequest::startToQueryResult(TTK::MusicSongInformation *in
     Q_UNUSED(bitrate);
 }
 
-QString MusicAbstractQueryRequest::mapQueryServerString() const
+void MusicAbstractQueryRequest::downLoadFinished()
+{
+    Q_EMIT clearItems();
+    m_songInfos.clear();
+    MusicPageQueryRequest::downLoadFinished();
+}
+
+QString MusicAbstractQueryRequest::serverToString() const
 {
     const QString &v = tr("Current used server from %1");
     if(m_queryServer.contains(QUERY_KG_INTERFACE))
@@ -47,13 +54,6 @@ QString MusicAbstractQueryRequest::mapQueryServerString() const
     {
         return {};
     }
-}
-
-void MusicAbstractQueryRequest::downLoadFinished()
-{
-    Q_EMIT clearItems();
-    m_songInfos.clear();
-    MusicPageQueryRequest::downLoadFinished();
 }
 
 bool MusicAbstractQueryRequest::findUrlFileSize(TTK::MusicSongProperty *prop, const QString &duration) const

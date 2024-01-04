@@ -11,7 +11,7 @@ MusicTranslationRequest::MusicTranslationRequest(QObject *parent)
 
 }
 
-void MusicTranslationRequest::startRequest()
+void MusicTranslationRequest::startToRequest()
 {
     m_pluginIndex = -1;
     findAllPlugins();
@@ -46,6 +46,6 @@ void MusicTranslationRequest::findAllPlugins()
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
         //
         d->setHeader("name", header("name"));
-        d->startRequest(header("data").toString());
+        d->startToRequest(header("data").toString());
     }
 }

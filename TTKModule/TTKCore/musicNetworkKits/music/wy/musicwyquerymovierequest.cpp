@@ -54,7 +54,7 @@ void MusicWYInterface::parseFromMovieProperty(QString &url, const QString &id, i
 MusicWYQueryMovieRequest::MusicWYQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent)
 {
-    m_pageSize = 40;
+    m_pageSize = 30;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -64,7 +64,7 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = 0;
-    m_pageSize = 20;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
@@ -86,7 +86,7 @@ void MusicWYQueryMovieRequest::startToSearch(const QString &value)
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
-                      TTK::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryValue).arg(1014).arg(m_pageSize).arg(0).toUtf8());
+                      TTK::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(1014).arg(m_queryValue).arg(0).arg(m_pageSize).toUtf8());
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -275,7 +275,7 @@ void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
                 }
 
                 prop.m_url = value[key].toString();
-                prop.m_format = TTK::String::slitToken(prop.m_url);
+                prop.m_format = TTK::String::splitToken(prop.m_url);
 
                 if(!findUrlFileSize(&prop, info.m_duration))
                 {
@@ -294,7 +294,7 @@ void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
             item.m_songName = info.m_songName;
             item.m_singerName = info.m_singerName;
             item.m_duration = info.m_duration;
-            item.m_type = mapQueryServerString();
+            item.m_type = serverToString();
             Q_EMIT createSearchedItem(item);
             m_songInfos << info;
         }
@@ -370,7 +370,7 @@ void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
                 }
 
                 prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());
-                prop.m_format = TTK::String::slitToken(prop.m_url);
+                prop.m_format = TTK::String::splitToken(prop.m_url);
                 info.m_songProps.append(prop);
             }
 
@@ -383,7 +383,7 @@ void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
             item.m_songName = info.m_songName;
             item.m_singerName = info.m_singerName;
             item.m_duration = info.m_duration;
-            item.m_type = mapQueryServerString();
+            item.m_type = serverToString();
             Q_EMIT createSearchedItem(item);
             m_songInfos << info;
         }

@@ -110,7 +110,7 @@ void MusicKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, c
     TTK::MusicSongProperty prop;
     prop.m_url = key["downurl"].toString();
     prop.m_size = TTK::Number::sizeByteToLabel(key["filesize"].toInt());
-    prop.m_format = TTK::String::slitToken(prop.m_url);
+    prop.m_format = TTK::String::splitToken(prop.m_url);
 
     const int bitrate = key["bitrate"].toInt() / 1000;
     if(bitrate <= 375)
@@ -151,7 +151,7 @@ void MusicKGQueryMovieRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = 0;
-    m_pageSize = 20;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_ARTIST_MOVIE_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
@@ -236,7 +236,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
                     item.m_songName = info.m_songName;
                     item.m_singerName = info.m_singerName;
                     item.m_duration = info.m_duration;
-                    item.m_type = mapQueryServerString();
+                    item.m_type = serverToString();
                     Q_EMIT createSearchedItem(item);
                     m_songInfos << info;
                 }
@@ -312,7 +312,7 @@ void MusicKGQueryMovieRequest::downLoadSingleFinished()
         item.m_songName = info.m_songName;
         item.m_singerName = info.m_singerName;
         item.m_duration = info.m_duration;
-        item.m_type = mapQueryServerString();
+        item.m_type = serverToString();
         Q_EMIT createSearchedItem(item);
         m_songInfos << info;
     }

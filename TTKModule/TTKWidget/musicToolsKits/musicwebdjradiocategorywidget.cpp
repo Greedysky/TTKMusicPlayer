@@ -40,7 +40,7 @@ void MusicWebDJRadioCategoryItemWidget::setResultDataItem(const MusicResultDataI
     {
         MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
         connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        d->startRequest(item.m_coverUrl);
+        d->startToRequest(item.m_coverUrl);
     }
 }
 
@@ -97,7 +97,7 @@ MusicWebDJRadioCategoryWidget::~MusicWebDJRadioCategoryWidget()
 
 void MusicWebDJRadioCategoryWidget::initialize()
 {
-    m_categoryThread->startRequest();
+    m_categoryThread->startToRequest();
 }
 
 void MusicWebDJRadioCategoryWidget::resizeWindow()

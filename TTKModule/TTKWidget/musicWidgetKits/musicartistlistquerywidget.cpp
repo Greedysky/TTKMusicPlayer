@@ -6,8 +6,6 @@
 #include "musicrightareawidget.h"
 #include "ttkclickedgroup.h"
 
-#include <qmath.h>
-
 static constexpr int WIDTH_LABEL_SIZE = 150;
 static constexpr int HEIGHT_LABEL_SIZE = 25;
 static constexpr int LINE_SPACING_SIZE = 150;
@@ -155,16 +153,14 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
         connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-        const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
-        mainlayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, pageTotal));
+        mainlayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, m_networkRequest->pageTotalSize()));
         mainlayout->addStretch(1);
     }
 
     if(m_categoryChanged && m_pageQueryWidget)
     {
         m_categoryChanged = false;
-        const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
-        m_pageQueryWidget->reset(pageTotal);
+        m_pageQueryWidget->reset(m_networkRequest->pageTotalSize());
     }
 
     MusicArtistListQueryItemWidget *label = new MusicArtistListQueryItemWidget(this);
@@ -205,8 +201,7 @@ void MusicArtistListQueryWidget::buttonClicked(int index)
         delete w;
     }
 
-    const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
-    m_pageQueryWidget->page(index, pageTotal);
+    m_pageQueryWidget->page(index, m_networkRequest->pageTotalSize());
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }
 

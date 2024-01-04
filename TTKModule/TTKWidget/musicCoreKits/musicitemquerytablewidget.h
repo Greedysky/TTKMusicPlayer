@@ -39,10 +39,6 @@ public:
     ~MusicItemQueryTableWidget();
 
     /*!
-     * Set network query input.
-     */
-    virtual void setQueryInput(MusicAbstractQueryRequest *query) override;
-    /*!
      * Start search query by text.
      */
     virtual void startSearchQuery(const QString &text) override final;
@@ -86,10 +82,6 @@ public Q_SLOTS:
      */
     virtual void createSearchedItem(const MusicResultInfoItem &songItem) override;
     /*!
-     * Create the search finished item.
-     */
-    void createFinishedItem();
-    /*!
      * Menu action type changed.
      */
     void menuActionChanged(QAction *action);
@@ -108,8 +100,6 @@ private:
      * Download data from net and just play or not.
      */
     bool downloadDataFrom(const TTK::MusicSongInformation &info, bool play);
-
-    TTKLabelItemDelegate *m_labelDelegate;
 
 };
 

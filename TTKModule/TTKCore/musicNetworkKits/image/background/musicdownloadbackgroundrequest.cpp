@@ -14,7 +14,7 @@ MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &na
 
 }
 
-void MusicDownloadBackgroundRequest::startRequest()
+void MusicDownloadBackgroundRequest::startToRequest()
 {
     m_findCount = 0;
     m_pluginIndex = -1;
@@ -58,6 +58,6 @@ void MusicDownloadBackgroundRequest::findAllPlugins()
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
         //
         d->setRemainCount(MAX_IMAGE_COUNT - m_findCount);
-        d->startRequest();
+        d->startToRequest();
     }
 }

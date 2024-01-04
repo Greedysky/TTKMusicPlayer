@@ -37,7 +37,7 @@ public:
     /*!
      * Start to download data.
      */
-    virtual void startRequest() override;
+    virtual void startToRequest() override;
 
     /*!
      * Set record type.
@@ -84,7 +84,7 @@ protected:
     /*!
      * Start to download data by url.
      */
-    void startRequest(const QString &url);
+    void startToRequest(const QString &url);
 
     qint64 m_createTime;
     bool m_redirection, m_needUpdate;

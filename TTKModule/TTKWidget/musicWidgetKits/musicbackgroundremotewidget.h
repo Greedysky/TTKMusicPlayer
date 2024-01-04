@@ -68,7 +68,7 @@ protected:
     /*!
      * Start to download background data by suffix.
      */
-    void startRequest(const QString &suffix);
+    void startToRequest(const QString &suffix);
 
     int m_currentIndex;
     MusicSkinRemoteGroupList m_groups;

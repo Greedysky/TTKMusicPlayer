@@ -356,7 +356,7 @@ void MusicScreenSaverWidget::downLoadFinished(const QString &bytes)
     QVector<bool> statusVector(parseSettingParameter());
     if(bytes.contains(OS_WALLNAIL_NAME))
     {
-        const int index = TTK::String::slitToken(bytes, OS_SCREEN_DIR, TTK_SEPARATOR).toInt();
+        const int index = TTK::String::splitToken(bytes, OS_SCREEN_DIR, TTK_SEPARATOR).toInt();
         if(index < 0 || index >= statusVector.count())
         {
             return;
@@ -408,7 +408,7 @@ void MusicScreenSaverWidget::initialize()
     }
 
     m_downloadQueue->addImageQueue(datas);
-    m_downloadQueue->startRequest();
+    m_downloadQueue->startToRequest();
 }
 
 

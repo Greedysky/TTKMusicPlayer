@@ -13,6 +13,8 @@ void MusicKGQueryArtistListRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = TTK_HIGH_LEVEL;
+    m_pageIndex = offset;
+
     QString catId = "type=1&sextype=1";
     m_rawData["initial"] = "%E7%83%AD%E9%97%A8";
     const QStringList &dds = m_queryValue.split(TTK_SPLITER);
