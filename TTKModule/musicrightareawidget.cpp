@@ -639,12 +639,6 @@ void MusicRightAreaWidget::showSongMainWidget()
     G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, pre);
 }
 
-void MusicRightAreaWidget::deleteStackedFuncWidget()
-{
-    delete m_stackedWidget;
-    m_stackedWidget = nullptr;
-}
-
 void MusicRightAreaWidget::setDestopLrcVisible(bool visible) const
 {
     m_ui->musicDesktopLrc->setChecked(visible);
@@ -817,7 +811,6 @@ void MusicRightAreaWidget::functionInitialize()
         m_ui->stackedFunctionWidget->transparent(false);
     }
 
-//    deleteStackedFuncWidget();
     m_stackedStandWidget = nullptr;
 
     m_ui->lrcDisplayAllButton->setVisible(false);

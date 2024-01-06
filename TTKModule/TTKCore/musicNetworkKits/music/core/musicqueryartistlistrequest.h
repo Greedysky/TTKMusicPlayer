@@ -34,6 +34,11 @@ public:
      */
     explicit MusicQueryArtistListRequest(QObject *parent = nullptr);
 
+    /*!
+     * Start to search data by input data.
+     */
+    virtual void startToSearch(const QString &value) override;
+
 Q_SIGNALS:
     /*!
      * Create the current playlist item.

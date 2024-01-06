@@ -39,14 +39,6 @@ void MusicKGQueryPlaylistRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKGQueryPlaylistRequest::startToSearchByID(const QString &value)
-{
-    TTK_INFO_STREAM(className() << "startToSearchByID" << value);
-
-    m_queryValue = value;
-    startToPage(0);
-}
-
 void MusicKGQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
     TTK_INFO_STREAM(className() << "startToQueryResult" << info->m_songId << bitrate << "kbps");

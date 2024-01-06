@@ -26,11 +26,7 @@ void MusicKGQueryToplistRequest::startToPage(int offset)
 
 void MusicKGQueryToplistRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
-
-    MusicQueryToplistRequest::downLoadFinished();
-    m_queryValue = value.isEmpty() ? "6666" : value;
-    startToPage(0);
+    MusicQueryToplistRequest::startToSearch(value.isEmpty() ? "6666" : value);
 }
 
 void MusicKGQueryToplistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)

@@ -233,7 +233,7 @@ void MusicDownloadWidget::downLoadNormalFinished()
     m_ui->viewArea->removeItems();
     const TTK::MusicSongInformation info(matchMusicSongInformation());
 
-    if(!info.m_songName.isEmpty() || !info.m_singerName.isEmpty())
+    if(!info.m_songProps.isEmpty())
     {
         addCellItems(info.m_songProps);
     }

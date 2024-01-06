@@ -17,8 +17,8 @@ void MusicWYSongCommentsRequest::startToPage(int offset)
 
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toInt()),
-                      TTK::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toInt()).arg(m_pageSize * offset).arg(m_pageSize));
+                      TTK::Algorithm::mdII(WY_COMMENT_SONG_URL, false).arg(m_id),
+                      TTK::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_id).arg(m_pageSize * offset).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -37,11 +37,10 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &value)
     d->startToSearch(value);
     loop.exec();
 
-    m_rawData["sid"] = 0;
+    m_id.clear();
     if(!d->isEmpty())
     {
-        m_rawData["sid"] = d->songInfoList().front().m_songId.toInt();
-        startToPage(0);
+        MusicCommentsRequest::startToSearch(d->songInfoList().front().m_songId);
     }
 }
 
@@ -108,20 +107,12 @@ void MusicWYPlaylistCommentsRequest::startToPage(int offset)
 
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toLongLong()),
-                      TTK::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toLongLong()).arg(m_pageSize * offset).arg(m_pageSize));
+                      TTK::Algorithm::mdII(WY_COMMENT_PLAYLIST_URL, false).arg(m_id),
+                      TTK::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_id).arg(m_pageSize * offset).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
-}
-
-void MusicWYPlaylistCommentsRequest::startToSearch(const QString &value)
-{
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
-
-    m_rawData["sid"] = value;
-    startToPage(0);
 }
 
 void MusicWYPlaylistCommentsRequest::downLoadFinished()

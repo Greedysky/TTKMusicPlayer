@@ -1,5 +1,5 @@
-#ifndef MUSICQUERYTOPLISTREQUEST_H
-#define MUSICQUERYTOPLISTREQUEST_H
+#ifndef MUSICQUERYREQUEST_H
+#define MUSICQUERYREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -21,37 +21,24 @@
 
 #include "musicabstractqueryrequest.h"
 
-/*! @brief The class of the query toplist download data from net.
+/*! @brief The class of the query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicQueryToplistRequest : public MusicAbstractQueryRequest
+class TTK_MODULE_EXPORT MusicQueryRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicQueryToplistRequest)
+    TTK_DECLARE_MODULE(MusicQueryRequest)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicQueryToplistRequest(QObject *parent = nullptr);
+    explicit MusicQueryRequest(QObject *parent = nullptr);
 
     /*!
      * Start to search data by input data.
      */
     virtual void startToSearch(const QString &value) override;
 
-Q_SIGNALS:
-    /*!
-     * Create the current toplist info item.
-     */
-    void createToplistItem(const MusicResultDataItem &item);
-
-protected:
-    /*!
-     * Query toplist info.
-     * Subclass should implement this function.
-     */
-    virtual void queryToplistInfo(const QVariantMap &input) = 0;
-
 };
 
-#endif // MUSICQUERYTOPLISTREQUEST_H
+#endif // MUSICQUERYREQUEST_H

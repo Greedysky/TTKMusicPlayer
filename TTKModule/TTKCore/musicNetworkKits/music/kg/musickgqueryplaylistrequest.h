@@ -44,10 +44,6 @@ public:
      */
     virtual void startToSearch(const QString &value) override final;
     /*!
-     * Start to search data by input value.
-     */
-    virtual void startToSearchByID(const QString &value) override final;
-    /*!
      * Start to download query result data.
      */
     virtual void startToQueryResult(TTK::MusicSongInformation *info, int bitrate) override final;

@@ -11,6 +11,7 @@ void MusicQueryAlbumRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(className() << "startToSearch" << value);
 
+    MusicAbstractQueryRequest::downLoadFinished();
     m_queryValue = value;
     m_albumFound = false;
     startToPage(0);

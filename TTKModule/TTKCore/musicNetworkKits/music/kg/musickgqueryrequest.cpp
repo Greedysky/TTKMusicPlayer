@@ -1,7 +1,7 @@
 #include "musickgqueryrequest.h"
 
 MusicKGQueryRequest::MusicKGQueryRequest(QObject *parent)
-    : MusicAbstractQueryRequest(parent)
+    : MusicQueryRequest(parent)
 {
     m_pageSize = SONG_PAGE_SIZE;
     m_queryServer = QUERY_KG_INTERFACE;
@@ -22,15 +22,6 @@ void MusicKGQueryRequest::startToPage(int offset)
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
-}
-
-void MusicKGQueryRequest::startToSearch(const QString &value)
-{
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
-
-    MusicAbstractQueryRequest::downLoadFinished();
-    m_queryValue = value;
-    startToPage(0);
 }
 
 void MusicKGQueryRequest::startToSearchByID(const QString &value)
@@ -56,7 +47,7 @@ void MusicKGQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, in
     TTK_NETWORK_QUERY_CHECK();
     MusicKGInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
-    MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
+    MusicQueryRequest::startToQueryResult(info, bitrate);
 }
 
 void MusicKGQueryRequest::downLoadFinished()
@@ -132,7 +123,7 @@ void MusicKGQueryRequest::downLoadSingleFinished()
 {
     TTK_INFO_STREAM(className() << "downLoadSingleFinished");
 
-    MusicAbstractQueryRequest::downLoadFinished();
+    MusicQueryRequest::downLoadFinished();
     QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {

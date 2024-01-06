@@ -1,12 +1,12 @@
-#include "musicquerymovierequest.h"
+#include "musicqueryrequest.h"
 
-MusicQueryMovieRequest::MusicQueryMovieRequest(QObject *parent)
+MusicQueryRequest::MusicQueryRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
 
 }
 
-void MusicQueryMovieRequest::startToSearch(const QString &value)
+void MusicQueryRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(className() << "startToSearch" << value);
 

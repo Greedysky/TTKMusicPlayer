@@ -40,10 +40,6 @@ public:
      */
     virtual void startToPage(int offset) override final;
     /*!
-     * Start to search data by input data.
-     */
-    virtual void startToSearch(const QString &value) override final;
-    /*!
      * Start to search data by input value.
      */
     virtual void startToSearchByID(const QString &value) override final;

@@ -19,13 +19,13 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include "musicqueryrequest.h"
 #include "musickwqueryinterface.h"
-#include "musicabstractqueryrequest.h"
 
 /*! @brief The class of the kuwo query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicKWQueryRequest : public MusicAbstractQueryRequest
+class TTK_MODULE_EXPORT MusicKWQueryRequest : public MusicQueryRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWQueryRequest)
@@ -39,10 +39,6 @@ public:
      * Start to search data by offset page.
      */
     virtual void startToPage(int offset) override final;
-    /*!
-     * Start to search data by input data.
-     */
-    virtual void startToSearch(const QString &value) override final;
     /*!
      * Start to search data by input value.
      */

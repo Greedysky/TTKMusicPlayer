@@ -36,15 +36,17 @@ public:
 
     /*!
      * Start to search data by input data.
-     * Subclass should implement this function.
      */
-    virtual void startToSearch(const QString &value) = 0;
+    virtual void startToSearch(const QString &value);
 
 Q_SIGNALS:
     /*!
      * Create the current song comment.
      */
     void createCommentItem(const MusicResultDataItem &comments);
+
+protected:
+    QString m_id;
 
 };
 

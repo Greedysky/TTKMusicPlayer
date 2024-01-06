@@ -2,7 +2,7 @@
 #include "musicsongsharingwidget.h"
 #include "musicsongslistplayedwidget.h"
 #include "musicrightareawidget.h"
-#include "musicdownloadwidget.h"
+#include "musicstringutils.h"
 
 #include <qmath.h>
 

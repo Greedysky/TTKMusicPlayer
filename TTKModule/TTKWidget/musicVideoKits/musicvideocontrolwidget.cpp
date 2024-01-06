@@ -1,5 +1,4 @@
 #include "musicvideocontrolwidget.h"
-#include "musicdownloadwidget.h"
 #include "musicmovinglabelslider.h"
 #include "musicvideouiobject.h"
 #include "musicvolumepopwidget.h"

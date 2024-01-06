@@ -35,6 +35,10 @@ public:
     explicit MusicQueryPlaylistRequest(QObject *parent = nullptr);
 
     /*!
+     * Start to search data by input value.
+     */
+    virtual void startToSearchByID(const QString &value) override;
+    /*!
      * Start to query playlist info.
      * Subclass should implement this function.
      */

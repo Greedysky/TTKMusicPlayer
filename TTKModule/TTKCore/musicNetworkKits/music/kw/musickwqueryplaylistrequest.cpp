@@ -41,10 +41,7 @@ void MusicKWQueryPlaylistRequest::startToSearch(const QString &value)
 
 void MusicKWQueryPlaylistRequest::startToSearchByID(const QString &value)
 {
-    TTK_INFO_STREAM(className() << "startToSearchByID" << value);
-
-    m_queryValue = value.isEmpty() ? "167" : value;
-    startToPage(0);
+    MusicQueryPlaylistRequest::startToSearchByID(value.isEmpty() ? "167" : value);
 }
 
 void MusicKWQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)

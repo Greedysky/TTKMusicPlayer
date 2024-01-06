@@ -19,13 +19,13 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include "musicqueryrequest.h"
 #include "musicwyqueryinterface.h"
-#include "musicabstractqueryrequest.h"
 
 /*! @brief The class of the wangyi query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWYQueryRequest : public MusicAbstractQueryRequest
+class TTK_MODULE_EXPORT MusicWYQueryRequest : public MusicQueryRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYQueryRequest)
@@ -39,10 +39,6 @@ public:
      * Start to search data by offset page.
      */
     virtual void startToPage(int offset) override final;
-    /*!
-     * Start to search data by input data.
-     */
-    virtual void startToSearch(const QString &value) override final;
     /*!
      * Start to search data by input value.
      */

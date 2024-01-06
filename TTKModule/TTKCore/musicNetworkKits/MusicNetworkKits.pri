@@ -78,6 +78,7 @@ HEADERS += \
     $$PWD/music/core/musicqueryplaylistrequest.h \
     $$PWD/music/core/musicquerytoplistrequest.h \
     $$PWD/music/core/musicquerymovierequest.h \
+    $$PWD/music/core/musicqueryrequest.h \
     $$PWD/music/wy/musicwyqueryinterface.h \
     $$PWD/music/wy/musicwyqueryrequest.h \
     $$PWD/music/wy/musicwyqueryalbumrequest.h \
@@ -167,6 +168,7 @@ SOURCES += \
     $$PWD/music/core/musicqueryplaylistrequest.cpp \
     $$PWD/music/core/musicquerytoplistrequest.cpp \
     $$PWD/music/core/musicquerymovierequest.cpp \
+    $$PWD/music/core/musicqueryrequest.cpp \
     $$PWD/music/wy/musicwyqueryinterface.cpp \
     $$PWD/music/wy/musicwyqueryrequest.cpp \
     $$PWD/music/wy/musicwyqueryalbumrequest.cpp \

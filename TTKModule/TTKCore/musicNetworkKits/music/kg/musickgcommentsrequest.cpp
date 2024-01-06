@@ -16,7 +16,7 @@ void MusicKGSongCommentsRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KG_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
+    request.setUrl(TTK::Algorithm::mdII(KG_COMMENT_SONG_URL, false).arg(m_id).arg(offset + 1).arg(m_pageSize));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -36,11 +36,10 @@ void MusicKGSongCommentsRequest::startToSearch(const QString &value)
     d->startToSearch(value);
     loop.exec();
 
-    m_rawData["sid"].clear();
+    m_id.clear();
     if(!d->isEmpty())
     {
-        m_rawData["sid"] = d->songInfoList().front().m_songId;
-        startToPage(0);
+        MusicCommentsRequest::startToSearch(d->songInfoList().front().m_songId);
     }
 }
 
@@ -105,20 +104,12 @@ void MusicKGPlaylistCommentsRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KG_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
+    request.setUrl(TTK::Algorithm::mdII(KG_COMMENT_PLAYLIST_URL, false).arg(m_id).arg(offset + 1).arg(m_pageSize));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
-}
-
-void MusicKGPlaylistCommentsRequest::startToSearch(const QString &value)
-{
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
-
-    m_rawData["sid"] = value;
-    startToPage(0);
 }
 
 void MusicKGPlaylistCommentsRequest::downLoadFinished()

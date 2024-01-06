@@ -162,14 +162,6 @@ void MusicKGQueryMovieRequest::startToPage(int offset)
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKGQueryMovieRequest::startToSearch(const QString &value)
-{
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
-
-    MusicQueryMovieRequest::downLoadFinished();
-    MusicQueryMovieRequest::startToSearch(value);
-}
-
 void MusicKGQueryMovieRequest::startToSearchByID(const QString &value)
 {
     TTK_INFO_STREAM(className() << "startToSearchByID" << value);

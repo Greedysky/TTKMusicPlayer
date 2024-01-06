@@ -242,10 +242,6 @@ public Q_SLOTS:
      */
     void showSongMainWidget();
     /*!
-     * Delete current stacked widget.
-     */
-    void deleteStackedFuncWidget();
-    /*!
      * Set destop lrc visible or invisible.
      */
     void setDestopLrcVisible(bool visible) const;

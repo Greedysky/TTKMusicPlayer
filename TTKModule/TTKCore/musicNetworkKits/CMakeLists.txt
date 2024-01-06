@@ -65,6 +65,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
   ${MUSIC_CORE_NETWORK_DIR}/music/core/musicqueryplaylistrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/music/core/musicquerytoplistrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/music/core/musicquerymovierequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/music/core/musicqueryrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryinterface.h
   ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryalbumrequest.h
@@ -155,6 +156,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
   ${MUSIC_CORE_NETWORK_DIR}/music/core/musicqueryplaylistrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/core/musicquerytoplistrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/core/musicquerymovierequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/music/core/musicqueryrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryinterface.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryalbumrequest.cpp

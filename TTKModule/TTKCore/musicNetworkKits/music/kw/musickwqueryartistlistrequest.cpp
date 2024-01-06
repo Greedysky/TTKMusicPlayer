@@ -42,14 +42,6 @@ void MusicKWQueryArtistListRequest::startToPage(int offset)
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKWQueryArtistListRequest::startToSearch(const QString &value)
-{
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
-
-    m_queryValue = value;
-    startToPage(0);
-}
-
 void MusicKWQueryArtistListRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(className() << "downLoadFinished");
