@@ -58,6 +58,14 @@ public:
      */
     MusicAbstractQueryRequest *makeArtistListRequest(QObject *parent);
     /*!
+     * Make artist album request object by type.
+     */
+    MusicAbstractQueryRequest *makeArtistAlbumRequest(QObject *parent);
+    /*!
+     * Make artist movie request object by type.
+     */
+    MusicAbstractQueryRequest *makeArtistMovieRequest(QObject *parent);
+    /*!
      * Make toplist request object by type.
      */
     MusicAbstractQueryRequest *makeToplistRequest(QObject *parent);

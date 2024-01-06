@@ -21,6 +21,13 @@
 
 #include "musicabstractnetwork.h"
 
+#define SONG_PAGE_SIZE 30
+#define COMMENT_PAGE_SIZE 20
+#define TOPLIST_PAGE_SIZE 30
+#define ARTIST_PAGE_SIZE 50
+#define ARTIST_ATTR_PAGE_SIZE 12
+#define ARTIST_LIST_PAGE_SIZE 100
+
 /*! @brief The class of the abstract download page query request.
  * @author Greedysky <greedysky@163.com>
  */

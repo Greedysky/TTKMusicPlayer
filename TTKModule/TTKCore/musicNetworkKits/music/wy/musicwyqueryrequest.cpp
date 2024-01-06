@@ -3,7 +3,7 @@
 MusicWYQueryRequest::MusicWYQueryRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_pageSize = 30;
+    m_pageSize = SONG_PAGE_SIZE;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -30,13 +30,13 @@ void MusicWYQueryRequest::startToSearch(const QString &value)
     TTK_INFO_STREAM(className() << "startToSearch" << value);
 
     MusicAbstractQueryRequest::downLoadFinished();
-    m_queryValue = value.trimmed();
+    m_queryValue = value;
     startToPage(0);
 }
 
-void MusicWYQueryRequest::startToSingleSearch(const QString &value)
+void MusicWYQueryRequest::startToSearchByID(const QString &value)
 {
-    TTK_INFO_STREAM(className() << "startToSingleSearch" << value);
+    TTK_INFO_STREAM(className() << "startToSearchByID" << value);
 
     deleteAll();
 

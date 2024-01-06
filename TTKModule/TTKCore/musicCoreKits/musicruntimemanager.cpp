@@ -128,7 +128,7 @@ void MusicRunTimeManager::run() const
     manager.readBuffer();
 
     TTK::checkCacheSize();
-    G_NETWORK_PTR->setBlockNetWork(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());
+    G_NETWORK_PTR->setBlockNetwork(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toBool());
 }
 
 QStringList MusicRunTimeManager::translator() const

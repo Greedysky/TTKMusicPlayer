@@ -34,11 +34,19 @@ public:
      */
     explicit MusicQueryAlbumRequest(QObject *parent = nullptr);
 
+    /*!
+     * Start to search data by input data.
+     */
+    virtual void startToSearch(const QString &value) override;
+
 Q_SIGNALS:
     /*!
      * Create the current album info item.
      */
     void createAlbumItem(const MusicResultDataItem &item);
+
+protected:
+    bool m_albumFound;
 
 };
 

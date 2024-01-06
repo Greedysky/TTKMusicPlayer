@@ -22,15 +22,13 @@
 #include "musicwyqueryinterface.h"
 #include "musicabstractqueryrequest.h"
 
-static const QString DJ_CATEGORY_URL          = "NVkzVk1qY3JGODB1MEpMWEVWMzBkVGZKcFkzK0ppcks1L0tKdnc5emZWUndFYWtjNEZTbWo0dytIakRJNWJyTE5pOXExUT09";
-static const QString DJ_RADIO_LIST_URL        = "RkpnbVYvN3RUOUFZY2J2RXpBMFNZLy9lTHU2bnF6dUp1M1VIUjkzSDJJNzJYZVFiSWx3cHFqbjlNSkRhU1JuRERHamVoWWRiZ3RNb000VXQ3Y0dJbm1CMnpUbz0=";
-static const QString DJ_DETAIL_URL            = "WjRXcVYzQktuOHlRaHlYWVR3bXpUcnpHTmVYS1c5SkVBTktmQ1AvbDBqMUNWYnRiRUh3eDRzclhibnp4SDZ2OGsweWxkQT09";
-static const QString DJ_DETAIL_DATA_URL       = "RldscFN4UXIreThMWlNOSWZ1TFRuZGp2dWlDL2xRZGJtY3EzM0kxVlFrNGVLUGhO";
-static const QString DJ_PROGRAM_INFO_URL      = "WFZGVlg5aDJWYmpyUWtMMHRoUTJFU2RBQnZqTXlzT1RaWmdJc0hYT3hRWEx3VndBL0F2YXdlK01FWUU9";
-static const QString DJ_PROGRAM_INFO_DATA_URL = "dmt4VnNDdWErYjRYUXBnOWdubVBIQT09";
-static const QString DJ_RECOMMEND_URL         = "Rko5M01xTW9ldnUyM0NZbDJjL2RvVVZicGEvVmE4Ky9wZU5KQjUzdkZ6Myt0bVZpa1N0TEZwbjZkUnl5UnZZT0E4V3R4dz09";
-static const QString DJ_HOT_URL               = "UklIY0duakY0L0lPcktkSU90N0huckNuRHY0ZWh0Q0lzbndaZ0IvakhwMjhHdVBEa0poQ0dDMFZvTjR0OGdoVA==";
-static const QString DJ_HOT_DATA_URL          = "NEZ4U1hlQnQ4SW1MQnNidE9ycytIWTZLR1E0PQ==";
+static const QString DJ_CATEGORY_URL    = "NVkzVk1qY3JGODB1MEpMWEVWMzBkVGZKcFkzK0ppcks1L0tKdnc5emZWUndFYWtjNEZTbWo0dytIakRJNWJyTE5pOXExUT09";
+static const QString DJ_RADIO_LIST_URL  = "RkpnbVYvN3RUOUFZY2J2RXpBMFNZLy9lTHU2bnF6dUp1M1VIUjkzSDJJNzJYZVFiSWx3cHFqbjlNSkRhU1JuRERHamVoWWRiZ3RNb000VXQ3Y0dJbm1CMnpUbz0=";
+static const QString DJ_DETAIL_URL      = "WjRXcVYzQktuOHlRaHlYWVR3bXpUcnpHTmVYS1c5SkVBTktmQ1AvbDBqMUNWYnRiRUh3eDRzclhibnp4SDZ2OGsweWxkQT09";
+static const QString DJ_DETAIL_DATA_URL = "RldscFN4UXIreThMWlNOSWZ1TFRuZGp2dWlDL2xRZGJtY3EzM0kxVlFrNGVLUGhO";
+static const QString DJ_RECOMMEND_URL   = "Rko5M01xTW9ldnUyM0NZbDJjL2RvVVZicGEvVmE4Ky9wZU5KQjUzdkZ6Myt0bVZpa1N0TEZwbjZkUnl5UnZZT0E4V3R4dz09";
+static const QString DJ_HOT_URL         = "UklIY0duakY0L0lPcktkSU90N0huckNuRHY0ZWh0Q0lzbndaZ0IvakhwMjhHdVBEa0poQ0dDMFZvTjR0OGdoVA==";
+static const QString DJ_HOT_DATA_URL    = "NEZ4U1hlQnQ4SW1MQnNidE9ycytIWTZLR1E0PQ==";
 
 
 /*! @brief The class of the music dj radio request abstract.

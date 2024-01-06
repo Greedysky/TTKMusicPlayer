@@ -19,7 +19,6 @@ void MusicWYTranslationRequest::startToRequest(const QString &data)
     TTKSemaphoreLoop loop;
     MusicWYQueryRequest query(this), *d = &query;
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    QtNetworkErrorVoidConnect(d, &loop, quit, TTK_SLOT);
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     d->startToSearch(QFileInfo(header("name").toString()).baseName());

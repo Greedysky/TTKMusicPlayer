@@ -127,7 +127,7 @@ void MusicSongRecommendRequest::downLoadFinished()
                     break; //just find first singer
                 }
 
-                info.m_year =  value["year"].toString();
+                info.m_year = value["year"].toString();
                 info.m_trackNumber = value["trackNum"].toString();
 
                 TTK_NETWORK_QUERY_CHECK();

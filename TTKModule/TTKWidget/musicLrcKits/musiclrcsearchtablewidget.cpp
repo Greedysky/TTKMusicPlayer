@@ -1,7 +1,6 @@
 #include "musiclrcsearchtablewidget.h"
 #include "musictoastlabel.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicgiflabelwidget.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     : MusicItemSearchTableWidget(parent)
@@ -33,7 +32,7 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
 
     MusicItemSearchTableWidget::startSearchQuery(text);
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SIGNAL(resolvedSuccess()));
-    m_loadingLabel->run(true);
+
     m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Lrc);
     m_networkRequest->startToSearch(text);
 }

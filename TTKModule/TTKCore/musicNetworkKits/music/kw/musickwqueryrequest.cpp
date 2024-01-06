@@ -3,7 +3,7 @@
 MusicKWQueryRequest::MusicKWQueryRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_pageSize = 30;
+    m_pageSize = SONG_PAGE_SIZE;
     m_queryServer = QUERY_KW_INTERFACE;
 }
 
@@ -29,13 +29,13 @@ void MusicKWQueryRequest::startToSearch(const QString &value)
     TTK_INFO_STREAM(className() << "startToSearch" << value);
 
     MusicAbstractQueryRequest::downLoadFinished();
-    m_queryValue = value.trimmed();
+    m_queryValue = value;
     startToPage(0);
 }
 
-void MusicKWQueryRequest::startToSingleSearch(const QString &value)
+void MusicKWQueryRequest::startToSearchByID(const QString &value)
 {
-    TTK_INFO_STREAM(className() << "startToSingleSearch" << value);
+    TTK_INFO_STREAM(className() << "startToSearchByID" << value);
 
     deleteAll();
 

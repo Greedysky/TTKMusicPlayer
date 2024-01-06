@@ -54,7 +54,7 @@ MusicPlayItem MusicPlaylist::Shuffle::setCurrentIndex(int index)
     {
         if(--m_index < 0)
         {
-            m_index =  m_data.count() - 1;
+            m_index = m_data.count() - 1;
         }
     }
     else

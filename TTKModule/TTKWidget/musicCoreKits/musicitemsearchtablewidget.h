@@ -45,10 +45,6 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Remove all items.
-     */
-    virtual void removeItems() override;
-    /*!
      * Left context menu action group click by action.
      */
     virtual void actionGroupClick(QAction *action);

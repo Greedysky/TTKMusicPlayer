@@ -3,18 +3,20 @@
 MusicKGQueryArtistRequest::MusicKGQueryArtistRequest(QObject *parent)
     : MusicQueryArtistRequest(parent)
 {
+    m_pageSize = ARTIST_PAGE_SIZE;
     m_queryServer = QUERY_KG_INTERFACE;
 }
 
-void MusicKGQueryArtistRequest::startToSearch(const QString &value)
+void MusicKGQueryArtistRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
+    TTK_INFO_STREAM(className() << "startToPage" << offset);
 
     deleteAll();
-    m_queryValue = value;
+    m_totalSize = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KG_ARTIST_URL, false).arg(value).arg(0).arg(50));
+    request.setUrl(TTK::Algorithm::mdII(KG_ARTIST_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
     MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -37,7 +39,7 @@ void MusicKGQueryArtistRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(className() << "downLoadFinished");
 
-    MusicQueryArtistRequest::downLoadFinished();
+    MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
@@ -48,8 +50,8 @@ void MusicKGQueryArtistRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("data"))
             {
-                bool artistFound = false;
                 value = value["data"].toMap();
+                m_totalSize = value["total"].toInt();
 
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -77,9 +79,9 @@ void MusicKGQueryArtistRequest::downLoadFinished()
                     MusicKGInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(!artistFound)
+                    if(!m_artistFound)
                     {
-                        artistFound = true;
+                        m_artistFound = true;
                         MusicResultDataItem result;
                         TTK_NETWORK_QUERY_CHECK();
                         queryArtistIntro(&result);

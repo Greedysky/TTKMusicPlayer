@@ -3,7 +3,7 @@
 MusicWYQueryArtistListRequest::MusicWYQueryArtistListRequest(QObject *parent)
     : MusicQueryArtistListRequest(parent)
 {
-    m_pageSize = TTK_HIGH_LEVEL;
+    m_pageSize = ARTIST_LIST_PAGE_SIZE;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -12,7 +12,7 @@ void MusicWYQueryArtistListRequest::startToPage(int offset)
     TTK_INFO_STREAM(className() << "startToPage" << offset);
 
     deleteAll();
-    m_totalSize = TTK_HIGH_LEVEL;
+    m_totalSize = m_pageSize; // 0
     m_pageIndex = offset;
 
     QString catId = "1001", initial = "-1";
@@ -46,7 +46,7 @@ void MusicWYQueryArtistListRequest::startToPage(int offset)
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_ARTIST_LIST_URL, false),
-                      TTK::Algorithm::mdII(WY_ARTIST_LIST_DATA_URL, false).arg(catId).arg(initial).arg(offset).arg(m_pageSize));
+                      TTK::Algorithm::mdII(WY_ARTIST_LIST_DATA_URL, false).arg(catId, initial).arg(m_pageSize * offset).arg(m_pageSize));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

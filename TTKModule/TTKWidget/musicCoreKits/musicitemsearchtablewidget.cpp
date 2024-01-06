@@ -1,5 +1,6 @@
 #include "musicitemsearchtablewidget.h"
 #include "musicdownloadqueryfactory.h"
+#include "musicgiflabelwidget.h"
 
 MusicItemSearchTableWidget::MusicItemSearchTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
@@ -17,16 +18,8 @@ MusicItemSearchTableWidget::~MusicItemSearchTableWidget()
 void MusicItemSearchTableWidget::startSearchQuery(const QString &text)
 {
     Q_UNUSED(text);
+    m_loadingLabel->run(true);
     setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
-}
-
-void MusicItemSearchTableWidget::removeItems()
-{
-    if(rowCount() > 0)
-    {
-        setItemDelegateForRow(rowCount() - 1, nullptr);
-    }
-    MusicQueryTableWidget::removeItems();
 }
 
 void MusicItemSearchTableWidget::actionGroupClick(QAction *action)

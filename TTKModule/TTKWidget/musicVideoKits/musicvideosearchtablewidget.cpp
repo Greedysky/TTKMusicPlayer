@@ -30,12 +30,11 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
         removeItems();
         return;
     }
-    //
-    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
-    //
-    m_singleRadioMode = false;
-    m_loadingLabel->run(true);
 
+    m_loadingLabel->run(true);
+    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
+
+    m_singleRadioMode = false;
     m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Movie);
     m_networkRequest->startToSearch(text);
 }
@@ -64,13 +63,13 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
         removeItems();
         return;
     }
-    //
-    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
-    //
-    m_singleRadioMode = false;
+
     m_loadingLabel->run(true);
+    setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
+
+    m_singleRadioMode = false;
     m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Movie);
-    m_networkRequest->startToSingleSearch(text);
+    m_networkRequest->startToSearchByID(text);
 }
 
 void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
@@ -80,9 +79,9 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
         removeItems();
         return;
     }
-    //
+
     setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
-    //
+
     m_singleRadioMode = true;
     m_networkRequest->setSongInfoList({data.value<TTK::MusicSongInformation>()});
 }

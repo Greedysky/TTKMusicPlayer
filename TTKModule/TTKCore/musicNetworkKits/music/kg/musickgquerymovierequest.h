@@ -22,7 +22,7 @@
 #include "musickgqueryinterface.h"
 #include "musicquerymovierequest.h"
 
-/*! @brief The class of the kugou mv query download data from net.
+/*! @brief The class of the kugou query mv download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryMovieRequest : public MusicQueryMovieRequest
@@ -44,23 +44,48 @@ public:
      */
     virtual void startToSearch(const QString &value) override final;
     /*!
-     * Start to search data by given value.
+     * Start to search data by input value.
      */
-    virtual void startToSingleSearch(const QString &value) override final;
+    virtual void startToSearchByID(const QString &value) override final;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
     virtual void downLoadFinished() override final;
-    /*!
-     * Download page data from net finished.
-     */
-    void downLoadPageFinished();
+
+private Q_SLOTS:
     /*!
      * Download single data from net finished.
      */
     void downLoadSingleFinished();
+
+};
+
+
+/*! @brief The class of the kugou query artist mv download data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicKGQueryArtistMovieRequest : public MusicQueryMovieRequest
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicKGQueryArtistMovieRequest)
+public:
+    /*!
+     * Object constructor.
+     */
+    explicit MusicKGQueryArtistMovieRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to search data by offset page.
+     */
+    virtual void startToPage(int offset) override final;
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadFinished() override final;
 
 };
 

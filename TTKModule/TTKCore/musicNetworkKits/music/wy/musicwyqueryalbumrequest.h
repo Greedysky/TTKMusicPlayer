@@ -36,13 +36,9 @@ public:
     explicit MusicWYQueryAlbumRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to search data by input data.
+     * Start to search data by offset page.
      */
-    virtual void startToSearch(const QString &value) override final;
-    /*!
-     * Start to search data by given value.
-     */
-    virtual void startToSingleSearch(const QString &value) override final;
+    virtual void startToPage(int offset) override final;
     /*!
      * Start to download query result data.
      */
@@ -53,10 +49,33 @@ public Q_SLOTS:
      * Download data from net finished.
      */
     virtual void downLoadFinished() override final;
+
+};
+
+
+/*! @brief The class of the wangyi query artist album download data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicWYQueryArtistAlbumRequest : public MusicQueryAlbumRequest
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWYQueryArtistAlbumRequest)
+public:
     /*!
-     * Download single data from net finished.
+     * Object constructor.
      */
-    void downLoadSingleFinished();
+    explicit MusicWYQueryArtistAlbumRequest(QObject *parent = nullptr);
+
+    /*!
+     * Start to search data by offset page.
+     */
+    virtual void startToPage(int offset) override final;
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadFinished() override final;
 
 };
 

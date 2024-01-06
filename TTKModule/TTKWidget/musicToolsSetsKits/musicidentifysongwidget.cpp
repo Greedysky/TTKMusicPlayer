@@ -114,7 +114,6 @@ void MusicIdentifySongWidget::detectedTimeOut()
 
     TTKSemaphoreLoop loop;
     connect(m_detectedRequest, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    QtNetworkErrorVoidConnect(m_detectedRequest, &loop, quit, TTK_SLOT);
     m_detectedRequest->startToRequest(TTK_RECORD_DATA_FILE);
     loop.exec();
 
@@ -284,7 +283,6 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     TTKSemaphoreLoop loop;
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    QtNetworkErrorVoidConnect(d, &loop, quit, TTK_SLOT);
     d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     d->startToSearch(textLabel->text().trimmed());
     loop.exec();

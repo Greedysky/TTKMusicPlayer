@@ -87,6 +87,7 @@ void MusicDownloadQueueRequest::startDownload(const QString &url)
     m_isDownload = true;
     delete m_file;
     m_file = new QFile(m_imageQueue.front().m_path, this);
+
     if(!m_file->open(QIODevice::WriteOnly))
     {
         m_file->close();
@@ -119,6 +120,7 @@ void MusicDownloadQueueRequest::downLoadFinished()
     m_file->flush();
     m_file->close();
     m_isDownload = false;
+
     MusicAbstractNetwork::deleteAll();
     Q_EMIT downLoadDataChanged(m_imageQueue.takeFirst().m_path);
 
@@ -148,6 +150,7 @@ void MusicDownloadQueueRequest::handleError(QNetworkReply::NetworkError code)
 #endif
     TTK_ERROR_STREAM("QNetworkReply::NetworkError:" << code << m_reply->errorString());
     m_file->flush();
+
     if(!m_isAbort)
     {
         MusicAbstractNetwork::deleteAll();

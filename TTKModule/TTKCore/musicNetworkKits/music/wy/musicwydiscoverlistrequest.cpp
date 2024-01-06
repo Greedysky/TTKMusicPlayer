@@ -17,7 +17,7 @@ void MusicWYDiscoverListRequest::startToSearch()
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_TOPLIST_URL, false),
-                      TTK::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(19723756));
+                      TTK::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(19723756).arg(0).arg(TOPLIST_PAGE_SIZE));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

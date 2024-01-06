@@ -3,7 +3,7 @@
 MusicKGQueryToplistRequest::MusicKGQueryToplistRequest(QObject *parent)
     : MusicQueryToplistRequest(parent)
 {
-    m_pageSize = 30;
+    m_pageSize = TOPLIST_PAGE_SIZE;
     m_queryServer = QUERY_KG_INTERFACE;
 }
 
@@ -60,9 +60,9 @@ void MusicKGQueryToplistRequest::downLoadFinished()
             if(value.contains("data"))
             {
                 value = value["data"].toMap();
+                m_totalSize = value["total"].toInt();
 
                 queryToplistInfo(value);
-                m_totalSize = value["total"].toInt();
 
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))

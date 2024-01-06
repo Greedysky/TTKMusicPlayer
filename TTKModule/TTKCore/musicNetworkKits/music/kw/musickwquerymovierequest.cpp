@@ -129,7 +129,7 @@ void MusicKWInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, c
 MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent)
 {
-    m_pageSize = 30;
+    m_pageSize = SONG_PAGE_SIZE;
     m_queryServer = QUERY_KW_INTERFACE;
 }
 
@@ -142,23 +142,7 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_ARTIST_MOVIE_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
-    MusicKWInterface::makeRequestRawHeader(&request);
-
-    m_reply = m_manager.get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadPageFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
-}
-
-void MusicKWQueryMovieRequest::startToSearch(const QString &value)
-{
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
-
-    deleteAll();
-    m_queryValue = value.trimmed();
-
-    QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(value).arg(0).arg(m_pageSize));
+    request.setUrl(TTK::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -166,12 +150,20 @@ void MusicKWQueryMovieRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
-void MusicKWQueryMovieRequest::startToSingleSearch(const QString &value)
+void MusicKWQueryMovieRequest::startToSearch(const QString &value)
 {
-    TTK_INFO_STREAM(className() << "startToSingleSearch" << value);
+    TTK_INFO_STREAM(className() << "startToSearch" << value);
+
+    MusicQueryMovieRequest::downLoadFinished();
+    MusicQueryMovieRequest::startToSearch(value);
+}
+
+void MusicKWQueryMovieRequest::startToSearchByID(const QString &value)
+{
+    TTK_INFO_STREAM(className() << "startToSearchByID" << value);
 
     deleteAll();
-    m_queryValue = value.trimmed();
+    m_queryValue = value;
 
     TTK_SIGNLE_SHOT(downLoadSingleFinished, TTK_SLOT);
 }
@@ -180,7 +172,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(className() << "downLoadFinished");
 
-    MusicQueryMovieRequest::downLoadFinished();
+    MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
@@ -191,6 +183,8 @@ void MusicKWQueryMovieRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("abslist"))
             {
+                m_totalSize = value["TOTAL"].toInt();
+
                 const QVariantList &datas = value["abslist"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -238,9 +232,69 @@ void MusicKWQueryMovieRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicKWQueryMovieRequest::downLoadPageFinished()
+void MusicKWQueryMovieRequest::downLoadSingleFinished()
 {
-    TTK_INFO_STREAM(className() << "downLoadPageFinished");
+    TTK_INFO_STREAM(className() << "downLoadSingleFinished");
+
+    MusicQueryMovieRequest::downLoadFinished();
+
+    TTK::MusicSongInformation info;
+    info.m_songId = m_queryValue;
+    TTK_NETWORK_QUERY_CHECK();
+    MusicKWInterface::parseFromMovieInfo(&info);
+    TTK_NETWORK_QUERY_CHECK();
+    MusicKWInterface::parseFromMovieProperty(&info, "MP4UL|MP4L|MP4HV|MP4");
+    TTK_NETWORK_QUERY_CHECK();
+
+    if(!info.m_songProps.isEmpty())
+    {
+        if(!findUrlFileSize(&info.m_songProps, info.m_duration))
+        {
+            return;
+        }
+
+        MusicResultInfoItem item;
+        item.m_songName = info.m_songName;
+        item.m_singerName = info.m_singerName;
+        item.m_duration = info.m_duration;
+        item.m_type = serverToString();
+        Q_EMIT createSearchedItem(item);
+        m_songInfos << info;
+    }
+
+    Q_EMIT downLoadDataChanged({});
+    deleteAll();
+}
+
+
+
+MusicKWQueryArtistMovieRequest::MusicKWQueryArtistMovieRequest(QObject *parent)
+    : MusicQueryMovieRequest(parent)
+{
+    m_pageSize = ARTIST_ATTR_PAGE_SIZE;
+    m_queryServer = QUERY_KW_INTERFACE;
+}
+
+void MusicKWQueryArtistMovieRequest::startToPage(int offset)
+{
+    TTK_INFO_STREAM(className() << "startToPage" << offset);
+
+    deleteAll();
+    m_totalSize = 0;
+    m_pageIndex = offset;
+
+    QNetworkRequest request;
+    request.setUrl(TTK::Algorithm::mdII(KW_ARTIST_MOVIE_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
+    MusicKWInterface::makeRequestRawHeader(&request);
+
+    m_reply = m_manager.get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicKWQueryArtistMovieRequest::downLoadFinished()
+{
+    TTK_INFO_STREAM(className() << "downLoadFinished");
 
     MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -279,40 +333,6 @@ void MusicKWQueryMovieRequest::downLoadPageFinished()
                 }
             }
         }
-    }
-
-    Q_EMIT downLoadDataChanged({});
-    deleteAll();
-}
-
-void MusicKWQueryMovieRequest::downLoadSingleFinished()
-{
-    TTK_INFO_STREAM(className() << "downLoadSingleFinished");
-
-    MusicQueryMovieRequest::downLoadFinished();
-
-    TTK::MusicSongInformation info;
-    info.m_songId = m_queryValue;
-    TTK_NETWORK_QUERY_CHECK();
-    MusicKWInterface::parseFromMovieInfo(&info);
-    TTK_NETWORK_QUERY_CHECK();
-    MusicKWInterface::parseFromMovieProperty(&info, "MP4UL|MP4L|MP4HV|MP4");
-    TTK_NETWORK_QUERY_CHECK();
-
-    if(!info.m_songProps.isEmpty())
-    {
-        if(!findUrlFileSize(&info.m_songProps, info.m_duration))
-        {
-            return;
-        }
-
-        MusicResultInfoItem item;
-        item.m_songName = info.m_songName;
-        item.m_singerName = info.m_singerName;
-        item.m_duration = info.m_duration;
-        item.m_type = serverToString();
-        Q_EMIT createSearchedItem(item);
-        m_songInfos << info;
     }
 
     Q_EMIT downLoadDataChanged({});

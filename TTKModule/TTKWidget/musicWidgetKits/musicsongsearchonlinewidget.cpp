@@ -4,7 +4,6 @@
 #include "musicconnectionpool.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicrightareawidget.h"
-#include "musicgiflabelwidget.h"
 #include "musicdownloadbatchwidget.h"
 #include "musictoastlabel.h"
 #include "musicapplication.h"
@@ -63,7 +62,6 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
 
     MusicItemSearchTableWidget::startSearchQuery(text);
 
-    m_loadingLabel->run(true);
     m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     m_networkRequest->startToSearch(text);
 }
@@ -87,11 +85,9 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
         removeItems();
         return;
     }
-    //
+
     MusicItemSearchTableWidget::startSearchQuery(text);
-    //
-    m_loadingLabel->run(true);
-    m_networkRequest->startToSingleSearch(text);
+    m_networkRequest->startToSearchByID(text);
 }
 
 void MusicSongSearchTableWidget::resizeSection()

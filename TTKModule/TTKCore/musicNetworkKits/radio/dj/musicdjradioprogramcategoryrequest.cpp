@@ -4,7 +4,7 @@
 MusicDJRadioProgramCategoryRequest::MusicDJRadioProgramCategoryRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_pageSize = 30;
+    m_pageSize = SONG_PAGE_SIZE;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -42,9 +42,9 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(reply, this, replyError, TTK_SLOT);
 }
 
-void MusicDJRadioProgramCategoryRequest::startToSingleSearch(const QString &value)
+void MusicDJRadioProgramCategoryRequest::startToSearchByID(const QString &value)
 {
-    TTK_INFO_STREAM(className() << "startToSingleSearch" << value);
+    TTK_INFO_STREAM(className() << "startToSearchByID" << value);
 
     m_queryValue = value;
     startToPage(0);
@@ -177,36 +177,3 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
 
     Q_EMIT downLoadDataChanged({});
 }
-
-//void MusicDJRadioProgramCategoryRequest::queryProgramInfo(MusicResultDataItem &item)
-//{
-//    TTK_INFO_STREAM(className() << "queryProgramInfo" << item.m_id);
-
-//    QNetworkRequest request;
-//    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
-//                      TTK::Algorithm::mdII(DJ_PROGRAM_INFO_URL, false),
-//                      TTK::Algorithm::mdII(DJ_PROGRAM_INFO_DATA_URL, false).arg(item.m_id));
-
-//    const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
-//    if(bytes.isEmpty())
-//    {
-//        return;
-//    }
-
-//    QJson::Parser json;
-//    bool ok = false;
-//    const QVariant &data = json.parse(bytes, &ok);
-//    if(ok)
-//    {
-//        QVariantMap value = data.toMap();
-//        if(value["code"].toInt() == 200 && value.contains("djRadio"))
-//        {
-//            value = value["djRadio"].toMap();
-//            item.m_coverUrl = value["picUrl"].toString();
-//            item.m_name = value["name"].toString();
-
-//            value = value["dj"].toMap();
-//            item.m_nickName = value["nickname"].toString();
-//        }
-//    }
-//}

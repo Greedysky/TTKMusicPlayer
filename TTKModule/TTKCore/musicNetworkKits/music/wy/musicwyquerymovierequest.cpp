@@ -54,7 +54,7 @@ void MusicWYInterface::parseFromMovieProperty(QString &url, const QString &id, i
 MusicWYQueryMovieRequest::MusicWYQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent)
 {
-    m_pageSize = 30;
+    m_pageSize = SONG_PAGE_SIZE;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -68,11 +68,11 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
 
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
-                      TTK::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize));
+                      TTK::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
+                      TTK::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(1014).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize).toUtf8());
 
     m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadPageFinished()));
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
 }
 
@@ -80,25 +80,16 @@ void MusicWYQueryMovieRequest::startToSearch(const QString &value)
 {
     TTK_INFO_STREAM(className() << "startToSearch" << value);
 
-    deleteAll();
-    m_queryValue = value.trimmed();
-
-    QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
-                      TTK::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(1014).arg(m_queryValue).arg(0).arg(m_pageSize).toUtf8());
-
-    m_reply = m_manager.post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+    MusicQueryMovieRequest::downLoadFinished();
+    MusicQueryMovieRequest::startToSearch(value);
 }
 
-void MusicWYQueryMovieRequest::startToSingleSearch(const QString &value)
+void MusicWYQueryMovieRequest::startToSearchByID(const QString &value)
 {
-    TTK_INFO_STREAM(className() << "startToSingleSearch" << value);
+    TTK_INFO_STREAM(className() << "startToSearchByID" << value);
 
     deleteAll();
-    m_queryValue = value.trimmed();
+    m_queryValue = value;
 
     TTK_SIGNLE_SHOT(downLoadSingleFinished, TTK_SLOT);
 }
@@ -107,7 +98,7 @@ void MusicWYQueryMovieRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(className() << "downLoadFinished");
 
-    MusicQueryMovieRequest::downLoadFinished();
+    MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
@@ -152,51 +143,6 @@ void MusicWYQueryMovieRequest::downLoadFinished()
                         parseFromVideoList(vid);
                         TTK_NETWORK_QUERY_CHECK();
                     }
-                }
-            }
-        }
-    }
-
-    Q_EMIT downLoadDataChanged({});
-    deleteAll();
-}
-
-void MusicWYQueryMovieRequest::downLoadPageFinished()
-{
-    TTK_INFO_STREAM(className() << "downLoadPageFinished");
-
-    MusicPageQueryRequest::downLoadFinished();
-    if(m_reply && m_reply->error() == QNetworkReply::NoError)
-    {
-        QJson::Parser json;
-        bool ok = false;
-        const QVariant &data = json.parse(m_reply->readAll(), &ok);
-        if(ok)
-        {
-            QVariantMap value = data.toMap();
-            if(value["code"].toInt() == 200 && value.contains("mvs"))
-            {
-                TTK_NETWORK_QUERY_CHECK();
-                parseFromArtistMoviesCount(m_queryValue.toLongLong());
-                TTK_NETWORK_QUERY_CHECK();
-
-                const QVariantList &datas = value["mvs"].toList();
-                for(const QVariant &var : qAsConst(datas))
-                {
-                    if(var.isNull())
-                    {
-                        continue;
-                    }
-
-                    value = var.toMap();
-                    TTK_NETWORK_QUERY_CHECK();
-
-                    MusicResultDataItem result;
-                    result.m_id = value["id"].toString();
-                    result.m_coverUrl = value["imgurl"].toString();
-                    result.m_name = value["name"].toString();
-                    result.m_updateTime.clear();
-                    Q_EMIT createMovieItem(result);
                 }
             }
         }
@@ -390,14 +336,86 @@ void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
     }
 }
 
-void MusicWYQueryMovieRequest::parseFromArtistMoviesCount(qint64 id)
+
+
+MusicWYQueryArtistMovieRequest::MusicWYQueryArtistMovieRequest(QObject *parent)
+    : MusicQueryMovieRequest(parent)
+{
+    m_pageSize = ARTIST_ATTR_PAGE_SIZE;
+    m_queryServer = QUERY_WY_INTERFACE;
+}
+
+void MusicWYQueryArtistMovieRequest::startToPage(int offset)
+{
+    TTK_INFO_STREAM(className() << "startToPage" << offset);
+
+    deleteAll();
+    m_totalSize = 0;
+    m_pageIndex = offset;
+
+    QNetworkRequest request;
+    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+                      TTK::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
+                      TTK::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize));
+
+    m_reply = m_manager.post(request, parameter);
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicWYQueryArtistMovieRequest::downLoadFinished()
+{
+    TTK_INFO_STREAM(className() << "downLoadFinished");
+
+    MusicPageQueryRequest::downLoadFinished();
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
+    {
+        QJson::Parser json;
+        bool ok = false;
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
+        if(ok)
+        {
+            QVariantMap value = data.toMap();
+            if(value["code"].toInt() == 200 && value.contains("mvs"))
+            {
+                TTK_NETWORK_QUERY_CHECK();
+                parseFromArtistMoviesCount(m_queryValue.toLongLong());
+                TTK_NETWORK_QUERY_CHECK();
+
+                const QVariantList &datas = value["mvs"].toList();
+                for(const QVariant &var : qAsConst(datas))
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
+                    MusicResultDataItem result;
+                    result.m_id = value["id"].toString();
+                    result.m_coverUrl = value["imgurl"].toString();
+                    result.m_name = value["name"].toString();
+                    result.m_updateTime.clear();
+                    Q_EMIT createMovieItem(result);
+                }
+            }
+        }
+    }
+
+    Q_EMIT downLoadDataChanged({});
+    deleteAll();
+}
+
+void MusicWYQueryArtistMovieRequest::parseFromArtistMoviesCount(qint64 id)
 {
     m_totalSize = TTK_HIGH_LEVEL;
 
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
-                      TTK::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(id).arg(0).arg(TTK_HIGH_LEVEL));
+                      TTK::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(id).arg(0).arg(m_totalSize));
 
     const QByteArray &bytes = TTK::syncNetworkQueryForPost(&request, parameter);
     if(bytes.isEmpty())

@@ -4,7 +4,7 @@
 MusicKGSongCommentsRequest::MusicKGSongCommentsRequest(QObject *parent)
     : MusicCommentsRequest(parent)
 {
-    m_pageSize = 20;
+    m_pageSize = COMMENT_PAGE_SIZE;
 }
 
 void MusicKGSongCommentsRequest::startToPage(int offset)
@@ -31,7 +31,6 @@ void MusicKGSongCommentsRequest::startToSearch(const QString &value)
     TTKSemaphoreLoop loop;
     MusicKGQueryRequest query(this), *d = &query;
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    QtNetworkErrorVoidConnect(d, &loop, quit, TTK_SLOT);
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     d->startToSearch(value);
@@ -94,7 +93,7 @@ void MusicKGSongCommentsRequest::downLoadFinished()
 MusicKGPlaylistCommentsRequest::MusicKGPlaylistCommentsRequest(QObject *parent)
     : MusicCommentsRequest(parent)
 {
-    m_pageSize = 20;
+    m_pageSize = COMMENT_PAGE_SIZE;
 }
 
 void MusicKGPlaylistCommentsRequest::startToPage(int offset)

@@ -3,19 +3,21 @@
 MusicWYQueryArtistRequest::MusicWYQueryArtistRequest(QObject *parent)
     : MusicQueryArtistRequest(parent)
 {
+    m_pageSize = TTK_HIGH_LEVEL; // ARTIST_PAGE_SIZE;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicWYQueryArtistRequest::startToSearch(const QString &value)
+void MusicWYQueryArtistRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
+    TTK_INFO_STREAM(className() << "startToPage" << offset);
 
     deleteAll();
-    m_queryValue = value;
+    m_totalSize = m_pageSize; // 0
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_ARTIST_URL, false).arg(value),
+                      TTK::Algorithm::mdII(WY_ARTIST_URL, false).arg(m_queryValue),
                       QString("{}"));
 
     m_reply = m_manager.post(request, parameter);
@@ -38,7 +40,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(className() << "downLoadFinished");
 
-    MusicQueryArtistRequest::downLoadFinished();
+    MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
@@ -49,7 +51,6 @@ void MusicWYQueryArtistRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200 && value.contains("hotSongs"))
             {
-                bool artistFound = false;
                 const QVariantMap &artistObject = value["artist"].toMap();
                 const QString &coverUrl = artistObject["picUrl"].toString();
                 const QString &singerName = TTK::String::charactersReplace(artistObject["name"].toString());
@@ -97,9 +98,9 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                     MusicWYInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(!artistFound)
+                    if(!m_artistFound)
                     {
-                        artistFound = true;
+                        m_artistFound = true;
                         MusicResultDataItem result;
                         TTK_NETWORK_QUERY_CHECK();
                         queryArtistIntro(&result);

@@ -147,7 +147,7 @@ MusicPlaylistQueryWidget::~MusicPlaylistQueryWidget()
 void MusicPlaylistQueryWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
-    m_networkRequest->startToSingleSearch({});
+    m_networkRequest->startToSearchByID({});
 }
 
 void MusicPlaylistQueryWidget::setCurrentID(const QString &id)
@@ -290,7 +290,7 @@ void MusicPlaylistQueryWidget::categoryChanged(const MusicResultsCategoryItem &c
             m_gridLayout->removeWidget(w);
             delete w;
         }
-        m_networkRequest->startToSingleSearch(category.m_key);
+        m_networkRequest->startToSearchByID(category.m_key);
     }
 }
 

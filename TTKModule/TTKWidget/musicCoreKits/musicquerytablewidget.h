@@ -84,6 +84,10 @@ public Q_SLOTS:
      */
     virtual void itemDoubleClicked(int row, int column) = 0;
     /*!
+     * Remove all items.
+     */
+    virtual void removeItems() override;
+    /*!
      * Create searched items.
      * Subclass should implement this function.
      */

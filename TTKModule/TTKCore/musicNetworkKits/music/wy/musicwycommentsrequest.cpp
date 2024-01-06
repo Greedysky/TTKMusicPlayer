@@ -4,7 +4,7 @@
 MusicWYSongCommentsRequest::MusicWYSongCommentsRequest(QObject *parent)
     : MusicCommentsRequest(parent)
 {
-    m_pageSize = 20;
+    m_pageSize = COMMENT_PAGE_SIZE;
 }
 
 void MusicWYSongCommentsRequest::startToPage(int offset)
@@ -32,7 +32,6 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &value)
     TTKSemaphoreLoop loop;
     MusicWYQueryRequest query(this), *d = &query;
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    QtNetworkErrorVoidConnect(d, &loop, quit, TTK_SLOT);
     d->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     d->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     d->startToSearch(value);
@@ -96,7 +95,7 @@ void MusicWYSongCommentsRequest::downLoadFinished()
 MusicWYPlaylistCommentsRequest::MusicWYPlaylistCommentsRequest(QObject *parent)
     : MusicCommentsRequest(parent)
 {
-    m_pageSize = 20;
+    m_pageSize = COMMENT_PAGE_SIZE;
 }
 
 void MusicWYPlaylistCommentsRequest::startToPage(int offset)

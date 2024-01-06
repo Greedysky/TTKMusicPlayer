@@ -117,8 +117,8 @@ public Q_SLOTS:
     void buttonClicked(int index);
 
 private:
-    QGridLayout *m_gridLayout;
     bool m_initialized;
+    QGridLayout *m_gridLayout;
     MusicPageQueryWidget *m_pageQueryWidget;
 
 };
@@ -163,9 +163,15 @@ public Q_SLOTS:
      * Current item clicked.
      */
     void currentItemClicked(const QString &id);
+    /*!
+     * Page widget button has changed.
+     */
+    void buttonClicked(int index);
 
 private:
+    bool m_initialized;
     QGridLayout *m_gridLayout;
+    MusicPageQueryWidget *m_pageQueryWidget;
 
 };
 

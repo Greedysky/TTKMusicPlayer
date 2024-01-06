@@ -35,9 +35,9 @@ public:
     explicit MusicQueryMovieRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to query movie info.
+     * Start to search data by input data.
      */
-    void startToQueryInfo(const QString &value);
+    virtual void startToSearch(const QString &value) override;
 
 Q_SIGNALS:
     /*!

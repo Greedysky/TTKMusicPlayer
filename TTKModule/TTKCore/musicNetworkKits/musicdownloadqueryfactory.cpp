@@ -130,6 +130,36 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeArtistListRequest(QObj
     return request;
 }
 
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeArtistAlbumRequest(QObject *parent)
+{
+    MusicAbstractQueryRequest *request = nullptr;
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
+    {
+        case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYQueryArtistAlbumRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWQueryArtistAlbumRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KG: request = new MusicKGQueryArtistAlbumRequest(parent); break;
+        default: request = new MusicWYQueryArtistAlbumRequest(parent); break;
+    }
+    TTK_INFO_STREAM("MusicQueryArtistAlbumRequest server:" << request->queryServer());
+    return request;
+}
+
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeArtistMovieRequest(QObject *parent)
+{
+    MusicAbstractQueryRequest *request = nullptr;
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
+    switch(TTKStaticCast(MusicAbstractQueryRequest::QueryServer, index))
+    {
+        case MusicAbstractQueryRequest::QueryServer::WY: request = new MusicWYQueryArtistMovieRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KW: request = new MusicKWQueryArtistMovieRequest(parent); break;
+        case MusicAbstractQueryRequest::QueryServer::KG: request = new MusicKGQueryArtistMovieRequest(parent); break;
+        default: request = new MusicWYQueryArtistMovieRequest(parent); break;
+    }
+    TTK_INFO_STREAM("MusicQueryArtistMovieRequest server:" << request->queryServer());
+    return request;
+}
+
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeToplistRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;

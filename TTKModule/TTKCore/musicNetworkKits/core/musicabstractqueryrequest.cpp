@@ -9,7 +9,7 @@ MusicAbstractQueryRequest::MusicAbstractQueryRequest(QObject *parent)
 
 }
 
-void MusicAbstractQueryRequest::startToSingleSearch(const QString &value)
+void MusicAbstractQueryRequest::startToSearchByID(const QString &value)
 {
     Q_UNUSED(value);
 }

@@ -3,7 +3,7 @@
 MusicKWQueryArtistListRequest::MusicKWQueryArtistListRequest(QObject *parent)
     : MusicQueryArtistListRequest(parent)
 {
-    m_pageSize = TTK_HIGH_LEVEL;
+    m_pageSize = ARTIST_LIST_PAGE_SIZE;
     m_queryServer = QUERY_KW_INTERFACE;
 }
 
@@ -12,7 +12,7 @@ void MusicKWQueryArtistListRequest::startToPage(int offset)
     TTK_INFO_STREAM(className() << "startToPage" << offset);
 
     deleteAll();
-    m_totalSize = TTK_HIGH_LEVEL;
+    m_totalSize = 0;
     m_pageIndex = offset;
 
     QString catId = "0", initial;

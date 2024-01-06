@@ -3,7 +3,7 @@
 MusicWYQueryToplistRequest::MusicWYQueryToplistRequest(QObject *parent)
     : MusicQueryToplistRequest(parent)
 {
-    m_pageSize = 30;
+    m_pageSize = TTK_HIGH_LEVEL; // TOPLIST_PAGE_SIZE
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -12,7 +12,7 @@ void MusicWYQueryToplistRequest::startToPage(int offset)
     TTK_INFO_STREAM(className() << "startToPage" << offset);
 
     deleteAll();
-    m_totalSize = 0;
+    m_totalSize = m_pageSize; // 0
     m_pageIndex = offset;
 
     QNetworkRequest request;
@@ -61,10 +61,9 @@ void MusicWYQueryToplistRequest::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("playlist"))
             {
                 value = value["playlist"].toMap();
+//                m_totalSize = value["trackCount"].toInt();
 
                 queryToplistInfo(value);
-                m_pageSize = value["trackCount"].toInt();
-                m_totalSize = m_pageSize;
 
                 const QVariantList &datas = value["tracks"].toList();
                 for(const QVariant &var : qAsConst(datas))

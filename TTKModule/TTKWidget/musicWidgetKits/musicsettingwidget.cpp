@@ -564,7 +564,7 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndex, lastPlayIndex);
     G_SETTING_PTR->setValue(MusicSettingManager::CloseEventMode, m_ui->quitRadioBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, m_ui->quitWindowRadioBox->isChecked());
-    G_NETWORK_PTR->setBlockNetWork(m_ui->closeNetWorkCheckBox->isChecked());
+    G_NETWORK_PTR->setBlockNetwork(m_ui->closeNetWorkCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::FileAssociationMode, m_ui->setDefaultPlayerCheckBox->isChecked());
 
     const bool hotkeyEnabled = m_ui->globalHotkeyBox->isChecked();

@@ -36,9 +36,9 @@ public:
     explicit MusicKWQueryArtistRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to search data by input data.
+     * Start to search data by offset page.
      */
-    virtual void startToSearch(const QString &value) override final;
+    virtual void startToPage(int offset) override final;
     /*!
      * Start to download query result data.
      */

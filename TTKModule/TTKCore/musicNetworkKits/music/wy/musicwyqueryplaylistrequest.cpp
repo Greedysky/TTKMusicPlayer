@@ -3,7 +3,7 @@
 MusicWYQueryPlaylistRequest::MusicWYQueryPlaylistRequest(QObject *parent)
     : MusicQueryPlaylistRequest(parent)
 {
-    m_pageSize = 30;
+    m_pageSize = SONG_PAGE_SIZE;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -41,9 +41,9 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &value)
     QtNetworkErrorConnect(reply, this, replyError, TTK_SLOT);
 }
 
-void MusicWYQueryPlaylistRequest::startToSingleSearch(const QString &value)
+void MusicWYQueryPlaylistRequest::startToSearchByID(const QString &value)
 {
-    TTK_INFO_STREAM(className() << "startToSingleSearch" << value);
+    TTK_INFO_STREAM(className() << "startToSearchByID" << value);
 
     m_queryValue = value.isEmpty() ? "all" : value;
     startToPage(0);

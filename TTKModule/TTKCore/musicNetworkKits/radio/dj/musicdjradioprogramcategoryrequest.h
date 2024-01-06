@@ -44,9 +44,9 @@ public:
      */
     virtual void startToSearch(const QString &value) override final;
     /*!
-     * Start to search data by given value.
+     * Start to search data by input value.
      */
-    virtual void startToSingleSearch(const QString &value) override final;
+    virtual void startToSearchByID(const QString &value) override final;
     /*!
      * Start to download query result data.
      */
@@ -67,16 +67,12 @@ public Q_SLOTS:
      * Download data from net finished.
      */
     virtual void downLoadFinished() override final;
+
+private Q_SLOTS:
     /*!
      * Download details data from net finished.
      */
     void downloadDetailsFinished();
-
-private:
-    /*!
-     * Query category info.
-     */
-//    void queryProgramInfo(MusicResultDataItem &item);
 
 };
 

@@ -123,9 +123,9 @@ public:
      */
     virtual void startToSearch(const QString &value) = 0;
     /*!
-     * Start to search single data from value.
+     * Start to search data by input value.
      */
-    virtual void startToSingleSearch(const QString &value);
+    virtual void startToSearchByID(const QString &value);
     /*!
      * Start to download query result data.
      */

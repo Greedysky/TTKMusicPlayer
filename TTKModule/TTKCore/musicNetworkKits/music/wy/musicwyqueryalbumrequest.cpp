@@ -3,40 +3,26 @@
 MusicWYQueryAlbumRequest::MusicWYQueryAlbumRequest(QObject *parent)
     : MusicQueryAlbumRequest(parent)
 {
+    m_pageSize = SONG_PAGE_SIZE;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
-void MusicWYQueryAlbumRequest::startToSearch(const QString &value)
+void MusicWYQueryAlbumRequest::startToPage(int offset)
 {
-    TTK_INFO_STREAM(className() << "startToSearch" << value);
+    TTK_INFO_STREAM(className() << "startToPage" << offset);
 
     deleteAll();
-    m_queryValue = value;
+    m_totalSize = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_ALBUM_URL, false).arg(value),
+                      TTK::Algorithm::mdII(WY_ALBUM_URL, false).arg(m_queryValue),
                       QString("{}"));
 
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
-}
-
-void MusicWYQueryAlbumRequest::startToSingleSearch(const QString &value)
-{
-    TTK_INFO_STREAM(className() << "startToSingleSearch" << value);
-
-    deleteAll();
-
-    QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
-                      TTK::Algorithm::mdII(WY_ARTIST_ALBUM_URL, false).arg(value),
-                      TTK::Algorithm::mdII(WY_ARTIST_ALBUM_DATA_URL, false));
-
-    QNetworkReply *reply = m_manager.post(request, parameter);
-    connect(reply, SIGNAL(finished()), SLOT(downLoadSingleFinished()));
-    QtNetworkErrorConnect(reply, this, replyError, TTK_SLOT);
 }
 
 void MusicWYQueryAlbumRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
@@ -54,7 +40,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
 {
     TTK_INFO_STREAM(className() << "downLoadFinished");
 
-    MusicQueryAlbumRequest::downLoadFinished();
+    MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
@@ -65,7 +51,6 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200 && value.contains("album"))
             {
-                bool albumFound = false;
                 MusicResultDataItem result;
                 const QVariantMap &albumValue = value["album"].toMap();
                 result.m_coverUrl = albumValue["picUrl"].toString();
@@ -117,9 +102,9 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                     MusicWYInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(!albumFound)
+                    if(!m_albumFound)
                     {
-                        albumFound = true;
+                        m_albumFound = true;
                         result.m_id = info.m_albumId;
                         result.m_name = info.m_singerName;
                         Q_EMIT createAlbumItem(result);
@@ -142,22 +127,51 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicWYQueryAlbumRequest::downLoadSingleFinished()
+
+
+MusicWYQueryArtistAlbumRequest::MusicWYQueryArtistAlbumRequest(QObject *parent)
+    : MusicQueryAlbumRequest(parent)
 {
-    TTK_INFO_STREAM(className() << "downLoadSingleFinished");
+    m_pageSize = ARTIST_ATTR_PAGE_SIZE;
+    m_queryServer = QUERY_WY_INTERFACE;
+}
+
+void MusicWYQueryArtistAlbumRequest::startToPage(int offset)
+{
+    TTK_INFO_STREAM(className() << "startToPage" << offset);
+
+    deleteAll();
+    m_totalSize = 0;
+    m_pageIndex = offset;
+
+    QNetworkRequest request;
+    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+                      TTK::Algorithm::mdII(WY_ARTIST_ALBUM_URL, false).arg(m_queryValue),
+                      TTK::Algorithm::mdII(WY_ARTIST_ALBUM_DATA_URL, false).arg(m_pageSize * offset).arg(m_pageSize));
+
+    m_reply = m_manager.post(request, parameter);
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicWYQueryArtistAlbumRequest::downLoadFinished()
+{
+    TTK_INFO_STREAM(className() << "downLoadFinished");
 
     MusicPageQueryRequest::downLoadFinished();
-    QNetworkReply *reply = TTKObjectCast(QNetworkReply*, sender());
-    if(reply && reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser json;
         bool ok = false;
-        const QVariant &data = json.parse(reply->readAll(), &ok);
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200 && value.contains("hotAlbums"))
             {
+                const QVariantMap &artistValue = value["artist"].toMap();
+                m_totalSize = artistValue["albumSize"].toInt();
+
                 const QVariantList &datas = value["hotAlbums"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

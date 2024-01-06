@@ -203,11 +203,6 @@ void MusicItemQueryTableWidget::itemCellClicked(int row, int column)
 
 void MusicItemQueryTableWidget::removeItems()
 {
-    if(rowCount() > 0)
-    {
-        setItemDelegateForRow(rowCount() - 1, nullptr);
-    }
-
     MusicQueryTableWidget::removeItems();
     setColumnCount(8);
 }
@@ -258,7 +253,7 @@ void MusicItemQueryTableWidget::createSearchedItem(const MusicResultInfoItem &so
     item->setIcon(QIcon(":/contextMenu/btn_download"));
     setItem(count, 7, item);
 
-    setFixedHeight(rowHeight(0) * rowCount());
+    setFixedHeight(rowHeight(0) * (rowCount() + 1));
 }
 
 void MusicItemQueryTableWidget::addSearchMusicToPlaylist(int row, bool play)

@@ -53,6 +53,16 @@ void MusicQueryTableWidget::itemCellClicked(int row, int column)
     }
 }
 
+void MusicQueryTableWidget::removeItems()
+{
+    if(rowCount() > 0)
+    {
+        setItemDelegateForRow(rowCount() - 1, nullptr);
+    }
+
+    MusicFillItemTableWidget::removeItems();
+}
+
 void MusicQueryTableWidget::createFinishedItem()
 {
     m_loadingLabel->run(false);
@@ -72,8 +82,6 @@ void MusicQueryTableWidget::createFinishedItem()
         const bool more = (m_networkRequest->pageTotalSize() > m_networkRequest->pageIndex() + 1);
         it->setData(TTK_DISPLAY_ROLE, more ? tr("Query more data") : tr("No more data"));
         setItemDelegateForRow(count, m_labelDelegate);
-
-        setFixedHeight(rowHeight(0) * rowCount());
     }
 }
 

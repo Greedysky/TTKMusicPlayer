@@ -107,7 +107,7 @@ MusicArtistMvsQueryWidget::MusicArtistMvsQueryWidget(QWidget *parent)
 
     m_shareType = MusicSongSharingWidget::Module::Artist;
 
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this);
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeArtistMovieRequest(this);
     connect(m_networkRequest, SIGNAL(createMovieItem(MusicResultDataItem)), SLOT(createArtistMvsItem(MusicResultDataItem)));
 }
 
@@ -119,8 +119,7 @@ MusicArtistMvsQueryWidget::~MusicArtistMvsQueryWidget()
 void MusicArtistMvsQueryWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
-    MusicQueryMovieRequest *d = TTKObjectCast(MusicQueryMovieRequest*, m_networkRequest);
-    d->startToQueryInfo(value);
+    m_networkRequest->startToSearch(value);
 }
 
 void MusicArtistMvsQueryWidget::setCurrentID(const QString &id)
@@ -187,7 +186,9 @@ void MusicArtistMvsQueryWidget::buttonClicked(int index)
 
 
 MusicArtistAlbumsQueryWidget::MusicArtistAlbumsQueryWidget(QWidget *parent)
-    : MusicAbstractItemQueryWidget(parent)
+    : MusicAbstractItemQueryWidget(parent),
+      m_initialized(false),
+      m_pageQueryWidget(nullptr)
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
@@ -200,7 +201,7 @@ MusicArtistAlbumsQueryWidget::MusicArtistAlbumsQueryWidget(QWidget *parent)
 
     m_shareType = MusicSongSharingWidget::Module::Artist;
 
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeArtistAlbumRequest(this);
     connect(m_networkRequest, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createArtistAlbumsItem(MusicResultDataItem)));
 }
 
@@ -212,7 +213,7 @@ MusicArtistAlbumsQueryWidget::~MusicArtistAlbumsQueryWidget()
 void MusicArtistAlbumsQueryWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
-    m_networkRequest->startToSingleSearch(value);
+    m_networkRequest->startToSearch(value);
 }
 
 void MusicArtistAlbumsQueryWidget::setCurrentID(const QString &id)
@@ -239,6 +240,15 @@ void MusicArtistAlbumsQueryWidget::resizeWidget()
 
 void MusicArtistAlbumsQueryWidget::createArtistAlbumsItem(const MusicResultDataItem &item)
 {
+    if(!m_initialized)
+    {
+        m_initialized = true;
+        m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
+        connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
+
+        m_mainWindow->layout()->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, m_networkRequest->pageTotalSize()));
+    }
+
     MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
     label->setResultDataItem(item);
@@ -252,6 +262,19 @@ void MusicArtistAlbumsQueryWidget::createArtistAlbumsItem(const MusicResultDataI
 void MusicArtistAlbumsQueryWidget::currentItemClicked(const QString &id)
 {
     MusicRightAreaWidget::instance()->albumSearchBy(id);
+}
+
+void MusicArtistAlbumsQueryWidget::buttonClicked(int index)
+{
+    while(!m_resizeWidgets.isEmpty())
+    {
+        QWidget *w = m_resizeWidgets.takeLast().m_label;
+        m_gridLayout->removeWidget(w);
+        delete w;
+    }
+
+    m_pageQueryWidget->page(index, m_networkRequest->pageTotalSize());
+    m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }
 
 

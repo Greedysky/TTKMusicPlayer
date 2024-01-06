@@ -37,7 +37,7 @@ public:
     /*!
      * Set flag wheather to block current network.
      */
-    void setBlockNetWork(int block);
+    void setBlockNetwork(bool block);
     /*!
      * Set current network state.
      */

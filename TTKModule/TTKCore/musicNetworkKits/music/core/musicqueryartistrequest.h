@@ -34,11 +34,19 @@ public:
      */
     explicit MusicQueryArtistRequest(QObject *parent = nullptr);
 
+    /*!
+     * Start to search data by input data.
+     */
+    virtual void startToSearch(const QString &value) override;
+
 Q_SIGNALS:
     /*!
      * Create the current artist info item.
      */
     void createArtistItem(const MusicResultDataItem &item);
+
+protected:
+    bool m_artistFound;
 
 };
 
