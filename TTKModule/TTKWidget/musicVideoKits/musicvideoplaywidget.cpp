@@ -50,7 +50,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_closeButton->setFixedSize(14, 14);
     m_closeButton->setStyleSheet(TTK::UI::BtnPClose);
     m_closeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_closeButton, SIGNAL(clicked()), parent, SLOT(videoClosed()));
+    connect(m_closeButton, SIGNAL(clicked()), parent, SLOT(videoNeedToClose()));
     topLayout->addWidget(m_closeButton);
     m_topWidget->setLayout(topLayout);
 

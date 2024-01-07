@@ -48,8 +48,9 @@ MusicTopAreaWidget *MusicTopAreaWidget::instance()
 void MusicTopAreaWidget::setupUi(Ui::MusicApplication *ui)
 {
     m_ui = ui;
-
+    //
     backgroundAnimationChanged(true);
+
     ui->userIcon->setPixmap(TTK::Image::roundedPixmap(QPixmap(":/image/lb_app_logo"), QPixmap(":/image/lb_mask_30"), QSize(30, 30)));
 
     ui->musicSongSearchEdit->initialize(MusicApplication::instance());

@@ -52,10 +52,6 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Set web index go back.
-     */
-    void goBack();
-    /*!
      * Set web index refresh.
      */
     void refresh();

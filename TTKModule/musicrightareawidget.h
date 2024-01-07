@@ -160,15 +160,19 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Current background skin download.
-     */
-    void updateBackgroundThemeDownload();
-    /*!
      * Current background transparent changed.
      */
     void updateBackgroundTheme();
+    /*!
+     * Current background skin download.
+     */
+    void updateBackgroundThemeDownload();
 
 public Q_SLOTS:
+    /*!
+     * Function go back clicked.
+     */
+    void functionGoBack();
     /*!
      * Function button clicked.
      */
@@ -264,7 +268,7 @@ public Q_SLOTS:
     /*!
      * Set video widget close and delete.
      */
-    void videoClosed();
+    void videoNeedToClose();
     /*!
      * Set video widget fullScreen or not.
      */

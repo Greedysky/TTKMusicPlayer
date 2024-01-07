@@ -38,19 +38,8 @@ MusicLeftAreaWidget *MusicLeftAreaWidget::instance()
 void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
 {
     m_ui = ui;
-
-    m_ui->songsContainer->setLength(LEFT_SIDE_WIDTH_MIN, MusicAnimationStackedWidget::Module::LeftToRight);
-
-    connect(ui->musicKey, SIGNAL(clicked()), MusicApplication::instance(), SLOT(switchToPlayState()));
-    connect(ui->musicPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playPrevious()));
-    connect(ui->musicNext, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playNext()));
-    connect(ui->musicSound, SIGNAL(clicked()), MusicApplication::instance(), SLOT(volumeMute()));
-    connect(ui->musicSound, SIGNAL(volumeChanged(int)), MusicApplication::instance(), SLOT(volumeChanged(int)));
-    connect(ui->musicBestLove, SIGNAL(clicked()), MusicApplication::instance(), SLOT(addSongToLovestList()));
-    connect(ui->musicDownload, SIGNAL(clicked()), this, SLOT(downloadSongToLocal()));
-    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), MusicApplication::instance(), SLOT(enhancedMusicChanged(int)));
-    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget, SLOT(setSliderStyleByType(int)));
-    connect(ui->userOptionWidget, SIGNAL(buttonClicked(int)), SLOT(switchToSelectedItemStyle(int)));
+    //
+    ui->songsContainer->setLength(LEFT_SIDE_WIDTH_MIN, MusicAnimationStackedWidget::Module::LeftToRight);
 
     ui->musicPrevious->setStyleSheet(TTK::UI::BtnPrevious);
     ui->musicNext->setStyleSheet(TTK::UI::BtnNext);
@@ -80,6 +69,17 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication *ui)
     ui->musicMoreFunction->setToolTip(tr("More"));
     ui->musicDesktopLrc->setToolTip(tr("Show Desktop Lrc"));
     ui->musicPlayMode->setToolTip(tr("Play Mode"));
+
+    connect(ui->musicKey, SIGNAL(clicked()), MusicApplication::instance(), SLOT(switchToPlayState()));
+    connect(ui->musicPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playPrevious()));
+    connect(ui->musicNext, SIGNAL(clicked()), MusicApplication::instance(), SLOT(playNext()));
+    connect(ui->musicSound, SIGNAL(clicked()), MusicApplication::instance(), SLOT(volumeMute()));
+    connect(ui->musicSound, SIGNAL(volumeChanged(int)), MusicApplication::instance(), SLOT(volumeChanged(int)));
+    connect(ui->musicBestLove, SIGNAL(clicked()), MusicApplication::instance(), SLOT(addSongToLovestList()));
+    connect(ui->musicDownload, SIGNAL(clicked()), this, SLOT(downloadSongToLocal()));
+    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), MusicApplication::instance(), SLOT(enhancedMusicChanged(int)));
+    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget, SLOT(setSliderStyleByType(int)));
+    connect(ui->userOptionWidget, SIGNAL(buttonClicked(int)), SLOT(switchToSelectedItemStyle(int)));
 }
 
 void MusicLeftAreaWidget::setLoveState(bool state)

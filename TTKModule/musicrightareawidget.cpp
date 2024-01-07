@@ -77,8 +77,8 @@ MusicRightAreaWidget *MusicRightAreaWidget::instance()
 void MusicRightAreaWidget::setupUi(Ui::MusicApplication *ui)
 {
     m_ui = ui;
-    m_lrcForInterior = ui->musiclrccontainerforinterior;
     //
+    m_lrcForInterior = ui->musiclrccontainerforinterior;
     m_lrcForInterior->setLrcAnalysisModel(m_lrcAnalysis);
     m_lrcForInterior->resize(ui->functionsContainer->size());
 
@@ -94,12 +94,13 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication *ui)
     buttonGroup->addButton(ui->musicWindowIdentify, MusicRightAreaWidget::IndentifyWidget);
     QtButtonGroupConnect(buttonGroup, this, functionClicked, TTK_SLOT);
     //
-    connect(ui->functionOptionWidget, SIGNAL(buttonClicked(int)), SLOT(functionClicked(int)));
     connect(m_lrcForInterior, SIGNAL(showCurrentLrcColorSetting()), m_settingWidget, SLOT(changeInteriorLrcWidget()));
     connect(m_lrcForInterior, SIGNAL(currentLrcUpdated()), MusicApplication::instance(), SLOT(currentLrcUpdated()));
     connect(m_lrcForInterior, SIGNAL(backgroundChanged()), SIGNAL(updateBackgroundThemeDownload()));
     connect(m_lrcForInterior, SIGNAL(showCurrentLrcSetting()), MusicApplication::instance(), SLOT(showSettingWidget()));
     connect(m_lrcForInterior, SIGNAL(updateCurrentTime(qint64)), MusicApplication::instance(), SLOT(updateCurrentTime(qint64)));
+    connect(ui->musicBackButton, SIGNAL(clicked()), SLOT(functionGoBack()));
+    connect(ui->functionOptionWidget, SIGNAL(buttonClicked(int)), SLOT(functionClicked(int)));
     connect(ui->musicSongSearchEdit, SIGNAL(enterFinished(QString)), SLOT(showSongSearchedFound(QString)));
 }
 
@@ -303,6 +304,18 @@ void MusicRightAreaWidget::applyParameter()
     }
 }
 
+void MusicRightAreaWidget::functionGoBack()
+{
+    // TODO
+//    if(m_ui->functionsContainer->count() < 4)
+//    {
+//        return;
+//    }
+
+//    const int index = m_ui->functionsContainer->currentIndex() - 1;
+//    m_ui->functionsContainer->setCurrentIndex(index);
+}
+
 void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
 {
     m_funcIndex = TTKStaticCast(FunctionModule, index);
@@ -352,9 +365,9 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             }
             m_videoPlayerWidget->popupMode(false);
 
-            QWidget *widget = new QWidget(this);
-            widget->setStyleSheet(TTK::UI::BackgroundStyle10);
-            m_stackedWidget = widget;
+//            QWidget *widget = new QWidget(this);
+//            widget->setStyleSheet(TTK::UI::BackgroundStyle10);
+//            m_stackedWidget = widget;
             m_ui->functionsContainer->addWidget(m_videoPlayerWidget);
             m_ui->functionsContainer->setCurrentWidget(m_videoPlayerWidget);
             Q_EMIT updateBackgroundTheme();
@@ -718,24 +731,22 @@ void MusicRightAreaWidget::videoActiveWindow()
     }
 }
 
-void MusicRightAreaWidget::videoClosed()
+void MusicRightAreaWidget::videoNeedToClose()
 {
+    functionClicked(MusicRightAreaWidget::LrcWidget);
+    m_ui->functionOptionWidget->switchToSelectedItemStyle(MusicRightAreaWidget::LrcWidget);
+
     delete m_videoPlayerWidget;
     m_videoPlayerWidget = nullptr;
-
-    functionClicked(MusicRightAreaWidget::KugGouSongWidget);
-    m_ui->functionOptionWidget->switchToSelectedItemStyle(MusicRightAreaWidget::KugGouSongWidget);
 }
 
 void MusicRightAreaWidget::videoFullscreen(bool full)
 {
-    if(!m_videoPlayerWidget)
+    if(m_videoPlayerWidget)
     {
-        return;
+        m_videoPlayerWidget->resizeGeometry(full);
+        m_videoPlayerWidget->blockMoveOption(full);
     }
-
-    m_videoPlayerWidget->resizeGeometry(full);
-    m_videoPlayerWidget->blockMoveOption(full);
 }
 
 void MusicRightAreaWidget::lrcDisplayAllClicked()
@@ -834,7 +845,6 @@ void MusicRightAreaWidget::createkWebWindow(int type)
     else
     {
         widget = new QKugouWindow(TTKStaticCast(QKugouWindow::Module, type), this);
-        connect(m_ui->musicBackButton, SIGNAL(clicked()), widget, SLOT(goBack()));
         connect(m_ui->musicRefreshButton, SIGNAL(clicked()), widget, SLOT(refresh()));
     }
 

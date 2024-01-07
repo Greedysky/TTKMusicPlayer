@@ -115,30 +115,6 @@ void QKugouWindow::setUrl(const QString &url)
 #endif
 }
 
-void QKugouWindow::goBack()
-{
-    TTK_D(QKugouWindow);
-#ifdef Q_OS_WIN
-    TTK_SIGNLE_SHOT(TTKObjectCast(QAxWidget*, d->m_webView), GoBack, TTK_SLOT);
-#else
-#  ifdef TTK_WEBKIT
-    QWebView *w = TTKObjectCast(QWebView*, d->m_webView);
-    if(w)
-    {
-        w->back();
-    }
-#  elif defined TTK_WEBENGINE
-    QWebEngineView *w = TTKObjectCast(QWebEngineView*, d->m_webView);
-    if(w)
-    {
-        w->back();
-    }
-#  else
-    Q_UNUSED(d);
-#  endif
-#endif
-}
-
 void QKugouWindow::refresh()
 {
     TTK_D(QKugouWindow);
