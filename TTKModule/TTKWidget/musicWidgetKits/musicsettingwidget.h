@@ -175,7 +175,7 @@ public Q_SLOTS:
     /*!
      * Set select download dir or lrc dir.
      */
-    void downloadDirSelected(int index);
+    void downloadDirChanged(int index);
 
     /*!
      * Version update check changed.

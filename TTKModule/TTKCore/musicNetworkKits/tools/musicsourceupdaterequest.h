@@ -48,7 +48,8 @@ public:
     /*!
      * Get lasted version description.
      */
-    QString versionDescription() const;
+    QString description() const;
+
     /*!
      * Is lasted version.
      */
@@ -58,7 +59,7 @@ Q_SIGNALS:
     /*!
      * Send download data from net.
      */
-    void downLoadDataChanged(const QVariant &bytes);
+    void downLoadDataChanged(const QString &bytes);
 
 public Q_SLOTS:
     /*!

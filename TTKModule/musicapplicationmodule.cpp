@@ -33,12 +33,6 @@
 static constexpr int MARGIN_SIDE = 10;
 static constexpr const char *SYNC_HOST_URL = "VDVnYUdYMW9xNnVWSnd6L0J6NHI2MFZ5d0R3R2NiRVF4VW5WckpNcUhnUT0=";
 
-#if TTK_QT_VERSION_CHECK(5,0,0)
-#  include <QtConcurrent/QtConcurrent>
-#else
-#  include <QtConcurrentRun>
-#endif
-
 MusicApplicationModule *MusicApplicationModule::m_instance = nullptr;
 
 MusicApplicationModule::MusicApplicationModule(QObject *parent)
@@ -128,8 +122,8 @@ void MusicApplicationModule::loadNetWorkSetting()
     // sync host init
     QSyncConfig::HOST = TTK::Algorithm::mdII(SYNC_HOST_URL, false);
     //
-    m_sourceUpdatehread->startToRequest();
     m_counterPVThread->startToRequest();
+    m_sourceUpdatehread->startToRequest();
 }
 
 void MusicApplicationModule::applyParameter()

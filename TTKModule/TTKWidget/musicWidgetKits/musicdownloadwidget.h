@@ -188,7 +188,7 @@ public Q_SLOTS:
     /*!
      * Change data download save path.
      */
-    void downloadDirSelected();
+    void downloadDirChanged();
     /*!
      * Start to download data.
      */

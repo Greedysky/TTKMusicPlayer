@@ -366,7 +366,7 @@ void MusicSettingWidget::downloadGroupSpeedLimit(int index)
     m_ui->uploadLimitSpeedComboBox->setEnabled(index);
 }
 
-void MusicSettingWidget::downloadDirSelected(int index)
+void MusicSettingWidget::downloadDirChanged(int index)
 {
     const QString &path = TTK::File::getExistingDirectory(this);
     if(!path.isEmpty())
@@ -845,7 +845,7 @@ void MusicSettingWidget::initDownloadWidget()
     QButtonGroup *buttonGroup3 = new QButtonGroup(this);
     buttonGroup3->addButton(m_ui->downloadDirButton, 0);
     buttonGroup3->addButton(m_ui->downloadLrcDirButton, 1);
-    QtButtonGroupConnect(buttonGroup3, this, downloadDirSelected, TTK_SLOT);
+    QtButtonGroupConnect(buttonGroup3, this, downloadDirChanged, TTK_SLOT);
 
     m_ui->downloadCacheAutoRadioBox->click();
     m_ui->downloadFullRadioBox->click();

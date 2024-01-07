@@ -92,7 +92,7 @@ QLabel{background:transparent;}</string>
      <rect>
       <x>100</x>
       <y>120</y>
-      <width>211</width>
+      <width>271</width>
       <height>20</height>
      </rect>
     </property>
@@ -101,22 +101,6 @@ QLabel{background:transparent;}</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pathChangedButton">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>120</y>
-      <width>55</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="text">
-     <string>更改目录</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="settingButton">
     <property name="geometry">
      <rect>
       <x>380</x>
@@ -129,7 +113,7 @@ QLabel{background:transparent;}</string>
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="text">
-     <string>下载设置</string>
+     <string>更改目录</string>
     </property>
    </widget>
    <widget class="QPushButton" name="downloadButton">
@@ -192,7 +176,6 @@ QLabel{background:transparent;}</string>
    <zorder>viewArea</zorder>
    <zorder>label1</zorder>
    <zorder>pathChangedButton</zorder>
-   <zorder>settingButton</zorder>
    <zorder>downloadPathEdit</zorder>
    <zorder>downloadButton</zorder>
   </widget>

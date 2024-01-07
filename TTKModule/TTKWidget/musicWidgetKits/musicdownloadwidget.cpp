@@ -120,18 +120,16 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
 
     m_ui->downloadPathEdit->setStyleSheet(TTK::UI::LineEditStyle01);
     m_ui->pathChangedButton->setStyleSheet(TTK::UI::PushButtonStyle03);
-    m_ui->settingButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     m_ui->downloadButton->setStyleSheet(TTK::UI::PushButtonStyle05);
 #ifdef Q_OS_UNIX
     m_ui->pathChangedButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->settingButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     m_networkRequest = nullptr;
     m_queryType = MusicAbstractQueryRequest::QueryType::Music;
 
-    connect(m_ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
+    connect(m_ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirChanged()));
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startToRequest()));
 
     TTK::Widget::adjustWidgetPosition(this);
@@ -163,7 +161,6 @@ void MusicDownloadWidget::controlEnabled(bool enabled)
     m_ui->topTitleCloseButton->setEnabled(enabled);
     m_ui->downloadButton->setEnabled(enabled);
     m_ui->pathChangedButton->setEnabled(enabled);
-    m_ui->settingButton->setEnabled(enabled);
 }
 
 void MusicDownloadWidget::setSongName(MusicAbstractQueryRequest *request, int row)
@@ -330,7 +327,6 @@ void MusicDownloadWidget::addCellItems(const TTK::MusicSongPropertyList &props)
     setMoveWidget(m_ui->label2, delta);
     setMoveWidget(m_ui->downloadPathEdit, delta);
     setMoveWidget(m_ui->pathChangedButton, delta);
-    setMoveWidget(m_ui->settingButton, delta);
     setMoveWidget(m_ui->downloadButton, delta);
 
     setBackgroundPixmap(size());
@@ -347,7 +343,7 @@ void MusicDownloadWidget::setMoveWidget(QWidget *w, int pos)
     w->move(rect.x(), rect.y() + pos);
 }
 
-void MusicDownloadWidget::downloadDirSelected()
+void MusicDownloadWidget::downloadDirChanged()
 {
     const QString &path = TTK::File::getExistingDirectory(nullptr);
     if(!path.isEmpty())

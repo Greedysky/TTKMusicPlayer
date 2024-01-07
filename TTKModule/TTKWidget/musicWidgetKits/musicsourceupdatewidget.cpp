@@ -6,8 +6,6 @@
 #include "musiccoreutils.h"
 #include "musicurlutils.h"
 
-#include "qsync/qsyncutils.h"
-
 #include <QBoxLayout>
 
 MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
@@ -65,7 +63,7 @@ MusicSourceUpdateNotifyWidget::~MusicSourceUpdateNotifyWidget()
 void MusicSourceUpdateNotifyWidget::start()
 {
     MusicSourceUpdateRequest *d = new MusicSourceUpdateRequest(this);
-    connect(d, SIGNAL(downLoadDataChanged(QVariant)), SLOT(downLoadFinished(QVariant)));
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
     d->startToRequest();
 }
 
@@ -75,11 +73,16 @@ void MusicSourceUpdateNotifyWidget::updateSourceClicked()
     MusicSourceUpdateWidget().exec();
 }
 
-void MusicSourceUpdateNotifyWidget::downLoadFinished(const QVariant &bytes)
+void MusicSourceUpdateNotifyWidget::downLoadFinished()
 {
-    const QVariantMap &value = bytes.toMap();
-    const QString &version = value["version"].toString();
+    MusicSourceUpdateRequest *d = TTKObjectCast(MusicSourceUpdateRequest*, sender());
+    if(!d)
+    {
+        close();
+        return;
+    }
 
+    const QString &version = d->version();
     if(TTK::Core::appVersionCheck(TTK_VERSION_STR, version))
     {
         show();
@@ -124,7 +127,7 @@ MusicSourceUpdateWidget::~MusicSourceUpdateWidget()
 void MusicSourceUpdateWidget::start()
 {
     MusicSourceUpdateRequest *d = new MusicSourceUpdateRequest(this);
-    connect(d, SIGNAL(downLoadDataChanged(QVariant)), SLOT(downLoadFinished(QVariant)));
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
     d->startToRequest();
 }
 
@@ -133,17 +136,23 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
     TTK::Url::openUrl(TTK::Algorithm::mdII(RELEASE_DATA_URL, false), false);
 }
 
-void MusicSourceUpdateWidget::downLoadFinished(const QVariant &bytes)
+void MusicSourceUpdateWidget::downLoadFinished()
 {
-    const QVariantMap &value = bytes.toMap();
-    const QString &version = value["version"].toString();
+    MusicSourceUpdateRequest *d = TTKObjectCast(MusicSourceUpdateRequest*, sender());
+    if(!d)
+    {
+        return;
+    }
+
+    const QString &version = d->version();
+    const QString &description = d->description();
 
     QString text;
     if(TTK::Core::appVersionCheck(TTK_VERSION_STR, version))
     {
         text.append("v" + version);
         text.append("\r\n");
-        text.append(value["data"].toString());
+        text.append(description);
 
         m_ui->upgradeButton->setEnabled(true);
         m_ui->titleLable->move(50, 2);
@@ -155,6 +164,7 @@ void MusicSourceUpdateWidget::downLoadFinished(const QVariant &bytes)
         m_ui->titleLable->move(0, 0);
         m_ui->titleLable->setAlignment(Qt::AlignCenter);
     }
+
     m_ui->titleLable->setText(text);
 }
 

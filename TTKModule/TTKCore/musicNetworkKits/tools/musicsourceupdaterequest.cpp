@@ -23,7 +23,7 @@ QString MusicSourceUpdateRequest::version() const
     return m_rawData["version"].toString();
 }
 
-QString MusicSourceUpdateRequest::versionDescription() const
+QString MusicSourceUpdateRequest::description() const
 {
     return m_rawData["data"].toString();
 }
@@ -58,6 +58,6 @@ void MusicSourceUpdateRequest::downLoadFinished(const QByteArray &bytes)
         }
 
         m_rawData = data.toMap();
-        Q_EMIT downLoadDataChanged(m_rawData);
+        Q_EMIT downLoadDataChanged({});
     }
 }
