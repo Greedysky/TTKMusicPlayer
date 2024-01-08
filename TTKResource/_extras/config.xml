@@ -103,6 +103,7 @@
     <downloadSetting>
         <downloadMusicPath value=""/>
         <downloadLrcPath value=""/>
+        <downloadFileNameRule value="%artist - %title"/>
         <downloadCacheEnable value="1"/>
         <downloadCacheSize value="1024"/>
         <downloadLimitEnable value="1"/>

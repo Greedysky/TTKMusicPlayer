@@ -186,10 +186,6 @@ public Q_SLOTS:
      */
     void downLoadRequestFinished();
     /*!
-     * Change data download save path.
-     */
-    void downloadDirChanged();
-    /*!
      * Start to download data.
      */
     void startToRequest();
@@ -227,22 +223,13 @@ private:
     /*!
      * Strat to download music.
      */
-    void startRequestMusic();
-    /*!
-     * Strat to download music.
-     */
     void startRequestMusic(const TTK::MusicSongInformation &info);
-    /*!
-     * Strat to download movie.
-     */
-    void startRequestMovie();
     /*!
      * Strat to download movie.
      */
     void startRequestMovie(const TTK::MusicSongInformation &info);
 
     Ui::MusicDownloadWidget *m_ui;
-    bool m_querySingleInfo;
     MusicAbstractQueryRequest *m_networkRequest;
     TTK::MusicSongInformation m_songInfo;
     MusicAbstractQueryRequest::QueryType m_queryType;

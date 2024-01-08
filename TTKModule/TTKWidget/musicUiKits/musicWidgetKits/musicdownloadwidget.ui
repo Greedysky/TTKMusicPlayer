@@ -84,36 +84,20 @@ QLabel{background:transparent;}</string>
      </rect>
     </property>
     <property name="text">
-     <string>存储路径：</string>
+     <string>保存名称：</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="downloadPathEdit">
+   <widget class="QLabel" name="fileNameLabel">
     <property name="geometry">
      <rect>
       <x>100</x>
       <y>120</y>
-      <width>271</width>
+      <width>330</width>
       <height>20</height>
      </rect>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pathChangedButton">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>120</y>
-      <width>55</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="text">
-     <string>更改目录</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="downloadButton">
@@ -175,8 +159,7 @@ QLabel{background:transparent;}</string>
    <zorder>downloadName</zorder>
    <zorder>viewArea</zorder>
    <zorder>label1</zorder>
-   <zorder>pathChangedButton</zorder>
-   <zorder>downloadPathEdit</zorder>
+   <zorder>fileNameLabel</zorder>
    <zorder>downloadButton</zorder>
   </widget>
   <widget class="MusicGifLabelMaskWidget" name="loadingLabel">

@@ -139,6 +139,7 @@ public:
         DownloadLimitEnable = 0xC005,             /*!< Download Limit Parameter*/
         DownloadDownloadLimitSize = 0xC006,       /*!< Download Download Limit Parameter*/
         DownloadUploadLimitSize = 0xC007,         /*!< Download Upload Limit Parameter*/
+        DownloadFileNameRule = 0xC008,            /*!< Download File Name Rule Parameter*/
     };
 
     /*!

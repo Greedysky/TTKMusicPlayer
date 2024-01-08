@@ -755,9 +755,9 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>147</y>
+       <y>135</y>
        <width>81</width>
-       <height>16</height>
+       <height>22</height>
       </rect>
      </property>
      <property name="text">
@@ -767,8 +767,8 @@ font-weight:bold;</string>
     <widget class="QRadioButton" name="downloadCacheAutoRadioBox">
      <property name="geometry">
       <rect>
-       <x>115</x>
-       <y>115</y>
+       <x>110</x>
+       <y>110</y>
        <width>111</width>
        <height>16</height>
       </rect>
@@ -780,8 +780,8 @@ font-weight:bold;</string>
     <widget class="QRadioButton" name="downloadCacheManRadioBox">
      <property name="geometry">
       <rect>
-       <x>235</x>
-       <y>115</y>
+       <x>230</x>
+       <y>110</y>
        <width>121</width>
        <height>16</height>
       </rect>
@@ -794,7 +794,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>190</y>
+       <y>200</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -812,7 +812,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>290</y>
+       <y>295</y>
        <width>110</width>
        <height>16</height>
       </rect>
@@ -825,7 +825,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>150</x>
-       <y>290</y>
+       <y>295</y>
        <width>110</width>
        <height>16</height>
       </rect>
@@ -837,10 +837,10 @@ font-weight:bold;</string>
     <widget class="QSpinBox" name="downloadSpinBox">
      <property name="geometry">
       <rect>
-       <x>115</x>
-       <y>145</y>
+       <x>110</x>
+       <y>135</y>
        <width>85</width>
-       <height>22</height>
+       <height>21</height>
       </rect>
      </property>
     </widget>
@@ -867,8 +867,8 @@ font-weight:bold;</string>
     <widget class="QLabel" name="downloadCacheSizeLabel">
      <property name="geometry">
       <rect>
-       <x>205</x>
-       <y>148</y>
+       <x>200</x>
+       <y>138</y>
        <width>21</width>
        <height>16</height>
       </rect>
@@ -933,7 +933,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>115</y>
+       <y>110</y>
        <width>81</width>
        <height>16</height>
       </rect>
@@ -946,7 +946,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>220</y>
+       <y>230</y>
        <width>110</width>
        <height>16</height>
       </rect>
@@ -959,7 +959,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>138</x>
-       <y>217</y>
+       <y>227</y>
        <width>150</width>
        <height>22</height>
       </rect>
@@ -969,7 +969,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>260</y>
+       <y>265</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -986,14 +986,53 @@ font-weight:bold;</string>
     <widget class="QPushButton" name="downloadCacheCleanButton">
      <property name="geometry">
       <rect>
-       <x>235</x>
-       <y>144</y>
+       <x>230</x>
+       <y>134</y>
        <width>65</width>
-       <height>23</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="text">
       <string>清除缓存</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadRuleLabel">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>165</y>
+       <width>105</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>下载文件命名规则</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="downloadRuleEdit">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>165</y>
+       <width>225</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="readOnly">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="downloadRuleButton">
+     <property name="geometry">
+      <rect>
+       <x>365</x>
+       <y>165</y>
+       <width>65</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>...</string>
      </property>
     </widget>
    </widget>

@@ -3,7 +3,6 @@
 #include "musictoastlabel.h"
 #include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
-#include "musicgiflabelwidget.h"
 
 MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)
     : MusicItemSearchTableWidget(parent),
@@ -31,7 +30,7 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
         return;
     }
 
-    m_loadingLabel->run(true);
+    setLoadingStatus(true);
     setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
 
     m_singleRadioMode = false;
@@ -64,7 +63,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
         return;
     }
 
-    m_loadingLabel->run(true);
+    setLoadingStatus(true);
     setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
 
     m_singleRadioMode = false;

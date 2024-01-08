@@ -17,6 +17,7 @@
 #include "musicpluginwidget.h"
 #include "musicfileutils.h"
 #include "musicmessagebox.h"
+#include "musicrulesanalysis.h"
 #include "ttkversion.h"
 #include "ttkfileassociation.h"
 
@@ -213,6 +214,7 @@ void MusicSettingWidget::initialize()
     //
     m_ui->downloadDirEdit->setText(G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString());
     m_ui->downloadLrcDirEdit->setText(G_SETTING_PTR->value(MusicSettingManager::DownloadLrcDirPath).toString());
+    m_ui->downloadRuleEdit->setText(G_SETTING_PTR->value(MusicSettingManager::DownloadFileNameRule).toString());
     m_ui->downloadSpinBox->setValue(G_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt());
     G_SETTING_PTR->value(MusicSettingManager::DownloadCacheEnable).toInt() == 1 ? m_ui->downloadCacheAutoRadioBox->click() : m_ui->downloadCacheManRadioBox->click();
 
@@ -353,6 +355,12 @@ void MusicSettingWidget::downloadCacheClean()
     dir.mkpath(BACKGROUND_DIR_FULL);
 
     MusicToastLabel::popup(tr("Cache is cleaned"));
+}
+
+void MusicSettingWidget::downloadFileNameRuleChanged(QAction *action)
+{
+    const QString &rules = m_ui->downloadRuleEdit->text() + MusicRulesAnalysis::rule(action->data().toInt());
+    m_ui->downloadRuleEdit->setText(rules);
 }
 
 void MusicSettingWidget::downloadGroupCached(int index)
@@ -629,6 +637,7 @@ void MusicSettingWidget::saveParameterSettings()
 
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicDirPath, m_ui->downloadDirEdit->text());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcDirPath, m_ui->downloadLrcDirEdit->text());
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadFileNameRule, m_ui->downloadRuleEdit->text());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheEnable, m_ui->downloadCacheAutoRadioBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSize, m_ui->downloadSpinBox->value());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitEnable, m_ui->downloadFullRadioBox->isChecked());
@@ -792,13 +801,16 @@ void MusicSettingWidget::initDownloadWidget()
 {
     m_ui->downloadDirEdit->setStyleSheet(TTK::UI::LineEditStyle01);
     m_ui->downloadLrcDirEdit->setStyleSheet(TTK::UI::LineEditStyle01);
+    m_ui->downloadRuleEdit->setStyleSheet(TTK::UI::LineEditStyle01);
 
     m_ui->downloadDirButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->downloadLrcDirButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->downloadCacheCleanButton->setStyleSheet(TTK::UI::PushButtonStyle04);
+    m_ui->downloadRuleButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->downloadDirButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadLrcDirButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadCacheCleanButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->downloadRuleButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadCacheAutoRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
     m_ui->downloadCacheManRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
     m_ui->downloadFullRadioBox->setStyleSheet(TTK::UI::RadioButtonStyle01);
@@ -807,6 +819,7 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadDirButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadLrcDirButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadCacheCleanButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->downloadRuleButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadCacheAutoRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadCacheManRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadFullRadioBox->setFocusPolicy(Qt::NoFocus);
@@ -820,9 +833,8 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadSpinBox->setRange(1024, 5 * 1024);
     m_ui->downloadDirEdit->setText(MUSIC_DIR_FULL);
     m_ui->downloadLrcDirEdit->setText(LRC_DIR_FULL);
-    QStringList downloadSpeed;
-    downloadSpeed << "100" << "200" << "300" << "400" << "500" << "600"
-                  << "700" << "800" << "900" << "1000" << "1100" << "1200";
+
+    const QStringList downloadSpeed{"100", "200", "300", "400", "500", "600", "700", "800", "900", "1000", "1100", "1200"};
     m_ui->downloadLimitSpeedComboBox->addItems(downloadSpeed);
     m_ui->uploadLimitSpeedComboBox->addItems(downloadSpeed);
 
@@ -830,7 +842,18 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kuwo"), tr("KuWo Music"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("KuGou Music"));
 
+    const QStringList &rules = MusicRulesAnalysis::rules();
+    QMenu *menu = new QMenu(m_ui->downloadRuleButton);
+    menu->setStyleSheet(TTK::UI::MenuStyle02);
+    m_ui->downloadRuleButton->setMenu(menu);
+
+    for(int i = 0; i < rules.count(); ++i)
+    {
+        menu->addAction(rules[i])->setData(i);
+    }
+
     connect(m_ui->downloadCacheCleanButton, SIGNAL(clicked()), SLOT(downloadCacheClean()));
+    connect(m_ui->downloadRuleButton->menu(), SIGNAL(triggered(QAction*)), SLOT(downloadFileNameRuleChanged(QAction*)));
     //
     QButtonGroup *buttonGroup1 = new QButtonGroup(this);
     buttonGroup1->addButton(m_ui->downloadCacheAutoRadioBox, 0);
@@ -1089,9 +1112,9 @@ void MusicSettingWidget::lcrColorValue(Lrc key, const QString &type, QLabel *obj
 
     MusicLrcColorWidget dialog(this);
     if(type == "DLRCFRONTGROUNDGCOLOR") dialog.setColors(m_ui->DplayedPushButton->colors());
-    if(type == "DLRCBACKGROUNDCOLOR") dialog.setColors(m_ui->DnoPlayedPushButton->colors());
-    if(type == "LRCFRONTGROUNDGCOLOR") dialog.setColors(m_ui->playedPushButton->colors());
-    if(type == "LRCBACKGROUNDCOLOR") dialog.setColors(m_ui->noPlayedPushButton->colors());
+    else if(type == "DLRCBACKGROUNDCOLOR") dialog.setColors(m_ui->DnoPlayedPushButton->colors());
+    else if(type == "LRCFRONTGROUNDGCOLOR") dialog.setColors(m_ui->playedPushButton->colors());
+    else if(type == "LRCBACKGROUNDCOLOR") dialog.setColors(m_ui->noPlayedPushButton->colors());
 
     if(dialog.exec())
     {

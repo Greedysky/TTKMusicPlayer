@@ -19,6 +19,7 @@
 cmake_minimum_required(VERSION 3.0.0)
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_TOOLS_KITS_HEADERS
+  ${MUSIC_CORE_TOOLSWIDGET_DIR}/musicrulesanalysis.h
   ${MUSIC_CORE_TOOLSWIDGET_DIR}/musicdownloadrecordconfigmanager.h
   ${MUSIC_CORE_TOOLSWIDGET_DIR}/musicclouddataitem.h
   ${MUSIC_CORE_TOOLSWIDGET_DIR}/musicdeviceinfomodule.h
@@ -26,6 +27,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_TOOLS_KITS_HEADERS
 )
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_TOOLS_KITS_SOURCES
+  ${MUSIC_CORE_TOOLSWIDGET_DIR}/musicrulesanalysis.cpp
   ${MUSIC_CORE_TOOLSWIDGET_DIR}/musicdownloadrecordconfigmanager.cpp
   ${MUSIC_CORE_TOOLSWIDGET_DIR}/musicdeviceinfomodule.cpp
   ${MUSIC_CORE_TOOLSWIDGET_DIR}/musicconnecttransferthread.cpp

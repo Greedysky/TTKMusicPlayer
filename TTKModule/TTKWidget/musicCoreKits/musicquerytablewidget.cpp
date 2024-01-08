@@ -47,7 +47,7 @@ void MusicQueryTableWidget::itemCellClicked(int row, int column)
             clearSpans();
             removeRow(row);
 
-            m_loadingLabel->run(true);
+            setLoadingStatus(true);
             m_networkRequest->startToPage(m_networkRequest->pageIndex() + 1);
         }
     }
@@ -65,7 +65,7 @@ void MusicQueryTableWidget::removeItems()
 
 void MusicQueryTableWidget::createFinishedItem()
 {
-    m_loadingLabel->run(false);
+    setLoadingStatus(false);
 
     setRowCount(rowCount() + 1);
     const int count = rowCount() - 1;
@@ -89,4 +89,9 @@ void MusicQueryTableWidget::resizeEvent(QResizeEvent *event)
 {
     MusicFillItemTableWidget::resizeEvent(event);
     m_loadingLabel->move((width() - m_loadingLabel->width()) / 2, (height() - m_loadingLabel->height()) / 2);
+}
+
+void MusicQueryTableWidget::setLoadingStatus(bool status) const
+{
+    m_loadingLabel->run(status);
 }

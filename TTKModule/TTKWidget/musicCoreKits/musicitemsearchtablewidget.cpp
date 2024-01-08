@@ -1,6 +1,5 @@
 #include "musicitemsearchtablewidget.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicgiflabelwidget.h"
 
 MusicItemSearchTableWidget::MusicItemSearchTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
@@ -18,7 +17,7 @@ MusicItemSearchTableWidget::~MusicItemSearchTableWidget()
 void MusicItemSearchTableWidget::startSearchQuery(const QString &text)
 {
     Q_UNUSED(text);
-    m_loadingLabel->run(true);
+    setLoadingStatus(true);
     setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
 }
 

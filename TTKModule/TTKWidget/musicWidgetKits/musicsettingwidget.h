@@ -165,6 +165,10 @@ public Q_SLOTS:
      */
     void downloadCacheClean();
     /*!
+     * Set download file name rules.
+     */
+    void downloadFileNameRuleChanged(QAction *action);
+    /*!
      * Set enable or disable download cache.
      */
     void downloadGroupCached(int index);

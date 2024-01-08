@@ -138,6 +138,7 @@ bool MusicConfigManager::readBuffer(int &items)
     value = readAttributeByTagName("downloadLrcPath");
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcDirPath, (value.isEmpty() || !QFile::exists(value)) ? TTK::String::lrcDirPrefix() : value);
 
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadFileNameRule, readAttributeByTagName("downloadFileNameRule"));
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheEnable, readAttributeByTagName("downloadCacheEnable").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSize, readAttributeByTagName("downloadCacheSize").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitEnable, readAttributeByTagName("downloadLimitEnable").toInt());
@@ -245,6 +246,7 @@ bool MusicConfigManager::writeBuffer(const int &items)
     //
     const QString &downloadMusicPath = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
     const QString &downloadLrcPath = G_SETTING_PTR->value(MusicSettingManager::DownloadLrcDirPath).toString();
+    const QString &downloadFileNameRule = G_SETTING_PTR->value(MusicSettingManager::DownloadFileNameRule).toString();
     const int downloadCacheEnable = G_SETTING_PTR->value(MusicSettingManager::DownloadCacheEnable).toInt();
     const int downloadCacheSize = G_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt();
     const int downloadLimitEnable = G_SETTING_PTR->value(MusicSettingManager::DownloadLimitEnable).toInt();
@@ -358,6 +360,7 @@ bool MusicConfigManager::writeBuffer(const int &items)
     //
     writeDomElement(downloadSettingDom, "downloadMusicPath", {"value", downloadMusicPath});
     writeDomElement(downloadSettingDom, "downloadLrcPath", {"value", downloadLrcPath});
+    writeDomElement(downloadSettingDom, "downloadFileNameRule", {"value", downloadFileNameRule});
     writeDomElement(downloadSettingDom, "downloadCacheEnable", {"value", downloadCacheEnable});
     writeDomElement(downloadSettingDom, "downloadCacheSize", {"value", downloadCacheSize});
     writeDomElement(downloadSettingDom, "downloadLimitEnable", {"value", downloadLimitEnable});

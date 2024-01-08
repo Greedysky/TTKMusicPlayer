@@ -4,8 +4,8 @@
 #include "musicdownloadmetadatarequest.h"
 #include "musictoastlabel.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicfileutils.h"
 #include "musicwidgetheaders.h"
+#include "musicrulesanalysis.h"
 
 Q_DECLARE_METATYPE(MusicDownloadTableItemRole)
 
@@ -104,8 +104,7 @@ void MusicDownloadTableWidget::removeItems()
 
 MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicDownloadWidget),
-      m_querySingleInfo(false)
+      m_ui(new Ui::MusicDownloadWidget)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -118,18 +117,14 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->downloadPathEdit->setStyleSheet(TTK::UI::LineEditStyle01);
-    m_ui->pathChangedButton->setStyleSheet(TTK::UI::PushButtonStyle03);
     m_ui->downloadButton->setStyleSheet(TTK::UI::PushButtonStyle05);
 #ifdef Q_OS_UNIX
-    m_ui->pathChangedButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     m_networkRequest = nullptr;
     m_queryType = MusicAbstractQueryRequest::QueryType::Music;
 
-    connect(m_ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirChanged()));
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startToRequest()));
 
     TTK::Widget::adjustWidgetPosition(this);
@@ -145,22 +140,12 @@ void MusicDownloadWidget::initialize()
 {
     m_ui->loadingLabel->run(true);
     controlEnabled(true);
-
-    if(m_queryType == MusicAbstractQueryRequest::QueryType::Movie)
-    {
-        m_ui->downloadPathEdit->setText(MOVIE_DIR_FULL);
-    }
-    else
-    {
-        m_ui->downloadPathEdit->setText(G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString());
-    }
 }
 
 void MusicDownloadWidget::controlEnabled(bool enabled)
 {
     m_ui->topTitleCloseButton->setEnabled(enabled);
     m_ui->downloadButton->setEnabled(enabled);
-    m_ui->pathChangedButton->setEnabled(enabled);
 }
 
 void MusicDownloadWidget::setSongName(MusicAbstractQueryRequest *request, int row)
@@ -171,7 +156,6 @@ void MusicDownloadWidget::setSongName(MusicAbstractQueryRequest *request, int ro
         return;
     }
 
-    m_querySingleInfo = true;
     m_songInfo = songInfos[row];
     m_queryType = request->queryType();
     m_networkRequest = request;
@@ -203,7 +187,6 @@ void MusicDownloadWidget::setSongName(const TTK::MusicSongInformation &info, Mus
 {
     m_songInfo = info;
     m_queryType = type;
-    m_querySingleInfo = true;
 
     initialize();
     m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName, info.m_songName), Qt::ElideRight, 200));
@@ -228,11 +211,11 @@ void MusicDownloadWidget::downLoadNormalFinished()
     }
 
     m_ui->viewArea->removeItems();
-    const TTK::MusicSongInformation info(matchMusicSongInformation());
+    m_songInfo = matchMusicSongInformation();
 
-    if(!info.m_songProps.isEmpty())
+    if(!m_songInfo.m_songProps.isEmpty())
     {
-        addCellItems(info.m_songProps);
+        addCellItems(m_songInfo.m_songProps);
     }
     else
     {
@@ -325,11 +308,11 @@ void MusicDownloadWidget::addCellItems(const TTK::MusicSongPropertyList &props)
     setFixedHeightWidget(m_ui->viewArea, delta + 2 * TTK_ITEM_SIZE_S);
 
     setMoveWidget(m_ui->label2, delta);
-    setMoveWidget(m_ui->downloadPathEdit, delta);
-    setMoveWidget(m_ui->pathChangedButton, delta);
+    setMoveWidget(m_ui->fileNameLabel, delta);
     setMoveWidget(m_ui->downloadButton, delta);
 
     setBackgroundPixmap(size());
+    m_ui->fileNameLabel->setText(MusicRulesAnalysis::parse(m_songInfo, G_SETTING_PTR->value(MusicSettingManager::DownloadFileNameRule).toString()));
 }
 
 void MusicDownloadWidget::setFixedHeightWidget(QWidget *w, int height)
@@ -341,19 +324,6 @@ void MusicDownloadWidget::setMoveWidget(QWidget *w, int pos)
 {
     const QRect &rect = w->geometry();
     w->move(rect.x(), rect.y() + pos);
-}
-
-void MusicDownloadWidget::downloadDirChanged()
-{
-    const QString &path = TTK::File::getExistingDirectory(nullptr);
-    if(!path.isEmpty())
-    {
-        if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
-        {
-            G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicDirPath, path);
-        }
-        m_ui->downloadPathEdit->setText(path);
-    }
 }
 
 void MusicDownloadWidget::startToRequest()
@@ -368,11 +338,11 @@ void MusicDownloadWidget::startToRequest()
 
     if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
     {
-        m_querySingleInfo ? startRequestMusic(m_songInfo) : startRequestMusic();
+        startRequestMusic(m_songInfo);
     }
     else if(m_queryType == MusicAbstractQueryRequest::QueryType::Movie)
     {
-        m_querySingleInfo ? startRequestMovie(m_songInfo) : startRequestMovie();
+        startRequestMovie(m_songInfo);
     }
     controlEnabled(false);
 }
@@ -383,93 +353,79 @@ void MusicDownloadWidget::dataDownloadFinished()
     close();
 }
 
-void MusicDownloadWidget::startRequestMusic()
-{
-    const TTK::MusicSongInformation info(matchMusicSongInformation());
-    if(!info.m_songName.isEmpty() || !info.m_singerName.isEmpty())
-    {
-        startRequestMusic(info);
-    }
-}
-
 void MusicDownloadWidget::startRequestMusic(const TTK::MusicSongInformation &info)
 {
     const MusicDownloadTableItemRole &role = m_ui->viewArea->currentItemRole();
     const TTK::MusicSongPropertyList &props = info.m_songProps;
+    const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
+
     for(const TTK::MusicSongProperty &prop : qAsConst(props))
     {
-        if(role.isEqual(MusicDownloadTableItemRole(prop.m_bitrate, prop.m_format, prop.m_size)))
+        if(!role.isEqual(MusicDownloadTableItemRole(prop.m_bitrate, prop.m_format, prop.m_size)))
         {
-            if(!G_NETWORK_PTR->isOnline())
-            {
-                return;
-            }
-
-            QString musicSong = info.m_singerName + " - " + info.m_songName;
-            const QString &downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MUSIC_DIR_FULL : m_ui->downloadPathEdit->text();
-            QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
-
-            MusicDownloadRecordConfigManager manager;
-            if(!manager.fromFile(TTK::toString(TTK::Record::NormalDownload)))
-            {
-                return;
-            }
-
-            MusicSongList records;
-            manager.readBuffer(records);
-
-            MusicSong record;
-            record.setName(musicSong);
-            record.setPath(QFileInfo(downloadName).absoluteFilePath());
-            record.setSizeStr(prop.m_size);
-            record.setAddTimeStr("-1");
-            records << record;
-
-            manager.reset();
-            manager.writeBuffer(records);
-
-            if(QFile::exists(downloadName))
-            {
-                for(int i = 1; i < 99; ++i)
-                {
-                    if(!QFile::exists(downloadName))
-                    {
-                        break;
-                    }
-                    if(i != 1)
-                    {
-                        musicSong.chop(3);
-                    }
-                    musicSong += QString("(%1)").arg(i);
-                    downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
-                }
-            }
-
-            MusicDownloadMetaDataRequest *d = new MusicDownloadMetaDataRequest(prop.m_url, downloadName, this);
-            d->setRecordType(TTK::Record::NormalDownload);
-            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
-
-            MusicSongMeta meta;
-            meta.setComment(info.m_coverUrl);
-            meta.setTitle(info.m_songName);
-            meta.setArtist(info.m_singerName);
-            meta.setAlbum(info.m_albumName);
-            meta.setTrackNum(info.m_trackNumber);
-            meta.setYear(info.m_year);
-
-            d->setSongMeta(meta);
-            d->startToRequest();
-            break;
+            continue;
         }
-    }
-}
 
-void MusicDownloadWidget::startRequestMovie()
-{
-    const TTK::MusicSongInformation info(matchMusicSongInformation());
-    if(!info.m_songName.isEmpty() || !info.m_singerName.isEmpty())
-    {
-        startRequestMovie(info);
+        if(!G_NETWORK_PTR->isOnline())
+        {
+            return;
+        }
+
+        QString fileName = m_ui->fileNameLabel->text();
+        QString downloadName = QString("%1%2.%3").arg(downloadPrefix, fileName, prop.m_format);
+
+        MusicDownloadRecordConfigManager manager;
+        if(!manager.fromFile(TTK::toString(TTK::Record::NormalDownload)))
+        {
+            return;
+        }
+
+        MusicSongList records;
+        manager.readBuffer(records);
+
+        MusicSong record;
+        record.setName(fileName);
+        record.setPath(QFileInfo(downloadName).absoluteFilePath());
+        record.setSizeStr(prop.m_size);
+        record.setAddTimeStr("-1");
+        records << record;
+
+        manager.reset();
+        manager.writeBuffer(records);
+
+        if(QFile::exists(downloadName))
+        {
+            for(int i = 1; i < 99; ++i)
+            {
+                if(!QFile::exists(downloadName))
+                {
+                    break;
+                }
+
+                if(i != 1)
+                {
+                    fileName.chop(3);
+                }
+
+                fileName += QString("(%1)").arg(i);
+                downloadName = QString("%1%2.%3").arg(downloadPrefix, fileName, prop.m_format);
+            }
+        }
+
+        MusicDownloadMetaDataRequest *d = new MusicDownloadMetaDataRequest(prop.m_url, downloadName, this);
+        d->setRecordType(TTK::Record::NormalDownload);
+        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
+
+        MusicSongMeta meta;
+        meta.setComment(info.m_coverUrl);
+        meta.setTitle(info.m_songName);
+        meta.setArtist(info.m_singerName);
+        meta.setAlbum(info.m_albumName);
+        meta.setTrackNum(info.m_trackNumber);
+        meta.setYear(info.m_year);
+
+        d->setSongMeta(meta);
+        d->startToRequest();
     }
 }
 
@@ -477,39 +433,44 @@ void MusicDownloadWidget::startRequestMovie(const TTK::MusicSongInformation &inf
 {
     const MusicDownloadTableItemRole &role = m_ui->viewArea->currentItemRole();
     const TTK::MusicSongPropertyList &props = info.m_songProps;
+    const QString &downloadPrefix = MOVIE_DIR_FULL;
+
     for(const TTK::MusicSongProperty &prop : qAsConst(props))
     {
-        if(role.isEqual(MusicDownloadTableItemRole(prop.m_bitrate, prop.m_format, prop.m_size)))
+        if(!role.isEqual(MusicDownloadTableItemRole(prop.m_bitrate, prop.m_format, prop.m_size)))
         {
-            if(!G_NETWORK_PTR->isOnline())
-            {
-                return;
-            }
-
-            QString musicSong = info.m_singerName + " - " + info.m_songName;
-            const QString &downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MOVIE_DIR_FULL : m_ui->downloadPathEdit->text();
-
-            QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
-            if(QFile::exists(downloadName))
-            {
-                for(int i = 1; i < 99; ++i)
-                {
-                    if(!QFile::exists(downloadName))
-                    {
-                        break;
-                    }
-                    if(i != 1)
-                    {
-                        musicSong.chop(3);
-                    }
-                    musicSong += QString("(%1)").arg(i);
-                    downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
-                }
-            }
-
-            MusicDownloadDataRequest *d = new MusicDownloadDataRequest(prop.m_url, downloadName, TTK::Download::Video, this);
-            connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
-            d->startToRequest();
+            continue;
         }
+
+        if(!G_NETWORK_PTR->isOnline())
+        {
+            return;
+        }
+
+        QString fileName = m_ui->fileNameLabel->text();
+        QString downloadName = QString("%1%2.%3").arg(downloadPrefix, fileName, prop.m_format);
+
+        if(QFile::exists(downloadName))
+        {
+            for(int i = 1; i < 99; ++i)
+            {
+                if(!QFile::exists(downloadName))
+                {
+                    break;
+                }
+
+                if(i != 1)
+                {
+                    fileName.chop(3);
+                }
+
+                fileName += QString("(%1)").arg(i);
+                downloadName = QString("%1%2.%3").arg(downloadPrefix, fileName, prop.m_format);
+            }
+        }
+
+        MusicDownloadDataRequest *d = new MusicDownloadDataRequest(prop.m_url, downloadName, TTK::Download::Video, this);
+        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
+        d->startToRequest();
     }
 }

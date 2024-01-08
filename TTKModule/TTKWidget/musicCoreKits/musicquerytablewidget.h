@@ -102,6 +102,10 @@ protected:
      * Override the widget event.
      */
     virtual void resizeEvent(QResizeEvent *event) override;
+    /*!
+     * Set loading label status.
+     */
+    void setLoadingStatus(bool status) const;
 
     using MusicFillItemTableWidget::isValid;
     /*!

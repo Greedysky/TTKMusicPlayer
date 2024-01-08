@@ -19,12 +19,14 @@
 INCLUDEPATH += $$PWD
 
 HEADERS += \
+    $$PWD/musicrulesanalysis.h \
     $$PWD/musicdownloadrecordconfigmanager.h \
     $$PWD/musicclouddataitem.h \
     $$PWD/musicdeviceinfomodule.h \
     $$PWD/musicconnecttransferthread.h
 
 SOURCES += \
+    $$PWD/musicrulesanalysis.cpp \
     $$PWD/musicdownloadrecordconfigmanager.cpp \
     $$PWD/musicdeviceinfomodule.cpp \
     $$PWD/musicconnecttransferthread.cpp
