@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-class QMenu;
-class QComboBox;
-
 #include <QPainter>
 #include "musicuiobject.h"
 #include "musicglobaldefine.h"
+
+class QMenu;
+class QComboBox;
 
 /*! @brief The namespace of the utils widget.
  * @author Greedysky <greedysky@163.com>

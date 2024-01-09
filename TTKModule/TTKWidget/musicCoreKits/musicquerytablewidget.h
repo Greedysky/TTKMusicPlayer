@@ -88,10 +88,10 @@ public Q_SLOTS:
      */
     virtual void removeItems() override;
     /*!
-     * Create searched items.
+     * Create search result items.
      * Subclass should implement this function.
      */
-    virtual void createSearchedItem(const MusicResultInfoItem &songItem) = 0;
+    virtual void createResultItem(const MusicResultInfoItem &songItem) = 0;
     /*!
      * Create the search finished item.
      */

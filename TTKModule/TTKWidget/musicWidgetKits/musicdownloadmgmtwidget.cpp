@@ -31,7 +31,7 @@ MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     m_ui->openDirButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(restartRequest()));
+    connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(restartToRequest()));
     connect(m_ui->openDetailButton, SIGNAL(clicked()), SLOT(openDetailInfo()));
     connect(m_ui->openDirButton, SIGNAL(clicked()), SLOT(openFileLocation()));
     connect(this, SIGNAL(openStackedDownloadWidget()), MusicLeftAreaWidget::instance(), SLOT(stackedMyDownWidgetChanged()));
@@ -42,16 +42,16 @@ MusicDownloadResetWidget::~MusicDownloadResetWidget()
     delete m_ui;
 }
 
-void MusicDownloadResetWidget::setSongName(const QString &name)
+void MusicDownloadResetWidget::initialize(const QString &name)
 {
     m_currentName = name;
 }
 
-void MusicDownloadResetWidget::restartRequest()
+void MusicDownloadResetWidget::restartToRequest()
 {
-    MusicDownloadWidget *download = new MusicDownloadWidget(m_parent);
-    download->setSongName(m_currentName, MusicAbstractQueryRequest::QueryType::Music);
-    download->show();
+    MusicDownloadWidget *widget = new MusicDownloadWidget(m_parent);
+    widget->initialize(m_currentName, MusicAbstractQueryRequest::QueryType::Music);
+    widget->show();
 
     close();
 }
@@ -81,26 +81,27 @@ MusicDownloadMgmtWidget::MusicDownloadMgmtWidget(QObject *parent)
 
 }
 
-void MusicDownloadMgmtWidget::setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type)
+void MusicDownloadMgmtWidget::initialize(const QString &name, MusicAbstractQueryRequest::QueryType type)
 {
     if(type == MusicAbstractQueryRequest::QueryType::Music)
     {
         bool exist = false;
         MusicApplication::instance()->containsDownloadItem(exist);
+
         if(exist)
         {
             MusicDownloadResetWidget *resetWidget = new MusicDownloadResetWidget(m_parent);
-            resetWidget->setSongName(name);
+            resetWidget->initialize(name);
             resetWidget->show();
             return;
         }
     }
 
-    MusicDownloadWidget *download = new MusicDownloadWidget(m_parent);
+    MusicDownloadWidget *widget = new MusicDownloadWidget(m_parent);
     if(parent()->metaObject()->indexOfSlot("downloadSongFinished()") != -1)
     {
-        connect(download, SIGNAL(dataDownloadChanged()), parent(), SLOT(downloadSongFinished()));
+        connect(widget, SIGNAL(dataDownloadChanged()), parent(), SLOT(downloadSongFinished()));
     }
-    download->setSongName(name, type);
-    download->show();
+    widget->initialize(name, type);
+    widget->show();
 }

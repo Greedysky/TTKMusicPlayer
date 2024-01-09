@@ -5,8 +5,7 @@ MusicItemSearchTableWidget::MusicItemSearchTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
 {
     m_actionGroup = new QActionGroup(this);
-
-    connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
+    connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(searchActionClicked(QAction*)));
 }
 
 MusicItemSearchTableWidget::~MusicItemSearchTableWidget()
@@ -21,7 +20,7 @@ void MusicItemSearchTableWidget::startSearchQuery(const QString &text)
     setQueryInput(G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this));
 }
 
-void MusicItemSearchTableWidget::actionGroupClick(QAction *action)
+void MusicItemSearchTableWidget::searchActionClicked(QAction *action)
 {
     const int row = currentRow();
     if(!isValid(row))

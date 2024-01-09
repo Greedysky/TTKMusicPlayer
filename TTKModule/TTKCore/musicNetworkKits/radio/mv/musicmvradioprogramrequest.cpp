@@ -162,20 +162,21 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                             TTK_NETWORK_QUERY_CHECK();
 
                             TTK::MusicSongInformation info;
+                            info.m_songId = value["mvhash"].toString();
                             info.m_singerName = TTK::String::charactersReplace(value["name"].toString());
-                            info.m_songName = TTK::String::charactersReplace(value["name"].toString());
-                            if(info.m_singerName.contains(" - "))
-                            {
-                                const QStringList &ds = info.m_singerName.split(" - ");
-                                if(ds.count() >= 2)
-                                {
-                                    info.m_singerName = ds.front();
-                                    info.m_songName = ds.back();
-                                }
-                            }
+                            info.m_songName = info.m_singerName;
                             info.m_duration = TTKTime::formatDuration(value["time"].toInt());
 
-                            info.m_songId = value["mvhash"].toString();
+                            if(info.m_singerName.contains("-"))
+                            {
+                                const QStringList &ds = info.m_singerName.split("-");
+                                if(ds.count() >= 2)
+                                {
+                                    info.m_singerName = ds.front().trimmed();
+                                    info.m_songName = ds.back().trimmed();
+                                }
+                            }
+
                             TTK_NETWORK_QUERY_CHECK();
                             MusicKGInterface::parseFromMovieProperty(&info);
                             TTK_NETWORK_QUERY_CHECK();
@@ -185,13 +186,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                                 continue;
                             }
 
-                            MusicResultInfoItem item;
-                            item.m_songName = info.m_songName;
-                            item.m_singerName = info.m_singerName;
-                            item.m_duration = info.m_duration;
-                            item.m_albumName.clear();
-                            item.m_type.clear();
-                            Q_EMIT createSearchedItem(item);
+                            Q_EMIT createResultItem({info});
                             m_songInfos << info;
                         }
                     }

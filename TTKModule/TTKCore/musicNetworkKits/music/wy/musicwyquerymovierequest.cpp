@@ -228,12 +228,7 @@ void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
                 return;
             }
 
-            MusicResultInfoItem item;
-            item.m_songName = info.m_songName;
-            item.m_singerName = info.m_singerName;
-            item.m_duration = info.m_duration;
-            item.m_type = serverToString();
-            Q_EMIT createSearchedItem(item);
+            Q_EMIT createResultItem({info, serverToString()});
             m_songInfos << info;
         }
     }
@@ -317,12 +312,7 @@ void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
                 return;
             }
 
-            MusicResultInfoItem item;
-            item.m_songName = info.m_songName;
-            item.m_singerName = info.m_singerName;
-            item.m_duration = info.m_duration;
-            item.m_type = serverToString();
-            Q_EMIT createSearchedItem(item);
+            Q_EMIT createResultItem({info, serverToString()});
             m_songInfos << info;
         }
     }

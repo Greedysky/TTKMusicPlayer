@@ -29,8 +29,17 @@ class TTK_MODULE_EXPORT MusicRulesAnalysis
 {
     TTK_DECLARE_MODULE(MusicRulesAnalysis)
 public:
+    /*!
+     * Get all rule filters.
+     */
     static QStringList rules();
+    /*!
+     * Get rule filter by index.
+     */
     static QString rule(int index);
+    /*!
+     * Parse rule value string to normal.
+     */
     static QString parse(const TTK::MusicSongInformation &info, const QString &value);
 
 };

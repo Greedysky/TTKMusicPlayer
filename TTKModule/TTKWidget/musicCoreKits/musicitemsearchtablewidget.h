@@ -45,9 +45,9 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Left context menu action group click by action.
+     * Search action menu clicked.
      */
-    virtual void actionGroupClick(QAction *action);
+    virtual void searchActionClicked(QAction *action);
 
 protected:
     /*!

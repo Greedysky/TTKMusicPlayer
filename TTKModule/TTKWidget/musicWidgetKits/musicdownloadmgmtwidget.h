@@ -46,7 +46,7 @@ public:
     /*!
      * Set current name to search and download data.
      */
-    void setSongName(const QString &name);
+    void initialize(const QString &name);
 
 Q_SIGNALS:
     /*!
@@ -58,7 +58,7 @@ public Q_SLOTS:
     /*!
      * Restart to dwonload music data.
      */
-    void restartRequest();
+    void restartToRequest();
     /*!
      * Open file details information by song.
      */
@@ -93,7 +93,7 @@ public:
     /*!
      * Set current name to search and download data.
      */
-    void setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type);
+    void initialize(const QString &name, MusicAbstractQueryRequest::QueryType type);
 
 private:
     QWidget *m_parent;

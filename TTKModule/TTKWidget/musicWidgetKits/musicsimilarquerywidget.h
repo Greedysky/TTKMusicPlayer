@@ -46,12 +46,11 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Create searched items.
+     * Create search result items.
      */
-    virtual void createSearchedItem(const MusicResultInfoItem &songItem) override final;
+    virtual void createResultItem(const MusicResultInfoItem &songItem) override final;
 
 };
-
 
 
 /*! @brief The class of the similar music query widget.

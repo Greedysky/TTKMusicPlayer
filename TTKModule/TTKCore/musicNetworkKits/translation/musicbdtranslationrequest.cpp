@@ -10,7 +10,7 @@ MusicBDTranslationRequest::MusicBDTranslationRequest(QObject *parent)
 
 void MusicBDTranslationRequest::startToRequest(const QString &data)
 {
-    TTK_INFO_STREAM(className() << "startRequest");
+    TTK_INFO_STREAM(className() << "startToRequest");
 
     MusicAbstractNetwork::deleteAll();
 

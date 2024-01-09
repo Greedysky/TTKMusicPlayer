@@ -115,13 +115,7 @@ void MusicWYQueryRequest::downLoadFinished()
                         MusicWYInterface::parseFromSongProperty(&info, value);
                         TTK_NETWORK_QUERY_CHECK();
 
-                        MusicResultInfoItem item;
-                        item.m_songName = info.m_songName;
-                        item.m_singerName = info.m_singerName;
-                        item.m_albumName = info.m_albumName;
-                        item.m_duration = info.m_duration;
-                        item.m_type = serverToString();
-                        Q_EMIT createSearchedItem(item);
+                        Q_EMIT createResultItem({info, serverToString()});
                     }
                     m_songInfos << info;
                 }
@@ -192,13 +186,7 @@ void MusicWYQueryRequest::downLoadSingleFinished()
                     MusicWYInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
 
-                    MusicResultInfoItem item;
-                    item.m_songName = info.m_songName;
-                    item.m_singerName = info.m_singerName;
-                    item.m_albumName = info.m_albumName;
-                    item.m_duration = info.m_duration;
-                    item.m_type = serverToString();
-                    Q_EMIT createSearchedItem(item);
+                    Q_EMIT createResultItem({info, serverToString()});
                     m_songInfos << info;
                 }
             }

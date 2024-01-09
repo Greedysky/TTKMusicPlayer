@@ -37,9 +37,9 @@ void MusicWebMVRadioInfoTableWidget::downloadQueryResult(int row)
 
     m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Movie);
 
-    MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(m_networkRequest, row);
-    download->show();
+    MusicDownloadWidget *widget = new MusicDownloadWidget(this);
+    widget->initialize(m_networkRequest, row);
+    widget->show();
 }
 
 void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
@@ -55,6 +55,7 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
             {
                 return;
             }
+
             MusicRightAreaWidget::instance()->movieRadioSearchBy(QVariant::fromValue<TTK::MusicSongInformation>(songInfos[row]));
             break;
         }

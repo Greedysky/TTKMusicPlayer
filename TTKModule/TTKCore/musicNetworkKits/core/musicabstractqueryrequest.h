@@ -41,6 +41,21 @@ struct TTK_MODULE_EXPORT MusicResultInfoItem
     {
 
     }
+
+    MusicResultInfoItem(const TTK::MusicSongInformation &info)
+        : m_songName(info.m_songName),
+          m_singerName(info.m_singerName),
+          m_albumName(info.m_albumName),
+          m_duration(info.m_duration)
+    {
+
+    }
+
+    MusicResultInfoItem(const TTK::MusicSongInformation &info, const QString &type)
+        : MusicResultInfoItem(info)
+    {
+        m_type = type;
+    }
 };
 
 /*! @brief The class of the search result data item.
@@ -174,9 +189,9 @@ Q_SIGNALS:
      */
     void clearItems();
     /*!
-     * Create the current items by song name\ artist name and time.
+     * Create the current items by song name artist name and time.
      */
-    void createSearchedItem(const MusicResultInfoItem &songItem);
+    void createResultItem(const MusicResultInfoItem &songItem);
 
 public Q_SLOTS:
     /*!

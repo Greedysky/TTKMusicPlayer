@@ -1,8 +1,5 @@
 #include "musicdownloadbatchwidget.h"
 #include "ui_musicdownloadbatchwidget.h"
-#include "musicdownloadrecordconfigmanager.h"
-#include "musicdownloadmetadatarequest.h"
-#include "musicnumberutils.h"
 
 MusicDownloadBatchTableItem:: MusicDownloadBatchTableItem(QWidget *parent)
     : QWidget(parent),
@@ -62,11 +59,11 @@ void MusicDownloadBatchTableItem::startToRequest()
 
     if(m_queryType == MusicAbstractQueryRequest::QueryType::Music)
     {
-        startRequestMusic();
+        startToRequestMusic();
     }
     else if(m_queryType == MusicAbstractQueryRequest::QueryType::Movie)
     {
-        startRequestMovie();
+        startToRequestMovie();
     }
 }
 
@@ -92,7 +89,7 @@ void MusicDownloadBatchTableItem::currentQualityChanged(int index)
     m_status->setPixmap(QPixmap(":/tiny/lb_question"));
 }
 
-void MusicDownloadBatchTableItem::dataDownloadFinished()
+void MusicDownloadBatchTableItem::downloadFinished()
 {
     m_status->setPixmap(QPixmap(":/tiny/lb_right"));
 }
@@ -125,134 +122,20 @@ int MusicDownloadBatchTableItem::currentBitrate(int index)
     return bitrate;
 }
 
-void MusicDownloadBatchTableItem::startRequestMusic()
+void MusicDownloadBatchTableItem::startToRequestMusic()
 {
     const int bitrate = currentBitrate(m_qulity->currentIndex());
     m_networkRequest->startToQueryResult(&m_songInfo, bitrate);
-    if(m_songInfo.m_songProps.isEmpty())
-    {
-        return;
-    }
 
-    TTK::MusicSongProperty prop;
-    for(const TTK::MusicSongProperty &p : qAsConst(m_songInfo.m_songProps))
-    {
-        if(p.m_bitrate == bitrate)
-        {
-            prop = p;
-            break;
-        }
-    }
-
-    if(prop.isEmpty())
-    {
-        return;
-    }
-
-    QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
-    const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
-    QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
-
-    MusicDownloadRecordConfigManager manager;
-    if(!manager.fromFile(TTK::toString(TTK::Record::NormalDownload)))
-    {
-        return;
-    }
-
-    MusicSongList records;
-    manager.readBuffer(records);
-
-    MusicSong record;
-    record.setName(musicSong);
-    record.setPath(QFileInfo(downloadName).absoluteFilePath());
-    record.setSizeStr(prop.m_size);
-    record.setAddTimeStr("-1");
-    records << record;
-
-    manager.reset();
-    manager.writeBuffer(records);
-
-    if(QFile::exists(downloadName))
-    {
-        for(int i = 1; i < 99; ++i)
-        {
-            if(!QFile::exists(downloadName))
-            {
-                break;
-            }
-            if(i != 1)
-            {
-                musicSong.chop(3);
-            }
-            musicSong += QString("(%1)").arg(i);
-            downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
-        }
-    }
-
-    MusicDownloadMetaDataRequest *d = new MusicDownloadMetaDataRequest(prop.m_url, downloadName, this);
-    d->setRecordType(TTK::Record::NormalDownload);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), this, SLOT(dataDownloadFinished()));
-
-    MusicSongMeta meta;
-    meta.setComment(m_songInfo.m_coverUrl);
-    meta.setTitle(m_songInfo.m_songName);
-    meta.setArtist(m_songInfo.m_singerName);
-    meta.setAlbum(m_songInfo.m_albumName);
-    meta.setTrackNum(m_songInfo.m_trackNumber);
-    meta.setYear(m_songInfo.m_year);
-
-    d->setSongMeta(meta);
-    d->startToRequest();
+    MusicDownloadWidget::startToRequestMusic(m_songInfo, bitrate, this);
 }
 
-void MusicDownloadBatchTableItem::startRequestMovie()
+void MusicDownloadBatchTableItem::startToRequestMovie()
 {
     const int bitrate = currentBitrate(m_qulity->currentIndex());
     m_networkRequest->startToQueryResult(&m_songInfo, bitrate);
-    if(m_songInfo.m_songProps.isEmpty())
-    {
-        return;
-    }
 
-    TTK::MusicSongProperty prop;
-    for(const TTK::MusicSongProperty &p : qAsConst(m_songInfo.m_songProps))
-    {
-        if(p.m_bitrate == bitrate)
-        {
-            prop = p;
-            break;
-        }
-    }
-
-    if(prop.isEmpty())
-    {
-        return;
-    }
-
-    const QString &downloadPrefix = MOVIE_DIR_FULL;
-    QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
-    //
-    QString downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
-    if(QFile::exists(downloadName))
-    {
-        for(int i = 1; i < 99; ++i)
-        {
-            if(!QFile::exists(downloadName))
-            {
-                break;
-            }
-            if(i != 1)
-            {
-                musicSong.chop(3);
-            }
-            musicSong += QString("(%1)").arg(i);
-            downloadName = QString("%1%2.%3").arg(downloadPrefix, musicSong, prop.m_format);
-        }
-    }
-    //
-    MusicDownloadDataRequest *d = new MusicDownloadDataRequest(prop.m_url, downloadName, TTK::Download::Video, this);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), this, SLOT(dataDownloadFinished()));
-    d->startToRequest();
+    MusicDownloadWidget::startToRequestMovie(m_songInfo, bitrate, this);
 }
 
 
@@ -307,7 +190,6 @@ void MusicDownloadBatchTableWidget::currentQualityChanged(int index)
 {
     for(MusicDownloadBatchTableItem *item : qAsConst(m_items))
     {
-        ///Remove first null item object
         item->setCurrentQuality(index);
     }
 }
@@ -355,7 +237,7 @@ MusicDownloadBatchWidget::~MusicDownloadBatchWidget()
     delete m_ui;
 }
 
-void MusicDownloadBatchWidget::setSongName(MusicAbstractQueryRequest *request, const TTKIntList &items)
+void MusicDownloadBatchWidget::initialize(MusicAbstractQueryRequest *request, const TTKIntList &items)
 {
     TTK::MusicSongInformationList infos, songInfos(request->songInfoList());
     for(int index : qAsConst(items))

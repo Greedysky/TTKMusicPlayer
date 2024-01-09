@@ -162,13 +162,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                         Q_EMIT createCategoryItem(result);
                     }
 
-                    MusicResultInfoItem item;
-                    item.m_songName = info.m_songName;
-                    item.m_singerName = info.m_singerName;
-                    item.m_albumName.clear();
-                    item.m_duration = info.m_duration;
-                    item.m_type = serverToString();
-                    Q_EMIT createSearchedItem(item);
+                    Q_EMIT createResultItem({info, serverToString()});
                     m_songInfos << info;
                 }
             }

@@ -359,8 +359,11 @@ void MusicSettingWidget::downloadCacheClean()
 
 void MusicSettingWidget::downloadFileNameRuleChanged(QAction *action)
 {
-    const QString &rules = m_ui->downloadRuleEdit->text() + MusicRulesAnalysis::rule(action->data().toInt());
-    m_ui->downloadRuleEdit->setText(rules);
+    const QString &rule = MusicRulesAnalysis::rule(action->data().toInt());
+    if(!rule.isEmpty())
+    {
+        m_ui->downloadRuleEdit->setText(m_ui->downloadRuleEdit->text() + rule);
+    }
 }
 
 void MusicSettingWidget::downloadGroupCached(int index)

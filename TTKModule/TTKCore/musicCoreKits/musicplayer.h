@@ -153,9 +153,9 @@ private Q_SLOTS:
      */
     void update();
     /*!
-     * Query current duration by time out.
+     * Generate current duration by time out.
      */
-    void queryCurrentDuration();
+    void generateDuration();
 
 private:
     /*!

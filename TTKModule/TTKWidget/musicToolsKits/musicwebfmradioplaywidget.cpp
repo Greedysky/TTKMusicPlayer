@@ -119,9 +119,9 @@ void MusicWebFMRadioPlayWidget::radioResourceDownload()
         info = m_songThread->songInfo();
     }
 
-    MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(info, MusicAbstractQueryRequest::QueryType::Music);
-    download->show();
+    MusicDownloadWidget *widget = new MusicDownloadWidget(this);
+    widget->initialize(info, MusicAbstractQueryRequest::QueryType::Music);
+    widget->show();
 }
 
 void MusicWebFMRadioPlayWidget::querySongInfoFinished()

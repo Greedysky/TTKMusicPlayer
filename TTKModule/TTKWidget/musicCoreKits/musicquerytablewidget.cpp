@@ -26,7 +26,7 @@ void MusicQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
     m_networkRequest = query;
     connect(m_networkRequest, SIGNAL(clearItems()), SLOT(removeItems()));
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
-    connect(m_networkRequest, SIGNAL(createSearchedItem(MusicResultInfoItem)), SLOT(createSearchedItem(MusicResultInfoItem)));
+    connect(m_networkRequest, SIGNAL(createResultItem(MusicResultInfoItem)), SLOT(createResultItem(MusicResultInfoItem)));
 }
 
 MusicAbstractQueryRequest *MusicQueryTableWidget::queryInput() const

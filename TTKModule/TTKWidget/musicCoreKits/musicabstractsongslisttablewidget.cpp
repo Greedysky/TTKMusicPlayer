@@ -172,9 +172,9 @@ void MusicAbstractSongsListTableWidget::showDownloadWidget()
         return;
     }
 
-    MusicDownloadWidget *download = new MusicDownloadWidget;
-    download->setSongName(currentSongName(), MusicAbstractQueryRequest::QueryType::Music);
-    download->show();
+    MusicDownloadWidget *widget = new MusicDownloadWidget;
+    widget->initialize(currentSongName(), MusicAbstractQueryRequest::QueryType::Music);
+    widget->show();
 }
 
 void MusicAbstractSongsListTableWidget::showPlayedMovieQueryWidget()

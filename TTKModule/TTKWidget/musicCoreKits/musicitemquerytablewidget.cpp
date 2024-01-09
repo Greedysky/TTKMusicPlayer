@@ -1,10 +1,9 @@
 #include "musicitemquerytablewidget.h"
 #include "musicsongssummariziedwidget.h"
-#include "musicdownloadwidget.h"
+#include "musicdownloadbatchwidget.h"
 #include "musictoastlabel.h"
 #include "musicconnectionpool.h"
 #include "musicrightareawidget.h"
-#include "musicdownloadbatchwidget.h"
 
 MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
@@ -51,9 +50,9 @@ void MusicItemQueryTableWidget::downloadQueryResult(int row)
         return;
     }
 
-    MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(m_networkRequest, row);
-    download->show();
+    MusicDownloadWidget *widget = new MusicDownloadWidget(this);
+    widget->initialize(m_networkRequest, row);
+    widget->show();
 }
 
 void MusicItemQueryTableWidget::itemDoubleClicked(int row, int column)
@@ -94,9 +93,9 @@ void MusicItemQueryTableWidget::downloadBatchData()
         return;
     }
 
-    MusicDownloadBatchWidget w;
-    w.setSongName(m_networkRequest, list);
-    w.exec();
+    MusicDownloadBatchWidget widget;
+    widget.initialize(m_networkRequest, list);
+    widget.exec();
 }
 
 void MusicItemQueryTableWidget::resizeSection()
@@ -207,7 +206,7 @@ void MusicItemQueryTableWidget::removeItems()
     setColumnCount(8);
 }
 
-void MusicItemQueryTableWidget::createSearchedItem(const MusicResultInfoItem &songItem)
+void MusicItemQueryTableWidget::createResultItem(const MusicResultInfoItem &songItem)
 {
     const int count = rowCount();
     setRowCount(count + 1);

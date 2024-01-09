@@ -208,12 +208,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                         return;
                     }
 
-                    MusicResultInfoItem item;
-                    item.m_songName = info.m_songName;
-                    item.m_singerName = info.m_singerName;
-                    item.m_duration = info.m_duration;
-                    item.m_type = serverToString();
-                    Q_EMIT createSearchedItem(item);
+                    Q_EMIT createResultItem({info, serverToString()});
                     m_songInfos << info;
                 }
             }
@@ -245,12 +240,7 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
             return;
         }
 
-        MusicResultInfoItem item;
-        item.m_songName = info.m_songName;
-        item.m_singerName = info.m_singerName;
-        item.m_duration = info.m_duration;
-        item.m_type = serverToString();
-        Q_EMIT createSearchedItem(item);
+        Q_EMIT createResultItem({info, serverToString()});
         m_songInfos << info;
     }
 

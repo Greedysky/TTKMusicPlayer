@@ -21,14 +21,14 @@ void MusicRecommendQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *qu
     }
 }
 
-void MusicRecommendQueryTableWidget::createSearchedItem(const MusicResultInfoItem &songItem)
+void MusicRecommendQueryTableWidget::createResultItem(const MusicResultInfoItem &songItem)
 {
     if(rowCount() >= 50)
     {
         return;
     }
 
-    MusicItemQueryTableWidget::createSearchedItem(songItem);
+    MusicItemQueryTableWidget::createResultItem(songItem);
 }
 
 

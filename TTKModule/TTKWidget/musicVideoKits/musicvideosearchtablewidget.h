@@ -98,9 +98,9 @@ public Q_SLOTS:
      */
     virtual void removeItems() override final;
     /*!
-     * Create searched items.
+     * Create search result items.
      */
-    virtual void createSearchedItem(const MusicResultInfoItem &songItem) override final;
+    virtual void createResultItem(const MusicResultInfoItem &songItem) override final;
     /*!
      * Get music media information data.
      */

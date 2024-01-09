@@ -91,7 +91,7 @@ void MusicLeftAreaWidget::setLoveState(bool state)
 void MusicLeftAreaWidget::downloadSongToLocal()
 {
     MusicDownloadMgmtWidget mgmt(this);
-    mgmt.setSongName(m_ui->showCurrentSong->text(), MusicAbstractQueryRequest::QueryType::Music);
+    mgmt.initialize(m_ui->showCurrentSong->text(), MusicAbstractQueryRequest::QueryType::Music);
 }
 
 void MusicLeftAreaWidget::downloadSongFinished()

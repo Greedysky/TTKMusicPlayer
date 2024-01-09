@@ -19,9 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+#include "musicdownloadwidget.h"
 #include "musicabstractmovedialog.h"
-#include "musicabstracttablewidget.h"
-#include "musicabstractqueryrequest.h"
 
 namespace Ui {
 class MusicDownloadBatchWidget;
@@ -66,18 +65,18 @@ public Q_SLOTS:
     /*!
      * Data download is finished.
      */
-    void dataDownloadFinished();
+    void downloadFinished();
 
 private:
     int currentBitrate(int index);
     /*!
      * Start to download music data.
      */
-    void startRequestMusic();
+    void startToRequestMusic();
     /*!
      * Start to download movie data.
      */
-    void startRequestMovie();
+    void startToRequestMovie();
 
     QComboBox *m_qulity;
     TTK::MusicSongInformation m_songInfo;
@@ -151,7 +150,7 @@ public:
     /*!
      * Set current name to search and download data.
      */
-    void setSongName(MusicAbstractQueryRequest *request, const TTKIntList &items);
+    void initialize(MusicAbstractQueryRequest *request, const TTKIntList &items);
 
 private:
     Ui::MusicDownloadBatchWidget *m_ui;

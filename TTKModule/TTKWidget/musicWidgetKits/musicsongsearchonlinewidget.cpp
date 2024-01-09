@@ -1,10 +1,9 @@
 #include "musicsongsearchonlinewidget.h"
 #include "musicsongsearchrecordconfigmanager.h"
-#include "musicdownloadwidget.h"
+#include "musicdownloadbatchwidget.h"
 #include "musicconnectionpool.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicrightareawidget.h"
-#include "musicdownloadbatchwidget.h"
 #include "musictoastlabel.h"
 #include "musicapplication.h"
 #include "musicwidgetheaders.h"
@@ -73,9 +72,9 @@ void MusicSongSearchTableWidget::downloadQueryResult(int row)
         return;
     }
 
-    MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(m_networkRequest, row);
-    download->show();
+    MusicDownloadWidget *widget = new MusicDownloadWidget(this);
+    widget->initialize(m_networkRequest, row);
+    widget->show();
 }
 
 void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
@@ -151,7 +150,7 @@ void MusicSongSearchTableWidget::removeItems()
     setColumnCount(9);
 }
 
-void MusicSongSearchTableWidget::createSearchedItem(const MusicResultInfoItem &songItem)
+void MusicSongSearchTableWidget::createResultItem(const MusicResultInfoItem &songItem)
 {
     const int count = rowCount();
     setRowCount(count + 1);
@@ -201,7 +200,7 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicResultInfoItem &s
     setItem(count, 8, item);
 }
 
-void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
+void MusicSongSearchTableWidget::searchActionClicked(QAction *action)
 {
     const int row = currentRow();
     if(!m_networkRequest || row < 0 || row >= rowCount() - 1)
@@ -388,9 +387,9 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
             return;
         }
 
-        MusicDownloadBatchWidget w;
-        w.setSongName(d, list);
-        w.exec();
+        MusicDownloadBatchWidget widget;
+        widget.initialize(d, list);
+        widget.exec();
     }
 }
 

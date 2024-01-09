@@ -161,7 +161,7 @@ void MusicVideoSearchTableWidget::removeItems()
     setColumnCount(9);
 }
 
-void MusicVideoSearchTableWidget::createSearchedItem(const MusicResultInfoItem &songItem)
+void MusicVideoSearchTableWidget::createResultItem(const MusicResultInfoItem &songItem)
 {
     const int count = rowCount();
     setRowCount(count + 1);
@@ -253,7 +253,7 @@ void MusicVideoSearchTableWidget::downloadLocalMovie(int row)
         return;
     }
 
-    MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(m_networkRequest, row);
-    download->show();
+    MusicDownloadWidget *widget = new MusicDownloadWidget(this);
+    widget->initialize(m_networkRequest, row);
+    widget->show();
 }

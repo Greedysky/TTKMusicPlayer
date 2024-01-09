@@ -145,9 +145,9 @@ void MusicIdentifySongWidget::showDownloadWidget()
 {
     if(!m_songInfo.m_singerName.isEmpty())
     {
-        MusicDownloadWidget *download = new MusicDownloadWidget(this);
-        download->setSongName(m_songInfo, MusicAbstractQueryRequest::QueryType::Music);
-        download->show();
+        MusicDownloadWidget *widget = new MusicDownloadWidget(this);
+        widget->initialize(m_songInfo, MusicAbstractQueryRequest::QueryType::Music);
+        widget->show();
     }
 }
 

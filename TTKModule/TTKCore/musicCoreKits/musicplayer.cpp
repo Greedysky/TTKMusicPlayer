@@ -147,7 +147,7 @@ void MusicPlayer::play()
 
     m_timer.start();
     m_durationTimes = 0;
-    queryCurrentDuration();
+    generateDuration();
     Q_EMIT positionChanged(0);
 }
 
@@ -253,12 +253,12 @@ void MusicPlayer::update()
     }
 }
 
-void MusicPlayer::queryCurrentDuration()
+void MusicPlayer::generateDuration()
 {
     const qint64 d = duration();
     if((d == 0 || m_duration == d) && m_durationTimes++ < 10)
     {
-        TTK_SIGNLE_SHOT(queryCurrentDuration, TTK_SLOT);
+        TTK_SIGNLE_SHOT(generateDuration, TTK_SLOT);
     }
     else
     {

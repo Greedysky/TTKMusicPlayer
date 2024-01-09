@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractsongslisttablewidget.h"
 #include "musicdownloadrecordconfigmanager.h"
+#include "musicabstractsongslisttablewidget.h"
 
 class TTKProgressBarItemDelegate;
 
