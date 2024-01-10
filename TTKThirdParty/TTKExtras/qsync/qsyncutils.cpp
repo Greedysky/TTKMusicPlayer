@@ -53,9 +53,9 @@ static TTKStringMap formatHeader(const TTKStringMap &headers)
 
 QString QSyncUtils::authorizationCode(const QString &key, const QString &method, const TTKStringMap &headers, const QString &resource)
 {
-    const QString &content_md5 = headers.value("Content-Md5", "");
-    const QString &content_type = headers.value("Content-Type", "");
-    const QString &date = headers.value("Date", "");
+    const QString &content_md5 = headers.value("Content-Md5");
+    const QString &content_type = headers.value("Content-Type");
+    const QString &date = headers.value("Date");
     const QString &canonicalized_resource = resource;
 
     QString canonicalized_headers;

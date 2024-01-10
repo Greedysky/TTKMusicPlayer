@@ -60,17 +60,17 @@ namespace TTK
             QToolButton:hover{ background-image: url(:/video/btn_barrage_style_hover); } \
             QToolButton:disabled{ background-image: url(:/video/btn_barrage_style_disable); }";
 
-        static const QString VideoBtnSTMode  = " \
+        static const QString VideoBtnSTMode = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_st_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_st_hover); }";
 
-        static const QString VideoBtnSDMode  = " \
+        static const QString VideoBtnSDMode = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_sd_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_sd_hover); }";
 
-        static const QString VideoBtnHDMode  = " \
+        static const QString VideoBtnHDMode = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_hd_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_hd_hover); }";
@@ -80,12 +80,12 @@ namespace TTK
             background-image: url(:/video/btn_sq_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_sq_hover); }";
 
-        static const QString VideoBtnBlue  = " \
+        static const QString VideoBtnBlue = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_blue_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_blue_hover); }";
 
-        static const QString VideoBtnBlueOn  = " \
+        static const QString VideoBtnBlueOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_blue_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_blue_on_hover); }";
@@ -95,12 +95,12 @@ namespace TTK
             background-image: url(:/video/lb_green_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_green_hover); }";
 
-        static const QString VideoBtnGreenOn  = " \
+        static const QString VideoBtnGreenOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_green_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_green_on_hover); }";
 
-        static const QString VideoBtnOrange  = " \
+        static const QString VideoBtnOrange = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_orange_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_orange_hover); }";
@@ -110,12 +110,12 @@ namespace TTK
             background-image: url(:/video/lb_orange_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_orange_on_hover); }";
 
-        static const QString VideoBtnPurple  = " \
+        static const QString VideoBtnPurple = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_purple_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_purple_hover); }";
 
-        static const QString VideoBtnPurpleOn  = " \
+        static const QString VideoBtnPurpleOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_purple_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_purple_on_hover); }";
@@ -130,12 +130,12 @@ namespace TTK
             background-image: url(:/video/lb_red_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_red_on_hover); }";
 
-        static const QString VideoBtnWhite  = " \
+        static const QString VideoBtnWhite = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_white_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_white_hover); }";
 
-        static const QString VideoBtnWhiteOn  = " \
+        static const QString VideoBtnWhiteOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_white_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_white_on_hover); }";
@@ -160,12 +160,12 @@ namespace TTK
             background-image: url(:/video/lb_small_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_small_on_hover); }";
 
-        static const QString VideoBtnMiddle  = " \
+        static const QString VideoBtnMiddle = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_middle_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_middle_hover); }";
 
-        static const QString VideoBtnMiddleOn  = " \
+        static const QString VideoBtnMiddleOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_middle_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_middle_on_hover); }";

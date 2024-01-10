@@ -14,6 +14,11 @@ void MusicWYInterface::makeRequestRawHeader(QNetworkRequest *request)
     TTK::makeContentTypeHeader(request);
 }
 
+QString MusicWYInterface::makeCoverPixmapUrl(const QString &url)
+{
+    return url + TTK::Algorithm::mdII("dCt3T2JSbmJ2LzFuOUZBalAwTnUvNkRpc3dZPQ==", false);
+}
+
 QByteArray MusicWYInterface::makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &type)
 {
     QAlgorithm::Aes aes;

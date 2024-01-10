@@ -32,7 +32,7 @@ QString MusicRulesAnalysis::parse(const TTK::MusicSongInformation &info, const Q
 {
     QString v(value);
     v.replace(RULE_TITLE, info.m_songName);
-    v.replace(RULE_ARTIST, info.m_singerName);
+    v.replace(RULE_ARTIST, info.m_artistName);
     v.replace(RULE_ALBUM, info.m_albumName);
     v.replace(RULE_DURAION, QString::number(TTKTime::formatDuration(info.m_duration) / TTK_DN_S2MS));
     v.replace(RULE_TRACK, info.m_trackNumber);

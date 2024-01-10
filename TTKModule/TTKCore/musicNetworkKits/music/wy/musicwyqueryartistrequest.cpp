@@ -53,7 +53,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
             {
                 const QVariantMap &artistObject = value["artist"].toMap();
                 const QString &coverUrl = artistObject["picUrl"].toString();
-                const QString &singerName = TTK::String::charactersReplace(artistObject["name"].toString());
+                const QString &artistName = TTK::String::charactersReplace(artistObject["name"].toString());
 
                 const QVariantList &datas = value["hotSongs"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -67,17 +67,10 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_songName = TTK::String::charactersReplace(value["name"].toString());
-                    info.m_singerName = singerName;
-                    info.m_coverUrl = coverUrl;
-                    info.m_duration = TTKTime::formatDuration(value["dt"].toInt());
                     info.m_songId = value["id"].toString();
-                    info.m_lrcUrl = TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(info.m_songId);
+                    info.m_songName = TTK::String::charactersReplace(value["name"].toString());
 
-                    const QVariantMap &albumObject = value["al"].toMap();
-                    info.m_albumId = albumObject["id"].toString();
-                    info.m_albumName = TTK::String::charactersReplace(albumObject["name"].toString());
-
+                    info.m_artistName = artistName;
                     const QVariantList &artistsArray = value["ar"].toList();
                     for(const QVariant &artistValue : qAsConst(artistsArray))
                     {
@@ -91,6 +84,13 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                         break; //just find first singer
                     }
 
+                    const QVariantMap &albumObject = value["al"].toMap();
+                    info.m_albumId = albumObject["id"].toString();
+                    info.m_albumName = TTK::String::charactersReplace(albumObject["name"].toString());
+
+                    info.m_coverUrl = coverUrl;
+                    info.m_lrcUrl = TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(info.m_songId);
+                    info.m_duration = TTKTime::formatDuration(value["dt"].toInt());
                     info.m_year.clear();
                     info.m_trackNumber = value["no"].toString();
 
@@ -127,8 +127,8 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                             result.m_nickName = TTK_DEFAULT_STR;
                         }
 
-                        result.m_id = m_queryValue;
-                        result.m_name = info.m_singerName;
+                        result.m_id = info.m_artistId;
+                        result.m_name = info.m_artistName;
                         result.m_coverUrl = info.m_coverUrl;
                         result.m_updateTime = TTKDateTime::format(artistObject["publishTime"].toLongLong(), TTK_YEAR_FORMAT);
                         Q_EMIT createArtistItem(result);

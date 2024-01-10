@@ -26,7 +26,7 @@
  */
 struct TTK_MODULE_EXPORT MusicSongIdentifyData
 {
-    QString m_singerName;
+    QString m_artistName;
     QString m_songName;
 };
 TTK_DECLARE_LIST(MusicSongIdentifyData);

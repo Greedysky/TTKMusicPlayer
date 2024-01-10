@@ -59,8 +59,8 @@ QPixmap GaussBlur::render(const QPixmap &pixmap, int value)
     QImage image = pixmap.copy(d->m_rectangle).toImage();
 
     const float sigma = 1.0 * value / 2.57;
-    const float deno  = 1.0 / (sigma * sqrt(2.0 * M_PI));
-    const float nume  = -1.0 / (2.0 * sigma * sigma);
+    const float deno = 1.0 / (sigma * sqrt(2.0 * M_PI));
+    const float nume = -1.0 / (2.0 * sigma * sigma);
 
     float* gaussMatrix = (float*)malloc(sizeof(float)* (value + value + 1));
     float gaussSum = 0.0;
@@ -81,7 +81,7 @@ QPixmap GaussBlur::render(const QPixmap &pixmap, int value)
     const int width = image.width();
     const int height = image.height();
     int *pix = (int*)image.bits();
-    int *rowData  = (int*)malloc(width * sizeof(int));
+    int *rowData = (int*)malloc(width * sizeof(int));
     int *listData = (int*)malloc(height * sizeof(int));
 
     for(int y = 0; y < height; ++y)

@@ -105,7 +105,7 @@ void MusicIdentifySongRequest::downLoadFinished()
                     for(const QVariant &artists : value["artists"].toList())
                     {
                         value = artists.toMap();
-                        song.m_singerName = value["name"].toString();
+                        song.m_artistName = value["name"].toString();
                         break;
                     }
                     m_songIdentifys << song;

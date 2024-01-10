@@ -85,6 +85,10 @@ namespace MusicWYInterface
     void makeRequestRawHeader(QNetworkRequest *request);
 
     /*!
+         * Make cover pixmap url.
+         */
+    QString makeCoverPixmapUrl(const QString &url);
+    /*!
      * Make token query request.
      */
     QByteArray makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &type);

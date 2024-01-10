@@ -129,7 +129,7 @@ void TTKProgressBarItemDelegate::paint(QPainter *painter, const QStyleOptionView
 TTKLabelItemDelegate::TTKLabelItemDelegate(QObject *parent)
     : TTKAbstractItemDelegate(parent)
 {
-    m_label  = new QLabel;
+    m_label = new QLabel;
     m_label->setAlignment(Qt::AlignCenter);
     m_container = m_label;
 }

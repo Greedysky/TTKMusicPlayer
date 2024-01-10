@@ -63,7 +63,7 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
     TTK::MusicSongInformation info = songInfos.front();
     for(const TTK::MusicSongInformation &var : qAsConst(songInfos))
     {
-        if(var.m_singerName.contains(artistName, Qt::CaseInsensitive) && var.m_songName.contains(songName, Qt::CaseInsensitive))
+        if(var.m_artistName.contains(artistName, Qt::CaseInsensitive) && var.m_songName.contains(songName, Qt::CaseInsensitive))
         {
             info = var;
             break;
@@ -87,7 +87,7 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
     {
         ///download art background picture
         const int count = TTK::String::split(fileName).count();
-        G_DOWNLOAD_QUERY_PTR->makeBackgroundRequest(count == 1 ? info.m_singerName : artistName, artistName, this)->startToRequest();
+        G_DOWNLOAD_QUERY_PTR->makeBackgroundRequest(count == 1 ? info.m_artistName : artistName, artistName, this)->startToRequest();
     }
 }
 

@@ -69,7 +69,7 @@ namespace MusicKWInterface
     /*!
      * Make cover pixmap url.
      */
-    void makeCoverPixmapUrl(QString &url, const QString &id);
+    QString makeCoverPixmapUrl(const QString &url, const QString &id);
 
     /*!
      * Read tags(size\bitrate\url) from query results.

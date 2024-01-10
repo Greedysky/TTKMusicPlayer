@@ -167,7 +167,7 @@ void MusicSongSearchTableWidget::createResultItem(const MusicResultInfoItem &son
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(songItem.m_singerName);
+    item->setToolTip(songItem.m_artistName);
     item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 30));
     item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 2, item);
@@ -215,8 +215,8 @@ void MusicSongSearchTableWidget::searchActionClicked(QAction *action)
     {
         case 0: downloadQueryResult(row); break;
         case 1: Q_EMIT restartSearchQuery(info.m_songName); break;
-        case 2: MusicRightAreaWidget::instance()->showArtistFound(info.m_singerName, info.m_artistId); break;
-        case 3: Q_EMIT restartSearchQuery(info.m_singerName + " - " + info.m_songName); break;
+        case 2: MusicRightAreaWidget::instance()->showArtistFound(info.m_artistName, info.m_artistId); break;
+        case 3: Q_EMIT restartSearchQuery(info.m_artistName + " - " + info.m_songName); break;
         case 4: addSearchMusicToPlaylist(row, true); break;
         case 5: MusicRightAreaWidget::instance()->showAlbumFound(info.m_albumName, info.m_albumId); break;
         default: break;

@@ -10,15 +10,19 @@ void MusicKWInterface::makeRequestRawHeader(QNetworkRequest *request)
     TTK::makeContentTypeHeader(request);
 }
 
-void MusicKWInterface::makeCoverPixmapUrl(QString &url, const QString &id)
+QString MusicKWInterface::makeCoverPixmapUrl(const QString &url, const QString &id)
 {
     if(url.isEmpty() && !id.isEmpty())
     {
-        url = TTK::Algorithm::mdII(KW_ALBUM_COVER_INFO_URL, false).arg(id);
+        return TTK::Algorithm::mdII(KW_ALBUM_COVER_INFO_URL, false).arg(id);
     }
     else if(!TTK::String::isNetworkUrl(url))
     {
-        url = TTK::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + url.section('/', 1);
+        return TTK::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + url.section('/', 1);
+    }
+    else
+    {
+        return url;
     }
 }
 

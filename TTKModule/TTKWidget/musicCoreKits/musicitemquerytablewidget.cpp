@@ -130,7 +130,7 @@ void MusicItemQueryTableWidget::menuActionChanged(QAction *action)
         case 0: addSearchMusicToPlaylist(row, true); break;
         case 1: addSearchMusicToPlaylist(row, false); break;
         case 2: downloadQueryResult(row); break;
-        case 3: MusicRightAreaWidget::instance()->showArtistFound(info.m_singerName, info.m_artistId); break;
+        case 3: MusicRightAreaWidget::instance()->showArtistFound(info.m_artistName, info.m_artistId); break;
         case 4: MusicRightAreaWidget::instance()->showSongSearchedFound(info.m_songName); break;
         case 5: MusicRightAreaWidget::instance()->showAlbumFound(info.m_albumName, info.m_albumId); break;
         case 6: MusicRightAreaWidget::instance()->showSongSearchedFound(item(row, 1)->toolTip()); break;
@@ -165,10 +165,10 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addSeparator();
 
     const TTK::MusicSongInformation &info = songInfos[row];
-    menu.addAction(tr("Search '%1'").arg(info.m_singerName))->setData(3);
+    menu.addAction(tr("Search '%1'").arg(info.m_artistName))->setData(3);
     menu.addAction(tr("Search '%1'").arg(info.m_songName))->setData(4);
     menu.addAction(tr("Search '%1'").arg(info.m_albumName))->setData(5);
-    menu.addAction(tr("Search '%1 - %2'").arg(info.m_singerName, info.m_songName))->setData(6);
+    menu.addAction(tr("Search '%1 - %2'").arg(info.m_artistName, info.m_songName))->setData(6);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(menuActionChanged(QAction*)));
 
     menu.exec(QCursor::pos());
@@ -217,7 +217,7 @@ void MusicItemQueryTableWidget::createResultItem(const MusicResultInfoItem &song
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(songItem.m_singerName + " - " + songItem.m_songName);
+    item->setToolTip(songItem.m_artistName + " - " + songItem.m_songName);
     item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
     item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
@@ -288,7 +288,7 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const TTK::MusicSongInformation
         const TTK::MusicSongProperty &prop = songInfo.m_songProps.front();
 
         MusicResultDataItem result;
-        result.m_name = info.m_singerName + " - " + info.m_songName;
+        result.m_name = info.m_artistName + " - " + info.m_songName;
         result.m_updateTime = info.m_duration;
         result.m_id = info.m_songId;
         result.m_nickName = prop.m_url;

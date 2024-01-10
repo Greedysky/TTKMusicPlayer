@@ -18,8 +18,6 @@ namespace MusicLQInterface
 
 void MusicLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
 {
-    info->m_lrcUrl = TTK::Algorithm::mdII(LQ_BASE_URL, false) + key["lrcUrl"].toString();
-    info->m_coverUrl = key["picUrl"].toString();
     const int length = key["length"].toInt();
 
     parseFromSongProperty(info, key["lqUrl"].toString(), length, TTK_BN_128);
@@ -59,10 +57,11 @@ void MusicLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, co
 }
 
 
+
 MusicSongRecommendRequest::MusicSongRecommendRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-
+    m_totalSize = SONG_PAGE_SIZE * 2;
 }
 
 void MusicSongRecommendRequest::startToSearch(const QString &value)
@@ -101,17 +100,17 @@ void MusicSongRecommendRequest::downLoadFinished()
                     continue;
                 }
 
+                if(m_songInfos.count() >= m_totalSize)
+                {
+                    break;
+                }
+
                 QVariantMap value = var.toMap();
                 TTK_NETWORK_QUERY_CHECK();
 
                 TTK::MusicSongInformation info;
-                info.m_songName = TTK::String::charactersReplace(value["name"].toString());
-                info.m_duration = value["songLength"].toString();
                 info.m_songId = value["id"].toString();
-
-                const QVariantMap &albumObject = value["albumInfo"].toMap();
-                info.m_albumId = albumObject["id"].toString();
-                info.m_albumName = TTK::String::charactersReplace(albumObject["name"].toString());
+                info.m_songName = TTK::String::charactersReplace(value["name"].toString());
 
                 const QVariantList &artistsArray = value["artistInfo"].toList();
                 for(const QVariant &artistValue : qAsConst(artistsArray))
@@ -123,10 +122,17 @@ void MusicSongRecommendRequest::downLoadFinished()
 
                     const QVariantMap &artistObject = artistValue.toMap();
                     info.m_artistId = artistObject["id"].toString();
-                    info.m_singerName = TTK::String::charactersReplace(artistObject["name"].toString());
+                    info.m_artistName = TTK::String::charactersReplace(artistObject["name"].toString());
                     break; //just find first singer
                 }
 
+                const QVariantMap &albumObject = value["albumInfo"].toMap();
+                info.m_albumId = albumObject["id"].toString();
+                info.m_albumName = TTK::String::charactersReplace(albumObject["name"].toString());
+
+                info.m_coverUrl = value["picUrl"].toString();
+                info.m_lrcUrl = TTK::Algorithm::mdII(LQ_BASE_URL, false) + value["lrcUrl"].toString();
+                info.m_duration = value["songLength"].toString();
                 info.m_year = value["year"].toString();
                 info.m_trackNumber = value["trackNum"].toString();
 

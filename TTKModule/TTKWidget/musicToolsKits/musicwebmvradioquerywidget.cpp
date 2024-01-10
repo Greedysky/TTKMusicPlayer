@@ -168,7 +168,7 @@ void MusicWebMVRadioQueryWidget::createMVRadioCategoryItem(const MusicResultData
         m_initialized = true;
         QVBoxLayout *mainlayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
-        QHBoxLayout *containTopLayout  = new QHBoxLayout(containTopWidget);
+        QHBoxLayout *containTopLayout = new QHBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
         m_categoryButton = new MusicWebMVRadioQueryCategoryPopWidget(m_mainWindow);
         m_categoryButton->setCategory(MUSIC_MOVIE_RADIO, this);

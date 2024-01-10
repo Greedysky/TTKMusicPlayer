@@ -101,14 +101,14 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
         m_initialized = true;
         QVBoxLayout *mainlayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
-        QVBoxLayout *containTopLayout  = new QVBoxLayout(containTopWidget);
+        QVBoxLayout *containTopLayout = new QVBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
         m_categoryButton = new MusicArtistListQueryCategoryPopWidget(m_mainWindow);
         m_categoryButton->setCategory(m_networkRequest->queryServer(), this);
         containTopLayout->addWidget(m_categoryButton);
         //
         QWidget *containNumberWidget = new QWidget(containTopWidget);
-        QHBoxLayout *containNumberLayout  = new QHBoxLayout(containNumberWidget);
+        QHBoxLayout *containNumberLayout = new QHBoxLayout(containNumberWidget);
 #ifdef Q_OS_WIN
         containNumberLayout->setSpacing(10);
 #endif

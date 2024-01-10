@@ -163,7 +163,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultDataItem &it
         m_initialized = true;
         QVBoxLayout *mainlayout = TTKObjectCast(QVBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
-        QHBoxLayout *containTopLayout  = new QHBoxLayout(containTopWidget);
+        QHBoxLayout *containTopLayout = new QHBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
         containTopLayout->addStretch(1);
 

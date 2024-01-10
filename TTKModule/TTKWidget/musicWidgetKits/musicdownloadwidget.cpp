@@ -153,7 +153,7 @@ void MusicDownloadWidget::initialize(MusicAbstractQueryRequest *request, int row
 
     m_ui->loadingLabel->run(true);
     controlEnabled(true);
-    m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(m_songInfo.m_singerName, m_songInfo.m_songName), Qt::ElideRight, 200));
+    m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(m_songInfo.m_artistName, m_songInfo.m_songName), Qt::ElideRight, 200));
 
     TTK_SIGNLE_SHOT(downLoadRequestFinished, TTK_SLOT);
 }
@@ -183,7 +183,7 @@ void MusicDownloadWidget::initialize(const TTK::MusicSongInformation &info, Musi
 
     m_ui->loadingLabel->run(true);
     controlEnabled(true);
-    m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName, info.m_songName), Qt::ElideRight, 200));
+    m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_artistName, info.m_songName), Qt::ElideRight, 200));
 
     if(!m_songInfo.m_songProps.isEmpty())
     {
@@ -268,7 +268,7 @@ void MusicDownloadWidget::startToRequestMusic(const TTK::MusicSongInformation &i
     MusicSongMeta meta;
     meta.setComment(info.m_coverUrl);
     meta.setTitle(info.m_songName);
-    meta.setArtist(info.m_singerName);
+    meta.setArtist(info.m_artistName);
     meta.setAlbum(info.m_albumName);
     meta.setTrackNum(info.m_trackNumber);
     meta.setYear(info.m_year);
@@ -348,7 +348,7 @@ void MusicDownloadWidget::downLoadNormalFinished()
 
     for(const TTK::MusicSongInformation &var : qAsConst(songInfos))
     {
-        if(var.m_singerName.contains(artistName, Qt::CaseInsensitive) && var.m_songName.contains(songName, Qt::CaseInsensitive))
+        if(var.m_artistName.contains(artistName, Qt::CaseInsensitive) && var.m_songName.contains(songName, Qt::CaseInsensitive))
         {
             m_songInfo = var;
             break;

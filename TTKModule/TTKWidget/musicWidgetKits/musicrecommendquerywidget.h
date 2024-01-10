@@ -44,12 +44,6 @@ public:
      */
     virtual void setQueryInput(MusicAbstractQueryRequest *query) override final;
 
-public Q_SLOTS:
-    /*!
-     * Create search result items.
-     */
-    virtual void createResultItem(const MusicResultInfoItem &songItem) override final;
-
 };
 
 

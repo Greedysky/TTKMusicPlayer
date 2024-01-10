@@ -143,7 +143,7 @@ void MusicIdentifySongWidget::playSong()
 
 void MusicIdentifySongWidget::showDownloadWidget()
 {
-    if(!m_songInfo.m_singerName.isEmpty())
+    if(!m_songInfo.m_artistName.isEmpty())
     {
         MusicDownloadWidget *widget = new MusicDownloadWidget(this);
         widget->initialize(m_songInfo, MusicAbstractQueryRequest::QueryType::Music);
@@ -153,7 +153,7 @@ void MusicIdentifySongWidget::showDownloadWidget()
 
 void MusicIdentifySongWidget::showSongShareWidget()
 {
-    if(!m_songInfo.m_singerName.isEmpty())
+    if(!m_songInfo.m_artistName.isEmpty())
     {
         QVariantMap data;
         data["songName"] = m_songInfo.m_songName;
@@ -277,7 +277,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     infoFuncWidgetLayout->setContentsMargins(0, 0, 0, 0);
 
     QLabel *textLabel = new QLabel(widget);
-    textLabel->setText(QString("%1 - %2").arg(songIdentify.m_singerName, songIdentify.m_songName));
+    textLabel->setText(QString("%1 - %2").arg(songIdentify.m_artistName, songIdentify.m_songName));
     textLabel->setAlignment(Qt::AlignCenter);
     //
     TTKSemaphoreLoop loop;
@@ -291,7 +291,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     {
         for(const TTK::MusicSongInformation &info : d->songInfoList())
         {
-            if(info.m_singerName.toLower().trimmed().contains(songIdentify.m_singerName.toLower().trimmed(), Qt::CaseInsensitive) &&
+            if(info.m_artistName.toLower().trimmed().contains(songIdentify.m_artistName.toLower().trimmed(), Qt::CaseInsensitive) &&
                info.m_songName.toLower().trimmed().contains(songIdentify.m_songName.toLower().trimmed(), Qt::CaseInsensitive))
             {
                 m_songInfo = info;
@@ -302,9 +302,9 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     //
     QLabel *iconLabel = new QLabel(widget);
     iconLabel->setMinimumSize(280, 280);
-    if(!m_songInfo.m_singerName.isEmpty())
+    if(!m_songInfo.m_artistName.isEmpty())
     {
-        const QString &name = ART_DIR_FULL + m_songInfo.m_singerName + SKN_FILE;
+        const QString &name = ART_DIR_FULL + m_songInfo.m_artistName + SKN_FILE;
         if(!QFile::exists(name))
         {
             MusicDownloadDataRequest *d = new MusicDownloadDataRequest(m_songInfo.m_coverUrl, name, TTK::Download::Cover, this);
@@ -360,9 +360,9 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
     m_lrcLabel = new QLabel(widget);
     m_lrcLabel->setMinimumWidth(280);
 
-    if(!m_songInfo.m_singerName.isEmpty())
+    if(!m_songInfo.m_artistName.isEmpty())
     {
-        const QString &name = TTK::String::lrcDirPrefix() + m_songInfo.m_singerName + " - " + m_songInfo.m_songName + LRC_FILE;
+        const QString &name = TTK::String::lrcDirPrefix() + m_songInfo.m_artistName + " - " + m_songInfo.m_songName + LRC_FILE;
         if(!QFile::exists(name))
         {
             MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_songInfo.m_lrcUrl, name, this);

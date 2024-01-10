@@ -53,9 +53,8 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
             if(value.contains("musiclist"))
             {
                 MusicResultDataItem result;
-                result.m_nickName = value["albumid"].toString();
-                result.m_coverUrl = value["pic"].toString();
-                MusicKWInterface::makeCoverPixmapUrl(result.m_coverUrl, {});
+                result.m_id = value["albumid"].toString();
+                result.m_coverUrl = MusicKWInterface::makeCoverPixmapUrl(value["pic"].toString(), {});
                 const QString &albumName = value["name"].toString();
                 result.m_count = albumName;
                 result.m_description = value["company"].toString();
@@ -76,21 +75,20 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_singerName = TTK::String::charactersReplace(value["artist"].toString());
-                    info.m_songName = TTK::String::charactersReplace(value["name"].toString());
-                    info.m_duration = TTK_DEFAULT_STR;
-
                     info.m_songId = value["id"].toString();
+                    info.m_songName = TTK::String::charactersReplace(value["name"].toString());
+
                     info.m_artistId = value["artistid"].toString();
-                    info.m_albumId = result.m_nickName;
+                    info.m_artistName = TTK::String::charactersReplace(value["artist"].toString());
+
+                    info.m_albumId = result.m_id;
                     info.m_albumName = TTK::String::charactersReplace(albumName);
 
+                    info.m_coverUrl = MusicKWInterface::makeCoverPixmapUrl(value["web_albumpic_short"].toString(), info.m_songId);
+                    info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
+                    info.m_duration = TTK_DEFAULT_STR;
                     info.m_year.clear();
                     info.m_trackNumber = "0";
-
-                    info.m_coverUrl = value["web_albumpic_short"].toString();
-                    MusicKWInterface::makeCoverPixmapUrl(info.m_coverUrl, info.m_songId);
-                    info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
 
                     TTK_NETWORK_QUERY_CHECK();
                     MusicKWInterface::parseFromSongProperty(&info, value["formats"].toString());
@@ -100,7 +98,7 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                     {
                         m_albumFound = true;
                         result.m_id = info.m_albumId;
-                        result.m_name = info.m_singerName;
+                        result.m_name = info.m_artistName;
                         Q_EMIT createAlbumItem(result);
                     }
 
@@ -171,8 +169,7 @@ void MusicKWQueryArtistAlbumRequest::downLoadFinished()
 
                     MusicResultDataItem result;
                     result.m_id = value["albumid"].toString();
-                    result.m_coverUrl = value["pic"].toString();
-                    MusicKWInterface::makeCoverPixmapUrl(result.m_coverUrl, {});
+                    result.m_coverUrl = MusicKWInterface::makeCoverPixmapUrl(value["pic"].toString(), {});
                     result.m_name = value["name"].toString();
                     result.m_updateTime = value["pub"].toString().replace(TTK_DEFAULT_STR, TTK_DOT);
                     Q_EMIT createAlbumItem(result);

@@ -163,19 +163,20 @@ void MusicMVRadioProgramRequest::downLoadFinished()
 
                             TTK::MusicSongInformation info;
                             info.m_songId = value["mvhash"].toString();
-                            info.m_singerName = TTK::String::charactersReplace(value["name"].toString());
-                            info.m_songName = info.m_singerName;
-                            info.m_duration = TTKTime::formatDuration(value["time"].toInt());
+                            info.m_songName = TTK::String::charactersReplace(value["name"].toString());
 
-                            if(info.m_singerName.contains("-"))
+                            info.m_artistName = info.m_songName;
+                            if(info.m_artistName.contains("-"))
                             {
-                                const QStringList &ds = info.m_singerName.split("-");
+                                const QStringList &ds = info.m_artistName.split("-");
                                 if(ds.count() >= 2)
                                 {
-                                    info.m_singerName = ds.front().trimmed();
+                                    info.m_artistName = ds.front().trimmed();
                                     info.m_songName = ds.back().trimmed();
                                 }
                             }
+
+                            info.m_duration = TTKTime::formatDuration(value["time"].toInt());
 
                             TTK_NETWORK_QUERY_CHECK();
                             MusicKGInterface::parseFromMovieProperty(&info);

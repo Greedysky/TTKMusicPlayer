@@ -39,7 +39,7 @@ void MusicDownloadBatchTableItem::addCellItem(MusicAbstractQueryRequest *request
     m_songName->setToolTip(info.m_songName);
     m_songName->setText(TTK::Widget::elidedText(m_songName->font(), m_songName->toolTip(), Qt::ElideRight, m_songName->width() - 10));
 
-    m_singer->setToolTip(info.m_singerName);
+    m_singer->setToolTip(info.m_artistName);
     m_singer->setText(TTK::Widget::elidedText(m_singer->font(), m_singer->toolTip(), Qt::ElideRight, m_singer->width() - 10));
 
     m_songInfo = info;

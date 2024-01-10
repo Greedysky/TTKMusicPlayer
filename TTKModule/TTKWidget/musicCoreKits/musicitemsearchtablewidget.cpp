@@ -61,8 +61,8 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
 
     const TTK::MusicSongInformation &info = songInfos[row];
     m_actionGroup->addAction(menu.addAction(tr("Search '%1'").arg(info.m_songName)))->setData(1);
-    m_actionGroup->addAction(menu.addAction(tr("Search '%1'").arg(info.m_singerName)))->setData(2);
-    m_actionGroup->addAction(menu.addAction(tr("Search '%1 - %2'").arg(info.m_singerName, info.m_songName)))->setData(3);
+    m_actionGroup->addAction(menu.addAction(tr("Search '%1'").arg(info.m_artistName)))->setData(2);
+    m_actionGroup->addAction(menu.addAction(tr("Search '%1 - %2'").arg(info.m_artistName, info.m_songName)))->setData(3);
 }
 
 QString MusicItemSearchTableWidget::randSimulation() const

@@ -213,7 +213,7 @@ void MusicCoreMPlayer::durationRecieve()
         QString message(m_process->readLine());
         if(message.startsWith("ANS_LENGTH"))
         {
-            message.replace("\r\n", "");
+            message.remove("\r\n");
             disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(durationRecieve()));
             Q_EMIT durationChanged(message.mid(11).toFloat());
             return;
@@ -241,7 +241,7 @@ void MusicCoreMPlayer::positionRecieve()
         QString message(m_process->readLine());
         if(message.startsWith("ANS_TIME_POSITION"))
         {
-            message.replace("\r\n", "");
+            message.remove("\r\n");
             Q_EMIT positionChanged(message.mid(18).toFloat());
         }
     }
@@ -254,13 +254,13 @@ void MusicCoreMPlayer::standardRecieve()
         QString message(m_process->readLine());
         if(message.startsWith("ANS_LENGTH"))
         {
-            message.replace("\r\n", "");
+            message.remove("\r\n");
             Q_EMIT durationChanged(message.mid(11).toFloat());
         }
 
         if(message.startsWith("ANS_TIME_POSITION"))
         {
-            message.replace("\r\n", "");
+            message.remove("\r\n");
             Q_EMIT positionChanged(message.mid(18).toFloat());
         }
     }

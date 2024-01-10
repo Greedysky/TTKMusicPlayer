@@ -178,9 +178,10 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
 
                     TTK::MusicSongInformation info;
                     info.m_songId = value["hash"].toString();
-                    info.m_albumId = value["album_id"].toString();
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
 
+                    info.m_albumId = value["album_id"].toString();
+
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
                     info.m_year.clear();
                     info.m_trackNumber = "0";
 

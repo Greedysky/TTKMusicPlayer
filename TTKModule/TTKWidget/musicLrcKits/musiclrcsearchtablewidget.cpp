@@ -108,7 +108,7 @@ void MusicLrcSearchTableWidget::createResultItem(const MusicResultInfoItem &song
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(songItem.m_singerName);
+    item->setToolTip(songItem.m_artistName);
     item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 20));
     item->setForeground(QColor(TTK::UI::Color02));
     setItem(count, 2, item);

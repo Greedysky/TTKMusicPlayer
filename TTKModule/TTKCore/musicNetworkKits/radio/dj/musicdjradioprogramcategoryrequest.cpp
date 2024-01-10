@@ -135,16 +135,16 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_songName = TTK::String::charactersReplace(value["name"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt());
-
-                    const QVariantMap &radioObject = value["radio"].toMap();
-                    info.m_coverUrl = radioObject["picUrl"].toString();
-                    info.m_artistId = radioObject["id"].toString();
-                    info.m_singerName = TTK::String::charactersReplace(radioObject["name"].toString());
-
                     const QVariantMap &mainSongObject = value["mainSong"].toMap();
                     info.m_songId = mainSongObject["id"].toString();
+                    info.m_songName = TTK::String::charactersReplace(value["name"].toString());
+
+                    const QVariantMap &radioObject = value["radio"].toMap();
+                    info.m_artistId = radioObject["id"].toString();
+                    info.m_artistName = TTK::String::charactersReplace(radioObject["name"].toString());
+
+                    info.m_coverUrl = radioObject["picUrl"].toString();
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt());
 
                     TTK_NETWORK_QUERY_CHECK();
                     MusicWYInterface::parseFromSongProperty(&info, mainSongObject);
@@ -155,7 +155,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                         categoryFound = true;
                         MusicResultDataItem result;
                         result.m_name = info.m_songName;
-                        result.m_nickName = info.m_singerName;
+                        result.m_nickName = info.m_artistName;
                         result.m_coverUrl = info.m_coverUrl;
                         result.m_count = radioObject["subCount"].toString();
                         result.m_updateTime = TTKDateTime::format(value["createTime"].toULongLong(), TTK_YEAR_FORMAT);

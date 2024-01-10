@@ -66,10 +66,13 @@ void MusicKGQueryArtistRequest::downLoadFinished()
 
                     TTK::MusicSongInformation info;
                     info.m_songId = value["hash"].toString();
+
+                    info.m_artistId = m_queryValue;
+
                     info.m_albumId = value["album_id"].toString();
                     info.m_albumName = TTK::String::charactersReplace(value["album_name"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
 
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
                     info.m_year.clear();
                     info.m_trackNumber = "0";
 
@@ -87,8 +90,8 @@ void MusicKGQueryArtistRequest::downLoadFinished()
                         queryArtistIntro(&result);
                         TTK_NETWORK_QUERY_CHECK();
 
-                        result.m_id = m_queryValue;
-                        result.m_name = info.m_singerName;
+                        result.m_id = info.m_artistId;
+                        result.m_name = info.m_artistName;
                         result.m_coverUrl = info.m_coverUrl;
                         Q_EMIT createArtistItem(result);
                     }

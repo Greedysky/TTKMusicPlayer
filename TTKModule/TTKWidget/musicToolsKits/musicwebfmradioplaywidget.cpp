@@ -146,7 +146,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     m_ui->volumeSlider->setValue(0);
     m_ui->volumeSlider->setValue(v);
 
-    QString name = TTK::String::lrcDirPrefix() + info.m_singerName + " - " + info.m_songName + LRC_FILE;
+    QString name = TTK::String::lrcDirPrefix() + info.m_artistName + " - " + info.m_songName + LRC_FILE;
     if(!QFile::exists(name))
     {
         MusicWYDownLoadTextRequest* d = new MusicWYDownLoadTextRequest(info.m_lrcUrl, name, this);
@@ -158,7 +158,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
         lrcDownloadStateChanged();
     }
 
-    name = ART_DIR_FULL + info.m_singerName + SKN_FILE;
+    name = ART_DIR_FULL + info.m_artistName + SKN_FILE;
     if(!QFile::exists(name))
     {
         MusicDownloadDataRequest *d = new MusicDownloadDataRequest(info.m_coverUrl, name, TTK::Download::Cover, this);
@@ -196,7 +196,7 @@ void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
         info = m_songThread->songInfo();
     }
 
-    const QString &name = (info.m_singerName + " - " + info.m_songName).trimmed();
+    const QString &name = (info.m_artistName + " - " + info.m_songName).trimmed();
     m_ui->titleWidget->setText(name);
     m_analysis->loadFromLrcFile(TTK::String::lrcDirPrefix() + name + LRC_FILE);
 }
@@ -209,7 +209,7 @@ void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
         info = m_songThread->songInfo();
     }
 
-    QPixmap pix(ART_DIR_FULL + info.m_singerName + SKN_FILE);
+    QPixmap pix(ART_DIR_FULL + info.m_artistName + SKN_FILE);
     if(pix.isNull())
     {
         pix.load(":/image/lb_default_art");

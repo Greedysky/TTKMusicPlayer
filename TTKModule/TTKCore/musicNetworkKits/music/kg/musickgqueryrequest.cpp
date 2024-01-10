@@ -80,14 +80,15 @@ void MusicKGQueryRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_singerName = TTK::String::charactersReplace(value["singername"].toString());
-                    info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-
                     info.m_songId = value["hash"].toString();
+                    info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
+
+                    info.m_artistName = TTK::String::charactersReplace(value["singername"].toString());
+
                     info.m_albumId = value["album_id"].toString();
                     info.m_albumName = TTK::String::charactersReplace(value["album_name"].toString());
 
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
                     info.m_year.clear();
                     info.m_trackNumber = "0";
 
@@ -132,14 +133,11 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                 value = value["data"].toMap();
 
                 TTK::MusicSongInformation info;
-                info.m_singerName = TTK::String::charactersReplace(value["singername"].toString());
-                info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
-                info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-
                 info.m_songId = value["hash"].toString();
+                info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
+
                 info.m_artistId = value["singerid"].toString();
-                info.m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
-                info.m_lrcUrl = TTK::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(info.m_songName, info.m_songId).arg(value["duration"].toInt() * TTK_DN_S2MS);
+                info.m_artistName = TTK::String::charactersReplace(value["singername"].toString());
 
                 const QVariantList &albumArray = value["album"].toList();
                 for(const QVariant &var : qAsConst(albumArray))
@@ -155,6 +153,9 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                     TTK_NETWORK_QUERY_CHECK();
                 }
 
+                info.m_coverUrl = value["imgurl"].toString().replace("{size}", "480");
+                info.m_lrcUrl = TTK::Algorithm::mdII(KG_SONG_LRC_URL, false).arg(info.m_songName, info.m_songId).arg(value["duration"].toInt() * TTK_DN_S2MS);
+                info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
                 info.m_year.clear();
                 info.m_trackNumber = "0";
 

@@ -240,8 +240,8 @@ namespace TTK
      */
     struct MusicArtistProperty
     {
-        QString m_artistId;
-        QString m_artistName;
+        QString m_id;
+        QString m_name;
     };
     TTK_DECLARE_LIST(MusicArtistProperty);
 
@@ -251,14 +251,14 @@ namespace TTK
      */
     struct MusicSongInformation
     {
-        QString m_artistId;
-        QString m_singerName;
         QString m_songId;
         QString m_songName;
+        QString m_artistId;
+        QString m_artistName;
         QString m_albumId;
         QString m_albumName;
-        QString m_lrcUrl;
         QString m_coverUrl;
+        QString m_lrcUrl;
         QString m_duration;
         QString m_year;
         QString m_trackNumber;

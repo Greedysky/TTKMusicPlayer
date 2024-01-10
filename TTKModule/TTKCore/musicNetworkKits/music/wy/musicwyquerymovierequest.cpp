@@ -184,10 +184,14 @@ void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
         if(value["code"].toInt() == 200)
         {
             value = value["data"].toMap();
+            TTK_NETWORK_QUERY_CHECK();
+
             TTK::MusicSongInformation info;
             info.m_songId = QString::number(id);
             info.m_songName = TTK::String::charactersReplace(value["name"].toString());
-            info.m_singerName = TTK::String::charactersReplace(value["artistName"].toString());
+
+            info.m_artistName = TTK::String::charactersReplace(value["artistName"].toString());
+
             info.m_duration = TTKTime::formatDuration(value["duration"].toInt());
 
             value = value["brs"].toMap();
@@ -256,13 +260,16 @@ void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
         if(value["code"].toInt() == 200)
         {
             value = value["data"].toMap();
+            TTK_NETWORK_QUERY_CHECK();
+
             TTK::MusicSongInformation info;
             info.m_songId = id;
             info.m_songName = TTK::String::charactersReplace(value["title"].toString());
-            info.m_duration = TTKTime::formatDuration(value["durationms"].toInt());
 
             const QVariantMap &artistObject = value["creator"].toMap();
-            info.m_singerName = TTK::String::charactersReplace(artistObject["nickname"].toString());
+            info.m_artistName = TTK::String::charactersReplace(artistObject["nickname"].toString());
+
+            info.m_duration = TTKTime::formatDuration(value["durationms"].toInt());
 
             const QVariantList &datas = value["resolutions"].toList();
             for(const QVariant &var : qAsConst(datas))

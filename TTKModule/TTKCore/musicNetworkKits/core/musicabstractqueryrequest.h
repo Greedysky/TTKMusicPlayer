@@ -27,14 +27,14 @@
 struct TTK_MODULE_EXPORT MusicResultInfoItem
 {
     QString m_songName;
-    QString m_singerName;
+    QString m_artistName;
     QString m_albumName;
     QString m_duration;
     QString m_type;
 
     MusicResultInfoItem()
         : m_songName(TTK_DEFAULT_STR),
-          m_singerName(TTK_DEFAULT_STR),
+          m_artistName(TTK_DEFAULT_STR),
           m_albumName(TTK_DEFAULT_STR),
           m_duration(TTK_DEFAULT_STR),
           m_type(TTK_DEFAULT_STR)
@@ -44,7 +44,7 @@ struct TTK_MODULE_EXPORT MusicResultInfoItem
 
     MusicResultInfoItem(const TTK::MusicSongInformation &info)
         : m_songName(info.m_songName),
-          m_singerName(info.m_singerName),
+          m_artistName(info.m_artistName),
           m_albumName(info.m_albumName),
           m_duration(info.m_duration)
     {

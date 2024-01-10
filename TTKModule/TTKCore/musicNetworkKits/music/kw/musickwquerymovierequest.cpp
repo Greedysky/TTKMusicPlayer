@@ -27,7 +27,7 @@ void MusicKWInterface::parseFromMovieInfo(TTK::MusicSongInformation *info)
     }
 
     info->m_songName = "Not Found";
-    info->m_singerName = "Anonymous";
+    info->m_artistName = "Anonymous";
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(info->m_songId));
@@ -49,7 +49,7 @@ void MusicKWInterface::parseFromMovieInfo(TTK::MusicSongInformation *info)
         {
             value = value["data"].toMap();
             info->m_songName = value["name"].toString();
-            info->m_singerName = value["artist"].toString();
+            info->m_artistName = value["artist"].toString();
             info->m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
         }
     }
@@ -189,10 +189,12 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_singerName = TTK::String::charactersReplace(value["ARTIST"].toString());
-                    info.m_songName = TTK::String::charactersReplace(value["SONGNAME"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * TTK_DN_S2MS);
                     info.m_songId = value["MUSICRID"].toString().remove("MUSIC_");
+                    info.m_songName = TTK::String::charactersReplace(value["SONGNAME"].toString());
+
+                    info.m_artistName = TTK::String::charactersReplace(value["ARTIST"].toString());
+
+                    info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * TTK_DN_S2MS);
 
                     TTK_NETWORK_QUERY_CHECK();
                     MusicKWInterface::parseFromMovieProperty(&info, value["FORMATS"].toString());
@@ -227,6 +229,7 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
 
     TTK::MusicSongInformation info;
     info.m_songId = m_queryValue;
+
     TTK_NETWORK_QUERY_CHECK();
     MusicKWInterface::parseFromMovieInfo(&info);
     TTK_NETWORK_QUERY_CHECK();

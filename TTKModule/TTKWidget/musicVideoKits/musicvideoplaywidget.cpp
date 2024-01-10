@@ -257,7 +257,7 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
     {
         const TTK::MusicSongProperty &prop = props.front();
         MusicVideoItem data;
-        data.m_name = info.m_singerName + " - " + info.m_songName;
+        data.m_name = info.m_artistName + " - " + info.m_songName;
         data.m_url = prop.m_url;
         data.m_id = info.m_songId;
         data.m_server = MUSIC_MOVIE_RADIO;

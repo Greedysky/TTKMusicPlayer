@@ -73,7 +73,7 @@ void MusicKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, b
             if(more)
             {
                 info->m_songName = value["songname"].toString();
-                info->m_singerName = value["singer"].toString();
+                info->m_artistName = value["singer"].toString();
             }
 
             value = value["mvdata"].toMap();
@@ -202,11 +202,12 @@ void MusicKGQueryMovieRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_singerName = TTK::String::charactersReplace(value["singername"].toString());
-                    info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
-
                     info.m_songId = value["mvhash"].toString();
+                    info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
+
+                    info.m_artistName = TTK::String::charactersReplace(value["singername"].toString());
+
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
 
                     TTK_NETWORK_QUERY_CHECK();
                     MusicKGInterface::parseFromMovieProperty(&info, false);
@@ -236,6 +237,7 @@ void MusicKGQueryMovieRequest::downLoadSingleFinished()
 
     TTK::MusicSongInformation info;
     info.m_songId = m_queryValue;
+
     TTK_NETWORK_QUERY_CHECK();
     MusicKGInterface::parseFromMovieInfo(&info);
     TTK_NETWORK_QUERY_CHECK();

@@ -49,15 +49,8 @@ void MusicFMRadioSongRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     TTK::MusicSongInformation info;
-                    info.m_songName = TTK::String::charactersReplace(value["name"].toString());
-                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt());
                     info.m_songId = value["id"].toString();
-                    info.m_lrcUrl = TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(info.m_songId);
-
-                    const QVariantMap &albumObject = value["album"].toMap();
-                    info.m_coverUrl = albumObject["picUrl"].toString();
-                    info.m_albumId = albumObject["id"].toString();
-                    info.m_albumName = TTK::String::charactersReplace(albumObject["name"].toString());
+                    info.m_songName = TTK::String::charactersReplace(value["name"].toString());
 
                     const QVariantList &artistsArray = value["artists"].toList();
                     for(const QVariant &artistValue : qAsConst(artistsArray))
@@ -69,10 +62,17 @@ void MusicFMRadioSongRequest::downLoadFinished()
 
                         const QVariantMap &artistObject = artistValue.toMap();
                         info.m_artistId = artistObject["id"].toString();
-                        info.m_singerName = TTK::String::charactersReplace(artistObject["name"].toString());
+                        info.m_artistName = TTK::String::charactersReplace(artistObject["name"].toString());
                         break; //just find first singer
                     }
 
+                    const QVariantMap &albumObject = value["album"].toMap();
+                    info.m_albumId = albumObject["id"].toString();
+                    info.m_albumName = TTK::String::charactersReplace(albumObject["name"].toString());
+
+                    info.m_coverUrl = albumObject["picUrl"].toString();
+                    info.m_lrcUrl = TTK::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(info.m_songId);
+                    info.m_duration = TTKTime::formatDuration(value["duration"].toInt());
                     info.m_year.clear();
                     info.m_trackNumber = value["no"].toString();
 
