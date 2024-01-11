@@ -2,11 +2,11 @@
 #include "musicitemrenameedit.h"
 #include "musicsettingmanager.h"
 #include "musictinyuiobject.h"
-#include "musicsong.h"
 #include "musicimageutils.h"
 #include "musicapplication.h"
 #include "musictopareawidget.h"
 #include "musicwidgetutils.h"
+#include "musicsong.h"
 
 MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent)
     : MusicFunctionToolBoxTopWidget(index, text, parent),

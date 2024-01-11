@@ -5,6 +5,7 @@
 #include "musicconnectionpool.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadbackgroundrequest.h"
+#include "musicsong.h"
 
 MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
     : QObject(parent),
@@ -57,8 +58,8 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
     }
 
     const QString &fileName = d->queryValue();
-    const QString &artistName = TTK::String::artistName(fileName);
-    const QString &songName = TTK::String::songName(fileName);
+    const QString &songName = TTK::generateSongTitle(fileName);
+    const QString &artistName = TTK::generateSongArtist(fileName);
 
     TTK::MusicSongInformation info = songInfos.front();
     for(const TTK::MusicSongInformation &var : qAsConst(songInfos))
@@ -124,12 +125,12 @@ bool MusicDownloadStatusModule::checkLrcValid() const
 
 bool MusicDownloadStatusModule::checkArtistCoverValid() const
 {
-    const QString &fileName = TTK::String::artistName(m_parent->currentFileName());
+    const QString &fileName = TTK::generateSongArtist(m_parent->currentFileName());
     return QFile::exists(ART_DIR_FULL + fileName + SKN_FILE);
 }
 
 bool MusicDownloadStatusModule::checkArtistBackgroundValid() const
 {
-    const QString &fileName = TTK::String::artistName(m_parent->currentFileName());
+    const QString &fileName = TTK::generateSongArtist(m_parent->currentFileName());
     return QFile::exists(BACKGROUND_DIR_FULL + fileName + "0" + SKN_FILE);
 }

@@ -162,7 +162,7 @@ public Q_SLOTS:
     /*!
      * Rename item artist label is finised.
      */
-    void setItemRenameFinished(const QString &name);
+    void itemRenameFinished(const QString &name);
     /*!
      * Music list songs sort by type.
      */

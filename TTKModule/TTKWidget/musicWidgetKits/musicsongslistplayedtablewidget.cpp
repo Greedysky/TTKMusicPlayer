@@ -2,7 +2,6 @@
 #include "musicsongsharingwidget.h"
 #include "musicsongslistplayedwidget.h"
 #include "musicrightareawidget.h"
-#include "musicstringutils.h"
 
 #include <qmath.h>
 
@@ -82,7 +81,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
     const QString &name = !m_songs->isEmpty() ? m_songs->at(index).name() : QString();
 
     m_songsPlayWidget = new MusicSongsListPlayedWidget(index, this);
-    m_songsPlayWidget->setParameter(name);
+    m_songsPlayWidget->initialize(name);
 
     setSpan(index, 0, 1, 5);
     setCellWidget(index, 0, m_songsPlayWidget);

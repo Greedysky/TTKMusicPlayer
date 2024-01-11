@@ -21,7 +21,7 @@ MusicPlaylistQueryItemWidget::MusicPlaylistQueryItemWidget(QWidget *parent)
     m_topListenButton = new QPushButton(this);
     m_topListenButton->setGeometry(0, 0, WIDTH_LABEL_SIZE, 20);
     m_topListenButton->setIcon(QIcon(":/tiny/btn_listen_hover"));
-    m_topListenButton->setText(" - ");
+    m_topListenButton->setText(TTK_DEFAULT_STR);
     m_topListenButton->setStyleSheet(TTK::UI::BorderStyle01 + TTK::UI::BackgroundStyle04 + TTK::UI::ColorStyle06);
 
     m_playButton = new QPushButton(this);
@@ -40,7 +40,7 @@ MusicPlaylistQueryItemWidget::MusicPlaylistQueryItemWidget(QWidget *parent)
 
     m_nameLabel = new QLabel(this);
     m_nameLabel->setGeometry(0, 150, WIDTH_LABEL_SIZE, 25);
-    m_nameLabel->setText(" - ");
+    m_nameLabel->setText(TTK_DEFAULT_STR);
 
     m_creatorLabel = new QLabel(this);
     m_creatorLabel->setGeometry(0, 175, WIDTH_LABEL_SIZE, 25);

@@ -1223,30 +1223,30 @@ void MusicSongsSummariziedWidget::updatePlayedList(int begin, int end)
         item.m_itemObject->setPlaylistRow(index);
     }
 
-    MusicPairItemList items;
+    TTK::IndexPropertyList items;
     if(end == -1)
     {
         for(int i = begin + 1; i < m_containerItems.count(); ++i)
         {
-            items << MusicPairItem(i + 1, i);
+            items << TTK::IndexProperty(i + 1, i);
         }
     }
     else
     {
-        items << MusicPairItem(begin, end);
+        items << TTK::IndexProperty(begin, end);
 
         if(begin > end)
         {
             for(int i = begin; i < end; ++i)
             {
-                items << MusicPairItem(i + 1, i);
+                items << TTK::IndexProperty(i + 1, i);
             }
         }
         else
         {
             for(int i = end; i > begin; --i)
             {
-                items << MusicPairItem(i, i - 1);
+                items << TTK::IndexProperty(i, i - 1);
             }
         }
     }

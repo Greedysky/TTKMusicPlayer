@@ -9,8 +9,7 @@
 #include "musiclrcanalysis.h"
 #include "musiclrcmanagerforinterior.h"
 #include "musicsettingmanager.h"
-#include "musicstringutils.h"
-#include "ttktime.h"
+#include "musicsong.h"
 
 #include <QTextBlock>
 #include <QPropertyAnimation>
@@ -186,8 +185,8 @@ void MusicLrcMakerWidget::setCurrentSongName(const QString &name)
 {
     m_plainText.clear();
     m_analysis->setCurrentFilePath(QString("%1%2%3").arg(TTK::String::lrcDirPrefix(), name, LRC_FILE));
-    m_ui->songNameEdit->setText(TTK::String::songName(name));
-    m_ui->artNameEdit->setText(TTK::String::artistName(name));
+    m_ui->songNameEdit->setText(TTK::generateSongTitle(name));
+    m_ui->artNameEdit->setText(TTK::generateSongArtist(name));
 }
 
 void MusicLrcMakerWidget::positionChanged(qint64 position)

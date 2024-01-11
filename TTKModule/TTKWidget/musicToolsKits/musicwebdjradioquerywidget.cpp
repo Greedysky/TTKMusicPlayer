@@ -30,7 +30,7 @@ MusicWebDJRadioQueryItemWidget::MusicWebDJRadioQueryItemWidget(QWidget *parent)
 
     m_nameLabel = new QLabel(this);
     m_nameLabel->setGeometry(0, 150, WIDTH_LABEL_SIZE, 25);
-    m_nameLabel->setText(" - ");
+    m_nameLabel->setText(TTK_DEFAULT_STR);
 
     m_creatorLabel = new QLabel(this);
     m_creatorLabel->setGeometry(0, 175, WIDTH_LABEL_SIZE, 25);

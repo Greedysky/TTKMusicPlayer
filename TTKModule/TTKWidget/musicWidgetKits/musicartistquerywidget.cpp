@@ -33,11 +33,11 @@ MusicArtistAlbumsItemWidget::MusicArtistAlbumsItemWidget(QWidget *parent)
 
     m_nameLabel = new QLabel(this);
     m_nameLabel->setGeometry(0, 150, WIDTH_LABEL_SIZE, 25);
-    m_nameLabel->setText(" - ");
+    m_nameLabel->setText(TTK_DEFAULT_STR);
 
     m_updateLabel = new QLabel(this);
     m_updateLabel->setGeometry(0, 175, WIDTH_LABEL_SIZE, 25);
-    m_updateLabel->setText(" - ");
+    m_updateLabel->setText(TTK_DEFAULT_STR);
 }
 
 MusicArtistAlbumsItemWidget::~MusicArtistAlbumsItemWidget()
@@ -326,7 +326,7 @@ void MusicArtistQueryWidget::setCurrentValue(const QString &value)
     MusicAbstractItemQueryWidget::setCurrentValue(value);
     m_networkRequest->setQueryMode(MusicAbstractQueryRequest::QueryMode::Meta);
     m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
-    m_networkRequest->startToSearch(TTK::String::artistName(value));
+    m_networkRequest->startToSearch(TTK::generateSongArtist(value));
 }
 
 void MusicArtistQueryWidget::setCurrentID(const QString &id)

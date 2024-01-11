@@ -44,7 +44,6 @@ void MusicConfigObject::checkDirectoryExist() const
 {
     directoryExist(TTK_LRC_DIR_FULL);
     directoryExist(TTK_MUSIC_DIR_FULL);
-    directoryExist(TTK_MOVIE_DIR_FULL);
 
     directoryExist(TTK_CACHE_DIR_FULL);
     directoryExist(TTK_ART_DIR_FULL);

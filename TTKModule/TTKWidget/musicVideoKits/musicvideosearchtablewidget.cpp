@@ -147,7 +147,7 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
     {
         const TTK::MusicSongProperty &prop = props.front();
         MusicVideoItem data;
-        data.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
+        data.m_name = TTK::generateSongName(item(row, 1)->toolTip(), item(row, 2)->toolTip());
         data.m_url = prop.m_url;
         data.m_id = info.m_songId;
         data.m_server = m_networkRequest->queryServer();

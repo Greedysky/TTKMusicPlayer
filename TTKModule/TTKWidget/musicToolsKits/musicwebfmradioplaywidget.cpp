@@ -7,6 +7,7 @@
 #include "musicimageutils.h"
 #include "musicfunctionuiobject.h"
 #include "musicdownloadwidget.h"
+#include "musicsong.h"
 
 MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -146,7 +147,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     m_ui->volumeSlider->setValue(0);
     m_ui->volumeSlider->setValue(v);
 
-    QString name = TTK::String::lrcDirPrefix() + info.m_artistName + " - " + info.m_songName + LRC_FILE;
+    QString name = TTK::String::lrcDirPrefix() + TTK::generateSongName(info.m_songName, info.m_artistName) + LRC_FILE;
     if(!QFile::exists(name))
     {
         MusicWYDownLoadTextRequest* d = new MusicWYDownLoadTextRequest(info.m_lrcUrl, name, this);
@@ -196,7 +197,7 @@ void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
         info = m_songThread->songInfo();
     }
 
-    const QString &name = (info.m_artistName + " - " + info.m_songName).trimmed();
+    const QString &name = TTK::generateSongName(info.m_songName, info.m_artistName).trimmed();
     m_ui->titleWidget->setText(name);
     m_analysis->loadFromLrcFile(TTK::String::lrcDirPrefix() + name + LRC_FILE);
 }

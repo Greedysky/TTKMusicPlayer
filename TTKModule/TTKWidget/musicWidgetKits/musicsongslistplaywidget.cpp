@@ -1,7 +1,6 @@
 #include "musicsongslistplaywidget.h"
 #include "musicsongmeta.h"
 #include "musicitemrenameedit.h"
-#include "musicstringutils.h"
 #include "musicwidgetutils.h"
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
@@ -9,6 +8,7 @@
 #include "musictinyuiobject.h"
 #include "musicsplititemclickedlabel.h"
 #include "musicwidgetheaders.h"
+#include "musicsong.h"
 
 #include <QTimer>
 
@@ -91,7 +91,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     connect(m_loveButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(addSongToLovestList()));
     connect(m_downloadButton, SIGNAL(clicked()), MusicLeftAreaWidget::instance(), SLOT(downloadSongToLocal()));
     connect(m_deleteButton, SIGNAL(clicked()), parent, SLOT(removeItemAt()));
-    connect(this, SIGNAL(renameFinished(QString)), parent, SLOT(setItemRenameFinished(QString)));
+    connect(this, SIGNAL(renameFinished(QString)), parent, SLOT(itemRenameFinished(QString)));
     connect(this, SIGNAL(enterChanged(int,int)), parent, SLOT(itemCellEntered(int,int)));
     connect(m_showMVButton, SIGNAL(clicked()), parent, SLOT(showPlayedMovieQueryWidget()));
     connect(addButton, SIGNAL(clicked()), parent, SLOT(addToPlayLater()));
@@ -126,13 +126,13 @@ void MusicSongsListPlayWidget::updateCurrentArtist()
     }
 
     const QString &name = m_songNameLabel->toolTip().trimmed();
-    if(!showArtistPicture(TTK::String::artistName(name)) && !showArtistPicture(TTK::String::songName(name)))
+    if(!showArtistPicture(TTK::generateSongArtist(name)) && !showArtistPicture(TTK::generateSongTitle(name)))
     {
         m_artistPictureLabel->setPixmap(QPixmap(":/image/lb_default_art").scaled(60, 60));
     }
 }
 
-void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &path, QString &time)
+void MusicSongsListPlayWidget::initialize(const QString &name, const QString &path, QString &time)
 {
     MusicSongMeta meta;
     const bool state = meta.read(path);
@@ -166,13 +166,13 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
         }
     }
 
-    if(!showArtistPicture(TTK::String::artistName(name)) && !showArtistPicture(TTK::String::songName(name)))
+    if(!showArtistPicture(TTK::generateSongArtist(name)) && !showArtistPicture(TTK::generateSongTitle(name)))
     {
         m_artistPictureLabel->setPixmap(QPixmap(":/image/lb_default_art").scaled(60, 60));
     }
 }
 
-void MusicSongsListPlayWidget::setItemRename()
+void MusicSongsListPlayWidget::enableRenameMode()
 {
     m_renameEdit = new MusicItemRenameEidt(m_songNameLabel->toolTip(), this);
     connect(m_renameEdit, SIGNAL(renameFinished(QString)), SLOT(changItemName(QString)));

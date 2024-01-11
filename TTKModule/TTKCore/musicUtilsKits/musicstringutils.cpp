@@ -107,28 +107,6 @@ bool TTK::String::isNetworkUrl(const QString &path)
     return path.startsWith(HTTP_PREFIX) || path.startsWith(HTTPS_PREFIX);
 }
 
-QString TTK::String::songName(const QString &value, const QString &key)
-{
-    const QStringList &s = TTK::String::split(value);
-    if(s.count() >= 2)
-    {
-        const int index = value.indexOf(key) + 1;
-        return value.right(value.length() - index).trimmed();
-    }
-    return value;
-}
-
-QString TTK::String::artistName(const QString &value, const QString &key)
-{
-    const QStringList &s = TTK::String::split(value);
-    if(s.count() >= 2)
-    {
-        const int index = value.indexOf(key);
-        return value.left(index).trimmed();
-    }
-    return value;
-}
-
 QString TTK::String::convertHtmlToPlain(const QString &value)
 {
     QTextDocument text;

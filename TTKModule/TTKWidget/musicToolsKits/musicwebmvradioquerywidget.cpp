@@ -32,7 +32,7 @@ MusicWebMVRadioQueryItemWidget::MusicWebMVRadioQueryItemWidget(QWidget *parent)
     m_nameLabel->setAlignment(Qt::AlignCenter);
     m_nameLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
     m_nameLabel->setStyleSheet(TTK::UI::ColorStyle06 + TTK::UI::FontStyle04 + TTK::UI::FontStyle01);
-    m_nameLabel->setText(" - ");
+    m_nameLabel->setText(TTK_DEFAULT_STR);
 }
 
 MusicWebMVRadioQueryItemWidget::~MusicWebMVRadioQueryItemWidget()

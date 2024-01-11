@@ -6,7 +6,6 @@
 #include "musicitemdelegate.h"
 #include "musicmessagebox.h"
 #include "musicprogresswidget.h"
-#include "musicstringutils.h"
 #include "musicsongsharingwidget.h"
 #include "musicrightareawidget.h"
 #include "musicopenfilewidget.h"
@@ -121,7 +120,7 @@ void MusicSongsListPlayTableWidget::selectRow(int index)
     QString timeLabel;
 
     m_songsPlayWidget = new MusicSongsListPlayWidget(index, this);
-    m_songsPlayWidget->setParameter(name, path, timeLabel);
+    m_songsPlayWidget->initialize(name, path, timeLabel);
 
     if(!m_songs->isEmpty())
     {
@@ -483,7 +482,7 @@ void MusicSongsListPlayTableWidget::showTimeOut()
 
         bool state;
         Q_EMIT isCurrentPlaylistRow(state);
-        m_songsInfoWidget->setVisible(state ? (m_songsPlayWidget && !m_songsPlayWidget->itemRenameState()) : true);
+        m_songsInfoWidget->setVisible(state ? (m_songsPlayWidget && !m_songsPlayWidget->isRenameMode()) : true);
     }
 }
 
@@ -504,7 +503,7 @@ void MusicSongsListPlayTableWidget::setChangSongName()
     //the playing widget allow renaming
     if((currentRow() == m_playRowIndex) && m_songsPlayWidget)
     {
-        m_songsPlayWidget->setItemRename();
+        m_songsPlayWidget->enableRenameMode();
         return;
     }
 
@@ -592,7 +591,7 @@ void MusicSongsListPlayTableWidget::addToPlayedList()
     MusicPlayedListPopWidget::instance()->append(m_playlistRow, (*m_songs)[row]);
 }
 
-void MusicSongsListPlayTableWidget::setItemRenameFinished(const QString &name)
+void MusicSongsListPlayTableWidget::itemRenameFinished(const QString &name)
 {
     if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)
     {

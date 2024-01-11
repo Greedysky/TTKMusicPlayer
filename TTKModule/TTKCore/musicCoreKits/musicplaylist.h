@@ -54,11 +54,6 @@ struct TTK_MODULE_EXPORT MusicPlayItem
 };
 TTK_DECLARE_LIST(MusicPlayItem);
 
-#ifndef MusicPairItem
-#define MusicPairItem std::pair<int, int>
-using MusicPairItemList = QList<MusicPairItem>;
-#endif
-
 static constexpr int PLAY_NEXT_LEVEL = -123;
 static constexpr int PLAY_PREVIOUS_LEVEL = -321;
 
@@ -127,7 +122,7 @@ public:
     /*!
      * Update item playlist row.
      */
-    void update(const MusicPairItemList &indexs);
+    void update(const TTK::IndexPropertyList &indexs);
 
     /*!
      * Find item index at container.

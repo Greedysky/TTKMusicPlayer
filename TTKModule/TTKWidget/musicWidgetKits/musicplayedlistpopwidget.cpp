@@ -80,7 +80,7 @@ void MusicPlayedListPopWidget::clearQueueState()
     m_playedListWidget->clearQueueState();
 }
 
-void MusicPlayedListPopWidget::updatePlayedList(const MusicPairItemList &indexs)
+void MusicPlayedListPopWidget::updatePlayedList(const TTK::IndexPropertyList &indexs)
 {
     m_playlist->update(indexs);
 }

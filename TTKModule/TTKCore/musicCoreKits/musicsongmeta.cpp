@@ -1,7 +1,7 @@
 #include "musicsongmeta.h"
-#include "ttktime.h"
 #include "musicformats.h"
 #include "musicstringutils.h"
+#include "ttktime.h"
 #include "ttkversion.h"
 
 #include <qmmp/decoder.h>

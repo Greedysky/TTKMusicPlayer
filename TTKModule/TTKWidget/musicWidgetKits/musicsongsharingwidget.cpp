@@ -5,6 +5,7 @@
 #include "musictoastlabel.h"
 #include "musicurlutils.h"
 #include "musiccoverrequest.h"
+#include "musicsong.h"
 
 #include "qrencode/qrcodewidget.h"
 
@@ -81,7 +82,7 @@ void MusicSongSharingWidget::setData(Module type, const QVariantMap &data)
     m_ui->sharedName->setToolTip(name);
     m_ui->sharedName->setText(TTK::Widget::elidedText(font(), name, Qt::ElideRight, 200));
 
-    QString path = ART_DIR_FULL + TTK::String::artistName(name) + SKN_FILE;
+    const QString &path = ART_DIR_FULL + TTK::generateSongArtist(name) + SKN_FILE;
     m_ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path) ? path : ":/image/lb_default_art").scaled(50, 50));
     m_ui->textEdit->setText(tr("I used to listen music #%1# by TTKMusicPlayer,").arg(name) + tr("and recommend it to you! (From #TTKMusicPlayer#)"));
 }

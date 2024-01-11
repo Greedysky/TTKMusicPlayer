@@ -1,6 +1,5 @@
 #include "musiclrcanalysis.h"
 #include "musiclrcfromkrc.h"
-#include "musicstringutils.h"
 #include "musicapplication.h"
 #include "ttktime.h"
 

@@ -21,7 +21,7 @@ namespace TTK
     /*!
      * Generate song artist.
     */
-    inline static QString generateSongArtist(const QString &v)
+    inline static QString generateSongArtist1(const QString &v)
     {
         return v.isEmpty() ? QObject::tr("Various Artist") : v;
     }
@@ -407,7 +407,7 @@ void MusicLocalManagerWidget::refreshItems()
 
         MusicSongInfoItem info;
         info.m_title = state ? TTK::generateSongName(meta.title(), meta.artist()) : TTK_DEFAULT_STR;
-        info.m_artist = state ? TTK::generateSongArtist(meta.artist()) : TTK_DEFAULT_STR;
+        info.m_artist = state ? TTK::generateSongArtist1(meta.artist()) : TTK_DEFAULT_STR;
         info.m_album = state ? TTK::generateSongAlbum(meta.album()) : TTK_DEFAULT_STR;
         info.m_track = state ? meta.trackNum() : TTK_DEFAULT_STR;
         info.m_year = state ? TTK::generateSongYear(meta.year()) : TTK_DEFAULT_STR;

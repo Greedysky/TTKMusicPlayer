@@ -9,6 +9,7 @@
 #include "musiccoremplayer.h"
 #include "musiclrcanalysis.h"
 #include "musictoastlabel.h"
+#include "musicsong.h"
 
 #include <QMovie>
 #include <QShortcut>
@@ -362,7 +363,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
 
     if(!m_songInfo.m_artistName.isEmpty())
     {
-        const QString &name = TTK::String::lrcDirPrefix() + m_songInfo.m_artistName + " - " + m_songInfo.m_songName + LRC_FILE;
+        const QString &name = TTK::String::lrcDirPrefix() + TTK::generateSongName(m_songInfo.m_songName, m_songInfo.m_artistName) + LRC_FILE;
         if(!QFile::exists(name))
         {
             MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(m_songInfo.m_lrcUrl, name, this);

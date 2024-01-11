@@ -57,7 +57,7 @@ void MusicSplitItemClickedLabel::mouseMoveEvent(QMouseEvent *event)
             m_currentString = var.trimmed();
             break;
         }
-        offset += (fs + TTK::Widget::fontTextWidth(font(), (" - ")));
+        offset += (fs + TTK::Widget::fontTextWidth(font(), " - "));
     }
     update();
 }

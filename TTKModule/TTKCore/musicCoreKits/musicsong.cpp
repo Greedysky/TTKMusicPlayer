@@ -1,5 +1,4 @@
 #include "musicsong.h"
-#include "musicstringutils.h"
 #include "musicnumberutils.h"
 #include "musicsongmeta.h"
 #include "musicformats.h"
@@ -50,14 +49,14 @@ MusicSong::MusicSong(const QString &path, const QString &playTime, const QString
     m_sizeStr = TTK::Number::sizeByteToLabel(m_size);
 }
 
-QString MusicSong::artist() const noexcept
-{
-    return TTK::String::artistName(m_name);
-}
-
 QString MusicSong::title() const noexcept
 {
-    return TTK::String::songName(m_name);
+    return TTK::generateSongTitle(m_name);
+}
+
+QString MusicSong::artist() const noexcept
+{
+    return TTK::generateSongArtist(m_name);
 }
 
 bool MusicSong::operator== (const MusicSong &other) const noexcept
@@ -116,6 +115,28 @@ QString TTK::trackRelatedPath(const QString &path)
 QString TTK::generateSongName(const QString &title, const QString &artist)
 {
     return (title.isEmpty() || artist.isEmpty()) ? artist + title : artist + " - " + title;
+}
+
+QString TTK::generateSongTitle(const QString &name, const QString &key)
+{
+    const QStringList &s = TTK::String::split(name);
+    if(s.count() >= 2)
+    {
+        const int index = name.indexOf(key) + 1;
+        return name.right(name.length() - index).trimmed();
+    }
+    return name;
+}
+
+QString TTK::generateSongArtist(const QString &name, const QString &key)
+{
+    const QStringList &s = TTK::String::split(name);
+    if(s.count() >= 2)
+    {
+        const int index = name.indexOf(key);
+        return name.left(index).trimmed();
+    }
+    return name;
 }
 
 MusicSongList TTK::generateSongList(const QString &path)

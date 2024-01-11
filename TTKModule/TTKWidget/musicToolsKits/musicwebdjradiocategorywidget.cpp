@@ -19,7 +19,7 @@ MusicWebDJRadioCategoryItemWidget::MusicWebDJRadioCategoryItemWidget(QWidget *pa
     m_nameLabel = new QLabel(this);
     m_nameLabel->setGeometry(0, 65, WIDTH_LABEL_SIZE, 25);
     m_nameLabel->setAlignment(Qt::AlignCenter);
-    m_nameLabel->setText(" - ");
+    m_nameLabel->setText(TTK_DEFAULT_STR);
 
     connect(this, SIGNAL(clicked()), SLOT(currentItemClicked()));
 }

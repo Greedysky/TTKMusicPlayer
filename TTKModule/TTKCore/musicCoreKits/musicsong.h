@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 #include "ttktime.h"
-#include "musicglobaldefine.h"
+#include "musicstringutils.h"
 
 /*! @brief The class of the music song info.
  * @author Greedysky <greedysky@163.com>
@@ -47,13 +47,13 @@ public:
     MusicSong(const QString &path, const QString &playTime, const QString &name = {}, bool track = false) noexcept;
 
     /*!
-     * Get music artist name.
-     */
-    QString artist() const noexcept;
-    /*!
      * Get music title name.
      */
     QString title() const noexcept;
+    /*!
+     * Get music artist name.
+     */
+    QString artist() const noexcept;
 
     /*!
      * Set music add time string.
@@ -144,10 +144,6 @@ private:
 };
 TTK_DECLARE_LIST(MusicSong);
 
-#ifndef MusicPairItem
-#define MusicPairItem std::pair<int, int>
-using MusicPairItemList = QList<MusicPairItem>;
-#endif
 
 /*! @brief The class of the music song sort tag.
  * @author Greedysky <greedysky@163.com>
@@ -207,10 +203,19 @@ namespace TTK
      * Remove track info in path.
      */
     TTK_MODULE_EXPORT QString trackRelatedPath(const QString &path);
+
     /*!
      * Generate song name.
      */
     TTK_MODULE_EXPORT QString generateSongName(const QString &title, const QString &artist);
+    /*!
+     * Get song title name.
+     */
+    TTK_MODULE_EXPORT QString generateSongTitle(const QString &name, const QString &key = TTK_DEFAULT_STR);
+    /*!
+     * Get song artist name.
+     */
+    TTK_MODULE_EXPORT QString generateSongArtist(const QString &name, const QString &key = TTK_DEFAULT_STR);
     /*!
      * Generate song playlist.
      */

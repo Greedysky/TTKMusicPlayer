@@ -37,7 +37,7 @@ void MusicSongCheckToolsRenameThread::run()
 
                 if((!meta.artist().isEmpty() && !meta.title().isEmpty()) && (meta.artist() != song.artist() || meta.title() != song.title()))
                 {
-                    m_datas << MusicSongCheckToolsRename(song.name(), meta.artist() + " - " + meta.title(), song.path());
+                    m_datas << MusicSongCheckToolsRename(song.name(), TTK::generateSongName(meta.title(), meta.artist()), song.path());
                 }
             }
         }

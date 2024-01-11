@@ -81,7 +81,6 @@
 //
 #define LRC_DIR                  TTK_STR_CAT("Lyric", TTK_SEPARATOR)
 #define MUSIC_DIR                TTK_STR_CAT("Music", TTK_SEPARATOR)
-#define MOVIE_DIR                TTK_STR_CAT("Movie", TTK_SEPARATOR)
 #define ARCHIVE_DIR              TTK_STR_CAT("Archive", TTK_SEPARATOR)
 //
 #define LANGUAGE_DIR             TTK_STR_CAT("GLanguage", TTK_SEPARATOR)
@@ -125,7 +124,6 @@
 //
 #define LRC_DIR_FULL             DOWNLOAD_DIR_FULL + LRC_DIR
 #define MUSIC_DIR_FULL           DOWNLOAD_DIR_FULL + MUSIC_DIR
-#define MOVIE_DIR_FULL           DOWNLOAD_DIR_FULL + MOVIE_DIR
 #define ARCHIVE_DIR_DIR_FULL     DOWNLOAD_DIR_FULL + ARCHIVE_DIR
 //
 #define CACHE_DIR_FULL           APPCACHE_DIR_FULL + CACHE_DIR
@@ -199,6 +197,26 @@ namespace TTK
         Super,           /*!< sq quality*/
         Lossless         /*!< cd quality*/
     };
+
+
+    /*! @brief The class of the index property.
+     * @author Greedysky <greedysky@163.com>
+     */
+    struct IndexProperty
+    {
+        int m_first;
+        int m_second;
+
+        IndexProperty() = default;
+
+        IndexProperty(int first, int second)
+            : m_first(first),
+              m_second(second)
+        {
+
+        }
+    };
+    TTK_DECLARE_LIST(IndexProperty);
 
 
     /*! @brief The class of the music song property.

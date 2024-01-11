@@ -216,7 +216,7 @@ void MusicSongSearchTableWidget::searchActionClicked(QAction *action)
         case 0: downloadQueryResult(row); break;
         case 1: Q_EMIT restartSearchQuery(info.m_songName); break;
         case 2: MusicRightAreaWidget::instance()->showArtistFound(info.m_artistName, info.m_artistId); break;
-        case 3: Q_EMIT restartSearchQuery(info.m_artistName + " - " + info.m_songName); break;
+        case 3: Q_EMIT restartSearchQuery(TTK::generateSongName(info.m_songName, info.m_artistName)); break;
         case 4: addSearchMusicToPlaylist(row, true); break;
         case 5: MusicRightAreaWidget::instance()->showAlbumFound(info.m_albumName, info.m_albumId); break;
         default: break;
@@ -265,7 +265,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
         const TTK::MusicSongProperty &prop = songInfo.m_songProps.front();
 
         MusicResultDataItem result;
-        result.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
+        result.m_name = TTK::generateSongName(item(row, 1)->toolTip(), item(row, 2)->toolTip());
         result.m_updateTime = songInfo.m_duration;
         result.m_id = songInfo.m_songId;
         result.m_nickName = prop.m_url;

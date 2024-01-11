@@ -299,7 +299,7 @@ void MusicDownloadWidget::startToRequestMovie(const TTK::MusicSongInformation &i
         return;
     }
 
-    const QString &downloadPrefix = MOVIE_DIR_FULL;
+    const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
     QString fileName = MusicRulesAnalysis::parse(info, G_SETTING_PTR->value(MusicSettingManager::DownloadFileNameRule).toString());
     QString downloadPath = QString("%1%2.%3").arg(downloadPrefix, fileName, prop.m_format);
 
@@ -343,8 +343,8 @@ void MusicDownloadWidget::downLoadNormalFinished()
     }
 
     const QString &fileName = m_networkRequest->queryValue();
-    const QString &artistName = TTK::String::artistName(fileName);
-    const QString &songName = TTK::String::songName(fileName);
+    const QString &songName = TTK::generateSongTitle(fileName);
+    const QString &artistName = TTK::generateSongArtist(fileName);
 
     for(const TTK::MusicSongInformation &var : qAsConst(songInfos))
     {

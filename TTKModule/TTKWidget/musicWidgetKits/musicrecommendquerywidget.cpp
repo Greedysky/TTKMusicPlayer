@@ -34,7 +34,7 @@ void MusicRecommendQueryWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
     m_queryTableWidget->setQueryInput(G_DOWNLOAD_QUERY_PTR->makeRecommendRequest(this));
-    m_queryTableWidget->startSearchQuery(TTK::String::songName(value));
+    m_queryTableWidget->startSearchQuery(TTK::generateSongTitle(value));
     createLabels();
 }
 

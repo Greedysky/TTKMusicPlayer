@@ -67,7 +67,7 @@ MusicSongsListPlayedWidget::~MusicSongsListPlayedWidget()
     delete m_moreButton;
 }
 
-void MusicSongsListPlayedWidget::setParameter(const QString &name)
+void MusicSongsListPlayedWidget::initialize(const QString &name)
 {
     m_textLabel->setText(TTK::Widget::elidedText(font(), name, Qt::ElideRight, 168));
     m_textLabel->setToolTip(name);

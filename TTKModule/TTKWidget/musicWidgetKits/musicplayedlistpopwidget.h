@@ -91,7 +91,7 @@ public:
     /*!
      * Update current played item list.
      */
-    void updatePlayedList(const MusicPairItemList &indexs);
+    void updatePlayedList(const TTK::IndexPropertyList &indexs);
 
     /*!
      * Remove music from data list.

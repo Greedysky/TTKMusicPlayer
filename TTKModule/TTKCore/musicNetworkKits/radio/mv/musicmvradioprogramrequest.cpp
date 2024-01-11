@@ -166,9 +166,9 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                             info.m_songName = TTK::String::charactersReplace(value["name"].toString());
 
                             info.m_artistName = info.m_songName;
-                            if(info.m_artistName.contains("-"))
+                            if(info.m_artistName.contains(TTK_DEFAULT_STR))
                             {
-                                const QStringList &ds = info.m_artistName.split("-");
+                                const QStringList &ds = info.m_artistName.split(TTK_DEFAULT_STR);
                                 if(ds.count() >= 2)
                                 {
                                     info.m_artistName = ds.front().trimmed();

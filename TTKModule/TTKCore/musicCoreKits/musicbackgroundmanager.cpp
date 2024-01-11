@@ -1,5 +1,5 @@
 #include "musicbackgroundmanager.h"
-#include "musicstringutils.h"
+#include "musicsong.h"
 
 MusicBackgroundManager::MusicBackgroundManager()
     : m_currentIndex(0)
@@ -9,7 +9,7 @@ MusicBackgroundManager::MusicBackgroundManager()
 
 void MusicBackgroundManager::setArtistName(const QString &name)
 {
-    m_currentArtistName = TTK::String::artistName(name);
+    m_currentArtistName = TTK::generateSongArtist(name);
     updateArtistPhotoList();
 }
 

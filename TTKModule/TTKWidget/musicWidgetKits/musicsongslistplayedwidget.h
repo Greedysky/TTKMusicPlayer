@@ -46,7 +46,7 @@ public:
     /*!
      * Update item artist label by name.
      */
-    void setParameter(const QString &name);
+    void initialize(const QString &name);
 
 Q_SIGNALS:
     /*!

@@ -1,5 +1,5 @@
 #include "musicremotewidgetforcomplexstyle.h"
-#include "musicstringutils.h"
+#include "musicsong.h"
 
 MusicRemoteWidgetForComplexStyle::MusicRemoteWidgetForComplexStyle(QWidget *parent)
     : MusicRemoteWidget(parent)
@@ -58,8 +58,8 @@ void MusicRemoteWidgetForComplexStyle::setLabelText(const QString &value)
 {
     const bool flag = (TTK::String::split(value).count() == 1);
 
-    m_songName->setText(TTK::String::songName(value));
-    m_songArtist->setText(flag ? "--" : TTK::String::artistName(value));
+    m_songName->setText(TTK::generateSongTitle(value));
+    m_songArtist->setText(flag ? "--" : TTK::generateSongArtist(value));
 
     if(!showArtPicture(m_songArtist->text()) && !showArtPicture(m_songName->text()))
     {

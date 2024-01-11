@@ -1,7 +1,5 @@
 #include "musicplaylist.h"
-#include "musicstringutils.h"
 #include "musicsong.h"
-#include "ttktime.h"
 
 #include <random>
 
@@ -139,24 +137,24 @@ void MusicPlaylist::clear()
     removeQueue();
 }
 
-static void updatePlayItems(const MusicPairItemList &indexs, MusicPlayItemList &items)
+static void updatePlayItems(const TTK::IndexPropertyList &indexs, MusicPlayItemList &items)
 {
     for(MusicPlayItem &item : items)
     {
-        for(const MusicPairItem &index : qAsConst(indexs))
+        for(const TTK::IndexProperty &index : qAsConst(indexs))
         {
-            if(item.m_playlistRow != index.first)
+            if(item.m_playlistRow != index.m_first)
             {
                 continue;
             }
 
-            item.m_playlistRow = index.second;
+            item.m_playlistRow = index.m_second;
             break;
         }
     }
 }
 
-void MusicPlaylist::update(const MusicPairItemList &indexs)
+void MusicPlaylist::update(const TTK::IndexPropertyList &indexs)
 {
     updatePlayItems(indexs, m_mediaList);
     updatePlayItems(indexs, m_queueList);

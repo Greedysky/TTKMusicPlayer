@@ -217,7 +217,7 @@ void MusicItemQueryTableWidget::createResultItem(const MusicResultInfoItem &song
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(songItem.m_artistName + " - " + songItem.m_songName);
+    item->setToolTip(TTK::generateSongName(songItem.m_songName, songItem.m_artistName));
     item->setText(TTK::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
     item->setForeground(QColor(TTK::UI::Color02));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
@@ -288,7 +288,7 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const TTK::MusicSongInformation
         const TTK::MusicSongProperty &prop = songInfo.m_songProps.front();
 
         MusicResultDataItem result;
-        result.m_name = info.m_artistName + " - " + info.m_songName;
+        result.m_name = TTK::generateSongName(info.m_songName, info.m_artistName);
         result.m_updateTime = info.m_duration;
         result.m_id = info.m_songId;
         result.m_nickName = prop.m_url;

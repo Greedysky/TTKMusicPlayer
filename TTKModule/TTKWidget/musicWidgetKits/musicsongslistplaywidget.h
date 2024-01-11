@@ -52,19 +52,20 @@ public:
      * Update current artist when it download finished.
      */
     void updateCurrentArtist();
+
     /*!
      * Update item artist label by name.
      */
-    void setParameter(const QString &name, const QString &path, QString &time);
+    void initialize(const QString &name, const QString &path, QString &time);
     /*!
      * Rename item artist label name.
      */
-    void setItemRename();
+    void enableRenameMode();
 
     /*!
      * Get rename item artist label state.
      */
-    inline bool itemRenameState() { return m_renameEdit != nullptr; }
+    inline bool isRenameMode() { return m_renameEdit != nullptr; }
     /*!
      * Set current play index.
      */
