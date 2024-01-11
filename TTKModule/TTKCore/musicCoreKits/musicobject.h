@@ -24,7 +24,6 @@
 #include "ttkqtglobal.h"
 #include "ttkqtobject.h"
 
-//
 #define TKF_FILE_SUFFIX          "tkf"
 #define TKX_FILE_SUFFIX          "tkx"
 #define TKM_FILE_SUFFIX          "tkm"

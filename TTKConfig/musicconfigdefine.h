@@ -20,12 +20,10 @@
  ***************************************************************************/
 
 #include "musicobject.h"
-#include "ttkmoduleexport.h"
 
-//
-#define TTK_DOWNLOAD_DIR_FULL      TTK::applicationPath() + TTK_PDIR + DOWNLOAD_DIR
-#define TTK_LRC_DIR_FULL           TTK_DOWNLOAD_DIR_FULL + LRC_DIR
-#define TTK_MUSIC_DIR_FULL         TTK_DOWNLOAD_DIR_FULL + MUSIC_DIR
+#define TTK_DOWNLOAD_DIR_FULL      DOWNLOAD_DIR_FULL
+#define TTK_LRC_DIR_FULL           LRC_DIR_FULL
+#define TTK_MUSIC_DIR_FULL         MUSIC_DIR_FULL
 //
 #define TTK_CACHE_DIR_FULL         CACHE_DIR_FULL
 #define TTK_ART_DIR_FULL           ART_DIR_FULL
@@ -39,8 +37,8 @@
 #define TTK_SEARCH_PATH_FULL       SEARCH_PATH_FULL
 #define TTK_USER_THEME_DIR_FULL    USER_THEME_DIR_FULL
 //
-#define TTK_THEME_DIR_FULL         TTK::applicationPath() + THEME_DIR
-#define TTK_PLUGINS_DIR_FULL       TTK::applicationPath() + PLUGINS_DIR
-#define TTK_LANGUAGE_DIR_FULL      TTK::applicationPath() + LANGUAGE_DIR
+#define TTK_THEME_DIR_FULL         THEME_DIR_FULL
+#define TTK_PLUGINS_DIR_FULL       PLUGINS_DIR_FULL
+#define TTK_LANGUAGE_DIR_FULL      LANGUAGE_DIR_FULL
 
 #endif // MUSICCONFIGDEFINE_H
