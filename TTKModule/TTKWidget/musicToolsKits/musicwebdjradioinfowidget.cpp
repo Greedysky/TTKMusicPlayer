@@ -44,7 +44,7 @@ MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)
 void MusicWebDJRadioInfoWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
-    m_queryTableWidget->startSearchQuery(value);
+    m_queryTableWidget->startToSearchByText(value);
 }
 
 void MusicWebDJRadioInfoWidget::resizeWidget()

@@ -167,7 +167,7 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultDataItem &i
 
 void MusicArtistMvsQueryWidget::currentItemClicked(const QString &id)
 {
-    MusicRightAreaWidget::instance()->movieSearchBy(id);
+    MusicRightAreaWidget::instance()->movieSearchByID(id);
 }
 
 void MusicArtistMvsQueryWidget::buttonClicked(int index)
@@ -261,7 +261,7 @@ void MusicArtistAlbumsQueryWidget::createArtistAlbumsItem(const MusicResultDataI
 
 void MusicArtistAlbumsQueryWidget::currentItemClicked(const QString &id)
 {
-    MusicRightAreaWidget::instance()->albumSearchBy(id);
+    MusicRightAreaWidget::instance()->albumSearchByID(id);
 }
 
 void MusicArtistAlbumsQueryWidget::buttonClicked(int index)
@@ -334,7 +334,7 @@ void MusicArtistQueryWidget::setCurrentID(const QString &id)
     MusicAbstractItemQueryWidget::setCurrentValue(id);
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeArtistRequest(this);
     m_queryTableWidget->setQueryInput(d);
-    m_queryTableWidget->startSearchQuery(id);
+    m_queryTableWidget->startToSearchByText(id);
     connect(d, SIGNAL(createArtistItem(MusicResultDataItem)), SLOT(createArtistItem(MusicResultDataItem)));
 }
 

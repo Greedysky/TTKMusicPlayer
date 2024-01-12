@@ -50,7 +50,7 @@ void MusicAlbumQueryWidget::setCurrentID(const QString &id)
 {
     MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
     m_queryTableWidget->setQueryInput(d);
-    m_queryTableWidget->startSearchQuery(id);
+    m_queryTableWidget->startToSearchByText(id);
     connect(d, SIGNAL(createAlbumItem(MusicResultDataItem)), SLOT(createAlbumItem(MusicResultDataItem)));
 }
 

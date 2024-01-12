@@ -34,7 +34,7 @@ MusicSongSearchTableWidget::~MusicSongSearchTableWidget()
     removeItems();
 }
 
-void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
+void MusicSongSearchTableWidget::startToSearchByText(const QString &text)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -59,7 +59,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     manager.reset();
     manager.writeBuffer(records);
 
-    MusicItemSearchTableWidget::startSearchQuery(text);
+    MusicItemSearchTableWidget::startToSearchByText(text);
 
     m_networkRequest->setQueryType(MusicAbstractQueryRequest::QueryType::Music);
     m_networkRequest->startToSearch(text);
@@ -77,7 +77,7 @@ void MusicSongSearchTableWidget::downloadQueryResult(int row)
     widget->show();
 }
 
-void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
+void MusicSongSearchTableWidget::startToSearchByID(const QString &text)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -85,7 +85,7 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
         return;
     }
 
-    MusicItemSearchTableWidget::startSearchQuery(text);
+    MusicItemSearchTableWidget::startToSearchByText(text);
     m_networkRequest->startToSearchByID(text);
 }
 
@@ -214,9 +214,9 @@ void MusicSongSearchTableWidget::searchActionClicked(QAction *action)
     switch(action->data().toInt())
     {
         case 0: downloadQueryResult(row); break;
-        case 1: Q_EMIT restartSearchQuery(info.m_songName); break;
+        case 1: Q_EMIT restartToSearchQuery(info.m_songName); break;
         case 2: MusicRightAreaWidget::instance()->showArtistFound(info.m_artistName, info.m_artistId); break;
-        case 3: Q_EMIT restartSearchQuery(TTK::generateSongName(info.m_songName, info.m_artistName)); break;
+        case 3: Q_EMIT restartToSearchQuery(TTK::generateSongName(info.m_songName, info.m_artistName)); break;
         case 4: addSearchMusicToPlaylist(row, true); break;
         case 5: MusicRightAreaWidget::instance()->showAlbumFound(info.m_albumName, info.m_albumId); break;
         default: break;
@@ -316,7 +316,7 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
     setLayout(boxLayout);
 
     createToolWidget(toolWidget);
-    connect(m_searchTableWidget, SIGNAL(restartSearchQuery(QString)), MusicRightAreaWidget::instance(), SLOT(showSongSearchedFound(QString)));
+    connect(m_searchTableWidget, SIGNAL(restartToSearchQuery(QString)), MusicRightAreaWidget::instance(), SLOT(showSongSearchedFound(QString)));
 }
 
 MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
@@ -326,7 +326,7 @@ MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
     delete m_searchTableWidget;
 }
 
-void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name)
+void MusicSongSearchOnlineWidget::startToSearchByText(const QString &name)
 {
     setResizeLabelText(name);
     if(!m_resizeWidgets.isEmpty())
@@ -334,10 +334,10 @@ void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name)
         TTKObjectCast(QCheckBox*, m_resizeWidgets[0])->setChecked(false);
     }
 
-    m_searchTableWidget->startSearchQuery(name);
+    m_searchTableWidget->startToSearchByText(name);
 }
 
-void MusicSongSearchOnlineWidget::startSearchSingleQuery(const QString &name)
+void MusicSongSearchOnlineWidget::startToSearchByID(const QString &name)
 {
     setResizeLabelText(name);
     if(!m_resizeWidgets.isEmpty())
@@ -345,7 +345,7 @@ void MusicSongSearchOnlineWidget::startSearchSingleQuery(const QString &name)
         TTKObjectCast(QCheckBox*, m_resizeWidgets[0])->setChecked(false);
     }
 
-    m_searchTableWidget->startSearchSingleQuery(name);
+    m_searchTableWidget->startToSearchByID(name);
 }
 
 void MusicSongSearchOnlineWidget::resizeWindow()

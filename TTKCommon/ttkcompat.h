@@ -21,18 +21,41 @@
 
 #include "ttkglobal.h"
 
-#if !defined(_MSC_VER) && !TTK_HAS_CXX14
+namespace TTK
+{
+template <typename _Tp>
+inline constexpr const _Tp& min(const _Tp &a, const _Tp &b)
+{
+    return (a < b) ? a : b;
+}
+
+template <typename _Tp>
+inline constexpr const _Tp& max(const _Tp &a, const _Tp &b)
+{
+    return (a < b) ? b : a;
+}
+}
+
 namespace std
 {
+#if !defined(_MSC_VER) && !TTK_HAS_CXX14
 /// Assign @p __new_val to @p __obj and return its previous value.
 template <typename _Tp, typename _Up = _Tp>
-inline _Tp exchange(_Tp& __obj, _Up&& __new_val) noexcept
+inline _Tp exchange(_Tp &__obj, _Up &&__new_val) noexcept
 {
     _Tp __old_val = std::move(__obj);
     __obj = std::forward<_Up>(__new_val);
     return __old_val;
 }
+#endif
+
+#if !TTK_HAS_CXX17
+template <typename _Tp>
+inline constexpr const _Tp& clamp(const _Tp &_Val, const _Tp &_Min_val, const _Tp &_Max_val)
+{
+    return TTK::max(_Min_val, TTK::min(_Max_val, _Val));
 }
 #endif
+}
 
 #endif // TTKCOMPAT_H

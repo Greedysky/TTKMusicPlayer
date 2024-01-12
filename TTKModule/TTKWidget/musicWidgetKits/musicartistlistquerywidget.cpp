@@ -175,7 +175,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultDataItem 
 
 void MusicArtistListQueryWidget::currentArtistListClicked(const MusicResultDataItem &item)
 {
-    MusicRightAreaWidget::instance()->artistSearchBy(item.m_id);
+    MusicRightAreaWidget::instance()->artistSearchByID(item.m_id);
 }
 
 void MusicArtistListQueryWidget::categoryChanged(const MusicResultsCategoryItem &category)

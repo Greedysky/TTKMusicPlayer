@@ -53,22 +53,22 @@ public:
     ~MusicVideoSearchTableWidget();
 
     /*!
-     * Start search query by text.
+     * Start to search query by text.
      */
-    virtual void startSearchQuery(const QString &text) override final;
+    virtual void startToSearchByText(const QString &text) override final;
     /*!
      * Download query result data.
      */
     virtual void downloadQueryResult(int row) override final;
 
     /*!
-     * Start search query by given id.
+     * Start to search query by given id.
      */
-    void startSearchSingleQuery(const QString &text);
+    void startToSearchByID(const QString &text);
     /*!
-     * Start search query by given data.
+     * Start to search query by given data.
      */
-    void startSearchSingleQuery(const QVariant &data);
+    void startToSearchByID(const QVariant &data);
     /*!
      * Resize section bound by resize called.
      */

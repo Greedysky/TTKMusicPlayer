@@ -130,9 +130,8 @@ void MusicWYQueryMovieRequest::downLoadFinished()
                     }
                     else if(type == 1)
                     {
-                        const QString &vid = value["vid"].toString();
                         TTK_NETWORK_QUERY_CHECK();
-                        parseFromVideoList(vid);
+                        parseFromVideoList(value["vid"].toString());
                         TTK_NETWORK_QUERY_CHECK();
                     }
                 }

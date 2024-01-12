@@ -42,7 +42,7 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     connect(m_ui->label_checkBox, SIGNAL(clicked(bool)), m_ui->tableWidget, SLOT(checkedItemsState(bool)));
     connect(m_ui->tableWidget, SIGNAL(resolvedSuccess()), SLOT(lrcSearchFinished()));
     connect(m_ui->tableWidget, SIGNAL(lrcDownloadStateChanged(QString)), SLOT(lrcDownloadStateChanged(QString)));
-    connect(m_ui->tableWidget, SIGNAL(restartSearchQuery(QString)), SLOT(setCurrentSongName(QString)));
+    connect(m_ui->tableWidget, SIGNAL(restartToSearchQuery(QString)), SLOT(setCurrentSongName(QString)));
 }
 
 MusicLrcSearchWidget::~MusicLrcSearchWidget()
@@ -57,6 +57,7 @@ void MusicLrcSearchWidget::setCurrentSongName(const QString &name) const
         lrcSearchFinished();
         return;
     }
+
     m_ui->songSearchEdit->setText(name);
     lrcSearchButtonClicked();
 }
@@ -70,7 +71,7 @@ void MusicLrcSearchWidget::lrcSearchButtonClicked() const
 {
     m_ui->stateLabel->setText(tr("Lrc is searching now"));
     const QString &text = m_ui->songSearchEdit->text().trimmed();
-    m_ui->tableWidget->startSearchQuery(text);
+    m_ui->tableWidget->startToSearchByText(text);
     m_ui->functionTopLabel->setText(tr("&nbsp;find <font color=#158FE1> %1 </font> result").arg(TTK::Widget::elidedText(font(), text, Qt::ElideRight, 245)));
 }
 

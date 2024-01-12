@@ -56,7 +56,7 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
                 return;
             }
 
-            MusicRightAreaWidget::instance()->movieRadioSearchBy(QVariant::fromValue<TTK::MusicSongInformation>(songInfos[row]));
+            MusicRightAreaWidget::instance()->movieRadioSearchByID(QVariant::fromValue<TTK::MusicSongInformation>(songInfos[row]));
             break;
         }
         case 7: downloadQueryResult(row); break;
@@ -127,7 +127,7 @@ MusicWebMVRadioInfoWidget::MusicWebMVRadioInfoWidget(QWidget *parent)
 void MusicWebMVRadioInfoWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
-    m_queryTableWidget->startSearchQuery(value);
+    m_queryTableWidget->startToSearchByText(value);
 }
 
 void MusicWebMVRadioInfoWidget::resizeWidget()

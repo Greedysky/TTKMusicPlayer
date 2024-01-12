@@ -53,10 +53,10 @@ public:
     MusicAbstractQueryRequest *queryInput() const;
 
     /*!
-     * Start search query by text.
+     * Start to search query by text.
      * Subclass should implement this function.
      */
-    virtual void startSearchQuery(const QString &text) = 0;
+    virtual void startToSearchByText(const QString &text) = 0;
     /*!
      * Download query result data.
      * Subclass should implement this function.
@@ -65,13 +65,13 @@ public:
 
 Q_SIGNALS:
     /*!
+     * Restart search to query by name.
+     */
+    void restartToSearchQuery(const QString &name);
+    /*!
      * Add current network music buffer to playlist.
      */
     void songBufferToPlaylist(const MusicResultDataItem &songItem);
-    /*!
-     * Restart search query by name.
-     */
-    void restartSearchQuery(const QString &name);
 
 public Q_SLOTS:
     /*!

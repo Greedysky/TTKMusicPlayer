@@ -279,7 +279,7 @@ if(WIN32)
   install(FILES "${MUSIC_UTILS_DIR}/resource/qicon.dll" DESTINATION "${MUSIC_INSTALL_DIR}")
 else(UNIX)
   install(DIRECTORY "${MUSIC_UTILS_DIR}/deploy" DESTINATION "${MUSIC_INSTALL_DIR}")
-  install(FILES "${MUSIC_UTILS_DIR}/.ttk_runtime" DESTINATION "${MUSIC_INSTALL_DIR}")
+  install(FILES "${MUSIC_UTILS_DIR}/ttk_runtime" DESTINATION "${MUSIC_INSTALL_DIR}")
   install(FILES "${MUSIC_UTILS_DIR}/deploy/share/appdata/ttkmusicplayer.appdata.xml" DESTINATION "${MUSIC_INSTALL_DIR}/share/metainfo")
 endif()
 # copy run resource

@@ -99,7 +99,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_leaverAnimation->addAnimation(ctrlAnimation);
 
     connect(m_videoTable, SIGNAL(mediaUrlPathChanged(MusicVideoItem)), SLOT(mediaUrlPathChanged(MusicVideoItem)));
-    connect(m_videoTable, SIGNAL(restartSearchQuery(QString)), SLOT(videoResearchButtonSearched(QString)));
+    connect(m_videoTable, SIGNAL(restartToSearchQuery(QString)), SLOT(videoResearchButtonSearched(QString)));
     connect(m_searchEdit, SIGNAL(trigger(QString)), SLOT(videoResearchButtonSearched(QString)));
 
     connect(m_videoFloatWidget, SIGNAL(searchButtonClicked()), SLOT(switchToSearchTable()));
@@ -245,12 +245,12 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
 {
     switchToSearchTable();
     m_searchEdit->editor()->setText(name);
-    m_videoTable->startSearchQuery(name);
+    m_videoTable->startToSearchByText(name);
 }
 
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
 {
-    m_videoTable->startSearchSingleQuery(data);
+    m_videoTable->startToSearchByID(data);
     const TTK::MusicSongInformation info(data.value<TTK::MusicSongInformation>());
     const TTK::MusicSongPropertyList &props = info.m_songProps;
     if(!props.isEmpty())
@@ -265,10 +265,10 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
     }
 }
 
-void MusicVideoPlayWidget::startSearchSingleQuery(const QString &name)
+void MusicVideoPlayWidget::startToSearchByID(const QString &name)
 {
     switchToSearchTable();
-    m_videoTable->startSearchSingleQuery(name);
+    m_videoTable->startToSearchByID(name);
 }
 
 void MusicVideoPlayWidget::mediaUrlChanged(const QString &url)

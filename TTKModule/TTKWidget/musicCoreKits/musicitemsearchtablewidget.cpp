@@ -13,7 +13,7 @@ MusicItemSearchTableWidget::~MusicItemSearchTableWidget()
     delete m_actionGroup;
 }
 
-void MusicItemSearchTableWidget::startSearchQuery(const QString &text)
+void MusicItemSearchTableWidget::startToSearchByText(const QString &text)
 {
     Q_UNUSED(text);
     setLoadingStatus(true);
@@ -34,9 +34,9 @@ void MusicItemSearchTableWidget::searchActionClicked(QAction *action)
     switch(action->data().toInt())
     {
         case 0: downloadQueryResult(row); break;
-        case 1: Q_EMIT restartSearchQuery(songName); break;
-        case 2: Q_EMIT restartSearchQuery(artistName); break;
-        case 3: Q_EMIT restartSearchQuery(TTK::generateSongName(songName, artistName)); break;
+        case 1: Q_EMIT restartToSearchQuery(songName); break;
+        case 2: Q_EMIT restartToSearchQuery(artistName); break;
+        case 3: Q_EMIT restartToSearchQuery(TTK::generateSongName(songName, artistName)); break;
         default: break;
     }
 }

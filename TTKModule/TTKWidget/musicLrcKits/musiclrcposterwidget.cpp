@@ -109,7 +109,7 @@ void MusicLrcPosterItemWidget::drawTheme1(QPainter *painter)
     }
     //
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
-    const QString &title = QString("--- %1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("--- %1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     v = TTK::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 4 * ITEM_BORDER) + 1;
     v = 3 * ITEM_BORDER + v * lineHeight;
@@ -136,7 +136,7 @@ void MusicLrcPosterItemWidget::drawTheme2(QPainter *painter)
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     //
-    const QString &title = QString("--- %1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("--- %1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     v = TTK::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
     v = 3 * ITEM_BORDER + v * lineHeight;
@@ -176,7 +176,7 @@ void MusicLrcPosterItemWidget::drawTheme3(QPainter *painter)
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     painter->translate(2 * ITEM_BORDER, pix.height());
     painter->rotate(TTK_AN_90);
-    const QString &title = QString("--- %1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("--- %1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     list << TTK::Widget::fontTextWidth(font(), title);
     painter->drawText(8 * ITEM_BORDER, 0, title);
@@ -223,7 +223,7 @@ void MusicLrcPosterItemWidget::drawTheme4(QPainter *painter)
     }
     //
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
-    const QString &title = QString("--- %1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("--- %1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     list << TTK::Widget::fontTextWidth(font(), title);
     if(!m_data.isEmpty())
@@ -260,7 +260,7 @@ void MusicLrcPosterItemWidget::drawTheme5(QPainter *painter)
     }
     //
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
-    const QString &title = QString("--- %1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("--- %1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     v = TTK::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 4 * ITEM_BORDER) + 1;
     painter->drawText(2 * ITEM_BORDER, offset, ITEM_WIDTH - 4 * ITEM_BORDER, v * lineHeight, Qt::AlignRight | Qt::TextWordWrap, title);
@@ -290,7 +290,7 @@ void MusicLrcPosterItemWidget::drawTheme6(QPainter *painter)
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     painter->translate(2 * ITEM_BORDER, pix.height());
     painter->rotate(TTK_AN_90);
-    const QString &title = QString("--- %1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("--- %1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     list << TTK::Widget::fontTextWidth(font(), title);
     painter->drawText(8 * ITEM_BORDER, -offset, title);
@@ -335,7 +335,7 @@ void MusicLrcPosterItemWidget::drawTheme7(QPainter *painter)
     }
     //
     offset += delta;
-    const QString &title = QString("--- %1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("--- %1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     v = TTK::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 10 * ITEM_BORDER) + 1;
     v = 3 * ITEM_BORDER + v * lineHeight;
@@ -358,7 +358,7 @@ void MusicLrcPosterItemWidget::drawTheme8(QPainter *painter)
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     //
-    const QString &title = QString("--- %1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("--- %1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     v = TTK::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 10 * ITEM_BORDER) + 1;
     v = 3 * ITEM_BORDER + v * lineHeight;
@@ -415,7 +415,7 @@ void MusicLrcPosterItemWidget::drawTheme9(QPainter *painter)
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     //
-    const QString &title = QString("--- %1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("--- %1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     v = TTK::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 10 * ITEM_BORDER) + 1;
     v = 3 * ITEM_BORDER + v * lineHeight;
@@ -507,7 +507,7 @@ void MusicLrcPosterItemWidget::drawTheme11(QPainter *painter)
         offset += v + 3 * ITEM_BORDER + v * lineHeight;
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
-    const QString &title = QString("--- %1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("--- %1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     v = TTK::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
     v = 3 * ITEM_BORDER + (v + 1) * lineHeight;
@@ -557,7 +557,7 @@ void MusicLrcPosterItemWidget::drawTheme12(QPainter *painter)
         offset += v + 3 * ITEM_BORDER + v * lineHeight;
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
-    const QString &title = QString("--- %1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("--- %1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     v = TTK::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
     v = 3 * ITEM_BORDER + (v + 1) * lineHeight;
@@ -607,7 +607,7 @@ void MusicLrcPosterItemWidget::drawTheme13(QPainter *painter)
         offset += v + 3 * ITEM_BORDER + v * lineHeight;
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
-    const QString &title = QString("--- %1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("--- %1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     v = TTK::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
     v = 3 * ITEM_BORDER + (v + 1) * lineHeight;
@@ -657,7 +657,7 @@ void MusicLrcPosterItemWidget::drawTheme14(QPainter *painter)
         offset += v + 3 * ITEM_BORDER + v * lineHeight;
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
-    const QString &title = QString("--- %1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("--- %1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     v = TTK::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
     v = 3 * ITEM_BORDER + (v + 1) * lineHeight;
@@ -707,7 +707,7 @@ void MusicLrcPosterItemWidget::drawTheme15(QPainter *painter)
     int v = 1;
     offset = 3 * ITEM_BORDER;
     //
-    const QString &title = QString("%1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("%1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     v = TTK::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 6 * ITEM_BORDER) + 1;
     v = 3 * ITEM_BORDER + (v + 1) * lineHeight;
@@ -758,7 +758,7 @@ void MusicLrcPosterItemWidget::drawTheme16(QPainter *painter)
     int v = 1;
     offset = 3 * ITEM_BORDER;
     //
-    const QString &title = QString("%1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("%1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     v = TTK::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 6 * ITEM_BORDER) + 1;
     v = 3 * ITEM_BORDER + (v + 1) * lineHeight;
@@ -790,7 +790,7 @@ void MusicLrcPosterItemWidget::drawTheme17(QPainter *painter)
     painter->translate(2 * ITEM_BORDER, 0);
     painter->rotate(TTK_AN_90);
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
-    const QString &title = QString("%1 ¡ñ %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
+    const QString &title = QString("%1 ● %2").arg(TTK::generateSongArtist(m_title), TTK::generateSongTitle(m_title));
 
     list << TTK::Widget::fontTextWidth(font(), title);
     offset = ITEM_WIDTH - delta;

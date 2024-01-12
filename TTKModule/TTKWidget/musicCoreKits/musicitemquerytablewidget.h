@@ -39,9 +39,9 @@ public:
     ~MusicItemQueryTableWidget();
 
     /*!
-     * Start search query by text.
+     * Start to search query by text.
      */
-    virtual void startSearchQuery(const QString &text) override final;
+    virtual void startToSearchByText(const QString &text) override final;
     /*!
      * Download query result data.
      */

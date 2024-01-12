@@ -140,19 +140,19 @@ public:
     /*!
      * Music artist search function.
      */
-    void artistSearchBy(const QString &id);
+    void artistSearchByID(const QString &id);
     /*!
      * Music album search function.
      */
-    void albumSearchBy(const QString &id);
+    void albumSearchByID(const QString &id);
     /*!
      * Music movie search function.
      */
-    void movieSearchBy(const QString &id);
+    void movieSearchByID(const QString &id);
     /*!
      * Music movie radio search function.
      */
-    void movieRadioSearchBy(const QVariant &data);
+    void movieRadioSearchByID(const QVariant &data);
     /*!
      * Resize window bound by resize called.
      */

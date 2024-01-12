@@ -207,7 +207,6 @@ namespace TTK
         int m_second;
 
         IndexProperty() = default;
-
         IndexProperty(int first, int second)
             : m_first(first),
               m_second(second)
@@ -259,6 +258,14 @@ namespace TTK
     {
         QString m_id;
         QString m_name;
+
+        MusicArtistProperty() = default;
+        MusicArtistProperty(const QString &id, const QString &name)
+            : m_id(id),
+              m_name(name)
+        {
+
+        }
     };
     TTK_DECLARE_LIST(MusicArtistProperty);
 

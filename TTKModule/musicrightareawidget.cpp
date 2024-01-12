@@ -228,25 +228,25 @@ void MusicRightAreaWidget::showSettingWidget() const
     m_settingWidget->exec();
 }
 
-void MusicRightAreaWidget::artistSearchBy(const QString &id)
+void MusicRightAreaWidget::artistSearchByID(const QString &id)
 {
     m_rawData = id;
     TTK_SIGNLE_SHOT(showArtistSearchFound, TTK_SLOT);
 }
 
-void MusicRightAreaWidget::albumSearchBy(const QString &id)
+void MusicRightAreaWidget::albumSearchByID(const QString &id)
 {
     m_rawData = id;
     TTK_SIGNLE_SHOT(showAlbumSearchFound, TTK_SLOT);
 }
 
-void MusicRightAreaWidget::movieSearchBy(const QString &id)
+void MusicRightAreaWidget::movieSearchByID(const QString &id)
 {
     m_rawData = id;
     TTK_SIGNLE_SHOT(showMovieSearchFound, TTK_SLOT);
 }
 
-void MusicRightAreaWidget::movieRadioSearchBy(const QVariant &data)
+void MusicRightAreaWidget::movieRadioSearchByID(const QVariant &data)
 {
     m_rawData = data;
     TTK_SIGNLE_SHOT(showMovieSearchRadioFound, TTK_SLOT);
@@ -395,7 +395,7 @@ void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
             if(!searchedString.isEmpty() && searchedString != tr("Please input search words"))
             {
                 m_ui->musicSongSearchEdit->setText(searchedString);
-                m_ui->songSearchWidget->startSearchQuery(searchedString);
+                m_ui->songSearchWidget->startToSearchByText(searchedString);
             }
             else
             {
@@ -626,7 +626,7 @@ void MusicRightAreaWidget::showSongSearchedFound(const QString &text)
 void MusicRightAreaWidget::showSingleSearchedFound(const QString &id)
 {
     functionClicked(MusicRightAreaWidget::SearchSingleWidget);
-    m_ui->songSearchWidget->startSearchSingleQuery(id);
+    m_ui->songSearchWidget->startToSearchByID(id);
 }
 
 void MusicRightAreaWidget::showVideoSearchedFound(const QString &name, const QString &id)
@@ -640,7 +640,7 @@ void MusicRightAreaWidget::showVideoSearchedFound(const QString &name, const QSt
         functionClicked(MusicRightAreaWidget::VideoWidget);
     }
 
-    id.isEmpty() ? m_videoPlayerWidget->videoResearchButtonSearched(name) : m_videoPlayerWidget->startSearchSingleQuery(id);
+    id.isEmpty() ? m_videoPlayerWidget->videoResearchButtonSearched(name) : m_videoPlayerWidget->startToSearchByID(id);
 }
 
 void MusicRightAreaWidget::showSongMainWidget()

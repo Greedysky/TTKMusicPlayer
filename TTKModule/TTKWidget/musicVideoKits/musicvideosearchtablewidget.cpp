@@ -22,7 +22,7 @@ MusicVideoSearchTableWidget::~MusicVideoSearchTableWidget()
     removeItems();
 }
 
-void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
+void MusicVideoSearchTableWidget::startToSearchByText(const QString &text)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -55,7 +55,7 @@ void MusicVideoSearchTableWidget::downloadQueryResult(int row)
     }
 }
 
-void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
+void MusicVideoSearchTableWidget::startToSearchByID(const QString &text)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -71,7 +71,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
     m_networkRequest->startToSearchByID(text);
 }
 
-void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
+void MusicVideoSearchTableWidget::startToSearchByID(const QVariant &data)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {

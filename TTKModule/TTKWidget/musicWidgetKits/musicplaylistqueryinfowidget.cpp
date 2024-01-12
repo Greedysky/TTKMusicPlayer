@@ -56,7 +56,7 @@ void MusicPlaylistQueryInfoWidget::setResultDataItem(const MusicResultDataItem &
     setCurrentValue(item.m_id);
 
     m_infoLabel->setText(item.m_description);
-    m_queryTableWidget->startSearchQuery(item.m_id);
+    m_queryTableWidget->startToSearchByText(item.m_id);
 
     layout()->removeWidget(m_mainWindow);
     QScrollArea *scrollArea = new QScrollArea(this);

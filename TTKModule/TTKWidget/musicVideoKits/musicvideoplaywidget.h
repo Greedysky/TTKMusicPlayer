@@ -103,7 +103,7 @@ public Q_SLOTS:
     /*!
      * Video search query by given id.
      */
-    void startSearchSingleQuery(const QString &name);
+    void startToSearchByID(const QString &name);
     /*!
      * Set current media url by selected quality.
      */

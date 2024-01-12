@@ -46,6 +46,7 @@ win32:msvc{
 INCLUDEPATH += $$PWD/../
 
 HEADERS += \
+    $$PWD/../ttkcompat.h \
     $$PWD/../ttkglobal.h \
     $$PWD/../ttklogger.h \
     $$PWD/../ttkmoduleexport.h \

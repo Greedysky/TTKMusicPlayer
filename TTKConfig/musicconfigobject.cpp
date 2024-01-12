@@ -66,7 +66,7 @@ void MusicConfigObject::checkFileNeededExist() const
     copyFile(":/data/search.tkf", TTK_SEARCH_PATH_FULL);
 
 #ifdef Q_OS_UNIX
-    if(!QFile::exists(MAIN_DIR_FULL + ".ttk_runtime"))
+    if(!QFile::exists(MAIN_DIR_FULL + "ttk_runtime"))
     {
         copyLinuxShellFile(":/data/TTKRoutine.sh", TTK_ROUTINE_FULL);
         copyLinuxShellFile(":/data/TTKMusicPlayer.sh", TTK_APP_MAIN_FULL);

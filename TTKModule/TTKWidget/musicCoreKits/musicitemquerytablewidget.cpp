@@ -31,7 +31,7 @@ MusicItemQueryTableWidget::~MusicItemQueryTableWidget()
     removeItems();
 }
 
-void MusicItemQueryTableWidget::startSearchQuery(const QString &text)
+void MusicItemQueryTableWidget::startToSearchByText(const QString &text)
 {
     if(!G_NETWORK_PTR->isOnline())
     {

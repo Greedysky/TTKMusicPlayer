@@ -39,9 +39,9 @@ public:
     ~MusicItemSearchTableWidget();
 
     /*!
-     * Start search query by text.
+     * Start to search query by text.
      */
-    virtual void startSearchQuery(const QString &text) override;
+    virtual void startToSearchByText(const QString &text) override;
 
 public Q_SLOTS:
     /*!
