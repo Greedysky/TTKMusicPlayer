@@ -137,8 +137,9 @@ bool MusicConfigManager::readBuffer(int &items)
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicDirPath, (value.isEmpty() || !QFile::exists(value)) ? TTK::String::musicDirPrefix() : value);
     value = readAttributeByTagName("downloadLrcPath");
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcDirPath, (value.isEmpty() || !QFile::exists(value)) ? TTK::String::lrcDirPrefix() : value);
+    value = readAttributeByTagName("downloadFileNameRule");
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadFileNameRule, value.isEmpty() ? "%artist - %title" : value);
 
-    G_SETTING_PTR->setValue(MusicSettingManager::DownloadFileNameRule, readAttributeByTagName("downloadFileNameRule"));
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheEnable, readAttributeByTagName("downloadCacheEnable").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSize, readAttributeByTagName("downloadCacheSize").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitEnable, readAttributeByTagName("downloadLimitEnable").toInt());
