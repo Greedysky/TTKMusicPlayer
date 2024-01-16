@@ -2,13 +2,10 @@
 #include <QStringList>
 
 #ifdef Q_OS_WIN
+#define WIN32_LEAN_AND_MEAN
 #include <qt_windows.h>
-#include "psapi.h"
-#include "tlhelp32.h"
-
-/*! @brief The functions of process wrapper.
- * @author Greedysky <greedysky@163.com>
- */
+#include <psapi.h>
+#include <tlhelp32.h>
 
 static QStringList processList()
 {

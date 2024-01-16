@@ -139,7 +139,7 @@ void MusicKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, c
 
 
 MusicKGQueryMovieRequest::MusicKGQueryMovieRequest(QObject *parent)
-    : MusicQueryMovieRequest(parent)
+    : MusicUnityQueryMovieRequest(parent)
 {
     m_pageSize = SONG_PAGE_SIZE;
     m_queryServer = QUERY_KG_INTERFACE;
@@ -148,6 +148,12 @@ MusicKGQueryMovieRequest::MusicKGQueryMovieRequest(QObject *parent)
 void MusicKGQueryMovieRequest::startToPage(int offset)
 {
     TTK_INFO_STREAM(className() << "startToPage" << offset);
+
+    if(needToUnity())
+    {
+        MusicUnityQueryMovieRequest::startToPage(offset);
+        return;
+    }
 
     deleteAll();
     m_totalSize = 0;
@@ -160,6 +166,12 @@ void MusicKGQueryMovieRequest::startToPage(int offset)
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicKGQueryMovieRequest::startToSearch(const QString &value)
+{
+    resetUnity();
+    MusicUnityQueryMovieRequest::startToSearch(value);
 }
 
 void MusicKGQueryMovieRequest::startToSearchByID(const QString &value)
@@ -223,6 +235,11 @@ void MusicKGQueryMovieRequest::downLoadFinished()
                 }
             }
         }
+    }
+
+    if(!pageValid())
+    {
+        setToUnity();
     }
 
     Q_EMIT downLoadDataChanged({});

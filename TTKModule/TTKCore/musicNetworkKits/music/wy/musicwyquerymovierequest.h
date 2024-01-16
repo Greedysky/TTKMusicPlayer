@@ -20,12 +20,12 @@
  ***************************************************************************/
 
 #include "musicwyqueryinterface.h"
-#include "musicquerymovierequest.h"
+#include "musicunityquerymovierequest.h"
 
 /*! @brief The class of the wangyi query mv download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWYQueryMovieRequest : public MusicQueryMovieRequest
+class TTK_MODULE_EXPORT MusicWYQueryMovieRequest : public MusicUnityQueryMovieRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYQueryMovieRequest)
@@ -39,6 +39,10 @@ public:
      * Start to search data by offset page.
      */
     virtual void startToPage(int offset) override final;
+    /*!
+     * Start to search data by input data.
+     */
+    virtual void startToSearch(const QString &value) override final;
     /*!
      * Start to search data by input value.
      */

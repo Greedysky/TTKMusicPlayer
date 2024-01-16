@@ -14,6 +14,7 @@
 
 #if defined(Q_OS_WIN)
 #  include <QLibrary>
+#  define WIN32_LEAN_AND_MEAN
 #  include <qt_windows.h>
 typedef BOOL (WINAPI *PProcessIdToSessionId)(DWORD, DWORD*);
 static PProcessIdToSessionId pProcessIdToSessionId = 0;

@@ -16,7 +16,7 @@ void MusicPageQueryRequest::startToPage(int offset)
     Q_UNUSED(offset);
 }
 
-int MusicPageQueryRequest::pageTotalSize() const
+int MusicPageQueryRequest::pageTotalSize() const noexcept
 {
     return ceil(totalSize() * 1.0 / pageSize());
 }

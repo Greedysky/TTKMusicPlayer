@@ -127,7 +127,7 @@ void MusicKWInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, c
 
 
 MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
-    : MusicQueryMovieRequest(parent)
+    : MusicUnityQueryMovieRequest(parent)
 {
     m_pageSize = SONG_PAGE_SIZE;
     m_queryServer = QUERY_KW_INTERFACE;
@@ -136,6 +136,12 @@ MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
 void MusicKWQueryMovieRequest::startToPage(int offset)
 {
     TTK_INFO_STREAM(className() << "startToPage" << offset);
+
+    if(needToUnity())
+    {
+        MusicUnityQueryMovieRequest::startToPage(offset);
+        return;
+    }
 
     deleteAll();
     m_totalSize = 0;
@@ -148,6 +154,12 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicKWQueryMovieRequest::startToSearch(const QString &value)
+{
+    resetUnity();
+    MusicUnityQueryMovieRequest::startToSearch(value);
 }
 
 void MusicKWQueryMovieRequest::startToSearchByID(const QString &value)
@@ -200,14 +212,9 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                     MusicKWInterface::parseFromMovieProperty(&info, value["FORMATS"].toString());
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(info.m_songProps.isEmpty())
+                    if(info.m_songProps.isEmpty() || !findUrlPathSize(&info.m_songProps, info.m_duration))
                     {
                         continue;
-                    }
-
-                    if(!findUrlFileSize(&info.m_songProps, info.m_duration))
-                    {
-                        return;
                     }
 
                     Q_EMIT createResultItem({info, serverToString()});
@@ -215,6 +222,11 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                 }
             }
         }
+    }
+
+    if(!pageValid())
+    {
+        setToUnity();
     }
 
     Q_EMIT downLoadDataChanged({});
@@ -238,7 +250,7 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
 
     if(!info.m_songProps.isEmpty())
     {
-        if(!findUrlFileSize(&info.m_songProps, info.m_duration))
+        if(!findUrlPathSize(&info.m_songProps, info.m_duration))
         {
             return;
         }

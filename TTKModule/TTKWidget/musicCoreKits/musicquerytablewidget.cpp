@@ -79,8 +79,7 @@ void MusicQueryTableWidget::createFinishedItem()
     QTableWidgetItem *it = item(count, 0);
     if(it)
     {
-        const bool more = (m_networkRequest->pageTotalSize() > m_networkRequest->pageIndex() + 1);
-        it->setData(TTK_DISPLAY_ROLE, more ? tr("Query more data") : tr("No more data"));
+        it->setData(TTK_DISPLAY_ROLE, m_networkRequest->pageValid() ? tr("Query more data") : tr("No more data"));
         setItemDelegateForRow(count, m_labelDelegate);
     }
 }

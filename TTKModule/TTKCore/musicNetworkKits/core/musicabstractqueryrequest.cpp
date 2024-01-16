@@ -50,13 +50,17 @@ QString MusicAbstractQueryRequest::serverToString() const
     {
         return v.arg(tr("WY"));
     }
+    else if(!m_queryServer.isEmpty())
+    {
+        return v.arg(m_queryServer);
+    }
     else
     {
         return {};
     }
 }
 
-bool MusicAbstractQueryRequest::findUrlFileSize(TTK::MusicSongProperty *prop, const QString &duration) const
+bool MusicAbstractQueryRequest::findUrlPathSize(TTK::MusicSongProperty *prop, const QString &duration) const
 {
     if(!prop->m_size.isEmpty() && prop->m_size != TTK_DEFAULT_STR)
     {
@@ -76,11 +80,11 @@ bool MusicAbstractQueryRequest::findUrlFileSize(TTK::MusicSongProperty *prop, co
     return true;
 }
 
-bool MusicAbstractQueryRequest::findUrlFileSize(TTK::MusicSongPropertyList *props, const QString &duration) const
+bool MusicAbstractQueryRequest::findUrlPathSize(TTK::MusicSongPropertyList *props, const QString &duration) const
 {
     for(int i = 0; i < props->count(); ++i)
     {
-        if(!findUrlFileSize(&(*props)[i], duration))
+        if(!findUrlPathSize(&(*props)[i], duration))
         {
             return false;
         }

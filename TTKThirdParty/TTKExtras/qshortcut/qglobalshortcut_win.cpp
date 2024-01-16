@@ -1,4 +1,5 @@
 #include "qglobalshortcut_p.h"
+#define WIN32_LEAN_AND_MEAN
 #include <qt_windows.h>
 
 #if !TTK_QT_VERSION_CHECK(5,0,0)

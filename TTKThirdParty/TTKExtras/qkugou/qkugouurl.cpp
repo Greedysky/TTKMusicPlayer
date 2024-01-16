@@ -1,10 +1,5 @@
 #include "qkugouurl.h"
 
-QKugouUrl::QKugouUrl()
-{
-
-}
-
 QString QKugouUrl::makeSongYuekuUrl()
 {
     return "http://www2.kugou.kugou.com/yueku/v9/html/default.html?ver=10053";

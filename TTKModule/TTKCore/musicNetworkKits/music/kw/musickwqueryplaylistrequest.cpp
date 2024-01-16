@@ -53,7 +53,7 @@ void MusicKWQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *
     MusicKWInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
 
-    findUrlFileSize(&info->m_songProps, info->m_duration);
+    findUrlPathSize(&info->m_songProps, info->m_duration);
     MusicQueryPlaylistRequest::startToQueryResult(info, bitrate);
 }
 

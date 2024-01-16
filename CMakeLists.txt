@@ -96,14 +96,15 @@ include_directories(
   ${MUSIC_CORE_NETWORK_DIR}/core
   ${MUSIC_CORE_NETWORK_DIR}/image/background
   ${MUSIC_CORE_NETWORK_DIR}/image/skin
-  ${MUSIC_CORE_NETWORK_DIR}/tools
-  ${MUSIC_CORE_NETWORK_DIR}/radio/dj
-  ${MUSIC_CORE_NETWORK_DIR}/radio/mv
-  ${MUSIC_CORE_NETWORK_DIR}/radio/fm
+  ${MUSIC_CORE_NETWORK_DIR}/music
   ${MUSIC_CORE_NETWORK_DIR}/music/core
   ${MUSIC_CORE_NETWORK_DIR}/music/kg
   ${MUSIC_CORE_NETWORK_DIR}/music/kw
   ${MUSIC_CORE_NETWORK_DIR}/music/wy
+  ${MUSIC_CORE_NETWORK_DIR}/radio/dj
+  ${MUSIC_CORE_NETWORK_DIR}/radio/fm
+  ${MUSIC_CORE_NETWORK_DIR}/radio/mv
+  ${MUSIC_CORE_NETWORK_DIR}/tools
   ${MUSIC_CORE_NETWORK_DIR}/translation
   ${MUSIC_CORE_PLAYLIST_DIR}
   ${MUSIC_CORE_LOCALSEARCH_DIR}

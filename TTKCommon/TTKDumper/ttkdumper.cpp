@@ -3,8 +3,9 @@
 #include "miniprocess.h"
 
 #ifdef Q_OS_WIN
+#  define WIN32_LEAN_AND_MEAN
 #  include <qt_windows.h>
-#  include "dbghelp.h"
+#  include <dbghelp.h>
 #elif defined Q_OS_UNIX
 #  include <signal.h>
 #  include <execinfo.h>

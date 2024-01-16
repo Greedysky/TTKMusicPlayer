@@ -3,6 +3,7 @@
 #include <QStringList>
 
 #ifdef Q_CC_MSVC
+#  define WIN32_LEAN_AND_MEAN
 #  include <qt_windows.h>
 #elif defined Q_OS_UNIX || defined Q_CC_GNU
 #  include <unistd.h>

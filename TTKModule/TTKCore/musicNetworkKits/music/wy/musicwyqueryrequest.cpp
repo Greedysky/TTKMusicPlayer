@@ -96,7 +96,7 @@ void MusicWYQueryRequest::downLoadFinished()
                         const QVariantMap &artistObject = artistValue.toMap();
                         info.m_artistId = artistObject["id"].toString();
                         info.m_artistName = TTK::String::charactersReplace(artistObject["name"].toString());
-                        break; //just find first singer
+                        break; //just find first artist
                     }
 
                     const QVariantMap &albumObject = value["al"].toMap();
@@ -169,7 +169,7 @@ void MusicWYQueryRequest::downLoadSingleFinished()
                         const QVariantMap &artistObject = artistValue.toMap();
                         info.m_artistId = artistObject["id"].toString();
                         info.m_artistName = TTK::String::charactersReplace(artistObject["name"].toString());
-                        break; //just find first singer
+                        break; //just find first artist
                     }
 
                     const QVariantMap &albumObject = value["al"].toMap();

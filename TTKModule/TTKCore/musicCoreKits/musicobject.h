@@ -295,7 +295,7 @@ namespace TTK
     /*!
      * Get application config dir.
      */
-    static QString configPath()
+    inline static QString configPath()
     {
         const bool portable = QFile::exists(MAIN_DIR_FULL + "ttk_portable");
 #ifdef Q_OS_WIN

@@ -52,7 +52,7 @@ void MusicWYInterface::parseFromMovieProperty(QString &url, const QString &id, i
 
 
 MusicWYQueryMovieRequest::MusicWYQueryMovieRequest(QObject *parent)
-    : MusicQueryMovieRequest(parent)
+    : MusicUnityQueryMovieRequest(parent)
 {
     m_pageSize = SONG_PAGE_SIZE;
     m_queryServer = QUERY_WY_INTERFACE;
@@ -61,6 +61,12 @@ MusicWYQueryMovieRequest::MusicWYQueryMovieRequest(QObject *parent)
 void MusicWYQueryMovieRequest::startToPage(int offset)
 {
     TTK_INFO_STREAM(className() << "startToPage" << offset);
+
+    if(needToUnity())
+    {
+        MusicUnityQueryMovieRequest::startToPage(offset);
+        return;
+    }
 
     deleteAll();
     m_totalSize = 0;
@@ -74,6 +80,12 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
     m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     QtNetworkErrorConnect(m_reply, this, replyError, TTK_SLOT);
+}
+
+void MusicWYQueryMovieRequest::startToSearch(const QString &value)
+{
+    resetUnity();
+    MusicUnityQueryMovieRequest::startToSearch(value);
 }
 
 void MusicWYQueryMovieRequest::startToSearchByID(const QString &value)
@@ -137,6 +149,11 @@ void MusicWYQueryMovieRequest::downLoadFinished()
                 }
             }
         }
+    }
+
+    if(!pageValid())
+    {
+        setToUnity();
     }
 
     Q_EMIT downLoadDataChanged({});
@@ -218,7 +235,7 @@ void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
                 prop.m_url = value[key].toString();
                 prop.m_format = TTK::String::splitToken(prop.m_url);
 
-                if(!findUrlFileSize(&prop, info.m_duration))
+                if(!findUrlPathSize(&prop, info.m_duration))
                 {
                     return;
                 }

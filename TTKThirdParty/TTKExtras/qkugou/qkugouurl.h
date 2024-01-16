@@ -28,11 +28,6 @@ class TTK_MODULE_EXPORT QKugouUrl
 {
 public:
     /*!
-     * Object constructor.
-     */
-    QKugouUrl();
-
-    /*!
      Make Song Yueku Url.
      */
     static QString makeSongYuekuUrl();
@@ -53,7 +48,6 @@ public:
      */
     static QString makeSongCategoryUrl();
 
-
     /*!
      Make Radio Public Url.
      */
@@ -63,12 +57,10 @@ public:
      */
     static QString makeRadioHighFmUrl();
 
-
     /*!
      Make List Url.
      */
     static QString makeListUrl();
-
 
     /*!
      Make MV Radio Url.
@@ -83,7 +75,6 @@ public:
      Make Web Player Url.
      */
     static QString makeWebPlayerUrl();
-
 
     /*!
      Make KuiShe Url.

@@ -41,7 +41,7 @@ namespace TTK
     /*!
      * Get application work dir.
      */
-    static QString applicationPath()
+    inline static QString applicationPath()
     {
         return QCoreApplication::applicationDirPath() + TTK_SEPARATOR;
     }

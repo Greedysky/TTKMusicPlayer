@@ -3,6 +3,7 @@
 #ifdef Q_OS_WIN
 #include <QSettings>
 #include <QApplication>
+#define WIN32_LEAN_AND_MEAN
 #include <qt_windows.h>
 
 void MusicPlatformManager::windowsEnableLeftMode()

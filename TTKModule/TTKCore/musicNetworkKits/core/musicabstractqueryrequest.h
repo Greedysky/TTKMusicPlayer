@@ -92,6 +92,7 @@ struct TTK_MODULE_EXPORT MusicResultDataItem
 };
 TTK_DECLARE_LIST(MusicResultDataItem);
 
+
 static constexpr const char *QUERY_WY_INTERFACE = "WangYi";
 static constexpr const char *QUERY_KW_INTERFACE = "KuWo";
 static constexpr const char *QUERY_KG_INTERFACE = "KuGou";
@@ -205,13 +206,13 @@ protected:
      */
     QString serverToString() const;
     /*!
-     * Find download file size.
+     * Find url path size.
      */
-    bool findUrlFileSize(TTK::MusicSongProperty *prop, const QString &duration) const;
+    bool findUrlPathSize(TTK::MusicSongProperty *prop, const QString &duration) const;
     /*!
-     * Find download file size.
+     * Find url path size.
      */
-    bool findUrlFileSize(TTK::MusicSongPropertyList *props, const QString &duration) const;
+    bool findUrlPathSize(TTK::MusicSongPropertyList *props, const QString &duration) const;
 
     QString m_queryValue;
     QString m_queryServer;

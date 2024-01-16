@@ -49,19 +49,23 @@ public:
     /*!
      * Return the page total size.
      */
-    int pageTotalSize() const;
+    int pageTotalSize() const noexcept;
     /*!
      * Return the each page max size.
      */
-    inline int pageSize() const { return m_pageSize; }
+    inline int pageSize() const noexcept { return m_pageSize; }
     /*!
      * Return the total number.
      */
-    inline int totalSize() const { return m_totalSize; }
+    inline int totalSize() const noexcept { return m_totalSize; }
     /*!
      * Return the page index number.
      */
-    inline int pageIndex() const { return m_pageIndex; }
+    inline int pageIndex() const noexcept { return m_pageIndex; }
+    /*!
+     * Return the page index valid or not.
+     */
+    inline bool pageValid() const noexcept { return pageIndex() + 1 < pageTotalSize(); }
 
 protected:
     int m_pageSize;
