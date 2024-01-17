@@ -37,7 +37,7 @@ void MusicCoreMPlayer::setMedia(Module type, const QString &data, int winId)
     connect(m_process, SIGNAL(finished(int)), SIGNAL(finished(int)));
 
     QString url = data;
-    if(url.contains(HTTPS_PREFIX))
+    if(url.startsWith(HTTPS_PREFIX))
     {
         url.replace(HTTPS_PREFIX, HTTP_PREFIX);
     }
@@ -89,13 +89,13 @@ void MusicCoreMPlayer::setMusicMedia(const QString &data)
 void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
 {
     QStringList arguments;
-    arguments << "-cache" << "5000" << "-softvol" << "-slave" << "-quiet" << "-zoom" << "-wid";
-    arguments << QString::number(winId);
+    arguments << "-cache" << "5000" << "-softvol" << "-slave" << "-quiet" << "-zoom" << "-wid" << QString::number(winId);
 #ifdef Q_OS_WIN
-    arguments << "-vo" << "direct3d" << data;
+    arguments << "-vo" << "direct3d";
 #else
-    arguments << "-vo" << "x11" << data;
+    arguments << "-vo" << "x11";
 #endif
+    arguments << data;
     Q_EMIT mediaChanged(data);
 
     m_process->setProcessChannelMode(QProcess::MergedChannels);

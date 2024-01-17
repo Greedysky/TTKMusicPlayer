@@ -23,13 +23,13 @@
 #include <QCoreApplication>
 
 #define TTK_SERVICE_FULL        TTK::applicationPath() + TTK_SERVICE_RUN_NAME
-#define TTK_APP_MAIN_FULL       TTK::applicationPath() + TTK_PDIR + TTK_APP_RUN_NAME
+#define TTK_APP_MAIN_FULL       TTK::applicationPath() + TTK_PARENT_DIR + TTK_APP_RUN_NAME
 
 #ifdef Q_OS_UNIX
 #  define TTK_INIT_FULL         TTK::applicationPath() + "TTKInit.sh"
 #  define TTK_CONSOLE_FULL      TTK::applicationPath() + "TTKConsole.sh"
 #  define TTK_ROUTINECOPY_FULL  TTK::applicationPath() + "TTKRoutineCopy.sh"
-#  define TTK_ROUTINE_FULL      TTK::applicationPath() + TTK_PDIR + "TTKRoutine.sh"
+#  define TTK_ROUTINE_FULL      TTK::applicationPath() + TTK_PARENT_DIR + "TTKRoutine.sh"
 #endif
 
 

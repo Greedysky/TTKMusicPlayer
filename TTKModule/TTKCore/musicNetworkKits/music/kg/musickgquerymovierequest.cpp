@@ -141,7 +141,6 @@ void MusicKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, c
 MusicKGQueryMovieRequest::MusicKGQueryMovieRequest(QObject *parent)
     : MusicUnityQueryMovieRequest(parent)
 {
-    m_pageSize = SONG_PAGE_SIZE;
     m_queryServer = QUERY_KG_INTERFACE;
 }
 

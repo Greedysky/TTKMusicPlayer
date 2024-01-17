@@ -121,7 +121,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &su
 
 void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
 {
-    if(info->m_formats.isEmpty())
+    if(info->m_formatProps.isEmpty())
     {
         parseSongProperty(info); //find 128kmp3 first
         parseSongProperty(info, MP3_FILE_SUFFIX, "128kmp3", TTK_BN_128);
@@ -131,10 +131,10 @@ void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, in
     if(bitrate == TTK_BN_0)
     {
         parseSongProperty(info); //find 128kmp3 first
-        parseSongProperty(info, MP3_FILE_SUFFIX, info->m_formats, TTK_BN_128);
-        parseSongProperty(info, MP3_FILE_SUFFIX, info->m_formats, TTK_BN_192);
-        parseSongProperty(info, MP3_FILE_SUFFIX, info->m_formats, TTK_BN_320);
-        parseSongProperty(info, FLAC_FILE_SUFFIX, info->m_formats, TTK_BN_1000);
+        parseSongProperty(info, MP3_FILE_SUFFIX, info->m_formatProps, TTK_BN_128);
+        parseSongProperty(info, MP3_FILE_SUFFIX, info->m_formatProps, TTK_BN_192);
+        parseSongProperty(info, MP3_FILE_SUFFIX, info->m_formatProps, TTK_BN_320);
+        parseSongProperty(info, FLAC_FILE_SUFFIX, info->m_formatProps, TTK_BN_1000);
     }
     else
     {
@@ -142,11 +142,11 @@ void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, in
         {
             parseSongProperty(info); //find 128kmp3 first
         }
-        parseSongProperty(info, bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX, info->m_formats, bitrate);
+        parseSongProperty(info, bitrate > TTK_BN_320 ? FLAC_FILE_SUFFIX : MP3_FILE_SUFFIX, info->m_formatProps, bitrate);
     }
 }
 
 void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &format)
 {
-    info->m_formats = format;
+    info->m_formatProps = format;
 }

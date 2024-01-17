@@ -21,8 +21,7 @@
 
 #include "musicglobaldefine.h"
 
-static constexpr const char *ALG_UA_KEY = "ua11.25.17";
-static constexpr const char *ALG_ARC_KEY = "5024FRSDF40";
+static constexpr const char *ALG_UA_KEY  = "ua11.25.17";
 static constexpr const char *ALG_URL_KEY = "GREEDYSKY";
 static constexpr const char *ALG_SHR_KEY = "123asd";
 

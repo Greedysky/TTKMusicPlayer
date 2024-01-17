@@ -165,7 +165,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, int bitrate)
 
 void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
 {
-    if(info->m_formats.isEmpty())
+    if(info->m_formatProps.isEmpty())
     {
         parseSongProperty(info, TTK_BN_128);
         return;
@@ -173,7 +173,7 @@ void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, in
 
     if(bitrate == TTK_BN_0)
     {
-        const int maxBr = info->m_formats.toInt();
+        const int maxBr = info->m_formatProps.toInt();
         if(maxBr == TTK_BN_1000)
         {
             parseSongProperty(info, TTK_BN_128);
@@ -228,5 +228,5 @@ void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, co
         }
     }
 
-    info->m_formats = QString::number(maxBr);
+    info->m_formatProps = QString::number(maxBr);
 }

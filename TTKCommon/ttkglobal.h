@@ -50,42 +50,55 @@
 #endif
 
 
-#if TTK_STD_CXX >= 202302L  // c++2b
+#if TTK_STD_CXX >= 202602L // c++2c
 #  define TTK_HAS_CXX11 1
 #  define TTK_HAS_CXX14 1
 #  define TTK_HAS_CXX17 1
 #  define TTK_HAS_CXX20 1
 #  define TTK_HAS_CXX23 1
+#  define TTK_HAS_CXX26 1
+#elif TTK_STD_CXX >= 202302L // c++2b
+#  define TTK_HAS_CXX11 1
+#  define TTK_HAS_CXX14 1
+#  define TTK_HAS_CXX17 1
+#  define TTK_HAS_CXX20 1
+#  define TTK_HAS_CXX23 1
+#  define TTK_HAS_CXX26 0
 #elif TTK_STD_CXX >= 202002L // c++2a
 #  define TTK_HAS_CXX11 1
 #  define TTK_HAS_CXX14 1
 #  define TTK_HAS_CXX17 1
 #  define TTK_HAS_CXX20 1
 #  define TTK_HAS_CXX23 0
+#  define TTK_HAS_CXX26 0
 #elif TTK_STD_CXX >= 201703L // c++1z
 #  define TTK_HAS_CXX11 1
 #  define TTK_HAS_CXX14 1
 #  define TTK_HAS_CXX17 1
 #  define TTK_HAS_CXX20 0
 #  define TTK_HAS_CXX23 0
+#  define TTK_HAS_CXX26 0
 #elif TTK_STD_CXX >= 201402L // c++1y
 #  define TTK_HAS_CXX11 1
 #  define TTK_HAS_CXX14 1
 #  define TTK_HAS_CXX17 0
 #  define TTK_HAS_CXX20 0
 #  define TTK_HAS_CXX23 0
+#  define TTK_HAS_CXX26 0
 #elif TTK_STD_CXX >= 201103L // c++1x
 #  define TTK_HAS_CXX11 1
 #  define TTK_HAS_CXX14 0
 #  define TTK_HAS_CXX17 0
 #  define TTK_HAS_CXX20 0
 #  define TTK_HAS_CXX23 0
+#  define TTK_HAS_CXX26 0
 #else
 #  define TTK_HAS_CXX11 0
 #  define TTK_HAS_CXX14 0
 #  define TTK_HAS_CXX17 0
 #  define TTK_HAS_CXX20 0
 #  define TTK_HAS_CXX23 0
+#  define TTK_HAS_CXX26 0
 #endif
 
 
@@ -141,6 +154,8 @@
 #define __TTK_STR_CAT__4(a, b, c, d)       a b c d
 #define __TTK_STR_CAT__5(a, b, c, d, e)    a b c d e
 #define __TTK_STR_CAT__6(a, b, c, d, e, f) a b c d e f
+// marco str quotes
+#define TTK_STR_QUOTES(s)   ("\"" + s + "\"")
 
 
 // marco preprocessor overload
@@ -159,13 +174,12 @@
 #define TTK_DOTDOT          ".."
 #define TTK_SEPARATOR       "/"
 #define TTK_RSEPARATOR      "\\"
-#define TTK_PDIR            TTK_STR_CAT(TTK_DOTDOT, TTK_SEPARATOR)
+#define TTK_PARENT_DIR      TTK_STR_CAT(TTK_DOTDOT, TTK_SEPARATOR)
 
 #define TTK_SPLITER         "*|||*"
 #define TTK_DEFAULT_STR     "-"
 #define TTK_NAN_STR         "NaN"
 #define TTK_NULL_STR        "null"
-
 
 #define HTTP_PREFIX         "http://"
 #define HTTPS_PREFIX        "https://"

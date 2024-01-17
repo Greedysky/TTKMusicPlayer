@@ -114,7 +114,7 @@
 #define FMRADIO_PATH             TTK_STR_CAT("fmradio", TKF_FILE)
 
 
-#define MAIN_DIR_FULL            TTK::applicationPath() + TTK_PDIR
+#define MAIN_DIR_FULL            TTK::applicationPath() + TTK_PARENT_DIR
 //
 #define DOWNLOAD_DIR_FULL        MAIN_DIR_FULL + DOWNLOAD_DIR
 #define APPDATA_DIR_FULL         TTK::configPath() + APPDATA_DIR
@@ -286,7 +286,7 @@ namespace TTK
         QString m_duration;
         QString m_year;
         QString m_trackNumber;
-        QString m_formats;
+        QString m_formatProps;
         MusicSongPropertyList m_songProps;
     };
     TTK_DECLARE_LIST(MusicSongInformation);

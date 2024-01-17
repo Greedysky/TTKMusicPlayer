@@ -54,7 +54,6 @@ void MusicWYInterface::parseFromMovieProperty(QString &url, const QString &id, i
 MusicWYQueryMovieRequest::MusicWYQueryMovieRequest(QObject *parent)
     : MusicUnityQueryMovieRequest(parent)
 {
-    m_pageSize = SONG_PAGE_SIZE;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 

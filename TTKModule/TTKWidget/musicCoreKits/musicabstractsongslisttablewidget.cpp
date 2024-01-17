@@ -96,12 +96,6 @@ void MusicAbstractSongsListTableWidget::openFileDir()
     }
 
     const QString &path = !m_songs->isEmpty() ? m_songs->at(currentRow()).path() : QString();
-    if(QFileInfo(path).baseName() == TTK::Algorithm::mdII(currentSongName(), ALG_ARC_KEY, true))
-    {
-        //cache song should not allow open url
-        return;
-    }
-
     if(!TTK::Url::openUrl(QFileInfo(path).absoluteFilePath()))
     {
         MusicToastLabel::popup(tr("The file has been moved or does not exist"));

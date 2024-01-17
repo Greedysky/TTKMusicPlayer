@@ -199,8 +199,8 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
 
 void MusicKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
 {
-    const QStringList &formats = info->m_formats.split("|");
-    if(info->m_formats.isEmpty() || formats.count() < 4)
+    const QStringList &formats = info->m_formatProps.split("|");
+    if(info->m_formatProps.isEmpty() || formats.count() < 4)
     {
         parseSongProperty(info, info->m_songId, TTK_BN_128);
         return;
@@ -230,6 +230,5 @@ void MusicKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, in
 
 void MusicKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
 {
-    info->m_formats.clear();
-    info->m_formats += key["hash"].toString() + "|" + key["128hash"].toString() + "|" + key["320hash"].toString() + "|" + key["sqhash"].toString();
+    info->m_formatProps = key["hash"].toString() + "|" + key["128hash"].toString() + "|" + key["320hash"].toString() + "|" + key["sqhash"].toString();
 }

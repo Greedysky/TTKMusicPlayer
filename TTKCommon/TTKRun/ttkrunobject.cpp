@@ -35,7 +35,7 @@ void TTKRunObject::run(int argc, char **argv) const
                arg.insert(arg.begin() + pos, '\\');
             }
 
-            args.append("\"" + arg + "\"");
+            args.append(TTK_STR_QUOTES(arg));
             args.append(" ");
         }
     }

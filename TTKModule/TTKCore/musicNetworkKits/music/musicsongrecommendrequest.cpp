@@ -1,10 +1,10 @@
 #include "musicsongrecommendrequest.h"
 
-static constexpr const char *LQ_BASE_URL = "VzJWczlXM2hMeCtTZzhLRFJvZWxUUTVmZUVBLzlMWmo=";
-static constexpr const char *LQ_RECOMMEND_URL = "NDhiOGZ6dUJWNTBvN3R5OHNOQmkyQVVwOXdWbDNBOG14MmVXWVJxWlVXRkxuNUxxdzdYTEpUYVZRNVE9";
-
 namespace MusicLQInterface
 {
+    static constexpr const char *LQ_BASE_URL = "VzJWczlXM2hMeCtTZzhLRFJvZWxUUTVmZUVBLzlMWmo=";
+    static constexpr const char *LQ_RECOMMEND_URL = "NDhiOGZ6dUJWNTBvN3R5OHNOQmkyQVVwOXdWbDNBOG14MmVXWVJxWlVXRkxuNUxxdzdYTEpUYVZRNVE9";
+
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
@@ -40,7 +40,7 @@ void MusicLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, co
     }
 
     TTK::MusicSongProperty prop;
-    prop.m_url = TTK::Algorithm::mdII(LQ_BASE_URL, false) + key;
+    prop.m_url = TTK::Algorithm::mdII(MusicLQInterface::LQ_BASE_URL, false) + key;
     prop.m_size = TTK::Number::sizeByteToLabel(length * 1000 * bitrate / 8);
     prop.m_bitrate = bitrate;
 
@@ -71,7 +71,7 @@ void MusicSongRecommendRequest::startToSearch(const QString &value)
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(LQ_RECOMMEND_URL, false));
+    request.setUrl(TTK::Algorithm::mdII(MusicLQInterface::LQ_RECOMMEND_URL, false));
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
 
@@ -131,7 +131,7 @@ void MusicSongRecommendRequest::downLoadFinished()
                 info.m_albumName = TTK::String::charactersReplace(albumObject["name"].toString());
 
                 info.m_coverUrl = value["picUrl"].toString();
-                info.m_lrcUrl = TTK::Algorithm::mdII(LQ_BASE_URL, false) + value["lrcUrl"].toString();
+                info.m_lrcUrl = TTK::Algorithm::mdII(MusicLQInterface::LQ_BASE_URL, false) + value["lrcUrl"].toString();
                 info.m_duration = value["songLength"].toString();
                 info.m_year = value["year"].toString();
                 info.m_trackNumber = value["trackNum"].toString();

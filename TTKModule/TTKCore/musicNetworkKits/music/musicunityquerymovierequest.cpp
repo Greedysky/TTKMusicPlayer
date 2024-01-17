@@ -21,24 +21,24 @@ namespace BLInterface
     static void makeRequestRawHeader(QNetworkRequest *request);
 
     /*!
-     * Read cid from query results.
+     * Read mv cid from query results.
      */
-    static void parseFromSongProperty(TTK::MusicSongInformation *info, QString &cid);
+    static void parseFromMovieProperty(TTK::MusicSongInformation *info, QString &cid);
     /*!
-     * Read tags(size\bitrate\url) from query results.
+     * Read mv tags(size\bitrate\url) from query results.
      */
-    static void parseFromSongProperty(TTK::MusicSongInformation *info, const QString &cid);
+    static void parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &cid);
 
 }
 
 void BLInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
-    request->setRawHeader("Cookie", TTK::Algorithm::mdII(BLInterface::BUVID_URL, ALG_UA_KEY, false).toUtf8());
     TTK::setSslConfiguration(request);
     TTK::makeContentTypeHeader(request);
+    request->setRawHeader("Cookie", TTK::Algorithm::mdII(BLInterface::BUVID_URL, /*ALG_UA_KEY, */false).toUtf8());
 }
 
-void BLInterface::parseFromSongProperty(TTK::MusicSongInformation *info, QString &cid)
+void BLInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, QString &cid)
 {
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(BLInterface::MOVIE_DATA_URL, false).arg(info->m_songId));
@@ -74,7 +74,7 @@ void BLInterface::parseFromSongProperty(TTK::MusicSongInformation *info, QString
     }
 }
 
-void BLInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &cid)
+void BLInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &cid)
 {
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(BLInterface::MOVIE_PLAY_URL, false).arg(info->m_songId, cid));
@@ -145,7 +145,7 @@ void MusicUnityQueryMovieRequest::startToPage(int offset)
             QNetworkRequest request;
             request.setUrl(TTK::Algorithm::mdII(YYTInterface::MOVIE_URL, false));
             TTK::setSslConfiguration(&request);
-            request.setRawHeader("Content-Type", "application/json");
+            TTK::makeContentTypeHeader(&request, "application/json");
 
             m_queryServer = YYTInterface::MODULE;
             m_reply = m_manager.post(request, TTK::Algorithm::mdII(YYTInterface::MOVIE_DATA_URL, false).arg(m_queryValue, m_value).arg(m_pageSize).toUtf8());
@@ -249,7 +249,7 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
                         }
                     }
 
-                    if(lastCount == m_songInfos.count())
+                    if(lastCount + m_pageSize > m_songInfos.count())
                     {
                         setToUnity();
                         ++m_pluginIndex;
@@ -281,11 +281,11 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
                             info.m_artistName = TTK::String::charactersReplace(value["author"].toString());
 
                             QString cid;
-                            BLInterface::parseFromSongProperty(&info, cid);
+                            BLInterface::parseFromMovieProperty(&info, cid);
 
                             if(!cid.isEmpty())
                             {
-                                BLInterface::parseFromSongProperty(&info, cid);
+                                BLInterface::parseFromMovieProperty(&info, cid);
                             }
 
                             if(info.m_songProps.isEmpty())
