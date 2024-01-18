@@ -29,8 +29,8 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
     connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadFinished(QString)));
     m_downloadRequest->startToRequest();
 
-    const QString &buildTime = QDateTime::currentDateTime().toString(TTK_YEAR_TIMEZ_FORMAT);
-    const QByteArray &md5 = TTK::Algorithm::md5(buildTime.toUtf8()).mid(8, 16);
+    const QString &buildTime = QString("%1 %2").arg(__DATE__, __TIME__);
+    const QByteArray &md5 = TTK::Algorithm::md5(buildTime.toUtf8()).mid(12, 8);
 
     m_ui->iconLabel->setPixmap(QPixmap(":/image/lb_logo"));
     m_ui->versionLabel->setText(QString("Version: %1\n").arg(TTK_VERSION_STR) +
