@@ -23,7 +23,7 @@ namespace BLInterface
     /*!
      * Read mv cid from query results.
      */
-    static void parseFromMovieProperty(TTK::MusicSongInformation *info, QString &cid);
+    static void parseFromMovieInfo(TTK::MusicSongInformation *info, QString &cid);
     /*!
      * Read mv tags(size\bitrate\url) from query results.
      */
@@ -35,13 +35,14 @@ void BLInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
     TTK::setSslConfiguration(request);
     TTK::makeContentTypeHeader(request);
-    request->setRawHeader("Cookie", TTK::Algorithm::mdII(BLInterface::BUVID_URL, /*ALG_UA_KEY, */false).toUtf8());
+    request->setRawHeader("Cookie", TTK::Algorithm::mdII(BLInterface::BUVID_URL, false).toUtf8());
 }
 
-void BLInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, QString &cid)
+void BLInterface::parseFromMovieInfo(TTK::MusicSongInformation *info, QString &cid)
 {
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(BLInterface::MOVIE_DATA_URL, false).arg(info->m_songId));
+    BLInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -77,7 +78,8 @@ void BLInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, QStrin
 void BLInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &cid)
 {
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(BLInterface::MOVIE_PLAY_URL, false).arg(info->m_songId, cid));
+    request.setUrl(TTK::Algorithm::mdII(BLInterface::MOVIE_PLAY_URL, false).arg(info->m_songId, cid).arg(16));
+    BLInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -112,7 +114,7 @@ void BLInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const 
                 prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());
                 info->m_songProps.append(prop);
 
-                info->m_duration = TTKTime::formatDuration(value["timelength"].toInt());
+                info->m_duration = TTKTime::formatDuration(value["length"].toInt());
                 break;
             }
         }
@@ -142,6 +144,7 @@ void MusicUnityQueryMovieRequest::startToPage(int offset)
     {
         case 0:
         {
+            TTK_INFO_STREAM(className() << "YYTInterface");
             QNetworkRequest request;
             request.setUrl(TTK::Algorithm::mdII(YYTInterface::MOVIE_URL, false));
             TTK::setSslConfiguration(&request);
@@ -153,6 +156,7 @@ void MusicUnityQueryMovieRequest::startToPage(int offset)
         }
         case 1:
         {
+            TTK_INFO_STREAM(className() << "BLInterface");
             QNetworkRequest request;
             request.setUrl(TTK::Algorithm::mdII(BLInterface::MOVIE_URL, false).arg(m_pageSize).arg(m_pageIndex + 1));
             BLInterface::makeRequestRawHeader(&request);
@@ -249,11 +253,15 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
                         }
                     }
 
-                    if(lastCount + m_pageSize > m_songInfos.count())
+                    if(lastCount == m_songInfos.count())
                     {
-                        setToUnity();
-                        ++m_pluginIndex;
+                        m_totalSize = 0;
                     }
+//                    if(lastCount + m_pageSize > m_songInfos.count())
+//                    {
+//                        setToUnity();
+//                        ++m_pluginIndex;
+//                    }
                     break;
                 }
                 case 1:
@@ -281,7 +289,7 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
                             info.m_artistName = TTK::String::charactersReplace(value["author"].toString());
 
                             QString cid;
-                            BLInterface::parseFromMovieProperty(&info, cid);
+                            BLInterface::parseFromMovieInfo(&info, cid);
 
                             if(!cid.isEmpty())
                             {
