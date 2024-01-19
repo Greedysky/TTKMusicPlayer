@@ -74,13 +74,26 @@ void MusicSongSearchInteriorEdit::selectedTextChanged(const QString &text, bool 
 
 void MusicSongSearchInteriorEdit::suggestDataChanged()
 {
+    if(!m_popWidget)
+    {
+        return;
+    }
+
     QStringList names;
     for(const MusicResultDataItem &item : m_suggestRequest->searchedItems())
     {
         names << item.m_name;
     }
 
-    if(m_popWidget && !text().trimmed().isEmpty())
+    if(text().trimmed().isEmpty())
+    {
+        // workaround to clear border stylesheet
+        QWidget *widget = TTKStaticCast(QWidget*, m_popWidget->parent());
+        const QSize &size = widget->size();
+        widget->resize(size.width(), size.height() + 1);
+        widget->resize(size.width(), size.height());
+    }
+    else
     {
         if(names.isEmpty())
         {

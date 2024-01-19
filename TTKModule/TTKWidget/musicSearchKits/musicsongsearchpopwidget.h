@@ -66,6 +66,12 @@ public Q_SLOTS:
      */
     virtual void removeItems() override final;
 
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void leaveEvent(QEvent *event) override final;
+
 };
 
 

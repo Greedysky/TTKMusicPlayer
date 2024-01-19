@@ -80,6 +80,17 @@ void MusicSongSearchPopTableWidget::removeItems()
     setColumnCount(2);
 }
 
+void MusicSongSearchPopTableWidget::leaveEvent(QEvent *event)
+{
+    MusicAbstractTableWidget::leaveEvent(event);
+
+    if(item(m_previousColorRow, 0))
+    {
+        setRowColor(m_previousColorRow, m_backgroundColor);
+    }
+}
+
+
 
 MusicSongSearchPopWidget::MusicSongSearchPopWidget(QWidget *parent)
     : QWidget(parent)
@@ -94,12 +105,10 @@ MusicSongSearchPopWidget::MusicSongSearchPopWidget(QWidget *parent)
     m_popTableWidget->setFixedWidth(285);
 
     m_clearButton = new QPushButton("   " + tr("Clear History"), this);
+    m_clearButton->setFocusPolicy(Qt::ClickFocus);
     m_clearButton->setCursor(Qt::PointingHandCursor);
     m_clearButton->setFixedHeight(35);
     m_clearButton->setStyleSheet(TTK::UI::CustomStyle01 + TTK::UI::FontStyle02 + TTK::UI::ColorStyle03 + TTK::UI::BorderStyle01 + TTK::UI::BackgroundStyle10);
-#ifdef Q_OS_UNIX
-    m_clearButton->setFocusPolicy(Qt::NoFocus);
-#endif
 
     m_frame = new QFrame(this);
     m_frame->setFixedHeight(1);
