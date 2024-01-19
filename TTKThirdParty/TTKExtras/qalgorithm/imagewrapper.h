@@ -22,6 +22,9 @@
 #include <QImage>
 #include "ttkprivate.h"
 
+/*! @brief The namespace of the algorithm.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace QAlgorithm
 {
 class SharpeImagePrivate;

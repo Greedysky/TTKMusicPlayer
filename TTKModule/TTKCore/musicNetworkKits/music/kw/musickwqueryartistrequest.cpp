@@ -17,7 +17,7 @@ void MusicKWQueryArtistRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_ARTIST_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -30,7 +30,7 @@ void MusicKWQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *in
 
     MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
-    MusicKWInterface::parseFromSongProperty(info, bitrate);
+    ReqKWInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
 
     findUrlPathSize(&info->m_songProps, info->m_duration);
@@ -75,14 +75,14 @@ void MusicKWQueryArtistRequest::downLoadFinished()
                     info.m_albumId = value["ALBUMID"].toString();
                     info.m_albumName = TTK::String::charactersReplace(value["ALBUM"].toString());
 
-                    info.m_coverUrl = MusicKWInterface::makeCoverPixmapUrl(value["web_albumpic_short"].toString(), info.m_songId);
+                    info.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["web_albumpic_short"].toString(), info.m_songId);
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                     info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * TTK_DN_S2MS);
                     info.m_year = value["RELEASEDATE"].toString();
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKWInterface::parseFromSongProperty(&info, value["FORMATS"].toString());
+                    ReqKWInterface::parseFromSongProperty(&info, value["FORMATS"].toString());
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!m_artistFound)
@@ -113,7 +113,7 @@ void MusicKWQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) cons
 {
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(m_queryValue));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     QByteArray bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())

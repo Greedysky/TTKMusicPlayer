@@ -163,7 +163,7 @@ void MusicEnhancedPopWidget::helpButtonClicked()
 void MusicEnhancedPopWidget::initialize()
 {
     setTranslucentBackground();
-    m_menu->setStyleSheet(TTK::UI::MenuStyle05);
+    m_menu->setStyleSheet(TTK::UI::MenuStyle04);
 
     m_containWidget->setFixedSize(272, 370);
     m_containWidget->setObjectName("ContainWidget");

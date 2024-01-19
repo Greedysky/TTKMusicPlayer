@@ -1,6 +1,6 @@
 #include "musicwyquerymovierequest.h"
 
-namespace MusicWYInterface
+namespace ReqWYInterface
 {
     /*!
      * Start to get video url path.
@@ -9,10 +9,10 @@ namespace MusicWYInterface
 
 }
 
-void MusicWYInterface::parseFromMovieProperty(QString &url, const QString &id, int bitrate)
+void ReqWYInterface::parseFromMovieProperty(QString &url, const QString &id, int bitrate)
 {
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_VIDEO_PATH_URL, false),
                       TTK::Algorithm::mdII(WY_VIDEO_PATH_DATA_URL, false).arg(id).arg(bitrate));
 
@@ -72,7 +72,7 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
                       TTK::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(1014).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize).toUtf8());
 
@@ -180,7 +180,7 @@ void MusicWYQueryMovieRequest::downLoadSingleFinished()
 void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
 {
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_MOVIE_URL, false),
                       TTK::Algorithm::mdII(WY_MOVIE_DATA_URL, false).arg(id));
 
@@ -256,7 +256,7 @@ void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
 void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
 {
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_VIDEO_INFO_URL, false),
                       TTK::Algorithm::mdII(WY_VIDEO_INFO_DATA_URL, false).arg(id));
 
@@ -299,7 +299,7 @@ void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
 
                 const int bitrate = value["resolution"].toInt();
                 TTK::MusicSongProperty prop;
-                MusicWYInterface::parseFromMovieProperty(prop.m_url, id, bitrate);
+                ReqWYInterface::parseFromMovieProperty(prop.m_url, id, bitrate);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(prop.isEmpty())
@@ -358,7 +358,7 @@ void MusicWYQueryArtistMovieRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
                       TTK::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize));
 
@@ -417,7 +417,7 @@ void MusicWYQueryArtistMovieRequest::parseFromArtistMoviesCount(qint64 id)
     m_totalSize = TTK_HIGH_LEVEL;
 
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
                       TTK::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(id).arg(0).arg(m_totalSize));
 

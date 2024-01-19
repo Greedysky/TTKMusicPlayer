@@ -3,14 +3,14 @@
 
 #include "qalgorithm/deswrapper.h"
 
-void MusicKWInterface::makeRequestRawHeader(QNetworkRequest *request)
+void ReqKWInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
     TTK::setSslConfiguration(request);
     TTK::makeUserAgentHeader(request);
     TTK::makeContentTypeHeader(request);
 }
 
-QString MusicKWInterface::makeCoverPixmapUrl(const QString &url, const QString &id)
+QString ReqKWInterface::makeCoverPixmapUrl(const QString &url, const QString &id)
 {
     if(url.isEmpty() && !id.isEmpty())
     {
@@ -30,7 +30,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info)
 {
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_SONG_DETAIL_CGG_URL, false).arg(info->m_songId));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -50,7 +50,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &su
 {
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(info->m_songId, bitrate));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -119,7 +119,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &su
     }
 }
 
-void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
+void ReqKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
 {
     if(info->m_formatProps.isEmpty())
     {
@@ -146,7 +146,7 @@ void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, in
     }
 }
 
-void MusicKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &format)
+void ReqKWInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &format)
 {
     info->m_formatProps = format;
 }

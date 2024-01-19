@@ -21,7 +21,7 @@
 
 #include "ttkprivate.h"
 
-/*! @brief The class of the dlna helper.
+/*! @brief The namespace of the dlna helper.
  * @author Greedysky <greedysky@163.com>
  */
 namespace QDlnaHelper

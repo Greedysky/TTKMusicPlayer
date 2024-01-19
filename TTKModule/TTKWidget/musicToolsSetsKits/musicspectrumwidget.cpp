@@ -42,11 +42,11 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->openFileButton->setStyleSheet(TTK::UI::PushButtonStyle04);
     m_ui->openFileButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->spectrumNormalLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
-    m_ui->spectrumPlusLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
-    m_ui->spectrumWaveLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
-    m_ui->spectrumFlowLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
-    m_ui->spectrumFloridLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
+    m_ui->spectrumNormalLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle05);
+    m_ui->spectrumPlusLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle05);
+    m_ui->spectrumWaveLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle05);
+    m_ui->spectrumFlowLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle05);
+    m_ui->spectrumFloridLayoutButton->setStyleSheet(TTK::UI::ToolButtonStyle05);
 
 #ifdef Q_OS_UNIX
     m_ui->spectrumNormalLayoutButton->setFocusPolicy(Qt::NoFocus);

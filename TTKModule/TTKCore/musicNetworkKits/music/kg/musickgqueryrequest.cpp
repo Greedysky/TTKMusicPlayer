@@ -17,7 +17,7 @@ void MusicKGQueryRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_SONG_SEARCH_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
-    MusicKGInterface::makeRequestRawHeader(&request);
+    ReqKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -32,7 +32,7 @@ void MusicKGQueryRequest::startToSearchByID(const QString &value)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(value));
-    MusicKGInterface::makeRequestRawHeader(&request);
+    ReqKGInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);
     connect(reply, SIGNAL(finished()), SLOT(downLoadSingleFinished()));
@@ -45,7 +45,7 @@ void MusicKGQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, in
 
     MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
-    MusicKGInterface::parseFromSongProperty(info, bitrate);
+    ReqKGInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
     MusicQueryRequest::startToQueryResult(info, bitrate);
 }
@@ -93,13 +93,13 @@ void MusicKGQueryRequest::downLoadFinished()
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongAlbumLrc(&info);
+                    ReqKGInterface::parseFromSongAlbumLrc(&info);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(m_queryMode != QueryMode::Meta)
                     {
                         TTK_NETWORK_QUERY_CHECK();
-                        MusicKGInterface::parseFromSongProperty(&info, value);
+                        ReqKGInterface::parseFromSongProperty(&info, value);
                         TTK_NETWORK_QUERY_CHECK();
 
                         Q_EMIT createResultItem({info, serverToString()});
@@ -149,7 +149,7 @@ void MusicKGQueryRequest::downLoadSingleFinished()
 
                     const QVariantMap &albumObject = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongAlbumInfo(&info, albumObject["album_audio_id"].toString());
+                    ReqKGInterface::parseFromSongAlbumInfo(&info, albumObject["album_audio_id"].toString());
                     TTK_NETWORK_QUERY_CHECK();
                 }
 
@@ -160,7 +160,7 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                 info.m_trackNumber = "0";
 
                 TTK_NETWORK_QUERY_CHECK();
-                MusicKGInterface::parseFromSongProperty(&info, value["extra"].toMap());
+                ReqKGInterface::parseFromSongProperty(&info, value["extra"].toMap());
                 TTK_NETWORK_QUERY_CHECK();
 
                 Q_EMIT createResultItem({info, serverToString()});

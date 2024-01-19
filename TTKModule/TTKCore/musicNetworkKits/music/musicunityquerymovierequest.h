@@ -71,6 +71,12 @@ private Q_SLOTS:
     void downLoadUnityFinished();
 
 private:
+    /*!
+     * Find all plugins.
+     */
+    void findAllPlugins(int count);
+
+private:
     bool m_isUnity;
     int m_pluginIndex;
     int m_startPageIndex;

@@ -16,7 +16,7 @@ void MusicKWDiscoverListRequest::startToSearch()
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_TOPLIST_URL, false).arg(16).arg(0).arg(TOPLIST_PAGE_SIZE));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

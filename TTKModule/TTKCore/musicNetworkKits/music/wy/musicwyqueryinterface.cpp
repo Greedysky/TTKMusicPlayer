@@ -4,7 +4,7 @@
 
 #include "qalgorithm/aeswrapper.h"
 
-void MusicWYInterface::makeRequestRawHeader(QNetworkRequest *request)
+void ReqWYInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
     request->setRawHeader("Referer", TTK::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("Origin", TTK::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
@@ -14,12 +14,12 @@ void MusicWYInterface::makeRequestRawHeader(QNetworkRequest *request)
     TTK::makeContentTypeHeader(request);
 }
 
-QString MusicWYInterface::makeCoverPixmapUrl(const QString &url)
+QString ReqWYInterface::makeCoverPixmapUrl(const QString &url)
 {
     return url + TTK::Algorithm::mdII("dCt3T2JSbmJ2LzFuOUZBalAwTnUvNkRpc3dZPQ==", false);
 }
 
-QByteArray MusicWYInterface::makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &type)
+QByteArray ReqWYInterface::makeTokenRequest(QNetworkRequest *request, const QString &query, const QString &type)
 {
     QAlgorithm::Aes aes;
     QByteArray parameter = aes.encryptCBC(type.toUtf8(), "0CoJUm6Qyw8W8jud", "0102030405060708");
@@ -27,7 +27,7 @@ QByteArray MusicWYInterface::makeTokenRequest(QNetworkRequest *request, const QS
     TTK::Url::urlEncode(parameter);
 
     request->setUrl(query);
-    MusicWYInterface::makeRequestRawHeader(request);
+    ReqWYInterface::makeRequestRawHeader(request);
 
     return "params=" + parameter + "&encSecKey=" + WY_SECKRY_STRING.toUtf8();
 }
@@ -35,7 +35,7 @@ QByteArray MusicWYInterface::makeTokenRequest(QNetworkRequest *request, const QS
 static void parseSongPropertyNew(TTK::MusicSongInformation *info, int bitrate)
 {
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_SONG_PATH_URL, false),
                       TTK::Algorithm::mdII(WY_SONG_PATH_DATA_URL, false).arg(info->m_songId).arg(bitrate * 1000));
 
@@ -92,7 +92,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, int bitrate)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate * 1000).arg(info->m_songId));
-    MusicWYInterface::makeRequestRawHeader(&request);
+    ReqWYInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -163,7 +163,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, int bitrate)
     }
 }
 
-void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
+void ReqWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
 {
     if(info->m_formatProps.isEmpty())
     {
@@ -203,7 +203,7 @@ void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, in
     }
 }
 
-void MusicWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
+void ReqWYInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
 {
     int maxBr = TTK_BN_1000;
     const QVariantMap &privilege = key["privilege"].toMap();

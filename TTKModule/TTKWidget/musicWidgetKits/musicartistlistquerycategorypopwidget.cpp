@@ -111,5 +111,5 @@ void MusicArtistListQueryCategoryPopWidget::initialize()
     m_containWidget->setObjectName("ContainWidget");
     m_containWidget->setStyleSheet(QString("#ContainWidget{%1}").arg(style));
 
-    m_menu->setStyleSheet(TTK::UI::MenuStyle05);
+    m_menu->setStyleSheet(TTK::UI::MenuStyle04);
 }

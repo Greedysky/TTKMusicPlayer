@@ -19,6 +19,9 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+/*! @brief The namespace of the algorithm.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace QAlgorithm
 {
     /*!

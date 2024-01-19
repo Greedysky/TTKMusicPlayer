@@ -16,7 +16,7 @@ void MusicWYQueryPlaylistRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_PLAYLIST_URL, false),
                       TTK::Algorithm::mdII(WY_PLAYLIST_DATA_URL, false).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize));
 
@@ -32,7 +32,7 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &value)
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_PLAYLIST_INFO_URL, false),
                       TTK::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(value));
 
@@ -52,7 +52,7 @@ void MusicWYQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *
 
     MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
-    MusicWYInterface::parseFromSongProperty(info, bitrate);
+    ReqWYInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
     MusicQueryPlaylistRequest::startToQueryResult(info, bitrate);
 }
@@ -64,7 +64,7 @@ void MusicWYQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
     MusicPageQueryRequest::downLoadFinished();
 
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_PLAYLIST_INFO_URL, false),
                       TTK::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(item.m_id));
 
@@ -224,7 +224,7 @@ void MusicWYQueryPlaylistRequest::downloadDetailsFinished()
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicWYInterface::parseFromSongProperty(&info, value);
+                    ReqWYInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
 
                     Q_EMIT createResultItem({info, serverToString()});

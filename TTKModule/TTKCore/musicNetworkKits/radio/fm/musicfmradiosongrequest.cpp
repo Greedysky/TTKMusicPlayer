@@ -15,7 +15,7 @@ void MusicFMRadioSongRequest::startToRequest()
     m_songInfo = TTK::MusicSongInformation();
 
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(FM_DETAIL_URL, false),
                       "{}");
 
@@ -77,7 +77,7 @@ void MusicFMRadioSongRequest::downLoadFinished()
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicWYInterface::parseFromSongProperty(&info, TTK_BN_128);
+                    ReqWYInterface::parseFromSongProperty(&info, TTK_BN_128);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!info.m_songProps.isEmpty())

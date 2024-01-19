@@ -103,7 +103,7 @@ public:
     /*!
      * Create popup search suggest table items.
      */
-    void createSuggestItems(const QStringList &names);
+    void addCellItems(const QStringList &names);
 
 Q_SIGNALS:
     /*!

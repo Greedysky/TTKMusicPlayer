@@ -65,9 +65,9 @@ public Q_SLOTS:
      */
     void suggestDataChanged();
     /*!
-     * Search top list information finished.
+     * Search discover list information finished.
      */
-    void searchToplistInfoFinished(const QString &bytes);
+    void discoverInfoFinished(const QString &bytes);
 
 private:
     /*!

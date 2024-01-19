@@ -92,6 +92,7 @@ MusicSongSearchPopWidget::MusicSongSearchPopWidget(QWidget *parent)
 
     m_popTableWidget = new MusicSongSearchPopTableWidget(this);
     m_popTableWidget->setFixedWidth(285);
+
     m_clearButton = new QPushButton("   " + tr("Clear History"), this);
     m_clearButton->setCursor(Qt::PointingHandCursor);
     m_clearButton->setFixedHeight(35);
@@ -139,9 +140,10 @@ void MusicSongSearchPopWidget::initialize(QWidget *parent)
     manager.readBuffer(records);
 
     const int count = records.count();
+    m_popTableWidget->setRowCount(count);
+
     resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < MAX_ITEM_COUNT ? count * TTK_ITEM_SIZE_M + 45 : (MAX_ITEM_COUNT + 1) * TTK_ITEM_SIZE_M + 8));
 
-    m_popTableWidget->setRowCount(count);
     for(int i = 0; i < count; ++i)
     {
         m_popTableWidget->addCellItem(i, records[i].m_name, utcTimeToLocal(records[i].m_timestamp));
@@ -168,15 +170,16 @@ void MusicSongSearchPopWidget::setControlEnabled(bool enabled)
     }
 }
 
-void MusicSongSearchPopWidget::createSuggestItems(const QStringList &names)
+void MusicSongSearchPopWidget::addCellItems(const QStringList &names)
 {
     setControlEnabled(false);
     m_popTableWidget->removeItems();
 
     const int count = names.count();
+    m_popTableWidget->setRowCount(count);
+
     resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count * TTK_ITEM_SIZE_M + 8));
 
-    m_popTableWidget->setRowCount(count);
     for(int i = 0; i < count; ++i)
     {
         m_popTableWidget->addCellItem(i, names[i], {});

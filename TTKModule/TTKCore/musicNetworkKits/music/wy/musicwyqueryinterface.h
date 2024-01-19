@@ -77,7 +77,7 @@ class QNetworkRequest;
 /*! @brief The namespace of the wangyi request interface.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicWYInterface
+namespace ReqWYInterface
 {
     /*!
      * Make request query data.

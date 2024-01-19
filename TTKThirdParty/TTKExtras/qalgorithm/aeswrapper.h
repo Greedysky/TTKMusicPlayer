@@ -21,6 +21,9 @@
 
 #include "ttkmoduleexport.h"
 
+/*! @brief The namespace of the algorithm.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace QAlgorithm
 {
 /*! @brief The class of the aes wrapper.

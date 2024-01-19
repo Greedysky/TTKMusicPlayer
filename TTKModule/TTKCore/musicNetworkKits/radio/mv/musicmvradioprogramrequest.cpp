@@ -1,7 +1,7 @@
 #include "musicmvradioprogramrequest.h"
 #include "musickgqueryinterface.h"
 
-namespace MusicKGInterface
+namespace ReqKGInterface
 {
     /*!
      * Read mv tags(size\bitrate\url) from query results.
@@ -14,7 +14,7 @@ namespace MusicKGInterface
 
 }
 
-void MusicKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info)
+void ReqKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info)
 {
     if(info->m_songId.isEmpty())
     {
@@ -25,7 +25,7 @@ void MusicKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_MOVIE_INFO_URL, false).arg(encodedData.constData(), info->m_songId));
-    MusicKGInterface::makeRequestRawHeader(&request);
+    ReqKGInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -70,7 +70,7 @@ void MusicKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info)
     }
 }
 
-void MusicKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
+void ReqKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
 {
     TTK::MusicSongProperty prop;
     prop.m_url = key["downurl"].toString();
@@ -179,7 +179,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                             info.m_duration = TTKTime::formatDuration(value["time"].toInt());
 
                             TTK_NETWORK_QUERY_CHECK();
-                            MusicKGInterface::parseFromMovieProperty(&info);
+                            ReqKGInterface::parseFromMovieProperty(&info);
                             TTK_NETWORK_QUERY_CHECK();
 
                             if(info.m_songProps.isEmpty())

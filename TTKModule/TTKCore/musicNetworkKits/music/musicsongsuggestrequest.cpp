@@ -17,7 +17,7 @@ void MusicSongSuggestRequest::startToSearch(const QString &value)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(QUERY_URL, false).arg(value));
-    MusicKGInterface::makeRequestRawHeader(&request);
+    ReqKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

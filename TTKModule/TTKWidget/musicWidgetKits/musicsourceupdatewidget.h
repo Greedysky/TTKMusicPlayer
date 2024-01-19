@@ -47,11 +47,6 @@ public:
      */
     ~MusicSourceUpdateNotifyWidget();
 
-    /*!
-     * Start update.
-     */
-    void start();
-
 public Q_SLOTS:
     /*!
      * Update source clicked.

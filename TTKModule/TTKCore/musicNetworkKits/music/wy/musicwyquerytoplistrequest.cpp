@@ -16,7 +16,7 @@ void MusicWYQueryToplistRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_TOPLIST_URL, false),
                       TTK::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(m_queryValue).arg(m_pageSize * offset).arg(m_pageSize));
 
@@ -36,7 +36,7 @@ void MusicWYQueryToplistRequest::startToQueryResult(TTK::MusicSongInformation *i
 
     MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
-    MusicWYInterface::parseFromSongProperty(info, bitrate);
+    ReqWYInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
     MusicQueryToplistRequest::startToQueryResult(info, bitrate);
 }
@@ -101,7 +101,7 @@ void MusicWYQueryToplistRequest::downLoadFinished()
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicWYInterface::parseFromSongProperty(&info, value);
+                    ReqWYInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
 
                     Q_EMIT createResultItem({info, serverToString()});

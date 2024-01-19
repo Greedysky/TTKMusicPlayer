@@ -207,9 +207,8 @@ void MusicApplicationModule::windowCloseAnimation()
 
 void MusicApplicationModule::soureUpdateCheck()
 {
-    MusicSourceUpdateNotifyWidget *w = new MusicSourceUpdateNotifyWidget;
-    w->start();
-    w->show();
+    MusicSourceUpdateNotifyWidget *widget = new MusicSourceUpdateNotifyWidget;
+    widget->show();
 }
 
 void MusicApplicationModule::sideAnimationByOn()

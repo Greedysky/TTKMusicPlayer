@@ -1,14 +1,14 @@
 #include "musickgqueryinterface.h"
 #include "musicabstractqueryrequest.h"
 
-void MusicKGInterface::makeRequestRawHeader(QNetworkRequest *request)
+void ReqKGInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
     request->setRawHeader("User-Agent", TTK::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
     TTK::setSslConfiguration(request);
     TTK::makeContentTypeHeader(request);
 }
 
-void MusicKGInterface::parseFromSongAlbumLrc(TTK::MusicSongInformation *info)
+void ReqKGInterface::parseFromSongAlbumLrc(TTK::MusicSongInformation *info)
 {
     if(info->m_songId.isEmpty())
     {
@@ -17,7 +17,7 @@ void MusicKGInterface::parseFromSongAlbumLrc(TTK::MusicSongInformation *info)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(info->m_songId));
-    MusicKGInterface::makeRequestRawHeader(&request);
+    ReqKGInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -43,7 +43,7 @@ void MusicKGInterface::parseFromSongAlbumLrc(TTK::MusicSongInformation *info)
     }
 }
 
-void MusicKGInterface::parseFromSongAlbumInfo(TTK::MusicSongInformation *info, const QString &album)
+void ReqKGInterface::parseFromSongAlbumInfo(TTK::MusicSongInformation *info, const QString &album)
 {
     if(album.isEmpty())
     {
@@ -57,7 +57,7 @@ void MusicKGInterface::parseFromSongAlbumInfo(TTK::MusicSongInformation *info, c
     info->m_albumName = result.m_name;
 }
 
-void MusicKGInterface::parseFromSongAlbumInfo(MusicResultDataItem *info, const QString &hash, const QString &album)
+void ReqKGInterface::parseFromSongAlbumInfo(MusicResultDataItem *info, const QString &hash, const QString &album)
 {
     if(hash.isEmpty() || album.isEmpty())
     {
@@ -66,7 +66,7 @@ void MusicKGInterface::parseFromSongAlbumInfo(MusicResultDataItem *info, const Q
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_ALBUM_INFO_URL, false).arg(hash, album));
-    MusicKGInterface::makeRequestRawHeader(&request);
+    ReqKGInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -131,7 +131,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
 
         QNetworkRequest request;
         request.setUrl(TTK::Algorithm::mdII(KG_SONG_DETAIL_URL, false).arg(hash, encodedData.constData()));
-        MusicKGInterface::makeRequestRawHeader(&request);
+        ReqKGInterface::makeRequestRawHeader(&request);
 
         const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
         if(!bytes.isEmpty())
@@ -166,7 +166,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
         QNetworkRequest request;
         request.setUrl(TTK::Algorithm::mdII(KG_SONG_DETAIL_OLD_URL, false).arg(mid, hash, user, encodedData.constData()));
         request.setRawHeader("x-router", TTK::Algorithm::mdII("MTJnUGtpL0hqWXhZQmlCNE9hVzVyREF0QXZmeVBNNVc=", false).toUtf8());
-        MusicKGInterface::makeRequestRawHeader(&request);
+        ReqKGInterface::makeRequestRawHeader(&request);
 
         const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
         if(!bytes.isEmpty())
@@ -197,7 +197,7 @@ static void parseSongProperty(TTK::MusicSongInformation *info, const QString &ha
 }
 
 
-void MusicKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
+void ReqKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, int bitrate)
 {
     const QStringList &formats = info->m_formatProps.split("|");
     if(info->m_formatProps.isEmpty() || formats.count() < 4)
@@ -228,7 +228,7 @@ void MusicKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, in
     }
 }
 
-void MusicKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
+void ReqKGInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
 {
     info->m_formatProps = key["hash"].toString() + "|" + key["128hash"].toString() + "|" + key["320hash"].toString() + "|" + key["sqhash"].toString();
 }

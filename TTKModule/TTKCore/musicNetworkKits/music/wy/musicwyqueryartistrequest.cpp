@@ -16,7 +16,7 @@ void MusicWYQueryArtistRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_ARTIST_URL, false).arg(m_queryValue),
                       QString("{}"));
 
@@ -31,7 +31,7 @@ void MusicWYQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *in
 
     MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
-    MusicWYInterface::parseFromSongProperty(info, bitrate);
+    ReqWYInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
     MusicQueryArtistRequest::startToQueryResult(info, bitrate);
 }
@@ -95,7 +95,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                     info.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicWYInterface::parseFromSongProperty(&info, value);
+                    ReqWYInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!m_artistFound)
@@ -148,7 +148,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
 void MusicWYQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) const
 {
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_ARTIST_INFO_URL, false),
                       TTK::Algorithm::mdII(WY_ARTIST_INFO_DATA_URL, false).arg(m_queryValue));
 

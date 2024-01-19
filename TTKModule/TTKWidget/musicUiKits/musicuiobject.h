@@ -114,9 +114,6 @@ namespace TTK
             background-color:rgba(255, 255, 255, 200);";
 
         static const QString BackgroundStyle12 = " \
-            background-color:rgb(250, 231, 191);";
-
-        static const QString BackgroundStyle13 = " \
             background-color:rgb(254, 249, 229);";
 
         ///border
@@ -181,10 +178,7 @@ namespace TTK
         static const QString ToolButtonStyle04 = ToolButtonStyle01 + ToolButtonStyle03 + " \
             QToolButton::hover{ background-color:rgba(255, 255, 255, 20); }";
 
-        static const QString ToolButtonStyle05 = ToolButtonStyle01 + " \
-            QToolButton::menu-indicator{ image:None; }";
-
-        static const QString ToolButtonStyle06 = " \
+        static const QString ToolButtonStyle05 = " \
             QToolButton{ border:1px solid #777777; background:#FFFFFF; color:#555555; } \
             QToolButton::hover{ border:1px solid #444444; color:#222222; } \
             QToolButton::disabled{ color:#999999; border:1px solid #BBBBBB; }";
@@ -358,10 +352,7 @@ namespace TTK
             QMenu::item:selected{ background:rgba(0, 0, 0, 200); } \
             QMenu::separator{ background:#BBBBBB; }";
 
-        static const QString MenuStyle04 = MenuStyle03 + " \
-            QMenu{ background:rgba(0, 0, 0, 150); }";
-
-        static const QString MenuStyle05 = " \
+        static const QString MenuStyle04 = " \
             QMenu{ border:none; background:transparent; }";
 
         ///Slider
@@ -467,16 +458,6 @@ namespace TTK
 #else
             "QTableWidget{ selection-background-color:rgb(220, 220, 220); }";
 #endif
-
-        static const QString TableWidgetStyle03 =
-#if defined Q_OS_UNIX && !TTK_QT_VERSION_CHECK(5,7,0) //Fix linux selection-background-color stylesheet bug
-            "QTableWidget::item:selected{ background:rgb(50, 50, 50); }";
-#else
-            "QTableWidget{ selection-background-color:rgb(50, 50, 50); }";
-#endif
-
-        static const QString TableWidgetStyle04 = " \
-            QTableWidget{ background:rgb(0, 0, 0); }";
 
         ///TabWidget
         static const QString TabWidgetStyle01 = " \

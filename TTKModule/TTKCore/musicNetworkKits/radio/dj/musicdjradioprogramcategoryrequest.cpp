@@ -33,7 +33,7 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &value)
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(DJ_DETAIL_URL, false),
                       TTK::Algorithm::mdII(DJ_DETAIL_DATA_URL, false).arg(value));
 
@@ -56,7 +56,7 @@ void MusicDJRadioProgramCategoryRequest::startToQueryResult(TTK::MusicSongInform
 
     MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
-    MusicWYInterface::parseFromSongProperty(info, bitrate);
+    ReqWYInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
     MusicAbstractQueryRequest::startToQueryResult(info, bitrate);
 }
@@ -147,7 +147,7 @@ void MusicDJRadioProgramCategoryRequest::downloadDetailsFinished()
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt());
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicWYInterface::parseFromSongProperty(&info, mainSongObject);
+                    ReqWYInterface::parseFromSongProperty(&info, mainSongObject);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!categoryFound)

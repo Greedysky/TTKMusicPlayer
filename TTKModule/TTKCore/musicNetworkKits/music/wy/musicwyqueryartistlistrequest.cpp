@@ -44,7 +44,7 @@ void MusicWYQueryArtistListRequest::startToPage(int offset)
     }
 
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(WY_ARTIST_LIST_URL, false),
                       TTK::Algorithm::mdII(WY_ARTIST_LIST_DATA_URL, false).arg(catId, initial).arg(m_pageSize * offset).arg(m_pageSize));
 

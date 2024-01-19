@@ -17,7 +17,7 @@ void MusicKWSongCommentsRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_COMMENT_SONG_URL, false).arg(m_id).arg(offset + 1).arg(m_pageSize));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -105,7 +105,7 @@ void MusicKWPlaylistCommentsRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_COMMENT_PLAYLIST_URL, false).arg(m_id).arg(offset + 1).arg(m_pageSize));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

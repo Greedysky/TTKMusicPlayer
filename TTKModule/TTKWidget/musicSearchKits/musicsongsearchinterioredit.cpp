@@ -12,7 +12,7 @@ MusicSongSearchInteriorEdit::MusicSongSearchInteriorEdit(QWidget *parent)
     connect(this, SIGNAL(textChanged(QString)), SLOT(textChanged(QString)));
 
     m_discoverRequest = G_DOWNLOAD_QUERY_PTR->makeDiscoverListRequest(this);
-    connect(m_discoverRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(searchToplistInfoFinished(QString)));
+    connect(m_discoverRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(discoverInfoFinished(QString)));
     m_discoverRequest->startToSearch();
 }
 
@@ -91,11 +91,11 @@ void MusicSongSearchInteriorEdit::suggestDataChanged()
             setPopWidgetVisible(true);
         }
 
-        m_popWidget->createSuggestItems(names);
+        m_popWidget->addCellItems(names);
     }
 }
 
-void MusicSongSearchInteriorEdit::searchToplistInfoFinished(const QString &bytes)
+void MusicSongSearchInteriorEdit::discoverInfoFinished(const QString &bytes)
 {
     setPlaceholderText(bytes);
 }

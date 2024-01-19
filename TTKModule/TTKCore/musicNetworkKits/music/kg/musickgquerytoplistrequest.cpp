@@ -17,7 +17,7 @@ void MusicKGQueryToplistRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_TOPLIST_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
-    MusicKGInterface::makeRequestRawHeader(&request);
+    ReqKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -35,7 +35,7 @@ void MusicKGQueryToplistRequest::startToQueryResult(TTK::MusicSongInformation *i
 
     MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
-    MusicKGInterface::parseFromSongProperty(info, bitrate);
+    ReqKGInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
     MusicQueryToplistRequest::startToQueryResult(info, bitrate);
 }
@@ -81,11 +81,11 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongAlbumLrc(&info);
+                    ReqKGInterface::parseFromSongAlbumLrc(&info);
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongAlbumInfo(&info, value["album_audio_id"].toString());
+                    ReqKGInterface::parseFromSongAlbumInfo(&info, value["album_audio_id"].toString());
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongProperty(&info, value);
+                    ReqKGInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
 
                     Q_EMIT createResultItem({info, serverToString()});
@@ -105,7 +105,7 @@ void MusicKGQueryToplistRequest::queryToplistInfo(const QVariantMap &input)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_TOPLIST_INFO_URL, false));
-    MusicKGInterface::makeRequestRawHeader(&request);
+    ReqKGInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())

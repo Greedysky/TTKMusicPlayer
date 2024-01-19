@@ -59,7 +59,7 @@ class MusicResultDataItem;
 /*! @brief The namespace of the kugou request interface.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicKGInterface
+namespace ReqKGInterface
 {
     /*!
      * Make request query data.

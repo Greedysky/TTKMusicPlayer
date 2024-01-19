@@ -17,7 +17,7 @@ void MusicKGQueryAlbumRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_ALBUM_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
-    MusicKGInterface::makeRequestRawHeader(&request);
+    ReqKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -30,7 +30,7 @@ void MusicKGQueryAlbumRequest::startToQueryResult(TTK::MusicSongInformation *inf
 
     MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
-    MusicKGInterface::parseFromSongProperty(info, bitrate);
+    ReqKGInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
     MusicQueryAlbumRequest::startToQueryResult(info, bitrate);
 }
@@ -77,9 +77,9 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongAlbumLrc(&info);
+                    ReqKGInterface::parseFromSongAlbumLrc(&info);
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongProperty(&info, value);
+                    ReqKGInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!m_albumFound)
@@ -87,7 +87,7 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
                         m_albumFound = true;
                         MusicResultDataItem result;
                         TTK_NETWORK_QUERY_CHECK();
-                        MusicKGInterface::parseFromSongAlbumInfo(&result, info.m_songId, value["album_audio_id"].toString());
+                        ReqKGInterface::parseFromSongAlbumInfo(&result, info.m_songId, value["album_audio_id"].toString());
                         TTK_NETWORK_QUERY_CHECK();
 
                         albumName = result.m_name;
@@ -129,7 +129,7 @@ void MusicKGQueryArtistAlbumRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_ARTIST_ALBUM_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
-    MusicKGInterface::makeRequestRawHeader(&request);
+    ReqKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

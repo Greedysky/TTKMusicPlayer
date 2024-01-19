@@ -11,7 +11,7 @@ void MusicDJRadioCategoryRequest::startToRequest()
     deleteAll();
 
     QNetworkRequest request;
-    const QByteArray &parameter = MusicWYInterface::makeTokenRequest(&request,
+    const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
                       TTK::Algorithm::mdII(DJ_CATEGORY_URL, false),
                       QString("{}"));
 

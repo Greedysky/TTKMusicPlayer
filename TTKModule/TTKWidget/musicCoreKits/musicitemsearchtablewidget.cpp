@@ -67,7 +67,7 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
 
 QString MusicItemSearchTableWidget::randSimulation() const
 {
-    switch(TTK::random(5))
+    switch(TTK::random(5) + 3)
     {
         case 0:  return QString(":/video/lb_video_1");
         case 1:  return QString(":/video/lb_video_2");

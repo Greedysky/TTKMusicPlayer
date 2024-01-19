@@ -53,18 +53,15 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
 
     connect(updateButton, SIGNAL(clicked()), SLOT(updateSourceClicked()));
     connect(nextTimeButton, SIGNAL(clicked()), SLOT(close()));
+
+    MusicSourceUpdateRequest *d = new MusicSourceUpdateRequest(this);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
+    d->startToRequest();
 }
 
 MusicSourceUpdateNotifyWidget::~MusicSourceUpdateNotifyWidget()
 {
     delete m_textLabel;
-}
-
-void MusicSourceUpdateNotifyWidget::start()
-{
-    MusicSourceUpdateRequest *d = new MusicSourceUpdateRequest(this);
-    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
-    d->startToRequest();
 }
 
 void MusicSourceUpdateNotifyWidget::updateSourceClicked()

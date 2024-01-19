@@ -8,7 +8,7 @@ MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
     m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Module::CicleBlue, this);
 
     m_labelDelegate = new TTKLabelItemDelegate(this);
-    m_labelDelegate->setStyleSheet(TTK::UI::BackgroundStyle13);
+    m_labelDelegate->setStyleSheet(TTK::UI::BackgroundStyle12);
 
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }

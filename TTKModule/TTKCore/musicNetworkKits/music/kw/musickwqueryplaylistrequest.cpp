@@ -17,7 +17,7 @@ void MusicKWQueryPlaylistRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_PLAYLIST_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -32,7 +32,7 @@ void MusicKWQueryPlaylistRequest::startToSearch(const QString &value)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_PLAYLIST_INFO_URL, false).arg(value));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);
     connect(reply, SIGNAL(finished()), SLOT(downloadDetailsFinished()));
@@ -50,7 +50,7 @@ void MusicKWQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *
 
     MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
-    MusicKWInterface::parseFromSongProperty(info, bitrate);
+    ReqKWInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
 
     findUrlPathSize(&info->m_songProps, info->m_duration);
@@ -65,7 +65,7 @@ void MusicKWQueryPlaylistRequest::startToQueryInfo(MusicResultDataItem &item)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_PLAYLIST_INFO_URL, false).arg(item.m_id));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -168,14 +168,14 @@ void MusicKWQueryPlaylistRequest::downloadDetailsFinished()
                     info.m_albumId = value["albumid"].toString();
                     info.m_albumName = TTK::String::charactersReplace(value["album"].toString());
 
-                    info.m_coverUrl = MusicKWInterface::makeCoverPixmapUrl(value["web_albumpic_short"].toString(), info.m_songId);
+                    info.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["web_albumpic_short"].toString(), info.m_songId);
                     info.m_lrcUrl = TTK::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info.m_songId);
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
                     info.m_year.clear();
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKWInterface::parseFromSongProperty(&info, value["formats"].toString());
+                    ReqKWInterface::parseFromSongProperty(&info, value["formats"].toString());
                     TTK_NETWORK_QUERY_CHECK();
 
                     Q_EMIT createResultItem({info, serverToString()});
@@ -224,7 +224,7 @@ void MusicKWQueryPlaylistRequest::morePlaylistDetails(const QString &pid)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_PLAYLIST_INFO_URL, false).arg(pid));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);
     connect(reply, SIGNAL(finished()), SLOT(downloadMoreDetailsFinished()));

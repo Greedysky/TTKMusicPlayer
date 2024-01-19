@@ -59,7 +59,7 @@ class QNetworkRequest;
 /*! @brief The namespace of the kuwo request interface.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicKWInterface
+namespace ReqKWInterface
 {
     /*!
      * Make request query data.

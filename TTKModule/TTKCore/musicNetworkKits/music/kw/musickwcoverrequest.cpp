@@ -66,7 +66,7 @@ void MusicKWDownLoadCoverRequest::startToRequest()
     {
         QNetworkRequest request;
         request.setUrl(m_url);
-        MusicKWInterface::makeRequestRawHeader(&request);
+        ReqKWInterface::makeRequestRawHeader(&request);
 
         const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
         if(bytes.isEmpty())

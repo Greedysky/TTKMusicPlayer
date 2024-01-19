@@ -2,7 +2,7 @@
 
 #include "qalgorithm/deswrapper.h"
 
-namespace MusicKWInterface
+namespace ReqKWInterface
 {
     /*!
      * Read mv info property from query results.
@@ -19,7 +19,7 @@ namespace MusicKWInterface
 
 }
 
-void MusicKWInterface::parseFromMovieInfo(TTK::MusicSongInformation *info)
+void ReqKWInterface::parseFromMovieInfo(TTK::MusicSongInformation *info)
 {
     if(info->m_songId.isEmpty())
     {
@@ -31,7 +31,7 @@ void MusicKWInterface::parseFromMovieInfo(TTK::MusicSongInformation *info)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(info->m_songId));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -55,7 +55,7 @@ void MusicKWInterface::parseFromMovieInfo(TTK::MusicSongInformation *info)
     }
 }
 
-void MusicKWInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &format)
+void ReqKWInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &format)
 {
     if(info->m_songId.isEmpty())
     {
@@ -83,7 +83,7 @@ void MusicKWInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, c
     }
 }
 
-void MusicKWInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &format, int bitrate)
+void ReqKWInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &format, int bitrate)
 {
     if(info->m_songId.isEmpty())
     {
@@ -95,7 +95,7 @@ void MusicKWInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, c
                                               TTK::Algorithm::mdII("OGlVTjJWOEdlMkkzSkZIeg==", ALG_SHR_KEY, false).toUtf8());
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter)));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -148,7 +148,7 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -208,7 +208,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                     info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * TTK_DN_S2MS);
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKWInterface::parseFromMovieProperty(&info, value["FORMATS"].toString());
+                    ReqKWInterface::parseFromMovieProperty(&info, value["FORMATS"].toString());
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(info.m_songProps.isEmpty() || !findUrlPathSize(&info.m_songProps, info.m_duration))
@@ -242,9 +242,9 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
     info.m_songId = m_queryValue;
 
     TTK_NETWORK_QUERY_CHECK();
-    MusicKWInterface::parseFromMovieInfo(&info);
+    ReqKWInterface::parseFromMovieInfo(&info);
     TTK_NETWORK_QUERY_CHECK();
-    MusicKWInterface::parseFromMovieProperty(&info, "MP4UL|MP4L|MP4HV|MP4");
+    ReqKWInterface::parseFromMovieProperty(&info, "MP4UL|MP4L|MP4HV|MP4");
     TTK_NETWORK_QUERY_CHECK();
 
     if(!info.m_songProps.isEmpty())
@@ -281,7 +281,7 @@ void MusicKWQueryArtistMovieRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_ARTIST_MOVIE_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
-    MusicKWInterface::makeRequestRawHeader(&request);
+    ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

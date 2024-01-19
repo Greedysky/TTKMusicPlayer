@@ -17,7 +17,7 @@ void MusicKGQueryArtistRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_ARTIST_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
-    MusicKGInterface::makeRequestRawHeader(&request);
+    ReqKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -30,7 +30,7 @@ void MusicKGQueryArtistRequest::startToQueryResult(TTK::MusicSongInformation *in
 
     MusicPageQueryRequest::downLoadFinished();
     TTK_NETWORK_QUERY_CHECK();
-    MusicKGInterface::parseFromSongProperty(info, bitrate);
+    ReqKGInterface::parseFromSongProperty(info, bitrate);
     TTK_NETWORK_QUERY_CHECK();
     MusicQueryArtistRequest::startToQueryResult(info, bitrate);
 }
@@ -77,9 +77,9 @@ void MusicKGQueryArtistRequest::downLoadFinished()
                     info.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongAlbumLrc(&info);
+                    ReqKGInterface::parseFromSongAlbumLrc(&info);
                     TTK_NETWORK_QUERY_CHECK();
-                    MusicKGInterface::parseFromSongProperty(&info, value);
+                    ReqKGInterface::parseFromSongProperty(&info, value);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!m_artistFound)
@@ -111,7 +111,7 @@ void MusicKGQueryArtistRequest::queryArtistIntro(MusicResultDataItem *item) cons
 {
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KG_ARTIST_INFO_URL, false).arg(m_queryValue));
-    MusicKGInterface::makeRequestRawHeader(&request);
+    ReqKGInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())

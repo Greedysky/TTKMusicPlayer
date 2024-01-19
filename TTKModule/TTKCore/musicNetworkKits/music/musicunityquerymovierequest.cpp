@@ -1,13 +1,19 @@
 #include "musicunityquerymovierequest.h"
 
-namespace YYTInterface
+/*! @brief The namespace of the yyt request interface.
+ * @author Greedysky <greedysky@163.com>
+ */
+namespace ReqYYTInterface
 {
     static constexpr const char *MODULE = "YYT";
     static const QString MOVIE_URL      = "aHFyKzJ2V2gvdWVrdzEyWlBmUFdHbys5RGM3STRrY25uQ2xCRDdXeldPV0pXMWtNVmN1di9CRndFeDNqbExEdjA5dC9qcWEzMWFxc3NnRWkrcFcrZlBReC90bz0=";
     static const QString MOVIE_DATA_URL = "emxYODBYb2dkQUVzcFcxVFZJS29kbzIwMzhybDVJRk1aNDFab1l3ellaM2pEdEFTVHFvN3RRV2ZNOXM4QkFkVXcrNWNzamFzc2ducEs2NXVyU1RmaVM2VlJtSmlSVUt5MUJmSE9WS2lxc3A5bVh0TXNBRzBEeWd2R29yNVZkUzJLbVBVbGdQSFZOemdQUGkxWFN5TllweHdDNnA3ZStUclVIUE1zYmpwNkVaSC96RHY5eXdTVWdoTVhsK2tidGhmOGcvcFpLejA5NlVLaUlxZko5Ni9ucEJRSUJyZVJGUW5YQlpLQzBGdm44SklDVDh5T0xmTWZoRWpoU3pWTFRtby9mYWQ0QlpJNjk4Q3dzczA=";
 }
 
-namespace BLInterface
+/*! @brief The namespace of the bl request interface.
+ * @author Greedysky <greedysky@163.com>
+ */
+namespace ReqBLInterface
 {
     static constexpr const char *MODULE = "BL";
     static const QString BUVID_URL      = "NmozU2YzaW5JbFE0QnRHVHJheWFaWk5JbjE1QWdWdFpTWFU4aFoyZEt1RU5FdVZ0T1JsV3pscUlkbFdMYVVjT1ArYStiOG9yR1RZMFZ0UVY=";
@@ -31,18 +37,18 @@ namespace BLInterface
 
 }
 
-void BLInterface::makeRequestRawHeader(QNetworkRequest *request)
+void ReqBLInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
     TTK::setSslConfiguration(request);
     TTK::makeContentTypeHeader(request);
-    request->setRawHeader("Cookie", TTK::Algorithm::mdII(BLInterface::BUVID_URL, false).toUtf8());
+    request->setRawHeader("Cookie", TTK::Algorithm::mdII(ReqBLInterface::BUVID_URL, false).toUtf8());
 }
 
-void BLInterface::parseFromMovieInfo(TTK::MusicSongInformation *info, QString &cid)
+void ReqBLInterface::parseFromMovieInfo(TTK::MusicSongInformation *info, QString &cid)
 {
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(BLInterface::MOVIE_DATA_URL, false).arg(info->m_songId));
-    BLInterface::makeRequestRawHeader(&request);
+    request.setUrl(TTK::Algorithm::mdII(ReqBLInterface::MOVIE_DATA_URL, false).arg(info->m_songId));
+    ReqBLInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -75,11 +81,11 @@ void BLInterface::parseFromMovieInfo(TTK::MusicSongInformation *info, QString &c
     }
 }
 
-void BLInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &cid)
+void ReqBLInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &cid)
 {
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(BLInterface::MOVIE_PLAY_URL, false).arg(info->m_songId, cid).arg(16));
-    BLInterface::makeRequestRawHeader(&request);
+    request.setUrl(TTK::Algorithm::mdII(ReqBLInterface::MOVIE_PLAY_URL, false).arg(info->m_songId, cid).arg(16));
+    ReqBLInterface::makeRequestRawHeader(&request);
 
     const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
     if(bytes.isEmpty())
@@ -138,30 +144,30 @@ void MusicUnityQueryMovieRequest::startToPage(int offset)
 
     deleteAll();
     m_totalSize = 0;
-    m_pageIndex = offset - 1;
+    m_pageIndex = offset;
 
     switch(m_pluginIndex)
     {
         case 0:
         {
-            TTK_INFO_STREAM(className() << "YYTInterface");
             QNetworkRequest request;
-            request.setUrl(TTK::Algorithm::mdII(YYTInterface::MOVIE_URL, false));
+            request.setUrl(TTK::Algorithm::mdII(ReqYYTInterface::MOVIE_URL, false));
             TTK::setSslConfiguration(&request);
             TTK::makeContentTypeHeader(&request, "application/json");
 
-            m_queryServer = YYTInterface::MODULE;
-            m_reply = m_manager.post(request, TTK::Algorithm::mdII(YYTInterface::MOVIE_DATA_URL, false).arg(m_queryValue, m_value).arg(m_pageSize).toUtf8());
+            TTK_INFO_STREAM(className() << "ReqYYTInterface");
+            m_queryServer = ReqYYTInterface::MODULE;
+            m_reply = m_manager.post(request, TTK::Algorithm::mdII(ReqYYTInterface::MOVIE_DATA_URL, false).arg(m_queryValue, m_value).arg(m_pageSize).toUtf8());
             break;
         }
         case 1:
         {
-            TTK_INFO_STREAM(className() << "BLInterface");
             QNetworkRequest request;
-            request.setUrl(TTK::Algorithm::mdII(BLInterface::MOVIE_URL, false).arg(m_pageSize).arg(m_pageIndex + 1));
-            BLInterface::makeRequestRawHeader(&request);
+            request.setUrl(TTK::Algorithm::mdII(ReqBLInterface::MOVIE_URL, false).arg(m_queryValue).arg(m_pageIndex));
+            ReqBLInterface::makeRequestRawHeader(&request);
 
-            m_queryServer = BLInterface::MODULE;
+            TTK_INFO_STREAM(className() << "ReqBLInterface");
+            m_queryServer = ReqBLInterface::MODULE;
             m_reply = m_manager.get(request);
             break;
         }
@@ -185,11 +191,12 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
+            const int lastCount = m_songInfos.count();
+
             switch(m_pluginIndex)
             {
                 case 0:
                 {
-                    const int lastCount = m_songInfos.count();
                     if(value["code"].toInt() == 0 && value.contains("data"))
                     {
                         const QVariantList &datas = value["data"].toList();
@@ -253,15 +260,7 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
                         }
                     }
 
-                    if(lastCount == m_songInfos.count())
-                    {
-                        m_totalSize = 0;
-                    }
-//                    if(lastCount + m_pageSize > m_songInfos.count())
-//                    {
-//                        setToUnity();
-//                        ++m_pluginIndex;
-//                    }
+                    findAllPlugins(lastCount);
                     break;
                 }
                 case 1:
@@ -289,11 +288,11 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
                             info.m_artistName = TTK::String::charactersReplace(value["author"].toString());
 
                             QString cid;
-                            BLInterface::parseFromMovieInfo(&info, cid);
+                            ReqBLInterface::parseFromMovieInfo(&info, cid);
 
                             if(!cid.isEmpty())
                             {
-                                BLInterface::parseFromMovieProperty(&info, cid);
+                                ReqBLInterface::parseFromMovieProperty(&info, cid);
                             }
 
                             if(info.m_songProps.isEmpty())
@@ -314,4 +313,13 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
 
     Q_EMIT downLoadDataChanged({});
     deleteAll();
+}
+
+void MusicUnityQueryMovieRequest::findAllPlugins(int count)
+{
+    if(count + m_pageSize > m_songInfos.count())
+    {
+        setToUnity();
+        ++m_pluginIndex;
+    }
 }

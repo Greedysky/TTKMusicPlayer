@@ -1,6 +1,9 @@
 #include "musicsongrecommendrequest.h"
 
-namespace MusicLQInterface
+/*! @brief The namespace of the lq request interface.
+ * @author Greedysky <greedysky@163.com>
+ */
+namespace ReqLQInterface
 {
     static constexpr const char *LQ_BASE_URL = "VzJWczlXM2hMeCtTZzhLRFJvZWxUUTVmZUVBLzlMWmo=";
     static constexpr const char *LQ_RECOMMEND_URL = "NDhiOGZ6dUJWNTBvN3R5OHNOQmkyQVVwOXdWbDNBOG14MmVXWVJxWlVXRkxuNUxxdzdYTEpUYVZRNVE9";
@@ -16,7 +19,7 @@ namespace MusicLQInterface
 
 }
 
-void MusicLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
+void ReqLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QVariantMap &key)
 {
     const int length = key["length"].toInt();
 
@@ -32,7 +35,7 @@ void MusicLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, co
     }
 }
 
-void MusicLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &key, int length, int bitrate)
+void ReqLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, const QString &key, int length, int bitrate)
 {
     if(key.isEmpty())
     {
@@ -40,7 +43,7 @@ void MusicLQInterface::parseFromSongProperty(TTK::MusicSongInformation *info, co
     }
 
     TTK::MusicSongProperty prop;
-    prop.m_url = TTK::Algorithm::mdII(MusicLQInterface::LQ_BASE_URL, false) + key;
+    prop.m_url = TTK::Algorithm::mdII(ReqLQInterface::LQ_BASE_URL, false) + key;
     prop.m_size = TTK::Number::sizeByteToLabel(length * 1000 * bitrate / 8);
     prop.m_bitrate = bitrate;
 
@@ -71,7 +74,7 @@ void MusicSongRecommendRequest::startToSearch(const QString &value)
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(MusicLQInterface::LQ_RECOMMEND_URL, false));
+    request.setUrl(TTK::Algorithm::mdII(ReqLQInterface::LQ_RECOMMEND_URL, false));
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
 
@@ -131,13 +134,13 @@ void MusicSongRecommendRequest::downLoadFinished()
                 info.m_albumName = TTK::String::charactersReplace(albumObject["name"].toString());
 
                 info.m_coverUrl = value["picUrl"].toString();
-                info.m_lrcUrl = TTK::Algorithm::mdII(MusicLQInterface::LQ_BASE_URL, false) + value["lrcUrl"].toString();
+                info.m_lrcUrl = TTK::Algorithm::mdII(ReqLQInterface::LQ_BASE_URL, false) + value["lrcUrl"].toString();
                 info.m_duration = value["songLength"].toString();
                 info.m_year = value["year"].toString();
                 info.m_trackNumber = value["trackNum"].toString();
 
                 TTK_NETWORK_QUERY_CHECK();
-                MusicLQInterface::parseFromSongProperty(&info, value);
+                ReqLQInterface::parseFromSongProperty(&info, value);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(info.m_songProps.isEmpty())

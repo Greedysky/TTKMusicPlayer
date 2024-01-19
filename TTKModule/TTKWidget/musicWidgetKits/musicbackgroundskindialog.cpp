@@ -56,8 +56,8 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     backgroundListWidgetChanged(0);
 
     m_ui->resetWindowButton->setStyleSheet(TTK::UI::BtnResetWindow);
-    m_ui->skinTransparentButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
-    m_ui->listTransparentButton->setStyleSheet(TTK::UI::ToolButtonStyle06);
+    m_ui->skinTransparentButton->setStyleSheet(TTK::UI::ToolButtonStyle05);
+    m_ui->listTransparentButton->setStyleSheet(TTK::UI::ToolButtonStyle05);
 
     m_ui->skinTransparentButton->setEnabled(false);
     m_ui->skinTransparentLabelBox->setStyleSheet(TTK::UI::CheckBoxStyle04);
