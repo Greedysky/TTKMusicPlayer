@@ -16,7 +16,7 @@ void MusicAbstractQueryRequest::startToSearchByID(const QString &value)
 
 void MusicAbstractQueryRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
 {
-    for(TTK::MusicSongInformation &var : m_songInfos)
+    for(TTK::MusicSongInformation &var : m_items)
     {
         if(var.m_songId == info->m_songId)
         {
@@ -31,7 +31,7 @@ void MusicAbstractQueryRequest::startToQueryResult(TTK::MusicSongInformation *in
 void MusicAbstractQueryRequest::downLoadFinished()
 {
     Q_EMIT clearItems();
-    m_songInfos.clear();
+    m_items.clear();
     MusicPageQueryRequest::downLoadFinished();
 }
 

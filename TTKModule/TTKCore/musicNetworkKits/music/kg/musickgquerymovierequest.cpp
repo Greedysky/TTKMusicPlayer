@@ -230,7 +230,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
                     }
 
                     Q_EMIT createResultItem({info, serverToString()});
-                    m_songInfos << info;
+                    m_items << info;
                 }
             }
         }
@@ -263,7 +263,7 @@ void MusicKGQueryMovieRequest::downLoadSingleFinished()
     if(!info.m_songProps.isEmpty())
     {
         Q_EMIT createResultItem({info, serverToString()});
-        m_songInfos << info;
+        m_items << info;
     }
 
     Q_EMIT downLoadDataChanged({});

@@ -51,7 +51,7 @@ void MusicPlaylistBackupModule::runBackup()
         return;
     }
 
-    manager.writeBuffer(MusicApplication::instance()->m_songTreeWidget->musicItemList());
+    manager.writeBuffer(MusicApplication::instance()->m_songTreeWidget->items());
 
     const QFileInfoList &fileList = dir.entryInfoList(QDir::Files, QDir::Time | QDir::Reversed);
     if(fileList.count() > 7)

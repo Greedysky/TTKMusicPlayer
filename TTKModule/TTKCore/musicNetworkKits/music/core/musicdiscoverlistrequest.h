@@ -43,10 +43,10 @@ public:
     /*!
      * Get discover list info.
      */
-    inline const QString &discoverInfo() const { return m_discoverInfo; }
+    inline const QString &item() const { return m_item; }
 
 protected:
-    QString m_discoverInfo;
+    QString m_item;
 
 };
 

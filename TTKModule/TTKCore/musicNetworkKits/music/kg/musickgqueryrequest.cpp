@@ -104,7 +104,8 @@ void MusicKGQueryRequest::downLoadFinished()
 
                         Q_EMIT createResultItem({info, serverToString()});
                     }
-                    m_songInfos << info;
+
+                    m_items << info;
                 }
             }
         }
@@ -164,7 +165,7 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                 TTK_NETWORK_QUERY_CHECK();
 
                 Q_EMIT createResultItem({info, serverToString()});
-                m_songInfos << info;
+                m_items << info;
             }
         }
     }

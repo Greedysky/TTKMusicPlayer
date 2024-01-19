@@ -141,7 +141,7 @@ void MusicDownloadWidget::controlEnabled(bool enabled)
 
 void MusicDownloadWidget::initialize(MusicAbstractQueryRequest *request, int row)
 {
-    const TTK::MusicSongInformationList songInfos(request->songInfoList());
+    const TTK::MusicSongInformationList songInfos(request->items());
     if(row >= songInfos.count())
     {
         return;
@@ -336,7 +336,7 @@ void MusicDownloadWidget::downLoadNormalFinished()
 
     m_ui->viewArea->removeItems();
 
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     if(songInfos.isEmpty())
     {
         return;

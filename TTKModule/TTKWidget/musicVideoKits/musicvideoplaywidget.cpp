@@ -323,6 +323,7 @@ void MusicVideoPlayWidget::shareButtonClicked()
 {
     const QString &name = m_videoItem.m_name.trimmed();
     const QString &id = m_videoItem.m_id.trimmed();
+
     if(name.isEmpty() || id.isEmpty())
     {
         return;
@@ -334,7 +335,7 @@ void MusicVideoPlayWidget::shareButtonClicked()
     data["queryServer"] = m_videoItem.m_server;
 
     MusicSongSharingWidget widget(this);
-    widget.setData(MusicSongSharingWidget::Module::Movie, data);
+    widget.initialize(MusicSongSharingWidget::Module::Movie, data);
     widget.exec();
 }
 

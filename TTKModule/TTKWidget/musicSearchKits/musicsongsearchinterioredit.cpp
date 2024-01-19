@@ -80,7 +80,7 @@ void MusicSongSearchInteriorEdit::suggestDataChanged()
     }
 
     QStringList names;
-    for(const MusicResultDataItem &item : m_suggestRequest->searchedItems())
+    for(const MusicResultDataItem &item : m_suggestRequest->items())
     {
         names << item.m_name;
     }

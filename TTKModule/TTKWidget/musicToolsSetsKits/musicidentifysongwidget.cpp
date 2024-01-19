@@ -119,7 +119,7 @@ void MusicIdentifySongWidget::detectedTimeOut()
     loop.exec();
 
     detectedButtonClicked();
-    if(m_detectedRequest->identifySongs().isEmpty())
+    if(m_detectedRequest->items().isEmpty())
     {
         createDetectedFailedWidget();
     }
@@ -160,7 +160,7 @@ void MusicIdentifySongWidget::showSongShareWidget()
         data["songName"] = m_songInfo.m_songName;
 
         MusicSongSharingWidget widget(this);
-        widget.setData(MusicSongSharingWidget::Module::Song, data);
+        widget.initialize(MusicSongSharingWidget::Module::Song, data);
         widget.exec();
     }
 }
@@ -262,7 +262,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
         m_analysis->setLineMax(11);
         connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     }
-    const MusicSongIdentifyData songIdentify(m_detectedRequest->identifySongs().front());
+    const MusicSongIdentifyData songIdentify(m_detectedRequest->items().front());
 
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle04);
@@ -290,7 +290,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
 
     if(!d->isEmpty())
     {
-        for(const TTK::MusicSongInformation &info : d->songInfoList())
+        for(const TTK::MusicSongInformation &info : d->items())
         {
             if(info.m_artistName.toLower().trimmed().contains(songIdentify.m_artistName.toLower().trimmed(), Qt::CaseInsensitive) &&
                info.m_songName.toLower().trimmed().contains(songIdentify.m_songName.toLower().trimmed(), Qt::CaseInsensitive))

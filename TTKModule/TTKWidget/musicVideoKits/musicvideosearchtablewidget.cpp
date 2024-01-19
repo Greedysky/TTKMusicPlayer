@@ -82,7 +82,7 @@ void MusicVideoSearchTableWidget::startToSearchByID(const QVariant &data)
     setQueryInput(G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this));
 
     m_singleRadioMode = true;
-    m_networkRequest->setSongInfoList({data.value<TTK::MusicSongInformation>()});
+    m_networkRequest->setItems({data.value<TTK::MusicSongInformation>()});
 }
 
 void MusicVideoSearchTableWidget::resizeSection(int delta)
@@ -141,7 +141,7 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
         return;
     }
 
-    const TTK::MusicSongInformation &info = m_networkRequest->songInfoList()[row];
+    const TTK::MusicSongInformation &info = m_networkRequest->items()[row];
     const TTK::MusicSongPropertyList &props = info.m_songProps;
     if(!props.isEmpty())
     {
@@ -218,7 +218,7 @@ void MusicVideoSearchTableWidget::queryMusicMediaInfo(TTK::MusicSongPropertyList
     }
 
     const int row = !m_singleRadioMode ? m_previousClickRow : 0;
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     props = (!songInfos.isEmpty() && row != -1) ? songInfos[row].m_songProps : TTK::MusicSongPropertyList();
 }
 

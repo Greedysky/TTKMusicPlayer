@@ -194,7 +194,7 @@ void MusicKGQueryPlaylistRequest::downloadDetailsFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     Q_EMIT createResultItem({info, serverToString()});
-                    m_songInfos << info;
+                    m_items << info;
                 }
             }
         }

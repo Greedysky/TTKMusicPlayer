@@ -50,7 +50,7 @@ void MusicDownloadStatusModule::currentMetaDataDownload()
         return;
     }
 
-    const TTK::MusicSongInformationList songInfos(d->songInfoList());
+    const TTK::MusicSongInformationList songInfos(d->items());
     if(songInfos.isEmpty())
     {
         showDownLoadInfoFinished("find error");

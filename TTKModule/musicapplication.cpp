@@ -117,7 +117,7 @@ QString MusicApplication::currentFileName() const
     }
 
     const MusicPlayItem &item = m_playlist->currentItem();
-    const MusicSongItemList items(m_songTreeWidget->musicItemList());
+    const MusicSongItemList items(m_songTreeWidget->items());
     if(0 <= m_currentSongTreeIndex && m_currentSongTreeIndex < items.count())
     {
         const MusicSongList &songs = items[m_currentSongTreeIndex].m_songs;
@@ -135,7 +135,7 @@ QString MusicApplication::currentFilePath() const
     }
 
     const MusicPlayItem &item = m_playlist->currentItem();
-    const MusicSongItemList items(m_songTreeWidget->musicItemList());
+    const MusicSongItemList items(m_songTreeWidget->items());
     if(0 <= m_currentSongTreeIndex && m_currentSongTreeIndex < items.count())
     {
         const MusicSongList &songs = items[m_currentSongTreeIndex].m_songs;
@@ -202,7 +202,7 @@ bool MusicApplication::containsLovestItem() const
     if(m_songTreeWidget->playRowIndex() != TTK_NORMAL_LEVEL)
     {
         const MusicPlayItem &item = m_playlist->currentItem();
-        const MusicSongItemList items(m_songTreeWidget->musicItemList());
+        const MusicSongItemList items(m_songTreeWidget->items());
         if(item.isValid() && item.m_playlistRow < items.count())
         {
             const MusicSongList &currentSongs = items[item.m_playlistRow].m_songs;
@@ -218,7 +218,7 @@ bool MusicApplication::containsLovestItem(int index) const
 {
     if(m_songTreeWidget->currentIndex() != TTK_NORMAL_LEVEL && index > TTK_NORMAL_LEVEL)
     {
-        const MusicSongItemList items(m_songTreeWidget->musicItemList());
+        const MusicSongItemList items(m_songTreeWidget->items());
         if(m_songTreeWidget->currentIndex() < items.count())
         {
             const MusicSongList &currentSongs = items[m_songTreeWidget->currentIndex()].m_songs;
@@ -536,7 +536,7 @@ void MusicApplication::exportSongsItemList(int index)
         return;
     }
 
-    const MusicSongItemList &items = m_songTreeWidget->musicItemList();
+    const MusicSongItemList &items = m_songTreeWidget->items();
     if(index < 0 || index >= items.count())
     {
         return;
@@ -586,7 +586,7 @@ void MusicApplication::playIndexBy(int row, int)
     if(m_currentSongTreeIndex != m_songTreeWidget->currentIndex() || m_playlist->isEmpty())
     {
         setPlayIndex();
-        const MusicSongItemList items(m_songTreeWidget->musicItemList());
+        const MusicSongItemList items(m_songTreeWidget->items());
         const int index = m_songTreeWidget->currentIndex();
         if(0 <= index && index < items.count())
         {
@@ -604,7 +604,7 @@ void MusicApplication::playIndexClicked(int row, int column)
     if(m_currentSongTreeIndex == m_songTreeWidget->currentIndex())
     {
         setPlayIndex();
-        const MusicSongItemList items(m_songTreeWidget->musicItemList());
+        const MusicSongItemList items(m_songTreeWidget->items());
         const int index = m_songTreeWidget->currentIndex();
         if(0 <= index && index < items.count())
         {
@@ -1207,6 +1207,6 @@ void MusicApplication::writeSystemConfigToFile()
             return;
         }
 
-        manager.writeBuffer(m_songTreeWidget->musicItemList());
+        manager.writeBuffer(m_songTreeWidget->items());
     }
 }

@@ -174,15 +174,15 @@ public:
     /*!
      * Set the current song container.
      */
-    inline void setSongInfoList(const TTK::MusicSongInformationList &songInfos) { m_songInfos = songInfos; }
+    inline void setItems(const TTK::MusicSongInformationList &items) { m_items = items; }
     /*!
      * Get the current song container.
      */
-    inline const TTK::MusicSongInformationList& songInfoList() const { return m_songInfos; }
+    inline const TTK::MusicSongInformationList& items() const { return m_items; }
     /*!
      * Check the current song container is empty.
      */
-    inline bool isEmpty() const { return m_songInfos.isEmpty(); }
+    inline bool isEmpty() const { return m_items.isEmpty(); }
 
 Q_SIGNALS:
     /*!
@@ -218,7 +218,7 @@ protected:
     QString m_queryServer;
     QueryType m_queryType;
     QueryMode m_queryMode;
-    TTK::MusicSongInformationList m_songInfos;
+    TTK::MusicSongInformationList m_items;
 
 };
 

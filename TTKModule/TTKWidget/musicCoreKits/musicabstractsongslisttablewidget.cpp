@@ -155,7 +155,7 @@ void MusicAbstractSongsListTableWidget::showSongSharedWidget()
     data["songName"] = currentSongName();
 
     MusicSongSharingWidget widget;
-    widget.setData(MusicSongSharingWidget::Module::Song, data);
+    widget.initialize(MusicSongSharingWidget::Module::Song, data);
     widget.exec();
 }
 
@@ -202,7 +202,7 @@ void MusicAbstractSongsListTableWidget::showPlayedSongSharedWidget()
     data["songName"] = songName(m_playRowIndex);
 
     MusicSongSharingWidget widget;
-    widget.setData(MusicSongSharingWidget::Module::Song, data);
+    widget.initialize(MusicSongSharingWidget::Module::Song, data);
     widget.exec();
 }
 

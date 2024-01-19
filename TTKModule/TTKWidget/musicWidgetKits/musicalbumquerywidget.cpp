@@ -82,7 +82,7 @@ void MusicAlbumQueryWidget::resizeWidget()
 
 void MusicAlbumQueryWidget::queryAllFinished()
 {
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     if(songInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_album_found"));
@@ -115,7 +115,7 @@ void MusicAlbumQueryWidget::queryAlbumFinished()
         return;
     }
 
-    const TTK::MusicSongInformationList songInfos(d->songInfoList());
+    const TTK::MusicSongInformationList songInfos(d->items());
     if(songInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_album_found"));

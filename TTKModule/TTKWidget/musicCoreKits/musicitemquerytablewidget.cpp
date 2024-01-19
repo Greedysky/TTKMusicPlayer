@@ -67,7 +67,7 @@ void MusicItemQueryTableWidget::itemDoubleClicked(int row, int column)
 
 void MusicItemQueryTableWidget::downloadDataFrom(bool play)
 {
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     const TTKIntList &list = checkedIndexList();
     if(list.isEmpty())
     {
@@ -118,7 +118,7 @@ void MusicItemQueryTableWidget::resizeSection()
 void MusicItemQueryTableWidget::menuActionChanged(QAction *action)
 {
     const int row = currentRow();
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     if(!isValid(row) || row >= songInfos.count())
     {
         return;
@@ -152,7 +152,7 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     const int row = currentRow();
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     if(!isValid(row) || row >= songInfos.count())
     {
         return;
@@ -263,7 +263,7 @@ void MusicItemQueryTableWidget::addSearchMusicToPlaylist(int row, bool play)
         return;
     }
 
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     if(row >= songInfos.count())
     {
         return;

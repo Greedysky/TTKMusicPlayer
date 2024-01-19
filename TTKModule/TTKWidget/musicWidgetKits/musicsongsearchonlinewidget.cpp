@@ -208,7 +208,7 @@ void MusicSongSearchTableWidget::searchActionClicked(QAction *action)
         return;
     }
 
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     const TTK::MusicSongInformation &info = songInfos[row];
 
     switch(action->data().toInt())
@@ -256,7 +256,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
         return;
     }
 
-    TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     TTK::MusicSongInformation &songInfo = songInfos[row];
     m_networkRequest->startToQueryResult(&songInfo, TTK_BN_128);
 

@@ -52,7 +52,7 @@ MusicSongSharingWidget::~MusicSongSharingWidget()
     delete m_ui;
 }
 
-void MusicSongSharingWidget::setData(Module type, const QVariantMap &data)
+void MusicSongSharingWidget::initialize(Module type, const QVariantMap &data)
 {
     m_type = type;
     m_data = data;
@@ -103,7 +103,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
 
             if(!d->isEmpty())
             {
-                const TTK::MusicSongInformation info(d->songInfoList().front());
+                const TTK::MusicSongInformation info(d->items().front());
                 QString server = d->queryServer();
                 if(server == QUERY_WY_INTERFACE)
                 {

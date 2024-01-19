@@ -50,7 +50,7 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
         case 5:
         case 6:
         {
-            const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+            const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
             if(!isValid(row) || row >= songInfos.count())
             {
                 return;
@@ -73,7 +73,7 @@ void MusicWebMVRadioInfoTableWidget::itemDoubleClicked(int row, int column)
 void MusicWebMVRadioInfoTableWidget::actionChanged(QAction *action)
 {
     const int row = currentRow();
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     if(!isValid(row) || row >= songInfos.count())
     {
         return;
@@ -95,7 +95,7 @@ void MusicWebMVRadioInfoTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(TTK::UI::MenuStyle02);
 
     const int row = currentRow();
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     if(!isValid(row) || row >= songInfos.count())
     {
         return;

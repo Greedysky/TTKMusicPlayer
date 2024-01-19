@@ -45,7 +45,7 @@ void MusicLrcSearchTableWidget::downloadQueryResult(int row)
         return;
     }
 
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     ///download lrc
     MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(songInfos[row].m_lrcUrl, TTK::String::lrcDirPrefix() + m_networkRequest->queryValue() + LRC_FILE, this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SIGNAL(lrcDownloadStateChanged(QString)));

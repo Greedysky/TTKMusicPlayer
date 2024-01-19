@@ -80,7 +80,7 @@ void MusicIdentifySongRequest::startToRequest(const QString &path)
 void MusicIdentifySongRequest::downLoadFinished()
 {
     MusicAbstractNetwork::downLoadFinished();
-    m_songIdentifys.clear();
+    m_items.clear();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -108,7 +108,8 @@ void MusicIdentifySongRequest::downLoadFinished()
                         song.m_artistName = value["name"].toString();
                         break;
                     }
-                    m_songIdentifys << song;
+
+                    m_items << song;
                     break;
                 }
             }

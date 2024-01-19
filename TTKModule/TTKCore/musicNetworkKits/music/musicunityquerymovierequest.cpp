@@ -191,7 +191,7 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            const int lastCount = m_songInfos.count();
+            const int lastCount = m_items.count();
 
             switch(m_pluginIndex)
             {
@@ -256,7 +256,7 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
 
                             m_value = info.m_songId;
                             Q_EMIT createResultItem({info, serverToString()});
-                            m_songInfos << info;
+                            m_items << info;
                         }
                     }
 
@@ -301,7 +301,7 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
                             }
 
                             Q_EMIT createResultItem({info, serverToString()});
-                            m_songInfos << info;
+                            m_items << info;
                         }
                     }
                     break;
@@ -317,7 +317,7 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
 
 void MusicUnityQueryMovieRequest::findAllPlugins(int count)
 {
-    if(count + m_pageSize > m_songInfos.count())
+    if(count + m_pageSize > m_items.count())
     {
         setToUnity();
         ++m_pluginIndex;

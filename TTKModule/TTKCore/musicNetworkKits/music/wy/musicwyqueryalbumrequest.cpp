@@ -111,7 +111,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                     }
 
                     Q_EMIT createResultItem({info, serverToString()});
-                    m_songInfos << info;
+                    m_items << info;
                 }
             }
         }

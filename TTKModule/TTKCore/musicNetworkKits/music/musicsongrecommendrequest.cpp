@@ -103,7 +103,7 @@ void MusicSongRecommendRequest::downLoadFinished()
                     continue;
                 }
 
-                if(m_songInfos.count() >= m_totalSize)
+                if(m_items.count() >= m_totalSize)
                 {
                     break;
                 }
@@ -149,7 +149,7 @@ void MusicSongRecommendRequest::downLoadFinished()
                 }
 
                 Q_EMIT createResultItem({info, serverToString()});
-                m_songInfos << info;
+                m_items << info;
             }
         }
     }

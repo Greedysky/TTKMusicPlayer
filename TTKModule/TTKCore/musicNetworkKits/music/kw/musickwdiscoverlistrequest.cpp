@@ -12,7 +12,7 @@ void MusicKWDiscoverListRequest::startToSearch()
     TTK_INFO_STREAM(className() << "startToSearch");
 
     deleteAll();
-    m_discoverInfo.clear();
+    m_item.clear();
 
     QNetworkRequest request;
     request.setUrl(TTK::Algorithm::mdII(KW_TOPLIST_URL, false).arg(16).arg(0).arg(TOPLIST_PAGE_SIZE));
@@ -53,13 +53,13 @@ void MusicKWDiscoverListRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    m_discoverInfo = QString("%1 - %2").arg(value["artist"].toString(), value["name"].toString());
+                    m_item = QString("%1 - %2").arg(value["artist"].toString(), value["name"].toString());
                     break;
                 }
             }
         }
     }
 
-    Q_EMIT downLoadDataChanged(m_discoverInfo);
+    Q_EMIT downLoadDataChanged(m_item);
     deleteAll();
 }

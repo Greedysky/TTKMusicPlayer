@@ -12,7 +12,7 @@ void MusicWYDiscoverListRequest::startToSearch()
     TTK_INFO_STREAM(className() << "startToSearch");
 
     deleteAll();
-    m_discoverInfo.clear();
+    m_item.clear();
 
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
@@ -65,16 +65,16 @@ void MusicWYDiscoverListRequest::downLoadFinished()
                         }
 
                         const QVariantMap &artistObject = artistValue.toMap();
-                        m_discoverInfo = artistObject["name"].toString();
+                        m_item = artistObject["name"].toString();
                     }
 
-                    m_discoverInfo += " - " + value["name"].toString();
+                    m_item += " - " + value["name"].toString();
                     break;
                 }
             }
         }
     }
 
-    Q_EMIT downLoadDataChanged(m_discoverInfo);
+    Q_EMIT downLoadDataChanged(m_item);
     deleteAll();
 }

@@ -81,7 +81,7 @@ public:
     /*!
      * Set current data to share.
      */
-    void setData(Module type, const QVariantMap &data);
+    void initialize(Module type, const QVariantMap &data);
 
 public Q_SLOTS:
     /*!

@@ -12,7 +12,7 @@ MusicFMRadioSongRequest::MusicFMRadioSongRequest(QObject *parent)
 void MusicFMRadioSongRequest::startToRequest()
 {
     deleteAll();
-    m_songInfo = TTK::MusicSongInformation();
+    m_item = TTK::MusicSongInformation();
 
     QNetworkRequest request;
     const QByteArray &parameter = ReqWYInterface::makeTokenRequest(&request,
@@ -82,7 +82,7 @@ void MusicFMRadioSongRequest::downLoadFinished()
 
                     if(!info.m_songProps.isEmpty())
                     {
-                        m_songInfo = info;
+                        m_item = info;
                         break;
                     }
                 }

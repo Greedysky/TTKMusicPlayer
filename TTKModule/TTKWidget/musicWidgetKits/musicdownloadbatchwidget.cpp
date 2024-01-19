@@ -239,7 +239,7 @@ MusicDownloadBatchWidget::~MusicDownloadBatchWidget()
 
 void MusicDownloadBatchWidget::initialize(MusicAbstractQueryRequest *request, const TTKIntList &items)
 {
-    TTK::MusicSongInformationList infos, songInfos(request->songInfoList());
+    TTK::MusicSongInformationList infos, songInfos(request->items());
     for(int index : qAsConst(items))
     {
         if(index < 0 || index >= songInfos.count())

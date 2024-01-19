@@ -33,7 +33,7 @@ void MusicKGDownloadBackgroundRequest::startToRequest()
     }
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(d->songInfoList().front().m_songId));
+    request.setUrl(TTK::Algorithm::mdII(ART_BACKGROUND_URL, false).arg(d->items().front().m_songId));
     TTK::setSslConfiguration(&request);
     TTK::makeContentTypeHeader(&request);
 

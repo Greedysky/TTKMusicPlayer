@@ -42,7 +42,7 @@ public:
     /*!
      * Get music song information.
      */
-    inline const TTK::MusicSongInformation& songInfo() const { return m_songInfo; }
+    inline const TTK::MusicSongInformation& item() const { return m_item; }
 
 public Q_SLOTS:
     /*!
@@ -51,7 +51,7 @@ public Q_SLOTS:
     virtual void downLoadFinished() override final;
 
 private:
-    TTK::MusicSongInformation m_songInfo;
+    TTK::MusicSongInformation m_item;
 
 };
 

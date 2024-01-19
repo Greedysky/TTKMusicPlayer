@@ -188,7 +188,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                             }
 
                             Q_EMIT createResultItem({info});
-                            m_songInfos << info;
+                            m_items << info;
                         }
                     }
                 }

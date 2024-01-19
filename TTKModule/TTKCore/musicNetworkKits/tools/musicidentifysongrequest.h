@@ -56,7 +56,7 @@ public:
     /*!
      * Get identify songs.
      */
-    inline const MusicSongIdentifyDataList& identifySongs() const { return m_songIdentifys; }
+    inline const MusicSongIdentifyDataList& items() const { return m_items; }
 
 Q_SIGNALS:
     /*!
@@ -75,7 +75,7 @@ public Q_SLOTS:
     void downLoadFinished(const QByteArray &bytes);
 
 private:
-    MusicSongIdentifyDataList m_songIdentifys;
+    MusicSongIdentifyDataList m_items;
     QString m_accessKey, m_accessSecret;
 
 };

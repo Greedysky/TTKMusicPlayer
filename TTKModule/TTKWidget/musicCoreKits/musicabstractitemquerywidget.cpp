@@ -107,7 +107,7 @@ void MusicAbstractItemQueryWidget::shareButtonClicked()
     }
 
     MusicSongSharingWidget widget(this);
-    widget.setData(m_shareType, data);
+    widget.initialize(m_shareType, data);
     widget.exec();
 }
 
@@ -219,7 +219,7 @@ void MusicAbstractItemQueryWidget::setSongCountText()
         return;
     }
 
-    const TTK::MusicSongInformationList songInfos(d->songInfoList());
+    const TTK::MusicSongInformationList songInfos(d->items());
     if(m_songButton)
     {
         m_songButton->setText(tr("SongItems") + QString("(%1)").arg(songInfos.count()));

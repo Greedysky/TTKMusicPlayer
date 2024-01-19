@@ -117,7 +117,7 @@ void MusicWebFMRadioPlayWidget::radioResourceDownload()
     TTK::MusicSongInformation info;
     if(m_songThread)
     {
-        info = m_songThread->songInfo();
+        info = m_songThread->item();
     }
 
     MusicDownloadWidget *widget = new MusicDownloadWidget(this);
@@ -130,7 +130,7 @@ void MusicWebFMRadioPlayWidget::querySongInfoFinished()
     TTK::MusicSongInformation info;
     if(m_songThread)
     {
-        info = m_songThread->songInfo();
+        info = m_songThread->item();
     }
 
     m_isPlaying = true;
@@ -194,7 +194,7 @@ void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
     TTK::MusicSongInformation info;
     if(m_songThread)
     {
-        info = m_songThread->songInfo();
+        info = m_songThread->item();
     }
 
     const QString &name = TTK::generateSongName(info.m_songName, info.m_artistName).trimmed();
@@ -207,7 +207,7 @@ void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
     TTK::MusicSongInformation info;
     if(m_songThread)
     {
-        info = m_songThread->songInfo();
+        info = m_songThread->item();
     }
 
     QPixmap pix(ART_DIR_FULL + info.m_artistName + SKN_FILE);

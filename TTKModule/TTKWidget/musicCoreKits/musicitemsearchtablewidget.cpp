@@ -53,7 +53,7 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
     menu.addSeparator();
 
     const int row = currentRow();
-    const TTK::MusicSongInformationList songInfos(m_networkRequest->songInfoList());
+    const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
     if(!isValid(row) || row >= songInfos.count())
     {
         return;
