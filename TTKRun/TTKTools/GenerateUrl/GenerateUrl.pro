@@ -56,3 +56,5 @@ SOURCES += \
     $$PWD/toolsurl.cpp
 
 FORMS += $$PWD/toolsurl.ui
+
+win32:RC_FILE = $$PWD/GenerateUrl.rc

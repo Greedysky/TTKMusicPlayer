@@ -58,3 +58,5 @@ SOURCES += \
     $$PWD/toolsskin.cpp
 
 FORMS += $$PWD/toolsskin.ui
+
+win32:RC_FILE = $$PWD/GenerateSkin.rc
