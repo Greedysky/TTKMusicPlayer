@@ -69,6 +69,14 @@ public:
         Null        /*!< null type*/
     };
 
+    struct Item
+    {
+        QString m_id;
+        QString m_name;
+        QString m_cover;
+        QString m_server;
+    };
+
     /*!
      * Object constructor.
      */
@@ -81,7 +89,7 @@ public:
     /*!
      * Set current data to share.
      */
-    void initialize(Module type, const QVariantMap &data);
+    void initialize(Module type, const MusicSongSharingWidget::Item &data);
 
 public Q_SLOTS:
     /*!
@@ -93,23 +101,29 @@ public Q_SLOTS:
      */
     void confirmButtonClicked();
     /*!
-     * Data download finished and send to shared on web.
-     */
-    void downLoadFinished(const QString &playUrl, const QString &imageUrl);
-    /*!
      * Query url time out, that means share failed.
      */
-    void queryUrlTimeout();
+    void shareTimeout();
     /*!
      * Download pixmap data finished.
      */
     void downLoadFinished(const QByteArray &bytes);
 
 private:
+    /*!
+     * Send to shared on web.
+     */
+    void sendToShare(const QString &playUrl, const QString &imageUrl);
+    /*!
+     * Send to shared on web.
+     */
+    void sendToShare(const QString &a, const QString &b, const QString &c);
+
+private:
     Ui::MusicSongSharingWidget *m_ui;
     Module m_type;
-    QVariantMap m_data;
     QRCodeQWidget *m_qrCodeWidget;
+    MusicSongSharingWidget::Item m_data;
 
 };
 

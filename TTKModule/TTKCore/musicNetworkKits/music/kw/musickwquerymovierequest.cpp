@@ -50,6 +50,7 @@ void ReqKWInterface::parseFromMovieInfo(TTK::MusicSongInformation *info)
             value = value["data"].toMap();
             info->m_songName = value["name"].toString();
             info->m_artistName = value["artist"].toString();
+            info->m_coverUrl = value["pic"].toString();
             info->m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
         }
     }
@@ -205,6 +206,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
 
                     info.m_artistName = TTK::String::charactersReplace(value["ARTIST"].toString());
 
+                    info.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["web_albumpic_short"].toString(), info.m_songId);
                     info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * TTK_DN_S2MS);
 
                     TTK_NETWORK_QUERY_CHECK();

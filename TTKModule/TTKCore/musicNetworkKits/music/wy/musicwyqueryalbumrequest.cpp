@@ -179,7 +179,7 @@ void MusicWYQueryArtistAlbumRequest::downLoadFinished()
 
                     MusicResultDataItem result;
                     result.m_id = value["id"].toString();
-                    result.m_coverUrl = value["picUrl"].toString();
+                    result.m_coverUrl = ReqWYInterface::makeCoverPixmapUrl(value["picUrl"].toString());
                     result.m_name = value["name"].toString();
                     result.m_updateTime = TTKDateTime::format(value["publishTime"].toULongLong(), TTK_YEARD_FORMAT);
                     Q_EMIT createAlbumItem(result);

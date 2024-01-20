@@ -35,7 +35,7 @@ void MusicVideoQualityPopWidget::setQualityActionState()
 
 void MusicVideoQualityPopWidget::setQualityText(const QString &url)
 {
-    QString style = TTK::UI::VideoBtnSDMode;
+    QString style = TTK::UI::VideoBtnSTMode;
     switch(findMVBitrateByUrl(url))
     {
         case TTK_BN_250: style = TTK::UI::VideoBtnSTMode; break;
@@ -44,6 +44,7 @@ void MusicVideoQualityPopWidget::setQualityText(const QString &url)
         case TTK_BN_1000: style = TTK::UI::VideoBtnSQMode; break;
         default: break;
     }
+
     setStyleSheet(style);
 }
 
@@ -52,10 +53,10 @@ void MusicVideoQualityPopWidget::movieQualityChoiced(QAction *action)
     QString url;
     switch(TTKStaticCast(TTK::QueryQuality, action->data().toInt()))
     {
-        case TTK::QueryQuality::None: url = findMVUrlByBitrate(TTK_BN_250); break;
-        case TTK::QueryQuality::Standard: url = findMVUrlByBitrate(TTK_BN_500); break;
-        case TTK::QueryQuality::High: url = findMVUrlByBitrate(TTK_BN_750); break;
-        case TTK::QueryQuality::Super: url = findMVUrlByBitrate(TTK_BN_1000); break;
+        case TTK::QueryQuality::Standard: url = findMVUrlByBitrate(TTK_BN_250); break;
+        case TTK::QueryQuality::High: url = findMVUrlByBitrate(TTK_BN_500); break;
+        case TTK::QueryQuality::Super: url = findMVUrlByBitrate(TTK_BN_750); break;
+        case TTK::QueryQuality::Lossless: url = findMVUrlByBitrate(TTK_BN_1000); break;
         default: break;
     }
 
@@ -71,10 +72,10 @@ void MusicVideoQualityPopWidget::initialize()
 
     m_containWidget->setFixedSize(140, 125);
     m_menu->removeAction(m_menu->actions().front());
-    m_actionGroup->addAction(m_menu->addAction(tr("ST")))->setData(TTKStaticCast(int, TTK::QueryQuality::None));
-    m_actionGroup->addAction(m_menu->addAction(tr("SD")))->setData(TTKStaticCast(int, TTK::QueryQuality::Standard));
-    m_actionGroup->addAction(m_menu->addAction(tr("HD")))->setData(TTKStaticCast(int, TTK::QueryQuality::High));
-    m_actionGroup->addAction(m_menu->addAction(tr("SQ")))->setData(TTKStaticCast(int, TTK::QueryQuality::Super));
+    m_actionGroup->addAction(m_menu->addAction(tr("ST")))->setData(TTKStaticCast(int, TTK::QueryQuality::Standard));
+    m_actionGroup->addAction(m_menu->addAction(tr("SD")))->setData(TTKStaticCast(int, TTK::QueryQuality::High));
+    m_actionGroup->addAction(m_menu->addAction(tr("HD")))->setData(TTKStaticCast(int, TTK::QueryQuality::Super));
+    m_actionGroup->addAction(m_menu->addAction(tr("SQ")))->setData(TTKStaticCast(int, TTK::QueryQuality::Lossless));
 
     setQualityActionState();
 }

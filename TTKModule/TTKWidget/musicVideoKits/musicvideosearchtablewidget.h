@@ -32,6 +32,7 @@ struct TTK_MODULE_EXPORT MusicVideoItem
     QString m_name;
     QString m_url;
     QString m_id;
+    QString m_cover;
     QString m_server;
 };
 
@@ -120,8 +121,8 @@ private:
      */
     void downloadLocalMovie(int row);
 
-    QString m_currentSongName;
     bool m_singleRadioMode;
+    QString m_currentSongName;
 
 };
 

@@ -52,33 +52,19 @@ MusicSongSharingWidget::~MusicSongSharingWidget()
     delete m_ui;
 }
 
-void MusicSongSharingWidget::initialize(Module type, const QVariantMap &data)
+void MusicSongSharingWidget::initialize(Module type, const MusicSongSharingWidget::Item &data)
 {
     m_type = type;
     m_data = data;
 
-    const QString &name = data["songName"].toString();
-
-    switch(m_type)
+    if(TTK::isCoverValid(data.m_cover))
     {
-        case Module::Song: break;
-        case Module::Movie: break;
-        case Module::Artist:
-        case Module::Album:
-        case Module::Playlist:
-        {
-            const QString &cover = data["smallUrl"].toString();
-            if(TTK::isCoverValid(cover))
-            {
-                MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
-                connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-                d->startToRequest(cover);
-            }
-            break;
-        }
-        default: break;
+        MusicCoverRequest *d = G_DOWNLOAD_QUERY_PTR->makeCoverRequest(this);
+        connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        d->startToRequest(data.m_cover);
     }
 
+    const QString &name = data.m_name;
     m_ui->sharedName->setToolTip(name);
     m_ui->sharedName->setText(TTK::Widget::elidedText(font(), name, Qt::ElideRight, 200));
 
@@ -101,142 +87,50 @@ void MusicSongSharingWidget::confirmButtonClicked()
             d->startToSearch(m_ui->sharedName->text().trimmed());
             loop.exec();
 
-            if(!d->isEmpty())
+            if(d->isEmpty())
             {
-                const TTK::MusicSongInformation info(d->items().front());
-                QString server = d->queryServer();
-                if(server == QUERY_WY_INTERFACE)
-                {
-                    server = TTK::Algorithm::mdII(WY_SG_SHARE, ALG_SHR_KEY, false).arg(info.m_songId);
-                }
-                else if(server == QUERY_KG_INTERFACE)
-                {
-                    server = TTK::Algorithm::mdII(KG_SG_SHARE, ALG_SHR_KEY, false).arg(info.m_songId);
-                }
-                else if(server == QUERY_KW_INTERFACE)
-                {
-                    server = TTK::Algorithm::mdII(KW_SG_SHARE, ALG_SHR_KEY, false).arg(info.m_songId);
-                }
-                else
-                {
-                    TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout, TTK_SLOT);
-                    break;
-                }
+                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, shareTimeout, TTK_SLOT);
+                break;
+            }
 
-                downLoadFinished(server, info.m_coverUrl);
-            }
-            else
-            {
-                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout, TTK_SLOT);
-            }
+            const TTK::MusicSongInformation info(d->items().front());
+            m_data.m_id = info.m_songId;
+            m_data.m_cover = info.m_coverUrl;
+            m_data.m_server = d->queryServer();
+
+            sendToShare(WY_SG_SHARE, KG_SG_SHARE, KW_SG_SHARE);
             break;
         }
         case Module::Movie:
         {
-            QString server = m_data["queryServer"].toString(), id = m_data["id"].toString();
-            if(server == QUERY_WY_INTERFACE)
-            {
-                server = TTK::Algorithm::mdII(WY_MV_SHARE, ALG_SHR_KEY, false).arg(id);
-            }
-            else if(server == QUERY_KG_INTERFACE)
-            {
-                server = TTK::Algorithm::mdII(KG_MV_SHARE, ALG_SHR_KEY, false).arg(id);
-            }
-            else if(server == QUERY_KW_INTERFACE)
-            {
-                server = TTK::Algorithm::mdII(KW_MV_SHARE, ALG_SHR_KEY, false).arg(id);
-            }
-            else
-            {
-                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout, TTK_SLOT);
-                break;
-            }
-
-            downLoadFinished(server, {});
+            sendToShare(WY_MV_SHARE, KG_MV_SHARE, KW_MV_SHARE);
             break;
         }
         case Module::Artist:
         {
-            QString server = m_data["queryServer"].toString();
-            if(server == QUERY_WY_INTERFACE)
-            {
-                server = TTK::Algorithm::mdII(WY_AR_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
-            }
-            else if(server == QUERY_KG_INTERFACE)
-            {
-                server = TTK::Algorithm::mdII(KG_AR_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
-            }
-            else if(server == QUERY_KW_INTERFACE)
-            {
-                server = TTK::Algorithm::mdII(KW_AR_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
-            }
-            else
-            {
-                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout, TTK_SLOT);
-                break;
-            }
-
-            downLoadFinished(server, m_data["smallUrl"].toString());
+            sendToShare(WY_AR_SHARE, KG_AR_SHARE, KW_AR_SHARE);
             break;
         }
         case Module::Album:
         {
-            QString server = m_data["queryServer"].toString();
-            if(server == QUERY_WY_INTERFACE)
-            {
-                server = TTK::Algorithm::mdII(WY_AL_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
-            }
-            else if(server == QUERY_KG_INTERFACE)
-            {
-                server = TTK::Algorithm::mdII(KG_AL_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
-            }
-            else if(server == QUERY_KW_INTERFACE)
-            {
-                server = TTK::Algorithm::mdII(KW_AL_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
-            }
-            else
-            {
-                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout, TTK_SLOT);
-                break;
-            }
-
-            downLoadFinished(server, m_data["smallUrl"].toString());
+            sendToShare(WY_AL_SHARE, KG_AL_SHARE, KW_AL_SHARE);
             break;
         }
         case Module::Playlist:
         {
-            QString server = m_data["queryServer"].toString();
-            if(server == QUERY_WY_INTERFACE)
-            {
-                server = TTK::Algorithm::mdII(WY_PL_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
-            }
-            else if(server == QUERY_KG_INTERFACE)
-            {
-                server = TTK::Algorithm::mdII(KG_PL_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
-            }
-            else if(server == QUERY_KW_INTERFACE)
-            {
-                server = TTK::Algorithm::mdII(KW_PL_SHARE, ALG_SHR_KEY, false).arg(m_data["id"].toString());
-            }
-            else
-            {
-                TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, queryUrlTimeout, TTK_SLOT);
-                break;
-            }
-
-            downLoadFinished(server, m_data["smallUrl"].toString());
+            sendToShare(WY_PL_SHARE, KG_PL_SHARE, KW_PL_SHARE);
             break;
         }
         default: break;
     }
 }
 
-void MusicSongSharingWidget::queryUrlTimeout()
+void MusicSongSharingWidget::shareTimeout()
 {
     MusicToastLabel::popup(tr("Song does not support sharing"));
 }
 
-void MusicSongSharingWidget::downLoadFinished(const QString &playUrl, const QString &imageUrl)
+void MusicSongSharingWidget::sendToShare(const QString &playUrl, const QString &imageUrl)
 {
     QString url;
     if(m_ui->qqButton->isChecked())
@@ -268,6 +162,30 @@ void MusicSongSharingWidget::downLoadFinished(const QString &playUrl, const QStr
     TTK_SIGNLE_SHOT(TTK_DN_S2MS, this, close, TTK_SLOT);
 }
 
+void MusicSongSharingWidget::sendToShare(const QString &a, const QString &b, const QString &c)
+{
+    QString url;
+    if(m_data.m_server == QUERY_WY_INTERFACE)
+    {
+        url = TTK::Algorithm::mdII(a, ALG_SHR_KEY, false).arg(m_data.m_id);
+    }
+    else if(m_data.m_server == QUERY_KG_INTERFACE)
+    {
+        url = TTK::Algorithm::mdII(b, ALG_SHR_KEY, false).arg(m_data.m_id);
+    }
+    else if(m_data.m_server == QUERY_KW_INTERFACE)
+    {
+        url = TTK::Algorithm::mdII(c, ALG_SHR_KEY, false).arg(m_data.m_id);
+    }
+    else
+    {
+        TTK_SIGNLE_SHOT(2 * TTK_DN_S2MS, this, shareTimeout, TTK_SLOT);
+        return;
+    }
+
+    sendToShare(url, m_data.m_cover);
+}
+
 void MusicSongSharingWidget::textAreaChanged()
 {
     constexpr int max = 150;
@@ -277,7 +195,7 @@ void MusicSongSharingWidget::textAreaChanged()
     if(length > max)
     {
         QTextCursor textCursor = m_ui->textEdit->textCursor();
-        int position = textCursor.position();
+        const int position = textCursor.position();
         text.remove(position - (length - max), length - max);
         m_ui->textEdit->setText(text);
         textCursor.setPosition(position - (length - max));
@@ -297,10 +215,7 @@ void MusicSongSharingWidget::downLoadFinished(const QByteArray &bytes)
         return;
     }
 
-    if(m_ui->sharedNameIcon)
-    {
-        QPixmap pix;
-        pix.loadFromData(bytes);
-        m_ui->sharedNameIcon->setPixmap(pix.scaled(m_ui->sharedNameIcon->size()));
-    }
+    QPixmap pix;
+    pix.loadFromData(bytes);
+    m_ui->sharedNameIcon->setPixmap(pix.scaled(m_ui->sharedNameIcon->size()));
 }

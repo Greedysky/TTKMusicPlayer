@@ -95,19 +95,19 @@ void MusicAbstractItemQueryWidget::playAllButtonClicked()
 
 void MusicAbstractItemQueryWidget::shareButtonClicked()
 {
-    QVariantMap data;
-    data["id"] = m_currentPlaylistItem.m_id;
-    data["songName"] = m_currentPlaylistItem.m_name;
-    data["smallUrl"] = m_currentPlaylistItem.m_coverUrl;
+    MusicSongSharingWidget::Item item;
+    item.m_id = m_currentPlaylistItem.m_id;
+    item.m_name = m_currentPlaylistItem.m_name;
+    item.m_cover = m_currentPlaylistItem.m_coverUrl;
 
     const MusicAbstractQueryRequest *d = m_queryTableWidget->queryInput();
     if(d)
     {
-        data["queryServer"] = d->queryServer();
+        item.m_server  = d->queryServer();
     }
 
     MusicSongSharingWidget widget(this);
-    widget.initialize(m_shareType, data);
+    widget.initialize(m_shareType, item);
     widget.exec();
 }
 

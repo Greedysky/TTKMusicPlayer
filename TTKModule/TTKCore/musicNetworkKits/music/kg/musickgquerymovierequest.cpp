@@ -34,12 +34,19 @@ void ReqKGInterface::parseFromMovieInfo(TTK::MusicSongInformation *info)
         return;
     }
 
+    QRegExp regx;
     const QString text(bytes);
-    const QRegExp regx("mv_hash = \"([^\"]+)");
 
+    regx.setPattern("mv_hash\\s?=\\s?\"([^\"]+)");
     if(regx.indexIn(text) != -1)
     {
         info->m_songId = regx.cap(1);
+    }
+
+    regx.setPattern("mv_pic\\s?=\\s?\"([^\"]+)");
+    if(regx.indexIn(text) != -1)
+    {
+        info->m_coverUrl = regx.cap(1);
     }
 }
 

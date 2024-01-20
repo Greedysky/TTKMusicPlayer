@@ -207,6 +207,7 @@ void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
 
             info.m_artistName = TTK::String::charactersReplace(value["artistName"].toString());
 
+            info.m_coverUrl = value["cover"].toString();
             info.m_duration = TTKTime::formatDuration(value["duration"].toInt());
 
             value = value["brs"].toMap();
@@ -284,6 +285,7 @@ void MusicWYQueryMovieRequest::parseFromVideoList(const QString &id)
             const QVariantMap &artistObject = value["creator"].toMap();
             info.m_artistName = TTK::String::charactersReplace(artistObject["nickname"].toString());
 
+            info.m_coverUrl = value["cover"].toString();
             info.m_duration = TTKTime::formatDuration(value["durationms"].toInt());
 
             const QVariantList &datas = value["resolutions"].toList();

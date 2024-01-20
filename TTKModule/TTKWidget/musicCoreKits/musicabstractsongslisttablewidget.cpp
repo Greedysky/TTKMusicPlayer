@@ -151,11 +151,11 @@ void MusicAbstractSongsListTableWidget::showSongSharedWidget()
         return;
     }
 
-    QVariantMap data;
-    data["songName"] = currentSongName();
+    MusicSongSharingWidget::Item item;
+    item.m_name = currentSongName();
 
     MusicSongSharingWidget widget;
-    widget.initialize(MusicSongSharingWidget::Module::Song, data);
+    widget.initialize(MusicSongSharingWidget::Module::Song, item);
     widget.exec();
 }
 
@@ -198,11 +198,11 @@ void MusicAbstractSongsListTableWidget::showPlayedSongSharedWidget()
         return;
     }
 
-    QVariantMap data;
-    data["songName"] = songName(m_playRowIndex);
+    MusicSongSharingWidget::Item item;
+    item.m_name = songName(m_playRowIndex);
 
     MusicSongSharingWidget widget;
-    widget.initialize(MusicSongSharingWidget::Module::Song, data);
+    widget.initialize(MusicSongSharingWidget::Module::Song, item);
     widget.exec();
 }
 

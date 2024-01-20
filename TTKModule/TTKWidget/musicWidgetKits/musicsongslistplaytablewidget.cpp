@@ -6,7 +6,6 @@
 #include "musicitemdelegate.h"
 #include "musicmessagebox.h"
 #include "musicprogresswidget.h"
-#include "musicsongsharingwidget.h"
 #include "musicrightareawidget.h"
 #include "musicopenfilewidget.h"
 #include "musicplayedlistpopwidget.h"

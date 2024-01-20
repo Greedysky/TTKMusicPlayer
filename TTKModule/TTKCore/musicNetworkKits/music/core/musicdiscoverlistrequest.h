@@ -43,7 +43,7 @@ public:
     /*!
      * Get discover list info.
      */
-    inline const QString &item() const { return m_item; }
+    inline const QString& item() const { return m_item; }
 
 protected:
     QString m_item;

@@ -329,13 +329,14 @@ void MusicVideoPlayWidget::shareButtonClicked()
         return;
     }
 
-    QVariantMap data;
-    data["id"] = id;
-    data["songName"] = name;
-    data["queryServer"] = m_videoItem.m_server;
+    MusicSongSharingWidget::Item item;
+    item.m_id = id;
+    item.m_name = name;
+    item.m_cover = m_videoItem.m_cover;
+    item.m_server = m_videoItem.m_server;
 
     MusicSongSharingWidget widget(this);
-    widget.initialize(MusicSongSharingWidget::Module::Movie, data);
+    widget.initialize(MusicSongSharingWidget::Module::Movie, item);
     widget.exec();
 }
 

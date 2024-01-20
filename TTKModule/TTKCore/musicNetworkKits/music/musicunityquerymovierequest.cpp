@@ -230,6 +230,7 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
                             }
 
                             value = value["fullClip"].toMap();
+                            info.m_coverUrl = value["cover"].toString();
                             info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
 
                             const QVariantList &urlsArray = value["urls"].toList();
@@ -286,6 +287,16 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
                             info.m_songName = TTK::String::charactersReplace(value["title"].toString());
 
                             info.m_artistName = TTK::String::charactersReplace(value["author"].toString());
+
+                            info.m_coverUrl = value["pic"].toString();
+                            if(info.m_coverUrl.startsWith("//"))
+                            {
+                                info.m_coverUrl = HTTP_PREFIX + info.m_coverUrl.remove(0, 2);
+                            }
+                            else if(!TTK::String::isNetworkUrl(info.m_coverUrl))
+                            {
+                                info.m_coverUrl = HTTP_PREFIX + info.m_coverUrl;
+                            }
 
                             QString cid;
                             ReqBLInterface::parseFromMovieInfo(&info, cid);
