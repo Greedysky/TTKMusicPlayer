@@ -240,12 +240,12 @@ void MusicPlaylist::removeQueue()
     m_queueList.clear();
 }
 
+#define GENERATE_RANDOM_INDEX(index) \
+    m_currentIndex = m_shuffle.isEnabled() ? find(m_shuffle.setCurrentIndex(index)) : (TTK::random() % m_mediaList.count());
+
 void MusicPlaylist::setCurrentIndex(int index)
 {
     m_shuffle.initialize(m_mediaList);
-
-#define GENERATE_RANDOM_INDEX(index) \
-    m_currentIndex = m_shuffle.isEnabled() ? find(m_shuffle.setCurrentIndex(index)) : (TTK::random() % m_mediaList.count());
 
     if(index == TTK_LOW_LEVEL)
     {

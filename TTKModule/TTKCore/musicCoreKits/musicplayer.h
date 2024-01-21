@@ -159,6 +159,10 @@ private Q_SLOTS:
 
 private:
     /*!
+     * set current play state to stop.
+     */
+    void setStopState();
+    /*!
      * set current play state.
      */
     void setCurrentPlayState(TTK::PlayState state);

@@ -229,23 +229,24 @@ void MusicPlayer::update()
     }
 
     const Qmmp::State state = m_core->state();
-    if(!(state == Qmmp::Playing || state == Qmmp::Paused || state == Qmmp::Buffering))
+    if(state == Qmmp::NormalError || state == Qmmp::FatalError)
+    {
+        m_timer.stop();
+        setStopState();
+    }
+    else if(state == Qmmp::Stopped)
     {
         m_timer.stop();
         if(m_playlist->playbackMode() == TTK::PlayMode::Once)
         {
-            m_core->stop();
-            Q_EMIT positionChanged(0);
-            setCurrentPlayState(TTK::PlayState::Stopped);
+            setStopState();
             return;
         }
 
         m_playlist->setCurrentIndex();
         if(m_playlist->playbackMode() == TTK::PlayMode::Order && m_playlist->currentIndex() == -1)
         {
-            m_core->stop();
-            Q_EMIT positionChanged(0);
-            setCurrentPlayState(TTK::PlayState::Stopped);
+            setStopState();
             return;
         }
 
@@ -265,6 +266,13 @@ void MusicPlayer::generateDuration()
         Q_EMIT durationChanged(m_duration = d);
         Q_EMIT positionChanged(position());
     }
+}
+
+void MusicPlayer::setStopState()
+{
+    m_core->stop();
+    Q_EMIT positionChanged(0);
+    setCurrentPlayState(TTK::PlayState::Stopped);
 }
 
 void MusicPlayer::setCurrentPlayState(TTK::PlayState state)
