@@ -93,6 +93,12 @@ void TTKAbstractTableWidget::removeItems()
     m_backgroundColor = Qt::transparent;
 }
 
+void TTKAbstractTableWidget::leaveEvent(QEvent *event)
+{
+    QTableWidget::leaveEvent(event);
+    itemCellEntered(-1, -1);
+}
+
 void TTKAbstractTableWidget::setRowColor(int row, const QColor &color) const
 {
     for(int i = 0; i < columnCount(); ++i)

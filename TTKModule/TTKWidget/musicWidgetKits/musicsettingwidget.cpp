@@ -73,12 +73,6 @@ void MusicFunctionTableWidget::itemCellClicked(int row, int column)
     selectRow(row);
 }
 
-void MusicFunctionTableWidget::leaveEvent(QEvent *event)
-{
-    QTableWidget::leaveEvent(event);
-    itemCellEntered(-1, -1);
-}
-
 
 MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),

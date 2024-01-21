@@ -662,7 +662,6 @@ void MusicSongsListPlayTableWidget::mouseReleaseEvent(QMouseEvent *event)
 void MusicSongsListPlayTableWidget::leaveEvent(QEvent *event)
 {
     MusicAbstractSongsListTableWidget::leaveEvent(event);
-    itemCellEntered(-1, -1);
 
     delete m_songsInfoWidget;
     m_songsInfoWidget = nullptr;

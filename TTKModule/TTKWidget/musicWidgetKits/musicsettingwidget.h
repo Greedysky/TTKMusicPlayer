@@ -77,11 +77,6 @@ public Q_SLOTS:
     virtual void itemCellClicked(int row, int column) override final;
 
 private:
-    /*!
-     * Override the widget event.
-     */
-    virtual void leaveEvent(QEvent *event) override final;
-
     int m_listIndex;
 
 };

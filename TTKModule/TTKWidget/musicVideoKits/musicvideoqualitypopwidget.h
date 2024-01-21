@@ -51,7 +51,7 @@ Q_SIGNALS:
     /*!
      * Query music media information data.
      */
-    void queryMusicMediaInfo(TTK::MusicSongPropertyList &props);
+    void queryMediaProps(TTK::MusicSongPropertyList &props);
     /*!
      * Set current media url by selected quality.
      */
@@ -71,15 +71,15 @@ private:
     /*!
      * Find mv url by given bitrate.
      */
-    QString findMVUrlByBitrate(int bitrate);
+    QString findUrlByBitrate(int bitrate);
     /*!
      * Find mv bitrate by given url.
      */
-    int findMVBitrateByUrl(const QString &url);
+    int findBitrateByUrl(const QString &url);
     /*!
-     * Check given bitrate is exist or not.
+     * Check given bitrate is valid or not.
      */
-    bool findExistByBitrate(int bitrate);
+    bool bitrateIsValid(int bitrate);
 
     QActionGroup *m_actionGroup;
 

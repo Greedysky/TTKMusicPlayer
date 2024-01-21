@@ -105,7 +105,7 @@ public Q_SLOTS:
     /*!
      * Get music media information data.
      */
-    void queryMusicMediaInfo(TTK::MusicSongPropertyList &props);
+    void queryMediaProps(TTK::MusicSongPropertyList &props);
     /*!
      * Download current mv by controller.
      */

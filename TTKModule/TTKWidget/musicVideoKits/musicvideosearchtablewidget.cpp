@@ -47,6 +47,7 @@ void MusicVideoSearchTableWidget::downloadQueryResult(int row)
             MusicToastLabel::popup(tr("Please select one item first"));
             return;
         }
+
         downloadLocalMovie(row);
     }
     else
@@ -211,7 +212,7 @@ void MusicVideoSearchTableWidget::createResultItem(const MusicResultInfoItem &so
     setItem(count, 8, item);
 }
 
-void MusicVideoSearchTableWidget::queryMusicMediaInfo(TTK::MusicSongPropertyList &props)
+void MusicVideoSearchTableWidget::queryMediaProps(TTK::MusicSongPropertyList &props)
 {
     if(!m_networkRequest)
     {

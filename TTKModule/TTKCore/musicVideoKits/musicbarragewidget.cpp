@@ -41,7 +41,7 @@ MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
     : QObject(parent)
 {
     m_parent = TTKObjectCast(QWidget*, parent);
-    m_barrageState = false;
+    m_state = false;
 }
 
 MusicBarrageWidget::~MusicBarrageWidget()
@@ -51,7 +51,7 @@ MusicBarrageWidget::~MusicBarrageWidget()
 
 void MusicBarrageWidget::start()
 {
-    if(!m_barrageState)
+    if(!m_state)
     {
         return;
     }
@@ -65,7 +65,7 @@ void MusicBarrageWidget::start()
 
 void MusicBarrageWidget::pause()
 {
-    if(!m_barrageState)
+    if(!m_state)
     {
         return;
     }
@@ -97,8 +97,8 @@ void MusicBarrageWidget::setSize(const QSize &size)
 
 void MusicBarrageWidget::barrageStateChanged(bool on)
 {
-    m_barrageState = on;
-    if(m_barrageState && !m_barrageRecords.isEmpty())
+    m_state = on;
+    if(m_state && !m_barrageRecords.isEmpty())
     {
         clearItems();
         createLabel();
@@ -119,7 +119,7 @@ void MusicBarrageWidget::addBarrage(const MusicBarrageRecord &record)
     createAnimation(label);
     m_barrageRecords << record;
 
-    if(m_barrageState)
+    if(m_state)
     {
         start();
     }
@@ -145,15 +145,13 @@ void MusicBarrageWidget::createLabel()
 QLabel *MusicBarrageWidget::createLabel(const MusicBarrageRecord &record)
 {
     QLabel *label = new QLabel(m_parent);
-    label->setStyleSheet(QString("QLabel{ color:%1}").arg(record.m_color));
+    label->setStyleSheet(QString("QLabel{ color:%1 }").arg(record.m_color));
     label->setText(record.m_value);
 
     TTK::Widget::setLabelFontSize(label, record.m_size);
-    label->resize(TTK::Widget::fontTextWidth(label->font(), label->text()),
-                  TTK::Widget::fontTextHeight(label->font()));
+    label->resize(TTK::Widget::fontTextWidth(label->font(), label->text()), TTK::Widget::fontTextHeight(label->font()));
     label->hide();
     m_labels << label;
-
     return label;
 }
 

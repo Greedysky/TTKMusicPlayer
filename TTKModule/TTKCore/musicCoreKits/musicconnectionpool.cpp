@@ -87,7 +87,7 @@ void MusicConnectionPool::connect(const QString &from, const QString &to)
     }
     else if(from == MusicVideoQualityPopWidget::className() && to == MusicVideoSearchTableWidget::className())
     {
-        QObject::connect(first, SIGNAL(queryMusicMediaInfo(TTK::MusicSongPropertyList&)), second, SLOT(queryMusicMediaInfo(TTK::MusicSongPropertyList&)));
+        QObject::connect(first, SIGNAL(queryMediaProps(TTK::MusicSongPropertyList&)), second, SLOT(queryMediaProps(TTK::MusicSongPropertyList&)));
     }
     else if((from == MusicConnectTransferWidget::className() && to == MusicSongsSummariziedWidget::className()) ||
             (from == MusicSongItemSelectedAreaWidget::className() && to == MusicSongsSummariziedWidget::className()) ||

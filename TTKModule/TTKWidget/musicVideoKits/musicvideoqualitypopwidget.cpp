@@ -9,7 +9,7 @@ MusicVideoQualityPopWidget::MusicVideoQualityPopWidget(QWidget *parent)
     initialize();
 
     setFixedSize(44, 20);
-    setStyleSheet(TTK::UI::VideoBtnSDMode);
+    setStyleSheet(TTK::UI::VideoBtnSTMode);
 
     G_CONNECTION_PTR->setValue(className(), this);
     G_CONNECTION_PTR->connect(className(), MusicVideoSearchTableWidget::className());
@@ -26,17 +26,17 @@ void MusicVideoQualityPopWidget::setQualityActionState()
     QList<QAction*> actions = m_actionGroup->actions();
     if(actions.count() >= 4)
     {
-        actions[0]->setEnabled(findExistByBitrate(TTK_BN_250));
-        actions[1]->setEnabled(findExistByBitrate(TTK_BN_500));
-        actions[2]->setEnabled(findExistByBitrate(TTK_BN_750));
-        actions[3]->setEnabled(findExistByBitrate(TTK_BN_1000));
+        actions[0]->setEnabled(bitrateIsValid(TTK_BN_250));
+        actions[1]->setEnabled(bitrateIsValid(TTK_BN_500));
+        actions[2]->setEnabled(bitrateIsValid(TTK_BN_750));
+        actions[3]->setEnabled(bitrateIsValid(TTK_BN_1000));
     }
 }
 
 void MusicVideoQualityPopWidget::setQualityText(const QString &url)
 {
     QString style = TTK::UI::VideoBtnSTMode;
-    switch(findMVBitrateByUrl(url))
+    switch(findBitrateByUrl(url))
     {
         case TTK_BN_250: style = TTK::UI::VideoBtnSTMode; break;
         case TTK_BN_500: style = TTK::UI::VideoBtnSDMode; break;
@@ -53,10 +53,10 @@ void MusicVideoQualityPopWidget::movieQualityChoiced(QAction *action)
     QString url;
     switch(TTKStaticCast(TTK::QueryQuality, action->data().toInt()))
     {
-        case TTK::QueryQuality::Standard: url = findMVUrlByBitrate(TTK_BN_250); break;
-        case TTK::QueryQuality::High: url = findMVUrlByBitrate(TTK_BN_500); break;
-        case TTK::QueryQuality::Super: url = findMVUrlByBitrate(TTK_BN_750); break;
-        case TTK::QueryQuality::Lossless: url = findMVUrlByBitrate(TTK_BN_1000); break;
+        case TTK::QueryQuality::Standard: url = findUrlByBitrate(TTK_BN_250); break;
+        case TTK::QueryQuality::High: url = findUrlByBitrate(TTK_BN_500); break;
+        case TTK::QueryQuality::Super: url = findUrlByBitrate(TTK_BN_750); break;
+        case TTK::QueryQuality::Lossless: url = findUrlByBitrate(TTK_BN_1000); break;
         default: break;
     }
 
@@ -80,10 +80,10 @@ void MusicVideoQualityPopWidget::initialize()
     setQualityActionState();
 }
 
-QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)
+QString MusicVideoQualityPopWidget::findUrlByBitrate(int bitrate)
 {
     TTK::MusicSongPropertyList props;
-    Q_EMIT queryMusicMediaInfo(props);
+    Q_EMIT queryMediaProps(props);
 
     for(const TTK::MusicSongProperty &prop : qAsConst(props))
     {
@@ -95,10 +95,10 @@ QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)
     return {};
 }
 
-int MusicVideoQualityPopWidget::findMVBitrateByUrl(const QString &url)
+int MusicVideoQualityPopWidget::findBitrateByUrl(const QString &url)
 {
     TTK::MusicSongPropertyList props;
-    Q_EMIT queryMusicMediaInfo(props);
+    Q_EMIT queryMediaProps(props);
 
     for(const TTK::MusicSongProperty &prop : qAsConst(props))
     {
@@ -111,10 +111,10 @@ int MusicVideoQualityPopWidget::findMVBitrateByUrl(const QString &url)
     return 0;
 }
 
-bool MusicVideoQualityPopWidget::findExistByBitrate(int bitrate)
+bool MusicVideoQualityPopWidget::bitrateIsValid(int bitrate)
 {
     TTK::MusicSongPropertyList props;
-    Q_EMIT queryMusicMediaInfo(props);
+    Q_EMIT queryMediaProps(props);
 
     for(const TTK::MusicSongProperty &prop : qAsConst(props))
     {

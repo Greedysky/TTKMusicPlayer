@@ -80,16 +80,6 @@ void MusicSongSearchPopTableWidget::removeItems()
     setColumnCount(2);
 }
 
-void MusicSongSearchPopTableWidget::leaveEvent(QEvent *event)
-{
-    MusicAbstractTableWidget::leaveEvent(event);
-
-    if(item(m_previousColorRow, 0))
-    {
-        setRowColor(m_previousColorRow, m_backgroundColor);
-    }
-}
-
 
 
 MusicSongSearchPopWidget::MusicSongSearchPopWidget(QWidget *parent)

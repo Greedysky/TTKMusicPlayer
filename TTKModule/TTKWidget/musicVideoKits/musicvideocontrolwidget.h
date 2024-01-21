@@ -113,7 +113,7 @@ private:
     MusicVolumePopWidget *m_volumeButton;
     MusicVideoQualityPopWidget *m_qualityButton;
 
-    bool m_pushBarrageOn;
+    bool m_barrageOn;
     QPushButton *m_pushBarrage, *m_barrageSend;
     MusicVideoBarrageStylePopWidget *m_menuBarrage;
     MusicSearchEdit *m_searchEdit;

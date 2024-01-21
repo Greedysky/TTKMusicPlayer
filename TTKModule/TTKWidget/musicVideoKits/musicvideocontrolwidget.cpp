@@ -111,13 +111,13 @@ void MusicVideoControlWidget::setQualityActionState()
 
 void MusicVideoControlWidget::pushBarrageClicked()
 {
-    m_pushBarrage->setStyleSheet(m_pushBarrageOn ? TTK::UI::VideoBtnBarrageOn : TTK::UI::VideoBtnBarrageOff);
-    m_barrageSend->setEnabled(m_pushBarrageOn);
-    m_menuBarrage->setEnabled(m_pushBarrageOn);
-    m_searchEdit->setEnabled(m_pushBarrageOn);
+    m_pushBarrage->setStyleSheet(m_barrageOn ? TTK::UI::VideoBtnBarrageOn : TTK::UI::VideoBtnBarrageOff);
+    m_barrageSend->setEnabled(m_barrageOn);
+    m_menuBarrage->setEnabled(m_barrageOn);
+    m_searchEdit->setEnabled(m_barrageOn);
 
-    Q_EMIT pushBarrageChanged(m_pushBarrageOn);
-    m_pushBarrageOn = !m_pushBarrageOn;
+    Q_EMIT pushBarrageChanged(m_barrageOn);
+    m_barrageOn = !m_barrageOn;
 }
 
 void MusicVideoControlWidget::sendBarrageClicked()
@@ -136,7 +136,7 @@ void MusicVideoControlWidget::sendBarrageClicked()
 
 QWidget *MusicVideoControlWidget::createVideoBarrageWidget()
 {
-    m_pushBarrageOn = false;
+    m_barrageOn = false;
     QWidget *barrageWidget = new QWidget(this);
 
     QHBoxLayout *barrageLayout = new QHBoxLayout(barrageWidget);

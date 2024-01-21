@@ -125,7 +125,7 @@ private:
      */
     void createAnimation(QLabel *label);
 
-    bool m_barrageState;
+    bool m_state;
     QSize m_parentSize;
     QWidget *m_parent;
     QList<QLabel*> m_labels;

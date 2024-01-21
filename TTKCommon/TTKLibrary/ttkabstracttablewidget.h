@@ -62,6 +62,12 @@ public Q_SLOTS:
 
 protected:
     /*!
+     * Override the widget event.
+     */
+    virtual void leaveEvent(QEvent *event) override;
+
+protected:
+    /*!
      * Set selected item row color.
      */
     void setRowColor(int row, const QColor &color) const;
