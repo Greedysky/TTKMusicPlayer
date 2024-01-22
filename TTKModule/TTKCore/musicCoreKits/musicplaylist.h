@@ -182,7 +182,7 @@ public Q_SLOTS:
     /*!
      * Set current play index.
      */
-    void setCurrentIndex(int index = TTK_LOW_LEVEL);
+    void setCurrentIndex(int index);
     /*!
      * Set current play index.
      */

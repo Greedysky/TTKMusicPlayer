@@ -71,12 +71,12 @@ MusicVideoView::MusicVideoView(QWidget *parent)
 
     m_player = new MusicCoreMPlayer(this);
     m_videoWidget = new MusicViewWidget(this);
-    m_barrageCore = new MusicBarrageWidget(this);
+    m_videoControl = new MusicVideoControlWidget(this);
+    m_barrageWidget = new MusicBarrageWidget(this);
 
     connect(m_videoWidget, SIGNAL(timeToPlay()), SLOT(play()));
     connect(m_videoWidget, SIGNAL(fullScreenMode()), this, SIGNAL(fullscreenButtonClicked()));
 
-    m_videoControl = new MusicVideoControlWidget(this);
     connect(m_videoControl, SIGNAL(mediaUrlChanged(QString)), parent, SLOT(mediaUrlChanged(QString)));
     connect(m_videoControl, SIGNAL(sliderValueChanged(int)), SLOT(setPosition(int)));
     connect(m_videoControl, SIGNAL(addBarrageChanged(MusicBarrageRecord)), SLOT(addBarrageChanged(MusicBarrageRecord)));
@@ -85,17 +85,17 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_player, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_player, SIGNAL(mediaChanged(QString)), SLOT(mediaChanged(QString)));
-    connect(m_player, SIGNAL(finished(int)), SLOT(mediaAutionPlayError(int)));
+    connect(m_player, SIGNAL(finished(int)), SLOT(mediaPlayFinished(int)));
 
     resizeGeometry(0, 0);
 }
 
 MusicVideoView::~MusicVideoView()
 {
-    delete m_barrageCore;
     delete m_player;
-    delete m_videoControl;
     delete m_videoWidget;
+    delete m_videoControl;
+    delete m_barrageWidget;
 }
 
 void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
@@ -114,7 +114,7 @@ void MusicVideoView::resizeGeometry(int width, int height)
 {
     m_videoWidget->setGeometry(20, 20, 640 + width, 372 + height);
     m_videoControl->setGeometry(0, 413 + height, 680 + width, 60);
-    m_barrageCore->setSize(m_videoWidget->size());
+    m_barrageWidget->setSize(m_videoWidget->size());
 }
 
 void MusicVideoView::createRightMenu()
@@ -143,13 +143,13 @@ void MusicVideoView::play()
         case TTK::PlayState::Playing:
         {
             m_videoControl->setButtonStyle(false);
-            m_barrageCore->start();
+            m_barrageWidget->start();
             break;
         }
         case TTK::PlayState::Paused:
         {
             m_videoControl->setButtonStyle(true);
-            m_barrageCore->pause();
+            m_barrageWidget->pause();
             break;
         }
         default: break;
@@ -159,7 +159,7 @@ void MusicVideoView::play()
 void MusicVideoView::stop()
 {
     m_player->stop();
-    m_barrageCore->stop();
+    m_barrageWidget->stop();
     update();
 }
 
@@ -188,7 +188,7 @@ void MusicVideoView::mediaChanged(const QString &data)
     m_videoControl->mediaChanged(data);
 }
 
-void MusicVideoView::mediaAutionPlayError(int code)
+void MusicVideoView::mediaPlayFinished(int code)
 {
     if(TTK_LOW_LEVEL == code)
     {
@@ -199,12 +199,12 @@ void MusicVideoView::mediaAutionPlayError(int code)
 
 void MusicVideoView::addBarrageChanged(const MusicBarrageRecord &record)
 {
-    m_barrageCore->addBarrage(record);
+    m_barrageWidget->addBarrage(record);
 }
 
 void MusicVideoView::pushBarrageChanged(bool on)
 {
-    m_barrageCore->barrageStateChanged(on);
+    m_barrageWidget->barrageStateChanged(on);
 }
 
 void MusicVideoView::fullscreenButtonTrigger()

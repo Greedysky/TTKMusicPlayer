@@ -104,7 +104,7 @@ bool TTK::String::isChinese(const QChar &c)
 
 bool TTK::String::isNetworkUrl(const QString &path)
 {
-    return path.startsWith(HTTP_PREFIX) || path.startsWith(HTTPS_PREFIX);
+    return path.startsWith(HTTP_PROTOCOL) || path.startsWith(HTTPS_PROTOCOL);
 }
 
 QString TTK::String::convertHtmlToPlain(const QString &value)

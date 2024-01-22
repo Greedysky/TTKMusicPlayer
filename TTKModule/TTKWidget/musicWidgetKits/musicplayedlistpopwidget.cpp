@@ -63,11 +63,6 @@ void MusicPlayedListPopWidget::setPlaylist(MusicPlaylist *playlist)
     m_playlist = playlist;
 }
 
-MusicPlaylist *MusicPlayedListPopWidget::playlist() const
-{
-    return m_playlist;
-}
-
 void MusicPlayedListPopWidget::clear()
 {
     m_songList.clear();
@@ -167,16 +162,16 @@ void MusicPlayedListPopWidget::insert(int playlistRow, int index, const MusicSon
     }
 }
 
-void MusicPlayedListPopWidget::setCurrentIndex()
+void MusicPlayedListPopWidget::selectCurrentIndex()
 {
     const int index = m_playlist->currentIndex();
     m_playedListWidget->selectRow(index);
 }
 
-void MusicPlayedListPopWidget::setCurrentIndex(int playlistRow, const MusicSong &song)
+void MusicPlayedListPopWidget::selectCurrentIndex(int playlistRow, const MusicSong &song)
 {
     m_playlist->setCurrentIndex(playlistRow, song.path());
-    setCurrentIndex();
+    selectCurrentIndex();
 }
 
 void MusicPlayedListPopWidget::popupMenu()
@@ -220,7 +215,7 @@ void MusicPlayedListPopWidget::removeItemAt(const TTKIntList &index)
         }
         else
         {
-            m_playlist->setCurrentIndex();
+            m_playlist->setCurrentIndex(TTK_LOW_LEVEL);
         }
 
         if(m_playlist->isEmpty())

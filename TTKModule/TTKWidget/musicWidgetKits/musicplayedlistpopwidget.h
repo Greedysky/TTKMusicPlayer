@@ -75,10 +75,6 @@ public:
      * Set current play list.
      */
     void setPlaylist(MusicPlaylist *playlist);
-    /*!
-     * Get current play list.
-     */
-    MusicPlaylist *playlist() const;
 
     /*!
      * Clear music data list.
@@ -127,11 +123,11 @@ public:
     /*!
      * Set current select played music index.
      */
-    void setCurrentIndex();
+    void selectCurrentIndex();
     /*!
      * Set current select played music index.
      */
-    void setCurrentIndex(int playlistRow, const MusicSong &song);
+    void selectCurrentIndex(int playlistRow, const MusicSong &song);
 
 public Q_SLOTS:
     /*!

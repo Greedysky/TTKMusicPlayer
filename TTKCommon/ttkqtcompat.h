@@ -21,7 +21,7 @@
 
 #include "ttkqtglobal.h"
 
-/*! @brief The class of the qt compat function wrapper.
+/*! @brief The namespace of the qt compat function wrapper.
  * @author Greedysky <greedysky@163.com>
  */
 namespace QtCompat
@@ -49,9 +49,9 @@ namespace QtCompat
 
 /// Container swap
 #if TTK_QT_VERSION_CHECK(5,13,0)
-#  define QtContainerSwap(p, i, j) (p)->swapItemsAt(i, j)
+#  define QtContainerSwap(p, i, j) p->swapItemsAt(i, j)
 #else
-#  define QtContainerSwap(p, i, j) (p)->swap(i, j)
+#  define QtContainerSwap(p, i, j) p->swap(i, j)
 #endif
 
 /// Network error connect

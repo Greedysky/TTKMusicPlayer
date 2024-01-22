@@ -98,6 +98,7 @@ public:
      * Set current barrage animation on or not.
      */
     void barrageStateChanged(bool on);
+
     /*!
      * Add barrage record.
      */

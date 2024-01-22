@@ -37,7 +37,7 @@ bool MusicSongsListItemInfoWidget::showArtistPicture(const QString &name)
     return false;
 }
 
-void MusicSongsListItemInfoWidget::setSongInformation(int index, const MusicSong &song)
+void MusicSongsListItemInfoWidget::initialize(int index, const MusicSong &song)
 {
     const QString &musicArtist = song.artist();
     m_ui->songNameValue->setText(song.name().isEmpty() ? TTK_DEFAULT_STR : TTK::Widget::elidedText(font(), song.name(), Qt::ElideRight, m_ui->songNameValue->width()));

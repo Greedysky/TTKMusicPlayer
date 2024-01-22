@@ -19,6 +19,8 @@
 INCLUDEPATH += $$PWD
 
 HEADERS += \
+    $$PWD/musicbarragerecord.h \
+    $$PWD/musicbarragewidget.h \
     $$PWD/musicvideoqualitypopwidget.h \
     $$PWD/musicvideobarragestylepopwidget.h \
     $$PWD/musicvideocontrolwidget.h \
@@ -28,6 +30,7 @@ HEADERS += \
     $$PWD/musicvideofloatwidget.h
 
 SOURCES += \
+    $$PWD/musicbarragewidget.cpp \
     $$PWD/musicvideoqualitypopwidget.cpp \
     $$PWD/musicvideobarragestylepopwidget.cpp \
     $$PWD/musicvideocontrolwidget.cpp \

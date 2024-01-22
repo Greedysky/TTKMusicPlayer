@@ -47,11 +47,6 @@ void MusicPlayer::setPlaylist(MusicPlaylist *playlist)
     m_playlist = playlist;
 }
 
-MusicPlaylist *MusicPlayer::playlist() const
-{
-    return m_playlist;
-}
-
 qint64 MusicPlayer::duration() const
 {
     return m_core->duration();
@@ -243,7 +238,7 @@ void MusicPlayer::update()
             return;
         }
 
-        m_playlist->setCurrentIndex();
+        m_playlist->setCurrentIndex(TTK_LOW_LEVEL);
         if(m_playlist->playbackMode() == TTK::PlayMode::Order && m_playlist->currentIndex() == -1)
         {
             setStopState();

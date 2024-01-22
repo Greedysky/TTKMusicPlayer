@@ -156,9 +156,9 @@ private Q_SLOTS:
      */
     void mediaChanged(const QString &data);
     /*!
-     * Media aution play error.
+     * Media play finished.
      */
-    void mediaAutionPlayError(int code);
+    void mediaPlayFinished(int code);
 
     /*!
      * Add barrage text to mv.
@@ -180,10 +180,10 @@ private:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override final;
 
-    MusicViewWidget *m_videoWidget;
     MusicCoreMPlayer *m_player;
+    MusicViewWidget *m_videoWidget;
     MusicVideoControlWidget *m_videoControl;
-    MusicBarrageWidget *m_barrageCore;
+    MusicBarrageWidget *m_barrageWidget;
 
 };
 

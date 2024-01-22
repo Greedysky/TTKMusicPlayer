@@ -106,6 +106,7 @@ void MusicSongsListPlayTableWidget::selectRow(int index)
     {
         return;
     }
+
     MusicAbstractSongsListTableWidget::selectRow(index);
 
     adjustPlayWidgetRow();
@@ -114,9 +115,9 @@ void MusicSongsListPlayTableWidget::selectRow(int index)
         delete takeItem(index, i);
     }
 
+    QString timeLabel;
     const QString &name = !m_songs->isEmpty() ? m_songs->at(index).name() : QString();
     const QString &path = !m_songs->isEmpty() ? m_songs->at(index).path() : QString();
-    QString timeLabel;
 
     m_songsPlayWidget = new MusicSongsListPlayWidget(index, this);
     m_songsPlayWidget->initialize(name, path, timeLabel);
@@ -465,33 +466,6 @@ void MusicSongsListPlayTableWidget::removeItemWithFile()
     m_deleteItemWithFile = false;
 }
 
-void MusicSongsListPlayTableWidget::showTimeOut()
-{
-    m_timerShow.stop();
-    if(m_songsInfoWidget)
-    {
-        if(m_previousColorRow < 0 || m_previousColorRow >= m_songs->count())
-        {
-            return;
-        }
-
-        const MusicSong &song = (*m_songs)[m_previousColorRow];
-        m_songsInfoWidget->setSongInformation(m_playlistRow, song);
-        m_songsInfoWidget->move(mapToGlobal(QPoint(width(), 0)).x() + 8, QCursor::pos().y());
-
-        bool state;
-        Q_EMIT isCurrentPlaylistRow(state);
-        m_songsInfoWidget->setVisible(state ? (m_songsPlayWidget && !m_songsPlayWidget->isRenameMode()) : true);
-    }
-}
-
-void MusicSongsListPlayTableWidget::stayTimeOut()
-{
-    m_timerStay.stop();
-    delete m_songsInfoWidget;
-    m_songsInfoWidget = nullptr;
-}
-
 void MusicSongsListPlayTableWidget::setChangSongName()
 {
     if(!isValid())
@@ -626,6 +600,30 @@ void MusicSongsListPlayTableWidget::songListSortBy(QAction *action)
     }
 }
 
+void MusicSongsListPlayTableWidget::showTimeOut()
+{
+    m_timerShow.stop();
+    if(!m_songsInfoWidget || m_previousColorRow < 0 || m_previousColorRow >= m_songs->count())
+    {
+        return;
+    }
+
+    const MusicSong &song = (*m_songs)[m_previousColorRow];
+    m_songsInfoWidget->initialize(m_playlistRow, song);
+    m_songsInfoWidget->move(mapToGlobal(QPoint(width(), 0)).x() + 8, QCursor::pos().y());
+
+    bool state;
+    Q_EMIT isCurrentPlaylistRow(state);
+    m_songsInfoWidget->setVisible(state ? (m_songsPlayWidget && !m_songsPlayWidget->isRenameMode()) : true);
+}
+
+void MusicSongsListPlayTableWidget::stayTimeOut()
+{
+    m_timerStay.stop();
+    delete m_songsInfoWidget;
+    m_songsInfoWidget = nullptr;
+}
+
 void MusicSongsListPlayTableWidget::mousePressEvent(QMouseEvent *event)
 {
     MusicAbstractSongsListTableWidget::mousePressEvent(event);
@@ -654,8 +652,8 @@ void MusicSongsListPlayTableWidget::mouseReleaseEvent(QMouseEvent *event)
     MusicAbstractSongsListTableWidget::mouseReleaseEvent(event);
     startToDrag();
 
-    m_leftButtonPressed = false;
     m_mouseMoved = false;
+    m_leftButtonPressed = false;
     setCursor(QCursor(Qt::ArrowCursor));
 }
 

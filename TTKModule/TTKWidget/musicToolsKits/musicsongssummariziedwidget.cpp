@@ -831,11 +831,12 @@ void MusicSongsSummariziedWidget::itemIndexSwaped(int start, int end, int play, 
             QtContainerSwap(names, i, i + 1);
         }
     }
+
     songs = *names;
 
     if(m_currentIndex == m_playRowIndex)
     {
-        MusicPlayedListPopWidget::instance()->setCurrentIndex(m_currentIndex, songs[play]);
+        MusicPlayedListPopWidget::instance()->selectCurrentIndex(m_currentIndex, songs[play]);
     }
 }
 

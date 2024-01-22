@@ -37,9 +37,9 @@ void MusicCoreMPlayer::setMedia(Module type, const QString &data, int winId)
     connect(m_process, SIGNAL(finished(int)), SIGNAL(finished(int)));
 
     QString url = data;
-    if(url.startsWith(HTTPS_PREFIX))
+    if(url.startsWith(HTTPS_PROTOCOL))
     {
-        url.replace(HTTPS_PREFIX, HTTP_PREFIX);
+        url.replace(HTTPS_PROTOCOL, HTTP_PROTOCOL);
     }
 
     switch(m_category)

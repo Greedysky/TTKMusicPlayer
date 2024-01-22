@@ -221,7 +221,7 @@ void MusicTTKFMRadioPlayWidget::radioItemChanged(QTreeWidgetItem *item, int colu
     }
 }
 
-void MusicTTKFMRadioPlayWidget::mediaAutionPlayError(int code)
+void MusicTTKFMRadioPlayWidget::mediaPlayFinished(int code)
 {
     if(TTK_LOW_LEVEL == code)
     {
@@ -333,7 +333,7 @@ void MusicTTKFMRadioPlayWidget::createCoreModule()
     m_player = new MusicCoreMPlayer(this);
 
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
-    connect(m_player, SIGNAL(finished(int)), SLOT(mediaAutionPlayError(int)));
+    connect(m_player, SIGNAL(finished(int)), SLOT(mediaPlayFinished(int)));
 }
 
 void MusicTTKFMRadioPlayWidget::startCoreModule()

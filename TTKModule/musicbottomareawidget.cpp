@@ -42,7 +42,7 @@ void MusicBottomAreaWidget::setupUi(Ui::MusicApplication *ui)
     m_rippleModule->initialize(ui->backgroundLayout, ui->bottomWidget);
 
     ui->resizeLabelWidget->setPixmap(QPixmap(":/tiny/lb_resize_normal"));
-    ui->showCurrentSong->setEffectOnResize(true);
+    ui->musicSongTitle->setEffectOnResize(true);
     connect(ui->musicDesktopLrc, SIGNAL(clicked()), m_systemTrayMenu, SLOT(showDesktopLrc()));
 }
 

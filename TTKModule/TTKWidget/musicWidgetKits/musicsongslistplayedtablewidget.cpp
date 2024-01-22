@@ -69,6 +69,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
     {
         return;
     }
+
     MusicAbstractSongsListTableWidget::selectRow(index);
 
     adjustPlayWidgetRow();

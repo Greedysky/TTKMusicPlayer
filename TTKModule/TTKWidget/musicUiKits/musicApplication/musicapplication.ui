@@ -1009,7 +1009,7 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="MusicQualityWidget" name="musicQualityLabel"/>
+             <widget class="MusicQualityWidget" name="musicQualityLabel" native="true"/>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="leftMargin">
@@ -1031,7 +1031,7 @@
              </widget>
             </item>
             <item row="1" column="2" colspan="2">
-             <widget class="MusicMarqueeWidget" name="showCurrentSong" native="true">
+             <widget class="MusicMarqueeWidget" name="musicSongTitle" native="true">
               <property name="styleSheet">
                <string notr="true">color:#FFFFFF;font-weight:bold;font-size:15px;</string>
               </property>

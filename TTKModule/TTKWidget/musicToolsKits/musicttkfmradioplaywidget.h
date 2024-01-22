@@ -138,9 +138,9 @@ public Q_SLOTS:
      */
     void radioItemChanged(QTreeWidgetItem *item, int column);
     /*!
-     * Media aution play error.
+     * Media play finished.
      */
-    void mediaAutionPlayError(int code);
+    void mediaPlayFinished(int code);
     /*!
      * Set radio to play.
      */

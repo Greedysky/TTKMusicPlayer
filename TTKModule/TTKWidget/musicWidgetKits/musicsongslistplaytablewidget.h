@@ -128,14 +128,6 @@ public Q_SLOTS:
      */
     void removeItemWithFile();
     /*!
-     * Show play item information widget.
-     */
-    void showTimeOut();
-    /*!
-     * Hide play item information widget.
-     */
-    void stayTimeOut();
-    /*!
      * Reset item name by current row.
      */
     void setChangSongName();
@@ -167,6 +159,16 @@ public Q_SLOTS:
      * Music list songs sort by type.
      */
     void songListSortBy(QAction *action);
+
+private Q_SLOTS:
+    /*!
+     * Show play item information widget.
+     */
+    void showTimeOut();
+    /*!
+     * Hide play item information widget.
+     */
+    void stayTimeOut();
 
 private:
     /*!

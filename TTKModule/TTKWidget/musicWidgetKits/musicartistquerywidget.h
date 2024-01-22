@@ -233,6 +233,10 @@ public:
 
 public Q_SLOTS:
     /*!
+     * Set current container index.
+     */
+    void setCurrentIndex(int index);
+    /*!
      * Query all quality musics is finished.
      */
     void queryAllFinished();
@@ -244,10 +248,6 @@ public Q_SLOTS:
      * Create the current artist info item.
      */
     void createArtistItem(const MusicResultDataItem &item);
-    /*!
-     * Set current container index.
-     */
-    void setCurrentIndex(int index);
 
 private:
     /*!

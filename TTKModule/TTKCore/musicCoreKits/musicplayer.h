@@ -59,14 +59,11 @@ public:
      * Get current player state.
      */
     TTK::PlayState state() const;
+
     /*!
      * Set current play list.
      */
     void setPlaylist(MusicPlaylist *playlist);
-    /*!
-     * Get current play list.
-     */
-    MusicPlaylist *playlist() const;
 
     /*!
      * Get current player duration.

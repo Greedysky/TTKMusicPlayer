@@ -296,7 +296,7 @@ void MusicTopAreaWidget::showRectangleRemote()
 {
     delete m_remoteWidget;
     m_remoteWidget = new MusicRemoteWidgetForRectangle;
-    m_remoteWidget->setLabelText(m_ui->showCurrentSong->text());
+    m_remoteWidget->setLabelText(m_ui->musicSongTitle->text());
     createRemoteWidget();
 }
 
@@ -304,7 +304,7 @@ void MusicTopAreaWidget::showSimpleStyleRemote()
 {
     delete m_remoteWidget;
     m_remoteWidget = new MusicRemoteWidgetForSimpleStyle;
-    m_remoteWidget->setLabelText(m_ui->showCurrentSong->text());
+    m_remoteWidget->setLabelText(m_ui->musicSongTitle->text());
     createRemoteWidget();
 }
 
@@ -312,7 +312,7 @@ void MusicTopAreaWidget::showComplexStyleRemote()
 {
     delete m_remoteWidget;
     m_remoteWidget = new MusicRemoteWidgetForComplexStyle;
-    m_remoteWidget->setLabelText(m_ui->showCurrentSong->text());
+    m_remoteWidget->setLabelText(m_ui->musicSongTitle->text());
     createRemoteWidget();
 }
 
@@ -320,7 +320,7 @@ void MusicTopAreaWidget::showRippleRemote()
 {
     delete m_remoteWidget;
     m_remoteWidget = new MusicRemoteWidgetForRipple;
-    m_remoteWidget->setLabelText(m_ui->showCurrentSong->text());
+    m_remoteWidget->setLabelText(m_ui->musicSongTitle->text());
     createRemoteWidget();
 }
 
@@ -335,7 +335,7 @@ void MusicTopAreaWidget::showWallpaperRemote(bool create)
         }
 
         m_remoteWidget = new MusicRemoteWidgetForStrip;
-        m_remoteWidget->setLabelText(m_ui->showCurrentSong->text());
+        m_remoteWidget->setLabelText(m_ui->musicSongTitle->text());
         createRemoteWidget();
     }
     else

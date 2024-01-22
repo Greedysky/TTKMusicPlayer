@@ -291,11 +291,11 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
                             info.m_coverUrl = value["pic"].toString();
                             if(info.m_coverUrl.startsWith("//"))
                             {
-                                info.m_coverUrl = HTTP_PREFIX + info.m_coverUrl.remove(0, 2);
+                                info.m_coverUrl = HTTP_PROTOCOL + info.m_coverUrl.remove(0, 2);
                             }
                             else if(!TTK::String::isNetworkUrl(info.m_coverUrl))
                             {
-                                info.m_coverUrl = HTTP_PREFIX + info.m_coverUrl;
+                                info.m_coverUrl = HTTP_PROTOCOL + info.m_coverUrl;
                             }
 
                             QString cid;

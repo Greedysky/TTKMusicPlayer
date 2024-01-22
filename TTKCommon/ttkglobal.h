@@ -170,27 +170,32 @@
 #define TTK_PP_VARIADIC_SIZE_I(e0, e1, e2, e3, e4, e5, e6, e7, size, ...) size
 
 
-#define TTK_DOT             "."
-#define TTK_DOTDOT          ".."
-#define TTK_SEPARATOR       "/"
-#define TTK_RSEPARATOR      "\\"
-#define TTK_PARENT_DIR      TTK_STR_CAT(TTK_DOTDOT, TTK_SEPARATOR)
+#define TTK_DOT          "."
+#define TTK_DOTDOT       ".."
+#define TTK_SEPARATOR    "/"
+#define TTK_RSEPARATOR   "\\"
+#define TTK_PARENT_DIR   TTK_STR_CAT(TTK_DOTDOT, TTK_SEPARATOR)
 
-#define TTK_SPLITER         "*|||*"
-#define TTK_DEFAULT_STR     "-"
-#define TTK_NAN_STR         "NaN"
-#define TTK_NULL_STR        "null"
+#define TTK_SPLITER      "*|||*"
+#define TTK_DEFAULT_STR  "-"
+#define TTK_NAN_STR      "NaN"
+#define TTK_NULL_STR     "null"
 
-#define HTTP_PREFIX         "http://"
-#define HTTPS_PREFIX        "https://"
+#define URL_PREFIX             "://"
+#define HTTP_PROTOCOL_PREFIX   "http"
+#define HTTPS_PROTOCOL_PREFIX  "https"
 
-#define SHL_FILE_SUFFIX     "sh"
-#define EXE_FILE_SUFFIX     "exe"
-#define COM_FILE_SUFFIX     "com"
+#define HTTP_PROTOCOL          TTK_STR_CAT(HTTP_PROTOCOL_PREFIX, URL_PREFIX)
+#define HTTPS_PROTOCOL         TTK_STR_CAT(HTTPS_PROTOCOL_PREFIX, URL_PREFIX)
 
-#define SHL_FILE            TTK_STR_CAT(TTK_DOT, SHL_FILE_SUFFIX)
-#define EXE_FILE            TTK_STR_CAT(TTK_DOT, EXE_FILE_SUFFIX)
-#define COM_FILE            TTK_STR_CAT(TTK_DOT, COM_FILE_SUFFIX)
+
+#define SHL_FILE_SUFFIX  "sh"
+#define EXE_FILE_SUFFIX  "exe"
+#define COM_FILE_SUFFIX  "com"
+
+#define SHL_FILE         TTK_STR_CAT(TTK_DOT, SHL_FILE_SUFFIX)
+#define EXE_FILE         TTK_STR_CAT(TTK_DOT, EXE_FILE_SUFFIX)
+#define COM_FILE         TTK_STR_CAT(TTK_DOT, COM_FILE_SUFFIX)
 
 
 // C style format

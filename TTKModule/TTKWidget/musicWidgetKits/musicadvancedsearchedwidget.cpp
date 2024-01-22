@@ -183,6 +183,7 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
             {
                 regx.setPattern("/(\\d+)");
             }
+
             key = (regx.indexIn(url) != -1) ? regx.cap(1) : url;
             break;
         }
@@ -201,6 +202,7 @@ QString MusicAdvancedSearchedWidget::searchedKeyWork(int type, const QString &ur
             {
                 regx.setPattern("/(\\d+)");
             }
+
             key = (regx.indexIn(url) != -1) ? regx.cap(1) : url;
             break;
         }

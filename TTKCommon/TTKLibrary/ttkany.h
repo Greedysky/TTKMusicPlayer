@@ -112,7 +112,7 @@ private:
     struct _Derived : public _Base
     {
         template <typename U>
-        _Derived(U &&value)  noexcept
+        _Derived(U &&value) noexcept
             : m_value(std::forward<U>(value))
         {
         }

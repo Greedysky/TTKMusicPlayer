@@ -46,7 +46,7 @@ public:
     /*!
      * Set music song information.
      */
-    void setSongInformation(int index, const MusicSong &song);
+    void initialize(int index, const MusicSong &song);
 
 private:
     /*!

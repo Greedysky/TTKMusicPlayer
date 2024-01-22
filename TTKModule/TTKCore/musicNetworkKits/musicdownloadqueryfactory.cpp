@@ -53,7 +53,6 @@
 //
 #include "musickwdownloadimagerequest.h"
 #include "musicdownloadbackgroundrequest.h"
-//
 
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeQueryRequest(QObject *parent)
 {

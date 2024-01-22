@@ -368,6 +368,48 @@ void MusicArtistQueryWidget::resizeWidget()
     }
 }
 
+void MusicArtistQueryWidget::setCurrentIndex(int index)
+{
+    if(m_queryTableWidget)
+    {
+        m_queryTableWidget->hide();
+    }
+
+    if(m_infoLabel)
+    {
+        m_infoLabel->hide();
+    }
+
+    delete m_artistAlbums;
+    m_artistAlbums = nullptr;
+
+    delete m_artistMvs;
+    m_artistMvs = nullptr;
+
+    if(index == 0 && m_queryTableWidget)
+    {
+        m_queryTableWidget->show();
+    }
+    else if(index == 1 && m_infoLabel)
+    {
+        m_infoLabel->show();
+    }
+    else if(index == 2)
+    {
+        m_artistAlbums = new MusicArtistAlbumsQueryWidget(m_container);
+        m_container->addWidget(m_artistAlbums);
+        m_artistAlbums->setCurrentValue(m_value);
+    }
+    else if(index == 3)
+    {
+        m_artistMvs = new MusicArtistMvsQueryWidget(m_container);
+        m_container->addWidget(m_artistMvs);
+        m_artistMvs->setCurrentValue(m_value);
+    }
+
+    m_container->setCurrentIndex(index > 2 ? 2 : index);
+}
+
 void MusicArtistQueryWidget::queryAllFinished()
 {
     const TTK::MusicSongInformationList songInfos(m_networkRequest->items());
@@ -449,48 +491,6 @@ void MusicArtistQueryWidget::createArtistItem(const MusicResultDataItem &item)
 
         m_infoLabel->setText(item.m_description);
     }
-}
-
-void MusicArtistQueryWidget::setCurrentIndex(int index)
-{
-    if(m_queryTableWidget)
-    {
-        m_queryTableWidget->hide();
-    }
-
-    if(m_infoLabel)
-    {
-        m_infoLabel->hide();
-    }
-
-    delete m_artistAlbums;
-    m_artistAlbums = nullptr;
-
-    delete m_artistMvs;
-    m_artistMvs = nullptr;
-
-    if(index == 0 && m_queryTableWidget)
-    {
-        m_queryTableWidget->show();
-    }
-    else if(index == 1 && m_infoLabel)
-    {
-        m_infoLabel->show();
-    }
-    else if(index == 2)
-    {
-        m_artistAlbums = new MusicArtistAlbumsQueryWidget(m_container);
-        m_container->addWidget(m_artistAlbums);
-        m_artistAlbums->setCurrentValue(m_value);
-    }
-    else if(index == 3)
-    {
-        m_artistMvs = new MusicArtistMvsQueryWidget(m_container);
-        m_container->addWidget(m_artistMvs);
-        m_artistMvs->setCurrentValue(m_value);
-    }
-
-    m_container->setCurrentIndex(index > 2 ? 2 : index);
 }
 
 void MusicArtistQueryWidget::createLabels()
