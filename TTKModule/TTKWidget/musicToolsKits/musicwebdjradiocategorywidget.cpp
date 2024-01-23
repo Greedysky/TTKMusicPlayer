@@ -85,19 +85,19 @@ MusicWebDJRadioCategoryWidget::MusicWebDJRadioCategoryWidget(QWidget *parent)
     m_gridLayout->setVerticalSpacing(35);
     mainWindow->setLayout(m_gridLayout);
 
-    m_categoryThread = new MusicDJRadioCategoryRequest(this);
-    connect(m_categoryThread, SIGNAL(downLoadDataChanged(QString)), SLOT(createCategoryItems()));
+    m_networkRequest = new MusicDJRadioCategoryRequest(this);
+    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(createCategoryItems()));
 }
 
 MusicWebDJRadioCategoryWidget::~MusicWebDJRadioCategoryWidget()
 {
     delete m_gridLayout;
-    delete m_categoryThread;
+    delete m_networkRequest;
 }
 
 void MusicWebDJRadioCategoryWidget::initialize()
 {
-    m_categoryThread->startToRequest();
+    m_networkRequest->startToRequest();
 }
 
 void MusicWebDJRadioCategoryWidget::resizeWindow()
@@ -119,7 +119,7 @@ void MusicWebDJRadioCategoryWidget::resizeWindow()
 
 void MusicWebDJRadioCategoryWidget::createCategoryItems()
 {
-    for(const MusicResultDataItem &item : m_categoryThread->items())
+    for(const MusicResultDataItem &item : m_networkRequest->items())
     {
         MusicWebDJRadioCategoryItemWidget *label = new MusicWebDJRadioCategoryItemWidget(this);
         connect(label, SIGNAL(currentItemClicked(MusicResultDataItem)), SIGNAL(currentCategoryClicked(MusicResultDataItem)));

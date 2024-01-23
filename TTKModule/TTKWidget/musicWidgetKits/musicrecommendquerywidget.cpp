@@ -1,5 +1,5 @@
 #include "musicrecommendquerywidget.h"
-#include "musicdownloadqueryfactory.h"
+#include "musicsongrecommendrequest.h"
 
 MusicRecommendQueryTableWidget::MusicRecommendQueryTableWidget(QWidget *parent)
     : MusicItemQueryTableWidget(parent)
@@ -33,7 +33,7 @@ MusicRecommendQueryWidget::MusicRecommendQueryWidget(QWidget *parent)
 void MusicRecommendQueryWidget::setCurrentValue(const QString &value)
 {
     MusicAbstractItemQueryWidget::setCurrentValue(value);
-    m_queryTableWidget->setQueryInput(G_DOWNLOAD_QUERY_PTR->makeRecommendRequest(this));
+    m_queryTableWidget->setQueryInput(new MusicSongRecommendRequest(this));
     m_queryTableWidget->startToSearchByText(TTK::generateSongTitle(value));
     createLabels();
 }

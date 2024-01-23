@@ -103,7 +103,7 @@ private:
     MusicCoreMPlayer *m_player;
     MusicLrcAnalysis *m_analysis;
     MusicAudioRecorderModule *m_recordCore;
-    MusicIdentifySongRequest *m_detectedRequest;
+    MusicIdentifySongRequest *m_networkRequest;
     TTK::MusicSongInformation m_songInfo;
 
 };

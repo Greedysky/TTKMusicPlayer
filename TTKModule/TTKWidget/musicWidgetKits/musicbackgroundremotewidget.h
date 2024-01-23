@@ -73,7 +73,7 @@ protected:
     int m_currentIndex;
     MusicSkinRemoteGroupList m_groups;
     MusicBackgroundListWidget *m_backgroundList;
-    MusicDownloadQueueRequest *m_downloadQueue;
+    MusicDownloadQueueRequest *m_networkRequest;
     MusicAbstractDownloadSkinRequest *m_downloadRequest;
 
 };

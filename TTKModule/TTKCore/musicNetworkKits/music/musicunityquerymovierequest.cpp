@@ -1,4 +1,5 @@
 #include "musicunityquerymovierequest.h"
+#include "musicblqueryinterface.h"
 
 /*! @brief The namespace of the yyt request interface.
  * @author Greedysky <greedysky@163.com>
@@ -16,115 +17,6 @@ namespace ReqYYTInterface
 namespace ReqBLInterface
 {
     static constexpr const char *MODULE = "BL";
-    static const QString BUVID_URL      = "NmozU2YzaW5JbFE0QnRHVHJheWFaWk5JbjE1QWdWdFpTWFU4aFoyZEt1RU5FdVZ0T1JsV3pscUlkbFdMYVVjT1ArYStiOG9yR1RZMFZ0UVY=";
-    static const QString MOVIE_URL      = "ZTRrNzB2YnIzbTVvRzZUdDZVeGllN09MM3J6TjhaVGplNUZUOHBFWnBtZ0FFWEh2MUN2STBWb2ZJUzlXRE5HcHo4RlhMQWZjRitha04rczNIcnlOVXpxcWVRQlp6YzBsNE9pVExuNWRDNS9zSnNKSjlyN0pOQUs2S3JOQjVkWmo=";
-    static const QString MOVIE_DATA_URL = "ak5VTmcwemNhNXNpU1NCcXFTb28rWmo5TEdmMmtHNkh1ZUdHWWEveHFCWG80MnRyVkpHWHVNQ2VIN0dhUDJvOGRGVmdDei9paTFNPQ==";
-    static const QString MOVIE_PLAY_URL = "a0Y2MzNmVEFOd2JHN0xuaDBjVmJEYndRNkRmb2w1YUs3K0ZoNExpYXVYR3BjaEtSemgwdXVmem5GSDhpS29Cc0RDMStIR1RuWmF5RENKYWVxcmhCRXI0dE5JdGgwVTh5YW9YWVMvK1B3bWdNZFBMag==";
-
-    /*!
-     * Make request query data.
-     */
-    static void makeRequestRawHeader(QNetworkRequest *request);
-
-    /*!
-     * Read mv cid from query results.
-     */
-    static void parseFromMovieInfo(TTK::MusicSongInformation *info, QString &cid);
-    /*!
-     * Read mv tags(size\bitrate\url) from query results.
-     */
-    static void parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &cid);
-
-}
-
-void ReqBLInterface::makeRequestRawHeader(QNetworkRequest *request)
-{
-    TTK::setSslConfiguration(request);
-    TTK::makeContentTypeHeader(request);
-    request->setRawHeader("Cookie", TTK::Algorithm::mdII(ReqBLInterface::BUVID_URL, false).toUtf8());
-}
-
-void ReqBLInterface::parseFromMovieInfo(TTK::MusicSongInformation *info, QString &cid)
-{
-    QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(ReqBLInterface::MOVIE_DATA_URL, false).arg(info->m_songId));
-    ReqBLInterface::makeRequestRawHeader(&request);
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
-    if(bytes.isEmpty())
-    {
-        return;
-    }
-
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
-    {
-        QVariantMap value = data.toMap();
-        if(value["code"].toInt() == 0 && value.contains("data"))
-        {
-            const QVariantList &datas = value["data"].toList();
-            for(const QVariant &var : qAsConst(datas))
-            {
-                if(var.isNull())
-                {
-                    continue;
-                }
-
-                value = var.toMap();
-
-                cid = value["cid"].toString();
-                break;
-            }
-        }
-    }
-}
-
-void ReqBLInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, const QString &cid)
-{
-    QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(ReqBLInterface::MOVIE_PLAY_URL, false).arg(info->m_songId, cid).arg(16));
-    ReqBLInterface::makeRequestRawHeader(&request);
-
-    const QByteArray &bytes = TTK::syncNetworkQueryForGet(&request);
-    if(bytes.isEmpty())
-    {
-        return;
-    }
-
-    QJson::Parser json;
-    bool ok = false;
-    const QVariant &data = json.parse(bytes, &ok);
-    if(ok)
-    {
-        QVariantMap value = data.toMap();
-        if(value["code"].toInt() == 0 && value.contains("data"))
-        {
-            value = value["data"].toMap();
-
-            const QVariantList &datas = value["durl"].toList();
-            for(const QVariant &var : qAsConst(datas))
-            {
-                if(var.isNull())
-                {
-                    continue;
-                }
-
-                value = var.toMap();
-
-                TTK::MusicSongProperty prop;
-                prop.m_url = value["url"].toString();
-                prop.m_bitrate = TTK_BN_250;
-                prop.m_format = MP4_FILE_SUFFIX;
-                prop.m_size = TTK::Number::sizeByteToLabel(value["size"].toInt());
-                info->m_songProps.append(prop);
-
-                info->m_duration = TTKTime::formatDuration(value["length"].toInt());
-                break;
-            }
-        }
-    }
 }
 
 
@@ -163,7 +55,7 @@ void MusicUnityQueryMovieRequest::startToPage(int offset)
         case 1:
         {
             QNetworkRequest request;
-            request.setUrl(TTK::Algorithm::mdII(ReqBLInterface::MOVIE_URL, false).arg(m_queryValue).arg(m_pageIndex));
+            request.setUrl(TTK::Algorithm::mdII(BL_MOVIE_URL, false).arg(m_queryValue).arg(m_pageIndex));
             ReqBLInterface::makeRequestRawHeader(&request);
 
             TTK_INFO_STREAM(className() << "ReqBLInterface");

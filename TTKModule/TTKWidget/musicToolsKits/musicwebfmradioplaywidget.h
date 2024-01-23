@@ -107,7 +107,7 @@ private:
     QString m_currentIndex;
     MusicLrcAnalysis *m_analysis;
     MusicCoreMPlayer *m_player;
-    MusicFMRadioSongRequest *m_songThread;
+    MusicFMRadioSongRequest *m_networkRequest;
 
 };
 

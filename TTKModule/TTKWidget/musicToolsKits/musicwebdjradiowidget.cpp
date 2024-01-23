@@ -21,18 +21,18 @@ MusicWebDJRadioProgramTableWidget::MusicWebDJRadioProgramTableWidget(QWidget *pa
 
     verticalScrollBar()->setStyleSheet(TTK::UI::ScrollBarStyle03);
 
-    m_programThread = new MusicDJRadioProgramRequest(this);
-    connect(m_programThread, SIGNAL(createProgramItem(MusicResultDataItem)), SLOT(createProgramItem(MusicResultDataItem)));
+    m_networkRequest = new MusicDJRadioProgramRequest(this);
+    connect(m_networkRequest, SIGNAL(createProgramItem(MusicResultDataItem)), SLOT(createProgramItem(MusicResultDataItem)));
 }
 
 MusicWebDJRadioProgramTableWidget::~MusicWebDJRadioProgramTableWidget()
 {
-    delete m_programThread;
+    delete m_networkRequest;
 }
 
 void MusicWebDJRadioProgramTableWidget::initialize(TTK::Program type)
 {
-    m_programThread->startToRequest(type);
+    m_networkRequest->startToRequest(type);
 }
 
 void MusicWebDJRadioProgramTableWidget::resizeSection()
@@ -65,7 +65,7 @@ void MusicWebDJRadioProgramTableWidget::itemCellEntered(int row, int column)
 void MusicWebDJRadioProgramTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
-    MusicResultDataItemList items(m_programThread->items());
+    MusicResultDataItemList items(m_networkRequest->items());
     if(row < 0 || row >= items.count())
     {
         return;

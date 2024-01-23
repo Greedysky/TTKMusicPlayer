@@ -4,7 +4,6 @@
 #include "musiclrcfloatplaywidget.h"
 #include "musiclrclocallinkwidget.h"
 #include "musictranslationrequest.h"
-#include "musicdownloadqueryfactory.h"
 #include "musictoastlabel.h"
 #include "musiclrcanalysis.h"
 #include "musicurlutils.h"
@@ -384,7 +383,7 @@ void MusicLrcContainerForInterior::translatedLrcData()
         return;
     }
 
-    MusicTranslationRequest *d = G_DOWNLOAD_QUERY_PTR->makeTranslationRequest(this);
+    MusicTranslationRequest *d = new MusicTranslationRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(queryTranslatedLrcFinished(QString)));
     d->setHeader("name", path);
     d->setHeader("data", m_lrcAnalysis->dataString());

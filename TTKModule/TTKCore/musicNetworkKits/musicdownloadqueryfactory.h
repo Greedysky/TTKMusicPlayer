@@ -23,10 +23,8 @@
 #include "musicabstractdownloadrequest.h"
 
 class MusicCoverRequest;
-class MusicSongSuggestRequest;
 class MusicCommentsRequest;
 class MusicDiscoverListRequest;
-class MusicTranslationRequest;
 class MusicAbstractQueryRequest;
 class MusicDownloadBackgroundRequest;
 
@@ -74,18 +72,6 @@ public:
      */
     MusicAbstractQueryRequest *makePlaylistRequest(QObject *parent);
     /*!
-     * Make recommend request object by type.
-     */
-    MusicAbstractQueryRequest *makeRecommendRequest(QObject *parent);
-    /*!
-     * Make similar song query request object by type.
-     */
-    MusicAbstractQueryRequest *makeSimilarSongRequest(QObject *parent);
-    /*!
-     * Make suggest request object by type.
-     */
-    MusicSongSuggestRequest *makeSuggestRequest(QObject *parent);
-    /*!
      * Make song comment request object by type.
      */
     MusicCommentsRequest *makeSongCommentRequest(QObject *parent);
@@ -97,10 +83,6 @@ public:
      * Make discover list request object by type.
      */
     MusicDiscoverListRequest *makeDiscoverListRequest(QObject *parent);
-    /*!
-     * Make translation object by type.
-     */
-    MusicTranslationRequest *makeTranslationRequest(QObject *parent);
     /*!
      * Make cover object by type.
      */

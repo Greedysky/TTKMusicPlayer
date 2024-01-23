@@ -1,5 +1,5 @@
-#ifndef MUSICMESSAGEABOUTDIALOG_H
-#define MUSICMESSAGEABOUTDIALOG_H
+#ifndef MUSICBARRAGEREQUEST_H
+#define MUSICBARRAGEREQUEST_H
 
 /***************************************************************************
  * This file is part of the TTK Music Player project
@@ -19,40 +19,32 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "musicabstractmovedialog.h"
+#include "musicabstractnetwork.h"
 
-class MusicCounterPVRequest;
-
-namespace Ui {
-    class MusicMessageAboutDialog;
-}
-/*! @brief The class of the about application info dialog.
+/*! @brief The namespace of the barrage request interface.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicMessageAboutDialog : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicBarrageRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicMessageAboutDialog)
+    TTK_DECLARE_MODULE(MusicBarrageRequest)
 public:
     /*!
      * Object constructor.
      */
-    explicit MusicMessageAboutDialog(QWidget *parent = nullptr);
+    explicit MusicBarrageRequest(QObject *parent = nullptr);
+
     /*!
-     * Object destructor.
+     * Start to download data.
      */
-    ~MusicMessageAboutDialog();
+    void startToRequest(const QString &data);
 
 public Q_SLOTS:
     /*!
-     * Get counter pv finished.
+     * Download data from net finished.
      */
-    void downloadFinished(const QString &bytes);
-
-private:
-    Ui::MusicMessageAboutDialog *m_ui;
-    MusicCounterPVRequest *m_networkRequest;
+    virtual void downLoadFinished() override final;
 
 };
 
-#endif // MUSICMESSAGEABOUTDIALOG_H
+#endif // MUSICBLBARRAGEREQUEST_H

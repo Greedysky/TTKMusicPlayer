@@ -9,7 +9,7 @@ MusicXSPFConfigManager::MusicXSPFConfigManager()
 
 bool MusicXSPFConfigManager::readBuffer(MusicSongItemList &items)
 {
-    TTKXmlNodeHelper helper(m_document->documentElement());
+    TTKXmlHelper helper(m_document->documentElement());
     helper.load();
 
     MusicSongItem item;

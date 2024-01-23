@@ -249,13 +249,8 @@ void MusicKWQueryMovieRequest::downLoadSingleFinished()
     ReqKWInterface::parseFromMovieProperty(&info, "MP4UL|MP4L|MP4HV|MP4");
     TTK_NETWORK_QUERY_CHECK();
 
-    if(!info.m_songProps.isEmpty())
+    if(!info.m_songProps.isEmpty() && findUrlPathSize(&info.m_songProps, info.m_duration))
     {
-        if(!findUrlPathSize(&info.m_songProps, info.m_duration))
-        {
-            return;
-        }
-
         Q_EMIT createResultItem({info, serverToString()});
         m_items << info;
     }

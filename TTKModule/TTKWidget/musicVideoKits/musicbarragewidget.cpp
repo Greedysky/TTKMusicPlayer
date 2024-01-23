@@ -1,5 +1,6 @@
 #include "musicbarragewidget.h"
 #include "musicwidgetutils.h"
+#include "musicbarragerequest.h"
 
 MusicBarrageAnimation::MusicBarrageAnimation(QObject *parent)
     : QPropertyAnimation(parent)
@@ -38,15 +39,18 @@ void MusicBarrageAnimation::initialize()
 
 
 MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_state(false),
+      m_parent(TTKObjectCast(QWidget*, parent))
 {
-    m_parent = TTKObjectCast(QWidget*, parent);
-    m_state = false;
+    m_networkRequest = new MusicBarrageRequest(this);
+    connect(m_networkRequest, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
 }
 
 MusicBarrageWidget::~MusicBarrageWidget()
 {
     clearItems();
+    delete m_networkRequest;
 }
 
 void MusicBarrageWidget::start()
@@ -95,6 +99,17 @@ void MusicBarrageWidget::setSize(const QSize &size)
     }
 }
 
+void MusicBarrageWidget::setBarrage(const QString &name, const QString &id)
+{
+    if(m_lastQueryID == id)
+    {
+        return;
+    }
+
+    m_lastQueryID = id;
+    m_networkRequest->startToRequest(name);
+}
+
 void MusicBarrageWidget::barrageStateChanged(bool on)
 {
     m_state = on;
@@ -125,6 +140,55 @@ void MusicBarrageWidget::addBarrage(const MusicBarrageRecord &record)
     }
 }
 
+void MusicBarrageWidget::downLoadFinished(const QByteArray &bytes)
+{
+    TTKAbstractXml xml;
+    if(xml.fromByteArray(bytes))
+    {
+        for(const TTKXmlNode &node : xml.readMultiNodeByTagName("d"))
+        {
+            QString attrValue;
+            for(const TTKXmlAttr &attr : qAsConst(node.m_attrs))
+            {
+                if(attr.m_key == "p")
+                {
+                    attrValue = attr.m_value.toString();
+                    break;
+                }
+            }
+
+            if(!attrValue.isEmpty())
+            {
+                const QStringList &keys = attrValue.split(",");
+                if(keys.count() < 8)
+                {
+                    continue;
+                }
+
+                const int size = keys[2].toInt();
+
+                MusicBarrageRecord record;
+                if(size < 25)
+                {
+                    record.m_size = 15;
+                }
+                else if(size > 25)
+                {
+                    record.m_size = 30;
+                }
+                else
+                {
+                    record.m_size = 20;
+                }
+
+                record.m_color = QColor(keys[3].toInt()).name();
+                record.m_value = node.m_text;
+                addBarrage(record);
+            }
+        }
+    }
+}
+
 void MusicBarrageWidget::clearItems()
 {
     qDeleteAll(m_labels);
@@ -145,7 +209,7 @@ void MusicBarrageWidget::createLabel()
 QLabel *MusicBarrageWidget::createLabel(const MusicBarrageRecord &record)
 {
     QLabel *label = new QLabel(m_parent);
-    label->setStyleSheet(QString("QLabel{ color:%1 }").arg(record.m_color));
+    label->setStyleSheet(QString("QLabel{ color:%1; }").arg(record.m_color));
     label->setText(record.m_value);
 
     TTK::Widget::setLabelFontSize(label, record.m_size);

@@ -43,7 +43,7 @@ void MusicSongSearchInteriorEdit::setText(const QString &text)
 void MusicSongSearchInteriorEdit::textChanged(const QString &text)
 {
     delete m_suggestRequest;
-    m_suggestRequest = G_DOWNLOAD_QUERY_PTR->makeSuggestRequest(this);
+    m_suggestRequest = new MusicSongSuggestRequest(this);
     connect(m_suggestRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(suggestDataChanged()));
     m_suggestRequest->startToSearch(text);
 

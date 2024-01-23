@@ -215,7 +215,7 @@ private:
     bool m_currentState;
     QLineEdit *m_inputEdit;
     QPushButton *m_caseButton;
-    MusicDownloadQueueRequest *m_downloadQueue;
+    MusicDownloadQueueRequest *m_networkRequest;
     MusicScreenSaverListWidget *m_backgroundList;
 };
 

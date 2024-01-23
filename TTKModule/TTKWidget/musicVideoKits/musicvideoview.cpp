@@ -79,8 +79,8 @@ MusicVideoView::MusicVideoView(QWidget *parent)
 
     connect(m_videoControl, SIGNAL(mediaUrlChanged(QString)), parent, SLOT(mediaUrlChanged(QString)));
     connect(m_videoControl, SIGNAL(sliderValueChanged(int)), SLOT(setPosition(int)));
-    connect(m_videoControl, SIGNAL(addBarrageChanged(MusicBarrageRecord)), SLOT(addBarrageChanged(MusicBarrageRecord)));
-    connect(m_videoControl, SIGNAL(pushBarrageChanged(bool)), SLOT(pushBarrageChanged(bool)));
+    connect(m_videoControl, SIGNAL(addBarrageChanged(MusicBarrageRecord)), m_barrageWidget, SLOT(addBarrage(MusicBarrageRecord)));
+    connect(m_videoControl, SIGNAL(pushBarrageChanged(bool)), m_barrageWidget, SLOT(barrageStateChanged(bool)));
 
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_player, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
@@ -108,6 +108,11 @@ void MusicVideoView::setMedia(const QString &data)
 {
     m_player->setMedia(MusicCoreMPlayer::Module::Video, data, (int)m_videoWidget->winId());
     m_videoControl->setQualityActionState();
+}
+
+void MusicVideoView::setBarrage(const QString &name, const QString &id)
+{
+    m_barrageWidget->setBarrage(name, id);
 }
 
 void MusicVideoView::resizeGeometry(int width, int height)
@@ -195,16 +200,6 @@ void MusicVideoView::mediaPlayFinished(int code)
         stop();
         MusicToastLabel::popup(tr("Audio play time out"));
     }
-}
-
-void MusicVideoView::addBarrageChanged(const MusicBarrageRecord &record)
-{
-    m_barrageWidget->addBarrage(record);
-}
-
-void MusicVideoView::pushBarrageChanged(bool on)
-{
-    m_barrageWidget->barrageStateChanged(on);
 }
 
 void MusicVideoView::fullscreenButtonTrigger()

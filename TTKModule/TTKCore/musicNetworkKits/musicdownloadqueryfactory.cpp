@@ -28,8 +28,6 @@
 #include "musickgqueryplaylistrequest.h"
 #include "musickwqueryplaylistrequest.h"
 //
-#include "musicsongrecommendrequest.h"
-//
 #include "musicwycommentsrequest.h"
 #include "musickgcommentsrequest.h"
 #include "musickwcommentsrequest.h"
@@ -37,10 +35,6 @@
 #include "musicwydiscoverlistrequest.h"
 #include "musickgdiscoverlistrequest.h"
 #include "musickwdiscoverlistrequest.h"
-//
-#include "musicsongsuggestrequest.h"
-//
-#include "musictranslationrequest.h"
 //
 #include "musickwcoverrequest.h"
 #include "musiccoversourcerequest.h"
@@ -189,21 +183,6 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makePlaylistRequest(QObjec
     return request;
 }
 
-MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeRecommendRequest(QObject *parent)
-{
-    return (new MusicSongRecommendRequest(parent));
-}
-
-MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeSimilarSongRequest(QObject *parent)
-{
-    return makeQueryRequest(parent);
-}
-
-MusicSongSuggestRequest *MusicDownLoadQueryFactory::makeSuggestRequest(QObject *parent)
-{
-    return (new MusicSongSuggestRequest(parent));
-}
-
 MusicCommentsRequest *MusicDownLoadQueryFactory::makeSongCommentRequest(QObject *parent)
 {
     MusicCommentsRequest *request = nullptr;
@@ -244,11 +223,6 @@ MusicDiscoverListRequest *MusicDownLoadQueryFactory::makeDiscoverListRequest(QOb
         default: request = new MusicWYDiscoverListRequest(parent); break;
     }
     return request;
-}
-
-MusicTranslationRequest *MusicDownLoadQueryFactory::makeTranslationRequest(QObject *parent)
-{
-    return (new MusicTranslationRequest(parent));
 }
 
 MusicCoverRequest *MusicDownLoadQueryFactory::makeCoverRequest(QObject *parent)

@@ -237,7 +237,7 @@ void MusicWYQueryMovieRequest::parseFromMovieList(qint64 id)
 
                 if(!findUrlPathSize(&prop, info.m_duration))
                 {
-                    return;
+                    continue;
                 }
 
                 info.m_songProps.append(prop);

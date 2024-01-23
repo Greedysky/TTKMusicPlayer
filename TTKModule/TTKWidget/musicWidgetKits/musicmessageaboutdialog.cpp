@@ -25,9 +25,9 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
 
     connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_downloadRequest = new MusicCounterPVRequest(this);
-    connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadFinished(QString)));
-    m_downloadRequest->startToRequest();
+    m_networkRequest = new MusicCounterPVRequest(this);
+    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadFinished(QString)));
+    m_networkRequest->startToRequest();
 
     const QString &buildTime = QString("%1 %2").arg(__DATE__, __TIME__);
     const QByteArray &md5 = TTK::Algorithm::md5(buildTime.toUtf8()).mid(12, 8);
@@ -46,7 +46,7 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
 
 MusicMessageAboutDialog::~MusicMessageAboutDialog()
 {
-    delete m_downloadRequest;
+    delete m_networkRequest;
     delete m_ui;
 }
 

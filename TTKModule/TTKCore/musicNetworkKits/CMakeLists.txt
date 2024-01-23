@@ -76,6 +76,8 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
   ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwydownloadtextrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwycommentsrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwydiscoverlistrequest.h
+  ${MUSIC_CORE_NETWORK_DIR}/music/zed/musicblqueryinterface.h
+  ${MUSIC_CORE_NETWORK_DIR}/music/zed/musicbarragerequest.h
   ${MUSIC_CORE_NETWORK_DIR}/music/musicsongrecommendrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/music/musicsongsuggestrequest.h
   ${MUSIC_CORE_NETWORK_DIR}/music/musicunityquerymovierequest.h
@@ -168,6 +170,8 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
   ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwydownloadtextrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwycommentsrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwydiscoverlistrequest.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/music/zed/musicblqueryinterface.cpp
+  ${MUSIC_CORE_NETWORK_DIR}/music/zed/musicbarragerequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/musicsongrecommendrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/musicsongsuggestrequest.cpp
   ${MUSIC_CORE_NETWORK_DIR}/music/musicunityquerymovierequest.cpp

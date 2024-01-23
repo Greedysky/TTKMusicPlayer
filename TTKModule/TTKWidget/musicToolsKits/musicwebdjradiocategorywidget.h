@@ -111,7 +111,7 @@ public Q_SLOTS:
 private:
     QGridLayout *m_gridLayout;
     QWidgetList m_resizeWidgets;
-    MusicDJRadioCategoryRequest *m_categoryThread;
+    MusicDJRadioCategoryRequest *m_networkRequest;
 
 };
 

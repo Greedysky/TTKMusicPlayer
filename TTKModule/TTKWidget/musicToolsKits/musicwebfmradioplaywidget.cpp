@@ -13,7 +13,7 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicWebFMRadioPlayWidget),
       m_isPlaying(false),
-      m_songThread(nullptr)
+      m_networkRequest(nullptr)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -70,13 +70,13 @@ MusicWebFMRadioPlayWidget::~MusicWebFMRadioPlayWidget()
 {
     delete m_analysis;
     delete m_player;
-    delete m_songThread;
+    delete m_networkRequest;
     delete m_ui;
 }
 
 void MusicWebFMRadioPlayWidget::show()
 {
-    m_songThread->startToRequest();
+    m_networkRequest->startToRequest();
     MusicAbstractMoveWidget::show();
 }
 
@@ -89,7 +89,7 @@ void MusicWebFMRadioPlayWidget::radioPlay()
 
 void MusicWebFMRadioPlayWidget::radioPrevious()
 {
-    m_songThread->startToRequest();
+    m_networkRequest->startToRequest();
 
     if(!m_isPlaying)
     {
@@ -99,7 +99,7 @@ void MusicWebFMRadioPlayWidget::radioPrevious()
 
 void MusicWebFMRadioPlayWidget::radioNext()
 {
-    m_songThread->startToRequest();
+    m_networkRequest->startToRequest();
 
     if(!m_isPlaying)
     {
@@ -115,9 +115,9 @@ void MusicWebFMRadioPlayWidget::radioVolume(int num)
 void MusicWebFMRadioPlayWidget::radioResourceDownload()
 {
     TTK::MusicSongInformation info;
-    if(m_songThread)
+    if(m_networkRequest)
     {
-        info = m_songThread->item();
+        info = m_networkRequest->item();
     }
 
     MusicDownloadWidget *widget = new MusicDownloadWidget(this);
@@ -128,9 +128,9 @@ void MusicWebFMRadioPlayWidget::radioResourceDownload()
 void MusicWebFMRadioPlayWidget::querySongInfoFinished()
 {
     TTK::MusicSongInformation info;
-    if(m_songThread)
+    if(m_networkRequest)
     {
-        info = m_songThread->item();
+        info = m_networkRequest->item();
     }
 
     m_isPlaying = true;
@@ -182,19 +182,19 @@ void MusicWebFMRadioPlayWidget::closeEvent(QCloseEvent *event)
 void MusicWebFMRadioPlayWidget::initialize()
 {
     m_player = new MusicCoreMPlayer(this);
-    m_songThread = new MusicFMRadioSongRequest(this);
+    m_networkRequest = new MusicFMRadioSongRequest(this);
 
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_player, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
-    connect(m_songThread, SIGNAL(downLoadDataChanged(QString)), SLOT(querySongInfoFinished()));
+    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(querySongInfoFinished()));
 }
 
 void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
 {
     TTK::MusicSongInformation info;
-    if(m_songThread)
+    if(m_networkRequest)
     {
-        info = m_songThread->item();
+        info = m_networkRequest->item();
     }
 
     const QString &name = TTK::generateSongName(info.m_songName, info.m_artistName).trimmed();
@@ -205,9 +205,9 @@ void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
 void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
 {
     TTK::MusicSongInformation info;
-    if(m_songThread)
+    if(m_networkRequest)
     {
-        info = m_songThread->item();
+        info = m_networkRequest->item();
     }
 
     QPixmap pix(ART_DIR_FULL + info.m_artistName + SKN_FILE);

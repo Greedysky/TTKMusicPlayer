@@ -185,15 +185,15 @@ void MusicDownloadWidget::initialize(const TTK::MusicSongInformation &info, Musi
     controlEnabled(true);
     m_ui->downloadName->setText(TTK::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_artistName, info.m_songName), Qt::ElideRight, 200));
 
-    if(!m_songInfo.m_songProps.isEmpty())
-    {
-        std::sort(m_songInfo.m_songProps.begin(), m_songInfo.m_songProps.end()); //to find out the min bitrate
-        addCellItems(m_songInfo.m_songProps);
-    }
-    else
+    if(m_songInfo.m_songProps.isEmpty())
     {
         close();
         MusicToastLabel::popup(tr("No resource found"));
+    }
+    else
+    {
+        std::sort(m_songInfo.m_songProps.begin(), m_songInfo.m_songProps.end()); //to find out the min bitrate
+        addCellItems(m_songInfo.m_songProps);
     }
 }
 
@@ -357,15 +357,15 @@ void MusicDownloadWidget::downLoadNormalFinished()
 
     m_networkRequest->startToQueryResult(&m_songInfo, TTK_BN_0);
 
-    if(!m_songInfo.m_songProps.isEmpty())
-    {
-        std::sort(m_songInfo.m_songProps.begin(), m_songInfo.m_songProps.end()); //to find out the min bitrate
-        addCellItems(m_songInfo.m_songProps);
-    }
-    else
+    if(m_songInfo.m_songProps.isEmpty())
     {
         close();
         MusicToastLabel::popup(tr("No resource found"));
+    }
+    else
+    {
+        std::sort(m_songInfo.m_songProps.begin(), m_songInfo.m_songProps.end()); //to find out the min bitrate
+        addCellItems(m_songInfo.m_songProps);
     }
 }
 
@@ -374,15 +374,15 @@ void MusicDownloadWidget::downLoadRequestFinished()
     m_networkRequest->startToQueryResult(&m_songInfo, TTK_BN_0);
     m_networkRequest = nullptr;
 
-    if(!m_songInfo.m_songProps.isEmpty())
-    {
-        std::sort(m_songInfo.m_songProps.begin(), m_songInfo.m_songProps.end()); //to find out the min bitrate
-        addCellItems(m_songInfo.m_songProps);
-    }
-    else
+    if(m_songInfo.m_songProps.isEmpty())
     {
         close();
         MusicToastLabel::popup(tr("No resource found"));
+    }
+    else
+    {
+        std::sort(m_songInfo.m_songProps.begin(), m_songInfo.m_songProps.end()); //to find out the min bitrate
+        addCellItems(m_songInfo.m_songProps);
     }
 }
 

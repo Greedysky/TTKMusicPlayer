@@ -90,6 +90,11 @@ public:
      */
     void setMedia(const QString &data);
     /*!
+     * Set barrage play data.
+     */
+    void setBarrage(const QString &name, const QString &id);
+
+    /*!
      * Resize geometry bound by resize called.
      */
     void resizeGeometry(int width, int height);
@@ -97,6 +102,7 @@ public:
      * Create right menu.
      */
     void createRightMenu();
+
     /*!
      * Get control bar widget.
      */
@@ -159,15 +165,6 @@ private Q_SLOTS:
      * Media play finished.
      */
     void mediaPlayFinished(int code);
-
-    /*!
-     * Add barrage text to mv.
-     */
-    void addBarrageChanged(const MusicBarrageRecord &record);
-    /*!
-     * Open barrage on or not.
-     */
-    void pushBarrageChanged(bool on);
 
     /*!
      * Fullscreen action trigger.

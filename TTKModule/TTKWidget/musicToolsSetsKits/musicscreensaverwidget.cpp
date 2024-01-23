@@ -381,8 +381,8 @@ void MusicScreenSaverWidget::currentItemClicked(int index, bool status)
 
 void MusicScreenSaverWidget::initialize()
 {
-    m_downloadQueue = new MusicDownloadQueueRequest(TTK::Download::Background, this);
-    connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+    m_networkRequest = new MusicDownloadQueueRequest(TTK::Download::Background, this);
+    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
 
     MusicDownloadQueueDataList datas;
     for(int i = 0; i < OS_COUNT; ++i)
@@ -407,8 +407,8 @@ void MusicScreenSaverWidget::initialize()
         datas << nailData;
     }
 
-    m_downloadQueue->addImageQueue(datas);
-    m_downloadQueue->startToRequest();
+    m_networkRequest->addImageQueue(datas);
+    m_networkRequest->startToRequest();
 }
 
 

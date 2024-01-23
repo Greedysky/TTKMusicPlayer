@@ -101,6 +101,7 @@ include_directories(
   ${MUSIC_CORE_NETWORK_DIR}/music/kg
   ${MUSIC_CORE_NETWORK_DIR}/music/kw
   ${MUSIC_CORE_NETWORK_DIR}/music/wy
+  ${MUSIC_CORE_NETWORK_DIR}/music/zed
   ${MUSIC_CORE_NETWORK_DIR}/radio/dj
   ${MUSIC_CORE_NETWORK_DIR}/radio/fm
   ${MUSIC_CORE_NETWORK_DIR}/radio/mv

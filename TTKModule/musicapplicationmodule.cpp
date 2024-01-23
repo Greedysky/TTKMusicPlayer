@@ -61,8 +61,8 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
     m_deviceWatcher->appendEventReceiver(this);
     m_deviceWatcher->start();
 
-    m_counterPVThread = new MusicCounterPVRequest(this);
-    m_sourceUpdatehread = new MusicSourceUpdateRequest(this);
+    m_counterPVRequest = new MusicCounterPVRequest(this);
+    m_sourceUpdateRequest = new MusicSourceUpdateRequest(this);
 
     runTimerAutoModule();
 
@@ -88,8 +88,8 @@ MusicApplicationModule::~MusicApplicationModule()
     delete m_deviceWatcher;
     delete m_mobileDeviceWidget;
     delete m_quitContainer;
-    delete m_counterPVThread;
-    delete m_sourceUpdatehread;
+    delete m_counterPVRequest;
+    delete m_sourceUpdateRequest;
 }
 
 MusicApplicationModule *MusicApplicationModule::instance()
@@ -110,7 +110,7 @@ void MusicApplicationModule::cleanup()
 
 bool MusicApplicationModule::isLastedVersion() const
 {
-    return m_sourceUpdatehread->isLastedVersion();
+    return m_sourceUpdateRequest->isLastedVersion();
 }
 
 void MusicApplicationModule::loadNetWorkSetting()
@@ -122,8 +122,8 @@ void MusicApplicationModule::loadNetWorkSetting()
     // sync host init
     QSyncConfig::HOST = TTK::Algorithm::mdII(SYNC_HOST_URL, false);
     //
-    m_counterPVThread->startToRequest();
-    m_sourceUpdatehread->startToRequest();
+    m_counterPVRequest->startToRequest();
+    m_sourceUpdateRequest->startToRequest();
 }
 
 void MusicApplicationModule::applyParameter()

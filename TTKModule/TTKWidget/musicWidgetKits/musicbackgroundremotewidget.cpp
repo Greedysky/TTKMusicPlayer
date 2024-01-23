@@ -22,8 +22,8 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     hbox->addWidget(m_backgroundList);
     setLayout(hbox);
 
-    m_downloadQueue = new MusicDownloadQueueRequest(TTK::Download::Background, this);
-    connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+    m_networkRequest = new MusicDownloadQueueRequest(TTK::Download::Background, this);
+    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
     connect(m_backgroundList, SIGNAL(itemClicked(int,QString)), parent, SLOT(remoteListWidgetItemClicked(int,QString)));
 }
 
@@ -31,13 +31,13 @@ MusicBackgroundRemoteWidget::~MusicBackgroundRemoteWidget()
 {
     abort();
     delete m_backgroundList;
-    delete m_downloadQueue;
+    delete m_networkRequest;
     delete m_downloadRequest;
 }
 
 void MusicBackgroundRemoteWidget::abort()
 {
-    m_downloadQueue->abort();
+    m_networkRequest->abort();
 }
 
 void MusicBackgroundRemoteWidget::downLoadFinished(const QString &bytes)
@@ -84,8 +84,8 @@ void MusicBackgroundRemoteWidget::startToRequest(const QString &prefix)
         datas << data;
     }
 
-    m_downloadQueue->addImageQueue(datas);
-    m_downloadQueue->startToRequest();
+    m_networkRequest->addImageQueue(datas);
+    m_networkRequest->startToRequest();
 }
 
 
@@ -247,7 +247,7 @@ void MusicBackgroundOnlineWidget::currentTypeChanged(int index)
 
     if(m_currentIndex != index)
     {
-        m_downloadQueue->abort();
+        m_networkRequest->abort();
     }
 
     m_currentIndex = index;

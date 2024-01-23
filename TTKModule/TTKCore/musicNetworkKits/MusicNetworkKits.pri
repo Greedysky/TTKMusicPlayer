@@ -26,6 +26,7 @@ INCLUDEPATH += \
     $$PWD/music/kg \
     $$PWD/music/kw \
     $$PWD/music/wy \
+    $$PWD/music/zed \
     $$PWD/radio/dj \
     $$PWD/radio/fm \
     $$PWD/radio/mv \
@@ -90,6 +91,8 @@ HEADERS += \
     $$PWD/music/wy/musicwydownloadtextrequest.h \
     $$PWD/music/wy/musicwycommentsrequest.h \
     $$PWD/music/wy/musicwydiscoverlistrequest.h \
+    $$PWD/music/zed/musicblqueryinterface.h \
+    $$PWD/music/zed/musicbarragerequest.h \
     $$PWD/music/musicsongrecommendrequest.h \
     $$PWD/music/musicsongsuggestrequest.h \
     $$PWD/music/musicunityquerymovierequest.h \
@@ -181,6 +184,8 @@ SOURCES += \
     $$PWD/music/wy/musicwydownloadtextrequest.cpp \
     $$PWD/music/wy/musicwycommentsrequest.cpp \
     $$PWD/music/wy/musicwydiscoverlistrequest.cpp \
+    $$PWD/music/zed/musicblqueryinterface.cpp \
+    $$PWD/music/zed/musicbarragerequest.cpp \
     $$PWD/music/musicsongrecommendrequest.cpp \
     $$PWD/music/musicsongsuggestrequest.cpp \
     $$PWD/music/musicunityquerymovierequest.cpp \

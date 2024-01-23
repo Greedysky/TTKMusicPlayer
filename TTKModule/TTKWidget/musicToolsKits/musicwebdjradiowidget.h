@@ -77,7 +77,7 @@ public Q_SLOTS:
     void downLoadFinished(const QByteArray &bytes);
 
 private:
-    MusicDJRadioProgramRequest *m_programThread;
+    MusicDJRadioProgramRequest *m_networkRequest;
 
 };
 

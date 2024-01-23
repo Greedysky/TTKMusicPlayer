@@ -35,7 +35,7 @@ MusicIdentifySongWidget::MusicIdentifySongWidget(QWidget *parent)
     connect(m_timer, SIGNAL(timeout()), SLOT(detectedTimeOut()));
 
     m_recordCore = new MusicAudioRecorderModule(this);
-    m_detectedRequest = new MusicIdentifySongRequest(this);
+    m_networkRequest = new MusicIdentifySongRequest(this);
 
     QShortcut *cut = new QShortcut(Qt::SHIFT + Qt::CTRL + Qt::Key_T, this);
     connect(cut, SIGNAL(activated()), SLOT(detectedButtonClicked()));
@@ -50,7 +50,7 @@ MusicIdentifySongWidget::~MusicIdentifySongWidget()
     delete m_player;
     delete m_analysis;
     delete m_recordCore;
-    delete m_detectedRequest;
+    delete m_networkRequest;
     delete m_detectedButton;
     delete m_detectedLabel;
     delete m_detectedMovie;
@@ -59,7 +59,7 @@ MusicIdentifySongWidget::~MusicIdentifySongWidget()
 
 void MusicIdentifySongWidget::queryIdentifyKey()
 {
-    if(m_detectedRequest->queryIdentifyKey())
+    if(m_networkRequest->queryIdentifyKey())
     {
         m_detectedButton->setEnabled(true);
     }
@@ -114,12 +114,12 @@ void MusicIdentifySongWidget::detectedTimeOut()
     m_recordCore->addWavHeader(TTK_RECORD_DATA_FILE);
 
     TTKSemaphoreLoop loop;
-    connect(m_detectedRequest, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    m_detectedRequest->startToRequest(TTK_RECORD_DATA_FILE);
+    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    m_networkRequest->startToRequest(TTK_RECORD_DATA_FILE);
     loop.exec();
 
     detectedButtonClicked();
-    if(m_detectedRequest->items().isEmpty())
+    if(m_networkRequest->items().isEmpty())
     {
         createDetectedFailedWidget();
     }
@@ -262,7 +262,7 @@ void MusicIdentifySongWidget::createDetectedSuccessedWidget()
         m_analysis->setLineMax(11);
         connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     }
-    const MusicSongIdentifyData songIdentify(m_detectedRequest->items().front());
+    const MusicSongIdentifyData songIdentify(m_networkRequest->items().front());
 
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(TTK::UI::ColorStyle03 + TTK::UI::FontStyle04);

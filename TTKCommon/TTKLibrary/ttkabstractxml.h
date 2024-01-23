@@ -29,35 +29,53 @@
 /*! @brief The class of the ttk xml attribute.
  * @author Greedysky <greedysky@163.com>
  */
-struct TTK_MODULE_EXPORT TTKXmlAttribute
+struct TTK_MODULE_EXPORT TTKXmlAttr
 {
     QString m_key;
     QVariant m_value;
 
-    TTKXmlAttribute(const QString &key, const QVariant &value)
+    TTKXmlAttr() = default;
+    TTKXmlAttr(const QString &key, const QVariant &value)
         : m_key(key),
           m_value(value)
     {
 
     }
 };
-TTK_DECLARE_LIST(TTKXmlAttribute);
+TTK_DECLARE_LIST(TTKXmlAttr);
 
-using TTKXmlAttributesList = QList<TTKXmlAttributeList>;
 
-/*! @brief The class of the ttk xml node hepler.
+/*! @brief The class of the ttk xml node.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT TTKXmlNodeHelper
+struct TTK_MODULE_EXPORT TTKXmlNode
+{
+    TTKXmlAttrList m_attrs;
+    QString m_text;
+
+    TTKXmlNode()
+        : m_attrs(),
+          m_text()
+    {
+
+    }
+};
+TTK_DECLARE_LIST(TTKXmlNode);
+
+
+/*! @brief The class of the ttk xml hepler.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT TTKXmlHelper
 {
 public:
     /*!
      * Object constructor.
      */
-    explicit TTKXmlNodeHelper(const QDomNode &root);
+    explicit TTKXmlHelper(const QDomNode &root);
 
     /*!
-     * Load xml node helper.
+     * Load xml helper.
      */
     void load();
     /*!
@@ -95,7 +113,7 @@ public:
     /*!
      * Object destructor.
      */
-    ~TTKAbstractXml();
+    virtual ~TTKAbstractXml();
 
     /*!
      * Init document by given name.
@@ -146,22 +164,22 @@ public:
      */
     QString readTextByTagName(const QString &tagName) const;
     /*!
-     * Read xml attributes by tagName.
+     * Read xml node by tagName.
      */
-    TTKXmlAttributeList readAttributesByTagName(const QString &tagName) const;
+    TTKXmlNode readNodeByTagName(const QString &tagName) const;
 
     /*!
      * Read xml multi attribute by tagName and attribute name.
      */
     QStringList readMultiAttributeByTagName(const QString &tagName, const QString &attrName = "value") const;
     /*!
-     * Read xml multi attribute's text by multi tagName.
+     * Read xml multi attribute's text by tagName.
      */
     QStringList readMultiTextByTagName(const QString &tagName) const;
     /*!
-     * Read xml multi attributes by multi tagName.
+     * Read xml multi node by tagName.
      */
-    TTKXmlAttributesList readMultiAttributesByTagName(const QString &tagName) const;
+    TTKXmlNodeList readMultiNodeByTagName(const QString &tagName) const;
 
     /*!
      * Create xml node nodes by node name.
@@ -170,45 +188,54 @@ public:
     /*!
      * Create xml node nodes by node atrr.
      */
-    QDomElement createRoot(const QString &node, const TTKXmlAttribute &attr) const;
+    QDomElement createRoot(const QString &node, const TTKXmlAttr &attr) const;
     /*!
      * Create xml node nodes by node atrrs.
      */
-    QDomElement createRoot(const QString &node, const TTKXmlAttributeList &attrs) const;
+    QDomElement createRoot(const QString &node, const TTKXmlAttrList &attrs) const;
 
     /*!
-     * Write xml element nodes by node name.
+     * Write xml element node by node name.
      */
     QDomElement writeDomElement(QDomElement &element, const QString &node) const;
     /*!
-     * Write xml element nodes by node name and attribute's text.
+     * Write xml element node by node name and attribute's text.
      */
     QDomElement writeDomElement(QDomElement &element, const QString &node, const QString &text) const;
     /*!
-     * Write xml element nodes by node name key name and value.
+     * Write xml element node by node name key name value and attribute's text.
      */
-    QDomElement writeDomElement(QDomElement &element, const QString &node, const TTKXmlAttribute &attr) const;
+    QDomElement writeDomElement(QDomElement &element, const QString &node, const TTKXmlNode &attr) const;
     /*!
-     * Write xml element nodes by node name key name value and attribute's text.
+     * Write xml element node by node name key name and value.
      */
-    QDomElement writeDomElement(QDomElement &element, const QString &node, const TTKXmlAttribute &attr, const QString &text) const;
+    QDomElement writeDomElement(QDomElement &element, const QString &node, const TTKXmlAttr &attr) const;
+    /*!
+     * Write xml element node by node name key name value and attribute's text.
+     */
+    QDomElement writeDomElement(QDomElement &element, const QString &node, const TTKXmlAttr &attr, const QString &text) const;
+
     /*!
      * Write xml elements nodes by node name keys name and values.
      */
-    QDomElement writeDomMultiElement(QDomElement &element, const QString &node, const TTKXmlAttributeList &attrs) const;
+    QDomElement writeDomMultiElement(QDomElement &element, const QString &node, const TTKXmlNode &attrs) const;
+    /*!
+     * Write xml elements nodes by node name keys name and values.
+     */
+    QDomElement writeDomMultiElement(QDomElement &element, const QString &node, const TTKXmlAttrList &attrs) const;
     /*!
      * Write xml elements nodes by node name keys name values and attribute's text.
      */
-    QDomElement writeDomMultiElement(QDomElement &element, const QString &node, const TTKXmlAttributeList &attrs, const QString &text) const;
+    QDomElement writeDomMultiElement(QDomElement &element, const QString &node, const TTKXmlAttrList &attrs, const QString &text) const;
 
     /*!
      * Write xml element node key name and value.
      */
-    void writeAttribute(QDomElement &element, const TTKXmlAttribute &attr) const;
+    void writeAttribute(QDomElement &element, const TTKXmlAttr &attr) const;
     /*!
      * Write xml element nodes key name and value.
      */
-    void writeAttribute(QDomElement &element, const TTKXmlAttributeList &attr) const;
+    void writeAttribute(QDomElement &element, const TTKXmlAttrList &attr) const;
 
 protected:
     QFile *m_file;

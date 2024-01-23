@@ -251,6 +251,7 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
 {
     m_videoTable->startToSearchByID(data);
+
     const TTK::MusicSongInformation info(data.value<TTK::MusicSongInformation>());
     const TTK::MusicSongPropertyList &props = info.m_songProps;
     if(!props.isEmpty())
@@ -260,6 +261,7 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
         data.m_name = TTK::generateSongName(info.m_songName, info.m_artistName);
         data.m_url = prop.m_url;
         data.m_id = info.m_songId;
+        data.m_cover = info.m_coverUrl;
         data.m_server = MUSIC_MOVIE_RADIO;
         mediaUrlPathChanged(data);
     }
@@ -283,7 +285,8 @@ void MusicVideoPlayWidget::mediaUrlChanged(const QString &url)
     {
         w->switchToPlayState();
     }
-    ///stop current media play while mv starts.
+
+    ///stop current song play while mv starts.
     m_videoView->setMedia(url);
     m_videoView->play();
 
@@ -295,6 +298,8 @@ void MusicVideoPlayWidget::mediaUrlPathChanged(const MusicVideoItem &item)
     m_videoItem = item;
     setTitleText(item.m_name);
     mediaUrlChanged(item.m_url);
+    //
+    m_videoView->setBarrage(item.m_name, item.m_id);
 }
 
 void MusicVideoPlayWidget::popupButtonClicked()

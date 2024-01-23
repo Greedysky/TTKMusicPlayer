@@ -60,6 +60,8 @@ private:
 };
 
 
+class MusicBarrageRequest;
+
 /*! @brief The class of the barrage widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -95,14 +97,25 @@ public:
      */
     void setSize(const QSize &size);
     /*!
+     * Set barrage play data.
+     */
+    void setBarrage(const QString &name, const QString &id);
+
+public Q_SLOTS:
+    /*!
      * Set current barrage animation on or not.
      */
     void barrageStateChanged(bool on);
-
     /*!
      * Add barrage record.
      */
     void addBarrage(const MusicBarrageRecord &record);
+
+private Q_SLOTS:
+    /*!
+     * Send recieved data from net.
+     */
+    void downLoadFinished(const QByteArray &bytes);
 
 private:
     /*!
@@ -129,9 +142,11 @@ private:
     bool m_state;
     QSize m_parentSize;
     QWidget *m_parent;
+    QString m_lastQueryID;
     QList<QLabel*> m_labels;
     QList<MusicBarrageAnimation*> m_animations;
     MusicBarrageRecordList m_barrageRecords;
+    MusicBarrageRequest *m_networkRequest;
 
 };
 

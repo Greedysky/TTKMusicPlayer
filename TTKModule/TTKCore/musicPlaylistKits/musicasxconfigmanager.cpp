@@ -12,7 +12,7 @@ bool MusicASXConfigManager::readBuffer(MusicSongItemList &items)
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
 
-    TTKXmlNodeHelper helper(m_document->documentElement());
+    TTKXmlHelper helper(m_document->documentElement());
     helper.load();
 
     const QDomNodeList &nodes = m_document->elementsByTagName(helper.nodeName("Entry"));
@@ -58,7 +58,7 @@ bool MusicASXConfigManager::writeBuffer(const MusicSongItemList &items)
         return false;
     }
 
-    QDomElement rootDom = createRoot("Asx", TTKXmlAttribute("version ", "3.0"));
+    QDomElement rootDom = createRoot("Asx", TTKXmlAttr("version ", "3.0"));
 
     for(int i = 0; i < items.count(); ++i)
     {

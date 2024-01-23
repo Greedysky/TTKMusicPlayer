@@ -179,8 +179,8 @@ private:
     QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;
 
-    MusicCounterPVRequest *m_counterPVThread;
-    MusicSourceUpdateRequest *m_sourceUpdatehread;
+    MusicCounterPVRequest *m_counterPVRequest;
+    MusicSourceUpdateRequest *m_sourceUpdateRequest;
     MusicScreenSaverBackgroundWidget *m_screenSaverWidget;
 
     static MusicApplicationModule *m_instance;
