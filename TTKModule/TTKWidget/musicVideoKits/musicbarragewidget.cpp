@@ -106,6 +106,7 @@ void MusicBarrageWidget::setBarrage(const QString &name, const QString &id)
         return;
     }
 
+    clearBarrages();
     m_lastQueryID = id;
     m_networkRequest->startToRequest(name);
 }
@@ -147,6 +148,11 @@ void MusicBarrageWidget::downLoadFinished(const QByteArray &bytes)
     {
         for(const TTKXmlNode &node : xml.readMultiNodeByTagName("d"))
         {
+            if(m_barrageRecords.count() > 20) // limit size
+            {
+                break;
+            }
+
             QString attrValue;
             for(const TTKXmlAttr &attr : qAsConst(node.m_attrs))
             {
@@ -204,6 +210,12 @@ void MusicBarrageWidget::createLabel()
     {
         createLabel(record);
     }
+}
+
+void MusicBarrageWidget::clearBarrages()
+{
+    clearItems();
+    m_barrageRecords.clear();
 }
 
 QLabel *MusicBarrageWidget::createLabel(const MusicBarrageRecord &record)

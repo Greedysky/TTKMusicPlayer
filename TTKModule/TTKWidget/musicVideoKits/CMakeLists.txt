@@ -19,6 +19,8 @@
 cmake_minimum_required(VERSION 3.0.0)
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_VIDEO_KITS_HEADERS
+  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicbarragerecord.h
+  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicbarragewidget.h
   ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideocontrolwidget.h
   ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideoview.h
   ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideosearchtablewidget.h
@@ -29,6 +31,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_VIDEO_KITS_HEADERS
 )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_VIDEO_KITS_SOURCES
+  ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicbarragewidget.cpp
   ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideocontrolwidget.cpp
   ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideoview.cpp
   ${MUSIC_WIDGET_VIDEOKITS_DIR}/musicvideosearchtablewidget.cpp

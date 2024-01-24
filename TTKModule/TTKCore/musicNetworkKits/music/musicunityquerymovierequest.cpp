@@ -183,7 +183,7 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
                             info.m_coverUrl = value["pic"].toString();
                             if(info.m_coverUrl.startsWith("//"))
                             {
-                                info.m_coverUrl = HTTP_PROTOCOL + info.m_coverUrl.remove(0, 2);
+                                info.m_coverUrl = TTK_STR_CAT(HTTP_PROTOCOL_PREFIX, ":") + info.m_coverUrl;
                             }
                             else if(!TTK::String::isNetworkUrl(info.m_coverUrl))
                             {

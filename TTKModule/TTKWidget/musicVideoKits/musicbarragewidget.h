@@ -127,6 +127,10 @@ private:
      */
     void createLabel();
     /*!
+     * Clear all barrage.
+     */
+    void clearBarrages();
+    /*!
      * Create barrage item label by object.
      */
     QLabel *createLabel(const MusicBarrageRecord &record);
