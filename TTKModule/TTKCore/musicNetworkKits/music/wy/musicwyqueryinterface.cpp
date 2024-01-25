@@ -14,6 +14,12 @@ void ReqWYInterface::makeRequestRawHeader(QNetworkRequest *request)
     TTK::makeContentTypeHeader(request);
 }
 
+QString ReqWYInterface::makeSongArtist(const QString &in, const QString &name)
+{
+    const QString &artistName = TTK::String::charactersReplace(name);
+    return in.isEmpty() ? artistName : (in + ";" + artistName);
+}
+
 QString ReqWYInterface::makeCoverPixmapUrl(const QString &url)
 {
     return url + TTK::Algorithm::mdII("dCt3T2JSbmJ2LzFuOUZBalAwTnUvNkRpc3dZPQ==", false);

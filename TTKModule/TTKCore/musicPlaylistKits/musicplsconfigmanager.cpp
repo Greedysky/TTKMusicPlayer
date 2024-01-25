@@ -46,7 +46,7 @@ bool MusicPLSConfigManager::readBuffer(MusicSongItemList &items)
         {
             if((number = regx2.cap(1).toInt()) > 0)
             {
-                item.m_songs.back().setPlayTime(TTKTime::formatDuration(regx2.cap(2).toInt() * TTK_DN_S2MS));
+                item.m_songs.back().setDuration(TTKTime::formatDuration(regx2.cap(2).toInt() * TTK_DN_S2MS));
             }
             else
             {
@@ -89,7 +89,7 @@ bool MusicPLSConfigManager::writeBuffer(const MusicSongItemList &items)
             ++count;
             data << QString("File%1=%2").arg(count).arg(song.path());
             data << QString("Title%1=%2").arg(count).arg(song.name());
-            data << QString("Length%1=%2").arg(count).arg(TTKTime::formatDuration(song.playTime()) / 1000);
+            data << QString("Length%1=%2").arg(count).arg(TTKTime::formatDuration(song.duration()) / 1000);
         }
     }
 

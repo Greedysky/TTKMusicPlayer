@@ -3,6 +3,7 @@
 #include "musicplayedlistpopwidget.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicconfigmanager.h"
+#include "musiccoreutils.h"
 #include "musicplayer.h"
 #include "musicformats.h"
 #include "musicplaylist.h"
@@ -251,6 +252,8 @@ TTK::PlayMode MusicApplication::playMode() const
 
 void MusicApplication::quitWindow()
 {
+    TTK::Core::enableBreakPoint(true);
+    //
     m_quitWindowMode = true;
     m_applicationObject->cleanup();
     m_applicationObject->windowCloseAnimation();
@@ -785,7 +788,7 @@ void MusicApplication::createRightMenu()
     QMenu information(tr("About"), &menu);
     menu.addMenu(&information)->setIcon(QIcon(":/contextMenu/btn_about"));
     information.addAction(QIcon(":/contextMenu/btn_bug_reoprt"), tr("Bug Report"), m_applicationObject, SLOT(showBugReportView()));
-    information.addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + QString(TTK_VERSION_STR) + QString(TTK_VERSION_TIME_STR), m_applicationObject, SLOT(showAboutWidget()));
+    information.addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + TTK_STR_CAT(TTK_VERSION_STR, TTK_VERSION_TIME_STR), m_applicationObject, SLOT(showAboutWidget()));
 
     menu.addSeparator();
     menu.addAction(QIcon(":/contextMenu/btn_quit"), tr("Quit"), this, SLOT(quitWindow()));
@@ -950,6 +953,7 @@ void MusicApplication::closeEvent(QCloseEvent *event)
 {
     TTKAbstractMoveResizeWidget::closeEvent(event);
     event->ignore();
+
     if(!m_bottomAreaWidget->systemCloseConfig() && m_bottomAreaWidget->systemTrayIsVisible())
     {
         hide();

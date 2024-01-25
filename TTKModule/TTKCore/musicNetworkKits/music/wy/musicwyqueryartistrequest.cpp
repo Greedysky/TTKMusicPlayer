@@ -81,7 +81,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
 
                         const QVariantMap &artistObject = artistValue.toMap();
                         info.m_artistId = artistObject["id"].toString();
-                        break; //just find first artist
+                        break;
                     }
 
                     const QVariantMap &albumObject = value["al"].toMap();

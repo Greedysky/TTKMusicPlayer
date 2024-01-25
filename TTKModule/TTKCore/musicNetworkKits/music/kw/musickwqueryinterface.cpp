@@ -10,6 +10,11 @@ void ReqKWInterface::makeRequestRawHeader(QNetworkRequest *request)
     TTK::makeContentTypeHeader(request);
 }
 
+QString ReqKWInterface::makeSongArtist(const QString &name)
+{
+    return TTK::String::charactersReplace(name).replace("&", ";").replace("+", ";");
+}
+
 QString ReqKWInterface::makeCoverPixmapUrl(const QString &url, const QString &id)
 {
     if(url.isEmpty() && !id.isEmpty())

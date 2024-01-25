@@ -78,8 +78,6 @@ private:
      */
     void morePlaylistDetails(const QString &pid);
 
-    QString m_tags;
-
 };
 
 #endif // MUSICKWQUERYPLAYLISTREQUEST_H

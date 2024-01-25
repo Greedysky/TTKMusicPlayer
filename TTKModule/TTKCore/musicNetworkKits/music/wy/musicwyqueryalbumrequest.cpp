@@ -83,9 +83,12 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                         }
 
                         const QVariantMap &artistObject = artistValue.toMap();
-                        info.m_artistId = artistObject["id"].toString();
-                        info.m_artistName = TTK::String::charactersReplace(artistObject["name"].toString());
-                        break; //just find first artist
+                        if(info.m_artistId.isEmpty())
+                        {
+                            info.m_artistId = artistObject["id"].toString();
+                        }
+
+                        info.m_artistName = ReqWYInterface::makeSongArtist(info.m_artistName, artistObject["name"].toString());
                     }
 
                     const QVariantMap &albumObject = value["al"].toMap();

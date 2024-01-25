@@ -85,7 +85,7 @@ void MusicKWQueryRequest::downLoadFinished()
                     info.m_songName = TTK::String::charactersReplace(value["SONGNAME"].toString());
 
                     info.m_artistId = value["ARTISTID"].toString();
-                    info.m_artistName = TTK::String::charactersReplace(value["ARTIST"].toString());
+                    info.m_artistName = ReqKWInterface::makeSongArtist(value["ARTIST"].toString());
 
                     info.m_albumId = value["ALBUMID"].toString();
                     info.m_albumName = TTK::String::charactersReplace(value["ALBUM"].toString());
@@ -138,7 +138,7 @@ void MusicKWQueryRequest::downLoadSingleFinished()
                 info.m_songName = TTK::String::charactersReplace(value["name"].toString());
 
                 info.m_artistId = value["artistid"].toString();
-                info.m_artistName = TTK::String::charactersReplace(value["artist"].toString());
+                info.m_artistName = ReqKWInterface::makeSongArtist(value["artist"].toString());
 
                 info.m_albumId = value["albumid"].toString();
                 info.m_albumName = TTK::String::charactersReplace(value["album"].toString());

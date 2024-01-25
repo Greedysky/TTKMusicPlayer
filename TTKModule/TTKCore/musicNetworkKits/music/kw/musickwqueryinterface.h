@@ -50,7 +50,7 @@ static const QString KW_TOPLIST_INFO_URL     = "Wkl6YXI0QWdzcXRyaUVCbzdLM2lhR3FZ
 static const QString KW_COMMENT_SONG_URL     = "R29Ob2xrOUcxbXhpMlF6YmRzZ2kxZVFrRmJPcEdzbk0weUNQazNGUEFXSjl4QXdhWU1kUXdNQ3ExOWxGRE5uOERTblpCNk9pZWdnVmRLTHJkK25GckxxbzhpYmh3UHVTbi9DK1RoYm5qaVdZV2o4MXo2cXBwL1ZLTFprY0dyZENDUDhiT0E9PQ==";
 static const QString KW_COMMENT_PLAYLIST_URL = "b09RdlBRdzh4bjB4QXZCbXlXcE5ENEpUMzhEUGY5cVNCUVAwVUJucjg4YS9tWXhsZ2dINmZDOXFhOUlJVmVOaWVBNWlsaE9JRy9UalllVit2dk1IZG5ST1dhUGFNSXg0ZmVxdlpzUEZINUhXdzJML1hDOVhqYjQ2Y2Raek5oRGNDaGx3Wmc9PQ==";
 ///playlist url
-static const QString KW_PLAYLIST_URL         = "cjgyRkJaRnB2bElLbG1MS2M4TjcrWjRabU4xZkVpY1p6OTZBSTlrM3IxWWNjUTBPS3d0OFo4d0s4M29pd0h4WFZtKzhxTjVoNXcwUjRiQlE2aFZ3VXhGMlhqYURxdlZSSGR5cHJidUdndVV3Y3hEQlRBbm4yQytKMExoNTAvUUs2TE92SFQzSUVLMVJ3VFlNUUZXQkZXa2t0UmdQWTl1VTF3bGhCUT09";
+static const QString KW_PLAYLIST_URL         = "QzgyT0gvMmt3cTFrTDh0LzZ2TFRoNWdIUktZNUJVbjRiVHRnQWxIQkJUaWtCWEw4dUltWVhSSUE4b1RUekkvWnFrS3RRK1NwT1dVNXFJamMreU1STG1KcmhhbE5oL1dUTTZ0a3VLOXQwZm96cm1EeQ==";
 static const QString KW_PLAYLIST_INFO_URL    = "a1RvK2Rxb3oza1FHZ3FNeU1ZQ1lSYTdGN0xUanZXZ09rU2RTQlF3UGxsT3dFcTBqc3FXdmdUVW1wL2RQVUJKdGEzM3Z2RUI1cUIrYmVnNmNtdEZla3VlN01ySXdNb3dVa21lSDR1b2VwZlJFWXVVbnY4bDFLSHplSHhicDY5WEFBaFZxdlpZUmxVTkhxL0hNcDI1ZW9oamtXWkZadUhNdWFOZG1iVHM0K2FmY0pLamlXZ2tGMFE9PQ==";
 
 
@@ -66,6 +66,10 @@ namespace ReqKWInterface
      */
     void makeRequestRawHeader(QNetworkRequest *request);
 
+    /*!
+     * Make song artist name.
+     */
+    QString makeSongArtist(const QString &name);
     /*!
      * Make cover pixmap url.
      */

@@ -85,6 +85,10 @@ namespace ReqWYInterface
     void makeRequestRawHeader(QNetworkRequest *request);
 
     /*!
+     * Make song artist name.
+     */
+    QString makeSongArtist(const QString &in, const QString &name);
+    /*!
      * Make cover pixmap url.
      */
     QString makeCoverPixmapUrl(const QString &url);

@@ -79,7 +79,7 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                     info.m_songName = TTK::String::charactersReplace(value["name"].toString());
 
                     info.m_artistId = value["artistid"].toString();
-                    info.m_artistName = TTK::String::charactersReplace(value["artist"].toString());
+                    info.m_artistName = ReqKWInterface::makeSongArtist(value["artist"].toString());
 
                     info.m_albumId = result.m_id;
                     info.m_albumName = TTK::String::charactersReplace(albumName);

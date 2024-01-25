@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <TTKMusicPlayer>
     <WangYi>
+        <!-- NzRmNzJ5TzYvajBLMXMycWlDYnZKSUpNUTh3b3dtOEZ0THR1Ui83by8vRkRmS2lNVENkbWtmanBldlU9 -->
         <tag value="云音乐特色榜">
             <value key="19723756" value="飙升榜"/>
             <value key="3779629" value="新歌榜"/>
@@ -26,7 +27,6 @@
             <value key="3001835560" value="云音乐ACG动画榜"/>
             <value key="3001795926" value="云音乐ACG游戏榜"/>
             <value key="3001890046" value="云音乐ACG VOCALOID榜"/>
-            <value key="3112516681" value="中国新乡村音乐排行榜"/>
             <value key="5059644681" value="云音乐日语榜"/>
             <value key="5059633707" value="云音乐摇滚榜"/>
             <value key="5059642708" value="云音乐国风榜"/>
@@ -45,9 +45,20 @@
             <value key="7785123708" value="黑胶VIP新歌榜"/>
             <value key="7785066739" value="黑胶VIP热歌榜"/>
             <value key="7785091694" value="黑胶VIP爱搜榜"/>
+            <value key="8246775932" value="实时热度榜"/>
+            <value key="8537588450" value="喜力®星电音派对潮音榜"/>
+            <value key="8661209031" value="乐夏榜"/>
+            <value key="8703179781" value="特斯拉车友爱听榜"/>
+            <value key="8703052295" value="理想车友爱听榜"/>
+            <value key="8702582160" value="比亚迪车友爱听榜"/>
+            <value key="8703220480" value="蔚来车友爱听榜"/>
+            <value key="8702982389" value="埃安车友爱听榜"/>
+            <value key="8702982391" value="极氪车友爱听榜"/>
+            <value key="8532443277" value="蛋仔派对听歌榜"/>
         </tag>
     </WangYi>
     <KuGou>
+        <!-- OWIwTnZmb1c5VUlERm1BcTVWV3hZeGZlY3R3UTlJODM1MmlCM2R6NlFpbndtUnFIb0ZzaFBEUUpqQWc9 -->
         <tag value="热门榜单">
             <value key="6666" value="酷狗飙升榜"/>
             <value key="8888" value="酷狗TOP500"/>
@@ -89,6 +100,7 @@
         </tag>
     </KuGou>
     <KuWo>
+        <!-- bTdxdHdjMG9xWTRwV1k5VDVHTlJHRm52Z0lJaFBFeU1WWWx6VHpFbHpEbz0= -->
         <tag value="官方榜">
             <value key="93" value="酷我飙升榜"/>
             <value key="17" value="酷我新歌榜"/>
@@ -98,25 +110,26 @@
             <value key="145" value="会员畅听榜"/>
         </tag>
         <tag value="特色榜">
+            <value key="336" value="会员飙升榜"/>
             <value key="331" value="会员爱听排行榜"/>
             <value key="330" value="会员新歌榜"/>
-            <value key="242" value="极品电音榜"/>
-            <value key="284" value="酷我热评榜"/>
             <value key="26" value="经典怀旧榜"/>
-            <value key="278" value="古风音乐榜"/>
             <value key="153" value="网红新歌榜"/>
-            <value key="187" value="流行趋势榜"/>
+            <value key="278" value="古风音乐榜"/>
+            <value key="284" value="酷我热评榜"/>
             <value key="185" value="最强翻唱榜"/>
+            <value key="242" value="极品电音榜"/>
+            <value key="187" value="流行趋势榜"/>
             <value key="154" value="酷我综艺榜"/>
-            <value key="329" value="酷我说唱榜"/>
             <value key="64" value="影视金曲榜"/>
+            <value key="329" value="酷我说唱榜"/>
             <value key="294" value="禅心佛乐榜"/>
             <value key="290" value="ACG新歌榜"/>
             <value key="292" value="酷我铃声榜"/>
             <value key="291" value="爆笑相声榜"/>
         </tag>
         <tag value="场景榜">
-            <value key="279" value="春日温柔榜"/>
+            <value key="279" value="秋日思念榜"/>
             <value key="328" value="车载歌曲榜"/>
             <value key="297" value="跑步健身榜"/>
             <value key="295" value="宝宝哄睡榜"/>

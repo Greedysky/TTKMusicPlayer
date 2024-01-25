@@ -104,7 +104,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
     sortFiles.addAction(tr("Sort By Singer"))->setData(1);
     sortFiles.addAction(tr("Sort By FileSize"))->setData(2);
     sortFiles.addAction(tr("Sort By AddTime"))->setData(3);
-    sortFiles.addAction(tr("Sort By PlayTime"))->setData(4);
+    sortFiles.addAction(tr("Sort By Duration"))->setData(4);
     sortFiles.addAction(tr("Sort By PlayCount"))->setData(5);
     TTK::Widget::adjustMenuPosition(&sortFiles);
     connect(&sortFiles, SIGNAL(triggered(QAction*)), SLOT(songListSortBy(QAction*)));

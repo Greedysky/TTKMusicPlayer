@@ -54,7 +54,7 @@ void MusicSongsListPlayedTableWidget::updateSongsList(const MusicSongList &songs
                           item = new QTableWidgetItem;
         setItem(i, 3, item);
 
-                          item = new QTableWidgetItem(v.playTime());
+                          item = new QTableWidgetItem(v.duration());
         item->setForeground(QColor(TTK::UI::Color01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
@@ -153,7 +153,7 @@ void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
     setItem(m_playRowIndex, 2, new QTableWidgetItem);
     setItem(m_playRowIndex, 3, new QTableWidgetItem);
 
-    item = new QTableWidgetItem((*m_songs)[m_playRowIndex].playTime());
+    item = new QTableWidgetItem((*m_songs)[m_playRowIndex].duration());
     item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 4, item);
@@ -182,7 +182,7 @@ void MusicSongsListPlayedTableWidget::itemCellEntered(int row, int column)
     if(it)
     {
         it->setIcon(QIcon());
-        it->setText((*m_songs)[m_previousColorRow].playTime());
+        it->setText((*m_songs)[m_previousColorRow].duration());
     }
 
     ///draw new table item state

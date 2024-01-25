@@ -48,8 +48,8 @@ void ReqKWInterface::parseFromMovieInfo(TTK::MusicSongInformation *info)
         if(value.contains("data"))
         {
             value = value["data"].toMap();
-            info->m_songName = value["name"].toString();
-            info->m_artistName = value["artist"].toString();
+            info->m_songName = TTK::String::charactersReplace(value["name"].toString());
+            info->m_artistName = ReqKWInterface::makeSongArtist(value["artist"].toString());
             info->m_coverUrl = value["pic"].toString();
             info->m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
         }
@@ -204,7 +204,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                     info.m_songId = value["MUSICRID"].toString().remove("MUSIC_");
                     info.m_songName = TTK::String::charactersReplace(value["SONGNAME"].toString());
 
-                    info.m_artistName = TTK::String::charactersReplace(value["ARTIST"].toString());
+                    info.m_artistName = ReqKWInterface::makeSongArtist(value["ARTIST"].toString());
 
                     info.m_coverUrl = ReqKWInterface::makeCoverPixmapUrl(value["web_albumpic_short"].toString(), info.m_songId);
                     info.m_duration = TTKTime::formatDuration(value["DURATION"].toInt() * TTK_DN_S2MS);

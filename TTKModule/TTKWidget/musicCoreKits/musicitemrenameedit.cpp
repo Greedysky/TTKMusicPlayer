@@ -24,7 +24,7 @@ MusicItemRenameEidt::MusicItemRenameEidt(const QString &text, QWidget *parent)
 
 void MusicItemRenameEidt::textChanged(const QString &text)
 {
-    if(TTK::String::isCharacterValid(text))
+    if(TTK::String::isCharValid(text))
     {
         backspace();
         m_focusBlock = true;
@@ -32,7 +32,7 @@ void MusicItemRenameEidt::textChanged(const QString &text)
         MusicToastLabel *toast = new MusicToastLabel(this);
         connect(toast, SIGNAL(finished()), SLOT(animationCloseChanged()));
 
-        toast->setText(tr("Illegal chars %1").arg(TTK::String::illegalCharacters().join("")));
+        toast->setText(tr("Illegal chars %1").arg(TTK::String::characters().join("")));
         toast->popup();
     }
 }

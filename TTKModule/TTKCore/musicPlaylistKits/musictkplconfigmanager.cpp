@@ -48,15 +48,15 @@ bool MusicTKPLConfigManager::writeBuffer(const MusicSongItemList &items)
                                                                           {"sortType", item.m_sort.m_order}});
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
-            QString playTime = song.playTime();
-            if(item.m_itemIndex == MUSIC_NETWORK_LIST && playTime == TTK_DEFAULT_STR)
+            QString duration = song.duration();
+            if(item.m_itemIndex == MUSIC_NETWORK_LIST && duration == TTK_DEFAULT_STR)
             {
-                playTime = TTK::generateNetworkSongTime(song.path());
+                duration = TTK::generateNetworkSongTime(song.path());
             }
 
             writeDomMultiElement(pathDom, "value", {{"name", song.name()},
                                                     {"playCount", song.playCount()},
-                                                    {"time", playTime}}, song.path());
+                                                    {"time", duration}}, song.path());
         }
     }
 

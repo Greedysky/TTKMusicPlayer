@@ -16,7 +16,7 @@ void MusicKWQueryPlaylistRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    request.setUrl(TTK::Algorithm::mdII(KW_PLAYLIST_URL, false).arg(m_queryValue).arg(offset).arg(m_pageSize));
+    request.setUrl(TTK::Algorithm::mdII(KW_PLAYLIST_URL, false).arg(m_queryValue).arg(offset + 1).arg(m_pageSize));
     ReqKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -41,7 +41,7 @@ void MusicKWQueryPlaylistRequest::startToSearch(const QString &value)
 
 void MusicKWQueryPlaylistRequest::startToSearchByID(const QString &value)
 {
-    MusicQueryPlaylistRequest::startToSearchByID(value.isEmpty() ? "167" : value);
+    MusicQueryPlaylistRequest::startToSearchByID(value.isEmpty() ? "393" : value);
 }
 
 void MusicKWQueryPlaylistRequest::startToQueryResult(TTK::MusicSongInformation *info, int bitrate)
@@ -104,12 +104,12 @@ void MusicKWQueryPlaylistRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("child"))
+            if(value["code"].toInt() == 200 && value.contains("data"))
             {
+                value = value["data"].toMap();
                 m_totalSize = value["total"].toInt();
-                m_tags = value["ninfo"].toMap()["name"].toString();
 
-                const QVariantList &datas = value["child"].toList();
+                const QVariantList &datas = value["data"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
@@ -120,7 +120,7 @@ void MusicKWQueryPlaylistRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    morePlaylistDetails(value["sourceid"].toString());
+                    morePlaylistDetails(value["id"].toString());
                     TTK_NETWORK_QUERY_CHECK();
                 }
             }
@@ -204,7 +204,7 @@ void MusicKWQueryPlaylistRequest::downloadMoreDetailsFinished()
             if(value["result"].toString() == "ok")
             {
                 MusicResultDataItem result;
-                result.m_category = m_tags;
+                result.m_category = value["tag"].toString().replace(",", "|");
                 result.m_coverUrl = value["pic"].toString();
                 result.m_id = value["id"].toString();
                 result.m_name = value["title"].toString();

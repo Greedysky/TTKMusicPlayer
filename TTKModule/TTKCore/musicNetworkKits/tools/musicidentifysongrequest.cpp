@@ -5,7 +5,7 @@
 
 #include <QFile>
 
-static constexpr const char *OS_ACRUA_URL = "acrcloud";
+static constexpr const char *OS_ACRCLOUD_URL = "acrcloud";
 static constexpr const char *QUERY_URL = "VzBxZCtBUDBKK1R6aHNiTGxMdy84SzlIUVA5a3cvbjdKQ1ZIVGdYRThBS0hZMTlZSnhRQ0Y5N0lZdi9QQ3VveVEyVDdXbll3ZUZvPQ==";
 
 MusicIdentifySongRequest::MusicIdentifySongRequest(QObject *parent)
@@ -21,7 +21,7 @@ bool MusicIdentifySongRequest::queryIdentifyKey()
 
     MusicDataSourceRequest *d = new MusicDataSourceRequest(this);
     connect(d, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    d->startToRequest(QSyncUtils::makeDataBucketUrl() + OS_ACRUA_URL);
+    d->startToRequest(QSyncUtils::makeDataBucketUrl() + OS_ACRCLOUD_URL);
     loop.exec();
 
     return !m_accessKey.isEmpty() && !m_accessSecret.isEmpty();
@@ -105,7 +105,7 @@ void MusicIdentifySongRequest::downLoadFinished()
                     for(const QVariant &artists : value["artists"].toList())
                     {
                         value = artists.toMap();
-                        song.m_artistName = value["name"].toString();
+                        song.m_artistName = TTK::String::charactersReplace(value["name"].toString());
                         break;
                     }
 

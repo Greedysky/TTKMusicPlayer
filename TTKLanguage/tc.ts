@@ -5649,7 +5649,7 @@ Copyright© 2015 - 2024 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplaytablewidget.cpp" line="696"/>
-        <source>Sort By PlayTime</source>
+        <source>Sort By Duration</source>
         <translation>按歌曲時長</translation>
     </message>
     <message>
@@ -5957,7 +5957,7 @@ Copyright© 2015 - 2024 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="107"/>
-        <source>Sort By PlayTime</source>
+        <source>Sort By Duration</source>
         <translation>按歌曲時長</translation>
     </message>
     <message>

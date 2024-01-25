@@ -49,7 +49,7 @@ bool MusicCSVConfigManager::writeBuffer(const MusicSongItemList &items)
         const MusicSongItem &item = items[i];
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
-            data << song.name() + "," + song.playTime() + "," + song.path();
+            data << song.name() + "," + song.duration() + "," + song.path();
         }
     }
 

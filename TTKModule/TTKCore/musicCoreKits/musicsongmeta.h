@@ -193,9 +193,9 @@ private:
      */
     MusicMeta *songMeta() noexcept;
     /*!
-     * Find legal data string.
+     * Format legal data string.
      */
-    QString findLegalDataString(TagMeta::Type type) noexcept;
+    QString formatString(TagMeta::Type type) noexcept;
     /*!
      * Read other taglib not by plugin.
      */

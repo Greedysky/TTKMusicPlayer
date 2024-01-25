@@ -83,7 +83,7 @@ void MusicKGQueryRequest::downLoadFinished()
                     info.m_songId = value["hash"].toString();
                     info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
 
-                    info.m_artistName = TTK::String::charactersReplace(value["singername"].toString());
+                    info.m_artistName = ReqKGInterface::makeSongArtist(value["singername"].toString());
 
                     info.m_albumId = value["album_id"].toString();
                     info.m_albumName = TTK::String::charactersReplace(value["album_name"].toString());
@@ -138,7 +138,7 @@ void MusicKGQueryRequest::downLoadSingleFinished()
                 info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
 
                 info.m_artistId = value["singerid"].toString();
-                info.m_artistName = TTK::String::charactersReplace(value["singername"].toString());
+                info.m_artistName = ReqKGInterface::makeSongArtist(value["singername"].toString());
 
                 const QVariantList &albumArray = value["album"].toList();
                 for(const QVariant &var : qAsConst(albumArray))

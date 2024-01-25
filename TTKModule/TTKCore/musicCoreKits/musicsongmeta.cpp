@@ -83,17 +83,17 @@ QString MusicSongMeta::fileRelatedPath() noexcept
 
 QString MusicSongMeta::artist() noexcept
 {
-    return findLegalDataString(TagMeta::ARTIST);
+    return formatString(TagMeta::ARTIST);
 }
 
 QString MusicSongMeta::title() noexcept
 {
-    return findLegalDataString(TagMeta::TITLE);
+    return formatString(TagMeta::TITLE);
 }
 
 QString MusicSongMeta::album() noexcept
 {
-    return findLegalDataString(TagMeta::ALBUM);
+    return formatString(TagMeta::ALBUM);
 }
 
 QString MusicSongMeta::comment() noexcept
@@ -119,12 +119,12 @@ QString MusicSongMeta::trackNum() noexcept
 
 QString MusicSongMeta::genre() noexcept
 {
-    return findLegalDataString(TagMeta::GENRE);
+    return formatString(TagMeta::GENRE);
 }
 
 QString MusicSongMeta::rating() noexcept
 {
-    return findLegalDataString(TagMeta::RATING);
+    return formatString(TagMeta::RATING);
 }
 
 QString MusicSongMeta::channel() noexcept
@@ -332,7 +332,7 @@ MusicMeta *MusicSongMeta::songMeta() noexcept
     return m_songMetas[m_offset];
 }
 
-QString MusicSongMeta::findLegalDataString(TagMeta::Type type) noexcept
+QString MusicSongMeta::formatString(TagMeta::Type type) noexcept
 {
     const QString &v = songMeta()->m_metaData[type];
     return TTK::String::charactersReplace(v);

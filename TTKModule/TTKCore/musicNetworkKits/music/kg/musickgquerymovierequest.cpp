@@ -79,8 +79,8 @@ void ReqKGInterface::parseFromMovieProperty(TTK::MusicSongInformation *info, boo
         {
             if(more)
             {
-                info->m_songName = value["songname"].toString();
-                info->m_artistName = value["singer"].toString();
+                info->m_songName = TTK::String::charactersReplace(value["songname"].toString());
+                info->m_artistName = ReqKGInterface::makeSongArtist(value["singer"].toString());
             }
 
             value = value["mvdata"].toMap();
@@ -223,7 +223,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
                     info.m_songId = value["mvhash"].toString();
                     info.m_songName = TTK::String::charactersReplace(value["songname"].toString());
 
-                    info.m_artistName = TTK::String::charactersReplace(value["singername"].toString());
+                    info.m_artistName = ReqKGInterface::makeSongArtist(value["singername"].toString());
 
                     info.m_duration = TTKTime::formatDuration(value["duration"].toInt() * TTK_DN_S2MS);
 

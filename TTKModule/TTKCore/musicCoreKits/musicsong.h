@@ -35,7 +35,7 @@ public:
         BySinger,        /*!< Sort by singer name*/
         ByFileSize,      /*!< Sort by file size*/
         ByAddTime,       /*!< Sort by add time*/
-        ByPlayTime,      /*!< Sort by play time*/
+        ByDuration,      /*!< Sort by duration*/
         ByPlayCount      /*!< Sort by play count*/
     };
 
@@ -44,7 +44,7 @@ public:
      */
     MusicSong() noexcept;
     explicit MusicSong(const QString &path, bool track = false) noexcept;
-    MusicSong(const QString &path, const QString &playTime, const QString &name = {}, bool track = false) noexcept;
+    MusicSong(const QString &path, const QString &duration, const QString &name = {}, bool track = false) noexcept;
 
     /*!
      * Get music title name.
@@ -97,13 +97,13 @@ public:
      */
     inline QString format() const noexcept { return m_format; }
     /*!
-     * Set music time.
+     * Set music duration.
      */
-    inline void setPlayTime(const QString &t) noexcept { m_playTime = t; }
+    inline void setDuration(const QString &t) noexcept { m_duration = t; }
     /*!
-     * Get music time.
+     * Get music duration.
      */
-    inline QString playTime() const noexcept { return m_playTime; }
+    inline QString duration() const noexcept { return m_duration; }
     /*!
      * Get music size.
      */
@@ -139,7 +139,7 @@ private:
     qint64 m_size, m_addTime;
     QString m_sizeStr, m_addTimeStr;
     int m_playCount;
-    QString m_name, m_path, m_format, m_playTime;
+    QString m_name, m_path, m_format, m_duration;
 
 };
 TTK_DECLARE_LIST(MusicSong);

@@ -91,7 +91,7 @@ void MusicSongsListPlayTableWidget::updateSongsList(const MusicSongList &songs)
                           item = new QTableWidgetItem;
         setItem(i, 4, item);
 
-                          item = new QTableWidgetItem(v.playTime());
+                          item = new QTableWidgetItem(v.duration());
         item->setForeground(QColor(TTK::UI::Color01));
         QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);
@@ -125,9 +125,9 @@ void MusicSongsListPlayTableWidget::selectRow(int index)
     if(!m_songs->isEmpty())
     {
         MusicSong *song = &(*m_songs)[index];
-        if(song->playTime().isEmpty() || song->playTime() == TTK_TIME_INIT)
+        if(song->duration().isEmpty() || song->duration() == TTK_TIME_INIT)
         {
-            song->setPlayTime(timeLabel);
+            song->setDuration(timeLabel);
         }
     }
 
@@ -210,7 +210,7 @@ void MusicSongsListPlayTableWidget::adjustPlayWidgetRow()
     setItem(m_playRowIndex, 3, new QTableWidgetItem);
     setItem(m_playRowIndex, 4, new QTableWidgetItem);
 
-    item = new QTableWidgetItem((*m_songs)[m_playRowIndex].playTime());
+    item = new QTableWidgetItem((*m_songs)[m_playRowIndex].duration());
     item->setForeground(QColor(TTK::UI::Color01));
     QtItemSetTextAlignment(item, Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 5, item);
@@ -280,7 +280,7 @@ void MusicSongsListPlayTableWidget::itemCellEntered(int row, int column)
     if(it)
     {
         it->setIcon(QIcon());
-        it->setText((*m_songs)[m_previousColorRow].playTime());
+        it->setText((*m_songs)[m_previousColorRow].duration());
     }
 
     ///draw new table item state
@@ -519,27 +519,25 @@ void MusicSongsListPlayTableWidget::searchQueryByName(QAction *action)
         return;
     }
 
-#define GENERATE_SEARCH_ITEM(index, names)                                                 \
-    case index:                                                                            \
-    {                                                                                      \
-        if(names.count() >= index)                                                         \
-        {                                                                                  \
-            MusicRightAreaWidget::instance()->showSongSearchedFound(names[index - 1]);     \
-        }                                                                                  \
-        break;                                                                             \
-    }
-
     const QString &songName = currentSongName();
     const QStringList names(TTK::String::split(songName));
-    switch(action->data().toInt() - TTK_LOW_LEVEL)
+    const int index = action->data().toInt() - TTK_LOW_LEVEL;
+
+    switch(index)
     {
-        case 0 : MusicRightAreaWidget::instance()->showSongSearchedFound(songName); break;
-        GENERATE_SEARCH_ITEM(1, names);
-        GENERATE_SEARCH_ITEM(2, names);
-        GENERATE_SEARCH_ITEM(3, names);
+        case 0: MusicRightAreaWidget::instance()->showSongSearchedFound(songName); break;
+        case 1:
+        case 2:
+        case 3:
+        {
+            if(names.count() >= index)
+            {
+                MusicRightAreaWidget::instance()->showSongSearchedFound(names[index - 1]);
+            }
+            break;
+        }
         default: break;
-    } 
-#undef GENERATE_SEARCH_ITEM
+    }
 }
 
 void MusicSongsListPlayTableWidget::addToPlayLater()
@@ -689,7 +687,7 @@ void MusicSongsListPlayTableWidget::contextMenuEvent(QContextMenuEvent *event)
     sortFiles.addAction(tr("Sort By Singer"))->setData(1);
     sortFiles.addAction(tr("Sort By FileSize"))->setData(2);
     sortFiles.addAction(tr("Sort By AddTime"))->setData(3);
-    sortFiles.addAction(tr("Sort By PlayTime"))->setData(4);
+    sortFiles.addAction(tr("Sort By Duration"))->setData(4);
     sortFiles.addAction(tr("Sort By PlayCount"))->setData(5);
     TTK::Widget::adjustMenuPosition(&sortFiles);
     connect(&sortFiles, SIGNAL(triggered(QAction*)), SLOT(songListSortBy(QAction*)));
@@ -813,7 +811,7 @@ void MusicSongsListPlayTableWidget::startToDrag()
 
             QHeaderView *headerview = horizontalHeader();
             item(i, 1)->setText(TTK::Widget::elidedText(font(), songs[i].name(), Qt::ElideRight, headerview->sectionSize(1) - 10));
-            item(i, 5)->setText(songs[i].playTime());
+            item(i, 5)->setText(songs[i].duration());
         }
 
         bool state;

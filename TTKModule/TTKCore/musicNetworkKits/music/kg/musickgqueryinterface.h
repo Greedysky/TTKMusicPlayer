@@ -67,6 +67,11 @@ namespace ReqKGInterface
     void makeRequestRawHeader(QNetworkRequest *request);
 
     /*!
+     * Make song artist name.
+     */
+    QString makeSongArtist(const QString &name);
+
+    /*!
      * Read tags(lrc\album pic) from query results.
      */
     void parseFromSongAlbumLrc(TTK::MusicSongInformation *info);

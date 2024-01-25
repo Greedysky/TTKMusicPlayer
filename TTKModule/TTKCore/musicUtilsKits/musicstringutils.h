@@ -87,11 +87,11 @@ namespace TTK
         /*!
          * Illegal characters.
          */
-        TTK_MODULE_EXPORT QStringList illegalCharacters();
+        TTK_MODULE_EXPORT QStringList characters();
         /*!
          * Illegal characters check.
          */
-        TTK_MODULE_EXPORT bool isCharacterValid(const QString &value);
+        TTK_MODULE_EXPORT bool isCharValid(const QString &value);
         /*!
          * Illegal characters replaced.
          */

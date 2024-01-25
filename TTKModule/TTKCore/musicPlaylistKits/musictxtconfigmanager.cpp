@@ -56,7 +56,7 @@ bool MusicTXTConfigManager::writeBuffer(const MusicSongItemList &items)
         const MusicSongItem &item = items[i];
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
-            data << QString("%1:%2 - %3").arg(++count).arg(song.path(), song.playTime());
+            data << QString("%1:%2 - %3").arg(++count).arg(song.path(), song.duration());
         }
     }
 

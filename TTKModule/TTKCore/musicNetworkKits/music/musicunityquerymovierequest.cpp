@@ -117,8 +117,8 @@ void MusicUnityQueryMovieRequest::downLoadUnityFinished()
                                 }
 
                                 const QVariantMap &artistObject = artistValue.toMap();
-                                info.m_artistName = TTK::String::charactersReplace(artistObject["name"].toString());
-                                break; //just find first artist
+                                const QString &artistName = TTK::String::charactersReplace(artistObject["name"].toString());
+                                info.m_artistName = info.m_artistName.isEmpty() ? artistName : (info.m_artistName + ";" + artistName);
                             }
 
                             value = value["fullClip"].toMap();

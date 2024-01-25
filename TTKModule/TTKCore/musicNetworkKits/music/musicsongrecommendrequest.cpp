@@ -124,9 +124,13 @@ void MusicSongRecommendRequest::downLoadFinished()
                     }
 
                     const QVariantMap &artistObject = artistValue.toMap();
-                    info.m_artistId = artistObject["id"].toString();
-                    info.m_artistName = TTK::String::charactersReplace(artistObject["name"].toString());
-                    break; //just find first artist
+                    if(info.m_artistId.isEmpty())
+                    {
+                        info.m_artistId = artistObject["id"].toString();
+                    }
+
+                    const QString &artistName = TTK::String::charactersReplace(artistObject["name"].toString());
+                    info.m_artistName = info.m_artistName.isEmpty() ? artistName : (info.m_artistName + ";" + artistName);
                 }
 
                 const QVariantMap &albumObject = value["albumInfo"].toMap();

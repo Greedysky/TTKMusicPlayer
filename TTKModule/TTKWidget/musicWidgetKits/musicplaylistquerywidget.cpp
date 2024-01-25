@@ -290,6 +290,7 @@ void MusicPlaylistQueryWidget::categoryChanged(const MusicResultsCategoryItem &c
             m_gridLayout->removeWidget(w);
             delete w;
         }
+
         m_networkRequest->startToSearchByID(category.m_key);
     }
 }

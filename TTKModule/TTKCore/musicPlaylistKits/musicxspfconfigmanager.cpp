@@ -75,7 +75,7 @@ bool MusicXSPFConfigManager::writeBuffer(const MusicSongItemList &items)
             writeDomElement(trackDom, "location", song.path());
             writeDomElement(trackDom, "title", song.title());
             writeDomElement(trackDom, "creator", song.artist());
-            writeDomElement(trackDom, "duration", song.playTime());
+            writeDomElement(trackDom, "duration", song.duration());
             writeDomElement(trackDom, "annotation", QString());
             writeDomElement(trackDom, "album", QString());
             writeDomElement(trackDom, "trackNum", QString());

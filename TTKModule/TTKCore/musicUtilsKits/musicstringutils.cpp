@@ -114,15 +114,15 @@ QString TTK::String::convertHtmlToPlain(const QString &value)
     return text.toPlainText();
 }
 
-QStringList TTK::String::illegalCharacters()
+QStringList TTK::String::characters()
 {
     static QStringList acs{"\\", "/", "?", "*", "\"", ":", "<", ">", "|"};
     return acs;
 }
 
-bool TTK::String::isCharacterValid(const QString &value)
+bool TTK::String::isCharValid(const QString &value)
 {
-    for(const QString &ac : TTK::String::illegalCharacters())
+    for(const QString &ac : TTK::String::characters())
     {
         if(value.contains(ac))
         {
@@ -136,7 +136,7 @@ QString TTK::String::charactersReplace(const QString &value)
 {
     QString s(TTK::String::convertHtmlToPlain(value));
 
-    for(const QString &ac : TTK::String::illegalCharacters())
+    for(const QString &ac : TTK::String::characters())
     {
         if(s.contains(ac))
         {

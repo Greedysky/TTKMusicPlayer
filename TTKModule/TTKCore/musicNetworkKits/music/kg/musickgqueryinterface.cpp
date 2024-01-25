@@ -8,6 +8,11 @@ void ReqKGInterface::makeRequestRawHeader(QNetworkRequest *request)
     TTK::makeContentTypeHeader(request);
 }
 
+QString ReqKGInterface::makeSongArtist(const QString &name)
+{
+    return TTK::String::charactersReplace(name).replace("+", ";");
+}
+
 void ReqKGInterface::parseFromSongAlbumLrc(TTK::MusicSongInformation *info)
 {
     if(info->m_songId.isEmpty())
